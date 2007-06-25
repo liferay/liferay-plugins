@@ -1,0 +1,2 @@
+<applet archive="SSHVncApplet-signed.jar,SSHVncApplet-jdkbug-workaround-signed.jar,SSHVncApplet-jdk1.3.1-dependencies-signed.jar" code="com.sshtools.sshvnc.SshVNCApplet" codebase="<%= request.getContextPath() %>" height="460" style="border-style: solid; border-width: 1; padding-bottom: 1; padding-left: 4; padding-right: 4; padding-top: 1" width="100%">
+</applet>

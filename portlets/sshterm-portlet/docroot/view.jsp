@@ -1,0 +1,2 @@
+<applet archive="SSHTermApplet-signed.jar,SSHTermApplet-jdkbug-workaround-signed.jar,SSHTermApplet-jdk1.3.1-dependencies-signed.jar" code="com.sshtools.sshterm.SshTermApplet" codebase="<%= request.getContextPath() %>" height="460" style="border-style: solid; border-width: 1; padding-bottom: 1; padding-left: 4; padding-right: 4; padding-top: 1" width="100%">
+</applet>
