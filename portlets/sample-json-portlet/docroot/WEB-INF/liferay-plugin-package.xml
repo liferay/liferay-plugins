@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 4.3.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_4_3_0.dtd">
+
+<plugin-package>
+	<name>Sample JSON Portlet</name>
+	<module-id>liferay-samples/sample-json-portlet/4.3.0.1/war</module-id>
+	<types>
+		<type>portlet</type>
+	</types>
+	<tags>
+		<tag>sample</tag>
+	</tags>
+	<short-description>
+		This portlet shows how to use JSON within Liferay.
+	</short-description>
+	<change-log>
+		Adapted to the latest version of Liferay.
+	</change-log>
+	<page-url>http://www.liferay.com/web/guest/downloads/samples</page-url>
+	<screenshots>
+		<screenshot>
+			<thumbnail-url>
+				http://www.liferay.com/image/image_gallery?img_id=1002&amp;small=1
+			</thumbnail-url>
+			<large-image-url>
+				http://www.liferay.com/image/image_gallery?img_id=1002&amp;large=1
+			</large-image-url>
+		</screenshot>
+	</screenshots>
+	<author>Liferay, Inc.</author>
+	<licenses>
+		<license osi-approved="true">MIT</license>
+	</licenses>
+	<liferay-versions>
+		<liferay-version>4.3.*</liferay-version>
+	</liferay-versions>
+</plugin-package>
