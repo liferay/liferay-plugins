@@ -2,8 +2,8 @@
 <!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 4.3.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_4_3_0.dtd">
 
 <plugin-package>
-	<name>Sample Laszlo Portlet</name>
-	<module-id>liferay-samples/sample-laszlo-portlet/4.3.0.1/war</module-id>
+	<name>Sample Permissions portlet</name>
+	<module-id>liferay-samples/sample-permissions-portlet/4.3.0/war</module-id>
 	<types>
 		<type>portlet</type>
 	</types>
@@ -11,7 +11,7 @@
 		<tag>sample</tag>
 	</tags>
 	<short-description>
-		This portlet shows how to create Laszlo portlets in Liferay.
+		This portlet shows how to use the permission service from a portlet.
 	</short-description>
 	<change-log>
 		Adapted to the latest version of Liferay.
