@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+	<servlet>
+		<servlet-name>HibernateServlet</servlet-name>
+		<servlet-class>com.sample.hibernate.servlet.HibernateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HibernateServlet</servlet-name>
+		<url-pattern>/servlet/*</url-pattern>
+	</servlet-mapping>
+</web-app>
