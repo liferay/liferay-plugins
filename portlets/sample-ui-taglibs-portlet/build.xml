@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 
-<project name="sample-json-portlet" basedir="." default="deploy">
+<project name="sample-ui-taglibs-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
 
 	<property name="plugin.version" value="1" />
 	<property name="plugin.file" value="${project.dir}/dist/${ant.project.name}-${lp.version}.${plugin.version}.war" />
 
 	<target name="compile">
-		<copy todir="docroot/WEB-INF/lib">
+		<copy todir="docroot/WEB-INF/tld">
 			<fileset
-				dir="${app.server.lib.portal.dir}"
-				includes="jsonrpc.jar"
+				dir="${app.server.portal.dir}/WEB-INF/tld"
+				includes="liferay-ui.tld,liferay-theme.tld"
 			/>
 		</copy>
 

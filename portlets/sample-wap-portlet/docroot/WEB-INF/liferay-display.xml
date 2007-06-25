@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!DOCTYPE display PUBLIC "-//Liferay//DTD Display 4.0.0//EN" "http://www.liferay.com/dtd/liferay-display_4_0_0.dtd">
+
+<display>
+	<category name="category.sample">
+		<portlet id="sample_wap_photo_gallery" />
+		<portlet id="sample_wap_video" />
+	</category>
+</display>

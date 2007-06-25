@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd" version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd">
+	<portlet>
+		<portlet-name>sample_wap_photo_gallery</portlet-name>
+		<display-name>Sample WAP Photo Gallery</display-name>
+		<portlet-class>com.liferay.util.bridges.jsp.JSPPortlet</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/photo_gallery/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<supports>
+			<mime-type>application/vnd.wap.xhtml+xml</mime-type>
+		</supports>
+		<portlet-info>
+			<title>Sample WAP Photo Gallery</title>
+			<short-title>Sample WAP Photo Gallery</short-title>
+			<keywords>Sample WAP Photo Gallery</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>sample_wap_video</portlet-name>
+		<display-name>Sample WAP Video</display-name>
+		<portlet-class>com.liferay.util.bridges.jsp.JSPPortlet</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/video/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<supports>
+			<mime-type>application/vnd.wap.xhtml+xml</mime-type>
+		</supports>
+		<portlet-info>
+			<title>Sample WAP Video</title>
+			<short-title>Sample WAP Video</short-title>
+			<keywords>Sample WAP Video</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+</portlet-app>
