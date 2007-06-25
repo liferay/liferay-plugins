@@ -11,7 +11,7 @@
 		<tag>sample</tag>
 	</tags>
 	<short-description>
-		This portlet shows how to develop a simple portlet within Liferay.
+		This portlet shows how to develop a simple portlet in Liferay.
 	</short-description>
 	<change-log>
 		Adapted to the latest version of Liferay.

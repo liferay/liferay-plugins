@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 4.3.0//EN" "http://www.liferay.com/dtd/liferay-portlet-app_4_3_0.dtd">
+
+<liferay-portlet-app>
+	<portlet>
+		<portlet-name>mode</portlet-name>
+	</portlet>
+	<portlet>
+		<portlet-name>exceptions</portlet-name>
+	</portlet>
+	<portlet>
+		<portlet-name>books</portlet-name>
+	</portlet>
+	<portlet>
+		<portlet-name>redirect</portlet-name>
+	</portlet>
+	<portlet>
+		<portlet-name>upload</portlet-name>
+	</portlet>
+	<portlet>
+		<portlet-name>helloworld</portlet-name>
+	</portlet>
+</liferay-portlet-app>

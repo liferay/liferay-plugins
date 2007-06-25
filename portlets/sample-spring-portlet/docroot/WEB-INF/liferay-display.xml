@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE display PUBLIC "-//Liferay//DTD Display 4.0.0//EN" "http://www.liferay.com/dtd/liferay-display_4_0_0.dtd">
+
+<display>
+	<category name="category.sample">
+		<category name="category.spring">
+			<portlet id="mode" />
+			<portlet id="exceptions" />
+			<portlet id="books" />
+			<portlet id="redirect" />
+			<portlet id="upload" />
+			<portlet id="helloworld" />
+		</category>
+	</category>
+</display>

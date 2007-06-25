@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd" version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd">
+	<portlet>
+	<portlet-name>alfresco_client</portlet-name>
+	<display-name>Alfresco Client</display-name>
+	<portlet-class>org.alfresco.web.app.portlet.AlfrescoFacesPortlet</portlet-class>
+		<init-param>
+			<name>default-view</name>
+			<value>/jsp/login.jsp</value>
+		</init-param>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>help</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Alfresco Client</title>
+			<short-title>Alfresco Client</short-title>
+		</portlet-info>
+	</portlet>
+</portlet-app>
