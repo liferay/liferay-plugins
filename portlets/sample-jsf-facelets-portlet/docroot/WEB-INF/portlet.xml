@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd" version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd">
+	<portlet>
+		<portlet-name>sample_jsf_facelets_portlet</portlet-name>
+		<display-name>Sample JSF Facelets Portlet</display-name>
+		<portlet-class>com.sample.jsffacelets.portlet.MyFacesFaceletsPortlet</portlet-class>
+		<init-param>
+			<name>EditPage</name>
+			<value>/edit.xhtml</value>
+		</init-param>
+		<init-param>
+			<name>HelpPage</name>
+			<value>/help.xhtml</value>
+		</init-param>
+		<init-param>
+			<name>ViewPage</name>
+			<value>/view.xhtml</value>
+		</init-param>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>edit</portlet-mode>
+			<portlet-mode>help</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Sample JSF Facelets Portlet</title>
+			<short-title>Sample JSF Facelets Portlet</short-title>
+			<keywords>Sample JSF Facelets Portlet</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+</portlet-app>
