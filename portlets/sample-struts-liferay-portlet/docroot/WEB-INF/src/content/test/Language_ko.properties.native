@@ -21,12 +21,12 @@ errors.short={0} must be a short.
 ## Custom errors
 ##
 
-error.emailAddress.required=Please enter a valid email address.
-error.lastName.required=Please enter a valid last name.
-error.sample.exception=This is a sample exception.
+error.emailAddress.required=유효한 전자 우편 주소에 들어가십시요.
+error.lastName.required=유효한 성에 들어가십시요.
+error.sample.exception=이것은 견본 예외 이다.
 
 ##
 ## Messages
 ##
 
-hello-there=Hello There
+hello-there=여보세요 거기서

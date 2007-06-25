@@ -21,12 +21,12 @@ errors.short={0} must be a short.
 ## Custom errors
 ##
 
-error.emailAddress.required=Please enter a valid email address.
-error.lastName.required=Please enter a valid last name.
-error.sample.exception=This is a sample exception.
+error.emailAddress.required=Entri prego in un email address valido.
+error.lastName.required=Introduca prego un ultimo nome valido.
+error.sample.exception=Ciò fa un'eccezione del campione.
 
 ##
 ## Messages
 ##
 
-hello-there=Hello There
+hello-there=Ciao Là

@@ -21,12 +21,12 @@ errors.short={0} must be a short.
 ## Custom errors
 ##
 
-error.emailAddress.required=Please enter a valid email address.
-error.lastName.required=Please enter a valid last name.
-error.sample.exception=This is a sample exception.
+error.emailAddress.required=請輸入一封合法的電子郵件。
+error.lastName.required=請輸入合法的姓。
+error.sample.exception=這是樣品例外。
 
 ##
 ## Messages
 ##
 
-hello-there=Hello There
+hello-there=你好那裡

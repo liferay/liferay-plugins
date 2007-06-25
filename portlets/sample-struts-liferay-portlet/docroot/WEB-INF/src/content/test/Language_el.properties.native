@@ -21,12 +21,12 @@ errors.short={0} must be a short.
 ## Custom errors
 ##
 
-error.emailAddress.required=Please enter a valid email address.
-error.lastName.required=Please enter a valid last name.
-error.sample.exception=This is a sample exception.
+error.emailAddress.required=Παρακαλώ εισάγετε μια έγκυρη διεύθυνση ηλεκτρονικού ταχυδρομείου.
+error.lastName.required=Παρακαλώ εισάγετε ένα έγκυρο τελευταίο όνομα.
+error.sample.exception=Αυτό είναι μια εξαίρεση δειγμάτων.
 
 ##
 ## Messages
 ##
 
-hello-there=Hello There
+hello-there=Γειάσου εκεί
