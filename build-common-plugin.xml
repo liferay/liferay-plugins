@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+
+<project name="build-common-plugin">
+	<import file="build-common.xml" />
+
+	<target name="clean">
+		<delete dir="docroot/WEB-INF/classes" />
+		<delete dir="tmp" />
+		<delete file="${plugin.file}" />
+	</target>
+
+	<target name="compile">
+		<if>
+			<available file="docroot/WEB-INF/src" />
+			<then>
+				<mkdir dir="docroot/WEB-INF/classes" />
+				<mkdir dir="docroot/WEB-INF/lib" />
+
+				<path id="plugin-lib.classpath">
+					<pathelement location="docroot/WEB-INF/classes" />
+					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+				</path>
+
+				<copy todir="docroot/WEB-INF/lib">
+					<fileset dir="${app.server.lib.portal.dir}" includes="commons-logging.jar,log4j.jar,util-bridges.jar,util-java.jar,util-taglib.jar" />
+				</copy>
+
+				<javac
+					classpathref="plugin.classpath"
+					compiler="${javac.compiler}"
+					debug="${javac.debug}"
+					deprecation="${javac.deprecation}"
+					destdir="docroot/WEB-INF/classes"
+					fork="${javac.fork}"
+					memoryMaximumSize="${javac.memoryMaximumSize}"
+					nowarn="on"
+					srcdir="docroot/WEB-INF/src"
+				/>
+
+				<copy todir="docroot/WEB-INF/classes">
+					<fileset dir="docroot/WEB-INF/src" excludes="**/*.java" />
+				</copy>
+			</then>
+		</if>
+	</target>
+
+	<target name="merge" depends="compile" if="original.war.file">
+		<if>
+			<not>
+				<uptodate srcfile="${original.war.file}" targetfile="tmp" />
+			</not>
+			<then>
+				<delete dir="tmp" />
+				<mkdir dir="tmp" />
+
+				<unzip dest="tmp" src="${original.war.file}" />
+
+				<copy todir="tmp" overwrite="true">
+					<fileset dir="docroot" />
+				</copy>
+			</then>
+		</if>
+
+		<copy todir="tmp" overwrite="false">
+			<fileset dir="docroot" />
+		</copy>
+	</target>
+
+	<target name="war" depends="merge">
+		<mkdir dir="${project.dir}/dist" />
+
+		<if>
+			<available file="tmp" />
+			<then>
+				<property name="docroot.dir" value="tmp" />
+			</then>
+			<else>
+				<property name="docroot.dir" value="docroot" />
+			</else>
+		</if>
+
+		<zip
+			basedir="${docroot.dir}"
+			destfile="${plugin.file}"
+		/>
+	</target>
+
+	<target name="deploy" depends="war">
+		<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
+	</target>
+</project>

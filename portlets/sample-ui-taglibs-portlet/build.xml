@@ -14,6 +14,6 @@
 			/>
 		</copy>
 
-		<antcall target="build-common-portlet.compile" />
+		<antcall target="build-common-plugin.compile" />
 	</target>
 </project>

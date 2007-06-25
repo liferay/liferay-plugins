@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+
+<project name="build-common-plugins" xmlns:antelope="antlib:ise.antelope.tasks">
+	<import file="build-common.xml" />
+
+	<target name="clean">
+		<antcall target="loop-modules">
+			<param name="loop.modules.cmd" value="clean-module" />
+		</antcall>
+	</target>
+
+	<target name="clean-module">
+		<ant dir="${module.name}" target="clean" inheritAll="false" />
+	</target>
+
+	<target name="compile">
+		<antcall target="loop-modules">
+			<param name="loop.modules.cmd" value="compile-module" />
+		</antcall>
+	</target>
+
+	<target name="compile-module">
+		<ant dir="${module.name}" target="compile" inheritAll="false" />
+	</target>
+
+	<target name="war">
+		<antcall target="loop-modules">
+			<param name="loop.modules.cmd" value="war-module" />
+		</antcall>
+	</target>
+
+	<target name="war-module">
+		<ant dir="${module.name}" target="war" inheritAll="false" />
+	</target>
+
+	<target name="deploy">
+		<antcall target="loop-modules">
+			<param name="loop.modules.cmd" value="deploy-module" />
+		</antcall>
+	</target>
+
+	<target name="deploy-module">
+		<ant dir="${module.name}" target="deploy" inheritAll="false" />
+	</target>
+
+	<target name="loop-modules">
+		<for param="module.name">
+			<path>
+				<dirset dir="." includes="*" />
+			</path>
+			<sequential>
+				<antelope:stringutil string="@{module.name}" property="module.name.unix">
+					<replace regex="\\" replacement="/" />
+				</antelope:stringutil>
+
+				<antelope:grep in="${module.name.unix}" regex="(.*/)(.*)" group="2" property="module.name" />
+
+				<antcall target="${loop.modules.cmd}" />
+			</sequential>
+		</for>
+	</target>
+</project>
