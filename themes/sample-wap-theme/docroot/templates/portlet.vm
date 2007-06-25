@@ -1,0 +1,16 @@
+#set ( $portlet_display = $portletDisplay )
+
+#set ( $portlet_id = $portlet_display.getId() )
+#set ( $portlet_title = $portlet_display.getTitle() )
+#set ( $portlet_content = $portlet_display.getContent() )
+#set ( $portlet_back_url = $portlet_display.getURLBack() )
+
+<p>
+	$portlet_content
+</p>
+
+#if ( $portlet_display.isStateMax() )
+	<p>
+		<a href="$portlet_back_url">#language("back")</a>
+	</p>
+#end

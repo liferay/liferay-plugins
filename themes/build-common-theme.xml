@@ -4,4 +4,70 @@
 	<property name="project.dir" value="../.." />
 
 	<import file="../build-common-plugin.xml" />
+
+	<target name="clean">
+		<if>
+			<available file="docroot/_diffs" />
+			<then>
+				<delete includeemptydirs="true" quiet="true" failonerror="false">
+					<fileset
+						dir="docroot"
+						excludes="_diffs.*,_diffs/**,WEB-INF/**"
+					/>
+				</delete>
+			</then>
+		</if>
+	</target>
+
+	<target name="compile">
+		<if>
+			<available file="docroot/_diffs" />
+			<then>
+				<if>
+					<available file="docroot/_diffs.unstyled" />
+					<then>
+						<copy todir="docroot" overwrite="yes">
+							<fileset
+								dir="${app.server.portal.dir}/html/themes/_unstyled"
+								excludes="templates/init.vm"
+							/>
+						</copy>
+					</then>
+					<elseif>
+						<available file="docroot/_diffs.styled" />
+						<then>
+							<copy todir="docroot" overwrite="yes">
+								<fileset
+									dir="${app.server.portal.dir}/html/themes/_unstyled"
+									excludes="templates/init.vm"
+								/>
+							</copy>
+
+							<copy todir="docroot" overwrite="yes">
+								<fileset
+									dir="${app.server.portal.dir}/html/themes/_styled"
+								/>
+							</copy>
+						</then>
+					</elseif>
+				</if>
+
+				<copy todir="docroot" overwrite="yes">
+					<fileset
+						dir="docroot/_diffs"
+					/>
+				</copy>
+			</then>
+		</if>
+	</target>
+
+	<target name="war" depends="merge">
+		<mkdir dir="${project.dir}/dist" />
+
+		<zip
+			basedir="docroot"
+			destfile="${plugin.file}"
+			excludes="_diffs.*,_diffs/**"
+		/>
+	</target>
 </project>
