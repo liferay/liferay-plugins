@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<web-app xmlns="http://geronimo.apache.org/xml/ns/j2ee/web-1.1">
+	<environment>
+		<moduleId>
+			<artifactId>sample-struts-portlet</artifactId>
+		</moduleId>
+		<dependencies>
+			<dependency>
+				<groupId>liferay</groupId>
+				<artifactId>liferay-portal-tomcat</artifactId>
+			</dependency>
+		</dependencies>
+	</environment>
+</web-app>

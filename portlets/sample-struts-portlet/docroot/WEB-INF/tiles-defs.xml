@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+
+<tiles-definitions>
+
+	<!-- Sample Struts -->
+
+	<definition name="portlet.sample_struts_portlet" path="/html/portlet/sample_struts_portlet/template.jsp" />
+
+	<definition name="portlet.sample_struts_portlet.edit" extends="portlet.sample_struts_portlet">
+		<put name="portlet_content" value="/portlet/sample_struts_portlet/edit.jsp" />
+	</definition>
+
+	<definition name="portlet.sample_struts_portlet.help" extends="portlet.sample_struts_portlet">
+		<put name="portlet_content" value="/portlet/sample_struts_portlet/help.jsp" />
+	</definition>
+
+	<definition name="portlet.sample_struts_portlet.nested" extends="portlet.sample_struts_portlet">
+		<put name="portlet_content" value="/portlet/sample_struts_portlet/nested.jsp" />
+	</definition>
+
+	<definition name="portlet.sample_struts_portlet.nested_success" extends="portlet.sample_struts_portlet">
+		<put name="portlet_content" value="/portlet/sample_struts_portlet/nested_success.jsp" />
+	</definition>
+
+	<definition name="portlet.sample_struts_portlet.sample_exception" extends="portlet.sample_struts_portlet">
+		<put name="portlet_content" value="/portlet/sample_struts_portlet/sample_exception.jsp" />
+	</definition>
+
+	<definition name="portlet.sample_struts_portlet.subscribe" extends="portlet.sample_struts_portlet">
+		<put name="portlet_content" value="/portlet/sample_struts_portlet/subscribe.jsp" />
+	</definition>
+
+	<definition name="portlet.sample_struts_portlet.subscribe_success" extends="portlet.sample_struts_portlet">
+		<put name="portlet_content" value="/portlet/sample_struts_portlet/subscribe_success.jsp" />
+	</definition>
+
+	<definition name="portlet.sample_struts_portlet.unsubscribe" extends="portlet.sample_struts_portlet">
+		<put name="portlet_content" value="/portlet/sample_struts_portlet/unsubscribe.jsp" />
+	</definition>
+
+	<definition name="portlet.sample_struts_portlet.unsubscribe_success" extends="portlet.sample_struts_portlet">
+		<put name="portlet_content" value="/portlet/sample_struts_portlet/unsubscribe_success.jsp" />
+	</definition>
+
+	<definition name="portlet.sample_struts_portlet.upload" extends="portlet.sample_struts_portlet">
+		<put name="portlet_content" value="/portlet/sample_struts_portlet/upload.jsp" />
+	</definition>
+
+	<definition name="portlet.sample_struts_portlet.upload_success" extends="portlet.sample_struts_portlet">
+		<put name="portlet_content" value="/portlet/sample_struts_portlet/upload_success.jsp" />
+	</definition>
+
+	<definition name="portlet.sample_struts_portlet.view" extends="portlet.sample_struts_portlet">
+		<put name="portlet_content" value="/portlet/sample_struts_portlet/view.jsp" />
+	</definition>
+
+	<definition name="portlet.sample_struts_portlet.x" extends="portlet.sample_struts_portlet">
+		<put name="portlet_content" value="/portlet/sample_struts_portlet/x.jsp" />
+	</definition>
+
+	<definition name="portlet.sample_struts_portlet.y" extends="portlet.sample_struts_portlet">
+		<put name="portlet_content" value="/portlet/sample_struts_portlet/y.jsp" />
+	</definition>
+
+	<definition name="portlet.sample_struts_portlet.z" extends="portlet.sample_struts_portlet">
+		<put name="portlet_content" value="/portlet/sample_struts_portlet/z.jsp" />
+	</definition>
+</tiles-definitions>

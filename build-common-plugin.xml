@@ -17,8 +17,8 @@
 				<mkdir dir="docroot/WEB-INF/lib" />
 
 				<path id="plugin-lib.classpath">
-					<pathelement location="docroot/WEB-INF/classes" />
 					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+					<pathelement location="docroot/WEB-INF/classes" />
 				</path>
 
 				<copy todir="docroot/WEB-INF/lib">

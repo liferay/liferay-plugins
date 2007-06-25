@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd" version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd">
+	<portlet>
+		<portlet-name>sample_struts_liferay_portlet</portlet-name>
+		<display-name>Sample Struts Liferay Portlet</display-name>
+		<portlet-class>com.sample.strutsliferay.portlet.SampleStrutsLiferayPortlet</portlet-class>
+		<init-param>
+			<name>edit-action</name>
+			<value>/sample_struts_liferay_portlet/edit</value>
+		</init-param>
+		<init-param>
+			<name>help-action</name>
+			<value>/sample_struts_liferay_portlet/help</value>
+		</init-param>
+		<init-param>
+			<name>print-action</name>
+			<value>/sample_struts_liferay_portlet/print</value>
+		</init-param>
+		<init-param>
+			<name>view-action</name>
+			<value>/sample_struts_liferay_portlet/view</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>edit</portlet-mode>
+			<portlet-mode>help</portlet-mode>
+			<portlet-mode>print</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Sample Struts Liferay Portlet</title>
+			<short-title>Sample Struts Liferay Portlet</short-title>
+			<keywords>Sample Struts Liferay Portlet</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<custom-window-state>
+		<window-state>exclusive</window-state>
+	</custom-window-state>
+	<custom-window-state>
+		<window-state>pop_up</window-state>
+	</custom-window-state>
+	<user-attribute>
+		<name>user.bdate</name>
+	</user-attribute>
+	<user-attribute>
+		<name>user.gender</name>
+	</user-attribute>
+</portlet-app>

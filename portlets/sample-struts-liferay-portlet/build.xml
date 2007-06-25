@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<project name="sample-struts-liferay-portlet" basedir="." default="deploy">
+	<import file="../build-common-portlet.xml" />
+
+	<property name="plugin.version" value="1" />
+	<property name="plugin.file" value="${project.dir}/dist/${ant.project.name}-${lp.version}.${plugin.version}.war" />
+
+	<target name="compile">
+		<mkdir dir="docroot/WEB-INF/classes" />
+
+		<path id="plugin-lib.classpath">
+			<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
+			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+			<pathelement location="docroot/WEB-INF/classes" />
+		</path>
+
+		<javac
+			classpathref="plugin.classpath"
+			compiler="${javac.compiler}"
+			debug="${javac.debug}"
+			deprecation="${javac.deprecation}"
+			destdir="docroot/WEB-INF/classes"
+			fork="${javac.fork}"
+			memoryMaximumSize="${javac.memoryMaximumSize}"
+			nowarn="on"
+			srcdir="docroot/WEB-INF/src"
+		/>
+
+		<copy todir="docroot/WEB-INF/tld">
+			<fileset
+				dir="${app.server.portal.dir}/WEB-INF/tld"
+				includes="liferay-theme.tld,struts-*.tld"
+			/>
+		</copy>
+
+		<antcall target="build-common-plugin.compile" />
+	</target>
+</project>

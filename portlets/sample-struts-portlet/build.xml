@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<project name="sample-struts-portlet" basedir="." default="deploy">
+	<import file="../build-common-portlet.xml" />
+
+	<property name="plugin.version" value="1" />
+	<property name="plugin.file" value="${project.dir}/dist/${ant.project.name}-${lp.version}.${plugin.version}.war" />
+
+	<target name="compile">
+		<copy todir="docroot/WEB-INF/lib">
+			<fileset
+				dir="${app.server.lib.portal.dir}"
+				includes="antlr.jar,commons-beanutils.jar,commons-collections.jar,commons-digester.jar,commons-fileupload.jar,commons-io.jar,commons-lang.jar,commons-validator.jar,jcommon.jar,jfreechart.jar,oro.jar,portals-bridges.jar,struts.jar"
+			/>
+		</copy>
+
+		<copy todir="docroot/WEB-INF/tld">
+			<fileset
+				dir="${app.server.portal.dir}/WEB-INF/tld"
+				includes="struts-*.tld"
+			/>
+		</copy>
+
+		<antcall target="build-common-plugin.compile" />
+	</target>
+</project>
