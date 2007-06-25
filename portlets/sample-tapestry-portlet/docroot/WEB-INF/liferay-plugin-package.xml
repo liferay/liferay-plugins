@@ -2,8 +2,8 @@
 <!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 4.3.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_4_3_0.dtd">
 
 <plugin-package>
-	<name>Sample Portal Service Portlet</name>
-	<module-id>liferay-samples/sample-portal-service-portlet/4.3.0.1/war</module-id>
+	<name>Sample Tapestry Portlet</name>
+	<module-id>liferay-samples/sample-tapestry-portlet/4.3.0.1/war</module-id>
 	<types>
 		<type>portlet</type>
 	</types>
@@ -11,11 +11,11 @@
 		<tag>sample</tag>
 	</tags>
 	<short-description>
-		This portlet shows how to use Liferay's services throught regular Java calls.
+		This portlet shows how to use Tapestry within Liferay.
 	</short-description>
 	<change-log>
 		Adapted to the latest version of Liferay.
-	</change-log>
+	</change-log>	
 	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
 	<author>Liferay, Inc.</author>
 	<licenses>

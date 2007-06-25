@@ -2,8 +2,8 @@
 <!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 4.3.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_4_3_0.dtd">
 
 <plugin-package>
-	<name>Sample Portal Service Portlet</name>
-	<module-id>liferay-samples/sample-portal-service-portlet/4.3.0.1/war</module-id>
+	<name>Sample Ruby Portlet</name>
+	<module-id>liferay-samples/sample-ruby-portlet/4.3.0.1/war</module-id>
 	<types>
 		<type>portlet</type>
 	</types>
@@ -11,7 +11,7 @@
 		<tag>sample</tag>
 	</tags>
 	<short-description>
-		This portlet shows how to use Liferay's services throught regular Java calls.
+		This portlet shows how to create Ruby based portlets within Liferay.
 	</short-description>
 	<change-log>
 		Adapted to the latest version of Liferay.

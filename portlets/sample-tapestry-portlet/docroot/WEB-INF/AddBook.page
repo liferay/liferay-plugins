@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!DOCTYPE page-specification PUBLIC "-//Apache Software Foundation//Tapestry Specification 4.0//EN" "http://jakarta.apache.org/tapestry/dtd/Tapestry_4_0.dtd">
+	
+<page-specification class="com.sample.tapestry.page.AddBook">
+	<inject property="view" type="page" object="View" />
+	<inject property="bookList" type="state" object="bookList" />
+	<inject property="pageService" object="engine-service:page" />
+</page-specification>

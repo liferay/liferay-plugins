@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<project name="sample-tapestry-portlet" basedir="." default="deploy">
+	<import file="../build-common-portlet.xml" />
+
+	<property name="plugin.version" value="1" />
+	<property name="plugin.file" value="${project.dir}/dist/${ant.project.name}-${lp.version}.${plugin.version}.war" />
+
+	<target name="compile">
+		<copy todir="docroot/WEB-INF/lib">
+			<fileset
+				dir="${app.server.lib.portal.dir}"
+				includes="commons-codec.jar,javassist.jar,oro.jar"
+			/>
+		</copy>
+
+		<antcall target="build-common-plugin.compile" />
+	</target>
+</project>

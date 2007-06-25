@@ -1,0 +1,56 @@
+<form stateful="false" jwcid="form@Form">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+	<td>
+		Title
+	</td>
+	<td style="padding-left: 10px;"></td>
+	<td>
+		<input class="form-text" jwcid="title@TextField" value="ognl:book.title" size="40" />
+	</td>
+</tr>
+<tr>
+	<td>
+		Author
+	</td>
+	<td style="padding-left: 10px;"></td>
+	<td>
+		<input class="form-text" jwcid="author@TextField" value="ognl:book.author" size="40" />
+	</td>
+</tr>
+<tr>
+	<td>
+		Year
+	</td>
+	<td style="padding-left: 10px;"></td>
+	<td>
+		<input class="form-text" jwcid="year@TextField" value="ognl:book.year" size="4" />
+	</td>
+</tr>
+<tr>
+	<td>
+		Description
+	</td>
+	<td style="padding-left: 10px;"></td>
+	<td>
+		<textarea class="form-text" jwcid="description@TextArea" value="ognl:book.description" rows="10" cols="40" />
+	</td>
+</tr>
+<tr>
+	<td>
+		Recommended
+	</td>
+	<td style="padding-left: 10px;"></td>
+	<td>
+		<input jwcid="recommended@Checkbox" value="ognl:book.recommended" />
+	</td>
+</tr>
+</table>
+
+<br>
+
+<input class="portlet-form-button" jwcid="@Submit" listener="listener:doSubmit" type="Submit" value="Add Book" />
+
+<input class="portlet-form-button" jwcid="@Submit" listener="listener:doCancel" type="Submit" value="Cancel" />
+
+</form>

@@ -1,0 +1,52 @@
+<input jwcid="@Image" image="asset:logo" />
+
+<br><br>
+
+<table border="1" cellpadding="4" cellspacing="0">
+<tr bgcolor="#D3D3D3">
+	<td>
+		Title
+	</td>
+	<td>
+		Author
+	</td>
+	<td>
+		Year
+	</td>
+	<td>
+		Description
+	</td>
+	<td>
+		Recommended
+	</td>
+</tr>
+<tr jwcid="@For" source="ognl:books" value="ognl:book" element="tr">
+	<td>
+		<span jwcid="@Insert" value="ognl:book.title"></span>
+	</td>
+	<td>
+		<span jwcid="@Insert" value="ognl:book.author"></span>
+	</td>
+	<td>
+		<span jwcid="@Insert" value="ognl:book.year"></span>
+	</td>
+	<td>
+		<span jwcid="@Insert" value="ognl:book.description"></span>
+	</td>
+	<td>
+		<span jwcid="@Insert" value="ognl:book.recommended"></span>
+	</td>
+</tr>
+</table>
+
+<br>
+
+<a href="#" jwcid="@PageLink" page="AddBook">Add Book</a>
+
+|
+
+<a href="#" jwcid="@PageLink" page="View">Refresh</a>
+
+<br><br>
+
+The current data and time is: <strong><span jwcid="@Insert" value="ognl:new java.util.Date()"></span></strong>.

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<module id="sample" version="1.0.0" package="com.sample.tapestry">
+	<contribution configuration-id="tapestry.state.ApplicationObjects">
+		<state-object name="bookList" scope="session">
+			<create-instance class="com.sample.tapestry.bean.BookList" />
+		</state-object>
+	</contribution>
+</module>

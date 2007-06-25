@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd" version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd">
+	<portlet>
+		<portlet-name>sample_ruby_portlet</portlet-name>
+		<display-name>Sample Ruby Portlet</display-name>
+		<portlet-class>com.sample.ruby.portlet.RubyPortlet</portlet-class>
+		<init-param>
+			<name>view-file</name>
+			<value>/WEB-INF/ruby/view.rb</value>
+		</init-param>
+		<init-param>
+			<name>action-file</name>
+			<value>/WEB-INF/ruby/action.rb</value>
+		</init-param>
+		<init-param>
+			<name>global-files</name>
+			<value>/WEB-INF/ruby/global/liferay_portlet.rb,/WEB-INF/ruby/global/custom.rb</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<portlet-info>
+			<title>Sample Ruby Portlet</title>
+			<short-title>Sample Ruby Portlet</short-title>
+			<keywords>Sample Ruby Portlet</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<user-attribute>
+		<description>User Given Name</description>
+		<name>user.name.given</name>
+	</user-attribute>
+	<user-attribute>
+		<description>User Last Name</description>
+		<name>user.name.family</name>
+	</user-attribute>
+	<user-attribute>
+		<description>User eMail</description>
+		<name>user.home-info.online.email</name>
+	</user-attribute>
+</portlet-app>

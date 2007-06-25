@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!DOCTYPE page-specification PUBLIC "-//Apache Software Foundation//Tapestry Specification 4.0//EN" "http://jakarta.apache.org/tapestry/dtd/Tapestry_4_0.dtd">
+	
+<page-specification class="com.sample.tapestry.page.View">
+	<property name="books" persist="session" />
+	<property name="book" />
+	<asset name="logo" path="images/liferay-logo.gif" />
+</page-specification>
