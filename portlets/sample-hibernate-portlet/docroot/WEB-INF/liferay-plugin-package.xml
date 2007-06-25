@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Sample Hibernate Portlet</name>
-	<module-id>liferay-samples/sample-hibernate-portlet/4.3.0/war</module-id>
+	<module-id>liferay-samples/sample-hibernate-portlet/4.3.0.1/war</module-id>
 	<types>
 		<type>portlet</type>
 	</types>
