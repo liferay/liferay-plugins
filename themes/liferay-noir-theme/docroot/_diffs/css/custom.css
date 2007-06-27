@@ -1,0 +1,501 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+html, body {
+	height: auto;
+}
+
+html {
+	background: #1b2531 url(../images/common/html_bg.gif) repeat;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background: url(../images/common/body_bg.png) repeat-x left top;
+}
+table {
+	clear:both;
+}
+a {
+	color: #83b4e1;
+	text-decoration: underline;
+}
+
+a:hover {
+	color: #557b9f;
+	text-decoration: none;
+}
+
+.popup {
+	background: #1C2633;
+	border: 1px solid #131922;
+	color: #7e97ae;
+	padding: 0 0 10px 10px;
+}
+
+.popup-header, .popup-title {
+	background: url(../images/portlet/portlet_title_bg.png) no-repeat right top;
+}
+
+.ie6 .popup-header, .ie6 .popup-title {
+	background-image: url(../images/portlet/portlet_title_ie6_bg.png);
+}
+
+.popup-header {
+	border: none;
+	padding: 0;
+	height: 46px;
+	margin-left: -11px;
+	margin-top: -1px;
+	margin: -1px -1px 0 -11px;
+}
+
+.popup-title {
+	background-position: 0 -46px;
+	color: #fff;
+	display: block;
+	height: 25px;
+	padding: 15px 0 6px 10px;
+}
+
+.popup-close {
+	top: 15px;
+}
+
+.portal-add-content {
+	background: transparent;
+}
+
+.uni-form fieldset legend {
+	color: #7E97AE;
+}
+
+#wrapper {
+	background: url(../images/common/wrapper_bg.png) repeat-y center top;
+	width: 962px;
+	padding: 3em 63px;
+	margin-bottom: 0;
+}
+.ie6 #wrapper {
+	background: none;
+	padding: 0;
+}
+
+#content-wrapper {
+	background: #1c2633 url(../images/common/content_wrapper_bg.png) repeat;
+	padding: 0 5px;
+}
+
+#banner {
+	background-image: url(../images/common/banner_bg.jpg);
+	height: 135px;
+}
+
+#banner .logo {
+	background: none;
+}
+
+#banner .search {
+	position: absolute;
+	right: 10px;
+	top: 50px;
+}
+
+#banner .search form {
+	position: relative;
+	padding-right: 49px;
+	padding-top: 2px;
+}
+
+#banner .search input {
+	border: none;
+	font-size: 1.5em;
+	padding: 6px 3px;
+}
+
+#banner .search input[type=image] {
+	display: none;
+}
+
+#banner .search .search-input-link {
+	display: block;
+	background: url(../images/common/search_btn_bg.png) no-repeat;
+	height: 35px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 51px;
+}
+
+#navigation {
+	font-family:  Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	position: absolute;
+	bottom: 0;
+	left: 15px;
+	z-index: 100;
+}
+
+#navigation li, 
+#navigation li a, 
+#navigation li a span, 
+#navigation li.selected a, 
+#navigation li.selected a:hover,
+#navigation li a:hover span,
+#navigation li.selected a span, 
+#navigation li a:hover, 
+.js #navigation .enter-page {
+	background: none;
+	color:  #96c0e6;
+	font-size: 1em;
+	font-weight: bold;
+	padding: 0;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+#navigation li {
+	font-size: 1.1em;
+	margin-right: 55px;
+}
+
+#navigation li.selected a,
+#navigation li.selected a:hover {
+	background: url(../images/navigation/selected_bg.png) no-repeat;
+	color: #fff;
+	padding-left: 15px;
+}
+
+#navigation li.selected a span {
+	color: #fff;
+}
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: #141b24;
+	padding: 0;
+}
+
+.portlet, .portlet-content {
+	background: url(../images/portlet/portlet_bg.png) no-repeat left bottom;
+}
+
+.portlet-title span {
+	background: url(../images/common/arrow.png) no-repeat right center;
+	padding-right: 20px;
+}
+
+.portlet-topper, .portlet-title {
+	background: url(../images/portlet/portlet_title_bg.png) no-repeat right top;
+}
+
+.ie6 .portlet-topper, .ie6 .portlet-title {
+	background-image: url(../images/portlet/portlet_title_ie6_bg.png);
+}
+
+.portlet-topper {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 1.5em;
+	color: #fff;
+	height: 46px;
+	margin: 0;
+}
+.portlet-title {
+	background-position: left -46px;
+	height: 25px;
+	padding: 15px 0 6px 10px;
+}
+.portlet-content {
+	background-color: #1c2633;
+	background-position: right bottom;
+	color: #7e97ae;
+	margin-left: 10px;
+	padding: 10px 20px 20px 10px;
+}
+.portlet-icons {
+	top: 10px;
+}
+
+.portlet-icon-back {
+	padding: 0.5em 0 0.5em 1.4em;
+}
+
+.portlet-placeholder {
+	border: 1px dashed #7E97AE;
+}
+
+.js .delete-tab {
+	right: -10px;
+}
+
+#footer {
+	background: url(../images/common/footer_bg.jpg) no-repeat;
+	color: #739abe;
+	height: 106px;
+	position: relative;
+	width: 962px;
+}
+
+#footer .copyright-notice, #footer ul {
+	position: absolute;
+	bottom: -25px;
+}
+
+#footer .copyright-notice {
+	left: 30px;
+}
+
+#footer ul {
+	right: 30px;
+}
+
+#footer li {
+	display: inline;
+	float: left;
+	margin-left: 9px;
+	padding-right: 8px;
+	border-right: 1px solid #557b9f;
+}
+
+#footer li.last-child, #footer li:last-child {
+	border: none;
+	padding: 0;
+}
+
+#footer li a {
+	color: #557b9f;
+	text-decoration: none;
+}
+
+#footer li a:hover {
+	color: #83b4e1;
+	text-decoration: underline;
+}
+
+.tabs {
+	background: #0e1118;
+	border-bottom-color: #141b24;
+	margin: -10px -20px 1.5em;
+	padding-top: 1em;
+}
+
+.tabs li {
+	margin-right: 0;
+}
+
+.tabs li a {
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #000;
+}
+
+.tabs li.current a, .tabs li.current span {
+	color: #fff;
+	background-position: 0 -101px;
+}
+
+.tabs li.current {
+	top: 0;
+	padding-top: 1px;
+}
+
+.ie .tabs li.current {
+	top: 1px;
+}
+
+.popup .tabs {
+	margin: -5px -5px -16px -15px;
+}
+
+.js .lfr-dock.interactive-mode h2 {
+	background-position: right -31px;
+	padding-right: 46px;
+}
+
+.js .lfr-dock.expanded .lfr-dock-list-container {
+	background: #0e1118;
+	border: 1px solid #0b0f15;
+	border-top: none;
+}
+
+.js .lfr-dock.interactive-mode ul {
+	background: #0e1118;
+	border-left: none;
+	padding:  0 15px;
+}
+.js .lfr-dock.interactive-mode li a {
+	background-position: left center;
+	border-top: 1px solid #222d3a;
+	padding-left: 25px;
+}
+
+.js .lfr-dock.interactive-mode li a:hover {
+	background-color: #222d3a;
+	background-position: 0 50%;
+	border-top: 1px solid #222d3a;
+	padding-left: 2.5em;
+}
+
+.lfr-dock li.home a,
+.lfr-dock li.my-account a, 
+.lfr-dock li.sign-in a, 
+.lfr-dock li.sign-out a, 
+.lfr-dock li.add-content a, 
+.lfr-dock li.layout a, 
+.lfr-dock li.page-settings a, 
+.lfr-dock li.my-places a {
+	background-image: url(../images/dock/dock_items.png);
+}
+
+.js .interactive-mode .my-places .show-my-places {
+	background: #0e1118;
+	border: 1px solid #0b0f15;
+}
+
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle,
+.js .interactive-mode .my-places .show-my-places ul li.public a, .js .my-places .show-my-places ul li.public a:hover,
+.js .interactive-mode .my-places .show-my-places li.private a, .js .my-places .show-my-places li.private a:hover {
+	background-image: url(../images/dock/dock_items.png);
+	padding-left: 25px;
+}
+
+.js .my-places .show-my-places ul li a:hover {
+	background-color: #1b2431; 
+}
+
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle {
+	border-bottom: 1px solid #212c3a;
+	color: #96c0e6;
+	margin-left: 10px;
+	padding-left: 28px;
+}
+
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
+	font-size:1em;
+	font-weight:normal;
+}
+
+.js .interactive-mode .my-places .show-my-places ul li a.add-page {
+	padding: 0;
+}
+
+.js .interactive-mode .my-places .show-my-places li ul li.public {
+	border-bottom: 1px solid #151c25;
+}
+
+.js .interactive-mode .my-places .show-my-places li ul {
+	background: #212c3a;
+	margin-left: 0;
+	margin-top: -1px;
+	padding: 0 10px;
+}
+
+.js .lfr-dock.interactive-mode li.my-places li ul li.current a, 
+.js .lfr-dock.interactive-mode li.my-places li ul li.current a:hover {
+	background-color: transparent;
+	background-position: 1px center;
+	padding-left: 25px;
+}
+
+.js .interactive-mode .my-places .show-my-places li ul li a {
+	border-bottom-color: #151c25;
+	color: #445b78;
+}
+
+.js .interactive-mode .my-places .show-my-places li ul li a .page-count {
+	color: #96c0e6;
+}
+
+.portlet-msg-success, .portlet-msg-error, .portlet-msg-alert, .portlet-msg-info{
+	font-style: normal;
+	margin: 0.15em auto 2.2em;
+	color: #000;
+}
+
+/* ---------- Sections ---------- */
+
+/* ---------- Table or section header ---------- */
+
+.portlet-section-header {
+	background: #465e7b;
+	padding: 1px 0 0;
+}
+
+.portlet-section-header th {
+	border-bottom: 1px solid #151c25;
+	color: #fff;
+	font-weight: bold;
+	padding: 0.3em 1em;
+}
+
+/* ---------- Normal text in a table cell ---------- */
+
+.portlet-section-body {
+	background: #4a6483;
+	color: #7E97AE;
+}
+
+.portlet-section-body td {
+	background: #212c3a;
+	border-top: 1px solid #151c25;
+	padding: 0.3em 1em;
+}
+
+/* ---------- Text in every other row in the cell ---------- */
+
+.portlet-section-alternate {
+	background: #96c0e6;
+	color: #000;
+}
+
+.portlet-section-alternate td {
+	background: #3a4e66;
+	border-top: 1px solid #151c25;
+	padding: 0.3em 1em;
+}
+
+.portlet-section-alternate-hover td, .portlet-section-body-hover td {
+	background: #141b23;
+	border-bottom: 1px solid #151c25;
+	border-top: 1px solid #151c25;
+	padding: 0.3em 1em;
+}
+
+.drop-position-top {
+	background: url(../images/portlet/drag_arrows_up.png) scroll no-repeat center top;
+}
+
+.drop-position-bottom {
+	background: url(../images/portlet/drag_arrows_down.png) scroll no-repeat center bottom;
+}
+
+input[type="submit"], input[type="button"], input[type="reset"] {
+	background: #3d536d url(../images/common/arrow.png) no-repeat 90% center;
+	border: none;
+	color: #fff;
+	font-weight: bold;
+	padding: 0.5em;
+	padding-right: 20px;
+	margin: 1px;
+	text-transform: uppercase;
+}
+
+.ie6 input.submit, .ie6 input.button {
+	background: #3d536d none;
+	border: none;
+	color: #fff;
+	font-weight: bold;
+	margin: 1px;
+	padding: 0.25em;
+	text-transform: uppercase;
+}
+
+.separator {
+	border-color: #101318;
+}
+
+input[type="text"], input[type="password"], input[type="file"],input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	border-color: #fff;
+}
+
+.ie6 input.text, input.password, .ie6 input.submit, .ie6 input.file, .ie6 input.button {
+	border-color: #fff;
+}

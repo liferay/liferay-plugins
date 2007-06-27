@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+#parse($init)
+
+<html dir="#language("lang.dir")">
+
+<head>
+	<title>$company_name - $the_title</title>
+
+	$theme.include($top_head_include)
+
+	#css($css_main_file)
+	#js($js_main_file)
+
+	#if ($company_logo != "")
+		<style type="text/css">
+			#banner .logo {
+				padding: 18px 15px 0;
+			}
+
+			#banner .logo a {
+				background: url($images_folder/common/logo.png) no-repeat;
+				display: block;
+				font-size: 0;
+				height: 94px;
+				text-indent: -9999em;
+				width: 270px;
+			}
+			
+			.ie6 #banner .logo a {
+				background: none;
+				filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='$images_folder/common/logo.png');
+			}
+		</style>
+	#end
+</head>
+
+<body class="$css_class">
+
+$theme.include($top_messages_include)
+
+<div id="wrapper">
+	<div id="banner">
+		<h1 class="logo">
+			<a href="$company_url">$company_name</a>
+		</h1>
+		<div class="search">
+			$theme.journalContentSearch()
+		</div>
+		#parse("$full_templates_path/dock.vm")
+
+		#if ( $update_available_url )
+			<a class="update-available" href="$update_available_url">#language("updates-available")</a>
+		#end
+		#if ( $has_navigation )
+			#parse("$full_templates_path/navigation.vm")
+		#end
+	</div>
+
+	#if ( $selectable )
+		$theme.include($content_include)
+	#else
+		$portletDisplay.recycle()
+
+		$portletDisplay.setTitle($the_title)
+
+		$theme.wrapPortlet("portlet.vm", $content_include)
+	#end
+
+	<div id="footer">
+		<p class="copyright-notice">&copy; $the_year $company_name</p>
+		#if ( $has_navigation )
+			#parse("$full_templates_path/bottom_navigation.vm")
+		#end
+	</div>
+</div>
+
+$theme.include($bottom_ext_include)
+$theme.include($session_timeout_include)
+$theme.include($sound_alerts_include)
+
+</body>
+
+</html>
