@@ -21,37 +21,37 @@
 
 	<target name="compile">
 		<if>
+			<equals arg1="${theme.extension}" arg2="unstyled" />
+			<then>
+				<copy todir="docroot" overwrite="yes">
+					<fileset
+						dir="${app.server.portal.dir}/html/themes/_unstyled"
+						excludes="templates/init.vm"
+					/>
+				</copy>
+			</then>
+			<elseif>
+				<equals arg1="${theme.extension}" arg2="styled" />
+				<then>
+					<copy todir="docroot" overwrite="yes">
+						<fileset
+							dir="${app.server.portal.dir}/html/themes/_unstyled"
+							excludes="templates/init.vm"
+						/>
+					</copy>
+
+					<copy todir="docroot" overwrite="yes">
+						<fileset
+							dir="${app.server.portal.dir}/html/themes/_styled"
+						/>
+					</copy>
+				</then>
+			</elseif>
+		</if>
+
+		<if>
 			<available file="docroot/_diffs" />
 			<then>
-				<if>
-					<available file="docroot/_diffs.unstyled" />
-					<then>
-						<copy todir="docroot" overwrite="yes">
-							<fileset
-								dir="${app.server.portal.dir}/html/themes/_unstyled"
-								excludes="templates/init.vm"
-							/>
-						</copy>
-					</then>
-					<elseif>
-						<available file="docroot/_diffs.styled" />
-						<then>
-							<copy todir="docroot" overwrite="yes">
-								<fileset
-									dir="${app.server.portal.dir}/html/themes/_unstyled"
-									excludes="templates/init.vm"
-								/>
-							</copy>
-
-							<copy todir="docroot" overwrite="yes">
-								<fileset
-									dir="${app.server.portal.dir}/html/themes/_styled"
-								/>
-							</copy>
-						</then>
-					</elseif>
-				</if>
-
 				<copy todir="docroot" overwrite="yes">
 					<fileset
 						dir="docroot/_diffs"
