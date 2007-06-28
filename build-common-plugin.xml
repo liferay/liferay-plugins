@@ -9,7 +9,29 @@
 		<delete file="${plugin.file}" />
 	</target>
 
-	<target name="compile">
+	<target name="merge" if="original.war.file">
+		<if>
+			<not>
+				<uptodate srcfile="${original.war.file}" targetfile="tmp" />
+			</not>
+			<then>
+				<delete dir="tmp" />
+				<mkdir dir="tmp" />
+
+				<unzip dest="tmp" src="${original.war.file}" />
+
+				<copy todir="tmp" overwrite="true">
+					<fileset dir="docroot" />
+				</copy>
+			</then>
+		</if>
+
+		<copy todir="tmp" overwrite="false">
+			<fileset dir="docroot" />
+		</copy>
+	</target>
+
+	<target name="compile" depends="merge" >
 		<if>
 			<available file="docroot/WEB-INF/src" />
 			<then>
@@ -18,7 +40,9 @@
 
 				<path id="plugin-lib.classpath">
 					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+					<fileset dir="tmp/WEB-INF/lib" includes="*.jar" />
 					<pathelement location="docroot/WEB-INF/classes" />
+					<pathelement location="tmp/WEB-INF/classes" />
 				</path>
 
 				<copy todir="docroot/WEB-INF/lib">
@@ -44,29 +68,7 @@
 		</if>
 	</target>
 
-	<target name="merge" depends="compile" if="original.war.file">
-		<if>
-			<not>
-				<uptodate srcfile="${original.war.file}" targetfile="tmp" />
-			</not>
-			<then>
-				<delete dir="tmp" />
-				<mkdir dir="tmp" />
-
-				<unzip dest="tmp" src="${original.war.file}" />
-
-				<copy todir="tmp" overwrite="true">
-					<fileset dir="docroot" />
-				</copy>
-			</then>
-		</if>
-
-		<copy todir="tmp" overwrite="false">
-			<fileset dir="docroot" />
-		</copy>
-	</target>
-
-	<target name="war" depends="merge">
+	<target name="war" depends="compile">
 		<mkdir dir="${project.dir}/dist" />
 
 		<if>
