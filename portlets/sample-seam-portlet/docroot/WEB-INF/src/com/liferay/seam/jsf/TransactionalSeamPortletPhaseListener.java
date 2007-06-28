@@ -29,6 +29,12 @@ import javax.faces.event.PhaseEvent;
  *
  * @author Neil Griffin
  *
+ * This class is necessary because of a bug in JBoss Seam 1.2.1GA:
+ *      http://jira.jboss.org/jira/browse/JBSEAM-1556
+ *
+ * Note that this class must be specified as a <phase-listener> in the
+ * faces-config.xml file, rather than the TransactionalSeamPortletPhaseListener
+ * that ships with Seam.
  */
 public class TransactionalSeamPortletPhaseListener
 	extends org.jboss.seam.jsf.TransactionalSeamPortletPhaseListener {
