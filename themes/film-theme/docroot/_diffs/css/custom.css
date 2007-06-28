@@ -1,0 +1,170 @@
+	/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+@import url(color_schemes/green.css);
+
+@import url(color_schemes/orange.css);
+
+
+/* ------------ BASE ------------- */
+body {
+	background: url(../images/custom/background.png);
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: #99f;
+}
+
+#wrapper {
+	background: transparent url(../images/custom/banner_bg.png) no-repeat scroll 100% 100%;	
+	color: #ffffff;
+}
+
+#banner {
+	height: 180px;
+}
+
+#banner .logo {
+	background: none;
+	font-size: 2em;	
+	position: absolute;
+	left: -22px;
+}
+
+#banner .logo a {
+	text-indent: -9999em;
+}
+
+.ie6 #banner {
+	width: 100%;
+	right: 0;
+	position: relative;
+}
+
+/* ------------ NAVIGATION ------------- */
+ 
+#navigation {
+	left:200px;
+	margin:0pt auto 0em;
+	padding:0pt 1em 0em 5px;
+	position:absolute;
+	top:180px;
+	right: 300px;
+	z-index:8;
+}
+
+#navigation li {
+	margin-right: 10px;
+}
+
+#navigation li a {
+	margin-left: -10px;
+}
+
+.lfr-dock {
+	right: 40px;
+	top: 40px;
+}
+
+.js .lfr-dock.interactive-mode {
+	right: 40px;
+	top: 65px;
+}
+
+.js .lfr-dock.expanded .lfr-dock-list-container {
+	z-index: 9;
+}
+
+.js .lfr-dock.interactive-mode li a {
+	z-index: 9;
+}
+
+/* ------------ PORTLET ------------- */
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: url(../images/custom/portlet_bg.png) no-repeat bottom right;
+}
+
+.portlet {
+	margin: 0px;
+}
+
+.portlet-title {
+	padding: 8px 0px 15px 25px;
+	color: #CC9900;
+}
+
+.portlet-icons {
+	right: 25px;
+}
+
+.portlet-content {
+	padding: 0px 0px 10px 50px;
+	margin-right: 50px;
+}
+
+.portlet-msg-success {
+	color: #000000;
+}
+
+.portlet-section-header {
+	background: #333333;
+}
+
+.portlet-section-header th {
+	color: #999999;
+}
+
+
+/* ------------ TABS ------------- */
+.tabs {
+	border-bottom: 1px solid #333333;
+	padding: 0 0 18px 1em;
+}
+
+.tabs li {
+	background: none;
+	background-color: #333333;
+	line-height: 15px;
+	margin-right: 0.7em;
+}
+.tabs li a, .tabs li span {
+	background: none;
+}
+
+.tabs li.current {
+	background: none;
+}
+
+.tabs li.current a, .tabs li.current span {
+	background: none;
+	color: #333333;
+	background-color: #9999ff;
+}
+
+
+
+/* ------------ MIS. CUSTOM ------------- */
+
+#content-wrapper {
+	margin: 0pt auto 0.5em;
+	min-height: 5em;
+	position: absolute;
+	top: 210px;
+	right: 34px;
+	left: 40px;
+}
+
+.search-box {
+	float:right;
+	margin-bottom:0pt;
+	position:absolute;
+	right:40px;
+	top:110px;
+	z-index:6;
+}									
+
+.thisisthedock {
+	z-index: 9;
+}
