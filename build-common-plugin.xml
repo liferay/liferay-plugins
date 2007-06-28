@@ -4,7 +4,9 @@
 	<import file="build-common.xml" />
 
 	<target name="clean">
-		<delete dir="docroot/WEB-INF/classes" />
+		<delete includeemptydirs="true">
+			<fileset dir="docroot/WEB-INF/classes" excludes="**/*.xml,**/*.properties" />
+		</delete>
 		<delete dir="tmp" />
 		<delete file="${plugin.file}" />
 	</target>
