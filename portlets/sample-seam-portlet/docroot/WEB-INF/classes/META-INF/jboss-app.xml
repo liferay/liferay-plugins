@@ -1,0 +1,11 @@
+<!--
+JBoss, Home of Professional Open Source
+
+Distributable under LGPL license.
+See terms of license at gnu.org.
+-->
+<jboss-app>
+      <loader-repository> 
+      seam.jboss.org:loader=seam-registration
+      </loader-repository> 
+</jboss-app> 
