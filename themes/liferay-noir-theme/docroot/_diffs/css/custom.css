@@ -1,34 +1,36 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
 html, body {
 	height: auto;
+	min-height: 100%;
 }
 
 html {
-	background: #1b2531 url(../images/common/html_bg.gif) repeat;
+	background: #1B2531 url(../images/common/html_bg.gif) repeat;
 }
 
 body {
-	font-family: Arial, Helvetica, sans-serif;
 	background: url(../images/common/body_bg.png) repeat-x left top;
+	font-family: Arial,Helvetica,sans-serif;
 }
+
 table {
-	clear:both;
+	clear: both;
 }
+
 a {
-	color: #83b4e1;
+	color: #83B4E1;
 	text-decoration: underline;
 }
 
 a:hover {
-	color: #557b9f;
+	color: #557B9F;
 	text-decoration: none;
 }
 
 .popup {
 	background: #1C2633;
 	border: 1px solid #131922;
-	color: #7e97ae;
+	color: #7E97AE;
 	padding: 0 0 10px 10px;
 }
 
@@ -42,11 +44,11 @@ a:hover {
 
 .popup-header {
 	border: none;
-	padding: 0;
 	height: 46px;
+	margin: -1px -1px 0 -11px;
 	margin-left: -11px;
 	margin-top: -1px;
-	margin: -1px -1px 0 -11px;
+	padding: 0;
 }
 
 .popup-title {
@@ -71,17 +73,19 @@ a:hover {
 
 #wrapper {
 	background: url(../images/common/wrapper_bg.png) repeat-y center top;
-	width: 962px;
-	padding: 3em 63px;
+	height: 100%;
 	margin-bottom: 0;
+	padding: 3em 63px;
+	width: 962px;
 }
+
 .ie6 #wrapper {
 	background: none;
 	padding: 0;
 }
 
 #content-wrapper {
-	background: #1c2633 url(../images/common/content_wrapper_bg.png) repeat;
+	background: #1C2633 url(../images/common/content_wrapper_bg.png) repeat;
 	padding: 0 5px;
 }
 
@@ -101,9 +105,9 @@ a:hover {
 }
 
 #banner .search form {
-	position: relative;
 	padding-right: 49px;
 	padding-top: 2px;
+	position: relative;
 }
 
 #banner .search input {
@@ -117,8 +121,8 @@ a:hover {
 }
 
 #banner .search .search-input-link {
-	display: block;
 	background: url(../images/common/search_btn_bg.png) no-repeat;
+	display: block;
 	height: 35px;
 	position: absolute;
 	right: 0;
@@ -127,29 +131,21 @@ a:hover {
 }
 
 #navigation {
-	font-family:  Verdana, Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	position: absolute;
 	bottom: 0;
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+	font-weight: bold;
 	left: 15px;
+	position: absolute;
 	z-index: 100;
 }
 
-#navigation li, 
-#navigation li a, 
-#navigation li a span, 
-#navigation li.selected a, 
-#navigation li.selected a:hover,
-#navigation li a:hover span,
-#navigation li.selected a span, 
-#navigation li a:hover, 
-.js #navigation .enter-page {
+#navigation li,   #navigation li a,   #navigation li a span,   #navigation li.selected a,   #navigation li.selected a:hover,  #navigation li a:hover span,  #navigation li.selected a span,   #navigation li a:hover,   .js #navigation .enter-page {
 	background: none;
-	color:  #96c0e6;
+	color: #96C0E6;
 	font-size: 1em;
 	font-weight: bold;
-	padding: 0;
 	margin: 0;
+	padding: 0;
 	text-transform: uppercase;
 }
 
@@ -158,8 +154,7 @@ a:hover {
 	margin-right: 55px;
 }
 
-#navigation li.selected a,
-#navigation li.selected a:hover {
+#navigation li.selected a,  #navigation li.selected a:hover {
 	background: url(../images/navigation/selected_bg.png) no-repeat;
 	color: #fff;
 	padding-left: 15px;
@@ -170,8 +165,13 @@ a:hover {
 }
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
-	background: #141b24;
+	background: #141B24;
 	padding: 0;
+}
+
+.ie6 .portlet {
+	position: relative;
+	zoom: 1;
 }
 
 .portlet, .portlet-content {
@@ -192,24 +192,27 @@ a:hover {
 }
 
 .portlet-topper {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	font-size: 1.5em;
 	color: #fff;
+	font: 1.5em Arial,Verdana,Helvetica,sans-serif;
 	height: 46px;
 	margin: 0;
+	position: relative;
 }
+
 .portlet-title {
 	background-position: left -46px;
 	height: 25px;
 	padding: 15px 0 6px 10px;
 }
+
 .portlet-content {
-	background-color: #1c2633;
+	background-color: #1C2633;
 	background-position: right bottom;
-	color: #7e97ae;
+	color: #7E97AE;
 	margin-left: 10px;
 	padding: 10px 20px 20px 10px;
 }
+
 .portlet-icons {
 	top: 10px;
 }
@@ -222,21 +225,24 @@ a:hover {
 	border: 1px dashed #7E97AE;
 }
 
+.portlet {
+}
+
 .js .delete-tab {
 	right: -10px;
 }
 
 #footer {
 	background: url(../images/common/footer_bg.jpg) no-repeat;
-	color: #739abe;
+	color: #739ABE;
 	height: 106px;
 	position: relative;
 	width: 962px;
 }
 
 #footer .copyright-notice, #footer ul {
-	position: absolute;
 	bottom: -25px;
+	position: absolute;
 }
 
 #footer .copyright-notice {
@@ -248,11 +254,11 @@ a:hover {
 }
 
 #footer li {
+	border-right: 1px solid #557B9F;
 	display: inline;
 	float: left;
 	margin-left: 9px;
 	padding-right: 8px;
-	border-right: 1px solid #557b9f;
 }
 
 #footer li.last-child, #footer li:last-child {
@@ -261,18 +267,18 @@ a:hover {
 }
 
 #footer li a {
-	color: #557b9f;
+	color: #557B9F;
 	text-decoration: none;
 }
 
 #footer li a:hover {
-	color: #83b4e1;
+	color: #83B4E1;
 	text-decoration: underline;
 }
 
 .tabs {
-	background: #0e1118;
-	border-bottom-color: #141b24;
+	background: #0E1118;
+	border-bottom-color: #141B24;
 	margin: -10px -20px 1.5em;
 	padding-top: 1em;
 }
@@ -282,19 +288,19 @@ a:hover {
 }
 
 .tabs li a {
+	color: #000;
 	font-weight: bold;
 	text-transform: uppercase;
-	color: #000;
 }
 
 .tabs li.current a, .tabs li.current span {
-	color: #fff;
 	background-position: 0 -101px;
+	color: #fff;
 }
 
 .tabs li.current {
-	top: 0;
 	padding-top: 1px;
+	top: 0;
 }
 
 .ie .tabs li.current {
@@ -311,66 +317,58 @@ a:hover {
 }
 
 .js .lfr-dock.expanded .lfr-dock-list-container {
-	background: #0e1118;
-	border: 1px solid #0b0f15;
+	background: #0E1118;
+	border: 1px solid #0B0F15;
 	border-top: none;
 }
 
 .js .lfr-dock.interactive-mode ul {
-	background: #0e1118;
+	background: #0E1118;
 	border-left: none;
-	padding:  0 15px;
+	padding: 0 15px;
 }
+
 .js .lfr-dock.interactive-mode li a {
 	background-position: left center;
-	border-top: 1px solid #222d3a;
+	border-top: 1px solid #222D3A;
 	padding-left: 25px;
 }
 
 .js .lfr-dock.interactive-mode li a:hover {
-	background-color: #222d3a;
+	background-color: #222D3A;
 	background-position: 0 50%;
-	border-top: 1px solid #222d3a;
+	border-top: 1px solid #222D3A;
 	padding-left: 2.5em;
 }
 
-.lfr-dock li.home a,
-.lfr-dock li.my-account a, 
-.lfr-dock li.sign-in a, 
-.lfr-dock li.sign-out a, 
-.lfr-dock li.add-content a, 
-.lfr-dock li.layout a, 
-.lfr-dock li.page-settings a, 
-.lfr-dock li.my-places a {
+.lfr-dock li.home a,  .lfr-dock li.my-account a,   .lfr-dock li.sign-in a,   .lfr-dock li.sign-out a,   .lfr-dock li.add-content a,   .lfr-dock li.layout a,   .lfr-dock li.page-settings a,   .lfr-dock li.my-places a {
 	background-image: url(../images/dock/dock_items.png);
 }
 
 .js .interactive-mode .my-places .show-my-places {
-	background: #0e1118;
-	border: 1px solid #0b0f15;
+	background: #0E1118;
+	border: 1px solid #0B0F15;
 }
 
-.js .interactive-mode .my-places .show-my-places li .my-places-toggle,
-.js .interactive-mode .my-places .show-my-places ul li.public a, .js .my-places .show-my-places ul li.public a:hover,
-.js .interactive-mode .my-places .show-my-places li.private a, .js .my-places .show-my-places li.private a:hover {
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle,  .js .interactive-mode .my-places .show-my-places ul li.public a, .js .my-places .show-my-places ul li.public a:hover,  .js .interactive-mode .my-places .show-my-places li.private a, .js .my-places .show-my-places li.private a:hover {
 	background-image: url(../images/dock/dock_items.png);
 	padding-left: 25px;
 }
 
 .js .my-places .show-my-places ul li a:hover {
-	background-color: #1b2431; 
+	background-color: #1B2431;
 }
 
 .js .interactive-mode .my-places .show-my-places li .my-places-toggle {
-	border-bottom: 1px solid #212c3a;
-	color: #96c0e6;
+	border-bottom: 1px solid #212C3A;
+	color: #96C0E6;
 	margin-left: 10px;
 	padding-left: 28px;
 }
 
 .js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
-	font-size:1em;
-	font-weight:normal;
+	font-size: 1em;
+	font-weight: normal;
 }
 
 .js .interactive-mode .my-places .show-my-places ul li a.add-page {
@@ -378,84 +376,79 @@ a:hover {
 }
 
 .js .interactive-mode .my-places .show-my-places li ul li.public {
-	border-bottom: 1px solid #151c25;
+	border-bottom: 1px solid #151C25;
 }
 
 .js .interactive-mode .my-places .show-my-places li ul {
-	background: #212c3a;
+	background: #212C3A;
 	margin-left: 0;
 	margin-top: -1px;
 	padding: 0 10px;
 }
 
-.js .lfr-dock.interactive-mode li.my-places li ul li.current a, 
-.js .lfr-dock.interactive-mode li.my-places li ul li.current a:hover {
+.js .lfr-dock.interactive-mode li.my-places li ul li.current a,   .js .lfr-dock.interactive-mode li.my-places li ul li.current a:hover {
 	background-color: transparent;
 	background-position: 1px center;
 	padding-left: 25px;
 }
 
 .js .interactive-mode .my-places .show-my-places li ul li a {
-	border-bottom-color: #151c25;
-	color: #445b78;
+	border-bottom-color: #151C25;
+	color: #445B78;
 }
 
 .js .interactive-mode .my-places .show-my-places li ul li a .page-count {
-	color: #96c0e6;
+	color: #96C0E6;
 }
 
-.portlet-msg-success, .portlet-msg-error, .portlet-msg-alert, .portlet-msg-info{
+.portlet-msg-success, .portlet-msg-error, .portlet-msg-alert, .portlet-msg-info {
+	color: #000;
 	font-style: normal;
 	margin: 0.15em auto 2.2em;
-	color: #000;
 }
 
-/* ---------- Sections ---------- */
-
+/* ---------- Sections ---------- */    
 /* ---------- Table or section header ---------- */
-
 .portlet-section-header {
-	background: #465e7b;
+	background: #465E7B;
 	padding: 1px 0 0;
 }
 
 .portlet-section-header th {
-	border-bottom: 1px solid #151c25;
+	border-bottom: 1px solid #151C25;
 	color: #fff;
 	font-weight: bold;
 	padding: 0.3em 1em;
 }
 
 /* ---------- Normal text in a table cell ---------- */
-
 .portlet-section-body {
-	background: #4a6483;
+	background: #4A6483;
 	color: #7E97AE;
 }
 
 .portlet-section-body td {
-	background: #212c3a;
-	border-top: 1px solid #151c25;
+	background: #212C3A;
+	border-top: 1px solid #151C25;
 	padding: 0.3em 1em;
 }
 
 /* ---------- Text in every other row in the cell ---------- */
-
 .portlet-section-alternate {
-	background: #96c0e6;
+	background: #96C0E6;
 	color: #000;
 }
 
 .portlet-section-alternate td {
-	background: #3a4e66;
-	border-top: 1px solid #151c25;
+	background: #3A4E66;
+	border-top: 1px solid #151C25;
 	padding: 0.3em 1em;
 }
 
 .portlet-section-alternate-hover td, .portlet-section-body-hover td {
-	background: #141b23;
-	border-bottom: 1px solid #151c25;
-	border-top: 1px solid #151c25;
+	background: #141B23;
+	border-bottom: 1px solid #151C25;
+	border-top: 1px solid #151C25;
 	padding: 0.3em 1em;
 }
 
@@ -468,23 +461,24 @@ a:hover {
 }
 
 input[type="submit"], input[type="button"], input[type="reset"] {
-	background: #3d536d url(../images/common/arrow.png) no-repeat 90% center;
+	background: #3D536D url(../images/common/arrow.png) no-repeat 90% center;
 	border: none;
 	color: #fff;
 	font-weight: bold;
+	margin: 1px;
 	padding: 0.5em;
 	padding-right: 20px;
-	margin: 1px;
 	text-transform: uppercase;
 }
 
 .ie6 input.submit, .ie6 input.button {
-	background: #3d536d none;
+	background: #3D536D none url(../images/common/arrow.png) no-repeat 90% center;
 	border: none;
 	color: #fff;
 	font-weight: bold;
 	margin: 1px;
-	padding: 0.25em;
+	padding: 0.5em;
+	padding-right: 20px;
 	text-transform: uppercase;
 }
 
