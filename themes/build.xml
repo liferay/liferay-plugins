@@ -7,23 +7,32 @@
 
 	<target name="create">
 		<if>
-			<available file="${theme.name}-theme" />
+			<equals arg1="${theme.name}" arg2="$${theme.name}" />
 			<then>
-				<echo message="${theme.name}-theme already exists." />
+				<echo message="This task must be called by create.bat." />
 			</then>
 			<else>
-				<mkdir dir="${theme.name}-theme" />
+				<if>
+					<available file="${theme.name}-theme" />
+					<then>
+						<echo message="${theme.name}-theme already exists." />
+					</then>
+					<else>
+						<mkdir dir="${theme.name}-theme/docroot/_diffs" />
 
-				<unzip src="theme.zip" dest="${theme.name}-theme" />
+						<unzip src="theme.zip" dest="${theme.name}-theme" />
 
-				<replace dir="${theme.name}-theme">
-					<replacefilter token="@theme.name@" value="${theme.name}" />
-					<replacefilter token="@theme.display.name@" value="${theme.display.name}" />
-				</replace>
+						<replace dir="${theme.name}-theme">
+							<replacefilter token="@theme.name@" value="${theme.name}" />
+							<replacefilter token="@theme.display.name@" value="${theme.display.name}" />
+						</replace>
+					</else>
+				</if>
 			</else>
 		</if>
 	</target>
 
 	<target name="merge">
+		<echo message="${theme.name}-theme" />
 	</target>
 </project>
