@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 4.3.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_4_3_0.dtd">
+
+<plugin-package>
+	<name>Foosball</name>
+	<module-id>liferay-inc/foosball-theme/4.3.0.1/war</module-id>
+	<types>
+		<type>theme</type>
+	</types>
+	<tags>
+		<tag>sample</tag>
+	</tags>
+	<short-description>
+		This is a sample styled theme with minimal configuration set in
+		liferay-look-and-feel.xml.
+	</short-description>
+	<change-log>
+		Based on the favorite table soccer game. Anybody up for some doubles?
+	</change-log>
+	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
+	<author>Liferay, Inc.</author>
+	<licenses>
+		<license osi-approved="true">MIT</license>
+	</licenses>
+	<liferay-versions>
+		<liferay-version>4.3.*</liferay-version>
+	</liferay-versions>
+</plugin-package>
