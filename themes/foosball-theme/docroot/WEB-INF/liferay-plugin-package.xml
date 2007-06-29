@@ -2,7 +2,7 @@
 <!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 4.3.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_4_3_0.dtd">
 
 <plugin-package>
-	<name>Foosball</name>
+	<name>Foosball Theme</name>
 	<module-id>liferay-inc/foosball-theme/4.3.0.1/war</module-id>
 	<types>
 		<type>theme</type>
