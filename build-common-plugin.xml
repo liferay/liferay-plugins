@@ -18,12 +18,23 @@
 				<mkdir dir="docroot/WEB-INF/classes" />
 				<mkdir dir="docroot/WEB-INF/lib" />
 
-				<path id="plugin-lib.classpath">
-					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-					<fileset dir="tmp/WEB-INF/lib" includes="*.jar" />
-					<pathelement location="docroot/WEB-INF/classes" />
-					<pathelement location="tmp/WEB-INF/classes" />
-				</path>
+				<if>
+					<available file="tmp" />
+					<then>
+						<path id="plugin-lib.classpath">
+							<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+							<fileset dir="tmp/WEB-INF/lib" includes="*.jar" />
+							<pathelement location="docroot/WEB-INF/classes" />
+							<pathelement location="tmp/WEB-INF/classes" />
+						</path>
+					</then>
+					<else>
+						<path id="plugin-lib.classpath">
+							<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+							<pathelement location="docroot/WEB-INF/classes" />
+						</path>
+					</else>
+				</if>
 
 				<copy todir="docroot/WEB-INF/lib">
 					<fileset dir="${app.server.lib.portal.dir}" includes="commons-logging.jar,log4j.jar,util-bridges.jar,util-java.jar,util-taglib.jar" />
@@ -194,6 +205,9 @@
 			<then>
 				<delete dir="tmp" />
 				<mkdir dir="tmp" />
+
+				<mkdir dir="tmp/WEB-INF/classes" />
+				<mkdir dir="tmp/WEB-INF/lib" />
 
 				<unzip dest="tmp" src="${original.war.file}" />
 
