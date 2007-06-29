@@ -5,6 +5,20 @@ if "" == "%2" goto errorCreate
 
 call ant -Dtheme.name=%1 -Dtheme.display.name=%2 create
 
+svn add %1-theme
+
+cd %1-theme\docroot
+
+svn ps svn:ignore -F .cvsignore .
+
+svn remove --force .cvsignore
+
+cd ..
+
+call ant deploy
+
+cd ..
+
 goto end
 
 :errorCreate
