@@ -61,7 +61,7 @@
 		</if>
 	</target>
 
-	<target name="war" depends="merge">
+	<target name="war" depends="compile">
 		<mkdir dir="${project.dir}/dist" />
 
 		<zip

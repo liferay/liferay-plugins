@@ -9,29 +9,9 @@
 		<delete file="${plugin.file}" />
 	</target>
 
-	<target name="merge" if="original.war.file">
-		<if>
-			<not>
-				<uptodate srcfile="${original.war.file}" targetfile="tmp" />
-			</not>
-			<then>
-				<delete dir="tmp" />
-				<mkdir dir="tmp" />
+	<target name="compile">
+		<antcall target="merge" />
 
-				<unzip dest="tmp" src="${original.war.file}" />
-
-				<copy todir="tmp" overwrite="true">
-					<fileset dir="docroot" />
-				</copy>
-			</then>
-		</if>
-
-		<copy todir="tmp" overwrite="false">
-			<fileset dir="docroot" />
-		</copy>
-	</target>
-
-	<target name="compile" depends="merge" >
 		<if>
 			<available file="docroot/WEB-INF/src" />
 			<then>
@@ -66,6 +46,8 @@
 				</copy>
 			</then>
 		</if>
+
+		<antcall target="merge" />
 	</target>
 
 	<target name="war" depends="compile">
@@ -202,5 +184,27 @@
 		<antcall target="build-lang-native2ascii">
 			<param name="lang.code" value="vi" />
 		</antcall>
+	</target>
+
+	<target name="merge" if="original.war.file">
+		<if>
+			<not>
+				<uptodate srcfile="${original.war.file}" targetfile="tmp" />
+			</not>
+			<then>
+				<delete dir="tmp" />
+				<mkdir dir="tmp" />
+
+				<unzip dest="tmp" src="${original.war.file}" />
+
+				<copy todir="tmp" overwrite="true">
+					<fileset dir="docroot" />
+				</copy>
+			</then>
+		</if>
+
+		<copy todir="tmp" overwrite="false">
+			<fileset dir="docroot" />
+		</copy>
 	</target>
 </project>
