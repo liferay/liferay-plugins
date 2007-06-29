@@ -1,15 +1,15 @@
 @echo off
 
-if "" == "%1" goto errorCreateTheme
-if "" == "%2" goto errorCreateTheme
+if "" == "%1" goto errorCreate
+if "" == "%2" goto errorCreate
 
-call ant -Dtheme.name=%1 -Dtheme.display.name=%2 create-theme
+call ant -Dtheme.name=%1 -Dtheme.display.name=%2 create
 
 goto end
 
-:errorCreateTheme
+:errorCreate
 	echo.
-	echo Usage: create-theme.bat hello-world "Hello World"
+	echo Usage: create.bat hello-world "Hello World"
 	echo.
 	echo The first hello-world will tell the script to put your theme in a newly created
 	echo hello-world-theme directory.

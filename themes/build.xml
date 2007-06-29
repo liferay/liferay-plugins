@@ -5,7 +5,7 @@
 
 	<import file="../build-common-plugins.xml" />
 
-	<target name="create-theme">
+	<target name="create">
 		<if>
 			<available file="${theme.name}-theme" />
 			<then>
@@ -22,5 +22,8 @@
 				</replace>
 			</else>
 		</if>
+	</target>
+
+	<target name="merge">
 	</target>
 </project>
