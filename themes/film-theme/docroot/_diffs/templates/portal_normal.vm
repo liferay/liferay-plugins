@@ -16,11 +16,11 @@
 		<style type="text/css">
 			#banner .logo {
 				height: 180px;
-				margin-top: 20px;
+				margin-top: -5px;
 			}
 
 			#banner .logo a {
-				background:transparent url(/html/themes/genesis/images/custom/banner_left.png) no-repeat scroll 0% 50%;
+				background:transparent url($images_folder/common/banner_left.png) no-repeat scroll 0% 50%;
 				display:block;
 				font-size: 0pt;
 				height: 185px;

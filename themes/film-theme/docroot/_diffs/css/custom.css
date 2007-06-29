@@ -7,7 +7,7 @@
 
 /* ------------ BASE ------------- */
 body {
-	background: url(../images/custom/background.png);
+	background: url(../images/common/background.png);
 	margin: 0;
 	padding: 0;
 }
@@ -17,11 +17,11 @@ a {
 }
 
 #wrapper {
-	background: transparent url(../images/custom/banner_bg.png) no-repeat scroll 100% 100%;	
 	color: #ffffff;
 }
 
-#banner {
+#banner {																						  
+	background: transparent url(../images/common/banner_bg.png) no-repeat scroll 100% 100%;
 	height: 180px;
 }
 
@@ -47,7 +47,7 @@ a {
 #navigation {
 	left:200px;
 	margin:0pt auto 0em;
-	padding:0pt 1em 0em 5px;
+	padding:0pt 1em 0em 10px;
 	position:absolute;
 	top:180px;
 	right: 300px;
@@ -55,10 +55,12 @@ a {
 }
 
 #navigation li {
+	background: transparent url(../images/navigation/nav_tabs_bg.gif) no-repeat scroll 100%100%;
 	margin-right: 10px;
 }
 
 #navigation li a {
+	background: transparent url(../images/navigation/nav_tabs_bg.gif) no-repeat scroll 0pt 100%;
 	margin-left: -10px;
 }
 
@@ -82,8 +84,12 @@ a {
 
 /* ------------ PORTLET ------------- */
 
-.portlet, .portlet-topper, .portlet-content, .portlet-title {
-	background: url(../images/custom/portlet_bg.png) no-repeat bottom right;
+.portlet-topper, .portlet {
+	background: url(../images/portlet/portlet_bg.png) no-repeat right bottom;
+}
+
+.portlet-title, .portlet-content {
+	background: url(../images/portlet/portlet_bg.png) no-repeat left bottom;
 }
 
 .portlet {
