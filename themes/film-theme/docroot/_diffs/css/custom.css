@@ -52,6 +52,7 @@ a {
 	top:180px;
 	right: 300px;
 	z-index:8;
+	width: auto;
 }
 
 #navigation li {
@@ -80,6 +81,10 @@ a {
 
 .js .lfr-dock.interactive-mode li a {
 	z-index: 9;
+}
+
+.js #navigation .enter-page {
+	background: transparent url(../images/navigation/nav_tabs_bg.gif) no-repeat scroll 0pt 100%;
 }
 
 /* ------------ PORTLET ------------- */
