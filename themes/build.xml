@@ -4,4 +4,23 @@
 	<property name="project.dir" value=".." />
 
 	<import file="../build-common-plugins.xml" />
+
+	<target name="create-theme">
+		<if>
+			<available file="${theme.name}-theme" />
+			<then>
+				<echo message="${theme.name}-theme already exists." />
+			</then>
+			<else>
+				<mkdir dir="${theme.name}-theme" />
+
+				<unzip src="theme.zip" dest="${theme.name}-theme" />
+
+				<replace dir="${theme.name}-theme">
+					<replacefilter token="@theme.name@" value="${theme.name}" />
+					<replacefilter token="@theme.display.name@" value="${theme.display.name}" />
+				</replace>
+			</else>
+		</if>
+	</target>
 </project>
