@@ -1,0 +1,93 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+
+/* ---- BASE ---- */
+
+body {
+	background: transparent url(../images/common/background.png) repeat scroll 0%;
+}
+
+#banner {
+	height: 160px;
+}
+
+/* ---- NAVIGATION ---- */
+
+#navigation {
+	position: absolute;
+	left: 75px;
+	top: 135px;
+	width: auto;
+	z-index: 8;
+}
+
+#navigation li {
+	background: transparent url(../images/navigation/tab-unselected.png) no-repeat top right;
+	padding: 0em 2em .5em 0;
+}
+
+#navigation li a {
+	background: transparent url(../images/navigation/tab-unselected.png) no-repeat top left;
+	padding: 0 0 .5em 1em;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+#navigation li.selected {
+	background: transparent url(../images/navigation/tab-selected.png) no-repeat top right;
+	padding: 0 2em .5em 0;
+}
+
+#navigation li.selected a {
+	background: transparent url(../images/navigation/tab-selected.png) no-repeat top left;
+	padding: 0 0 .5em 1em;
+	color: #000000;
+}
+
+#navigation li.selected a:hover {
+	padding: 0 0 .5em 1em;
+}
+
+#navigation li a:hover {
+	padding: 0 0 .5em 1em;
+}
+
+#navigation li a span {
+	background: none;
+	padding-left: 1em;
+	text-decoration:none;
+}
+
+.js #navigation .enter-page {
+	background: none;
+	padding: 0;
+}
+
+.js .lfr-dock.interactive-mode {
+	right:25px;
+	top:40px;
+}
+
+/* ---- PORTLET ---- */
+
+.portlet-title {
+	background-position: top left;
+	padding: 30px 0 15px 15px;
+	margin-right: 30px;
+	height:  10px;
+	color: #FFFFFF;
+}
+
+.ie6 .portlet-title {
+	zoom: 1;
+}
+
+.ie6 .portlet-topper {
+	zoom: 1;
+}
+
+/* ---- TABS ---- */
+
+
+
+/* ---- MISS. OTHERS ---- */
