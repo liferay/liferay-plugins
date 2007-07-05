@@ -34,14 +34,14 @@
 		<ant dir="themes" target="deploy" inheritAll="false" />
 	</target>
 
-	<target name="extract-plugins-structure">
+	<target name="extract-plugins-sdk">
 		<mkdir dir="dist" />
 
-		<delete file="dist/plugins-structure-${lp.version}.zip" />
+		<delete file="dist/plugins-sdk-${lp.version}.zip" />
 
 		<zip
 			basedir="."
-			destfile="dist/plugins-structure-${lp.version}.zip"
+			destfile="dist/plugins-sdk-${lp.version}.zip"
 			excludes="build.*.properties,layouttpl/*-layouttpl/**,portlets/*-portlet/**,portlets/alfresco/**,themes/*-theme/**"
 		/>
 	</target>
