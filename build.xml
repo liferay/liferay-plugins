@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<project name="plugins" basedir="." default="all">
+	<property name="project.dir" value="." />
+
+	<import file="build-common.xml" />
+
+	<target name="all">
+		<antcall target="clean" />
+		<antcall target="deploy" />
+	</target>
+
+	<target name="clean">
+		<ant dir="layouttpl" target="clean" inheritAll="false" />
+		<ant dir="portlets" target="clean" inheritAll="false" />
+		<ant dir="themes" target="clean" inheritAll="false" />
+	</target>
+
+	<target name="compile">
+		<ant dir="layouttpl" target="compile" inheritAll="false" />
+		<ant dir="portlets" target="compile" inheritAll="false" />
+		<ant dir="themes" target="compile" inheritAll="false" />
+	</target>
+
+	<target name="war">
+		<ant dir="layouttpl" target="war" inheritAll="false" />
+		<ant dir="portlets" target="war" inheritAll="false" />
+		<ant dir="themes" target="war" inheritAll="false" />
+	</target>
+
+	<target name="deploy">
+		<ant dir="layouttpl" target="deploy" inheritAll="false" />
+		<ant dir="portlets" target="deploy" inheritAll="false" />
+		<ant dir="themes" target="deploy" inheritAll="false" />
+	</target>
+
+	<target name="extract-plugins-structure">
+		<mkdir dir="dist" />
+
+		<delete file="dist/plugins-structure-${lp.version}.zip" />
+
+		<zip
+			basedir="."
+			destfile="dist/plugins-structure-${lp.version}.zip"
+			excludes="build.*.properties,layouttpl/*-layouttpl/**,portlets/*-portlet/**,portlets/alfresco/**,themes/*-theme/**"
+		/>
+	</target>
+</project>
