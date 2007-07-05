@@ -17,6 +17,8 @@
 				</delete>
 			</then>
 		</if>
+
+		<antcall target="build-common-plugin.clean" />
 	</target>
 
 	<target name="compile">
@@ -63,6 +65,8 @@
 
 	<target name="war" depends="compile">
 		<mkdir dir="${project.dir}/dist" />
+
+		<delete file="${plugin.file}" />
 
 		<zip
 			basedir="docroot"

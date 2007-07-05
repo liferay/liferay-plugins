@@ -74,6 +74,8 @@
 			</else>
 		</if>
 
+		<delete file="${plugin.file}" />
+
 		<zip
 			basedir="${docroot.dir}"
 			destfile="${plugin.file}"
