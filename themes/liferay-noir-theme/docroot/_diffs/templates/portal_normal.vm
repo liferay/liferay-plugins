@@ -68,7 +68,8 @@ $theme.include($top_messages_include)
 	#end
 
 	<div id="footer">
-		<p class="copyright-notice">&copy; $the_year $company_name</p>
+		<p class="copyright-notice">&copy; 2000-$the_year $company_name</p>
+
 		#if ( $has_navigation )
 			#parse("$full_templates_path/bottom_navigation.vm")
 		#end
