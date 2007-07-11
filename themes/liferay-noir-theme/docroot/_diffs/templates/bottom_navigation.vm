@@ -8,16 +8,6 @@
 
 		<li class="$nav_item_class">
 			<a href="$nav_item.getURL()" $nav_item.getTarget()><span>$nav_item.getName()</span></a>
-
-			#if ( $nav_item.hasChildren() )
-				<ul class="child-menu">
-					#foreach ( $nav_child in $nav_item.getChildren() )
-						<li>
-							<a href="$nav_child.getURL()" $nav_child.getTarget()>$nav_child.getName()</a>
-						</li>
-					#end
-				</ul>
-			#end
 		</li>
 	#end
 </ul>
