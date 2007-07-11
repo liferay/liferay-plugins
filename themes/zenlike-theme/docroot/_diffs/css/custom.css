@@ -1,0 +1,250 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+html {
+	background: url(../images/common/bg1.jpg) repeat;
+}
+#banner {
+	background: #FFFFFF url(../images/common/hdrpic.jpg) no-repeat scroll center;
+	height: 8em;								
+	position: fixed;
+	border: none;
+}
+#banner .logo {
+	background: #FFFFFF;
+	display: block;
+	float: left;
+	font-size: 2em;
+	padding: none;
+}
+body {
+	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+	background: url(../images/common/bg2.jpg) repeat-x; 
+    padding: 35px 0px 35px 0px;
+}
+.js .lfr-dock.interactive-mode ul {
+	background: #666600;
+	border-left: 20px solid #003333;
+	display: none;
+	float: none;
+}
+.js .lfr-dock.interactive-mode h2 span {
+	background: url(../images/common/topbg.gif) repeat 0 0;
+	border: thin outset;
+	color: #FFFFFF;
+	display: block;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0.5em 0.5em 0.5em 2em;
+}
+.js .lfr-dock.interactive-mode h2 {
+	background: url(../images/common/db2.gif) no-repeat right;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0 29px 0 0;
+	position: relative;
+	z-index: 82;
+}
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: #FFFFFF url(../images/common/border1.gif) repeat-x;
+	border: none;
+	padding: none;
+}
+.portlet {
+	margin: 0 0 10px;
+	padding-right: 10px;
+	text-align: left;
+}
+#navigation {
+	background: #7F8400 url(../images/common/menubg.gif) repeat-x;
+	background-position: relative;
+	margin: 0.5em auto 0.5em;
+	min-height: none;
+	overflow: hidden;
+	padding-right: 1em;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	width: 99%;
+	font-family: Georgia;
+	font-size: 10pt;
+	color: #FFF;
+}
+#navigation li {
+	background: url(../images/common/menubg.gif) repeat-x 100% 100%;
+	border: none;
+	display: inline;
+	float: left;
+	margin-right: 0em;
+	margin-left: 8px;
+	padding: 0 0.5em 0 0;
+	text-decoration: none;
+	font-family: Georgia;
+	font-size: 10pt;
+	color: #FFF;
+}
+#navigation li a {
+	background: url(../images/common/menubg.gif) repeat 100% 100%;
+	display: block;
+	padding: 0 0.05em 0 0.05em;
+	margin-top: 9px;
+	text-decoration: none;
+	font-family: Georgia;
+	font-size: 10pt;
+	color: #FFF;
+}
+#navigation li.selected a span {
+	background: url(../images/common/menuactive.gif) repeat-x top;
+	padding-right: 14px;
+	padding-left: 14px;
+	padding-top: 8px;
+	padding-bottom: 20px;
+	position: absolute;
+	right: -35px;
+	top: -1px;
+	margin-top: 2px;
+	font-family: Georgia;
+	font-size: 10pt;
+	font-weight: normal;
+	color: #FFF;
+}
+#navigation li.selected a {
+	padding-top: 0.5em;
+	margin-top: 1px;
+}
+#navigation li a:hover {
+	padding-bottom: 4px;
+	text-decoration: underline;
+}
+.tabs {
+	border-bottom: 1px solid #003300;
+	margin: 0 0 1.5em 0;
+	padding: 0 0 2.6em 1em;
+}
+.tabs li {
+	background: #999933;
+	border: none;
+	display: inline;
+	float: left;
+	line-height: 2.25;
+	margin-right: 0.8em;
+	padding: 0;
+	position: relative;
+	text-decoration: none;
+}
+.tabs li a, .tabs li span {
+	background: #999933;
+	border: none;
+	display: block;
+	float: left;
+	padding: 0.35em 1em 0;
+	padding-bottom: none;
+	text-decoration: none;
+}
+.tabs li.current {
+	background: url(../images/common/menubg.gif) 100% 0;
+	border: none;
+	font-weight: bold;
+	top: -.5px;
+}
+.tabs li.current a, .tabs li.current span {
+	background: url(../images/common/menubg.gif) no-repeat 0 -100px;
+	border: thin outset;
+	border-bottom: none;
+	color: #333;
+	padding: 0.15em 1em;
+}
+ /* ---------- Table or section header ---------- */
+
+.portlet-section-header {
+	background: url(../images/common/menuactive.gif) repeat-x;
+	padding: 1px 0 0;
+}
+.portlet-section-header th {
+	border-bottom: 1px solid #ccc;
+	color: #333;
+	font-weight: bold;
+	padding: 0.3em 1em;
+}
+
+/* ---------- Normal text in a table cell ---------- */
+
+.portlet-section-body {
+	background: #003300;
+	color: #000;
+}
+.portlet-section-body td {
+	background: #999933;
+	border-top: 1px solid #003300;
+	border-bottom: 1px solid #003300; 
+	padding: 0.3em 1em;
+}
+a {
+	color: #000000;
+	text-decoration: underline;
+}
+
+a:hover {
+ 	color: #996633;
+	text-decoration: none;
+}
+/* ---------- Main content body ---------- */
+
+#wrapper {
+	margin: 0 auto;
+	width: 95%;
+	background: #FFF;
+	border: none;
+	padding-top: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 15px;
+}
+div.search {
+	position:absolute;
+	right:250px;
+	top:20px;
+}
+input[type="text"], input[type="password"], input[type="file"],input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	background: #fff url(../images/common/border2.gif) repeat-x;
+	border: 1px solid #003300;
+	border-left-color: #003300;
+	border-top-color: #003300;
+	font: 1em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+	padding: 0.3em;
+}
+input[type="image"] {
+	background: url(..images/common/db2.gif) repeat-x none;
+	border: none;
+	padding: 0;
+}
+/* ---------- 2 columns ---------- */
+
+.columns-2 #column-1 {
+	padding-top: 10px;
+	padding-left: 10px;
+	background: #2B2B2B;
+}
+.columns-2 #column-2 {
+	padding-top: 10px;
+	padding-right: 10px;
+	background: #2B2B2B;
+}
+.js #add-page {
+	float: right;
+	font-weight: bold;
+	padding-top: 0.3em;
+}
+.js #add-page a {
+	text-decoration: none;
+}
+.js #add-page a span {
+	background: url(../images/navigation/add_page.png) no-repeat 0 50%;
+	padding: 5px 20px;
+}
+.js #add-page a:hover span {
+	background-image: url(../images/navigation/add_page.png);
+}
+
+
+
+
+
+
