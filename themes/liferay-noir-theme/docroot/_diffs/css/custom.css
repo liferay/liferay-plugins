@@ -1,6 +1,5 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 html, body {
-	height: auto;
 	min-height: 100%;
 }
 
@@ -11,6 +10,7 @@ html {
 body {
 	background: url(../images/common/body_bg.png) repeat-x left top;
 	font-family: Arial,Helvetica,sans-serif;
+	height: auto;
 }
 
 table {
@@ -73,7 +73,6 @@ a:hover {
 
 #wrapper {
 	background: url(../images/common/wrapper_bg.png) repeat-y center top;
-	height: 100%;
 	margin-bottom: 0;
 	padding: 3em 63px;
 	width: 962px;
@@ -158,6 +157,10 @@ a:hover {
 	background: url(../images/navigation/selected_bg.png) no-repeat;
 	color: #fff;
 	padding-left: 15px;
+}
+
+.ie #navigation li.selected a, .ie #navigation li.selected a:hover {
+	zoom: 1;
 }
 
 #navigation li.selected a span {
