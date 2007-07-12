@@ -8,9 +8,10 @@
 		<type>theme</type>
 	</types>
 	<tags>
-		<tag>liferay</tag>
+		<tag>OSWD</tag>
 	</tags>
 	<short-description>
+		The zenlike1.0 theme was created by nodethirtythree design. The url for nodethirtythree design is http://www.nodethirtythree.com.
 	</short-description>
 	<change-log>
 		Adapted to the latest version of Liferay.
@@ -18,7 +19,7 @@
 	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
 	<author>Liferay, Inc.</author>
 	<licenses>
-		<license osi-approved="true">MIT</license>
+		<license osi-approved="true">Creative Commons Attributions 2.5</license>
 	</licenses>
 	<liferay-versions>
 		<liferay-version>4.3.*</liferay-version>
