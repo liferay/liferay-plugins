@@ -59,6 +59,7 @@ body {
 	margin: 0.5em auto 0.5em;
 	min-height: none;
 	overflow: hidden;
+	padding-left: 1em;
 	padding-right: 1em;
 	padding-top: 7px;
 	padding-bottom: 7px;
@@ -73,7 +74,7 @@ body {
 	display: inline;
 	float: left;
 	margin-right: 0em;
-	margin-left: 8px;
+	margin-left: 15px;
 	padding: 0 0.5em 0 0;
 	text-decoration: none;
 	font-family: Georgia;
@@ -96,10 +97,9 @@ body {
 	padding-left: 14px;
 	padding-top: 8px;
 	padding-bottom: 20px;
-	position: absolute;
-	right: -35px;
-	top: -1px;
 	margin-top: 2px;
+	margin-right: -15px;
+	margin-left: -15px;
 	font-family: Georgia;
 	font-size: 10pt;
 	font-weight: normal;
