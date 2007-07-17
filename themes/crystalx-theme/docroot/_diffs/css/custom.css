@@ -1,0 +1,305 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+/* ---------- Banner ---------- */
+
+#banner {
+	background: url(../images/common/header.jpg) repeat-x scroll 60%;
+	height: 10em;
+	position: relative;
+	width: 770px;
+	margin-left: auto;
+}
+
+#banner .logo {
+	background: url(../images/common/content_article_bg2.jpg) no-repeat;
+	display: block;
+	float: left;
+	font-size: 2em;
+	padding: 1.25em 0.6em 1.45em;
+	position: absolute;
+	top: 10px;
+	left: 15px;
+}
+
+#banner .logo a {3 (line 169)
+	background:transparent url(/image/company_logo?img_id=0) no-repeat scroll 0%;
+	display:block;
+	font-size:0pt;
+	height:49px;
+	text-indent:-9999em;
+	width:198px;
+}
+/* ---------- Dock with Javascript ---------- */
+
+.js .lfr-dock.interactive-mode {
+	float: right;
+	min-width: 150px;
+	position: relative;
+	right: 10px;
+	top: 10px;
+}
+
+.js .lfr-dock.interactive-mode h2 {
+	background: none;
+	font-size: 1.2em;
+	margin-bottom: 10px;
+	margin-right: 5px;
+	padding: -5px 29px 0 0;
+	position: relative;
+	z-index: 82;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	background: url(../images/common/ico_linksdown.gif) no-repeat 90% 55%;
+	color: #fff;
+	display: block;
+	font-size: 1.2em;
+	margin-bottom: 10px;
+	padding: 0.5em 2.5em 0.5em 2em;
+	z-index: 90
+}
+
+.js .lfr-dock.interactive-mode ul {
+	background: url(../images/common/content_article_bg2.jpg) no-repeat 0 0;
+	border-left: 20px solid #DAE3EF;
+	display: none;
+	float: none;
+}
+
+.js .lfr-dock.expanded .lfr-dock-list-container {
+	background: #60738C;
+	border: 1px solid #B5B9BB;
+	border-top: none;
+	margin-right: 85px;
+	top: -2px;
+}
+
+.ie6.js .lfr-dock.expanded .lfr-dock-list-container {
+	margin-right: 0px;
+} 
+
+/* ---------- Main navigation ---------- */
+
+#navigation {
+	background: #192666;
+	color: #B5C4E3;
+	font-weight: bold;
+	padding-right: 1em;
+	padding-top: 1em;
+	margin-bottom: -1px;
+	width: 97.5%;
+}
+
+.ie6 #navigation {
+	width: 97.4%;
+}
+
+#navigation li {
+	background: none;
+	display: inline;
+	float: left;
+	margin-left: 1.5em;
+	margin-right: -1em;
+	position: relative;
+}
+
+#navigation li a {
+	background: url(../images/common/tab_link.gif) repeat-x;
+	color: #B5C4E3;
+	cursor: pointer;
+	font-weight: bold;
+	padding: 7px 15px;
+	position: relative;
+}
+
+#navigation ul li a span.tab-l {
+	background: url(../images/common/tab_link_l.gif) no-repeat;
+	height: 8px;
+	left: 0pt;
+	position: absolute;
+	top: 0pt;
+	width: 8px;
+}
+
+#navigation ul li a span.tab-r {
+	background: url(../images/common/tab_link_r.gif) no-repeat 100%;
+	height: 8px;
+	position: absolute;
+	right: 0pt;
+	top: 0pt;
+	width: 8px;
+}
+
+#navigation li a:hover {
+	background: url(../images/common/tab_hover.gif) repeat-x;
+	color: #FFF;
+	padding-bottom: 0;
+}
+
+.ie6 #navigation li a:hover {
+	color: #FFFFFF;
+}
+
+#navigation ul li a:hover span.tab-l, .ie6 #navigation ul li a:hover span.tab-l {
+	background: url(../images/common/tab_hover_l.gif) no-repeat;
+}
+
+#navigation ul li a:hover span.tab-r, .ie6 #navigation ul li a:hover span.tab-r {
+	background: url(../images/common/tab_hover_r.gif) no-repeat 100%;
+}
+
+.ie6 #navigation ul li a span.tab-l {
+	left: -15px;
+}
+.ie6 #navigation ul li a span.tab-r {
+	right: 4px;
+	top: -2px;
+}
+
+#navigation li a span {
+	background: none;
+	padding-left: 3px;
+}
+
+#navigation li.selected a, #navigation li.selected a:hover {
+	background: #FFFFFF;
+	color: #FF9000;
+	padding-bottom: 10px;
+}
+
+#navigation li.selected a span.tab-l {
+	background: url(../images/common/tab_active_l.gif) no-repeat;
+}
+
+
+#navigation li.selected a span.tab-r {
+	background: url(../images/common/tab_active_r.gif) no-repeat 100%;
+}
+
+.ie6 #navigation li.selected a span.tab-l {
+	left: -15px;
+}
+
+.ie6 #navigation li.selected a span.tab-r {
+	right: 5px;
+	top: -4px;
+}
+
+#navigation li.selected a:hover {
+	padding-bottom: 10px;
+}
+
+#navigation li.selected a:hover span.tab-l, .ie6 #navigation li.selected a:hover span.tab-l {
+	background: url(../images/common/tab_active_l.gif) no-repeat;
+}
+
+#navigation li.selected a:hover span.tab-r, .ie6 #navigation li.selected a:hover span.tab-r {
+	background: url(../images/common/tab_active_r.gif) no-repeat 100%;
+}
+
+#navigation li.selected a span {
+	background: none;
+	font-size: 1.3em;
+	font-weight: bold;
+}
+
+#navigation li a:hover span {
+	background: none;
+}
+
+body {
+	background: #F2F5FE url(../images/common/bg.gif) repeat-x;
+	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+}
+
+/* ---------- Main content body ---------- */
+
+#wrapper {
+	margin: 50px auto;
+	width: 770px;
+	position: relative;
+}
+
+#page-in {
+	background: #FFF url(../images/common/bg_page.gif) repeat-y scroll 0 0;
+}
+
+#content-wrapper {
+	background: url(../images/common/bg_page_in.jpg) no-repeat scroll 0 0;
+}
+
+div.box {
+	min-height: 1px;
+	padding: 0;
+}
+
+div.bottom {
+	background: transparent url(../images/common/footer.jpg) no-repeat scroll 0pt 50%;
+	clear: both;
+	color: #6685CC;
+	height: 60px;
+	margin-bottom: 50px;
+	position: relative;
+	width: 770px;
+}
+
+#liferay {
+	color:#8CA3D8;
+	left:670px;
+	margin:0pt;
+	position:absolute;
+	top:10px;
+}
+
+/* ---------- 2 columns ---------- */
+
+.columns-2 #column-1 {
+	padding-left: 15px;
+}
+
+.columns-2 #column-2 {
+	padding-right: 10px;
+}
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: none;
+}
+
+.portlet {
+	margin: 0 0 10px;
+	padding-right: 10px;
+	text-align: left;
+}
+
+.portlet-topper {
+	background: url(../images/common/content_title_bg.gif) repeat scroll;
+	background-position: left top;
+	margin-right: -10px;
+	padding-right: 40px;
+	position: relative;
+}
+
+.ie6 .portlet-topper {
+	height: 1%;
+}
+
+.portlet-content { 
+	background: #FFF;
+	background-position: left bottom;
+	padding: 10px 5px 25px 15px;
+}
+
+.js #add-page {
+	float: left;
+	font-weight: bold;
+	color: #FFF;
+	padding-top: 0.3em;
+}
+
+.js #add-page a span {
+	background: url(../images/navigation/add_page.png) no-repeat 100% 50%;
+	padding: 5px 20px;
+}
+
+
+
+
