@@ -18,7 +18,7 @@
 	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
 	<author>Liferay, Inc.</author>
 	<licenses>
-		<license osi-approved="true">MIT</license>
+		<license osi-approved="true">Creative Commons License</license>
 	</licenses>
 	<liferay-versions>
 		<liferay-version>4.3.*</liferay-version>
