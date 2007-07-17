@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 4.3.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_4_3_0.dtd">
+<!--
+   Copyright (c) 2000-2007 Liferay, Inc. All rights reserved.
+
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to deal
+   in the Software without restriction, including without limitation the rights
+   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+   copies of the Software, and to permit persons to whom the Software is
+   furnished to do so, subject to the following conditions:
+
+   The above copyright notice and this permission notice shall be included in
+   all copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
+-->
+<plugin-package>
+	<name>Sample ICEfaces (Sun RI) Portlet</name>
+	<module-id>liferay-samples/sample-icefaces-sun-portlet/4.3.1.0/war</module-id>
+	<types>
+		<type>portlet</type>
+	</types>
+	<tags>
+		<tag>sample</tag>
+	</tags>
+	<short-description>
+		This portlet shows how to use JSF portlets with ICEfaces and the Sun JSF Reference Implementaton (RI) within Liferay.
+	</short-description>
+	<change-log>
+		Adapted to the latest version of Liferay.
+	</change-log>
+	<page-url>http://www.liferay.com/web/guest/downloads/samples</page-url>
+	<author>Liferay, Inc.</author>
+	<licenses>
+		<license osi-approved="true">MIT</license>
+	</licenses>
+	<liferay-versions>
+		<liferay-version>4.3.1+</liferay-version>
+	</liferay-versions>
+</plugin-package>

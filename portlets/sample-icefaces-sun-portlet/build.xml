@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<project name="sample-icefaces-sun-portlet" basedir="." default="deploy">
+	<import file="../build-common-portlet.xml" />
+
+	<property name="plugin.version" value="1" />
+	<property name="plugin.file" value="${project.dir}/dist/${ant.project.name}-${lp.version}.${plugin.version}.war" />
+
+    <target name="clean">
+		<antcall target="build-common-plugin.clean" />
+        <!--
+        Delete the JARs in WEB-INF/lib that ship with the portal so that after a clean, only the JARs that are
+        to be kept under version control remain. This makes it easier to commit changes to the repository.
+        -->
+		<delete failonerror="false">
+			<fileset
+				dir="docroot/WEB-INF/lib"
+				includes="commons-logging.jar,log4j.jar,util-bridges.jar,util-java.jar,util-taglib.jar"
+			/>
+			<fileset
+				dir="docroot/WEB-INF/lib"
+				includes="commons-beanutils.jar,commons-collections.jar,commons-digester.jar,commons-fileupload.jar,commons-lang.jar,commons-validator.jar,oro.jar"
+			/>
+		</delete>
+    </target>
+
+	<target name="compile">
+		<copy todir="docroot/WEB-INF/lib">
+			<fileset
+				dir="${app.server.lib.portal.dir}"
+				includes="commons-beanutils.jar,commons-collections.jar,commons-digester.jar,commons-fileupload.jar,commons-lang.jar,commons-validator.jar,oro.jar"
+			/>
+		</copy>
+
+		<antcall target="build-common-plugin.compile" />
+	</target>
+</project>
