@@ -120,10 +120,8 @@
 						progressListener="#{ResumeUploader.progressListener}" styleClass="portlet-form-input-field "/>
 				</ice:panelGrid>
 				<ice:outputText escape="false" value="&lt;hr/&gt;"/>
-				<ice:panelGrid columns="3">
+				<ice:panelGrid columns="1">
 					<ice:commandButton action="#{JobApplication.submit}" alt="#{Language['submit']}" styleClass="portlet-form-button" value="#{Language['submit']}"/>
-					<ice:outputText escape="false" value="&amp;nbsp;"/>
-					<ice:outputText value="#{Language['send-email-disclaimer']}" styleClass="portlet-msg-status"/>
 				</ice:panelGrid>
 			</ice:panelTab>
 		</ice:panelTabSet>

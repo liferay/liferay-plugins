@@ -57,6 +57,11 @@ import javax.portlet.PortletPreferences;
  * contains bean properties to store the values of each ICEfaces component
  * on the page. In addition, it contains a submit action callback, so that
  * the job application form can be sent in the form of an email.
+ *
+ * Note that the e-mail will only be sent if the portlet is configured to work
+ * with your mail server as defined in the META-INF/context.xml file or
+ * $JBOSS_HOME/server/default/deploy/mail-service.xml file. Also, the file
+ * upload directory is defined in the WEB-INF/web.xml file.
  * </p>
  *
  * @author Neil Griffin
@@ -109,7 +114,7 @@ public class JobApplication {
 	}
 
 	public File getFile() {
-		return (_file);
+		return _file;
 	}
 
 	public void setFile(File file) {
@@ -167,12 +172,12 @@ public class JobApplication {
 			_phoneNumberTypeSelectItems.prependEmptySelectItem(facesContext);
 		}
 
-		return (_phoneNumberTypeSelectItems);
+		return _phoneNumberTypeSelectItems;
 	}
 
 	public String submit() {
 
-		String returnValue = ActionOutcomes.SUCCESS;
+		String actionOutcome = ActionOutcomes.SUCCESS;
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 
 		String toEmailAddress = _portletPreferences.getValue(
@@ -208,9 +213,9 @@ public class JobApplication {
 
 			// Ask ICEfaces to display an informational message, letting
 			// the user know that the email message was sent.
-			FacesMessageUtil.addGlobalMessageFromLiferay(
+			FacesMessageUtil.addGlobalMessage(
 				facesContext, FacesMessage.SEVERITY_INFO,
-				"thank-you-for-applying-for-a-job",
+				"thank-you-for-applying-for-a-job-with-our-organization",
 				_firstName);
 
 			// Clear the values in the model, so that ICEfaces will re-render
@@ -221,16 +226,17 @@ public class JobApplication {
 
 			// Ask ICEfaces to display an error message, letting the user know
 			// that the email message was not sent.
-			FacesMessageUtil.addGlobalMessageFromLiferay(
+			FacesMessageUtil.addGlobalMessage(
 				facesContext, FacesMessage.SEVERITY_ERROR,
 				"an-unexpected-error-occurred-while-sending-your-message");
 
 			if (_log.isErrorEnabled()) {
 				_log.error(exception.getMessage(), exception);
 			}
+			actionOutcome = ActionOutcomes.FAILURE;
 		}
 
-		return (returnValue);
+		return actionOutcome;
 	}
 
 	private void _clearModel() {
