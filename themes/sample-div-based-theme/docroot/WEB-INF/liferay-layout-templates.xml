@@ -3,10 +3,10 @@
 
 <layout-templates>
 	<custom>
-		<layout-template id="div_2col" name="Div 2 Columns (50/50)">
-			<template-path>/layouttpl/custom/div_2col.tpl</template-path>
-			<wap-template-path>/layouttpl/custom/div_2col.wap.tpl</wap-template-path>
-			<thumbnail-path>/layouttpl/custom/div_2col.png</thumbnail-path>
+		<layout-template id="div_2_col" name="Div 2 Columns (50/50)">
+			<template-path>/layouttpl/custom/div_2_col.tpl</template-path>
+			<wap-template-path>/layouttpl/custom/div_2_col.wap.tpl</wap-template-path>
+			<thumbnail-path>/layouttpl/custom/div_2_col.png</thumbnail-path>
 		</layout-template>
 	</custom>
 </layout-templates>

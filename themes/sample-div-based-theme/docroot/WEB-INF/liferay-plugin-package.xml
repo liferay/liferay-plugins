@@ -2,7 +2,7 @@
 <!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 4.3.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_4_3_0.dtd">
 
 <plugin-package>
-	<name>Sample div based Theme and Layout</name>
+	<name>Sample Div Based Theme</name>
 	<module-id>liferay-samples/sample-div-based-theme/4.3.0.1/war</module-id>
 	<types>
 		<type>theme</type>
