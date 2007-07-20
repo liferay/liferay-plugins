@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 4.3.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_4_3_0.dtd">
+
+<plugin-package>
+	<name>Sample div based Theme and Layout</name>
+	<module-id>liferay-samples/sample-div-based-theme/4.3.0.1/war</module-id>
+	<types>
+		<type>theme</type>
+		<type>layout</type>
+	</types>
+	<tags>
+		<tag>liferay</tag>
+	</tags>
+	<short-description>
+	</short-description>
+	<change-log>
+		Initial version.
+	</change-log>
+	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
+	<author>Mika Koivisto</author>
+	<licenses>
+		<license osi-approved="true">MIT</license>
+	</licenses>
+	<liferay-versions>
+		<liferay-version>4.3.*</liferay-version>
+	</liferay-versions>
+</plugin-package>

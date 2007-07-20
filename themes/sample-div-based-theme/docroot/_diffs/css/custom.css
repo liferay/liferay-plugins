@@ -1,0 +1,3 @@
+#layout-grid { padding-top:6px; clear:both; float:left; width:100%; }
+.layout_2col #column-1 { width:49%; float:left; }
+.layout_2col #column-2 { width:49%; float: right; }

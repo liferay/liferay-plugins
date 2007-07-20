@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE layout-templates PUBLIC "-//Liferay//DTD Layout Templates 4.3.0//EN" "http://www.liferay.com/dtd/liferay-layout-templates_4_3_0.dtd">
+
+<layout-templates>
+	<custom>
+		<layout-template id="div_2col" name="Div 2 Columns (50/50)">
+			<template-path>/layouttpl/custom/div_2col.tpl</template-path>
+			<wap-template-path>/layouttpl/custom/div_2col.wap.tpl</wap-template-path>
+			<thumbnail-path>/layouttpl/custom/div_2col.png</thumbnail-path>
+		</layout-template>
+	</custom>
+</layout-templates>
