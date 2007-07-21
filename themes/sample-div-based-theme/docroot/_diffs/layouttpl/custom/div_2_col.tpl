@@ -1,14 +1,10 @@
-<div id="content-wrapper" class="layout_2col">
-	
+<div class="div-2-col" id="content-wrapper">
 	<div id="layout-grid">
-		<div id="column-1" class="lfr-column columnLeft">
+		<div class="lfr-column" id="column-1">
 			$processor.processColumn("column-1")
 		</div>
-		<div id="column-2" class="lfr-column columnRight">
+		<div class="lfr-column" id="column-2">
 			$processor.processColumn("column-2")
 		</div>
 	</div>
-
 </div>
-
-<div class="cleaner"><!-- --></div>
