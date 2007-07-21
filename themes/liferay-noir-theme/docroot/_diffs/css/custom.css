@@ -97,7 +97,12 @@ a:hover {
 
 #content-wrapper {
 	background: #1C2633 url(../images/common/content_wrapper_bg.png) repeat;
+	color: #7E97AE;
 	padding: 0 5px;
+}
+
+.portal-popup #content-wrapper {
+	font-size: 1.2em;
 }
 
 #banner {
@@ -234,6 +239,7 @@ a:hover {
 	background-color: #1C2633;
 	background-position: right bottom;
 	color: #7E97AE;
+	font-size: 1.2em;
 	margin-left: 10px;
 	padding: 10px 20px 20px 10px;
 }
@@ -322,6 +328,7 @@ a:hover {
 
 .tabs li.current {
 	padding-top: 1px;
+	margin-top: 1px;
 	top: 0;
 }
 
