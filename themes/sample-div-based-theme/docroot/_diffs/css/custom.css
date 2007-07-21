@@ -6,11 +6,13 @@
 }
 
 .div-2-col #column-1 {
+	padding: 0px;
 	float: left;
 	width: 49%;
 }
 
 .div-2-col #column-2 {
+	padding: 0px;
 	float: right;
 	width: 49%;
 }
