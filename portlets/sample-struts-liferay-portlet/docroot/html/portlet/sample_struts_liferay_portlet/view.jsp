@@ -22,6 +22,6 @@
  */
 %>
 
-<%@ include file="/html/portlet/sample_struts_liferay_portlet/init.jsp" %>
+<%@ include file="init.jsp" %>
 
-<b>View <bean:message key="hello-there" /></b>
+Hello World

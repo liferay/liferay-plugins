@@ -2,9 +2,13 @@
 
 <portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd" version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd">
 	<portlet>
-		<portlet-name>sample_struts_liferay_portlet</portlet-name>
-		<display-name>Sample Struts Liferay Portlet</display-name>
-		<portlet-class>com.sample.strutsliferay.portlet.SampleStrutsLiferayPortlet</portlet-class>
+		<portlet-name><!-- TODO: Change to your portlet name --></portlet-name>
+		<display-name><!-- TODO: Change to your portlet name --></display-name>
+		<portlet-class>org.oclc.webjunction.portlet.StrutsPortlet</portlet-class>
+		<!--
+
+		These are different portlet modes, if you need these icons uncomment them.
+
 		<init-param>
 			<name>edit-action</name>
 			<value>/sample_struts_liferay_portlet/edit</value>
@@ -17,21 +21,29 @@
 			<name>print-action</name>
 			<value>/sample_struts_liferay_portlet/print</value>
 		</init-param>
+
+		-->
 		<init-param>
 			<name>view-action</name>
-			<value>/sample_struts_liferay_portlet/view</value>
+			<value>/<!-- TODO: Change to your portlet struts path, usually the id -->/view</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
+			<!--
+
+			For portlet modes only
+
 			<portlet-mode>edit</portlet-mode>
 			<portlet-mode>help</portlet-mode>
 			<portlet-mode>print</portlet-mode>
+
+			-->
 		</supports>
 		<portlet-info>
-			<title>Sample Struts Liferay Portlet</title>
-			<short-title>Sample Struts Liferay Portlet</short-title>
-			<keywords>Sample Struts Liferay Portlet</keywords>
+			<title><!-- TODO: Change to your portlet name --></title>
+			<short-title><!-- TODO: Change to your portlet name --></short-title>
+			<keywords><!-- TODO: Change to your portlet name --></keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

@@ -13,7 +13,7 @@
 	</servlet>
 	<servlet>
 		<servlet-name>TestSessionServlet</servlet-name>
-		<servlet-class>com.sample.strutsliferay.servlet.TestSessionServlet</servlet-class>
+		<servlet-class>org.oclc.webjunction.servlet.TestSessionServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>PortletActionServlet</servlet-name>
