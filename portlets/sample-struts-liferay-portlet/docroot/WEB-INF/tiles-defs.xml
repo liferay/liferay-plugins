@@ -5,10 +5,10 @@
 
 	<!-- Test Struts -->
 
-	<definition name="portlet.<!--TODO: Tiles forward here-->" path="/portlet/<!--TODO: Portlet ID here-->/template.jsp" />
+	<definition name="portlet.commonTemplate" path="/portlet/common/template.jsp" />
 
 
-	<definition name="portlet.<!--TODO: Portlet ID here-->.view" extends="portlet.<!--TODO: Tiles forward here-->">
+	<definition name="portlet.<!--TODO: Portlet ID here-->.view" extends="portlet.commonTemplate">
 		<put name="portlet_content" value="/portlet/<!--TODO: Portlet ID here-->/view.jsp" />
 	</definition>
 </tiles-definitions>
