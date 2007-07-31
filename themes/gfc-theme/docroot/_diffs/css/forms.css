@@ -1,0 +1,70 @@
+/* This CSS sets the default styles for forms. */
+
+fieldset {
+	border: 1px solid #ccc;
+	padding: 0.7em;
+}
+
+legend {
+	font-weight: bold;
+	padding: 0.5em;
+}
+
+input[type="text"], input[type="password"], input[type="file"],input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	background: #fff url(../images/forms/input_shadow.gif) no-repeat;
+	border: 1px solid #aaa;
+	border-left-color: #777;
+	border-top-color: #777;
+	font: 1em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+	padding: 0.3em;
+}
+
+input {
+	padding: 0.5em;
+}
+
+select {
+	padding: 0.3em;
+}
+
+input[type="image"] {
+	background: transparent none;
+	border: none;
+	padding: 0;
+}
+
+input[type="submit"], input[type="button"], input[type="reset"] {
+	background: #FAFAFA url(../images/forms/button.gif) repeat-x;
+	border: 3px double #999;
+	border-left-color: #ccc;
+	border-top-color: #ccc;
+	color: #333;
+	font-weight: bold;
+	padding: 0.25em;
+}
+
+/* ---------- IE6 chokes on attribute selectors in a chain, so we separate them into their own rule ---------- */
+
+.ie6 input.text, input.password, .ie6 input.submit, .ie6 input.file, .ie6 input.button {
+	background: #fff url(../images/forms/input_shadow.gif) no-repeat;
+	border: 1px solid #aaa;
+	border-left-color: #777;
+	border-top-color: #777;
+	font: 1em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+	padding: 0.3em;
+}
+
+.ie6 input.submit, .ie6 input.button {
+	background: #FAFAFA url(../images/forms/button.gif) repeat-x;
+	border: 3px double #999;
+	border-left-color: #ccc;
+	border-top-color: #ccc;
+	color: #333;
+	font-weight: bold;
+	padding: 0.25em;
+}
+
+input.focus, textarea.focus, .ie6 input.focus, .ie6 textarea.focus {
+	background: #ffc none;
+	border: 1px solid #fc0;
+}

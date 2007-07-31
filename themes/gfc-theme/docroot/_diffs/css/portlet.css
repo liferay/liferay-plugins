@@ -1,0 +1,311 @@
+/* This CSS sets the default styles for portlets. */
+
+/* ---------- Portlet wrapper and icons ---------- */
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: transparent url(../images/portlet/portlet_bg.png) no-repeat bottom right;
+}
+
+.portlet {
+	margin: 0 0 10px;
+	padding-right: 10px;
+	text-align: left;
+}
+
+.portlet-topper {
+	background-position: right top;
+	margin-right: -10px;
+	padding-right: 40px;
+	position: relative;
+}
+
+.portlet-title {
+	background-position: top left;
+	display: block;
+	font-weight: bold;
+	min-width: 50%;
+	padding: 8px 0 4px 10px;
+}
+
+.ie .portlet-title {
+	padding-bottom: 5px;
+}
+
+.portlet-title img {
+	vertical-align: middle;
+}
+
+.portlet-icons {
+	margin: 3px;
+	position: absolute;
+	right: 7px;
+	text-align: right;
+	top: 4px;
+}
+
+.portlet-content {
+	background-position: left bottom;
+	padding: 10px 5px 25px 15px;
+}
+
+.portlet-icon-back {
+	background: url(../images/portlet/back.png) no-repeat 0 50%;
+	font-weight: bold;
+	padding: 0.2em 0 0.5em 1.8em;
+}
+
+/* ---------- Drag and drop ---------- */
+
+.portlet-dragging {
+	background: #FFFFE3 !important;
+	border: 3px solid #666;
+	padding: 10px;
+}
+
+.portlet-hover {
+	background: #ddd;
+	padding: 10px;
+}
+
+.portlet-placeholder {
+	background: url(../images/portlet/placeholder_bg.gif);
+	border: 1px dashed #508FB4;
+	width: 100% !important;
+}
+
+.portlet-resize-handle {
+	background: url(../images/arrows/resize.png) scroll no-repeat;
+	bottom: 12px;
+	cursor: se-resize;
+	height: 10px;
+	position: absolute;
+	right: 2px;
+	width: 10px;
+}
+
+/* ---------- Standard styles defined in the JSR 168 ---------- */
+
+/* ---------- Fonts ---------- */
+
+/* ---------- Font attributes for the 'normal' fragment font ---------- */
+
+.portlet-font {
+}
+
+/* ---------- Font attributes similar to the .portlet-font but the color is lighter ---------- */
+
+.portlet-font-dim {
+}
+
+/* ---------- Messages ---------- */
+
+/* ---------- Status of the current operation ---------- */
+
+.portlet-msg-status {
+}
+
+/* ---------- Help messages, general additional information, etc. ---------- */
+
+.portlet-msg-info {
+	background: #FAFAFA;
+	border: 1px solid #53B2F8;
+	color: #777;
+	display: block;
+	padding: 2px;
+	text-align: left;
+}
+
+/* ---------- Error messages ---------- */
+
+.portlet-msg-error {
+	background: #FFF1ED url(../images/messages/error.gif) no-repeat 0.5em 50%;
+	border: 1px solid #900;
+	display: block;
+	margin: 0.15em auto 1.2em;
+	padding: 0.5em 0.5em 0.5em 2.8em;
+	text-align: left;
+}
+
+/* ---------- Warning messages ---------- */
+
+.portlet-msg-alert {
+	background: #FEFFDF url(../images/messages/alert.gif) no-repeat 0.5em 10%;
+	border: 1px solid #EFEFEF;
+	display: block;
+	margin: 0.15em auto 1.2em;
+	padding: 0.5em 0.5em 0.5em 2.8em;
+	text-align: left;
+}
+
+/* ---------- Success messages ---------- */
+
+.portlet-msg-success {
+	background: #F4FDEF url(../images/messages/success.gif) no-repeat 0.5em 50%;
+	border: 1px solid #3F9305;
+	display: block;
+	margin: 0.15em auto 1.2em;
+	padding: 0.5em 0.5em 0.5em 2.8em;
+	text-align: left;
+}
+
+/* ---------- Sections ---------- */
+
+/* ---------- Table or section header ---------- */
+
+.portlet-section-header {
+	background: #D9E1EC;
+	padding: 1px 0 0;
+}
+
+.portlet-section-header th {
+	border-bottom: 1px solid #ccc;
+	color: #333;
+	font-weight: bold;
+	padding: 0.3em 1em;
+}
+
+/* ---------- Normal text in a table cell ---------- */
+
+.portlet-section-body {
+	background: #E7EDF4;
+	color: #000;
+}
+
+.portlet-section-body td {
+	background: #DCDCDC;
+	border-top: 1px solid #BFBFBF;
+	padding: 0.3em 1em;
+}
+
+/* ---------- Text in every other row in the cell ---------- */
+
+.portlet-section-alternate {
+	background: #D3DEEB;
+	color: #000;
+}
+
+.portlet-section-alternate td {
+	background: #fff;
+	border-top: 1px solid #BFBFBF;
+	padding: 0.3em 1em;
+}
+
+.portlet-section-alternate-hover td, .portlet-section-body-hover td {
+	background: #FFF5BA;
+	border-bottom: 1px solid #E0D79F;
+	border-top: 1px solid #E0D79F;
+	padding: 0.3em 1em;
+}
+
+.portlet-section-body td td, .portlet-section-body-hover td td {
+	border: none;
+}
+
+.portlet-section-alternate td td, .portlet-section-alternate-hover td td {
+	border: none;
+}
+
+/* ---------- Text in a selected cell range ---------- */
+
+.portlet-section-selected {
+	background: #EEE;
+}
+
+/* ---------- Text of a subheading ---------- */
+
+.portlet-section-subheader {
+}
+
+/* ---------- Table or section footnote ---------- */
+
+.portlet-section-footer {
+}
+
+/* ---------- Text that belongs to the table but does not fall in one of the other categories (e.g. explanatory or help text that is associated with the section) ---------- */
+
+.portlet-section-text {
+}
+
+/* ---------- Forms ---------- */
+
+/* ---------- Text used for the descriptive label of the whole form (not the labels for fields) ---------- */
+
+.portlet-form-label {
+}
+
+/* ---------- Text of the user-input in an input field ---------- */
+
+.portlet-form-input-field {
+}
+
+/* ---------- Text on a button ---------- */
+
+.portlet-form-button {
+}
+
+/* ---------- Text that appears beside a context dependent action icon ---------- */
+
+.portlet-icon-label {
+}
+
+/* ---------- Text that appears beside a 'standard' icon (e.g. Ok, or Cancel) ---------- */
+
+.portlet-dlg-icon-label {
+}
+
+/* ---------- Text for a separator of fields (e.g. checkboxes, etc.) ---------- */
+
+.portlet-form-field-label {
+}
+
+/* ---------- Text for a field (not input field, e.g. checkboxes, etc.) ---------- */
+
+.portlet-form-field {
+}
+
+/* ---------- Menus ---------- */
+
+/* ---------- General menu settings such as background color, margins, etc. ---------- */
+
+.portlet-menu {
+}
+
+/* ---------- Normal, unselected menu item ---------- */
+
+.portlet-menu-item {
+}
+
+/* ---------- Selected menu item ---------- */
+
+.portlet-menu-item-selected {
+}
+
+/* ---------- Normal, unselected menu item when the mouse hovers over it ---------- */
+
+.portlet-menu-item-hover {
+}
+
+/* ---------- Selected menu item when the mouse hovers over it ---------- */
+
+.portlet-menu-item-hover-selected {
+}
+
+/* ---------- Normal, unselected menu item that has sub-menus ---------- */
+
+.portlet-menu-cascade-item {
+}
+
+/* ---------- Selected sub-menu item that has sub-menus ---------- */
+
+.portlet-menu-cascade-item-selected {
+}
+
+/* ---------- Descriptive text for the menu (e.g. in a help context below the menu) ---------- */
+
+.portlet-menu-description {
+}
+
+/* ---------- Menu caption ---------- */
+
+.portlet-menu-caption {
+}

@@ -1,0 +1,267 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: url(../images/common/GWheader2.jpg) no-repeat scroll 100% 100%;
+	height: 10em;
+	position: relative;
+}
+
+#banner .logo {
+	background: none;
+	display: block;
+	float: left;
+	font-size: 2em;
+	padding: 1.25em 0.6em 1.45em;
+}
+
+#banner .logo a {
+	text-decoration: none;
+}
+
+.lfr-dock h2 {
+	background: url(../images/navigation/welcome_message.png) no-repeat 0 50%;
+	font-size: 1.2em;
+	margin-bottom: 0.5em;
+	padding-left: 2em;
+	text-align: left;
+}
+
+.lfr-dock {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+.js .lfr-dock.interactive-mode h2 {
+	background: none;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0 0 0 0;
+	position: relative;
+	right: 950px;
+	top: 25px;
+	z-index: 82;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	background: none;
+	border: 1px outset;
+	color: #fff;
+	display: block;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+.js .lfr-dock.expanded .lfr-dock-list-container {
+	background: #60738C;
+	border: 1px solid #B5B9BB;
+	border-top: none;
+	position: relative;
+	right: 950px;
+	top: 25px;
+}
+
+.js .interactive-mode .my-places .show-my-places {
+	background: #fff;
+	border: 1px solid #ccc;
+	display: block;
+	min-width: 200px;
+	padding: 0.2em;
+	position: absolute;
+	left: 85%;
+	top: 87%;
+}
+
+body {
+	background: #3B2B14 url(../images/common/GWpatternfade2.jpg) repeat-x top;
+	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+}
+
+/* ---------- Main content body ---------- */
+
+#wrapper {
+	margin: 0 auto;
+	width: 90%;
+}
+
+/* ---------- Main navigation ---------- */
+
+.js #add-page {
+	float: left;
+	font-weight: bold;
+	padding-top: 0.3em;
+	position: relative;
+	right: 750px;
+}
+
+#navigation {
+	background: url(../images/common/GWlink3.jpg) repeat-x;
+	margin: 0 auto 1.5em;
+	margin-bottom: -11px;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding-right: 1em;
+	padding-bottom: 10px;
+	width: 99.2%;
+	text-align: middle;
+}
+
+#navigation ul {
+	float: left;
+	min-height: 2em;
+	width: auto;
+	position: relative;
+	left: 370px;
+}
+
+#navigation li {
+	background: none;
+	display: inline;
+	float: left;
+	margin-right: 0.5em;
+	margin-top: 10px;
+	padding: 0 0.5em 0 0;
+	position: relative;
+}
+
+#navigation li a {
+	background: none;
+	display: block;
+	padding: 0 2em 0.5em 1.5em;
+	font-size: 9pt;
+	text-decoration: none;
+	color: #E4EAAE;
+	margin-right: -20px;
+}
+
+#navigation li a:hover {
+	padding-bottom: 0em;
+}
+
+#navigation li a span {
+	background: none;
+	padding-left: 20px;
+	text-decoration: none;
+	color: #E4EAAE;
+}
+
+#navigation li.selected a {
+	padding-top: 0em;
+}
+
+#navigation li.selected a span {
+	background: #E4EAAE;
+	padding-bottom: 6px;
+	padding-top: 9.5px;
+	padding-left: 13px;
+	padding-right: 13px;
+	font-size: 9pt;
+	font-weight: normal;
+	color: #000;
+}
+
+#navigation li.selected a:hover {
+	padding-bottom: 0em;
+	margin-right: -7px;
+
+}
+
+#navigation li a:hover span {
+	background: #E4EAAE;
+	padding-bottom: 6px;
+	padding-top: 9.5px;
+	padding-right: 13px;
+	margin-right: -13px;
+	color: #000;
+}
+
+.js .delete-tab {
+	background: url(../images/common/remove.png) no-repeat 42%;
+	cursor: pointer;
+	display: block;
+	height: 7px;
+	position: absolute;
+	right: -4px;
+	text-indent: -9999em;
+	top: 2px;
+	width: 8px;
+}
+
+
+/* ---------- 1 column ---------- */
+
+.columns-1 #column-1, .columns-max #column-1 {
+	background: #E4EAAE;
+	display: table;
+	padding-left: 0;
+	padding-right: 0;
+	width: 100%;
+}
+
+/* ---------- 2 columns ---------- */
+
+.columns-2 #column-1 {
+	background: #E4EAAE;
+	border-right: 1px solid #000;
+	padding-left: 10px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.columns-2 #column-2 {
+	background: #E4EAAE;
+	padding-right: 10px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+/* ---------- 3 columns ---------- */
+
+.columns-3 #column-1 {
+	background: #E4EAAE;
+	padding-left: 0;
+}
+
+.columns-3 #column-2 {
+}
+
+.columns-3 #column-3 {
+	background: #E4EAAE;
+	padding-right: 0;
+}
+
+/* ---------- Portlet wrapper and icons ---------- */
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: #FFF;
+	margin-bottom: 0px;
+}
+
+.portlet-topper {
+	background-position: right top;
+	margin-right: -10px;
+	padding-right: 40px;
+	position: relative;
+}
+
+.portlet-title {
+	background: url(../images/common/GWtopper.jpg) no-repeat;
+	background-position: bottom left;
+	display: block;
+	font-weight: bold;
+	min-width: 50%;
+	padding: 8px 0 4px 10px;
+
+.portlet-content {
+	background-position: left bottom;
+	padding: 10px 5px 25px 15px;
+}
+
+.portlet {
+	margin: 0 0 10px;
+	padding-right: 10px;
+	text-align: left;
+}

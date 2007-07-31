@@ -1,0 +1,373 @@
+/* This CSS sets the default styles for the main navigation. */
+
+/* ---------- Main navigation ---------- */
+
+#navigation {
+	margin: 0 auto 0.5em;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding-right: 1em;
+	width: 93%;
+}
+
+#navigation ul {
+	float: left;
+	min-height: 2em;
+	width: auto;
+}
+
+.ie6 #navigation, .ie6 #navigation ul {
+	height: 2em;
+	overflow: visible;
+}
+
+#navigation li {
+	background: transparent url(../images/navigation/bg.gif) no-repeat 100% 100%;
+	display: inline;
+	float: left;
+	margin-right: 0.5em;
+	padding: 0 0.5em 0 0;
+	position: relative;
+}
+
+#navigation li a {
+	background: transparent url(../images/navigation/bg.gif) no-repeat 0 100%;
+	display: block;
+	padding: 0 2em 0.5em 1.5em;
+	text-decoration: none;
+}
+
+#navigation li a:hover {
+	padding-bottom: 1em;
+}
+
+#navigation li a span {
+	background: url(../images/navigation/bullet.gif) no-repeat 0 50%;
+	padding-left: 17px;
+	text-decoration: none;
+}
+
+#navigation li.selected a {
+	padding-top: 0.5em;
+}
+
+#navigation li.selected a span {
+	background: url(../images/navigation/bullet_selected.gif) no-repeat 0 50%;
+	font-size: 1.3em;
+	font-weight: bold;
+}
+
+#navigation li.selected a:hover {
+	padding-bottom: 0.5em;
+}
+
+#navigation li a:hover span {
+	background: url(../images/navigation/bullet_over.gif) no-repeat 0 50%;
+}
+
+#navigation .child-menu {
+	display: none;
+}
+
+/* ---------- Dock without Javascript ---------- */
+
+.lfr-dock {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+.lfr-dock h2 {
+	background: url(../images/navigation/welcome_message.png) no-repeat 0 50%;
+	font-size: 1.2em;
+	margin-bottom: 0.5em;
+	padding-left: 2em;
+	text-align: right;
+}
+
+.lfr-dock ul {
+	display: inline;
+	float: left;
+}
+
+.lfr-dock li {
+	display: inline;
+	float: left;
+	margin-left: 15px;
+}
+
+.lfr-dock li a {
+	background: url() no-repeat 0 50%;
+	padding: 2px 0 2px 20px;
+}
+
+.lfr-dock li.home a {
+	background-image: url(../images/dock/home.png);
+}
+
+.lfr-dock li.my-account a {
+	background-image: url(../images/dock/my_account.png);
+}
+
+.lfr-dock li.sign-in a {
+	background-image: url(../images/dock/sign_in.png);
+}
+
+.lfr-dock li.sign-out a {
+	background-image: url(../images/dock/sign_out.png);
+}
+
+.lfr-dock li.add-content a {
+	background-image: url(../images/dock/add_content.png);
+}
+
+.lfr-dock li.layout a {
+	background-image: url(../images/dock/layout.png);
+}
+
+.lfr-dock li.page-settings a {
+	background-image: url(../images/dock/page_settings.png);
+}
+
+.lfr-dock li.my-places a {
+	background-image: url(../images/dock/my_places.png);
+}
+
+.lfr-dock li.my-places {
+	display: none;
+}
+
+/* ---------- Dock with Javascript ---------- */
+
+.js .lfr-dock.interactive-mode {
+	float: right;
+	min-width: 150px;
+	position: relative;
+	right: 10px;
+	top: 10px;
+}
+
+.js .lfr-dock.interactive-mode h2 {
+	background: url(../images/dock/menu_bar.png) no-repeat 100% -30px;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0 29px 0 0;
+	position: relative;
+	z-index: 82;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	background: url(../images/dock/menu_bar.png) no-repeat 0 0;
+	color: #fff;
+	display: block;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0.5em 0.5em 0.5em 2em;
+}
+
+.js .lfr-dock.expanded .lfr-dock-list-container {
+	background: #60738C;
+	border: 1px solid #B5B9BB;
+	border-top: none;
+	top: -2px;
+}
+
+.js .lfr-dock.interactive-mode ul {
+	background: url(../images/dock/menu_bg.png) no-repeat 0 0;
+	border-left: 20px solid #DAE3EF;
+	display: none;
+	float: none;
+}
+
+.js .lfr-dock.interactive-mode li {
+	display: block;
+	float: none;
+	margin-bottom: 0pt;
+	margin-left: 0.2em;
+}
+
+.js .lfr-dock.interactive-mode li a {
+	background-position: 0.5em 50%;
+	background-repeat: no-repeat;
+	border-top: 1px solid #ccc;
+	display: block;
+	margin-left: 0.3em;
+	padding: 0.5em 0pt 0.5em 2.5em;
+	text-decoration: none;
+}
+
+.js .lfr-dock.interactive-mode ul.lfr-dock-list > li:first-child a, .js .lfr-dock.interactive-mode ul.lfr-dock-list > li:first-child ul.show-my-places li:first-child a {
+	border-top: none;
+}
+
+.js .lfr-dock.interactive-mode li a:hover {
+	background-color: #FFF5BA;
+	background-position: 1.5em 50%;
+	border-top: 1px solid #E0D79F;
+	padding-left: 3.5em;
+}
+
+.js .lfr-dock.interactive-mode ul.lfr-dock-list > li:first-child a, .js .lfr-dock.interactive-mode ul.lfr-dock-list > li:first-child a:hover, .js .lfr-dock.interactive-mode ul.lfr-dock-list li.my-places ul.show-my-places li ul li:first-child a, .js .lfr-dock.interactive-mode ul.lfr-dock-list li.my-places ul.show-my-places li ul li:first-child a:hover {
+	border-top: none;
+}
+
+.js .my-places {
+	display: none;
+}
+
+.js .lfr-dock.interactive-mode li.my-places li a {
+	background-image: none;
+}
+
+.js .lfr-dock.interactive-mode li.my-places li ul li.current a, .js .lfr-dock.interactive-mode li.my-places li ul li.current a:hover {
+	background: #E5F7FD url(../images/dock/my_place_current.png) no-repeat 1em 50%;
+	margin: 0.1em 0 0 0.2em;
+	padding-left: 3.5em;
+}
+
+.js .interactive-mode .my-places .show-my-places {
+	background: #fff;
+	border: 1px solid #ccc;
+	display: block;
+	min-width: 200px;
+	padding: 0.2em;
+	position: absolute;
+	right: 85%;
+	top: 87%;
+}
+
+.js .interactive-mode .my-places.send-right .show-my-places {
+	left: 100%;
+	top: -10px;
+}
+
+.js .interactive-mode .my-places.send-down .show-my-places {
+	left: 0;
+	top: 100%;
+}
+
+.js .interactive-mode .my-places .show-my-places li {
+	background: url() no-repeat 5px 50%;
+	margin: 0;
+}
+
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle {
+	background: url(../images/dock/my_place.png) no-repeat 3px 50%;
+	border-bottom: 1px solid #999;
+	color: #333;
+	font-size: 1.1em;
+	font-weight: bold;
+	padding: 0.5em 0.2em 0.5em 2em;
+}
+
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
+	background: url(../images/dock/expand_community.png) no-repeat 100% 50%;
+	padding-right: 1.8em;
+}
+
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle.hide h3 {
+	background-image: url(../images/dock/collapse_community.png);
+}
+
+.js .interactive-mode .my-places .show-my-places li ul {
+	background: none no-repeat 3px 50%;
+	border: none;
+	display: none;
+}
+
+.js .interactive-mode .my-places .show-my-places li ul {
+	margin-left: 0.5em;
+}
+
+.js .interactive-mode .my-places .show-my-places ul li.public a, .js .my-places .show-my-places ul li.public a:hover {
+	background-image: url(../images/dock/my_places_public.png);
+}
+
+.js .interactive-mode .my-places .show-my-places li.private a, .js .my-places .show-my-places li.private a:hover {
+	background-image: url(../images/dock/my_places_private.png);
+}
+
+.ie6.js .lfr-dock.interactive-mode {
+	white-space: nowrap;
+	width: 150px;
+}
+
+.ie.js .lfr-dock .my-places .show-my-places h3 {
+	font-size: 1.1em;
+}
+
+.ie6.js .lfr-dock.expanded.interactive-mode .lfr-dock-list-container {
+	height: 1%;
+}
+
+.ie6.js .interactive-mode .my-places .show-my-places {
+	width: 200px;
+}
+
+.ie6.js .lfr-dock.interactive-mode li {
+	height: 1%;
+}
+
+.ie6.js .lfr-dock.interactive-mode li a {
+	height: 1%;
+}
+
+/* ---------- Add/Sort/Remove page ---------- */
+
+.js #navigation .enter-page {
+	background: transparent url(../images/navigation/bg.gif) no-repeat 0 100%;
+	padding: 0.5em 2em 0.7em 1.5em;
+}
+
+.js #navigation .enter-page.editing {
+	background: none;
+	padding: 0.5em 2em 0.7em 1.5em;
+}
+
+.js #navigation .enter-page a {
+	background: none;
+	display: inline;
+	font-weight: bold;
+	margin-left: 1em;
+	padding: 0;
+}
+
+.js #add-page {
+	float: left;
+	font-weight: bold;
+	padding-top: 0.3em;
+}
+
+.js #add-page a {
+	text-decoration: none;
+}
+
+.js #add-page a span {
+	background: url(../images/navigation/add_page.png) no-repeat 0 50%;
+	padding: 5px 20px;
+}
+
+.js #add-page a:hover span {
+	background-image: url(../images/navigation/add_page.png);
+}
+
+.js .delete-tab {
+	background: url(../images/common/remove.png) no-repeat 42%;
+	cursor: pointer;
+	display: block;
+	height: 7px;
+	position: absolute;
+	right: 5px;
+	text-indent: -9999em;
+	top: 2px;
+	width: 8px;
+}
+
+/*------ Drag/drop menu items ------*/
+
+#navigation ul .sort-helper {
+	background: url(../images/portlet/placeholder_bg.gif);
+	border: 1px dashed #508FB4;
+	float: left;
+	padding: 0.5em;
+}
