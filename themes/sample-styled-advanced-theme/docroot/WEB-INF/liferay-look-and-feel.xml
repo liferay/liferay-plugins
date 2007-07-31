@@ -11,6 +11,7 @@
 		<images-path>${root-path}/images</images-path>
 		<template-extension>vm</template-extension>
 		<settings>
+			<setting key="bullet-style-options" value="1,2" />
 			<setting key="hello" value="world" />
 			<setting key="hi" value="mom" />
 		</settings>
