@@ -1,0 +1,351 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+address, caption, cite, code, dfn, em, strong, th, var {
+	color: black;
+}
+
+body {
+	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','courier','Lucida',Arial,Verdana,sans-serif;
+	 text-align: center;
+  background-image: url(../images/invention/bg.gif);
+  background-repeat: repeat;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+
+a:hover {
+	color: black;
+	text-decoration: underline;
+}
+
+b, strong {
+	color: black;
+}
+
+i, em {
+	color: black;
+}
+
+.important {
+	color: black;
+}
+
+body.staging {
+	border: 100px solid #c00;
+}
+
+#wrapper {
+	margin: 0pt auto;
+	width: 75%;
+	background: white;
+	border: 1px solid #D3D3D3;	
+}
+
+#banner { 
+	height: 132px;
+	background-image: url(../images/invention/main_img.jpg);
+	background-repeat:no-repeat;
+	top: 76px;
+	left: 0px;
+	background-position: top right;
+	background-color: #9BBE00;
+}
+
+#banner .logo {
+	background: transparent;
+	position: absolute;
+	left: 10px;
+	top: -75px;
+	float:none;
+	display: auto;
+	font-size:auto;
+	padding:none;
+}
+
+.ie6 #banner .logo {
+top:-85px;
+}
+
+#banner .logo a {
+	text-decoration:none;
+}
+
+.popup-close {
+	cursor:  crosshair;
+}
+
+.loading-animation {
+	background: url(../images/custom/loading_animation.gif) no-repeat top center;
+}
+
+.columns-2 #column-1 {
+	padding-left: 10px;
+	padding-bottom: 10px;
+	}
+
+.columns-2 #column-2 {
+	padding-right:10px;
+	padding-bottom: 10px;
+	border-left: 1px solid #C0C0C0;
+}
+
+#navigation {
+	margin: 0 0 0 0;
+	height: 90px;
+	background-image: url(../images/invention/bg_header_top.gif);
+	background-repeat:repeat-x;
+	position: relative;
+	top:-134px;
+	left: 0px;
+	min-height:auto;
+	padding-right: none;
+	width: auto;
+}
+
+#navigation ul {
+	position: absolute;
+	left: 240px;
+	top: 47px;
+	height: 30px;
+	width: 100px
+	background-color: #F4A80A;
+	float: none;
+	min-height: auto;
+}
+
+.ie6 #navigation {
+margin: 0 0 0 0;
+	overflow: hidden;
+	height: 90px;
+	background-image: url(../images/invention/bg_header_top.gif);
+	background-repeat:repeat-x;
+	position: relative;
+	top:-144px;
+	left: 0px;
+}
+
+.ie6 #navigation ul {
+position: absolute;
+	left: 245px;
+	top: 48px;
+	height: 32px;
+	width: 100px
+	background-color: #F4A80A;
+	overflow:hidden;
+	}
+
+#navigation li {
+	background-color: #F4A80A;
+	color:white;
+	left: 0px;
+	top: 1px;
+	min-width: 100px;
+	height: 30px;
+	text-align: center;
+	border-style: solid;
+	border-left-width: 0px;
+	border-bottom-width: 0px;
+	border-top-width: 0px;
+	border-right-width: 1px;
+	font-size: 8pt;
+	margin-right: none;
+	padding:none;
+}
+
+.ie6 #navigation li {
+top:10px;
+}
+
+#navigation li a {
+	padding: none;
+	background-color: #F4A80A;
+	color: white;
+	font-weight: normal;
+	padding:none;
+	text-decoration:none;
+
+}
+
+#navigation li a:hover {
+	padding-bottom: none;
+}
+
+
+#navigation li a span {
+	background-color: #F4A80A;
+	position: relative;
+	top: 5px;
+	padding-left:none;
+	text-decoration:none;
+}
+
+#navigation li.selected a {
+	padding-top: none;
+	background-color: #F4A80A;
+	font-weight: bold;
+	color: 	#444444;
+}
+
+#navigation li.selected a span {
+background-color: #F4A80A;
+font-size:auto;
+font-weight:auto;
+}
+
+#navigation li.selected a:hover {
+background-color: #F4A80A;
+padding-bottom:none;
+}
+
+#navigation li a:hover span {
+	text-decoration: underline;
+	background:none;
+}						 
+
+.js .lfr-dock.interactive-mode {
+	min-width: 211px;
+	top: -75px;
+}
+
+.js #add-page {
+	float: none
+	position: absolute;
+	top: 80px;
+	left: 415px;
+}
+
+.js #add-page a {
+	position: absolute;
+	right: 215px;
+	top: 30px;
+}
+
+.js #add-page a span {
+	position: relative;
+	top:0px;
+	left: 3px;
+}
+
+.js #add-page a:hover span {
+	position: relative;
+	top:0px;
+	left: 3px;
+}
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+position: relative;
+	left: 0px;
+	top: 15px;
+	background:none;
+}
+
+.portlet {
+	padding-right: 0px;
+	background: white top center no-repeat fixed;
+	border:none;
+}
+
+.portlet-topper {
+	left: 0px;
+	top: 0px;
+	background:#D3D3D3 top center no-repeat fixed;
+	border: none;
+	margin-right:none;
+	padding-right:none;
+}
+
+.portlet-title {
+	font-size: 9pt;
+	padding: 8px 0 30px 10px;
+}
+
+.portlet-icons {
+	background:#D3D3D3 top center no-repeat fixed;
+}
+
+.portlet-icon-back {
+	font-size: 10pt;
+}
+
+.portlet-section-header {
+	background-color: #F4A80A;
+	border: 1px solid white;
+}
+
+.portlet-section-header th {
+	border: 1px solid white;
+	color: white;
+}
+
+.portlet-section-body td {
+border-top:none;
+}
+
+.portlet-section-alternate td {
+border-top:none;
+}
+
+.portlet-section-alternate-hover td, .portlet-section-body-hover td {
+border-bottom:none;
+border-top:none;
+}
+
+.tabs {
+	padding: 0 0 2.6em 0;
+	border-bottom:none;
+}
+
+.tabs li {
+	background-color: #F4A80A;
+	font-size: 8pt;
+	margin-right:none;
+}
+
+.tabs li a, .tabs li span {
+	background-color: #F4A80A;
+	color: white;
+}
+
+.tabs li.current {
+	background-color: #F4A80A;
+	top:none;
+}
+
+.tabs li.current a, .tabs li.current span {
+background:none;
+color:auto;
+padding:none;
+}
+
+.ie .tabs li.current {
+top:none;
+}
+
+.js #navigation .enter-page {
+	background: transparent url(../images/navigation/bg.gif) no-repeat 0 100%;
+	padding: 0.5em 2em 0.7em 1.5em;
+	width:175px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
