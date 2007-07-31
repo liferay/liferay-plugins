@@ -24,4 +24,40 @@
 
 <%@ include file="/html/portlet/sample_struts_liferay_portlet/init.jsp" %>
 
-<b>View <bean:message key="hello-there" /></b>
+<font class="portlet-font" style="font-size: x-small;">
+
+<%
+Map userInfo = (Map)renderRequest.getAttribute(PortletRequest.USER_INFO);
+
+if (userInfo == null) {
+%>
+
+	The user information map is null.
+
+<%
+}
+else if (userInfo.size() == 0) {
+%>
+
+	The user information map is not null but has 0 entries.
+
+<%
+}
+else {
+	Iterator itr = userInfo.entrySet().iterator();
+
+	while (itr.hasNext()) {
+		Map.Entry entry = (Map.Entry)itr.next();
+
+		String key = (String)entry.getKey();
+		String value = (String)entry.getValue();
+%>
+
+		<%= key %>=<%= value %><br>
+
+<%
+	}
+}
+%>
+
+</font>

@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2007 Liferay, Inc. All rights reserved.
  *
@@ -20,8 +19,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
 
-<%@ include file="/html/portlet/sample_struts_liferay_portlet/init.jsp" %>
+package com.sample.strutsliferay.portlet;
 
-<b>View <bean:message key="hello-there" /></b>
+import com.liferay.portlet.StrutsPortlet;
+
+import java.io.IOException;
+
+import javax.portlet.PortletException;
+import javax.portlet.PortletSession;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
+
+/**
+ * <a href="SampleStrutsLiferayPortlet.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class SampleStrutsLiferayPortlet extends StrutsPortlet {
+
+	public void doView(RenderRequest req, RenderResponse res)
+		throws IOException, PortletException {
+
+		PortletSession ses = req.getPortletSession();
+
+		ses.setAttribute(
+			"chart_name", "Soda Survey", PortletSession.APPLICATION_SCOPE);
+
+		super.doView(req, res);
+	}
+
+}

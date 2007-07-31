@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2007 Liferay, Inc. All rights reserved.
  *
@@ -20,8 +19,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
 
-<%@ include file="/html/portlet/sample_struts_liferay_portlet/init.jsp" %>
+package com.sample.strutsliferay.struts.action;
 
-<b>View <bean:message key="hello-there" /></b>
+import com.liferay.portal.struts.PortletAction;
+
+import javax.portlet.PortletConfig;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+/**
+ * <a href="YAction.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class YAction extends PortletAction {
+
+	public ActionForward render(
+			ActionMapping mapping, ActionForm form, PortletConfig config,
+			RenderRequest req, RenderResponse res)
+		throws Exception {
+
+		if (_log.isInfoEnabled()) {
+			_log.info("render");
+		}
+
+		return mapping.findForward("portlet.sample_struts_liferay_portlet.y");
+	}
+
+	private static Log _log = LogFactory.getLog(YAction.class);
+
+}

@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2007 Liferay, Inc. All rights reserved.
  *
@@ -20,8 +19,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
 
-<%@ include file="/html/portlet/sample_struts_liferay_portlet/init.jsp" %>
+package com.sample.strutsliferay.struts;
 
-<b>View <bean:message key="hello-there" /></b>
+import com.liferay.portal.struts.StrutsUtil;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.tiles.TilesRequestProcessor;
+
+/**
+ * <a href="SampleRequestProcessor.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class SampleRequestProcessor extends TilesRequestProcessor {
+
+	protected void doForward(
+			String uri, HttpServletRequest req, HttpServletResponse res)
+		throws IOException, ServletException {
+
+		StrutsUtil.forward(uri, getServletContext(), req, res);
+	}
+
+}

@@ -24,4 +24,62 @@
 
 <%@ include file="/html/portlet/sample_struts_liferay_portlet/init.jsp" %>
 
-<b>View <bean:message key="hello-there" /></b>
+<b>Remote User:</b>
+
+<br><br>
+
+<%= request.getRemoteUser() %>
+
+<br><br>
+
+<b>Session ID:</b>
+
+<br><br>
+
+<%= request.getRequestedSessionId() %>
+
+<br><br>
+
+<b>Portlet Session Attributes:</b>
+
+<br><br>
+
+<i>Portlet Scope</i>
+
+<br><br>
+
+<%
+Enumeration enu = portletSession.getAttributeNames();
+
+while (enu.hasMoreElements()) {
+	String attrName = (String)enu.nextElement();
+
+	Object attrValue = portletSession.getAttribute(attrName);
+%>
+
+	<%= attrName %>=<%= attrValue %><br>
+
+<%
+}
+%>
+
+<br>
+
+<i>Application Scope</i>
+
+<br><br>
+
+<%
+enu = portletSession.getAttributeNames(PortletSession.APPLICATION_SCOPE);
+
+while (enu.hasMoreElements()) {
+	String attrName = (String)enu.nextElement();
+
+	Object attrValue = portletSession.getAttribute(attrName, PortletSession.APPLICATION_SCOPE);
+%>
+
+	<%= attrName %>=<%= attrValue %><br>
+
+<%
+}
+%>

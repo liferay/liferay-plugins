@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2007 Liferay, Inc. All rights reserved.
  *
@@ -20,14 +19,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
 
-<jsp:include page="../portlet/sample_struts_liferay_portlet/init.jsp" />
+package com.sample.strutsliferay;
 
-<tiles:useAttribute id="tilesPortletContent" name="portlet_content" classname="java.lang.String" ignore="true" />
+import org.apache.commons.lang.exception.NestableException;
 
-<div>
-	<jsp:include page='<%= "/html" + tilesPortletContent %>' flush="true" />
-</div>
+/**
+ * <a href="SampleException.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class SampleException extends NestableException {
 
-<div class="separator"></div>
+	public SampleException() {
+		super();
+	}
+
+	public SampleException(String msg) {
+		super(msg);
+	}
+
+	public SampleException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+	public SampleException(Throwable cause) {
+		super(cause);
+	}
+
+}

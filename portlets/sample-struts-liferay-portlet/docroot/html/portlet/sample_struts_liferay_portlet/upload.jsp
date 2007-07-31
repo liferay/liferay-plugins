@@ -24,4 +24,22 @@
 
 <%@ include file="/html/portlet/sample_struts_liferay_portlet/init.jsp" %>
 
-<b>View <bean:message key="hello-there" /></b>
+<form action="<portlet:actionURL><portlet:param name="struts_action" value="/sample_struts_liferay_portlet/upload" /></portlet:actionURL>" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm">
+
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+	<td>
+		File Location
+	</td>
+	<td style="padding-left: 10px;"></td>
+	<td>
+		<input name="<portlet:namespace />file_location" size="30" type="file">
+	</td>
+</tr>
+</table>
+
+<br>
+
+<input type="submit" value="Upload File">
+
+</form>

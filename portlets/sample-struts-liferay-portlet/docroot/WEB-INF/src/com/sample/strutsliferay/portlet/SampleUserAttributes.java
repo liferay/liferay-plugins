@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2007 Liferay, Inc. All rights reserved.
  *
@@ -20,8 +19,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
 
-<%@ include file="/html/portlet/sample_struts_liferay_portlet/init.jsp" %>
+package com.sample.strutsliferay.portlet;
 
-<b>View <bean:message key="hello-there" /></b>
+import com.liferay.portlet.CustomUserAttributes;
+import com.liferay.portlet.UserAttributes;
+
+import java.util.Map;
+
+/**
+ * <a href="SampleUserAttributes.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class SampleUserAttributes extends CustomUserAttributes {
+
+	public String getValue(String name, Map userInfo) {
+		if (name == null) {
+			return null;
+		}
+
+		String companyId = (String)userInfo.get(
+			UserAttributes.LIFERAY_COMPANY_ID);
+		String userId = (String)userInfo.get(UserAttributes.LIFERAY_USER_ID);
+
+		if (name.equals("user.name.test")) {
+			return "Test Name";
+		}
+		else {
+			return super.getValue(name, userInfo);
+		}
+	}
+
+	public Object clone() {
+		return new SampleUserAttributes();
+	}
+
+}

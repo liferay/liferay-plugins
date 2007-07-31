@@ -22,6 +22,9 @@
  */
 %>
 
-<%@ include file="/html/portlet/sample_struts_liferay_portlet/init.jsp" %>
+<b>Page Y</b>
 
-<b>View <bean:message key="hello-there" /></b>
+<br><br>
+
+<%= request.getParameter("hello") %><br>
+<%= request.getParameter("hi") %>
