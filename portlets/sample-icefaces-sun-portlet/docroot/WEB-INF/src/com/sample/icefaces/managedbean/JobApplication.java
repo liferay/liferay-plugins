@@ -213,8 +213,8 @@ public class JobApplication {
 
 			// Ask ICEfaces to display an informational message, letting
 			// the user know that the email message was sent.
-			FacesMessageUtil.addGlobalMessage(
-				facesContext, FacesMessage.SEVERITY_INFO,
+			FacesMessageUtil.info(
+				facesContext, 
 				"thank-you-for-applying-for-a-job-with-our-organization",
 				_firstName);
 
@@ -226,8 +226,8 @@ public class JobApplication {
 
 			// Ask ICEfaces to display an error message, letting the user know
 			// that the email message was not sent.
-			FacesMessageUtil.addGlobalMessage(
-				facesContext, FacesMessage.SEVERITY_ERROR,
+			FacesMessageUtil.error(
+				facesContext,
 				"an-unexpected-error-occurred-while-sending-your-message");
 
 			if (_log.isErrorEnabled()) {
