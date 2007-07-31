@@ -199,6 +199,10 @@ a:hover {
 	padding: 0;
 }
 
+.portlet {
+	margin-top: 0;
+}
+
 .ie6 .portlet {
 	position: relative;
 	zoom: 1;
