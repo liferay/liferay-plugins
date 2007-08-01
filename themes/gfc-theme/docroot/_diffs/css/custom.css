@@ -3,7 +3,7 @@
 /* ---------- Banner ---------- */
 
 #banner {
-	background: url(../images/common/GWheader2.jpg) no-repeat scroll 100% 100%;
+	background: url(../images/common/header.jpg) no-repeat scroll 100% 100%;
 	height: 10em;
 	position: relative;
 }
@@ -76,7 +76,7 @@
 }
 
 body {
-	background: #3B2B14 url(../images/common/GWpatternfade2.jpg) repeat-x top;
+	background: #3B2B14 url(../images/common/background.jpg) repeat-x top;
 	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
 }
 
@@ -98,7 +98,7 @@ body {
 }
 
 #navigation {
-	background: url(../images/common/GWlink3.jpg) repeat-x;
+	background: url(../images/common/link.jpg) repeat-x;
 	margin: 0 auto 1.5em;
 	margin-bottom: -11px;
 	min-height: 2.2em;
@@ -248,7 +248,7 @@ body {
 }
 
 .portlet-title {
-	background: url(../images/common/GWtopper.jpg) no-repeat;
+	background: url(../images/common/topper.jpg) no-repeat;
 	background-position: bottom left;
 	display: block;
 	font-weight: bold;
