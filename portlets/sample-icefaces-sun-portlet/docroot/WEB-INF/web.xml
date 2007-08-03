@@ -78,15 +78,6 @@
 		<load-on-startup>1</load-on-startup> 
 	</servlet> 
 	<servlet>
-		<servlet-name>SampleICEfacesSun</servlet-name>
-		<servlet-class>com.liferay.portal.kernel.servlet.PortletServlet</servlet-class>
-		<init-param>
-			<param-name>portlet-class</param-name>
-			<param-value>com.icesoft.faces.webapp.http.portlet.MainPortlet</param-value>
-		</init-param>
-		<load-on-startup>0</load-on-startup>
-	</servlet>
-	<servlet>
 		<servlet-name>uploadServlet</servlet-name>
 		<servlet-class>com.icesoft.faces.component.inputfile.FileUploadServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
@@ -101,7 +92,12 @@
 		<servlet-class>com.icesoft.faces.webapp.xmlhttp.PersistentFacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	<servlet-mapping> 
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
 		<servlet-name>Blocking Servlet</servlet-name> 
 		<url-pattern>/block/*</url-pattern> 
 	</servlet-mapping> 
@@ -121,11 +117,11 @@
 		<servlet-name>Persistent Faces Servlet</servlet-name>
 		<url-pattern>/xmlhttp/*</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>SampleICEfacesSun</servlet-name>
-		<url-pattern>/SampleICEfacesSun/*</url-pattern>
-	</servlet-mapping>
-	<resource-ref>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.faces</url-pattern>
+    </servlet-mapping>
+    <resource-ref>
 		<res-ref-name>mail/Session</res-ref-name>
 		<res-type>javax.mail.Session</res-type>
 		<res-auth>Container</res-auth>
