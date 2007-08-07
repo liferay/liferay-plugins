@@ -158,8 +158,11 @@ a:hover {
 	overflow: visible;
 	position: absolute;
 	z-index: 0;
+	display: table;
 }
-
+#navigation ul {
+	display: table-row;
+}
 #navigation li,   #navigation li a,   #navigation li a span,   #navigation li.selected a,   #navigation li.selected a:hover,  #navigation li a:hover span,  #navigation li.selected a span,   #navigation li a:hover,   .js #navigation .enter-page {
 	background: none;
 	color: #96C0E6;
@@ -172,7 +175,17 @@ a:hover {
 
 #navigation li {
 	font-size: 1.1em;
-	margin: 0 20px;
+	margin: 0;
+	float: none;
+	display: table-cell;
+	padding: 0 20px;
+	white-space: nowrap;
+}
+.ie #navigation li {
+	display: inline;
+}
+.ie #navigation li a {
+	display: inline;
 }
 
 #navigation li.selected a,  #navigation li.selected a:hover {
@@ -190,8 +203,11 @@ a:hover {
 }
 .js #add-page {	
 	position: absolute;
-	right: 250px;
-	top: -35px;
+	left: 560px;
+	top: 60px;
+}
+.ie.js #add-page {
+	top: -45px;
 }
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {

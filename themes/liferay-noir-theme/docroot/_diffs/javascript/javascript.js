@@ -1,4 +1,4 @@
-var LiferayBrochure = function () {
+var LiferayNoir = function () {
 	var $ = jQuery;
 	return {
 		init: function() {
@@ -6,8 +6,16 @@ var LiferayBrochure = function () {
 			
 			instance.handleLastChild();
 			instance.handleSearchForm();
+			instance.fixAddPage();
 		},
 		
+		fixAddPage: function() {
+			var instance = this;
+			if (jQuery.browser.msie) {
+				jQuery('#add-page').css('position', 'absolute');
+			}
+		},
+
 		handleLastChild: function () {
 			var instance = this;
 			if (!$.browser.msie) {
@@ -42,7 +50,7 @@ jQuery(document).ready(
 	*/
 
 	function() {
-		LiferayBrochure.init();
+		LiferayNoir.init();
 	}
 );
 
