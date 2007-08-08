@@ -35,8 +35,6 @@
 $theme.include($top_messages_include)
 
 <div id="wrapper">
-	<span class="column-top"/span>
-	<span class="column-bottom"/span>
 	<div id="banner">
 
 		#parse("$full_templates_path/dock.vm")
