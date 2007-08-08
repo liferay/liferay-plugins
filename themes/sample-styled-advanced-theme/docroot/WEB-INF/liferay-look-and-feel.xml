@@ -40,6 +40,11 @@
 					<wap-template-path>/layouttpl/standard/max.wap.tpl</wap-template-path>
 					<thumbnail-path>/layouttpl/standard/max.png</thumbnail-path>
 				</layout-template>
+				<layout-template id="pop_up">
+					<template-path>/layouttpl/standard/pop_up.tpl</template-path>
+					<wap-template-path>/layouttpl/standard/pop_up.wap.tpl</wap-template-path>
+					<thumbnail-path>/layouttpl/standard/pop_up.png</thumbnail-path>
+				</layout-template>
 			</standard>
 			<custom>
 				<layout-template id="freeform" name="Freeform">
