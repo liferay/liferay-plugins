@@ -1,22 +1,24 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-#parse($init)
+#parse ($init)
 
-<html dir="#language("lang.dir")">
+<html dir="#language ("lang.dir")">
+
 <head>
 	<title>$company_name - $the_title</title>
 
 	$theme.include($top_head_include)
 
-	#css($css_main_file)
-	#js($js_main_file)
+	#css ($css_main_file)
+	#js ($js_main_file)
 
 	#if ($company_logo != "")
 		<style type="text/css">
 			#banner .logo {
 				padding: 0.52em 0.6em 0.53em;
 			}
-            #banner .logo a {
+
+			#banner .logo a {
 				background: url($company_logo) no-repeat;
 				display: block;
 				font-size: 0;
@@ -38,19 +40,20 @@ $theme.include($top_messages_include)
 			<a href="$company_url">$company_name</a>
 		</h1>
 
-		#parse("$full_templates_path/dock.vm")
+		#parse ("$full_templates_path/dock.vm")
+
 		<div class="search">$theme.journalContentSearch()</div>
 
-		#if ( $update_available_url )
-			<a class="update-available" href="$update_available_url">#language("updates-available")</a>
+		#if ($update_available_url)
+			<a class="update-available" href="$update_available_url">#language ("updates-available")</a>
 		#end
 	</div>
 
-	#if ( $has_navigation )
-		#parse("$full_templates_path/navigation.vm")
+	#if ($has_navigation)
+		#parse ("$full_templates_path/navigation.vm")
 	#end
 
-	#if ( $selectable )
+	#if ($selectable)
 		$theme.include($content_include)
 	#else
 		$portletDisplay.recycle()

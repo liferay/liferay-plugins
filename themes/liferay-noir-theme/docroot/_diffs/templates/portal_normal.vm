@@ -1,16 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-#parse($init)
+#parse ($init)
 
-<html dir="#language("lang.dir")">
+#set ($company_url = $company_url + "/web/guest/home")
+
+<html dir="#language ("lang.dir")">
 
 <head>
 	<title>$company_name - $the_title</title>
 
 	$theme.include($top_head_include)
 
-	#css($css_main_file)
-	#js($js_main_file)
+	#css ($css_main_file)
+	#js ($js_main_file)
 
 	#if ($company_logo != "")
 		<style type="text/css">
@@ -26,7 +28,7 @@
 				text-indent: -9999em;
 				width: 270px;
 			}
-			
+
 			.ie6 #banner .logo a {
 				background: none;
 				filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='$images_folder/common/logo.png');
@@ -44,20 +46,23 @@ $theme.include($top_messages_include)
 		<h1 class="logo">
 			<a href="$company_url">$company_name</a>
 		</h1>
+
 		<div class="search">
 			$theme.journalContentSearch()
 		</div>
-		#parse("$full_templates_path/dock.vm")
 
-		#if ( $update_available_url )
-			<a class="update-available" href="$update_available_url">#language("updates-available")</a>
+		#parse ("$full_templates_path/dock.vm")
+
+		#if ($update_available_url)
+			<a class="update-available" href="$update_available_url">#language ("updates-available")</a>
 		#end
-		#if ( $has_navigation )
-			#parse("$full_templates_path/navigation.vm")
+
+		#if ($has_navigation)
+			#parse ("$full_templates_path/navigation.vm")
 		#end
 	</div>
 
-	#if ( $selectable )
+	#if ($selectable)
 		$theme.include($content_include)
 	#else
 		$portletDisplay.recycle()
@@ -70,8 +75,22 @@ $theme.include($top_messages_include)
 	<div id="footer">
 		<p class="copyright-notice">&copy; 2000-$the_year $company_name</p>
 
-		#if ( $has_navigation )
-			#parse("$full_templates_path/bottom_navigation.vm")
+		#set ($journalArticleLocalService = $serviceLocator.findService("com.liferay.portlet.journal.service.JournalArticleLocalService"))
+
+		#set ($journalArticleId = "12101")
+
+		#if ($journalArticleLocalService.hasArticle($group_id, $journalArticleId))
+			$velocityPortletPreferences.setValue("portlet-setup-show-borders", "false")
+			$velocityPortletPreferences.setValue("group-id", "$group_id")
+			$velocityPortletPreferences.setValue("article-id", $journalArticleId)
+
+			$theme.runtime("56_INSTANCE_a453", "", $velocityPortletPreferences.toString())
+
+			$velocityPortletPreferences.reset()
+		#end
+
+		#if ($has_navigation)
+			#parse ("$full_templates_path/bottom_navigation.vm")
 		#end
 	</div>
 </div>

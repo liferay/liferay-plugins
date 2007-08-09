@@ -1,9 +1,9 @@
-#set ( $portlet_display = $portletDisplay )
+#set ($portlet_display = $portletDisplay)
 
-#set ( $portlet_id = $portlet_display.getId() )
-#set ( $portlet_title = $portlet_display.getTitle() )
-#set ( $portlet_content = $portlet_display.getContent() )
-#set ( $portlet_back_url = $portlet_display.getURLBack() )
+#set ($portlet_id = $portlet_display.getId())
+#set ($portlet_title = $portlet_display.getTitle())
+#set ($portlet_content = $portlet_display.getContent())
+#set ($portlet_back_url = $portlet_display.getURLBack())
 
 <div class="portlet" id="portlet-wrapper-$portlet_id">
 	<div class="portlet-topper">
@@ -12,8 +12,8 @@
 		</span>
 
 		<div class="portlet-icons" id="portlet-small-icon-bar_$portlet_id">
-			#if ( $portlet_display.isShowBackIcon() )
-				<a href="$portlet_back_url" class="portlet-icon-back">#language("back")</a>
+			#if ($portlet_display.isShowBackIcon())
+				<a href="$portlet_back_url" class="portlet-icon-back">#language ("back")</a>
 			#else
 			    $theme.iconRefresh()
 				$theme.iconPortletCss()
