@@ -14,7 +14,7 @@ body {
 
 #wrapper {
 	margin: 0 auto;
-	width: 94%;
+	width: 1142px;
 }
 
 /* Navigation */
@@ -24,7 +24,7 @@ body {
 	min-height: 2.2em;
 	overflow: hidden;
 	padding-right: 1em;
-	width: 93%;
+	width: 1142px;
 }
 
 #navigation ul {
@@ -171,9 +171,9 @@ body {
 /* Portlets */
 
 .portlet-icons {
-	background: #E3E0C5 url(../images/common/top_right.jpg) no-repeat top right;
-	margin-top: 0px;
-	margin-right: 0px;
+	background: #E3E0C5;
+	margin-top: 3px;
+	margin-right: 3px;
 	position: absolute;
 	top: 0px;
 	right: 0px;
@@ -191,7 +191,7 @@ body {
 }
 
 .portlet-topper {
-	background: #E3E0C5;
+	background: #E3E0C5 url(../images/common/top_right.jpg) no-repeat top right;
 	margin-top: 0px;
 	position: relative;
 }
@@ -241,6 +241,14 @@ body {
 	border-bottom: 1px solid #333;
 	margin: 0 0 1.5em 0;
 	padding: 0 0 2.6em 1em;
+}
+
+.js #add-page {
+	position: absolute;
+	right: 0;
+	top: 110pt;
+	font-weight: bold;
+	padding-top: 0.3em;
 }
 
 
