@@ -35,6 +35,16 @@
 			}
 		</style>
 	#end
+
+	#if ($group_id > 0)
+		#set ($journalTemplateLocalService = $serviceLocator.findService("com.liferay.portlet.journal.service.JournalTemplateLocalService"))
+
+		#set ($journalTemplateId = "CSS-TEMPLATE")
+
+		#if ($journalTemplateLocalService.hasTemplate($group_id, $journalTemplateId))
+			<link rel="stylesheet" type="text/css" href="$theme_display.getPathMain()/journal/get_template?groupId=$group_id&templateId=$journalTemplateId" />
+		#end
+	#end
 </head>
 
 <body class="$css_class">
@@ -75,19 +85,21 @@ $theme.include($top_messages_include)
 	<div id="footer">
 		<p class="copyright-notice">&copy; 2000-$the_year $company_name</p>
 
-		#set ($journalArticleLocalService = $serviceLocator.findService("com.liferay.portlet.journal.service.JournalArticleLocalService"))
+		<div class="footer-award-images">
+			#set ($journalArticleLocalService = $serviceLocator.findService("com.liferay.portlet.journal.service.JournalArticleLocalService"))
 
-		#set ($journalArticleId = "12101")
+			#set ($journalArticleId = "25101")
 
-		#if ($journalArticleLocalService.hasArticle($group_id, $journalArticleId))
-			$velocityPortletPreferences.setValue("portlet-setup-show-borders", "false")
-			$velocityPortletPreferences.setValue("group-id", "$group_id")
-			$velocityPortletPreferences.setValue("article-id", $journalArticleId)
+			#if ($journalArticleLocalService.hasArticle($group_id, $journalArticleId))
+				$velocityPortletPreferences.setValue("portlet-setup-show-borders", "false")
+				$velocityPortletPreferences.setValue("group-id", "$group_id")
+				$velocityPortletPreferences.setValue("article-id", $journalArticleId)
 
-			$theme.runtime("56_INSTANCE_a453", "", $velocityPortletPreferences.toString())
+				$theme.runtime("56_INSTANCE_a453", "", $velocityPortletPreferences.toString())
 
-			$velocityPortletPreferences.reset()
-		#end
+				$velocityPortletPreferences.reset()
+			#end
+		</div>
 
 		#if ($has_navigation)
 			#parse ("$full_templates_path/bottom_navigation.vm")
