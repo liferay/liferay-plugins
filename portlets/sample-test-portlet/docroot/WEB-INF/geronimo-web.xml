@@ -7,8 +7,7 @@
 		</moduleId>
 		<dependencies>
 			<dependency>
-				<groupId>liferay</groupId>
-				<artifactId>liferay-portal-tomcat</artifactId>
+				<artifactId>sharedlib</artifactId>
 			</dependency>
 		</dependencies>
 	</environment>
