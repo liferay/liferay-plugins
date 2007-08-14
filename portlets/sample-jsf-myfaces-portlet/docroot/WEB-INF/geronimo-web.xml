@@ -9,10 +9,6 @@
 			<dependency>
 				<artifactId>sharedlib</artifactId>
 			</dependency>
-			<dependency>
-				<groupId>portlet-api</groupId>
-				<artifactId>portlet-api</artifactId>
-			</dependency>
 		</dependencies>
 	</environment>
 </web-app>
