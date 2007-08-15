@@ -10,7 +10,7 @@
 		<copy todir="docroot/WEB-INF/lib">
 			<fileset
 				dir="${app.server.lib.portal.dir}"
-				includes="jsonrpc.jar"
+				includes="dom4j.jar,jsonrpc.jar"
 			/>
 		</copy>
 
