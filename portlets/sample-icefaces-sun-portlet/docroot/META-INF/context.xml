@@ -25,17 +25,4 @@
 	<!-- <Manager/> element will disable session persistence across  -->
 	<!-- Tomcat restarts -->
 	<Manager pathname="" />
-	<!-- The following Resource entry only works for standalone Tomcat. -->
-	<!-- For the JBoss Application Server, edit the settings in:        -->
-	<!--     $JBOSS_HOME/server/default/deploy/mail-service.xml         -->
-	<Resource
-		name="mail/MailSession"
-		auth="Container"
-		type="javax.mail.Session"
-		mail.imap.host="tarsus"
-		mail.pop3.host="tarsus"
-		mail.smtp.host="tarsus"
-		mail.store.protocol="imap"
-		mail.transport.protocol="smtp"
-	/>
 </Context>

@@ -23,7 +23,7 @@
 -->
 <jboss-web>
 	<resource-ref>
-		<res-ref-name>mail/Session</res-ref-name>
+		<res-ref-name>mail/MailSession</res-ref-name>
 		<jndi-name>mail/MailSession</jndi-name>
 	</resource-ref>
 </jboss-web>
