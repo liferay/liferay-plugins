@@ -20,12 +20,11 @@
 	left: 15px;
 }
 
-#banner .logo a {3 (line 169)
+#banner .logo a (line 169)
 	background:transparent url(/image/company_logo?img_id=0) no-repeat scroll 0%;
 	display:block;
 	font-size:0pt;
 	height:49px;
-	text-indent:-9999em;
 	width:198px;
 }
 /* ---------- Dock with Javascript ---------- */
@@ -69,8 +68,10 @@
 	background: #60738C;
 	border: 1px solid #B5B9BB;
 	border-top: none;
-	margin-right: 85px;
-	top: -2px;
+	margin-right:60px;
+	position: relative;
+	top: 0px;
+	left: 30px;
 }
 
 .ie6.js .lfr-dock.expanded .lfr-dock-list-container {
@@ -87,6 +88,8 @@
 	padding-top: 1em;
 	margin-bottom: -1px;
 	width: 97.5%;
+	position: relative;
+	z-index: 1;
 }
 
 .ie6 #navigation {
@@ -137,6 +140,7 @@
 
 .ie6 #navigation li a:hover {
 	color: #FFFFFF;
+	padding-bottom: 7px;
 }
 
 #navigation ul li a:hover span.tab-l, .ie6 #navigation ul li a:hover span.tab-l {
@@ -151,7 +155,7 @@
 	left: -15px;
 }
 .ie6 #navigation ul li a span.tab-r {
-	right: 4px;
+	right: 5px;
 	top: -2px;
 }
 
@@ -220,26 +224,40 @@ body {
 }
 
 #page-in {
-	background: #FFF url(../images/common/bg_page.gif) repeat-y scroll 0 0;
+	background: url(../images/common/bg_page.gif) repeat-y bottom;
+}
+
+.ie6 #page-in {
 }
 
 #content-wrapper {
-	background: url(../images/common/bg_page_in.jpg) no-repeat scroll 0 0;
+	background: url(../images/common/bg_page_in.jpg) no-repeat 0 0;
+	position: relative;
+	top: -40px;
 }
 
-div.box {
-	min-height: 1px;
-	padding: 0;
+.ie6 #content-wrapper {	
+	zoom: 1;
 }
 
-div.bottom {
-	background: transparent url(../images/common/footer.jpg) no-repeat scroll 0pt 50%;
+#footer {
+	background: url(../images/common/footer.jpg) no-repeat scroll bottom;
 	clear: both;
 	color: #6685CC;
 	height: 60px;
-	margin-bottom: 50px;
-	position: relative;
 	width: 770px;
+}
+
+.js #add-page {
+	float: left;
+	font-weight: bold;
+	padding-top: 0.3em;
+	
+}
+
+.js #add-page a {
+	text-decoration: none;
+	color: #FFF;
 }
 
 #liferay {
@@ -258,6 +276,7 @@ div.bottom {
 
 .columns-2 #column-2 {
 	padding-right: 10px;
+	padding-left: 20px;
 }
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
@@ -265,7 +284,8 @@ div.bottom {
 }
 
 .portlet {
-	margin: 0 0 10px;
+	margin: 55px 0 0;
+	padding-top: 10px;
 	padding-right: 10px;
 	text-align: left;
 }
@@ -273,25 +293,36 @@ div.bottom {
 .portlet-topper {
 	background: url(../images/common/content_title_bg.gif) repeat scroll;
 	background-position: left top;
-	margin-right: -10px;
-	padding-right: 40px;
+	margin-right: 0px;
+	margin-left: 8px;
+	padding-right: 5px;
 	position: relative;
 }
 
-.ie6 .portlet-topper {
+.ie6.portlet-topper {
+	margin-left: 16px;
+	padding-left: 0px;
+	padding-right: none;
 	height: 1%;
+	
+}
+
+.portlet-icons {
+	margin: 3px;
+	position: absolute;
+	right: 7px;
+	text-align: right;
+	top: 4px;
 }
 
 .portlet-content { 
-	background: #FFF;
+	background: none;
 	background-position: left bottom;
 	padding: 10px 5px 25px 15px;
 }
 
 .js #add-page {
 	float: left;
-	font-weight: bold;
-	color: #FFF;
 	padding-top: 0.3em;
 }
 
