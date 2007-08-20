@@ -22,7 +22,24 @@
  */
 %>
 
-<%@ include file="/html/portlet/init.jsp" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+
+<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
+
+<%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
+<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
+
+<%@ page import="com.liferay.portal.kernel.util.Constants" %>
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
+<%@ page import="com.liferay.portal.kernel.util.Validator" %>
+<%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
+<%@ page import="com.liferay.util.HttpUtil" %>
+
+<%@ page import="javax.portlet.PortletPreferences" %>
+<%@ page import="javax.portlet.WindowState" %>
+
+<portlet:defineObjects />
 
 <%
 PortletPreferences prefs = renderRequest.getPreferences();
@@ -43,7 +60,7 @@ String width = prefs.getValue("width", StringPool.BLANK);
 String height = prefs.getValue("height", StringPool.BLANK);
 %>
 
-<%@ include file="/html/portlet/google_gadget/register_gadgets.jsp" %>
+<%@ include file="/register_gadgets.jsp" %>
 
 <%
 int gadgetIdPos = 0;

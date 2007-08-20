@@ -22,11 +22,10 @@
  */
 %>
 
-<%@ include file="/html/portlet/google_gadget/init.jsp" %>
+<%@ include file="/init.jsp" %>
 
 <liferay-portlet:preview
 	portletName="<%= portletResource %>"
-	queryString="struts_action=/google_gadget/view"
 />
 
 <div class="separator"><!-- --></div>

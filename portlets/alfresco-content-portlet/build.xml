@@ -10,7 +10,7 @@
 		<copy todir="docroot/WEB-INF/lib">
 			<fileset
 				dir="${app.server.lib.portal.dir}"
-				includes="axis.jar,commons-beanutils.jar,commons-codec.jar,commons-collections.jar,commons-configuration.jar,commons-digester.jar,commons-discovery.jar,commons-httpclient.jar,commons-lang.jar,concurrent.jar,dom4j.jar,easyconf.jar,jaxrpc.jar,jstl.jar,jstl-impl.jar,retroweaver.jar,saaj.jar,wsdl4j.jar,xmlsec.jar,xstream.jar"
+				includes="axis.jar,commons-beanutils.jar,commons-codec.jar,commons-collections.jar,commons-configuration.jar,commons-digester.jar,commons-discovery.jar,commons-httpclient.jar,commons-lang.jar,concurrent.jar,dom4j.jar,easyconf.jar,jaxrpc.jar,jstl.jar,jstl-impl.jar,saaj.jar,wsdl4j.jar,xmlsec.jar,xstream.jar"
 			/>
 		</copy>
 

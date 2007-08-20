@@ -26,7 +26,7 @@ import com.liferay.portal.kernel.search.OpenSearch;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.util.Http;
+import com.liferay.util.HttpUtil;
 
 import java.io.IOException;
 
@@ -144,9 +144,9 @@ public class AlfrescoOpenSearchImpl implements OpenSearch {
 		throws SearchException {
 
 		String url =
-			PROTOCOL + "://" + SEARCH_URL + "?q=" + Http.encodeURL(keywords) +
-				"&p=" + startPage + "&c=" + itemsPerPage +
-					"&guest=&format=atom";
+			PROTOCOL + "://" + SEARCH_URL + "?q=" +
+				HttpUtil.encodeURL(keywords) + "&p=" + startPage + "&c=" +
+					itemsPerPage + "&guest=&format=atom";
 
 		return search(req, url);
 	}
