@@ -55,6 +55,10 @@ a {
 	width: auto;
 }
 
+#navigation li {
+	margin-right: 0;
+}
+
 .lfr-dock {
 	right: 40px;
 	top: 40px;
