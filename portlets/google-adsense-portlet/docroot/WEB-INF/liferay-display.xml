@@ -2,9 +2,7 @@
 <!DOCTYPE display PUBLIC "-//Liferay//DTD Display 4.0.0//EN" "http://www.liferay.com/dtd/liferay-display_4_0_0.dtd">
 
 <display>
-	<category name="category.cms">
-		<category name="category.alfresco">
-			<portlet id="google_gadget_portlet" />
-		</category>
+	<category name="category.google">
+		<portlet id="google_gadget_portlet" />
 	</category>
 </display>

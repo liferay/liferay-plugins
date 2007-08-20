@@ -6,11 +6,9 @@
 		<portlet-name>google_gadget_portlet</portlet-name>
 		<icon>/icon.png</icon>
 		<configuration-action-class>com.liferay.portlet.googlegadget.action.ConfigurationActionImpl</configuration-action-class>
-		<open-search-class>com.liferay.portlet.googlegadget.util.AlfrescoOpenSearchImpl</open-search-class>
-		<layout-cacheable>true</layout-cacheable>
 		<instanceable>true</instanceable>
 		<render-weight>1</render-weight>
-		<header-css>/portlet.css</header-css>
+		<ajaxable>false</ajaxable>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
