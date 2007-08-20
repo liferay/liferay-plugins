@@ -75,7 +75,7 @@ boolean preview = ParamUtil.getBoolean(request, "preview");
 		}
 		%>
 
-		<c:if test="<%= true || Validator.isNotNull(uuid) && AlfrescoContentUtil.hasPermission(user.getLogin(), PortalUtil.getUserPassword(renderRequest), uuid, org.alfresco.webservice.util.Constants.WRITE) %>">
+		<c:if test="<%= showEditIcon && Validator.isNotNull(uuid) && AlfrescoContentUtil.hasPermission(user.getLogin(), PortalUtil.getUserPassword(renderRequest), uuid, org.alfresco.webservice.util.Constants.WRITE) %>">
 			<liferay-ui:icon image="edit" message="edit-content" url='<%= "javascript: window.open(\'" + AlfrescoContentUtil.getEndpointAddress() + "/alfresco/integration/ice?nodeid=workspace://SpacesStore/" + uuid + "&p_p_id=" + renderResponse.getNamespace() + "&" + ssoSimulateParam + "\'); void(\'\');" %>' />
 		</c:if>
 	</c:if>
