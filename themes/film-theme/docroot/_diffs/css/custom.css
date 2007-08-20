@@ -55,16 +55,6 @@ a {
 	width: auto;
 }
 
-#navigation li {
-	background: transparent url(../images/navigation/nav_tabs_bg.gif) no-repeat scroll 100%100%;
-	margin-right: 10px;
-}
-
-#navigation li a {
-	background: transparent url(../images/navigation/nav_tabs_bg.gif) no-repeat scroll 0pt 100%;
-	margin-left: -10px;
-}
-
 .lfr-dock {
 	right: 40px;
 	top: 40px;
@@ -81,10 +71,6 @@ a {
 
 .js .lfr-dock.interactive-mode li a {
 	z-index: 9;
-}
-
-.js #navigation .enter-page {
-	background: transparent url(../images/navigation/nav_tabs_bg.gif) no-repeat scroll 0pt 100%;
 }
 
 /* ------------ PORTLET ------------- */
@@ -159,12 +145,8 @@ a {
 /* ------------ MIS. CUSTOM ------------- */
 
 #content-wrapper {
-	margin: 0pt auto 0.5em;
+	margin: 30px auto 0.5em;
 	min-height: 5em;
-	position: absolute;
-	top: 210px;
-	right: 34px;
-	left: 40px;
 }
 
 .search-box {
