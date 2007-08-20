@@ -1,10 +1,16 @@
 <?xml version="1.0"?>
-<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 4.3.0//EN" "http://www.liferay.com/dtd/liferay-portlet-app_4_3_0.dtd">
+<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 4.3.1//EN" "http://www.liferay.com/dtd/liferay-portlet-app_4_3_1.dtd">
 
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>alfresco_content_portlet</portlet-name>
-		<instanceable>false</instanceable>
+		<icon>/icon.png</icon>
+		<configuration-action-class>com.liferay.portlet.alfrescocontent.action.ConfigurationActionImpl</configuration-action-class>
+		<open-search-class>com.liferay.portlet.alfrescocontent.util.AlfrescoOpenSearchImpl</open-search-class>
+		<layout-cacheable>true</layout-cacheable>
+		<instanceable>true</instanceable>
+		<render-weight>1</render-weight>
+		<header-css>/portlet.css</header-css>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

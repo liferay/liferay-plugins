@@ -14,9 +14,9 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Sample JSF MyFaces Portlet</title>
-			<short-title>Sample JSF MyFaces Portlet</short-title>
-			<keywords>Sample JSF MyFaces Portlet</keywords>
+			<title>Sample JSF MyFaces</title>
+			<short-title>Sample JSF MyFaces</short-title>
+			<keywords>Sample JSF MyFaces</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

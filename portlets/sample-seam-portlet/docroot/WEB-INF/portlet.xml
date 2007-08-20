@@ -33,9 +33,9 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Sample Seam Portlet</title>
-			<short-title>Sample Seam Portlet</short-title>
-			<keywords>Sample Seam Portlet</keywords>
+			<title>Sample Seam</title>
+			<short-title>Sample Seam</short-title>
+			<keywords>Sample Seam</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

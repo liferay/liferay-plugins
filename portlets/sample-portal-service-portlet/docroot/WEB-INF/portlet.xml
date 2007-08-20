@@ -14,9 +14,9 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Sample Portal Service Portlet</title>
-			<short-title>Sample Portal Service Portlet</short-title>
-			<keywords>Sample Portal Service Portlet</keywords>
+			<title>Sample Portal Service</title>
+			<short-title>Sample Portal Service</short-title>
+			<keywords>Sample Portal Service</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

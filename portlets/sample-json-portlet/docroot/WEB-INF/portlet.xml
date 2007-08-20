@@ -14,9 +14,9 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Sample JSON Portlet</title>
-			<short-title>Sample JSON Portlet</short-title>
-			<keywords>Sample JSON Portlet</keywords>
+			<title>Sample JSON</title>
+			<short-title>Sample JSON</short-title>
+			<keywords>Sample JSON</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

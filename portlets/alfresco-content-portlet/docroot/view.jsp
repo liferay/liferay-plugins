@@ -22,6 +22,65 @@
  */
 %>
 
-<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
+<%@ include file="/init.jsp" %>
 
-...
+<%
+String path = ParamUtil.getString(request, "path");
+
+String content = null;
+
+try {
+	content = AlfrescoContentCacheUtil.getContent(userId, password, uuid, path, maximizeLinks, renderResponse);
+}
+catch (Exception e) {
+	Throwable cause = e.getCause();
+
+	if (cause != null) {
+		_log.error(cause.getMessage());
+	}
+	else {
+		_log.error(e.getMessage());
+	}
+}
+
+boolean preview = ParamUtil.getBoolean(request, "preview");
+%>
+
+<div class="portlet-alfresco-content">
+	<div class="
+		<c:if test="<%= preview %>">
+			 preview
+		</c:if>"
+	>
+		<c:choose>
+			<c:when test="<%= Validator.isNotNull(content) %>">
+				<%= content %>
+			</c:when>
+			<c:otherwise>
+				<liferay-ui:message key="please-contact-the-administrator-to-setup-this-portlet" />
+			</c:otherwise>
+		</c:choose>
+	</div>
+
+	<c:if test="<%= themeDisplay.isSignedIn() && !preview %>">
+		<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, plid.longValue(), portletConfig.getPortletName(), ActionKeys.CONFIGURATION) %>">
+			<liferay-ui:icon image="configuration" message="select-content" url="<%= portletDisplay.getURLConfiguration() %>" />
+		</c:if>
+
+		<%
+		String ssoSimulateParam = StringPool.BLANK;
+
+		if (GetterUtil.getBoolean(PortletProps.get("content.one.step.edit.sso.simulate"))) {
+			ssoSimulateParam = "user=" + user.getLogin() + "&";
+		}
+		%>
+
+		<c:if test="<%= true || Validator.isNotNull(uuid) && AlfrescoContentUtil.hasPermission(user.getLogin(), PortalUtil.getUserPassword(renderRequest), uuid, org.alfresco.webservice.util.Constants.WRITE) %>">
+			<liferay-ui:icon image="edit" message="edit-content" url='<%= "javascript: window.open(\'" + AlfrescoContentUtil.getEndpointAddress() + "/alfresco/integration/ice?nodeid=workspace://SpacesStore/" + uuid + "&p_p_id=" + renderResponse.getNamespace() + "&" + ssoSimulateParam + "\'); void(\'\');" %>' />
+		</c:if>
+	</c:if>
+</div>
+
+<%!
+private static Log _log = LogFactoryUtil.getLog("alfresco_content_portlet.view.jsp");
+%>

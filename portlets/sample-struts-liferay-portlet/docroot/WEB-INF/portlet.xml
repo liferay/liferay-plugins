@@ -29,9 +29,9 @@
 			<portlet-mode>print</portlet-mode>
 		</supports>
 		<portlet-info>
-			<title>Sample Struts Liferay Portlet</title>
-			<short-title>Sample Struts Liferay Portlet</short-title>
-			<keywords>Sample Struts Liferay Portlet</keywords>
+			<title>Sample Struts Liferay</title>
+			<short-title>Sample Struts Liferay</short-title>
+			<keywords>Sample Struts Liferay</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

@@ -22,9 +22,9 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Sample Ruby Portlet</title>
-			<short-title>Sample Ruby Portlet</short-title>
-			<keywords>Sample Ruby Portlet</keywords>
+			<title>Sample Ruby</title>
+			<short-title>Sample Ruby</short-title>
+			<keywords>Sample Ruby</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

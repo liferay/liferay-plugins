@@ -10,9 +10,9 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Sample DAO Portlet</title>
-			<short-title>Sample DAO Portlet</short-title>
-			<keywords>Sample DAO Portlet</keywords>
+			<title>Sample DAO</title>
+			<short-title>Sample DAO</short-title>
+			<keywords>Sample DAO</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

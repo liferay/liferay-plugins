@@ -14,9 +14,9 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Sample Permissions Portlet</title>
-			<short-title>Sample Permissions Portlet</short-title>
-			<keywords>Sample Permissions Portlet</keywords>
+			<title>Sample Permissions</title>
+			<short-title>Sample Permissions</short-title>
+			<keywords>Sample Permissions</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

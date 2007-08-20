@@ -28,9 +28,9 @@
 			<portlet-mode>help</portlet-mode>
 		</supports>
 		<portlet-info>
-			<title>Sample Struts Portlet</title>
-			<short-title>Sample Struts Portlet</short-title>
-			<keywords>Sample Struts Portlet</keywords>
+			<title>Sample Struts</title>
+			<short-title>Sample Struts</short-title>
+			<keywords>Sample Struts</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

@@ -14,9 +14,9 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Sample Test Portlet</title>
-			<short-title>Sample Test Portlet</short-title>
-			<keywords>Sample Test Portlet</keywords>
+			<title>Sample Test</title>
+			<short-title>Sample Test</short-title>
+			<keywords>Sample Test</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

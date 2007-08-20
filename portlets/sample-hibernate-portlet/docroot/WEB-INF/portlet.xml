@@ -10,9 +10,9 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Sample Hibernate Portlet</title>
-			<short-title>Sample Hibernate Portlet</short-title>
-			<keywords>Sample Hibernate Portlet</keywords>
+			<title>Sample Hibernate</title>
+			<short-title>Sample Hibernate</short-title>
+			<keywords>Sample Hibernate</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

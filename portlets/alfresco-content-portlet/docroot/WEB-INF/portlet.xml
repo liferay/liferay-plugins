@@ -14,9 +14,9 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Alfresco Content Portlet</title>
-			<short-title>Alfresco Content Portlet</short-title>
-			<keywords>Alfresco Content Portlet</keywords>
+			<title>Alfresco Content</title>
+			<short-title>Alfresco Content</short-title>
+			<keywords>Alfresco Content</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

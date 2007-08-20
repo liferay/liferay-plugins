@@ -23,9 +23,9 @@
 			<portlet-mode>help</portlet-mode>
 		</supports>
 		<portlet-info>
-			<title>Sample JSF Facelets Portlet</title>
-			<short-title>Sample JSF Facelets Portlet</short-title>
-			<keywords>Sample JSF Facelets Portlet</keywords>
+			<title>Sample JSF Facelets</title>
+			<short-title>Sample JSF Facelets</short-title>
+			<keywords>Sample JSF Facelets</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

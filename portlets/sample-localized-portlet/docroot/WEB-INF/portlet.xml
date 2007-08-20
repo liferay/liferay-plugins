@@ -17,9 +17,9 @@
 		<supported-locale>fr_FR</supported-locale>
 		<resource-bundle>com.sample.localized.resources.Resource</resource-bundle>
 		<portlet-info>
-			<title>Sample Localized Portlet</title>
+			<title>Sample Localized</title>
 			<short-title>SampleLocalizedPortlet</short-title>
-			<keywords>Sample Localized Portlet</keywords>
+			<keywords>Sample Localized</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

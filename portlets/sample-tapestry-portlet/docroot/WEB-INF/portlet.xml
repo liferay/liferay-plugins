@@ -10,9 +10,9 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Sample Tapestry Portlet</title>
-			<short-title>Sample Tapestry Portlet</short-title>
-			<keywords>Sample Tapestry Portlet</keywords>
+			<title>Sample Tapestry</title>
+			<short-title>Sample Tapestry</short-title>
+			<keywords>Sample Tapestry</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

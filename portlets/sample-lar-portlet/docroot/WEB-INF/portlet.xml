@@ -16,9 +16,9 @@
 		<supported-locale>en</supported-locale>
 		<resource-bundle>com.sample.lar.resources.Resource</resource-bundle>
 		<portlet-info>
-			<title>Sample LAR Portlet</title>
-			<short-title>Sample LAR Portlet</short-title>
-			<keywords>Sample LAR Portlet</keywords>
+			<title>Sample LAR</title>
+			<short-title>Sample LAR</short-title>
+			<keywords>Sample LAR</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

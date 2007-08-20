@@ -44,9 +44,9 @@
 			<portlet-mode>help</portlet-mode>
 		</supports>
 		<portlet-info>
-			<title>Sample ICEfaces (Sun RI) Portlet</title>
-			<short-title>Sample ICEfaces (Sun RI) Portlet</short-title>
-			<keywords>Sample ICEfaces (Sun RI) Portlet</keywords>
+			<title>Sample ICEfaces (Sun RI)</title>
+			<short-title>Sample ICEfaces (Sun RI)</short-title>
+			<keywords>Sample ICEfaces (Sun RI)</keywords>
 		</portlet-info>
 		<portlet-preferences>
 			<preference>

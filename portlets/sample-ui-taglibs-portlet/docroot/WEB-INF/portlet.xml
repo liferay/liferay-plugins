@@ -14,9 +14,9 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Sample UI Taglibs Portlet</title>
-			<short-title>Sample UI Taglibs Portlet</short-title>
-			<keywords>Sample UI Taglibs Portlet</keywords>
+			<title>Sample UI Taglibs</title>
+			<short-title>Sample UI Taglibs</short-title>
+			<keywords>Sample UI Taglibs</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>
