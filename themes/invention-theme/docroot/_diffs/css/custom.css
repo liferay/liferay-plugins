@@ -87,7 +87,9 @@ body{
 	background: none;
 }
 
-.portlet-topper {
+.portlet-title {
+	color: #EE8907;
+	font-size: 18px;
 }
 
 /* --- LAYOUT --- */
