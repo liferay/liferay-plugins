@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.search.OpenSearch;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.util.Http;
 import com.liferay.util.HttpUtil;
 
 import java.io.IOException;

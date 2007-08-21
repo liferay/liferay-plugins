@@ -37,12 +37,12 @@
 	<target name="extract-plugins-sdk">
 		<mkdir dir="dist" />
 
-		<delete file="dist/plugins-sdk-${lp.version}.zip" />
+		<delete file="dist/liferay-plugins-sdk-${lp.version}.zip" />
 
 		<zip
 			basedir="."
-			destfile="dist/plugins-sdk-${lp.version}.zip"
-			excludes="build.*.properties,layouttpl/*-layouttpl/**,portlets/*-portlet/**,portlets/alfresco/**,themes/*-theme/**"
+			destfile="dist/liferay-plugins-sdk-${lp.version}.zip"
+			excludes="build.*.properties,dist/**,layouttpl/*-layouttpl/**,portlets/*-portlet/**,portlets/alfresco/**,themes/*-theme/**"
 		/>
 	</target>
 </project>
