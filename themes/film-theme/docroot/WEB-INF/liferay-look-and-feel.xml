@@ -3,7 +3,7 @@
 
 <look-and-feel>
 	<compatibility>
-		<version>4.3.0</version>
+		<version>4.3.*</version>
 	</compatibility>
 	<theme id="film" name="Film" />
 </look-and-feel>

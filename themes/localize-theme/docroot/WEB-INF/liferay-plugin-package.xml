@@ -8,17 +8,18 @@
 		<type>theme</type>
 	</types>
 	<tags>
-		<tag>liferay</tag>
+		<tag>OSWD</tag>
 	</tags>
 	<short-description>
+		A simplistic theme with soft tones.
 	</short-description>
 	<change-log>
 		Adapted to the latest version of Liferay.
 	</change-log>
-	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
-	<author>ad_267-http://www.oswd.org/user/profile/id/6345</author>
+	<page-url>ad_267-http://www.oswd.org/user/profile/id/6345</page-url>
+	<author>ad_267</author>
 	<licenses>
-		<license osi-approved="true">unknown</license>
+		<license osi-approved="true">Unknown</license>
 	</licenses>
 	<liferay-versions>
 		<liferay-version>4.3.*</liferay-version>

@@ -3,7 +3,7 @@
 
 <look-and-feel>
 	<compatibility>
-		<version>4.3.0</version>
+		<version>4.3.*</version>
 	</compatibility>
 	<theme id="invention" name="Invention" />
 </look-and-feel>

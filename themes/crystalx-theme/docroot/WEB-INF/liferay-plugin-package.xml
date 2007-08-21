@@ -8,18 +8,18 @@
 		<type>theme</type>
 	</types>
 	<tags>
-		<tag>liferay</tag>
+		<tag>OSWD</tag>
 	</tags>
 	<short-description>
-	This theme was written by Vit Dlouhy of Nuvio. The url to Nuvio is www.nuvio.cz. 
+		A blue theme featuring many rounded corners.
 	</short-description>
 	<change-log>
 		Adapted to the latest version of Liferay.
 	</change-log>
-	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
-	<author>Liferay, Inc.</author>
+	<page-url>http://www.oswd.org/design/information/id/3465</page-url>
+	<author>Vit Dlouhy</author>
 	<licenses>
-		<license osi-approved="true">unknown</license>
+		<license osi-approved="true">Unknown</license>
 	</licenses>
 	<liferay-versions>
 		<liferay-version>4.3.*</liferay-version>
