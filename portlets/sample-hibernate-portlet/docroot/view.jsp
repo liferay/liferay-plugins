@@ -24,6 +24,8 @@
 
 <%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
 
+<%@ page import="com.liferay.portal.kernel.util.Constants" %>
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.util.Http" %>
 
 <%@ page import="com.sample.hibernate.model.FoodItem" %>
@@ -38,14 +40,14 @@
 <form action="<portlet:actionURL />" method="post" name="fm">
 
 <%
-String command = request.getParameter("command");
+String cmd = ParamUtil.getString(request, Constants.CMD);
 
-if ((command != null) && (command.equals("add") || command.equals("edit"))) {
+if ((cmd != null) && (cmd.equals("add") || cmd.equals("edit"))) {
 	long foodItemId = 0;
 	String name = "";
 	int points = 0;
 
-	if (command.equals("edit")) {
+	if (cmd.equals("edit")) {
 		foodItemId = Long.parseLong(request.getParameter("foodItemId"));
 
 		FoodItem foodItem = FoodItemUtil.getFoodItem(foodItemId);
@@ -55,13 +57,13 @@ if ((command != null) && (command.equals("add") || command.equals("edit"))) {
 	}
 %>
 
-	<input name="command" type="hidden" value="<%= command %>" />
+	<input name="<%= Constants.CMD %>" type="hidden" value="<%= cmd %>" />
 	<input name="foodItemId" type="hidden" value="<%= foodItemId %>" />
 
 	<table class="liferay-table">
 
 	<%
-	if (command.equals("edit")) {
+	if (cmd.equals("edit")) {
 	%>
 
 		<tr>
@@ -115,10 +117,10 @@ if ((command != null) && (command.equals("add") || command.equals("edit"))) {
 else {
 %>
 
-	<input name="command" type="hidden" value="" />
+	<input name="<%= Constants.CMD %>" type="hidden" value="" />
 	<input name="foodItemId" type="hidden" value="" />
 
-	<input type="button" value="Add" onClick="self.location = '<portlet:renderURL><portlet:param name="command" value="add" /></portlet:renderURL>';" />
+	<input type="button" value="Add" onClick="self.location = '<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="add" /></portlet:renderURL>';" />
 
 	<br /><br />
 
@@ -156,9 +158,9 @@ else {
 				<%= foodItem.getPoints() %>
 			</td>
 			<td>
-				<input type="button" value="Edit" onClick="self.location = '<portlet:renderURL><portlet:param name="command" value="edit" /><portlet:param name="foodItemId" value="<%= String.valueOf(foodItem.getFoodItemId()) %>" /></portlet:renderURL>';" />
+				<input type="button" value="Edit" onClick="self.location = '<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="edit" /><portlet:param name="foodItemId" value="<%= String.valueOf(foodItem.getFoodItemId()) %>" /></portlet:renderURL>';" />
 
-				<input type="button" value="Delete" onClick="document.fm.command.value = 'delete'; document.fm.foodItemId.value = '<%= foodItem.getFoodItemId() %>'; document.fm.submit();" />
+				<input type="button" value="Delete" onClick="document.fm.<%= Constants.CMD %>.value = 'delete'; document.fm.foodItemId.value = '<%= foodItem.getFoodItemId() %>'; document.fm.submit();" />
 			</td>
 		</tr>
 
@@ -174,7 +176,7 @@ else {
 
 	<br /><br />
 
-	<%= Http.getProtocol(request) %>://<%= request.getServerName() %>:<%= request.getServerPort() %><%= request.getContextPath() %>/servlet/test?cmd=getFoodItemXml<br />
+	<%= Http.getProtocol(request) %>://<%= request.getServerName() %>:<%= request.getServerPort() %><%= request.getContextPath() %>/servlet/test?<%= Constants.CMD %>=getFoodItemXml<br />
 	<%= Http.getProtocol(request) %>://<%= request.getServerName() %>:<%= request.getServerPort() %><%= request.getContextPath() %>/view.xsl
 
 <%

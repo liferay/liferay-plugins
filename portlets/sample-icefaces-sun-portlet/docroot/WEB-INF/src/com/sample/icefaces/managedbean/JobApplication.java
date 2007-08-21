@@ -23,17 +23,12 @@
 package com.sample.icefaces.managedbean;
 
 import com.liferay.portal.kernel.language.LanguageUtil;
-
 import com.liferay.util.bridges.jsf.common.ActionOutcomes;
 import com.liferay.util.bridges.jsf.common.FacesMessageUtil;
 import com.liferay.util.bridges.jsf.common.JSFPortletUtil;
 import com.liferay.util.bridges.jsf.common.SelectItemList;
 import com.liferay.util.bridges.jsf.common.comparator.SelectItemComparator;
 import com.liferay.util.mail.MailEngine;
-import com.liferay.util.mail.MailEngineException;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import java.io.File;
 
@@ -41,13 +36,15 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import javax.mail.internet.InternetAddress;
 
 import javax.portlet.PortletPreferences;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="Contact.java.html"><b><i>View Source</i></b></a>
@@ -214,7 +211,7 @@ public class JobApplication {
 			// Ask ICEfaces to display an informational message, letting
 			// the user know that the email message was sent.
 			FacesMessageUtil.info(
-				facesContext, 
+				facesContext,
 				"thank-you-for-applying-for-a-job-with-our-organization",
 				_firstName);
 

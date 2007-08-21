@@ -21,6 +21,7 @@
 	</path>
 
 	<path id="portal.classpath">
+		<pathelement location="${app.server.classes.portal.dir}" />
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 		<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
 	</path>

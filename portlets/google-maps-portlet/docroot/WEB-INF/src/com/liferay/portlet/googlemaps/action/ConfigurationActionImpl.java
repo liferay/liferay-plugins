@@ -55,6 +55,7 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			return;
 		}
 
+		String license = ParamUtil.getString(req, "license");
 		String mapAddress = ParamUtil.getString(req, "mapAddress");
 		boolean mapInputEnabled = ParamUtil.getBoolean(req, "mapInputEnabled");
 		String directionsAddress = ParamUtil.getString(
@@ -69,6 +70,7 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				req, portletResource, true, true);
 
+		prefs.setValue("license", license);
 		prefs.setValue("map-address", mapAddress);
 		prefs.setValue("map-input-enabled", String.valueOf(mapInputEnabled));
 		prefs.setValue("directions-address", directionsAddress);

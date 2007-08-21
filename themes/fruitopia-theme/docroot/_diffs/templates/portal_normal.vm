@@ -54,7 +54,7 @@ $theme.include($top_messages_include)
 	<p>
 	<img src="breezeframe.gif" width="auto" height="auto">
 	</p>
-	</div>	
+	</div>
 
 	#if ($has_navigation)
 		#parse ("$full_templates_path/navigation.vm")

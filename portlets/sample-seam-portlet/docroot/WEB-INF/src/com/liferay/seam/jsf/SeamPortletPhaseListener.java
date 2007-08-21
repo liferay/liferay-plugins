@@ -22,16 +22,7 @@
 
 package com.liferay.seam.jsf;
 
-import com.liferay.seam.core.Manager;
-
-import org.jboss.seam.contexts.Contexts;
-import org.jboss.seam.contexts.Lifecycle;
-import org.jboss.seam.core.Events;
-import org.jboss.seam.core.FacesMessages;
-
-import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
-import javax.faces.event.PhaseId;
 
 /**
  * <a href="SeamPortletPhaseListener.java.html"><b><i>View Source</i></b></a>

@@ -22,6 +22,9 @@
 
 package com.sample.dao.portlet;
 
+import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.ParamUtil;
+
 import com.sample.dao.model.FoodItem;
 import com.sample.dao.model.FoodItemDAO;
 import com.sample.dao.util.ConnectionPool;
@@ -62,28 +65,15 @@ public class DAOPortlet extends GenericPortlet {
 	public void processAction(ActionRequest req, ActionResponse res)
 		throws IOException, PortletException {
 
-		String command = req.getParameter("command");
+		String cmd = ParamUtil.getString(req, Constants.CMD);
 
-		long foodItemId = 0;
-
-		try {
-			foodItemId = Long.parseLong(req.getParameter("foodItemId"));
-		}
-		catch (Exception e) {
-		}
+		long foodItemId = ParamUtil.getLong(req, "foodItemId");
 
 		String name = req.getParameter("name");
-
-		int points = 0;
-
-		try {
-			points = Integer.parseInt(req.getParameter("points"));
-		}
-		catch (Exception e) {
-		}
+		int points = ParamUtil.getInteger(req, "points");
 
 		try {
-			if (command.equals("add")) {
+			if (cmd.equals("add")) {
 				FoodItem foodItem = new FoodItem();
 
 				foodItem.setName(name);
@@ -91,7 +81,7 @@ public class DAOPortlet extends GenericPortlet {
 
 				FoodItemDAO.addFoodItem(foodItem);
 			}
-			else if (command.equals("edit")) {
+			else if (cmd.equals("edit")) {
 				FoodItem foodItem = FoodItemDAO.getFoodItem(foodItemId);
 
 				foodItem.setName(name);
@@ -99,7 +89,7 @@ public class DAOPortlet extends GenericPortlet {
 
 				FoodItemDAO.updateFoodItem(foodItem);
 			}
-			else if (command.equals("delete")) {
+			else if (cmd.equals("delete")) {
 				FoodItemDAO.deleteFoodItem(foodItemId);
 			}
 		}

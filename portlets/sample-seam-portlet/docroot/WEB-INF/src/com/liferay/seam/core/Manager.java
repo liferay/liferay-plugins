@@ -22,14 +22,6 @@
 
 package com.liferay.seam.core;
 
-import static org.jboss.seam.InterceptionType.NEVER;
-import org.jboss.seam.ScopeType;
-import org.jboss.seam.annotations.Install;
-import static org.jboss.seam.annotations.Install.DEPLOYMENT;
-import org.jboss.seam.annotations.Intercept;
-import org.jboss.seam.annotations.Name;
-import org.jboss.seam.annotations.Scope;
-
 import java.util.Map;
 
 import javax.faces.component.UIViewRoot;

@@ -40,11 +40,11 @@ $theme.include($top_messages_include)
 		<h1 class="logo">
 			<a href="$company_url">$company_name</a>
 		</h1>
-		
+
 		<div class="thisisthedock">
 			#parse ("$full_templates_path/dock.vm")
 		</div>
-		
+
 		<div class="search-box">
 			$taglibLiferay.journalContentSearch()
 		</div>

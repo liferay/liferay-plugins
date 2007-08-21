@@ -22,24 +22,16 @@
 
 package com.liferay.portlet.googlemaps.portlet;
 
-import java.io.IOException;
-import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
-import java.sql.SQLException;
+import com.liferay.util.bridges.jsp.JSPPortlet;
+
+import java.io.IOException;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.GenericPortlet;
-import javax.portlet.PortletConfig;
-import javax.portlet.PortletContext;
 import javax.portlet.PortletException;
-import javax.portlet.PortletRequestDispatcher;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import javax.portlet.PortletSession;
 
 /**
  * <a href="GoogleMapsPortlet.java.html"><b><i>View Source</i></b></a>
@@ -52,9 +44,21 @@ public class GoogleMapsPortlet extends JSPPortlet {
 	public void processAction(ActionRequest req, ActionResponse res)
 		throws IOException, PortletException {
 
+		PortletSession ses = req.getPortletSession();
+
 		String cmd = ParamUtil.getString(req, Constants.CMD);
 
-		System.out.println("cmd " + cmd);
+		if (cmd.equals("saveDirectionsAddress")) {
+			String directionsAddress = ParamUtil.getString(
+				req, "directionsAddress");
+
+			ses.setAttribute("directionsAddress", directionsAddress);
+		}
+		else if (cmd.equals("saveMapAddress")) {
+			String mapAddress = ParamUtil.getString(req, "mapAddress");
+
+			ses.setAttribute("mapAddress", mapAddress);
+		}
 	}
 
 }
