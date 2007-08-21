@@ -113,50 +113,6 @@ body {
 	padding: 0;
 }
 
-/*#navigation li {
-	background: url(../images/common/menubg.gif) repeat-x 100% 100%;
-	border: none;
-	display: inline;
-	float: left;
-	margin-right: 0em;
-	margin-left: 15px;
-	padding: 0 0.5em 0 0;
-	text-decoration: none;
-	font-family: Georgia;
-	font-size: 10pt;
-	color: #FFF;
-}
-#navigation li a {
-	background: url(../images/common/menubg.gif) repeat 100% 100%;
-	display: block;
-	padding: 0 0.05em 0 0.05em;
-	margin-top: 9px;
-	text-decoration: none;
-	font-family: Georgia;
-	font-size: 10pt;
-	color: #FFF;
-}
-
-#navigation li.selected a span {
-	background: url(../images/common/menuactive.gif) repeat-x top;
-	padding: 8px 14px 0;
-	margin: 2px -15px 0;
-	font-family: Georgia;
-	font-size: 10pt;
-	font-weight: normal;
-	color: #FFF;
-}
-
-#navigation li.selected a {
-	padding-top: 0.5em;
-	margin-top: 1px;
-}
-
-#navigation li a:hover {
-	padding-bottom: 4px;
-	text-decoration: underline;
-}*/
-
 .tabs {
 	border-bottom: 1px solid #003300;
 	margin: 0 0 1.5em 0;
