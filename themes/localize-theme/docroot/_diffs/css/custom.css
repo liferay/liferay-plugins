@@ -6,11 +6,11 @@ address, caption, cite, code, dfn, em, strong, th, var {
 
 body {
 	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','courier','Lucida',Arial,Verdana,sans-serif;
-	 text-align: center;
-  background-color:#c0c0c0;
-  background-repeat: repeat;
-  margin-top:10px;
-  margin-bottom:10px;
+	text-align: center;
+	background-color:#c0c0c0;
+	background-repeat: repeat;
+	margin-top:10px;
+	margin-bottom:10px;
 }
 
 a {
@@ -21,8 +21,9 @@ a:hover {
 	color: #8cd749;
 }
 
-a:visited { color:#000000;
-text-decoration:none;
+a:visited { 
+	color:#000000;
+	text-decoration:none;
 }
 
 b, strong {
@@ -48,15 +49,17 @@ body.staging {
 	border: 1px solid #D3D3D3;
 }
 
+
 #banner { 
-	background-color:#ffffff;
-background-image:url(../images/localize/leaf.jpg);
-background-position:right top;
-background-repeat:no-repeat;
-height:175px;
-left:0px;
-position:relative;
-top:0px;
+	background-color:#FFFFFF;
+	background-image:url(../images/common/leaf.jpg);
+	background-position:right top;
+	background-repeat:no-repeat;
+	height:185px;
+	left:0px;
+	position:relative;
+	top:0px;
+	width:850px;
 }
 
 #banner .logo {
@@ -67,7 +70,7 @@ top:0px;
 	display:auto;
 	float:none;
 	font-size:auto;
-	padding:none;
+	padding:0;
 	
 }
 
@@ -80,123 +83,129 @@ top:0px;
 }
 
 .loading-animation {
-	background: url(../images/custom/loading_animation.gif) no-repeat top center;
+	background: url(../images/progress_bar/loading_animation.gif) no-repeat top center;
 }
 
 .columns-2 #column-1 {
 	padding-left: 10px;
 	padding-bottom: 10px;
+	padding-top:0;
 	}
 
 .columns-2 #column-2 {
 	padding-right:10px;
 	padding-bottom: 10px;
 	border-left: none;
+	padding-top:0;
 }
 
 #navigation {
-	margin: 0 0 0 0;
-	height: 95px;
-	position: relative;
-	top:0px;
-	left: 0px;
-	min-height:auto;
-	padding-right:none;
-	width: auto;
+	position:relative;
+	width:850px;
+	padding-right:0;
+	background-color:#999999;
+	padding-bottom:15px;
+}
+
+#navigation li a:hover span{
+	background:none;
+}
+
+#navigation li a span{
+	background:none;
 }
 
 #navigation ul {
-height:50px;
-left:0px;
-position:relative;
-top:0px;
-background-color:#999999;
-float:none;
-min-height:auto;
-width:auto;
+	float:none;
+	height:50px;
+	left:0px;
+	position:relative;
+	top:0px;
+	width:850px;
 }
 
 .ie6 #navigation {
-margin: 0 0 0 0;
-	overflow: visible;
-	height: 95px;
-	position: relative;
-	top:0px;
-	left: 0px;
+	margin:0;
+	position:relative;
+	width:840px;
+	padding:0;
 }
 
-.ie6 #navigation ul {
-height:50px;
-left:0px;
-position:relative;
-top:0px;
-background-color:#999999;
-overflow:visible;
-	}
+.js #navigation .enter-page {
+	width:115px;
+	background: transparent none;
+}
 
 #navigation li {
 	background-color:#999999;
-border-style:none;
-border-width:0px;
-color:white;
-display:inline;
-float:left;
-font-size:8pt;
-height:50px;
-left:0px;
-position:relative;
-text-align:center;
-top:-1px;
-width:125px;
-margin-right:none;
-padding:none;
+	font-size:8pt;
+	height:30px;
+	width:125px;
+	margin:0;
+	padding:0;
+	background-image:none;
 }
 
 #navigation li a {
-	padding-top: none;
 	background-color: #999999;
 	color: white;
 	font-weight: normal;
 	text-decoration:none;
 	font-size: small;
-	padding:none;
+	padding:0;
 	text-decoration:none;
+	background-image:none;
+	text-align:center;
 }
 
 #navigation li a:hover {
-	padding-bottom: none;
+	padding-bottom:0;
 }
 
 
 #navigation li a span {
-	background-color: #999999;
-	position: relative;
-	top: 15px;
-	padding:none;
+	background-color:#999999;
+	padding:0pt;
+	position:relative;
+	text-align:center;
 	text-decoration:none;
+	top:10px;
 }
 
 #navigation li.selected a {
-	padding-top: none;
+	padding-top:0;
 	background-color: #999999;
 	font-weight: bold;
 	color: 	#444444;
+	text-align:center;
 }
 
 #navigation li.selected a span {
-background-color: #999999;
-font-size:auto;
-font-weight:auto;
+	background-color: #999999;
+	font-size:small;
+	font-weight:bold;
+	background:none;
+	position:relative;
+	top:10px;
+	text-align:center;
+	text-decoration:underline;
 }
 
+
+#navigation li.selected a {
+	padding:0;
+	}
+
 #navigation li.selected a:hover {
-background-color: #999999;
-padding-bottom:none;
+	background-color: #999999;
+	padding-bottom:0;
+	text-align:center;
 }
 
 #navigation li a:hover span {
 	text-decoration: underline;
 	background-color: #999999;
+	text-align: center;
 }
 
 .js .lfr-dock.interactive-mode {
@@ -204,44 +213,19 @@ padding-bottom:none;
 }
 
 .js .lfr-dock.interactive-mode h2 {
-position:auto;
-z-index:auto;
-}
-
-.js #add-page {
-	float: none
-	position: absolute;
-	top: 80px;
-	left: 415px;
-}
-
-.js #add-page a {
-	position: absolute;
-	right: -10px;
-	top: 0px;
-}
-
-.js #add-page a span {
-	position: relative;
-	top:0px;
-	left: 0px;
-}
-
-.js #add-page a:hover span {
-	position: relative;
-	top:0px;
-	left: 0px;
+	position:auto;
+	z-index:200;
 }
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
-position: relative;
+	position: relative;
 	left: 0px;
 	top: 0px;
 	background:none;
 }
 
 .portlet {
-	padding-right: 0px;
+	padding-right: 10px;
 	background: white top center no-repeat fixed;
 	border:none;
 	
@@ -252,8 +236,8 @@ position: relative;
 	top: 0px;
 	background:#dddddd top center no-repeat fixed;
 	border: none;
-	margin-right:none;
-	padding-right:none;
+	margin-right:0;
+	padding-right:0;
 	height:40px;
 }
 
@@ -282,49 +266,58 @@ position: relative;
 	}
 
 .portlet-section-body td {
-border-top:none;
+	border-top:none;
 }
 
 .portlet-section-alternate td {
-border-top:none;
+	border-top:none;
 }
 
 .portlet-section-alternate-hover td, .portlet-section-body-hover td {
-border-bottom:none;
-border-top:none;
+	border-bottom:none;
+	border-top:none;
 }
 
 .tabs {
 	padding: 0 0 2.6em 0;
 	border-bottom:none;
+	background-image:none;
 }
 
 .tabs li {
 	background-color: #999999;
 	font-size: 8pt;
 	margin-right:none;
+	background-image:none;
 }
 
 .tabs li a, .tabs li span {
 	background-color: #999999;
 	color: white;
+	background-image:none;
 }
 
 .tabs li.current {
 	background-color: #999999;
-	top:none;
+	top:0;
+	background-image:none;
 }
 
 .tabs li.current a, .tabs li.current span {
-background:none;
-color:none;
-padding:none;
+	background-image:none;
+	color:none;
 }
 
 .ie .tabs li.current {
-top:none;
+	top:0;
+	background-image:none;
+	background-color: #999999;
 }
 
+.js #add-page a span {
+	position:relative;
+	left:20px;
+}
 
 
 
