@@ -17,7 +17,7 @@
 		<copy todir="docroot/WEB-INF/tld">
 			<fileset
 				dir="${app.server.portal.dir}/WEB-INF/tld"
-				includes="c-rt.tld,liferay-security.tld,liferay-theme.tld,liferay-ui.tld"
+				includes="c-rt.tld,liferay-portlet-ext.tld,liferay-security.tld,liferay-theme.tld,liferay-ui.tld"
 			/>
 		</copy>
 

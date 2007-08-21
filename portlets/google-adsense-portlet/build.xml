@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="google-gadget-portlet" basedir="." default="deploy">
+<project name="google-adsense-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
 
 	<property name="plugin.version" value="1" />
