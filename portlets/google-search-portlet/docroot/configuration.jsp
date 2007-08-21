@@ -28,7 +28,7 @@
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
 <div class="portlet-msg-info">
-<a href="http://www.google.com/apis/maps/signup.html" target="_blank"><liferay-ui:message key="you-can-get-a-license-directly-from-google" /></a>
+<a href="http://code.google.com/apis/soapsearch" target="_blank"><liferay-ui:message key="you-can-get-a-license-directly-from-google" /></a>
 </div>
 
 <table class="liferay-table">
@@ -38,61 +38,6 @@
 	</td>
 	<td>
 		<input class="liferay-input-text" name="<portlet:namespace />license" type="text" value="<%= license %>" />
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="map-address" />
-	</td>
-	<td>
-		<input class="liferay-input-text" name="<portlet:namespace />mapAddress" type="text" value="<%= mapAddress %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="map-input-enabled" />
-	</td>
-	<td>
-		<liferay-ui:input-checkbox param="mapInputEnabled" defaultValue="<%= mapInputEnabled %>" />
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="directions-address" />
-	</td>
-	<td>
-		<input class="liferay-input-text" name="<portlet:namespace />directionsAddress" type="text" value="<%= directionsAddress %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="directions-input-enabled" />
-	</td>
-	<td>
-		<liferay-ui:input-checkbox param="directionsInputEnabled" defaultValue="<%= directionsInputEnabled %>" />
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="height" />
-	</td>
-	<td>
-		<input name="<portlet:namespace />height" size="4" type="text" value="<%= height %>" /> px
 	</td>
 </tr>
 </table>
