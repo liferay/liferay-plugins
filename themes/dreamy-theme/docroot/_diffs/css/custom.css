@@ -1,0 +1,161 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---- GLOBAL ---- */
+body {
+	background: #E8F7F9 url(../images/common/background.png) repeat-x top center;
+	color: #222222;
+}
+
+a {
+	color: #000000;
+}
+
+#wrapper {
+	margin: 0 auto;
+	width: 700px;
+	background: #FFFFFF;
+}
+
+#footer {
+	background: url(../images/common/footer_bg.jpg) no-repeat;
+	height: 100px;
+}
+
+/* ---- BANNER ---- */
+
+#banner {
+	height: 140px;
+	background: url(../images/common/banner_bg.jpg) no-repeat;
+}
+
+#banner .logo {
+	background: url(../images/common/banner_bg.jpg) no-repeat;
+}
+
+/* ---- NAVIGATION ---- */
+#navigation {
+	background: url(../images/navigation/navigation_bg.png) no-repeat;
+	width: 100%;
+	height: 35px;
+	margin: 0;
+	padding: 0;
+}
+
+#navigation li {
+	overflow: hidden;
+	background: none;
+	padding: 8px 15px;
+	margin-right: 1px;
+}
+
+#navigation li a {
+	background: none;
+	padding: 0;
+	color: #FFFFFF;
+	font-size: 11px;
+}
+
+#navigation li a span {
+	background: none;
+	padding: 0;
+}
+
+#navigation li a:hover {
+	padding-bottom: 0;
+}
+
+#navigation li a:hover span {
+	background: none;
+}
+
+#navigation li.selected {
+	background: url(../images/navigation/navigation_hover.png) no-repeat 50% 100%;
+	padding-bottom: 11px;
+}
+
+#navigation li.selected a {
+	padding: 0;
+}
+
+#navigation li.selected a span {
+	background: none;
+	font-size: 1em;
+	padding: 0;
+}
+
+#navigation li.selected a:hover {
+	padding-bottom: 0;
+}
+
+.js #navigation .enter-page {
+	background: none;
+	padding: 0;
+}
+
+.js #add-page {
+	float: right;
+	font-weight: bold;
+	padding-top: 8px;
+}
+
+.js #add-page a {
+	color: #FFFFFF;
+}
+
+/* ---- PORTLET ---- */
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: none;
+}
+
+.portlet-title {
+	color: #ABC229;
+	font-size: 16px;
+}
+
+.portlet-content {
+	border-top: 1px dashed #B4C835;
+}
+
+.portlet-title img {
+	display: none;
+}
+
+.portlet-section-header {
+	background: #B9E4EA none;
+}
+
+.portlet-section-body td {
+	background: #D9F0F4 none;
+}
+
+.portlet-section-header th {
+	border-bottom: 1px solid #8DB2E3;
+}
+
+/* ---- TABS ---- */
+.tabs {
+	border-bottom: 1px solid #222222;
+	padding: 0 0 18px 1em;
+}
+
+.tabs li {
+	background: url(../images/navigation/navigation_bg.png);
+	line-height: 15px;
+	margin-right: 0.3em;
+	top: 0.15em;
+}
+.tabs li a, .tabs li span {
+	background: url(../images/navigation/navigation_bg.png);
+	padding: 0.15em 1em 0;
+	color: #FFFFFF;
+}
+
+.tabs li.current {
+	background: url(../images/navigation/navigation_bg.png) bottom;
+}
+
+.tabs li.current a, .tabs li.current span {
+	background: url(../images/navigation/navigation_bg.png) bottom;
+	padding: 0.1em 1em;
+	color: #FFFFFF;
+}
