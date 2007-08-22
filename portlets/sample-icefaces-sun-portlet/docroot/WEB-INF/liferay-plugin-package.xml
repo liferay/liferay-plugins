@@ -23,7 +23,7 @@
 -->
 <plugin-package>
 	<name>Sample ICEfaces (Sun RI) Portlet</name>
-	<module-id>liferay-samples/sample-icefaces-sun-portlet/4.3.1.0/war</module-id>
+	<module-id>liferay-samples/sample-icefaces-sun-portlet/4.3.1.1/war</module-id>
 	<types>
 		<type>portlet</type>
 	</types>
@@ -42,6 +42,6 @@
 		<license osi-approved="true">MIT</license>
 	</licenses>
 	<liferay-versions>
-		<liferay-version>4.3.1+</liferay-version>
+		<liferay-version>4.3.1</liferay-version>
 	</liferay-versions>
 </plugin-package>
