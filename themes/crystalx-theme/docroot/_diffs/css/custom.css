@@ -1,34 +1,35 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-/* ---------- Banner ---------- */
 
-#banner {
-	background: url(../images/common/header.jpg) repeat-x scroll 60%;
-	height: 10em;
-	position: relative;
+/* ---------- GLOBAL ---------- */
+body {
+	background: #F2F5FE url(../images/common/bg.gif) repeat-x;
+}
+
+#wrapper {
+	background: #FFFFFF url(../images/common/bg_page.gif);
 	width: 770px;
-	margin-left: auto;
+	margin-top: 50px;
+}
+
+#footer {
+	background: url(../images/common/footer.jpg) no-repeat scroll bottom;
+	clear: both;
+	color: #6685CC;
+	height: 60px;
+	width: 770px;
+}
+
+/* ---------- BANNER ---------- */
+#banner {
+	background: url(../images/common/header.jpg) 0% 50%;
+	height: 100px;
 }
 
 #banner .logo {
-	background: url(../images/common/content_article_bg2.jpg) no-repeat;
-	display: block;
-	float: left;
-	font-size: 2em;
-	padding: 1.25em 0.6em 1.45em;
-	position: absolute;
-	top: 10px;
-	left: 15px;
+	background: url(../images/common/header.jpg);
 }
 
-#banner .logo a (line 169)
-	background:transparent url(/image/company_logo?img_id=0) no-repeat scroll 0%;
-	display:block;
-	font-size:0pt;
-	height:49px;
-	width:198px;
-}
-/* ---------- Dock with Javascript ---------- */
-
+/* ---------- DOCK ---------- */
 .js .lfr-dock.interactive-mode {
 	float: right;
 	min-width: 150px;
@@ -78,22 +79,13 @@
 	margin-right: 0px;
 } 
 
-/* ---------- Main navigation ---------- */
-
+/* ---------- NAVIGATION ---------- */
 #navigation {
 	background: #192666;
 	color: #B5C4E3;
 	font-weight: bold;
-	padding-right: 1em;
-	padding-top: 1em;
-	margin-bottom: -1px;
-	width: 97.5%;
-	position: relative;
-	z-index: 1;
-}
-
-.ie6 #navigation {
-	width: 97.4%;
+	width: 750px;
+	padding-top: 10px;
 }
 
 #navigation li {
@@ -192,11 +184,11 @@
 	padding-bottom: 10px;
 }
 
-#navigation li.selected a:hover span.tab-l, .ie6 #navigation li.selected a:hover span.tab-l {
+#navigation li.selected a:hover span.tab-l {
 	background: url(../images/common/tab_active_l.gif) no-repeat;
 }
 
-#navigation li.selected a:hover span.tab-r, .ie6 #navigation li.selected a:hover span.tab-r {
+#navigation li.selected a:hover span.tab-r {
 	background: url(../images/common/tab_active_r.gif) no-repeat 100%;
 }
 
@@ -208,44 +200,6 @@
 
 #navigation li a:hover span {
 	background: none;
-}
-
-body {
-	background: #F2F5FE url(../images/common/bg.gif) repeat-x;
-	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
-}
-
-/* ---------- Main content body ---------- */
-
-#wrapper {
-	margin: 50px auto;
-	width: 770px;
-	position: relative;
-}
-
-#page-in {
-	background: url(../images/common/bg_page.gif) repeat-y bottom;
-}
-
-.ie6 #page-in {
-}
-
-#content-wrapper {
-	background: url(../images/common/bg_page_in.jpg) no-repeat 0 0;
-	position: relative;
-	top: -60px;
-}
-
-.ie6 #content-wrapper {	
-	zoom: 1;
-}
-
-#footer {
-	background: url(../images/common/footer.jpg) no-repeat scroll bottom;
-	clear: both;
-	color: #6685CC;
-	height: 60px;
-	width: 770px;
 }
 
 .js #add-page {
@@ -260,33 +214,13 @@ body {
 	color: #FFF;
 }
 
-#liferay {
-	color:#8CA3D8;
-	left:670px;
-	margin:0pt;
-	position:absolute;
-	top:10px;
-}
-
-/* ---------- 2 columns ---------- */
-
-.columns-2 #column-1 {
-	padding-left: 15px;
-}
-
-.columns-2 #column-2 {
-	padding-right: 10px;
-	padding-left: 20px;
-}
-
+/* ---------- PORTLET ---------- */
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: none;
 }
 
 .portlet {
-	margin: 55px 0 0;
-	padding-top: 10px;
-	padding-right: 10px;
+	padding: 0px;
 	text-align: left;
 }
 
@@ -294,17 +228,12 @@ body {
 	background: url(../images/common/content_title_bg.gif) repeat scroll;
 	background-position: left top;
 	margin-right: 0px;
-	margin-left: 8px;
+	margin-left: 5px;
 	padding-right: 5px;
 	position: relative;
 }
-
 .ie6.portlet-topper {
-	margin-left: 16px;
-	padding-left: 0px;
-	padding-right: none;
 	height: 1%;
-	
 }
 
 .portlet-icons {
@@ -321,16 +250,20 @@ body {
 	padding: 10px 5px 25px 15px;
 }
 
-.js #add-page {
-	float: left;
-	padding-top: 0.3em;
+/* ---------- LAYOUT ---------- */
+#content-wrapper #layout-grid {
+	width: auto;
 }
 
-.js #add-page a span {
-	background: url(../images/navigation/add_page.png) no-repeat 100% 50%;
-	padding: 5px 20px;
+#layout-grid .lfr-column {
+	padding: 0;
 }
 
+.columns-2 #column-1 {
+	width: 550px;
+}
 
-
+.columns-2 #column-2 {
+	width: 200px;
+}
 
