@@ -13,8 +13,15 @@ body {
 
 #content-wrapper {
 	background: url(../images/common/bg_page_in.jpg) no-repeat;
-	margin-top: -46px
+	margin-top: -46px;
+	position: relative;
+	z-index: 4;
 }
+
+.ie6 #content-wrapper {
+	zoom: 1;
+}
+
 #footer {
 	background: url(../images/common/footer.jpg) no-repeat scroll bottom;
 	clear: both;
@@ -25,7 +32,7 @@ body {
 
 /* ---------- BANNER ---------- */
 #banner {
-	background: url(../images/common/header.jpg) 0% 50%;
+	background: url(../images/common/header.jpg) no-repeat 0% 50%;
 	height: 100px;
 }
 
@@ -90,6 +97,8 @@ body {
 	font-weight: bold;
 	width: 750px;
 	padding-top: 10px;
+	position: relative;
+	z-index: 5;
 }
 
 #navigation li {
@@ -151,7 +160,7 @@ body {
 	left: -15px;
 }
 .ie6 #navigation ul li a span.tab-r {
-	right: 5px;
+	right: 4px;
 	top: -2px;
 }
 
