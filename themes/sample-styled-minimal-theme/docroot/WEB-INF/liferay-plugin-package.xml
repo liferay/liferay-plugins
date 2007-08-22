@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Sample Styled Minimal Theme</name>
-	<module-id>liferay-samples/sample-styled-minimal-theme/4.3.0.1/war</module-id>
+	<module-id>liferay-samples/sample-styled-minimal-theme/4.3.1.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>
@@ -23,6 +23,6 @@
 		<license osi-approved="true">MIT</license>
 	</licenses>
 	<liferay-versions>
-		<liferay-version>4.3.*</liferay-version>
+		<liferay-version>4.3.1</liferay-version>
 	</liferay-versions>
 </plugin-package>
