@@ -23,7 +23,7 @@
 -->
 <plugin-package>
 	<name>Sample ICEfaces (Sun RI) Portlet</name>
-	<module-id>liferay-samples/sample-icefaces-sun-portlet/4.3.1.1/war</module-id>
+	<module-id>liferay/sample-icefaces-sun-portlet/4.3.1.1/war</module-id>
 	<types>
 		<type>portlet</type>
 	</types>

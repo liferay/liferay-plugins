@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Casino Theme</name>
-	<module-id>liferay-inc/casino-theme/4.3.1.1/war</module-id>
+	<module-id>liferay/casino-theme/4.3.1.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>

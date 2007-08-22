@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Sample 2-1-2 Columns Templates</name>
-	<module-id>liferay-samples/sample-2-1-2-columns-layouttpl/4.3.1.1/war</module-id>
+	<module-id>liferay/sample-2-1-2-columns-layouttpl/4.3.1.1/war</module-id>
 	<types>
 		<type>layout-template</type>
 	</types>

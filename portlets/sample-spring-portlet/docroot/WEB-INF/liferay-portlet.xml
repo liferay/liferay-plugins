@@ -3,21 +3,18 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>mode</portlet-name>
+		<portlet-name>welcome</portlet-name>
 	</portlet>
 	<portlet>
-		<portlet-name>exceptions</portlet-name>
-	</portlet>
-	<portlet>
-		<portlet-name>books</portlet-name>
-	</portlet>
-	<portlet>
-		<portlet-name>redirect</portlet-name>
+		<portlet-name>pets</portlet-name>
 	</portlet>
 	<portlet>
 		<portlet-name>upload</portlet-name>
 	</portlet>
 	<portlet>
-		<portlet-name>helloworld</portlet-name>
+		<portlet-name>mode</portlet-name>
+	</portlet>
+	<portlet>
+		<portlet-name>petsites</portlet-name>
 	</portlet>
 </liferay-portlet-app>

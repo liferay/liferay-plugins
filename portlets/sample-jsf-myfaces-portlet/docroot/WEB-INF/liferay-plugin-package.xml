@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Sample JSF MyFaces Portlet</name>
-	<module-id>liferay-samples/sample-jsf-myfaces-portlet/4.3.1.1/war</module-id>
+	<module-id>liferay/sample-jsf-myfaces-portlet/4.3.1.1/war</module-id>
 	<types>
 		<type>portlet</type>
 	</types>

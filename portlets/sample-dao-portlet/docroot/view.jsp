@@ -48,7 +48,7 @@ if ((cmd != null) && (cmd.equals("add") || cmd.equals("edit"))) {
 	int points = 0;
 
 	if (cmd.equals("edit")) {
-		foodItemId = Long.parseLong(request.getParameter("foodItemId"));
+		foodItemId = ParamUtil.getLong(request, "foodItemId");
 
 		FoodItem foodItem = FoodItemDAO.getFoodItem(foodItemId);
 

@@ -22,17 +22,21 @@
  */
 %>
 
+<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
+
 <%@ page import="com.liferay.portal.model.Organization" %>
 <%@ page import="com.liferay.portal.service.OrganizationServiceUtil" %>
 
 <%@ page import="java.util.List" %>
+
+<liferay-theme:defineObjects />
 
 You belong to the following organizations:
 
 <br><br>
 
 <%
-List organizations = OrganizationServiceUtil.getUserOrganizations(request.getRemoteUser());
+List organizations = OrganizationServiceUtil.getUserOrganizations(themeDisplay.getUserId());
 
 for (int i = 0; i < organizations.size(); i++) {
 	Organization organization = (Organization)organizations.get(i);

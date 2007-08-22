@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Fruitopia Theme</name>
-	<module-id>liferay-inc/fruitopia-theme/4.3.1.1/war</module-id>
+	<module-id>liferay/fruitopia-theme/4.3.1.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>

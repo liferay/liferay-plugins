@@ -23,7 +23,7 @@
 -->
 <plugin-package>
 	<name>Sample Seam Portlet</name>
-	<module-id>liferay-samples/sample-seam-portlet/4.3.0/war</module-id>
+	<module-id>liferay/sample-seam-portlet/4.3.0/war</module-id>
 	<types>
 		<type>portlet</type>
 	</types>

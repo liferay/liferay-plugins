@@ -4,12 +4,11 @@
 <display>
 	<category name="category.sample">
 		<category name="category.spring">
-			<portlet id="mode" />
-			<portlet id="exceptions" />
-			<portlet id="books" />
-			<portlet id="redirect" />
+			<portlet id="welcome" />
+			<portlet id="pets" />
 			<portlet id="upload" />
-			<portlet id="helloworld" />
+			<portlet id="mode" />
+			<portlet id="petsites" />
 		</category>
 	</category>
 </display>

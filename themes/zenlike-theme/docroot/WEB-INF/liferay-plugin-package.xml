@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>ZenLike Theme</name>
-	<module-id>liferay-inc/zenlike-theme/4.3.1.1/war</module-id>
+	<module-id>liferay/zenlike-theme/4.3.1.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>

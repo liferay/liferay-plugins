@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Liferay Noir Theme</name>
-	<module-id>liferay-inc/liferay-noir-theme/4.3.1.1/war</module-id>
+	<module-id>liferay/liferay-noir-theme/4.3.1.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>

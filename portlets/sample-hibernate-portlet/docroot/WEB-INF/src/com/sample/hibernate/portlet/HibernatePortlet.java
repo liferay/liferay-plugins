@@ -110,6 +110,8 @@ public class HibernatePortlet extends GenericPortlet {
 				prd.include(req, res);
 			}
 			catch (Exception e) {
+				_log.error(e, e);
+
 				prd = ctx.getRequestDispatcher("/error.jsp");
 
 				if (prd == null) {
