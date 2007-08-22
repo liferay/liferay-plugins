@@ -1,0 +1,147 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+body {
+	background: transparent url(../images/common/bodybg.gif) repeat;
+}
+
+a {
+	color: #336699;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #49515C;
+}
+
+#wrapper {
+	width: 975px;
+	background: #FFFFFF none;
+	padding:5pt;
+}
+
+#banner {
+	background: #49515C url(../images/common/header_right.gif) no-repeat scroll 100% 100%;
+	height: 10em;
+}
+
+#banner .logo {
+	background: #A0A5AA none;
+}
+
+.loading-animation {
+	background: url(../images/progress_bar/loading_animationbar.gif) no-repeat top center;
+}
+
+#navigation {
+	padding-right: 0;
+	width: 975px;
+	background: #FFFFFF none;
+}
+
+#navigation li {
+	background:#858F9E none repeat scroll 0%;
+	border-right:4pt solid #FFFFFF;
+	margin:3pt 0pt 0pt;
+	padding:0pt;
+}
+
+#navigation li a {
+	background: #858F9E none;
+	padding:5px 2em 5px 1em;
+	color: #DDDDDD;
+	font-size: 8pt;
+}
+
+#navigation li a:hover {
+	background: #6B7687 none;
+	padding-bottom: 5px;
+}
+
+#navigation li a span {
+	background: none;
+	padding-left: 1em;
+}
+
+#navigation li.selected a {
+	background:#49515C none repeat scroll 0%;
+	color:#C6C4C5;
+	padding-bottom: 5px;
+	font-size: 8pt;
+}
+
+#navigation li.selected a span {
+	background: #49515C none;
+	font-size: 8pt;
+	font-weight: normal;
+}
+
+#navigation li.selected a:hover {
+	padding-bottom: 5px;
+}
+
+#navigation li a:hover span {
+	background: none;
+}
+
+.js #navigation .enter-page {
+	background: #858F9E none;
+}
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: #FFFFFF none;
+}
+
+.portlet {
+	background: #FFFFFF none;
+}
+
+.portlet-topper {
+	background: #F0F1F3 none;
+}
+
+.portlet-title {
+	background: #F0F1F3 none;
+	font-size: 14px;
+}
+
+.portlet-section-header {
+	background: #858F9E;
+}
+
+.portlet-section-header th {
+	border-bottom: 1px solid #cccccc;
+	color: #DDDDDD;
+}
+
+.tabs {
+	border-bottom: none;
+	padding: 0 0 2.6em 0;
+}
+
+.tabs li {
+	background: #858F9E none;
+	margin-right: 0;
+}
+
+.tabs li a, .tabs li span {
+	background: #858F9E none;
+	padding: 0 1em 0;
+	color:#DDDDDD;
+	border-right: 5pt solid #FFFFFF;
+}
+
+.tabs li.current {
+	background: #49515C none;
+	top: 0em;
+	color:#C6C4C5;
+}
+
+.tabs li.current a, .tabs li.current span {
+	background: #49515C none;
+	color: #C6C4C5;
+	padding: 0 1em;
+}
+
+.ie .tabs li.current {
+	top:0;
+}

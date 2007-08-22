@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<project name="blueleaves-theme" basedir="." default="deploy">
+	<import file="../build-common-theme.xml" />
+
+	<property name="plugin.version" value="1" />
+	<property name="plugin.file" value="${project.dir}/dist/${ant.project.name}-${lp.version}.${plugin.version}.war" />
+
+	<property name="theme.extension" value="styled" />
+</project>
