@@ -11,6 +11,10 @@ body {
 	margin-top: 50px;
 }
 
+#content-wrapper {
+	background: url(../images/common/bg_page_in.jpg) no-repeat;
+	margin-top: -46px
+}
 #footer {
 	background: url(../images/common/footer.jpg) no-repeat scroll bottom;
 	clear: both;
@@ -220,6 +224,7 @@ body {
 }
 
 .portlet {
+	margin-top: 48px;
 	padding: 0px;
 	text-align: left;
 }
