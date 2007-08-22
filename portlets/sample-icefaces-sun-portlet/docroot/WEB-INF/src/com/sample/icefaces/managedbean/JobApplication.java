@@ -47,7 +47,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * <a href="Contact.java.html"><b><i>View Source</i></b></a>
+ * <a href="JobApplication.java.html"><b><i>View Source</i></b></a>
  *
  * <p>
  * This class is the backing bean behind the JobApplication.jspx file. It
@@ -55,7 +55,7 @@ import org.apache.commons.logging.LogFactory;
  * on the page. In addition, it contains a submit action callback, so that
  * the job application form can be sent in the form of an email.
  *
- * Note that the e-mail will only be sent if the portlet is configured to work
+ * Note that the email will only be sent if the portlet is configured to work
  * with your mail server as defined in the META-INF/context.xml file or
  * $JBOSS_HOME/server/default/deploy/mail-service.xml file. Also, the file
  * upload directory is defined in the WEB-INF/web.xml file.
@@ -68,14 +68,13 @@ public class JobApplication {
 
 	public JobApplication() {
 
-		// Because of http://jira.icefaces.org/browse/ICE-1625
-		// it is necessary to keep the PortletPreferences stored
-		// in a bean property. When using normal JSF, this constructor
-		// will get called each time a request is made. This is a little
-		// inefficient, but it's a coding-tradeoff to make things work
-		// with both normal JSF and ICEfaces 1.6.
+		// Store the portlet preferences as a bean property because of ICE-1625.
+		// When using normal JSF, this constructor will get called each time a
+		// request is made. This is a little inefficient, but it's a coding
+		// tradeoff to make things work with both normal JSF and ICEfaces 1.6.0.
+
 		_portletPreferences = JSFPortletUtil.getPortletPreferences(
-				FacesContext.getCurrentInstance());
+			FacesContext.getCurrentInstance());
 	}
 
 	public String getComments() {
@@ -151,10 +150,11 @@ public class JobApplication {
 	}
 
 	public SelectItemList getPhoneNumberTypeSelectItems() {
-
 		if (_phoneNumberTypeSelectItems == null) {
 			_phoneNumberTypeSelectItems = new SelectItemList();
+
 			FacesContext facesContext = FacesContext.getCurrentInstance();
+
 			Locale locale = JSFPortletUtil.getLocale(facesContext);
 
 			_phoneNumberTypeSelectItems.add(
@@ -164,8 +164,10 @@ public class JobApplication {
 			_phoneNumberTypeSelectItems.add(
 				new SelectItem(
 					"mobile", LanguageUtil.get(locale, "mobile-phone")));
+
 			Collections.sort(
 				_phoneNumberTypeSelectItems, new SelectItemComparator());
+
 			_phoneNumberTypeSelectItems.prependEmptySelectItem(facesContext);
 		}
 
@@ -173,71 +175,64 @@ public class JobApplication {
 	}
 
 	public String submit() {
-
 		String actionOutcome = ActionOutcomes.SUCCESS;
+
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 
 		String toEmailAddress = _portletPreferences.getValue(
-				"recipientEmailAddress", null);
+			"recipientEmailAddress", null);
 
 		try {
-
-			// Send an email message to the human resources dept.
 			InternetAddress fromInternetAddress = new InternetAddress(
-					_emailAddress);
-			InternetAddress[] toInternetAddresses = new InternetAddress[] {
-					new InternetAddress(toEmailAddress)
-				};
-			String subject = _firstName + " " + _lastName +
-				" has applied for a job";
+				_emailAddress);
+			InternetAddress[] toInternetAddresses =
+				new InternetAddress[] {new InternetAddress(toEmailAddress)};
+
+			String subject =
+				_firstName + " " + _lastName + " has applied for a job";
+
 			StringBuffer body = new StringBuffer();
-			body.append("First Name:    " + _firstName + "\n");
-			body.append("Last Name:     " + _lastName + "\n");
+
+			body.append("First Name: " + _firstName + "\n");
+			body.append("Last Name: " + _lastName + "\n");
 			body.append("Date Of Birth: " + _dateOfBirth + "\n");
-			body.append("Phone Number:  " + _phoneNumber + "\n");
-			body.append("Phone Type:    " + _phoneNumberType + "\n");
-			body.append("Fax Number:    " + _faxNumber + "\n");
+			body.append("Phone Number: " + _phoneNumber + "\n");
+			body.append("Phone Type: " + _phoneNumberType + "\n");
+			body.append("Fax Number: " + _faxNumber + "\n");
 			body.append("Comments:\n");
 			body.append(_comments);
 
 			if (_log.isDebugEnabled()) {
-				_log.debug("Sending email to: " + toEmailAddress);
+				_log.debug("Sending email to " + toEmailAddress);
 			}
 
 			MailEngine.send(
 				fromInternetAddress, toInternetAddresses, null, null, subject,
 				body.toString(), false, null, null, null, new File[] {_file});
 
-			// Ask ICEfaces to display an informational message, letting
-			// the user know that the email message was sent.
 			FacesMessageUtil.info(
 				facesContext,
 				"thank-you-for-applying-for-a-job-with-our-organization",
 				_firstName);
 
-			// Clear the values in the model, so that ICEfaces will re-render
-			// the portlet with empty fields.
-			_clearModel();
+			clearModel();
 		}
-		catch (Exception exception) {
-
-			// Ask ICEfaces to display an error message, letting the user know
-			// that the email message was not sent.
+		catch (Exception e) {
 			FacesMessageUtil.error(
 				facesContext,
 				"an-unexpected-error-occurred-while-sending-your-message");
 
 			if (_log.isErrorEnabled()) {
-				_log.error(exception.getMessage(), exception);
+				_log.error(e.getMessage(), e);
 			}
+
 			actionOutcome = ActionOutcomes.FAILURE;
 		}
 
 		return actionOutcome;
 	}
 
-	private void _clearModel() {
-
+	protected void clearModel() {
 		_comments = null;
 		_dateOfBirth = null;
 		_emailAddress = null;
@@ -250,6 +245,7 @@ public class JobApplication {
 	}
 
 	private static Log _log = LogFactory.getLog(JobApplication.class);
+
 	private String _comments;
 	private Date _dateOfBirth;
 	private String _emailAddress;
@@ -261,4 +257,5 @@ public class JobApplication {
 	private String _phoneNumberType;
 	private SelectItemList _phoneNumberTypeSelectItems;
 	private PortletPreferences _portletPreferences;
+
 }
