@@ -4,4 +4,8 @@
 	<property name="project.dir" value="../.." />
 
 	<import file="../build-common-plugin.xml" />
+
+	<target name="compile">
+		<antcall target="merge" />
+	</target>
 </project>

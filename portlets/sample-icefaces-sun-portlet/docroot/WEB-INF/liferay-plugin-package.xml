@@ -17,7 +17,7 @@
 	<change-log>
 		Adapted to the latest version of Liferay.
 	</change-log>
-	<page-url>http://www.liferay.com/web/guest/downloads/samples</page-url>
+	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
 	<author>Liferay, Inc.</author>
 	<licenses>
 		<license osi-approved="true">MIT</license>
