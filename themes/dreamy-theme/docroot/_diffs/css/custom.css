@@ -159,3 +159,15 @@ a {
 	padding: 0.1em 1em;
 	color: #FFFFFF;
 }
+
+.ie .tabs li {
+	line-height: 15px;
+}
+
+.ie .tabs li.current {
+	top: 0.2em;
+}
+
+.ie .tabs li {
+	top: 0.2em;
+}
