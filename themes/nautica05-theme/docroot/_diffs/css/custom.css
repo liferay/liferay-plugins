@@ -1,0 +1,211 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---- GLOBAL ---- */
+body {
+	background: transparent url(../images/common/background.gif) repeat top center;
+}
+
+#wrapper {
+	background: #FFFFFF url(../images/common/header_bg.gif) repeat-x top center;
+	padding-top: 56px;
+	width: 776px;
+}
+
+#content-wrapper {
+	font-size: 1.2em;
+}
+
+/* ---- BANNER ---- */
+#banner {
+	background: transparent url(../images/common/banner_bg.jpg) no-repeat;
+	border-top: 2px solid #48525B;
+	height: 143px;
+}
+
+#banner .logo {
+	background: transparent none;
+}
+
+/* ---- NAVIGATION ---- */
+#navigation {
+	background: url(../images/navigation/bg.gif);
+	border-top: 7px solid #455660;
+	width: 100%;
+	height: 35px;
+	margin: 0;
+	padding: 0;
+}
+
+#navigation li {
+	overflow: hidden;
+	background: none;
+	padding: 8px 15px;
+	margin: 0;
+}
+
+#navigation li a {
+	background: none;
+	padding: 0;
+	color: #FFFFFF;
+	font-size: 11px;
+}
+
+#navigation li a span {
+	background: none;
+	padding: 0;
+}
+
+#navigation li a:hover {
+	padding-bottom: 0;
+}
+
+#navigation li a:hover span {
+	background: none;
+}
+
+#navigation li.selected {
+	background: #4A5C6A none no-repeat 50% 100%;
+	padding-bottom: 11px;
+}
+
+#navigation li.selected a {
+	padding: 0;
+}
+
+#navigation li.selected a span {
+	background: none;
+	font-size: 1em;
+	padding: 0;
+}
+
+#navigation li.selected a:hover {
+	padding-bottom: 0;
+}
+
+.js #navigation .enter-page {
+	background: none;
+	padding: 0;
+}
+
+.js #add-page {
+	float: right;
+	font-weight: bold;
+	padding-top: 8px;
+}
+
+.js #add-page a {
+	color: #FFFFFF;
+}
+
+/* ---- PORTLETS ---- */
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: none;
+}
+
+.portlet {
+	padding-right: 0;
+}
+
+.portlet-title {
+	color: #7BA35A;
+	font-size: 16px;
+}
+
+.portlet-content {
+	border-top: 12px solid #DDDDDD;
+}
+
+.portlet-title img {
+	display: none;
+}
+
+.portlet-section-header {
+	background: #7898AD none;
+}
+
+.portlet-section-body td {
+	background: #DDDDDD none;
+}
+
+.portlet-section-header th {
+	border-bottom: 1px solid #7BA35A;
+}
+
+/* ---- TABS ---- */
+.tabs {
+	border-bottom: 1px solid #7BA35A;
+	padding: 0 0 18px 1em;
+}
+
+.tabs li {
+	background: url(../images/common/header_bg.gif);
+	line-height: 15px;
+	margin-right: 0.3em;
+	top: 0.15em;
+}
+.tabs li a, .tabs li span {
+	background: url(../images/common/header_bg.gif);
+	padding: 0.15em 1em 0;
+	color: #FFFFFF;
+}
+
+.tabs li.current {
+	background: #7BA35A none;
+}
+
+.tabs li.current a, .tabs li.current span {
+	background: #7BA35A none;
+	padding: 0.1em 1em;
+	color: #FFFFFF;
+}
+
+.ie .tabs li {
+	line-height: 15px;
+}
+
+.ie .tabs li.current {
+	top: 0.2em;
+}
+
+.ie .tabs li {
+	top: 0.2em;
+}
+
+/* ---- FORMS ---- */
+input[type="text"], input[type="password"], input[type="file"],input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	background: #EEEEEE;
+	border: 1px solid #888888;
+	color: #888888;
+}
+
+input[type="submit"], input[type="button"], input[type="reset"] {
+	background: #FC3307;
+	border-color: #FF7800 rgb(105, 19, 0) rgb(105, 19, 0) rgb(255, 120, 0);
+	border-style: solid;
+	border-width: 1px;
+	color: #FFFFFF;
+	cursor: pointer;
+	padding: 2px 5px;
+}
+
+input.focus, textarea.focus, .ie6 input.focus, .ie6 textarea.focus {
+	background: #E7F1F3 none repeat scroll 0%;
+	border: 1px solid #000000;
+	color: #000000;
+}
+
+/* ---- FORMS FOR IE6 ---- */
+
+.ie6 input.text, input.password, .ie6 input.submit, .ie6 input.file, .ie6 input.button {
+	background: #EEEEEE;
+	border: 1px solid #888888;
+	color: #888888;
+}
+
+.ie6 input.submit, .ie6 input.button {
+	background: #FC3307;
+	border-color: #FF7800 rgb(105, 19, 0) rgb(105, 19, 0) rgb(255, 120, 0);
+	border-style: solid;
+	border-width: 1px;
+	color: #FFFFFF;
+}
