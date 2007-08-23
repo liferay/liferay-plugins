@@ -1,0 +1,309 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---------- Body------------ */
+
+body {
+	background-color: #fff;
+	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+}
+
+
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: url(../images/common/main.jpg) no-repeat scroll 1px top;
+	height: 40em;
+	position: relative;
+}
+
+#banner .logo {
+	background: none;
+	display: block;
+	float: left;
+	font-size: 2em;
+	padding: 1.25em 0.6em 1.45em;
+	position: absolute;
+	top: 30px;
+	left: 80px;
+}
+
+#banner .logo a {
+	text-decoration: none;
+}
+
+/* ---------- Wrapper ---------- */
+
+#content-wrapper {
+	background: url(../images/common/top_content.jpg) no-repeat 0px 0px;
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: -15px;
+	padding-top: 50px;
+}
+
+.ie6 #content-wrapper {
+	margin-top: -10px;
+}
+
+#wrapper {
+	background-image: url(../images/common/body_tile.jpg);
+	background-repeat: repeat-y;
+	margin: 0 20px;
+	width: 50%;
+}
+
+#footer {
+	background: url(../images/common/footer.jpg) no-repeat;
+	padding-left: 120px;
+	padding-top: 100px;
+	height: 130px;
+	width: 621px;
+}
+
+#quote {
+	font-family:'Arial';
+	font-size: 9pt;
+	position: absolute;
+	top: 470px;
+	left: 175px;
+}
+/* ---------- 1 column ---------- */
+
+.columns-1 #column-1, .columns-max #column-1 {
+	background: url(../images/common/body_title.jpg) repeat-y; 
+	display: table;
+	margin-top: 90px;
+	margin-left: 100px;
+	width: 50%;
+}
+
+/* ---------- Main navigation ---------- */
+
+#navigation {
+	background: url(../images/common/linkbar.jpg) no-repeat -25px 0px;
+	margin-top: -2px;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding-right: 0;
+	height: 50px;
+	width: 93%;
+}
+
+.ie6 #navigation {
+	padding-bottom: 9px;
+}
+
+#navigation ul {
+	float: left;
+	min-height: 2em;
+	width: auto;
+	margin-top: 10px;
+	margin-left: 100px;
+}
+
+.ie6 #navigation ul {
+	margin-left: 48px;	
+}
+
+#navigation li.selected a {
+	color: #151515;
+	padding-top: 0.5em;
+}
+
+#navigation li.selected a span {
+	background: none;
+}
+
+#navigation li.selected a:hover {
+	background: #EDEEE8;
+}
+
+#navigation li {
+	background: none;
+	display: inline;
+	float: left;
+	margin-right: 0.5em;
+	padding: 0 0.5em 0 0;
+	position: relative;
+}
+
+#navigation li a {
+	background: none;
+	display: block;
+	padding: 0.5em 2em 0.5em 0.65em;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 9pt;
+	color: #696969;
+}
+
+#navigation li a:hover {
+	background: #EDEEE8; 
+	padding-bottom: 0.5em;
+	color: #333333;
+}
+
+#navigation li a span {
+	background: none;
+	padding-left: 17px;
+	text-decoration: none;
+}
+
+#navigation li.selected a span {
+	background: none;
+	font-size: 9pt;
+	font-weight: bold;
+}
+
+#navigation li a:hover span {
+	background: none;
+}
+
+.js #add-page {
+	float: left;
+	font-weight: bold;
+	padding-top: 0.3em;
+	position: absolute;
+	top: 400px;
+	left: 510px;
+	z-index: 20;
+}
+
+.js #add-page a {
+	color: #8E9468;
+	text-decoration: none;
+}
+
+/* ---------- Dock with Javascript ---------- */
+
+.js .lfr-dock.interactive-mode {
+	border: 1px outset;
+	float: right;
+	min-width: 150px;
+	position: relative;
+	right: 190px;
+	top: 50px;
+}
+
+.ie6.js .lfr-dock.interactive-mode {
+	white-space: nowrap;
+	width: 212px;
+}
+
+.js .lfr-dock.interactive-mode h2 {
+	background: none;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0 29px 0 0;
+	position: relative;
+	z-index: 82;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	background: none;
+	color: #828566;
+	display: block;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0.5em 0.5em 0.5em 2em;
+}
+
+.js .lfr-dock.expanded .lfr-dock-list-container {
+	background: #82885A;
+	border: 1px solid #B5B9BB;
+	border-top: none;
+	top: -2px;
+}
+
+.ie6 .lfr-dock.expanded .lfr-dock-list-container {
+	margin-right: 0px;
+}
+
+.js .lfr-dock.interactive-mode ul {
+	background: url(../images/dock/menu_bg.png) no-repeat 0 0;
+	border-left: 20px solid #82885A;
+	display: none;
+	float: none;
+}
+
+/* ---------- Dock without Javascript -------------- */
+
+.lfr-dock h2 {
+	background: url(../images/navigation/welcome_message.png) no-repeat 0 50%;
+	font-size: 1.2em;
+	margin-bottom: 0.5em;
+	padding-left: 2em;
+	text-align: center;
+}
+
+/* ----------portlets----------------- */
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: none;
+}
+
+.portlet {
+	margin: 0px 0 10px;
+	padding-right: 0px;
+	text-align: left;
+}
+
+.ie6 .portlet {
+	margin-top: 50px;
+}
+
+.portlet-topper {
+	background-position: right top;
+	margin-right: -10px;
+	padding-right: 40px;
+	position: relative;
+}
+
+.portlet-title {
+	background-position: top left;
+	display: block;
+	color: #8D926A;
+	font-family: 'Arial';
+	font-style: italic;
+	font-size: 10.5pt;
+	min-width: 50%;
+	padding: 8px 0 4px 10px;
+}
+
+/* ---------- Table or section header ---------- */
+
+.portlet-section-header {
+	background: #8D926A;
+	padding: 1px 0 0;
+}
+
+.portlet-section-header th {
+	border-bottom: 1px solid #ccc;
+	color: #333;
+	font-weight: bold;
+	padding: 0.3em 1em;
+}
+
+/* ---------- Normal text in a table cell ---------- */
+
+.portlet-section-body {
+	background: #E3E2BF;
+	color: #000;
+}
+
+.portlet-section-body td {
+	background: #E3E2BF;
+	border-top: 1px solid #BFBFBF;
+	padding: 0.3em 1em;
+}
+
+/* This CSS sets the default styles for tabs. */
+
+.tabs {
+	border-bottom: 1px solid #8F9370;
+	margin: 0 0 1.5em 0;
+	padding: 0 0 2.6em 1em;
+}
+
+
