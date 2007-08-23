@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 4.3.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_4_3_0.dtd">
+
+<plugin-package>
+	<name>Coffee N Cream Theme</name>
+	<module-id>liferay-inc/coffee_n_cream-theme/4.3.0.1/war</module-id>
+	<types>
+		<type>theme</type>
+	</types>
+	<tags>
+		<tag>liferay</tag>
+	</tags>
+	<short-description>
+	Found on http://www.oswd.org, designed by Arcsin, http://arcsin.se
+	</short-description>
+	<change-log>
+		Found on http://www.oswd.org and adapted to the latest version of Liferay.
+	</change-log>
+	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
+	<author>Liferay, Inc.</author>
+	<licenses>
+		<license osi-approved="true">Creative Commons Attribution 2.5 License</license>
+	</licenses>
+	<liferay-versions>
+		<liferay-version>4.3.*</liferay-version>
+	</liferay-versions>
+</plugin-package>

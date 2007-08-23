@@ -1,0 +1,237 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+body {
+	background: transparent url(../images/common/bg.gif) repeat;
+}
+
+a {
+	color: #987E57;
+}
+
+a:hover {
+	color: #CC6600;
+	text-decoration: underline;
+}
+
+#wrapper {
+	width: 975px;
+	border-left: 3px solid #665D4B;
+	background: #FCFAEA none;
+	border-right: 3px solid #665D4B;
+}
+
+#banner {
+	background: transparent url(../images/common/banner_bg.gif) repeat scroll 100% 100%;
+	height: 120px;
+	border-bottom: 1px solid #FFF7EC;
+}
+
+#banner .logo {
+	background: transparent none;
+}
+
+.loading-animation {
+	background: url(../images/progress_bar/loading_animationbar.gif) no-repeat top center;
+}
+
+.columns-1 #column-1 {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.columns-2 #column-1 {
+	padding-left: 5px;
+}
+
+.columns-2 #column-2 {
+	padding-right: 5px;
+}
+
+.columns-3 #column-1 {
+	padding-left: 5px;
+}
+
+.columns-3 #column-3 {
+	padding-right: 5px;
+}
+
+.columns-1-2-1 #column-1, .columns-1-2-1 #column-4 {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.columns-1-2-1 #column-2 {
+	padding-left: 5px;
+}
+
+.columns-1-2-1 #column-3 {
+	padding-right: 5px;
+}
+
+.columns-2-2 #column-1, .columns-2-2 #column-2 {
+	padding-left: 5px;
+}
+
+.columns-2-2 #column-4 {
+	padding-right: 5px;
+}
+
+#navigation {
+	margin:0pt 0pt 0.5em;
+	min-height:2.2em;
+	overflow:hidden;
+	padding-right:0pt;
+	width:975px;
+}
+
+#navigation ul {
+	width: 975px;
+	background: transparent url(../images/navigation/navigation_bg.gif) repeat-x 100% 100%;
+}
+
+.ie6 #navigation, .ie6 #navigation ul {
+	width:975px;
+}
+
+#navigation li {
+	background: transparent url(../images/navigation/navigation_bg.gif) repeat-x 100% 100%;
+	margin-right: 0;
+	padding: 5px 25px 0 0;
+}
+
+#navigation li.selected {
+	padding: 14px 25px 0 0;
+}
+
+#navigation li a {
+	background: transparent url(../images/navigation/navigation_bg.gif) repeat-x 0 100%;
+	padding: 7pt 5pt 1em 1.5em;
+	color: #665544;
+	font-size: 9pt;
+}
+
+#navigation li a:hover {
+	color: #FCFAEA;
+}
+
+#navigation li a span {
+	background: transparent none;
+}
+
+#navigation li.selected a {
+	padding-top: 0;
+}
+
+#navigation li.selected a span {
+	background: transparent none;
+	font-size: 9pt;
+	color: #665544;
+	text-decoration: underline;
+}
+
+#navigation li.selected a:hover {
+	padding-bottom: 1em;
+	color: #FCFAEA;
+}
+
+#navigation li a:hover span {
+	background: transparent none;
+}
+
+.js #navigation .enter-page {
+	background: transparent url(../images/navigation/navigation_bg.gif) repeat-x 0 100%;
+	padding: 5px 2em 13px 1.5em;
+}
+
+.ie6.js #navigation .enter-page {
+	background: transparent url(../images/navigation/navigation_bg.gif) repeat-x 0 100%;
+	padding: 0.5em 2em 10px 1.5em;
+}
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: transparent none;
+}
+
+.portlet {
+	border: 1px solid #665544;
+}
+
+.portlet-topper {
+	border-bottom: 1px solid #665544;
+	background: transparent url(../images/navigation/navigation_bg.gif) repeat-x right top;
+}
+
+.portlet-title {
+	background: transparent url(../images/navigation/navigation_bg.gif) repeat-x left top;
+	display:block;
+	font-size:14px;
+	font-weight:bold;
+	min-width:50%;
+	padding:8px 0pt 15px 10px;
+}
+
+.portlet-title img {
+	display:none;
+}
+
+.portlet-section-header {
+	background: #E4DBCF;
+	color: #665544;
+}
+
+.portlet-section-header th {
+	background:#665544 none;
+	border-bottom:1px solid #CCCCCC;
+	color:#FCFAEA;
+	font-weight:bold;
+	padding:0.3em 1em;
+}
+
+.portlet-section-body td {
+	background: #E4DBCF;
+	color: #CC6600;
+}
+
+.tabs {
+	border-bottom: none;
+	padding: 0 0 2.6em 0;
+}
+
+.tabs li {
+	background: #E4DBCF none;
+	margin-right: 0;
+}
+
+.tabs li a, .tabs li span {
+	background: #E4DBCF none;
+	padding: 0 1em 0;
+	border-right: none;
+	color: #CC6600;
+}
+
+.tabs li.current {
+	background: #695847 none;
+	top: 0;
+}
+
+.tabs li.current a, .tabs li.current span {
+	background: #695847 none;
+	color: #FCFAEA;
+	padding: 0 2em;
+}
+
+.ie .tabs li.current {
+	top: 0;
+}
+
+.js .lfr-dock.interactive-mode h2 {
+	background: url(../images/dock/menu_barbrown.png) no-repeat 100% -30px;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	background: url(../images/dock/menu_barbrown.png) no-repeat 0 0;
+}
+
+
+
+
