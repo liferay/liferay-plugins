@@ -9,6 +9,11 @@
 	</types>
 	<tags>
 		<tag>liferay</tag>
+		<tag>1-column</tag>
+		<tag>2-columns</tag>
+		<tag>3-columns</tag>
+		<tag>1-2-1-columns</tag>
+		<tag>2-2-columns</tag>
 	</tags>
 	<short-description>
 	This theme was written by Jenna Smith, http://www.oswd.org/design/information/id/2527
