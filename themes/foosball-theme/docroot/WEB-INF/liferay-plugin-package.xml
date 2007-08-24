@@ -9,6 +9,11 @@
 	</types>
 	<tags>
 		<tag>sample</tag>
+		<tag>1-column</tag>
+		<tag>2-columns</tag>
+		<tag>3-columns</tag>
+		<tag>1-2-1-columns</tag>
+		<tag>2-2-columns</tag>
 	</tags>
 	<short-description>
 		Based on the favorite table soccer game. Anybody up for some doubles?
