@@ -1,0 +1,208 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+
+/* General */
+
+* {
+ margin : 0 ;
+ padding : 0 ;
+ list-style-type : none ;
+}
+
+html {
+ background: #fff none ;
+}
+body {
+font-family:TrebuchetMS,Arial,sans-serif;
+font-size:85%;
+font-size-adjust:none;
+font-style:normal;
+font-variant:normal;
+font-weight:normal;
+line-height:1.3;
+text-align:left;
+}
+a , a:link , a:visited , a:active {
+}
+a:hover {
+}
+
+
+/* Header */
+
+div#wrapper {
+ margin : 0 auto ;
+ background : #fff none ;
+ z-index : 0;
+}
+div#wrapper div#banner {
+ width : 100% ;
+ background : #bbd9ee none ;
+ height : 85px ;
+ z-index : 0;
+}
+
+div#wrapper div#banner h1.logo {
+ color : #fff ;
+ padding : 30px 0 20px 0 ;
+ font-family : Arial,Arial,Sans-Serif ;
+ font-size : 26px ;
+ text-align : center ;
+ position : absolute ;
+ left : 25% ;
+}
+div#wrapper div#banner h1.logo a {
+ background : transparent none ;
+ color : #fff ;
+ font-size : 100%;
+ text-indent : 0 ;
+ text-decoration : none ;
+}
+
+div#add-page { position : absolute ; top : 6px ; left : 6px ; }
+
+/* Navigation */
+
+div#navigation {
+ padding : 0 60px 0 30% ;
+ margin : 0;
+ height : 24px ;	
+ background : #bbd9ee none ;
+}
+div#navigation ul {
+ background : transparent none ; height : 24px ;
+}
+div#navigation ul li {
+ float : left ; 
+ display : inline ;
+ background : #ccc ;s
+}
+div#navigation ul li a {
+ display : block ;
+ margin : 0 1px ;
+ padding : 3px 14px ;
+ background : #e7f1f8 ;
+ border-top : 1px solid #fff ;
+ border-left : 1px solid #fff ;
+ border-right : 1px solid #fff ;
+ font-weight : normal ;
+ text-decoration : none ;
+}
+div#navigation ul li a:hover {
+ background : #fff ;
+}
+div#navigation ul li a span {
+ padding : 8px 12px 8px 12px ;
+ color : #000 ;
+ font-size : 12px ;
+ font-family : 'trebuchet ms',arial,sans-serif ;
+}
+div#navigation ul li a span:hover {
+ background : transparent none ;
+ color : #000 ;
+ text-decoration : none ;
+}
+
+
+/* Main Content + Porlets */
+
+div#content-wrapper {
+ padding : 7px 11px ;
+}
+table#layout-grid {
+ width : 100% ;
+}
+div.portlet {
+ background : transparent none ;
+ margin : 6px 2px ;
+}
+div.portlet div.portlet-topper {
+ background : transparent none ;
+}
+div.portlet div.portlet-topper span.portlet-title {
+ background : transparent none ;
+}
+div.portlet div.portlet-content {
+ background : transparent none ;
+ font-size : 12px ;
+}
+
+
+/* Top Thingie ( sorry, I don't know the name, I'm new here :P ) */
+div.lfr-dock {
+}
+div.lfr-dock div.lfr-dock-list-container {
+ color : #000 ;
+}
+.js .lfr-dock.interactive-mode h2 , .js .lfr-dock.interactive-mode h2 span {
+ font-size : 16px ;
+ background-image : url('../images/portlet/menu_bar.png') ;
+}
+.js .lfr-dock.interactive-mode .lfr-dock-list-container {
+  margin-top : -6px ;
+  font-size : 12px ;
+}
+
+div.my-places-toggle { font-size : 12px ; }
+
+li.sortable-item { position : relative ; }
+li.sortable-item span.delete-tab { position : absolute ; top : 4px ; left : 12px ; font-size : 8px ; }
+li.sortable-item span.delete-tab:hover { cursor : pointer ; }
+
+
+/* Fun with Columns */
+
+.columns-1 #column-1 div.portlet { background : #eee ; }
+
+.columns-2 #column-1 div.portlet { background : #eee ; }
+.columns-2 #column-2 div.portlet { background : #fff6bf ; }
+
+.columns-3 #column-1 div.portlet ,
+.columns-3 #column-2 div.portlet { background : #eee ; }
+.columns-3 #column-3 div.portlet { background : #fff6bf ; }
+
+.columns-1-2-1 #column-1 div.portlet ,
+.columns-1-2-1 #column-2 div.portlet { background : #eee ; }
+.columns-1-2-1 #column-3 div.portlet { background : #fff6bf ; }
+
+.columns-2-2 #column-1 div.portlet ,
+.columns-2-2 #column-2 div.portlet { background : #eee ; }
+.columns-2-2 #column-4 div.portlet { background : #fff6bf ; }
+
+/* New Lists */
+ul.tabs li {
+ display : inline ;
+ padding : 0 12px ;
+}
+
+
+/* Footer */
+div#footer {
+ margin : 0 30px 0 30px ;
+ padding : 26px 0 36px 0;
+ background : transparent none;
+ color : #A8A88D ;
+ text-align : center ;
+}
+div#footer a {
+ color : #8C8C73 ;
+ text-decoration : underline ;
+}
+
+
+/* House Cleaning */
+div#navigation li {
+ margin : auto ;
+}
+div#navigation ul li , div#navigation ul li.selected {
+ margin : auto ;
+ padding : 0 ;
+ background : transparent none ;
+}
+#navigation li a span {
+ background : none ;
+ padding : auto ;
+}
+
+
+/* The End - Thank You */
