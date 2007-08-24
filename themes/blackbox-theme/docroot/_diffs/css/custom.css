@@ -1,0 +1,227 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+body {
+	background: #000000 url(../images/common/body_bg.png) repeat-x fixed left bottom;
+}
+
+a {
+	color: #666666;
+}
+
+a:hover {
+	color: #CCCCCC;
+	text-decoration: underline;
+}
+
+#wrapper {
+	width: 975px;
+	background: #010101;
+	border-left: 3px double #333333;
+	border-right: 3px double #333333;
+	border-bottom: 3px double #333333;
+}
+
+#banner {
+	background: transparent url(../images/common/banner_bg.jpg) no-repeat scroll 100% 100%;
+	height: 240px;
+}
+
+#banner .logo {
+	background: transparent none;
+}
+
+.loading-animation {
+	background: url(../images/progress_bar/loading_animationbar.gif) no-repeat top center;
+}
+
+.columns-1 #column-1 {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.columns-2 #column-1 {
+	padding-left: 5px;
+}
+
+.columns-2 #column-2 {
+	padding-right: 5px;
+}
+
+.columns-3 #column-1 {
+	padding-left: 5px;
+}
+
+.columns-3 #column-3 {
+	padding-right: 5px;
+}
+
+.columns-1-2-1 #column-1, .columns-1-2-1 #column-4 {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.columns-1-2-1 #column-2 {
+	padding-left: 5px;
+}
+
+.columns-1-2-1 #column-3 {
+	padding-right: 5px;
+}
+
+.columns-2-2 #column-1, .columns-2-2 #column-2 {
+	padding-left: 5px;
+}
+
+.columns-2-2 #column-4 {
+	padding-right: 5px;
+}
+
+#navigation {
+	padding-right: 0;
+	width: 975px;
+}
+
+#navigation ul {
+	background:#010101 none;
+	float:left;
+	min-height:2em;
+}
+
+#navigation li {
+	background: #010101 none;
+	border-right:1px solid #333333;
+	display:inline;
+	float:left;
+	margin-right:0pt;
+	padding:0pt 0.5em 10pt 0pt;
+	position:relative;
+}
+
+#navigation li a {
+	background: #010101 none;
+	display:block;
+	padding:1em 2em 0pt 1em;
+	text-decoration:none;
+}
+
+#navigation li a:hover {
+	padding-bottom: 0;
+	background-position: left bottom;
+}
+
+#navigation li a span {
+	background: transparent none;
+	font-size: 12px;
+}
+
+#navigation li.selected a {
+	padding-top: 1em;
+}
+
+#navigation li.selected a span {
+	background: transparent none;
+	font-size: 12px;
+	color: #CCCCCC;
+}
+
+#navigation li.selected a:hover {
+	padding-bottom: 0;
+}
+
+#navigation li a:hover span {
+	background: transparent none;
+	color: #CCCCCC;
+}
+
+.js #navigation .enter-page {
+	background: #010101 none;
+	padding:0.5em 2em 1pt 1.5em;
+}
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: #010101 none;
+}
+
+.portlet {
+	border:3px double #333333;
+	margin:10px 0pt;
+	padding-right:10px;
+	text-align:left;
+}
+
+.portlet-topper {
+	border-bottom:1px solid #333333;
+}
+
+.portlet-title {
+	padding: 8px 0 10px 10px;
+	color: #777777;
+	font-size: 15px;
+}
+
+.portlet-title img {
+	display: none;
+}
+
+.portlet-content {
+	background-position:left bottom;
+	color:#777777;
+	padding:10px 5px 25px 15px;
+}
+
+.portlet-section-header {
+	background: #DDDDDD;
+}
+
+.portlet-section-header th {
+	color: #666666;
+	background: #000000 none;
+}
+
+.portlet-section-body td {
+	background:#666666 none repeat scroll 0% 50%;
+	border-top:1px solid #BFBFBF;
+	color:#CCCCCC;
+	padding:0.3em 1em;
+}
+
+.tabs {
+	border-bottom: none;
+	padding: 0 0 2.6em 0;
+}
+
+.tabs li {
+	background: #666666 none;
+	margin-right: 0;
+	color: #CCCCCC;
+}
+
+.tabs li a, .tabs li span {
+	background: #666666 none;
+	padding: 0 1em 0;
+	color: #CCCCCC;
+}
+
+.tabs li.current {
+	background: #666666 none;
+	top: 0;
+	color: #CCCCCC;
+}
+
+.tabs li.current a, .tabs li.current span {
+	background: #666666 none;
+	color: #DDDDDD;
+	padding: 0 2em;
+}
+
+.ie .tabs li.current {
+	top: 0;
+}
+
+.js .lfr-dock.interactive-mode h2 {
+	background: url(../images/dock/menu_bar_grey.png) no-repeat 100% -30px;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	background: url(../images/dock/menu_bar_grey.png) no-repeat 0 0;
+}
