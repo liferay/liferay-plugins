@@ -100,6 +100,7 @@ body {
 
 #content-wrapper {
 	margin-top: -5px;
+	width: 1100px;
 }
 
 /* ---------- Main navigation ---------- */
@@ -212,7 +213,7 @@ body {
 	padding-right: 10px;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	width: 100%;
+	width: 1081px;
 }
 
 /* ---------- 2 columns ---------- */
