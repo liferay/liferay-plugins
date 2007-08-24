@@ -5,5 +5,13 @@
 	<compatibility>
 		<version>4.3.1</version>
 	</compatibility>
-	<theme id="nautica05" name="Nautica 05" />
+	<theme id="nautica05" name="Nautica 05">
+		<color-scheme id="01" name="Light">
+			<css-class>light</css-class>
+			<color-scheme-images-path>${images-path}/color_schemes/${css-class}</color-scheme-images-path>
+		</color-scheme>
+		<color-scheme id="02" name="Dark">
+			<css-class>dark</css-class>
+		</color-scheme>
+	</theme>
 </look-and-feel>

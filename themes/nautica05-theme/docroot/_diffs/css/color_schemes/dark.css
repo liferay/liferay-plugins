@@ -1,0 +1,112 @@
+/* ---- GLOBAL ---- */
+.dark {
+	background: transparent url(../../images/common/background_dark.gif) repeat top center;
+}
+
+.dark #wrapper {
+	background: #FFFFFF url(../../images/common/header_bg_dark.gif) repeat-x top center;
+}
+
+/* ---- BANNER ---- */
+.dark #banner {
+	background: transparent url(../../images/common/banner_bg_dark.jpg) no-repeat;
+	border-top: 2px solid #48525B;
+}
+
+/* ---- NAVIGATION ---- */
+.dark #navigation {
+	background: url(../../images/navigation/bg_dark.gif);
+	border-top: 7px solid #000000;
+}
+
+.dark #navigation li a {
+	color: #FFFFFF;
+}
+
+.dark #navigation li.selected {
+	background: #F15B8B none no-repeat 50% 100%;
+}
+
+.dark .js #add-page a {
+	color: #FFFFFF;
+}
+
+/* ---- PORTLETS ---- */
+
+.dark .portlet-title {
+	color: #536C71;
+}
+
+.dark .portlet-content {
+	border-top: 12px solid #DDDDDD;
+}
+
+.dark .portlet-section-header {
+	background: #919496 none;
+}
+
+.dark .portlet-section-body td {
+	background: #DDDDDD none;
+}
+
+.dark .portlet-section-header th {
+	border-bottom: 1px solid #767B7E;
+}
+
+/* ---- TABS ---- */
+.dark .tabs {
+	border-bottom: 1px solid #F15B8B;
+}
+
+.dark .tabs li {
+	background: url(../../images/common/header_bg_dark.gif);
+}
+
+.dark .tabs li a, .dark .tabs li span {
+	background: url(../../images/common/header_bg_dark.gif);
+	color: #FFFFFF;
+}
+
+.dark .tabs li.current {
+	background: #F15B8B none;
+}
+
+.dark .tabs li.current a, .dark .tabs li.current span {
+	background: #F15B8B none;
+	color: #FFFFFF;
+}
+
+/* ---- FORMS ---- */
+.dark input[type="text"], .dark input[type="password"], .dark input[type="file"], .dark input[type="submit"], .dark input[type="button"], .dark input[type="reset"], .dark select, .dark textarea, .dark .textarea {
+	background: #EEEEEE;
+	border: 1px solid #888888;
+	color: #888888;
+}
+
+.dark input[type="submit"], .dark input[type="button"], .dark input[type="reset"] {
+	background: #CCCCCC;
+	border: 1px solid;
+	color: #FFFFFF;
+	cursor: pointer;
+	padding: 2px 5px;
+}
+
+.dark input.focus, .dark textarea.focus, .dark .ie6 input.focus, .dark .ie6 textarea.focus {
+	background: #E7F1F3 none repeat scroll 0%;
+	border: 1px solid #000000;
+	color: #000000;
+}
+
+.dark .ie6 input.text, .dark input.password, .dark .ie6 input.submit, .dark .ie6 input.file, .dark .ie6 input.button {
+	background: #EEEEEE;
+	border: 1px solid #888888;
+	color: #888888;
+}
+
+.dark .ie6 input.submit, .dark .ie6 input.button {
+	background: #FC3307;
+	border-color: #FF7800 rgb(105, 19, 0) rgb(105, 19, 0) rgb(255, 120, 0);
+	border-style: solid;
+	border-width: 1px;
+	color: #FFFFFF;
+}
