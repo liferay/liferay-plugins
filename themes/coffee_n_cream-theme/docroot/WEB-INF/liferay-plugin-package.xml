@@ -8,7 +8,12 @@
 		<type>theme</type>
 	</types>
 	<tags>
-		<tag>liferay</tag>
+		<tag>OSWD</tag>
+		<tag>1-column</tag>
+		<tag>2-columns</tag>
+		<tag>3-columns</tag>
+		<tag>1-2-1-columns</tag>
+		<tag>2-2-columns</tag>
 	</tags>
 	<short-description>
 	Found on http://www.oswd.org, designed by Arcsin, http://arcsin.se
