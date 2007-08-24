@@ -34,14 +34,46 @@ a:hover {
 	background: url(../images/progress_bar/loading_animation2.gif) no-repeat top center;
 }
 
+.columns-1 #column-1 {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
 .columns-2 #column-1 {
-	padding-left: 5pt;
+	padding-left: 5px;
 }
 
 .columns-2 #column-2 {
-	padding-right: 5pt;
-	padding-top: 115px;
-	background: transparent url(../images/common/strawberries.jpg) no-repeat 50% 0%;
+	padding-right: 5px;
+}
+
+.columns-3 #column-1 {
+	padding-left: 5px;
+}
+
+.columns-3 #column-3 {
+	padding-right: 5px;
+}
+
+.columns-1-2-1 #column-1, .columns-1-2-1 #column-4 {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.columns-1-2-1 #column-2 {
+	padding-left: 5px;
+}
+
+.columns-1-2-1 #column-3 {
+	padding-right: 5px;
+}
+
+.columns-2-2 #column-1, .columns-2-2 #column-2 {
+	padding-left: 5px;
+}
+
+.columns-2-2 #column-4 {
+	padding-right: 5px;
 }
 
 #navigation {
