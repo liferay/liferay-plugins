@@ -1,0 +1,196 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+a {
+	color: #000000;
+}
+
+a:hover {
+	color: #CC0000;
+}
+
+#wrapper {
+	border-left: 3px double #000000;
+	border-right: 3px double #000000;
+	margin: 0pt auto;
+	width: 975px;
+}
+
+#banner {
+	background: #FFFFFF url(../images/common/banner_bg.jpg) no-repeat bottom right;
+	height: 210px;
+}
+
+#banner .logo {
+	background: #FFFFFF none;
+}
+
+.loading-animation {
+	background: url(../images/progress_bar/loading_animationbar.gif) no-repeat top center;
+}
+
+.columns-1 #column-1 {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.columns-2 #column-1 {
+	padding-left: 5px;
+}
+
+.columns-2 #column-2 {
+	padding-right: 5px;
+}
+
+.columns-3 #column-1 {
+	padding-left: 5px;
+}
+
+.columns-3 #column-3 {
+	padding-right: 5px;
+}
+
+.columns-1-2-1 #column-1, .columns-1-2-1 #column-4 {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.columns-1-2-1 #column-2 {
+	padding-left: 5px;
+}
+
+.columns-1-2-1 #column-3 {
+	padding-right: 5px;
+}
+
+.columns-2-2 #column-1, .columns-2-2 #column-2 {
+	padding-left: 5px;
+}
+
+.columns-2-2 #column-4 {
+	padding-right: 5px;
+}
+
+#navigation {
+	padding-right: 0;
+	width: 975px;
+}
+
+#navigation li {
+	background: #FFFFFF none;
+	color: #444444;
+	border-bottom: 1px solid #CC0000;
+}
+
+#navigation li a {
+	background:#FFFFFF none repeat scroll 0%;
+	display:block;
+	padding:0.5em 25px 0.5em 1.5em;
+	text-decoration:none;
+}
+
+#navigation li a:hover {
+	padding-bottom: 0.5em;	
+}
+
+#navigation li:hover {
+	border-bottom: 1px solid #DDDDDD;
+}
+
+#navigation li a span {
+	background: none;
+}
+
+#navigation li.selected a span {
+	background: none;
+}
+
+#navigation li a:hover span {
+	background: none;
+}
+
+.js .lfr-dock.interactive-mode h2 {
+	background: url(../images/dock/menu_bar_red.png) no-repeat 100% -30px;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	background: url(../images/dock/menu_bar_red.png) no-repeat 0 0;
+}
+
+.js #navigation .enter-page {
+	background: transparent none;
+}
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: #FFFFFF none;
+}
+
+.portlet-topper {
+	border-bottom: 1px solid #CC0000;
+}
+
+.portlet-title {
+	background-position:left top;
+	color:#444444;
+	display:block;
+	font-size:10pt;
+	font-weight:bold;
+	min-width:50%;
+	padding:8px 0pt 8px 10px;
+}
+
+.portlet-title img {
+	display: none;
+}
+
+.portlet-section-header {
+	background:#CC0000 none repeat scroll 0% 50%;
+	color:#FFFFFF;
+	padding:1px 0pt 0pt;
+}
+
+.portlet-section-header th {
+	border-bottom: 1px solid #CCCCCC;
+	color: #FFFFFF;
+}
+
+.portlet-section-body {
+	background:#DDDDDD none repeat scroll 0% 50%;
+	color:#444444;
+}
+
+.tabs {
+	border-bottom: none;
+	padding: 0 0 2.6em 0;
+}
+
+.tabs li {
+	background: #FFFFFF none;
+	margin-right: 0;
+	color: #444444;
+}
+
+.tabs li a, .tabs li span {
+	background: #FFFFFF none;
+	padding: 0 1em 0;
+	color: #444444;
+	font-size: 11px;
+}
+
+.tabs li.current {
+	background: #FFFFFF none;
+	top: 0;
+	color: #444444;
+}
+
+.tabs li.current a, .tabs li.current span {
+	background: #FFFFFF none;
+	color: #CC0000;
+	padding: 0 2em;
+}
+
+.ie .tabs li.current {
+	top: 0;
+}
+
+
+
