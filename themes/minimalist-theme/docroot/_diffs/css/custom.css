@@ -33,13 +33,11 @@ a:hover {
 div#wrapper {
  margin : 0 auto ;
  background : #fff none ;
- z-index : 0;
 }
 div#wrapper div#banner {
  width : 100% ;
  background : #bbd9ee none ;
  height : 85px ;
- z-index : 0;
 }
 
 div#wrapper div#banner h1.logo {
@@ -59,7 +57,7 @@ div#wrapper div#banner h1.logo a {
  text-decoration : none ;
 }
 
-div#add-page { position : absolute ; top : 6px ; left : 6px ; }
+div#add-page { position : absolute ; top : 6px ; left : 6px ; z-index : 20 ; }
 
 /* Navigation */
 
@@ -121,6 +119,7 @@ div.portlet div.portlet-topper {
 }
 div.portlet div.portlet-topper span.portlet-title {
  background : transparent none ;
+ display : block ;
 }
 div.portlet div.portlet-content {
  background : transparent none ;
