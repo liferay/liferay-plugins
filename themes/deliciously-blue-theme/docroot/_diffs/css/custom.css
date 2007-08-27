@@ -32,13 +32,15 @@
 
 /* ---- NAVIGATION ---- */
 #navigation {
-	background: url(../images/navigation/navigation_bg.png) no-repeat;
 	width: auto;
-	height: 21px;
 	min-height: 0;
 	margin: 0;
 	padding: 0 0 0 50px;
 	border-bottom: 4px solid #2763A5;
+}
+
+#navigation ul { 
+	padding: 1px;
 }
 
 #navigation li {
@@ -50,15 +52,19 @@
 }
 
 #navigation li a {
-	background: url(../images/navigation/bg.gif) no-repeat left top;
-	padding: 0 15px;
 	color: #FFFFFF;
+	padding: 0;
 	font-size: 11px;
 }
 
 #navigation li a span {
-	background: none;
-	padding: 0;
+	background: url(../images/navigation/bg.gif) no-repeat left top;
+	font-size: 1em;
+	padding: 3px 15px;
+}
+
+.ie6 #navigation li a span {
+	padding: 4px 15px;
 }
 
 #navigation li a:hover {
@@ -66,7 +72,7 @@
 }
 
 #navigation li a:hover span {
-	background: none;
+	background: url(../images/navigation/bg.gif) no-repeat left top;
 }
 
 #navigation li.selected {
@@ -87,8 +93,17 @@
 	padding: 4px 15px;
 }
 
+.ie6 #navigation li.selected a span {
+	padding: 5px 15px;
+}
+
 #navigation li.selected a:hover {
 	padding-bottom: 0;
+}
+
+
+#navigation li.selected a:hover span {
+	background: url(../images/navigation/bg.gif) no-repeat left -41px;
 }
 
 .js #navigation .enter-page {
@@ -159,13 +174,13 @@
 }
 
 .ie .tabs li {
-	line-height: 15px;
+	line-height: 14px;
 }
 
 .ie .tabs li.current {
-	top: 0.2em;
+	top: 0.15em;
 }
 
 .ie .tabs li {
-	top: 0.2em;
+	top: 0.15em;
 }
