@@ -73,7 +73,7 @@
 #navigation li.selected a:hover {
  padding : 0 ;
 }
-#navigation li a {
+#navigation li a , #navigation li a span {
  display : inline ;
  padding : 0 ;
  background : transparent none no-repeat scroll 0% 0% ;
