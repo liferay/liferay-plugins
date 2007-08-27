@@ -1,5 +1,7 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
+
+/* ---- GLOBAL ---- */
 body {
 	background: #000000 url(../images/common/body_bg.png) repeat-x fixed left bottom;
 }
@@ -21,6 +23,7 @@ a:hover {
 	border-bottom: 3px double #333333;
 }
 
+/* ---- BANNER ---- */
 #banner {
 	background: transparent url(../images/common/banner_bg.jpg) no-repeat scroll 100% 100%;
 	height: 240px;
@@ -30,127 +33,93 @@ a:hover {
 	background: transparent none;
 }
 
-.loading-animation {
-	background: url(../images/progress_bar/loading_animationbar.gif) no-repeat top center;
+
+/* ---- LAYOUT ---- */
+#layout-grid .lfr-column {
+	padding: 0;
 }
 
-.columns-1 #column-1 {
-	padding-left: 5px;
-	padding-right: 5px;
-}
-
-.columns-2 #column-1 {
-	padding-left: 5px;
-}
-
-.columns-2 #column-2 {
-	padding-right: 5px;
-}
-
-.columns-3 #column-1 {
-	padding-left: 5px;
-}
-
-.columns-3 #column-3 {
-	padding-right: 5px;
-}
-
-.columns-1-2-1 #column-1, .columns-1-2-1 #column-4 {
-	padding-left: 5px;
-	padding-right: 5px;
-}
-
-.columns-1-2-1 #column-2 {
-	padding-left: 5px;
-}
-
-.columns-1-2-1 #column-3 {
-	padding-right: 5px;
-}
-
-.columns-2-2 #column-1, .columns-2-2 #column-2 {
-	padding-left: 5px;
-}
-
-.columns-2-2 #column-4 {
-	padding-right: 5px;
-}
-
+/* ---- NAVIGATION ---- */
 #navigation {
-	padding-right: 0;
-	width: 975px;
-}
-
-#navigation ul {
-	background:#010101 none;
-	float:left;
-	min-height:2em;
+	background: url(../images/navigation/bg.png) repeat-x;
+	border-bottom: 1px solid #1A1A1A;
+	width: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 #navigation li {
-	background: #010101 none;
-	border-right:1px solid #333333;
-	display:inline;
-	float:left;
-	margin-right:0pt;
-	padding:0pt 0.5em 10pt 0pt;
-	position:relative;
+	overflow: hidden;
+	background: none;
+	border-right: 1px solid #1A1A1A;	
+	padding: 12px 25px;
+	margin-right: 1px;
 }
 
 #navigation li a {
-	background: #010101 none;
-	display:block;
-	padding:1em 2em 0pt 1em;
-	text-decoration:none;
+	background: none;
+	padding: 0;
+	color: #FFFFFF;
+	font-size: 11px;
+}
+
+#navigation li a span {
+	background: none;
+	padding: 0;
 }
 
 #navigation li a:hover {
 	padding-bottom: 0;
-	background-position: left bottom;
 }
 
-#navigation li a span {
-	background: transparent none;
-	font-size: 12px;
+#navigation li a:hover span {
+	background: none;
+}
+
+#navigation li.selected {
+	background: url(../images/navigation/bg.png) no-repeat 50% 100%;
+	padding-bottom: 11px;
 }
 
 #navigation li.selected a {
-	padding-top: 1em;
+	padding: 0;
 }
 
 #navigation li.selected a span {
-	background: transparent none;
-	font-size: 12px;
-	color: #CCCCCC;
+	background: none;
+	font-size: 1em;
+	padding: 0;
 }
 
 #navigation li.selected a:hover {
 	padding-bottom: 0;
 }
 
-#navigation li a:hover span {
-	background: transparent none;
-	color: #CCCCCC;
-}
-
 .js #navigation .enter-page {
-	background: #010101 none;
-	padding:0.5em 2em 1pt 1.5em;
+	background: none;
+	padding: 0;
 }
 
+.js #add-page {
+	float: right;
+	font-weight: bold;
+	padding-top: 8px;
+}
+
+.js #add-page a {
+	color: #FFFFFF;
+}
+
+/* ---- PORTLET ---- */
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
-	background: #010101 none;
+	background: none;
 }
 
 .portlet {
-	border:3px double #333333;
-	margin:10px 0pt;
+	background: #010101 url(../images/portlet/portlet_bg.gif) repeat-x;
+	margin: 10px 5px;
 	padding-right:10px;
 	text-align:left;
-}
-
-.portlet-topper {
-	border-bottom:1px solid #333333;
 }
 
 .portlet-title {
@@ -185,39 +154,51 @@ a:hover {
 	padding:0.3em 1em;
 }
 
+.loading-animation {
+	background: url(../images/progress_bar/loading_animationbar.gif) no-repeat top center;
+}
+
+/* ---- TABS ---- */
 .tabs {
-	border-bottom: none;
-	padding: 0 0 2.6em 0;
+	border-bottom: 1px solid #222222;
+	padding: 0 0 18px 1em;
 }
 
 .tabs li {
-	background: #666666 none;
-	margin-right: 0;
-	color: #CCCCCC;
+	background: url(../images/navigation/bg.png);
+	line-height: 15px;
+	margin-right: 0.3em;
+	top: 0.15em;
 }
-
 .tabs li a, .tabs li span {
-	background: #666666 none;
-	padding: 0 1em 0;
-	color: #CCCCCC;
+	background: url(../images/navigation/bg.png);
+	padding: 0.15em 1em 0;
+	color: #FFFFFF;
 }
 
 .tabs li.current {
-	background: #666666 none;
-	top: 0;
-	color: #CCCCCC;
+	background: url(../images/navigation/bg.png) bottom;
 }
 
 .tabs li.current a, .tabs li.current span {
-	background: #666666 none;
-	color: #DDDDDD;
-	padding: 0 2em;
+	background: url(../images/navigation/bg.png) bottom;
+	padding: 0.1em 1em;
+	color: #FFFFFF;
+}
+
+.ie .tabs li {
+	line-height: 15px;
 }
 
 .ie .tabs li.current {
-	top: 0;
+	top: 0.2em;
 }
 
+.ie .tabs li {
+	top: 0.2em;
+}
+
+/* ---- DOCK ---- */
 .js .lfr-dock.interactive-mode h2 {
 	background: url(../images/dock/menu_bar_grey.png) no-repeat 100% -30px;
 }
