@@ -63,9 +63,12 @@
 #navigation {
 	background: url(../images/navigation/navigation_bg.png) no-repeat;
 	width: 100%;
-	height: 35px;
 	margin: 0;
-	padding: 0;
+	padding: 0 0 10px;
+}
+
+#navigation ul {
+	float: right;
 }
 
 #navigation li {
@@ -124,7 +127,7 @@
 }
 
 .js #add-page {
-	float: right;
+	float: left;
 	font-weight: bold;
 	padding-top: 8px;
 }
