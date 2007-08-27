@@ -36,6 +36,10 @@ body {
 	padding: 0;
 }
 
+#navigation ul {
+	float: right;
+}
+
 #navigation li {
 	overflow: hidden;
 	background: none;
@@ -93,7 +97,7 @@ body {
 }
 
 .js #add-page {
-	float: right;
+	float: left;
 	font-weight: bold;
 	padding-top: 8px;
 }
