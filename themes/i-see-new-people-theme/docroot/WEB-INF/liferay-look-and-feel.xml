@@ -3,7 +3,7 @@
 
 <look-and-feel>
 	<compatibility>
-		<version>4.3.*</version>
+		<version>4.3.1</version>
 	</compatibility>
-	<theme id="i_see_new_people" name="I See New People" />
+	<theme id="i-see-new-people" name="I See New People" />
 </look-and-feel>
