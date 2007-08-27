@@ -14,7 +14,7 @@ body {
 #banner {
 	background: url(../images/common/main.jpg) no-repeat scroll 1px top;
 	height: 55em;
-	width: 100%;
+	width: 1000px;
 	position: relative;
 }
 
@@ -44,7 +44,7 @@ table {
 #content-wrapper {
 	background: url(../images/common/top_content.jpg) no-repeat 0px 0px;
 	border-collapse: collapse;
-	width: 90%;
+	width: 900px;
 	margin-top: -15px;
 	padding-top: 50px;
 }
@@ -90,16 +90,17 @@ table {
 /* ---------- Main navigation ---------- */
 
 #navigation {
-	background: url(../images/common/linkbar.jpg) no-repeat -35px 0px;
+	background: url(../images/common/linkbar.jpg) no-repeat -46px 0px;
 	margin-top: 0px;
 	min-height: 2.2em;
 	overflow: hidden;
 	padding-right: 0;
 	height: 66px;
-	width: 93%;
+	width: 900px;
 }
 
 .ie6 #navigation {
+	background-position: -47px 0px;
 	height: 55px;
 	padding-bottom: 9px;
 }
@@ -176,7 +177,7 @@ table {
 	padding-top: 0.3em;
 	position: absolute;
 	top: 570px;
-	right: 644px;
+	right: 640px;
 	z-index: 20;
 }
 
@@ -310,7 +311,14 @@ table {
 .tabs {
 	border-bottom: 1px solid #BCC1B7;
 	margin: 0 0 1.5em 0;
-	padding: 0 0 2.6em 1em;
+}
+
+.tabs li a, .tabs li span {
+	background: none;
+	display: block;
+	float: left;
+	padding: 0.35em 1em 0;
+	text-decoration: none;
 }
 
 
