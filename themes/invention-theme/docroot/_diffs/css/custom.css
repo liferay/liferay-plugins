@@ -97,8 +97,12 @@ body{
 	margin-top: 15px;
 }
 
-#column-1 {
-	border-right: 1px solid #7689A2;	
+#column-2 {
+	border-left: 1px solid #7689A2;	
+}
+
+#column-3 {
+	border-left: 1px solid #7689A2;	
 }
 
 
