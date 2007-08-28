@@ -7,6 +7,7 @@ var LiferayNoir = function () {
 			instance.handleLastChild();
 			instance.handleSearchForm();
 			instance.fixAddPage();
+			instance.resetMenu();
 		},
 		
 		fixAddPage: function() {
@@ -38,6 +39,26 @@ var LiferayNoir = function () {
 			
 			searchInput.hide();
 			searchInput.before(searchLink);
+		},
+		
+		resetMenu: function() {
+			var instance = this;
+			
+			var nav = jQuery('#navigation');
+			var ul = nav.find('> ul');
+			var lis = ul.find('> li');
+
+			var num = 0;
+			lis.each(function() {
+				num += this.offsetWidth;
+			});
+			var margin = Math.floor(((ul.width() - num)/lis.length) );
+			lis.css(
+				{
+					'margin-right': margin,
+					'margin-left': 0
+				}
+			);
 		}
 	};
 }();
