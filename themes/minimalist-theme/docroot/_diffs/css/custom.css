@@ -54,13 +54,13 @@
  margin : 0 ;
  padding : 0 ;
  width : auto ;
- min-height : 100% ;
+ min-height : 0% ;
  border : 1px solid #ccc ;
 }
 #navigation ul {
  /* float : none ; */
  width : auto ;
- min-height : 100% ;
+ min-height : 0% ;
 }
 #navigation li {
  /* float : none ; */
@@ -163,7 +163,6 @@ line-height:normal;
 }
 #navigation ul {
  float : left ;
- width : 800px ;
  position : absolute ;
  left : 50% ;
  margin-left : -200px ;
