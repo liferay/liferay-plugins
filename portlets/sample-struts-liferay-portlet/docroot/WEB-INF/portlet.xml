@@ -3,7 +3,7 @@
 <portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd" version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd">
 	<portlet>
 		<portlet-name>sample_struts_liferay_portlet</portlet-name>
-		<display-name>Sample Struts Liferay Portlet</display-name>
+		<display-name>Sample Struts Liferay</display-name>
 		<portlet-class>com.sample.strutsliferay.portlet.SampleStrutsLiferayPortlet</portlet-class>
 		<init-param>
 			<name>edit-action</name>
