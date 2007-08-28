@@ -232,6 +232,6 @@ padding : 12px 38px 0 0 ;
 .tabs {
  border : 0 ;
 }
-.tabs li.current {
- background:transparent url('../images/custom/tabs_bg.png') repeat scroll 0pt -100px;
+.tabs li , .tabs li a, .tabs li span , .tabs li.current , .tabs li.current a, .tabs li.current span , .tabs li.current a, .tabs li.current span {
+background-image : url('../images/custom/tabs_bg.png') ;
 }
