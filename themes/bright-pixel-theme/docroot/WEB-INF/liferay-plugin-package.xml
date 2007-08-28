@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 4.3.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_4_3_0.dtd">
+
+<plugin-package>
+	<name>Bright Pixel Theme</name>
+	<module-id>liferay-inc/bright-pixel-theme/4.3.0.1/war</module-id>
+	<types>
+		<type>theme</type>
+	</types>
+	<tags>
+		<tag>liferay</tag>
+		<tag>1-column</tag>
+		<tag>2-columns</tag>
+	</tags>
+	<short-description>
+	The Bright Pixel Theme was created by Arcsin. Arcsin's url is http://www.arcsin.se.
+	</short-description>
+	<change-log>
+		Adapted to the latest version of Liferay.
+	</change-log>
+	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
+	<author>Liferay, Inc.</author>
+	<licenses>
+		<license osi-approved="true">Unknown</license>
+	</licenses>
+	<liferay-versions>
+		<liferay-version>4.3.1</liferay-version>
+	</liferay-versions>
+</plugin-package>
