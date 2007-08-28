@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 4.3.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_4_3_0.dtd">
+
+<plugin-package>
+	<name>Blue Pigment Theme</name>
+	<module-id>liferay-inc/bluepigment-theme/4.3.0.1/war</module-id>
+	<types>
+		<type>theme</type>
+	</types>
+	<tags>
+		<tag>liferay</tag>
+	</tags>
+	<short-description>
+		A web 2.0, blue theme design. Has a two-column, fluid layout with a static right sidebar.
+	</short-description>
+	<change-log>
+		Adapted to the latest version of Liferay.
+	</change-log>
+	<page-url>http://www.styleshout.com/free-templates.php</page-url>
+	<author>Liferay, Inc.</author>
+	<licenses>
+		<license osi-approved="true">Creative Commons Attribution 2.5 License</license>
+	</licenses>
+	<liferay-versions>
+		<liferay-version>4.3.1</liferay-version>
+	</liferay-versions>
+</plugin-package>
