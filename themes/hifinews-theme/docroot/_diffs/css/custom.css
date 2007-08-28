@@ -94,7 +94,9 @@ margin-left : 20px ;
  font-family : arial,helvetica,sans-serif ;
  width : 100% ;
 }
-#navigation ul li {
+#navigation ul li , #navigation ul li.selected {
+ display : block ;
+ float : left ; 
  height : 59px ;
 }
 #add-page { position : absolute ; top : 42px ; right : 60px ; }
