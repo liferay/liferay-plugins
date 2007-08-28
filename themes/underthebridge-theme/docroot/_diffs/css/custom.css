@@ -1,0 +1,140 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* Reset Insignificant Styles */
+html {
+ overflow-y : scroll ;
+}
+#wrapper , #banner , #banner .logo , #banner .logo a ,
+#navigation , #navigation ul , #navigation ul li , #navigation li.selected ,
+#navigation ul li a , #navigation li a span , #navigation ul li.selected a , #navigation ul li.selected a span , 
+#navigation ul li a:hover , #navigation li a:hover span , #navigation ul li.selected a:hover , #navigation ul li.selected a:hover span ,
+.js #add-page , .js #add-page a , .js #add-page a span , .js #add-page a:hover , .js #add-page a:hover span ,
+.js #navigation .enter-page , .js #navigation .enter-page a , .js #navigation .enter-page a:hover ,
+#content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content
+{
+ display : inline ;
+ float : none ;
+ margin : 0 ;
+ padding : 0 ;
+ padding-left : 0 ;
+ width : auto ;
+ min-width : 0 ;
+ height : auto ;
+ min-height : 0 ;
+ background : transparent none no-repeat scroll 0% 0% ;
+ font-size : 100% ;
+ font-size-adjust : none ;
+ font-stretch : normal ;
+ font-style : normal ;
+ font-variant : normal ;
+ font-weight : normal ;
+ text-indent : 0 ;
+ text-decoration : none ;
+ line-height : normal ;
+}
+
+/* Handy Defaults */
+#banner , #navigation , #navigation ul , .portlet { background-color : transparent ; }
+#wrapper , #banner , #navigation , #content-wrapper , 
+.portlet , .portlet-topper , .portlet-title , .portlet-content { display : block ; }
+#layout-grid .lfr-column  { margin : 0 ; padding : 0 ;}
+.portlet-icons { top : 0 ; right : 0 ; }
+.tabs { border : 0 ; }
+/* What is Where?  Uncomment me to find out...
+.portlet { background : #ccc ; margin : 12px 6px ; }
+#banner , #navigation { background : #ccc ; margin : 12px 6px 0 6px ; }
+*/
+
+
+/* Under the Bridge */
+body {
+ background-color : #6B6D82 ;
+ font-family : Georgia,"Times New Roman",Times,serif ;
+ font-size : 62.5% ;
+}
+#wrapper {
+ margin : 0 auto ;
+ width : 797px ;
+ background-image : url('../images/custom/header.jpg') ;
+ color : #797D88 ;
+ font-size : 1.2em ;
+}
+#banner {
+ height : 249px ;
+}
+#banner .logo a {
+ display : block ;
+ color : #fff ;
+ font-size : 1.6em ;
+ font-style : italic ;
+ font-weight : bold ;
+ padding-right : 90px ;
+ padding-top : 200px ;
+ text-align : right ;
+}
+#navigation {
+ background-image : url('../images/custom/linkbar_bg.jpg') ;
+ height : 79px ;
+}
+#navigation ul {
+ color : #fff;
+ float : left;
+ margin-left : 100px !important;
+ margin-top : 14px;
+}
+#navigation ul {
+ display : block ;
+}
+#navigation ul li {
+ display : block ;
+}
+.js .lfr-dock.interactive-mode {
+ right : 42px ;
+ top : 12px ;
+}
+#navigation ul li a span , #navigation ul li.selected a span ,
+#navigation ul li a:hover span , #navigation ul li.selected a:hover span ,
+.js #add-page a span , .js #add-page a:hover span
+{
+ display : block ;
+ float : left ;
+ padding : 0.2em 1em ;
+ color : #fff ;
+ text-decoration : none ;
+}
+.js #add-page a span , .js #add-page a:hover span {
+ margin-top : 14px;
+}
+
+#navigation ul li a:hover span , #navigation ul li.selected a:hover span  , .js #add-page a:hover span
+{
+ color : #E3E9F1 ;
+}
+#content-wrapper , #portlet-wrapper- {
+ background-image : url('../images/custom/content_tile.jpg') ;
+ background-repeat : repeat-y ;
+ padding-left : 80px ;
+ padding-right : 80px ;
+}
+#column-1 .portlet { margin-right : 3px ; }
+#column-2 .portlet { margin-left : 3px ; }
+.portlet {
+ background : #eaeef7 none ;
+}
+.portlet-title {
+ color : #787C87 ;
+ font-size : 1.4em ;
+ font-style : italic ;
+ font-weight : bold ;
+ padding-bottom : 7px ;
+ padding-top : 7px ;
+}
+#footer {
+ background-image : url('../images/custom/footer.jpg') ;
+ font-size : 0.9em ;
+ height : 63px ;
+ padding-left : 80px ;
+ padding-right : 80px ;
+ padding-top : 80px ;
+ text-align : center ;
+}
