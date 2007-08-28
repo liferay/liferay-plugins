@@ -63,7 +63,7 @@ $theme.include($top_messages_include)
 
 			$theme.wrapPortlet("portlet.vm", $content_include)
 		#end
-		
+
 		<div id="footer">
 			<!-- PLACE YOUR PERSONAL FOOTER HERE! -->
 			Copyright © 2006 Your Name here, All Rights Reserved. | Designed by: <a href="http://www.alltechnologydirectory.com/">Technology Directory</a>
