@@ -1,0 +1,288 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---------- Main content body ---------- */
+
+#wrapper {
+	background: #222;
+	margin: 60px auto;
+	width: 640px;
+	padding: 15px;
+}
+
+body {
+	background: url(../images/common/bg.gif) repeat;
+	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+}
+
+/* ---------- Wrapper ---------- */
+
+#content-wrapper {
+	background: #F7F7F7;
+	border-collapse: collapse;
+	width: 639px;
+	margin-left: 0px;
+	margin-top: 1px;
+	padding-top: 0px;
+}
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: url(../images/common/header.jpg) no-repeat scroll 0 100%;
+	height: 15em;
+	position: relative;
+}
+
+#banner .logo {
+	background: none;
+	display: block;
+	float: left;
+	font-size: 2em;
+	padding: 1.25em 0.6em 1.45em;
+	position: absolute;
+	top: 40px;
+	left: 200px;
+}
+
+/* ------------- Navigation -------------- */
+
+
+#navigation {
+	background: #89866F;
+	margin: 0 0px 0em;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding-right: none;
+	width: 629px;
+	border-right: 1px solid #696755;
+	border-top: 1px solid #696755;
+}
+
+#navigation ul {
+	float: left;
+	min-height: 2em;
+	width: auto;
+}
+
+#navigation li {
+	background: none;
+	display: inline;
+	float: left;
+	margin-right: 0px;
+	margin-top: .5px;
+	padding: 0;
+	position: relative; 
+}
+
+#navigation li a {
+	background: none;
+	display: block;
+	padding: 0 2.5em 3px 1em;
+	text-decoration: none;
+	font-size: 8pt;
+	font-family: 'Lucida Sans Unicode' sans-serif;
+	color: #000;
+}
+
+#navigation li a:hover {
+	background: #9C997C;
+	padding: 0 2.5em 3px 1em;
+}
+
+#navigation li a span {
+	background: none;
+	text-decoration: none;
+}
+
+#navigation li.selected a {
+	padding: 0 2.5em 3px 1em;;
+}
+
+#navigation li.selected a span {
+	background: none;
+	font-size: 1em;
+	font-weight: bold;
+}
+
+#navigation li.selected a:hover {
+	padding: 0 2.5em 3px 1em;
+}
+
+#navigation li a:hover span {
+	background: none;
+}
+
+.js #add-page {
+	float: left;
+	font-weight: bold;
+	padding-top: 0.3em;
+	position: absolute;
+	left: 300px;
+	top: 225px;
+}
+
+.js #add-page a {
+	color: #F7F7F7;
+	text-decoration: none;
+}
+
+.js .delete-tab {
+	background: url(../images/common/remove.png) no-repeat 42%;
+	cursor: pointer;
+	display: block;
+	height: 7px;
+	position: absolute;
+	right: 2px;
+	text-indent: -9999em;
+	top: 0px;
+	width: 8px;
+}
+
+/* ---------- Dock with Javascript ---------- */
+
+.js .lfr-dock.interactive-mode {
+	float: right;
+	min-width: 150px;
+	position: relative;
+	right: 5px;
+	top: 5px;
+}
+
+.js .lfr-dock.interactive-mode h2 {
+	background: #F7F7F7;
+	border: 1px outset;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0 29px 0 0;
+	position: relative;
+	z-index: 82;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	background: none;
+	color: #000;
+	display: block;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0.5em 0.5em 0.5em 2em;
+}
+
+.js .lfr-dock.interactive-mode ul {
+	background: url(../images/dock/menu_bg.png) no-repeat 0 0;
+	border-left: 20px solid #151515;
+	display: none;
+	float: none;
+}
+
+.lfr-dock h2 {
+	background: url(../images/navigation/welcome_message.png) no-repeat 0 50%;
+	font-size: 1.2em;
+	margin-bottom: 0.5em;
+	padding-left: 2em;
+	text-align: center;
+}
+
+/* ---------- Portlet wrapper and icons ---------- */
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: #F7F7F7;
+}
+
+.portlet {
+	margin: 0 0 5px;
+	padding-right: 10px;
+	text-align: left;
+}
+
+.portlet-topper {
+	background-position: right top;
+	margin-right: -10px;
+	padding-right: 40px;
+	position: relative;
+}
+
+.portlet-title {
+	font-family: 'Lucida Sans Unicode',sans-serif;
+	color: #999944;
+	background-position: top left;
+	display: block;
+	font-weight: bold;
+	font-size: 1.2em;
+	min-width: 50%;
+	padding: 8px 0 4px 10px;
+}
+
+#footer {
+	background: url(../images/common/bgfooter.gif) repeat-x;
+	margin-top: 1px;
+	height: 4em;
+	width: 639px;
+}
+
+.tabs {
+	border-bottom: 1px solid #7C7C7C;
+	margin: 0 0 1.5em 0;
+	padding: 0 0 2.6em 1em;
+}
+
+.tabs li {
+	background: url(../images/common/tabs_bg.gif) 100% -25px;
+	border-top: 1px solid #BEBEBE;
+	display: inline;
+	float: left;
+	line-height: 2.25;
+	margin-right: 0.8em;
+	padding: 0;
+	position: relative;
+	text-decoration: none;
+}
+
+.tabs li a, .tabs li span {
+	background: url(../images/common/tabs_bg.gif) 0 -150px;
+	display: block;
+	float: left;
+	padding: 0.35em 1em 0;
+	text-decoration: none;
+	color: #323232;
+}
+
+.tabs li.current {
+	background: url(../images/common/tabs_bg.gif) 100% -35px;
+	font-weight: bold;
+	border: 1px solid #BEBEBE;
+	border-bottom: none;
+	top: 0.15em;
+}
+
+.portlet-section-body td {
+	background: #696952;
+	border-top: 1px solid #BFBFBF;
+	padding: 0.3em 1em;
+}
+
+.portlet-section-body {
+	background: #E7EDF4;
+	color: #F7F7F7;
+}
+
+.portlet-section-header th {
+	border-bottom: 1px solid #ccc;
+	color: #333;
+	font-weight: bold;
+	padding: 0.3em 1em;
+}
+
+.portlet-section-header {
+	background: #999944;
+	padding: 1px 0 0;
+}
+
+table {
+	clear: both;
+}
+
+.columns-2 #column-2 {
+	background: url(../images/common/bg_column.gif) repeat;
+	padding-right: 5px;
+	padding-top: 1px;
+}
