@@ -90,7 +90,14 @@
 		<zip
 			basedir="${docroot.dir}"
 			destfile="${plugin.file}"
+			excludes="WEB-INF/lib/util-bridges.jar,WEB-INF/lib/util-java.jar,WEB-INF/lib/util-taglib.jar"
 		/>
+
+		<!--<zip
+			basedir="${docroot.dir}"
+			destfile="${plugin.file}"
+			excludes="WEB-INF/lib/commons-logging.jar,WEB-INF/lib/log4j.jar,WEB-INF/lib/util-bridges.jar,WEB-INF/lib/util-java.jar,WEB-INF/lib/util-taglib.jar"
+		/>-->
 	</target>
 
 	<target name="deploy" depends="war">
