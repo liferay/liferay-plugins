@@ -22,6 +22,7 @@ html {
  height : auto ;
  min-height : 0 ;
  background : transparent none no-repeat scroll 0% 0% ;
+ color : inherit ;
  font-size : 100% ;
  font-size-adjust : none ;
  font-stretch : normal ;
@@ -67,6 +68,9 @@ a , a:link , a:visited , a:hover { text-decoration : none ; color : #fff ; } a:h
 .js .lfr-dock.interactive-mode {
  right : 32px ;
  top : 32px ;
+}
+.lfr-dock-list li a {
+ color : #000 ;
 }
 
 #banner {
