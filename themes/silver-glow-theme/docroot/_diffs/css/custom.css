@@ -1,0 +1,380 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---------- Main content body ---------- */
+
+#wrapper {
+	background: #FFF url(../images/common/curve_top.jpg) no-repeat top;
+	margin: 10px auto;
+	width: 747px;
+}
+
+.left_shade {
+	background-image: url(../images/common/curve_left.jpg);
+	background-repeat: no-repeat;
+	margin-top: 5px;
+	float: left;
+	height: 600px;
+	width: 5px;
+	position: absolute;
+	top: 20px;
+	left: 334px;
+}
+
+.ie6.left_shade {
+	position: absolute;
+	top: 20px;
+	left: 335px;	
+}
+
+.right_shade {
+	background-image: url(../images/common/curve_right.jpg);
+	background-repeat: no-repeat;
+	float: right;
+	height: 600px;
+	width: 5px;
+	margin-top: 5px;
+	margin-left: 2px;
+	position: absolute;
+	top: 20px;
+	right: 334px;
+}
+
+.ie6.right_shade {
+	position: absolute;
+	top: 20px;
+	right: 337px;
+}
+
+#content-wrapper {
+	background: url(../images/common/curve_mid.jpg) repeat-y left;
+	margin-top: 30px;
+	margin-left: 0px;
+}
+
+.ie6 #portlet-wrapper- {
+	margin-top: 20px;
+}
+
+/* ---------- 2 columns ---------- */
+.columns-2 #column-1 {
+	padding-left: 0;
+	width: 227px;
+}
+
+.columns-2 #column-2 {
+	padding-right: 0;
+	width: 445px;
+}
+
+
+body {
+	background: url(../images/common/bg.jpg) repeat-x top;
+	font: 62.5%/1.6em 'Verdana','Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+}
+
+table {
+	clear: both;
+}
+
+#footer {
+	background: url(../images/common/curve_btm.jpg) no-repeat;
+}
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: url(../images/common/nav_block.gif) no-repeat scroll 23% 100%;
+	width: 226px;
+	padding: 60px;
+	position: relative;
+	top: 60px;
+	left: 0px;
+}
+
+#banner .logo {
+	background: none;
+	display: block;
+	float: left;
+	font-size: 2em;
+	padding: 1.25em 0.6em 1.45em;
+	position: absolute;
+	top: -60px;
+	left: 15px;
+}
+
+/*--------- portlet ------------- */
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: none;
+}
+
+.portlet {
+	margin: 0 24px 10px;
+	padding-right: 10px;
+	text-align: left;
+}
+
+.portlet-topper {
+	background-position: right top;
+	margin-right: -10px;
+	padding-right: 40px;
+	position: relative;
+}
+
+.portlet-title {
+	background: url(../images/common/dots-hr.gif) repeat-x;
+	background-position: bottom left;
+	color: #006699;
+	display: block;
+	font-weight: bold;
+	font-size: 12pt;
+	text-align: left;
+	letter-spacing: -1px;
+	min-width: 50%;
+	padding: 8px 0 4px 10px;
+}
+
+.portlet-section-header {
+	background: #8D7351;
+	padding: 1px 0 0;
+}
+
+.portlet-section-body td {
+	background: #BCEBF6;
+	border-top: 1px solid #BFBFBF;
+	padding: 0.3em 1em;
+}
+
+
+/* ---------- Main navigation ---------- */
+
+#navigation {
+	background: url(../images/common/side_banner_bg.jpg) no-repeat 100% 100%;
+	margin: -177px 26.5em 0em;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding-bottom: 0em;
+	width: 447px;
+	height: 191px;
+}
+
+.ie6 #navigation {
+	background-position: 100% 125px;
+	padding: 30em;
+	padding-bottom: 1em;
+	position: absolute;
+	top: 120px;
+	right: 103px;
+	width: 447px;
+}
+
+#navigation ul {
+	float: right;
+	min-height: 2em;
+	width: auto;
+	position: relative;
+	top: 100px;
+	left: 0px;
+}
+
+.ie6 #navigation ul {
+	position: relative;
+	top: -72px;
+	left: 290px;
+}
+
+#navigation li {
+	background: none;
+	display: inline;
+	float: left;
+	margin-right: 0em;
+	padding: 0;
+}
+
+#navigation li a {
+	background: none;
+	display: block;
+	color: #006699;
+	padding: 0 5px 0.5em 1em;
+	text-decoration: none;
+	font-family: 'Verdana';
+	font-weight: regular;
+	font-size: 13pt;
+	letter-spacing: -1px;
+}
+
+#navigation li a:hover {
+	padding-bottom: 0em;
+	color: #003366;
+}
+
+#navigation li a span {
+	background-image: url(../images/common/nav_buddy.png);
+	background-position: 7px 12px;
+	background-repeat: no-repeat;
+	padding-left: 20px;
+	padding-right: 5px;
+	padding-top: 5px;
+	padding-bottom: 0px;
+	text-decoration: none;
+}
+
+.ie6 #navigation li a span {
+	background-image: url(../images/common/nav_buddy.jpg);
+}
+
+#navigation li.selected a {
+	padding-top: 0;
+}
+
+#navigation li.selected a span {
+	background-image: url(../images/common/nav_buddy.png);
+	background-position: 7px 12px;
+	background-repeat: no-repeat;
+	padding-left: 20px;
+	padding-right: 5px;
+	padding-top: 5px;
+	padding-bottom: 0px;
+	font-size: 13pt;
+	font-weight: bold;
+}
+
+.ie6 #navigation li.selected a span {
+	background-image: url(../images/common/nav_buddy.jpg);
+}
+
+#navigation li.selected a:hover {
+	padding-bottom: 0.5em;
+}
+
+#navigation li a:hover span {
+	background-image: url(../images/common/nav_buddy.png);
+	background-position: 7px -11px;
+	background-repeat: no-repeat;
+	padding-left: 20px;
+	padding-right: 5px;
+	padding-top: 0px;
+	padding-bottom: 40px;
+}
+
+.ie6 #navigation li a:hover span {
+	background-image: url(../images/common/nav_buddy.jpg);
+}
+
+/* ---------- Javascript ---------- */
+
+.js .lfr-dock.interactive-mode h2 span {
+	background: url(../images/dock/menu_bar.png) no-repeat 0 0;
+	color: #fff;
+	display: block;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0.5em 0px 0.5em 1em;
+	width: 170px;
+}
+
+.js .lfr-dock.interactive-mode h2 {
+	background: url(../images/dock/menu_bar.png) no-repeat 100% -30px;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0 29px 0 0;
+	position: relative;
+	right: 88px;
+	z-index: 82;
+}
+
+.js .lfr-dock.interactive-mode ul {
+	background: url(../images/dock/menu_bg.png) no-repeat 0 0;
+	border-left: 20px solid #5A462B;
+	display: none;
+	float: none;
+}
+
+.js .lfr-dock.expanded .lfr-dock-list-container {
+	background: #60738C;
+	border: 1px solid #B5B9BB;
+	border-top: none;
+	position: relative;
+	top: -2px;
+	right: 93px;
+	margin-left: 5px;
+}
+
+.js .delete-tab {
+	background: url(../images/common/remove.png) no-repeat 42%;
+	cursor: pointer;
+	display: block;
+	height: 7px;
+	position: absolute;
+	right: -5px;
+	text-indent: -9999em;
+	top: 2px;
+	width: 8px;
+}
+
+.js #add-page {
+	float: left;
+	font-weight: bold;
+	padding-top: 0.3em;
+	position: absolute;
+	top: 175px;
+	right: 240px
+}
+
+.ie6.js #add-page {
+	position: absolute;
+	top: 230px;
+	right: -130px;
+}
+
+.js #navigation .enter-page {
+	background: none;
+	padding: 0.5em 2em 0.7em 1.5em;
+}
+
+/*-------------Dock no JS---------------*/
+
+.lfr-dock h2 {
+	background: url(../images/navigation/welcome_message.png) no-repeat 0 50%;
+	font-size: 1.2em;
+	margin-bottom: 0.5em;
+	padding-left: 2em;
+	text-align: center;
+}
+
+
+/*-----------tabs-----------*/
+.tabs {
+	border-bottom: 1px solid #7C7C7C;
+	margin: 0 0 1.5em 0;
+	padding: 0 0 2.6em 1em;
+}
+
+.tabs li {
+	background: url(../images/common/tabs_bg.gif) 100% -25px;
+	border-top: 1px solid #BEBEBE;
+	display: inline;
+	float: left;
+	line-height: 2.25;
+	margin-right: 0.8em;
+	padding: 0;
+	position: relative;
+	text-decoration: none;
+}
+
+.tabs li a, .tabs li span {
+	background: url(../images/common/tabs_bg.gif) 0 -150px;
+	display: block;
+	float: left;
+	padding: 0.35em 1em 0;
+	text-decoration: none;
+	color: #323232;
+}
+
+.tabs li.current {
+	background: url(../images/common/tabs_bg.gif) 0% 100px;
+	font-weight: bold;
+	border: 1px solid #BEBEBE;
+	border-bottom: none;
+	top: 0.15em;
+}
