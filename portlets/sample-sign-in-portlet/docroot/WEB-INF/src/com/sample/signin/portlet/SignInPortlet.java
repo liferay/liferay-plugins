@@ -22,32 +22,23 @@
 
 package com.sample.signin.portlet;
 
-import com.liferay.portal.kernel.util.MethodInvoker;
-import com.liferay.portal.kernel.util.MethodWrapper;
-import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.liferay.portal.kernel.portlet.NoRedirectActionResponse;
+import com.liferay.portal.kernel.struts.PortletActionInvoker;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.kernel.portlet.NoRedirectActionResponse;
-import com.liferay.portal.model.Company;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 
 import java.io.IOException;
-import java.util.Map;
-import java.util.HashMap;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
-import com.liferay.portal.kernel.util.NullWrapper;
-import com.liferay.portal.kernel.portlet.LiferayWindowState;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.kernel.struts.PortletActionInvoker;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.liferay.portal.security.auth.Authenticator;
 
 /**
  * <a href="SignInPortlet.java.html"><b><i>View Source</i></b></a>
