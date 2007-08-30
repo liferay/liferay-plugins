@@ -45,7 +45,9 @@ $theme.include($top_messages_include)
 		#parse ("$full_templates_path/dock.vm")
 
 		#if ($update_available_url)
-			<a class="update-available" href="$update_available_url">#language ("updates-available")</a>
+			<div class="popup-alert-notice">
+				<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>
+			</div>
 		#end
 	</div>
 
