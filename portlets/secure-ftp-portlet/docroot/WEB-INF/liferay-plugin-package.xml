@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Secure FTP Portlet</name>
-	<module-id>glub/secure-ftp-portlet/4.3.1.1/war</module-id>
+	<module-id>liferay/secure-ftp-portlet/4.3.1.1/war</module-id>
 	<types>
 		<type>portlet</type>
 	</types>

@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Google Maps Portlet</name>
-	<module-id>alfresco/google-maps-portlet/4.3.1.1/war</module-id>
+	<module-id>liferay/google-maps-portlet/4.3.1.1/war</module-id>
 	<types>
 		<type>portlet</type>
 	</types>

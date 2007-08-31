@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Lazy Days Theme</name>
-	<module-id>liferay-inc/lazy-days-theme/4.3.0.1/war</module-id>
+	<module-id>liferay/lazy-days-theme/4.3.0.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>

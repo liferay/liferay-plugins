@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>TerraFirma Theme</name>
-	<module-id>liferay-inc/terrafirma-theme/4.3.0.1/war</module-id>
+	<module-id>liferay/terrafirma-theme/4.3.0.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>

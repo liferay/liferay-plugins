@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Google Search Portlet</name>
-	<module-id>alfresco/google-search-portlet/4.3.1.1/war</module-id>
+	<module-id>liferay/google-search-portlet/4.3.1.1/war</module-id>
 	<types>
 		<type>portlet</type>
 	</types>

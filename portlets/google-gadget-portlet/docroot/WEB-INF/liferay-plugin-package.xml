@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Google Gadget Portlet</name>
-	<module-id>alfresco/google-gadget-portlet/4.3.1.1/war</module-id>
+	<module-id>liferay/google-gadget-portlet/4.3.1.1/war</module-id>
 	<types>
 		<type>portlet</type>
 	</types>

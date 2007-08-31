@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Black Box Theme</name>
-	<module-id>liferay-inc/blackbox-theme/4.3.0.1/war</module-id>
+	<module-id>liferay/blackbox-theme/4.3.0.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>

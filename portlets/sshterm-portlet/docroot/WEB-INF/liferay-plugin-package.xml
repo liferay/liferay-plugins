@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>SSHTerm Portlet</name>
-	<module-id>sshtools/sshterm-portlet/4.3.1.1/war</module-id>
+	<module-id>liferay/sshterm-portlet/4.3.1.1/war</module-id>
 	<types>
 		<type>portlet</type>
 	</types>

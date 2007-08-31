@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>SSHVnc Portlet</name>
-	<module-id>sshtools/sshvnc-portlet/4.3.1.1/war</module-id>
+	<module-id>liferay/sshvnc-portlet/4.3.1.1/war</module-id>
 	<types>
 		<type>portlet</type>
 	</types>

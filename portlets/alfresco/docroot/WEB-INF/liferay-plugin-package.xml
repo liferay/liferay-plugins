@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Alfresco Client</name>
-	<module-id>alfresco/client/4.3.1.1/war</module-id>
+	<module-id>liferay/alfresco/4.3.1.1/war</module-id>
 	<recommended-deployment-context>alfresco</recommended-deployment-context>
 	<types>
 		<type>portlet</type>
