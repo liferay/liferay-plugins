@@ -472,6 +472,7 @@ a:hover {
 
 .portlet-section-body td {
 	background: #212C3A;
+	border-bottom: 1px solid #1C2633;
 	border-top: 1px solid #151C25;
 	padding: 0.3em 1em;
 }
@@ -484,6 +485,7 @@ a:hover {
 
 .portlet-section-alternate td {
 	background: #3A4E66;
+	border-bottom: 1px solid #1C2633;
 	border-top: 1px solid #151C25;
 	padding: 0.3em 1em;
 }
