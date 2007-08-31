@@ -1,0 +1,214 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* Reset Insignificant Styles */
+html {
+ overflow-y : scroll ;
+}
+#wrapper , #banner , #banner .logo , #banner .logo a ,
+#navigation , #navigation ul , #navigation ul li , #navigation li.selected ,
+#navigation ul li a , #navigation li a span , #navigation ul li.selected a , #navigation ul li.selected a span , 
+#navigation ul li a:hover , #navigation li a:hover span , #navigation ul li.selected a:hover , #navigation ul li.selected a:hover span ,
+.js #add-page , .js #add-page a , .js #add-page a span , .js #add-page a:hover , .js #add-page a:hover span ,
+.js #navigation .enter-page , .js #navigation .enter-page a , .js #navigation .enter-page a:hover ,
+#content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content
+{
+ display : inline ;
+ float : none ;
+ margin : 0 ;
+ padding : 0 ;
+ padding-left : 0 ;
+ width : auto ;
+ min-width : 0 ;
+ height : auto ;
+ min-height : 0 ;
+ background : transparent none no-repeat scroll 0% 0% ;
+ font-size : 100% ;
+ font-size-adjust : none ;
+ font-stretch : normal ;
+ font-style : normal ;
+ font-variant : normal ;
+ font-weight : normal ;
+ text-indent : 0 ;
+ text-decoration : none ;
+ line-height : normal ;
+}
+
+/* Handy Defaults */
+#banner , #navigation , #navigation ul , .portlet { background-color : transparent ; }
+#wrapper , #banner , #navigation , #content-wrapper , 
+.portlet , .portlet-topper , .portlet-title , .portlet-content { display : block ; }
+#layout-grid .lfr-column  { margin : 0 ; padding : 0 ;}
+.portlet-icons { top : 0 ; right : 0 ; }
+.tabs { border : 0 ; }
+/* What is Where?  Uncomment me to find out...
+.portlet { background : #ccc ; margin : 12px 6px ; }
+#banner , #navigation { background : #ccc ; margin : 12px 6px 0 6px ; }
+*/
+
+
+/* HiFi News */
+body {
+ background : #CCCCCC none repeat scroll 0% ;
+ color : #555555 ;
+ font-family  : Verdana,Tahoma,arial,sans-serif ;
+ font-size : 70% ;
+ font-size-adjust : none ;
+ font-stretch : normal ;
+ font-style : normal ;
+ font-variant : normal ;
+ font-weight : normal ;
+ line-height : 1.5em ;
+ text-align : center ;
+}
+#wrapper {
+ background : #ccc url('../images/custom/content.jpg') repeat-y scroll center top ;
+ margin : 0 auto ;
+ text-align : left ;
+ width : 820px ;
+}
+#banner {
+ background : #CCCCCC url('../images/custom/header.jpg') no-repeat scroll center top ;
+ color : #FFFFFF ;
+ height : 103px ;
+ padding : 0pt ;
+ position : relative ;
+ width : 820px ;
+}
+#banner .logo a {
+color:#FFFFFF;
+font-family:'Trebuchet MS',Arial,Sans-serif;
+font-size:44px;
+font-size-adjust:none;
+font-stretch:normal;
+font-style:normal;
+font-variant:normal;
+font-weight:bolder;
+left:47px;
+letter-spacing:-2px;
+line-height:normal;
+margin:0pt;
+padding:0pt;
+position:absolute;
+text-transform:none;
+top:25px;
+}
+.js .lfr-dock.interactive-mode {
+ top : 30px ;
+ right : 30px ;
+}
+.js .lfr-dock.interactive-mode h2 span {
+ font-size : 14px ;
+}
+.js .lfr-dock.interactive-mode h2 ,
+.js .lfr-dock.interactive-mode h2 span {
+ background-image : url('../images/custom/menu_bar.png') ;
+}
+
+#navigation {
+ display : block ;
+ background:transparent url('../images/custom/menu.jpg') repeat-x scroll 0pt;
+ clear:both;
+ font-family:Verdana,Arial,Tahoma,Sans-serif;
+ font-size:12px;
+ font-size-adjust:none;
+ font-stretch:normal;
+ font-style:normal;
+ font-variant:normal;
+ font-weight:bold;
+ height:37px;
+ line-height:37px;
+ margin : 0 auto;
+ width : 780px;
+}
+#navigation ul {
+ margin-right : 10px ;
+ display:block;
+ float:right;
+ list-style-image : none;
+ list-style-position : outside;
+ list-style-type : none;
+}
+#navigation ul li , #navigation ul li.selected {
+ display:block;
+ float : left ;
+}
+.js #add-page a span , .js #add-page a:hover span {
+}
+#navigation ul li a span , #navigation ul li.selected a span ,
+#navigation ul li a:hover span , #navigation ul li.selected a:hover span ,
+.js #add-page a span , .js #add-page a:hover span
+{
+ display:block;
+ float:left;
+ color:#FFFFFF;
+ padding : 11px 10px ;
+ font-weight : bold ;
+ text-decoration : none ;
+}
+#navigation ul li.selected a span , #navigation ul li a:hover span , #navigation ul li.selected a:hover span  , .js #add-page a:hover span
+{
+ color : #D4E59F ;
+}
+#content-wrapper , #portlet-wrapper- {
+ clear : both ;
+ margin : 0 auto;
+ width : 760px ;
+}
+
+#column-1, #column-2 , #column-3 { background-color : #ffffff ; padding-top : 10px ; }
+.columns-2 #column-2 { background-color : #edfdce ; }
+.columns-3 #column-3 { background-color : #edfdce ; }
+.columns-2 #column-2 .portlet-title { background-image : none ; padding-left : 0 ; color:#728D26; }
+.columns-3 #column-2 .portlet-title { background-image : none ; padding-left : 0 ; color:#728D26; }
+
+
+.portlet {
+ margin : 20px 10px 30px 5px ;
+}
+.portlet-title {
+ background : transparent url('../images/custom/square-green.png') no-repeat scroll 3px 50% ;
+ border-bottom : 1px solid #EFF0F1;
+ color:#88AC0B;
+ font-family:'Trebuchet MS',Tahoma,Sans-serif;
+ font-size:140%;
+ font-size-adjust:none;
+ font-stretch:normal;
+ font-style:normal;
+ font-variant:normal;
+ font-weight:bold;
+ line-height:normal;
+ margin-top:10px;
+ padding:5px 0pt 5px 25px;
+}
+.portlet-content {
+ padding : 10px ;
+}
+#footer {
+ background : #ccc url('../images/custom/footer.jpg') no-repeat scroll center top ;
+ clear:both;
+ color:#C6DDEE;
+ font-size:92%;
+ height:65px;
+ text-align:center;
+ width:820px;
+ padding-top : 10px;
+}
+#footer a {
+ color : #fff ;
+ text-decoration : none ;
+}
+#footer a:hover {
+ text-decoration : underline ;
+}
+
+input[type="submit"], input[type="button"], input[type="reset"] {
+ background : #8EB50C url('../images/custom/button-bg.jpg') repeat-x scroll 0 0 ;
+ border : medium none ;
+ color : #FFFFFF ;
+ font-family : Arial,Sans-serif ;
+ font-size : 12px ;
+ font-weight : bold ;
+ height : 24px ;
+ margin : 0 ;
+ padding : 2px 3px ;
+}
