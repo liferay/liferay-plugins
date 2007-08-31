@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 4.3.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_4_3_0.dtd">
+
+<plugin-package>
+	<name>penChantforphotos Theme</name>
+	<module-id>liferay-inc/penchant-theme/4.3.0.1/war</module-id>
+	<types>
+		<type>theme</type>
+	</types>
+	<tags>
+		<tag>oswd</tag>
+		<tag>column-1</tag>
+	</tags>
+	<short-description>
+        My first attempt at an image-based layout, Penchant For Photos is ideal for a photo gallery or similar website. Penchant For Photos was tested in FF1.0.7 and IE6. It validates as standards-compliant for XHTML 1.1 and CSS.
+	</short-description>
+	<change-log>
+		Adapted to the latest version of Liferay.
+	</change-log>
+	<page-url>http://www.oswd.org/design/information/id/2619</page-url>
+	<author>acousticsam</author>
+	<licenses>
+		<license osi-approved="true">Unknown</license>
+	</licenses>
+	<liferay-versions>
+		<liferay-version>4.3.1</liferay-version>
+	</liferay-versions>
+</plugin-package>
