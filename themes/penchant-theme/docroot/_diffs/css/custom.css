@@ -182,3 +182,18 @@ body {
 .js .lfr-dock.interactive-mode h2 span {
  background-image : url('../images/custom/menu_bar.png') ;
 }
+
+.tabs li a, .tabs li span {
+ margin : 0 ;
+ height : auto ;
+}
+.tabs li {
+ text-indent : 0 ;
+ margin : 2px 4px ;
+ padding : 2px ;
+ height : auto ;
+ line-height : 1 ;
+}
+.tabs li.current a, .tabs li.current span {
+ padding : 0 ;
+}
