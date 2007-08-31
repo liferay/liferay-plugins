@@ -64,8 +64,7 @@ body {
  position : absolute ;
  top : 50% ;
  width : 96% ;
- overflow-x : hidden ;
- overflow-y : auto ;
+ overflow : hidden ;
 }
 #wrapper-extra {
  background : transparent url('../images/custom/background-page.png') no-repeat top left ;
@@ -141,7 +140,7 @@ body {
  height : 476px ;
  margin : 10px 2% 10px 52% ;
  overflow-x : hidden ;
- overflow-y : hidden ;
+ overflow-y : auto ;
  position : absolute ;
  width : 46% ;
 }
