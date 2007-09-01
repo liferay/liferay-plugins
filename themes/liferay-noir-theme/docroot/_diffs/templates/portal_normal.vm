@@ -90,7 +90,7 @@ $theme.include($top_messages_include)
 		<div class="footer-award-images">
 			#set ($journalArticleLocalService = $serviceLocator.findService("com.liferay.portlet.journal.service.JournalArticleLocalService"))
 
-			#set ($journalArticleId = "25101")
+			#set ($journalArticleId = "3588")
 
 			#if ($journalArticleLocalService.hasArticle($group_id, $journalArticleId))
 				$velocityPortletPreferences.setValue("portlet-setup-show-borders", "false")

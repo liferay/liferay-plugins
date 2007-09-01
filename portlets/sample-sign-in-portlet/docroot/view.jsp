@@ -119,7 +119,7 @@
 			</td>
 		</tr>
 
-		<c:if test='<%= company.isAutoLogin() && !request.isSecure() && !GetterUtil.getBoolean(PropsUtil.get("session.disabled")) %>'>
+		<c:if test='<%= company.isAutoLogin() && !GetterUtil.getBoolean(PropsUtil.get("session.disabled")) %>'>
 			<tr>
 				<td>
 					<span style="font-size: xx-small;">
