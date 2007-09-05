@@ -557,15 +557,17 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 	border:1px solid #3A4E66;
 }
 
-.message-board-thread-controls {
+#content-wrapper .message-board-thread-controls {
 	border: none;
 }
-.message-board-title {
+
+#content-wrapper .message-board-title {
 	color: #151C25;
 	padding: 5px;
+	border: none;
 }
 
-.toggle_id_message_boards_view_message_thread {
+#content-wrapper .toggle_id_message_boards_view_message_thread {
 	border: none;
 	margin-bottom: 10px;
 }
