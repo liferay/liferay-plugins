@@ -85,9 +85,18 @@ body {
 #navigation ul {
  display : block ;
 }
-#navigation ul li {
+#navigation ul li , #navigation ul li.selected {
  display : block ;
+ float : left;
 }
+
+ul.child-menu { display : none ; }
+
+#navigation ul .sort-helper {
+ background : transparent url('../images/custom/placeholder_bg.png') ;
+ border-bottom : 0 ;
+}
+
 .js .lfr-dock.interactive-mode {
  right : 42px ;
  top : 12px ;
