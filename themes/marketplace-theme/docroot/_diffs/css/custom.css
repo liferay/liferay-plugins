@@ -142,10 +142,13 @@ top:25px;
  text-transform:uppercase;
 }
 
-#navigation ul li , .js #add-page a {
+#navigation ul li , #navigation ul li.selected , .js #add-page a {
  margin:0pt;
  padding:0pt;
+ float : left ;
 }
+
+ul.child-menu { display : none ; }
 
 #navigation ul li a span , #navigation ul li.selected a span ,
 #navigation ul li a:hover span , #navigation ul li.selected a:hover span ,
