@@ -538,3 +538,34 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 .ie6 input.text, input.password, .ie6 input.submit, .ie6 input.file, .ie6 input.button {
 	border-color: #fff;
 }
+
+/* ---------- Message boards ---------- */
+
+.portlet-section-body .message-board-thread-top {
+	border-bottom-color: #3A4E66;
+}
+
+.portlet-section-alternate .message-board-thread-top {
+	border-bottom-color: #212C3A;
+}
+
+.message-board-message-container .portlet-section-alternate td {
+	border: 1px solid #212C3A;
+}
+
+.message-board-message-container .portlet-section-body td {
+	border:1px solid #3A4E66;
+}
+
+.message-board-thread-controls {
+	border: none;
+}
+.message-board-title {
+	color: #151C25;
+	padding: 5px;
+}
+
+.toggle_id_message_boards_view_message_thread {
+	border: none;
+	margin-bottom: 10px;
+}
