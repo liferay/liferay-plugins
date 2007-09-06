@@ -17,13 +17,13 @@
 	width: 5px;
 	position: absolute;
 	top: 20px;
-	left: 334px;
+	left: 338px;
 }
 
 .ie6.left_shade {
 	position: absolute;
 	top: 20px;
-	left: 335px;	
+	left: 252px;	
 }
 
 .right_shade {
@@ -36,13 +36,13 @@
 	margin-left: 2px;
 	position: absolute;
 	top: 20px;
-	right: 334px;
+	right: 338px;
 }
 
 .ie6.right_shade {
 	position: absolute;
 	top: 20px;
-	right: 337px;
+	right: 254px;
 }
 
 #content-wrapper {
@@ -164,7 +164,7 @@ table {
 	padding-bottom: 1em;
 	position: absolute;
 	top: 120px;
-	right: 103px;
+	right: 20px;
 	width: 447px;
 }
 
