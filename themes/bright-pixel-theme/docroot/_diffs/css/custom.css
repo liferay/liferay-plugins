@@ -216,8 +216,8 @@ body {
 
 .ie6.js #add-page {
 	position: absolute;
-	right: 294px;
-	top: 276px;
+	right: 210px;
+	top: 280px;
 }
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
@@ -226,7 +226,7 @@ body {
 }
 
 .portlet-title {
-	background: #FCFCFC url(../images/common/bgitem.gif) repeat-x scroll 0%;
+	background: none;
 	background-position: top left;
 	display: block;
 	font-weight: bold;
