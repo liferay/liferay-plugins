@@ -19,6 +19,7 @@
 				$theme.iconPortletCss()
 				$theme.iconConfiguration()
 				$theme.iconEdit()
+				$theme.iconEditDefaults()
 				$theme.iconEditGuest()
 				$theme.iconHelp()
 				$theme.iconPrint()
