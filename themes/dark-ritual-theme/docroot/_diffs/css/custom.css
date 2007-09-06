@@ -121,6 +121,12 @@ body {
 	top: 225px;
 }
 
+.ie6.js #add-page {
+	position: absolute;
+	left: 220px;
+	top: 225px;	
+}
+
 .js #add-page a {
 	color: #F7F7F7;
 	text-decoration: none;
