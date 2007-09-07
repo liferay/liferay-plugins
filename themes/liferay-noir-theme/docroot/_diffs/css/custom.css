@@ -176,7 +176,7 @@ a:hover {
 
 #navigation li {
 	font-size: 1.1em;
-	margin: 0 20px;
+	margin: 0 25px;
 }
 
 #navigation li.selected a,  #navigation li.selected a:hover {
@@ -571,6 +571,10 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 #content-wrapper .toggle_id_message_boards_view_message_thread {
 	border: none;
 	margin-bottom: 10px;
+}
+
+.message-board-message-container table {
+	color: #e7eef6;
 }
 
 /* ---------- Taglib styling ---------- */
