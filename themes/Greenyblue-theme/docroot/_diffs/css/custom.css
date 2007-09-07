@@ -1,0 +1,169 @@
+* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* Reset Insignificant Styles */
+html {
+ overflow-y : scroll ;
+}
+#wrapper , #banner , #banner .logo , #banner .logo a ,
+#navigation , #navigation ul , #navigation ul li , #navigation li.selected ,
+#navigation ul li a , #navigation li a span , #navigation ul li.selected a , #navigation ul li.selected a span , 
+#navigation ul li a:hover , #navigation li a:hover span , #navigation ul li.selected a:hover , #navigation ul li.selected a:hover span ,
+.js #add-page , .js #add-page a , .js #add-page a span , .js #add-page a:hover , .js #add-page a:hover span ,
+.js #navigation .enter-page , .js #navigation .enter-page a , .js #navigation .enter-page a:hover ,
+#content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content
+{
+ float : none ;
+ margin : auto ;
+ padding : 0 ;
+ width : auto ;
+ min-width : 0 ;
+ height : auto ;
+ min-height : 0 ;
+ background : transparent none no-repeat scroll 0 0 ;
+ font-size : 100% ;
+ font-size-adjust : none ;
+ font-stretch : normal ;
+ font-style : normal ;
+ font-variant : normal ;
+ font-weight : normal ;
+ text-indent : 0 ;
+ text-decoration : none ;
+ line-height : normal ;
+ color : inherit ;
+}
+
+/* Handy Defaults */
+#banner , #navigation , #navigation ul , .portlet { background-color : transparent ; }
+#wrapper , #banner , #navigation , #content-wrapper , 
+.portlet , .portlet-topper , .portlet-title , .portlet-content { display : block ; }
+#layout-grid .lfr-column  { margin : 0 ; padding : 0 ;}
+.portlet-icons { top : 0 ; right : 0 ; }
+.tabs { border : 0 ; }
+.portlet-section-header { background : transparent none ; }
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 { font-size : 8pt ; padding-right : 0 ; }
+ul.child-menu { display : none ; }
+
+/* Theme */
+
+body {
+ background : #333 url('../images/custom/border_shadow.png') repeat-y top center ;
+ font-family : Verdana,Arial,Helvetica,sans-serif ;
+ font-size : 11px ;
+ margin : 0 ;
+}
+
+a , a:hover , a:link , a:visited { }
+.tabs a , .tabs a:hover , .tabs a:link , .tabs a:visited { color : #000 ; }
+
+#wrapper {
+ width : 100% ;
+}
+
+#banner {
+ width : 800px ;
+ height : 100px ;
+ margin : 0 auto ;
+ background : transparent url('../images/custom/header2_bg.jpg') ;
+}
+#banner .logo {
+ display : block ;
+ width : 800px ;
+ height : 100px ;
+}
+#banner .logo a {
+ display : block ;
+ padding : 38px 0 0 24px ;
+ font-size : large ;
+ color : #fff ;
+}
+.js .lfr-dock.interactive-mode h2 , .js .lfr-dock.interactive-mode h2 span {
+ background-image : url('../images/custom/menu_bar.png') ;
+}
+
+
+#navigation {
+ width : 100% ;
+ height : 150px ;
+ margin : 0 auto ;
+ background : #000 url('../images/custom/header_bg.jpg') no-repeat top center ;
+ border-color : #000 rgb(51, 51, 51);
+ border-style : solid ;
+ border-width : 15px 0 1px 0 ;
+ vertical-align : top ;
+}
+#navigation ul {
+ width : 800px ;
+ height : 50px ;
+ background : #000 none ;
+ opacity : 0.7 ;
+ overflow : hidden ;
+}
+#navigation ul li , #navigation ul li.selected {
+ display : block ;
+ float : left ;
+ color : #fff ;
+ width : 160px ;
+ height : 50px ;
+}
+#navigation ul li a , #navigation ul li a:hover , #navigation ul li.selected a , #navigation ul li.selected a:hover {
+ display : block ;
+ width : 160px ;
+ height : 50px ;
+}
+#navigation ul li a span , #navigation ul li a:hover span , #navigation ul li.selected a span , #navigation ul li.selected a:hover span {
+ display : block ;
+ width : 160px ;
+ height : 50px ;
+ text-align : center ;
+ font-weight:bold;
+line-height:50px;
+}
+#navigation ul li a span.tab-l, #navigation ul li a:hover span.tab-l ,
+#navigation ul li.selected a span.tab-l, #navigation ul li.selected a:hover span.tab-l {
+}
+#navigation ul li a span.tab-r , #navigation ul li a:hover span.tab-r ,
+#navigation ul li.selected a span.tab-r , #navigation ul li.selected a:hover span.tab-r {
+}
+#navigation ul li a:hover , #navigation ul li.selected a:hover {
+}
+#navigation ul li a:hover span.tab-l , #navigation ul li.selected a:hover span.tab-l {
+}
+#navigation ul li a:hover span.tab-r , #navigation ul li.selected a:hover span.tab-r {
+}
+#navigation ul li.selected a , #navigation ul li.selected a:hover { }
+#navigation ul li.selected a span.tab-l , #navigation ul li.selected a:hover span.tab-l { }
+#navigation ul li.selected a span.tab-r , #navigation ul li.selected a:hover span.tab-r { }
+#navigation ul .sort-helper {
+ display : block ;
+ height : 50px ;
+ background: transparent url('../images/custom/placeholder_bg.png');
+}
+.js #add-page { }
+
+#content-wrapper {
+ width : 800px ;
+ margin : 0 auto ;
+}
+#portlet-wrapper- {
+}
+#content-wrapper #layout-grid , #portlet-wrapper-88 {
+ border-top : 60px solid #222 ;
+ background : url('../images/custom/bg_content.jpg') repeat ;
+}
+
+p.ads { margin : 12px 0 0 0 ; border : 2px solid #f00 ; display : block ; }
+
+.portlet {
+ padding : 15px ;
+}
+.portlet-title {
+ font-weight : bold ;
+}
+.portlet-content {
+ padding : 15px 0 ;
+}
+#footer {
+}
+
+/*** THE END ***/
+
