@@ -1,0 +1,189 @@
+* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* Reset Insignificant Styles */
+html {
+ overflow-y : scroll ;
+}
+#wrapper , #banner , #banner .logo , #banner .logo a ,
+#navigation , #navigation ul , #navigation ul li , #navigation li.selected ,
+#navigation ul li a , #navigation li a span , #navigation ul li.selected a , #navigation ul li.selected a span , 
+#navigation ul li a:hover , #navigation li a:hover span , #navigation ul li.selected a:hover , #navigation ul li.selected a:hover span ,
+.js #add-page , .js #add-page a , .js #add-page a span , .js #add-page a:hover , .js #add-page a:hover span ,
+.js #navigation .enter-page , .js #navigation .enter-page a , .js #navigation .enter-page a:hover ,
+#content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content
+{
+ float : none ;
+ margin : auto ;
+ padding : 0 ;
+ width : auto ;
+ min-width : 0 ;
+ height : auto ;
+ min-height : 0 ;
+ background : transparent none no-repeat scroll 0 0 ;
+ font-size : 100% ;
+ font-size-adjust : none ;
+ font-stretch : normal ;
+ font-style : normal ;
+ font-variant : normal ;
+ font-weight : normal ;
+ text-indent : 0 ;
+ text-decoration : none ;
+ line-height : normal ;
+ color : inherit ;
+}
+
+/* Handy Defaults */
+#banner , #navigation , #navigation ul , .portlet { background-color : transparent ; }
+#wrapper , #banner , #navigation , #content-wrapper , 
+.portlet , .portlet-topper , .portlet-title , .portlet-content { display : block ; }
+#layout-grid .lfr-column  { margin : 0 ; padding : 0 ;}
+.portlet-icons { top : 0 ; right : 0 ; }
+.tabs { border : 0 ; }
+.portlet-section-header { background : transparent none ; }
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 { font-size : 8pt ; padding-right : 0 ; }
+ul.child-menu { display : none ; }
+
+/* Theme */
+
+html {
+ background : #666 url('../images/custom/bg.jpg') ;
+}
+
+body {
+ background : transparent url('../images/custom/back.png') repeat-y scroll center top ;
+ color : #333333 ;
+ font-family : Verdana,Arial,Helvetica,sans-serif ;
+ font-size : 13px ;
+ margin : 0px ;
+ padding : 0px ;
+ text-align : justify ;
+}
+
+#wrapper {
+ width : 770px;
+ height : auto ;
+}
+
+#banner {
+ background : #FFFBFD url('../images/custom/header.jpg') repeat scroll 0 0 ;
+ height : 120px;
+ margin : 0px auto;
+ padding : 10px 0px;
+}
+#banner .logo {
+ margin : 0 ;
+}
+
+#banner .logo a {
+ color : #000 ;
+ font-size : 3em ;
+ margin : 0 ;
+ padding : 0 30px ;
+ text-align : left ;
+ text-transform : uppercase ;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+ font-size : 10pt ;
+ padding : 8px 16px 16px 16px ;
+ color : #222 ;
+}
+
+.js .lfr-dock.interactive-mode h2 , .js .lfr-dock.interactive-mode h2 span {
+ background-image : url('../images/custom/menu_bar.png') ;
+}
+
+
+#navigation {
+ background-color : #000 ;
+ margin : 0px auto ;
+ padding : 5px 0px ;
+ width : 770px ;
+}
+#navigation ul {
+ display : block ;
+ float : left ;
+ text-align:center;
+ padding : 0 6px ;
+}
+#navigation ul li , #navigation ul li.selected , .js #add-page {
+ display : block ;
+ float : left ;
+}
+#navigation ul li a , #navigation ul li a:hover , #navigation ul li.selected a , #navigation ul li.selected a:hover , .js #add-page a , .js #add-page a:hover {
+ display : block ;
+ float : left ;
+ padding : 0 12px ;
+ color : #fff ;
+ text-transform : uppercase ;
+}
+#navigation ul li a span , #navigation ul li a:hover span , #navigation ul li.selected a span , #navigation ul li.selected a:hover span , .js #add-page a span , .js #add-page a:hover span {
+ display : block ;
+ font-weight : bold ;
+}
+#navigation ul li a span.tab-l, #navigation ul li a:hover span.tab-l ,
+#navigation ul li.selected a span.tab-l, #navigation ul li.selected a:hover span.tab-l {
+}
+#navigation ul li a span.tab-r , #navigation ul li a:hover span.tab-r ,
+#navigation ul li.selected a span.tab-r , #navigation ul li.selected a:hover span.tab-r {
+}
+#navigation ul li a:hover , #navigation ul li.selected a:hover {
+}
+#navigation ul li a:hover span.tab-l , #navigation ul li.selected a:hover span.tab-l {
+}
+#navigation ul li a:hover span.tab-r , #navigation ul li.selected a:hover span.tab-r {
+}
+#navigation ul li.selected a , #navigation ul li.selected a:hover { }
+#navigation ul li.selected a span.tab-l , #navigation ul li.selected a:hover span.tab-l { }
+#navigation ul li.selected a span.tab-r , #navigation ul li.selected a:hover span.tab-r { }
+#navigation ul .sort-helper {
+ /* background: transparent url('../images/custom/placeholder_bg.png'); */
+}
+.js #add-page { }
+
+#content-wrapper {
+ margin : 0 1px ;
+ height : 100% ;
+}
+#portlet-wrapper- {
+ height : 100% ;
+}
+#content-wrapper #layout-grid {
+ height : 100% ;
+}
+
+#column-1 {
+ background : #fff none ;
+ color : #000 ;
+ border-right : 1px solid #000 ;
+}
+#column-2 {
+ background : #424d47 none ;
+ color : #fff ;
+}
+
+.portlet {
+ padding : 16px 12px ;
+}
+.portlet-title {
+ font-size : 14pt ;
+ color : #3399FF ;
+ font-family : Georgia,"Times New Roman",Times,serif ;
+}
+.portlet-content {
+ padding : 24px 6px 0 6px ;
+}
+ 
+#footer {
+}
+
+#column-2 a { color : #ccc ; text-decoration : none ; }
+#column-2 a:hover { color : #dcdcdc ; text-decoration : underline ; }
+#column-2 .tabs li.current , #column-2 .tabs li.current a , #column-2 .tabs li.current span ,
+#column-2 .tabs li , #column-2 .tabs li a , #column-2 .tabs li span {
+ background-image : url('../images/custom/tabs_bg.png') ;
+}
+#column-2 .tabs li a:hover { text-decoration : none ; }
+
+/*** THE END ***/
+
