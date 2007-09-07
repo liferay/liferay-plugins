@@ -579,6 +579,10 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 	color: #e7eef6;
 }
 
+.message-board-code, .message-board-quote {
+	color: #212C3A;
+}
+
 /* ---------- Taglib styling ---------- */
 .taglib-ratings {
 	margin-bottom: 1em;
