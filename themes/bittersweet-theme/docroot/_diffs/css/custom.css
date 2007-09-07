@@ -49,14 +49,12 @@ ul.child-menu { display : none ; }
 /* Theme */
 
 html {
- background : #666 url('../images/custom/bg.jpg') ;
 }
 
 body {
  background : #5F8000 url('../images/custom/bg.gif') repeat-y scroll center top ;
  color : #333333 ;
  font-family : "Lucida Sans Unicode",sans-serif ;
- height : auto ;
 }
 
 #wrapper {
@@ -184,10 +182,10 @@ right : 0 ;
 }
 #column-2 .portlet-title img { padding-left : 12px ; }
 #column-1 .portlet-content {
- margin-left : 36px ;
+ margin-left : 37px ;
  padding : 12px 18px ;
  overflow : hidden ;
- background : trasparent none ;
+ background : #fff none ;
  color : #000 ;
  font-size : 1.2em ;
 }
