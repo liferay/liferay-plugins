@@ -1,5 +1,4 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
 html, body {
 	min-height: 100%;
 }
@@ -186,7 +185,10 @@ a:hover {
 }
 
 .ie #navigation li.selected a, .ie #navigation li.selected a:hover {
-	zoom: 1;
+	height: 1%;
+}
+.ie6 #navigation li.selected a, .ie6 #navigation li.selected a:hover {
+	width: 20px;
 }
 
 #navigation li.selected a span {
@@ -578,7 +580,6 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 }
 
 /* ---------- Taglib styling ---------- */
-
 .taglib-ratings {
 	margin-bottom: 1em;
 }
