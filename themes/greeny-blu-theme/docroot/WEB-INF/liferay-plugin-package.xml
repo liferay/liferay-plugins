@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Greeny blu Theme</name>
-	<module-id>liferay/Greenyblue-theme/4.3.0.1/war</module-id>
+	<module-id>liferay/greeny-blu-theme/4.3.0.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>
