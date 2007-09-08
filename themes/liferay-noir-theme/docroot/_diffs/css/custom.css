@@ -583,11 +583,12 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 	color: #212C3A;
 }
 
-.lfr-highlighted, .lfr-highlighted a {
-	color: #ffc;
-}
-
 /* ---------- Taglib styling ---------- */
+
 .taglib-ratings {
 	margin-bottom: 1em;
+}
+
+.taglib-search-iterator-highlighted, .taglib-search-iterator-highlighted a {
+	color: #ffc;
 }
