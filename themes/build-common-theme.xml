@@ -61,6 +61,24 @@
 				</copy>
 			</then>
 		</if>
+
+		<java
+			classname="com.liferay.portal.tools.CSSBuilder"
+			classpathref="portal.classpath"
+			fork="true"
+			newenvironment="true"
+		>
+			<arg line="docroot/css docroot/css/everything_unpacked.css" />
+		</java>
+
+		<java
+			classname="com.yahoo.platform.yui.compressor.YUICompressor"
+			classpathref="lib.classpath"
+			fork="true"
+			newenvironment="true"
+		>
+			<arg line="--type css -o docroot/css/everything.css docroot/css/everything_unpacked.css" />
+		</java>
 	</target>
 
 	<target name="war" depends="compile">
