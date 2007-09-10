@@ -77,7 +77,7 @@
 			fork="true"
 			newenvironment="true"
 		>
-			<arg line="--type css -o docroot/css/everything.css docroot/css/everything_unpacked.css" />
+			<arg line="--type css -o docroot/css/everything_packed.css docroot/css/everything_unpacked.css" />
 		</java>
 	</target>
 

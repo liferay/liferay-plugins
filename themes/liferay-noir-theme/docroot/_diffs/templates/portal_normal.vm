@@ -42,7 +42,19 @@
 		#set ($journalTemplateId = "CSS-TEMPLATE")
 
 		#if ($journalTemplateLocalService.hasTemplate($group_id, $journalTemplateId))
-			<link rel="stylesheet" type="text/css" href="$theme_display.getPathMain()/journal/get_template?groupId=$group_id&templateId=$journalTemplateId" />
+
+			<!--
+			Instead of reference the URL, just insert the content to save an
+			extra HTTP request.
+			-->
+
+			<!--<link rel="stylesheet" type="text/css" href="$theme_display.getPathMain()/journal/get_template?groupId=$group_id&templateId=$journalTemplateId" />-->
+
+			#set ($journalTemplate = $journalTemplateLocalService.getTemplate($group_id, $journalTemplateId))
+
+			<style type="text/css">
+				$stringUtil.replace($journalTemplate.getXsl(), "@root_path@", $themeDisplay.getPathContext())
+			</style>
 		#end
 	#end
 </head>
