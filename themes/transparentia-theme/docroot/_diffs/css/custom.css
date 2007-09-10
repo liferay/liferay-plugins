@@ -51,12 +51,14 @@ ul.child-menu { display : none ; }
 html {
  background : #EEE url('../images/custom/bg.gif');
  overflow-y : scroll ;
+ height : auto ;
 }
 
 body {
  background : url('../images/custom/bgcontainer.gif') repeat-y top center;
  color : #444;
  font : normal 62.5% "Lucida Sans Unicode",sans-serif;
+ height : auto ;
 }
 
 #wrapper {
@@ -65,23 +67,30 @@ body {
  width : 767px ;
  clear : both ;
  padding : 8px 18px 6px 18px ;
+ position : relative ;
 }
 
 #banner {
+ display : block ;
  background : url('../images/custom/header.gif') repeat-x ;
  width : 732px ;
  height : 156px ;
+ margin : 0 auto 8px auto ;
 }
 #banner .logo {
+ display : block ;
+ margin : 0 ;
+ width : 732px ;
+ height : 156px ;
 }
 
 #banner .logo a {
  display : block ;
+ width : 732px ;
+ height : 156px ;
  color : #fff ;
  font : normal 3em Verdana,sans-serif;
- height : 150px;
- line-height : 150px;
- margin-bottom : 8px;
+ padding : 62px 0 0 0 ;
  text-align : center;
 }
 
@@ -101,10 +110,11 @@ right : 0 ;
 }
 
 #navigation {
- margin : 8px 0 0 18px ;
+ position : absolute ;
+ top : 172px ;
+ left : 36px ;
  background : #eee ;
  border : 1px solid #e5e5e5 ;
- float : left ;
  width : 200px ;
 }
 #navigation ul {
@@ -146,12 +156,11 @@ right : 0 ;
 .js #add-page { }
 
 #content-wrapper {
- float : right ;
  width : 520px ;
- margin : 8px 18px 0 0 ;
+ margin : 0 0 0 230px ;
+ overflow : hidden ;
 }
 #portlet-wrapper- {
- float : right ;
  width : 520px ;
 }
 #content-wrapper #layout-grid {
