@@ -58,7 +58,6 @@ body {
  background : url('../images/custom/bgcontainer.gif') repeat-y top center;
  color : #444;
  font : normal 62.5% "Lucida Sans Unicode",sans-serif;
- height : auto ;
 }
 
 #wrapper {
@@ -81,13 +80,12 @@ body {
  display : block ;
  margin : 0 ;
  width : 732px ;
- height : 156px ;
+ height : auto ;
 }
 
 #banner .logo a {
  display : block ;
  width : 732px ;
- height : 156px ;
  color : #fff ;
  font : normal 3em Verdana,sans-serif;
  padding : 62px 0 0 0 ;
