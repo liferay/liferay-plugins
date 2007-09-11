@@ -175,7 +175,7 @@ a:hover {
 
 #navigation li {
 	font-size: 1.1em;
-	margin: 0 25px;
+	margin: 0 20px 0 22px;
 }
 
 #navigation li.selected a,  #navigation li.selected a:hover {
