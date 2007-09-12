@@ -39,7 +39,7 @@
 	#if ($group_id > 0)
 		#set ($journalTemplateLocalService = $serviceLocator.findService("com.liferay.portlet.journal.service.JournalTemplateLocalService"))
 
-		#set ($journalTemplateId = "CSS-TEMPLATE")
+		#set ($journalTemplateId = $theme_settings.getProperty("css-template-id"))
 
 		#if ($journalTemplateLocalService.hasTemplate($group_id, $journalTemplateId))
 
@@ -106,7 +106,7 @@ $theme.include($top_messages_include)
 		<div class="footer-award-images">
 			#set ($journalArticleLocalService = $serviceLocator.findService("com.liferay.portlet.journal.service.JournalArticleLocalService"))
 
-			#set ($journalArticleId = "3588")
+			#set ($journalArticleId = $theme_settings.getProperty("footer-article-id"))
 
 			#if ($journalArticleLocalService.hasArticle($group_id, $journalArticleId))
 				$velocityPortletPreferences.setValue("portlet-setup-show-borders", "false")
