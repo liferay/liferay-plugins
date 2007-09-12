@@ -43,12 +43,10 @@
 
 		#if ($journalTemplateLocalService.hasTemplate($group_id, $journalTemplateId))
 
-			<!--
-			Instead of reference the URL, just insert the content to save an
-			extra HTTP request.
-			-->
+			## Instead of reference the URL, just insert the content to save an
+			## extra HTTP request.
 
-			<!--<link rel="stylesheet" type="text/css" href="$theme_display.getPathMain()/journal/get_template?groupId=$group_id&templateId=$journalTemplateId" />-->
+			## <link rel="stylesheet" type="text/css" href="$theme_display.getPathMain()/journal/get_template?groupId=$group_id&templateId=$journalTemplateId" />-->
 
 			#set ($journalTemplate = $journalTemplateLocalService.getTemplate($group_id, $journalTemplateId))
 
@@ -56,7 +54,7 @@
 				$stringUtil.stripBetween(
 					$stringUtil.replace(
 						$journalTemplate.getXsl(), "@root_path@", $themeDisplay.getPathContext()
-					)
+					),
 					"/*",
 					"*/"
 				)
