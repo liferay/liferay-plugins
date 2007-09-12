@@ -349,6 +349,15 @@ a:hover {
 	top: 1px;
 }
 
+.ie6 .tabs li,
+.ie6 .tabs li a, 
+.ie6 .tabs li span,
+.ie6 .tabs li.current,
+.ie6 .tabs li.current a, 
+.ie6 .tabs li.current span {
+	background-image: url(../images/common/tabs_ie6_bg.png);
+}
+
 .popup .tabs {
 	margin: -5px -5px -16px -15px;
 }
@@ -583,12 +592,11 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 	color: #212C3A;
 }
 
-/* ---------- Taglib styling ---------- */
-
-.taglib-ratings {
-	margin-bottom: 1em;
+.lfr-highlighted, .lfr-highlighted a {
+	color: #ffc;
 }
 
-.taglib-search-iterator-highlighted, .taglib-search-iterator-highlighted a {
-	color: #ffc;
+/* ---------- Taglib styling ---------- */
+.taglib-ratings {
+	margin-bottom: 1em;
 }
