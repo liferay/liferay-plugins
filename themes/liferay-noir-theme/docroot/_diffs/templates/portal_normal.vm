@@ -53,7 +53,13 @@
 			#set ($journalTemplate = $journalTemplateLocalService.getTemplate($group_id, $journalTemplateId))
 
 			<style type="text/css">
-				$stringUtil.replace($journalTemplate.getXsl(), "@root_path@", $themeDisplay.getPathContext())
+				$stringUtil.stripBetween(
+					$stringUtil.replace(
+						$journalTemplate.getXsl(), "@root_path@", $themeDisplay.getPathContext()
+					)
+					"/*",
+					"*/"
+				)
 			</style>
 		#end
 	#end
