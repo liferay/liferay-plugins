@@ -1,0 +1,237 @@
+* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* Reset Insignificant Styles */
+html {
+ overflow-y : scroll ;
+}
+#wrapper , #banner , #banner .logo , #banner .logo a ,
+#navigation , #navigation ul , #navigation ul li , #navigation li.selected ,
+#navigation ul li a , #navigation li a span , #navigation ul li.selected a , #navigation ul li.selected a span ,
+#navigation ul li a:hover , #navigation li a:hover span , #navigation ul li.selected a:hover , #navigation ul li.selected a:hover span ,
+.js #add-page , .js #add-page a , .js #add-page a span , .js #add-page a:hover , .js #add-page a:hover span ,
+.js #navigation .enter-page , .js #navigation .enter-page a , .js #navigation .enter-page a:hover ,
+#content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content
+{
+ float : none ;
+ margin : auto ;
+ padding : 0 ;
+ width : auto ;
+ min-width : 0 ;
+ height : auto ;
+ min-height : 0 ;
+ background : transparent none no-repeat scroll 0 0 ;
+ font-size : 100% ;
+ font-size-adjust : none ;
+ font-stretch : normal ;
+ font-style : normal ;
+ font-variant : normal ;
+ font-weight : normal ;
+ text-indent : 0 ;
+ text-decoration : none ;
+ line-height : normal ;
+ color : inherit ;
+}
+
+/* Handy Defaults */
+#banner , #navigation , #navigation ul , .portlet { background-color : transparent ; }
+#wrapper , #banner , #navigation , #content-wrapper ,
+.portlet , .portlet-topper , .portlet-title , .portlet-content { display : block ; }
+#layout-grid .lfr-column  { margin : 0 ; padding : 0 ;}
+.portlet-icons { top : 0 ; right : 0 ; }
+.tabs { border : 0 ; }
+.portlet-section-header { background : transparent none ; }
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 { font-size : 8pt ; padding-right : 0 ; }
+ul.child-menu { display : none ; }
+
+/* Theme */
+
+a {
+ color : #003366 ;
+ font-weight : bold ;
+ text-decoration : none ;
+}
+a:hover {
+ color : #0066cc ;
+ text-decoration : none ;
+}
+
+html {
+ overflow-y : scroll ;
+}
+
+body {
+ background : #ccc ;
+ font : 70%/1.5em Verdana, Tahoma, arial, sans-serif ;
+ color : #666666 ;
+ text-align : center ;
+ margin : 15px 0 ;
+}
+
+#wrapper {
+ position : relative ;
+ width : 820px ;
+ background : transparent url('../images/custom/content.jpg') repeat-y center top ;
+ margin : 0 auto ;
+ text-align : left ;
+}
+#theme_top-bg {
+ z-index : 100 ;
+ position : absolute ;
+ top : 0 ;
+ left : 0 ;
+ background : #ccc url('../images/custom/top-bg.jpg') repeat-y scroll center top ;
+ width : 820px ;
+ height : 19px ;
+}
+#theme_header {
+ z-index : 1 ;
+ position : relative ;
+ width : 820px ;
+ height : 100px ;
+ background : #ccc url('../images/custom/header-bg.jpg') repeat-y scroll center top ;
+ color : #fff ;
+}
+#theme_header .logo {
+}
+#theme_header .logo a {
+ position : absolute ;
+ top : 25px ;
+ left : 30px ;
+ color : #aeaaaa ;
+ font-family : 'Trebuchet MS',Arial,Sans-serif ;
+ font-size : 36px ;
+ font-weight : bold ;
+ letter-spacing : -1px ;
+}
+#theme_header-photo {
+ background : #fff url('../images/custom/header-photo.jpg') no-repeat scroll center ;
+ clear : both ;
+ height : 200px ;
+ margin : 0pt auto ;
+ width : 790px ;
+}
+
+
+.js .lfr-dock.interactive-mode h2 span {
+ font-size : 10pt ;
+ padding : 8px 16px 16px 16px ;
+ color : #222 ;
+}
+
+.js .lfr-dock.interactive-mode h2 , .js .lfr-dock.interactive-mode h2 span {
+ background-image : url('../images/custom/menu_bar.png') ;
+ font-size : 10px ;
+ color : #838181 ;
+ font-weight : normal ;
+ padding : 11px 10px ;
+}
+
+
+#navigation {
+ clear : both ;
+}
+#navigation ul {
+ background : transparent url('../images/custom/nav.jpg') repeat-x scroll 0 0 ;
+ display : inline ;
+ float : left ;
+ margin : 0 0 0 15px ;
+ text-transform : uppercase ;
+ width : 790px ;
+}
+#navigation ul li , #navigation ul li.selected , .js #add-page {
+ display : inline ;
+ float : left ;
+}
+#navigation ul li a , #navigation ul li a:hover , #navigation ul li.selected a , #navigation ul li.selected a:hover , .js #add-page a , .js #add-page a:hover {
+ display : block ;
+ float : left ;
+}
+#navigation ul li a span , #navigation ul li a:hover span , #navigation ul li.selected a span , #navigation ul li.selected a:hover span , .js #add-page a span , .js #add-page a:hover span {
+ display : block ;
+ float : left ;
+ border-bottom : medium none ;
+ border-left : 1px solid #A7D101 ;
+ border-right : 1px solid #899D00 ;
+ color : #fff ;
+ font-weight : bold ;
+ font-family : "Century Gothic","Trebuchet MS",Helvetica,Arial,Geneva,sans-serif ;
+ font-size : 13px ;
+ font-weight : bold ;
+ letter-spacing : 1px ;
+ line-height : 2.8em ;
+ padding : 0 14px ;
+ text-transform : uppercase ;
+}
+#navigation ul li a:hover , .js #add-page a:hover {
+ background : transparent url('../images/custom/nav-hover.jpg') repeat-x scroll 0 0 ;
+}
+#navigation ul li.selected a , #navigation ul li.selected a:hover {
+ background : transparent url('../images/custom/nav-current.jpg') repeat-x scroll 0 0 ;
+}
+#navigation ul li.selected a span.tab-l , #navigation ul li.selected a:hover span.tab-l { }
+#navigation ul li.selected a span.tab-r , #navigation ul li.selected a:hover span.tab-r { }
+#navigation ul .sort-helper {
+ /* background: transparent url('../images/custom/placeholder_bg.png'); */
+}
+.js #add-page { }
+
+#content-wrapper , #portlet-wrapper- {
+ background : #e8e8e8 none repeat scroll 0 0 ;
+ clear : both ;
+ border-top : 5px solid #fff ;
+ border-bottom : 2px solid #d0d0d0 ;
+ margin : 0 0 0 15px ;
+ position : relative ;
+ width : 790px ;
+}
+#portlet-wrapper- {
+ width : 760px ;
+}
+#content-wrapper #layout-grid {
+}
+
+.portlet {
+ padding : 10px 20px 20px 10px;
+}
+.portlet-title {
+ margin : 10px 0 0 0 ;
+ padding : 5px 0pt 5px 5px ;
+ color : #8C9F0D ;
+ font-family : 'Trebuchet MS',Tahoma,Sans-serif ;
+ font-size : 1.6em ;
+}
+#column-1 .portlet-content {
+ padding : 12px 10px ;
+}
+#column-2 {
+}
+
+.portlet {
+}
+.portlet-title {
+}
+.portlet-content {
+}
+
+#footer {
+ clear : both ;
+ padding : 15px 0 ;
+ width : 820px ;
+ background : transparent url('../images/custom/footer-bottom.jpg') no-repeat scroll center bottom ;
+ font-size : 95% ;
+ text-align : left ;
+}
+#footer p {
+ padding : 0 0 20px 0 ;
+ text-align : center ;
+}
+#footer p a , #footer p a:link , #footer p a:visited , #footer p a:active {
+ color : inherit ;
+}
+#footer p a:hover {
+ color : #000 ;
+}
+
+
+/*** THE END ***/
+
