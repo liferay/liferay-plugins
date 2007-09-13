@@ -1,0 +1,282 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+body {
+	background-color: #000;
+	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+}
+
+a {
+	color: #FFF;
+}
+
+/* ---------- Main content body ---------- */
+
+#wrapper {
+	background: url(../images/common/visual_bg.jpg) no-repeat 0 159px;
+	margin: 0 auto;
+	width: 760px;
+}
+
+.ie6 #wrapper {
+	background: url(../images/common/visual_bg.jpg) no-repeat 0 165px;
+}
+
+#content-wrapper {
+	margin-top: 160px;
+}
+
+.ie6 #content-wrapper {
+	margin-top: 160px;
+}
+
+table {
+	clear: both;
+}
+
+#footer {
+	border-top: 4px solid #363636;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 27px;
+	padding-top: 5px;
+	width: 761px;
+}
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: none;
+	height: 7em;
+	position: relative;
+	top: 33px;
+}
+
+.ie6 #banner {
+	top: 40px;
+}
+
+#banner .logo {
+	background: none;
+	display: block;
+	float: left;
+	font-size: 20pt;
+	font-weight: normal;
+	padding: 2em 0.6em .3em;
+}
+
+#banner .logo a {
+	text-decoration: none;
+	color: #FFF;
+	letter-spacing: 0.05em;
+}
+
+/* ---------- Main navigation ---------- */
+
+#navigation {
+	margin: 45px 0px 2em;
+	min-height: 2.2em;
+	width: 762px;
+}
+
+#navigation ul {
+	background: #4D4D4D url(../images/navigation/topnav_bg.gif) no-repeat right;
+	float: left;
+	min-height: 2em;
+	width: 760px;
+	margin-top: 0px;
+}
+
+#navigation li {
+	background: #222;
+	display: inline;
+	margin-right: 0px;
+	border-right: 1px solid #000;
+	margin-top: 0px;
+	margin-left: 0px;
+	padding: 0 0.5em 0.1em 0;
+}
+
+#navigation li a {
+	background: none;
+	display: block;
+	text-decoration: none;
+	color: #76DEFC;
+	padding-top: 7px;
+	line-height:27px;
+	margin-left: 0px;
+	margin-right: -5px;
+	padding-left: 16px;
+	padding-right: 25px;
+	padding-bottom: 8px;
+}
+
+.ie6 #navigation li a {
+	padding-bottom: 7px;
+	padding-left: 16px;
+}
+
+#navigation li a:hover {
+	background: #4D4D4D;
+	padding-bottom: 8px;
+}
+
+.ie6 #navigation li a:hover {
+	padding-bottom: 7px;
+}
+
+#navigation li a span {
+	background: none;
+	padding-left: 10px;
+	text-decoration: none;
+	color: #FFF;
+}
+
+#navigation li.selected a {
+	background: #4D4D4D;
+	padding-top: 7px;
+	margin-right: -5px;
+	padding-left:16px;
+	padding-right:29px;
+	padding-bottom: 8px;
+}
+
+.ie6 #navigation li.selected a {
+	padding-bottom: 7px;
+}
+
+#navigation li.selected a span {
+	background: none;
+	font-size: 1.3em;
+	font-weight: normal;
+}
+
+#navigation li.selected a:hover {
+	padding-bottom: 8px;
+}
+
+.ie6 #navigation li.selected a:hover {
+	padding-bottom: 7px;
+}
+
+#navigation li a:hover span {
+	background: none;
+}
+
+.js #add-page {
+	position: absolute;
+	top: 160px;
+	left: 331px;
+}
+
+.ie6.js #add-page {
+	float: left;
+	font-weight: bold;
+	padding-top: 0.3em;
+	position: relative;
+	top: 0px;
+	left: 0px;
+}
+
+/* ---------- Dock with Javascript ---------- */
+
+.js .lfr-dock.interactive-mode {
+	float: right;
+	min-width: 150px;
+	position: relative;
+	right: 1px;
+	top: 51px;
+}
+
+.js .lfr-dock.interactive-mode ul {
+	background: url(../images/dock/menu_bg.png) no-repeat 0 0;
+	border-left: 20px solid #011838;
+	display: none;
+	float: none;
+}
+
+.js .lfr-dock.interactive-mode li a {
+	color: #000;
+	background-position: 0.5em 50%;
+	background-repeat: no-repeat;
+	border-top: 1px solid #ccc;
+	display: block;
+	margin-left: 0.3em;
+	padding: 0.5em 0pt 0.5em 2.5em;
+	text-decoration: none;
+}
+
+/* ---------- Add/Sort/Remove page ---------- */
+
+.js #navigation .enter-page {
+	background: none;
+	padding: 0.5em 2em 1em 1.5em;
+}
+
+
+/* ---------- Portlet wrapper and icons ---------- */
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: none;
+	color: #FFF;
+}
+
+.portlet {
+	background: #222;
+	margin: 0 0 10px;
+	padding-right: 10px;
+	text-align: left;
+	border-bottom: 1px solid #484848;
+}
+
+.portlet-topper {
+	background: #000;
+	background-position: right top;
+	border-bottom: 1px solid #484848;
+	margin-right: -10px;
+	padding-right: 40px;
+	position: relative;
+}
+
+.portlet-title {
+	color: #FFF;
+	font-family:"trebuchet ms",arial,tahoma,verdana,sans-serif;
+	font-size:15pt;
+	font-weight:normal;
+	letter-spacing: 0.05em;
+	background: none;
+	background-position: top left;
+	display: block;
+	min-width: 50%;
+	text-indent: 30px;
+	padding: 8px 0 4px 10px;
+}
+
+.portlet-section-header {
+	background: #000405;
+	padding: 1px 0 0;
+}
+
+.portlet-section-header th {
+	border-bottom: 1px solid #ccc;
+	color: #FFF;
+	font-weight: bold;
+	padding: 0.3em 1em;
+}
+
+.portlet-section-body td {
+	background: #DCDCDC;
+	border-top: 1px solid #BFBFBF;
+	padding: 0.3em 1em;
+}
+
+/* This CSS sets the default styles for tabs. */
+
+.tabs {
+	border-bottom: 1px solid #7F9BCA;
+	margin: 0 0 1.5em 0;
+	padding: 0 0 2.6em 1em;
+}
+
+.tabs li a {
+	color: #000;
+}
