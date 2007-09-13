@@ -57,6 +57,14 @@ a:hover {
 	font-size: 1.2em;
 }
 
+.portal-popup {
+	background: #F7F7F7;
+}
+
+	.portal-popup #content-wrapper {
+		background: none;
+	}
+
 /* ---- BANNNER ---- */
 #banner {
 	background: url(../images/common/shade.gif) repeat-x;
@@ -184,6 +192,42 @@ a:hover {
 .portlet-content {
 	padding: 10px;
 }
+	
+	/* ---- PORTLET TABLES ---- */
+	.portlet-section-header {
+		color: #FFF;
+		background: #445205;
+	}
+
+	.portlet-section-header th {
+		color: #FFF;
+		border-bottom: 1px solid #000;
+	}
+
+	.portlet-section-header th a {
+		color: #FFF;
+	}
+
+	.portlet-section-body td {
+		background: #95A938;
+		border-bottom: none;
+		border-top: none;
+	}
+
+	.portlet-section-alternate td {
+		border-bottom: none;
+		border-top: none;
+	}
+
+	.portlet-section-body a, .portlet-section-alternate a, .portlet-section-body-hover a, .portlet-section-alternate-hover a {
+		color: #000;
+		text-decoration: underline;
+	}
+
+	hr, .separator {
+		border: none;
+		border-bottom: 2px dashed #CCCCCC;
+	}
 
 /* ---- LAYOUT ---- */
 .columns-1 #column-1, .columns-max #column-1 {
