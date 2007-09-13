@@ -1,0 +1,323 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---- GLOBAL ---- */
+body {
+	background: #5F7110;
+}
+
+a {
+	color: #6E840B;
+}
+
+a:hover {
+	color: #6E840B;
+}
+
+#wrapper {
+	background: transparent url(../images/common/background.gif);
+	width: 769px;
+}
+
+#wrapper-top {
+	background: url(../images/common/wrapper-top_bg.png) no-repeat;
+	height: 29px;
+}
+
+#content-wrapper {
+	background: url(../images/common/shade.gif) repeat-x;
+	margin: 2px 21px;
+	padding: 20px 3px 0;
+	font-size: 1.2em;
+}
+
+#footer {
+	background: url(../images/common/shade.gif) repeat-x;
+	margin: 0 21px;
+	min-height: 2em;
+	padding: 18px;
+}
+
+.ie6 #footer {
+	height: 2em;
+}
+
+#footer-divider {
+	background: #89A606 url(../images/common/footer_bg.gif) repeat-y;
+	margin: 0 18px;
+	height: 13px;
+}
+
+#wrapper-bottom {
+	background: url(../images/common/wrapper-bottom_bg.png) no-repeat;
+	height: 27px;
+}
+
+#portlet-wrapper- {
+	margin: 10px 25px;
+	font-size: 1.2em;
+}
+
+/* ---- BANNNER ---- */
+#banner {
+	background: url(../images/common/shade.gif) repeat-x;
+	margin: 0 21px;
+	height: 10em;
+}
+
+#banner .logo {
+	background: none;
+}
+
+/* ---- DOCK ---- */
+.js .lfr-dock.interactive-mode a {
+	color: #000;
+}
+
+.js .lfr-dock.interactive-mode ul {
+	border-color: #95A938;
+}
+
+/* ---- NAVIGATION ---- */
+#navigation {
+	background: url(../images/navigation/bg.gif) repeat-x;
+	width: 733px;
+	margin: 0 18px;
+	height: 40px;
+	padding: 0;
+}
+
+#navigation li {
+	overflow: hidden;
+	background: none;
+	padding: 12px 15px;
+	margin: 0;
+	border-right: 1px solid #95A938;
+}
+
+
+#navigation li:hover {
+	background: url(../images/navigation/hover.gif);
+}
+
+#navigation li a {
+	color: #FFF;
+	background: none;
+	padding: 0;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+#navigation li a span {
+	background: none;
+	padding: 0;
+}
+
+#navigation li a:hover {
+	color: #FFF;
+	padding-bottom: 0;
+}
+
+#navigation li a:hover span {
+	background: none;
+}
+
+#navigation li.selected {
+	background: url(../images/navigation/hover.gif);
+	padding-bottom: 11px;
+}
+
+#navigation li.selected a {
+	color: #FFF;
+	padding: 0;
+}
+
+#navigation li.selected a span {
+	background: none;
+	font-size: 1em;
+	padding: 0;
+}
+
+#navigation li.selected a:hover {
+	color: #FFF;
+	padding-bottom: 0;
+}
+
+.js #navigation .enter-page {
+	background: none;
+	padding: 0;
+}
+
+.js #add-page a {
+	color: #FFF;
+}
+
+.js #add-page {
+	float: right;
+	font-weight: bold;
+	padding-top: 8px;
+}
+
+/* ---- PORTLET ---- */
+.portlet {
+	background: none;
+}
+
+.portlet-topper, .portlet-content, .portlet-title {
+	background: #F7F7F7;
+}
+
+.portlet-topper {
+	margin: 0;
+}
+
+.portlet {
+	border: 1px solid #E5E5E5;
+	padding: 7px;
+}
+
+.portlet-title {
+	color: #95A938;
+	font-size: 16px;
+	padding: 8px 0 0 10px;
+}
+
+.portlet-content {
+	padding: 10px;
+}
+
+/* ---- LAYOUT ---- */
+.columns-1 #column-1, .columns-max #column-1 {
+	padding-top: 5px;
+}
+
+/* ---- TABS ---- */
+.tabs {
+	font-size: .9em;
+	border-bottom: 1px solid #445205;
+	padding: 0 0 18px 1em;
+}
+
+.tabs li {
+	background: #95A938;
+	line-height: 15px;
+	margin-right: 0.3em;
+	top: 0.15em;
+}
+
+.ie6 #content-wrapper .tabs li {
+	line-height: 16px;
+}
+
+.tabs li a, .tabs li span {
+	background: #95A938;
+	padding: 0.15em 1em 0;
+	color: #FFFFFF;
+}
+
+.tabs li.current {
+	background: #445205;
+}
+
+.tabs li.current a, .tabs li.current span {
+	background: #445205;
+	padding: 0.1em 1em;
+	color: #FFFFFF;
+}
+
+.ie .tabs li {
+	line-height: 15px;
+}
+
+.ie .tabs li.current {
+	top: 0.2em;
+}
+
+.ie .tabs li {
+	top: 0.2em;
+}
+
+/* ---- FORMS ---- */
+
+input.focus, textarea.focus, .ie6 input.focus, .ie6 textarea.focus {
+	background: #89A606 none;
+	border: 1px solid #445205;
+}
+
+/* ---- NAVIGATION PORTLET ---- */
+.nav-menu a {
+	color: #565655;
+	text-decoration: none;
+}
+
+.nav-menu ul {
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	width: 200px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.nav-menu ul a {
+	color: #475509;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.nav-menu ul a:hover {
+	color: #000;
+}
+
+.nav-menu li {
+	background: url("../images/common/nav-portlet_item.gif") no-repeat scroll;
+	height: 25px;
+	padding: 12px 0 0 45px;
+}
+
+/* ---- BASIC CONTENT ELEMENTS ---- */
+body {
+	color: #565655;
+	font-family: Arial,Helvetica,sans-serif;
+}
+
+.journal-content-article ul {
+	list-style-image: url(images/bullet.gif);
+	list-style-position: outside;
+	list-style-type: square;
+}
+
+.journal-content-article li {
+	margin-left: 1.2em;
+}
+
+.ie .journal-content-article li {
+	margin-left: 1.3em;
+}
+
+.journal-content-article h1 {
+	color: #95A938;
+	font-size: 1.5em;
+	margin-bottom: .3em;
+}
+
+.journal-content-article h2 {
+	color: #95A938;
+	font-size: 1.3em;
+	margin-bottom: .2em;
+}
+
+.journal-content-article h3 {
+	color: #95A938;
+	font-size: 1.1em;
+	margin-bottom: .1em;
+}
+
+.journal-content-article p {
+	margin-bottom: 1em;
+}
+
+.journal-content-article blockquote {
+	border-left: 1px solid #95A938;
+	margin: 1em;
+	padding: .5em 1em;
+}

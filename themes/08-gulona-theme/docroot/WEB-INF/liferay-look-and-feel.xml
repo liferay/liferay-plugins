@@ -3,7 +3,7 @@
 
 <look-and-feel>
 	<compatibility>
-		<version>4.3.0</version>
+		<version>4.3.1</version>
 	</compatibility>
-	<theme id="08-Gulona" name="O8 Gulona" />
+	<theme id="08-gulona" name="O8 Gulona" />
 </look-and-feel>

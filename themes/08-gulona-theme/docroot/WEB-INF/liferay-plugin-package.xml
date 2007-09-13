@@ -3,24 +3,29 @@
 
 <plugin-package>
 	<name>O8 Gulona Theme</name>
-	<module-id>liferay/08-Gulona-theme/4.3.0.1/war</module-id>
+	<module-id>liferay/08-gulona-theme/4.3.0.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>
 	<tags>
-		<tag>liferay</tag>
+		<tag>Open Source Templates</tag>
+		<tag>1-column</tag>
+		<tag>2-column</tag>
+		<tag>3-column</tag>
+		<tag>1-2-1-column</tag>
+		<tag>2-2-column</tag>
 	</tags>
 	<short-description>
 	</short-description>
 	<change-log>
 		Adapted to the latest version of Liferay.
 	</change-log>
-	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
+	<page-url>http://opensourcetemplates.org/template_info.php?id=104</page-url>
 	<author>Liferay, Inc.</author>
 	<licenses>
-		<license osi-approved="true">MIT</license>
+		<license osi-approved="true">Creative Commons Attribution 2.5 License</license>
 	</licenses>
 	<liferay-versions>
-		<liferay-version>4.3.*</liferay-version>
+		<liferay-version>4.3.1</liferay-version>
 	</liferay-versions>
 </plugin-package>
