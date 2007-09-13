@@ -52,19 +52,19 @@ html {
 }
 
 body {
- background : #5F8000 url('../images/custom/bg.gif') repeat-y scroll center top ;
+ background : #5F8000 url('../images/common/page_bg.gif') repeat-y scroll center top ;
  color : #333333 ;
- font-family : "Lucida Sans Unicode",sans-serif ;
+ font : normal normal normal 0.6em "Lucida Sans Unicode",sans-serif ;
 }
 
 #wrapper {
- background : transparent url('../images/custom/bgcontainer.gif') repeat-y scroll 0 0 ;
+ background : transparent url('../images/common/wrapper_bg.gif') repeat-y scroll 0 0 ;
  margin : 0 auto ;
  width : 702px ;
 }
 
 #banner {
- background : #567300 url('../images/custom/header.jpg') no-repeat scroll 0 60px ;
+ background : #567300 url('../images/common/banner_bg.jpg') no-repeat scroll 0 60px ;
  font-family : Verdana,sans-serif;
  margin : 0 auto ;
  width : 630px ;
@@ -84,6 +84,9 @@ body {
  width : 100% ;
 }
 
+.js .lfr-dock.interactive-mode h2 , .js .lfr-dock.interactive-mode h2 span {
+ background-image : none ;
+}
 .js .lfr-dock.interactive-mode {
 top : 20px ;
 right : 0 ;
@@ -93,10 +96,6 @@ right : 0 ;
  font-size : 10pt ;
  padding : 8px 16px 16px 16px ;
  color : #222 ;
-}
-
-.js .lfr-dock.interactive-mode h2 , .js .lfr-dock.interactive-mode h2 span {
- background-image : url('../images/custom/menu_bar.png') ;
 }
 
 #navigation {
@@ -131,10 +130,6 @@ right : 0 ;
 #navigation ul li a:hover , #navigation ul li.selected a:hover {
      color : #fff ;
 }
-#navigation ul .sort-helper {
- /* background: transparent url('../images/custom/placeholder_bg.png'); */
-}
-.js #add-page { }
 
 #content-wrapper {
  margin : 0 36px 0 0 ;
@@ -156,7 +151,7 @@ right : 0 ;
 }
 
 #column-1 .portlet {
- background : transparent url('../images/custom/bgdate.gif') no-repeat scroll 0 0 ;
+ background : transparent url('../images/portlet/left_portlet_bg.gif') no-repeat scroll 0 0 ;
  color : #fdd ;
  width : 100% ;
 }
@@ -187,24 +182,16 @@ right : 0 ;
  overflow : hidden ;
  background : #fff none ;
  color : #000 ;
- font-size : 1.2em ;
+ font-size : 0.7em ;
 }
 #column-2 .portlet-content {
  padding : 8px ;
  overflow : hidden ;
  background : trasparent none ;
  color : #000 ;
- font-size : 1.2em ;
+ font-size : 0.7em ;
 }
 
-#footer {
-}
-
-#column-2 .tabs li.current , #column-2 .tabs li.current a , #column-2 .tabs li.current span ,
-#column-2 .tabs li , #column-2 .tabs li a , #column-2 .tabs li span {
- background-image : url('../images/custom/tabs_bg.png') ;
-}
-#column-2 .tabs li a:hover { text-decoration : none ; }
 
 /*** THE END ***/
 
