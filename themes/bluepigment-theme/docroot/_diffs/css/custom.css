@@ -160,3 +160,12 @@ a , a:link , a:visited , a:hover { text-decoration : none ; color : #fff ; } a:h
 .js .lfr-dock.interactive-mode h2 span {
  font-size : 10pt ;
 }
+
+/* ---- TABS ---- */
+.tabs li.current a, .tabs li.current span {
+	background: transparent url(../images/common/tabs_bg.png) repeat scroll 100% 0px;
+	margin: 2px;
+}
+.tabs li.current {
+	background: transparent url(../images/common/tabs_bg.png) repeat scroll 100% 0px;
+}
