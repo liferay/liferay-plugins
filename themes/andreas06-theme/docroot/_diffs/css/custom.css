@@ -52,7 +52,7 @@ html {
 }
 
 body {
- background : #e0e0e0 url('../images/custom/bodybg.gif') repeat-x ;
+ background : #e0e0e0 url('../images/common/page_bg.gif') repeat-x ;
  color : #505050 ;
  font : 76% Georgia,Verdana,Tahoma,Arial,sans-serif ;
  margin : 0 ;
@@ -67,7 +67,7 @@ body {
 }
 
 #banner {
- background : url('../images/custom/leaves.jpg') top center no-repeat ;
+ background : url('../images/common/banner_bg.jpg') top center no-repeat ;
  color : #fff ;
  font-weight : 400;
  height : 80px ;
@@ -97,7 +97,7 @@ body {
 }
 
 #navigation {
- background : url('../images/custom/greypx.gif') bottom left repeat-x ;
+ background : url('../images/navigation/bg.gif') bottom left repeat-x ;
  width : 752px ;
 }
 #navigation ul {
@@ -107,19 +107,19 @@ body {
 #navigation ul li , #navigation ul li.selected , .js #add-page {
  display : block ;
  float : left ;
- background : url('../images/custom/tabs.gif') no-repeat 0 0 ;
+ background : url('../images/navigation/tabs.gif') no-repeat 0 0 ;
  margin : 0 4px 0 0 ;
  padding : 0 0 0 9px ;
 }
 #navigation ul li.selected
 {
- background : url('../images/custom/tabs.gif') no-repeat 0 -41px ;
+ background : url('../images/navigation/tabs.gif') no-repeat 0 -41px ;
 }
 
 #navigation ul li a , #navigation ul li a:hover , #navigation ul li.selected a , #navigation ul li.selected a:hover , .js #add-page a , .js #add-page a:hover {
  display : block ;
  float : left ;
- background : url('../images/custom/tabs.gif') no-repeat 100% 0 ;
+ background : url('../images/navigation/tabs.gif') no-repeat 100% 0 ;
  color : #808080 ;
  font-size : 1.2em ;
  letter-spacing : -1px ;
@@ -127,7 +127,7 @@ body {
  text-decoration : none ;
 }
 #navigation ul li.selected a {
- background : url('../images/custom/tabs.gif') no-repeat 100% -41px ;
+ background : url('../images/navigation/tabs.gif') no-repeat 100% -41px ;
  color : #303030 ;
  padding : 7px 20px 5px 11px ;
 }
@@ -144,11 +144,11 @@ body {
 .js #add-page { }
 
 #backy {
- background : #fff url('../images/custom/innerbg.gif') repeat-y ;
+ background : #fff url('../images/common/wrapper_bg_1.gif') repeat-y ;
 }
 
 #content-wrapper , #portlet-wrapper- {
- background  : transparent url('../images/custom/header.jpg') no-repeat ;
+ background  : transparent url('../images/common/wrapper_bg_2.jpg') no-repeat ;
  border-bottom : 1px solid #808080 ;
  border-left : 1px solid #808080 ;
  border-right : 1px solid #808080 ;
