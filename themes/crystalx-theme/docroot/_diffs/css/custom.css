@@ -44,7 +44,7 @@ html {
 /* Theme */
 
 body {
- background : #F2F5FE url('../images/custom/bg.gif') repeat-x scroll 0 0 ;
+ background : #F2F5FE url('../images/common/page_bg.gif') repeat-x scroll 0 0 ;
  color : #192666 ;
  font-family : "verdana",sans-serif ;
  font-size : 70% ;
@@ -63,7 +63,7 @@ body {
 }
 
 #banner {
- background:#233C9B url('../images/custom/header.jpg') no-repeat scroll 0pt;
+ background:#233C9B url('../images/common/banner_bg.jpg') no-repeat scroll 0pt;
  color:#FFFFFF;
  height:100px;
  margin:0pt;
@@ -88,7 +88,7 @@ text-decoration : underline ;
 }
 
 .js .lfr-dock.interactive-mode h2 , .js .lfr-dock.interactive-mode h2 span {
- background-image : url('../images/custom/menu_bar.png') ;
+ background-image : url('../images/dock/menu_bar.png') ;
 }
 .js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
  padding-right : 0 ;
@@ -117,7 +117,7 @@ text-decoration : underline ;
  position : relative ;
  padding : 7px 15px ;
  border : 0 ;
- background : url('../images/custom/tab_link.gif') 0 0 repeat-x ;
+ background : url('../images/navigation/tab_link.gif') 0 0 repeat-x ;
  color : #b5c4e3 ;
  cursor : pointer ;
 }
@@ -132,7 +132,7 @@ text-decoration : underline ;
  left : 0 ;
  width : 8px ;
  height : 8px ;
- background:url('../images/custom/tab_link_l.gif') no-repeat 0 0;
+ background:url('../images/navigation/tab_link_l.gif') no-repeat 0 0;
 }
 #navigation ul li a span.tab-r , #navigation ul li a:hover span.tab-r ,
 #navigation ul li.selected a span.tab-r , #navigation ul li.selected a:hover span.tab-r {
@@ -141,40 +141,40 @@ text-decoration : underline ;
  right : 0 ;
  width : 8px ;
  height : 8px ;
- background : url('../images/custom/tab_link_r.gif') 100% 0 no-repeat ;
+ background : url('../images/navigation/tab_link_r.gif') 100% 0 no-repeat ;
 }
 #navigation ul li a:hover , #navigation ul li.selected a:hover {
- background : url("../images/custom/tab_hover.gif") 0 0 repeat-x ;
+ background : url("../images/navigation/tab_hover.gif") 0 0 repeat-x ;
  color : #fff ;
 }
 #navigation ul li a:hover span.tab-l , #navigation ul li.selected a:hover span.tab-l {
- background : url('../images/custom/tab_hover_l.gif') 0 0 no-repeat ;
+ background : url('../images/navigation/tab_hover_l.gif') 0 0 no-repeat ;
 }
 #navigation ul li a:hover span.tab-r , #navigation ul li.selected a:hover span.tab-r {
- background : url('../images/custom/tab_hover_r.gif') 100% 0 no-repeat ;
+ background : url('../images/navigation/tab_hover_r.gif') 100% 0 no-repeat ;
 }
 #navigation ul li.selected a , #navigation ul li.selected a:hover { background : #fff ; color : #ff9000 ; }
-#navigation ul li.selected a span.tab-l , #navigation ul li.selected a:hover span.tab-l {position:absolute; top:0; left:0; _left:-15px; width:8px; height:8px; background:url("../images/custom/tab_active_l.gif") 0 0 no-repeat;}
-#navigation ul li.selected a span.tab-r , #navigation ul li.selected a:hover span.tab-r {position:absolute; top:0; right:0; width:8px; height:8px; background:url("../images/custom/tab_active_r.gif") 100% 0 no-repeat;}
+#navigation ul li.selected a span.tab-l , #navigation ul li.selected a:hover span.tab-l {position:absolute; top:0; left:0; _left:-15px; width:8px; height:8px; background:url("../images/navigation/tab_active_l.gif") 0 0 no-repeat;}
+#navigation ul li.selected a span.tab-r , #navigation ul li.selected a:hover span.tab-r {position:absolute; top:0; right:0; width:8px; height:8px; background:url("../images/navigation/tab_active_r.gif") 100% 0 no-repeat;}
 
 ul.child-menu { display : none ; }
 
 #navigation ul .sort-helper {
- background: transparent url('../images/custom/placeholder_bg.png');
+ background: transparent url('../images/navigation/placeholder_bg.png');
 }
 
 #content-wrapper {
- background : #fff url('../images/custom/bg_page.gif') repeat-y scroll 0 0 ;
+ background : #fff url('../images/common/wrapper_bg_1.gif') repeat-y scroll 0 0 ;
  width : 770px ;
 }
 #portlet-wrapper- {
  width : 770px ;
  padding : 0 20px ;
- background : transparent url('../images/custom/bg_page.gif') repeat-y scroll 0 0 ;
+ background : transparent url('../images/common/wrapper_bg_1.gif') repeat-y scroll 0 0 ;
 }
 #content-wrapper #layout-grid {
  display : block ;
- background : transparent url('../images/custom/bg_page_in.jpg') no-repeat scroll 0 0 ;
+ background : transparent url('../images/common/wrapper_bg_2.jpg') no-repeat scroll 0 0 ;
  padding : 41px 0 0 0 ;
 }
 
@@ -192,7 +192,7 @@ ul.child-menu { display : none ; }
 }
 
 .columns-2 #column-2 {
- background : transparent url('../images/custom/col_bg.gif') repeat-y scroll 0 0 ;
+ background : transparent url('../images/common/wrapper_bg_3.gif') repeat-y scroll 0 0 ;
  margin : 0 ;
  padding : 0 ;
  width  :200px ;
@@ -204,13 +204,13 @@ ul.child-menu { display : none ; }
  height : 60px ;
  margin-bottom : 50px ;
  padding-left : 40px ;
- background : transparent url('../images/custom/footer.jpg') no-repeat scroll 0 0 ;
+ background : transparent url('../images/common/footer_bg.jpg') no-repeat scroll 0 0 ;
  clear : both ;
  color : #6685CC ;
 }
 
 #column-1 .portlet {
- background:transparent url('../images/custom/content_article_bg.jpg') no-repeat scroll 0 0 ;
+ background:transparent url('../images/portlet/content_article_bg.jpg') no-repeat scroll 0 0 ;
  clear:both;
  margin:0pt;
  padding:20px;
@@ -218,7 +218,7 @@ ul.child-menu { display : none ; }
 }
 
 #column-1 .portlet-title {
- background : #DEE5FD url('../images/custom/content_title_bg.gif') repeat-y scroll 0 0 ;
+ background : #DEE5FD url('../images/portlet/content_title_bg.gif') repeat-y scroll 0 0 ;
  color : #192666 ;
  margin : 0pt -20px ;
  padding : 10px ;
@@ -238,7 +238,7 @@ ul.child-menu { display : none ; }
 }
 
 #column-2 .portlet-title {
- background : #A0B9F3 url('../images/custom/col_title_bg.gif') repeat-y scroll 0 0 ;
+ background : #A0B9F3 url('../images/portlet/col_title_bg.gif') repeat-y scroll 0 0 ;
  color : #192666 ;
  margin:0pt -10px 15px -10px ;
  padding : 13px 15px 11px 15px ;
@@ -252,7 +252,7 @@ ul.child-menu { display : none ; }
 }
 
 #column-2 #layout-column_column-2 {
-background : transparent url('../images/custom/col_top.gif') no-repeat scroll top left ;
+background : transparent url('../images/portlet/col_top.gif') no-repeat scroll top left ;
 padding:20px 10px;
 }
 
