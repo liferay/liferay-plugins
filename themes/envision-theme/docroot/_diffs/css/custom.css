@@ -61,13 +61,13 @@ body {
  text-align : center ;
 }
 #wrapper {
- background : #ccc url('../images/custom/content.jpg') repeat-y scroll center top ;
+ background : #ccc url('../images/common/wrapper_bg.jpg') repeat-y scroll center top ;
  margin : 0 auto ;
  text-align : left ;
  width : 820px ;
 }
 #banner {
- background : #CCCCCC url('../images/custom/header.jpg') no-repeat scroll center top ;
+ background : #CCCCCC url('../images/common/banner_bg.jpg') no-repeat scroll center top ;
  color : #FFFFFF ;
  height : 103px ;
  padding : 0pt ;
@@ -101,12 +101,12 @@ top:25px;
 }
 .js .lfr-dock.interactive-mode h2 ,
 .js .lfr-dock.interactive-mode h2 span {
- background-image : url('../images/custom/menu_bar.png') ;
+ background-image : url('../images/dock/menu_bar.png') ;
 }
 
 #navigation {
  display : block ;
- background:transparent url('../images/custom/menu.jpg') repeat-x scroll 0pt;
+ background:transparent url('../images/navigation/bg.jpg') repeat-x scroll 0pt;
  clear:both;
  font-family:Verdana,Arial,Tahoma,Sans-serif;
  font-size:12px;
@@ -166,7 +166,7 @@ top:25px;
  margin : 20px 10px 30px 5px ;
 }
 .portlet-title {
- background : transparent url('../images/custom/square-green.png') no-repeat scroll 3px 50% ;
+ background : transparent url('../images/portlet/portlet_bg.png') no-repeat scroll 3px 50% ;
  border-bottom : 1px solid #EFF0F1;
  color:#88AC0B;
  font-family:'Trebuchet MS',Tahoma,Sans-serif;
@@ -184,7 +184,7 @@ top:25px;
  padding : 10px ;
 }
 #footer {
- background : #ccc url('../images/custom/footer.jpg') no-repeat scroll center top ;
+ background : #ccc url('../images/common/footer_bg.jpg') no-repeat scroll center top ;
  clear:both;
  color:#C6DDEE;
  font-size:92%;
@@ -202,7 +202,7 @@ top:25px;
 }
 
 input[type="submit"], input[type="button"], input[type="reset"] {
- background : #8EB50C url('../images/custom/button-bg.jpg') repeat-x scroll 0 0 ;
+ background : #8EB50C url('../images/common/button_bg.jpg') repeat-x scroll 0 0 ;
  border : medium none ;
  color : #FFFFFF ;
  font-family : Arial,Sans-serif ;
