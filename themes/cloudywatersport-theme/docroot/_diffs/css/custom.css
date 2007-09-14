@@ -46,11 +46,11 @@ ul.child-menu { display : none ; }
 /* Theme */
 
 html {
- background : #666 url('../images/custom/bg.jpg') ;
+ background : #666 url('../images/common/page_bg_1.jpg') ;
 }
 
 body {
- background : transparent url('../images/custom/back.png') repeat-y scroll center top ;
+ background : transparent url('../images/common/page_bg_2.png') repeat-y scroll center top ;
  color : #333333 ;
  font-family : Verdana,Arial,Helvetica,sans-serif ;
  font-size : 13px ;
@@ -65,7 +65,7 @@ body {
 }
 
 #banner {
- background : #FFFBFD url('../images/custom/header.jpg') repeat scroll 0 0 ;
+ background : #FFFBFD url('../images/common/banner_bg.jpg') repeat scroll 0 0 ;
  height : 120px;
  margin : 0px auto;
  padding : 10px 0px;
@@ -90,7 +90,7 @@ body {
 }
 
 .js .lfr-dock.interactive-mode h2 , .js .lfr-dock.interactive-mode h2 span {
- background-image : url('../images/custom/menu_bar.png') ;
+ background-image : url('../images/dock/menu_bar.png') ;
 }
 
 
@@ -181,7 +181,7 @@ body {
 #column-2 a:hover { color : #dcdcdc ; text-decoration : underline ; }
 #column-2 .tabs li.current , #column-2 .tabs li.current a , #column-2 .tabs li.current span ,
 #column-2 .tabs li , #column-2 .tabs li a , #column-2 .tabs li span {
- background-image : url('../images/custom/tabs_bg.png') ;
+ background-image : url('../images/common/tabs_bg.png') ;
 }
 #column-2 .tabs li a:hover { text-decoration : none ; }
 
