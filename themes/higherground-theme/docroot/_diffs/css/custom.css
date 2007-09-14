@@ -70,7 +70,7 @@ body {
 #wrapper {
  position : relative ;
  width : 820px ;
- background : transparent url('../images/custom/content.jpg') repeat-y center top ;
+ background : transparent url('../images/common/wrapper_bg_1.jpg') repeat-y center top ;
  margin : 0 auto ;
  text-align : left ;
 }
@@ -79,7 +79,7 @@ body {
  position : absolute ;
  top : 0 ;
  left : 0 ;
- background : #ccc url('../images/custom/top-bg.jpg') repeat-y scroll center top ;
+ background : #ccc url('../images/common/wrapper_bg_2.jpg') repeat-y scroll center top ;
  width : 820px ;
  height : 19px ;
 }
@@ -88,7 +88,7 @@ body {
  position : relative ;
  width : 820px ;
  height : 100px ;
- background : #ccc url('../images/custom/header-bg.jpg') repeat-y scroll center top ;
+ background : #ccc url('../images/common/banner_bg_1.jpg') repeat-y scroll center top ;
  color : #fff ;
 }
 #theme_header .logo {
@@ -104,7 +104,7 @@ body {
  letter-spacing : -1px ;
 }
 #theme_header-photo {
- background : #fff url('../images/custom/header-photo.jpg') no-repeat scroll center ;
+ background : #fff url('../images/common/banner_bg_2.jpg') no-repeat scroll center ;
  clear : both ;
  height : 200px ;
  margin : 0pt auto ;
@@ -119,7 +119,7 @@ body {
 }
 
 .js .lfr-dock.interactive-mode h2 , .js .lfr-dock.interactive-mode h2 span {
- background-image : url('../images/custom/menu_bar.png') ;
+ background-image : none ;
  font-size : 10px ;
  color : #838181 ;
  font-weight : normal ;
@@ -131,7 +131,7 @@ body {
  clear : both ;
 }
 #navigation ul {
- background : transparent url('../images/custom/nav.jpg') repeat-x scroll 0 0 ;
+ background : transparent url('../images/navigation/bg.jpg') repeat-x scroll 0 0 ;
  display : inline ;
  float : left ;
  margin : 0 0 0 15px ;
@@ -163,10 +163,10 @@ body {
  text-transform : uppercase ;
 }
 #navigation ul li a:hover , .js #add-page a:hover {
- background : transparent url('../images/custom/nav-hover.jpg') repeat-x scroll 0 0 ;
+ background : transparent url('../images/navigation/nav-hover.jpg') repeat-x scroll 0 0 ;
 }
 #navigation ul li.selected a , #navigation ul li.selected a:hover {
- background : transparent url('../images/custom/nav-current.jpg') repeat-x scroll 0 0 ;
+ background : transparent url('../images/navigation/nav-current.jpg') repeat-x scroll 0 0 ;
 }
 #navigation ul li.selected a span.tab-l , #navigation ul li.selected a:hover span.tab-l { }
 #navigation ul li.selected a span.tab-r , #navigation ul li.selected a:hover span.tab-r { }
@@ -217,7 +217,7 @@ body {
  clear : both ;
  padding : 15px 0 ;
  width : 820px ;
- background : transparent url('../images/custom/footer-bottom.jpg') no-repeat scroll center bottom ;
+ background : transparent url('../images/common/footer_bg.jpg') no-repeat scroll center bottom ;
  font-size : 95% ;
  text-align : left ;
 }
