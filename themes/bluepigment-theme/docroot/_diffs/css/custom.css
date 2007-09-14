@@ -152,3 +152,11 @@ a , a:link , a:visited , a:hover { text-decoration : none ; color : #fff ; } a:h
 .columns-3 #layout-grid #column-1 , .columns-3 #layout-grid #column-2 , .columns-3 #layout-grid #column-3 {
  padding : 0 6px ;
 }
+
+.portlet-msg-success , #portal_add_content_title , .portal-add-content td , .portal-add-content a , .font-small {
+ color : #000 ;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+ font-size : 10pt ;
+}
