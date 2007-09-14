@@ -13,6 +13,7 @@ body {
 	background: url(../images/common/btm_bg.jpg) repeat-x bottom;
 	margin: 0 auto;
 	width: 699px;
+	position: relative;
 }
 
 table {
@@ -99,7 +100,7 @@ table {
 	float: left;
 	position: absolute;
 	top: 190px;
-	left: 200px;
+	left: -150px;
 }
 
 .ie6.bottom {
@@ -292,7 +293,7 @@ table {
 }
 
 .tabs li a, .tabs li span {
-	background: url(../images/common/tabs_bg.gif)  2pt -200px;
+	background: url(../images/common/tabs_bg.gif)  -2pt -201px;
 	display: block;
 	float: left;
 	padding: 0.35em 1em 0;
