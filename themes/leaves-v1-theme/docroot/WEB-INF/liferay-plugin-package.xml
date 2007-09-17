@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Leaves v.1 Theme</name>
-	<module-id>liferay/leavesv1-theme/4.3.0.1/war</module-id>
+	<module-id>liferay/leaves-v1-theme/4.3.0.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>

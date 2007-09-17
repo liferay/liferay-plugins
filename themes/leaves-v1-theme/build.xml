@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="leavesv1-theme" basedir="." default="deploy">
+<project name="leaves-v1-theme" basedir="." default="deploy">
 	<import file="../build-common-theme.xml" />
 
 	<property name="plugin.version" value="1" />
