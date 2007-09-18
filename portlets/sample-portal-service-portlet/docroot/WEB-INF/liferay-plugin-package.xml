@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Sample Portal Service Portlet</name>
-	<module-id>liferay/sample-portal-service-portlet/4.3.1.1/war</module-id>
+	<module-id>liferay/sample-portal-service-portlet/4.3.2.1/war</module-id>
 	<types>
 		<type>portlet</type>
 	</types>
@@ -22,6 +22,6 @@
 		<license osi-approved="true">MIT</license>
 	</licenses>
 	<liferay-versions>
-		<liferay-version>4.3.1</liferay-version>
+		<liferay-version>4.3.2</liferay-version>
 	</liferay-versions>
 </plugin-package>

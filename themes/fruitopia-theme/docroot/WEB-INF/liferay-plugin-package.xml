@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Fruitopia Theme</name>
-	<module-id>liferay/fruitopia-theme/4.3.1.1/war</module-id>
+	<module-id>liferay/fruitopia-theme/4.3.2.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>
@@ -27,6 +27,6 @@
 		<license osi-approved="true">Creative Commons License</license>
 	</licenses>
 	<liferay-versions>
-		<liferay-version>4.3.1</liferay-version>
+		<liferay-version>4.3.2</liferay-version>
 	</liferay-versions>
 </plugin-package>

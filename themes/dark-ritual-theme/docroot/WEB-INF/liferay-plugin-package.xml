@@ -24,6 +24,6 @@
 		<license osi-approved="true">Creative Commons Attribution 2.5</license>
 	</licenses>
 	<liferay-versions>
-		<liferay-version>4.3.1</liferay-version>
+		<liferay-version>4.3.2</liferay-version>
 	</liferay-versions>
 </plugin-package>

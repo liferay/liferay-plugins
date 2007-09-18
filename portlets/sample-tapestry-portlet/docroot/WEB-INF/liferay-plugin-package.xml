@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Sample Tapestry Portlet</name>
-	<module-id>liferay/sample-tapestry-portlet/4.3.1.1/war</module-id>
+	<module-id>liferay/sample-tapestry-portlet/4.3.2.1/war</module-id>
 	<types>
 		<type>portlet</type>
 	</types>
@@ -15,13 +15,13 @@
 	</short-description>
 	<change-log>
 		Adapted to the latest version of Liferay.
-	</change-log>	
+	</change-log>
 	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
 	<author>Liferay, Inc.</author>
 	<licenses>
 		<license osi-approved="true">MIT</license>
 	</licenses>
 	<liferay-versions>
-		<liferay-version>4.3.1</liferay-version>
+		<liferay-version>4.3.2</liferay-version>
 	</liferay-versions>
 </plugin-package>

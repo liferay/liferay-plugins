@@ -10,7 +10,7 @@
 	<tags>
 		<tag>oswd</tag>
 		<tag>1-column</tag>
-		
+
 	</tags>
 	<short-description>
 		This template is for those who have the cojones to use it. Tested in all the popular browsers, XHTML 1.1, blah blah... Enjoy.
@@ -24,6 +24,6 @@
 		<license osi-approved="true">Unknown</license>
 	</licenses>
 	<liferay-versions>
-		<liferay-version>4.3.1</liferay-version>
+		<liferay-version>4.3.2</liferay-version>
 	</liferay-versions>
 </plugin-package>
