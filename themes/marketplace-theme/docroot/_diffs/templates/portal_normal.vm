@@ -22,9 +22,9 @@ $theme.include($top_messages_include)
  <div id="header">
   <div id="header-links">
    <p>
-    <a href="index.html">Home</a> | 
-    <a href="index.html">Contact</a> | 
-    <a href="index.html">Site Map</a>			
+    <a href="index.html">Home</a> |
+    <a href="index.html">Contact</a> |
+    <a href="index.html">Site Map</a>
    </p>
   </div>
  </div>
@@ -54,7 +54,7 @@ $theme.include($top_messages_include)
 		$theme.wrapPortlet("portlet.vm", $content_include)
 	#end
 
-	<div id="footer">&copy; 2006 <strong>$company_name</strong> | Design by: <a href="http://www.styleshout.com/">styleshout</a></div>   
+	<div id="footer">&copy; 2006 <strong>$company_name</strong> | Design by: <a href="http://www.styleshout.com/">styleshout</a></div>
 </div>
 
 $theme.include($bottom_ext_include)

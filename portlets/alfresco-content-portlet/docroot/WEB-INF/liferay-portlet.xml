@@ -10,7 +10,7 @@
 		<layout-cacheable>true</layout-cacheable>
 		<instanceable>true</instanceable>
 		<render-weight>1</render-weight>
-		<header-css>/portlet.css</header-css>
+		<header-portlet-css>/portlet.css</header-portlet-css>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

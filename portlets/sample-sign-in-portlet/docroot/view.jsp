@@ -42,7 +42,7 @@
 <%@ page import="com.liferay.portal.kernel.util.MethodInvoker" %>
 <%@ page import="com.liferay.portal.kernel.util.MethodWrapper" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.PortalClassLoaderUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.PortalClassInvoker" %>
 <%@ page import="com.liferay.portal.kernel.util.PropsUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.security.auth.AuthException" %>
@@ -69,21 +69,7 @@
 	<c:otherwise>
 
 		<%
-		String login = StringPool.BLANK;
-
-		ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
-
-		try {
-			Thread.currentThread().setContextClassLoader(PortalClassLoaderUtil.getClassLoader());
-
-			MethodWrapper methodWrapper = new MethodWrapper("com.liferay.portal.action.LoginAction", "getLogin", new Object[] {request, "login", company});
-
-			login = (String)MethodInvoker.invoke(methodWrapper, false);
-		}
-		finally {
-			Thread.currentThread().setContextClassLoader(contextClassLoader);
-		}
-
+		String login = GetterUtil.getString((String)PortalClassInvoker.invoke("com.liferay.portal.action.LoginAction", "getLogin", request, "login", company, false));
 		String password = StringPool.BLANK;
 		boolean rememberMe = ParamUtil.getBoolean(request, "rememberMe");
 		%>
