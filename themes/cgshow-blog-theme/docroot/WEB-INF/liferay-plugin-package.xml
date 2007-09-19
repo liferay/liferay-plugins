@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Cgshow-Blog Theme</name>
-	<module-id>liferay-inc/cgshow-blog-theme/4.3.2.1/war</module-id>
+	<module-id>liferay/cgshow-blog-theme/4.3.2.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>
