@@ -3,7 +3,7 @@
 
 <look-and-feel>
 	<compatibility>
-		<version>4.3.1</version>
+		<version>4.3.2</version>
 	</compatibility>
 	<theme id="nautica05" name="Nautica 05">
 		<color-scheme id="01" name="Light">

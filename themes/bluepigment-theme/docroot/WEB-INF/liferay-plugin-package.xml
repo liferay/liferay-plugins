@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Blue Pigment Theme</name>
-	<module-id>liferay/bluepigment-theme/4.3.0.1/war</module-id>
+	<module-id>liferay/bluepigment-theme/4.3.2.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>

@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>FreeStyle Theme</name>
-	<module-id>liferay-inc/freestyle-theme/4.3.0.1/war</module-id>
+	<module-id>liferay-inc/freestyle-theme/4.3.2.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>

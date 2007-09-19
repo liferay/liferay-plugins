@@ -3,7 +3,7 @@
 
 <look-and-feel>
 	<compatibility>
-		<version>4.3.*</version>
+		<version>4.3.2</version>
 	</compatibility>
 	<theme id="fruitopia" name="Fruitopia" />
 </look-and-feel>
