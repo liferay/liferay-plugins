@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>O8 Gulona Theme</name>
-	<module-id>liferay/08-gulona-theme/4.3.0.1/war</module-id>
+	<module-id>liferay/08-gulona-theme/4.3.2.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>
@@ -16,12 +16,13 @@
 		<tag>2-2-column</tag>
 	</tags>
 	<short-description>
+		A simplistic green theme based on 08 Gulona by Zed.
 	</short-description>
 	<change-log>
 		Adapted to the latest version of Liferay.
 	</change-log>
 	<page-url>http://opensourcetemplates.org/template_info.php?id=104</page-url>
-	<author>Liferay, Inc.</author>
+	<author>Zeb</author>
 	<licenses>
 		<license osi-approved="true">Creative Commons Attribution 2.5 License</license>
 	</licenses>
