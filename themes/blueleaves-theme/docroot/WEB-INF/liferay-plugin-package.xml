@@ -16,7 +16,7 @@
 		<tag>2-2-columns</tag>
 	</tags>
 	<short-description>
-	This theme was written by Jenna Smith, http://www.oswd.org/design/information/id/2527
+		This theme was written by Jenna Smith, http://www.oswd.org/design/information/id/2527
 	</short-description>
 	<change-log>
 		Obtained from www.oswd.org and adapted to the latest version of Liferay.
@@ -27,6 +27,6 @@
 		<license osi-approved="true">unknown</license>
 	</licenses>
 	<liferay-versions>
-		<liferay-version>4.3.*</liferay-version>
+		<liferay-version>4.3.2</liferay-version>
 	</liferay-versions>
 </plugin-package>
