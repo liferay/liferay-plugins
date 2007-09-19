@@ -9,9 +9,14 @@
 	</types>
 	<tags>
 		<tag>liferay</tag>
+		<tag>1-column</tag>
+		<tag>2-columns</tag>
+		<tag>3-columns</tag>
+		<tag>1-2-1-columns</tag>
+		<tag>2-2-columns</tag>
 	</tags>
 	<short-description>
-	Written by Viktor Persson, designed by Arcsin, http://templates.arcsin.se/
+		Written by Viktor Persson, designed by Arcsin, http://templates.arcsin.se/
 	</short-description>
 	<change-log>
 		Found on http://www.oswd.org and adapted to the latest version of Liferay.
