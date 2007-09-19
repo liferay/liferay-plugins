@@ -8,18 +8,18 @@
 		<type>theme</type>
 	</types>
 	<tags>
-		<tag>OSWD</tag>
+		<tag>oswd</tag>
 		<tag>1-column</tag>
 		<tag>2-columns</tag>
 	</tags>
 	<short-description>
-	The Dark Ritual Theme was created by the people at http://arcsin.se.
+		The Dark Ritual Theme created by, Arcsin (http://arcsin.se).
 	</short-description>
 	<change-log>
 		Adapted to the latest version of Liferay.
 	</change-log>
-	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
-	<author>Liferay, Inc.</author>
+	<page-url>http://www.oswd.org/design/information/id/3516</page-url>
+	<author>Arcsin</author>
 	<licenses>
 		<license osi-approved="true">Creative Commons Attribution 2.5</license>
 	</licenses>

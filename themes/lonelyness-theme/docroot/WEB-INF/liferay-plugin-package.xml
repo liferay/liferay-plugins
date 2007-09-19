@@ -8,17 +8,17 @@
 		<type>theme</type>
 	</types>
 	<tags>
-		<tag>liferay</tag>
+		<tag>oswd</tag>
 		<tag>1-column</tag>
 	</tags>
 	<short-description>
-	This template was created by Dieter Schneider. Dieter's url is http://www.csstemplateheaven.com.
+		This template was created by Dieter Schneider.
 	</short-description>
 	<change-log>
 		Adapted to the latest version of Liferay.
 	</change-log>
-	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
-	<author>Liferay, Inc.</author>
+	<page-url>http://www.csstemplateheaven.com</page-url>
+	<author>Dieter</author>
 	<licenses>
 		<license osi-approved="true">Unknown</license>
 	</licenses>

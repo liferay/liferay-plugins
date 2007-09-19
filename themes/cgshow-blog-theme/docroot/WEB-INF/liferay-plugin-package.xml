@@ -13,13 +13,13 @@
 		<tag>2-columns</tag>
 	</tags>
 	<short-description>
-		The Cgshow-Blog Theme was created by Liuzhoou. Liuzhoou's url is http://www.cgshow.com/wordpress/.
+		The Cgshow-Blog Theme was created by Liuzhoou.
 	</short-description>
 	<change-log>
 		Adapted to the latest version of Liferay.
 	</change-log>
-	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
-	<author>Liferay, Inc.</author>
+	<page-url>http://www.cgshow.com/wordpress</page-url>
+	<author>Liuzhoou</author>
 	<licenses>
 		<license osi-approved="true">Unknown</license>
 	</licenses>

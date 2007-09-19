@@ -19,10 +19,10 @@
 	<change-log>
 		Adapted to the latest version of Liferay.
 	</change-log>
-	<page-url></page-url>
-	<author></author>
+	<page-url>http://www.styleshout.com/templates/preview/HigherGround1-0/index.html</page-url>
+	<author>styleshout</author>
 	<licenses>
-		<license osi-approved="true"> Creative Commons Attribution 2.5</license>
+		<license osi-approved="true">Creative Commons Attribution 2.5</license>
 	</licenses>
 	<liferay-versions>
 		<liferay-version>4.3.2</liferay-version>

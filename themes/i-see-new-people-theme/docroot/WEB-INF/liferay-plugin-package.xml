@@ -5,19 +5,24 @@
 	<name>I See New People Theme</name>
 	<module-id>liferay/i-see-new-people-theme/4.3.2.1/war</module-id>
 	<types>
-		<type>theme</type>
+		<type>oswd</type>
+		<tag>1-column</tag>
+		<tag>2-columns</tag>
+		<tag>3-columns</tag>
+		<tag>1-2-1-columns</tag>
+		<tag>2-2-columns</tag>
 	</types>
 	<tags>
 		<tag>liferay</tag>
 	</tags>
 	<short-description>
-	Designed by OSWD user J.M., http://www.oswd.org/design/information/id/2710
+		No description available.
 	</short-description>
 	<change-log>
 		Found on http://www.oswd.org and adapted to the latest version of Liferay.
 	</change-log>
-	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
-	<author>Liferay, Inc.</author>
+	<page-url>http://www.oswd.org/design/information/id/2710</page-url>
+	<author>J.M.</author>
 	<licenses>
 		<license osi-approved="true">unknown</license>
 	</licenses>

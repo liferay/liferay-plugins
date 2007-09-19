@@ -13,13 +13,13 @@
 		<tag>2-columns</tag>
 	</tags>
 	<short-description>
-	Miami Sky was created by The All Beauty Directory. Their url is http://www.allbeautydirectory.com.
+		A Miami theme featuring its unique trees.
 	</short-description>
 	<change-log>
 		Adapted to the latest version of Liferay.
 	</change-log>
-	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
-	<author>Liferay, Inc.</author>
+	<page-url>http://www.allbeautydirectory.com</page-url>
+	<author>The All Beauty Directory</author>
 	<licenses>
 		<license osi-approved="true">Unknown</license>
 	</licenses>

@@ -9,18 +9,24 @@
 	</types>
 	<tags>
 		<tag>liferay</tag>
+		<tag>1-column</tag>
+		<tag>2-columns</tag>
+		<tag>3-columns</tag>
+		<tag>1-2-1-columns</tag>
+		<tag>2-2-columns</tag>
 	</tags>
 	<short-description>
+		No description available.
 	</short-description>
 	<change-log>
 		Adapted to the latest version of Liferay.
 	</change-log>
-	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
-	<author>Liferay, Inc.</author>
+	<page-url>http://www.oswd.org/design/information/id/3557</page-url>
+	<author>nodethirtythree</author>
 	<licenses>
-		<license osi-approved="true">MIT</license>
+		<license osi-approved="true">unknown</license>
 	</licenses>
 	<liferay-versions>
-		<liferay-version>4.3.*</liferay-version>
+		<liferay-version>4.3.2</liferay-version>
 	</liferay-versions>
 </plugin-package>

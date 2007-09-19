@@ -8,7 +8,7 @@
 		<type>theme</type>
 	</types>
 	<tags>
-		<tag>OSWD</tag>
+		<tag>oswd</tag>
 		<tag>1-column</tag>
 		<tag>2-columns</tag>
 		<tag>3-columns</tag>
@@ -19,12 +19,12 @@
 	Found on http://www.oswd.org, designed by Arcsin, http://arcsin.se
 	</short-description>
 	<change-log>
-		Found on http://www.oswd.org and adapted to the latest version of Liferay.
+		Adapted to the latest version of Liferay.
 	</change-log>
-	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
-	<author>Liferay, Inc.</author>
+	<page-url>http://arcsin.se</page-url>
+	<author>Arcsin</author>
 	<licenses>
-		<license osi-approved="true">Creative Commons Attribution 2.5 License</license>
+		<license osi-approved="true">Creative Commons Attribution 2.5</license>
 	</licenses>
 	<liferay-versions>
 		<liferay-version>4.3.2</liferay-version>

@@ -13,15 +13,15 @@
 		<tag>2-columns</tag>
 	</tags>
 	<short-description>
-	This design was created by Health Tags. Their url is http://www.health-tags.org.
+		This design was created by Health Tags.
 	</short-description>
 	<change-log>
 		Adapted to the latest version of Liferay.
 	</change-log>
 	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
-	<author>Liferay, Inc.</author>
+	<author>Health Tags</author>
 	<licenses>
-		<license osi-approved="true">Unknown</license>
+		<license osi-approved="true">http://www.health-tags.org</license>
 	</licenses>
 	<liferay-versions>
 		<liferay-version>4.3.2</liferay-version>

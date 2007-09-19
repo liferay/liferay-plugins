@@ -22,7 +22,7 @@
 	<page-url>http://www.oswd.org/design/information/id/3533</page-url>
 	<author>lazar</author>
 	<licenses>
-		<license osi-approved="true">GNU GENERAL PUBLIC LICENSE</license>
+		<license osi-approved="true">GNU</license>
 	</licenses>
 	<liferay-versions>
 		<liferay-version>4.3.2</liferay-version>

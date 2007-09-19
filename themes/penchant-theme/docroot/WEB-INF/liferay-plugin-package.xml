@@ -12,7 +12,7 @@
 		<tag>column-1</tag>
 	</tags>
 	<short-description>
-        My first attempt at an image-based layout, Penchant For Photos is ideal for a photo gallery or similar website. Penchant For Photos was tested in FF1.0.7 and IE6. It validates as standards-compliant for XHTML 1.1 and CSS.
+		Penchant For Photos was tested in FF1.0.7 and IE6. It validates as standards-compliant for XHTML 1.1 and CSS.
 	</short-description>
 	<change-log>
 		Adapted to the latest version of Liferay.

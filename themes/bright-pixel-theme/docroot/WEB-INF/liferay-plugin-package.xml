@@ -8,7 +8,6 @@
 		<type>theme</type>
 	</types>
 	<tags>
-		<tag>liferay</tag>
 		<tag>1-column</tag>
 		<tag>2-columns</tag>
 	</tags>
@@ -18,8 +17,8 @@
 	<change-log>
 		Adapted to the latest version of Liferay.
 	</change-log>
-	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
-	<author>Liferay, Inc.</author>
+	<page-url>http://www.arcsin.se</page-url>
+	<author>Arcsin</author>
 	<licenses>
 		<license osi-approved="true">Unknown</license>
 	</licenses>
