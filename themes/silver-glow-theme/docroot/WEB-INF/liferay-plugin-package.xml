@@ -18,10 +18,10 @@
 	<change-log>
 		Adapted to the latest version of Liferay.
 	</change-log>
-	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
+	<page-url>http://www.health-tags.org</page-url>
 	<author>Health Tags</author>
 	<licenses>
-		<license osi-approved="true">http://www.health-tags.org</license>
+		<license osi-approved="true">Unknown</license>
 	</licenses>
 	<liferay-versions>
 		<liferay-version>4.3.2</liferay-version>
