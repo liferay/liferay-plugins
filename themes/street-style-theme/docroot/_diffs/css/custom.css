@@ -1,0 +1,370 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+body {
+	background: url(../images/common/bg.gif) repeat top;
+	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+	color: #fff;
+}
+
+a {
+	color: #FFF;
+	font-weight: bold;
+}
+
+table {
+	clear: both;
+}
+
+/* ---------- Main content body ---------- */
+
+#wrapper {
+	background: #222;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 0 auto;
+	width:720px;
+	position: relative;
+}
+
+.ie6 #wrapper {
+	width: 720px;
+	padding-right: 7px;
+}
+
+#footer {
+	background: url(../images/common/footerbg.gif) no-repeat bottom left;
+	height:120px;
+	border-top:133px solid #222;
+	margin:0pt -10px;
+	width:740px;
+}
+
+/* ---------- Wrapper ---------- */
+
+#content-wrapper {
+	background: #222;
+	border-collapse: collapse;
+	width: 100%;
+	position: relative;
+	top: 100px;
+}
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: url(../images/common/rightbg.png) no-repeat scroll right;
+	height: 28em;
+	position: relative;
+}
+
+.ie6 #banner {
+	background-position: 215px;
+	padding-bottom: 2px;
+	margin-right: -1.5px;
+}
+
+#banner .logo {
+	background: #000;
+	display: block;
+	float: left;
+	font-size: 2em;
+	padding: 1.45em 0em 1.45em 1.2em;
+	position:relative;
+	top:280px;
+}
+
+.ie6 #banner .logo {
+	padding-right: 0px;
+	margin-right: -95px;
+}
+
+#banner .logo a {
+	text-decoration: none;
+	font-weight: normal;
+	color: #FF0099;
+	font-family:sans-serif,Arial;
+	font-size: 4em;
+	margin-left: 114px;
+	letter-spacing: -2px;
+}
+
+.ie6 #banner .logo a {
+	margin-left: 114px;
+}
+
+.motto {
+	font-size: 1em;
+	color: #FFF;
+	font-family:sans-serif,Arial;
+	font-size: 1em;
+	margin-left: 337px;
+	letter-spacing: -1px;
+}
+
+.ie6.motto {
+	margin-left: 333px;
+}
+
+/* ---------- Main navigation ---------- */
+
+#navigation {
+	background: url(../images/common/leftbg.png) repeat top left;
+	margin: 0 auto 0.5em;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding-right: 10px;
+	padding-bottom: 110px;
+	padding-left: 0px;
+	padding-top: 0px; 
+	width: 211px;
+	height: 170px;
+	position: absolute;
+	top: 0px;
+	left:10px;
+	z-index: 20;
+}
+
+.ie6 #navigation {
+	width: 204px;
+	height: 279px;
+	padding-bottom: 0px;
+	position: absolute;
+	top: 0px;
+	left: 10px;
+}
+
+#navigation ul {
+	background: url(../images/navigation/nav.gif) no-repeat 0 0px;
+	float: left;
+	min-height: 2em;
+	padding-top: 30px;
+	padding-right: 3.7em;
+}
+
+.ie6 #navigation ul {
+	padding-top: 45px;
+	padding-right: 0px;
+	margin-right: -25px;
+}
+
+#navigation li {
+	background: none;
+	display: inline;
+	float: none;
+	margin-right: 0.5em;
+	padding: 0 0.5em 0 0;
+	position: relative;
+}
+
+#navigation li a {
+	background: #000;
+	display: block;
+	padding: 0 3.3em 0 1.5em;
+	height:26px;
+	width: 120px;
+	margin-bottom: -8px;
+	text-decoration: none;
+	font-family:sans-serif,Arial;
+	font-size: 2.4em;
+	color: #FFF;
+	font-weight: bold;
+	letter-spacing: -2px; 
+}
+
+.ie6 #navigation li a {
+	margin-bottom: 7px;
+	padding-top: 2px;
+	width: 100px;
+}
+
+#navigation li a:hover {
+	padding-bottom: 0;
+	color: #FF0099;
+}
+
+#navigation li a span {
+	background: none;
+	padding-left: 0px;
+	text-decoration: none;
+}
+
+#navigation li.selected a {
+	padding-top: 0;
+}
+
+#navigation li.selected a span {
+	background: none;
+	font-size: 1em;
+	font-weight: bold;
+	color: #FF0099; 
+}
+
+#navigation li.selected a:hover {
+	padding-bottom: 0;
+}
+
+#navigation li a:hover span {
+	background: none;
+}
+
+.js #add-page {
+	float: left;
+	font-weight: bold;
+	padding-top: 0.3em;
+	position: absolute;
+	top: 50px;
+	left: 130px;
+}
+
+.js #add-page a {
+	text-decoration: none;
+	color: #FFF;
+}
+
+.ie6.js #add-page {
+	top: 45px;
+	right: -30px;
+}
+
+.js .lfr-dock.interactive-mode h2 {
+	background: url(../images/dock/menu_bar.png) no-repeat 100% -30px;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0 29px 0 0;
+	position: relative;
+	z-index: 100;
+}
+
+.js .lfr-dock.expanded .lfr-dock-list-container {
+	background: #60738C;
+	border: 1px solid #B5B9BB;
+	border-top: none;
+	top: -2px;
+}
+
+.js .lfr-dock.interactive-mode ul {
+	background: #000;
+	border-left: 20px solid #FF0099;
+	display: none;
+	float: none;
+}
+
+
+.js .delete-tab {
+	background: url(../images/common/remove.png) no-repeat 42%;
+	cursor: pointer;
+	display: block;
+	height: 7px;
+	position: absolute;
+	right: 5px;
+	text-indent: -9999em;
+	top: 16px;
+	width: 8px;
+}
+
+.ie6.js .delete-tab {
+	right: 200px;
+	top: 0px;
+}
+
+.js #navigation .enter-page {
+	background: none;
+	padding: 0.5em 2em 0.7em 1.5em;
+}
+
+/* ---------- Portlet wrapper and icons ---------- */
+
+#portlet-wrapper- {
+	margin-top: 98px;
+}
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: none;
+}
+
+.portlet {
+	margin: 0 0 10px;
+	padding-right: 10px;
+	text-align: left;
+}
+
+.portlet-topper {
+	background: #000;
+	background-position: right top;
+	margin-right: -10px;
+	padding-right: 40px;
+	position: relative;
+}
+
+.ie6.portlet-topper {
+	margin-right: -6px;
+}
+
+.portlet-title {
+	background-position: top left;
+	display: block;
+	font-weight: bold;
+	font-family:sans-serif,Arial;
+	font-size: 2em;
+	letter-spacing: -1px;
+	min-width: 50%;
+	padding: 8px 0 4px 10px;
+}
+
+.portlet-content {
+	background-position: left bottom;
+	padding: 10px 5px 25px 15px;
+}
+
+/* ---------- Table or section header ---------- */
+
+.portlet-section-header {
+	background: #7F7F7F;
+	padding: 1px 0 0;
+}
+
+.portlet-section-header th {
+	border-bottom: 1px solid #ccc;
+	color: #333;
+	font-weight: bold;
+	padding: 0.3em 1em;
+}
+
+/* ---------- Normal text in a table cell ---------- */
+
+.portlet-section-body {
+	background: #E7EDF4;
+	color: #000;
+}
+
+.portlet-section-body td {
+	background: #FFF;
+	border-top: 1px solid #BFBFBF;
+	padding: 0.3em 1em;
+}
+
+/* This CSS sets the default styles for tabs. */
+
+.tabs {
+	border-bottom: 1px solid #000;
+	margin: 0 0 1.5em 0;
+	padding: 0 0 2.6em 1em;
+}
+
+.tabs li a, .tabs li span {
+	background: url(../images/common/tabs_bg.gif) 0pt -52px;
+	background-color:yellow
+	display: block;
+	float: left;
+	padding: 0.35em 1em 0;
+	text-decoration: none;
+	color: #fff;
+}
+
+.tabs li.current a, .tabs li.current span {
+	background: url(../images/common/tabs_bg.gif) -1pt -1px;
+	color: #FFF;
+	font-weight: bold;
+	font-size: 1em;
+	padding: 0.15em 1em;
+}
