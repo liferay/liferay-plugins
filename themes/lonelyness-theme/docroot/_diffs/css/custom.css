@@ -42,19 +42,29 @@ table {
 /* ---------- Wrapper ---------- */
 
 #content-wrapper {
-	background: url(../images/common/top_content.jpg) no-repeat 0px 0px;
 	border-collapse: collapse;
 	width: 900px;
 	margin-top: -15px;
 	padding-top: 50px;
+	position: relative;
+	top: 97px;
 }
 
 .ie6 #content-wrapper {
-	margin-top: -10px;
+	top: 103px;
 }
 
 .not-selectable {
+	background: url(../images/common/top_content.jpg) no-repeat 0px 0px;
+	width: 900px;
+	padding-top: 50px;
+	padding-bottom:133px;
+	position: absolute;
+	top: 609px;
+}
 
+.ie6.not-selectable {
+	top: 605px;
 }
 /* ---------- 1 column ---------- */
 
@@ -76,7 +86,7 @@ table {
 	background-image: url(../images/common/body_tile.jpg);
 	background-repeat: repeat-y;
 	margin: 0 20px;
-	width: 70%;
+	width: 1000px;
 }
 
 #footer {
@@ -90,16 +100,21 @@ table {
 /* ---------- Main navigation ---------- */
 
 #navigation {
-	background: url(../images/common/linkbar.jpg) no-repeat -46px 0px;
+	background: url(../images/common/linkbar.jpg) no-repeat -48px 0px;
 	margin-top: 0px;
 	min-height: 2.2em;
 	overflow: hidden;
 	padding-right: 0;
 	height: 66px;
 	width: 900px;
+	position: absolute;
+	top: 550px;
+	left: 68px;
 }
 
 .ie6 #navigation {
+	top: 546px;
+	left: 67px;
 	background-position: -47px 0px;
 	height: 55px;
 	padding-bottom: 9px;
@@ -176,8 +191,8 @@ table {
 	font-weight: bold;
 	padding-top: 0.3em;
 	position: absolute;
-	top: 570px;
-	right: 640px;
+	top: -3px;
+	left: 144px;
 	z-index: 20;
 }
 
@@ -257,11 +272,12 @@ table {
 #portlet-wrapper- {
 	margin-left: 140px;
 	margin-right: 300px;
-	margin-top: 80px;
+	margin-top: 231px;
 }
 
 .ie6 #portlet-wrapper- {
-	margin-top: 140px;
+	margin-top: 235px;
+	margin-left: 140px;
 }
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
@@ -314,11 +330,33 @@ table {
 }
 
 .tabs li a, .tabs li span {
-	background: none;
+	background: #000;
 	display: block;
+	color: #E9E5DC;
+	font-weight: bold;
 	float: left;
 	padding: 0.35em 1em 0;
 	text-decoration: none;
 }
 
+.tabs li a:hover {
+	background: #83895B;
+	color: #E9E5DC;
+}
+
+
+.tabs li.current {
+	background: url(../images/common/tabs_bg.png) 100% 0;
+	font-weight: bold;
+	top: 0.15em;
+}
+
+.tabs li.current a, .tabs li.current span {
+	background: #83895B none;
+	border-left: 1px outset;
+	border-right: 1px outset;
+	border-top: 1px outset;
+	color: #E9E5DC;
+	padding: 0.15em 1em;
+}
 

@@ -62,6 +62,7 @@ $theme.include($top_messages_include)
 
 		$theme.wrapPortlet("portlet.vm", $content_include)
 	#end
+	<div class="not-selectable"></div>
 
 	<div id="footer"></div>
 </div>
