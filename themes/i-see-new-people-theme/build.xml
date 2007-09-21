@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="i_see_new_people-theme" basedir="." default="deploy">
+<project name="i-see-new-people-theme" basedir="." default="deploy">
 	<import file="../build-common-theme.xml" />
 
 	<property name="plugin.version" value="1" />
