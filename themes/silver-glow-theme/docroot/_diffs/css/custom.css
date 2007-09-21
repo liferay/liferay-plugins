@@ -6,43 +6,41 @@
 	background: #FFF url(../images/common/curve_top.jpg) no-repeat top;
 	margin: 10px auto;
 	width: 747px;
+	position: relative;
 }
 
 .left_shade {
 	background-image: url(../images/common/curve_left.jpg);
 	background-repeat: no-repeat;
 	margin-top: 5px;
-	float: left;
 	height: 600px;
 	width: 5px;
 	position: absolute;
-	top: 20px;
-	left: 338px;
+	top: 10px;
+	left: 0px;
+	float: left;
+	z-index: 20;
 }
 
 .ie6.left_shade {
-	position: absolute;
-	top: 20px;
-	left: 252px;	
+	
 }
 
 .right_shade {
 	background-image: url(../images/common/curve_right.jpg);
 	background-repeat: no-repeat;
-	float: right;
 	height: 600px;
 	width: 5px;
 	margin-top: 5px;
 	margin-left: 2px;
 	position: absolute;
-	top: 20px;
-	right: 338px;
+	top: 10px;
+	right: 0px;
+	z-index: 20;
 }
 
 .ie6.right_shade {
-	position: absolute;
-	top: 20px;
-	right: 254px;
+	right: -2px;
 }
 
 #content-wrapper {
@@ -160,12 +158,12 @@ table {
 
 .ie6 #navigation {
 	background-position: 100% 125px;
-	padding: 30em;
-	padding-bottom: 1em;
+	padding: 5em;
+	padding-bottom: 25em;
 	position: absolute;
-	top: 120px;
-	right: 20px;
-	width: 447px;
+	top: 112px;
+	right: -240px;
+	width: 400px;
 }
 
 #navigation ul {
@@ -178,9 +176,7 @@ table {
 }
 
 .ie6 #navigation ul {
-	position: relative;
-	top: -72px;
-	left: 290px;
+	top: 177px;
 }
 
 #navigation li {
@@ -283,11 +279,19 @@ table {
 	z-index: 82;
 }
 
+.ie6.js .lfr-dock.interactive-mode h2 {
+	position: relative;
+}
+
 .js .lfr-dock.interactive-mode ul {
 	background: url(../images/dock/menu_bg.png) no-repeat 0 0;
 	border-left: 20px solid #5A462B;
 	display: none;
 	float: none;
+}
+
+.ie6.js .lfr-dock.expanded .lfr-dock-list-container {
+	position: relative;
 }
 
 .js .lfr-dock.expanded .lfr-dock-list-container {
@@ -317,14 +321,13 @@ table {
 	font-weight: bold;
 	padding-top: 0.3em;
 	position: absolute;
-	top: 175px;
-	right: 240px
+	top: 130px;
+	right: 9px
 }
 
 .ie6.js #add-page {
-	position: absolute;
-	top: 230px;
-	right: -130px;
+	top: 195px;
+	right: -12px;
 }
 
 .js #navigation .enter-page {
