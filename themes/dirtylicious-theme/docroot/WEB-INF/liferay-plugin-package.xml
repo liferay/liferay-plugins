@@ -9,9 +9,10 @@
 	</types>
 	<tags>
 		<tag>1-column</tag>
-		<tag>2-column</tag>
+		<tag>2-columns</tag>
 	</tags>
 	<short-description>
+		A dirty version of the Wordpress theme.
 	</short-description>
 	<change-log>
 		Adapted to the latest version of Liferay.
