@@ -2,8 +2,8 @@
 <!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 4.3.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_4_3_0.dtd">
 
 <plugin-package>
-	<name>Sample ICEfaces (Sun RI) Facelets Portlet</name>
-	<module-id>liferay/sample-icefaces-sun-facelets-portlet/4.3.3.1/war</module-id>
+	<name>Sample ICEfaces (Sun RI - Facelets) Portlet</name>
+	<module-id>liferay/sample-icefaces-sun-facelets-portlet/4.3.2.1/war</module-id>
 	<types>
 		<type>portlet</type>
 	</types>
@@ -23,6 +23,6 @@
 		<license osi-approved="true">MIT</license>
 	</licenses>
 	<liferay-versions>
-		<liferay-version>4.3.3</liferay-version>
+		<liferay-version>4.3.2</liferay-version>
 	</liferay-versions>
 </plugin-package>
