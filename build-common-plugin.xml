@@ -3,6 +3,14 @@
 <project name="build-common-plugin" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="build-common.xml" />
 
+	<if>
+		<available file="docroot/WEB-INF/liferay-theme-plugin.properties" />
+		<then>
+			<property file="docroot/WEB-INF/liferay-theme-plugin.properties" prefix="plugin" />
+			<property name="plugin.version" value="${plugin.module-incremental-version}" />
+		</then>
+	</if>
+
 	<antelope:stringutil string="${basedir}" property="plugin.name.beginindex">
 		<lastindexof string="${file.separator}" />
 	</antelope:stringutil>

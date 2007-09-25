@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 4.3.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_4_3_0.dtd">
-
-<look-and-feel>
-	<compatibility>
-		<version>4.3.2</version>
-	</compatibility>
-	<theme id="minimalist" name="Minimalist" />
-</look-and-feel>
