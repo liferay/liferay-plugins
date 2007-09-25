@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="sample-wap-portlet" basedir="." default="deploy">
+<project name="portlet" basedir="." default="deploy">
 	<property name="plugin.version" value="1" />
 
 	<import file="../build-common-portlet.xml" />
