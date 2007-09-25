@@ -249,6 +249,18 @@ table {
 	float: none;
 }
 
+.js .lfr-dock.interactive-mode h3 {
+	color: #FFF;
+}
+
+.js .lfr-dock.interactive-mode li.my-places li ul li.current a, .js .lfr-dock.interactive-mode li.my-places li ul li.current a:hover {
+	background-color: #333;
+}
+
+.js .interactive-mode .my-places .show-my-places {
+	background-color: #000;
+}
+
 
 .js .delete-tab {
 	background: url(../images/common/remove.png) no-repeat 42%;
