@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 
-<project name="sample-2-1-2-columns-layouttpl" basedir="." default="deploy">
-	<import file="../build-common-layouttpl.xml" />
-
+<project name="layouttpl" basedir="." default="deploy">
 	<property name="plugin.version" value="1" />
-	<property name="plugin.file" value="${project.dir}/dist/${ant.project.name}-${lp.version}.${plugin.version}.war" />
+
+	<import file="../build-common-layouttpl.xml" />
 </project>

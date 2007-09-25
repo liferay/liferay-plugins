@@ -1,7 +1,25 @@
 <?xml version="1.0"?>
 
-<project name="build-common-plugin">
+<project name="build-common-plugin" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="build-common.xml" />
+
+	<antelope:stringutil string="${basedir}" property="plugin.name.beginindex">
+		<lastindexof string="${file.separator}" />
+	</antelope:stringutil>
+
+	<math
+		datatype="int"
+		operand1="${plugin.name.beginindex}"
+		operand2="1"
+		operation="+"
+		result="plugin.name.beginindex"
+	/>
+
+	<antelope:stringutil string="${basedir}" property="plugin.name">
+		<substring beginindex="${plugin.name.beginindex}" />
+	</antelope:stringutil>
+
+	<property name="plugin.file" value="${project.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}.war" />
 
 	<target name="clean">
 		<delete dir="docroot/WEB-INF/classes" />
