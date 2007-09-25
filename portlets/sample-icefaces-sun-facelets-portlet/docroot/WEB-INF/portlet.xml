@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd" version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd">
+	<portlet>
+		<portlet-name>sample_icefaces_sun_facelets</portlet-name>
+		<display-name>Sample ICEfaces (Sun RI - Facelets)</display-name>
+		<portlet-class>com.icesoft.faces.webapp.http.portlet.MainPortlet</portlet-class>
+		<init-param>
+			<name>com.icesoft.faces.EDIT</name>
+			<value>/Edit.iface</value>
+		</init-param>
+		<init-param>
+			<name>com.icesoft.faces.HELP</name>
+			<value>/Help.iface</value>
+		</init-param>
+		<init-param>
+			<name>com.icesoft.faces.VIEW</name>
+			<value>/JobApplication.iface</value>
+		</init-param>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>edit</portlet-mode>
+			<portlet-mode>help</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Sample ICEfaces (Sun RI - Facelets)</title>
+			<short-title>Sample ICEfaces (Sun RI - Facelets)</short-title>
+			<keywords>Sample ICEfaces (Sun RI - Facelets)</keywords>
+		</portlet-info>
+		<portlet-preferences>
+			<preference>
+				<name>unitedStatesPhoneFormat</name>
+				<value>###-###-####</value>
+			</preference>
+			<preference>
+				<name>dateFormat</name>
+				<value>MM/dd/yyyy</value>
+			</preference>
+			<preference>
+				<name>recipientEmailAddress</name>
+				<value>humanresources@some-company-domain.com</value>
+			</preference>
+		</portlet-preferences>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+</portlet-app>
