@@ -74,6 +74,7 @@ body {
 	height: 160px;
 	background: #222 url(../images/common/header.jpg) no-repeat scroll 0 0;
 	text-align: center;
+	position: relative;
 }
 
 #banner .logo {
@@ -81,10 +82,10 @@ body {
 	width: 100%;
 	position: absolute;
 	top: 50px;
+	left: 0;
 	text-align: center;
 }
 #banner .logo a {
-	border-bottom: 1px dashed #657382;
 	color: #fff;
 	font-size: 26pt;
 	padding-bottom:2px;
@@ -101,9 +102,10 @@ body {
 	font: normal normal normal 1.1em Verdana,sans-serif;
 }
 
-#navigation ul li.selected a , #navigation ul li a , #navigation ul li.selected a:hover , #navigation ul li a:hover {
-	color: #fafafa;
+#navigation ul li.selected a , #navigation ul li a , #navigation ul li.selected a:hover , #navigation ul li a:hover , .js #add-page a span , .js #add-page a:hover span {
+	float: left;
 	display: block;
+	color: #fafafa;
 	padding: 0 16px 0 0;
 }
 
