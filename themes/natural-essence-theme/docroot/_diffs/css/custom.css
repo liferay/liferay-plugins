@@ -1,0 +1,154 @@
+* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* Reset Styles */
+html {
+ overflow-y : scroll ;
+}
+#wrapper , #banner , #banner .logo , #banner .logo a ,
+#navigation , #navigation ul , #navigation ul li , #navigation li.selected ,
+#navigation ul li a , #navigation li a span , #navigation ul li.selected a , #navigation ul li.selected a span , 
+#navigation ul li a:hover , #navigation li a:hover span , #navigation ul li.selected a:hover , #navigation ul li.selected a:hover span ,
+.js #add-page , .js #add-page a , .js #add-page a span , .js #add-page a:hover , .js #add-page a:hover span ,
+.js #navigation .enter-page , .js #navigation .enter-page a , .js #navigation .enter-page a:hover ,
+#content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content
+{
+ float : none ;
+ margin : auto ;
+ padding : 0 ;
+ width : auto ;
+ min-width : 0 ;
+ height : auto ;
+ min-height : 0 ;
+ background : transparent none no-repeat scroll 0 0 ;
+ font-size : 100% ;
+ font-size-adjust : none ;
+ font-stretch : normal ;
+ font-style : normal ;
+ font-variant : normal ;
+ font-weight : normal ;
+ text-indent : 0 ;
+ text-decoration : none ;
+ line-height : normal ;
+ color : inherit ;
+}
+
+/* Handy Defaults */
+html {
+ overflow-y : scroll ;
+}
+#banner , #navigation , #navigation ul , .portlet { background-color : transparent ; }
+#wrapper , #banner , #navigation , #content-wrapper , 
+.portlet , .portlet-topper , .portlet-title , .portlet-content { display : block ; }
+#layout-grid .lfr-column  { margin : 0 ; padding : 0 ;}
+.portlet-icons { top : 0 ; right : 0 ; }
+.tabs { border : 0 ; }
+.portlet-section-header { background : transparent none ; }
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 { font-size : 8pt ; padding-right : 0 ; }
+ul.child-menu { display : none ; }
+
+/* Theme */
+
+body {
+	background: #7C6F5C url(../images/common/bg.jpg) repeat scroll 0 0;
+	color: #222;
+	font: normal normal normal 62.5% sans-serif;
+}
+
+#outter {
+	background:#333322 url(../images/common/wrapper.gif) no-repeat scroll left bottom;
+	margin:38px auto;
+	width:762px;
+}
+
+#wrapper {
+	background:#FBF9F4 none repeat scroll 0%;
+	border-top:6px solid #333322;
+	font-size:1.3em;
+	line-height:1.3em;
+	margin:0pt auto;
+	width:750px;
+}
+
+#banner {
+	height: 277px;
+	background: #DAD7C5 url(../images/common/header.jpg) no-repeat scroll left bottom;
+}
+
+#banner .logo {
+	display: block;
+	background:#E2DED5 url(../images/common/header-h1.jpg) repeat-x scroll 0 0;
+	border-top: 1px solid #996;
+	border-bottom: 2px solid #663;
+}
+#banner .logo a {
+	display: block;
+	font: normal normal normal 2.2em Georgia,"Trebuchet MS",sans-serif;
+	padding: 10px 0 10px 18px;
+	color : #642;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	font-size: 10pt;
+}
+
+#navigation {
+background:#EAE7DF url(../images/common/nav.gif) repeat-x scroll 0 0;
+border-top:1px solid #999966;
+height:41px;
+}
+
+#navigation ul li.selected a , #navigation ul li a , #navigation ul li.selected a:hover , #navigation ul li a:hover , .js #add-page a span , .js #add-page a:hover span {
+	float: left;
+	display: block;
+}
+
+#navigation ul li.selected a span , #navigation ul li a span , #navigation ul li.selected a:hover span , #navigation ul li a:hover span , .js #add-page a span , .js #add-page a:hover span {
+	float: left;
+	display: block;
+	padding: 0 14px;
+	border-right:1px solid #C9C6B3;
+	color:#553;
+	font: bold normal normal 1em/41px Tahoma,sans-serif;
+	text-align:center;
+	text-decoration:none;
+}
+
+#navigation ul li.selected a:hover span , #navigation ul li a:hover span , .js #add-page a:hover span {
+	background: url(../images/common/nav.gif) repeat-x scroll left bottom;;
+	color: #221;
+}
+
+#navigation ul , #navigation ul li , #navigation ul li.selected , .js #add-page {
+	float: left;
+}
+
+#content-wrapper {
+}
+
+#column-1 {
+}
+
+#column-2 {
+}
+
+.portlet {
+	padding: 20px;
+}
+
+.portlet-title {
+	color: #442;
+	font-family:serif,sans-serif;
+	font-size:2.4em;
+}
+
+.portlet-content {
+	padding: 2px 0 20px 0;
+	border-bottom: 1px dashed #aaaa9a;
+	font-size: 9pt;
+}
+
+#footer {
+	background: #332 none repeat scroll 0%;
+	color: #eed;
+	padding: 10px;
+}
