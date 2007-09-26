@@ -1,0 +1,162 @@
+* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* Reset Styles */
+html {
+ overflow-y : scroll ;
+}
+#wrapper , #banner , #banner .logo , #banner .logo a ,
+#navigation , #navigation ul , #navigation ul li , #navigation li.selected ,
+#navigation ul li a , #navigation li a span , #navigation ul li.selected a , #navigation ul li.selected a span , 
+#navigation ul li a:hover , #navigation li a:hover span , #navigation ul li.selected a:hover , #navigation ul li.selected a:hover span ,
+.js #add-page , .js #add-page a , .js #add-page a span , .js #add-page a:hover , .js #add-page a:hover span ,
+.js #navigation .enter-page , .js #navigation .enter-page a , .js #navigation .enter-page a:hover ,
+#content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content
+{
+ float : none ;
+ margin : auto ;
+ padding : 0 ;
+ width : auto ;
+ min-width : 0 ;
+ height : auto ;
+ min-height : 0 ;
+ background : transparent none no-repeat scroll 0 0 ;
+ font-size : 100% ;
+ font-size-adjust : none ;
+ font-stretch : normal ;
+ font-style : normal ;
+ font-variant : normal ;
+ font-weight : normal ;
+ text-indent : 0 ;
+ text-decoration : none ;
+ line-height : normal ;
+ color : inherit ;
+}
+
+/* Handy Defaults */
+html {
+ overflow-y : scroll ;
+}
+#banner , #navigation , #navigation ul , .portlet { background-color : transparent ; }
+#wrapper , #banner , #navigation , #content-wrapper , 
+.portlet , .portlet-topper , .portlet-title , .portlet-content { display : block ; }
+#layout-grid .lfr-column  { margin : 0 ; padding : 0 ;}
+.portlet-icons { top : 0 ; right : 0 ; }
+.tabs { border : 0 ; }
+.portlet-section-header { background : transparent none ; }
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 { font-size : 8pt ; padding-right : 0 ; }
+ul.child-menu { display : none ; }
+
+/* Theme */
+
+html {
+}
+
+body {
+	background: #CCD8E0 url(../images/common/bg.jpg) repeat-x fixed bottom center;
+	color: #444;
+	font: normal normal normal 62.5% Tahoma,sans-serif;
+}
+
+#outter {
+	background: transparent url(../images/common/clouds.gif) repeat-x scroll 0 0;
+	padding: 50px 10px 0pt;
+}
+
+#wrapper {
+	background: #fff none repeat scroll 0 0;
+	font-size: 1.2em;
+	margin: 0 auto;
+	padding: 10px 10px 5px;
+	width: 780px;
+}
+
+#banner {
+	width: 100%;
+	background: #A4A4A0 none;
+}
+
+#banner .logo {
+	margin: 0;
+	background: #B3C2C7 url(../images/common/header.jpg) no-repeat scroll 0 0;
+	font-size-adjust: none;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	text-align: center;
+	width: 564px;
+	height: 150px;
+	border-right: 4px solid #fff;
+}
+#banner .logo a {
+	font-family: "Trebuchet MS",sans-serif;
+	font-size: 2.8em;
+	line-height: 150px;
+	color: #fff;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	font-size: 10pt;
+}
+
+#navigation {
+	background:#EAE7DF url(../images/common/nav.gif) repeat-x scroll 0 0;
+	border-top: 4px solid #fff;
+	height:41px;
+}
+
+#navigation ul li.selected a , #navigation ul li a , #navigation ul li.selected a:hover , #navigation ul li a:hover , .js #add-page a span , .js #add-page a:hover span {
+	float: left;
+	display: block;
+}
+
+#navigation ul li.selected a span , #navigation ul li a span , #navigation ul li.selected a:hover span , #navigation ul li a:hover span , .js #add-page a span , .js #add-page a:hover span {
+	float: left;
+	display: block;
+	padding: 0 20px;
+	line-height:41px;
+	border-right:1px solid #AFBEC7;
+	color:#456;
+	font: bold normal normal 1em/41px Tahoma,sans-serif;
+	text-align:center;
+	text-decoration:none;
+	height:41px;
+}
+
+#navigation ul li.selected a:hover span , #navigation ul li a:hover span , .js #add-page a:hover span {
+	background: url(../images/common/nav.gif) repeat-x scroll left bottom;
+	color:#234;
+}
+
+#navigation ul , #navigation ul li , #navigation ul li.selected , .js #add-page {
+	float: left;
+}
+
+#content-wrappper {
+}
+
+#column-1 {
+}
+
+#column-2 {
+}
+
+.portlet {
+	padding: 20px;
+}
+
+.portlet-title {
+	color: #963;
+	font-size:1.8em;
+	margin-bottom:4px;
+}
+
+.portlet-content {
+	padding: 2px 0 20px 0;
+	font-size: 9pt;
+	font-family:"Lucida Sans Unicode",sans-serif;
+}
+
+#footer {
+	padding: 0 16px;
+}
