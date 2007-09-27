@@ -22,6 +22,17 @@
 	</target>
 
 	<target name="compile">
+		<mkdir dir="docroot/WEB-INF/classes" />
+
+		<if>
+			<not>
+				<available file="docroot/WEB-INF/classes/log4j.properties" />
+			</not>
+			<then>
+				<copy file="${project.dir}/lib/log4j.properties" todir="docroot/WEB-INF/classes" />
+			</then>
+		</if>
+
 		<if>
 			<equals arg1="${theme.extension}" arg2="unstyled" />
 			<then>

@@ -4,10 +4,16 @@
 	<import file="build-common.xml" />
 
 	<if>
-		<available file="docroot/WEB-INF/liferay-theme-plugin.properties" />
+		<available file="docroot/WEB-INF/liferay-plugin-package.properties" />
 		<then>
-			<property file="docroot/WEB-INF/liferay-theme-plugin.properties" prefix="plugin" />
-			<property name="plugin.version" value="${plugin.module-incremental-version}" />
+			<property file="docroot/WEB-INF/liferay-plugin-package.properties" prefix="plugin-package" />
+			<property name="plugin.version" value="${plugin-package.module-incremental-version}" />
+
+			<property file="docroot/WEB-INF/liferay-plugin-package.properties" prefix="plugin-package" />
+			<property name="plugin.jars" value="${plugin-package.portal.dependency.jars}" />
+
+			<property file="docroot/WEB-INF/liferay-plugin-package.properties" prefix="plugin-package" />
+			<property name="plugin.tlds" value="${plugin-package.portal.dependency.tlds}" />
 		</then>
 	</if>
 
@@ -33,17 +39,48 @@
 		<delete dir="docroot/WEB-INF/classes" />
 		<delete dir="tmp" />
 		<delete file="${plugin.file}" />
+
+		<antcall target="clean-portal-dependencies" />
+	</target>
+
+	<target name="clean-portal-dependencies">
+		<if>
+			<available file="docroot/WEB-INF/lib" />
+			<then>
+				<delete>
+					<fileset dir="docroot/WEB-INF/lib" includes="${required.portal.jars}" />
+					<fileset dir="docroot/WEB-INF/lib" includes="${plugin.jars}" />
+				</delete>
+			</then>
+		</if>
+
+		<if>
+			<available file="docroot/WEB-INF/tld" />
+			<then>
+				<delete>
+					<fileset dir="docroot/WEB-INF/tld" includes="${plugin.tlds}" />
+				</delete>
+			</then>
+		</if>
 	</target>
 
 	<target name="compile">
 		<antcall target="merge" />
 
+		<mkdir dir="docroot/WEB-INF/classes" />
+		<mkdir dir="docroot/WEB-INF/lib" />
+
+		<copy todir="docroot/WEB-INF/lib">
+			<fileset dir="${app.server.lib.portal.dir}" includes="${plugin.jars}" />
+		</copy>
+
+		<copy todir="docroot/WEB-INF/tld">
+			<fileset dir="${app.server.portal.dir}/WEB-INF/tld" includes="${plugin.tlds}" />
+		</copy>
+
 		<if>
 			<available file="docroot/WEB-INF/src" />
 			<then>
-				<mkdir dir="docroot/WEB-INF/classes" />
-				<mkdir dir="docroot/WEB-INF/lib" />
-
 				<if>
 					<available file="tmp" />
 					<then>
@@ -63,7 +100,7 @@
 				</if>
 
 				<copy todir="docroot/WEB-INF/lib">
-					<fileset dir="${app.server.lib.portal.dir}" includes="commons-logging.jar,log4j.jar,util-bridges.jar,util-java.jar,util-taglib.jar" />
+					<fileset dir="${app.server.lib.portal.dir}" includes="${required.portal.jars}" />
 				</copy>
 
 				<javac
@@ -83,8 +120,6 @@
 				</copy>
 			</then>
 		</if>
-
-		<mkdir dir="docroot/WEB-INF/classes" />
 
 		<if>
 			<not>
@@ -113,17 +148,12 @@
 
 		<delete file="${plugin.file}" />
 
+		<antcall target="clean-portal-dependencies" />
+
 		<zip
 			basedir="${docroot.dir}"
 			destfile="${plugin.file}"
-			excludes="WEB-INF/lib/util-bridges.jar,WEB-INF/lib/util-java.jar,WEB-INF/lib/util-taglib.jar"
 		/>
-
-		<!--<zip
-			basedir="${docroot.dir}"
-			destfile="${plugin.file}"
-			excludes="WEB-INF/lib/commons-logging.jar,WEB-INF/lib/log4j.jar,WEB-INF/lib/util-bridges.jar,WEB-INF/lib/util-java.jar,WEB-INF/lib/util-taglib.jar"
-		/>-->
 	</target>
 
 	<target name="deploy" depends="war">

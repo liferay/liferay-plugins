@@ -13,6 +13,14 @@ svn ps svn:ignore -F .cvsignore .
 
 svn remove --force .cvsignore
 
+cd WEB-INF
+
+svn ps svn:ignore -F .cvsignore .
+
+svn remove --force .cvsignore
+
+cd ..
+
 cd ..
 
 call ant deploy
