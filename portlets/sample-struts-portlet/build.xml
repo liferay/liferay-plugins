@@ -1,27 +1,7 @@
 <?xml version="1.0"?>
 
 <project name="portlet" basedir="." default="deploy">
-	<property name="plugin.version" value="1" />
-
 	<import file="../build-common-portlet.xml" />
-
-	<target name="compile">
-		<copy todir="docroot/WEB-INF/lib">
-			<fileset
-				dir="${app.server.lib.portal.dir}"
-				includes="antlr.jar,commons-beanutils.jar,commons-collections.jar,commons-digester.jar,commons-fileupload.jar,commons-io.jar,commons-lang.jar,commons-validator.jar,jcommon.jar,jfreechart.jar,oro.jar,portals-bridges.jar,struts.jar"
-			/>
-		</copy>
-
-		<copy todir="docroot/WEB-INF/tld">
-			<fileset
-				dir="${app.server.portal.dir}/WEB-INF/tld"
-				includes="struts-*.tld"
-			/>
-		</copy>
-
-		<antcall target="build-common-plugin.compile" />
-	</target>
 
 	<target name="build-lang">
 		<antcall target="build-lang-cmd">
