@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+#parse ($init)
+
+<html dir="#language ("lang.dir")">
+
+<head>
+	<title>$company_name - $the_title</title>
+
+	$theme.include($top_head_include)
+
+	#css ($css_main_file)
+	#js ($js_main_file)
+
+	#if ($company_logo != "")
+		<style type="text/css">
+		</style>
+	#end
+</head>
+
+<body class="$css_class">
+
+$theme.include($top_messages_include)
+
+<div id="wrapper">
+	<div id="banner">
+		<h1 class="logo">
+			<a href="$company_url">$company_name</a>
+		</h1>
+
+		#parse ("$full_templates_path/dock.vm")
+
+		#if ($update_available_url)
+			<div class="popup-alert-notice">
+				<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>
+			</div>
+		#end
+	</div>
+
+	#if ($has_navigation)
+		#parse ("$full_templates_path/navigation.vm")
+	#end
+
+	#if ($selectable)
+		$theme.include($content_include)
+	#else
+		$portletDisplay.recycle()
+
+		$portletDisplay.setTitle($the_title)
+
+		$theme.wrapPortlet("portlet.vm", $content_include)
+	#end
+
+	<div id="footer"></div>
+</div>
+
+$theme.include($bottom_ext_include)
+$theme.include($session_timeout_include)
+$theme.include($sound_alerts_include)
+
+</body>
+
+</html>
