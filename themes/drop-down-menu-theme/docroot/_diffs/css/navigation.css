@@ -148,7 +148,7 @@ left: -999em;
 }
 
 .js .lfr-dock.interactive-mode h2 {
-	background: transparent url(../images/updated/menu_bar-updated.png) no-repeat 100% -30px;
+	background: transparent url(../images/dock/menu_bar.png) no-repeat 100% -30px;
 	font-size: 1.2em;
 	margin-bottom: 0;
 	padding: 0 29px 0 0;
@@ -157,7 +157,7 @@ left: -999em;
 }
 
 .js .lfr-dock.interactive-mode h2 span {
-	background: transparent url(../images/updated/menu_bar-updated.png) no-repeat 0 0;
+	background: transparent url(../images/dock/menu_bar.png) no-repeat 0 0;
 	color: #048;
 	display: block;
 	font-size: 1.2em;
