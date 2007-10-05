@@ -159,3 +159,8 @@ html, body {
 	padding: 0 15px 0 2em;
 	line-height: 30px;
 }
+
+.js #add-page {
+	float: left;
+	font-weight: normal;
+}
