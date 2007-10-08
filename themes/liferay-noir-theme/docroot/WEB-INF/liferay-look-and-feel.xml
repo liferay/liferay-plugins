@@ -8,7 +8,7 @@
 	<theme id="liferay-noir" name="Liferay Noir">
 		<settings>
 			<setting key="css-template-id" value="CSS-TEMPLATE" />
-			<setting key="footer-article-id" value="3777" />
+			<setting key="footer-article-id" value="4375" />
 		</settings>
 	</theme>
 </look-and-feel>
