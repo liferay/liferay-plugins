@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 4.3.2//EN" "http://www.liferay.com/dtd/liferay-portlet-app_4_3_2.dtd">
+<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 4.3.3//EN" "http://www.liferay.com/dtd/liferay-portlet-app_4_3_3.dtd">
 
 <liferay-portlet-app>
 	<portlet>

@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Sample 2-1-2 Columns Templates</name>
-	<module-id>liferay/sample-2-1-2-columns-layouttpl/4.3.2.1/war</module-id>
+	<module-id>liferay/sample-2-1-2-columns-layouttpl/4.3.3.1/war</module-id>
 	<types>
 		<type>layout-template</type>
 	</types>
@@ -22,6 +22,6 @@
 		<license osi-approved="true">MIT</license>
 	</licenses>
 	<liferay-versions>
-		<liferay-version>4.3.2</liferay-version>
+		<liferay-version>4.3.3</liferay-version>
 	</liferay-versions>
 </plugin-package>
