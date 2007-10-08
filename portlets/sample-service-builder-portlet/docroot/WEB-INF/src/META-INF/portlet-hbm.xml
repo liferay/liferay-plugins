@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<class name="com.sample.servicebuilder.model.impl.FooImpl" table="Sample_Foo">
+		<cache usage="read-write" />
+		<id name="fooId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="field1" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="field2" type="com.liferay.util.dao.hibernate.BooleanType" />
+		<property name="field3" type="com.liferay.util.dao.hibernate.IntegerType" />
+		<property name="field4" />
+		<property name="field5" type="com.liferay.util.dao.hibernate.StringType" />
+	</class>
+</hibernate-mapping>

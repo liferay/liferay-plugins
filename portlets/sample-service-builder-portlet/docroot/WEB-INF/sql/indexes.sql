@@ -1,0 +1,1 @@
+create index IX_B618923 on Sample_Foo (field2);

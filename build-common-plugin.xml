@@ -126,7 +126,7 @@
 				<available file="docroot/WEB-INF/classes/log4j.properties" />
 			</not>
 			<then>
-				<copy file="${project.dir}/lib/log4j.properties" todir="docroot/WEB-INF/classes" />
+				<copy file="${project.dir}/misc/log4j.properties" todir="docroot/WEB-INF/classes" />
 			</then>
 		</if>
 
@@ -158,6 +158,17 @@
 
 	<target name="deploy" depends="war">
 		<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
+	</target>
+
+	<target name="build-javascript-cmd">
+		<java
+			classname="com.yahoo.platform.yui.compressor.YUICompressor"
+			classpathref="lib.classpath"
+			fork="true"
+			newenvironment="true"
+		>
+			<arg line="--type js -o ${js.to.file} ${js.from.file}" />
+		</java>
 	</target>
 
 	<target name="build-lang-cmd">

@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="com.sample.servicebuilder.service.FooLocalService.professional" class="com.sample.servicebuilder.service.impl.FooLocalServiceImpl" lazy-init="true" />
+	<bean id="com.sample.servicebuilder.service.FooLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+		<property name="transactionManager">
+			<ref bean="liferayTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="com.sample.servicebuilder.service.FooLocalService.professional" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="add*">PROPAGATION_REQUIRED</prop>
+				<prop key="check*">PROPAGATION_REQUIRED</prop>
+				<prop key="clear*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="set*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="com.sample.servicebuilder.service.FooLocalServiceFactory" class="com.sample.servicebuilder.service.FooLocalServiceFactory" lazy-init="true">
+		<property name="service">
+			<ref bean="com.sample.servicebuilder.service.FooLocalService.transaction" />
+		</property>
+	</bean>
+	<bean id="com.sample.servicebuilder.service.FooService.professional" class="com.sample.servicebuilder.service.impl.FooServiceImpl" lazy-init="true" />
+	<bean id="com.sample.servicebuilder.service.FooService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+		<property name="transactionManager">
+			<ref bean="liferayTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="com.sample.servicebuilder.service.FooService.professional" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="add*">PROPAGATION_REQUIRED</prop>
+				<prop key="check*">PROPAGATION_REQUIRED</prop>
+				<prop key="clear*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="set*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="com.sample.servicebuilder.service.FooServiceFactory" class="com.sample.servicebuilder.service.FooServiceFactory" lazy-init="true">
+		<property name="service">
+			<ref bean="com.sample.servicebuilder.service.FooService.transaction" />
+		</property>
+	</bean>
+	<bean id="com.sample.servicebuilder.service.persistence.FooPersistenceImpl" class="com.sample.servicebuilder.service.persistence.FooPersistenceImpl" lazy-init="true">
+		<property name="dataSource">
+			<ref bean="liferayDataSource" />
+		</property>
+		<property name="sessionFactory">
+			<ref bean="liferaySessionFactory" />
+		</property>
+	</bean>
+	<bean id="com.sample.servicebuilder.service.persistence.FooUtil" class="com.sample.servicebuilder.service.persistence.FooUtil" lazy-init="true">
+		<property name="persistence">
+			<ref bean="com.sample.servicebuilder.service.persistence.FooPersistenceImpl" />
+		</property>
+	</bean>
+</beans>
