@@ -70,7 +70,7 @@ public class HibernatePortlet extends GenericPortlet {
 		int points = ParamUtil.getInteger(req, "points");
 
 		try {
-			if (cmd.equals("add")) {
+			if (cmd.equals(Constants.ADD)) {
 				FoodItem foodItem = new FoodItem();
 
 				foodItem.setName(name);
@@ -78,7 +78,7 @@ public class HibernatePortlet extends GenericPortlet {
 
 				FoodItemUtil.addFoodItem(foodItem);
 			}
-			else if (cmd.equals("edit")) {
+			else if (cmd.equals(Constants.EDIT)) {
 				FoodItem foodItem = FoodItemUtil.getFoodItem(foodItemId);
 
 				foodItem.setName(name);
@@ -86,7 +86,7 @@ public class HibernatePortlet extends GenericPortlet {
 
 				FoodItemUtil.updateFoodItem(foodItem);
 			}
-			else if (cmd.equals("delete")) {
+			else if (cmd.equals(Constants.DELETE)) {
 				FoodItemUtil.deleteFoodItem(foodItemId);
 			}
 		}

@@ -73,7 +73,7 @@ public class DAOPortlet extends GenericPortlet {
 		int points = ParamUtil.getInteger(req, "points");
 
 		try {
-			if (cmd.equals("add")) {
+			if (cmd.equals(Constants.ADD)) {
 				FoodItem foodItem = new FoodItem();
 
 				foodItem.setName(name);
@@ -81,7 +81,7 @@ public class DAOPortlet extends GenericPortlet {
 
 				FoodItemDAO.addFoodItem(foodItem);
 			}
-			else if (cmd.equals("edit")) {
+			else if (cmd.equals(Constants.EDIT)) {
 				FoodItem foodItem = FoodItemDAO.getFoodItem(foodItemId);
 
 				foodItem.setName(name);
@@ -89,7 +89,7 @@ public class DAOPortlet extends GenericPortlet {
 
 				FoodItemDAO.updateFoodItem(foodItem);
 			}
-			else if (cmd.equals("delete")) {
+			else if (cmd.equals(Constants.DELETE)) {
 				FoodItemDAO.deleteFoodItem(foodItemId);
 			}
 		}

@@ -29,29 +29,22 @@
 	<f:loadBundle basename="Language" var="msgs" />
 
 	<h:form>
-		<table>
+		<table class="liferay-table">
 		<tr>
 			<td>
-				<font class="portlet-font" style="font-size: x-small;">
 				<h:outputText value="#{msgs.please_enter_your_name}" />
-				</font>
 			</td>
 			<td>
 				<h:inputText id="name" required="true" value="#{user.name}" />
 			</td>
-		</tr>
-		<tr>
-			<td align="center" colspan="2">
-				<font class="portlet-font" style="font-size: x-small;">
+			<td>
 				<h:message for="name" />
-				</font>
-			</td>
-		</tr>
-		<tr>
-			<td align="center" colspan="2">
-				<h:commandButton action="submit" value="Submit" />
 			</td>
 		</tr>
 		</table>
+
+		<br />
+
+		<h:commandButton action="submit" value="Submit" />
 	</h:form>
 </f:view>

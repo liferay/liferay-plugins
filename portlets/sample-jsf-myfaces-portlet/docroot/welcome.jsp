@@ -29,19 +29,10 @@
 	<f:loadBundle basename="Language" var="msgs" />
 
 	<h:form>
-		<table>
-		<tr>
-			<td align="center">
-				<font class="portlet-font" style="font-size: x-small;">
-				<h:outputText value="#{msgs.welcome_to_liferay_portal}" />, <h:outputText value="#{user.name}"/>.
-				</font>
-			</td>
-		</tr>
-		<tr>
-			<td align="center">
-				<h:commandButton action="back" value="Back" />
-			</td>
-		</tr>
-		</table>
+		<h:outputText value="#{msgs.welcome_to_liferay_portal}" />, <h:outputText value="#{user.name}"/>.
+
+		<br /><br />
+
+		<h:commandButton action="back" value="Back" />
 	</h:form>
 </f:view>

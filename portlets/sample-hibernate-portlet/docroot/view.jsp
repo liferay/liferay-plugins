@@ -37,17 +37,17 @@
 
 <portlet:defineObjects />
 
-<form action="<portlet:actionURL />" method="post" name="fm">
+<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
 
 <%
 String cmd = ParamUtil.getString(request, Constants.CMD);
 
-if ((cmd != null) && (cmd.equals("add") || cmd.equals("edit"))) {
+if ((cmd != null) && (cmd.equals(Constants.ADD) || cmd.equals(Constants.EDIT))) {
 	long foodItemId = 0;
 	String name = "";
 	int points = 0;
 
-	if (cmd.equals("edit")) {
+	if (cmd.equals(Constants.EDIT)) {
 		foodItemId = ParamUtil.getLong(request, "foodItemId");
 
 		FoodItem foodItem = FoodItemUtil.getFoodItem(foodItemId);
@@ -63,7 +63,7 @@ if ((cmd != null) && (cmd.equals("add") || cmd.equals("edit"))) {
 	<table class="liferay-table">
 
 	<%
-	if (cmd.equals("edit")) {
+	if (cmd.equals(Constants.EDIT)) {
 	%>
 
 		<tr>
@@ -106,7 +106,7 @@ if ((cmd != null) && (cmd.equals("add") || cmd.equals("edit"))) {
 	%>
 
 		<script type="text/javascript">
-			document.fm.name.focus();
+			document.<portlet:namespace />fm.name.focus();
 		</script>
 	<%
 	}
@@ -120,7 +120,7 @@ else {
 	<input name="<%= Constants.CMD %>" type="hidden" value="" />
 	<input name="foodItemId" type="hidden" value="" />
 
-	<input type="button" value="Add" onClick="self.location = '<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="add" /></portlet:renderURL>';" />
+	<input type="button" value="Add" onClick="self.location = '<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" /></portlet:renderURL>';" />
 
 	<br /><br />
 
@@ -158,9 +158,9 @@ else {
 				<%= foodItem.getPoints() %>
 			</td>
 			<td>
-				<input type="button" value="Edit" onClick="self.location = '<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="edit" /><portlet:param name="foodItemId" value="<%= String.valueOf(foodItem.getFoodItemId()) %>" /></portlet:renderURL>';" />
+				<input type="button" value="Edit" onClick="self.location = '<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.EDIT %>" /><portlet:param name="foodItemId" value="<%= String.valueOf(foodItem.getFoodItemId()) %>" /></portlet:renderURL>';" />
 
-				<input type="button" value="Delete" onClick="document.fm.<%= Constants.CMD %>.value = 'delete'; document.fm.foodItemId.value = '<%= foodItem.getFoodItemId() %>'; document.fm.submit();" />
+				<input type="button" value="Delete" onClick="document.<portlet:namespace />fm.<%= Constants.CMD %>.value = '<%= Constants.DELETE %>'; document.<portlet:namespace />fm.foodItemId.value = '<%= foodItem.getFoodItemId() %>'; document.<portlet:namespace />fm.submit();" />
 			</td>
 		</tr>
 

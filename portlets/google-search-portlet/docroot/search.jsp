@@ -156,9 +156,17 @@
 
 		portletURL.setParameter("jspPage", "/search.jsp");
 		portletURL.setParameter("args", HttpUtil.encodeURL(searchResult.getSearchQuery()));
+
+		// Temporary fix to limit total results until page-iterator is fixed
+
+		int totalResultsCount = searchResult.getEstimatedTotalResultsCount();
+
+		if (totalResultsCount > 1000) {
+			totalResultsCount = 1000;
+		}
 		%>
 
-		<liferay-ui:page-iterator curParam='<%= renderResponse.getNamespace() + "start" %>' curValue="<%= ParamUtil.getInteger(request, \"start\", 1) %>" delta="<%= 10 %>" maxPages="<%= 10 %>" total="<%= searchResult.getEstimatedTotalResultsCount() %>" url="<%= HttpUtil.decodeURL(portletURL.toString()) %>" />
+		<liferay-ui:page-iterator curParam='<%= renderResponse.getNamespace() + "start" %>' curValue="<%= ParamUtil.getInteger(request, \"start\", 1) %>" delta="<%= 10 %>" maxPages="<%= 25 %>" total="<%= totalResultsCount %>" url="<%= HttpUtil.decodeURL(portletURL.toString()) %>" />
 	</c:when>
 	<c:otherwise>
 		<liferay-ui:message key="please-contact-the-administrator-to-setup-this-portlet" />
