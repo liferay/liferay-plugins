@@ -52,8 +52,8 @@
 				}
 			}
 
-			_$J(document).ready(<portlet:namespace />load);
-			_$J(window).unload(GUnload);
+			jQuery(document).ready(<portlet:namespace />load);
+			jQuery(window).unload(GUnload);
 
 			function <portlet:namespace />getAddress(address) {
 				<portlet:namespace />geocoder.getLatLng(
