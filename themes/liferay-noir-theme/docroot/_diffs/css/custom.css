@@ -42,7 +42,7 @@ a:hover {
 .popup {
 	background: #1C2633;
 	border: 1px solid #131922;
-	color: #7E97AE;
+	color: #e0eaf4;
 	padding: 0 0 10px 10px;
 }
 
@@ -80,7 +80,7 @@ a:hover {
 }
 
 .uni-form fieldset legend {
-	color: #7E97AE;
+	color: #e0eaf4;
 }
 
 #wrapper {
@@ -97,7 +97,7 @@ a:hover {
 
 #content-wrapper {
 	background: #1C2633 url(../images/common/content_wrapper_bg.png) repeat;
-	color: #7E97AE;
+	color: #e0eaf4;
 	padding: 0 5px;
 }
 
@@ -251,7 +251,7 @@ a:hover {
 .portlet-content {
 	background-color: #1C2633;
 	background-position: right bottom;
-	color: #7E97AE;
+	color: #e0eaf4;
 	font-size: 1.2em;
 	margin-left: 10px;
 	padding: 10px 20px 20px 10px;
@@ -266,7 +266,7 @@ a:hover {
 }
 
 .portlet-placeholder {
-	border: 1px dashed #7E97AE;
+	border: 1px dashed #e0eaf4;
 }
 
 .js .delete-tab {
@@ -479,7 +479,7 @@ a:hover {
 /* ---------- Normal text in a table cell ---------- */
 .portlet-section-body {
 	background: #4A6483;
-	color: #7E97AE;
+	color: #e0eaf4;
 }
 
 .portlet-section-body td {
