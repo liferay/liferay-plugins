@@ -1,0 +1,113 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---------- Updated base.css ---------- */
+
+body {
+	background-color: #222;
+	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+}
+
+a:hover {
+	background-color: #f4f44e;
+	color: #222;
+	text-decoration: underline;
+}
+
+h3 {
+	font-size: 0.7em;
+	line-height: 1em;
+}
+
+#wrapper {
+	margin: 0 auto;
+	width: 95%;
+	height: 100%;
+	background-color: #ddd;
+	padding: 0 10px 0 10px;
+}
+
+#banner {
+	background: none;
+	height: 70px;
+	position: relative;
+}
+
+#banner .toggle-link {
+	font-size: 1.5em;
+	line-height: 1.7em;
+	color: #333;
+}
+
+#banner .logo {
+	background: none;
+	display: block;
+	float: left;
+	font-size: 20px;
+	padding: 13px 5px 15em;
+}
+
+/* ---------- Updated portlet.css ---------- */
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: none;
+}
+
+.portlet {
+	margin: 0 0 10px;
+	padding-right: 10px;
+	text-align: left;
+	border: 6px solid #555;
+	font-size: 1.5em;
+	line-height: 1.5em;
+	background-color: #f7f7f7;
+}
+
+.portlet-topper {
+	background-position: right top;
+	margin-right: -10px;
+	padding-right: 40px;
+	position: relative;
+	border-bottom: 6px solid #555;
+}
+
+/* ---------- Updated forms.css ---------- */
+
+input[type="text"], input[type="password"], input[type="file"],input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	background: none;
+	border: 1px solid #aaa;
+	border-left-color: #777;
+	border-top-color: #777;
+	font: 1em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+	padding: 0.3em;
+}
+
+input[type="submit"], input[type="button"], input[type="reset"] {
+	background: none;
+	background-color: #fff;
+	border: 3px double #999;
+	border-left-color: #ccc;
+	border-top-color: #ccc;
+	color: #333;
+	font-weight: bold;
+	padding: 0.25em;
+}
+
+.ie6 input.text, input.password, .ie6 input.submit, .ie6 input.file, .ie6 input.button {
+	background: none;
+	border: 1px solid #aaa;
+	border-left-color: #777;
+	border-top-color: #777;
+	font: 1em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+	padding: 0.3em;
+}
+
+.ie6 input.submit, .ie6 input.button {
+	background: none;
+	background-color: #fff;
+	border: 3px double #999;
+	border-left-color: #ccc;
+	border-top-color: #ccc;
+	color: #333;
+	font-weight: bold;
+	padding: 0.25em;
+}
