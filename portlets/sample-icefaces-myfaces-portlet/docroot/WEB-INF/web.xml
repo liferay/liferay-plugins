@@ -8,7 +8,12 @@
 	</context-param>
 	<context-param>
 		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
-		<!-- ICEfaces does not support client state saving so server must be specified instead -->
+
+		<!--
+		ICEfaces does not support client state saving so saving method must be
+		server side.
+		-->
+
 		<param-value>server</param-value>
 	</context-param>
 	<context-param>
@@ -42,11 +47,11 @@
 	<listener>
 		<listener-class>com.icesoft.faces.util.event.servlet.ContextEventRepeater</listener-class>
 	</listener>
-	<servlet> 
-		<servlet-name>Blocking Servlet</servlet-name> 
-		<servlet-class>com.icesoft.faces.webapp.xmlhttp.BlockingServlet</servlet-class> 
-		<load-on-startup>1</load-on-startup> 
-	</servlet> 
+	<servlet>
+		<servlet-name>Blocking Servlet</servlet-name>
+		<servlet-class>com.icesoft.faces.webapp.xmlhttp.BlockingServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 	<servlet>
 		<servlet-name>File Upload Servlet</servlet-name>
 		<servlet-class>com.icesoft.faces.component.inputfile.FileUploadServlet</servlet-class>
@@ -63,9 +68,9 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-		<servlet-name>Blocking Servlet</servlet-name> 
-		<url-pattern>/block/*</url-pattern> 
-	</servlet-mapping> 
+		<servlet-name>Blocking Servlet</servlet-name>
+		<url-pattern>/block/*</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>File Upload Servlet</servlet-name>
 		<url-pattern>/uploadHtml</url-pattern>
