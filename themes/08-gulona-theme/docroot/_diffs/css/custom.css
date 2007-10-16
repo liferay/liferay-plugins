@@ -15,7 +15,7 @@ a:hover {
 
 #wrapper {
 	background: transparent url(../images/common/background.gif);
-	width: 769px;
+	width: 948px;
 }
 
 #wrapper-top {
@@ -28,6 +28,7 @@ a:hover {
 	margin: 2px 21px;
 	padding: 20px 3px 0;
 	font-size: 1.2em;
+	width: 900px;
 }
 
 #footer {
@@ -104,7 +105,7 @@ a:hover {
 /* ---- NAVIGATION ---- */
 #navigation {
 	background: url(../images/navigation/bg.gif) repeat-x;
-	width: 733px;
+	width: 912px;
 	margin: 0 18px;
 	height: 39px;
 	padding: 0;
