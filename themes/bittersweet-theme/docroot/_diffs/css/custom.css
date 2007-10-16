@@ -60,14 +60,14 @@ body {
 #wrapper {
  background : transparent url('../images/common/wrapper_bg.gif') repeat-y scroll 0 0 ;
  margin : 0 auto ;
- width : 702px ;
+ width : 974px ;
 }
 
 #banner {
  background : #567300 url('../images/common/banner_bg.jpg') no-repeat scroll 0 60px ;
  font-family : Verdana,sans-serif;
  margin : 0 auto ;
- width : 630px ;
+ width : 902px ;
  height : 240px ;
 }
 #banner .logo {
@@ -133,7 +133,7 @@ right : 0 ;
 
 #content-wrapper {
  margin : 0 36px 0 0 ;
- width : 665px ;
+ width : 938px ;
 }
 #portlet-wrapper- {
  margin : 0 36px 0 0 ;
@@ -183,6 +183,7 @@ right : 0 ;
  background : #fff none ;
  color : #000 ;
  font-size : 1.2em ;
+ width: 864px;
 }
 #column-2 .portlet-content {
  padding : 8px ;
@@ -190,6 +191,15 @@ right : 0 ;
  background : trasparent none ;
  color : #000 ;
  font-size : 1.2em ;
+}
+
+.portlet-icon-back {
+	margin: 0 6px;
+	line-height: 18px;
+}
+a.portlet-icon-back:hover {
+	color: #000;
+	text-decoration: underline;
 }
 
 
