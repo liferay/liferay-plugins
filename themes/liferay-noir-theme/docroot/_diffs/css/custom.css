@@ -600,3 +600,7 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 .taglib-ratings {
 	margin-bottom: 1em;
 }
+
+.lfr-actions .lfr-trigger {
+	color: #000;
+}
