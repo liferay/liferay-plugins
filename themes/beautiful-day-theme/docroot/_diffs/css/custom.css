@@ -67,7 +67,7 @@ body {
 	font-size: 1.2em;
 	margin: 0 auto;
 	padding: 10px 10px 5px;
-	width: 780px;
+	width: 920px;
 }
 
 #banner {
@@ -97,6 +97,7 @@ body {
 
 .js .lfr-dock.interactive-mode h2 span {
 	font-size: 10pt;
+	line-height: 12.2pt;
 }
 
 #navigation {
@@ -133,6 +134,7 @@ body {
 }
 
 #content-wrappper {
+	width: 900px;
 }
 
 #column-1 {
