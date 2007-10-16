@@ -58,18 +58,18 @@ body {
 }
 
 #wrapper {
- margin : 50px auto 20px auto ;
- width : 770px ;
+	margin: 0 auto;
+	padding: 50px 0;
+	width: 900px;
 }
 
 #banner {
- background:#233C9B url('../images/common/banner_bg.jpg') no-repeat scroll 0pt;
+ background: transparent url(../images/common/banner_bg.jpg) no-repeat scroll 0 0;
  color:#FFFFFF;
  height:100px;
  margin:0pt;
  padding:0pt;
  position:relative;
- width:770px;
 }
 #banner .logo {
 left:35px;
@@ -164,8 +164,10 @@ ul.child-menu { display : none ; }
 }
 
 #content-wrapper {
- background : #fff url('../images/common/wrapper_bg_1.gif') repeat-y scroll 0 0 ;
- width : 770px ;
+	background: #fff;
+	border-left: 10px solid #192666;
+	border-right: 10px solid #192666;
+	margin: 0 5px;
 }
 #portlet-wrapper- {
  width : 770px ;
@@ -178,6 +180,10 @@ ul.child-menu { display : none ; }
  padding : 41px 0 0 0 ;
 }
 
+.columns-1 #column-1, .columns-max #column-1 {
+	display:block;
+}
+
 .js #add-page { color : #b5c4e3 ; }
 
 .columns-2 #column-1 {
@@ -186,9 +192,8 @@ ul.child-menu { display : none ; }
  width : 530px ;
 }
 
-#p_p_id_88_ {
- width : 530px ;
- margin : 41px 0 0 20px ;
+#p_p_id_88_ , .lfr-portlet-column {
+ padding : 41px 0 0 15px;
 }
 
 .columns-2 #column-2 {
@@ -200,13 +205,15 @@ ul.child-menu { display : none ; }
 
 #footer {
  position : relative ;
- width : 770px ;
  height : 60px ;
- margin-bottom : 50px ;
+ margin:0pt 5px;
  padding-left : 40px ;
- background : transparent url('../images/common/footer_bg.jpg') no-repeat scroll 0 0 ;
+ background : #fff;
  clear : both ;
  color : #6685CC ;
+ border-bottom: 10px solid #192666;
+ border-left: 10px solid #192666;
+ border-right: 10px solid #192666;
 }
 
 #column-1 .portlet {
