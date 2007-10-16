@@ -63,7 +63,7 @@ body {
 #wrapper {
  margin : 0 auto ;
  text-align : left ;
- width : 752px ;
+ width : 900px ;
 }
 
 #banner {
@@ -98,7 +98,7 @@ body {
 
 #navigation {
  background : url('../images/navigation/bg.gif') bottom left repeat-x ;
- width : 752px ;
+ width : 900px ;
 }
 #navigation ul {
  display : block ;
@@ -108,7 +108,7 @@ body {
  display : block ;
  float : left ;
  background : url('../images/navigation/tabs.gif') no-repeat 0 0 ;
- margin : 0 4px 0 0 ;
+ margin : 0 4px 1px 0 ;
  padding : 0 0 0 9px ;
 }
 #navigation ul li.selected
@@ -129,7 +129,9 @@ body {
 #navigation ul li.selected a {
  background : url('../images/navigation/tabs.gif') no-repeat 100% -41px ;
  color : #303030 ;
- padding : 7px 20px 5px 11px ;
+}
+#navigation ul li.selected a:hover {
+ background : url('../images/navigation/tabs.gif') no-repeat 100% -41px ;
 }
 #navigation ul li a span , #navigation ul li a:hover span , #navigation ul li.selected a span , #navigation ul li.selected a:hover span , .js #add-page a span , .js #add-page a:hover span {
  display : block ;
@@ -153,7 +155,8 @@ body {
  border-left : 1px solid #808080 ;
  border-right : 1px solid #808080 ;
  clear : both ;
- width : 750px ;
+ padding: 50px 40px;
+ width : 820px ;
 }
 
 .portlet {
@@ -167,21 +170,6 @@ body {
 }
 .portlet-content {
  margin : 8px 0pt 0pt 10px ;
-}
-
-.columns-1 #column-1 {
- margin : 50px 0 0 200px ;
- width : 520px ;
-}
-.columns-2 #column-1 {
- padding : 0 30px 0 0 ;
- width : 190px ;
- overflow : hidden ;
-}
-.columns-2 #column-2 {
- padding : 50px 20px 0 0 ;
- width : 590px ;
- overflow : hidden ;
 }
 
 #footer {
