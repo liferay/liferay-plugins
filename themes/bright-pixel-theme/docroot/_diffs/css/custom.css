@@ -5,26 +5,25 @@
 #wrapper {
 	background: #FFF;
 	margin: 20px auto 600px;
-	width: 620px;
+	width: 880px;
 	border: 3px double #E4E4E4;
 	padding: 10px;
 }
 
 .ie6 #wrapper {
-	width: 620px;
 	padding: 0px;
 	padding-left: 4px;
 	border: 4px double #E4E4E4;
 }
 
 .ie6 #content-wrapper {
-	width: 600px;
+	width: 860px;
 }
 
 /* ---------- Banner ---------- */
 
 #banner {
-	background: url(../images/common/bright_pixel.gif) no-repeat center;
+	background: url(../images/common/bright_pixel.gif) no-repeat scroll 11px 0;
 	height: 25em;
 	position: relative;
 	margin-bottom: -5px;
@@ -66,13 +65,13 @@ body {
 	overflow: hidden;
 	padding: none;
 	padding-right: 0px;
-	width: 620px;
-	height: 60px;
+	width: 870px;
+	height: 42px;
+	background: #eee none;
 }
 
 .ie6 #navigation {
 	margin-left: 25px;
-	height: 60px;
 }
 
 #navigation ul {
@@ -265,7 +264,7 @@ body {
 }
 
 .tabs li {
-	background: url(../images/common/tabs_bg.gif) 100% -25px;
+	background: url(../images/common/tabs_bg.png) 100% -25px;
 	border-top: 1px solid #BEBEBE;
 	display: inline;
 	float: left;
@@ -277,7 +276,7 @@ body {
 }
 
 .tabs li a, .tabs li span {
-	background: url(../images/common/tabs_bg.gif) 0 -150px;
+	background: url(../images/common/tabs_bg.png) repeat scroll -2px -150px;
 	display: block;
 	float: left;
 	padding: 0.35em 1em 0;
@@ -286,11 +285,15 @@ body {
 }
 
 .tabs li.current {
-	background: url(../images/common/tabs_bg.gif) 100% -35px;
+	background: url(../images/common/tabs_bg.png) repeat scroll 0 -50px;
 	font-weight: bold;
 	border: 1px solid #BEBEBE;
 	border-bottom: none;
 	top: 0.15em;
+}
+
+.tabs li.current a, .tabs li.current span {
+	background:transparent url(../images/common/tabs_bg.png) repeat scroll -2px -100px;
 }
 
 /* ---------- Table or section header ---------- */
@@ -326,5 +329,4 @@ body {
 	display: table;
 	padding-left: 0;
 	padding-right: 0;
-	width: 620px;
 }
