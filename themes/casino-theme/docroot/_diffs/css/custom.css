@@ -77,6 +77,10 @@ body {
 	color: #FFFFFF;
 }
 
+.portlet-content {
+	background-position: left -64px;
+}
+
 /* ---- TABS ---- */
 
 
