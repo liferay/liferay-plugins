@@ -24,31 +24,27 @@
 
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 
-<%@ page import="com.liferay.portal.model.Organization" %>
-<%@ page import="com.liferay.portal.service.OrganizationServiceUtil" %>
-
-<%@ page import="java.util.List" %>
-
 <liferay-theme:defineObjects />
-<table cellspacing="2">
-	<tbody>
-		<tr>
-			<td valign="top">
-				<img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user.getPortraitId()%>" />
-			</td>
-			<td valign="top">
-				<h3>
-					<%= user.getFullName() %>
-				</h3>
-				<p>
-					<strong>Position</strong><br />
-					<%= user.getContact().getJobTitle() %>
-				</p>
-				<p>
-					<strong>About Me</strong><br />
-					<%= user.getComments() %>
-				</p>
-			</td>
-		</tr>
-	</tbody>
+
+<table>
+<tr>
+	<td>
+		<img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user.getPortraitId() %>" />
+	</td>
+	<td>
+		<h3>
+			<%= user.getFullName() %>
+		</h3>
+
+		<p>
+			<strong>Position</strong><br />
+			<%= user.getContact().getJobTitle() %>
+		</p>
+
+		<p>
+			<strong>About Me</strong><br />
+			<%= user.getComments() %>
+		</p>
+	</td>
+</tr>
 </table>

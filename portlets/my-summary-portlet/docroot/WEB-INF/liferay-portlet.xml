@@ -4,7 +4,6 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>my_summary_portlet</portlet-name>
-		<instanceable>true</instanceable>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
