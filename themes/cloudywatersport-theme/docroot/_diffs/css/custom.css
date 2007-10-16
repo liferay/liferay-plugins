@@ -60,7 +60,7 @@ body {
 }
 
 #wrapper {
- width : 770px;
+ width : 926px;
  height : auto ;
 }
 
@@ -98,7 +98,6 @@ body {
  background-color : #000 ;
  margin : 0px auto ;
  padding : 5px 0px ;
- width : 770px ;
 }
 #navigation ul {
  display : block ;
@@ -163,7 +162,8 @@ body {
 }
 
 .portlet {
- padding : 16px 12px ;
+	width: 900px;
+	padding: 16px 12px;
 }
 .portlet-title {
  font-size : 14pt ;
