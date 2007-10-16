@@ -604,3 +604,17 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 .lfr-actions .lfr-trigger {
 	color: #000;
 }
+
+.lfr-actions li a {
+	color: #1C2633;
+	font-size: 1.1em;
+}
+
+.lfr-actions li a:hover {
+	text-decoration: underline;
+	color: #3D536D;
+}
+
+.lfr-actions ul {
+	border: 3px double #465E7B;
+}
