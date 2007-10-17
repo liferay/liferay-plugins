@@ -34,48 +34,6 @@ a:hover {
 	background: url(../images/progress_bar/loading_animation2.gif) no-repeat top center;
 }
 
-.columns-1 #column-1 {
-	padding-left: 5px;
-	padding-right: 5px;
-}
-
-.columns-2 #column-1 {
-	padding-left: 5px;
-}
-
-.columns-2 #column-2 {
-	padding-right: 5px;
-}
-
-.columns-3 #column-1 {
-	padding-left: 5px;
-}
-
-.columns-3 #column-3 {
-	padding-right: 5px;
-}
-
-.columns-1-2-1 #column-1, .columns-1-2-1 #column-4 {
-	padding-left: 5px;
-	padding-right: 5px;
-}
-
-.columns-1-2-1 #column-2 {
-	padding-left: 5px;
-}
-
-.columns-1-2-1 #column-3 {
-	padding-right: 5px;
-}
-
-.columns-2-2 #column-1, .columns-2-2 #column-2 {
-	padding-left: 5px;
-}
-
-.columns-2-2 #column-4 {
-	padding-right: 5px;
-}
-
 #navigation {
 	width: 940px;
 	background: #F06101 url(../images/navigation/menu_bg.gif);
@@ -130,6 +88,7 @@ a:hover {
 
 .portlet {
 	border: 1px solid #AAE5A4;
+	margin: 0 5px;
 }
 
 .portlet-topper {
