@@ -5,7 +5,7 @@
 #wrapper {
 	background: #222;
 	margin: 60px auto;
-	width: 640px;
+	width: 900px;
 	padding: 15px;
 }
 
@@ -19,17 +19,14 @@ body {
 #content-wrapper {
 	background: #F7F7F7;
 	border-collapse: collapse;
-	width: 639px;
-	margin-left: 0px;
-	margin-top: 1px;
-	padding-top: 0px;
+	margin: 0;
 }
 
 /* ---------- Banner ---------- */
 
 #banner {
-	background: url(../images/common/header.jpg) no-repeat scroll 0 100%;
-	height: 15em;
+	background: url(../images/common/header.jpg) no-repeat scroll 0 0;
+	height: 149px;
 	position: relative;
 }
 
@@ -38,10 +35,9 @@ body {
 	display: block;
 	float: left;
 	font-size: 2em;
-	padding: 1.25em 0.6em 1.45em;
 	position: absolute;
 	top: 40px;
-	left: 200px;
+	left: 325px;
 }
 
 /* ------------- Navigation -------------- */
@@ -49,22 +45,19 @@ body {
 
 #navigation {
 	background: #89866F;
-	margin: 0 0px 0em;
-	min-height: 2.2em;
+	margin: 1px 0;
+	padding: 0;
 	overflow: hidden;
-	padding-right: none;
-	width: 629px;
-	border-right: 1px solid #696755;
-	border-top: 1px solid #696755;
+	width: 100%;
+	min-height: 0;
 }
 
 #navigation ul {
-	float: left;
 	min-height: 2em;
-	width: auto;
+	float: left;
 }
 
-#navigation li {
+#navigation li , #navigation.selected , .js #add-page {
 	background: none;
 	display: inline;
 	float: left;
@@ -74,62 +67,33 @@ body {
 	position: relative; 
 }
 
-#navigation li a {
+#navigation li a , #navigation li.selected a , #navigation li a:hover , #navigation li.selected a:hover , .js #add-page a , .js #add-page a:hover {
 	background: none;
 	display: block;
-	padding: 0 2.5em 3px 1em;
+	padding: 6px 2.5em;
 	text-decoration: none;
-	font-size: 8pt;
-	font-family: 'Lucida Sans Unicode' sans-serif;
+	font: normal normal normal 8pt 'Lucida Sans Unicode' sans-serif;
 	color: #000;
 }
 
-#navigation li a:hover {
+#navigation li a:hover , #navigation li.selected a:hover , .js #add-page a:hover `{
 	background: #9C997C;
-	padding: 0 2.5em 3px 1em;
 }
 
-#navigation li a span {
+#navigation li a span , #navigation li.selected a span , #navigation li a:hover span , #navigation li.selected a:hover span , .js #add-page a span , .js #add-page a:hover span {
 	background: none;
 	text-decoration: none;
-}
-
-#navigation li.selected a {
-	padding: 0 2.5em 3px 1em;;
+	margin: 0;
+	padding: 0;
 }
 
 #navigation li.selected a span {
-	background: none;
 	font-size: 1em;
 	font-weight: bold;
 }
 
-#navigation li.selected a:hover {
-	padding: 0 2.5em 3px 1em;
-}
-
 #navigation li a:hover span {
 	background: none;
-}
-
-.js #add-page {
-	float: left;
-	font-weight: bold;
-	padding-top: 0.3em;
-	position: absolute;
-	left: 300px;
-	top: 225px;
-}
-
-.ie6.js #add-page {
-	position: absolute;
-	left: 220px;
-	top: 225px;	
-}
-
-.js #add-page a {
-	color: #F7F7F7;
-	text-decoration: none;
 }
 
 .js .delete-tab {
@@ -231,33 +195,33 @@ body {
 	padding: 0 0 2.6em 1em;
 }
 
-.tabs li {
-	background: url(../images/common/tabs_bg.gif) 100% -25px;
-	border-top: 1px solid #BEBEBE;
+.tabs li , .tabs li.current {
+	top: 0;
+	background: #89866F none;
+	border-top: 1px solid #7C7C7C;
+	border-left: 1px solid #7C7C7C;
+	border-right: 1px solid #7C7C7C;
 	display: inline;
 	float: left;
-	line-height: 2.25;
 	margin-right: 0.8em;
 	padding: 0;
 	position: relative;
 	text-decoration: none;
 }
 
-.tabs li a, .tabs li span {
-	background: url(../images/common/tabs_bg.gif) 0 -150px;
-	display: block;
-	float: left;
-	padding: 0.35em 1em 0;
-	text-decoration: none;
-	color: #323232;
+.tabs li.current {
 }
 
-.tabs li.current {
-	background: url(../images/common/tabs_bg.gif) 100% -35px;
-	font-weight: bold;
-	border: 1px solid #BEBEBE;
-	border-bottom: none;
-	top: 0.15em;
+.tabs li a, .tabs li span , .tabs li.current a, .tabs li.current span {
+	background: transparent none;
+	display: block;
+	float: left;
+	padding: .35em 1.5em 0;
+	text-decoration: none;
+	color: #fff;
+}
+
+.tabs li.current a, .tabs li.current span {
 }
 
 .portlet-section-body td {
