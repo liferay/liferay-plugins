@@ -53,7 +53,7 @@ body {
 }
 
 a , a:hover , a:link , a:visited { }
-.tabs a , .tabs a:hover , .tabs a:link , .tabs a:visited { color : #000 ; }
+.tabs li a , .tabs li.current a, .tabs li.current span { color : #fff ; }
 
 #wrapper {
  width : 100% ;
