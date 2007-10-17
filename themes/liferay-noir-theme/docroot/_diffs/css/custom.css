@@ -1,4 +1,5 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
 html, body {
 	min-height: 100%;
 }
@@ -160,9 +161,11 @@ a:hover {
 	z-index: 0;
 	width: 945px;
 }
+
 #navigation ul {
 	width: 100%;
 }
+
 #navigation li,   #navigation li a,   #navigation li a span,   #navigation li.selected a,   #navigation li.selected a:hover,  #navigation li a:hover span,  #navigation li.selected a span,   #navigation li a:hover,   .js #navigation .enter-page {
 	background: none;
 	color: #96C0E6;
@@ -187,18 +190,22 @@ a:hover {
 .ie #navigation li.selected a, .ie #navigation li.selected a:hover {
 	height: 1%;
 }
+
 .ie6 #navigation li.selected a, .ie6 #navigation li.selected a:hover {
+	white-space: nowrap;
 	width: 20px;
 }
 
 #navigation li.selected a span {
 	color: #fff;
 }
-.js #add-page {	
+
+.js #add-page {
 	position: absolute;
 	right: 300px;
 	top: -45px;
 }
+
 #navigation ul .sort-helper {
 	padding: 0.1em 0.5em;
 }
@@ -350,10 +357,10 @@ a:hover {
 }
 
 .ie6 .tabs li,
-.ie6 .tabs li a, 
+.ie6 .tabs li a,
 .ie6 .tabs li span,
 .ie6 .tabs li.current,
-.ie6 .tabs li.current a, 
+.ie6 .tabs li.current a,
 .ie6 .tabs li.current span {
 	background-image: url(../images/common/tabs_ie6_bg.png);
 }
@@ -462,7 +469,7 @@ a:hover {
 	margin: 0.15em auto 2.2em;
 }
 
-/* ---------- Sections ---------- */    
+/* ---------- Sections ---------- */
 /* ---------- Table or section header ---------- */
 .portlet-section-header {
 	background: #465E7B;
@@ -597,6 +604,7 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 }
 
 /* ---------- Taglib styling ---------- */
+
 .taglib-ratings {
 	margin-bottom: 1em;
 }
