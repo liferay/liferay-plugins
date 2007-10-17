@@ -21,7 +21,7 @@ a {
 }
 
 #banner {																						  
-	background: transparent url(../images/common/banner_bg.png) no-repeat scroll 100% 100%;
+	background: transparent url(../images/common/banner_bg.png) repeat-x scroll 0 37px;
 	height: 180px;
 }
 
@@ -79,8 +79,12 @@ a {
 
 /* ------------ PORTLET ------------- */
 
+#portlet-wrapper-88 .portlet-content {
+	margin: 0 48px;
+}
+
 .portlet-topper, .portlet {
-	background: url(../images/portlet/portlet_bg.png) no-repeat right bottom;
+	background: url(../images/portlet/portlet_bg.png) repeat-y scroll right bottom;
 }
 
 .portlet-title, .portlet-content {
