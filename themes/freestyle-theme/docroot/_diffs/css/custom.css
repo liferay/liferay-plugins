@@ -1,168 +1,200 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
-/* Reset Insignificant Styles */
-html {
- overflow-y : scroll ;
-}
+/* Begin Classic Lite */
 #wrapper , #banner , #banner .logo , #banner .logo a ,
 #navigation , #navigation ul , #navigation ul li , #navigation li.selected ,
-#navigation ul li a , #navigation li a span , #navigation ul li.selected a , #navigation ul li.selected a span , 
-#navigation ul li a:hover , #navigation li a:hover span , #navigation ul li.selected a:hover , #navigation ul li.selected a:hover span ,
-.js #add-page , .js #add-page a , .js #add-page a span , .js #add-page a:hover , .js #add-page a:hover span ,
+#navigation ul li a , #navigation ul li a:hover , #navigation ul li.selected a , #navigation ul li.selected a:hover ,
+#navigation ul li a span , #navigation ul li a:hover span , #navigation ul li.selected a span , #navigation ul li.selected a:hover span , 
+.js #add-page , .js #add-page a , .js #add-page a:hover , .js #add-page a span , .js #add-page a:hover span ,
 .js #navigation .enter-page , .js #navigation .enter-page a , .js #navigation .enter-page a:hover ,
 #content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content
 {
- float : none ;
- margin : 0 ;
- padding : 0 ;
- padding-left : 0 ;
- width : auto ;
- min-width : 0 ;
- height : auto ;
- min-height : 0 ;
- background : transparent none no-repeat scroll 0% 0% ;
- font-size : 100% ;
- font-size-adjust : none ;
- font-stretch : normal ;
- font-style : normal ;
- font-variant : normal ;
- font-weight : normal ;
- text-indent : 0 ;
- text-decoration : none ;
- line-height : normal ;
- color : inherit ;
+	clear: none;
+	float: none;
+	margin: 0;
+	padding: 0;
+	width: auto;
+	min-width: 0;
+	height: auto;
+	min-height: 0;
+	background: transparent none no-repeat scroll 0 0;
+	font: normal normal normal 100%/normal arial,'lucida console',sans-serif;
+	color: inherit;
+	direction: ltr;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: left;
+	text-decoration: normal;
+	text-indent: 0;
+	word-spacing: normal;
 }
+html { overflow-y : scroll ; }
+#wrapper , #banner , #navigation , #content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content { display: block; }
+#layout-grid .lfr-column { margin: 0; padding: 0; }
+.portlet-icons { top: 0; right: 0; }
+.tabs { border: 0; }
+.portlet-section-header { background: transparent none no-repeat scroll 0 0; }
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 { padding-right: 0; font-size: 8pt; }
+ul.child-menu { display: none; }
+.js .lfr-dock.interactive-mode h2 { font-size: 8pt; }
+.js .lfr-dock.interactive-mode h2 span { font-size: 10pt; padding: 8px 16px 16px 16px; color: #222; }
+/* Begin Classic Lite */
 
-/* Handy Defaults */
-#banner , #navigation , #navigation ul , .portlet { background-color : transparent ; }
-#wrapper , #banner , #navigation , #content-wrapper , 
-.portlet , .portlet-topper , .portlet-title , .portlet-content { display : block ; }
-#layout-grid .lfr-column  { margin : 0 ; padding : 0 ;}
-.portlet-icons { top : 0 ; right : 0 ; }
-.tabs { border : 0 ; }
-/* What is Where?  Uncomment me to find out...
-.portlet { background : #ccc ; margin : 12px 6px ; }
-#banner , #navigation { background : #ccc ; margin : 12px 6px 0 6px ; }
-*/
-
-
-/* FreeStyle */
+/* Body */
+html {
+}
 body {
- background : #000 url('../images/custom/bg.jpg') repeat-y scroll center top;
- color : #fff ;
+	background: #000 url('../images/custom/full-body.png') repeat-y center 0;
+	color: #fff;
+	font: 8pt "Arial Black",Arial,Helvetica,sans-serif;
 }
-a , a:link , a:visited , a:hover { 
- color : #fff ;
+
+/* Custom */
+#wrapper { clear: both; margin: 0 auto; width: 1182px; }
+#n-side {
+	min-height: 768px;
+	background: transparent url('../images/custom/full-head.png') no-repeat center top;
 }
-#wrapper {
- display : block ;
- background : transparent url('../images/custom/full.jpg') repeat-y scroll left top;
- position : relative ;
- width : 806px;
- left : 50% ;
- margin : 0 0 0 -360px;
- height : auto ;
+#l-side {
+	width: 0898px; padding: 30px 20px 0 0; 
+	min-height: 768px;
 }
+#r-side {
+	float: right; width: 0264px;
+}
+
+/* Banner */
 #banner {
- display : block ;
- float : right ;
- width : 372px ;
- height : 372px ;
- background : transparent url('../images/custom/title.jpg') no-repeat scroll left top ;
+	display: block;
+	width: 286px;
+	height: 372px;
 }
+#banner .logo {}
 #banner .logo a {
  display : block ;
  color : #fff;
- font-family : "Arial Black",Arial,Helvetica,sans-serif;
- font-size : 62px;
- font-weight : 900;
+ font : 900 normal normal 52px/45px "Arial Black",Arial,Helvetica,sans-serif;
  letter-spacing : -6px;
- line-height : 45px;
  margin : 0pt 0pt 12px;
  padding : 80px 20px 0pt 0pt;
  text-transform : uppercase;
+ text-align: center;
 }
 .js .lfr-dock.interactive-mode {
  top : 140px ;
- right : 130px ;
+ right : 30px ;
+ color : #000 ;
+}
+.js .lfr-dock.interactive-mode a , .js .lfr-dock.interactive-mode a:hover {
+ color : #000 ;
 }
 .js .lfr-dock.interactive-mode h2 , .js .lfr-dock.interactive-mode h2 span {
  background-image : url('../images/custom/menu_bar.png') ;
- color : #000 ;
  font-weight : bold ;
 }
-.lfr-dock-list li a {
- color : #000 ;
+.popup , .portal-add-content {
+	background: #000;
 }
-#navigation {
- position : absolute ;
- display : block ;
- right : -10px ;
- top : 378px ;
- width : 372px ;
- height : 600px ;
- color : #fff ;
+.popup a , .popup a:link , .popup a:visited {
+	text-decoration: none;
 }
+
+/* Navigation */
+#navigation {}
+#navigation ul
+#navigation li , #navigation li.selected , .js #add-page {}
+#navigation li.selected {}
+#navigation ul li a , #navigation ul li a:hover , #navigation ul li.selected a , #navigation ul li.selected a:hover , .js #add-page a , .js #add-page a:hover {}
+#navigation li a:hover {}
+#navigation ul li a span , #navigation ul li a:hover span , #navigation ul li.selected a span , #navigation ul li.selected a:hover span , .js #add-page a span , .js #add-page a:hover span {}
+#navigation li a:hover span {}
+
 #navigation ul li , #navigation ul li.selected {
- display : block ;
- height : 31px ;
+	display : block ;
+	height : 31px ;
 }
-.js #add-page a span , .js #add-page a:hover span {
-}
-#navigation ul li a span , #navigation ul li.selected a span ,
-#navigation ul li a:hover span , #navigation ul li.selected a:hover span ,
-.js #add-page a span , .js #add-page a:hover span
+#navigation ul li a span , #navigation ul li a:hover span , #navigation ul li.selected a span , #navigation ul li.selected a:hover span , .js #add-page a span , .js #add-page a:hover span
 {
- display : block ;
- background : transparent url('../images/custom/star1.jpg') no-repeat scroll left center ;
- font-family : "Arial Black",Arial,Helvetica,sans-serif ;
- font-size : 22px ;
- text-transform : uppercase ;
- padding : 0 0 0 30px ;
+	display: block;
+	background: transparent url('../images/custom/star1.jpg') no-repeat scroll left center;
+	font: 22px "Arial Black",Arial,Helvetica,sans-serif;
+	text-transform: uppercase;
+	padding: 0 0 0 30px;
 }
 #navigation ul li a:hover span , #navigation ul li.selected a:hover span  , .js #add-page a:hover span
 {
- background : transparent url('../images/custom/star2.jpg') no-repeat scroll left center ;
- color : #FFF000 ;
+	background: transparent url('../images/custom/star2.jpg') no-repeat scroll left center;
+	color: #FFF000;
 }
 .js .delete-tab {
  left : 0 ;
 }
+
+/* Portlets */
+table {
+	clear: none;
+}
 #content-wrapper {
- background : transparent url('../images/custom/middle.jpg') no-repeat scroll right top ;
- display : block ;
- width : 434px ;
 }
-#column-1 .portlet { }
-#column-2 .portlet { }
 .portlet {
- margin : 31px 60px 12px 30px ;
- padding : 0 ;
+	margin: 0 0 60px;
 }
+.portlet-topper {}
 .portlet-title {
- border-top : 4px solid #FFF000 ;
- border-bottom : 18px solid #FFF000 ;
- color : #fff ;
- font-family : "Arial Black",Arial,Helvetica,sans-serif ;
- font-size : 22px ;
- letter-spacing : -1px ;
- line-height : 28px ;
- 
- text-transform : uppercase ;
+	border: 0 solid #fff000;
+	border-top-width: 4px;
+	border-bottom-width: 18px;
+	font: 22px/28px "Arial Black",Arial,Helvetica,sans-serif;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+}
+.portlet-icons {
+	top: 3px;
 }
 .portlet-content {
- color : #ddd ;
- font-family : Arial,Helvetica,sans-serif;
- font-size : 12px;
- letter-spacing : 1px;
- line-height : 20px;
- margin : 10px 0 10px 0;
+	margin: 20px 0 0;
 }
-.portlet-icons img { padding-top : 4px ; }
+.portlet-title {}
+
+/* Footer */
 #footer {
- background:transparent url('../images/custom/footer.gif') no-repeat scroll right bottom;
- height : 288px ;
- margin : 0 46px 0 0 ;
- padding : 20px 0pt 25px ;
- text-align : left ;
+	height: 288px;
+	background: transparent url('../images/custom/full-base.png') no-repeat center bottom;
+}
+
+/* Tabs */
+.tabs , .tabs li a , .tabs li span {
+	color: #000;
+}
+.tabs li a:hover {
+	text-decoration: underline;
+}
+.tabs li.current {
+	top: 0;
+}
+
+/* Tables */
+.taglib-search-iterator {
+}
+.portlet-section-body , .portlet-section-body td {
+	color: #fff;
+	background: #000;
+	border-color: #000;
+}
+.portlet-section-body-hover , .portlet-section-body-hover td , .portlet-section-alternate-hover , .portlet-section-alternate-hover td {
+	background: #222;
+	border-color: #000;
+}
+.portlet-section-alternate , .portlet-section-alternate td {
+	color: #fff;
+	background: #111;
+	border-color: #000;
+}
+.portlet-section-body a , .portlet-section-alternate a {
+	color: #ff0;
+}
+
+/* Everyday */
+a , a:link , a:visited , a:hover {
+	color: #fff000;
+	text-decoration: underline;
 }
