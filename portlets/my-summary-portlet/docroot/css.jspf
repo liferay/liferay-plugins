@@ -22,24 +22,30 @@
  */
 %>
 
-<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
+<style type="text/css">
+	.my-summary-container h2 {
+		color: #83B4E1;
+		font-size: 16px;
+		margin-bottom: 10px;
+	}
 
-<%@ include file="./css.jspf" %>
+	.my-summary-container img {
+		margin: 5px;
+		float: right;
+	}
 
-<liferay-theme:defineObjects />
+	.my-summary-container p {
+		margin-bottom: 10px;
+	}
 
-<div class="my-summary-container">
-	<img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user.getPortraitId() %>" />
-	<h2>
-		<%= user.getFullName() %>
-	</h2>
-	<p>
-		<span class="heading">Position</span><br />
-		<%= user.getContact().getJobTitle() %>
-	</p>
-	<p>
-		<span class="heading">About Me</span><br />
-		<%= user.getComments() %>
-	</p>
-</div>
-<div class="my-summary-footer"></div>
+	.my-summary-container span {
+		color: #3D536C;
+		font-size: 10px;
+		text-transform: uppercase;
+	}
+	.my-summary-footer{
+		clear: both;
+		height: 1px;
+		width: 100%;
+	}
+</style>
