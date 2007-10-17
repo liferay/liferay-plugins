@@ -349,14 +349,14 @@ body {
 	color: #E4EAAE;
 	display: block;
 	float: left;
-	padding: 0.35em 1em 0;
+	padding: 0 1em;
 	text-decoration: none;
 }
 
 .tabs li.current a, .tabs li.current span {
 	background: none;
 	color: #E4EAAE;
-	padding: 0.15em 1em;
+	padding: 0 1em;
 }
 
 .tabs {
