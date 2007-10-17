@@ -163,16 +163,11 @@ ul.child-menu { display : none ; }
  background: transparent url('../images/navigation/placeholder_bg.png');
 }
 
-#content-wrapper {
+#content-wrapper , #portlet-wrapper- {
 	background: #fff;
 	border-left: 10px solid #192666;
 	border-right: 10px solid #192666;
 	margin: 0 5px;
-}
-#portlet-wrapper- {
- width : 770px ;
- padding : 0 20px ;
- background : transparent url('../images/common/wrapper_bg_1.gif') repeat-y scroll 0 0 ;
 }
 #content-wrapper #layout-grid {
  display : block ;
@@ -180,27 +175,10 @@ ul.child-menu { display : none ; }
  padding : 41px 0 0 0 ;
 }
 
-.columns-1 #column-1, .columns-max #column-1 {
-	display:block;
-}
-
 .js #add-page { color : #b5c4e3 ; }
-
-.columns-2 #column-1 {
- margin : 0 ;
- padding : 0 0 0 20px ;
- width : 530px ;
-}
 
 #p_p_id_88_ , .lfr-portlet-column {
  padding : 41px 0 0 15px;
-}
-
-.columns-2 #column-2 {
- background : transparent url('../images/common/wrapper_bg_3.gif') repeat-y scroll 0 0 ;
- margin : 0 ;
- padding : 0 ;
- width  :200px ;
 }
 
 #footer {
@@ -216,7 +194,7 @@ ul.child-menu { display : none ; }
  border-right: 10px solid #192666;
 }
 
-#column-1 .portlet {
+.portlet {
  background:transparent url('../images/portlet/content_article_bg.jpg') no-repeat scroll 0 0 ;
  clear:both;
  margin:0pt;
@@ -224,7 +202,16 @@ ul.child-menu { display : none ; }
  min-height : 229px ;
 }
 
-#column-1 .portlet-title {
+#portlet-wrapper- .portlet-topper {
+	margin: 41px 0 0 0;
+	background: transparent none;
+}
+
+#portlet-wrapper- .portlet-topper .portlet-title {
+	background: #DEE5FD none;
+}
+
+.portlet-title {
  background : #DEE5FD url('../images/portlet/content_title_bg.gif') repeat-y scroll 0 0 ;
  color : #192666 ;
  margin : 0pt -20px ;
@@ -235,32 +222,9 @@ ul.child-menu { display : none ; }
  line-height : 100% ;
 }
 
-#column-1 .portlet-content {
+.portlet-content {
  padding-top : 12px ;
  text-align : justify ;
-}
-
-#column-2 .portlet {
- width : 180px ;
-}
-
-#column-2 .portlet-title {
- background : #A0B9F3 url('../images/portlet/col_title_bg.gif') repeat-y scroll 0 0 ;
- color : #192666 ;
- margin:0pt -10px 15px -10px ;
- padding : 13px 15px 11px 15px ;
- font-size : 120% ;
- font-weight : bold ;
- line-height : 100% ;
-}
-
-#column-2 .portlet-content {
- margin-bottom:15px;
-}
-
-#column-2 #layout-column_column-2 {
-background : transparent url('../images/portlet/col_top.gif') no-repeat scroll top left ;
-padding:20px 10px;
 }
 
 /*** THE END ***/
