@@ -3,7 +3,7 @@
 
 <look-and-feel>
 	<compatibility>
-		<version>4.3.0</version>
+		<version>4.3.3</version>
 	</compatibility>
 	<theme id="sample-wap" name="Sample WAP">
 		<wap-theme>true</wap-theme>
