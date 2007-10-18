@@ -4,7 +4,7 @@
 
 #set ($company_url = $company_url + "/web/guest/home")
 
-<html dir="#language ("lang.dir")">
+<html dir="#language ("lang.dir")" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 	<title>$company_name - $the_title</title>
