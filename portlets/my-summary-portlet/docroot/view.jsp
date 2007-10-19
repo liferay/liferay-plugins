@@ -48,6 +48,10 @@ if (group.isUser()) {
 %>
 
 <style type="text/css">
+	.ie .<portlet:namespace />container {
+		height: 1%;
+	}
+
 	.<portlet:namespace />container:after {
 		clear: both;
 		content: ".";
