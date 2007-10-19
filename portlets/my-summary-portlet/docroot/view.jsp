@@ -22,24 +22,78 @@
  */
 %>
 
+<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
+
+<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 
-<%@ include file="./css.jspf" %>
+<%@ page import="com.liferay.portal.kernel.servlet.ImageServletTokenUtil" %>
+<%@ page import="com.liferay.portal.model.Group" %>
+<%@ page import="com.liferay.portal.model.User" %>
+<%@ page import="com.liferay.portal.service.GroupLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
+
+<portlet:defineObjects />
 
 <liferay-theme:defineObjects />
 
-<div class="my-summary-container">
-	<img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user.getPortraitId() %>" />
+<%
+Group group = GroupLocalServiceUtil.getGroup(themeDisplay.getPortletGroupId());
+
+User user2 = user;
+
+if (group.isUser()) {
+	user2 = UserLocalServiceUtil.getUserById(group.getClassPK());
+}
+%>
+
+<style type="text/css">
+	.<portlet:namespace />container:after {
+		clear: both;
+		content: ".";
+		display: block;
+		height: 0;
+		visibility: hidden;
+	}
+
+	.<portlet:namespace />container h2 {
+		color: #83B4E1;
+		font-size: 16px;
+		margin-bottom: 10px;
+	}
+
+	.<portlet:namespace />container img {
+		margin: 5px;
+		float: right;
+	}
+
+	.<portlet:namespace />container p {
+		margin-bottom: 10px;
+	}
+
+	.<portlet:namespace />container span {
+		color: #3D536C;
+		font-size: 10px;
+		text-transform: uppercase;
+	}
+</style>
+
+<div class="<portlet:namespace />container">
+	<img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user2.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user2.getPortraitId()) %>" />
+
 	<h2>
-		<%= user.getFullName() %>
+		<%= user2.getFullName() %>
 	</h2>
+
 	<p>
-		<span class="heading">Position</span><br />
-		<%= user.getContact().getJobTitle() %>
+		<span><liferay-ui:message key="job-title" /></span><br />
+
+		<%= user2.getContact().getJobTitle() %>
 	</p>
+
 	<p>
-		<span class="heading">About Me</span><br />
-		<%= user.getComments() %>
+		<span><liferay-ui:message key="about-me" /></span><br />
+
+		<%= user2.getComments() %>
 	</p>
 </div>
-<div class="my-summary-footer"></div>
