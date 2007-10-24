@@ -264,6 +264,22 @@ a:hover {
 	padding: 10px 20px 20px 10px;
 }
 
+.portlet-content li {
+    padding-left: 1em;
+}
+
+.portlet-content li li {
+    list-style-type: circle;
+}
+
+.portlet-content ul{
+	list-style: inside disc;
+}
+
+.portlet-content ol {
+	list-style: inside decimal;
+}
+
 .portlet-icons {
 	top: 10px;
 }
@@ -328,11 +344,13 @@ a:hover {
 	background: #0E1118;
 	border-bottom-color: #141B24;
 	margin: -10px -20px 1.5em;
+	list-style: none;
 	padding-top: 1em;
 }
 
 .tabs li {
 	margin-right: 0;
+	padding-left: 0;
 }
 
 .tabs li a {
