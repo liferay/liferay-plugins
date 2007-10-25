@@ -644,3 +644,9 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 .lfr-actions ul {
 	border: 3px double #465E7B;
 }
+
+/* ---------- Blogs styling ---------- */
+
+#portlet-wrapper-33 p {
+	margin-bottom: 1em;
+}
