@@ -280,6 +280,11 @@ a:hover {
 	list-style: inside decimal;
 }
 
+.toggle-expand, .root-container, .root-container ul li {
+	padding-left: 0;
+	list-style: none;
+}
+
 .portlet-icons {
 	top: 10px;
 }
