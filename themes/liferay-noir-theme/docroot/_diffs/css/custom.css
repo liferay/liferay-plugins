@@ -636,6 +636,10 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 	color: #000;
 }
 
+ul.lfr-actions, .lfr-actions ul {
+	list-style: none;
+}
+
 .lfr-actions li a {
 	color: #1C2633;
 	font-size: 1.1em;
