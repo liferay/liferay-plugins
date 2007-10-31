@@ -135,12 +135,11 @@ body {
 }
 #banner .logo {
  position : absolute ;
- top : 72px ;
+ top : 40px ;
  right : 190px ;
 }
 #banner .logo a {
-font-family:Georgia,"Times New Roman",Times,serif;
-font-size:3em;
+font: bold 3em/3em Georgia,"Times New Roman",Times,serif;
 font-style:italic;
 color : #fff ;
 }
@@ -183,7 +182,7 @@ color : #fff ;
  background : #fff ;
  color : #000 ;
 }
-#content-wrapper {
+#content-wrapper , #portlet-wrapper- {
  margin-top : 23px ;
  border : 0 ;
 }
@@ -234,4 +233,15 @@ padding : 12px 38px 0 0 ;
 }
 .tabs li , .tabs li a, .tabs li span , .tabs li.current , .tabs li.current a, .tabs li.current span , .tabs li.current a, .tabs li.current span {
 background-image : url('../images/custom/tabs_bg.png') ;
+}
+
+.liferay-table {
+	font: 10px/10px Arial;
+}
+
+.tabs li {
+	font: 10px/2.25em Arial;
+}
+.tabs li.current {
+	top: 0;
 }
