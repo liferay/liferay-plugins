@@ -390,3 +390,7 @@ body {
 	margin: 1em;
 	padding: .5em 1em;
 }
+
+.liferay-table {
+	font: 10px/10px Arial;
+}
