@@ -54,7 +54,7 @@ html {
 body {
  background : #5F8000 url('../images/common/page_bg.gif') repeat-y scroll center top ;
  color : #333333 ;
- font : normal normal normal 0.6em "Lucida Sans Unicode",sans-serif ;
+ font : normal normal normal 0.6em "Lucida Sans Unicode",sans-serif;
 }
 
 #wrapper {
@@ -143,20 +143,16 @@ right : 0 ;
 }
 
 #column-1 {
- width : 456px ;
 }
 #column-2 {
- width : 208px ;
  border-left : 1px solid #c5ceb2 ;
 }
 
 #column-1 .portlet {
  background : transparent url('../images/portlet/left_portlet_bg.gif') no-repeat scroll 0 0 ;
  color : #fdd ;
- width : 100% ;
 }
 #column-2 .portlet {
- width : 100% ;
 }
 #column-1 .portlet-title {
  margin : 0 0 0 36px ;
@@ -180,15 +176,12 @@ right : 0 ;
  margin-left : 37px ;
  padding : 12px 18px ;
  overflow : hidden ;
- background : #fff none ;
  color : #000 ;
  font-size : 1.2em ;
- width: 864px;
 }
 #column-2 .portlet-content {
  padding : 8px ;
  overflow : hidden ;
- background : trasparent none ;
  color : #000 ;
  font-size : 1.2em ;
 }
@@ -202,6 +195,16 @@ a.portlet-icon-back:hover {
 	text-decoration: underline;
 }
 
+.liferay-table {
+	font: 10px/10px Arial;
+}
+
+.tabs li {
+	font: 10px/2.25em Arial;
+}
+.tabs li.current {
+	top: 0;
+}
+
 
 /*** THE END ***/
-
