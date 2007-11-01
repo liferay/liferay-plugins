@@ -99,7 +99,7 @@ a , a:link , a:visited , a:hover { text-decoration : none ; color : #fff ; } a:h
  display : block ;
  margin : 0 auto ;
  width : 93% ;
- height : 64px ;
+ height : 50px;
  list-style-image : none ;
  list-style-position : outside ;
  list-style-type : none ;
@@ -165,6 +165,7 @@ a , a:link , a:visited , a:hover { text-decoration : none ; color : #fff ; } a:h
 .tabs li.current a, .tabs li.current span {
 	background: transparent url(../images/common/tabs_bg.png) repeat scroll 100% 0px;
 	margin: 2px;
+	color: #ffff99;
 }
 .tabs li.current {
 	background: transparent url(../images/common/tabs_bg.png) repeat scroll 100% 0px;
