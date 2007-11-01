@@ -124,6 +124,11 @@ a:hover {
 	background: #FFFFFF none;
 }
 
+.portlet {
+	margin: 0 5px 10px;
+	padding-right: 20px;
+}
+
 .portlet-topper {
 	border-bottom: 1px solid #CC0000;
 }
