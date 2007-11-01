@@ -198,3 +198,6 @@ a , a:link , a:visited , a:hover {
 	color: #fff000;
 	text-decoration: underline;
 }
+.portlet-msg-error {
+	background: #000;
+}
