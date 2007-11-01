@@ -140,12 +140,7 @@ body {
 }
 .js #add-page { }
 
-#content-wrapper {
- margin : 0 1px ;
- height : 100% ;
-}
-#portlet-wrapper- {
- height : 100% ;
+#content-wrapper , #portlet-wrapper- {
 }
 #content-wrapper #layout-grid {
  height : 100% ;
@@ -162,7 +157,6 @@ body {
 }
 
 .portlet {
-	width: 900px;
 	padding: 16px 12px;
 }
 .portlet-title {
@@ -184,6 +178,17 @@ body {
  background-image : url('../images/common/tabs_bg.png') ;
 }
 #column-2 .tabs li a:hover { text-decoration : none ; }
+
+.liferay-table {
+	font: 10px/10px Arial;
+}
+
+.tabs li {
+	font: 10px/2.25em Arial;
+}
+.tabs li.current {
+	top: 0;
+}
 
 /*** THE END ***/
 
