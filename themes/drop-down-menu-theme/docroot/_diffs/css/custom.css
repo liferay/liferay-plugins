@@ -57,3 +57,14 @@ html, body {
 	font-size: 2em;
 	padding: 1.25em 0.6em 1.45em;
 }
+
+.liferay-table {
+	font: 10px/10px Arial;
+}
+
+.tabs li {
+	font: 12px/2.25em Arial;
+}
+.tabs li.current {
+	top: 0;
+}
