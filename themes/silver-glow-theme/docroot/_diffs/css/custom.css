@@ -5,7 +5,7 @@
 #wrapper {
 	background: #FFF url(../images/common/curve_top.jpg) no-repeat top;
 	margin: 10px auto;
-	width: 747px;
+	width: 947px;
 	position: relative;
 }
 
@@ -51,17 +51,6 @@
 
 .ie6 #portlet-wrapper- {
 	margin-top: 20px;
-}
-
-/* ---------- 2 columns ---------- */
-.columns-2 #column-1 {
-	padding-left: 0;
-	width: 227px;
-}
-
-.columns-2 #column-2 {
-	padding-right: 0;
-	width: 445px;
 }
 
 
@@ -152,7 +141,7 @@ table {
 	min-height: 2.2em;
 	overflow: hidden;
 	padding-bottom: 0em;
-	width: 447px;
+	width: 647px;
 	height: 191px;
 }
 
