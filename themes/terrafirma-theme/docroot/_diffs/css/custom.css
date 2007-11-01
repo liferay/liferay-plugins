@@ -131,23 +131,23 @@ body {
 #wrapper {
  background : transparent url('../images/common/wrapper_bg.gif') no-repeat scroll top center ;
  border : 0px solid #ccc ;
- width : 748px ;
+ width : 948px ;
 }
 /* -- Header */
 #banner {
  border : 0 ;
  height : 111px ;
  margin : 0 30px ;
- background : transparent url('../images/common/banner_bg_1.jpg') no-repeat scroll 229px 13px ;
+ background : transparent url('../images/common/banner_bg_1.jpg') no-repeat scroll right 13px;
 }
 #banner .logo {
- background : #FF7800 url('../images/common/banner_bg_2.gif') repeat-x scroll 0% 0% ;
- color : #fff ;
- display : block ;
- width : 222px ;
- height : 92px ;
- position : absolute ;
- top : 13px ;
+ background: #FF7800 url('../images/common/banner_bg_2.gif') repeat-x scroll 0 0;
+ color: #fff;
+ display: block;
+ width: 422px;
+ height: 92px;
+ position: absolute;
+ top: 13px;
 }
 #banner .logo a {
  position : absolute ;
