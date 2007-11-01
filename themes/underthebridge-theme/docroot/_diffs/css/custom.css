@@ -54,7 +54,7 @@ body {
 }
 #wrapper {
  margin : 0 auto ;
- width : 797px ;
+ width : 997px ;
  background-image : url('../images/custom/header.jpg') ;
  color : #797D88 ;
  font-size : 1.2em ;
@@ -120,15 +120,12 @@ ul.child-menu { display : none ; }
  color : #E3E9F1 ;
 }
 #content-wrapper , #portlet-wrapper- {
- background-image : url('../images/custom/content_tile.jpg') ;
- background-repeat : repeat-y ;
- padding-left : 80px ;
- padding-right : 80px ;
+ background: transparent url('../images/custom/content_tile.jpg') scroll repeat-y 0 0;
+ padding: 0 40px;
 }
 #column-1 .portlet { margin-right : 3px ; }
 #column-2 .portlet { margin-left : 3px ; }
 .portlet {
- background : #eaeef7 none ;
 }
 .portlet-title {
  color : #787C87 ;
@@ -139,11 +136,14 @@ ul.child-menu { display : none ; }
  padding-top : 7px ;
 }
 #footer {
- background-image : url('../images/custom/footer.jpg') ;
+ background : transparent url('../images/custom/footer.jpg') scroll no-repeat center top;
  font-size : 0.9em ;
  height : 63px ;
  padding-left : 80px ;
  padding-right : 80px ;
  padding-top : 80px ;
  text-align : center ;
+}
+.tabs li {
+	font: 12px/2.25em Arial;
 }
