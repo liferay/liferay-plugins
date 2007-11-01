@@ -63,7 +63,7 @@ body {
 #wrapper {
  display : block ;
  margin : 0 auto ;
- width : 767px ;
+ width : 975px ;
  clear : both ;
  padding : 8px 18px 6px 18px ;
  position : relative ;
@@ -72,20 +72,20 @@ body {
 #banner {
  display : block ;
  background : url('../images/custom/header.gif') repeat-x ;
- width : 732px ;
+ width : 940px ;
  height : 156px ;
  margin : 0 auto 8px auto ;
 }
 #banner .logo {
  display : block ;
  margin : 0 ;
- width : 732px ;
+ width : 940px ;
  height : auto ;
 }
 
 #banner .logo a {
  display : block ;
- width : 732px ;
+ width : 940px ;
  color : #fff ;
  font : normal 3em Verdana,sans-serif;
  padding : 62px 0 0 0 ;
@@ -154,12 +154,18 @@ right : 0 ;
 .js #add-page { }
 
 #content-wrapper {
- width : 520px ;
+ width : 728px ;
  margin : 0 0 0 230px ;
  overflow : hidden ;
 }
+.ie #content-wrapper {
+	width: 528px;
+}
 #portlet-wrapper- {
- width : 520px ;
+ width: 728px;
+}
+.tabs , .liferay-table , .portlet-section-body td {
+ font-size: 10px;
 }
 #content-wrapper #layout-grid {
 }
