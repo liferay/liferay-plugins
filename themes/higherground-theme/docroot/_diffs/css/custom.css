@@ -69,7 +69,7 @@ body {
 
 #wrapper {
  position : relative ;
- width : 820px ;
+ width : 920px ;
  background : transparent url('../images/common/wrapper_bg_1.jpg') repeat-y center top ;
  margin : 0 auto ;
  text-align : left ;
@@ -80,13 +80,13 @@ body {
  top : 0 ;
  left : 0 ;
  background : #ccc url('../images/common/wrapper_bg_2.jpg') repeat-y scroll center top ;
- width : 820px ;
+ width : 920px ;
  height : 19px ;
 }
 #theme_header {
  z-index : 1 ;
  position : relative ;
- width : 820px ;
+ width : 920px ;
  height : 100px ;
  background : #ccc url('../images/common/banner_bg_1.jpg') repeat-y scroll center top ;
  color : #fff ;
@@ -104,11 +104,11 @@ body {
  letter-spacing : -1px ;
 }
 #theme_header-photo {
- background : #fff url('../images/common/banner_bg_2.jpg') no-repeat scroll center ;
+ background : #fff url('../images/common/banner_bg_2.png') no-repeat scroll center ;
  clear : both ;
  height : 200px ;
  margin : 0pt auto ;
- width : 790px ;
+ width : 890px ;
 }
 
 
@@ -128,18 +128,16 @@ body {
 
 
 #navigation {
- clear : both ;
+ background : transparent url('../images/navigation/bg.jpg') repeat-x scroll 0 0 ;
+ margin : 0 15px ;
 }
 #navigation ul {
- background : transparent url('../images/navigation/bg.jpg') repeat-x scroll 0 0 ;
- display : inline ;
- float : left ;
- margin : 0 0 0 15px ;
+ display : block ;
+ float: left;
  text-transform : uppercase ;
- width : 790px ;
 }
 #navigation ul li , #navigation ul li.selected , .js #add-page {
- display : inline ;
+ display : block ;
  float : left ;
 }
 #navigation ul li a , #navigation ul li a:hover , #navigation ul li.selected a , #navigation ul li.selected a:hover , .js #add-page a , .js #add-page a:hover {
@@ -182,10 +180,10 @@ body {
  border-bottom : 2px solid #d0d0d0 ;
  margin : 0 0 0 15px ;
  position : relative ;
- width : 790px ;
+ width : 890px ;
 }
 #portlet-wrapper- {
- width : 760px ;
+ width : 860px ;
 }
 #content-wrapper #layout-grid {
 }
@@ -216,7 +214,7 @@ body {
 #footer {
  clear : both ;
  padding : 15px 0 ;
- width : 820px ;
+ width : 920px ;
  background : transparent url('../images/common/footer_bg.jpg') no-repeat scroll center bottom ;
  font-size : 95% ;
  text-align : left ;
@@ -230,6 +228,17 @@ body {
 }
 #footer p a:hover {
  color : #000 ;
+}
+
+.liferay-table {
+	font: 9px/9px Arial;
+}
+
+.tabs li {
+	font: 10px/2.25em Arial;
+}
+.tabs li.current {
+	top: 0;
 }
 
 
