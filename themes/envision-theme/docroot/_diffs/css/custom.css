@@ -64,7 +64,7 @@ body {
  background : #ccc url('../images/common/wrapper_bg.jpg') repeat-y scroll center top ;
  margin : 0 auto ;
  text-align : left ;
- width : 820px ;
+ width : 920px ;
 }
 #banner {
  background : #CCCCCC url('../images/common/banner_bg.jpg') no-repeat scroll center top ;
@@ -72,7 +72,6 @@ body {
  height : 103px ;
  padding : 0pt ;
  position : relative ;
- width : 820px ;
 }
 #banner .logo a {
 color:#FFFFFF;
@@ -118,7 +117,7 @@ top:25px;
  height:37px;
  line-height:37px;
  margin : 0 auto;
- width : 780px;
+ width : 880px;
 }
 #navigation ul {
  margin-right : 10px ;
@@ -152,7 +151,7 @@ top:25px;
 #content-wrapper , #portlet-wrapper- {
  clear : both ;
  margin : 0 auto;
- width : 760px ;
+ width : 870px ;
 }
 
 #column-1, #column-2 , #column-3 { background-color : #ffffff ; padding-top : 10px ; }
@@ -190,7 +189,7 @@ top:25px;
  font-size:92%;
  height:65px;
  text-align:center;
- width:820px;
+ width: 920px;
  padding-top : 10px;
 }
 #footer a {
@@ -212,3 +211,15 @@ input[type="submit"], input[type="button"], input[type="reset"] {
  margin : 0 ;
  padding : 2px 3px ;
 }
+
+.liferay-table {
+	font: 10px/10px Arial;
+}
+
+.tabs li {
+	font: 12px/2.25em Arial;
+}
+.tabs li.current {
+	top: 0;
+}
+	
