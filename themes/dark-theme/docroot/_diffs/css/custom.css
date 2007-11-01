@@ -14,7 +14,7 @@ a {
 #wrapper {
 	background: url(../images/common/visual_bg.jpg) no-repeat 0 159px;
 	margin: 0 auto;
-	width: 760px;
+	width: 960px;
 }
 
 .ie6 #wrapper {
@@ -39,7 +39,7 @@ table {
 	margin-right: auto;
 	margin-top: 27px;
 	padding-top: 5px;
-	width: 761px;
+	width: 961px;
 }
 
 /* ---------- Banner ---------- */
@@ -75,14 +75,14 @@ table {
 #navigation {
 	margin: 45px 0px 2em;
 	min-height: 2.2em;
-	width: 762px;
+	width: 962px;
 }
 
 #navigation ul {
 	background: #4D4D4D url(../images/navigation/topnav_bg.gif) no-repeat right;
 	float: left;
 	min-height: 2em;
-	width: 760px;
+	width: 960px;
 	margin-top: 0px;
 }
 
