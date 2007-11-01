@@ -12,7 +12,7 @@ body {
 #wrapper {
 	background: url(../images/common/btm_bg.jpg) repeat-x bottom;
 	margin: 0 auto;
-	width: 699px;
+	width: 900px;
 	position: relative;
 }
 
@@ -22,7 +22,7 @@ table {
 
 #footer {
 	background: url(../images/common/footer.jpg) no-repeat;
-	width: 699px;
+	width: 900px;
 	height: 34px;
 }
 
@@ -30,7 +30,7 @@ table {
 
 #content-wrapper #layout-grid {
 	border-collapse: collapse;
-	width: 699px;
+	width: 900px;
 }
 
 .ie6 #content-wrapper {
@@ -43,7 +43,7 @@ table {
 	display: table;
 	padding-left: 0;
 	padding-right: 0;
-	width: 699px;
+	width: 900px;
 }
 
 /* ---------- Banner ---------- */
@@ -285,7 +285,7 @@ table {
 	background: url(../images/common/tabs_bg.gif) 2pt -200px;
 	display: inline;
 	float: left;
-	line-height: 2.25;
+	line-height: 2.25em;
 	margin-right: 0.8em;
 	padding: 0;
 	position: relative;
