@@ -134,71 +134,56 @@ body.staging {
 }
 
 #navigation {
-	position:relative;
-	width:850px;
-	padding-right:0;
-	background-color:#999999;
-	padding-bottom:15px;
-}
-
-#navigation li a:hover span{
-	background:none;
-}
-
-#navigation li a span{
-	background:none;
+	width: 100%;
+	background-color: #999;
+	padding: 0;
 }
 
 #navigation ul {
-	float:none;
 	height:50px;
-	left:0px;
-	position:relative;
-	top:0px;
-	width:850px;
+	float: left;
 }
 
-.ie6 #navigation {
-	margin:0;
-	position:relative;
-	width:840px;
-	padding:0;
-}
-
-.js #navigation .enter-page {
-	width:115px;
-	background: transparent none;
-}
-
-#navigation li {
-	background-color:#999999;
-	font-size:8pt;
-	height:30px;
+#navigation li , .js #add-page {
 	width:125px;
+	height:30px;
 	margin:0;
 	padding:0;
-	background-image:none;
+	background: #999 none;
+	font-size:8pt;
 }
 
-#navigation li a {
-	background-color: #999999;
+#navigation li a , .js #add-page a {
+	background: #999999 none;
 	color: white;
 	font-weight: normal;
 	text-decoration:none;
 	font-size: small;
 	padding:0;
 	text-decoration:none;
-	background-image:none;
 	text-align:center;
 }
 
-#navigation li a:hover {
+#navigation li a:hover , .js #add-page a:hover {
 	padding-bottom:0;
 }
 
+#navigation li.selected a {
+	padding:0;
+	background: #999999 none;
+	font-weight: bold;
+	color: 	#444444;
+	text-align:center;
+}
 
-#navigation li a span {
-	background-color:#999999;
+#navigation li.selected a:hover {
+	background: #999999 none;
+	padding-bottom:0;
+	text-align:center;
+}
+
+#navigation li a span , .js #add-page a span {
+	background: #999999 none;
 	padding:0pt;
 	position:relative;
 	text-align:center;
@@ -206,12 +191,10 @@ body.staging {
 	top:10px;
 }
 
-#navigation li.selected a {
-	padding-top:0;
-	background-color: #999999;
-	font-weight: bold;
-	color: 	#444444;
-	text-align:center;
+#navigation li a:hover span , .js #add-page a:hover span {
+	text-decoration: underline;
+	background: #999999 none;
+	text-align: center;
 }
 
 #navigation li.selected a span {
@@ -225,21 +208,9 @@ body.staging {
 	text-decoration:underline;
 }
 
-
-#navigation li.selected a {
-	padding:0;
-	}
-
-#navigation li.selected a:hover {
-	background-color: #999999;
-	padding-bottom:0;
-	text-align:center;
-}
-
-#navigation li a:hover span {
-	text-decoration: underline;
-	background-color: #999999;
-	text-align: center;
+.js #navigation .enter-page {
+	width:115px;
+	background: transparent none;
 }
 
 .js .lfr-dock.interactive-mode {
@@ -251,6 +222,10 @@ body.staging {
 	z-index:200;
 }
 
+#content-wrapper {
+	margin: 10px 0 0;
+}
+
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	position: relative;
 	left: 0px;
@@ -259,10 +234,9 @@ body.staging {
 }
 
 .portlet {
-	padding-right: 10px;
+	margin: 0 10px 0 0;
 	background: white top center no-repeat fixed;
 	border:none;
-	
 }
 
 .portlet-topper {
@@ -346,11 +320,6 @@ body.staging {
 	top:0;
 	background-image:none;
 	background-color: #999999;
-}
-
-.js #add-page a span {
-	position:relative;
-	left:20px;
 }
 
 
