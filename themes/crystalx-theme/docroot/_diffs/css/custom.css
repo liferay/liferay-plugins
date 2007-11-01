@@ -227,5 +227,16 @@ ul.child-menu { display : none ; }
  text-align : justify ;
 }
 
+.liferay-table {
+	font: 10px/10px Arial;
+}
+
+.tabs li {
+	font: 10px/2.25em Arial;
+}
+.tabs li.current {
+	top: 0;
+}
+
 /*** THE END ***/
 
