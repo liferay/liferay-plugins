@@ -12,7 +12,7 @@ a {
 
 #wrapper {
 	margin: 0 auto;
-	width: 700px;
+	width: 900px;
 	background: #FFFFFF;
 }
 
@@ -170,4 +170,15 @@ a {
 
 .ie .tabs li {
 	top: 0.2em;
+}
+
+.liferay-table {
+	font: 10px/10px Arial;
+}
+
+.tabs li {
+	font: 10px/2.25em Arial;
+}
+.tabs li.current {
+	top: 0;
 }
