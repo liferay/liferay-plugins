@@ -144,3 +144,14 @@ body {
 .portlet-content {
 	font-family:"Lucida Sans Unicode",sans-serif;
 }
+
+.liferay-table {
+	font: 10px/10px Arial;
+}
+
+.tabs li {
+	font: 10px/2.25em Arial;
+}
+.tabs li.current {
+	top: 0;
+}
