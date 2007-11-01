@@ -2,7 +2,7 @@
 
 #parse($init)
 
-<html dir="#language ("lang.dir")" xmlns="http://www.w3.org/1999/xhtml">
+<html dir="#language("lang.dir")">
 
 <head>
 	<title>$company_name - $the_title</title>
@@ -31,46 +31,51 @@
 </head>
 
 <body class="$css_class">
-
 $theme.include($top_messages_include)
-
+<div id="background"><div id="repeat"><div></div></div><div id="fixed"></div></div>
 <div id="wrapper">
 	<div id="banner">
 		<h1 class="logo">
 			<a href="$company_url">$company_name</a>
 		</h1>
-
 		#parse("$full_templates_path/dock.vm")
-
 		#if ($update_available_url)
 			<div class="popup-alert-notice">
 				<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>
 			</div>
 		#end
 	</div>
-
 	#if ( $has_navigation )
 		#parse("$full_templates_path/navigation.vm")
 	#end
-
+<div id="super-content-wrapper">
+<div class="IN">
+	<div class="ML">
+		<div class="MR">
+			<div class="BL">
+				<div class="BR">
+					<div class="TL">
+						<div class="TR">
 	#if ( $selectable )
 		$theme.include($content_include)
 	#else
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
 		$portletDisplay.recycle()
-
 		$portletDisplay.setTitle($the_title)
-
 		$theme.wrapPortlet("portlet.vm", $content_include)
 	#end
 	<div class="not-selectable"></div>
-
 	<div id="footer"></div>
 </div>
-
 $theme.include($bottom_ext_include)
 $theme.include($session_timeout_include)
 $theme.include($sound_alerts_include)
-
 </body>
-
 </html>
