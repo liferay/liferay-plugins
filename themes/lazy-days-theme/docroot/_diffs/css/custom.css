@@ -189,6 +189,10 @@ a {
 	top: 0.2em;
 }
 
+.portlet-msg-success {
+	background:#444;
+}
+
 /* ---- FORMS ---- */
 input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
 	background: #EEEEEE;
