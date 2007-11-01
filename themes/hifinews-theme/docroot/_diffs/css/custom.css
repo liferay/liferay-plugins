@@ -137,6 +137,17 @@ margin-bottom : 20px ;
 #footer {
 }
 
+.liferay-table {
+	font: 10px/10px Arial;
+}
+
+.tabs li {
+	font: 10px/2.25em Arial;
+}
+.tabs li.current {
+	top: 0;
+}
+
 .js .lfr-dock.interactive-mode h2 , .js .lfr-dock.interactive-mode h2 span {
  background-image : url('../images/dock/menu_bar.png') ;
 }
