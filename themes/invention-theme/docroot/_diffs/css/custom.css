@@ -32,30 +32,10 @@ body{
 	width: auto;
 }
 
-#navigation li {
+#navigation li , .js #add-page {
 	background: #F4A80A none;
 	padding: 5px 25px;
 	margin-right: 1px;
-}
-
-#navigation li a {
-	background: none;
-	padding: 0;
-	color: #FFFFFF;
-	font-size: 11px;
-}
-
-#navigation li a span {
-	background: none;
-	padding: 0;
-}
-
-#navigation li a:hover {
-	padding-bottom: 0;
-}
-
-#navigation li a:hover span {
-	background: none;
 }
 
 #navigation li.selected {
@@ -63,8 +43,33 @@ body{
 	padding-bottom:8px;
 }
 
+#navigation li a , .js #add-page a {
+	background: none;
+	padding: 0;
+	color: #FFFFFF;
+	font-size: 11px;
+}
+
+#navigation li a:hover , .js #add-page a:hover {
+	padding-bottom: 0;
+}
+
 #navigation li.selected a {
 	padding: 0;
+}
+
+#navigation li.selected a:hover {
+	padding-bottom: 0;
+}
+
+#navigation li a span , .js #add-page a span {
+	background: none;
+	padding: 0;
+	font-weight: normal;
+}
+
+#navigation li a:hover span , .js #add-page a:hover span {
+	background: none;
 }
 
 #navigation li.selected a span {
@@ -73,13 +78,13 @@ body{
 	padding: 0;
 }
 
-#navigation li.selected a:hover {
-	padding-bottom: 0;
-}
-
 .js #navigation .enter-page {
 	background: none;
 	padding: 0;
+}
+
+.tabs li a:hover {
+	color: #000;
 }
 
 /* --- PORTLET --- */
