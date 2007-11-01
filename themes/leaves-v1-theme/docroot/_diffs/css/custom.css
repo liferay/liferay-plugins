@@ -9,7 +9,7 @@ body {
 #wrapper {
 	background: #FFFFFF;
 	margin: 10px auto;
-	width: 700px;
+	width: 900px;
 }
 
 /* ---- BANNER ---- */
@@ -104,6 +104,7 @@ body {
 
 .js #add-page a {
 	color: #FFFFFF;
+	margin: 0 10px;
 }
 
 /* ---- PORTLET ---- */
