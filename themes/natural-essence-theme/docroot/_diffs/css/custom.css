@@ -55,9 +55,9 @@ body {
 }
 
 #outter {
-	background:#333322 url(../images/common/wrapper.gif) no-repeat scroll left bottom;
+	background: #333322;
 	margin:38px auto;
-	width:762px;
+	width:912px;
 }
 
 #wrapper {
@@ -66,12 +66,14 @@ body {
 	font-size:1.3em;
 	line-height:1.3em;
 	margin:0pt auto;
-	width:750px;
+	width:900px;
 }
 
 #banner {
 	height: 277px;
 	background: #DAD7C5 url(../images/common/header.jpg) no-repeat scroll left bottom;
+	margin: 0;
+	padding: 0;
 }
 
 #banner .logo {
@@ -79,11 +81,13 @@ body {
 	background:#E2DED5 url(../images/common/header-h1.jpg) repeat-x scroll 0 0;
 	border-top: 1px solid #996;
 	border-bottom: 2px solid #663;
+	margin: 0;
+	padding: 0;
 }
 #banner .logo a {
 	display: block;
-	font: normal normal normal 2.2em Georgia,"Trebuchet MS",sans-serif;
-	padding: 10px 0 10px 18px;
+	font: normal normal normal 2.2em/54px Georgia,"Trebuchet MS",sans-serif;
+	padding: 0 18px;
 	color : #642;
 }
 
@@ -109,7 +113,7 @@ height:41px;
 	border-right:1px solid #C9C6B3;
 	color:#553;
 	font: bold normal normal 1em/41px Tahoma,sans-serif;
-	text-align:center;
+	text-align: center;
 	text-decoration:none;
 }
 
@@ -151,4 +155,8 @@ height:41px;
 	background: #332 none repeat scroll 0%;
 	color: #eed;
 	padding: 10px;
+}
+
+.liferay-table {
+	font: 10px/10px Arial;
 }
