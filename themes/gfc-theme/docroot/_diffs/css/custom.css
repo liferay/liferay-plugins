@@ -21,7 +21,7 @@
 }
 
 .lfr-dock h2 {
-	background: none;
+	background: url(../images/navigation/welcome_message.png) no-repeat 0 50%;
 	font-size: 1.2em;
 	margin-bottom: 0.5em;
 	padding-left: 2em;
@@ -30,10 +30,9 @@
 
 .lfr-dock {
 	position: absolute;
-	right: 0px;
+	right: 10px;
 	top: 10px;
 }
-
 
 .js .lfr-dock.interactive-mode h2 {
 	background: none;
@@ -41,7 +40,7 @@
 	margin-bottom: 0;
 	padding: 0 0 0 0;
 	position: relative;
-	right: 890px;
+	right: 900px;
 	top: 25px;
 	z-index: 82;
 }
@@ -61,7 +60,7 @@
 	border: 1px solid #B5B9BB;
 	border-top: none;
 	position: relative;
-	right: 890px;
+	right: 900px;
 	top: 25px;
 }
 
@@ -97,7 +96,6 @@ body {
 #wrapper {
 	margin: 0 auto;
 	width: 1100px;
-	position: relative;
 }
 
 #content-wrapper {
@@ -111,9 +109,9 @@ body {
 	float: left;
 	font-weight: bold;
 	padding-top: 0;
-	position: relative;
-	top: 5px;
-	left: 0px;
+	position: absolute;
+	top: 105px;
+	left: 1270px;
 }
 
 .js #add-page a {
@@ -128,7 +126,7 @@ body {
 
 #navigation {
 	background: url(../images/common/link.jpg) repeat-x;
-	margin: 0 auto -6px;
+	margin: 0 auto 0px;
 	min-height: 2.2em;
 	overflow: hidden;
 	padding-right: 1em;
