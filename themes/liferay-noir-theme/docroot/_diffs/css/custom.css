@@ -637,7 +637,7 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 }
 
 ul.lfr-actions, .lfr-actions ul {
-	list-style: none;
+	list-style: none outside;
 }
 
 .lfr-actions li a {
@@ -652,6 +652,16 @@ ul.lfr-actions, .lfr-actions ul {
 
 .lfr-actions ul {
 	border: 3px double #465E7B;
+}
+
+.lfr-actions li, .lfr-actions li li {
+	list-style: none;
+	padding-left: 0;
+}
+
+.lfr-actions .lfr-trigger strong span {
+	font-size: 0.8em;
+	background-position: 5px 1px;
 }
 
 /* ---------- Blogs styling ---------- */
