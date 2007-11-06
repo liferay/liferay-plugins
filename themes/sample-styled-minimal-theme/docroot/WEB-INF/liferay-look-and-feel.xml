@@ -3,7 +3,7 @@
 
 <look-and-feel>
 	<compatibility>
-		<version>4.3.3</version>
+		<version>4.3.4</version>
 	</compatibility>
 	<theme id="sample-styled-minimal" name="Sample Styled Minimal" />
 </look-and-feel>
