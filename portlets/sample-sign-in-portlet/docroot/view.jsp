@@ -101,7 +101,9 @@
 				<liferay-ui:message key="password" />
 			</td>
 			<td>
-				<input name="<portlet:namespace />password" style="width: 120px;" type="password" value="<%= password %>" />
+				<input id="<portlet:namespace />password" name="<portlet:namespace />password" style="width: 120px;" type="password" value="<%= password %>" />
+
+				<span id="<portlet:namespace />passwordCapsLockSpan" style="display: none;"><liferay-ui:message key="caps-lock-is-on" /></span>
 			</td>
 		</tr>
 
@@ -146,10 +148,20 @@
 
 		</form>
 
-		<c:if test="<%= renderRequest.getWindowState().equals(WindowState.MAXIMIZED) %>">
-			<script type="text/javascript">
+		<script type="text/javascript">
+			jQuery(
+				function() {
+					jQuery('#<portlet:namespace />password').keypress(
+						function(event) {
+							Liferay.Util.showCapsLock(event, '<portlet:namespace />passwordCapsLockSpan');
+						}
+					);
+				}
+			);
+
+			<c:if test="<%= renderRequest.getWindowState().equals(WindowState.MAXIMIZED) %>">
 				Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />login);
-			</script>
-		</c:if>
+			</c:if>
+		</script>
 	</c:otherwise>
 </c:choose>
