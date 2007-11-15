@@ -1,0 +1,334 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+body {
+	background-color: #E7E7E7;
+	font: 62.5%/1.6em 'Verdana',Arial,Helvetica,sans-serif;
+}
+
+/* ---------- Main content body ---------- */
+
+#wrapper {
+	margin: 0 auto;
+	width: 100%;
+}
+
+#footer {
+	background:#F4F4F4 none repeat scroll 0%;
+	clear:both;
+	color:#484848;
+	font-size:10px;
+	height:10px;
+	margin:4pt auto 10px;
+	padding:18px 0px;
+	text-align:left;
+	width:1085px;
+}
+
+.footer {
+	margin-left: 20px;
+}
+
+.footer2 {
+	float: right;
+	margin-top: -20px;
+	margin-right: 20px;
+}
+
+.ie6.footer2 {
+	margin-top: -17px;
+}
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background:#87B220 none repeat scroll 0%;
+	height:64px;
+	margin:0pt;
+	padding:30px 0pt 0pt 10px;
+	position: relative;
+	width: 100%;
+}
+
+.ie6 #banner {
+	height: 30px;
+	padding-top: 10px;
+}
+
+#banner .logo {
+	background:none repeat scroll 0%;
+	clear:none;
+	float:left;
+	left:-10px;
+	margin:0pt;
+	position:relative;
+	top:-30px;
+}
+
+#banner .logo a {
+	color:#588210;
+	font-family:'Times New Roman';
+	text-decoration: none;
+	font-size:58pt;
+	font-weight:bold;
+	letter-spacing:-2px;
+	line-height:40px;
+	text-indent:-2px;
+}
+
+.ie6 #banner .logo {
+	top: 0px;
+}
+
+/* ---------- Wrapper ---------- */
+
+#content-wrapper {
+	background: #F4F4F4;
+	width: 1085px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#content-wrapper a {
+	color: #717171;
+}
+
+#content-wrapper a:hover {
+	color: #87B220;
+}
+
+/* ---------- 2 columns ---------- */
+
+.columns-2 #column-1 {
+	border-right:5px solid #E7E7E7;
+	padding-left: 0;
+}
+
+.columns-2 #column-2 {
+	padding-right: 0;
+}
+
+/* ---------- Main navigation ---------- */
+
+#navigation {
+	background:#7FA71F none repeat scroll 0%;
+	height:34px;
+	left:-265px;
+	margin: 0 0 0.5em;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding-right: 1em;
+	position:relative;
+	width: 100%;
+}
+
+.ie6 #navigation {
+	left: 0px;
+}
+
+#navigation ul {
+	float: left;
+	min-height: 2em;
+	width: auto;
+	margin-left:10px;
+}
+
+#navigation li {
+	background: none;
+	display: inline;
+	float: left;
+	margin-right: 0.5em;
+	padding: 0 0.5em 0 0;
+	position: relative;
+}
+
+#navigation li a {
+	background: none;
+	display: block;
+	padding: .8em 2em .8em 2em;
+	text-decoration: none;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+#navigation li a:hover {
+	background: #739B1F none repeat scroll 0%;
+	padding-bottom: 0.8em;
+}
+
+#navigation li a span {
+	background: none;
+	padding-left: 0px;
+	text-decoration: none;
+}
+
+#navigation li.selected a {
+	background: #E7E7E7;
+	color: #739B1F;
+	padding-top: 0.9em;
+	padding-bottom: 0.9em;
+}
+
+#navigation li.selected a span {
+	background:none;
+	font-size: 1em;
+	font-weight: bold;
+}
+
+#navigation li.selected a:hover {
+	background: #E7E7E7 none repeat scroll 0%;
+	padding-bottom: 0.9em;
+}
+
+#navigation li a:hover span {
+	background: none;
+}
+
+/* ---------- Dock with JavaScript ---------- */
+
+.js .lfr-dock.interactive-mode {
+	float: right;
+	min-width: 150px;
+	position: relative;
+	right: 10px;
+	top: 10px;
+}
+
+.js .lfr-dock.interactive-mode h2 {
+	background: none;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0 29px 0 0;
+	position: relative;
+	z-index: 82;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	background: none;
+	color: #fff;
+	display: block;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0.5em 0.5em 0.5em 2em;
+}
+
+
+.js .lfr-dock.interactive-mode ul {
+	background: url(../images/dock/menu_bg.png) no-repeat 0 0;
+	border-left: 20px solid #718E3E;
+	display: none;
+	float: none;
+}
+
+.js #navigation .enter-page {
+	background: none;
+	padding: 0.5em 2em 0.7em 1.5em;
+}
+
+/* ---------- Portlet wrapper and icons ---------- */
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: #F4F4F4;
+}
+
+.portlet {
+	margin: 0 0 10px;
+	padding-right: 10px;
+	text-align: left;
+}
+
+.portlet-topper {
+	background-position: right top;
+	margin-right: -10px;
+	padding-right: 40px;
+	position: relative;
+}
+
+.portlet-title {
+	background-position: top left;
+	display: block;
+	color:#718E3E;
+	font-family:'Georgia';
+	font-size:25px;
+	font-weight:normal;
+	letter-spacing:-1px;
+	margin-bottom:20px;
+	margin-top:15px;
+	min-width: 50%;
+	padding: 8px 0 4px 10px;
+}
+
+.portlet-content {
+	background-position: left bottom;
+	padding: 10px 5px 25px 15px;
+}
+
+/* ---------- Table or section header ---------- */
+
+.portlet-section-header {
+	background: #A9BA8B;
+	padding: 1px 0 0;
+}
+
+.portlet-section-header th {
+	background: #A9BA8B;
+	border-bottom: 1px solid #ccc;
+	color: #333;
+	font-weight: bold;
+	padding: 0.3em 1em;
+}
+
+/* ---------- Normal text in a table cell ---------- */
+
+.portlet-section-body {
+	background: #E7EDF4;
+	color: #000;
+}
+
+.portlet-section-body td {
+	background: #87B220;
+	border-bottom: 1px solid #BFBFBF;
+	border-top: 1px solid #BFBFBF;
+	padding: 0.3em 1em;
+}
+
+/* This CSS sets the default styles for tabs. */
+
+.tabs {
+	border-bottom: 1px solid #537D0F;
+	margin: 0 0 1.5em 0;
+	padding: 0 0 2.6em 1em;
+}
+
+.tabs ul {
+	list-style-type: disk;
+}
+
+.tabs li {
+	background:none;
+	display: inline;
+	float: left;
+	line-height: 2.25;
+	margin-right: 0.8em;
+	padding: 0;
+	position: relative;
+	text-decoration: none;
+}
+
+.tabs li a, .tabs li span {
+	background:none;
+	display: block;
+	float: left;
+	padding: 0.35em 1em 0;
+	text-decoration: none;
+}
+
+.tabs li.current {
+	background: none;
+	font-weight: bold;
+	top: 0.15em;
+}
+
+.tabs li.current a, .tabs li.current span {
+	background: none;
+	color: #333;
+	padding: 0.15em 1em;
+}
