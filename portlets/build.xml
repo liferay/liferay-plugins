@@ -4,6 +4,31 @@
 	<property name="project.dir" value=".." />
 
 	<import file="../build-common-plugins.xml" />
+	
+	<target name="create">
+		<if>
+			<equals arg1="${portlet.name}" arg2="$${portlet.name}" />
+			<then>
+				<echo message="This task must be called by create.bat." />
+			</then>
+			<else>
+				<if>
+					<available file="${portlet.name}-portlet" />
+					<then>
+						<echo message="${portlet.name}-portlet already exists." />
+					</then>
+					<else>
+						<unzip src="portlet.zip" dest="${portlet.name}-portlet" />
+
+						<replace dir="${portlet.name}-portlet">
+							<replacefilter token="@portlet.name@" value="${portlet.name}" />
+							<replacefilter token="@portlet.display.name@" value="${portlet.display.name}" />
+						</replace>
+					</else>
+				</if>
+			</else>
+		</if>
+	</target>
 
 	<target name="format-source">
 		<java
