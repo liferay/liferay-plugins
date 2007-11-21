@@ -7,7 +7,7 @@
 
 	<target name="create">
 		<if>
-			<equals arg1="${theme.name}" arg2="$${theme.name}" />
+			<equals arg1="${theme.name}" arg2="${theme.name}" />
 			<then>
 				<echo message="This task must be called by create.bat." />
 			</then>
