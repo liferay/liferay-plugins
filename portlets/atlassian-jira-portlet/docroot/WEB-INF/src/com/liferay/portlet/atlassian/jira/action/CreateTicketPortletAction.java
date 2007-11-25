@@ -13,6 +13,8 @@ import com.liferay.portlet.atlassian.jira.model.ProjectPropertyEditor;
 import com.liferay.portlet.atlassian.jira.model.Version;
 import com.liferay.portlet.atlassian.jira.model.VersionsPropertyEditor;
 import com.liferay.portlet.atlassian.jira.util.StringUtil;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.validation.BindException;
 import org.springframework.validation.Errors;
 import org.springframework.web.portlet.ModelAndView;
@@ -80,7 +82,7 @@ public class CreateTicketPortletAction
                 values.put(JiraPortletConstants.VERSIONS_KEY, versions);
                 return values;
             default:
-                return null;
+                return values;
         }
 
     }
@@ -111,9 +113,22 @@ public class CreateTicketPortletAction
         }
 
         final Issue issue = (Issue) command;
-        final String issueKey = proxy.createIssue(securityToken, issue);
+        final String issueKey;
+        try {
+            issueKey = proxy.createIssue(securityToken, issue);
+        }
+        catch (Exception e) {
+            if (log.isErrorEnabled()) {
+                log.error("Unabl to create issue: ", e);
+            }
+            throw e;
+        }
         response.setRenderParameter(JiraPortletConstants.TICKET_ID_KEY,
                                     issueKey);
+        response.setRenderParameter(JiraPortletConstants.URL_PREFERENCE,
+                                    request.getPreferences().getValue(
+                                        JiraPortletConstants.URL_PREFERENCE,
+                                        StringUtil.EMPTY_STRING));
     }
 
     protected ModelAndView renderFinish(final RenderRequest request,
@@ -173,4 +188,6 @@ public class CreateTicketPortletAction
     }
 
     private static final String _DATE_FORMAT = "MM/dd/yyyy";
+    private static final Log log =
+        LogFactory.getLog(CreateTicketPortletAction.class);
 }

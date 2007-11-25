@@ -53,7 +53,7 @@ public class JiraAuthenticationInterceptor
         if (proxy == null) {
             //create new proxy with the preference settings...
             final String url =
-                prefs.getValue(JiraPortletConstants.USER_NAME_PREFERENCE,
+                prefs.getValue(JiraPortletConstants.URL_PREFERENCE,
                                StringUtil.EMPTY_STRING);
             if (StringUtil.isEmpty(url)) {
                 _createSimulator(session);

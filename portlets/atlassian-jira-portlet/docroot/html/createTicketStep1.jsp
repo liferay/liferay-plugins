@@ -3,7 +3,7 @@
 <portlet:actionURL var="formAction">
     <portlet:param name="action" value="createTicket"/>
     <portlet:param name="_page">
-        <jsp:attribute name="value">0</jsp:attribute>
+        <jsp:attribute name="value">1</jsp:attribute>
     </portlet:param>
 </portlet:actionURL>
 

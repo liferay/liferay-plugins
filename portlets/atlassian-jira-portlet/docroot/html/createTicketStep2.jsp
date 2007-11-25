@@ -65,7 +65,7 @@
     <td>
         <form:select path="components" multiple="true" size="3">
             <c:forEach items="${components}" var="component">
-                <option value="-1">
+                <option value="-1,Unknown">
                     Unknown
                 </option>
                 <option value="<c:out value="${component.id}" />">
@@ -83,7 +83,7 @@
 
         <form:select path="versions" multiple="true" size="6">
 
-            <option value="-1">
+            <option value="-1,Unknown">
                 Unknown
             </option>
 
@@ -103,7 +103,7 @@
     </td>
     <td>
         <form:select path="fixedVersions" multiple="true" size="6">
-            <option value="-1">
+            <option value="-1,Unknown">
                 Unknown
             </option>
             <optgroup label="Fixed Versions">
@@ -150,7 +150,7 @@
         Reporter:
     </td>
     <td>
-        ${reporter}
+        <c:out value="${reporter}" />
     </td>
 </tr>
 <tr>

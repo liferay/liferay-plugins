@@ -28,19 +28,15 @@
         <property name="pageAttribute" value="page"/>
         <property name="bindOnNewForm" value="true"/>
         <property name="pages"
-                  value="createTicketStep1,createTicketStep2"/>
+                  value="createTicketStep1,createTicketStep2,createTicketStepFinish"/>
         <property name="validator" ref="createTicketValidator"/>
     </bean>
 
     <!-- portlet preference controlers -->
     <bean id="savePreferences"
-          class="com.liferay.portlet.atlassian.jira.action.CreateTicketSavePreferencesController">
+          class="com.liferay.portlet.atlassian.jira.action.CreateTicketPreferencesController">
     </bean>
 
-
-    <bean id="viewPreferences"
-          class="com.liferay.portlet.atlassian.jira.action.CreateTicketPreferencesDisplayController">
-    </bean>
 
     <!-- Interceptors -->
     <bean id="authInterceptor"
@@ -61,7 +57,7 @@
         <property name="portletModeMap">
             <map>
                 <entry key="view" value-ref="createTicketController"/>
-                <entry key="edit" value-ref="viewPreferences"/>
+                <entry key="edit" value-ref="savePreferences"/>
             </map>
         </property>
     </bean>

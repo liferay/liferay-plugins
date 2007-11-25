@@ -488,6 +488,6 @@ public class SOAPJiraProxyImpl implements JiraProxy {
     private JiraSoapService _service;
     private static final String _ADDRESS_KEY = "JirasoapserviceV2";
 
-    private static final String _ADDRESS_POST_FIX = "rpc/soap/jirasoapservice-v2";
+    private static final String _ADDRESS_POST_FIX = "/rpc/soap/jirasoapservice-v2";
 
 }
