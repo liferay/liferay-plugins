@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+    "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+    <bean id="simulator"
+          class="com.liferay.portlet.atlassian.jira.impl.MemJiraProxyImpl"
+          scope="singleton"/>
+    
+    <bean id="jiraConnection"
+          class="com.liferay.portlet.atlassian.jira.impl.SOAPJiraProxyImpl"
+          scope="singleton"/>
+
+    <!-- Validators -->
+    <bean id="createTicketValidator"
+          class="com.liferay.portlet.atlassian.jira.action.validation.CreateTicketValidator"/>
+
+
+    <!-- Controllers -->
+
+    <bean id="createTicketController"
+          class="com.liferay.portlet.atlassian.jira.action.CreateTicketPortletAction">
+        <property name="commandName" value="createIssue"/>
+        <property name="commandClass"
+                  value="com.liferay.portlet.atlassian.jira.model.Issue"/>
+        <property name="sessionForm" value="true"/>
+        <property name="pageAttribute" value="page"/>
+        <property name="bindOnNewForm" value="true"/>
+        <property name="pages"
+                  value="createTicketStep1,createTicketStep2"/>
+        <property name="validator" ref="createTicketValidator"/>
+    </bean>
+
+    <!-- portlet preference controlers -->
+    <bean id="savePreferences"
+          class="com.liferay.portlet.atlassian.jira.action.CreateTicketSavePreferencesController">
+    </bean>
+
+
+    <bean id="viewPreferences"
+          class="com.liferay.portlet.atlassian.jira.action.CreateTicketPreferencesDisplayController">
+    </bean>
+
+    <!-- Interceptors -->
+    <bean id="authInterceptor"
+          class="com.liferay.portlet.atlassian.jira.action.JiraAuthenticationInterceptor">
+        <property name="jiraProxy" ref="jiraConnection"/>
+        <property name="simulator" ref="simulator"/>
+    </bean>
+    
+
+    <!-- available portlet modes -->
+    <bean id="portletModeHandlerMapping"
+          class="org.springframework.web.portlet.handler.PortletModeHandlerMapping">
+        <property name="interceptors">
+            <list>
+                <ref bean="authInterceptor"/>
+            </list>
+        </property>
+        <property name="portletModeMap">
+            <map>
+                <entry key="view" value-ref="createTicketController"/>
+                <entry key="edit" value-ref="viewPreferences"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- Handling for portlet modes -->
+    <bean id="portletModeParameterHandlerMapping"
+          class="org.springframework.web.portlet.handler.PortletModeParameterHandlerMapping">
+        <property name="order" value="1"/>
+        <property name="interceptors">
+            <list>
+                <ref bean="parameterMappingInterceptor"/>
+                <ref bean="authInterceptor"/>
+            </list>
+        </property>
+        <property name="portletModeParameterMap">
+            <map>
+                <entry key="view">
+                    <map>
+                        <entry key="createTicket"
+                               value-ref="createTicketController"/>
+                    </map>
+                </entry>
+                <entry key="edit">
+                    <map>
+                        <entry key="preferences" value-ref="savePreferences"/>
+                    </map>
+                </entry>
+            </map>
+
+        </property>
+    </bean>
+
+    <!-- Error Handlers -->
+    <bean id="defaultExceptionHandler" parent="defaultExceptionHandlerTemplate">
+        <property name="exceptionMappings">
+            <props>
+                <prop
+                    key="Exception">
+                    error
+                </prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>
