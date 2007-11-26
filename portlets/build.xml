@@ -7,7 +7,7 @@
 
 	<target name="create">
 		<if>
-			<equals arg1="${portlet.name}" arg2="${portlet.name}" />
+			<equals arg1="${portlet.name}" arg2="$${portlet.name}" />
 			<then>
 				<echo message="This task must be called by create.bat." />
 			</then>
