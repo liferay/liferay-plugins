@@ -1,0 +1,187 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+body {
+	background:#ffffff url(../images/bg.gif) repeat-x scroll 0% 0%;
+	color:#446666;
+	font-family:"Lucida Sans Unicode",sans-serif;
+	font-size:62.5%;
+	font-size-adjust:none;
+	font-stretch:normal;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:normal;
+	margin:0pt;
+}
+
+#footer {
+	background:#0094D6 url(../images/bgfooter.gif) repeat-x scroll bottom;
+	color:#C1DEF0;
+	font-size:1.1em;
+	height:40px;
+	text-align:center;
+}
+/* ---------- Main content body ---------- */
+
+#wrapper {
+	background:transparent url(../images/topleft.gif) no-repeat scroll 0% 0%;
+	margin: 0 auto;
+	width: 100%;
+}
+
+#content-wrapper {
+	background:#FFFFFF url(../images/bgmain.gif) no-repeat scroll 0% 0%;
+	clear:both;
+	padding:12px 12px 0pt 52px;
+	width: 67%;
+	margin-top:-7px;
+	margin-left: 0px;
+	margin-right: auto;
+}
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: none;
+	height: 7em;
+	position: relative;
+}
+
+#banner .logo {
+	background: none;
+	display: block;
+	float: left;
+	font-size: 2em;
+	padding: 1.25em 0.6em .45em; 
+	margin-left:54px;
+	margin-top:11px;
+}
+
+.ie6 #banner .logo {
+	margin-left: 30px;
+}
+
+#banner .logo a {
+	color:#FFFFFF;
+	text-decoration: none;
+}
+
+/* ---------- Main navigation ---------- */
+
+#navigation {
+	margin: 0 2px 0.5em;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding-right: 1em;
+	width: 95%;
+}
+
+#navigation ul {
+	float: left;
+	min-height: 2em;
+	width: auto;
+	margin-left:140px;
+}
+
+.ie6 #navigation ul {
+	margin-left: 75px;
+}
+
+#navigation li {
+	background:none;
+	display: inline;
+	float: left;
+	margin-right: 0.5em;
+	padding: 0 0.5em 0 0;
+	position: relative;
+}
+
+#navigation li a {
+	background: none;
+	color:#FFFFFF;
+	float:left;
+	font-family:"Trebuchet MS",sans-serif;
+	font-size:1.2em;
+	font-size-adjust:none;
+	font-stretch:normal;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:bold;
+	line-height:normal;
+	margin-top:-10px;
+	padding:8px 17px 8px 0px;	
+	text-align:center;
+	text-decoration:none;
+}
+
+#navigation li a:hover {
+	background:#4A91C3 none repeat scroll;
+	padding-bottom: 1px;
+	padding-top: 8px;
+}
+
+#navigation li a span {
+	background: none;
+	padding-left: 17px;
+	text-decoration: none;
+}
+
+
+#navigation li.selected a {
+	background:#4A91C3 none repeat scroll;
+	padding-bottom: 1px;
+	padding-top: 8px;
+}
+
+#navigation li.selected a span {
+	background: none;
+	font-size: 1em;
+	font-weight: bold;
+}
+
+#navigation li.selected a:hover {
+	padding-bottom: 1px;
+}
+
+#navigation li a:hover span {
+	background: none;
+}
+
+/* ---------- Portlet wrapper and icons ---------- */
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: #fff;
+}
+
+.portlet {
+	margin: 0 0 10px;
+	padding-right: 10px;
+	text-align: left;
+}
+
+.portlet-topper {
+	background-position: right top;
+	margin-right: -10px;
+	padding-right: 40px;
+	position: relative;
+}
+
+.portlet-title {
+	color:#0066CC;
+	background-position: top left;
+	display: block;
+	font-weight: bold;
+	font-size:1.4em;
+	min-width: 50%;
+	padding: 8px 0 4px 10px;
+}
+
+/*-----------Javascript--------------*/
+
+.js #add-page {
+float:left;
+font-weight:bold;
+left:65px;
+padding-top:0.3em;
+position:absolute;
+top:66px;
+}
