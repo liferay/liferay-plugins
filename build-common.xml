@@ -28,4 +28,69 @@
 
 	<taskdef classpathref="lib.classpath" resource="net/sf/antcontrib/antlib.xml" />
 	<taskdef classpathref="lib.classpath" resource="ise/antelope/tasks/antlib.xml" uri="antlib:ise.antelope.tasks" />
+
+	<condition property="correct.ant.version">
+		<antversion atleast="1.7.0" />
+	</condition>
+
+	<if>
+		<not>
+			<equals arg1="${correct.ant.version}" arg2="true" />
+		</not>
+		<then>
+			<fail>
+.
+
+Please use Ant 1.7.0 or above.
+			</fail>
+		</then>
+	</if>
+
+	<if>
+		<and>
+			<equals arg1="${java.class.version}" arg2="48.0" />
+			<not>
+				<isset property="env.ANT_OPTS" />
+			</not>
+		</and>
+		<then>
+			<fail>
+.
+
+The environment variable ANT_OPTS is not set.
+
+Please set it to the recommended value of "-Xms256M -Xmx512M".
+			</fail>
+		</then>
+	</if>
+
+	<whichresource resource="/org/eclipse/jdt/core/JDTCompilerAdapter.class" property="ecj.compiler" />
+
+	<if>
+		<and>
+			<equals arg1="${javac.compiler}" arg2="org.eclipse.jdt.core.JDTCompilerAdapter" />
+			<not>
+				<isset property="ecj.compiler" />
+			</not>
+		</and>
+		<then>
+			<copy file="${project.dir}/lib/ecj.jar" todir="${ant.home}/lib" />
+
+			<fail>
+.
+
+Task cannot continue because ECJ is not installed.
+
+ECJ was automatically installed. Please rerun your task.
+			</fail>
+		</then>
+	</if>
+
+	<target name="print-current-time">
+		<tstamp>
+			<format property="current.time" pattern="MMMM d, yyyy 'at' hh:mm aa" />
+		</tstamp>
+
+		<echo message="${current.time}" />
+	</target>
 </project>
