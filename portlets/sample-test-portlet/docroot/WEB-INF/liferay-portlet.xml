@@ -4,7 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>sample_test_portlet</portlet-name>
-		<instanceable>true</instanceable>
+		<friendly-url-mapper-class>com.sample.test.portlet.SampleTestFriendlyURLMapper</friendly-url-mapper-class>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
