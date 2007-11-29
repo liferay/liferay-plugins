@@ -2,8 +2,8 @@
 
 <portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd" version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd">
 	<portlet>
-		<portlet-name>sample_jsf_myfaces_portlet</portlet-name>
-		<display-name>Sample JSF MyFaces</display-name>
+		<portlet-name>sample_jsf_1_1_myfaces_jsp_portlet</portlet-name>
+		<display-name>Sample JSF 1.1 MyFaces JSP</display-name>
 		<!--<portlet-class>org.apache.myfaces.portlet.MyFacesGenericPortlet</portlet-class>-->
 		<portlet-class>com.sample.jsfmyfaces.portlet.MyFacesGenericPortlet</portlet-class>
 		<init-param>
@@ -14,9 +14,9 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Sample JSF MyFaces</title>
-			<short-title>Sample JSF MyFaces</short-title>
-			<keywords>Sample JSF MyFaces</keywords>
+			<title>Sample JSF 1.1 MyFaces JSP</title>
+			<short-title>Sample JSF 1.1 MyFaces JSP</short-title>
+			<keywords>Sample JSF 1.1 MyFaces JSP</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>
