@@ -2,8 +2,8 @@
 
 <portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd" version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd">
 	<portlet>
-		<portlet-name>sample_jsf_facelets_portlet</portlet-name>
-		<display-name>Sample JSF Facelets</display-name>
+		<portlet-name>sample_jsf_1_1_myfaces_facelets_portlet</portlet-name>
+		<display-name>Sample JSF 1.1 MyFaces Facelets</display-name>
 		<portlet-class>com.sample.jsffacelets.portlet.MyFacesFaceletsPortlet</portlet-class>
 		<init-param>
 			<name>EditPage</name>
@@ -23,9 +23,9 @@
 			<portlet-mode>help</portlet-mode>
 		</supports>
 		<portlet-info>
-			<title>Sample JSF Facelets</title>
-			<short-title>Sample JSF Facelets</short-title>
-			<keywords>Sample JSF Facelets</keywords>
+			<title>Sample JSF 1.1 MyFaces Facelets</title>
+			<short-title>Sample JSF 1.1 MyFaces Facelets</short-title>
+			<keywords>Sample JSF 1.1 MyFaces Facelets</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

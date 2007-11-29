@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>sample_jsf_facelets_portlet</portlet-name>
+		<portlet-name>sample_jsf_1_1_myfaces_facelets_portlet</portlet-name>
 		<instanceable>true</instanceable>
 	</portlet>
 	<role-mapper>
