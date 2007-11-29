@@ -3,6 +3,6 @@
 
 <display>
 	<category name="category.sample">
-		<portlet id="sample_jsf_sun_portlet" />
+		<portlet id="sample_jsf_1_1_sun_jsp_portlet" />
 	</category>
 </display>
