@@ -48,7 +48,7 @@ Please use Ant 1.7.0 or above.
 
 	<if>
 		<and>
-			<equals arg1="${java.class.version}" arg2="48.0" />
+			<equals arg1="${java.class.version}" arg2="49.0" />
 			<not>
 				<isset property="env.ANT_OPTS" />
 			</not>
