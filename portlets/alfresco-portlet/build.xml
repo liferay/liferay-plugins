@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<project name="portlet" basedir="." default="deploy">
+	<import file="../build-common-portlet.xml" />
+
+	<!--
+	Download Alfresco 2.0.0 from http://www.sourceforge.net/projects/alfresco.
+
+	Rename to alfresco-portlet.war.
+
+	The WAR must be deployed to the /alfresco context. See the
+	implementation of org.alfresco.webservice.util.WebServiceFactory to see
+	how to customize the web service end point.
+
+	Manually remove portlet-api-lib.jar to resolve a class conflict.
+
+	Add the required portlet XML files to make it work.
+	-->
+
+	<property name="original.war.file" value="alfresco-portlet.war" />
+</project>
