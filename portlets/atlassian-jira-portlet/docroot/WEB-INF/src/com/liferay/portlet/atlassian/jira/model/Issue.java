@@ -32,7 +32,7 @@ import java.io.Serializable;
  */
 public class Issue implements Serializable {
     public Issue() {
-        
+
     }
     public Issue(Project project, IssueType issueType, Priority priority,
                  String summary, String reporterName) {
@@ -75,27 +75,27 @@ public class Issue implements Serializable {
         _dueDate = dueDate;
     }
 
-    public Collection<Component> getComponents() {
+    public Collection getComponents() {
         return _components;
     }
 
-    public void setComponents(Collection<Component> components) {
+    public void setComponents(Collection components) {
         _components = components;
     }
 
-    public Collection<Version> getVersions() {
+    public Collection getVersions() {
         return _versions;
     }
 
-    public void setVersions(Collection<Version> versions) {
+    public void setVersions(Collection versions) {
         _versions = versions;
     }
 
-    public Collection<Version> getFixedVersions() {
+    public Collection getFixedVersions() {
         return _fixedVersions;
     }
 
-    public void setFixedVersions(Collection<Version> fixedVersions) {
+    public void setFixedVersions(Collection fixedVersions) {
         _fixedVersions = fixedVersions;
     }
 
@@ -161,9 +161,9 @@ public class Issue implements Serializable {
     private IssueType _issueType;
     private Priority _priority;
     private Calendar _dueDate;
-    private Collection<Component> _components;
-    private Collection<Version> _versions;
-    private Collection<Version> _fixedVersions;
+    private Collection _components;
+    private Collection _versions;
+    private Collection _fixedVersions;
     private String _summary;
     private String _assigneeName;
     private String _reporterName;

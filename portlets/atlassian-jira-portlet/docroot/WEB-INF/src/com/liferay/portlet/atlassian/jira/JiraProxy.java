@@ -61,7 +61,7 @@ public interface JiraProxy {
      * @throws IssueTrackerSecurityException
      * @throws SystemException
      */
-    Collection<Component> getComponents(String token, String projectKey)
+    Collection getComponents(String token, String projectKey)
         throws IssueTrackerSecurityException, SystemException;
 
     /**
@@ -82,7 +82,7 @@ public interface JiraProxy {
      * @throws IssueTrackerSecurityException
      * @throws SystemException
      */
-    Collection<Project> getProjects(String securityToken)
+    Collection getProjects(String securityToken)
         throws IssueTrackerSecurityException, SystemException;
 
     /**
@@ -93,7 +93,7 @@ public interface JiraProxy {
      * @throws IssueTrackerSecurityException
      * @throws SystemException
      */
-    Collection<IssueType> getIssueTypes(String securityToken)
+    Collection getIssueTypes(String securityToken)
         throws IssueTrackerSecurityException, SystemException;
 
 
@@ -105,7 +105,7 @@ public interface JiraProxy {
      * @throws IssueTrackerSecurityException
      * @throws SystemException
      */
-    Collection<Priority> getPriorities(String securityToken)
+    Collection getPriorities(String securityToken)
         throws IssueTrackerSecurityException, SystemException;
 
     /**
@@ -117,7 +117,7 @@ public interface JiraProxy {
      * @throws IssueTrackerSecurityException
      * @throws SystemException
      */
-    Collection<Version> getVersions(String securityToken, String projectKey)
+    Collection getVersions(String securityToken, String projectKey)
         throws IssueTrackerSecurityException, SystemException;
 
 
@@ -130,7 +130,7 @@ public interface JiraProxy {
      * @throws IssueTrackerSecurityException
      * @throws SystemException
      */
-    Collection<Assignee> getAssignees(String securityToken, String projectKey)
+    Collection getAssignees(String securityToken, String projectKey)
         throws IssueTrackerSecurityException, SystemException;
 
     /**
@@ -144,5 +144,5 @@ public interface JiraProxy {
      */
     String createIssue(String securityToken, Issue issue)
         throws IssueTrackerSecurityException, SystemException;
-	
+
 }

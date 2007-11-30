@@ -54,6 +54,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -108,14 +109,14 @@ public class SOAPJiraProxyImpl implements JiraProxy {
      * @throws com.liferay.portlet.atlassian.jira.SystemException
      *
      */
-    public Collection<Component> getComponents(String token, String projectKey)
+    public Collection getComponents(String token, String projectKey)
         throws IssueTrackerSecurityException, SystemException {
         try {
             final RemoteComponent[] remotes =
                 _service.getComponents(token,
                                        projectKey);
             final int len = remotes.length;
-            final List<Component> components = new ArrayList<Component>(len);
+            final List components = new ArrayList(len);
             for (int i = 0; i < len; i++) {
 
                 components.add(new Component(remotes[i].getName(), remotes[i]
@@ -149,11 +150,11 @@ public class SOAPJiraProxyImpl implements JiraProxy {
      *
      */
 
-    public Collection<Assignee> getAssignees(String securityToken,
-                                             String projectKey)
+    public Collection getAssignees(String securityToken,
+                                   String projectKey)
         throws IssueTrackerSecurityException, SystemException {
         try {
-            final Set<Assignee> assignees = new HashSet<Assignee>();
+            final Set assignees = new HashSet();
             final RemoteProject project = _service.getProjectByKey(
                 securityToken, projectKey);
             RemoteProjectRole[] allAvailableRoles = _service
@@ -183,7 +184,9 @@ public class SOAPJiraProxyImpl implements JiraProxy {
                 + securityToken);
         }
         catch (Exception e) {
-            throw new SystemException("System Errors", e);
+			java.io.ByteArrayOutputStream stream = new java.io.ByteArrayOutputStream();
+			e.printStackTrace( new java.io.PrintStream( stream ) );
+            throw new SystemException( stream.toString(), e);
         }
 
     }
@@ -198,14 +201,14 @@ public class SOAPJiraProxyImpl implements JiraProxy {
      * @throws com.liferay.portlet.atlassian.jira.SystemException
      *
      */
-    public Collection<IssueType> getIssueTypes(String securityToken)
+    public Collection getIssueTypes(String securityToken)
         throws IssueTrackerSecurityException, SystemException {
         try {
 
             RemoteIssueType[] projectn = _service.getIssueTypes(securityToken);
 
             final int length = projectn.length;
-            final List<IssueType> issueTypes = new ArrayList<IssueType>(length);
+            final List issueTypes = new ArrayList(length);
             for (int i = 0; i < length; i++) {
 
                 IssueType pr = new IssueType(projectn[i].getName(), projectn[i]
@@ -239,14 +242,14 @@ public class SOAPJiraProxyImpl implements JiraProxy {
      * @throws com.liferay.portlet.atlassian.jira.SystemException
      *
      */
-    public Collection<Priority> getPriorities(String securityToken)
+    public Collection getPriorities(String securityToken)
         throws IssueTrackerSecurityException, SystemException {
         try {
 
             RemotePriority[] remotepriority = _service
                 .getPriorities(securityToken);
             final int length = remotepriority.length;
-            final List<Priority> prioritys = new ArrayList<Priority>(length);
+            final List prioritys = new ArrayList(length);
             for (int i = 0; i < length; i++) {
                 Priority pr = new Priority(remotepriority[i].getName(),
                                            remotepriority[i].getId());
@@ -278,14 +281,14 @@ public class SOAPJiraProxyImpl implements JiraProxy {
      * @throws com.liferay.portlet.atlassian.jira.SystemException
      *
      */
-    public Collection<Project> getProjects(String securityToken)
+    public Collection getProjects(String securityToken)
         throws IssueTrackerSecurityException, SystemException {
 
         try {
             RemoteProject[] remoteProjects =
                 _service.getProjects(securityToken);
             final int numProjects = remoteProjects.length;
-            final List<Project> projects = new ArrayList<Project>(numProjects);
+            final List projects = new ArrayList(numProjects);
             for (int i = 0; i < numProjects; i++) {
                 RemoteProject remoteProj = remoteProjects[i];
                 Project pr = new Project(remoteProj.getKey(), remoteProj
@@ -317,12 +320,12 @@ public class SOAPJiraProxyImpl implements JiraProxy {
      * @throws com.liferay.portlet.atlassian.jira.SystemException
      *
      */
-    public Collection<Version> getVersions(String securityToken,
-                                           String projectKey)
+    public Collection getVersions(String securityToken,
+                                  String projectKey)
         throws IssueTrackerSecurityException,
                SystemException {
         try {
-            List<Version> con = new ArrayList<Version>();
+            List con = new ArrayList();
             RemoteVersion[] versions = _service.getVersions(securityToken,
                                                             projectKey);
 
@@ -402,24 +405,27 @@ public class SOAPJiraProxyImpl implements JiraProxy {
             remoteIssue.setEnvironment(issue.getEnvironment());
             remoteIssue.setReporter(issue.getReporterName());
             if (null != issue.getComponents()) {
-                final Collection<RemoteComponent> remoteComponents = _convertComponents(
+                final Collection remoteComponents = _convertComponents(
                     securityToken, projectKey, issue.getComponents());
-                remoteIssue.setComponents(remoteComponents
-                    .toArray(new RemoteComponent[remoteComponents.size()]));
+
+				RemoteComponent[] remoteComponentsArray = new RemoteComponent[remoteComponents.size()];
+				remoteComponents.toArray(remoteComponentsArray);
+                remoteIssue.setComponents(remoteComponentsArray);
             }
             if (null != issue.getFixedVersions()) {
 
-                final Collection<RemoteVersion> converVersion = _convertVersion(
+                final Collection converVersion = _convertVersion(
                     securityToken, projectKey, issue.getFixedVersions());
-                RemoteVersion[] remoteVersions = converVersion
-                    .toArray(new RemoteVersion[converVersion.size()]);
+
+				RemoteVersion[] remoteVersions = new RemoteVersion[converVersion.size()];
+				converVersion.toArray(remoteVersions);
                 remoteIssue.setFixVersions(remoteVersions);
             }
             if (null != issue.getVersions()) {
-                final Collection<RemoteVersion> converAffectsVersion = _convertVersion(
+                final Collection converAffectsVersion = _convertVersion(
                     securityToken, projectKey, issue.getVersions());
-                RemoteVersion[] remoteVersions = converAffectsVersion
-                    .toArray(new RemoteVersion[converAffectsVersion.size()]);
+                RemoteVersion[] remoteVersions = new RemoteVersion[converAffectsVersion.size()];
+                converAffectsVersion.toArray(remoteVersions);
                 remoteIssue.setAffectsVersions(remoteVersions);
             }
 
@@ -444,7 +450,6 @@ public class SOAPJiraProxyImpl implements JiraProxy {
         }
         catch (Exception e) {
             throw new SystemException("System Errors", e);
-
         }
 
     }
@@ -456,22 +461,25 @@ public class SOAPJiraProxyImpl implements JiraProxy {
      * @return String of Project
      * @throws java.rmi.RemoteException
      */
-    private Collection<RemoteComponent> _convertComponents(
+    private Collection _convertComponents(
         final String securityToken, final String projectKey,
-        final Collection<Component> components)
+        final Collection components)
         throws RemoteException {
         final RemoteComponent[] remotes = _service.getComponents(securityToken,
                                                                  projectKey);
-        final Map<String, RemoteComponent> remoteMap = new HashMap<String, RemoteComponent>();
+        final Map remoteMap = new HashMap();
         final int len = remotes.length;
         for (int i = 0; i < len; i++) {
             RemoteComponent remoteComp = remotes[i];
             remoteMap.put(remoteComp.getId(), remoteComp);
         }
-        final List<RemoteComponent> remoteCompToSet = new ArrayList<RemoteComponent>(
+        final List remoteCompToSet = new ArrayList(
             components.size());
 
-        for (Component component : components) {
+		Component component;
+		Iterator componentIterator = components.iterator();
+		while (componentIterator.hasNext()) {
+			component = (Component) componentIterator.next();
             remoteCompToSet.add(remoteMap.get(component.getId()));
         }
         return remoteCompToSet;
@@ -485,23 +493,26 @@ public class SOAPJiraProxyImpl implements JiraProxy {
      * @return String of RemoteVersion
      * @throws java.rmi.RemoteException
      */
-    private Collection<RemoteVersion> _convertVersion(
+    private Collection _convertVersion(
         final String securityToken,
         final String projectKey,
-        final Collection<Version> versions)
+        final Collection versions)
         throws RemoteException {
         RemoteVersion[] version = _service.getVersions(securityToken,
                                                        projectKey);
-        final Map<String, RemoteVersion> remoteMap = new HashMap<String, RemoteVersion>();
+        final Map remoteMap = new HashMap();
         final int len = version.length;
         for (int i = 0; i < len; i++) {
             RemoteVersion remoteComp = version[i];
             remoteMap.put(remoteComp.getId(), remoteComp);
         }
-        final List<RemoteVersion> remoteCompToSet = new ArrayList<RemoteVersion>(
+        final List remoteCompToSet = new ArrayList(
             versions.size());
 
-        for (Version versionc : versions) {
+		Version versionc;
+		Iterator versioncIterator = versions.iterator();
+        while (versioncIterator.hasNext()) {
+			versionc = (Version) versioncIterator.next();
             remoteCompToSet.add(remoteMap.get(versionc.getVersionId()));
         }
         return remoteCompToSet;

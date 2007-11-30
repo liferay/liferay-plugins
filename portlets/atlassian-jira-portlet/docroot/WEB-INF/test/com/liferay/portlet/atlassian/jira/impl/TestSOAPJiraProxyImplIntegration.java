@@ -42,12 +42,11 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
         try {
             String token = _service.login(USER_NAME, PASSWORD);
             String projectKey = "QA";
-            Collection<Component> componments = _proxy.getComponents(token,
-                                                                     projectKey);
+            Collection components = _proxy.getComponents(token, projectKey);
             System.out.println("===================================");
             System.out.println("this is testGetComponents"
                 + "Components token+QA");
-            Iterator listProject = componments.iterator();
+            Iterator listProject = components.iterator();
             while (listProject.hasNext()) {
                 Component componentTest = (Component) listProject.next();
                 System.out.println("Components;" + componentTest.getName());
@@ -80,11 +79,11 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
                 new Issue(project, issuetype, priority, SUMMARY_NAME,
                           USER_NAME);
             Component component = new Component(COMPONENT_ID, COMPONENT_ID);
-            List<Component> list = new ArrayList<Component>();
+            List list = new ArrayList();
             list.add(component);
             issue.setComponents(list);
 
-            List<Version> list2 = new ArrayList<Version>();
+            List list2 = new ArrayList();
             Version fixversion = new Version("10072", "10072");
 
             Version fixversion2 = new Version("10021", "10021");
@@ -94,7 +93,7 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
 
             Version version = new Version("10031", "10031");
             Version version2 = new Version("10030", "10030");
-            List<Version> testVersion = new ArrayList<Version>();
+            List testVersion = new ArrayList();
             testVersion.add(version);
             testVersion.add(version2);
             issue.setVersions(testVersion);
@@ -121,11 +120,11 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
         try {
 
             String token = _service.login(USER_NAME, PASSWORD);
-            Collection<Version> versions = _proxy.getVersions(token, "QA");
+            Collection versions = _proxy.getVersions(token, "QA");
             System.out.println("===================================");
             System.out.println("this is testGetVersions"
                 + "getVersions token+QA");
-            Iterator<Version> listProject = versions.iterator();
+            Iterator listProject = versions.iterator();
             while (listProject.hasNext()) {
                 Version version = listProject.next();
                 System.out.println("getVersionName :"
@@ -152,11 +151,11 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
     public void testGetPriorities() {
         try {
             String token = _service.login(USER_NAME, PASSWORD);
-            Collection<Priority> projects = _proxy.getPriorities(token);
+            Collection projects = _proxy.getPriorities(token);
             System.out.println("===================================");
             System.out.println("this is testGetPriorities"
                 + "P:testGetPriorities token");
-            Iterator<Priority> listProject = projects.iterator();
+            Iterator listProject = projects.iterator();
             while (listProject.hasNext()) {
                 Priority priority = listProject.next();
 
@@ -184,11 +183,11 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
     public void testGetIssueTypes() {
         try {
             String token = _service.login(USER_NAME, PASSWORD);
-            Collection<IssueType> projects = _proxy.getIssueTypes(token);
+            Collection projects = _proxy.getIssueTypes(token);
             System.out.println("===================================");
             System.out.println("this is testGetIssueTypes"
                 + "P:testGetIssueTypes token");
-            Iterator<IssueType> listIssueTypes = projects.iterator();
+            Iterator listIssueTypes = projects.iterator();
             while (listIssueTypes.hasNext()) {
                 IssueType issueType = listIssueTypes.next();
                 System.out.println("getIssueTyepName:  "
@@ -216,11 +215,11 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
     public void testGetProjects() {
         try {
             String token = _service.login(USER_NAME, PASSWORD);
-            Collection<Project> projects = _proxy.getProjects(token);
+            Collection projects = _proxy.getProjects(token);
             System.out.println("===================================");
             System.out.println("this is testGetProjects"
                 + "P:testGetPriorities token");
-            Iterator<Project> listProject = projects.iterator();
+            Iterator listProject = projects.iterator();
             while (listProject.hasNext()) {
                 Project priority = listProject.next();
                 System.out.println("Get ProjectName:" + priority.getName());
@@ -252,7 +251,7 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
             if (projects.length == 0) {
                 fail("No projects found.  Bad integration configuration");
             }
-            Collection<Assignee> assignees = _proxy.getAssignees(token,
+            Collection assignees = _proxy.getAssignees(token,
                                                                  projects[0].getKey());
             System.out.println("===================================");
             for (Assignee assignee : assignees) {

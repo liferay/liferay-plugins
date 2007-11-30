@@ -32,7 +32,7 @@ public class Priority implements Serializable {
     public static Priority convert(final String value) {
         int index = value.indexOf(",");
         if (index == -1) {
-            throw new IllegalArgumentException("Invalid issue type text: " +
+            throw new IllegalArgumentException("Invalid priority text: " +
                 value);
         }
         return new Priority(value.substring(0, index),
@@ -69,7 +69,6 @@ public class Priority implements Serializable {
       *
       * @see java.lang.Object#equals(java.lang.Object)
       */
-    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -105,7 +104,6 @@ public class Priority implements Serializable {
       *
       * @see java.lang.Object#hashCode()
       */
-    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;

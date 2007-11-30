@@ -73,7 +73,7 @@ public class CreateTicketPortletAction
             throw new IllegalStateException("Portlet not connected to Jira");
         }
         final Issue issue = (Issue) command;
-        final Map<String, Object> values = new HashMap<String, Object>();
+        final Map values = new HashMap();
         switch (page) {
             case 0: //should retrieve project information and etc
                 values.put(JiraPortletConstants.PROJECTS_KEY,
@@ -98,7 +98,7 @@ public class CreateTicketPortletAction
                 values.put(JiraPortletConstants.COMPONENTS_KEY,
                            proxy.getComponents(securityToken,
                                                issue.getProject().getKey()));
-                final Collection<Version> versions =
+                final Collection versions =
                     proxy.getVersions(securityToken,
                                       issue.getProject().getKey());
                 values.put(JiraPortletConstants.VERSIONS_KEY, versions);
@@ -141,7 +141,7 @@ public class CreateTicketPortletAction
         }
         catch (Exception e) {
             if (log.isErrorEnabled()) {
-                log.error("Unabl to create issue: ", e);
+                log.error("Unable to create issue: ", e);
             }
             throw e;
         }

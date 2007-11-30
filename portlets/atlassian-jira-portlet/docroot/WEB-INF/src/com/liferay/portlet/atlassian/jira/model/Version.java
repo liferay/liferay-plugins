@@ -28,7 +28,7 @@ public class Version implements Serializable {
     public static Version convert(String value) {
         int index = value.indexOf(",");
         if (index == -1) {
-            throw new IllegalArgumentException("Invalid issue type text: " +
+            throw new IllegalArgumentException("Invalid version text: " +
                 value);
         }
         return new Version(value.substring(0, index),

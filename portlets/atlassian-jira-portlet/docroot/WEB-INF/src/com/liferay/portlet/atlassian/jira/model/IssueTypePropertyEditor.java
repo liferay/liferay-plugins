@@ -30,7 +30,7 @@ import java.beans.PropertyEditorSupport;
  */
 public class IssueTypePropertyEditor extends PropertyEditorSupport {
     /**
-	 * Convert the given text value 
+	 * Convert the given text value
 	 */
 	public void setAsText(String text) throws IllegalArgumentException {
 		setValue(text);
@@ -54,7 +54,7 @@ public class IssueTypePropertyEditor extends PropertyEditorSupport {
             _type = IssueType.convert((String)value);
         }
         else {
-            throw new IllegalArgumentException("Invalid issue type text:" +
+            throw new IllegalArgumentException("Invalid issue type property editor text:" +
                 value);
         }
 	}

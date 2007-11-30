@@ -54,10 +54,10 @@ public class MemJiraProxyImpl implements JiraProxy {
         _url = url;
     }
 
-    public Collection<Component> getComponents(final String token,
-                                               final String projectKey)
+    public Collection getComponents(final String token,
+                                    final String projectKey)
         throws IssueTrackerSecurityException, SystemException {
-        Collection<Component> components = new ArrayList<Component>();
+        Collection components = new ArrayList();
         components.add(new Component("Liferay Plugins", "Liferay Plugins"));
         components.add(new Component("Liferay Portal", "Liferay Portal"));
         components.add(new Component("Liferay IDE", "Liferay IDE"));
@@ -69,25 +69,25 @@ public class MemJiraProxyImpl implements JiraProxy {
         return "I_AM_LOGGED_IN";
     }
 
-    public Collection<Project> getProjects(final String securityToken)
+    public Collection getProjects(final String securityToken)
         throws IssueTrackerSecurityException, SystemException {
-        Collection<Project> projects = new ArrayList<Project>();
+        Collection projects = new ArrayList();
         projects.add(new Project("Liferay Portal", "Liferay Portal", "10000"));
         projects.add(new Project("Liferay IDE", "Liferay IDE", "10001"));
         return projects;
     }
 
-    public Collection<IssueType> getIssueTypes(final String securityToken)
+    public Collection getIssueTypes(final String securityToken)
         throws IssueTrackerSecurityException, SystemException {
-        Collection<IssueType> issueTypes = new ArrayList<IssueType>();
+        Collection issueTypes = new ArrayList();
         issueTypes.add(new IssueType("Bug", "Bug"));
         issueTypes.add(new IssueType("New Feature", "New Feature"));
         return issueTypes;
     }
 
-    public Collection<Priority> getPriorities(final String securityToken)
+    public Collection getPriorities(final String securityToken)
         throws IssueTrackerSecurityException, SystemException {
-        Collection<Priority> priorities = new ArrayList<Priority>();
+        Collection priorities = new ArrayList();
         priorities.add(new Priority("Critical", "Critical"));
         priorities.add(new Priority("Blocker", "Blocker"));
         priorities.add(new Priority("Major", "Major"));
@@ -95,20 +95,20 @@ public class MemJiraProxyImpl implements JiraProxy {
         return priorities;
     }
 
-    public Collection<Version> getVersions(final String securityToken,
-                                           final String projectKey)
+    public Collection getVersions(final String securityToken,
+                                  final String projectKey)
         throws IssueTrackerSecurityException, SystemException {
-        Collection<Version> versions = new ArrayList<Version>();
+        Collection versions = new ArrayList();
         versions.add(new Version("4.3.0", "4.3.0"));
         versions.add(new Version("4.3.1", "4.3.1"));
         versions.add(new Version("4.3.2", "4.3.2"));
         return versions;
     }
 
-    public Collection<Assignee> getAssignees(final String securityToken,
-                                             final String projectKey)
+    public Collection getAssignees(final String securityToken,
+                                   final String projectKey)
         throws IssueTrackerSecurityException, SystemException {
-        Collection<Assignee> assignees = new ArrayList<Assignee>();
+        Collection assignees = new ArrayList();
         assignees.add(new Assignee("mhan", "mhan@liferay.com",
                                    "Michael C. Han"));
         assignees.add(new Assignee("jcao", "jcao@liferay.com", "Jian Cao"));

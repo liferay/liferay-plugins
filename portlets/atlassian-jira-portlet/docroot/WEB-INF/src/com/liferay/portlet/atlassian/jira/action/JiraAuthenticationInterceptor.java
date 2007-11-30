@@ -36,7 +36,7 @@ import javax.portlet.PortletPreferences;
 import javax.portlet.PortletSession;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-import java.util.concurrent.ConcurrentHashMap;
+import EDU.oswego.cs.dl.util.concurrent.ConcurrentHashMap;
 
 /**
  * Authenticate
@@ -64,7 +64,7 @@ public class JiraAuthenticationInterceptor
         final PortletSession session = request.getPortletSession();
         final PortletPreferences prefs = request.getPreferences();
         _initializeJiraConnection(session, prefs);
-        
+
         return true;
     }
 

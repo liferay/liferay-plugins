@@ -33,13 +33,13 @@ public class Component implements Serializable {
     public static Component convert(String value) {
         int index = value.indexOf(",");
         if (index == -1) {
-            throw new IllegalArgumentException("Invalid issue type text: " +
+            throw new IllegalArgumentException("Invalid component text: " +
                 value);
         }
         return new Component(value.substring(0, index),
                              value.substring(index + 1, value.length()));
     }
-    
+
     public Component(String name, String id) {
         _name = name;
         _id = id;

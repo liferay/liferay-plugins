@@ -68,7 +68,7 @@
                 <option value="-1,Unknown">
                     Unknown
                 </option>
-                <option value="<c:out value="${component.id}" />">
+                <option value="<c:out value="${component.id}" />,<c:out value="${component.name}" />">
                     <c:out value="${component.name}"/>
                 </option>
             </c:forEach>
@@ -89,7 +89,7 @@
 
             <optgroup label="Affected Versions">
                 <c:forEach items="${versions}" var="version">
-                    <option value="<c:out value="${version.text}" />">
+                    <option value="<c:out value="${version.text}" />,<c:out value="${version.versionName}"/>">
                         <c:out value="${version.versionName}"/>
                     </option>
                 </c:forEach>
@@ -109,7 +109,7 @@
             <optgroup label="Fixed Versions">
 
                 <c:forEach items="${versions}" var="version">
-                    <option value="<c:out value="${version.text}" />">
+                    <option value="<c:out value="${version.text}" />,<c:out value="${version.versionName}"/>">
                         <c:out value="${version.versionName}"/>
                     </option>
                 </c:forEach>
