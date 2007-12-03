@@ -90,15 +90,17 @@
     <orderEntry type="module-library">
       <library name="JiraWebService">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/docroot/WEB-INF/lib/jira-rpc-3.6.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/docroot/WEB-INF/lib/activation.jar!/" />
+          <root url="jar://$MODULE_DIR$/docroot/WEB-INF/lib/axis.jar!/" />
+          <root url="jar://$MODULE_DIR$/docroot/WEB-INF/lib/commons-discovery.jar!/" />
           <root url="jar://$MODULE_DIR$/docroot/WEB-INF/lib/concurrent.jar!/" />
           <root url="jar://$MODULE_DIR$/docroot/WEB-INF/lib/jaxrpc.jar!/" />
-          <root url="jar://$MODULE_DIR$/docroot/WEB-INF/lib/axis-1.3.jar!/" />
-          <root url="jar://$MODULE_DIR$/docroot/WEB-INF/lib/wsdl4j.jar!/" />
-          <root url="jar://$MODULE_DIR$/docroot/WEB-INF/lib/activation-1.0.2.jar!/" />
-          <root url="jar://$MODULE_DIR$/docroot/WEB-INF/lib/saaj.jar!/" />
+          <root url="jar://$MODULE_DIR$/docroot/WEB-INF/lib/jira-rpc-3.6.1.jar!/" />
           <root url="jar://$MODULE_DIR$/docroot/WEB-INF/lib/jstl.jar!/" />
-          <root url="jar://$MODULE_DIR$/docroot/WEB-INF/lib/standard.jar!/" />
+          <root url="jar://$MODULE_DIR$/docroot/WEB-INF/lib/jstl-impl.jar!/" />
+          <root url="jar://$MODULE_DIR$/docroot/WEB-INF/lib/saaj.jar!/" />
+          <root url="jar://$MODULE_DIR$/docroot/WEB-INF/lib/spring.jar!/" />
+          <root url="jar://$MODULE_DIR$/docroot/WEB-INF/lib/wsdl4j.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
