@@ -32,7 +32,6 @@ import com.liferay.portlet.atlassian.jira.model.Priority;
 import com.liferay.portlet.atlassian.jira.model.PriorityPropertyEditor;
 import com.liferay.portlet.atlassian.jira.model.Project;
 import com.liferay.portlet.atlassian.jira.model.ProjectPropertyEditor;
-import com.liferay.portlet.atlassian.jira.model.Version;
 import com.liferay.portlet.atlassian.jira.model.VersionsPropertyEditor;
 import com.liferay.portlet.atlassian.jira.util.StringUtil;
 import org.apache.commons.logging.Log;
@@ -55,6 +54,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Wizard for gathering data necessary to create a ticket.
+ *
+ * @author Jian Cao
+ * @version $Revision$
+ */
 public class CreateTicketPortletAction
     extends AbstractWizardFormController {
 
