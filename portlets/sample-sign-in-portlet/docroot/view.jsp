@@ -46,6 +46,7 @@
 <%@ page import="com.liferay.portal.kernel.util.PropsUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.security.auth.AuthException" %>
+<%@ page import="com.liferay.util.Html" %>
 
 <%@ page import="javax.portlet.WindowState" %>
 
@@ -70,7 +71,6 @@
 
 		<%
 		String login = GetterUtil.getString((String)PortalClassInvoker.invoke("com.liferay.portal.action.LoginAction", "getLogin", request, "login", company, false));
-		String password = StringPool.BLANK;
 		boolean rememberMe = ParamUtil.getBoolean(request, "rememberMe");
 		%>
 
@@ -93,7 +93,7 @@
 				<liferay-ui:message key="login" />
 			</td>
 			<td>
-				<input name="<portlet:namespace />login" style="width: 120px;" type="text" value="<%= login %>" />
+				<input name="<portlet:namespace />login" style="width: 120px;" type="text" value="<%= Html.escape(login) %>" />
 			</td>
 		</tr>
 		<tr>
@@ -101,7 +101,7 @@
 				<liferay-ui:message key="password" />
 			</td>
 			<td>
-				<input id="<portlet:namespace />password" name="<portlet:namespace />password" style="width: 120px;" type="password" value="<%= password %>" />
+				<input id="<portlet:namespace />password" name="<portlet:namespace />password" style="width: 120px;" type="password" value="" />
 
 				<span id="<portlet:namespace />passwordCapsLockSpan" style="display: none;"><liferay-ui:message key="caps-lock-is-on" /></span>
 			</td>
