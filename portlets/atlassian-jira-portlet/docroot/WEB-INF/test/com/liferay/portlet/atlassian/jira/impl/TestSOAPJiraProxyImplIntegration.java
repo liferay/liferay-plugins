@@ -4,7 +4,6 @@ import _soapclient.JiraSoapService;
 import _soapclient.JiraSoapServiceServiceLocator;
 import com.atlassian.jira.rpc.soap.beans.RemoteProject;
 import com.liferay.portlet.atlassian.jira.SystemException;
-import com.liferay.portlet.atlassian.jira.model.Assignee;
 import com.liferay.portlet.atlassian.jira.model.Component;
 import com.liferay.portlet.atlassian.jira.model.Issue;
 import com.liferay.portlet.atlassian.jira.model.IssueType;
@@ -126,7 +125,7 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
                 + "getVersions token+QA");
             Iterator listProject = versions.iterator();
             while (listProject.hasNext()) {
-                Version version = listProject.next();
+                Version version = (Version)listProject.next();
                 System.out.println("getVersionName :"
                     + version.getVersionName());
                 System.out.println("getVersionId :" + version.getVersionId());
@@ -157,7 +156,7 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
                 + "P:testGetPriorities token");
             Iterator listProject = projects.iterator();
             while (listProject.hasNext()) {
-                Priority priority = listProject.next();
+                Priority priority = (Priority)listProject.next();
 
                 System.out.println("testGetPrioritiesName: "
                     + priority.getPriorityName());
@@ -189,7 +188,7 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
                 + "P:testGetIssueTypes token");
             Iterator listIssueTypes = projects.iterator();
             while (listIssueTypes.hasNext()) {
-                IssueType issueType = listIssueTypes.next();
+                IssueType issueType = (IssueType)listIssueTypes.next();
                 System.out.println("getIssueTyepName:  "
                     + issueType.getIssueTypeName());
                 System.out.println("getIssueTypeId:  "
@@ -221,7 +220,7 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
                 + "P:testGetPriorities token");
             Iterator listProject = projects.iterator();
             while (listProject.hasNext()) {
-                Project priority = listProject.next();
+                Project priority = (Project)listProject.next();
                 System.out.println("Get ProjectName:" + priority.getName());
                 System.out.println("Get ProjectKey:" + priority.getKey());
                 System.out.println("Get ProjectID:" + priority.getId());
@@ -251,11 +250,13 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
             if (projects.length == 0) {
                 fail("No projects found.  Bad integration configuration");
             }
-            Collection assignees = _proxy.getAssignees(token,
-                                                                 projects[0].getKey());
+            Collection assignees =
+                _proxy.getAssignees(token, projects[0].getKey());
             System.out.println("===================================");
-            for (Assignee assignee : assignees) {
-                System.out.println("GetAssignees is:" + assignee);
+
+            Iterator iter = assignees.iterator();
+            while (iter.hasNext()) {
+                System.out.println("GetAssignees is:" + iter.next());
             }
             System.out.println("===================================");
 
