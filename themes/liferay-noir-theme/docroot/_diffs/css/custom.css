@@ -669,3 +669,8 @@ ul.lfr-actions, .lfr-actions ul {
 #portlet-wrapper-33 p {
 	margin-bottom: 1em;
 }
+
+.liferay-textarea {
+	font: 16px Arial;
+	max-width: 739px;
+}
