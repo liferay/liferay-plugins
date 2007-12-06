@@ -23,11 +23,17 @@
 package com.liferay.portlet.atlassian.jira.action.validation;
 
 import com.liferay.portlet.atlassian.jira.model.Issue;
+import com.liferay.portlet.atlassian.jira.model.Component;
+import com.liferay.portlet.atlassian.jira.model.Version;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import java.util.Collection;
+
 public class CreateTicketValidator implements Validator {
+    private static final String _NEGATIVE_ONE = "-1";
+
     public boolean supports(Class clazz) {
         return clazz.isAssignableFrom(Issue.class);
     }
@@ -40,6 +46,31 @@ public class CreateTicketValidator implements Validator {
     public void validateSummary(Issue issue, Errors errors) {
         ValidationUtils.rejectIfEmpty(errors, "summary", "SUMMARY_REQUIRED",
                                       "Summary is required.");
+
+        Collection components = issue.getComponents();
+        if ((components != null) && (components.size() == 1)) {
+			Component component = (Component) components.iterator().next();
+			if (component.getId().equals(_NEGATIVE_ONE)) {
+				issue.setComponents(null);
+			}
+        }
+        Collection versions = issue.getVersions();
+        if ((versions != null) && (versions.size() == 1)) {
+			Version version = (Version) versions.iterator().next();
+			if (version.getVersionId().equals(_NEGATIVE_ONE)) {
+				issue.setVersions(null);
+			}
+        }
+        Collection fixVersions = issue.getFixedVersions();
+        if ((fixVersions != null) && (fixVersions.size() == 1)) {
+			Version version = (Version) fixVersions.iterator().next();
+
+			if (version != null && version.getVersionId().equals(_NEGATIVE_ONE)) {
+				issue.setFixedVersions(null);
+			}
+        }
+
+
     }
 
 }
