@@ -161,14 +161,16 @@ public class SOAPJiraProxyImpl implements JiraProxy {
                 .getProjectRoles(securityToken);
             final int numRoles = allAvailableRoles.length;
             for (int i = 0; i < numRoles; i++) {
-                RemoteProjectRoleActors actors = _service.getProjectRoleActors(
-                    securityToken, allAvailableRoles[i], project);
+                RemoteProjectRoleActors actors =
+                    _service.getProjectRoleActors(securityToken,
+                                                  allAvailableRoles[i], project);
                 RemoteUser[] users = actors.getUsers();
                 final int numUsers = users.length;
                 for (int j = 0; j < numUsers; j++) {
-                    final RemoteUser user = users[i];
-                    final Assignee assignee = new Assignee(user.getName(), user
-                        .getEmail(), user.getFullname());
+                    final RemoteUser user = users[j];
+                    final Assignee assignee =
+                        new Assignee(user.getName(), user.getEmail(),
+                                     user.getFullname());
                     assignees.add(assignee);
                 }
             }

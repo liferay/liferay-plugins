@@ -34,6 +34,7 @@ public class JiraPortletConstants {
     public static final String ISSUE_TYPES_KEY = "issueTypes";
     public static final String PROJECTS_KEY = "projects";
     public static final String TICKET_ID_KEY = "ticketId";
+    public static final String ASSIGNEE_KEY = "assignee";
 
     public static final String PROJECT_KEY = "selectedProject";
     public static final String ISSUE_TYPE_KEY = "selectedIssueType";

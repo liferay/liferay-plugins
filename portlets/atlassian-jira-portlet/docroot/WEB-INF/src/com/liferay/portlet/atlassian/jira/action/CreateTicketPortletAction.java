@@ -24,6 +24,7 @@ package com.liferay.portlet.atlassian.jira.action;
 
 import com.liferay.portlet.atlassian.jira.JiraProxy;
 import com.liferay.portlet.atlassian.jira.model.CalendarPropertyEditor;
+import com.liferay.portlet.atlassian.jira.model.Component;
 import com.liferay.portlet.atlassian.jira.model.ComponentsPropertyEditor;
 import com.liferay.portlet.atlassian.jira.model.Issue;
 import com.liferay.portlet.atlassian.jira.model.IssueType;
@@ -32,6 +33,7 @@ import com.liferay.portlet.atlassian.jira.model.Priority;
 import com.liferay.portlet.atlassian.jira.model.PriorityPropertyEditor;
 import com.liferay.portlet.atlassian.jira.model.Project;
 import com.liferay.portlet.atlassian.jira.model.ProjectPropertyEditor;
+import com.liferay.portlet.atlassian.jira.model.Version;
 import com.liferay.portlet.atlassian.jira.model.VersionsPropertyEditor;
 import com.liferay.portlet.atlassian.jira.util.StringUtil;
 import org.apache.commons.logging.Log;
@@ -62,6 +64,7 @@ import java.util.Map;
  */
 public class CreateTicketPortletAction
     extends AbstractWizardFormController {
+    private static final String _NEGATIVE_ONE = "-1";
 
 
     protected Map referenceData(final PortletRequest request,
@@ -107,6 +110,9 @@ public class CreateTicketPortletAction
                     proxy.getVersions(securityToken,
                                       issue.getProject().getKey());
                 values.put(JiraPortletConstants.VERSIONS_KEY, versions);
+                values.put(JiraPortletConstants.ASSIGNEE_KEY,
+                		   proxy.getAssignees(securityToken,
+                                              issue.getProject().getKey()));
                 return values;
             default:
                 return values;
@@ -140,6 +146,30 @@ public class CreateTicketPortletAction
         }
 
         final Issue issue = (Issue) command;
+
+        Collection components = issue.getComponents();
+        if ((components != null) && (components.size() == 1)) {
+			Component component = (Component) components.iterator().next();
+			if (component.getId().equals(_NEGATIVE_ONE)) {
+				issue.setComponents(null);
+			}
+        }
+        Collection versions = issue.getVersions();
+        if ((versions != null) && (versions.size() == 1)) {
+			Version version = (Version) versions.iterator().next();
+			if (version.getVersionId().equals(_NEGATIVE_ONE)) {
+				issue.setVersions(null);
+			}
+        }
+        Collection fixVersions = issue.getFixedVersions();
+        if ((fixVersions != null) && (fixVersions.size() == 1)) {
+			Version version = (Version) fixVersions.iterator().next();
+
+			if (version != null && version.getVersionId().equals(_NEGATIVE_ONE)) {
+				issue.setFixedVersions(null);
+			}
+        }
+        
         final String issueKey;
         try {
             issueKey = proxy.createIssue(securityToken, issue);

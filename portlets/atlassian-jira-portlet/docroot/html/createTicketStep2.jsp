@@ -65,10 +65,10 @@
     <td>
         <form:select path="components" multiple="true" size="3">
             <c:forEach items="${components}" var="component">
-                <option value="-1,Unknown">
+                <option value="Unknown,-1">
                     Unknown
                 </option>
-                <option value="<c:out value="${component.id}" />,<c:out value="${component.name}" />">
+                <option value="<c:out value="${component.text}"/>">
                     <c:out value="${component.name}"/>
                 </option>
             </c:forEach>
