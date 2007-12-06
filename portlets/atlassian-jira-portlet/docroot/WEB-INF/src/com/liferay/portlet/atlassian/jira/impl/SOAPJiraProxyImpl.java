@@ -155,10 +155,10 @@ public class SOAPJiraProxyImpl implements JiraProxy {
         throws IssueTrackerSecurityException, SystemException {
         try {
             final Set assignees = new HashSet();
-            final RemoteProject project = _service.getProjectByKey(
-                securityToken, projectKey);
-            RemoteProjectRole[] allAvailableRoles = _service
-                .getProjectRoles(securityToken);
+            final RemoteProject project =
+                _service.getProjectByKey(securityToken, projectKey);
+            RemoteProjectRole[] allAvailableRoles =
+                _service.getProjectRoles(securityToken);
             final int numRoles = allAvailableRoles.length;
             for (int i = 0; i < numRoles; i++) {
                 RemoteProjectRoleActors actors =
@@ -293,8 +293,9 @@ public class SOAPJiraProxyImpl implements JiraProxy {
             final List projects = new ArrayList(numProjects);
             for (int i = 0; i < numProjects; i++) {
                 RemoteProject remoteProj = remoteProjects[i];
-                Project pr = new Project(remoteProj.getKey(), remoteProj
-                    .getName(), remoteProj.getId());
+                Project pr =
+                    new Project(remoteProj.getKey(), remoteProj.getName(),
+                                remoteProj.getId());
                 projects.add(pr);
             }
             return projects;

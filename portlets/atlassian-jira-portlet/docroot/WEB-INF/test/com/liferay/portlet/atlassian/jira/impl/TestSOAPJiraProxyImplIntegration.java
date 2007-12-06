@@ -28,7 +28,7 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
     public void testSetServiceURL() {
         try {
             _proxy = new SOAPJiraProxyImpl();
-            _proxy.setServiceURL("http://192.168.1.114:8090/");
+            _proxy.setServiceURL(_URL_STRING);
         }
         catch (Exception e) {
             fail("Unable to set the service URL");
@@ -125,7 +125,7 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
                 + "getVersions token+QA");
             Iterator listProject = versions.iterator();
             while (listProject.hasNext()) {
-                Version version = (Version)listProject.next();
+                Version version = (Version) listProject.next();
                 System.out.println("getVersionName :"
                     + version.getVersionName());
                 System.out.println("getVersionId :" + version.getVersionId());
@@ -156,7 +156,7 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
                 + "P:testGetPriorities token");
             Iterator listProject = projects.iterator();
             while (listProject.hasNext()) {
-                Priority priority = (Priority)listProject.next();
+                Priority priority = (Priority) listProject.next();
 
                 System.out.println("testGetPrioritiesName: "
                     + priority.getPriorityName());
@@ -188,7 +188,7 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
                 + "P:testGetIssueTypes token");
             Iterator listIssueTypes = projects.iterator();
             while (listIssueTypes.hasNext()) {
-                IssueType issueType = (IssueType)listIssueTypes.next();
+                IssueType issueType = (IssueType) listIssueTypes.next();
                 System.out.println("getIssueTyepName:  "
                     + issueType.getIssueTypeName());
                 System.out.println("getIssueTypeId:  "
@@ -220,7 +220,7 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
                 + "P:testGetPriorities token");
             Iterator listProject = projects.iterator();
             while (listProject.hasNext()) {
-                Project priority = (Project)listProject.next();
+                Project priority = (Project) listProject.next();
                 System.out.println("Get ProjectName:" + priority.getName());
                 System.out.println("Get ProjectKey:" + priority.getKey());
                 System.out.println("Get ProjectID:" + priority.getId());
@@ -290,20 +290,14 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
         }
     }
 
-    /*
-      * public void testInvalidLogin() { try { _proxy.login("foo", "my4406395");
-      * fail("This"); } catch (SystemException e) { fail("Caught system
-      * exception"); e.printStackTrace(); } catch (IssueTrackerSecurityException
-      * e) { // this should occur } }
-      */
     protected void setUp() throws Exception {
         super.setUp();
         JiraSoapServiceServiceLocator jiraSoapServiceGetter = new JiraSoapServiceServiceLocator();
         jiraSoapServiceGetter.setEndpointAddress("JirasoapserviceV2",
-                                                 "http://192.168.1.114:8090/rpc/soap/jirasoapservice-v2");
+                                                 _URL_STRING + "rpc/soap/jirasoapservice-v2");
         _service = jiraSoapServiceGetter.getJirasoapserviceV2();
         _proxy = new SOAPJiraProxyImpl();
-        _proxy.setServiceURL("http://192.168.1.114:8090/");
+        _proxy.setServiceURL(_URL_STRING);
 
     }
 
@@ -311,13 +305,13 @@ public class TestSOAPJiraProxyImplIntegration extends TestCase {
         super.tearDown();
     }
 
+    private static final String _URL_STRING = "http://192.168.1.114:8090/";
     private JiraSoapService _service;
     private SOAPJiraProxyImpl _proxy;
     private static final String PASSWORD = "my4406395";
     private static final String USER_NAME = "saint";
 
     // Constants for issue creation
-    private static final String PROJECT_KEY = "QA";
     private static final String ISSUE_TYPE_ID = "1";
     private static final String SUMMARY_NAME = "123 testversion cctv4 "
         + new Date();
