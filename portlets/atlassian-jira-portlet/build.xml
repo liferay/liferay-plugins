@@ -2,7 +2,6 @@
 
 <project name="atlassian-jira-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
-	<import file="../build-common-portlet-test.xml" />
 
     <target name="war" depends="compile">
         <mkdir dir="${project.dir}/dist" />
