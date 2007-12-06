@@ -46,24 +46,6 @@ Please use Ant 1.7.0 or above.
 		</then>
 	</if>
 
-	<if>
-		<and>
-			<equals arg1="${java.class.version}" arg2="49.0" />
-			<not>
-				<isset property="env.ANT_OPTS" />
-			</not>
-		</and>
-		<then>
-			<fail>
-.
-
-The environment variable ANT_OPTS is not set.
-
-Please set it to the recommended value of "-Xms256M -Xmx512M".
-			</fail>
-		</then>
-	</if>
-
 	<whichresource resource="/org/eclipse/jdt/core/JDTCompilerAdapter.class" property="ecj.compiler" />
 
 	<if>
