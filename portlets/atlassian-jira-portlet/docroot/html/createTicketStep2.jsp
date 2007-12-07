@@ -52,7 +52,7 @@
 </tr>
 <tr>
     <td>
-        Due Date [11-20-2007]:
+        Due Date [11/20/2007]:
     </td>
     <td>
         <form:input path="dueDate" size="20"/>
@@ -72,7 +72,7 @@
                     <c:out value="${component.name}"/>
                 </option>
             </c:forEach>
-        </form:select>
+        </form:select><form:errors path="components" cssStyle="color:red"/>
     </td>
 </tr>
 <tr>
@@ -94,7 +94,7 @@
                     </option>
                 </c:forEach>
             </optgroup>
-        </form:select>
+        </form:select><form:errors path="versions" cssStyle="color:red"/>
     </td>
 </tr>
 <tr>
@@ -114,7 +114,7 @@
                     </option>
                 </c:forEach>
             </optgroup>
-        </form:select>
+        </form:select><form:errors path="fixedVersions" cssStyle="color:red"/>
     </td>
 </tr>
 
@@ -141,7 +141,7 @@
             </optgroup>
         </form:select>
         <a title="Assign this issue to me"
-           onclick="document.getElementById('assignee').value = '<c:out value="${reporter}" />';return false;"
+           onclick="document.getElementById('assigneeName').value = '<c:out value="${reporter}" />';return false;"
            href="#">Assign to me</a>
     </td>
 </tr>
