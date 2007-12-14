@@ -669,3 +669,12 @@ ul.lfr-actions, .lfr-actions ul {
 #portlet-wrapper-33 p {
 	margin-bottom: 1em;
 }
+
+#portlet-wrapper-33 code {
+	background-color: #deedff;
+	border: 1px dotted #3D536D;
+	color: #141B23;
+	display: block;
+	padding: 5px;
+	margin: 10px 0;
+}
