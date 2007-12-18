@@ -1,5 +1,5 @@
 <div class="div-2-col" id="content-wrapper">
-	<div id="layout-grid">
+	<div class="lfr-grid" id="layout-grid">
 		<div class="lfr-column" id="column-1">
 			$processor.processColumn("column-1")
 		</div>

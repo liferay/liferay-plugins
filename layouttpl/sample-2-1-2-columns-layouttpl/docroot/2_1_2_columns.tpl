@@ -1,5 +1,5 @@
 <div class="columns-2-1-2" id="content-wrapper">
-	<table id="layout-grid">
+	<table class="lfr-grid" id="layout-grid">
 	<tr id="column-center">
 		<td class="lfr-column fifty" id="column-1" valign="top">
 			$processor.processColumn("column-1")
