@@ -626,6 +626,10 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 	color: #ffc;
 }
 
+ul.message-board-edit-controls {
+	list-style: none;
+}
+
 /* ---------- Taglib styling ---------- */
 
 .taglib-ratings {
