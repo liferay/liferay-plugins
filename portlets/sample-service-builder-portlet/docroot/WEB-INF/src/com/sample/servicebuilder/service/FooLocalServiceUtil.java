@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2007 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,24 +22,26 @@
 
 package com.sample.servicebuilder.service;
 
+
 /**
  * <a href="FooLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
  * <p>
- * ServiceBuilder generated this class. Modifications in this class will be overwritten
- * the next time is generated.
+ * ServiceBuilder generated this class. Modifications in this class will be
+ * overwritten the next time is generated.
  * </p>
  *
  * <p>
- * This class provides static methods for the <code>com.sample.servicebuilder.service.FooLocalService</code>
- * bean. The static methods of this class calls the same methods of the bean instance.
- * It's convenient to be able to just write one line to call a method on a bean
- * instead of writing a lookup call and a method call.
+ * This class provides static methods for the
+ * <code>com.sample.servicebuilder.service.FooLocalService</code>
+ * bean. The static methods of this class calls the same methods of the bean
+ * instance. It's convenient to be able to just write one line to call a method
+ * on a bean instead of writing a lookup call and a method call.
  * </p>
  *
  * <p>
- * <code>com.sample.servicebuilder.service.FooLocalServiceFactory</code> is responsible
- * for the lookup of the bean.
+ * <code>com.sample.servicebuilder.service.FooLocalServiceFactory</code>
+ * is responsible for the lookup of the bean.
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -49,6 +51,14 @@ package com.sample.servicebuilder.service;
  *
  */
 public class FooLocalServiceUtil {
+	public static com.sample.servicebuilder.model.Foo addFoo(
+		com.sample.servicebuilder.model.Foo model)
+		throws com.liferay.portal.SystemException {
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		return fooLocalService.addFoo(model);
+	}
+
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
 		throws com.liferay.portal.SystemException {
@@ -65,11 +75,39 @@ public class FooLocalServiceUtil {
 		return fooLocalService.dynamicQuery(queryInitializer, begin, end);
 	}
 
+	public static com.sample.servicebuilder.model.Foo updateFoo(
+		com.sample.servicebuilder.model.Foo model)
+		throws com.liferay.portal.SystemException {
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		return fooLocalService.updateFoo(model);
+	}
+
+	public static com.sample.servicebuilder.service.persistence.FooPersistence getFooPersistence() {
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		return fooLocalService.getFooPersistence();
+	}
+
+	public static void setFooPersistence(
+		com.sample.servicebuilder.service.persistence.FooPersistence fooPersistence) {
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		fooLocalService.setFooPersistence(fooPersistence);
+	}
+
+	public static void afterPropertiesSet() {
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		fooLocalService.afterPropertiesSet();
+	}
+
 	public static void addFoo(java.lang.String field1, boolean field2,
 		int field3, java.util.Date field4, java.lang.String field5)
 		throws com.liferay.portal.PortalException, 
 			com.liferay.portal.SystemException {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
 		fooLocalService.addFoo(field1, field2, field3, field4, field5);
 	}
 
@@ -77,6 +115,7 @@ public class FooLocalServiceUtil {
 		throws com.liferay.portal.PortalException, 
 			com.liferay.portal.SystemException {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
 		fooLocalService.deleteFoo(fooId);
 	}
 
@@ -116,6 +155,7 @@ public class FooLocalServiceUtil {
 		throws com.liferay.portal.PortalException, 
 			com.liferay.portal.SystemException {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
 		fooLocalService.updateFoo(fooId, field1, field2, field3, field4, field5);
 	}
 }

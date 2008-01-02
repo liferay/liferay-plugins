@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2007 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,7 +40,6 @@ public class PropsUtil {
 	public static final String SPRING_HIBERNATE_SESSION_FACTORY = "spring.hibernate.session.factory";
 	public static final String HIBERNATE_CONFIGS = "hibernate.configs";
 	public static final String VALUE_OBJECT_FINDER_CACHE_ENABLED = "value.object.finder.cache.enabled";
-	public static final String XSS_ALLOW = "xss.allow";
 
 	public static boolean containsKey(String key) {
 		return _getInstance().containsKey(key);

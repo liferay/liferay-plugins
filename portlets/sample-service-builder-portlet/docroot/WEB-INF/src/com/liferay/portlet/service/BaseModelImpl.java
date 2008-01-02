@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2007 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,9 +34,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
  */
 public abstract class BaseModelImpl implements BaseModel {
 
-	public static boolean XSS_ALLOW = GetterUtil.getBoolean(
-		PropsUtil.get(PropsUtil.XSS_ALLOW));
-
 	public BaseModelImpl() {
 	}
 
@@ -48,8 +45,17 @@ public abstract class BaseModelImpl implements BaseModel {
 		return _new = n;
 	}
 
+	public boolean isEscapedModel() {
+		return _escapedModel;
+	}
+
+	public void setEscapedModel(boolean escapedModel) {
+		_escapedModel = escapedModel;
+	}
+
 	public abstract Object clone();
 
 	private boolean _new;
+	private boolean _escapedModel;
 
 }

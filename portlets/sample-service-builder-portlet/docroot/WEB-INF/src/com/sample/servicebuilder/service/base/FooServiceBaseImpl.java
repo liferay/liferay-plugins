@@ -22,65 +22,30 @@
 
 package com.sample.servicebuilder.service.base;
 
-import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
+import com.liferay.portlet.service.PrincipalBean;
 
-import com.sample.servicebuilder.model.Foo;
-import com.sample.servicebuilder.model.impl.FooImpl;
 import com.sample.servicebuilder.service.FooLocalService;
+import com.sample.servicebuilder.service.FooLocalServiceFactory;
+import com.sample.servicebuilder.service.FooService;
 import com.sample.servicebuilder.service.persistence.FooPersistence;
 import com.sample.servicebuilder.service.persistence.FooUtil;
 
 import org.springframework.beans.factory.InitializingBean;
 
-import java.util.List;
-
 /**
- * <a href="FooLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="FooServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class FooLocalServiceBaseImpl implements FooLocalService,
-	InitializingBean {
-	public Foo addFoo(Foo model) throws SystemException {
-		Foo foo = new FooImpl();
-
-		foo.setNew(true);
-
-		foo.setFooId(model.getFooId());
-		foo.setField1(model.getField1());
-		foo.setField2(model.getField2());
-		foo.setField3(model.getField3());
-		foo.setField4(model.getField4());
-		foo.setField5(model.getField5());
-
-		return fooPersistence.update(foo);
+public abstract class FooServiceBaseImpl extends PrincipalBean
+	implements FooService, InitializingBean {
+	public FooLocalService getFooLocalService() {
+		return fooLocalService;
 	}
 
-	public List dynamicQuery(DynamicQueryInitializer queryInitializer)
-		throws SystemException {
-		return fooPersistence.findWithDynamicQuery(queryInitializer);
-	}
-
-	public List dynamicQuery(DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws SystemException {
-		return fooPersistence.findWithDynamicQuery(queryInitializer, begin, end);
-	}
-
-	public Foo updateFoo(Foo model) throws SystemException {
-		Foo foo = new FooImpl();
-
-		foo.setNew(false);
-
-		foo.setFooId(model.getFooId());
-		foo.setField1(model.getField1());
-		foo.setField2(model.getField2());
-		foo.setField3(model.getField3());
-		foo.setField4(model.getField4());
-		foo.setField5(model.getField5());
-
-		return fooPersistence.update(foo);
+	public void setFooLocalService(FooLocalService fooLocalService) {
+		this.fooLocalService = fooLocalService;
 	}
 
 	public FooPersistence getFooPersistence() {
@@ -92,10 +57,15 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	public void afterPropertiesSet() {
+		if (fooLocalService == null) {
+			fooLocalService = FooLocalServiceFactory.getImpl();
+		}
+
 		if (fooPersistence == null) {
 			fooPersistence = FooUtil.getPersistence();
 		}
 	}
 
+	protected FooLocalService fooLocalService;
 	protected FooPersistence fooPersistence;
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2007 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,35 +22,45 @@
 
 package com.sample.servicebuilder.service;
 
+
 /**
  * <a href="FooLocalServiceFactory.java.html"><b><i>View Source</i></b></a>
  *
  * <p>
- * ServiceBuilder generated this class. Modifications in this class will be overwritten
- * the next time is generated.
+ * ServiceBuilder generated this class. Modifications in this class will be
+ * overwritten the next time is generated.
  * </p>
  *
  * <p>
- * This class is responsible for the lookup of the implementation for <code>com.sample.servicebuilder.service.FooService</code>.
- * Spring manages the lookup and lifecycle of the beans. This means you can modify
- * the Spring configuration files to return a different implementation or to inject
- * additional behavior.
+ * This class is responsible for the lookup of the implementation for
+ * <code>com.sample.servicebuilder.service.FooLocalService</code>.
+ * Spring manages the lookup and lifecycle of the beans. This means you can
+ * modify the Spring configuration files to return a different implementation or
+ * to inject additional behavior.
  * </p>
  *
  * <p>
- * See the <code>spring.configs</code> property in portal.properties for additional
- * information on how to customize the Spring XML files.
+ * See the <code>spring.configs</code> property in portal.properties for
+ * additional information on how to customize the Spring XML files.
  * </p>
  *
  * @author Brian Wing Shun Chan
  *
- * @see com.sample.servicebuilder.service.FooService
- * @see com.sample.servicebuilder.service.FooServiceUtil
+ * @see com.sample.servicebuilder.service.FooLocalService
+ * @see com.sample.servicebuilder.service.FooLocalServiceUtil
  *
  */
 public class FooLocalServiceFactory {
 	public static FooLocalService getService() {
 		return _getFactory()._service;
+	}
+
+	public static FooLocalService getImpl() {
+		if (_impl == null) {
+			_impl = (FooLocalService)com.liferay.portlet.service.BeanLocatorUtil.locate(_IMPL);
+		}
+
+		return _impl;
 	}
 
 	public static FooLocalService getTxImpl() {
@@ -74,9 +84,12 @@ public class FooLocalServiceFactory {
 	}
 
 	private static final String _FACTORY = FooLocalServiceFactory.class.getName();
+	private static final String _IMPL = FooLocalService.class.getName() +
+		".impl";
 	private static final String _TX_IMPL = FooLocalService.class.getName() +
 		".transaction";
 	private static FooLocalServiceFactory _factory;
+	private static FooLocalService _impl;
 	private static FooLocalService _txImpl;
 	private FooLocalService _service;
 }

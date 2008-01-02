@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2007 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,14 +22,19 @@
 
 package com.sample.servicebuilder.model.impl;
 
+import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 
 import com.liferay.portlet.service.BaseModelImpl;
 import com.liferay.portlet.service.PropsUtil;
 
-import com.liferay.util.XSSUtil;
+import com.liferay.util.Html;
+
+import com.sample.servicebuilder.model.Foo;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
@@ -39,13 +44,13 @@ import java.util.Date;
  * <a href="FooModelImpl.java.html"><b><i>View Source</i></b></a>
  *
  * <p>
- * ServiceBuilder generated this class. Modifications in this class will be overwritten
- * the next time is generated.
+ * ServiceBuilder generated this class. Modifications in this class will be
+ * overwritten the next time is generated.
  * </p>
  *
  * <p>
- * This class is a model that represents the <code>Sample_Foo</code> table in the
- * database.
+ * This class is a model that represents the <code>Foo</code> table
+ * in the database.
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -56,27 +61,32 @@ import java.util.Date;
  *
  */
 public class FooModelImpl extends BaseModelImpl {
-	public static String TABLE_NAME = "Sample_Foo";
-	public static Object[][] TABLE_COLUMNS = {
+	public static final String TABLE_NAME = "Sample_Foo";
+	public static final Object[][] TABLE_COLUMNS = {
 			{ "fooId", new Integer(Types.BIGINT) },
+			
+
 			{ "field1", new Integer(Types.VARCHAR) },
+			
+
 			{ "field2", new Integer(Types.BOOLEAN) },
+			
+
 			{ "field3", new Integer(Types.INTEGER) },
+			
+
 			{ "field4", new Integer(Types.TIMESTAMP) },
+			
+
 			{ "field5", new Integer(Types.VARCHAR) }
 		};
-	public static String TABLE_SQL_CREATE = "create table Sample_Foo (fooId LONG not null primary key,field1 VARCHAR(75) null,field2 BOOLEAN,field3 INTEGER,field4 DATE null,field5 VARCHAR(75) null)";
-	public static String TABLE_SQL_DROP = "drop table Sample_Foo";
-	public static boolean XSS_ALLOW_BY_MODEL = GetterUtil.getBoolean(PropsUtil.get(
-				"xss.allow.com.sample.servicebuilder.model.Foo"), XSS_ALLOW);
-	public static boolean XSS_ALLOW_FIELD1 = GetterUtil.getBoolean(PropsUtil.get(
-				"xss.allow.com.sample.servicebuilder.model.Foo.field1"),
-			XSS_ALLOW_BY_MODEL);
-	public static boolean XSS_ALLOW_FIELD5 = GetterUtil.getBoolean(PropsUtil.get(
-				"xss.allow.com.sample.servicebuilder.model.Foo.field5"),
-			XSS_ALLOW_BY_MODEL);
-	public static long LOCK_EXPIRATION_TIME = GetterUtil.getLong(PropsUtil.get(
-				"lock.expiration.time.com.sample.servicebuilder.model.FooModel"));
+	public static final String TABLE_SQL_CREATE = "create table Sample_Foo (fooId LONG not null primary key,field1 VARCHAR(75) null,field2 BOOLEAN,field3 INTEGER,field4 DATE null,field5 VARCHAR(75) null)";
+	public static final String TABLE_SQL_DROP = "drop table Sample_Foo";
+	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(PropsUtil.get(
+				"value.object.finder.cache.enabled.com.sample.servicebuilder.model.Foo"),
+			true);
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(PropsUtil.get(
+				"lock.expiration.time.com.sample.servicebuilder.model.Foo"));
 
 	public FooModelImpl() {
 	}
@@ -112,10 +122,6 @@ public class FooModelImpl extends BaseModelImpl {
 				((field1 != null) && (_field1 == null)) ||
 				((field1 != null) && (_field1 != null) &&
 				!field1.equals(_field1))) {
-			if (!XSS_ALLOW_FIELD1) {
-				field1 = XSSUtil.strip(field1);
-			}
-
 			_field1 = field1;
 		}
 	}
@@ -166,16 +172,36 @@ public class FooModelImpl extends BaseModelImpl {
 				((field5 != null) && (_field5 == null)) ||
 				((field5 != null) && (_field5 != null) &&
 				!field5.equals(_field5))) {
-			if (!XSS_ALLOW_FIELD5) {
-				field5 = XSSUtil.strip(field5);
-			}
-
 			_field5 = field5;
+		}
+	}
+
+	public Foo toEscapedModel() {
+		if (isEscapedModel()) {
+			return (Foo)this;
+		}
+		else {
+			Foo model = new FooImpl();
+
+			model.setEscapedModel(true);
+
+			model.setFooId(getFooId());
+			model.setField1(Html.escape(getField1()));
+			model.setField2(getField2());
+			model.setField3(getField3());
+			model.setField4(getField4());
+			model.setField5(Html.escape(getField5()));
+
+			model = (Foo)Proxy.newProxyInstance(Foo.class.getClassLoader(),
+					new Class[] { Foo.class }, new ReadOnlyBeanHandler(model));
+
+			return model;
 		}
 	}
 
 	public Object clone() {
 		FooImpl clone = new FooImpl();
+
 		clone.setFooId(getFooId());
 		clone.setField1(getField1());
 		clone.setField2(getField2());
@@ -192,7 +218,9 @@ public class FooModelImpl extends BaseModelImpl {
 		}
 
 		FooImpl foo = (FooImpl)obj;
+
 		int value = 0;
+
 		value = getField1().compareTo(foo.getField1());
 
 		if (value != 0) {

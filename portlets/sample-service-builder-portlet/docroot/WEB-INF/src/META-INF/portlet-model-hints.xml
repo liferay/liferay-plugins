@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <model-hints>
 	<model name="com.sample.servicebuilder.model.Foo">

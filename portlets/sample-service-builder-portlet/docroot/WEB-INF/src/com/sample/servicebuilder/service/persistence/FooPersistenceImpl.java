@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2007 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,19 +25,24 @@ package com.sample.servicebuilder.service.persistence;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.DynamicQuery;
 import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.ModelListener;
 
 import com.liferay.portlet.service.BasePersistence;
 import com.liferay.portlet.service.FinderCache;
 import com.liferay.portlet.service.HibernateUtil;
+import com.liferay.portlet.service.PropsUtil;
 
 import com.liferay.util.dao.hibernate.QueryUtil;
 
 import com.sample.servicebuilder.NoSuchFooException;
 import com.sample.servicebuilder.model.Foo;
 import com.sample.servicebuilder.model.impl.FooImpl;
+import com.sample.servicebuilder.model.impl.FooModelImpl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -59,6 +64,7 @@ public class FooPersistenceImpl extends BasePersistence
 	implements FooPersistence {
 	public Foo create(long fooId) {
 		Foo foo = new FooImpl();
+
 		foo.setNew(true);
 		foo.setPrimaryKey(fooId);
 
@@ -96,11 +102,29 @@ public class FooPersistenceImpl extends BasePersistence
 	}
 
 	public Foo remove(Foo foo) throws SystemException {
+		ModelListener listener = _getListener();
+
+		if (listener != null) {
+			listener.onBeforeRemove(foo);
+		}
+
+		foo = removeImpl(foo);
+
+		if (listener != null) {
+			listener.onAfterRemove(foo);
+		}
+
+		return foo;
+	}
+
+	protected Foo removeImpl(Foo foo) throws SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
+
 			session.delete(foo);
+
 			session.flush();
 
 			return foo;
@@ -110,24 +134,52 @@ public class FooPersistenceImpl extends BasePersistence
 		}
 		finally {
 			closeSession(session);
+
 			FinderCache.clearCache(Foo.class.getName());
 		}
 	}
 
-	public Foo update(com.sample.servicebuilder.model.Foo foo)
-		throws SystemException {
+	public Foo update(Foo foo) throws SystemException {
 		return update(foo, false);
 	}
 
-	public Foo update(com.sample.servicebuilder.model.Foo foo,
-		boolean saveOrUpdate) throws SystemException {
+	public Foo update(Foo foo, boolean merge) throws SystemException {
+		ModelListener listener = _getListener();
+
+		boolean isNew = foo.isNew();
+
+		if (listener != null) {
+			if (isNew) {
+				listener.onBeforeCreate(foo);
+			}
+			else {
+				listener.onBeforeUpdate(foo);
+			}
+		}
+
+		foo = updateImpl(foo, merge);
+
+		if (listener != null) {
+			if (isNew) {
+				listener.onAfterCreate(foo);
+			}
+			else {
+				listener.onAfterUpdate(foo);
+			}
+		}
+
+		return foo;
+	}
+
+	public Foo updateImpl(com.sample.servicebuilder.model.Foo foo, boolean merge)
+		throws SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			if (saveOrUpdate) {
-				session.saveOrUpdate(foo);
+			if (merge) {
+				session.merge(foo);
 			}
 			else {
 				if (foo.isNew()) {
@@ -136,6 +188,7 @@ public class FooPersistenceImpl extends BasePersistence
 			}
 
 			session.flush();
+
 			foo.setNew(false);
 
 			return foo;
@@ -145,6 +198,7 @@ public class FooPersistenceImpl extends BasePersistence
 		}
 		finally {
 			closeSession(session);
+
 			FinderCache.clearCache(Foo.class.getName());
 		}
 	}
@@ -182,12 +236,18 @@ public class FooPersistenceImpl extends BasePersistence
 	}
 
 	public List findByField2(boolean field2) throws SystemException {
+		boolean finderClassNameCacheEnabled = FooModelImpl.CACHE_ENABLED;
 		String finderClassName = Foo.class.getName();
 		String finderMethodName = "findByField2";
 		String[] finderParams = new String[] { Boolean.class.getName() };
-		Object[] finderArgs = new Object[] { new Boolean(field2) };
-		Object result = FinderCache.getResult(finderClassName,
-				finderMethodName, finderParams, finderArgs, getSessionFactory());
+		Object[] finderArgs = new Object[] { Boolean.valueOf(field2) };
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCache.getResult(finderClassName, finderMethodName,
+					finderParams, finderArgs, getSessionFactory());
+		}
 
 		if (result == null) {
 			Session session = null;
@@ -196,19 +256,28 @@ public class FooPersistenceImpl extends BasePersistence
 				session = openSession();
 
 				StringMaker query = new StringMaker();
+
 				query.append("FROM com.sample.servicebuilder.model.Foo WHERE ");
+
 				query.append("field2 = ?");
+
 				query.append(" ");
+
 				query.append("ORDER BY ");
+
 				query.append("field1 ASC");
 
 				Query q = session.createQuery(query.toString());
+
 				int queryPos = 0;
+
 				q.setBoolean(queryPos++, field2);
 
 				List list = q.list();
-				FinderCache.putResult(finderClassName, finderMethodName,
-					finderParams, finderArgs, list);
+
+				FinderCache.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
 
 				return list;
 			}
@@ -231,19 +300,27 @@ public class FooPersistenceImpl extends BasePersistence
 
 	public List findByField2(boolean field2, int begin, int end,
 		OrderByComparator obc) throws SystemException {
+		boolean finderClassNameCacheEnabled = FooModelImpl.CACHE_ENABLED;
 		String finderClassName = Foo.class.getName();
 		String finderMethodName = "findByField2";
 		String[] finderParams = new String[] {
-				Boolean.class.getName(), "java.lang.Integer",
-				"java.lang.Integer",
+				Boolean.class.getName(),
+				
+				"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 		Object[] finderArgs = new Object[] {
-				new Boolean(field2), String.valueOf(begin), String.valueOf(end),
-				String.valueOf(obc)
+				Boolean.valueOf(field2),
+				
+				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
 			};
-		Object result = FinderCache.getResult(finderClassName,
-				finderMethodName, finderParams, finderArgs, getSessionFactory());
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCache.getResult(finderClassName, finderMethodName,
+					finderParams, finderArgs, getSessionFactory());
+		}
 
 		if (result == null) {
 			Session session = null;
@@ -252,26 +329,35 @@ public class FooPersistenceImpl extends BasePersistence
 				session = openSession();
 
 				StringMaker query = new StringMaker();
+
 				query.append("FROM com.sample.servicebuilder.model.Foo WHERE ");
+
 				query.append("field2 = ?");
+
 				query.append(" ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
 					query.append(obc.getOrderBy());
 				}
+
 				else {
 					query.append("ORDER BY ");
+
 					query.append("field1 ASC");
 				}
 
 				Query q = session.createQuery(query.toString());
+
 				int queryPos = 0;
+
 				q.setBoolean(queryPos++, field2);
 
 				List list = QueryUtil.list(q, getDialect(), begin, end);
-				FinderCache.putResult(finderClassName, finderMethodName,
-					finderParams, finderArgs, list);
+
+				FinderCache.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
 
 				return list;
 			}
@@ -293,11 +379,13 @@ public class FooPersistenceImpl extends BasePersistence
 
 		if (list.size() == 0) {
 			StringMaker msg = new StringMaker();
-			msg.append("No Foo exists with the key ");
-			msg.append(StringPool.OPEN_CURLY_BRACE);
-			msg.append("field2=");
-			msg.append(field2);
+
+			msg.append("No Foo exists with the key {");
+
+			msg.append("field2=" + field2);
+
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
 			throw new NoSuchFooException(msg.toString());
 		}
 		else {
@@ -308,15 +396,18 @@ public class FooPersistenceImpl extends BasePersistence
 	public Foo findByField2_Last(boolean field2, OrderByComparator obc)
 		throws NoSuchFooException, SystemException {
 		int count = countByField2(field2);
+
 		List list = findByField2(field2, count - 1, count, obc);
 
 		if (list.size() == 0) {
 			StringMaker msg = new StringMaker();
-			msg.append("No Foo exists with the key ");
-			msg.append(StringPool.OPEN_CURLY_BRACE);
-			msg.append("field2=");
-			msg.append(field2);
+
+			msg.append("No Foo exists with the key {");
+
+			msg.append("field2=" + field2);
+
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
 			throw new NoSuchFooException(msg.toString());
 		}
 		else {
@@ -327,32 +418,43 @@ public class FooPersistenceImpl extends BasePersistence
 	public Foo[] findByField2_PrevAndNext(long fooId, boolean field2,
 		OrderByComparator obc) throws NoSuchFooException, SystemException {
 		Foo foo = findByPrimaryKey(fooId);
+
 		int count = countByField2(field2);
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			StringMaker query = new StringMaker();
+
 			query.append("FROM com.sample.servicebuilder.model.Foo WHERE ");
+
 			query.append("field2 = ?");
+
 			query.append(" ");
 
 			if (obc != null) {
 				query.append("ORDER BY ");
 				query.append(obc.getOrderBy());
 			}
+
 			else {
 				query.append("ORDER BY ");
+
 				query.append("field1 ASC");
 			}
 
 			Query q = session.createQuery(query.toString());
+
 			int queryPos = 0;
+
 			q.setBoolean(queryPos++, field2);
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, foo);
+
 			Foo[] array = new FooImpl[3];
+
 			array[0] = (Foo)objArray[0];
 			array[1] = (Foo)objArray[1];
 			array[2] = (Foo)objArray[2];
@@ -394,6 +496,7 @@ public class FooPersistenceImpl extends BasePersistence
 			session = openSession();
 
 			DynamicQuery query = queryInitializer.initialize(session);
+
 			query.setLimit(begin, end);
 
 			return query.list();
@@ -416,6 +519,7 @@ public class FooPersistenceImpl extends BasePersistence
 
 	public List findAll(int begin, int end, OrderByComparator obc)
 		throws SystemException {
+		boolean finderClassNameCacheEnabled = FooModelImpl.CACHE_ENABLED;
 		String finderClassName = Foo.class.getName();
 		String finderMethodName = "findAll";
 		String[] finderParams = new String[] {
@@ -425,8 +529,13 @@ public class FooPersistenceImpl extends BasePersistence
 		Object[] finderArgs = new Object[] {
 				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
 			};
-		Object result = FinderCache.getResult(finderClassName,
-				finderMethodName, finderParams, finderArgs, getSessionFactory());
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCache.getResult(finderClassName, finderMethodName,
+					finderParams, finderArgs, getSessionFactory());
+		}
 
 		if (result == null) {
 			Session session = null;
@@ -435,26 +544,31 @@ public class FooPersistenceImpl extends BasePersistence
 				session = openSession();
 
 				StringMaker query = new StringMaker();
+
 				query.append("FROM com.sample.servicebuilder.model.Foo ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
 					query.append(obc.getOrderBy());
 				}
+
 				else {
 					query.append("ORDER BY ");
+
 					query.append("field1 ASC");
 				}
 
 				Query q = session.createQuery(query.toString());
+
 				List list = QueryUtil.list(q, getDialect(), begin, end);
 
 				if (obc == null) {
 					Collections.sort(list);
 				}
 
-				FinderCache.putResult(finderClassName, finderMethodName,
-					finderParams, finderArgs, list);
+				FinderCache.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
 
 				return list;
 			}
@@ -475,6 +589,7 @@ public class FooPersistenceImpl extends BasePersistence
 
 		while (itr.hasNext()) {
 			Foo foo = (Foo)itr.next();
+
 			remove(foo);
 		}
 	}
@@ -488,12 +603,18 @@ public class FooPersistenceImpl extends BasePersistence
 	}
 
 	public int countByField2(boolean field2) throws SystemException {
+		boolean finderClassNameCacheEnabled = FooModelImpl.CACHE_ENABLED;
 		String finderClassName = Foo.class.getName();
 		String finderMethodName = "countByField2";
 		String[] finderParams = new String[] { Boolean.class.getName() };
-		Object[] finderArgs = new Object[] { new Boolean(field2) };
-		Object result = FinderCache.getResult(finderClassName,
-				finderMethodName, finderParams, finderArgs, getSessionFactory());
+		Object[] finderArgs = new Object[] { Boolean.valueOf(field2) };
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCache.getResult(finderClassName, finderMethodName,
+					finderParams, finderArgs, getSessionFactory());
+		}
 
 		if (result == null) {
 			Session session = null;
@@ -502,16 +623,22 @@ public class FooPersistenceImpl extends BasePersistence
 				session = openSession();
 
 				StringMaker query = new StringMaker();
+
 				query.append("SELECT COUNT(*) ");
 				query.append("FROM com.sample.servicebuilder.model.Foo WHERE ");
+
 				query.append("field2 = ?");
+
 				query.append(" ");
 
 				Query q = session.createQuery(query.toString());
+
 				int queryPos = 0;
+
 				q.setBoolean(queryPos++, field2);
 
 				Long count = null;
+
 				Iterator itr = q.list().iterator();
 
 				if (itr.hasNext()) {
@@ -522,8 +649,9 @@ public class FooPersistenceImpl extends BasePersistence
 					count = new Long(0);
 				}
 
-				FinderCache.putResult(finderClassName, finderMethodName,
-					finderParams, finderArgs, count);
+				FinderCache.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, count);
 
 				return count.intValue();
 			}
@@ -540,12 +668,18 @@ public class FooPersistenceImpl extends BasePersistence
 	}
 
 	public int countAll() throws SystemException {
+		boolean finderClassNameCacheEnabled = FooModelImpl.CACHE_ENABLED;
 		String finderClassName = Foo.class.getName();
 		String finderMethodName = "countAll";
 		String[] finderParams = new String[] {  };
 		Object[] finderArgs = new Object[] {  };
-		Object result = FinderCache.getResult(finderClassName,
-				finderMethodName, finderParams, finderArgs, getSessionFactory());
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCache.getResult(finderClassName, finderMethodName,
+					finderParams, finderArgs, getSessionFactory());
+		}
 
 		if (result == null) {
 			Session session = null;
@@ -553,12 +687,11 @@ public class FooPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.sample.servicebuilder.model.Foo");
+				Query q = session.createQuery(
+						"SELECT COUNT(*) FROM com.sample.servicebuilder.model.Foo");
 
-				Query q = session.createQuery(query.toString());
 				Long count = null;
+
 				Iterator itr = q.list().iterator();
 
 				if (itr.hasNext()) {
@@ -569,8 +702,9 @@ public class FooPersistenceImpl extends BasePersistence
 					count = new Long(0);
 				}
 
-				FinderCache.putResult(finderClassName, finderMethodName,
-					finderParams, finderArgs, count);
+				FinderCache.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, count);
 
 				return count.intValue();
 			}
@@ -589,5 +723,20 @@ public class FooPersistenceImpl extends BasePersistence
 	protected void initDao() {
 	}
 
+	private static ModelListener _getListener() {
+		if (Validator.isNotNull(_LISTENER)) {
+			try {
+				return (ModelListener)Class.forName(_LISTENER).newInstance();
+			}
+			catch (Exception e) {
+				_log.error(e);
+			}
+		}
+
+		return null;
+	}
+
+	private static final String _LISTENER = GetterUtil.getString(PropsUtil.get(
+				"value.object.listener.com.sample.servicebuilder.model.Foo"));
 	private static Log _log = LogFactory.getLog(FooPersistenceImpl.class);
 }

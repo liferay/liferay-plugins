@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2007 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,12 +32,13 @@ import java.util.List;
  * <a href="FooSoap.java.html"><b><i>View Source</i></b></a>
  *
  * <p>
- * ServiceBuilder generated this class. Modifications in this class will be overwritten
- * the next time is generated.
+ * ServiceBuilder generated this class. Modifications in this class will be
+ * overwritten the next time is generated.
  * </p>
  *
  * <p>
- * This class is used by <code>com.sample.servicebuilder.service.http.FooServiceSoap</code>.
+ * This class is used by
+ * <code>com.sample.servicebuilder.service.http.FooServiceSoap</code>.
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -48,6 +49,7 @@ import java.util.List;
 public class FooSoap implements Serializable {
 	public static FooSoap toSoapModel(Foo model) {
 		FooSoap soapModel = new FooSoap();
+
 		soapModel.setFooId(model.getFooId());
 		soapModel.setField1(model.getField1());
 		soapModel.setField2(model.getField2());
@@ -63,6 +65,7 @@ public class FooSoap implements Serializable {
 
 		for (int i = 0; i < models.size(); i++) {
 			Foo model = (Foo)models.get(i);
+
 			soapModels.add(toSoapModel(model));
 		}
 

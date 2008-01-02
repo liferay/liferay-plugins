@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2007 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,22 +22,23 @@
 
 package com.sample.servicebuilder.model;
 
+
 /**
  * <a href="Foo.java.html"><b><i>View Source</i></b></a>
  *
  * <p>
- * ServiceBuilder generated this class. Modifications in this class will be overwritten
- * the next time is generated.
+ * ServiceBuilder generated this class. Modifications in this class will be
+ * overwritten the next time is generated.
  * </p>
  *
  * <p>
- * This interface is a model that represents the <code>Sample_Foo</code> table in
- * the database.
+ * This interface is a model that represents the <code>Foo</code> table
+ * in the database.
  * </p>
  *
  * <p>
- * Customize <code>com.sample.servicebuilder.service.model.impl.FooImpl</code> and
- * rerun the ServiceBuilder to generate the new methods.
+ * Customize <code>com.sample.servicebuilder.service.model.impl.FooImpl</code>
+ * and rerun the ServiceBuilder to generate the new methods.
  * </p>
  *
  * @author Brian Wing Shun Chan

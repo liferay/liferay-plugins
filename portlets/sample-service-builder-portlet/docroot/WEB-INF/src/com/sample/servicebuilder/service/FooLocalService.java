@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2007 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,33 +22,37 @@
 
 package com.sample.servicebuilder.service;
 
+
 /**
  * <a href="FooLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * <p>
- * ServiceBuilder generated this class. Modifications in this class will be overwritten
- * the next time is generated.
+ * ServiceBuilder generated this class. Modifications in this class will be
+ * overwritten the next time is generated.
  * </p>
  *
  * <p>
- * This interface defines the service. The default implementation is <code>com.sample.servicebuilder.service.impl.FooLocalServiceImpl</code>.
+ * This interface defines the service. The default implementation is
+ * <code>com.sample.servicebuilder.service.impl.FooLocalServiceImpl</code>.
  * Modify methods in that class and rerun ServiceBuilder to populate this class
  * and all other generated classes.
  * </p>
  *
  * <p>
- * This is a local service. Methods of this service will not have security checks
- * based on the propagated JAAS credentials because this service can only be accessed
- * from within the same VM.
+ * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
  * @author Brian Wing Shun Chan
  *
- * @see com.sample.servicebuilder.service.FooServiceFactory
- * @see com.sample.servicebuilder.service.FooServiceUtil
+ * @see com.sample.servicebuilder.service.FooLocalServiceFactory
+ * @see com.sample.servicebuilder.service.FooLocalServiceUtil
  *
  */
 public interface FooLocalService {
+	public com.sample.servicebuilder.model.Foo addFoo(
+		com.sample.servicebuilder.model.Foo model)
+		throws com.liferay.portal.SystemException;
+
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
 		throws com.liferay.portal.SystemException;
@@ -56,6 +60,17 @@ public interface FooLocalService {
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
 		int begin, int end) throws com.liferay.portal.SystemException;
+
+	public com.sample.servicebuilder.model.Foo updateFoo(
+		com.sample.servicebuilder.model.Foo model)
+		throws com.liferay.portal.SystemException;
+
+	public com.sample.servicebuilder.service.persistence.FooPersistence getFooPersistence();
+
+	public void setFooPersistence(
+		com.sample.servicebuilder.service.persistence.FooPersistence fooPersistence);
+
+	public void afterPropertiesSet();
 
 	public void addFoo(java.lang.String field1, boolean field2, int field3,
 		java.util.Date field4, java.lang.String field5)
