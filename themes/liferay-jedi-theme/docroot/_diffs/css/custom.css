@@ -1,0 +1,368 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+/* --- BASE --- */
+body {
+	background: #828F95 url(../images/common/background.png) repeat-x;
+}
+
+#wrapper {
+	width: 976px;
+}
+
+#content-wrapper {
+	background: transparent url(../images/common/content_bg.png) no-repeat;
+	padding: 8px;
+	margin: 0 auto;
+}
+
+.ie #content-wrapper {
+	zoom: 1;
+}
+
+#content-wrapper #layout-grid {
+	margin: 0 auto;
+}
+
+#banner {
+	height: 99px;
+	background: url(../images/common/banner_bg.png);
+}
+
+#banner .logo {
+	background: none;
+}
+
+#footer {
+	margin: 0 auto;
+	background: #E2E6E8 url(../images/common/footer_bg.jpg) no-repeat 50% 50%;
+	border: 1px solid #6B767B;
+	width: 948px;
+	height: 125px;
+	position: relative;
+}
+
+/* ---- NAVIGATION ---- */
+#navigation {
+	position: relative;
+	overflow: visible;
+	z-index: 10;
+	background: transparent url(../images/navigation/bg.png) no-repeat;
+	width: 100%;
+	height: 25px;
+	margin: 0;
+	padding: 1px 0 0 2px;
+}
+
+#navigation li {
+	background: none;
+	padding: 5px 25px 4px;
+	margin: 0;
+	border-right: 1px solid #1F242A;
+}
+
+#navigation li:hover {
+	background: #D8DDE0;
+	border-bottom: #ABAFB2;
+}
+
+#navigation li:hover a {
+	color: #000;
+}
+
+#navigation li a {
+	color: #B4C1C9;
+	background: none;
+	padding: 0;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+#navigation li a span {
+	background: none;
+	padding: 0;
+}
+
+#navigation li a:hover {
+	color: #000;
+	padding-bottom: 0;
+}
+
+#navigation li a:hover span {
+	background: none;
+}
+
+#navigation li.selected {
+	background: #1F242A url(../images/navigation/bullet_selected.png) no-repeat 12px 50%;
+	padding-bottom: 4px;
+}
+
+
+#navigation li.selected:hover {
+	background: #D8DDE0;
+}
+
+#navigation li.selected a {
+	color: #FFFFFF;
+	padding: 0;
+}
+
+#navigation li.selected a span {
+	background: none;
+	font-size: 1em;
+	padding: 0;
+}
+
+#navigation li.selected a:hover {
+	border-bottom: #ABAFB2;
+	padding-bottom: 0;
+}
+
+#navigation li.init a {
+	color: #000;
+}
+
+.js #navigation .enter-page {
+	background: none;
+	margin-top: -2px;
+	padding: 0;
+}
+
+.js #add-page a {
+	color: #666;
+}
+
+.js #add-page {
+	float: right;
+	font-weight: bold;
+	padding-top: 0px;
+}
+
+.js #add-page a:hover span {
+	background: none;
+}
+
+.js #add-page a span {
+	background: none;
+}
+
+/* --- DOCK --- */
+.js .lfr-dock.interactive-mode {
+	top: 0px;
+	right: 13px;
+}
+
+.js .lfr-dock.interactive-mode h2 {
+	padding: 0 41px 0 0;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	padding: 0.3em 0.5em 0.5em 2em;
+	font-weight: normal;
+	font-size: 1.1em;
+}
+
+/* --- SEARCH --- */
+#banner .search {
+	position: absolute;
+	right: 13px;
+	top: 50px;
+}
+
+#banner .search form {
+	padding-right: 49px;
+	padding-top: 2px;
+	position: relative;
+}
+
+#banner .search input {
+	border: none;
+	font-size: 1.6em;
+	margin: -3px -10px 0px 0px;
+	padding: 4px 3px 3px;
+	width: 150px;
+}
+
+#banner .search input.focus {
+	background: url(../images/forms/input_shadow.png) no-repeat 0 0;
+}
+
+#banner .search input[type=image] {
+	display: none;
+}
+
+#banner .search .search-input-link {
+	background: url(../images/common/search_btn.png) no-repeat;
+	display: block;
+	height: 26px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 39px;
+}
+
+.ie #banner .search .search-input-link {
+	top: 1px;
+}
+
+/* --- PORTLET --- */
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: #FFFFFF none;
+	margin: 0;
+}
+
+.portlet {
+	margin: 12px;
+	padding: 0;
+}
+
+.ie .portlet {
+	zoom: 1;
+}
+
+.portlet-content {
+	padding: 12px;
+}
+
+.portlet-topper {
+	border-bottom: 1px solid #D9D9D9;
+}
+
+.portlet-title {
+	padding: 12px 0 12px 12px;
+	font-size: 17px;
+}
+
+/* --- LAYOUT SPECIFIC --- */
+#portlet-wrapper- {
+	background: url(../images/common/content_bg_sm.png) no-repeat;
+	margin: 0;
+	padding: 14px;
+}
+
+#layout-grid .lfr-portlet-column.empty {
+	display: none;
+}
+
+#content-wrapper.columns-max {
+	padding: 2px;
+}
+
+.columns-max #column-1 {
+	background: #D5DADE;
+	margin: 11px;
+	width: 948px;
+	border: 1px solid #6E7679;
+}
+
+.lfr-portlet-column {
+	background: #D5DADE;
+	border: 1px solid #6E7679;
+	margin-bottom: -100001px;
+	padding-bottom: 100000px;
+}
+
+#layout-grid .lfr-column {
+	overflow: hidden;
+}
+
+.columns-1 #column-1 .lfr-portlet-column {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+#wrapper .columns-1 .lfr-column {
+	width: 950px;
+	padding: 5px;
+}
+
+.columns-2 #column-1 {
+	padding: 5px;
+}
+
+.columns-2 #column-2 {
+	padding: 5px;
+}
+
+/* --- DROP DOWN MENU --- */
+#navigation .child-menu {
+	position: absolute;
+	top: 25px;
+	left: -1px;
+	background: url(../images/common/menu_drop.png) scroll no-repeat left bottom;
+	height: auto;
+	width: 209px;
+	z-index: 79;
+	overflow: visible;
+	padding-bottom: 5px;
+}
+
+.ie #navigation .child-menu {
+	height: 1;
+}
+
+#navigation .child-menu ul {
+	height: auto;
+	padding-bottom: 2px;
+}
+
+#navigation .child-menu ul , #navigation .child-menu li , #navigation .child-menu a {
+	background: transparent none;
+}
+
+#navigation .child-menu ul , #navigation .child-menu li {
+	float: none;
+}
+
+#navigation .child-menu li {
+	border: none;
+	display: block;
+	padding: 5px 10px;
+}
+
+#navigation .child-menu li a {
+	color: #000;
+	padding : 0 10px;
+}
+
+#navigation .child-menu a:hover {
+	color: #fff;
+	background: #000;
+}
+
+/* --- BOTTOM NAV & LEGAL --- */
+#footer .copyright-notice, #footer ul {
+	bottom: -35px;
+	position: absolute;
+	padding-bottom: 10px;
+}
+
+#footer .copyright-notice {
+	color: #FFF;
+}
+
+#footer ul {
+	right: 0;
+}
+
+#footer li {
+	border-right: 1px solid #FFF;
+	display: inline;
+	float: left;
+	margin-left: 9px;
+	padding-right: 8px;
+}
+
+#footer li.last-child, #footer li:last-child {
+	border: none;
+	padding: 0;
+}
+
+#footer li a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+#footer li a:hover {
+	color: #FFF;
+	text-decoration: underline;
+}
