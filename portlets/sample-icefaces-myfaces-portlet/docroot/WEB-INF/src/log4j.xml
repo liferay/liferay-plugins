@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-   Copyright (c) 2000-2007 Liferay, Inc. All rights reserved.
+   Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
 
    Permission is hereby granted, free of charge, to any person obtaining a copy
    of this software and associated documentation files (the "Software"), to deal
@@ -27,23 +27,23 @@
 			<param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}:%L] %m%n" />
 		</layout>
 	</appender>
-	
+
 	<category name="com.sample.icefaces">
 		<priority value="DEBUG" />
 	</category>
-	
+
 	<category name="com.icesoft">
 		<priority value="ERROR" />
 	</category>
-	
+
 	<category name="com.icesoft.faces.webapp.parser.Parser">
 		<priority value="DEBUG" />
 	</category>
-	
+
 	<category name="com.liferay.taglib.faces">
 		<priority value="DEBUG" />
 	</category>
-	
+
 	<!--
 	Note that MailEngine debugging will cause a large amount of output
 	in the console window if an attachment is present with the email.
@@ -51,10 +51,10 @@
 	<category name="com.liferay.util.mail.MailEngine">
 		<priority value="WARN" />
 	</category>
-	
+
 	<root>
 		<priority value="INFO" />
 		<appender-ref ref="CONSOLE" />
 	</root>
-	
+
 </log4j:configuration>
