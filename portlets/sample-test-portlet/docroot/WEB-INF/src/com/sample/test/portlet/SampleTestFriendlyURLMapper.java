@@ -22,16 +22,16 @@
 
 package com.sample.test.portlet;
 
+import com.liferay.portal.kernel.portlet.BaseFriendlyURLMapper;
+import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.portlet.BaseFriendlyURLMapper;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Map;
 
 import javax.portlet.PortletMode;
-import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import javax.portlet.WindowState;
 
 /**

@@ -28,7 +28,7 @@
 				text-indent: -9999em;
 				width: 270px;
 			}
-			
+
 			#ie6_png_fix()
 		</style>
 	#end
