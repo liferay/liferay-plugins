@@ -77,6 +77,16 @@
 					<wap-template-path>/layouttpl/custom/3_columns.wap.tpl</wap-template-path>
 					<thumbnail-path>/layouttpl/custom/3_columns.png</thumbnail-path>
 				</layout-template>
+				<layout-template id="1_2_columns_i" name="1-2 Columns (30/70)">
+					<template-path>/layouttpl/custom/1_2_columns_i.tpl</template-path>
+					<wap-template-path>/layouttpl/custom/1_2_columns_i.wap.tpl</wap-template-path>
+					<thumbnail-path>/layouttpl/custom/1_2_columns_i.png</thumbnail-path>
+				</layout-template>
+				<layout-template id="1_2_columns_ii" name="1-2 Columns (70/30)">
+					<template-path>/layouttpl/custom/1_2_columns_ii.tpl</template-path>
+					<wap-template-path>/layouttpl/custom/1_2_columns_ii.wap.tpl</wap-template-path>
+					<thumbnail-path>/layouttpl/custom/1_2_columns_ii.png</thumbnail-path>
+				</layout-template>
 				<layout-template id="1_2_1_columns" name="1-2-1 Columns">
 					<template-path>/layouttpl/custom/1_2_1_columns.tpl</template-path>
 					<wap-template-path>/layouttpl/custom/1_2_1_columns.wap.tpl</wap-template-path>
