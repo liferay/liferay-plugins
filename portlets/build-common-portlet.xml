@@ -18,7 +18,7 @@
 		</path>
 
 		<java
-			classname="com.liferay.portal.tools.ServiceBuilder"
+			classname="com.liferay.portal.tools.servicebuilder.ServiceBuilder"
 			classpathref="service.classpath"
 			fork="true"
 			maxmemory="256m"

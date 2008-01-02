@@ -42,7 +42,7 @@
 <%
 String cmd = ParamUtil.getString(request, Constants.CMD);
 
-if ((cmd != null) && (cmd.equals(Constants.ADD) || cmd.equals(Constants.EDIT))) {
+if (cmd.equals(Constants.ADD) || cmd.equals(Constants.EDIT)) {
 	long foodItemId = 0;
 	String name = "";
 	int points = 0;
