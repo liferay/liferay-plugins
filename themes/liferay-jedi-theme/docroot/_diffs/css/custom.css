@@ -284,6 +284,26 @@ body {
 	padding: 5px;
 }
 
+.portal-popup #content-wrapper {
+	background: none;
+	margin: 0;
+}
+
+.portal-popup .columns-max #column-1 {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+body.portal-popup {
+	padding: 0;
+}
+
+.portal-popup #p_p_id_15_ {
+	background: #FFF;
+	padding: 2px;
+}
+
 /* --- DROP DOWN MENU --- */
 #navigation .child-menu {
 	position: absolute;
