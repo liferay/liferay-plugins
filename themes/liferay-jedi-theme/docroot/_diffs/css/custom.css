@@ -367,3 +367,51 @@ body {
 	color: #FFF;
 	text-decoration: underline;
 }
+
+/* --- MESSAGE BOARDS --- */
+.portlet-section-body .message-board-thread-top {
+	border-bottom-color: #3A4E66;
+}
+
+.portlet-section-alternate .message-board-thread-top {
+	border-bottom-color: #212C3A;
+}
+
+.message-board-message-container .portlet-section-alternate td {
+	border: 1px solid #212C3A;
+}
+
+.message-board-message-container .portlet-section-body td {
+	border:1px solid #3A4E66;
+}
+
+#content-wrapper .message-board-thread-controls {
+	border: none;
+}
+
+#content-wrapper .message-board-title {
+	color: #151C25;
+	padding: 5px;
+	border: none;
+}
+
+#content-wrapper .toggle_id_message_boards_view_message_thread {
+	border: none;
+	margin-bottom: 10px;
+}
+
+.message-board-message-container table {
+	color: #e7eef6;
+}
+
+.message-board-code, .message-board-quote {
+	color: #212C3A;
+}
+
+.lfr-highlighted, .lfr-highlighted a {
+	color: #ffc;
+}
+
+ul.message-board-edit-controls {
+	list-style: none;
+}
