@@ -152,6 +152,7 @@ body {
 
 .js .lfr-dock.interactive-mode h2 {
 	padding: 0 41px 0 0;
+	margin: 0px;
 }
 
 .js .lfr-dock.interactive-mode h2 span {
