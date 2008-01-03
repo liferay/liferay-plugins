@@ -405,7 +405,9 @@ body {
 }
 
 .message-board-code, .message-board-quote {
-	color: #212C3A;
+	background: #EEE;
+	border: 1px solid #CCC;
+	padding: 5px;
 }
 
 .lfr-highlighted, .lfr-highlighted a {
