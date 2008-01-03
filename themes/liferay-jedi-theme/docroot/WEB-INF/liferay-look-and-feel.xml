@@ -4,6 +4,7 @@
 <look-and-feel>
 	<compatibility>
 		<version>4.3.5+</version>
+		<version>4.4.0+</version>
 	</compatibility>
 	<theme id="liferay-jedi" name="Liferay Jedi">
 		<settings>
