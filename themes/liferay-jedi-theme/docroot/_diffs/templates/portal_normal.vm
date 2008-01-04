@@ -29,11 +29,6 @@
 				width: 290px;
 			}
 
-			.ie6 #banner .logo a {
-				background-image: none;
-				filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='$images_folder/common/logo.png', sizingMethod='image/scale/crop');
-			}
-
 			#ie6_png_fix ()
 		</style>
 	#end
@@ -71,7 +66,7 @@ $theme.include($top_messages_include)
 <div id="wrapper">
 	<div id="banner">
 		<h1 class="logo">
-			<a href="$company_url">$company_name</a>
+			<a class="png" href="$company_url">$company_name</a>
 		</h1>
 
 		#parse ("$full_templates_path/dock.vm")
