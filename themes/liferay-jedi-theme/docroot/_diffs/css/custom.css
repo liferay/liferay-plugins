@@ -437,3 +437,11 @@ body.portal-popup {
 ul.message-board-edit-controls {
 	list-style: none;
 }
+
+.ie .tabs li {
+	line-height: 2.25;
+}
+
+.ie .tabs li.current {
+	top: 0.1em;
+}
