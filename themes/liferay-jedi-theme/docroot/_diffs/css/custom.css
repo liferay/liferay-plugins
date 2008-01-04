@@ -100,6 +100,10 @@ body {
 	background: #D8DDE0;
 }
 
+.ie6 #navigation li.init {
+	background: #D8DDE0;
+}
+
 #navigation li.selected a {
 	color: #FFFFFF;
 	padding: 0;

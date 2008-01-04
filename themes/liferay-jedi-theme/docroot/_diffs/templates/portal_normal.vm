@@ -27,6 +27,11 @@
 				width: 290px;
 			}
 
+			.ie6 #banner .logo a {
+				background-image: none;
+				filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='$images_folder/common/logo.png', sizingMethod='image/scale/crop');
+			}
+
 			#ie6_png_fix ()
 		</style>
 	#end
