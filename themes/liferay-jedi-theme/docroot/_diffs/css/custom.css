@@ -10,7 +10,7 @@ body {
 
 #content-wrapper {
 	background: transparent url(../images/common/content_bg.png) no-repeat;
-	padding: 8px;
+	padding: 7px;
 	margin: 0 auto;
 }
 
@@ -35,7 +35,7 @@ body {
 	margin: 0 auto;
 	background: #E2E6E8 url(../images/common/footer_bg.jpg) no-repeat 50% 50%;
 	border: 1px solid #6B767B;
-	width: 948px;
+	width: 950px;
 	height: 125px;
 	position: relative;
 }
@@ -160,7 +160,8 @@ body {
 }
 
 .js .lfr-dock.interactive-mode h2 span {
-	padding: 0.3em 0.5em 0.5em 2em;
+	padding: 0.3em 0.5em 0.5em 1em;
+	text-align: left;
 	font-weight: normal;
 	font-size: 1.1em;
 }
@@ -179,15 +180,18 @@ body {
 }
 
 #banner .search input {
+	background: #FFF;
+	color: #211C19;
 	border: none;
-	font-size: 1.6em;
-	margin: -3px -10px 0px 0px;
-	padding: 4px 3px 3px;
+	font-size: 16px;
+	font-weight: normal;
+	margin: 0px -10px 0px 0px;
+	padding: 3px;
 	width: 150px;
 }
 
 #banner .search input.focus {
-	background: url(../images/forms/input_shadow.png) no-repeat 0 0;
+	background: #FFF;
 }
 
 #banner .search input[type=image] {
@@ -200,7 +204,7 @@ body {
 	height: 26px;
 	position: absolute;
 	right: 0;
-	top: 0;
+	top: 2px;
 	width: 39px;
 }
 
@@ -356,7 +360,7 @@ body.portal-popup {
 
 /* --- BOTTOM NAV & LEGAL --- */
 #footer .copyright-notice, #footer ul {
-	bottom: -35px;
+	bottom: -45px;
 	position: absolute;
 	padding-bottom: 10px;
 }
@@ -377,7 +381,7 @@ body.portal-popup {
 	padding-right: 8px;
 }
 
-#footer li.last-child, #footer li:last-child {
+#footer li.last-child {
 	border: none;
 	padding: 0;
 }

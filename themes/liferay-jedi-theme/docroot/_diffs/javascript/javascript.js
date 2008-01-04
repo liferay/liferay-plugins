@@ -27,25 +27,28 @@ var LiferayJedi = function () {
 
 		handleLastChild: function () {
 			var instance = this;
-			if (!$.browser.msie) {
-				return;
-			}
+
 			$('#footer ul li:last').addClass('last-child');
 		},
 
 		dropDownMenu: function() {
-			$(".parent-nav-item").hover(
-				function () {
-					var instance = $(this);
-					var child = $('.child-menu', this);
-					instance.addClass("init");
-					child.slideDown(50);
-				},
-				function () {
-					var instance = $(this);
-					var child = $('.child-menu', this);
-					child.slideUp(1);
-					instance.removeClass("init");
+			$(".parent-nav-item").hoverIntent(
+				{
+					interval: 25,
+					timeout: 0,
+					over: function () {
+						var instance = $(this);
+						var child = $('.child-menu', this);
+						instance.addClass("init");
+						child.slideDown(100);
+					},
+					
+					out: function () {
+						var instance = $(this);
+						var child = $('.child-menu', this);
+						child.slideUp(50);
+						instance.removeClass("init");
+					}
 				}
 			);
 		}
