@@ -2,6 +2,8 @@
 
 #parse ($init)
 
+#set ($company_url = $company_url + "/web/guest/home")
+
 <html dir="#language ("lang.dir")" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -101,7 +103,7 @@ $theme.include($top_messages_include)
 
 	<div id="footer">
 		<p class="copyright-notice">&copy; 2000-$the_year $company_name</p>
-		
+
 		<div class="footer-award-images">
 			#set ($journalArticleLocalService = $serviceLocator.findService("com.liferay.portlet.journal.service.JournalArticleLocalService"))
 
