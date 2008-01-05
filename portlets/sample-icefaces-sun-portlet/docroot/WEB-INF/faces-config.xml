@@ -3,7 +3,7 @@
 
 <faces-config xmlns="http://java.sun.com/JSF/Configuration">
 	<application>
-		<message-bundle>Override</message-bundle>
+		<message-bundle>messages-override</message-bundle>
 	</application>
 	<managed-bean>
 		<managed-bean-name>Edit</managed-bean-name>
