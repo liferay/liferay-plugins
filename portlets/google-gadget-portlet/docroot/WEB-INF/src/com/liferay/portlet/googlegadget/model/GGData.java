@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -20,8 +19,51 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
 
-<%@ include file="/init.jsp" %>
+package com.liferay.portlet.googlegadget.model;
 
-<script src="http://gmodules.com/ig/ifr?url=<%= gadgetId %>&<%= gadgetParams %>&synd=open&title=&border=none&output=js"></script>
+import java.util.List;
+
+/**
+ * <a href="GGData.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class GGData {
+
+	public GGData(List categories, List entries, GGPagination pagination) {
+		_categories = categories;
+		_entries = entries;
+		_pagination = pagination;
+	}
+
+	public List getCategories() {
+		return _categories;
+	}
+
+	public void setCategories(List categories) {
+		_categories = categories;
+	}
+
+	public List getEntries() {
+		return _entries;
+	}
+
+	public void setEntries(List entries) {
+		_entries = entries;
+	}
+
+	public GGPagination getPagination() {
+		return _pagination;
+	}
+
+	public void setPagination(GGPagination pagination) {
+		_pagination = pagination;
+	}
+
+	private List _categories;
+	private List _entries;
+	private GGPagination _pagination;
+
+}

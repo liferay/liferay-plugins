@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -20,8 +19,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
 
-<%@ include file="/init.jsp" %>
+package com.liferay.portlet.googlegadget.util;
 
-<script src="http://gmodules.com/ig/ifr?url=<%= gadgetId %>&<%= gadgetParams %>&synd=open&title=&border=none&output=js"></script>
+import com.germinus.easyconf.ComponentProperties;
+
+import com.liferay.util.ExtPropertiesLoader;
+
+import java.util.Properties;
+
+/**
+ * <a href="PortletProps.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class PortletProps {
+
+	public static boolean containsKey(String key) {
+		return _getInstance().containsKey(key);
+	}
+
+	public static String get(String key) {
+		return _getInstance().get(key);
+	}
+
+	public static void set(String key, String value) {
+		_getInstance().set(key, value);
+	}
+
+	public static String[] getArray(String key) {
+		return _getInstance().getArray(key);
+	}
+
+	public static Properties getProperties() {
+		return _getInstance().getProperties();
+	}
+
+	public static ComponentProperties getComponentProperties() {
+		return _getInstance().getComponentProperties();
+	}
+
+	private static ExtPropertiesLoader _getInstance() {
+		return ExtPropertiesLoader.getInstance("google-gadget-portlet");
+	}
+
+}

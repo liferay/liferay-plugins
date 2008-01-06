@@ -24,169 +24,134 @@
 
 <%@ include file="/init.jsp" %>
 
-<liferay-portlet:preview
+<%
+String categoryId = ParamUtil.getString(request, "categoryId", "all");
+int start = ParamUtil.getInteger(request, "start", 0);
+
+String url = "http://www.google.com/ig/directory?synd=open&cat=" + categoryId + "&start=" + start + "&sa=N";
+
+GGData data = GGUtil.getData(url);
+%>
+
+<%--<liferay-portlet:preview
 	portletName="<%= portletResource %>"
 />
 
-<div class="separator"><!-- --></div>
+<div class="separator"><!-- --></div>--%>
 
-<form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm">
-<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+<c:choose>
+	<c:when test="<%= data != null %>">
+		<script type="text/javascript">
+			function <portlet:namespace />chooseGadget(gadgetId) {
+				document.<portlet:namespace />fm.<portlet:namespace />gadgetId.value = gadgetId;
+				submitForm(document.<portlet:namespace />fm);
+			}
+		</script>
 
-<table class="liferay-table">
-<tr>
-	<td valign="top">
-		<input <%= (!customConf) ? "checked" : "" %> type="radio" name="<portlet:namespace />confType" value="recommended"> <liferay-ui:message key="choose-from-the-list-of-recommended-google-gadgets" />
+		<form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm">
+		<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+		<input name="<portlet:namespace />gadgetId" type="hidden" value="" />
 
-		<br />
-
-		<table class="liferay-table">
+		<table class="lfr-table" width="100%">
 		<tr>
-			<td>
-				<liferay-ui:message key="gadget" />
-			</td>
-			<td>
-				<select id="<portlet:namespace />gadgetId" name="<portlet:namespace />gadgetId">
+			<td valign="top">
+				<liferay-ui:message key="categories" />
 
-					<%
-					for (int i = 0; i < gadgets.length; i++) {
-					%>
+				<br /><br />
 
-						<option <%= (gadgetIdPos == i) ? "selected" : "" %> value="<%= gadgets[i][0] %>"><%= gadgets[i][1] %></option>
+				<%
+				List categories = data.getCategories();
 
-					<%
-					}
-					%>
+				for (int i = 0; i < categories.size(); i++) {
+					GGCategory category = (GGCategory)categories.get(i);
+				%>
 
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<liferay-ui:message key="title" />
-			</td>
-			<td>
-				<input name="<portlet:namespace />title" type="text" value="<%= title %>" />
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<liferay-ui:message key="width" />
-			</td>
-			<td>
-				<input name="<portlet:namespace />width" size="4" type="text" value="<%= width %>" /> px
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<liferay-ui:message key="height" />
-			</td>
-			<td>
-				<input name="<portlet:namespace />height" size="4" type="text" value="<%= height %>" /> px
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<liferay-ui:message key="border" />
-			</td>
-			<td>
-				<select name="<portlet:namespace />borderId">
+					<c:choose>
+						<c:when test="<%= Validator.isNotNull(category.getName()) %>">
+							<a href="<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="categoryId" value="<%= category.getCategoryId() %>" /></liferay-portlet:actionURL>"><%= category.getName() %></a><br />
+						</c:when>
+						<c:otherwise>
+							<br />
+						</c:otherwise>
+					</c:choose>
 
-					<%
-					for (int i = 0; i < borders.length; i++) {
-					%>
+				<%
+				}
+				%>
 
-						<option <%= (borderIdPos == i) ? "selected" : "" %> value="<%= borders[i][0] %>"><%= borders[i][1] %></option>
+			</td>
+			<td>
+				<liferay-ui:message key="add-a-google-gadget-by-specifying-a-gadget-url,-or-choose-from-the-gadgets-below" />
 
-					<%
-					}
-					%>
+				<br /><br />
 
-				</select>
+				<input name="<portlet:namespace />customGadgetId" size="70" type="text" /> <input onclick="<portlet:namespace />chooseGadget(document.<portlet:namespace />fm.<portlet:namespace />customGadgetId.value);" type="button" value="<liferay-ui:message key="add" />" />
+
+				<%
+				GGPagination pagination = data.getPagination();
+				%>
+
+				<div style="text-align: right;">
+					<%= pagination.getStart() %> - <%= pagination.getEnd() %> of <%= pagination.getTotal() %>
+
+					<span style="padding-left: 10px;">
+						<c:if test="<%= pagination.getStart() >= pagination.getDelta() %>">
+							<a href="<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="categoryId" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(start - pagination.getDelta()) %>" /></liferay-portlet:actionURL>">&laquo; <liferay-ui:message key="previous" /></a>
+						</c:if>
+					</span>
+
+					<span style="padding-left: 10px;">
+						<c:if test="<%= (pagination.getStart() + pagination.getDelta()) <= pagination.getTotal() %>">
+							<a href="<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="categoryId" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(start + pagination.getDelta()) %>" /></liferay-portlet:actionURL>"><liferay-ui:message key="next" /> &raquo;</a>
+						</c:if>
+					</span>
+				</div>
+
+				<br />
+
+				<liferay-ui:table-iterator
+					list="<%= data.getEntries() %>"
+					listType="com.liferay.portlet.googlegadget.model.GGEntry"
+					rowLength="4"
+					width="100%"
+				>
+					<div style="text-align: center;">
+						<%= tableIteratorObj.getName() %>
+
+						<div style="padding: 5px;">
+							<img src="<%= tableIteratorObj.getImage() %>" />
+						</div>
+
+						<input onclick="<portlet:namespace />chooseGadget('<%= tableIteratorObj.getGadgetId() %>');" type="button" value="<liferay-ui:message key="choose" />" />
+					</div>
+
+					<div style="padding-top: 20px;" />
+				</liferay-ui:table-iterator>
+
+				<div style="text-align: right;">
+					<%= pagination.getStart() %> - <%= pagination.getEnd() %> of <%= pagination.getTotal() %>
+
+					<span style="padding-left: 10px;">
+						<c:if test="<%= pagination.getStart() >= pagination.getDelta() %>">
+							<a href="<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="categoryId" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(start - pagination.getDelta()) %>" /></liferay-portlet:actionURL>">&laquo; <liferay-ui:message key="previous" /></a>
+						</c:if>
+					</span>
+
+					<span style="padding-left: 10px;">
+						<c:if test="<%= (pagination.getStart() + pagination.getDelta()) <= pagination.getTotal() %>">
+							<a href="<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="categoryId" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(start + pagination.getDelta()) %>" /></liferay-portlet:actionURL>"><liferay-ui:message key="next" /> &raquo;</a>
+						</c:if>
+					</span>
+				</div>
 			</td>
 		</tr>
 		</table>
-	</td>
-	<td valign="top">
-		<input <%= (customConf) ? "checked" : "" %> type="radio" name="<portlet:namespace />confType" value="custom">
 
-		<a href="http://www.google.com/ig/directory?synd=open" target="GoogleGadgets"><liferay-ui:message key="or-obtain-the-google-gadget-code-directly-and-paste-it-below" /></a>
-
-		<br />
-
-		<textarea rows="5" cols="50" name="<portlet:namespace />gadgetCode"><%= gadgetCode %></textarea>
-	</td>
-</tr>
-</table>
-
-<br />
-
-<input type="button" value="<liferay-ui:message key="save" />" onClick="submitForm(document.<portlet:namespace />fm);" />
-
-</form>
-
-<script type="text/javascript">
-	function <portlet:namespace />enableSelectedTypeForm() {
-		var state1;
-		var state2;
-
-		if (document.<portlet:namespace />fm.<portlet:namespace />confType[0].checked) {
-			state1 = false;
-			state2 = true;
-		}
-
-		if (document.<portlet:namespace />fm.<portlet:namespace />confType[1].checked) {
-			state1 = true;
-			state2 = false;
-		}
-
-		document.<portlet:namespace />fm.<portlet:namespace />gadgetCode.disabled = state2;
-
-		document.<portlet:namespace />fm.<portlet:namespace />gadgetId.disabled = state1;
-		document.<portlet:namespace />fm.<portlet:namespace />title.disabled = state1;
-		document.<portlet:namespace />fm.<portlet:namespace />width.disabled = state1;
-		document.<portlet:namespace />fm.<portlet:namespace />height.disabled = state1;
-		document.<portlet:namespace />fm.<portlet:namespace />borderId.disabled = state1;
-	}
-
-	function <portlet:namespace />setRecommendedGadgetSize() {
-		var widthMatrix = new Array();
-
-		<%
-		for (int i = 0; i < gadgets.length; i++) {
-		%>
-
-			widthMatrix[<%=i%>] = "<%= gadgets[i][2] %>";
-
-		<%
-		}
-		%>
-
-		var heightMatrix = new Array();
-
-		<%
-		for (int i = 0; i < gadgets.length; i++) {
-		%>
-
-			heightMatrix[<%=i%>] = "<%= gadgets[i][3] %>";
-
-		<%
-		}
-		%>
-
-		var index = document.<portlet:namespace />fm.<portlet:namespace />gadgetId.selectedIndex;
-
-		document.<portlet:namespace />fm.<portlet:namespace />width.value = widthMatrix[index];
-		document.<portlet:namespace />fm.<portlet:namespace />height.value = heightMatrix[index];
-	}
-
-	<c:if test="<%= renderRequest.getWindowState().equals(WindowState.MAXIMIZED) %>">
-		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />gadgetId);
-	</c:if>
-
-	document.<portlet:namespace />fm.<portlet:namespace />gadgetId.onchange = <portlet:namespace />setRecommendedGadgetSize;
-	document.<portlet:namespace />fm.<portlet:namespace />confType[0].onclick = <portlet:namespace />enableSelectedTypeForm;
-	document.<portlet:namespace />fm.<portlet:namespace />confType[1].onclick = <portlet:namespace />enableSelectedTypeForm;
-
-	<portlet:namespace />enableSelectedTypeForm();
-</script>
+		</form>
+	</c:when>
+	<c:otherwise>
+		<span class="portlet-msg-error">
+		<liferay-ui:message key="an-unexpected-error-occurred-while-connecting-to-google" />
+		</span>
+	</c:otherwise>
+</c:choose>

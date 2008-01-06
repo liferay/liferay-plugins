@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -20,8 +19,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
 
-<%@ include file="/init.jsp" %>
+package com.liferay.portlet.googlegadget.model;
 
-<script src="http://gmodules.com/ig/ifr?url=<%= gadgetId %>&<%= gadgetParams %>&synd=open&title=&border=none&output=js"></script>
+/**
+ * <a href="GGEntry.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class GGEntry {
+
+	public GGEntry(String gadgetId, String name, String image) {
+		_gadgetId = gadgetId;
+		_name = name;
+		_image = image;
+	}
+
+	public String getGadgetId() {
+		return _gadgetId;
+	}
+
+	public void setGadgetId(String gadgetId) {
+		_gadgetId = gadgetId;
+	}
+
+	public String getName() {
+		return _name;
+	}
+
+	public void setName(String name) {
+		_name = name;
+	}
+
+	public String getImage() {
+		return _image;
+	}
+
+	public void setImage(String image) {
+		_image = image;
+	}
+
+	private String _gadgetId;
+	private String _name;
+	private String _image;
+
+}

@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -20,8 +19,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
 
-<%@ include file="/init.jsp" %>
+package com.liferay.portlet.googlegadget.util;
 
-<script src="http://gmodules.com/ig/ifr?url=<%= gadgetId %>&<%= gadgetParams %>&synd=open&title=&border=none&output=js"></script>
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.webcache.WebCacheItem;
+import com.liferay.portal.kernel.webcache.WebCachePoolUtil;
+import com.liferay.portlet.googlegadget.model.GGData;
+
+/**
+ * <a href="GGUtil.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class GGUtil {
+
+	public static GGData getData(String url) {
+		WebCacheItem wci = new GGDataWebCacheItem(url);
+
+		String key = GGUtil.class.getName() + StringPool.PERIOD + url;
+
+		try {
+			return (GGData)WebCachePoolUtil.get(key, wci);
+		}
+		catch (ClassCastException cce) {
+			WebCachePoolUtil.remove(key);
+
+			return (GGData)WebCachePoolUtil.get(key, wci);
+		}
+	}
+
+}

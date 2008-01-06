@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -20,8 +19,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
 
-<%@ include file="/init.jsp" %>
+package com.liferay.portlet.googlegadget.model;
 
-<script src="http://gmodules.com/ig/ifr?url=<%= gadgetId %>&<%= gadgetParams %>&synd=open&title=&border=none&output=js"></script>
+/**
+ * <a href="GGCategory.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class GGCategory {
+
+	public GGCategory(String categoryId, String name) {
+		_categoryId = categoryId;
+		_name = name;
+	}
+
+	public String getCategoryId() {
+		return _categoryId;
+	}
+
+	public void setCategoryId(String categoryId) {
+		_categoryId = categoryId;
+	}
+
+	public String getName() {
+		return _name;
+	}
+
+	public void setName(String name) {
+		_name = name;
+	}
+
+	private String _categoryId;
+	private String _name;
+
+}

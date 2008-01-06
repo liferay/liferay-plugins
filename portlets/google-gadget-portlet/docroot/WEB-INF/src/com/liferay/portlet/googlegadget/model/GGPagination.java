@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -20,8 +19,61 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
 
-<%@ include file="/init.jsp" %>
+package com.liferay.portlet.googlegadget.model;
 
-<script src="http://gmodules.com/ig/ifr?url=<%= gadgetId %>&<%= gadgetParams %>&synd=open&title=&border=none&output=js"></script>
+/**
+ * <a href="GGPagination.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class GGPagination {
+
+	public static final int DEFAULT_DELTA = 24;
+
+	public GGPagination(int delta, int start, int end, int total) {
+		_delta = delta;
+		_start = start;
+		_end = end;
+		_total = total;
+	}
+
+	public int getDelta() {
+		return _delta;
+	}
+
+	public void setDelta(int delta) {
+		_delta = delta;
+	}
+
+	public int getStart() {
+		return _start;
+	}
+
+	public void setStart(int start) {
+		_start = start;
+	}
+
+	public int getEnd() {
+		return _end;
+	}
+
+	public void setEnd(int end) {
+		_end = end;
+	}
+
+	public int getTotal() {
+		return _total;
+	}
+
+	public void setTotal(int total) {
+		_total = total;
+	}
+
+	private int _delta;
+	private int _start;
+	private int _end;
+	private int _total;
+
+}

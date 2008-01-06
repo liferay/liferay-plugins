@@ -53,15 +53,7 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			return;
 		}
 
-		String confType = ParamUtil.getString(req, "confType");
-
-		String gadgetCode = ParamUtil.getString(req, "gadgetCode");
-
 		String gadgetId = ParamUtil.getString(req, "gadgetId");
-		String title = ParamUtil.getString(req, "title");
-		String borderId = ParamUtil.getString(req, "borderId");
-		String width = ParamUtil.getString(req, "width");
-		String height = ParamUtil.getString(req, "height");
 
 		String portletResource = ParamUtil.getString(req, "portletResource");
 
@@ -69,18 +61,7 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				req, portletResource, true, true);
 
-		prefs.setValue("conf-type", confType);
-
-		if (confType.equals("custom")) {
-			prefs.setValue("gadget-code", gadgetCode);
-		}
-		else {
-			prefs.setValue("gadget-id", gadgetId);
-			prefs.setValue("title", title);
-			prefs.setValue("border-id", borderId);
-			prefs.setValue("width", width);
-			prefs.setValue("height", height);
-		}
+		prefs.setValue("gadget-id", gadgetId);
 
 		prefs.store();
 

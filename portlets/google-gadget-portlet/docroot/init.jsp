@@ -34,10 +34,14 @@
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
-<%@ page import="com.liferay.util.HttpUtil" %>
+<%@ page import="com.liferay.portlet.googlegadget.model.GGCategory" %>
+<%@ page import="com.liferay.portlet.googlegadget.model.GGData" %>
+<%@ page import="com.liferay.portlet.googlegadget.model.GGPagination" %>
+<%@ page import="com.liferay.portlet.googlegadget.util.GGUtil" %>
+
+<%@ page import="java.util.List" %>
 
 <%@ page import="javax.portlet.PortletPreferences" %>
-<%@ page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />
 
@@ -50,38 +54,6 @@ if (Validator.isNotNull(portletResource)) {
 	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource, true, true);
 }
 
-String confType = prefs.getValue("conf-type", StringPool.BLANK);
-String gadgetCode = prefs.getValue("gadget-code", StringPool.BLANK);
-
-String gadgetId = prefs.getValue("gadget-id", StringPool.BLANK);
-String title = prefs.getValue("title", StringPool.BLANK);
-String borderId = prefs.getValue("border-id", StringPool.BLANK);
-String width = prefs.getValue("width", StringPool.BLANK);
-String height = prefs.getValue("height", StringPool.BLANK);
-%>
-
-<%@ include file="/register_gadgets.jsp" %>
-
-<%
-int gadgetIdPos = 0;
-
-for (int i = 0; i < gadgets.length; i++) {
-	if (gadgets[i][0].equals(gadgetId)) {
-		gadgetIdPos = i;
-	}
-}
-String gadgetURL = gadgets[gadgetIdPos][4];
-String gadgetParams = gadgets[gadgetIdPos][5];
-
-int borderIdPos = 0;
-
-for (int i = 0; i < borders.length; i++) {
-	if (borders[i][0].equals(borderId)) {
-		borderIdPos = i;
-	}
-}
-
-String border = borders[borderIdPos][2];
-
-boolean customConf = confType.equals("custom");
+String gadgetId = prefs.getValue("gadget-id", "http://www.geoiptool.com/GeoIPToolModule.xml");
+String gadgetParams = StringPool.BLANK;
 %>
