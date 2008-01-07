@@ -38,6 +38,7 @@
 <%@ page import="com.liferay.portlet.googlegadget.model.GGData" %>
 <%@ page import="com.liferay.portlet.googlegadget.model.GGPagination" %>
 <%@ page import="com.liferay.portlet.googlegadget.util.GGUtil" %>
+<%@ page import="com.liferay.util.Http" %>
 
 <%@ page import="java.util.List" %>
 
