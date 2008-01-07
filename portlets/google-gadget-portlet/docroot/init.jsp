@@ -54,6 +54,5 @@ if (Validator.isNotNull(portletResource)) {
 	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource, true, true);
 }
 
-String gadgetId = prefs.getValue("gadget-id", "http://www.geoiptool.com/GeoIPToolModule.xml");
-String gadgetParams = StringPool.BLANK;
+String gadgetId = prefs.getValue("gadget-id", "http://www.google.com/ig/modules/youtube_videos.xml");
 %>
