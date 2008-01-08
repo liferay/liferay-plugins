@@ -3,7 +3,7 @@
 
 <look-and-feel>
 	<compatibility>
-		<version>4.3.3+</version>
+		<version>4.3.6+</version>
 	</compatibility>
 	<theme id="nautica05" name="Nautica">
 		<root-path>/</root-path>
