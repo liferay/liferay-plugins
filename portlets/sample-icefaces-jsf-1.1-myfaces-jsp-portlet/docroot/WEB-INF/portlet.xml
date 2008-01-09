@@ -2,8 +2,8 @@
 
 <portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd" version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd">
 	<portlet>
-		<portlet-name>sample_icefaces_myfaces</portlet-name>
-		<display-name>Sample ICEfaces (MyFaces RI)</display-name>
+		<portlet-name>sample_icefaces_jsf_1_1_myfaces_jsp_portlet</portlet-name>
+		<display-name>Sample ICEfaces JSF 1.1 MyFaces JSP</display-name>
 		<portlet-class>com.icesoft.faces.webapp.http.portlet.MainPortlet</portlet-class>
 		<init-param>
 			<name>com.icesoft.faces.EDIT</name>
@@ -23,9 +23,9 @@
 			<portlet-mode>help</portlet-mode>
 		</supports>
 		<portlet-info>
-			<title>Sample ICEfaces (MyFaces RI)</title>
-			<short-title>Sample ICEfaces (MyFaces RI)</short-title>
-			<keywords>Sample ICEfaces (MyFaces RI)</keywords>
+			<title>Sample ICEfaces JSF 1.1 MyFaces JSP</title>
+			<short-title>Sample ICEfaces JSF 1.1 MyFaces JSP</short-title>
+			<keywords>Sample ICEfaces JSF 1.1 MyFaces JSP</keywords>
 		</portlet-info>
 		<portlet-preferences>
 			<preference>

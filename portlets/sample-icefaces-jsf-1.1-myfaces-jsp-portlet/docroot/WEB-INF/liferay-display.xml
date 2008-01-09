@@ -3,6 +3,6 @@
 
 <display>
 	<category name="category.sample">
-		<portlet id="sample_icefaces_myfaces" />
+		<portlet id="sample_icefaces_jsf_1_1_myfaces_jsp_portlet" />
 	</category>
 </display>
