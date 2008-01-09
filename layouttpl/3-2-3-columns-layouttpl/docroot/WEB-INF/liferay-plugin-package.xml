@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 4.3.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_4_3_0.dtd">
+
+<plugin-package>
+	<name>3-2-3 Columns Templates</name>
+	<module-id>liferay/3-2-3-columns-layouttpl/4.3.5.1/war</module-id>
+	<types>
+		<type>layout-template</type>
+	</types>
+	<tags>
+		<tag>sample</tag>
+	</tags>
+	<short-description>This is a 3-2-3 columns layout template.</short-description>
+	<change-log>Adapted to the latest version of Liferay.</change-log>
+	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
+	<author>Liferay, Inc.</author>
+	<licenses>
+		<license osi-approved="true">MIT</license>
+	</licenses>
+	<liferay-versions>
+		<liferay-version>4.3.5</liferay-version>
+	</liferay-versions>
+</plugin-package>
