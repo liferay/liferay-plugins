@@ -1,0 +1,22 @@
+/* ---------- Banner ---------- */
+
+#banner {
+	background: transparent url(../images/common/banner_bg.png) no-repeat scroll 100% 100%;
+	min-height: 99px;
+	position: relative;
+}
+
+#banner .logo {
+	display: block;
+	float: left;
+	font-size: 2em;
+	padding: 1.25em 0.6em 1.45em;
+}
+
+#banner .logo a {
+	text-decoration: none;
+}
+
+.ie6 #banner .logo {
+	zoom: 1;
+}
