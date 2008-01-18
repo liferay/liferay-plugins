@@ -247,7 +247,7 @@ body {
 
 /* --- LAYOUT SPECIFIC --- */
 #portlet-wrapper- {
-	background: url(../images/common/content_bg_sm.png) no-repeat;
+	background: transparent;
 	margin: 0;
 	padding: 14px;
 }
