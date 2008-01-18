@@ -8,8 +8,12 @@ body {
 	width: 976px;
 }
 
-#content-wrapper {
+#back-container {
 	background: transparent url(../images/common/content_bg.png) no-repeat;
+	min-height: 465px;
+}
+
+#content-wrapper {
 	padding: 7px;
 	margin: 0 auto;
 }
