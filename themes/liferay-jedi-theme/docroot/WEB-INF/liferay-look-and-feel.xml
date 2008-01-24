@@ -8,7 +8,7 @@
 	<theme id="liferay-jedi" name="Liferay Jedi">
 		<settings>
 			<setting key="css-template-id" value="CSS-TEMPLATE" />
-			<setting key="footer-article-id" value="4375" />
+			<setting key="footer-article-id" value="4280" />
 		</settings>
 	</theme>
 </look-and-feel>
