@@ -50,16 +50,12 @@ import org.apache.commons.logging.LogFactory;
  */
 public class LARPlugin implements PortletDataHandler {
 
-	public PortletDataHandlerControl[] getExportControls()
+	public PortletPreferences deleteData(
+			PortletDataContext context, String portletId,
+			PortletPreferences prefs)
 		throws PortletDataException {
 
-		return new PortletDataHandlerControl[] {_enableExport};
-	}
-
-	public PortletDataHandlerControl[] getImportControls()
-		throws PortletDataException{
-
-		return new PortletDataHandlerControl[] {_enableImport};
+		return null;
 	}
 
 	public String exportData(
@@ -70,7 +66,7 @@ public class LARPlugin implements PortletDataHandler {
 		Map parameterMap = context.getParameterMap();
 
 		boolean exportData = MapUtil.getBoolean(
-			parameterMap, _EXPORT_SAMPLE_LAR_DATA,
+			parameterMap, "export-sample-lar-portlet-data",
 			_enableExport.getDefaultState());
 
 		if (_log.isDebugEnabled()) {
@@ -103,7 +99,7 @@ public class LARPlugin implements PortletDataHandler {
 
 			if (zipWriter != null) {
 				boolean createReadMe = MapUtil.getBoolean(
-					parameterMap, _CREATE_README,
+					parameterMap, "create-readme",
 					_createReadme.getDefaultState());
 
 				if (createReadMe) {
@@ -116,9 +112,9 @@ public class LARPlugin implements PortletDataHandler {
 				}
 
 				String dataType = MapUtil.getString(
-					parameterMap, _DATA_TYPE, _dataType.getDefaultChoice());
+					parameterMap, "data-type", _dataType.getDefaultChoice());
 
-				if (Validator.equals(dataType, _TYPE_CSV)) {
+				if (Validator.equals(dataType, "csv")) {
 					StringMaker csv = new StringMaker();
 
 					csv.append("data 1," + new Date() + "\n");
@@ -130,7 +126,7 @@ public class LARPlugin implements PortletDataHandler {
 
 					zipWriter.addEntry(filePath, csv.toString());
 				}
-				else if (Validator.equals(dataType, _TYPE_XML)) {
+				else if (Validator.equals(dataType, "xml")) {
 					StringMaker xml = new StringMaker();
 
 					xml.append("<?xml version=\"1.0\"?>\n\n");
@@ -160,6 +156,18 @@ public class LARPlugin implements PortletDataHandler {
 		}
 	}
 
+	public PortletDataHandlerControl[] getExportControls()
+		throws PortletDataException {
+
+		return new PortletDataHandlerControl[] {_enableExport};
+	}
+
+	public PortletDataHandlerControl[] getImportControls()
+		throws PortletDataException{
+
+		return new PortletDataHandlerControl[] {_enableImport};
+	}
+
 	public PortletPreferences importData(PortletDataContext context,
 			String portletId, PortletPreferences prefs, String data)
 			throws PortletDataException {
@@ -167,7 +175,7 @@ public class LARPlugin implements PortletDataHandler {
 		Map parameterMap = context.getParameterMap();
 
 		boolean importData = MapUtil.getBoolean(
-			parameterMap, _IMPORT_SAMPLE_LAR_DATA,
+			parameterMap, "import-sample-lar-portlet-data",
 			_enableImport.getDefaultState());
 
 		if (_log.isDebugEnabled()) {
@@ -207,34 +215,23 @@ public class LARPlugin implements PortletDataHandler {
 		}
 	}
 
-	private static final String _CREATE_README = "create-readme";
-
-	private static final String _DATA_TYPE = "data-type";
-
-	private static final String _EXPORT_SAMPLE_LAR_DATA =
-		"export-sample-lar-portlet-data";
-
-	private static final String _IMPORT_SAMPLE_LAR_DATA =
-		"import-sample-lar-portlet-data";
-
-	private static final String _TYPE_CSV = "csv";
-
-	private static final String _TYPE_XML = "xml";
+	private static final String _NAMESPACE = "lar-plugin";
 
 	private static final PortletDataHandlerBoolean _createReadme =
-		new PortletDataHandlerBoolean(_CREATE_README, true);
+		new PortletDataHandlerBoolean(_NAMESPACE, "create-readme", true, true);
 
 	private static final PortletDataHandlerChoice _dataType =
 		new PortletDataHandlerChoice(
-			_DATA_TYPE, 1, new String[] {_TYPE_CSV, _TYPE_XML});
+			_NAMESPACE, "data-type", 1, new String[] {"csv", "xml"});
 
 	private static final PortletDataHandlerBoolean _enableExport =
 		new PortletDataHandlerBoolean(
-			_EXPORT_SAMPLE_LAR_DATA, true,
+			_NAMESPACE, "export-sample-lar-portlet-data", true,
 			new PortletDataHandlerControl[] {_createReadme, _dataType});
 
 	private static final PortletDataHandlerBoolean _enableImport =
-		new PortletDataHandlerBoolean(_IMPORT_SAMPLE_LAR_DATA);
+		new PortletDataHandlerBoolean(
+			_NAMESPACE, "import-sample-lar-portlet-data", true, true);
 
 	private static Log _log = LogFactory.getLog(LARPlugin.class);
 
