@@ -27,13 +27,13 @@
 <form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
-<table class="liferay-table">
+<table class="lfr-table">
 <tr>
 	<td>
 		<liferay-ui:message key="ad-client" />
 	</td>
 	<td>
-		<input class="liferay-input-text" name="<portlet:namespace />adClient" type="text" value="<%= adClient %>" />
+		<input class="lfr-input-text" name="<portlet:namespace />adClient" type="text" value="<%= adClient %>" />
 	</td>
 </tr>
 <tr>
@@ -41,7 +41,7 @@
 		<liferay-ui:message key="ad-channel" />
 	</td>
 	<td>
-		<input class="liferay-input-text" name="<portlet:namespace />adChannel" type="text" value="<%= adChannel %>" />
+		<input class="lfr-input-text" name="<portlet:namespace />adChannel" type="text" value="<%= adChannel %>" />
 	</td>
 </tr>
 <tr>
@@ -94,7 +94,7 @@
 		<liferay-ui:message key="color-border" />
 	</td>
 	<td>
-		<input class="liferay-input-text" name="<portlet:namespace />colorBorder" type="text"  value="<%= colorBorder %>" />
+		<input class="lfr-input-text" name="<portlet:namespace />colorBorder" type="text"  value="<%= colorBorder %>" />
 	</td>
 </tr>
 <tr>
@@ -102,7 +102,7 @@
 		<liferay-ui:message key="color-background" />
 	</td>
 	<td>
-		<input class="liferay-input-text" name="<portlet:namespace />colorBg" type="text" value="<%= colorBg %>" />
+		<input class="lfr-input-text" name="<portlet:namespace />colorBg" type="text" value="<%= colorBg %>" />
 	</td>
 </tr>
 <tr>
@@ -110,7 +110,7 @@
 		<liferay-ui:message key="color-link" />
 	</td>
 	<td>
-		<input class="liferay-input-text" name="<portlet:namespace />colorLink" type="text" value="<%= colorLink %>" />
+		<input class="lfr-input-text" name="<portlet:namespace />colorLink" type="text" value="<%= colorLink %>" />
 	</td>
 </tr>
 <tr>
@@ -118,7 +118,7 @@
 		<liferay-ui:message key="color-text" />
 	</td>
 	<td>
-		<input class="liferay-input-text" name="<portlet:namespace />colorText" type="text" value="<%= colorText %>" />
+		<input class="lfr-input-text" name="<portlet:namespace />colorText" type="text" value="<%= colorText %>" />
 	</td>
 </tr>
 <tr>
@@ -126,7 +126,7 @@
 		<liferay-ui:message key="color-url" />
 	</td>
 	<td>
-		<input class="liferay-input-text" name="<portlet:namespace />colorUrl" type="text" value="<%= colorUrl %>" />
+		<input class="lfr-input-text" name="<portlet:namespace />colorUrl" type="text" value="<%= colorUrl %>" />
 	</td>
 </tr>
 </table>

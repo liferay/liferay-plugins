@@ -27,11 +27,11 @@
 <form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
-<table class="liferay-table">
+<table class="lfr-table">
 <tr>
 	<td><liferay-ui:message key="url" /></td>
 	<td>
-		<input class="liferay-input-text" name="<portlet:namespace />url" type="text" value="<%= url %>" />
+		<input class="lfr-input-text" name="<portlet:namespace />url" type="text" value="<%= url %>" />
 	</td>
 </tr>
 <tr>
@@ -65,7 +65,7 @@
 		<liferay-ui:message key="message" />
 	</td>
 	<td>
-		<textarea class="liferay-textarea" name="<portlet:namespace/>message" wrap="soft"><%= message %></textarea>
+		<textarea class="lfr-textarea" name="<portlet:namespace/>message" wrap="soft"><%= message %></textarea>
 	</td>
 </tr>
 </table>

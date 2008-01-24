@@ -60,7 +60,7 @@ if (cmd.equals(Constants.ADD) || cmd.equals(Constants.EDIT)) {
 	<input name="<%= Constants.CMD %>" type="hidden" value="<%= cmd %>" />
 	<input name="foodItemId" type="hidden" value="<%= foodItemId %>" />
 
-	<table class="liferay-table">
+	<table class="lfr-table">
 
 	<%
 	if (cmd.equals(Constants.EDIT)) {

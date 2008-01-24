@@ -48,7 +48,7 @@
 		<name>user.name.family</name>
 	</user-attribute>
 	<user-attribute>
-		<description>User eMail</description>
+		<description>User Email</description>
 		<name>user.home-info.online.email</name>
 	</user-attribute>
 </portlet-app>

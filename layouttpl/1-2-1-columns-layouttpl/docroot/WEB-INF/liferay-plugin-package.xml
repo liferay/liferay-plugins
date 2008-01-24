@@ -3,13 +3,10 @@
 
 <plugin-package>
 	<name>1-2-1 Columns Templates</name>
-	<module-id>liferay/1-2-1-columns-layouttpl/4.3.6.1/war</module-id>
+	<module-id>liferay/1-2-1-columns-layouttpl/4.4.0.1/war</module-id>
 	<types>
 		<type>layout-template</type>
 	</types>
-	<tags>
-		<tag>sample</tag>
-	</tags>
 	<short-description>
 		This is a 1-2-1 columns layout template.
 	</short-description>
@@ -22,6 +19,6 @@
 		<license osi-approved="true">MIT</license>
 	</licenses>
 	<liferay-versions>
-		<liferay-version>4.3.6+</liferay-version>
+		<liferay-version>4.4.0+</liferay-version>
 	</liferay-versions>
 </plugin-package>

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 4.3.6//EN" "http://www.liferay.com/dtd/liferay-portlet-app_4_3_6.dtd">
+<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 4.4.0//EN" "http://www.liferay.com/dtd/liferay-portlet-app_4_4_0.dtd">
 
 <liferay-portlet-app>
 	<portlet>
@@ -11,6 +11,7 @@
 		<instanceable>true</instanceable>
 		<render-weight>1</render-weight>
 		<header-portlet-css>/portlet.css</header-portlet-css>
+		<css-class-wrapper>portlet-alfresco-content</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

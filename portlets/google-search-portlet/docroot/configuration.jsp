@@ -31,13 +31,13 @@
 <a href="http://code.google.com/apis/soapsearch" target="_blank"><liferay-ui:message key="you-can-get-a-license-directly-from-google" /></a>
 </div>
 
-<table class="liferay-table">
+<table class="lfr-table">
 <tr>
 	<td>
 		<liferay-ui:message key="google-license" />
 	</td>
 	<td>
-		<input class="liferay-input-text" name="<portlet:namespace />license" type="text" value="<%= license %>" />
+		<input class="lfr-input-text" name="<portlet:namespace />license" type="text" value="<%= license %>" />
 	</td>
 </tr>
 </table>

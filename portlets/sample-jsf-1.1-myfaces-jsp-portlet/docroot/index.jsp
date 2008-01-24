@@ -29,7 +29,7 @@
 	<f:loadBundle basename="Language" var="msgs" />
 
 	<h:form>
-		<table class="liferay-table">
+		<table class="lfr-table">
 		<tr>
 			<td>
 				<h:outputText value="#{msgs.please_enter_your_name}" />
