@@ -25,10 +25,20 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String query = ParamUtil.getString(request, "q");
 String categoryId = ParamUtil.getString(request, "categoryId", "all");
 int start = ParamUtil.getInteger(request, "start", 0);
 
-String url = "http://www.google.com/ig/directory?synd=open&cat=" + categoryId + "&start=" + start + "&sa=N";
+String url = "http://www.google.com/ig/directory?synd=open";
+
+if (Validator.isNotNull(query)) {
+	url += "&q=" + java.net.URLEncoder.encode(query) + "&btnG=Search+Google+Gadgets";
+}
+else {
+	url += "&cat=" + categoryId;
+}
+
+url += "&start=" + start + "&sa=N";
 
 GGData data = GGUtil.getData(url);
 %>
@@ -42,14 +52,31 @@ GGData data = GGUtil.getData(url);
 <c:choose>
 	<c:when test="<%= data != null %>">
 		<script type="text/javascript">
+			function <portlet:namespace />addGadgetByURL() {
+				var gadgetId = document.<portlet:namespace />fm.<portlet:namespace />q.value;
+
+				if (gadgetId.indexOf("http") == 0) {
+					<portlet:namespace />chooseGadget(gadgetId);
+				}
+				else {
+					<portlet:namespace />searchGadgets();
+				}
+			}
+
 			function <portlet:namespace />chooseGadget(gadgetId) {
+				document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.UPDATE %>";
 				document.<portlet:namespace />fm.<portlet:namespace />gadgetId.value = gadgetId;
 				submitForm(document.<portlet:namespace />fm);
 			}
+
+			function <portlet:namespace />searchGadgets() {
+				var query = document.<portlet:namespace />fm.<portlet:namespace />q.value;
+				submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"></liferay-portlet:actionURL>&q=' + query + '&start=0');
+			}
 		</script>
 
-		<form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm">
-		<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+		<form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />addGadgetByURL(); return false;">
+		<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 		<input name="<portlet:namespace />gadgetId" type="hidden" value="" />
 
 		<table class="lfr-table" width="100%">
@@ -68,7 +95,7 @@ GGData data = GGUtil.getData(url);
 
 					<c:choose>
 						<c:when test="<%= Validator.isNotNull(category.getName()) %>">
-							<a href="<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="categoryId" value="<%= category.getCategoryId() %>" /></liferay-portlet:actionURL>"><%= category.getName() %></a><br />
+							<a href="javascript: submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="categoryId" value="<%= category.getCategoryId() %>" /></liferay-portlet:actionURL>');"><%= category.getName() %></a><br />
 						</c:when>
 						<c:otherwise>
 							<br />
@@ -85,7 +112,13 @@ GGData data = GGUtil.getData(url);
 
 				<br /><br />
 
-				<input name="<portlet:namespace />customGadgetId" size="70" type="text" /> <input onclick="<portlet:namespace />chooseGadget(document.<portlet:namespace />fm.<portlet:namespace />customGadgetId.value);" type="button" value="<liferay-ui:message key="add" />" />
+				<input name="<portlet:namespace />q" size="50" type="text" />
+
+				<input onclick="<portlet:namespace />searchGadgets();" type="button" value="<liferay-ui:message key="Search Gadgets" />" />
+
+				<liferay-ui:message key="or" />
+
+				<input onclick="<portlet:namespace />addGadgetByURL();" type="button" value="<liferay-ui:message key="Add Gadget by URL" />" />
 
 				<%
 				GGPagination pagination = data.getPagination();
@@ -96,13 +129,13 @@ GGData data = GGUtil.getData(url);
 
 					<span style="padding-left: 10px;">
 						<c:if test="<%= pagination.getStart() >= pagination.getDelta() %>">
-							<a href="<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="categoryId" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(start - pagination.getDelta()) %>" /></liferay-portlet:actionURL>">&laquo; <liferay-ui:message key="previous" /></a>
+							<a href="javascript: submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="q" value="<%= query %>" /><portlet:param name="categoryId" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(start - pagination.getDelta()) %>" /></liferay-portlet:actionURL>');">&laquo; <liferay-ui:message key="previous" /></a>
 						</c:if>
 					</span>
 
 					<span style="padding-left: 10px;">
 						<c:if test="<%= (pagination.getStart() + pagination.getDelta()) <= pagination.getTotal() %>">
-							<a href="<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="categoryId" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(start + pagination.getDelta()) %>" /></liferay-portlet:actionURL>"><liferay-ui:message key="next" /> &raquo;</a>
+							<a href="javascript: submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="q" value="<%= query %>" /><portlet:param name="categoryId" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(start + pagination.getDelta()) %>" /></liferay-portlet:actionURL>');"><liferay-ui:message key="next" /> &raquo;</a>
 						</c:if>
 					</span>
 				</div>
@@ -133,13 +166,13 @@ GGData data = GGUtil.getData(url);
 
 					<span style="padding-left: 10px;">
 						<c:if test="<%= pagination.getStart() >= pagination.getDelta() %>">
-							<a href="<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="categoryId" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(start - pagination.getDelta()) %>" /></liferay-portlet:actionURL>">&laquo; <liferay-ui:message key="previous" /></a>
+							<a href="javascript: submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="categoryId" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(start - pagination.getDelta()) %>" /></liferay-portlet:actionURL>');">&laquo; <liferay-ui:message key="previous" /></a>
 						</c:if>
 					</span>
 
 					<span style="padding-left: 10px;">
 						<c:if test="<%= (pagination.getStart() + pagination.getDelta()) <= pagination.getTotal() %>">
-							<a href="<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="categoryId" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(start + pagination.getDelta()) %>" /></liferay-portlet:actionURL>"><liferay-ui:message key="next" /> &raquo;</a>
+							<a href="javascript: submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="categoryId" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(start + pagination.getDelta()) %>" /></liferay-portlet:actionURL>');"><liferay-ui:message key="next" /> &raquo;</a>
 						</c:if>
 					</span>
 				</div>
