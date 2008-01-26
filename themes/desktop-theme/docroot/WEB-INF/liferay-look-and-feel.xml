@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 4.3.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_4_3_0.dtd">
+
+<look-and-feel>
+	<compatibility>
+		<version>4.4.0+</version>
+	</compatibility>
+	<theme id="desktop" name="Desktop">
+		<color-scheme id="01" name="Linux">
+			<default-cs>true</default-cs>
+			<css-class>linux</css-class>
+		</color-scheme>
+		<color-scheme id="02" name="Mac">
+			<css-class>mac</css-class>
+		</color-scheme>
+		<color-scheme id="03" name="Vista">
+			<css-class>vista</css-class>
+		</color-scheme>
+	</theme>
+</look-and-feel>

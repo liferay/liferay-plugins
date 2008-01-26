@@ -1,0 +1,2121 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/*
+TABLE OF CONTENTS
+
+BASE.CSS - document and wallpaper styles
+
+*/
+
+/* ---------- BASE.CSS ---------- */
+/**********************************/
+html, body {
+	height: 100%;
+	overflow-x: hidden;
+	overflow: hidden;
+}
+
+a {
+	outline: none;
+}
+
+* html {
+	overflow-y: hidden;
+}
+
+* body {
+	overflow-y: auto;
+}
+
+* html #wallpaper {
+	position: absolute;
+	z-index: -1;
+}
+
+* html #wrapper {
+	position: static;
+}
+
+ul, li, li a {
+	box-sizing: content-box;  /* IE 6 and 7 list whitespace bug fix */
+	vertical-align: bottom;
+}
+
+#wrapper {
+	position: relative;
+	z-index: 1;
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+}
+
+#wallpaper {
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+
+.popup-message {
+	padding: 5px;
+	overflow: auto;
+	height: 375px;
+	overflow-x: hidden;
+}
+
+/* This CSS sets the default styles for the main navigation. */
+
+/* ---------- Main navigation ---------- */
+
+.js #linux.lfr-dock.expanded ul.nav-dock-list {
+	background: none;
+	border-top: none;
+	display: none;
+	position: relative;
+	top: -29px;
+	left: 176px;
+	width: 180px;
+	min-width: 180px;
+	border: 1px solid #b7bfb4;
+	z-index: 1000;
+}
+
+.ie6.js #linux.lfr-dock.interactive-mode li.home {
+	overflow: hidden;
+}
+
+.js #linux.lfr-dock.interactive-mode li.home a {
+	border-top: 1px solid #b7bfb4;
+}
+
+.js #linux.lfr-dock.interactive-mode li.home {
+	background: transparent url(../images/desktop/submenu-arrow-black.png) no-repeat 167px 0px;
+	height: 28px;
+}
+
+.js #linux.lfr-dock.interactive-mode li.places {
+	background: transparent url(../images/desktop/submenu-arrow-black.png) no-repeat 167px 0px;
+	height: 28px;
+}
+
+.ie6.js #linux.lfr-dock.interactive-mode li.places {
+	background: transparent url(../images/desktop/submenu-arrow-black.png) no-repeat 167px 0px;
+	overflow: hidden;
+}
+
+.js #linux.lfr-dock.expanded li.home ul.nav-dock-list {
+	background: transparent url(../images/desktop/menubar-linux.png) repeat-y left top;
+	border: 1px solid #b7bfb4;
+	width: 180px;
+}
+
+.js #linux.lfr-dock.expanded ul.nav-dock-list li {
+	height: 28px;
+	padding: 0 1px;
+}
+
+.ie6.js #linux.lfr-dock.expanded ul.nav-dock-list li {
+	overflow: hidden;
+	width: 178px;
+}
+
+.js #linux.lfr-dock.expanded ul.nav-dock-list li a {
+	display: block;
+	float: none;
+	background: none;
+	border-top: none;
+	padding: 0.5em 0pt 0.5em 1em;
+	margin-left: 0;
+	font-size: 12px;
+	color: #000000;
+}
+
+.js #linux.lfr-dock.expanded ul.nav-dock-list li a:hover {
+	background: none;
+	background-color: #0a246a;
+	padding: 0.5em 0pt 0.5em 1em;
+}
+
+.js #linux.lfr-dock.expanded ul.nav-dock-list li.selected {
+	display: block;
+	float: none;
+	margin: 0;
+	padding: 0 1px;
+	width: 178px;
+	height: 28px;
+}
+
+.js #linux.lfr-dock.expanded ul.nav-dock-list li.selected a {
+	margin: 0;
+	color: #ffffff;
+	background-color: #3DA5D5;
+}
+
+.js #linux.lfr-dock.expanded ul.nav-dock-list li.selected a:hover {
+	background-color: #3DA5D5;
+}
+
+.js #linux.lfr-dock.expanded .nav-dock-list ul.child-menu {
+	background: none;
+	border-top: none;
+	display: none;
+	position: relative;
+	top: -57px;
+	left: 179px;
+	width: 180px;
+	height: auto;
+	border: 1px solid #b7bfb4;
+	padding: 0;
+	margin: 0;
+}
+
+.ie6.js #linux.lfr-dock.expanded .nav-dock-list ul.child-menu {
+	width: 178px;
+}
+
+.js #linux.lfr-dock.expanded .nav-dock-list ul.child-menu li a:hover {
+	color: #ffffff;
+}
+
+.submenu-arrow-black {
+	position: relative;
+	top: -28px;
+	left: 165px;
+	height: 28px;
+	width: 15px;
+	background: transparent url(../images/desktop/submenu-arrow-black.png) repeat-y left -1px;
+}
+
+.submenu-arrow-white {
+	position: absolute;
+	top: 0;
+	left: -15px;
+	height: 28px;
+	width: 15px;
+	background: transparent url(../images/desktop/submenu-arrow-white.png) repeat-y left top;
+}
+
+.js #linux.lfr-dock.expanded ul.nav-dock-list ul.child-menu li {
+	background: transparent url(../images/desktop/menubar-linux.png) repeat-y left top;
+	padding: 0 1px;
+	height: 28px;
+}
+
+
+
+/*------ Navigation.css ------*/
+
+.js .lfr-dock.expanded .nav-dock-list-container {
+	position: absolute;
+	top: -376px;
+	left: 194px;
+	width: 119px;
+	height: 355px;
+}
+
+.js .lfr-dock.expanded .nav-dock-list-container ul {
+	background: none;
+	display: block;
+	float: none;
+	position: absolute;
+	top: 0px;
+	left: 0;
+	width: 119px;
+	height: 355px
+}
+
+.js .lfr-dock.expanded .nav-dock-list-container ul li {
+	display: block;
+	float: none;
+	margin-left: 0;
+}
+
+.js .lfr-dock.expanded .nav-dock-list-container ul li a {
+	display: block;
+	padding: 0.5em 0pt 0.5em 3px;
+	text-decoration: none;
+	margin-left: 0;
+	font-size: 1.3em;
+	color: #ffffff;
+}
+
+.js .lfr-dock.expanded .nav-dock-list-container ul li a:hover {
+	background-color: #333333;
+}
+
+.ie6.js .lfr-dock.expanded .nav-dock-list-container {
+	white-space: nowrap;
+	width: 44px;
+}
+
+.ie6.js .lfr-dock.expanded.interactive-mode .nav-dock-list-container {
+}
+
+.ie6.js .lfr-dock.expanded .nav-dock-list-container li {
+	height: 1%;
+}
+
+.ie6.js .lfr-dock.expanded .nav-dock-list-container li a {
+	height: 1%;
+}
+
+.ie6.js .lfr-dock.expanded .nav-dock-list-container li a:hover {
+	margin-left: 0;
+	padding-left: 3px;
+}
+
+.js .lfr-dock.expanded .nav-dock-list-container .child-menu {
+	display: none;
+}
+
+
+
+
+.js #mac.interactive-mode.expanded .nav-dock-list {
+	display: none;
+}
+
+.js #mac.lfr-dock.expanded .nav-dock-list { 
+	background: transparent url(../images/desktop/menubar-mac.png) repeat-y left top;
+	border-top: none;
+	display: none;
+	position: relative;
+	top: -29px;
+	left: 181px;
+	width: 180px;
+	min-width: 180px;
+	border: 1px solid #b7bfb4;
+	z-index: 1000;
+}
+
+.js #mac.lfr-dock.expanded .nav-dock-list ul.child-menu {
+	background: transparent url(../images/desktop/menubar-mac.png) repeat-y left top;
+	border-top: none;
+	display: none;
+	position: relative;
+	top: -57px;
+	left: 179px;
+	width: 180px;
+	height: auto;
+	border: 1px solid #b7bfb4;
+	padding: 0;
+	margin: 0;
+}
+
+.js #mac.lfr-dock.interactive-mode li {
+	display: block;
+	float: none;
+	margin-bottom: 0;
+	margin-left: 0;
+	padding: 0 9px 0 9px;
+	height: 28px;
+}
+
+.js #mac.lfr-dock.expanded ul.nav-dock-list li {
+	height: 28px;
+	padding: 0 1px;
+}
+
+.js #mac.lfr-dock.expanded ul.nav-dock-list ul.child-menu li {
+	padding: 0 1px;
+	height: 28px;
+}
+
+.js #mac.lfr-dock.expanded ul.nav-dock-list li a {
+	display: block;
+	float: none;
+	background: none;
+	border-top: none;
+	padding: 0.5em 0pt 0.5em 1em;
+	margin-left: 0;
+	font-size: 12px;
+	color: #000000;
+}
+
+.js #mac.lfr-dock.expanded ul.nav-dock-list li a:hover {
+	background: none;
+	background-color: #336eca;
+	color: #ffffff;
+	padding: 0.5em 0pt 0.5em 1em;
+}
+
+.js #mac.lfr-dock.interactive-mode li.home {
+	background: transparent url(../images/desktop/submenu-arrow-black.png) no-repeat 176px 0px;
+	height: 28px;
+}
+
+.js #mac.lfr-dock.interactive-mode li.places {
+	background: transparent url(../images/desktop/submenu-arrow-black.png) no-repeat 176px 0px;
+	height: 28px;
+}
+
+.js #mac.lfr-dock.expanded ul.nav-dock-list li.selected a {
+	margin: 0;
+	color: #ffffff;
+	background-color: #3DA5D5;
+}
+
+.ie6.js #mac.lfr-dock.interactive-mode li.home {
+	overflow: hidden;
+}
+
+.ie6.js #mac.lfr-dock.interactive-mode li.places {
+	overflow: hidden;
+}
+
+.ie6.js #mac.lfr-dock.expanded ul.nav-dock-list li {
+	overflow: hidden;
+	width: 178px;
+}
+
+
+
+
+
+.js #vista.lfr-dock.expanded ul.nav-dock-list li.selected a {
+	margin: 0;
+	color: #ffffff;
+	background-color: #2a82aa;
+}
+
+.js #vista.lfr-dock.interactive-mode li.places {
+	background: transparent url(../images/desktop/submenu-arrow-black.png) no-repeat 169px 0px;
+	height: 28px;
+	padding-right:4px;
+}
+
+.js #vista.lfr-dock.expanded .nav-dock-list {
+	position: relative;
+	top: -376px;
+	left: 194px;
+	width: 119px;
+	height: 355px;
+}
+
+.js #vista.lfr-dock.expanded .nav-dock-list ul {
+	background: none;
+	display: none;
+	float: none;
+	position: absolute;
+	top: 0px;
+	left: 0;
+	width: 119px;
+	height: 355px;
+}
+
+.js #vista.lfr-dock.expanded .nav-dock-list ul li {
+	display: block;
+	float: none;
+	margin-left: 0;
+}
+
+.js #vista.lfr-dock.expanded .nav-dock-list ul li a {
+	display: block;
+	padding: 0.5em 0pt 0.5em 3px;
+	text-decoration: none;
+	margin-left: 0;
+	font-size: 1.3em;
+	color: #000000;
+}
+
+.js #vista.lfr-dock.expanded .nav-dock-list ul li a:hover {
+	background-color: #074f67;
+	color: #ffffff;
+	padding: 0.5em 0 0.4em 0.5em;
+}
+
+.ie6.js #vista.lfr-dock.expanded .nav-dock-list {
+	white-space: nowrap;
+	width: 44px;
+}
+
+.js #vista.lfr-dock.expanded .nav-dock-list .child-menu {
+	background: transparent url(../images/desktop/menubar-vista.png) repeat-y left top;
+	border-top: none;
+	display: none;
+	position: relative;
+	top: -57px;
+	left: 114px;
+	width: 120px;
+	height: auto;
+	border: 1px solid #b7bfb4;
+	padding: 0;
+	margin: 0;
+}
+
+.vista ul.nav-dock-list .submenu-arrow-black {
+	left: 100px;
+}
+
+
+
+/* ---------- Start menubar ---------- */
+
+#taskbar {
+	background: transparent url(../images/taskbar/vista-panel.png) repeat-x top left;
+	width: 100%;
+	height: 28px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	z-index: 10;
+}
+
+#taskbar-vista {
+	background: transparent url(../images/taskbar/vista-panel.png) repeat-x top left;
+	width: 100%;
+	height: 28px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	z-index: 10;
+}
+
+#taskbar-spacer-vista {
+	height: 0px;
+}
+
+#taskbar-mac {
+	background: none;
+	width: 100%;
+	height: 28px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 10;
+}
+
+#taskbar-spacer-mac {
+	height: 28px;
+	width: 100%;
+}
+
+#taskbar-mac #left {
+	background: transparent url(../images/taskbar/mac-panel.png) no-repeat top left;
+	width: 100%;
+	height: 28px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 5;
+}
+
+#taskbar-mac #right {
+	background: transparent url(../images/taskbar/mac-panel.png) no-repeat top right;
+	width: 10px;
+	height: 28px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	z-index: 5;
+}
+
+#taskbar-linux {
+	background: transparent url(../images/taskbar/linux-panel.png) repeat-x top left;
+	width: 100%;
+	height: 28px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 10;
+}
+
+#taskbar-spacer-linux {
+	height: 28px;
+	width: 100%;
+}
+
+#taskbar-clock-vista {
+	position: absolute;
+	z-index: 6;
+	bottom: 0px;
+	right: 7px;
+	color: #ffffff;
+	font-size: 12px;
+	font-family: Arial,Verdana,sans-serif;
+	line-height: 27px;
+}
+
+#taskbar-clock-mac {
+	position: absolute;
+	z-index: 6;
+	top: 3px;
+	right: 11px;
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: 'Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+}
+
+#taskbar-clock-linux {
+	position: absolute;
+	z-index: 6;
+	top: 5px;
+	right: 5px;
+	color: #efefef;
+	font-size: 12px;
+	font-family: Arial,Verdana,sans-serif;
+}
+
+#taskbar-linux ul#window {
+	line-height: 28px;
+	margin: 0 120px 0 51px;
+	font-family: Arial,Verdana,sans-serif;
+	font-size: 12px;
+	color: #efefef;
+}
+
+#taskbar-linux ul#window li {
+	float: left;
+	width: 100px;
+	background-color: #ffffff;
+	color: #000000;
+	text-align: center;
+	margin: 0 2px;
+	border: 1px solid red;
+}
+
+/* ---------- Dock without JavaScript ---------- */
+
+.lfr-dock {
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+}
+
+.lfr-dock h2 {
+	background: url(../images/navigation/welcome_message.png) no-repeat 0 50%;
+	font-size: 1.2em;
+	margin-bottom: 0.5em;
+	padding-left: 2em;
+	text-align: right;
+}
+
+.lfr-dock ul {
+	display: inline;
+	float: left;
+}
+
+.lfr-dock li {
+	display: inline;
+	float: left;
+	margin-left: 15px;
+}
+
+.lfr-dock li a {
+	background: url() no-repeat 0 50%;
+	padding: 2px 0 2px 20px;
+}
+
+.lfr-dock li.home a {
+	background-image: url(../images/dock/home.png);
+}
+
+.lfr-dock li.my-account a {
+	background-image: url(../images/dock/my_account.png);
+}
+
+.lfr-dock li.sign-in a {
+	background-image: url(../images/dock/sign_in.png);
+}
+
+.lfr-dock li.sign-out a {
+	background-image: url(../images/dock/sign_out.png);
+}
+
+.js #linux.lfr-dock.interactive-mode li.sign-out a {
+	border-top: 1px dotted #888888;
+}
+
+.js #mac.lfr-dock.interactive-mode li.sign-out a {
+	border-top: 1px dotted #888888;
+}
+
+.js #vista.lfr-dock.interactive-mode li.sign-out a {
+	border-top: 1px dotted #888888;
+}
+
+.lfr-dock li.add-content a {
+	background-image: url(../images/dock/add_content.png);
+}
+
+.js #linux.lfr-dock.interactive-mode li.add-content a {
+	border-top: 1px dotted #888888;
+}
+
+.js #mac.lfr-dock.interactive-mode li.add-content a {
+	border-top: 1px dotted #888888;
+}
+
+.js #vista.lfr-dock.interactive-mode li.add-content a {
+	border-top: 1px dotted #888888;
+}
+
+.lfr-dock li.layout a {
+	background-image: url(../images/dock/layout.png);
+}
+
+.lfr-dock li.page-settings a {
+	background-image: url(../images/dock/page_settings.png);
+}
+
+.lfr-dock li.places a {
+	background-image: url(../images/dock/my_places.png);
+}
+
+.lfr-dock li.places {
+	display: none;
+}
+
+/* ---------- Dock with JavaScript ---------- */
+
+.js .lfr-dock.interactive-mode {
+	background: transparent url(../images/dock/vista.png) no-repeat bottom left;
+	bottom: -999em;
+	left: -999em;
+	top: -999em;
+	right: -999em;
+	height: 37px;
+	width: 44px;
+	min-width: 44px;
+}
+
+.js .interactive-mode.expanded {
+	background: transparent url(../images/dock/vista-hover.png) no-repeat bottom left;
+	bottom: -999em;
+	left: -999em;
+	top: -999em;
+	right: -999em;
+	height: 37px;
+	width: 44px;
+	min-width: 44px;
+	z-index: 100;
+}
+
+.js #vista.lfr-dock.interactive-mode {
+	background: transparent url(../images/dock/vista.png) no-repeat bottom left;
+	left: 5px;
+	bottom: 0;
+	top: auto;
+	right: auto;
+	height: 37px;
+	width: 44px;
+	min-width: 44px;
+}
+
+.js #vista.interactive-mode.expanded {
+	background: transparent url(../images/dock/vista-hover.png) no-repeat bottom left;
+	left: 5px;
+	bottom: 0;
+	top: auto;
+	right: auto;
+	height: 37px;
+	width: 44px;
+	min-width: 44px;
+	z-index: 100;
+}
+
+.js #vista.lfr-dock.expanded ul {
+	background: none;
+	display: block;
+	float: none;
+	position: absolute;
+	top: 65px;
+	left: 8px;
+	width: 187px;
+	height: 355px;
+}
+
+.ie6.js #vista.lfr-dock.expanded ul.nav-dock-list {
+	position: relative;
+	top:-60px;
+}
+
+.js #vista.lfr-dock.interactive-mode li {
+	display: block;
+	float: none;
+	margin-bottom: 0;
+	margin-left: 0;
+	height: 28px;
+}
+
+.ie6.js #vista.lfr-dock.interactive-mode li {
+	overflow: hidden;
+	width:119px;
+}
+
+.ie6.js #vista.lfr-dock.interactive-mode ul.lfr-dock-list li {
+	width:187px;
+}
+
+.js #mac.lfr-dock.interactive-mode {
+	background: transparent url(../images/dock/mac.png) no-repeat bottom left;
+	position: absolute;
+	z-index: 100;
+	top: 0;
+	left: 9px;
+	bottom: auto;
+	right: auto;
+	height: 21px;
+	width: 34px;
+	min-width: 34px;
+}
+
+.js #mac.interactive-mode.expanded {
+	background: transparent url(../images/dock/mac-hover.png) no-repeat bottom left;
+	position: absolute;
+	z-index: 100;
+	top: 0;
+	left: 9px;
+	bottom: auto;
+	right: auto;
+	height: 21px;
+	width: 34px;
+	min-width: 34px;
+}
+
+.ie6.js #mac.interactive-mode.expanded {
+	background: url(../images/dock/mac-hover.png) no-repeat top left;
+}
+
+.js #linux.lfr-dock.interactive-mode {
+	background: transparent url(../images/dock/linux.png) no-repeat bottom left;
+	position: absolute;
+	z-index: 100;
+	top: 0;
+	left: 4px;
+	bottom: auto;
+	right: auto;
+	height: 28px;
+	width: 43px;
+	min-width: 43px;
+}
+
+.js #linux.interactive-mode.expanded {
+	background: transparent url(../images/dock/linux-hover.png) no-repeat bottom left;
+	position: absolute;
+	z-index: 100;
+	top: 0;
+	left: 4px;
+	bottom: auto;
+	right: auto;
+	height: 28px;
+	width: 43px;
+	min-width: 43px;
+}
+
+.ie6.js #linux.interactive-mode.expanded {
+	background: url(../images/dock/linux-hover.png) no-repeat -6px left;
+}
+
+.js .lfr-dock.interactive-mode h2 {
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0 29px 0 0;
+	position: relative;
+	z-index: 82;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	color: #fff;
+	display: block;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0.5em 0.5em 0.5em 2em;
+}
+
+.js #vista.lfr-dock.expanded .lfr-dock-list-container {
+	background: transparent url(../images/desktop/startbar-vista.png) no-repeat top left;
+	border-top: none;
+	position: absolute;
+	top: -441px;
+	left: -5px;
+	width: 330px;
+	height: 450px;
+}
+
+.ie6.js #vista.lfr-dock.expanded .lfr-dock-list-container {
+	top: -122px;
+	left: -5px;
+}
+
+.js #mac.lfr-dock.expanded .lfr-dock-list-container {
+	background: transparent url(../images/desktop/startbar-mac-bottom.png) no-repeat bottom left;
+	border-top: none;
+	position: relative;
+	top: 22px;
+	left: -9px;
+	width: 200px;
+	height: auto;
+	padding-bottom: 9px;
+}
+
+.js #linux.lfr-dock.expanded .lfr-dock-list-container {
+	background: transparent url(../images/desktop/startbar-linux-bottom.png) no-repeat bottom left;
+	border-top: none;
+	position: relative;
+	top: 28px;
+	left: -4px;
+	width: 190px;
+	height: auto;
+	padding: 0 0 11px 0;
+}
+
+.js .lfr-dock.interactive-mode ul {
+	background: none;
+	display: none;
+	float: none;
+	position: absolute;
+	top: 65px;
+	left: 8px;
+	width: 187px;
+	height: 355px;
+}
+
+.js #mac.lfr-dock.interactive-mode ul {
+	background: transparent url(../images/desktop/startbar-mac.png) repeat-y top left;
+	display: none;
+	float: none;
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: auto;
+	border: 0;
+	padding: 0;
+}
+
+.js #linux.lfr-dock.interactive-mode ul {
+	background: transparent url(../images/desktop/startbar-linux.png) repeat-y top left;
+	display: none;
+	float: none;
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: auto;
+	border: 0;
+	padding: 0;
+}
+
+
+.js #linux.lfr-dock.interactive-mode li {
+	display: block;
+	float: none;
+	margin-bottom: 0;
+	margin-left: 0;
+	padding: 0 10px 0 5px;
+}
+
+.js #mac.lfr-dock.interactive-mode li a {
+	background-position: 0.5em 50%;
+	background-repeat: no-repeat;
+	border-top: none;
+	display: block;
+	margin-left: 0;
+	padding: 0.5em 0pt 0.5em 2.2em;
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: 'Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+	text-decoration: none;
+}
+
+.js #linux.lfr-dock.interactive-mode li a {
+	background-position: 0.5em 50%;
+	background-repeat: no-repeat;
+	border-top: none;
+	display: block;
+	margin-left: 0;
+	padding: 0.5em 0pt 0.5em 2.3em;
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Arial,Verdana,sans-serif;
+	text-decoration: none;
+}
+
+.js .lfr-dock.interactive-mode ul.lfr-dock-list > li:first-child a, .js .lfr-dock.interactive-mode ul.lfr-dock-list > li:first-child ul.show-my-places li:first-child a, .js .lfr-dock.interactive-mode ul.lfr-dock-list > li:first-child ul li:first-child a {
+	border-top: none;
+}
+
+.js .lfr-dock.interactive-mode li a:hover {
+	color: #ffffff;
+	background-color: #777777;
+	background-position: 0.5em 50%;
+	padding-left: 2.2em;
+}
+
+.js #mac.lfr-dock.interactive-mode li a:hover {
+	color: #ffffff;
+	background-color: #336eca;
+	background-position: 0.5em 50%;
+	padding-left: 2.2em;
+}
+
+.js #linux.lfr-dock.interactive-mode li a:hover {
+	color: #ffffff;
+	background-color: #0a246a;
+	background-position: 0.5em 50%;
+}
+
+.js .lfr-dock.interactive-mode ul.lfr-dock-list > li:first-child a,
+.js .lfr-dock.interactive-mode ul.lfr-dock-list > li:first-child a:hover,
+.js .lfr-dock.interactive-mode ul.lfr-dock-list li.my-places ul.show-my-places li ul li:first-child a,
+.js .lfr-dock.interactive-mode ul.lfr-dock-list li.my-places ul.show-my-places li ul li:first-child a:hover,
+.js .lfr-dock.interactive-mode ul.lfr-dock-list li.my-places ul li ul li:first-child a,
+.js .lfr-dock.interactive-mode ul.lfr-dock-list li.my-places ul li ul li:first-child a:hover {
+	border-top: none;
+}
+
+.js .my-places {
+	display: none;
+}
+
+.js .lfr-dock.interactive-mode li.my-places li a {
+	background-image: none;
+}
+
+.js .lfr-dock.interactive-mode li.my-places li ul li.current a, .js .lfr-dock.interactive-mode li.my-places li ul li.current a:hover {
+	background: #E5F7FD url(../images/dock/my_place_current.png) no-repeat 1em 50%;
+	margin: 0.1em 0 0 0.2em;
+	padding-left: 3.5em;
+}
+
+.js .interactive-mode .my-places .show-my-places {
+	background: #fff;
+	border: 1px solid #ccc;
+	display: block;
+	min-width: 200px;
+	padding: 0.2em;
+	position: absolute;
+	right: 85%;
+	top: 87%;
+}
+
+.js .interactive-mode .my-places.send-right .show-my-places {
+	left: 100%;
+	top: -10px;
+}
+
+.js .interactive-mode .my-places.send-down .show-my-places {
+	left: 0;
+	top: 100%;
+}
+
+.js .interactive-mode .my-places .show-my-places li {
+	background: url() no-repeat 5px 50%;
+	margin: 0;
+}
+
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle {
+	background: url(../images/dock/my_place.png) no-repeat 3px 50%;
+	border-bottom: 1px solid #999;
+	color: #333;
+	font-size: 1.1em;
+	font-weight: bold;
+	padding: 0.5em 0.2em 0.5em 2em;
+	display: block;
+}
+
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
+	background: url(../images/dock/expand_community.png) no-repeat 100% 50%;
+	padding-right: 1.8em;
+}
+
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle.hide h3 {
+	background-image: url(../images/dock/collapse_community.png);
+}
+
+.js .interactive-mode .my-places .show-my-places li ul {
+	background: none no-repeat 3px 50%;
+	border: none;
+	display: none;
+}
+
+.js .interactive-mode .my-places .show-my-places li ul {
+	margin-left: 0.5em;
+}
+
+.js .interactive-mode .my-places .show-my-places ul li.public a, .js .my-places .show-my-places ul li.public a:hover {
+	background-image: url(../images/dock/my_places_public.png);
+}
+
+.js .interactive-mode .my-places .show-my-places li.private a, .js .my-places .show-my-places li.private a:hover {
+	background-image: url(../images/dock/my_places_private.png);
+}
+
+.ie6.js .lfr-dock.interactive-mode {
+	white-space: nowrap;
+	width: 150px;
+}
+
+.ie.js .lfr-dock .my-places .show-my-places h3 {
+	font-size: 1.1em;
+}
+
+.ie6.js .lfr-dock.expanded.interactive-mode .lfr-dock-list-container {
+	height: 1%;
+}
+
+.ie6.js .interactive-mode .my-places .show-my-places {
+	width: 200px;
+}
+
+.ie6.js .lfr-dock.interactive-mode li {
+	height: 1%;
+}
+
+.ie6.js .lfr-dock.interactive-mode li a {
+	height: 1%;
+}
+
+
+
+
+
+.js #linux.interactive-mode .places ul {
+	background: none;
+	border-top: none;
+	display: none;
+	position: relative;
+	top: -29px;
+	left: 176px;
+	width: 180px;
+	min-width: 180px;
+	border: 1px solid #b7bfb4;
+	z-index: 1000;
+}
+
+.js #linux.interactive-mode .places ul li ul {
+	background: none;
+	border-top: none;
+	display: none;
+	position: relative;
+	top: -29px;
+	left: 179px;
+	width: 180px;
+	height: auto;
+	border: 1px solid #b7bfb4;
+	padding: 0;
+	margin: 0;
+}
+
+.ie6.js #linux.interactive-mode .places ul li ul {
+	width: 176px;
+}
+
+.js #linux.interactive-mode .places ul li {
+	background: transparent url(../images/desktop/menubar-linux.png) repeat-y left top;
+	padding: 0 1px;
+	height: 28px;
+}
+
+.ie6.js #linux.interactive-mode .places ul li {
+	overflow: hidden;
+}
+
+.js #linux.interactive-mode .places ul li h3 {
+	background: transparent url(../images/dock/my_place.png) no-repeat 0.3em 50%;
+	padding: 0.5em 0pt 0.5em 2.2em;
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Arial,Verdana,sans-serif;
+	overflow: hidden;
+	display: block;
+}
+
+.js #linux.lfr-dock.interactive-mode .places ul ul li a.add-page {
+	display: none;
+}
+
+.js #linux.interactive-mode li.places li ul li.current a, .js #linux.interactive-mode li.places li ul li.current a:hover {
+	background: #3da5d5 url(../images/dock/my_place_current.png) no-repeat 0.3em 50%;
+	margin: 0;
+	padding-left: 2.2em;
+	color: #ffffff;
+}
+
+.js #linux.lfr-dock.interactive-mode li.places li ul li.current a:hover {
+	background-color: #0a246a;
+}
+
+.js #linux.interactive-mode .places ul li.private a, .js .linux .places ul li.private a:hover {
+	background-image: url(../images/dock/my_places_private.png);
+	background-position: 0.3em 50%;
+	padding: 0.5em 0pt 0.5em 2.2em;
+}
+
+.js #linux.interactive-mode .places ul li.public a, .js .linux .places ul li.public a:hover {
+	background-image: url(../images/dock/my_places_public.png);
+	background-position: 0.3em 50%;
+	padding: 0.5em 0pt 0.5em 2.2em;
+}
+
+.js #linux.lfr-dock.interactive-mode li.places li ul li.current a {
+	background: #3da5d5 url(../images/dock/my_place_current.png) no-repeat 0.3em 50%;
+	margin: 0;
+	padding-left: 2.2em;
+	color: #ffffff;
+}
+
+
+
+
+.js #mac.interactive-mode .places ul {
+	background: transparent url(../images/desktop/menubar-mac.png) repeat-y left top;
+	border-top: none;
+	display: none;
+	position: relative;
+	top: -29px;
+	left: 181px;
+	width: 180px;
+	min-width: 180px;
+	border: 1px solid #b7bfb4;
+	z-index: 1000;
+}
+
+.js #mac.interactive-mode .places ul li ul {
+	background: transparent url(../images/desktop/menubar-mac.png) repeat-y left top;
+	border-top: none;
+	display: none;
+	position: relative;
+	top: -29px;
+	left: 179px;
+	width: 180px;
+	height: auto;
+	border: 1px solid #b7bfb4;
+	padding: 0;
+	margin: 0;
+}
+
+.js #mac.interactive-mode .places ul li {
+	background: transparent url(../images/desktop/menubar-mac.png) repeat-y left top;
+	padding: 0 1px;
+	height: 28px;
+}
+
+.js #mac.interactive-mode .places ul li h3 {
+	background: transparent url(../images/dock/my_place.png) no-repeat 0.3em 50%;
+	padding: 0.5em 0pt 0.5em 2.2em;
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: 'Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+	overflow: hidden;
+	display: block;
+}
+
+.js #mac.lfr-dock.interactive-mode .places ul ul li a.add-page {
+	display: none;
+}
+
+.js #mac.interactive-mode li.places li ul li.current a, .js #linux.interactive-mode li.places li ul li.current a:hover {
+	background: #3da5d5 url(../images/dock/my_place_current.png) no-repeat 0.3em 50%;
+	margin: 0;
+	padding-left: 2.2em;
+	color: #ffffff;
+}
+
+.js #mac.interactive-mode .places ul li.private a, .js .linux .places ul li.private a:hover {
+	background-image: url(../images/dock/my_places_private.png);
+	background-position: 0.3em 50%;
+	padding: 0.5em 0pt 0.5em 2.2em;
+}
+
+.js #mac.interactive-mode .places ul li.public a, .js .linux .places ul li.public a:hover {
+	background-image: url(../images/dock/my_places_public.png);
+	background-position: 0.3em 50%;
+	padding: 0.5em 0pt 0.5em 2.2em;
+}
+
+.js #mac.lfr-dock.interactive-mode li.places li ul li.current a:hover {
+	background-color: #336eca;
+}
+
+.ie6.js #mac.interactive-mode .places ul li ul {
+	width: 176px;
+}
+
+.ie6.js #mac.interactive-mode .places ul li {
+	overflow: hidden;
+}
+
+
+
+
+.js #vista.lfr-dock.interactive-mode li a {
+	background-position: 0.5em 50%;
+	background-repeat: no-repeat;
+	border-top: none;
+	display: block;
+	margin-left: 0;
+	padding: 0.5em 0pt 0.5em 2.2em;
+	font-size: 1.3em;
+	text-decoration: none;
+	color: #000000;
+}
+
+.js #vista.lfr-dock.interactive-mode ul.nav-dock-list li a {
+	background-position: 0.5em 50%;
+	background-repeat: no-repeat;
+	border-top: none;
+	display: block;
+	margin-left: 0;
+	padding: 0.5em 0pt 0.5em 0.5em;
+	font-size: 1.3em;
+	text-decoration: none;
+	color: #ffffff;
+}
+
+.js #vista.lfr-dock.interactive-mode ul.nav-dock-list .child-menu a {
+	color: #000000;
+	padding-left: 0.5em;
+}
+
+.js #vista.lfr-dock.interactive-mode li a:hover {
+	color: #ffffff;
+	background-color: #074f67;
+	background-position: 0.5em 50%;
+}
+
+.ie6.js #vista.lfr-dock.interactive-mode li a:hover {
+	padding-left: 0.5em;
+}
+
+.ie6.js #vista.lfr-dock.interactive-mode ul.lfr-dock-list li a:hover {
+	padding-left: 2.2em;
+}
+
+.js #vista.interactive-mode .places ul {
+	background: transparent url(../images/desktop/menubar-vista.png) repeat-y left top;
+	border-top: none;
+	display: none;
+	position: relative;
+	top: -29px;
+	left: 181px;
+	width: 180px;
+	min-width: 180px;
+	border: 1px solid #b7bfb4;
+	z-index: 1000;
+	height: auto;
+}
+
+.js #vista.interactive-mode .places ul li ul {
+	background: transparent url(../images/desktop/menubar-vista.png) repeat-y left top;
+	border-top: none;
+	display: none;
+	position: relative;
+	top: -29px;
+	left: 179px;
+	width: 180px;
+	height: auto;
+	border: 1px solid #b7bfb4;
+	padding: 0;
+	margin: 0;
+}
+
+.js #vista.interactive-mode .places ul li {
+	background: transparent url(../images/desktop/menubar-vista.png) repeat-y left top;
+	padding: 0 1px;
+	height: 28px;
+}
+
+.js #vista.interactive-mode .places ul li h3 {
+	background: transparent url(../images/dock/my_place.png) no-repeat 0.3em 50%;
+	padding: 0.5em 0pt 0.5em 2.2em;
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+	overflow: hidden;
+	display: block;
+}
+
+.js #vista.lfr-dock.interactive-mode .places ul ul li a.add-page {
+	display: none;
+}
+
+.js #vista.interactive-mode li.places li ul li.current a, .js #linux.interactive-mode li.places li ul li.current a:hover {
+	background: #3da5d5 url(../images/dock/my_place_current.png) no-repeat 0.3em 50%;
+	margin: 0;
+	padding-left: 2.2em;
+	color: #ffffff;
+}
+
+.js #vista.interactive-mode .places ul li.private a, .js .linux .places ul li.private a:hover {
+	background-image: url(../images/dock/my_places_private.png);
+	background-position: 0.3em 50%;
+	padding: 0.5em 0pt 0.5em 2.2em;
+}
+
+.js #vista.interactive-mode .places ul li.public a, .js .linux .places ul li.public a:hover {
+	background-image: url(../images/dock/my_places_public.png);
+	background-position: 0.3em 50%;
+	padding: 0.5em 0pt 0.5em 2.2em;
+}
+
+.js #vista.lfr-dock.interactive-mode li.places li ul li.current a:hover {
+	background-color: #074f67;
+}
+
+.ie6.js #vista.interactive-mode .places ul li ul {
+	width: 176px;
+}
+
+.ie6.js #vista.interactive-mode .places ul li {
+	overflow: hidden;
+}
+
+
+
+/* ---------- Add/sort/remove page ---------- */
+
+.js #navigation .enter-page {
+	background: transparent url(../images/navigation/bg.png) no-repeat 0 100%;
+	padding: 0.5em 2em 0.7em 1.5em;
+}
+
+.js #navigation .enter-page.editing {
+	background: none;
+	padding: 0.5em 2em 0.7em 1.5em;
+}
+
+.js #navigation .enter-page a {
+	background: none;
+	display: inline;
+	font-weight: bold;
+	margin-left: 1em;
+	padding: 0;
+}
+
+.js #add-page {
+	display: none;
+	float: left;
+	font-weight: bold;
+	padding-top: 0.3em;
+}
+
+.js #add-page a {
+	text-decoration: none;
+}
+
+.js #add-page a span {
+	background: url(../images/navigation/add_page.png) no-repeat 0 50%;
+	padding: 5px 20px;
+}
+
+.js #add-page a:hover span {
+	background-image: url(../images/navigation/add_page.png);
+}
+
+.js .delete-tab {
+	background: url(../images/common/remove.png) no-repeat 42%;
+	cursor: pointer;
+	display: block;
+	height: 7px;
+	position: absolute;
+	right: 5px;
+	text-indent: -9999em;
+	top: 2px;
+	width: 8px;
+}
+
+/*------ Drag/drop menu items ------*/
+
+#navigation ul .sort-helper {
+	background: url(../images/portlet/placeholder_bg.png);
+	border: 1px dashed #508FB4;
+	float: left;
+	padding: 0.5em;
+}
+
+/*------ Navigation portlet ------*/
+
+.nav-menu li a.ancestor {
+	font-weight: bold;
+}
+
+.nav-menu li a.selected {
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+}
+
+.nav-menu ul {
+	padding-left: 10px;
+}
+
+.nav-menu-style-1 {
+}
+
+.nav-menu-style-2 {
+}
+
+/*------ Portlet.css ------*/
+/* This CSS sets the default styles for portlets. */
+
+/*
+TABLE OF CONTENTS
+
+HEADER - Site name, logo, main menu
+SIDEBAR - Submenu, searchbar, shortlists
+MAINCONTENT - Articles, search results
+FOOTER - Copyright
+*/
+
+/* ---------- Portlet wrapper and icons ---------- */
+
+.portlet {
+	position: relative;
+	margin: 0px auto;
+	min-width: 180px;
+	max-width: 3000px;
+	color: #000;
+	margin-left: 21px; /* default, width of left corner */
+	margin-bottom: 0;
+}
+
+.vista-portlet {
+	position: relative;
+	margin: 0px auto;
+	min-width: 180px;
+	max-width: 3000px;
+	color: #000;
+	margin-left: 21px; /* default, width of left corner */
+	margin-bottom: 0;
+}
+
+.mac-portlet {
+	position: relative;
+	margin: 0px auto;
+	min-width: 180px;
+	max-width: 3000px;
+	color: #000;
+	margin-left: 21px; /* default, width of left corner */
+	margin-bottom: 0;
+}
+
+.linux-portlet {
+	position: relative;
+	margin: 0px auto;
+	min-width: 180px;
+	max-width: 3000px;
+	color: #000;
+	margin-left: 21px; /* default, width of left corner */
+	margin-bottom: 0;
+}
+
+.portlet .content,
+.portlet .t,
+.portlet .b,
+.portlet .b .b-content {
+	 background: transparent url(../images/portlet/vista-portlet_bg.png) no-repeat top right;
+	 _background-image: url(../images/portlet/vista-portlet_bg_full.png);
+}
+
+.vista-portlet .content,
+.vista-portlet .t,
+.vista-portlet .b,
+.vista-portlet .b .b-content {
+	 background: transparent url(../images/portlet/vista-portlet_bg.png) no-repeat top right;
+	 _background-image: url(../images/portlet/vista-portlet_bg_full.png);
+}
+
+.mac-portlet .content,
+.mac-portlet .t,
+.mac-portlet .b,
+.mac-portlet .b .b-content {
+	 background: transparent url(../images/portlet/mac-portlet_bg.png) no-repeat top right;
+	 _background-image: url(../images/portlet/mac-portlet_bg_full.png);
+}
+
+.linux-portlet .content,
+.linux-portlet .t,
+.linux-portlet .b,
+.linux-portlet .b .b-content {
+	 background: transparent url(../images/portlet/linux-portlet_bg.png) no-repeat top right;
+	 _background-image: url(../images/portlet/linux-portlet_bg_full.png);
+}
+
+.portlet .content {
+	position:relative;
+	zoom:1;
+	_overflow-y:hidden;
+	padding:0px 21px 0px 0px;
+}
+
+.vista-portlet .content {
+	position:relative;
+	zoom:1;
+	_overflow-y:hidden;
+	padding:0px 21px 0px 0px;
+}
+
+.mac-portlet .content {
+	position:relative;
+	zoom:1;
+	_overflow-y:hidden;
+	padding:0px 21px 0px 0px;
+}
+
+.linux-portlet .content {
+	position:relative;
+	zoom:1;
+	_overflow-y:hidden;
+	padding:0px 21px 0px 0px;
+}
+
+.portlet .t {
+	/* top+left vertical slice */
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:21px; /* top slice width */
+	margin-left:-21px;
+	height:100%;
+	_height:3000px; /* arbitrary long height, IE 6 */
+	background-position:top left;
+}
+
+.vista-portlet .t {
+	/* top+left vertical slice */
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:21px; /* top slice width */
+	margin-left:-21px;
+	height:100%;
+	_height:3000px; /* arbitrary long height, IE 6 */
+	background-position:top left;
+}
+
+.mac-portlet .t {
+	/* top+left vertical slice */
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:21px; /* top slice width */
+	margin-left:-21px;
+	height:100%;
+	_height:3000px; /* arbitrary long height, IE 6 */
+	background-position:top left;
+}
+
+.linux-portlet .t {
+	/* top+left vertical slice */
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:21px; /* top slice width */
+	margin-left:-21px;
+	height:100%;
+	_height:3000px; /* arbitrary long height, IE 6 */
+	background-position:top left;
+}
+
+.portlet .s {
+	/* left slice */
+	position: absolute;
+	top: 76px;
+	left: -21px;
+	bottom: 21px;
+	width: 21px;
+	background: transparent url(../images/portlet/vista-portlet_bg_side.png) repeat-y top right;
+}
+
+.vista-portlet .s {
+	/* left slice */
+	position: absolute;
+	top: 76px;
+	left: -21px;
+	bottom: 21px;
+	width: 21px;
+	background: transparent url(../images/portlet/vista-portlet_bg_side.png) repeat-y top right;
+}
+
+.mac-portlet .s {
+	/* left slice */
+	position: absolute;
+	top: 76px;
+	left: -21px;
+	bottom: 21px;
+	width: 21px;
+	background: transparent url(../images/portlet/mac-portlet_bg_side.png) repeat-y top right;
+}
+
+.linux-portlet .s {
+	/* left slice */
+	position: absolute;
+	top: 99px;
+	left: -21px;
+	bottom: 21px;
+	width: 21px;
+	background: transparent url(../images/portlet/linux-portlet_bg_side.png) repeat-y top right;
+}
+
+.portlet .b {
+	/* bottom */
+	position:relative;
+	width:100%;
+}
+
+.vista-portlet .b {
+	/* bottom */
+	position:relative;
+	width:100%;
+}
+
+.mac-portlet .b {
+	/* bottom */
+	position:relative;
+	width:100%;
+}
+
+.linux-portlet .b {
+	/* bottom */
+	position:relative;
+	width:100%;
+}
+
+.portlet .b,
+.portlet .b .b-content {
+	height:21px; /* height of bottom cap/shade */
+	font-size:1px;
+}
+
+.vista-portlet .b,
+.vista-portlet .b .b-content {
+	height:21px; /* height of bottom cap/shade */
+	font-size:1px;
+}
+
+.mac-portlet .b,
+.mac-portlet .b .b-content {
+	height:21px; /* height of bottom cap/shade */
+	font-size:1px;
+}
+
+.linux-portlet .b,
+.linux-portlet .b .b-content {
+	height:21px; /* height of bottom cap/shade */
+	font-size:1px;
+}
+
+.portlet .b {
+	background-position:bottom right;
+}
+
+.vista-portlet .b {
+	background-position:bottom right;
+}
+
+.mac-portlet .b {
+	background-position:bottom right;
+}
+
+.linux-portlet .b {
+	background-position:bottom right;
+}
+
+.portlet .b .b-content {
+	position:relative;
+	width:21px; /* bottom corner width */
+	margin-left:-21px;
+	background-position:bottom left;
+}
+
+.vista-portlet .b .b-content {
+	position:relative;
+	width:21px; /* bottom corner width */
+	margin-left:-21px;
+	background-position:bottom left;
+}
+
+.mac-portlet .b .b-content {
+	position:relative;
+	width:21px; /* bottom corner width */
+	margin-left:-21px;
+	background-position:bottom left;
+}
+
+.linux-portlet .b .b-content {
+	position:relative;
+	width:21px; /* bottom corner width */
+	margin-left:-21px;
+	background-position:bottom left;
+}
+
+.portlet .hd,
+.portlet .bd, {
+	position:relative;
+}
+
+.portlet-topper {
+	background: none;
+}
+
+.portlet-title {
+	background: none;
+}
+
+.mac.portlet-topper {
+	background: none;
+	margin-right: -10px;
+	padding-right: 40px;
+	position: relative;
+	height: 74px;
+	overflow: hidden;
+}
+
+.ie6 .mac.portlet-topper {
+	height: 74px;
+}
+
+.vista.portlet-topper {
+	background: none;
+	margin-right: -10px;
+	padding-right: 40px;
+	position: relative;
+	height: 74px;
+	overflow: hidden;
+}
+
+.linux.portlet-topper {
+	background: none;
+	margin-right: -10px;
+	padding-right: 40px;
+	position: relative;
+	height: 99px;
+	overflow: hidden;
+}
+
+.portlet-desktop-title {
+	background: none;
+	overflow: hidden;
+	width: 75%;
+	position:absolute;
+	top: 17px;
+	left: 0;
+	font: 1.1em/1.5em Arial,Verdana,sans-serif;
+	font-weight: bold;
+	color: #222222;
+	white-space: no-wrap;
+}
+
+.vista-portlet-desktop-title {
+	background: none;
+	overflow: hidden;
+	width: 75%;
+	position:absolute;
+	top: 17px;
+	left: 0;
+	font: 1.1em/1.5em Arial,Verdana,sans-serif;
+	font-weight: bold;
+	color: #222222;
+	white-space: no-wrap;
+}
+
+.mac-portlet-desktop-title {
+	background: none;
+	overflow: hidden;
+	width: 100%;
+	position:relative;
+	top: 20px;
+	left: 14px;
+	font: 1.1em/1.5em Arial,Verdana,sans-serif;
+	font-weight: bold;
+	color: #222222;
+	text-align: center;
+	white-space: no-wrap;
+}
+
+.linux-portlet-desktop-title {
+	background: none;
+	overflow: hidden;
+	width: 75%;
+	position:absolute;
+	top: 16px;
+	left: 0;
+	font: 1.1em/1.5em Arial,Verdana,sans-serif;
+	font-weight: bold;
+	color: #efefef;
+	white-space: no-wrap;
+}
+
+.ie .portlet-desktop-title {
+	padding-bottom: 5px;
+}
+
+.ie .mac-portlet-desktop-title {
+	padding-bottom: 5px;
+	left: 15px;
+}
+
+.portlet-desktop-title img {
+	vertical-align: middle;
+}
+
+.vista-portlet-desktop-title img {
+	vertical-align: middle;
+}
+
+.mac-portlet-desktop-title img {
+	vertical-align: middle;
+}
+
+.linux-portlet-desktop-title img {
+	vertical-align: middle;
+}
+
+.portlet-buttons {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 11px;
+	right: 9px;
+}
+
+.vista-portlet-buttons {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 12px;
+	right: 9px;
+}
+
+.mac-portlet-buttons {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 18px;
+	left: 0;
+}
+
+.linux-portlet-buttons {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 11px;
+	right: 9px;
+}
+
+.ie .portlet-buttons {
+	top: 12px;
+}
+
+.ie .vista-portlet-buttons {
+	top: 13px;
+}
+
+.ie .mac-portlet-buttons {
+	top: 20px;
+}
+
+.portlet-buttons span a {
+	position: relative;
+	top: 0;
+	left:3px;
+}
+
+.vista-portlet-buttons span a {
+	position: relative;
+	top: 0;
+	left:3px;
+}
+
+.mac-portlet-buttons span a {
+	position: relative;
+	top: 0;
+	right:1px;
+}
+
+.linux-portlet-buttons span a {
+	position: relative;
+	top: 0;
+	left:3px;
+}
+
+.portlet-buttons a:hover {
+	background-color: #ffffff;
+}
+
+.vista-portlet-buttons a:hover {
+	background-color: #ffffff;
+}
+
+.linux-portlet-buttons a:hover {
+	background-color: #ffffff;
+}
+
+.mac-portlet-buttons a.Minimize {
+	background: none;
+}
+
+.mac-portlet-buttons a.Minimize:hover {
+	background: transparent url(../images/portlet/mac-minimize-hover.png) no-repeat top left;
+}
+
+.mac-portlet-buttons a.Restore {
+	background: none;
+}
+
+.mac-portlet-buttons a.Restore:hover {
+	background: transparent url(../images/portlet/mac-restore-hover.png) no-repeat top left;
+}
+
+.mac-portlet-buttons a.Close {
+	background: none;
+}
+
+.mac-portlet-buttons a.Close:hover {
+	background: transparent url(../images/portlet/mac-close-hover.png) no-repeat top left;
+}
+
+.portlet-toolbar {
+	position: absolute;
+	top: 42px;
+	left: 5px;
+}
+
+.vista-portlet-toolbar {
+	position: absolute;
+	top: 42px;
+	left: 5px;
+}
+
+.mac-portlet-toolbar {
+	position: absolute;
+	top: 40px;
+	right: 12px;
+}
+
+.linux-portlet-toolbar {
+	position: absolute;
+	top: 69px;
+	left: 10px;
+}
+
+.ie .vista-portlet-toolbar {
+	top: 44px;
+}
+
+.ie .mac-portlet-toolbar {
+	top: 42px;
+}
+
+.portlet-toolbar a {
+	padding: 0 2px 0 2px;
+}
+
+.vista-portlet-toolbar a {
+	padding: 0 2px 0 2px;
+}
+
+.mac-portlet-toolbar a {
+	padding: 0 2px 0 2px;
+}
+
+.linux-portlet-toolbar a {
+	padding: 0 2px 0 2px;
+}
+
+.portlet-content {
+	background: none;
+	position: relative;
+	padding: 1px 0 0 0;
+}
+
+.vista-portlet-content {
+	background: none;
+	position: relative;
+	padding: 1px 0 0 0;
+}
+
+.mac-portlet-content {
+	background: none;
+	position: relative;
+	padding: 2px 0 0 0;
+}
+
+.linux-portlet-content {
+	background: none;
+	position: relative;
+	padding: 0;
+}
+
+.portlet-address-bar {
+	height: 24px;
+	padding-left: 6px;
+	font: 12px/24px Arial,Verdana,sans-serif;
+	color: #ffffff;
+	overflow: hidden;
+}
+
+.ie6 .portlet-address-bar {
+	position: relative;
+	top: -21px;
+	left: 0;
+}
+
+.linux-portlet-address-bar {
+	position: relative;
+	top: 34px;
+	left: 16px;
+	height: 24px;
+	padding-left: 6px;
+	font: 12px/24px Arial,Verdana,sans-serif;
+	color: #ffffff;
+	text-align: center;
+	overflow: hidden;
+}
+
+.ie6 .linux-portlet-address-bar {
+	top: 38px;
+}
+
+.portlet-content-container div {
+	padding: 15px;
+}
+
+.portlet-icon-back {
+	background: url(../images/portlet/back.png) no-repeat 0 50%;
+	font-weight: bold;
+	padding: 0.2em 0 0.5em 1.8em;
+}
+
+/* ---------- Drag and drop ---------- */
+
+.portlet-dragging {
+	background: #FFFFE3 !important;
+	border: 3px solid #666;
+	padding: 10px;
+}
+
+.portlet-hover {
+	background: #ddd;
+	padding: 10px;
+}
+
+.portlet-placeholder {
+	background: url(../images/portlet/placeholder_bg.png);
+	border: 1px dashed #508FB4;
+	width: 100% !important;
+}
+
+.portlet-decorate-resize-container {
+	position: relative;
+	bottom: 24px;
+	right: 15px;
+	height: 21px;
+	min-width: 202px;
+}
+
+.portlet-resize-handle {
+	background: url(../images/arrows/resize.png) scroll no-repeat top right;
+	float: right;
+	cursor: se-resize;
+	height: 10px;
+	width: 202px;
+}

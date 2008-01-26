@@ -1,0 +1,71 @@
+<div id="taskbar-$css_class">
+	<div id="left"></div>
+	<ul id="window"></ul>
+	<div id="right"></div>
+	<div id="taskbar-clock-$css_class"></div>
+</div>
+
+<div id="$css_class" class="lfr-dock interactive-mode">
+
+	<ul class="lfr-dock-list $css_class">
+		#if ($show_home)
+			<li class="home">
+				<a href="$home_url">My Home</a>
+
+				#if ($css_class!="vista" && $has_navigation)
+					#parse ("$full_templates_path/navigation.vm")
+				#end
+
+			</li>
+		#end
+
+		#if ($show_sign_in)
+			<li class="sign-in">
+				<a href="$sign_in_url">$sign_in_text</a>
+			</li>
+		#end
+
+		#if ($is_signed_in && $css_class!="vista")
+			<li class="places">
+				<a>$my_places_text</a>
+
+				$theme.myPlaces()
+			</li>
+		#end
+
+		#if ($show_my_account)
+			<li class="my-account">
+				<a href="$my_account_url">$my_account_text</a>
+			</li>
+		#end
+
+		#if ($show_add_content)
+			<li class="add-content">
+				<a href="javascript: void(0);" onclick="$add_content_url">$add_content_text</a>
+			</li>
+			<li class="layout">
+				<a href="javascript: void(0);" onclick="$layout_url">$layout_text</a>
+			</li>
+		#end
+
+		#if ($show_page_settings)
+			<li class="page-settings">
+				<a href="$page_settings_url">$page_settings_text</a>
+			</li>
+		#end
+
+		#if ($show_sign_out)
+			<li class="sign-out">
+				<a href="$sign_out_url">$sign_out_text</a>
+			</li>
+		#end
+
+	</ul>
+
+	#if ($css_class=="vista" && $has_navigation)
+		#parse ("$full_templates_path/navigation.vm")
+	#end
+
+</div>
+
+<div id="taskbar-spacer-$css_class"></div>

@@ -1,0 +1,67 @@
+#set ($portlet_display = $portletDisplay)
+#set ($portlet_id = $portlet_display.getId())
+#set ($portlet_title = $portlet_display.getTitle())
+#set ($portlet_content = $portlet_display.getContent())
+#set ($portlet_back_url = $portlet_display.getURLBack())
+
+<div class="$themeDisplay.getColorScheme().getCssClass()-portlet" id="portlet-wrapper-$portlet_id">
+	
+	<div class="content">
+		<div class="t"></div>
+		<div class="$themeDisplay.getColorScheme().getCssClass() portlet-topper">
+			<div class="$themeDisplay.getColorScheme().getCssClass()-portlet-desktop-title">
+				$theme.iconPortlet() $portlet_title
+			</div>
+
+			#if ($themeDisplay.getColorScheme().getCssClass() == "linux")
+				<div class="$themeDisplay.getColorScheme().getCssClass()-portlet-address-bar">My Places<img src="/web-os-theme/images/desktop/arrow.png" alt="" />$layout.getGroup().getName()<img src="/web-os-theme/images/desktop/arrow.png" alt="" />$layout.getHTMLTitle($locale)<img src="/web-os-theme/images/desktop/arrow.png" alt="" />$portlet_title</div>
+			#end
+
+			<div class="$themeDisplay.getColorScheme().getCssClass()-portlet-buttons" id="portlet-small-icon-bar_$portlet_id">
+				#if ($portlet_display.isShowBackIcon())
+					<a href="$portlet_back_url" class="portlet-icon-back">#language ("return-to-full-page")</a>
+				#else
+					#if ($themeDisplay.getColorScheme().getCssClass() == "mac")
+						#if ($portletDisplay.isShowCloseIcon())
+							<a class="#language("minimize")" href="javascript: closePortlet('$plid', '$portletDisplay.getId()', '$themeDisplay.getDoAsUserId()')"><img align="absmiddle" title="#language("close")" src="$themeDisplay.getPathThemeImages()/portlet/$themeDisplay.getColorScheme().getCssClass()-close.png"/></a>
+						#end
+						#if ($portletDisplay.isShowMinIcon())
+							<span id="p_p_body_$portletDisplay.getId()_min_buttons">
+								<a class="#language("minimize")" href="javascript: minimizePortlet('$plid', '$portletDisplay.getId()', $portletDisplay.isStateMin(), '$themeDisplay.getDoAsUserId()');"><img border="0" align="absmiddle" title="#language("minimize")" src="$themeDisplay.getPathThemeImages()/portlet/$themeDisplay.getColorScheme().getCssClass()-minimize.png"/></a>
+							</span>
+						#end
+					#else
+						#if ($portletDisplay.isShowMinIcon())
+							<span id="p_p_body_$portletDisplay.getId()_min_buttons">
+								<a class="#language("minimize")" href="javascript: minimizePortlet('$plid', '$portletDisplay.getId()', $portletDisplay.isStateMin(), '$themeDisplay.getDoAsUserId()');"><img border="0" align="absmiddle" title="#language("minimize")" src="$themeDisplay.getPathThemeImages()/portlet/$themeDisplay.getColorScheme().getCssClass()-minimize.png"/></a>
+							</span>
+						#end
+						#if ($portletDisplay.isShowCloseIcon())
+							<a class="#language("minimize")" href="javascript: closePortlet('$plid', '$portletDisplay.getId()', '$themeDisplay.getDoAsUserId()')"><img align="absmiddle" title="#language("close")" src="$themeDisplay.getPathThemeImages()/portlet/$themeDisplay.getColorScheme().getCssClass()-close.png"/></a>
+						#end
+					#end
+				#end
+			</div>
+			<div class="$themeDisplay.getColorScheme().getCssClass()-portlet-toolbar" id="portlet-small-icon-bar_$portlet_id">
+				$theme.iconRefresh()
+				$theme.iconPortletCss()
+				$theme.iconConfiguration()
+				$theme.iconEdit()
+				$theme.iconEditDefaults()
+				$theme.iconEditGuest()
+				$theme.iconHelp()
+				$theme.iconPrint()
+			</div>
+		</div>
+
+		#if ($themeDisplay.getColorScheme().getCssClass() == "vista")
+			<div class="portlet-address-bar">My Places<img src="/web-os-theme/images/desktop/arrow.png" alt="" />$layout.getGroup().getName()<img src="/web-os-theme/images/desktop/arrow.png" alt="" />$layout.getHTMLTitle($locale)<img src="/web-os-theme/images/desktop/arrow.png" alt="" />$portlet_title</div>
+		#end
+
+		<div class="$themeDisplay.getColorScheme().getCssClass()-portlet-content">
+			$portlet_content
+		</div>
+	</div>
+	<div class="s"></div>
+	<div class="b"><div class="b-content"></div></div>
+</div>
