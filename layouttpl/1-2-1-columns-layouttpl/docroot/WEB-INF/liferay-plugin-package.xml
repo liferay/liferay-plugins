@@ -2,17 +2,18 @@
 <!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 4.3.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_4_3_0.dtd">
 
 <plugin-package>
+<<<<<<< .mine
+	<name>CDN Home</name>
+	<module-id>liferay/cdn-home-layouttpl/4.3.6.1/war</module-id>
+=======
 	<name>1-2-1 Columns Templates</name>
 	<module-id>liferay/1-2-1-columns-layouttpl/4.4.0.1/war</module-id>
+>>>>>>> .r13253
 	<types>
 		<type>layout-template</type>
 	</types>
-	<short-description>
-		This is a 1-2-1 columns layout template.
-	</short-description>
-	<change-log>
-		Adapted to the latest version of Liferay.
-	</change-log>
+	<short-description>This is a CDN Home layout template.</short-description>
+	<change-log>Adapted to the latest version of Liferay.</change-log>
 	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
 	<author>Liferay, Inc.</author>
 	<licenses>
