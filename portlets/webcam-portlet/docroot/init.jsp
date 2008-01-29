@@ -47,7 +47,7 @@ PortletPreferences prefs = renderRequest.getPreferences();
 String portletResource = ParamUtil.getString(request, "portletResource");
 
 if (Validator.isNotNull(portletResource)) {
-	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource, true, true);
+	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
 String url = prefs.getValue("url", "http://iacm-wcam1.viewnetcam.com/nphMotionJpeg?Resolution=320x240&Quality=Standard");
