@@ -69,7 +69,7 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 
 		PortletPreferences prefs =
 			PortletPreferencesFactoryUtil.getPortletSetup(
-				req, portletResource, true, true);
+				req, portletResource);
 
 		prefs.setValue("ad-format", String.valueOf(adFormat));
 		prefs.setValue("ad-type", String.valueOf(adType));

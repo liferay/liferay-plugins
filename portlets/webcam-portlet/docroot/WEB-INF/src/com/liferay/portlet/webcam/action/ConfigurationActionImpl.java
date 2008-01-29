@@ -62,7 +62,7 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 
 		PortletPreferences prefs =
 			PortletPreferencesFactoryUtil.getPortletSetup(
-				req, portletResource, true, true);
+				req, portletResource);
 
 		prefs.setValue("url", url);
 		prefs.setValue("height", height);
