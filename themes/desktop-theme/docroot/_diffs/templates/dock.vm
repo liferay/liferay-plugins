@@ -25,7 +25,7 @@
 			</li>
 		#end
 
-		#if ($is_signed_in && $css_class!="vista")
+		#if ($is_signed_in && $css_class != "vista")
 			<li class="places">
 				<a>$my_places_text</a>
 
