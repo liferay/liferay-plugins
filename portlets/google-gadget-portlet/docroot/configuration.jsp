@@ -114,11 +114,11 @@ GGData data = GGUtil.getData(url);
 
 				<input name="<portlet:namespace />q" size="50" type="text" />
 
-				<input onclick="<portlet:namespace />searchGadgets();" type="button" value="<liferay-ui:message key="Search Gadgets" />" />
+				<input onclick="<portlet:namespace />searchGadgets();" type="button" value="<liferay-ui:message key="search-gadgets" />" />
 
 				<liferay-ui:message key="or" />
 
-				<input onclick="<portlet:namespace />addGadgetByURL();" type="button" value="<liferay-ui:message key="Add Gadget by URL" />" />
+				<input onclick="<portlet:namespace />addGadgetByURL();" type="button" value="<liferay-ui:message key="add-gadget-by-url" />" />
 
 				<%
 				GGPagination pagination = data.getPagination();
