@@ -2,7 +2,7 @@
 
 #set -x
 
-if ["$1" = ""]; then
+if [ -z "$1" ]; then
 	echo
 	echo Usage: ./create.sh hello-world \"Hello World\"
 	echo
