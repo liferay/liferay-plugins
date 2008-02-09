@@ -392,6 +392,10 @@ a:hover {
 	margin: -5px -5px -16px -15px;
 }
 
+.js .interactive-mode {
+	top: 0;
+}
+
 .js .lfr-dock.interactive-mode h2 {
 	background-position: right -31px;
 	padding-right: 46px;
@@ -409,6 +413,21 @@ a:hover {
 	padding: 0 15px;
 }
 
+.js .lfr-flyout.has-children {
+	background-image: url(../images/dock/my_places.png);
+	background-position: 0 50%;
+}
+
+.js .interactive-mode .lfr-flyout.has-children ul {
+	background: #0E1118;
+	border-color: #212C3A;
+	padding: 0px;
+}
+
+.js .lfr-dock.interactive-mode li {
+	border-color: #222D3A;
+}
+
 .js .lfr-dock.interactive-mode li a {
 	background-position: left center;
 	border-top: 1px solid #222D3A;
@@ -422,17 +441,31 @@ a:hover {
 	padding-left: 2.5em;
 }
 
-.lfr-dock li.home a,  .lfr-dock li.my-account a,   .lfr-dock li.sign-in a,   .lfr-dock li.sign-out a,   .lfr-dock li.add-content a,   .lfr-dock li.layout a,   .lfr-dock li.page-settings a {
+.lfr-dock li.home a, .lfr-dock li.my-account a,   .lfr-dock li.sign-in a,   .lfr-dock li.sign-out a,   .lfr-dock li.add-content a,   .lfr-dock li.layout a,   .lfr-dock li.page-settings a {
 	background-image: url(../images/dock/dock_items.png);
 }
 
-.lfr-dock li.my-places a {
-	background-image: url(../images/dock/my_places.png);
+.js .lfr-dock.interactive-mode li.my-places {
+	margin-left: 0;
+	background: none;
+	padding-left: 0;
+}
+
+.ie.js .lfr-dock.interactive-mode li.my-places {
+	padding-right: 2.5em;
+}
+
+.js .lfr-dock.interactive-mode li.my-places a {
+	padding-left: 2.5em;
 }
 
 .js .interactive-mode .my-places .show-my-places {
 	background: #0E1118;
 	border: 1px solid #0B0F15;
+}
+
+.js .lfr-dock.interactive-mode li.my-places h3 a {
+	background-position: 5px 50%;
 }
 
 .js .interactive-mode .my-places .show-my-places li .my-places-toggle,  .js .interactive-mode .my-places .show-my-places ul li.public a, .js .my-places .show-my-places ul li.public a:hover,  .js .interactive-mode .my-places .show-my-places li.private a, .js .my-places .show-my-places li.private a:hover {
@@ -474,7 +507,6 @@ a:hover {
 .js .lfr-dock.interactive-mode li.my-places li ul li.current a,   .js .lfr-dock.interactive-mode li.my-places li ul li.current a:hover {
 	background-color: transparent;
 	background-position: 1px center;
-	padding-left: 25px;
 }
 
 .js .interactive-mode .my-places .show-my-places li ul li a {
@@ -484,6 +516,14 @@ a:hover {
 
 .js .interactive-mode .my-places .show-my-places li ul li a .page-count {
 	color: #96C0E6;
+}
+
+.js .interactive-mode .my-places li.current-community {
+	background-color: #0E1118;
+}
+
+.js .interactive-mode .my-places li.current-community a {
+	background-colsor: #212C3A;
 }
 
 .portlet-msg-success, .portlet-msg-error, .portlet-msg-alert, .portlet-msg-info {
