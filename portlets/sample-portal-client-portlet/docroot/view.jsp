@@ -25,7 +25,7 @@
 <%@ page import="com.liferay.client.portal.model.OrganizationSoap" %>
 <%@ page import="com.liferay.client.portal.service.http.OrganizationServiceSoap" %>
 <%@ page import="com.liferay.client.portal.service.http.OrganizationServiceSoapServiceLocator" %>
-<%@ page import="com.liferay.util.GetterUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 
 <%@ page import="java.net.URL" %>
 

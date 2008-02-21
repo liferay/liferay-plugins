@@ -22,7 +22,7 @@
 
 package com.sample.test.portlet;
 
-import com.liferay.util.ParamUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
 
 import java.io.IOException;
 

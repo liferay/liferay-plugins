@@ -29,10 +29,10 @@ import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
 import com.liferay.portal.kernel.lar.PortletDataHandlerChoice;
 import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
 import com.liferay.portal.kernel.util.StringMaker;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.kernel.zip.ZipWriter;
 import com.liferay.util.MapUtil;
-import com.liferay.util.Validator;
 
 import java.util.Date;
 import java.util.Map;
@@ -45,7 +45,7 @@ import org.apache.commons.logging.LogFactory;
 /**
  * <a href="LARPlugin.java.html"><b><i>View Source</i></b></a>
  *
- * @author Raymond AugÃ©
+ * @author Raymond Augé
  *
  */
 public class LARPlugin implements PortletDataHandler {

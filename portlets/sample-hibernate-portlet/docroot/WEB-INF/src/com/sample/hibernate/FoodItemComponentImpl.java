@@ -24,8 +24,8 @@ package com.sample.hibernate;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.util.ParamUtil;
-import com.liferay.util.Validator;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.util.xml.BeanToXMLUtil;
 
 import com.sample.hibernate.model.FoodItem;

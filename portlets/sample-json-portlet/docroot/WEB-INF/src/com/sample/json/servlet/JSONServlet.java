@@ -22,8 +22,8 @@
 
 package com.sample.json.servlet;
 
-import com.liferay.util.ParamUtil;
-import com.liferay.util.StringUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.IOException;
 import java.io.PrintWriter;

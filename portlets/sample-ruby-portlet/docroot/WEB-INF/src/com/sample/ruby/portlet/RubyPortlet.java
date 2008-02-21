@@ -24,8 +24,8 @@ package com.sample.ruby.portlet;
 
 import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.util.FileUtil;
-import com.liferay.util.StringUtil;
 
 import java.io.IOException;
 import java.io.InputStream;

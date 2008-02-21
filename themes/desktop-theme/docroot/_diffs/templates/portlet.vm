@@ -6,7 +6,7 @@
 #set ($images_folder = $themeDisplay.getPathThemeImages())
 
 <div class="$themeDisplay.getColorScheme().getCssClass()-portlet" id="portlet-wrapper-$portlet_id">
-	
+
 	<div class="content">
 		<div class="t"></div>
 		<div class="$themeDisplay.getColorScheme().getCssClass() portlet-topper">
