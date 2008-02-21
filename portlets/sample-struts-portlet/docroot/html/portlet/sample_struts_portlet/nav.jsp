@@ -49,7 +49,7 @@ pageContext.setAttribute("zParams", zParams);
 
 <html:link name="zParams" page="/portlet_action/sample_struts_portlet/z">Z</html:link>
 
-<br><br>
+<br /><br />
 
 Portlet URL:
 
@@ -59,7 +59,7 @@ Portlet URL:
 
 <html:link page="/portlet_action/sample_struts_portlet/x/render">Render</html:link>
 
-<br><br>
+<br /><br />
 
 Chart:
 
@@ -81,7 +81,7 @@ Chart:
 
 <a href="javascript: var viewChartWindow = window.open('<%= request.getContextPath() %>/portlet_action/sample_struts_portlet/view_chart?chart_type=vertical_bar', 'viewChart', 'directories=no,height=430,location=no,menubar=no,resizable=no,scrollbars=no,status=no,toolbar=no,width=420'); void(''); viewChartWindow.focus();">Vertical Bar</a>
 
-<br><br>
+<br /><br />
 
 Struts Form:
 
@@ -99,7 +99,7 @@ Struts Form:
 
 <html:link page="/portlet_action/sample_struts_portlet/upload/render">Upload</html:link>
 
-<br><br>
+<br /><br />
 
 Struts Exception:
 

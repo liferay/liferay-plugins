@@ -26,27 +26,27 @@
 
 <b>Remote User:</b>
 
-<br><br>
+<br /><br />
 
 <%= request.getRemoteUser() %>
 
-<br><br>
+<br /><br />
 
 <b>Session ID:</b>
 
-<br><br>
+<br /><br />
 
 <%= request.getRequestedSessionId() %>
 
-<br><br>
+<br /><br />
 
 <b>Portlet Session Attributes:</b>
 
-<br><br>
+<br /><br />
 
 <i>Portlet Scope</i>
 
-<br><br>
+<br /><br />
 
 <%
 Enumeration enu = portletSession.getAttributeNames();
@@ -57,17 +57,17 @@ while (enu.hasMoreElements()) {
 	Object attrValue = portletSession.getAttribute(attrName);
 %>
 
-	<%= attrName %>=<%= attrValue %><br>
+	<%= attrName %>=<%= attrValue %><br />
 
 <%
 }
 %>
 
-<br>
+<br />
 
 <i>Application Scope</i>
 
-<br><br>
+<br /><br />
 
 <%
 enu = portletSession.getAttributeNames(PortletSession.APPLICATION_SCOPE);
@@ -78,7 +78,7 @@ while (enu.hasMoreElements()) {
 	Object attrValue = portletSession.getAttribute(attrName, PortletSession.APPLICATION_SCOPE);
 %>
 
-	<%= attrName %>=<%= attrValue %><br>
+	<%= attrName %>=<%= attrValue %><br />
 
 <%
 }

@@ -29,7 +29,7 @@
 	<f:loadBundle basename="Language" var="msgs" />
 
 	<h:form>
-		<h:outputText value="#{msgs.welcome_to_liferay_portal}" />, <h:outputText value="#{user.name}"/>.
+		<h:outputText value="#{msgs.welcome_to_liferay_portal}" />, <h:outputText value="#{user.name}" />.
 
 		<br /><br />
 

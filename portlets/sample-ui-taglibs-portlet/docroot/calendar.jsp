@@ -26,7 +26,7 @@
 
 Code:
 
-<br><br>
+<br /><br />
 
 <pre>&lt;liferay-ui:calendar
     month="&lt;%= Calendar.FEBRUARY %&gt;"
@@ -39,7 +39,7 @@ Code:
 
 Result:
 
-<br><br>
+<br /><br />
 
 <liferay-ui:calendar
 	month="<%= Calendar.FEBRUARY %>"

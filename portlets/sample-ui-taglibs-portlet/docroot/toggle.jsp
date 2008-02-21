@@ -26,7 +26,7 @@
 
 Code:
 
-<br><br>
+<br /><br />
 
 <pre>&lt;liferay-ui:toggle
     id="toggle_id_sample_ui_taglibs_test"
@@ -39,7 +39,7 @@ Code:
 
 Result:
 
-<br><br>
+<br /><br />
 
 <div>
 	<liferay-ui:toggle
@@ -53,7 +53,7 @@ Result:
 <div id="toggle_id_sample_ui_taglibs_test" style="display: <liferay-ui:toggle-value id="toggle_id_sample_ui_taglibs_test" />; padding-top: 10px;">
 	This content is toggable. The preference for this is persited based on the specified id. If the user is a guest, the preference is persisted for the session only. If the user is authenticated, the preference is persisted in the database for all future requests.
 
-	<br><br>
+	<br /><br />
 
 	The attributes <i>onImage</i> and <i>offImage</i> are optional and default to the images in this sample. You can also customize the default images by replacing them in a custom theme.
 </div>

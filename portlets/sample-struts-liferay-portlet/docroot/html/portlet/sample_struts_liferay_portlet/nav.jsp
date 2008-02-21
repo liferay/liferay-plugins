@@ -32,7 +32,7 @@ Window State:
 
 <html:link page="/sample_struts_liferay_portlet/view?windowState=normal">Normal</html:link>
 
-<br><br>
+<br /><br />
 
 Portlet Mode:
 
@@ -50,7 +50,7 @@ Portlet Mode:
 
 <html:link page="/sample_struts_liferay_portlet/view?portletMode=view">View</html:link>
 
-<br><br>
+<br /><br />
 
 View Page:
 
@@ -77,7 +77,7 @@ pageContext.setAttribute("zParams", zParams);
 
 <html:link name="zParams" page="/sample_struts_liferay_portlet/z">Z</html:link>
 
-<br><br>
+<br /><br />
 
 Portlet URL:
 
@@ -87,13 +87,13 @@ Portlet URL:
 
 <a href="<portlet:renderURL><portlet:param name="struts_action" value="/sample_struts_liferay_portlet/x" /></portlet:renderURL>">Render</a>
 
-<br><br>
+<br /><br />
 
 User Information:
 
 <html:link page="/sample_struts_liferay_portlet/user_attributes">Portlet and Custom User Attributes</html:link>
 
-<br><br>
+<br /><br />
 
 Shared Sessions:
 
@@ -103,13 +103,13 @@ Shared Sessions:
 
 <a href="<%= request.getContextPath() %>/test_session/servlet_session_attributes">Servlet Session Attributes</a>
 
-<br><br>
+<br /><br />
 
 Portlet Display:
 
 <html:link page="/sample_struts_liferay_portlet/portlet_display_attributes">Portlet Display Attributes</html:link>
 
-<br><br>
+<br /><br />
 
 Chart:
 
@@ -131,7 +131,7 @@ Chart:
 
 <a href="javascript: var viewChartWindow = window.open('<%= request.getContextPath() %>/portlet_action/sample_struts_liferay_portlet/view_chart?chart_type=vertical_bar', 'viewChart', 'directories=no,height=430,location=no,menubar=no,resizable=no,scrollbars=no,status=no,toolbar=no,width=420'); void(''); viewChartWindow.focus();">Vertical Bar</a>
 
-<br><br>
+<br /><br />
 
 Struts Form:
 
@@ -145,7 +145,7 @@ Struts Form:
 
 <html:link page="/sample_struts_liferay_portlet/upload">Upload</html:link>
 
-<br><br>
+<br /><br />
 
 Struts Exception:
 

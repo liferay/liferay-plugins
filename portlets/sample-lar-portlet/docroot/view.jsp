@@ -40,12 +40,12 @@ long importDate = Long.parseLong(prefs.getValue("last-import-date", "0"));
 This is the <b>Sample LAR Portlet</b>. This was made to demonstrate the portlet
 LAR plugin feature.
 
-<br><br>
+<br /><br />
 
 This portlet plugin allows you to store data in the LAR file (Liferay Archive)
 when the portlet exists in the Community being exported.
 
-<br><br>
+<br /><br />
 
 Date of last export:
 
@@ -66,7 +66,7 @@ else {
 }
 %>
 
-<br>
+<br />
 
 Date of last import:
 

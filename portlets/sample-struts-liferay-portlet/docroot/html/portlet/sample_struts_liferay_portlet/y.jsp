@@ -24,7 +24,7 @@
 
 <b>Page Y</b>
 
-<br><br>
+<br /><br />
 
-<%= request.getParameter("hello") %><br>
+<%= request.getParameter("hello") %><br />
 <%= request.getParameter("hi") %>

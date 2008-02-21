@@ -26,14 +26,14 @@
 
 This is the <b>Sample Test Portlet</b>. This was made to test some portlet features.
 
-<br><br>
+<br /><br />
 
 <b>Request:</b> <a href="<portlet:renderURL><portlet:param name="jspPage" value="/request/attribute_sharing.jsp" /></portlet:renderURL>">Attribute Sharing</a>
 
-<br><br>
+<br /><br />
 
 <b>Response:</b> <a href="<portlet:renderURL><portlet:param name="jspPage" value="/response/buffer_size.jsp" /></portlet:renderURL>">Buffer Size</a>
 
-<br><br>
+<br /><br />
 
 <b>Session:</b> <a href="<portlet:renderURL><portlet:param name="jspPage" value="/session/attribute_sharing.jsp" /></portlet:renderURL>">Attribute Sharing</a>

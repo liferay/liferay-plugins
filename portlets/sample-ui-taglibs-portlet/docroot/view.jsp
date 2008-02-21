@@ -24,10 +24,10 @@
 
 <%@ include file="/init.jsp" %>
 
-This is the <b>Sample UI Taglibs Portlet</b>. This was made to showcase some of Liferay's UI taglibs.<br><br>
+This is the <b>Sample UI Taglibs Portlet</b>. This was made to showcase some of Liferay's UI taglibs.<br /><br />
 
-<a href="<portlet:renderURL><portlet:param name="jspPage" value="/calendar.jsp" /></portlet:renderURL>">liferay-ui:calendar</a><br><br>
+<a href="<portlet:renderURL><portlet:param name="jspPage" value="/calendar.jsp" /></portlet:renderURL>">liferay-ui:calendar</a><br /><br />
 
-<a href="<portlet:renderURL><portlet:param name="jspPage" value="/tabs.jsp" /></portlet:renderURL>">liferay-ui:tabs</a><br><br>
+<a href="<portlet:renderURL><portlet:param name="jspPage" value="/tabs.jsp" /></portlet:renderURL>">liferay-ui:tabs</a><br /><br />
 
 <a href="<portlet:renderURL><portlet:param name="jspPage" value="/toggle.jsp" /></portlet:renderURL>">liferay-ui:toggle</a>

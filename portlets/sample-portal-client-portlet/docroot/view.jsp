@@ -31,7 +31,7 @@
 
 You belong to the following organizations:
 
-<br><br>
+<br /><br />
 
 <%
 String remoteUser = request.getRemoteUser();
@@ -48,7 +48,7 @@ for (int i = 0; i < organizations.length; i++) {
 	OrganizationSoap organization = organizations[i];
 %>
 
-	<%= organization.getName() %><br>
+	<%= organization.getName() %><br />
 
 <%
 }

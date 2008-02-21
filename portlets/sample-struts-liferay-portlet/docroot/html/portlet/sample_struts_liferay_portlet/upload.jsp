@@ -38,7 +38,7 @@
 </tr>
 </table>
 
-<br>
+<br />
 
 <input type="submit" value="Upload File">
 

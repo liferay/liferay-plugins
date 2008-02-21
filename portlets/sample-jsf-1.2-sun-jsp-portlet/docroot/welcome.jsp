@@ -33,7 +33,7 @@
 		<tr>
 			<td align="center">
 				<font class="portlet-font" style="font-size: x-small;">
-				<h:outputText value="#{msgs.welcome_to_liferay_portal}" />, <h:outputText value="#{user.name}"/>.
+				<h:outputText value="#{msgs.welcome_to_liferay_portal}" />, <h:outputText value="#{user.name}" />.
 				</font>
 			</td>
 		</tr>

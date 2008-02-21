@@ -57,7 +57,7 @@
 
 </table>
 
-<br>
+<br />
 
 <html:submit>Nested Submit</html:submit>
 

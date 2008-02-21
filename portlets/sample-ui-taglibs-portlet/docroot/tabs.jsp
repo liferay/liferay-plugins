@@ -26,7 +26,7 @@
 
 Code:
 
-<br><br>
+<br /><br />
 
 <pre>&lt;liferay-ui:tabs
     names="One,Two,Three"
@@ -47,7 +47,7 @@ Code:
 
 Result:
 
-<br><br>
+<br /><br />
 
 <liferay-ui:tabs
 	names="One,Two,Three"

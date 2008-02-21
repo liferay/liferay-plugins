@@ -26,29 +26,29 @@
 
 <b>Portlet Display Attributes:</b>
 
-<br><br>
+<br /><br />
 
-portletDisplay.getId()=<%= portletDisplay.getId() %><br>
-portletDisplay.getTitle()=<%= portletDisplay.getTitle() %><br>
-portletDisplay.isAccess()=<%= portletDisplay.isAccess() %><br>
-portletDisplay.isActive()=<%= portletDisplay.isActive() %><br>
-portletDisplay.isStateMax()=<%= portletDisplay.isStateMax() %><br>
-portletDisplay.isStateMin()=<%= portletDisplay.isStateMin() %><br>
-portletDisplay.isStatePopUp()=<%= portletDisplay.isStatePopUp() %><br>
-portletDisplay.isModeAbout()=<%= portletDisplay.isModeAbout() %><br>
-portletDisplay.isModeConfig()=<%= portletDisplay.isModeConfig() %><br>
-portletDisplay.isModeEdit()=<%= portletDisplay.isModeEdit() %><br>
-portletDisplay.isModeEditDefaults()=<%= portletDisplay.isModeEditDefaults() %><br>
-portletDisplay.isModeHelp()=<%= portletDisplay.isModeHelp() %><br>
-portletDisplay.isModePreview()=<%= portletDisplay.isModePreview() %><br>
-portletDisplay.isModePrint()=<%= portletDisplay.isModePrint() %><br>
-portletDisplay.isShowEditIcon()=<%= portletDisplay.isShowEditIcon() %><br>
-portletDisplay.isShowHelpIcon()=<%= portletDisplay.isShowHelpIcon() %><br>
-portletDisplay.isShowMoveIcon()=<%= portletDisplay.isShowMoveIcon() %><br>
-portletDisplay.isShowMinIcon()=<%= portletDisplay.isShowMinIcon() %><br>
-portletDisplay.isShowMaxIcon()=<%= portletDisplay.isShowMaxIcon() %><br>
-portletDisplay.isShowCloseIcon()=<%= portletDisplay.isShowCloseIcon() %><br>
-portletDisplay.getURLEdit()=<%= portletDisplay.getURLEdit() %><br>
-portletDisplay.getURLHelp()=<%= portletDisplay.getURLHelp() %><br>
-portletDisplay.getURLMax()=<%= portletDisplay.getURLMax() %><br>
-portletDisplay.isRestoreCurrentView()=<%= portletDisplay.isRestoreCurrentView() %><br>
+portletDisplay.getId()=<%= portletDisplay.getId() %><br />
+portletDisplay.getTitle()=<%= portletDisplay.getTitle() %><br />
+portletDisplay.isAccess()=<%= portletDisplay.isAccess() %><br />
+portletDisplay.isActive()=<%= portletDisplay.isActive() %><br />
+portletDisplay.isStateMax()=<%= portletDisplay.isStateMax() %><br />
+portletDisplay.isStateMin()=<%= portletDisplay.isStateMin() %><br />
+portletDisplay.isStatePopUp()=<%= portletDisplay.isStatePopUp() %><br />
+portletDisplay.isModeAbout()=<%= portletDisplay.isModeAbout() %><br />
+portletDisplay.isModeConfig()=<%= portletDisplay.isModeConfig() %><br />
+portletDisplay.isModeEdit()=<%= portletDisplay.isModeEdit() %><br />
+portletDisplay.isModeEditDefaults()=<%= portletDisplay.isModeEditDefaults() %><br />
+portletDisplay.isModeHelp()=<%= portletDisplay.isModeHelp() %><br />
+portletDisplay.isModePreview()=<%= portletDisplay.isModePreview() %><br />
+portletDisplay.isModePrint()=<%= portletDisplay.isModePrint() %><br />
+portletDisplay.isShowEditIcon()=<%= portletDisplay.isShowEditIcon() %><br />
+portletDisplay.isShowHelpIcon()=<%= portletDisplay.isShowHelpIcon() %><br />
+portletDisplay.isShowMoveIcon()=<%= portletDisplay.isShowMoveIcon() %><br />
+portletDisplay.isShowMinIcon()=<%= portletDisplay.isShowMinIcon() %><br />
+portletDisplay.isShowMaxIcon()=<%= portletDisplay.isShowMaxIcon() %><br />
+portletDisplay.isShowCloseIcon()=<%= portletDisplay.isShowCloseIcon() %><br />
+portletDisplay.getURLEdit()=<%= portletDisplay.getURLEdit() %><br />
+portletDisplay.getURLHelp()=<%= portletDisplay.getURLHelp() %><br />
+portletDisplay.getURLMax()=<%= portletDisplay.getURLMax() %><br />
+portletDisplay.isRestoreCurrentView()=<%= portletDisplay.isRestoreCurrentView() %><br />

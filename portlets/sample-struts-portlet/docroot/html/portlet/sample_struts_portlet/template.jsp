@@ -36,6 +36,6 @@
 	<jsp:include page="/html/portlet/sample_struts_portlet/nav.jsp" flush="true" />
 </div>
 
-<br>
+<br />
 
 <img hspace="0" src="<%= request.getContextPath() %>/html/image/struts-power.gif" vspace="0">

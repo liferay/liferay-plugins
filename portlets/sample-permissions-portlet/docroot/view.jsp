@@ -55,7 +55,7 @@ Do you have the VIEW permission for this portlet?
 
 </b>
 
-<br><br>
+<br /><br />
 
 <%
 name = "com.sample.permissions.model.Something";
@@ -78,7 +78,7 @@ Does you have the DELETE permission for the model <%= name %> with the primary k
 
 </b>
 
-<br><br>
+<br /><br />
 
 <portlet:renderURL var="redirectURL" />
 

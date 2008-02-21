@@ -51,19 +51,19 @@ public class TestSessionServlet extends HttpServlet {
 
 		// Remote User
 
-		sm.append("<b>Remote User:</b><br><br>");
+		sm.append("<b>Remote User:</b><br /><br />");
 		sm.append(req.getRemoteUser());
-		sm.append("<br><br>");
+		sm.append("<br /><br />");
 
 		// Session ID
 
-		sm.append("<b>Session ID:</b><br><br>");
+		sm.append("<b>Session ID:</b><br /><br />");
 		sm.append(req.getRequestedSessionId());
-		sm.append("<br><br>");
+		sm.append("<br /><br />");
 
 		// Servlet Session Attributes
 
-		sm.append("<b>Servlet Session Attributes:</b><br><br>");
+		sm.append("<b>Servlet Session Attributes:</b><br /><br />");
 
 		Enumeration enu = ses.getAttributeNames();
 
@@ -75,7 +75,7 @@ public class TestSessionServlet extends HttpServlet {
 			sm.append(attrName);
 			sm.append("=");
 			sm.append(attrValue);
-			sm.append("<br>");
+			sm.append("<br />");
 		}
 
 		res.setContentType("text/html");

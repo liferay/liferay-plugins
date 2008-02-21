@@ -66,7 +66,7 @@
 </tr>
 </table>
 
-<br>
+<br />
 
 <html:submit>Subscribe</html:submit>
 

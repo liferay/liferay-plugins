@@ -53,7 +53,7 @@ else {
 		String value = (String)entry.getValue();
 %>
 
-		<%= key %>=<%= value %><br>
+		<%= key %>=<%= value %><br />
 
 <%
 	}

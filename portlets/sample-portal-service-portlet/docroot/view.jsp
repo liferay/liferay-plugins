@@ -33,7 +33,7 @@
 
 You belong to the following organizations:
 
-<br><br>
+<br /><br />
 
 <%
 List organizations = OrganizationServiceUtil.getUserOrganizations(themeDisplay.getUserId());
@@ -42,7 +42,7 @@ for (int i = 0; i < organizations.size(); i++) {
 	Organization organization = (Organization)organizations.get(i);
 %>
 
-	<%= organization.getName() %><br>
+	<%= organization.getName() %><br />
 
 <%
 }

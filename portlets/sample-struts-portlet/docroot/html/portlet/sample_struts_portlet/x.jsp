@@ -26,10 +26,10 @@
 
 <b>Page X</b>
 
-<br><br>
+<br /><br />
 
 <bean:message key="hello-there" />
 
-<br><br>
+<br /><br />
 
 <%= request.getAttribute("x_param") %>

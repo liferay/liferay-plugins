@@ -26,6 +26,6 @@
 
 User ID <%= session.getAttribute("USER_ID") %>
 
-<br><br>
+<br /><br />
 
 &laquo; <a href="<portlet:renderURL />">Back</a>
