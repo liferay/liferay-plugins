@@ -156,6 +156,7 @@ body {
 .js .lfr-dock.interactive-mode {
 	top: 0px;
 	right: 13px;
+	border: 2px solid #f00 !important;
 }
 
 .js .lfr-dock.interactive-mode h2 {
@@ -164,7 +165,7 @@ body {
 }
 
 .js .lfr-dock.interactive-mode h2 span {
-	padding: 0.3em 0.5em 0.5em 3em;
+	padding: 0.3em 0.5em 0.5em 1em;
 	text-align: left;
 	font-weight: normal;
 	font-size: 1.1em;
@@ -302,6 +303,7 @@ body {
 }
 
 .portal-popup .columns-max #column-1 {
+	background: #fff;
 	margin: 0;
 	padding: 0;
 	width: 100%;

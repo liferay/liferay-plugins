@@ -14,6 +14,11 @@ body {
 	height: auto;
 }
 
+
+body.portal-popup {
+	background: #1C2633;
+}
+
 table {
 	clear: both;
 }
@@ -103,6 +108,7 @@ a:hover {
 }
 
 .portal-popup #content-wrapper {
+	background: none;
 	font-size: 1.2em;
 }
 
