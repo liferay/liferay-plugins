@@ -24,8 +24,8 @@
 
 <%@ include file="/init.jsp" %>
 
-User ID <%= session.getAttribute("USER_ID") %>
+<%= request.getRemoteUser() %>
 
 <br /><br />
 
-&laquo; <a href="<portlet:renderURL />">Back</a>
+<a href="<portlet:renderURL />">&laquo; Back</a>

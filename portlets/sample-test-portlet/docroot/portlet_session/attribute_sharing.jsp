@@ -24,14 +24,8 @@
 
 <%@ include file="/init.jsp" %>
 
-Clark <%= request.getAttribute("Clark") %><br />
-Bruce <%= request.getAttribute("LIFERAY_SHARED_Bruce") %>
-
-<%
-request.setAttribute("Clark", "Kent");
-request.setAttribute("LIFERAY_SHARED_Bruce", "Wayne");
-%>
+User ID <%= session.getAttribute("USER_ID") %>
 
 <br /><br />
 
-&laquo; <a href="<portlet:renderURL />">Back</a>
+<a href="<portlet:renderURL />">&laquo; Back</a>

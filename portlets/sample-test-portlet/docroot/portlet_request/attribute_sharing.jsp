@@ -24,20 +24,14 @@
 
 <%@ include file="/init.jsp" %>
 
-This is the <b>Sample Test Portlet</b>. This was made to test some portlet features.
+Clark <%= request.getAttribute("Clark") %><br />
+Bruce <%= request.getAttribute("LIFERAY_SHARED_Bruce") %>
+
+<%
+request.setAttribute("Clark", "Kent");
+request.setAttribute("LIFERAY_SHARED_Bruce", "Wayne");
+%>
 
 <br /><br />
 
-<b>Portlet Request:</b> <a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_request/attribute_sharing.jsp" /></portlet:renderURL>">Attribute Sharing</a> | <a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_request/remote_user.jsp" /></portlet:renderURL>">Remote User</a>
-
-<br /><br />
-
-<b>Portlet Response:</b> <a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_response/buffer_size.jsp" /></portlet:renderURL>">Buffer Size</a>
-
-<br /><br />
-
-<b>Portlet Session:</b> <a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_session/attribute_sharing.jsp" /></portlet:renderURL>">Attribute Sharing</a>
-
-<br /><br />
-
-<b>Servlet Request:</b> <a href="<%= request.getContextPath() %>/servlet_request/remote_user.jsp">Remote User</a>
+<a href="<portlet:renderURL />">&laquo; Back</a>

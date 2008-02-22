@@ -28,4 +28,4 @@ Buffer size is <%= response.getBufferSize() %>.
 
 <br /><br />
 
-&laquo; <a href="<portlet:renderURL />">Back</a>
+<a href="<portlet:renderURL />">&laquo; Back</a>
