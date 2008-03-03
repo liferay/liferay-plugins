@@ -156,7 +156,6 @@ body {
 .js .lfr-dock.interactive-mode {
 	top: 0px;
 	right: 13px;
-	border: 2px solid #f00 !important;
 }
 
 .js .lfr-dock.interactive-mode h2 {
