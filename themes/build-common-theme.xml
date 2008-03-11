@@ -34,7 +34,7 @@
 		</if>
 
 		<if>
-			<equals arg1="${theme.extension}" arg2="unstyled" />
+			<equals arg1="${theme.parent}" arg2="_unstyled" />
 			<then>
 				<copy todir="docroot" overwrite="yes">
 					<fileset
@@ -44,7 +44,7 @@
 				</copy>
 			</then>
 			<elseif>
-				<equals arg1="${theme.extension}" arg2="styled" />
+				<equals arg1="${theme.parent}" arg2="_styled" />
 				<then>
 					<copy todir="docroot" overwrite="yes">
 						<fileset
@@ -56,6 +56,19 @@
 					<copy todir="docroot" overwrite="yes">
 						<fileset
 							dir="${app.server.portal.dir}/html/themes/_styled"
+						/>
+					</copy>
+				</then>
+			</elseif>
+			<elseif>
+				<not>
+					<equals arg1="${theme.parent}" arg2="$${theme.parent}" />
+				</not>
+				<then>
+					<copy todir="docroot" overwrite="yes">
+						<fileset
+							dir="${theme.parent}/docroot"
+							excludes="_diffs/**"
 						/>
 					</copy>
 				</then>
@@ -82,14 +95,19 @@
 			<arg line="docroot/css docroot/css/everything_unpacked.css" />
 		</java>
 
-		<java
-			classname="com.yahoo.platform.yui.compressor.YUICompressor"
-			classpathref="lib.classpath"
-			fork="true"
-			newenvironment="true"
-		>
-			<arg line="--type css -o docroot/css/everything_packed.css docroot/css/everything_unpacked.css" />
-		</java>
+		<if>
+			<available file="docroot/css/everything_unpacked.css" />
+			<then>
+				<java
+					classname="com.yahoo.platform.yui.compressor.YUICompressor"
+					classpathref="lib.classpath"
+					fork="true"
+					newenvironment="true"
+				>
+					<arg line="--type css -o docroot/css/everything_packed.css docroot/css/everything_unpacked.css" />
+				</java>
+			</then>
+		</if>
 	</target>
 
 	<target name="war" depends="compile">

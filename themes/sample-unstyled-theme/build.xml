@@ -5,5 +5,5 @@
 
 	<import file="../build-common-theme.xml" />
 
-	<property name="theme.extension" value="unstyled" />
+	<property name="theme.parent" value="_unstyled" />
 </project>
