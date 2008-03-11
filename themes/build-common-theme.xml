@@ -68,7 +68,7 @@
 					<copy todir="docroot" overwrite="yes">
 						<fileset
 							dir="${theme.parent}/docroot"
-							excludes="_diffs/**"
+							excludes="_diffs/**,WEB-INF/*.properties,WEB-INF/*.xml"
 						/>
 					</copy>
 				</then>
