@@ -1,0 +1,87 @@
+#banner {
+	background: url(../images/common/custom_banner.png) no-repeat 0 0;
+	background-color: black;
+}
+
+.portlet-topper {
+background: url(../images/common/nav.jpg) 0 0;
+	
+}
+
+.portlet {
+	border: 2px solid #F7F7F7;
+}
+
+
+.tabs {
+	border-bottom: 1px solid #EEEEEE;
+	margin: 0 0 1.5em 0;
+	padding: 0 0 2.6em 1em;
+}
+
+.tabs li {
+	background: #FBFBFB  0 100%;
+	border: 1px solid #EEEEEE;
+	border-bottom: 0;
+	display: inline;
+	float: left;
+	line-height: 2.25;
+	margin-right: 0.8em;
+	padding: 0;
+	text-decoration: none;
+}
+
+
+.tabs li a, .tabs li span {
+	display: block;
+	float: left;
+	padding: 0.35em 1em 0;
+	text-decoration: none;
+}
+
+.tabs li.current {
+	background: #8A9C9A url(../images/common/nav.jpg) repeat-x 0 0;
+	font-weight: bold;
+}
+
+.tabs li.current a, .tabs li.current span {
+	color: #333;
+	padding: 0.15em 1em;
+}
+
+.ie .tabs li {
+	line-height: 2.35;
+}
+
+.ie .tabs li.current {
+	top: 0.2em;
+}
+
+.ie6 .tabs li, .ie6 .tabs li.current {
+	background-image: none;
+}
+
+
+
+input[type="submit"], input[type="button"], input[type="reset"] {
+background:#FAFAFA url(../images/forms/button.png) repeat-x scroll 0%;
+border-color:#CCCCCC rgb(153, 153, 153) rgb(153, 153, 153) rgb(204, 204, 204);
+border-style:double;
+border-width:3px;
+color:#333333;
+font-weight:bold;
+padding:0.25em;
+}
+#navigation li {
+	background: transparent url(../images/common/nav.jpg) repeat;
+	display: inline;
+	float: left;
+	margin-right: 0.5em;
+	position: relative;
+}
+
+#navigation li.selected {
+	border-top: 3px solid #283E57;
+	font-size: 1.3em;
+	font-weight: bold;
+}
