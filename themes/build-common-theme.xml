@@ -65,6 +65,8 @@
 					<equals arg1="${theme.parent}" arg2="$${theme.parent}" />
 				</not>
 				<then>
+					<ant dir="${theme.parent}" target="compile" inheritAll="false" />
+
 					<copy todir="docroot" overwrite="yes">
 						<fileset
 							dir="${theme.parent}/docroot"
