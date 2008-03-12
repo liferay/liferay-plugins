@@ -1,0 +1,27 @@
+#banner{
+
+background:url(../images/common/skin_fetch.png) repeat-x scroll 0% 0%;
+margin-left:2.5%;
+max-width:95%;          
+}
+.portlet-title{
+color:darkBlue;
+}
+
+.portlet-topper {
+background:url(../images/common/skin_fetch.png) repeat-x scroll 0% 0%;
+position:relative;
+}
+.portlet{
+border:2px solid #B3B3B3;
+}
+.tabs{
+border-bottom:1px solid #B3B3B3;
+}
+.tabs li.current{
+background: #A9B3BC;
+}
+.tabs li{
+background: #B3B3B3;
+border-color: #B3B3B3;
+}
