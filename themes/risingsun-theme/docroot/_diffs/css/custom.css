@@ -1,0 +1,265 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+.banner {
+	float: center;
+	height: 242px;
+	width: 1003px;
+	text-align: left;
+	margin: 0 auto;
+	padding: 0 0 0 0;
+	position: relative;
+	background: #000 url(../images/common/header.jpg) no-repeat;
+}
+
+blockquote {
+	padding: 0 10px;
+	color: #B2B2B2;
+	border: 1px solid #262626;
+}
+
+.clear {
+	clear: both;
+}
+
+.wrapper {
+	width: 1003px;
+	margin: 0 auto;
+}
+
+#content-wrapper {
+	background: #000000 url(../images/common/container.gif) repeat-y scroll
+		0%;
+	padding: 0pt 35px 0px;
+}
+
+.top {
+	float: center;
+	margin: 0 auto;
+	height: 93px;
+	width: 1003px;
+	padding: 0 0 0 0;
+	font-style: "Times New Roman", Times, serif;
+	position: relative;
+	background: #000 url(../images/common/top.jpg) no-repeat;
+}
+
+.top h1 {
+	position: relative;
+	text-align: left;
+	margin: 0 auto;
+	padding-left: 120px;
+	padding-top: 15px;
+	color: #E38200;
+	font-size: 28px;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-family: Times New Roman, Times, serif;
+}
+
+.top h1 a {
+	text-decoration: none;
+	color: #E38200;
+}
+
+.top h1 a:hover {
+	color: #E38200;
+	border-bottom: 1px dashed #E38200;
+}
+
+.top h2 {
+	position: relative;
+	text-align: left;
+	margin: 0 auto;
+	padding-left: 125px;
+	padding-top: 0px;
+	color: #848484;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.columns-1 #column-1,.columns-max #column-1 {
+	display: table;
+	padding-left: 7pt;
+	padding-right: 0pt;
+	width: 98%;
+}
+
+#wrapper {
+	background: #000000 url(../images/common/container.gif) repeat scroll 0%
+		50%;
+	width: 1003px;
+	margin: 0 auto;
+}
+
+.portlet-title {
+	font-family: verdana, Helvetica, sans-serif;
+	font-size: 15px;
+	color: #E38200;
+	height: 20px;
+	margin: 0 0 15px 0;
+	text-transform: uppercase;
+	font-weight: bold;
+	border-bottom: 2px dashed #E38200;
+	background: #000 url(../images/common/pbg.jpg) left top no-repeat;
+	padding: 0px 0px 5px 30px;
+}
+
+.portlet {
+	margin-bottom: 1em;
+	text-align: left;
+}
+
+.js .lfr-dock.interactive-mode {
+	float: right;
+	min-width: 105px;
+	right: 6px;
+	top: -92px;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	background: url(../images/dock/menu_bar.png) no-repeat 0 0;
+	color: #fff;
+	display: block;
+	font-size: 1.2em;
+	margin-bottom: -7pt;
+	padding: 0.5em 0.5em 0.5em 2em;
+}
+
+.respond input#submit {
+	padding: 0;
+	width: 72px;
+	height: 29px;
+}
+
+.respond p {
+	padding: 0;
+	margin: 20px 0;
+}
+
+.respond h2,.comments h2 {
+	margin: 0 auto;
+	font-size: 20px;
+	color: #F19118;
+	border-bottom: 1px dashed #F19118;
+	height: 25px;
+	clear: both;
+	padding: 9px 0 0 15px;
+	font-weight: normal;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#footwrap {
+	float: center;
+	margin: 0 auto;
+	text-align: center;
+	height: 75px;
+	width: 1003px;
+	color: #FFF;
+	background: #fff url(../images/common/footer.jpg) 0 0 no-repeat;
+	font-family: arial, verdana;
+}
+
+#footwrap #p {
+	padding: 30px 0 0 0;
+	display: block;
+	margin-bottom: 2px;
+}
+
+#footwrap a:link {
+	color: #FFF;
+	border: none;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#footwrap a:hover {
+	color: #DFDFDF;
+	border: none;
+	text-decoration: none;
+}
+
+#footwrap a:visited :hover {
+	color: #DFDFDF;
+	border: none;
+	text-decoration: none;
+}
+
+#footwrap a:visited {
+	color: #FFF;
+	text-decoration: none;
+	border: none;
+	font-weight: bold;
+}
+
+#footwrap #design {
+	padding: 0 0 0 0;
+}
+
+/* Navigation */
+#navigation {
+	height: 26px;
+	float: center;
+	margin: 0 auto;
+	padding: 0px 0px 0px 400px;
+	font-style: "Times New Roman", Times, serif;
+}
+
+.navigation ul {
+	margin: 0 auto;
+	padding: 0px 0 0px 0px;
+	font-style: "Times New Roman", Times, serif;
+	list-style: none;
+	top: 0px;
+}
+
+.navigation li {
+	display: block;
+	float: left;
+	height: 26px;
+	padding: 0 0 0px 0;
+	margin-right: 4px;
+}
+
+#navigation li a {
+	height: 26px;
+	display: block;
+	color: #F79C0D;
+	text-decoration: none;
+	text-align: left;
+	padding: 0px 10px 0px 10px;
+	border: 2px solid #915800;
+	font-size: 15px;
+	float: left;
+}
+
+#navigation li a:hover {
+	height: 26px;
+	background: #282828;
+	border: 2px solid #5B5B5B;
+	color: #ADADAD;
+}
+
+#navigation li.selected  {
+	height: 26px;
+	background: #282828;
+	border: 2px solid #915800;
+	color: #ADADAD;
+	margin-top:-11px;
+}
+
+#navigation li a,#navigation li.selected a {
+	height: 26px;
+	background: #282828;
+	border: 2px solid #915800;
+	color: #ADADAD;
+}
+#navigation li a span {
+	display: block;
+	padding: 0em 0em;
+}
+
+#banner .logo {
+	display: block;
+	font-size: 2em;
+	margin: 0 auto;
+	padding: 1.25em 406pt 1.45em;
+}
