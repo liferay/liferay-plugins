@@ -47,7 +47,7 @@ body {
 /* ---- NAVIGATION ---- */
 #navigation {
 	position: relative;
-	overflow: visible;
+	overflow: visable;
 	z-index: 10;
 	background: transparent url(../images/navigation/bg.png) no-repeat;
 	width: 100%;
@@ -99,6 +99,9 @@ body {
 	padding-bottom: 4px;
 }
 
+.ie6 #navigation li.selected {
+	background: #1F242A;
+}
 
 #navigation li.selected:hover {
 	background: #D8DDE0;
@@ -183,7 +186,7 @@ body {
 	position: relative;
 }
 
-#banner .search input {
+.ie6 .search input.text {
 	background: #FFF;
 	color: #211C19;
 	border: none;
@@ -194,12 +197,23 @@ body {
 	width: 150px;
 }
 
-#banner .search input.focus {
+#banner .search input[type=text] {
 	background: #FFF;
+	color: #211C19;
+	border: none;
+	font-size: 16px;
+	font-weight: normal;
+	margin: 0px -10px 0px 0px;
+	padding: 3px;
+	width: 150px;
 }
 
 #banner .search input[type=image] {
 	display: none;
+}
+
+#banner .search input.focus {
+	background: #FFF;
 }
 
 #banner .search .search-input-link {
@@ -213,7 +227,7 @@ body {
 }
 
 .ie #banner .search .search-input-link {
-	top: 1px;
+	top: 3px;
 }
 
 /* --- PORTLET --- */
@@ -228,7 +242,7 @@ body {
 	padding: 0;
 }
 
-.ie .portlet {
+.ie7 .portlet {
 	zoom: 1;
 }
 
@@ -243,6 +257,10 @@ body {
 .portlet-title {
 	padding: 12px 0 12px 12px;
 	font-size: 17px;
+}
+
+.ie6 .portlet-icons {
+	padding-right: 10px;
 }
 
 /* --- LAYOUT SPECIFIC --- */
