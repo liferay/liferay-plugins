@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Sample WAP Theme</name>
-	<module-id>liferay/sample-wap-theme/4.3.4.1/war</module-id>
+	<module-id>liferay/sample-wap-theme/4.4.0.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>
@@ -22,6 +22,6 @@
 		<license osi-approved="true">MIT</license>
 	</licenses>
 	<liferay-versions>
-		<liferay-version>4.3.4</liferay-version>
+		<liferay-version>4.4.0+</liferay-version>
 	</liferay-versions>
 </plugin-package>
