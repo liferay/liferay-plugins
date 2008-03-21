@@ -3,7 +3,7 @@
 <web-app xmlns="http://geronimo.apache.org/xml/ns/j2ee/web-1.1">
 	<environment>
 		<moduleId>
-			<artifactId>sample-icefaces-sun-portlet</artifactId>
+			<artifactId>sample_icefaces_jsf_1_1_sun_jsp_portlet</artifactId>
 		</moduleId>
 		<dependencies>
 			<dependency>

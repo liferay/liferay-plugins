@@ -1,4 +1,4 @@
-<Context path="/sample-icefaces-sun-facelets-portlet">
+<Context path="/sample-icefaces-jsf-1.1-sun-facelets-portlet">
 
 	<!--
 	ICEfaces does not support persisted sessions. The following Manager element
