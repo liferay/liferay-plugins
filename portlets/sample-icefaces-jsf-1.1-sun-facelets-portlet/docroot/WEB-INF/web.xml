@@ -41,6 +41,10 @@
 		<param-value>true</param-value>
 	</context-param>
 	<context-param>
+		<param-name>com.icesoft.faces.hiddenPortletAttributes</param-name>
+		<param-value>THEME_DISPLAY</param-value>
+	</context-param>
+	<context-param>
 		<param-name>com.icesoft.faces.synchronousUpdate</param-name>
 		<param-value>false</param-value>
 	</context-param>
