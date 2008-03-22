@@ -22,90 +22,105 @@
  */
 -->
 
-<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:liferay-faces="http://liferay.com/tld/faces">
-	<ice:outputDeclaration doctypeRoot="HTML" doctypePublic="-//W3C//DTD HTML 4.01 Transitional//EN" doctypeSystem="http://www.w3.org/TR/html4/loose.dtd" />
-	<ice:form styleClass="sample-icefaces-portlet">
-		<ice:outputStyle href="portlet-override.css" />
-		<ice:outputStyle href="xmlhttp/css/xp/xp-portlet.css" />
-		<ice:panelTabSet styleClass="componentPanelTabSetLayout">
-			<ice:panelTab label="#{Language['job-application']}" styleClass="portlet-font" >
-				<ice:messages errorClass="portlet-msg-error" fatalClass="portlet-msg-error" globalOnly="true" infoClass="portlet-msg-info" layout="table" warnClass="portlet-msg-warn" />
-				<ice:panelGrid columns="3">
-					<ice:panelGroup styleClass="portlet-form-field-label">
-						<ice:outputText style="color: red;" value="*" />
-						<ice:outputLabel for="firstName" styleClass="portlet-form-field-label" value="#{Language['first-name']}" />
-					</ice:panelGroup>
-					<ice:inputText id="firstName" alt="#{Language['firstName']}" partialSubmit="true" required="true" styleClass="portlet-form-input-field" value="#{JobApplication.firstName}" />
-					<ice:message errorClass="portlet-msg-error" for="firstName" />
-					<ice:panelGroup styleClass="portlet-form-field-label">
-						<ice:outputText style="color: red;" value="*" />
-						<ice:outputLabel for="lastName" styleClass="portlet-form-field-label" value="#{Language['last-name']}" />
-					</ice:panelGroup>
-					<ice:inputText id="lastName" alt="#{Language['last-name']}" partialSubmit="true" required="true" styleClass="portlet-form-input-field" value="#{JobApplication.lastName}" />
-					<ice:message errorClass="portlet-msg-error" for="lastName" />
-					<ice:panelGroup styleClass="portlet-form-field-label">
-						<ice:outputText style="color: red;" value="*" />
-						<ice:outputLabel for="emailAddress" styleClass="portlet-form-field-label" value="#{Language['email-address']}" />
-					</ice:panelGroup>
-					<ice:inputText id="emailAddress" alt="#{Language['email-address']}" partialSubmit="true" required="true" styleClass="portlet-form-input-field" value="#{JobApplication.emailAddress}">
-						<liferay-faces:validateEmailAddress/>
-					</ice:inputText>
-					<ice:message errorClass="portlet-msg-error" for="emailAddress" />
-					<ice:panelGroup styleClass="portlet-form-field-label">
-						<ice:outputText style="color: red;" value="*" />
-						<ice:outputLabel for="phoneNumber" styleClass="portlet-form-field-label" value="#{Language['phone-number']}" />
-					</ice:panelGroup>
-					<ice:inputText id="phoneNumber" alt="#{Language['phone-number']}" partialSubmit="true" required="true" styleClass="portlet-form-input-field" value="#{JobApplication.phoneNumber}">
-						<liferay-faces:convertPhoneNumber unitedStatesFormat="#{Edit.preferences['unitedStatesPhoneFormat']}" />
-					</ice:inputText>
-					<ice:message errorClass="portlet-msg-error" for="phoneNumber" />
-					<ice:panelGroup>
-						<ice:outputText style="color: red;" value="*" />
-						<ice:outputLabel for="phoneNumberType" styleClass="portlet-form-field-label" value="#{Language['phone-type']}" />
-					</ice:panelGroup>
-					<ice:selectOneMenu id="phoneNumberType" partialSubmit="true" required="true" styleClass="portlet-form-field" value="#{JobApplication.phoneNumberType}" >
-						<f:selectItems value="#{JobApplication.phoneNumberTypeSelectItems}" />
-					</ice:selectOneMenu>
-					<ice:message errorClass="portlet-msg-error" for="phoneNumberType" />
-					<ice:panelGroup styleClass="portlet-form-field-label">
-						<ice:outputText style="color: red;" value="*" />
-						<ice:outputLabel for="faxNumber" styleClass="portlet-form-field-label" value="#{Language['fax-number']}" />
-					</ice:panelGroup>
-					<ice:inputText id="faxNumber" alt="#{Language['fax-number']}" partialSubmit="true" required="true" styleClass="portlet-form-input-field" value="#{JobApplication.faxNumber}">
-						<liferay-faces:convertPhoneNumber unitedStatesFormat="#{Edit.preferences['unitedStatesPhoneFormat']}" />
-					</ice:inputText>
-					<ice:message errorClass="portlet-msg-error" for="faxNumber" />
-					<ice:panelGroup styleClass="portlet-form-field-label">
-						<ice:outputText style="color: red;" value="*" />
-						<ice:outputLabel for="dateOfBirth" value="#{Language['birthday']}" />
-					</ice:panelGroup>
-					<ice:selectInputDate id="dateOfBirth" alt="#{Language['birthday']}" autocomplete="true" popupDateFormat="#{Edit.preferences['dateFormat']}" renderAsPopup="true" required="true" style="" styleClass="portlet-form-input-field" value="#{JobApplication.dateOfBirth}">
-						<f:convertDateTime pattern="#{Edit.preferences['dateFormat']}" timeZone="#{ThemeDisplay.user.timeZone}" />
-					</ice:selectInputDate>
-					<ice:message errorClass="portlet-msg-error" for="dateOfBirth" />
-				</ice:panelGrid>
-				<ice:panelGrid columns="1">
-					<ice:panelGroup styleClass="portlet-form-field-label">
-						<ice:outputText escape="false" value="&amp;nbsp;" />
-						<ice:outputLabel for="comments" styleClass="portlet-form-field-label" value="#{Language['comments']}" />
-					</ice:panelGroup>
-					<ice:message errorClass="portlet-msg-error" for="comments" />
-					<ice:inputTextarea id="comments" cols="100" partialSubmit="true" required="false" rows="6" value="#{JobApplication.comments}" />
-				</ice:panelGrid>
-				<ice:panelGrid columns="1" columnClasses="" rowClasses="" style="" styleClass="">
-					<ice:panelGroup styleClass="portlet-form-field-label">
-						<ice:outputText escape="false" value="&amp;nbsp;" />
-						<ice:outputLabel for="resume" styleClass="portlet-form-field-label" value="#{Language['resume']}" />
-					</ice:panelGroup>
-					<ice:outputProgress styleClass="portlet-font" value="#{ResumeUploader.percent}" labelComplete="#{JobApplication.file.name}" />
-					<ice:message for="inputFile1" errorClass="portlet-msg-error" fatalClass="portlet-msg-error" infoClass="portlet-msg-info" layout="table" warnClass="portlet-msg-warn" />
-					<ice:inputFile id="inputFile1" actionListener="#{ResumeUploader.actionListener}" alt="#{Language['resume']}" binding="#{ResumeUploader.inputFile}" buttonClass="portlet-form-button" file="#{JobApplication.file}" label="#{Language['upload-resume']}" progressListener="#{ResumeUploader.progressListener}" styleClass="portlet-form-input-field " />
-				</ice:panelGrid>
-				<ice:outputText escape="false" value="&lt;hr/&gt;" />
-				<ice:panelGrid columns="1">
-					<ice:commandButton action="#{JobApplication.submit}" alt="#{Language['submit']}" styleClass="portlet-form-button" value="#{Language['submit']}" />
-				</ice:panelGrid>
-			</ice:panelTab>
-		</ice:panelTabSet>
-	</ice:form>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:liferay-faces="http://liferay.com/tld/faces">
+
+	<ice:portlet>
+		<ice:form styleClass="sample-icefaces-portlet">
+			<ice:outputStyle href="portlet-override.css" />
+			<ice:outputStyle href="xmlhttp/css/xp/xp-portlet.css" />
+			<ice:panelTabSet styleClass="componentPanelTabSetLayout">
+				<ice:panelTab label="#{Language['job-application']}">
+					<ice:messages globalOnly="true" layout="table" />
+					<ice:panelGrid columns="3">
+						<ice:panelGroup>
+							<ice:outputText style="color: red;" value="*" />
+							<ice:outputLabel for="firstName" value="#{Language['first-name']}" />
+						</ice:panelGroup>
+						<ice:inputText id="firstName" alt="#{Language['firstName']}" partialSubmit="true" required="true"
+							value="#{JobApplication.firstName}" />
+						<ice:message for="firstName" />
+						<ice:panelGroup>
+							<ice:outputText style="color: red;" value="*" />
+							<ice:outputLabel for="lastName" value="#{Language['last-name']}" />
+						</ice:panelGroup>
+						<ice:inputText id="lastName" alt="#{Language['last-name']}" partialSubmit="true" required="true"
+							value="#{JobApplication.lastName}" />
+						<ice:message for="lastName" />
+						<ice:panelGroup>
+							<ice:outputText style="color: red;" value="*" />
+							<ice:outputLabel for="emailAddress" value="#{Language['email-address']}" />
+						</ice:panelGroup>
+						<ice:inputText id="emailAddress" alt="#{Language['email-address']}" partialSubmit="true" required="true"
+							value="#{JobApplication.emailAddress}">
+							<liferay-faces:validateEmailAddress />
+						</ice:inputText>
+						<ice:message for="emailAddress" />
+						<ice:panelGroup>
+							<ice:outputText style="color: red;" value="*" />
+							<ice:outputLabel for="phoneNumber" value="#{Language['phone-number']}" />
+						</ice:panelGroup>
+						<ice:inputText id="phoneNumber" alt="#{Language['phone-number']}" partialSubmit="true" required="true"
+							value="#{JobApplication.phoneNumber}">
+							<liferay-faces:convertPhoneNumber unitedStatesFormat="#{Edit.preferences['unitedStatesPhoneFormat']}" />
+						</ice:inputText>
+						<ice:message for="phoneNumber" />
+						<ice:panelGroup>
+							<ice:outputText style="color: red;" value="*" />
+							<ice:outputLabel for="phoneNumberType" value="#{Language['phone-type']}" />
+						</ice:panelGroup>
+						<ice:selectOneMenu id="phoneNumberType" partialSubmit="true" required="true"
+							value="#{JobApplication.phoneNumberType}">
+							<f:selectItems value="#{JobApplication.phoneNumberTypeSelectItems}" />
+						</ice:selectOneMenu>
+						<ice:message for="phoneNumberType" />
+						<ice:panelGroup>
+							<ice:outputText style="color: red;" value="*" />
+							<ice:outputLabel for="faxNumber" value="#{Language['fax-number']}" />
+						</ice:panelGroup>
+						<ice:inputText id="faxNumber" alt="#{Language['fax-number']}" partialSubmit="true" required="true"
+							value="#{JobApplication.faxNumber}">
+							<liferay-faces:convertPhoneNumber unitedStatesFormat="#{Edit.preferences['unitedStatesPhoneFormat']}" />
+						</ice:inputText>
+						<ice:message for="faxNumber" />
+						<ice:panelGroup>
+							<ice:outputText style="color: red;" value="*" />
+							<ice:outputLabel for="dateOfBirth" value="#{Language['birthday']}" />
+						</ice:panelGroup>
+						<ice:selectInputDate id="dateOfBirth" alt="#{Language['birthday']}" autocomplete="true"
+							popupDateFormat="#{Edit.preferences['dateFormat']}" renderAsPopup="true" required="true" style=""
+							value="#{JobApplication.dateOfBirth}">
+							<f:convertDateTime pattern="#{Edit.preferences['dateFormat']}" timeZone="#{ThemeDisplay.user.timeZone}" />
+						</ice:selectInputDate>
+						<ice:message for="dateOfBirth" />
+					</ice:panelGrid>
+					<ice:panelGrid columns="1">
+						<ice:panelGroup>
+							<ice:outputText escape="false" value="&amp;nbsp;" />
+							<ice:outputLabel for="comments" value="#{Language['comments']}" />
+						</ice:panelGroup>
+						<ice:message for="comments" />
+						<ice:inputTextarea id="comments" cols="100" partialSubmit="true" required="false" rows="6"
+							value="#{JobApplication.comments}" />
+					</ice:panelGrid>
+					<ice:panelGrid columns="1">
+						<ice:panelGroup>
+							<ice:outputText escape="false" value="&amp;nbsp;" />
+							<ice:outputLabel for="resume" value="#{Language['resume']}" />
+						</ice:panelGroup>
+						<ice:outputProgress value="#{ResumeUploader.percent}" labelComplete="#{JobApplication.file.name}" />
+						<ice:message for="inputFile1" layout="table" />
+						<ice:inputFile id="inputFile1" actionListener="#{ResumeUploader.actionListener}" alt="#{Language['resume']}"
+							binding="#{ResumeUploader.inputFile}" buttonClass="portlet-form-button" file="#{JobApplication.file}"
+							label="#{Language['upload-resume']}" progressListener="#{ResumeUploader.progressListener}" />
+					</ice:panelGrid>
+					<ice:outputText escape="false" value="&lt;hr/&gt;" />
+					<ice:panelGrid columns="1">
+						<ice:commandButton action="#{JobApplication.submit}" alt="#{Language['submit']}" value="#{Language['submit']}" />
+					</ice:panelGrid>
+				</ice:panelTab>
+			</ice:panelTabSet>
+		</ice:form>
+	</ice:portlet>
+
 </f:view>

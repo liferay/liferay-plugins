@@ -23,36 +23,42 @@
 -->
 
 <f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
-	<ice:outputDeclaration doctypeRoot="HTML" doctypePublic="-//W3C//DTD HTML 4.01 Transitional//EN" doctypeSystem="http://www.w3.org/TR/html4/loose.dtd" />
-	<ice:form>
-		<ice:outputStyle href="/xmlhttp/css/xp/xp-portlet.css" />
-		<ice:panelTabSet styleClass="componentPanelTabSetLayout">
-			<ice:panelTab label="#{Language['edit-preferences']}" styleClass="portlet-font" >
-				<ice:messages errorClass="portlet-msg-error" fatalClass="portlet-msg-error" globalOnly="true" infoClass="portlet-msg-info" layout="table" warnClass="portlet-msg-warn" />
-				<ice:panelGrid columns="3">
-					<ice:panelGroup styleClass="portlet-form-field-label">
-						<ice:outputText style="color: red;" value="*" />
-						<ice:outputLabel for="dateFormat" styleClass="portlet-form-field-label" value="#{Language['date-format']}" />
-					</ice:panelGroup>
-					<ice:inputText id="dateFormat" alt="#{Language['date-format']}" partialSubmit="true" required="true" size="20" styleClass="portlet-form-input-field" value="#{Edit.preferences['dateFormat']}" />
-					<ice:message errorClass="portlet-msg-error" for="dateFormat" />
-					<ice:panelGroup styleClass="portlet-form-field-label">
-						<ice:outputText style="color: red;" value="*" />
-						<ice:outputLabel for="recipientEmailAddress" styleClass="portlet-form-field-label" value="#{Language['recipient-email-address']}" />
-					</ice:panelGroup>
-					<ice:inputText id="recipientEmailAddress" alt="#{Language['recipient-email-address']}" partialSubmit="true" required="true" size="30" styleClass="portlet-form-input-field" value="#{Edit.preferences['recipientEmailAddress']}" />
-					<ice:message errorClass="portlet-msg-error" for="recipientEmailAddress" />
-					<ice:panelGroup styleClass="portlet-form-field-label">
-						<ice:outputText style="color: red;" value="*" />
-						<ice:outputLabel for="unitedStatesPhoneFormat" styleClass="portlet-form-field-label" value="#{Language['united-states-phone-format']}" />
-					</ice:panelGroup>
-					<ice:inputText id="unitedStatesPhoneFormat" alt="#{Language['united-states-phone-format']}" partialSubmit="true" required="true" size="20" styleClass="portlet-form-input-field" value="#{Edit.preferences['unitedStatesPhoneFormat']}" />
-					<ice:message errorClass="portlet-msg-error" for="unitedStatesPhoneFormat" />
-				</ice:panelGrid>
-				<ice:outputText escape="false" value="&lt;hr/&gt;" />
-				<ice:commandButton action="#{Edit.submit}" styleClass="portlet-form-button" value="#{Language['submit']}" />
-				<ice:commandButton action="#{Edit.resetDefaultValues}" styleClass="portlet-form-button" value="#{Language['reset-values']}" />
-			</ice:panelTab>
-		</ice:panelTabSet>
-	</ice:form>
+
+	<ice:portlet>
+		<ice:form>
+			<ice:outputStyle href="/xmlhttp/css/xp/xp-portlet.css" />
+			<ice:panelTabSet styleClass="componentPanelTabSetLayout">
+				<ice:panelTab label="#{Language['edit-preferences']}">
+					<ice:messages globalOnly="true" layout="table" />
+					<ice:panelGrid columns="3">
+						<ice:panelGroup>
+							<ice:outputText style="color: red;" value="*" />
+							<ice:outputLabel for="dateFormat" value="#{Language['date-format']}" />
+						</ice:panelGroup>
+						<ice:inputText id="dateFormat" alt="#{Language['date-format']}" partialSubmit="true" required="true" size="20"
+							value="#{Edit.preferences['dateFormat']}" />
+						<ice:message for="dateFormat" />
+						<ice:panelGroup>
+							<ice:outputText style="color: red;" value="*" />
+							<ice:outputLabel for="recipientEmailAddress" value="#{Language['recipient-email-address']}" />
+						</ice:panelGroup>
+						<ice:inputText id="recipientEmailAddress" alt="#{Language['recipient-email-address']}" partialSubmit="true"
+							required="true" size="30" value="#{Edit.preferences['recipientEmailAddress']}" />
+						<ice:message for="recipientEmailAddress" />
+						<ice:panelGroup>
+							<ice:outputText style="color: red;" value="*" />
+							<ice:outputLabel for="unitedStatesPhoneFormat" value="#{Language['united-states-phone-format']}" />
+						</ice:panelGroup>
+						<ice:inputText id="unitedStatesPhoneFormat" alt="#{Language['united-states-phone-format']}" partialSubmit="true"
+							required="true" size="20" value="#{Edit.preferences['unitedStatesPhoneFormat']}" />
+						<ice:message for="unitedStatesPhoneFormat" />
+					</ice:panelGrid>
+					<ice:outputText escape="false" value="&lt;hr/&gt;" />
+					<ice:commandButton action="#{Edit.submit}" value="#{Language['submit']}" />
+					<ice:commandButton action="#{Edit.resetDefaultValues}" value="#{Language['reset-values']}" />
+				</ice:panelTab>
+			</ice:panelTabSet>
+		</ice:form>
+	</ice:portlet>
+
 </f:view>
