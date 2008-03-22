@@ -21,4 +21,18 @@
 		<servlet-name>FacesServlet</servlet-name>
 		<url-pattern>/faces/*</url-pattern>
 	</servlet-mapping>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Raw JSF Page Resources</web-resource-name>
+			<url-pattern>*.xhtml</url-pattern>
+			<url-pattern>*.jsp</url-pattern>
+			<url-pattern>*.jspx</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>nobody</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-role>
+		<role-name>nobody</role-name>
+	</security-role>
 </web-app>

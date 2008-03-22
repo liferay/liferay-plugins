@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
 	<display-name>sample_icefaces_jsf_1_1_sun_facelets_portlet</display-name>
 	<context-param>
 		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
@@ -10,8 +11,8 @@
 		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
 
 		<!--
-		ICEfaces does not support client state saving so saving method must be
-		server side.
+			ICEfaces does not support client state saving so saving method must be
+			server side.
 		-->
 
 		<param-value>server</param-value>
@@ -78,12 +79,12 @@
 		<servlet-class>com.icesoft.faces.webapp.xmlhttp.PersistentFacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-    <servlet>
-        <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
 		<servlet-name>Blocking Servlet</servlet-name>
 		<url-pattern>/block/*</url-pattern>
 	</servlet-mapping>
@@ -91,10 +92,10 @@
 		<servlet-name>File Upload Servlet</servlet-name>
 		<url-pattern>/uploadHtml</url-pattern>
 	</servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.faces</url-pattern>
-    </servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.faces</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>/faces/*</url-pattern>
@@ -107,9 +108,23 @@
 		<servlet-name>Persistent Faces Servlet</servlet-name>
 		<url-pattern>/xmlhttp/*</url-pattern>
 	</servlet-mapping>
-    <resource-ref>
+	<resource-ref>
 		<res-ref-name>mail/MailSession</res-ref-name>
 		<res-type>javax.mail.Session</res-type>
 		<res-auth>Container</res-auth>
 	</resource-ref>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Raw JSF Page Resources</web-resource-name>
+			<url-pattern>*.xhtml</url-pattern>
+			<url-pattern>*.jsp</url-pattern>
+			<url-pattern>*.jspx</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>nobody</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-role>
+		<role-name>nobody</role-name>
+	</security-role>
 </web-app>
