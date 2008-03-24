@@ -22,9 +22,7 @@
  */
 -->
 
-<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component"
-	xmlns:liferay-faces="http://liferay.com/tld/faces">
-
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:liferay-faces="http://liferay.com/tld/faces">
 	<ice:portlet>
 		<ice:form styleClass="sample-icefaces-portlet">
 			<ice:outputStyle href="portlet-override.css" />
@@ -37,22 +35,19 @@
 							<ice:outputText style="color: red;" value="*" />
 							<ice:outputLabel for="firstName" value="#{Language['first-name']}" />
 						</ice:panelGroup>
-						<ice:inputText id="firstName" alt="#{Language['firstName']}" partialSubmit="true" required="true"
-							value="#{JobApplication.firstName}" />
+						<ice:inputText id="firstName" alt="#{Language['firstName']}" partialSubmit="true" required="true" value="#{JobApplication.firstName}" />
 						<ice:message for="firstName" />
 						<ice:panelGroup>
 							<ice:outputText style="color: red;" value="*" />
 							<ice:outputLabel for="lastName" value="#{Language['last-name']}" />
 						</ice:panelGroup>
-						<ice:inputText id="lastName" alt="#{Language['last-name']}" partialSubmit="true" required="true"
-							value="#{JobApplication.lastName}" />
+						<ice:inputText id="lastName" alt="#{Language['last-name']}" partialSubmit="true" required="true" value="#{JobApplication.lastName}" />
 						<ice:message for="lastName" />
 						<ice:panelGroup>
 							<ice:outputText style="color: red;" value="*" />
 							<ice:outputLabel for="emailAddress" value="#{Language['email-address']}" />
 						</ice:panelGroup>
-						<ice:inputText id="emailAddress" alt="#{Language['email-address']}" partialSubmit="true" required="true"
-							value="#{JobApplication.emailAddress}">
+						<ice:inputText id="emailAddress" alt="#{Language['email-address']}" partialSubmit="true" required="true" value="#{JobApplication.emailAddress}">
 							<liferay-faces:validateEmailAddress />
 						</ice:inputText>
 						<ice:message for="emailAddress" />
@@ -60,8 +55,7 @@
 							<ice:outputText style="color: red;" value="*" />
 							<ice:outputLabel for="phoneNumber" value="#{Language['phone-number']}" />
 						</ice:panelGroup>
-						<ice:inputText id="phoneNumber" alt="#{Language['phone-number']}" partialSubmit="true" required="true"
-							value="#{JobApplication.phoneNumber}">
+						<ice:inputText id="phoneNumber" alt="#{Language['phone-number']}" partialSubmit="true" required="true" value="#{JobApplication.phoneNumber}">
 							<liferay-faces:convertPhoneNumber unitedStatesFormat="#{Edit.preferences['unitedStatesPhoneFormat']}" />
 						</ice:inputText>
 						<ice:message for="phoneNumber" />
@@ -69,8 +63,7 @@
 							<ice:outputText style="color: red;" value="*" />
 							<ice:outputLabel for="phoneNumberType" value="#{Language['phone-type']}" />
 						</ice:panelGroup>
-						<ice:selectOneMenu id="phoneNumberType" partialSubmit="true" required="true"
-							value="#{JobApplication.phoneNumberType}">
+						<ice:selectOneMenu id="phoneNumberType" partialSubmit="true" required="true" value="#{JobApplication.phoneNumberType}">
 							<f:selectItems value="#{JobApplication.phoneNumberTypeSelectItems}" />
 						</ice:selectOneMenu>
 						<ice:message for="phoneNumberType" />
@@ -78,8 +71,7 @@
 							<ice:outputText style="color: red;" value="*" />
 							<ice:outputLabel for="faxNumber" value="#{Language['fax-number']}" />
 						</ice:panelGroup>
-						<ice:inputText id="faxNumber" alt="#{Language['fax-number']}" partialSubmit="true" required="true"
-							value="#{JobApplication.faxNumber}">
+						<ice:inputText id="faxNumber" alt="#{Language['fax-number']}" partialSubmit="true" required="true" value="#{JobApplication.faxNumber}">
 							<liferay-faces:convertPhoneNumber unitedStatesFormat="#{Edit.preferences['unitedStatesPhoneFormat']}" />
 						</ice:inputText>
 						<ice:message for="faxNumber" />
@@ -87,9 +79,7 @@
 							<ice:outputText style="color: red;" value="*" />
 							<ice:outputLabel for="dateOfBirth" value="#{Language['birthday']}" />
 						</ice:panelGroup>
-						<ice:selectInputDate id="dateOfBirth" alt="#{Language['birthday']}" autocomplete="true"
-							popupDateFormat="#{Edit.preferences['dateFormat']}" renderAsPopup="true" required="true" style=""
-							value="#{JobApplication.dateOfBirth}">
+						<ice:selectInputDate id="dateOfBirth" alt="#{Language['birthday']}" autocomplete="true" popupDateFormat="#{Edit.preferences['dateFormat']}" renderAsPopup="true" required="true" style="" value="#{JobApplication.dateOfBirth}">
 							<f:convertDateTime pattern="#{Edit.preferences['dateFormat']}" timeZone="#{ThemeDisplay.user.timeZone}" />
 						</ice:selectInputDate>
 						<ice:message for="dateOfBirth" />
@@ -100,8 +90,7 @@
 							<ice:outputLabel for="comments" value="#{Language['comments']}" />
 						</ice:panelGroup>
 						<ice:message for="comments" />
-						<ice:inputTextarea id="comments" cols="100" partialSubmit="true" required="false" rows="6"
-							value="#{JobApplication.comments}" />
+						<ice:inputTextarea id="comments" cols="100" partialSubmit="true" required="false" rows="6" value="#{JobApplication.comments}" />
 					</ice:panelGrid>
 					<ice:panelGrid columns="1">
 						<ice:panelGroup>
@@ -110,9 +99,7 @@
 						</ice:panelGroup>
 						<ice:outputProgress value="#{ResumeUploader.percent}" labelComplete="#{JobApplication.file.name}" />
 						<ice:message for="inputFile1" layout="table" />
-						<ice:inputFile id="inputFile1" actionListener="#{ResumeUploader.actionListener}" alt="#{Language['resume']}"
-							binding="#{ResumeUploader.inputFile}" buttonClass="portlet-form-button" file="#{JobApplication.file}"
-							label="#{Language['upload-resume']}" progressListener="#{ResumeUploader.progressListener}" />
+						<ice:inputFile id="inputFile1" actionListener="#{ResumeUploader.actionListener}" alt="#{Language['resume']}" binding="#{ResumeUploader.inputFile}" buttonClass="portlet-form-button" file="#{JobApplication.file}" label="#{Language['upload-resume']}" progressListener="#{ResumeUploader.progressListener}" />
 					</ice:panelGrid>
 					<ice:outputText escape="false" value="&lt;hr/&gt;" />
 					<ice:panelGrid columns="1">
@@ -122,5 +109,4 @@
 			</ice:panelTabSet>
 		</ice:form>
 	</ice:portlet>
-
 </f:view>

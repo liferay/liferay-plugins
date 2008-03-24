@@ -23,7 +23,6 @@
 -->
 
 <f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
-
 	<ice:portlet>
 		<ice:form>
 			<ice:outputStyle href="/xmlhttp/css/xp/xp-portlet.css" />
@@ -34,5 +33,4 @@
 			</ice:panelTabSet>
 		</ice:form>
 	</ice:portlet>
-
 </f:view>

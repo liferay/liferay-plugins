@@ -23,7 +23,6 @@
 -->
 
 <f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
-
 	<ice:portlet>
 		<ice:form>
 			<ice:outputStyle href="/xmlhttp/css/xp/xp-portlet.css" />
@@ -35,22 +34,19 @@
 							<ice:outputText style="color: red;" value="*" />
 							<ice:outputLabel for="dateFormat" value="#{Language['date-format']}" />
 						</ice:panelGroup>
-						<ice:inputText id="dateFormat" alt="#{Language['date-format']}" partialSubmit="true" required="true" size="20"
-							value="#{Edit.preferences['dateFormat']}" />
+						<ice:inputText id="dateFormat" alt="#{Language['date-format']}" partialSubmit="true" required="true" size="20" value="#{Edit.preferences['dateFormat']}" />
 						<ice:message for="dateFormat" />
 						<ice:panelGroup>
 							<ice:outputText style="color: red;" value="*" />
 							<ice:outputLabel for="recipientEmailAddress" value="#{Language['recipient-email-address']}" />
 						</ice:panelGroup>
-						<ice:inputText id="recipientEmailAddress" alt="#{Language['recipient-email-address']}" partialSubmit="true"
-							required="true" size="30" value="#{Edit.preferences['recipientEmailAddress']}" />
+						<ice:inputText id="recipientEmailAddress" alt="#{Language['recipient-email-address']}" partialSubmit="true" required="true" size="30" value="#{Edit.preferences['recipientEmailAddress']}" />
 						<ice:message for="recipientEmailAddress" />
 						<ice:panelGroup>
 							<ice:outputText style="color: red;" value="*" />
 							<ice:outputLabel for="unitedStatesPhoneFormat" value="#{Language['united-states-phone-format']}" />
 						</ice:panelGroup>
-						<ice:inputText id="unitedStatesPhoneFormat" alt="#{Language['united-states-phone-format']}" partialSubmit="true"
-							required="true" size="20" value="#{Edit.preferences['unitedStatesPhoneFormat']}" />
+						<ice:inputText id="unitedStatesPhoneFormat" alt="#{Language['united-states-phone-format']}" partialSubmit="true" required="true" size="20" value="#{Edit.preferences['unitedStatesPhoneFormat']}" />
 						<ice:message for="unitedStatesPhoneFormat" />
 					</ice:panelGrid>
 					<hr />
@@ -60,5 +56,4 @@
 			</ice:panelTabSet>
 		</ice:form>
 	</ice:portlet>
-
 </f:view>
