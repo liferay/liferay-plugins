@@ -119,6 +119,10 @@ $theme.include($top_messages_include)
 			#if ($has_navigation)
 				#parse ("$full_templates_path/bottom_navigation.vm")
 			#end
+
+			<div class="lang">
+				$taglibLiferay.language()
+			</div>
 		</div>
 	</div>
 </div>

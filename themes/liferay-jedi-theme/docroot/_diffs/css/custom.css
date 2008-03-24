@@ -264,7 +264,13 @@ body {
 }
 
 /* --- LAYOUT SPECIFIC --- */
-#portlet-wrapper- {
+#portlet-wrapper- { /* -- Liferay Old -- */
+	background: transparent;
+	margin: 0;
+	padding: 14px;
+}
+
+#portlet-wrapper-sign-in { /* -- Liferay New -- */
 	background: transparent;
 	margin: 0;
 	padding: 14px;
@@ -381,7 +387,7 @@ body.portal-popup {
 	background: #000;
 }
 
-/* --- BOTTOM NAV & LEGAL --- */
+/* --- BOTTOM NAV, LEGAL & LOCALIZATION --- */
 #footer .copyright-notice, #footer ul {
 	bottom: -45px;
 	position: absolute;
@@ -417,6 +423,12 @@ body.portal-popup {
 #footer li a:hover {
 	color: #FFF;
 	text-decoration: underline;
+}
+
+#footer .lang {
+	position: absolute;
+	bottom: -60px;
+	padding-bottom: 10px;
 }
 
 /* --- MESSAGE BOARDS --- */
