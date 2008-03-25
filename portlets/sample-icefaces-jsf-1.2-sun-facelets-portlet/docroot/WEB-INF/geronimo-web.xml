@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://geronimo.apache.org/xml/ns/j2ee/web-1.1">
+	<environment>
+		<moduleId>
+			<artifactId>sample-icefaces-jsf-1-2-sun-facelets-portlet</artifactId>
+		</moduleId>
+		<dependencies>
+			<dependency>
+				<artifactId>sharedlib</artifactId>
+			</dependency>
+		</dependencies>
+		<inverse-classloading />
+	</environment>
+	<resource-ref>
+		<ref-name>mail/MailSession</ref-name>
+		<resource-link>LiferayMailSession</resource-link>
+	</resource-ref>
+</web-app>
