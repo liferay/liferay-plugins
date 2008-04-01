@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License.
+-->
+<!DOCTYPE web-app
+        PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+  <!-- configuration -->
+  <context-param>
+    <param-name>features</param-name>
+    <param-value>res://features/features.txt</param-value>
+  </context-param>
+  <context-param>
+    <param-name>syndicators</param-name>
+    <param-value>res://syndicators/default/syndicator.js</param-value>
+  </context-param>
+  <context-param>
+    <param-name>servlet-data-class</param-name>
+    <param-value>org.apache.shindig.gadgets.http.DefaultCrossServletState</param-value>
+  </context-param>
+
+	<filter>
+		<filter-name>Auto Login Filter</filter-name>
+		<filter-class>com.liferay.portal.kernel.servlet.PortalClassLoaderFilter</filter-class>
+		<init-param>
+			<param-name>filter-class</param-name>
+			<param-value>com.liferay.portal.servlet.filters.autologin.AutoLoginFilter</param-value>
+		</init-param>
+	</filter>
+	<filter>
+		<filter-name>Servlet Authorizing Filter</filter-name>
+		<filter-class>com.liferay.portal.kernel.servlet.PortalClassLoaderFilter</filter-class>
+		<init-param>
+			<param-name>filter-class</param-name>
+			<param-value>com.liferay.portal.servlet.filters.servletauthorizing.ServletAuthorizingFilter</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>Auto Login Filter</filter-name>
+		<url-pattern>/js/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>Auto Login Filter</filter-name>
+		<url-pattern>/proxy/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>Auto Login Filter</filter-name>
+		<url-pattern>/ifr/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>Auto Login Filter</filter-name>
+		<url-pattern>/metadata</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>Auto Login Filter</filter-name>
+		<url-pattern>/socialdata</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>Servlet Authorizing Filter</filter-name>
+		<url-pattern>/js/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>Servlet Authorizing Filter</filter-name>
+		<url-pattern>/proxy/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>Servlet Authorizing Filter</filter-name>
+		<url-pattern>/ifr/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>Servlet Authorizing Filter</filter-name>
+		<url-pattern>/metadata</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>Servlet Authorizing Filter</filter-name>
+		<url-pattern>/socialdata</url-pattern>
+	</filter-mapping>
+
+  <!-- Render a Gadget -->
+  <servlet>
+    <servlet-name>xml-to-html</servlet-name>
+    <servlet-class>
+      org.apache.shindig.gadgets.http.GadgetRenderingServlet
+    </servlet-class>
+  </servlet>
+
+  <!-- Proxy -->
+  <servlet>
+    <servlet-name>proxy</servlet-name>
+    <servlet-class>
+      org.apache.shindig.gadgets.http.ProxyServlet
+    </servlet-class>
+  </servlet>
+
+  <!-- Metadata RPC -->
+  <servlet>
+    <servlet-name>metadata</servlet-name>
+    <servlet-class>
+      org.apache.shindig.gadgets.http.RpcServlet
+    </servlet-class>
+  </servlet>
+
+  <!-- Serve social data -->
+  <servlet>
+    <servlet-name>socialdata</servlet-name>
+    <servlet-class>
+      org.apache.shindig.social.GadgetDataServlet
+    </servlet-class>
+<!--
+    <init-param>
+      Add your custom classes that handle opensocial requests here
+      <param-name>handlers</param-name>
+      <parame-value>com.muysite.OpenSocialDataHandler</param-value>
+    </init-param>
+-->
+  </servlet>
+
+  <!-- javascript serving -->
+  <servlet>
+    <servlet-name>js</servlet-name>
+    <servlet-class>org.apache.shindig.gadgets.http.JsServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>js</servlet-name>
+    <url-pattern>/js/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>proxy</servlet-name>
+    <url-pattern>/proxy</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>xml-to-html</servlet-name>
+    <url-pattern>/ifr</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>metadata</servlet-name>
+    <url-pattern>/metadata</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>socialdata</servlet-name>
+    <url-pattern>/socialdata</url-pattern>
+  </servlet-mapping>
+</web-app>
