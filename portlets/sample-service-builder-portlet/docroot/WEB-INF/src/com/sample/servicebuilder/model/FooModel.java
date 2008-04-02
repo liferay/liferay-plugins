@@ -29,21 +29,7 @@ import java.util.Date;
 /**
  * <a href="FooModel.java.html"><b><i>View Source</i></b></a>
  *
- * <p>
- * ServiceBuilder generated this class. Modifications in this class will be
- * overwritten the next time is generated.
- * </p>
- *
- * <p>
- * This interface is a model that represents the <code>Foo</code>
- * table in the database.
- * </p>
- *
  * @author Brian Wing Shun Chan
- *
- * @see com.sample.servicebuilder.service.model.Foo
- * @see com.sample.servicebuilder.service.model.impl.FooImpl
- * @see com.sample.servicebuilder.service.model.impl.FooModelImpl
  *
  */
 public interface FooModel extends BaseModel {

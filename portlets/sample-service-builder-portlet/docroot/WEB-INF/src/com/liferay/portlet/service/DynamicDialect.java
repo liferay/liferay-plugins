@@ -23,6 +23,7 @@
 package com.liferay.portlet.service;
 
 import com.liferay.util.dao.DataAccess;
+import com.liferay.util.dao.hibernate.DB2Dialect;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -93,6 +94,9 @@ public class DynamicDialect extends Dialect {
 			if (dbName.equals("ASE") && (dbMajorVersion == 15)) {
 				_dialect = new SybaseDialect();
 			}
+			else if (dbName.startsWith("DB2") && (dbMajorVersion == 9)){
+				_dialect = new DB2Dialect();
+			}
 			else {
 				_dialect = DialectFactory.determineDialect(
 					dbName, dbMajorVersion);
@@ -134,10 +138,12 @@ public class DynamicDialect extends Dialect {
 
 		dynamicDefaultProps.clear();
 
-		Enumeration enu = dialectDefaultProps.propertyNames();
+		Enumeration<String> enu =
+			(Enumeration<String>)dialectDefaultProps.propertyNames();
 
 		while (enu.hasMoreElements()) {
-			String key = (String)enu.nextElement();
+			String key = enu.nextElement();
+
 			String value = dialectDefaultProps.getProperty(key);
 
 			dynamicDefaultProps.setProperty(key, value);
@@ -339,7 +345,7 @@ public class DynamicDialect extends Dialect {
 		return _dialect.getIdentitySelectString(table, column, type);
 	}
 
-	public Set getKeywords() {
+	public Set<String> getKeywords() {
 		return _dialect.getKeywords();
 	}
 
@@ -361,7 +367,7 @@ public class DynamicDialect extends Dialect {
 		return _dialect.getMaxAliasLength();
 	}
 
-	public Class getNativeIdentifierGeneratorClass() {
+	public Class<?> getNativeIdentifierGeneratorClass() {
 		return _dialect.getNativeIdentifierGeneratorClass();
 	}
 

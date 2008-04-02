@@ -22,11 +22,11 @@
 
 package com.sample.servicebuilder.service.base;
 
+import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
 
 import com.sample.servicebuilder.model.Foo;
-import com.sample.servicebuilder.model.impl.FooImpl;
 import com.sample.servicebuilder.service.FooLocalService;
 import com.sample.servicebuilder.service.persistence.FooPersistence;
 import com.sample.servicebuilder.service.persistence.FooUtil;
@@ -43,44 +43,34 @@ import java.util.List;
  */
 public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	InitializingBean {
-	public Foo addFoo(Foo model) throws SystemException {
-		Foo foo = new FooImpl();
-
+	public Foo addFoo(Foo foo) throws SystemException {
 		foo.setNew(true);
 
-		foo.setFooId(model.getFooId());
-		foo.setField1(model.getField1());
-		foo.setField2(model.getField2());
-		foo.setField3(model.getField3());
-		foo.setField4(model.getField4());
-		foo.setField5(model.getField5());
-
-		return fooPersistence.update(foo);
+		return fooPersistence.update(foo, false);
 	}
 
-	public List dynamicQuery(DynamicQueryInitializer queryInitializer)
+	public void deleteFoo(long fooId) throws PortalException, SystemException {
+		fooPersistence.remove(fooId);
+	}
+
+	public void deleteFoo(Foo foo) throws PortalException, SystemException {
+		fooPersistence.remove(foo);
+	}
+
+	public List<Foo> dynamicQuery(DynamicQueryInitializer queryInitializer)
 		throws SystemException {
 		return fooPersistence.findWithDynamicQuery(queryInitializer);
 	}
 
-	public List dynamicQuery(DynamicQueryInitializer queryInitializer,
+	public List<Foo> dynamicQuery(DynamicQueryInitializer queryInitializer,
 		int begin, int end) throws SystemException {
 		return fooPersistence.findWithDynamicQuery(queryInitializer, begin, end);
 	}
 
-	public Foo updateFoo(Foo model) throws SystemException {
-		Foo foo = new FooImpl();
-
+	public Foo updateFoo(Foo foo) throws SystemException {
 		foo.setNew(false);
 
-		foo.setFooId(model.getFooId());
-		foo.setField1(model.getField1());
-		foo.setField2(model.getField2());
-		foo.setField3(model.getField3());
-		foo.setField4(model.getField4());
-		foo.setField5(model.getField5());
-
-		return fooPersistence.update(foo);
+		return fooPersistence.update(foo, true);
 	}
 
 	public FooPersistence getFooPersistence() {

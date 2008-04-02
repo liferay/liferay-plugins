@@ -29,7 +29,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
 
 import com.liferay.portlet.service.BasePersistence;
@@ -50,6 +50,7 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -102,16 +103,18 @@ public class FooPersistenceImpl extends BasePersistence
 	}
 
 	public Foo remove(Foo foo) throws SystemException {
-		ModelListener listener = _getListener();
-
-		if (listener != null) {
-			listener.onBeforeRemove(foo);
+		if (_listeners != null) {
+			for (ModelListener listener : _listeners) {
+				listener.onBeforeRemove(foo);
+			}
 		}
 
 		foo = removeImpl(foo);
 
-		if (listener != null) {
-			listener.onAfterRemove(foo);
+		if (_listeners != null) {
+			for (ModelListener listener : _listeners) {
+				listener.onAfterRemove(foo);
+			}
 		}
 
 		return foo;
@@ -140,31 +143,38 @@ public class FooPersistenceImpl extends BasePersistence
 	}
 
 	public Foo update(Foo foo) throws SystemException {
+		if (_log.isWarnEnabled()) {
+			_log.warn(
+				"Using the deprecated update(Foo foo) method. Use update(Foo foo, boolean merge) instead.");
+		}
+
 		return update(foo, false);
 	}
 
 	public Foo update(Foo foo, boolean merge) throws SystemException {
-		ModelListener listener = _getListener();
-
 		boolean isNew = foo.isNew();
 
-		if (listener != null) {
-			if (isNew) {
-				listener.onBeforeCreate(foo);
-			}
-			else {
-				listener.onBeforeUpdate(foo);
+		if (_listeners != null) {
+			for (ModelListener listener : _listeners) {
+				if (isNew) {
+					listener.onBeforeCreate(foo);
+				}
+				else {
+					listener.onBeforeUpdate(foo);
+				}
 			}
 		}
 
 		foo = updateImpl(foo, merge);
 
-		if (listener != null) {
-			if (isNew) {
-				listener.onAfterCreate(foo);
-			}
-			else {
-				listener.onAfterUpdate(foo);
+		if (_listeners != null) {
+			for (ModelListener listener : _listeners) {
+				if (isNew) {
+					listener.onAfterCreate(foo);
+				}
+				else {
+					listener.onAfterUpdate(foo);
+				}
 			}
 		}
 
@@ -235,7 +245,7 @@ public class FooPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List findByField2(boolean field2) throws SystemException {
+	public List<Foo> findByField2(boolean field2) throws SystemException {
 		boolean finderClassNameCacheEnabled = FooModelImpl.CACHE_ENABLED;
 		String finderClassName = Foo.class.getName();
 		String finderMethodName = "findByField2";
@@ -273,7 +283,7 @@ public class FooPersistenceImpl extends BasePersistence
 
 				q.setBoolean(queryPos++, field2);
 
-				List list = q.list();
+				List<Foo> list = q.list();
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -289,16 +299,16 @@ public class FooPersistenceImpl extends BasePersistence
 			}
 		}
 		else {
-			return (List)result;
+			return (List<Foo>)result;
 		}
 	}
 
-	public List findByField2(boolean field2, int begin, int end)
+	public List<Foo> findByField2(boolean field2, int begin, int end)
 		throws SystemException {
 		return findByField2(field2, begin, end, null);
 	}
 
-	public List findByField2(boolean field2, int begin, int end,
+	public List<Foo> findByField2(boolean field2, int begin, int end,
 		OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = FooModelImpl.CACHE_ENABLED;
 		String finderClassName = Foo.class.getName();
@@ -353,7 +363,8 @@ public class FooPersistenceImpl extends BasePersistence
 
 				q.setBoolean(queryPos++, field2);
 
-				List list = QueryUtil.list(q, getDialect(), begin, end);
+				List<Foo> list = (List<Foo>)QueryUtil.list(q, getDialect(),
+						begin, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -369,13 +380,13 @@ public class FooPersistenceImpl extends BasePersistence
 			}
 		}
 		else {
-			return (List)result;
+			return (List<Foo>)result;
 		}
 	}
 
 	public Foo findByField2_First(boolean field2, OrderByComparator obc)
 		throws NoSuchFooException, SystemException {
-		List list = findByField2(field2, 0, 1, obc);
+		List<Foo> list = findByField2(field2, 0, 1, obc);
 
 		if (list.size() == 0) {
 			StringMaker msg = new StringMaker();
@@ -389,7 +400,7 @@ public class FooPersistenceImpl extends BasePersistence
 			throw new NoSuchFooException(msg.toString());
 		}
 		else {
-			return (Foo)list.get(0);
+			return list.get(0);
 		}
 	}
 
@@ -397,7 +408,7 @@ public class FooPersistenceImpl extends BasePersistence
 		throws NoSuchFooException, SystemException {
 		int count = countByField2(field2);
 
-		List list = findByField2(field2, count - 1, count, obc);
+		List<Foo> list = findByField2(field2, count - 1, count, obc);
 
 		if (list.size() == 0) {
 			StringMaker msg = new StringMaker();
@@ -411,7 +422,7 @@ public class FooPersistenceImpl extends BasePersistence
 			throw new NoSuchFooException(msg.toString());
 		}
 		else {
-			return (Foo)list.get(0);
+			return list.get(0);
 		}
 	}
 
@@ -469,8 +480,8 @@ public class FooPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List findWithDynamicQuery(DynamicQueryInitializer queryInitializer)
-		throws SystemException {
+	public List<Foo> findWithDynamicQuery(
+		DynamicQueryInitializer queryInitializer) throws SystemException {
 		Session session = null;
 
 		try {
@@ -488,8 +499,9 @@ public class FooPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List findWithDynamicQuery(DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws SystemException {
+	public List<Foo> findWithDynamicQuery(
+		DynamicQueryInitializer queryInitializer, int begin, int end)
+		throws SystemException {
 		Session session = null;
 
 		try {
@@ -509,15 +521,15 @@ public class FooPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List findAll() throws SystemException {
+	public List<Foo> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
-	public List findAll(int begin, int end) throws SystemException {
+	public List<Foo> findAll(int begin, int end) throws SystemException {
 		return findAll(begin, end, null);
 	}
 
-	public List findAll(int begin, int end, OrderByComparator obc)
+	public List<Foo> findAll(int begin, int end, OrderByComparator obc)
 		throws SystemException {
 		boolean finderClassNameCacheEnabled = FooModelImpl.CACHE_ENABLED;
 		String finderClassName = Foo.class.getName();
@@ -560,7 +572,8 @@ public class FooPersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				List list = QueryUtil.list(q, getDialect(), begin, end);
+				List<Foo> list = (List<Foo>)QueryUtil.list(q, getDialect(),
+						begin, end);
 
 				if (obc == null) {
 					Collections.sort(list);
@@ -580,25 +593,19 @@ public class FooPersistenceImpl extends BasePersistence
 			}
 		}
 		else {
-			return (List)result;
+			return (List<Foo>)result;
 		}
 	}
 
 	public void removeByField2(boolean field2) throws SystemException {
-		Iterator itr = findByField2(field2).iterator();
-
-		while (itr.hasNext()) {
-			Foo foo = (Foo)itr.next();
-
+		for (Foo foo : findByField2(field2)) {
 			remove(foo);
 		}
 	}
 
 	public void removeAll() throws SystemException {
-		Iterator itr = findAll().iterator();
-
-		while (itr.hasNext()) {
-			remove((Foo)itr.next());
+		for (Foo foo : findAll()) {
+			remove(foo);
 		}
 	}
 
@@ -639,10 +646,10 @@ public class FooPersistenceImpl extends BasePersistence
 
 				Long count = null;
 
-				Iterator itr = q.list().iterator();
+				Iterator<Long> itr = q.list().iterator();
 
 				if (itr.hasNext()) {
-					count = (Long)itr.next();
+					count = itr.next();
 				}
 
 				if (count == null) {
@@ -692,10 +699,10 @@ public class FooPersistenceImpl extends BasePersistence
 
 				Long count = null;
 
-				Iterator itr = q.list().iterator();
+				Iterator<Long> itr = q.list().iterator();
 
 				if (itr.hasNext()) {
-					count = (Long)itr.next();
+					count = itr.next();
 				}
 
 				if (count == null) {
@@ -721,22 +728,27 @@ public class FooPersistenceImpl extends BasePersistence
 	}
 
 	protected void initDao() {
-	}
+		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
+					PropsUtil.get(
+						"value.object.listener.com.sample.servicebuilder.model.Foo")));
 
-	private static ModelListener _getListener() {
-		if (Validator.isNotNull(_LISTENER)) {
+		if (listenerClassNames.length > 0) {
 			try {
-				return (ModelListener)Class.forName(_LISTENER).newInstance();
+				List<ModelListener> listeners = new ArrayList<ModelListener>();
+
+				for (String listenerClassName : listenerClassNames) {
+					listeners.add((ModelListener)Class.forName(
+							listenerClassName).newInstance());
+				}
+
+				_listeners = listeners.toArray(new ModelListener[listeners.size()]);
 			}
 			catch (Exception e) {
 				_log.error(e);
 			}
 		}
-
-		return null;
 	}
 
-	private static final String _LISTENER = GetterUtil.getString(PropsUtil.get(
-				"value.object.listener.com.sample.servicebuilder.model.Foo"));
 	private static Log _log = LogFactory.getLog(FooPersistenceImpl.class);
+	private ModelListener[] _listeners;
 }

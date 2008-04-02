@@ -24,13 +24,13 @@ package com.sample.servicebuilder.model.impl;
 
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HtmlUtil;
 
 import com.liferay.portlet.service.BaseModelImpl;
 import com.liferay.portlet.service.PropsUtil;
 
-import com.liferay.util.Html;
-
 import com.sample.servicebuilder.model.Foo;
+import com.sample.servicebuilder.model.FooSoap;
 
 import java.io.Serializable;
 
@@ -38,26 +38,14 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <a href="FooModelImpl.java.html"><b><i>View Source</i></b></a>
  *
- * <p>
- * ServiceBuilder generated this class. Modifications in this class will be
- * overwritten the next time is generated.
- * </p>
- *
- * <p>
- * This class is a model that represents the <code>Foo</code> table
- * in the database.
- * </p>
- *
  * @author Brian Wing Shun Chan
- *
- * @see com.sample.servicebuilder.service.model.Foo
- * @see com.sample.servicebuilder.service.model.FooModel
- * @see com.sample.servicebuilder.service.model.impl.FooImpl
  *
  */
 public class FooModelImpl extends BaseModelImpl {
@@ -85,6 +73,30 @@ public class FooModelImpl extends BaseModelImpl {
 	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(PropsUtil.get(
 				"value.object.finder.cache.enabled.com.sample.servicebuilder.model.Foo"),
 			true);
+
+	public static Foo toModel(FooSoap soapModel) {
+		Foo model = new FooImpl();
+
+		model.setFooId(soapModel.getFooId());
+		model.setField1(soapModel.getField1());
+		model.setField2(soapModel.getField2());
+		model.setField3(soapModel.getField3());
+		model.setField4(soapModel.getField4());
+		model.setField5(soapModel.getField5());
+
+		return model;
+	}
+
+	public static List<Foo> toModels(FooSoap[] soapModels) {
+		List<Foo> models = new ArrayList<Foo>(soapModels.length);
+
+		for (FooSoap soapModel : soapModels) {
+			models.add(toModel(soapModel));
+		}
+
+		return models;
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(PropsUtil.get(
 				"lock.expiration.time.com.sample.servicebuilder.model.Foo"));
 
@@ -186,11 +198,11 @@ public class FooModelImpl extends BaseModelImpl {
 			model.setEscapedModel(true);
 
 			model.setFooId(getFooId());
-			model.setField1(Html.escape(getField1()));
+			model.setField1(HtmlUtil.escape(getField1()));
 			model.setField2(getField2());
 			model.setField3(getField3());
 			model.setField4(getField4());
-			model.setField5(Html.escape(getField5()));
+			model.setField5(HtmlUtil.escape(getField5()));
 
 			model = (Foo)Proxy.newProxyInstance(Foo.class.getClassLoader(),
 					new Class[] { Foo.class }, new ReadOnlyBeanHandler(model));

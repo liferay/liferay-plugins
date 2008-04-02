@@ -33,13 +33,14 @@ import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portlet.service.PropsUtil;
-import com.liferay.util.CollectionFactory;
 
 import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -278,15 +279,15 @@ public class FinderCache implements CacheRegistryItem {
 		if (primaryKey instanceof CacheKVP) {
 			CacheKVP cacheKVP = (CacheKVP)primaryKey;
 
-			Class modelClass = cacheKVP.getModelClass();
+			Class<?> modelClass = cacheKVP.getModelClass();
 			Serializable primaryKeyObj = cacheKVP.getPrimaryKeyObj();
 
 			return session.load(modelClass, primaryKeyObj);
 		}
 		else if (primaryKey instanceof List) {
-			List cachedList = (List)primaryKey;
+			List<Object> cachedList = (List<Object>)primaryKey;
 
-			List list = new ArrayList(cachedList.size());
+			List<Object> list = new ArrayList<Object>(cachedList.size());
 
 			for (int i = 0; i < cachedList.size(); i++) {
 				Object result = _primaryKeyToResult(session, cachedList.get(i));
@@ -305,15 +306,15 @@ public class FinderCache implements CacheRegistryItem {
 		if (result instanceof BaseModel) {
 			BaseModel model = (BaseModel)result;
 
-			Class modelClass = model.getClass();
+			Class<?> modelClass = model.getClass();
 			Serializable primaryKeyObj = model.getPrimaryKeyObj();
 
 			return new CacheKVP(modelClass, primaryKeyObj);
 		}
 		else if (result instanceof List) {
-			List list = (ArrayList)result;
+			List<Object> list = (List<Object>)result;
 
-			List cachedList = new ArrayList(list.size());
+			List<Object> cachedList = new ArrayList<Object>(list.size());
 
 			for (int i = 0; i < list.size(); i++) {
 				Object primaryKey = _resultToPrimaryKey(list.get(i));
@@ -336,6 +337,7 @@ public class FinderCache implements CacheRegistryItem {
 
 	private PortalCache _cache = MultiVMPoolUtil.getCache(CACHE_NAME);
 
-	private Map _groups = CollectionFactory.getSyncHashMap();
+	private Map<String, Set<String>> _groups =
+		new ConcurrentHashMap<String, Set<String>>();
 
 }

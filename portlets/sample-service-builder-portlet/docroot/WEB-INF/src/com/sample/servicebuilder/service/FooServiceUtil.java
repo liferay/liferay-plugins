@@ -22,32 +22,10 @@
 
 package com.sample.servicebuilder.service;
 
-
 /**
  * <a href="FooServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
- * <p>
- * ServiceBuilder generated this class. Modifications in this class will be
- * overwritten the next time is generated.
- * </p>
- *
- * <p>
- * This class provides static methods for the
- * <code>com.sample.servicebuilder.service.FooService</code>
- * bean. The static methods of this class calls the same methods of the bean
- * instance. It's convenient to be able to just write one line to call a method
- * on a bean instead of writing a lookup call and a method call.
- * </p>
- *
- * <p>
- * <code>com.sample.servicebuilder.service.FooServiceFactory</code>
- * is responsible for the lookup of the bean.
- * </p>
- *
  * @author Brian Wing Shun Chan
- *
- * @see com.sample.servicebuilder.service.FooService
- * @see com.sample.servicebuilder.service.FooServiceFactory
  *
  */
 public class FooServiceUtil {

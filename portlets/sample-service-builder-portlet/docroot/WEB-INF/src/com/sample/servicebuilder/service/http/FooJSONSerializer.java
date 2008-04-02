@@ -26,10 +26,10 @@ import com.liferay.util.JSONUtil;
 
 import com.sample.servicebuilder.model.Foo;
 
+import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.util.List;
 
 /**
  * <a href="FooJSONSerializer.java.html"><b><i>View Source</i></b></a>

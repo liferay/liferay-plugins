@@ -22,32 +22,12 @@
 
 package com.sample.servicebuilder.service;
 
+import com.liferay.portlet.service.BeanLocatorUtil;
 
 /**
  * <a href="FooLocalServiceFactory.java.html"><b><i>View Source</i></b></a>
  *
- * <p>
- * ServiceBuilder generated this class. Modifications in this class will be
- * overwritten the next time is generated.
- * </p>
- *
- * <p>
- * This class is responsible for the lookup of the implementation for
- * <code>com.sample.servicebuilder.service.FooLocalService</code>.
- * Spring manages the lookup and lifecycle of the beans. This means you can
- * modify the Spring configuration files to return a different implementation or
- * to inject additional behavior.
- * </p>
- *
- * <p>
- * See the <code>spring.configs</code> property in portal.properties for
- * additional information on how to customize the Spring XML files.
- * </p>
- *
  * @author Brian Wing Shun Chan
- *
- * @see com.sample.servicebuilder.service.FooLocalService
- * @see com.sample.servicebuilder.service.FooLocalServiceUtil
  *
  */
 public class FooLocalServiceFactory {
@@ -57,7 +37,7 @@ public class FooLocalServiceFactory {
 
 	public static FooLocalService getImpl() {
 		if (_impl == null) {
-			_impl = (FooLocalService)com.liferay.portlet.service.BeanLocatorUtil.locate(_IMPL);
+			_impl = (FooLocalService)BeanLocatorUtil.locate(_IMPL);
 		}
 
 		return _impl;
@@ -65,7 +45,7 @@ public class FooLocalServiceFactory {
 
 	public static FooLocalService getTxImpl() {
 		if (_txImpl == null) {
-			_txImpl = (FooLocalService)com.liferay.portlet.service.BeanLocatorUtil.locate(_TX_IMPL);
+			_txImpl = (FooLocalService)BeanLocatorUtil.locate(_TX_IMPL);
 		}
 
 		return _txImpl;
@@ -77,7 +57,7 @@ public class FooLocalServiceFactory {
 
 	private static FooLocalServiceFactory _getFactory() {
 		if (_factory == null) {
-			_factory = (FooLocalServiceFactory)com.liferay.portlet.service.BeanLocatorUtil.locate(_FACTORY);
+			_factory = (FooLocalServiceFactory)BeanLocatorUtil.locate(_FACTORY);
 		}
 
 		return _factory;

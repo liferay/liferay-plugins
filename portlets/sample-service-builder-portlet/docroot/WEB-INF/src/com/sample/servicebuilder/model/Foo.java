@@ -22,30 +22,10 @@
 
 package com.sample.servicebuilder.model;
 
-
 /**
  * <a href="Foo.java.html"><b><i>View Source</i></b></a>
  *
- * <p>
- * ServiceBuilder generated this class. Modifications in this class will be
- * overwritten the next time is generated.
- * </p>
- *
- * <p>
- * This interface is a model that represents the <code>Foo</code> table
- * in the database.
- * </p>
- *
- * <p>
- * Customize <code>com.sample.servicebuilder.service.model.impl.FooImpl</code>
- * and rerun the ServiceBuilder to generate the new methods.
- * </p>
- *
  * @author Brian Wing Shun Chan
- *
- * @see com.sample.servicebuilder.service.model.FooModel
- * @see com.sample.servicebuilder.service.model.impl.FooImpl
- * @see com.sample.servicebuilder.service.model.impl.FooModelImpl
  *
  */
 public interface Foo extends FooModel {

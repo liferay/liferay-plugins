@@ -31,19 +31,7 @@ import java.util.List;
 /**
  * <a href="FooSoap.java.html"><b><i>View Source</i></b></a>
  *
- * <p>
- * ServiceBuilder generated this class. Modifications in this class will be
- * overwritten the next time is generated.
- * </p>
- *
- * <p>
- * This class is used by
- * <code>com.sample.servicebuilder.service.http.FooServiceSoap</code>.
- * </p>
- *
  * @author Brian Wing Shun Chan
- *
- * @see com.sample.servicebuilder.service.http.FooServiceSoap
  *
  */
 public class FooSoap implements Serializable {
@@ -60,16 +48,14 @@ public class FooSoap implements Serializable {
 		return soapModel;
 	}
 
-	public static FooSoap[] toSoapModels(List models) {
-		List soapModels = new ArrayList(models.size());
+	public static FooSoap[] toSoapModels(List<Foo> models) {
+		List<FooSoap> soapModels = new ArrayList<FooSoap>(models.size());
 
-		for (int i = 0; i < models.size(); i++) {
-			Foo model = (Foo)models.get(i);
-
+		for (Foo model : models) {
 			soapModels.add(toSoapModel(model));
 		}
 
-		return (FooSoap[])soapModels.toArray(new FooSoap[0]);
+		return soapModels.toArray(new FooSoap[soapModels.size()]);
 	}
 
 	public FooSoap() {

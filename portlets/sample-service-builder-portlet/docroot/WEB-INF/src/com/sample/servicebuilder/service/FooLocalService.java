@@ -22,47 +22,35 @@
 
 package com.sample.servicebuilder.service;
 
-
 /**
  * <a href="FooLocalService.java.html"><b><i>View Source</i></b></a>
  *
- * <p>
- * ServiceBuilder generated this class. Modifications in this class will be
- * overwritten the next time is generated.
- * </p>
- *
- * <p>
- * This interface defines the service. The default implementation is
- * <code>com.sample.servicebuilder.service.impl.FooLocalServiceImpl</code>.
- * Modify methods in that class and rerun ServiceBuilder to populate this class
- * and all other generated classes.
- * </p>
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
  * @author Brian Wing Shun Chan
- *
- * @see com.sample.servicebuilder.service.FooLocalServiceFactory
- * @see com.sample.servicebuilder.service.FooLocalServiceUtil
  *
  */
 public interface FooLocalService {
 	public com.sample.servicebuilder.model.Foo addFoo(
-		com.sample.servicebuilder.model.Foo model)
+		com.sample.servicebuilder.model.Foo foo)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List dynamicQuery(
+	public void deleteFoo(long fooId)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.PortalException;
+
+	public void deleteFoo(com.sample.servicebuilder.model.Foo foo)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.PortalException;
+
+	public java.util.List<com.sample.servicebuilder.model.Foo> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List dynamicQuery(
+	public java.util.List<com.sample.servicebuilder.model.Foo> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
 		int begin, int end) throws com.liferay.portal.SystemException;
 
 	public com.sample.servicebuilder.model.Foo updateFoo(
-		com.sample.servicebuilder.model.Foo model)
+		com.sample.servicebuilder.model.Foo foo)
 		throws com.liferay.portal.SystemException;
 
 	public com.sample.servicebuilder.service.persistence.FooPersistence getFooPersistence();
@@ -74,15 +62,11 @@ public interface FooLocalService {
 
 	public void addFoo(java.lang.String field1, boolean field2, int field3,
 		java.util.Date field4, java.lang.String field5)
-		throws com.liferay.portal.SystemException, 
-			com.liferay.portal.PortalException;
-
-	public void deleteFoo(long fooId)
-		throws com.liferay.portal.SystemException, 
+		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
 	public com.sample.servicebuilder.model.Foo getFoo(long fooId)
-		throws com.liferay.portal.SystemException, 
+		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
 	public java.util.List getFoos() throws com.liferay.portal.SystemException;
@@ -96,6 +80,6 @@ public interface FooLocalService {
 
 	public void updateFoo(long fooId, java.lang.String field1, boolean field2,
 		int field3, java.util.Date field4, java.lang.String field5)
-		throws com.liferay.portal.SystemException, 
+		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 }

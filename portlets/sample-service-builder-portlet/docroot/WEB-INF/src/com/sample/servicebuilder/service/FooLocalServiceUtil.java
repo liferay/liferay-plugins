@@ -22,44 +22,38 @@
 
 package com.sample.servicebuilder.service;
 
-
 /**
  * <a href="FooLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
- * <p>
- * ServiceBuilder generated this class. Modifications in this class will be
- * overwritten the next time is generated.
- * </p>
- *
- * <p>
- * This class provides static methods for the
- * <code>com.sample.servicebuilder.service.FooLocalService</code>
- * bean. The static methods of this class calls the same methods of the bean
- * instance. It's convenient to be able to just write one line to call a method
- * on a bean instead of writing a lookup call and a method call.
- * </p>
- *
- * <p>
- * <code>com.sample.servicebuilder.service.FooLocalServiceFactory</code>
- * is responsible for the lookup of the bean.
- * </p>
- *
  * @author Brian Wing Shun Chan
- *
- * @see com.sample.servicebuilder.service.FooLocalService
- * @see com.sample.servicebuilder.service.FooLocalServiceFactory
  *
  */
 public class FooLocalServiceUtil {
 	public static com.sample.servicebuilder.model.Foo addFoo(
-		com.sample.servicebuilder.model.Foo model)
+		com.sample.servicebuilder.model.Foo foo)
 		throws com.liferay.portal.SystemException {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
 
-		return fooLocalService.addFoo(model);
+		return fooLocalService.addFoo(foo);
 	}
 
-	public static java.util.List dynamicQuery(
+	public static void deleteFoo(long fooId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		fooLocalService.deleteFoo(fooId);
+	}
+
+	public static void deleteFoo(com.sample.servicebuilder.model.Foo foo)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		fooLocalService.deleteFoo(foo);
+	}
+
+	public static java.util.List<com.sample.servicebuilder.model.Foo> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
 		throws com.liferay.portal.SystemException {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
@@ -67,7 +61,7 @@ public class FooLocalServiceUtil {
 		return fooLocalService.dynamicQuery(queryInitializer);
 	}
 
-	public static java.util.List dynamicQuery(
+	public static java.util.List<com.sample.servicebuilder.model.Foo> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
 		int begin, int end) throws com.liferay.portal.SystemException {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
@@ -76,11 +70,11 @@ public class FooLocalServiceUtil {
 	}
 
 	public static com.sample.servicebuilder.model.Foo updateFoo(
-		com.sample.servicebuilder.model.Foo model)
+		com.sample.servicebuilder.model.Foo foo)
 		throws com.liferay.portal.SystemException {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
 
-		return fooLocalService.updateFoo(model);
+		return fooLocalService.updateFoo(foo);
 	}
 
 	public static com.sample.servicebuilder.service.persistence.FooPersistence getFooPersistence() {
@@ -104,23 +98,15 @@ public class FooLocalServiceUtil {
 
 	public static void addFoo(java.lang.String field1, boolean field2,
 		int field3, java.util.Date field4, java.lang.String field5)
-		throws com.liferay.portal.PortalException, 
+		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
 
 		fooLocalService.addFoo(field1, field2, field3, field4, field5);
 	}
 
-	public static void deleteFoo(long fooId)
-		throws com.liferay.portal.PortalException, 
-			com.liferay.portal.SystemException {
-		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
-
-		fooLocalService.deleteFoo(fooId);
-	}
-
 	public static com.sample.servicebuilder.model.Foo getFoo(long fooId)
-		throws com.liferay.portal.PortalException, 
+		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
 
@@ -152,7 +138,7 @@ public class FooLocalServiceUtil {
 	public static void updateFoo(long fooId, java.lang.String field1,
 		boolean field2, int field3, java.util.Date field4,
 		java.lang.String field5)
-		throws com.liferay.portal.PortalException, 
+		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
 

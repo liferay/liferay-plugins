@@ -22,15 +22,14 @@
 
 package com.sample.servicebuilder.service.impl;
 
+import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
 import com.sample.servicebuilder.model.Foo;
-import com.sample.servicebuilder.service.FooLocalService;
 import com.sample.servicebuilder.service.base.FooLocalServiceBaseImpl;
 import com.sample.servicebuilder.service.persistence.FooUtil;
-import com.liferay.portal.PortalException;
-import com.liferay.portal.SystemException;
-import com.liferay.counter.service.CounterLocalServiceUtil;
 
 import java.util.Date;
 import java.util.List;
