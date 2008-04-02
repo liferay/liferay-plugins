@@ -23,13 +23,13 @@
 package com.liferay.portlet.googlegadget.util;
 
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.webcache.WebCacheException;
 import com.liferay.portal.kernel.webcache.WebCacheItem;
 import com.liferay.portlet.googlegadget.model.GGCategory;
 import com.liferay.portlet.googlegadget.model.GGData;
 import com.liferay.portlet.googlegadget.model.GGEntry;
 import com.liferay.portlet.googlegadget.model.GGPagination;
-import com.liferay.util.Http;
 import com.liferay.util.Time;
 
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ public class GGDataWebCacheItem implements WebCacheItem {
 
 	public Object convert(String key) throws WebCacheException {
 		try {
-			String html = Http.URLtoString(_url);
+			String html = HttpUtil.URLtoString(_url);
 
 			List categories = new ArrayList();
 

@@ -27,7 +27,7 @@
 <%
 String url = "http://gmodules.com/ig/ifr?url=" + gadgetId + "&title=&border=none&output=js";
 
-String html = Http.URLtoString(url);
+String html = HttpUtil.URLtoString(url);
 
 try {
 	int x = html.indexOf("*/");
