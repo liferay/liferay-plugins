@@ -35,6 +35,9 @@
 			<!--<jvmarg value="-Dservice.json.file=docroot/js/service_unpacked.js" />-->
 			<jvmarg value="-Dservice.sql.dir=docroot/WEB-INF/sql" />
 			<jvmarg value="-Dservice.sql.file=tables.sql" />
+			<jvmarg value="-Dservice.sql.indexes.file=indexes.sql" />
+			<jvmarg value="-Dservice.sql.indexes.properties.file=indexes.properties" />
+			<jvmarg value="-Dservice.sql.sequences.file=sequences.sql" />
 			<jvmarg value="-Dservice.auto.namespace.tables=true" />
 			<jvmarg value="-Dservice.base.model.impl.package=com.liferay.portlet.service" />
 			<jvmarg value="-Dservice.base.persistence.package=com.liferay.portlet.service" />
