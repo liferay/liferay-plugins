@@ -45,8 +45,8 @@ $theme.include($top_messages_include)
 	<div id="banner">
 
 		<div id="banner-content">
-		
-			
+
+
 			<h1 class="logo">
 				<a class="png" href="$company_url">$company_name</a>
 			</h1>

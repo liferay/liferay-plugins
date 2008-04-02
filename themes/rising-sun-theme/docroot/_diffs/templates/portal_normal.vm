@@ -40,28 +40,28 @@ $theme.include($top_messages_include)
 
 <div id="wrapper">
 
-	
+
 	<div class="top">
 		<h1>
 			<h1 class="logo">
 				<a class="png" href="$company_url">$company_name</a>
 			</h1>
 		</h1>
-		
+
 
 		#if ($has_navigation)
 				#parse ("$full_templates_path/navigation.vm")
 		#end
 	</div>
-	
-	
+
+
 	<div id="banner">
 		<div id="banner-content">
-			
+
 			<h1 class="logo">
 				<a class="png" href="$company_url">$company_name</a>
 			</h1>
-			
+
 			#parse ("$full_templates_path/dock.vm")
 
 			#if ($update_available_url)
@@ -69,7 +69,7 @@ $theme.include($top_messages_include)
 					<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>
 				</div>
 			#end
-			
+
 		</div>
 	</div>
 

@@ -39,7 +39,7 @@
 $theme.include($top_messages_include)
 
 <div id="wrapper">
-    <div id="top">	    
+    <div id="top">
     #if ($has_navigation)
 				#parse ("$full_templates_path/navigation.vm")
 			#end</div>

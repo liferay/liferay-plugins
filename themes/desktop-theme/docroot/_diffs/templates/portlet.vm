@@ -24,21 +24,21 @@
 				#else
 					#if ($themeDisplay.getColorScheme().getCssClass() == "mac")
 						#if ($portletDisplay.isShowCloseIcon())
-							<a class="#language("minimize")" href="javascript: closePortlet('$plid', '$portletDisplay.getId()', '$themeDisplay.getDoAsUserId()')"><img align="absmiddle" title="#language("close")" src="$themeDisplay.getPathThemeImages()/portlet/$themeDisplay.getColorScheme().getCssClass()-close.png"/></a>
+							<a class="#language("minimize")" href="javascript: closePortlet('$plid', '$portletDisplay.getId()', '$themeDisplay.getDoAsUserId()')"><img align="absmiddle" title="#language("close")" src="$themeDisplay.getPathThemeImages()/portlet/$themeDisplay.getColorScheme().getCssClass()-close.png" /></a>
 						#end
 						#if ($portletDisplay.isShowMinIcon())
 							<span id="p_p_body_$portletDisplay.getId()_min_buttons">
-								<a class="#language("minimize")" href="javascript: minimizePortlet('$plid', '$portletDisplay.getId()', $portletDisplay.isStateMin(), '$themeDisplay.getDoAsUserId()');"><img border="0" align="absmiddle" title="#language("minimize")" src="$themeDisplay.getPathThemeImages()/portlet/$themeDisplay.getColorScheme().getCssClass()-minimize.png"/></a>
+								<a class="#language("minimize")" href="javascript: minimizePortlet('$plid', '$portletDisplay.getId()', $portletDisplay.isStateMin(), '$themeDisplay.getDoAsUserId()');"><img border="0" align="absmiddle" title="#language("minimize")" src="$themeDisplay.getPathThemeImages()/portlet/$themeDisplay.getColorScheme().getCssClass()-minimize.png" /></a>
 							</span>
 						#end
 					#else
 						#if ($portletDisplay.isShowMinIcon())
 							<span id="p_p_body_$portletDisplay.getId()_min_buttons">
-								<a class="#language("minimize")" href="javascript: minimizePortlet('$plid', '$portletDisplay.getId()', $portletDisplay.isStateMin(), '$themeDisplay.getDoAsUserId()');"><img border="0" align="absmiddle" title="#language("minimize")" src="$themeDisplay.getPathThemeImages()/portlet/$themeDisplay.getColorScheme().getCssClass()-minimize.png"/></a>
+								<a class="#language("minimize")" href="javascript: minimizePortlet('$plid', '$portletDisplay.getId()', $portletDisplay.isStateMin(), '$themeDisplay.getDoAsUserId()');"><img border="0" align="absmiddle" title="#language("minimize")" src="$themeDisplay.getPathThemeImages()/portlet/$themeDisplay.getColorScheme().getCssClass()-minimize.png" /></a>
 							</span>
 						#end
 						#if ($portletDisplay.isShowCloseIcon())
-							<a class="#language("minimize")" href="javascript: closePortlet('$plid', '$portletDisplay.getId()', '$themeDisplay.getDoAsUserId()')"><img align="absmiddle" title="#language("close")" src="$themeDisplay.getPathThemeImages()/portlet/$themeDisplay.getColorScheme().getCssClass()-close.png"/></a>
+							<a class="#language("minimize")" href="javascript: closePortlet('$plid', '$portletDisplay.getId()', '$themeDisplay.getDoAsUserId()')"><img align="absmiddle" title="#language("close")" src="$themeDisplay.getPathThemeImages()/portlet/$themeDisplay.getColorScheme().getCssClass()-close.png" /></a>
 						#end
 					#end
 				#end
