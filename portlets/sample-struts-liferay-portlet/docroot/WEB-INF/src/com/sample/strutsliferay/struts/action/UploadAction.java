@@ -22,9 +22,9 @@
 
 package com.sample.strutsliferay.struts.action;
 
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.struts.PortletAction;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.util.Http;
 import com.liferay.util.servlet.UploadPortletRequest;
 
 import java.io.File;
@@ -66,7 +66,7 @@ public class UploadAction extends PortletAction {
 		setForward(
 			req,
 			"/sample_struts_liferay_portlet/upload_success?actionURL=true" +
-				"&file_name=" + Http.encodeURL(file.getName()));
+				"&file_name=" + HttpUtil.encodeURL(file.getName()));
 	}
 
 	public ActionForward render(
