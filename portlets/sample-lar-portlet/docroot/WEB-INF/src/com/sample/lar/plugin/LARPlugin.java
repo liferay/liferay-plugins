@@ -215,6 +215,10 @@ public class LARPlugin implements PortletDataHandler {
 		}
 	}
 
+	public boolean isPublishToLiveByDefault() {
+		return true;
+	}
+
 	private static final String _NAMESPACE = "lar-plugin";
 
 	private static final PortletDataHandlerBoolean _createReadme =
