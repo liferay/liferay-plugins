@@ -22,8 +22,8 @@
 
 package com.liferay.portlet.alfrescocontent.util;
 
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.util.Http;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -128,7 +128,7 @@ public class AlfrescoContentUtil {
 
 			String ticket = AuthenticationUtils.getTicket();
 
-			String content = Http.URLtoString(
+			String content = HttpUtil.URLtoString(
 				contents[0].getUrl() + "?ticket=" + ticket);
 
 			return content;

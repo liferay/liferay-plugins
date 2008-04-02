@@ -25,20 +25,13 @@ package com.liferay.portlet.alfrescocontent.util;
 import com.liferay.portal.kernel.search.OpenSearch;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.util.Http;
-import com.liferay.util.HttpUtil;
 
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.httpclient.HostConfiguration;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpState;
-import org.apache.commons.httpclient.UsernamePasswordCredentials;
-import org.apache.commons.httpclient.auth.AuthScope;
-import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -97,43 +90,12 @@ public class AlfrescoOpenSearchImpl implements OpenSearch {
 			_log.debug("Search with " + url);
 		}
 
-		HostConfiguration hostConfig = null;
-
-		HttpClient client = null;
-
 		try {
-			hostConfig = Http.getHostConfig(url);
-
-			client = Http.getClient(hostConfig);
-		}
-		catch (IOException ioe) {
-			_log.error(ioe, ioe);
-
-			throw new SearchException(ioe);
-		}
-
-		GetMethod getMethod = new GetMethod(url);
-
-		getMethod.setDoAuthentication(true);
-
-		HttpState state = new HttpState();
-
-		state.setCredentials(
-			new AuthScope(HOST, PORT, REALM),
-			new UsernamePasswordCredentials(USERNAME, PASSWORD));
-
-		Http.proxifyState(state, hostConfig);
-
-		try {
-			client.executeMethod(hostConfig, getMethod, state);
-
-			xml = getMethod.getResponseBodyAsString();
+			xml = HttpUtil.URLtoString(
+				url, HOST, PORT, REALM, USERNAME, PASSWORD);
 		}
 		catch (IOException ioe) {
 			_log.error("Unable to search with " + url, ioe);
-		}
-		finally {
-			getMethod.releaseConnection();
 		}
 
 		return xml;
