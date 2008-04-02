@@ -28,11 +28,11 @@
 
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
+<%@ page import="com.liferay.portal.kernel.util.HttpUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ReleaseInfo" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
-<%@ page import="com.liferay.util.Http" %>
 
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.Set" %>
@@ -49,7 +49,7 @@ String projectName = StringPool.BLANK;
 String content = null;
 
 if (Validator.isNotNull(url)) {
-	content = Http.URLtoString(url);
+	content = HttpUtil.URLtoString(url);
 
 	int x = content.indexOf("var sourceforge_project_name =");
 	x = content.indexOf("'", x) + 1;
@@ -192,7 +192,7 @@ An example URL is: <i>http://sourceforge.net/project/showfiles.php?group_id=4926
 private static Set _getSvnPlugins(String url) throws Exception {
 	Set svnPlugins = new TreeSet();
 
-	String content = Http.URLtoString(url);
+	String content = HttpUtil.URLtoString(url);
 
 	int x = content.indexOf("</li>");
 	int y = content.lastIndexOf("</li>");

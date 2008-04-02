@@ -25,8 +25,8 @@
 <%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
 
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
+<%@ page import="com.liferay.portal.kernel.util.HttpUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-<%@ page import="com.liferay.util.Http" %>
 
 <%@ page import="com.sample.hibernate.model.FoodItem" %>
 <%@ page import="com.sample.hibernate.util.FoodItemUtil" %>
@@ -176,8 +176,8 @@ else {
 
 	<br /><br />
 
-	<%= Http.getProtocol(request) %>://<%= request.getServerName() %>:<%= request.getServerPort() %><%= request.getContextPath() %>/servlet/test?<%= Constants.CMD %>=getFoodItemXml<br />
-	<%= Http.getProtocol(request) %>://<%= request.getServerName() %>:<%= request.getServerPort() %><%= request.getContextPath() %>/view.xsl
+	<%= HttpUtil.getProtocol(request) %>://<%= request.getServerName() %>:<%= request.getServerPort() %><%= request.getContextPath() %>/servlet/test?<%= Constants.CMD %>=getFoodItemXml<br />
+	<%= HttpUtil.getProtocol(request) %>://<%= request.getServerName() %>:<%= request.getServerPort() %><%= request.getContextPath() %>/view.xsl
 
 <%
 }

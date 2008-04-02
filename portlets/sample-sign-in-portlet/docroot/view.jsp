@@ -93,7 +93,7 @@
 				<liferay-ui:message key="login" />
 			</td>
 			<td>
-				<input name="<portlet:namespace />login" style="width: 120px;" type="text" value="<%= Html.escape(login) %>" />
+				<input name="<portlet:namespace />login" style="width: 120px;" type="text" value="<%= HtmlUtil.escape(login) %>" />
 			</td>
 		</tr>
 		<tr>

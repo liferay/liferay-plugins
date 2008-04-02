@@ -207,8 +207,9 @@ public class JobApplication {
 			}
 
 			MailEngine.send(
-				fromInternetAddress, toInternetAddresses, null, null, subject,
-				body.toString(), false, null, null, null, new File[] {_file});
+				fromInternetAddress, toInternetAddresses, null, null, null,
+				subject, body.toString(), false, null, null, null,
+				new File[] {_file});
 
 			FacesMessageUtil.info(
 				facesContext,
