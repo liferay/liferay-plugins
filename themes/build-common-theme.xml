@@ -22,6 +22,19 @@
 	</target>
 
 	<target name="compile">
+		<java
+			classname="com.liferay.portal.tools.ThumbnailBuilder"
+			classpathref="portal.classpath"
+			fork="true"
+			newenvironment="true"
+		>
+			<jvmarg value="-Dthumbnail.original.file=docroot/_diffs/images/screenshot.png" />
+			<jvmarg value="-Dthumbnail.thumbnail.file=docroot/_diffs/images/thumbnail.png" />
+			<jvmarg value="-Dthumbnail.height=120" />
+			<jvmarg value="-Dthumbnail.width=160" />
+			<jvmarg value="-Dthumbnail.overwrite=false" />
+		</java>
+
 		<mkdir dir="docroot/WEB-INF/classes" />
 
 		<if>
