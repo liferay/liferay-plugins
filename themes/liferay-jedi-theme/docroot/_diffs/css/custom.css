@@ -47,7 +47,7 @@ body {
 /* ---- NAVIGATION ---- */
 #navigation {
 	position: relative;
-	overflow: visable;
+	overflow: visible;
 	z-index: 10;
 	background: transparent url(../images/navigation/bg.png) no-repeat;
 	width: 100%;
@@ -479,4 +479,11 @@ body.portal-popup {
 
 ul.message-board-edit-controls {
 	list-style: none;
+}
+
+/* --- BLOGS --- */
+
+.portlet-blogs .entry-body {
+	font-size: 1.2em;
+	line-height: 1.3;
 }
