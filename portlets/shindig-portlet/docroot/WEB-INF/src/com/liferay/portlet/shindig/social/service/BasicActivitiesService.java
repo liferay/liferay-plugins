@@ -22,8 +22,15 @@
 
 package com.liferay.portlet.shindig.social.service;
 
+import com.liferay.portal.kernel.util.ActivityTrackerInterpreterUtil;
+import com.liferay.portal.model.ActivityFeedEntry;
 import com.liferay.portal.model.ActivityTracker;
+import com.liferay.portal.model.Company;
+import com.liferay.portal.model.User;
 import com.liferay.portal.service.ActivityTrackerLocalServiceUtil;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.shindig.social.util.OpenSocialUtil;
 
 import java.util.ArrayList;
@@ -46,103 +53,132 @@ public class BasicActivitiesService implements ActivitiesService {
 
 		List<Activity> activities = new ArrayList<Activity>();
 
-		for (String userId : userIds) {
-			try {
-				List<Activity> personActivities = new ArrayList<Activity>();
+		try {
+			User user = UserLocalServiceUtil.getUserById(Long.parseLong(
+				token.getViewerId()));
+			Company company = CompanyLocalServiceUtil.getCompanyById(
+				user.getCompanyId());
 
-				List<ActivityTracker> activityTrackers =
-					ActivityTrackerLocalServiceUtil.getUserActivityTrackers(
-						Long.parseLong(userId), 0,  20);
+			ThemeDisplay themeDisplay = new ThemeDisplay();
 
-				for (ActivityTracker activityTracker : activityTrackers) {
-					Activity activity = new Activity(
-						String.valueOf(activityTracker.getClassPK()),
-						String.valueOf(activityTracker.getUserId()));
+			themeDisplay.setCompany(company);
+			themeDisplay.setLocale(user.getLocale());
 
-					if (activityTracker.getClassName().equals(
-							Activity.class.getName())) {
+			for (String userId : userIds) {
+				try {
+					List<Activity> personActivities = new ArrayList<Activity>();
 
-						JSONObject extraData = new JSONObject(
-							activityTracker.getExtraData());
+					List<ActivityTracker> activityTrackers =
+						ActivityTrackerLocalServiceUtil.getUserActivityTrackers(
+							Long.parseLong(userId), 0,  20);
 
-						if (extraData.has("appId")) {
-							activity.setAppId(extraData.getString("appId"));
+					for (ActivityTracker activityTracker : activityTrackers) {
+						Activity activity = new Activity(
+							String.valueOf(activityTracker.getClassPK()),
+							String.valueOf(activityTracker.getUserId()));
+
+						if (activityTracker.getClassName().equals(
+								Activity.class.getName())) {
+
+							JSONObject extraData = new JSONObject(
+								activityTracker.getExtraData());
+
+							if (extraData.has("appId")) {
+								activity.setAppId(extraData.getString("appId"));
+							}
+
+							if (extraData.has("body")) {
+								activity.setBody(extraData.getString("body"));
+							}
+
+							if (extraData.has("bodyId")) {
+								activity.setBodyId(extraData.getString("bodyId"));
+							}
+
+							if (extraData.has("externalId")) {
+								activity.setExternalId(
+									extraData.getString("externalId"));
+							}
+
+							if (extraData.has("mediaItems")) {
+								activity.setMediaItems(
+									OpenSocialUtil.getMediaItems(
+										extraData.getJSONArray("mediaItems")));
+							}
+
+							if (extraData.has("postedTime")) {
+								activity.setPostedTime(
+									extraData.getLong("postedTime"));
+							}
+
+							if (extraData.has("priority")) {
+								activity.setPriority(
+									Float.parseFloat(
+										extraData.getString("priority")));
+							}
+
+							if (extraData.has("streamFaviconUrl")) {
+								activity.setStreamFaviconUrl(
+									extraData.getString("streamFaviconUrl"));
+							}
+
+							if (extraData.has("streamSourceUrl")) {
+								activity.setStreamSourceUrl(
+									extraData.getString("streamSourceUrl"));
+							}
+
+							if (extraData.has("streamTitle")) {
+								activity.setStreamTitle(
+									extraData.getString("streamTitle"));
+							}
+
+							if (extraData.has("streamUrl")) {
+								activity.setStreamUrl(
+									extraData.getString("streamUrl"));
+							}
+
+							if (extraData.has("templateParams")) {
+								activity.setTemplateParams(
+									OpenSocialUtil.getTemplateParams(
+										extraData.getJSONArray(
+											"templateParams")));
+							}
+
+							if (extraData.has("title")) {
+								activity.setTitle(
+									extraData.getString("title"));
+							}
+
+							if (extraData.has("titleId")) {
+								activity.setTitleId(
+									extraData.getString("titleId"));
+							}
+
+							if (extraData.has("url")) {
+								activity.setUrl(extraData.getString("url"));
+							}
+						}
+						else {
+							ActivityFeedEntry activityFeedEntry =
+								ActivityTrackerInterpreterUtil.interpret(
+									activityTracker, themeDisplay);
+
+							activity.setBody(activityFeedEntry.getBody());
+							activity.setTitle(activityFeedEntry.getTitle());
 						}
 
-						if (extraData.has("body")) {
-							activity.setBody(extraData.getString("body"));
-						}
-
-						if (extraData.has("bodyId")) {
-							activity.setBodyId(extraData.getString("bodyId"));
-						}
-
-						if (extraData.has("externalId")) {
-							activity.setExternalId(
-								extraData.getString("externalId"));
-						}
-
-						if (extraData.has("mediaItems")) {
-							activity.setMediaItems(
-								OpenSocialUtil.getMediaItems(
-									extraData.getJSONArray("mediaItems")));
-						}
-
-						if (extraData.has("postedTime")) {
-							activity.setPostedTime(
-								extraData.getLong("postedTime"));
-						}
-
-						if (extraData.has("priority")) {
-							activity.setPriority(
-								Float.parseFloat(
-									extraData.getString("priority")));
-						}
-
-						if (extraData.has("streamFaviconUrl")) {
-							activity.setStreamFaviconUrl(
-								extraData.getString("streamFaviconUrl"));
-						}
-
-						if (extraData.has("streamSourceUrl")) {
-							activity.setStreamSourceUrl(
-								extraData.getString("streamSourceUrl"));
-						}
-
-						if (extraData.has("streamTitle")) {
-							activity.setStreamTitle(
-								extraData.getString("streamTitle"));
-						}
-
-						if (extraData.has("streamUrl")) {
-							activity.setStreamUrl(
-								extraData.getString("streamUrl"));
-						}
-
-						if (extraData.has("templateParams")) {
-							activity.setTemplateParams(
-								OpenSocialUtil.getTemplateParams(
-									extraData.getJSONArray("templateParams")));
-						}
-
-						if (extraData.has("streamUrl")) {
-							activity.setStreamUrl(
-								extraData.getString("streamUrl"));
-						}
+						personActivities.add(activity);
 					}
-					else {
-						activity.setAppId(activityTracker.getClassName());
-						activity.setTitle(activityTracker.getActivity());
-					}
 
-					personActivities.add(activity);
+					activities.addAll(personActivities);
 				}
-
-				activities.addAll(personActivities);
+				catch (Exception e){
+			    	_log.error(e, e);
+				}
 			}
-			catch (Exception e){
-		    	_log.error(e, e);
-			}
+		}
+		catch (Exception e) {
+			_log.error(e, e);
 		}
 
 		// TODO: Sort them

@@ -37,4 +37,3 @@ gadgets.StaticLayoutManager.prototype.addGadgetChromeId = function(gadgetChromeI
   		this.gadgetChromeIds_ = [gadgetChromeId];
 	}
 };
-

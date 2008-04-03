@@ -22,23 +22,25 @@
 
 package com.liferay.portlet.shindig.social.service;
 
-import com.liferay.portal.NoSuchClassNameException;
-import com.liferay.portal.PortalException;
-import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.servlet.ImageServletTokenUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.model.Contact;
+import com.liferay.portal.model.EmailAddress;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.ClassNameLocalServiceUtil;
-import com.liferay.portal.service.ContactLocalServiceUtil;
+import com.liferay.portal.service.EmailAddressLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.PhoneServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Set;
 
@@ -48,6 +50,7 @@ import org.apache.shindig.gadgets.GadgetToken;
 import org.apache.shindig.social.ResponseItem;
 import org.apache.shindig.social.opensocial.PeopleService;
 import org.apache.shindig.social.opensocial.model.ApiCollection;
+import org.apache.shindig.social.opensocial.model.Email;
 import org.apache.shindig.social.opensocial.model.Enum;
 import org.apache.shindig.social.opensocial.model.IdSpec;
 import org.apache.shindig.social.opensocial.model.Name;
@@ -69,156 +72,42 @@ public class BasicPeopleService implements PeopleService {
 		};
 
 	public ResponseItem<ApiCollection<Person>> getPeople(
-		List<String> ids, SortOrder sortOrder, FilterType filter, int first,
+		List<String> userIds, SortOrder sortOrder, FilterType filter, int first,
 		int max, Set<String> profileDetails, GadgetToken token) {
 
 	    List<Person> people = new ArrayList<Person>();
 
-	    String ownerToken = token.getOwnerId();
-		Person owner = null;
-	    Person viewer = null;
+		Person person = null;
 
-	    long ownerUserId = 0;
-	    long viewerUserId = 0;
+		for (String userId : userIds) {
+		    try {
+				if (userId.startsWith("G-")) {
+				    Group group = GroupLocalServiceUtil.getGroup(
+					    Long.parseLong(userId.substring("G-".length())));
 
-	    try {
-		    User viewerUser = UserLocalServiceUtil.getUserById(
-				Long.parseLong(token.getViewerId()));
-
-		    viewerUserId = viewerUser.getUserId();
-
-			viewer = new Person(
-				String.valueOf(viewerUser.getUserId()),
-				new Name(viewerUser.getFullName()));
-
-			List<com.liferay.portal.model.Phone> liferayPhones =
-				PhoneServiceUtil.getPhones(
-					Contact.class.getName(), viewerUser.getContactId());
-
-			List<Phone> phoneNumbers = new ArrayList<Phone>();
-
-			for (com.liferay.portal.model.Phone liferayPhone : liferayPhones) {
-				phoneNumbers.add(new Phone(
-					liferayPhone.getNumber(),
-					liferayPhone.getType().getName()));
-			}
-
-			viewer.setPhoneNumbers(phoneNumbers);
-
-			if (viewerUser.isFemale()) {
-				viewer.setGender(new Enum<Enum.Gender>(Enum.Gender.FEMALE));
-			} else {
-				viewer.setGender(new Enum<Enum.Gender>(Enum.Gender.MALE));
-			}
-
-			viewer.setIsViewer(true);
-			people.add(viewer);
-	    }
-	    catch (Exception e) {
-	    	_log.error(e, e);
-	    }
-
-		if (ownerToken.contains(StringPool.UNDERLINE)) {
-			String[] parts = ownerToken.split(StringPool.UNDERLINE);
-
-			long classNameId = Long.parseLong(parts[0]);
-			long classPK = Long.parseLong(parts[1]);
-
-			if (classNameId == _GROUP_CLASSNAME_ID) {
-				try {
-					Group ownerGroup = GroupLocalServiceUtil.getGroup(classPK);
-
-					owner = new Person(
-						String.valueOf(classNameId + StringPool.UNDERLINE +
-							ownerGroup.getGroupId()),
-						new Name(ownerGroup.getName() + " (Community)"));
-
-					List<Phone> phoneNumbers = new ArrayList<Phone>();
-
-					owner.setPhoneNumbers(phoneNumbers);
-
-					owner.setGender(new Enum<Enum.Gender>(Enum.Gender.MALE));
-
-					owner.setIsOwner(true);
-				}
-				catch (Exception e) {
-			    	_log.error(e, e);
-				}
-			}
-			else if (classNameId == _ORG_CLASSNAME_ID) {
-				try {
-					Organization ownerOrg =
-						OrganizationLocalServiceUtil.getOrganization(classPK);
-
-					owner = new Person(
-						String.valueOf(classNameId + StringPool.UNDERLINE +
-							ownerOrg.getOrganizationId()),
-						new Name(ownerOrg.getName() + " (Organization)"));
-
-					List<com.liferay.portal.model.Phone> liferayPhones =
-						PhoneServiceUtil.getPhones(
-							Organization.class.getName(),
-							ownerOrg.getOrganizationId());
-
-					List<Phone> phoneNumbers = new ArrayList<Phone>();
-
-					for (com.liferay.portal.model.Phone liferayPhone : liferayPhones) {
-						phoneNumbers.add(new Phone(
-							liferayPhone.getNumber(),
-							liferayPhone.getType().getName()));
+					if (group.isCommunity()) {
+					    person = getPerson(group, profileDetails, token);
 					}
+					else if (group.isOrganization()) {
+						Organization org =
+							OrganizationLocalServiceUtil.getOrganization(
+								group.getClassPK());
 
-					owner.setPhoneNumbers(phoneNumbers);
-
-					owner.setGender(new Enum<Enum.Gender>(Enum.Gender.MALE));
-
-					owner.setIsOwner(true);
-				}
-				catch (Exception e) {
-			    	_log.error(e, e);
-				}
-			}
-			else if (classNameId == _USER_CLASSNAME_ID) {
-				try {
-				    User ownerUser = UserLocalServiceUtil.getUserById(classPK);
-
-				    ownerUserId = ownerUser.getUserId();
-
-					owner = new Person(
-						String.valueOf(classNameId + StringPool.UNDERLINE +
-							ownerUser.getUserId()),
-						new Name(ownerUser.getFullName()));
-
-					List<com.liferay.portal.model.Phone> liferayPhones =
-						PhoneServiceUtil.getPhones(
-							Contact.class.getName(), ownerUser.getContactId());
-
-					List<Phone> phoneNumbers = new ArrayList<Phone>();
-
-					for (com.liferay.portal.model.Phone liferayPhone : liferayPhones) {
-						phoneNumbers.add(new Phone(
-							liferayPhone.getNumber(),
-							liferayPhone.getType().getName()));
+					    person = getPerson(org, profileDetails, token);
 					}
-
-					owner.setPhoneNumbers(phoneNumbers);
-
-					if (ownerUser.isFemale()) {
-						owner.setGender(new Enum<Enum.Gender>(Enum.Gender.FEMALE));
-					} else {
-						owner.setGender(new Enum<Enum.Gender>(Enum.Gender.MALE));
-					}
-
-					owner.setIsOwner(true);
 				}
-				catch (Exception e) {
-			    	_log.error(e, e);
-				}
-			}
-		}
+				else {
+				    User user = UserLocalServiceUtil.getUserById(
+						Long.parseLong(userId));
 
-		if (owner != null && ownerUserId != viewerUserId) {
-			people.add(owner);
+				    person = getPerson(user, profileDetails, token);
+				}
+
+				people.add(person);
+		    }
+		    catch (Exception e) {
+		    	_log.error(e, e);
+		    }
 		}
 
 	    // We can pretend that by default the people are in top friends order
@@ -266,31 +155,197 @@ public class BasicPeopleService implements PeopleService {
 		return ids;
 	}
 
-	private static long _GROUP_CLASSNAME_ID;
-	private static long _ORG_CLASSNAME_ID;
-	private static long _USER_CLASSNAME_ID;
+	protected Person getPerson(
+		Group group, Set<String> profileDetails, GadgetToken token) {
 
-	static {
+		Person person = null;
+
 		try {
-			_GROUP_CLASSNAME_ID = ClassNameLocalServiceUtil.getClassName(
-				Group.class.getName()).getClassNameId();
+			person = new Person(
+				"G-" + group.getGroupId(),
+				new Name(group.getName() + " (Community)"));
+
+			person.setGender(new Enum<Enum.Gender>(
+				Enum.Gender.MALE));
+
+			if (token.getViewerId() == person.getId()) {
+				person.setIsViewer(true);
+			}
+			else if (token.getOwnerId() == person.getId()) {
+				person.setIsOwner(true);
+			}
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+
+		return person;
+	}
+
+	protected Person getPerson(
+		Organization org, Set<String> profileDetails, GadgetToken token) {
+
+		Person person = null;
+
+		try {
+			person = new Person(
+				"G-" + org.getGroup().getGroupId(),
+				new Name(org.getName() + " (Organization)"));
+
+			if (profileDetails.contains("phone_numbers")) {
+				person.setPhoneNumbers(getPhoneNumbers(
+					Organization.class.getName(), org.getOrganizationId()));
+			}
+
+			if (profileDetails.contains("gender")) {
+				person.setGender(new Enum<Enum.Gender>(
+					Enum.Gender.MALE));
+			}
+
+			if (token.getViewerId() == person.getId()) {
+				person.setIsViewer(true);
+			}
+			else if (token.getOwnerId() == person.getId()) {
+				person.setIsOwner(true);
+			}
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+
+		return person;
+	}
+
+	protected Person getPerson(
+		User user, Set<String> profileDetails, GadgetToken token) {
+
+		Person person = null;
+
+		try {
+			person = new Person(
+				String.valueOf(user.getUserId()), new Name(user.getFullName()));
+
+			if (profileDetails.contains("about_me")) {
+				person.setAboutMe(user.getComments());
+			}
+
+			if (profileDetails.contains("age")) {
+			    Calendar dateOfBirth = new GregorianCalendar();
+			    dateOfBirth.setTime(user.getBirthday());
+
+			    Calendar today = Calendar.getInstance();
+			    int age = today.get(
+			    	Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
+
+			    dateOfBirth.add(Calendar.YEAR, age);
+
+			    if (today.before(dateOfBirth)) {
+			        age--;
+			    }
+
+				person.setAge(age);
+			}
+
+			if (profileDetails.contains("date_of_birth")) {
+				person.setDateOfBirth(user.getBirthday());
+			}
+
+			if (profileDetails.contains("emails")) {
+				person.setEmails(getEmails(user));
+			}
+
+			if (profileDetails.contains("gender")) {
+				if (user.isFemale()) {
+					person.setGender(new Enum<Enum.Gender>(Enum.Gender.FEMALE));
+				} else {
+					person.setGender(new Enum<Enum.Gender>(Enum.Gender.MALE));
+				}
+			}
+
+			if (profileDetails.contains("nickname")) {
+				person.setNickname(user.getScreenName());
+			}
+
+			if (profileDetails.contains("phone_numbers")) {
+				person.setPhoneNumbers(getPhoneNumbers(
+					Contact.class.getName(), user.getContactId()));
+			}
+
+			if (profileDetails.contains("thumbnailUrl")) {
+				long portraitId = user.getPortraitId();
+				String tokenId = ImageServletTokenUtil.getToken(user.getPortraitId());
+
+				StringMaker sm = new StringMaker();
+				sm.append(PortalUtil.getPathImage());
+				sm.append("/user_");
+				sm.append(user.isFemale() ? "female" : "male");
+				sm.append("_portrait?img_id=");
+				sm.append(portraitId);
+				sm.append("&t=");
+				sm.append(tokenId);
+
+				person.setThumbnailUrl(sm.toString());
+			}
+
+			if (profileDetails.contains("time_zone")) {
+				person.setTimeZone(new Long(user.getTimeZone().getRawOffset()));
+			}
+
+			if (token.getViewerId() == person.getId()) {
+				person.setIsViewer(true);
+			}
+			else if (token.getOwnerId() == person.getId()) {
+				person.setIsOwner(true);
+			}
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+
+		return person;
+	}
+
+	protected List<Email> getEmails(User user) {
+		List<Email> emails = new ArrayList<Email>();
+
+		emails.add(new Email(user.getEmailAddress(), "Primary"));
+
+		try {
+			List<EmailAddress> emailAddresses =
+				EmailAddressLocalServiceUtil.getEmailAddresses(
+					user.getCompanyId(), User.class.getName(),
+					user.getUserId());
+
+			for (EmailAddress emailAddress : emailAddresses) {
+				emails.add(new Email(
+					emailAddress.getAddress(),
+					emailAddress.getType().getName()));
+			}
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+
+		return emails;
+	}
+
+	protected List<Phone> getPhoneNumbers(String className, long classPK) {
+		List<Phone> phoneNumbers = new ArrayList<Phone>();
+
+		try {
+			List<com.liferay.portal.model.Phone> liferayPhones =
+				PhoneServiceUtil.getPhones(className, classPK);
+
+			for (com.liferay.portal.model.Phone liferayPhone : liferayPhones) {
+				phoneNumbers.add(new Phone(
+					liferayPhone.getNumber(),
+					liferayPhone.getType().getName()));
+			}
 		}
 		catch (Exception e) {
 		}
 
-		try {
-			_ORG_CLASSNAME_ID = ClassNameLocalServiceUtil.getClassName(
-				Organization.class.getName()).getClassNameId();
-		}
-		catch (Exception e) {
-		}
-
-		try {
-			_USER_CLASSNAME_ID = ClassNameLocalServiceUtil.getClassName(
-				User.class.getName()).getClassNameId();
-		}
-		catch (Exception e) {
-		}
+		return phoneNumbers;
 	}
 
 	private static final Log _log = LogFactory.getLog(BasicPeopleService.class);

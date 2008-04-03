@@ -10,7 +10,7 @@
      #helloworlds {
        margin: 20px;
        font-family: arial, sans-serif;
-       width: 310px;
+       width: 350px;
      }
 
      div.person img {
@@ -70,9 +70,6 @@
        var html = '';
        for (var i = 0; i < allPeople.length; i++) {
          var count = getCount(viewerFriendData[allPeople[i].getId()]);
-         if (count == 0) {
-           //continue;
-         }
 
          html += '<div class="person">';
          html += '<div class="bubble c' + count % numberOfStyles + '">' + hellos[count % hellos.length];
@@ -87,6 +84,36 @@
          }
          html += '<br style="clear:both"></div>';
        }
+
+       var owner = data.get('owner').getData();
+       if (owner && owner.getId() != viewer.getId()) {
+			allPeople = data.get('ownerFriends').getData().asArray() || new Array();
+			allPeople.push(owner);
+
+	       var ownerData = data.get('ownerData').getData() || {};
+	       ownerCount = getCount(ownerData[owner.getId()]);
+
+	       ownerFriendData = data.get('ownerFriendData').getData() || {};
+	       ownerFriendData[owner.getId()] = ownerData[owner.getId()];
+
+	       for (var i = 0; i < allPeople.length; i++) {
+	         var count = getCount(ownerFriendData[allPeople[i].getId()]);
+
+	         html += '<div class="person">';
+	         html += '<div class="bubble c' + count % numberOfStyles + '">' + hellos[count % hellos.length];
+	         html += '<div class="name">' + allPeople[i].getDisplayName() + ' (' + count + ') ' + allPeople[i].getField(opensocial.Person.Field.GENDER).getDisplayValue();
+	         html += '</div></div>';
+
+	         if (allPeople[i].getField(opensocial.Person.Field.THUMBNAIL_URL)
+	             && allPeople[i].getField(opensocial.Person.Field.THUMBNAIL_URL).indexOf('null') == -1) {
+	           html += '<img src="' + allPeople[i].getField(opensocial.Person.Field.THUMBNAIL_URL) + '"/>';
+	         } else {
+	           html += '<img src="/shindig-portlet/files/samplecontainer/examples/nophoto.gif"/>';
+	         }
+	         html += '<br style="clear:both"></div>';
+	       }
+       }
+
        document.getElementById('helloworlds').innerHTML = html;
 
        gadgets.window.adjustHeight();
@@ -103,27 +130,37 @@
        req.send(initData);
      }
 
-
-     var opts = {};
-     opts[opensocial.DataRequest.PeopleRequestFields.FIRST] =  0;
-     opts[opensocial.DataRequest.PeopleRequestFields.MAX] = 40;
-     opts[opensocial.DataRequest.PeopleRequestFields.PROFILE_DETAILS] =
+     var personOpts = {};
+     personOpts[opensocial.DataRequest.PeopleRequestFields.PROFILE_DETAILS] =
                      [opensocial.Person.Field.AGE,
                      opensocial.Person.Field.NAME,
                      opensocial.Person.Field.GENDER,
                      opensocial.Person.Field.PROFILE_URL,
                      opensocial.Person.Field.THUMBNAIL_URL,
                      opensocial.Person.Field.STATUS];
-     opts[opensocial.DataRequest.PeopleRequestFields.SORT_ORDER] = opensocial.DataRequest.SortOrder.NAME;
 
-
+     var friendOpts = {};
+     friendOpts[opensocial.DataRequest.PeopleRequestFields.FIRST] =  0;
+     friendOpts[opensocial.DataRequest.PeopleRequestFields.MAX] = 20;
+     friendOpts[opensocial.DataRequest.PeopleRequestFields.PROFILE_DETAILS] =
+                     [opensocial.Person.Field.AGE,
+                     opensocial.Person.Field.NAME,
+                     opensocial.Person.Field.GENDER,
+                     opensocial.Person.Field.PROFILE_URL,
+                     opensocial.Person.Field.THUMBNAIL_URL,
+                     opensocial.Person.Field.STATUS];
+     friendOpts[opensocial.DataRequest.PeopleRequestFields.SORT_ORDER] = opensocial.DataRequest.SortOrder.NAME;
 
      function initData() {
        var req = opensocial.newDataRequest();
-       req.add(req.newFetchPersonRequest('VIEWER'), 'viewer');
-       req.add(req.newFetchPeopleRequest('VIEWER_FRIENDS', opts), 'viewerFriends');
+       req.add(req.newFetchPersonRequest('VIEWER', personOpts), 'viewer');
+       req.add(req.newFetchPeopleRequest('VIEWER_FRIENDS', friendOpts), 'viewerFriends');
        req.add(req.newFetchPersonAppDataRequest('VIEWER', 'count'), 'viewerData');
        req.add(req.newFetchPersonAppDataRequest('VIEWER_FRIENDS', 'count'), 'viewerFriendData');
+       req.add(req.newFetchPersonRequest('OWNER', personOpts), 'owner');
+       req.add(req.newFetchPeopleRequest('OWNER_FRIENDS', friendOpts), 'ownerFriends');
+       req.add(req.newFetchPersonAppDataRequest('OWNER', 'count'), 'ownerData');
+       req.add(req.newFetchPersonAppDataRequest('OWNER_FRIENDS', 'count'), 'ownerFriendData');
        req.send(render);
      }
 
