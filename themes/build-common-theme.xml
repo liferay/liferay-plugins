@@ -126,6 +126,24 @@
 	</target>
 
 	<target name="war" depends="compile">
+		<if>
+			<not>
+				<available file="docroot/images/screenshot.png" />
+			</not>
+			<then>
+				<fail>screenshot.png does not exist.</fail>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<available file="docroot/images/thumbnail.png" />
+			</not>
+			<then>
+				<fail>thumbnail.png does not exist.</fail>
+			</then>
+		</if>
+
 		<mkdir dir="${project.dir}/dist" />
 
 		<delete file="${plugin.file}" />
