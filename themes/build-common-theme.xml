@@ -131,7 +131,7 @@
 				<available file="docroot/images/screenshot.png" />
 			</not>
 			<then>
-				<fail>screenshot.png does not exist.</fail>
+				<echo>screenshot.png does not exist.</echo>
 			</then>
 		</if>
 
@@ -140,7 +140,7 @@
 				<available file="docroot/images/thumbnail.png" />
 			</not>
 			<then>
-				<fail>thumbnail.png does not exist.</fail>
+				<echo>thumbnail.png does not exist.</echo>
 			</then>
 		</if>
 
