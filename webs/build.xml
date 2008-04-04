@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<project name="webs" basedir="." default="deploy">
+	<property name="project.dir" value=".." />
+
+	<import file="../build-common-plugins.xml" />
+</project>
