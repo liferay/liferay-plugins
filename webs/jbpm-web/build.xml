@@ -3,10 +3,10 @@
 <project name="web" basedir="." default="deploy">
 	<import file="../build-common-web.xml" />
 
-	<target name="deploy">
+	<target name="war">
 		<java
 			classname="com.liferay.portal.tools.DBLoader"
-			classpathref="project.classpath"
+			classpathref="portal.classpath"
 			fork="true"
 			maxmemory="256m"
 			newenvironment="true"
@@ -24,6 +24,6 @@
 			</fileset>
 		</move>
 
-		<antcall target="build-common-web.deploy" />
+		<antcall target="build-common-plugin.war" />
 	</target>
 </project>
