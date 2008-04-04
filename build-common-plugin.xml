@@ -213,11 +213,15 @@
 	<target name="build-lang-native2ascii">
 		<delete file="${lang.dir}/${lang.file}_${lang.code}.properties" failonerror="false" />
 
-		<exec dir="${lang.dir}" executable="cmd.exe" os="Windows 95,Windows 98,Windows NT,Windows 2000,Windows XP">
+		<exec dir="${lang.dir}" executable="cmd.exe" os="${os.windows}">
 			<arg line="/c '${env.JAVA_HOME}'/bin/native2ascii -encoding UTF-8 ${lang.file}_${lang.code}.properties.native ${lang.file}_${lang.code}.properties" />
 		</exec>
 
-		<exec dir="${lang.dir}" executable="${env.JAVA_HOME}/bin/native2ascii" os="Linux,FreeBSD,Solaris,Mac OS X">
+		<exec dir="${lang.dir}" executable="${env.JAVA_HOME}/bin/native2ascii" os="${os.unix}">
+			<arg line="-encoding UTF-8 ${lang.file}_${lang.code}.properties.native ${lang.file}_${lang.code}.properties" />
+		</exec>
+
+		<exec dir="${lang.dir}" executable="/usr/bin/native2ascii" os="${os.apple}">
 			<arg line="-encoding UTF-8 ${lang.file}_${lang.code}.properties.native ${lang.file}_${lang.code}.properties" />
 		</exec>
 	</target>
