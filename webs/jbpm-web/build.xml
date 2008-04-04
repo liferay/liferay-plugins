@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<project name="web" basedir="." default="deploy">
+	<import file="../build-common-web.xml" />
+
+	<target name="deploy">
+		<java
+			classname="com.liferay.portal.tools.DBLoader"
+			classpathref="project.classpath"
+			fork="true"
+			maxmemory="256m"
+			newenvironment="true"
+		>
+			<arg value="hypersonic" />
+			<arg value="jbpm" />
+			<arg value="docroot/WEB-INF/sql/hsqldb.create.sql" />
+			<jvmarg value="-Dfile.encoding=UTF-8" />
+		</java>
+
+		<move todir="docroot/WEB-INF/sql">
+			<fileset dir=".">
+				<include name="jbpm.properties" />
+				<include name="jbpm.script" />
+			</fileset>
+		</move>
+
+		<antcall target="build-common-web.deploy" />
+	</target>
+</project>
