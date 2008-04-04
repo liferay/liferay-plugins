@@ -5,6 +5,7 @@ var LiferayJedi = function () {
 			var instance = this;
 			
 			instance.handleSearchForm();
+			instance.handleLanguages();
 			instance.dropDownMenu();
 			instance.handleLastChild();
 		},
@@ -30,6 +31,18 @@ var LiferayJedi = function () {
 
 			$('#footer ul li:last').addClass('last-child');
 		},
+		
+		handleLanguages: function() {
+			var instance = this;
+
+			var lang = jQuery('#banner .lang');
+			var images = lang.find('> a');
+			
+			if (images.length < parseInt(lang.width()/images.eq(0).width())) {
+				lang.addClass('single-row');
+			}
+		},
+		
 
 		dropDownMenu: function() {
 			$(".parent-nav-item").hoverIntent(

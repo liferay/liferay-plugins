@@ -74,7 +74,9 @@ $theme.include($top_messages_include)
 		<div class="search">
 			$theme.journalContentSearch()
 		</div>
-
+		<div class="lang">
+			$taglibLiferay.language()
+		</div>
 		#if ($update_available_url)
 			<div class="popup-alert-notice">
 				<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>
@@ -119,10 +121,6 @@ $theme.include($top_messages_include)
 			#if ($has_navigation)
 				#parse ("$full_templates_path/bottom_navigation.vm")
 			#end
-
-			<div class="lang">
-				$taglibLiferay.language()
-			</div>
 		</div>
 	</div>
 </div>

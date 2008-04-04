@@ -177,7 +177,7 @@ body {
 #banner .search {
 	position: absolute;
 	right: 13px;
-	top: 50px;
+	top: 35px;
 }
 
 #banner .search form {
@@ -228,6 +228,19 @@ body {
 
 .ie #banner .search .search-input-link {
 	top: 3px;
+}
+
+/* ---------- Language ---------- */
+#banner .lang {
+	position: absolute;
+	right: 13px;
+	text-align: right;
+	top: 67px;
+	width: 230px;
+}
+
+#banner .lang.single-row {
+	padding-top: 8px;
 }
 
 /* --- PORTLET --- */
