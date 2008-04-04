@@ -22,16 +22,16 @@
 
 package com.liferay.portlet.shindig.social.service;
 
-import com.liferay.portal.kernel.util.ActivityTrackerInterpreterUtil;
-import com.liferay.portal.model.ActivityFeedEntry;
-import com.liferay.portal.model.ActivityTracker;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.ActivityTrackerLocalServiceUtil;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.shindig.social.util.OpenSocialUtil;
+import com.liferay.portlet.social.model.SocialActivity;
+import com.liferay.portlet.social.model.SocialActivityFeedEntry;
+import com.liferay.portlet.social.service.SocialActivityInterpreterLocalServiceUtil;
+import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -68,20 +68,20 @@ public class BasicActivitiesService implements ActivitiesService {
 				try {
 					List<Activity> personActivities = new ArrayList<Activity>();
 
-					List<ActivityTracker> activityTrackers =
-						ActivityTrackerLocalServiceUtil.getUserActivityTrackers(
+					List<SocialActivity> socialActivities =
+						SocialActivityLocalServiceUtil.getUserActivities(
 							Long.parseLong(userId), 0,  20);
 
-					for (ActivityTracker activityTracker : activityTrackers) {
+					for (SocialActivity socialActivity : socialActivities) {
 						Activity activity = new Activity(
-							String.valueOf(activityTracker.getClassPK()),
-							String.valueOf(activityTracker.getUserId()));
+							String.valueOf(socialActivity.getClassPK()),
+							String.valueOf(socialActivity.getUserId()));
 
-						if (activityTracker.getClassName().equals(
+						if (socialActivity.getClassName().equals(
 								Activity.class.getName())) {
 
 							JSONObject extraData = new JSONObject(
-								activityTracker.getExtraData());
+								socialActivity.getExtraData());
 
 							if (extraData.has("appId")) {
 								activity.setAppId(extraData.getString("appId"));
@@ -92,7 +92,8 @@ public class BasicActivitiesService implements ActivitiesService {
 							}
 
 							if (extraData.has("bodyId")) {
-								activity.setBodyId(extraData.getString("bodyId"));
+								activity.setBodyId(extraData.getString(
+									"bodyId"));
 							}
 
 							if (extraData.has("externalId")) {
@@ -159,12 +160,13 @@ public class BasicActivitiesService implements ActivitiesService {
 							}
 						}
 						else {
-							ActivityFeedEntry activityFeedEntry =
-								ActivityTrackerInterpreterUtil.interpret(
-									activityTracker, themeDisplay);
+							SocialActivityFeedEntry socialActivityFeedEntry =
+								SocialActivityInterpreterLocalServiceUtil
+									.interpret(socialActivity, themeDisplay);
 
-							activity.setBody(activityFeedEntry.getBody());
-							activity.setTitle(activityFeedEntry.getTitle());
+							activity.setBody(socialActivityFeedEntry.getBody());
+							activity.setTitle(
+								socialActivityFeedEntry.getTitle());
 						}
 
 						personActivities.add(activity);
@@ -218,7 +220,7 @@ public class BasicActivitiesService implements ActivitiesService {
 			extraData.put("titleId", activity.getTitleId());
 			extraData.put("url", activity.getUrl());
 
-			ActivityTrackerLocalServiceUtil.addActivityTracker(
+			SocialActivityLocalServiceUtil.addActivity(
 				Long.parseLong(personId), 0L, Activity.class.getName(),
 				activity.getPostedTime().longValue(), activity.getStreamTitle(),
 				extraData.toString(), 0L);
