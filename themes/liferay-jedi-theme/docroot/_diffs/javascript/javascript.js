@@ -13,17 +13,19 @@ var LiferayJedi = function () {
 		handleSearchForm: function() {
 			var searchForm = $('#banner .search');	
 			
-			var searchInput = searchForm.find('input[@type=image]');
-			var searchLink = $('<a class="search-input-link" href="javascript:;"></a>');
-			
-			searchLink.click(
-				function() {
-					$(this).parents('form')[0].submit();
-				}
-			);
-			
-			searchInput.hide();
-			searchInput.before(searchLink);
+			if (searchForm.length) {
+				var searchInput = searchForm.find('input[@type=image]');
+				var searchLink = $('<a class="search-input-link" href="javascript:;"></a>');
+
+				searchLink.click(
+					function() {
+						$(this).parents('form')[0].submit();
+					}
+				);
+
+				searchInput.hide();
+				searchInput.before(searchLink);
+			}
 		},
 
 		handleLastChild: function () {
@@ -36,8 +38,8 @@ var LiferayJedi = function () {
 			var instance = this;
 
 			var lang = jQuery('#banner .lang');
-			
-			if (!lang.length) {
+
+			if (lang.length) {
 				var dock = jQuery('div.lfr-dock');				
 
 				// width of dock, plus 13px offset from the right, and 15 pixels for good spacing
