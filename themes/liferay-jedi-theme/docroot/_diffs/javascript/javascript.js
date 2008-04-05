@@ -3,7 +3,7 @@ var LiferayJedi = function () {
 	return {
 		init: function() {
 			var instance = this;
-			
+
 			instance.handleSearchForm();
 			instance.handleLanguages();
 			instance.dropDownMenu();
@@ -11,8 +11,8 @@ var LiferayJedi = function () {
 		},
 
 		handleSearchForm: function() {
-			var searchForm = $('#banner .search');	
-			
+			var searchForm = $('#banner .search');
+
 			if (searchForm.length) {
 				var searchInput = searchForm.find('input[@type=image]');
 				var searchLink = $('<a class="search-input-link" href="javascript:;"></a>');
@@ -33,22 +33,24 @@ var LiferayJedi = function () {
 
 			$('#footer ul li:last').addClass('last-child');
 		},
-		
+
 		handleLanguages: function() {
 			var instance = this;
 
 			var lang = jQuery('#banner .lang');
 
 			if (lang.length) {
-				var dock = jQuery('div.lfr-dock');				
+				var dock = jQuery('div.lfr-dock');
 
-				// width of dock, plus 13px offset from the right, and 15 pixels for good spacing
+				// Width of dock, plus 13px offset from the right, and 15 pixels
+				// for good spacing
+
 				var position = dock.width() + 28;
 
 				lang.css('right', position);
 			}
 		},
-		
+
 
 		dropDownMenu: function() {
 			$(".parent-nav-item").hoverIntent(
@@ -58,13 +60,15 @@ var LiferayJedi = function () {
 					over: function () {
 						var instance = $(this);
 						var child = $('.child-menu', this);
+
 						instance.addClass("init");
 						child.slideDown(100);
 					},
-					
+
 					out: function () {
 						var instance = $(this);
 						var child = $('.child-menu', this);
+
 						child.slideUp(50);
 						instance.removeClass("init");
 					}
