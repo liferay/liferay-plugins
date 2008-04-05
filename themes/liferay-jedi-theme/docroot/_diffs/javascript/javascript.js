@@ -5,7 +5,6 @@ var LiferayJedi = function () {
 			var instance = this;
 
 			instance.handleSearchForm();
-			instance.handleLanguages();
 			instance.dropDownMenu();
 			instance.handleLastChild();
 		},
@@ -32,23 +31,6 @@ var LiferayJedi = function () {
 			var instance = this;
 
 			$('#footer ul li:last').addClass('last-child');
-		},
-
-		handleLanguages: function() {
-			var instance = this;
-
-			var lang = jQuery('#banner .lang');
-
-			if (lang.length) {
-				var dock = jQuery('div.lfr-dock');
-
-				// Width of dock, plus 13px offset from the right, and 15 pixels
-				// for good spacing
-
-				var position = dock.width() + 28;
-
-				lang.css('right', position);
-			}
 		},
 
 

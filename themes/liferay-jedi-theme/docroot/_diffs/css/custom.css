@@ -231,15 +231,12 @@ body {
 }
 
 /* ---------- Language ---------- */
-#banner .lang {
+#banner .lfr-dock .lang {
 	position: absolute;
-	right: 240px;
+	right: 110%;
 	text-align: right;
 	top: 4px;
-}
-
-#banner .lang.single-row {
-	padding-top: 8px;
+	width: 350px;
 }
 
 /* --- PORTLET --- */
