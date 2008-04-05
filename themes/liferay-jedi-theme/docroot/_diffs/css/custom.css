@@ -233,10 +233,9 @@ body {
 /* ---------- Language ---------- */
 #banner .lang {
 	position: absolute;
-	right: 13px;
+	right: 240px;
 	text-align: right;
-	top: 67px;
-	width: 230px;
+	top: 4px;
 }
 
 #banner .lang.single-row {

@@ -58,11 +58,12 @@ var LiferayJedi = function () {
 			var instance = this;
 
 			var lang = jQuery('#banner .lang');
-			var images = lang.find('> a');
+			var dock = jQuery('div.lfr-dock');
 
-			if (images.length < parseInt(lang.width()/images.eq(0).width())) {
-				lang.addClass('single-row');
-			}
+			// width of dock, plus 13px offset from the right, and 15 pixels for good spacing
+			var position = dock.width() + 28;
+			
+			lang.css('right', position);
 		}
 	};
 }();
