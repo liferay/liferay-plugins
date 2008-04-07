@@ -22,13 +22,12 @@
 
 package com.liferay.portlet.service;
 
-import com.liferay.util.CollectionFactory;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import org.springframework.context.ApplicationContext;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -60,5 +59,5 @@ public class BeanLocatorUtil {
 	}
 
 	private static Log _log = LogFactory.getLog(BeanLocatorUtil.class);
-	private static Set _beans = CollectionFactory.getHashSet();
+	private Set<Object> _beans = new HashSet<Object>();
 }

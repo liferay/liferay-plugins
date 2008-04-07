@@ -53,13 +53,6 @@ public interface FooLocalService {
 		com.sample.servicebuilder.model.Foo foo)
 		throws com.liferay.portal.SystemException;
 
-	public com.sample.servicebuilder.service.persistence.FooPersistence getFooPersistence();
-
-	public void setFooPersistence(
-		com.sample.servicebuilder.service.persistence.FooPersistence fooPersistence);
-
-	public void afterPropertiesSet();
-
 	public void addFoo(java.lang.String field1, boolean field2, int field3,
 		java.util.Date field4, java.lang.String field5)
 		throws com.liferay.portal.SystemException,

@@ -220,9 +220,7 @@ public class FinderCache implements CacheRegistryItem {
 		if (CACHE_ENABLED && CacheRegistry.isActive() && (result != null)) {
 			String key = _encodeKey(sql, methodName, params, args);
 
-			for (int i = 0; i < classNames.length; i++) {
-				String className = classNames[i];
-
+			for (String className : classNames) {
 				String groupKey = _encodeGroupKey(className);
 
 				MultiVMPoolUtil.updateGroup(_groups, groupKey, key);
@@ -254,18 +252,14 @@ public class FinderCache implements CacheRegistryItem {
 		sm.append(methodName);
 		sm.append(_PARAMS_SEPARATOR);
 
-		for (int i = 0; i < params.length; i++) {
-			String param = params[i];
-
+		for (String param : params) {
 			sm.append(StringPool.POUND);
 			sm.append(param);
 		}
 
 		sm.append(_ARGS_SEPARATOR);
 
-		for (int i = 0; i < args.length; i++) {
-			Object arg = args[i];
-
+		for (Object arg : args) {
 			sm.append(StringPool.POUND);
 			sm.append(String.valueOf(arg));
 		}
@@ -289,8 +283,8 @@ public class FinderCache implements CacheRegistryItem {
 
 			List<Object> list = new ArrayList<Object>(cachedList.size());
 
-			for (int i = 0; i < cachedList.size(); i++) {
-				Object result = _primaryKeyToResult(session, cachedList.get(i));
+			for (Object curPrimaryKey : cachedList) {
+				Object result = _primaryKeyToResult(session, curPrimaryKey);
 
 				list.add(result);
 			}
@@ -316,8 +310,8 @@ public class FinderCache implements CacheRegistryItem {
 
 			List<Object> cachedList = new ArrayList<Object>(list.size());
 
-			for (int i = 0; i < list.size(); i++) {
-				Object primaryKey = _resultToPrimaryKey(list.get(i));
+			for (Object curResult : list) {
+				Object primaryKey = _resultToPrimaryKey(curResult);
 
 				cachedList.add(primaryKey);
 			}

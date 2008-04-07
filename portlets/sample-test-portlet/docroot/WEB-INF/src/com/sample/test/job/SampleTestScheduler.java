@@ -22,7 +22,6 @@
 
 package com.sample.test.job;
 
-import com.liferay.portal.kernel.job.IntervalJob;
 import com.liferay.portal.kernel.job.JobSchedulerUtil;
 import com.liferay.portal.kernel.job.Scheduler;
 

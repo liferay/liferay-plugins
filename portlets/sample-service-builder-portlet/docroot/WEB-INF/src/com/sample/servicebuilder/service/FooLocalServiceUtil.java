@@ -77,25 +77,6 @@ public class FooLocalServiceUtil {
 		return fooLocalService.updateFoo(foo);
 	}
 
-	public static com.sample.servicebuilder.service.persistence.FooPersistence getFooPersistence() {
-		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
-
-		return fooLocalService.getFooPersistence();
-	}
-
-	public static void setFooPersistence(
-		com.sample.servicebuilder.service.persistence.FooPersistence fooPersistence) {
-		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
-
-		fooLocalService.setFooPersistence(fooPersistence);
-	}
-
-	public static void afterPropertiesSet() {
-		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
-
-		fooLocalService.afterPropertiesSet();
-	}
-
 	public static void addFoo(java.lang.String field1, boolean field2,
 		int field3, java.util.Date field4, java.lang.String field5)
 		throws com.liferay.portal.PortalException,
