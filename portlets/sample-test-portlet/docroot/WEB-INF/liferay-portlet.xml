@@ -4,6 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>sample_test_portlet</portlet-name>
+		<scheduler-class>com.sample.test.job.SampleTestScheduler</scheduler-class>
 		<friendly-url-mapper-class>com.sample.test.portlet.SampleTestFriendlyURLMapper</friendly-url-mapper-class>
 	</portlet>
 	<role-mapper>
