@@ -35,6 +35,7 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.PhoneServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.util.dao.hibernate.QueryUtil;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -149,8 +150,8 @@ public class BasicPeopleService implements PeopleService {
 
 						List<User> friends =
 							UserLocalServiceUtil.getSocialUsers(
-								owner.getCompanyId(), owner.getUserId(), 1,
-								-1, -1);
+								owner.getUserId(), 1, QueryUtil.ALL_POS,
+								QueryUtil.ALL_POS);
 
 						for (User friend : friends) {
 							ids.add(String.valueOf(friend.getUserId()));
@@ -168,8 +169,8 @@ public class BasicPeopleService implements PeopleService {
 
 						List<User> friends =
 							UserLocalServiceUtil.getSocialUsers(
-								viewer.getCompanyId(), viewer.getUserId(), 1,
-								-1, -1);
+								viewer.getUserId(), 1, QueryUtil.ALL_POS,
+								QueryUtil.ALL_POS);
 
 						for (User friend : friends) {
 							ids.add(String.valueOf(friend.getUserId()));
