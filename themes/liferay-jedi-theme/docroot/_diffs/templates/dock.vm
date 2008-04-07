@@ -2,6 +2,7 @@
 	<div class="lang">
 		$taglibLiferay.language()
 	</div>
+
 	<h2 class="user-greeting">
 		<span>$user_greeting</span>
 	</h2>
