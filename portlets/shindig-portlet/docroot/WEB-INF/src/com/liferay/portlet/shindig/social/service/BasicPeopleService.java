@@ -23,7 +23,6 @@
 package com.liferay.portlet.shindig.social.service;
 
 import com.liferay.portal.kernel.servlet.ImageServletTokenUtil;
-import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.EmailAddress;
@@ -35,6 +34,7 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.PhoneServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.dao.hibernate.QueryUtil;
 
 import java.util.ArrayList;
