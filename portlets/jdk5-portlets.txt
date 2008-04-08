@@ -1,4 +1,0 @@
-sample-jsf-facelets-portlet
-sample-php-portlet
-sample-ruby-portlet
-sample-seam-portlet
