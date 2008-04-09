@@ -35,7 +35,7 @@
 
 	<property name="plugin.file" value="${project.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}.war" />
 
-	<target name="clean">
+	<target name="clean" description="clean">
 		<delete dir="docroot/WEB-INF/classes" />
 		<delete dir="tmp" />
 		<delete file="${plugin.file}" />
