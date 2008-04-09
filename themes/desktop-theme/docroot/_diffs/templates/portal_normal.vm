@@ -2,7 +2,7 @@
 
 #parse ($init)
 
-<html dir="#language ("lang.dir")">
+<html dir="#language ("lang.dir")" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 	<title>$company_name - $the_title</title>
@@ -11,16 +11,22 @@
 
 	#css ($css_main_file)
 	#js ($js_main_file)
+
+	<script type="text/javascript">
+		$page_javascript_1
+		$page_javascript_2
+		$page_javascript_3
+	</script>
 </head>
 
 <body class="$css_class">
 
-#parse ("$full_templates_path/wallpaper.vm")
-
 $theme.include($top_messages_include)
 
-<div id="wrapper" class="$css_class">
-	#parse ("$full_templates_path/dock.vm")
+<div id="wrapper">
+	<div id="dock-wrapper">
+		#parse ("$full_templates_path/dock.vm")
+	</div>
 
 	#if ($update_available_url)
 		<div class="popup-alert-notice">

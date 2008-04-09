@@ -1,10 +1,28 @@
-/* ---------- Functions for jQuery(document).ready ---------- */
-Liferay.DesktopTheme = {};
+LiferayDesktop = {};
 
-Liferay.DesktopTheme.clock = function() {
-	var updateClock;
+LiferayDesktop.clock = function() {
+	var updateClock = null;
+
 	return {
 		init: function() {
+			var instance = this;
+			
+			instance.updateTime();
+			if (!updateClock) {
+				updateClock = setInterval(
+					function() {
+						instance.updateTime();
+					}, 5000);
+			}
+		},
+
+		resetTimer: function() {
+			clearTimeout(updateClock);
+		},
+		
+		updateTime: function() {
+			var instance = this;
+
 			var clock = new Date();
 			var month, day, dayNum, h, m, meridiem, time;
 			var days = new Array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
@@ -17,63 +35,78 @@ Liferay.DesktopTheme.clock = function() {
 			m = (clock.getMinutes() < 10 ? "0" : "") + clock.getMinutes();
 			meridiem = clock.getHours() < 12 ? "AM" : "PM";
 
-			if (document.getElementById("taskbar-clock-vista") != null) {
+			time = day + " " + month + " " + dayNum +", " + h + ":" + m + " " + meridiem;
+			
+			var clock = jQuery('#taskbar-clock');
+			var body = jQuery(document.body);
+			
+			if (body.is('.vista')) {
 				time = h + ":" + m + " " + meridiem;
-				el = document.getElementById("taskbar-clock-vista");
-			} else if (document.getElementById("taskbar-clock-mac") != null) {
+			}
+			else if (body.is('.osx')) {
 				time = day + " " + h + ":" + m + " " + meridiem;
-				el = document.getElementById("taskbar-clock-mac");
-			} else if (document.getElementById("taskbar-clock-linux") != null) {
-				time = day + " " + month + " " + dayNum +", " + h + ":" + m + " " + meridiem;
-				el = document.getElementById("taskbar-clock-linux");
 			}
 			else {
 				time = day + " " + month + " " + dayNum +", " + h + ":" + m + " " + meridiem;
-				el = document.getElementById("taskbar-clock");
 			}
 
-			if(!el.childNodes.length){
-				el.appendChild(document.createTextNode(""));
-			};
-			el.childNodes[0].nodeValue=time;
-
-			updateClock = setTimeout("Liferay.DesktopTheme.clock.init()", 5000);
-		},
-		resetTimer: function() {
-			clearTimeout(updateClock);
+			clock.text(time);
 		}
 	};
 }();
 
-Liferay.DesktopTheme.dockMenu = function() {
+LiferayDesktop.dockMenu = function() {
 	return {
 		init: function() {
 			var instance = this;
+			
+			if (!jQuery(document.body).is('.vista')) {
+				return;
+			}
 
-			if (jQuery(".linux").size() >= 1) {
-				menuColor = '#0a246a';
+			Liferay.Util.createFlyouts(
+				{
+					container: jQuery('.navigation-menu')[0],
+					mouseOver: function(event) {
+						if (this.className.indexOf('my-places') > -1) {
+							jQuery('.current-community > ul', this).show();
+						}
+						else if (this.parentNode.className.indexOf('taglib-my-places') > -1) {
+							jQuery('ul', this.parentNode).hide();
+							jQuery('> ul', this).show();
+						}
+					}
+				}
+			);
+			
+			return;	
+
+
+			if (jQuery(".vista").size() >= 1) {
+				menuColor = '#074f67';
 				highlight = '#3DA5D5';
-			} else if (jQuery(".mac").size() >= 1) {
+			} else if (jQuery(".osx").size() >= 1) {
 				menuColor = '#336eca';
 				highlight = '#3DA5D5';
 			} else {
-				menuColor = '#074f67';
+				menuColor = '#0a246a';
 				highlight = '#3DA5D5';
 			}
 
 			instance.placesInit();
 			instance.navMenu = jQuery('ul.lfr-dock-list > li.home');
 			instance.navSubmenu = jQuery('ul.nav-dock-list > li');
-			instance.placesMenu = jQuery('ul.lfr-dock-list > li.places');
-			instance.placesSubmenu = jQuery('ul.lfr-dock-list > li.places > ul > li');
+			instance.placesMenu = jQuery('ul.lfr-dock-list > li.my-places');
+			instance.placesSubmenu = jQuery('ul.lfr-dock-list > li.my-places > ul > li');
 			instance.navMenu.hover(instance.navHover,instance.navHoverOut);
 			instance.navSubmenu.hover(instance.navHover,instance.navHoverOut);
 			instance.placesMenu.hover(instance.navHover,instance.navHoverOut);
 			instance.placesSubmenu.hover(instance.placesHover,instance.placesHoverOut);
-
+			
+			
 		},
 		placesInit: function() {
-			var li = jQuery('ul.lfr-dock-list > li.places > ul > li');
+			var li = jQuery('ul.lfr-dock-list > li.my-places > ul > li');
 			var childH3 = li.find('> h3');
 			li.append(jQuery('<div class="submenu-arrow-black"></div>'));
 			jQuery("li:has(.current)").find('> h3').css({ "background-color":highlight,color:"#ffffff" });
@@ -118,17 +151,19 @@ Liferay.DesktopTheme.dockMenu = function() {
 	};
 }();
 
-Liferay.DesktopTheme.portletMax = function() {
+LiferayDesktop.portletMax = function() {
 	return {
 		init: function() {
 			var instance = this;
 
-			if (jQuery(".linux").size() >= 1) {
-				offsetHeight = 180;
-			} else if (jQuery(".mac").size() >= 1) {
+			if (jQuery(".osx").size() >= 1) {
 				offsetHeight = 160;
-			} else {
+			}
+			else if (jQuery(".vista").size() >= 1) {
 				offsetHeight = 180;
+			}
+			else {
+				offsetHeight = 150;
 			}
 
 			if (jQuery(".columns-max").size() == 1) {
@@ -154,7 +189,7 @@ Liferay.DesktopTheme.portletMax = function() {
 	};
 }();
 
-Liferay.DesktopTheme.nonFreeformLayout = function() {
+LiferayDesktop.nonFreeformLayout = function() {
 	return {
 		init: function() {
 			var instance = this;
@@ -172,18 +207,15 @@ Liferay.DesktopTheme.nonFreeformLayout = function() {
 	};
 }();
 
-Liferay.DesktopTheme.fixDock = function() {
+LiferayDesktop.fixDock = function() {
 	Liferay.Util.actsAsAspect(Liferay.Dock);
 	Liferay.Dock.after('init',
 		function() {
 			var dock = jQuery('.lfr-dock');
 			dock.css('position', 'fixed');
-			
 		}
 	);
 };
-
-/* ---------- Main jQuery Calls ---------- */
 
 jQuery(document).ready(
 
@@ -193,35 +225,17 @@ jQuery(document).ready(
 	*/
 
 	function() {
-		Liferay.DesktopTheme.clock.init();
-		window.onunload = Liferay.DesktopTheme.clock.resetTimer;
-		Liferay.DesktopTheme.dockMenu.init();
-		Liferay.DesktopTheme.portletMax.init();
-		Liferay.DesktopTheme.nonFreeformLayout.init();
-		Liferay.DesktopTheme.fixDock();
-	}
-);
+		LiferayDesktop.clock.init();
+		 LiferayDesktop.dockMenu.init(); 
+		LiferayDesktop.portletMax.init();
+		LiferayDesktop.nonFreeformLayout.init();
+		LiferayDesktop.fixDock();
+		
+		jQuery(window).unload(
+			function(event) {
+				LiferayDesktop.clock.resetTimer();
+			}
+		)
 
-Liferay.Portlet.ready(
-
-	/*
-	This function gets loaded after each and every portlet on the page.
-
-	portletId: the current portlet"s id
-	jQueryObj: the jQuery wrapped object of the current portlet
-	*/
-
-	function(portletId, jQueryObj) {
-	}
-);
-
-jQuery(document).last(
-
-	/*
-	This function gets loaded when everything, including the portlets, is on
-	the page.
-	*/
-
-	function() {
 	}
 );

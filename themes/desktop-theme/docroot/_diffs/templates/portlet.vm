@@ -1,68 +1,95 @@
 #set ($portlet_display = $portletDisplay)
+#set ($images_folder = $themeDisplay.getPathThemeImages())
+#set ($color = "linux")
+
 #set ($portlet_id = $portlet_display.getId())
 #set ($portlet_title = $portlet_display.getTitle())
 #set ($portlet_content = $portlet_display.getContent())
 #set ($portlet_back_url = $portlet_display.getURLBack())
-#set ($images_folder = $themeDisplay.getPathThemeImages())
 
-<div class="$themeDisplay.getColorScheme().getCssClass()-portlet" id="portlet-wrapper-$portlet_id">
+#if ($themeDisplay.getColorScheme().getCssClass() != "")
+	#set ($color = $themeDisplay.getColorScheme().getCssClass())
+#end
 
+<div class="portlet" id="portlet-wrapper-$portlet_id">
+	<div class="t"></div>
 	<div class="content">
-		<div class="t"></div>
-		<div class="$themeDisplay.getColorScheme().getCssClass() portlet-topper">
-			<div class="$themeDisplay.getColorScheme().getCssClass()-portlet-desktop-title">
+		<div class="portlet-topper">
+			<span class="portlet-title not-editable"">
 				$theme.iconPortlet() $portlet_title
-			</div>
+			</span>
 
-			#if ($themeDisplay.getColorScheme().getCssClass() == "linux")
-				<div class="$themeDisplay.getColorScheme().getCssClass()-portlet-address-bar">My Places<img src="$images_folder/desktop/arrow.png" alt="" />$layout.getGroup().getName()<img src="$images_folder/desktop/arrow.png" alt="" />$layout.getHTMLTitle($locale)<img src="$images_folder/desktop/arrow.png" alt="" />$portlet_title</div>
+			#if ($portlet_display.isShowBackIcon())
+				<div class="portlet-icons" id="portlet-small-icon-bar_$portlet_id">
+					<a href="$portlet_back_url" class="portlet-icon-back">#language ("return-to-full-page")</a>
+				</div>
+			#else
+				<span class="portlet-modes">
+					#if ($portlet_display.isShowRefreshIcon())
+						<span class="portlet-mode-icons">$theme.iconRefresh()</span>
+					#end
+
+					#if ($portlet_display.isShowPortletCssIcon())
+						<span class="portlet-mode-icons">$theme.iconPortletCss()</span>
+					#end
+
+					#if ($portlet_display.isShowConfigurationIcon())
+						<span class="portlet-mode-icons">$theme.iconConfiguration()</span>
+					#end
+
+					#if ($portlet_display.isShowEditIcon())
+						<span class="portlet-mode-icons">$theme.iconEdit()</span>
+					#end
+
+					#if ($portlet_display.isShowEditDefaultsIcon())
+						<span class="portlet-mode-icons">$theme.iconEditDefaults()</span>
+					#end
+
+					#if ($portlet_display.isShowEditGuestIcon())
+						<span class="portlet-mode-icons">$theme.iconEditGuest()</span>
+					#end
+
+					#if ($portlet_display.isShowHelpIcon())
+						<span class="portlet-mode-icons">$theme.iconHelp()</span>
+					#end
+
+					#if ($portlet_display.isShowPrintIcon())
+						<span class="portlet-mode-icons">$theme.iconPrint()</span>
+					#end
+				</span>
+
+				#if ($portlet_display.isShowCloseIcon())
+					<span class="portlet-states">
+						<span id="p_p_body_$portletDisplay.getId()_min_buttons" class="portlet-min">
+							<a href="$portletDisplay.getURLMin()">
+								<img align="absmiddle" border="0" src="$themeDisplay.getPathThemeImages()/color_schemes/$color/portlet/minimize.png" title="#language("minimize")" />
+							</a>
+						</span>
+
+						<span class="portlet-max">
+							<a href="javascript: submitForm(document.hrefFm, '$portletDisplay.getURLMax()')">
+								<img align="absmiddle" border="0" src="$themeDisplay.getPathThemeImages()/color_schemes/$color/portlet/maximize.png" title="#language("maximize")" />
+							</a>
+						</span>
+
+						<span class="portlet-close">
+							<a href="javascript: closePortlet('$plid', '$portletDisplay.getId()', '$themeDisplay.getDoAsUserId()')">
+								<img align="absmiddle" border="0" src="$themeDisplay.getPathThemeImages()/color_schemes/$color/portlet/close.png" title="#language("close")" />
+							</a>
+						</span>
+					</span>
+				#end
 			#end
 
-			<div class="$themeDisplay.getColorScheme().getCssClass()-portlet-buttons" id="portlet-small-icon-bar_$portlet_id">
-				#if ($portlet_display.isShowBackIcon())
-					<a href="$portlet_back_url" class="portlet-icon-back">#language ("return-to-full-page")</a>
-				#else
-					#if ($themeDisplay.getColorScheme().getCssClass() == "mac")
-						#if ($portletDisplay.isShowCloseIcon())
-							<a class="#language("minimize")" href="javascript: closePortlet('$plid', '$portletDisplay.getId()', '$themeDisplay.getDoAsUserId()')"><img align="absmiddle" title="#language("close")" src="$themeDisplay.getPathThemeImages()/portlet/$themeDisplay.getColorScheme().getCssClass()-close.png" /></a>
-						#end
-						#if ($portletDisplay.isShowMinIcon())
-							<span id="p_p_body_$portletDisplay.getId()_min_buttons">
-								<a class="#language("minimize")" href="javascript: minimizePortlet('$plid', '$portletDisplay.getId()', $portletDisplay.isStateMin(), '$themeDisplay.getDoAsUserId()');"><img border="0" align="absmiddle" title="#language("minimize")" src="$themeDisplay.getPathThemeImages()/portlet/$themeDisplay.getColorScheme().getCssClass()-minimize.png" /></a>
-							</span>
-						#end
-					#else
-						#if ($portletDisplay.isShowMinIcon())
-							<span id="p_p_body_$portletDisplay.getId()_min_buttons">
-								<a class="#language("minimize")" href="javascript: minimizePortlet('$plid', '$portletDisplay.getId()', $portletDisplay.isStateMin(), '$themeDisplay.getDoAsUserId()');"><img border="0" align="absmiddle" title="#language("minimize")" src="$themeDisplay.getPathThemeImages()/portlet/$themeDisplay.getColorScheme().getCssClass()-minimize.png" /></a>
-							</span>
-						#end
-						#if ($portletDisplay.isShowCloseIcon())
-							<a class="#language("minimize")" href="javascript: closePortlet('$plid', '$portletDisplay.getId()', '$themeDisplay.getDoAsUserId()')"><img align="absmiddle" title="#language("close")" src="$themeDisplay.getPathThemeImages()/portlet/$themeDisplay.getColorScheme().getCssClass()-close.png" /></a>
-						#end
-					#end
-				#end
-			</div>
-			<div class="$themeDisplay.getColorScheme().getCssClass()-portlet-toolbar" id="portlet-small-icon-bar_$portlet_id">
-				$theme.iconRefresh()
-				$theme.iconPortletCss()
-				$theme.iconConfiguration()
-				$theme.iconEdit()
-				$theme.iconEditDefaults()
-				$theme.iconEditGuest()
-				$theme.iconHelp()
-				$theme.iconPrint()
+			<div class="portlet-address">
+				$layout.getGroup().getName() <img src="$images_folder/common/arrow.png" alt="" />
+				$layout.getHTMLTitle($locale) <img src="$images_folder/common/arrow.png" alt="" />
+				$portlet_title
 			</div>
 		</div>
-
-		#if ($themeDisplay.getColorScheme().getCssClass() == "vista")
-			<div class="portlet-address-bar">My Places<img src="$images_folder/desktop/arrow.png" alt="" />$layout.getGroup().getName()<img src="$images_folder/desktop/arrow.png" alt="" />$layout.getHTMLTitle($locale)<img src="$images_folder/desktop/arrow.png" alt="" />$portlet_title</div>
-		#end
-
-		<div class="$themeDisplay.getColorScheme().getCssClass()-portlet-content">
+		<div class="portlet-content">
 			$portlet_content
 		</div>
 	</div>
-	<div class="s"></div>
 	<div class="b"><div class="b-content"></div></div>
 </div>

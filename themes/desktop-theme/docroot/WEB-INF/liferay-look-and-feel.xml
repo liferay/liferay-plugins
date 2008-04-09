@@ -8,13 +8,16 @@
 	<theme id="desktop" name="Desktop">
 		<color-scheme id="01" name="Linux">
 			<default-cs>true</default-cs>
-			<css-class>linux</css-class>
+			<css-class></css-class>
+			<color-scheme-images-path>${images-path}</color-scheme-images-path>
 		</color-scheme>
-		<color-scheme id="02" name="Mac">
-			<css-class>mac</css-class>
+		<color-scheme id="02" name="Mac OS X">
+			<css-class>osx</css-class>
+			<color-scheme-images-path>${images-path}/color_schemes/osx</color-scheme-images-path>
 		</color-scheme>
 		<color-scheme id="03" name="Vista">
 			<css-class>vista</css-class>
+			<color-scheme-images-path>${images-path}/color_schemes/vista</color-scheme-images-path>
 		</color-scheme>
 	</theme>
 </look-and-feel>

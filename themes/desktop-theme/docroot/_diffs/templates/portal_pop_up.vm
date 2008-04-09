@@ -2,7 +2,7 @@
 
 #parse ($init)
 
-<html dir="#language ("lang.dir")">
+<html dir="#language ("lang.dir")" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 	<title>$the_title</title>

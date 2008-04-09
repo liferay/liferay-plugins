@@ -1,7 +1,7 @@
-<ul class="nav-dock-list">
+<ul class="taglib-home navigation-menu">
 
-	#if ($is_signed_in && $css_class=="workingfix")
-		<li class="places">
+	#if ($show_my_places && ($css_class == "vista"))
+		<li class="my-places">
 			<a>$my_places_text</a>
 
 			$theme.myPlaces()
@@ -19,7 +19,6 @@
 			<a href="$nav_item.getURL()" $nav_item.getTarget()><span>$nav_item.getName()</span></a>
 
 			#if ($nav_item.hasChildren())
-				<div class="submenu-arrow-black"></div>
 				<ul class="child-menu">
 					#foreach ($nav_child in $nav_item.getChildren())
 						<li>
