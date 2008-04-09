@@ -1,0 +1,242 @@
+/* This CSS file is loaded last and will overwrite all other css files. */
+
+/* ---------- Styles in base.css ---------- */
+
+body.osx {
+	background: #01629c url(../../images/color_schemes/osx/desktop/desktop_bg.png) no-repeat scroll 50% 50%;
+}
+
+/* ---------- Styles in navigation.css ---------- */
+
+.js .osx .interactive-mode {
+	background: transparent url(../../images/color_schemes/osx/dock/menu_bar.png) no-repeat scroll 0 0;
+	height: 22px;
+	min-width: 34px;
+	top: 0;
+	width: 34px;
+}
+
+.js .osx .lfr-dock.expanded {
+	background: transparent url(../../images/color_schemes/osx/dock/menu_bar_hover.png) no-repeat scroll 0 0;
+}
+
+/* ---------- Styles for the Liferay Dock menu ---------- */
+
+.js .osx .lfr-dock.expanded .lfr-dock-list-container {
+	background: transparent url(../../images/color_schemes/osx/dock/dock_bg.png) repeat-y scroll left bottom;
+	left: -9px;
+	padding: 0 0 9px;
+	position: relative;
+	top: 22px;
+	width: 200px;
+}
+
+.js .osx .interactive-mode ul {
+	border-top: 1px solid #c2c2c2;
+	margin: 0 9px;
+}
+
+.js .osx .interactive-mode li {
+	margin: 0 1px;
+}
+
+.js .osx .lfr-dock.interactive-mode li a:hover {
+	background-color: #336eca;
+}
+
+.js .osx .interactive-mode li a {
+	font-family: 'Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+}
+
+.ie.js .osx .interactive-mode li.home a {
+	margin: 0 1px;
+}
+
+.ie.js .osx .interactive-mode ul.taglib-home a {
+	margin: 0;
+}
+
+/* ---------- Styles for the Main Navigation flyout menu ---------- */
+
+.js .osx .lfr-flyout.has-children ul.taglib-home {
+	right: -193px;
+}
+
+.js .osx .interactive-mode .home li {
+	padding: 0 1px;
+}
+
+.js .osx .interactive-mode .home li.selected a {
+	background-color: #3ca5d5;
+}
+
+.js .osx .interactive-mode .home li.selected a:hover {
+	background-color: #336eca;
+}
+
+.ie.js .osx .lfr-flyout.has-children ul.taglib-home {
+	right: -192px;
+	padding: 0;
+}
+
+/* ---------- Styles for the My Places flyout menu ---------- */
+
+.js .osx .lfr-flyout.has-children ul {
+	right: -183px;
+}
+
+.js .osx .interactive-mode .lfr-flyout.has-children ul {
+	background: transparent url(../../images/color_schemes/osx/dock/child_menu_bg.png) repeat-y scroll left top;
+	border-bottom: 1px solid #c2c2c2;
+	border-top: 1px solid #c2c2c2;
+}
+
+.js .osx .interactive-mode .my-places li {
+	padding: 0 1px;
+}
+
+.js .osx .interactive-mode .my-places li.current-community h3 a:hover {
+	background-color: #336eca;
+}
+
+.js .osx .interactive-mode .my-places li.current a:hover {
+	background: #336eca url(../images/dock/my_place_current.png) no-repeat scroll 0.5em 50%;
+}
+
+/* ---------- Styles in portlet.css ---------- */
+
+.osx .portlet .content,
+.osx .portlet .t,
+.osx .portlet .b,
+.osx .portlet .b .b-content {
+	 background: transparent url(../../images/color_schemes/osx/portlet/portlet_bg.png) no-repeat scroll top right;
+	 _background-image: url(../../images/color_schemes/osx/portlet/portlet_bg.png);
+}
+
+.osx .portlet .t {
+	background-position: 0 21px;
+}
+
+.osx .portlet .b {
+	background-position:bottom right;
+}
+
+.osx .portlet .b .b-content {
+	background-position: bottom left;
+}
+
+.osx .portlet-topper {
+	height: 75px;
+}
+
+.osx .portlet-title {
+	color: #333333;
+	font-size: 12px;
+	font-weight: bold;
+	left: 14px;
+	position: relative;
+	text-align: center;
+	top: 6px;
+}
+
+.osx .portlet-title img {
+	display: none;
+}
+
+.osx .portlet-address {
+	display: none;
+}
+
+.osx .portlet-icon-back {
+	background: transparent url(../../images/portlet/back.png) no-repeat scroll 0 2px;
+	line-height: 31px;
+}
+
+/* ---------- Styles for Portlet mode icons ---------- */
+
+.osx .portlet-modes {
+	left: 3px;
+	right: auto;
+	top: 40px;
+}
+
+.osx .portlet-states {
+	left: 0;
+	top: 17px;
+}
+
+.osx .portlet-min,
+.osx .portlet-max {
+	margin: 0 -4px 0 0;
+}
+
+.osx .portlet-min a {
+	background: transparent url(../../images/color_schemes/osx/portlet/minimize.png) no-repeat scroll 0 0;
+}
+
+.osx .portlet-min a:hover {
+	background: transparent url(../../images/color_schemes/osx/portlet/minimize_hover.png) no-repeat scroll 0 0;
+}
+
+.osx .portlet-max a {
+	background: transparent url(../../images/color_schemes/osx/portlet/maximize.png) no-repeat scroll 0 0;
+}
+
+.osx .portlet-max a:hover {
+	background: transparent url(../../images/color_schemes/osx/portlet/maximize_hover.png) no-repeat scroll 0 0;
+}
+
+.osx .portlet-close a {
+	background: transparent url(../../images/color_schemes/osx/portlet/close.png) no-repeat scroll 0 0;
+}
+
+.osx .portlet-close a:hover {
+	background: transparent url(../../images/color_schemes/osx/portlet/close_hover.png) no-repeat scroll 0 0;
+}
+
+.osx .portlet-min, .osx .portlet-max, .osx .portlet-close {
+	position: absolute;
+	top: 0;
+}
+
+.osx .portlet-close {
+	left: 0;
+}
+
+.osx .portlet-min {
+	left: 20px;
+}
+
+.osx .portlet-max {
+	left: 40px;
+}
+
+/* ---------- Styles for Portlet drag and drop ---------- */
+
+.osx .portlet-decorate-resize-container {
+	right: 17px;
+}
+
+.osx .portlet-resize-handle {
+	background: transparent url(../../images/color_schemes/osx/arrows/resize_black.png) no-repeat scroll 0% 0%;
+}
+
+/* ---------- Custom styles for the Desktop theme ---------- */
+
+.osx #taskbar {
+	background: transparent url(../../images/color_schemes/osx/desktop/taskbar_bg.png) repeat-x scroll 0 0;
+}
+
+.osx #taskbar-clock {
+	background: transparent url(../../images/color_schemes/osx/desktop/taskbar_bg.png) repeat-x scroll 100% 0;
+	color: #000000;
+	font-family: 'Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+	font-size: 12px;
+	font-stretch: semi-condensed;
+	font-weight: 300;
+	position: absolute;
+	padding: 3px 11px 0 0;
+	right: 0;
+	top: 0;
+	z-index: 15;
+}

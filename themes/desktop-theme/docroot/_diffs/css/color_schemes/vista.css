@@ -1,0 +1,210 @@
+/* This CSS file is loaded last and will overwrite all other css files. */
+
+/* ---------- Styles in base.css ---------- */
+
+body.vista {
+	background: #63bccd url(../../images/color_schemes/vista/desktop/desktop_bg.png) no-repeat fixed 50% 50%;
+}
+
+/* ---------- Styles in navigation.css ---------- */
+
+.js .vista .interactive-mode {
+	background: transparent url(../../images/color_schemes/vista/dock/menu_bar.png) no-repeat scroll 0 0;
+	height: 37px;
+	min-width: 44px;
+	top: -9px;
+	width: 44px;
+}
+
+.js .vista .lfr-dock.expanded {
+	background: transparent url(../../images/color_schemes/vista/dock/menu_bar_hover.png) no-repeat scroll 0 0;
+}
+
+/* ---------- Styles for the Liferay Dock menu ---------- */
+
+.js .vista .lfr-dock.expanded .lfr-dock-list-container {
+	background: transparent url(../../images/color_schemes/vista/dock/dock_bg.png) repeat-y scroll left bottom;
+	height: 450px;
+	left: -5px;
+	padding: 0;
+	top: -441px;
+	width: 330px;
+}
+
+.js .vista .interactive-mode ul {
+	border-top: none;
+	padding: 0 0 0 3px;
+	position: relative;
+	top: 67px;
+	width: 193px;
+}
+
+.js .vista .lfr-dock.interactive-mode li a:hover {
+	background-color: #3ca5d5;
+	color: #ffffff;
+}
+
+.js .vista .interactive-mode li a {
+	font-stretch: semi-condensed;
+	font-weight: 300;
+}
+
+/* ---------- Styles in portlet.css ---------- */
+
+.vista .portlet .content,
+.vista .portlet .t,
+.vista .portlet .b,
+.vista .portlet .b .b-content {
+	 background: transparent url(../../images/color_schemes/vista/portlet/portlet_bg.png) no-repeat scroll top right;
+	 _background-image: url(../../images/color_schemes/vista/portlet/portlet_bg.png);
+}
+
+.vista .portlet .t {
+	background-position: 0 21px;
+}
+
+.vista .portlet .b {
+	background-position:bottom right;
+}
+
+.vista .portlet .b .b-content {
+	background-position: bottom left;
+}
+
+.vista .portlet-topper {
+	height: 99px;
+}
+
+.vista .portlet-title {
+	color: #000000;
+	font-weight: 500;
+	padding: 21px 0 4px 2px;
+}
+
+.vista .portlet-title img {
+	display: none;
+}
+
+.vista .portlet-address {
+	top: 38px;
+}
+
+.vista .portlet-icon-back {
+	background: transparent url(../../images/portlet/back.png) no-repeat scroll 0 2px;
+	color: #000000;
+	line-height: 31px;
+}
+
+.vista .portlet-icon-back:hover {
+	color: #000000;
+}
+
+/* ---------- Styles for Portlet mode icons ---------- */
+
+.vista .portlet-modes {
+	left: 2px;
+	right: auto;
+	top: 44px;
+}
+
+.vista .portlet-states {
+	top: 12px;
+}
+
+.vista .portlet-min a {
+	background: transparent url(../../images/color_schemes/vista/portlet/minimize.png) no-repeat scroll 0 0;
+}
+
+.vista .portlet-min a:hover {
+	background: transparent url(../../images/color_schemes/vista/portlet/minimize_hover.png) no-repeat scroll 0 0;
+}
+
+.vista .portlet-max a {
+	background: transparent url(../../images/color_schemes/vista/portlet/maximize.png) no-repeat scroll 0 0;
+}
+
+.vista .portlet-max a:hover {
+	background: transparent url(../../images/color_schemes/vista/portlet/maximize_hover.png) no-repeat scroll 0 0;
+}
+
+.vista .portlet-close a {
+	background: transparent url(../../images/color_schemes/vista/portlet/close.png) no-repeat scroll 0 0;
+}
+
+.vista .portlet-close a:hover {
+	background: transparent url(../../images/color_schemes/vista/portlet/close_hover.png) no-repeat scroll 0 0;
+}
+
+/* ---------- Styles for Portlet drag and drop ---------- */
+
+.vista .portlet-decorate-resize-container {
+	right: 17px;
+}
+
+/* ---------- Custom styles for the Desktop theme ---------- */
+
+.vista #dock-wrapper {
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	z-index: 5;
+}
+
+.vista #taskbar {
+	background: transparent url(../../images/color_schemes/vista/desktop/taskbar_bg.png) repeat-x scroll 0 0;
+}
+
+.vista #taskbar-clock {
+	color: #ffffff;
+	font-family: Arial,Verdana,sans-serif;
+	font-size: 12px;
+	font-stretch: semi-condensed;
+	font-weight: 300;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	z-index: 15;
+}
+
+/* ---------- Custom styles for the Desktop sidebar menu ---------- */
+
+.vista .expanded .vista-menu .taglib-home.navigation-menu {
+	display: block;
+	position: absolute;
+	right: -280px;
+	top: -375px;
+	width: 126px;
+}
+
+.vista .vista-menu .taglib-home.navigation-menu li {
+	text-indent: -20px;
+}
+
+.vista .vista-menu .taglib-home.navigation-menu li.my-places {
+	text-indent: 0;
+}
+
+.vista .vista-menu .taglib-home.navigation-menu li.my-places li {
+	text-indent: 0;
+}
+
+.vista .vista-menu .taglib-home.navigation-menu ul {
+	position: absolute;
+}
+
+.ie.js .taglib-home.navigation-menu .lfr-flyout.has-children {
+	min-width: auto;
+}
+.vista .vista-menu .taglib-home.navigation-menu li ul a {
+	color: #000;
+}
+
+.vista .vista-menu .taglib-home.navigation-menu li a {
+	color: #eeeeee;
+}
+
+.vista .vista-menu .taglib-home.navigation-menu li a:hover {
+	background-color: #222222;
+	color: #ffffff;
+}
