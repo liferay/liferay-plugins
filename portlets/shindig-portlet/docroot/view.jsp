@@ -27,9 +27,6 @@
 <%
 String gadgetParams = "specUrl: '" + gadgetUrl + "'";
 
-if (!gadgetTitle.equals("")) {
-	gadgetParams += ", title: '" + gadgetTitle + "'";
-}
 if (gadgetHeight > 0) {
 	gadgetParams += ", height: '" + gadgetHeight + "'";
 }
@@ -60,6 +57,22 @@ jQuery(
 
 		gadgets.container.addGadget(gadget);
 		gadgets.container.layoutManager.addGadgetChromeId('<portlet:namespace />gadget-chrome');
+
+		jQuery('#portlet-small-icon-bar_<%= portletDisplay.getId() %>').prepend([
+				'<nobr><a href="javascript: gadgets.container.getGadget(',gadget.id,').handleOpenUserPrefsDialog();">',
+					'<img src="<%= renderRequest.getContextPath() %>/action.png" title="Gadget Settings" align="absmiddle" border="0" />',
+				'</a></nobr>'
+			].join('')
+		);
+
+		jQuery('#p_p_id<portlet:namespace/> .portlet-title-default').after([
+				' - ',
+				'<a href="javascript: gadgets.container.getGadget(',gadget.id,').handleOpenUserPrefsDialog();">',
+					'Gadget Settings',
+				'</a>'
+			].join('')
+		);
+
 		gadgets.container.renderGadget(gadget);
 	}
 );

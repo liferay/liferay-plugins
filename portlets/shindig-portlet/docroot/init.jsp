@@ -56,6 +56,5 @@ if (Validator.isNotNull(portletResource)) {
 }
 
 String gadgetUrl = prefs.getValue("gadget-url", StringPool.BLANK);
-String gadgetTitle = prefs.getValue("gadget-title", StringPool.BLANK);
 int gadgetHeight = GetterUtil.getInteger(prefs.getValue("gadget-height", StringPool.BLANK));
 %>

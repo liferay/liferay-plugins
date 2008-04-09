@@ -26,8 +26,23 @@ gadgets.StaticLayoutManager.prototype.addGadgetChromeId = function(gadgetChromeI
 	}
 
   	this.gadgetChromeIds_.push(gadgetChromeId);
+};
 
-	//this.gadgetChromeIds_[gadgetId] = gadgetChromeId;
+gadgets.IfrGadget.prototype.getTitleBarContent = function(continuation) {
+	var nl = '\n';
+	continuation(
+		[
+			'<div id="',this.cssClassTitleBar,'-',this.id,'" class="',this.cssClassTitleBar,'"><!----></div>'
+		].join("")
+	);
+};
+
+gadgets.IfrGadget.prototype.getUserPrefsDialogContent = function(continuation) {
+	continuation(
+		[
+			'<div id="',this.getUserPrefsDialogId(),'" class="',this.cssClassGadgetUserPrefsDialog,'"><!----></div>'
+		].join("")
+	);
 };
 
 /*

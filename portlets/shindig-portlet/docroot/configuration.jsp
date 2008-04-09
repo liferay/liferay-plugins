@@ -41,14 +41,6 @@
 </tr>
 <tr>
 	<td>
-		Gadget Title
-	</td>
-	<td>
-		<input type="text" name="<portlet:namespace />gadgetTitle" value="<%= gadgetTitle %>" size="40" />
-	</td>
-</tr>
-<tr>
-	<td>
 		Gadget Height
 	</td>
 	<td>

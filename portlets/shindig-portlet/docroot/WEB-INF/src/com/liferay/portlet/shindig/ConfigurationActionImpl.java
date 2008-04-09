@@ -51,7 +51,6 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 
 		if (cmd.equals(Constants.UPDATE)) {
 			String gadgetUrl = (String)req.getParameter("gadgetUrl");
-			String gadgetTitle = (String)req.getParameter("gadgetTitle");
 			String gadgetHeight = (String)req.getParameter("gadgetHeight");
 
 			if (Validator.isNotNull(gadgetUrl)) {
@@ -63,7 +62,6 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 						req, portletResource);
 
 				prefs.setValue("gadget-url", gadgetUrl);
-				prefs.setValue("gadget-title", gadgetTitle);
 				prefs.setValue("gadget-height", gadgetHeight);
 
 				prefs.store();

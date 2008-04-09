@@ -70,7 +70,7 @@ public class GadgetPortlet extends GenericPortlet {
 	public void doView(RenderRequest req, RenderResponse res)
 		throws IOException, PortletException {
 
-		req.setAttribute("PORTLET_DECORATE", Boolean.FALSE);
+		//req.setAttribute("PORTLET_DECORATE", Boolean.FALSE);
 
 		include(viewJSP, req, res);
 	}
