@@ -23,22 +23,27 @@
 package com.liferay.portlet.shindig.social.service;
 
 import com.liferay.portlet.expando.model.ExpandoColumn;
-import com.liferay.portlet.expando.model.ExpandoValue;
-import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
-import com.liferay.portlet.shindig.social.util.OpenSocialUtil;
-
-import org.apache.shindig.gadgets.GadgetToken;
-import org.apache.shindig.social.ResponseError;
-import org.apache.shindig.social.ResponseItem;
-import org.apache.shindig.social.opensocial.DataService;
-import org.json.JSONObject;
+import com.liferay.portlet.shindig.util.ShindigUtil;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.shindig.gadgets.GadgetToken;
+import org.apache.shindig.social.ResponseError;
+import org.apache.shindig.social.ResponseItem;
+import org.apache.shindig.social.opensocial.DataService;
+
+import org.json.JSONObject;
+
+/**
+ * <a href="BasicDataService.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Raymond Augé
+ *
+ */
 public class BasicDataService implements DataService {
 
 	public ResponseItem<Map<String, Map<String, String>>> getPersonData(
@@ -50,36 +55,9 @@ public class BasicDataService implements DataService {
         for (String userId : userIds) {
 	        Map<String, String> personData = new HashMap<String, String>();
 
-            for (String key : keys) {
-    			try {
-    				ExpandoColumn expandoColumn = null;
-
-    				try {
-    					expandoColumn = ExpandoColumnLocalServiceUtil.getColumn(
-    						9, key);
-    				}
-    				catch (Exception e) {
-    					continue;
-    				}
-
-    				ExpandoValue expandoValue = null;
-
-    				try {
-    					expandoValue = ExpandoValueLocalServiceUtil.getValue(
-    						expandoColumn.getColumnId(),
-    						Long.parseLong(userId));
-    				}
-    				catch (Exception e) {
-    					continue;
-    				}
-
-    	            personData.put(
-    	            	expandoColumn.getName(), expandoValue.getData());
-
-    			}
-    			catch (Exception e) {
-    			}
-    		}
+	        for (String key : keys) {
+	            personData.put(key, ShindigUtil.getValue(key, userId));
+	        }
 
             data.put(userId, personData);
 		}
@@ -90,25 +68,17 @@ public class BasicDataService implements DataService {
 	public ResponseItem updatePersonData(
 			String userId, String key, String value, GadgetToken token) {
 
-		if (!OpenSocialUtil.isValidKey(key)) {
+		if (!ShindigUtil.isValidKey(key)) {
 			return new ResponseItem<Object>(ResponseError.BAD_REQUEST,
 				"The person data key had invalid characters", new JSONObject());
 		}
 
 		try {
-			ExpandoColumn expandoColumn = null;
-
-			try {
-				expandoColumn = ExpandoColumnLocalServiceUtil.getColumn(
-					9, key);
-			}
-			catch (Exception e) {
-				expandoColumn = ExpandoColumnLocalServiceUtil.addColumn(
-					9, key, 13);
-			}
+			ExpandoColumn expandoColumn = ShindigUtil.getColumn(key);
 
 			ExpandoValueLocalServiceUtil.addValue(
-				expandoColumn.getColumnId(), Long.parseLong(userId), value);
+				expandoColumn.getColumnId(), Long.parseLong(userId),
+				Long.parseLong(userId), value);
 		}
 		catch (Exception e) {
 		}

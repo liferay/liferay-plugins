@@ -26,31 +26,32 @@ gadgets.ExpandoBasedUserPrefStore = function() {
 
 gadgets.ExpandoBasedUserPrefStore.inherits(gadgets.UserPrefStore);
 
-gadgets.ExpandoBasedUserPrefStore.prototype.USER_PREFS_PREFIX = 'gadgetUserPrefs-';
+gadgets.ExpandoBasedUserPrefStore.prototype.USER_PREFS_PREFIX = 'GADGET_USER_PREFERENCES';
 
 gadgets.ExpandoBasedUserPrefStore.prototype.getPrefs = function(gadget) {
  	var userPrefs = {};
- 	var columnName = this.USER_PREFS_PREFIX + gadget.id;
+ 	var columnName = gadget.portletId;
 
-	var expandoColumn = Liferay.Service.Expando.ExpandoColumn.getColumn({
-		tableId: 9,
-		name: columnName
+	var expandoValue = Liferay.Service.Expando.ExpandoValue.getValue({
+		className: 'com.liferay.portal.model.User',
+		tableName: this.USER_PREFS_PREFIX,
+		name: columnName,
+		rowId: themeDisplay.getUserId(),
+		serviceParameterTypes: [
+			'java.lang.String',
+			'java.lang.String',
+			'java.lang.String',
+			'long'
+		].join(',')
 	});
 
-	if (!expandoColumn.exception) {
-		var expandoValue = Liferay.Service.Expando.ExpandoValue.getValue({
-			columnId: expandoColumn.columnId,
-			rowId: themeDisplay.getUserId()
-		});
-
-		if (expandoValue.data) {
-			var pairs = expandoValue.data.split('&');
-			for (var i = 0; i < pairs.length; i++) {
-			  var nameValue = pairs[i].split('=');
-			  var name = decodeURIComponent(nameValue[0]);
-			  var value = decodeURIComponent(nameValue[1]);
-			  userPrefs[name] = value;
-			}
+	if (!expandoValue.exception && expandoValue.data) {
+		var pairs = expandoValue.data.split('&');
+		for (var i = 0; i < pairs.length; i++) {
+		  var nameValue = pairs[i].split('=');
+		  var name = decodeURIComponent(nameValue[0]);
+		  var value = decodeURIComponent(nameValue[1]);
+		  userPrefs[name] = value;
 		}
 	}
 
@@ -59,6 +60,7 @@ gadgets.ExpandoBasedUserPrefStore.prototype.getPrefs = function(gadget) {
 
 gadgets.ExpandoBasedUserPrefStore.prototype.savePrefs = function(gadget) {
 	var pairs = [];
+ 	var columnName = gadget.portletId;
 
 	for (var name in gadget.getUserPrefs()) {
 		var value = gadget.getUserPref(name);
@@ -68,23 +70,39 @@ gadgets.ExpandoBasedUserPrefStore.prototype.savePrefs = function(gadget) {
 
 	var values = pairs.join('&');
 
- 	var columnName = this.USER_PREFS_PREFIX + gadget.id;
-
 	var expandoColumn = Liferay.Service.Expando.ExpandoColumn.getColumn({
-		tableId: 9,
-		name: columnName
+		className: 'com.liferay.portal.model.User',
+		tableName: this.USER_PREFS_PREFIX,
+		name: columnName,
+		serviceParameterTypes: [
+			'java.lang.String',
+			'java.lang.String',
+			'java.lang.String'
+		].join(',')
 	});
 
 	if (expandoColumn.exception) {
-		expandoColumn = Liferay.Service.Expando.ExpandoColumn.addColumn({
-			tableId: 9,
-			name: columnName,
-			type: 13
+		var expandoTable = Liferay.Service.Expando.ExpandoTable.getTable({
+			className: 'com.liferay.portal.model.User',
+			tableName: this.USER_PREFS_PREFIX,
+			serviceParameterTypes: [
+				'java.lang.String',
+				'java.lang.String'
+			].join(',')
 		});
+
+		if (expandoTable && !expandoTable.exception) {
+			expandoColumn = Liferay.Service.Expando.ExpandoColumn.addColumn({
+				tableId: expandoTable.tableId,
+				name: columnName,
+				type: 15 // STRING
+			});
+		}
 	}
 
 	Liferay.Service.Expando.ExpandoValue.addValue({
 		columnId: expandoColumn.columnId,
+		classPK: themeDisplay.getUserId(),
 		rowId: themeDisplay.getUserId(),
 		value: values
 	});

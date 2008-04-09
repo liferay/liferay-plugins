@@ -22,6 +22,11 @@
 
 package com.liferay.portlet.shindig;
 
+import com.liferay.portal.model.User;
+import com.liferay.portlet.expando.model.ExpandoTable;
+import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
+import com.liferay.portlet.shindig.util.ShindigUtil;
+
 import java.io.IOException;
 
 import javax.portlet.ActionRequest;
@@ -35,10 +40,18 @@ import javax.portlet.RenderResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+/**
+ * <a href="GadgetPortlet.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Raymond Augé
+ *
+ */
 public class GadgetPortlet extends GenericPortlet {
 
 	public void init() throws PortletException {
 		viewJSP = getInitParameter("view-jsp");
+
+		setupTables();
 	}
 
 	public void doDispatch(RenderRequest req, RenderResponse res)
@@ -78,6 +91,36 @@ public class GadgetPortlet extends GenericPortlet {
 		else {
 			prd.include(req, res);
 		}
+	}
+
+	protected void setupTables() {
+		_log.info("Setup gadget user prefs table");
+
+		ExpandoTable expandoTable = null;
+
+		try {
+			expandoTable = ExpandoTableLocalServiceUtil.getTable(
+				User.class.getName(), ShindigUtil.GADGET_USER_PREFERENCES);
+		}
+		catch (Exception e) {
+		}
+
+		if (expandoTable == null) {
+			try {
+				expandoTable = ExpandoTableLocalServiceUtil.addTable(
+					User.class.getName(), ShindigUtil.GADGET_USER_PREFERENCES);
+			}
+			catch (Exception e) {
+			}
+		}
+
+		_log.info("Gadget user prefs was setup.");
+
+		_log.info("Setup data source table");
+
+		ShindigUtil.getTable();
+
+		_log.info("Data source table was setup.");
 	}
 
 	protected String viewJSP;

@@ -20,20 +20,3 @@
  * SOFTWARE.
  */
 
-gadgets.StaticLayoutManager.prototype.addGadgetChromeId = function(gadgetChromeId) {
-	if (!this.gadgetChromeIds_) {
-	  	this.gadgetChromeIds_ = [];
-	}
-
-  	this.gadgetChromeIds_.push(gadgetChromeId);
-
-	//this.gadgetChromeIds_[gadgetId] = gadgetChromeId;
-};
-
-/*
-jQuery(document).last(
-	function() {
-		gadgets.container.renderGadgets();
-	}
-);
-*/

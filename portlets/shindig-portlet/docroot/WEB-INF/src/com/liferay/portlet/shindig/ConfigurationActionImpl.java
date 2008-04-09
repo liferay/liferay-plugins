@@ -25,6 +25,7 @@ package com.liferay.portlet.shindig;
 import com.liferay.portal.kernel.portlet.ConfigurationAction;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
 import javax.portlet.ActionRequest;
@@ -46,18 +47,20 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			PortletConfig config, ActionRequest req, ActionResponse res)
 		throws Exception {
 
-		String cmd = (String)req.getParameter("cmd");
+		String cmd = ParamUtil.getString(req, Constants.CMD);
 
-		if (cmd != null && cmd.equals(Constants.UPDATE)) {
+		if (cmd.equals(Constants.UPDATE)) {
 			String gadgetUrl = (String)req.getParameter("gadgetUrl");
 			String gadgetTitle = (String)req.getParameter("gadgetTitle");
 			String gadgetHeight = (String)req.getParameter("gadgetHeight");
 
-			if (gadgetUrl != null && !gadgetUrl.equals("")) {
-				String portletResource = ParamUtil.getString(req, "portletResource");
+			if (Validator.isNotNull(gadgetUrl)) {
+				String portletResource = ParamUtil.getString(
+					req, "portletResource");
 
 				PortletPreferences prefs =
-					PortletPreferencesFactoryUtil.getPortletSetup(req, portletResource);
+					PortletPreferencesFactoryUtil.getPortletSetup(
+						req, portletResource);
 
 				prefs.setValue("gadget-url", gadgetUrl);
 				prefs.setValue("gadget-title", gadgetTitle);

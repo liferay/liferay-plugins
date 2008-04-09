@@ -27,7 +27,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.shindig.social.util.OpenSocialUtil;
+import com.liferay.portlet.shindig.util.ShindigUtil;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.portlet.social.service.SocialActivityInterpreterLocalServiceUtil;
@@ -46,6 +46,12 @@ import org.apache.shindig.social.opensocial.model.Activity;
 
 import org.json.JSONObject;
 
+/**
+ * <a href="BasicActivitiesService.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Raymond Augé
+ *
+ */
 public class BasicActivitiesService implements ActivitiesService {
 
 	public ResponseItem<List<Activity>> getActivities(
@@ -73,93 +79,18 @@ public class BasicActivitiesService implements ActivitiesService {
 							Long.parseLong(userId), 0,  20);
 
 					for (SocialActivity socialActivity : socialActivities) {
-						Activity activity = new Activity(
-							String.valueOf(socialActivity.getClassPK()),
-							String.valueOf(socialActivity.getUserId()));
+						Activity activity = null;
 
 						if (socialActivity.getClassName().equals(
 								Activity.class.getName())) {
 
-							JSONObject extraData = new JSONObject(
-								socialActivity.getExtraData());
-
-							if (extraData.has("appId")) {
-								activity.setAppId(extraData.getString("appId"));
-							}
-
-							if (extraData.has("body")) {
-								activity.setBody(extraData.getString("body"));
-							}
-
-							if (extraData.has("bodyId")) {
-								activity.setBodyId(extraData.getString(
-									"bodyId"));
-							}
-
-							if (extraData.has("externalId")) {
-								activity.setExternalId(
-									extraData.getString("externalId"));
-							}
-
-							if (extraData.has("mediaItems")) {
-								activity.setMediaItems(
-									OpenSocialUtil.getMediaItems(
-										extraData.getJSONArray("mediaItems")));
-							}
-
-							if (extraData.has("postedTime")) {
-								activity.setPostedTime(
-									extraData.getLong("postedTime"));
-							}
-
-							if (extraData.has("priority")) {
-								activity.setPriority(
-									Float.parseFloat(
-										extraData.getString("priority")));
-							}
-
-							if (extraData.has("streamFaviconUrl")) {
-								activity.setStreamFaviconUrl(
-									extraData.getString("streamFaviconUrl"));
-							}
-
-							if (extraData.has("streamSourceUrl")) {
-								activity.setStreamSourceUrl(
-									extraData.getString("streamSourceUrl"));
-							}
-
-							if (extraData.has("streamTitle")) {
-								activity.setStreamTitle(
-									extraData.getString("streamTitle"));
-							}
-
-							if (extraData.has("streamUrl")) {
-								activity.setStreamUrl(
-									extraData.getString("streamUrl"));
-							}
-
-							if (extraData.has("templateParams")) {
-								activity.setTemplateParams(
-									OpenSocialUtil.getTemplateParams(
-										extraData.getJSONArray(
-											"templateParams")));
-							}
-
-							if (extraData.has("title")) {
-								activity.setTitle(
-									extraData.getString("title"));
-							}
-
-							if (extraData.has("titleId")) {
-								activity.setTitleId(
-									extraData.getString("titleId"));
-							}
-
-							if (extraData.has("url")) {
-								activity.setUrl(extraData.getString("url"));
-							}
+							activity = ShindigUtil.getActivity(socialActivity);
 						}
 						else {
+							activity = new Activity(
+								String.valueOf(socialActivity.getClassPK()),
+								String.valueOf(socialActivity.getUserId()));
+
 							SocialActivityFeedEntry socialActivityFeedEntry =
 								SocialActivityInterpreterLocalServiceUtil
 									.interpret(socialActivity, themeDisplay);
@@ -188,21 +119,22 @@ public class BasicActivitiesService implements ActivitiesService {
 	}
 
 	public ResponseItem createActivity(
-			String personId, Activity activity, GadgetToken token) {
+			String userId, Activity activity, GadgetToken token) {
 
 		// TODO: Validate the activity and do any template expanding
-		activity.setUserId(personId);
+		activity.setUserId(userId);
 		activity.setPostedTime(new Date().getTime());
 
 		try {
 			JSONObject extraData = new JSONObject();
 
+			extraData.put("appId", activity.getAppId());
 			extraData.put("body", activity.getBody());
 			extraData.put("bodyId", activity.getBodyId());
 			extraData.put("externalId", activity.getExternalId());
 
 			extraData.put("mediaItems",
-				OpenSocialUtil.getMediaItems(
+				ShindigUtil.getMediaItems(
 					activity.getMediaItems()));
 
 			extraData.put("postedTime", activity.getPostedTime());
@@ -213,7 +145,7 @@ public class BasicActivitiesService implements ActivitiesService {
 			extraData.put("streamUrl", activity.getStreamUrl());
 
 			extraData.put("templateParams",
-				OpenSocialUtil.getTemplateParams(
+				ShindigUtil.getTemplateParams(
 					activity.getTemplateParams()));
 
 			extraData.put("title", activity.getTitle());
@@ -221,8 +153,8 @@ public class BasicActivitiesService implements ActivitiesService {
 			extraData.put("url", activity.getUrl());
 
 			SocialActivityLocalServiceUtil.addActivity(
-				Long.parseLong(personId), 0L, Activity.class.getName(),
-				activity.getPostedTime().longValue(), activity.getStreamTitle(),
+				Long.parseLong(userId), 0L, Activity.class.getName(),
+				activity.getPostedTime().longValue(), activity.getAppId(),
 				extraData.toString(), 0L);
 		}
 		catch (Exception e){

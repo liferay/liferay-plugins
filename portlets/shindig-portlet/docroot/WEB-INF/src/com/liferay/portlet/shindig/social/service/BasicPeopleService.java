@@ -22,26 +22,19 @@
 
 package com.liferay.portlet.shindig.social.service;
 
-import com.liferay.portal.kernel.servlet.ImageServletTokenUtil;
-import com.liferay.portal.kernel.util.StringMaker;
-import com.liferay.portal.model.Contact;
-import com.liferay.portal.model.EmailAddress;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.EmailAddressLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
-import com.liferay.portal.service.PhoneServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.shindig.util.ShindigUtil;
+import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.util.dao.hibernate.QueryUtil;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Set;
 
@@ -51,15 +44,17 @@ import org.apache.shindig.gadgets.GadgetToken;
 import org.apache.shindig.social.ResponseItem;
 import org.apache.shindig.social.opensocial.PeopleService;
 import org.apache.shindig.social.opensocial.model.ApiCollection;
-import org.apache.shindig.social.opensocial.model.Email;
-import org.apache.shindig.social.opensocial.model.Enum;
 import org.apache.shindig.social.opensocial.model.IdSpec;
-import org.apache.shindig.social.opensocial.model.Name;
 import org.apache.shindig.social.opensocial.model.Person;
-import org.apache.shindig.social.opensocial.model.Phone;
 
 import org.json.JSONException;
 
+/**
+ * <a href="BasicPeopleService.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Raymond Augé
+ *
+ */
 public class BasicPeopleService implements PeopleService {
 
 	private static final Comparator<Person> NAME_COMPARATOR =
@@ -87,21 +82,23 @@ public class BasicPeopleService implements PeopleService {
 					    Long.parseLong(userId.substring("G-".length())));
 
 					if (group.isCommunity()) {
-					    person = getPerson(group, profileDetails, token);
+					    person = ShindigUtil.getPerson(
+					    	group, profileDetails, token);
 					}
 					else if (group.isOrganization()) {
 						Organization org =
 							OrganizationLocalServiceUtil.getOrganization(
 								group.getClassPK());
 
-					    person = getPerson(org, profileDetails, token);
+					    person = ShindigUtil.getPerson(
+					    	org, profileDetails, token);
 					}
 				}
 				else {
 				    User user = UserLocalServiceUtil.getUserById(
 						Long.parseLong(userId));
 
-				    person = getPerson(user, profileDetails, token);
+				    person = ShindigUtil.getPerson(user, profileDetails, token);
 				}
 
 				people.add(person);
@@ -150,8 +147,9 @@ public class BasicPeopleService implements PeopleService {
 
 						List<User> friends =
 							UserLocalServiceUtil.getSocialUsers(
-								owner.getUserId(), 1, QueryUtil.ALL_POS,
-								QueryUtil.ALL_POS);
+								owner.getUserId(),
+								SocialRelationConstants.TYPE_BI_FRIEND,
+								QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 						for (User friend : friends) {
 							ids.add(String.valueOf(friend.getUserId()));
@@ -169,8 +167,9 @@ public class BasicPeopleService implements PeopleService {
 
 						List<User> friends =
 							UserLocalServiceUtil.getSocialUsers(
-								viewer.getUserId(), 1, QueryUtil.ALL_POS,
-								QueryUtil.ALL_POS);
+								viewer.getUserId(),
+								SocialRelationConstants.TYPE_BI_FRIEND,
+								QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 						for (User friend : friends) {
 							ids.add(String.valueOf(friend.getUserId()));
@@ -186,199 +185,6 @@ public class BasicPeopleService implements PeopleService {
 		}
 
 		return ids;
-	}
-
-	protected Person getPerson(
-		Group group, Set<String> profileDetails, GadgetToken token) {
-
-		Person person = null;
-
-		try {
-			person = new Person(
-				"G-" + group.getGroupId(),
-				new Name(group.getName() + " (Community)"));
-
-			person.setGender(new Enum<Enum.Gender>(
-				Enum.Gender.MALE));
-
-			if (token.getViewerId() == person.getId()) {
-				person.setIsViewer(true);
-			}
-			else if (token.getOwnerId() == person.getId()) {
-				person.setIsOwner(true);
-			}
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
-
-		return person;
-	}
-
-	protected Person getPerson(
-		Organization org, Set<String> profileDetails, GadgetToken token) {
-
-		Person person = null;
-
-		try {
-			person = new Person(
-				"G-" + org.getGroup().getGroupId(),
-				new Name(org.getName() + " (Organization)"));
-
-			if (profileDetails.contains("phone_numbers")) {
-				person.setPhoneNumbers(getPhoneNumbers(
-					Organization.class.getName(), org.getOrganizationId()));
-			}
-
-			if (profileDetails.contains("gender")) {
-				person.setGender(new Enum<Enum.Gender>(
-					Enum.Gender.MALE));
-			}
-
-			if (token.getViewerId() == person.getId()) {
-				person.setIsViewer(true);
-			}
-			else if (token.getOwnerId() == person.getId()) {
-				person.setIsOwner(true);
-			}
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
-
-		return person;
-	}
-
-	protected Person getPerson(
-		User user, Set<String> profileDetails, GadgetToken token) {
-
-		Person person = null;
-
-		try {
-			person = new Person(
-				String.valueOf(user.getUserId()), new Name(user.getFullName()));
-
-			if (profileDetails.contains("about_me")) {
-				person.setAboutMe(user.getComments());
-			}
-
-			if (profileDetails.contains("age")) {
-			    Calendar dateOfBirth = new GregorianCalendar();
-			    dateOfBirth.setTime(user.getBirthday());
-
-			    Calendar today = Calendar.getInstance();
-			    int age = today.get(
-			    	Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
-
-			    dateOfBirth.add(Calendar.YEAR, age);
-
-			    if (today.before(dateOfBirth)) {
-			        age--;
-			    }
-
-				person.setAge(age);
-			}
-
-			if (profileDetails.contains("date_of_birth")) {
-				person.setDateOfBirth(user.getBirthday());
-			}
-
-			if (profileDetails.contains("emails")) {
-				person.setEmails(getEmails(user));
-			}
-
-			if (profileDetails.contains("gender")) {
-				if (user.isFemale()) {
-					person.setGender(new Enum<Enum.Gender>(Enum.Gender.FEMALE));
-				} else {
-					person.setGender(new Enum<Enum.Gender>(Enum.Gender.MALE));
-				}
-			}
-
-			if (profileDetails.contains("nickname")) {
-				person.setNickname(user.getScreenName());
-			}
-
-			if (profileDetails.contains("phone_numbers")) {
-				person.setPhoneNumbers(getPhoneNumbers(
-					Contact.class.getName(), user.getContactId()));
-			}
-
-			if (profileDetails.contains("thumbnailUrl")) {
-				long portraitId = user.getPortraitId();
-				String tokenId = ImageServletTokenUtil.getToken(user.getPortraitId());
-
-				StringMaker sm = new StringMaker();
-				sm.append(PortalUtil.getPathImage());
-				sm.append("/user_");
-				sm.append(user.isFemale() ? "female" : "male");
-				sm.append("_portrait?img_id=");
-				sm.append(portraitId);
-				sm.append("&t=");
-				sm.append(tokenId);
-
-				person.setThumbnailUrl(sm.toString());
-			}
-
-			if (profileDetails.contains("time_zone")) {
-				person.setTimeZone(new Long(user.getTimeZone().getRawOffset()));
-			}
-
-			if (token.getViewerId() == person.getId()) {
-				person.setIsViewer(true);
-			}
-			else if (token.getOwnerId() == person.getId()) {
-				person.setIsOwner(true);
-			}
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
-
-		return person;
-	}
-
-	protected List<Email> getEmails(User user) {
-		List<Email> emails = new ArrayList<Email>();
-
-		emails.add(new Email(user.getEmailAddress(), "Primary"));
-
-		try {
-			List<EmailAddress> emailAddresses =
-				EmailAddressLocalServiceUtil.getEmailAddresses(
-					user.getCompanyId(), User.class.getName(),
-					user.getUserId());
-
-			for (EmailAddress emailAddress : emailAddresses) {
-				emails.add(new Email(
-					emailAddress.getAddress(),
-					emailAddress.getType().getName()));
-			}
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
-
-		return emails;
-	}
-
-	protected List<Phone> getPhoneNumbers(String className, long classPK) {
-		List<Phone> phoneNumbers = new ArrayList<Phone>();
-
-		try {
-			List<com.liferay.portal.model.Phone> liferayPhones =
-				PhoneServiceUtil.getPhones(className, classPK);
-
-			for (com.liferay.portal.model.Phone liferayPhone : liferayPhones) {
-				phoneNumbers.add(new Phone(
-					liferayPhone.getNumber(),
-					liferayPhone.getType().getName()));
-			}
-		}
-		catch (Exception e) {
-		}
-
-		return phoneNumbers;
 	}
 
 	private static final Log _log = LogFactory.getLog(BasicPeopleService.class);

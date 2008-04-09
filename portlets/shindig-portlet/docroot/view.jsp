@@ -34,12 +34,13 @@ if (gadgetHeight > 0) {
 	gadgetParams += ", height: '" + gadgetHeight + "'";
 }
 
-// We are specifying that the ownerId is classNameId@classPK because
-// This is the only way we can recognize when the page belongs to a Community,
-// Organization or User.
-
 long classPK = layout.getGroup().getClassPK();
-long classNameId = layout.getGroup().getClassNameId();
+
+String ownerId = "G-" + classPK;
+
+if (layout.getGroup().isUser()) {
+	ownerId = String.valueOf(classPK);
+}
 %>
 
 <div id="<portlet:namespace />gadget-chrome" class="gadgets-gadget-chrome"></div>
@@ -49,9 +50,13 @@ jQuery(
 	function() {
 		var gadget = gadgets.container.createGadget({<%= gadgetParams %>});
 
-		gadget.setServerBase('<%= renderRequest.getContextPath() %>/');
+ 		// This is a non-standard expando on gadget to help us create a better
+ 		// relationship with the stored preferences.
+		gadget.portletId = '<portlet:namespace />';
 
-		gadget.secureToken = ['<%= classNameId + StringPool.UNDERLINE + classPK %>', themeDisplay.getUserId(), "<portlet:namespace />gadget", "shindig"].join(":");
+		gadget.secureToken = ['<%= ownerId %>', '<%= themeDisplay.getUserId() %>', '<%= themeDisplay.getCompany().getDefaultWebId() %>', 'liferay'].join(':');
+
+		gadget.setServerBase('<%= renderRequest.getContextPath() %>/');
 
 		gadgets.container.addGadget(gadget);
 		gadgets.container.layoutManager.addGadgetChromeId('<portlet:namespace />gadget-chrome');
