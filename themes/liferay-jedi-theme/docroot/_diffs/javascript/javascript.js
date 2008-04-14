@@ -7,6 +7,24 @@ var LiferayJedi = function () {
 			instance.handleSearchForm();
 			instance.dropDownMenu();
 			instance.handleLastChild();
+			instance.createToggleControls();
+		},
+
+		createToggleControls: function(args) {
+			var instance = this;
+
+			var dock = jQuery('.lfr-dock .lfr-dock-list');
+			var toggleLnk = jQuery('<a href="javascript: ;">Toggle Edit Controls</a>');
+			var li = jQuery('<li></li>');
+
+			toggleLnk.click(
+				function(event){
+					jQuery('.lfr-meta-actions, .portlet-borderless-bar, .portlet-icons').toggle();
+				}
+			);
+
+			li.append(toggleLnk);
+			dock.find('> .my-places').before(li);
 		},
 
 		dropDownMenu: function() {
