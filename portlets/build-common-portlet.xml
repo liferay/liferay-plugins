@@ -10,6 +10,10 @@
 		<mkdir dir="docroot/WEB-INF/lib" />
 		<mkdir dir="docroot/WEB-INF/sql" />
 
+		<copy todir="docroot/WEB-INF/classes">
+			<fileset dir="docroot/WEB-INF/src" excludes="**/*.java" />
+		</copy>
+
 		<path id="service.classpath">
 			<path refid="lib.classpath" />
 			<path refid="portal.classpath" />
