@@ -42,7 +42,7 @@
 		<zip
 			basedir="."
 			destfile="dist/liferay-plugins-sdk-${lp.version}.zip"
-			excludes="build.*.properties,dist/**,layouttpl/*-layouttpl/**,portlets/*-portlet/**,portlets/alfresco/**,themes/*-theme/**"
+			excludes="build.*.properties,dist/**,layouttpl/*-layouttpl/**,portlets/*-portlet/**,portlets/alfresco/**,themes/*-theme/**,webs/*-web/**"
 		/>
 	</target>
 </project>
