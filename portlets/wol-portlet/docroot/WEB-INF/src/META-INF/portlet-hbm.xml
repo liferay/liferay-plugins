@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<class name="com.liferay.wol.model.impl.SVNRepositoryImpl" table="WOL_SVNRepository">
+		<cache usage="read-write" />
+		<id name="svnRepositoryId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="url" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="revisionNumber" type="com.liferay.util.dao.hibernate.LongType" />
+	</class>
+	<class name="com.liferay.wol.model.impl.SVNRevisionImpl" table="WOL_SVNRevision">
+		<cache usage="read-write" />
+		<id name="svnRevisionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="svnRepositoryId" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="revisionNumber" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="date" column="date_" />
+		<property name="author" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="comments" type="com.liferay.util.dao.hibernate.StringType" />
+	</class>
+</hibernate-mapping>

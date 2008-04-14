@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_0_0.dtd">
+
+<service-builder package-path="com.liferay.wol">
+	<namespace>WOL</namespace>
+	<entity name="SVNRepository" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="svnRepositoryId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="url" type="String" />
+		<column name="revisionNumber" type="long" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="url" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="Url" return-type="SVNRepository">
+			<finder-column name="url" />
+		</finder>
+	</entity>
+	<entity name="SVNRevision" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="svnRevisionId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="svnRepositoryId" type="long" />
+		<column name="revisionNumber" type="long" />
+		<column name="date" type="Date" />
+		<column name="author" type="String" />
+		<column name="comments" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="svnRepositoryId" />
+			<order-column name="revisionNumber" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="SVNRepositoryId" return-type="Collection">
+			<finder-column name="svnRepositoryId" />
+		</finder>
+	</entity>
+</service-builder>

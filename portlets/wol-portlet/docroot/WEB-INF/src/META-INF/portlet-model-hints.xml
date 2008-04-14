@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model-hints>
+	<model name="com.liferay.wol.model.SVNRepository">
+		<field name="svnRepositoryId" type="long" />
+		<field name="url" type="String">
+			<hint name="max-length">200</hint>
+		</field>
+		<field name="revisionNumber" type="long" />
+	</model>
+	<model name="com.liferay.wol.model.SVNRevision">
+		<field name="svnRevisionId" type="long" />
+		<field name="svnRepositoryId" type="long" />
+		<field name="revisionNumber" type="long" />
+		<field name="date" type="Date" />
+		<field name="author" type="String" />
+		<field name="comments" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+	</model>
+</model-hints>
