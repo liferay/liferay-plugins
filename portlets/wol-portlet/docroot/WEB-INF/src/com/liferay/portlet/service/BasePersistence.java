@@ -22,6 +22,8 @@
 
 package com.liferay.portlet.service;
 
+import com.liferay.portlet.service.HibernateUtil;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

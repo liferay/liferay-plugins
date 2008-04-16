@@ -32,12 +32,15 @@
 
 		<column name="svnRevisionId" type="long" primary="true" />
 
+		<!-- Audit fields -->
+
+		<column name="svnUserId" type="String" />
+		<column name="createDate" type="Date" />
+
 		<!-- Other fields -->
 
 		<column name="svnRepositoryId" type="long" />
 		<column name="revisionNumber" type="long" />
-		<column name="date" type="Date" />
-		<column name="author" type="String" />
 		<column name="comments" type="String" />
 
 		<!-- Order -->
@@ -49,6 +52,9 @@
 
 		<!-- Finder methods -->
 
+		<finder name="SVNUserId" return-type="Collection">
+			<finder-column name="svnUserId" />
+		</finder>
 		<finder name="SVNRepositoryId" return-type="Collection">
 			<finder-column name="svnRepositoryId" />
 		</finder>

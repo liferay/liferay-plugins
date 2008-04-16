@@ -15,10 +15,10 @@
 		<id name="svnRevisionId" type="long">
 			<generator class="assigned" />
 		</id>
+		<property name="svnUserId" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="createDate" />
 		<property name="svnRepositoryId" type="com.liferay.util.dao.hibernate.LongType" />
 		<property name="revisionNumber" type="com.liferay.util.dao.hibernate.LongType" />
-		<property name="date" column="date_" />
-		<property name="author" type="com.liferay.util.dao.hibernate.StringType" />
 		<property name="comments" type="com.liferay.util.dao.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

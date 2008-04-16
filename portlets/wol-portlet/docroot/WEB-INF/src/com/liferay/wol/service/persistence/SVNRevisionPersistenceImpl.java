@@ -257,6 +257,271 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 		}
 	}
 
+	public List<SVNRevision> findBySVNUserId(String svnUserId)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
+		String finderClassName = SVNRevision.class.getName();
+		String finderMethodName = "findBySVNUserId";
+		String[] finderParams = new String[] { String.class.getName() };
+		Object[] finderArgs = new Object[] { svnUserId };
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCache.getResult(finderClassName, finderMethodName,
+					finderParams, finderArgs, getSessionFactory());
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringMaker query = new StringMaker();
+
+				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+
+				if (svnUserId == null) {
+					query.append("svnUserId IS NULL");
+				}
+				else {
+					query.append("svnUserId = ?");
+				}
+
+				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("svnRepositoryId ASC, ");
+				query.append("revisionNumber ASC");
+
+				Query q = session.createQuery(query.toString());
+
+				int queryPos = 0;
+
+				if (svnUserId != null) {
+					q.setString(queryPos++, svnUserId);
+				}
+
+				List<SVNRevision> list = q.list();
+
+				FinderCache.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw HibernateUtil.processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<SVNRevision>)result;
+		}
+	}
+
+	public List<SVNRevision> findBySVNUserId(String svnUserId, int begin,
+		int end) throws SystemException {
+		return findBySVNUserId(svnUserId, begin, end, null);
+	}
+
+	public List<SVNRevision> findBySVNUserId(String svnUserId, int begin,
+		int end, OrderByComparator obc) throws SystemException {
+		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
+		String finderClassName = SVNRevision.class.getName();
+		String finderMethodName = "findBySVNUserId";
+		String[] finderParams = new String[] {
+				String.class.getName(),
+				
+				"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+		Object[] finderArgs = new Object[] {
+				svnUserId,
+				
+				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCache.getResult(finderClassName, finderMethodName,
+					finderParams, finderArgs, getSessionFactory());
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringMaker query = new StringMaker();
+
+				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+
+				if (svnUserId == null) {
+					query.append("svnUserId IS NULL");
+				}
+				else {
+					query.append("svnUserId = ?");
+				}
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+					query.append(obc.getOrderBy());
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("svnRepositoryId ASC, ");
+					query.append("revisionNumber ASC");
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				int queryPos = 0;
+
+				if (svnUserId != null) {
+					q.setString(queryPos++, svnUserId);
+				}
+
+				List<SVNRevision> list = (List<SVNRevision>)QueryUtil.list(q,
+						getDialect(), begin, end);
+
+				FinderCache.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw HibernateUtil.processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<SVNRevision>)result;
+		}
+	}
+
+	public SVNRevision findBySVNUserId_First(String svnUserId,
+		OrderByComparator obc)
+		throws NoSuchSVNRevisionException, SystemException {
+		List<SVNRevision> list = findBySVNUserId(svnUserId, 0, 1, obc);
+
+		if (list.size() == 0) {
+			StringMaker msg = new StringMaker();
+
+			msg.append("No SVNRevision exists with the key {");
+
+			msg.append("svnUserId=" + svnUserId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchSVNRevisionException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public SVNRevision findBySVNUserId_Last(String svnUserId,
+		OrderByComparator obc)
+		throws NoSuchSVNRevisionException, SystemException {
+		int count = countBySVNUserId(svnUserId);
+
+		List<SVNRevision> list = findBySVNUserId(svnUserId, count - 1, count,
+				obc);
+
+		if (list.size() == 0) {
+			StringMaker msg = new StringMaker();
+
+			msg.append("No SVNRevision exists with the key {");
+
+			msg.append("svnUserId=" + svnUserId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchSVNRevisionException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public SVNRevision[] findBySVNUserId_PrevAndNext(long svnRevisionId,
+		String svnUserId, OrderByComparator obc)
+		throws NoSuchSVNRevisionException, SystemException {
+		SVNRevision svnRevision = findByPrimaryKey(svnRevisionId);
+
+		int count = countBySVNUserId(svnUserId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringMaker query = new StringMaker();
+
+			query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+
+			if (svnUserId == null) {
+				query.append("svnUserId IS NULL");
+			}
+			else {
+				query.append("svnUserId = ?");
+			}
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+				query.append(obc.getOrderBy());
+			}
+
+			else {
+				query.append("ORDER BY ");
+
+				query.append("svnRepositoryId ASC, ");
+				query.append("revisionNumber ASC");
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			int queryPos = 0;
+
+			if (svnUserId != null) {
+				q.setString(queryPos++, svnUserId);
+			}
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+					svnRevision);
+
+			SVNRevision[] array = new SVNRevisionImpl[3];
+
+			array[0] = (SVNRevision)objArray[0];
+			array[1] = (SVNRevision)objArray[1];
+			array[2] = (SVNRevision)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw HibernateUtil.processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
 	public List<SVNRevision> findBySVNRepositoryId(long svnRepositoryId)
 		throws SystemException {
 		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
@@ -621,6 +886,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 		}
 	}
 
+	public void removeBySVNUserId(String svnUserId) throws SystemException {
+		for (SVNRevision svnRevision : findBySVNUserId(svnUserId)) {
+			remove(svnRevision);
+		}
+	}
+
 	public void removeBySVNRepositoryId(long svnRepositoryId)
 		throws SystemException {
 		for (SVNRevision svnRevision : findBySVNRepositoryId(svnRepositoryId)) {
@@ -631,6 +902,78 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 	public void removeAll() throws SystemException {
 		for (SVNRevision svnRevision : findAll()) {
 			remove(svnRevision);
+		}
+	}
+
+	public int countBySVNUserId(String svnUserId) throws SystemException {
+		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
+		String finderClassName = SVNRevision.class.getName();
+		String finderMethodName = "countBySVNUserId";
+		String[] finderParams = new String[] { String.class.getName() };
+		Object[] finderArgs = new Object[] { svnUserId };
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCache.getResult(finderClassName, finderMethodName,
+					finderParams, finderArgs, getSessionFactory());
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringMaker query = new StringMaker();
+
+				query.append("SELECT COUNT(*) ");
+				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+
+				if (svnUserId == null) {
+					query.append("svnUserId IS NULL");
+				}
+				else {
+					query.append("svnUserId = ?");
+				}
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				int queryPos = 0;
+
+				if (svnUserId != null) {
+					q.setString(queryPos++, svnUserId);
+				}
+
+				Long count = null;
+
+				Iterator<Long> itr = q.list().iterator();
+
+				if (itr.hasNext()) {
+					count = itr.next();
+				}
+
+				if (count == null) {
+					count = new Long(0);
+				}
+
+				FinderCache.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, count);
+
+				return count.intValue();
+			}
+			catch (Exception e) {
+				throw HibernateUtil.processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return ((Long)result).intValue();
 		}
 	}
 

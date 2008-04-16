@@ -22,6 +22,7 @@
 
 package com.liferay.portlet.service;
 
+import com.liferay.portlet.service.PropsUtil;
 import com.liferay.util.spring.context.LazyClassPathApplicationContext;
 
 import org.springframework.context.ApplicationContext;

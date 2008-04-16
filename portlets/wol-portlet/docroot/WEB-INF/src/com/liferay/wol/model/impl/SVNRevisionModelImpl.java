@@ -54,21 +54,21 @@ public class SVNRevisionModelImpl extends BaseModelImpl {
 			{ "svnRevisionId", new Integer(Types.BIGINT) },
 			
 
+			{ "svnUserId", new Integer(Types.VARCHAR) },
+			
+
+			{ "createDate", new Integer(Types.TIMESTAMP) },
+			
+
 			{ "svnRepositoryId", new Integer(Types.BIGINT) },
 			
 
 			{ "revisionNumber", new Integer(Types.BIGINT) },
 			
 
-			{ "date_", new Integer(Types.TIMESTAMP) },
-			
-
-			{ "author", new Integer(Types.VARCHAR) },
-			
-
 			{ "comments", new Integer(Types.CLOB) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WOL_SVNRevision (svnRevisionId LONG not null primary key,svnRepositoryId LONG,revisionNumber LONG,date_ DATE null,author VARCHAR(75) null,comments TEXT null)";
+	public static final String TABLE_SQL_CREATE = "create table WOL_SVNRevision (svnRevisionId LONG not null primary key,svnUserId VARCHAR(75) null,createDate DATE null,svnRepositoryId LONG,revisionNumber LONG,comments TEXT null)";
 	public static final String TABLE_SQL_DROP = "drop table WOL_SVNRevision";
 	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(PropsUtil.get(
 				"value.object.finder.cache.enabled.com.liferay.wol.model.SVNRevision"),
@@ -78,10 +78,10 @@ public class SVNRevisionModelImpl extends BaseModelImpl {
 		SVNRevision model = new SVNRevisionImpl();
 
 		model.setSvnRevisionId(soapModel.getSvnRevisionId());
+		model.setSvnUserId(soapModel.getSvnUserId());
+		model.setCreateDate(soapModel.getCreateDate());
 		model.setSvnRepositoryId(soapModel.getSvnRepositoryId());
 		model.setRevisionNumber(soapModel.getRevisionNumber());
-		model.setDate(soapModel.getDate());
-		model.setAuthor(soapModel.getAuthor());
 		model.setComments(soapModel.getComments());
 
 		return model;
@@ -125,6 +125,32 @@ public class SVNRevisionModelImpl extends BaseModelImpl {
 		}
 	}
 
+	public String getSvnUserId() {
+		return GetterUtil.getString(_svnUserId);
+	}
+
+	public void setSvnUserId(String svnUserId) {
+		if (((svnUserId == null) && (_svnUserId != null)) ||
+				((svnUserId != null) && (_svnUserId == null)) ||
+				((svnUserId != null) && (_svnUserId != null) &&
+				!svnUserId.equals(_svnUserId))) {
+			_svnUserId = svnUserId;
+		}
+	}
+
+	public Date getCreateDate() {
+		return _createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		if (((createDate == null) && (_createDate != null)) ||
+				((createDate != null) && (_createDate == null)) ||
+				((createDate != null) && (_createDate != null) &&
+				!createDate.equals(_createDate))) {
+			_createDate = createDate;
+		}
+	}
+
 	public long getSvnRepositoryId() {
 		return _svnRepositoryId;
 	}
@@ -142,31 +168,6 @@ public class SVNRevisionModelImpl extends BaseModelImpl {
 	public void setRevisionNumber(long revisionNumber) {
 		if (revisionNumber != _revisionNumber) {
 			_revisionNumber = revisionNumber;
-		}
-	}
-
-	public Date getDate() {
-		return _date;
-	}
-
-	public void setDate(Date date) {
-		if (((date == null) && (_date != null)) ||
-				((date != null) && (_date == null)) ||
-				((date != null) && (_date != null) && !date.equals(_date))) {
-			_date = date;
-		}
-	}
-
-	public String getAuthor() {
-		return GetterUtil.getString(_author);
-	}
-
-	public void setAuthor(String author) {
-		if (((author == null) && (_author != null)) ||
-				((author != null) && (_author == null)) ||
-				((author != null) && (_author != null) &&
-				!author.equals(_author))) {
-			_author = author;
 		}
 	}
 
@@ -193,10 +194,10 @@ public class SVNRevisionModelImpl extends BaseModelImpl {
 			model.setEscapedModel(true);
 
 			model.setSvnRevisionId(getSvnRevisionId());
+			model.setSvnUserId(HtmlUtil.escape(getSvnUserId()));
+			model.setCreateDate(getCreateDate());
 			model.setSvnRepositoryId(getSvnRepositoryId());
 			model.setRevisionNumber(getRevisionNumber());
-			model.setDate(getDate());
-			model.setAuthor(HtmlUtil.escape(getAuthor()));
 			model.setComments(HtmlUtil.escape(getComments()));
 
 			model = (SVNRevision)Proxy.newProxyInstance(SVNRevision.class.getClassLoader(),
@@ -211,10 +212,10 @@ public class SVNRevisionModelImpl extends BaseModelImpl {
 		SVNRevisionImpl clone = new SVNRevisionImpl();
 
 		clone.setSvnRevisionId(getSvnRevisionId());
+		clone.setSvnUserId(getSvnUserId());
+		clone.setCreateDate(getCreateDate());
 		clone.setSvnRepositoryId(getSvnRepositoryId());
 		clone.setRevisionNumber(getRevisionNumber());
-		clone.setDate(getDate());
-		clone.setAuthor(getAuthor());
 		clone.setComments(getComments());
 
 		return clone;
@@ -289,9 +290,9 @@ public class SVNRevisionModelImpl extends BaseModelImpl {
 	}
 
 	private long _svnRevisionId;
+	private String _svnUserId;
+	private Date _createDate;
 	private long _svnRepositoryId;
 	private long _revisionNumber;
-	private Date _date;
-	private String _author;
 	private String _comments;
 }

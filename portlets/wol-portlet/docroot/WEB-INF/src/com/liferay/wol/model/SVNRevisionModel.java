@@ -41,6 +41,14 @@ public interface SVNRevisionModel extends BaseModel {
 
 	public void setSvnRevisionId(long svnRevisionId);
 
+	public String getSvnUserId();
+
+	public void setSvnUserId(String svnUserId);
+
+	public Date getCreateDate();
+
+	public void setCreateDate(Date createDate);
+
 	public long getSvnRepositoryId();
 
 	public void setSvnRepositoryId(long svnRepositoryId);
@@ -48,14 +56,6 @@ public interface SVNRevisionModel extends BaseModel {
 	public long getRevisionNumber();
 
 	public void setRevisionNumber(long revisionNumber);
-
-	public Date getDate();
-
-	public void setDate(Date date);
-
-	public String getAuthor();
-
-	public void setAuthor(String author);
 
 	public String getComments();
 

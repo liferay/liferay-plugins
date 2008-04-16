@@ -23,7 +23,9 @@
 package com.liferay.portlet.service;
 
 import com.liferay.portal.SystemException;
+import com.liferay.portlet.service.BeanLocatorUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portlet.service.PropsUtil;
 import com.liferay.util.dao.hibernate.LiferayClassicSession;
 
 import java.sql.Connection;

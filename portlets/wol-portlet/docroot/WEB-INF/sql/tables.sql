@@ -7,9 +7,9 @@ create table WOL_SVNRepository (
 
 create table WOL_SVNRevision (
 	svnRevisionId LONG not null primary key,
+	svnUserId VARCHAR(75) null,
+	createDate DATE null,
 	svnRepositoryId LONG,
 	revisionNumber LONG,
-	date_ DATE null,
-	author VARCHAR(75) null,
 	comments TEXT null
 );

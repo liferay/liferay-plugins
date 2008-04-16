@@ -40,18 +40,18 @@ public class SVNRevisionLocalServiceImpl
 	extends SVNRevisionLocalServiceBaseImpl {
 
 	public SVNRevision addSvnRevision(
-			long svnRepositoryId, long revisionNumber, Date date, String author,
-			String comments)
+			String svnUserId, Date createDate, long svnRepositoryId,
+			long revisionNumber, String comments)
 		throws PortalException, SystemException {
 
 		long svnRevisionId = CounterLocalServiceUtil.increment();
 
 		SVNRevision svnRevision = svnRevisionPersistence.create(svnRevisionId);
 
+		svnRevision.setSvnUserId(svnUserId);
+		svnRevision.setCreateDate(createDate);
 		svnRevision.setSvnRepositoryId(svnRepositoryId);
 		svnRevision.setRevisionNumber(revisionNumber);
-		svnRevision.setDate(date);
-		svnRevision.setAuthor(author);
 		svnRevision.setComments(comments);
 
 		svnRevisionPersistence.update(svnRevision, false);

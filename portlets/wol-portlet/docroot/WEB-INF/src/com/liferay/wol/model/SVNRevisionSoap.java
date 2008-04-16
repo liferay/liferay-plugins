@@ -39,10 +39,10 @@ public class SVNRevisionSoap implements Serializable {
 		SVNRevisionSoap soapModel = new SVNRevisionSoap();
 
 		soapModel.setSvnRevisionId(model.getSvnRevisionId());
+		soapModel.setSvnUserId(model.getSvnUserId());
+		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setSvnRepositoryId(model.getSvnRepositoryId());
 		soapModel.setRevisionNumber(model.getRevisionNumber());
-		soapModel.setDate(model.getDate());
-		soapModel.setAuthor(model.getAuthor());
 		soapModel.setComments(model.getComments());
 
 		return soapModel;
@@ -77,6 +77,22 @@ public class SVNRevisionSoap implements Serializable {
 		_svnRevisionId = svnRevisionId;
 	}
 
+	public String getSvnUserId() {
+		return _svnUserId;
+	}
+
+	public void setSvnUserId(String svnUserId) {
+		_svnUserId = svnUserId;
+	}
+
+	public Date getCreateDate() {
+		return _createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		_createDate = createDate;
+	}
+
 	public long getSvnRepositoryId() {
 		return _svnRepositoryId;
 	}
@@ -93,22 +109,6 @@ public class SVNRevisionSoap implements Serializable {
 		_revisionNumber = revisionNumber;
 	}
 
-	public Date getDate() {
-		return _date;
-	}
-
-	public void setDate(Date date) {
-		_date = date;
-	}
-
-	public String getAuthor() {
-		return _author;
-	}
-
-	public void setAuthor(String author) {
-		_author = author;
-	}
-
 	public String getComments() {
 		return _comments;
 	}
@@ -118,9 +118,9 @@ public class SVNRevisionSoap implements Serializable {
 	}
 
 	private long _svnRevisionId;
+	private String _svnUserId;
+	private Date _createDate;
 	private long _svnRepositoryId;
 	private long _revisionNumber;
-	private Date _date;
-	private String _author;
 	private String _comments;
 }

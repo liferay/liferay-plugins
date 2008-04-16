@@ -98,9 +98,9 @@ public class SVNRepositoryLocalServiceImpl
 				SVNLogEntry svnLogEntry = itr.next();
 
 				svnRevisionLocalService.addSvnRevision(
+					svnLogEntry.getAuthor(), svnLogEntry.getDate(),
 					svnRepository.getSvnRepositoryId(),
-					svnLogEntry.getRevision(), svnLogEntry.getDate(),
-					svnLogEntry.getAuthor(), svnLogEntry.getMessage());
+					svnLogEntry.getRevision(), svnLogEntry.getMessage());
 
 				if (!itr.hasNext()) {
 					svnRepository.setRevisionNumber(svnLogEntry.getRevision());
