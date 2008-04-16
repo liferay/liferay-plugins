@@ -27,9 +27,13 @@ import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
 
 import com.liferay.wol.model.SVNRevision;
+import com.liferay.wol.service.JIRAIssueLocalService;
+import com.liferay.wol.service.JIRAIssueLocalServiceFactory;
 import com.liferay.wol.service.SVNRepositoryLocalService;
 import com.liferay.wol.service.SVNRepositoryLocalServiceFactory;
 import com.liferay.wol.service.SVNRevisionLocalService;
+import com.liferay.wol.service.persistence.JIRAIssuePersistence;
+import com.liferay.wol.service.persistence.JIRAIssueUtil;
 import com.liferay.wol.service.persistence.SVNRepositoryPersistence;
 import com.liferay.wol.service.persistence.SVNRepositoryUtil;
 import com.liferay.wol.service.persistence.SVNRevisionPersistence;
@@ -83,6 +87,24 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 		return svnRevisionPersistence.update(svnRevision, true);
 	}
 
+	public JIRAIssueLocalService getJIRAIssueLocalService() {
+		return jiraIssueLocalService;
+	}
+
+	public void setJIRAIssueLocalService(
+		JIRAIssueLocalService jiraIssueLocalService) {
+		this.jiraIssueLocalService = jiraIssueLocalService;
+	}
+
+	public JIRAIssuePersistence getJIRAIssuePersistence() {
+		return jiraIssuePersistence;
+	}
+
+	public void setJIRAIssuePersistence(
+		JIRAIssuePersistence jiraIssuePersistence) {
+		this.jiraIssuePersistence = jiraIssuePersistence;
+	}
+
 	public SVNRepositoryLocalService getSVNRepositoryLocalService() {
 		return svnRepositoryLocalService;
 	}
@@ -111,6 +133,14 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	public void afterPropertiesSet() {
+		if (jiraIssueLocalService == null) {
+			jiraIssueLocalService = JIRAIssueLocalServiceFactory.getImpl();
+		}
+
+		if (jiraIssuePersistence == null) {
+			jiraIssuePersistence = JIRAIssueUtil.getPersistence();
+		}
+
 		if (svnRepositoryLocalService == null) {
 			svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getImpl();
 		}
@@ -124,6 +154,8 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 		}
 	}
 
+	protected JIRAIssueLocalService jiraIssueLocalService;
+	protected JIRAIssuePersistence jiraIssuePersistence;
 	protected SVNRepositoryLocalService svnRepositoryLocalService;
 	protected SVNRepositoryPersistence svnRepositoryPersistence;
 	protected SVNRevisionPersistence svnRevisionPersistence;

@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <model-hints>
+	<model name="com.liferay.wol.model.JIRAIssue">
+		<field name="jiraIssueId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="projectId" type="long" />
+		<field name="key" type="String" />
+		<field name="summary" type="String" />
+		<field name="description" type="String" />
+		<field name="reporterJiraUserId" type="String" />
+		<field name="assigneeJiraUserId" type="String" />
+		<field name="resolution" type="String" />
+		<field name="status" type="String" />
+	</model>
 	<model name="com.liferay.wol.model.SVNRepository">
 		<field name="svnRepositoryId" type="long" />
 		<field name="url" type="String">

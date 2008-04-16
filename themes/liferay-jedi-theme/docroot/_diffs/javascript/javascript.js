@@ -10,11 +10,11 @@ var LiferayJedi = function () {
 		},
 
 		handleSearchForm: function() {
-			var searchForm = $('#banner .search');	
-			
+			var searchForm = $('#banner .search');
+
 			var searchInput = searchForm.find('input[@type=image]');
 			var searchLink = $('<a class="search-input-link" href="javascript:;"></a>');
-			
+
 			searchLink.click(
 				function() {
 					$(this).parents('form')[0].submit();
@@ -39,10 +39,10 @@ var LiferayJedi = function () {
 					over: function () {
 						var instance = $(this);
 						var child = $('.child-menu', this);
+
 						instance.addClass("init");
 						child.slideDown(100);
 					},
-					
 					out: function () {
 						var instance = $(this);
 						var child = $('.child-menu', this);

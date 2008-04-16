@@ -26,10 +26,10 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
 
-import com.liferay.wol.model.SVNRepository;
+import com.liferay.wol.model.JIRAIssue;
 import com.liferay.wol.service.JIRAIssueLocalService;
-import com.liferay.wol.service.JIRAIssueLocalServiceFactory;
 import com.liferay.wol.service.SVNRepositoryLocalService;
+import com.liferay.wol.service.SVNRepositoryLocalServiceFactory;
 import com.liferay.wol.service.SVNRevisionLocalService;
 import com.liferay.wol.service.SVNRevisionLocalServiceFactory;
 import com.liferay.wol.service.persistence.JIRAIssuePersistence;
@@ -44,56 +44,47 @@ import org.springframework.beans.factory.InitializingBean;
 import java.util.List;
 
 /**
- * <a href="SVNRepositoryLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="JIRAIssueLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class SVNRepositoryLocalServiceBaseImpl
-	implements SVNRepositoryLocalService, InitializingBean {
-	public SVNRepository addSVNRepository(SVNRepository svnRepository)
+public abstract class JIRAIssueLocalServiceBaseImpl
+	implements JIRAIssueLocalService, InitializingBean {
+	public JIRAIssue addJIRAIssue(JIRAIssue jiraIssue)
 		throws SystemException {
-		svnRepository.setNew(true);
+		jiraIssue.setNew(true);
 
-		return svnRepositoryPersistence.update(svnRepository, false);
+		return jiraIssuePersistence.update(jiraIssue, false);
 	}
 
-	public void deleteSVNRepository(long svnRepositoryId)
+	public void deleteJIRAIssue(long jiraIssueId)
 		throws PortalException, SystemException {
-		svnRepositoryPersistence.remove(svnRepositoryId);
+		jiraIssuePersistence.remove(jiraIssueId);
 	}
 
-	public void deleteSVNRepository(SVNRepository svnRepository)
+	public void deleteJIRAIssue(JIRAIssue jiraIssue)
 		throws PortalException, SystemException {
-		svnRepositoryPersistence.remove(svnRepository);
+		jiraIssuePersistence.remove(jiraIssue);
 	}
 
-	public List<SVNRepository> dynamicQuery(
+	public List<JIRAIssue> dynamicQuery(
 		DynamicQueryInitializer queryInitializer) throws SystemException {
-		return svnRepositoryPersistence.findWithDynamicQuery(queryInitializer);
+		return jiraIssuePersistence.findWithDynamicQuery(queryInitializer);
 	}
 
-	public List<SVNRepository> dynamicQuery(
+	public List<JIRAIssue> dynamicQuery(
 		DynamicQueryInitializer queryInitializer, int begin, int end)
 		throws SystemException {
-		return svnRepositoryPersistence.findWithDynamicQuery(queryInitializer,
+		return jiraIssuePersistence.findWithDynamicQuery(queryInitializer,
 			begin, end);
 	}
 
-	public SVNRepository updateSVNRepository(SVNRepository svnRepository)
+	public JIRAIssue updateJIRAIssue(JIRAIssue jiraIssue)
 		throws SystemException {
-		svnRepository.setNew(false);
+		jiraIssue.setNew(false);
 
-		return svnRepositoryPersistence.update(svnRepository, true);
-	}
-
-	public JIRAIssueLocalService getJIRAIssueLocalService() {
-		return jiraIssueLocalService;
-	}
-
-	public void setJIRAIssueLocalService(
-		JIRAIssueLocalService jiraIssueLocalService) {
-		this.jiraIssueLocalService = jiraIssueLocalService;
+		return jiraIssuePersistence.update(jiraIssue, true);
 	}
 
 	public JIRAIssuePersistence getJIRAIssuePersistence() {
@@ -103,6 +94,15 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 	public void setJIRAIssuePersistence(
 		JIRAIssuePersistence jiraIssuePersistence) {
 		this.jiraIssuePersistence = jiraIssuePersistence;
+	}
+
+	public SVNRepositoryLocalService getSVNRepositoryLocalService() {
+		return svnRepositoryLocalService;
+	}
+
+	public void setSVNRepositoryLocalService(
+		SVNRepositoryLocalService svnRepositoryLocalService) {
+		this.svnRepositoryLocalService = svnRepositoryLocalService;
 	}
 
 	public SVNRepositoryPersistence getSVNRepositoryPersistence() {
@@ -133,12 +133,12 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 	}
 
 	public void afterPropertiesSet() {
-		if (jiraIssueLocalService == null) {
-			jiraIssueLocalService = JIRAIssueLocalServiceFactory.getImpl();
-		}
-
 		if (jiraIssuePersistence == null) {
 			jiraIssuePersistence = JIRAIssueUtil.getPersistence();
+		}
+
+		if (svnRepositoryLocalService == null) {
+			svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getImpl();
 		}
 
 		if (svnRepositoryPersistence == null) {
@@ -154,8 +154,8 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 		}
 	}
 
-	protected JIRAIssueLocalService jiraIssueLocalService;
 	protected JIRAIssuePersistence jiraIssuePersistence;
+	protected SVNRepositoryLocalService svnRepositoryLocalService;
 	protected SVNRepositoryPersistence svnRepositoryPersistence;
 	protected SVNRevisionLocalService svnRevisionLocalService;
 	protected SVNRevisionPersistence svnRevisionPersistence;

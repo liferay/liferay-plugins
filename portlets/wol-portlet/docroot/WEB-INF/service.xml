@@ -3,6 +3,53 @@
 
 <service-builder package-path="com.liferay.wol">
 	<namespace>WOL</namespace>
+	<entity name="JIRAIssue" table="jiraissue" local-service="true" remote-service="false" data-source="jiraDataSource" session-factory="jiraSessionFactory" tx-manager="jiraTransactionManager">
+
+		<!-- PK fields -->
+
+		<column name="jiraIssueId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="createDate" db-name="created" type="Date" />
+		<column name="modifiedDate" db-name="updated" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="projectId" db-name="project" type="long" />
+		<column name="key" db-name="pkey" type="String" />
+		<column name="summary" type="String" />
+		<column name="description" type="String" />
+		<column name="reporterJiraUserId" db-name="reporter" type="String" />
+		<column name="assigneeJiraUserId" db-name="assignee" type="String" />
+		<column name="resolution" type="String" />
+		<column name="status" db-name="issuestatus" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="ProjectId" return-type="Collection">
+			<finder-column name="projectId" />
+		</finder>
+		<finder name="Key" return-type="JIRAIssue">
+			<finder-column name="key" />
+		</finder>
+		<finder name="ReporterJiraUserId" return-type="Collection">
+			<finder-column name="reporterJiraUserId" />
+		</finder>
+		<finder name="AssigneeJiraUserId" return-type="Collection">
+			<finder-column name="assigneeJiraUserId" />
+		</finder>
+		<finder name="P_RJUI_S" return-type="Collection">
+			<finder-column name="projectId" />
+			<finder-column name="reporterJiraUserId" />
+			<finder-column name="status" />
+		</finder>
+		<finder name="P_AJUI_S" return-type="Collection">
+			<finder-column name="projectId" />
+			<finder-column name="assigneeJiraUserId" />
+			<finder-column name="status" />
+		</finder>
+	</entity>
 	<entity name="SVNRepository" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
