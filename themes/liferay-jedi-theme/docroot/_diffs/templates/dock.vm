@@ -55,6 +55,12 @@
 			</li>
 		#end
 
+		#if ($show_toggle_controls)
+			<li class="toggle-controls">
+				<a href="$toggle_controls_url">$toggle_controls_text</a>
+			</li>
+		#end
+
 		#if ($show_my_places)
 			<li class="my-places">
 				<a>$my_places_text</a>

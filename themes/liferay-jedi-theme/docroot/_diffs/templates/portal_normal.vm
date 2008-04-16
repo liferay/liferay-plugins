@@ -75,12 +75,6 @@ $theme.include($top_messages_include)
 			$theme.journalContentSearch()
 		</div>
 
-		#if ($show_toggle_controls)
-			<div class="toggle-controls">
-				<a href="$toggle_controls_url">$toggle_controls_text</a>
-			</div>
-		#end
-
 		#if ($update_available_url)
 			<div class="popup-alert-notice">
 				<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>

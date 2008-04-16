@@ -243,21 +243,6 @@ body {
 	width: 350px;
 }
 
-/* ---------- Toggle edit controls ---------- */
-
-.js .toggle-controls {
-	position: absolute;
-	right: 13px;
-	top: 72px;
-}
-
-.js .toggle-controls a {
-	background-repeat: no-repeat;
-	background-position: 0 50%;
-	display: block;
-	padding-left: 20px;
-}
-
 /* --- PORTLET --- */
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
