@@ -53,7 +53,7 @@ public interface SVNRevisionLocalService {
 		com.liferay.wol.model.SVNRevision svnRevision)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.wol.model.SVNRevision addSvnRevision(
+	public com.liferay.wol.model.SVNRevision addSVNRevision(
 		java.lang.String svnUserId, java.util.Date createDate,
 		long svnRepositoryId, long revisionNumber, java.lang.String comments)
 		throws com.liferay.portal.SystemException,

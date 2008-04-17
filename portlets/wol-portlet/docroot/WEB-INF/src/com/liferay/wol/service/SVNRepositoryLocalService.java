@@ -54,7 +54,7 @@ public interface SVNRepositoryLocalService {
 		com.liferay.wol.model.SVNRepository svnRepository)
 		throws com.liferay.portal.SystemException;
 
-	public void synchronizeRepository(java.lang.String url)
+	public void updateSVNRepository(java.lang.String url)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 }

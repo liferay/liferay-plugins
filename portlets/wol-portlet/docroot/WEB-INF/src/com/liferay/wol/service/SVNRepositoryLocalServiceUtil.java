@@ -79,11 +79,11 @@ public class SVNRepositoryLocalServiceUtil {
 		return svnRepositoryLocalService.updateSVNRepository(svnRepository);
 	}
 
-	public static void synchronizeRepository(java.lang.String url)
+	public static void updateSVNRepository(java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
 
-		svnRepositoryLocalService.synchronizeRepository(url);
+		svnRepositoryLocalService.updateSVNRepository(url);
 	}
 }

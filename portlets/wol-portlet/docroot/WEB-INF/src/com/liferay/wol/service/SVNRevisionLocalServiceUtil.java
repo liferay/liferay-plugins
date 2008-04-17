@@ -78,14 +78,14 @@ public class SVNRevisionLocalServiceUtil {
 		return svnRevisionLocalService.updateSVNRevision(svnRevision);
 	}
 
-	public static com.liferay.wol.model.SVNRevision addSvnRevision(
+	public static com.liferay.wol.model.SVNRevision addSVNRevision(
 		java.lang.String svnUserId, java.util.Date createDate,
 		long svnRepositoryId, long revisionNumber, java.lang.String comments)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
 
-		return svnRevisionLocalService.addSvnRevision(svnUserId, createDate,
+		return svnRevisionLocalService.addSVNRevision(svnUserId, createDate,
 			svnRepositoryId, revisionNumber, comments);
 	}
 }

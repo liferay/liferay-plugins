@@ -52,7 +52,7 @@ import org.tmatesoft.svn.core.wc.SVNWCUtil;
 public class SVNRepositoryLocalServiceImpl
 	extends SVNRepositoryLocalServiceBaseImpl {
 
-	public void synchronizeRepository(String url)
+	public void updateSVNRepository(String url)
 		throws PortalException, SystemException {
 
 		SVNRepository svnRepository = svnRepositoryPersistence.fetchByUrl(url);
@@ -97,7 +97,7 @@ public class SVNRepositoryLocalServiceImpl
 			while (itr.hasNext()) {
 				SVNLogEntry svnLogEntry = itr.next();
 
-				svnRevisionLocalService.addSvnRevision(
+				svnRevisionLocalService.addSVNRevision(
 					svnLogEntry.getAuthor(), svnLogEntry.getDate(),
 					svnRepository.getSvnRepositoryId(),
 					svnLogEntry.getRevision(), svnLogEntry.getMessage());

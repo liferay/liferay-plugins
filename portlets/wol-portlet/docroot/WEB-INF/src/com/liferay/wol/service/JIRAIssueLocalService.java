@@ -52,4 +52,8 @@ public interface JIRAIssueLocalService {
 	public com.liferay.wol.model.JIRAIssue updateJIRAIssue(
 		com.liferay.wol.model.JIRAIssue jiraIssue)
 		throws com.liferay.portal.SystemException;
+
+	public int getAssigneeJIRAIssuesCount(long projectId,
+		java.lang.String assigneeJiraUserId, java.lang.String status)
+		throws com.liferay.portal.SystemException;
 }

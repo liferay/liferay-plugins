@@ -77,4 +77,13 @@ public class JIRAIssueLocalServiceUtil {
 
 		return jiraIssueLocalService.updateJIRAIssue(jiraIssue);
 	}
+
+	public static int getAssigneeJIRAIssuesCount(long projectId,
+		java.lang.String assigneeJiraUserId, java.lang.String status)
+		throws com.liferay.portal.SystemException {
+		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
+
+		return jiraIssueLocalService.getAssigneeJIRAIssuesCount(projectId,
+			assigneeJiraUserId, status);
+	}
 }

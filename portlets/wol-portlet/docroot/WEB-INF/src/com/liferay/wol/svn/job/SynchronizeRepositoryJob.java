@@ -49,7 +49,7 @@ public class SynchronizeRepositoryJob implements IntervalJob {
 
 		for (String url : _URLS) {
 			try {
-				SVNRepositoryLocalServiceUtil.synchronizeRepository(url);
+				SVNRepositoryLocalServiceUtil.updateSVNRepository(url);
 			}
 			catch (Exception e) {
 				_log.error(e.getMessage());

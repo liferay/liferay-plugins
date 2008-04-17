@@ -20,25 +20,30 @@
  * SOFTWARE.
  */
 
-package com.liferay.wol.service.impl;
-
-import com.liferay.portal.SystemException;
-import com.liferay.wol.service.base.JIRAIssueLocalServiceBaseImpl;
+package com.liferay.wol.jira.util;
 
 /**
- * <a href="JIRAIssueLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="JIRAConstants.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
+public interface JIRAConstants {
 
-	public int getAssigneeJIRAIssuesCount(
-			long projectId, String assigneeJiraUserId, String status)
-		throws SystemException {
+	public static final int PROJECT_LEP = 10014;
 
-		return jiraIssuePersistence.countByP_AJUI_S(
-			projectId, assigneeJiraUserId, status);
-	}
+	public static final String STATUS_CLOSED = "6";
+
+	public static final String STATUS_COMMITTED = "10000";
+
+	public static final String STATUS_CONTRIBUTED = "10001";
+
+	public static final String STATUS_IN_PROGRESS = "3";
+
+	public static final String STATUS_OPEN = "1";
+
+	public static final String STATUS_REOPENED = "4";
+
+	public static final String STATUS_RESOLVED = "5";
 
 }

@@ -39,7 +39,7 @@ import java.util.Date;
 public class SVNRevisionLocalServiceImpl
 	extends SVNRevisionLocalServiceBaseImpl {
 
-	public SVNRevision addSvnRevision(
+	public SVNRevision addSVNRevision(
 			String svnUserId, Date createDate, long svnRepositoryId,
 			long revisionNumber, String comments)
 		throws PortalException, SystemException {
