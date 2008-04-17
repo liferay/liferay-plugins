@@ -42,14 +42,6 @@ import javax.portlet.WindowState;
  */
 public class SampleTestFriendlyURLMapper extends BaseFriendlyURLMapper {
 
-	public String getMapping() {
-		return _MAPPING;
-	}
-
-	public String getPortletId() {
-		return _PORTLET_ID;
-	}
-
 	public String buildPath(LiferayPortletURL portletURL) {
 		WindowState windowState = portletURL.getWindowState();
 
@@ -72,6 +64,14 @@ public class SampleTestFriendlyURLMapper extends BaseFriendlyURLMapper {
 		}
 
 		return null;
+	}
+
+	public String getMapping() {
+		return _MAPPING;
+	}
+
+	public String getPortletId() {
+		return _PORTLET_ID;
 	}
 
 	public void populateParams(String friendlyURLPath, Map params) {
