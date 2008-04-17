@@ -70,6 +70,9 @@ public class SVNRevisionModelImpl extends BaseModelImpl {
 		};
 	public static final String TABLE_SQL_CREATE = "create table WOL_SVNRevision (svnRevisionId LONG not null primary key,svnUserId VARCHAR(75) null,createDate DATE null,svnRepositoryId LONG,revisionNumber LONG,comments TEXT null)";
 	public static final String TABLE_SQL_DROP = "drop table WOL_SVNRevision";
+	public static final String DATA_SOURCE = "liferayDataSource";
+	public static final String SESSION_FACTORY = "liferaySessionFactory";
+	public static final String TX_MANAGER = "liferayTransactionManager";
 	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(PropsUtil.get(
 				"value.object.finder.cache.enabled.com.liferay.wol.model.SVNRevision"),
 			true);

@@ -60,6 +60,9 @@ public class SVNRepositoryModelImpl extends BaseModelImpl {
 		};
 	public static final String TABLE_SQL_CREATE = "create table WOL_SVNRepository (svnRepositoryId LONG not null primary key,url VARCHAR(200) null,revisionNumber LONG)";
 	public static final String TABLE_SQL_DROP = "drop table WOL_SVNRepository";
+	public static final String DATA_SOURCE = "liferayDataSource";
+	public static final String SESSION_FACTORY = "liferaySessionFactory";
+	public static final String TX_MANAGER = "liferayTransactionManager";
 	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(PropsUtil.get(
 				"value.object.finder.cache.enabled.com.liferay.wol.model.SVNRepository"),
 			true);
