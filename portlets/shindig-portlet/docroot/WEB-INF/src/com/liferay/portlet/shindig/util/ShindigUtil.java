@@ -23,6 +23,7 @@
 package com.liferay.portlet.shindig.util;
 
 import com.liferay.portal.kernel.servlet.ImageServletTokenUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Contact;
@@ -81,6 +82,25 @@ public class ShindigUtil {
 	public static final String GADGET_USER_PREFERENCES =
 		"GADGET_USER_PREFERENCES";
 
+	public static String createBaseSecurityToken(
+			String ownerId, long viewerId, String appId, String domain,
+			String appUrl) {
+
+		StringMaker sm = new StringMaker();
+
+		sm.append(HttpUtil.encodeURL(ownerId, true));
+		sm.append(StringPool.COLON);
+		sm.append(HttpUtil.encodeURL(String.valueOf(viewerId), true));
+		sm.append(StringPool.COLON);
+		sm.append(HttpUtil.encodeURL(appId, true));
+		sm.append(StringPool.COLON);
+		sm.append(HttpUtil.encodeURL(domain, true));
+		sm.append(StringPool.COLON);
+		sm.append(HttpUtil.encodeURL(appUrl, true));
+
+		return sm.toString();
+	}
+
 	public static Activity getActivity(SocialActivity socialActivity) {
 		Activity activity = new Activity(
 			String.valueOf(socialActivity.getClassPK()),
@@ -90,79 +110,79 @@ public class ShindigUtil {
 			JSONObject extraData = new JSONObject(
 				socialActivity.getExtraData());
 
-			if (extraData.has("appId")) {
+			if (extraData.has(Activity.Field.APP_ID.toString())) {
 				activity.setAppId(extraData.getString("appId"));
 			}
 
-			if (extraData.has("body")) {
+			if (extraData.has(Activity.Field.BODY.toString())) {
 				activity.setBody(extraData.getString("body"));
 			}
 
-			if (extraData.has("bodyId")) {
+			if (extraData.has(Activity.Field.BODY_ID.toString())) {
 				activity.setBodyId(extraData.getString(
 					"bodyId"));
 			}
 
-			if (extraData.has("externalId")) {
+			if (extraData.has(Activity.Field.EXTERNAL_ID.toString())) {
 				activity.setExternalId(
 					extraData.getString("externalId"));
 			}
 
-			if (extraData.has("mediaItems")) {
+			if (extraData.has(Activity.Field.MEDIA_ITEMS.toString())) {
 				activity.setMediaItems(
 					ShindigUtil.getMediaItems(
 						extraData.getJSONArray("mediaItems")));
 			}
 
-			if (extraData.has("postedTime")) {
+			if (extraData.has(Activity.Field.POSTED_TIME.toString())) {
 				activity.setPostedTime(
 					extraData.getLong("postedTime"));
 			}
 
-			if (extraData.has("priority")) {
+			if (extraData.has(Activity.Field.PRIORITY.toString())) {
 				activity.setPriority(
 					Float.parseFloat(
 						extraData.getString("priority")));
 			}
 
-			if (extraData.has("streamFaviconUrl")) {
+			if (extraData.has(Activity.Field.STREAM_FAVICON_URL.toString())) {
 				activity.setStreamFaviconUrl(
 					extraData.getString("streamFaviconUrl"));
 			}
 
-			if (extraData.has("streamSourceUrl")) {
+			if (extraData.has(Activity.Field.STREAM_SOURCE_URL.toString())) {
 				activity.setStreamSourceUrl(
 					extraData.getString("streamSourceUrl"));
 			}
 
-			if (extraData.has("streamTitle")) {
+			if (extraData.has(Activity.Field.STREAM_TITLE.toString())) {
 				activity.setStreamTitle(
 					extraData.getString("streamTitle"));
 			}
 
-			if (extraData.has("streamUrl")) {
+			if (extraData.has(Activity.Field.STREAM_URL.toString())) {
 				activity.setStreamUrl(
 					extraData.getString("streamUrl"));
 			}
 
-			if (extraData.has("templateParams")) {
+			if (extraData.has(Activity.Field.TEMPLATE_PARAMS.toString())) {
 				activity.setTemplateParams(
 					ShindigUtil.getTemplateParams(
 						extraData.getJSONArray(
 							"templateParams")));
 			}
 
-			if (extraData.has("title")) {
+			if (extraData.has(Activity.Field.TITLE.toString())) {
 				activity.setTitle(
 					extraData.getString("title"));
 			}
 
-			if (extraData.has("titleId")) {
+			if (extraData.has(Activity.Field.TITLE_ID.toString())) {
 				activity.setTitleId(
 					extraData.getString("titleId"));
 			}
 
-			if (extraData.has("url")) {
+			if (extraData.has(Activity.Field.URL.toString())) {
 				activity.setUrl(extraData.getString("url"));
 			}
 		}
@@ -176,14 +196,16 @@ public class ShindigUtil {
 	public static ExpandoColumn getColumn(String columnName) {
     	ExpandoColumn expandoColumn = null;
 
-		ExpandoTable defaultTable = ShindigUtil.getTable();
+		ExpandoTable defaultTable = ShindigUtil.getTable(OPEN_SOCIAL_DATA);
 
 		try {
 			expandoColumn = ExpandoColumnLocalServiceUtil.getColumn(
-				User.class.getName(), ShindigUtil.OPEN_SOCIAL_DATA, columnName);
+				User.class.getName(), OPEN_SOCIAL_DATA, columnName);
 		}
 		catch (Exception e) {
-			_log.error(e, e);
+			if (_log.isDebugEnabled()) {
+				_log.debug(e, e);
+			}
 		}
 
 		if (expandoColumn == null) {
@@ -193,7 +215,9 @@ public class ShindigUtil {
 					ExpandoColumnConstants.STRING);
 			}
 			catch (Exception e) {
-				_log.error(e, e);
+				if (_log.isDebugEnabled()) {
+					_log.debug(e, e);
+				}
 			}
 		}
 
@@ -285,10 +309,11 @@ public class ShindigUtil {
 			person.setGender(new Enum<Enum.Gender>(
 				Enum.Gender.MALE));
 
-			if (token.getViewerId() == person.getId()) {
+			if (token.getViewerId().equals(person.getId())) {
 				person.setIsViewer(true);
 			}
-			else if (token.getOwnerId() == person.getId()) {
+
+			if (token.getOwnerId().equals(person.getId())) {
 				person.setIsOwner(true);
 			}
 		}
@@ -319,10 +344,11 @@ public class ShindigUtil {
 					Enum.Gender.MALE));
 			}
 
-			if (token.getViewerId() == person.getId()) {
+			if (token.getViewerId().equals(person.getId())) {
 				person.setIsViewer(true);
 			}
-			else if (token.getOwnerId() == person.getId()) {
+
+			if (token.getOwnerId().equals(person.getId())) {
 				person.setIsOwner(true);
 			}
 		}
@@ -342,11 +368,34 @@ public class ShindigUtil {
 			person = new Person(
 				String.valueOf(user.getUserId()), new Name(user.getFullName()));
 
-			if (profileDetails.contains("about_me")) {
+			// Required Fields
+
+			StringMaker sm = new StringMaker();
+			sm.append(token.getDomain());
+			sm.append(PortalUtil.getPathFriendlyURLPublic());
+			sm.append(user.getScreenName());
+
+			person.setProfileUrl(sm.toString());
+
+			sm = new StringMaker();
+			sm.append(token.getDomain());
+			sm.append(PortalUtil.getPathImage());
+			sm.append("/user_");
+			sm.append(user.isFemale() ? "female" : "male");
+			sm.append("_portrait?img_id=");
+			sm.append(user.getPortraitId());
+			sm.append("&t=");
+			sm.append(ImageServletTokenUtil.getToken(user.getPortraitId()));
+
+			person.setThumbnailUrl(sm.toString());
+
+			// Optional Fields
+
+			if (profileDetails.contains(Person.Field.ABOUT_ME.toString())) {
 				person.setAboutMe(user.getComments());
 			}
 
-			if (profileDetails.contains("age")) {
+			if (profileDetails.contains(Person.Field.AGE.toString())) {
 			    Calendar dateOfBirth = new GregorianCalendar();
 			    dateOfBirth.setTime(user.getBirthday());
 
@@ -363,15 +412,16 @@ public class ShindigUtil {
 				person.setAge(age);
 			}
 
-			if (profileDetails.contains("date_of_birth")) {
+			if (profileDetails.contains(
+					Person.Field.DATE_OF_BIRTH.toString())) {
 				person.setDateOfBirth(user.getBirthday());
 			}
 
-			if (profileDetails.contains("emails")) {
+			if (profileDetails.contains(Person.Field.EMAILS)) {
 				person.setEmails(getEmails(user));
 			}
 
-			if (profileDetails.contains("gender")) {
+			if (profileDetails.contains(Person.Field.GENDER.toString())) {
 				if (user.isFemale()) {
 					person.setGender(new Enum<Enum.Gender>(Enum.Gender.FEMALE));
 				} else {
@@ -379,39 +429,25 @@ public class ShindigUtil {
 				}
 			}
 
-			if (profileDetails.contains("nickname")) {
+			if (profileDetails.contains(Person.Field.NICKNAME.toString())) {
 				person.setNickname(user.getScreenName());
 			}
 
-			if (profileDetails.contains("phone_numbers")) {
+			if (profileDetails.contains(
+					Person.Field.PHONE_NUMBERS.toString())) {
 				person.setPhoneNumbers(getPhoneNumbers(
 					Contact.class.getName(), user.getContactId()));
 			}
 
-			if (profileDetails.contains("thumbnailUrl")) {
-				long portraitId = user.getPortraitId();
-				String tokenId = ImageServletTokenUtil.getToken(user.getPortraitId());
-
-				StringMaker sm = new StringMaker();
-				sm.append(PortalUtil.getPathImage());
-				sm.append("/user_");
-				sm.append(user.isFemale() ? "female" : "male");
-				sm.append("_portrait?img_id=");
-				sm.append(portraitId);
-				sm.append("&t=");
-				sm.append(tokenId);
-
-				person.setThumbnailUrl(sm.toString());
-			}
-
-			if (profileDetails.contains("time_zone")) {
+			if (profileDetails.contains(Person.Field.TIME_ZONE.toString())) {
 				person.setTimeZone(new Long(user.getTimeZone().getRawOffset()));
 			}
 
-			if (token.getViewerId() == person.getId()) {
+			if (token.getViewerId().equals(person.getId())) {
 				person.setIsViewer(true);
 			}
-			else if (token.getOwnerId() == person.getId()) {
+
+			if (token.getOwnerId().equals(person.getId())) {
 				person.setIsOwner(true);
 			}
 		}
@@ -441,22 +477,28 @@ public class ShindigUtil {
 		return phoneNumbers;
 	}
 
-	public static ExpandoTable getTable() {
+	public static ExpandoTable getTable(String tableName) {
 		ExpandoTable expandoTable = null;
 
 		try {
 			expandoTable = ExpandoTableLocalServiceUtil.getTable(
-				User.class.getName(), ShindigUtil.OPEN_SOCIAL_DATA);
+				User.class.getName(), tableName);
 		}
 		catch (Exception e) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(e, e);
+			}
 		}
 
 		if (expandoTable == null) {
 			try {
 				expandoTable = ExpandoTableLocalServiceUtil.addTable(
-					User.class.getName(), ShindigUtil.OPEN_SOCIAL_DATA);
+					User.class.getName(), tableName);
 			}
 			catch (Exception e) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(e, e);
+				}
 			}
 		}
 
@@ -516,7 +558,7 @@ public class ShindigUtil {
 
 		try {
 			ExpandoValue expandoValue = ExpandoValueLocalServiceUtil.getValue(
-				User.class.getName(), ShindigUtil.OPEN_SOCIAL_DATA,
+				User.class.getName(), OPEN_SOCIAL_DATA,
 				columnName, Long.parseLong(userId));
 
 			value = expandoValue.getData();

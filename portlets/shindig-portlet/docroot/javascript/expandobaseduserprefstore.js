@@ -30,13 +30,12 @@ gadgets.ExpandoBasedUserPrefStore.prototype.USER_PREFS_PREFIX = 'GADGET_USER_PRE
 
 gadgets.ExpandoBasedUserPrefStore.prototype.getPrefs = function(gadget) {
  	var userPrefs = {};
- 	var columnName = gadget.portletId;
 
 	var expandoValue = Liferay.Service.Expando.ExpandoValue.getValue({
 		className: 'com.liferay.portal.model.User',
 		tableName: this.USER_PREFS_PREFIX,
-		name: columnName,
-		rowId: themeDisplay.getUserId(),
+		columnName: gadget.portletId,
+		classPK: themeDisplay.getUserId(),
 		serviceParameterTypes: [
 			'java.lang.String',
 			'java.lang.String',
@@ -60,7 +59,6 @@ gadgets.ExpandoBasedUserPrefStore.prototype.getPrefs = function(gadget) {
 
 gadgets.ExpandoBasedUserPrefStore.prototype.savePrefs = function(gadget) {
 	var pairs = [];
- 	var columnName = gadget.portletId;
 
 	for (var name in gadget.getUserPrefs()) {
 		var value = gadget.getUserPref(name);
@@ -70,41 +68,19 @@ gadgets.ExpandoBasedUserPrefStore.prototype.savePrefs = function(gadget) {
 
 	var values = pairs.join('&');
 
-	var expandoColumn = Liferay.Service.Expando.ExpandoColumn.getColumn({
+	Liferay.Service.Expando.ExpandoValue.addValue({
 		className: 'com.liferay.portal.model.User',
 		tableName: this.USER_PREFS_PREFIX,
-		name: columnName,
+		columnName: gadget.portletId,
+		classPK: themeDisplay.getUserId(),
+		value: values,
 		serviceParameterTypes: [
 			'java.lang.String',
 			'java.lang.String',
+			'java.lang.String',
+			'long',
 			'java.lang.String'
 		].join(',')
-	});
-
-	if (expandoColumn.exception) {
-		var expandoTable = Liferay.Service.Expando.ExpandoTable.getTable({
-			className: 'com.liferay.portal.model.User',
-			tableName: this.USER_PREFS_PREFIX,
-			serviceParameterTypes: [
-				'java.lang.String',
-				'java.lang.String'
-			].join(',')
-		});
-
-		if (expandoTable && !expandoTable.exception) {
-			expandoColumn = Liferay.Service.Expando.ExpandoColumn.addColumn({
-				tableId: expandoTable.tableId,
-				name: columnName,
-				type: 15 // STRING
-			});
-		}
-	}
-
-	Liferay.Service.Expando.ExpandoValue.addValue({
-		columnId: expandoColumn.columnId,
-		classPK: themeDisplay.getUserId(),
-		rowId: themeDisplay.getUserId(),
-		value: values
 	});
 };
 

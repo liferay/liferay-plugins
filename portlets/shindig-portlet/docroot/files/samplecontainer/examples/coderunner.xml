@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+  <!-- 
+   Copyright 2008 Google Inc. 
+
+   Licensed under the Apache License, Version 2.0 (the "License"); 
+   you may not use this file except in compliance with the License. 
+   You may obtain a copy of the License at 
+   
+       http://www.apache.org/licenses/LICENSE-2.0 
+
+   Unless required by applicable law or agreed to in writing, software 
+   distributed under the License is distributed on an "AS IS" BASIS, 
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+   See the License for the specific language governing permissions and 
+   limitations under the License.
+  -->
+  <ModulePrefs title="CodeRunner" description="This gadget shows and lets you run sample code that uses the OpenSocial API" summary="This gadget shows and lets you run sample code that uses the OpenSocial API" thumbnail="http://opensocial-resources.googlecode.com/svn/samples/coderunner/trunk/img/coderunner.png" directory_title="CodeRunner - OpenSocial Developer Gadget" screenshot="http://opensocial-resources.googlecode.com/svn/samples/coderunner/trunk/img/coderunner-screenshot.png" title_url="http://opensocial-resources.googlecode.com/svn/samples/coderunner/trunk/index.html" author_email="opensocial.coderunner@gmail.com" author_affiliation="Google Inc." author_location="Mountain View, CA, USA" scaling="true" scrolling="false" singleton="false">
+    <Require feature="opensocial-0.7"/>
+    <Require feature="dynamic-height"/>
+    <Require feature="views"/>
+    <Optional feature="flash"/>
+  </ModulePrefs>
+  <Content type="html">
+    <![CDATA[
+      <!-- Generic Styles -->
+      <style type="text/css">
+        #wrap {
+          width: 99%;
+        }
+
+        #controls {
+          padding: 0;
+          margin: 0;
+        }
+        
+        #toolbar {
+          background: #eee;
+          border: 1px solid #ccc;
+          border-bottom: 1px solid #999;
+          border-right: 1px solid #999;
+        }
+
+        #toolbar table {
+          width: 99%;
+          border-collapse: collapse;
+          margin: 0;
+        }
+
+        #toolbar table td {
+          padding: 2px;
+        }
+       
+        #code_controls {
+          text-align: right;
+          padding: 2px 4px;
+        }
+        
+        #filename {
+          background: #ddd;
+          padding: 3px;
+          border: 1px solid #ccc;
+          border-top: 1px solid #eee;
+          border-bottom: 1px solid #999;
+          border-right: 1px solid #999;
+        }
+        
+        #filename span {
+          color: #111;
+          font: 11px Courier New !important;
+        }
+        
+        #filename code {
+          font-weight: bold;
+          color: #000;
+        }
+        
+        #dom_handle {
+          margin: 10px 0;
+        }
+        
+        #toolbar select {
+          border: 1px solid #ccc;
+          font: 11px Arial;
+          padding: 2px;
+        }
+        
+        #toolbar a,
+        #code_controls a {
+          cursor: pointer;
+          font-size: 14px;
+          height: 16px;
+        }
+        
+        #toolbar a img {
+          height: 16px;
+          width: 16px;
+          padding: 0;
+          margin: 0; 
+          vertical-align: middle;
+        }
+        
+        .dom_handle_label {
+          font: 13px Courier New;
+          background: #eee;
+          color: #999;
+        }
+      
+        p, div, span {
+          font: 12px Verdana;
+        }
+      
+        code, var, .code, #output {
+          font: 13px Courier New;
+        }
+        code {
+          color: #090;
+        }
+        var {
+          color: #00d;
+        }
+        .code {
+          font-weight: bold;
+          background: #fffeee;
+          color: #000;
+          padding: 5px;
+          border-top: 2px solid #666;
+          border-left: 2px solid #666;
+          border-bottom: 2px solid #ccc;
+          border-right: 2px solid #ccc;
+        }
+        p, .code {
+          margin: 2px, 0;
+        }
+        #output {
+          background: #333;
+          color: #fff;
+          padding: 5px;
+          margin: 5px 0;
+        }
+        .status {
+          color: #999;
+        }
+        #link_container {
+          background: #e0ecff;
+          font: 14px Arial;
+          margin: 10px;
+          padding: 5px;
+        }
+        textarea {
+          width: 100%;
+          height: auto;
+        }
+        #code_exec {
+          height: 400px;
+        }
+      </style>
+
+      <!-- Javascript utility methods -->
+      <script type="text/javascript">
+        //Implement console.log for users without firebug
+        
+        var console = console || { log : function(data) { } };
+
+        //Alias document.getElementById
+        function $(id) { 
+          return document.getElementById(id);
+        };
+        
+        function bind(func, target) {
+          return function() {
+            if (func.apply) {
+              func.apply(target, arguments);
+            } else {
+              console.log("bind problem, this=", this, "func=", func);
+            }
+          };
+        }
+        
+        //Stores the string values to display in the output field
+        var output_buffer = [];
+        
+         /**
+         * Returns the supplied arguments object as an array
+         * @param {Object} args Function.arguments object
+         * @return {Array} An array corresponding to the items in args
+         */
+        function getArgsAsArray(args) {
+          var result = [];
+          for (var i=0; i < args.length; i++) {
+            result.push(args[i]);
+          }
+          return result;
+        };
+        
+        /**
+         * Method to print data to this application's output container
+         * @param args Takes a variable number of arguments.  Each argument
+         *   is printed to the output.
+         */
+        function output() {
+          var args = getArgsAsArray(output.arguments);
+          var out_element = $("output");
+          console.log("output", args);
+          output_buffer.push(args.join(" "));
+          while (output_buffer.length > 400) {
+            output_buffer.shift();
+          }
+          out_element.innerHTML = output_buffer.join("<br />");
+          out_element.scrollTop = out_element.scrollHeight;
+          if (out_element.style.display == "none") {
+            out_element.style.display = "block";
+          }
+        };
+
+        /**
+         * Clears the output container
+         */
+        function cls() {
+          output_buffer = [];
+          var out_element = $("output");
+          out_element.innerHTML = "";
+          out_element.style.display = "none";
+          gadgets.window.adjustHeight();
+        };
+
+
+
+     
+        var cr = {};
+        
+        cr.OpenSocial = function() {
+
+        };
+        
+        cr.OpenSocial.prototype = {
+          viewer : {},
+          owner : {},
+          peopledata : {},
+          /**
+           * Gets the requested data key or a default value if there was an
+           * error or no value
+           */
+          getDataOr : function(data, key, defaultvalue) {
+            console.log("getDataOr, this=", this, "data=", data)
+            return (data && 
+                    data.get(key) && 
+                    !data.get(key).hadError() &&
+                    data.get(key).getData()) || defaultvalue;
+          },
+          /**
+           * Request the OpenSocial data needed for this app
+           */
+          getOpenSocialData : function(datakeys, callback) {
+            console.log("getOpenSocialData: this = ", this);
+            var req = opensocial.newDataRequest();
+            
+            //Request the owner's data
+            req.add(
+              req.newFetchPersonAppDataRequest(
+                opensocial.DataRequest.PersonId.OWNER, datakeys), 
+              "peopledata");
+            
+            //Request the owner
+            req.add(
+              req.newFetchPersonRequest(
+                opensocial.DataRequest.PersonId.OWNER),
+              "owner");
+            
+            //Request the viewer
+            req.add(
+              req.newFetchPersonRequest(
+                opensocial.DataRequest.PersonId.VIEWER),
+              "viewer");
+            
+            //Send the request
+            req.send(bind(this.closeGetOpenSocialData(callback), this));    
+          },
+          /**
+           * Parse the data returned by the OpenSocial requests
+           */
+          closeGetOpenSocialData : function(callback) {
+            console.log("closeGetOpenSocialData: this = ", this);
+            return function(data) {
+              console.log("getOpenSocialData: this = ", this);
+              var tempdata = null,
+                  personkey = null,
+                  datakey = null;
+            
+              this.viewer = this.getDataOr(data, "viewer", this.viewer);
+              this.owner = this.getDataOr(data, "owner", this.owner);
+              tempdata = this.getDataOr(data, "peopledata", {});
+            
+              //Collapse the appData with the data we've already gotten
+              this.mergePersonAppData.apply(this, [tempdata]);
+              
+              //Call the callback if appropriate
+              if (callback && typeof(callback) == "function") {
+                callback();
+              }
+            };
+          },
+          /**
+           * Adds (and overwrites) the data store with a new data response
+           */
+          mergePersonAppData : function(newdata) {
+            //Iterate over the person id keys in the data structure
+            for (personkey in newdata) {
+              if (newdata.hasOwnProperty(personkey)) {
+                //If there's no index by this person's ID, create it
+                this.peopledata[personkey] = this.peopledata[personkey] || {};
+                
+                //Iterate over the data key name in the data structure
+                for (datakey in newdata[personkey]) {
+                  if (newdata[personkey].hasOwnProperty(datakey)) {
+                    this.peopledata[personkey][datakey] = 
+                      newdata[personkey][datakey];
+                  }
+                }
+              }
+            }
+          },
+          /**
+           * Returns true if the viewer is the same person as the owner
+           */
+          viewerIsOwner : function() {
+            return (this.viewer.getId && this.viewer.getId() || -1) ===
+                   (this.owner.getId && this.owner.getId() || -2);
+          },
+          /**
+           * Sets the viewer's app data 
+           */
+          setAppData : function(data, key, callback) {
+            var req = opensocial.newDataRequest();
+            data = gadgets.json.stringify(data);
+            
+            req.add(
+              req.newUpdatePersonAppDataRequest(
+                opensocial.DataRequest.PersonId.VIEWER, key, data), 
+              "updatedata");
+            req.add(
+              req.newFetchPersonAppDataRequest(
+                opensocial.DataRequest.PersonId.OWNER, key, data),
+              "peopledata");
+            req.send(bind(this.closeSetAppData(callback), this));
+          },
+          /**
+           * Parse the app data returned by the set call
+           */
+          closeSetAppData : function(callback) {
+            return function(data) {
+              var tempdata = null,
+                  key = null;
+            
+              tempdata = this.getDataOr(data, "peopledata", {});
+
+              //Collapse the appData with the data we've already gotten
+              this.mergePersonAppData.apply(this, [tempdata]);
+
+              //Call the callback if appropriate
+              if (callback && typeof(callback) == "function") {
+                callback();
+              }
+            };
+          },
+          getPersonData : function(id) {
+            return (id && this.peopledata[id]) || {};
+          },
+          getViewerData : function() {
+            return (this.viewer && 
+                    this.viewer.getId && 
+                    this.peopledata[this.viewer.getId()]) || {};
+          },
+          getOwnerData : function() {
+            return (this.owner && 
+                    this.owner.getId && 
+                    this.peopledata[this.owner.getId()]) || {};
+          }
+        };
+        
+        /**
+         * Constructor
+         */
+        cr.CodeTab = function() {
+          this.codetabui = new cr.CodeTabUI();
+          this.opensocial = new cr.OpenSocial();
+          this.codetabui.showLoading();
+          this.opensocial.getOpenSocialData("samples", 
+            bind(this.onOpenSocialData, this));
+        };
+        
+        cr.CodeTab.prototype = {
+          codetabui : null,
+          current_file_name : null,
+          samples : {},
+          /**
+           * Called when opensocial data is loaded by the opensocial helper
+           */
+          onOpenSocialData : function() {
+            this.codetabui.hideLoading();
+            if (this.opensocial.viewerIsOwner()) {
+              this.codetabui.renderOwnerToolbar(this.opensocial, {
+                save : bind(this.saveCode, this),
+                saveas : bind(this.saveCodeAs, this),
+                loadfile : bind(this.loadCode, this),
+                deletefile : bind(this.deleteCode, this),
+                execute : bind(this.runCode, this)
+              });
+            } else {
+              this.codetabui.renderViewerToolbar(this.opensocial, {
+                save : null,
+                saveas : null,
+                loadfile : bind(this.loadCode, this),
+                deletefile : null,
+                execute : bind(this.runCode, this)
+              })
+            }
+            this.samples = gadgets.json.parse(
+              gadgets.util.unescapeString(
+                this.opensocial.getOwnerData()["samples"])) || {};
+                
+            this.codetabui.renderLoadOptions(this.samples);
+          },
+          /**
+           * Execute the text contained in the user's code input as javascript
+           */
+          runCode : function() {
+            eval(this.codetabui.getCodeText());          
+          },
+
+          /**
+           * 
+           */
+          saveCode : function () {
+            if (!this.current_file_name) {
+              this.saveCodeAs.apply(this);
+            }
+            
+            if (this.current_file_name) {
+              if (typeof(this.samples) != "object") {
+                this.samples = {};
+              }
+              if (!this.samples[this.current_file_name]) {
+                this.samples[this.current_file_name] = 
+                  "cr_file_" + new Date().getTime();
+              }
+
+              this.codetabui.showLoading();
+              
+              this.opensocial.setAppData.apply(this.opensocial, [ 
+                this.samples , 
+                "samples", 
+                bind(this.onCodeSaved, this)
+              ]);
+              this.opensocial.setAppData.apply(this.opensocial, [ 
+                this.codetabui.getCodeText(), 
+                this.samples[this.current_file_name] 
+              ]);
+            }
+          },
+          /**
+           * 
+           */
+          onCodeSaved : function() {
+            this.codetabui.hideLoading();
+            this.codetabui.renderLoadOptions(this.samples);
+            this.codetabui.renderCurrentFile(this.current_file_name);
+          },
+          /**
+           * 
+           */
+          saveCodeAs : function() {
+            var desired_name = prompt("Save code as?");
+            if (desired_name) {
+              this.current_file_name = encodeURIComponent(desired_name);
+              this.saveCode.apply(this); 
+            }
+          },
+          /**
+           *
+           */
+          loadCode : function() {
+            var filename = this.codetabui.getSelectedLoadValue();
+            this.current_file_name = filename;
+            this.codetabui.showLoading();
+            this.opensocial.getOpenSocialData.apply(this.opensocial,[
+              this.samples[filename] , 
+              bind(this.onCodeLoaded, this)
+            ]);
+          },
+          /**
+           * 
+           */
+          onCodeLoaded : function() {
+            this.codetabui.clearUserOutput();
+            this.codetabui.hideLoading();
+            var data = this.opensocial.getOwnerData()[
+                this.samples[this.current_file_name]] || "";
+                
+            data = [ "[", gadgets.util.unescapeString(data), "]" ].join("");
+            data = gadgets.json.parse(data);
+              
+            this.codetabui.setCodeText(data);
+            this.codetabui.renderCurrentFile(this.current_file_name);
+          },
+          /**
+           *
+           */
+          deleteCode : function() {
+            if (!this.samples[this.current_file_name]) {
+              throw new Error("Invalid file name specified for delete");
+            }
+            
+            this.opensocial.setAppData.apply(this.opensocial, [ 
+              null, 
+              this.samples[this.current_file_name] 
+            ]);
+            
+            delete this.samples[this.current_file_name];
+            this.codetabui.showLoading();
+            
+            this.opensocial.setAppData.apply(this.opensocial, [ 
+              this.samples , 
+              "samples", 
+              bind(this.onCodeDeleted, this)
+            ]);
+          },
+          /**
+           * 
+           */
+          onCodeDeleted : function() {
+            this.codetabui.clearUserOutput();
+            this.codetabui.hideLoading();
+            console.log("onCodeDeleted, this=", this);
+            this.current_file_name = "";
+            this.codetabui.setCodeText("");
+            this.codetabui.renderCurrentFile(this.current_file_name);
+            this.codetabui.renderLoadOptions(this.samples);
+          }
+        };
+        
+        cr.CodeTabUI = function() {
+          this.dom_controls = $("controls");
+          this.dom_code_controls = $("code_controls");
+          this.dom_code = $("code_exec");
+          this.dom_handle = $("dom_handle");
+          this.dom_toolbar = w23.e("div", { id : "toolbar"});
+          this.dom_controls.appendChild(this.dom_toolbar);
+          
+          this.dom_loadicon = w23.e("div", null, w23.e("img", 
+            { src : this.base_url + "loading.png" }), " Loading...");
+          this.dom_loadicon.style.display = "none";
+          this.dom_loadicon.style.position = "absolute";
+          this.dom_loadicon.style.right = "4px";
+          this.dom_loadicon.style.top = "4px";
+          this.dom_loadicon.style.backgroundColor = "#dd0000";
+          this.dom_loadicon.style.padding = "4px";
+          this.dom_loadicon.style.color = "#ffffff";
+              
+          this.dom_controls.appendChild(this.dom_loadicon);
+          this.clearUserOutput();
+        };
+        
+        cr.CodeTabUI.prototype = {
+          dom_toolbar : null,
+          dom_controls : null,
+          dom_code_controls : null,
+          dom_code : null,
+          dom_filename : null,
+          dom_loadicon : null,
+          dom_handle : null,
+          dom_exec_button : null,
+          base_url : "http://opensocial-resources.googlecode.com/svn/samples/coderunner/trunk/img/",
+          renderViewerToolbar : function(os, callbacks) {
+            var loadtext = [ "Load one of ", 
+                             os.owner.getDisplayName(), 
+                             "'s samples..." ].join("");
+                             
+            this.dom_toolbar.appendChild(
+              w23.e("table", null, 
+                w23.e("tbody", null,
+                  w23.e("tr", null,
+                    w23.e("td", null,
+                      w23.e("select", { id : "select_load" },
+                        w23.e("option", null, loadtext)), " ",
+                      w23.e("a", { id : "button_load", onclick : callbacks.loadfile }, 
+                        w23.e("img", { src : this.base_url + "load.png" }), " Load"), " | "),
+                    w23.e("td", { style : { textAlign : "right", width : "auto" }},
+                      w23.e("a", { id : "button_execute", onclick : callbacks.execute }, 
+                        w23.e("img", { src : this.base_url + "execute.png" }), " Execute"))
+                  )
+                )
+              )
+            );
+            this.renderCodeControls();
+            gadgets.window.adjustHeight();
+          },
+          renderOwnerToolbar : function(os, callbacks) {
+            var loadtext = "Load one of your samples...";                             
+            this.dom_toolbar.appendChild(
+              w23.e("table", null, 
+                w23.e("tbody", null,
+                  w23.e("tr", null,
+                    w23.e("td", null,
+                      w23.e("select", { id : "select_load" },
+                        w23.e("option", null, loadtext)), " ",
+                      w23.e("a", { id : "button_load", onclick : callbacks.loadfile }, 
+                        w23.e("img", { src : this.base_url + "load.png" }), " Load"), " | ",
+                      w23.e("a", { id : "button_save", onclick : callbacks.save }, 
+                        w23.e("img", { src : this.base_url + "save.png" }), " Save"), " | ",
+                      w23.e("a", { id : "button_saveas", onclick : callbacks.saveas }, 
+                        w23.e("img", { src : this.base_url + "saveas.png" }), " Save as"), " | ",      
+                      w23.e("a", { id : "button_delete", onclick : callbacks.deletefile }, 
+                        w23.e("img", { src : this.base_url + "delete.png" }), " Delete"), " | "),
+                    w23.e("td", { style : { textAlign : "right", width : "auto" }},
+                      w23.e("a", { id : "button_execute", onclick : callbacks.execute }, 
+                        w23.e("img", { src : this.base_url + "execute.png" }), " Execute"))
+                  )
+                )
+              )
+            );
+            this.renderCodeControls();
+            gadgets.window.adjustHeight();
+          },
+          renderCodeControls : function() {
+            this.dom_code_controls.appendChild(
+              w23.e("span", null, 
+                w23.e("a", { id : "button_code_down", onclick : bind(this.codeDown, this) }, 
+                  w23.e("img", { src : this.base_url + "arrow_down.png" }), 
+                  " Larger"), " | ",
+                w23.e("a", { id : "button_code_up", onclick : bind(this.codeUp, this) }, 
+                  w23.e("img", { src : this.base_url + "arrow_up.png" }), 
+                  " Smaller")
+            ));
+            gadgets.window.adjustHeight();
+          },
+          codeDown : function() {
+            this.dom_code.style.height = this.dom_code.offsetHeight + 100 + "px";
+            gadgets.window.adjustHeight();
+          },
+          codeUp : function() {
+            this.dom_code.style.height = 
+              Math.max(this.dom_code.offsetHeight - 100, 50) + "px";
+            gadgets.window.adjustHeight();
+          },
+          renderLoadOptions : function(samples, selected) {
+            var select = $("select_load"),
+                key = null,
+                params = null;
+            
+            select.innerHTML = "";
+            for (key in samples) {
+              if (samples.hasOwnProperty(key)) {
+                params = { "value" : key };
+                select.appendChild( 
+                  w23.e("option", params, decodeURIComponent(key)));
+              }
+            }
+            gadgets.window.adjustHeight();
+          },
+          getSelectedLoadValue : function() {
+            var select = $("select_load");
+            return (select && select.value) || "";
+          },
+          showLoading : function() {
+            this.dom_loadicon.style.display = "block";
+          },
+          hideLoading : function() {
+            this.dom_loadicon.style.display = "none";
+            gadgets.window.adjustHeight();
+          },
+          clearUserOutput : function() {
+            this.dom_handle.innerHTML = [
+              "<span class=\"dom_handle_label\">",
+              '&lt;div id="dom_handle"&gt;</span>',
+              "This <code>div</code> has an id of <code>dom_handle</code>",
+              " that you can use to insert DOM elements into",
+              "<span class=\"dom_handle_label\">&lt;/div&gt;</span>"
+            ].join("");
+            cls();
+          },
+          renderCurrentFile : function(filename) {
+            var select = $("select_load"),
+                node = null,
+                i = 0;
+            
+            if (!this.dom_filename) {
+              this.dom_filename = w23.e("div", { "id" : "filename"});
+              this.dom_controls.appendChild(this.dom_filename);
+            }
+            
+            this.dom_filename.innerHTML = "";
+            
+            if (filename) {
+              this.dom_filename.appendChild(
+                w23.e("span", null,
+                  " Currently loaded ",
+                  w23.e("code", null, decodeURIComponent(filename))
+              ));
+            
+              for (i = 0, node; node = select.childNodes[i]; i++) {
+                if (node.value == filename) {
+                  node.selected = "selected";
+                }
+              }
+            }
+            gadgets.window.adjustHeight();
+          },
+          setCodeText : function(text) {
+            this.dom_code.value = text;
+          },
+          getCodeText : function() {
+            return this.dom_code.value;
+          }
+        };
+        
+        w23 = {
+          e : function(element, attr) {
+            var elem = document.createElement(element),
+                i = 0,
+                j = 0,
+                k = 0;
+            
+            if (attr) {
+              for (j in attr) {
+                if (attr.hasOwnProperty(j)) {
+                  if (j != "style") {
+                    elem[j] = attr[j];  
+                  } else {
+                    for (k in attr[j]) {
+                      if (attr[j].hasOwnProperty(k)) {
+                        elem[j][k] = attr[j][k];
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            if (arguments.length > 2) {
+              for (i = 2; i < arguments.length; i++) {
+                if (typeof(arguments[i]) == "string") {
+                  elem.appendChild(w23.t(arguments[i]));
+                } else {
+                  elem.appendChild(arguments[i]);
+                }
+              }
+            }
+            return elem;
+          },
+          t : function(text) {
+            return document.createTextNode(text);
+          }
+        }
+        
+
+        
+
+        
+        //When the application is loaded, run this
+        gadgets.util.registerOnLoadHandler(function() {
+          var tab = new cr.CodeTab();
+        });
+      </script>
+      <div id="wrap">
+      <div id="sample_exec">
+        <div id="controls"></div>
+        <div id="code_controls"></div>
+        <textarea class="code" id="code_exec">
+/**
+ * DEFAULT CODERUNNER SAMPLE CODE
+ */
+function response(data) {
+  output(data.get("req").getData().getDisplayName());
+  gadgets.window.adjustHeight();
+};
+
+function request() {
+  var req = opensocial.newDataRequest();
+  req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.VIEWER), "req");
+  req.send(response);
+};
+
+request();
+        </textarea>
+      </div> 
+      <div id="dom_handle"></div>
+
+       <!-- Scrolling output buffer -->
+      <div id="output"></div>  
+        <p>
+          You can type in the field above and press the button to execute 
+          OpenSocial code.  This is a good place to copy and paste code 
+          examples for experimenting with the OpenSocial API.
+        </p>
+        <p>
+          In addition to the standard JavaScript and OpenSocial methods, 
+          you may also call the <code>output</code> method to print output 
+          text.  <code>output</code> can take a variable number of arguments, 
+          so you can print several variables on the same line without needing 
+          to construct the string yourself.  If you have firebug installed and 
+          enabled, output will also echo output to the firebug console.
+        </p>
+      </div>
+ ]]>
+  </Content>
+</Module>

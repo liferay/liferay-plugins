@@ -17,6 +17,14 @@
        margin-bottom: 10px;
      }
 
+     div.viewer {
+       border: 1px solid green;
+     }
+
+     div.owner {
+       border: 1px solid blue;
+     }
+
      div.bubble {
        background-image: url(/shindig-portlet/files/samplecontainer/examples/bubble.gif);
        background-repeat: no-repeat;
@@ -71,7 +79,7 @@
        for (var i = 0; i < allPeople.length; i++) {
          var count = getCount(viewerFriendData[allPeople[i].getId()]);
 
-         html += '<div class="person">';
+         html += '<div class="person viewer">';
          html += '<div class="bubble c' + count % numberOfStyles + '">' + hellos[count % hellos.length];
          html += '<div class="name">' + allPeople[i].getDisplayName() + ' (' + count + ') ' + allPeople[i].getField(opensocial.Person.Field.GENDER).getDisplayValue();
          html += '</div></div>';
@@ -99,7 +107,7 @@
 	       for (var i = 0; i < allPeople.length; i++) {
 	         var count = getCount(ownerFriendData[allPeople[i].getId()]);
 
-	         html += '<div class="person">';
+	         html += '<div class="person owner">';
 	         html += '<div class="bubble c' + count % numberOfStyles + '">' + hellos[count % hellos.length];
 	         html += '<div class="name">' + allPeople[i].getDisplayName() + ' (' + count + ') ' + allPeople[i].getField(opensocial.Person.Field.GENDER).getDisplayValue();
 	         html += '</div></div>';

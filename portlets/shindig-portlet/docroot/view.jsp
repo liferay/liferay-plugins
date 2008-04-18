@@ -38,7 +38,12 @@ String ownerId = "G-" + classPK;
 if (layout.getGroup().isUser()) {
 	ownerId = String.valueOf(classPK);
 }
+
+String baseSecurityToken = ShindigUtil.createBaseSecurityToken(ownerId, themeDisplay.getUserId(), "appId" , PortalUtil.getPortalURL(themeDisplay), gadgetUrl);
 %>
+
+<%@ page import="com.liferay.portal.util.PortalUtil"%>
+<%@ page import="com.liferay.portlet.shindig.util.ShindigUtil"%>
 
 <div id="<portlet:namespace />gadget-chrome" class="gadgets-gadget-chrome"></div>
 
@@ -51,11 +56,12 @@ jQuery(
  		// relationship with the stored preferences.
 		gadget.portletId = '<portlet:namespace />';
 
-		gadget.secureToken = ['<%= ownerId %>', '<%= themeDisplay.getUserId() %>', '<%= themeDisplay.getCompany().getDefaultWebId() %>', 'liferay'].join(':');
-
 		gadget.setServerBase('<%= renderRequest.getContextPath() %>/');
 
 		gadgets.container.addGadget(gadget);
+
+		gadget.secureToken = escape(['<%= baseSecurityToken %>', gadget.id].join(':'));
+
 		gadgets.container.layoutManager.addGadgetChromeId('<portlet:namespace />gadget-chrome');
 
 		jQuery('#portlet-small-icon-bar_<%= portletDisplay.getId() %>').prepend([

@@ -23,17 +23,10 @@
 
 <web-app>
   <!-- configuration -->
+  <!-- If you have your own Guice module(s), put them here as a colon-separated list. -->
   <context-param>
-    <param-name>features</param-name>
-    <param-value>res://features/features.txt</param-value>
-  </context-param>
-  <context-param>
-    <param-name>syndicators</param-name>
-    <param-value>res://syndicators/default/syndicator.js</param-value>
-  </context-param>
-  <context-param>
-    <param-name>servlet-data-class</param-name>
-    <param-value>org.apache.shindig.gadgets.http.DefaultCrossServletState</param-value>
+    <param-name>guice-modules</param-name>
+    <param-value>com.liferay.portlet.shindig.social.LiferayGuiceModule</param-value>
   </context-param>
 
 	<filter>
@@ -66,11 +59,11 @@
 	</filter-mapping>
 	<filter-mapping>
 		<filter-name>Auto Login Filter</filter-name>
-		<url-pattern>/metadata</url-pattern>
+		<url-pattern>/metadata/*</url-pattern>
 	</filter-mapping>
 	<filter-mapping>
 		<filter-name>Auto Login Filter</filter-name>
-		<url-pattern>/socialdata</url-pattern>
+		<url-pattern>/socialdata/*</url-pattern>
 	</filter-mapping>
 	<filter-mapping>
 		<filter-name>Servlet Authorizing Filter</filter-name>
@@ -86,12 +79,16 @@
 	</filter-mapping>
 	<filter-mapping>
 		<filter-name>Servlet Authorizing Filter</filter-name>
-		<url-pattern>/metadata</url-pattern>
+		<url-pattern>/metadata/*</url-pattern>
 	</filter-mapping>
 	<filter-mapping>
 		<filter-name>Servlet Authorizing Filter</filter-name>
-		<url-pattern>/socialdata</url-pattern>
+		<url-pattern>/socialdata/*</url-pattern>
 	</filter-mapping>
+
+  <listener>
+    <listener-class>org.apache.shindig.gadgets.http.GuiceServletContextListener</listener-class>
+  </listener>
 
   <!-- Render a Gadget -->
   <servlet>
@@ -123,13 +120,6 @@
     <servlet-class>
       org.apache.shindig.social.GadgetDataServlet
     </servlet-class>
-<!--
-    <init-param>
-      Add your custom classes that handle opensocial requests here
-      <param-name>handlers</param-name>
-      <parame-value>com.muysite.OpenSocialDataHandler</param-value>
-    </init-param>
--->
   </servlet>
 
   <!-- javascript serving -->

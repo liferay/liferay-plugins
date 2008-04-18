@@ -52,7 +52,7 @@ import org.json.JSONObject;
  * @author Raymond Augé
  *
  */
-public class BasicActivitiesService implements ActivitiesService {
+public class LiferayActivitiesService implements ActivitiesService {
 
 	public ResponseItem<List<Activity>> getActivities(
 			List<String> userIds, GadgetToken token) {
@@ -164,6 +164,6 @@ public class BasicActivitiesService implements ActivitiesService {
 		return new ResponseItem<JSONObject>(new JSONObject());
 	}
 
-	private static final Log _log = LogFactory.getLog(BasicActivitiesService.class);
+	private static final Log _log = LogFactory.getLog(LiferayActivitiesService.class);
 
 }

@@ -55,7 +55,7 @@ import org.json.JSONException;
  * @author Raymond Augé
  *
  */
-public class BasicPeopleService implements PeopleService {
+public class LiferayPeopleService implements PeopleService {
 
 	private static final Comparator<Person> NAME_COMPARATOR =
 		new Comparator<Person>() {
@@ -149,7 +149,7 @@ public class BasicPeopleService implements PeopleService {
 							UserLocalServiceUtil.getSocialUsers(
 								owner.getUserId(),
 								SocialRelationConstants.TYPE_BI_FRIEND,
-								QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+								QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 						for (User friend : friends) {
 							ids.add(String.valueOf(friend.getUserId()));
@@ -169,7 +169,7 @@ public class BasicPeopleService implements PeopleService {
 							UserLocalServiceUtil.getSocialUsers(
 								viewer.getUserId(),
 								SocialRelationConstants.TYPE_BI_FRIEND,
-								QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+								QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 						for (User friend : friends) {
 							ids.add(String.valueOf(friend.getUserId()));
@@ -187,6 +187,6 @@ public class BasicPeopleService implements PeopleService {
 		return ids;
 	}
 
-	private static final Log _log = LogFactory.getLog(BasicPeopleService.class);
+	private static final Log _log = LogFactory.getLog(LiferayPeopleService.class);
 
 }

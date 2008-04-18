@@ -96,29 +96,13 @@ public class GadgetPortlet extends GenericPortlet {
 	protected void setupTables() {
 		_log.info("Setup gadget user prefs table");
 
-		ExpandoTable expandoTable = null;
-
-		try {
-			expandoTable = ExpandoTableLocalServiceUtil.getTable(
-				User.class.getName(), ShindigUtil.GADGET_USER_PREFERENCES);
-		}
-		catch (Exception e) {
-		}
-
-		if (expandoTable == null) {
-			try {
-				expandoTable = ExpandoTableLocalServiceUtil.addTable(
-					User.class.getName(), ShindigUtil.GADGET_USER_PREFERENCES);
-			}
-			catch (Exception e) {
-			}
-		}
+		ShindigUtil.getTable(ShindigUtil.GADGET_USER_PREFERENCES);
 
 		_log.info("Gadget user prefs was setup.");
 
 		_log.info("Setup data source table");
 
-		ShindigUtil.getTable();
+		ShindigUtil.getTable(ShindigUtil.OPEN_SOCIAL_DATA);
 
 		_log.info("Data source table was setup.");
 	}

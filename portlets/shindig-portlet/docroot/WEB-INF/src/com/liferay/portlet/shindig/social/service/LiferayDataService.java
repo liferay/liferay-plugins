@@ -22,6 +22,7 @@
 
 package com.liferay.portlet.shindig.social.service;
 
+import com.liferay.portal.model.User;
 import com.liferay.portlet.expando.model.ExpandoColumn;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.portlet.shindig.util.ShindigUtil;
@@ -44,7 +45,7 @@ import org.json.JSONObject;
  * @author Raymond Augé
  *
  */
-public class BasicDataService implements DataService {
+public class LiferayDataService implements DataService {
 
 	public ResponseItem<Map<String, Map<String, String>>> getPersonData(
 			List<String> userIds, List<String> keys, GadgetToken token) {
@@ -74,11 +75,11 @@ public class BasicDataService implements DataService {
 		}
 
 		try {
-			ExpandoColumn expandoColumn = ShindigUtil.getColumn(key);
+			ExpandoColumn column = ShindigUtil.getColumn(key);
 
 			ExpandoValueLocalServiceUtil.addValue(
-				expandoColumn.getColumnId(), Long.parseLong(userId),
-				Long.parseLong(userId), value);
+				User.class.getName(), ShindigUtil.OPEN_SOCIAL_DATA,
+				column.getName(), Long.parseLong(userId), value);
 		}
 		catch (Exception e) {
 		}

@@ -9,5 +9,5 @@
 	http://incubator.apache.org/shindig/#tab-building
 	-->
 
-	<property name="original.war.file" value="gadgets-svn-r643418.war" />
+	<property name="original.war.file" value="gadgets-svn-r648103.war" />
 </project>
