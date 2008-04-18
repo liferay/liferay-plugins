@@ -22,4 +22,69 @@
  */
 %>
 
-My Summary
+<%@ include file="/init.jsp" %>
+
+<%
+Group group = GroupLocalServiceUtil.getGroup(themeDisplay.getPortletGroupId());
+
+User user2 = user;
+
+if (group.isUser()) {
+	user2 = UserLocalServiceUtil.getUserById(group.getClassPK());
+}
+%>
+
+<style type="text/css">
+	.ie .<portlet:namespace />container {
+		height: 1%;
+	}
+
+	.<portlet:namespace />container:after {
+		clear: both;
+		content: ".";
+		display: block;
+		height: 0;
+		visibility: hidden;
+	}
+
+	.<portlet:namespace />container h2 {
+		color: #83B4E1;
+		font-size: 16px;
+		margin-bottom: 10px;
+	}
+
+	.<portlet:namespace />container img {
+		margin: 5px;
+		float: right;
+	}
+
+	.<portlet:namespace />container p {
+		margin-bottom: 10px;
+	}
+
+	.<portlet:namespace />container span {
+		color: #3D536C;
+		font-size: 10px;
+		text-transform: uppercase;
+	}
+</style>
+
+<div class="<portlet:namespace />container">
+	<img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user2.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user2.getPortraitId()) %>" />
+
+	<h2>
+		<%= user2.getFullName() %>
+	</h2>
+
+	<p>
+		<span><liferay-ui:message key="job-title" /></span><br />
+
+		<%= user2.getContact().getJobTitle() %>
+	</p>
+
+	<p>
+		<span><liferay-ui:message key="about-me" /></span><br />
+
+		<%= user2.getComments() %>
+	</p>
+</div>

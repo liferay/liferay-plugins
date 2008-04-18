@@ -119,6 +119,37 @@ public interface SVNRevisionPersistence {
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchSVNRevisionException;
 
+	public java.util.List<com.liferay.wol.model.SVNRevision> findBySVNU_SVNR(
+		java.lang.String svnUserId, long svnRepositoryId)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.wol.model.SVNRevision> findBySVNU_SVNR(
+		java.lang.String svnUserId, long svnRepositoryId, int begin, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.wol.model.SVNRevision> findBySVNU_SVNR(
+		java.lang.String svnUserId, long svnRepositoryId, int begin, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.wol.model.SVNRevision findBySVNU_SVNR_First(
+		java.lang.String svnUserId, long svnRepositoryId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchSVNRevisionException;
+
+	public com.liferay.wol.model.SVNRevision findBySVNU_SVNR_Last(
+		java.lang.String svnUserId, long svnRepositoryId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchSVNRevisionException;
+
+	public com.liferay.wol.model.SVNRevision[] findBySVNU_SVNR_PrevAndNext(
+		long svnRevisionId, java.lang.String svnUserId, long svnRepositoryId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchSVNRevisionException;
+
 	public java.util.List<com.liferay.wol.model.SVNRevision> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
 		throws com.liferay.portal.SystemException;
@@ -143,12 +174,18 @@ public interface SVNRevisionPersistence {
 	public void removeBySVNRepositoryId(long svnRepositoryId)
 		throws com.liferay.portal.SystemException;
 
+	public void removeBySVNU_SVNR(java.lang.String svnUserId,
+		long svnRepositoryId) throws com.liferay.portal.SystemException;
+
 	public void removeAll() throws com.liferay.portal.SystemException;
 
 	public int countBySVNUserId(java.lang.String svnUserId)
 		throws com.liferay.portal.SystemException;
 
 	public int countBySVNRepositoryId(long svnRepositoryId)
+		throws com.liferay.portal.SystemException;
+
+	public int countBySVNU_SVNR(java.lang.String svnUserId, long svnRepositoryId)
 		throws com.liferay.portal.SystemException;
 
 	public int countAll() throws com.liferay.portal.SystemException;

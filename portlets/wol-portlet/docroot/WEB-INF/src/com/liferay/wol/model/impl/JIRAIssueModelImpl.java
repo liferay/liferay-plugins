@@ -328,17 +328,17 @@ public class JIRAIssueModelImpl extends BaseModelImpl {
 
 		JIRAIssueImpl jiraIssue = (JIRAIssueImpl)obj;
 
-		long pk = jiraIssue.getPrimaryKey();
+		int value = 0;
 
-		if (getPrimaryKey() < pk) {
-			return -1;
+		value = getKey().compareTo(jiraIssue.getKey());
+
+		value = value * -1;
+
+		if (value != 0) {
+			return value;
 		}
-		else if (getPrimaryKey() > pk) {
-			return 1;
-		}
-		else {
-			return 0;
-		}
+
+		return 0;
 	}
 
 	public boolean equals(Object obj) {

@@ -23,7 +23,10 @@
 package com.liferay.wol.service.impl;
 
 import com.liferay.portal.SystemException;
+import com.liferay.wol.model.JIRAIssue;
 import com.liferay.wol.service.base.JIRAIssueLocalServiceBaseImpl;
+
+import java.util.List;
 
 /**
  * <a href="JIRAIssueLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -33,12 +36,38 @@ import com.liferay.wol.service.base.JIRAIssueLocalServiceBaseImpl;
  */
 public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 
+	public List<JIRAIssue> getAssigneeJIRAIssues(
+			long projectId, String assigneeJiraUserId, String status, int begin,
+			int end)
+		throws SystemException {
+
+		return jiraIssuePersistence.findByP_AJUI_S(
+			projectId, assigneeJiraUserId, status);
+	}
+
 	public int getAssigneeJIRAIssuesCount(
 			long projectId, String assigneeJiraUserId, String status)
 		throws SystemException {
 
 		return jiraIssuePersistence.countByP_AJUI_S(
 			projectId, assigneeJiraUserId, status);
+	}
+
+	public List<JIRAIssue> getReporterJIRAIssues(
+			long projectId, String reporterJiraUserId, String status, int begin,
+			int end)
+		throws SystemException {
+
+		return jiraIssuePersistence.findByP_RJUI_S(
+			projectId, reporterJiraUserId, status);
+	}
+
+	public int getReporterJIRAIssuesCount(
+			long projectId, String reporterJiraUserId, String status)
+		throws SystemException {
+
+		return jiraIssuePersistence.countByP_RJUI_S(
+			projectId, reporterJiraUserId, status);
 	}
 
 }

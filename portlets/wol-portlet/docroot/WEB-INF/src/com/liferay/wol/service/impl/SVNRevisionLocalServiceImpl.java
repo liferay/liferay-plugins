@@ -29,6 +29,7 @@ import com.liferay.wol.model.SVNRevision;
 import com.liferay.wol.service.base.SVNRevisionLocalServiceBaseImpl;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * <a href="SVNRevisionLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -57,6 +58,46 @@ public class SVNRevisionLocalServiceImpl
 		svnRevisionPersistence.update(svnRevision, false);
 
 		return svnRevision;
+	}
+
+	public List<SVNRevision> getSVNRevisions(
+			String svnUserId, int begin, int end)
+		throws SystemException {
+
+		return svnRevisionPersistence.findBySVNUserId(svnUserId, begin, end);
+	}
+
+	public List<SVNRevision> getSVNRevisions(
+			long svnRepositoryId, int begin, int end)
+		throws SystemException {
+
+		return svnRevisionPersistence.findBySVNRepositoryId(
+			svnRepositoryId, begin, end);
+	}
+
+	public List<SVNRevision> getSVNRevisions(
+			String svnUserId, long svnRepositoryId, int begin, int end)
+		throws SystemException {
+
+		return svnRevisionPersistence.findBySVNU_SVNR(
+			svnUserId, svnRepositoryId, begin, end);
+	}
+
+	public int getSVNRevisionsCount(String svnUserId) throws SystemException {
+		return svnRevisionPersistence.countBySVNUserId(svnUserId);
+	}
+
+	public int getSVNRevisionsCount(long svnRepositoryId)
+		throws SystemException {
+
+		return svnRevisionPersistence.countBySVNRepositoryId(svnRepositoryId);
+	}
+
+	public int getSVNRevisionsCount(String svnUserId, long svnRepositoryId)
+		throws SystemException {
+
+		return svnRevisionPersistence.countBySVNU_SVNR(
+			svnUserId, svnRepositoryId);
 	}
 
 }

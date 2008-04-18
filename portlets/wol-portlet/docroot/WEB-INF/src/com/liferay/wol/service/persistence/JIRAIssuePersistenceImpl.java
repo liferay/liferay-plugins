@@ -282,6 +282,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				query.append(" ");
 
+				query.append("ORDER BY ");
+
+				query.append("pkey DESC");
+
 				Query q = session.createQuery(query.toString());
 
 				int queryPos = 0;
@@ -354,6 +358,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				if (obc != null) {
 					query.append("ORDER BY ");
 					query.append(obc.getOrderBy());
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("pkey DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -450,6 +460,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				query.append(obc.getOrderBy());
 			}
 
+			else {
+				query.append("ORDER BY ");
+
+				query.append("pkey DESC");
+			}
+
 			Query q = session.createQuery(query.toString());
 
 			int queryPos = 0;
@@ -531,6 +547,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				query.append(" ");
 
+				query.append("ORDER BY ");
+
+				query.append("pkey DESC");
+
 				Query q = session.createQuery(query.toString());
 
 				int queryPos = 0;
@@ -604,6 +624,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				}
 
 				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("pkey DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -684,6 +708,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				if (obc != null) {
 					query.append("ORDER BY ");
 					query.append(obc.getOrderBy());
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("pkey DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -789,6 +819,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				query.append(obc.getOrderBy());
 			}
 
+			else {
+				query.append("ORDER BY ");
+
+				query.append("pkey DESC");
+			}
+
 			Query q = session.createQuery(query.toString());
 
 			int queryPos = 0;
@@ -849,6 +885,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				}
 
 				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("pkey DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -929,6 +969,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				if (obc != null) {
 					query.append("ORDER BY ");
 					query.append(obc.getOrderBy());
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("pkey DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -1034,6 +1080,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				query.append(obc.getOrderBy());
 			}
 
+			else {
+				query.append("ORDER BY ");
+
+				query.append("pkey DESC");
+			}
+
 			Query q = session.createQuery(query.toString());
 
 			int queryPos = 0;
@@ -1116,6 +1168,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				}
 
 				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("pkey DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -1223,6 +1279,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				if (obc != null) {
 					query.append("ORDER BY ");
 					query.append(obc.getOrderBy());
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("pkey DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -1361,6 +1423,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				query.append(obc.getOrderBy());
 			}
 
+			else {
+				query.append("ORDER BY ");
+
+				query.append("pkey DESC");
+			}
+
 			Query q = session.createQuery(query.toString());
 
 			int queryPos = 0;
@@ -1449,6 +1517,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				}
 
 				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("pkey DESC");
 
 				Query q = session.createQuery(query.toString());
 
@@ -1556,6 +1628,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				if (obc != null) {
 					query.append("ORDER BY ");
 					query.append(obc.getOrderBy());
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("pkey DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
@@ -1694,6 +1772,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				query.append(obc.getOrderBy());
 			}
 
+			else {
+				query.append("ORDER BY ");
+
+				query.append("pkey DESC");
+			}
+
 			Query q = session.createQuery(query.toString());
 
 			int queryPos = 0;
@@ -1810,6 +1894,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				if (obc != null) {
 					query.append("ORDER BY ");
 					query.append(obc.getOrderBy());
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("pkey DESC");
 				}
 
 				Query q = session.createQuery(query.toString());

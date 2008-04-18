@@ -88,4 +88,52 @@ public class SVNRevisionLocalServiceUtil {
 		return svnRevisionLocalService.addSVNRevision(svnUserId, createDate,
 			svnRepositoryId, revisionNumber, comments);
 	}
+
+	public static java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
+		java.lang.String svnUserId, int begin, int end)
+		throws com.liferay.portal.SystemException {
+		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
+
+		return svnRevisionLocalService.getSVNRevisions(svnUserId, begin, end);
+	}
+
+	public static java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
+		long svnRepositoryId, int begin, int end)
+		throws com.liferay.portal.SystemException {
+		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
+
+		return svnRevisionLocalService.getSVNRevisions(svnRepositoryId, begin,
+			end);
+	}
+
+	public static java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
+		java.lang.String svnUserId, long svnRepositoryId, int begin, int end)
+		throws com.liferay.portal.SystemException {
+		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
+
+		return svnRevisionLocalService.getSVNRevisions(svnUserId,
+			svnRepositoryId, begin, end);
+	}
+
+	public static int getSVNRevisionsCount(java.lang.String svnUserId)
+		throws com.liferay.portal.SystemException {
+		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
+
+		return svnRevisionLocalService.getSVNRevisionsCount(svnUserId);
+	}
+
+	public static int getSVNRevisionsCount(long svnRepositoryId)
+		throws com.liferay.portal.SystemException {
+		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
+
+		return svnRevisionLocalService.getSVNRevisionsCount(svnRepositoryId);
+	}
+
+	public static int getSVNRevisionsCount(java.lang.String svnUserId,
+		long svnRepositoryId) throws com.liferay.portal.SystemException {
+		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
+
+		return svnRevisionLocalService.getSVNRevisionsCount(svnUserId,
+			svnRepositoryId);
+	}
 }

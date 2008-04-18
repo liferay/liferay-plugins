@@ -53,7 +53,21 @@ public interface JIRAIssueLocalService {
 		com.liferay.wol.model.JIRAIssue jiraIssue)
 		throws com.liferay.portal.SystemException;
 
+	public java.util.List<com.liferay.wol.model.JIRAIssue> getAssigneeJIRAIssues(
+		long projectId, java.lang.String assigneeJiraUserId,
+		java.lang.String status, int begin, int end)
+		throws com.liferay.portal.SystemException;
+
 	public int getAssigneeJIRAIssuesCount(long projectId,
 		java.lang.String assigneeJiraUserId, java.lang.String status)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.wol.model.JIRAIssue> getReporterJIRAIssues(
+		long projectId, java.lang.String reporterJiraUserId,
+		java.lang.String status, int begin, int end)
+		throws com.liferay.portal.SystemException;
+
+	public int getReporterJIRAIssuesCount(long projectId,
+		java.lang.String reporterJiraUserId, java.lang.String status)
 		throws com.liferay.portal.SystemException;
 }

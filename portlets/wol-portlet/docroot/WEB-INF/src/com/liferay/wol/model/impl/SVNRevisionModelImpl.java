@@ -243,6 +243,8 @@ public class SVNRevisionModelImpl extends BaseModelImpl {
 			value = 0;
 		}
 
+		value = value * -1;
+
 		if (value != 0) {
 			return value;
 		}
@@ -256,6 +258,8 @@ public class SVNRevisionModelImpl extends BaseModelImpl {
 		else {
 			value = 0;
 		}
+
+		value = value * -1;
 
 		if (value != 0) {
 			return value;

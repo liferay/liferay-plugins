@@ -52,6 +52,12 @@ import org.tmatesoft.svn.core.wc.SVNWCUtil;
 public class SVNRepositoryLocalServiceImpl
 	extends SVNRepositoryLocalServiceBaseImpl {
 
+	public SVNRepository getSVNRepository(String url)
+		throws PortalException, SystemException {
+
+		return svnRepositoryPersistence.findByUrl(url);
+	}
+
 	public void updateSVNRepository(String url)
 		throws PortalException, SystemException {
 

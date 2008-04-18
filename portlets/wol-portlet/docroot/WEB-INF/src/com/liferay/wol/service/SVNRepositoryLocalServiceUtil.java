@@ -79,6 +79,15 @@ public class SVNRepositoryLocalServiceUtil {
 		return svnRepositoryLocalService.updateSVNRepository(svnRepository);
 	}
 
+	public static com.liferay.wol.model.SVNRepository getSVNRepository(
+		java.lang.String url)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
+
+		return svnRepositoryLocalService.getSVNRepository(url);
+	}
+
 	public static void updateSVNRepository(java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {

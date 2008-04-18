@@ -22,4 +22,50 @@
  */
 %>
 
-SVN
+<%@ include file="/init.jsp" %>
+
+<%
+PortletURL portletURL = renderResponse.createRenderURL();
+
+String svnUrl = SVNConstants.PORTAL_TRUNK_URL;
+String svnUserId = "brianchandotcom";
+
+SVNRepository svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(svnUrl);
+
+List headerNames = new ArrayList();
+
+headerNames.add("folder");
+headerNames.add("num-of-folders");
+headerNames.add("num-of-entries");
+headerNames.add(StringPool.BLANK);
+
+SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur1", SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
+
+int total = SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId());
+
+searchContainer.setTotal(total);
+
+List<SVNRevision> results = SVNRevisionLocalServiceUtil.getSVNRevisions(svnUserId, svnRepository.getSvnRepositoryId(), searchContainer.getStart(), searchContainer.getEnd());
+
+searchContainer.setResults(results);
+
+List resultRows = searchContainer.getResultRows();
+
+for (int i = 0; i < results.size(); i++) {
+	SVNRevision svnRevision = results.get(i);
+
+	ResultRow row = new ResultRow(svnRevision, svnRevision.getSvnRevisionId(), i);
+
+	String rowHREF = "http://lportal.svn.sourceforge.net/viewvc/lportal?view=rev&revision=" + svnRevision.getRevisionNumber();
+
+	// Revision number
+
+	row.addText(String.valueOf(svnRevision.getRevisionNumber()), rowHREF);
+
+	// Add result row
+
+	resultRows.add(row);
+}
+%>
+
+<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />

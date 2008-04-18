@@ -25,6 +25,12 @@
 		<column name="resolution" type="String" />
 		<column name="status" db-name="issuestatus" type="String" />
 
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="key" />
+		</order>
+
 		<!-- Finder methods -->
 
 		<finder name="ProjectId" return-type="Collection">
@@ -92,7 +98,7 @@
 
 		<!-- Order -->
 
-		<order by="asc">
+		<order by="desc">
 			<order-column name="svnRepositoryId" />
 			<order-column name="revisionNumber" />
 		</order>
@@ -103,6 +109,10 @@
 			<finder-column name="svnUserId" />
 		</finder>
 		<finder name="SVNRepositoryId" return-type="Collection">
+			<finder-column name="svnRepositoryId" />
+		</finder>
+		<finder name="SVNU_SVNR" return-type="Collection">
+			<finder-column name="svnUserId" />
 			<finder-column name="svnRepositoryId" />
 		</finder>
 	</entity>

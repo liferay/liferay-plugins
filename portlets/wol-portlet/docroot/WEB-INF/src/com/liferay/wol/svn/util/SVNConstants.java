@@ -20,48 +20,24 @@
  * SOFTWARE.
  */
 
-package com.liferay.wol.svn.job;
-
-import com.liferay.portal.kernel.job.IntervalJob;
-import com.liferay.portal.kernel.job.JobExecutionContext;
-import com.liferay.portal.kernel.job.JobExecutionException;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portlet.service.PropsUtil;
-import com.liferay.util.Time;
-import com.liferay.wol.service.SVNRepositoryLocalServiceUtil;
-import com.liferay.wol.svn.util.SVNConstants;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+package com.liferay.wol.svn.util;
 
 /**
- * <a href="SynchronizeRepositoryJob.java.html"><b><i>View Source</i></b></a>
+ * <a href="SVNConstants.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class SynchronizeRepositoryJob implements IntervalJob {
+public interface SVNConstants {
 
-	public static final long INTERVAL = GetterUtil.getLong(PropsUtil.get(
-		"svn.synchronization.interval")) * Time.MINUTE;
+	public static final String PLUGINS_TRUNK_URL =
+		"http://lportal.svn.sourceforge.net/svnroot/lportal/plugins/trunk";
 
-	public void execute(JobExecutionContext context)
-		throws JobExecutionException {
+	public static final String PORTAL_TRUNK_URL =
+		"http://lportal.svn.sourceforge.net/svnroot/lportal/portal/trunk";
 
-		for (String url : SVNConstants.URLS) {
-			try {
-				SVNRepositoryLocalServiceUtil.updateSVNRepository(url);
-			}
-			catch (Exception e) {
-				_log.error(e.getMessage());
-			}
-		}
-	}
-
-	public long getInterval() {
-		return INTERVAL;
-	}
-
-	private static Log _log = LogFactory.getLog(SynchronizeRepositoryJob.class);
+	public static final String[] URLS = new String[] {
+		PLUGINS_TRUNK_URL, PORTAL_TRUNK_URL
+	};
 
 }

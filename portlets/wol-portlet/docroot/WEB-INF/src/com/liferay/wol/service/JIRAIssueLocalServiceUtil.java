@@ -78,6 +78,16 @@ public class JIRAIssueLocalServiceUtil {
 		return jiraIssueLocalService.updateJIRAIssue(jiraIssue);
 	}
 
+	public static java.util.List<com.liferay.wol.model.JIRAIssue> getAssigneeJIRAIssues(
+		long projectId, java.lang.String assigneeJiraUserId,
+		java.lang.String status, int begin, int end)
+		throws com.liferay.portal.SystemException {
+		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
+
+		return jiraIssueLocalService.getAssigneeJIRAIssues(projectId,
+			assigneeJiraUserId, status, begin, end);
+	}
+
 	public static int getAssigneeJIRAIssuesCount(long projectId,
 		java.lang.String assigneeJiraUserId, java.lang.String status)
 		throws com.liferay.portal.SystemException {
@@ -85,5 +95,24 @@ public class JIRAIssueLocalServiceUtil {
 
 		return jiraIssueLocalService.getAssigneeJIRAIssuesCount(projectId,
 			assigneeJiraUserId, status);
+	}
+
+	public static java.util.List<com.liferay.wol.model.JIRAIssue> getReporterJIRAIssues(
+		long projectId, java.lang.String reporterJiraUserId,
+		java.lang.String status, int begin, int end)
+		throws com.liferay.portal.SystemException {
+		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
+
+		return jiraIssueLocalService.getReporterJIRAIssues(projectId,
+			reporterJiraUserId, status, begin, end);
+	}
+
+	public static int getReporterJIRAIssuesCount(long projectId,
+		java.lang.String reporterJiraUserId, java.lang.String status)
+		throws com.liferay.portal.SystemException {
+		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
+
+		return jiraIssueLocalService.getReporterJIRAIssuesCount(projectId,
+			reporterJiraUserId, status);
 	}
 }
