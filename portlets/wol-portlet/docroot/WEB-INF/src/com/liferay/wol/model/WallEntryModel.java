@@ -20,24 +20,54 @@
  * SOFTWARE.
  */
 
-package com.liferay.wol.svn.util;
+package com.liferay.wol.model;
+
+import com.liferay.portal.model.BaseModel;
+
+import java.util.Date;
 
 /**
- * <a href="SVNConstants.java.html"><b><i>View Source</i></b></a>
+ * <a href="WallEntryModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface SVNConstants {
+public interface WallEntryModel extends BaseModel {
+	public long getPrimaryKey();
 
-	public static final String PLUGINS_TRUNK_URL =
-		"http://lportal.svn.sourceforge.net/svnroot/lportal/plugins/trunk";
+	public void setPrimaryKey(long pk);
 
-	public static final String PORTAL_TRUNK_URL =
-		"http://lportal.svn.sourceforge.net/svnroot/lportal/portal/trunk";
+	public long getWallEntryId();
 
-	public static final String[] URLS = new String[] {
-		PORTAL_TRUNK_URL, PLUGINS_TRUNK_URL
-	};
+	public void setWallEntryId(long wallEntryId);
 
+	public long getGroupId();
+
+	public void setGroupId(long groupId);
+
+	public long getCompanyId();
+
+	public void setCompanyId(long companyId);
+
+	public long getUserId();
+
+	public void setUserId(long userId);
+
+	public String getUserName();
+
+	public void setUserName(String userName);
+
+	public Date getCreateDate();
+
+	public void setCreateDate(Date createDate);
+
+	public Date getModifiedDate();
+
+	public void setModifiedDate(Date modifiedDate);
+
+	public String getComments();
+
+	public void setComments(String comments);
+
+	public WallEntry toEscapedModel();
 }

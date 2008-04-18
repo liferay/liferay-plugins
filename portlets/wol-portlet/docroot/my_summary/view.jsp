@@ -24,16 +24,6 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-Group group = GroupLocalServiceUtil.getGroup(themeDisplay.getPortletGroupId());
-
-User user2 = user;
-
-if (group.isUser()) {
-	user2 = UserLocalServiceUtil.getUserById(group.getClassPK());
-}
-%>
-
 <style type="text/css">
 	.ie .<portlet:namespace />container {
 		height: 1%;
@@ -88,3 +78,48 @@ if (group.isUser()) {
 		<%= user2.getComments() %>
 	</p>
 </div>
+
+<table class="lfr-table" cellspacing="4">
+<tr>
+	<td>
+
+		<%
+		int mbMessagesCount = MBStatsUserLocalServiceUtil.getStatsUser(14, user2.getUserId()).getMessageCount();
+		%>
+
+		<liferay-ui:icon
+			image="view"
+			message='<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<b>" + mbMessagesCount + "</b>"}) %>'
+			url='<%= themeDisplay.getPathContext() + "/web/guest/community/forums/-/message_boards/recent_posts?_19_groupThreadsUserId=" + user2.getUserId() %>'
+			label="<%= true %>"
+		/>
+	</td>
+	<td>
+		<liferay-ui:icon
+			image="rss"
+			url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=1990&groupId=14&userId=" + user2.getUserId() %>'
+		/>
+	</td>
+</tr>
+<tr>
+	<td>
+
+		<%
+		int blogsEntriesCount = BlogsStatsUserLocalServiceUtil.getStatsUser(group.getGroupId(), user2.getUserId()).getEntryCount();
+		%>
+
+		<liferay-ui:icon
+			image="view"
+			message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<b>" + blogsEntriesCount + "</b>"}) %>'
+			url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog" %>'
+			label="<%= true %>"
+		/>
+	</td>
+	<td>
+		<liferay-ui:icon
+			image="rss"
+			url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog/-/blogs/rss" %>'
+		/>
+	</td>
+</tr>
+</table>

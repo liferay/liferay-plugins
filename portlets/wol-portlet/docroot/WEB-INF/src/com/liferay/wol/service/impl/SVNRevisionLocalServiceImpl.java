@@ -25,6 +25,7 @@ package com.liferay.wol.service.impl;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.wol.NoSuchSVNRevisionException;
 import com.liferay.wol.model.SVNRevision;
 import com.liferay.wol.service.base.SVNRevisionLocalServiceBaseImpl;
 
@@ -58,6 +59,36 @@ public class SVNRevisionLocalServiceImpl
 		svnRevisionPersistence.update(svnRevision, false);
 
 		return svnRevision;
+	}
+
+	public SVNRevision getFirstSVNRevision(String svnUserId)
+		throws PortalException, SystemException {
+
+		int count = svnRevisionPersistence.countBySVNUserId(svnUserId);
+
+		List<SVNRevision> svnRevisions = svnRevisionPersistence.findBySVNUserId(
+			svnUserId, count - 1, count);
+
+		if (svnRevisions.size() > 0) {
+			return svnRevisions.get(0);
+		}
+		else {
+			throw new NoSuchSVNRevisionException();
+		}
+	}
+
+	public SVNRevision getLastSVNRevision(String svnUserId)
+		throws PortalException, SystemException {
+
+		List<SVNRevision> svnRevisions = svnRevisionPersistence.findBySVNUserId(
+			svnUserId, 0, 1);
+
+		if (svnRevisions.size() > 0) {
+			return svnRevisions.get(0);
+		}
+		else {
+			throw new NoSuchSVNRevisionException();
+		}
 	}
 
 	public List<SVNRevision> getSVNRevisions(

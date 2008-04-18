@@ -66,9 +66,9 @@ public class SVNRevisionModelImpl extends BaseModelImpl {
 			{ "revisionNumber", new Integer(Types.BIGINT) },
 			
 
-			{ "comments", new Integer(Types.CLOB) }
+			{ "comments", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WOL_SVNRevision (svnRevisionId LONG not null primary key,svnUserId VARCHAR(75) null,createDate DATE null,svnRepositoryId LONG,revisionNumber LONG,comments TEXT null)";
+	public static final String TABLE_SQL_CREATE = "create table WOL_SVNRevision (svnRevisionId LONG not null primary key,svnUserId VARCHAR(75) null,createDate DATE null,svnRepositoryId LONG,revisionNumber LONG,comments STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table WOL_SVNRevision";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -232,22 +232,6 @@ public class SVNRevisionModelImpl extends BaseModelImpl {
 		SVNRevisionImpl svnRevision = (SVNRevisionImpl)obj;
 
 		int value = 0;
-
-		if (getSvnRepositoryId() < svnRevision.getSvnRepositoryId()) {
-			value = -1;
-		}
-		else if (getSvnRepositoryId() > svnRevision.getSvnRepositoryId()) {
-			value = 1;
-		}
-		else {
-			value = 0;
-		}
-
-		value = value * -1;
-
-		if (value != 0) {
-			return value;
-		}
 
 		if (getRevisionNumber() < svnRevision.getRevisionNumber()) {
 			value = -1;

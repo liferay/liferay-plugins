@@ -28,7 +28,19 @@
 		<field name="svnRepositoryId" type="long" />
 		<field name="revisionNumber" type="long" />
 		<field name="comments" type="String">
-			<hint-collection name="CLOB" />
+			<hint-collection name="TEXTAREA" />
+		</field>
+	</model>
+	<model name="com.liferay.wol.model.WallEntry">
+		<field name="wallEntryId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="comments" type="String">
+			<hint-collection name="TEXTAREA" />
 		</field>
 	</model>
 </model-hints>

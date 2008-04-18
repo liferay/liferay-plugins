@@ -39,10 +39,10 @@ import com.liferay.portlet.service.PropsUtil;
 
 import com.liferay.util.dao.hibernate.QueryUtil;
 
-import com.liferay.wol.NoSuchSVNRevisionException;
-import com.liferay.wol.model.SVNRevision;
-import com.liferay.wol.model.impl.SVNRevisionImpl;
-import com.liferay.wol.model.impl.SVNRevisionModelImpl;
+import com.liferay.wol.NoSuchWallEntryException;
+import com.liferay.wol.model.WallEntry;
+import com.liferay.wol.model.impl.WallEntryImpl;
+import com.liferay.wol.model.impl.WallEntryModelImpl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -56,46 +56,45 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * <a href="SVNRevisionPersistenceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="WallEntryPersistenceImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class SVNRevisionPersistenceImpl extends BasePersistence
-	implements SVNRevisionPersistence {
-	public SVNRevision create(long svnRevisionId) {
-		SVNRevision svnRevision = new SVNRevisionImpl();
+public class WallEntryPersistenceImpl extends BasePersistence
+	implements WallEntryPersistence {
+	public WallEntry create(long wallEntryId) {
+		WallEntry wallEntry = new WallEntryImpl();
 
-		svnRevision.setNew(true);
-		svnRevision.setPrimaryKey(svnRevisionId);
+		wallEntry.setNew(true);
+		wallEntry.setPrimaryKey(wallEntryId);
 
-		return svnRevision;
+		return wallEntry;
 	}
 
-	public SVNRevision remove(long svnRevisionId)
-		throws NoSuchSVNRevisionException, SystemException {
+	public WallEntry remove(long wallEntryId)
+		throws NoSuchWallEntryException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			SVNRevision svnRevision = (SVNRevision)session.get(SVNRevisionImpl.class,
-					new Long(svnRevisionId));
+			WallEntry wallEntry = (WallEntry)session.get(WallEntryImpl.class,
+					new Long(wallEntryId));
 
-			if (svnRevision == null) {
+			if (wallEntry == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("No SVNRevision exists with the primary key " +
-						svnRevisionId);
+					_log.warn("No WallEntry exists with the primary key " +
+						wallEntryId);
 				}
 
-				throw new NoSuchSVNRevisionException(
-					"No SVNRevision exists with the primary key " +
-					svnRevisionId);
+				throw new NoSuchWallEntryException(
+					"No WallEntry exists with the primary key " + wallEntryId);
 			}
 
-			return remove(svnRevision);
+			return remove(wallEntry);
 		}
-		catch (NoSuchSVNRevisionException nsee) {
+		catch (NoSuchWallEntryException nsee) {
 			throw nsee;
 		}
 		catch (Exception e) {
@@ -106,37 +105,36 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public SVNRevision remove(SVNRevision svnRevision)
-		throws SystemException {
+	public WallEntry remove(WallEntry wallEntry) throws SystemException {
 		if (_listeners != null) {
 			for (ModelListener listener : _listeners) {
-				listener.onBeforeRemove(svnRevision);
+				listener.onBeforeRemove(wallEntry);
 			}
 		}
 
-		svnRevision = removeImpl(svnRevision);
+		wallEntry = removeImpl(wallEntry);
 
 		if (_listeners != null) {
 			for (ModelListener listener : _listeners) {
-				listener.onAfterRemove(svnRevision);
+				listener.onAfterRemove(wallEntry);
 			}
 		}
 
-		return svnRevision;
+		return wallEntry;
 	}
 
-	protected SVNRevision removeImpl(SVNRevision svnRevision)
+	protected WallEntry removeImpl(WallEntry wallEntry)
 		throws SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			session.delete(svnRevision);
+			session.delete(wallEntry);
 
 			session.flush();
 
-			return svnRevision;
+			return wallEntry;
 		}
 		catch (Exception e) {
 			throw HibernateUtil.processException(e);
@@ -144,73 +142,71 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 		finally {
 			closeSession(session);
 
-			FinderCache.clearCache(SVNRevision.class.getName());
+			FinderCache.clearCache(WallEntry.class.getName());
 		}
 	}
 
-	public SVNRevision update(SVNRevision svnRevision)
-		throws SystemException {
+	public WallEntry update(WallEntry wallEntry) throws SystemException {
 		if (_log.isWarnEnabled()) {
 			_log.warn(
-				"Using the deprecated update(SVNRevision svnRevision) method. Use update(SVNRevision svnRevision, boolean merge) instead.");
+				"Using the deprecated update(WallEntry wallEntry) method. Use update(WallEntry wallEntry, boolean merge) instead.");
 		}
 
-		return update(svnRevision, false);
+		return update(wallEntry, false);
 	}
 
-	public SVNRevision update(SVNRevision svnRevision, boolean merge)
+	public WallEntry update(WallEntry wallEntry, boolean merge)
 		throws SystemException {
-		boolean isNew = svnRevision.isNew();
+		boolean isNew = wallEntry.isNew();
 
 		if (_listeners != null) {
 			for (ModelListener listener : _listeners) {
 				if (isNew) {
-					listener.onBeforeCreate(svnRevision);
+					listener.onBeforeCreate(wallEntry);
 				}
 				else {
-					listener.onBeforeUpdate(svnRevision);
+					listener.onBeforeUpdate(wallEntry);
 				}
 			}
 		}
 
-		svnRevision = updateImpl(svnRevision, merge);
+		wallEntry = updateImpl(wallEntry, merge);
 
 		if (_listeners != null) {
 			for (ModelListener listener : _listeners) {
 				if (isNew) {
-					listener.onAfterCreate(svnRevision);
+					listener.onAfterCreate(wallEntry);
 				}
 				else {
-					listener.onAfterUpdate(svnRevision);
+					listener.onAfterUpdate(wallEntry);
 				}
 			}
 		}
 
-		return svnRevision;
+		return wallEntry;
 	}
 
-	public SVNRevision updateImpl(
-		com.liferay.wol.model.SVNRevision svnRevision, boolean merge)
-		throws SystemException {
+	public WallEntry updateImpl(com.liferay.wol.model.WallEntry wallEntry,
+		boolean merge) throws SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			if (merge) {
-				session.merge(svnRevision);
+				session.merge(wallEntry);
 			}
 			else {
-				if (svnRevision.isNew()) {
-					session.save(svnRevision);
+				if (wallEntry.isNew()) {
+					session.save(wallEntry);
 				}
 			}
 
 			session.flush();
 
-			svnRevision.setNew(false);
+			wallEntry.setNew(false);
 
-			return svnRevision;
+			return wallEntry;
 		}
 		catch (Exception e) {
 			throw HibernateUtil.processException(e);
@@ -218,36 +214,36 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 		finally {
 			closeSession(session);
 
-			FinderCache.clearCache(SVNRevision.class.getName());
+			FinderCache.clearCache(WallEntry.class.getName());
 		}
 	}
 
-	public SVNRevision findByPrimaryKey(long svnRevisionId)
-		throws NoSuchSVNRevisionException, SystemException {
-		SVNRevision svnRevision = fetchByPrimaryKey(svnRevisionId);
+	public WallEntry findByPrimaryKey(long wallEntryId)
+		throws NoSuchWallEntryException, SystemException {
+		WallEntry wallEntry = fetchByPrimaryKey(wallEntryId);
 
-		if (svnRevision == null) {
+		if (wallEntry == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No SVNRevision exists with the primary key " +
-					svnRevisionId);
+				_log.warn("No WallEntry exists with the primary key " +
+					wallEntryId);
 			}
 
-			throw new NoSuchSVNRevisionException(
-				"No SVNRevision exists with the primary key " + svnRevisionId);
+			throw new NoSuchWallEntryException(
+				"No WallEntry exists with the primary key " + wallEntryId);
 		}
 
-		return svnRevision;
+		return wallEntry;
 	}
 
-	public SVNRevision fetchByPrimaryKey(long svnRevisionId)
+	public WallEntry fetchByPrimaryKey(long wallEntryId)
 		throws SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			return (SVNRevision)session.get(SVNRevisionImpl.class,
-				new Long(svnRevisionId));
+			return (WallEntry)session.get(WallEntryImpl.class,
+				new Long(wallEntryId));
 		}
 		catch (Exception e) {
 			throw HibernateUtil.processException(e);
@@ -257,275 +253,13 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<SVNRevision> findBySVNUserId(String svnUserId)
+	public List<WallEntry> findByGroupId(long groupId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "findBySVNUserId";
-		String[] finderParams = new String[] { String.class.getName() };
-		Object[] finderArgs = new Object[] { svnUserId };
-
-		Object result = null;
-
-		if (finderClassNameCacheEnabled) {
-			result = FinderCache.getResult(finderClassName, finderMethodName,
-					finderParams, finderArgs, getSessionFactory());
-		}
-
-		if (result == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringMaker query = new StringMaker();
-
-				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
-
-				if (svnUserId == null) {
-					query.append("svnUserId IS NULL");
-				}
-				else {
-					query.append("svnUserId = ?");
-				}
-
-				query.append(" ");
-
-				query.append("ORDER BY ");
-
-				query.append("revisionNumber DESC");
-
-				Query q = session.createQuery(query.toString());
-
-				int queryPos = 0;
-
-				if (svnUserId != null) {
-					q.setString(queryPos++, svnUserId);
-				}
-
-				List<SVNRevision> list = q.list();
-
-				FinderCache.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
-			}
-			catch (Exception e) {
-				throw HibernateUtil.processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-		else {
-			return (List<SVNRevision>)result;
-		}
-	}
-
-	public List<SVNRevision> findBySVNUserId(String svnUserId, int begin,
-		int end) throws SystemException {
-		return findBySVNUserId(svnUserId, begin, end, null);
-	}
-
-	public List<SVNRevision> findBySVNUserId(String svnUserId, int begin,
-		int end, OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "findBySVNUserId";
-		String[] finderParams = new String[] {
-				String.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
-		Object[] finderArgs = new Object[] {
-				svnUserId,
-				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
-			};
-
-		Object result = null;
-
-		if (finderClassNameCacheEnabled) {
-			result = FinderCache.getResult(finderClassName, finderMethodName,
-					finderParams, finderArgs, getSessionFactory());
-		}
-
-		if (result == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringMaker query = new StringMaker();
-
-				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
-
-				if (svnUserId == null) {
-					query.append("svnUserId IS NULL");
-				}
-				else {
-					query.append("svnUserId = ?");
-				}
-
-				query.append(" ");
-
-				if (obc != null) {
-					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
-				}
-
-				else {
-					query.append("ORDER BY ");
-
-					query.append("revisionNumber DESC");
-				}
-
-				Query q = session.createQuery(query.toString());
-
-				int queryPos = 0;
-
-				if (svnUserId != null) {
-					q.setString(queryPos++, svnUserId);
-				}
-
-				List<SVNRevision> list = (List<SVNRevision>)QueryUtil.list(q,
-						getDialect(), begin, end);
-
-				FinderCache.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
-			}
-			catch (Exception e) {
-				throw HibernateUtil.processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-		else {
-			return (List<SVNRevision>)result;
-		}
-	}
-
-	public SVNRevision findBySVNUserId_First(String svnUserId,
-		OrderByComparator obc)
-		throws NoSuchSVNRevisionException, SystemException {
-		List<SVNRevision> list = findBySVNUserId(svnUserId, 0, 1, obc);
-
-		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
-
-			msg.append("No SVNRevision exists with the key {");
-
-			msg.append("svnUserId=" + svnUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchSVNRevisionException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	public SVNRevision findBySVNUserId_Last(String svnUserId,
-		OrderByComparator obc)
-		throws NoSuchSVNRevisionException, SystemException {
-		int count = countBySVNUserId(svnUserId);
-
-		List<SVNRevision> list = findBySVNUserId(svnUserId, count - 1, count,
-				obc);
-
-		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
-
-			msg.append("No SVNRevision exists with the key {");
-
-			msg.append("svnUserId=" + svnUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchSVNRevisionException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	public SVNRevision[] findBySVNUserId_PrevAndNext(long svnRevisionId,
-		String svnUserId, OrderByComparator obc)
-		throws NoSuchSVNRevisionException, SystemException {
-		SVNRevision svnRevision = findByPrimaryKey(svnRevisionId);
-
-		int count = countBySVNUserId(svnUserId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			StringMaker query = new StringMaker();
-
-			query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
-
-			if (svnUserId == null) {
-				query.append("svnUserId IS NULL");
-			}
-			else {
-				query.append("svnUserId = ?");
-			}
-
-			query.append(" ");
-
-			if (obc != null) {
-				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
-			}
-
-			else {
-				query.append("ORDER BY ");
-
-				query.append("revisionNumber DESC");
-			}
-
-			Query q = session.createQuery(query.toString());
-
-			int queryPos = 0;
-
-			if (svnUserId != null) {
-				q.setString(queryPos++, svnUserId);
-			}
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					svnRevision);
-
-			SVNRevision[] array = new SVNRevisionImpl[3];
-
-			array[0] = (SVNRevision)objArray[0];
-			array[1] = (SVNRevision)objArray[1];
-			array[2] = (SVNRevision)objArray[2];
-
-			return array;
-		}
-		catch (Exception e) {
-			throw HibernateUtil.processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public List<SVNRevision> findBySVNRepositoryId(long svnRepositoryId)
-		throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "findBySVNRepositoryId";
+		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
+		String finderClassName = WallEntry.class.getName();
+		String finderMethodName = "findByGroupId";
 		String[] finderParams = new String[] { Long.class.getName() };
-		Object[] finderArgs = new Object[] { new Long(svnRepositoryId) };
+		Object[] finderArgs = new Object[] { new Long(groupId) };
 
 		Object result = null;
 
@@ -542,23 +276,23 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 				StringMaker query = new StringMaker();
 
-				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
 
-				query.append("svnRepositoryId = ?");
+				query.append("groupId = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("revisionNumber DESC");
+				query.append("createDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
 				int queryPos = 0;
 
-				q.setLong(queryPos++, svnRepositoryId);
+				q.setLong(queryPos++, groupId);
 
-				List<SVNRevision> list = q.list();
+				List<WallEntry> list = q.list();
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -574,20 +308,20 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 			}
 		}
 		else {
-			return (List<SVNRevision>)result;
+			return (List<WallEntry>)result;
 		}
 	}
 
-	public List<SVNRevision> findBySVNRepositoryId(long svnRepositoryId,
-		int begin, int end) throws SystemException {
-		return findBySVNRepositoryId(svnRepositoryId, begin, end, null);
+	public List<WallEntry> findByGroupId(long groupId, int begin, int end)
+		throws SystemException {
+		return findByGroupId(groupId, begin, end, null);
 	}
 
-	public List<SVNRevision> findBySVNRepositoryId(long svnRepositoryId,
-		int begin, int end, OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "findBySVNRepositoryId";
+	public List<WallEntry> findByGroupId(long groupId, int begin, int end,
+		OrderByComparator obc) throws SystemException {
+		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
+		String finderClassName = WallEntry.class.getName();
+		String finderMethodName = "findByGroupId";
 		String[] finderParams = new String[] {
 				Long.class.getName(),
 				
@@ -595,7 +329,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 		Object[] finderArgs = new Object[] {
-				new Long(svnRepositoryId),
+				new Long(groupId),
 				
 				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
 			};
@@ -615,9 +349,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 				StringMaker query = new StringMaker();
 
-				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
 
-				query.append("svnRepositoryId = ?");
+				query.append("groupId = ?");
 
 				query.append(" ");
 
@@ -629,16 +363,16 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 				else {
 					query.append("ORDER BY ");
 
-					query.append("revisionNumber DESC");
+					query.append("createDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
 
 				int queryPos = 0;
 
-				q.setLong(queryPos++, svnRepositoryId);
+				q.setLong(queryPos++, groupId);
 
-				List<SVNRevision> list = (List<SVNRevision>)QueryUtil.list(q,
+				List<WallEntry> list = (List<WallEntry>)QueryUtil.list(q,
 						getDialect(), begin, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
@@ -655,62 +389,58 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 			}
 		}
 		else {
-			return (List<SVNRevision>)result;
+			return (List<WallEntry>)result;
 		}
 	}
 
-	public SVNRevision findBySVNRepositoryId_First(long svnRepositoryId,
-		OrderByComparator obc)
-		throws NoSuchSVNRevisionException, SystemException {
-		List<SVNRevision> list = findBySVNRepositoryId(svnRepositoryId, 0, 1,
-				obc);
+	public WallEntry findByGroupId_First(long groupId, OrderByComparator obc)
+		throws NoSuchWallEntryException, SystemException {
+		List<WallEntry> list = findByGroupId(groupId, 0, 1, obc);
 
 		if (list.size() == 0) {
 			StringMaker msg = new StringMaker();
 
-			msg.append("No SVNRevision exists with the key {");
+			msg.append("No WallEntry exists with the key {");
 
-			msg.append("svnRepositoryId=" + svnRepositoryId);
+			msg.append("groupId=" + groupId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			throw new NoSuchSVNRevisionException(msg.toString());
+			throw new NoSuchWallEntryException(msg.toString());
 		}
 		else {
 			return list.get(0);
 		}
 	}
 
-	public SVNRevision findBySVNRepositoryId_Last(long svnRepositoryId,
-		OrderByComparator obc)
-		throws NoSuchSVNRevisionException, SystemException {
-		int count = countBySVNRepositoryId(svnRepositoryId);
+	public WallEntry findByGroupId_Last(long groupId, OrderByComparator obc)
+		throws NoSuchWallEntryException, SystemException {
+		int count = countByGroupId(groupId);
 
-		List<SVNRevision> list = findBySVNRepositoryId(svnRepositoryId,
-				count - 1, count, obc);
+		List<WallEntry> list = findByGroupId(groupId, count - 1, count, obc);
 
 		if (list.size() == 0) {
 			StringMaker msg = new StringMaker();
 
-			msg.append("No SVNRevision exists with the key {");
+			msg.append("No WallEntry exists with the key {");
 
-			msg.append("svnRepositoryId=" + svnRepositoryId);
+			msg.append("groupId=" + groupId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			throw new NoSuchSVNRevisionException(msg.toString());
+			throw new NoSuchWallEntryException(msg.toString());
 		}
 		else {
 			return list.get(0);
 		}
 	}
 
-	public SVNRevision[] findBySVNRepositoryId_PrevAndNext(long svnRevisionId,
-		long svnRepositoryId, OrderByComparator obc)
-		throws NoSuchSVNRevisionException, SystemException {
-		SVNRevision svnRevision = findByPrimaryKey(svnRevisionId);
+	public WallEntry[] findByGroupId_PrevAndNext(long wallEntryId,
+		long groupId, OrderByComparator obc)
+		throws NoSuchWallEntryException, SystemException {
+		WallEntry wallEntry = findByPrimaryKey(wallEntryId);
 
-		int count = countBySVNRepositoryId(svnRepositoryId);
+		int count = countByGroupId(groupId);
 
 		Session session = null;
 
@@ -719,9 +449,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 			StringMaker query = new StringMaker();
 
-			query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+			query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
 
-			query.append("svnRepositoryId = ?");
+			query.append("groupId = ?");
 
 			query.append(" ");
 
@@ -733,23 +463,23 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 			else {
 				query.append("ORDER BY ");
 
-				query.append("revisionNumber DESC");
+				query.append("createDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
 
 			int queryPos = 0;
 
-			q.setLong(queryPos++, svnRepositoryId);
+			q.setLong(queryPos++, groupId);
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					svnRevision);
+					wallEntry);
 
-			SVNRevision[] array = new SVNRevisionImpl[3];
+			WallEntry[] array = new WallEntryImpl[3];
 
-			array[0] = (SVNRevision)objArray[0];
-			array[1] = (SVNRevision)objArray[1];
-			array[2] = (SVNRevision)objArray[2];
+			array[0] = (WallEntry)objArray[0];
+			array[1] = (WallEntry)objArray[1];
+			array[2] = (WallEntry)objArray[2];
 
 			return array;
 		}
@@ -761,15 +491,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<SVNRevision> findBySVNU_SVNR(String svnUserId,
-		long svnRepositoryId) throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "findBySVNU_SVNR";
-		String[] finderParams = new String[] {
-				String.class.getName(), Long.class.getName()
-			};
-		Object[] finderArgs = new Object[] { svnUserId, new Long(svnRepositoryId) };
+	public List<WallEntry> findByUserId(long userId) throws SystemException {
+		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
+		String finderClassName = WallEntry.class.getName();
+		String finderMethodName = "findByUserId";
+		String[] finderParams = new String[] { Long.class.getName() };
+		Object[] finderArgs = new Object[] { new Long(userId) };
 
 		Object result = null;
 
@@ -786,36 +513,23 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 				StringMaker query = new StringMaker();
 
-				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
 
-				if (svnUserId == null) {
-					query.append("svnUserId IS NULL");
-				}
-				else {
-					query.append("svnUserId = ?");
-				}
-
-				query.append(" AND ");
-
-				query.append("svnRepositoryId = ?");
+				query.append("userId = ?");
 
 				query.append(" ");
 
 				query.append("ORDER BY ");
 
-				query.append("revisionNumber DESC");
+				query.append("createDate DESC");
 
 				Query q = session.createQuery(query.toString());
 
 				int queryPos = 0;
 
-				if (svnUserId != null) {
-					q.setString(queryPos++, svnUserId);
-				}
+				q.setLong(queryPos++, userId);
 
-				q.setLong(queryPos++, svnRepositoryId);
-
-				List<SVNRevision> list = q.list();
+				List<WallEntry> list = q.list();
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -831,29 +545,28 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 			}
 		}
 		else {
-			return (List<SVNRevision>)result;
+			return (List<WallEntry>)result;
 		}
 	}
 
-	public List<SVNRevision> findBySVNU_SVNR(String svnUserId,
-		long svnRepositoryId, int begin, int end) throws SystemException {
-		return findBySVNU_SVNR(svnUserId, svnRepositoryId, begin, end, null);
+	public List<WallEntry> findByUserId(long userId, int begin, int end)
+		throws SystemException {
+		return findByUserId(userId, begin, end, null);
 	}
 
-	public List<SVNRevision> findBySVNU_SVNR(String svnUserId,
-		long svnRepositoryId, int begin, int end, OrderByComparator obc)
-		throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "findBySVNU_SVNR";
+	public List<WallEntry> findByUserId(long userId, int begin, int end,
+		OrderByComparator obc) throws SystemException {
+		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
+		String finderClassName = WallEntry.class.getName();
+		String finderMethodName = "findByUserId";
 		String[] finderParams = new String[] {
-				String.class.getName(), Long.class.getName(),
+				Long.class.getName(),
 				
 				"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 		Object[] finderArgs = new Object[] {
-				svnUserId, new Long(svnRepositoryId),
+				new Long(userId),
 				
 				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
 			};
@@ -873,18 +586,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 				StringMaker query = new StringMaker();
 
-				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
 
-				if (svnUserId == null) {
-					query.append("svnUserId IS NULL");
-				}
-				else {
-					query.append("svnUserId = ?");
-				}
-
-				query.append(" AND ");
-
-				query.append("svnRepositoryId = ?");
+				query.append("userId = ?");
 
 				query.append(" ");
 
@@ -896,20 +600,16 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 				else {
 					query.append("ORDER BY ");
 
-					query.append("revisionNumber DESC");
+					query.append("createDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
 
 				int queryPos = 0;
 
-				if (svnUserId != null) {
-					q.setString(queryPos++, svnUserId);
-				}
+				q.setLong(queryPos++, userId);
 
-				q.setLong(queryPos++, svnRepositoryId);
-
-				List<SVNRevision> list = (List<SVNRevision>)QueryUtil.list(q,
+				List<WallEntry> list = (List<WallEntry>)QueryUtil.list(q,
 						getDialect(), begin, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
@@ -926,68 +626,57 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 			}
 		}
 		else {
-			return (List<SVNRevision>)result;
+			return (List<WallEntry>)result;
 		}
 	}
 
-	public SVNRevision findBySVNU_SVNR_First(String svnUserId,
-		long svnRepositoryId, OrderByComparator obc)
-		throws NoSuchSVNRevisionException, SystemException {
-		List<SVNRevision> list = findBySVNU_SVNR(svnUserId, svnRepositoryId, 0,
-				1, obc);
+	public WallEntry findByUserId_First(long userId, OrderByComparator obc)
+		throws NoSuchWallEntryException, SystemException {
+		List<WallEntry> list = findByUserId(userId, 0, 1, obc);
 
 		if (list.size() == 0) {
 			StringMaker msg = new StringMaker();
 
-			msg.append("No SVNRevision exists with the key {");
+			msg.append("No WallEntry exists with the key {");
 
-			msg.append("svnUserId=" + svnUserId);
-
-			msg.append(", ");
-			msg.append("svnRepositoryId=" + svnRepositoryId);
+			msg.append("userId=" + userId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			throw new NoSuchSVNRevisionException(msg.toString());
+			throw new NoSuchWallEntryException(msg.toString());
 		}
 		else {
 			return list.get(0);
 		}
 	}
 
-	public SVNRevision findBySVNU_SVNR_Last(String svnUserId,
-		long svnRepositoryId, OrderByComparator obc)
-		throws NoSuchSVNRevisionException, SystemException {
-		int count = countBySVNU_SVNR(svnUserId, svnRepositoryId);
+	public WallEntry findByUserId_Last(long userId, OrderByComparator obc)
+		throws NoSuchWallEntryException, SystemException {
+		int count = countByUserId(userId);
 
-		List<SVNRevision> list = findBySVNU_SVNR(svnUserId, svnRepositoryId,
-				count - 1, count, obc);
+		List<WallEntry> list = findByUserId(userId, count - 1, count, obc);
 
 		if (list.size() == 0) {
 			StringMaker msg = new StringMaker();
 
-			msg.append("No SVNRevision exists with the key {");
+			msg.append("No WallEntry exists with the key {");
 
-			msg.append("svnUserId=" + svnUserId);
-
-			msg.append(", ");
-			msg.append("svnRepositoryId=" + svnRepositoryId);
+			msg.append("userId=" + userId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			throw new NoSuchSVNRevisionException(msg.toString());
+			throw new NoSuchWallEntryException(msg.toString());
 		}
 		else {
 			return list.get(0);
 		}
 	}
 
-	public SVNRevision[] findBySVNU_SVNR_PrevAndNext(long svnRevisionId,
-		String svnUserId, long svnRepositoryId, OrderByComparator obc)
-		throws NoSuchSVNRevisionException, SystemException {
-		SVNRevision svnRevision = findByPrimaryKey(svnRevisionId);
+	public WallEntry[] findByUserId_PrevAndNext(long wallEntryId, long userId,
+		OrderByComparator obc) throws NoSuchWallEntryException, SystemException {
+		WallEntry wallEntry = findByPrimaryKey(wallEntryId);
 
-		int count = countBySVNU_SVNR(svnUserId, svnRepositoryId);
+		int count = countByUserId(userId);
 
 		Session session = null;
 
@@ -996,18 +685,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 			StringMaker query = new StringMaker();
 
-			query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+			query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
 
-			if (svnUserId == null) {
-				query.append("svnUserId IS NULL");
-			}
-			else {
-				query.append("svnUserId = ?");
-			}
-
-			query.append(" AND ");
-
-			query.append("svnRepositoryId = ?");
+			query.append("userId = ?");
 
 			query.append(" ");
 
@@ -1019,27 +699,23 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 			else {
 				query.append("ORDER BY ");
 
-				query.append("revisionNumber DESC");
+				query.append("createDate DESC");
 			}
 
 			Query q = session.createQuery(query.toString());
 
 			int queryPos = 0;
 
-			if (svnUserId != null) {
-				q.setString(queryPos++, svnUserId);
-			}
-
-			q.setLong(queryPos++, svnRepositoryId);
+			q.setLong(queryPos++, userId);
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					svnRevision);
+					wallEntry);
 
-			SVNRevision[] array = new SVNRevisionImpl[3];
+			WallEntry[] array = new WallEntryImpl[3];
 
-			array[0] = (SVNRevision)objArray[0];
-			array[1] = (SVNRevision)objArray[1];
-			array[2] = (SVNRevision)objArray[2];
+			array[0] = (WallEntry)objArray[0];
+			array[1] = (WallEntry)objArray[1];
+			array[2] = (WallEntry)objArray[2];
 
 			return array;
 		}
@@ -1051,7 +727,271 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<SVNRevision> findWithDynamicQuery(
+	public List<WallEntry> findByG_U(long groupId, long userId)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
+		String finderClassName = WallEntry.class.getName();
+		String finderMethodName = "findByG_U";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Long.class.getName()
+			};
+		Object[] finderArgs = new Object[] { new Long(groupId), new Long(userId) };
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCache.getResult(finderClassName, finderMethodName,
+					finderParams, finderArgs, getSessionFactory());
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringMaker query = new StringMaker();
+
+				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
+
+				query.append("groupId = ?");
+
+				query.append(" AND ");
+
+				query.append("userId = ?");
+
+				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("createDate DESC");
+
+				Query q = session.createQuery(query.toString());
+
+				int queryPos = 0;
+
+				q.setLong(queryPos++, groupId);
+
+				q.setLong(queryPos++, userId);
+
+				List<WallEntry> list = q.list();
+
+				FinderCache.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw HibernateUtil.processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<WallEntry>)result;
+		}
+	}
+
+	public List<WallEntry> findByG_U(long groupId, long userId, int begin,
+		int end) throws SystemException {
+		return findByG_U(groupId, userId, begin, end, null);
+	}
+
+	public List<WallEntry> findByG_U(long groupId, long userId, int begin,
+		int end, OrderByComparator obc) throws SystemException {
+		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
+		String finderClassName = WallEntry.class.getName();
+		String finderMethodName = "findByG_U";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Long.class.getName(),
+				
+				"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(groupId), new Long(userId),
+				
+				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCache.getResult(finderClassName, finderMethodName,
+					finderParams, finderArgs, getSessionFactory());
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringMaker query = new StringMaker();
+
+				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
+
+				query.append("groupId = ?");
+
+				query.append(" AND ");
+
+				query.append("userId = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+					query.append(obc.getOrderBy());
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("createDate DESC");
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				int queryPos = 0;
+
+				q.setLong(queryPos++, groupId);
+
+				q.setLong(queryPos++, userId);
+
+				List<WallEntry> list = (List<WallEntry>)QueryUtil.list(q,
+						getDialect(), begin, end);
+
+				FinderCache.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw HibernateUtil.processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<WallEntry>)result;
+		}
+	}
+
+	public WallEntry findByG_U_First(long groupId, long userId,
+		OrderByComparator obc) throws NoSuchWallEntryException, SystemException {
+		List<WallEntry> list = findByG_U(groupId, userId, 0, 1, obc);
+
+		if (list.size() == 0) {
+			StringMaker msg = new StringMaker();
+
+			msg.append("No WallEntry exists with the key {");
+
+			msg.append("groupId=" + groupId);
+
+			msg.append(", ");
+			msg.append("userId=" + userId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWallEntryException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WallEntry findByG_U_Last(long groupId, long userId,
+		OrderByComparator obc) throws NoSuchWallEntryException, SystemException {
+		int count = countByG_U(groupId, userId);
+
+		List<WallEntry> list = findByG_U(groupId, userId, count - 1, count, obc);
+
+		if (list.size() == 0) {
+			StringMaker msg = new StringMaker();
+
+			msg.append("No WallEntry exists with the key {");
+
+			msg.append("groupId=" + groupId);
+
+			msg.append(", ");
+			msg.append("userId=" + userId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchWallEntryException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public WallEntry[] findByG_U_PrevAndNext(long wallEntryId, long groupId,
+		long userId, OrderByComparator obc)
+		throws NoSuchWallEntryException, SystemException {
+		WallEntry wallEntry = findByPrimaryKey(wallEntryId);
+
+		int count = countByG_U(groupId, userId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringMaker query = new StringMaker();
+
+			query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
+
+			query.append("groupId = ?");
+
+			query.append(" AND ");
+
+			query.append("userId = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+				query.append(obc.getOrderBy());
+			}
+
+			else {
+				query.append("ORDER BY ");
+
+				query.append("createDate DESC");
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			int queryPos = 0;
+
+			q.setLong(queryPos++, groupId);
+
+			q.setLong(queryPos++, userId);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+					wallEntry);
+
+			WallEntry[] array = new WallEntryImpl[3];
+
+			array[0] = (WallEntry)objArray[0];
+			array[1] = (WallEntry)objArray[1];
+			array[2] = (WallEntry)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw HibernateUtil.processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<WallEntry> findWithDynamicQuery(
 		DynamicQueryInitializer queryInitializer) throws SystemException {
 		Session session = null;
 
@@ -1070,7 +1010,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<SVNRevision> findWithDynamicQuery(
+	public List<WallEntry> findWithDynamicQuery(
 		DynamicQueryInitializer queryInitializer, int begin, int end)
 		throws SystemException {
 		Session session = null;
@@ -1092,19 +1032,19 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<SVNRevision> findAll() throws SystemException {
+	public List<WallEntry> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
-	public List<SVNRevision> findAll(int begin, int end)
+	public List<WallEntry> findAll(int begin, int end)
 		throws SystemException {
 		return findAll(begin, end, null);
 	}
 
-	public List<SVNRevision> findAll(int begin, int end, OrderByComparator obc)
+	public List<WallEntry> findAll(int begin, int end, OrderByComparator obc)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
+		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
+		String finderClassName = WallEntry.class.getName();
 		String finderMethodName = "findAll";
 		String[] finderParams = new String[] {
 				"java.lang.Integer", "java.lang.Integer",
@@ -1129,7 +1069,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 				StringMaker query = new StringMaker();
 
-				query.append("FROM com.liferay.wol.model.SVNRevision ");
+				query.append("FROM com.liferay.wol.model.WallEntry ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
@@ -1139,12 +1079,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 				else {
 					query.append("ORDER BY ");
 
-					query.append("revisionNumber DESC");
+					query.append("createDate DESC");
 				}
 
 				Query q = session.createQuery(query.toString());
 
-				List<SVNRevision> list = (List<SVNRevision>)QueryUtil.list(q,
+				List<WallEntry> list = (List<WallEntry>)QueryUtil.list(q,
 						getDialect(), begin, end);
 
 				if (obc == null) {
@@ -1165,116 +1105,41 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 			}
 		}
 		else {
-			return (List<SVNRevision>)result;
+			return (List<WallEntry>)result;
 		}
 	}
 
-	public void removeBySVNUserId(String svnUserId) throws SystemException {
-		for (SVNRevision svnRevision : findBySVNUserId(svnUserId)) {
-			remove(svnRevision);
+	public void removeByGroupId(long groupId) throws SystemException {
+		for (WallEntry wallEntry : findByGroupId(groupId)) {
+			remove(wallEntry);
 		}
 	}
 
-	public void removeBySVNRepositoryId(long svnRepositoryId)
+	public void removeByUserId(long userId) throws SystemException {
+		for (WallEntry wallEntry : findByUserId(userId)) {
+			remove(wallEntry);
+		}
+	}
+
+	public void removeByG_U(long groupId, long userId)
 		throws SystemException {
-		for (SVNRevision svnRevision : findBySVNRepositoryId(svnRepositoryId)) {
-			remove(svnRevision);
-		}
-	}
-
-	public void removeBySVNU_SVNR(String svnUserId, long svnRepositoryId)
-		throws SystemException {
-		for (SVNRevision svnRevision : findBySVNU_SVNR(svnUserId,
-				svnRepositoryId)) {
-			remove(svnRevision);
+		for (WallEntry wallEntry : findByG_U(groupId, userId)) {
+			remove(wallEntry);
 		}
 	}
 
 	public void removeAll() throws SystemException {
-		for (SVNRevision svnRevision : findAll()) {
-			remove(svnRevision);
+		for (WallEntry wallEntry : findAll()) {
+			remove(wallEntry);
 		}
 	}
 
-	public int countBySVNUserId(String svnUserId) throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "countBySVNUserId";
-		String[] finderParams = new String[] { String.class.getName() };
-		Object[] finderArgs = new Object[] { svnUserId };
-
-		Object result = null;
-
-		if (finderClassNameCacheEnabled) {
-			result = FinderCache.getResult(finderClassName, finderMethodName,
-					finderParams, finderArgs, getSessionFactory());
-		}
-
-		if (result == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringMaker query = new StringMaker();
-
-				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
-
-				if (svnUserId == null) {
-					query.append("svnUserId IS NULL");
-				}
-				else {
-					query.append("svnUserId = ?");
-				}
-
-				query.append(" ");
-
-				Query q = session.createQuery(query.toString());
-
-				int queryPos = 0;
-
-				if (svnUserId != null) {
-					q.setString(queryPos++, svnUserId);
-				}
-
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCache.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
-			}
-			catch (Exception e) {
-				throw HibernateUtil.processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-		else {
-			return ((Long)result).intValue();
-		}
-	}
-
-	public int countBySVNRepositoryId(long svnRepositoryId)
-		throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "countBySVNRepositoryId";
+	public int countByGroupId(long groupId) throws SystemException {
+		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
+		String finderClassName = WallEntry.class.getName();
+		String finderMethodName = "countByGroupId";
 		String[] finderParams = new String[] { Long.class.getName() };
-		Object[] finderArgs = new Object[] { new Long(svnRepositoryId) };
+		Object[] finderArgs = new Object[] { new Long(groupId) };
 
 		Object result = null;
 
@@ -1292,9 +1157,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 				StringMaker query = new StringMaker();
 
 				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
 
-				query.append("svnRepositoryId = ?");
+				query.append("groupId = ?");
 
 				query.append(" ");
 
@@ -1302,7 +1167,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 				int queryPos = 0;
 
-				q.setLong(queryPos++, svnRepositoryId);
+				q.setLong(queryPos++, groupId);
 
 				Long count = null;
 
@@ -1334,15 +1199,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public int countBySVNU_SVNR(String svnUserId, long svnRepositoryId)
-		throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "countBySVNU_SVNR";
-		String[] finderParams = new String[] {
-				String.class.getName(), Long.class.getName()
-			};
-		Object[] finderArgs = new Object[] { svnUserId, new Long(svnRepositoryId) };
+	public int countByUserId(long userId) throws SystemException {
+		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
+		String finderClassName = WallEntry.class.getName();
+		String finderMethodName = "countByUserId";
+		String[] finderParams = new String[] { Long.class.getName() };
+		Object[] finderArgs = new Object[] { new Long(userId) };
 
 		Object result = null;
 
@@ -1360,18 +1222,80 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 				StringMaker query = new StringMaker();
 
 				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.wol.model.SVNRevision WHERE ");
+				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
 
-				if (svnUserId == null) {
-					query.append("svnUserId IS NULL");
+				query.append("userId = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				int queryPos = 0;
+
+				q.setLong(queryPos++, userId);
+
+				Long count = null;
+
+				Iterator<Long> itr = q.list().iterator();
+
+				if (itr.hasNext()) {
+					count = itr.next();
 				}
-				else {
-					query.append("svnUserId = ?");
+
+				if (count == null) {
+					count = new Long(0);
 				}
+
+				FinderCache.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, count);
+
+				return count.intValue();
+			}
+			catch (Exception e) {
+				throw HibernateUtil.processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return ((Long)result).intValue();
+		}
+	}
+
+	public int countByG_U(long groupId, long userId) throws SystemException {
+		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
+		String finderClassName = WallEntry.class.getName();
+		String finderMethodName = "countByG_U";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Long.class.getName()
+			};
+		Object[] finderArgs = new Object[] { new Long(groupId), new Long(userId) };
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCache.getResult(finderClassName, finderMethodName,
+					finderParams, finderArgs, getSessionFactory());
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringMaker query = new StringMaker();
+
+				query.append("SELECT COUNT(*) ");
+				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
+
+				query.append("groupId = ?");
 
 				query.append(" AND ");
 
-				query.append("svnRepositoryId = ?");
+				query.append("userId = ?");
 
 				query.append(" ");
 
@@ -1379,11 +1303,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 				int queryPos = 0;
 
-				if (svnUserId != null) {
-					q.setString(queryPos++, svnUserId);
-				}
+				q.setLong(queryPos++, groupId);
 
-				q.setLong(queryPos++, svnRepositoryId);
+				q.setLong(queryPos++, userId);
 
 				Long count = null;
 
@@ -1416,8 +1338,8 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 	}
 
 	public int countAll() throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
+		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
+		String finderClassName = WallEntry.class.getName();
 		String finderMethodName = "countAll";
 		String[] finderParams = new String[] {  };
 		Object[] finderArgs = new Object[] {  };
@@ -1436,7 +1358,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 				session = openSession();
 
 				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.wol.model.SVNRevision");
+						"SELECT COUNT(*) FROM com.liferay.wol.model.WallEntry");
 
 				Long count = null;
 
@@ -1471,7 +1393,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 	protected void initDao() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					PropsUtil.get(
-						"value.object.listener.com.liferay.wol.model.SVNRevision")));
+						"value.object.listener.com.liferay.wol.model.WallEntry")));
 
 		if (listenerClassNames.length > 0) {
 			try {
@@ -1490,6 +1412,6 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 		}
 	}
 
-	private static Log _log = LogFactory.getLog(SVNRevisionPersistenceImpl.class);
+	private static Log _log = LogFactory.getLog(WallEntryPersistenceImpl.class);
 	private ModelListener[] _listeners;
 }

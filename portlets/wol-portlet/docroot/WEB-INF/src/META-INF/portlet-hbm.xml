@@ -4,7 +4,7 @@
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<class name="com.liferay.wol.model.impl.JIRAIssueImpl" table="jiraissue">
 		<cache usage="read-write" />
-		<id name="jiraIssueId" type="long">
+		<id name="jiraIssueId" column="id" type="long">
 			<generator class="assigned" />
 		</id>
 		<property name="createDate" column="created" />
@@ -35,6 +35,19 @@
 		<property name="createDate" />
 		<property name="svnRepositoryId" type="com.liferay.util.dao.hibernate.LongType" />
 		<property name="revisionNumber" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="comments" type="com.liferay.util.dao.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.wol.model.impl.WallEntryImpl" table="WOL_WallEntry">
+		<cache usage="read-write" />
+		<id name="wallEntryId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="userId" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="userName" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="createDate" />
+		<property name="modifiedDate" />
 		<property name="comments" type="com.liferay.util.dao.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

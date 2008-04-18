@@ -32,12 +32,16 @@ import com.liferay.wol.service.JIRAIssueLocalServiceFactory;
 import com.liferay.wol.service.SVNRepositoryLocalService;
 import com.liferay.wol.service.SVNRepositoryLocalServiceFactory;
 import com.liferay.wol.service.SVNRevisionLocalService;
+import com.liferay.wol.service.WallEntryLocalService;
+import com.liferay.wol.service.WallEntryLocalServiceFactory;
 import com.liferay.wol.service.persistence.JIRAIssuePersistence;
 import com.liferay.wol.service.persistence.JIRAIssueUtil;
 import com.liferay.wol.service.persistence.SVNRepositoryPersistence;
 import com.liferay.wol.service.persistence.SVNRepositoryUtil;
 import com.liferay.wol.service.persistence.SVNRevisionPersistence;
 import com.liferay.wol.service.persistence.SVNRevisionUtil;
+import com.liferay.wol.service.persistence.WallEntryPersistence;
+import com.liferay.wol.service.persistence.WallEntryUtil;
 
 import org.springframework.beans.factory.InitializingBean;
 
@@ -132,6 +136,24 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 		this.svnRevisionPersistence = svnRevisionPersistence;
 	}
 
+	public WallEntryLocalService getWallEntryLocalService() {
+		return wallEntryLocalService;
+	}
+
+	public void setWallEntryLocalService(
+		WallEntryLocalService wallEntryLocalService) {
+		this.wallEntryLocalService = wallEntryLocalService;
+	}
+
+	public WallEntryPersistence getWallEntryPersistence() {
+		return wallEntryPersistence;
+	}
+
+	public void setWallEntryPersistence(
+		WallEntryPersistence wallEntryPersistence) {
+		this.wallEntryPersistence = wallEntryPersistence;
+	}
+
 	public void afterPropertiesSet() {
 		if (jiraIssueLocalService == null) {
 			jiraIssueLocalService = JIRAIssueLocalServiceFactory.getImpl();
@@ -152,6 +174,14 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 		if (svnRevisionPersistence == null) {
 			svnRevisionPersistence = SVNRevisionUtil.getPersistence();
 		}
+
+		if (wallEntryLocalService == null) {
+			wallEntryLocalService = WallEntryLocalServiceFactory.getImpl();
+		}
+
+		if (wallEntryPersistence == null) {
+			wallEntryPersistence = WallEntryUtil.getPersistence();
+		}
 	}
 
 	protected JIRAIssueLocalService jiraIssueLocalService;
@@ -159,4 +189,6 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	protected SVNRepositoryLocalService svnRepositoryLocalService;
 	protected SVNRepositoryPersistence svnRepositoryPersistence;
 	protected SVNRevisionPersistence svnRevisionPersistence;
+	protected WallEntryLocalService wallEntryLocalService;
+	protected WallEntryPersistence wallEntryPersistence;
 }

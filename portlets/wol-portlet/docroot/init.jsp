@@ -22,6 +22,8 @@
  */
 %>
 
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+
 <%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
 
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
@@ -29,23 +31,62 @@
 
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
+<%@ page import="com.liferay.portal.kernel.dao.search.SearchEntry" %>
+<%@ page import="com.liferay.portal.kernel.dao.search.TextSearchEntry" %>
 <%@ page import="com.liferay.portal.kernel.servlet.ImageServletTokenUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
+<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.Constants" %>
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.model.Group" %>
 <%@ page import="com.liferay.portal.model.User" %>
 <%@ page import="com.liferay.portal.service.GroupLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.util.DateFormats" %>
+<%@ page import="com.liferay.portal.util.comparator.UserLoginDateComparator" %>
+<%@ page import="com.liferay.portlet.blogs.service.BlogsStatsUserLocalServiceUtil" %>
+<%@ page import="com.liferay.portlet.messageboards.service.MBStatsUserLocalServiceUtil" %>
+<%@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
+<%@ page import="com.liferay.wol.jira.util.JIRAConstants" %>
+<%@ page import="com.liferay.wol.model.JIRAIssue" %>
 <%@ page import="com.liferay.wol.model.SVNRepository" %>
 <%@ page import="com.liferay.wol.model.SVNRevision" %>
+<%@ page import="com.liferay.wol.model.WallEntry" %>
+<%@ page import="com.liferay.wol.service.JIRAIssueLocalServiceUtil" %>
 <%@ page import="com.liferay.wol.service.SVNRepositoryLocalServiceUtil" %>
 <%@ page import="com.liferay.wol.service.SVNRevisionLocalServiceUtil" %>
+<%@ page import="com.liferay.wol.service.WallEntryLocalServiceUtil" %>
 <%@ page import="com.liferay.wol.svn.util.SVNConstants" %>
 
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.text.NumberFormat" %>
+
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Date" %>
 <%@ page import="java.util.List" %>
 
 <%@ page import="javax.portlet.PortletURL" %>
+<%@ page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />
+
+<%
+WindowState windowState = renderRequest.getWindowState();
+
+Group group = GroupLocalServiceUtil.getGroup(themeDisplay.getPortletGroupId());
+
+User user2 = user;
+
+if (group.isUser()) {
+	user2 = UserLocalServiceUtil.getUserById(group.getClassPK());
+}
+
+DateFormat dateFormatDate = DateFormat.getDateInstance(DateFormat.LONG, locale);
+
+dateFormatDate.setTimeZone(timeZone);
+
+DateFormat dateFormatDateTime = DateFormats.getDateTime(locale, timeZone);
+
+NumberFormat numberFormat = NumberFormat.getNumberInstance(locale);
+%>

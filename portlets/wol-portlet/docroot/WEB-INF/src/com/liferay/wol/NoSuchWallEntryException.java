@@ -20,24 +20,32 @@
  * SOFTWARE.
  */
 
-package com.liferay.wol.svn.util;
+package com.liferay.wol;
+
+import com.liferay.portal.PortalException;
 
 /**
- * <a href="SVNConstants.java.html"><b><i>View Source</i></b></a>
+ * <a href="NoSuchWallEntryException.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface SVNConstants {
+public class NoSuchWallEntryException extends PortalException {
 
-	public static final String PLUGINS_TRUNK_URL =
-		"http://lportal.svn.sourceforge.net/svnroot/lportal/plugins/trunk";
+	public NoSuchWallEntryException() {
+		super();
+	}
 
-	public static final String PORTAL_TRUNK_URL =
-		"http://lportal.svn.sourceforge.net/svnroot/lportal/portal/trunk";
+	public NoSuchWallEntryException(String msg) {
+		super(msg);
+	}
 
-	public static final String[] URLS = new String[] {
-		PORTAL_TRUNK_URL, PLUGINS_TRUNK_URL
-	};
+	public NoSuchWallEntryException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+	public NoSuchWallEntryException(Throwable cause) {
+		super(cause);
+	}
 
 }

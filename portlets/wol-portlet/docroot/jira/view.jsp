@@ -1,3 +1,4 @@
+<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -19,25 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+%>
 
-package com.liferay.wol.svn.util;
+<%@ include file="/init.jsp" %>
 
-/**
- * <a href="SVNConstants.java.html"><b><i>View Source</i></b></a>
- *
- * @author Brian Wing Shun Chan
- *
- */
-public interface SVNConstants {
+<%
+String jiraUserId = "bchan";
 
-	public static final String PLUGINS_TRUNK_URL =
-		"http://lportal.svn.sourceforge.net/svnroot/lportal/plugins/trunk";
+int assignedIssuesTotalCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId);
+int assignedIssuesClosedCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId, JIRAConstants.STATUS_CLOSED);
+Date firstAssignedIssueDate = JIRAIssueLocalServiceUtil.getFirstAssigneeJIRAIssue(JIRAConstants.PROJECT_LEP, jiraUserId).getCreateDate();
+%>
 
-	public static final String PORTAL_TRUNK_URL =
-		"http://lportal.svn.sourceforge.net/svnroot/lportal/portal/trunk";
+<%= user.getFullName() %> is assigned to <b><%= numberFormat.format(assignedIssuesTotalCount - assignedIssuesClosedCount) %></b> unresolved issues. He has resolved over <%= numberFormat.format(assignedIssuesClosedCount) %> issues since <%= dateFormatDate.format(firstAssignedIssueDate) %>.
 
-	public static final String[] URLS = new String[] {
-		PORTAL_TRUNK_URL, PLUGINS_TRUNK_URL
-	};
+<br /><br />
 
-}
+See unresolved <a href="http://support.liferay.com/secure/IssueNavigator.jspa?assigneeSelect=specificuser&sorter/field=priority&mode=hide&reset=true&resolution=-1&assignee=<%= jiraUserId %>&pid=<%= JIRAConstants.PROJECT_LEP %>&sorter/order=DESC" target="_blank">LEP</a> issues assigned to him.

@@ -20,24 +20,17 @@
  * SOFTWARE.
  */
 
-package com.liferay.wol.svn.util;
+package com.liferay.wol.model.impl;
+
+import com.liferay.wol.model.WallEntry;
 
 /**
- * <a href="SVNConstants.java.html"><b><i>View Source</i></b></a>
+ * <a href="WallEntryImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface SVNConstants {
-
-	public static final String PLUGINS_TRUNK_URL =
-		"http://lportal.svn.sourceforge.net/svnroot/lportal/plugins/trunk";
-
-	public static final String PORTAL_TRUNK_URL =
-		"http://lportal.svn.sourceforge.net/svnroot/lportal/portal/trunk";
-
-	public static final String[] URLS = new String[] {
-		PORTAL_TRUNK_URL, PLUGINS_TRUNK_URL
-	};
-
+public class WallEntryImpl extends WallEntryModelImpl implements WallEntry {
+	public WallEntryImpl() {
+	}
 }

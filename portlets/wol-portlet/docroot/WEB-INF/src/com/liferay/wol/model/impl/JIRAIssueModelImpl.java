@@ -51,7 +51,7 @@ import java.util.List;
 public class JIRAIssueModelImpl extends BaseModelImpl {
 	public static final String TABLE_NAME = "jiraissue";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "jiraIssueId", new Integer(Types.BIGINT) },
+			{ "id", new Integer(Types.BIGINT) },
 			
 
 			{ "created", new Integer(Types.TIMESTAMP) },
@@ -83,7 +83,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl {
 
 			{ "issuestatus", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table jiraissue (jiraIssueId LONG not null primary key,created DATE null,updated DATE null,project LONG,pkey VARCHAR(75) null,summary VARCHAR(75) null,description VARCHAR(75) null,reporter VARCHAR(75) null,assignee VARCHAR(75) null,resolution VARCHAR(75) null,issuestatus VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table jiraissue (id LONG not null primary key,created DATE null,updated DATE null,project LONG,pkey VARCHAR(75) null,summary VARCHAR(75) null,description VARCHAR(75) null,reporter VARCHAR(75) null,assignee VARCHAR(75) null,resolution VARCHAR(75) null,issuestatus VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table jiraissue";
 	public static final String DATA_SOURCE = "jiraDataSource";
 	public static final String SESSION_FACTORY = "jiraSessionFactory";

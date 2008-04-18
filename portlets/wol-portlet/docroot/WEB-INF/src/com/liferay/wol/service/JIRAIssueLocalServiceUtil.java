@@ -79,6 +79,15 @@ public class JIRAIssueLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> getAssigneeJIRAIssues(
+		long projectId, java.lang.String assigneeJiraUserId, int begin, int end)
+		throws com.liferay.portal.SystemException {
+		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
+
+		return jiraIssueLocalService.getAssigneeJIRAIssues(projectId,
+			assigneeJiraUserId, begin, end);
+	}
+
+	public static java.util.List<com.liferay.wol.model.JIRAIssue> getAssigneeJIRAIssues(
 		long projectId, java.lang.String assigneeJiraUserId,
 		java.lang.String status, int begin, int end)
 		throws com.liferay.portal.SystemException {
@@ -86,6 +95,15 @@ public class JIRAIssueLocalServiceUtil {
 
 		return jiraIssueLocalService.getAssigneeJIRAIssues(projectId,
 			assigneeJiraUserId, status, begin, end);
+	}
+
+	public static int getAssigneeJIRAIssuesCount(long projectId,
+		java.lang.String assigneeJiraUserId)
+		throws com.liferay.portal.SystemException {
+		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
+
+		return jiraIssueLocalService.getAssigneeJIRAIssuesCount(projectId,
+			assigneeJiraUserId);
 	}
 
 	public static int getAssigneeJIRAIssuesCount(long projectId,
@@ -97,6 +115,55 @@ public class JIRAIssueLocalServiceUtil {
 			assigneeJiraUserId, status);
 	}
 
+	public static com.liferay.wol.model.JIRAIssue getFirstAssigneeJIRAIssue(
+		long projectId, java.lang.String assigneeJiraUserId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
+
+		return jiraIssueLocalService.getFirstAssigneeJIRAIssue(projectId,
+			assigneeJiraUserId);
+	}
+
+	public static com.liferay.wol.model.JIRAIssue getFirstReporterJIRAIssue(
+		long projectId, java.lang.String reporterJiraUserId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
+
+		return jiraIssueLocalService.getFirstReporterJIRAIssue(projectId,
+			reporterJiraUserId);
+	}
+
+	public static com.liferay.wol.model.JIRAIssue getLastAssigneeJIRAIssue(
+		long projectId, java.lang.String assigneeJiraUserId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
+
+		return jiraIssueLocalService.getLastAssigneeJIRAIssue(projectId,
+			assigneeJiraUserId);
+	}
+
+	public static com.liferay.wol.model.JIRAIssue getLastreporterJIRAIssue(
+		long projectId, java.lang.String reporterJiraUserId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
+
+		return jiraIssueLocalService.getLastreporterJIRAIssue(projectId,
+			reporterJiraUserId);
+	}
+
+	public static java.util.List<com.liferay.wol.model.JIRAIssue> getReporterJIRAIssues(
+		long projectId, java.lang.String reporterJiraUserId, int begin, int end)
+		throws com.liferay.portal.SystemException {
+		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
+
+		return jiraIssueLocalService.getReporterJIRAIssues(projectId,
+			reporterJiraUserId, begin, end);
+	}
+
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> getReporterJIRAIssues(
 		long projectId, java.lang.String reporterJiraUserId,
 		java.lang.String status, int begin, int end)
@@ -105,6 +172,15 @@ public class JIRAIssueLocalServiceUtil {
 
 		return jiraIssueLocalService.getReporterJIRAIssues(projectId,
 			reporterJiraUserId, status, begin, end);
+	}
+
+	public static int getReporterJIRAIssuesCount(long projectId,
+		java.lang.String reporterJiraUserId)
+		throws com.liferay.portal.SystemException {
+		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
+
+		return jiraIssueLocalService.getReporterJIRAIssuesCount(projectId,
+			reporterJiraUserId);
 	}
 
 	public static int getReporterJIRAIssuesCount(long projectId,

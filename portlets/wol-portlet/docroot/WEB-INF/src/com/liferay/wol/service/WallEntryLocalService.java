@@ -23,70 +23,50 @@
 package com.liferay.wol.service;
 
 /**
- * <a href="SVNRevisionLocalService.java.html"><b><i>View Source</i></b></a>
+ * <a href="WallEntryLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface SVNRevisionLocalService {
-	public com.liferay.wol.model.SVNRevision addSVNRevision(
-		com.liferay.wol.model.SVNRevision svnRevision)
+public interface WallEntryLocalService {
+	public com.liferay.wol.model.WallEntry addWallEntry(
+		com.liferay.wol.model.WallEntry wallEntry)
 		throws com.liferay.portal.SystemException;
 
-	public void deleteSVNRevision(long svnRevisionId)
+	public void deleteWallEntry(long wallEntryId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
-	public void deleteSVNRevision(com.liferay.wol.model.SVNRevision svnRevision)
+	public void deleteWallEntry(com.liferay.wol.model.WallEntry wallEntry)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
-	public java.util.List<com.liferay.wol.model.SVNRevision> dynamicQuery(
+	public java.util.List<com.liferay.wol.model.WallEntry> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.SVNRevision> dynamicQuery(
+	public java.util.List<com.liferay.wol.model.WallEntry> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
 		int begin, int end) throws com.liferay.portal.SystemException;
 
-	public com.liferay.wol.model.SVNRevision updateSVNRevision(
-		com.liferay.wol.model.SVNRevision svnRevision)
+	public com.liferay.wol.model.WallEntry updateWallEntry(
+		com.liferay.wol.model.WallEntry wallEntry)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.wol.model.SVNRevision addSVNRevision(
-		java.lang.String svnUserId, java.util.Date createDate,
-		long svnRepositoryId, long revisionNumber, java.lang.String comments)
+	public com.liferay.wol.model.WallEntry addWallEntry(long groupId,
+		long userId, java.lang.String comments)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
-	public com.liferay.wol.model.SVNRevision getFirstSVNRevision(
-		java.lang.String svnUserId)
+	public java.util.List<com.liferay.wol.model.WallEntry> getWallEntries(
+		long groupId, int begin, int end)
+		throws com.liferay.portal.SystemException;
+
+	public int getWallEntriesCount(long groupId)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.wol.model.WallEntry updateWallEntry(long wallEntryId,
+		java.lang.String comments)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
-
-	public com.liferay.wol.model.SVNRevision getLastSVNRevision(
-		java.lang.String svnUserId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
-
-	public java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
-		java.lang.String svnUserId, int begin, int end)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
-		long svnRepositoryId, int begin, int end)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
-		java.lang.String svnUserId, long svnRepositoryId, int begin, int end)
-		throws com.liferay.portal.SystemException;
-
-	public int getSVNRevisionsCount(java.lang.String svnUserId)
-		throws com.liferay.portal.SystemException;
-
-	public int getSVNRevisionsCount(long svnRepositoryId)
-		throws com.liferay.portal.SystemException;
-
-	public int getSVNRevisionsCount(java.lang.String svnUserId,
-		long svnRepositoryId) throws com.liferay.portal.SystemException;
 }

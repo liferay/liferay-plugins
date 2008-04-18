@@ -26,14 +26,14 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
 
-import com.liferay.wol.model.JIRAIssue;
+import com.liferay.wol.model.WallEntry;
 import com.liferay.wol.service.JIRAIssueLocalService;
+import com.liferay.wol.service.JIRAIssueLocalServiceFactory;
 import com.liferay.wol.service.SVNRepositoryLocalService;
 import com.liferay.wol.service.SVNRepositoryLocalServiceFactory;
 import com.liferay.wol.service.SVNRevisionLocalService;
 import com.liferay.wol.service.SVNRevisionLocalServiceFactory;
 import com.liferay.wol.service.WallEntryLocalService;
-import com.liferay.wol.service.WallEntryLocalServiceFactory;
 import com.liferay.wol.service.persistence.JIRAIssuePersistence;
 import com.liferay.wol.service.persistence.JIRAIssueUtil;
 import com.liferay.wol.service.persistence.SVNRepositoryPersistence;
@@ -48,47 +48,56 @@ import org.springframework.beans.factory.InitializingBean;
 import java.util.List;
 
 /**
- * <a href="JIRAIssueLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="WallEntryLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class JIRAIssueLocalServiceBaseImpl
-	implements JIRAIssueLocalService, InitializingBean {
-	public JIRAIssue addJIRAIssue(JIRAIssue jiraIssue)
+public abstract class WallEntryLocalServiceBaseImpl
+	implements WallEntryLocalService, InitializingBean {
+	public WallEntry addWallEntry(WallEntry wallEntry)
 		throws SystemException {
-		jiraIssue.setNew(true);
+		wallEntry.setNew(true);
 
-		return jiraIssuePersistence.update(jiraIssue, false);
+		return wallEntryPersistence.update(wallEntry, false);
 	}
 
-	public void deleteJIRAIssue(long jiraIssueId)
+	public void deleteWallEntry(long wallEntryId)
 		throws PortalException, SystemException {
-		jiraIssuePersistence.remove(jiraIssueId);
+		wallEntryPersistence.remove(wallEntryId);
 	}
 
-	public void deleteJIRAIssue(JIRAIssue jiraIssue)
+	public void deleteWallEntry(WallEntry wallEntry)
 		throws PortalException, SystemException {
-		jiraIssuePersistence.remove(jiraIssue);
+		wallEntryPersistence.remove(wallEntry);
 	}
 
-	public List<JIRAIssue> dynamicQuery(
+	public List<WallEntry> dynamicQuery(
 		DynamicQueryInitializer queryInitializer) throws SystemException {
-		return jiraIssuePersistence.findWithDynamicQuery(queryInitializer);
+		return wallEntryPersistence.findWithDynamicQuery(queryInitializer);
 	}
 
-	public List<JIRAIssue> dynamicQuery(
+	public List<WallEntry> dynamicQuery(
 		DynamicQueryInitializer queryInitializer, int begin, int end)
 		throws SystemException {
-		return jiraIssuePersistence.findWithDynamicQuery(queryInitializer,
+		return wallEntryPersistence.findWithDynamicQuery(queryInitializer,
 			begin, end);
 	}
 
-	public JIRAIssue updateJIRAIssue(JIRAIssue jiraIssue)
+	public WallEntry updateWallEntry(WallEntry wallEntry)
 		throws SystemException {
-		jiraIssue.setNew(false);
+		wallEntry.setNew(false);
 
-		return jiraIssuePersistence.update(jiraIssue, true);
+		return wallEntryPersistence.update(wallEntry, true);
+	}
+
+	public JIRAIssueLocalService getJIRAIssueLocalService() {
+		return jiraIssueLocalService;
+	}
+
+	public void setJIRAIssueLocalService(
+		JIRAIssueLocalService jiraIssueLocalService) {
+		this.jiraIssueLocalService = jiraIssueLocalService;
 	}
 
 	public JIRAIssuePersistence getJIRAIssuePersistence() {
@@ -136,15 +145,6 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 		this.svnRevisionPersistence = svnRevisionPersistence;
 	}
 
-	public WallEntryLocalService getWallEntryLocalService() {
-		return wallEntryLocalService;
-	}
-
-	public void setWallEntryLocalService(
-		WallEntryLocalService wallEntryLocalService) {
-		this.wallEntryLocalService = wallEntryLocalService;
-	}
-
 	public WallEntryPersistence getWallEntryPersistence() {
 		return wallEntryPersistence;
 	}
@@ -155,6 +155,10 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	public void afterPropertiesSet() {
+		if (jiraIssueLocalService == null) {
+			jiraIssueLocalService = JIRAIssueLocalServiceFactory.getImpl();
+		}
+
 		if (jiraIssuePersistence == null) {
 			jiraIssuePersistence = JIRAIssueUtil.getPersistence();
 		}
@@ -175,20 +179,16 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 			svnRevisionPersistence = SVNRevisionUtil.getPersistence();
 		}
 
-		if (wallEntryLocalService == null) {
-			wallEntryLocalService = WallEntryLocalServiceFactory.getImpl();
-		}
-
 		if (wallEntryPersistence == null) {
 			wallEntryPersistence = WallEntryUtil.getPersistence();
 		}
 	}
 
+	protected JIRAIssueLocalService jiraIssueLocalService;
 	protected JIRAIssuePersistence jiraIssuePersistence;
 	protected SVNRepositoryLocalService svnRepositoryLocalService;
 	protected SVNRepositoryPersistence svnRepositoryPersistence;
 	protected SVNRevisionLocalService svnRevisionLocalService;
 	protected SVNRevisionPersistence svnRevisionPersistence;
-	protected WallEntryLocalService wallEntryLocalService;
 	protected WallEntryPersistence wallEntryPersistence;
 }

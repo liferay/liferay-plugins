@@ -7,7 +7,7 @@
 
 		<!-- PK fields -->
 
-		<column name="jiraIssueId" type="long" primary="true" />
+		<column name="jiraIssueId" db-name="id" type="long" primary="true" />
 
 		<!-- Audit fields -->
 
@@ -43,6 +43,14 @@
 			<finder-column name="reporterJiraUserId" />
 		</finder>
 		<finder name="AssigneeJiraUserId" return-type="Collection">
+			<finder-column name="assigneeJiraUserId" />
+		</finder>
+		<finder name="P_RJUI" return-type="Collection">
+			<finder-column name="projectId" />
+			<finder-column name="reporterJiraUserId" />
+		</finder>
+		<finder name="P_AJUI" return-type="Collection">
+			<finder-column name="projectId" />
 			<finder-column name="assigneeJiraUserId" />
 		</finder>
 		<finder name="P_RJUI_S" return-type="Collection">
@@ -99,7 +107,6 @@
 		<!-- Order -->
 
 		<order by="desc">
-			<order-column name="svnRepositoryId" />
 			<order-column name="revisionNumber" />
 		</order>
 
@@ -114,6 +121,47 @@
 		<finder name="SVNU_SVNR" return-type="Collection">
 			<finder-column name="svnUserId" />
 			<finder-column name="svnRepositoryId" />
+		</finder>
+	</entity>
+	<entity name="WallEntry" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="wallEntryId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="comments" type="String" />
+
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="createDate" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
+		<finder name="G_U" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="userId" />
 		</finder>
 	</entity>
 </service-builder>

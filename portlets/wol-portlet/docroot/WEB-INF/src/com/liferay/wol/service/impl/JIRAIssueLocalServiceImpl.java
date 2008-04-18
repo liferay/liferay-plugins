@@ -22,7 +22,9 @@
 
 package com.liferay.wol.service.impl;
 
+import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.wol.NoSuchJIRAIssueException;
 import com.liferay.wol.model.JIRAIssue;
 import com.liferay.wol.service.base.JIRAIssueLocalServiceBaseImpl;
 
@@ -37,12 +39,27 @@ import java.util.List;
 public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 
 	public List<JIRAIssue> getAssigneeJIRAIssues(
+			long projectId, String assigneeJiraUserId, int begin, int end)
+		throws SystemException {
+
+		return jiraIssuePersistence.findByP_AJUI(projectId, assigneeJiraUserId);
+	}
+
+	public List<JIRAIssue> getAssigneeJIRAIssues(
 			long projectId, String assigneeJiraUserId, String status, int begin,
 			int end)
 		throws SystemException {
 
 		return jiraIssuePersistence.findByP_AJUI_S(
 			projectId, assigneeJiraUserId, status);
+	}
+
+	public int getAssigneeJIRAIssuesCount(
+			long projectId, String assigneeJiraUserId)
+		throws SystemException {
+
+		return jiraIssuePersistence.countByP_AJUI(
+			projectId, assigneeJiraUserId);
 	}
 
 	public int getAssigneeJIRAIssuesCount(
@@ -53,6 +70,79 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 			projectId, assigneeJiraUserId, status);
 	}
 
+	public JIRAIssue getFirstAssigneeJIRAIssue(
+			long projectId, String assigneeJiraUserId)
+		throws PortalException, SystemException {
+
+		int count = jiraIssuePersistence.countByP_AJUI(
+			projectId, assigneeJiraUserId);
+
+		List<JIRAIssue> jiraIssues = jiraIssuePersistence.findByP_AJUI(
+			projectId, assigneeJiraUserId, count - 1, count);
+
+		if (jiraIssues.size() > 0) {
+			return jiraIssues.get(0);
+		}
+		else {
+			throw new NoSuchJIRAIssueException();
+		}
+	}
+
+	public JIRAIssue getFirstReporterJIRAIssue(
+			long projectId, String reporterJiraUserId)
+		throws PortalException, SystemException {
+
+		int count = jiraIssuePersistence.countByP_AJUI(
+			projectId, reporterJiraUserId);
+
+		List<JIRAIssue> jiraIssues = jiraIssuePersistence.findByP_RJUI(
+			projectId, reporterJiraUserId, count - 1, count);
+
+		if (jiraIssues.size() > 0) {
+			return jiraIssues.get(0);
+		}
+		else {
+			throw new NoSuchJIRAIssueException();
+		}
+	}
+
+	public JIRAIssue getLastAssigneeJIRAIssue(
+			long projectId, String assigneeJiraUserId)
+		throws PortalException, SystemException {
+
+		List<JIRAIssue> jiraIssues = jiraIssuePersistence.findByP_AJUI(
+			projectId, assigneeJiraUserId, 0, 1);
+
+		if (jiraIssues.size() > 0) {
+			return jiraIssues.get(0);
+		}
+		else {
+			throw new NoSuchJIRAIssueException();
+		}
+	}
+
+	public JIRAIssue getLastreporterJIRAIssue(
+			long projectId, String reporterJiraUserId)
+		throws PortalException, SystemException {
+
+		List<JIRAIssue> jiraIssues = jiraIssuePersistence.findByP_RJUI(
+			projectId, reporterJiraUserId, 0, 1);
+
+		if (jiraIssues.size() > 0) {
+			return jiraIssues.get(0);
+		}
+		else {
+			throw new NoSuchJIRAIssueException();
+		}
+	}
+
+	public List<JIRAIssue> getReporterJIRAIssues(
+			long projectId, String reporterJiraUserId, int begin, int end)
+		throws SystemException {
+
+		return jiraIssuePersistence.findByP_RJUI(projectId, reporterJiraUserId);
+	}
+
 	public List<JIRAIssue> getReporterJIRAIssues(
 			long projectId, String reporterJiraUserId, String status, int begin,
 			int end)
@@ -60,6 +150,14 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 
 		return jiraIssuePersistence.findByP_RJUI_S(
 			projectId, reporterJiraUserId, status);
+	}
+
+	public int getReporterJIRAIssuesCount(
+			long projectId, String reporterJiraUserId)
+		throws SystemException {
+
+		return jiraIssuePersistence.countByP_RJUI(
+			projectId, reporterJiraUserId);
 	}
 
 	public int getReporterJIRAIssuesCount(

@@ -11,5 +11,16 @@ create table WOL_SVNRevision (
 	createDate DATE null,
 	svnRepositoryId LONG,
 	revisionNumber LONG,
-	comments TEXT null
+	comments STRING null
+);
+
+create table WOL_WallEntry (
+	wallEntryId LONG not null primary key,
+	groupId LONG,
+	companyId LONG,
+	userId LONG,
+	userName VARCHAR(75) null,
+	createDate DATE null,
+	modifiedDate DATE null,
+	comments STRING null
 );

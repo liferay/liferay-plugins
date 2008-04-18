@@ -1,3 +1,4 @@
+<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -19,25 +20,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+%>
 
-package com.liferay.wol.svn.util;
+<%@ include file="/init.jsp" %>
 
-/**
- * <a href="SVNConstants.java.html"><b><i>View Source</i></b></a>
- *
- * @author Brian Wing Shun Chan
- *
- */
-public interface SVNConstants {
+<%
+PortletURL portletURL = renderResponse.createRenderURL();
 
-	public static final String PLUGINS_TRUNK_URL =
-		"http://lportal.svn.sourceforge.net/svnroot/lportal/plugins/trunk";
+SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
 
-	public static final String PORTAL_TRUNK_URL =
-		"http://lportal.svn.sourceforge.net/svnroot/lportal/portal/trunk";
+int total = UserLocalServiceUtil.getSocialUsersCount(user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND);
 
-	public static final String[] URLS = new String[] {
-		PORTAL_TRUNK_URL, PLUGINS_TRUNK_URL
-	};
+searchContainer.setTotal(total);
 
+List<User> results = UserLocalServiceUtil.getSocialUsers(user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, searchContainer.getStart(), searchContainer.getEnd(), new UserLoginDateComparator());
+
+for (User friend : results) {
+%>
+
+	<div style="float: left; margin: 0px 10px 0px 10px; text-align: center;">
+		<liferay-ui:user-display
+			userId="<%= friend.getUserId() %>"
+			userName="<%= friend.getFullName() %>"
+			displayStyle="<%= 2 %>"
+		/>
+	</div>
+
+<%
 }
+%>
+
+<c:if test="<%= results.size() > 0 %>">
+	<div class="taglib-search-iterator-page-iterator-bottom">
+		<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
+	</div>
+</c:if>
