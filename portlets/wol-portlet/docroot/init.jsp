@@ -42,6 +42,7 @@
 <%@ page import="com.liferay.portal.service.GroupLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.util.DateFormats" %>
+<%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portal.util.comparator.UserLoginDateComparator" %>
 <%@ page import="com.liferay.portlet.blogs.service.BlogsStatsUserLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.messageboards.service.MBStatsUserLocalServiceUtil" %>

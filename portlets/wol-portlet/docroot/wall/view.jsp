@@ -26,6 +26,7 @@
 
 <form action="<portlet:actionURL />" method="post">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
+<input name="<portlet:namespace />redirect" type="hidden" value="<%= PortalUtil.getCurrentURL(request) %>" />
 
 <textarea  id="<portlet:namespace />comments" name="<portlet:namespace />comments" style="height: 105px; width: 500px;" wrap="soft" onKeyDown="Liferay.Util.disableEsc();" onKeyPress="Liferay.Util.checkMaxLength(this, 4000);"></textarea>
 
@@ -38,24 +39,56 @@
 <%
 PortletURL portletURL = renderResponse.createRenderURL();
 
-SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, null, null);
+SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
 
-int total = WallEntryLocalServiceUtil.getWallEntriesCount(user2.getUserId());
+int total = WallEntryLocalServiceUtil.getWallEntriesCount(group.getGroupId());
 
 searchContainer.setTotal(total);
 
-List<WallEntry> results = WallEntryLocalServiceUtil.getWallEntries(user2.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
+List<WallEntry> results = WallEntryLocalServiceUtil.getWallEntries(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
+%>
 
+<table class="lfr-table" width="100%">
+
+<%
 for (WallEntry wallEntry : results) {
 %>
 
-	<%= wallEntry.getComments() %><br />
+	<tr>
+		<td colspan="2">
+			<div class="separator"><!-- --></div>
+		</td>
+	</tr>
+	<tr>
+		<td align="center" valign="top">
+			<liferay-ui:user-display
+				userId="<%= wallEntry.getUserId() %>"
+				userName="<%= wallEntry.getUserName() %>"
+				displayStyle="<%= 2 %>"
+			/>
+		</td>
+		<td valign="top" width="99%">
+			<div>
+				<%= wallEntry.getComments() %>
+			</div>
+
+			<br />
+
+			<div>
+				<%= LanguageUtil.format(pageContext, "posted-on-x", dateFormatDateTime.format(wallEntry.getCreateDate())) %>
+			</div>
+		</td>
+	</tr>
 
 <%
 }
 %>
 
+</table>
+
 <c:if test="<%= results.size() > 0 %>">
+	<div class="separator"><!-- --></div>
+
 	<div class="taglib-search-iterator-page-iterator-bottom">
 		<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
 	</div>
