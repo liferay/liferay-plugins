@@ -54,7 +54,8 @@ public interface WallEntryLocalService {
 		throws com.liferay.portal.SystemException;
 
 	public com.liferay.wol.model.WallEntry addWallEntry(long groupId,
-		long userId, java.lang.String comments)
+		long userId, java.lang.String comments,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
@@ -64,6 +65,10 @@ public interface WallEntryLocalService {
 
 	public int getWallEntriesCount(long groupId)
 		throws com.liferay.portal.SystemException;
+
+	public com.liferay.wol.model.WallEntry getWallEntry(long wallEntryId)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.PortalException;
 
 	public com.liferay.wol.model.WallEntry updateWallEntry(long wallEntryId,
 		java.lang.String comments)

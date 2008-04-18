@@ -23,15 +23,25 @@
 package com.liferay.wol.service.impl;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.mail.MailMessage;
+import com.liferay.portal.kernel.util.PrefsPropsUtil;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.wol.model.WallEntry;
 import com.liferay.wol.service.base.WallEntryLocalServiceBaseImpl;
 
 import java.util.Date;
 import java.util.List;
+
+import javax.mail.internet.InternetAddress;
 
 /**
  * <a href="WallEntryLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -41,7 +51,9 @@ import java.util.List;
  */
 public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 
-	public WallEntry addWallEntry(long groupId, long userId, String comments)
+	public WallEntry addWallEntry(
+			long groupId, long userId, String comments,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		User user = UserLocalServiceUtil.getUserById(userId);
@@ -60,6 +72,13 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 		wallEntry.setComments(comments);
 
 		wallEntryPersistence.update(wallEntry, false);
+
+		try {
+			sendEmail(wallEntry, themeDisplay);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
 
 		return wallEntry;
 	}
@@ -80,6 +99,12 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 		return wallEntryPersistence.countByGroupId(groupId);
 	}
 
+	public WallEntry getWallEntry(long wallEntryId)
+		throws PortalException, SystemException {
+
+		return wallEntryPersistence.findByPrimaryKey(wallEntryId);
+	}
+
 	public WallEntry updateWallEntry(long wallEntryId, String comments)
 		throws PortalException, SystemException {
 
@@ -92,6 +117,91 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 		wallEntryPersistence.update(wallEntry, false);
 
 		return wallEntry;
+	}
+
+	protected void sendEmail(WallEntry wallEntry, ThemeDisplay themeDisplay)
+		throws Exception {
+
+		long companyId = wallEntry.getCompanyId();
+
+		String portalURL = PortalUtil.getPortalURL(themeDisplay);
+		String layoutURL = PortalUtil.getLayoutURL(themeDisplay);
+
+		String wallEntryURL = portalURL + layoutURL;
+
+		Group group = GroupLocalServiceUtil.getGroup(wallEntry.getGroupId());
+
+		User user = UserLocalServiceUtil.getUserById(group.getClassPK());
+		User wallEntryUser = UserLocalServiceUtil.getUserById(
+			wallEntry.getUserId());
+
+		String fromName = PrefsPropsUtil.getString(
+			companyId, "admin.email.from.name");
+		String fromAddress = PrefsPropsUtil.getString(
+			companyId, "admin.email.from.address");
+
+		String toName = user.getFullName();
+		String toAddress = user.getEmailAddress();
+
+		ClassLoader classLoader = getClass().getClassLoader();
+
+		String subject = StringUtil.read(
+			classLoader,
+			"com/liferay/wol/wall/dependencies/wall_entry_added_subject.tmpl");
+		String body = StringUtil.read(
+			classLoader,
+			"com/liferay/wol/wall/dependencies/wall_entry_added_body.tmpl");
+
+		subject = StringUtil.replace(
+			subject,
+			new String[] {
+				"[$FROM_ADDRESS$]",
+				"[$FROM_NAME$]",
+				"[$TO_ADDRESS$]",
+				"[$TO_NAME$]",
+				"[$WALL_ENTRY_URL$]",
+				"[$WALL_ENTRY_USER_ADDRESS$]",
+				"[$WALL_ENTRY_USER_NAME$]"
+			},
+			new String[] {
+				fromAddress,
+				fromName,
+				toAddress,
+				toName,
+				wallEntryURL,
+				wallEntryUser.getEmailAddress(),
+				wallEntryUser.getFullName()
+			});
+
+		body = StringUtil.replace(
+			body,
+			new String[] {
+				"[$FROM_ADDRESS$]",
+				"[$FROM_NAME$]",
+				"[$TO_ADDRESS$]",
+				"[$TO_NAME$]",
+				"[$WALL_ENTRY_URL$]",
+				"[$WALL_ENTRY_USER_ADDRESS$]",
+				"[$WALL_ENTRY_USER_NAME$]"
+			},
+			new String[] {
+				fromAddress,
+				fromName,
+				toAddress,
+				toName,
+				wallEntryURL,
+				wallEntryUser.getEmailAddress(),
+				wallEntryUser.getFullName()
+			});
+
+		InternetAddress from = new InternetAddress(fromAddress, fromName);
+
+		InternetAddress to = new InternetAddress(toAddress, toName);
+
+		MailMessage mailMessage = new MailMessage(
+			from, to, subject, body, true);
+
+		MailServiceUtil.sendEmail(mailMessage);
 	}
 
 }

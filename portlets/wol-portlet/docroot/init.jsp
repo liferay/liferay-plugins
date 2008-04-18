@@ -39,8 +39,10 @@
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.model.Group" %>
 <%@ page import="com.liferay.portal.model.User" %>
+<%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
 <%@ page import="com.liferay.portal.service.GroupLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.service.permission.UserPermissionUtil" %>
 <%@ page import="com.liferay.portal.util.DateFormats" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portal.util.comparator.UserLoginDateComparator" %>
@@ -74,6 +76,8 @@
 
 <%
 WindowState windowState = renderRequest.getWindowState();
+
+String namespace = renderResponse.getNamespace();
 
 Group group = GroupLocalServiceUtil.getGroup(themeDisplay.getPortletGroupId());
 

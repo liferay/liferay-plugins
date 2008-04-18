@@ -79,12 +79,14 @@ public class WallEntryLocalServiceUtil {
 	}
 
 	public static com.liferay.wol.model.WallEntry addWallEntry(long groupId,
-		long userId, java.lang.String comments)
+		long userId, java.lang.String comments,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
 
-		return wallEntryLocalService.addWallEntry(groupId, userId, comments);
+		return wallEntryLocalService.addWallEntry(groupId, userId, comments,
+			themeDisplay);
 	}
 
 	public static java.util.List<com.liferay.wol.model.WallEntry> getWallEntries(
@@ -100,6 +102,14 @@ public class WallEntryLocalServiceUtil {
 		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
 
 		return wallEntryLocalService.getWallEntriesCount(groupId);
+	}
+
+	public static com.liferay.wol.model.WallEntry getWallEntry(long wallEntryId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
+
+		return wallEntryLocalService.getWallEntry(wallEntryId);
 	}
 
 	public static com.liferay.wol.model.WallEntry updateWallEntry(

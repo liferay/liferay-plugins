@@ -24,11 +24,20 @@
 
 <%@ include file="/init.jsp" %>
 
-<form action="<portlet:actionURL />" method="post">
+<script type="text/javascript">
+	function <portlet:namespace />deleteWallEntry(wallEntryId) {
+		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.DELETE %>";
+		document.<portlet:namespace />fm.<portlet:namespace />wallEntryId.value = wallEntryId;
+		submitForm(document.<portlet:namespace />fm);
+	}
+</script>
+
+<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= PortalUtil.getCurrentURL(request) %>" />
+<input name="<portlet:namespace />wallEntryId" type="hidden" value="" />
 
-<textarea  id="<portlet:namespace />comments" name="<portlet:namespace />comments" style="height: 105px; width: 500px;" wrap="soft" onKeyDown="Liferay.Util.disableEsc();" onKeyPress="Liferay.Util.checkMaxLength(this, 4000);"></textarea>
+<liferay-ui:input-field model="<%= WallEntry.class %>" bean="<%= null %>" field="comments" />
 
 <br /><br />
 
@@ -77,6 +86,18 @@ for (WallEntry wallEntry : results) {
 			<div>
 				<%= LanguageUtil.format(pageContext, "posted-on-x", dateFormatDateTime.format(wallEntry.getCreateDate())) %>
 			</div>
+
+			<c:if test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
+				<br />
+
+				<%
+				String deleteHREF = "javascript: " + namespace + "deleteWallEntry(" + wallEntry.getWallEntryId() + ");";
+				%>
+
+				<div>
+					<liferay-ui:icon-delete url="<%= deleteHREF %>" label="<%= true %>" />
+				</div>
+			</c:if>
 		</td>
 	</tr>
 

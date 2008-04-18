@@ -25,10 +25,13 @@ package com.liferay.wol.wall.portlet;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.service.permission.UserPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.util.servlet.SessionErrors;
 import com.liferay.util.servlet.SessionMessages;
+import com.liferay.wol.model.WallEntry;
 import com.liferay.wol.service.WallEntryLocalServiceUtil;
 
 import java.io.IOException;
@@ -53,6 +56,9 @@ public class WallPortlet extends JSPPortlet {
 
 			if (cmd.equals(Constants.ADD)) {
 				addWallEntry(req);
+			}
+			else if (cmd.equals(Constants.DELETE)) {
+				deleteWallEntry(req);
 			}
 
 			if (SessionErrors.isEmpty(req)) {
@@ -80,7 +86,44 @@ public class WallPortlet extends JSPPortlet {
 
 		WallEntryLocalServiceUtil.addWallEntry(
 			themeDisplay.getPortletGroupId(), themeDisplay.getUserId(),
-			comments);
+			comments, themeDisplay);
+	}
+
+	protected void deleteWallEntry(ActionRequest req) throws Exception {
+		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		if (!themeDisplay.isSignedIn()) {
+			return;
+		}
+
+		long wallEntryId = ParamUtil.getLong(req, "wallEntryId");
+
+		WallEntry wallEntry = null;
+
+		try {
+			wallEntry = WallEntryLocalServiceUtil.getWallEntry(wallEntryId);
+		}
+		catch (Exception e) {
+			return;
+		}
+
+		if (wallEntry.getGroupId() != themeDisplay.getPortletGroupId()) {
+			return;
+		}
+
+		if (!UserPermissionUtil.contains(
+				themeDisplay.getPermissionChecker(), themeDisplay.getUserId(),
+				ActionKeys.UPDATE)) {
+
+			return;
+		}
+
+		try {
+			WallEntryLocalServiceUtil.deleteWallEntry(wallEntryId);
+		}
+		catch (Exception e) {
+		}
 	}
 
 }

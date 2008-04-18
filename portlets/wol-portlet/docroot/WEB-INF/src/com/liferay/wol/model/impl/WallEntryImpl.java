@@ -31,6 +31,8 @@ import com.liferay.wol.model.WallEntry;
  *
  */
 public class WallEntryImpl extends WallEntryModelImpl implements WallEntry {
+
 	public WallEntryImpl() {
 	}
+
 }
