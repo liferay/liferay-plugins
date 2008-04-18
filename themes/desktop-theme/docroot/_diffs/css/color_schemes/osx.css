@@ -3,7 +3,7 @@
 /* ---------- Styles in base.css ---------- */
 
 body.osx {
-	background: #01629c url(../../images/color_schemes/osx/desktop/desktop_bg.png) no-repeat scroll 50% 50%;
+	background: #01629c url(../../images/color_schemes/osx/desktop/desktop_bg.png) no-repeat fixed 50% 50%;
 }
 
 /* ---------- Styles in navigation.css ---------- */
@@ -126,7 +126,7 @@ body.osx {
 }
 
 .osx .portlet-topper {
-	height: 75px;
+	height: 76px;
 }
 
 .osx .portlet-title {
@@ -149,7 +149,12 @@ body.osx {
 
 .osx .portlet-icon-back {
 	background: transparent url(../../images/portlet/back.png) no-repeat scroll 0 2px;
+	color: #222222;
 	line-height: 31px;
+}
+
+.osx .portlet-icon-back:hover {
+	color: #000000;
 }
 
 /* ---------- Styles for Portlet mode icons ---------- */
@@ -170,7 +175,8 @@ body.osx {
 	margin: 0 -4px 0 0;
 }
 
-.osx .portlet-min a {
+.osx .portlet-min a,
+.osx .portlet-min a:active {
 	background: transparent url(../../images/color_schemes/osx/portlet/minimize.png) no-repeat scroll 0 0;
 }
 
@@ -221,22 +227,42 @@ body.osx {
 	background: transparent url(../../images/color_schemes/osx/arrows/resize_black.png) no-repeat scroll 0% 0%;
 }
 
+/* ---------- Styles in tabs.css ---------- */
+
+.osx .tabs {
+	border-bottom: 1px solid #c1c1c1;
+}
+
+.osx .tabs li {
+	background: url(../../images/color_schemes/osx/common/tabs_bg.png) 100% -50px;
+}
+
+.osx .tabs li a,
+.osx .tabs li a:hover,
+.osx .tabs li span {
+	background: url(../../images/color_schemes/osx/common/tabs_bg.png) 0 -150px;
+	color: #656565;
+}
+
+.osx .tabs li.current {
+	background: url(../../images/color_schemes/osx/common/tabs_bg.png) 100% 0;
+}
+
 /* ---------- Custom styles for the Desktop theme ---------- */
 
 .osx #taskbar {
 	background: transparent url(../../images/color_schemes/osx/desktop/taskbar_bg.png) repeat-x scroll 0 0;
 }
 
-.osx #taskbar-clock {
-	background: transparent url(../../images/color_schemes/osx/desktop/taskbar_bg.png) repeat-x scroll 100% 0;
-	color: #000000;
+.osx #taskbar-portlets-wrapper {
+	display: none;
+}
+
+.osx #taskbar-portlets {
+	padding:0 5px 0 42px;
+}
+
+.osx #taskbar-portlets .taskbar-link a {
+	line-height: 18px;
 	font-family: 'Lucida Grande','Lucida',Arial,Verdana,sans-serif;
-	font-size: 12px;
-	font-stretch: semi-condensed;
-	font-weight: 300;
-	position: absolute;
-	padding: 3px 11px 0 0;
-	right: 0;
-	top: 0;
-	z-index: 15;
 }

@@ -21,7 +21,13 @@
 			#if ($nav_item.hasChildren())
 				<ul class="child-menu">
 					#foreach ($nav_child in $nav_item.getChildren())
-						<li>
+						#if ($nav_child.isSelected())
+							#set ($nav_child_class = "selected")
+						#else
+							#set ($nav_child_class = "")
+						#end
+
+						<li class="$nav_child_class">
 							<a href="$nav_child.getURL()" $nav_child.getTarget()>$nav_child.getName()</a>
 						</li>
 					#end

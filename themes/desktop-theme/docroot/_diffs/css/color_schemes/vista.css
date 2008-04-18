@@ -71,14 +71,9 @@ body.vista {
 	background-position: bottom left;
 }
 
-.vista .portlet-topper {
-	height: 99px;
-}
-
 .vista .portlet-title {
 	color: #000000;
-	font-weight: 500;
-	padding: 21px 0 4px 2px;
+	font-weight: bold;
 }
 
 .vista .portlet-title img {
@@ -86,13 +81,11 @@ body.vista {
 }
 
 .vista .portlet-address {
-	top: 38px;
+	line-height: 24px;
 }
 
 .vista .portlet-icon-back {
-	background: transparent url(../../images/portlet/back.png) no-repeat scroll 0 2px;
 	color: #000000;
-	line-height: 31px;
 }
 
 .vista .portlet-icon-back:hover {
@@ -101,17 +94,16 @@ body.vista {
 
 /* ---------- Styles for Portlet mode icons ---------- */
 
-.vista .portlet-modes {
-	left: 2px;
-	right: auto;
-	top: 44px;
+.ie .vista .portlet-modes {
+	top: 39px;
 }
 
 .vista .portlet-states {
-	top: 12px;
+	top: 10px;
 }
 
-.vista .portlet-min a {
+.vista .portlet-min a,
+.vista .portlet-min a:active {
 	background: transparent url(../../images/color_schemes/vista/portlet/minimize.png) no-repeat scroll 0 0;
 }
 
@@ -155,16 +147,9 @@ body.vista {
 	background: transparent url(../../images/color_schemes/vista/desktop/taskbar_bg.png) repeat-x scroll 0 0;
 }
 
-.vista #taskbar-clock {
+.vista #taskbar-portlets a {
 	color: #ffffff;
-	font-family: Arial,Verdana,sans-serif;
-	font-size: 12px;
-	font-stretch: semi-condensed;
-	font-weight: 300;
-	position: absolute;
-	right: 5px;
-	top: 5px;
-	z-index: 15;
+	padding: 0 10px 0 58px;
 }
 
 /* ---------- Custom styles for the Desktop sidebar menu ---------- */
@@ -196,6 +181,7 @@ body.vista {
 .ie.js .taglib-home.navigation-menu .lfr-flyout.has-children {
 	min-width: auto;
 }
+
 .vista .vista-menu .taglib-home.navigation-menu li ul a {
 	color: #000;
 }

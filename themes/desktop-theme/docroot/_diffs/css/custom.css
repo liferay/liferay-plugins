@@ -17,11 +17,19 @@ html {
 }
 
 body {
-	background: #347510 url(../images/desktop/desktop_bg.png) no-repeat scroll 50% 50%;
+	background: #347510 url(../images/desktop/desktop_bg.png) no-repeat fixed 50% 50%;
 }
 
 #wrapper {
 	width: 100%;
+}
+
+#content-wrapper {
+	position: relative;
+}
+
+.loading-animation {
+	background: url(../images/progress_bar/loading_animation.gif) no-repeat center center;
 }
 
 /* ---------- Styles in navigation.css ---------- */
@@ -105,17 +113,21 @@ body {
 	padding: 0 2px;
 }
 
-.js .interactive-mode .home li.selected a {
+.js .interactive-mode .home li.selected a,
+.js .interactive-mode .home .child-menu li.selected a {
 	background-color: #3da5d5;
 	color: #ffffff;
 }
 
-.js .interactive-mode .home li.selected a:hover {
+.js .interactive-mode .home li.selected a:hover,
+.js .interactive-mode .home .child-menu li.selected a:hover{
 	background-color: #0a246a;
 }
 
-.js .interactive-mode .home li a {
+.js .interactive-mode .home li a,
+.js .interactive-mode .home .child-menu li a {
 	background: none;
+	color: #000000;
 	padding:0.5em 0pt 0.5em 1em;
 }
 
@@ -243,10 +255,7 @@ body {
 }
 
 .portlet-content {
-	padding: 0;
-}
-
-.portlet-content-container div {
+	background: #ffffff;
 	padding: 10px;
 }
 
@@ -269,10 +278,6 @@ body {
 	padding: 0 0 0 29px;
 	position: relative;
 	text-align: center;
-}
-
-.portlet-content-container .portlet-msg-success {
-	padding:0.5em 0.5em 0.5em 2.8em;
 }
 
 .ie .portlet-address {
@@ -307,6 +312,7 @@ body {
 	position: absolute;
 	right: 9px;
 	top: 10px;
+	width: 80px;
 }
 
 .portlet-states a {
@@ -315,11 +321,21 @@ body {
 
 .portlet-min,
 .portlet-max {
+	height:18px;
 	margin: 0 -4px 0 0;
+}
+
+.portlet-close {
+	height: 18px;
 }
 
 .portlet-min a:hover {
 	background: transparent url(../images/color_schemes/linux/portlet/minimize_hover.png) no-repeat scroll 0 0;
+	padding-bottom: 2px;
+}
+
+.portlet-min a:active {
+	background: transparent url(../images/color_schemes/linux/portlet/minimize.png) no-repeat scroll 0 0;
 	padding-bottom: 2px;
 }
 
@@ -328,12 +344,23 @@ body {
 	padding-bottom: 2px;
 }
 
+.portlet-max a:active {
+	background: transparent url(../images/color_schemes/linux/portlet/maximize.png) no-repeat scroll 0 0;
+	padding-bottom: 2px;
+}
+
 .portlet-close a:hover {
 	background: transparent url(../images/color_schemes/linux/portlet/close_hover.png) no-repeat scroll 0 0;
 	padding-bottom: 2px;
 }
 
+.portlet-clse a:active {
+	background: transparent url(../images/color_schemes/linux/portlet/close.png) no-repeat scroll 0 0;
+	padding-bottom: 2px;
+}
+
 .portlet-icon-back {
+	background: transparent url(../images/portlet/back.png) no-repeat scroll 0 1px;
 	color: #ffffff;
 	font-size: 12px;
 	font-stretch: semi-condensed;
@@ -341,6 +368,11 @@ body {
 	line-height: 24px;
 	margin: 0 2px 0 0;
 	text-decoration: none;
+}
+
+.ie .portlet-icon-back {
+	background: transparent url(../images/portlet/back.png) no-repeat scroll 0 0;
+	line-height: 20px;
 }
 
 .portlet-icon-back:hover {
@@ -360,14 +392,92 @@ body {
 }
 
 .portlet-resize-handle {
-	background:transparent url(../images/arrows/resize.png) no-repeat scroll 0% 0%;
+	background: transparent url(../images/arrows/resize.png) no-repeat scroll 0% 0%;
 	bottom: auto;
 	float:right;
 	position:relative;
 	right: 0;
 }
 
+/* ---------- Styles in tabs.css ---------- */
+
+.tabs {
+	border-bottom: 1px solid #3566b5;
+	padding:0 0 29px 8px;
+	position: static;
+}
+
+.ie .tabs {
+	padding:0 0 30px 8px;
+}
+
+.tabs li {
+	background: transparent url(../images/common/tabs_bg.png) no-repeat scroll 100% -50px;
+	position: static;
+}
+
+.tabs li a,
+.tabs li a:hover,
+.tabs li span {
+	background: transparent url(../images/common/tabs_bg.png) no-repeat scroll 0 -150px;
+	color: #094a74;
+	font-size: 11px;
+	font-stretch: semi-condensed;
+	font-weight: 300;
+	position: static;
+}
+
+.tabs li.current {
+	background: transparent url(../images/common/tabs_bg.png) no-repeat scroll 100% 0;
+}
+
+.tabs li.current a,
+.tabs li current a:hover,
+.tabs li.current span {
+	color: #333333;
+	font-weight: bold;
+	line-height:27px;
+}
+
+/* ---------- Styles for Taglib Search Iterator ---------- */
+
+.taglib-search-iterator-wrapper {
+	border-left: 10px solid #c3d9ff;
+	border-right: 10px solid #c3d9ff;
+	border-bottom: 10px solid #c3d9ff;
+}
+
+.taglib-search-iterator {
+	background-color: #c3d9ff;
+}
+
+.portlet-section-header {
+	background: #c3d9ff;
+}
+
+.portlet-section-body td {
+	background: #e8eef7;
+	border-bottom: 1px solid #bfbfbf;
+	border-top: 1px solid #c3d9ff;
+}
+
+.portlet-section-body-hover td {
+	border-bottom: 1px solid #bfbfbf;
+	border-top: 1px solid #c3d9ff;
+}
+
+.portlet-section-alternate td,
+.portlet-section-alternate-hover td {
+	border-bottom: 1px solid #bfbfbf;
+}
+
 /* ---------- Custom styles for the Desktop theme ---------- */
+
+#portlet-scrollbars {
+	padding: -10px;
+	background: #ffffff;
+	overflow: auto;
+}
 
 #dock-wrapper {
 	height: 28px;
@@ -377,20 +487,199 @@ body {
 	background: transparent url(../images/desktop/taskbar_bg.png) repeat-x scroll 100% 0;
 	height: 28px;
 	left: 0;
-	position: absolute;
 	top: 0;
 	width: 100%;
-	z-index: 10;
 }
 
-#taskbar-clock {
-	color: #efefef;
+#taskbar-portlets-wrapper {
+	height:24px;
+	left:0;
+	overflow:hidden;
+	position:absolute;
+	top:2px;
+	width: 100%;
+}
+
+#taskbar-portlets {
+	margin: 0;
+	padding: 0 5px 0 52px;
+}
+
+#taskbar-portlets .taskbar-link {
+	list-style-type: none;
+	float: left;
+	max-width: 200px;
+	min-width: 39px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+#taskbar-portlets .taskbar-link a {
+	color: #eeeeee;
+	background: transparent url(../images/desktop/taskbar_link_bg.png) no-repeat scroll 100% 0;
+	border-color: #808080 #202020 #202020 #808080;
+	border-style: solid;
+	border-width: 1px;
+	display:block;
 	font-family: Arial,Verdana,sans-serif;
 	font-size: 12px;
 	font-stretch: semi-condensed;
 	font-weight: 300;
+	line-height: 22px;
+	padding: 0 7px;
+	text-decoration: none;
+}
+
+#taskbar-portlets .taskbar-link a:hover {
+	background: transparent url(../images/desktop/taskbar_link_hover_bg.png) no-repeat scroll 0 0;
+	border-color: #202020 #808080 #808080 #202020;
+}
+
+#taskbar-portlets .taskbar-link.selected a {
+	background: transparent url(../images/desktop/taskbar_link_selected_bg.png) no-repeat scroll 0 0;
+	border-color: #202020 #808080 #808080 #202020;
+	color: #ffffff;
+}
+
+#taskbar-portlets img {
+vertical-align: middle;
+padding:0 3px 0 0;
+}
+
+#sidebar-wrapper {
+	height: 100%;
+	width: 20px;
 	position: absolute;
-	right: 5px;
-	top: 5px;
-	z-index: 15;
+	right:0;
+	top: 28px;
+	background: transparent url(../images/desktop/sidebar_bg.png) repeat-y scroll 25px 0;
+color: #ffffff;
+}
+
+#sidebar {
+height: 100%;
+left: 30px;
+top: -100%;
+position: relative;
+width: 235px;
+	overflow: hidden;
+}
+
+#sidebar-link {
+	height: 100%;
+width: 20px;
+}
+
+#sidebar-link a {
+	display: block;
+	height: 100%;
+	background: transparent url(../images/arrows/05_left.png) no-repeat scroll 50% 45%;
+	outline: none;
+}
+
+#sidebar-link a:hover {
+	background: transparent url(../images/arrows/05_left_hover.png) no-repeat scroll 50% 45%;
+}
+
+#sidebar-link a.expanded {
+	background: transparent url(../images/arrows/05_right.png) no-repeat scroll 50% 45%;
+}
+
+#sidebar-link a.expanded:hover {
+	background: transparent url(../images/arrows/05_right_hover.png) no-repeat scroll 50% 45%;
+}
+
+.portal-add-content {
+	background: transparent;
+}
+
+.portal-add-content .portlet-msg-info{
+	background: transparent url(../images/messages/info.png) no-repeat scroll 0.5em 50%;
+	margin: 20px 0 0 0;
+	color: #ffffff;
+}
+
+#sidebar-top {
+height: 100px;
+margin: 15px 0 0 0;
+	overflow: hidden;
+}
+
+#sidebar-top .clock {
+	display:none;
+	float: left;
+	margin: 0 0 0 10px;
+}
+
+#sidebar-top .calendar {
+	height: 100px;
+	width: 100px;
+	background: transparent url(../images/desktop/calendar_bg.png) no-repeat scroll 100% 0;
+	float: right;
+	margin: 0 10px 0 0;
+}
+
+.portal-add-content-search {
+margin:10px 0 20px;
+}
+
+.portal-add-content .lfr-portlet-item {
+border: none;
+}
+
+.portal-add-content .lfr-content-category.visible {
+border-bottom: none;
+}
+
+#sidebar-top .month {
+display:block;
+font-size:17px;
+font-weight:bold;
+line-height:25px;
+margin:10px 0 5px;
+text-align:center;
+color:#222222;
+font-family: 'Arial', 'Tahoma','Lucida Sans Unicode';
+}
+
+#sidebar-top .day {
+display:block;
+font-size:40px;
+font-weight:bold;
+line-height:40px;
+text-align:center;
+color: #000000;
+}
+
+.portal-add-content .lfr-portlet-item:hover, .portal-add-content .lfr-portlet-item.over {
+background-color: #336eca;
+border-color: #336eca;
+}
+
+.portal-add-content .lfr-portlet-item p a,
+.portal-add-content .lfr-portlet-item p a:hover {
+	color: #ffffff;
+}
+
+.portal-add-content .lfr-portlet-used {
+	color: #111111;
+}
+
+.taskbar-link-title {
+display:block;
+overflow:hidden;}
+
+
+.popup-alert-notice, .popup-alert-warning {
+background-color:#E4E1DC;
+border-color:white;
+border-style:solid;
+border-width:10px 1px 1px;
+color:#000000;
+left:35%;
+opacity:0.87;
+position:relative;
+top:64%;
+width:300px;
+padding:7px 10px 10px 30px;
 }

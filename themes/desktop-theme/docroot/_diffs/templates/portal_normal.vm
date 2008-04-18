@@ -17,6 +17,8 @@
 		$page_javascript_2
 		$page_javascript_3
 	</script>
+
+	<script src="$themeDisplay.getPathThemeRoot()/javascript/desktop_add_content.js" type="text/javascript"></script>
 </head>
 
 <body class="$css_class">
@@ -24,9 +26,7 @@
 $theme.include($top_messages_include)
 
 <div id="wrapper">
-	<div id="dock-wrapper">
-		#parse ("$full_templates_path/dock.vm")
-	</div>
+	#parse ("$full_templates_path/dock.vm")
 
 	#if ($update_available_url)
 		<div class="popup-alert-notice">
@@ -42,6 +42,10 @@ $theme.include($top_messages_include)
 		$portletDisplay.setTitle($the_title)
 
 		$theme.wrapPortlet("portlet.vm", $content_include)
+	#end
+
+	#if ($show_add_content)
+		#parse ("$full_templates_path/sidebar.vm")
 	#end
 
 	<div id="footer"></div>

@@ -5,7 +5,7 @@
 	<compatibility>
 		<version>5.0.0+</version>
 	</compatibility>
-	<theme id="desktop" name="Desktop">
+	<theme id="desktop" name="Desktop (Freeform Layout)">
 		<color-scheme id="01" name="Linux">
 			<default-cs>true</default-cs>
 			<css-class></css-class>
