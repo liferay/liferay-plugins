@@ -20,23 +20,24 @@
  * SOFTWARE.
  */
 
-package com.liferay.wol.wall.portlet;
+package com.liferay.wol.mysummary.portlet;
 
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.service.ContactLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.permission.UserPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.util.servlet.SessionErrors;
 import com.liferay.util.servlet.SessionMessages;
-import com.liferay.wol.model.WallEntry;
-import com.liferay.wol.service.WallEntryLocalServiceUtil;
 
 import java.io.IOException;
 
@@ -45,12 +46,12 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 
 /**
- * <a href="WallPortlet.java.html"><b><i>View Source</i></b></a>
+ * <a href="MySummaryPortlet.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class WallPortlet extends JSPPortlet {
+public class MySummaryPortlet extends JSPPortlet {
 
 	public void processAction(ActionRequest req, ActionResponse res)
 		throws IOException, PortletException {
@@ -58,11 +59,8 @@ public class WallPortlet extends JSPPortlet {
 		try {
 			String cmd = ParamUtil.getString(req, Constants.CMD);
 
-			if (cmd.equals(Constants.ADD)) {
-				addWallEntry(req);
-			}
-			else if (cmd.equals(Constants.DELETE)) {
-				deleteWallEntry(req);
+			if (cmd.equals(Constants.UPDATE)) {
+				updateMySummary(req);
 			}
 
 			if (SessionErrors.isEmpty(req)) {
@@ -78,41 +76,11 @@ public class WallPortlet extends JSPPortlet {
 		}
 	}
 
-	protected void addWallEntry(ActionRequest req) throws Exception {
+	protected void updateMySummary(ActionRequest req) throws Exception {
 		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		if (!themeDisplay.isSignedIn()) {
-			return;
-		}
-
-		String comments = ParamUtil.getString(req, "comments");
-
-		WallEntryLocalServiceUtil.addWallEntry(
-			themeDisplay.getPortletGroupId(), themeDisplay.getUserId(),
-			comments, themeDisplay);
-	}
-
-	protected void deleteWallEntry(ActionRequest req) throws Exception {
-		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		if (!themeDisplay.isSignedIn()) {
-			return;
-		}
-
-		long wallEntryId = ParamUtil.getLong(req, "wallEntryId");
-
-		WallEntry wallEntry = null;
-
-		try {
-			wallEntry = WallEntryLocalServiceUtil.getWallEntry(wallEntryId);
-		}
-		catch (Exception e) {
-			return;
-		}
-
-		if (wallEntry.getGroupId() != themeDisplay.getPortletGroupId()) {
 			return;
 		}
 
@@ -135,10 +103,30 @@ public class WallPortlet extends JSPPortlet {
 			return;
 		}
 
+		String jiraUserId = ParamUtil.getString(req, "jiraUserId");
+		String sfUserId = ParamUtil.getString(req, "sfUserId");
+		String jobTitle = ParamUtil.getString(req, "jobTitle");
+		String aboutMe = ParamUtil.getString(req, "aboutMe");
+
 		try {
-			WallEntryLocalServiceUtil.deleteWallEntry(wallEntryId);
+			ExpandoValueLocalServiceUtil.addValue(
+				User.class.getName(), "WOL", "jiraUserId", user.getUserId(),
+				jiraUserId);
+			ExpandoValueLocalServiceUtil.addValue(
+				User.class.getName(), "WOL", "sfUserId", user.getUserId(),
+				sfUserId);
+			ExpandoValueLocalServiceUtil.addValue(
+				User.class.getName(), "WOL", "aboutMe", user.getUserId(),
+				aboutMe);
+
+			Contact contact = user.getContact();
+
+			contact.setJobTitle(jobTitle);
+
+			ContactLocalServiceUtil.updateContact(contact);
 		}
 		catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

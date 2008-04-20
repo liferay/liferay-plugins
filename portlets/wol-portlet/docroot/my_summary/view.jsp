@@ -24,102 +24,190 @@
 
 <%@ include file="/init.jsp" %>
 
-<style type="text/css">
-	.ie .<portlet:namespace />container {
-		height: 1%;
-	}
+<c:choose>
+	<c:when test="<%= windowState.equals(WindowState.NORMAL) || !UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
+		<style type="text/css">
+			.ie .<portlet:namespace />container {
+				height: 1%;
+			}
 
-	.<portlet:namespace />container:after {
-		clear: both;
-		content: ".";
-		display: block;
-		height: 0;
-		visibility: hidden;
-	}
+			.<portlet:namespace />container:after {
+				clear: both;
+				content: ".";
+				display: block;
+				height: 0;
+				visibility: hidden;
+			}
 
-	.<portlet:namespace />container h2 {
-		color: #83B4E1;
-		font-size: 16px;
-		margin-bottom: 10px;
-	}
+			.<portlet:namespace />container h2 {
+				color: #83B4E1;
+				font-size: 16px;
+				margin-bottom: 10px;
+			}
 
-	.<portlet:namespace />container img {
-		margin: 5px;
-		float: right;
-	}
+			.<portlet:namespace />container img {
+				margin: 5px;
+				float: right;
+			}
 
-	.<portlet:namespace />container p {
-		margin-bottom: 10px;
-	}
+			.<portlet:namespace />container p {
+				margin-bottom: 10px;
+			}
 
-	.<portlet:namespace />container span {
-		color: #3D536C;
-		font-size: 10px;
-		text-transform: uppercase;
-	}
-</style>
+			.<portlet:namespace />container span {
+				color: #3D536C;
+				font-size: 10px;
+				text-transform: uppercase;
+			}
+		</style>
 
-<div class="<portlet:namespace />container">
-	<img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user2.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user2.getPortraitId()) %>" />
+		<div class="<portlet:namespace />container">
+			<img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user2.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user2.getPortraitId()) %>" />
 
-	<h2>
-		<%= user2.getFullName() %>
-	</h2>
+			<h2>
+				<%= user2.getFullName() %>
+			</h2>
 
-	<p>
-		<span><liferay-ui:message key="job-title" /></span><br />
+			<p>
+				<span><liferay-ui:message key="job-title" /></span><br />
 
-		<%= user2.getContact().getJobTitle() %>
-	</p>
+				<%= user2.getContact().getJobTitle() %>
+			</p>
 
-	<p>
-		<span><liferay-ui:message key="about-me" /></span><br />
+			<p>
+				<span><liferay-ui:message key="about-me" /></span><br />
 
-		<%= user2.getComments() %>
-	</p>
-</div>
+				<%= ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "aboutMe", user2.getUserId(), StringPool.BLANK) %>
+			</p>
+		</div>
 
-<table class="lfr-table" cellspacing="4">
-<tr>
-	<td>
+		<table class="lfr-table">
+		<tr>
+			<td>
+
+				<%
+				int mbMessagesCount = MBStatsUserLocalServiceUtil.getStatsUser(14, user2.getUserId()).getMessageCount();
+				%>
+
+				<liferay-ui:icon
+					image="view"
+					message='<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<b>" + mbMessagesCount + "</b>"}) %>'
+					url='<%= themeDisplay.getPathContext() + "/web/guest/community/forums/-/message_boards/recent_posts?_19_groupThreadsUserId=" + user2.getUserId() %>'
+					label="<%= true %>"
+				/>
+			</td>
+			<td>
+				<liferay-ui:icon
+					image="rss"
+					url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=1990&groupId=14&userId=" + user2.getUserId() %>'
+				/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+
+				<%
+				int blogsEntriesCount = BlogsStatsUserLocalServiceUtil.getStatsUser(group.getGroupId(), user2.getUserId()).getEntryCount();
+				%>
+
+				<liferay-ui:icon
+					image="view"
+					message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<b>" + blogsEntriesCount + "</b>"}) %>'
+					url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog" %>'
+					label="<%= true %>"
+				/>
+			</td>
+			<td>
+				<liferay-ui:icon
+					image="rss"
+					url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog/-/blogs/rss" %>'
+				/>
+			</td>
+		</tr>
+		</table>
+
+		<c:if test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
+			<br />
+
+			<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL" />
+
+			<liferay-ui:icon image="edit" url="<%= editURL %>" label="<%= true %>" />
+		</c:if>
+	</c:when>
+	<c:otherwise>
 
 		<%
-		int mbMessagesCount = MBStatsUserLocalServiceUtil.getStatsUser(14, user2.getUserId()).getMessageCount();
+		try {
+
+			// Initializaing an Expando table only needs to happen once. In
+			// general, this should be done as a startup event so it only
+			// happens once. This code is left here even though that is bad
+			// practice so it can be easily referenced as an example.
+
+			ExpandoTable table = ExpandoTableLocalServiceUtil.addTable(User.class.getName(), "WOL");
+
+			ExpandoColumnLocalServiceUtil.addColumn(table.getTableId(), "jiraUserId", ExpandoColumnConstants.STRING);
+			ExpandoColumnLocalServiceUtil.addColumn(table.getTableId(), "sfUserId", ExpandoColumnConstants.STRING);
+			ExpandoColumnLocalServiceUtil.addColumn(table.getTableId(), "aboutMe", ExpandoColumnConstants.STRING);
+		}
+		catch (Exception e) {
+		}
+
+		String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "jiraUserId", user2.getUserId(), StringPool.BLANK);
+		String sfUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "sfUserId", user2.getUserId(), StringPool.BLANK);
+		String aboutMe = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "aboutMe", user2.getUserId(), StringPool.BLANK);
 		%>
 
-		<liferay-ui:icon
-			image="view"
-			message='<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<b>" + mbMessagesCount + "</b>"}) %>'
-			url='<%= themeDisplay.getPathContext() + "/web/guest/community/forums/-/message_boards/recent_posts?_19_groupThreadsUserId=" + user2.getUserId() %>'
-			label="<%= true %>"
-		/>
-	</td>
-	<td>
-		<liferay-ui:icon
-			image="rss"
-			url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=1990&groupId=14&userId=" + user2.getUserId() %>'
-		/>
-	</td>
-</tr>
-<tr>
-	<td>
+		<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
+		<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+		<input name="<portlet:namespace />redirect" type="hidden" value="<%= PortalUtil.getCurrentURL(request) %>" />
 
-		<%
-		int blogsEntriesCount = BlogsStatsUserLocalServiceUtil.getStatsUser(group.getGroupId(), user2.getUserId()).getEntryCount();
-		%>
+		<table class="lfr-table">
+		<tr>
+			<td>
+				JIRA Login
+			</td>
+			<td>
+				<input class="lfr-input-text" name="<portlet:namespace />jiraUserId" style="width: 150px;" type="text" value="<%= jiraUserId %>" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SourceForge Login
+			</td>
+			<td>
+				<input class="lfr-input-text" name="<portlet:namespace />sfUserId" style="width: 150px;" type="text" value="<%= sfUserId %>" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<br />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<liferay-ui:message key="job-title" />
+			</td>
+			<td>
+				<liferay-ui:input-field model="<%= Contact.class %>" bean="<%= user2.getContact() %>" field="jobTitle" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<liferay-ui:message key="about-me" />
+			</td>
+			<td>
+				<liferay-ui:input-textarea param="aboutMe" defaultValue="<%= aboutMe %>" />
+			</td>
+		</tr>
+		</table>
 
-		<liferay-ui:icon
-			image="view"
-			message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<b>" + blogsEntriesCount + "</b>"}) %>'
-			url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog" %>'
-			label="<%= true %>"
-		/>
-	</td>
-	<td>
-		<liferay-ui:icon
-			image="rss"
-			url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog/-/blogs/rss" %>'
-		/>
-	</td>
-</tr>
-</table>
+		<br />
+
+		<input type="submit" value="<liferay-ui:message key="save" />" />
+
+		<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" />';" />
+
+		</form>
+	</c:otherwise>
+</c:choose>

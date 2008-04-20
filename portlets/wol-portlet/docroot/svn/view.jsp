@@ -25,109 +25,133 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String svnUserId = "brianchandotcom";
+String svnUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "sfUserId", user2.getUserId(), StringPool.BLANK);
 %>
 
 <c:choose>
-	<c:when test="<%= windowState.equals(WindowState.NORMAL) %>">
+	<c:when test="<%= Validator.isNotNull(svnUserId) %>">
+		<c:choose>
+			<c:when test="<%= windowState.equals(WindowState.NORMAL) %>">
 
-		<%
-		int commitsCount = SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId);
-		Date firstCommitDate = SVNRevisionLocalServiceUtil.getFirstSVNRevision(svnUserId).getCreateDate();
-		Date lastCommitDate = SVNRevisionLocalServiceUtil.getLastSVNRevision(svnUserId).getCreateDate();
-		%>
+				<%
+				int commitsCount = SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId);
 
-		<div>
-			<%= user.getFullName() %> is a committer and has made over <b><%= numberFormat.format(commitsCount) %></b> commits. His first commit was on <%= dateFormatDate.format(firstCommitDate) %> and his last commit was on <%= dateFormatDate.format(lastCommitDate) %>.
-		</div>
+				Date firstCommitDate = null;
+				Date lastCommitDate = null;
 
-		<%
-		for (String url : SVNConstants.URLS) {
-			SVNRepository svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(url);
+				if (commitsCount > 0) {
+					firstCommitDate = SVNRevisionLocalServiceUtil.getFirstSVNRevision(svnUserId).getCreateDate();
+					lastCommitDate = SVNRevisionLocalServiceUtil.getLastSVNRevision(svnUserId).getCreateDate();
+				}
+				else {
+					firstCommitDate = new Date();
+					lastCommitDate = new Date();
+				}
+				%>
 
-			String shortURL = url.substring(url.indexOf("/lportal/") + 8);
-		%>
+				<div>
+					<%= user.getFullName() %> is a committer and has made over <b><%= numberFormat.format(commitsCount) %></b> commits. His first commit was on <%= dateFormatDate.format(firstCommitDate) %> and his last commit was on <%= dateFormatDate.format(lastCommitDate) %>.
+				</div>
 
-			<c:if test="<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId()) > 0 %>">
+				<%
+				for (String url : SVNConstants.URLS) {
+					SVNRepository svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(url);
+
+					String shortURL = url.substring(url.indexOf("/lportal/") + 8);
+				%>
+
+					<c:if test="<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId()) > 0 %>">
+						<br />
+
+						See his activity on <a href="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="url" value="<%= url %>" /></portlet:renderURL>"><%= shortURL %></a>.
+					</c:if>
+
+				<%
+				}
+				%>
+			</c:when>
+			<c:otherwise>
+
+				<%
+				String url = ParamUtil.getString(request, "url");
+
+				PortletURL portletURL = renderResponse.createRenderURL();
+
+				portletURL.setParameter("url", url);
+
+				SVNRepository svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(url);
+
+				List headerNames = new ArrayList();
+
+				headerNames.add("revision");
+				headerNames.add("comments");
+				headerNames.add("date-and-time");
+
+				SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur1", SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
+
+				int total = SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId());
+
+				searchContainer.setTotal(total);
+
+				List<SVNRevision> results = SVNRevisionLocalServiceUtil.getSVNRevisions(svnUserId, svnRepository.getSvnRepositoryId(), searchContainer.getStart(), searchContainer.getEnd());
+
+				searchContainer.setResults(results);
+
+				List resultRows = searchContainer.getResultRows();
+
+				for (int i = 0; i < results.size(); i++) {
+					SVNRevision svnRevision = results.get(i);
+
+					ResultRow row = new ResultRow(svnRevision, svnRevision.getSvnRevisionId(), i);
+
+					String rowHREF = "http://lportal.svn.sourceforge.net/viewvc/lportal?view=rev&revision=" + svnRevision.getRevisionNumber();
+
+					TextSearchEntry rowTextEntry = new TextSearchEntry(SearchEntry.DEFAULT_ALIGN, SearchEntry.DEFAULT_VALIGN, String.valueOf(svnRevision.getRevisionNumber()), rowHREF, "_blank", String.valueOf(svnRevision.getRevisionNumber()));
+
+					// Revision number
+
+					row.addText(rowTextEntry);
+
+					// Comments
+
+					rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
+
+					rowTextEntry.setName(svnRevision.getComments());
+
+					row.addText(rowTextEntry);
+
+					// Date
+
+					rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
+
+					rowTextEntry.setName(dateFormatDateTime.format(svnRevision.getCreateDate()));
+
+					row.addText(rowTextEntry);
+
+					// Add result row
+
+					resultRows.add(row);
+				}
+				%>
+
+				<h4>
+					<a href="<%= url %>" target="_blank"><%= url %></a>
+				</h4>
+
 				<br />
 
-				See his activity on <a href="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="url" value="<%= url %>" /></portlet:renderURL>"><%= shortURL %></a>.
-			</c:if>
-
-		<%
-		}
-		%>
+				<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
+			</c:otherwise>
+		</c:choose>
 	</c:when>
 	<c:otherwise>
-
-		<%
-		String url = ParamUtil.getString(request, "url");
-
-		PortletURL portletURL = renderResponse.createRenderURL();
-
-		portletURL.setParameter("url", url);
-
-		SVNRepository svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(url);
-
-		List headerNames = new ArrayList();
-
-		headerNames.add("revision");
-		headerNames.add("comments");
-		headerNames.add("date-and-time");
-
-		SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur1", SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
-
-		int total = SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId());
-
-		searchContainer.setTotal(total);
-
-		List<SVNRevision> results = SVNRevisionLocalServiceUtil.getSVNRevisions(svnUserId, svnRepository.getSvnRepositoryId(), searchContainer.getStart(), searchContainer.getEnd());
-
-		searchContainer.setResults(results);
-
-		List resultRows = searchContainer.getResultRows();
-
-		for (int i = 0; i < results.size(); i++) {
-			SVNRevision svnRevision = results.get(i);
-
-			ResultRow row = new ResultRow(svnRevision, svnRevision.getSvnRevisionId(), i);
-
-			String rowHREF = "http://lportal.svn.sourceforge.net/viewvc/lportal?view=rev&revision=" + svnRevision.getRevisionNumber();
-
-			TextSearchEntry rowTextEntry = new TextSearchEntry(SearchEntry.DEFAULT_ALIGN, SearchEntry.DEFAULT_VALIGN, String.valueOf(svnRevision.getRevisionNumber()), rowHREF, "_blank", String.valueOf(svnRevision.getRevisionNumber()));
-
-			// Revision number
-
-			row.addText(rowTextEntry);
-
-			// Comments
-
-			rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
-
-			rowTextEntry.setName(svnRevision.getComments());
-
-			row.addText(rowTextEntry);
-
-			// Date
-
-			rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
-
-			rowTextEntry.setName(dateFormatDateTime.format(svnRevision.getCreateDate()));
-
-			row.addText(rowTextEntry);
-
-			// Add result row
-
-			resultRows.add(row);
-		}
-		%>
-
-		<h4>
-			<a href="<%= url %>" target="_blank"><%= url %></a>
-		</h4>
-
-		<br />
-
-		<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
+		<c:choose>
+			<c:when test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
+				<a href="<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" portletName="1_WAR_wolportlet" />">Set your SourceForge login.</a>
+			</c:when>
+			<c:otherwise>
+				<%= user2.getFullName() %> has not configured his SourceForge login.
+			</c:otherwise>
+		</c:choose>
 	</c:otherwise>
 </c:choose>

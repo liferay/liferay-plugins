@@ -4,24 +4,19 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<icon>/my_summary/icon.png</icon>
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
-		<icon>/svn/icon.png</icon>
 		<scheduler-class>com.liferay.wol.svn.job.SVNScheduler</scheduler-class>
 	</portlet>
 	<portlet>
 		<portlet-name>3</portlet-name>
-		<icon>/jira/icon.png</icon>
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>
-		<icon>/friends/icon.png</icon>
 	</portlet>
 	<portlet>
 		<portlet-name>5</portlet-name>
-		<icon>/wall/icon.png</icon>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

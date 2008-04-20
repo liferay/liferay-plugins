@@ -25,15 +25,40 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String jiraUserId = "bchan";
-
-int assignedIssuesTotalCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId);
-int assignedIssuesClosedCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId, JIRAConstants.STATUS_CLOSED);
-Date firstAssignedIssueDate = JIRAIssueLocalServiceUtil.getFirstAssigneeJIRAIssue(JIRAConstants.PROJECT_LEP, jiraUserId).getCreateDate();
+String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "jiraUserId", user2.getUserId(), StringPool.BLANK);
 %>
 
-<%= user.getFullName() %> is assigned to <b><%= numberFormat.format(assignedIssuesTotalCount - assignedIssuesClosedCount) %></b> unresolved issues. He has resolved over <%= numberFormat.format(assignedIssuesClosedCount) %> issues since <%= dateFormatDate.format(firstAssignedIssueDate) %>.
+<c:choose>
+	<c:when test="<%= Validator.isNotNull(jiraUserId) %>">
 
-<br /><br />
+		<%
+		int assignedIssuesTotalCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId);
+		int assignedIssuesClosedCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId, JIRAConstants.STATUS_CLOSED);
 
-See unresolved <a href="http://support.liferay.com/secure/IssueNavigator.jspa?assigneeSelect=specificuser&sorter/field=priority&mode=hide&reset=true&resolution=-1&assignee=<%= jiraUserId %>&pid=<%= JIRAConstants.PROJECT_LEP %>&sorter/order=DESC" target="_blank">LEP</a> issues assigned to him.
+		Date firstAssignedIssueDate = null;
+
+		if (assignedIssuesTotalCount > 0) {
+			firstAssignedIssueDate = JIRAIssueLocalServiceUtil.getFirstAssigneeJIRAIssue(JIRAConstants.PROJECT_LEP, jiraUserId).getCreateDate();
+		}
+		else {
+			firstAssignedIssueDate = new Date();
+		}
+		%>
+
+		<%= user.getFullName() %> is assigned to <b><%= numberFormat.format(assignedIssuesTotalCount - assignedIssuesClosedCount) %></b> unresolved issues. He has resolved over <%= numberFormat.format(assignedIssuesClosedCount) %> issues since <%= dateFormatDate.format(firstAssignedIssueDate) %>.
+
+		<br /><br />
+
+		See unresolved <a href="http://support.liferay.com/secure/IssueNavigator.jspa?assigneeSelect=specificuser&sorter/field=priority&mode=hide&reset=true&resolution=-1&assignee=<%= jiraUserId %>&pid=<%= JIRAConstants.PROJECT_LEP %>&sorter/order=DESC" target="_blank">LEP</a> issues assigned to him.
+	</c:when>
+	<c:otherwise>
+		<c:choose>
+			<c:when test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
+				<a href="<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" portletName="1_WAR_wolportlet" />">Set your JIRA login.</a>
+			</c:when>
+			<c:otherwise>
+				<%= user2.getFullName() %> has not configured his JIRA login.
+			</c:otherwise>
+		</c:choose>
+	</c:otherwise>
+</c:choose>
