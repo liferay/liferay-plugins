@@ -3,20 +3,20 @@
 <portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd">
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<display-name>My Summary</display-name>
-		<portlet-class>com.liferay.wol.mysummary.portlet.MySummaryPortlet</portlet-class>
+		<display-name>Summary</display-name>
+		<portlet-class>com.liferay.wol.summary.portlet.SummaryPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
-			<value>/my_summary/view.jsp</value>
+			<value>/summary/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>My Summary</title>
-			<short-title>My Summary</short-title>
-			<keywords>My Summary</keywords>
+			<title>Summary</title>
+			<short-title>Summary</short-title>
+			<keywords>Summary</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

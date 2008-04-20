@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.liferay.wol.mysummary.portlet;
+package com.liferay.wol.summary.portlet;
 
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -46,12 +46,12 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 
 /**
- * <a href="MySummaryPortlet.java.html"><b><i>View Source</i></b></a>
+ * <a href="SummaryPortlet.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class MySummaryPortlet extends JSPPortlet {
+public class SummaryPortlet extends JSPPortlet {
 
 	public void processAction(ActionRequest req, ActionResponse res)
 		throws IOException, PortletException {
@@ -60,7 +60,7 @@ public class MySummaryPortlet extends JSPPortlet {
 			String cmd = ParamUtil.getString(req, Constants.CMD);
 
 			if (cmd.equals(Constants.UPDATE)) {
-				updateMySummary(req);
+				updateSummary(req);
 			}
 
 			if (SessionErrors.isEmpty(req)) {
@@ -76,7 +76,7 @@ public class MySummaryPortlet extends JSPPortlet {
 		}
 	}
 
-	protected void updateMySummary(ActionRequest req) throws Exception {
+	protected void updateSummary(ActionRequest req) throws Exception {
 		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
