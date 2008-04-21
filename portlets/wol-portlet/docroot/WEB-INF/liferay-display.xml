@@ -2,7 +2,12 @@
 <!DOCTYPE display PUBLIC "-//Liferay//DTD Display 5.0.0//EN" "http://www.liferay.com/dtd/liferay-display_5_0_0.dtd">
 
 <display>
-	<category name="category.collaboration">
+	<category name="category.wol">
 		<portlet id="1" />
+		<portlet id="2" />
+		<portlet id="3" />
+		<portlet id="4" />
+		<portlet id="5" />
+		<portlet id="6" />
 	</category>
 </display>

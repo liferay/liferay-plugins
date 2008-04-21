@@ -151,6 +151,36 @@
 			<role-name>user</role-name>
 		</security-role-ref>
 	</portlet>
+	<portlet>
+		<portlet-name>6</portlet-name>
+		<display-name>Friends' Activities</display-name>
+		<portlet-class>com.liferay.util.bridges.jsp.JSPPortlet</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/friends_activities/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<portlet-info>
+			<title>Friends' Activities</title>
+			<short-title>Friends' Activities</short-title>
+			<keywords>Friends' Activities</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
 	<container-runtime-option>
 		<name>javax.portlet.escapeXml</name>
 		<value>false</value>

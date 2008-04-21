@@ -21,6 +21,9 @@
 		<friendly-url-mapper-class>com.liferay.wol.wall.portlet.WallFriendlyURLMapper</friendly-url-mapper-class>
 		<social-activity-interpreter-class>com.liferay.wol.wall.social.WallActivityInterpreter</social-activity-interpreter-class>
 	</portlet>
+	<portlet>
+		<portlet-name>6</portlet-name>
+	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>
