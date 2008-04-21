@@ -90,12 +90,9 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 
 		// Social
 
-		String activityType = WallActivityKeys.ADD_ENTRY;
-		long receiverUserId = group.getClassPK();
-
 		SocialActivityLocalServiceUtil.addActivity(
 			userId, groupId, WallEntry.class.getName(), wallEntryId,
-			activityType, StringPool.BLANK, receiverUserId);
+			WallActivityKeys.ADD_ENTRY, StringPool.BLANK, group.getClassPK());
 
 		return wallEntry;
 	}

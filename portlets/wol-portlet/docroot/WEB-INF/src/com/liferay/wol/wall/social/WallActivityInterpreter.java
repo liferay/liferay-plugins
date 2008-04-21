@@ -58,15 +58,15 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 		User receiverUser = UserLocalServiceUtil.getUserById(
 			activity.getReceiverUserId());
 
-		String type = activity.getType();
+		String activityType = activity.getType();
 
 		// Title
 
 		String title = StringPool.BLANK;
 
-		if (type.equals(WallActivityKeys.ADD_ENTRY)) {
+		if (activityType.equals(WallActivityKeys.ADD_ENTRY)) {
 			title = themeDisplay.translate(
-				"activity-wol-wall-entry-add",
+				"activity-wol-wall-add-entry",
 				new Object[] {creatorUserName, receiverUserName});
 		}
 
