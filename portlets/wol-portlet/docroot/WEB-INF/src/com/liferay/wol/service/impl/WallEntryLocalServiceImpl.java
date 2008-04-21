@@ -28,6 +28,7 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -35,8 +36,10 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.wol.model.WallEntry;
 import com.liferay.wol.service.base.WallEntryLocalServiceBaseImpl;
+import com.liferay.wol.wall.social.WallActivityKeys;
 
 import java.util.Date;
 import java.util.List;
@@ -56,6 +59,9 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
+		// Entry
+
+		Group group = GroupLocalServiceUtil.getGroup(groupId);
 		User user = UserLocalServiceUtil.getUserById(userId);
 		Date now = new Date();
 
@@ -73,6 +79,8 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 
 		wallEntryPersistence.update(wallEntry, false);
 
+		// Email
+
 		try {
 			sendEmail(wallEntry, themeDisplay);
 		}
@@ -80,11 +88,27 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 			throw new SystemException(e);
 		}
 
+		// Social
+
+		String activityType = WallActivityKeys.ADD_ENTRY;
+		long receiverUserId = group.getClassPK();
+
+		SocialActivityLocalServiceUtil.addActivity(
+			userId, groupId, WallEntry.class.getName(), wallEntryId,
+			activityType, StringPool.BLANK, receiverUserId);
+
 		return wallEntry;
 	}
 
 	public void deleteWallEntry(long wallEntryId)
 		throws PortalException, SystemException {
+
+		// Social
+
+		SocialActivityLocalServiceUtil.deleteActivities(
+			WallEntry.class.getName(), wallEntryId);
+
+		// Entry
 
 		wallEntryPersistence.remove(wallEntryId);
 	}

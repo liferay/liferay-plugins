@@ -20,29 +20,16 @@
  * SOFTWARE.
  */
 
-package com.liferay.portlet.service;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import org.springframework.context.ApplicationContext;
+package com.liferay.wol.wall.social;
 
 /**
- * <a href="BeanLocatorUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="WallActivityKeys.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class BeanLocatorUtil {
-	public static Object locate(String name) {
-		ApplicationContext ctx = SpringUtil.getContext();
+public class WallActivityKeys {
 
-		if (_log.isDebugEnabled()) {
-			_log.debug("Locating " + name);
-		}
+	public static final String ADD_ENTRY = "ADD_ENTRY";
 
-		return ctx.getBean(name);
-	}
-
-	private static Log _log = LogFactory.getLog(BeanLocatorUtil.class);
 }

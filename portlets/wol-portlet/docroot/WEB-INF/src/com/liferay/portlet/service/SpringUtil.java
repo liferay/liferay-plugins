@@ -39,6 +39,12 @@ public class SpringUtil {
 		if (_ctx == null) {
 			_ctx = new LazyClassPathApplicationContext(
 				PropsUtil.getArray(PropsUtil.SPRING_CONFIGS));
+
+			String[] beanDefinitionNames = _ctx.getBeanDefinitionNames();
+
+			for (String beanDefinitionName : beanDefinitionNames) {
+				_ctx.getBean(beanDefinitionName);
+			}
 		}
 
 		return _ctx;

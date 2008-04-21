@@ -20,29 +20,47 @@
  * SOFTWARE.
  */
 
-package com.liferay.portlet.service;
+package com.liferay.wol.wall.portlet;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.liferay.portal.kernel.portlet.BaseFriendlyURLMapper;
+import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 
-import org.springframework.context.ApplicationContext;
+import java.util.Map;
+
+import javax.portlet.PortletMode;
+import javax.portlet.WindowState;
 
 /**
- * <a href="BeanLocatorUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="WallFriendlyURLMapper.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class BeanLocatorUtil {
-	public static Object locate(String name) {
-		ApplicationContext ctx = SpringUtil.getContext();
+public class WallFriendlyURLMapper extends BaseFriendlyURLMapper {
 
-		if (_log.isDebugEnabled()) {
-			_log.debug("Locating " + name);
-		}
-
-		return ctx.getBean(name);
+	public String buildPath(LiferayPortletURL portletURL) {
+		return null;
 	}
 
-	private static Log _log = LogFactory.getLog(BeanLocatorUtil.class);
+	public String getMapping() {
+		return _MAPPING;
+	}
+
+	public String getPortletId() {
+		return _PORTLET_ID;
+	}
+
+	public void populateParams(
+		String friendlyURLPath, Map<String, String[]> params) {
+
+		addParam(params, "p_p_id", _PORTLET_ID);
+		addParam(params, "p_p_lifecycle", "0");
+		addParam(params, "p_p_state", WindowState.MAXIMIZED);
+		addParam(params, "p_p_mode", PortletMode.VIEW);
+	}
+
+	private static final String _MAPPING = "wall";
+
+	private static final String _PORTLET_ID = "5_WAR_wolportlet";
+
 }

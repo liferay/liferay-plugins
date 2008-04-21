@@ -17,6 +17,9 @@
 	</portlet>
 	<portlet>
 		<portlet-name>5</portlet-name>
+		<icon>/wall/icon.png</icon>
+		<friendly-url-mapper-class>com.liferay.wol.wall.portlet.WallFriendlyURLMapper</friendly-url-mapper-class>
+		<social-activity-interpreter-class>com.liferay.wol.wall.social.WallActivityInterpreter</social-activity-interpreter-class>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
