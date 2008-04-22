@@ -235,11 +235,19 @@ var DesktopAddContent = {
 						var portletContainer = jQuery('.portlet-boundary_' + portletId + '_');
 						var portletLink = jQuery('.portlet-boundary_' + portletId + '_ a');
 						var realPortletId = portletLink.attr('name');
+						var portletTopper = portletContainer.find(".portlet-topper");
 						realPortletId = realPortletId.replace('p_','');
+
 						LiferayDesktop.addTaskbarLink(realPortletId);
 						LiferayDesktop.selectTaskbarLink(realPortletId);
 						LiferayDesktop.addPortletGroupName(realPortletId);
+
+						jQuery(".portlet-content").wrap("<div id='portlet-scrollbars'></div>");
+						jQuery(".taglib-search-iterator").wrap("<div class='taglib-search-iterator-wrapper'></div>");
+						jQuery(".portlet-content-container").css({'overflow':''});
+
 						portletContainer.click(function() {LiferayDesktop.selectTaskbarLink(realPortletId);});
+						portletTopper.hover(function() {LiferayDesktop.portletModesHover(portletId);},function() {LiferayDesktop.portletModesHoverOut(portletId);});
 					}
 				}
 

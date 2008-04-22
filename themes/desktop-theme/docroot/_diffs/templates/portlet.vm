@@ -82,7 +82,7 @@
 			#end
 
 			<div class="portlet-address">
-				<span id="portlet-group-name"></span> <img src="$images_folder/arrows/portlet_address.png" alt="" />
+				<span id="portlet-group-name"></span> <img class="portlet-group-name" src="$images_folder/arrows/portlet_address.png" alt="" />
 				$layout.getHTMLTitle($locale) <img src="$images_folder/arrows/portlet_address.png" alt="" />
 				$portlet_title
 			</div>

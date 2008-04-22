@@ -2,12 +2,9 @@ var LiferayDesktop = function () {
 	var $ = jQuery;
 
 	return {
-		init: function() {
-			var instance = this;
 
-			instance.dockMenu();
-			instance.fixDock();
-		},
+		/* todo - refactor this code */
+
 		fixDock: function() {
 			Liferay.Util.actsAsAspect(Liferay.Dock);
 			Liferay.Dock.after('init',
@@ -20,15 +17,13 @@ var LiferayDesktop = function () {
 
 		/* ---------- Dock Menu Functions ---------- */
 
+		/* todo - add persistant hover and arrows */
+
 		dockMenu: function() {
 			var instance = this;
 			
-			if (!jQuery(document.body).is('.vista')) {
-				return;
-			}
-
-			Liferay.Util.createFlyouts(
-				{
+			if (jQuery(document.body).is('.vista')) {
+				Liferay.Util.createFlyouts({
 					container: jQuery('.navigation-menu')[0],
 					mouseOver: function(event) {
 						if (this.className.indexOf('my-places') > -1) {
@@ -39,74 +34,8 @@ var LiferayDesktop = function () {
 							jQuery('> ul', this).show();
 						}
 					}
-				}
-			);
-
-			return;
-
-			if (jQuery(".vista").size() >= 1) {
-				menuColor = '#074f67';
-				highlight = '#3DA5D5';
-			} else if (jQuery(".osx").size() >= 1) {
-				menuColor = '#336eca';
-				highlight = '#3DA5D5';
-			} else {
-				menuColor = '#0a246a';
-				highlight = '#3DA5D5';
+				});
 			}
-
-			instance.placesInit();
-			instance.navMenu = jQuery('ul.lfr-dock-list > li.home');
-			instance.navSubmenu = jQuery('ul.nav-dock-list > li');
-			instance.placesMenu = jQuery('ul.lfr-dock-list > li.my-places');
-			instance.placesSubmenu = jQuery('ul.lfr-dock-list > li.my-places > ul > li');
-			instance.navMenu.hover(instance.navHover,instance.navHoverOut);
-			instance.navSubmenu.hover(instance.navHover,instance.navHoverOut);
-			instance.placesMenu.hover(instance.navHover,instance.navHoverOut);
-			instance.placesSubmenu.hover(instance.placesHover,instance.placesHoverOut);
-		},
-		placesInit: function() {
-			var li = jQuery('ul.lfr-dock-list > li.my-places > ul > li');
-			var childH3 = li.find('> h3');
-			li.append(jQuery('<div class="submenu-arrow-black"></div>'));
-			jQuery("li:has(.current)").find('> h3').css({ "background-color":highlight,color:"#ffffff" });
-		},
-		navHover: function() {
-			var li = jQuery(this);
-			var childLink = li.find('> a');
-			var selectedLink = li.find('.selected');
-			var item = li.find('> ul');
-			childLink.css({ "background-color":menuColor,color:"#ffffff" });
-			selectedLink.css({ "background-color":"",color:"" });
-			item.append(jQuery('<div class="submenu-arrow-white"></div>'));
-			item.css({ display:"block" });
-		},
-		navHoverOut: function() {
-			var li = jQuery(this);
-			var childLink = li.find('> a');
-			var item = li.find('> ul');
-			childLink.css({ "background-color":"",color:"" });
-			item.find('div:last').remove();
-			item.css({ display:"none" });
-		},
-		placesHover: function() {
-			var li = jQuery(this);
-			var childH3 = li.find('> h3');
-			var item = li.find('> ul');
-			childH3.css({ "background-color":menuColor,color:"#ffffff" });
-			li.find('div:last').css({ display:"none" });
-			item.append(jQuery('<div class="submenu-arrow-white"></div>'));
-			item.css({ display:"block" });
-		},
-		placesHoverOut: function() {
-			var li = jQuery(this);
-			var childH3 = li.find('> h3');
-			var item = li.find('> ul');
-			childH3.css({ "background-color":"",color:"" });
-			li.find('div:last').css({ display:"block" });
-			item.find('div:last').remove();
-			item.css({ display:"none" });
-			jQuery("li:has(.current)").find('> h3').css({ "background-color":highlight,color:"#ffffff" });
 		},
 
 		/* ---------- Non-Free-Form Layouts - Body Scrollbar Function ---------- */
@@ -117,14 +46,23 @@ var LiferayDesktop = function () {
 			var sidebarWrapper = $("#sidebar-wrapper");
 			var height = 0;
 			var width = 0;
+			var taskbarHeight = 0;
+
+			// Color Scheme
+			if (jQuery(document.body).is('.osx')) {
+				taskbarHeight = 23;
+			}
+			else {
+				taskbarHeight = 28;
+			}
 
 			// Provide appropriate height / width
 			if ($('.ie').size() > 0) {
-				height = document.body.offsetHeight-28;
+				height = document.body.offsetHeight-taskbarHeight;
 				width = document.body.offsetWidth;
 			}
 			else {
-				height = window.innerHeight-28;
+				height = window.innerHeight-taskbarHeight;
 				width = window.innerWidth;
 			}
 
@@ -167,13 +105,26 @@ var LiferayDesktop = function () {
 			var width = 0;
 			var innerWidth = 0;
 
+			var taskbarHeight = 0;
+			var portletTopper = 0;
+
+			// Color Scheme
+			if (jQuery(document.body).is('.osx')) {
+				taskbarHeight = 23;
+				portletTopper = 76;
+			}
+			else {
+				taskbarHeight = 28;
+				portletTopper = 59;
+			}
+
 			// Provide appropriate height / width
 			if ($('.ie').size() > 0) {
-				height = document.body.offsetHeight-28-59-21-20+15;
+				height = document.body.offsetHeight-taskbarHeight-portletTopper-21-20+15;
 				width = document.body.offsetWidth-21-21-20+15;
 			}
 			else {
-				height = window.innerHeight-28-59-21-20+15;
+				height = window.innerHeight-taskbarHeight-portletTopper-21-20+15;
 				width = window.innerWidth-21-21-20+15;
 			}
 
@@ -241,10 +192,15 @@ var LiferayDesktop = function () {
 
 		addPortletGroupName: function(portletId) {
 			var group = $("li.current-community h3 a").text();
-			var portletGroupName = $('#p_p_id_' + portletId + '_ #portlet-group-name');
-			portletGroupName.append(group);
-		},
 
+			if (group != '') {
+				var portletGroupName = $('#p_p_id_' + portletId + '_ #portlet-group-name');
+				var portletGroupArrow = $('#p_p_id_' + portletId + '_ .portlet-group-name');
+				portletGroupName.append(group);
+				portletGroupArrow.css({'display':'inline'});
+			}
+		},
+		
 		/* ---------- Desktop Taskbar - Portlet Link Functions ---------- */
 
 		initSelectTaskbarLink: function() {
@@ -270,11 +226,15 @@ var LiferayDesktop = function () {
 				selectedTaskbarLink.removeClass('selected');
 				taskbarLink.addClass("selected");
 
-				var container = $("#layout-column_column-1");
-				var portletLink = container.find("div.portlet-boundary:last").attr('id');
-				var selectTaskbarLink = 'p_p_id_' + portletId + '_';
-				if (selectTaskbarLink != portletLink) {
-					LiferayDesktop.restorePortlet('',portletId,'','');
+				// Check if user removed portlet
+				if (taskbarLink.size() == 1) {
+					var container = $("#layout-column_column-1");
+					var portletLink = container.find("div.portlet-boundary:last").attr('id');
+					var selectTaskbarLink = 'p_p_id_' + portletId + '_';
+
+					if (selectTaskbarLink != portletLink) {
+						LiferayDesktop.restorePortlet('',portletId,'','');
+					}
 				}
 			}
 		},
@@ -323,11 +283,24 @@ var LiferayDesktop = function () {
 
 				taskbar.append('<li id="p_p_id_' + portletId + '_taskbar" class="taskbar-link"><a href="' + restoreHtmlStr + '">' + titleText + '</a></li>');
 
-				var taskbarLinks = $('#taskbar-portlets .taskbar-link');
-				var count = taskbarLinks.size();
-				var width = 100/count;
-				taskbarLinks.css({'width':width + '%'});
+				if (!jQuery(document.body).is('.osx')) {
+					var taskbarLinks = $('#taskbar-portlets .taskbar-link');
+					var count = taskbarLinks.size();
+					var width = 100/count;
+					taskbarLinks.css({'width':width + '%'});
+				}
 			}
+		},
+
+		/* ---------- Portlet Mode Icons - Hover Function ---------- */
+
+		portletModesHover: function(portletId) {
+			var portletModes = $('#p_p_id_' + portletId + '_ .portlet-modes');
+			portletModes.css({"display":"block"});
+		},
+		portletModesHoverOut: function(portletId) {
+			var portletModes = $('#p_p_id_' + portletId + '_ .portlet-modes');
+			portletModes.css({"display":""});
 		},
 
 		/* ---------- Portlet - Window State Functions ---------- */
@@ -375,14 +348,16 @@ var LiferayDesktop = function () {
 			var taskbarLink = $('#p_p_id_' + portletId + '_taskbar');
 			taskbarLink.remove();
 
-			var taskbarLinks = $('#taskbar-portlets .taskbar-link');
-			var count = taskbarLinks.size() - 1;
+			if (!jQuery(document.body).is('.osx')) {
+				var taskbarLinks = $('#taskbar-portlets .taskbar-link');
+				var count = taskbarLinks.size() - 1;
 
-			if (count < 1) {
-				count = 1;
+				if (count < 1) {
+					count = 1;
+				}
+
+				taskbarLinks.css({'width':100/count + '%'});
 			}
-
-			taskbarLinks.css({'width':100/count + '%'});
 
 			closePortlet(plid, portletId, doAsUserId,'true');
 		}
@@ -397,7 +372,8 @@ jQuery(document).ready(
 	*/
 
 	function() {
-		LiferayDesktop.init();
+		LiferayDesktop.fixDock();
+		LiferayDesktop.dockMenu();
 		LiferayDesktop.addContentInit();
 
 		if (jQuery(".columns-max").size() == 1) {
@@ -424,8 +400,12 @@ Liferay.Portlet.ready(
 	function(portletId, jQueryObj) {
 		LiferayDesktop.addTaskbarLink(portletId);
 		LiferayDesktop.addPortletGroupName(portletId);
+
 		var portletBoundary = jQuery('#p_p_id_' + portletId + '_');
 		portletBoundary.click(function() {LiferayDesktop.selectTaskbarLink(portletId);});
+
+		var portletTopper = jQueryObj.find(".portlet-topper");
+		portletTopper.hover(function() {LiferayDesktop.portletModesHover(portletId);},function() {LiferayDesktop.portletModesHoverOut(portletId);});
 	}
 );
 
@@ -438,6 +418,7 @@ jQuery(document).last(
 
 	function() {
 		LiferayDesktop.initSelectTaskbarLink();
+
 		jQuery("body").click(function(event) {LiferayDesktop.clearSelectTaskbarLink(event);});
 		jQuery(".portlet-content").wrap("<div id='portlet-scrollbars'></div>");
 		jQuery(".taglib-search-iterator").wrap("<div class='taglib-search-iterator-wrapper'></div>");

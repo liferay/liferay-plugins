@@ -66,12 +66,19 @@ body.osx {
 	padding: 0 1px;
 }
 
-.js .osx .interactive-mode .home li.selected a {
+.js .osx .interactive-mode .home li.selected a,
+.js .osx .interactive-mode .home .child-menu li.selected a {
 	background-color: #3ca5d5;
 }
 
-.js .osx .interactive-mode .home li.selected a:hover {
+.js .osx .interactive-mode .home li.selected a:hover,
+.js .osx .interactive-mode .home .child-menu li.selected a:hover {
 	background-color: #336eca;
+}
+
+.js .osx .interactive-mode .home li a,
+.js .osx .interactive-mode .home .child-menu li a {
+	background: none;
 }
 
 .ie.js .osx .lfr-flyout.has-children ul.taglib-home {
@@ -162,7 +169,7 @@ body.osx {
 .osx .portlet-modes {
 	left: 3px;
 	right: auto;
-	top: 40px;
+	top: 42px;
 }
 
 .osx .portlet-states {
@@ -250,12 +257,12 @@ body.osx {
 
 /* ---------- Custom styles for the Desktop theme ---------- */
 
-.osx #taskbar {
-	background: transparent url(../../images/color_schemes/osx/desktop/taskbar_bg.png) repeat-x scroll 0 0;
+.osx #dock-wrapper {
+	height: 23px;
 }
 
-.osx #taskbar-portlets-wrapper {
-	display: none;
+.osx #taskbar {
+	background: transparent url(../../images/color_schemes/osx/desktop/taskbar_bg.png) repeat-x scroll 0 0;
 }
 
 .osx #taskbar-portlets {
@@ -263,6 +270,35 @@ body.osx {
 }
 
 .osx #taskbar-portlets .taskbar-link a {
-	line-height: 18px;
+	background: none;
+	border-width: 0;
+	color: #000000;
+	line-height: 22px;
 	font-family: 'Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+	font-weight: bold;
+}
+
+.osx #taskbar-portlets .taskbar-link.selected a {
+	background: none;
+	background-color: #3ca5d5;
+}
+
+.osx #taskbar-portlets .taskbar-link a:hover {
+	background: none;
+	background-color: #336eca;
+	color: #ffffff;
+}
+
+.osx #taskbar-portlets-wrapper {
+	top: 0;
+}
+
+.osx #taskbar-portlets img {
+	display: none;
+}
+
+/* ---------- Styles for the Desktop Sidebar ---------- */
+
+.osx #sidebar-wrapper {
+	top: 23px;
 }

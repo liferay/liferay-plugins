@@ -51,6 +51,8 @@ body {
 
 /* ---------- Styles for the Liferay Dock menu ---------- */
 
+/* todo - refactor the styles for the dock menu */
+
 .js .lfr-dock.expanded .lfr-dock-list-container {
 	background: transparent url(../images/dock/dock_bg.png) repeat-y scroll left bottom;
 	border: none;
@@ -122,6 +124,7 @@ body {
 .js .interactive-mode .home li.selected a:hover,
 .js .interactive-mode .home .child-menu li.selected a:hover{
 	background-color: #0a246a;
+	color: #ffffff;
 }
 
 .js .interactive-mode .home li a,
@@ -132,6 +135,8 @@ body {
 }
 
 .js .interactive-mode .home li a:hover {
+	background-color: #0a246a;
+	color: #ffffff;
 	padding:0.5em 0pt 0.5em 1em;
 }
 
@@ -299,6 +304,7 @@ body {
 }
 
 .portlet-modes {
+	display: none;
 	position: absolute;
 	right: 13px;
 	top: 37px;
@@ -474,8 +480,8 @@ body {
 /* ---------- Custom styles for the Desktop theme ---------- */
 
 #portlet-scrollbars {
-	padding: -10px;
 	background: #ffffff;
+	padding: -10px;
 	overflow: auto;
 }
 
@@ -542,32 +548,57 @@ body {
 }
 
 #taskbar-portlets img {
-vertical-align: middle;
-padding:0 3px 0 0;
+	padding: 0 3px 0 0;
+	vertical-align: middle;
 }
 
+.taskbar-link-title {
+	display: block;
+	overflow: hidden;
+}
+
+.portlet-group-name {
+	display: none;
+}
+
+.popup-alert-notice, .popup-alert-warning {
+	background-color: #E4E1DC;
+	border-color: white;
+	border-style: solid;
+	border-width: 10px 1px 1px;
+	color: #000000;
+	left: 35%;
+	opacity: 0.87;
+	padding: 7px 10px 10px 30px;
+	position: relative;
+	top: 70%;
+	width: 300px;
+}
+
+/* ---------- Styles for the Desktop Sidebar ---------- */
+
 #sidebar-wrapper {
+	background: transparent url(../images/desktop/sidebar_bg.png) repeat-y scroll 25px 0;
+	color: #ffffff;
 	height: 100%;
-	width: 20px;
 	position: absolute;
 	right:0;
 	top: 28px;
-	background: transparent url(../images/desktop/sidebar_bg.png) repeat-y scroll 25px 0;
-color: #ffffff;
+	width: 20px;
 }
 
 #sidebar {
-height: 100%;
-left: 30px;
-top: -100%;
-position: relative;
-width: 235px;
+	height: 100%;
+	left: 30px;
 	overflow: hidden;
+	position: relative;
+	top: -100%;
+	width: 235px;
 }
 
 #sidebar-link {
 	height: 100%;
-width: 20px;
+	width: 20px;
 }
 
 #sidebar-link a {
@@ -600,8 +631,8 @@ width: 20px;
 }
 
 #sidebar-top {
-height: 100px;
-margin: 15px 0 0 0;
+	height: 100px;
+	margin: 15px 0 0 0;
 	overflow: hidden;
 }
 
@@ -612,48 +643,48 @@ margin: 15px 0 0 0;
 }
 
 #sidebar-top .calendar {
-	height: 100px;
-	width: 100px;
 	background: transparent url(../images/desktop/calendar_bg.png) no-repeat scroll 100% 0;
+	height: 100px;
 	float: right;
 	margin: 0 10px 0 0;
+	width: 100px;
 }
 
 .portal-add-content-search {
-margin:10px 0 20px;
+	margin:10px 0 20px;
 }
 
 .portal-add-content .lfr-portlet-item {
-border: none;
+	border: none;
 }
 
 .portal-add-content .lfr-content-category.visible {
-border-bottom: none;
+	border-bottom: none;
 }
 
 #sidebar-top .month {
-display:block;
-font-size:17px;
-font-weight:bold;
-line-height:25px;
-margin:10px 0 5px;
-text-align:center;
-color:#222222;
-font-family: 'Arial', 'Tahoma','Lucida Sans Unicode';
+	color:#222222;
+	display:block;
+	font-family: 'Arial', 'Tahoma','Lucida Sans Unicode';
+	font-size:17px;
+	font-weight:bold;
+	line-height:25px;
+	margin:10px 0 5px;
+	text-align:center;
 }
 
 #sidebar-top .day {
-display:block;
-font-size:40px;
-font-weight:bold;
-line-height:40px;
-text-align:center;
-color: #000000;
+	color: #000000;
+	display:block;
+	font-size:40px;
+	font-weight:bold;
+	line-height:40px;
+	text-align:center;
 }
 
 .portal-add-content .lfr-portlet-item:hover, .portal-add-content .lfr-portlet-item.over {
-background-color: #336eca;
-border-color: #336eca;
+	background-color: #336eca;
+	border-color: #336eca;
 }
 
 .portal-add-content .lfr-portlet-item p a,
@@ -663,23 +694,4 @@ border-color: #336eca;
 
 .portal-add-content .lfr-portlet-used {
 	color: #111111;
-}
-
-.taskbar-link-title {
-display:block;
-overflow:hidden;}
-
-
-.popup-alert-notice, .popup-alert-warning {
-background-color:#E4E1DC;
-border-color:white;
-border-style:solid;
-border-width:10px 1px 1px;
-color:#000000;
-left:35%;
-opacity:0.87;
-position:relative;
-top:64%;
-width:300px;
-padding:7px 10px 10px 30px;
 }

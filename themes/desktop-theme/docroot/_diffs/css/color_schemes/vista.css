@@ -3,7 +3,7 @@
 /* ---------- Styles in base.css ---------- */
 
 body.vista {
-	background: #63bccd url(../../images/color_schemes/vista/desktop/desktop_bg.png) no-repeat fixed 50% 50%;
+	background: #548297 url(../../images/color_schemes/vista/desktop/desktop_bg.png) no-repeat fixed 50% 50%;
 }
 
 /* ---------- Styles in navigation.css ---------- */
@@ -47,6 +47,10 @@ body.vista {
 .js .vista .interactive-mode li a {
 	font-stretch: semi-condensed;
 	font-weight: 300;
+}
+
+.ie.js .vista .interactive-mode li.home a {
+	margin: 0;
 }
 
 /* ---------- Styles in portlet.css ---------- */
@@ -152,6 +156,15 @@ body.vista {
 	padding: 0 10px 0 58px;
 }
 
+.vista #taskbar-portlets-wrapper {
+	top: 3px;
+}
+
+.vista #taskbar-portlets .taskbar-link a {
+	color: #ffffff;
+	font-size: 13px;
+}
+
 /* ---------- Custom styles for the Desktop sidebar menu ---------- */
 
 .vista .expanded .vista-menu .taglib-home.navigation-menu {
@@ -162,35 +175,112 @@ body.vista {
 	width: 126px;
 }
 
-.vista .vista-menu .taglib-home.navigation-menu li {
+.vista #taskbar-portlets img {
+	display: none;
+}
+
+/* ---------- Styles for the Main Navigation menu ---------- */
+
+.js .vista-menu .taglib-home li {
+	height: 26px;
 	text-indent: -20px;
 }
 
-.vista .vista-menu .taglib-home.navigation-menu li.my-places {
-	text-indent: 0;
-}
-
-.vista .vista-menu .taglib-home.navigation-menu li.my-places li {
-	text-indent: 0;
-}
-
-.vista .vista-menu .taglib-home.navigation-menu ul {
-	position: absolute;
-}
-
-.ie.js .taglib-home.navigation-menu .lfr-flyout.has-children {
+.ie.js .vista-menu .taglib-home li.lfr-flyout.has-children {
 	min-width: auto;
 }
 
-.vista .vista-menu .taglib-home.navigation-menu li ul a {
-	color: #000;
+.js .vista-menu .taglib-home li.my-places {
+	border-bottom: 1px dotted #aaaaaa;
+	text-indent: 0;
 }
 
-.vista .vista-menu .taglib-home.navigation-menu li a {
+.js .vista-menu .taglib-home li a {
 	color: #eeeeee;
 }
 
-.vista .vista-menu .taglib-home.navigation-menu li a:hover {
+.js .vista-menu .taglib-home.navigation-menu li a:hover {
 	background-color: #222222;
 	color: #ffffff;
+}
+
+.js .vista-menu .taglib-home li.selected a,
+.js .vista-menu .taglib-home ul li.selected a {
+	background-color: #555555;
+	color: #ffffff;
+}
+
+/* ---------- Styles for the Main Navigation flyout menu ---------- */
+
+.js .vista .interactive-mode .lfr-flyout.has-children ul {
+	background: transparent url(../../images/color_schemes/vista/dock/child_menu_bg.png) repeat-y scroll left top;
+	border-color: #b7bfb4;
+}
+
+.js .vista-menu .taglib-home ul {
+	position: absolute;
+}
+
+.js .vista-menu ul.taglib-my-places,
+.js .vista-menu ul.child-menu {
+	left: 122px;
+}
+
+.js .vista-menu .taglib-home li.my-places li {
+	text-indent: 0;
+}
+
+.js .vista-menu .taglib-home ul li {
+	margin: 0 1px 0;
+}
+
+.js .vista-menu .taglib-home ul a,
+.js .vista-menu .taglib-home ul.child-menu a {
+	background-color: transparent;
+	color: #000;
+}
+
+/* ---------- Styles for the My Places flyout menu ---------- */
+
+.js .vista .interactive-mode .my-places li.current-community h3 a {
+	background-color: #555555;
+}
+
+.js .vista .interactive-mode .my-places li.current-community h3 a:hover {
+	background-color: #222222;
+}
+
+.js .vista .interactive-mode .my-places li.current a {
+	background-color: #555555;
+}
+
+.js .vista .interactive-mode .my-places li.current a:hover {
+	background-color: #222222;
+}
+
+/* ---------- Styles for the Desktop Sidebar ---------- */
+
+.vista #sidebar-wrapper {
+	top: auto;
+	bottom: 28px;
+}
+
+.vista #sidebar-top {
+	margin: 43px 0 0;
+}
+
+.vista #sidebar-link a {
+	background: transparent url(../../images/arrows/05_left.png) no-repeat scroll 50% 55%;
+}
+
+.vista #sidebar-link a:hover {
+	background: transparent url(../../images/arrows/05_left_hover.png) no-repeat scroll 50% 55%;
+}
+
+.vista #sidebar-link a.expanded {
+	background: transparent url(../../images/arrows/05_right.png) no-repeat scroll 50% 55%;
+}
+
+.vista #sidebar-link a.expanded:hover {
+	background: transparent url(../../images/arrows/05_right_hover.png) no-repeat scroll 50% 55%;
 }
