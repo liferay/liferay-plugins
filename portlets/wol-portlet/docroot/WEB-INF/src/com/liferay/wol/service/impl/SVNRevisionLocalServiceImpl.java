@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portlet.expando.model.ExpandoValue;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
+import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.wol.NoSuchSVNRevisionException;
 import com.liferay.wol.model.SVNRevision;
@@ -76,6 +77,19 @@ public class SVNRevisionLocalServiceImpl
 			ExpandoValue expandoValue = expandoValues.get(0);
 
 			long userId = expandoValue.getClassPK();
+
+			List<SocialActivity> socialActivities =
+				SocialActivityLocalServiceUtil.getActivities(
+					SVNRevision.class.getName(), 0, 1);
+
+			if (socialActivities.size() > 0) {
+				SocialActivity socialActivity = socialActivities.get(0);
+
+				if (userId == socialActivity.getUserId()) {
+					SocialActivityLocalServiceUtil.deleteActivity(
+						socialActivity.getActivityId());
+				}
+			}
 
 			SocialActivityLocalServiceUtil.addActivity(
 				userId, 0, SVNRevision.class.getName(), svnRevisionId,
