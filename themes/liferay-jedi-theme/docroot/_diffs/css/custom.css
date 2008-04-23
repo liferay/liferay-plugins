@@ -507,6 +507,6 @@ ul.message-board-edit-controls {
 
 /* --- CALENDAR --- */
 
-.portlet-calendar {
+#content-wrapper .portlet-calendar {
 	font-size: 10px;
 }
