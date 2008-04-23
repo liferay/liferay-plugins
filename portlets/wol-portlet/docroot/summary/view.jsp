@@ -162,6 +162,10 @@
 		<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 		<input name="<portlet:namespace />redirect" type="hidden" value="<%= PortalUtil.getCurrentURL(request) %>" />
 
+		<div class="portlet-msg-info">
+			This form will allow you to change settings used to track your participation in the Liferay Community. Use <a href="<%= themeDisplay.getURLMyAccount() %>">My Account</a> to change regular account settings like profile picture or password.
+		</div>
+
 		<table class="lfr-table">
 		<tr>
 			<td>
@@ -169,6 +173,8 @@
 			</td>
 			<td>
 				<input class="lfr-input-text" name="<portlet:namespace />jiraUserId" style="width: 150px;" type="text" value="<%= jiraUserId %>" />
+
+				<liferay-ui:icon-help message="Set your login for http://support.liferay.com to track your JIRA activity." />
 			</td>
 		</tr>
 		<tr>
@@ -177,6 +183,8 @@
 			</td>
 			<td>
 				<input class="lfr-input-text" name="<portlet:namespace />sfUserId" style="width: 150px;" type="text" value="<%= sfUserId %>" />
+
+				<liferay-ui:icon-help message="Set your SourceForge login if you are a committer. It will enable the SVN portlet to track your commit activity." />
 			</td>
 		</tr>
 		<tr>
