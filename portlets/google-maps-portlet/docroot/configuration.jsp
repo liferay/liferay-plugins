@@ -28,7 +28,7 @@
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
 <div class="portlet-msg-info">
-<a href="http://www.google.com/apis/maps/signup.html" target="_blank"><liferay-ui:message key="you-can-get-a-license-directly-from-google" /></a>
+	<a href="http://www.google.com/apis/maps/signup.html" target="_blank"><liferay-ui:message key="you-can-get-a-license-directly-from-google" /></a>
 </div>
 
 <table class="lfr-table">
