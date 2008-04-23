@@ -69,6 +69,10 @@ public interface SVNRevisionLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	public com.liferay.wol.model.SVNRevision getSVNRevision(long svnRevisionId)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.PortalException;
+
 	public java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
 		java.lang.String svnUserId, int begin, int end)
 		throws com.liferay.portal.SystemException;

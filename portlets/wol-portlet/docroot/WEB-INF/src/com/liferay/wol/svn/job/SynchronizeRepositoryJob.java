@@ -48,7 +48,7 @@ public class SynchronizeRepositoryJob implements IntervalJob {
 	public void execute(JobExecutionContext context)
 		throws JobExecutionException {
 
-		for (String url : SVNConstants.URLS) {
+		for (String url : SVNConstants.SVN_URLS) {
 			try {
 				SVNRepositoryLocalServiceUtil.updateSVNRepository(url);
 			}

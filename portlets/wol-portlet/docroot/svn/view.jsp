@@ -50,20 +50,18 @@ String svnUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "W
 				%>
 
 				<div>
-					<%= user.getFullName() %> is a committer and has made over <b><%= numberFormat.format(commitsCount) %></b> commits. His first commit was on <%= dateFormatDate.format(firstCommitDate) %> and his last commit was on <%= dateFormatDate.format(lastCommitDate) %>.
+					<%= user2.getFullName() %> is a committer and has made over <b><%= numberFormat.format(commitsCount) %></b> commits. His first commit was on <%= dateFormatDate.format(firstCommitDate) %> and his last commit was on <%= dateFormatDate.format(lastCommitDate) %>.
 				</div>
 
 				<%
-				for (String url : SVNConstants.URLS) {
+				for (String url : SVNConstants.SVN_URLS) {
 					SVNRepository svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(url);
-
-					String shortURL = url.substring(url.indexOf("/lportal/") + 8);
 				%>
 
 					<c:if test="<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId()) > 0 %>">
 						<br />
 
-						See his activity on <a href="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="url" value="<%= url %>" /></portlet:renderURL>"><%= shortURL %></a>.
+						See his activity on <a href="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="url" value="<%= url %>" /></portlet:renderURL>"><%= svnRepository.getShortURL() %></a>.
 					</c:if>
 
 				<%

@@ -25,9 +25,15 @@ package com.liferay.wol.service.impl;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.User;
+import com.liferay.portlet.expando.model.ExpandoValue;
+import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
+import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.wol.NoSuchSVNRevisionException;
 import com.liferay.wol.model.SVNRevision;
 import com.liferay.wol.service.base.SVNRevisionLocalServiceBaseImpl;
+import com.liferay.wol.svn.social.SVNActivityKeys;
 
 import java.util.Date;
 import java.util.List;
@@ -46,6 +52,8 @@ public class SVNRevisionLocalServiceImpl
 			long revisionNumber, String comments)
 		throws PortalException, SystemException {
 
+		// SVN revision
+
 		long svnRevisionId = CounterLocalServiceUtil.increment();
 
 		SVNRevision svnRevision = svnRevisionPersistence.create(svnRevisionId);
@@ -57,6 +65,22 @@ public class SVNRevisionLocalServiceImpl
 		svnRevision.setComments(comments);
 
 		svnRevisionPersistence.update(svnRevision, false);
+
+		// Social
+
+		List<ExpandoValue> expandoValues =
+			ExpandoValueLocalServiceUtil.getColumnValues(
+				User.class.getName(), "WOL", "sfUserId", svnUserId, 0, 1);
+
+		if (expandoValues.size() > 0) {
+			ExpandoValue expandoValue = expandoValues.get(0);
+
+			long userId = expandoValue.getClassPK();
+
+			SocialActivityLocalServiceUtil.addActivity(
+				userId, 0, SVNRevision.class.getName(), svnRevisionId,
+				SVNActivityKeys.ADD_REVISION, StringPool.BLANK, 0);
+		}
 
 		return svnRevision;
 	}
@@ -89,6 +113,12 @@ public class SVNRevisionLocalServiceImpl
 		else {
 			throw new NoSuchSVNRevisionException();
 		}
+	}
+
+	public SVNRevision getSVNRevision(long svnRevisionId)
+		throws PortalException, SystemException {
+
+		return svnRevisionPersistence.findByPrimaryKey(svnRevisionId);
 	}
 
 	public List<SVNRevision> getSVNRevisions(

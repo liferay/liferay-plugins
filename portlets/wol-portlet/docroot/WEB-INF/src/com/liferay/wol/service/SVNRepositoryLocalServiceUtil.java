@@ -80,6 +80,15 @@ public class SVNRepositoryLocalServiceUtil {
 	}
 
 	public static com.liferay.wol.model.SVNRepository getSVNRepository(
+		long svnRepositoryId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
+
+		return svnRepositoryLocalService.getSVNRepository(svnRepositoryId);
+	}
+
+	public static com.liferay.wol.model.SVNRepository getSVNRepository(
 		java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {

@@ -7,7 +7,9 @@
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
+		<icon>/svn/icon.png</icon>
 		<scheduler-class>com.liferay.wol.svn.job.SVNScheduler</scheduler-class>
+		<social-activity-interpreter-class>com.liferay.wol.svn.social.SVNActivityInterpreter</social-activity-interpreter-class>
 	</portlet>
 	<portlet>
 		<portlet-name>3</portlet-name>

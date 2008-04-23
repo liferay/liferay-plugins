@@ -36,4 +36,10 @@ public class SVNRepositoryImpl
 	public SVNRepositoryImpl() {
 	}
 
+	public String getShortURL() {
+		String url = getUrl();
+
+		return url.substring(url.indexOf("/lportal/") + 8);
+	}
+
 }

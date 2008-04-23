@@ -59,7 +59,7 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
-		// Entry
+		// Wall entry
 
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
 		User user = UserLocalServiceUtil.getUserById(userId);

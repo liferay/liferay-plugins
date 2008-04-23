@@ -29,4 +29,5 @@ package com.liferay.wol.model;
  *
  */
 public interface SVNRepository extends SVNRepositoryModel {
+	public java.lang.String getShortURL();
 }

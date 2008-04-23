@@ -45,7 +45,7 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "
 		}
 		%>
 
-		<%= user.getFullName() %> is assigned to <b><%= numberFormat.format(assignedIssuesTotalCount - assignedIssuesClosedCount) %></b> unresolved issues. He has resolved over <%= numberFormat.format(assignedIssuesClosedCount) %> issues since <%= dateFormatDate.format(firstAssignedIssueDate) %>.
+		<%= user2.getFullName() %> is assigned to <b><%= numberFormat.format(assignedIssuesTotalCount - assignedIssuesClosedCount) %></b> unresolved issues. He has resolved over <%= numberFormat.format(assignedIssuesClosedCount) %> issues since <%= dateFormatDate.format(firstAssignedIssueDate) %>.
 
 		<br /><br />
 

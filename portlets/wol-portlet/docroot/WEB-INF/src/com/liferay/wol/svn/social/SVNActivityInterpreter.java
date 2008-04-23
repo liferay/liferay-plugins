@@ -20,26 +20,25 @@
  * SOFTWARE.
  */
 
-package com.liferay.wol.wall.social;
+package com.liferay.wol.svn.social;
 
 import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
-import com.liferay.wol.model.WallEntry;
-import com.liferay.wol.service.WallEntryLocalServiceUtil;
+import com.liferay.wol.model.SVNRepository;
+import com.liferay.wol.model.SVNRevision;
+import com.liferay.wol.service.SVNRevisionLocalServiceUtil;
 
 /**
- * <a href="WallActivityInterpreter.java.html"><b><i>View Source</i></b></a>
+ * <a href="SVNActivityInterpreter.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
+public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
@@ -51,41 +50,36 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String creatorUserName = getUserName(
 			activity.getUserId(), themeDisplay);
-		String receiverUserName = getUserName(
-			activity.getReceiverUserId(), themeDisplay);
-
-		User receiverUser = UserLocalServiceUtil.getUserById(
-			activity.getReceiverUserId());
 
 		String activityType = activity.getType();
 
 		// Title
 
+		SVNRevision svnRevision = SVNRevisionLocalServiceUtil.getSVNRevision(
+			activity.getClassPK());
+
+		SVNRepository svnRepository = svnRevision.getSVNRepository();
+
 		String title = StringPool.BLANK;
 
-		if (activityType.equals(WallActivityKeys.ADD_ENTRY)) {
+		if (activityType.equals(SVNActivityKeys.ADD_REVISION)) {
 			title = themeDisplay.translate(
-				"activity-wol-wall-add-entry",
-				new Object[] {creatorUserName, receiverUserName});
+				"activity-wol-svn-add-revision",
+				new Object[] {
+					creatorUserName,
+					String.valueOf(svnRevision.getRevisionNumber()),
+					svnRepository.getShortURL()
+				});
 		}
 
 		// Body
 
-		WallEntry wallEntry = WallEntryLocalServiceUtil.getWallEntry(
-			activity.getClassPK());
-
-		String wallEntryURL =
-			themeDisplay.getURLPortal() +
-				themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH +
-					receiverUser.getScreenName() + "/home/-/wall/" +
-						activity.getClassPK();
-
 		StringMaker sm = new StringMaker();
 
 		sm.append("<a href=\"");
-		sm.append(wallEntryURL);
-		sm.append("\">");
-		sm.append(cleanContent(wallEntry.getComments()));
+		sm.append(svnRevision.getWebRevisionNumberURL());
+		sm.append("\" target=\"_blank\">");
+		sm.append(svnRevision.getComments());
 		sm.append("</a>");
 
 		String body = sm.toString();
@@ -94,7 +88,7 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {
-		WallEntry.class.getName()
+		SVNRevision.class.getName()
 	};
 
 }

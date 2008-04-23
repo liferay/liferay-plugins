@@ -30,14 +30,17 @@ package com.liferay.wol.svn.util;
  */
 public interface SVNConstants {
 
-	public static final String PLUGINS_TRUNK_URL =
+	public static final String SVN_PLUGINS_TRUNK_URL =
 		"http://lportal.svn.sourceforge.net/svnroot/lportal/plugins/trunk";
 
-	public static final String PORTAL_TRUNK_URL =
+	public static final String SVN_PORTAL_TRUNK_URL =
 		"http://lportal.svn.sourceforge.net/svnroot/lportal/portal/trunk";
 
-	public static final String[] URLS = new String[] {
-		PORTAL_TRUNK_URL, PLUGINS_TRUNK_URL
+	public static final String WEB_REVISION_NUMBER_URL =
+		"http://lportal.svn.sourceforge.net/viewvc/lportal?view=rev&revision=";
+
+	public static final String[] SVN_URLS = new String[] {
+		SVN_PORTAL_TRUNK_URL, SVN_PLUGINS_TRUNK_URL
 	};
 
 }

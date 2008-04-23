@@ -20,48 +20,16 @@
  * SOFTWARE.
  */
 
-package com.liferay.wol.model.impl;
-
-import com.liferay.wol.model.SVNRepository;
-import com.liferay.wol.model.SVNRevision;
-import com.liferay.wol.service.SVNRepositoryLocalServiceUtil;
-import com.liferay.wol.svn.util.SVNConstants;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+package com.liferay.wol.svn.social;
 
 /**
- * <a href="SVNRevisionImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="SVNActivityKeys.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class SVNRevisionImpl
-	extends SVNRevisionModelImpl implements SVNRevision {
+public class SVNActivityKeys {
 
-	public SVNRevisionImpl() {
-	}
-
-	public SVNRepository getSVNRepository() {
-		SVNRepository svnRepository = null;
-
-		try {
-			svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(
-				getSvnRepositoryId());
-		}
-		catch (Exception e) {
-			svnRepository = new SVNRepositoryImpl();
-
-			_log.error(e);
-		}
-
-		return svnRepository;
-	}
-
-	public String getWebRevisionNumberURL() {
-		return SVNConstants.WEB_REVISION_NUMBER_URL + getRevisionNumber();
-	}
-
-	private static Log _log = LogFactory.getLog(SVNRevisionImpl.class);
+	public static final String ADD_REVISION = "ADD_REVISION";
 
 }

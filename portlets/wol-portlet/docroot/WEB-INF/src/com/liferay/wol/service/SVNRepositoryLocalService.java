@@ -55,6 +55,11 @@ public interface SVNRepositoryLocalService {
 		throws com.liferay.portal.SystemException;
 
 	public com.liferay.wol.model.SVNRepository getSVNRepository(
+		long svnRepositoryId)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.PortalException;
+
+	public com.liferay.wol.model.SVNRepository getSVNRepository(
 		java.lang.String url)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
