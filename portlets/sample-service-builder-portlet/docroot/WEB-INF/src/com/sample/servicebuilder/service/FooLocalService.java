@@ -64,6 +64,10 @@ public interface FooLocalService {
 
 	public java.util.List getFoos() throws com.liferay.portal.SystemException;
 
+	public java.util.List getFoos(
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
 	public java.util.List getFoos(int begin, int end)
 		throws com.liferay.portal.SystemException;
 

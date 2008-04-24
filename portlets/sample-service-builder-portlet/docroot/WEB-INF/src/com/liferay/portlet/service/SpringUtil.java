@@ -22,9 +22,6 @@
 
 package com.liferay.portlet.service;
 
-import com.liferay.portlet.service.PropsUtil;
-import com.liferay.util.spring.context.LazyClassPathApplicationContext;
-
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -36,12 +33,21 @@ import org.springframework.context.ApplicationContext;
 public class SpringUtil {
 
 	public static ApplicationContext getContext() {
-		if (_ctx == null) {
-			_ctx = new LazyClassPathApplicationContext(
-				PropsUtil.getArray(PropsUtil.SPRING_CONFIGS));
-		}
-
 		return _ctx;
+	}
+
+	public static void initContext(ApplicationContext ctx) {
+		String[] beanDefinitionNames = _ctx.getBeanDefinitionNames();
+
+		for (String beanDefinitionName : beanDefinitionNames) {
+			_ctx.getBean(beanDefinitionName);
+		}
+	}
+
+	public static void setContext(ApplicationContext ctx) {
+		_ctx = ctx;
+
+		initContext(ctx);
 	}
 
 	private static ApplicationContext _ctx = null;

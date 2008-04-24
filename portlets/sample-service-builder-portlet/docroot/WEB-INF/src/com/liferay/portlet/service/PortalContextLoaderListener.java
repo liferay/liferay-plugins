@@ -22,40 +22,30 @@
 
 package com.liferay.portlet.service;
 
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.model.BaseModel;
-import com.liferay.portlet.service.PropsUtil;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
- * <a href="BaseModelImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="PortalContextLoaderListener.java.html"><b><i>View Source</i></b></a>
  *
- * @author Brian Wing Shun Chan
+ * @author Michael Young
  *
  */
-public abstract class BaseModelImpl implements BaseModel {
+public class PortalContextLoaderListener extends ContextLoaderListener {
 
-	public BaseModelImpl() {
+	public void contextInitialized(ServletContextEvent event) {
+		super.contextInitialized(event);
+
+		ServletContext servletContext = event.getServletContext();
+
+		ApplicationContext applicationContext =
+			WebApplicationContextUtils.getWebApplicationContext(servletContext);
+
+		SpringUtil.setContext(applicationContext);
 	}
-
-	public boolean isNew() {
-		return _new;
-	}
-
-	public boolean setNew(boolean n) {
-		return _new = n;
-	}
-
-	public boolean isEscapedModel() {
-		return _escapedModel;
-	}
-
-	public void setEscapedModel(boolean escapedModel) {
-		_escapedModel = escapedModel;
-	}
-
-	public abstract Object clone();
-
-	private boolean _new;
-	private boolean _escapedModel;
 
 }

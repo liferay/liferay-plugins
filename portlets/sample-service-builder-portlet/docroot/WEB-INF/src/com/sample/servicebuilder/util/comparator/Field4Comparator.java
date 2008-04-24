@@ -20,42 +20,56 @@
  * SOFTWARE.
  */
 
-package com.liferay.portlet.service;
+package com.sample.servicebuilder.util.comparator;
 
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.model.BaseModel;
-import com.liferay.portlet.service.PropsUtil;
+import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.OrderByComparator;
+
+import com.sample.servicebuilder.model.Foo;
 
 /**
- * <a href="BaseModelImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="Field4Comparator.java.html"><b><i>View Source</i></b></a>
  *
- * @author Brian Wing Shun Chan
+ * @author Alexander Chow
  *
  */
-public abstract class BaseModelImpl implements BaseModel {
+public class Field4Comparator extends OrderByComparator {
 
-	public BaseModelImpl() {
+	public static String ORDER_BY_ASC = "field4 ASC";
+
+	public static String ORDER_BY_DESC = "field4 DESC";
+
+	public Field4Comparator() {
+		this(false);
 	}
 
-	public boolean isNew() {
-		return _new;
+	public Field4Comparator(boolean asc) {
+		_asc = asc;
 	}
 
-	public boolean setNew(boolean n) {
-		return _new = n;
+	public int compare(Object obj1, Object obj2) {
+		Foo foo1 = (Foo)obj1;
+		Foo foo2 = (Foo)obj2;
+
+		int value = DateUtil.compareTo(foo1.getField4(), foo2.getField4());
+
+		if (_asc) {
+			return value;
+		}
+		else {
+			return -value;
+		}
 	}
 
-	public boolean isEscapedModel() {
-		return _escapedModel;
+	public String getOrderBy() {
+		if (_asc) {
+			return ORDER_BY_ASC;
+		}
+		else {
+			return ORDER_BY_DESC;
+		}
 	}
 
-	public void setEscapedModel(boolean escapedModel) {
-		_escapedModel = escapedModel;
-	}
-
-	public abstract Object clone();
-
-	private boolean _new;
-	private boolean _escapedModel;
+	private boolean _asc;
 
 }

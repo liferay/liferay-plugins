@@ -101,6 +101,14 @@ public class FooLocalServiceUtil {
 		return fooLocalService.getFoos();
 	}
 
+	public static java.util.List getFoos(
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		return fooLocalService.getFoos(obc);
+	}
+
 	public static java.util.List getFoos(int begin, int end)
 		throws com.liferay.portal.SystemException {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();

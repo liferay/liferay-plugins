@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>sample_service_builder_portlet</portlet-name>
 		<display-name>Sample Service Builder</display-name>
-		<portlet-class>com.liferay.util.bridges.jsp.JSPPortlet</portlet-class>
+		<portlet-class>com.sample.servicebuilder.ServiceBuilderPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/view.jsp</value>

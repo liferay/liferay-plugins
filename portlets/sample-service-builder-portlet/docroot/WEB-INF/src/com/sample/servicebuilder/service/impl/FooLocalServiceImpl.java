@@ -26,6 +26,7 @@ import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.util.dao.hibernate.QueryUtil;
 
 import com.sample.servicebuilder.model.Foo;
 import com.sample.servicebuilder.service.base.FooLocalServiceBaseImpl;
@@ -57,7 +58,7 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 		foo.setField4(field4);
 		foo.setField5(field5);
 
-		FooUtil.update(foo);
+		FooUtil.update(foo, false);
 	}
 
 	public void deleteFoo(long fooId) throws PortalException, SystemException {
@@ -70,6 +71,10 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 
 	public List getFoos() throws SystemException {
 		return FooUtil.findAll();
+	}
+
+	public List getFoos(OrderByComparator obc) throws SystemException {
+		return getFoos(QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
 	}
 
 	public List getFoos(int begin, int end) throws SystemException {
