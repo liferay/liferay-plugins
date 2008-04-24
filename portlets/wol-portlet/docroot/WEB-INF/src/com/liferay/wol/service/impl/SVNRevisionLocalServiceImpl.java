@@ -92,8 +92,9 @@ public class SVNRevisionLocalServiceImpl
 			}
 
 			SocialActivityLocalServiceUtil.addActivity(
-				userId, 0, SVNRevision.class.getName(), svnRevisionId,
-				SVNActivityKeys.ADD_REVISION, StringPool.BLANK, 0);
+				userId, 0, createDate, SVNRevision.class.getName(),
+				svnRevisionId, SVNActivityKeys.ADD_REVISION, StringPool.BLANK,
+				0);
 		}
 
 		return svnRevision;
