@@ -32,8 +32,8 @@
 			<jvmarg value="-Dservice.input.file=docroot/WEB-INF/service.xml" />
 			<jvmarg value="-Dservice.hbm.file=docroot/WEB-INF/src/META-INF/portlet-hbm.xml" />
 			<jvmarg value="-Dservice.model.hints.file=docroot/WEB-INF/src/META-INF/portlet-model-hints.xml" />
-			<jvmarg value="-Dservice.spring.file=docroot/WEB-INF/src/META-INF/portlet-spring.xml" />
-			<jvmarg value="-Dservice.spring.data.source.file=docroot/WEB-INF/src/META-INF/data-source-spring.xml" />
+			<jvmarg value="-Dservice.spring.file=docroot/WEB-INF/portlet-spring.xml" />
+			<jvmarg value="-Dservice.spring.data.source.file=docroot/WEB-INF/data-source-spring.xml" />
 			<jvmarg value="-Dservice.api.dir=docroot/WEB-INF/src" />
 			<jvmarg value="-Dservice.impl.dir=docroot/WEB-INF/src" />
 			<!--<jvmarg value="-Dservice.json.file=docroot/js/service_unpacked.js" />-->
@@ -46,6 +46,7 @@
 			<jvmarg value="-Dservice.base.model.impl.package=com.liferay.portlet.service" />
 			<jvmarg value="-Dservice.base.persistence.package=com.liferay.portlet.service" />
 			<jvmarg value="-Dservice.bean.locator.util.package=com.liferay.portlet.service" />
+			<jvmarg value="-Dservice.portal.spring.context.package=com.liferay.portlet.service" />
 			<jvmarg value="-Dservice.principal.bean.package=com.liferay.portlet.service" />
 			<jvmarg value="-Dservice.props.util.package=com.liferay.portlet.service" />
 			<jvmarg value="-Dservice.spring.hibernate.package=com.liferay.portlet.service" />

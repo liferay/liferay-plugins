@@ -22,34 +22,30 @@
 
 package com.liferay.portlet.service;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+
 import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
- * <a href="SpringUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="PortalContextLoaderListener.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael Young
  *
  */
-public class SpringUtil {
+public class PortalContextLoaderListener extends ContextLoaderListener {
 
-	public static ApplicationContext getContext() {
-		return _ctx;
+	public void contextInitialized(ServletContextEvent event) {
+		super.contextInitialized(event);
+
+		ServletContext servletContext = event.getServletContext();
+
+		ApplicationContext applicationContext =
+			WebApplicationContextUtils.getWebApplicationContext(servletContext);
+
+		SpringUtil.setContext(applicationContext);
 	}
-
-	public static void initContext(ApplicationContext ctx) {
-		String[] beanDefinitionNames = _ctx.getBeanDefinitionNames();
-
-		for (String beanDefinitionName : beanDefinitionNames) {
-			_ctx.getBean(beanDefinitionName);
-		}
-	}
-
-	public static void setContext(ApplicationContext ctx) {
-		_ctx = ctx;
-
-		initContext(ctx);
-	}
-
-	private static ApplicationContext _ctx = null;
 
 }
