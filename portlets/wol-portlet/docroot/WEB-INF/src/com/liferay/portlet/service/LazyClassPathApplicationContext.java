@@ -41,7 +41,7 @@ import org.springframework.web.context.support.XmlWebApplicationContext;
  * <p>
  * This web application context will first load bean definitions in the
  * contextConfigLocation parameter in web.xml. Then, the context will load bean
- * definitions specified by spring.configs parameter in portal.properties.
+ * definitions specified by the spring.configs parameter in portal.properties.
  * </p>
  *
  * @author Brian Wing Shun Chan
