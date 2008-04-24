@@ -16,8 +16,16 @@ body.vista {
 	width: 44px;
 }
 
+.js.ie6  .vista .interactive-mode {
+	background: transparent url(../../images/color_schemes/vista/dock/ie6_menu_bar.png) no-repeat scroll 0 0;
+}
+
 .js .vista .lfr-dock.expanded {
 	background: transparent url(../../images/color_schemes/vista/dock/menu_bar_hover.png) no-repeat scroll 0 0;
+}
+
+.js.ie6 .vista .lfr-dock.expanded {
+	background: transparent url(../../images/color_schemes/vista/dock/ie6_menu_bar_hover.png) no-repeat scroll 0 0;
 }
 
 /* ---------- Styles for the Liferay Dock menu ---------- */
@@ -29,6 +37,11 @@ body.vista {
 	padding: 0;
 	top: -441px;
 	width: 330px;
+}
+
+.js.ie6 .vista .lfr-dock.expanded .lfr-dock-list-container {
+	background: transparent url(../../images/color_schemes/vista/dock/ie6_dock_bg.png) repeat-y scroll left bottom;
+	filter: alpha(opacity=85);
 }
 
 .js .vista .interactive-mode ul {
@@ -59,20 +72,40 @@ body.vista {
 .vista .portlet .t,
 .vista .portlet .b,
 .vista .portlet .b .b-content {
-	 background: transparent url(../../images/color_schemes/vista/portlet/portlet_bg.png) no-repeat scroll top right;
-	 _background-image: url(../../images/color_schemes/vista/portlet/portlet_bg.png);
+	background: transparent url(../../images/color_schemes/vista/portlet/portlet_bg.png) no-repeat scroll top right;
+}
+
+.ie6 .vista .portlet .content {
+	background: transparent url(../../images/color_schemes/vista/portlet/ie6_portlet_bg.png) no-repeat scroll top right;
 }
 
 .vista .portlet .t {
 	background-position: 0 21px;
 }
 
+.ie6 .vista .portlet .t {
+	background: transparent url(../../images/color_schemes/vista/portlet/ie6_portlet_bg.png) no-repeat scroll top left;
+	height: expression(parseInt(this.parentNode.offsetHeight-21) + "px");
+	top: 0;
+}
+
 .vista .portlet .b {
 	background-position:bottom right;
 }
 
+.ie6 .vista .portlet .b {
+	background: transparent url(../../images/color_schemes/vista/portlet/ie6_portlet_bg.png) no-repeat scroll bottom right;
+}
+
 .vista .portlet .b .b-content {
 	background-position: bottom left;
+}
+
+.ie6 .vista .portlet .b .b-content {
+	background: transparent url(../../images/color_schemes/vista/portlet/ie6_portlet_bg.png) no-repeat scroll bottom left;
+	position: relative;
+	left: 0;
+	bottom: 0;
 }
 
 .vista .portlet-title {
@@ -86,6 +119,10 @@ body.vista {
 
 .vista .portlet-address {
 	line-height: 24px;
+}
+
+.ie6 .vista .portlet-address {
+	padding: 5px 0 5px 29px;
 }
 
 .vista .portlet-icon-back {
@@ -103,7 +140,7 @@ body.vista {
 }
 
 .vista .portlet-states {
-	top: 10px;
+	top: 12px;
 }
 
 .vista .portlet-min a,
@@ -111,24 +148,54 @@ body.vista {
 	background: transparent url(../../images/color_schemes/vista/portlet/minimize.png) no-repeat scroll 0 0;
 }
 
+.ie6 .vista .portlet-min a,
+.ie6 .vista .portlet-min a:active {
+	background: transparent url(../../images/color_schemes/vista/portlet/ie6_minimize.png) no-repeat scroll 0 0;
+	filter: alpha(opacity=70);
+}
+
 .vista .portlet-min a:hover {
 	background: transparent url(../../images/color_schemes/vista/portlet/minimize_hover.png) no-repeat scroll 0 0;
+}
+
+.ie6 .vista .portlet-min a:hover {
+	background: transparent url(../../images/color_schemes/vista/portlet/ie6_minimize_hover.png) no-repeat scroll 0 0;
 }
 
 .vista .portlet-max a {
 	background: transparent url(../../images/color_schemes/vista/portlet/maximize.png) no-repeat scroll 0 0;
 }
 
+.ie6 .vista .portlet-max a,
+.ie6 .vista .portlet-max a:active {
+	background: transparent url(../../images/color_schemes/vista/portlet/ie6_maximize.png) no-repeat scroll 0 0;
+	filter: alpha(opacity=70);
+}
+
 .vista .portlet-max a:hover {
 	background: transparent url(../../images/color_schemes/vista/portlet/maximize_hover.png) no-repeat scroll 0 0;
+}
+
+.ie6 .vista .portlet-max a:hover {
+	background: transparent url(../../images/color_schemes/vista/portlet/ie6_maximize_hover.png) no-repeat scroll 0 0;
 }
 
 .vista .portlet-close a {
 	background: transparent url(../../images/color_schemes/vista/portlet/close.png) no-repeat scroll 0 0;
 }
 
+.ie6 .vista .portlet-close a,
+.ie6 .vista .portlet-close a:active {
+	background: transparent url(../../images/color_schemes/vista/portlet/ie6_close.png) no-repeat scroll 0 0;
+	filter: alpha(opacity=70);
+}
+
 .vista .portlet-close a:hover {
 	background: transparent url(../../images/color_schemes/vista/portlet/close_hover.png) no-repeat scroll 0 0;
+}
+
+.ie6 .vista .portlet-close a:hover {
+	background: transparent url(../../images/color_schemes/vista/portlet/ie6_close_hover.png) no-repeat scroll 0 0;
 }
 
 /* ---------- Styles for Portlet drag and drop ---------- */
@@ -149,6 +216,12 @@ body.vista {
 
 .vista #taskbar {
 	background: transparent url(../../images/color_schemes/vista/desktop/taskbar_bg.png) repeat-x scroll 0 0;
+}
+
+.ie6 .vista #taskbar {
+	position: absolute;
+	bottom: 0;
+	left: 0;
 }
 
 .vista #taskbar-portlets a {
@@ -175,10 +248,6 @@ body.vista {
 	width: 126px;
 }
 
-.vista #taskbar-portlets img {
-	display: none;
-}
-
 /* ---------- Styles for the Main Navigation menu ---------- */
 
 .js .vista-menu .taglib-home li {
@@ -202,6 +271,10 @@ body.vista {
 .js .vista-menu .taglib-home.navigation-menu li a:hover {
 	background-color: #222222;
 	color: #ffffff;
+}
+
+.js.ie6 .vista-menu .taglib-home.navigation-menu li a:hover {
+	background-color: #111111;
 }
 
 .js .vista-menu .taglib-home li.selected a,
@@ -250,12 +323,79 @@ body.vista {
 	background-color: #222222;
 }
 
+.js.ie6 .vista .interactive-mode .my-places li.current-community h3 a:hover {
+	background-color: #111111;
+}
+
 .js .vista .interactive-mode .my-places li.current a {
 	background-color: #555555;
 }
 
 .js .vista .interactive-mode .my-places li.current a:hover {
 	background-color: #222222;
+}
+
+.js.ie6 .vista .interactive-mode .my-places li.current a:hover {
+	background-color: #111111;
+}
+
+/* ---------- Styles for IE6 dock menu ---------- */
+
+.js.ie6 .vista .interactive-mode ul {
+	width: 187px;
+}
+
+.js.ie6 .vista .interactive-mode .lfr-dock-list li.home {
+	width: 187px;
+}
+
+.js.ie6 .vista .expanded .vista-menu .taglib-home.navigation-menu {
+	right: 0px;
+}
+
+.js.ie6 .vista-menu .taglib-home li {
+	float: left;
+	width: 120px;
+}
+
+.js.ie6 .vista-menu .taglib-home ul.child-menu {
+ 	filter: alpha(opacity=85);
+}
+
+.js.ie6 .vista .interactive-mode .lfr-flyout.has-children ul {
+	top: 0;
+}
+
+.js.ie6 .vista-menu .taglib-home ul li {
+	width: 180px;
+}
+
+.js.ie6 .vista-menu .taglib-home li.my-places li {
+	margin: 0;
+}
+
+.js.ie6 .vista-menu .taglib-home li.my-places ul {
+	border: none;
+	padding: 1px 0;
+}
+
+.js.ie6 .vista-menu .taglib-home li.my-places ul ul {
+	top: -1px;
+ 	filter: alpha(opacity=85);
+}
+
+/* ---------- Custom styles for the Desktop theme ---------- */
+
+.vista #taskbar-portlets img {
+	display: none;
+}
+
+.ie6 .vista #taskbar-portlets .taskbar-link a {
+	padding: 1px 7px;
+}
+
+.ie6 .vista #portlet-wrapper-sign-in .b .b-content {
+	bottom: 0;
 }
 
 /* ---------- Styles for the Desktop Sidebar ---------- */
@@ -273,14 +413,30 @@ body.vista {
 	background: transparent url(../../images/arrows/05_left.png) no-repeat scroll 50% 55%;
 }
 
+.ie6 .vista #sidebar-link a {
+	background: transparent url(../../images/arrows/ie6_05_left.png) no-repeat scroll 50% 55%;
+}
+
 .vista #sidebar-link a:hover {
 	background: transparent url(../../images/arrows/05_left_hover.png) no-repeat scroll 50% 55%;
+}
+
+.ie6 .vista #sidebar-link a:hover {
+	background: transparent url(../../images/arrows/ie6_05_left_hover.png) no-repeat scroll 50% 55%;
 }
 
 .vista #sidebar-link a.expanded {
 	background: transparent url(../../images/arrows/05_right.png) no-repeat scroll 50% 55%;
 }
 
+.ie6 .vista #sidebar-link a.expanded {
+	background: transparent url(../../images/arrows/ie6_05_right.png) no-repeat scroll 50% 55%;
+}
+
 .vista #sidebar-link a.expanded:hover {
 	background: transparent url(../../images/arrows/05_right_hover.png) no-repeat scroll 50% 55%;
+}
+
+.ie6 .vista #sidebar-link a.expanded:hover {
+	background: transparent url(../../images/arrows/ie6_05_right_hover.png) no-repeat scroll 50% 55%;
 }

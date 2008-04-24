@@ -2,7 +2,7 @@
 
 	#if ($show_my_places && ($css_class == "vista"))
 		<li class="my-places">
-			<a>$my_places_text</a>
+			<a href="javascript: ;">$my_places_text</a>
 
 			$theme.myPlaces()
 		</li>

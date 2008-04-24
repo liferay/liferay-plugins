@@ -16,6 +16,11 @@ body.osx {
 	width: 34px;
 }
 
+.js.ie6 .osx .interactive-mode {
+	background: transparent url(../../images/color_schemes/osx/dock/ie6_menu_bar.png) no-repeat scroll 0 0;
+	
+}
+
 .js .osx .lfr-dock.expanded {
 	background: transparent url(../../images/color_schemes/osx/dock/menu_bar_hover.png) no-repeat scroll 0 0;
 }
@@ -29,6 +34,10 @@ body.osx {
 	position: relative;
 	top: 22px;
 	width: 200px;
+}
+
+.js.ie6 .osx .lfr-dock.expanded .lfr-dock-list-container {
+	background: transparent url(../../images/color_schemes/osx/dock/ie6_dock_bg.png) repeat-y scroll left bottom;
 }
 
 .js .osx .interactive-mode ul {
@@ -48,11 +57,11 @@ body.osx {
 	font-family: 'Lucida Grande','Lucida',Arial,Verdana,sans-serif;
 }
 
-.ie.js .osx .interactive-mode li.home a {
+.js.ie .osx .interactive-mode li.home a {
 	margin: 0 1px;
 }
 
-.ie.js .osx .interactive-mode ul.taglib-home a {
+.js.ie .osx .interactive-mode ul.taglib-home a {
 	margin: 0;
 }
 
@@ -81,7 +90,7 @@ body.osx {
 	background: none;
 }
 
-.ie.js .osx .lfr-flyout.has-children ul.taglib-home {
+.js.ie .osx .lfr-flyout.has-children ul.taglib-home {
 	right: -192px;
 	padding: 0;
 }
@@ -110,6 +119,54 @@ body.osx {
 	background: #336eca url(../images/dock/my_place_current.png) no-repeat scroll 0.5em 50%;
 }
 
+/* ---------- Styles for IE6 dock menu ---------- */
+
+.js.ie6 .osx .interactive-mode ul {
+	margin: 0 15px 0 9px;
+}
+
+.js.ie6 .osx .interactive-mode li {
+	width: 180px;
+}
+
+.js.ie6 .osx .interactive-mode .lfr-dock-list li.home {
+	width: 182px;
+}
+
+.js.ie6 .osx .lfr-flyout.has-children ul.taglib-home {
+	right: -198px;
+}
+
+.js.ie6 .osx .interactive-mode .home li {
+	width: 182px;
+}
+
+.js.ie6 .osx .interactive-mode .home li a:hover {
+	background-color: #336eca;
+}
+
+.js.ie6 .osx .interactive-mode .lfr-dock-list li.first {
+	width: 182px;
+}
+
+.js.ie6 .osx .interactive-mode .lfr-flyout.has-children ul li ul {
+	left: 174px;
+}
+
+.js.ie6 .osx .interactive-mode .lfr-dock-list li.my-places {
+	margin-left: 1px;
+	width: 180px;
+}
+
+.js.ie6 .osx .lfr-flyout.has-children ul.taglib-my-places {
+	right: -198px;
+	padding-bottom: 0;
+}
+
+.js.ie6 .osx .interactive-mode .my-places li {
+	width: 182px;
+}
+
 /* ---------- Styles in portlet.css ---------- */
 
 .osx .portlet .content,
@@ -117,19 +174,39 @@ body.osx {
 .osx .portlet .b,
 .osx .portlet .b .b-content {
 	 background: transparent url(../../images/color_schemes/osx/portlet/portlet_bg.png) no-repeat scroll top right;
-	 _background-image: url(../../images/color_schemes/osx/portlet/portlet_bg.png);
+}
+
+.ie6 .osx .portlet .content,
+.ie6 .osx .portlet .t,
+.ie6 .osx .portlet .b,
+.ie6 .osx .portlet .b .b-content {
+	 background: transparent url(../../images/color_schemes/osx/portlet/ie6_portlet_bg.png) no-repeat scroll top right;
 }
 
 .osx .portlet .t {
 	background-position: 0 21px;
 }
 
+.ie6 .osx .portlet .t {
+	background: transparent url(../../images/color_schemes/osx/portlet/ie6_portlet_bg.png) no-repeat scroll top left;
+	height: expression(parseInt(this.parentNode.offsetHeight-12) + "px");
+	top: 0;
+}
+
 .osx .portlet .b {
 	background-position:bottom right;
 }
 
+.ie6 .osx .portlet .b {
+	background: transparent url(../../images/color_schemes/osx/portlet/ie6_portlet_bg.png) no-repeat scroll bottom right;
+}
+
 .osx .portlet .b .b-content {
 	background-position: bottom left;
+}
+
+.ie6 .osx .portlet .b .b-content {
+	background: transparent url(../../images/color_schemes/osx/portlet/ie6_portlet_bg.png) no-repeat scroll bottom left;
 }
 
 .osx .portlet-topper {
@@ -174,37 +251,66 @@ body.osx {
 
 .osx .portlet-states {
 	left: 0;
-	top: 17px;
+	top: 18px;
 }
 
-.osx .portlet-min,
-.osx .portlet-max {
-	margin: 0 -4px 0 0;
+.osx .portlet-states a {
+	height: 14px;
 }
 
 .osx .portlet-min a,
 .osx .portlet-min a:active {
 	background: transparent url(../../images/color_schemes/osx/portlet/minimize.png) no-repeat scroll 0 0;
+	width: 20px;
+}
+
+.ie6 .osx .portlet-min a,
+.ie6 .osx .portlet-min a:active {
+	background: transparent url(../../images/color_schemes/osx/portlet/ie6_minimize.png) no-repeat scroll 0 0;
 }
 
 .osx .portlet-min a:hover {
 	background: transparent url(../../images/color_schemes/osx/portlet/minimize_hover.png) no-repeat scroll 0 0;
 }
 
+.ie6 .osx .portlet-min a:hover {
+	background: transparent url(../../images/color_schemes/osx/portlet/ie6_minimize_hover.png) no-repeat scroll 0 0;
+}
+
 .osx .portlet-max a {
 	background: transparent url(../../images/color_schemes/osx/portlet/maximize.png) no-repeat scroll 0 0;
+	width: 20px;
+}
+
+.ie6 .osx .portlet-max a,
+.ie6 .osx .portlet-max a:active {
+	background: transparent url(../../images/color_schemes/osx/portlet/ie6_maximize.png) no-repeat scroll 0 0;
 }
 
 .osx .portlet-max a:hover {
 	background: transparent url(../../images/color_schemes/osx/portlet/maximize_hover.png) no-repeat scroll 0 0;
 }
 
+.ie6 .osx .portlet-max a:hover {
+	background: transparent url(../../images/color_schemes/osx/portlet/ie6_maximize_hover.png) no-repeat scroll 0 0;
+}
+
 .osx .portlet-close a {
 	background: transparent url(../../images/color_schemes/osx/portlet/close.png) no-repeat scroll 0 0;
+	width: 20px;
+}
+
+.ie6 .osx .portlet-close a,
+.ie6 .osx .portlet-close a:active {
+	background: transparent url(../../images/color_schemes/osx/portlet/ie6_close.png) no-repeat scroll 0 0;
 }
 
 .osx .portlet-close a:hover {
 	background: transparent url(../../images/color_schemes/osx/portlet/close_hover.png) no-repeat scroll 0 0;
+}
+
+.ie6 .osx .portlet-close a:hover {
+	background: transparent url(../../images/color_schemes/osx/portlet/ie6_close_hover.png) no-repeat scroll 0 0;
 }
 
 .osx .portlet-min, .osx .portlet-max, .osx .portlet-close {
@@ -265,6 +371,11 @@ body.osx {
 	background: transparent url(../../images/color_schemes/osx/desktop/taskbar_bg.png) repeat-x scroll 0 0;
 }
 
+.ie6 .osx #taskbar {
+	background: transparent url(../../images/color_schemes/osx/desktop/ie6_taskbar_bg.png) repeat-x scroll 0 0;
+	height: 22px;
+}
+
 .osx #taskbar-portlets {
 	padding:0 5px 0 42px;
 }
@@ -278,9 +389,14 @@ body.osx {
 	font-weight: bold;
 }
 
+.ie6 .osx #taskbar-portlets .taskbar-link a {
+	padding: 0 7px;
+}
+
 .osx #taskbar-portlets .taskbar-link.selected a {
 	background: none;
 	background-color: #3ca5d5;
+	color: #ffffff;
 }
 
 .osx #taskbar-portlets .taskbar-link a:hover {
@@ -295,6 +411,10 @@ body.osx {
 
 .osx #taskbar-portlets img {
 	display: none;
+}
+
+.ie6 .osx #portlet-wrapper-sign-in .b .b-content {
+	bottom: 0;
 }
 
 /* ---------- Styles for the Desktop Sidebar ---------- */

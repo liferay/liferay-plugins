@@ -21,6 +21,7 @@ body {
 }
 
 #wrapper {
+	height: 100%;
 	width: 100%;
 }
 
@@ -45,13 +46,19 @@ body {
 	width: 43px;
 }
 
+.js.ie6 .interactive-mode {
+	background: transparent url(../images/dock/ie6_menu_bar.png) no-repeat scroll 0 0;
+}
+
 .js .lfr-dock.expanded {
 	background: transparent url(../images/dock/menu_bar_hover.png) no-repeat scroll 0 0;
 }
 
-/* ---------- Styles for the Liferay Dock menu ---------- */
+.js.ie6 .lfr-dock.expanded {
+	background: transparent url(../images/dock/ie6_menu_bar_hover.png) no-repeat scroll 0 0;
+}
 
-/* todo - refactor the styles for the dock menu */
+/* ---------- Styles for the Liferay Dock menu ---------- */
 
 .js .lfr-dock.expanded .lfr-dock-list-container {
 	background: transparent url(../images/dock/dock_bg.png) repeat-y scroll left bottom;
@@ -60,6 +67,10 @@ body {
 	position: relative;
 	top: 34px;
 	width: 190px;
+}
+
+.js.ie6 .lfr-dock.expanded .lfr-dock-list-container {
+	background: transparent url(../images/dock/ie6_dock_bg.png) repeat-y scroll left bottom;
 }
 
 .js .interactive-mode ul {
@@ -200,6 +211,51 @@ body {
 	padding: 0;
 }
 
+/* ---------- Styles for IE6 dock menu ---------- */
+
+.js.ie6 .interactive-mode ul {
+	margin: 0 15px 0 0;
+}
+
+.js.ie6 .interactive-mode .lfr-dock-list li.first {
+	width: 180px;
+}
+
+.js.ie6 .interactive-mode .lfr-dock-list li.home {
+	width: 181px;
+}
+
+.js.ie6 .lfr-flyout.has-children ul.taglib-home {
+	right: -201px;
+}
+
+.js.ie6 .interactive-mode .home li {
+	width: 180px;
+}
+
+.js.ie6 .interactive-mode .lfr-flyout.has-children ul li ul {
+	position: absolute;
+	left: 183px;
+}
+
+.js.ie6 .interactive-mode .lfr-dock-list li.my-places {
+	float: left;
+	margin-left: 3px;
+	width: 174px;
+}
+
+.js.ie6 .lfr-flyout.has-children ul.taglib-my-places {
+	right: -201px;
+}
+
+.js.ie6 .interactive-mode .my-places li {
+	width: 180px;
+}
+
+.js.ie6 .interactive-mode .lfr-flyout.has-children li {
+	float: left;
+}
+
 /* ---------- Styles in portlet.css ---------- */
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
@@ -214,19 +270,27 @@ body {
 	position: relative;
 }
 
+.ie6 .portlet {
+	width: expression(this.width<180 ? "180px":this.width); 
+}
+
 .portlet .content,
 .portlet .t,
 .portlet .b,
 .portlet .b .b-content {
 	 background: transparent url(../images/portlet/portlet_bg.png) no-repeat scroll top right;
-	 _background-image: url(../images/portlet/portlet_bg.png);
+}
+
+.ie6 .portlet .content,
+.ie6 .portlet .t,
+.ie6 .portlet .b,
+.ie6 .portlet .b .b-content {
+	 background: transparent url(../images/portlet/ie6_portlet_bg.png) no-repeat scroll top right;
 }
 
 .portlet .content {
 	padding: 0 21px 0 0;
 	position: relative;
-	zoom: 1;
-	_overflow-y: hidden;
 }
 
 .portlet .t {
@@ -236,7 +300,12 @@ body {
 	left: -21px;
 	position: absolute;
 	width: 21px;
-	_height: 3000px;
+}
+
+.ie6 .portlet .t {
+	background: transparent url(../images/portlet/ie6_portlet_bg.png) no-repeat scroll top left;
+	height: expression(parseInt(this.parentNode.offsetHeight-12) + "px");
+	top: 0;
 }
 
 .portlet .b {
@@ -246,12 +315,35 @@ body {
 	width: 100%;
 }
 
+.ie6 .portlet .b {
+	background: transparent url(../images/portlet/ie6_portlet_bg.png) no-repeat scroll bottom right;
+}
+
+.ie6 .columns-max .portlet .b {
+	position: relative;
+	right: -4px;
+}
+
 .portlet .b .b-content {
 	background-position: bottom left;
 	font-size: 0;
 	height: 21px;
 	margin-left: -21px;
 	width: 21px;
+}
+
+.ie6 .portlet .b .b-content {
+	background: transparent url(../images/portlet/ie6_portlet_bg.png) no-repeat scroll bottom left;
+	position: relative;
+	left: 0;
+	bottom: 0;
+}
+
+.ie6 .columns-max .portlet .b .b-content {
+	position: absolute;
+	left: -4px;
+	width: 25px;
+	bottom: -1px;
 }
 
 .portlet-topper {
@@ -289,10 +381,6 @@ body {
 	line-height: 18px;
 }
 
-.ie6.portlet .t {
-	height: 0;
-}
-
 /* ---------- Styles for Portlet mode icons ---------- */
 
 .portlet-icons {
@@ -317,52 +405,80 @@ body {
 .portlet-states {
 	position: absolute;
 	right: 9px;
-	top: 10px;
-	width: 80px;
+	top: 12px;
 }
 
 .portlet-states a {
+	display: block;
+	float: left;
+	height: 15px;
 	text-decoration: none;
 }
 
-.portlet-min,
-.portlet-max {
-	height:18px;
-	margin: 0 -4px 0 0;
-}
-
-.portlet-close {
-	height: 18px;
-}
-
-.portlet-min a:hover {
-	background: transparent url(../images/color_schemes/linux/portlet/minimize_hover.png) no-repeat scroll 0 0;
-	padding-bottom: 2px;
+.portlet-min a {
+	background: transparent url(../images/color_schemes/linux/portlet/minimize.png) no-repeat scroll 0 0;
+	width: 22px;
 }
 
 .portlet-min a:active {
 	background: transparent url(../images/color_schemes/linux/portlet/minimize.png) no-repeat scroll 0 0;
-	padding-bottom: 2px;
 }
 
-.portlet-max a:hover {
-	background: transparent url(../images/color_schemes/linux/portlet/maximize_hover.png) no-repeat scroll 0 0;
-	padding-bottom: 2px;
+.ie6 .portlet-min a,
+.ie6 .portlet-min a:active {
+	background: transparent url(../images/color_schemes/linux/portlet/ie6_minimize.png) no-repeat scroll 0 0;
+}
+
+.portlet-min a:hover {
+	background: transparent url(../images/color_schemes/linux/portlet/minimize_hover.png) no-repeat scroll 0 0;
+}
+
+.ie6 .portlet-min a:hover {
+	background: transparent url(../images/color_schemes/linux/portlet/ie6_minimize_hover.png) no-repeat scroll 0 0;
+}
+
+.portlet-max a {
+	background: transparent url(../images/color_schemes/linux/portlet/maximize.png) no-repeat scroll 0 0;
+	width: 22px;
 }
 
 .portlet-max a:active {
 	background: transparent url(../images/color_schemes/linux/portlet/maximize.png) no-repeat scroll 0 0;
-	padding-bottom: 2px;
+}
+
+.ie6 .portlet-max a,
+.ie6 .portlet-max a:active {
+	background: transparent url(../images/color_schemes/linux/portlet/ie6_maximize.png) no-repeat scroll 0 0;
+}
+
+.portlet-max a:hover {
+	background: transparent url(../images/color_schemes/linux/portlet/maximize_hover.png) no-repeat scroll 0 0;
+}
+
+.ie6 .portlet-max a:hover {
+	background: transparent url(../images/color_schemes/linux/portlet/ie6_maximize_hover.png) no-repeat scroll 0 0;
+}
+
+.portlet-close a {
+	background: transparent url(../images/color_schemes/linux/portlet/close.png) no-repeat scroll 0 0;
+	width: 38px;
+}
+
+.portlet-close a:active {
+	background: transparent url(../images/color_schemes/linux/portlet/close.png) no-repeat scroll 0 0;
+}
+
+.ie6 .portlet-close a,
+.ie6 .portlet-close a:active {
+	background: transparent url(../images/color_schemes/linux/portlet/ie6_close.png) no-repeat scroll 0 0;
 }
 
 .portlet-close a:hover {
 	background: transparent url(../images/color_schemes/linux/portlet/close_hover.png) no-repeat scroll 0 0;
-	padding-bottom: 2px;
 }
 
-.portlet-clse a:active {
-	background: transparent url(../images/color_schemes/linux/portlet/close.png) no-repeat scroll 0 0;
-	padding-bottom: 2px;
+.ie6 .portlet-close a:hover {
+	background: transparent url(../images/color_schemes/linux/portlet/ie6_close_hover.png) no-repeat scroll 0 0;
 }
 
 .portlet-icon-back {
@@ -438,7 +554,7 @@ body {
 }
 
 .tabs li.current a,
-.tabs li current a:hover,
+.tabs li.current a:hover,
 .tabs li.current span {
 	color: #333333;
 	font-weight: bold;
@@ -536,6 +652,10 @@ body {
 	text-decoration: none;
 }
 
+.ie6 #taskbar-portlets .taskbar-link a {
+	padding: 3px 7px;
+}
+
 #taskbar-portlets .taskbar-link a:hover {
 	background: transparent url(../images/desktop/taskbar_link_hover_bg.png) no-repeat scroll 0 0;
 	border-color: #202020 #808080 #808080 #202020;
@@ -569,8 +689,8 @@ body {
 	color: #000000;
 	left: 35%;
 	opacity: 0.87;
+	filter: alpha(opacity=87);
 	padding: 7px 10px 10px 30px;
-	position: relative;
 	top: 70%;
 	width: 300px;
 }
@@ -587,37 +707,66 @@ body {
 	width: 20px;
 }
 
+.ie6 #sidebar-wrapper {
+	background: transparent url(../images/desktop/ie6_sidebar_bg.png) repeat-y scroll 25px 0;
+	filter: alpha(opacity=85);
+}
+
 #sidebar {
+	display: none;
+	opacity: 0;
+	filter: alpha(opacity=0);
 	height: 100%;
 	left: 30px;
 	overflow: hidden;
-	position: relative;
-	top: -100%;
 	width: 235px;
+	float: right;
+}
+
+.ie6 #sidebar {
+	position: relative;
+	left: 0;
 }
 
 #sidebar-link {
 	height: 100%;
 	width: 20px;
+	float: left;
 }
 
 #sidebar-link a {
+	background: transparent url(../images/arrows/05_left.png) no-repeat scroll 50% 45%;
 	display: block;
 	height: 100%;
-	background: transparent url(../images/arrows/05_left.png) no-repeat scroll 50% 45%;
 	outline: none;
+}
+
+.ie6 #sidebar-link a {
+	background: transparent url(../images/arrows/ie6_05_left.png) no-repeat scroll 50% 45%;
 }
 
 #sidebar-link a:hover {
 	background: transparent url(../images/arrows/05_left_hover.png) no-repeat scroll 50% 45%;
 }
 
+.ie6 #sidebar-link a:hover {
+	background: transparent url(../images/arrows/ie6_05_left_hover.png) no-repeat scroll 50% 45%;
+}
+
 #sidebar-link a.expanded {
 	background: transparent url(../images/arrows/05_right.png) no-repeat scroll 50% 45%;
 }
 
+.ie6 #sidebar-link a.expanded {
+	background: transparent url(../images/arrows/ie6_05_right.png) no-repeat scroll 50% 45%;
+}
+
 #sidebar-link a.expanded:hover {
 	background: transparent url(../images/arrows/05_right_hover.png) no-repeat scroll 50% 45%;
+}
+
+.ie6 #sidebar-link a.expanded:hover {
+	background: transparent url(../images/arrows/ie6_05_right_hover.png) no-repeat scroll 50% 45%;
 }
 
 .portal-add-content {
@@ -642,12 +791,23 @@ body {
 	margin: 0 0 0 10px;
 }
 
+.ie6 #sidebar-top .clock {
+	margin: 0 0 0 5px;
+}
+
 #sidebar-top .calendar {
 	background: transparent url(../images/desktop/calendar_bg.png) no-repeat scroll 100% 0;
+	display: none;
 	height: 100px;
 	float: right;
 	margin: 0 10px 0 0;
+	opacity: 0;
+	filter: alpha(opacity=0);
 	width: 100px;
+}
+
+.ie6 #sidebar-top .calendar {
+	margin: 0 5px 0 0;
 }
 
 .portal-add-content-search {
@@ -694,4 +854,32 @@ body {
 
 .portal-add-content .lfr-portlet-used {
 	color: #111111;
+}
+
+.ie6 .portal-add-content .lfr-add-content.expanded {
+	background: none;
+}
+
+#portlet-wrapper-sign-in .portlet-address {
+	top: 3px;
+}
+
+.ie #portlet-wrapper-sign-in .portlet-address {
+	top: 4px;
+}
+
+.ie6 #portlet-wrapper-sign-in .tabs li {
+	position: relative;
+}
+
+.ie6 .tabs li.current {
+	top: 0;
+}
+
+.ie6 #portlet-wrapper-sign-in .lfr-portal-login {
+	position: relative;
+}
+
+.ie6 #portlet-wrapper-sign-in .b .b-content {
+	bottom: -6px;
 }

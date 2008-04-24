@@ -61,21 +61,15 @@
 				#if ($portlet_display.isShowCloseIcon())
 					<span class="portlet-states">
 						<span class="portlet-min">
-							<a href="javascript: LiferayDesktop.minimizePortlet('$plid','$portletDisplay.getId()','$themeDisplay.getDoAsUserId()','$themeDisplay.getPathMain()');" class="min">
-								<img align="absmiddle" border="0" src="$themeDisplay.getPathThemeImages()/color_schemes/$color/portlet/minimize.png" title="#language("minimize")" />
-							</a>
+							<a href="javascript: LiferayDesktop.minimizePortlet('$plid','$portletDisplay.getId()','$themeDisplay.getDoAsUserId()','$themeDisplay.getPathMain()');" class="min"></a>
 						</span>
 
 						<span class="portlet-max">
-							<a href="javascript: submitForm(document.hrefFm, '$portletDisplay.getURLMax()')" class="max">
-								<img align="absmiddle" border="0" src="$themeDisplay.getPathThemeImages()/color_schemes/$color/portlet/maximize.png" title="#language("maximize")" />
-							</a>
+							<a href="javascript: submitForm(document.hrefFm, '$portletDisplay.getURLMax()')" class="max"></a>
 						</span>
 
 						<span class="portlet-close">
-							<a href="javascript: LiferayDesktop.removePortlet('$plid', '$portletDisplay.getId()', '$themeDisplay.getDoAsUserId()');" class="close">
-								<img align="absmiddle" border="0" src="$themeDisplay.getPathThemeImages()/color_schemes/$color/portlet/close.png" title="#language("close")" />
-							</a>
+							<a href="javascript: LiferayDesktop.removePortlet('$plid', '$portletDisplay.getId()', '$themeDisplay.getDoAsUserId()');" class="close"></a>
 						</span>
 					</span>
 				#end

@@ -3,8 +3,6 @@ var LiferayDesktop = function () {
 
 	return {
 
-		/* todo - refactor this code */
-
 		fixDock: function() {
 			Liferay.Util.actsAsAspect(Liferay.Dock);
 			Liferay.Dock.after('init',
@@ -16,8 +14,6 @@ var LiferayDesktop = function () {
 		},
 
 		/* ---------- Dock Menu Functions ---------- */
-
-		/* todo - add persistant hover and arrows */
 
 		dockMenu: function() {
 			var instance = this;
@@ -42,11 +38,17 @@ var LiferayDesktop = function () {
 
 		addScrollbar: function() {
 			var contentWrapper = $("#content-wrapper");
-			var layoutGrid = $("#layout-grid");
 			var sidebarWrapper = $("#sidebar-wrapper");
 			var height = 0;
 			var width = 0;
 			var taskbarHeight = 0;
+
+			// Add layout-grid element for 1-Column layout template
+			if ($("#layout-grid").size() == 0) {
+				$("#column-1").wrap("<div id='layout-grid'></div>");
+			}
+
+			var layoutGrid = $("#layout-grid");
 
 			// Color Scheme
 			if (jQuery(document.body).is('.osx')) {
@@ -57,7 +59,13 @@ var LiferayDesktop = function () {
 			}
 
 			// Provide appropriate height / width
-			if ($('.ie').size() > 0) {
+			if ($('.ie6').size() > 0) {
+				// IE6/Standards uses html (documentElement) to define Viewport height
+				// IE6/Quirksmode uses body (body) to define Viewport height
+				height = document.documentElement.offsetHeight-taskbarHeight-4;
+				width = document.documentElement.offsetWidth-4;
+			}
+			else if ($('.ie').size() > 0) {
 				height = document.body.offsetHeight-taskbarHeight;
 				width = document.body.offsetWidth;
 			}
@@ -66,31 +74,27 @@ var LiferayDesktop = function () {
 				width = window.innerWidth;
 			}
 
-			// Sign-in webpage doesn't contain the laygrid element
-			if (jQuery("#portlet-wrapper-sign-in").size() != 1) {
-
-				// Shift the Desktop Sidebar left amd up
-				if ((layoutGrid.height() > height) && (layoutGrid.width() > width)) {
-					innerWidth = width-17;
-					layoutGrid.css({width:innerWidth+"px"});
-					sidebarWrapper.css({"right":17,height:height-17+"px"});
-				}
-				// Shift the Desktop Sidebar left
-				else if (layoutGrid.height() > height) {
-					innerWidth = width-17;
-					layoutGrid.css({width:innerWidth+"px"});
-					sidebarWrapper.css({"right":17,height:height+"px"});
-				}
-				// Shift the Desktop Sidebar up
-				else if (layoutGrid.width() > width) {
-					sidebarWrapper.css({"right":0,height:height-17+"px"});
-				}
-				// No shift needed
-				else {
-					innerWidth = width;
-					layoutGrid.css({width:innerWidth+"px"});
-					sidebarWrapper.css({"right":0,height:height+"px"});
-				}
+			// Shift the Desktop Sidebar left amd up
+			if ((layoutGrid.height() > height) && (layoutGrid.width() > width) && (!jQuery(document.body).is('.vista'))) {
+				innerWidth = width-17;
+				layoutGrid.css({width:innerWidth+"px"});
+				sidebarWrapper.css({"right":17,height:height-17+"px"});
+			}
+			// Shift the Desktop Sidebar left
+			else if (layoutGrid.height() > height) {
+				innerWidth = width-17;
+				layoutGrid.css({width:innerWidth+"px"});
+				sidebarWrapper.css({"right":17,height:height+"px"});
+			}
+			// Shift the Desktop Sidebar up
+			else if ((layoutGrid.width() > width) && (!jQuery(document.body).is('.vista'))) {
+				sidebarWrapper.css({"right":0,height:height-17+"px"});
+			}
+			// No shift needed
+			else {
+				innerWidth = width;
+				layoutGrid.css({width:innerWidth+"px"});
+				sidebarWrapper.css({"right":0,height:height+"px"});
 			}
 
 			contentWrapper.css({height:height+"px",width:width+"px",'overflow':'auto'});
@@ -119,7 +123,13 @@ var LiferayDesktop = function () {
 			}
 
 			// Provide appropriate height / width
-			if ($('.ie').size() > 0) {
+			if ($('.ie6').size() > 0) {
+				// IE6/Standards uses html (documentElement) to define Viewport height
+				// IE6/Quirksmode uses body (body) to define Viewport height
+				height = document.documentElement.offsetHeight-taskbarHeight-portletTopper-21-20+15;
+				width = document.documentElement.offsetWidth-21-21-20+15;
+			}
+			else if ($('.ie').size() > 0) {
 				height = document.body.offsetHeight-taskbarHeight-portletTopper-21-20+15;
 				width = document.body.offsetWidth-21-21-20+15;
 			}
@@ -138,7 +148,7 @@ var LiferayDesktop = function () {
 				portletContainer.css({width:innerWidth+"px"});
 			}
 
-			portletScrollbars.css({height:height+"px",width:width+"px",'overflow':'auto'});
+			portletScrollbars.css({height:height+"px",width:width+"px",'overflow':'auto','position':'relative'});
 		},
 
 		/* ---------- Desktop Sidebar - Add Content Functions ---------- */
@@ -150,7 +160,6 @@ var LiferayDesktop = function () {
 			if (sidebarWrapper.size() == 1) {
 				sidebarWrapper.prepend('<div id="sidebar-link"><a href="javascript: LiferayDesktop.addContentAnimate();"></a></div>');
 				sidebarWrapper.css({'display':''});
-				sidebar.css({'display':'none'});
 
 				var plid = sidebar.attr('plid');
 				var ppid = sidebar.attr('ppid');
@@ -180,7 +189,8 @@ var LiferayDesktop = function () {
 				link.removeClass('expanded');
 			}
 			else {
-				sidebar.css({'display':''});
+				calendar.css({'display':'block'});
+				sidebar.css({'display':'block'});
 				sidebarWrapper.animate({width:'270px'}, 600,'linear',function(){clock.css({'display':'block'});});
 				sidebar.animate({opacity:1}, 600,'linear');
 				link.addClass('expanded');
@@ -287,7 +297,15 @@ var LiferayDesktop = function () {
 					var taskbarLinks = $('#taskbar-portlets .taskbar-link');
 					var count = taskbarLinks.size();
 					var width = 100/count;
-					taskbarLinks.css({'width':width + '%'});
+					var taskbarWrapper = $("#taskbar-portlets-wrapper");
+					var totalWidth = taskbarWrapper.width()-52-10;
+
+					if (count*200 < totalWidth) {
+						taskbarLinks.css({"width":"200px"});
+					}
+					else {
+						taskbarLinks.css({'width':width + '%'});
+					}
 				}
 			}
 		},
@@ -356,7 +374,15 @@ var LiferayDesktop = function () {
 					count = 1;
 				}
 
-				taskbarLinks.css({'width':100/count + '%'});
+				var taskbarWrapper = $("#taskbar-portlets-wrapper");
+				var totalWidth = taskbarWrapper.width()-52-10;
+
+				if (count*200 < totalWidth) {
+					taskbarLinks.css({"width":"200px"});
+				}
+				else {
+					taskbarLinks.css({'width':100/count + '%'});
+				}
 			}
 
 			closePortlet(plid, portletId, doAsUserId,'true');
@@ -376,12 +402,12 @@ jQuery(document).ready(
 		LiferayDesktop.dockMenu();
 		LiferayDesktop.addContentInit();
 
-		if (jQuery(".columns-max").size() == 1) {
+		if (jQuery(".columns-max").size() > 0) {
 			LiferayDesktop.portletMaxResize();
 			jQuery(window).resize(function() {LiferayDesktop.portletMaxResize();});
 		}
 
-		if ((jQuery(".freeform").size() == 0) && (jQuery(".columns-max").size() == 0)) {
+		if ((jQuery(".freeform").size() == 0) && (jQuery(".columns-max").size() == 0) && (jQuery("#portlet-wrapper-sign-in").size() != 1)) {
 			LiferayDesktop.addScrollbar();
 			jQuery(window).resize(function() {LiferayDesktop.addScrollbar();});
 		}
