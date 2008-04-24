@@ -25,6 +25,24 @@
 <%@ include file="/init.jsp" %>
 
 <%
+for (String url : SVNConstants.SVN_URLS) {
+	try {
+		SVNRepository svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(url);
+	}
+	catch (NoSuchSVNRepositoryException nssvnre) {
+%>
+
+		<div class="portlet-msg-error">
+			The SVN repositories have not been initialized. This should not be the case except the first time this portlet is deployed when the SVN tables have not been populated. To populate the SVN tables, make sure the property "svn.synchronization.interval" is set to a value greater than 0.
+		</div>
+
+<%
+		return;
+	}
+}
+%>
+
+<%
 String svnUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "sfUserId", user2.getUserId(), StringPool.BLANK);
 %>
 
@@ -61,12 +79,15 @@ String svnUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "W
 					<c:if test="<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId()) > 0 %>">
 						<br />
 
-						See his activity on <a href="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="url" value="<%= url %>" /></portlet:renderURL>"><%= svnRepository.getShortURL() %></a>.
+						<div>
+							See his activity on <a href="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="url" value="<%= url %>" /></portlet:renderURL>"><%= svnRepository.getShortURL() %></a>.
+						</div>
 					</c:if>
 
 				<%
 				}
 				%>
+
 			</c:when>
 			<c:otherwise>
 

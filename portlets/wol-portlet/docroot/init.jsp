@@ -60,6 +60,7 @@
 <%@ page import="com.liferay.portlet.social.model.SocialActivity" %>
 <%@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
 <%@ page import="com.liferay.portlet.social.service.SocialActivityLocalServiceUtil" %>
+<%@ page import="com.liferay.wol.NoSuchSVNRepositoryException" %>
 <%@ page import="com.liferay.wol.jira.util.JIRAConstants" %>
 <%@ page import="com.liferay.wol.model.JIRAIssue" %>
 <%@ page import="com.liferay.wol.model.SVNRepository" %>
