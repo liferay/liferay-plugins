@@ -224,7 +224,7 @@ var LiferayDesktop = function () {
 		clearSelectTaskbarLink: function(event) {
 			var $target = $(event.target);
 
-			if ($target.is("body")) {
+			if ($target.is("#wrapper")) {
 				var selectedTaskbarLink = $(".taskbar-link.selected");
 				selectedTaskbarLink.removeClass('selected');
 			}

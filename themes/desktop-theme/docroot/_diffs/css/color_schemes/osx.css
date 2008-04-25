@@ -81,6 +81,7 @@ body.osx {
 }
 
 .js .osx .interactive-mode .home li.selected a:hover,
+.js .osx .interactive-mode .home .child-menu a:hover,
 .js .osx .interactive-mode .home .child-menu li.selected a:hover {
 	background-color: #336eca;
 }
@@ -209,10 +210,6 @@ body.osx {
 	background: transparent url(../../images/color_schemes/osx/portlet/ie6_portlet_bg.png) no-repeat scroll bottom left;
 }
 
-.osx .portlet-topper {
-	height: 76px;
-}
-
 .osx .portlet-title {
 	color: #333333;
 	font-size: 12px;
@@ -244,9 +241,13 @@ body.osx {
 /* ---------- Styles for Portlet mode icons ---------- */
 
 .osx .portlet-modes {
-	left: 3px;
+	left: 1px;
 	right: auto;
-	top: 42px;
+	top: 36px;
+}
+
+.ie .osx .portlet-modes {
+	top: 37px;
 }
 
 .osx .portlet-states {

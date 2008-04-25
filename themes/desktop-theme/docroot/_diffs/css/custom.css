@@ -396,6 +396,7 @@ body {
 	position: absolute;
 	right: 13px;
 	top: 37px;
+	z-index: 1;
 }
 
 .portlet-mode-icons {
