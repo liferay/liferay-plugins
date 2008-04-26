@@ -22,30 +22,36 @@
 
 package com.liferay.portlet.service;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.service.PropsUtil;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.ContextLoaderListener;
-import org.springframework.web.context.support.WebApplicationContextUtils;
+import java.sql.SQLException;
 
 /**
- * <a href="PortalContextLoaderListener.java.html"><b><i>View Source</i></b></a>
+ * <a href="PortletCustomSQLUtil.java.html"><b><i>View Source</i></b></a>
  *
- * @author Michael Young
+ * @author Brian Wing Shun Chan
  *
  */
-public class PortalContextLoaderListener extends ContextLoaderListener {
+public class PortletCustomSQLUtil
+	extends com.liferay.util.dao.hibernate.CustomSQLUtil {
 
-	public void contextInitialized(ServletContextEvent event) {
-		super.contextInitialized(event);
+	public PortletCustomSQLUtil() throws SQLException {
+		super(
+			HibernateUtil.getConnection(),
+			PropsUtil.get(PropsUtil.CUSTOM_SQL_FUNCTION_ISNULL),
+			PropsUtil.get(PropsUtil.CUSTOM_SQL_FUNCTION_ISNOTNULL));
+	}
 
-		ServletContext servletContext = event.getServletContext();
+	protected String[] getConfigs() {
+		return PropsUtil.getArray(PropsUtil.CUSTOM_SQL_CONFIGS);
+	}
 
-		ApplicationContext applicationContext =
-			WebApplicationContextUtils.getWebApplicationContext(servletContext);
+	protected String transform(String sql) {
+		sql = super.transform(sql);
+		sql = PortalUtil.transformCustomSQL(sql);
 
-		SpringUtil.setContext(applicationContext);
+		return sql;
 	}
 
 }
