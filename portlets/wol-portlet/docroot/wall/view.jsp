@@ -50,18 +50,22 @@ if (wallToWallUser != null) {
 	}
 </script>
 
-<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
-<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
-<input name="<portlet:namespace />redirect" type="hidden" value="<%= PortalUtil.getCurrentURL(request) %>" />
-<input name="<portlet:namespace />wallEntryId" type="hidden" value="" />
+<c:if test="<%= themeDisplay.isSignedIn() %>">
+	<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
+	<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
+	<input name="<portlet:namespace />redirect" type="hidden" value="<%= PortalUtil.getCurrentURL(request) %>" />
+	<input name="<portlet:namespace />wallEntryId" type="hidden" value="" />
 
-<liferay-ui:input-field model="<%= WallEntry.class %>" bean="<%= null %>" field="comments" />
+	<liferay-ui:input-field model="<%= WallEntry.class %>" bean="<%= null %>" field="comments" />
 
-<br /><br />
+	<br /><br />
 
-<input type="submit" value="<liferay-ui:message key="post" />" />
+	<input type="submit" value="<liferay-ui:message key="post" />" />
 
-</form>
+	</form>
+
+	<div class="separator"><!-- --></div>
+</c:if>
 
 <%
 PortletURL portletURL = renderResponse.createRenderURL();
@@ -92,15 +96,20 @@ else {
 <table class="lfr-table" width="100%">
 
 <%
-for (WallEntry wallEntry : results) {
+for (int i = 0; i < results.size(); i++) {
+	WallEntry wallEntry = results.get(i);
+
 	User wallUser = UserLocalServiceUtil.getUserById(wallEntry.getUserId());
 %>
 
-	<tr>
-		<td colspan="2">
-			<div class="separator"><!-- --></div>
-		</td>
-	</tr>
+	<c:if test="<%= i != 0 %>">
+		<tr>
+			<td colspan="2">
+				<div class="separator"><!-- --></div>
+			</td>
+		</tr>
+	</c:if>
+
 	<tr>
 		<td align="center" valign="top">
 			<liferay-ui:user-display
@@ -120,7 +129,7 @@ for (WallEntry wallEntry : results) {
 				<%= LanguageUtil.format(pageContext, "posted-on-x", dateFormatDateTime.format(wallEntry.getCreateDate())) %>
 			</div>
 
-			<c:if test="<%= themeDisplay.isSignedIn() || UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
+			<c:if test="<%= themeDisplay.isSignedIn() && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
 				<br />
 
 				<%
@@ -139,13 +148,11 @@ for (WallEntry wallEntry : results) {
 				%>
 
 				<liferay-ui:icon-list>
-					<c:if test="<%= themeDisplay.isSignedIn() %>">
-						<c:if test="<%= (wallToWallUser == null) && (wallUser.getUserId() != themeDisplay.getUserId()) %>">
-							<liferay-ui:icon image="all_pages" message="wall-to-wall" url="<%= wallToWallHREF %>" label="<%= true %>" />
-						</c:if>
-
-						<liferay-ui:icon image="post" message='<%= postMessage %>' url="<%= postHREF %>" label="<%= true %>" />
+					<c:if test="<%= (wallToWallUser == null) && (wallUser.getUserId() != themeDisplay.getUserId()) %>">
+						<liferay-ui:icon image="all_pages" message="wall-to-wall" url="<%= wallToWallHREF %>" label="<%= true %>" />
 					</c:if>
+
+					<liferay-ui:icon image="post" message='<%= postMessage %>' url="<%= postHREF %>" label="<%= true %>" />
 
 					<c:if test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
 						<liferay-ui:icon-delete url="<%= deleteHREF %>" label="<%= true %>" />
