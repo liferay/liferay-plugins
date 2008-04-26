@@ -218,4 +218,10 @@
 			<ref bean="com.liferay.wol.service.persistence.WallEntryPersistence.impl" />
 		</property>
 	</bean>
+	<bean id="com.liferay.wol.service.persistence.WallEntryFinder.impl" class="com.liferay.wol.service.persistence.WallEntryFinderImpl" lazy-init="true" />
+	<bean id="com.liferay.wol.service.persistence.WallEntryFinderUtil" class="com.liferay.wol.service.persistence.WallEntryFinderUtil" lazy-init="true">
+		<property name="finder">
+			<ref bean="com.liferay.wol.service.persistence.WallEntryFinder.impl" />
+		</property>
+	</bean>
 </beans>

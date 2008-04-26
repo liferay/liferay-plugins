@@ -22,6 +22,7 @@
 		<icon>/wall/icon.png</icon>
 		<friendly-url-mapper-class>com.liferay.wol.wall.portlet.WallFriendlyURLMapper</friendly-url-mapper-class>
 		<social-activity-interpreter-class>com.liferay.wol.wall.social.WallActivityInterpreter</social-activity-interpreter-class>
+		<restore-current-view>false</restore-current-view>
 	</portlet>
 	<portlet>
 		<portlet-name>6</portlet-name>

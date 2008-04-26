@@ -90,9 +90,12 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 
 		// Social
 
-		SocialActivityLocalServiceUtil.addActivity(
-			userId, groupId, WallEntry.class.getName(), wallEntryId,
-			WallActivityKeys.ADD_ENTRY, StringPool.BLANK, group.getClassPK());
+		if (userId != group.getClassPK()) {
+			SocialActivityLocalServiceUtil.addActivity(
+				userId, groupId, WallEntry.class.getName(), wallEntryId,
+				WallActivityKeys.ADD_ENTRY, StringPool.BLANK,
+				group.getClassPK());
+		}
 
 		return wallEntry;
 	}
@@ -124,6 +127,20 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		return wallEntryPersistence.findByPrimaryKey(wallEntryId);
+	}
+
+	public List<WallEntry> getWallToWallEntries(
+			long groupId1, long groupId2, int begin, int end)
+		throws SystemException {
+
+		return wallEntryFinder.findByG1_G2(
+			groupId1, groupId2, begin, end);
+	}
+
+	public int getWallToWallEntriesCount(long groupId1, long groupId2)
+		throws SystemException {
+
+		return wallEntryFinder.countByG1_G2(groupId1, groupId2);
 	}
 
 	public WallEntry updateWallEntry(long wallEntryId, String comments)

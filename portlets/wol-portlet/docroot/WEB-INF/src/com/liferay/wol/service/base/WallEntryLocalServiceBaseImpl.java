@@ -40,6 +40,8 @@ import com.liferay.wol.service.persistence.SVNRepositoryPersistence;
 import com.liferay.wol.service.persistence.SVNRepositoryUtil;
 import com.liferay.wol.service.persistence.SVNRevisionPersistence;
 import com.liferay.wol.service.persistence.SVNRevisionUtil;
+import com.liferay.wol.service.persistence.WallEntryFinder;
+import com.liferay.wol.service.persistence.WallEntryFinderUtil;
 import com.liferay.wol.service.persistence.WallEntryPersistence;
 import com.liferay.wol.service.persistence.WallEntryUtil;
 
@@ -154,6 +156,14 @@ public abstract class WallEntryLocalServiceBaseImpl
 		this.wallEntryPersistence = wallEntryPersistence;
 	}
 
+	public WallEntryFinder getWallEntryFinder() {
+		return wallEntryFinder;
+	}
+
+	public void setWallEntryFinder(WallEntryFinder wallEntryFinder) {
+		this.wallEntryFinder = wallEntryFinder;
+	}
+
 	public void afterPropertiesSet() {
 		if (jiraIssueLocalService == null) {
 			jiraIssueLocalService = JIRAIssueLocalServiceFactory.getImpl();
@@ -182,6 +192,10 @@ public abstract class WallEntryLocalServiceBaseImpl
 		if (wallEntryPersistence == null) {
 			wallEntryPersistence = WallEntryUtil.getPersistence();
 		}
+
+		if (wallEntryFinder == null) {
+			wallEntryFinder = WallEntryFinderUtil.getFinder();
+		}
 	}
 
 	protected JIRAIssueLocalService jiraIssueLocalService;
@@ -191,4 +205,5 @@ public abstract class WallEntryLocalServiceBaseImpl
 	protected SVNRevisionLocalService svnRevisionLocalService;
 	protected SVNRevisionPersistence svnRevisionPersistence;
 	protected WallEntryPersistence wallEntryPersistence;
+	protected WallEntryFinder wallEntryFinder;
 }

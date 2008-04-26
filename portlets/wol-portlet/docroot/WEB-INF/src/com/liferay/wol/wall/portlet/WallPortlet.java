@@ -24,6 +24,7 @@ package com.liferay.wol.wall.portlet;
 
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -65,13 +66,15 @@ public class WallPortlet extends JSPPortlet {
 				deleteWallEntry(req);
 			}
 
-			if (SessionErrors.isEmpty(req)) {
-				SessionMessages.add(req, "request_processed");
+			if (Validator.isNotNull(cmd)) {
+				if (SessionErrors.isEmpty(req)) {
+					SessionMessages.add(req, "request_processed");
+				}
+
+				String redirect = ParamUtil.getString(req, "redirect");
+
+				res.sendRedirect(redirect);
 			}
-
-			String redirect = ParamUtil.getString(req, "redirect");
-
-			res.sendRedirect(redirect);
 		}
 		catch (Exception e) {
 			throw new PortletException(e);

@@ -24,6 +24,24 @@
 
 <%@ include file="/init.jsp" %>
 
+<%
+User wallToWallUser = null;
+
+try {
+	String wallToWallScreenName = ParamUtil.getString(request, "wallToWallScreenName");
+
+	if (themeDisplay.isSignedIn() && Validator.isNotNull(wallToWallScreenName)) {
+		wallToWallUser = UserLocalServiceUtil.getUserByScreenName(themeDisplay.getCompanyId(), wallToWallScreenName);
+	}
+}
+catch (Exception e) {
+}
+
+if (wallToWallUser != null) {
+	renderResponse.setTitle(LanguageUtil.format(pageContext, "my-wall-to-wall-with-x", wallToWallUser.getFullName()));
+}
+%>
+
 <script type="text/javascript">
 	function <portlet:namespace />deleteWallEntry(wallEntryId) {
 		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.DELETE %>";
@@ -50,17 +68,32 @@ PortletURL portletURL = renderResponse.createRenderURL();
 
 SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
 
-int total = WallEntryLocalServiceUtil.getWallEntriesCount(group.getGroupId());
+int total = 0;
+
+if (wallToWallUser != null) {
+	total = WallEntryLocalServiceUtil.getWallToWallEntriesCount(group.getGroupId(), user.getGroup().getGroupId());
+}
+else {
+	total = WallEntryLocalServiceUtil.getWallEntriesCount(group.getGroupId());
+}
 
 searchContainer.setTotal(total);
 
-List<WallEntry> results = WallEntryLocalServiceUtil.getWallEntries(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
+List<WallEntry> results = null;
+
+if (wallToWallUser != null) {
+	results = WallEntryLocalServiceUtil.getWallToWallEntries(group.getGroupId(), user.getGroup().getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
+}
+else {
+	results = WallEntryLocalServiceUtil.getWallEntries(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
+}
 %>
 
 <table class="lfr-table" width="100%">
 
 <%
 for (WallEntry wallEntry : results) {
+	User wallUser = UserLocalServiceUtil.getUserById(wallEntry.getUserId());
 %>
 
 	<tr>
@@ -87,16 +120,37 @@ for (WallEntry wallEntry : results) {
 				<%= LanguageUtil.format(pageContext, "posted-on-x", dateFormatDateTime.format(wallEntry.getCreateDate())) %>
 			</div>
 
-			<c:if test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
+			<c:if test="<%= themeDisplay.isSignedIn() || UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
 				<br />
 
 				<%
+				String postMessage = null;
+
+				if (wallUser.getUserId() == themeDisplay.getUserId()) {
+					postMessage = "write-on-my-wall";
+				}
+				else {
+					postMessage = LanguageUtil.format(pageContext, "write-on-x-wall", wallUser.getFirstName());
+				}
+
+				String wallToWallHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + "/home/-/wall/" + wallUser.getScreenName();
+				String postHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + "/home/-/wall";
 				String deleteHREF = "javascript: " + namespace + "deleteWallEntry(" + wallEntry.getWallEntryId() + ");";
 				%>
 
-				<div>
-					<liferay-ui:icon-delete url="<%= deleteHREF %>" label="<%= true %>" />
-				</div>
+				<liferay-ui:icon-list>
+					<c:if test="<%= themeDisplay.isSignedIn() %>">
+						<c:if test="<%= (wallToWallUser == null) && (wallUser.getUserId() != themeDisplay.getUserId()) %>">
+							<liferay-ui:icon image="all_pages" message="wall-to-wall" url="<%= wallToWallHREF %>" label="<%= true %>" />
+						</c:if>
+
+						<liferay-ui:icon image="post" message='<%= postMessage %>' url="<%= postHREF %>" label="<%= true %>" />
+					</c:if>
+
+					<c:if test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
+						<liferay-ui:icon-delete url="<%= deleteHREF %>" label="<%= true %>" />
+					</c:if>
+				</liferay-ui:icon-list>
 			</c:if>
 		</td>
 	</tr>

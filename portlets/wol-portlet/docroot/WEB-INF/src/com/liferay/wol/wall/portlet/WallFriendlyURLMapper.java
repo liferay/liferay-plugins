@@ -24,6 +24,7 @@ package com.liferay.wol.wall.portlet;
 
 import com.liferay.portal.kernel.portlet.BaseFriendlyURLMapper;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Map;
 
@@ -57,6 +58,20 @@ public class WallFriendlyURLMapper extends BaseFriendlyURLMapper {
 		addParam(params, "p_p_lifecycle", "0");
 		addParam(params, "p_p_state", WindowState.MAXIMIZED);
 		addParam(params, "p_p_mode", PortletMode.VIEW);
+
+		int x = friendlyURLPath.indexOf("/", 1);
+
+		int y = friendlyURLPath.indexOf("/", x + 1);
+
+		if (y == -1) {
+			y = friendlyURLPath.length();
+		}
+
+		String wallToWallScreenName = friendlyURLPath.substring(x + 1, y);
+
+		if (Validator.isNotNull(wallToWallScreenName)) {
+			addParam(params, "wallToWallScreenName", wallToWallScreenName);
+		}
 	}
 
 	private static final String _MAPPING = "wall";

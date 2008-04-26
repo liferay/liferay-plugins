@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql file="custom-sql/wall.xml" />
+</custom-sql>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.liferay.wol.service.persistence.WallEntryFinder.countByG1_G2">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				WOL_WallEntry
+			WHERE
+				(groupId = ?) OR
+				(groupId = ?)
+		]]>
+	</sql>
+	<sql id="com.liferay.wol.service.persistence.WallEntryFinder.findByG1_G2">
+		<![CDATA[
+			SELECT
+				{WOL_WallEntry.*}
+			FROM
+				WOL_WallEntry
+			WHERE
+				(groupId = ?) OR
+				(groupId = ?)
+			ORDER BY
+				createDate DESC
+		]]>
+	</sql>
+</custom-sql>

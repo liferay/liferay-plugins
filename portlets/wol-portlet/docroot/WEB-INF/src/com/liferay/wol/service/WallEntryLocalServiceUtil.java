@@ -112,6 +112,23 @@ public class WallEntryLocalServiceUtil {
 		return wallEntryLocalService.getWallEntry(wallEntryId);
 	}
 
+	public static java.util.List<com.liferay.wol.model.WallEntry> getWallToWallEntries(
+		long groupId1, long groupId2, int begin, int end)
+		throws com.liferay.portal.SystemException {
+		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
+
+		return wallEntryLocalService.getWallToWallEntries(groupId1, groupId2,
+			begin, end);
+	}
+
+	public static int getWallToWallEntriesCount(long groupId1, long groupId2)
+		throws com.liferay.portal.SystemException {
+		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
+
+		return wallEntryLocalService.getWallToWallEntriesCount(groupId1,
+			groupId2);
+	}
+
 	public static com.liferay.wol.model.WallEntry updateWallEntry(
 		long wallEntryId, java.lang.String comments)
 		throws com.liferay.portal.PortalException,
