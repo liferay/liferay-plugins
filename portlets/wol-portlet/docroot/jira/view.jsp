@@ -57,7 +57,7 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "
 				<a href="<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" portletName="1_WAR_wolportlet" />">Set your JIRA login.</a>
 			</c:when>
 			<c:otherwise>
-				<%= user2.getFullName() %> has not configured his JIRA login.
+				<%= LanguageUtil.format(pageContext, (user2.isMale() ? "x-has-not-configured-his-jira-login" : "x-has-not-configured-her-jira-login"), user2.getFullName()) %>
 			</c:otherwise>
 		</c:choose>
 	</c:otherwise>

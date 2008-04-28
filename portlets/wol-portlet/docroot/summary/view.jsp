@@ -169,7 +169,7 @@
 		<table class="lfr-table">
 		<tr>
 			<td>
-				JIRA Login
+				<liferay-ui:message key="jira-login" />
 			</td>
 			<td>
 				<input class="lfr-input-text" name="<portlet:namespace />jiraUserId" style="width: 150px;" type="text" value="<%= jiraUserId %>" />
@@ -179,7 +179,7 @@
 		</tr>
 		<tr>
 			<td>
-				SourceForge Login
+				<liferay-ui:message key="sourceforge-login" />
 			</td>
 			<td>
 				<input class="lfr-input-text" name="<portlet:namespace />sfUserId" style="width: 150px;" type="text" value="<%= sfUserId %>" />

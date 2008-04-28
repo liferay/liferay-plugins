@@ -169,7 +169,7 @@ String svnUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "W
 				<a href="<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" portletName="1_WAR_wolportlet" />">Set your SourceForge login.</a>
 			</c:when>
 			<c:otherwise>
-				<%= user2.getFullName() %> has not configured his SourceForge login.
+				<%= LanguageUtil.format(pageContext, (user2.isMale() ? "x-has-not-configured-his-sourceforge-login" : "x-has-not-configured-her-sourceforge-login"), user2.getFullName()) %>
 			</c:otherwise>
 		</c:choose>
 	</c:otherwise>
