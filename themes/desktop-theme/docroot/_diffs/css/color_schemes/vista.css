@@ -16,16 +16,8 @@ body.vista {
 	width: 44px;
 }
 
-.js.ie6  .vista .interactive-mode {
-	background: transparent url(../../images/color_schemes/vista/dock/ie6_menu_bar.png) no-repeat scroll 0 0;
-}
-
 .js .vista .lfr-dock.expanded {
 	background: transparent url(../../images/color_schemes/vista/dock/menu_bar_hover.png) no-repeat scroll 0 0;
-}
-
-.js.ie6 .vista .lfr-dock.expanded {
-	background: transparent url(../../images/color_schemes/vista/dock/ie6_menu_bar_hover.png) no-repeat scroll 0 0;
 }
 
 /* ---------- Styles for the Liferay Dock menu ---------- */
@@ -40,7 +32,7 @@ body.vista {
 }
 
 .js.ie6 .vista .lfr-dock.expanded .lfr-dock-list-container {
-	background: transparent url(../../images/color_schemes/vista/dock/ie6_dock_bg.png) repeat-y scroll left bottom;
+	background: transparent url(../../images/color_schemes/vista/dock/dock_black_bg.png) repeat-y scroll left bottom;
 	filter: alpha(opacity=85);
 }
 
@@ -150,7 +142,7 @@ body.vista {
 
 .ie6 .vista .portlet-min a,
 .ie6 .vista .portlet-min a:active {
-	background: transparent url(../../images/color_schemes/vista/portlet/ie6_minimize.png) no-repeat scroll 0 0;
+	background: transparent url(../../images/color_schemes/vista/portlet/minimize_opaque.png) no-repeat scroll 0 0;
 	filter: alpha(opacity=70);
 }
 
@@ -159,7 +151,7 @@ body.vista {
 }
 
 .ie6 .vista .portlet-min a:hover {
-	background: transparent url(../../images/color_schemes/vista/portlet/ie6_minimize_hover.png) no-repeat scroll 0 0;
+	background: transparent url(../../images/color_schemes/vista/portlet/minimize_opaque_hover.png) no-repeat scroll 0 0;
 }
 
 .vista .portlet-max a {
@@ -168,7 +160,7 @@ body.vista {
 
 .ie6 .vista .portlet-max a,
 .ie6 .vista .portlet-max a:active {
-	background: transparent url(../../images/color_schemes/vista/portlet/ie6_maximize.png) no-repeat scroll 0 0;
+	background: transparent url(../../images/color_schemes/vista/portlet/maximize_opaque.png) no-repeat scroll 0 0;
 	filter: alpha(opacity=70);
 }
 
@@ -177,7 +169,7 @@ body.vista {
 }
 
 .ie6 .vista .portlet-max a:hover {
-	background: transparent url(../../images/color_schemes/vista/portlet/ie6_maximize_hover.png) no-repeat scroll 0 0;
+	background: transparent url(../../images/color_schemes/vista/portlet/maximize_opaque_hover.png) no-repeat scroll 0 0;
 }
 
 .vista .portlet-close a {
@@ -186,7 +178,7 @@ body.vista {
 
 .ie6 .vista .portlet-close a,
 .ie6 .vista .portlet-close a:active {
-	background: transparent url(../../images/color_schemes/vista/portlet/ie6_close.png) no-repeat scroll 0 0;
+	background: transparent url(../../images/color_schemes/vista/portlet/close_opaque.png) no-repeat scroll 0 0;
 	filter: alpha(opacity=70);
 }
 
@@ -195,7 +187,7 @@ body.vista {
 }
 
 .ie6 .vista .portlet-close a:hover {
-	background: transparent url(../../images/color_schemes/vista/portlet/ie6_close_hover.png) no-repeat scroll 0 0;
+	background: transparent url(../../images/color_schemes/vista/portlet/close_opaque_hover.png) no-repeat scroll 0 0;
 }
 
 /* ---------- Styles for Portlet drag and drop ---------- */
@@ -414,7 +406,7 @@ body.vista {
 }
 
 .ie6 .vista #sidebar-link a {
-	background: transparent url(../../images/arrows/ie6_05_left.png) no-repeat scroll 50% 55%;
+	background: transparent url(../../images/arrows/07_left.png) no-repeat scroll 50% 55%;
 }
 
 .vista #sidebar-link a:hover {
@@ -422,7 +414,7 @@ body.vista {
 }
 
 .ie6 .vista #sidebar-link a:hover {
-	background: transparent url(../../images/arrows/ie6_05_left_hover.png) no-repeat scroll 50% 55%;
+	background: transparent url(../../images/arrows/07_left_hover.png) no-repeat scroll 50% 55%;
 }
 
 .vista #sidebar-link a.expanded {
@@ -430,7 +422,7 @@ body.vista {
 }
 
 .ie6 .vista #sidebar-link a.expanded {
-	background: transparent url(../../images/arrows/ie6_05_right.png) no-repeat scroll 50% 55%;
+	background: transparent url(../../images/arrows/07_right.png) no-repeat scroll 50% 55%;
 }
 
 .vista #sidebar-link a.expanded:hover {
@@ -438,5 +430,5 @@ body.vista {
 }
 
 .ie6 .vista #sidebar-link a.expanded:hover {
-	background: transparent url(../../images/arrows/ie6_05_right_hover.png) no-repeat scroll 50% 55%;
+	background: transparent url(../../images/arrows/07_right_hover.png) no-repeat scroll 50% 55%;
 }

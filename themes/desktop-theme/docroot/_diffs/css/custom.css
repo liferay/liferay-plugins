@@ -46,16 +46,8 @@ body {
 	width: 43px;
 }
 
-.js.ie6 .interactive-mode {
-	background: transparent url(../images/dock/ie6_menu_bar.png) no-repeat scroll 0 0;
-}
-
 .js .lfr-dock.expanded {
 	background: transparent url(../images/dock/menu_bar_hover.png) no-repeat scroll 0 0;
-}
-
-.js.ie6 .lfr-dock.expanded {
-	background: transparent url(../images/dock/ie6_menu_bar_hover.png) no-repeat scroll 0 0;
 }
 
 /* ---------- Styles for the Liferay Dock menu ---------- */
@@ -67,10 +59,6 @@ body {
 	position: relative;
 	top: 34px;
 	width: 190px;
-}
-
-.js.ie6 .lfr-dock.expanded .lfr-dock-list-container {
-	background: transparent url(../images/dock/ie6_dock_bg.png) repeat-y scroll left bottom;
 }
 
 .js .interactive-mode ul {
@@ -281,13 +269,6 @@ body {
 	 background: transparent url(../images/portlet/portlet_bg.png) no-repeat scroll top right;
 }
 
-.ie6 .portlet .content,
-.ie6 .portlet .t,
-.ie6 .portlet .b,
-.ie6 .portlet .b .b-content {
-	 background: transparent url(../images/portlet/ie6_portlet_bg.png) no-repeat scroll top right;
-}
-
 .portlet .content {
 	padding: 0 21px 0 0;
 	position: relative;
@@ -303,7 +284,7 @@ body {
 }
 
 .ie6 .portlet .t {
-	background: transparent url(../images/portlet/ie6_portlet_bg.png) no-repeat scroll top left;
+	background: transparent url(../images/portlet/portlet_bg.png) no-repeat scroll top left;
 	height: expression(parseInt(this.parentNode.offsetHeight-12) + "px");
 	top: 0;
 }
@@ -316,7 +297,7 @@ body {
 }
 
 .ie6 .portlet .b {
-	background: transparent url(../images/portlet/ie6_portlet_bg.png) no-repeat scroll bottom right;
+	background: transparent url(../images/portlet/portlet_bg.png) no-repeat scroll bottom right;
 }
 
 .ie6 .columns-max .portlet .b {
@@ -333,7 +314,7 @@ body {
 }
 
 .ie6 .portlet .b .b-content {
-	background: transparent url(../images/portlet/ie6_portlet_bg.png) no-repeat scroll bottom left;
+	background: transparent url(../images/portlet/portlet_bg.png) no-repeat scroll bottom left;
 	position: relative;
 	left: 0;
 	bottom: 0;
@@ -427,7 +408,7 @@ body {
 
 .ie6 .portlet-min a,
 .ie6 .portlet-min a:active {
-	background: transparent url(../images/color_schemes/linux/portlet/ie6_minimize.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/linux/portlet/minimize_opaque.png) no-repeat scroll 0 0;
 }
 
 .portlet-min a:hover {
@@ -435,7 +416,7 @@ body {
 }
 
 .ie6 .portlet-min a:hover {
-	background: transparent url(../images/color_schemes/linux/portlet/ie6_minimize_hover.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/linux/portlet/minimize_opaque_hover.png) no-repeat scroll 0 0;
 }
 
 .portlet-max a {
@@ -449,7 +430,7 @@ body {
 
 .ie6 .portlet-max a,
 .ie6 .portlet-max a:active {
-	background: transparent url(../images/color_schemes/linux/portlet/ie6_maximize.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/linux/portlet/maximize_opaque.png) no-repeat scroll 0 0;
 }
 
 .portlet-max a:hover {
@@ -457,7 +438,7 @@ body {
 }
 
 .ie6 .portlet-max a:hover {
-	background: transparent url(../images/color_schemes/linux/portlet/ie6_maximize_hover.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/linux/portlet/maximize_opaque_hover.png) no-repeat scroll 0 0;
 }
 
 .portlet-close a {
@@ -471,7 +452,7 @@ body {
 
 .ie6 .portlet-close a,
 .ie6 .portlet-close a:active {
-	background: transparent url(../images/color_schemes/linux/portlet/ie6_close.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/linux/portlet/close_opaque.png) no-repeat scroll 0 0;
 }
 
 .portlet-close a:hover {
@@ -479,7 +460,7 @@ body {
 }
 
 .ie6 .portlet-close a:hover {
-	background: transparent url(../images/color_schemes/linux/portlet/ie6_close_hover.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/linux/portlet/close_opaque_hover.png) no-repeat scroll 0 0;
 }
 
 .portlet-icon-back {
@@ -709,7 +690,7 @@ body {
 }
 
 .ie6 #sidebar-wrapper {
-	background: transparent url(../images/desktop/ie6_sidebar_bg.png) repeat-y scroll 25px 0;
+	background: transparent url(../images/desktop/sidebar_black_bg.png) repeat-y scroll 25px 0;
 	filter: alpha(opacity=85);
 }
 
@@ -743,7 +724,7 @@ body {
 }
 
 .ie6 #sidebar-link a {
-	background: transparent url(../images/arrows/ie6_05_left.png) no-repeat scroll 50% 45%;
+	background: transparent url(../images/arrows/07_left.png) no-repeat scroll 50% 45%;
 }
 
 #sidebar-link a:hover {
@@ -751,7 +732,7 @@ body {
 }
 
 .ie6 #sidebar-link a:hover {
-	background: transparent url(../images/arrows/ie6_05_left_hover.png) no-repeat scroll 50% 45%;
+	background: transparent url(../images/arrows/07_left_hover.png) no-repeat scroll 50% 45%;
 }
 
 #sidebar-link a.expanded {
@@ -759,7 +740,7 @@ body {
 }
 
 .ie6 #sidebar-link a.expanded {
-	background: transparent url(../images/arrows/ie6_05_right.png) no-repeat scroll 50% 45%;
+	background: transparent url(../images/arrows/07_right.png) no-repeat scroll 50% 45%;
 }
 
 #sidebar-link a.expanded:hover {
@@ -767,7 +748,7 @@ body {
 }
 
 .ie6 #sidebar-link a.expanded:hover {
-	background: transparent url(../images/arrows/ie6_05_right_hover.png) no-repeat scroll 50% 45%;
+	background: transparent url(../images/arrows/07_right_hover.png) no-repeat scroll 50% 45%;
 }
 
 .portal-add-content {
@@ -879,8 +860,4 @@ body {
 
 .ie6 #portlet-wrapper-sign-in .lfr-portal-login {
 	position: relative;
-}
-
-.ie6 #portlet-wrapper-sign-in .b .b-content {
-	bottom: -6px;
 }

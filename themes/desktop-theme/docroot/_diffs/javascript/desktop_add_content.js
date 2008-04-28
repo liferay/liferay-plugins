@@ -157,12 +157,19 @@ var DesktopAddContent = {
 						var portletId = portlet.attr('portletId');
 						var isInstanceable = (portlet.attr('instanceable') == 'true');
 
-						addPortlet(plid, portletId, themeDisplay.getDoAsUserIdEncoded());
+						var portletBound = addPortlet(plid, portletId, themeDisplay.getDoAsUserIdEncoded(), true);
 
 						if (!isInstanceable) {
 							portlet.addClass('lfr-portlet-used');
 							portlet.unbind('mousedown');
 						}
+
+						if (isInstanceable) {
+							portletId = portletBound.id;
+							portletId = portletId.replace(/^p_p_id_(.*)_$/, '$1');
+						}
+
+						LiferayDesktop.addPortlet(portletId);
 					}
 				}
 
@@ -219,6 +226,13 @@ var DesktopAddContent = {
 
 						if (completed || instance._isFreeform) {
 							portlet.Highlight(750, '#ffe98f');
+
+							if (isInstanceable) {
+								portletId = portletBound.id;
+								portletId = portletId.replace(/^p_p_id_(.*)_$/, '$1');
+							}
+
+							LiferayDesktop.addPortlet(portletId);
 						}
 
 						if (instance._isFreeform) {
@@ -231,23 +245,6 @@ var DesktopAddContent = {
 								}
 							);
 						}
-
-						var portletContainer = jQuery('.portlet-boundary_' + portletId + '_');
-						var portletLink = jQuery('.portlet-boundary_' + portletId + '_ a');
-						var realPortletId = portletLink.attr('name');
-						var portletTopper = portletContainer.find(".portlet-topper");
-						realPortletId = realPortletId.replace('p_','');
-
-						LiferayDesktop.addTaskbarLink(realPortletId);
-						LiferayDesktop.selectTaskbarLink(realPortletId);
-						LiferayDesktop.addPortletGroupName(realPortletId);
-
-						jQuery(".portlet-content").wrap("<div id='portlet-scrollbars'></div>");
-						jQuery(".taglib-search-iterator").wrap("<div class='taglib-search-iterator-wrapper'></div>");
-						jQuery(".portlet-content-container").css({'overflow':''});
-
-						portletContainer.click(function() {LiferayDesktop.selectTaskbarLink(realPortletId);});
-						portletTopper.hover(function() {LiferayDesktop.portletModesHover(portletId);},function() {LiferayDesktop.portletModesHoverOut(portletId);});
 					}
 				}
 

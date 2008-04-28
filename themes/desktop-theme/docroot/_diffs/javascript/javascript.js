@@ -88,12 +88,12 @@ var LiferayDesktop = function () {
 			}
 			// Shift the Desktop Sidebar up
 			else if ((layoutGrid.width() > width) && (!jQuery(document.body).is('.vista'))) {
+				layoutGrid.css({width:width+"px"});
 				sidebarWrapper.css({"right":0,height:height-17+"px"});
 			}
 			// No shift needed
 			else {
-				innerWidth = width;
-				layoutGrid.css({width:innerWidth+"px"});
+				layoutGrid.css({width:width+"px"});
 				sidebarWrapper.css({"right":0,height:height+"px"});
 			}
 
@@ -195,6 +195,36 @@ var LiferayDesktop = function () {
 				sidebar.animate({opacity:1}, 600,'linear');
 				link.addClass('expanded');
 				calendar.animate({opacity:1}, 1000,'linear');
+			}
+		},
+		addPortlet: function(portletId) {
+			var portletContainer = jQuery("#p_p_id_" + portletId + '_');
+			var portletTopper = portletContainer.find(".portlet-topper");
+			var taskbarLink =  jQuery('#p_p_id_' + portletId + '_taskbar');
+
+			if (taskbarLink.size() == 0) {
+				LiferayDesktop.addTaskbarLink(portletId);
+				LiferayDesktop.selectTaskbarLink(portletId);
+				LiferayDesktop.addPortletGroupName(portletId);
+
+				jQuery(".portlet-content").wrap("<div id='portlet-scrollbars'></div>");
+				jQuery(".taglib-search-iterator").wrap("<div class='taglib-search-iterator-wrapper'></div>");
+				jQuery(".portlet-content-container").css({'overflow':''});
+
+				portletContainer.click(
+					function() {
+						LiferayDesktop.selectTaskbarLink(portletId);
+					}
+				);
+
+				portletTopper.hover(
+					function() {
+						LiferayDesktop.portletModesHover(portletId);
+					},
+					function() {
+						LiferayDesktop.portletModesHoverOut(portletId);
+					}
+				);
 			}
 		},
 
@@ -424,14 +454,19 @@ Liferay.Portlet.ready(
 	*/
 
 	function(portletId, jQueryObj) {
-		LiferayDesktop.addTaskbarLink(portletId);
-		LiferayDesktop.addPortletGroupName(portletId);
+		var taskbarLink =  jQuery('#p_p_id_' + portletId + '_taskbar');
+		var portletContainer = jQuery('#p_p_id_' + portletId + '_');
 
-		var portletBoundary = jQuery('#p_p_id_' + portletId + '_');
-		portletBoundary.click(function() {LiferayDesktop.selectTaskbarLink(portletId);});
+		if ((taskbarLink.size() == 0) && (portletContainer.size() != 0)) {
+			LiferayDesktop.addTaskbarLink(portletId);
+			LiferayDesktop.addPortletGroupName(portletId);
 
-		var portletTopper = jQueryObj.find(".portlet-topper");
-		portletTopper.hover(function() {LiferayDesktop.portletModesHover(portletId);},function() {LiferayDesktop.portletModesHoverOut(portletId);});
+			var portletBoundary = jQuery('#p_p_id_' + portletId + '_');
+			portletBoundary.click(function() {LiferayDesktop.selectTaskbarLink(portletId);});
+
+			var portletTopper = jQueryObj.find(".portlet-topper");
+			portletTopper.hover(function() {LiferayDesktop.portletModesHover(portletId);},function() {LiferayDesktop.portletModesHoverOut(portletId);});
+		}
 	}
 );
 
