@@ -23,6 +23,7 @@
 package com.liferay.wol.model.impl;
 
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 
@@ -330,7 +331,8 @@ public class JIRAIssueModelImpl extends BaseModelImpl {
 
 		int value = 0;
 
-		value = getKey().compareTo(jiraIssue.getKey());
+		value = DateUtil.compareTo(getModifiedDate(),
+				jiraIssue.getModifiedDate());
 
 		value = value * -1;
 

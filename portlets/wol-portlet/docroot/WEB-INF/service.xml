@@ -28,7 +28,7 @@
 		<!-- Order -->
 
 		<order by="desc">
-			<order-column name="key" />
+			<order-column name="modifiedDate" />
 		</order>
 
 		<!-- Finder methods -->
@@ -50,6 +50,16 @@
 			<finder-column name="reporterJiraUserId" />
 		</finder>
 		<finder name="P_AJUI" return-type="Collection">
+			<finder-column name="projectId" />
+			<finder-column name="assigneeJiraUserId" />
+		</finder>
+		<finder name="MD_P_RJUI" return-type="Collection">
+			<finder-column name="modifiedDate" comparator=">" />
+			<finder-column name="projectId" />
+			<finder-column name="reporterJiraUserId" />
+		</finder>
+		<finder name="MD_P_AJUI" return-type="Collection">
+			<finder-column name="modifiedDate" comparator=">" />
 			<finder-column name="projectId" />
 			<finder-column name="assigneeJiraUserId" />
 		</finder>

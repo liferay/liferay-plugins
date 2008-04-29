@@ -28,6 +28,7 @@ import com.liferay.wol.NoSuchJIRAIssueException;
 import com.liferay.wol.model.JIRAIssue;
 import com.liferay.wol.service.base.JIRAIssueLocalServiceBaseImpl;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,6 +47,15 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 	}
 
 	public List<JIRAIssue> getAssigneeJIRAIssues(
+			Date modifiedDate, long projectId, String assigneeJiraUserId,
+			int begin, int end)
+		throws SystemException {
+
+		return jiraIssuePersistence.findByMD_P_AJUI(
+			modifiedDate, projectId, assigneeJiraUserId);
+	}
+
+	public List<JIRAIssue> getAssigneeJIRAIssues(
 			long projectId, String assigneeJiraUserId, String status, int begin,
 			int end)
 		throws SystemException {
@@ -60,6 +70,14 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 
 		return jiraIssuePersistence.countByP_AJUI(
 			projectId, assigneeJiraUserId);
+	}
+
+	public int getAssigneeJIRAIssuesCount(
+			Date modifiedDate, long projectId, String assigneeJiraUserId)
+		throws SystemException {
+
+		return jiraIssuePersistence.countByMD_P_AJUI(
+			modifiedDate, projectId, assigneeJiraUserId);
 	}
 
 	public int getAssigneeJIRAIssuesCount(
@@ -144,6 +162,15 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 	}
 
 	public List<JIRAIssue> getReporterJIRAIssues(
+			Date modifiedDate, long projectId, String reporterJiraUserId,
+			int begin, int end)
+		throws SystemException {
+
+		return jiraIssuePersistence.findByMD_P_RJUI(
+			modifiedDate, projectId, reporterJiraUserId);
+	}
+
+	public List<JIRAIssue> getReporterJIRAIssues(
 			long projectId, String reporterJiraUserId, String status, int begin,
 			int end)
 		throws SystemException {
@@ -158,6 +185,14 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 
 		return jiraIssuePersistence.countByP_RJUI(
 			projectId, reporterJiraUserId);
+	}
+
+	public int getReporterJIRAIssuesCount(
+			Date modifiedDate, long projectId, String reporterJiraUserId)
+		throws SystemException {
+
+		return jiraIssuePersistence.countByMD_P_RJUI(
+			modifiedDate, projectId, reporterJiraUserId);
 	}
 
 	public int getReporterJIRAIssuesCount(

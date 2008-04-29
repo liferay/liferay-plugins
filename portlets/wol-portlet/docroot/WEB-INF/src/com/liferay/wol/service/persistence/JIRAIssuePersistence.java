@@ -217,6 +217,80 @@ public interface JIRAIssuePersistence {
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchJIRAIssueException;
 
+	public java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_RJUI(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String reporterJiraUserId)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_RJUI(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String reporterJiraUserId, int begin, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_RJUI(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String reporterJiraUserId, int begin, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.wol.model.JIRAIssue findByMD_P_RJUI_First(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String reporterJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchJIRAIssueException;
+
+	public com.liferay.wol.model.JIRAIssue findByMD_P_RJUI_Last(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String reporterJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchJIRAIssueException;
+
+	public com.liferay.wol.model.JIRAIssue[] findByMD_P_RJUI_PrevAndNext(
+		long jiraIssueId, java.util.Date modifiedDate, long projectId,
+		java.lang.String reporterJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchJIRAIssueException;
+
+	public java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_AJUI(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String assigneeJiraUserId)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_AJUI(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String assigneeJiraUserId, int begin, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_AJUI(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String assigneeJiraUserId, int begin, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.wol.model.JIRAIssue findByMD_P_AJUI_First(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String assigneeJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchJIRAIssueException;
+
+	public com.liferay.wol.model.JIRAIssue findByMD_P_AJUI_Last(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String assigneeJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchJIRAIssueException;
+
+	public com.liferay.wol.model.JIRAIssue[] findByMD_P_AJUI_PrevAndNext(
+		long jiraIssueId, java.util.Date modifiedDate, long projectId,
+		java.lang.String assigneeJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchJIRAIssueException;
+
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByP_RJUI_S(
 		long projectId, java.lang.String reporterJiraUserId,
 		java.lang.String status) throws com.liferay.portal.SystemException;
@@ -326,6 +400,14 @@ public interface JIRAIssuePersistence {
 		java.lang.String assigneeJiraUserId)
 		throws com.liferay.portal.SystemException;
 
+	public void removeByMD_P_RJUI(java.util.Date modifiedDate, long projectId,
+		java.lang.String reporterJiraUserId)
+		throws com.liferay.portal.SystemException;
+
+	public void removeByMD_P_AJUI(java.util.Date modifiedDate, long projectId,
+		java.lang.String assigneeJiraUserId)
+		throws com.liferay.portal.SystemException;
+
 	public void removeByP_RJUI_S(long projectId,
 		java.lang.String reporterJiraUserId, java.lang.String status)
 		throws com.liferay.portal.SystemException;
@@ -352,6 +434,14 @@ public interface JIRAIssuePersistence {
 		throws com.liferay.portal.SystemException;
 
 	public int countByP_AJUI(long projectId, java.lang.String assigneeJiraUserId)
+		throws com.liferay.portal.SystemException;
+
+	public int countByMD_P_RJUI(java.util.Date modifiedDate, long projectId,
+		java.lang.String reporterJiraUserId)
+		throws com.liferay.portal.SystemException;
+
+	public int countByMD_P_AJUI(java.util.Date modifiedDate, long projectId,
+		java.lang.String assigneeJiraUserId)
 		throws com.liferay.portal.SystemException;
 
 	public int countByP_RJUI_S(long projectId,

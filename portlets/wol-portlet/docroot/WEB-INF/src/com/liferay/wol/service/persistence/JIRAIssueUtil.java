@@ -324,6 +324,126 @@ public class JIRAIssueUtil {
 			assigneeJiraUserId, obc);
 	}
 
+	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_RJUI(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String reporterJiraUserId)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByMD_P_RJUI(modifiedDate, projectId, reporterJiraUserId);
+	}
+
+	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_RJUI(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String reporterJiraUserId, int begin, int end)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByMD_P_RJUI(modifiedDate, projectId,
+			reporterJiraUserId, begin, end);
+	}
+
+	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_RJUI(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String reporterJiraUserId, int begin, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByMD_P_RJUI(modifiedDate, projectId,
+			reporterJiraUserId, begin, end, obc);
+	}
+
+	public static com.liferay.wol.model.JIRAIssue findByMD_P_RJUI_First(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String reporterJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchJIRAIssueException {
+		return getPersistence()
+				   .findByMD_P_RJUI_First(modifiedDate, projectId,
+			reporterJiraUserId, obc);
+	}
+
+	public static com.liferay.wol.model.JIRAIssue findByMD_P_RJUI_Last(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String reporterJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchJIRAIssueException {
+		return getPersistence()
+				   .findByMD_P_RJUI_Last(modifiedDate, projectId,
+			reporterJiraUserId, obc);
+	}
+
+	public static com.liferay.wol.model.JIRAIssue[] findByMD_P_RJUI_PrevAndNext(
+		long jiraIssueId, java.util.Date modifiedDate, long projectId,
+		java.lang.String reporterJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchJIRAIssueException {
+		return getPersistence()
+				   .findByMD_P_RJUI_PrevAndNext(jiraIssueId, modifiedDate,
+			projectId, reporterJiraUserId, obc);
+	}
+
+	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_AJUI(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String assigneeJiraUserId)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByMD_P_AJUI(modifiedDate, projectId, assigneeJiraUserId);
+	}
+
+	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_AJUI(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String assigneeJiraUserId, int begin, int end)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByMD_P_AJUI(modifiedDate, projectId,
+			assigneeJiraUserId, begin, end);
+	}
+
+	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_AJUI(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String assigneeJiraUserId, int begin, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByMD_P_AJUI(modifiedDate, projectId,
+			assigneeJiraUserId, begin, end, obc);
+	}
+
+	public static com.liferay.wol.model.JIRAIssue findByMD_P_AJUI_First(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String assigneeJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchJIRAIssueException {
+		return getPersistence()
+				   .findByMD_P_AJUI_First(modifiedDate, projectId,
+			assigneeJiraUserId, obc);
+	}
+
+	public static com.liferay.wol.model.JIRAIssue findByMD_P_AJUI_Last(
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String assigneeJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchJIRAIssueException {
+		return getPersistence()
+				   .findByMD_P_AJUI_Last(modifiedDate, projectId,
+			assigneeJiraUserId, obc);
+	}
+
+	public static com.liferay.wol.model.JIRAIssue[] findByMD_P_AJUI_PrevAndNext(
+		long jiraIssueId, java.util.Date modifiedDate, long projectId,
+		java.lang.String assigneeJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchJIRAIssueException {
+		return getPersistence()
+				   .findByMD_P_AJUI_PrevAndNext(jiraIssueId, modifiedDate,
+			projectId, assigneeJiraUserId, obc);
+	}
+
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByP_RJUI_S(
 		long projectId, java.lang.String reporterJiraUserId,
 		java.lang.String status) throws com.liferay.portal.SystemException {
@@ -506,6 +626,20 @@ public class JIRAIssueUtil {
 		getPersistence().removeByP_AJUI(projectId, assigneeJiraUserId);
 	}
 
+	public static void removeByMD_P_RJUI(java.util.Date modifiedDate,
+		long projectId, java.lang.String reporterJiraUserId)
+		throws com.liferay.portal.SystemException {
+		getPersistence()
+			.removeByMD_P_RJUI(modifiedDate, projectId, reporterJiraUserId);
+	}
+
+	public static void removeByMD_P_AJUI(java.util.Date modifiedDate,
+		long projectId, java.lang.String assigneeJiraUserId)
+		throws com.liferay.portal.SystemException {
+		getPersistence()
+			.removeByMD_P_AJUI(modifiedDate, projectId, assigneeJiraUserId);
+	}
+
 	public static void removeByP_RJUI_S(long projectId,
 		java.lang.String reporterJiraUserId, java.lang.String status)
 		throws com.liferay.portal.SystemException {
@@ -554,6 +688,20 @@ public class JIRAIssueUtil {
 		java.lang.String assigneeJiraUserId)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().countByP_AJUI(projectId, assigneeJiraUserId);
+	}
+
+	public static int countByMD_P_RJUI(java.util.Date modifiedDate,
+		long projectId, java.lang.String reporterJiraUserId)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .countByMD_P_RJUI(modifiedDate, projectId, reporterJiraUserId);
+	}
+
+	public static int countByMD_P_AJUI(java.util.Date modifiedDate,
+		long projectId, java.lang.String assigneeJiraUserId)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .countByMD_P_AJUI(modifiedDate, projectId, assigneeJiraUserId);
 	}
 
 	public static int countByP_RJUI_S(long projectId,

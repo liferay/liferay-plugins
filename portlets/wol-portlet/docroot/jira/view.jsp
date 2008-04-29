@@ -32,24 +32,156 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "
 	<c:when test="<%= Validator.isNotNull(jiraUserId) %>">
 
 		<%
+		String jiraURL = "http://support.liferay.com/secure/IssueNavigator.jspa?reset=true&pid=" + JIRAConstants.PROJECT_LEP;
+
+		Calendar lastWeekCal = new GregorianCalendar(timeZone, locale);
+
+		lastWeekCal.add(Calendar.WEEK_OF_YEAR, -1);
+
 		int assignedIssuesTotalCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId);
 		int assignedIssuesClosedCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId, JIRAConstants.STATUS_CLOSED);
+		int assignedIssuesLastWeekCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(lastWeekCal.getTime(), JIRAConstants.PROJECT_LEP, jiraUserId);
+		int assignedIssuesOpenCount = assignedIssuesTotalCount - assignedIssuesClosedCount;
 
-		Date firstAssignedIssueDate = null;
+		int reporterIssuesTotalCount = JIRAIssueLocalServiceUtil.getReporterJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId);
+		int reporterIssuesClosedCount = JIRAIssueLocalServiceUtil.getReporterJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId, JIRAConstants.STATUS_CLOSED);
+		int reporterIssuesLastWeekCount = JIRAIssueLocalServiceUtil.getReporterJIRAIssuesCount(lastWeekCal.getTime(), JIRAConstants.PROJECT_LEP, jiraUserId);
+		int reporterIssuesOpenCount = reporterIssuesTotalCount - reporterIssuesClosedCount;
+		%>
 
-		if (assignedIssuesTotalCount > 0) {
-			firstAssignedIssueDate = JIRAIssueLocalServiceUtil.getFirstAssigneeJIRAIssue(JIRAConstants.PROJECT_LEP, jiraUserId).getCreateDate();
-		}
-		else {
-			firstAssignedIssueDate = new Date();
+		<style type="text/css">
+			.jira-summary .issue-count {
+				padding-right: 4px;
+				text-align: right;
+				width: 5%;
+			}
+
+			.jira-summary .graph {
+				width: 65%;
+			}
+
+			.jira-summary .graph table {
+				width: 100%;
+			}
+
+			.jira-summary .graph .bar {
+				background: #73880A;
+				height: 15px;
+				margin-bottom: 2px;
+			}
+
+			.jira-summary .graph .percent {
+				padding-left: 4px;
+			}
+		</style>
+
+		<%
+		Object[][] jiraValuesArray = new Object[][] {
+			new Object[] {
+				"assigned-issues",
+				jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId
+			},
+			new Object[] {
+				"open", "http://support.liferay.com/images/icons/status_open.gif",
+				jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&resolution=-1",
+				new Integer(assignedIssuesOpenCount), new Integer(assignedIssuesTotalCount)
+			},
+			new Object[] {
+				"closed", "http://support.liferay.com/images/icons/status_closed.gif",
+				jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&status=" + JIRAConstants.STATUS_CLOSED,
+				new Integer(assignedIssuesClosedCount), new Integer(assignedIssuesTotalCount)
+			},
+			new Object[] {
+				"last-week", "http://support.liferay.com/images/icons/duedatepicker-icon.gif",
+				jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&updated:previous=-1d",
+				new Integer(assignedIssuesLastWeekCount), new Integer(assignedIssuesTotalCount)
+			},
+			new Object[] {
+				"reported-issues",
+				jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId
+			},
+			new Object[] {
+				"open", "http://support.liferay.com/images/icons/status_open.gif",
+				jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&resolution=-1",
+				new Integer(reporterIssuesOpenCount), new Integer(reporterIssuesTotalCount)
+			},
+			new Object[] {
+				"closed", "http://support.liferay.com/images/icons/status_closed.gif",
+				jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&status=" + JIRAConstants.STATUS_CLOSED,
+				new Integer(reporterIssuesClosedCount), new Integer(reporterIssuesTotalCount)
+			},
+			new Object[] {
+				"last-week", "http://support.liferay.com/images/icons/duedatepicker-icon.gif",
+				jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&created:previous=-1d",
+				new Integer(reporterIssuesLastWeekCount), new Integer(reporterIssuesTotalCount)
+			}
+		};
+		%>
+
+		<table class="jira-summary lfr-table">
+
+		<%
+		for (int i = 0; i < jiraValuesArray.length; i++) {
+			Object[] jiraValues = jiraValuesArray[i];
+
+			if (jiraValues.length == 2) {
+				String message = (String)jiraValues[0];
+				String url = (String)jiraValues[1];
+		%>
+
+				<tr>
+					<td colspan="3">
+						<c:if test="<%= i != 0 %>">
+							<br />
+						</c:if>
+
+						<a href="<%= url %>" target="_blank"><b><liferay-ui:message key="<%= message %>" /></b></a>
+					</td>
+				</tr>
+
+		<%
+			}
+			else {
+				String message = (String)jiraValues[0];
+				String icon = (String)jiraValues[1];
+				String url = "javascript: location.href = '" + (String)jiraValues[2] + "';";
+				int curCount = ((Integer)jiraValues[3]).intValue();
+				int totalCount = ((Integer)jiraValues[4]).intValue();
+
+				double ratio = (double)curCount / (double)totalCount;
+		%>
+
+				<tr>
+					<td>
+						<liferay-ui:icon
+							message="<%= message %>"
+							src="<%= icon %>"
+							url="<%= url %>"
+							target="_blank"
+							label="<%= true %>"
+						/>
+					</td>
+					<td>
+						<%= numberFormat.format(curCount) %>
+					</td>
+					<td class="graph">
+						<table>
+						<tr>
+							<td class="bar" style="width: <%= percentFormat.format(ratio) %>;"></td>
+							<td class="percent" style="width: <%= percentFormat.format(1 - ratio) %>;">
+								<%= percentFormat.format(ratio) %>
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+
+		<%
+			}
 		}
 		%>
 
-		<%= user2.getFullName() %> is assigned to <b><%= numberFormat.format(assignedIssuesTotalCount - assignedIssuesClosedCount) %></b> unresolved issues. He has resolved over <%= numberFormat.format(assignedIssuesClosedCount) %> issues since <%= dateFormatDate.format(firstAssignedIssueDate) %>.
-
-		<br /><br />
-
-		See unresolved <a href="http://support.liferay.com/secure/IssueNavigator.jspa?assigneeSelect=specificuser&sorter/field=priority&mode=hide&reset=true&resolution=-1&assignee=<%= jiraUserId %>&pid=<%= JIRAConstants.PROJECT_LEP %>&sorter/order=DESC" target="_blank">LEP</a> issues assigned to him.
+		</table>
 	</c:when>
 	<c:otherwise>
 		<c:choose>

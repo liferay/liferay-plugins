@@ -76,7 +76,9 @@
 <%@ page import="java.text.NumberFormat" %>
 
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.Date" %>
+<%@ page import="java.util.GregorianCalendar" %>
 <%@ page import="java.util.List" %>
 
 <%@ page import="javax.portlet.PortletURL" %>
@@ -106,4 +108,6 @@ dateFormatDate.setTimeZone(timeZone);
 DateFormat dateFormatDateTime = DateFormats.getDateTime(locale, timeZone);
 
 NumberFormat numberFormat = NumberFormat.getNumberInstance(locale);
+
+NumberFormat percentFormat = NumberFormat.getPercentInstance(locale);
 %>

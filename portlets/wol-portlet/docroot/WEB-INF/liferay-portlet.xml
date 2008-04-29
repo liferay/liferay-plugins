@@ -4,18 +4,22 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
+		<css-class-wrapper>portlet-summary</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<icon>/svn/icon.png</icon>
 		<scheduler-class>com.liferay.wol.svn.job.SVNScheduler</scheduler-class>
 		<social-activity-interpreter-class>com.liferay.wol.svn.social.SVNActivityInterpreter</social-activity-interpreter-class>
+		<css-class-wrapper>wol-portlet-svn</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>3</portlet-name>
+		<css-class-wrapper>wol-portlet-jira</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>
+		<css-class-wrapper>wol-portlet-friends</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>5</portlet-name>
@@ -23,9 +27,11 @@
 		<friendly-url-mapper-class>com.liferay.wol.wall.portlet.WallFriendlyURLMapper</friendly-url-mapper-class>
 		<social-activity-interpreter-class>com.liferay.wol.wall.social.WallActivityInterpreter</social-activity-interpreter-class>
 		<restore-current-view>false</restore-current-view>
+		<css-class-wrapper>wol-portlet-wall</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>6</portlet-name>
+		<css-class-wrapper>wol-portlet-friends-activities</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
