@@ -130,17 +130,20 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 	}
 
 	public List<WallEntry> getWallToWallEntries(
-			long groupId1, long groupId2, int begin, int end)
+			long groupId1, long groupId2, long userId1, long userId2, int begin,
+			int end)
 		throws SystemException {
 
-		return wallEntryFinder.findByG1_G2(
-			groupId1, groupId2, begin, end);
+		return wallEntryFinder.findByG1_G2_U1_U2(
+			groupId1, groupId2, userId1, userId2, begin, end);
 	}
 
-	public int getWallToWallEntriesCount(long groupId1, long groupId2)
+	public int getWallToWallEntriesCount(
+			long groupId1, long groupId2, long userId1, long userId2)
 		throws SystemException {
 
-		return wallEntryFinder.countByG1_G2(groupId1, groupId2);
+		return wallEntryFinder.countByG1_G2_U1_U2(
+			groupId1, groupId2, userId1, userId2);
 	}
 
 	public WallEntry updateWallEntry(long wallEntryId, String comments)

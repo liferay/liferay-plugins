@@ -45,13 +45,14 @@ import org.hibernate.Session;
  */
 public class WallEntryFinderImpl implements WallEntryFinder {
 
-	public static String COUNT_BY_G1_G2 =
-		WallEntryFinder.class.getName() + ".countByG1_G2";
+	public static String COUNT_BY_G1_G2_U1_U2 =
+		WallEntryFinder.class.getName() + ".countByG1_G2_U1_U2";
 
-	public static String FIND_BY_G1_G2 =
-		WallEntryFinder.class.getName() + ".findByG1_G2";
+	public static String FIND_BY_G1_G2_U1_U2 =
+		WallEntryFinder.class.getName() + ".findByG1_G2_U1_U2";
 
-	public int countByG1_G2(long groupId1, long groupId2)
+	public int countByG1_G2_U1_U2(
+			long groupId1, long groupId2, long userId1, long userId2)
 		throws SystemException {
 
 		Session session = null;
@@ -59,7 +60,7 @@ public class WallEntryFinderImpl implements WallEntryFinder {
 		try {
 			session = HibernateUtil.openSession();
 
-			String sql = CustomSQLUtil.get(COUNT_BY_G1_G2);
+			String sql = CustomSQLUtil.get(COUNT_BY_G1_G2_U1_U2);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -69,6 +70,8 @@ public class WallEntryFinderImpl implements WallEntryFinder {
 
 			qPos.add(groupId1);
 			qPos.add(groupId2);
+			qPos.add(userId1);
+			qPos.add(userId2);
 
 			Iterator<Long> itr = q.list().iterator();
 
@@ -90,8 +93,9 @@ public class WallEntryFinderImpl implements WallEntryFinder {
 		}
 	}
 
-	public List<WallEntry> findByG1_G2(
-			long groupId1, long groupId2, int begin, int end)
+	public List<WallEntry> findByG1_G2_U1_U2(
+			long groupId1, long groupId2, long userId1, long userId2, int begin,
+			int end)
 		throws SystemException {
 
 		Session session = null;
@@ -99,7 +103,7 @@ public class WallEntryFinderImpl implements WallEntryFinder {
 		try {
 			session = HibernateUtil.openSession();
 
-			String sql = CustomSQLUtil.get(FIND_BY_G1_G2);
+			String sql = CustomSQLUtil.get(FIND_BY_G1_G2_U1_U2);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -109,6 +113,8 @@ public class WallEntryFinderImpl implements WallEntryFinder {
 
 			qPos.add(groupId1);
 			qPos.add(groupId2);
+			qPos.add(userId1);
+			qPos.add(userId2);
 
 			return (List<WallEntry>)QueryUtil.list(
 				q, HibernateUtil.getDialect(), begin, end);

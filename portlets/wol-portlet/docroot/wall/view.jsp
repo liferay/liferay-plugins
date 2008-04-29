@@ -75,7 +75,7 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 int total = 0;
 
 if (wallToWallUser != null) {
-	total = WallEntryLocalServiceUtil.getWallToWallEntriesCount(group.getGroupId(), user.getGroup().getGroupId());
+	total = WallEntryLocalServiceUtil.getWallToWallEntriesCount(group.getGroupId(), user.getGroup().getGroupId(), user2.getUserId(), user.getUserId());
 }
 else {
 	total = WallEntryLocalServiceUtil.getWallEntriesCount(group.getGroupId());
@@ -86,7 +86,7 @@ searchContainer.setTotal(total);
 List<WallEntry> results = null;
 
 if (wallToWallUser != null) {
-	results = WallEntryLocalServiceUtil.getWallToWallEntries(group.getGroupId(), user.getGroup().getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
+	results = WallEntryLocalServiceUtil.getWallToWallEntries(group.getGroupId(), user.getGroup().getGroupId(), user2.getUserId(), user.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
 }
 else {
 	results = WallEntryLocalServiceUtil.getWallEntries(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
