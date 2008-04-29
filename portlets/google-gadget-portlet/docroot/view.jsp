@@ -27,7 +27,7 @@
 <%
 String url = "http://gmodules.com/ig/ifr?url=" + gadgetId + "&title=&border=none&output=js";
 
-String html = Http.URLtoString(url);
+String html = HttpUtil.URLtoString(url);
 
 try {
 	int x = html.indexOf("*/");
@@ -37,3 +37,18 @@ try {
 	x = html.indexOf("/ig/add?");
 
 	x = html.lastIndexOf("\\x3ctr", x);
+
+	int y = html.indexOf("\\x3c/tr\\x3e", x);
+
+	html = html.substring(0, x) + html.substring(y + 11);
+}
+catch (Exception e) {
+}
+%>
+
+<script type="text/javascript">
+	<%= html %>
+</script>
+
+<%--<script src="http://gmodules.com/ig/ifr?url=<%= gadgetId %>&synd=open&title=&border=none&output=js"></script>--%>
+<%--<iframe frameborder="0" height="100%" src="http://www.gmodules.com/ig/ifr?nocache=1&url=<%= gadgetId %>" width="100%"></iframe>--%>
