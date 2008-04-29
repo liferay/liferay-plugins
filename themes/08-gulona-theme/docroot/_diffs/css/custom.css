@@ -14,7 +14,7 @@ a:hover {
 }
 
 #wrapper {
-	background: transparent url(../images/common/background.gif);
+	background: transparent url(../images/common/background.png);
 	width: 948px;
 }
 
@@ -24,7 +24,7 @@ a:hover {
 }
 
 #content-wrapper {
-	background: url(../images/common/shade.gif) repeat-x;
+	background: url(../images/common/shade.png) repeat-x;
 	margin: 2px 21px;
 	padding: 20px 3px 0;
 	font-size: 1.2em;
@@ -32,7 +32,7 @@ a:hover {
 }
 
 #footer {
-	background: url(../images/common/shade.gif) repeat-x;
+	background: url(../images/common/shade.png) repeat-x;
 	margin: 0 21px;
 	min-height: 2em;
 	padding: 18px;
@@ -43,7 +43,7 @@ a:hover {
 }
 
 #footer-divider {
-	background: #89A606 url(../images/common/footer_bg.gif) repeat-y;
+	background: #89A606 url(../images/common/footer_bg.png) repeat-y;
 	margin: 0 18px;
 	height: 13px;
 }
@@ -68,7 +68,7 @@ a:hover {
 
 /* ---- BANNNER ---- */
 #banner {
-	background: url(../images/common/shade.gif) repeat-x;
+	background: url(../images/common/shade.png) repeat-x;
 	margin: 0 21px;
 	height: 10em;
 }
@@ -104,7 +104,7 @@ a:hover {
 
 /* ---- NAVIGATION ---- */
 #navigation {
-	background: url(../images/navigation/bg.gif) repeat-x;
+	background: url(../images/navigation/bg.png) repeat-x;
 	width: 912px;
 	margin: 0 18px;
 	height: 39px;
@@ -121,7 +121,7 @@ a:hover {
 
 
 #navigation li:hover {
-	background: url(../images/navigation/hover.gif);
+	background: url(../images/navigation/hover.png);
 }
 
 #navigation li a {
@@ -147,7 +147,7 @@ a:hover {
 }
 
 #navigation li.selected {
-	background: url(../images/navigation/hover.gif);
+	background: url(../images/navigation/hover.png);
 	padding-bottom: 11px;
 }
 
@@ -338,7 +338,7 @@ input.focus, textarea.focus, .ie6 input.focus, .ie6 textarea.focus {
 }
 
 .nav-menu li {
-	background: url("../images/common/nav-portlet_item.gif") no-repeat scroll;
+	background: url("../images/common/nav-portlet_item.png") no-repeat scroll;
 	height: 25px;
 	padding: 12px 0 0 45px;
 }

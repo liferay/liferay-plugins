@@ -26,7 +26,7 @@
 /* ---------- From base.css ---------- */
 
 body {
-	background: #567 url(../images/custom/bg_body.gif) center repeat-y;
+	background: #567 url(../images/custom/bg_body.png) center repeat-y;
 	font: 0.9em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
 	text-align: center; /* hack for IE5.5 to display website centered */
 }

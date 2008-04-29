@@ -11,7 +11,7 @@ table {
 }
 
 .side-nav {
-	background: url(../images/navigation/sidenav.gif) no-repeat;
+	background: url(../images/navigation/sidenav.png) no-repeat;
 	left:598px;
 	padding-bottom:204px;
 	position:absolute;
@@ -49,7 +49,7 @@ a:hover {
 /* ---------- Banner ---------- */
 
 #banner {
-	background: url(../images/common/header.gif) no-repeat center top;
+	background: url(../images/common/header.png) no-repeat center top;
 	height: 7em;
 	position: relative;
 }
@@ -131,14 +131,14 @@ a:hover {
 }
 
 #navigation li.selected a {
-	background: url(../images/common/stripes.gif) repeat-x 0px 15px;
+	background: url(../images/common/stripes.png) repeat-x 0px 15px;
 	padding-top: 0;
 	color:#8DCA3F;
 	height: 16px;
 }
 
 .ie6 #navigation li.selected a {
-	background: url(../images/common/stripes.gif) repeat-x 0px 15px;
+	background: url(../images/common/stripes.png) repeat-x 0px 15px;
 	float: left;
 	padding-right: 0px;
 	margin-right: 0px;
@@ -255,7 +255,7 @@ a:hover {
 	display: block;
 	font-weight: normal;
 	min-width: 50%;
-	background: url(../images/common/stripes.gif) repeat-x scroll left bottom;
+	background: url(../images/common/stripes.png) repeat-x scroll left bottom;
 	color:#99AA33;
 	font-family:Impact,sans-serif;
 	font-size:2em;

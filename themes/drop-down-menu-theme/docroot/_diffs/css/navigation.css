@@ -4,11 +4,12 @@
 
 #navigation {
 	text-align: left;
-	background: #d8fbd8 url(../images/updated/bg_green.jpg) repeat-x;
+	background: #d8fbd8 url(../images/navigation/navigation_bg.png) repeat-x;
 	border-bottom: 1px solid #444;
 	height: 1.2em;
 	font-size: 1.2em;
 	padding: 3px 10px 2px 5px;
+	position: relative;
 }
 
 #navigation ul {

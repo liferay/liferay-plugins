@@ -44,7 +44,7 @@
 }
 
 #navigation li {
-	background: url(../images/navigation/bg.gif) no-repeat right top;
+	background: url(../images/navigation/bg.png) no-repeat right top;
 	overflow: hidden;
 	padding: 0 1px 0 0;
 	margin-right: 1px;
@@ -58,7 +58,7 @@
 }
 
 #navigation li a span {
-	background: url(../images/navigation/bg.gif) no-repeat left top;
+	background: url(../images/navigation/bg.png) no-repeat left top;
 	font-size: 1em;
 	padding: 3px 15px;
 }
@@ -72,11 +72,11 @@
 }
 
 #navigation li a:hover span {
-	background: url(../images/navigation/bg.gif) no-repeat left top;
+	background: url(../images/navigation/bg.png) no-repeat left top;
 }
 
 #navigation li.selected {
-	background: url(../images/navigation/bg.gif) no-repeat right -41px;
+	background: url(../images/navigation/bg.png) no-repeat right -41px;
 	padding-right: 1px;
 	padding-left: 0;
 	text-align: center;
@@ -88,7 +88,7 @@
 }
 
 #navigation li.selected a span {
-	background: url(../images/navigation/bg.gif) no-repeat left -41px;
+	background: url(../images/navigation/bg.png) no-repeat left -41px;
 	font-size: 1em;
 	padding: 4px 15px;
 }
@@ -103,7 +103,7 @@
 
 
 #navigation li.selected a:hover span {
-	background: url(../images/navigation/bg.gif) no-repeat left -41px;
+	background: url(../images/navigation/bg.png) no-repeat left -41px;
 }
 
 .js #navigation .enter-page {
@@ -151,24 +151,24 @@
 }
 
 .tabs li {
-	background: url(../images/navigation/bg.gif) right top;
+	background: url(../images/navigation/bg.png) right top;
 	line-height: 15px;
 	padding-right: 1px;
 	margin-right: 1px;
 	top: 0.15em;
 }
 .tabs li a, .tabs li span {
-	background: url(../images/navigation/bg.gif) left top;
+	background: url(../images/navigation/bg.png) left top;
 	padding: 0.15em .8em 0 1em;
 	color: #FFFFFF;
 }
 
 .tabs li.current {
-	background: url(../images/navigation/bg.gif) right -41px;
+	background: url(../images/navigation/bg.png) right -41px;
 }
 
 .tabs li.current a, .tabs li.current span {
-	background: url(../images/navigation/bg.gif) left -42px;
+	background: url(../images/navigation/bg.png) left -42px;
 	padding: 0.1em 1em;
 	color: #FFFFFF;
 }

@@ -44,7 +44,7 @@ html {
 /* Theme */
 
 body {
- background : #F2F5FE url('../images/common/page_bg.gif') repeat-x scroll 0 0 ;
+ background : #F2F5FE url('../images/common/page_bg.png') repeat-x scroll 0 0 ;
  color : #192666 ;
  font-family : "verdana",sans-serif ;
  font-size : 70% ;
@@ -117,7 +117,7 @@ text-decoration : underline ;
  position : relative ;
  padding : 7px 15px ;
  border : 0 ;
- background : url('../images/navigation/tab_link.gif') 0 0 repeat-x ;
+ background : url('../images/navigation/tab_link.png') 0 0 repeat-x ;
  color : #b5c4e3 ;
  cursor : pointer ;
 }
@@ -132,7 +132,7 @@ text-decoration : underline ;
  left : 0 ;
  width : 8px ;
  height : 8px ;
- background:url('../images/navigation/tab_link_l.gif') no-repeat 0 0;
+ background:url('../images/navigation/tab_link_l.png') no-repeat 0 0;
 }
 #navigation ul li a span.tab-r , #navigation ul li a:hover span.tab-r ,
 #navigation ul li.selected a span.tab-r , #navigation ul li.selected a:hover span.tab-r {
@@ -141,21 +141,21 @@ text-decoration : underline ;
  right : 0 ;
  width : 8px ;
  height : 8px ;
- background : url('../images/navigation/tab_link_r.gif') 100% 0 no-repeat ;
+ background : url('../images/navigation/tab_link_r.png') 100% 0 no-repeat ;
 }
 #navigation ul li a:hover , #navigation ul li.selected a:hover {
- background : url("../images/navigation/tab_hover.gif") 0 0 repeat-x ;
+ background : url("../images/navigation/tab_hover.png") 0 0 repeat-x ;
  color : #fff ;
 }
 #navigation ul li a:hover span.tab-l , #navigation ul li.selected a:hover span.tab-l {
- background : url('../images/navigation/tab_hover_l.gif') 0 0 no-repeat ;
+ background : url('../images/navigation/tab_hover_l.png') 0 0 no-repeat ;
 }
 #navigation ul li a:hover span.tab-r , #navigation ul li.selected a:hover span.tab-r {
- background : url('../images/navigation/tab_hover_r.gif') 100% 0 no-repeat ;
+ background : url('../images/navigation/tab_hover_r.png') 100% 0 no-repeat ;
 }
 #navigation ul li.selected a , #navigation ul li.selected a:hover { background : #fff ; color : #ff9000 ; }
-#navigation ul li.selected a span.tab-l , #navigation ul li.selected a:hover span.tab-l {position:absolute; top:0; left:0; _left:-15px; width:8px; height:8px; background:url("../images/navigation/tab_active_l.gif") 0 0 no-repeat;}
-#navigation ul li.selected a span.tab-r , #navigation ul li.selected a:hover span.tab-r {position:absolute; top:0; right:0; width:8px; height:8px; background:url("../images/navigation/tab_active_r.gif") 100% 0 no-repeat;}
+#navigation ul li.selected a span.tab-l , #navigation ul li.selected a:hover span.tab-l {position:absolute; top:0; left:0; _left:-15px; width:8px; height:8px; background:url("../images/navigation/tab_active_l.png") 0 0 no-repeat;}
+#navigation ul li.selected a span.tab-r , #navigation ul li.selected a:hover span.tab-r {position:absolute; top:0; right:0; width:8px; height:8px; background:url("../images/navigation/tab_active_r.png") 100% 0 no-repeat;}
 
 ul.child-menu { display : none ; }
 
@@ -212,7 +212,7 @@ ul.child-menu { display : none ; }
 }
 
 .portlet-title {
- background : #DEE5FD url('../images/portlet/content_title_bg.gif') repeat-y scroll 0 0 ;
+ background : #DEE5FD url('../images/portlet/content_title_bg.png') repeat-y scroll 0 0 ;
  color : #192666 ;
  margin : 0pt -20px ;
  padding : 10px ;

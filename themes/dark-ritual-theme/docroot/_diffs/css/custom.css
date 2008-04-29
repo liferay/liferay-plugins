@@ -10,7 +10,7 @@
 }
 
 body {
-	background: url(../images/common/bg.gif) repeat;
+	background: url(../images/common/bg.png) repeat;
 	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
 }
 
@@ -183,7 +183,7 @@ body {
 }
 
 #footer {
-	background: url(../images/common/bgfooter.gif) repeat-x;
+	background: url(../images/common/bgfooter.png) repeat-x;
 	margin-top: 1px;
 	height: 4em;
 	width: 639px;
@@ -252,7 +252,7 @@ table {
 }
 
 .columns-2 #column-2 {
-	background: url(../images/common/bg_column.gif) repeat;
+	background: url(../images/common/bg_column.png) repeat;
 	padding-right: 5px;
 	padding-top: 1px;
 }

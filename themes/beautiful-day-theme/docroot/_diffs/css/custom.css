@@ -58,7 +58,7 @@ body {
 }
 
 #outter {
-	background: transparent url(../images/common/clouds.gif) repeat-x scroll 0 0;
+	background: transparent url(../images/common/clouds.png) repeat-x scroll 0 0;
 	padding: 50px 10px 0pt;
 }
 
@@ -101,7 +101,7 @@ body {
 }
 
 #navigation {
-	background:#EAE7DF url(../images/common/nav.gif) repeat-x scroll 0 0;
+	background:#EAE7DF url(../images/common/nav.png) repeat-x scroll 0 0;
 	border-top: 4px solid #fff;
 	height:41px;
 }
@@ -125,7 +125,7 @@ body {
 }
 
 #navigation ul li.selected a:hover span , #navigation ul li a:hover span , .js #add-page a:hover span {
-	background: url(../images/common/nav.gif) repeat-x scroll left bottom;
+	background: url(../images/common/nav.png) repeat-x scroll left bottom;
 	color:#234;
 }
 

@@ -1,7 +1,7 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
 body {
-	background: #000 url(../images/common/body.gif) no-repeat top left;
+	background: #000 url(../images/common/body.png) no-repeat top left;
 	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
 }
 
@@ -124,7 +124,7 @@ a {
 }
 
 #navigation li.selected a {
-	background: url(../images/navigation/decay-small.gif) no-repeat;
+	background: url(../images/navigation/decay-small.png) no-repeat;
 	padding-top: 0;
 	padding-bottom: 10px;
 	padding-right: 25px;
@@ -173,7 +173,7 @@ a {
 }
 
 .portlet-topper {
-	background: url(../images/common/decay.gif) no-repeat;
+	background: url(../images/common/decay.png) no-repeat;
 	background-position: left top;
 	margin-right: -10px;
 	padding-right: 40px;

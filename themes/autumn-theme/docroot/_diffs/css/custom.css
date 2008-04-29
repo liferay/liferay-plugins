@@ -120,7 +120,7 @@ html {
  overflow-y : scroll ;
 }
 body {
- background : #e4d9be url('../images/custom/body_bg.jpg') repeat-y top center;
+ background : #e4d9be url('../images/custom/body_bg.png') repeat-y top center;
 }
 #wrapper {
  background : #F6EACF ;
@@ -155,7 +155,7 @@ color : #fff ;
  border : 0 ;
 }
 #navigation {
- background : transparent url('../images/custom/linkbar_bg.jpg');
+ background : transparent url('../images/custom/linkbar_bg.png');
  font-size : small ;
  height : 37px ;
  border : 0 ;
@@ -211,7 +211,7 @@ color : #fff ;
 }
 .portlet-topper {
  height : 59px ;
- background : url('../images/custom/h2.gif') no-repeat;
+ background : url('../images/custom/h2.png') no-repeat;
 }
 .portlet-title {
  font-family:Georgia,"Times New Roman",Times,serif;

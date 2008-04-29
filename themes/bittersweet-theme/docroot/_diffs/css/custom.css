@@ -52,13 +52,13 @@ html {
 }
 
 body {
- background : #5F8000 url('../images/common/page_bg.gif') repeat-y scroll center top ;
+ background : #5F8000 url('../images/common/page_bg.png') repeat-y scroll center top ;
  color : #333333 ;
  font : normal normal normal 0.6em "Lucida Sans Unicode",sans-serif;
 }
 
 #wrapper {
- background : transparent url('../images/common/wrapper_bg.gif') repeat-y scroll 0 0 ;
+ background : transparent url('../images/common/wrapper_bg.png') repeat-y scroll 0 0 ;
  margin : 0 auto ;
  width : 974px ;
 }
@@ -149,7 +149,7 @@ right : 0 ;
 }
 
 #column-1 .portlet {
- background : transparent url('../images/portlet/left_portlet_bg.gif') no-repeat scroll 0 0 ;
+ background : transparent url('../images/portlet/left_portlet_bg.png') no-repeat scroll 0 0 ;
  color : #fdd ;
 }
 #column-2 .portlet {

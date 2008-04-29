@@ -52,7 +52,7 @@ html {
 }
 
 body {
- background : #e0e0e0 url('../images/common/page_bg.gif') repeat-x ;
+ background : #e0e0e0 url('../images/common/page_bg.png') repeat-x ;
  color : #505050 ;
  font : 76% Georgia,Verdana,Tahoma,Arial,sans-serif ;
  margin : 0 ;
@@ -97,7 +97,7 @@ body {
 }
 
 #navigation {
- background : url('../images/navigation/bg.gif') bottom left repeat-x ;
+ background : url('../images/navigation/bg.png') bottom left repeat-x ;
  width : 900px ;
 }
 #navigation ul {
@@ -107,19 +107,19 @@ body {
 #navigation ul li , #navigation ul li.selected , .js #add-page {
  display : block ;
  float : left ;
- background : url('../images/navigation/tabs.gif') no-repeat 0 0 ;
+ background : url('../images/navigation/tabs.png') no-repeat 0 0 ;
  margin : 0 4px 1px 0 ;
  padding : 0 0 0 9px ;
 }
 #navigation ul li.selected
 {
- background : url('../images/navigation/tabs.gif') no-repeat 0 -41px ;
+ background : url('../images/navigation/tabs.png') no-repeat 0 -41px ;
 }
 
 #navigation ul li a , #navigation ul li a:hover , #navigation ul li.selected a , #navigation ul li.selected a:hover , .js #add-page a , .js #add-page a:hover {
  display : block ;
  float : left ;
- background : url('../images/navigation/tabs.gif') no-repeat 100% 0 ;
+ background : url('../images/navigation/tabs.png') no-repeat 100% 0 ;
  color : #808080 ;
  font-size : 1.2em ;
  letter-spacing : -1px ;
@@ -127,11 +127,11 @@ body {
  text-decoration : none ;
 }
 #navigation ul li.selected a {
- background : url('../images/navigation/tabs.gif') no-repeat 100% -41px ;
+ background : url('../images/navigation/tabs.png') no-repeat 100% -41px ;
  color : #303030 ;
 }
 #navigation ul li.selected a:hover {
- background : url('../images/navigation/tabs.gif') no-repeat 100% -41px ;
+ background : url('../images/navigation/tabs.png') no-repeat 100% -41px ;
 }
 #navigation ul li a span , #navigation ul li a:hover span , #navigation ul li.selected a span , #navigation ul li.selected a:hover span , .js #add-page a span , .js #add-page a:hover span {
  display : block ;
@@ -146,7 +146,7 @@ body {
 .js #add-page { }
 
 #backy {
- background : #fff url('../images/common/wrapper_bg_1.gif') repeat-y ;
+ background : #fff url('../images/common/wrapper_bg_1.png') repeat-y ;
 }
 
 #content-wrapper , #portlet-wrapper- {

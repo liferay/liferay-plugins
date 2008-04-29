@@ -23,7 +23,7 @@
 /* ---------- Banner ---------- */
 
 #banner {
-	background: url(../images/common/bright_pixel.gif) no-repeat scroll 11px 0;
+	background: url(../images/common/bright_pixel.png) no-repeat scroll 11px 0;
 	height: 25em;
 	position: relative;
 	margin-bottom: -5px;
@@ -52,7 +52,7 @@ table {
 }
 
 body {
-	background: #CCCCCC url(../images/common/bg.gif) repeat-y fixed center bottom;
+	background: #CCCCCC url(../images/common/bg.png) repeat-y fixed center bottom;
 	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
 	color: #666666;
 }
@@ -103,7 +103,7 @@ body {
 }
 
 #navigation li a:hover {
-	background: #EEEEEE url(../images/common/bgmenu.gif) repeat-x scroll top;
+	background: #EEEEEE url(../images/common/bgmenu.png) repeat-x scroll top;
 	color: #555555;
 	padding-bottom: 20px;
 }
@@ -171,7 +171,7 @@ body {
 }
 
 .js .lfr-dock.interactive-mode h2 {
-	background: #CCCCCC url(../images/common/menubg.gif) repeat-x;
+	background: #CCCCCC url(../images/common/menubg.png) repeat-x;
 	border: 3px double #E4E4E4; 
 	font-size: 1.2em;
 	margin-bottom: 0;
@@ -234,7 +234,7 @@ body {
 }
 
 .portlet-topper {
-	background: #FCFCFC url(../images/common/bgitem.gif) repeat-x scroll 0%;
+	background: #FCFCFC url(../images/common/bgitem.png) repeat-x scroll 0%;
 	background-position: right top;
 	margin-right: -10px;
 	padding-right: 40px;

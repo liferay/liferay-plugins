@@ -1,7 +1,7 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
 body {
-	background: transparent url(../images/common/bodybg.gif) repeat;
+	background: transparent url(../images/common/bodybg.png) repeat;
 }
 
 a {
@@ -20,7 +20,7 @@ a:hover {
 }
 
 #banner {
-	background: #49515C url(../images/common/header_right.gif) no-repeat scroll 100% 100%;
+	background: #49515C url(../images/common/header_right.png) no-repeat scroll 100% 100%;
 	height: 10em;
 }
 

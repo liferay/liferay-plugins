@@ -49,7 +49,7 @@ html {
 
 /* Blue Pigment */
 body {
- background : #001342 url('../images/common/page_bg.jpg') repeat-x scroll 0 0 ;
+ background : #001342 url('../images/common/page_bg.png') repeat-x scroll 0 0 ;
  color : #F2F9FF ;
  font-family : verdana,tahoma,sans-serif ;
  font-size : 12px ;
@@ -92,7 +92,7 @@ a , a:link , a:visited , a:hover { text-decoration : none ; color : #fff ; } a:h
 }
 
 #navigation {
- background : transparent url('../images/navigation/bg.jpg') repeat-x scroll left bottom ;
+ background : transparent url('../images/navigation/bg.png') repeat-x scroll left bottom ;
  height : 64px ;
 }
 #navigation ul {
@@ -111,7 +111,7 @@ a , a:link , a:visited , a:hover { text-decoration : none ; color : #fff ; } a:h
  height : 64px ;
 }
 #navigation ul li.selected {
- background : transparent url('../images/navigation/nav-current.jpg') no-repeat scroll center bottom ;
+ background : transparent url('../images/navigation/nav-current.png') no-repeat scroll center bottom ;
 }
 #navigation ul li a span , #navigation ul li.selected a span ,
 #navigation ul li a:hover span , #navigation ul li.selected a:hover span 
@@ -134,7 +134,7 @@ a , a:link , a:visited , a:hover { text-decoration : none ; color : #fff ; } a:h
 }
 
 .portlet {
- background : transparent url('../images/portlet/portlet_bg.jpg') repeat scroll 0 0 ;
+ background : transparent url('../images/portlet/portlet_bg.png') repeat scroll 0 0 ;
  border : 5px solid #1F8ADE ;
  margin : 10px 0 ;
  padding : 10px 10px 20px 24px ;
