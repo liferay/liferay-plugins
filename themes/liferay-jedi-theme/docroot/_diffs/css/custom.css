@@ -1,5 +1,5 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-/* --- BASE --- */
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */  /* --- BASE --- */
+
 body {
 	background: #828F95 url(../images/common/background.png) repeat-x;
 }
@@ -14,8 +14,8 @@ body {
 }
 
 #content-wrapper {
-	padding: 7px;
 	margin: 0 auto;
+	padding: 7px;
 }
 
 .ie #content-wrapper {
@@ -27,8 +27,8 @@ body {
 }
 
 #banner {
-	height: 99px;
 	background: url(../images/common/banner_bg.png);
+	height: 99px;
 }
 
 #banner .logo {
@@ -36,32 +36,32 @@ body {
 }
 
 #footer {
-	margin: 0 auto;
 	background: #E2E6E8 url(../images/common/footer_bg.jpg) no-repeat 50% 50%;
 	border: 1px solid #6B767B;
-	width: 950px;
 	height: 125px;
+	margin: 0 auto;
 	position: relative;
+	width: 950px;
 }
 
 /* ---- NAVIGATION ---- */
 
 #navigation {
-	position: relative;
-	overflow: visible;
-	z-index: 10;
 	background: transparent url(../images/navigation/bg.png) no-repeat;
-	width: 100%;
 	height: 25px;
 	margin: 0;
+	overflow: visible;
 	padding: 1px 0 0 2px;
+	position: relative;
+	width: 100%;
+	z-index: 10;
 }
 
 #navigation li {
 	background: none;
-	padding: 5px 25px 4px;
-	margin: 0;
 	border-right: 1px solid #1F242A;
+	margin: 0;
+	padding: 5px 25px 4px;
 }
 
 #navigation li:hover {
@@ -74,11 +74,11 @@ body {
 }
 
 #navigation li a {
-	color: #B4C1C9;
 	background: none;
-	padding: 0;
+	color: #B4C1C9;
 	font-size: 11px;
 	font-weight: bold;
+	padding: 0;
 }
 
 #navigation li a span {
@@ -113,7 +113,7 @@ body {
 }
 
 #navigation li.selected a {
-	color: #FFFFFF;
+	color: #FFF;
 	padding: 0;
 }
 
@@ -159,20 +159,20 @@ body {
 /* --- DOCK --- */
 
 .js .lfr-dock.interactive-mode {
-	top: 0px;
 	right: 13px;
+	top: 0px;
 }
 
 .js .lfr-dock.interactive-mode h2 {
-	padding: 0 41px 0 0;
 	margin: 0px;
+	padding: 0 41px 0 0;
 }
 
 .js .lfr-dock.interactive-mode h2 span {
+	font-size: 1.2em;
+	font-weight: normal;
 	padding: 0.3em 0.5em 0.4em 2.2em;
 	text-align: left;
-	font-weight: normal;
-	font-size: 1.2em;
 }
 
 /* --- SEARCH --- */
@@ -191,8 +191,8 @@ body {
 
 .ie6 .search input.text {
 	background: #FFF;
-	color: #211C19;
 	border: none;
+	color: #211C19;
 	font-size: 16px;
 	font-weight: normal;
 	margin: 0px -10px 0px 0px;
@@ -202,8 +202,8 @@ body {
 
 #banner .search input[type=text] {
 	background: #FFF;
-	color: #211C19;
 	border: none;
+	color: #211C19;
 	font-size: 16px;
 	font-weight: normal;
 	margin: 0px -10px 0px 0px;
@@ -246,7 +246,7 @@ body {
 /* --- PORTLET --- */
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
-	background: #FFFFFF none;
+	background: #FFF none;
 	margin: 0;
 }
 
@@ -268,8 +268,8 @@ body {
 }
 
 .portlet-title {
-	padding: 12px 0 12px 12px;
 	font-size: 17px;
+	padding: 12px 0 12px 12px;
 }
 
 .ie6 .portlet-icons {
@@ -278,13 +278,17 @@ body {
 
 /* --- LAYOUT SPECIFIC --- */
 
-#portlet-wrapper- { /* -- Liferay Old -- */
+#portlet-wrapper- {
+	/* -- liferay old -- */
+
 	background: transparent;
 	margin: 0;
 	padding: 14px;
 }
 
-#portlet-wrapper-sign-in { /* -- Liferay New -- */
+#portlet-wrapper-sign-in {
+	/* -- liferay new -- */
+
 	background: transparent;
 	margin: 0;
 	padding: 14px;
@@ -300,9 +304,9 @@ body {
 
 .columns-max #column-1 {
 	background: #D5DADE;
+	border: 1px solid #6E7679;
 	margin: 11px;
 	width: 948px;
-	border: 1px solid #6E7679;
 }
 
 .lfr-portlet-column {
@@ -322,8 +326,8 @@ body {
 }
 
 #wrapper .columns-1 .lfr-column {
-	width: 950px;
 	padding: 5px;
+	width: 950px;
 }
 
 .columns-2 #column-1 {
@@ -358,15 +362,15 @@ body.portal-popup {
 /* --- DROP DOWN MENU --- */
 
 #navigation .child-menu {
-	position: absolute;
-	top: 25px;
-	left: -1px;
 	background: url(../images/common/menu_drop.png) scroll no-repeat left bottom;
 	height: auto;
-	width: 209px;
-	z-index: 79;
+	left: -1px;
 	overflow: visible;
 	padding-bottom: 5px;
+	position: absolute;
+	top: 25px;
+	width: 209px;
+	z-index: 79;
 }
 
 .ie #navigation .child-menu {
@@ -394,20 +398,20 @@ body.portal-popup {
 
 #navigation .child-menu li a {
 	color: #000;
-	padding : 0 10px;
+	padding: 0 10px;
 }
 
 #navigation .child-menu a:hover {
-	color: #fff;
 	background: #000;
+	color: #fff;
 }
 
-/* --- BOTTOM NAV, LEGAL & LOCALIZATION --- */
+/* --- BOTTOM NAV, LEGAL &amp; LOCALIZATION --- */
 
 #footer .copyright-notice, #footer ul {
 	bottom: -45px;
-	position: absolute;
 	padding-bottom: 10px;
+	position: absolute;
 }
 
 #footer .copyright-notice {
@@ -442,9 +446,9 @@ body.portal-popup {
 }
 
 #footer .lang {
-	position: absolute;
 	bottom: -60px;
 	padding-bottom: 10px;
+	position: absolute;
 }
 
 /* --- MESSAGE BOARDS --- */
@@ -462,7 +466,7 @@ body.portal-popup {
 }
 
 .message-board-message-container .portlet-section-body td {
-	border:1px solid #3A4E66;
+	border: 1px solid #3A4E66;
 }
 
 #content-wrapper .message-board-thread-controls {
@@ -470,9 +474,9 @@ body.portal-popup {
 }
 
 #content-wrapper .message-board-title {
+	border: none;
 	color: #151C25;
 	padding: 5px;
-	border: none;
 }
 
 #content-wrapper .toggle_id_message_boards_view_message_thread {
@@ -481,7 +485,7 @@ body.portal-popup {
 }
 
 .message-board-message-container table {
-	color: #e7eef6;
+	color: #E7EEF6;
 }
 
 .message-board-code, .message-board-quote {
