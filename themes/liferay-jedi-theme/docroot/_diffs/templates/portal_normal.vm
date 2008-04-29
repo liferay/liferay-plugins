@@ -33,29 +33,31 @@
 		</style>
 	#end
 
-	#if ($group_id > 0)
-		#set ($journalTemplateLocalService = $serviceLocator.findService("com.liferay.portlet.journal.service.JournalTemplateLocalService"))
+	#set ($groupLocalService = $serviceLocator.findService("com.liferay.portal.service.GroupLocalService"))
 
-		#set ($journalTemplateId = $theme_settings.getProperty("css-template-id"))
+	#set ($guestGroup = $groupLocalService.getGroup($company_id, "Guest"))
 
-		#if ($journalTemplateLocalService.hasTemplate($group_id, $journalTemplateId))
+	#set ($journalTemplateLocalService = $serviceLocator.findService("com.liferay.portlet.journal.service.JournalTemplateLocalService"))
 
-			## Instead of reference the URL, just insert the content to save an
-			## extra HTTP request.
+	#set ($journalTemplateId = $theme_settings.getProperty("css-template-id"))
 
-			## <link rel="stylesheet" type="text/css" href="$theme_display.getPathMain()/journal/get_template?groupId=$group_id&templateId=$journalTemplateId" />-->
+	#if ($journalTemplateLocalService.hasTemplate($guestGroup.getGroupId(), $journalTemplateId))
 
-			#set ($journalTemplate = $journalTemplateLocalService.getTemplate($group_id, $journalTemplateId))
+		## Instead of reference the URL, just insert the content to save an
+		## extra HTTP request.
 
-			<style type="text/css">
-				#set ($cssTemplate = $journalTemplate.getXsl())
-				#set ($cssTemplate = $stringUtil.replace($cssTemplate, "@root_path@", $themeDisplay.getPathContext()))
-				#set ($cssTemplate = $stringUtil.replace($cssTemplate, "@image_path@", $themeDisplay.getPathImage()))
-				#set ($cssTemplate = $stringUtil.stripBetween($cssTemplate, "/*", "*/"))
+		## <link rel="stylesheet" type="text/css" href="$theme_display.getPathMain()/journal/get_template?groupId=$guestGroup.getGroupId()&templateId=$journalTemplateId" />-->
 
-				$cssTemplate
-			</style>
-		#end
+		#set ($journalTemplate = $journalTemplateLocalService.getTemplate($guestGroup.getGroupId(), $journalTemplateId))
+
+		<style type="text/css">
+			#set ($cssTemplate = $journalTemplate.getXsl())
+			#set ($cssTemplate = $stringUtil.replace($cssTemplate, "@root_path@", $themeDisplay.getPathContext()))
+			#set ($cssTemplate = $stringUtil.replace($cssTemplate, "@image_path@", $themeDisplay.getPathImage()))
+			#set ($cssTemplate = $stringUtil.stripBetween($cssTemplate, "/*", "*/"))
+
+			$cssTemplate
+		</style>
 	#end
 </head>
 
@@ -105,9 +107,9 @@ $theme.include($top_messages_include)
 
 				#set ($journalArticleId = $theme_settings.getProperty("footer-article-id"))
 
-				#if ($journalArticleLocalService.hasArticle($group_id, $journalArticleId))
+				#if ($journalArticleLocalService.hasArticle($guestGroup.getGroupId(), $journalArticleId))
 					$velocityPortletPreferences.setValue("portlet-setup-show-borders", "false")
-					$velocityPortletPreferences.setValue("group-id", "$group_id")
+					$velocityPortletPreferences.setValue("group-id", "$guestGroup.getGroupId()")
 					$velocityPortletPreferences.setValue("article-id", $journalArticleId)
 
 					$theme.runtime("56_INSTANCE_a453", "", $velocityPortletPreferences.toString())
