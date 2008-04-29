@@ -37,6 +37,7 @@ import com.liferay.portlet.service.FinderCache;
 import com.liferay.portlet.service.HibernateUtil;
 import com.liferay.portlet.service.PropsUtil;
 
+import com.liferay.util.dao.hibernate.QueryPos;
 import com.liferay.util.dao.hibernate.QueryUtil;
 
 import com.liferay.wol.NoSuchSVNRepositoryException;
@@ -320,10 +321,10 @@ public class SVNRepositoryPersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (url != null) {
-					q.setString(queryPos++, url);
+					qPos.add(url);
 				}
 
 				List<SVNRepository> list = q.list();
@@ -525,10 +526,10 @@ public class SVNRepositoryPersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (url != null) {
-					q.setString(queryPos++, url);
+					qPos.add(url);
 				}
 
 				Long count = null;

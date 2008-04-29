@@ -37,6 +37,7 @@ import com.liferay.portlet.service.FinderCache;
 import com.liferay.portlet.service.HibernateUtil;
 import com.liferay.portlet.service.PropsUtil;
 
+import com.liferay.util.dao.hibernate.QueryPos;
 import com.liferay.util.dao.hibernate.QueryUtil;
 
 import com.liferay.wol.NoSuchSVNRevisionException;
@@ -297,10 +298,10 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (svnUserId != null) {
-					q.setString(queryPos++, svnUserId);
+					qPos.add(svnUserId);
 				}
 
 				List<SVNRevision> list = q.list();
@@ -384,10 +385,10 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (svnUserId != null) {
-					q.setString(queryPos++, svnUserId);
+					qPos.add(svnUserId);
 				}
 
 				List<SVNRevision> list = (List<SVNRevision>)QueryUtil.list(q,
@@ -494,10 +495,10 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 			Query q = session.createQuery(query.toString());
 
-			int queryPos = 0;
+			QueryPos qPos = QueryPos.getInstance(q);
 
 			if (svnUserId != null) {
-				q.setString(queryPos++, svnUserId);
+				qPos.add(svnUserId);
 			}
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
@@ -554,9 +555,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setLong(queryPos++, svnRepositoryId);
+				qPos.add(svnRepositoryId);
 
 				List<SVNRevision> list = q.list();
 
@@ -634,9 +635,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setLong(queryPos++, svnRepositoryId);
+				qPos.add(svnRepositoryId);
 
 				List<SVNRevision> list = (List<SVNRevision>)QueryUtil.list(q,
 						getDialect(), begin, end);
@@ -738,9 +739,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 			Query q = session.createQuery(query.toString());
 
-			int queryPos = 0;
+			QueryPos qPos = QueryPos.getInstance(q);
 
-			q.setLong(queryPos++, svnRepositoryId);
+			qPos.add(svnRepositoryId);
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
 					svnRevision);
@@ -807,13 +808,13 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (svnUserId != null) {
-					q.setString(queryPos++, svnUserId);
+					qPos.add(svnUserId);
 				}
 
-				q.setLong(queryPos++, svnRepositoryId);
+				qPos.add(svnRepositoryId);
 
 				List<SVNRevision> list = q.list();
 
@@ -901,13 +902,13 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (svnUserId != null) {
-					q.setString(queryPos++, svnUserId);
+					qPos.add(svnUserId);
 				}
 
-				q.setLong(queryPos++, svnRepositoryId);
+				qPos.add(svnRepositoryId);
 
 				List<SVNRevision> list = (List<SVNRevision>)QueryUtil.list(q,
 						getDialect(), begin, end);
@@ -1024,13 +1025,13 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 			Query q = session.createQuery(query.toString());
 
-			int queryPos = 0;
+			QueryPos qPos = QueryPos.getInstance(q);
 
 			if (svnUserId != null) {
-				q.setString(queryPos++, svnUserId);
+				qPos.add(svnUserId);
 			}
 
-			q.setLong(queryPos++, svnRepositoryId);
+			qPos.add(svnRepositoryId);
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
 					svnRevision);
@@ -1232,10 +1233,10 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (svnUserId != null) {
-					q.setString(queryPos++, svnUserId);
+					qPos.add(svnUserId);
 				}
 
 				Long count = null;
@@ -1300,9 +1301,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setLong(queryPos++, svnRepositoryId);
+				qPos.add(svnRepositoryId);
 
 				Long count = null;
 
@@ -1377,13 +1378,13 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (svnUserId != null) {
-					q.setString(queryPos++, svnUserId);
+					qPos.add(svnUserId);
 				}
 
-				q.setLong(queryPos++, svnRepositoryId);
+				qPos.add(svnRepositoryId);
 
 				Long count = null;
 

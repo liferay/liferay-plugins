@@ -37,6 +37,7 @@ import com.liferay.portlet.service.FinderCache;
 import com.liferay.portlet.service.HibernateUtil;
 import com.liferay.portlet.service.PropsUtil;
 
+import com.liferay.util.dao.hibernate.QueryPos;
 import com.liferay.util.dao.hibernate.QueryUtil;
 
 import com.sample.servicebuilder.NoSuchFooException;
@@ -279,9 +280,9 @@ public class FooPersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setBoolean(queryPos++, field2);
+				qPos.add(field2);
 
 				List<Foo> list = q.list();
 
@@ -359,9 +360,9 @@ public class FooPersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setBoolean(queryPos++, field2);
+				qPos.add(field2);
 
 				List<Foo> list = (List<Foo>)QueryUtil.list(q, getDialect(),
 						begin, end);
@@ -458,9 +459,9 @@ public class FooPersistenceImpl extends BasePersistence
 
 			Query q = session.createQuery(query.toString());
 
-			int queryPos = 0;
+			QueryPos qPos = QueryPos.getInstance(q);
 
-			q.setBoolean(queryPos++, field2);
+			qPos.add(field2);
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, foo);
 
@@ -640,9 +641,9 @@ public class FooPersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setBoolean(queryPos++, field2);
+				qPos.add(field2);
 
 				Long count = null;
 

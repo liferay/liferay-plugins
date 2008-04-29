@@ -37,6 +37,8 @@ import com.liferay.portlet.service.FinderCache;
 import com.liferay.portlet.service.HibernateUtil;
 import com.liferay.portlet.service.PropsUtil;
 
+import com.liferay.util.cal.CalendarUtil;
+import com.liferay.util.dao.hibernate.QueryPos;
 import com.liferay.util.dao.hibernate.QueryUtil;
 
 import com.liferay.wol.NoSuchJIRAIssueException;
@@ -289,9 +291,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				List<JIRAIssue> list = q.list();
 
@@ -369,9 +371,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
 						getDialect(), begin, end);
@@ -469,9 +471,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 			Query q = session.createQuery(query.toString());
 
-			int queryPos = 0;
+			QueryPos qPos = QueryPos.getInstance(q);
 
-			q.setLong(queryPos++, projectId);
+			qPos.add(projectId);
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
 					jiraIssue);
@@ -554,10 +556,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (key != null) {
-					q.setString(queryPos++, key);
+					qPos.add(key);
 				}
 
 				List<JIRAIssue> list = q.list();
@@ -632,10 +634,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (reporterJiraUserId != null) {
-					q.setString(queryPos++, reporterJiraUserId);
+					qPos.add(reporterJiraUserId);
 				}
 
 				List<JIRAIssue> list = q.list();
@@ -719,10 +721,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (reporterJiraUserId != null) {
-					q.setString(queryPos++, reporterJiraUserId);
+					qPos.add(reporterJiraUserId);
 				}
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
@@ -828,10 +830,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 			Query q = session.createQuery(query.toString());
 
-			int queryPos = 0;
+			QueryPos qPos = QueryPos.getInstance(q);
 
 			if (reporterJiraUserId != null) {
-				q.setString(queryPos++, reporterJiraUserId);
+				qPos.add(reporterJiraUserId);
 			}
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
@@ -893,10 +895,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (assigneeJiraUserId != null) {
-					q.setString(queryPos++, assigneeJiraUserId);
+					qPos.add(assigneeJiraUserId);
 				}
 
 				List<JIRAIssue> list = q.list();
@@ -980,10 +982,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (assigneeJiraUserId != null) {
-					q.setString(queryPos++, assigneeJiraUserId);
+					qPos.add(assigneeJiraUserId);
 				}
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
@@ -1089,10 +1091,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 			Query q = session.createQuery(query.toString());
 
-			int queryPos = 0;
+			QueryPos qPos = QueryPos.getInstance(q);
 
 			if (assigneeJiraUserId != null) {
-				q.setString(queryPos++, assigneeJiraUserId);
+				qPos.add(assigneeJiraUserId);
 			}
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
@@ -1164,12 +1166,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				if (reporterJiraUserId != null) {
-					q.setString(queryPos++, reporterJiraUserId);
+					qPos.add(reporterJiraUserId);
 				}
 
 				List<JIRAIssue> list = q.list();
@@ -1261,12 +1263,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				if (reporterJiraUserId != null) {
-					q.setString(queryPos++, reporterJiraUserId);
+					qPos.add(reporterJiraUserId);
 				}
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
@@ -1384,12 +1386,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 			Query q = session.createQuery(query.toString());
 
-			int queryPos = 0;
+			QueryPos qPos = QueryPos.getInstance(q);
 
-			q.setLong(queryPos++, projectId);
+			qPos.add(projectId);
 
 			if (reporterJiraUserId != null) {
-				q.setString(queryPos++, reporterJiraUserId);
+				qPos.add(reporterJiraUserId);
 			}
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
@@ -1461,12 +1463,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				if (assigneeJiraUserId != null) {
-					q.setString(queryPos++, assigneeJiraUserId);
+					qPos.add(assigneeJiraUserId);
 				}
 
 				List<JIRAIssue> list = q.list();
@@ -1558,12 +1560,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				if (assigneeJiraUserId != null) {
-					q.setString(queryPos++, assigneeJiraUserId);
+					qPos.add(assigneeJiraUserId);
 				}
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
@@ -1681,12 +1683,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 			Query q = session.createQuery(query.toString());
 
-			int queryPos = 0;
+			QueryPos qPos = QueryPos.getInstance(q);
 
-			q.setLong(queryPos++, projectId);
+			qPos.add(projectId);
 
 			if (assigneeJiraUserId != null) {
-				q.setString(queryPos++, assigneeJiraUserId);
+				qPos.add(assigneeJiraUserId);
 			}
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
@@ -1768,16 +1770,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (modifiedDate != null) {
-					q.setDate(queryPos++, modifiedDate);
+					qPos.add(CalendarUtil.getTimestamp(modifiedDate));
 				}
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				if (reporterJiraUserId != null) {
-					q.setString(queryPos++, reporterJiraUserId);
+					qPos.add(reporterJiraUserId);
 				}
 
 				List<JIRAIssue> list = q.list();
@@ -1880,16 +1882,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (modifiedDate != null) {
-					q.setDate(queryPos++, modifiedDate);
+					qPos.add(CalendarUtil.getTimestamp(modifiedDate));
 				}
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				if (reporterJiraUserId != null) {
-					q.setString(queryPos++, reporterJiraUserId);
+					qPos.add(reporterJiraUserId);
 				}
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
@@ -2022,16 +2024,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 			Query q = session.createQuery(query.toString());
 
-			int queryPos = 0;
+			QueryPos qPos = QueryPos.getInstance(q);
 
 			if (modifiedDate != null) {
-				q.setDate(queryPos++, modifiedDate);
+				qPos.add(CalendarUtil.getTimestamp(modifiedDate));
 			}
 
-			q.setLong(queryPos++, projectId);
+			qPos.add(projectId);
 
 			if (reporterJiraUserId != null) {
-				q.setString(queryPos++, reporterJiraUserId);
+				qPos.add(reporterJiraUserId);
 			}
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
@@ -2113,16 +2115,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (modifiedDate != null) {
-					q.setDate(queryPos++, modifiedDate);
+					qPos.add(CalendarUtil.getTimestamp(modifiedDate));
 				}
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				if (assigneeJiraUserId != null) {
-					q.setString(queryPos++, assigneeJiraUserId);
+					qPos.add(assigneeJiraUserId);
 				}
 
 				List<JIRAIssue> list = q.list();
@@ -2225,16 +2227,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (modifiedDate != null) {
-					q.setDate(queryPos++, modifiedDate);
+					qPos.add(CalendarUtil.getTimestamp(modifiedDate));
 				}
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				if (assigneeJiraUserId != null) {
-					q.setString(queryPos++, assigneeJiraUserId);
+					qPos.add(assigneeJiraUserId);
 				}
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
@@ -2367,16 +2369,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 			Query q = session.createQuery(query.toString());
 
-			int queryPos = 0;
+			QueryPos qPos = QueryPos.getInstance(q);
 
 			if (modifiedDate != null) {
-				q.setDate(queryPos++, modifiedDate);
+				qPos.add(CalendarUtil.getTimestamp(modifiedDate));
 			}
 
-			q.setLong(queryPos++, projectId);
+			qPos.add(projectId);
 
 			if (assigneeJiraUserId != null) {
-				q.setString(queryPos++, assigneeJiraUserId);
+				qPos.add(assigneeJiraUserId);
 			}
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
@@ -2460,16 +2462,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				if (reporterJiraUserId != null) {
-					q.setString(queryPos++, reporterJiraUserId);
+					qPos.add(reporterJiraUserId);
 				}
 
 				if (status != null) {
-					q.setString(queryPos++, status);
+					qPos.add(status);
 				}
 
 				List<JIRAIssue> list = q.list();
@@ -2574,16 +2576,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				if (reporterJiraUserId != null) {
-					q.setString(queryPos++, reporterJiraUserId);
+					qPos.add(reporterJiraUserId);
 				}
 
 				if (status != null) {
-					q.setString(queryPos++, status);
+					qPos.add(status);
 				}
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
@@ -2716,16 +2718,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 			Query q = session.createQuery(query.toString());
 
-			int queryPos = 0;
+			QueryPos qPos = QueryPos.getInstance(q);
 
-			q.setLong(queryPos++, projectId);
+			qPos.add(projectId);
 
 			if (reporterJiraUserId != null) {
-				q.setString(queryPos++, reporterJiraUserId);
+				qPos.add(reporterJiraUserId);
 			}
 
 			if (status != null) {
-				q.setString(queryPos++, status);
+				qPos.add(status);
 			}
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
@@ -2809,16 +2811,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				if (assigneeJiraUserId != null) {
-					q.setString(queryPos++, assigneeJiraUserId);
+					qPos.add(assigneeJiraUserId);
 				}
 
 				if (status != null) {
-					q.setString(queryPos++, status);
+					qPos.add(status);
 				}
 
 				List<JIRAIssue> list = q.list();
@@ -2923,16 +2925,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				if (assigneeJiraUserId != null) {
-					q.setString(queryPos++, assigneeJiraUserId);
+					qPos.add(assigneeJiraUserId);
 				}
 
 				if (status != null) {
-					q.setString(queryPos++, status);
+					qPos.add(status);
 				}
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
@@ -3065,16 +3067,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 			Query q = session.createQuery(query.toString());
 
-			int queryPos = 0;
+			QueryPos qPos = QueryPos.getInstance(q);
 
-			q.setLong(queryPos++, projectId);
+			qPos.add(projectId);
 
 			if (assigneeJiraUserId != null) {
-				q.setString(queryPos++, assigneeJiraUserId);
+				qPos.add(assigneeJiraUserId);
 			}
 
 			if (status != null) {
-				q.setString(queryPos++, status);
+				qPos.add(status);
 			}
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
@@ -3324,9 +3326,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				Long count = null;
 
@@ -3394,10 +3396,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (key != null) {
-					q.setString(queryPos++, key);
+					qPos.add(key);
 				}
 
 				Long count = null;
@@ -3467,10 +3469,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (reporterJiraUserId != null) {
-					q.setString(queryPos++, reporterJiraUserId);
+					qPos.add(reporterJiraUserId);
 				}
 
 				Long count = null;
@@ -3540,10 +3542,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (assigneeJiraUserId != null) {
-					q.setString(queryPos++, assigneeJiraUserId);
+					qPos.add(assigneeJiraUserId);
 				}
 
 				Long count = null;
@@ -3623,12 +3625,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				if (reporterJiraUserId != null) {
-					q.setString(queryPos++, reporterJiraUserId);
+					qPos.add(reporterJiraUserId);
 				}
 
 				Long count = null;
@@ -3708,12 +3710,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				if (assigneeJiraUserId != null) {
-					q.setString(queryPos++, assigneeJiraUserId);
+					qPos.add(assigneeJiraUserId);
 				}
 
 				Long count = null;
@@ -3803,16 +3805,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (modifiedDate != null) {
-					q.setDate(queryPos++, modifiedDate);
+					qPos.add(CalendarUtil.getTimestamp(modifiedDate));
 				}
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				if (reporterJiraUserId != null) {
-					q.setString(queryPos++, reporterJiraUserId);
+					qPos.add(reporterJiraUserId);
 				}
 
 				Long count = null;
@@ -3902,16 +3904,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (modifiedDate != null) {
-					q.setDate(queryPos++, modifiedDate);
+					qPos.add(CalendarUtil.getTimestamp(modifiedDate));
 				}
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				if (assigneeJiraUserId != null) {
-					q.setString(queryPos++, assigneeJiraUserId);
+					qPos.add(assigneeJiraUserId);
 				}
 
 				Long count = null;
@@ -4003,16 +4005,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				if (reporterJiraUserId != null) {
-					q.setString(queryPos++, reporterJiraUserId);
+					qPos.add(reporterJiraUserId);
 				}
 
 				if (status != null) {
-					q.setString(queryPos++, status);
+					qPos.add(status);
 				}
 
 				Long count = null;
@@ -4104,16 +4106,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				int queryPos = 0;
+				QueryPos qPos = QueryPos.getInstance(q);
 
-				q.setLong(queryPos++, projectId);
+				qPos.add(projectId);
 
 				if (assigneeJiraUserId != null) {
-					q.setString(queryPos++, assigneeJiraUserId);
+					qPos.add(assigneeJiraUserId);
 				}
 
 				if (status != null) {
-					q.setString(queryPos++, status);
+					qPos.add(status);
 				}
 
 				Long count = null;
