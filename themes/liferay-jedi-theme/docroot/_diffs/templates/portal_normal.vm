@@ -73,15 +73,25 @@ $theme.include($top_messages_include)
 
 		#parse ("$full_templates_path/dock.vm")
 
-		<div class="search">
-			$theme.journalContentSearch()
-		</div>
+		#if ($group_id == $guestGroup.getGroupId())
+			<div class="search">
+				$theme.journalContentSearch()
+			</div>
+		#end
 
 		#if ($update_available_url)
 			<div class="popup-alert-notice">
 				<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>
 			</div>
 		#end
+
+		<div id="top-menu">
+			<a href="$company_url">www.Liferay.com</a>
+
+			#if ($is_signed_in)
+				| <a href="$themeDisplay.getPathFriendlyURLPublic()/$user.getScreenName()/profile">#language ("my-profile")</a>
+			#end
+		</div>
 	</div>
 
 	#if ($has_navigation)

@@ -1,5 +1,19 @@
-<div id="navigation" class="sort-pages modify-pages">
+<div
+	#if ($page_group.isUser())
+		class="profile"
+	#else
+		class="sort-pages modify-pages"
+	#end
+
+	id="navigation"
+>
 	<ul>
+		#if ($page_group.isUser())
+			<li class="group">
+				<span>$community_name</span>
+			</li>
+		#end
+
 		#foreach ($nav_item in $nav_items)
 			#if ($nav_item.isSelected())
 				#set ($nav_item_class = "selected parent-nav-item")
@@ -15,6 +29,7 @@
 						<li>
 							<a href="$nav_item.getURL()" $nav_item.getTarget()><span>$nav_item.getName()</span></a>
 						</li>
+
 						#foreach ($nav_child in $nav_item.getChildren())
 							<li>
 								<a href="$nav_child.getURL()" $nav_child.getTarget()>$nav_child.getName()</a>
