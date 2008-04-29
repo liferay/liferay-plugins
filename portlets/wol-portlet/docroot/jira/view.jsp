@@ -30,25 +30,6 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "
 
 <c:choose>
 	<c:when test="<%= Validator.isNotNull(jiraUserId) %>">
-
-		<%
-		String jiraURL = "http://support.liferay.com/secure/IssueNavigator.jspa?reset=true&pid=" + JIRAConstants.PROJECT_LEP;
-
-		Calendar lastWeekCal = new GregorianCalendar(timeZone, locale);
-
-		lastWeekCal.add(Calendar.WEEK_OF_YEAR, -1);
-
-		int assignedIssuesTotalCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId);
-		int assignedIssuesClosedCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId, JIRAConstants.STATUS_CLOSED);
-		int assignedIssuesLastWeekCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(lastWeekCal.getTime(), JIRAConstants.PROJECT_LEP, jiraUserId);
-		int assignedIssuesOpenCount = assignedIssuesTotalCount - assignedIssuesClosedCount;
-
-		int reporterIssuesTotalCount = JIRAIssueLocalServiceUtil.getReporterJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId);
-		int reporterIssuesClosedCount = JIRAIssueLocalServiceUtil.getReporterJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId, JIRAConstants.STATUS_CLOSED);
-		int reporterIssuesLastWeekCount = JIRAIssueLocalServiceUtil.getReporterJIRAIssuesCount(lastWeekCal.getTime(), JIRAConstants.PROJECT_LEP, jiraUserId);
-		int reporterIssuesOpenCount = reporterIssuesTotalCount - reporterIssuesClosedCount;
-		%>
-
 		<style type="text/css">
 			.jira-summary .issue-count {
 				padding-right: 4px;
@@ -76,6 +57,22 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "
 		</style>
 
 		<%
+		String jiraURL = "http://support.liferay.com/secure/IssueNavigator.jspa?reset=true&pid=" + JIRAConstants.PROJECT_LEP;
+
+		Calendar lastWeekCal = new GregorianCalendar(timeZone, locale);
+
+		lastWeekCal.add(Calendar.WEEK_OF_YEAR, -1);
+
+		int assignedIssuesTotalCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId);
+		int assignedIssuesClosedCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId, JIRAConstants.STATUS_CLOSED);
+		int assignedIssuesLastWeekCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(lastWeekCal.getTime(), JIRAConstants.PROJECT_LEP, jiraUserId);
+		int assignedIssuesOpenCount = assignedIssuesTotalCount - assignedIssuesClosedCount;
+
+		int reporterIssuesTotalCount = JIRAIssueLocalServiceUtil.getReporterJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId);
+		int reporterIssuesClosedCount = JIRAIssueLocalServiceUtil.getReporterJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId, JIRAConstants.STATUS_CLOSED);
+		int reporterIssuesLastWeekCount = JIRAIssueLocalServiceUtil.getReporterJIRAIssuesCount(lastWeekCal.getTime(), JIRAConstants.PROJECT_LEP, jiraUserId);
+		int reporterIssuesOpenCount = reporterIssuesTotalCount - reporterIssuesClosedCount;
+
 		Object[][] jiraValuesArray = new Object[][] {
 			new Object[] {
 				"assigned-issues",
