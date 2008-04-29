@@ -2,7 +2,7 @@
 
 /* ---- GLOBAL ---- */
 body {
-	background: #666666 url(../images/common/header.jpg) repeat-x scroll left top;
+	background: #666666 url(../images/common/header.png) repeat-x scroll left top;
 	color: #FFFFFF;
 	font-family: arial,verdana,sans-serif;
 }
@@ -121,12 +121,12 @@ a {
 }
 
 .portlet {
-	background: url(../images/portlet/portlet_bg.jpg) repeat-x;
+	background: url(../images/portlet/portlet_bg.png) repeat-x;
 }
 
 
 .ie6 .portlet, .ie6 .portlet-topper, .ie6 .portlet-content, .ie6 .portlet-title {
-	background: url(../images/portlet/portlet_bg.jpg) repeat-x;
+	background: url(../images/portlet/portlet_bg.png) repeat-x;
 }
 
 .portlet-title {

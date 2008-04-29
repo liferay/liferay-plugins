@@ -96,7 +96,7 @@ body {
 }
 
 #navigation {
-background:#EAE7DF url(../images/common/nav.gif) repeat-x scroll 0 0;
+background:#EAE7DF url(../images/common/nav.png) repeat-x scroll 0 0;
 border-top:1px solid #999966;
 height:41px;
 }
@@ -118,7 +118,7 @@ height:41px;
 }
 
 #navigation ul li.selected a:hover span , #navigation ul li a:hover span , .js #add-page a:hover span {
-	background: url(../images/common/nav.gif) repeat-x scroll left bottom;;
+	background: url(../images/common/nav.png) repeat-x scroll left bottom;;
 	color: #221;
 }
 

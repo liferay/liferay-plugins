@@ -36,18 +36,18 @@ a:hover {
 
 #navigation {
 	width: 940px;
-	background: #F06101 url(../images/navigation/menu_bg.gif);
+	background: #F06101 url(../images/navigation/menu_bg.png);
 }
 
 #navigation li {
-	background: #F06101 url(../images/navigation/menu_bg.gif);
+	background: #F06101 url(../images/navigation/menu_bg.png);
 	margin-right: 0;
 	padding: 0 1em 0 0;
 	border-right: 1px solid #FFFFFF;
 }
 
 #navigation li.selected {
-	background: #F06101 url(../images/navigation/menu_bg_selected.gif);
+	background: #F06101 url(../images/navigation/menu_bg_selected.png);
 }
 
 #navigation li a {
@@ -100,7 +100,7 @@ a:hover {
 }
 
 .portlet-section-header {
-	background: transparent url(../images/navigation/menu_bg.gif);
+	background: transparent url(../images/navigation/menu_bg.png);
 	color:#FFFFFF;
 }
 
@@ -118,24 +118,24 @@ a:hover {
 }
 
 .tabs li {
-	background: transparent url(../images/navigation/menu_bg.gif);
+	background: transparent url(../images/navigation/menu_bg.png);
 	margin-right: 0;
 }
 
 .tabs li a, .tabs li span {
-	background: transparent url(../images/navigation/menu_bg.gif);
+	background: transparent url(../images/navigation/menu_bg.png);
 	padding: 0 1em 0;
 	color:#FFFFFF;
 }
 
 .tabs li.current {
-	background: transparent url(../images/navigation/menu_bg_selected.gif);
+	background: transparent url(../images/navigation/menu_bg_selected.png);
 	top: 0em;
 	color:#000000;
 }
 
 .tabs li.current a, .tabs li.current span {
-	background: transparent url(../images/navigation/menu_bg_selected.gif);
+	background: transparent url(../images/navigation/menu_bg_selected.png);
 	color: #000000;
 	padding: 0 1em;
 }

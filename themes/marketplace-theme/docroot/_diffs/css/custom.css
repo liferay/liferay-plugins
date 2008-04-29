@@ -44,7 +44,7 @@ body {
 }
 
 #wrapper {
- background : #fff url('../images/custom/content.jpg') repeat-y scroll center top ;
+ background : #fff url('../images/custom/content.png') repeat-y scroll center top ;
  margin : 0 auto ;
  position : relative ;
  text-align : left ;
@@ -52,7 +52,7 @@ body {
 }
 
 #header {
- background: #fff url('../images/custom/header-bg.jpg') repeat-y scroll center top ;
+ background: #fff url('../images/custom/header-bg.png') repeat-y scroll center top ;
  color: #fff ;
  height: 35px ;
  padding: 0 ;
@@ -110,7 +110,7 @@ top:25px;
 #navigation {
  clear : both ;
  padding : 0 ;
- background : #E4E4E4 url('../images/custom/nav.jpg') repeat-x scroll 0 0 ;
+ background : #E4E4E4 url('../images/custom/nav.png') repeat-x scroll 0 0 ;
  margin : 0 30px;
 }
 
@@ -171,11 +171,11 @@ width:auto;
 }
 
 #navigation ul li.selected a span , #navigation ul li.selected a:hover span {
-background : #DBDBDB url('../images/custom/nav-current.jpg') repeat-x scroll 0%;
+background : #DBDBDB url('../images/custom/nav-current.png') repeat-x scroll 0%;
 }
 
 #content-wrapper {
-background:#FFFFFF url('../images/custom/content-wrap.jpg') repeat-x scroll 0%;
+background:#FFFFFF url('../images/custom/content-wrap.png') repeat-x scroll 0%;
 border-top:5px solid #FFFFFF;
 margin-left:30px;
 padding:0pt;

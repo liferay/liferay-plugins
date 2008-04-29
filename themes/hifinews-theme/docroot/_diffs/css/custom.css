@@ -48,7 +48,7 @@ html {
 
 /* HiFi News */
 body {
- background : transparent url('../images/shadow/shadow_left.jpg') no-repeat ;
+ background : transparent url('../images/shadow/shadow_left.png') no-repeat ;
  font-family : Arial,Helvetica,sans-serif ;
  font-size : 62.5% ;
 }
@@ -58,7 +58,7 @@ font-size : 1.2em ;
 margin-left : 20px ;
 }
 #banner {
- background-image : url('../images/common/banner_bg.jpg') ;
+ background-image : url('../images/common/banner_bg.png') ;
  background-repeat : repeat-x ;
  height : 155px ;
 }
@@ -83,7 +83,7 @@ margin-left : 20px ;
 }
 #navigation {
  position : relative ;
- background-image : url('../images/navigation/bg.jpg') ;
+ background-image : url('../images/navigation/bg.png') ;
  background-repeat : repeat-x ;
  height : 59px ;
 }
@@ -113,10 +113,10 @@ margin-left : 20px ;
 }
 #navigation ul li a:hover span , #navigation ul li.selected a:hover span
 {
- background : transparent url('../images/navigation/hover.jpg') repeat-x ;
+ background : transparent url('../images/navigation/hover.png') repeat-x ;
 }
 #content-wrapper , #portlet-wrapper- {
- background : transparent url('../images/common/wrapper_bg.jpg') repeat-x ;
+ background : transparent url('../images/common/wrapper_bg.png') repeat-x ;
  height : 417px ;
  margin-right : 221px ;
  padding-left : 30px ;

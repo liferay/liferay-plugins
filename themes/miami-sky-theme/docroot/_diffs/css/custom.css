@@ -10,7 +10,7 @@ body {
 }
 
 #wrapper {
-	background: url(../images/common/btm_bg.jpg) repeat-x bottom;
+	background: url(../images/common/btm_bg.png) repeat-x bottom;
 	margin: 0 auto;
 	width: 900px;
 	position: relative;
@@ -94,7 +94,7 @@ table {
 /* ---------- Main navigation ---------- */
 
 .bottom {
-	background: url(../images/navigation/sub_nav_bottom.jpg) no-repeat 11px 95%;
+	background: url(../images/navigation/sub_nav_bottom.png) no-repeat 11px 95%;
 	width: 148px;
 	padding-bottom: 55px;
 	float: left;
@@ -168,7 +168,7 @@ table {
 }
 
 #navigation {
-	background: url(../images/navigation/sub_nav_top.jpg) no-repeat 11px top;
+	background: url(../images/navigation/sub_nav_top.png) no-repeat 11px top;
 	float: left;
 	margin: 5px auto -7px;
 	min-height: none;
@@ -179,7 +179,7 @@ table {
 }
 
 #navigation ul {
-	background: url(../images/navigation/sub_nav.jpg) repeat-y 9px 10%;
+	background: url(../images/navigation/sub_nav.png) repeat-y 9px 10%;
 	float: left;
 	margin-top: 21px;
 	margin-left: 2px;
@@ -282,7 +282,7 @@ table {
 }
 
 .tabs li {
-	background: url(../images/common/tabs_bg.gif) 2pt -200px;
+	background: url(../images/common/tabs_bg.png) 2pt -200px;
 	display: inline;
 	float: left;
 	line-height: 2.25em;
@@ -293,7 +293,7 @@ table {
 }
 
 .tabs li a, .tabs li span {
-	background: url(../images/common/tabs_bg.gif)  -2pt -201px;
+	background: url(../images/common/tabs_bg.png)  -2pt -201px;
 	display: block;
 	float: left;
 	padding: 0.35em 1em 0;
@@ -301,7 +301,7 @@ table {
 }
 
 .tabs li.current a, .tabs li.current span {
-	background: url(../images/common/tabs_bg.gif) 0 -217px;
+	background: url(../images/common/tabs_bg.png) 0 -217px;
 	color: #333;
 	margin-top: -1px;
 	padding: 0.15em 1em;

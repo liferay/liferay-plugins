@@ -3,7 +3,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	background: #FFFFFF url(../images/common/img01.jpg) repeat-x;
+	background: #FFFFFF url(../images/common/img01.png) repeat-x;
 	font: normal 11px Tahoma, Arial, Helvetica, sans-serif;
 	color: #666666;
 }
@@ -33,7 +33,7 @@ p,blockquote,ul,ol {
 
 blockquote {
 	padding-left: 20px;
-	background: url(../images/common/img05.gif) repeat-y;
+	background: url(../images/common/img05.png) repeat-y;
 }
 
 a {
@@ -104,7 +104,7 @@ a:hover {
 	display: block;
 	float: left;
 	padding: 10px 20px 0 20px;
-	background: url(../images/common/img03.gif) no-repeat;
+	background: url(../images/common/img03.png) no-repeat;
 	text-transform: uppercase;
 	text-decoration: none;
 	font: bold 12px "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -124,7 +124,7 @@ a:hover {
 	width: 720px;
 	margin: 0 auto 20px auto;
 	padding: 20px;
-	background: #FFFFFF url(../images/common/img04.jpg) repeat-x left bottom
+	background: #FFFFFF url(../images/common/img04.png) repeat-x left bottom
 		;
 }
 
@@ -139,7 +139,7 @@ a:hover {
 }
 
 .portlet-topper {
-	background: #FFFFFF url(../images/common/img01.jpg) repeat-x;
+	background: #FFFFFF url(../images/common/img01.png) repeat-x;
 	position: relative;
 }
 
@@ -152,7 +152,7 @@ a:hover {
 #footer {
 	height: 30px;
 	padding: 20px;
-	background: #2D2D2D url(../images/common/img07.gif) repeat-x;
+	background: #2D2D2D url(../images/common/img07.png) repeat-x;
 	margin-left: -261px;
 }
 

@@ -110,7 +110,7 @@ body {
 }
 
 #navigation li.selected a {
-	background: #E0691A url(../images/bar.gif) no-repeat scroll center top;
+	background: #E0691A url(../images/bar.png) no-repeat scroll center top;
 	padding-top: 4pt;
 }
 
@@ -147,7 +147,7 @@ body {
 }
 
 .portlet-topper {
-	background:#A9C0CE url(../images/corner.gif) no-repeat scroll right top; 
+	background:#A9C0CE url(../images/corner.png) no-repeat scroll right top; 
 	background-position: right top;
 	border-bottom:1px solid #CCCCCC;
 	margin-right: -10px;

@@ -2,7 +2,7 @@
 
 /* ---- GLOBAL ---- */
 #wrapper-border {
-	background: transparent url(../images/common/banner_bg.jpg) repeat-x 0px 100px;
+	background: transparent url(../images/common/banner_bg.png) repeat-x 0px 100px;
 	width: 100%;
 	border-top: 5px solid #000000;
 	border-bottom: 7px solid #000000;
@@ -99,7 +99,7 @@
 }
 
 #navigation li.selected {
-	background: url(../images/navigation/bg.gif) no-repeat;
+	background: url(../images/navigation/bg.png) no-repeat;
 	padding-right: 0;
 	padding-left: 0;
 	width: 119px;
@@ -172,23 +172,23 @@
 }
 
 .tabs li {
-	background: url(../images/common/banner_bg.jpg) 0 50%;
+	background: url(../images/common/banner_bg.png) 0 50%;
 	line-height: 15px;
 	margin-right: 0.3em;
 	top: 0.15em;
 }
 .tabs li a, .tabs li span {
-	background: url(../images/common/banner_bg.jpg) 0 50%;
+	background: url(../images/common/banner_bg.png) 0 50%;
 	padding: 0.15em 1em 0;
 	color: #FFFFFF;
 }
 
 .tabs li.current {
-	background: url(../images/common/banner_bg.jpg);
+	background: url(../images/common/banner_bg.png);
 }
 
 .tabs li.current a, .tabs li.current span {
-	background: url(../images/common/banner_bg.jpg);
+	background: url(../images/common/banner_bg.png);
 	padding: 0.1em 1em;
 	color: #FFFFFF;
 }

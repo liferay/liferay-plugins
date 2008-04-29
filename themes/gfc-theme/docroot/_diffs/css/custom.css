@@ -125,7 +125,7 @@ body {
 }
 
 #navigation {
-	background: url(../images/common/link.jpg) repeat-x;
+	background: url(../images/common/link.png) repeat-x;
 	margin: 0 auto 0px;
 	min-height: 2.2em;
 	overflow: hidden;
@@ -300,7 +300,7 @@ body {
 }
 
 .portlet-title {
-	background: url(../images/common/topper.jpg) no-repeat;
+	background: url(../images/common/topper.png) no-repeat;
 	background-position: bottom left;
 	display: block;
 	font-weight: bold;
@@ -321,7 +321,7 @@ body {
 }
 
 .tabs li {
-	background: url(../images/common/tab.jpg) repeat-x 100% 0;
+	background: url(../images/common/tab.png) repeat-x 100% 0;
 	display: inline;
 	float: left;
 	line-height: 2.25;
@@ -333,7 +333,7 @@ body {
 }
 
 .tabs li.current {
-	background: url(../images/common/tab_selected.jpg) repeat-x 100% 0;
+	background: url(../images/common/tab_selected.png) repeat-x 100% 0;
 	font-weight: bold;
 	top: 6px;
 }

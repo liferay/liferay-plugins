@@ -70,7 +70,7 @@ body {
 #wrapper {
  position : relative ;
  width : 920px ;
- background : transparent url('../images/common/wrapper_bg_1.jpg') repeat-y center top ;
+ background : transparent url('../images/common/wrapper_bg_1.png') repeat-y center top ;
  margin : 0 auto ;
  text-align : left ;
 }
@@ -79,7 +79,7 @@ body {
  position : absolute ;
  top : 0 ;
  left : 0 ;
- background : #ccc url('../images/common/wrapper_bg_2.jpg') repeat-y scroll center top ;
+ background : #ccc url('../images/common/wrapper_bg_2.png') repeat-y scroll center top ;
  width : 920px ;
  height : 19px ;
 }
@@ -88,7 +88,7 @@ body {
  position : relative ;
  width : 920px ;
  height : 100px ;
- background : #ccc url('../images/common/banner_bg_1.jpg') repeat-y scroll center top ;
+ background : #ccc url('../images/common/banner_bg_1.png') repeat-y scroll center top ;
  color : #fff ;
 }
 #theme_header .logo {
@@ -128,7 +128,7 @@ body {
 
 
 #navigation {
- background : transparent url('../images/navigation/bg.jpg') repeat-x scroll 0 0 ;
+ background : transparent url('../images/navigation/bg.png') repeat-x scroll 0 0 ;
  margin : 0 15px ;
 }
 #navigation ul {
@@ -161,10 +161,10 @@ body {
  text-transform : uppercase ;
 }
 #navigation ul li a:hover , .js #add-page a:hover {
- background : transparent url('../images/navigation/nav-hover.jpg') repeat-x scroll 0 0 ;
+ background : transparent url('../images/navigation/nav-hover.png') repeat-x scroll 0 0 ;
 }
 #navigation ul li.selected a , #navigation ul li.selected a:hover {
- background : transparent url('../images/navigation/nav-current.jpg') repeat-x scroll 0 0 ;
+ background : transparent url('../images/navigation/nav-current.png') repeat-x scroll 0 0 ;
 }
 #navigation ul li.selected a span.tab-l , #navigation ul li.selected a:hover span.tab-l { }
 #navigation ul li.selected a span.tab-r , #navigation ul li.selected a:hover span.tab-r { }
@@ -215,7 +215,7 @@ body {
  clear : both ;
  padding : 15px 0 ;
  width : 920px ;
- background : transparent url('../images/common/footer_bg.jpg') no-repeat scroll center bottom ;
+ background : transparent url('../images/common/footer_bg.png') no-repeat scroll center bottom ;
  font-size : 95% ;
  text-align : left ;
 }

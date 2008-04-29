@@ -114,14 +114,14 @@ body {
 #navigation ul li a span , #navigation ul li a:hover span , #navigation ul li.selected a span , #navigation ul li.selected a:hover span , .js #add-page a span , .js #add-page a:hover span
 {
 	display: block;
-	background: transparent url('../images/custom/star1.jpg') no-repeat scroll left center;
+	background: transparent url('../images/custom/star1.png') no-repeat scroll left center;
 	font: 22px "Arial Black",Arial,Helvetica,sans-serif;
 	text-transform: uppercase;
 	padding: 0 0 0 30px;
 }
 #navigation ul li a:hover span , #navigation ul li.selected a:hover span  , .js #add-page a:hover span
 {
-	background: transparent url('../images/custom/star2.jpg') no-repeat scroll left center;
+	background: transparent url('../images/custom/star2.png') no-repeat scroll left center;
 	color: #FFF000;
 }
 .js .delete-tab {

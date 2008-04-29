@@ -1,6 +1,6 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 body {
-	background:#ffffff url(../images/bg.gif) repeat-x scroll 0% 0%;
+	background:#ffffff url(../images/bg.png) repeat-x scroll 0% 0%;
 	color:#446666;
 	font-family:"Lucida Sans Unicode",sans-serif;
 	font-size:62.5%;
@@ -14,7 +14,7 @@ body {
 }
 
 #footer {
-	background:#0094D6 url(../images/bgfooter.gif) repeat-x scroll bottom;
+	background:#0094D6 url(../images/bgfooter.png) repeat-x scroll bottom;
 	color:#C1DEF0;
 	font-size:1.1em;
 	height:40px;
@@ -23,13 +23,13 @@ body {
 /* ---------- Main content body ---------- */
 
 #wrapper {
-	background:transparent url(../images/topleft.gif) no-repeat scroll 0% 0%;
+	background:transparent url(../images/topleft.png) no-repeat scroll 0% 0%;
 	margin: 0 auto;
 	width: 100%;
 }
 
 #content-wrapper {
-	background:#FFFFFF url(../images/bgmain.gif) no-repeat scroll 0% 0%;
+	background:#FFFFFF url(../images/bgmain.png) no-repeat scroll 0% 0%;
 	clear:both;
 	padding:12px 12px 0pt 52px;
 	width: 67%;

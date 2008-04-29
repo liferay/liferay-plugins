@@ -4,7 +4,7 @@
 }
 
 .portlet-topper {
-background: url(../images/common/nav.jpg) 0 0;
+background: url(../images/common/nav.png) 0 0;
 	
 }
 
@@ -41,7 +41,7 @@ background: url(../images/common/nav.jpg) 0 0;
 }
 
 .tabs li.current {
-	background: #8A9C9A url(../images/common/nav.jpg) repeat-x 0 0;
+	background: #8A9C9A url(../images/common/nav.png) repeat-x 0 0;
 	font-weight: bold;
 }
 
@@ -74,7 +74,7 @@ font-weight:bold;
 padding:0.25em;
 }
 #navigation li {
-	background: transparent url(../images/common/nav.jpg) repeat;
+	background: transparent url(../images/common/nav.png) repeat;
 	display: inline;
 	float: left;
 	margin-right: 0.5em;

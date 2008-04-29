@@ -3,7 +3,7 @@
 
 /* ---- GLOBAL ---- */
 body {
-	background: #DFF3D7 url(../images/common/background.jpg) repeat-y center;
+	background: #DFF3D7 url(../images/common/background.png) repeat-y center;
 }
 
 #wrapper {
@@ -29,7 +29,7 @@ body {
 }
 /* ---- NAVIGATION ---- */
 #navigation {
-	background: transparent url(../images/navigation/background.jpg) repeat-x;
+	background: transparent url(../images/navigation/background.png) repeat-x;
 	color: #FFFFFF;
 	width: 100%;
 	margin: 0;
@@ -113,7 +113,7 @@ body {
 }
 
 .portlet {
-	background: #FFFFFF url(../images/portlet/background.jpg) no-repeat top left;
+	background: #FFFFFF url(../images/portlet/background.png) no-repeat top left;
 	border: 1px solid #CCCCCC;
 }
 
@@ -154,13 +154,13 @@ body {
 }
 
 .tabs li {
-	background: url(../images/navigation/background.jpg) bottom;
+	background: url(../images/navigation/background.png) bottom;
 	line-height: 15px;
 	margin-right: 0.3em;
 	top: 0.15em;
 }
 .tabs li a, .tabs li span {
-	background: url(../images/navigation/background.jpg) bottom;
+	background: url(../images/navigation/background.png) bottom;
 	padding: 0.15em 1em 0;
 	color: #FFFFFF;
 }

@@ -94,7 +94,7 @@ body {
 }
 
 #navigation {
- background : #94AE62 url('../images/custom/menu.jpg') ;
+ background : #94AE62 url('../images/custom/menu.png') ;
  color : #fff ;
  font-variant : small-caps ;
  margin : 0 0 50px 0 ;
@@ -112,7 +112,7 @@ body {
 #navigation ul li , #navigation ul li.selected , .js #add-page {
  display : block ;
  float : left ;
- list-style-image : url('../images/custom/li.gif') ;
+ list-style-image : url('../images/custom/li.png') ;
 }
 #navigation ul li a , #navigation ul li a:hover , #navigation ul li.selected a , #navigation ul li.selected a:hover , .js #add-page a , .js #add-page a:hover {
  display : block ;
@@ -128,7 +128,7 @@ body {
  font-size : 11px ;
 }
 #navigation ul li:hover , #navigation ul li.selected:hover{
- background : #fff url('../images/custom/a_hover.jpg');
+ background : #fff url('../images/custom/a_hover.png');
 }
 #navigation ul li a:hover , #navigation ul li.selected a:hover {
  color : #000 ;
