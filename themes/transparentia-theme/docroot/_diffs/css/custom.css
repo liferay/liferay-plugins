@@ -49,13 +49,13 @@ ul.child-menu { display : none ; }
 /* Theme */
 
 html {
- background : #EEE url('../images/custom/bg.gif');
+ background : #EEE url('../images/custom/bg.png');
  overflow-y : scroll ;
  height : auto ;
 }
 
 body {
- background : url('../images/custom/bgcontainer.gif') repeat-y top center;
+ background : url('../images/custom/bgcontainer.png') repeat-y top center;
  color : #444;
  font : normal 62.5% "Lucida Sans Unicode",sans-serif;
 }
@@ -71,7 +71,7 @@ body {
 
 #banner {
  display : block ;
- background : url('../images/custom/header.gif') repeat-x ;
+ background : url('../images/custom/header.png') repeat-x ;
  width : 940px ;
  height : 156px ;
  margin : 0 auto 8px auto ;
@@ -120,7 +120,7 @@ right : 0 ;
  float : left ;
  width : 200px ;
  border-top : 1px solid #fafafa ;
- background : url('../images/custom/bgul.gif') repeat-x ;
+ background : url('../images/custom/bgul.png') repeat-x ;
 }
 #navigation ul li , #navigation ul li.selected , .js #add-page {
  display : block ;

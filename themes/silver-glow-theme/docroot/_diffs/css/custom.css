@@ -3,14 +3,14 @@
 /* ---------- Main content body ---------- */
 
 #wrapper {
-	background: #FFF url(../images/common/curve_top.jpg) no-repeat top;
+	background: #FFF url(../images/common/curve_top.png) no-repeat top;
 	margin: 10px auto;
 	width: 947px;
 	position: relative;
 }
 
 .left_shade {
-	background-image: url(../images/common/curve_left.jpg);
+	background-image: url(../images/common/curve_left.png);
 	background-repeat: no-repeat;
 	margin-top: 5px;
 	height: 600px;
@@ -27,7 +27,7 @@
 }
 
 .right_shade {
-	background-image: url(../images/common/curve_right.jpg);
+	background-image: url(../images/common/curve_right.png);
 	background-repeat: no-repeat;
 	height: 600px;
 	width: 5px;
@@ -44,7 +44,7 @@
 }
 
 #content-wrapper {
-	background: url(../images/common/curve_mid.jpg) repeat-y left;
+	background: url(../images/common/curve_mid.png) repeat-y left;
 	margin-top: 30px;
 	margin-left: 0px;
 }
@@ -55,7 +55,7 @@
 
 
 body {
-	background: url(../images/common/bg.jpg) repeat-x top;
+	background: url(../images/common/bg.png) repeat-x top;
 	font: 62.5%/1.6em 'Verdana','Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
 }
 
@@ -64,13 +64,13 @@ table {
 }
 
 #footer {
-	background: url(../images/common/curve_btm.jpg) no-repeat;
+	background: url(../images/common/curve_btm.png) no-repeat;
 }
 
 /* ---------- Banner ---------- */
 
 #banner {
-	background: url(../images/common/nav_block.gif) no-repeat scroll 23% 100%;
+	background: url(../images/common/nav_block.png) no-repeat scroll 23% 100%;
 	width: 226px;
 	padding: 60px;
 	position: relative;
@@ -109,7 +109,7 @@ table {
 }
 
 .portlet-title {
-	background: url(../images/common/dots-hr.gif) repeat-x;
+	background: url(../images/common/dots-hr.png) repeat-x;
 	background-position: bottom left;
 	color: #006699;
 	display: block;
@@ -205,7 +205,7 @@ table {
 }
 
 .ie6 #navigation li a span {
-	background-image: url(../images/common/nav_buddy.jpg);
+	background-image: url(../images/common/nav_buddy.png);
 }
 
 #navigation li.selected a {
@@ -225,7 +225,7 @@ table {
 }
 
 .ie6 #navigation li.selected a span {
-	background-image: url(../images/common/nav_buddy.jpg);
+	background-image: url(../images/common/nav_buddy.png);
 }
 
 #navigation li.selected a:hover {
@@ -243,7 +243,7 @@ table {
 }
 
 .ie6 #navigation li a:hover span {
-	background-image: url(../images/common/nav_buddy.jpg);
+	background-image: url(../images/common/nav_buddy.png);
 }
 
 /* ---------- Javascript ---------- */
@@ -343,7 +343,7 @@ table {
 }
 
 .tabs li {
-	background: url(../images/common/tabs_bg.gif) 100% -25px;
+	background: url(../images/common/tabs_bg.png) 100% -25px;
 	border-top: 1px solid #BEBEBE;
 	display: inline;
 	float: left;
@@ -355,7 +355,7 @@ table {
 }
 
 .tabs li a, .tabs li span {
-	background: url(../images/common/tabs_bg.gif) 0 -150px;
+	background: url(../images/common/tabs_bg.png) 0 -150px;
 	display: block;
 	float: left;
 	padding: 0.35em 1em 0;
@@ -364,7 +364,7 @@ table {
 }
 
 .tabs li.current {
-	background: url(../images/common/tabs_bg.gif) 0% 100px;
+	background: url(../images/common/tabs_bg.png) 0% 100px;
 	font-weight: bold;
 	border: 1px solid #BEBEBE;
 	border-bottom: none;

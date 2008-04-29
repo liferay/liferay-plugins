@@ -38,7 +38,7 @@ abbr, acronym {
 }
 
 body {
-	background: #e7e7e7 url(../images/common/page_bg.jpg);
+	background: #e7e7e7 url(../images/common/page_bg.png);
 	font: 62.5%/1.6em 'Lucida Grande',Verdana,Arial,Sans-Serif;
 }
 
@@ -104,7 +104,7 @@ body.staging {
 	margin: 0 auto;
 	padding: 0;
 	width: 760px;
-	background: #e7e7e7 url(../images/common/content_bg.jpg) repeat-y scroll;
+	background: #e7e7e7 url(../images/common/content_bg.png) repeat-y scroll;
 }
 
 /* ---------- Drag Indicators ---------- */

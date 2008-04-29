@@ -118,10 +118,10 @@
 /* -- Main */
 html {
  overflow-y : scroll ; 
- background : #F9F9F7 url('../images/common/page_bg_1.gif') repeat-x scroll top center ;
+ background : #F9F9F7 url('../images/common/page_bg_1.png') repeat-x scroll top center ;
 }
 body {
- background : transparent url('../images/common/page_bg_2.gif') repeat-y scroll top center ;
+ background : transparent url('../images/common/page_bg_2.png') repeat-y scroll top center ;
  height : auto ;
  color : #8C8C73 ;
  font-family : "trebuchet ms", helvetica, sans-serif ;
@@ -129,7 +129,7 @@ body {
  line-height : 18px ;
 }
 #wrapper {
- background : transparent url('../images/common/wrapper_bg.gif') no-repeat scroll top center ;
+ background : transparent url('../images/common/wrapper_bg.png') no-repeat scroll top center ;
  border : 0px solid #ccc ;
  width : 948px ;
 }
@@ -141,7 +141,7 @@ body {
  background : transparent url('../images/common/banner_bg_1.jpg') no-repeat scroll right 13px;
 }
 #banner .logo {
- background: #FF7800 url('../images/common/banner_bg_2.gif') repeat-x scroll 0 0;
+ background: #FF7800 url('../images/common/banner_bg_2.png') repeat-x scroll 0 0;
  color: #fff;
  display: block;
  width: 422px;
@@ -201,7 +201,7 @@ body {
  font-weight : bold;
 }
 #navigation ul li a:hover , #navigation ul li.selected a:hover , #add-page a:hover {
- background : #FFFFFF url('../images/navigation/bg_2.gif') repeat-x scroll center top ;
+ background : #FFFFFF url('../images/navigation/bg_2.png') repeat-x scroll center top ;
  color : #4A4A24 ;
  text-decoration : none ;
 }
@@ -216,11 +216,11 @@ body {
 }
 .portlet {
  border : 0 ;
- background : transparent url('../images/portlet/portlet_bg.gif') repeat-x scroll center bottom ;
+ background : transparent url('../images/portlet/portlet_bg.png') repeat-x scroll center bottom ;
  margin : 18px 0 ;
 }
 .portlet-title {
- background : transparent url('../images/portlet/portlet_title_bg.gif') repeat-x scroll center bottom ;
+ background : transparent url('../images/portlet/portlet_title_bg.png') repeat-x scroll center bottom ;
  color : #656551;
  font-size : 18px;
  font-weight : bold ;

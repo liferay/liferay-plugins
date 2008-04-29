@@ -30,7 +30,7 @@ body {
 	float: none;
 }
 .js .lfr-dock.interactive-mode h2 span {
-	background: url(../images/common/topbg.gif) repeat 0 0;
+	background: url(../images/common/topbg.png) repeat 0 0;
 	border: thin outset;
 	color: #FFFFFF;
 	display: block;
@@ -39,7 +39,7 @@ body {
 	padding: 0.5em 0.5em 0.5em 2em;
 }
 .js .lfr-dock.interactive-mode h2 {
-	background: url(../images/common/db2.gif) no-repeat right;
+	background: url(../images/common/db2.png) no-repeat right;
 	font-size: 1.2em;
 	margin-bottom: 0;
 	padding: 0 29px 0 0;
@@ -47,7 +47,7 @@ body {
 	z-index: 82;
 }
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
-	background: #FFFFFF url(../images/common/border1.gif) repeat-x;
+	background: #FFFFFF url(../images/common/border1.png) repeat-x;
 	border: none;
 	padding: none;
 }
@@ -58,7 +58,7 @@ body {
 }
 
 #navigation {
-	background: #7F8400 url(../images/common/menubg.gif) repeat-x;
+	background: #7F8400 url(../images/common/menubg.png) repeat-x;
 	overflow: hidden;
 	width: 99%;
 	font-family: Georgia;
@@ -90,7 +90,7 @@ body {
 }
 
 #navigation li.selected {
-	background: url(../images/common/menuactive.gif) repeat-x top;
+	background: url(../images/common/menuactive.png) repeat-x top;
 	padding-bottom:8px;
 }
 
@@ -139,13 +139,13 @@ body {
 	text-decoration: none;
 }
 .tabs li.current {
-	background: url(../images/common/menubg.gif) 100% 0;
+	background: url(../images/common/menubg.png) 100% 0;
 	border: none;
 	font-weight: bold;
 	top: -.5px;
 }
 .tabs li.current a, .tabs li.current span {
-	background: url(../images/common/menubg.gif) no-repeat 0 -100px;
+	background: url(../images/common/menubg.png) no-repeat 0 -100px;
 	border: thin outset;
 	border-bottom: none;
 	color: #333;
@@ -154,7 +154,7 @@ body {
  /* ---------- Table or section header ---------- */
 
 .portlet-section-header {
-	background: url(../images/common/menuactive.gif) repeat-x;
+	background: url(../images/common/menuactive.png) repeat-x;
 	padding: 1px 0 0;
 }
 .portlet-section-header th {
@@ -203,7 +203,7 @@ div.search {
 	top:20px;
 }
 input[type="text"], input[type="password"], input[type="file"],input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
-	background: #fff url(../images/common/border2.gif) repeat-x;
+	background: #fff url(../images/common/border2.png) repeat-x;
 	border: 1px solid #003300;
 	border-left-color: #003300;
 	border-top-color: #003300;
@@ -211,7 +211,7 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 	padding: 0.3em;
 }
 input[type="image"] {
-	background: url(..images/common/db2.gif) repeat-x none;
+	background: url(..images/common/db2.png) repeat-x none;
 	border: none;
 	padding: 0;
 }

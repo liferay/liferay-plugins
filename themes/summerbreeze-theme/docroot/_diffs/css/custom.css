@@ -92,7 +92,7 @@ body {
 #navigation ul li a:hover span , #navigation ul li.selected a:hover span ,
 .js #add-page a span , .js #add-page a:hover span
 {
-background:transparent url('../images/custom/navigation.jpg') no-repeat scroll 0 0;
+background:transparent url('../images/custom/navigation.png') no-repeat scroll 0 0;
 color:#FFFFFF;
 float:left;
 font-family:serif;

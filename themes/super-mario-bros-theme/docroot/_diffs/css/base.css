@@ -192,11 +192,11 @@ body.staging {
 }
 
 #dock:hover {
-	background-image: url(../images/common/dock_bg.gif);
+	background-image: url(../images/common/dock_bg.png);
 }
 
 #dock.hover {
-	background-image: url(../images/common/footer_bg.gif);
+	background-image: url(../images/common/footer_bg.png);
 }
 
 #above-dock h2 , #above-dock .lfr-dock-list li {

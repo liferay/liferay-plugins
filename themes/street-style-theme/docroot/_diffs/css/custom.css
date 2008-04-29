@@ -1,7 +1,7 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
 body {
-	background: url(../images/common/bg.gif) repeat top;
+	background: url(../images/common/bg.png) repeat top;
 	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
 	color: #fff;
 }
@@ -32,7 +32,7 @@ table {
 }
 
 #footer {
-	background: url(../images/common/footerbg.gif) no-repeat bottom left;
+	background: url(../images/common/footerbg.png) no-repeat bottom left;
 	height:120px;
 	border-top:133px solid #222;
 	margin:0pt -10px;
@@ -134,7 +134,7 @@ table {
 }
 
 #navigation ul {
-	background: url(../images/navigation/nav.gif) no-repeat 0 0px;
+	background: url(../images/navigation/nav.png) no-repeat 0 0px;
 	float: left;
 	min-height: 2em;
 	padding-top: 30px;
@@ -364,7 +364,7 @@ table {
 }
 
 .tabs li a, .tabs li span {
-	background: url(../images/common/tabs_bg.gif) 0pt -52px;
+	background: url(../images/common/tabs_bg.png) 0pt -52px;
 	background-color:yellow
 	display: block;
 	float: left;
@@ -374,7 +374,7 @@ table {
 }
 
 .tabs li.current a, .tabs li.current span {
-	background: url(../images/common/tabs_bg.gif) -1pt -1px;
+	background: url(../images/common/tabs_bg.png) -1pt -1px;
 	color: #FFF;
 	font-weight: bold;
 	font-size: 1em;

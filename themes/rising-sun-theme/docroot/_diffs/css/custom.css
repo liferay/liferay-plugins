@@ -26,7 +26,7 @@ blockquote {
 }
 
 #content-wrapper {
-	background: #000000 url(../images/common/container.gif) repeat-y scroll
+	background: #000000 url(../images/common/container.png) repeat-y scroll
 		0%;
 	padding: 0pt 35px 0px;
 }
@@ -84,7 +84,7 @@ blockquote {
 }
 
 #wrapper {
-	background: #000000 url(../images/common/container.gif) repeat scroll 0%
+	background: #000000 url(../images/common/container.png) repeat scroll 0%
 		50%;
 	width: 1003px;
 	margin: 0 auto;

@@ -120,7 +120,7 @@ ul.child-menu { display : none ; }
  color : #E3E9F1 ;
 }
 #content-wrapper , #portlet-wrapper- {
- background: transparent url('../images/custom/content_tile.jpg') scroll repeat-y 0 0;
+ background: transparent url('../images/custom/content_tile.png') scroll repeat-y 0 0;
  padding: 0 40px;
 }
 #column-1 .portlet { margin-right : 3px ; }
