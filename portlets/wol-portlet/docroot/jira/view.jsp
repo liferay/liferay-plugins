@@ -46,7 +46,7 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "
 			}
 
 			.jira-summary .activity-details .progress-bar {
-				background: #73880A;
+				background: #60686c;
 				height: 15px;
 				margin-bottom: 2px;
 			}
@@ -79,17 +79,17 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "
 				jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId
 			},
 			new Object[] {
-				"open", "http://support.liferay.com/images/icons/status_open.gif",
+				"open", "images/status_open.png",
 				jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&resolution=-1",
 				new Integer(assignedIssuesOpenCount), new Integer(assignedIssuesTotalCount)
 			},
 			new Object[] {
-				"closed", "http://support.liferay.com/images/icons/status_closed.gif",
+				"closed", "images/status_closed.png",
 				jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&status=" + JIRAConstants.STATUS_CLOSED,
 				new Integer(assignedIssuesClosedCount), new Integer(assignedIssuesTotalCount)
 			},
 			new Object[] {
-				"last-week", "http://support.liferay.com/images/icons/duedatepicker-icon.gif",
+				"last-week", "images/calendar.png",
 				jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&updated:previous=-1d",
 				new Integer(assignedIssuesLastWeekCount), new Integer(assignedIssuesTotalCount)
 			},
@@ -98,17 +98,17 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "
 				jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId
 			},
 			new Object[] {
-				"open", "http://support.liferay.com/images/icons/status_open.gif",
+				"open", "images/status_open.png",
 				jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&resolution=-1",
 				new Integer(reporterIssuesOpenCount), new Integer(reporterIssuesTotalCount)
 			},
 			new Object[] {
-				"closed", "http://support.liferay.com/images/icons/status_closed.gif",
+				"closed", "images/status_closed.png",
 				jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&status=" + JIRAConstants.STATUS_CLOSED,
 				new Integer(reporterIssuesClosedCount), new Integer(reporterIssuesTotalCount)
 			},
 			new Object[] {
-				"last-week", "http://support.liferay.com/images/icons/duedatepicker-icon.gif",
+				"last-week", "images/calendar.png",
 				jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&created:previous=-1d",
 				new Integer(reporterIssuesLastWeekCount), new Integer(reporterIssuesTotalCount)
 			}
