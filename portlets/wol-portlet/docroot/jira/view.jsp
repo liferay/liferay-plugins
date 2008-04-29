@@ -39,20 +39,18 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "
 
 			.jira-summary .activity-details {
 				width: 65%;
-			}
-
-			.jira-summary .activity-details table {
-				width: 100%;
+				padding-bottom: 5px;
 			}
 
 			.jira-summary .activity-details .progress-bar {
-				background: #60686c;
+				background: #c2c8cb;
 				height: 15px;
 				margin-bottom: 2px;
 			}
 
 			.jira-summary .activity-details .progress-text {
 				padding-left: 4px;
+				font-weight: bold;
 			}
 		</style>
 
@@ -162,14 +160,9 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "
 						<%= numberFormat.format(curCount) %>
 					</td>
 					<td class="activity-details">
-						<table>
-						<tr>
-							<td class="progress-bar" style="width: <%= percentFormat.format(ratio) %>;"></td>
-							<td class="progress-text" style="width: <%= percentFormat.format(1 - ratio) %>;">
-								<%= percentFormat.format(ratio) %>
-							</td>
-						</tr>
-						</table>
+						<div class="progress-bar" style="width: <%= percentFormat.format(ratio) %>;">
+							<span class="progress-text"><%= percentFormat.format(ratio) %></span>
+						</div>
 					</td>
 				</tr>
 
