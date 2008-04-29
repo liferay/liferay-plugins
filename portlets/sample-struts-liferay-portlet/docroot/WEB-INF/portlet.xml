@@ -58,8 +58,4 @@
 	<user-attribute>
 		<name>user.gender</name>
 	</user-attribute>
-	<container-runtime-option>
-		<name>javax.portlet.escapeXml</name>
-		<value>false</value>
-	</container-runtime-option>
 </portlet-app>
