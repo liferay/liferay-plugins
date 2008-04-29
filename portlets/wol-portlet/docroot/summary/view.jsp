@@ -27,11 +27,11 @@
 <c:choose>
 	<c:when test="<%= windowState.equals(WindowState.NORMAL) || !UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
 		<style type="text/css">
-			.ie .<portlet:namespace />container {
+			.ie .summary-container {
 				height: 1%;
 			}
 
-			.<portlet:namespace />container:after {
+			.summary-container:after {
 				clear: both;
 				content: ".";
 				display: block;
@@ -39,29 +39,29 @@
 				visibility: hidden;
 			}
 
-			.<portlet:namespace />container h2 {
+			.summary-container h2 {
 				color: #83B4E1;
 				font-size: 16px;
 				margin-bottom: 10px;
 			}
 
-			.<portlet:namespace />container img {
+			.summary-container img {
 				margin: 5px;
 				float: right;
 			}
 
-			.<portlet:namespace />container p {
+			.summary-container p {
 				margin-bottom: 10px;
 			}
 
-			.<portlet:namespace />container span {
+			.summary-container span {
 				color: #3D536C;
 				font-size: 10px;
 				text-transform: uppercase;
 			}
 		</style>
 
-		<div class="<portlet:namespace />container">
+		<div class="summary-container">
 			<img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user2.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user2.getPortraitId()) %>" />
 
 			<h2>
