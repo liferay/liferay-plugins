@@ -79,17 +79,17 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "
 				jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId
 			},
 			new Object[] {
-				"open", "images/status_open.png",
+				"open", request.getContextPath() + "/jira/images/status_open.png",
 				jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&resolution=-1",
 				new Integer(assignedIssuesOpenCount), new Integer(assignedIssuesTotalCount)
 			},
 			new Object[] {
-				"closed", "images/status_closed.png",
+				"closed", request.getContextPath() + "/jira/images/status_closed.png",
 				jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&status=" + JIRAConstants.STATUS_CLOSED,
 				new Integer(assignedIssuesClosedCount), new Integer(assignedIssuesTotalCount)
 			},
 			new Object[] {
-				"last-week", "images/calendar.png",
+				"last-week", request.getContextPath() + "/jira/images/calendar.png",
 				jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&updated:previous=-1d",
 				new Integer(assignedIssuesLastWeekCount), new Integer(assignedIssuesTotalCount)
 			},
@@ -98,17 +98,17 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "
 				jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId
 			},
 			new Object[] {
-				"open", "images/status_open.png",
+				"open", request.getContextPath() + "/jira/images/status_open.png",
 				jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&resolution=-1",
 				new Integer(reporterIssuesOpenCount), new Integer(reporterIssuesTotalCount)
 			},
 			new Object[] {
-				"closed", "images/status_closed.png",
+				"closed", request.getContextPath() + "/jira/images/status_closed.png",
 				jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&status=" + JIRAConstants.STATUS_CLOSED,
 				new Integer(reporterIssuesClosedCount), new Integer(reporterIssuesTotalCount)
 			},
 			new Object[] {
-				"last-week", "images/calendar.png",
+				"last-week", request.getContextPath() + "/jira/images/calendar.png",
 				jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&created:previous=-1d",
 				new Integer(reporterIssuesLastWeekCount), new Integer(reporterIssuesTotalCount)
 			}
