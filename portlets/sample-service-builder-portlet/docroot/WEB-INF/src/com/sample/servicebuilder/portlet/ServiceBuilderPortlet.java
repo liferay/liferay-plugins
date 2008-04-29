@@ -20,13 +20,16 @@
  * SOFTWARE.
  */
 
-package com.sample.servicebuilder;
+package com.sample.servicebuilder.portlet;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
+import com.liferay.util.servlet.SessionErrors;
+import com.liferay.util.servlet.SessionMessages;
 
 import com.sample.servicebuilder.service.FooLocalServiceUtil;
 
@@ -42,11 +45,6 @@ import javax.portlet.PortletException;
 /**
  * <a href="ServiceBuilderPortlet.java.html"><b><i>View Source</i></b></a>
  *
- * <p>
- * Controller class for processing various actions invoked on the Service
- * Builder portlet.
- * </p>
- *
  * @author Alexander Chow
  *
  */
@@ -58,11 +56,21 @@ public class ServiceBuilderPortlet extends JSPPortlet {
 		try {
 			String cmd = ParamUtil.getString(req, Constants.CMD);
 
-			if (cmd.equals(Constants.UPDATE)) {
-				updateFoo(req);
+			if (cmd.equals(Constants.ADD)) {
+				addFoo(req);
 			}
 			else if (cmd.equals(Constants.DELETE)) {
 				deleteFoo(req);
+			}
+
+			if (Validator.isNotNull(cmd)) {
+				if (SessionErrors.isEmpty(req)) {
+					SessionMessages.add(req, "request_processed");
+				}
+
+				String redirect = ParamUtil.getString(req, "redirect");
+
+				res.sendRedirect(redirect);
 			}
 		}
 		catch (Exception e) {
@@ -70,13 +78,7 @@ public class ServiceBuilderPortlet extends JSPPortlet {
 		}
 	}
 
-	protected void deleteFoo(ActionRequest req) throws Exception {
-		long fooId = ParamUtil.getLong(req, "fooId");
-
-		FooLocalServiceUtil.deleteFoo(fooId);
-	}
-
-	public void updateFoo(ActionRequest req) throws Exception {
+	protected void addFoo(ActionRequest req) throws Exception {
 		String field1 = ParamUtil.getString(req, "field1");
 		boolean field2 = ParamUtil.getBoolean(req, "field2");
 		int field3 = ParamUtil.getInteger(req, "field3");
@@ -93,10 +95,17 @@ public class ServiceBuilderPortlet extends JSPPortlet {
 			dateHour += 12;
 		}
 
-		Date field4 = PortalUtil.getDate(dateMonth, dateDay, dateYear,
-			dateHour, dateMinute, new PortalException());
+		Date field4 = PortalUtil.getDate(
+			dateMonth, dateDay, dateYear, dateHour, dateMinute,
+			new PortalException());
 
 		FooLocalServiceUtil.addFoo(field1, field2, field3, field4, field5);
+	}
+
+	protected void deleteFoo(ActionRequest req) throws Exception {
+		long fooId = ParamUtil.getLong(req, "fooId");
+
+		FooLocalServiceUtil.deleteFoo(fooId);
 	}
 
 }

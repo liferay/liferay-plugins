@@ -31,6 +31,8 @@ import com.sample.servicebuilder.model.Foo;
  *
  */
 public class FooImpl extends FooModelImpl implements Foo {
+
 	public FooImpl() {
 	}
+
 }

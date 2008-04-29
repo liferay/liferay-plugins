@@ -18,10 +18,6 @@
 		<taglib-location>/WEB-INF/tld/c-rt.tld</taglib-location>
 	</taglib>
 	<taglib>
-		<taglib-uri>http://liferay.com/tld/portlet</taglib-uri>
-		<taglib-location>/WEB-INF/tld/liferay-portlet-ext.tld</taglib-location>
-	</taglib>
-	<taglib>
 		<taglib-uri>http://liferay.com/tld/theme</taglib-uri>
 		<taglib-location>/WEB-INF/tld/liferay-theme.tld</taglib-location>
 	</taglib>

@@ -100,7 +100,7 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 		foo.setField4(field4);
 		foo.setField5(field5);
 
-		FooUtil.update(foo);
+		FooUtil.update(foo, false);
 	}
 
 }

@@ -28,22 +28,22 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.sample.servicebuilder.model.Foo;
 
 /**
- * <a href="Field4Comparator.java.html"><b><i>View Source</i></b></a>
+ * <a href="FooField4Comparator.java.html"><b><i>View Source</i></b></a>
  *
  * @author Alexander Chow
  *
  */
-public class Field4Comparator extends OrderByComparator {
+public class FooField4Comparator extends OrderByComparator {
 
 	public static String ORDER_BY_ASC = "field4 ASC";
 
 	public static String ORDER_BY_DESC = "field4 DESC";
 
-	public Field4Comparator() {
+	public FooField4Comparator() {
 		this(false);
 	}
 
-	public Field4Comparator(boolean asc) {
+	public FooField4Comparator(boolean asc) {
 		_asc = asc;
 	}
 

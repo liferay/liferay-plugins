@@ -26,28 +26,29 @@
 
 <%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
 
-<%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.DateFormats" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
-<%@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 
 <%@ page import="com.sample.servicebuilder.model.Foo" %>
 <%@ page import="com.sample.servicebuilder.service.FooLocalServiceUtil" %>
-<%@ page import="com.sample.servicebuilder.util.comparator.Field4Comparator" %>
+<%@ page import="com.sample.servicebuilder.util.comparator.FooField4Comparator" %>
 
 <%@ page import="java.text.DateFormat" %>
-<%@ page import="java.text.SimpleDateFormat" %>
+
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.List" %>
 
 <%@ page import="javax.portlet.PortletURL" %>
-<%@ page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />
+
+<%
+DateFormat dateFormatDateTime = DateFormats.getDateTime(locale, timeZone);
+%>
