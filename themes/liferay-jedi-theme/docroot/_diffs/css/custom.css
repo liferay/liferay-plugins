@@ -536,6 +536,27 @@ ul.message-board-edit-controls {
 	text-decoration: underline;
 }
 
+#navigation.profile {
+	background-image: url(../images/navigation/profile_bg.png);
+}
+
+#navigation.profile li {
+	background: #060708;
+}
+
+#navigation.profile .group {
+	position: relative;
+}
+
+#navigation.profile .group .group-indicator {
+	background: url('../images/navigation/group_indicator.png') no-repeat;
+	height: 10px;
+	position: absolute;
+	right: -7px;
+	top: 8px;
+	width: 8px;
+	z-index: 100;
+}
 #navigation.profile ul li a {
 	color: #B4C1C9;
 }
@@ -545,12 +566,13 @@ ul.message-board-edit-controls {
 }
 
 #navigation.profile ul li:hover {
-	background: transparent none;
+	background: none;
 }
 
 #navigation.profile ul li.group {
-	background: #D8DDE0;
+	background: #deedf4;
 	border-bottom: #ABAFB2;
+	font-size: 11px;
 }
 
 #navigation.profile ul li.group span {
