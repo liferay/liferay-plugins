@@ -23,10 +23,10 @@
 %>
 
 <%@ include file="/init.jsp" %>
-<style type="text/css" media="screen">
 
+<style type="text/css">
 	.wol-portlet-friends .taglib-search-iterator-page-iterator-bottom .taglib-page-iterator {
-		padding-top: 1.5em;
+		padding-top: 5px;
 	}
 
 	.wol-portlet-friends .taglib-search-iterator-page-iterator-bottom .search-results {
@@ -36,20 +36,21 @@
 	.wol-portlet-friends .taglib-search-iterator-page-iterator-bottom .search-pages {
 		float: none;
 	}
-	
+
 	.wol-portlet-friends .taglib-search-iterator-page-iterator-bottom .search-pages .page-links {
 		float: none;
-		text-align: center;
+		text-align: left;
 	}
-	
+
 	.wol-portlet-friends .taglib-search-iterator-page-iterator-bottom .search-pages .page-links .previous {
 		border: none;
 	}
 </style>
+
 <%
 PortletURL portletURL = renderResponse.createRenderURL();
 
-SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL, null, null);
+SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
 
 int total = UserLocalServiceUtil.getSocialUsersCount(user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND);
 
@@ -57,20 +58,26 @@ searchContainer.setTotal(total);
 
 List<User> results = UserLocalServiceUtil.getSocialUsers(user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, searchContainer.getStart(), searchContainer.getEnd(), new UserLoginDateComparator());
 
-for (User friend : results) {
-%>
+searchContainer.setResults(results);
 
-	<div style="float: left; margin: 0px 10px 0px 10px; text-align: center;">
-		<liferay-ui:user-display
-			userId="<%= friend.getUserId() %>"
-			userName="<%= friend.getFullName() %>"
-			displayStyle="<%= 2 %>"
-		/>
-	</div>
+List resultRows = searchContainer.getResultRows();
 
-<%
+for (int i = 0; i < results.size(); i++) {
+	User friend = results.get(i);
+
+	ResultRow row = new ResultRow(friend, friend.getUserId(), i);
+
+	// User display
+
+	row.addJSP("/friends/user_display.jsp", application, request, response);
+
+	// Add result row
+
+	resultRows.add(row);
 }
 %>
+
+<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" paginate="<%= false %>" />
 
 <c:if test="<%= results.size() > 0 %>">
 	<div class="taglib-search-iterator-page-iterator-bottom" id="<portlet:namespace />searchFriends">
@@ -89,12 +96,13 @@ for (User friend : results) {
 					var parent = searchFriends.parent();
 
 					parent.html('<div class="loading-animation" />');
+
 					jQuery.ajax(
 						{
 							url: url,
 							success: function(response) {
 								parent.html(response);
-							} 
+							}
 						}
 					);
 
