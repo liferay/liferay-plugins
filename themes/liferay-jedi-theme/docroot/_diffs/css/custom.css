@@ -573,7 +573,7 @@ ul.message-board-edit-controls {
 }
 
 #navigation.profile ul li.group {
-	background: #DEEDF4;
+	background: #deedf4;
 	border-bottom: #ABAFB2;
 	font-size: 11px;
 }
@@ -594,4 +594,46 @@ ul.message-board-edit-controls {
 .portlet-activities .day-separator, .portlet-activities .first-day-separator {
 	font-size: 12px;
 	font-weight: bold;
+}
+
+.ie .portlet-recent-bloggers .taglib-search-iterator {
+	width: 190px;
+}
+
+.portlet-recent-bloggers .user-name {
+	min-width: 100px;
+	font-weight: bold;
+}
+
+.ie .portlset-recent-bloggers .user-name {
+	width: 100px;
+}
+
+.portlet-recent-bloggers .user-profile-image {
+}
+
+.portlet-recent-bloggers .user-details {
+	font-size: 11px;
+}
+
+.portlet-recent-bloggers .portlet-section-body td, .portlet-recent-bloggers .portlet-section-alternate td, .portlet-recent-bloggers .portlet-section-body-hover td, .portlet-recent-bloggers .portlet-section-alternate-hover td {
+	border: none;
+	padding: 5px 10px;
+}
+
+.portlet-recent-bloggers .portlet-section-body td td, .portlet-recent-bloggers .portlet-section-alternate td td, .portlet-recent-bloggers .portlet-section-body-hover td td, .portlet-recent-bloggers .portlet-section-alternate-hover td td {
+	padding: 0;
+	padding-right: 5px;
+}
+
+.portlet-recent-bloggers .portlet-section-body td {
+	background: #eef0f2;
+}
+
+.portlet-recent-bloggers .portlet-section-body-hover td, .portlet-recent-bloggers .portlet-section-alternate-hover td {
+	background: #d5dade;
+}
+
+.portlet-recent-bloggers a {
+	text-decoration: none;
 }
