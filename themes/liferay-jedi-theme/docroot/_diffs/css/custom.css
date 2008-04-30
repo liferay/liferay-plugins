@@ -590,3 +590,8 @@ ul.message-board-edit-controls {
 #navigation.profile ul li a:hover span {
 	text-decoration: underline;
 }
+
+.portlet-activities .day-separator, .portlet-activities .first-day-separator {
+	font-size: 12px;
+	font-weight: bold;
+}
