@@ -155,6 +155,10 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "
 				int totalCount = ((Integer)jiraValues[4]).intValue();
 
 				double ratio = (double)curCount / (double)totalCount;
+
+				if (totalCount == 0) {
+					ratio = 0;
+				}
 		%>
 
 				<tr>
