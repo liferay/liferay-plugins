@@ -559,7 +559,6 @@ ul.message-board-edit-controls {
 	top: 8px;
 	width: 8px;
 }
-
 #navigation.profile ul li a {
 	color: #B4C1C9;
 }
@@ -614,6 +613,7 @@ ul.message-board-edit-controls {
 
 .portlet-recent-bloggers .user-details {
 	font-size: 11px;
+	line-height: 1.3;
 }
 
 .portlet-recent-bloggers .portlet-section-body td, .portlet-recent-bloggers .portlet-section-alternate td, .portlet-recent-bloggers .portlet-section-body-hover td, .portlet-recent-bloggers .portlet-section-alternate-hover td {
