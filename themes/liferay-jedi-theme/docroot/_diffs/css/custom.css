@@ -542,10 +542,13 @@ ul.message-board-edit-controls {
 
 #navigation.profile li {
 	background: #060708;
+	position: relative;
+	z-index: 100;
 }
 
 #navigation.profile .group {
 	position: relative;
+	z-index: 10000;
 }
 
 #navigation.profile .group .group-indicator {
@@ -555,7 +558,6 @@ ul.message-board-edit-controls {
 	right: -7px;
 	top: 8px;
 	width: 8px;
-	z-index: 100;
 }
 #navigation.profile ul li a {
 	color: #B4C1C9;
