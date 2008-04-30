@@ -62,7 +62,7 @@
 		</style>
 
 		<div class="summary-container">
-			<img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user2.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user2.getPortraitId()) %>" />
+			<img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user2.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user2.getPortraitId()) %>" width="100" />
 
 			<h2>
 				<%= user2.getFullName() %>
