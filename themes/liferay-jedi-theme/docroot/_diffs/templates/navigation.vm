@@ -24,6 +24,7 @@
 
 			<li class="$nav_item_class">
 				<a href="$nav_item.getURL()" $nav_item.getTarget()><span>$nav_item.getName()</span></a>
+
 				#if ($nav_item.hasChildren())
 					<ul class="child-menu">
 						<li>

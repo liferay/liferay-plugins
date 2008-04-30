@@ -559,6 +559,7 @@ ul.message-board-edit-controls {
 	top: 8px;
 	width: 8px;
 }
+
 #navigation.profile ul li a {
 	color: #B4C1C9;
 }
@@ -572,7 +573,7 @@ ul.message-board-edit-controls {
 }
 
 #navigation.profile ul li.group {
-	background: #deedf4;
+	background: #DEEDF4;
 	border-bottom: #ABAFB2;
 	font-size: 11px;
 }
