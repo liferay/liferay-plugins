@@ -24,6 +24,10 @@
 
 <%@ include file="/init.jsp" %>
 
+<c:if test="<%= !UserLocalServiceUtil.hasOrganizationUser(21, user2.getUserId()) %>">
+	This feature will soon be available to all Liferay users.
+</c:if>
+
 <style type="text/css">
 	.wol-portlet-friends .taglib-search-iterator-page-iterator-bottom .taglib-page-iterator {
 		padding-top: 5px;

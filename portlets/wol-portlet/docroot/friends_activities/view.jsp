@@ -24,6 +24,10 @@
 
 <%@ include file="/init.jsp" %>
 
+<c:if test="<%= !UserLocalServiceUtil.hasOrganizationUser(21, user2.getUserId()) %>">
+	This feature will soon be available to all Liferay users.
+</c:if>
+
 <%
 List<SocialActivity> activities = SocialActivityLocalServiceUtil.getRelationActivities(user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, 0, SearchContainer.DEFAULT_DELTA);
 %>
