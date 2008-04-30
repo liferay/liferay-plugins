@@ -23,11 +23,33 @@
 %>
 
 <%@ include file="/init.jsp" %>
+<style type="text/css" media="screen">
 
+	.wol-portlet-friends .taglib-search-iterator-page-iterator-bottom .taglib-page-iterator {
+		padding-top: 1.5em;
+	}
+
+	.wol-portlet-friends .taglib-search-iterator-page-iterator-bottom .search-results {
+		display: none;
+	}
+
+	.wol-portlet-friends .taglib-search-iterator-page-iterator-bottom .search-pages {
+		float: none;
+	}
+	
+	.wol-portlet-friends .taglib-search-iterator-page-iterator-bottom .search-pages .page-links {
+		float: none;
+		text-align: center;
+	}
+	
+	.wol-portlet-friends .taglib-search-iterator-page-iterator-bottom .search-pages .page-links .previous {
+		border: none;
+	}
+</style>
 <%
 PortletURL portletURL = renderResponse.createRenderURL();
 
-SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
+SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL, null, null);
 
 int total = UserLocalServiceUtil.getSocialUsersCount(user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND);
 
@@ -51,7 +73,34 @@ for (User friend : results) {
 %>
 
 <c:if test="<%= results.size() > 0 %>">
-	<div class="taglib-search-iterator-page-iterator-bottom">
-		<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
+	<div class="taglib-search-iterator-page-iterator-bottom" id="<portlet:namespace />searchFriends">
+		<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" type="article" />
 	</div>
 </c:if>
+
+<script type="text/javascript">
+	jQuery(
+		function () {
+			var searchFriends = jQuery('#<portlet:namespace />searchFriends');
+
+			searchFriends.find('a').click(
+				function(event) {
+					var url = this.href.replace(/p_p_state=normal/i, 'p_p_state=exclusive');
+					var parent = searchFriends.parent();
+
+					parent.html('<div class="loading-animation" />');
+					jQuery.ajax(
+						{
+							url: url,
+							success: function(response) {
+								parent.html(response);
+							} 
+						}
+					);
+
+					return false;
+				}
+			);
+		}
+	);
+</script>
