@@ -60,6 +60,7 @@
 <%@ page import="com.liferay.portlet.social.model.SocialActivity" %>
 <%@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
 <%@ page import="com.liferay.portlet.social.service.SocialActivityLocalServiceUtil" %>
+<%@ page import="com.liferay.util.Time" %>
 <%@ page import="com.liferay.wol.NoSuchSVNRepositoryException" %>
 <%@ page import="com.liferay.wol.jira.util.JIRAConstants" %>
 <%@ page import="com.liferay.wol.model.JIRAIssue" %>
@@ -80,6 +81,7 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.GregorianCalendar" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.TimeZone" %>
 
 <%@ page import="javax.portlet.PortletURL" %>
 <%@ page import="javax.portlet.WindowState" %>

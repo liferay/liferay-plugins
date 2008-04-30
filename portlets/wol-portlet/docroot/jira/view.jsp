@@ -57,9 +57,20 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "
 		<%
 		String jiraURL = "http://support.liferay.com/secure/IssueNavigator.jspa?reset=true&pid=" + JIRAConstants.PROJECT_LEP;
 
-		Calendar lastWeekCal = new GregorianCalendar(timeZone, locale);
+		TimeZone jiraTimeZone = TimeZone.getTimeZone("America/Los_Angeles");
+
+		int jiraTimeZoneUTCOffset = jiraTimeZone.getRawOffset();
+
+		if (jiraTimeZone.inDaylightTime(new Date())) {
+			jiraTimeZoneUTCOffset += Time.HOUR;
+		}
+
+		TimeZone gmtTimeZone = TimeZone.getTimeZone("GMT");
+
+		Calendar lastWeekCal = new GregorianCalendar(gmtTimeZone, locale);
 
 		lastWeekCal.add(Calendar.WEEK_OF_YEAR, -1);
+		lastWeekCal.add(Calendar.MILLISECOND, jiraTimeZoneUTCOffset);
 
 		int assignedIssuesTotalCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId);
 		int assignedIssuesClosedCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId, JIRAConstants.STATUS_CLOSED);
@@ -88,7 +99,7 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "
 			},
 			new Object[] {
 				"last-week", request.getContextPath() + "/jira/images/calendar.png",
-				jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&updated:previous=-1d",
+				jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&updated:previous=-1w",
 				new Integer(assignedIssuesLastWeekCount), new Integer(assignedIssuesTotalCount)
 			},
 			new Object[] {
@@ -107,7 +118,7 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "
 			},
 			new Object[] {
 				"last-week", request.getContextPath() + "/jira/images/calendar.png",
-				jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&created:previous=-1d",
+				jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&updated:previous=-1w",
 				new Integer(reporterIssuesLastWeekCount), new Integer(reporterIssuesTotalCount)
 			}
 		};
