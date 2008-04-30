@@ -569,7 +569,7 @@ ul.message-board-edit-controls {
 }
 
 #navigation.profile ul li:hover {
-	background: none;
+	background: #060708;
 }
 
 #navigation.profile ul li.group {
