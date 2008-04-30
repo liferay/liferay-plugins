@@ -523,7 +523,7 @@ ul.message-board-edit-controls {
 	bottom: 6px;
 	font: bold 10px Arial,Verdana,sans-serif;
 	position: absolute;
-	right: 0;
+	right: 12px;
 }
 
 #top-menu a {
@@ -548,11 +548,6 @@ ul.message-board-edit-controls {
 	background: transparent none;
 }
 
-#navigation.profile ul li:hover a {
-	color: #B4C1C9;
-	text-decoration: underline;
-}
-
 #navigation.profile ul li.group {
 	background: #D8DDE0;
 	border-bottom: #ABAFB2;
@@ -561,4 +556,12 @@ ul.message-board-edit-controls {
 #navigation.profile ul li.group span {
 	cursor: default;
 	font-weight: bold;
+}
+
+#navigation.profile ul li.selected:hover {
+	background: #1F242A url(../images/navigation/bullet_selected.png) no-repeat 12px 50%;
+}
+
+#navigation.profile ul li a:hover span {
+	text-decoration: underline;
 }
