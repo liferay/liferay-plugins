@@ -614,8 +614,10 @@ ul.message-board-edit-controls {
 }
 
 .portlet-recent-bloggers .user-name {
-	min-width: 100px;
+	display: block;
+	font-size: 12px;
 	font-weight: bold;
+	min-width: 100px;
 }
 
 .ie .portlset-recent-bloggers .user-name {
