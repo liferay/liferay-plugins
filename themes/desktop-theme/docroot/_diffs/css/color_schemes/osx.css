@@ -404,8 +404,8 @@ body.osx {
 }
 
 .ie6 .osx #sidebar-wrapper {
-	top: 0;
-	position: relative;
+	top: 23px;
+	padding-bottom: 5px;
 }
 
 .osx #sidebar-top {

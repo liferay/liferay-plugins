@@ -95,9 +95,9 @@ body.vista {
 
 .ie6 .vista .portlet .b .b-content {
 	background: transparent url(../../images/color_schemes/vista/portlet/portlet_opaque_bg.png) no-repeat scroll bottom left;
-	position: relative;
-	left: 0;
 	bottom: 0;
+	left: 0;
+	position: relative;
 }
 
 .vista .portlet-title {
@@ -211,9 +211,9 @@ body.vista {
 }
 
 .ie6 .vista #taskbar {
-	position: absolute;
 	bottom: 0;
 	left: 0;
+	position: absolute;
 }
 
 .vista #taskbar-portlets a {
@@ -372,8 +372,8 @@ body.vista {
 }
 
 .js.ie6 .vista-menu .taglib-home li.my-places ul ul {
-	top: -1px;
  	filter: alpha(opacity=85);
+	top: -1px;
 }
 
 /* ---------- Custom styles for the Desktop theme ---------- */
@@ -393,13 +393,13 @@ body.vista {
 /* ---------- Styles for the Desktop Sidebar ---------- */
 
 .vista #sidebar-wrapper {
-	top: auto;
 	bottom: 28px;
+	top: auto;
 }
 
 .ie6 .vista #sidebar-wrapper {
-	top: 0;
 	bottom: auto;
+	top: 0;
 }
 
 .vista #sidebar-top {

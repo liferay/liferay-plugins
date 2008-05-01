@@ -29,15 +29,19 @@ body {
 	position: relative;
 }
 
+#layout-grid {
+	position: relative;
+}
+
 .popup-alert-notice, .popup-alert-warning {
 	background-color: #E4E1DC;
 	border-color: white;
 	border-style: solid;
 	border-width: 10px 1px 1px;
 	color: #000000;
+	filter: alpha(opacity=87);
 	left: 35%;
 	opacity: 0.87;
-	filter: alpha(opacity=87);
 	padding: 7px 10px 10px 30px;
 	top: 70%;
 	width: 300px;
@@ -182,8 +186,8 @@ body {
 }
 
 .js .interactive-mode .lfr-flyout.has-children ul li ul {
-	right: -192px;
 	padding: 0 0 2px;
+	right: -192px;
 }
 
 .js .interactive-mode .my-places li.current-community {
@@ -236,8 +240,8 @@ body {
 }
 
 .js.ie6 .interactive-mode .lfr-flyout.has-children ul li ul {
-	position: absolute;
 	left: 183px;
+	position: absolute;
 }
 
 .js.ie6 .interactive-mode .lfr-dock-list li.my-places {
@@ -273,7 +277,7 @@ body {
 }
 
 .ie6 .portlet {
-	width: expression(this.width<180 ? "180px":this.width); 
+	width: expression(this.width < 180 ? "180px":this.width); 
 }
 
 .portlet .content,
@@ -566,6 +570,10 @@ body {
 	line-height:27px;
 }
 
+.ie6 .tabs li.current {
+	top: 0;
+}
+
 /* ---------- Styles for Taglib Search Iterator ---------- */
 
 .taglib-search-iterator-wrapper {
@@ -600,10 +608,6 @@ body {
 
 /* ---------- Custom styles for the Desktop theme ---------- */
 
-#main-container {
-	position: relative;
-}
-
 #dock-wrapper {
 	height: 28px;
 }
@@ -631,8 +635,8 @@ body {
 }
 
 #taskbar-portlets .taskbar-link {
-	list-style-type: none;
 	float: left;
+	list-style-type: none;
 	max-width: 200px;
 	min-width: 39px;
 	overflow: hidden;
@@ -700,13 +704,13 @@ body {
 
 #sidebar {
 	display: none;
-	opacity: 0;
 	filter: alpha(opacity=0);
+	float: right;
 	height: 100%;
 	left: 30px;
+	opacity: 0;
 	overflow: hidden;
 	width: 235px;
-	float: right;
 }
 
 .ie6 #sidebar {
@@ -715,9 +719,9 @@ body {
 }
 
 #sidebar-link {
+	float: left;
 	height: 100%;
 	width: 20px;
-	float: left;
 }
 
 #sidebar-link a {
@@ -766,27 +770,27 @@ body {
 }
 
 #sidebar-top .month {
-	color:#222222;
-	display:block;
+	color: #222222;
+	display: block;
 	font-family: 'Arial', 'Tahoma','Lucida Sans Unicode';
-	font-size:17px;
-	font-weight:bold;
-	line-height:25px;
+	font-size: 17px;
+	font-weight: bold;
+	line-height: 25px;
 	margin:10px 0 5px;
-	text-align:center;
+	text-align: center;
 }
 
 #sidebar-top .day {
 	color: #000000;
-	display:block;
-	font-size:40px;
-	font-weight:bold;
-	line-height:40px;
-	text-align:center;
+	display: block;
+	font-size: 40px;
+	font-weight: bold;
+	line-height: 40px;
+	text-align: center;
 }
 
 #sidebar-top .clock {
-	display:none;
+	display: none;
 	float: left;
 	margin: 0 0 0 10px;
 }
@@ -799,10 +803,10 @@ body {
 	background: transparent url(../images/desktop/calendar_bg.png) no-repeat scroll 100% 0;
 	display: none;
 	height: 100px;
+	filter: alpha(opacity=0);
 	float: right;
 	margin: 0 10px 0 0;
 	opacity: 0;
-	filter: alpha(opacity=0);
 	width: 100px;
 }
 
@@ -816,8 +820,8 @@ body {
 
 .portal-add-content .portlet-msg-info{
 	background: transparent url(../images/messages/info.png) no-repeat scroll 0.5em 50%;
-	margin: 20px 0 0 0;
 	color: #ffffff;
+	margin: 20px 0 0 0;
 }
 
 .portal-add-content-search {
@@ -850,20 +854,16 @@ body {
 	background: none;
 }
 
-/* ---------- Style fixes for the Desktop Theme ---------- */
+/* ---------- Styles for the Sign-in Screen ---------- */
 
 #portlet-wrapper-sign-in .portlet-address {
 	top: 3px;
 }
 
 .ie #portlet-wrapper-sign-in .portlet-address {
-	top: 4px;
+	top: 0;
 }
 
 .ie6 #portlet-wrapper-sign-in .lfr-portal-login {
 	position: relative;
-}
-
-.ie6 .tabs li.current {
-	top: 0;
 }
