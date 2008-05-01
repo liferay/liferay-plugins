@@ -37,7 +37,25 @@
 		hello
 	</c:when>
 	<c:otherwise>
+<style type="text/css" media="screen">
+	.wol-portlet-svn .project-title {
+		margin-bottom: 0.5em;
+	}
+	
+	.wol-portlet-svn .project-section {
+		font-size: 1em;
+		margin-bottom: 0.2em;
+	}
 
+	.wol-portlet-svn .project-details .lfr-table {
+		margin: 0 0 1em;
+		width: 100%;
+	}
+	
+	.wol-portlet-svn .project-details .lfr-table td {
+		padding-top: 2px;
+	}
+</style>
 		<%
 		for (String url : SVNConstants.SVN_URLS) {
 			try {
@@ -64,7 +82,10 @@
 			<c:when test="<%= Validator.isNotNull(svnUserId) %>">
 				<c:choose>
 					<c:when test="<%= windowState.equals(WindowState.NORMAL) %>">
-
+				<%
+					String svnURL = ParamUtil.getString(request, "url");
+				 %>
+				<h4 class="project-title"><a href="<%= svnURL %>">Liferay Portal</a></h4>
 						<%
 						for (String url : SVNConstants.SVN_URLS) {
 							SVNRepository svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(url);
@@ -80,25 +101,41 @@
 									<portlet:param name="all" value="true" />
 								</portlet:renderURL>
 
-								<div>
-									<%= svnRepository.getShortURL() %><br />
+						<div class="project-details">
+							<h5 class="project-section"><%= svnRepository.getShortURL() %></h5>
 
-									<liferay-ui:icon
+							<table class="lfr-table">
+								<tr>
+									<td>
+										<a href="<%= userRevisionsURL %>">My Commits</a>
+									</td>
+									<td>
+										<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId()) %> 
+									</td>
+									<td>
+										<liferay-ui:icon
+											image="rss"
+											url=".."
+										/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<a href="<%= allRevisionsURL %>">All Commits</a> 
+									</td>
+									<td>
+										<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnRepository.getSvnRepositoryId()) %>
+									</td>
+									<td>
+										<liferay-ui:icon
 										image="rss"
 										url=".."
-									/>
-
-									<a href="<%= userRevisionsURL %>">User</a> <%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId()) %><br />
-
-									<liferay-ui:icon
-										image="rss"
-										url=".."
-									/>
-
-									<a href="<%= allRevisionsURL %>">All</a> <%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnRepository.getSvnRepositoryId()) %><br /><br />
-								</div>
-							</c:if>
-
+										/>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</c:if>
 						<%
 						}
 						%>

@@ -33,23 +33,24 @@ SVNRevision svnRevision = (SVNRevision)objArray[0];
 String rowHREF = (String)objArray[1];
 JIRAIssue jiraIssue = (JIRAIssue)objArray[2];
 %>
-
-<liferay-ui:icon-list>
-	<liferay-ui:icon
-		message="SVN"
-		src='<%= request.getContextPath() + "/svn/icon.png" %>'
-		url='<%= "javascript: location.href = '" + rowHREF + "';" %>'
-		target="_blank"
-		label="<%= true %>"
-	/>
-
-	<c:if test="<%= jiraIssue != null %>">
+<div class="revision-actions">
+	<liferay-ui:icon-list>
 		<liferay-ui:icon
-			message="JIRA"
-			src="http://www.liferay.com/liferay-jedi-theme/images/language/en_US.png"
-			url='<%= "javascript: location.href = 'http://support.liferay.com/browse/" + jiraIssue.getKey() + "';" %>'
+			message="SVN"
+			src='<%= request.getContextPath() + "/svn/icon.png" %>'
+			url='<%= "javascript: location.href = '" + rowHREF + "';" %>'
 			target="_blank"
 			label="<%= true %>"
 		/>
-	</c:if>
-</liferay-ui:icon-list>
+
+		<c:if test="<%= jiraIssue != null %>">
+			<liferay-ui:icon
+				message="JIRA"
+				src='<%= request.getContextPath() + "/jira/icon.png" %>'
+				url='<%= "javascript: location.href = 'http://support.liferay.com/browse/" + jiraIssue.getKey() + "';" %>'
+				target="_blank"
+				label="<%= true %>"
+			/>
+		</c:if>
+	</liferay-ui:icon-list>
+</div>

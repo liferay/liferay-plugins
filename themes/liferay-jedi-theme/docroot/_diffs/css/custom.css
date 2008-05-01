@@ -613,43 +613,48 @@ ul.message-board-edit-controls {
 	width: 190px;
 }
 
-.portlet-recent-bloggers .user-name {
+.taglib-search-iterator .user-name {
 	display: block;
 	font-size: 12px;
 	font-weight: bold;
 	min-width: 100px;
 }
 
-.ie .portlset-recent-bloggers .user-name {
-	width: 100px;
+.taglib-search-iterator .user-profile-image {
 }
 
-.portlet-recent-bloggers .user-profile-image {
-}
-
-.portlet-recent-bloggers .user-details {
+.taglib-search-iterator .user-details {
 	font-size: 11px;
 	line-height: 1.3;
 }
 
-.portlet-recent-bloggers .portlet-section-body td, .portlet-recent-bloggers .portlet-section-alternate td, .portlet-recent-bloggers .portlet-section-body-hover td, .portlet-recent-bloggers .portlet-section-alternate-hover td {
+.taglib-search-iterator .portlet-section-body td, .taglib-search-iterator .portlet-section-alternate td, .taglib-search-iterator .portlet-section-body-hover td, .taglib-search-iterator .portlet-section-alternate-hover td {
 	border: none;
 	padding: 5px 10px;
 }
 
-.portlet-recent-bloggers .portlet-section-body td td, .portlet-recent-bloggers .portlet-section-alternate td td, .portlet-recent-bloggers .portlet-section-body-hover td td, .portlet-recent-bloggers .portlet-section-alternate-hover td td {
+.taglib-search-iterator .portlet-section-body td td, .taglib-search-iterator .portlet-section-alternate td td, .taglib-search-iterator .portlet-section-body-hover td td, .taglib-search-iterator .portlet-section-alternate-hover td td {
 	padding: 0;
 	padding-right: 5px;
 }
 
-.portlet-recent-bloggers .portlet-section-body td {
+.taglib-search-iterator .portlet-section-body td {
 	background: #eef0f2;
 }
 
-.portlet-recent-bloggers .portlet-section-body-hover td, .portlet-recent-bloggers .portlet-section-alternate-hover td {
+.taglib-search-iterator .portlet-section-body-hover td, .taglib-search-iterator .portlet-section-alternate-hover td {
 	background: #d5dade;
 }
 
-.portlet-recent-bloggers a {
+.taglib-search-iterator a {
 	text-decoration: none;
+}
+
+.wol-portlet-svn .revision-actions {
+	min-width: 110px;
+	text-align: left;
+}
+
+.wol-portlet-svn .revision-actions li {
+	margin-right: 0.5em;
 }
