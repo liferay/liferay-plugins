@@ -82,7 +82,7 @@
 			</p>
 
 			<%
-			String aboutMe = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "aboutMe", user2.getUserId(), StringPool.BLANK);
+			String aboutMe = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "aboutMe", user2.getUserId(), StringPool.BLANK));
 			%>
 
 			<c:if test="<%= Validator.isNotNull(aboutMe) %>">
@@ -168,9 +168,9 @@
 		catch (Exception e) {
 		}
 
-		String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "jiraUserId", user2.getUserId(), StringPool.BLANK);
-		String sfUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "sfUserId", user2.getUserId(), StringPool.BLANK);
-		String aboutMe = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "aboutMe", user2.getUserId(), StringPool.BLANK);
+		String jiraUserId = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "jiraUserId", user2.getUserId(), StringPool.BLANK));
+		String sfUserId = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "sfUserId", user2.getUserId(), StringPool.BLANK));
+		String aboutMe = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "aboutMe", user2.getUserId(), StringPool.BLANK));
 		%>
 
 		<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
