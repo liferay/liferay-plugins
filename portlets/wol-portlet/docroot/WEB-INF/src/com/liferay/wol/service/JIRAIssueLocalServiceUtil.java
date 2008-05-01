@@ -154,6 +154,15 @@ public class JIRAIssueLocalServiceUtil {
 			reporterJiraUserId);
 	}
 
+	public static com.liferay.wol.model.JIRAIssue getJIRAIssue(
+		java.lang.String key)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
+
+		return jiraIssueLocalService.getJIRAIssue(key);
+	}
+
 	public static com.liferay.wol.model.JIRAIssue getLastAssigneeJIRAIssue(
 		long projectId, java.lang.String assigneeJiraUserId)
 		throws com.liferay.portal.PortalException,

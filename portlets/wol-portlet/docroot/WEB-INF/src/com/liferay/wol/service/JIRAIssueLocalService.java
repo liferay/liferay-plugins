@@ -89,6 +89,10 @@ public interface JIRAIssueLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	public com.liferay.wol.model.JIRAIssue getJIRAIssue(java.lang.String key)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.PortalException;
+
 	public com.liferay.wol.model.JIRAIssue getLastAssigneeJIRAIssue(
 		long projectId, java.lang.String assigneeJiraUserId)
 		throws com.liferay.portal.SystemException,

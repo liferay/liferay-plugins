@@ -105,6 +105,7 @@ String svnUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "W
 				headerNames.add("revision");
 				headerNames.add("comments");
 				headerNames.add("date-and-time");
+				headerNames.add(StringPool.BLANK);
 
 				SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur1", SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
 
@@ -121,9 +122,36 @@ String svnUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "W
 				for (int i = 0; i < results.size(); i++) {
 					SVNRevision svnRevision = results.get(i);
 
-					ResultRow row = new ResultRow(svnRevision, svnRevision.getSvnRevisionId(), i);
-
 					String rowHREF = "http://lportal.svn.sourceforge.net/viewvc/lportal?view=rev&revision=" + svnRevision.getRevisionNumber();
+
+					JIRAIssue jiraIssue = null;
+
+					String comments = svnRevision.getComments();
+
+					if (comments.startsWith("LEP-")) {
+						comments = StringUtil.replace(comments, "\n", " ");
+
+						int pos = comments.indexOf(" ");
+
+						if (pos == -1) {
+							pos = comments.length();
+						}
+						else {
+							comments = comments.substring(0, pos);
+						}
+
+						String key = comments.substring(4, pos);
+
+						if (Validator.isNumber(key)) {
+							try {
+								jiraIssue = JIRAIssueLocalServiceUtil.getJIRAIssue("LEP-" + key);
+							}
+							catch (Exception e) {
+							}
+						}
+					}
+
+					ResultRow row = new ResultRow(new Object[] {svnRevision, rowHREF, jiraIssue}, svnRevision.getSvnRevisionId(), i);
 
 					TextSearchEntry rowTextEntry = new TextSearchEntry(SearchEntry.DEFAULT_ALIGN, SearchEntry.DEFAULT_VALIGN, String.valueOf(svnRevision.getRevisionNumber()), rowHREF, "_blank", String.valueOf(svnRevision.getRevisionNumber()));
 
@@ -135,7 +163,12 @@ String svnUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "W
 
 					rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
 
-					rowTextEntry.setName(svnRevision.getComments());
+					if (jiraIssue == null) {
+						rowTextEntry.setName(comments);
+					}
+					else {
+						rowTextEntry.setName(comments + "<br />" + jiraIssue.getSummary());
+					}
 
 					row.addText(rowTextEntry);
 
@@ -143,9 +176,13 @@ String svnUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "W
 
 					rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
 
-					rowTextEntry.setName(dateFormatDateTime.format(svnRevision.getCreateDate()));
+					rowTextEntry.setName("<nobr>" + dateFormatDateTime.format(svnRevision.getCreateDate()) + "</nobr>");
 
 					row.addText(rowTextEntry);
+
+					// Action
+
+					row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/svn/revision_action.jsp", application, request, response);
 
 					// Add result row
 
