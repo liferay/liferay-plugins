@@ -10,6 +10,7 @@
 		<portlet-name>2</portlet-name>
 		<icon>/svn/icon.png</icon>
 		<scheduler-class>com.liferay.wol.svn.job.SVNScheduler</scheduler-class>
+		<friendly-url-mapper-class>com.liferay.wol.svn.portlet.SVNFriendlyURLMapper</friendly-url-mapper-class>
 		<social-activity-interpreter-class>com.liferay.wol.svn.social.SVNActivityInterpreter</social-activity-interpreter-class>
 		<css-class-wrapper>wol-portlet-svn</css-class-wrapper>
 	</portlet>
