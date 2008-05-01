@@ -97,7 +97,7 @@ body {
 	background: none;
 }
 
-#navigation li.selected {
+#navigation ul li.selected {
 	background: #1F242A url(../images/navigation/bullet_selected.png) no-repeat 12px 50%;
 	padding-bottom: 4px;
 }
@@ -571,6 +571,10 @@ ul.message-board-edit-controls {
 }
 #navigation.profile ul li a {
 	color: #B4C1C9;
+}
+
+#navigation.profile ul li.selected {
+	background-image: none;
 }
 
 #navigation.profile ul li.selected a, #navigation.profile ul li.selected:hover a {
