@@ -24,7 +24,6 @@
 
 <%@ include file="/init.jsp" %>
 
-
 <c:choose>
 	<c:when test="<%= windowState.equals(WindowState.NORMAL) || !UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
 		<style type="text/css">
@@ -51,7 +50,7 @@
 				margin: 5px 0;
 				max-width: 120px;
 			}
-			
+
 			.ie6 .summary-container img {
 				width: 120px;
 			}
@@ -76,7 +75,6 @@
 
 			<img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user2.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user2.getPortraitId()) %>" />
 
-
 			<p>
 				<span class="user-job-title"><liferay-ui:message key="job-title" /></span>
 
@@ -84,7 +82,7 @@
 			</p>
 
 			<%
-				String aboutMe = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "aboutMe", user2.getUserId(), StringPool.BLANK);
+			String aboutMe = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "aboutMe", user2.getUserId(), StringPool.BLANK);
 			%>
 
 			<c:if test="<%= Validator.isNotNull(aboutMe) %>">
@@ -94,7 +92,9 @@
 					<%= aboutMe %>
 				</p>
 			</c:if>
+
 			<span class="user-about"><liferay-ui:message key="activity-details" /></span>
+
 			<table class="lfr-table">
 			<tr>
 				<td>
