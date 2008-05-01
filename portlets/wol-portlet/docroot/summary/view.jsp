@@ -24,6 +24,7 @@
 
 <%@ include file="/init.jsp" %>
 
+
 <c:choose>
 	<c:when test="<%= windowState.equals(WindowState.NORMAL) || !UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
 		<style type="text/css">
@@ -40,14 +41,19 @@
 			}
 
 			.summary-container h2 {
-				color: #83B4E1;
+				color: #3D536C;
 				font-size: 16px;
 				margin-bottom: 10px;
+				margin-top: 0;
 			}
 
 			.summary-container img {
-				margin: 5px;
-				float: right;
+				margin: 5px 0;
+				max-width: 120px;
+			}
+			
+			.ie6 .summary-container img {
+				width: 120px;
 			}
 
 			.summary-container p {
@@ -56,75 +62,86 @@
 
 			.summary-container span {
 				color: #3D536C;
+				display: block;
 				font-size: 10px;
+				font-weight: bold;
 				text-transform: uppercase;
 			}
 		</style>
 
 		<div class="summary-container">
-			<img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user2.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user2.getPortraitId()) %>" width="100" />
-
 			<h2>
 				<%= user2.getFullName() %>
 			</h2>
 
+			<img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user2.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user2.getPortraitId()) %>" />
+
+
 			<p>
-				<span><liferay-ui:message key="job-title" /></span><br />
+				<span class="user-job-title"><liferay-ui:message key="job-title" /></span>
 
 				<%= user2.getContact().getJobTitle() %>
 			</p>
 
-			<p>
-				<span><liferay-ui:message key="about-me" /></span><br />
+			<%
+				String aboutMe = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "aboutMe", user2.getUserId(), StringPool.BLANK);
+				System.out.println("aboutMe=" + aboutMe);
+				
+			%>
 
-				<%= ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "aboutMe", user2.getUserId(), StringPool.BLANK) %>
-			</p>
+			<c:if test="<%= Validator.isNotNull(aboutMe) %>">
+				<p>
+					<span class="user-about"><liferay-ui:message key="about-me" /></span>
+
+					<%= aboutMe %>
+				</p>
+			</c:if>
+			<span class="user-about"><liferay-ui:message key="activity-details" /></span>
+			<table class="lfr-table">
+			<tr>
+				<td>
+
+					<%
+					int mbMessagesCount = MBStatsUserLocalServiceUtil.getStatsUser(14, user2.getUserId()).getMessageCount();
+					%>
+
+					<liferay-ui:icon
+						image="view"
+						message='<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<b>" + mbMessagesCount + "</b>"}) %>'
+						url='<%= themeDisplay.getPathContext() + "/web/guest/community/forums/-/message_boards/recent_posts?_19_groupThreadsUserId=" + user2.getUserId() %>'
+						label="<%= true %>"
+					/>
+				</td>
+				<td>
+					<liferay-ui:icon
+						image="rss"
+						url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=1990&groupId=14&userId=" + user2.getUserId() %>'
+					/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+
+					<%
+					int blogsEntriesCount = BlogsStatsUserLocalServiceUtil.getStatsUser(group.getGroupId(), user2.getUserId()).getEntryCount();
+					%>
+
+					<liferay-ui:icon
+						image="view"
+						message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<b>" + blogsEntriesCount + "</b>"}) %>'
+						url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog" %>'
+						label="<%= true %>"
+					/>
+				</td>
+				<td>
+					<liferay-ui:icon
+						image="rss"
+						url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog/-/blogs/rss" %>'
+					/>
+				</td>
+			</tr>
+			</table>
 		</div>
-
-		<table class="lfr-table">
-		<tr>
-			<td>
-
-				<%
-				int mbMessagesCount = MBStatsUserLocalServiceUtil.getStatsUser(14, user2.getUserId()).getMessageCount();
-				%>
-
-				<liferay-ui:icon
-					image="view"
-					message='<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<b>" + mbMessagesCount + "</b>"}) %>'
-					url='<%= themeDisplay.getPathContext() + "/web/guest/community/forums/-/message_boards/recent_posts?_19_groupThreadsUserId=" + user2.getUserId() %>'
-					label="<%= true %>"
-				/>
-			</td>
-			<td>
-				<liferay-ui:icon
-					image="rss"
-					url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=1990&groupId=14&userId=" + user2.getUserId() %>'
-				/>
-			</td>
-		</tr>
-		<tr>
-			<td>
-
-				<%
-				int blogsEntriesCount = BlogsStatsUserLocalServiceUtil.getStatsUser(group.getGroupId(), user2.getUserId()).getEntryCount();
-				%>
-
-				<liferay-ui:icon
-					image="view"
-					message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<b>" + blogsEntriesCount + "</b>"}) %>'
-					url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog" %>'
-					label="<%= true %>"
-				/>
-			</td>
-			<td>
-				<liferay-ui:icon
-					image="rss"
-					url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog/-/blogs/rss" %>'
-				/>
-			</td>
-		</tr>
-		</table>
 
 		<c:if test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
 			<br />
