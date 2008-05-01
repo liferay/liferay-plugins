@@ -85,8 +85,6 @@
 
 			<%
 				String aboutMe = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "aboutMe", user2.getUserId(), StringPool.BLANK);
-				System.out.println("aboutMe=" + aboutMe);
-				
 			%>
 
 			<c:if test="<%= Validator.isNotNull(aboutMe) %>">
