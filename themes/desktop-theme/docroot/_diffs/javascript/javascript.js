@@ -65,7 +65,7 @@ var LiferayDesktop = function () {
 			var dock = $("#dock-wrapper");
 			var sidebar = $("#sidebar-wrapper");
 
-			mainContainer.css({"height":height-dock.height()-containerSpacer+"px","width":width-containerSpacer+"px","overflow":"auto"});
+			mainContainer.css({"height":height-dock.height()-containerSpacer+"px","width":width-containerSpacer+"px","overflow":"auto","position":"relative"});
 			sidebar.css({"position":sidebarPosition});
 
 			if ((height < mainContent.height()) && (width < mainContent.width())) {
