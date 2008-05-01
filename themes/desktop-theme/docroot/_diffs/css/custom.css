@@ -29,6 +29,20 @@ body {
 	position: relative;
 }
 
+.popup-alert-notice, .popup-alert-warning {
+	background-color: #E4E1DC;
+	border-color: white;
+	border-style: solid;
+	border-width: 10px 1px 1px;
+	color: #000000;
+	left: 35%;
+	opacity: 0.87;
+	filter: alpha(opacity=87);
+	padding: 7px 10px 10px 30px;
+	top: 70%;
+	width: 300px;
+}
+
 .loading-animation {
 	background: url(../images/progress_bar/loading_animation.gif) no-repeat center center;
 }
@@ -93,11 +107,11 @@ body {
 	border-top: 1px dotted #888888;
 }
 
-.ie.js .interactive-mode li.home a {
+.js.ie .interactive-mode li.home a {
 	margin: 0 1px 0 5px;
 }
 
-.ie.js .interactive-mode ul.taglib-home a {
+.js.ie .interactive-mode ul.taglib-home a {
 	margin: 0;
 }
 
@@ -303,6 +317,7 @@ body {
 .ie6 .columns-max .portlet .b {
 	position: relative;
 	right: -4px;
+	width: expression(parseInt(this.parentNode.offsetWidth-4) + "px");
 }
 
 .portlet .b .b-content {
@@ -315,16 +330,7 @@ body {
 
 .ie6 .portlet .b .b-content {
 	background: transparent url(../images/portlet/portlet_bg.png) no-repeat scroll bottom left;
-	position: relative;
-	left: 0;
-	bottom: 0;
-}
-
-.ie6 .columns-max .portlet .b .b-content {
-	position: absolute;
-	left: -4px;
-	width: 25px;
-	bottom: -1px;
+	display: none;
 }
 
 .portlet-topper {
@@ -351,15 +357,22 @@ body {
 	font-size: 11px;
 	font-stretch: semi-condensed;
 	font-weight: 300;
-	line-height: 19px;
+	height: 19px;
 	overflow: hidden;
 	padding: 0 0 0 29px;
 	position: relative;
 	text-align: center;
+	top: 0;
 }
 
 .ie .portlet-address {
-	line-height: 18px;
+	height: 18px;
+	top: 1px;
+}
+
+.ie6 .portlet-address {
+	height: 17px;
+	top: 2px;
 }
 
 /* ---------- Styles for Portlet mode icons ---------- */
@@ -484,6 +497,16 @@ body {
 	text-decoration: underline;
 }
 
+.portlet-group-name {
+	display: none;
+}
+
+#portlet-scrollbars {
+	background: #ffffff;
+	padding: -10px;
+	overflow: auto;
+}
+
 /* ---------- Styles for Portlet drag and drop ---------- */
 
 .portlet-decorate-resize-container {
@@ -577,10 +600,8 @@ body {
 
 /* ---------- Custom styles for the Desktop theme ---------- */
 
-#portlet-scrollbars {
-	background: #ffffff;
-	padding: -10px;
-	overflow: auto;
+#main-container {
+	position: relative;
 }
 
 #dock-wrapper {
@@ -606,7 +627,7 @@ body {
 
 #taskbar-portlets {
 	margin: 0;
-	padding: 0 5px 0 52px;
+	padding: 0 10px 0 52px;
 }
 
 #taskbar-portlets .taskbar-link {
@@ -659,24 +680,6 @@ body {
 	overflow: hidden;
 }
 
-.portlet-group-name {
-	display: none;
-}
-
-.popup-alert-notice, .popup-alert-warning {
-	background-color: #E4E1DC;
-	border-color: white;
-	border-style: solid;
-	border-width: 10px 1px 1px;
-	color: #000000;
-	left: 35%;
-	opacity: 0.87;
-	filter: alpha(opacity=87);
-	padding: 7px 10px 10px 30px;
-	top: 70%;
-	width: 300px;
-}
-
 /* ---------- Styles for the Desktop Sidebar ---------- */
 
 #sidebar-wrapper {
@@ -685,11 +688,12 @@ body {
 	height: 100%;
 	position: absolute;
 	right:0;
-	top: 28px;
+	top: 0;
 	width: 20px;
 }
 
 .ie6 #sidebar-wrapper {
+	top: 28px;
 	background: transparent url(../images/desktop/sidebar_black_bg.png) repeat-y scroll 25px 0;
 	filter: alpha(opacity=85);
 }
@@ -751,20 +755,34 @@ body {
 	background: transparent url(../images/arrows/07_right_hover.png) no-repeat scroll 50% 45%;
 }
 
-.portal-add-content {
-	background: transparent;
-}
-
-.portal-add-content .portlet-msg-info{
-	background: transparent url(../images/messages/info.png) no-repeat scroll 0.5em 50%;
-	margin: 20px 0 0 0;
-	color: #ffffff;
-}
-
 #sidebar-top {
 	height: 100px;
-	margin: 15px 0 0 0;
+	margin: 45px 0 0 0;
 	overflow: hidden;
+}
+
+.ie6 #sidebar-top {
+	margin: 15px 0 0 0;
+}
+
+#sidebar-top .month {
+	color:#222222;
+	display:block;
+	font-family: 'Arial', 'Tahoma','Lucida Sans Unicode';
+	font-size:17px;
+	font-weight:bold;
+	line-height:25px;
+	margin:10px 0 5px;
+	text-align:center;
+}
+
+#sidebar-top .day {
+	color: #000000;
+	display:block;
+	font-size:40px;
+	font-weight:bold;
+	line-height:40px;
+	text-align:center;
 }
 
 #sidebar-top .clock {
@@ -792,6 +810,16 @@ body {
 	margin: 0 5px 0 0;
 }
 
+.portal-add-content {
+	background: transparent;
+}
+
+.portal-add-content .portlet-msg-info{
+	background: transparent url(../images/messages/info.png) no-repeat scroll 0.5em 50%;
+	margin: 20px 0 0 0;
+	color: #ffffff;
+}
+
 .portal-add-content-search {
 	margin:10px 0 20px;
 }
@@ -802,26 +830,6 @@ body {
 
 .portal-add-content .lfr-content-category.visible {
 	border-bottom: none;
-}
-
-#sidebar-top .month {
-	color:#222222;
-	display:block;
-	font-family: 'Arial', 'Tahoma','Lucida Sans Unicode';
-	font-size:17px;
-	font-weight:bold;
-	line-height:25px;
-	margin:10px 0 5px;
-	text-align:center;
-}
-
-#sidebar-top .day {
-	color: #000000;
-	display:block;
-	font-size:40px;
-	font-weight:bold;
-	line-height:40px;
-	text-align:center;
 }
 
 .portal-add-content .lfr-portlet-item:hover, .portal-add-content .lfr-portlet-item.over {
@@ -842,6 +850,8 @@ body {
 	background: none;
 }
 
+/* ---------- Style fixes for the Desktop Theme ---------- */
+
 #portlet-wrapper-sign-in .portlet-address {
 	top: 3px;
 }
@@ -850,14 +860,10 @@ body {
 	top: 4px;
 }
 
-.ie6 #portlet-wrapper-sign-in .tabs li {
+.ie6 #portlet-wrapper-sign-in .lfr-portal-login {
 	position: relative;
 }
 
 .ie6 .tabs li.current {
 	top: 0;
-}
-
-.ie6 #portlet-wrapper-sign-in .lfr-portal-login {
-	position: relative;
 }

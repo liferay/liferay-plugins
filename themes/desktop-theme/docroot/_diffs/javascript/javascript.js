@@ -3,21 +3,11 @@ var LiferayDesktop = function () {
 
 	return {
 
-		fixDock: function() {
-			Liferay.Util.actsAsAspect(Liferay.Dock);
-			Liferay.Dock.after('init',
-				function() {
-					var dock = jQuery('.lfr-dock');
-					dock.css('position', 'fixed');
-				}
-			);
-		},
+		/* ---------- Init Functions ---------- */
 
-		/* ---------- Dock Menu Functions ---------- */
-
-		dockMenu: function() {
+		initVistaMenu: function() {
 			var instance = this;
-			
+
 			if (jQuery(document.body).is('.vista')) {
 				Liferay.Util.createFlyouts({
 					container: jQuery('.navigation-menu')[0],
@@ -33,71 +23,104 @@ var LiferayDesktop = function () {
 				});
 			}
 		},
+		initIE6Fix: function() {
+			if (jQuery('.ie6').size() > 0) {
+				jQuery(".tabs li").css({"position":"relative"});
+			}
+		},
 
 		/* ---------- Non-Free-Form Layouts - Body Scrollbar Function ---------- */
 
-		addScrollbar: function() {
-			var contentWrapper = $("#content-wrapper");
-			var sidebarWrapper = $("#sidebar-wrapper");
+		nonFreeFormLayout: function() {
+			var mainContainer = $("#main-container");
+			var mainContent = $("#main-content");
+			var sidebarPosition = "fixed"
+
 			var height = 0;
 			var width = 0;
-			var taskbarHeight = 0;
 
-			// Add layout-grid element for 1-Column layout template
-			if ($("#layout-grid").size() == 0) {
-				$("#column-1").wrap("<div id='layout-grid'></div>");
-			}
+			var containerSpacer = 0;
+			var scrollbarSpacer = 17;
 
-			var layoutGrid = $("#layout-grid");
+			height = document.documentElement.offsetHeight;
+			width = document.documentElement.offsetWidth;
 
-			// Color Scheme
-			if (jQuery(document.body).is('.osx')) {
-				taskbarHeight = 23;
-			}
-			else {
-				taskbarHeight = 28;
-			}
-
-			// Provide appropriate height / width
 			if ($('.ie6').size() > 0) {
-				// IE6/Standards uses html (documentElement) to define Viewport height
-				// IE6/Quirksmode uses body (body) to define Viewport height
-				height = document.documentElement.offsetHeight-taskbarHeight-4;
-				width = document.documentElement.offsetWidth-4;
+				height = document.documentElement.offsetHeight;
+				width = document.documentElement.offsetWidth;
+
+				containerSpacer = 4;
+				scrollbarSpacer = 21;
+				sidebarPosition = "absolute";
 			}
 			else if ($('.ie').size() > 0) {
-				height = document.body.offsetHeight-taskbarHeight;
+				height = document.body.offsetHeight;
 				width = document.body.offsetWidth;
 			}
 			else {
-				height = window.innerHeight-taskbarHeight;
+				height = window.innerHeight;
 				width = window.innerWidth;
 			}
 
-			// Shift the Desktop Sidebar left amd up
-			if ((layoutGrid.height() > height) && (layoutGrid.width() > width) && (!jQuery(document.body).is('.vista'))) {
-				innerWidth = width-17;
-				layoutGrid.css({width:innerWidth+"px"});
-				sidebarWrapper.css({"right":17,height:height-17+"px"});
+			var dock = $("#dock-wrapper");
+			var sidebar = $("#sidebar-wrapper");
+
+			mainContainer.css({"height":height-dock.height()-containerSpacer+"px","width":width-containerSpacer+"px","overflow":"auto"});
+			sidebar.css({"position":sidebarPosition});
+
+			if ((height < mainContent.height()) && (width < mainContent.width())) {
+				mainContent.css({"height":mainContent.height()-scrollbarSpacer+"px"});
+				mainContent.css({"width":mainContent.width()-scrollbarSpacer+"px"});
+
+				if ($('.ie6').size() == 0) {
+					sidebar.css({"right":scrollbarSpacer+"px"});
+				}
 			}
-			// Shift the Desktop Sidebar left
-			else if (layoutGrid.height() > height) {
-				innerWidth = width-17;
-				layoutGrid.css({width:innerWidth+"px"});
-				sidebarWrapper.css({"right":17,height:height+"px"});
+			else if (height < mainContent.height()) {
+				mainContent.css({"height":mainContent.height()+"px"});
+				mainContent.css({"width":width-scrollbarSpacer+"px"});
+
+				if ($('.ie6').size() == 0) {
+					sidebar.css({"right":scrollbarSpacer+"px"});
+				}
 			}
-			// Shift the Desktop Sidebar up
-			else if ((layoutGrid.width() > width) && (!jQuery(document.body).is('.vista'))) {
-				layoutGrid.css({width:width+"px"});
-				sidebarWrapper.css({"right":0,height:height-17+"px"});
+			else if (width < mainContent.width()) {
+				mainContent.css({"height":height-scrollbarSpacer+"px"});
+				mainContent.css({"width":mainContent.width()+"px"});
+
+				if ($('.ie6').size() == 0) {
+					sidebar.css({"right":""});
+				}
 			}
-			// No shift needed
 			else {
-				layoutGrid.css({width:width+"px"});
-				sidebarWrapper.css({"right":0,height:height+"px"});
+				mainContent.css({"height":""});
+				mainContent.css({"width":""});
+
+				if ($('.ie6').size() == 0) {
+					sidebar.css({"right":""});
+				}
 			}
 
-			contentWrapper.css({height:height+"px",width:width+"px",'overflow':'auto'});
+			if ($('.ie6').size() > 0) {
+				mainContainer.scroll(function () { 
+					var offsetTop = mainContainer.scrollTop();
+					var offsetRight = sidebar.css("right");
+
+					if ((mainContent.height() > mainContainer.height()) && (offsetTop > mainContent.height()-sidebar.height())) {
+						offsetTop = mainContent.height()-sidebar.height();
+					}
+
+					if (offsetRight == "-1px") {
+						offsetRight = "0px";
+					}
+					else {
+						offsetRight = "-1px";
+					}
+
+					sidebar.css({"top":offsetTop+"px"});
+					sidebar.css({"right":offsetRight});
+				});
+			}
 		},
 
 		/* ---------- Portlet Maximized - Portlet Scrollbar Function ---------- */
@@ -122,10 +145,7 @@ var LiferayDesktop = function () {
 				portletTopper = 59;
 			}
 
-			// Provide appropriate height / width
 			if ($('.ie6').size() > 0) {
-				// IE6/Standards uses html (documentElement) to define Viewport height
-				// IE6/Quirksmode uses body (body) to define Viewport height
 				height = document.documentElement.offsetHeight-taskbarHeight-portletTopper-21-20+15;
 				width = document.documentElement.offsetWidth-21-21-20+15;
 			}
@@ -225,6 +245,10 @@ var LiferayDesktop = function () {
 						LiferayDesktop.portletModesHoverOut(portletId);
 					}
 				);
+
+				if ($('.ie6').size() > 0) {
+					LiferayDesktop.initIE6();
+				}
 			}
 		},
 
@@ -428,18 +452,30 @@ jQuery(document).ready(
 	*/
 
 	function() {
-		LiferayDesktop.fixDock();
-		LiferayDesktop.dockMenu();
+		LiferayDesktop.initIE6Fix();
+		LiferayDesktop.initVistaMenu();
 		LiferayDesktop.addContentInit();
 
 		if (jQuery(".columns-max").size() > 0) {
+			var resizeTimer = null;
+
 			LiferayDesktop.portletMaxResize();
-			jQuery(window).resize(function() {LiferayDesktop.portletMaxResize();});
+			jQuery(window).bind('resize', function() {
+				if (resizeTimer) clearTimeout(resizeTimer);
+				resizeTimer = setTimeout(function() {LiferayDesktop.portletMaxResize();}, 50);
+			});
 		}
 
-		if ((jQuery(".freeform").size() == 0) && (jQuery(".columns-max").size() == 0) && (jQuery("#portlet-wrapper-sign-in").size() != 1)) {
-			LiferayDesktop.addScrollbar();
-			jQuery(window).resize(function() {LiferayDesktop.addScrollbar();});
+		if ((jQuery(".freeform").size() == 0) && 
+				(jQuery(".columns-max").size() == 0) &&
+				(jQuery("#portlet-wrapper-sign-in").size() == 0)) {
+			var resizeTimer = null;
+
+			LiferayDesktop.nonFreeFormLayout();
+			jQuery(window).bind('resize', function() {
+				if (resizeTimer) clearTimeout(resizeTimer);
+				resizeTimer = setTimeout(function() {LiferayDesktop.nonFreeFormLayout();}, 50);
+			});
 		}
 	}
 );

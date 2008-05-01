@@ -68,7 +68,7 @@ body.vista {
 }
 
 .ie6 .vista .portlet .content {
-	background: transparent url(../../images/color_schemes/vista/portlet/ie6_portlet_bg.png) no-repeat scroll top right;
+	background: transparent url(../../images/color_schemes/vista/portlet/portlet_opaque_bg.png) no-repeat scroll top right;
 }
 
 .vista .portlet .t {
@@ -76,8 +76,8 @@ body.vista {
 }
 
 .ie6 .vista .portlet .t {
-	background: transparent url(../../images/color_schemes/vista/portlet/ie6_portlet_bg.png) no-repeat scroll top left;
-	height: expression(parseInt(this.parentNode.offsetHeight-21) + "px");
+	background: transparent url(../../images/color_schemes/vista/portlet/portlet_opaque_bg.png) no-repeat scroll top left;
+	height: expression(parseInt(this.parentNode.offsetHeight-12) + "px");
 	top: 0;
 }
 
@@ -86,7 +86,7 @@ body.vista {
 }
 
 .ie6 .vista .portlet .b {
-	background: transparent url(../../images/color_schemes/vista/portlet/ie6_portlet_bg.png) no-repeat scroll bottom right;
+	background: transparent url(../../images/color_schemes/vista/portlet/portlet_opaque_bg.png) no-repeat scroll bottom right;
 }
 
 .vista .portlet .b .b-content {
@@ -94,7 +94,7 @@ body.vista {
 }
 
 .ie6 .vista .portlet .b .b-content {
-	background: transparent url(../../images/color_schemes/vista/portlet/ie6_portlet_bg.png) no-repeat scroll bottom left;
+	background: transparent url(../../images/color_schemes/vista/portlet/portlet_opaque_bg.png) no-repeat scroll bottom left;
 	position: relative;
 	left: 0;
 	bottom: 0;
@@ -397,8 +397,17 @@ body.vista {
 	bottom: 28px;
 }
 
+.ie6 .vista #sidebar-wrapper {
+	top: 0;
+	bottom: auto;
+}
+
 .vista #sidebar-top {
 	margin: 43px 0 0;
+}
+
+.ie6 .vista #sidebar-top {
+	margin: 15px 0 0;
 }
 
 .vista #sidebar-link a {
