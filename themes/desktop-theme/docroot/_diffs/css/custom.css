@@ -501,6 +501,11 @@ body {
 	text-decoration: underline;
 }
 
+.ie6 .portlet-content-container {
+	position: relative;
+	top: 0;
+}
+
 .portlet-group-name {
 	display: none;
 }
@@ -545,6 +550,10 @@ body {
 .tabs li {
 	background: transparent url(../images/common/tabs_bg.png) no-repeat scroll 100% -50px;
 	position: static;
+}
+
+.ie6 .tabs li {
+	position: relative;
 }
 
 .tabs li a,
@@ -697,9 +706,9 @@ body {
 }
 
 .ie6 #sidebar-wrapper {
-	top: 28px;
 	background: transparent url(../images/desktop/sidebar_black_bg.png) repeat-y scroll 25px 0;
 	filter: alpha(opacity=85);
+	top: 28px;
 }
 
 #sidebar {
@@ -858,10 +867,6 @@ body {
 
 #portlet-wrapper-sign-in .portlet-address {
 	top: 3px;
-}
-
-.ie #portlet-wrapper-sign-in .portlet-address {
-	top: 0;
 }
 
 .ie6 #portlet-wrapper-sign-in .lfr-portal-login {

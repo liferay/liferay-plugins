@@ -3,7 +3,7 @@
 /* ---------- Styles in base.css ---------- */
 
 body.osx {
-	background: #01629c url(../../images/color_schemes/osx/desktop/desktop_bg.png) no-repeat fixed 50% 50%;
+	background: #01629c url(../../images/color_schemes/osx/desktop/desktop_bg.jpg) no-repeat fixed 50% 50%;
 }
 
 /* ---------- Styles in navigation.css ---------- */
@@ -354,6 +354,7 @@ body.osx {
 
 .osx #taskbar {
 	background: transparent url(../../images/color_schemes/osx/desktop/taskbar_bg.png) repeat-x scroll 0 0;
+	height: 23px;
 }
 
 .osx #taskbar-portlets {
@@ -399,15 +400,22 @@ body.osx {
 
 /* ---------- Styles for the Desktop Sidebar ---------- */
 
+.ie6 .osx #main-container {
+	position: relative;
+}
+
 .osx #sidebar-wrapper {
 	top: 23px;
 }
 
 .ie6 .osx #sidebar-wrapper {
-	top: 23px;
-	padding-bottom: 5px;
+	top: 0;
 }
 
 .osx #sidebar-top {
 	margin: 15px 0 0 0;
+}
+
+.ie6 .osx #sidebar-top {
+	margin: 38px 0 0 0;
 }
