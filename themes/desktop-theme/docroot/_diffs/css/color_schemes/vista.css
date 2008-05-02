@@ -441,3 +441,9 @@ body.vista {
 .ie6 .vista #sidebar-link a.expanded:hover {
 	background: transparent url(../../images/arrows/07_right_hover.png) no-repeat scroll 50% 55%;
 }
+
+/* ---------- Styles for the Sign-in Screen ---------- */
+
+.vista #portlet-wrapper-sign-in .portlet-address {
+	top: 0px;
+}
