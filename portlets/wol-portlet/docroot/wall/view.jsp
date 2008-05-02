@@ -142,8 +142,8 @@ for (int i = 0; i < results.size(); i++) {
 					postMessage = LanguageUtil.format(pageContext, "write-on-x-wall", wallUser.getFirstName());
 				}
 
-				String wallToWallHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + "/home/-/wall/" + wallUser.getScreenName();
-				String postHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + "/home/-/wall";
+				String wallToWallHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + "/profile/-/wall/" + wallUser.getScreenName();
+				String postHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + "/profile/-/wall";
 				String deleteHREF = "javascript: " + namespace + "deleteWallEntry(" + wallEntry.getWallEntryId() + ");";
 				%>
 

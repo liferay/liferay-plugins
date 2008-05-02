@@ -33,6 +33,7 @@ SVNRevision svnRevision = (SVNRevision)objArray[0];
 String rowHREF = (String)objArray[1];
 JIRAIssue jiraIssue = (JIRAIssue)objArray[2];
 %>
+
 <div class="revision-actions">
 	<liferay-ui:icon-list>
 		<liferay-ui:icon
