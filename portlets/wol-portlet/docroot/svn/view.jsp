@@ -28,15 +28,112 @@
 	<c:when test="<%= themeDisplay.isStateExclusive() %>">
 
 		<%
-		response.setContentType(ContentTypes.TEXT_XML_UTF8);
-
 		String url = ParamUtil.getString(request, "url");
 		boolean all = ParamUtil.getBoolean(request, "all");
+
+		String svnURL = "http://lportal.svn.sourceforge.net/svnroot/lportal" + url;
+
+		SVNRepository svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(svnURL);
+
+  		List<SVNRevision> svnRevisions = null;
+
+		if (all) {
+			svnRevisions = SVNRevisionLocalServiceUtil.getSVNRevisions(svnRepository.getSvnRepositoryId(), 0, 100);
+		}
+		else {
+			String svnUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "sfUserId", user2.getUserId(), StringPool.BLANK);
+
+			svnRevisions = SVNRevisionLocalServiceUtil.getSVNRevisions(svnUserId, svnRepository.getSvnRepositoryId(), 0, 100);
+		}
+
+		String title = null;
+
+		if (all) {
+			title = LanguageUtil.format(pageContext, "all-commits-on-x", svnURL);
+		}
+		else {
+		    title = LanguageUtil.format(pageContext, "x's-commits-on-x", new Object[] {user2.getFullName(), svnURL});
+		}
+
+		SyndFeed syndFeed = new SyndFeedImpl();
+
+		syndFeed.setFeedType(RSSUtil.DEFAULT_FEED_TYPE);
+		syndFeed.setLink(PortalUtil.getPortalURL(request) + PortalUtil.getCurrentURL(request));
+		syndFeed.setTitle(title);
+		syndFeed.setDescription(title);
+
+		List<SyndEntry> entries = new ArrayList<SyndEntry>();
+
+		syndFeed.setEntries(entries);
+
+		for (SVNRevision svnRevision : svnRevisions) {
+			String link = "http://lportal.svn.sourceforge.net/viewvc/lportal?view=rev&revision=" + svnRevision.getRevisionNumber();
+
+			SyndEntry syndEntry = new SyndEntryImpl();
+
+		    syndEntry.setAuthor(user2.getFullName());
+		    syndEntry.setTitle(LanguageUtil.get(pageContext, "revision") + StringPool.SPACE + svnRevision.getRevisionNumber());
+		    syndEntry.setLink(link);
+		    syndEntry.setPublishedDate(svnRevision.getCreateDate());
+
+			Object[] jiraIssueAndComments = svnRevision.getJIRAIssueAndComments();
+
+			JIRAIssue jiraIssue = null;
+			String comments = svnRevision.getComments();
+
+			if (jiraIssueAndComments != null) {
+				jiraIssue = (JIRAIssue)jiraIssueAndComments[0];
+				comments = (String)jiraIssueAndComments[1];
+
+				StringMaker sm = new StringMaker();
+
+				sm.append(comments);
+				sm.append("<br />");
+
+				sm.append(jiraIssue.getSummary());
+				sm.append("<br />");
+
+				sm.append("<a href=\"");
+				sm.append(link);
+				sm.append("\"><img border=\"0\" src=\"");
+				sm.append(request.getContextPath());
+				sm.append("/svn/icon.png\" />SVN</a><br />");
+
+				sm.append("<a href=\"http://support.liferay.com/browse/");
+				sm.append(jiraIssue.getKey());
+				sm.append("\"><img border=\"0\" src=\"");
+				sm.append(request.getContextPath());
+				sm.append("/jira/icon.png\" />JIRA</a>");
+
+				comments = sm.toString();
+			}
+
+		    SyndContent syndContent = new SyndContentImpl();
+
+			syndContent.setType(RSSUtil.DEFAULT_ENTRY_TYPE);
+			syndContent.setValue(comments);
+
+			syndEntry.setDescription(syndContent);
+
+			entries.add(syndEntry);
+		}
+
+		String feedXML = StringPool.BLANK;
+
+		try {
+			feedXML = RSSUtil.export(syndFeed);
+		}
+		catch (Exception e) {
+		    _log.error(e, e);
+		}
+
+		response.setContentType(ContentTypes.TEXT_XML_UTF8);
 		%>
 
+		<%= feedXML %>
 	</c:when>
 	<c:otherwise>
-		<style type="text/css" media="screen">
+		<style type="text/css">
 			.wol-portlet-svn .project-title {
 				margin-bottom: 0.5em;
 			}
@@ -125,12 +222,12 @@
 										<td>
 											<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId()) %>
 										</td>
-										<!--<td>
+										<td>
 											<liferay-ui:icon
 												image="rss"
 												url='<%= PortalUtil.getPathFriendlyURLPublic() + StringPool.SLASH + user2.getScreenName() + "/profile/-/svn/rss/user" + svnRepository.getShortURL() %>'
 											/>
-										</td>-->
+										</td>
 									</tr>
 									<tr>
 										<td>
@@ -139,12 +236,12 @@
 										<td>
 											<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnRepository.getSvnRepositoryId()) %>
 										</td>
-										<!--<td>
+										<td>
 											<liferay-ui:icon
 												image="rss"
 												url='<%= PortalUtil.getPathFriendlyURLPublic() + StringPool.SLASH + user2.getScreenName() + "/profile/-/svn/rss/all" + svnRepository.getShortURL() %>'
 											/>
-										</td>-->
+										</td>
 									</tr>
 									</table>
 								</div>
@@ -206,31 +303,14 @@
 
 							String rowHREF = "http://lportal.svn.sourceforge.net/viewvc/lportal?view=rev&revision=" + svnRevision.getRevisionNumber();
 
-							JIRAIssue jiraIssue = null;
+							Object[] jiraIssueAndComments = svnRevision.getJIRAIssueAndComments();
 
+							JIRAIssue jiraIssue = null;
 							String comments = svnRevision.getComments();
 
-							if (comments.startsWith("LEP-")) {
-								comments = StringUtil.replace(comments, "\n", " ");
-
-								int pos = comments.indexOf(" ");
-
-								if (pos == -1) {
-									pos = comments.length();
-								}
-								else {
-									comments = comments.substring(0, pos);
-								}
-
-								String key = comments.substring(4, pos);
-
-								if (Validator.isNumber(key)) {
-									try {
-										jiraIssue = JIRAIssueLocalServiceUtil.getJIRAIssue("LEP-" + key);
-									}
-									catch (Exception e) {
-									}
-								}
+							if (jiraIssueAndComments != null) {
+								jiraIssue = (JIRAIssue)jiraIssueAndComments[0];
+								comments = (String)jiraIssueAndComments[1];
 							}
 
 							ResultRow row = new ResultRow(new Object[] {svnRevision, rowHREF, jiraIssue}, svnRevision.getSvnRevisionId(), i);
@@ -302,3 +382,7 @@
 		</c:choose>
 	</c:otherwise>
 </c:choose>
+
+<%!
+private static Log _log = LogFactoryUtil.getLog("svn.view.jsp");
+%>
