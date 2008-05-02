@@ -200,7 +200,7 @@ var LiferayDesktop = function () {
 			var sidebarWrapper = $("#sidebar-wrapper");
 
 			if (sidebarWrapper.size() == 1) {
-				sidebarWrapper.prepend("<div id='sidebar-link'><a href='javascript: LiferayDesktop.addContentAnimate();'></a></div>");
+				sidebarWrapper.prepend('<div id="sidebar-link"><a href="javascript: LiferayDesktop.addContentAnimate();"></a></div>');
 				sidebarWrapper.css({"display":""});
 
 				var plid = sidebar.attr("plid");
@@ -320,7 +320,7 @@ var LiferayDesktop = function () {
 					var selectTaskbarLink = "p_p_id_" + portletId + "_";
 
 					if (selectTaskbarLink != portletLink) {
-						LiferayDesktop.restorePortlet("",portletId,"","");
+						LiferayDesktop.restorePortlet('',portletId,'','');
 					}
 				}
 			}
@@ -372,7 +372,7 @@ var LiferayDesktop = function () {
 					var restoreHtmlStr = "javascript: LiferayDesktop.restorePortlet('','" + portletId + "','','');";
 				}
 
-				taskbar.append("<li id='p_p_id_" + portletId + "_taskbar' class='taskbar-link'><a href='" + restoreHtmlStr + "'>" + titleText + "</a></li>");
+				taskbar.append('<li id="p_p_id_' + portletId + '_taskbar" class="taskbar-link"><a href="' + restoreHtmlStr + '">' + titleText + '</a></li>');
 
 				if (!$(document.body).is(".osx")) {
 					var taskbarLinks = $("#taskbar-portlets .taskbar-link");
