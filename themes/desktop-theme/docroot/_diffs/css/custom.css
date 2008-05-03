@@ -9,6 +9,7 @@
 
 @import url(color_schemes/osx.css);
 @import url(color_schemes/vista.css);
+@import url(color_schemes/linux.css);
 
 /* ---------- Styles in base.css ---------- */
 
@@ -17,7 +18,7 @@ html {
 }
 
 body {
-	background: #347510 url(../images/desktop/desktop_bg.png) no-repeat fixed 50% 50%;
+	background: #d5d9dc url(../images/desktop/desktop_bg.jpg) no-repeat fixed 50% 50%;
 }
 
 #wrapper {
@@ -394,7 +395,6 @@ body {
 	position: absolute;
 	right: 13px;
 	top: 37px;
-	z-index: 1;
 }
 
 .portlet-mode-icons {
@@ -415,69 +415,69 @@ body {
 }
 
 .portlet-min a {
-	background: transparent url(../images/color_schemes/linux/portlet/minimize.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/liferay/portlet/minimize.png) no-repeat scroll 0 0;
 	width: 22px;
 }
 
 .portlet-min a:active {
-	background: transparent url(../images/color_schemes/linux/portlet/minimize.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/liferay/portlet/minimize.png) no-repeat scroll 0 0;
 }
 
 .ie6 .portlet-min a,
 .ie6 .portlet-min a:active {
-	background: transparent url(../images/color_schemes/linux/portlet/minimize_opaque.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/liferay/portlet/minimize_opaque.png) no-repeat scroll 0 0;
 }
 
 .portlet-min a:hover {
-	background: transparent url(../images/color_schemes/linux/portlet/minimize_hover.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/liferay/portlet/minimize_hover.png) no-repeat scroll 0 0;
 }
 
 .ie6 .portlet-min a:hover {
-	background: transparent url(../images/color_schemes/linux/portlet/minimize_opaque_hover.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/liferay/portlet/minimize_opaque_hover.png) no-repeat scroll 0 0;
 }
 
 .portlet-max a {
-	background: transparent url(../images/color_schemes/linux/portlet/maximize.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/liferay/portlet/maximize.png) no-repeat scroll 0 0;
 	width: 22px;
 }
 
 .portlet-max a:active {
-	background: transparent url(../images/color_schemes/linux/portlet/maximize.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/liferay/portlet/maximize.png) no-repeat scroll 0 0;
 }
 
 .ie6 .portlet-max a,
 .ie6 .portlet-max a:active {
-	background: transparent url(../images/color_schemes/linux/portlet/maximize_opaque.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/liferay/portlet/maximize_opaque.png) no-repeat scroll 0 0;
 }
 
 .portlet-max a:hover {
-	background: transparent url(../images/color_schemes/linux/portlet/maximize_hover.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/liferay/portlet/maximize_hover.png) no-repeat scroll 0 0;
 }
 
 .ie6 .portlet-max a:hover {
-	background: transparent url(../images/color_schemes/linux/portlet/maximize_opaque_hover.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/liferay/portlet/maximize_opaque_hover.png) no-repeat scroll 0 0;
 }
 
 .portlet-close a {
-	background: transparent url(../images/color_schemes/linux/portlet/close.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/liferay/portlet/close.png) no-repeat scroll 0 0;
 	width: 38px;
 }
 
 .portlet-close a:active {
-	background: transparent url(../images/color_schemes/linux/portlet/close.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/liferay/portlet/close.png) no-repeat scroll 0 0;
 }
 
 .ie6 .portlet-close a,
 .ie6 .portlet-close a:active {
-	background: transparent url(../images/color_schemes/linux/portlet/close_opaque.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/liferay/portlet/close_opaque.png) no-repeat scroll 0 0;
 }
 
 .portlet-close a:hover {
-	background: transparent url(../images/color_schemes/linux/portlet/close_hover.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/liferay/portlet/close_hover.png) no-repeat scroll 0 0;
 }
 
 .ie6 .portlet-close a:hover {
-	background: transparent url(../images/color_schemes/linux/portlet/close_opaque_hover.png) no-repeat scroll 0 0;
+	background: transparent url(../images/color_schemes/liferay/portlet/close_opaque_hover.png) no-repeat scroll 0 0;
 }
 
 .portlet-icon-back {

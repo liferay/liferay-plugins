@@ -268,10 +268,6 @@ var LiferayDesktop = function () {
 						LiferayDesktop.portletModesHoverOut(portletId);
 					}
 				);
-
-				if ($(".ie6").size() > 0) {
-					LiferayDesktop.initIE6();
-				}
 			}
 		},
 

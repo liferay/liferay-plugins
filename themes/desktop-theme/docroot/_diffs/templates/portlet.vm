@@ -19,6 +19,12 @@
 				$theme.iconPortlet() $portlet_title
 			</span>
 
+			<div class="portlet-address">
+				<span id="portlet-group-name"></span> <img class="portlet-group-name" src="$images_folder/arrows/portlet_address.png" alt="" />
+				$layout.getHTMLTitle($locale) <img src="$images_folder/arrows/portlet_address.png" alt="" />
+				$portlet_title
+			</div>
+
 			#if ($portlet_display.isShowBackIcon())
 				<div class="portlet-icons" id="portlet-small-icon-bar_$portlet_id">
 					<a href="$portlet_back_url" class="portlet-icon-back">#language ("return-to-full-page")</a>
@@ -74,12 +80,6 @@
 					</span>
 				#end
 			#end
-
-			<div class="portlet-address">
-				<span id="portlet-group-name"></span> <img class="portlet-group-name" src="$images_folder/arrows/portlet_address.png" alt="" />
-				$layout.getHTMLTitle($locale) <img src="$images_folder/arrows/portlet_address.png" alt="" />
-				$portlet_title
-			</div>
 		</div>
 		<div class="portlet-content">
 			$portlet_content
