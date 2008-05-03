@@ -30,29 +30,6 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "
 
 <c:choose>
 	<c:when test="<%= Validator.isNotNull(jiraUserId) %>">
-		<style type="text/css">
-			.jira-summary .issue-count {
-				padding-right: 4px;
-				text-align: right;
-				width: 5%;
-			}
-
-			.jira-summary .activity-details {
-				width: 65%;
-				padding-bottom: 5px;
-			}
-
-			.jira-summary .activity-details .progress-bar {
-				background: #c2c8cb;
-				height: 15px;
-				margin-bottom: 2px;
-			}
-
-			.jira-summary .activity-details .progress-text {
-				padding-left: 4px;
-				font-weight: bold;
-			}
-		</style>
 
 		<%
 		String jiraURL = "http://support.liferay.com/secure/IssueNavigator.jspa?reset=true&pid=" + JIRAConstants.PROJECT_LEP;

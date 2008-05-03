@@ -4,6 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
+		<header-portlet-css>/summary/css.jsp</header-portlet-css>
 		<css-class-wrapper>portlet-summary</css-class-wrapper>
 	</portlet>
 	<portlet>
@@ -12,6 +13,7 @@
 		<scheduler-class>com.liferay.wol.svn.job.SVNScheduler</scheduler-class>
 		<friendly-url-mapper-class>com.liferay.wol.svn.portlet.SVNFriendlyURLMapper</friendly-url-mapper-class>
 		<social-activity-interpreter-class>com.liferay.wol.svn.social.SVNActivityInterpreter</social-activity-interpreter-class>
+		<header-portlet-css>/svn/css.jsp</header-portlet-css>
 		<css-class-wrapper>wol-portlet-svn</css-class-wrapper>
 	</portlet>
 	<portlet>
@@ -19,10 +21,12 @@
 		<icon>/jira/icon.png</icon>
 		<scheduler-class>com.liferay.wol.jira.job.JIRAScheduler</scheduler-class>
 		<social-activity-interpreter-class>com.liferay.wol.jira.social.JIRAActivityInterpreter</social-activity-interpreter-class>
+		<header-portlet-css>/jira/css.jsp</header-portlet-css>
 		<css-class-wrapper>wol-portlet-jira</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>
+		<header-portlet-css>/friends/css.jsp</header-portlet-css>
 		<css-class-wrapper>wol-portlet-friends</css-class-wrapper>
 	</portlet>
 	<portlet>

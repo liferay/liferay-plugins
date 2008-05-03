@@ -133,25 +133,6 @@
 		<%= feedXML %>
 	</c:when>
 	<c:otherwise>
-		<style type="text/css">
-			.wol-portlet-svn .project-title {
-				margin-bottom: 0.5em;
-			}
-
-			.wol-portlet-svn .project-section {
-				font-size: 1em;
-				margin-bottom: 0.2em;
-			}
-
-			.wol-portlet-svn .project-details .lfr-table {
-				margin: 0 0 1em;
-				width: 100%;
-			}
-
-			.wol-portlet-svn .project-details .lfr-table td {
-				padding-top: 2px;
-			}
-		</style>
 
 		<%
 		for (String url : SVNConstants.SVN_URLS) {

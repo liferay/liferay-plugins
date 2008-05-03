@@ -28,29 +28,6 @@
 	This feature will soon be available to all Liferay users.
 </c:if>
 
-<style type="text/css">
-	.wol-portlet-friends .taglib-search-iterator-page-iterator-bottom .taglib-page-iterator {
-		padding-top: 5px;
-	}
-
-	.wol-portlet-friends .taglib-search-iterator-page-iterator-bottom .search-results {
-		display: none;
-	}
-
-	.wol-portlet-friends .taglib-search-iterator-page-iterator-bottom .search-pages {
-		float: none;
-	}
-
-	.wol-portlet-friends .taglib-search-iterator-page-iterator-bottom .search-pages .page-links {
-		float: none;
-		text-align: left;
-	}
-
-	.wol-portlet-friends .taglib-search-iterator-page-iterator-bottom .search-pages .page-links .previous {
-		border: none;
-	}
-</style>
-
 <%
 PortletURL portletURL = renderResponse.createRenderURL();
 
