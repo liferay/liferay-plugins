@@ -34,6 +34,7 @@ import com.liferay.wol.model.JIRAIssue;
 import com.liferay.wol.service.JIRAActionLocalServiceUtil;
 import com.liferay.wol.service.JIRAIssueLocalServiceUtil;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -109,14 +110,30 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 		sm.append("\" target=\"_blank\">");
 
 		if (activityType.equals(JIRAActivityKeys.ADD_CHANGE)) {
-			/*
-			JSONArray jiraChangeItemsJSONArray = extraData.getArray(
-				"jiraChangeItems");
+			JSONArray changeItems = extraData.getJSONArray("jiraChangeItems");
 
-			"activity-wol-jira-add-change-" + field
-			*/
+			for (int i = 0; i < changeItems.length(); i++) {
+				JSONObject change = changeItems.getJSONObject(i);
 
-			//sm.append(extraData);
+				String newString = change.getString("newString");
+				String field = change.getString("field").toLowerCase();
+
+				if (newString == StringPool.BLANK) {
+					continue;
+				}
+
+				if (field.equals("assignee") ||
+					field.equals("attachment") ||
+					field.equals("resolution") ||
+					field.equals("status")) {
+
+					sm.append(themeDisplay.translate(
+						"activity-wol-jira-add-change-" + field,
+						new Object[] {newString}));
+
+					sm.append("<br />");
+				}
+			}
 		}
 		else if (activityType.equals(JIRAActivityKeys.ADD_COMMENT)) {
 			sm.append(cleanContent(jiraAction.getBody()));
