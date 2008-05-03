@@ -3,6 +3,93 @@
 
 <service-builder package-path="com.liferay.wol">
 	<namespace>WOL</namespace>
+	<entity name="JIRAAction" table="jiraaction" local-service="true" remote-service="false" data-source="jiraDataSource" session-factory="jiraSessionFactory" tx-manager="jiraTransactionManager">
+
+		<!-- PK fields -->
+
+		<column name="jiraActionId" db-name="id" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="jiraUserId" db-name="author" type="String" />
+		<column name="createDate" db-name="created" type="Date" />
+		<column name="modifiedDate" db-name="updated" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="jiraIssueId" db-name="issueid" type="long" />
+		<column name="type" db-name="actiontype" type="String" />
+		<column name="body" db-name="actionbody" type="String" />
+
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="modifiedDate" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="JiraUserId" return-type="Collection">
+			<finder-column name="jiraUserId" />
+		</finder>
+		<finder name="JiraIssueId" return-type="Collection">
+			<finder-column name="jiraIssueId" />
+		</finder>
+		<finder name="Type" return-type="Collection">
+			<finder-column name="type" />
+		</finder>
+	</entity>
+	<entity name="JIRAChangeGroup" table="changegroup" local-service="true" remote-service="false" data-source="jiraDataSource" session-factory="jiraSessionFactory" tx-manager="jiraTransactionManager">
+
+		<!-- PK fields -->
+
+		<column name="jiraChangeGroupId" db-name="id" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="jiraUserId" db-name="author" type="String" />
+		<column name="createDate" db-name="created" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="jiraIssueId" db-name="issueid" type="long" />
+
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="createDate" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="JiraUserId" return-type="Collection">
+			<finder-column name="jiraUserId" />
+		</finder>
+		<finder name="JiraIssueId" return-type="Collection">
+			<finder-column name="jiraIssueId" />
+		</finder>
+	</entity>
+	<entity name="JIRAChangeItem" table="changeitem" local-service="true" remote-service="false" data-source="jiraDataSource" session-factory="jiraSessionFactory" tx-manager="jiraTransactionManager">
+
+		<!-- PK fields -->
+
+		<column name="jiraChangeItemId" db-name="id" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="jiraChangeGroupId" db-name="groupid" type="long" />
+		<column name="field" type="String" />
+		<column name="oldValue" type="String" />
+		<column name="oldString" type="String" />
+		<column name="newValue" type="String" />
+		<column name="newString" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="JiraChangeGroupId" return-type="Collection">
+			<finder-column name="jiraChangeGroupId" />
+		</finder>
+	</entity>
 	<entity name="JIRAIssue" table="jiraissue" local-service="true" remote-service="false" data-source="jiraDataSource" session-factory="jiraSessionFactory" tx-manager="jiraTransactionManager">
 
 		<!-- PK fields -->
@@ -44,6 +131,10 @@
 		</finder>
 		<finder name="AssigneeJiraUserId" return-type="Collection">
 			<finder-column name="assigneeJiraUserId" />
+		</finder>
+		<finder name="MD_P" return-type="Collection">
+			<finder-column name="modifiedDate" comparator=">" />
+			<finder-column name="projectId" />
 		</finder>
 		<finder name="P_RJUI" return-type="Collection">
 			<finder-column name="projectId" />

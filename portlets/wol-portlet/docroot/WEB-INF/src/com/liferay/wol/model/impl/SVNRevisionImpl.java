@@ -22,8 +22,13 @@
 
 package com.liferay.wol.model.impl;
 
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.wol.model.JIRAIssue;
 import com.liferay.wol.model.SVNRepository;
 import com.liferay.wol.model.SVNRevision;
+import com.liferay.wol.service.JIRAIssueLocalServiceUtil;
 import com.liferay.wol.service.SVNRepositoryLocalServiceUtil;
 import com.liferay.wol.svn.util.SVNConstants;
 
@@ -60,6 +65,42 @@ public class SVNRevisionImpl
 
 	public String getWebRevisionNumberURL() {
 		return SVNConstants.WEB_REVISION_NUMBER_URL + getRevisionNumber();
+	}
+
+	public Object[] getJIRAIssueAndComments() {
+		JIRAIssue jiraIssue = null;
+		String comments = getComments();
+
+		if (comments.startsWith("LEP-")) {
+			comments = StringUtil.replace(
+				comments, StringPool.NEW_LINE, StringPool.SPACE);
+
+			int pos = comments.indexOf(StringPool.SPACE);
+
+			if (pos == -1) {
+				pos = comments.length();
+			}
+			else {
+				comments = comments.substring(0, pos);
+			}
+
+			String key = comments.substring(4, pos);
+
+			if (Validator.isNumber(key)) {
+				try {
+					jiraIssue = JIRAIssueLocalServiceUtil.getJIRAIssue(
+						"LEP-" + key);
+				}
+				catch (Exception e) {
+				}
+			}
+
+			if (jiraIssue != null) {
+				return new Object[] {jiraIssue, comments};
+			}
+		}
+
+		return null;
 	}
 
 	private static Log _log = LogFactory.getLog(SVNRevisionImpl.class);

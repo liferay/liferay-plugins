@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <model-hints>
+	<model name="com.liferay.wol.model.JIRAAction">
+		<field name="jiraActionId" type="long" />
+		<field name="jiraUserId" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="jiraIssueId" type="long" />
+		<field name="type" type="String" />
+		<field name="body" type="String" />
+	</model>
+	<model name="com.liferay.wol.model.JIRAChangeGroup">
+		<field name="jiraChangeGroupId" type="long" />
+		<field name="jiraUserId" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="jiraIssueId" type="long" />
+	</model>
+	<model name="com.liferay.wol.model.JIRAChangeItem">
+		<field name="jiraChangeItemId" type="long" />
+		<field name="jiraChangeGroupId" type="long" />
+		<field name="field" type="String" />
+		<field name="oldValue" type="String" />
+		<field name="oldString" type="String" />
+		<field name="newValue" type="String" />
+		<field name="newString" type="String" />
+	</model>
 	<model name="com.liferay.wol.model.JIRAIssue">
 		<field name="jiraIssueId" type="long" />
 		<field name="createDate" type="Date" />

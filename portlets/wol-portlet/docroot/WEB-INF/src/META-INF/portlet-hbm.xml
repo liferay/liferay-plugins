@@ -2,6 +2,39 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
+	<class name="com.liferay.wol.model.impl.JIRAActionImpl" table="jiraaction">
+		<cache usage="read-write" />
+		<id name="jiraActionId" column="id" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="jiraUserId" column="author" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="createDate" column="created" />
+		<property name="modifiedDate" column="updated" />
+		<property name="jiraIssueId" column="issueid" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="type" column="actiontype" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="body" column="actionbody" type="com.liferay.util.dao.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.wol.model.impl.JIRAChangeGroupImpl" table="changegroup">
+		<cache usage="read-write" />
+		<id name="jiraChangeGroupId" column="id" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="jiraUserId" column="author" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="createDate" column="created" />
+		<property name="jiraIssueId" column="issueid" type="com.liferay.util.dao.hibernate.LongType" />
+	</class>
+	<class name="com.liferay.wol.model.impl.JIRAChangeItemImpl" table="changeitem">
+		<cache usage="read-write" />
+		<id name="jiraChangeItemId" column="id" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="jiraChangeGroupId" column="groupid" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="field" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="oldValue" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="oldString" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="newValue" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="newString" type="com.liferay.util.dao.hibernate.StringType" />
+	</class>
 	<class name="com.liferay.wol.model.impl.JIRAIssueImpl" table="jiraissue">
 		<cache usage="read-write" />
 		<id name="jiraIssueId" column="id" type="long">

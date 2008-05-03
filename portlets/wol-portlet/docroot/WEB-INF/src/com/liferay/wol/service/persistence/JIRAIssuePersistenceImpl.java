@@ -1116,6 +1116,292 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		}
 	}
 
+	public List<JIRAIssue> findByMD_P(Date modifiedDate, long projectId)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
+		String finderClassName = JIRAIssue.class.getName();
+		String finderMethodName = "findByMD_P";
+		String[] finderParams = new String[] {
+				Date.class.getName(), Long.class.getName()
+			};
+		Object[] finderArgs = new Object[] { modifiedDate, new Long(projectId) };
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCache.getResult(finderClassName, finderMethodName,
+					finderParams, finderArgs, getSessionFactory());
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringMaker query = new StringMaker();
+
+				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
+
+				if (modifiedDate == null) {
+					query.append("updated > null");
+				}
+				else {
+					query.append("updated > ?");
+				}
+
+				query.append(" AND ");
+
+				query.append("project = ?");
+
+				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("updated DESC");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (modifiedDate != null) {
+					qPos.add(CalendarUtil.getTimestamp(modifiedDate));
+				}
+
+				qPos.add(projectId);
+
+				List<JIRAIssue> list = q.list();
+
+				FinderCache.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw HibernateUtil.processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<JIRAIssue>)result;
+		}
+	}
+
+	public List<JIRAIssue> findByMD_P(Date modifiedDate, long projectId,
+		int begin, int end) throws SystemException {
+		return findByMD_P(modifiedDate, projectId, begin, end, null);
+	}
+
+	public List<JIRAIssue> findByMD_P(Date modifiedDate, long projectId,
+		int begin, int end, OrderByComparator obc) throws SystemException {
+		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
+		String finderClassName = JIRAIssue.class.getName();
+		String finderMethodName = "findByMD_P";
+		String[] finderParams = new String[] {
+				Date.class.getName(), Long.class.getName(),
+				
+				"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+		Object[] finderArgs = new Object[] {
+				modifiedDate, new Long(projectId),
+				
+				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCache.getResult(finderClassName, finderMethodName,
+					finderParams, finderArgs, getSessionFactory());
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringMaker query = new StringMaker();
+
+				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
+
+				if (modifiedDate == null) {
+					query.append("updated > null");
+				}
+				else {
+					query.append("updated > ?");
+				}
+
+				query.append(" AND ");
+
+				query.append("project = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+					query.append(obc.getOrderBy());
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("updated DESC");
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (modifiedDate != null) {
+					qPos.add(CalendarUtil.getTimestamp(modifiedDate));
+				}
+
+				qPos.add(projectId);
+
+				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
+						getDialect(), begin, end);
+
+				FinderCache.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw HibernateUtil.processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<JIRAIssue>)result;
+		}
+	}
+
+	public JIRAIssue findByMD_P_First(Date modifiedDate, long projectId,
+		OrderByComparator obc) throws NoSuchJIRAIssueException, SystemException {
+		List<JIRAIssue> list = findByMD_P(modifiedDate, projectId, 0, 1, obc);
+
+		if (list.size() == 0) {
+			StringMaker msg = new StringMaker();
+
+			msg.append("No JIRAIssue exists with the key {");
+
+			msg.append("modifiedDate=" + modifiedDate);
+
+			msg.append(", ");
+			msg.append("projectId=" + projectId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchJIRAIssueException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public JIRAIssue findByMD_P_Last(Date modifiedDate, long projectId,
+		OrderByComparator obc) throws NoSuchJIRAIssueException, SystemException {
+		int count = countByMD_P(modifiedDate, projectId);
+
+		List<JIRAIssue> list = findByMD_P(modifiedDate, projectId, count - 1,
+				count, obc);
+
+		if (list.size() == 0) {
+			StringMaker msg = new StringMaker();
+
+			msg.append("No JIRAIssue exists with the key {");
+
+			msg.append("modifiedDate=" + modifiedDate);
+
+			msg.append(", ");
+			msg.append("projectId=" + projectId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchJIRAIssueException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public JIRAIssue[] findByMD_P_PrevAndNext(long jiraIssueId,
+		Date modifiedDate, long projectId, OrderByComparator obc)
+		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = findByPrimaryKey(jiraIssueId);
+
+		int count = countByMD_P(modifiedDate, projectId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringMaker query = new StringMaker();
+
+			query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
+
+			if (modifiedDate == null) {
+				query.append("updated > null");
+			}
+			else {
+				query.append("updated > ?");
+			}
+
+			query.append(" AND ");
+
+			query.append("project = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+				query.append(obc.getOrderBy());
+			}
+
+			else {
+				query.append("ORDER BY ");
+
+				query.append("updated DESC");
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			if (modifiedDate != null) {
+				qPos.add(CalendarUtil.getTimestamp(modifiedDate));
+			}
+
+			qPos.add(projectId);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+					jiraIssue);
+
+			JIRAIssue[] array = new JIRAIssueImpl[3];
+
+			array[0] = (JIRAIssue)objArray[0];
+			array[1] = (JIRAIssue)objArray[1];
+			array[2] = (JIRAIssue)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw HibernateUtil.processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
 	public List<JIRAIssue> findByP_RJUI(long projectId,
 		String reporterJiraUserId) throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
@@ -3243,6 +3529,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		}
 	}
 
+	public void removeByMD_P(Date modifiedDate, long projectId)
+		throws SystemException {
+		for (JIRAIssue jiraIssue : findByMD_P(modifiedDate, projectId)) {
+			remove(jiraIssue);
+		}
+	}
+
 	public void removeByP_RJUI(long projectId, String reporterJiraUserId)
 		throws SystemException {
 		for (JIRAIssue jiraIssue : findByP_RJUI(projectId, reporterJiraUserId)) {
@@ -3547,6 +3840,87 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				if (assigneeJiraUserId != null) {
 					qPos.add(assigneeJiraUserId);
 				}
+
+				Long count = null;
+
+				Iterator<Long> itr = q.list().iterator();
+
+				if (itr.hasNext()) {
+					count = itr.next();
+				}
+
+				if (count == null) {
+					count = new Long(0);
+				}
+
+				FinderCache.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, count);
+
+				return count.intValue();
+			}
+			catch (Exception e) {
+				throw HibernateUtil.processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return ((Long)result).intValue();
+		}
+	}
+
+	public int countByMD_P(Date modifiedDate, long projectId)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
+		String finderClassName = JIRAIssue.class.getName();
+		String finderMethodName = "countByMD_P";
+		String[] finderParams = new String[] {
+				Date.class.getName(), Long.class.getName()
+			};
+		Object[] finderArgs = new Object[] { modifiedDate, new Long(projectId) };
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCache.getResult(finderClassName, finderMethodName,
+					finderParams, finderArgs, getSessionFactory());
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringMaker query = new StringMaker();
+
+				query.append("SELECT COUNT(*) ");
+				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
+
+				if (modifiedDate == null) {
+					query.append("updated > null");
+				}
+				else {
+					query.append("updated > ?");
+				}
+
+				query.append(" AND ");
+
+				query.append("project = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (modifiedDate != null) {
+					qPos.add(CalendarUtil.getTimestamp(modifiedDate));
+				}
+
+				qPos.add(projectId);
 
 				Long count = null;
 

@@ -32,4 +32,6 @@ public interface SVNRevision extends SVNRevisionModel {
 	public com.liferay.wol.model.SVNRepository getSVNRepository();
 
 	public java.lang.String getWebRevisionNumberURL();
+
+	public java.lang.Object[] getJIRAIssueAndComments();
 }

@@ -16,6 +16,9 @@
 	</portlet>
 	<portlet>
 		<portlet-name>3</portlet-name>
+		<icon>/jira/icon.png</icon>
+		<scheduler-class>com.liferay.wol.jira.job.JIRAScheduler</scheduler-class>
+		<social-activity-interpreter-class>com.liferay.wol.jira.social.JIRAActivityInterpreter</social-activity-interpreter-class>
 		<css-class-wrapper>wol-portlet-jira</css-class-wrapper>
 	</portlet>
 	<portlet>

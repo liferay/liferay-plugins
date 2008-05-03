@@ -27,6 +27,12 @@ import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
 
 import com.liferay.wol.model.WallEntry;
+import com.liferay.wol.service.JIRAActionLocalService;
+import com.liferay.wol.service.JIRAActionLocalServiceFactory;
+import com.liferay.wol.service.JIRAChangeGroupLocalService;
+import com.liferay.wol.service.JIRAChangeGroupLocalServiceFactory;
+import com.liferay.wol.service.JIRAChangeItemLocalService;
+import com.liferay.wol.service.JIRAChangeItemLocalServiceFactory;
 import com.liferay.wol.service.JIRAIssueLocalService;
 import com.liferay.wol.service.JIRAIssueLocalServiceFactory;
 import com.liferay.wol.service.SVNRepositoryLocalService;
@@ -34,6 +40,18 @@ import com.liferay.wol.service.SVNRepositoryLocalServiceFactory;
 import com.liferay.wol.service.SVNRevisionLocalService;
 import com.liferay.wol.service.SVNRevisionLocalServiceFactory;
 import com.liferay.wol.service.WallEntryLocalService;
+import com.liferay.wol.service.persistence.JIRAActionFinder;
+import com.liferay.wol.service.persistence.JIRAActionFinderUtil;
+import com.liferay.wol.service.persistence.JIRAActionPersistence;
+import com.liferay.wol.service.persistence.JIRAActionUtil;
+import com.liferay.wol.service.persistence.JIRAChangeGroupFinder;
+import com.liferay.wol.service.persistence.JIRAChangeGroupFinderUtil;
+import com.liferay.wol.service.persistence.JIRAChangeGroupPersistence;
+import com.liferay.wol.service.persistence.JIRAChangeGroupUtil;
+import com.liferay.wol.service.persistence.JIRAChangeItemPersistence;
+import com.liferay.wol.service.persistence.JIRAChangeItemUtil;
+import com.liferay.wol.service.persistence.JIRAIssueFinder;
+import com.liferay.wol.service.persistence.JIRAIssueFinderUtil;
 import com.liferay.wol.service.persistence.JIRAIssuePersistence;
 import com.liferay.wol.service.persistence.JIRAIssueUtil;
 import com.liferay.wol.service.persistence.SVNRepositoryPersistence;
@@ -93,6 +111,77 @@ public abstract class WallEntryLocalServiceBaseImpl
 		return wallEntryPersistence.update(wallEntry, true);
 	}
 
+	public JIRAActionLocalService getJIRAActionLocalService() {
+		return jiraActionLocalService;
+	}
+
+	public void setJIRAActionLocalService(
+		JIRAActionLocalService jiraActionLocalService) {
+		this.jiraActionLocalService = jiraActionLocalService;
+	}
+
+	public JIRAActionPersistence getJIRAActionPersistence() {
+		return jiraActionPersistence;
+	}
+
+	public void setJIRAActionPersistence(
+		JIRAActionPersistence jiraActionPersistence) {
+		this.jiraActionPersistence = jiraActionPersistence;
+	}
+
+	public JIRAActionFinder getJIRAActionFinder() {
+		return jiraActionFinder;
+	}
+
+	public void setJIRAActionFinder(JIRAActionFinder jiraActionFinder) {
+		this.jiraActionFinder = jiraActionFinder;
+	}
+
+	public JIRAChangeGroupLocalService getJIRAChangeGroupLocalService() {
+		return jiraChangeGroupLocalService;
+	}
+
+	public void setJIRAChangeGroupLocalService(
+		JIRAChangeGroupLocalService jiraChangeGroupLocalService) {
+		this.jiraChangeGroupLocalService = jiraChangeGroupLocalService;
+	}
+
+	public JIRAChangeGroupPersistence getJIRAChangeGroupPersistence() {
+		return jiraChangeGroupPersistence;
+	}
+
+	public void setJIRAChangeGroupPersistence(
+		JIRAChangeGroupPersistence jiraChangeGroupPersistence) {
+		this.jiraChangeGroupPersistence = jiraChangeGroupPersistence;
+	}
+
+	public JIRAChangeGroupFinder getJIRAChangeGroupFinder() {
+		return jiraChangeGroupFinder;
+	}
+
+	public void setJIRAChangeGroupFinder(
+		JIRAChangeGroupFinder jiraChangeGroupFinder) {
+		this.jiraChangeGroupFinder = jiraChangeGroupFinder;
+	}
+
+	public JIRAChangeItemLocalService getJIRAChangeItemLocalService() {
+		return jiraChangeItemLocalService;
+	}
+
+	public void setJIRAChangeItemLocalService(
+		JIRAChangeItemLocalService jiraChangeItemLocalService) {
+		this.jiraChangeItemLocalService = jiraChangeItemLocalService;
+	}
+
+	public JIRAChangeItemPersistence getJIRAChangeItemPersistence() {
+		return jiraChangeItemPersistence;
+	}
+
+	public void setJIRAChangeItemPersistence(
+		JIRAChangeItemPersistence jiraChangeItemPersistence) {
+		this.jiraChangeItemPersistence = jiraChangeItemPersistence;
+	}
+
 	public JIRAIssueLocalService getJIRAIssueLocalService() {
 		return jiraIssueLocalService;
 	}
@@ -109,6 +198,14 @@ public abstract class WallEntryLocalServiceBaseImpl
 	public void setJIRAIssuePersistence(
 		JIRAIssuePersistence jiraIssuePersistence) {
 		this.jiraIssuePersistence = jiraIssuePersistence;
+	}
+
+	public JIRAIssueFinder getJIRAIssueFinder() {
+		return jiraIssueFinder;
+	}
+
+	public void setJIRAIssueFinder(JIRAIssueFinder jiraIssueFinder) {
+		this.jiraIssueFinder = jiraIssueFinder;
 	}
 
 	public SVNRepositoryLocalService getSVNRepositoryLocalService() {
@@ -165,12 +262,48 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	public void afterPropertiesSet() {
+		if (jiraActionLocalService == null) {
+			jiraActionLocalService = JIRAActionLocalServiceFactory.getImpl();
+		}
+
+		if (jiraActionPersistence == null) {
+			jiraActionPersistence = JIRAActionUtil.getPersistence();
+		}
+
+		if (jiraActionFinder == null) {
+			jiraActionFinder = JIRAActionFinderUtil.getFinder();
+		}
+
+		if (jiraChangeGroupLocalService == null) {
+			jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getImpl();
+		}
+
+		if (jiraChangeGroupPersistence == null) {
+			jiraChangeGroupPersistence = JIRAChangeGroupUtil.getPersistence();
+		}
+
+		if (jiraChangeGroupFinder == null) {
+			jiraChangeGroupFinder = JIRAChangeGroupFinderUtil.getFinder();
+		}
+
+		if (jiraChangeItemLocalService == null) {
+			jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getImpl();
+		}
+
+		if (jiraChangeItemPersistence == null) {
+			jiraChangeItemPersistence = JIRAChangeItemUtil.getPersistence();
+		}
+
 		if (jiraIssueLocalService == null) {
 			jiraIssueLocalService = JIRAIssueLocalServiceFactory.getImpl();
 		}
 
 		if (jiraIssuePersistence == null) {
 			jiraIssuePersistence = JIRAIssueUtil.getPersistence();
+		}
+
+		if (jiraIssueFinder == null) {
+			jiraIssueFinder = JIRAIssueFinderUtil.getFinder();
 		}
 
 		if (svnRepositoryLocalService == null) {
@@ -198,8 +331,17 @@ public abstract class WallEntryLocalServiceBaseImpl
 		}
 	}
 
+	protected JIRAActionLocalService jiraActionLocalService;
+	protected JIRAActionPersistence jiraActionPersistence;
+	protected JIRAActionFinder jiraActionFinder;
+	protected JIRAChangeGroupLocalService jiraChangeGroupLocalService;
+	protected JIRAChangeGroupPersistence jiraChangeGroupPersistence;
+	protected JIRAChangeGroupFinder jiraChangeGroupFinder;
+	protected JIRAChangeItemLocalService jiraChangeItemLocalService;
+	protected JIRAChangeItemPersistence jiraChangeItemPersistence;
 	protected JIRAIssueLocalService jiraIssueLocalService;
 	protected JIRAIssuePersistence jiraIssuePersistence;
+	protected JIRAIssueFinder jiraIssueFinder;
 	protected SVNRepositoryLocalService svnRepositoryLocalService;
 	protected SVNRepositoryPersistence svnRepositoryPersistence;
 	protected SVNRevisionLocalService svnRevisionLocalService;

@@ -24,12 +24,26 @@ package com.liferay.wol.service.impl;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.User;
+import com.liferay.portlet.expando.model.ExpandoValue;
+import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
+import com.liferay.portlet.social.model.SocialActivity;
+import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.wol.NoSuchJIRAIssueException;
+import com.liferay.wol.jira.social.JIRAActivityKeys;
+import com.liferay.wol.jira.util.JIRAUtil;
+import com.liferay.wol.model.JIRAAction;
+import com.liferay.wol.model.JIRAChangeGroup;
+import com.liferay.wol.model.JIRAChangeItem;
 import com.liferay.wol.model.JIRAIssue;
 import com.liferay.wol.service.base.JIRAIssueLocalServiceBaseImpl;
 
 import java.util.Date;
 import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * <a href="JIRAIssueLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -124,6 +138,12 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 		}
 	}
 
+	public JIRAIssue getJIRAIssue(long jiraIssueId)
+		throws PortalException, SystemException {
+
+		return jiraIssuePersistence.findByPrimaryKey(jiraIssueId);
+	}
+
 	public JIRAIssue getJIRAIssue(String key)
 		throws PortalException, SystemException {
 
@@ -207,6 +227,127 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 
 		return jiraIssuePersistence.countByP_RJUI_S(
 			projectId, reporterJiraUserId, status);
+	}
+
+	public void updateJIRAIssues(long projectId)
+		throws PortalException, SystemException {
+
+		Date modifiedDate = getLastModifiedDate(projectId);
+
+		List<JIRAAction> jiraActions = jiraActionFinder.findByCD_P(
+			modifiedDate, projectId);
+
+		for (JIRAAction jiraAction : jiraActions) {
+			long userId = getUserId(jiraAction.getJiraUserId());
+
+			if (userId <= 0) {
+				continue;
+			}
+
+			JSONObject extraData = new JSONObject();
+
+			extraData.put("jiraActionId", jiraAction.getJiraActionId());
+
+			SocialActivityLocalServiceUtil.addActivity(
+				userId, 0, JIRAUtil.getLiferayDate(jiraAction.getCreateDate()),
+				JIRAIssue.class.getName(), jiraAction.getJiraIssueId(),
+				JIRAActivityKeys.ADD_COMMENT, extraData.toString(), 0);
+		}
+
+		List<JIRAChangeGroup> jiraChangeGroups =
+			jiraChangeGroupFinder.findByCD_P(modifiedDate, projectId);
+
+		for (JIRAChangeGroup jiraChangeGroup : jiraChangeGroups) {
+			long userId = getUserId(jiraChangeGroup.getJiraUserId());
+
+			if (userId <= 0) {
+				continue;
+			}
+
+			JSONObject extraData = new JSONObject();
+
+			extraData.put(
+				"jiraChangeGroupId", jiraChangeGroup.getJiraChangeGroupId());
+
+			JSONArray jiraChangeItemsJSONArray = new JSONArray();
+
+			extraData.put("jiraChangeItems", jiraChangeItemsJSONArray);
+
+			List<JIRAChangeItem> jiraChangeItems =
+				jiraChangeItemPersistence.findByJiraChangeGroupId(
+					jiraChangeGroup.getJiraChangeGroupId());
+
+			for (JIRAChangeItem jiraChangeItem : jiraChangeItems) {
+				JSONObject jiraChangeItemJSON = new JSONObject();
+
+				jiraChangeItemJSON.put("field", jiraChangeItem.getField());
+				jiraChangeItemJSON.put(
+					"oldValue", jiraChangeItem.getOldValue());
+				jiraChangeItemJSON.put(
+					"oldString", jiraChangeItem.getOldString());
+				jiraChangeItemJSON.put(
+					"newValue", jiraChangeItem.getNewValue());
+				jiraChangeItemJSON.put(
+					"newString", jiraChangeItem.getNewString());
+
+				jiraChangeItemsJSONArray.put(jiraChangeItemJSON);
+			}
+
+			SocialActivityLocalServiceUtil.addActivity(
+				userId, 0,
+				JIRAUtil.getLiferayDate(jiraChangeGroup.getCreateDate()),
+				JIRAIssue.class.getName(), jiraChangeGroup.getJiraIssueId(),
+				JIRAActivityKeys.ADD_CHANGE, extraData.toString(), 0);
+		}
+
+		List<JIRAIssue> jiraIssues = jiraIssueFinder.findByCD_P(
+			modifiedDate, projectId);
+
+		for (JIRAIssue jiraIssue : jiraIssues) {
+			long userId = getUserId(jiraIssue.getReporterJiraUserId());
+
+			if (userId <= 0) {
+				continue;
+			}
+
+			SocialActivityLocalServiceUtil.addActivity(
+				userId, 0, JIRAUtil.getLiferayDate(jiraIssue.getCreateDate()),
+				JIRAIssue.class.getName(), jiraIssue.getJiraIssueId(),
+				JIRAActivityKeys.ADD_ISSUE, StringPool.BLANK, 0);
+		}
+	}
+
+	protected Date getLastModifiedDate(long projectId) throws SystemException {
+		Date modifiedDate = null;
+
+		List<SocialActivity> socialActivities =
+			SocialActivityLocalServiceUtil.getActivities(
+				JIRAIssue.class.getName(), 0, 1);
+
+		if (socialActivities.size() > 0) {
+			SocialActivity socialActivity = socialActivities.get(0);
+
+			modifiedDate = JIRAUtil.getJIRADate(socialActivity.getCreateDate());
+		}
+		else {
+			modifiedDate = JIRAUtil.getJIRADate(-1);
+		}
+
+		return modifiedDate;
+	}
+
+	protected long getUserId(String jiraUserId) throws SystemException {
+		List<ExpandoValue> expandoValues =
+			ExpandoValueLocalServiceUtil.getColumnValues(
+				User.class.getName(), "WOL", "jiraUserId", jiraUserId, 0, 1);
+
+		if (expandoValues.size() == 0) {
+			return 0;
+		}
+
+		ExpandoValue expandoValue = expandoValues.get(0);
+
+		return expandoValue.getClassPK();
 	}
 
 }

@@ -57,29 +57,16 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "
 		<%
 		String jiraURL = "http://support.liferay.com/secure/IssueNavigator.jspa?reset=true&pid=" + JIRAConstants.PROJECT_LEP;
 
-		TimeZone jiraTimeZone = TimeZone.getTimeZone("America/Los_Angeles");
-
-		int jiraTimeZoneUTCOffset = jiraTimeZone.getRawOffset();
-
-		if (jiraTimeZone.inDaylightTime(new Date())) {
-			jiraTimeZoneUTCOffset += Time.HOUR;
-		}
-
-		TimeZone gmtTimeZone = TimeZone.getTimeZone("GMT");
-
-		Calendar lastWeekCal = new GregorianCalendar(gmtTimeZone, locale);
-
-		lastWeekCal.add(Calendar.WEEK_OF_YEAR, -1);
-		lastWeekCal.add(Calendar.MILLISECOND, jiraTimeZoneUTCOffset);
+		Date lastWeek = JIRAUtil.getJIRADate(-1);
 
 		int assignedIssuesTotalCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId);
 		int assignedIssuesClosedCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId, JIRAConstants.STATUS_CLOSED);
-		int assignedIssuesLastWeekCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(lastWeekCal.getTime(), JIRAConstants.PROJECT_LEP, jiraUserId);
+		int assignedIssuesLastWeekCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(lastWeek, JIRAConstants.PROJECT_LEP, jiraUserId);
 		int assignedIssuesOpenCount = assignedIssuesTotalCount - assignedIssuesClosedCount;
 
 		int reporterIssuesTotalCount = JIRAIssueLocalServiceUtil.getReporterJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId);
 		int reporterIssuesClosedCount = JIRAIssueLocalServiceUtil.getReporterJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId, JIRAConstants.STATUS_CLOSED);
-		int reporterIssuesLastWeekCount = JIRAIssueLocalServiceUtil.getReporterJIRAIssuesCount(lastWeekCal.getTime(), JIRAConstants.PROJECT_LEP, jiraUserId);
+		int reporterIssuesLastWeekCount = JIRAIssueLocalServiceUtil.getReporterJIRAIssuesCount(lastWeek, JIRAConstants.PROJECT_LEP, jiraUserId);
 		int reporterIssuesOpenCount = reporterIssuesTotalCount - reporterIssuesClosedCount;
 
 		Object[][] jiraValuesArray = new Object[][] {

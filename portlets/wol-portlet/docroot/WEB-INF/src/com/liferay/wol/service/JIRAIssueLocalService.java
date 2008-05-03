@@ -89,6 +89,10 @@ public interface JIRAIssueLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	public com.liferay.wol.model.JIRAIssue getJIRAIssue(long jiraIssueId)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.PortalException;
+
 	public com.liferay.wol.model.JIRAIssue getJIRAIssue(java.lang.String key)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
@@ -128,4 +132,8 @@ public interface JIRAIssueLocalService {
 	public int getReporterJIRAIssuesCount(long projectId,
 		java.lang.String reporterJiraUserId, java.lang.String status)
 		throws com.liferay.portal.SystemException;
+
+	public void updateJIRAIssues(long projectId)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.PortalException;
 }
