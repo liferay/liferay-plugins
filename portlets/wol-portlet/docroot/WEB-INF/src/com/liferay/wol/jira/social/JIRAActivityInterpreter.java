@@ -110,27 +110,25 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 		sm.append("\" target=\"_blank\">");
 
 		if (activityType.equals(JIRAActivityKeys.ADD_CHANGE)) {
-			JSONArray changeItems = extraData.getJSONArray("jiraChangeItems");
+			JSONArray jiraChangeItems = extraData.getJSONArray("jiraChangeItems");
 
-			for (int i = 0; i < changeItems.length(); i++) {
-				JSONObject change = changeItems.getJSONObject(i);
+			for (int i = 0; i < jiraChangeItems.length(); i++) {
+				JSONObject jiraChangeItem = jiraChangeItems.getJSONObject(i);
 
-				String newString = change.getString("newString");
-				String field = change.getString("field").toLowerCase();
+				String newString = jiraChangeItem.getString("newString");
+				String field = jiraChangeItem.getString("field").toLowerCase();
 
-				if (newString == StringPool.BLANK) {
+				if (Validator.isNull(newString)) {
 					continue;
 				}
 
-				if (field.equals("assignee") ||
-					field.equals("attachment") ||
-					field.equals("resolution") ||
-					field.equals("status")) {
+				if (field.equals("assignee") || field.equals("attachment") ||
+					field.equals("resolution") || field.equals("status")) {
 
-					sm.append(themeDisplay.translate(
-						"activity-wol-jira-add-change-" + field,
-						new Object[] {newString}));
-
+					sm.append(
+						themeDisplay.translate(
+							"activity-wol-jira-add-change-" + field,
+							new Object[] {newString}));
 					sm.append("<br />");
 				}
 			}
