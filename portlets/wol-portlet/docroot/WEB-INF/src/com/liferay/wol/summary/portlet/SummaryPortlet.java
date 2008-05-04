@@ -24,6 +24,7 @@ package com.liferay.wol.summary.portlet;
 
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.Group;
@@ -35,15 +36,22 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.permission.UserPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
+import com.liferay.portlet.social.model.SocialRelationConstants;
+import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
+import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.util.servlet.SessionErrors;
 import com.liferay.util.servlet.SessionMessages;
+import com.liferay.wol.friends.social.FriendsRequestKeys;
 
 import java.io.IOException;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="SummaryPortlet.java.html"><b><i>View Source</i></b></a>
@@ -59,7 +67,13 @@ public class SummaryPortlet extends JSPPortlet {
 		try {
 			String cmd = ParamUtil.getString(req, Constants.CMD);
 
-			if (cmd.equals(Constants.UPDATE)) {
+			if (cmd.equals("add_friend")) {
+				addFriend(req);
+			}
+			else if (cmd.equals("remove_friend")) {
+				removeFriend(req);
+			}
+			else if (cmd.equals(Constants.UPDATE)) {
 				updateSummary(req);
 			}
 
@@ -74,6 +88,35 @@ public class SummaryPortlet extends JSPPortlet {
 		catch (Exception e) {
 			throw new PortletException(e);
 		}
+	}
+
+	protected void addFriend(ActionRequest req) throws Exception {
+		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		Group group = GroupLocalServiceUtil.getGroup(
+			themeDisplay.getPortletGroupId());
+
+		User user = UserLocalServiceUtil.getUserById(group.getClassPK());
+
+		SocialRequestLocalServiceUtil.addRequest(
+			themeDisplay.getUserId(), 0, User.class.getName(),
+			themeDisplay.getUserId(), FriendsRequestKeys.ADD_FRIEND,
+			StringPool.BLANK, user.getUserId());
+	}
+
+	protected void removeFriend(ActionRequest req) throws Exception {
+		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		Group group = GroupLocalServiceUtil.getGroup(
+			themeDisplay.getPortletGroupId());
+
+		User user = UserLocalServiceUtil.getUserById(group.getClassPK());
+
+		SocialRelationLocalServiceUtil.deleteRelation(
+			themeDisplay.getUserId(), user.getUserId(),
+			SocialRelationConstants.TYPE_BI_FRIEND);
 	}
 
 	protected void updateSummary(ActionRequest req) throws Exception {
@@ -126,8 +169,10 @@ public class SummaryPortlet extends JSPPortlet {
 			ContactLocalServiceUtil.updateContact(contact);
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			_log.error(e, e);
 		}
 	}
+
+	private static Log _log = LogFactory.getLog(SummaryPortlet.class);
 
 }

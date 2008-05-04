@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.liferay.wol.wall.social;
+package com.liferay.wol.friends.social;
 
 import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
@@ -30,16 +30,14 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
-import com.liferay.wol.model.WallEntry;
-import com.liferay.wol.service.WallEntryLocalServiceUtil;
 
 /**
- * <a href="WallActivityInterpreter.java.html"><b><i>View Source</i></b></a>
+ * <a href="FriendsActivityInterpreter.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
+public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
@@ -54,6 +52,8 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 		String receiverUserName = getUserName(
 			activity.getReceiverUserId(), themeDisplay);
 
+		User creatorUser = UserLocalServiceUtil.getUserById(
+			activity.getUserId());
 		User receiverUser = UserLocalServiceUtil.getUserById(
 			activity.getReceiverUserId());
 
@@ -63,38 +63,47 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String title = StringPool.BLANK;
 
-		if (activityType.equals(WallActivityKeys.ADD_ENTRY)) {
+		if (activityType.equals(FriendsActivityKeys.ADD_FRIEND)) {
+			StringMaker sm = new StringMaker();
+
+			sm.append("<a href=\"");
+			sm.append(themeDisplay.getURLPortal());
+			sm.append(themeDisplay.getPathFriendlyURLPublic());
+			sm.append(StringPool.SLASH);
+			sm.append(creatorUser.getScreenName());
+			sm.append("/profile\" target=\"_blank\">");
+			sm.append(creatorUserName);
+			sm.append("</a>");
+
+			String creatorUserNameURL = sm.toString();
+
+			sm = new StringMaker();
+
+			sm.append("<a href=\"");
+			sm.append(themeDisplay.getURLPortal());
+			sm.append(themeDisplay.getPathFriendlyURLPublic());
+			sm.append(StringPool.SLASH);
+			sm.append(receiverUser.getScreenName());
+			sm.append("/profile\" target=\"_blank\">");
+			sm.append(receiverUserName);
+			sm.append("</a>");
+
+			String receiverUserNameURL = sm.toString();
+
 			title = themeDisplay.translate(
-				"activity-wol-wall-add-entry",
-				new Object[] {creatorUserName, receiverUserName});
+				"activity-wol-summary-add-friend",
+				new Object[] {creatorUserNameURL, receiverUserNameURL});
 		}
 
 		// Body
 
-		WallEntry wallEntry = WallEntryLocalServiceUtil.getWallEntry(
-			activity.getClassPK());
-
-		String wallEntryURL =
-			themeDisplay.getURLPortal() +
-				themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH +
-					receiverUser.getScreenName() + "/profile/-/wall/" +
-						activity.getClassPK();
-
-		StringMaker sm = new StringMaker();
-
-		sm.append("<a href=\"");
-		sm.append(wallEntryURL);
-		sm.append("\">");
-		sm.append(cleanContent(wallEntry.getComments()));
-		sm.append("</a>");
-
-		String body = sm.toString();
+		String body = StringPool.BLANK;
 
 		return new SocialActivityFeedEntry(title, body);
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {
-		WallEntry.class.getName()
+		User.class.getName()
 	};
 
 }

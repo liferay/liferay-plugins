@@ -33,6 +33,32 @@
 
 			<img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user2.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user2.getPortraitId()) %>" />
 
+			<c:choose>
+				<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(user.getUserId(), User.class.getName(), user.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
+					<div class="portlet-msg-info">
+						<liferay-ui:message key="friend-requested" />
+					</div>
+				</c:when>
+				<c:when test="<%= SocialRelationLocalServiceUtil.isRelatable(user.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) %>">
+
+					<%
+					PortletURL addAsFriendURL = renderResponse.createActionURL();
+
+					addAsFriendURL.setParameter(Constants.CMD, "add_friend");
+					addAsFriendURL.setParameter("redirect", PortalUtil.getCurrentURL(request));
+					%>
+
+					<p>
+						<liferay-ui:icon
+							image="join"
+							message="add-as-friend"
+							url="<%= addAsFriendURL.toString() %>"
+							label="<%= true %>"
+						/>
+					</p>
+				</c:when>
+			</c:choose>
+
 			<p>
 				<span class="user-job-title"><liferay-ui:message key="job-title" /></span>
 

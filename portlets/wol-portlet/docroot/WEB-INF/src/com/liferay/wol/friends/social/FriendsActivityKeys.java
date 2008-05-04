@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -20,14 +19,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
 
-<%@ include file="/init.jsp" %>
+package com.liferay.wol.friends.social;
 
-<%
-List<SocialActivity> activities = SocialActivityLocalServiceUtil.getRelationActivities(user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, 0, SearchContainer.DEFAULT_DELTA);
-%>
+/**
+ * <a href="FriendsActivityKeys.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class FriendsActivityKeys {
 
-<liferay-ui:social-activities
-	activities="<%= activities %>"
-/>
+	public static final String ADD_FRIEND = "ADD_FRIEND";
+
+}

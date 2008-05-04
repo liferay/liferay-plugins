@@ -24,10 +24,6 @@
 
 <%@ include file="/init.jsp" %>
 
-<c:if test="<%= !UserLocalServiceUtil.hasOrganizationUser(21, user2.getUserId()) %>">
-	This feature will soon be available to all Liferay users.
-</c:if>
-
 <%
 PortletURL portletURL = renderResponse.createRenderURL();
 

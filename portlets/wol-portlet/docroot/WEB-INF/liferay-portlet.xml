@@ -26,6 +26,9 @@
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>
+		<icon>/friends/icon.png</icon>
+		<social-activity-interpreter-class>com.liferay.wol.friends.social.FriendsActivityInterpreter</social-activity-interpreter-class>
+		<social-request-interpreter-class>com.liferay.wol.friends.social.FriendsRequestInterpreter</social-request-interpreter-class>
 		<header-portlet-css>/friends/css.jsp</header-portlet-css>
 		<css-class-wrapper>wol-portlet-friends</css-class-wrapper>
 	</portlet>
