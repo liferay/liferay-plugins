@@ -34,18 +34,27 @@ body {
 	position: relative;
 }
 
-.popup-alert-notice, .popup-alert-warning {
+.popup-alert-notice,
+.popup-alert-warning {
 	background-color: #E4E1DC;
 	border-color: white;
 	border-style: solid;
 	border-width: 10px 1px 1px;
 	color: #000000;
 	filter: alpha(opacity=87);
-	left: 35%;
+	margin: 0 auto;
 	opacity: 0.87;
-	padding: 7px 10px 10px 30px;
-	top: 70%;
+	padding: 8px 10px 10px 35px;
+	position: relative;
+	top: -28%;
 	width: 300px;
+}
+
+.ie6 .popup-alert-notice,
+.ie6 .popup-alert-warning {
+	left: 37%;
+	position: absolute;
+	top: 72%;
 }
 
 .loading-animation {
@@ -321,8 +330,8 @@ body {
 
 .ie6 .columns-max .portlet .b {
 	position: relative;
-	right: -4px;
-	width: expression(parseInt(this.parentNode.offsetWidth-4) + "px");
+	right: 0;
+	width: expression(parseInt(this.parentNode.offsetWidth) + "px");
 }
 
 .portlet .b .b-content {
@@ -871,4 +880,8 @@ body {
 
 .ie6 #portlet-wrapper-sign-in .lfr-portal-login {
 	position: relative;
+}
+
+#portlet-wrapper-sign-in .portlet-content {
+	padding: 10px 5px 25px 15px;
 }
