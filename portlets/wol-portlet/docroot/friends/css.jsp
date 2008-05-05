@@ -22,6 +22,8 @@
  */
 %>
 
+<%@ include file="/css_init.jsp" %>
+
 .wol-portlet-friends .taglib-search-iterator-page-iterator-bottom .taglib-page-iterator {
 	padding-top: 5px;
 }

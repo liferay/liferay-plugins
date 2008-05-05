@@ -22,44 +22,10 @@
  */
 %>
 
-<%@ include file="/css_init.jsp" %>
+<%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
 
-.ie .summary-container {
-	height: 1%;
-}
-
-.summary-container:after {
-	clear: both;
-	content: ".";
-	display: block;
-	height: 0;
-	visibility: hidden;
-}
-
-.summary-container h2 {
-	color: #3D536C;
-	font-size: 16px;
-	margin-bottom: 10px;
-	margin-top: 0;
-}
-
-.summary-container img {
-	margin: 5px 0;
-	max-width: 120px;
-}
-
-.ie6 .summary-container img {
-	width: 120px;
-}
-
-.summary-container p {
-	margin-bottom: 10px;
-}
-
-.summary-container span {
-	color: #3D536C;
-	display: block;
-	font-size: 10px;
-	font-weight: bold;
-	text-transform: uppercase;
-}
+<%
+response.addHeader("Cache-Control", "max-age=172801, public");
+response.addHeader("Content-type", ContentTypes.TEXT_CSS);
+response.addHeader("Expires", "172801");
+%>

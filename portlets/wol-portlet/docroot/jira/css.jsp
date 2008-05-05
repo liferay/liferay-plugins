@@ -22,6 +22,8 @@
  */
 %>
 
+<%@ include file="/css_init.jsp" %>
+
 .jira-summary .issue-count {
 	padding-right: 4px;
 	text-align: right;

@@ -22,6 +22,8 @@
  */
 %>
 
+<%@ include file="/css_init.jsp" %>
+
 .wol-portlet-svn .project-title {
 	margin-bottom: 0.5em;
 }
