@@ -63,3 +63,19 @@
 	font-weight: bold;
 	text-transform: uppercase;
 }
+
+.summary-container .user-profile-image {
+	max-width: 180px;
+}
+
+.ie6 .summary-container .user-profile-image {
+	width: expression(this.width > 180 : '180px' : 'auto');
+}
+
+.summary-container .add-as-friend {
+	margin: 0.7em auto 1em;
+}
+
+.summary-container .add-as-friend.pending {
+	background-image: url(/liferay-jedi-theme/images/common/time.png);
+}

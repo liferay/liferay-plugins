@@ -31,11 +31,11 @@
 				<%= user2.getFullName() %>
 			</h2>
 
-			<img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user2.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user2.getPortraitId()) %>" />
+			<img class="user-profile-image" src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user2.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user2.getPortraitId()) %>" />
 
 			<c:choose>
 				<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(user.getUserId(), User.class.getName(), user.getUserId(), FriendsRequestKeys.ADD_FRIEND, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
-					<div class="portlet-msg-info">
+					<div class="portlet-msg-info add-as-friend pending">
 						<liferay-ui:message key="friend-requested" />
 					</div>
 				</c:when>
@@ -48,7 +48,7 @@
 					addAsFriendURL.setParameter("redirect", PortalUtil.getCurrentURL(request));
 					%>
 
-					<p>
+					<p class="add-as-friend">
 						<liferay-ui:icon
 							image="join"
 							message="add-as-friend"
