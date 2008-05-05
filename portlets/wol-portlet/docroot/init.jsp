@@ -72,6 +72,7 @@
 <%@ page import="com.liferay.portlet.social.service.SocialRequestLocalServiceUtil" %>
 <%@ page import="com.liferay.util.RSSUtil" %>
 <%@ page import="com.liferay.wol.NoSuchSVNRepositoryException" %>
+<%@ page import="com.liferay.wol.friends.social.FriendsRequestKeys" %>
 <%@ page import="com.liferay.wol.jira.util.JIRAConstants" %>
 <%@ page import="com.liferay.wol.jira.util.JIRAUtil" %>
 <%@ page import="com.liferay.wol.model.JIRAIssue" %>
