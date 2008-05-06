@@ -77,5 +77,5 @@
 }
 
 .summary-container .add-as-friend.pending {
-	background-image: url(/liferay-jedi-theme/images/common/time.png);
+	background-image: url(<%= themeImagesPath %>/common/time.png);
 }
