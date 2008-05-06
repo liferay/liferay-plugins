@@ -110,27 +110,63 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 		sm.append("\" target=\"_blank\">");
 
 		if (activityType.equals(JIRAActivityKeys.ADD_CHANGE)) {
+			boolean emptyBody = true;
+
 			JSONArray jiraChangeItems = extraData.getJSONArray("jiraChangeItems");
 
 			for (int i = 0; i < jiraChangeItems.length(); i++) {
 				JSONObject jiraChangeItem = jiraChangeItems.getJSONObject(i);
 
+				String field = jiraChangeItem.getString("field");
+				field = field.toLowerCase();
+				field = field.replace(StringPool.SPACE, StringPool.DASH);
+
 				String newString = jiraChangeItem.getString("newString");
-				String field = jiraChangeItem.getString("field").toLowerCase();
+				String newValue = jiraChangeItem.getString("newValue");
 
 				if (Validator.isNull(newString)) {
 					continue;
 				}
 
-				if (field.equals("assignee") || field.equals("attachment") ||
-					field.equals("resolution") || field.equals("status")) {
+				if (field.equals("description") || field.equals("summary")) {
+
+					sm.append(
+						themeDisplay.translate(
+							"activity-wol-jira-add-change-" + field));
+					sm.append("<br />");
+
+					emptyBody = false;
+				}
+				else if (field.equals("assignee") ||
+					field.equals("attachment") || field.equals("fix-version") ||
+					field.equals("issuetype") || field.equals("priority") ||
+					field.equals("resolution") || field.equals("status") ||
+					field.equals("version")) {
 
 					sm.append(
 						themeDisplay.translate(
 							"activity-wol-jira-add-change-" + field,
 							new Object[] {newString}));
 					sm.append("<br />");
+
+					emptyBody = false;
 				}
+				else if (field.equals("link") && newValue.startsWith("LEP-")) {
+
+					sm.append(
+						themeDisplay.translate(
+							"activity-wol-jira-add-change-" + field,
+							new Object[] {newValue}));
+					sm.append("<br />");
+
+					emptyBody = false;
+				}
+			}
+
+			if (emptyBody) {
+				sm.append(
+					themeDisplay.translate(
+						"activity-wol-jira-add-change-default"));
 			}
 		}
 		else if (activityType.equals(JIRAActivityKeys.ADD_COMMENT)) {
