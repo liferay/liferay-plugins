@@ -24,6 +24,7 @@ package com.liferay.wol.jira.social;
 
 import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
@@ -110,64 +111,9 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 		sm.append("\" target=\"_blank\">");
 
 		if (activityType.equals(JIRAActivityKeys.ADD_CHANGE)) {
-			boolean emptyBody = true;
-
-			JSONArray jiraChangeItems = extraData.getJSONArray("jiraChangeItems");
-
-			for (int i = 0; i < jiraChangeItems.length(); i++) {
-				JSONObject jiraChangeItem = jiraChangeItems.getJSONObject(i);
-
-				String field = jiraChangeItem.getString("field");
-				field = field.toLowerCase();
-				field = field.replace(StringPool.SPACE, StringPool.DASH);
-
-				String newString = jiraChangeItem.getString("newString");
-				String newValue = jiraChangeItem.getString("newValue");
-
-				if (Validator.isNull(newString)) {
-					continue;
-				}
-
-				if (field.equals("description") || field.equals("summary")) {
-
-					sm.append(
-						themeDisplay.translate(
-							"activity-wol-jira-add-change-" + field));
-					sm.append("<br />");
-
-					emptyBody = false;
-				}
-				else if (field.equals("assignee") ||
-					field.equals("attachment") || field.equals("fix-version") ||
-					field.equals("issuetype") || field.equals("priority") ||
-					field.equals("resolution") || field.equals("status") ||
-					field.equals("version")) {
-
-					sm.append(
-						themeDisplay.translate(
-							"activity-wol-jira-add-change-" + field,
-							new Object[] {newString}));
-					sm.append("<br />");
-
-					emptyBody = false;
-				}
-				else if (field.equals("link") && newValue.startsWith("LEP-")) {
-
-					sm.append(
-						themeDisplay.translate(
-							"activity-wol-jira-add-change-" + field,
-							new Object[] {newValue}));
-					sm.append("<br />");
-
-					emptyBody = false;
-				}
-			}
-
-			if (emptyBody) {
-				sm.append(
-					themeDisplay.translate(
-						"activity-wol-jira-add-change-default"));
-			}
+			sm.append(
+				interpretJIRAChangeItems(
+					extraData.getJSONArray("jiraChangeItems"), themeDisplay));
 		}
 		else if (activityType.equals(JIRAActivityKeys.ADD_COMMENT)) {
 			sm.append(cleanContent(jiraAction.getBody()));
@@ -181,6 +127,70 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 		String body = sm.toString();
 
 		return new SocialActivityFeedEntry(title, body);
+	}
+
+	protected String interpretJIRAChangeItem(
+		JSONObject jiraChangeItem, ThemeDisplay themeDisplay) {
+
+		String field = jiraChangeItem.getString("field");
+
+		field = StringUtil.replace(
+			field.toLowerCase(), StringPool.SPACE, StringPool.DASH);
+
+		String newString = jiraChangeItem.getString("newString");
+		String newValue = jiraChangeItem.getString("newValue");
+
+		if (Validator.isNull(newString)) {
+			return StringPool.BLANK;
+		}
+
+		StringMaker sm = new StringMaker();
+
+		if (field.equals("description") || field.equals("summary")) {
+			sm.append(
+				themeDisplay.translate(
+					"activity-wol-jira-add-change-" + field));
+			sm.append("<br />");
+		}
+		else if (field.equals("assignee") || field.equals("attachment") ||
+				 field.equals("fix-version") || field.equals("issuetype") ||
+				 field.equals("priority") || field.equals("resolution") ||
+				 field.equals("status") || field.equals("version")) {
+
+			sm.append(
+				themeDisplay.translate(
+					"activity-wol-jira-add-change-" + field,
+					new Object[] {newString}));
+			sm.append("<br />");
+		}
+		else if (field.equals("link") && newValue.startsWith("LEP-")) {
+			sm.append(
+				themeDisplay.translate(
+					"activity-wol-jira-add-change-" + field,
+					new Object[] {newValue}));
+			sm.append("<br />");
+		}
+
+		return sm.toString();
+	}
+
+	protected String interpretJIRAChangeItems(
+		JSONArray jiraChangeItems, ThemeDisplay themeDisplay) {
+
+		StringMaker sm = new StringMaker();
+
+		for (int i = 0; i < jiraChangeItems.length(); i++) {
+			JSONObject jiraChangeItem = jiraChangeItems.getJSONObject(i);
+
+			sm.append(interpretJIRAChangeItem(jiraChangeItem, themeDisplay));
+		}
+
+		if (sm.length() == 0) {
+			sm.append(
+				themeDisplay.translate("activity-wol-jira-add-change-default"));
+		}
+
+		return sm.toString();
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {
