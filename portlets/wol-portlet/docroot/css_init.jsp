@@ -22,6 +22,7 @@
  */
 %>
 
+<%@ page import="com.liferay.portal.kernel.servlet.HttpHeaders" %>
 <%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.model.Theme" %>
@@ -45,7 +46,7 @@ String cdnHost = PortalUtil.getCDNHost();
 
 String themeImagesPath = cdnHost + themeContextPath + theme.getImagesPath();
 
-response.addHeader("Cache-Control", "max-age=172801, public");
-response.addHeader("Content-type", ContentTypes.TEXT_CSS);
-response.addHeader("Expires", "172801");
+response.addHeader(HttpHeaders.CACHE_CONTROL, "max-age=172801, public");
+response.addHeader(HttpHeaders.CONTENT_TYPE, ContentTypes.TEXT_CSS);
+response.addHeader(HttpHeaders.EXPIRES, "172801");
 %>
