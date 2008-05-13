@@ -44,7 +44,7 @@ $theme.include($top_messages_include)
 			#if ($has_navigation)
 				#parse ("$full_templates_path/navigation.vm")
 			#end
-		
+
 			<h1 class="logo">
 				<a class="png" href="$company_url">$company_name</a>
 			</h1>
