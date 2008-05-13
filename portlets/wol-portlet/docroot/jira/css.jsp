@@ -24,24 +24,24 @@
 
 <%@ include file="/css_init.jsp" %>
 
-.jira-summary .issue-count {
+.wol-portlet-jira .jira-summary .issue-count {
 	padding-right: 4px;
 	text-align: right;
 	width: 5%;
 }
 
-.jira-summary .activity-details {
+.wol-portlet-jira .jira-summary .activity-details {
 	width: 65%;
 	padding-bottom: 5px;
 }
 
-.jira-summary .activity-details .progress-bar {
+.wol-portlet-jira .jira-summary .activity-details .progress-bar {
 	background: #c2c8cb;
 	height: 15px;
 	margin-bottom: 2px;
 }
 
-.jira-summary .activity-details .progress-text {
+.wol-portlet-jira .jira-summary .activity-details .progress-text {
 	padding-left: 4px;
 	font-weight: bold;
 }

@@ -5,7 +5,7 @@
 		type="javax.sql.DataSource"
 		driverClassName="com.mysql.jdbc.Driver"
 		url="jdbc:mysql://localhost/jira?useUnicode=true&amp;characterEncoding=UTF-8&amp;emulateLocators=true&amp;useFastDateParsing=false"
-		username=""
+		username="root"
 		password=""
 		maxActive="20"
 	/>

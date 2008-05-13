@@ -24,11 +24,11 @@
 
 <%@ include file="/css_init.jsp" %>
 
-.ie .summary-container {
+.ie .wol-portlet-summary .summary-container {
 	height: 1%;
 }
 
-.summary-container:after {
+.wol-portlet-summary .summary-container:after {
 	clear: both;
 	content: ".";
 	display: block;
@@ -36,27 +36,27 @@
 	visibility: hidden;
 }
 
-.summary-container h2 {
+.wol-portlet-summary .summary-container h2 {
 	color: #3D536C;
 	font-size: 16px;
 	margin-bottom: 10px;
 	margin-top: 0;
 }
 
-.summary-container img {
+.wol-portlet-summary .summary-container img {
 	margin: 5px 0;
 	max-width: 120px;
 }
 
-.ie6 .summary-container img {
+.ie6 .wol-portlet-summary .summary-container img {
 	width: 120px;
 }
 
-.summary-container p {
+.wol-portlet-summary .summary-container p {
 	margin-bottom: 10px;
 }
 
-.summary-container span {
+.wol-portlet-summary .summary-container span {
 	color: #3D536C;
 	display: block;
 	font-size: 10px;
@@ -64,18 +64,18 @@
 	text-transform: uppercase;
 }
 
-.summary-container .user-profile-image {
+.wol-portlet-summary .summary-container .user-profile-image {
 	max-width: 180px;
 }
 
-.ie6 .summary-container .user-profile-image {
+.ie6 .wol-portlet-summary .summary-container .user-profile-image {
 	width: expression(this.width > 180 : '180px' : 'auto');
 }
 
-.summary-container .add-as-friend {
+.wol-portlet-summary .summary-container .add-as-friend {
 	margin: 0.7em auto 1em;
 }
 
-.summary-container .add-as-friend.pending {
+.wol-portlet-summary .summary-container .add-as-friend.pending {
 	background-image: url(<%= themeImagesPath %>/common/time.png);
 }

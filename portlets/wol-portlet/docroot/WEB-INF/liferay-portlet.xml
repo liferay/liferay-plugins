@@ -5,7 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<header-portlet-css>/summary/css.jsp</header-portlet-css>
-		<css-class-wrapper>portlet-summary</css-class-wrapper>
+		<css-class-wrapper>wol-portlet-summary</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
