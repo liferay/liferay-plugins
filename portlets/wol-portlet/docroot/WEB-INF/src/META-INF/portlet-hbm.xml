@@ -13,6 +13,7 @@
 		<property name="jiraIssueId" column="issueid" type="com.liferay.util.dao.hibernate.LongType" />
 		<property name="type" column="actiontype" type="com.liferay.util.dao.hibernate.StringType" />
 		<property name="body" column="actionbody" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="jiraGroupName" column="actionlevel" type="com.liferay.util.dao.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.wol.model.impl.JIRAChangeGroupImpl" table="changegroup">
 		<cache usage="read-write" />

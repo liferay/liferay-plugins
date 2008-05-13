@@ -65,5 +65,9 @@ public interface JIRAActionModel extends BaseModel {
 
 	public void setBody(String body);
 
+	public String getJiraGroupName();
+
+	public void setJiraGroupName(String jiraGroupName);
+
 	public JIRAAction toEscapedModel();
 }

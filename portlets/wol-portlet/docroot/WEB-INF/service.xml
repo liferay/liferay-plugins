@@ -20,6 +20,7 @@
 		<column name="jiraIssueId" db-name="issueid" type="long" />
 		<column name="type" db-name="actiontype" type="String" />
 		<column name="body" db-name="actionbody" type="String" />
+		<column name="jiraGroupName" db-name="actionlevel" type="String" />
 
 		<!-- Order -->
 

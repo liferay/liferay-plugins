@@ -70,9 +70,12 @@ public class JIRAActionModelImpl extends BaseModelImpl {
 			{ "actiontype", new Integer(Types.VARCHAR) },
 			
 
-			{ "actionbody", new Integer(Types.VARCHAR) }
+			{ "actionbody", new Integer(Types.VARCHAR) },
+			
+
+			{ "actionlevel", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table jiraaction (id LONG not null primary key,author VARCHAR(75) null,created DATE null,updated DATE null,issueid LONG,actiontype VARCHAR(75) null,actionbody VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table jiraaction (id LONG not null primary key,author VARCHAR(75) null,created DATE null,updated DATE null,issueid LONG,actiontype VARCHAR(75) null,actionbody VARCHAR(75) null,actionlevel VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table jiraaction";
 	public static final String DATA_SOURCE = "jiraDataSource";
 	public static final String SESSION_FACTORY = "jiraSessionFactory";
@@ -91,6 +94,7 @@ public class JIRAActionModelImpl extends BaseModelImpl {
 		model.setJiraIssueId(soapModel.getJiraIssueId());
 		model.setType(soapModel.getType());
 		model.setBody(soapModel.getBody());
+		model.setJiraGroupName(soapModel.getJiraGroupName());
 
 		return model;
 	}
@@ -206,6 +210,19 @@ public class JIRAActionModelImpl extends BaseModelImpl {
 		}
 	}
 
+	public String getJiraGroupName() {
+		return GetterUtil.getString(_jiraGroupName);
+	}
+
+	public void setJiraGroupName(String jiraGroupName) {
+		if (((jiraGroupName == null) && (_jiraGroupName != null)) ||
+				((jiraGroupName != null) && (_jiraGroupName == null)) ||
+				((jiraGroupName != null) && (_jiraGroupName != null) &&
+				!jiraGroupName.equals(_jiraGroupName))) {
+			_jiraGroupName = jiraGroupName;
+		}
+	}
+
 	public JIRAAction toEscapedModel() {
 		if (isEscapedModel()) {
 			return (JIRAAction)this;
@@ -222,6 +239,7 @@ public class JIRAActionModelImpl extends BaseModelImpl {
 			model.setJiraIssueId(getJiraIssueId());
 			model.setType(HtmlUtil.escape(getType()));
 			model.setBody(HtmlUtil.escape(getBody()));
+			model.setJiraGroupName(HtmlUtil.escape(getJiraGroupName()));
 
 			model = (JIRAAction)Proxy.newProxyInstance(JIRAAction.class.getClassLoader(),
 					new Class[] { JIRAAction.class },
@@ -241,6 +259,7 @@ public class JIRAActionModelImpl extends BaseModelImpl {
 		clone.setJiraIssueId(getJiraIssueId());
 		clone.setType(getType());
 		clone.setBody(getBody());
+		clone.setJiraGroupName(getJiraGroupName());
 
 		return clone;
 	}
@@ -301,4 +320,5 @@ public class JIRAActionModelImpl extends BaseModelImpl {
 	private long _jiraIssueId;
 	private String _type;
 	private String _body;
+	private String _jiraGroupName;
 }

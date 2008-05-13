@@ -45,6 +45,7 @@ public class JIRAActionSoap implements Serializable {
 		soapModel.setJiraIssueId(model.getJiraIssueId());
 		soapModel.setType(model.getType());
 		soapModel.setBody(model.getBody());
+		soapModel.setJiraGroupName(model.getJiraGroupName());
 
 		return soapModel;
 	}
@@ -126,6 +127,14 @@ public class JIRAActionSoap implements Serializable {
 		_body = body;
 	}
 
+	public String getJiraGroupName() {
+		return _jiraGroupName;
+	}
+
+	public void setJiraGroupName(String jiraGroupName) {
+		_jiraGroupName = jiraGroupName;
+	}
+
 	private long _jiraActionId;
 	private String _jiraUserId;
 	private Date _createDate;
@@ -133,4 +142,5 @@ public class JIRAActionSoap implements Serializable {
 	private long _jiraIssueId;
 	private String _type;
 	private String _body;
+	private String _jiraGroupName;
 }

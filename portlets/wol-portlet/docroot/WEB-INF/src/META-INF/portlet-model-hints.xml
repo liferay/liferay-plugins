@@ -9,6 +9,7 @@
 		<field name="jiraIssueId" type="long" />
 		<field name="type" type="String" />
 		<field name="body" type="String" />
+		<field name="jiraGroupName" type="String" />
 	</model>
 	<model name="com.liferay.wol.model.JIRAChangeGroup">
 		<field name="jiraChangeGroupId" type="long" />

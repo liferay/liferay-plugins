@@ -25,6 +25,7 @@ package com.liferay.wol.service.impl;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portlet.expando.model.ExpandoValue;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
@@ -240,7 +241,9 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 		for (JIRAAction jiraAction : jiraActions) {
 			long userId = getUserId(jiraAction.getJiraUserId());
 
-			if (userId <= 0) {
+			if ((userId <= 0) ||
+				Validator.isNotNull(jiraAction.getJiraGroupName())) {
+
 				continue;
 			}
 
