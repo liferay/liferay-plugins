@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -20,22 +19,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
 
-<%@ include file="/init.jsp" %>
+package com.liferay.wol.friendsactivities.portlet;
 
-<%
-List<SocialActivity> activities = SocialActivityLocalServiceUtil.getRelationActivities(user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, 0, SearchContainer.DEFAULT_DELTA);
+import com.liferay.portal.kernel.portlet.RSSFriendlyURLMapper;
 
-PortletURL rssURL = renderResponse.createRenderURL();
+/**
+ * <a href="FriendsActivitiesFriendlyURLMapper.java.html"><b><i>View Source</i>
+ * </b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class FriendsActivitiesFriendlyURLMapper extends RSSFriendlyURLMapper {
 
-rssURL.setParameter("rss", "1");
-%>
+	public String getMapping() {
+		return _MAPPING;
+	}
 
-<liferay-ui:social-activities
-	activities="<%= activities %>"
-	feedEnabled="<%= true %>"
-	feedTitle='<%= LanguageUtil.format(pageContext, "subscribe-to-these-activities", user2.getFirstName()) %>'
-	feedLink="<%= rssURL.toString() %>"
-	feedLinkMessage='<%= LanguageUtil.format(pageContext, "subscribe-to-these-activities", user2.getFirstName()) %>'
-/>
+	public String getPortletId() {
+		return _PORTLET_ID;
+	}
+
+	private static final String _MAPPING = "friends_activities";
+
+	private static final String _PORTLET_ID = "6_WAR_wolportlet";
+
+}

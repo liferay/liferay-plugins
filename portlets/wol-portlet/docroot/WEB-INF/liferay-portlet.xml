@@ -42,6 +42,7 @@
 	</portlet>
 	<portlet>
 		<portlet-name>6</portlet-name>
+		<friendly-url-mapper-class>com.liferay.wol.friendsactivities.portlet.FriendsActivitiesFriendlyURLMapper</friendly-url-mapper-class>
 		<css-class-wrapper>wol-portlet-friends-activities</css-class-wrapper>
 	</portlet>
 	<role-mapper>

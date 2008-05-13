@@ -91,7 +91,6 @@
 <%@ page import="com.sun.syndication.feed.synd.SyndEntryImpl" %>
 <%@ page import="com.sun.syndication.feed.synd.SyndFeed" %>
 <%@ page import="com.sun.syndication.feed.synd.SyndFeedImpl" %>
-<%@ page import="com.sun.syndication.io.FeedException" %>
 
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.text.NumberFormat" %>
