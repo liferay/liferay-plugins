@@ -24,5 +24,267 @@
 
 <%@ include file="/css_init.jsp" %>
 
-.mail-portlet {
+.mail-portlet #account-container {
+	margin-bottom: 7px;
+	width: 100%;
 }
+
+.mail-portlet #account-container div {
+	float: left;
+}
+
+.mail-portlet #selection {
+	text-align: left;
+	width: 30%;
+}
+
+.mail-portlet #status {
+	text-align: center;	
+	width: 40%;
+}
+
+.mail-portlet #search {
+	text-align: right;
+	width: 30%;
+}
+
+.mail-portlet #email-container {
+	width: 100%;
+	height: 400px;
+}
+
+.mail-portlet #email-container tr {
+	vertical-align: top;
+}
+
+.mail-portlet #email-left-column {
+	width: 10%;
+	border: 1px black solid;
+	padding: 3px;
+	margin-right: 3px;
+}
+
+.mail-portlet #email-right-column {
+	width: 90%;
+	border: 1px black solid;
+	padding: 3px;
+}
+
+.mail-portlet #compose-mail {
+	text-decoration: underline;
+	cursor: pointer;
+	padding-bottom: 10px;
+}
+
+.mail-portlet #status {
+	text-align: center;
+	font-weight: bold;
+	background-color: #FFF1A8;
+	padding: 3px;
+}
+
+.mail-portlet .folder {
+	min-width: 80px;
+}
+
+.mail-portlet #folder {
+	display: block;
+	padding-bottom: 20px;
+}
+
+.mail-portlet #message-list {
+	width: 100%;
+}
+
+.mail-portlet .message:hover {
+	cursor: pointer;
+}
+
+.mail-portlet .message td {
+	padding: 2px;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+.mail-portlet .read {
+	background: #E8EEF7 none repeat scroll 0% 50%;
+}
+
+.mail-portlet .unread {
+	background: #FFFFFF none repeat scroll 0%;
+}
+
+.mail-portlet .message-from {
+	font-weight: bold;
+	padding-right: 5px;
+}
+
+.mail-portlet .message-subject {
+	font-weight: bold;
+}
+
+.mail-portlet .message-body-preview {
+	color: grey;
+}
+
+.mail-portlet .message-date {
+	font-weight: bold;
+}
+
+.mail-portlet .message-col-0 {
+	width: 25px;
+	overflow: hidden;
+	text-align: center;
+}
+
+.mail-portlet .message-col-1 {
+	width: 225px;
+	overflow: hidden;
+}
+
+.mail-portlet .message-col-2 {
+	height: 17px;
+	overflow: hidden;
+}
+
+.mail-portlet .message-col-3 {
+	width: 130px;
+	overflow: hidden;
+}
+
+.mail-portlet .folder-controls {
+	background-color: #C3D9FF;
+	height: 45px;
+	padding: 3px;
+}
+
+.mail-portlet .folder-controls .actions {
+	float: left;
+}
+
+.mail-portlet .folder-controls .navigation {
+	float: right;
+}
+
+.mail-portlet #message {
+	display: none;
+}
+
+.mail-portlet #message-read {
+	padding-bottom: 20px;
+}
+
+.mail-portlet #message-read .details {
+	background-color: #F8F8F8;
+	padding: 5px;
+}
+
+.mail-portlet #message-read .details table tr {
+	vertical-align: middle;
+}
+
+.mail-portlet #message-read .label {
+	color: #888888;
+	text-align: right;
+	width: 60px;
+	padding: 2px 15px;
+}
+
+.mail-portlet #message-read #body {
+	padding: 15px;
+}
+
+.mail-portlet #message-send {
+	padding-bottom: 20px;
+	display: none;
+	background-color: #C3D9FF;
+}
+
+.mail-portlet #message-send .details {
+	padding: 10px;
+	text-align: center;
+}
+
+.mail-portlet #message-send .label {
+	font-weight: bold;
+	text-align: right;
+	padding: 2px 7px;
+	width: 20px;
+} 
+
+.mail-portlet #message-send .details table {
+	width: 100%;
+}
+
+.mail-portlet #send-from, 
+.mail-portlet #send-to, 
+.mail-portlet #send-cc, 
+.mail-portlet #send-bcc, 
+.mail-portlet #send-subject, 
+.mail-portlet #send-body {
+	width: 95%;
+}
+
+.mail-portlet #send-body {
+	overflow: auto;
+	height: 300px;
+}
+
+.mail-portlet #send-to {
+	overflow: auto;
+	height: 45px;
+}
+
+.mail-portlet #message-send .options {
+	padding: 5px;
+}
+
+
+.mail-portlet #message-options {
+	background-color: #F7F7F7;
+}
+
+.mail-portlet #message-options div {
+	cursor: pointer;
+}
+
+.mail-portlet #message-options #reply {
+	float: left;
+	padding: 5px;
+}
+
+.mail-portlet #message-options #reply-all {
+	float: left;
+	padding: 5px;
+}
+
+.mail-portlet #message-options #forward {
+	padding: 5px;
+}
+
+
+.mail-portlet .message-controls {
+	background-color: #C3D9FF;
+}
+
+.mail-portlet .message-controls .actions {
+	padding: 5px;
+	float: left;
+}
+
+.mail-portlet .message-controls .back {
+	cursor: pointer;
+}
+
+.mail-portlet .message-controls .navigation {
+	text-align: right;
+	padding: 5px;
+}
+
+.mail-portlet .message-controls .newer,
+.mail-portlet .message-controls .older {
+	cursor: pointer;
+}
+
+.mail-portlet .message-controls .status-number {
+	font-weight: bold;
+} 
