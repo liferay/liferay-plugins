@@ -17,11 +17,13 @@
 
 	<td id="status-div">
 		<span id="status" />
+		<span id="debug" />
 	</td>
 
 	<td id="search">
 		<input id="search-text">
-		<input id="search-button" type="button" value="Search" />
+
+		<input id="search-button" type="button" value="<liferay-ui:message key="search" />" />
 	</td>
 </tr>
 </table>
@@ -41,14 +43,15 @@
 	</td>
 	<td id="email-right-column">
 		<div id="folder" folderName="">
-
 			<div class="folder-controls">
 				<div class="actions">
 					<div>
-						<input type="button" value="Delete" class="delete" />
-						<select class="select">
+						<input type="button" value="<liferay-ui:message key="delete" />" class="delete" />
+						<select class="select-actions">
 							<option value="none"><liferay-ui:message key="more-actions" /></option>
+
 							<option value="read">- <liferay-ui:message key="mark-as-read" /></option>
+
 							<option value="unread">- <liferay-ui:message key="mark-as-unread" /></option>
 						</select>
 						<a class="refresh" href="javascript: ;"><liferay-ui:message key="refresh" /></a>
@@ -56,19 +59,27 @@
 
 					<div>
 						<liferay-ui:message key="select" />: 
-						<a href="javascript: ;" class="select-all"><liferay-ui:message key="all" /></a>, 
-						<a href="javascript: ;" class="select-none"><liferay-ui:message key="none" /></a>, 
-						<a href="javascript: ;" class="select-read"><liferay-ui:message key="read" /></a>, 
-						<a href="javascript: ;" class="select-unread"><liferay-ui:message key="unread" /></a>
+
+						<a class="select-all" href="javascript: ;"><liferay-ui:message key="all" /></a>, 
+
+						<a class="select-none" href="javascript: ;"><liferay-ui:message key="none" /></a>, 
+
+						<a class="select-read" href="javascript: ;"><liferay-ui:message key="read" /></a>, 
+
+						<a class="select-unread" href="javascript: ;"><liferay-ui:message key="unread" /></a>
 					</div>
 				</div>
 
 				<div class="navigation">
-					<a href="javascript: ;" class="newest">« <liferay-ui:message key="newest" /></a>
-					<a href="javascript: ;" class="newer">&lt; <liferay-ui:message key="newer" /></a>
+					<a class="newest" href="javascript: ;">« <liferay-ui:message key="newest" /></a>
+
+					<a class="newer" href="javascript: ;">&lt; <liferay-ui:message key="newer" /></a>
+
 					<span class="status">? - ? of ???</span>
-					<a href="javascript: ;" class="older"><liferay-ui:message key="older" /> &gt;</a>
-					<a href="javascript: ;" class="oldest"><liferay-ui:message key="oldest" /> »</a>
+
+					<a class="older" href="javascript: ;"><liferay-ui:message key="older" /> &gt;</a>
+
+					<a class="oldest" href="javascript: ;"><liferay-ui:message key="oldest" /> »</a>
 				</div>
 			</div>
 
@@ -79,29 +90,41 @@
 				<div class="actions">
 					<div>
 						<liferay-ui:message key="select" />: 
-						<a href="javascript: ;" class="select-all"><liferay-ui:message key="all" /></a>, 
-						<a href="javascript: ;" class="select-none"><liferay-ui:message key="none" /></a>, 
-						<a href="javascript: ;" class="select-read"><liferay-ui:message key="read" /></a>, 
-						<a href="javascript: ;" class="select-unread"><liferay-ui:message key="unread" /></a>
+
+						<a class="select-all" href="javascript: ;"><liferay-ui:message key="all" /></a>, 
+
+						<a class="select-none" href="javascript: ;"><liferay-ui:message key="none" /></a>, 
+
+						<a class="select-read" href="javascript: ;"><liferay-ui:message key="read" /></a>, 
+
+						<a class="select-unread" href="javascript: ;"><liferay-ui:message key="unread" /></a>
 					</div>
 
 					<div>
-						<input type="button" value="Delete" class="delete" />
+						<input type="button" value="<liferay-ui:message key="delete" />" class="delete" />
+
 						<select class="select-actions">
 							<option value="none"><liferay-ui:message key="more-actions" /></option>
+
 							<option value="read">- <liferay-ui:message key="mark-as-read" /></option>
+
 							<option value="unread">- <liferay-ui:message key="mark-as-unread" /></option>
 						</select>
+
 						<a class="refresh" href="javascript: ;"><liferay-ui:message key="refresh" /></a>
 					</div>
 				</div>
 
 				<div class="navigation">
-					<a href="javascript: ;" class="newest">« <liferay-ui:message key="newest" /></a>
-					<a href="javascript: ;" class="newer">&lt; <liferay-ui:message key="newer" /></a>
+					<a class="newest" href="javascript: ;">« <liferay-ui:message key="newest" /></a>
+
+					<a class="newer" href="javascript: ;">&lt; <liferay-ui:message key="newer" /></a>
+
 					<span class="status">? - ? of ???</span>
-					<a href="javascript: ;" class="older"><liferay-ui:message key="older" /> &gt;</a>
-					<a href="javascript: ;" class="oldest"><liferay-ui:message key="oldest" /> »</a>
+
+					<a class="older" href="javascript: ;"><liferay-ui:message key="older" /> &gt;</a>
+
+					<a class="oldest" href="javascript: ;"><liferay-ui:message key="oldest" /> »</a>
 				</div>
 			</div>
 		</div>
@@ -114,7 +137,9 @@
 
 				<div class="navigation">
 					<span class="newer">&lt; <liferay-ui:message key="newer" /></span>
+
 					<span class="status">? of ???</span>
+
 					<span class="older"><liferay-ui:message key="older" /> &gt;</span>
 				</div>
 			</div>
@@ -187,9 +212,11 @@
 
 			<div id="message-send">
 				<div class="options">
-					<input type="button" value="Send" class="send">
-					<input type="button" value="Save" class="save">
-					<input type="button" value="Discard" class="discard">
+					<input class="send" type="button" value="<liferay-ui:message key="send" />">
+
+					<input class="save" type="button" value="<liferay-ui:message key="save" />">
+
+					<input class="discard" type="button" value="<liferay-ui:message key="discard" />">
 				</div>
 
 				<div class="details">
@@ -241,9 +268,11 @@
 				</div>
 
 				<div class="options">
-					<input type="button" value="Send" class="send">
-					<input type="button" value="Save" class="save">
-					<input type="button" value="Discard" class="discard">
+					<input class="send" type="button" value="<liferay-ui:message key="send" />">
+
+					<input class="save" type="button" value="<liferay-ui:message key="save" />">
+
+					<input class="discard" type="button" value="<liferay-ui:message key="discard" />">
 				</div>
 			</div>
 
@@ -254,7 +283,9 @@
 
 				<div class="navigation">
 					<span class="newer">&lt; <liferay-ui:message key="newer" /></span>
+
 					<span class="status">? of ???</span>
+
 					<span class="older"><liferay-ui:message key="older" /> &gt;</span>
 				</div>
 			</div>
