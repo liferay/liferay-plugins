@@ -49,8 +49,8 @@
 }
 
 .mail-portlet #email-container {
-	width: 100%;
 	height: 400px;
+	width: 100%;
 }
 
 .mail-portlet #email-container tr {
@@ -58,29 +58,29 @@
 }
 
 .mail-portlet #email-left-column {
-	width: 10%;
 	border: 1px black solid;
-	padding: 3px;
 	margin-right: 3px;
+	padding: 3px;
+	width: 10%;
 }
 
 .mail-portlet #email-right-column {
-	width: 90%;
 	border: 1px black solid;
 	padding: 3px;
+	width: 90%;
 }
 
 .mail-portlet #compose-mail {
-	text-decoration: underline;
 	cursor: pointer;
 	padding-bottom: 10px;
+	text-decoration: underline;
 }
 
 .mail-portlet #status {
-	text-align: center;
-	font-weight: bold;
 	background-color: #FFF1A8;
+	font-weight: bold;
 	padding: 3px;
+	text-align: center;
 }
 
 .mail-portlet .folder {
@@ -101,8 +101,8 @@
 }
 
 .mail-portlet .message td {
-	padding: 2px;
 	border-bottom: 1px solid #CCCCCC;
+	padding: 2px;
 }
 
 .mail-portlet .read {
@@ -131,14 +131,14 @@
 }
 
 .mail-portlet .message-col-0 {
-	width: 25px;
 	overflow: hidden;
 	text-align: center;
+	width: 25px;
 }
 
 .mail-portlet .message-col-1 {
-	width: 225px;
 	overflow: hidden;
+	width: 225px;
 }
 
 .mail-portlet .message-col-2 {
@@ -147,8 +147,8 @@
 }
 
 .mail-portlet .message-col-3 {
-	width: 130px;
 	overflow: hidden;
+	width: 130px;
 }
 
 .mail-portlet .folder-controls {
@@ -184,9 +184,9 @@
 
 .mail-portlet #message-read .label {
 	color: #888888;
+	padding: 2px 15px;
 	text-align: right;
 	width: 60px;
-	padding: 2px 15px;
 }
 
 .mail-portlet #message-read #body {
@@ -194,9 +194,9 @@
 }
 
 .mail-portlet #message-send {
-	padding-bottom: 20px;
-	display: none;
 	background-color: #C3D9FF;
+	display: none;
+	padding-bottom: 20px;
 }
 
 .mail-portlet #message-send .details {
@@ -225,13 +225,13 @@
 }
 
 .mail-portlet #send-body {
-	overflow: auto;
 	height: 300px;
+	overflow: auto;
 }
 
 .mail-portlet #send-to {
-	overflow: auto;
 	height: 45px;
+	overflow: auto;
 }
 
 .mail-portlet #message-send .options {
@@ -267,8 +267,8 @@
 }
 
 .mail-portlet .message-controls .actions {
-	padding: 5px;
 	float: left;
+	padding: 5px;
 }
 
 .mail-portlet .message-controls .back {
@@ -276,8 +276,8 @@
 }
 
 .mail-portlet .message-controls .navigation {
-	text-align: right;
 	padding: 5px;
+	text-align: right;
 }
 
 .mail-portlet .message-controls .newer,
