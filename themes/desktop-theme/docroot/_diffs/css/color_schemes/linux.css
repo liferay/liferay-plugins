@@ -1,7 +1,0 @@
-/* This CSS file is loaded last and will overwrite all other css files. */
-
-/* ---------- Styles in base.css ---------- */
-
-body.linux {
-	background: #347510 url(../../images/color_schemes/linux/desktop/desktop_bg.png) no-repeat fixed 50% 50%;
-}

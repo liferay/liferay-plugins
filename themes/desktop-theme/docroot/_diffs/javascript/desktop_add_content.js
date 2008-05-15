@@ -30,6 +30,7 @@ var DesktopAddContent = {
 
 			instance.initialized = true;
 
+			jQuery('#layout_configuration_content').trigger('focus').addClass('focus');
 			jQuery('#layout_configuration_content').keyup(
 				function(event) {
 					instance.startShowTimer(event, this);
@@ -59,9 +60,11 @@ var DesktopAddContent = {
 				body.css('padding-left', popupWidth + 10);
 			}
 
-			AjaxUtil.update(url, 'sidebar-content',
+			jQuery.ajax(
 				{
-					onComplete: function() {
+					url: url,
+					success: function(message) {
+						jQuery("#sidebar-content").html(message);
 						instance._loadContent();
 					}
 				}
@@ -180,9 +183,14 @@ var DesktopAddContent = {
 				}
 			},
 			onComplete: function(s) {
-				if (!clicked) {
-					var container = s.container;
+				var container = s.container;
 
+				var headerPortalCssPaths = container.getAttribute('headerPortalCssPaths');
+                var headerPortletCssPaths = container.getAttribute('headerPortletCssPaths');
+				var footerPortalCssPaths = container.getAttribute('footerPortalCssPaths');
+				var footerPortletCssPaths = container.getAttribute('footerPortletCssPaths');
+
+				if (!clicked) {
 					var plid = container.getAttribute('plid');
 					var portletId = container.getAttribute('portletId');
 
@@ -246,6 +254,53 @@ var DesktopAddContent = {
 							);
 						}
 					}
+				}
+
+				var head = jQuery('head');
+				var docBody = jQuery(document.body);
+
+				if (headerPortalCssPaths) {
+					headerPortalCssPaths = headerPortalCssPaths.split(',');
+
+					jQuery.each(
+						headerPortalCssPaths,
+						function(i, n) {
+							head.append('<link href="' + this + '" rel="stylesheet" type="text/css" />');
+						}
+					);
+				}
+
+				if (headerPortletCssPaths) {
+					headerPortletCssPaths = headerPortletCssPaths.split(',');
+
+					jQuery.each(
+						headerPortletCssPaths,
+						function(i, n) {
+							head.append('<link href="' + this + '" rel="stylesheet" type="text/css" />');
+						}
+					);
+				}
+
+				if (footerPortalCssPaths) {
+					footerPortalCssPaths = footerPortalCssPaths.split(',');
+
+					jQuery.each(
+						footerPortalCssPaths,
+						function(i, n) {
+							docBody.append('<link href="' + this + '" rel="stylesheet" type="text/css" />');
+						}
+					);
+				}
+
+				if (footerPortletCssPaths) {
+					footerPortletCssPaths = footerPortletCssPaths.split(',');
+
+					jQuery.each(
+						footerPortletCssPaths,
+						function(i, n) {
+							docBody.append('<link href="' + this + '" rel="stylesheet" type="text/css" />');
+						}
+					);
 				}
 
 				clicked = false;

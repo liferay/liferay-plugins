@@ -11,15 +11,11 @@
 			<css-class></css-class>
 			<color-scheme-images-path>${images-path}</color-scheme-images-path>
 		</color-scheme>
-		<color-scheme id="02" name="Linux">
-			<css-class>linux</css-class>
-			<color-scheme-images-path>${images-path}/color_schemes/linux</color-scheme-images-path>
-		</color-scheme>
-		<color-scheme id="03" name="Mac OS X">
+		<color-scheme id="02" name="Mac OS X">
 			<css-class>osx</css-class>
 			<color-scheme-images-path>${images-path}/color_schemes/osx</color-scheme-images-path>
 		</color-scheme>
-		<color-scheme id="04" name="Windows">
+		<color-scheme id="03" name="Windows OS">
 			<css-class>vista</css-class>
 			<color-scheme-images-path>${images-path}/color_schemes/vista</color-scheme-images-path>
 		</color-scheme>

@@ -9,7 +9,6 @@
 
 @import url(color_schemes/osx.css);
 @import url(color_schemes/vista.css);
-@import url(color_schemes/linux.css);
 
 /* ---------- Styles in base.css ---------- */
 
@@ -18,7 +17,7 @@ html {
 }
 
 body {
-	background: #d5d9dc url(../images/desktop/desktop_bg.jpg) no-repeat fixed 50% 50%;
+	background: #347510 url(../images/desktop/desktop_bg.png) no-repeat fixed 50% 50%;
 }
 
 #wrapper {
