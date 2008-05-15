@@ -18,19 +18,6 @@ jQuery([ jQuery.ajaxQueue ]).queue("ajax", function(){
 	});
 };
 
-function StringBuffer() { 
-	this.buffer = []; 
-} 
-
-StringBuffer.prototype.append = function append(string) { 
-	this.buffer.push(string); 
-	return this; 
-}; 
-
-StringBuffer.prototype.toString = function toString() { 
-	return this.buffer.join(""); 
-}; 
-
 jQuery(document).ready(function() {
 
 	//
@@ -42,7 +29,7 @@ jQuery(document).ready(function() {
 	var _currentPageNum;
 	var _currentMessage;
 
-	var _messagesPerPage = 25;
+	var _messagesPerPage = 10;
 	var _messageResponseType;
 	var _totalPages;
 	var _accounts;
@@ -162,8 +149,26 @@ jQuery(document).ready(function() {
 		}
 	}
 
+	var getCachedJsonFolders = function(accountId) {
+		try {
+			if (__jsonFolders[accountId] == undefined) {
+				return null;
+			}
+			else {
+				return __jsonFolders[accountId];
+			}
+		}
+		catch (ex) {
+			return null;
+		}
+	}
+
 	var cacheJsonFolders = function(accountId, jsonFolders) {
 		__jsonFolders[accountId] = jsonFolders;
+	}
+
+	var flushCachedJsonFolders = function() {
+		__jsonFolders = new Object();
 	}
 
 	var getCachedJsonMessages = function(accountId, folderName, pageNum) {
@@ -237,6 +242,16 @@ jQuery(document).ready(function() {
 		loadMessages(getCurrentFolderName(), getCurrentPageNum());
 	}
 
+	var refreshFolders = function(resetCache) {
+		if (resetCache) {
+			flushCachedJsonFolders();
+		}
+
+		setStatus("Refreshing Account.. ", "");
+
+		loadFolders(getCurrentAccountId());
+	}
+
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//
 	// UI Methods
@@ -271,7 +286,6 @@ jQuery(document).ready(function() {
 
 	var setStatus = function(message, debugMessage) {
 		jQuery("#status").css("display","inline");
-		jQuery("#debug").css("display","inline");
 
 		jQuery("#status").html(message);
 		jQuery("#debug").html(debugMessage);
@@ -409,21 +423,32 @@ jQuery(document).ready(function() {
 
 		setCurrentAccountId(accountId);
 
-		// Get json
+		if (getCachedJsonFolders(accountId) != null) {
+			
+			// Messages found in cache
 
-		var jsonUrl = "/c/mail/get_folders?accountId=" + accountId;
+			var jsonFolders = getCachedJsonFolders(accountId);
 
-		setStatus("Loading folders.. ", jsonUrl);
+			loadJsonFolders(jsonFolders);
+		}
+		else {
 
-		jQuery.ajaxQueue({
-			url: jsonUrl,
-			dataType: "json",
-			success: function(jsonFolders){ 
-				loadJsonFolders(jsonFolders); 
-				jQuery("#account-selection").val(accountId);
-				jQuery("#send-from").val(accountId);
-			}
-		});
+			// Get json
+
+			var jsonUrl = "/c/mail/get_folders?accountId=" + accountId;
+
+			setStatus("Loading folders.. ", jsonUrl);
+
+			jQuery.ajaxQueue({
+				url: jsonUrl,
+				dataType: "json",
+				success: function(jsonFolders){ 
+					loadJsonFolders(jsonFolders); 
+					jQuery("#account-selection").val(accountId);
+					jQuery("#send-from").val(accountId);
+				}
+			});
+		}
 	}
 
 	var loadSearchResults = function(folderName, pageNum, searchString) {
@@ -544,7 +569,7 @@ jQuery(document).ready(function() {
 
 		// Parse json
 
-		var buf = new StringBuffer();
+		var htmlAccountList = "";
 		var firstAccountId = jsonAccounts.accounts[0].accountId;
 
 		for (i = 0; i < jsonAccounts.accounts.length; i++) {
@@ -554,24 +579,22 @@ jQuery(document).ready(function() {
 			var tempAccountName = account.emailAccount;
 			var tempAccountId = account.accountId;
 
-			buf.append("<option value='");
-			buf.append(tempAccountId);
+			htmlAccountList += "<option value='";
+			htmlAccountList += tempAccountId;
 
 			// Preselect first email account
 
 			if (i == 0) {
 				firstAccountId = tempAccountId;
-				buf.append("' selected='selected'>");
+				htmlAccountList += "' selected='selected'>";
 			}
 			else {
-				buf.append("'>");
+				htmlAccountList += "'>";
 			}
 
-			buf.append(tempAccountName);
-			buf.append("</option>");
+			htmlAccountList += tempAccountName;
+			htmlAccountList += "</option>";
 		}
-
-		var htmlAccountList = buf.toString();
 
 		// Inject html
 
@@ -596,7 +619,7 @@ jQuery(document).ready(function() {
 
 		// Parse json
 
-		var buf = new StringBuffer();
+		var htmlFolderList = "";
 
 		for (i = 0; i < jsonFolders.folders.length; i++) {
 
@@ -606,10 +629,8 @@ jQuery(document).ready(function() {
 			var folderNewMessages = fldr.newMessages;
 			var folderTotalMessages = fldr.totalMessages;
 
-			buf.append("<div class='folder' folderName='" + fldr.name + "'><a href='#'>" + fldr.name + "</a></div>");
+			htmlFolderList += "<div class='folder' folderName='" + fldr.name + "'><a href='#'>" + fldr.name + "</a></div>";
 		}
-
-		var htmlFolderList = buf.toString();
 
 		// Inject html
 
@@ -634,21 +655,19 @@ jQuery(document).ready(function() {
 
 		// Parse json
 
-		var buf = new StringBuffer();
+		var htmlMessageList = "";
 
 		for (i = 0; i < jsonMessages.messages.length; i++) {
 
 			var msg = jsonMessages.messages[i];
 
-			buf.append("<tr class='message " + msg.read + "' messageUid='" + msg.uid + "'>");
-			buf.append("	<td><div class='message-col-0'><input type='checkbox' class='message-checkbox' /></div></td>");
-			buf.append("	<td><div class='message-col-1'><span class='message-from'>" + msg.from + "</span></div></td>");
-			buf.append("	<td><div class='message-col-2'><span class='message-subject'>" + msg.subject + "</span> - <span class='message-body-preview'>" + msg.bodyPreview + "</span></div></td>");
-			buf.append("	<td><div class='message-col-3'><span class='message-date'>" + msg.date + "</span></div></td>");
-			buf.append("</tr>");
+			htmlMessageList += "<tr class='message " + msg.read + "' messageUid='" + msg.uid + "'>";
+			htmlMessageList += "	<td><div class='message-col-0'><input type='checkbox' class='message-checkbox' /></div></td>";
+			htmlMessageList += "	<td><div class='message-col-1'><span class='message-from'>" + msg.from + "</span></div></td>";
+			htmlMessageList += "	<td><div class='message-col-2'><span class='message-subject'>" + msg.subject + "</span> - <span class='message-body-preview'>" + msg.bodyPreview + "</span></div></td>";
+			htmlMessageList += "	<td><div class='message-col-3'><span class='message-date'>" + msg.date + "</span></div></td>";
+			htmlMessageList += "</tr>";
 		}
-
-		var htmlMessageList = buf.toString();
 
 		// Inject html  
 
@@ -825,8 +844,6 @@ jQuery(document).ready(function() {
 
 		var option = jQuery(this).val();
 
-		alert(option);
-
 		if ((option != "read") && (option != "unread")) {
 			refreshFolderControls();
 			return false;
@@ -835,8 +852,6 @@ jQuery(document).ready(function() {
 		// Do nothing if no messages are selected
 
 		var messageUids = getSelectedMessageUids();
-
-		alert(messageUids);
 
 		if (messageUids == "") {
 			refreshFolderControls();
