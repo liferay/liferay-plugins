@@ -658,3 +658,19 @@ ul.message-board-edit-controls {
 .wol-portlet-svn .revision-actions li {
 	margin-right: 0.5em;
 }
+
+/* ---------- Facebook API key page ---------- */
+	
+.portlet-configuration .facebook-api .api-input {
+	padding-right: 15px;
+}
+
+.ie .portlet-configuration .facebook-api .api-input {
+	padding-right: 20px;
+}
+
+/* ---------- Tabs ---------- */
+
+.tabs li {
+	margin-right: 7px;
+}
