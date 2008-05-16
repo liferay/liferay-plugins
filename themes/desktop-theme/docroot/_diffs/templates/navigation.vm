@@ -1,6 +1,6 @@
 <ul class="taglib-home navigation-menu">
 
-	#if ($show_my_places && ($css_class == "vista"))
+	#if ($show_my_places && ($css_class == "vista controls-visible"))
 		<li class="my-places">
 			<a href="javascript: ;">$my_places_text</a>
 

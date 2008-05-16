@@ -7,13 +7,13 @@
 					<li class="home">
 						<a href="$home_url">$home_text</a>
 
-						#if ($has_navigation && ($css_class != "vista"))
+						#if ($has_navigation && ($css_class != "vista controls-visible"))
 							#parse ("$full_templates_path/navigation.vm")
 						#end
 					</li>
 				#end
 
-				#if ($show_my_places && ($css_class != "vista"))
+				#if ($show_my_places && ($css_class != "vista controls-visible"))
 					<li class="my-places">
 						<a href="javascript: ;">$my_places_text</a>
 
@@ -63,7 +63,7 @@
 				#end
 			</ul>
 
-			#if ($has_navigation && ($css_class == "vista"))
+			#if ($has_navigation && ($css_class == "vista controls-visible"))
 				<div class="vista-menu">
 					#parse ("$full_templates_path/navigation.vm")
 				</div>
