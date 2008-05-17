@@ -58,14 +58,14 @@
 }
 
 .mail-portlet #email-left-column {
-	border: 1px black solid;
+	border: 1px #000000 solid;
 	margin-right: 3px;
 	padding: 3px;
 	width: 10%;
 }
 
 .mail-portlet #email-right-column {
-	border: 1px black solid;
+	border: 1px #000000 solid;
 	padding: 3px;
 	width: 90%;
 }
@@ -238,29 +238,26 @@
 	padding: 5px;
 }
 
-
 .mail-portlet #message-options {
 	background-color: #F7F7F7;
 }
 
-.mail-portlet #message-options div {
+.mail-portlet #message-options td {
 	cursor: pointer;
+	padding: 5px;
 }
 
 .mail-portlet #message-options #reply {
-	float: left;
-	padding: 5px;
+
 }
 
 .mail-portlet #message-options #reply-all {
-	float: left;
-	padding: 5px;
+
 }
 
 .mail-portlet #message-options #forward {
-	padding: 5px;
-}
 
+}
 
 .mail-portlet .message-controls {
 	background-color: #C3D9FF;

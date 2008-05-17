@@ -1,575 +1,551 @@
-/*
-* http://dev.jquery.com/~john/plugins/ajaxqueue/
-* 
-* Queued Ajax requests.
-* A new Ajax request won't be started until the previous queued 
-* request has finished.
-*/
-
-jQuery.ajaxQueue = function(o){
-	var _old = o.complete;
-	o.complete = function(){
-	if ( _old ) _old.apply( this, arguments );
-	jQuery.dequeue( jQuery.ajaxQueue, "ajax" );
-};
-
-jQuery([ jQuery.ajaxQueue ]).queue("ajax", function(){
-	jQuery.ajax( o );
-	});
-};
-
-jQuery(document).ready(function() {
-
+Liferay.Mail = {
 	//
-	// Private vars
+	// Initialization methods
 	//
 
-	var _currentAccountId;
-	var _currentFolderName;
-	var _currentPageNum;
-	var _currentMessage;
+	init: function(){
+		var instance = this;
 
-	var _messagesPerPage = 10;
-	var _messageResponseType;
-	var _totalPages;
-	var _accounts;
+		instance._messagesPerPage = 10;
 
-	var __jsonFolders = new Object();
-	var __jsonMessages = new Object();
-	var __jsonMessage = new Object();
+		// Commonly used jQuery Expressions
+
+		instance.accountSelectionSelect = jQuery('#account-selection');
+
+		instance.statusSpan = jQuery('#status');
+		instance.debugSpan = jQuery('#debug');
+		instance.composeMailLink = jQuery('#compose-mail');
+		instance.searchButton = jQuery('#search-button');
+		instance.searchTextInput = jQuery('#search-text');
+
+		instance.readFromSpan = jQuery('#read-from');
+		instance.readReplyToSpan = jQuery('#read-reply-to');
+		instance.readToSpan = jQuery('#read-to');
+		instance.readCcSpan = jQuery('#read-cc');
+		instance.readDateSpan = jQuery('#read-date');
+		instance.readSubjectSpan = jQuery('#read-subject');
+		instance.readMailedBySpan = jQuery('#read-mailed-by');
+		instance.readBodySpan = jQuery('#read-body');
+
+		instance.sendFromSelect = jQuery('#send-from');
+		instance.sendToInput = jQuery('#send-to');
+		instance.sendCcInput = jQuery('#send-cc');
+		instance.sendBccInput = jQuery('#send-bcc');
+		instance.sendSubjectInput = jQuery('#send-subject');
+		instance.sendBodyTextarea = jQuery('#send-body');
+
+		instance.folderDiv = jQuery('#folder');
+		instance.foldersDiv = jQuery('#folders');
+
+		instance.folderControlsNewestLink = jQuery('.folder-controls .newest');
+		instance.folderControlsNewerLink = jQuery('.folder-controls .newer');
+		instance.folderControlsOlderLink = jQuery('.folder-controls .older');
+		instance.folderControlsOldestLink = jQuery('.folder-controls .oldest');
+
+		instance.folderControlsDeleteButton = jQuery('.folder-controls .delete');
+		instance.folderControlsRefreshLink = jQuery('.folder-controls .refresh');
+
+		instance.folderControlsSelectAction = jQuery('.folder-controls .select-actions');
+		instance.folderControlsSelectAllLink = jQuery('.folder-controls .select-all');
+		instance.folderControlsSelectNoneLink = jQuery('.folder-controls .select-none');
+		instance.folderControlsSelectReadLink = jQuery('.folder-controls .select-read');
+		instance.folderControlsSelectUnreadLink = jQuery('.folder-controls .select-unread');
+
+		instance.messageDiv = jQuery('#message');
+
+		instance.messageControlsDiv = jQuery('.message-controls');
+		instance.messageControlsNewerLink = jQuery('.message-controls .newer');
+		instance.messageControlsOlderLink = jQuery('.message-controls .older');
+		instance.messageControlsStatus = jQuery('.message-controls .status');
+		instance.messageControlsBackLink = jQuery('.message-controls .back');
+
+		instance.messageOptionsDiv = jQuery('#message-options');
+		instance.messageOptionsRespondDivs = jQuery('#reply,#reply-all,#forward');
+
+		instance.messageReadDiv = jQuery('#message-read');
+		instance.messageSendDiv = jQuery('#message-send');
+		instance.messageSendSendButton = jQuery('#message-send .send');
+		instance.messageSendSaveButton = jQuery('#message-send .save');
+		instance.messageSendDiscardButton = jQuery('#message-send .discard');
+		instance.messageListTable = jQuery('#message-list');	
+
+		// Init methods
+
+		instance._assignEvents();
+		instance.loadAccounts();
+
+		// Disable features which have not yet been implemented
+
+		instance.messageSendSaveButton.attr('disabled', 'disabled'); 
+	},
 
 	//
 	// Getters and Setters
 	//
 
-	var getCurrentAccountId = function() {
-		return _currentAccountId;
-	}
+	getCurrentAccountId: function() {
+		var instance = this;
 
-	var setCurrentAccountId = function(accountId) {
-		_currentAccountId = accountId;
-	}
+		return instance._currentAccountId;
+	},
 
-	var getCurrentMessageUid = function() {
-		return getCurrentMessage().uid;
-	}
+	setCurrentAccountId: function(accountId) {
+		var instance = this;
 
-	var getCurrentMessage = function() {
-		return _currentMessage;
-	}
+		instance._currentAccountId = accountId;
+	},
 
-	var setCurrentMessage = function(jsonMessage) {
-		_currentMessage = jsonMessage;
-	}
+	getCurrentMessageUid: function() {
+		var instance = this;
 
-	var getCurrentFolderName = function() {
-		return getCurrentFolder().name;
-	}
+		return instance.getCurrentMessage().uid;
+	},
 
-	var getCurrentFolder = function() {
-		return _currentFolder;
-	}
+	getCurrentMessage: function() {
+		var instance = this;
 
-	var setCurrentFolderByName = function(folderName) {
-		_currentFolder = getCachedJsonFolder(getCurrentAccountId(), folderName);
-	}
+		return instance._currentMessage;
+	},
 
-	var getCurrentPageNum = function() {
-		return _currentPageNum;
-	}
+	setCurrentMessage: function(jsonMessage) {
+		var instance = this;
 
-	var setCurrentPageNum = function(pageNum) {
-		_currentPageNum = pageNum;
-	}
+		instance._currentMessage = jsonMessage;
+	},
 
-	var getMessagesPerPage = function() {
-		return _messagesPerPage;
-	}
+	getCurrentFolderName: function() {
+		var instance = this;
 
-	var getMessageResponseType = function() {
-		return _messageResponseType;
-	}
+		return instance.getCurrentFolder().name;
+	},
 
-	var setMessageResponseType = function(responseType) {
-		// Possible values include: "reply", "forward" and "new"
+	getCurrentFolder: function() {
+		var instance = this;
 
-		_messageResponseType = responseType;
-	}
-	
-	var getTotalPages = function() {
-		return _totalPages;
-	}
+		return instance._currentFolder;
+	},
 
-	var setTotalPages = function(totalPages) {
-		_totalPages = totalPages;
-	}
-	
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//
-	// Caching methods
-	//
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	setCurrentFolderByName: function(folderName) {
+		var instance = this;
 
-	var getCachedJsonAccounts = function() {
-		return _accounts;
-	}
+		instance._currentFolder = instance.getCachedJsonFolder(instance.getCurrentAccountId(), folderName);
+	},
 
-	var getAccountAddress = function(accountId) {
-		var jsonAccounts = getCachedJsonAccounts();	
+	getCurrentPageNum: function() {
+		var instance = this;
 
-		for (i = 0; i < jsonAccounts.accounts.length; i++) {
+		return instance._currentPageNum;
+	},
 
-			var account = jsonAccounts.accounts[i];
+	setCurrentPageNum: function(pageNum) {
+		var instance = this;
 
-			if (accountId == account.accountId) {
-				return account.emailAccount;
-			}
-		}
-	}
+		instance._currentPageNum = pageNum;
+	},
 
-	var cacheJsonAccounts = function(accounts) {
-		_accounts = accounts;
-	}
+	getMessagesPerPage: function() {
+		var instance = this;
 
-	var getCachedJsonFolder = function(accountId, folderName) {
-		try {
-			for (i = 0; i < __jsonFolders[accountId].folders.length; i++) {
+		return instance._messagesPerPage;
+	},
 
-				var fldr = __jsonFolders[accountId].folders[i];
+	getMessageResponseType: function() {
+		var instance = this;
 
-				var fldrName = fldr.name;
+		return instance._messageResponseType;
+	},
 
-				if (fldrName == folderName) {
-					return fldr;
-				}
-			}
-		}
-		catch (ex) {
-			return null;
-		}
-	}
+	setMessageResponseType: function(responseType) {
+		var instance = this;
 
-	var getCachedJsonFolders = function(accountId) {
-		try {
-			if (__jsonFolders[accountId] == undefined) {
-				return null;
-			}
-			else {
-				return __jsonFolders[accountId];
-			}
-		}
-		catch (ex) {
-			return null;
-		}
-	}
+		// Possible values include: 'reply', 'forward' and 'new'
 
-	var cacheJsonFolders = function(accountId, jsonFolders) {
-		__jsonFolders[accountId] = jsonFolders;
-	}
+		instance._messageResponseType = responseType;
+	},
 
-	var flushCachedJsonFolders = function() {
-		__jsonFolders = new Object();
-	}
+	getTotalPages: function() {
+		var instance = this;
 
-	var getCachedJsonMessages = function(accountId, folderName, pageNum) {
-		try {
-			if (__jsonMessages[accountId + "." + folderName + "." + pageNum] == undefined) {
-				return null;
-			}
-			else {
-				return __jsonMessages[accountId + "." + folderName + "." + pageNum];
-			}
-		}
-		catch (ex) {
-			return null;
-		}
-	}
+		return instance._totalPages;
+	},
 
-	var cacheJsonMessages = function(accountId, folderName, pageNum, jsonMessages) {
-		__jsonMessages[accountId + "." + folderName + "." + pageNum] = jsonMessages;
-	}
+	setTotalPages: function(totalPages) {
+		var instance = this;
 
-	var flushCachedJsonMessages = function() {
-		__jsonMessages = new Object();
-	}
+		instance._totalPages = totalPages;
+	},
 
-	var cacheJsonMessage = function(accountId, folderName, msgNum, jsonMessage) {
-		__jsonMessage[accountId + "." + folderName + "." + msgNum] = jsonMessage;
-	}
+	getFirstMessageNumOnPage: function() {
+		var instance = this;
 
-	var getCachedJsonMessage = function(accountId, folderName, msgNum) {
-		try {
-			if (__jsonMessage[accountId + "." + folderName + "." + msgNum] == undefined) {
-				return null;
-			}
-			else {
-				return __jsonMessage[accountId + "." + folderName + "." + msgNum];
-			}
-		}
-		catch (ex) {
-			return null;
-		}
-	}
-	
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		return (instance.getCurrentPageNum() - 1) * instance.getMessagesPerPage() + 1;
+	},
 
-	var getFirstMessageNumOnPage = function() {
-		return (getCurrentPageNum() - 1) * getMessagesPerPage() + 1;
-	}
+	getLastMessageNumOnPage: function() {
+		var instance = this;
 
-	var getLastMessageNumOnPage = function() {
-		return (getCurrentPageNum()) * getMessagesPerPage();
-	}
+		return (instance.getCurrentPageNum()) * instance.getMessagesPerPage();
+	},
 
-	var getSelectedMessageUids = function() {
-		var checkedBoxes = jQuery(".message-checkbox:checked");
-		var messageUids = "";
+	getSelectedMessageUids: function() {
+		var instance = this;
+
+		var checkedBoxes = jQuery('.message-checkbox:checked');
+		var messageUids = '';
 
 		jQuery.each(checkedBoxes, function() {
-			messageUids += jQuery(this).parents(".message:first").attr("messageuid") + ",";
+			messageUids += jQuery(this).parents('.message:first').attr('messageuid') + ',';
 		});
 
 		return messageUids;
-	}
+	},
 
-	var refreshMessages = function(resetCache) {
+	refreshMessages: function(resetCache) {
+		var instance = this;
+
 		if (resetCache) {
-			flushCachedJsonMessages();
+			instance.flushCachedJsonMessages();
 		}
 
-		setStatus("Refreshing Folder.. ", "");
+		instance.setStatus('Refreshing Folder.. ', '');
 
-		loadMessages(getCurrentFolderName(), getCurrentPageNum());
-	}
+		instance.loadMessages(instance.getCurrentFolderName(), instance.getCurrentPageNum());
+	},
 
-	var refreshFolders = function(resetCache) {
+	refreshFolders: function(resetCache) {
+		var instance = this;
+
 		if (resetCache) {
-			flushCachedJsonFolders();
+			instance.flushCachedJsonFolders();
 		}
 
-		setStatus("Refreshing Account.. ", "");
+		instance.setStatus('Refreshing Account.. ', '');
 
-		loadFolders(getCurrentAccountId());
-	}
+		instance.loadFolders(instance.getCurrentAccountId());
+	},
 
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//
 	// UI Methods
 	//
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	var clearStatus = function() {
-		setStatus("","");
+	clearStatus: function() {
+		var instance = this;
 
-		jQuery("#status").css("display","none");
-		jQuery("#debug").css("display","none");
-	}
+		instance.setStatus('','');
+		instance.statusSpan.css('display','none');
+		instance.debugSpan.css('display','none');
+	},
 
-	var clearIncomingMessage = function() {
-		jQuery("#read-from").html("");
-		jQuery("#read-reply-to").html("");
-		jQuery("#read-to").html("");
-		jQuery("#read-date").html("");
-		jQuery("#read-subject").html("");
-		jQuery("#read-mailed-by").html("");
-		jQuery("#read-body").html("");
-	}
+	clearIncomingMessage: function() {
+		var instance = this;
 
-	var clearOutgoingMessage = function() { 
-		jQuery("#send-from").val("");
-		jQuery("#send-to").val("");
-		jQuery("#send-cc").val("");
-		jQuery("#send-bcc").val("");
-		jQuery("#send-subject").val("");
-		jQuery("#send-body").val("");
-	}
+		instance.readFromSpan.html('');
+		instance.readReplyToSpan.html('');
+		instance.readToSpan.html('');
+		instance.readDateSpan.html('');
+		instance.readSubjectSpan.html('');
+		instance.readMailedBySpan.html('');
+		instance.readBodySpan.html('');
+	},
 
-	var setStatus = function(message, debugMessage) {
-		jQuery("#status").css("display","inline");
+	clearOutgoingMessage: function() { 
+		var instance = this;
 
-		jQuery("#status").html(message);
-		jQuery("#debug").html(debugMessage);
-	}
+		instance.sendFromSelect.val('');
+		instance.sendToInput.val('');
+		instance.sendCcInput.val('');
+		instance.sendBccInput.val('');
+		instance.sendSubjectInput.val('');
+		instance.sendBodyTextarea.val('');
+	},
 
-	var setView = function(viewMode) {
-		
+	setStatus: function(message, debugMessage) {
+		var instance = this;
+
+		instance.statusSpan.css('display','inline');
+		instance.statusSpan.html(message);
+
+		instance.debugSpan.html(debugMessage);
+	},
+
+	setView: function(viewMode) {
+		var instance = this;
+
 		// Hide everything
 
-		jQuery("#folder").css("display","none");
-		jQuery("#message").css("display","none");
+		instance.folderDiv.css('display','none');
+		instance.messageDiv.css('display','none');
 
-		jQuery(".message-controls").css("display","none");
-		jQuery("#message-read").css("display","none");
-		jQuery("#message-options").css("display","none");
-		jQuery("#message-send").css("display","none");
+		instance.messageControlsDiv.css('display','none');
+		instance.messageReadDiv.css('display','none');
+		instance.messageOptionsDiv.css('display','none');
+		instance.messageSendDiv.css('display','none');
 
 		// Show desired windows
 
-		if (viewMode == "viewFolder") {
-			clearIncomingMessage();
+		if (viewMode == 'viewFolder') {
+			instance.clearIncomingMessage();
 
-			jQuery("#folder").css("display","block");
+			instance.folderDiv.css('display','block');
 		}
 		else {
-			clearOutgoingMessage();
+			instance.clearOutgoingMessage();
 
-			jQuery("#message").css("display","block");
-			jQuery("#message-options div").css("background-color", "#F7F7F7");
+			instance.messageDiv.css('display','block');
+			jQuery('#message-options td').css('background-color', '#F7F7F7');
 
-			if (viewMode == "viewMessage") {
-				jQuery(".message-controls").css("display","block");
-				jQuery("#message-read").css("display","block");
-				jQuery("#message-options").css("display","block");
+			if (viewMode == 'viewMessage') {
+				instance.messageControlsDiv.css('display','block');
+				instance.messageReadDiv.css('display','block');
+				instance.messageOptionsDiv.css('display','block');
 			}
-			else if (viewMode == "replyMessage") {
-				jQuery(".message-controls").css("display","block");
-				jQuery("#message-read").css("display","block");
-				jQuery("#message-options").css("display","block");
-				jQuery("#message-send").css("display","block");
+			else if (viewMode == 'replyMessage') {
+				instance.messageControlsDiv.css('display','block');
+				instance.messageReadDiv.css('display','block');
+				instance.messageOptionsDiv.css('display','block');
+				instance.messageSendDiv.css('display','block');
 			}
-			else if (viewMode == "composeMessage") {
-				jQuery("#message-send").css("display","block");
+			else if (viewMode == 'composeMessage') {
+				instance.messageSendDiv.css('display','block');
 			}
 		}				
-	}
+	},
 
-	var refreshMessageControlsNavigation = function() {
-		jQuery(".message-controls .newer").css("display","inline");
-		jQuery(".message-controls .older").css("display","inline");
+	refreshMessageControlsNavigation: function() {
+		var instance = this;
 
-		// On first message
-		if (getCurrentMessage().msgNum == getCurrentFolder().totalMessages) {
-			jQuery(".message-controls .newer").css("display","none");
-			jQuery(".message-controls .older").css("display","inline");
+		instance.messageControlsNewerLink.css('display','inline');
+		instance.messageControlsOlderLink.css('display','inline');
+
+		// If on first message
+		
+		if (instance.getCurrentMessage().msgNum == instance.getCurrentFolder().totalMessages) {
+			instance.messageControlsNewerLink.css('display','none');
+			instance.messageControlsOlderLink.css('display','inline');
 		}
 
-		// On last message
-		if (getCurrentMessage().msgNum == 1) {
-			jQuery(".message-controls .newer").css("display","inline");
-			jQuery(".message-controls .older").css("display","none");
+		// If on last message
+		
+		if (instance.getCurrentMessage().msgNum == 1) {
+			instance.messageControlsNewerLink.css('display','inline');
+			instance.messageControlsOlderLink.css('display','none');
 		}
 
 		// Update page count status
 
-		var msgNumberDisplayed = parseInt(getCurrentFolder().totalMessages) - parseInt(getCurrentMessage().msgNum) + 1;
+		var msgNumberDisplayed = parseInt(instance.getCurrentFolder().totalMessages) - parseInt(instance.getCurrentMessage().msgNum) + 1;
 
-		jQuery(".message-controls .status").html("<span class='status-number'>" + msgNumberDisplayed + "</span> of <span class='status-number'>" + getCurrentFolder().totalMessages + "</span>");
-	}
+		instance.messageControlsStatus.html('<span class="status-number">' + msgNumberDisplayed + '</span> of <span class="status-number">' + instance.getCurrentFolder().totalMessages + '</span>');
+	},
 
-	var refreshFolderControls = function() {
+	refreshFolderControls: function() {
+ 		var instance = this;
 
 		// Folder Navigation
 
-		jQuery(".folder-controls .newest").css("display","inline");
-		jQuery(".folder-controls .newer").css("display","inline");
-		jQuery(".folder-controls .older").css("display","inline");
-		jQuery(".folder-controls .oldest").css("display","inline");
+		instance.folderControlsNewestLink.css('display','inline');
+		instance.folderControlsNewerLink.css('display','inline');
+		instance.folderControlsOlderLink.css('display','inline');
+		instance.folderControlsOldestLink.css('display','inline');
 
 		// On first page
-		if (getCurrentPageNum() == 1) {
-			jQuery(".folder-controls .newest").css("display","none");
-			jQuery(".folder-controls .newer").css("display","none");
+
+		if (instance.getCurrentPageNum() == 1) {
+			instance.folderControlsNewestLink.css('display','none');
+			instance.folderControlsNewerLink.css('display','none');
 		}
 
 		// On second page
-		if (getCurrentPageNum() == 2) {
-			jQuery(".folder-controls .newest").css("display","none");
+		
+		if (instance.getCurrentPageNum() == 2) {
+			instance.folderControlsNewestLink.css('display','none');
 		}
 
 		// On second to last page
-		if (getCurrentPageNum() == getTotalPages() - 1) {
-			jQuery(".folder-controls .oldest").css("display","none");
+		
+		if (instance.getCurrentPageNum() == instance.getTotalPages() - 1) {
+			instance.folderControlsOldestLink.css('display','none');
 		}
 
 		// On last page
-		if (getCurrentPageNum() == getTotalPages()) {
-			jQuery(".folder-controls .older").css("display","none");
-			jQuery(".folder-controls .oldest").css("display","none");
+		
+		if (instance.getCurrentPageNum() == instance.getTotalPages()) {
+			instance.folderControlsOlderLink.css('display','none');
+			instance.folderControlsOldestLink.css('display','none');
 		}
 
 		// Update page range count status	  (  x - x of xxxx )
-		jQuery(".folder-controls .status").html("<span class='status-number'>" + getFirstMessageNumOnPage() + " - " + getLastMessageNumOnPage() + "</span> of <span class='status-number'>" + getCurrentFolder().totalMessages + "</span>");
-
+		
+		jQuery('.folder-controls .status').html('<span class="status-number">' + instance.getFirstMessageNumOnPage() + ' - ' + instance.getLastMessageNumOnPage() + '</span> of <span class="status-number">' + instance.getCurrentFolder().totalMessages + '</span>');
 
 		// Folder Options
 
-		jQuery(".folder-controls .select-actions").val("none");
-	}
+		instance.folderControlsSelectAction.val('none');
+	},
 
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//
 	// Load methods
 	//
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	var loadAccounts = function() {
+	loadAccounts: function() {
+		var instance = this;
 
-		// Get json
+		var jsonUrl = '/c/mail/get_accounts';
 
-		var jsonUrl = "/c/mail/get_accounts";
-
-		setStatus("Loading accounts.. ", jsonUrl);
+		instance.setStatus('Loading accounts.. ', jsonUrl);
 
 		jQuery.ajaxQueue({
 			url: jsonUrl,
-			dataType: "json",
-			success: function(jsonAccounts){ loadJsonAccounts(jsonAccounts); }
+			dataType: 'json',
+			success: function(jsonAccounts){ instance.loadJsonAccounts(jsonAccounts); }
 		});
-	}
+	},
 
-	var loadFolders = function(accountId) {
+	loadFolders: function(accountId) {
+ 		var instance = this;
 
 		// Set account id
 
-		setCurrentAccountId(accountId);
+		instance.setCurrentAccountId(accountId);
 
-		if (getCachedJsonFolders(accountId) != null) {
+		if (instance.getCachedJsonFolders(accountId) != null) {
 			
 			// Messages found in cache
 
-			var jsonFolders = getCachedJsonFolders(accountId);
+			var jsonFolders = instance.getCachedJsonFolders(accountId);
 
-			loadJsonFolders(jsonFolders);
+			instance.loadJsonFolders(jsonFolders);
 		}
 		else {
 
 			// Get json
 
-			var jsonUrl = "/c/mail/get_folders?accountId=" + accountId;
+			var jsonUrl = '/c/mail/get_folders?accountId=' + accountId;
 
-			setStatus("Loading folders.. ", jsonUrl);
+			instance.setStatus('Loading folders.. ', jsonUrl);
 
 			jQuery.ajaxQueue({
 				url: jsonUrl,
-				dataType: "json",
+				dataType: 'json',
 				success: function(jsonFolders){ 
-					loadJsonFolders(jsonFolders); 
-					jQuery("#account-selection").val(accountId);
-					jQuery("#send-from").val(accountId);
+					instance.loadJsonFolders(jsonFolders); 
+					instance.accountSelectionSelect.val(accountId);
+					instance.sendFromSelect.val(accountId);
 				}
 			});
 		}
-	}
+	},
 
-	var loadSearchResults = function(folderName, pageNum, searchString) {
+	loadSearchResults: function(folderName, pageNum, searchString) {
+		var instance = this;
 
-		var accountId = getCurrentAccountId();
+		var accountId = instance.getCurrentAccountId();
 
-		var jsonUrl = "/c/mail/get_messages_by_search?accountId=" + accountId + "&folderName=" + folderName + "&pageNum=" + pageNum + "&messagesPerPage=" + getMessagesPerPage() + "&searchString=" + searchString; 
+		var jsonUrl = '/c/mail/get_messages_by_search?accountId=' + accountId + '&folderName=' + folderName + '&pageNum=' + pageNum + '&messagesPerPage=' + instance.getMessagesPerPage() + '&searchString=' + searchString; 
 		
-		setStatus("Loading messages.. ", jsonUrl);
+		instance.setStatus('Loading messages.. ', jsonUrl);
 
 		jQuery.ajaxQueue({
 			url: jsonUrl,
-			dataType: "json",
-			success: function(jsonMessages){ loadJsonMessages(jsonMessages); }
+			dataType: 'json',
+			success: function(jsonMessages){ instance.loadJsonMessages(jsonMessages); }
 		});
-	}
+	},
 
-	var loadMessages = function(folderName, pageNum) {
+	loadMessages: function(folderName, pageNum) {
+		var instance = this;
 
 		// Set folder & page num
 
-		setCurrentPageNum(pageNum);
-		setCurrentFolderByName(folderName);
+		instance.setCurrentPageNum(pageNum);
+		instance.setCurrentFolderByName(folderName);
 
-		var accountId = getCurrentAccountId();
+		var accountId = instance.getCurrentAccountId();
 
 		// Get json
 
-		if (getCachedJsonMessages(accountId, folderName, pageNum) != null) {
+		if (instance.getCachedJsonMessages(accountId, folderName, pageNum) != null) {
 			
 			// Messages found in cache
 			
-			var jsonMessages = getCachedJsonMessages(accountId, folderName, pageNum);
+			var jsonMessages = instance.getCachedJsonMessages(accountId, folderName, pageNum);
 
-			loadJsonMessages(jsonMessages);
-
-			// Preload
-
-			preloadMessages(folderName, pageNum + 1);
+			instance.loadJsonMessages(jsonMessages);
+			instance.preloadMessages(folderName, pageNum + 1);
 		}
 		else {
 
 			// Retrieve messages via ajax
 			
-			var jsonUrl = "/c/mail/get_messages?accountId=" + accountId + "&folderName=" + folderName + "&pageNum=" + pageNum + "&messagesPerPage=" + getMessagesPerPage(); 
+			var jsonUrl = '/c/mail/get_messages?accountId=' + accountId + '&folderName=' + folderName + '&pageNum=' + pageNum + '&messagesPerPage=' + instance.getMessagesPerPage(); 
 	 		
-			setStatus("Loading messages.. ", jsonUrl);
+			instance.setStatus('Loading messages.. ', jsonUrl);
 
 			jQuery.ajaxQueue({
 				url: jsonUrl,
-				dataType: "json",
-				success: function(jsonMessages){ loadJsonMessages(jsonMessages); }
+				dataType: 'json',
+				success: function(jsonMessages){ instance.loadJsonMessages(jsonMessages); }
 			});
 		}
-	}
+	},
 
-	var loadMessageByMsgNum = function(messageNum) {
-		// Get folder id 
+	loadMessageByMsgNum: function(messageNum) {
+		var instance = this;
 
-		var folderName = getCurrentFolderName();
+		var folderName = instance.getCurrentFolderName();
 
 		// Get json
 
-		if (getCachedJsonMessages(getCurrentAccountId(), folderName, messageNum) != null) {
+		if (instance.getCachedJsonMessages(instance.getCurrentAccountId(), folderName, messageNum) != null) {
 			
 			// Message found in cache
 			
-			var jsonMessage = getCachedJsonMessage(getCurrentAccountId(), folderName, messageNum);
+			var jsonMessage = instance.getCachedJsonMessage(instance.getCurrentAccountId(), folderName, messageNum);
 
-			loadJsonMessage(jsonMessage);
+			instance.loadJsonMessage(jsonMessage);
 
 			// Preload
 
-			preloadMessage(folderName, messageNum + 1);
+			instance.preloadMessage(folderName, messageNum + 1);
 		}
 		else {
-			var jsonUrl = "/c/mail/get_message_by_num?accountId=" + getCurrentAccountId() + "&folderName=" + folderName + "&messageNum=" + messageNum; 
+			var jsonUrl = '/c/mail/get_message_by_num?accountId=' + instance.getCurrentAccountId() + '&folderName=' + folderName + '&messageNum=' + messageNum; 
 
-			setStatus("Loading message.. ", jsonUrl);
+			instance.setStatus('Loading message.. ', jsonUrl);
 
 			jQuery.ajaxQueue({
 				url: jsonUrl,
-				dataType: "json",
-				success: function(jsonMessage){ loadJsonMessage(jsonMessage); }
+				dataType: 'json',
+				success: function(jsonMessage){ instance.loadJsonMessage(jsonMessage); }
 			});
 		}
-	}
+	},
 
-	var loadMessageByUid = function(messageUid) {
+	loadMessageByUid: function(messageUid) {
+		var instance = this;
 
-		// Get folder id 
+		var folderName = instance.getCurrentFolderName();
+		var accountId = instance.getCurrentAccountId();
+		var jsonUrl = '/c/mail/get_message_by_uid?accountId=' + accountId + '&folderName=' + folderName + '&messageUid=' + messageUid; 
 
-		var folderName = getCurrentFolderName();
-		var accountId = getCurrentAccountId();
-
-		// Get json
-
-		var jsonUrl = "/c/mail/get_message_by_uid?accountId=" + accountId + "&folderName=" + folderName + "&messageUid=" + messageUid; 
-
-		setStatus("Loading message.. ", jsonUrl);
+		instance.setStatus('Loading message.. ', jsonUrl);
 
 		jQuery.ajaxQueue({
 			url: jsonUrl,
-			dataType: "json",
-			success: function(jsonMessage){ loadJsonMessage(jsonMessage); }
+			dataType: 'json',
+			success: function(jsonMessage){ instance.loadJsonMessage(jsonMessage); }
 		});
-	}
+	},
 
-	var loadJsonAccounts = function(jsonAccounts) {
-		
-		// Caching
+	loadJsonAccounts: function(jsonAccounts) {
+		var instance = this;
 
-		cacheJsonAccounts(jsonAccounts);
-
-		// Clear status
-
-		clearStatus();
+		instance.cacheJsonAccounts(jsonAccounts);
+		instance.clearStatus();
 
 		// Parse json
 
-		var htmlAccountList = "";
+		var htmlAccountList = '';
 		var firstAccountId = jsonAccounts.accounts[0].accountId;
 
 		for (i = 0; i < jsonAccounts.accounts.length; i++) {
@@ -579,47 +555,43 @@ jQuery(document).ready(function() {
 			var tempAccountName = account.emailAccount;
 			var tempAccountId = account.accountId;
 
-			htmlAccountList += "<option value='";
+			htmlAccountList += '<option value="';
 			htmlAccountList += tempAccountId;
 
 			// Preselect first email account
 
 			if (i == 0) {
 				firstAccountId = tempAccountId;
-				htmlAccountList += "' selected='selected'>";
+				htmlAccountList += '" selected="selected">';
 			}
 			else {
-				htmlAccountList += "'>";
+				htmlAccountList += '">';
 			}
 
 			htmlAccountList += tempAccountName;
-			htmlAccountList += "</option>";
+			htmlAccountList += '</option>';
 		}
 
 		// Inject html
 
-		jQuery("#account-selection").html(htmlAccountList);
-		jQuery("#send-from").html(htmlAccountList);
+		instance.accountSelectionSelect.html(htmlAccountList);
+		instance.sendFromSelect.html(htmlAccountList);
 
 		// Refresh folder handlers
 
-		setCurrentAccountId(firstAccountId);
-		loadFolders(firstAccountId);
-	}
+		instance.setCurrentAccountId(firstAccountId);
+		instance.loadFolders(firstAccountId);
+	},
 
-	var loadJsonFolders = function(jsonFolders) {
+	loadJsonFolders: function(jsonFolders) {
+		var instance = this;
 
-		// Caching
-
-		cacheJsonFolders(getCurrentAccountId(), jsonFolders);
-
-		// Clear status
-
-		clearStatus();
+		instance.cacheJsonFolders(instance.getCurrentAccountId(), jsonFolders);
+		instance.clearStatus();
 
 		// Parse json
 
-		var htmlFolderList = "";
+		var htmlFolderList = '';
 
 		for (i = 0; i < jsonFolders.folders.length; i++) {
 
@@ -629,73 +601,58 @@ jQuery(document).ready(function() {
 			var folderNewMessages = fldr.newMessages;
 			var folderTotalMessages = fldr.totalMessages;
 
-			htmlFolderList += "<div class='folder' folderName='" + fldr.name + "'><a href='#'>" + fldr.name + "</a></div>";
+			htmlFolderList += '<div class="folder" folderName="' + fldr.name + '"><a href="#">' + fldr.name + '</a></div>';
 		}
 
 		// Inject html
 
-		jQuery("#folders").html(htmlFolderList);
+		instance.foldersDiv.html(htmlFolderList);
 
 		// Refresh folder handlers
 
-		refreshFolderHandler();
-		jQuery(".folder:first").click();
-	}
+		instance.refreshFolderHandler();
+		jQuery('.folder:first').click();
+	},
 
-	var loadJsonMessages = function(jsonMessages) {
+	loadJsonMessages: function(jsonMessages) {
+		var instance = this;
 
-		// Caching
-
-		setTotalPages(jsonMessages.totalPages);
-		cacheJsonMessages(getCurrentAccountId(), getCurrentFolderName(), getCurrentPageNum(), jsonMessages);
-
-		// Clear status
-
-		clearStatus();
+		instance.setTotalPages(jsonMessages.totalPages);
+		instance.cacheJsonMessages(instance.getCurrentAccountId(), instance.getCurrentFolderName(), instance.getCurrentPageNum(), jsonMessages);
+		instance.clearStatus();
 
 		// Parse json
 
-		var htmlMessageList = "";
+		var htmlMessageList = '';
 
 		for (i = 0; i < jsonMessages.messages.length; i++) {
 
 			var msg = jsonMessages.messages[i];
 
-			htmlMessageList += "<tr class='message " + msg.read + "' messageUid='" + msg.uid + "'>";
-			htmlMessageList += "	<td><div class='message-col-0'><input type='checkbox' class='message-checkbox' /></div></td>";
-			htmlMessageList += "	<td><div class='message-col-1'><span class='message-from'>" + msg.from + "</span></div></td>";
-			htmlMessageList += "	<td><div class='message-col-2'><span class='message-subject'>" + msg.subject + "</span> - <span class='message-body-preview'>" + msg.bodyPreview + "</span></div></td>";
-			htmlMessageList += "	<td><div class='message-col-3'><span class='message-date'>" + msg.date + "</span></div></td>";
-			htmlMessageList += "</tr>";
+			htmlMessageList += '<tr class="message ' + msg.read + '" messageUid="' + msg.uid + '">';
+			htmlMessageList += '	<td><div class="message-col-0"><input type="checkbox" class="message-checkbox" /></div></td>';
+			htmlMessageList += '	<td><div class="message-col-1"><span class="message-from">' + msg.from + '</span></div></td>';
+			htmlMessageList += '	<td><div class="message-col-2"><span class="message-subject">' + msg.subject + '</span> - <span class="message-body-preview">' + msg.bodyPreview + '</span></div></td>';
+			htmlMessageList += '	<td><div class="message-col-3"><span class="message-date">' + msg.date + '</span></div></td>';
+			htmlMessageList += '</tr>';
 		}
 
 		// Inject html  
 
-		jQuery("#message-list").html(htmlMessageList);	
+		instance.messageListTable.html(htmlMessageList);	
 		
-		// Refresh event handlers
+		// Refresh html & event handlers
 
-		refreshMessageHandler();
+		instance.refreshMessageHandler();
+		instance.refreshFolderControls();
+	},
 
-		// Rrefresh html
+	loadJsonMessage: function(jsonMessage) {
+		var instance = this;
 
-		refreshFolderControls();
-	}
-
-	var loadJsonMessage = function(jsonMessage) {
-
-		// Caching
-
-		setCurrentMessage(jsonMessage);
-		cacheJsonMessage(getCurrentAccountId(), getCurrentFolderName(), getCurrentMessage().msgNum, jsonMessage)
-
-		// Clear status
-
-		clearStatus();
-
-		// Set message id
-
-		setCurrentMessage(jsonMessage);
+		instance.setCurrentMessage(jsonMessage);
+		instance.cacheJsonMessage(instance.getCurrentAccountId(), instance.getCurrentFolderName(), instance.getCurrentMessage().msgNum, jsonMessage)
+		instance.clearStatus();
 
 		// Parse json object
 
@@ -712,395 +669,567 @@ jQuery(document).ready(function() {
 
 		// Add line breaks if it is plain text
 		
-		if (msgBody.indexOf("<img") == -1) {
-			msgBody = msgBody.replace(/\r\n/g,"<br />");
-			msgBody = msgBody.replace(/\n\n/g,"<br />");
+		if (msgBody.indexOf('<img') == -1) {
+			msgBody = msgBody.replace(/\r\n/g,'<br />');
+			msgBody = msgBody.replace(/\n\n/g,'<br />');
 		}
 
 		// Inject html
 
-		jQuery("#read-from").html(msgFrom);
-		jQuery("#read-reply-to").html("-");
-		jQuery("#read-to").html(msgTo);
-		jQuery("#read-cc").html(msgCc);
-		jQuery("#read-date").html(msgDate);
-		jQuery("#read-subject").html(msgSubject);
-		jQuery("#read-mailed-by").html("-");
-		jQuery("#read-body").html(msgBody);
+		instance.readFromSpan.html(msgFrom);
+		instance.readReplyToSpan.html('-');
+		instance.readToSpan.html(msgTo);
+		instance.readCcSpan.html(msgCc);
+		instance.readDateSpan.html(msgDate);
+		instance.readSubjectSpan.html(msgSubject);
+		instance.readMailedBySpan.html('-');
+		instance.readBodySpan.html(msgBody);
 
 		// Update other html
 
-		jQuery(".message-controls .folder-name").html(getCurrentFolderName());
+		jQuery('.message-controls .folder-name').html(instance.getCurrentFolderName());
 
 		// Update message navigation
 
-		refreshMessageControlsNavigation();
-	}
+		instance.refreshMessageControlsNavigation();
+	},
 
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//
 	// Preload methods
 	//
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	var preloadMessages = function(folderName, pageNum) {
+	preloadMessages: function(folderName, pageNum) {
+		var instance = this;
 
-		var accountId = getCurrentAccountId();
+		var accountId = instance.getCurrentAccountId();
 
 		// Get json
 
-		if (getCachedJsonMessages(accountId, folderName, pageNum) == null) {
+		if (instance.getCachedJsonMessages(accountId, folderName, pageNum) == null) {
 
 			// Retrieve messages via ajax
 			
-			var jsonUrl = "/c/mail/get_messages?accountId=" + accountId + "&folderName=" + folderName + "&pageNum=" + pageNum + "&messagesPerPage=" + getMessagesPerPage(); 
+			var jsonUrl = '/c/mail/get_messages?accountId=' + accountId + '&folderName=' + folderName + '&pageNum=' + pageNum + '&messagesPerPage=' + instance.getMessagesPerPage(); 
 
 			jQuery.ajaxQueue({
 				url: jsonUrl,
-				dataType: "json",
-				success: function(jsonMessages){ cacheJsonMessages(accountId, folderName, pageNum, jsonMessages); }
+				dataType: 'json',
+				success: function(jsonMessages){ instance.cacheJsonMessages(accountId, folderName, pageNum, jsonMessages); }
 			});
 		}
-	}
+	},
 
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//
 	// jQuery triggers
 	//
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	var refreshMessageHandler = function() {
-		jQuery(".message td:not(:first-child)").click(function () {
+	refreshMessageHandler: function() {
+		var instance = this;
+
+		jQuery('.message td:not(:first-child)').click(function () {
 
 			// Load message
 
-			var messageUid = jQuery(this).parent(".message:first").attr("messageUid");
+			var messageUid = jQuery(this).parent('.message:first').attr('messageUid');
 
-			loadMessageByUid(messageUid);
+			instance.loadMessageByUid(messageUid);
 
 			// Show message
 
-			setView("viewMessage");
+			instance.setView('viewMessage');
 
 			return false;
 		});
-	}
+	},
 
-	var refreshFolderHandler = function() {
-		jQuery(".folder").click(function () {
+	refreshFolderHandler: function() {
+		var instance = this;
 
-			var folderName = jQuery(this).attr("folderName");
+		jQuery('.folder').click(function () {
+
+			var folderName = jQuery(this).attr('folderName');
 
 			// Load message list
 
-			loadMessages(folderName, 1);
+			instance.loadMessages(folderName, 1);
 
 			// Show message list
 
-			setView("viewFolder");
+			instance.setView('viewFolder');
 
 			return false;
 		});
-	}
+	},
 
-	jQuery("#account-selection").change(function() {
-		var newAccountId = jQuery(this).val();
+	//
+	// Private event handling
+	//
 
-		loadFolders(newAccountId);
-	});
+	_assignEvents: function() {
+		var instance = this;
 
-	jQuery("#search-button").click(function() {
-		var searchString = jQuery("#search-text").val();
+		instance.accountSelectionSelect.change(function() {
+			var newAccountId = jQuery(this).val();
 
-		loadSearchResults(getCurrentFolderName(), 1, searchString);
-	});
+			instance.loadFolders(newAccountId);
+		});
 
-	// DELETE
+		instance.searchButton.click(function() {
+			var searchString = instance.searchTextInput.val();
 
-	jQuery(".folder-controls .delete").click(function() {
-		var messageUids = getSelectedMessageUids();
+			instance.loadSearchResults(instance.getCurrentFolderName(), 1, searchString);
+		});
 
-		// Get json
+		// DELETE
 
-		var jsonUrl = "/c/mail/messages_delete?accountId=" + getCurrentAccountId() + "&folderName=" + getCurrentFolderName() + "&messageUids=" + messageUids;
+		instance.folderControlsDeleteButton.click(function() {
+			var messageUids = instance.getSelectedMessageUids();
 
-		setStatus("Deleting messages..", jsonUrl);
+			// Get json
 
-		jQuery.ajaxQueue({
-			url: jsonUrl,
-			dataType: "json",
-			success: function(jsonSuccess){ 
-				refreshMessages(true);
-				setStatus("Messages have been deleted", jsonUrl);
+			var jsonUrl = '/c/mail/messages_delete?accountId=' + instance.getCurrentAccountId() + '&folderName=' + instance.getCurrentFolderName() + '&messageUids=' + messageUids;
+
+			instance.setStatus('Deleting messages..', jsonUrl);
+
+			jQuery.ajaxQueue({
+				url: jsonUrl,
+				dataType: 'json',
+				success: function(jsonSuccess){ 
+					instance.refreshMessages(true);
+					instance.setStatus('Messages have been deleted', jsonUrl);
+				}
+			});
+		});
+
+		// READ OR UNREAD
+
+		instance.folderControlsSelectAction.change(function() {
+
+			// Do nothing if action not recognized
+
+			var option = jQuery(this).val();
+
+			if ((option != 'read') && (option != 'unread')) {
+				instance.refreshFolderControls();
+				return false;
 			}
-		});
-	});
 
-	// READ OR UNREAD
+			// Do nothing if no messages are selected
 
-	jQuery(".folder-controls .select-actions").change(function() {
-		
-		// Do nothing if action not recognized
+			var messageUids = instance.getSelectedMessageUids();
 
-		var option = jQuery(this).val();
-
-		if ((option != "read") && (option != "unread")) {
-			refreshFolderControls();
-			return false;
-		}
-
-		// Do nothing if no messages are selected
-
-		var messageUids = getSelectedMessageUids();
-
-		if (messageUids == "") {
-			refreshFolderControls();
-			setStatus("No messages selected..", jsonUrl);
-			return false;
-		}
-
-		// Do action
-
-		var jsonUrl;
-
-		if (option == "read") {
-			var jsonUrl = "/c/mail/messages_mark_as_read?accountId=" + getCurrentAccountId() + "&folderName=" + getCurrentFolderName() + "&messageUids=" + messageUids + "&isRead=true";
-
-			setStatus("Marking messages as read..", jsonUrl);
-		}
-		else if (option == "unread") {
-			var jsonUrl = "/c/mail/messages_mark_as_read?accountId=" + getCurrentAccountId() + "&folderName=" + getCurrentFolderName() + "&messageUids=" + messageUids + "&isRead=false";
-
-			setStatus("Marking messages as unread..", jsonUrl);
-		}
-
-		jQuery.ajaxQueue({
-			url: jsonUrl,
-			dataType: "json",
-			success: function(jsonSuccess){ 
-				refreshMessages(true);
-				refreshFolderControls();
+			if (messageUids == '') {
+				instance.refreshFolderControls();
+				instance.setStatus('No messages selected..', jsonUrl);
+				return false;
 			}
+
+			// Do selected folder action
+
+			var jsonUrl;
+
+			if (option == 'read') {
+				var jsonUrl = '/c/mail/messages_mark_as_read?accountId=' + instance.getCurrentAccountId() + '&folderName=' + instance.getCurrentFolderName() + '&messageUids=' + messageUids + '&isRead=true';
+
+				instance.setStatus('Marking messages as read..', jsonUrl);
+			}
+			else if (option == 'unread') {
+				var jsonUrl = '/c/mail/messages_mark_as_read?accountId=' + instance.getCurrentAccountId() + '&folderName=' + instance.getCurrentFolderName() + '&messageUids=' + messageUids + '&isRead=false';
+
+				instance.setStatus('Marking messages as unread..', jsonUrl);
+			}
+
+			jQuery.ajaxQueue({
+				url: jsonUrl,
+				dataType: 'json',
+				success: function(jsonSuccess) { 
+					instance.refreshMessages(true);
+					instance.refreshFolderControls();
+				}
+			});
 		});
-	});
 
-	// REPLY
+		// REPLY
 
-	jQuery("#message-send .discard").click(function() {
-		setView("viewMessage");
+		instance.messageSendDiscardButton.click(function() {
+			instance.setView('viewMessage');
 
-		setStatus("Your message has been discarded..", "");
-	});
-	
-	jQuery(".folder-controls .refresh").click(function() { 
-		refreshMessages(true);
+			instance.setStatus('Your message has been discarded..', '');
+		});
 
-		clearStatus();
+		instance.folderControlsRefreshLink.click(function() { 
+			instance.refreshMessages(true);
 
-		return false;
-	});
-	
-	jQuery("#reply,#reply-all,#forward").click(function () {
+			return false;
+		});
 
-		// Show message send
+		instance.messageOptionsRespondDivs.click(function () {
 
-		setView("replyMessage");
-		jQuery(this).css("background-color", "#C3D9FF");
+			// Show message send
 
-		// Load default values for response message based on original message
+			instance.setView('replyMessage');
+			jQuery(this).css('background-color', '#C3D9FF');
 
-		var msg = getCurrentMessage();
+			// Load default values for response message based on original message
 
-		var msgUid = msg.uid;
-		var msgFrom = msg.from;
-		var msgTo = msg.to;
-		var msgCc = msg.cc;
-		var msgSubject = msg.subject;
-		var msgBody = msg.body;
-		var msgDate = msg.date;
+			var msg = instance.getCurrentMessage();
 
-		// Has message been changed?
-		var messageModified = false;
+			var msgUid = msg.uid;
+			var msgFrom = msg.from;
+			var msgTo = msg.to;
+			var msgCc = msg.cc;
+			var msgSubject = msg.subject;
+			var msgBody = msg.body;
+			var msgDate = msg.date;
 
-		if (jQuery(this).attr("id") == "forward") {
+			// Has message been changed?
 			
-			// Forward
-			
-			setMessageResponseType("forward");
-			jQuery("#send-subject").val("Fwd: " + msgSubject);
+			var messageModified = false;
 
-			// Load appropriate response message
+			if (jQuery(this).attr('id') == 'forward') {
 
-			if (!messageModified) {
-				var fwdHeader = "\n\n---------- Forwarded message ----------\n";
-				fwdHeader += "From: " + msgFrom + "\n";
-				fwdHeader += "Date: " + msgDate + "\n";
-				fwdHeader += "Subject: " + msgSubject + "\n";
-				fwdHeader += "To: " + msgTo + "\n\n";
+				// Forward
 
-				jQuery("#send-body").val(fwdHeader + msgBody);
-			}
-		}
-		else {
+				instance.setMessageResponseType('forward');
+				instance.sendSubjectInput.val('Fwd: ' + msgSubject);
 
-			// Reply
+				// Load appropriate response message
 
-			setMessageResponseType("reply");
-			jQuery("#send-subject").attr("value", "Re: " + msgSubject);
+				if (!messageModified) {
+					var fwdHeader = '\n\n---------- Forwarded message ----------\n';
+					fwdHeader += 'From: ' + msgFrom + '\n';
+					fwdHeader += 'Date: ' + msgDate + '\n';
+					fwdHeader += 'Subject: ' + msgSubject + '\n';
+					fwdHeader += 'To: ' + msgTo + '\n\n';
 
-			if (jQuery(this).attr("id") == "reply") {
-				jQuery("#send-to").attr("value", msgFrom);
-			}
-			else if (jQuery(this).attr("id") == "reply-all") {
-				jQuery("#send-to").attr("value", msgFrom);
-				jQuery("#send-cc").attr("value", msgTo + "," + msgCc);
+					instance.sendBodyTextarea.val(fwdHeader + msgBody);
+				}
 			}
 			else {
-				alert("Unknown Message Response Type.  Reply? Reply All? Forward?");
+
+				// Reply
+
+				instance.setMessageResponseType('reply');
+				instance.sendSubjectInput.attr('value', 'Re: ' + msgSubject);
+
+				if (jQuery(this).attr('id') == 'reply') {
+					instance.sendToInput.attr('value', msgFrom);
+				}
+				else if (jQuery(this).attr('id') == 'reply-all') {
+					instance.sendToInput.attr('value', msgFrom);
+					instance.sendCcInput.attr('value', msgTo + ',' + msgCc);
+				}
+				else {
+					alert('Unknown Message Response Type.  Reply? Reply All? Forward?');
+				}
+
+				// Load appropriate response message
+
+				if (!messageModified) {
+					var replyHeader = '\n\nOn ' + msgDate + ', <' + msgFrom + '> wrote:\n\n';
+					instance.sendBodyTextarea.val(replyHeader + msgBody);
+				}
+			}
+		});
+
+		// MESSAGE NAVIGATION
+
+		instance.messageControlsOlderLink.click(function() {
+			instance.setView('viewMessage');
+
+			instance.loadMessageByMsgNum(parseInt(instance.getCurrentMessage().msgNum,10)  - 1);
+
+			return false;
+		});
+
+		instance.messageControlsNewerLink.click(function() {
+			instance.setView('viewMessage');
+
+			instance.loadMessageByMsgNum(parseInt(instance.getCurrentMessage().msgNum,10) + 1);
+
+			return false;
+		});
+
+		instance.messageControlsBackLink.click(function() {
+			instance.setView('viewFolder');
+
+			return false;
+		});
+
+		// FOLDER NAVIGATION
+
+		instance.folderControlsNewestLink.click(function() {
+			instance.loadMessages(instance.getCurrentFolderName(), 1); 
+
+			return false;
+		});
+
+		instance.folderControlsNewerLink.click(function() {
+			instance.loadMessages(instance.getCurrentFolderName(), parseInt(instance.getCurrentPageNum()) - 1); 
+
+			return false;
+		});
+
+		instance.folderControlsOlderLink.click(function() {
+			instance.loadMessages(instance.getCurrentFolderName(), parseInt(instance.getCurrentPageNum()) + 1); 
+
+			return false;
+		});
+
+		instance.folderControlsOldestLink.click(function() {
+			instance.loadMessages(instance.getCurrentFolderName(), parseInt(instance.getTotalPages())); 
+
+			return false;
+		});
+
+		// FOLDER CONTROLS
+
+		instance.folderControlsSelectAllLink.click(function() {
+			jQuery('.message-checkbox').attr('checked','true');
+
+			return false;
+		});
+
+		instance.folderControlsSelectNoneLink.click(function() {
+			jQuery('.message-checkbox').attr('checked','');
+
+			return false;
+		});
+
+		instance.folderControlsSelectReadLink.click(function() {
+			jQuery('.read .message-checkbox').attr('checked','true');
+			jQuery('.unread .message-checkbox').attr('checked','');
+
+			return false;
+		});
+
+		instance.folderControlsSelectUnreadLink.click(function() {
+			jQuery('.read .message-checkbox').attr('checked','');
+			jQuery('.unread .message-checkbox').attr('checked','true');
+
+			return false;
+		});
+
+		// MESSAGE RESPONSE
+
+		instance.composeMailLink.click(function() {
+
+			instance.setView('composeMessage');
+			instance.setMessageResponseType('new');
+
+			return false;
+		});
+
+		instance.messageSendSendButton.click(function() {
+
+			var ajaxUrl = '/c/mail/message_send'; 
+
+			var folderNameVal = '';
+			var messageUidVal = 0;
+
+			if (instance.getMessageResponseType() != 'new') {
+				folderNameVal = instance.getCurrentFolderName();
+				messageUidVal = instance.getCurrentMessage().uid;		
 			}
 
-			// Load appropriate response message
+			var fromAccountId = instance.sendFromSelect.val();
 
-			if (!messageModified) {
-				var replyHeader = "\n\nOn " + msgDate + ", <" + msgFrom + "> wrote:\n\n";
-				jQuery("#send-body").val(replyHeader + msgBody);
+			instance.setStatus('Sending message..', ajaxUrl);
+
+			jQuery.post(
+				ajaxUrl, 
+				{
+					accountId: fromAccountId, 
+					content: instance.sendBodyTextarea.val(), 
+					folderName: folderNameVal, 
+					messageUid: messageUidVal, 
+					responseType: instance.getMessageResponseType(),
+					subject: instance.sendSubjectInput.val(), 
+
+					fromAccountId: fromAccountId, 
+					recipientTo: instance.sendToInput.val(),
+					recipientCc: instance.sendCcInput.val(), 
+					recipientBcc: instance.sendBccInput.val() 
+				}, 
+				function(jsonResult) {
+					instance.setView('viewFolder');
+					instance.setStatus('Your message has been sent', jsonResult);
+				}
+			);
+
+		});		
+	},
+
+	//
+	// Private caching methods
+	//
+
+	getCachedJsonAccounts: function() {
+		var instance = this;
+
+		return instance._accounts;
+	},
+
+	getAccountAddress: function(accountId) {
+		var instance = this;
+
+		var jsonAccounts = instance.getCachedJsonAccounts();	
+
+		for (i = 0; i < jsonAccounts.accounts.length; i++) {
+
+			var account = jsonAccounts.accounts[i];
+
+			if (accountId == account.accountId) {
+				return account.emailAccount;
 			}
 		}
-	});
+	},
 
-	// MESSAGE NAVIGATION
+	cacheJsonAccounts: function(accounts) {
+		var instance = this;
 
-	jQuery(".message-controls .older").click(function() {
-		loadMessageByMsgNum(parseInt(getCurrentMessage().msgNum,10)  - 1);
+		instance._accounts = accounts;
+	},
 
-		return false;
-	});
+	getCachedJsonFolder: function(accountId, folderName) {
+		var instance = this;
 
-	jQuery(".message-controls .newer").click(function() {
-		loadMessageByMsgNum(parseInt(getCurrentMessage().msgNum,10) + 1);
+		try {
+			for (i = 0; i < instance.__jsonFolders[accountId].folders.length; i++) {
 
-		return false;
-	});
+				var fldr = instance.__jsonFolders[accountId].folders[i];
 
-	jQuery(".message-controls .back").click(function() {
-		setView("viewFolder");
+				var fldrName = fldr.name;
 
-		return false;
-	});
-
-	// FOLDER NAVIGATION
-
-	jQuery(".folder-controls .newest").click(function() {
-		loadMessages(getCurrentFolderName(), 1); 
-
-		return false;
-	});
-
-	jQuery(".folder-controls .newer").click(function() {
-		loadMessages(getCurrentFolderName(), parseInt(getCurrentPageNum()) - 1); 
-
-		return false;
-	});
-
-	jQuery(".folder-controls .older").click(function() {
-		loadMessages(getCurrentFolderName(), parseInt(getCurrentPageNum()) + 1); 
-
-		return false;
-	});
-
-	jQuery(".folder-controls .oldest").click(function() {
-		loadMessages(getCurrentFolderName(), parseInt(getTotalPages())); 
-
-		return false;
-	});
-
-	// FOLDER CONTROLS
-
-	jQuery(".folder-controls .select-all").click(function() {
-		jQuery(".message-checkbox").attr("checked","true");
-
-		return false;
-	});
-
-	jQuery(".folder-controls .select-none").click(function() {
-		jQuery(".message-checkbox").attr("checked","");
-
-		return false;
-	});
-
-	jQuery(".folder-controls .select-read").click(function() {
-		jQuery(".read .message-checkbox").attr("checked","true");
-		jQuery(".unread .message-checkbox").attr("checked","");
-
-		return false;
-	});
-
-	jQuery(".folder-controls .select-unread").click(function() {
-		jQuery(".read .message-checkbox").attr("checked","");
-		jQuery(".unread .message-checkbox").attr("checked","true");
-
-		return false;
-	});
-
-	// MESSAGE RESPONSE
-
-	jQuery("#compose-mail").click(function() {
-
-		setView("composeMessage");
-		setMessageResponseType("new");
-
-		return false;
-	});
-
-	jQuery("#message-send .send").click(function() {
-
-		var ajaxUrl = "/c/mail/message_send"; 
-
-		var folderNameVal = "";
-		var messageUidVal = 0;
-
-
-		if (getMessageResponseType() != "new") {
-			folderNameVal = getCurrentFolderName();
-			messageUidVal = getCurrentMessage().uid;		
-		}
-
-		var fromAccountId = jQuery("#send-from").val();
-
-		setStatus("Sending message..", ajaxUrl);
-
-		jQuery.post(
-			ajaxUrl, 
-			{
-				accountId: fromAccountId, 
-				content: jQuery("#send-body").val(), 
-				folderName: folderNameVal, 
-				messageUid: messageUidVal, 
-				responseType: getMessageResponseType(),
-				subject: jQuery("#send-subject").val(), 
-
-				fromAccountId: fromAccountId, 
-				recipientTo: jQuery("#send-to").val(),
-				recipientCc: jQuery("#send-cc").val(), 
-				recipientBcc: jQuery("#send-bcc").val() 
-			}, 
-			function(jsonResult) {
-				setView("viewFolder");
-				setStatus("Your message has been sent", jsonResult);
+				if (fldrName == folderName) {
+					return fldr;
+				}
 			}
-		);
+		}
+		catch (ex) {
+			return null;
+		}
+	},
 
+	getCachedJsonFolders: function(accountId) {
+		var instance = this;
+
+		try {
+			if (instance.__jsonFolders[accountId] == undefined) {
+				return null;
+			}
+			else {
+				return instance.__jsonFolders[accountId];
+			}
+		}
+		catch (ex) {
+			return null;
+		}
+	},
+
+	cacheJsonFolders: function(accountId, jsonFolders) {
+		var instance = this;
+
+		instance.__jsonFolders[accountId] = jsonFolders;
+	},
+
+	flushCachedJsonFolders: function() {
+		var instance = this;
+
+		instance.__jsonFolders = new Object();
+	},
+
+	getCachedJsonMessages: function(accountId, folderName, pageNum) {
+		var instance = this;
+
+		try {
+			if (instance.__jsonMessages[accountId + '.' + folderName + '.' + pageNum] == undefined) {
+				return null;
+			}
+			else {
+				return instance.__jsonMessages[accountId + '.' + folderName + '.' + pageNum];
+			}
+		}
+		catch (ex) {
+			return null;
+		}
+	},
+
+	cacheJsonMessages: function(accountId, folderName, pageNum, jsonMessages) {
+		var instance = this;
+
+		instance.__jsonMessages[accountId + '.' + folderName + '.' + pageNum] = jsonMessages;
+	},
+
+	flushCachedJsonMessages: function() {
+		var instance = this;
+
+		instance.__jsonMessages = new Object();
+	},
+
+	cacheJsonMessage: function(accountId, folderName, msgNum, jsonMessage) {
+		var instance = this;
+
+		instance.__jsonMessage[accountId + '.' + folderName + '.' + msgNum] = jsonMessage;
+	},
+
+	getCachedJsonMessage: function(accountId, folderName, msgNum) {
+		var instance = this;
+
+		try {
+			if (instance.__jsonMessage[accountId + '.' + folderName + '.' + msgNum] == undefined) {
+				return null;
+			}
+			else {
+				return instance.__jsonMessage[accountId + '.' + folderName + '.' + msgNum];
+			}
+		}
+		catch (ex) {
+			return null;
+		}
+	},
+
+	//
+	// Private vars
+	//
+
+	_currentAccountId: null,
+	_currentFolderName: null,
+	_currentPageNum: null,
+	_currentMessage: null,
+
+	_messagesPerPage: 0,
+	_messageResponseType: null,
+	_totalPages: null,
+	_accounts: null,
+
+	__jsonFolders: {},
+	__jsonMessages: {},
+	__jsonMessage: {}
+}		  
+
+jQuery(
+	function(){
+		Liferay.Mail.init();
+	}
+);
+
+/*
+* http://dev.jquery.com/~john/plugins/ajaxqueue/
+* 
+* Queued Ajax requests.
+* A new Ajax request won't be started until the previous queued 
+* request has finished.
+*/
+
+jQuery.ajaxQueue = function(o){
+	var _old = o.complete;
+	o.complete = function(){
+	if ( _old ) _old.apply( this, arguments );
+	jQuery.dequeue( jQuery.ajaxQueue, 'ajax' );
+};
+
+jQuery([ jQuery.ajaxQueue ]).queue('ajax', function(){
+	jQuery.ajax( o );
 	});
-
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//
-	// Initialization methods
-	//
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	loadAccounts();
-
-	// Features which have not been implemented
-
-	jQuery(".send-options .save").attr("disabled", "disabled"); 
-});
+};

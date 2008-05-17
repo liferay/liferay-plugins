@@ -151,43 +151,43 @@
 							<td class="label">
 								<liferay-ui:message key="from" />
 							</td>
-							<td id="read-from"></td>
+							<td><span id="read-from"></span></td>
 						</tr>
 						<tr>
 							<td class="label">
 								<liferay-ui:message key="reply-to" />
 							</td>
-							<td id="read-reply-to"></td>
+							<td><span id="read-reply-to"></span></td>
 						</tr>
 						<tr>
 							<td class="label">
 								<liferay-ui:message key="to" />
 							</td>
-							<td id="read-to"></td>
+							<td><span id="read-to"></span></td>
 						</tr>
 						<tr>
 							<td class="label">
 								<liferay-ui:message key="cc" />
 							</td>
-							<td id="read-cc"></td>
+							<td><span id="read-cc"></span></td>
 						</tr>
 						<tr>
 							<td class="label">
 								<liferay-ui:message key="date" />
 							</td>
-							<td id="read-date"></td>
+							<td><span id="read-date"></span></td>
 						</tr>
 						<tr>
 							<td class="label">
 								<liferay-ui:message key="subject" />
 							</td>
-							<td id="read-subject"></td>
+							<td><span id="read-subject"></span></td>
 						</tr>
 						<tr>
 							<td class="label">
 								<liferay-ui:message key="mailed-by" />
 							</td>
-							<td id="read-mailed-by"></td>
+							<td><span id="read-mailed-by"></span></td>
 						</tr>
 					</table>
 				</div>
@@ -196,19 +196,21 @@
 				</div>
 			</div>
 
-			<div id="message-options">
-				<div id="reply">
+			<table id="message-options">
+			<tr>	
+				<td id="reply">
 					<a href="#message-options"><liferay-ui:message key="reply" /></a>
-				</div>
+				</td>
 
-				<div id="reply-all">
+				<td id="reply-all">
 					<a href="#message-options"><liferay-ui:message key="reply-to-all" /></a>
-				</div>
+				</td>
 
-				<div id="forward">
+				<td id="forward">
 					<a href="#message-options"><liferay-ui:message key="forward" /></a>
-				</div>
-			</div>
+				</td>
+			</tr>
+			</table>
 
 			<div id="message-send">
 				<div class="options">
