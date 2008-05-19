@@ -79,3 +79,11 @@
 .wol-portlet-summary .summary-container .add-as-friend.pending {
 	background-image: url(<%= themeImagesPath %>/common/time.png);
 }
+
+.wol-portlet-summary .summary-container .join-organization {
+	margin: 0.7em auto 1em;
+}
+
+.wol-portlet-summary .summary-container .join-organization.pending {
+	background-image: url(<%= themeImagesPath %>/common/time.png);
+}
