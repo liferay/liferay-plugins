@@ -22,13 +22,25 @@
  */
 %>
 
-<%@ include file="/init.jsp" %>
+<%@ include file="/css_init.jsp" %>
 
-<c:choose>
-	<c:when test="<%= organization != null %>">
-		<%@ include file="/summary/view_organization.jsp" %>
-	</c:when>
-	<c:when test="<%= user2 != null %>">
-		<%@ include file="/summary/view_user.jsp" %>
-	</c:when>
-</c:choose>
+.wol-portlet-members .taglib-search-iterator-page-iterator-bottom .taglib-page-iterator {
+	padding-top: 5px;
+}
+
+.wol-portlet-members .taglib-search-iterator-page-iterator-bottom .search-results {
+	display: none;
+}
+
+.wol-portlet-members .taglib-search-iterator-page-iterator-bottom .search-pages {
+	float: none;
+}
+
+.wol-portlet-members .taglib-search-iterator-page-iterator-bottom .search-pages .page-links {
+	float: none;
+	text-align: left;
+}
+
+.wol-portlet-members .taglib-search-iterator-page-iterator-bottom .search-pages .page-links .previous {
+	border: none;
+}

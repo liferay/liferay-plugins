@@ -50,9 +50,11 @@
 <%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
 <%@ page import="com.liferay.portal.model.Contact" %>
 <%@ page import="com.liferay.portal.model.Group" %>
+<%@ page import="com.liferay.portal.model.Organization" %>
 <%@ page import="com.liferay.portal.model.User" %>
 <%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
 <%@ page import="com.liferay.portal.service.GroupLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.service.OrganizationLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.permission.UserPermissionUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
@@ -75,6 +77,7 @@
 <%@ page import="com.liferay.wol.friends.social.FriendsRequestKeys" %>
 <%@ page import="com.liferay.wol.jira.util.JIRAConstants" %>
 <%@ page import="com.liferay.wol.jira.util.JIRAUtil" %>
+<%@ page import="com.liferay.wol.members.social.MembersRequestKeys" %>
 <%@ page import="com.liferay.wol.model.JIRAIssue" %>
 <%@ page import="com.liferay.wol.model.SVNRepository" %>
 <%@ page import="com.liferay.wol.model.SVNRevision" %>
@@ -97,6 +100,7 @@
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Date" %>
+<%@ page import="java.util.LinkedHashMap" %>
 <%@ page import="java.util.List" %>
 
 <%@ page import="javax.portlet.PortletURL" %>
@@ -113,9 +117,13 @@ String namespace = renderResponse.getNamespace();
 
 Group group = GroupLocalServiceUtil.getGroup(themeDisplay.getPortletGroupId());
 
-User user2 = user;
+Organization organization = null;
+User user2 = null;
 
-if (group.isUser()) {
+if (group.isOrganization()) {
+	organization = OrganizationLocalServiceUtil.getOrganization(group.getClassPK());
+}
+else if (group.isUser()) {
 	user2 = UserLocalServiceUtil.getUserById(group.getClassPK());
 }
 

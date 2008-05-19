@@ -24,11 +24,13 @@
 
 <%@ include file="/init.jsp" %>
 
-<c:choose>
-	<c:when test="<%= organization != null %>">
-		<%@ include file="/summary/view_organization.jsp" %>
-	</c:when>
-	<c:when test="<%= user2 != null %>">
-		<%@ include file="/summary/view_user.jsp" %>
-	</c:when>
-</c:choose>
+<%
+ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
+
+User member = (User)row.getObject();
+%>
+
+<liferay-ui:user-display
+	userId="<%= member.getUserId() %>"
+	userName="<%= member.getFullName() %>"
+/>

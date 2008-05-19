@@ -73,7 +73,7 @@ public class FriendsRequestInterpreter extends BaseSocialRequestInterpreter {
 			sm.append(themeDisplay.getPathFriendlyURLPublic());
 			sm.append(StringPool.SLASH);
 			sm.append(creatorUser.getScreenName());
-			sm.append("/profile\" target=\"_blank\">");
+			sm.append("/profile\">");
 			sm.append(creatorUserName);
 			sm.append("</a>");
 

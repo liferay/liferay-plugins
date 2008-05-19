@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -20,15 +19,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
 
-<%@ include file="/init.jsp" %>
+package com.liferay.wol.members.social;
 
-<c:choose>
-	<c:when test="<%= organization != null %>">
-		<%@ include file="/summary/view_organization.jsp" %>
-	</c:when>
-	<c:when test="<%= user2 != null %>">
-		<%@ include file="/summary/view_user.jsp" %>
-	</c:when>
-</c:choose>
+/**
+ * <a href="MembersRequestKeys.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class MembersRequestKeys {
+
+	public static final int ADD_MEMBER = 1;
+
+}

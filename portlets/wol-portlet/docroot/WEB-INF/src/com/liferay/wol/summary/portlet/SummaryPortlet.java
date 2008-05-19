@@ -28,10 +28,14 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Organization;
+import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ContactLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.OrganizationLocalServiceUtil;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.permission.UserPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -40,11 +44,16 @@ import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
+import com.liferay.util.dao.hibernate.QueryUtil;
 import com.liferay.util.servlet.SessionErrors;
 import com.liferay.util.servlet.SessionMessages;
 import com.liferay.wol.friends.social.FriendsRequestKeys;
+import com.liferay.wol.members.social.MembersRequestKeys;
 
 import java.io.IOException;
+
+import java.util.LinkedHashMap;
+import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -69,6 +78,12 @@ public class SummaryPortlet extends JSPPortlet {
 
 			if (cmd.equals("add_friend")) {
 				addFriend(req);
+			}
+			else if (cmd.equals("join_organization")) {
+				joinOrganization(req);
+			}
+			else if (cmd.equals("leave_organization")) {
+				leaveOrganization(req);
 			}
 			else if (cmd.equals("remove_friend")) {
 				removeFriend(req);
@@ -103,6 +118,50 @@ public class SummaryPortlet extends JSPPortlet {
 			themeDisplay.getUserId(), 0, User.class.getName(),
 			themeDisplay.getUserId(), FriendsRequestKeys.ADD_FRIEND,
 			StringPool.BLANK, user.getUserId());
+	}
+
+	protected void joinOrganization(ActionRequest req) throws Exception {
+		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		Group group = GroupLocalServiceUtil.getGroup(
+			themeDisplay.getPortletGroupId());
+
+		Organization organization =
+			OrganizationLocalServiceUtil.getOrganization(group.getClassPK());
+
+		Role role = RoleLocalServiceUtil.getRole(
+			themeDisplay.getCompanyId(), "Organization Webmin");
+
+		LinkedHashMap<String, Object> userParams =
+			new LinkedHashMap<String, Object>();
+
+		userParams.put(
+			"userGroupRole",
+			new Long[] {new Long(group.getGroupId()),
+			new Long(role.getRoleId())});
+
+		List<User> users = UserLocalServiceUtil.search(
+			themeDisplay.getCompanyId(), null, Boolean.TRUE, userParams,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+		for (User user : users) {
+			SocialRequestLocalServiceUtil.addRequest(
+				themeDisplay.getUserId(), 0, Organization.class.getName(),
+				organization.getOrganizationId(), MembersRequestKeys.ADD_MEMBER,
+				StringPool.BLANK, user.getUserId());
+		}
+	}
+
+	protected void leaveOrganization(ActionRequest req) throws Exception {
+		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		Group group = GroupLocalServiceUtil.getGroup(
+			themeDisplay.getPortletGroupId());
+
+		UserLocalServiceUtil.unsetOrganizationUsers(
+			group.getClassPK(), new long[] {themeDisplay.getUserId()});
 	}
 
 	protected void removeFriend(ActionRequest req) throws Exception {

@@ -45,6 +45,13 @@
 		<friendly-url-mapper-class>com.liferay.wol.friendsactivities.portlet.FriendsActivitiesFriendlyURLMapper</friendly-url-mapper-class>
 		<css-class-wrapper>wol-portlet-friends-activities</css-class-wrapper>
 	</portlet>
+	<portlet>
+		<portlet-name>7</portlet-name>
+		<social-activity-interpreter-class>com.liferay.wol.members.social.MembersActivityInterpreter</social-activity-interpreter-class>
+		<social-request-interpreter-class>com.liferay.wol.members.social.MembersRequestInterpreter</social-request-interpreter-class>
+		<header-portlet-css>/members/css.jsp</header-portlet-css>
+		<css-class-wrapper>wol-portlet-members</css-class-wrapper>
+	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>

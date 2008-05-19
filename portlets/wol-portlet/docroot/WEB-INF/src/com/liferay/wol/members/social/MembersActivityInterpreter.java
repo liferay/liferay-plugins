@@ -20,11 +20,14 @@
  * SOFTWARE.
  */
 
-package com.liferay.wol.friends.social;
+package com.liferay.wol.members.social;
 
 import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
@@ -32,12 +35,12 @@ import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 
 /**
- * <a href="FriendsActivityInterpreter.java.html"><b><i>View Source</i></b></a>
+ * <a href="MembersActivityInterpreter.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
+public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
@@ -49,21 +52,22 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String creatorUserName = getUserName(
 			activity.getUserId(), themeDisplay);
-		String receiverUserName = getUserName(
-			activity.getReceiverUserId(), themeDisplay);
 
 		User creatorUser = UserLocalServiceUtil.getUserById(
 			activity.getUserId());
-		User receiverUser = UserLocalServiceUtil.getUserById(
-			activity.getReceiverUserId());
 
 		String activityType = activity.getType();
 
 		// Title
 
+		Organization organization =
+			OrganizationLocalServiceUtil.getOrganization(activity.getClassPK());
+
+		Group group = organization.getGroup();
+
 		String title = StringPool.BLANK;
 
-		if (activityType.equals(FriendsActivityKeys.ADD_FRIEND)) {
+		if (activityType.equals(MembersActivityKeys.ADD_MEMBER)) {
 			StringMaker sm = new StringMaker();
 
 			sm.append("<a href=\"");
@@ -83,16 +87,16 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 			sm.append(themeDisplay.getURLPortal());
 			sm.append(themeDisplay.getPathFriendlyURLPublic());
 			sm.append(StringPool.SLASH);
-			sm.append(receiverUser.getScreenName());
+			sm.append(group.getFriendlyURL());
 			sm.append("/profile\">");
-			sm.append(receiverUserName);
+			sm.append(organization.getName());
 			sm.append("</a>");
 
-			String receiverUserNameURL = sm.toString();
+			String organizationNameURL = sm.toString();
 
 			title = themeDisplay.translate(
-				"activity-wol-summary-add-friend",
-				new Object[] {creatorUserNameURL, receiverUserNameURL});
+				"activity-wol-summary-join-organization",
+				new Object[] {creatorUserNameURL, organizationNameURL});
 		}
 
 		// Body
@@ -103,7 +107,7 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {
-		User.class.getName()
+		Organization.class.getName()
 	};
 
 }
