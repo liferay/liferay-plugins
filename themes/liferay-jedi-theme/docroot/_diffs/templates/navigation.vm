@@ -1,5 +1,5 @@
 <div
-	#if ($page_group.isUser())
+	#if ($page_group.isOrganization() || $page_group.isUser())
 		class="profile"
 	#else
 		class="sort-pages modify-pages"
@@ -8,7 +8,7 @@
 	id="navigation"
 >
 	<ul>
-		#if ($page_group.isUser())
+		#if ($page_group.isOrganization() || $page_group.isUser())
 			<li class="group">
 				<span>$community_name</span>
 				<span class="group-indicator"></span>
