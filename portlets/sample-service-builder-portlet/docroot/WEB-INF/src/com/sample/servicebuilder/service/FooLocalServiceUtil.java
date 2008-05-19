@@ -63,10 +63,10 @@ public class FooLocalServiceUtil {
 
 	public static java.util.List<com.sample.servicebuilder.model.Foo> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws com.liferay.portal.SystemException {
+		int start, int end) throws com.liferay.portal.SystemException {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
 
-		return fooLocalService.dynamicQuery(queryInitializer, begin, end);
+		return fooLocalService.dynamicQuery(queryInitializer, start, end);
 	}
 
 	public static com.sample.servicebuilder.model.Foo updateFoo(
@@ -109,19 +109,19 @@ public class FooLocalServiceUtil {
 		return fooLocalService.getFoos(obc);
 	}
 
-	public static java.util.List getFoos(int begin, int end)
+	public static java.util.List getFoos(int start, int end)
 		throws com.liferay.portal.SystemException {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
 
-		return fooLocalService.getFoos(begin, end);
+		return fooLocalService.getFoos(start, end);
 	}
 
-	public static java.util.List getFoos(int begin, int end,
+	public static java.util.List getFoos(int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
 
-		return fooLocalService.getFoos(begin, end, obc);
+		return fooLocalService.getFoos(start, end, obc);
 	}
 
 	public static void updateFoo(long fooId, java.lang.String field1,

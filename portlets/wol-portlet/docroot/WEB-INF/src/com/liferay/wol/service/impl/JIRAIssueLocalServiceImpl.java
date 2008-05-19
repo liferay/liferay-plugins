@@ -55,7 +55,7 @@ import org.json.JSONObject;
 public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 
 	public List<JIRAIssue> getAssigneeJIRAIssues(
-			long projectId, String assigneeJiraUserId, int begin, int end)
+			long projectId, String assigneeJiraUserId, int start, int end)
 		throws SystemException {
 
 		return jiraIssuePersistence.findByP_AJUI(projectId, assigneeJiraUserId);
@@ -63,7 +63,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 
 	public List<JIRAIssue> getAssigneeJIRAIssues(
 			Date modifiedDate, long projectId, String assigneeJiraUserId,
-			int begin, int end)
+			int start, int end)
 		throws SystemException {
 
 		return jiraIssuePersistence.findByMD_P_AJUI(
@@ -71,7 +71,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 	}
 
 	public List<JIRAIssue> getAssigneeJIRAIssues(
-			long projectId, String assigneeJiraUserId, String status, int begin,
+			long projectId, String assigneeJiraUserId, String status, int start,
 			int end)
 		throws SystemException {
 
@@ -182,7 +182,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 	}
 
 	public List<JIRAIssue> getReporterJIRAIssues(
-			long projectId, String reporterJiraUserId, int begin, int end)
+			long projectId, String reporterJiraUserId, int start, int end)
 		throws SystemException {
 
 		return jiraIssuePersistence.findByP_RJUI(projectId, reporterJiraUserId);
@@ -190,7 +190,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 
 	public List<JIRAIssue> getReporterJIRAIssues(
 			Date modifiedDate, long projectId, String reporterJiraUserId,
-			int begin, int end)
+			int start, int end)
 		throws SystemException {
 
 		return jiraIssuePersistence.findByMD_P_RJUI(
@@ -198,7 +198,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 	}
 
 	public List<JIRAIssue> getReporterJIRAIssues(
-			long projectId, String reporterJiraUserId, String status, int begin,
+			long projectId, String reporterJiraUserId, String status, int start,
 			int end)
 		throws SystemException {
 

@@ -62,11 +62,11 @@ public interface FooPersistence {
 		boolean field2) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.sample.servicebuilder.model.Foo> findByField2(
-		boolean field2, int begin, int end)
+		boolean field2, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.sample.servicebuilder.model.Foo> findByField2(
-		boolean field2, int begin, int end,
+		boolean field2, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -92,16 +92,16 @@ public interface FooPersistence {
 
 	public java.util.List<com.sample.servicebuilder.model.Foo> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws com.liferay.portal.SystemException;
+		int start, int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.sample.servicebuilder.model.Foo> findAll()
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.sample.servicebuilder.model.Foo> findAll(
-		int begin, int end) throws com.liferay.portal.SystemException;
+		int start, int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.sample.servicebuilder.model.Foo> findAll(
-		int begin, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
 	public void removeByField2(boolean field2)

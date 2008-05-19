@@ -107,7 +107,7 @@ public class JIRAActionFinderImpl implements JIRAActionFinder {
 	}
 
 	public List<JIRAAction> findByCD_P(
-			Date createDate, long projectId, int begin, int end)
+			Date createDate, long projectId, int start, int end)
 		throws SystemException {
 
 		Timestamp createDate_TS = CalendarUtil.getTimestamp(createDate);
@@ -130,7 +130,7 @@ public class JIRAActionFinderImpl implements JIRAActionFinder {
 			qPos.add(createDate_TS);
 
 			return (List<JIRAAction>)QueryUtil.list(
-				q, HibernateUtil.getDialect(), begin, end);
+				q, HibernateUtil.getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);

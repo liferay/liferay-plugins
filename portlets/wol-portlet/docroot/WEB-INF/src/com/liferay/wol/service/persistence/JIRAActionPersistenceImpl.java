@@ -321,12 +321,12 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<JIRAAction> findByJiraUserId(String jiraUserId, int begin,
+	public List<JIRAAction> findByJiraUserId(String jiraUserId, int start,
 		int end) throws SystemException {
-		return findByJiraUserId(jiraUserId, begin, end, null);
+		return findByJiraUserId(jiraUserId, start, end, null);
 	}
 
-	public List<JIRAAction> findByJiraUserId(String jiraUserId, int begin,
+	public List<JIRAAction> findByJiraUserId(String jiraUserId, int start,
 		int end, OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAActionModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAAction.class.getName();
@@ -340,7 +340,7 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 		Object[] finderArgs = new Object[] {
 				jiraUserId,
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -389,7 +389,7 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 				}
 
 				List<JIRAAction> list = (List<JIRAAction>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -576,12 +576,12 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<JIRAAction> findByJiraIssueId(long jiraIssueId, int begin,
+	public List<JIRAAction> findByJiraIssueId(long jiraIssueId, int start,
 		int end) throws SystemException {
-		return findByJiraIssueId(jiraIssueId, begin, end, null);
+		return findByJiraIssueId(jiraIssueId, start, end, null);
 	}
 
-	public List<JIRAAction> findByJiraIssueId(long jiraIssueId, int begin,
+	public List<JIRAAction> findByJiraIssueId(long jiraIssueId, int start,
 		int end, OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAActionModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAAction.class.getName();
@@ -595,7 +595,7 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 		Object[] finderArgs = new Object[] {
 				new Long(jiraIssueId),
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -637,7 +637,7 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 				qPos.add(jiraIssueId);
 
 				List<JIRAAction> list = (List<JIRAAction>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -823,12 +823,12 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<JIRAAction> findByType(String type, int begin, int end)
+	public List<JIRAAction> findByType(String type, int start, int end)
 		throws SystemException {
-		return findByType(type, begin, end, null);
+		return findByType(type, start, end, null);
 	}
 
-	public List<JIRAAction> findByType(String type, int begin, int end,
+	public List<JIRAAction> findByType(String type, int start, int end,
 		OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAActionModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAAction.class.getName();
@@ -842,7 +842,7 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 		Object[] finderArgs = new Object[] {
 				type,
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -891,7 +891,7 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 				}
 
 				List<JIRAAction> list = (List<JIRAAction>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -1036,7 +1036,7 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 	}
 
 	public List<JIRAAction> findWithDynamicQuery(
-		DynamicQueryInitializer queryInitializer, int begin, int end)
+		DynamicQueryInitializer queryInitializer, int start, int end)
 		throws SystemException {
 		Session session = null;
 
@@ -1045,7 +1045,7 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 
 			DynamicQuery query = queryInitializer.initialize(session);
 
-			query.setLimit(begin, end);
+			query.setLimit(start, end);
 
 			return query.list();
 		}
@@ -1061,12 +1061,12 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
-	public List<JIRAAction> findAll(int begin, int end)
+	public List<JIRAAction> findAll(int start, int end)
 		throws SystemException {
-		return findAll(begin, end, null);
+		return findAll(start, end, null);
 	}
 
-	public List<JIRAAction> findAll(int begin, int end, OrderByComparator obc)
+	public List<JIRAAction> findAll(int start, int end, OrderByComparator obc)
 		throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAActionModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAAction.class.getName();
@@ -1076,7 +1076,7 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 		Object[] finderArgs = new Object[] {
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -1110,7 +1110,7 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 				Query q = session.createQuery(query.toString());
 
 				List<JIRAAction> list = (List<JIRAAction>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				if (obc == null) {
 					Collections.sort(list);

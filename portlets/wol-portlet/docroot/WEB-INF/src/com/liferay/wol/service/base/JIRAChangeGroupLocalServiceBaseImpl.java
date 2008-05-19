@@ -98,10 +98,10 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	public List<JIRAChangeGroup> dynamicQuery(
-		DynamicQueryInitializer queryInitializer, int begin, int end)
+		DynamicQueryInitializer queryInitializer, int start, int end)
 		throws SystemException {
 		return jiraChangeGroupPersistence.findWithDynamicQuery(queryInitializer,
-			begin, end);
+			start, end);
 	}
 
 	public JIRAChangeGroup updateJIRAChangeGroup(

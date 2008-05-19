@@ -98,10 +98,10 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 	}
 
 	public List<SVNRepository> dynamicQuery(
-		DynamicQueryInitializer queryInitializer, int begin, int end)
+		DynamicQueryInitializer queryInitializer, int start, int end)
 		throws SystemException {
 		return svnRepositoryPersistence.findWithDynamicQuery(queryInitializer,
-			begin, end);
+			start, end);
 	}
 
 	public SVNRepository updateSVNRepository(SVNRepository svnRepository)

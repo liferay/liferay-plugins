@@ -108,7 +108,7 @@ public class JIRAChangeGroupFinderImpl implements JIRAChangeGroupFinder {
 	}
 
 	public List<JIRAChangeGroup> findByCD_P(
-			Date createDate, long projectId, int begin, int end)
+			Date createDate, long projectId, int start, int end)
 		throws SystemException {
 
 		Timestamp createDate_TS = CalendarUtil.getTimestamp(createDate);
@@ -132,7 +132,7 @@ public class JIRAChangeGroupFinderImpl implements JIRAChangeGroupFinder {
 			qPos.add(createDate_TS);
 
 			return (List<JIRAChangeGroup>)QueryUtil.list(
-				q, HibernateUtil.getDialect(), begin, end);
+				q, HibernateUtil.getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);

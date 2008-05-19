@@ -62,11 +62,11 @@ public interface WallEntryPersistence {
 		long groupId) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.WallEntry> findByGroupId(
-		long groupId, int begin, int end)
+		long groupId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.WallEntry> findByGroupId(
-		long groupId, int begin, int end,
+		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -90,11 +90,11 @@ public interface WallEntryPersistence {
 		long userId) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.WallEntry> findByUserId(
-		long userId, int begin, int end)
+		long userId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.WallEntry> findByUserId(
-		long userId, int begin, int end,
+		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -118,11 +118,11 @@ public interface WallEntryPersistence {
 		long groupId, long userId) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.WallEntry> findByG_U(
-		long groupId, long userId, int begin, int end)
+		long groupId, long userId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.WallEntry> findByG_U(
-		long groupId, long userId, int begin, int end,
+		long groupId, long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -148,15 +148,15 @@ public interface WallEntryPersistence {
 
 	public java.util.List<com.liferay.wol.model.WallEntry> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws com.liferay.portal.SystemException;
+		int start, int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.WallEntry> findAll()
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.WallEntry> findAll(int begin,
+	public java.util.List<com.liferay.wol.model.WallEntry> findAll(int start,
 		int end) throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.WallEntry> findAll(int begin,
+	public java.util.List<com.liferay.wol.model.WallEntry> findAll(int start,
 		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 

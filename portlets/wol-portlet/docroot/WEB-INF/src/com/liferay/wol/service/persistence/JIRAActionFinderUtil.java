@@ -41,9 +41,9 @@ public class JIRAActionFinderUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAAction> findByCD_P(
-		java.util.Date createDate, long projectId, int begin, int end)
+		java.util.Date createDate, long projectId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return getFinder().findByCD_P(createDate, projectId, begin, end);
+		return getFinder().findByCD_P(createDate, projectId, start, end);
 	}
 
 	public static JIRAActionFinder getFinder() {

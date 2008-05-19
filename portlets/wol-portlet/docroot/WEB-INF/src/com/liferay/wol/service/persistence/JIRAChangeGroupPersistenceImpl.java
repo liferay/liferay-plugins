@@ -326,12 +326,12 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<JIRAChangeGroup> findByJiraUserId(String jiraUserId, int begin,
+	public List<JIRAChangeGroup> findByJiraUserId(String jiraUserId, int start,
 		int end) throws SystemException {
-		return findByJiraUserId(jiraUserId, begin, end, null);
+		return findByJiraUserId(jiraUserId, start, end, null);
 	}
 
-	public List<JIRAChangeGroup> findByJiraUserId(String jiraUserId, int begin,
+	public List<JIRAChangeGroup> findByJiraUserId(String jiraUserId, int start,
 		int end, OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAChangeGroupModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAChangeGroup.class.getName();
@@ -345,7 +345,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistence
 		Object[] finderArgs = new Object[] {
 				jiraUserId,
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -395,7 +395,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistence
 				}
 
 				List<JIRAChangeGroup> list = (List<JIRAChangeGroup>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -583,12 +583,12 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<JIRAChangeGroup> findByJiraIssueId(long jiraIssueId, int begin,
+	public List<JIRAChangeGroup> findByJiraIssueId(long jiraIssueId, int start,
 		int end) throws SystemException {
-		return findByJiraIssueId(jiraIssueId, begin, end, null);
+		return findByJiraIssueId(jiraIssueId, start, end, null);
 	}
 
-	public List<JIRAChangeGroup> findByJiraIssueId(long jiraIssueId, int begin,
+	public List<JIRAChangeGroup> findByJiraIssueId(long jiraIssueId, int start,
 		int end, OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAChangeGroupModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAChangeGroup.class.getName();
@@ -602,7 +602,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistence
 		Object[] finderArgs = new Object[] {
 				new Long(jiraIssueId),
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -645,7 +645,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistence
 				qPos.add(jiraIssueId);
 
 				List<JIRAChangeGroup> list = (List<JIRAChangeGroup>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -786,7 +786,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistence
 	}
 
 	public List<JIRAChangeGroup> findWithDynamicQuery(
-		DynamicQueryInitializer queryInitializer, int begin, int end)
+		DynamicQueryInitializer queryInitializer, int start, int end)
 		throws SystemException {
 		Session session = null;
 
@@ -795,7 +795,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistence
 
 			DynamicQuery query = queryInitializer.initialize(session);
 
-			query.setLimit(begin, end);
+			query.setLimit(start, end);
 
 			return query.list();
 		}
@@ -811,12 +811,12 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistence
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
-	public List<JIRAChangeGroup> findAll(int begin, int end)
+	public List<JIRAChangeGroup> findAll(int start, int end)
 		throws SystemException {
-		return findAll(begin, end, null);
+		return findAll(start, end, null);
 	}
 
-	public List<JIRAChangeGroup> findAll(int begin, int end,
+	public List<JIRAChangeGroup> findAll(int start, int end,
 		OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAChangeGroupModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAChangeGroup.class.getName();
@@ -826,7 +826,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistence
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 		Object[] finderArgs = new Object[] {
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -860,7 +860,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistence
 				Query q = session.createQuery(query.toString());
 
 				List<JIRAChangeGroup> list = (List<JIRAChangeGroup>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				if (obc == null) {
 					Collections.sort(list);

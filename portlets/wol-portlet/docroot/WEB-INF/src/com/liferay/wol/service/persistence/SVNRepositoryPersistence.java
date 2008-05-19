@@ -72,16 +72,16 @@ public interface SVNRepositoryPersistence {
 
 	public java.util.List<com.liferay.wol.model.SVNRepository> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws com.liferay.portal.SystemException;
+		int start, int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.SVNRepository> findAll()
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.SVNRepository> findAll(
-		int begin, int end) throws com.liferay.portal.SystemException;
+		int start, int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.SVNRepository> findAll(
-		int begin, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
 	public void removeByUrl(java.lang.String url)

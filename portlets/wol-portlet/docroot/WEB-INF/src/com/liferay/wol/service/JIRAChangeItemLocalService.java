@@ -48,7 +48,7 @@ public interface JIRAChangeItemLocalService {
 
 	public java.util.List<com.liferay.wol.model.JIRAChangeItem> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws com.liferay.portal.SystemException;
+		int start, int end) throws com.liferay.portal.SystemException;
 
 	public com.liferay.wol.model.JIRAChangeItem updateJIRAChangeItem(
 		com.liferay.wol.model.JIRAChangeItem jiraChangeItem)

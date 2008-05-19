@@ -47,7 +47,7 @@ public interface SVNRevisionLocalService {
 
 	public java.util.List<com.liferay.wol.model.SVNRevision> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws com.liferay.portal.SystemException;
+		int start, int end) throws com.liferay.portal.SystemException;
 
 	public com.liferay.wol.model.SVNRevision updateSVNRevision(
 		com.liferay.wol.model.SVNRevision svnRevision)
@@ -74,15 +74,15 @@ public interface SVNRevisionLocalService {
 			com.liferay.portal.PortalException;
 
 	public java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
-		java.lang.String svnUserId, int begin, int end)
+		java.lang.String svnUserId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
-		long svnRepositoryId, int begin, int end)
+		long svnRepositoryId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
-		java.lang.String svnUserId, long svnRepositoryId, int begin, int end)
+		java.lang.String svnUserId, long svnRepositoryId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public int getSVNRevisionsCount(java.lang.String svnUserId)

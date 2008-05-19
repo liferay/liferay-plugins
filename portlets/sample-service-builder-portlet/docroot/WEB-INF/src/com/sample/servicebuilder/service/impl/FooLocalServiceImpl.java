@@ -77,14 +77,14 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 		return getFoos(QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
 	}
 
-	public List getFoos(int begin, int end) throws SystemException {
-		return FooUtil.findAll(begin, end);
+	public List getFoos(int start, int end) throws SystemException {
+		return FooUtil.findAll(start, end);
 	}
 
-	public List getFoos(int begin, int end, OrderByComparator obc)
+	public List getFoos(int start, int end, OrderByComparator obc)
 		throws SystemException {
 
-		return FooUtil.findAll(begin, end, obc);
+		return FooUtil.findAll(start, end, obc);
 	}
 
 	public void updateFoo(

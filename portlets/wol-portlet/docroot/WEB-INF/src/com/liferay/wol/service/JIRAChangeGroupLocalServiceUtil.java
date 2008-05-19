@@ -64,11 +64,11 @@ public class JIRAChangeGroupLocalServiceUtil {
 
 	public static java.util.List<com.liferay.wol.model.JIRAChangeGroup> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws com.liferay.portal.SystemException {
+		int start, int end) throws com.liferay.portal.SystemException {
 		JIRAChangeGroupLocalService jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getService();
 
 		return jiraChangeGroupLocalService.dynamicQuery(queryInitializer,
-			begin, end);
+			start, end);
 	}
 
 	public static com.liferay.wol.model.JIRAChangeGroup updateJIRAChangeGroup(

@@ -321,7 +321,7 @@ public class GraphSession extends org.jbpm.db.GraphSession {
 		}
 	}
 
-	public List findProcessDefinitionsByName(String name, int begin, int end) {
+	public List findProcessDefinitionsByName(String name, int start, int end) {
 		try {
 			String sql = CustomSQLUtil.get(FIND_PROCESS_DEFINITIONS_BY_NAME);
 
@@ -329,7 +329,7 @@ public class GraphSession extends org.jbpm.db.GraphSession {
 
 			q.setString("name", name);
 
-			return QueryUtil.list(q, _dialect, begin, end);
+			return QueryUtil.list(q, _dialect, start, end);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -342,7 +342,7 @@ public class GraphSession extends org.jbpm.db.GraphSession {
 		String definitionName, String definitionVersion, String startDateGT,
 		String startDateLT, String endDateGT, String endDateLT,
 		boolean hideEndedTasks, String assignedUserId, boolean andOperator,
-		int begin, int end) {
+		int start, int end) {
 
 		List list = new ArrayList();
 
@@ -414,7 +414,7 @@ public class GraphSession extends org.jbpm.db.GraphSession {
 				qPos.add(_getDate(endDateLT, false));
 			}
 
-			Iterator itr = QueryUtil.iterate(q, _dialect, begin, end);
+			Iterator itr = QueryUtil.iterate(q, _dialect, start, end);
 
 			while (itr.hasNext()) {
 				Long instanceId = (Long)itr.next();
@@ -441,7 +441,7 @@ public class GraphSession extends org.jbpm.db.GraphSession {
 		String taskName, String definitionName, String assignedTo,
 		String createDateGT, String createDateLT, String startDateGT,
 		String startDateLT, String endDateGT, String endDateLT,
-		boolean hideEndedTasks, boolean andOperator, int begin, int end) {
+		boolean hideEndedTasks, boolean andOperator, int start, int end) {
 
 		List list = new ArrayList();
 
@@ -516,7 +516,7 @@ public class GraphSession extends org.jbpm.db.GraphSession {
 				qPos.add(_userId);
 			}
 
-			Iterator itr = QueryUtil.iterate(q, _dialect, begin, end);
+			Iterator itr = QueryUtil.iterate(q, _dialect, start, end);
 
 			while (itr.hasNext()) {
 				Long taskId = (Long)itr.next();

@@ -63,11 +63,11 @@ public interface JIRAChangeGroupPersistence {
 		java.lang.String jiraUserId) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAChangeGroup> findByJiraUserId(
-		java.lang.String jiraUserId, int begin, int end)
+		java.lang.String jiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAChangeGroup> findByJiraUserId(
-		java.lang.String jiraUserId, int begin, int end,
+		java.lang.String jiraUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -93,11 +93,11 @@ public interface JIRAChangeGroupPersistence {
 		long jiraIssueId) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAChangeGroup> findByJiraIssueId(
-		long jiraIssueId, int begin, int end)
+		long jiraIssueId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAChangeGroup> findByJiraIssueId(
-		long jiraIssueId, int begin, int end,
+		long jiraIssueId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -123,16 +123,16 @@ public interface JIRAChangeGroupPersistence {
 
 	public java.util.List<com.liferay.wol.model.JIRAChangeGroup> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws com.liferay.portal.SystemException;
+		int start, int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAChangeGroup> findAll()
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAChangeGroup> findAll(
-		int begin, int end) throws com.liferay.portal.SystemException;
+		int start, int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAChangeGroup> findAll(
-		int begin, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
 	public void removeByJiraUserId(java.lang.String jiraUserId)

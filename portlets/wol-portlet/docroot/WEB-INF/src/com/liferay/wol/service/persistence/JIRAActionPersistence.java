@@ -62,11 +62,11 @@ public interface JIRAActionPersistence {
 		java.lang.String jiraUserId) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAAction> findByJiraUserId(
-		java.lang.String jiraUserId, int begin, int end)
+		java.lang.String jiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAAction> findByJiraUserId(
-		java.lang.String jiraUserId, int begin, int end,
+		java.lang.String jiraUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -92,11 +92,11 @@ public interface JIRAActionPersistence {
 		long jiraIssueId) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAAction> findByJiraIssueId(
-		long jiraIssueId, int begin, int end)
+		long jiraIssueId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAAction> findByJiraIssueId(
-		long jiraIssueId, int begin, int end,
+		long jiraIssueId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -120,11 +120,11 @@ public interface JIRAActionPersistence {
 		java.lang.String type) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAAction> findByType(
-		java.lang.String type, int begin, int end)
+		java.lang.String type, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAAction> findByType(
-		java.lang.String type, int begin, int end,
+		java.lang.String type, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -152,15 +152,15 @@ public interface JIRAActionPersistence {
 
 	public java.util.List<com.liferay.wol.model.JIRAAction> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws com.liferay.portal.SystemException;
+		int start, int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAAction> findAll()
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.JIRAAction> findAll(int begin,
+	public java.util.List<com.liferay.wol.model.JIRAAction> findAll(int start,
 		int end) throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.JIRAAction> findAll(int begin,
+	public java.util.List<com.liferay.wol.model.JIRAAction> findAll(int start,
 		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 

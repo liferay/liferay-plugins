@@ -83,16 +83,16 @@ public class JIRAChangeGroupUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAChangeGroup> findByJiraUserId(
-		java.lang.String jiraUserId, int begin, int end)
+		java.lang.String jiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().findByJiraUserId(jiraUserId, begin, end);
+		return getPersistence().findByJiraUserId(jiraUserId, start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAChangeGroup> findByJiraUserId(
-		java.lang.String jiraUserId, int begin, int end,
+		java.lang.String jiraUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().findByJiraUserId(jiraUserId, begin, end, obc);
+		return getPersistence().findByJiraUserId(jiraUserId, start, end, obc);
 	}
 
 	public static com.liferay.wol.model.JIRAChangeGroup findByJiraUserId_First(
@@ -127,16 +127,16 @@ public class JIRAChangeGroupUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAChangeGroup> findByJiraIssueId(
-		long jiraIssueId, int begin, int end)
+		long jiraIssueId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().findByJiraIssueId(jiraIssueId, begin, end);
+		return getPersistence().findByJiraIssueId(jiraIssueId, start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAChangeGroup> findByJiraIssueId(
-		long jiraIssueId, int begin, int end,
+		long jiraIssueId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().findByJiraIssueId(jiraIssueId, begin, end, obc);
+		return getPersistence().findByJiraIssueId(jiraIssueId, start, end, obc);
 	}
 
 	public static com.liferay.wol.model.JIRAChangeGroup findByJiraIssueId_First(
@@ -171,9 +171,9 @@ public class JIRAChangeGroupUtil {
 
 	public static java.util.List<com.liferay.wol.model.JIRAChangeGroup> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws com.liferay.portal.SystemException {
+		int start, int end) throws com.liferay.portal.SystemException {
 		return getPersistence()
-				   .findWithDynamicQuery(queryInitializer, begin, end);
+				   .findWithDynamicQuery(queryInitializer, start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAChangeGroup> findAll()
@@ -182,14 +182,14 @@ public class JIRAChangeGroupUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAChangeGroup> findAll(
-		int begin, int end) throws com.liferay.portal.SystemException {
-		return getPersistence().findAll(begin, end);
+		int start, int end) throws com.liferay.portal.SystemException {
+		return getPersistence().findAll(start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAChangeGroup> findAll(
-		int begin, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().findAll(begin, end, obc);
+		return getPersistence().findAll(start, end, obc);
 	}
 
 	public static void removeByJiraUserId(java.lang.String jiraUserId)

@@ -63,8 +63,8 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	public List<Foo> dynamicQuery(DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws SystemException {
-		return fooPersistence.findWithDynamicQuery(queryInitializer, begin, end);
+		int start, int end) throws SystemException {
+		return fooPersistence.findWithDynamicQuery(queryInitializer, start, end);
 	}
 
 	public Foo updateFoo(Foo foo) throws SystemException {

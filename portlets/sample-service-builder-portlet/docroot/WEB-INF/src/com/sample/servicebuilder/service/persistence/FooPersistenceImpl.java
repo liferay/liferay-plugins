@@ -304,12 +304,12 @@ public class FooPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<Foo> findByField2(boolean field2, int begin, int end)
+	public List<Foo> findByField2(boolean field2, int start, int end)
 		throws SystemException {
-		return findByField2(field2, begin, end, null);
+		return findByField2(field2, start, end, null);
 	}
 
-	public List<Foo> findByField2(boolean field2, int begin, int end,
+	public List<Foo> findByField2(boolean field2, int start, int end,
 		OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = FooModelImpl.CACHE_ENABLED;
 		String finderClassName = Foo.class.getName();
@@ -323,7 +323,7 @@ public class FooPersistenceImpl extends BasePersistence
 		Object[] finderArgs = new Object[] {
 				Boolean.valueOf(field2),
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -365,7 +365,7 @@ public class FooPersistenceImpl extends BasePersistence
 				qPos.add(field2);
 
 				List<Foo> list = (List<Foo>)QueryUtil.list(q, getDialect(),
-						begin, end);
+						start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -501,7 +501,7 @@ public class FooPersistenceImpl extends BasePersistence
 	}
 
 	public List<Foo> findWithDynamicQuery(
-		DynamicQueryInitializer queryInitializer, int begin, int end)
+		DynamicQueryInitializer queryInitializer, int start, int end)
 		throws SystemException {
 		Session session = null;
 
@@ -510,7 +510,7 @@ public class FooPersistenceImpl extends BasePersistence
 
 			DynamicQuery query = queryInitializer.initialize(session);
 
-			query.setLimit(begin, end);
+			query.setLimit(start, end);
 
 			return query.list();
 		}
@@ -526,11 +526,11 @@ public class FooPersistenceImpl extends BasePersistence
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
-	public List<Foo> findAll(int begin, int end) throws SystemException {
-		return findAll(begin, end, null);
+	public List<Foo> findAll(int start, int end) throws SystemException {
+		return findAll(start, end, null);
 	}
 
-	public List<Foo> findAll(int begin, int end, OrderByComparator obc)
+	public List<Foo> findAll(int start, int end, OrderByComparator obc)
 		throws SystemException {
 		boolean finderClassNameCacheEnabled = FooModelImpl.CACHE_ENABLED;
 		String finderClassName = Foo.class.getName();
@@ -540,7 +540,7 @@ public class FooPersistenceImpl extends BasePersistence
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 		Object[] finderArgs = new Object[] {
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -574,7 +574,7 @@ public class FooPersistenceImpl extends BasePersistence
 				Query q = session.createQuery(query.toString());
 
 				List<Foo> list = (List<Foo>)QueryUtil.list(q, getDialect(),
-						begin, end);
+						start, end);
 
 				if (obc == null) {
 					Collections.sort(list);

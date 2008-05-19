@@ -64,10 +64,10 @@ public class JIRAChangeItemLocalServiceUtil {
 
 	public static java.util.List<com.liferay.wol.model.JIRAChangeItem> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws com.liferay.portal.SystemException {
+		int start, int end) throws com.liferay.portal.SystemException {
 		JIRAChangeItemLocalService jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getService();
 
-		return jiraChangeItemLocalService.dynamicQuery(queryInitializer, begin,
+		return jiraChangeItemLocalService.dynamicQuery(queryInitializer, start,
 			end);
 	}
 

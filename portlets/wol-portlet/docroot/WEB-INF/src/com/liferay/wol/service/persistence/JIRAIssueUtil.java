@@ -81,16 +81,16 @@ public class JIRAIssueUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByProjectId(
-		long projectId, int begin, int end)
+		long projectId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().findByProjectId(projectId, begin, end);
+		return getPersistence().findByProjectId(projectId, start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByProjectId(
-		long projectId, int begin, int end,
+		long projectId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().findByProjectId(projectId, begin, end, obc);
+		return getPersistence().findByProjectId(projectId, start, end, obc);
 	}
 
 	public static com.liferay.wol.model.JIRAIssue findByProjectId_First(
@@ -135,18 +135,18 @@ public class JIRAIssueUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByReporterJiraUserId(
-		java.lang.String reporterJiraUserId, int begin, int end)
+		java.lang.String reporterJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
-				   .findByReporterJiraUserId(reporterJiraUserId, begin, end);
+				   .findByReporterJiraUserId(reporterJiraUserId, start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByReporterJiraUserId(
-		java.lang.String reporterJiraUserId, int begin, int end,
+		java.lang.String reporterJiraUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
-				   .findByReporterJiraUserId(reporterJiraUserId, begin, end, obc);
+				   .findByReporterJiraUserId(reporterJiraUserId, start, end, obc);
 	}
 
 	public static com.liferay.wol.model.JIRAIssue findByReporterJiraUserId_First(
@@ -184,18 +184,18 @@ public class JIRAIssueUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByAssigneeJiraUserId(
-		java.lang.String assigneeJiraUserId, int begin, int end)
+		java.lang.String assigneeJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
-				   .findByAssigneeJiraUserId(assigneeJiraUserId, begin, end);
+				   .findByAssigneeJiraUserId(assigneeJiraUserId, start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByAssigneeJiraUserId(
-		java.lang.String assigneeJiraUserId, int begin, int end,
+		java.lang.String assigneeJiraUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
-				   .findByAssigneeJiraUserId(assigneeJiraUserId, begin, end, obc);
+				   .findByAssigneeJiraUserId(assigneeJiraUserId, start, end, obc);
 	}
 
 	public static com.liferay.wol.model.JIRAIssue findByAssigneeJiraUserId_First(
@@ -233,17 +233,17 @@ public class JIRAIssueUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P(
-		java.util.Date modifiedDate, long projectId, int begin, int end)
+		java.util.Date modifiedDate, long projectId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().findByMD_P(modifiedDate, projectId, begin, end);
+		return getPersistence().findByMD_P(modifiedDate, projectId, start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P(
-		java.util.Date modifiedDate, long projectId, int begin, int end,
+		java.util.Date modifiedDate, long projectId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
-				   .findByMD_P(modifiedDate, projectId, begin, end, obc);
+				   .findByMD_P(modifiedDate, projectId, start, end, obc);
 	}
 
 	public static com.liferay.wol.model.JIRAIssue findByMD_P_First(
@@ -279,18 +279,18 @@ public class JIRAIssueUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByP_RJUI(
-		long projectId, java.lang.String reporterJiraUserId, int begin, int end)
+		long projectId, java.lang.String reporterJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
-				   .findByP_RJUI(projectId, reporterJiraUserId, begin, end);
+				   .findByP_RJUI(projectId, reporterJiraUserId, start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByP_RJUI(
-		long projectId, java.lang.String reporterJiraUserId, int begin,
+		long projectId, java.lang.String reporterJiraUserId, int start,
 		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
-				   .findByP_RJUI(projectId, reporterJiraUserId, begin, end, obc);
+				   .findByP_RJUI(projectId, reporterJiraUserId, start, end, obc);
 	}
 
 	public static com.liferay.wol.model.JIRAIssue findByP_RJUI_First(
@@ -328,18 +328,18 @@ public class JIRAIssueUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByP_AJUI(
-		long projectId, java.lang.String assigneeJiraUserId, int begin, int end)
+		long projectId, java.lang.String assigneeJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
-				   .findByP_AJUI(projectId, assigneeJiraUserId, begin, end);
+				   .findByP_AJUI(projectId, assigneeJiraUserId, start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByP_AJUI(
-		long projectId, java.lang.String assigneeJiraUserId, int begin,
+		long projectId, java.lang.String assigneeJiraUserId, int start,
 		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
-				   .findByP_AJUI(projectId, assigneeJiraUserId, begin, end, obc);
+				   .findByP_AJUI(projectId, assigneeJiraUserId, start, end, obc);
 	}
 
 	public static com.liferay.wol.model.JIRAIssue findByP_AJUI_First(
@@ -380,21 +380,21 @@ public class JIRAIssueUtil {
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_RJUI(
 		java.util.Date modifiedDate, long projectId,
-		java.lang.String reporterJiraUserId, int begin, int end)
+		java.lang.String reporterJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findByMD_P_RJUI(modifiedDate, projectId,
-			reporterJiraUserId, begin, end);
+			reporterJiraUserId, start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_RJUI(
 		java.util.Date modifiedDate, long projectId,
-		java.lang.String reporterJiraUserId, int begin, int end,
+		java.lang.String reporterJiraUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findByMD_P_RJUI(modifiedDate, projectId,
-			reporterJiraUserId, begin, end, obc);
+			reporterJiraUserId, start, end, obc);
 	}
 
 	public static com.liferay.wol.model.JIRAIssue findByMD_P_RJUI_First(
@@ -440,21 +440,21 @@ public class JIRAIssueUtil {
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_AJUI(
 		java.util.Date modifiedDate, long projectId,
-		java.lang.String assigneeJiraUserId, int begin, int end)
+		java.lang.String assigneeJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findByMD_P_AJUI(modifiedDate, projectId,
-			assigneeJiraUserId, begin, end);
+			assigneeJiraUserId, start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_AJUI(
 		java.util.Date modifiedDate, long projectId,
-		java.lang.String assigneeJiraUserId, int begin, int end,
+		java.lang.String assigneeJiraUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findByMD_P_AJUI(modifiedDate, projectId,
-			assigneeJiraUserId, begin, end, obc);
+			assigneeJiraUserId, start, end, obc);
 	}
 
 	public static com.liferay.wol.model.JIRAIssue findByMD_P_AJUI_First(
@@ -499,21 +499,21 @@ public class JIRAIssueUtil {
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByP_RJUI_S(
 		long projectId, java.lang.String reporterJiraUserId,
-		java.lang.String status, int begin, int end)
+		java.lang.String status, int start, int end)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findByP_RJUI_S(projectId, reporterJiraUserId, status,
-			begin, end);
+			start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByP_RJUI_S(
 		long projectId, java.lang.String reporterJiraUserId,
-		java.lang.String status, int begin, int end,
+		java.lang.String status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findByP_RJUI_S(projectId, reporterJiraUserId, status,
-			begin, end, obc);
+			start, end, obc);
 	}
 
 	public static com.liferay.wol.model.JIRAIssue findByP_RJUI_S_First(
@@ -558,21 +558,21 @@ public class JIRAIssueUtil {
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByP_AJUI_S(
 		long projectId, java.lang.String assigneeJiraUserId,
-		java.lang.String status, int begin, int end)
+		java.lang.String status, int start, int end)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findByP_AJUI_S(projectId, assigneeJiraUserId, status,
-			begin, end);
+			start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByP_AJUI_S(
 		long projectId, java.lang.String assigneeJiraUserId,
-		java.lang.String status, int begin, int end,
+		java.lang.String status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findByP_AJUI_S(projectId, assigneeJiraUserId, status,
-			begin, end, obc);
+			start, end, obc);
 	}
 
 	public static com.liferay.wol.model.JIRAIssue findByP_AJUI_S_First(
@@ -616,9 +616,9 @@ public class JIRAIssueUtil {
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws com.liferay.portal.SystemException {
+		int start, int end) throws com.liferay.portal.SystemException {
 		return getPersistence()
-				   .findWithDynamicQuery(queryInitializer, begin, end);
+				   .findWithDynamicQuery(queryInitializer, start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findAll()
@@ -627,14 +627,14 @@ public class JIRAIssueUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findAll(
-		int begin, int end) throws com.liferay.portal.SystemException {
-		return getPersistence().findAll(begin, end);
+		int start, int end) throws com.liferay.portal.SystemException {
+		return getPersistence().findAll(start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findAll(
-		int begin, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().findAll(begin, end, obc);
+		return getPersistence().findAll(start, end, obc);
 	}
 
 	public static void removeByProjectId(long projectId)

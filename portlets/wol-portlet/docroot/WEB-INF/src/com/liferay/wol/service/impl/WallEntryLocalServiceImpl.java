@@ -113,10 +113,10 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 		wallEntryPersistence.remove(wallEntryId);
 	}
 
-	public List<WallEntry> getWallEntries(long groupId, int begin, int end)
+	public List<WallEntry> getWallEntries(long groupId, int start, int end)
 		throws SystemException {
 
-		return wallEntryPersistence.findByGroupId(groupId, begin, end);
+		return wallEntryPersistence.findByGroupId(groupId, start, end);
 	}
 
 	public int getWallEntriesCount(long groupId) throws SystemException {
@@ -130,12 +130,12 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 	}
 
 	public List<WallEntry> getWallToWallEntries(
-			long groupId1, long groupId2, long userId1, long userId2, int begin,
+			long groupId1, long groupId2, long userId1, long userId2, int start,
 			int end)
 		throws SystemException {
 
 		return wallEntryFinder.findByG1_G2_U1_U2(
-			groupId1, groupId2, userId1, userId2, begin, end);
+			groupId1, groupId2, userId1, userId2, start, end);
 	}
 
 	public int getWallToWallEntriesCount(

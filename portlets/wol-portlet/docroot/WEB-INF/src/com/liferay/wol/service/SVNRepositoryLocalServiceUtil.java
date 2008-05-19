@@ -64,10 +64,10 @@ public class SVNRepositoryLocalServiceUtil {
 
 	public static java.util.List<com.liferay.wol.model.SVNRepository> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws com.liferay.portal.SystemException {
+		int start, int end) throws com.liferay.portal.SystemException {
 		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
 
-		return svnRepositoryLocalService.dynamicQuery(queryInitializer, begin,
+		return svnRepositoryLocalService.dynamicQuery(queryInitializer, start,
 			end);
 	}
 

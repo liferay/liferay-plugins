@@ -315,12 +315,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<JIRAIssue> findByProjectId(long projectId, int begin, int end)
+	public List<JIRAIssue> findByProjectId(long projectId, int start, int end)
 		throws SystemException {
-		return findByProjectId(projectId, begin, end, null);
+		return findByProjectId(projectId, start, end, null);
 	}
 
-	public List<JIRAIssue> findByProjectId(long projectId, int begin, int end,
+	public List<JIRAIssue> findByProjectId(long projectId, int start, int end,
 		OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAIssue.class.getName();
@@ -334,7 +334,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		Object[] finderArgs = new Object[] {
 				new Long(projectId),
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -376,7 +376,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				qPos.add(projectId);
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -661,12 +661,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 	}
 
 	public List<JIRAIssue> findByReporterJiraUserId(String reporterJiraUserId,
-		int begin, int end) throws SystemException {
-		return findByReporterJiraUserId(reporterJiraUserId, begin, end, null);
+		int start, int end) throws SystemException {
+		return findByReporterJiraUserId(reporterJiraUserId, start, end, null);
 	}
 
 	public List<JIRAIssue> findByReporterJiraUserId(String reporterJiraUserId,
-		int begin, int end, OrderByComparator obc) throws SystemException {
+		int start, int end, OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAIssue.class.getName();
 		String finderMethodName = "findByReporterJiraUserId";
@@ -679,7 +679,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		Object[] finderArgs = new Object[] {
 				reporterJiraUserId,
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -728,7 +728,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				}
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -922,12 +922,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 	}
 
 	public List<JIRAIssue> findByAssigneeJiraUserId(String assigneeJiraUserId,
-		int begin, int end) throws SystemException {
-		return findByAssigneeJiraUserId(assigneeJiraUserId, begin, end, null);
+		int start, int end) throws SystemException {
+		return findByAssigneeJiraUserId(assigneeJiraUserId, start, end, null);
 	}
 
 	public List<JIRAIssue> findByAssigneeJiraUserId(String assigneeJiraUserId,
-		int begin, int end, OrderByComparator obc) throws SystemException {
+		int start, int end, OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAIssue.class.getName();
 		String finderMethodName = "findByAssigneeJiraUserId";
@@ -940,7 +940,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		Object[] finderArgs = new Object[] {
 				assigneeJiraUserId,
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -989,7 +989,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				}
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -1191,12 +1191,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 	}
 
 	public List<JIRAIssue> findByMD_P(Date modifiedDate, long projectId,
-		int begin, int end) throws SystemException {
-		return findByMD_P(modifiedDate, projectId, begin, end, null);
+		int start, int end) throws SystemException {
+		return findByMD_P(modifiedDate, projectId, start, end, null);
 	}
 
 	public List<JIRAIssue> findByMD_P(Date modifiedDate, long projectId,
-		int begin, int end, OrderByComparator obc) throws SystemException {
+		int start, int end, OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAIssue.class.getName();
 		String finderMethodName = "findByMD_P";
@@ -1209,7 +1209,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		Object[] finderArgs = new Object[] {
 				modifiedDate, new Long(projectId),
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -1264,7 +1264,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				qPos.add(projectId);
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -1481,13 +1481,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 	}
 
 	public List<JIRAIssue> findByP_RJUI(long projectId,
-		String reporterJiraUserId, int begin, int end)
+		String reporterJiraUserId, int start, int end)
 		throws SystemException {
-		return findByP_RJUI(projectId, reporterJiraUserId, begin, end, null);
+		return findByP_RJUI(projectId, reporterJiraUserId, start, end, null);
 	}
 
 	public List<JIRAIssue> findByP_RJUI(long projectId,
-		String reporterJiraUserId, int begin, int end, OrderByComparator obc)
+		String reporterJiraUserId, int start, int end, OrderByComparator obc)
 		throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAIssue.class.getName();
@@ -1503,7 +1503,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				
 				reporterJiraUserId,
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -1558,7 +1558,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				}
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -1778,13 +1778,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 	}
 
 	public List<JIRAIssue> findByP_AJUI(long projectId,
-		String assigneeJiraUserId, int begin, int end)
+		String assigneeJiraUserId, int start, int end)
 		throws SystemException {
-		return findByP_AJUI(projectId, assigneeJiraUserId, begin, end, null);
+		return findByP_AJUI(projectId, assigneeJiraUserId, start, end, null);
 	}
 
 	public List<JIRAIssue> findByP_AJUI(long projectId,
-		String assigneeJiraUserId, int begin, int end, OrderByComparator obc)
+		String assigneeJiraUserId, int start, int end, OrderByComparator obc)
 		throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAIssue.class.getName();
@@ -1800,7 +1800,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				
 				assigneeJiraUserId,
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -1855,7 +1855,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				}
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -2089,14 +2089,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 	}
 
 	public List<JIRAIssue> findByMD_P_RJUI(Date modifiedDate, long projectId,
-		String reporterJiraUserId, int begin, int end)
+		String reporterJiraUserId, int start, int end)
 		throws SystemException {
 		return findByMD_P_RJUI(modifiedDate, projectId, reporterJiraUserId,
-			begin, end, null);
+			start, end, null);
 	}
 
 	public List<JIRAIssue> findByMD_P_RJUI(Date modifiedDate, long projectId,
-		String reporterJiraUserId, int begin, int end, OrderByComparator obc)
+		String reporterJiraUserId, int start, int end, OrderByComparator obc)
 		throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAIssue.class.getName();
@@ -2113,7 +2113,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				
 				reporterJiraUserId,
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -2181,7 +2181,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				}
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -2434,14 +2434,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 	}
 
 	public List<JIRAIssue> findByMD_P_AJUI(Date modifiedDate, long projectId,
-		String assigneeJiraUserId, int begin, int end)
+		String assigneeJiraUserId, int start, int end)
 		throws SystemException {
 		return findByMD_P_AJUI(modifiedDate, projectId, assigneeJiraUserId,
-			begin, end, null);
+			start, end, null);
 	}
 
 	public List<JIRAIssue> findByMD_P_AJUI(Date modifiedDate, long projectId,
-		String assigneeJiraUserId, int begin, int end, OrderByComparator obc)
+		String assigneeJiraUserId, int start, int end, OrderByComparator obc)
 		throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAIssue.class.getName();
@@ -2458,7 +2458,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				
 				assigneeJiraUserId,
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -2526,7 +2526,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				}
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -2781,14 +2781,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 	}
 
 	public List<JIRAIssue> findByP_RJUI_S(long projectId,
-		String reporterJiraUserId, String status, int begin, int end)
+		String reporterJiraUserId, String status, int start, int end)
 		throws SystemException {
-		return findByP_RJUI_S(projectId, reporterJiraUserId, status, begin,
+		return findByP_RJUI_S(projectId, reporterJiraUserId, status, start,
 			end, null);
 	}
 
 	public List<JIRAIssue> findByP_RJUI_S(long projectId,
-		String reporterJiraUserId, String status, int begin, int end,
+		String reporterJiraUserId, String status, int start, int end,
 		OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAIssue.class.getName();
@@ -2807,7 +2807,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				
 				status,
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -2875,7 +2875,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				}
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -3130,14 +3130,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 	}
 
 	public List<JIRAIssue> findByP_AJUI_S(long projectId,
-		String assigneeJiraUserId, String status, int begin, int end)
+		String assigneeJiraUserId, String status, int start, int end)
 		throws SystemException {
-		return findByP_AJUI_S(projectId, assigneeJiraUserId, status, begin,
+		return findByP_AJUI_S(projectId, assigneeJiraUserId, status, start,
 			end, null);
 	}
 
 	public List<JIRAIssue> findByP_AJUI_S(long projectId,
-		String assigneeJiraUserId, String status, int begin, int end,
+		String assigneeJiraUserId, String status, int start, int end,
 		OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAIssue.class.getName();
@@ -3156,7 +3156,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				
 				status,
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -3224,7 +3224,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				}
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -3404,7 +3404,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 	}
 
 	public List<JIRAIssue> findWithDynamicQuery(
-		DynamicQueryInitializer queryInitializer, int begin, int end)
+		DynamicQueryInitializer queryInitializer, int start, int end)
 		throws SystemException {
 		Session session = null;
 
@@ -3413,7 +3413,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 
 			DynamicQuery query = queryInitializer.initialize(session);
 
-			query.setLimit(begin, end);
+			query.setLimit(start, end);
 
 			return query.list();
 		}
@@ -3429,12 +3429,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
-	public List<JIRAIssue> findAll(int begin, int end)
+	public List<JIRAIssue> findAll(int start, int end)
 		throws SystemException {
-		return findAll(begin, end, null);
+		return findAll(start, end, null);
 	}
 
-	public List<JIRAIssue> findAll(int begin, int end, OrderByComparator obc)
+	public List<JIRAIssue> findAll(int start, int end, OrderByComparator obc)
 		throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAIssue.class.getName();
@@ -3444,7 +3444,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 		Object[] finderArgs = new Object[] {
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -3478,7 +3478,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				Query q = session.createQuery(query.toString());
 
 				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				if (obc == null) {
 					Collections.sort(list);

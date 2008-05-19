@@ -64,10 +64,10 @@ public class SVNRevisionLocalServiceUtil {
 
 	public static java.util.List<com.liferay.wol.model.SVNRevision> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws com.liferay.portal.SystemException {
+		int start, int end) throws com.liferay.portal.SystemException {
 		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
 
-		return svnRevisionLocalService.dynamicQuery(queryInitializer, begin, end);
+		return svnRevisionLocalService.dynamicQuery(queryInitializer, start, end);
 	}
 
 	public static com.liferay.wol.model.SVNRevision updateSVNRevision(
@@ -117,29 +117,29 @@ public class SVNRevisionLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
-		java.lang.String svnUserId, int begin, int end)
+		java.lang.String svnUserId, int start, int end)
 		throws com.liferay.portal.SystemException {
 		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
 
-		return svnRevisionLocalService.getSVNRevisions(svnUserId, begin, end);
+		return svnRevisionLocalService.getSVNRevisions(svnUserId, start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
-		long svnRepositoryId, int begin, int end)
+		long svnRepositoryId, int start, int end)
 		throws com.liferay.portal.SystemException {
 		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
 
-		return svnRevisionLocalService.getSVNRevisions(svnRepositoryId, begin,
+		return svnRevisionLocalService.getSVNRevisions(svnRepositoryId, start,
 			end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
-		java.lang.String svnUserId, long svnRepositoryId, int begin, int end)
+		java.lang.String svnUserId, long svnRepositoryId, int start, int end)
 		throws com.liferay.portal.SystemException {
 		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
 
 		return svnRevisionLocalService.getSVNRevisions(svnUserId,
-			svnRepositoryId, begin, end);
+			svnRepositoryId, start, end);
 	}
 
 	public static int getSVNRevisionsCount(java.lang.String svnUserId)

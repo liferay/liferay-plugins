@@ -47,7 +47,7 @@ public interface FooLocalService {
 
 	public java.util.List<com.sample.servicebuilder.model.Foo> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws com.liferay.portal.SystemException;
+		int start, int end) throws com.liferay.portal.SystemException;
 
 	public com.sample.servicebuilder.model.Foo updateFoo(
 		com.sample.servicebuilder.model.Foo foo)
@@ -68,10 +68,10 @@ public interface FooLocalService {
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List getFoos(int begin, int end)
+	public java.util.List getFoos(int start, int end)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List getFoos(int begin, int end,
+	public java.util.List getFoos(int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 

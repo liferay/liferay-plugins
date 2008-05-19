@@ -36,11 +36,11 @@ public class WallEntryFinderUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.WallEntry> findByG1_G2_U1_U2(
-		long groupId1, long groupId2, long userId1, long userId2, int begin,
+		long groupId1, long groupId2, long userId1, long userId2, int start,
 		int end) throws com.liferay.portal.SystemException {
 		return getFinder()
 				   .findByG1_G2_U1_U2(groupId1, groupId2, userId1, userId2,
-			begin, end);
+			start, end);
 	}
 
 	public static WallEntryFinder getFinder() {

@@ -37,6 +37,6 @@ public interface JIRAChangeGroupFinder {
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAChangeGroup> findByCD_P(
-		java.util.Date createDate, long projectId, int begin, int end)
+		java.util.Date createDate, long projectId, int start, int end)
 		throws com.liferay.portal.SystemException;
 }

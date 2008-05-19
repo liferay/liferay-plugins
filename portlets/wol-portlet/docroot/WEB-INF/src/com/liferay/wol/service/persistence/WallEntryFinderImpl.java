@@ -94,7 +94,7 @@ public class WallEntryFinderImpl implements WallEntryFinder {
 	}
 
 	public List<WallEntry> findByG1_G2_U1_U2(
-			long groupId1, long groupId2, long userId1, long userId2, int begin,
+			long groupId1, long groupId2, long userId1, long userId2, int start,
 			int end)
 		throws SystemException {
 
@@ -117,7 +117,7 @@ public class WallEntryFinderImpl implements WallEntryFinder {
 			qPos.add(userId2);
 
 			return (List<WallEntry>)QueryUtil.list(
-				q, HibernateUtil.getDialect(), begin, end);
+				q, HibernateUtil.getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);

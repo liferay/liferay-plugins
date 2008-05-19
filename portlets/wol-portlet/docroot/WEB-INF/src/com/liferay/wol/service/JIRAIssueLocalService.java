@@ -47,24 +47,24 @@ public interface JIRAIssueLocalService {
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws com.liferay.portal.SystemException;
+		int start, int end) throws com.liferay.portal.SystemException;
 
 	public com.liferay.wol.model.JIRAIssue updateJIRAIssue(
 		com.liferay.wol.model.JIRAIssue jiraIssue)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> getAssigneeJIRAIssues(
-		long projectId, java.lang.String assigneeJiraUserId, int begin, int end)
+		long projectId, java.lang.String assigneeJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> getAssigneeJIRAIssues(
 		java.util.Date modifiedDate, long projectId,
-		java.lang.String assigneeJiraUserId, int begin, int end)
+		java.lang.String assigneeJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> getAssigneeJIRAIssues(
 		long projectId, java.lang.String assigneeJiraUserId,
-		java.lang.String status, int begin, int end)
+		java.lang.String status, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public int getAssigneeJIRAIssuesCount(long projectId,
@@ -108,17 +108,17 @@ public interface JIRAIssueLocalService {
 			com.liferay.portal.PortalException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> getReporterJIRAIssues(
-		long projectId, java.lang.String reporterJiraUserId, int begin, int end)
+		long projectId, java.lang.String reporterJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> getReporterJIRAIssues(
 		java.util.Date modifiedDate, long projectId,
-		java.lang.String reporterJiraUserId, int begin, int end)
+		java.lang.String reporterJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> getReporterJIRAIssues(
 		long projectId, java.lang.String reporterJiraUserId,
-		java.lang.String status, int begin, int end)
+		java.lang.String status, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public int getReporterJIRAIssuesCount(long projectId,

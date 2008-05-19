@@ -313,12 +313,12 @@ public class WallEntryPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<WallEntry> findByGroupId(long groupId, int begin, int end)
+	public List<WallEntry> findByGroupId(long groupId, int start, int end)
 		throws SystemException {
-		return findByGroupId(groupId, begin, end, null);
+		return findByGroupId(groupId, start, end, null);
 	}
 
-	public List<WallEntry> findByGroupId(long groupId, int begin, int end,
+	public List<WallEntry> findByGroupId(long groupId, int start, int end,
 		OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
 		String finderClassName = WallEntry.class.getName();
@@ -332,7 +332,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 		Object[] finderArgs = new Object[] {
 				new Long(groupId),
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -374,7 +374,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 				qPos.add(groupId);
 
 				List<WallEntry> list = (List<WallEntry>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -550,12 +550,12 @@ public class WallEntryPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<WallEntry> findByUserId(long userId, int begin, int end)
+	public List<WallEntry> findByUserId(long userId, int start, int end)
 		throws SystemException {
-		return findByUserId(userId, begin, end, null);
+		return findByUserId(userId, start, end, null);
 	}
 
-	public List<WallEntry> findByUserId(long userId, int begin, int end,
+	public List<WallEntry> findByUserId(long userId, int start, int end,
 		OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
 		String finderClassName = WallEntry.class.getName();
@@ -569,7 +569,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 		Object[] finderArgs = new Object[] {
 				new Long(userId),
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -611,7 +611,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 				qPos.add(userId);
 
 				List<WallEntry> list = (List<WallEntry>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -795,12 +795,12 @@ public class WallEntryPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<WallEntry> findByG_U(long groupId, long userId, int begin,
+	public List<WallEntry> findByG_U(long groupId, long userId, int start,
 		int end) throws SystemException {
-		return findByG_U(groupId, userId, begin, end, null);
+		return findByG_U(groupId, userId, start, end, null);
 	}
 
-	public List<WallEntry> findByG_U(long groupId, long userId, int begin,
+	public List<WallEntry> findByG_U(long groupId, long userId, int start,
 		int end, OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
 		String finderClassName = WallEntry.class.getName();
@@ -814,7 +814,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 		Object[] finderArgs = new Object[] {
 				new Long(groupId), new Long(userId),
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -862,7 +862,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 				qPos.add(userId);
 
 				List<WallEntry> list = (List<WallEntry>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -1012,7 +1012,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 	}
 
 	public List<WallEntry> findWithDynamicQuery(
-		DynamicQueryInitializer queryInitializer, int begin, int end)
+		DynamicQueryInitializer queryInitializer, int start, int end)
 		throws SystemException {
 		Session session = null;
 
@@ -1021,7 +1021,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 
 			DynamicQuery query = queryInitializer.initialize(session);
 
-			query.setLimit(begin, end);
+			query.setLimit(start, end);
 
 			return query.list();
 		}
@@ -1037,12 +1037,12 @@ public class WallEntryPersistenceImpl extends BasePersistence
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
-	public List<WallEntry> findAll(int begin, int end)
+	public List<WallEntry> findAll(int start, int end)
 		throws SystemException {
-		return findAll(begin, end, null);
+		return findAll(start, end, null);
 	}
 
-	public List<WallEntry> findAll(int begin, int end, OrderByComparator obc)
+	public List<WallEntry> findAll(int start, int end, OrderByComparator obc)
 		throws SystemException {
 		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
 		String finderClassName = WallEntry.class.getName();
@@ -1052,7 +1052,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 		Object[] finderArgs = new Object[] {
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -1086,7 +1086,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 				Query q = session.createQuery(query.toString());
 
 				List<WallEntry> list = (List<WallEntry>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				if (obc == null) {
 					Collections.sort(list);

@@ -324,12 +324,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<SVNRevision> findBySVNUserId(String svnUserId, int begin,
+	public List<SVNRevision> findBySVNUserId(String svnUserId, int start,
 		int end) throws SystemException {
-		return findBySVNUserId(svnUserId, begin, end, null);
+		return findBySVNUserId(svnUserId, start, end, null);
 	}
 
-	public List<SVNRevision> findBySVNUserId(String svnUserId, int begin,
+	public List<SVNRevision> findBySVNUserId(String svnUserId, int start,
 		int end, OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
 		String finderClassName = SVNRevision.class.getName();
@@ -343,7 +343,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 		Object[] finderArgs = new Object[] {
 				svnUserId,
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -392,7 +392,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 				}
 
 				List<SVNRevision> list = (List<SVNRevision>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -580,12 +580,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 	}
 
 	public List<SVNRevision> findBySVNRepositoryId(long svnRepositoryId,
-		int begin, int end) throws SystemException {
-		return findBySVNRepositoryId(svnRepositoryId, begin, end, null);
+		int start, int end) throws SystemException {
+		return findBySVNRepositoryId(svnRepositoryId, start, end, null);
 	}
 
 	public List<SVNRevision> findBySVNRepositoryId(long svnRepositoryId,
-		int begin, int end, OrderByComparator obc) throws SystemException {
+		int start, int end, OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
 		String finderClassName = SVNRevision.class.getName();
 		String finderMethodName = "findBySVNRepositoryId";
@@ -598,7 +598,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 		Object[] finderArgs = new Object[] {
 				new Long(svnRepositoryId),
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -640,7 +640,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 				qPos.add(svnRepositoryId);
 
 				List<SVNRevision> list = (List<SVNRevision>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -837,12 +837,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 	}
 
 	public List<SVNRevision> findBySVNU_SVNR(String svnUserId,
-		long svnRepositoryId, int begin, int end) throws SystemException {
-		return findBySVNU_SVNR(svnUserId, svnRepositoryId, begin, end, null);
+		long svnRepositoryId, int start, int end) throws SystemException {
+		return findBySVNU_SVNR(svnUserId, svnRepositoryId, start, end, null);
 	}
 
 	public List<SVNRevision> findBySVNU_SVNR(String svnUserId,
-		long svnRepositoryId, int begin, int end, OrderByComparator obc)
+		long svnRepositoryId, int start, int end, OrderByComparator obc)
 		throws SystemException {
 		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
 		String finderClassName = SVNRevision.class.getName();
@@ -856,7 +856,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 		Object[] finderArgs = new Object[] {
 				svnUserId, new Long(svnRepositoryId),
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -911,7 +911,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 				qPos.add(svnRepositoryId);
 
 				List<SVNRevision> list = (List<SVNRevision>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -1072,7 +1072,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 	}
 
 	public List<SVNRevision> findWithDynamicQuery(
-		DynamicQueryInitializer queryInitializer, int begin, int end)
+		DynamicQueryInitializer queryInitializer, int start, int end)
 		throws SystemException {
 		Session session = null;
 
@@ -1081,7 +1081,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 
 			DynamicQuery query = queryInitializer.initialize(session);
 
-			query.setLimit(begin, end);
+			query.setLimit(start, end);
 
 			return query.list();
 		}
@@ -1097,12 +1097,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
-	public List<SVNRevision> findAll(int begin, int end)
+	public List<SVNRevision> findAll(int start, int end)
 		throws SystemException {
-		return findAll(begin, end, null);
+		return findAll(start, end, null);
 	}
 
-	public List<SVNRevision> findAll(int begin, int end, OrderByComparator obc)
+	public List<SVNRevision> findAll(int start, int end, OrderByComparator obc)
 		throws SystemException {
 		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
 		String finderClassName = SVNRevision.class.getName();
@@ -1112,7 +1112,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 		Object[] finderArgs = new Object[] {
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -1146,7 +1146,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistence
 				Query q = session.createQuery(query.toString());
 
 				List<SVNRevision> list = (List<SVNRevision>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				if (obc == null) {
 					Collections.sort(list);

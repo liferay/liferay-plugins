@@ -62,11 +62,11 @@ public interface JIRAIssuePersistence {
 		long projectId) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByProjectId(
-		long projectId, int begin, int end)
+		long projectId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByProjectId(
-		long projectId, int begin, int end,
+		long projectId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -98,11 +98,11 @@ public interface JIRAIssuePersistence {
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByReporterJiraUserId(
-		java.lang.String reporterJiraUserId, int begin, int end)
+		java.lang.String reporterJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByReporterJiraUserId(
-		java.lang.String reporterJiraUserId, int begin, int end,
+		java.lang.String reporterJiraUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -129,11 +129,11 @@ public interface JIRAIssuePersistence {
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByAssigneeJiraUserId(
-		java.lang.String assigneeJiraUserId, int begin, int end)
+		java.lang.String assigneeJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByAssigneeJiraUserId(
-		java.lang.String assigneeJiraUserId, int begin, int end,
+		java.lang.String assigneeJiraUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -160,11 +160,11 @@ public interface JIRAIssuePersistence {
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P(
-		java.util.Date modifiedDate, long projectId, int begin, int end)
+		java.util.Date modifiedDate, long projectId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P(
-		java.util.Date modifiedDate, long projectId, int begin, int end,
+		java.util.Date modifiedDate, long projectId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -191,11 +191,11 @@ public interface JIRAIssuePersistence {
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByP_RJUI(
-		long projectId, java.lang.String reporterJiraUserId, int begin, int end)
+		long projectId, java.lang.String reporterJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByP_RJUI(
-		long projectId, java.lang.String reporterJiraUserId, int begin,
+		long projectId, java.lang.String reporterJiraUserId, int start,
 		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -222,11 +222,11 @@ public interface JIRAIssuePersistence {
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByP_AJUI(
-		long projectId, java.lang.String assigneeJiraUserId, int begin, int end)
+		long projectId, java.lang.String assigneeJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByP_AJUI(
-		long projectId, java.lang.String assigneeJiraUserId, int begin,
+		long projectId, java.lang.String assigneeJiraUserId, int start,
 		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -255,12 +255,12 @@ public interface JIRAIssuePersistence {
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_RJUI(
 		java.util.Date modifiedDate, long projectId,
-		java.lang.String reporterJiraUserId, int begin, int end)
+		java.lang.String reporterJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_RJUI(
 		java.util.Date modifiedDate, long projectId,
-		java.lang.String reporterJiraUserId, int begin, int end,
+		java.lang.String reporterJiraUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -292,12 +292,12 @@ public interface JIRAIssuePersistence {
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_AJUI(
 		java.util.Date modifiedDate, long projectId,
-		java.lang.String assigneeJiraUserId, int begin, int end)
+		java.lang.String assigneeJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByMD_P_AJUI(
 		java.util.Date modifiedDate, long projectId,
-		java.lang.String assigneeJiraUserId, int begin, int end,
+		java.lang.String assigneeJiraUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -328,12 +328,12 @@ public interface JIRAIssuePersistence {
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByP_RJUI_S(
 		long projectId, java.lang.String reporterJiraUserId,
-		java.lang.String status, int begin, int end)
+		java.lang.String status, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByP_RJUI_S(
 		long projectId, java.lang.String reporterJiraUserId,
-		java.lang.String status, int begin, int end,
+		java.lang.String status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -363,12 +363,12 @@ public interface JIRAIssuePersistence {
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByP_AJUI_S(
 		long projectId, java.lang.String assigneeJiraUserId,
-		java.lang.String status, int begin, int end)
+		java.lang.String status, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByP_AJUI_S(
 		long projectId, java.lang.String assigneeJiraUserId,
-		java.lang.String status, int begin, int end,
+		java.lang.String status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -398,15 +398,15 @@ public interface JIRAIssuePersistence {
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws com.liferay.portal.SystemException;
+		int start, int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findAll()
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.JIRAIssue> findAll(int begin,
+	public java.util.List<com.liferay.wol.model.JIRAIssue> findAll(int start,
 		int end) throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.JIRAIssue> findAll(int begin,
+	public java.util.List<com.liferay.wol.model.JIRAIssue> findAll(int start,
 		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 

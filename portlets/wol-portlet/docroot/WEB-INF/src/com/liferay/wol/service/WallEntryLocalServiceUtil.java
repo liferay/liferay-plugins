@@ -64,10 +64,10 @@ public class WallEntryLocalServiceUtil {
 
 	public static java.util.List<com.liferay.wol.model.WallEntry> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int begin, int end) throws com.liferay.portal.SystemException {
+		int start, int end) throws com.liferay.portal.SystemException {
 		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
 
-		return wallEntryLocalService.dynamicQuery(queryInitializer, begin, end);
+		return wallEntryLocalService.dynamicQuery(queryInitializer, start, end);
 	}
 
 	public static com.liferay.wol.model.WallEntry updateWallEntry(
@@ -90,11 +90,11 @@ public class WallEntryLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.WallEntry> getWallEntries(
-		long groupId, int begin, int end)
+		long groupId, int start, int end)
 		throws com.liferay.portal.SystemException {
 		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
 
-		return wallEntryLocalService.getWallEntries(groupId, begin, end);
+		return wallEntryLocalService.getWallEntries(groupId, start, end);
 	}
 
 	public static int getWallEntriesCount(long groupId)
@@ -113,12 +113,12 @@ public class WallEntryLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.WallEntry> getWallToWallEntries(
-		long groupId1, long groupId2, long userId1, long userId2, int begin,
+		long groupId1, long groupId2, long userId1, long userId2, int start,
 		int end) throws com.liferay.portal.SystemException {
 		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
 
 		return wallEntryLocalService.getWallToWallEntries(groupId1, groupId2,
-			userId1, userId2, begin, end);
+			userId1, userId2, start, end);
 	}
 
 	public static int getWallToWallEntriesCount(long groupId1, long groupId2,

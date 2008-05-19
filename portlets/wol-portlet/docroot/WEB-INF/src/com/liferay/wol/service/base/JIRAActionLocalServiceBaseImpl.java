@@ -98,10 +98,10 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	}
 
 	public List<JIRAAction> dynamicQuery(
-		DynamicQueryInitializer queryInitializer, int begin, int end)
+		DynamicQueryInitializer queryInitializer, int start, int end)
 		throws SystemException {
 		return jiraActionPersistence.findWithDynamicQuery(queryInitializer,
-			begin, end);
+			start, end);
 	}
 
 	public JIRAAction updateJIRAAction(JIRAAction jiraAction)

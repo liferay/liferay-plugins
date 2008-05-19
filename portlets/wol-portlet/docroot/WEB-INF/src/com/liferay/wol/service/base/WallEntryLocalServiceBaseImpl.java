@@ -98,10 +98,10 @@ public abstract class WallEntryLocalServiceBaseImpl
 	}
 
 	public List<WallEntry> dynamicQuery(
-		DynamicQueryInitializer queryInitializer, int begin, int end)
+		DynamicQueryInitializer queryInitializer, int start, int end)
 		throws SystemException {
 		return wallEntryPersistence.findWithDynamicQuery(queryInitializer,
-			begin, end);
+			start, end);
 	}
 
 	public WallEntry updateWallEntry(WallEntry wallEntry)

@@ -315,12 +315,12 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistence
 	}
 
 	public List<JIRAChangeItem> findByJiraChangeGroupId(
-		long jiraChangeGroupId, int begin, int end) throws SystemException {
-		return findByJiraChangeGroupId(jiraChangeGroupId, begin, end, null);
+		long jiraChangeGroupId, int start, int end) throws SystemException {
+		return findByJiraChangeGroupId(jiraChangeGroupId, start, end, null);
 	}
 
 	public List<JIRAChangeItem> findByJiraChangeGroupId(
-		long jiraChangeGroupId, int begin, int end, OrderByComparator obc)
+		long jiraChangeGroupId, int start, int end, OrderByComparator obc)
 		throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAChangeItemModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAChangeItem.class.getName();
@@ -334,7 +334,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistence
 		Object[] finderArgs = new Object[] {
 				new Long(jiraChangeGroupId),
 				
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -370,7 +370,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistence
 				qPos.add(jiraChangeGroupId);
 
 				List<JIRAChangeItem> list = (List<JIRAChangeItem>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -506,7 +506,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistence
 	}
 
 	public List<JIRAChangeItem> findWithDynamicQuery(
-		DynamicQueryInitializer queryInitializer, int begin, int end)
+		DynamicQueryInitializer queryInitializer, int start, int end)
 		throws SystemException {
 		Session session = null;
 
@@ -515,7 +515,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistence
 
 			DynamicQuery query = queryInitializer.initialize(session);
 
-			query.setLimit(begin, end);
+			query.setLimit(start, end);
 
 			return query.list();
 		}
@@ -531,12 +531,12 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistence
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
-	public List<JIRAChangeItem> findAll(int begin, int end)
+	public List<JIRAChangeItem> findAll(int start, int end)
 		throws SystemException {
-		return findAll(begin, end, null);
+		return findAll(start, end, null);
 	}
 
-	public List<JIRAChangeItem> findAll(int begin, int end,
+	public List<JIRAChangeItem> findAll(int start, int end,
 		OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = JIRAChangeItemModelImpl.CACHE_ENABLED;
 		String finderClassName = JIRAChangeItem.class.getName();
@@ -546,7 +546,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistence
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 		Object[] finderArgs = new Object[] {
-				String.valueOf(begin), String.valueOf(end), String.valueOf(obc)
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
 		Object result = null;
@@ -574,7 +574,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistence
 				Query q = session.createQuery(query.toString());
 
 				List<JIRAChangeItem> list = (List<JIRAChangeItem>)QueryUtil.list(q,
-						getDialect(), begin, end);
+						getDialect(), start, end);
 
 				if (obc == null) {
 					Collections.sort(list);
