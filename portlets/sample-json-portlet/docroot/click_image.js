@@ -10,12 +10,12 @@ toString : function() {
 		date = new Date();
 		id = "" + date.getTime();
 	}
-	
+
 	clickMe.innerHTML = "Click me.";
 	clickMe.setAttribute("onclick", "document.getElementById('" + id + "image').style.display = 'inline'; this.style.display = 'none'");
 	clickMe.id = id + "link";
 	clickMe.style.cursor = "pointer";
-	
+
 	var image = document.createElement("img");
 
 	image.src = "http://www.liferay.com/image/company_logo?img_id=liferay.com";
@@ -23,7 +23,7 @@ toString : function() {
 	image.style.cursor = "pointer";
 	image.id = id + "image";
 	image.style.display = "none";
-	
+
 	main.appendChild(clickMe);
 	main.appendChild(document.createElement("br"));
 	main.appendChild(image);

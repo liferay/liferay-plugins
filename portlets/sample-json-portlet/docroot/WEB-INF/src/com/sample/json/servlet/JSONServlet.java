@@ -35,7 +35,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
-import org.json.JSONRaw;
 
 /**
  * <a href="JSONServlet.java.html"><b><i>View Source</i></b></a>
@@ -85,11 +84,13 @@ public class JSONServlet extends HttpServlet {
 		String script = StringUtil.read(
 			ctx.getResourceAsStream("/click_image.js"));
 
-		JSONRaw jsonRaw = new JSONRaw(script);
+		String jsonObjString = jsonObj.toString();
 
-		jsonObj.put("click_image", jsonRaw);
+		jsonObjString =
+			jsonObjString.substring(0, jsonObjString.length() - 1) + "," +
+				script + "}";
 
-		return callback + "(" + jsonObj.toString() + ");";
+		return callback + "(" + jsonObjString + ");";
 	}
 
 }
