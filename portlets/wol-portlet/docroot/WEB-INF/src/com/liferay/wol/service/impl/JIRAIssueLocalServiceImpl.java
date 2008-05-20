@@ -31,6 +31,7 @@ import com.liferay.portlet.expando.model.ExpandoValue;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
+import com.liferay.util.JSONUtil;
 import com.liferay.wol.NoSuchJIRAIssueException;
 import com.liferay.wol.jira.social.JIRAActivityKeys;
 import com.liferay.wol.jira.util.JIRAUtil;
@@ -249,7 +250,8 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 
 			JSONObject extraData = new JSONObject();
 
-			extraData.put("jiraActionId", jiraAction.getJiraActionId());
+			JSONUtil.put(
+				extraData, "jiraActionId", jiraAction.getJiraActionId());
 
 			SocialActivityLocalServiceUtil.addActivity(
 				userId, 0, JIRAUtil.getLiferayDate(jiraAction.getCreateDate()),
@@ -269,12 +271,13 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 
 			JSONObject extraData = new JSONObject();
 
-			extraData.put(
+			JSONUtil.put(extraData,
 				"jiraChangeGroupId", jiraChangeGroup.getJiraChangeGroupId());
 
 			JSONArray jiraChangeItemsJSONArray = new JSONArray();
 
-			extraData.put("jiraChangeItems", jiraChangeItemsJSONArray);
+			JSONUtil.put(
+				extraData, "jiraChangeItems", jiraChangeItemsJSONArray);
 
 			List<JIRAChangeItem> jiraChangeItems =
 				jiraChangeItemPersistence.findByJiraChangeGroupId(
@@ -283,14 +286,15 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 			for (JIRAChangeItem jiraChangeItem : jiraChangeItems) {
 				JSONObject jiraChangeItemJSON = new JSONObject();
 
-				jiraChangeItemJSON.put("field", jiraChangeItem.getField());
-				jiraChangeItemJSON.put(
+				JSONUtil.put(
+					jiraChangeItemJSON, "field", jiraChangeItem.getField());
+				JSONUtil.put(jiraChangeItemJSON,
 					"oldValue", jiraChangeItem.getOldValue());
-				jiraChangeItemJSON.put(
+				JSONUtil.put(jiraChangeItemJSON,
 					"oldString", jiraChangeItem.getOldString());
-				jiraChangeItemJSON.put(
+				JSONUtil.put(jiraChangeItemJSON,
 					"newValue", jiraChangeItem.getNewValue());
-				jiraChangeItemJSON.put(
+				JSONUtil.put(jiraChangeItemJSON,
 					"newString", jiraChangeItem.getNewString());
 
 				jiraChangeItemsJSONArray.put(jiraChangeItemJSON);

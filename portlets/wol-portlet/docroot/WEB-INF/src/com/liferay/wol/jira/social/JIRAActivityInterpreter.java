@@ -36,6 +36,7 @@ import com.liferay.wol.service.JIRAActionLocalServiceUtil;
 import com.liferay.wol.service.JIRAIssueLocalServiceUtil;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -130,7 +131,8 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	protected String interpretJIRAChangeItem(
-		JSONObject jiraChangeItem, ThemeDisplay themeDisplay) {
+			JSONObject jiraChangeItem, ThemeDisplay themeDisplay)
+		throws JSONException {
 
 		String field = jiraChangeItem.getString("field");
 
@@ -175,7 +177,8 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	protected String interpretJIRAChangeItems(
-		JSONArray jiraChangeItems, ThemeDisplay themeDisplay) {
+			JSONArray jiraChangeItems, ThemeDisplay themeDisplay)
+		throws JSONException {
 
 		StringMaker sm = new StringMaker();
 
