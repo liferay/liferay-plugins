@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 5.0.0//EN" "http://www.liferay.com/dtd/liferay-portlet-app_5_0_0.dtd">
 
 <liferay-portlet-app>
@@ -47,6 +47,7 @@
 	</portlet>
 	<portlet>
 		<portlet-name>7</portlet-name>
+		<icon>/members/icon.png</icon>
 		<social-activity-interpreter-class>com.liferay.wol.members.social.MembersActivityInterpreter</social-activity-interpreter-class>
 		<social-request-interpreter-class>com.liferay.wol.members.social.MembersRequestInterpreter</social-request-interpreter-class>
 		<header-portlet-css>/members/css.jsp</header-portlet-css>
