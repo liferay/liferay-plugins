@@ -43,10 +43,12 @@
 	</td>
 	<td id="email-right-column">
 		<div id="folder" folderName="">
-			<div class="folder-controls">
-				<div class="actions">
+			<table class="folder-controls">
+			<tr>	
+				<td class="actions">
 					<div>
 						<input type="button" value="<liferay-ui:message key="delete" />" class="delete" />
+
 						<select class="select-actions">
 							<option value="none"><liferay-ui:message key="more-actions" /></option>
 
@@ -54,6 +56,7 @@
 
 							<option value="unread">- <liferay-ui:message key="mark-as-unread" /></option>
 						</select>
+
 						<a class="refresh" href="javascript: ;"><liferay-ui:message key="refresh" /></a>
 					</div>
 
@@ -68,9 +71,9 @@
 
 						<a class="select-unread" href="javascript: ;"><liferay-ui:message key="unread" /></a>
 					</div>
-				</div>
+				</td>
 
-				<div class="navigation">
+				<td class="navigation">
 					<a class="newest" href="javascript: ;">« <liferay-ui:message key="newest" /></a>
 
 					<a class="newer" href="javascript: ;">&lt; <liferay-ui:message key="newer" /></a>
@@ -80,14 +83,19 @@
 					<a class="older" href="javascript: ;"><liferay-ui:message key="older" /> &gt;</a>
 
 					<a class="oldest" href="javascript: ;"><liferay-ui:message key="oldest" /> »</a>
-				</div>
-			</div>
-
-			<table id="message-list">
+				</td>
+			</tr>
 			</table>
 
-			<div class="folder-controls">
-				<div class="actions">
+			<table id="message-list">
+			<tr>
+				<td class="alert">No Messages</td>
+			</tr>
+			</table>
+
+			<table class="folder-controls">
+			<tr>	
+				<td class="actions">
 					<div>
 						<liferay-ui:message key="select" />: 
 
@@ -113,9 +121,9 @@
 
 						<a class="refresh" href="javascript: ;"><liferay-ui:message key="refresh" /></a>
 					</div>
-				</div>
+				</td>
 
-				<div class="navigation">
+				<td class="navigation">
 					<a class="newest" href="javascript: ;">« <liferay-ui:message key="newest" /></a>
 
 					<a class="newer" href="javascript: ;">&lt; <liferay-ui:message key="newer" /></a>
@@ -125,8 +133,9 @@
 					<a class="older" href="javascript: ;"><liferay-ui:message key="older" /> &gt;</a>
 
 					<a class="oldest" href="javascript: ;"><liferay-ui:message key="oldest" /> »</a>
-				</div>
-			</div>
+				</td>
+			</tr>
+			</table>
 		</div>
 
 		<div id="message">
@@ -183,7 +192,7 @@
 							</td>
 							<td><span id="read-subject"></span></td>
 						</tr>
-						<tr>
+						<tr style="display: none">
 							<td class="label">
 								<liferay-ui:message key="mailed-by" />
 							</td>

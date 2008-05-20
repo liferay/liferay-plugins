@@ -59,9 +59,8 @@
 
 .mail-portlet #email-left-column {
 	border: 1px #000000 solid;
-	margin-right: 3px;
 	padding: 3px;
-	width: 10%;
+	width: 13%;
 }
 
 .mail-portlet #email-right-column {
@@ -72,19 +71,21 @@
 
 .mail-portlet #compose-mail {
 	cursor: pointer;
-	padding-bottom: 10px;
+	margin-bottom: 20px;
+	padding: 5px;
 	text-decoration: underline;
 }
 
 .mail-portlet #status {
 	background-color: #FFF1A8;
 	font-weight: bold;
-	padding: 3px;
+	padding: 5px;
 	text-align: center;
 }
 
 .mail-portlet .folder {
 	min-width: 80px;
+	padding: 5px;
 }
 
 .mail-portlet #folder {
@@ -95,6 +96,13 @@
 .mail-portlet #message-list {
 	width: 100%;
 }
+
+.mail-portlet #message-list .alert {
+	height: 200px;
+	text-align: center;
+	vertical-align: middle;
+}
+
 
 .mail-portlet .message:hover {
 	cursor: pointer;
@@ -153,16 +161,21 @@
 
 .mail-portlet .folder-controls {
 	background-color: #C3D9FF;
-	height: 45px;
 	padding: 3px;
+	width: 100%;
 }
 
 .mail-portlet .folder-controls .actions {
-	float: left;
+	height: 45px;
+}
+
+.mail-portlet .folder-controls .actions div {
+	padding: 4px;
 }
 
 .mail-portlet .folder-controls .navigation {
-	float: right;
+	padding: 5px;
+	text-align: right;
 }
 
 .mail-portlet #message {
