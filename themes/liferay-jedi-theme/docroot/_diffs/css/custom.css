@@ -513,6 +513,10 @@ body.portal-popup {
 	color: #E7EEF6;
 }
 
+.mac.firefox .portlet-message-boards .message-container table {
+	table-layout: auto;
+}
+
 .message-board-code, .message-board-quote {
 	background: #EEE;
 	border: 1px solid #CCC;
