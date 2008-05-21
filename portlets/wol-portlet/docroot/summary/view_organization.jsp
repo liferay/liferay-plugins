@@ -43,13 +43,15 @@
 
 						leaveOrganizationURL.setParameter(Constants.CMD, "leave_organization");
 						leaveOrganizationURL.setParameter("redirect", PortalUtil.getCurrentURL(request));
+
+						String leaveOrganizationHREF = "javascript: if (confirm('" + LanguageUtil.get(pageContext, "are-you-sure-you-want-to-leave-this-organization") + "')) { submitForm(document.hrefFm, '" + leaveOrganizationURL + "'); }";
 						%>
 
 						<p class="leave-organization">
 							<liferay-ui:icon
 								image="leave"
 								message="leave-organization"
-								url="<%= leaveOrganizationURL.toString() %>"
+								url="<%= leaveOrganizationHREF %>"
 								label="<%= true %>"
 							/>
 						</p>
