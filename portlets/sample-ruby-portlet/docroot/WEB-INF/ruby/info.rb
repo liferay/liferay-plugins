@@ -8,7 +8,7 @@ out.println Custom.sayHello
 
 out.println "<br />"
 
-if (params['type'] && params['type'][0] == 'user')
+if (params['type'] && (params['type'][0] == 'user'))
 	out.println LiferayPortlet.showUserDetails($userInfo)
 elsif
 	out.println LiferayPortlet.showPortletDetails($renderRequest)
