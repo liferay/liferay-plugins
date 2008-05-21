@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="com.liferay.ipgeocoder.service.IPInfoLocalService.impl" class="com.liferay.ipgeocoder.service.impl.IPInfoLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.ipgeocoder.service.IPInfoLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+		<property name="transactionManager">
+			<ref bean="liferayTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.ipgeocoder.service.IPInfoLocalService.impl" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="check*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="clear*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="com.liferay.ipgeocoder.service.IPInfoLocalServiceFactory" class="com.liferay.ipgeocoder.service.IPInfoLocalServiceFactory" lazy-init="true">
+		<property name="service">
+			<ref bean="com.liferay.ipgeocoder.service.IPInfoLocalService.transaction" />
+		</property>
+	</bean>
+	<bean id="com.liferay.ipgeocoder.service.persistence.IPInfoPersistence.impl" class="com.liferay.ipgeocoder.service.persistence.IPInfoPersistenceImpl" lazy-init="true">
+		<property name="dataSource">
+			<ref bean="liferayDataSource" />
+		</property>
+		<property name="sessionFactory">
+			<ref bean="liferaySessionFactory" />
+		</property>
+	</bean>
+	<bean id="com.liferay.ipgeocoder.service.persistence.IPInfoPersistence.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+		<property name="transactionManager">
+			<ref bean="liferayTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.ipgeocoder.service.persistence.IPInfoPersistence.impl" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="remove*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="com.liferay.ipgeocoder.service.persistence.IPInfoUtil" class="com.liferay.ipgeocoder.service.persistence.IPInfoUtil" lazy-init="true">
+		<property name="persistence">
+			<ref bean="com.liferay.ipgeocoder.service.persistence.IPInfoPersistence.impl" />
+		</property>
+	</bean>
+</beans>
