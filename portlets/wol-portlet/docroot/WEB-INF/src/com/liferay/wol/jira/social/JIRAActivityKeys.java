@@ -30,10 +30,10 @@ package com.liferay.wol.jira.social;
  */
 public class JIRAActivityKeys {
 
-	public static final String ADD_CHANGE = "ADD_CHANGE";
+	public static final int ADD_CHANGE = 1;
 
-	public static final String ADD_COMMENT = "ADD_COMMENT";
+	public static final int ADD_COMMENT = 2;
 
-	public static final String ADD_ISSUE = "ADD_ISSUE";
+	public static final int ADD_ISSUE = 3;
 
 }

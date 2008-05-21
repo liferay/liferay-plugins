@@ -30,6 +30,6 @@ package com.liferay.wol.svn.social;
  */
 public class SVNActivityKeys {
 
-	public static final String ADD_REVISION = "ADD_REVISION";
+	public static final int ADD_REVISION = 1;
 
 }

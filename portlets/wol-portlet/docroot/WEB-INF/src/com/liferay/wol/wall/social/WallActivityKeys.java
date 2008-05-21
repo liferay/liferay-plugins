@@ -30,6 +30,6 @@ package com.liferay.wol.wall.social;
  */
 public class WallActivityKeys {
 
-	public static final String ADD_ENTRY = "ADD_ENTRY";
+	public static final int ADD_ENTRY = 1;
 
 }

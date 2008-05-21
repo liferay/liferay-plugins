@@ -30,6 +30,6 @@ package com.liferay.wol.friends.social;
  */
 public class FriendsActivityKeys {
 
-	public static final String ADD_FRIEND = "ADD_FRIEND";
+	public static final int ADD_FRIEND = 1;
 
 }

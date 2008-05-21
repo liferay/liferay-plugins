@@ -58,7 +58,7 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 		String creatorUserName = getUserName(
 			activity.getUserId(), themeDisplay);
 
-		String activityType = activity.getType();
+		int activityType = activity.getType();
 
 		JSONObject extraData = null;
 
@@ -68,7 +68,7 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		JIRAAction jiraAction = null;
 
-		if (activityType.equals(JIRAActivityKeys.ADD_COMMENT)) {
+		if (activityType == JIRAActivityKeys.ADD_COMMENT) {
 			long jiraActionId = extraData.getLong("jiraActionId");
 
 			jiraAction = JIRAActionLocalServiceUtil.getJIRAAction(jiraActionId);
@@ -81,17 +81,17 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String title = StringPool.BLANK;
 
-		if (activityType.equals(JIRAActivityKeys.ADD_CHANGE)) {
+		if (activityType == JIRAActivityKeys.ADD_CHANGE) {
 			title = themeDisplay.translate(
 				"activity-wol-jira-add-change",
 				new Object[] {creatorUserName, jiraIssue.getKey()});
 		}
-		else if (activityType.equals(JIRAActivityKeys.ADD_COMMENT)) {
+		else if (activityType == JIRAActivityKeys.ADD_COMMENT) {
 			title = themeDisplay.translate(
 				"activity-wol-jira-add-comment",
 				new Object[] {creatorUserName, jiraIssue.getKey()});
 		}
-		else if (activityType.equals(JIRAActivityKeys.ADD_ISSUE)) {
+		else if (activityType == JIRAActivityKeys.ADD_ISSUE) {
 			title = themeDisplay.translate(
 				"activity-wol-jira-add-issue",
 				new Object[] {creatorUserName, jiraIssue.getKey()});
@@ -104,22 +104,22 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 		sm.append("<a href=\"http://support.liferay.com/browse/");
 		sm.append(jiraIssue.getKey());
 
-		if (activityType.equals(JIRAActivityKeys.ADD_COMMENT)) {
+		if (activityType == JIRAActivityKeys.ADD_COMMENT) {
 			sm.append("#action_");
 			sm.append(jiraAction.getJiraActionId());
 		}
 
 		sm.append("\" target=\"_blank\">");
 
-		if (activityType.equals(JIRAActivityKeys.ADD_CHANGE)) {
+		if (activityType == JIRAActivityKeys.ADD_CHANGE) {
 			sm.append(
 				interpretJIRAChangeItems(
 					extraData.getJSONArray("jiraChangeItems"), themeDisplay));
 		}
-		else if (activityType.equals(JIRAActivityKeys.ADD_COMMENT)) {
+		else if (activityType == JIRAActivityKeys.ADD_COMMENT) {
 			sm.append(cleanContent(jiraAction.getBody()));
 		}
-		else if (activityType.equals(JIRAActivityKeys.ADD_ISSUE)) {
+		else if (activityType == JIRAActivityKeys.ADD_ISSUE) {
 			sm.append(cleanContent(jiraIssue.getSummary()));
 		}
 

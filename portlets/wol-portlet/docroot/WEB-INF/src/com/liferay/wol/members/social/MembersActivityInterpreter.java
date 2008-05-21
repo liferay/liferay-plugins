@@ -56,7 +56,7 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 		User creatorUser = UserLocalServiceUtil.getUserById(
 			activity.getUserId());
 
-		String activityType = activity.getType();
+		int activityType = activity.getType();
 
 		// Title
 
@@ -67,7 +67,7 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String title = StringPool.BLANK;
 
-		if (activityType.equals(MembersActivityKeys.ADD_MEMBER)) {
+		if (activityType == MembersActivityKeys.ADD_MEMBER) {
 			StringMaker sm = new StringMaker();
 
 			sm.append("<a href=\"");

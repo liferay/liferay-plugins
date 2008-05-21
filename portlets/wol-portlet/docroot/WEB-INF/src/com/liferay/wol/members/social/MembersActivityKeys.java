@@ -30,6 +30,6 @@ package com.liferay.wol.members.social;
  */
 public class MembersActivityKeys {
 
-	public static final String ADD_MEMBER = "ADD_MEMBER";
+	public static final int ADD_MEMBER = 1;
 
 }

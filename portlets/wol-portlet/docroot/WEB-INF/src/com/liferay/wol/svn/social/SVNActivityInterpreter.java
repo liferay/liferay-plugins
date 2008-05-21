@@ -51,7 +51,7 @@ public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 		String creatorUserName = getUserName(
 			activity.getUserId(), themeDisplay);
 
-		String activityType = activity.getType();
+		int activityType = activity.getType();
 
 		// Title
 
@@ -62,7 +62,7 @@ public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String title = StringPool.BLANK;
 
-		if (activityType.equals(SVNActivityKeys.ADD_REVISION)) {
+		if (activityType == SVNActivityKeys.ADD_REVISION) {
 			title = themeDisplay.translate(
 				"activity-wol-svn-add-revision",
 				new Object[] {

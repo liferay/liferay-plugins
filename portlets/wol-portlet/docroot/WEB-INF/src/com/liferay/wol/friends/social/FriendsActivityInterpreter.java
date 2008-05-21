@@ -57,13 +57,13 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 		User receiverUser = UserLocalServiceUtil.getUserById(
 			activity.getReceiverUserId());
 
-		String activityType = activity.getType();
+		int activityType = activity.getType();
 
 		// Title
 
 		String title = StringPool.BLANK;
 
-		if (activityType.equals(FriendsActivityKeys.ADD_FRIEND)) {
+		if (activityType == FriendsActivityKeys.ADD_FRIEND) {
 			StringMaker sm = new StringMaker();
 
 			sm.append("<a href=\"");
