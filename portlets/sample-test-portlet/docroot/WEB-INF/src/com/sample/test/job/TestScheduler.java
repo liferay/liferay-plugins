@@ -29,12 +29,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * <a href="SampleTestScheduler.java.html"><b><i>View Source</i></b></a>
+ * <a href="TestScheduler.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class SampleTestScheduler implements Scheduler {
+public class TestScheduler implements Scheduler {
 
 	public void schedule() {
 		if (_log.isInfoEnabled()) {
@@ -52,7 +52,7 @@ public class SampleTestScheduler implements Scheduler {
 		JobSchedulerUtil.unschedule(_testIntervalJob);
 	}
 
-	private static Log _log = LogFactory.getLog(SampleTestScheduler.class);
+	private static Log _log = LogFactory.getLog(TestScheduler.class);
 
 	private TestIntervalJob _testIntervalJob = new TestIntervalJob();
 

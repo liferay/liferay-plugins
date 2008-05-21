@@ -31,4 +31,13 @@
 			<role-name>user</role-name>
 		</security-role-ref>
 	</portlet>
+	<filter>
+		<filter-name>Test Render Filter</filter-name>
+		<filter-class>com.sample.test.portlet.TestRenderFilter</filter-class>
+		<lifecycle>RENDER_PHASE</lifecycle>
+	</filter>
+	<filter-mapping>
+		<filter-name>Test Render Filter</filter-name>
+		<portlet-name>sample_test_portlet</portlet-name>
+	</filter-mapping>
 </portlet-app>

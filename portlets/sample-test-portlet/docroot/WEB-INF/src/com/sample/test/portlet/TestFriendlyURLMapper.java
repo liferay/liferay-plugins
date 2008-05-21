@@ -35,12 +35,12 @@ import javax.portlet.PortletMode;
 import javax.portlet.WindowState;
 
 /**
- * <a href="SampleTestFriendlyURLMapper.java.html"><b><i>View Source</i></b></a>
+ * <a href="TestFriendlyURLMapper.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class SampleTestFriendlyURLMapper extends BaseFriendlyURLMapper {
+public class TestFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 	public String buildPath(LiferayPortletURL portletURL) {
 		WindowState windowState = portletURL.getWindowState();
