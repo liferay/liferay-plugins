@@ -3,6 +3,7 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
 class Custom {
+
 	static String navigation(RenderResponse res) { 
 		"""
 			<div class='separator'></div>
@@ -28,6 +29,7 @@ class Custom {
 
 	static String showNumber(RenderRequest req, RenderResponse res) {
 		PortletPreferences prefs = req.getPreferences();
+
 		String num = prefs.getValue("number", "0");
 
 		return """
@@ -36,4 +38,5 @@ class Custom {
 			</div>
 		""";
 	}
+
 }

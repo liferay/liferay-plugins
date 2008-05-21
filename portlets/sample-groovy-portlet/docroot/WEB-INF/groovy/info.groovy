@@ -8,9 +8,10 @@ out << Custom.sayHello();
 
 out << "<br />";
 
-if (params['type'] && params['type'][0] == 'user') {
+if (params['type'] && (params['type'][0] == 'user')) {
 	out << LiferayPortlet.showUserDetails(userInfo);
-} else {
+}
+else {
 	out << LiferayPortlet.showPortletDetails(portletConfig, renderRequest);
 }
 

@@ -204,21 +204,7 @@ public class GroovyPortlet extends GenericPortlet {
 
 			Throwable te = bsfe.getTargetException();
 
-//			if (te instanceof RaiseException) {
-//				RubyException re = ((RaiseException)te).getException();
-//
-//				message +=
-//					re.message + " (" + re.getMetaClass().toString() + ")";
-//
-//				_log.error(message);
-//
-//				if (_log.isDebugEnabled()) {
-//					_log.debug("Groovy exception:", te);
-//				}
-//			}
-//			else {
-				_log.error(message, te);
-//			}
+			_log.error(message, te);
 		}
 		finally {
 			is.close();

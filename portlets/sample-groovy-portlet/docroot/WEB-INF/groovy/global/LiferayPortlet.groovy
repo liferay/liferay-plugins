@@ -1,15 +1,18 @@
-import javax.portlet.PortletURL;
-import javax.portlet.PortletConfig;
-import javax.portlet.RenderResponse;
 import com.liferay.portal.kernel.util.Validator;
 
+import javax.portlet.PortletConfig;
+import javax.portlet.PortletURL;
+import javax.portlet.RenderResponse;
+
 class LiferayPortlet {
+
 	static String actionLink(RenderResponse res, String text, Map params) {
 		return link(actionUrl(res, params), text);
 	}
 
 	static String actionUrl(RenderResponse res, Map params) {
 		PortletURL portletUrl = res.createActionURL();
+
 		return url(portletUrl, params);
 	}
 
@@ -75,6 +78,8 @@ class LiferayPortlet {
 
 	static String url(PortletURL portletUrl, Map params) {
 		params.keySet().each({portletUrl.setParameter(it, params[it])});
+
 		return portletUrl.toString();
 	}
+
 }
