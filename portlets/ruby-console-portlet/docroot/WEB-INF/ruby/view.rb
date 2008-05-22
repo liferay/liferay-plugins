@@ -1,69 +1,67 @@
 $renderResponse.setContentType "text/html"
 
-out = $renderResponse.getPortletOutputStream
 namespace = $renderResponse.getNamespace
+
+out = $renderResponse.getPortletOutputStream
 
 out.print <<-EOF
 <style type="text/css">
-	\##{namespace}consoleInput {
-		width: 98%;
-		height: 200px;
+	\##{namespace}codeInput {
 		font-family: monospace;
+		height: 200px;
+		width: 98%;
 	}
 
-	\##{namespace}out {
-		font-family: monospace;
-		padding: 4px;
+	\##{namespace}codeOutput {
 		border: 1px solid \#ccc;
-		width: 98%;
+		font-family: monospace;
 		height: 200px;
 		overflow: auto;
+		padding: 4px;
+		width: 98%;
 	}
 </style>
 
 <script type="text/javascript">
-	function execCode() {
+	function #{namespace}execute() {
 		jQuery.get(
 			'#{$renderResponse.createResourceURL}',
 			{
 				#{namespace}cmd: "exec",
-				#{namespace}consoleInput: document.#{namespace}fm.#{namespace}consoleInput.value
+				#{namespace}codeInput: document.#{namespace}fm.#{namespace}codeInput.value
 			},
-			function(data){
-				jQuery("\##{namespace}out").empty().append(data);
-			});
+			function(data) {
+				jQuery("\##{namespace}codeOutput").empty().append(data);
+			}
+		);
 
 		return false;
 	}
 </script>
 
 <form name="#{namespace}fm">
-	Code:
+	Code Input
 
 	<br />
 
-	<textarea name="#{namespace}consoleInput" id="#{namespace}consoleInput">
-##
-## Un-comment the following lines, then click "Execute" to see the result.
-##
+	<textarea class="lfr-textarea" id="#{namespace}codeInput" name="#{namespace}codeInput">
+\$resourceResponse.setContentType "text/html"
 
-#\$resourceResponse.setContentType "text/html"
-#out = $resourceResponse.getPortletOutputStream
+out = $resourceResponse.getPortletOutputStream
 
-#out.println `date`
+out.println `date`
 </textarea>
 
 	<br /><br />
 
-	<input type="button" value="Execute" onClick="execCode();" />
+	<input type="button" value="Execute" onClick="#{namespace}execute();" />
 
 	<br /><br />
 
-	Portlet OutputStream:
+	Code Output
 
 	<br />
 
-	<pre id="#{namespace}out"><!--//--></pre>
-
+	<pre id="#{namespace}codeOutput"><!--//--></pre>
 </form>
 EOF

@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.liferay.plugin.portlet;
+package com.liferay.rubyconsole.portlet;
 
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -74,6 +74,7 @@ public class RubyConsolePortlet extends RubyPortlet {
 		catch (BSFException bsfe) {
 			if (res instanceof MimeResponse) {
 				MimeResponse mimeRes = (MimeResponse)res;
+
 				mimeRes.setContentType(ContentTypes.TEXT_HTML_UTF8);
 
 				OutputStream out = mimeRes.getPortletOutputStream();
@@ -85,7 +86,7 @@ public class RubyConsolePortlet extends RubyPortlet {
 				out.close();
 			}
 			else {
-				logBSFException(bsfe, "console input");
+				logBSFException(bsfe, "Console input");
 			}
 		}
 	}
