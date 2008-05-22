@@ -4,6 +4,8 @@
 
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
+<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
+
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />
@@ -137,7 +139,7 @@
 		<div id="message">
 			<div class="message-controls">
 				<div class="actions">
-					<span class="back">&laquo; <liferay-ui:message key="back-to" /> <span class="folder-name">Inbox</span></span>
+					<span class="back">&laquo; <%= LanguageUtil.format(pageContext, "back-to-x", "<span class=\"folder-name\">INBOX</span>") %></span>
 				</div>
 
 				<div class="navigation">
@@ -283,7 +285,7 @@
 
 			<div class="message-controls">
 				<div class="actions">
-					<span class="back">&laquo; <liferay-ui:message key="back-to" /> <span class="folder-name">Inbox</span></span>
+					<span class="back">&laquo; <%= LanguageUtil.format(pageContext, "back-to-x", "<span class=\"folder-name\">INBOX</span>") %></span>
 				</div>
 
 				<div class="navigation">
