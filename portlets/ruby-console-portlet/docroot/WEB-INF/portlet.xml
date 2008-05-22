@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>ruby_console_portlet</portlet-name>
 		<display-name>Ruby Console</display-name>
-		<portlet-class>com.liferay.plugin.portlet.RubyConsolePortlet</portlet-class>
+		<portlet-class>com.liferay.rubyconsole.portlet.RubyConsolePortlet</portlet-class>
 		<init-param>
 			<name>view-file</name>
 			<value>/WEB-INF/ruby/view.rb</value>
