@@ -253,7 +253,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 			JSONUtil.put(
 				extraData, "jiraActionId", jiraAction.getJiraActionId());
 
-			SocialActivityLocalServiceUtil.addActivity(
+			SocialActivityLocalServiceUtil.addUniqueActivity(
 				userId, 0, JIRAUtil.getLiferayDate(jiraAction.getCreateDate()),
 				JIRAIssue.class.getName(), jiraAction.getJiraIssueId(),
 				JIRAActivityKeys.ADD_COMMENT, extraData.toString(), 0);
@@ -300,7 +300,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 				jiraChangeItemsJSONArray.put(jiraChangeItemJSON);
 			}
 
-			SocialActivityLocalServiceUtil.addActivity(
+			SocialActivityLocalServiceUtil.addUniqueActivity(
 				userId, 0,
 				JIRAUtil.getLiferayDate(jiraChangeGroup.getCreateDate()),
 				JIRAIssue.class.getName(), jiraChangeGroup.getJiraIssueId(),
@@ -317,7 +317,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 				continue;
 			}
 
-			SocialActivityLocalServiceUtil.addActivity(
+			SocialActivityLocalServiceUtil.addUniqueActivity(
 				userId, 0, JIRAUtil.getLiferayDate(jiraIssue.getCreateDate()),
 				JIRAIssue.class.getName(), jiraIssue.getJiraIssueId(),
 				JIRAActivityKeys.ADD_ISSUE, StringPool.BLANK, 0);
