@@ -27,7 +27,7 @@ out.print <<-EOF
 			'#{$renderResponse.createResourceURL}',
 			{
 				#{namespace}cmd: "exec",
-				#{namespace}code: document.#{namespace}fm.#{namespace}consoleInput.value
+				#{namespace}consoleInput: document.#{namespace}fm.#{namespace}consoleInput.value
 			},
 			function(data){
 				jQuery("\##{namespace}out").empty().append(data);
