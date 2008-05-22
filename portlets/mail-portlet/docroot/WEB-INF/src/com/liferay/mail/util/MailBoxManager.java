@@ -305,39 +305,41 @@ public class MailBoxManager {
 
 		JSONObject jsonObj = new JSONObject();
 
+		JSONUtil.put(jsonObj, "uid", folder.getUID(message));
+		JSONUtil.put(jsonObj, "messageNumber", message.getMessageNumber());
 		JSONUtil.put(jsonObj, "date", sdf.format(message.getSentDate()));
 		JSONUtil.put(jsonObj, "from", getAddresses(message.getFrom()));
+		JSONUtil.put(jsonObj, "subject", message.getSubject());
 		JSONUtil.put(jsonObj, "attachment", false);
 		JSONUtil.put(jsonObj, "html", false);
-		JSONUtil.put(
-			jsonObj, "msgNum", String.valueOf(message.getMessageNumber()));
 		JSONUtil.put(jsonObj, "read", read);
-		JSONUtil.put(jsonObj, "subject", message.getSubject());
-		JSONUtil.put(jsonObj, "uid", folder.getUID(message));
 
 		if (preview) {
 			JSONUtil.put(jsonObj, "bodyPreview", StringPool.BLANK);
 		}
 		else {
-			JSONUtil.put(jsonObj, "to",
+			JSONUtil.put(
+				jsonObj, "to",
 				getAddresses(message.getRecipients(RecipientType.TO)));
-			JSONUtil.put(jsonObj, "cc",
+			JSONUtil.put(
+				jsonObj, "cc",
 				getAddresses(message.getRecipients(RecipientType.CC)));
-			JSONUtil.put(jsonObj, "bcc",
+			JSONUtil.put(
+				jsonObj, "bcc",
 				getAddresses(message.getRecipients(RecipientType.BCC)));
-			JSONUtil.put(jsonObj, "body",
-				getContent("", "", message, false));
+			JSONUtil.put(
+				jsonObj, "body", getContent("", "", message, false));
 		}
 
 		return jsonObj;
     }
 
-    public String getJSONMessageByNum(String folderName, int messageNum)
+    public String getJSONMessageByNumber(String folderName, int messageNumber)
     	throws MessagingException {
 
     	IMAPFolder folder = (IMAPFolder)openFolder(folderName);
 
-		Message message = folder.getMessage(messageNum);
+		Message message = folder.getMessage(messageNumber);
 
 		return getJSONMessage(folder, message, false).toString();
     }
@@ -353,67 +355,65 @@ public class MailBoxManager {
     }
 
     public String getJSONMessages(
-    		IMAPFolder folder, String messageNumsToGet,
+    		IMAPFolder folder, String messageNumbersToGet,
     		String messageUidsToExclude)
     	throws MessagingException {
 
-    	int[] messageNumsArray = GetterUtil.getIntegerValues(
-			messageNumsToGet.split("\\s*,\\s*"));
+    	int[] messageNumbersArray = GetterUtil.getIntegerValues(
+			messageNumbersToGet.split("\\s*,\\s*"));
 		int[] messageUidsArray = GetterUtil.getIntegerValues(
 			messageUidsToExclude.split("\\s*,\\s*"));
 
 		JSONObject jsonObj = new JSONObject();
+
 		JSONArray jsonArray = new JSONArray();
 
-		if (messageNumsArray.length != 0) {
-    		for (int i = 0; i < messageNumsArray.length; i++) {
-    			Message message = folder.getMessage(messageNumsArray[i]);
-    			long messageUid = folder.getUID(message);
-
-    			// Skip message if it is in the exclude list
-
-    			if (messageUidsArray.length != 0) {
-    				for (int j = 0; j < messageUidsArray.length; j++) {
-    					if (messageUid == messageUidsArray[j]) {
-
-							try {
-								jsonArray.put((int)messageUid, "");
-							}
-							catch (JSONException jsone) {
-								if (_log.isWarnEnabled()) {
-									_log.warn(jsone, jsone);
-								}
-							}
-
-    						continue;
-    					}
-    				}
-    			}
-
-				try {
-					jsonArray.put(
-						(int)messageUid, getJSONMessage(folder, message, true));
-				}
-				catch (JSONException jsone) {
-					if (_log.isWarnEnabled()) {
-						_log.warn(jsone, jsone);
-					}
-				}
-    		}
-    	}
-
 		JSONUtil.put(jsonObj, "messages", jsonArray);
+
+		for (int messageNumber : messageNumbersArray) {
+			Message message = folder.getMessage(messageNumber);
+
+			long messageUid = folder.getUID(message);
+
+			// Skip message if it is in the exclude list
+
+			for (int curMessageUid : messageUidsArray) {
+				if (curMessageUid == messageUid) {
+
+					try {
+						jsonArray.put((int)messageUid, StringPool.BLANK);
+					}
+					catch (JSONException jsone) {
+						if (_log.isWarnEnabled()) {
+							_log.warn(jsone, jsone);
+						}
+					}
+
+					continue;
+				}
+			}
+
+			try {
+				jsonArray.put(
+					(int)messageUid, getJSONMessage(folder, message, true));
+			}
+			catch (JSONException jsone) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(jsone, jsone);
+				}
+			}
+		}
 
 		return jsonObj.toString();
     }
 
     public String getJSONMessages(
-    		IMAPFolder folder, int pageNum, int messagesPerPage,
+    		IMAPFolder folder, int pageNumber, int messagesPerPage,
     		String messageUidsToExclude)
     	throws MessagingException {
 
 		int messageCount = folder.getMessageCount();
-		int end = messageCount - ((pageNum - 1) * messagesPerPage);
+		int end = messageCount - ((pageNumber - 1) * messagesPerPage);
 		int begin = end - messagesPerPage + 1;
 
 		if (begin < 1) {
@@ -425,7 +425,7 @@ public class MailBoxManager {
     	int[] messageUids = GetterUtil.getIntegerValues(
 			messageUidsToExclude.split("\\s*,\\s*"));
 
-		// Create Json object
+		// Create JSON object
 
 		JSONObject jsonObj = new JSONObject();
 
@@ -435,12 +435,12 @@ public class MailBoxManager {
 		JSONUtil.put(jsonObj, "messageCount", messageCount);
 		JSONUtil.put(jsonObj, "begin", begin);
 		JSONUtil.put(jsonObj, "end", end);
-		JSONUtil.put(jsonObj, "pageNum", pageNum);
+		JSONUtil.put(jsonObj, "pageNumber", pageNumber);
 		JSONUtil.put(jsonObj, "messagesPerPage", messagesPerPage);
 
 		Message[] messages = folder.getMessages(begin, end);
 
-		// Convert all messages into Json Objects
+		// Convert all messages into JSON objects
 
 		for (int i = messages.length - 1; i >= 0; i--) {
 			Message message = messages[i];
@@ -467,7 +467,7 @@ public class MailBoxManager {
     }
 
     public String getJSONMessagesBySearch(
-    		IMAPFolder folder, int pageNum, int messagesPerPage,
+    		IMAPFolder folder, int pageNumber, int messagesPerPage,
     		String searchString, String messageUidsToExclude)
     	throws Exception {
 
@@ -476,7 +476,7 @@ public class MailBoxManager {
 		Message[] messages = folder.search(st);
 
 		int messageCount = messages.length;
-		int begin = (pageNum - 1) * messagesPerPage;
+		int begin = (pageNumber - 1) * messagesPerPage;
 		int end = begin + messagesPerPage - 1;
 
 		if (end >= messageCount) {
@@ -485,7 +485,7 @@ public class MailBoxManager {
 
 		double pageCount = Math.ceil((double)messageCount / messagesPerPage);
 
-		// Create Json object
+		// Create JSON object
 
 		JSONObject jsonObj = new JSONObject();
 		JSONArray jsonArray = new JSONArray();
@@ -494,10 +494,10 @@ public class MailBoxManager {
 		JSONUtil.put(jsonObj, "messageCount", messageCount);
 		JSONUtil.put(jsonObj, "begin", begin);
 		JSONUtil.put(jsonObj, "end", end);
-		JSONUtil.put(jsonObj, "pageNum", pageNum);
+		JSONUtil.put(jsonObj, "pageNumber", pageNumber);
 		JSONUtil.put(jsonObj, "messagesPerPage", messagesPerPage);
 
-		// Convert all messages into Json Objects
+		// Convert all messages into JSON objects
 
 		for (int i = begin; i <= end; i++) {
 			Message message = messages[i];
@@ -525,7 +525,7 @@ public class MailBoxManager {
 	}
 
     public void markMessagesAsRead(
-    		String folderName, String messageUids, boolean read)
+			String folderName, String messageUids, boolean read)
     	throws MessagingException {
 
 		IMAPFolder folder = (IMAPFolder)openFolder(folderName);
@@ -545,10 +545,9 @@ public class MailBoxManager {
         		folder.open(Folder.READ_WRITE);
         	}
 
-        	for (int i = 0; i < messageUidsArray.length; i++) {
+        	for (int messageUid : messageUids) {
         		try {
-            		Message message = getMessageByUid(
-						folder, messageUidsArray[i]);
+            		Message message = getMessageByUid(folder, messageUid);
 
         			message.setFlag(Flags.Flag.SEEN, read);
         		}
@@ -573,12 +572,10 @@ public class MailBoxManager {
             return null;
         }
 
-        // Try to open read/write and if that fails try read-only
-
 		try {
             folder.open(Folder.READ_WRITE);
         }
-        catch (MessagingException ex) {
+        catch (MessagingException me) {
             folder.open(Folder.READ_ONLY);
         }
 
@@ -586,8 +583,8 @@ public class MailBoxManager {
     }
 
     public void sendForward(
-    		Message msg, int fromAccountId, String to, String cc, String bcc,
-			String subject, String content, Multipart mp)
+    		Message message, int fromAccountId, String to, String cc,
+			String bcc, String subject, String content, Multipart mp)
     	throws MessagingException {
 
 		// Create the message to forward
@@ -603,7 +600,8 @@ public class MailBoxManager {
 		// Create and fill part for the forwarded content
 
 		BodyPart messageBodyPart = new MimeBodyPart();
-		messageBodyPart.setDataHandler(msg.getDataHandler());
+
+		messageBodyPart.setDataHandler(message.getDataHandler());
 
 		// Add part to multi part
 
@@ -619,17 +617,17 @@ public class MailBoxManager {
 
     	// Instantiate a message
 
-		Message msg = new MimeMessage(getSession());
+		Message message = new MimeMessage(getSession());
 
-    	send(msg, fromAccountId, to, cc, bcc, subject, content, mp);
+    	send(message, fromAccountId, to, cc, bcc, subject, content, mp);
     }
 
     public void sendReply(
-    		Message msg, int fromAccountId, String to, String cc, String bcc,
-			String subject, String content, Multipart mp)
+    		Message message, int fromAccountId, String to, String cc,
+			String bcc, String subject, String content, Multipart mp)
     	throws MessagingException {
 
-    	MimeMessage reply = (MimeMessage)msg.reply(false);
+    	MimeMessage reply = (MimeMessage)message.reply(false);
 
     	send(reply, fromAccountId, to, cc, bcc, subject, content, mp);
     }
@@ -842,6 +840,7 @@ public class MailBoxManager {
 
 	protected Session getOutgoingSession(MailAccount mailAccount) {
 		Properties props = new Properties();
+
 		props.put("mail.smtp.host", mailAccount.getMailOutHostName());
 		props.put("mail.smtp.port", mailAccount.getMailOutPort());
 
@@ -928,50 +927,50 @@ public class MailBoxManager {
 	}
 
 	protected void send(
-			Message msg, int fromAccountId, String to, String cc, String bcc,
-			String subject, String content, Multipart mp)
+			Message message, int fromAccountId, String to, String cc,
+			String bcc, String subject, String content, Multipart mp)
 		throws MessagingException {
 
 		MailAccount fromMailAccount = new MailAccount(_user, fromAccountId);
 
 		// Set message attributes
 
-		msg.setFrom(new InternetAddress(fromMailAccount.getEmailAddress()));
+		message.setFrom(new InternetAddress(fromMailAccount.getEmailAddress()));
 
 		if (!to.trim().equals(StringPool.BLANK)) {
-			msg.setRecipients(
+			message.setRecipients(
 				Message.RecipientType.TO, InternetAddress.parse(to, false));
 		}
 
 		if (!cc.trim().equals(StringPool.BLANK)) {
-			msg.setRecipients(
+			message.setRecipients(
 				Message.RecipientType.CC, InternetAddress.parse(cc, false));
 		}
 
 		if (!bcc.trim().equals(StringPool.BLANK)) {
-			msg.setRecipients(
+			message.setRecipients(
 				Message.RecipientType.BCC, InternetAddress.parse(bcc, false));
 		}
 
-		msg.setSubject(subject);
-		msg.setSentDate(new Date());
+		message.setSubject(subject);
+		message.setSentDate(new Date());
 
 		if (mp != null) {
 
 			// Add attachment
 
-			msg.setContent(mp);
+			message.setContent(mp);
 		}
 		else {
 
 			// Set message content
 
-			msg.setText(content);
+			message.setText(content);
 		}
 
 		// Resets the header to reflect changes
 
-		msg.saveChanges();
+		message.saveChanges();
 
 		// Send the message
 
@@ -980,7 +979,7 @@ public class MailBoxManager {
 		try {
 			t.connect(
 				fromMailAccount.getUsername(), fromMailAccount.getPassword());
-			t.sendMessage(msg, msg.getAllRecipients());
+			t.sendMessage(message, message.getAllRecipients());
 		}
 		finally {
 			t.close();
