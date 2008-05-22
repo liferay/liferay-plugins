@@ -39,7 +39,7 @@
 }
 
 .mail-portlet #status {
-	text-align: center;	
+	text-align: center;
 	width: 40%;
 }
 
@@ -222,17 +222,17 @@
 	text-align: right;
 	padding: 2px 7px;
 	width: 20px;
-} 
+}
 
 .mail-portlet #message-send .details table {
 	width: 100%;
 }
 
-.mail-portlet #send-from, 
-.mail-portlet #send-to, 
-.mail-portlet #send-cc, 
-.mail-portlet #send-bcc, 
-.mail-portlet #send-subject, 
+.mail-portlet #send-from,
+.mail-portlet #send-to,
+.mail-portlet #send-cc,
+.mail-portlet #send-bcc,
+.mail-portlet #send-subject,
 .mail-portlet #send-body {
 	width: 95%;
 }
@@ -297,4 +297,4 @@
 
 .mail-portlet .message-controls .status-number {
 	font-weight: bold;
-} 
+}
