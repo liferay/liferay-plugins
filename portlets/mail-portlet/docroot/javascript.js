@@ -225,6 +225,14 @@ Liferay.Mail = {
 		_isSearchMode = isSearchMode;
 	},
 
+	getNewerUid: function() {
+
+	},
+
+	getOlderUid: function() {
+
+	},
+
 	refreshMessages: function(resetCache) {
 		var instance = this;
 
@@ -523,23 +531,24 @@ Liferay.Mail = {
 		var instance = this;
 
 		var folderName = instance.getCurrentFolderName();
+		var accountId = instance.getCurrentAccountId();
 
 		// Get json
 
-		if (instance.getCachedJsonMessages(instance.getCurrentAccountId(), folderName, messageNum) != null) {
+		if (instance.getCachedJsonMessageByNum(accountId, folderName, messageNum) != null) {
 			
 			// Message found in cache
 			
-			var jsonMessage = instance.getCachedJsonMessage(instance.getCurrentAccountId(), folderName, messageNum);
+			var jsonMessage = instance.getCachedJsonMessageByNum(accountId, folderName, messageNum);
 
 			instance.loadJsonMessage(jsonMessage);
 
-			// Preload
+			// Preload Message (not implemented)
 
-			instance.preloadMessage(folderName, messageNum + 1);
+			//instance.preloadMessage(folderName, messageNum + 1);
 		}
 		else {
-			var jsonUrl = '/c/mail/get_message_by_num?accountId=' + instance.getCurrentAccountId() + '&folderName=' + folderName + '&messageNum=' + messageNum; 
+			var jsonUrl = '/c/mail/get_message_by_num?accountId=' + accountId + '&folderName=' + folderName + '&messageNum=' + messageNum; 
 
 			instance.setStatus('Loading message.. ', jsonUrl);
 
@@ -556,15 +565,28 @@ Liferay.Mail = {
 
 		var folderName = instance.getCurrentFolderName();
 		var accountId = instance.getCurrentAccountId();
-		var jsonUrl = '/c/mail/get_message_by_uid?accountId=' + accountId + '&folderName=' + folderName + '&messageUid=' + messageUid; 
+		
+		// Get json
 
-		instance.setStatus('Loading message.. ', jsonUrl);
+		if (instance.getCachedJsonMessageByUid(accountId, folderName, messageUid) != null) {
+			
+			// Message found in cache
+			
+			var jsonMessage = instance.getCachedJsonMessageByUid(accountId, folderName, messageUid);
 
-		jQuery.ajaxQueue({
-			url: jsonUrl,
-			dataType: 'json',
-			success: function(jsonMessage){ instance.loadJsonMessage(jsonMessage); }
-		});
+			instance.loadJsonMessage(jsonMessage);
+		}
+		else {
+			var jsonUrl = '/c/mail/get_message_by_uid?accountId=' + accountId + '&folderName=' + folderName + '&messageUid=' + messageUid; 
+
+			instance.setStatus('Loading message.. ', jsonUrl);
+
+			jQuery.ajaxQueue({
+				url: jsonUrl,
+				dataType: 'json',
+				success: function(jsonMessage){ instance.loadJsonMessage(jsonMessage); }
+			});
+		}
 	},
 
 	loadJsonAccounts: function(jsonAccounts) {
@@ -686,7 +708,7 @@ Liferay.Mail = {
 		var instance = this;
 
 		instance.setCurrentMessage(jsonMessage);
-		instance.cacheJsonMessage(instance.getCurrentAccountId(), instance.getCurrentFolderName(), instance.getCurrentMessage().msgNum, jsonMessage)
+		instance.cacheJsonMessage(instance.getCurrentAccountId(), instance.getCurrentFolderName(), jsonMessage);
 		instance.clearStatus();
 
 		// Parse json object
@@ -1255,21 +1277,38 @@ Liferay.Mail = {
 		instance.__jsonMessages = new Object();
 	},
 
-	cacheJsonMessage: function(accountId, folderName, msgNum, jsonMessage) {
+	cacheJsonMessage: function(accountId, folderName, jsonMessage) {
 		var instance = this;
 
-		instance.__jsonMessage[accountId + '.' + folderName + '.' + msgNum] = jsonMessage;
+		instance.__jsonMessage[accountId + '.' + folderName + '.num' + jsonMessage.msgNum] = jsonMessage;
+		instance.__jsonMessage[accountId + '.' + folderName + '.uid' + jsonMessage.uid] = jsonMessage;
 	},
 
-	getCachedJsonMessage: function(accountId, folderName, msgNum) {
+	getCachedJsonMessageByNum: function(accountId, folderName, msgNum) {
 		var instance = this;
 
 		try {
-			if (instance.__jsonMessage[accountId + '.' + folderName + '.' + msgNum] == undefined) {
+			if (instance.__jsonMessage[accountId + '.' + folderName + '.num' + msgNum] == undefined) {
 				return null;
 			}
 			else {
-				return instance.__jsonMessage[accountId + '.' + folderName + '.' + msgNum];
+				return instance.__jsonMessage[accountId + '.' + folderName + '.num' + msgNum];
+			}
+		}
+		catch (ex) {
+			return null;
+		}
+	},
+
+	getCachedJsonMessageByUid: function(accountId, folderName, uid) {
+		var instance = this;
+
+		try {
+			if (instance.__jsonMessage[accountId + '.' + folderName + '.uid' + uid] == undefined) {
+				return null;
+			}
+			else {
+				return instance.__jsonMessage[accountId + '.' + folderName + '.uid' + uid];
 			}
 		}
 		catch (ex) {
@@ -1287,11 +1326,13 @@ Liferay.Mail = {
 	_currentMessage: null,
 	_isSearchMode: false,
 	
+	_accounts: null,
 	_messagesPerPage: 0,
 	_messageResponseType: null,
+	
 	_totalMessages: null,
 	_totalPages: null,
-	_accounts: null,
+	_uidList: null,
 
 	__jsonFolders: {},
 	__jsonMessages: {},
