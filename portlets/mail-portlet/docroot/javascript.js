@@ -1,10 +1,10 @@
 Liferay.Mail = {
-	init: function(){
+	init: function() {
 		var instance = this;
 
 		instance._messagesPerPage = 10;
 
-		// Commonly used jQuery Expressions
+		// Commonly used jQuery expressions
 
 		instance.accountSelectionSelect = jQuery('#account-selection');
 		instance.composeMailLink = jQuery('#compose-mail');
@@ -207,7 +207,9 @@ Liferay.Mail = {
 		jQuery.ajaxQueue({
 			url: jsonUrl,
 			dataType: 'json',
-			success: function(jsonAccounts){ instance.loadJsonAccounts(jsonAccounts); }
+			success: function(jsonAccounts) {
+				instance.loadJsonAccounts(jsonAccounts);
+			}
 		});
 	},
 
@@ -228,7 +230,7 @@ Liferay.Mail = {
 		}
 		else {
 
-			// Get json
+			// Get JSON
 
 			var jsonUrl = '/c/mail/get_folders?accountId=' + accountId;
 
@@ -237,7 +239,7 @@ Liferay.Mail = {
 			jQuery.ajaxQueue({
 				url: jsonUrl,
 				dataType: 'json',
-				success: function(jsonFolders){
+				success: function(jsonFolders) {
 					instance.loadJsonFolders(jsonFolders);
 					instance.accountSelectionSelect.val(accountId);
 					instance.sendFromSelect.val(accountId);
@@ -251,7 +253,7 @@ Liferay.Mail = {
 
 		instance.clearStatus();
 
-		// Parse json
+		// Parse JSON
 
 		var htmlAccountList = '';
 		var firstAccountId = jsonAccounts.accounts[0].accountId;
@@ -280,7 +282,7 @@ Liferay.Mail = {
 			htmlAccountList += '</option>';
 		}
 
-		// Inject html
+		// Inject HTML
 
 		instance.accountSelectionSelect.html(htmlAccountList);
 		instance.sendFromSelect.html(htmlAccountList);
@@ -297,7 +299,7 @@ Liferay.Mail = {
 		instance._cacheJsonFolders(instance.getCurrentAccountId(), jsonFolders);
 		instance.clearStatus();
 
-		// Parse json
+		// Parse JSON
 
 		var htmlFolderList = '';
 
@@ -311,7 +313,7 @@ Liferay.Mail = {
 			htmlFolderList += '<div class="folder" folderName="' + fldr.name + '"><a href="#">' + fldr.name + '</a></div>';
 		}
 
-		// Inject html
+		// Inject HTML
 
 		instance.foldersDiv.html(htmlFolderList);
 
@@ -328,7 +330,7 @@ Liferay.Mail = {
 		instance._cacheJsonMessage(instance.getCurrentAccountId(), instance.getCurrentFolderName(), jsonMessage);
 		instance.clearStatus();
 
-		// Parse json object
+		// Parse JSON object
 
 		var msg = jsonMessage;
 
@@ -348,7 +350,7 @@ Liferay.Mail = {
 			msgBody = msgBody.replace(/\n\n/g,'<br />');
 		}
 
-		// Inject html
+		// Inject HTML
 
 		instance.readFromSpan.html(msgFrom);
 		instance.readReplyToSpan.html('-');
@@ -359,7 +361,7 @@ Liferay.Mail = {
 		instance.readMailedBySpan.html('-');
 		instance.readBodySpan.html(msgBody);
 
-		// Update other html
+		// Update other HTML
 
 		jQuery('.message-controls .folder-name').html(instance.getCurrentFolderName());
 
@@ -376,7 +378,7 @@ Liferay.Mail = {
 		instance._cacheJsonMessages(instance.getCurrentAccountId(), instance.getCurrentFolderName(), instance.getCurrentPageNum(), jsonMessages);
 		instance.clearStatus();
 
-		// Parse json
+		// Parse JSON
 
 		var htmlMessageList = '';
 
@@ -385,7 +387,6 @@ Liferay.Mail = {
 		}
 		else {
 			for (i = 0; i < jsonMessages.messages.length; i++) {
-
 				var msg = jsonMessages.messages[i];
 
 				htmlMessageList += '<tr class="message ' + msg.read + '" messageUid="' + msg.uid + '">';
@@ -397,7 +398,7 @@ Liferay.Mail = {
 			}
 		}
 
-		// Inject html
+		// Inject HTML
 
 		instance.messageListTable.html(htmlMessageList);
 
@@ -413,7 +414,7 @@ Liferay.Mail = {
 		var folderName = instance.getCurrentFolderName();
 		var accountId = instance.getCurrentAccountId();
 
-		// Get json
+		// Get JSON
 
 		if (instance._getCachedJsonMessageByNum(accountId, folderName, messageNum) != null) {
 
@@ -435,7 +436,9 @@ Liferay.Mail = {
 			jQuery.ajaxQueue({
 				url: jsonUrl,
 				dataType: 'json',
-				success: function(jsonMessage){ instance.loadJsonMessage(jsonMessage); }
+				success: function(jsonMessage) {
+					instance.loadJsonMessage(jsonMessage);
+				}
 			});
 		}
 	},
@@ -446,7 +449,7 @@ Liferay.Mail = {
 		var folderName = instance.getCurrentFolderName();
 		var accountId = instance.getCurrentAccountId();
 
-		// Get json
+		// Get JSON
 
 		if (instance._getCachedJsonMessageByUid(accountId, folderName, messageUid) != null) {
 
@@ -464,7 +467,9 @@ Liferay.Mail = {
 			jQuery.ajaxQueue({
 				url: jsonUrl,
 				dataType: 'json',
-				success: function(jsonMessage){ instance.loadJsonMessage(jsonMessage); }
+				success: function(jsonMessage) {
+					instance.loadJsonMessage(jsonMessage);
+				}
 			});
 		}
 	},
@@ -479,7 +484,7 @@ Liferay.Mail = {
 
 		var accountId = instance.getCurrentAccountId();
 
-		// Get json
+		// Get JSON
 
 		if (instance._getCachedJsonMessages(accountId, folderName, pageNum) != null) {
 
@@ -501,7 +506,9 @@ Liferay.Mail = {
 			jQuery.ajaxQueue({
 				url: jsonUrl,
 				dataType: 'json',
-				success: function(jsonMessages){ instance.loadJsonMessages(jsonMessages); }
+				success: function(jsonMessages) {
+					instance.loadJsonMessages(jsonMessages);
+				}
 			});
 		}
 	},
@@ -523,7 +530,9 @@ Liferay.Mail = {
 		jQuery.ajaxQueue({
 			url: jsonUrl,
 			dataType: 'json',
-			success: function(jsonMessages){ instance.loadJsonMessages(jsonMessages); }
+			success: function(jsonMessages) {
+				instance.loadJsonMessages(jsonMessages);
+			}
 		});
 	},
 
@@ -532,7 +541,7 @@ Liferay.Mail = {
 
 		var accountId = instance.getCurrentAccountId();
 
-		// Get json
+		// Get JSON
 
 		if (instance._getCachedJsonMessages(accountId, folderName, pageNum) == null) {
 
@@ -543,7 +552,9 @@ Liferay.Mail = {
 			jQuery.ajaxQueue({
 				url: jsonUrl,
 				dataType: 'json',
-				success: function(jsonMessages){ instance._cacheJsonMessages(accountId, folderName, pageNum, jsonMessages); }
+				success: function(jsonMessages) {
+					instance._cacheJsonMessages(accountId, folderName, pageNum, jsonMessages);
+				}
 			});
 		}
 	},
@@ -818,7 +829,7 @@ Liferay.Mail = {
 		instance.folderControlsDeleteButton.click(function() {
 			var messageUids = instance.getSelectedMessageUids();
 
-			// Get json
+			// Get JSON
 
 			var jsonUrl = '/c/mail/messages_delete?accountId=' + instance.getCurrentAccountId() + '&folderName=' + instance.getCurrentFolderName() + '&messageUids=' + messageUids;
 
@@ -827,7 +838,7 @@ Liferay.Mail = {
 			jQuery.ajaxQueue({
 				url: jsonUrl,
 				dataType: 'json',
-				success: function(jsonSuccess){
+				success: function(jsonSuccess) {
 					instance.refreshMessages(true);
 					instance.setStatus('Messages have been deleted', jsonUrl);
 				}
@@ -1251,27 +1262,26 @@ Liferay.Mail = {
 }
 
 jQuery(
-	function(){
+	function() {
 		Liferay.Mail.init();
 	}
 );
 
-/*
-* http://dev.jquery.com/~john/plugins/ajaxqueue/
-*
-* Queued Ajax requests.
-* A new Ajax request won't be started until the previous queued
-* request has finished.
-*/
+jQuery.ajaxQueue = function(o) {
+	var old = o.complete;
 
-jQuery.ajaxQueue = function(o){
-	var _old = o.complete;
-	o.complete = function(){
-	if ( _old ) _old.apply( this, arguments );
-	jQuery.dequeue( jQuery.ajaxQueue, 'ajax' );
-};
+	o.complete = function() {
+		if (old) {
+			old.apply(this, arguments);
+		}
 
-jQuery([ jQuery.ajaxQueue ]).queue('ajax', function(){
-	jQuery.ajax( o );
-	});
+		jQuery.dequeue(jQuery.ajaxQueue, 'ajax');
+	};
+
+	jQuery([jQuery.ajaxQueue]).queue(
+		'ajax',
+		function() {
+			jQuery.ajax(o);
+		}
+	);
 };
