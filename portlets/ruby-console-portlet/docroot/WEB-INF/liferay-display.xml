@@ -3,6 +3,6 @@
 
 <display>
 	<category name="category.tools">
-		<portlet id="ruby_code_console_portlet" />
+		<portlet id="ruby_console_portlet" />
 	</category>
 </display>

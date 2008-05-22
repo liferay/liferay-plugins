@@ -42,12 +42,12 @@ import javax.portlet.ResourceResponse;
 import org.apache.bsf.BSFException;
 
 /**
- * <a href="RubyCodeConsolePortlet.java.html"><b><i>View Source</i></b></a>
+ * <a href="RubyConsolePortlet.java.html"><b><i>View Source</i></b></a>
  *
  * @author Raymond Augé
  *
  */
-public class RubyCodeConsolePortlet extends RubyPortlet {
+public class RubyConsolePortlet extends RubyPortlet {
 
 	public void serveResource(ResourceRequest req, ResourceResponse res)
 		throws PortletException, IOException {

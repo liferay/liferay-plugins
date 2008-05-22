@@ -2,9 +2,9 @@
 
 <portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd">
 	<portlet>
-		<portlet-name>ruby_code_console_portlet</portlet-name>
-		<display-name>Ruby Code Console</display-name>
-		<portlet-class>com.liferay.plugin.portlet.RubyCodeConsolePortlet</portlet-class>
+		<portlet-name>ruby_console_portlet</portlet-name>
+		<display-name>Ruby Console</display-name>
+		<portlet-class>com.liferay.plugin.portlet.RubyConsolePortlet</portlet-class>
 		<init-param>
 			<name>view-file</name>
 			<value>/WEB-INF/ruby/view.rb</value>
@@ -18,9 +18,9 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Ruby Code Console</title>
-			<short-title>Ruby Code Console</short-title>
-			<keywords>Ruby Code Console</keywords>
+			<title>Ruby Console</title>
+			<short-title>Ruby Console</short-title>
+			<keywords>Ruby Console</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>
