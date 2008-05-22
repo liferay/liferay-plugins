@@ -5,7 +5,7 @@ namespace = $renderResponse.getNamespace
 
 out.print <<-EOF
 <style type="text/css">
-	\##{namespace}code {
+	\##{namespace}consoleInput {
 		width: 98%;
 		height: 200px;
 		font-family: monospace;
