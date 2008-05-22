@@ -32,17 +32,7 @@ import com.liferay.portal.model.User;
  */
 public class MailAccount {
 
-	private String _mailInHostName;
-	private String _mailInPort;
-	private String _mailOutHostName;
-	private String _mailOutPort;
-	private boolean _mailSecure;
-	private String _emailAddress;
-    private String _username;
-    private String _password;
-
     public MailAccount(User user, int accountId) {
-
     	if (accountId == 0) {
         	_mailInHostName = "imap.gmail.com";
         	_mailInPort = "993";
@@ -106,5 +96,14 @@ public class MailAccount {
 	public String getEmailAddress() {
 		return _emailAddress;
 	}
+
+	private String _emailAddress;
+	private String _mailInHostName;
+	private String _mailInPort;
+	private String _mailOutHostName;
+	private String _mailOutPort;
+	private boolean _mailSecure;
+    private String _password;
+    private String _username;
 
 }
