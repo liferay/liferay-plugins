@@ -58,13 +58,13 @@
 }
 
 .mail-portlet #email-left-column {
-	border: 1px #000000 solid;
+	border: 1px #000 solid;
 	padding: 3px;
 	width: 13%;
 }
 
 .mail-portlet #email-right-column {
-	border: 1px #000000 solid;
+	border: 1px #000 solid;
 	padding: 3px;
 	width: 90%;
 }
@@ -103,13 +103,12 @@
 	vertical-align: middle;
 }
 
-
 .mail-portlet .message:hover {
 	cursor: pointer;
 }
 
 .mail-portlet .message td {
-	border-bottom: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCC;
 	padding: 2px;
 }
 
@@ -118,7 +117,7 @@
 }
 
 .mail-portlet .unread {
-	background: #FFFFFF none repeat scroll 0%;
+	background: #FFF none repeat scroll 0%;
 }
 
 .mail-portlet .message-from {
@@ -126,16 +125,12 @@
 	padding-right: 5px;
 }
 
-.mail-portlet .message-subject {
+.mail-portlet .message-subject, .mail-portlet .message-controls .status-number, .mail-portlet .message-date {
 	font-weight: bold;
 }
 
 .mail-portlet .message-body-preview {
 	color: grey;
-}
-
-.mail-portlet .message-date {
-	font-weight: bold;
 }
 
 .mail-portlet .message-col-0 {
@@ -196,7 +191,7 @@
 }
 
 .mail-portlet #message-read .label {
-	color: #888888;
+	color: #888;
 	padding: 2px 15px;
 	text-align: right;
 	width: 60px;
@@ -228,12 +223,7 @@
 	width: 100%;
 }
 
-.mail-portlet #send-from,
-.mail-portlet #send-to,
-.mail-portlet #send-cc,
-.mail-portlet #send-bcc,
-.mail-portlet #send-subject,
-.mail-portlet #send-body {
+.mail-portlet #send-from,  .mail-portlet #send-to,  .mail-portlet #send-cc,  .mail-portlet #send-bcc,  .mail-portlet #send-subject,  .mail-portlet #send-body {
 	width: 95%;
 }
 
@@ -261,15 +251,12 @@
 }
 
 .mail-portlet #message-options #reply {
-
 }
 
 .mail-portlet #message-options #reply-all {
-
 }
 
 .mail-portlet #message-options #forward {
-
 }
 
 .mail-portlet .message-controls {
@@ -281,20 +268,11 @@
 	padding: 5px;
 }
 
-.mail-portlet .message-controls .back {
-	cursor: pointer;
-}
-
 .mail-portlet .message-controls .navigation {
 	padding: 5px;
 	text-align: right;
 }
 
-.mail-portlet .message-controls .newer,
-.mail-portlet .message-controls .older {
+.mail-portlet .message-controls .newer,  .mail-portlet .message-controls .older, .mail-portlet .message-controls .back {
 	cursor: pointer;
-}
-
-.mail-portlet .message-controls .status-number {
-	font-weight: bold;
 }

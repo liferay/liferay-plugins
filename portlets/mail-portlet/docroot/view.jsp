@@ -301,7 +301,3 @@
 	</td>
 </tr>
 </table>
-
-<%!
-public static final String EDITOR_WYSIWYG_IMPL_KEY = "editor.wysiwyg.portal-web.docroot.html.portlet.mail.view.jsp";
-%>
