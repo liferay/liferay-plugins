@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>sample_ruby_portlet</portlet-name>
 		<display-name>Sample Ruby</display-name>
-		<portlet-class>com.sample.ruby.portlet.RubyPortlet</portlet-class>
+		<portlet-class>com.liferay.util.bridges.ruby.RubyPortlet</portlet-class>
 		<init-param>
 			<name>view-file</name>
 			<value>/WEB-INF/ruby/view.rb</value>
