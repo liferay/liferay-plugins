@@ -40,7 +40,7 @@ out.print <<-EOF
 </script>
 
 <form name="#{namespace}fm">
-	Code Input
+	Input
 
 	<br />
 
@@ -58,7 +58,7 @@ out.println `date`
 
 	<br /><br />
 
-	Code Output
+	Output
 
 	<br />
 
