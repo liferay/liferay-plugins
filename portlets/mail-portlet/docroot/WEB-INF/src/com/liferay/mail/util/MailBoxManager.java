@@ -638,41 +638,11 @@ public class MailBoxManager {
 
 					// If "multipart/alternative", only get selective parts
 
-					if (contentType.startsWith(
-							ContentTypes.MULTIPART_ALTERNATIVE)) {
+					if (getBodyMulitipart(
+							contentType, curPart, 
+							contentPath + StringPool.PERIOD + i, sb, preview)) {
 
-						String partContentType =
-							curPart.getContentType().toLowerCase();
-
-						// Get text part if getting preview
-
-						if (preview && partContentType.startsWith(
-								ContentTypes.TEXT_PLAIN)) {
-
-							// Only get content preview if there is none
-
-							getBody(sb, StringPool.BLANK, curPart, preview);
-
-							break;
-						}
-
-						// Get html part if getting full body
-
-						if (partContentType.startsWith(
-								ContentTypes.TEXT_HTML)) {
-
-							getBody(sb, StringPool.BLANK, curPart, preview);
-
-							break;
-						}
-					}
-					else {
-
-						// Otherwise, get all parts
-
-						getBody(
-							sb, contentPath + StringPool.PERIOD + i, curPart,
-							preview);
+						break;
 					}
 				}
 			}
@@ -706,6 +676,44 @@ public class MailBoxManager {
 		catch (IOException ioe) {
 			_log.error(ioe, ioe);
 		}
+	}
+
+	protected boolean getBodyMulitipart(
+			String contentType, Part curPart, String contentPath, 
+			StringBuilder sb, boolean preview)
+		throws MessagingException {
+
+		if (contentType.startsWith(ContentTypes.MULTIPART_ALTERNATIVE)) {
+			String partContentType = curPart.getContentType().toLowerCase();
+
+			// Get text part if getting preview
+
+			if (preview && partContentType.startsWith(
+				ContentTypes.TEXT_PLAIN)) {
+
+				// Only get content preview if there is none
+
+				getBody(sb, StringPool.BLANK, curPart, preview);
+
+				return true;
+			}
+
+			// Get html part if getting full body
+
+			if (partContentType.startsWith(ContentTypes.TEXT_HTML)) {
+				getBody(sb, StringPool.BLANK, curPart, preview);
+
+				return true;
+			}			   
+		}
+		else {
+
+			// Otherwise, get all parts
+
+			getBody(sb, contentPath, curPart, preview);
+		}
+
+		return false;
 	}
 
 	protected String getBodyPreview(String messageContent, Part messagePart)
@@ -746,20 +754,20 @@ public class MailBoxManager {
 		try {
 			Properties props = new Properties();
 
-			if (mailAccount.isMailSecure()) {
-				props.setProperty(
-					"mail.imap.socketFactory.class", _SSL_FACTORY);
-			}
-
-			props.setProperty("mail.imap.socketFactory.fallback", "false");
-			props.setProperty("mail.imap.port", mailAccount.getMailInPort());
-			props.setProperty(
-				"mail.imap.socketFactory.port", mailAccount.getMailInPort());
-
 			URLName url = new URLName(
 				"imap", mailAccount.getMailInHostName(),
 				Integer.parseInt(mailAccount.getMailInPort()), StringPool.BLANK,
 				mailAccount.getUsername(), mailAccount.getPassword());
+			props.setProperty("mail.imap.port", mailAccount.getMailInPort());
+
+			if (mailAccount.isMailSecure()) {
+				props.setProperty(
+					"mail.imap.socketFactory.port", 
+					mailAccount.getMailInPort());
+				props.setProperty(
+					"mail.imap.socketFactory.class", _SSL_FACTORY);
+				props.setProperty("mail.imap.socketFactory.fallback", "false");
+			}
 
 			Session session = Session.getInstance(props, null);
 
@@ -820,11 +828,11 @@ public class MailBoxManager {
 		props.put("mail.smtp.port", mailAccount.getMailOutPort());
 
 		if (mailAccount.isMailSecure()) {
-			props.put("mail.smtp.auth", "true");
 			props.put(
 				"mail.smtp.socketFactory.port", mailAccount.getMailOutPort());
 			props.put("mail.smtp.socketFactory.class", _SSL_FACTORY);
 			props.put("mail.smtp.socketFactory.fallback", "false");
+			props.put("mail.smtp.auth", "true");
 		}
 
 		props.put("mail.debug", "true");
