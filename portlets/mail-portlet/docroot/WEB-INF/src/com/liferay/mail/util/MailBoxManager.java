@@ -166,7 +166,7 @@ public class MailBoxManager {
 				sb.append(address.getAddress());
 			}
         }
-        catch(Exception e) {
+        catch (Exception e) {
             _log.error(e, e);
 
             return null;
@@ -276,11 +276,9 @@ public class MailBoxManager {
 
 		JSONUtil.put(jsonObj, "folders", jsonArray);
 
-		List folders = getFolders();
+		List<IMAPFolder> folders = getFolders();
 
-		for (int i = 0; i < folders.size(); i++) {
-			IMAPFolder folder = (IMAPFolder)folders.get(i);
-
+		for (IMAPFolder folder : folders) {
 			if (folder.getType() != Folder.HOLDS_FOLDERS) {
 				jsonArray.put(getJSONFolder(folder));
 			}
@@ -318,6 +316,10 @@ public class MailBoxManager {
 			JSONUtil.put(jsonObj, "bodyPreview", StringPool.BLANK);
 		}
 		else {
+			StringBuilder sb = new StringBuilder();
+			
+			getContent(sb, StringPool.BLANK, message, false);
+
 			JSONUtil.put(
 				jsonObj, "to",
 				getAddresses(message.getRecipients(RecipientType.TO)));
@@ -327,8 +329,7 @@ public class MailBoxManager {
 			JSONUtil.put(
 				jsonObj, "bcc",
 				getAddresses(message.getRecipients(RecipientType.BCC)));
-			JSONUtil.put(
-				jsonObj, "body", getContent("", "", message, false));
+			JSONUtil.put(jsonObj, "body", sb.toString());
 		}
 
 		return jsonObj;
@@ -442,19 +443,8 @@ public class MailBoxManager {
 
 		// Convert all messages into JSON objects
 
-		for (int i = messages.length - 1; i >= 0; i--) {
-			Message message = messages[i];
+		for (Message message : messages) {
 			long messageUid = folder.getUID(message);
-
-			// Skip message if it is in the exclude list
-
-//			if (messageUids.length != 0) {
-//				for (int j = 0; j < messageUids.length; j++) {
-//					if (messageUid == messageUids[j])  {
-//						continue;
-//					}
-//				}
-//			}
 
 			// Otherwise, add to list
 
@@ -545,7 +535,7 @@ public class MailBoxManager {
         		folder.open(Folder.READ_WRITE);
         	}
 
-        	for (int messageUid : messageUids) {
+        	for (int messageUid : messageUidsArray) {
         		try {
             		Message message = getMessageByUid(folder, messageUid);
 
@@ -584,17 +574,17 @@ public class MailBoxManager {
 
     public void sendForward(
     		Message message, int fromAccountId, String to, String cc,
-			String bcc, String subject, String content, Multipart mp)
+			String bcc, String subject, String content, Multipart multipart)
     	throws MessagingException {
 
 		// Create the message to forward
 
 		Message forward = new MimeMessage(getSession());
 
-		// Create multi-part to combine the parts
+		// Create multipart to combine the parts
 
-		if (mp == null) {
-			mp = new MimeMultipart();
+		if (multipart == null) {
+			multipart = new MimeMultipart();
 		}
 
 		// Create and fill part for the forwarded content
@@ -603,37 +593,37 @@ public class MailBoxManager {
 
 		messageBodyPart.setDataHandler(message.getDataHandler());
 
-		// Add part to multi part
+		// Add part to multipart
 
-		mp.addBodyPart(messageBodyPart);
+		multipart.addBodyPart(messageBodyPart);
 
-    	send(forward, fromAccountId, to, cc, bcc, subject, content, mp);
+    	send(forward, fromAccountId, to, cc, bcc, subject, content, multipart);
     }
 
     public void sendNew(
     		int fromAccountId, String to, String cc, String bcc, String subject,
-			String content, Multipart mp)
+			String content, Multipart multipart)
     	throws MessagingException {
 
     	// Instantiate a message
 
 		Message message = new MimeMessage(getSession());
 
-    	send(message, fromAccountId, to, cc, bcc, subject, content, mp);
+    	send(message, fromAccountId, to, cc, bcc, subject, content, multipart);
     }
 
     public void sendReply(
     		Message message, int fromAccountId, String to, String cc,
-			String bcc, String subject, String content, Multipart mp)
+			String bcc, String subject, String content, Multipart multipart)
     	throws MessagingException {
 
     	MimeMessage reply = (MimeMessage)message.reply(false);
 
-    	send(reply, fromAccountId, to, cc, bcc, subject, content, mp);
+    	send(reply, fromAccountId, to, cc, bcc, subject, content, multipart);
     }
 
-	protected String getContent(
-			String messageContent, String contentPath, Part messagePart,
+	protected void getContent(
+			StringBuilder sb, String contentPath, Part messagePart,
 			boolean preview)
 		throws MessagingException {
 
@@ -643,15 +633,15 @@ public class MailBoxManager {
 			if (messagePart.getContent() instanceof Multipart) {
 				Multipart multipart = (Multipart)messagePart.getContent();
 
-				// If "multipart/alternative", only get selective parts
+				for (int i = 0; i < multipart.getCount(); i++) {
+					Part curPart = multipart.getBodyPart(i);
 
-				if (contentType.startsWith(
-						ContentTypes.MULTIPART_ALTERNATIVE)) {
+					// If "multipart/alternative", only get selective parts
 
-					for (int i = 0; i < multipart.getCount(); i++) {
-						Part curPart = multipart.getBodyPart(i);
+					if (contentType.startsWith(
+							ContentTypes.MULTIPART_ALTERNATIVE)) {
 
-						String partContentType =
+						String partContentType = 
 							curPart.getContentType().toLowerCase();
 
 						// Get text part if getting preview
@@ -661,10 +651,7 @@ public class MailBoxManager {
 
 							// Only get content preview if there is none
 
-							if (messageContent.equals(StringPool.BLANK)) {
-								messageContent = getContent(
-									messageContent, "", curPart, preview);
-							}
+							getContent(sb, StringPool.BLANK, curPart, preview);
 
 							break;
 						}
@@ -674,22 +661,16 @@ public class MailBoxManager {
 						if (partContentType.startsWith(
 								ContentTypes.TEXT_HTML)) {
 
-							messageContent = getContent(
-								messageContent, "", curPart, preview);
+							getContent(sb, StringPool.BLANK, curPart, preview);
 
 							break;
 						}
 					}
-				}
-				else {
+					else {
 
-					// Otherwise, get all parts
+						// Otherwise, get all parts
 
-					for (int i = 0; i < multipart.getCount(); i++) {
-						Part curPart = multipart.getBodyPart(i);
-
-						messageContent = getContent(
-							messageContent, contentPath + StringPool.PERIOD + i,
+						getContent(sb, contentPath + StringPool.PERIOD + i,
 							curPart, preview);
 					}
 				}
@@ -699,73 +680,65 @@ public class MailBoxManager {
 				// Plain Text, HTML or Forwarded Message
 
 				if (contentType.startsWith(ContentTypes.TEXT_PLAIN)) {
-					messageContent +=
-						((String)messagePart.getContent()).trim() + "\n\n";
+					sb.append(messagePart.getContent());
+					sb.append("\n\n");
 				}
 				else if (contentType.startsWith(ContentTypes.TEXT_HTML)) {
-					if (preview) {
-						messageContent +=
-							stripHtml((String)messagePart.getContent()) +
-							"<HR/>";
-					}
-					else {
-						messageContent
-							+= ((String)messagePart.getContent()) + "<HR/>";
-					}
+					sb.append(stripHtml((String)messagePart.getContent()));
+					sb.append("<HR/>");
 				}
 				else if (contentType.startsWith(ContentTypes.MESSAGE_RFC822)) {
-					messageContent +=
-						getContent(
-							messageContent, "", messagePart, preview);
-
-					/*
-					MailContent subContent = new MailContent();
-
-					mailMessage = getContent(
-						(Part)messagePart.getContent(), mailMessage, subContent,
-						contentPath + StringPool.PERIOD + 0);
-
-					content.appendSubContent(subContent);
-					*/
-				}
-				else {
-
-					// Unknown Content Type: ignored
-
+					getContent(sb, StringPool.BLANK, messagePart, preview);
 				}
 			}
 			else {
 
-				// Attachment (ignore)
+				// Attachment (incomplete)
 
-				contentPath = contentPath + ".attachment";
-
-				messageContent += "<HR><a href=\"" + contentPath + "\">" +
-					messagePart.getFileName() + "</a>";
-
-				//mailMessage.appendRemoteAttachment(
-				//	getRemoteAttachment(
-				//		messagePart, contentPath + StringPool.PERIOD + -1));
+				sb.append("<HR><a href=\"");
+				sb.append(contentPath);
+				sb.append("\">");
+				sb.append(messagePart.getFileName());
+				sb.append("</a>");
 			}
-
 		}
 		catch (IOException ioe) {
 			_log.error(ioe.getMessage());
 		}
-
-		return messageContent;
 	}
 
 	protected String getContentPreview(String messageContent, Part messagePart)
 		throws MessagingException {
 
-		String fullContent = getContent(messageContent, "", messagePart, true);
+		StringBuilder sb = new StringBuilder();
 
-		if (fullContent.length() > 80) {
-			fullContent = fullContent.substring(0, 79) + "... ";
+		getContent(sb, StringPool.BLANK, messagePart, true);
+
+		if (sb.length() < 80) {
+			return sb.toString();
 		}
+		else {
+			return sb.substring(0, 80).concat("...");
+		}
+	}
 
-		return fullContent;
+    protected void getFolders(List list, Folder[] folders) {
+		for (Folder folder : folders) {
+			try {
+				int folderType = folder.getType();
+
+				if ((folderType & IMAPFolder.HOLDS_MESSAGES) != 0) {
+					list.add(folder);
+				}
+
+				if ((folderType & IMAPFolder.HOLDS_FOLDERS) != 0) {
+					getFolders(list, folder.list());
+				}
+			}
+			catch (MessagingException me) {
+				_log.error("Skipping IMAP folder because " + me.getMessage());
+			}
+		}
 	}
 
 	protected void getIncomingStore(MailAccount mailAccount) {
@@ -784,7 +757,7 @@ public class MailBoxManager {
 
 			URLName url = new URLName(
 				"imap", mailAccount.getMailInHostName(),
-				Integer.parseInt(mailAccount.getMailInPort()), "",
+				Integer.parseInt(mailAccount.getMailInPort()), StringPool.BLANK,
 				mailAccount.getUsername(), mailAccount.getPassword());
 
 			Session session = Session.getInstance(props, null);
@@ -801,9 +774,9 @@ public class MailBoxManager {
 			store.connect();
 			setStore(store);
 		}
-		catch (MessagingException ex) {
+		catch (MessagingException me) {
 			if (_log.isErrorEnabled()) {
-				_log.error(ex.getMessage());
+				_log.error(me.getMessage());
 			}
         }
 	}
@@ -905,30 +878,9 @@ public class MailBoxManager {
 		return _store;
 	}
 
-    protected void getFolders(List list, Folder[] folders) {
-		for (int i = 0; i < folders.length; i++) {
-			Folder folder = folders[i];
-
-			try {
-				int folderType = folder.getType();
-
-				if ((folderType & IMAPFolder.HOLDS_MESSAGES) != 0) {
-					list.add(folder);
-				}
-
-				if ((folderType & IMAPFolder.HOLDS_FOLDERS) != 0) {
-					getFolders(list, folder.list());
-				}
-			}
-			catch (MessagingException me) {
-				_log.error("Skipping IMAP folder because " + me.getMessage());
-			}
-		}
-	}
-
 	protected void send(
 			Message message, int fromAccountId, String to, String cc,
-			String bcc, String subject, String content, Multipart mp)
+			String bcc, String subject, String content, Multipart multipart)
 		throws MessagingException {
 
 		MailAccount fromMailAccount = new MailAccount(_user, fromAccountId);
@@ -955,11 +907,11 @@ public class MailBoxManager {
 		message.setSubject(subject);
 		message.setSentDate(new Date());
 
-		if (mp != null) {
+		if (multipart != null) {
 
 			// Add attachment
 
-			message.setContent(mp);
+			message.setContent(multipart);
 		}
 		else {
 
@@ -967,8 +919,6 @@ public class MailBoxManager {
 
 			message.setText(content);
 		}
-
-		// Resets the header to reflect changes
 
 		message.saveChanges();
 
