@@ -11,7 +11,7 @@
 		</init-param>
 		<init-param>
 			<name>global-files</name>
-			<value>/WEB-INF/ruby/global/liferay_portlet.rb,/WEB-INF/ruby/global/custom.rb</value>
+			<value>/WEB-INF/ruby/global/liferay_portlet.rb</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
