@@ -55,9 +55,9 @@ public class RubyConsolePortlet extends RubyPortlet {
 		String cmd = ParamUtil.getString(req, Constants.CMD);
 
 		if (cmd.equals("exec")) {
-			String code = ParamUtil.getString(req, "consoleInput");
+			String consoleInput = ParamUtil.getString(req, "consoleInput");
 
-			includeConsoleInput(code, req, res);
+			includeConsoleInput(consoleInput, req, res);
 		}
 		else {
 			super.serveResource(req, res);

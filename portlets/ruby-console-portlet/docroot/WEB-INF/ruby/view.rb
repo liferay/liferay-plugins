@@ -6,13 +6,13 @@ out = $renderResponse.getPortletOutputStream
 
 out.print <<-EOF
 <style type="text/css">
-	\##{namespace}codeInput {
+	\##{namespace}consoleInput {
 		font-family: monospace;
 		height: 200px;
 		width: 98%;
 	}
 
-	\##{namespace}codeOutput {
+	\##{namespace}consoleOutput {
 		border: 1px solid \#ccc;
 		font-family: monospace;
 		height: 200px;
@@ -28,10 +28,10 @@ out.print <<-EOF
 			'#{$renderResponse.createResourceURL}',
 			{
 				#{namespace}cmd: "exec",
-				#{namespace}codeInput: document.#{namespace}fm.#{namespace}codeInput.value
+				#{namespace}consoleInput: document.#{namespace}fm.#{namespace}consoleInput.value
 			},
 			function(data) {
-				jQuery("\##{namespace}codeOutput").empty().append(data);
+				jQuery("\##{namespace}consoleOutput").empty().append(data);
 			}
 		);
 
@@ -44,7 +44,7 @@ out.print <<-EOF
 
 	<br />
 
-	<textarea class="lfr-textarea" id="#{namespace}codeInput" name="#{namespace}codeInput">
+	<textarea class="lfr-textarea" id="#{namespace}consoleInput" name="#{namespace}consoleInput">
 \$resourceResponse.setContentType "text/html"
 
 out = $resourceResponse.getPortletOutputStream
@@ -62,6 +62,6 @@ out.println `date`
 
 	<br />
 
-	<pre id="#{namespace}codeOutput"><!--//--></pre>
+	<pre id="#{namespace}consoleOutput"><!--//--></pre>
 </form>
 EOF
