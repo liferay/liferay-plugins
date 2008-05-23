@@ -317,8 +317,8 @@ public class MailBoxManager {
 		}
 		else {
 			StringBuilder sb = new StringBuilder();
-			
-			getContent(sb, StringPool.BLANK, message, false);
+
+			getBody(sb, StringPool.BLANK, message, false);
 
 			JSONUtil.put(
 				jsonObj, "to",
@@ -622,7 +622,7 @@ public class MailBoxManager {
     	send(reply, fromAccountId, to, cc, bcc, subject, content, multipart);
     }
 
-	protected void getContent(
+	protected void getBody(
 			StringBuilder sb, String contentPath, Part messagePart,
 			boolean preview)
 		throws MessagingException {
@@ -641,7 +641,7 @@ public class MailBoxManager {
 					if (contentType.startsWith(
 							ContentTypes.MULTIPART_ALTERNATIVE)) {
 
-						String partContentType = 
+						String partContentType =
 							curPart.getContentType().toLowerCase();
 
 						// Get text part if getting preview
@@ -651,7 +651,7 @@ public class MailBoxManager {
 
 							// Only get content preview if there is none
 
-							getContent(sb, StringPool.BLANK, curPart, preview);
+							getBody(sb, StringPool.BLANK, curPart, preview);
 
 							break;
 						}
@@ -661,7 +661,7 @@ public class MailBoxManager {
 						if (partContentType.startsWith(
 								ContentTypes.TEXT_HTML)) {
 
-							getContent(sb, StringPool.BLANK, curPart, preview);
+							getBody(sb, StringPool.BLANK, curPart, preview);
 
 							break;
 						}
@@ -670,8 +670,9 @@ public class MailBoxManager {
 
 						// Otherwise, get all parts
 
-						getContent(sb, contentPath + StringPool.PERIOD + i,
-							curPart, preview);
+						getBody(
+							sb, contentPath + StringPool.PERIOD + i, curPart,
+							preview);
 					}
 				}
 			}
@@ -688,7 +689,7 @@ public class MailBoxManager {
 					sb.append("<HR/>");
 				}
 				else if (contentType.startsWith(ContentTypes.MESSAGE_RFC822)) {
-					getContent(sb, StringPool.BLANK, messagePart, preview);
+					getBody(sb, StringPool.BLANK, messagePart, preview);
 				}
 			}
 			else {
@@ -703,16 +704,16 @@ public class MailBoxManager {
 			}
 		}
 		catch (IOException ioe) {
-			_log.error(ioe.getMessage());
+			_log.error(ioe, ioe);
 		}
 	}
 
-	protected String getContentPreview(String messageContent, Part messagePart)
+	protected String getBodyPreview(String messageContent, Part messagePart)
 		throws MessagingException {
 
 		StringBuilder sb = new StringBuilder();
 
-		getContent(sb, StringPool.BLANK, messagePart, true);
+		getBody(sb, StringPool.BLANK, messagePart, true);
 
 		if (sb.length() < 80) {
 			return sb.toString();
@@ -736,7 +737,7 @@ public class MailBoxManager {
 				}
 			}
 			catch (MessagingException me) {
-				_log.error("Skipping IMAP folder because " + me.getMessage());
+				_log.error("Skipping IMAP folder: " + me.getMessage());
 			}
 		}
 	}
@@ -762,7 +763,7 @@ public class MailBoxManager {
 
 			Session session = Session.getInstance(props, null);
 
-			Store store;
+			Store store = null;
 
 			if (mailAccount.isMailSecure()) {
 				store = new IMAPSSLStore(session, url);
@@ -772,11 +773,12 @@ public class MailBoxManager {
 			}
 
 			store.connect();
+
 			setStore(store);
 		}
 		catch (MessagingException me) {
 			if (_log.isErrorEnabled()) {
-				_log.error(me.getMessage());
+				_log.error(me, me);
 			}
         }
 	}
@@ -805,7 +807,7 @@ public class MailBoxManager {
 			return part;
 		}
 		catch (IOException ioe) {
-			_log.error(ioe.getMessage());
+			_log.error(ioe, ioe);
 
 			return null;
 		}
@@ -826,8 +828,6 @@ public class MailBoxManager {
 		}
 
 		props.put("mail.debug", "true");
-
-		// Session
 
 		Session session = Session.getDefaultInstance(props, null);
 
@@ -885,59 +885,52 @@ public class MailBoxManager {
 
 		MailAccount fromMailAccount = new MailAccount(_user, fromAccountId);
 
-		// Set message attributes
-
+		message.setSentDate(new Date());
 		message.setFrom(new InternetAddress(fromMailAccount.getEmailAddress()));
 
-		if (!to.trim().equals(StringPool.BLANK)) {
+		if (Validator.isNotNull(to)) {
 			message.setRecipients(
 				Message.RecipientType.TO, InternetAddress.parse(to, false));
 		}
 
-		if (!cc.trim().equals(StringPool.BLANK)) {
+		if (Validator.isNotNull(cc)) {
 			message.setRecipients(
 				Message.RecipientType.CC, InternetAddress.parse(cc, false));
 		}
 
-		if (!bcc.trim().equals(StringPool.BLANK)) {
+		if (Validator.isNotNull(bcc)) {
 			message.setRecipients(
 				Message.RecipientType.BCC, InternetAddress.parse(bcc, false));
 		}
 
 		message.setSubject(subject);
-		message.setSentDate(new Date());
 
 		if (multipart != null) {
-
-			// Add attachment
-
 			message.setContent(multipart);
 		}
 		else {
-
-			// Set message content
-
 			message.setText(content);
 		}
 
 		message.saveChanges();
 
-		// Send the message
+		Session session = getOutgoingSession(fromMailAccount);
 
-		Transport t = getOutgoingSession(fromMailAccount).getTransport("smtp");
+		Transport transport = session.getTransport("smtp");
 
 		try {
-			t.connect(
+			transport.connect(
 				fromMailAccount.getUsername(), fromMailAccount.getPassword());
-			t.sendMessage(message, message.getAllRecipients());
+
+			transport.sendMessage(message, message.getAllRecipients());
 		}
 		finally {
-			t.close();
+			transport.close();
 		}
 	}
 
 	protected void setStore(Store store) {
-		this._store = store;
+		_store = store;
 	}
 
 	protected String stripHtml(String html) {
@@ -947,7 +940,7 @@ public class MailBoxManager {
 		return html;
 	}
 
-	public static String _SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+	public static final String _SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 
 	private static Log _log = LogFactory.getLog(MailBoxManager.class);
 
