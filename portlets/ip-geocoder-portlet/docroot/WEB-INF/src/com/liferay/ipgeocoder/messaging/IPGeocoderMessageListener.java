@@ -36,28 +36,31 @@ import org.apache.commons.logging.LogFactory;
 import org.json.JSONObject;
 
 /**
- * <a href="IPGeocoderRequestMessageListener.java.html"><b><i>View Source</i></b>
- * </a>
+ * <a href="IPGeocoderMessageListener.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class IPGeocoderRequestMessageListener implements MessageListener {
+public class IPGeocoderMessageListener implements MessageListener {
 
-	public void receive(String messageId, String message) {
+	public void receive(String message) {
 		try {
-			String ipAddress = message;
+			JSONObject jsonObj = new JSONObject(message);
+
+			String ipAddress = jsonObj.getString("ipAddress");
 
 			IPInfo ipInfo = IPInfoLocalServiceUtil.getIPInfo(ipAddress);
 
-			if (Validator.isNotNull(messageId)) {
+			String responseId = jsonObj.optString("responseId");
+
+			if (Validator.isNotNull(responseId)) {
 				JSONObject jsonObject = new JSONObject();
 
+				JSONUtil.put(jsonObject, "responseId", responseId);
 				JSONUtil.put(jsonObject, "ipInfo", JSONUtil.serialize(ipInfo));
 
 				MessageBusUtil.sendMessage(
-					DestinationNames.IP_GEOCODER_RESPONSE,
-					jsonObject.toString());
+					DestinationNames.RESPONSE, jsonObject.toString());
 			}
 		}
 		catch (Exception e) {
@@ -66,6 +69,6 @@ public class IPGeocoderRequestMessageListener implements MessageListener {
 	}
 
 	private static Log _log =
-		LogFactory.getLog(IPGeocoderRequestMessageListener.class);
+		LogFactory.getLog(IPGeocoderMessageListener.class);
 
 }
