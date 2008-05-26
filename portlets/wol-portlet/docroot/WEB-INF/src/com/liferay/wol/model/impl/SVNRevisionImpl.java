@@ -71,7 +71,9 @@ public class SVNRevisionImpl
 		JIRAIssue jiraIssue = null;
 		String comments = getComments();
 
-		if (comments.startsWith("LEP-")) {
+		if (comments.startsWith(_LEP_PREFIX_1) ||
+			comments.startsWith(_LEP_PREFIX_2)) {
+
 			comments = StringUtil.replace(
 				comments, StringPool.NEW_LINE, StringPool.SPACE);
 
@@ -80,11 +82,17 @@ public class SVNRevisionImpl
 			if (pos == -1) {
 				pos = comments.length();
 			}
+
+			String key = null;
+
+			if (comments.startsWith("LEP-")) {
+				key = comments.substring(_LEP_PREFIX_1.length(), pos);
+			}
 			else {
-				comments = comments.substring(0, pos);
+				key = comments.substring(_LEP_PREFIX_2.length(), pos);
 			}
 
-			String key = comments.substring(4, pos);
+			comments = comments.substring(pos).trim();
 
 			if (Validator.isNumber(key)) {
 				try {
@@ -102,6 +110,11 @@ public class SVNRevisionImpl
 
 		return null;
 	}
+
+	private static final String _LEP_PREFIX_1 = "LEP-";
+
+	private static final String _LEP_PREFIX_2 =
+		"http://support.liferay.com/browse/LEP-";
 
 	private static Log _log = LogFactory.getLog(SVNRevisionImpl.class);
 
