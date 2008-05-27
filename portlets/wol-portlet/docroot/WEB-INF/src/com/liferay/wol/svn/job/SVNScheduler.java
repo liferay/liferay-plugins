@@ -37,24 +37,23 @@ import org.apache.commons.logging.LogFactory;
 public class SVNScheduler implements Scheduler {
 
 	public void schedule() {
-		if (SynchronizeRepositoryJob.INTERVAL <= 0) {
+		if (SynchronizeSVNJob.INTERVAL <= 0) {
 			if (_log.isDebugEnabled()) {
 				_log.debug("Synchronization of SVN repositories is disabled");
 			}
 
-			_synchronizeRepositoryJob = null;
+			_synchronizeSVNJob = null;
 		}
 
-		JobSchedulerUtil.schedule(_synchronizeRepositoryJob);
+		JobSchedulerUtil.schedule(_synchronizeSVNJob);
 	}
 
 	public void unschedule() {
-		JobSchedulerUtil.unschedule(_synchronizeRepositoryJob);
+		JobSchedulerUtil.unschedule(_synchronizeSVNJob);
 	}
 
 	private static Log _log = LogFactory.getLog(SVNScheduler.class);
 
-	private SynchronizeRepositoryJob _synchronizeRepositoryJob =
-		new SynchronizeRepositoryJob();
+	private SynchronizeSVNJob _synchronizeSVNJob = new SynchronizeSVNJob();
 
 }

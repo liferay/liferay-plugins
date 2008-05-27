@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.liferay.wol.svn.job;
+package com.liferay.wol.jira.job;
 
 import com.liferay.portal.kernel.job.IntervalJob;
 import com.liferay.portal.kernel.job.JobExecutionContext;
@@ -28,33 +28,32 @@ import com.liferay.portal.kernel.job.JobExecutionException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portlet.service.PropsUtil;
 import com.liferay.util.Time;
-import com.liferay.wol.service.SVNRepositoryLocalServiceUtil;
-import com.liferay.wol.svn.util.SVNConstants;
+import com.liferay.wol.jira.util.JIRAConstants;
+import com.liferay.wol.service.JIRAIssueLocalServiceUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * <a href="SynchronizeRepositoryJob.java.html"><b><i>View Source</i></b></a>
+ * <a href="SynchronizeJIRAJob.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class SynchronizeRepositoryJob implements IntervalJob {
+public class SynchronizeJIRAJob implements IntervalJob {
 
 	public static final long INTERVAL = GetterUtil.getLong(PropsUtil.get(
-		"svn.synchronization.interval")) * Time.MINUTE;
+		"jira.synchronization.interval")) * Time.MINUTE;
 
 	public void execute(JobExecutionContext context)
 		throws JobExecutionException {
 
-		for (String url : SVNConstants.SVN_URLS) {
-			try {
-				SVNRepositoryLocalServiceUtil.updateSVNRepository(url);
-			}
-			catch (Exception e) {
-				_log.error(e.getMessage());
-			}
+		try {
+			JIRAIssueLocalServiceUtil.updateJIRAIssues(
+				JIRAConstants.PROJECT_LEP);
+		}
+		catch (Exception e) {
+			_log.error(e.getMessage());
 		}
 	}
 
@@ -62,6 +61,6 @@ public class SynchronizeRepositoryJob implements IntervalJob {
 		return INTERVAL;
 	}
 
-	private static Log _log = LogFactory.getLog(SynchronizeRepositoryJob.class);
+	private static Log _log = LogFactory.getLog(SynchronizeJIRAJob.class);
 
 }

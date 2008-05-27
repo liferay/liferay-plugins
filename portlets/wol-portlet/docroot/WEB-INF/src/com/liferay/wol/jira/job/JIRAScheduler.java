@@ -37,24 +37,23 @@ import org.apache.commons.logging.LogFactory;
 public class JIRAScheduler implements Scheduler {
 
 	public void schedule() {
-		if (SynchronizeIssueJob.INTERVAL <= 0) {
+		if (SynchronizeJIRAJob.INTERVAL <= 0) {
 			if (_log.isDebugEnabled()) {
 				_log.debug("Synchronization of JIRA issues is disabled");
 			}
 
-			_synchronizeIssueJob = null;
+			_synchronizeJIRAJob = null;
 		}
 
-		JobSchedulerUtil.schedule(_synchronizeIssueJob);
+		JobSchedulerUtil.schedule(_synchronizeJIRAJob);
 	}
 
 	public void unschedule() {
-		JobSchedulerUtil.unschedule(_synchronizeIssueJob);
+		JobSchedulerUtil.unschedule(_synchronizeJIRAJob);
 	}
 
 	private static Log _log = LogFactory.getLog(JIRAScheduler.class);
 
-	private SynchronizeIssueJob _synchronizeIssueJob =
-		new SynchronizeIssueJob();
+	private SynchronizeJIRAJob _synchronizeJIRAJob = new SynchronizeJIRAJob();
 
 }
