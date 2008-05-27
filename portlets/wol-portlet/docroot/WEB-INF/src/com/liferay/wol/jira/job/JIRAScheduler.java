@@ -39,7 +39,7 @@ public class JIRAScheduler implements Scheduler {
 	public void schedule() {
 		if (SynchronizeJIRAJob.INTERVAL <= 0) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Synchronization of JIRA issues is disabled");
+				_log.debug("Synchronization of JIRA is disabled");
 			}
 
 			_synchronizeJIRAJob = null;
