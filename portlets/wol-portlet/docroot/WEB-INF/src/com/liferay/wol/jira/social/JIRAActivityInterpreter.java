@@ -114,7 +114,7 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 		if (activityType == JIRAActivityKeys.ADD_CHANGE) {
 			sm.append(
 				interpretJIRAChangeItems(
-					extraData.getJSONArray("jiraChangeItems"), themeDisplay));
+					extraData.optJSONArray("jiraChangeItems"), themeDisplay));
 		}
 		else if (activityType == JIRAActivityKeys.ADD_COMMENT) {
 			sm.append(cleanContent(jiraAction.getBody()));
@@ -179,6 +179,10 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 	protected String interpretJIRAChangeItems(
 			JSONArray jiraChangeItems, ThemeDisplay themeDisplay)
 		throws JSONException {
+
+		if (jiraChangeItems == null) {
+			return StringPool.BLANK;
+		}
 
 		StringMaker sm = new StringMaker();
 
