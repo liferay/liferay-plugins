@@ -60,15 +60,17 @@ public class HibernateConfiguration extends org.springframework.orm.hibernate3.L
 						is.close();
 					}
 				}
-				catch (Exception e) {
-					e.printStackTrace();
+				catch (Exception e1) {
+					if (_log.isWarnEnabled()) {
+						_log.warn(e1);
+					}
 				}
 			}
 
 			cfg.setProperties(PropsUtil.getProperties());
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception e2) {
+			_log.error(e2, e2);
 		}
 
 		return cfg;
