@@ -271,7 +271,8 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 
 			JSONObject extraData = new JSONObject();
 
-			JSONUtil.put(extraData,
+			JSONUtil.put(
+				extraData,
 				"jiraChangeGroupId", jiraChangeGroup.getJiraChangeGroupId());
 
 			JSONArray jiraChangeItemsJSONArray = new JSONArray();
@@ -288,14 +289,18 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 
 				JSONUtil.put(
 					jiraChangeItemJSON, "field", jiraChangeItem.getField());
-				JSONUtil.put(jiraChangeItemJSON,
-					"oldValue", jiraChangeItem.getOldValue());
-				JSONUtil.put(jiraChangeItemJSON,
-					"oldString", jiraChangeItem.getOldString());
-				JSONUtil.put(jiraChangeItemJSON,
-					"newValue", jiraChangeItem.getNewValue());
-				JSONUtil.put(jiraChangeItemJSON,
-					"newString", jiraChangeItem.getNewString());
+				JSONUtil.put(
+					jiraChangeItemJSON, "oldValue",
+					jiraChangeItem.getOldValue());
+				JSONUtil.put(
+					jiraChangeItemJSON, "oldString",
+					jiraChangeItem.getOldString());
+				JSONUtil.put(
+					jiraChangeItemJSON, "newValue",
+					jiraChangeItem.getNewValue());
+				JSONUtil.put(
+					jiraChangeItemJSON, "newString",
+					jiraChangeItem.getNewString());
 
 				jiraChangeItemsJSONArray.put(jiraChangeItemJSON);
 			}

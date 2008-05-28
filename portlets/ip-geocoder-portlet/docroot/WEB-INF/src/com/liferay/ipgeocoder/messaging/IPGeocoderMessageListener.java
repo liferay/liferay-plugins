@@ -57,7 +57,9 @@ public class IPGeocoderMessageListener implements MessageListener {
 				JSONObject jsonObject = new JSONObject();
 
 				JSONUtil.put(jsonObject, "responseId", responseId);
-				JSONUtil.put(jsonObject, "ipInfo", JSONUtil.serialize(ipInfo));
+				JSONUtil.put(
+					jsonObject, "ipInfo",
+					new JSONObject(JSONUtil.serialize(ipInfo)));
 
 				MessageBusUtil.sendMessage(
 					DestinationNames.RESPONSE, jsonObject.toString());
