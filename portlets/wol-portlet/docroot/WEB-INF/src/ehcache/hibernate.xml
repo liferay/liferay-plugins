@@ -11,7 +11,7 @@
 		maxElementsInMemory="10000"
 		eternal="false"
         timeToIdleSeconds="600"
-		overflowToDisk="true"
+		overflowToDisk="false"
 	/>
 
 	<!--
@@ -26,7 +26,7 @@
 		name="org.hibernate.cache.UpdateTimestampsCache"
 		maxElementsInMemory="5000"
 		eternal="true"
-		overflowToDisk="true"
+		overflowToDisk="false"
 	/>
 
 	<!--
