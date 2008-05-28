@@ -68,7 +68,6 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 	}
 
 	public void updateFeeds() throws PortalException, SystemException {
-System.out.println("Updating feeds");
 		for (long companyId : PortalUtil.getCompanyIds()) {
 			updateFeeds(companyId);
 		}
