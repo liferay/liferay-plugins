@@ -33,13 +33,13 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 /**
- * <a href="IPGeocoderSessionContextListener.java.html"><b><i>View Source</i>
+ * <a href="IPGeocoderServletContextListener.java.html"><b><i>View Source</i>
  * </b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class IPGeocoderSessionContextListener
+public class IPGeocoderServletContextListener
 	implements ServletContextListener {
 
 	public void contextInitialized(ServletContextEvent event) {
