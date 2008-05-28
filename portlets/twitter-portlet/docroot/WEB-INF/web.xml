@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+	<context-param>
+		<param-name>contextClass</param-name>
+		<param-value>com.liferay.portlet.service.LazyClassPathApplicationContext</param-value>
+	</context-param>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>WEB-INF/data-source-spring.xml,WEB-INF/portlet-spring.xml,WEB-INF/ext-spring.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>com.liferay.portlet.service.PortalContextLoaderListener</listener-class>
+	</listener>
+	<taglib>
+		<taglib-uri>http://java.sun.com/jstl/core_rt</taglib-uri>
+		<taglib-location>/WEB-INF/tld/c-rt.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>http://liferay.com/tld/theme</taglib-uri>
+		<taglib-location>/WEB-INF/tld/liferay-theme.tld</taglib-location>
+	</taglib>
+</web-app>

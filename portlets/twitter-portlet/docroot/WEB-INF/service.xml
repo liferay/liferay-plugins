@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_0_0.dtd">
+
+<service-builder package-path="com.liferay.twitter">
+	<namespace>Twitter</namespace>
+	<entity name="Feed" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="feedId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="twitterUserId" type="long" />
+		<column name="twitterScreenName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="lastStatusId" type="long" />
+
+		<!-- Finder methods -->
+
+		<finder name="TwitterUserId" return-type="Feed">
+			<finder-column name="twitterUserId" />
+		</finder>
+		<finder name="TwitterScreenName" return-type="Feed">
+			<finder-column name="twitterScreenName" />
+		</finder>
+	</entity>
+	<exceptions>
+		<exception>FeedTwitterScreenName</exception>
+	</exceptions>
+</service-builder>
