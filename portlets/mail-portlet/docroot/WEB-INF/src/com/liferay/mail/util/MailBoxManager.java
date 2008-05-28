@@ -217,8 +217,6 @@ public class MailBoxManager {
 
 		JSONArray jsonArray = new JSONArray();
 
-		JSONUtil.put(jsonObj, "accounts", jsonArray);
-
     	// Account 1
 
 		JSONObject account1 = new JSONObject();
@@ -245,6 +243,15 @@ public class MailBoxManager {
 		JSONUtil.put(account3, "accountId", "2");
 
 		jsonArray.put(account3);
+
+		try {
+			jsonObj.put("accounts", jsonArray);
+		}
+		catch (JSONException jsone) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(jsone, jsone);
+			}
+		}
 
 		// Accounts
 
@@ -274,8 +281,6 @@ public class MailBoxManager {
 
 		JSONArray jsonArray = new JSONArray();
 
-		JSONUtil.put(jsonObj, "folders", jsonArray);
-
 		List<IMAPFolder> folders = getFolders();
 
 		for (IMAPFolder folder : folders) {
@@ -285,6 +290,15 @@ public class MailBoxManager {
 		}
 
 		JSONUtil.put(jsonObj, "folderCount", folders.size());
+
+		try {
+			jsonObj.put("folders", jsonArray);
+		}
+		catch (JSONException jsone) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(jsone, jsone);
+			}
+		}
 
 		return jsonObj.toString();
     }
@@ -369,39 +383,30 @@ public class MailBoxManager {
 
 		JSONArray jsonArray = new JSONArray();
 
-		JSONUtil.put(jsonObj, "messages", jsonArray);
+		try {
+			for (int messageNumber : messageNumbersArray) {
+				Message message = folder.getMessage(messageNumber);
 
-		for (int messageNumber : messageNumbersArray) {
-			Message message = folder.getMessage(messageNumber);
+				long messageUid = folder.getUID(message);
 
-			long messageUid = folder.getUID(message);
+				// Skip message if it is in the exclude list
 
-			// Skip message if it is in the exclude list
-
-			for (int curMessageUid : messageUidsArray) {
-				if (curMessageUid == messageUid) {
-
-					try {
+				for (int curMessageUid : messageUidsArray) {
+					if (curMessageUid == messageUid) {
 						jsonArray.put((int)messageUid, StringPool.BLANK);
+						continue;
 					}
-					catch (JSONException jsone) {
-						if (_log.isWarnEnabled()) {
-							_log.warn(jsone, jsone);
-						}
-					}
-
-					continue;
 				}
-			}
 
-			try {
 				jsonArray.put(
 					(int)messageUid, getJSONMessage(folder, message, true));
 			}
-			catch (JSONException jsone) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(jsone, jsone);
-				}
+
+			jsonObj.put("messages", jsonArray);
+		}
+		catch (JSONException jsone) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(jsone, jsone);
 			}
 		}
 
@@ -451,7 +456,14 @@ public class MailBoxManager {
 			jsonArray.put(getJSONMessage(folder, message, true));
 		}
 
-		JSONUtil.put(jsonObj, "messages", jsonArray);
+		try {
+			jsonObj.put("messages", jsonArray);
+		}
+		catch (JSONException jsone) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(jsone, jsone);
+			}
+		}
 
 		return jsonObj.toString();
     }
@@ -495,7 +507,14 @@ public class MailBoxManager {
 			jsonArray.put(getJSONMessage(folder, message, true));
 		}
 
-		JSONUtil.put(jsonObj, "messages", jsonArray);
+		try {
+			jsonObj.put("messages", jsonArray);
+		}
+		catch (JSONException jsone) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(jsone, jsone);
+			}
+		}
 
 		return jsonObj.toString();
 	}
