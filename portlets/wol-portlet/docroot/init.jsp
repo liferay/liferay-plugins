@@ -38,6 +38,8 @@
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
 <%@ page import="com.liferay.portal.kernel.log.Log" %>
 <%@ page import="com.liferay.portal.kernel.log.LogFactoryUtil" %>
+<%@ page import="com.liferay.portal.kernel.messaging.DestinationNames" %>
+<%@ page import="com.liferay.portal.kernel.messaging.MessageBusUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
 <%@ page import="com.liferay.portal.kernel.util.DateFormats" %>
@@ -66,6 +68,7 @@
 <%@ page import="com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.messageboards.service.MBStatsUserLocalServiceUtil" %>
+<%@ page import="com.liferay.portlet.service.PropsUtil"  %>
 <%@ page import="com.liferay.portlet.social.model.SocialActivity" %>
 <%@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
 <%@ page import="com.liferay.portlet.social.model.SocialRequestConstants" %>
@@ -105,6 +108,8 @@
 
 <%@ page import="javax.portlet.PortletURL" %>
 <%@ page import="javax.portlet.WindowState" %>
+
+<%@ page import="org.json.JSONObject" %>
 
 <portlet:defineObjects />
 

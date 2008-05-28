@@ -53,6 +53,11 @@
 		<header-portlet-css>/members/css.jsp</header-portlet-css>
 		<css-class-wrapper>wol-portlet-members</css-class-wrapper>
 	</portlet>
+	<portlet>
+		<portlet-name>8</portlet-name>
+		<friendly-url-mapper-class>com.liferay.wol.map.portlet.MapFriendlyURLMapper</friendly-url-mapper-class>
+		<css-class-wrapper>wol-portlet-map</css-class-wrapper>
+	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>

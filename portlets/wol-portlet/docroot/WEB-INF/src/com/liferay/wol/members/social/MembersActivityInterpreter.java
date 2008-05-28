@@ -86,7 +86,6 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 			sm.append("<a href=\"");
 			sm.append(themeDisplay.getURLPortal());
 			sm.append(themeDisplay.getPathFriendlyURLPublic());
-			sm.append(StringPool.SLASH);
 			sm.append(group.getFriendlyURL());
 			sm.append("/profile\">");
 			sm.append(organization.getName());
