@@ -77,12 +77,12 @@ public class FeedLocalServiceUtil {
 		return feedLocalService.updateFeed(feed);
 	}
 
-	public static com.liferay.twitter.model.Feed updateFeed(long userId)
+	public static void updateFeed(long userId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
 
-		return feedLocalService.updateFeed(userId);
+		feedLocalService.updateFeed(userId);
 	}
 
 	public static void updateFeeds()

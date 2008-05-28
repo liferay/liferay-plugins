@@ -53,7 +53,7 @@ public interface FeedLocalService {
 		com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.twitter.model.Feed updateFeed(long userId)
+	public void updateFeed(long userId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 

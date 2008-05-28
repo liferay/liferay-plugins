@@ -59,12 +59,12 @@ import org.json.JSONObject;
  */
 public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 
-	public Feed updateFeed(long userId)
+	public void updateFeed(long userId)
 		throws PortalException, SystemException {
 
 		User user = UserLocalServiceUtil.getUserById(userId);
 
-		return updateFeed(user);
+		updateFeed(user);
 	}
 
 	public void updateFeeds() throws PortalException, SystemException {
@@ -97,8 +97,7 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 	}
 
 	protected JSONArray getUserTimelineJSONArray(
-			String twitterScreenName, long sinceId)
-		throws SystemException {
+		String twitterScreenName, long sinceId) {
 
 		try {
 			String url = _URL + twitterScreenName + ".json?since_id=" + sinceId;
@@ -106,11 +105,11 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 			return new JSONArray(HttpUtil.URLtoString(url));
 		}
 		catch (Exception e) {
-			throw new SystemException(e);
+			return null;
 		}
 	}
 
-	protected Feed updateFeed(User user)
+	protected void updateFeed(User user)
 		throws PortalException, SystemException {
 
 		String twitterScreenName = user.getContact().getTwitterSn();
@@ -133,21 +132,22 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 
 			feed.setTwitterScreenName(twitterScreenName);
 			feed.setCreateDate(now);
-		}
+			feed.setModifiedDate(now);
 
-		feed.setModifiedDate(now);
+			feedPersistence.update(feed, false);
+
+			if (jsonArray == null) {
+				return;
+			}
+		}
 
 		if (jsonArray == null) {
 			jsonArray = getUserTimelineJSONArray(
 				twitterScreenName, feed.getLastStatusId());
 		}
 
-		if (jsonArray.length() == 0) {
-			if (feed.isNew()) {
-				feedPersistence.update(feed, false);
-			}
-
-			return feed;
+		if ((jsonArray == null) || (jsonArray.length() == 0)) {
+			return;
 		}
 
 		for (int i = 0; i < jsonArray.length(); i++) {
@@ -188,9 +188,9 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 				extraData.toString(), 0);
 		}
 
-		feedPersistence.update(feed, false);
+		feed.setModifiedDate(now);
 
-		return feed;
+		feedPersistence.update(feed, false);
 	}
 
 	private static final String _URL =
