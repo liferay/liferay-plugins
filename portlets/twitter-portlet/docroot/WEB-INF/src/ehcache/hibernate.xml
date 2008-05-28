@@ -1,0 +1,31 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ehcache.xsd">
+	<diskStore path="resource.repositories.root/ehcache/twitter-portlet/hibernate" />
+	<cacheManagerEventListenerFactory class="" properties="" />
+
+	<!--
+	Hibernate will use the defaultCache unless custom configurations are defined
+	below for individual domain objects, collection, queries, etc.
+	-->
+
+	<defaultCache
+		maxElementsInMemory="10000"
+		eternal="false"
+        timeToIdleSeconds="600"
+		overflowToDisk="false"
+	/>
+
+	<!--
+    Tracks the timestamps of the most recent updates to particular tables. It is
+    important that the cache timeout of the underlying cache implementation be
+    set to a higher value than the timeouts of any of the query caches. In fact,
+    it is recommend that the the underlying cache not be configured for expiry
+    at all.
+    -->
+
+	<cache
+		name="org.hibernate.cache.UpdateTimestampsCache"
+		maxElementsInMemory="5000"
+		eternal="true"
+		overflowToDisk="false"
+	/>
+</ehcache>
