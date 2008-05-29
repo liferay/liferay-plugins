@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>mail_portlet</portlet-name>
+		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
 		<friendly-url-mapper-class>com.liferay.mail.portlet.MailFriendlyURLMapper</friendly-url-mapper-class>
 		<render-weight>1</render-weight>

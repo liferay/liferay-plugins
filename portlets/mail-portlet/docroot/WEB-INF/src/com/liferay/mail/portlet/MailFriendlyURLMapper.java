@@ -32,8 +32,7 @@ import javax.portlet.PortletMode;
 import javax.portlet.WindowState;
 
 /**
- * <a href="MailFriendlyURLMapper.java.html"><b><i>View Source</i>
- * </b></a>
+ * <a href="MailFriendlyURLMapper.java.html"><b><i>View Source</i></b></a>
  *
  * @author Scott Lee
  *
@@ -79,6 +78,6 @@ public class MailFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 	private static final String _MAPPING = "mail";
 
-	private static final String _PORTLET_ID = "mail_portlet_WAR_mailportlet";
+	private static final String _PORTLET_ID = "1_WAR_mailportlet";
 
 }

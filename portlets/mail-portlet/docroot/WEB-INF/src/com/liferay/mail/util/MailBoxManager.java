@@ -217,6 +217,8 @@ public class MailBoxManager {
 
 		JSONArray jsonArray = new JSONArray();
 
+		JSONUtil.put(jsonObj, "accounts", jsonArray);
+
     	// Account 1
 
 		JSONObject account1 = new JSONObject();
@@ -243,15 +245,6 @@ public class MailBoxManager {
 		JSONUtil.put(account3, "accountId", "2");
 
 		jsonArray.put(account3);
-
-		try {
-			jsonObj.put("accounts", jsonArray);
-		}
-		catch (JSONException jsone) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(jsone, jsone);
-			}
-		}
 
 		// Accounts
 
@@ -330,7 +323,8 @@ public class MailBoxManager {
 		}
 		else {
 			StringBuilder sb = new StringBuilder();
-			List attachments = new ArrayList();
+
+			List<Object[]> attachments = new ArrayList<Object[]>();
 
 			getBody(sb, StringPool.BLANK, message, attachments, false);
 
@@ -379,12 +373,12 @@ public class MailBoxManager {
     }
 
     public String getJSONMessages(
-    		IMAPFolder folder, String messageNumbersToGet,
+    		IMAPFolder folder, String messageNumbersToInclude,
     		String messageUidsToExclude)
     	throws MessagingException {
 
     	int[] messageNumbersArray = GetterUtil.getIntegerValues(
-			messageNumbersToGet.split("\\s*,\\s*"));
+			messageNumbersToInclude.split("\\s*,\\s*"));
 		int[] messageUidsArray = GetterUtil.getIntegerValues(
 			messageUidsToExclude.split("\\s*,\\s*"));
 
@@ -542,19 +536,19 @@ public class MailBoxManager {
 		return ((IMAPFolder)folder).getMessageByUID(messageUid);
 	}
 
-    public List getMessageUids(String folderName, String messageNumbersToGet)
+    public List getMessageUids(String folderName, String messageNumbers)
     	throws MessagingException {
 
 		IMAPFolder folder = (IMAPFolder)openFolder(folderName);
 
-		return getMessageUids(folder, messageNumbersToGet);
+		return getMessageUids(folder, messageNumbers);
 	}
 
-    public List getMessageUids(IMAPFolder folder, String messageNumbersToGet)
+    public List getMessageUids(IMAPFolder folder, String messageNumbers)
     	throws MessagingException {
 
     	int[] messageNumbersArray = GetterUtil.getIntegerValues(
-			messageNumbersToGet.split("\\s*,\\s*"));
+			messageNumbers.split("\\s*,\\s*"));
 
 		List messageUids = new ArrayList();
 
@@ -677,7 +671,7 @@ public class MailBoxManager {
 
 	protected void getBody(
 			StringBuilder sb, String contentPath, Part messagePart,
-			List attachments, boolean preview)
+			List<Object[]> attachments, boolean preview)
 		throws MessagingException {
 
 		try {
@@ -715,11 +709,12 @@ public class MailBoxManager {
 					}
 					else {
 						sb.append((String)messagePart.getContent());
-						sb.append("<HR/>");
+						sb.append("<hr />");
 					}
 				}
 				else if (contentType.startsWith(ContentTypes.MESSAGE_RFC822)) {
-					getBody(sb, StringPool.BLANK, messagePart, attachments,
+					getBody(
+						sb, StringPool.BLANK, messagePart, attachments,
 						preview);
 				}
 			}
@@ -728,10 +723,6 @@ public class MailBoxManager {
 				// Attachment
 
 				if (!preview) {
-					System.out.println("Adding attachment");
-					System.out.println("- attachment [0]: " + contentPath);
-					System.out.println("- attachment [1]: " + messagePart.getFileName());
-
 					attachments.add(
 						new Object[] {contentPath, messagePart.getFileName()});
 				}
@@ -744,7 +735,7 @@ public class MailBoxManager {
 
 	protected boolean getBodyMulitipart(
 			String contentType, Part curPart, String contentPath,
-			StringBuilder sb, List attachments, boolean preview)
+			StringBuilder sb, List<Object[]> attachments, boolean preview)
 		throws MessagingException {
 
 		if (contentType.startsWith(ContentTypes.MULTIPART_ALTERNATIVE)) {
@@ -805,24 +796,16 @@ public class MailBoxManager {
 		}
 	}
 
-	protected JSONArray getJSONAttachments(List attachments)
+	protected JSONArray getJSONAttachments(List<Object[]> attachments)
 		throws MessagingException {
 
 		JSONArray jsonArray = new JSONArray();
 
-		//System.out.println("found " + attachments.size() + " attachments");
-
-		for (int i = 0; i < attachments.size(); i++) {
-
-			Object[] attachment = (Object[])attachments.get(i);
-
+		for (Object[] attachment : attachments) {
 			JSONArray tempJsonArray = new JSONArray();
 
 			tempJsonArray.put(attachment[0]);
 			tempJsonArray.put(attachment[1]);
-
-			//System.out.println("- attachment " + i + " [0]: " + attachment[0]);
-			//System.out.println("- attachment " + i + " [1]: " + attachment[1]);
 
 			jsonArray.put(tempJsonArray);
 		}
