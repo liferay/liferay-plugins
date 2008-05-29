@@ -1090,7 +1090,7 @@ Liferay.Mail = {
 		instance.messageSendDiscardButton.click(function() {
 			instance.setView('viewMessage');
 
-			instance.setStatus(Liferay.Language.get('your-message-has-been-discarded'), '');
+			instance.setStatus(Liferay.Language.get('your-message-was-discarded'), '');
 		});
 
 		instance.messageSendSendButton.click(function() {
@@ -1126,7 +1126,7 @@ Liferay.Mail = {
 				},
 				function(jsonResult) {
 					instance.setView('viewFolder');
-					instance.setStatus(Liferay.Language.get('your-message-has-been-sent'), jsonResult);
+					instance.setStatus(Liferay.Language.get('your-message-was-sent'), jsonResult);
 				}
 			);
 
