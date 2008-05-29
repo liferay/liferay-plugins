@@ -22,16 +22,6 @@
  */
 %>
 
-<%@ page import="com.liferay.mail.util.MailBoxManager" %>
-<%@ page import="com.liferay.portal.kernel.servlet.HttpHeaders" %>
-<%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
-<%@ page import="com.liferay.portal.util.PortalUtil" %>
+<%@ include file="/json_init.jsp" %>
 
-<%
-response.setContentType(ContentTypes.TEXT_JAVASCRIPT);
-response.setHeader(HttpHeaders.CACHE_CONTROL, "no-cache");
-
-long userId = PortalUtil.getUserId(request);
-%>
-
-<%= MailBoxManager.getJSONAccounts(userId) %>
+<%= MailBoxManager.getJSONAccounts(user) %>

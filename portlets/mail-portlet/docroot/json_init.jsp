@@ -22,14 +22,28 @@
  */
 %>
 
-<%@ include file="/json_init.jsp" %>
+<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
+
+<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
+
+<%@ page import="com.liferay.mail.util.MailBoxManager" %>
+<%@ page import="com.liferay.portal.kernel.servlet.HttpHeaders" %>
+<%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="com.liferay.portal.model.User" %>
+<%@ page import="com.liferay.portal.util.PortalUtil" %>
+
+<%@ page import="com.sun.mail.imap.IMAPFolder" %>
+
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.util.List" %>
+
+<portlet:defineObjects />
+
+<liferay-theme:defineObjects />
 
 <%
-int accountId = ParamUtil.getInteger(request, "accountId");
-String folderName = ParamUtil.getString(request, "folderName");
-String messageUids = ParamUtil.getString(request, "messageUids");
-
-MailBoxManager mailBoxManager = new MailBoxManager(user, accountId);
-
-mailBoxManager.deleteMessagesByUids(folderName, messageUids)
+response.setContentType(ContentTypes.TEXT_JAVASCRIPT);
+response.setHeader(HttpHeaders.CACHE_CONTROL, "no-cache");
 %>

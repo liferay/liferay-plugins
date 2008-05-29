@@ -203,7 +203,7 @@ Liferay.Mail = {
 
 		var jsonUrl = instance._layoutUrl + 'accounts';
 
-		instance.setStatus('Loading accounts.. ', jsonUrl);
+		instance.setStatus(Liferay.Language.get('loading-accounts'), jsonUrl);
 
 		jQuery.ajaxQueue({
 			url: jsonUrl,
@@ -235,7 +235,7 @@ Liferay.Mail = {
 
 			var jsonUrl = instance._layoutUrl + 'folders?accountId=' + accountId;
 
-			instance.setStatus('Loading folders.. ', jsonUrl);
+			instance.setStatus(Liferay.Language.get('loading-folders'), jsonUrl);
 
 			jQuery.ajaxQueue({
 				url: jsonUrl,
@@ -400,10 +400,10 @@ Liferay.Mail = {
 		var htmlMessageList = '';
 
 		if (jsonMessages.messages.length == 0) {
-			htmlMessageList += '<tr><td class="alert">No Messages</td></tr>';
+			htmlMessageList += '<tr><td class="alert">' + Liferay.Language.get('no-messages-found') + '</td></tr>';
 		}
 		else {
-			for (i = jsonMessages.messages.length - 1; i >= 0; i--) {
+			for (i = (jsonMessages.messages.length - 1); i >= 0; i--) {
 				var msg = jsonMessages.messages[i];
 
 				htmlMessageList += '<tr class="message ' + msg.read + '" messageUid="' + msg.uid + '">';
@@ -448,7 +448,7 @@ Liferay.Mail = {
 		else {
 			var jsonUrl = instance._layoutUrl + 'message_by_number?accountId=' + accountId + '&folderName=' + folderName + '&messageNum=' + messageNum;
 
-			instance.setStatus('Loading message.. ', jsonUrl);
+			instance.setStatus(Liferay.Language.get('loading-message'), jsonUrl);
 
 			jQuery.ajaxQueue({
 				url: jsonUrl,
@@ -479,7 +479,7 @@ Liferay.Mail = {
 		else {
 			var jsonUrl = instance._layoutUrl + 'message_by_uid?accountId=' + accountId + '&folderName=' + folderName + '&messageUid=' + messageUid;
 
-			instance.setStatus('Loading message.. ', jsonUrl);
+			instance.setStatus(Liferay.Language.get('loading-message'), jsonUrl);
 
 			jQuery.ajaxQueue({
 				url: jsonUrl,
@@ -518,7 +518,7 @@ Liferay.Mail = {
 
 			var jsonUrl = instance._layoutUrl + 'messages?accountId=' + accountId + '&folderName=' + folderName + '&pageNum=' + pageNum + '&messagesPerPage=' + instance.getMessagesPerPage();
 
-			instance.setStatus('Loading messages.. ', jsonUrl);
+			instance.setStatus(Liferay.Language.get('loading-messages'), jsonUrl);
 
 			jQuery.ajaxQueue({
 				url: jsonUrl,
@@ -542,7 +542,7 @@ Liferay.Mail = {
 
 		var jsonUrl = instance._layoutUrl + 'messages_by_search?accountId=' + accountId + '&folderName=' + folderName + '&pageNum=' + pageNum + '&messagesPerPage=' + instance.getMessagesPerPage() + '&searchString=' + searchString;
 
-		instance.setStatus('Loading messages.. ', jsonUrl);
+		instance.setStatus(Liferay.Language.get('loading-messages'), jsonUrl);
 
 		jQuery.ajaxQueue({
 			url: jsonUrl,
@@ -656,7 +656,7 @@ Liferay.Mail = {
 			instance._flushCachedJsonFolders();
 		}
 
-		instance.setStatus('Refreshing Account.. ', '');
+		instance.setStatus(Liferay.Language.get('refreshing-account'), '');
 
 		instance.loadFolders(instance.getCurrentAccountId());
 	},
@@ -714,7 +714,7 @@ Liferay.Mail = {
 			instance._flushCachedJsonMessages();
 		}
 
-		instance.setStatus('Refreshing Folder.. ', '');
+		instance.setStatus(Liferay.Language.get('refreshing-folder'), '');
 
 		instance.loadMessages(instance.getCurrentFolderName(), instance.getCurrentPageNum());
 	},
@@ -850,14 +850,14 @@ Liferay.Mail = {
 
 			var jsonUrl = instance._layoutUrl + 'messages_delete_by_uid?accountId=' + instance.getCurrentAccountId() + '&folderName=' + instance.getCurrentFolderName() + '&messageUids=' + messageUids;
 
-			instance.setStatus('Deleting messages..', jsonUrl);
+			instance.setStatus(Liferay.Language.get('deleting-messages'), jsonUrl);
 
 			jQuery.ajaxQueue({
 				url: jsonUrl,
 				dataType: 'json',
 				success: function(jsonSuccess) {
 					instance.refreshMessages(true);
-					instance.setStatus('Messages have been deleted', jsonUrl);
+					instance.setStatus(Liferay.Language.get('messages-have-been-deleted'), jsonUrl);
 				}
 			});
 		});
@@ -941,7 +941,7 @@ Liferay.Mail = {
 
 			if (messageUids == '') {
 				instance.refreshFolderControls();
-				instance.setStatus('No messages selected..', '');
+				instance.setStatus(Liferay.Language.get('no-messages-selected'), '');
 				return false;
 			}
 
@@ -952,12 +952,12 @@ Liferay.Mail = {
 			if (option == 'read') {
 				var jsonUrl = instance._layoutUrl + 'messages_mark_as_read?accountId=' + instance.getCurrentAccountId() + '&folderName=' + instance.getCurrentFolderName() + '&messageUids=' + messageUids + '&isRead=true';
 
-				instance.setStatus('Marking messages as read..', jsonUrl);
+				instance.setStatus(Liferay.Language.get('marking-messages-as-read'), jsonUrl);
 			}
 			else if (option == 'unread') {
 				var jsonUrl = instance._layoutUrl + 'messages_mark_as_read?accountId=' + instance.getCurrentAccountId() + '&folderName=' + instance.getCurrentFolderName() + '&messageUids=' + messageUids + '&isRead=false';
 
-				instance.setStatus('Marking messages as unread..', jsonUrl);
+				instance.setStatus(Liferay.Language.get('marking-messages-as-unread'), jsonUrl);
 			}
 
 			jQuery.ajaxQueue({
@@ -1090,7 +1090,7 @@ Liferay.Mail = {
 		instance.messageSendDiscardButton.click(function() {
 			instance.setView('viewMessage');
 
-			instance.setStatus('Your message has been discarded..', '');
+			instance.setStatus(Liferay.Language.get('your-message-has-been-discarded'), '');
 		});
 
 		instance.messageSendSendButton.click(function() {
@@ -1107,7 +1107,7 @@ Liferay.Mail = {
 
 			var fromAccountId = instance.sendFromSelect.val();
 
-			instance.setStatus('Sending message..', ajaxUrl);
+			instance.setStatus(Liferay.Language.get('sending-message'), ajaxUrl);
 
 			jQuery.post(
 				ajaxUrl,
@@ -1126,7 +1126,7 @@ Liferay.Mail = {
 				},
 				function(jsonResult) {
 					instance.setView('viewFolder');
-					instance.setStatus('Your message has been sent', jsonResult);
+					instance.setStatus(Liferay.Language.get('your-message-has-been-sent'), jsonResult);
 				}
 			);
 

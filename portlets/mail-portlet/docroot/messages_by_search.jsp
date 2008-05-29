@@ -22,20 +22,9 @@
  */
 %>
 
-<%@ page import="com.liferay.mail.util.MailBoxManager" %>
-<%@ page import="com.liferay.portal.kernel.servlet.HttpHeaders" %>
-<%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-<%@ page import="com.liferay.portal.model.User" %>
-<%@ page import="com.liferay.portal.util.PortalUtil" %>
-
-<%@ page import="com.sun.mail.imap.IMAPFolder" %>
+<%@ include file="/json_init.jsp" %>
 
 <%
-response.setContentType(ContentTypes.TEXT_JAVASCRIPT);
-response.setHeader(HttpHeaders.CACHE_CONTROL, "no-cache");
-
-User user = PortalUtil.getUser(request);
 int accountId = ParamUtil.getInteger(request, "accountId");
 String folderName = ParamUtil.getString(request, "folderName");
 int pageNum = ParamUtil.getInteger(request, "pageNum");
