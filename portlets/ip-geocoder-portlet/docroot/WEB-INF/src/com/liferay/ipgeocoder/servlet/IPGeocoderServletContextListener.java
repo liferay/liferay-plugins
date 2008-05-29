@@ -27,7 +27,7 @@ import com.liferay.portal.kernel.messaging.Destination;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
-import com.liferay.portal.kernel.messaging.ParallelDispatchedDestination;
+import com.liferay.portal.kernel.messaging.ParallelDestination;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -43,7 +43,7 @@ public class IPGeocoderServletContextListener
 	implements ServletContextListener {
 
 	public void contextInitialized(ServletContextEvent event) {
-		_ipGeocoderDestination = new ParallelDispatchedDestination(
+		_ipGeocoderDestination = new ParallelDestination(
 			DestinationNames.IP_GEOCODER);
 
 		MessageBusUtil.addDestination(_ipGeocoderDestination);
