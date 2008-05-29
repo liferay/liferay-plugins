@@ -1,1 +1,0 @@
-create index IX_AF921CDE on IPGeocoder_IPInfo (ipAddress);
