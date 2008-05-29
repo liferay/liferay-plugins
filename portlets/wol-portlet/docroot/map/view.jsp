@@ -112,8 +112,8 @@ else {
 					continue;
 				}
 
-				long latitude = ipInfoJSON.optLong("latitude");
-				long longitude = ipInfoJSON.optLong("longitude");
+				float latitude = GetterUtil.getFloat(ipInfoJSON.optString("latitude"));
+				float longitude = GetterUtil.getFloat(ipInfoJSON.optString("longitude"));
 
 				if ((latitude == 0) && (longitude == 0)) {
 					continue;

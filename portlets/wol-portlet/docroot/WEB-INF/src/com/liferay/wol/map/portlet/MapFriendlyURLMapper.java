@@ -24,7 +24,6 @@ package com.liferay.wol.map.portlet;
 
 import com.liferay.portal.kernel.portlet.BaseFriendlyURLMapper;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
-import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Map;
 
