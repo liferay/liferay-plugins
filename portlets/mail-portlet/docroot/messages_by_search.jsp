@@ -29,6 +29,8 @@
 <%@ page import="com.liferay.portal.model.User" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 
+<%@ page import="com.sun.mail.imap.IMAPFolder" %>
+
 <%
 response.setContentType(ContentTypes.TEXT_JAVASCRIPT);
 response.setHeader(HttpHeaders.CACHE_CONTROL, "no-cache");
@@ -39,10 +41,11 @@ String folderName = ParamUtil.getString(request, "folderName");
 int pageNum = ParamUtil.getInteger(request, "pageNum");
 int messagesPerPage = ParamUtil.getInteger(request, "messagesPerPage");
 String searchString = ParamUtil.getString(request, "searchString");
+String messageUidsToExclude = ParamUtil.getString(request, "messageUidsToExclude");
 
 MailBoxManager mailBoxManager = new MailBoxManager(user, accountId);
 
 IMAPFolder folder = (IMAPFolder)mailBoxManager.openFolder(folderName);
 %>
 
-<%= mailBoxManager.getJSONMessagesBySearch(folder, pageNum, messagesPerPage, searchString) %>
+<%= mailBoxManager.getJSONMessagesBySearch(folder, pageNum, messagesPerPage, searchString, messageUidsToExclude) %>

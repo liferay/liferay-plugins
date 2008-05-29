@@ -322,7 +322,6 @@ public class MailBoxManager {
 		JSONUtil.put(jsonObj, "date", sdf.format(message.getSentDate()));
 		JSONUtil.put(jsonObj, "from", getAddresses(message.getFrom()));
 		JSONUtil.put(jsonObj, "subject", message.getSubject());
-		JSONUtil.put(jsonObj, "attachment", false);
 		JSONUtil.put(jsonObj, "html", false);
 		JSONUtil.put(jsonObj, "read", read);
 
@@ -331,8 +330,9 @@ public class MailBoxManager {
 		}
 		else {
 			StringBuilder sb = new StringBuilder();
+			List attachments = new ArrayList();
 
-			getBody(sb, StringPool.BLANK, message, false);
+			getBody(sb, StringPool.BLANK, message, attachments, false);
 
 			JSONUtil.put(
 				jsonObj, "to",
@@ -344,6 +344,15 @@ public class MailBoxManager {
 				jsonObj, "bcc",
 				getAddresses(message.getRecipients(RecipientType.BCC)));
 			JSONUtil.put(jsonObj, "body", sb.toString());
+
+			try {
+				jsonObj.put("attachments", getJSONAttachments(attachments));
+			}
+			catch (JSONException jsone) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(jsone, jsone);
+				}
+			}
 		}
 
 		return jsonObj;
@@ -533,6 +542,31 @@ public class MailBoxManager {
 		return ((IMAPFolder)folder).getMessageByUID(messageUid);
 	}
 
+    public List getMessageUids(String folderName, String messageNumbersToGet)
+    	throws MessagingException {
+
+		IMAPFolder folder = (IMAPFolder)openFolder(folderName);
+
+		return getMessageUids(folder, messageNumbersToGet);
+	}
+
+    public List getMessageUids(IMAPFolder folder, String messageNumbersToGet)
+    	throws MessagingException {
+
+    	int[] messageNumbersArray = GetterUtil.getIntegerValues(
+			messageNumbersToGet.split("\\s*,\\s*"));
+
+		List messageUids = new ArrayList();
+
+		for (int messageNumber : messageNumbersArray) {
+			Message message = folder.getMessage(messageNumber);
+
+			messageUids.add(folder.getUID(message));
+		}
+
+		return messageUids;
+    }
+
     public void markMessagesAsRead(
 			String folderName, String messageUids, boolean read)
     	throws MessagingException {
@@ -643,7 +677,7 @@ public class MailBoxManager {
 
 	protected void getBody(
 			StringBuilder sb, String contentPath, Part messagePart,
-			boolean preview)
+			List attachments, boolean preview)
 		throws MessagingException {
 
 		try {
@@ -660,7 +694,8 @@ public class MailBoxManager {
 
 					if (getBodyMulitipart(
 							contentType, curPart,
-							contentPath + StringPool.PERIOD + i, sb, preview)) {
+							contentPath + StringPool.PERIOD + i, sb,
+							attachments, preview)) {
 
 						break;
 					}
@@ -675,22 +710,31 @@ public class MailBoxManager {
 					sb.append("\n\n");
 				}
 				else if (contentType.startsWith(ContentTypes.TEXT_HTML)) {
-					sb.append(stripHtml((String)messagePart.getContent()));
-					sb.append("<HR/>");
+					if (preview) {
+						sb.append(stripHtml((String)messagePart.getContent()));
+					}
+					else {
+						sb.append((String)messagePart.getContent());
+						sb.append("<HR/>");
+					}
 				}
 				else if (contentType.startsWith(ContentTypes.MESSAGE_RFC822)) {
-					getBody(sb, StringPool.BLANK, messagePart, preview);
+					getBody(sb, StringPool.BLANK, messagePart, attachments,
+						preview);
 				}
 			}
 			else {
 
 				// Attachment
 
-				sb.append("<HR><a href=\"");
-				sb.append(contentPath);
-				sb.append("\">");
-				sb.append(messagePart.getFileName());
-				sb.append("</a>");
+				if (!preview) {
+					System.out.println("Adding attachment");
+					System.out.println("- attachment [0]: " + contentPath);
+					System.out.println("- attachment [1]: " + messagePart.getFileName());
+
+					attachments.add(
+						new Object[] {contentPath, messagePart.getFileName()});
+				}
 			}
 		}
 		catch (IOException ioe) {
@@ -700,7 +744,7 @@ public class MailBoxManager {
 
 	protected boolean getBodyMulitipart(
 			String contentType, Part curPart, String contentPath,
-			StringBuilder sb, boolean preview)
+			StringBuilder sb, List attachments, boolean preview)
 		throws MessagingException {
 
 		if (contentType.startsWith(ContentTypes.MULTIPART_ALTERNATIVE)) {
@@ -709,19 +753,19 @@ public class MailBoxManager {
 			if (preview &&
 				partContentType.startsWith(ContentTypes.TEXT_PLAIN)) {
 
-				getBody(sb, StringPool.BLANK, curPart, preview);
+				getBody(sb, StringPool.BLANK, curPart, attachments, preview);
 
 				return true;
 			}
 
 			if (partContentType.startsWith(ContentTypes.TEXT_HTML)) {
-				getBody(sb, StringPool.BLANK, curPart, preview);
+				getBody(sb, StringPool.BLANK, curPart, attachments, preview);
 
 				return true;
 			}
 		}
 		else {
-			getBody(sb, contentPath, curPart, preview);
+			getBody(sb, contentPath, curPart, attachments, preview);
 		}
 
 		return false;
@@ -732,7 +776,7 @@ public class MailBoxManager {
 
 		StringBuilder sb = new StringBuilder();
 
-		getBody(sb, StringPool.BLANK, messagePart, true);
+		getBody(sb, StringPool.BLANK, messagePart, null, true);
 
 		if (sb.length() < 80) {
 			return sb.toString();
@@ -761,13 +805,38 @@ public class MailBoxManager {
 		}
 	}
 
+	protected JSONArray getJSONAttachments(List attachments)
+		throws MessagingException {
+
+		JSONArray jsonArray = new JSONArray();
+
+		//System.out.println("found " + attachments.size() + " attachments");
+
+		for (int i = 0; i < attachments.size(); i++) {
+
+			Object[] attachment = (Object[])attachments.get(i);
+
+			JSONArray tempJsonArray = new JSONArray();
+
+			tempJsonArray.put(attachment[0]);
+			tempJsonArray.put(attachment[1]);
+
+			//System.out.println("- attachment " + i + " [0]: " + attachment[0]);
+			//System.out.println("- attachment " + i + " [1]: " + attachment[1]);
+
+			jsonArray.put(tempJsonArray);
+		}
+
+		return jsonArray;
+	}
+
 	protected void getIncomingStore(MailAccount mailAccount) {
 		try {
 			Properties props = new Properties();
 
 			URLName url = new URLName(
 				"imap", mailAccount.getMailInHostName(),
-				Getter.getInteger(mailAccount.getMailInPort()),
+				GetterUtil.getInteger(mailAccount.getMailInPort()),
 				StringPool.BLANK, mailAccount.getUsername(),
 				mailAccount.getPassword());
 

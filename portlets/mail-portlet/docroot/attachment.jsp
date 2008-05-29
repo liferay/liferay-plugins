@@ -23,11 +23,15 @@
 %>
 
 <%@ page import="com.liferay.mail.util.MailBoxManager" %>
+<%@ page import="com.liferay.util.mail.JavaMailUtil" %>
 <%@ page import="com.liferay.portal.kernel.servlet.HttpHeaders" %>
 <%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.model.User" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
+<%@ page import="com.liferay.util.servlet.ServletResponseUtil" %>
+
+<%@ page import="javax.mail.Part" %>
 
 <%
 response.setContentType(ContentTypes.TEXT_JAVASCRIPT);
@@ -36,10 +40,19 @@ response.setHeader(HttpHeaders.CACHE_CONTROL, "no-cache");
 User user = PortalUtil.getUser(request);
 int accountId = ParamUtil.getInteger(request, "accountId");
 String folderName = ParamUtil.getString(request, "folderName");
-String messageUids = ParamUtil.getString(request, "messageUids");
-boolean read = ParamUtil.getBoolean(request, "read");
+int messageUid = ParamUtil.getInteger(request, "messageUid");
+String fileName = ParamUtil.getString(request, "fileName");
+String contentPath = ParamUtil.getString(request, "contentPath");
 
 MailBoxManager mailBoxManager = new MailBoxManager(user, accountId);
 
-mailBoxManager.markMessagesAsRead(folderName, messageUids, read);
+Part messagePart = mailBoxManager.getAttachment(folderName, messageUid, contentPath);
+
+byte[] content = JavaMailUtil.getBytes(messagePart);
+String contentType = messagePart.getContentType();
+
+ServletResponseUtil.sendFile(response, fileName, content, contentType);
 %>
+
+
+

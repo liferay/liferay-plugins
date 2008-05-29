@@ -345,9 +345,25 @@ Liferay.Mail = {
 
 		// Add line breaks if it is plain text
 
-		if (msgBody.indexOf('<img') == -1) {
+		if (msgBody.indexOf('<a') == -1) {
 			msgBody = msgBody.replace(/\r\n/g,'<br />');
 			msgBody = msgBody.replace(/\n\n/g,'<br />');
+		}
+
+		// Add links to attachments
+
+		var msgAttachments = msg.attachments;
+
+		if (msgAttachments != null) {
+			if (msgAttachments.length > 0) {
+				msgBody += '<br /><hr>' + msgAttachments.length + ' attachments<br /><ul>';
+			}
+
+			for (i = 0; i < msgAttachments.length; i++) {
+				msgBody += '<li><a href="' + instance._layoutUrl + 'attachment?accountId=' + instance.getCurrentAccountId() + '&folderName=' + instance.getCurrentFolderName() + '&messageUid=' + msgUid + '&fileName=' + msgAttachments[i][1] + '&contentPath=' + msgAttachments[i][0] + '">' + msgAttachments[i][1] + '</a>';
+			}
+
+			msgBody += '</ul>';
 		}
 
 		// Inject HTML
@@ -387,7 +403,7 @@ Liferay.Mail = {
 			htmlMessageList += '<tr><td class="alert">No Messages</td></tr>';
 		}
 		else {
-			for (i = 0; i < jsonMessages.messages.length; i++) {
+			for (i = jsonMessages.messages.length - 1; i >= 0; i--) {
 				var msg = jsonMessages.messages[i];
 
 				htmlMessageList += '<tr class="message ' + msg.read + '" messageUid="' + msg.uid + '">';
