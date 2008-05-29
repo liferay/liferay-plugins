@@ -85,6 +85,49 @@ import org.json.JSONObject;
  */
 public class MailBoxManager {
 
+	public static String getJSONAccounts(User user)
+    	throws MessagingException {
+
+    	JSONObject jsonObj = new JSONObject();
+
+		// Accounts
+
+		JSONArray jsonArray = new JSONArray();
+
+		JSONUtil.put(jsonObj, "accounts", jsonArray);
+
+    	// Account 1
+
+		JSONObject account1 = new JSONObject();
+
+		JSONUtil.put(account1, "emailAddress", "liferay.mail.1@gmail.com");
+		JSONUtil.put(account1, "accountId", "0");
+
+		jsonArray.put(account1);
+
+		// Account 2
+
+		JSONObject account2 = new JSONObject();
+
+		JSONUtil.put(account2, "emailAddress", "liferay.mail.2@gmail.com");
+		JSONUtil.put(account2, "accountId", "1");
+
+		jsonArray.put(account2);
+
+		// Account 3
+
+		JSONObject account3 = new JSONObject();
+
+		JSONUtil.put(account3, "emailAddress", "liferay.mail.3@gmail.com");
+		JSONUtil.put(account3, "accountId", "2");
+
+		jsonArray.put(account3);
+
+		// Accounts
+
+		return jsonObj.toString();
+	}
+
     public MailBoxManager(User user, int accountId) {
     	_user = user;
     	_mailAccount = new MailAccount(user, accountId);
@@ -206,49 +249,6 @@ public class MailBoxManager {
 		getFolders(allFolders, rootFolder.list());
 
 		return allFolders;
-	}
-
-	public static String getJSONAccounts(User user)
-    	throws MessagingException {
-
-    	JSONObject jsonObj = new JSONObject();
-
-		// Accounts
-
-		JSONArray jsonArray = new JSONArray();
-
-		JSONUtil.put(jsonObj, "accounts", jsonArray);
-
-    	// Account 1
-
-		JSONObject account1 = new JSONObject();
-
-		JSONUtil.put(account1, "emailAddress", "liferay.mail.1@gmail.com");
-		JSONUtil.put(account1, "accountId", "0");
-
-		jsonArray.put(account1);
-
-		// Account 2
-
-		JSONObject account2 = new JSONObject();
-
-		JSONUtil.put(account2, "emailAddress", "liferay.mail.2@gmail.com");
-		JSONUtil.put(account2, "accountId", "1");
-
-		jsonArray.put(account2);
-
-		// Account 3
-
-		JSONObject account3 = new JSONObject();
-
-		JSONUtil.put(account3, "emailAddress", "liferay.mail.3@gmail.com");
-		JSONUtil.put(account3, "accountId", "2");
-
-		jsonArray.put(account3);
-
-		// Accounts
-
-		return jsonObj.toString();
 	}
 
     public JSONObject getJSONFolder(IMAPFolder folder)
