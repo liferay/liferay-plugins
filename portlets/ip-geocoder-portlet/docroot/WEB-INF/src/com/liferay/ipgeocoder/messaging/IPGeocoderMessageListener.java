@@ -47,13 +47,13 @@ public class IPGeocoderMessageListener implements MessageListener {
 		try {
 			JSONObject jsonObj = new JSONObject(message);
 
-			String ipAddress = jsonObj.getString("ipAddress");
-
-			IPInfo ipInfo = IPGeocoderUtil.getIPInfo(ipAddress);
-
 			String responseId = jsonObj.optString("responseId");
 
 			if (Validator.isNotNull(responseId)) {
+				String ipAddress = jsonObj.getString("ipAddress");
+
+				IPInfo ipInfo = IPGeocoderUtil.getIPInfo(ipAddress);
+
 				JSONObject jsonObject = new JSONObject();
 
 				JSONUtil.put(jsonObject, "responseId", responseId);
