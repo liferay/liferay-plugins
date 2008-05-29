@@ -23,13 +23,13 @@
 %>
 
 <%@ page import="com.liferay.ipgeocoder.model.IPInfo" %>
-<%@ page import="com.liferay.ipgeocoder.service.IPInfoLocalServiceUtil" %>
+<%@ page import="com.liferay.ipgeocoder.util.IPGeocoderUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 
 <%
 HttpServletRequest originalRequest = PortalUtil.getOriginalServletRequest(request);
 
-IPInfo ipInfo = IPInfoLocalServiceUtil.getIPInfo(originalRequest.getRemoteAddr());
+IPInfo ipInfo = IPGeocoderUtil.getIPInfo(originalRequest.getRemoteAddr());
 %>
 
 IP: <%= ipInfo.getIpAddress() %><br />

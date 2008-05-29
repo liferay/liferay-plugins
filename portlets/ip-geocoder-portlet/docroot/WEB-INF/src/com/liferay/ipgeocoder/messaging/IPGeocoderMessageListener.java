@@ -23,7 +23,7 @@
 package com.liferay.ipgeocoder.messaging;
 
 import com.liferay.ipgeocoder.model.IPInfo;
-import com.liferay.ipgeocoder.service.IPInfoLocalServiceUtil;
+import com.liferay.ipgeocoder.util.IPGeocoderUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
@@ -49,7 +49,7 @@ public class IPGeocoderMessageListener implements MessageListener {
 
 			String ipAddress = jsonObj.getString("ipAddress");
 
-			IPInfo ipInfo = IPInfoLocalServiceUtil.getIPInfo(ipAddress);
+			IPInfo ipInfo = IPGeocoderUtil.getIPInfo(ipAddress);
 
 			String responseId = jsonObj.optString("responseId");
 

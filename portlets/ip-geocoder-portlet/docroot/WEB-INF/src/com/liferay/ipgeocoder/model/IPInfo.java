@@ -22,11 +22,44 @@
 
 package com.liferay.ipgeocoder.model;
 
+import com.maxmind.geoip.Location;
+
 /**
  * <a href="IPInfo.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface IPInfo extends IPInfoModel {
+public class IPInfo {
+
+	public IPInfo(String ipAddress, Location location) {
+		_ipAddress = ipAddress;
+		_location = location;
+	}
+
+	public String getIpAddress() {
+		return _ipAddress;
+	}
+
+	public float getLatitude() {
+		if (_location == null) {
+			return 0;
+		}
+		else {
+			return _location.latitude;
+		}
+	}
+
+	public float getLongitude() {
+		if (_location == null) {
+			return 0;
+		}
+		else {
+			return _location.longitude;
+		}
+	}
+
+	private String _ipAddress;
+	private Location _location;
+
 }

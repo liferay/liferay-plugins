@@ -20,38 +20,48 @@
  * SOFTWARE.
  */
 
-package com.liferay.portlet.service;
+package com.liferay.ipgeocoder.util;
 
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.service.PropsUtil;
+import com.germinus.easyconf.ComponentProperties;
 
-import java.sql.SQLException;
+import com.liferay.util.ExtPropertiesLoader;
+
+import java.util.Properties;
 
 /**
- * <a href="PortletCustomSQLUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="PortletProps.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class PortletCustomSQLUtil
-	extends com.liferay.util.dao.hibernate.CustomSQLUtil {
+public class PortletProps {
 
-	public PortletCustomSQLUtil() throws SQLException {
-		super(
-			HibernateUtil.getConnection(),
-			PropsUtil.get(PropsUtil.CUSTOM_SQL_FUNCTION_ISNULL),
-			PropsUtil.get(PropsUtil.CUSTOM_SQL_FUNCTION_ISNOTNULL));
+	public static boolean containsKey(String key) {
+		return _getInstance().containsKey(key);
 	}
 
-	protected String[] getConfigs() {
-		return PropsUtil.getArray(PropsUtil.CUSTOM_SQL_CONFIGS);
+	public static String get(String key) {
+		return _getInstance().get(key);
 	}
 
-	protected String transform(String sql) {
-		sql = super.transform(sql);
-		sql = PortalUtil.transformCustomSQL(sql);
+	public static void set(String key, String value) {
+		_getInstance().set(key, value);
+	}
 
-		return sql;
+	public static String[] getArray(String key) {
+		return _getInstance().getArray(key);
+	}
+
+	public static Properties getProperties() {
+		return _getInstance().getProperties();
+	}
+
+	public static ComponentProperties getComponentProperties() {
+		return _getInstance().getComponentProperties();
+	}
+
+	private static ExtPropertiesLoader _getInstance() {
+		return ExtPropertiesLoader.getInstance("ip-geocoder-portlet");
 	}
 
 }

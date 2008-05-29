@@ -20,19 +20,51 @@
  * SOFTWARE.
  */
 
-package com.liferay.ipgeocoder.model.impl;
+package com.liferay.ipgeocoder.util;
 
 import com.liferay.ipgeocoder.model.IPInfo;
 
+import com.maxmind.geoip.Location;
+import com.maxmind.geoip.LookupService;
+
+import java.io.IOException;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
- * <a href="IPInfoImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="IPGeocoderUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class IPInfoImpl extends IPInfoModelImpl implements IPInfo {
+public class IPGeocoderUtil {
 
-	public IPInfoImpl() {
+	public static IPInfo getIPInfo(String ipAddress) {
+		return _instance._getIPInfo(ipAddress);
 	}
+
+	private IPGeocoderUtil() {
+		try {
+			_lookupService = new LookupService(
+				PortletProps.get("maxmind.database.file"),
+				LookupService.GEOIP_MEMORY_CACHE);
+		}
+		catch (IOException ioe) {
+			_log.error(ioe, ioe);
+		}
+	}
+
+	private IPInfo _getIPInfo(String ipAddress) {
+		Location location = _lookupService.getLocation(ipAddress);
+
+		return new IPInfo(ipAddress, location);
+	}
+
+	private static Log _log = LogFactory.getLog(IPGeocoderUtil.class);
+
+	private static IPGeocoderUtil _instance = new IPGeocoderUtil();
+
+	private LookupService _lookupService;
 
 }
