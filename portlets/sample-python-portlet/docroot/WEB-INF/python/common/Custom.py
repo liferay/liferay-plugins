@@ -37,4 +37,3 @@ class Custom:
                 #Number: ' + num + ' (' + actionLink + ')\n\
             </div>\n\
         ';
-

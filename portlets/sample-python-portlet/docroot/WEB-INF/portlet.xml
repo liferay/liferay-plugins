@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
 
-<!-- /WEB-INF/python/common/liferayportlet.py,/WEB-INF/python/common/custom.py -->
-
 <portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd">
 	<portlet>
 		<portlet-name>sample_python_portlet</portlet-name>
