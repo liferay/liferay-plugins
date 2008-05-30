@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.sample.json.servlet;
+package com.liferay.samplejson.servlet;
 
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -37,12 +37,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 
 /**
- * <a href="JSONServlet.java.html"><b><i>View Source</i></b></a>
+ * <a href="SampleJSONServlet.java.html"><b><i>View Source</i></b></a>
  *
  * @author Ming-Gih Lam
  *
  */
-public class JSONServlet extends HttpServlet {
+public class SampleJSONServlet extends HttpServlet {
 
 	public void service(HttpServletRequest req, HttpServletResponse res)
 		throws IOException, ServletException {

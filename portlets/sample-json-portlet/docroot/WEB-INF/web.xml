@@ -4,7 +4,7 @@
 <web-app>
 	<servlet>
 		<servlet-name>Sample JSON Servlet</servlet-name>
-		<servlet-class>com.sample.json.servlet.JSONServlet</servlet-class>
+		<servlet-class>com.liferay.samplejson.servlet.SampleJSONServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Sample JSON Servlet</servlet-name>
