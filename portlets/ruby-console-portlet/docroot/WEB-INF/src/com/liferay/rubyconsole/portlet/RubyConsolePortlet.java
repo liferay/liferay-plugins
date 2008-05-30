@@ -81,6 +81,8 @@ public class RubyConsolePortlet extends RubyPortlet {
 
 				Throwable te = bsfe.getTargetException();
 
+				out.write("\n@ERROR@\n".getBytes());
+
 				te.printStackTrace(new PrintStream(out, true, StringPool.UTF8));
 
 				out.close();

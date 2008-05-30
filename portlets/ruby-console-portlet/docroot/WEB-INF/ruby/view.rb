@@ -30,11 +30,11 @@ out.print <<-EOF
 				#{namespace}consoleInput: content
 			},
 			function(data) {
-				if (data.match(/^ERROR:/) || document.#{namespace}fm.#{namespace}outputMode.checked) {
-					jQuery("\##{namespace}consoleOutput").empty().text(data);
+				if (!data.match(/^@ERROR@$/m) && document.#{namespace}fm.#{namespace}outputMode.checked) {
+					jQuery("\##{namespace}consoleOutput").empty().append(data);
 				}
 				else {
-					jQuery("\##{namespace}consoleOutput").empty().append(data);
+					jQuery("\##{namespace}consoleOutput").empty().text(data);
 				}
 			}
 		);
