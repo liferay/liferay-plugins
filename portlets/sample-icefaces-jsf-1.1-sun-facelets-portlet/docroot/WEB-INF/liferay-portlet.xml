@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>sample_icefaces_jsf_1_1_sun_facelets_portlet</portlet-name>
+		<portlet-name>1</portlet-name>
 		<instanceable>true</instanceable>
 		<render-weight>1</render-weight>
 		<ajaxable>false</ajaxable>

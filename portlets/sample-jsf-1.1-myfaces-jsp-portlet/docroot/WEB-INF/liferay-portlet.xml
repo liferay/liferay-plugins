@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>sample_jsf_1_1_myfaces_jsp_portlet</portlet-name>
+		<portlet-name>1</portlet-name>
 		<url-encoder-class>com.sample.jsfmyfaces.portlet.LogURLEncoder</url-encoder-class>
 		<instanceable>true</instanceable>
 	</portlet>
