@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.sample.signin.portlet;
+package com.liferay.samplesignin.portlet;
 
 import com.liferay.portal.kernel.portlet.NoRedirectActionResponse;
 import com.liferay.portal.kernel.struts.PortletActionInvoker;

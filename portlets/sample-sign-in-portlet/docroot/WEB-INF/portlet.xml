@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Sample Sign In</display-name>
-		<portlet-class>com.sample.signin.portlet.SignInPortlet</portlet-class>
+		<portlet-class>com.liferay.samplesignin.portlet.SignInPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/view.jsp</value>
