@@ -4,6 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
+		<icon>/icon.png</icon>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
