@@ -22,10 +22,27 @@
  */
 %>
 
-<%@ include file="/html/portlet/today_in_christian_history/init.jsp" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+
+<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
+
+<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
+<%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
+
+<%@ page import="com.liferay.portal.kernel.util.Randomizer" %>
+<%@ page import="com.liferay.tich.model.Event" %>
+<%@ page import="com.liferay.tich.util.TICHUtil" %>
+
+<%@ page import="java.util.List" %>
+
+<%@ page import="javax.portlet.WindowState" %>
+
+<portlet:defineObjects />
 
 <%
-List events = TICHUtil.getEvents();
+WindowState windowState = renderRequest.getWindowState();
+
+List<Event> events = TICHUtil.getEvents();
 %>
 
 <c:choose>
@@ -34,7 +51,7 @@ List events = TICHUtil.getEvents();
 			<c:when test="<%= windowState.equals(WindowState.NORMAL) %>">
 
 				<%
-				Event event = (Event)events.get(Randomizer.getInstance().nextInt(events.size()));
+				Event event = events.get(Randomizer.getInstance().nextInt(events.size()));
 				%>
 
 				<b><i><%= event.getYear() %></i></b>
@@ -46,8 +63,7 @@ List events = TICHUtil.getEvents();
 				<br /><br />
 
 				<a href="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" />">
-				<liferay-ui:message key="read-more" /> &raquo;
-				</a>
+				<liferay-ui:message key="read-more" /> &raquo;</a>
 			</c:when>
 			<c:otherwise>
 				<table class="lfr-table">
@@ -78,29 +94,7 @@ List events = TICHUtil.getEvents();
 				<tr>
 					<td></td>
 					<td>
-						<liferay-ui:message key="source" />:
-
-						<c:if test="<%= user.hasCompanyMx() %>">
-
-							<%
-							PortletURL mailURL = new PortletURLImpl(request, PortletKeys.MAIL, plid.longValue(), PortletRequest.ACTION_PHASE);
-
-							mailURL.setWindowState(WindowState.MAXIMIZED);
-							mailURL.setPortletMode(PortletMode.VIEW);
-
-							mailURL.setParameter("struts_action", "/mail/compose_message_to");
-							mailURL.setParameter("recipient_address", "pilgrimwb@aol.com");
-							mailURL.setParameter("recipient_name", "William D. Blake");
-							%>
-
-							<a href="<%= mailURL.toString() %>">
-						</c:if>
-
-						<c:if test="<%= !user.hasCompanyMx() %>">
-							<a href="mailto:pilgrimwb@aol.com" target="_blank">
-						</c:if>
-
-						William D. Blake</a>, <i>Almanac of the Christian Church</i>.
+						<liferay-ui:message key="source" />: William D. Blake</a>, <i>Almanac of the Christian Church</i>.
 					</td>
 				</tr>
 				</table>
