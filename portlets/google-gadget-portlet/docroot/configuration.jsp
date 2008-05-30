@@ -144,7 +144,7 @@ GGData data = GGUtil.getData(url);
 
 				<liferay-ui:table-iterator
 					list="<%= data.getEntries() %>"
-					listType="com.liferay.portlet.googlegadget.model.GGEntry"
+					listType="com.liferay.googlegadget.model.GGEntry"
 					rowLength="4"
 					width="100%"
 				>

@@ -20,34 +20,48 @@
  * SOFTWARE.
  */
 
-package com.liferay.portlet.googlegadget.util;
+package com.liferay.googlegadget.util;
 
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.webcache.WebCacheItem;
-import com.liferay.portal.kernel.webcache.WebCachePoolUtil;
-import com.liferay.portlet.googlegadget.model.GGData;
+import com.germinus.easyconf.ComponentProperties;
+
+import com.liferay.util.ExtPropertiesLoader;
+
+import java.util.Properties;
 
 /**
- * <a href="GGUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="PortletProps.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class GGUtil {
+public class PortletProps {
 
-	public static GGData getData(String url) {
-		WebCacheItem wci = new GGDataWebCacheItem(url);
+	public static boolean containsKey(String key) {
+		return _getInstance().containsKey(key);
+	}
 
-		String key = GGUtil.class.getName() + StringPool.PERIOD + url;
+	public static String get(String key) {
+		return _getInstance().get(key);
+	}
 
-		try {
-			return (GGData)WebCachePoolUtil.get(key, wci);
-		}
-		catch (ClassCastException cce) {
-			WebCachePoolUtil.remove(key);
+	public static void set(String key, String value) {
+		_getInstance().set(key, value);
+	}
 
-			return (GGData)WebCachePoolUtil.get(key, wci);
-		}
+	public static String[] getArray(String key) {
+		return _getInstance().getArray(key);
+	}
+
+	public static Properties getProperties() {
+		return _getInstance().getProperties();
+	}
+
+	public static ComponentProperties getComponentProperties() {
+		return _getInstance().getComponentProperties();
+	}
+
+	private static ExtPropertiesLoader _getInstance() {
+		return ExtPropertiesLoader.getInstance("google-gadget-portlet");
 	}
 
 }

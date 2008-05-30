@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.liferay.portlet.googlesearch.action;
+package com.liferay.googleadsense.action;
 
 import com.liferay.portal.kernel.portlet.ConfigurationAction;
 import com.liferay.portal.kernel.util.Constants;
@@ -53,15 +53,34 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			return;
 		}
 
-		String license = ParamUtil.getString(req, "license");
+		int adFormat = ParamUtil.getInteger(req, "adFormat");
+		int adType = ParamUtil.getInteger(req, "adType");
+		String adClient = ParamUtil.getString(req, "adClient");
+		String adChannel = ParamUtil.getString(req, "adChannel");
 
-		String portletResource = ParamUtil.getString(req, "portletResource");
+		String colorBorder = ParamUtil.getString(req, "colorBorder");
+		String colorBg = ParamUtil.getString(req, "colorBg");
+		String colorLink = ParamUtil.getString(req, "colorLink");
+		String colorText = ParamUtil.getString(req, "colorText");
+		String colorUrl = ParamUtil.getString(req, "colorUrl");
+
+		String portletResource = ParamUtil.getString(
+			req, "portletResource");
 
 		PortletPreferences prefs =
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				req, portletResource);
 
-		prefs.setValue("license", license);
+		prefs.setValue("ad-format", String.valueOf(adFormat));
+		prefs.setValue("ad-type", String.valueOf(adType));
+		prefs.setValue("ad-client", adClient);
+		prefs.setValue("ad-channel", adChannel);
+
+		prefs.setValue("color-border", colorBorder);
+		prefs.setValue("color-bg", colorBg);
+		prefs.setValue("color-link", colorLink);
+		prefs.setValue("color-text", colorText);
+		prefs.setValue("color-url", colorUrl);
 
 		prefs.store();
 

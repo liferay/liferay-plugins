@@ -20,60 +20,38 @@
  * SOFTWARE.
  */
 
-package com.liferay.portlet.googlegadget.model;
+package com.liferay.googlegadget.model;
 
 /**
- * <a href="GGPagination.java.html"><b><i>View Source</i></b></a>
+ * <a href="GGCategory.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class GGPagination {
+public class GGCategory {
 
-	public static final int DEFAULT_DELTA = 24;
-
-	public GGPagination(int delta, int start, int end, int total) {
-		_delta = delta;
-		_start = start;
-		_end = end;
-		_total = total;
+	public GGCategory(String categoryId, String name) {
+		_categoryId = categoryId;
+		_name = name;
 	}
 
-	public int getDelta() {
-		return _delta;
+	public String getCategoryId() {
+		return _categoryId;
 	}
 
-	public void setDelta(int delta) {
-		_delta = delta;
+	public void setCategoryId(String categoryId) {
+		_categoryId = categoryId;
 	}
 
-	public int getStart() {
-		return _start;
+	public String getName() {
+		return _name;
 	}
 
-	public void setStart(int start) {
-		_start = start;
+	public void setName(String name) {
+		_name = name;
 	}
 
-	public int getEnd() {
-		return _end;
-	}
-
-	public void setEnd(int end) {
-		_end = end;
-	}
-
-	public int getTotal() {
-		return _total;
-	}
-
-	public void setTotal(int total) {
-		_total = total;
-	}
-
-	private int _delta;
-	private int _start;
-	private int _end;
-	private int _total;
+	private String _categoryId;
+	private String _name;
 
 }

@@ -5,7 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
-		<configuration-action-class>com.liferay.portlet.googlegadget.action.ConfigurationActionImpl</configuration-action-class>
+		<configuration-action-class>com.liferay.googlegadget.action.ConfigurationActionImpl</configuration-action-class>
 		<instanceable>true</instanceable>
 		<render-weight>1</render-weight>
 		<ajaxable>false</ajaxable>

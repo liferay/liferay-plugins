@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Google Maps</display-name>
-		<portlet-class>com.liferay.portlet.googlemaps.portlet.GoogleMapsPortlet</portlet-class>
+		<portlet-class>com.liferay.googlemaps.portlet.GoogleMapsPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/view.jsp</value>

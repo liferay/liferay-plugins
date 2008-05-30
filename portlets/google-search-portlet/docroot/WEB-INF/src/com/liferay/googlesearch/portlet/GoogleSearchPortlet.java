@@ -20,59 +20,57 @@
  * SOFTWARE.
  */
 
-package com.liferay.portlet.googlegadget.action;
+package com.liferay.googlesearch.portlet;
 
-import com.liferay.portal.kernel.portlet.ConfigurationAction;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portlet.PortletPreferencesFactoryUtil;
+import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.util.servlet.SessionMessages;
+
+import java.io.IOException;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
+import javax.portlet.PortletException;
+import javax.portlet.PortletMode;
 import javax.portlet.PortletPreferences;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
 
 /**
- * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="GoogleSearchPortlet.java.html"><b><i>View Source</i></b></a>
  *
- * @author Jorge Ferrer
+ * @author Brian Wing Shun Chan
  *
  */
-public class ConfigurationActionImpl implements ConfigurationAction {
+public class GoogleSearchPortlet extends JSPPortlet {
 
-	public void processAction(
-			PortletConfig config, ActionRequest req, ActionResponse res)
-		throws Exception {
+	public void processAction(ActionRequest req, ActionResponse res)
+		throws IOException, PortletException {
 
+		if (req.getPortletMode().equals(PortletMode.EDIT)) {
+			updatePreferences(req, res);
+		}
+	}
+
+	protected void updatePreferences(ActionRequest req, ActionResponse res)
+		throws IOException, PortletException {
 		String cmd = ParamUtil.getString(req, Constants.CMD);
 
 		if (!cmd.equals(Constants.UPDATE)) {
 			return;
 		}
 
-		String gadgetId = ParamUtil.getString(req, "gadgetId");
+		PortletPreferences prefs = req.getPreferences();
 
-		String portletResource = ParamUtil.getString(req, "portletResource");
+		boolean safeSearch = ParamUtil.getBoolean(req, "safeSearch");
 
-		PortletPreferences prefs =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				req, portletResource);
-
-		prefs.setValue("gadget-id", gadgetId);
+		prefs.setValue("safe-search", Boolean.toString(safeSearch));
 
 		prefs.store();
 
-		SessionMessages.add(req, config.getPortletName() + ".doConfigure");
-	}
+		PortletConfig config = getPortletConfig();
 
-	public String render(
-			PortletConfig config, RenderRequest req, RenderResponse res)
-		throws Exception {
-
-		return "/configuration.jsp";
+		SessionMessages.add(req, config.getPortletName() + ".doEdit");
 	}
 
 }

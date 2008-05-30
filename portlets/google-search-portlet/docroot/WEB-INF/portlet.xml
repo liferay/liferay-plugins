@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Google Search</display-name>
-		<portlet-class>com.liferay.portlet.googlesearch.portlet.GoogleSearchPortlet</portlet-class>
+		<portlet-class>com.liferay.googlesearch.portlet.GoogleSearchPortlet</portlet-class>
 		<init-param>
 			<name>edit-jsp</name>
 			<value>/edit.jsp</value>

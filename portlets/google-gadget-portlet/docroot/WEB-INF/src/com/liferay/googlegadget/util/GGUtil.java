@@ -20,50 +20,34 @@
  * SOFTWARE.
  */
 
-package com.liferay.portlet.googlegadget.model;
+package com.liferay.googlegadget.util;
 
-import java.util.List;
+import com.liferay.googlegadget.model.GGData;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.webcache.WebCacheItem;
+import com.liferay.portal.kernel.webcache.WebCachePoolUtil;
 
 /**
- * <a href="GGData.java.html"><b><i>View Source</i></b></a>
+ * <a href="GGUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class GGData {
+public class GGUtil {
 
-	public GGData(List categories, List entries, GGPagination pagination) {
-		_categories = categories;
-		_entries = entries;
-		_pagination = pagination;
+	public static GGData getData(String url) {
+		WebCacheItem wci = new GGDataWebCacheItem(url);
+
+		String key = GGUtil.class.getName() + StringPool.PERIOD + url;
+
+		try {
+			return (GGData)WebCachePoolUtil.get(key, wci);
+		}
+		catch (ClassCastException cce) {
+			WebCachePoolUtil.remove(key);
+
+			return (GGData)WebCachePoolUtil.get(key, wci);
+		}
 	}
-
-	public List getCategories() {
-		return _categories;
-	}
-
-	public void setCategories(List categories) {
-		_categories = categories;
-	}
-
-	public List getEntries() {
-		return _entries;
-	}
-
-	public void setEntries(List entries) {
-		_entries = entries;
-	}
-
-	public GGPagination getPagination() {
-		return _pagination;
-	}
-
-	public void setPagination(GGPagination pagination) {
-		_pagination = pagination;
-	}
-
-	private List _categories;
-	private List _entries;
-	private GGPagination _pagination;
 
 }

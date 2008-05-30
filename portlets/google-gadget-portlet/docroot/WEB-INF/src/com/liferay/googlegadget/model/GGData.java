@@ -20,48 +20,50 @@
  * SOFTWARE.
  */
 
-package com.liferay.portlet.googlegadget.model;
+package com.liferay.googlegadget.model;
+
+import java.util.List;
 
 /**
- * <a href="GGEntry.java.html"><b><i>View Source</i></b></a>
+ * <a href="GGData.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class GGEntry {
+public class GGData {
 
-	public GGEntry(String gadgetId, String name, String image) {
-		_gadgetId = gadgetId;
-		_name = name;
-		_image = image;
+	public GGData(List categories, List entries, GGPagination pagination) {
+		_categories = categories;
+		_entries = entries;
+		_pagination = pagination;
 	}
 
-	public String getGadgetId() {
-		return _gadgetId;
+	public List getCategories() {
+		return _categories;
 	}
 
-	public void setGadgetId(String gadgetId) {
-		_gadgetId = gadgetId;
+	public void setCategories(List categories) {
+		_categories = categories;
 	}
 
-	public String getName() {
-		return _name;
+	public List getEntries() {
+		return _entries;
 	}
 
-	public void setName(String name) {
-		_name = name;
+	public void setEntries(List entries) {
+		_entries = entries;
 	}
 
-	public String getImage() {
-		return _image;
+	public GGPagination getPagination() {
+		return _pagination;
 	}
 
-	public void setImage(String image) {
-		_image = image;
+	public void setPagination(GGPagination pagination) {
+		_pagination = pagination;
 	}
 
-	private String _gadgetId;
-	private String _name;
-	private String _image;
+	private List _categories;
+	private List _entries;
+	private GGPagination _pagination;
 
 }

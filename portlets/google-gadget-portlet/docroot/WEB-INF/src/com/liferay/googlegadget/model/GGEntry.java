@@ -20,27 +20,28 @@
  * SOFTWARE.
  */
 
-package com.liferay.portlet.googlegadget.model;
+package com.liferay.googlegadget.model;
 
 /**
- * <a href="GGCategory.java.html"><b><i>View Source</i></b></a>
+ * <a href="GGEntry.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class GGCategory {
+public class GGEntry {
 
-	public GGCategory(String categoryId, String name) {
-		_categoryId = categoryId;
+	public GGEntry(String gadgetId, String name, String image) {
+		_gadgetId = gadgetId;
 		_name = name;
+		_image = image;
 	}
 
-	public String getCategoryId() {
-		return _categoryId;
+	public String getGadgetId() {
+		return _gadgetId;
 	}
 
-	public void setCategoryId(String categoryId) {
-		_categoryId = categoryId;
+	public void setGadgetId(String gadgetId) {
+		_gadgetId = gadgetId;
 	}
 
 	public String getName() {
@@ -51,7 +52,16 @@ public class GGCategory {
 		_name = name;
 	}
 
-	private String _categoryId;
+	public String getImage() {
+		return _image;
+	}
+
+	public void setImage(String image) {
+		_image = image;
+	}
+
+	private String _gadgetId;
 	private String _name;
+	private String _image;
 
 }

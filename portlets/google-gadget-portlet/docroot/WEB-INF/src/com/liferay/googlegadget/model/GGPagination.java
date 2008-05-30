@@ -20,45 +20,60 @@
  * SOFTWARE.
  */
 
-package com.liferay.portlet.googlemaps.portlet;
-
-import com.liferay.portal.kernel.util.Constants;
-import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.util.bridges.jsp.JSPPortlet;
-
-import java.io.IOException;
-
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.PortletException;
-import javax.portlet.PortletSession;
+package com.liferay.googlegadget.model;
 
 /**
- * <a href="GoogleMapsPortlet.java.html"><b><i>View Source</i></b></a>
+ * <a href="GGPagination.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class GoogleMapsPortlet extends JSPPortlet {
+public class GGPagination {
 
-	public void processAction(ActionRequest req, ActionResponse res)
-		throws IOException, PortletException {
+	public static final int DEFAULT_DELTA = 24;
 
-		PortletSession ses = req.getPortletSession();
-
-		String cmd = ParamUtil.getString(req, Constants.CMD);
-
-		if (cmd.equals("saveDirectionsAddress")) {
-			String directionsAddress = ParamUtil.getString(
-				req, "directionsAddress");
-
-			ses.setAttribute("directionsAddress", directionsAddress);
-		}
-		else if (cmd.equals("saveMapAddress")) {
-			String mapAddress = ParamUtil.getString(req, "mapAddress");
-
-			ses.setAttribute("mapAddress", mapAddress);
-		}
+	public GGPagination(int delta, int start, int end, int total) {
+		_delta = delta;
+		_start = start;
+		_end = end;
+		_total = total;
 	}
+
+	public int getDelta() {
+		return _delta;
+	}
+
+	public void setDelta(int delta) {
+		_delta = delta;
+	}
+
+	public int getStart() {
+		return _start;
+	}
+
+	public void setStart(int start) {
+		_start = start;
+	}
+
+	public int getEnd() {
+		return _end;
+	}
+
+	public void setEnd(int end) {
+		_end = end;
+	}
+
+	public int getTotal() {
+		return _total;
+	}
+
+	public void setTotal(int total) {
+		_total = total;
+	}
+
+	private int _delta;
+	private int _start;
+	private int _end;
+	private int _total;
 
 }

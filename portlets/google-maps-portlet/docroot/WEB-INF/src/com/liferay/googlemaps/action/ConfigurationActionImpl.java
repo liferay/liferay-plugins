@@ -20,11 +20,12 @@
  * SOFTWARE.
  */
 
-package com.liferay.portlet.googleadsense.action;
+package com.liferay.googlemaps.action;
 
 import com.liferay.portal.kernel.portlet.ConfigurationAction;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.util.servlet.SessionMessages;
 
@@ -32,13 +33,14 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletPreferences;
+import javax.portlet.PortletSession;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
 /**
  * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
  *
- * @author Brian Wing Shun Chan
+ * @author Mark Wong
  *
  */
 public class ConfigurationActionImpl implements ConfigurationAction {
@@ -53,36 +55,41 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			return;
 		}
 
-		int adFormat = ParamUtil.getInteger(req, "adFormat");
-		int adType = ParamUtil.getInteger(req, "adType");
-		String adClient = ParamUtil.getString(req, "adClient");
-		String adChannel = ParamUtil.getString(req, "adChannel");
+		String license = ParamUtil.getString(req, "license");
+		String mapAddress = ParamUtil.getString(req, "mapAddress");
+		boolean mapInputEnabled = ParamUtil.getBoolean(req, "mapInputEnabled");
+		String directionsAddress = ParamUtil.getString(
+			req, "directionsAddress");
+		boolean directionsInputEnabled = ParamUtil.getBoolean(
+			req, "directionsInputEnabled");
+		String height = ParamUtil.getString(req, "height");
 
-		String colorBorder = ParamUtil.getString(req, "colorBorder");
-		String colorBg = ParamUtil.getString(req, "colorBg");
-		String colorLink = ParamUtil.getString(req, "colorLink");
-		String colorText = ParamUtil.getString(req, "colorText");
-		String colorUrl = ParamUtil.getString(req, "colorUrl");
-
-		String portletResource = ParamUtil.getString(
-			req, "portletResource");
+		String portletResource = ParamUtil.getString(req, "portletResource");
 
 		PortletPreferences prefs =
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				req, portletResource);
 
-		prefs.setValue("ad-format", String.valueOf(adFormat));
-		prefs.setValue("ad-type", String.valueOf(adType));
-		prefs.setValue("ad-client", adClient);
-		prefs.setValue("ad-channel", adChannel);
-
-		prefs.setValue("color-border", colorBorder);
-		prefs.setValue("color-bg", colorBg);
-		prefs.setValue("color-link", colorLink);
-		prefs.setValue("color-text", colorText);
-		prefs.setValue("color-url", colorUrl);
+		prefs.setValue("license", license);
+		prefs.setValue("map-address", mapAddress);
+		prefs.setValue("map-input-enabled", String.valueOf(mapInputEnabled));
+		prefs.setValue("directions-address", directionsAddress);
+		prefs.setValue(
+			"directions-input-enabled", String.valueOf(directionsInputEnabled));
+		prefs.setValue("height", height);
 
 		prefs.store();
+
+		PortletSession ses = req.getPortletSession();
+
+		ses.removeAttribute(
+			PortalUtil.getPortletNamespace(portletResource) + "mapAddress",
+			PortletSession.APPLICATION_SCOPE);
+
+		ses.removeAttribute(
+			PortalUtil.getPortletNamespace(portletResource) +
+				"directionsAddress",
+			PortletSession.APPLICATION_SCOPE);
 
 		SessionMessages.add(req, config.getPortletName() + ".doConfigure");
 	}

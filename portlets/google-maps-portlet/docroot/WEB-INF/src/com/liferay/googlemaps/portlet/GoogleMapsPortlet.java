@@ -20,48 +20,45 @@
  * SOFTWARE.
  */
 
-package com.liferay.portlet.googlegadget.util;
+package com.liferay.googlemaps.portlet;
 
-import com.germinus.easyconf.ComponentProperties;
+import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.util.bridges.jsp.JSPPortlet;
 
-import com.liferay.util.ExtPropertiesLoader;
+import java.io.IOException;
 
-import java.util.Properties;
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
+import javax.portlet.PortletException;
+import javax.portlet.PortletSession;
 
 /**
- * <a href="PortletProps.java.html"><b><i>View Source</i></b></a>
+ * <a href="GoogleMapsPortlet.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class PortletProps {
+public class GoogleMapsPortlet extends JSPPortlet {
 
-	public static boolean containsKey(String key) {
-		return _getInstance().containsKey(key);
-	}
+	public void processAction(ActionRequest req, ActionResponse res)
+		throws IOException, PortletException {
 
-	public static String get(String key) {
-		return _getInstance().get(key);
-	}
+		PortletSession ses = req.getPortletSession();
 
-	public static void set(String key, String value) {
-		_getInstance().set(key, value);
-	}
+		String cmd = ParamUtil.getString(req, Constants.CMD);
 
-	public static String[] getArray(String key) {
-		return _getInstance().getArray(key);
-	}
+		if (cmd.equals("saveDirectionsAddress")) {
+			String directionsAddress = ParamUtil.getString(
+				req, "directionsAddress");
 
-	public static Properties getProperties() {
-		return _getInstance().getProperties();
-	}
+			ses.setAttribute("directionsAddress", directionsAddress);
+		}
+		else if (cmd.equals("saveMapAddress")) {
+			String mapAddress = ParamUtil.getString(req, "mapAddress");
 
-	public static ComponentProperties getComponentProperties() {
-		return _getInstance().getComponentProperties();
-	}
-
-	private static ExtPropertiesLoader _getInstance() {
-		return ExtPropertiesLoader.getInstance("google-gadget-portlet");
+			ses.setAttribute("mapAddress", mapAddress);
+		}
 	}
 
 }

@@ -20,12 +20,11 @@
  * SOFTWARE.
  */
 
-package com.liferay.portlet.googlemaps.action;
+package com.liferay.googlesearch.action;
 
 import com.liferay.portal.kernel.portlet.ConfigurationAction;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.util.servlet.SessionMessages;
 
@@ -33,14 +32,13 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletPreferences;
-import javax.portlet.PortletSession;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
 /**
  * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
  *
- * @author Mark Wong
+ * @author Brian Wing Shun Chan
  *
  */
 public class ConfigurationActionImpl implements ConfigurationAction {
@@ -56,13 +54,6 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		}
 
 		String license = ParamUtil.getString(req, "license");
-		String mapAddress = ParamUtil.getString(req, "mapAddress");
-		boolean mapInputEnabled = ParamUtil.getBoolean(req, "mapInputEnabled");
-		String directionsAddress = ParamUtil.getString(
-			req, "directionsAddress");
-		boolean directionsInputEnabled = ParamUtil.getBoolean(
-			req, "directionsInputEnabled");
-		String height = ParamUtil.getString(req, "height");
 
 		String portletResource = ParamUtil.getString(req, "portletResource");
 
@@ -71,25 +62,8 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 				req, portletResource);
 
 		prefs.setValue("license", license);
-		prefs.setValue("map-address", mapAddress);
-		prefs.setValue("map-input-enabled", String.valueOf(mapInputEnabled));
-		prefs.setValue("directions-address", directionsAddress);
-		prefs.setValue(
-			"directions-input-enabled", String.valueOf(directionsInputEnabled));
-		prefs.setValue("height", height);
 
 		prefs.store();
-
-		PortletSession ses = req.getPortletSession();
-
-		ses.removeAttribute(
-			PortalUtil.getPortletNamespace(portletResource) + "mapAddress",
-			PortletSession.APPLICATION_SCOPE);
-
-		ses.removeAttribute(
-			PortalUtil.getPortletNamespace(portletResource) +
-				"directionsAddress",
-			PortletSession.APPLICATION_SCOPE);
 
 		SessionMessages.add(req, config.getPortletName() + ".doConfigure");
 	}
