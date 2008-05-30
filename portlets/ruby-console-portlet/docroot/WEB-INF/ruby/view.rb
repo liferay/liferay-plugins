@@ -20,7 +20,6 @@ out.print <<-EOF
 
 <script type="text/javascript">
 	function #{namespace}execute() {
-		var inputContent = jQuery('input[@name=#{namespace}xsd]');
 		var content = #{namespace}consoleInput.getCode();
 
 		jQuery.get(
