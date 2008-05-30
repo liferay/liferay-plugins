@@ -135,7 +135,7 @@ else {
 					function() {
 						<c:choose>
 							<c:when test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
-								var html = '<center><img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= mapUser.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(mapUser.getPortraitId()) %>" /><br /><%= mapUser.getFullName() %></center>';
+								var html = '<center><img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= mapUser.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(mapUser.getPortraitId()) %>" width="65" /><br /><%= mapUser.getFullName() %></center>';
 
 								marker<%= i %>.openInfoWindowHtml(html);
 							</c:when>
