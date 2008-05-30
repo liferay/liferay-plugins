@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.liferay.seam.core;
+package com.liferay.sampleseam.core;
 
 import java.util.Map;
 

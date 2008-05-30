@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.liferay.seam.jsf;
+package com.liferay.sampleseam.jsf;
 
 import javax.faces.event.PhaseEvent;
 

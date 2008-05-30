@@ -8,6 +8,6 @@
 	-->
 
 	<lifecycle>
-		<phase-listener>com.liferay.seam.jsf.SeamPortletPhaseListener</phase-listener>
+		<phase-listener>com.liferay.sampleseam.jsf.SeamPortletPhaseListener</phase-listener>
 	</lifecycle>
 </faces-config>

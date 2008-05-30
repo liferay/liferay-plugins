@@ -16,13 +16,13 @@ LIFERAY PROVIDED WORKAROUND: See JBSEAM-1556 below
 ISSUE: JBSEAM-1556
 JIRA: http://jira.jboss.com/jira/browse/JBSEAM-1556
 DESCRIPTION: Multiple instances of Seam PhaseListener permitted to be registered in JSF lifecycle
-LIFERAY PROVIDED WORKAROUND: Specify either com.liferay.seam.jsf.SeamPortletPhaseListener
-or com.liferay.seam.jsf.TransactionalSeamPortletPhaseListener in the <phase-listener>
+LIFERAY PROVIDED WORKAROUND: Specify either com.liferay.sampleseam.jsf.SeamPortletPhaseListener
+or com.liferay.sampleseam.jsf.TransactionalSeamPortletPhaseListener in the <phase-listener>
 entry found in the WEB-INF/faces-config.xml file.
 
 ISSUE: JBSEAM-1557
 JIRA: http://jira.jboss.com/jira/browse/JBSEAM-1557
 DESCRIPTION: Seam is peforming a redirect in when running as a portlet, rather than using the portlet lifecycle
-LIFERAY PROVIDED WORKAROUND: The com.liferay.seam.core.Manager Seam component will automatically
+LIFERAY PROVIDED WORKAROUND: The com.liferay.sampleseam.core.Manager Seam component will automatically
 override the org.jboss.core.Manager component found in the jboss-seam.jar library, since it has
 a higher precedence value in the @Install annotation.
