@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <model-hints>
-	<model name="com.sample.servicebuilder.model.Foo">
+	<model name="com.liferay.sampleservicebuilder.model.Foo">
 		<field name="fooId" type="long" />
 		<field name="field1" type="String" />
 		<field name="field2" type="boolean" />

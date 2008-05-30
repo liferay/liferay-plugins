@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -20,34 +19,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
 
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+package com.liferay.sampleservicebuilder.model;
 
-<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
+import com.liferay.portal.model.BaseModel;
 
-<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
+import java.util.Date;
 
-<%@ page import="com.liferay.portal.kernel.util.Constants" %>
-<%@ page import="com.liferay.portal.kernel.util.DateFormats" %>
-<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
-<%@ page import="com.liferay.portal.util.PortalUtil" %>
-<%@ page import="com.liferay.sampleservicebuilder.model.Foo" %>
-<%@ page import="com.liferay.sampleservicebuilder.service.FooLocalServiceUtil" %>
-<%@ page import="com.liferay.sampleservicebuilder.util.comparator.FooField4Comparator" %>
+/**
+ * <a href="FooModel.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public interface FooModel extends BaseModel {
+	public long getPrimaryKey();
 
-<%@ page import="java.text.DateFormat" %>
+	public void setPrimaryKey(long pk);
 
-<%@ page import="java.util.Date" %>
-<%@ page import="java.util.List" %>
+	public long getFooId();
 
-<%@ page import="javax.portlet.PortletURL" %>
+	public void setFooId(long fooId);
 
-<portlet:defineObjects />
+	public String getField1();
 
-<liferay-theme:defineObjects />
+	public void setField1(String field1);
 
-<%
-DateFormat dateFormatDateTime = DateFormats.getDateTime(locale, timeZone);
-%>
+	public boolean getField2();
+
+	public boolean isField2();
+
+	public void setField2(boolean field2);
+
+	public int getField3();
+
+	public void setField3(int field3);
+
+	public Date getField4();
+
+	public void setField4(Date field4);
+
+	public String getField5();
+
+	public void setField5(String field5);
+
+	public Foo toEscapedModel();
+}

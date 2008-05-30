@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_0_0.dtd">
 
-<service-builder package-path="com.sample.servicebuilder">
-	<namespace>Sample</namespace>
+<service-builder package-path="com.liferay.sampleservicebuilder">
+	<namespace>SSB</namespace>
 	<entity name="Foo" local-service="true" remote-service="true">
 
 		<!-- PK fields -->

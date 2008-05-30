@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -20,34 +19,57 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
 
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+package com.liferay.sampleservicebuilder.util.comparator;
 
-<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
+import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.OrderByComparator;
 
-<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
+import com.liferay.sampleservicebuilder.model.Foo;
 
-<%@ page import="com.liferay.portal.kernel.util.Constants" %>
-<%@ page import="com.liferay.portal.kernel.util.DateFormats" %>
-<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
-<%@ page import="com.liferay.portal.util.PortalUtil" %>
-<%@ page import="com.liferay.sampleservicebuilder.model.Foo" %>
-<%@ page import="com.liferay.sampleservicebuilder.service.FooLocalServiceUtil" %>
-<%@ page import="com.liferay.sampleservicebuilder.util.comparator.FooField4Comparator" %>
+/**
+ * <a href="FooField4Comparator.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Alexander Chow
+ *
+ */
+public class FooField4Comparator extends OrderByComparator {
 
-<%@ page import="java.text.DateFormat" %>
+	public static String ORDER_BY_ASC = "field4 ASC";
 
-<%@ page import="java.util.Date" %>
-<%@ page import="java.util.List" %>
+	public static String ORDER_BY_DESC = "field4 DESC";
 
-<%@ page import="javax.portlet.PortletURL" %>
+	public FooField4Comparator() {
+		this(false);
+	}
 
-<portlet:defineObjects />
+	public FooField4Comparator(boolean asc) {
+		_asc = asc;
+	}
 
-<liferay-theme:defineObjects />
+	public int compare(Object obj1, Object obj2) {
+		Foo foo1 = (Foo)obj1;
+		Foo foo2 = (Foo)obj2;
 
-<%
-DateFormat dateFormatDateTime = DateFormats.getDateTime(locale, timeZone);
-%>
+		int value = DateUtil.compareTo(foo1.getField4(), foo2.getField4());
+
+		if (_asc) {
+			return value;
+		}
+		else {
+			return -value;
+		}
+	}
+
+	public String getOrderBy() {
+		if (_asc) {
+			return ORDER_BY_ASC;
+		}
+		else {
+			return ORDER_BY_DESC;
+		}
+	}
+
+	private boolean _asc;
+
+}

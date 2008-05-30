@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -20,34 +19,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
 
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+package com.liferay.sampleservicebuilder.model.impl;
 
-<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
+import com.liferay.sampleservicebuilder.model.Foo;
 
-<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
+/**
+ * <a href="FooImpl.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class FooImpl extends FooModelImpl implements Foo {
 
-<%@ page import="com.liferay.portal.kernel.util.Constants" %>
-<%@ page import="com.liferay.portal.kernel.util.DateFormats" %>
-<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
-<%@ page import="com.liferay.portal.util.PortalUtil" %>
-<%@ page import="com.liferay.sampleservicebuilder.model.Foo" %>
-<%@ page import="com.liferay.sampleservicebuilder.service.FooLocalServiceUtil" %>
-<%@ page import="com.liferay.sampleservicebuilder.util.comparator.FooField4Comparator" %>
+	public FooImpl() {
+	}
 
-<%@ page import="java.text.DateFormat" %>
-
-<%@ page import="java.util.Date" %>
-<%@ page import="java.util.List" %>
-
-<%@ page import="javax.portlet.PortletURL" %>
-
-<portlet:defineObjects />
-
-<liferay-theme:defineObjects />
-
-<%
-DateFormat dateFormatDateTime = DateFormats.getDateTime(locale, timeZone);
-%>
+}
