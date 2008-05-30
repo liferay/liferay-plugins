@@ -42,7 +42,7 @@ out.print <<-EOF
 
 	<br />
 
-	<textarea class="codepress ruby" style="height: 300px; width: 98%;" id="#{namespace}consoleInput" name="#{namespace}consoleInput" wrap="off">
+	<textarea class="codepress ruby" id="#{namespace}consoleInput" name="#{namespace}consoleInput" style="height: 300px; width: 98%;" wrap="off">
 \$resourceResponse.setContentType "text/html"
 
 out = $resourceResponse.getPortletOutputStream
