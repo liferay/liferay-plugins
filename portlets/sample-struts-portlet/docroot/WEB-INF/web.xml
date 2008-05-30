@@ -12,7 +12,7 @@
 	</servlet>
 	<servlet>
 		<servlet-name>TestSessionServlet</servlet-name>
-		<servlet-class>com.sample.struts.servlet.TestSessionServlet</servlet-class>
+		<servlet-class>com.liferay.samplestruts.servlet.TestSessionServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>PortletActionServlet</servlet-name>

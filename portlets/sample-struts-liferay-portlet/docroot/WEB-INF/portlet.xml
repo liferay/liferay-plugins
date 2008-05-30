@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Sample Struts Liferay</display-name>
-		<portlet-class>com.sample.strutsliferay.portlet.SampleStrutsLiferayPortlet</portlet-class>
+		<portlet-class>com.liferay.samplestrutsliferay.portlet.SampleStrutsLiferayPortlet</portlet-class>
 		<init-param>
 			<name>edit-action</name>
 			<value>/sample_struts_liferay_portlet/edit</value>

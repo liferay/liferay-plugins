@@ -28,6 +28,6 @@
 	</role-mapper>
 	<custom-user-attribute>
 		<name>user.name.test</name>
-		<custom-class>com.sample.strutsliferay.portlet.SampleUserAttributes</custom-class>
+		<custom-class>com.liferay.samplestrutsliferay.portlet.SampleUserAttributes</custom-class>
 	</custom-user-attribute>
 </liferay-portlet-app>
