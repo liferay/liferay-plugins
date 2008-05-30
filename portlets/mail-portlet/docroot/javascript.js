@@ -91,7 +91,8 @@ Liferay.Mail = {
 	clearStatus: function() {
 		var instance = this;
 
-		instance.setStatus('','');
+		instance.setStatus('', '');
+
 		instance.statusSpan.css('display', 'none');
 		instance.debugSpan.css('display', 'none');
 	},
@@ -857,6 +858,7 @@ Liferay.Mail = {
 				dataType: 'json',
 				success: function(jsonSuccess) {
 					instance.refreshMessages(true);
+
 					instance.setStatus(Liferay.Language.get('messages-have-been-deleted'), jsonUrl);
 				}
 			});
@@ -932,6 +934,7 @@ Liferay.Mail = {
 
 			if ((option != 'read') && (option != 'unread')) {
 				instance.refreshFolderControls();
+
 				return false;
 			}
 
@@ -941,7 +944,9 @@ Liferay.Mail = {
 
 			if (messageUids == '') {
 				instance.refreshFolderControls();
+
 				instance.setStatus(Liferay.Language.get('no-messages-selected'), '');
+
 				return false;
 			}
 
@@ -1126,6 +1131,7 @@ Liferay.Mail = {
 				},
 				function(jsonResult) {
 					instance.setView('viewFolder');
+
 					instance.setStatus(Liferay.Language.get('your-message-was-sent'), jsonResult);
 				}
 			);

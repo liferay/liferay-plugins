@@ -85,9 +85,7 @@ import org.json.JSONObject;
  */
 public class MailBoxManager {
 
-	public static String getJSONAccounts(User user)
-    	throws MessagingException {
-
+	public static String getJSONAccounts(User user) throws MessagingException {
     	JSONObject jsonObj = new JSONObject();
 
 		// Accounts
