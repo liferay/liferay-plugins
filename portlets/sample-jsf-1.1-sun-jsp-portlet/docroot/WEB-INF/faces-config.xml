@@ -4,7 +4,7 @@
 <faces-config xmlns="http://java.sun.com/JSF/Configuration">
 	<managed-bean>
 		<managed-bean-name>user</managed-bean-name>
-		<managed-bean-class>com.sample.jsfsun.bean.UserBean</managed-bean-class>
+		<managed-bean-class>com.liferay.samplejsfsun.bean.UserBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>

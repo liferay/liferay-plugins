@@ -16,7 +16,7 @@
 		<priority value="DEBUG" />
 	</category>
 
-	<category name="com.sample.icefaces">
+	<category name="com.liferay.sampleicefaces">
 		<priority value="DEBUG" />
 	</category>
 

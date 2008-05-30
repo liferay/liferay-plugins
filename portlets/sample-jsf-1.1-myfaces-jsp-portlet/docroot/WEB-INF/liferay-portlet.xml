@@ -4,7 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<url-encoder-class>com.sample.jsfmyfaces.portlet.LogURLEncoder</url-encoder-class>
+		<url-encoder-class>com.liferay.samplejsfmyfaces.portlet.LogURLEncoder</url-encoder-class>
 		<instanceable>true</instanceable>
 	</portlet>
 	<role-mapper>

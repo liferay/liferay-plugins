@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Sample JSF 1.1 MyFaces Facelets</display-name>
-		<portlet-class>com.sample.jsffacelets.portlet.MyFacesFaceletsPortlet</portlet-class>
+		<portlet-class>com.liferay.samplejsffacelets.portlet.MyFacesFaceletsPortlet</portlet-class>
 		<init-param>
 			<name>EditPage</name>
 			<value>/edit.xhtml</value>

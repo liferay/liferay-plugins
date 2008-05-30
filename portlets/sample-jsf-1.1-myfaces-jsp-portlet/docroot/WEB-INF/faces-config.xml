@@ -7,7 +7,7 @@
 	</factory>
 	<managed-bean>
 		<managed-bean-name>user</managed-bean-name>
-		<managed-bean-class>com.sample.jsfmyfaces.bean.UserBean</managed-bean-class>
+		<managed-bean-class>com.liferay.samplejsfmyfaces.bean.UserBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>

@@ -17,7 +17,7 @@
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>JobApplication</managed-bean-name>
-		<managed-bean-class>com.sample.icefaces.managedbean.JobApplication</managed-bean-class>
+		<managed-bean-class>com.liferay.sampleicefaces.managedbean.JobApplication</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
