@@ -26,10 +26,9 @@
 
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-
-<%@ page import="com.sample.dao.model.FoodItem" %>
-<%@ page import="com.sample.dao.model.FoodItemDAO" %>
-<%@ page import="com.sample.dao.util.ConnectionPool" %>
+<%@ page import="com.liferay.sampledao.model.FoodItem" %>
+<%@ page import="com.liferay.sampledao.model.FoodItemDAO" %>
+<%@ page import="com.liferay.sampledao.util.ConnectionPool" %>
 
 <%@ page import="java.util.List" %>
 

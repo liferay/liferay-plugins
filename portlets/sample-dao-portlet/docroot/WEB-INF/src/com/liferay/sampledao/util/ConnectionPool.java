@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.sample.dao.util;
+package com.liferay.sampledao.util;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.mchange.v2.c3p0.DataSources;

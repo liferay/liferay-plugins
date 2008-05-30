@@ -20,9 +20,9 @@
  * SOFTWARE.
  */
 
-package com.sample.dao.model;
+package com.liferay.sampledao.model;
 
-import com.sample.dao.util.ConnectionPool;
+import com.liferay.sampledao.util.ConnectionPool;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

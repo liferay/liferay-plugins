@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Sample Hibernate</display-name>
-		<portlet-class>com.sample.hibernate.portlet.HibernatePortlet</portlet-class>
+		<portlet-class>com.liferay.samplehibernate.portlet.HibernatePortlet</portlet-class>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>

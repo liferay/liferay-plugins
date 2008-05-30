@@ -31,6 +31,7 @@ import com.liferay.portal.model.User;
  *
  */
 public class MailAccount {
+
     public MailAccount(User user, int accountId) {
     	if (accountId == 0) {
         	_emailAddress = "liferay.mail.1@gmail.com";

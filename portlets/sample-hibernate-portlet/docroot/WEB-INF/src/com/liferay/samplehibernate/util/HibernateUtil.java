@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.sample.hibernate.util;
+package com.liferay.samplehibernate.util;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

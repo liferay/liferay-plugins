@@ -20,16 +20,15 @@
  * SOFTWARE.
  */
 
-package com.sample.hibernate;
+package com.liferay.samplehibernate;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.samplehibernate.model.FoodItem;
+import com.liferay.samplehibernate.util.FoodItemUtil;
 import com.liferay.util.xml.BeanToXMLUtil;
-
-import com.sample.hibernate.model.FoodItem;
-import com.sample.hibernate.util.FoodItemUtil;
 
 import java.util.ArrayList;
 import java.util.Iterator;

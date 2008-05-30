@@ -20,18 +20,14 @@
  * SOFTWARE.
  */
 
-package com.sample.dao.portlet;
+package com.liferay.samplehibernate.portlet;
 
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
-
-import com.sample.dao.model.FoodItem;
-import com.sample.dao.model.FoodItemDAO;
-import com.sample.dao.util.ConnectionPool;
+import com.liferay.samplehibernate.model.FoodItem;
+import com.liferay.samplehibernate.util.FoodItemUtil;
 
 import java.io.IOException;
-
-import java.sql.SQLException;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -47,12 +43,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * <a href="DAOPortlet.java.html"><b><i>View Source</i></b></a>
+ * <a href="HibernatePortlet.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class DAOPortlet extends GenericPortlet {
+public class HibernatePortlet extends GenericPortlet {
 
 	public void init(PortletConfig config) throws PortletException {
 		super.init(config);
@@ -79,22 +75,22 @@ public class DAOPortlet extends GenericPortlet {
 				foodItem.setName(name);
 				foodItem.setPoints(points);
 
-				FoodItemDAO.addFoodItem(foodItem);
+				FoodItemUtil.addFoodItem(foodItem);
 			}
 			else if (cmd.equals(Constants.EDIT)) {
-				FoodItem foodItem = FoodItemDAO.getFoodItem(foodItemId);
+				FoodItem foodItem = FoodItemUtil.getFoodItem(foodItemId);
 
 				foodItem.setName(name);
 				foodItem.setPoints(points);
 
-				FoodItemDAO.updateFoodItem(foodItem);
+				FoodItemUtil.updateFoodItem(foodItem);
 			}
 			else if (cmd.equals(Constants.DELETE)) {
-				FoodItemDAO.deleteFoodItem(foodItemId);
+				FoodItemUtil.deleteFoodItem(foodItemId);
 			}
 		}
-		catch (SQLException sqle) {
-			throw new PortletException(sqle);
+		catch (Exception e) {
+			throw new PortletException(e);
 		}
 	}
 
@@ -131,15 +127,8 @@ public class DAOPortlet extends GenericPortlet {
 		if (_log.isInfoEnabled()) {
 			_log.info("Destroying portlet");
 		}
-
-		try {
-			ConnectionPool.destroy();
-		}
-		catch (Exception e) {
-			_log.error(e);
-		}
 	}
 
-	private static Log _log = LogFactory.getLog(DAOPortlet.class);
+	private static Log _log = LogFactory.getLog(HibernatePortlet.class);
 
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
-	<class name="com.sample.hibernate.model.FoodItem" table="FoodItem">
+	<class name="com.liferay.samplehibernate.model.FoodItem" table="FoodItem">
 		<id name="foodItemId" type="long">
 			<generator class="increment" />
 		</id>

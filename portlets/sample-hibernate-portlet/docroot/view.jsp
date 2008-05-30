@@ -27,9 +27,8 @@
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.HttpUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-
-<%@ page import="com.sample.hibernate.model.FoodItem" %>
-<%@ page import="com.sample.hibernate.util.FoodItemUtil" %>
+<%@ page import="com.liferay.samplehibernate.model.FoodItem" %>
+<%@ page import="com.liferay.samplehibernate.util.FoodItemUtil" %>
 
 <%@ page import="java.util.List" %>
 

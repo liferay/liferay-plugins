@@ -4,7 +4,7 @@
 <web-app>
 	<servlet>
 		<servlet-name>HibernateServlet</servlet-name>
-		<servlet-class>com.sample.hibernate.servlet.HibernateServlet</servlet-class>
+		<servlet-class>com.liferay.samplehibernate.servlet.HibernateServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>HibernateServlet</servlet-name>

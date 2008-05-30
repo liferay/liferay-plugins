@@ -20,9 +20,9 @@
  * SOFTWARE.
  */
 
-package com.sample.hibernate.util;
+package com.liferay.samplehibernate.util;
 
-import com.sample.hibernate.model.FoodItem;
+import com.liferay.samplehibernate.model.FoodItem;
 
 import java.util.List;
 

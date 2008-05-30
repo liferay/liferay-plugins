@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.sample.dao.model;
+package com.liferay.samplehibernate.model;
 
 /**
  * <a href="FoodItem.java.html"><b><i>View Source</i></b></a>
