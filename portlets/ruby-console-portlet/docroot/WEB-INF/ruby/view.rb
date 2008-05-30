@@ -11,6 +11,7 @@ out.print <<-EOF
 	\##{namespace}consoleOutput {
 		border: 1px solid \#ccc;
 		font-family: monospace;
+		font-size: 12px;
 		height: 200px;
 		overflow: auto;
 		padding: 4px;
@@ -29,7 +30,12 @@ out.print <<-EOF
 				#{namespace}consoleInput: content
 			},
 			function(data) {
-				jQuery("\##{namespace}consoleOutput").empty().append(data);
+				if (data.match(/^ERROR:/) || document.#{namespace}fm.#{namespace}outputMode.checked) {
+					jQuery("\##{namespace}consoleOutput").empty().text(data);
+				}
+				else {
+					jQuery("\##{namespace}consoleOutput").empty().append(data);
+				}
 			}
 		);
 
@@ -53,6 +59,10 @@ out.println `date`
 	<br /><br />
 
 	<input type="button" value="Execute" onClick="#{namespace}execute();" />
+
+	<input type="checkbox" name="#{namespace}outputMode" />
+
+	Rendered Output
 
 	<br /><br />
 
