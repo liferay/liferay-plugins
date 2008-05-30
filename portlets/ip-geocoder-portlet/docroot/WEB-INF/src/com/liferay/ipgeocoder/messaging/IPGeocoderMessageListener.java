@@ -47,22 +47,26 @@ public class IPGeocoderMessageListener implements MessageListener {
 		try {
 			JSONObject jsonObj = new JSONObject(message);
 
-			String responseId = jsonObj.optString("responseId");
+			String responseDestination = jsonObj.optString(
+				"lfrResponseDestination");
+			String responseId = jsonObj.optString("lfrResponseId");
 
-			if (Validator.isNotNull(responseId)) {
+			if (Validator.isNotNull(responseDestination) &&
+				Validator.isNotNull(responseId)) {
+
 				String ipAddress = jsonObj.getString("ipAddress");
 
 				IPInfo ipInfo = IPGeocoderUtil.getIPInfo(ipAddress);
 
 				JSONObject jsonObject = new JSONObject();
 
-				JSONUtil.put(jsonObject, "responseId", responseId);
+				JSONUtil.put(jsonObject, "lfrResponseId", responseId);
 				JSONUtil.put(
 					jsonObject, "ipInfo",
 					new JSONObject(JSONUtil.serialize(ipInfo)));
 
 				MessageBusUtil.sendMessage(
-					DestinationNames.RESPONSE, jsonObject.toString());
+					responseDestination, jsonObject.toString());
 			}
 		}
 		catch (Exception e) {
