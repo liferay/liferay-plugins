@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>sample_laszlo_portlet</portlet-name>
+		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
 	</portlet>
 	<role-mapper>

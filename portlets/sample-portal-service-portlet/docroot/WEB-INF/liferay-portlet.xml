@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>sample_portal_service_portlet</portlet-name>
+		<portlet-name>1</portlet-name>
 		<instanceable>true</instanceable>
 	</portlet>
 	<role-mapper>

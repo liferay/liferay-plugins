@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>sample_service_builder_portlet</portlet-name>
+		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
 		<header-portlet-javascript>/js/service_packed.js</header-portlet-javascript>
 	</portlet>

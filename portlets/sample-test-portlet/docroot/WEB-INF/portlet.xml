@@ -2,7 +2,7 @@
 
 <portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd">
 	<portlet>
-		<portlet-name>sample_test_portlet</portlet-name>
+		<portlet-name>1</portlet-name>
 		<display-name>Sample Test</display-name>
 		<portlet-class>com.sample.test.portlet.TestPortlet</portlet-class>
 		<init-param>
@@ -38,6 +38,6 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>Test Render Filter</filter-name>
-		<portlet-name>sample_test_portlet</portlet-name>
+		<portlet-name>1</portlet-name>
 	</filter-mapping>
 </portlet-app>

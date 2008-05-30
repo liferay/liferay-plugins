@@ -3,6 +3,6 @@
 
 <display>
 	<category name="category.tools">
-		<portlet id="sshterm" />
+		<portlet id="1" />
 	</category>
 </display>

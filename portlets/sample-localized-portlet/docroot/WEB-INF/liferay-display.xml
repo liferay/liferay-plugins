@@ -4,7 +4,7 @@
 <display>
 	<category name="category.sample">
 		<category name="category.localized">
-			<portlet id="sample_localized_portlet" />
+			<portlet id="1" />
 		</category>
 	</category>
 </display>

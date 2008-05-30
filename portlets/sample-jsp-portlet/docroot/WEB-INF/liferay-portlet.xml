@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>sample_jsp_portlet</portlet-name>
+		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
 		<instanceable>true</instanceable>
 		<header-portlet-css>/css/test.css</header-portlet-css>

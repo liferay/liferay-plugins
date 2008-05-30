@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>sample_test_portlet</portlet-name>
+		<portlet-name>1</portlet-name>
 		<scheduler-class>com.sample.test.job.TestScheduler</scheduler-class>
 		<friendly-url-mapper-class>com.sample.test.portlet.TestFriendlyURLMapper</friendly-url-mapper-class>
 	</portlet>

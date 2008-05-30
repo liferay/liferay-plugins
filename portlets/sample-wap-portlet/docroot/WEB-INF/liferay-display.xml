@@ -3,7 +3,7 @@
 
 <display>
 	<category name="category.sample">
-		<portlet id="sample_wap_photo_gallery" />
-		<portlet id="sample_wap_video" />
+		<portlet id="1" />
+		<portlet id="2" />
 	</category>
 </display>

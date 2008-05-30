@@ -3,11 +3,11 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>sample_wap_photo_gallery</portlet-name>
+		<portlet-name>1</portlet-name>
 		<instanceable>true</instanceable>
 	</portlet>
 	<portlet>
-		<portlet-name>sample_wap_video</portlet-name>
+		<portlet-name>2</portlet-name>
 		<instanceable>true</instanceable>
 	</portlet>
 	<role-mapper>

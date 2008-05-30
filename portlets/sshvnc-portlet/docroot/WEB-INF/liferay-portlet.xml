@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>sshvnc</portlet-name>
+		<portlet-name>1</portlet-name>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

@@ -3,6 +3,6 @@
 
 <display>
 	<category name="category.sample">
-		<portlet id="sample_orbeon_forms" />
+		<portlet id="1" />
 	</category>
 </display>

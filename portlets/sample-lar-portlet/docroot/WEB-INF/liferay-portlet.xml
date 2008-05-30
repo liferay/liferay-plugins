@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>sample_lar_portlet</portlet-name>
+		<portlet-name>1</portlet-name>
 		<portlet-data-handler-class>com.sample.lar.plugin.LARPlugin</portlet-data-handler-class>
 		<instanceable>true</instanceable>
 	</portlet>

@@ -2,7 +2,7 @@
 
 <resource-action-mapping>
 	<portlet-resource>
-		<portlet-name>sample_permissions_portlet</portlet-name>
+		<portlet-name>1</portlet-name>
 		<supports>
 			<action-key>ADD_SOMETHING</action-key>
 			<action-key>CONFIGURATION</action-key>
@@ -19,7 +19,7 @@
 	<model-resource>
 		<model-name>com.sample.permissions.model.Something</model-name>
 		<portlet-ref>
-			<portlet-name>sample_permissions_portlet</portlet-name>
+			<portlet-name>1</portlet-name>
 		</portlet-ref>
 		<supports>
 			<action-key>DELETE</action-key>

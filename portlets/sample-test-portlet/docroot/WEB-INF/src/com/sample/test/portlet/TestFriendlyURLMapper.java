@@ -92,7 +92,6 @@ public class TestFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 	private static final String _MAPPING = "sample_test";
 
-	private static final String _PORTLET_ID =
-		"sample_test_portlet_WAR_sampletestportlet";
+	private static final String _PORTLET_ID = "1_WAR_sampletestportlet";
 
 }

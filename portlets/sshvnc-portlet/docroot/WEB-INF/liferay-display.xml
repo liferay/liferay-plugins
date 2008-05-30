@@ -3,6 +3,6 @@
 
 <display>
 	<category name="category.tools">
-		<portlet id="sshvnc" />
+		<portlet id="1" />
 	</category>
 </display>

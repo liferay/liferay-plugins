@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>shindig_gadget_portlet</portlet-name>
+		<portlet-name>1</portlet-name>
 		<configuration-action-class>com.liferay.portlet.shindig.ConfigurationActionImpl</configuration-action-class>
 		<instanceable>true</instanceable>
 		<header-portlet-css>/css/gadgets.css</header-portlet-css>

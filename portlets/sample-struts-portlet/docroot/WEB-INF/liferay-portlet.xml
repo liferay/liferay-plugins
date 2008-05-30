@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>sample_struts_portlet</portlet-name>
+		<portlet-name>1</portlet-name>
 		<portlet-url-class>com.liferay.portal.apache.bridges.struts.LiferayStrutsPortletURLImpl</portlet-url-class>
 		<use-default-template>true</use-default-template>
 		<restore-current-view>true</restore-current-view>
