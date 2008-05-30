@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.liferay.portlet.alfrescocontent.util;
+package com.liferay.alfrescocontent.util;
 
 import com.germinus.easyconf.ComponentProperties;
 

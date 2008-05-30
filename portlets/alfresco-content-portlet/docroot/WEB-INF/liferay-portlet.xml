@@ -5,8 +5,8 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
-		<configuration-action-class>com.liferay.portlet.alfrescocontent.action.ConfigurationActionImpl</configuration-action-class>
-		<open-search-class>com.liferay.portlet.alfrescocontent.util.AlfrescoOpenSearchImpl</open-search-class>
+		<configuration-action-class>com.liferay.alfrescocontent.action.ConfigurationActionImpl</configuration-action-class>
+		<open-search-class>com.liferay.alfrescocontent.util.AlfrescoOpenSearchImpl</open-search-class>
 		<layout-cacheable>true</layout-cacheable>
 		<instanceable>true</instanceable>
 		<render-weight>1</render-weight>

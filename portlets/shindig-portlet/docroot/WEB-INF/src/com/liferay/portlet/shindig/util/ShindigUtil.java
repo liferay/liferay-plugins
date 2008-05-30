@@ -48,9 +48,9 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Map;
 import java.util.Set;
-import java.util.Map.Entry;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -58,11 +58,11 @@ import org.apache.shindig.gadgets.GadgetToken;
 import org.apache.shindig.social.opensocial.model.Activity;
 import org.apache.shindig.social.opensocial.model.Email;
 import org.apache.shindig.social.opensocial.model.Enum;
+import org.apache.shindig.social.opensocial.model.MediaItem.Type;
 import org.apache.shindig.social.opensocial.model.MediaItem;
 import org.apache.shindig.social.opensocial.model.Name;
 import org.apache.shindig.social.opensocial.model.Person;
 import org.apache.shindig.social.opensocial.model.Phone;
-import org.apache.shindig.social.opensocial.model.MediaItem.Type;
 
 import org.json.JSONArray;
 import org.json.JSONException;

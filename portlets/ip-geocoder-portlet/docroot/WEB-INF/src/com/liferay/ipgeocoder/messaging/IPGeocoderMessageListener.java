@@ -24,7 +24,6 @@ package com.liferay.ipgeocoder.messaging;
 
 import com.liferay.ipgeocoder.model.IPInfo;
 import com.liferay.ipgeocoder.util.IPGeocoderUtil;
-import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.util.Validator;

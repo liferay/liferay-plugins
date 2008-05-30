@@ -20,13 +20,13 @@
  * SOFTWARE.
  */
 
-package com.liferay.portlet.alfrescocontent.action;
+package com.liferay.alfrescocontent.action;
 
+import com.liferay.alfrescocontent.util.AlfrescoContentCacheUtil;
 import com.liferay.portal.kernel.portlet.ConfigurationAction;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
-import com.liferay.portlet.alfrescocontent.util.AlfrescoContentCacheUtil;
 import com.liferay.util.servlet.SessionMessages;
 
 import javax.portlet.ActionRequest;

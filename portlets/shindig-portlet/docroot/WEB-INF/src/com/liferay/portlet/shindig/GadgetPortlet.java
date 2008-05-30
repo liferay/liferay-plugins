@@ -22,9 +22,6 @@
 
 package com.liferay.portlet.shindig;
 
-import com.liferay.portal.model.User;
-import com.liferay.portlet.expando.model.ExpandoTable;
-import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 import com.liferay.portlet.shindig.util.ShindigUtil;
 
 import java.io.IOException;
