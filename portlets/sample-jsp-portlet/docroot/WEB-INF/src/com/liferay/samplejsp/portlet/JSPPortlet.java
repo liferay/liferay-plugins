@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.sample.jsp.portlet;
+package com.liferay.samplejsp.portlet;
 
 import java.io.IOException;
 

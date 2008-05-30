@@ -15,7 +15,7 @@
 		</supports>
 		<supported-locale>en</supported-locale>
 		<supported-locale>fr_FR</supported-locale>
-		<resource-bundle>com.sample.localized.resources.Resource</resource-bundle>
+		<resource-bundle>com.liferay.samplelocalized.resources.Resource</resource-bundle>
 		<portlet-info>
 			<title>Sample Localized</title>
 			<short-title>SampleLocalizedPortlet</short-title>

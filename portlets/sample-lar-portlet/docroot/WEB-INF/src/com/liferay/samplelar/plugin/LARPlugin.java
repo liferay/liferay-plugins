@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.sample.lar.plugin;
+package com.liferay.samplelar.plugin;
 
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.PortletDataException;
