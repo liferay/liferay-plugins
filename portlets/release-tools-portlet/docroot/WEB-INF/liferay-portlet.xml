@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>release-tools</portlet-name>
+		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
 	</portlet>
 	<role-mapper>

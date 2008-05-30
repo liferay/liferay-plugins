@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>alfresco_content_portlet</portlet-name>
+		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
 		<configuration-action-class>com.liferay.portlet.alfrescocontent.action.ConfigurationActionImpl</configuration-action-class>
 		<open-search-class>com.liferay.portlet.alfrescocontent.util.AlfrescoOpenSearchImpl</open-search-class>

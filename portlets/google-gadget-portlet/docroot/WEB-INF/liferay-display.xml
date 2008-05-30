@@ -3,6 +3,6 @@
 
 <display>
 	<category name="category.google">
-		<portlet id="google_gadget_portlet" />
+		<portlet id="1" />
 	</category>
 </display>

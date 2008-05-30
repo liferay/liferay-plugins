@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>alfresco_client</portlet-name>
+		<portlet-name>1</portlet-name>
 		<use-default-template>true</use-default-template>
 		<restore-current-view>true</restore-current-view>
 	</portlet>
