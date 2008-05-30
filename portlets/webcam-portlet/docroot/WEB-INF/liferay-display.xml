@@ -3,6 +3,6 @@
 
 <display>
 	<category name="category.collaboration">
-		<portlet id="webcam_portlet" />
+		<portlet id="1" />
 	</category>
 </display>
