@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Sample Test</display-name>
-		<portlet-class>com.sample.test.portlet.TestPortlet</portlet-class>
+		<portlet-class>com.liferay.sampletest.portlet.TestPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/view.jsp</value>
@@ -33,7 +33,7 @@
 	</portlet>
 	<filter>
 		<filter-name>Test Render Filter</filter-name>
-		<filter-class>com.sample.test.portlet.TestRenderFilter</filter-class>
+		<filter-class>com.liferay.sampletest.portlet.TestRenderFilter</filter-class>
 		<lifecycle>RENDER_PHASE</lifecycle>
 	</filter>
 	<filter-mapping>

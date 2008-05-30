@@ -27,6 +27,6 @@
 		<url-pattern>/servlet_request/*</url-pattern>
 	</filter-mapping>
 	<listener>
-		<listener-class>com.sample.test.servlet.TestPortletSessionListenerLoader</listener-class>
+		<listener-class>com.liferay.sampletest.servlet.TestPortletSessionListenerLoader</listener-class>
 	</listener>
 </web-app>

@@ -20,36 +20,40 @@
  * SOFTWARE.
  */
 
-package com.sample.test.job;
+package com.liferay.sampletest.job;
 
-import com.liferay.portal.kernel.job.IntervalJob;
-import com.liferay.portal.kernel.job.JobExecutionContext;
-import com.liferay.portal.kernel.job.JobExecutionException;
-import com.liferay.util.Time;
+import com.liferay.portal.kernel.job.JobSchedulerUtil;
+import com.liferay.portal.kernel.job.Scheduler;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * <a href="TestIntervalJob.java.html"><b><i>View Source</i></b></a>
+ * <a href="TestScheduler.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class TestIntervalJob implements IntervalJob {
+public class TestScheduler implements Scheduler {
 
-	public void execute(JobExecutionContext context)
-		throws JobExecutionException {
-
+	public void schedule() {
 		if (_log.isInfoEnabled()) {
-			_log.info("Execute");
+			_log.info("Schedule");
 		}
+
+		JobSchedulerUtil.schedule(_testIntervalJob);
 	}
 
-	public long getInterval() {
-		return Time.HOUR;
+	public void unschedule() {
+		if (_log.isInfoEnabled()) {
+			_log.info("Unschedule");
+		}
+
+		JobSchedulerUtil.unschedule(_testIntervalJob);
 	}
 
-	private static Log _log = LogFactory.getLog(TestIntervalJob.class);
+	private static Log _log = LogFactory.getLog(TestScheduler.class);
+
+	private TestIntervalJob _testIntervalJob = new TestIntervalJob();
 
 }

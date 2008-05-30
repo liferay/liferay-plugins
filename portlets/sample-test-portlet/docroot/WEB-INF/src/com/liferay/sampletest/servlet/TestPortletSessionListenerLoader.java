@@ -20,42 +20,37 @@
  * SOFTWARE.
  */
 
-package com.sample.test.servlet;
+package com.liferay.sampletest.servlet;
 
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionListener;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.liferay.portal.kernel.servlet.PortletSessionListenerLoader;
 
 /**
- * <a href="TestPortletSessionListener.java.html"><b><i>View Source</i></b></a>
+ * <a href="TestPortletSessionListenerLoader.java.html"><b><i>View Source</i>
+ * </b></a>
+ *
+ * <p>
+ * This is a <code>javax.servlet.ServletContextListener</code> that loads a
+ * <code>javax.servlet.http.HttpSessionListener</code> and ensures the hot
+ * deployed WAR's session events are triggered along with the portal's session
+ * events. This is only needed for certain application servers under certain
+ * configurations. Otherwise, you can just load the the
+ * <code>HttpSessionListener</code> directly in WEB-INF/web.xml.
+ * </p>
+ *
+ * <p>
+ * See http://support.liferay.com/browse/LEP-2299.
+ * </p>
  *
  * @author Brian Wing Shun Chan
  *
- * @see com.sample.test.servlet.TestPortletSessionListenerLoader
+ * @see com.liferay.sampletest.servlet.TestPortletSessionListener
  *
  */
-public class TestPortletSessionListener implements HttpSessionListener {
+public class TestPortletSessionListenerLoader
+	extends PortletSessionListenerLoader {
 
-	public void sessionCreated(HttpSessionEvent event) {
-		HttpSession ses = event.getSession();
-
-		if (_log.isInfoEnabled()) {
-			_log.info("Created session " + ses.getId());
-		}
+	public TestPortletSessionListenerLoader() {
+		super(new TestPortletSessionListener());
 	}
-
-	public void sessionDestroyed(HttpSessionEvent event) {
-		HttpSession ses = event.getSession();
-
-		if (_log.isInfoEnabled()) {
-			_log.info("Destroyed session " + ses.getId());
-		}
-	}
-
-	private static Log _log =
-		LogFactory.getLog(TestPortletSessionListener.class);
 
 }

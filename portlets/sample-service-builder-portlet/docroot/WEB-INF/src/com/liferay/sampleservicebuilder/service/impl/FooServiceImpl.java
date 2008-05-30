@@ -23,7 +23,6 @@
 package com.liferay.sampleservicebuilder.service.impl;
 
 import com.liferay.portlet.service.PrincipalBean;
-
 import com.liferay.sampleservicebuilder.service.FooService;
 
 /**

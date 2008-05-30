@@ -20,35 +20,42 @@
  * SOFTWARE.
  */
 
-package com.sample.tapestry.bean;
+package com.liferay.sampletest.servlet;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
- * <a href="BookList.java.html"><b><i>View Source</i></b></a>
+ * <a href="TestPortletSessionListener.java.html"><b><i>View Source</i></b></a>
  *
- * @author Joseph Shum
+ * @author Brian Wing Shun Chan
+ *
+ * @see com.liferay.sampletest.servlet.TestPortletSessionListenerLoader
  *
  */
-public class BookList {
+public class TestPortletSessionListener implements HttpSessionListener {
 
-	public BookList() {
-		_books = new ArrayList();
+	public void sessionCreated(HttpSessionEvent event) {
+		HttpSession ses = event.getSession();
+
+		if (_log.isInfoEnabled()) {
+			_log.info("Created session " + ses.getId());
+		}
 	}
 
-	public List getBooks() {
-		return _books;
+	public void sessionDestroyed(HttpSessionEvent event) {
+		HttpSession ses = event.getSession();
+
+		if (_log.isInfoEnabled()) {
+			_log.info("Destroyed session " + ses.getId());
+		}
 	}
 
-	public void setBooks(List books) {
-		_books = books;
-	}
-
-	public void addBook(Book book) {
-		_books.add(book);
-	}
-
-	private List _books;
+	private static Log _log =
+		LogFactory.getLog(TestPortletSessionListener.class);
 
 }

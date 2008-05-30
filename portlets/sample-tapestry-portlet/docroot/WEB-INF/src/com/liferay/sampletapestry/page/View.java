@@ -20,47 +20,22 @@
  * SOFTWARE.
  */
 
-package com.sample.test.portlet;
+package com.liferay.sampletapestry.page;
 
-import java.io.IOException;
+import java.util.List;
 
-import javax.portlet.PortletException;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
-import javax.portlet.filter.FilterChain;
-import javax.portlet.filter.FilterConfig;
-import javax.portlet.filter.RenderFilter;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.tapestry.html.BasePage;
 
 /**
- * <a href="TestRenderFilter.java.html"><b><i>View Source</i></b></a>
+ * <a href="View.java.html"><b><i>View Source</i></b></a>
  *
- * @author Brian Wing Shun Chan
+ * @author Joseph Shum
  *
  */
-public class TestRenderFilter implements RenderFilter {
+public abstract class View extends BasePage {
 
-	public void init(FilterConfig config) throws PortletException {
-		_log.info("Init");
-	}
+	public abstract List getBooks();
 
-	public void doFilter(
-			RenderRequest req, RenderResponse res, FilterChain chain)
-		throws IOException, PortletException {
-
-		_log.info("Before filter");
-
-		chain.doFilter(req, res);
-
-		_log.info("After filter");
-	}
-
-	public void destroy() {
-		_log.info("Destroy");
-	}
-
-	private static Log _log = LogFactory.getLog(TestRenderFilter.class);
+	public abstract void setBooks(List books);
 
 }

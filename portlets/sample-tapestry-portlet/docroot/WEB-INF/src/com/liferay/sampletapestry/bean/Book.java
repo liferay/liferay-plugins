@@ -20,22 +20,65 @@
  * SOFTWARE.
  */
 
-package com.sample.tapestry.page;
+package com.liferay.sampletapestry.bean;
 
-import java.util.List;
-
-import org.apache.tapestry.html.BasePage;
+import java.io.Serializable;
 
 /**
- * <a href="View.java.html"><b><i>View Source</i></b></a>
+ * <a href="Book.java.html"><b><i>View Source</i></b></a>
  *
  * @author Joseph Shum
  *
  */
-public abstract class View extends BasePage {
+public class Book implements Serializable {
 
-	public abstract List getBooks();
+	public Book() {
+	}
 
-	public abstract void setBooks(List books);
+	public String getAuthor() {
+		return _author;
+	}
+
+	public void setAuthor(String author) {
+		_author = author;
+	}
+
+	public String getDescription() {
+		return _description;
+	}
+
+	public void setDescription(String description) {
+		_description= description;
+	}
+
+	public boolean isRecommended() {
+		return _recommended;
+	}
+
+	public void setRecommended(boolean recommended) {
+		_recommended = recommended;
+	}
+
+	public String getTitle() {
+		return _title;
+	}
+
+	public void setTitle(String title) {
+		_title = title;
+	}
+
+	public int getYear() {
+		return _year;
+	}
+
+	public void setYear(int year) {
+		_year = year;
+	}
+
+	private String _author;
+	private String _description;
+	private boolean _recommended;
+	private String _title;
+	private int _year;
 
 }

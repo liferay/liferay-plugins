@@ -24,7 +24,6 @@ package com.liferay.sampleservicebuilder.util.comparator;
 
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-
 import com.liferay.sampleservicebuilder.model.Foo;
 
 /**

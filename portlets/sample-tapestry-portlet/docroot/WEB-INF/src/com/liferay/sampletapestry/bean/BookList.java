@@ -20,64 +20,35 @@
  * SOFTWARE.
  */
 
-package com.sample.tapestry.page;
+package com.liferay.sampletapestry.bean;
 
-import com.sample.tapestry.bean.Book;
-import com.sample.tapestry.bean.BookList;
-
-import org.apache.tapestry.IPage;
-import org.apache.tapestry.IRequestCycle;
-import org.apache.tapestry.engine.IEngineService;
-import org.apache.tapestry.event.PageBeginRenderListener;
-import org.apache.tapestry.event.PageEvent;
-import org.apache.tapestry.html.BasePage;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * <a href="AddBook.java.html"><b><i>View Source</i></b></a>
+ * <a href="BookList.java.html"><b><i>View Source</i></b></a>
  *
  * @author Joseph Shum
  *
  */
-public abstract class AddBook
-	extends BasePage implements PageBeginRenderListener {
+public class BookList {
 
-	public abstract Book getBook();
-
-	public abstract void setBook(Book book);
-
-	public abstract BookList getBookList();
-
-	public abstract void setBookList(BookList bookList);
-
-	public abstract View getView();
-
-	public abstract IEngineService getPageService();
-
-	public void pageBeginRender(PageEvent event) {
-		Book book = new Book();
-
-		setBook(book);
+	public BookList() {
+		_books = new ArrayList();
 	}
 
-	public IPage doSubmit(IRequestCycle cycle) {
-		View view = getView();
-
-		Book book = getBook();
-
-		BookList bookList = getBookList();
-
-		bookList.addBook(book);
-
-		view.setBooks(bookList.getBooks());
-
-		return view;
-
+	public List getBooks() {
+		return _books;
 	}
 
-	public IPage doCancel(IRequestCycle cycle) {
-		View view = getView();
-
-		return view;
+	public void setBooks(List books) {
+		_books = books;
 	}
+
+	public void addBook(Book book) {
+		_books.add(book);
+	}
+
+	private List _books;
 
 }

@@ -20,65 +20,64 @@
  * SOFTWARE.
  */
 
-package com.sample.tapestry.bean;
+package com.liferay.sampletapestry.page;
 
-import java.io.Serializable;
+import com.liferay.sampletapestry.bean.Book;
+import com.liferay.sampletapestry.bean.BookList;
+
+import org.apache.tapestry.IPage;
+import org.apache.tapestry.IRequestCycle;
+import org.apache.tapestry.engine.IEngineService;
+import org.apache.tapestry.event.PageBeginRenderListener;
+import org.apache.tapestry.event.PageEvent;
+import org.apache.tapestry.html.BasePage;
 
 /**
- * <a href="Book.java.html"><b><i>View Source</i></b></a>
+ * <a href="AddBook.java.html"><b><i>View Source</i></b></a>
  *
  * @author Joseph Shum
  *
  */
-public class Book implements Serializable {
+public abstract class AddBook
+	extends BasePage implements PageBeginRenderListener {
 
-	public Book() {
+	public abstract Book getBook();
+
+	public abstract void setBook(Book book);
+
+	public abstract BookList getBookList();
+
+	public abstract void setBookList(BookList bookList);
+
+	public abstract View getView();
+
+	public abstract IEngineService getPageService();
+
+	public void pageBeginRender(PageEvent event) {
+		Book book = new Book();
+
+		setBook(book);
 	}
 
-	public String getAuthor() {
-		return _author;
+	public IPage doSubmit(IRequestCycle cycle) {
+		View view = getView();
+
+		Book book = getBook();
+
+		BookList bookList = getBookList();
+
+		bookList.addBook(book);
+
+		view.setBooks(bookList.getBooks());
+
+		return view;
+
 	}
 
-	public void setAuthor(String author) {
-		_author = author;
-	}
+	public IPage doCancel(IRequestCycle cycle) {
+		View view = getView();
 
-	public String getDescription() {
-		return _description;
+		return view;
 	}
-
-	public void setDescription(String description) {
-		_description= description;
-	}
-
-	public boolean isRecommended() {
-		return _recommended;
-	}
-
-	public void setRecommended(boolean recommended) {
-		_recommended = recommended;
-	}
-
-	public String getTitle() {
-		return _title;
-	}
-
-	public void setTitle(String title) {
-		_title = title;
-	}
-
-	public int getYear() {
-		return _year;
-	}
-
-	public void setYear(int year) {
-		_year = year;
-	}
-
-	private String _author;
-	private String _description;
-	private boolean _recommended;
-	private String _title;
-	private int _year;
 
 }

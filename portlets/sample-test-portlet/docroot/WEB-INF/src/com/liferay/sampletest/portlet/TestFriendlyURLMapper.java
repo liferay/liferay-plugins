@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.sample.test.portlet;
+package com.liferay.sampletest.portlet;
 
 import com.liferay.portal.kernel.portlet.BaseFriendlyURLMapper;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
