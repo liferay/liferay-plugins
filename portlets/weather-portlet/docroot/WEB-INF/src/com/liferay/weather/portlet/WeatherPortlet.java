@@ -20,11 +20,13 @@
  * SOFTWARE.
  */
 
-package com.liferay.googlesearch.portlet;
+package com.liferay.weather.portlet;
 
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
+import com.liferay.util.servlet.SessionErrors;
 import com.liferay.util.servlet.SessionMessages;
 
 import java.io.IOException;
@@ -35,14 +37,15 @@ import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 import javax.portlet.PortletMode;
 import javax.portlet.PortletPreferences;
+import javax.portlet.ValidatorException;
 
 /**
- * <a href="GoogleSearchPortlet.java.html"><b><i>View Source</i></b></a>
+ * <a href="WeatherPortlet.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class GoogleSearchPortlet extends JSPPortlet {
+public class WeatherPortlet extends JSPPortlet {
 
 	public void processAction(ActionRequest req, ActionResponse res)
 		throws IOException, PortletException {
@@ -62,11 +65,22 @@ public class GoogleSearchPortlet extends JSPPortlet {
 
 		PortletPreferences prefs = req.getPreferences();
 
-		boolean safeSearch = ParamUtil.getBoolean(req, "safeSearch");
+		String[] zips = StringUtil.split(
+			ParamUtil.getString(req, "zips"), "\n");
 
-		prefs.setValue("safe-search", String.valueOf(safeSearch));
+		boolean fahrenheit = ParamUtil.get(req, "fahrenheit", true);
 
-		prefs.store();
+		prefs.setValues("zips", zips);
+		prefs.setValue("fahrenheit", String.valueOf(fahrenheit));
+
+		try {
+			prefs.store();
+		}
+		catch (ValidatorException ve) {
+			SessionErrors.add(req, ValidatorException.class.getName(), ve);
+
+			return;
+		}
 
 		PortletConfig config = getPortletConfig();
 

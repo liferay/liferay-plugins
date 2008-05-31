@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd">
+	<portlet>
+		<portlet-name>1</portlet-name>
+		<display-name>Weather</display-name>
+		<portlet-class>com.liferay.weather.portlet.WeatherPortlet</portlet-class>
+		<init-param>
+			<name>edit-jsp</name>
+			<value>/edit.jsp</value>
+		</init-param>
+		<init-param>
+			<name>edit-guest-jsp</name>
+			<value>/edit.jsp</value>
+		</init-param>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>edit</portlet-mode>
+			<portlet-mode>edit_guest</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Weather</title>
+			<short-title>Weather</short-title>
+			<keywords>Weather</keywords>
+		</portlet-info>
+		<portlet-preferences>
+			<preference>
+				<name>zips</name>
+				<value>90210</value>
+				<value>Chicago</value>
+				<value>Frankfurt, Germany</value>
+				<value>Rome, Italy</value>
+			</preference>
+			<preference>
+				<name>fahrenheit</name>
+				<value>true</value>
+			</preference>
+			<preferences-validator>com.liferay.weather.portlet.WeatherPreferencesValidator</preferences-validator>
+		</portlet-preferences>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+</portlet-app>
