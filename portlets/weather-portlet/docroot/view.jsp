@@ -47,7 +47,7 @@ for (String zip : zips) {
 				</c:if>
 
 				<c:if test="<%= !fahrenheit %>">
-					<%--<%= Math.round(ConverterUtil.convertTemperature(ConverterUtil.TEMPERATURE_FAHRENHEIHT, ConverterUtil.TEMPERATURE_CELSIUS, weather.getCurrentTemp())) %> &deg;C--%>
+					<%= Math.round((.5555555555 * (weather.getCurrentTemp() + 459.67)) - 273.15) %> &deg;C
 				</c:if>
 
 				</span>
