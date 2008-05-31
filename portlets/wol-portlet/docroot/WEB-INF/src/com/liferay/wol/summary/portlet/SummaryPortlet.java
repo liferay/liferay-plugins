@@ -22,6 +22,8 @@
 
 package com.liferay.wol.summary.portlet;
 
+import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -45,8 +47,6 @@ import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.util.dao.hibernate.QueryUtil;
-import com.liferay.util.servlet.SessionErrors;
-import com.liferay.util.servlet.SessionMessages;
 import com.liferay.wol.friends.social.FriendsRequestKeys;
 import com.liferay.wol.members.social.MembersRequestKeys;
 

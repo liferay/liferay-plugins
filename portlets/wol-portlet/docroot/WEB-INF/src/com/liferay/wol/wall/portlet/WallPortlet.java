@@ -22,6 +22,8 @@
 
 package com.liferay.wol.wall.portlet;
 
+import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -34,8 +36,6 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.permission.UserPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.jsp.JSPPortlet;
-import com.liferay.util.servlet.SessionErrors;
-import com.liferay.util.servlet.SessionMessages;
 import com.liferay.wol.model.WallEntry;
 import com.liferay.wol.service.WallEntryLocalServiceUtil;
 
