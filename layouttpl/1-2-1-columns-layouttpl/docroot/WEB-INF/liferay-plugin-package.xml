@@ -7,7 +7,9 @@
 	<types>
 		<type>layout-template</type>
 	</types>
-	<short-description></short-description>
+	<short-description>
+		This is a 1-2-1 columns layout template.
+	</short-description>
 	<change-log></change-log>
 	<page-url>http://www.liferay.com</page-url>
 	<author>Liferay, Inc.</author>
