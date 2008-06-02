@@ -38,6 +38,28 @@
 		<ant dir="webs" target="deploy" inheritAll="false" />
 	</target>
 
+	<target name="build-summary">
+		<java
+			classname="com.liferay.portal.tools.PluginsSummaryBuilder"
+			classpathref="portal.classpath"
+			fork="true"
+			newenvironment="true"
+		>
+			<jvmarg value="-Dplugins.dir=${project.dir}" />
+		</java>
+
+		<java
+			classname="com.liferay.portal.tools.XSLTBuilder"
+			classpathref="portal.classpath"
+			fork="true"
+			newenvironment="true"
+		>
+			<arg value="${project.dir}/summary.xml" />
+			<arg value="${project.dir}/summary.xsl" />
+			<arg value="${project.dir}/summary.html" />
+		</java>
+	</target>
+
 	<target name="extract-plugins-sdk">
 		<mkdir dir="dist" />
 
@@ -46,7 +68,7 @@
 		<zip
 			basedir="."
 			destfile="dist/liferay-plugins-sdk-${lp.version}.zip"
-			excludes="build.*.properties,dist/**,layouttpl/*-layouttpl/**,portlets/*-portlet/**,portlets/alfresco/**,themes/*-theme/**,webs/*-web/**"
+			excludes="build.*.properties,dist/**,layouttpl/*-layouttpl/**,portlets/*-portlet/**,portlets/alfresco/**,summary.*,themes/*-theme/**,webs/*-web/**"
 		/>
 	</target>
 </project>
