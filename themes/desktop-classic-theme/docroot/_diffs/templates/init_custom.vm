@@ -1,0 +1,50 @@
+#**
+ * This file allows you to override and define new velocity variables.
+ *
+ *#
+
+## --- Common --- ##
+
+#set ($bottom_container_attributes = "plid='$page.getPlid()' doAsUserId='$themeDisplay.getDoAsUserId()' pathMain='$themeDisplay.getPathMain()'")
+#set ($bottom_images_folder = "$images_folder/bottom_navigation")
+#set ($has_navigation = $has_navigation && !$is_maximized)
+#set ($interface = "$themeDisplay.getPathJavaScript()/jquery/interface.js")
+#set ($is_signed_out = !$is_signed_in)
+
+## --- Navigation --- ##
+
+#set ($has_nav_item = false)
+#set ($is_sign_in_page = true)
+
+#foreach ($nav_item in $nav_items)
+	#if ($nav_item.isSelected())
+		#set ($selected_item = $nav_item)
+		#set ($has_nav_item = true)
+		#set ($is_sign_in_page = false)
+	#end
+#end
+
+## --- Bottom Navigation --- ##
+
+#set ($has_bottom_navigation = false)
+
+#if ($is_sign_in_page || ($is_freeform && !$is_maximized && $is_portlet_page))
+	#set ($has_bottom_navigation = true)
+#end
+
+## --- Bottom Navigation Portlets --- ##
+
+#set ($rss_portlet_id = "39")
+#set ($rss_href = "javascript: void(0);")
+#set ($rss_onclick = "addPortlet('$page.getPlid()', '$rss_portlet_id', '$themeDisplay.getDoAsUserId()');")
+#set ($rss_text = "#language ('javax.portlet.title.39')")
+
+## --- Body classes --- ##
+
+#if ($is_maximized)
+	#set ($body_css = "$css_class maximized")
+#elseif (!$is_freeform)
+	#set ($body_css = "$css_class nonfreeform")
+#else
+	#set ($body_css = "$css_class")
+#end
