@@ -35,20 +35,19 @@
 <liferay-theme:defineObjects />
 
 <script type="text/javascript">
+	function <portlet:namespace />initEditor() {
+		return '';
+	}
 
 	jQuery(
 		function() {
 			Liferay.Mail.init(
 				{
-					sendBodyEditor : window.<portlet:namespace />editor
+					sendBodyEditor: window.<portlet:namespace />editor
 				}
 			);
 		}
 	);
-
-	function <portlet:namespace />initEditor() {
-		return '';
-	}
 </script>
 
 <table id="account-container">
