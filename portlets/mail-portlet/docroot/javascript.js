@@ -363,7 +363,7 @@ Liferay.Mail = {
 			}
 
 			for (i = 0; i < msgAttachments.length; i++) {
-				msgBody += '<li><a href="' + themeDisplay.getLayoutURL() + '/-/mail/attachment?accountId=' + instance.getCurrentAccountId() + '&folderName=' + instance.getCurrentFolderName() + '&messageUid=' + msgUid + '&fileName=' + msgAttachments[i][1] + '&contentPath=' + msgAttachments[i][0] + '">' + msgAttachments[i][1] + '</a>';
+				msgBody += '<li><a href="' + themeDisplay.getLayoutURL() + '/-/mail/attachment?accountId=' + instance.getCurrentAccountId() + '&folderName=' + instance.getCurrentFolderName() + '&messageUid=' + msgUid + '&fileName=' + msgAttachments[i][1] + '&contentPath=' + msgAttachments[i][0] + '" target="_blank">' + msgAttachments[i][1] + '</a>';
 			}
 
 			msgBody += '</ul>';
