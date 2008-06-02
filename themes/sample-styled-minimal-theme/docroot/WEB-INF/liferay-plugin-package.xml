@@ -7,17 +7,12 @@
 	<types>
 		<type>theme</type>
 	</types>
-	<tags>
-		<tag>sample</tag>
-	</tags>
 	<short-description>
 		This is a sample styled theme with minimal configuration set in
 		liferay-look-and-feel.xml.
 	</short-description>
-	<change-log>
-		Adapted to the latest version of Liferay.
-	</change-log>
-	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
+	<change-log></change-log>
+	<page-url>http://www.liferay.com</page-url>
 	<author>Liferay, Inc.</author>
 	<licenses>
 		<license osi-approved="true">MIT</license>

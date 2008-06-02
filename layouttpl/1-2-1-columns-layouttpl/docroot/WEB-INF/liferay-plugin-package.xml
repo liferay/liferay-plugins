@@ -7,9 +7,9 @@
 	<types>
 		<type>layout-template</type>
 	</types>
-	<short-description>This is a CDN Home layout template.</short-description>
-	<change-log>Adapted to the latest version of Liferay.</change-log>
-	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
+	<short-description></short-description>
+	<change-log></change-log>
+	<page-url>http://www.liferay.com</page-url>
 	<author>Liferay, Inc.</author>
 	<licenses>
 		<license osi-approved="true">MIT</license>

@@ -10,10 +10,8 @@
 	<short-description>
 		This is a 2-1-2 columns layout template.
 	</short-description>
-	<change-log>
-		Adapted to the latest version of Liferay.
-	</change-log>
-	<page-url>http://www.liferay.com/web/guest/downloads</page-url>
+	<change-log></change-log>
+	<page-url>http://www.liferay.com</page-url>
 	<author>Liferay, Inc.</author>
 	<licenses>
 		<license osi-approved="true">MIT</license>
