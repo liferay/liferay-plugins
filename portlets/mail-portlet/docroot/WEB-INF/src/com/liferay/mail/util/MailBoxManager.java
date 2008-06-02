@@ -685,7 +685,7 @@ public class MailBoxManager {
 				}
 				else if (contentType.startsWith(ContentTypes.MESSAGE_RFC822)) {
 					getBody(
-						sb, contentPath + StringPool.PERIOD + 0, messagePart, 
+						sb, contentPath + StringPool.PERIOD + 0, messagePart,
 						attachments, preview);
 				}
 			}
@@ -696,7 +696,7 @@ public class MailBoxManager {
 				if (!preview) {
 					attachments.add(
 						new Object[] {
-							contentPath + StringPool.PERIOD + -1, 
+							contentPath + StringPool.PERIOD + -1,
 							messagePart.getFileName()});
 				}
 			}
