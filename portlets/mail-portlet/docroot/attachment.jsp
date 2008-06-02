@@ -22,12 +22,20 @@
  */
 %>
 
-<%@ include file="/json_init.jsp" %>
+<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
 
+<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
+
+<%@ page import="com.liferay.mail.util.MailBoxManager" %>
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.util.mail.JavaMailUtil" %>
 <%@ page import="com.liferay.util.servlet.ServletResponseUtil" %>
 
 <%@ page import="javax.mail.Part" %>
+
+<portlet:defineObjects />
+
+<liferay-theme:defineObjects />
 
 <%
 int accountId = ParamUtil.getInteger(request, "accountId");
