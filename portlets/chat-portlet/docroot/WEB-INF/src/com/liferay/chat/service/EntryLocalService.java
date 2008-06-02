@@ -56,4 +56,12 @@ public interface EntryLocalService {
 	public com.liferay.chat.model.Entry updateEntry(
 		com.liferay.chat.model.Entry entry)
 		throws com.liferay.portal.SystemException;
+
+	public com.liferay.chat.model.Entry addEntry(long userId,
+		java.lang.String content, long receiverUserId)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.PortalException;
+
+	public void deleteEntries(long userId)
+		throws com.liferay.portal.SystemException;
 }

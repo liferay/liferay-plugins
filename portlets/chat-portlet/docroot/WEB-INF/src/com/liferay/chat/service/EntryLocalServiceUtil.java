@@ -84,4 +84,20 @@ public class EntryLocalServiceUtil {
 
 		return entryLocalService.updateEntry(entry);
 	}
+
+	public static com.liferay.chat.model.Entry addEntry(long userId,
+		java.lang.String content, long receiverUserId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		EntryLocalService entryLocalService = EntryLocalServiceFactory.getService();
+
+		return entryLocalService.addEntry(userId, content, receiverUserId);
+	}
+
+	public static void deleteEntries(long userId)
+		throws com.liferay.portal.SystemException {
+		EntryLocalService entryLocalService = EntryLocalServiceFactory.getService();
+
+		entryLocalService.deleteEntries(userId);
+	}
 }

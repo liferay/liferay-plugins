@@ -22,7 +22,13 @@
 
 package com.liferay.chat.service.impl;
 
+import com.liferay.chat.model.Entry;
 import com.liferay.chat.service.base.EntryLocalServiceBaseImpl;
+import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+
+import java.util.Date;
 
 /**
  * <a href="EntryLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -31,4 +37,26 @@ import com.liferay.chat.service.base.EntryLocalServiceBaseImpl;
  *
  */
 public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
+
+	public Entry addEntry(long userId, String content, long receiverUserId)
+		throws PortalException, SystemException {
+
+		long entryId = CounterLocalServiceUtil.increment();
+
+		Entry entry = entryPersistence.create(entryId);
+
+		entry.setUserId(userId);
+		entry.setCreateDate(new Date());
+		entry.setContent(content);
+
+		entryPersistence.update(entry, false);
+
+		return entry;
+	}
+
+	public void deleteEntries(long userId) throws SystemException {
+		entryPersistence.removeByUserId(userId);
+		entryPersistence.removeByReceiverUserId(userId);
+	}
+
 }
