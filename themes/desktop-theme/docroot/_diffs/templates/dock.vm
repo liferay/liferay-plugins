@@ -7,13 +7,13 @@
 					<li class="home">
 						<a href="$home_url">$home_text</a>
 
-						#if ($has_navigation && ($css_class.contains("vista")))
+						#if ($has_navigation && (!$css_class.contains("vista")))
 							#parse ("$full_templates_path/navigation.vm")
 						#end
 					</li>
 				#end
 
-				#if ($show_my_places && ($css_class.contains("vista")))
+				#if ($show_my_places && (!$css_class.contains("vista")))
 					<li class="my-places">
 						<a href="javascript: ;">$my_places_text</a>
 
