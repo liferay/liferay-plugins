@@ -34,10 +34,7 @@
 
 ## --- Bottom Navigation Portlets --- ##
 
-#set ($rss_portlet_id = "39")
-#set ($rss_href = "javascript: void(0);")
-#set ($rss_onclick = "addPortlet('$page.getPlid()', '$rss_portlet_id', '$themeDisplay.getDoAsUserId()');")
-#set ($rss_text = "#language ('javax.portlet.title.39')")
+#set ($sign_in_portlet_id = "sign-in")
 
 ## --- Body classes --- ##
 

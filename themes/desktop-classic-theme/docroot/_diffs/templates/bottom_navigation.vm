@@ -10,13 +10,8 @@
 				<span>$add_content_text</span>
 				<img src="$bottom_images_folder/add_application.png" alt="$add_content_text" />
 			</a>
-
-			<a class="bottom-item $rss_portlet_id" href="$rss_href" onclick="$rss_onclick">
-				<span>$rss_text</span>
-				<img src="$bottom_images_folder/add_rss.png" alt="$rss_text" />
-			</a>
 		#elseif ($is_signed_out)
-			<a class="bottom-item sign-in" href="$sign_in_url">
+			<a class="bottom-item $sign_in_portlet_id" href="$sign_in_url">
 				<span>$sign_in_text</span>
 				<img src="$bottom_images_folder/sign_in.png" alt="$sign_in_text" />
 			</a>
