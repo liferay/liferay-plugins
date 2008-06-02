@@ -1,5 +1,5 @@
 Liferay.Mail = {
-	init: function() {
+	init: function(params) {
 		var instance = this;
 
 		instance._messagesPerPage = 10;
@@ -39,7 +39,8 @@ Liferay.Mail = {
 		instance.searchButton = jQuery('#search-button');
 		instance.searchTextInput = jQuery('#search-text');
 		instance.sendBccInput = jQuery('#send-bcc');
-		instance.sendBodyTextarea = jQuery('#send-body');
+		instance.sendBodyEditor = params.sendBodyEditor;
+		instance.sendBodySpan = jQuery('#send-body');
 		instance.sendCcInput = jQuery('#send-cc');
 		instance.sendFromSelect = jQuery('#send-from');
 		instance.sendSubjectInput = jQuery('#send-subject');
@@ -57,6 +58,8 @@ Liferay.Mail = {
 		// Init methods
 
 		instance._assignEvents();
+		instance.setView('composeMessage');
+		instance.setView('viewFolder');
 		instance.loadAccounts();
 
 		// Disable features which have not yet been implemented
@@ -84,7 +87,7 @@ Liferay.Mail = {
 		instance.sendCcInput.val('');
 		instance.sendBccInput.val('');
 		instance.sendSubjectInput.val('');
-		instance.sendBodyTextarea.val('');
+		instance.sendBodySpan.css('visibility','hidden');
 	},
 
 	clearStatus: function() {
@@ -201,7 +204,7 @@ Liferay.Mail = {
 	loadAccounts: function() {
 		var instance = this;
 
-		var jsonUrl = themeDisplay.getLayoutURL() + 'accounts';
+		var jsonUrl = themeDisplay.getLayoutURL() + '/-/mail/accounts';
 
 		instance.setStatus(Liferay.Language.get('loading-accounts'), jsonUrl);
 
@@ -233,7 +236,7 @@ Liferay.Mail = {
 
 			// Get JSON
 
-			var jsonUrl = themeDisplay.getLayoutURL() + 'folders?accountId=' + accountId;
+			var jsonUrl = themeDisplay.getLayoutURL() + '/-/mail/folders?accountId=' + accountId;
 
 			instance.setStatus(Liferay.Language.get('loading-folders'), jsonUrl);
 
@@ -360,7 +363,7 @@ Liferay.Mail = {
 			}
 
 			for (i = 0; i < msgAttachments.length; i++) {
-				msgBody += '<li><a href="' + themeDisplay.getLayoutURL() + 'attachment?accountId=' + instance.getCurrentAccountId() + '&folderName=' + instance.getCurrentFolderName() + '&messageUid=' + msgUid + '&fileName=' + msgAttachments[i][1] + '&contentPath=' + msgAttachments[i][0] + '">' + msgAttachments[i][1] + '</a>';
+				msgBody += '<li><a href="' + themeDisplay.getLayoutURL() + '/-/mail/attachment?accountId=' + instance.getCurrentAccountId() + '&folderName=' + instance.getCurrentFolderName() + '&messageUid=' + msgUid + '&fileName=' + msgAttachments[i][1] + '&contentPath=' + msgAttachments[i][0] + '">' + msgAttachments[i][1] + '</a>';
 			}
 
 			msgBody += '</ul>';
@@ -446,7 +449,7 @@ Liferay.Mail = {
 			//instance.preloadMessage(folderName, messageNum + 1);
 		}
 		else {
-			var jsonUrl = themeDisplay.getLayoutURL() + 'message_by_number?accountId=' + accountId + '&folderName=' + folderName + '&messageNum=' + messageNum;
+			var jsonUrl = themeDisplay.getLayoutURL() + '/-/mail/message_by_number?accountId=' + accountId + '&folderName=' + folderName + '&messageNum=' + messageNum;
 
 			instance.setStatus(Liferay.Language.get('loading-message'), jsonUrl);
 
@@ -477,7 +480,7 @@ Liferay.Mail = {
 			instance.loadJsonMessage(jsonMessage);
 		}
 		else {
-			var jsonUrl = themeDisplay.getLayoutURL() + 'message_by_uid?accountId=' + accountId + '&folderName=' + folderName + '&messageUid=' + messageUid;
+			var jsonUrl = themeDisplay.getLayoutURL() + '/-/mail/message_by_uid?accountId=' + accountId + '&folderName=' + folderName + '&messageUid=' + messageUid;
 
 			instance.setStatus(Liferay.Language.get('loading-message'), jsonUrl);
 
@@ -516,7 +519,7 @@ Liferay.Mail = {
 
 			// Retrieve messages via ajax
 
-			var jsonUrl = themeDisplay.getLayoutURL() + 'messages?accountId=' + accountId + '&folderName=' + folderName + '&pageNum=' + pageNum + '&messagesPerPage=' + instance.getMessagesPerPage();
+			var jsonUrl = themeDisplay.getLayoutURL() + '/-/mail/messages?accountId=' + accountId + '&folderName=' + folderName + '&pageNum=' + pageNum + '&messagesPerPage=' + instance.getMessagesPerPage();
 
 			instance.setStatus(Liferay.Language.get('loading-messages'), jsonUrl);
 
@@ -540,7 +543,7 @@ Liferay.Mail = {
 
 		var accountId = instance.getCurrentAccountId();
 
-		var jsonUrl = themeDisplay.getLayoutURL() + 'messages_by_search?accountId=' + accountId + '&folderName=' + folderName + '&pageNum=' + pageNum + '&messagesPerPage=' + instance.getMessagesPerPage() + '&searchString=' + searchString;
+		var jsonUrl = themeDisplay.getLayoutURL() + '/-/mail/messages_by_search?accountId=' + accountId + '&folderName=' + folderName + '&pageNum=' + pageNum + '&messagesPerPage=' + instance.getMessagesPerPage() + '&searchString=' + searchString;
 
 		instance.setStatus(Liferay.Language.get('loading-messages'), jsonUrl);
 
@@ -564,7 +567,7 @@ Liferay.Mail = {
 
 			// Retrieve messages via ajax
 
-			var jsonUrl = themeDisplay.getLayoutURL() + 'messages?accountId=' + accountId + '&folderName=' + folderName + '&pageNum=' + pageNum + '&messagesPerPage=' + instance.getMessagesPerPage();
+			var jsonUrl = themeDisplay.getLayoutURL() + '/-/mail/messages?accountId=' + accountId + '&folderName=' + folderName + '&pageNum=' + pageNum + '&messagesPerPage=' + instance.getMessagesPerPage();
 
 			jQuery.ajaxQueue({
 				url: jsonUrl,
@@ -815,6 +818,13 @@ Liferay.Mail = {
 			}
 			else if (viewMode == 'composeMessage') {
 				instance.messageSendDiv.css('display', 'block');
+
+				try {
+					instance.sendBodySpan.css('visibility', 'visible');
+					instance.sendBodyEditor.setHTML('');
+				}
+				catch (ex) {
+				}
 			}
 		}
 	},
@@ -848,7 +858,7 @@ Liferay.Mail = {
 
 			// Get JSON
 
-			var jsonUrl = themeDisplay.getLayoutURL() + 'messages_delete_by_uid?accountId=' + instance.getCurrentAccountId() + '&folderName=' + instance.getCurrentFolderName() + '&messageUids=' + messageUids;
+			var jsonUrl = themeDisplay.getLayoutURL() + '/-/mail/messages_delete_by_uid?accountId=' + instance.getCurrentAccountId() + '&folderName=' + instance.getCurrentFolderName() + '&messageUids=' + messageUids;
 
 			instance.setStatus(Liferay.Language.get('deleting-messages'), jsonUrl);
 
@@ -954,12 +964,12 @@ Liferay.Mail = {
 			var jsonUrl;
 
 			if (option == 'read') {
-				var jsonUrl = themeDisplay.getLayoutURL() + 'messages_mark_as_read?accountId=' + instance.getCurrentAccountId() + '&folderName=' + instance.getCurrentFolderName() + '&messageUids=' + messageUids + '&isRead=true';
+				var jsonUrl = themeDisplay.getLayoutURL() + '/-/mail/messages_mark_as_read?accountId=' + instance.getCurrentAccountId() + '&folderName=' + instance.getCurrentFolderName() + '&messageUids=' + messageUids + '&isRead=true';
 
 				instance.setStatus(Liferay.Language.get('marking-messages-as-read'), jsonUrl);
 			}
 			else if (option == 'unread') {
-				var jsonUrl = themeDisplay.getLayoutURL() + 'messages_mark_as_read?accountId=' + instance.getCurrentAccountId() + '&folderName=' + instance.getCurrentFolderName() + '&messageUids=' + messageUids + '&isRead=false';
+				var jsonUrl = themeDisplay.getLayoutURL() + '/-/mail/messages_mark_as_read?accountId=' + instance.getCurrentAccountId() + '&folderName=' + instance.getCurrentFolderName() + '&messageUids=' + messageUids + '&isRead=false';
 
 				instance.setStatus(Liferay.Language.get('marking-messages-as-unread'), jsonUrl);
 			}
@@ -1055,13 +1065,14 @@ Liferay.Mail = {
 				// Load appropriate response message
 
 				if (!messageModified) {
-					var fwdHeader = '\n\n---------- Forwarded message ----------\n';
-					fwdHeader += 'From: ' + msgFrom + '\n';
-					fwdHeader += 'Date: ' + msgDate + '\n';
-					fwdHeader += 'Subject: ' + msgSubject + '\n';
-					fwdHeader += 'To: ' + msgTo + '\n\n';
+					var fwdHeader = '<br /><br />---------- Forwarded message ----------<br />';
+					fwdHeader += 'From: ' + msgFrom + '<br />';
+					fwdHeader += 'Date: ' + msgDate + '<br />';
+					fwdHeader += 'Subject: ' + msgSubject + '<br />';
+					fwdHeader += 'To: ' + msgTo + '<br /><br />';
 
-					instance.sendBodyTextarea.val(fwdHeader + msgBody);
+					instance.sendBodySpan.css('visibility', 'visible');
+					instance.sendBodyEditor.setHTML(fwdHeader + msgBody);
 				}
 			}
 			else {
@@ -1085,8 +1096,10 @@ Liferay.Mail = {
 				// Load appropriate response message
 
 				if (!messageModified) {
-					var replyHeader = '\n\nOn ' + msgDate + ', <' + msgFrom + '> wrote:\n\n';
-					instance.sendBodyTextarea.val(replyHeader + msgBody);
+					var replyHeader = '<br /><br />On ' + msgDate + ', <' + msgFrom + '> wrote:<br /><br />';
+
+					instance.sendBodySpan.css('visibility', 'visible');
+					instance.sendBodyEditor.setHTML(replyHeader + msgBody);
 				}
 			}
 		});
@@ -1117,7 +1130,7 @@ Liferay.Mail = {
 				ajaxUrl,
 				{
 					accountId: fromAccountId,
-					content: instance.sendBodyTextarea.val(),
+					content: instance.sendBodyEditor.getHTML(),
 					folderName: folderNameVal,
 					messageUid: messageUidVal,
 					responseType: instance.getMessageResponseType(),
@@ -1158,7 +1171,7 @@ Liferay.Mail = {
 	_cacheJsonMessage: function(accountId, folderName, jsonMessage) {
 		var instance = this;
 
-		instance._jsonMessage[accountId + '.' + folderName + '.num' + jsonMessage.msgNum] = jsonMessage;
+		instance._jsonMessage[accountId + '.' + folderName + '.num' + jsonMessage.messageNumber] = jsonMessage;
 		instance._jsonMessage[accountId + '.' + folderName + '.uid' + jsonMessage.uid] = jsonMessage;
 	},
 
@@ -1216,15 +1229,15 @@ Liferay.Mail = {
 		}
 	},
 
-	_getCachedJsonMessageByNum: function(accountId, folderName, msgNum) {
+	_getCachedJsonMessageByNum: function(accountId, folderName, messageNumber) {
 		var instance = this;
 
 		try {
-			if (instance._jsonMessage[accountId + '.' + folderName + '.num' + msgNum] == undefined) {
+			if (instance._jsonMessage[accountId + '.' + folderName + '.num' + messageNumber] == undefined) {
 				return null;
 			}
 			else {
-				return instance._jsonMessage[accountId + '.' + folderName + '.num' + msgNum];
+				return instance._jsonMessage[accountId + '.' + folderName + '.num' + messageNumber];
 			}
 		}
 		catch (ex) {
@@ -1282,12 +1295,6 @@ Liferay.Mail = {
 	_jsonMessages: {},
 	_jsonMessage: {}
 }
-
-jQuery(
-	function() {
-		Liferay.Mail.init();
-	}
-);
 
 jQuery.ajaxQueue = function(o) {
 	var old = o.complete;

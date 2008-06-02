@@ -220,6 +220,7 @@
 }
 
 .mail-portlet #message-send .details table {
+	margin-bottom: 10px;
 	width: 100%;
 }
 

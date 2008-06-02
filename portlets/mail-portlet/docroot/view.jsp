@@ -34,6 +34,23 @@
 
 <liferay-theme:defineObjects />
 
+<script type="text/javascript">
+
+	jQuery(
+		function() {
+			Liferay.Mail.init(
+				{
+					sendBodyEditor : window.<portlet:namespace />editor
+				}
+			);
+		}
+	);
+
+	function <portlet:namespace />initEditor() {
+		return '';
+	}
+</script>
+
 <table id="account-container">
 <tr>
 	<td id="selection">
@@ -295,7 +312,9 @@
 					</tr>
 					</table>
 
-					<textarea id="send-body"></textarea>
+					<span id="send-body">
+						<liferay-ui:input-editor height="500px" width="95%" />
+					</span>
 				</div>
 
 				<div class="options">
