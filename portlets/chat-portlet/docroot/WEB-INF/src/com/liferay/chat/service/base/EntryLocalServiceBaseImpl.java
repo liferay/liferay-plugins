@@ -24,6 +24,8 @@ package com.liferay.chat.service.base;
 
 import com.liferay.chat.model.Entry;
 import com.liferay.chat.service.EntryLocalService;
+import com.liferay.chat.service.persistence.EntryFinder;
+import com.liferay.chat.service.persistence.EntryFinderUtil;
 import com.liferay.chat.service.persistence.EntryPersistence;
 import com.liferay.chat.service.persistence.EntryUtil;
 
@@ -88,11 +90,24 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService,
 		this.entryPersistence = entryPersistence;
 	}
 
+	public EntryFinder getEntryFinder() {
+		return entryFinder;
+	}
+
+	public void setEntryFinder(EntryFinder entryFinder) {
+		this.entryFinder = entryFinder;
+	}
+
 	public void afterPropertiesSet() {
 		if (entryPersistence == null) {
 			entryPersistence = EntryUtil.getPersistence();
 		}
+
+		if (entryFinder == null) {
+			entryFinder = EntryFinderUtil.getFinder();
+		}
 	}
 
 	protected EntryPersistence entryPersistence;
+	protected EntryFinder entryFinder;
 }

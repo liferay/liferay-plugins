@@ -20,40 +20,16 @@
  * SOFTWARE.
  */
 
-package com.liferay.chat.model;
-
-import com.liferay.portal.model.BaseModel;
+package com.liferay.chat.service.persistence;
 
 /**
- * <a href="EntryModel.java.html"><b><i>View Source</i></b></a>
+ * <a href="EntryFinder.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface EntryModel extends BaseModel {
-	public long getPrimaryKey();
-
-	public void setPrimaryKey(long pk);
-
-	public long getEntryId();
-
-	public void setEntryId(long entryId);
-
-	public long getUserId();
-
-	public void setUserId(long userId);
-
-	public long getCreateDate();
-
-	public void setCreateDate(long createDate);
-
-	public String getContent();
-
-	public void setContent(String content);
-
-	public long getReceiverUserId();
-
-	public void setReceiverUserId(long receiverUserId);
-
-	public Entry toEscapedModel();
+public interface EntryFinder {
+	public java.util.List<com.liferay.chat.model.Entry> findByU_CD(
+		long userId, long createDate, int start, int end)
+		throws com.liferay.portal.SystemException;
 }

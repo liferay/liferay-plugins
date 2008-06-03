@@ -8,7 +8,7 @@
 			<generator class="assigned" />
 		</id>
 		<property name="userId" type="com.liferay.util.dao.hibernate.LongType" />
-		<property name="createDate" />
+		<property name="createDate" type="com.liferay.util.dao.hibernate.LongType" />
 		<property name="content" type="com.liferay.util.dao.hibernate.StringType" />
 		<property name="receiverUserId" type="com.liferay.util.dao.hibernate.LongType" />
 	</class>

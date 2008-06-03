@@ -20,51 +20,61 @@
  * SOFTWARE.
  */
 
-package com.liferay.chat.service.impl;
+package com.liferay.chat.service.persistence;
 
 import com.liferay.chat.model.Entry;
-import com.liferay.chat.service.base.EntryLocalServiceBaseImpl;
-import com.liferay.counter.service.CounterLocalServiceUtil;
-import com.liferay.portal.PortalException;
+import com.liferay.chat.model.impl.EntryImpl;
 import com.liferay.portal.SystemException;
+import com.liferay.portlet.service.CustomSQLUtil;
+import com.liferay.portlet.service.HibernateUtil;
+import com.liferay.util.dao.hibernate.QueryPos;
+import com.liferay.util.dao.hibernate.QueryUtil;
 
 import java.util.List;
 
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
+
 /**
- * <a href="EntryLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="EntryFinderImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
+public class EntryFinderImpl implements EntryFinder {
 
-	public Entry addEntry(long userId, String content, long receiverUserId)
-		throws PortalException, SystemException {
+	public static String FIND_BY_U_CD =
+		EntryFinder.class.getName() + ".findByU_CD";
 
-		long entryId = CounterLocalServiceUtil.increment();
-
-		Entry entry = entryPersistence.create(entryId);
-
-		entry.setUserId(userId);
-		entry.setCreateDate(System.currentTimeMillis());
-		entry.setContent(content);
-		entry.setReceiverUserId(receiverUserId);
-
-		entryPersistence.update(entry, false);
-
-		return entry;
-	}
-
-	public void deleteEntries(long userId) throws SystemException {
-		entryPersistence.removeByUserId(userId);
-		entryPersistence.removeByReceiverUserId(userId);
-	}
-
-	public List<Entry> getEntries(
+	public List<Entry> findByU_CD(
 			long userId, long createDate, int start, int end)
 		throws SystemException {
 
-		return entryFinder.findByU_CD(userId, createDate, start, end);
+		Session session = null;
+
+		try {
+			session = HibernateUtil.openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_U_CD);
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addEntity("Chat_Entry", EntryImpl.class);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(userId);
+			qPos.add(createDate);
+
+			return (List<Entry>)QueryUtil.list(
+				q, HibernateUtil.getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			HibernateUtil.closeSession(session);
+		}
 	}
 
 }

@@ -26,7 +26,6 @@ import com.liferay.chat.model.Entry;
 import com.liferay.chat.model.EntrySoap;
 
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
-import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 
@@ -40,7 +39,6 @@ import java.lang.reflect.Proxy;
 import java.sql.Types;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -58,7 +56,7 @@ public class EntryModelImpl extends BaseModelImpl {
 			{ "userId", new Integer(Types.BIGINT) },
 			
 
-			{ "createDate", new Integer(Types.TIMESTAMP) },
+			{ "createDate", new Integer(Types.BIGINT) },
 			
 
 			{ "content", new Integer(Types.VARCHAR) },
@@ -66,7 +64,7 @@ public class EntryModelImpl extends BaseModelImpl {
 
 			{ "receiverUserId", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Chat_Entry (entryId LONG not null primary key,userId LONG,createDate DATE null,content VARCHAR(75) null,receiverUserId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Chat_Entry (entryId LONG not null primary key,userId LONG,createDate LONG,content VARCHAR(75) null,receiverUserId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Chat_Entry";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -135,15 +133,12 @@ public class EntryModelImpl extends BaseModelImpl {
 		}
 	}
 
-	public Date getCreateDate() {
+	public long getCreateDate() {
 		return _createDate;
 	}
 
-	public void setCreateDate(Date createDate) {
-		if (((createDate == null) && (_createDate != null)) ||
-				((createDate != null) && (_createDate == null)) ||
-				((createDate != null) && (_createDate != null) &&
-				!createDate.equals(_createDate))) {
+	public void setCreateDate(long createDate) {
+		if (createDate != _createDate) {
 			_createDate = createDate;
 		}
 	}
@@ -214,7 +209,15 @@ public class EntryModelImpl extends BaseModelImpl {
 
 		int value = 0;
 
-		value = DateUtil.compareTo(getCreateDate(), entry.getCreateDate());
+		if (getCreateDate() < entry.getCreateDate()) {
+			value = -1;
+		}
+		else if (getCreateDate() > entry.getCreateDate()) {
+			value = 1;
+		}
+		else {
+			value = 0;
+		}
 
 		value = value * -1;
 
@@ -255,7 +258,7 @@ public class EntryModelImpl extends BaseModelImpl {
 
 	private long _entryId;
 	private long _userId;
-	private Date _createDate;
+	private long _createDate;
 	private String _content;
 	private long _receiverUserId;
 }

@@ -1,3 +1,4 @@
+<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -19,41 +20,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+%>
 
-package com.liferay.chat.model;
+<%@ include file="/json_init.jsp" %>
 
-import com.liferay.portal.model.BaseModel;
+<%
+long createDate = ParamUtil.getLong(request, "createDate");
 
-/**
- * <a href="EntryModel.java.html"><b><i>View Source</i></b></a>
- *
- * @author Brian Wing Shun Chan
- *
- */
-public interface EntryModel extends BaseModel {
-	public long getPrimaryKey();
+List<Entry> entries = EntryLocalServiceUtil.getEntries(themeDisplay.getUserId(), createDate, 0, 20);
 
-	public void setPrimaryKey(long pk);
+JSONObject jsonObj = new JSONObject();
 
-	public long getEntryId();
+JSONArray jsonArray = new JSONArray();
 
-	public void setEntryId(long entryId);
+JSONUtil.put(jsonObj, "entries", jsonArray);
 
-	public long getUserId();
+for (Entry entry : entries) {
+	JSONObject entryJSON = new JSONObject();
 
-	public void setUserId(long userId);
+	JSONUtil.put(entryJSON, "userId", entry.getUserId());
+	JSONUtil.put(entryJSON, "createDate", entry.getCreateDate());
+	JSONUtil.put(entryJSON, "content", entry.getContent());
+	JSONUtil.put(entryJSON, "receiverUserId", entry.getReceiverUserId());
 
-	public long getCreateDate();
-
-	public void setCreateDate(long createDate);
-
-	public String getContent();
-
-	public void setContent(String content);
-
-	public long getReceiverUserId();
-
-	public void setReceiverUserId(long receiverUserId);
-
-	public Entry toEscapedModel();
+	jsonArray.put(entryJSON);
 }
+%>
+
+<%= jsonObj %>

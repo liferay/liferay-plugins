@@ -4,7 +4,7 @@
 	<model name="com.liferay.chat.model.Entry">
 		<field name="entryId" type="long" />
 		<field name="userId" type="long" />
-		<field name="createDate" type="Date" />
+		<field name="createDate" type="long" />
 		<field name="content" type="String" />
 		<field name="receiverUserId" type="long" />
 	</model>

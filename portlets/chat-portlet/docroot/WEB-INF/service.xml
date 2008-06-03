@@ -12,7 +12,7 @@
 		<!-- Audit fields -->
 
 		<column name="userId" type="long" />
-		<column name="createDate" type="Date" />
+		<column name="createDate" type="long" />
 
 		<!-- Other fields -->
 

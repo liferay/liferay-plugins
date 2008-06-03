@@ -1,3 +1,4 @@
+<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -19,41 +20,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+%>
 
-package com.liferay.chat.model;
+<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
 
-import com.liferay.portal.model.BaseModel;
+<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
+<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-/**
- * <a href="EntryModel.java.html"><b><i>View Source</i></b></a>
- *
- * @author Brian Wing Shun Chan
- *
- */
-public interface EntryModel extends BaseModel {
-	public long getPrimaryKey();
+<%@ page import="com.liferay.chat.model.Entry" %>
+<%@ page import="com.liferay.chat.service.EntryLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.kernel.servlet.HttpHeaders" %>
+<%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="com.liferay.util.JSONUtil" %>
 
-	public void setPrimaryKey(long pk);
+<%@ page import="java.util.List" %>
 
-	public long getEntryId();
+<%@ page import="org.json.JSONArray" %>
+<%@ page import="org.json.JSONObject" %>
 
-	public void setEntryId(long entryId);
+<portlet:defineObjects />
 
-	public long getUserId();
+<liferay-theme:defineObjects />
 
-	public void setUserId(long userId);
-
-	public long getCreateDate();
-
-	public void setCreateDate(long createDate);
-
-	public String getContent();
-
-	public void setContent(String content);
-
-	public long getReceiverUserId();
-
-	public void setReceiverUserId(long receiverUserId);
-
-	public Entry toEscapedModel();
-}
+<%
+response.setContentType(ContentTypes.TEXT_JAVASCRIPT);
+response.setHeader(HttpHeaders.CACHE_CONTROL, "no-cache");
+%>

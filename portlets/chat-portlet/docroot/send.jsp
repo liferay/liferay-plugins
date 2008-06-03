@@ -1,3 +1,4 @@
+<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -19,41 +20,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+%>
 
-package com.liferay.chat.model;
+<%@ include file="/json_init.jsp" %>
 
-import com.liferay.portal.model.BaseModel;
-
-/**
- * <a href="EntryModel.java.html"><b><i>View Source</i></b></a>
- *
- * @author Brian Wing Shun Chan
- *
- */
-public interface EntryModel extends BaseModel {
-	public long getPrimaryKey();
-
-	public void setPrimaryKey(long pk);
-
-	public long getEntryId();
-
-	public void setEntryId(long entryId);
-
-	public long getUserId();
-
-	public void setUserId(long userId);
-
-	public long getCreateDate();
-
-	public void setCreateDate(long createDate);
-
-	public String getContent();
-
-	public void setContent(String content);
-
-	public long getReceiverUserId();
-
-	public void setReceiverUserId(long receiverUserId);
-
-	public Entry toEscapedModel();
+<%
+if (!themeDisplay.isSignedIn()) {
+	return;
 }
+
+String content = ParamUtil.getString(request, "content");
+long receiverUserId = ParamUtil.getLong(request, "receiverUserId");
+
+if (receiverUserId == 0) {
+	return;
+}
+
+EntryLocalServiceUtil.addEntry(themeDisplay.getUserId(), content, receiverUserId);
+%>

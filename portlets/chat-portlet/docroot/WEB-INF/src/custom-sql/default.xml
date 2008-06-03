@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.liferay.chat.service.persistence.EntryFinder.findByU_CD">
+		<![CDATA[
+			SELECT
+				{Chat_Entry.*}
+			FROM
+				Chat_Entry
+			WHERE
+				(userId = ?) AND
+				(createDate > ?)
+		]]>
+	</sql>
+</custom-sql>

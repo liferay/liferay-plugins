@@ -25,7 +25,6 @@ package com.liferay.chat.model;
 import java.io.Serializable;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -84,11 +83,11 @@ public class EntrySoap implements Serializable {
 		_userId = userId;
 	}
 
-	public Date getCreateDate() {
+	public long getCreateDate() {
 		return _createDate;
 	}
 
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(long createDate) {
 		_createDate = createDate;
 	}
 
@@ -110,7 +109,7 @@ public class EntrySoap implements Serializable {
 
 	private long _entryId;
 	private long _userId;
-	private Date _createDate;
+	private long _createDate;
 	private String _content;
 	private long _receiverUserId;
 }

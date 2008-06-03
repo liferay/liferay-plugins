@@ -100,4 +100,12 @@ public class EntryLocalServiceUtil {
 
 		entryLocalService.deleteEntries(userId);
 	}
+
+	public static java.util.List<com.liferay.chat.model.Entry> getEntries(
+		long userId, long createDate, int start, int end)
+		throws com.liferay.portal.SystemException {
+		EntryLocalService entryLocalService = EntryLocalServiceFactory.getService();
+
+		return entryLocalService.getEntries(userId, createDate, start, end);
+	}
 }
