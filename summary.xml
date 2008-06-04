@@ -4,7 +4,9 @@
 		<name>1-2-1 Columns Templates</name>
 		<type>layouttpl</type>
 		<tags></tags>
-		<short-description></short-description>
+		<short-description>
+		This plugin is a 1-2-1 columns layout template.
+	</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -16,7 +18,7 @@
 		<type>layouttpl</type>
 		<tags></tags>
 		<short-description>
-		This is a 1-3-1 columns layout template.
+		This plugin is a 1-3-1 columns layout template.
 	</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
@@ -29,7 +31,7 @@
 		<type>layouttpl</type>
 		<tags></tags>
 		<short-description>
-		This is a 2-1-2 columns layout template.
+		This plugin is a 2-1-2 columns layout template.
 	</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
@@ -42,7 +44,7 @@
 		<type>layouttpl</type>
 		<tags></tags>
 		<short-description>
-		This is a 3-2-3 columns layout template.
+		This plugin is a 3-2-3 columns layout template.
 	</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
@@ -54,7 +56,7 @@
 		<name>Alfresco Content</name>
 		<type>portlet</type>
 		<tags>alfresco</tags>
-		<short-description>This portlet displays content from Alfresco's repository.</short-description>
+		<short-description>This plugin displays content from Alfresco's repository.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -64,19 +66,30 @@
 		<artifact-id>alfresco-portlet</artifact-id>
 		<name>Alfresco Client</name>
 		<type>portlet</type>
-		<tags></tags>
-		<short-description>Access the Alfresco 2.0 UI as a portlet.</short-description>
+		<tags>alfresco</tags>
+		<short-description>This plugin accesses the Alfresco 2.0 UI.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Alfresco Software, Inc.</author>
 		<licenses>GPL</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>chat-portlet</artifact-id>
+		<name>Chat</name>
+		<type>portlet</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>google-adsense-portlet</artifact-id>
 		<name>Google AdSense</name>
 		<type>portlet</type>
 		<tags>google</tags>
-		<short-description>This portlet allows easy integration with Google AdSense.</short-description>
+		<short-description>This plugin allows easy integration with Google AdSense.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -87,7 +100,7 @@
 		<name>Google Gadget</name>
 		<type>portlet</type>
 		<tags>google</tags>
-		<short-description>This portlet allows easy integration with Google Gadget.</short-description>
+		<short-description>This plugin allows easy integration with Google Gadget.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -98,7 +111,7 @@
 		<name>Google Maps</name>
 		<type>portlet</type>
 		<tags>google</tags>
-		<short-description>This portlet allows easy integration with Google Maps.</short-description>
+		<short-description>This plugin allows easy integration with Google Maps.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -109,7 +122,7 @@
 		<name>Google Search</name>
 		<type>portlet</type>
 		<tags>google</tags>
-		<short-description>This portlet allows easy integration with Google Search.</short-description>
+		<short-description>This plugin allows easy integration with Google Search.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -120,7 +133,7 @@
 		<name>IP Geocoder</name>
 		<type>portlet</type>
 		<tags></tags>
-		<short-description>This portlet geocodes IPs.</short-description>
+		<short-description>This plugin shows geocode IPs.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -130,8 +143,8 @@
 		<artifact-id>mail-portlet</artifact-id>
 		<name>Mail</name>
 		<type>portlet</type>
-		<tags>google</tags>
-		<short-description>This is a Mail portlet.</short-description>
+		<tags></tags>
+		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -142,7 +155,7 @@
 		<name>Release Tools</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet is used by Liferay release managers to track packages among the Liferay public site, the SourceForge downloads page, and the SourceForge SVN repository.</short-description>
+		<short-description>This plugin is used by Liferay release managers to track packages among the Liferay public site, the SourceForge downloads page, and the SourceForge SVN repository.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -153,7 +166,7 @@
 		<name>Ruby Console</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet provides a console for executing arbitrary Ruby code. Use this portlet should only be used for development.</short-description>
+		<short-description>This plugin provides a console for executing arbitrary Ruby code. Use this portlet should only be used for development.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -164,7 +177,7 @@
 		<name>Sample DAO</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use DAO in Liferay.</short-description>
+		<short-description>This plugin shows how to use DAO in Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -175,7 +188,7 @@
 		<name>Sample Groovy</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to create Groovy portlets in Liferay.</short-description>
+		<short-description>This plugin shows how to create Groovy portlets in Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -186,7 +199,7 @@
 		<name>Sample Hibernate</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use Hibernate in Liferay.</short-description>
+		<short-description>This plugin shows how to use Hibernate in Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -197,7 +210,7 @@
 		<name>Sample ICEfaces JSF 1.1 MyFaces JSP</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use ICEfaces and the JSF 1.1 MyFaces RI and the JSP view-handler within Liferay.</short-description>
+		<short-description>This plugin shows how to use ICEfaces and the JSF 1.1 MyFaces RI and the JSP view-handler within Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -208,7 +221,7 @@
 		<name>Sample ICEfaces JSF 1.1 Sun Facelets</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use ICEfaces and the JSF 1.1 Sun RI and the Facelets view-handler within Liferay.</short-description>
+		<short-description>This plugin shows how to use ICEfaces and the JSF 1.1 Sun RI and the Facelets view-handler within Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -219,7 +232,7 @@
 		<name>Sample ICEfaces JSF 1.1 Sun JSP</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use ICEfaces and the JSF 1.1 Sun RI and the JSP view-handler within Liferay.</short-description>
+		<short-description>This plugin shows how to use ICEfaces and the JSF 1.1 Sun RI and the JSP view-handler within Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -230,7 +243,7 @@
 		<name>Sample ICEfaces JSF 1.2 Sun Facelets</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use ICEfaces and the JSF 1.2 Sun RI and the Facelets view-handler within Liferay. Requires Tomcat 6.x, GlassFish 2.0.x, or JBoss AS 4.2.x since JSF 1.2 has a JRE5 dependency.</short-description>
+		<short-description>This plugin shows how to use ICEfaces and the JSF 1.2 Sun RI and the Facelets view-handler within Liferay. Requires Tomcat 6.x, GlassFish 2.0.x, or JBoss AS 4.2.x since JSF 1.2 has a JRE5 dependency.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -241,7 +254,7 @@
 		<name>Sample JSF 1.1 MyFaces Facelets</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use the JSF 1.1 MyFaces RI and the Facelets view-handler within Liferay.</short-description>
+		<short-description>This plugin shows how to use the JSF 1.1 MyFaces RI and the Facelets view-handler within Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -252,7 +265,7 @@
 		<name>Sample JSF 1.1 MyFaces JSP</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use the JSF 1.1 MyFaces RI and the JSP view-handler within Liferay.</short-description>
+		<short-description>This plugin shows how to use the JSF 1.1 MyFaces RI and the JSP view-handler within Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -263,7 +276,7 @@
 		<name>Sample JSF 1.1 Sun Facelets</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet leverages the Sun OpenPortal JSF Portlet Bridge and shows how to use the JSF 1.1 Sun RI and the Facelets view-handler within Liferay.</short-description>
+		<short-description>This plugin shows the Sun OpenPortal JSF Portlet Bridge and shows how to use the JSF 1.1 Sun RI and the Facelets view-handler within Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -274,7 +287,7 @@
 		<name>Sample JSF 1.1 Sun JSP</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet leverages the Sun OpenPortal JSF Portlet Bridge and shows how to use the JSF 1.1 Sun RI and the JSP view-handler within Liferay.</short-description>
+		<short-description>This plugin leverages the Sun OpenPortal JSF Portlet Bridge and shows how to use the JSF 1.1 Sun RI and the JSP view-handler within Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -285,7 +298,7 @@
 		<name>Sample JSF 1.2 Sun Facelets</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet leverages the Sun OpenPortal JSF Portlet Bridge and shows how to use the JSF 1.2 Sun RI and the Facelets view-handler within Liferay.</short-description>
+		<short-description>This plugin leverages the Sun OpenPortal JSF Portlet Bridge and shows how to use the JSF 1.2 Sun RI and the Facelets view-handler within Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -296,7 +309,7 @@
 		<name>Sample JSF 1.2 Sun JSP</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet leverages the Sun OpenPortal JSF Portlet Bridge and shows how to use the JSF 1.2 Sun RI and the JSP view-handler within Liferay.</short-description>
+		<short-description>This plugin leverages the Sun OpenPortal JSF Portlet Bridge and shows how to use the JSF 1.2 Sun RI and the JSP view-handler within Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -307,7 +320,7 @@
 		<name>Sample JSON</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use JSON in Liferay.</short-description>
+		<short-description>This plugin shows how to use JSON in Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -318,7 +331,7 @@
 		<name>Sample JSP</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to create JSP portlets in Liferay.</short-description>
+		<short-description>This plugin shows how to create JSP portlets in Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -329,7 +342,7 @@
 		<name>Sample LAR</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use the LAR (Liferay Archive) service from a portlet.</short-description>
+		<short-description>This plugin shows how to use the LAR (Liferay Archive) service from a portlet.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -340,7 +353,7 @@
 		<name>Sample Laszlo</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to create Laszlo portlets in Liferay.</short-description>
+		<short-description>This plugin shows how to create Laszlo portlets in Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -351,7 +364,7 @@
 		<name>Sample Localized</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to localize a portlet.</short-description>
+		<short-description>This plugin shows how to localize a portlet.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -362,7 +375,7 @@
 		<name>Sample Orbeon Forms</name>
 		<type>portlet</type>
 		<tags></tags>
-		<short-description>Sample Orbeon Forms allows users to easily build web forms.</short-description>
+		<short-description>This plugin allows users to easily build web forms.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Orbeon, Inc.</author>
@@ -373,7 +386,7 @@
 		<name>Sample Permissions</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use the permission service from a portlet.</short-description>
+		<short-description>This plugin shows how to use the permission service from a portlet.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -384,7 +397,7 @@
 		<name>Sample PHP</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to create PHP portlets in Liferay.</short-description>
+		<short-description>This plugin shows how to create PHP portlets in Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -395,7 +408,7 @@
 		<name>Sample Portal Client</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use the portal-client.jar to access Liferay's services using SOAP.</short-description>
+		<short-description>This plugin shows how to use the portal-client.jar to access Liferay's services using SOAP.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -406,7 +419,7 @@
 		<name>Sample Portal Service</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use Liferay's services throught regular Java calls.</short-description>
+		<short-description>This plugin shows how to use Liferay's services throught regular Java calls.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -417,7 +430,7 @@
 		<name>Sample Python</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to create Python portlets in Liferay.</short-description>
+		<short-description>This plugin shows how to create Python portlets in Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -428,7 +441,7 @@
 		<name>Sample Ruby</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to create Ruby portlets in Liferay.</short-description>
+		<short-description>This plugin portlet shows how to create Ruby portlets in Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -439,7 +452,18 @@
 		<name>Sample Seam</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use JBoss Seam within Liferay.</short-description>
+		<short-description>This plugin shows how to use JBoss Seam within Liferay.</short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sample-seam-portlet</artifact-id>
+		<name>Sample Seam</name>
+		<type>portlet</type>
+		<tags>sample</tags>
+		<short-description>This plugin shows how to use JBoss Seam within Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -450,7 +474,7 @@
 		<name>Sample Service Builder</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use Liferay's Service Builder in a hot deployable portlet.</short-description>
+		<short-description>This plugin shows how to use Liferay's Service Builder in a hot deployable portlet.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -461,7 +485,7 @@
 		<name>Sample Sign In</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to create a sign in portlet in Liferay.</short-description>
+		<short-description>This plugin shows how to create a sign in portlet in Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -472,10 +496,21 @@
 		<name>Sample Spring</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use Spring in Liferay.</short-description>
+		<short-description>This plugin shows how to use Spring in Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
-		<author>Interface21</author>
+		<author>SpringSource</author>
+		<licenses>Apache</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sample-spring-portlet</artifact-id>
+		<name>Sample Spring</name>
+		<type>portlet</type>
+		<tags>sample</tags>
+		<short-description>This plugin shows how to use Spring in Liferay.</short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>SpringSource</author>
 		<licenses>Apache</licenses>
 	</plugin>
 	<plugin>
@@ -483,7 +518,7 @@
 		<name>Sample Struts Liferay</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use Liferay's Struts Bridge.</short-description>
+		<short-description>This plugin shows how to use Liferay's Struts Bridge.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -494,7 +529,7 @@
 		<name>Sample Struts</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use the Apache Struts Bridge with Liferay.</short-description>
+		<short-description>This plugin shows how to use the Apache Struts Bridge with Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -505,7 +540,7 @@
 		<name>Sample Tapestry</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use Tapestry in Liferay.</short-description>
+		<short-description>This plugin shows how to use Tapestry in Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -516,7 +551,7 @@
 		<name>Sample Test</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to develop a simple portlet in Liferay.</short-description>
+		<short-description>This plugin shows how to develop a simple portlet in Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -527,7 +562,7 @@
 		<name>Sample UI Taglibs</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This portlet shows how to use Liferay's UI taglibs in a portlet.</short-description>
+		<short-description>This plugin shows how to use Liferay's UI taglibs in a portlet.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -538,22 +573,22 @@
 		<name>Sample WAP</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This bundle contains several portlets for WAP clients.</short-description>
+		<short-description>This plugin contains several portlets for WAP clients.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
-		<artifact-id>secure-ftp-portlet</artifact-id>
-		<name>Secure FTP</name>
+		<artifact-id>shindig-portlet</artifact-id>
+		<name>Shindig Gadget Portlet</name>
 		<type>portlet</type>
-		<tags></tags>
-		<short-description></short-description>
+		<tags>gadget opensocial shindig</tags>
+		<short-description>This is a Gadget portlet build on the Shindig platform.</short-description>
 		<change-log></change-log>
-		<page-url>http://secureftp.glub.com</page-url>
-		<author>Glub Tech, Inc.</author>
-		<licenses>Commercial</licenses>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>shindig-portlet</artifact-id>
@@ -593,7 +628,18 @@
 		<name>Bookmark</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Bookmark portlet.</short-description>
+		<short-description>This is the Sun Bookmark plugin.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-bookmark-portlet</artifact-id>
+		<name>Bookmark</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun Bookmark plugin.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -604,7 +650,18 @@
 		<name>Elluminate</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Elluminate portlet.</short-description>
+		<short-description>This is the Sun Elluminate plugin.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-elluminate-portlet</artifact-id>
+		<name>Elluminate</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun Elluminate plugin.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -615,7 +672,18 @@
 		<name>Flickr</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Flickr portlet.</short-description>
+		<short-description>This is the Sun Flickr plugin.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-flickr-portlet</artifact-id>
+		<name>Flickr</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun Flickr plugin.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -626,7 +694,18 @@
 		<name>IFrame</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun IFrame portlet.</short-description>
+		<short-description>This is the Sun IFrame plugin.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-iframe-portlet</artifact-id>
+		<name>iFrame</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun iFrame plugin.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -637,7 +716,18 @@
 		<name>MashUp</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun MashUp portlet.</short-description>
+		<short-description>This is the Sun MashUp plugin.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-mashup-portlet</artifact-id>
+		<name>MashUp</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun MashUp plugin.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -648,7 +738,18 @@
 		<name>Notepad</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Notepad portlet.</short-description>
+		<short-description>This is the Sun Notepad plugin.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-notepad-portlet</artifact-id>
+		<name>Notepad</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun Notepad plugin.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -659,7 +760,18 @@
 		<name>PhotoShow Ajax</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun PhotoShow Ajax portlet.</short-description>
+		<short-description>This is the Sun PhotoShow Ajax plugin.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-photoshow-ajax-portlet</artifact-id>
+		<name>PhotoShow Ajax</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun PhotoShow Ajax plugin.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -670,7 +782,18 @@
 		<name>Privacy Guard</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Privacy Guard portlet.</short-description>
+		<short-description>This is the Sun Privacy Guard plugin.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-privacy-guard-portlet</artifact-id>
+		<name>Privacy Guard</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun Privacy Guard plugin.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -681,7 +804,18 @@
 		<name>RSS</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun RSS portlet.</short-description>
+		<short-description>This is the Sun RSS plugin.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-rss-portlet</artifact-id>
+		<name>RSS</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun RSS plugin.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -692,7 +826,18 @@
 		<name>ShowTime Portlet</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun ShowTime portlet.</short-description>
+		<short-description>This is the Sun ShowTime plugin.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-showtime-portlet</artifact-id>
+		<name>ShowTime Portlet</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun ShowTime plugin.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -703,7 +848,18 @@
 		<name>Video</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Video portlet.</short-description>
+		<short-description>This is the Sun Video plugin.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-video-portlet</artifact-id>
+		<name>Video</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun Video plugin.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -714,7 +870,18 @@
 		<name>Weather</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Weather portlet.</short-description>
+		<short-description>This is the Sun Weather plugin.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-weather-portlet</artifact-id>
+		<name>Weather</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun Weather plugin.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -736,7 +903,7 @@
 		<name>IP Geocoder</name>
 		<type>portlet</type>
 		<tags></tags>
-		<short-description>This portlet provides integration with Twitter. Every tweet is logged as an activity.</short-description>
+		<short-description>This plugin provides integration with Twitter. Every tweet is logged as an activity.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -758,7 +925,7 @@
 		<name>Webcam</name>
 		<type>portlet</type>
 		<tags></tags>
-		<short-description>This is a webcam portlet.</short-description>
+		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -784,7 +951,7 @@
 		<change-log></change-log>
 		<page-url>http://opensourcetemplates.org/template_info.php?id=104</page-url>
 		<author>Zeb</author>
-		<licenses>CC Attribution</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>alef-theme</artifact-id>
@@ -806,7 +973,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/2493</page-url>
 		<author>Andreas</author>
-		<licenses>Unknown</licenses>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>autumn-theme</artifact-id>
@@ -817,7 +984,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3469</page-url>
 		<author>Dieter</author>
-		<licenses>Unknown</licenses>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>beautiful-day-theme</artifact-id>
@@ -826,9 +993,9 @@
 		<tags></tags>
 		<short-description></short-description>
 		<change-log></change-log>
-		<page-url>http://arcsin.se</page-url>
+		<page-url>http://templates.arcsin.se</page-url>
 		<author>Viktor Persson</author>
-		<licenses>CC Attribution</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>bittersweet-theme</artifact-id>
@@ -839,7 +1006,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3569</page-url>
 		<author>Arcsin</author>
-		<licenses>Unknown</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>blackbox-theme</artifact-id>
@@ -850,7 +1017,7 @@
 		<change-log></change-log>
 		<page-url>http://templates.arcsin.se</page-url>
 		<author>Arcsin</author>
-		<licenses>CC Attribution</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>blueleaves-theme</artifact-id>
@@ -861,7 +1028,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/2527</page-url>
 		<author>JJenZz</author>
-		<licenses>Unknown</licenses>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>bluepigment-theme</artifact-id>
@@ -871,8 +1038,8 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.styleshout.com/free-templates.php</page-url>
-		<author>styleshout</author>
-		<licenses>CC Attribution</licenses>
+		<author>Styleshout</author>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>borrowed-summer-holiday-theme</artifact-id>
@@ -883,7 +1050,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/user/profile/id/17906</page-url>
 		<author>Prog</author>
-		<licenses>Unknown</licenses>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>bright-pixel-theme</artifact-id>
@@ -892,9 +1059,9 @@
 		<tags></tags>
 		<short-description></short-description>
 		<change-log></change-log>
-		<page-url>http://www.arcsin.se</page-url>
+		<page-url>http://templates.arcsin.se</page-url>
 		<author>Arcsin</author>
-		<licenses>Unknown</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>businessideas-theme</artifact-id>
@@ -937,8 +1104,8 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3698</page-url>
-		<author>boilers</author>
-		<licenses>Unknown</licenses>
+		<author>Boilers</author>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>coffee-n-cream-theme</artifact-id>
@@ -947,9 +1114,9 @@
 		<tags></tags>
 		<short-description></short-description>
 		<change-log></change-log>
-		<page-url>http://arcsin.se</page-url>
+		<page-url>http://templates.arcsin.se</page-url>
 		<author>Arcsin</author>
-		<licenses>CC Attribution</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>contaminated-theme</artifact-id>
@@ -993,7 +1160,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3516</page-url>
 		<author>Arcsin</author>
-		<licenses>CC Attribution</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>dark-theme</artifact-id>
@@ -1004,7 +1171,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3360</page-url>
 		<author>GetTemplate</author>
-		<licenses>Unknown</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>decayed-theme</artifact-id>
@@ -1015,7 +1182,7 @@
 		<change-log></change-log>
 		<page-url>http://templates.arcsin.se</page-url>
 		<author>Arcsin</author>
-		<licenses>CC Attribution</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>deliciously-blue-theme</artifact-id>
@@ -1025,8 +1192,8 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/2634</page-url>
-		<author>super j man</author>
-		<licenses>Unknown</licenses>
+		<author>Super J Man</author>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>desktop-classic-theme</artifact-id>
@@ -1068,9 +1235,9 @@
 		<tags></tags>
 		<short-description></short-description>
 		<change-log></change-log>
-		<page-url>http://arcsin.se</page-url>
+		<page-url>http://templates.arcsin.se</page-url>
 		<author>Viktor Persson</author>
-		<licenses>CC Attribution</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>dreamy-theme</artifact-id>
@@ -1081,7 +1248,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3459</page-url>
 		<author>Don</author>
-		<licenses>Unknown</licenses>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>drop-down-menu-theme</artifact-id>
@@ -1092,7 +1259,7 @@
 		<change-log></change-log>
 		<page-url>http://sourceforge.net/project/showfiles.php?group_id=185847</page-url>
 		<author>Peter</author>
-		<licenses>General Public License</licenses>
+		<licenses>GPL</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>envision-theme</artifact-id>
@@ -1102,8 +1269,8 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.styleshout.com</page-url>
-		<author>styleshout</author>
-		<licenses>CC Attribution</licenses>
+		<author>Styleshout</author>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>film-theme</artifact-id>
@@ -1124,8 +1291,8 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3207</page-url>
-		<author>fusion8</author>
-		<licenses>Unknown</licenses>
+		<author>Fusion8</author>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>foosball-theme</artifact-id>
@@ -1147,7 +1314,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3401</page-url>
 		<author>mrpires</author>
-		<licenses>Unknown</licenses>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>fruitopia-theme</artifact-id>
@@ -1158,7 +1325,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3181</page-url>
 		<author>ppdigital</author>
-		<licenses>CC Attribution</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>gfc-theme</artifact-id>
@@ -1180,7 +1347,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3696</page-url>
 		<author>heartlessg</author>
-		<licenses>Unknown</licenses>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>hifinews-theme</artifact-id>
@@ -1191,7 +1358,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3485</page-url>
 		<author>Dieter</author>
-		<licenses>Unknown</licenses>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>higherground-theme</artifact-id>
@@ -1202,7 +1369,7 @@
 		<change-log></change-log>
 		<page-url>http://www.styleshout.com/templates/preview/HigherGround1-0/index.html</page-url>
 		<author>styleshout</author>
-		<licenses>CC Attribution</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>i-see-new-people-theme</artifact-id>
@@ -1213,7 +1380,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/2710</page-url>
 		<author>J.M.</author>
-		<licenses>Unknown</licenses>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>igoogle-theme</artifact-id>
@@ -1235,7 +1402,7 @@
 		<change-log></change-log>
 		<page-url>http://templates.arcsin.se/</page-url>
 		<author>Arcsin</author>
-		<licenses>CC Attribution</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>internet-services-theme</artifact-id>
@@ -1257,7 +1424,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3293</page-url>
 		<author>SD Workz</author>
-		<licenses>Unknown</licenses>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>ireverse-theme</artifact-id>
@@ -1290,7 +1457,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/2839</page-url>
 		<author>snop</author>
-		<licenses>Unknown</licenses>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>leaves-v1-theme</artifact-id>
@@ -1301,7 +1468,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/2450</page-url>
 		<author>bartosz</author>
-		<licenses>Unknown</licenses>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>liferay-jedi-theme</artifact-id>
@@ -1334,7 +1501,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/user/profile/id/6345</page-url>
 		<author>ad_267</author>
-		<licenses>Unknown</licenses>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>lonelyness-theme</artifact-id>
@@ -1356,7 +1523,7 @@
 		<change-log></change-log>
 		<page-url>http://www.styleshout.com</page-url>
 		<author>styleshout</author>
-		<licenses>CC Attribution</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>miami-sky-theme</artifact-id>
@@ -1378,7 +1545,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/user/profile/id/14474</page-url>
 		<author>Kulor</author>
-		<licenses>Unknown</licenses>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>minimalist-theme</artifact-id>
@@ -1398,9 +1565,9 @@
 		<tags></tags>
 		<short-description></short-description>
 		<change-log></change-log>
-		<page-url>http://arcsin.se</page-url>
+		<page-url>http://templates.arcsin.se</page-url>
 		<author>Viktor Persson</author>
-		<licenses>CC Attribution</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>nautica05-theme</artifact-id>
@@ -1411,7 +1578,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3126</page-url>
 		<author>nautica</author>
-		<licenses>Unknown</licenses>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>orange-theme</artifact-id>
@@ -1421,7 +1588,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.osskins.com/main/typo3/free-typo3-theme-logistix/2007/09/20</page-url>
-		<author>http://www.osskins.com/</author>
+		<author>rasi</author>
 		<licenses>GPL</licenses>
 	</plugin>
 	<plugin>
@@ -1432,8 +1599,8 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.osskins.com/main/wordpress/free-wordpress-theme-peace/2008/03/05</page-url>
-		<author>http://www.themetube.com</author>
-		<licenses>CC Attribution</licenses>
+		<author>themetube</author>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>penchant-theme</artifact-id>
@@ -1444,7 +1611,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/2619</page-url>
 		<author>acousticsam</author>
-		<licenses>Unknown</licenses>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>pink-sunset-theme</artifact-id>
@@ -1453,9 +1620,9 @@
 		<tags></tags>
 		<short-description></short-description>
 		<change-log></change-log>
-		<page-url>http://arcsin.se</page-url>
+		<page-url>http://templates.arcsin.se</page-url>
 		<author>Viktor Persson</author>
-		<licenses>CC Attribution</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>plain-theme</artifact-id>
@@ -1466,7 +1633,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/2087</page-url>
 		<author>JayKay</author>
-		<licenses>Unknown</licenses>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>reddy-theme</artifact-id>
@@ -1477,7 +1644,7 @@
 		<change-log></change-log>
 		<page-url>http://www.realitysoftware.ca</page-url>
 		<author>Reality Software</author>
-		<licenses>CC Attribution</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>rising-sun-theme</artifact-id>
@@ -1629,7 +1796,7 @@
 		<change-log></change-log>
 		<page-url>http://templates.arcsin.se</page-url>
 		<author>Arcsin</author>
-		<licenses>CC Attribution</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>summerbreeze-theme</artifact-id>
@@ -1640,7 +1807,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3200</page-url>
 		<author>Arcsin</author>
-		<licenses>Unknown</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>supastar-theme</artifact-id>
@@ -1673,7 +1840,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3557</page-url>
 		<author>nodethirtythree</author>
-		<licenses>Unknown</licenses>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>transparentia-theme</artifact-id>
@@ -1684,7 +1851,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3515</page-url>
 		<author>Arcsin</author>
-		<licenses>CC Attribution</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>underthebridge-theme</artifact-id>
@@ -1695,7 +1862,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3467</page-url>
 		<author>Dieter</author>
-		<licenses>Unknown</licenses>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>wordpress-theme</artifact-id>
@@ -1717,7 +1884,7 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3559</page-url>
 		<author>nodethirtythree</author>
-		<licenses>CC Attribution</licenses>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>cas-web</artifact-id>
@@ -1753,6 +1920,17 @@
 		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>scheduler-web</artifact-id>
+		<name>Scheduler</name>
+		<type>web</type>
+		<tags></tags>
+		<short-description>This is the Scheduler plugin.</short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>servicemix-web</artifact-id>
 		<name>ServiceMix</name>
 		<type>web</type>
@@ -1778,13 +1956,13 @@
 	<author>Alfresco Software, Inc.</author>
 	<author>Andreas</author>
 	<author>Arcsin</author>
+	<author>Boilers</author>
 	<author>Conquerer LLC.</author>
 	<author>Dieter</author>
 	<author>Don</author>
+	<author>Fusion8</author>
 	<author>GetTemplate</author>
-	<author>Glub Tech, Inc.</author>
 	<author>Health Tags</author>
-	<author>Interface21</author>
 	<author>J.M.</author>
 	<author>JJenZz</author>
 	<author>JayKay</author>
@@ -1799,7 +1977,10 @@
 	<author>Reality Software</author>
 	<author>SD Workz</author>
 	<author>Solucija</author>
+	<author>SpringSource</author>
+	<author>Styleshout</author>
 	<author>Sun Microsystems, Inc.</author>
+	<author>Super J Man</author>
 	<author>The All Beauty Directory</author>
 	<author>Theme Studio</author>
 	<author>Viktor Persson</author>
@@ -1808,27 +1989,22 @@
 	<author>acousticsam</author>
 	<author>ad_267</author>
 	<author>bartosz</author>
-	<author>boilers</author>
-	<author>fusion8</author>
 	<author>heartlessg</author>
-	<author>http://www.osskins.com/</author>
-	<author>http://www.themetube.com</author>
 	<author>lazar</author>
 	<author>mrpires</author>
 	<author>nautica</author>
 	<author>nodethirtythree</author>
 	<author>ppdigital</author>
+	<author>rasi</author>
 	<author>snop</author>
 	<author>styleshout</author>
-	<author>super j man</author>
+	<author>themetube</author>
 	<license>Apache</license>
 	<license>BSD</license>
-	<license>CC Attribution</license>
+	<license>CCA</license>
 	<license>CDDL</license>
-	<license>Commercial</license>
 	<license>GNU</license>
 	<license>GPL</license>
-	<license>General Public License</license>
 	<license>LGPL</license>
 	<license>MIT</license>
 	<license>Public Domain</license>
