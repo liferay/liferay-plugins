@@ -72,7 +72,7 @@ public class SchedulerUtil {
 	public static void unschedule(String jobName, String groupName)
     	throws SchedulingException {
 
-		_instance.unschedule(jobName, groupName);
+		_instance._unschedule(jobName, groupName);
 	}
 
 	private SchedulerUtil() {
