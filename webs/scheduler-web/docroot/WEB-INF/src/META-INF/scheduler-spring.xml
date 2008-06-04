@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="com.liferay.portal.service.scheduling.SchedulingEngine" class="com.liferay.portal.service.scheduling.impl.DefaultSchedulingEngine">
+     	<constructor-arg type="java.lang.String" value="/META-INF/quartz.properties" />
+    </bean>
+</beans>
