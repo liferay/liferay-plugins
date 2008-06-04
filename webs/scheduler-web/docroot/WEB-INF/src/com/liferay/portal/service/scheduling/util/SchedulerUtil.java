@@ -22,12 +22,16 @@
 
 package com.liferay.portal.service.scheduling.util;
 
+import com.liferay.portal.kernel.job.SchedulingRequest;
 import com.liferay.portal.kernel.messaging.Destination;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.SerialDestination;
 import com.liferay.portal.service.scheduling.SchedulingEngine;
 import com.liferay.portal.service.scheduling.SchedulingException;
+
+import java.util.Collection;
+import java.util.Date;
 
 /**
  * <a href="SchedulerUtil.java.html"><b><i>View Source</i></b></a>
@@ -38,7 +42,7 @@ import com.liferay.portal.service.scheduling.SchedulingException;
 public class SchedulerUtil {
 
 	public static void init(SchedulingEngine engine)
-	throws SchedulingException {
+		throws SchedulingException {
 
 		_instance._init(engine);
 	}
@@ -47,8 +51,28 @@ public class SchedulerUtil {
 		_instance._destroy();
 	}
 
-	public static SchedulingEngine getSchedulingEngine() {
-		return _instance._engine;
+	public static Collection<SchedulingRequest> retrieveScheduledJobs(
+			String groupName)
+		throws SchedulingException {
+
+		return _instance._retrieveScheduledJobs(groupName);
+	}
+
+	public static void schedule(
+    		String jobName, String groupName, String cronText,
+    		String destinationName, String messageBody, Date startDate,
+    		Date endDate)
+    	throws SchedulingException {
+
+		_instance._schedule(
+			jobName, groupName, cronText, destinationName, messageBody,
+			startDate, endDate);
+	}
+
+	public static void unschedule(String jobName, String groupName)
+    	throws SchedulingException {
+
+		_instance.unschedule(jobName, groupName);
 	}
 
 	private SchedulerUtil() {
@@ -72,6 +96,30 @@ public class SchedulerUtil {
 
 	private void _destroy() throws SchedulingException {
 		_engine.shutdown();
+	}
+
+	private Collection<SchedulingRequest> _retrieveScheduledJobs(
+			String groupName)
+		throws SchedulingException {
+
+		return _engine.retrieveScheduledJobs(groupName);
+	}
+
+	private void _schedule(
+    		String jobName, String groupName, String cronText,
+    		String destinationName, String messageBody, Date startDate,
+    		Date endDate)
+    	throws SchedulingException {
+
+		_engine.schedule(
+			jobName, groupName, cronText, destinationName, messageBody,
+			startDate, endDate);
+	}
+
+	private void _unschedule(String jobName, String groupName)
+		throws SchedulingException {
+
+		_engine.unschedule(jobName, groupName);
 	}
 
 	private static SchedulerUtil _instance = new SchedulerUtil();

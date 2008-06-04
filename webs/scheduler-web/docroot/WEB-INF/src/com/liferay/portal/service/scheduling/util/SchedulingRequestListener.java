@@ -78,7 +78,7 @@ public class SchedulingRequestListener implements MessageListener {
 					responseDestination, jsonObject.toString());
 			}
 			else if (type.equals(SchedulingRequest.REGISTER_TYPE)) {
-                SchedulerUtil.getSchedulingEngine().schedule(
+                SchedulerUtil.schedule(
                		String.valueOf(request.hashCode()), request.getGroupName(),
                		request.getCronText(), request.getDestinationName(),
                		request.getMessageBody(), request.getStartDate(),
@@ -86,8 +86,7 @@ public class SchedulingRequestListener implements MessageListener {
             }
 			else if (type.equals(SchedulingRequest.RETRIEVE_TYPE)) {
 				Collection<SchedulingRequest> requests =
-					SchedulerUtil.getSchedulingEngine().retrieveScheduledJobs(
-						request.getGroupName());
+					SchedulerUtil.retrieveScheduledJobs(request.getGroupName());
 
 				JSONObject jsonObject = new JSONObject();
 				jsonObject.put("lfrResponseId", responseId);
@@ -97,7 +96,7 @@ public class SchedulingRequestListener implements MessageListener {
 					responseDestination, jsonObject.toString());
 			}
 			else if (type.equals(SchedulingRequest.UNREGISTER_TYPE)) {
-            	SchedulerUtil.getSchedulingEngine().unschedule(
+            	SchedulerUtil.unschedule(
             		request.getJobName(), request.getGroupName());
             }
         }
