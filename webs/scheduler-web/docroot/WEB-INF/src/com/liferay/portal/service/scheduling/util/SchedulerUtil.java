@@ -33,20 +33,20 @@ import com.liferay.portal.service.scheduling.SchedulingException;
  * <a href="SchedulerUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Bruno Farache
- * 
+ *
  */
 public class SchedulerUtil {
-	
-	public static void init(SchedulingEngine engine) 
+
+	public static void init(SchedulingEngine engine)
 	throws SchedulingException {
-		
+
 		_instance._init(engine);
 	}
-	
+
 	public static void destroy() throws SchedulingException {
 		_instance._destroy();
 	}
-	
+
 	public static SchedulingEngine getSchedulingEngine() {
 		return _instance._engine;
 	}
@@ -54,9 +54,9 @@ public class SchedulerUtil {
 	private SchedulerUtil() {
 	}
 
-	private void _init(SchedulingEngine engine) 
+	private void _init(SchedulingEngine engine)
 		throws SchedulingException {
-		
+
 		_engine = engine;
 
 		Destination destination = new SerialDestination(
@@ -66,10 +66,10 @@ public class SchedulerUtil {
 
 		MessageBusUtil.registerMessageListener(
 			destination.getName(), new SchedulingRequestListener());
-	
+
 		_engine.start();
 	}
-	
+
 	private void _destroy() throws SchedulingException {
 		_engine.shutdown();
 	}

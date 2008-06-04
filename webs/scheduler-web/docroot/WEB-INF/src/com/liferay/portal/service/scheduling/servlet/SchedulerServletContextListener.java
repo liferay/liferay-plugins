@@ -42,33 +42,33 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  */
 public class SchedulerServletContextListener implements ServletContextListener {
-	
+
 	public void contextInitialized(ServletContextEvent event) {
 		try {
 			ApplicationContext ctx = new ClassPathXmlApplicationContext(
 				event.getServletContext().getInitParameter(
 					"springConfigLocation"));
-			
+
 			SchedulingEngine engine = (SchedulingEngine)ctx.getBean(
 				SchedulingEngine.class.getName());
 
 			SchedulerUtil.init(engine);
-		} 
-		catch (Exception e) {
-			_log.error(e, e);
 		}
-	}
-	
-	public void contextDestroyed(ServletContextEvent event) {
-		try {
-			SchedulerUtil.destroy();
-		} 
 		catch (Exception e) {
 			_log.error(e, e);
 		}
 	}
 
-	private static Log _log = 
+	public void contextDestroyed(ServletContextEvent event) {
+		try {
+			SchedulerUtil.destroy();
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+	}
+
+	private static Log _log =
 		LogFactory.getLog(SchedulerServletContextListener.class);
 
 }

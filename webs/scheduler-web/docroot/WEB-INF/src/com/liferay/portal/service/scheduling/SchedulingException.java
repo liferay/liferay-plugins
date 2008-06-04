@@ -26,7 +26,7 @@ package com.liferay.portal.service.scheduling;
  * <a href="SchedulingException.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael C. Han
- * 
+ *
  */
 public class SchedulingException extends Exception {
 

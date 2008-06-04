@@ -22,28 +22,29 @@
 
 package com.liferay.portal.service.scheduling.util;
 
-import java.util.Collection;
-
 import com.liferay.portal.kernel.job.SchedulingRequest;
-import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 
+import java.util.Collection;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import org.jabsorb.JSONSerializer;
+
 import org.json.JSONObject;
 
 /**
  * <a href="SchedulingRequestListener.java.html"><b><i>View Source</i></b></a>
  *
  * @author Bruno Farache
- * 
+ *
  */
 public class SchedulingRequestListener implements MessageListener {
 
 	private static JSONSerializer _serializer = new JSONSerializer();
-	
+
 	 static {
 		 try {
 			 _serializer.registerDefaultSerializers();
@@ -54,17 +55,17 @@ public class SchedulingRequestListener implements MessageListener {
 	}
 
 	public void receive(String message) {
-		try {		
+		try {
 			JSONObject jsonObj = new JSONObject(message);
 
 			String responseDestination = jsonObj.optString(
 				"lfrResponseDestination");
 			String responseId = jsonObj.optString("lfrResponseId");
-			
+
 			jsonObj.remove("lfrResponseDestination");
 			jsonObj.remove("lfrResponseId");
-			
-			SchedulingRequest request = 
+
+			SchedulingRequest request =
 				(SchedulingRequest)_serializer.fromJSON(jsonObj.toString());
 
 			String type = request.getType();
@@ -72,7 +73,7 @@ public class SchedulingRequestListener implements MessageListener {
 			if (type.equals(SchedulingRequest.PING)) {
 				JSONObject jsonObject = new JSONObject();
 				jsonObject.put("lfrResponseId", responseId);
-				
+
 				MessageBusUtil.sendMessage(
 					responseDestination, jsonObject.toString());
 			}
@@ -84,14 +85,14 @@ public class SchedulingRequestListener implements MessageListener {
                		request.getEndDate());
             }
 			else if (type.equals(SchedulingRequest.RETRIEVE_TYPE)) {
-				Collection<SchedulingRequest> requests = 
+				Collection<SchedulingRequest> requests =
 					SchedulerUtil.getSchedulingEngine().retrieveScheduledJobs(
 						request.getGroupName());
-				
+
 				JSONObject jsonObject = new JSONObject();
 				jsonObject.put("lfrResponseId", responseId);
 				jsonObject.put("requests", _serializer.toJSON(requests));
-				
+
 				MessageBusUtil.sendMessage(
 					responseDestination, jsonObject.toString());
 			}
@@ -104,7 +105,7 @@ public class SchedulingRequestListener implements MessageListener {
 			_log.error(e, e);
 		}
 	}
-	
+
 	private static final Log _log =
     	LogFactory.getLog(SchedulingRequestListener.class);
 

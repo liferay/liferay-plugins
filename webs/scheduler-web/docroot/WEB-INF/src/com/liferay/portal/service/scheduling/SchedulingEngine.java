@@ -22,31 +22,31 @@
 
 package com.liferay.portal.service.scheduling;
 
+import com.liferay.portal.kernel.job.SchedulingRequest;
+
 import java.util.Collection;
 import java.util.Date;
-
-import com.liferay.portal.kernel.job.SchedulingRequest;
 
 /**
  * <a href="SchedulingEngine.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael C. Han
- * 
+ *
  */
 public interface SchedulingEngine {
-	
+
 	public static final String CRON_TEXT = "cronText";
-	
+
 	public static final String DESTINATION_NAME = "destinationName";
 
 	public static final String MESSAGE_BODY = "messageBody";
-    
-	public Collection<SchedulingRequest> retrieveScheduledJobs(String groupName) 
+
+	public Collection<SchedulingRequest> retrieveScheduledJobs(String groupName)
 		throws SchedulingException;
 
 	public void schedule(
-			String jobName, String groupName, String cronText, 
-    		String destinationName, String messageBody, Date startDate, 
+			String jobName, String groupName, String cronText,
+    		String destinationName, String messageBody, Date startDate,
     		Date endDate)
     	throws SchedulingException;
 

@@ -35,16 +35,16 @@ import org.quartz.JobExecutionException;
  *
  * @author Michael C. Han
  * @author Bruno Farache
- * 
+ *
  */
 public class MessageSenderJob implements Job {
 
     public void execute(JobExecutionContext jobExecutionContext)
         throws JobExecutionException {
-        
+
     	try {
 	    	JobDetail detail = jobExecutionContext.getJobDetail();
-	
+
 	    	String messageBody = detail.getJobDataMap().getString(
 	    		SchedulingEngine.MESSAGE_BODY);
 	    	String destinationName = detail.getJobDataMap().getString(

@@ -26,72 +26,74 @@ import com.liferay.portal.kernel.job.SchedulingRequest;
 import com.liferay.portal.service.scheduling.SchedulingEngine;
 import com.liferay.portal.service.scheduling.SchedulingException;
 
+import java.text.ParseException;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
-import java.text.ParseException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.quartz.impl.StdSchedulerFactory;
-import org.quartz.ObjectAlreadyExistsException;
-import org.quartz.SchedulerException;
-import org.quartz.Scheduler;
+
 import org.quartz.CronTrigger;
 import org.quartz.JobDetail;
+import org.quartz.ObjectAlreadyExistsException;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.impl.StdSchedulerFactory;
 
 /**
  * <a href="DefaultSchedulingEngine.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael C. Han
- * 
+ *
  */
 public class DefaultSchedulingEngine implements SchedulingEngine {
 
-	public DefaultSchedulingEngine(String quartzConfigLocation) 
+	public DefaultSchedulingEngine(String quartzConfigLocation)
     	throws SchedulingException {
 
     	try {
 	    	Properties props = new Properties();
 	    	props.load(getClass().getResourceAsStream(quartzConfigLocation));
-	
+
 	    	StdSchedulerFactory factory = new StdSchedulerFactory();
 	    	factory.initialize(props);
-	
+
 	    	_scheduler = factory.getScheduler();
     	}
     	catch (Exception e) {
     		throw new SchedulingException("Unable to initialize engine", e);
     	}
     }
-	
-	public Collection<SchedulingRequest> retrieveScheduledJobs(String groupName) 
+
+	public Collection<SchedulingRequest> retrieveScheduledJobs(String groupName)
 		throws SchedulingException {
 
 		try {
 			String names[] = _scheduler.getJobNames(groupName);
 
-			List<SchedulingRequest> requests = 
+			List<SchedulingRequest> requests =
 				new ArrayList<SchedulingRequest>();
 
 			for (int i = 0; i < names.length; i++) {
 				JobDetail detail = _scheduler.getJobDetail(names[i], groupName);
-				
+
 				String messageBody = detail.getJobDataMap().getString(
 			    	SchedulingEngine.MESSAGE_BODY);
-				
+
 				CronTrigger trigger = (CronTrigger)_scheduler.getTrigger(
 					names[i], groupName);
 
 				SchedulingRequest sr = new SchedulingRequest(
 					trigger.getCronExpression(), groupName, names[i],
 					messageBody, trigger.getStartTime(), trigger.getEndTime());
-				
+
 				requests.add(sr);
 			}
-			
+
 			return requests;
 		}
     	catch (SchedulerException se) {
@@ -100,18 +102,18 @@ public class DefaultSchedulingEngine implements SchedulingEngine {
 	}
 
     public void schedule(
-    		String jobName, String groupName, String cronText, 
-    		String destinationName, String messageBody, Date startDate, 
+    		String jobName, String groupName, String cronText,
+    		String destinationName, String messageBody, Date startDate,
     		Date endDate)
     	throws SchedulingException {
-    	
+
     	try {
     		CronTrigger trigger = new CronTrigger(jobName, groupName, cronText);
 
     		if (startDate != null) {
     			trigger.setStartTime(startDate);
     		}
-    		
+
     		if (endDate != null) {
     			trigger.setEndTime(endDate);
     		}
@@ -125,7 +127,7 @@ public class DefaultSchedulingEngine implements SchedulingEngine {
     		_scheduler.scheduleJob(detail, trigger);
     	}
     	catch (ObjectAlreadyExistsException oare) {
-    		if (_log.isInfoEnabled()) { 
+    		if (_log.isInfoEnabled()) {
     			_log.info("Message is already scheduled");
     		}
     	}
@@ -136,11 +138,11 @@ public class DefaultSchedulingEngine implements SchedulingEngine {
     		throw new SchedulingException("Unable to scheduled job", se);
     	}
     }
-    
+
     public void shutdown() throws SchedulingException {
     	try {
     		_scheduler.shutdown(false);
-    	} 
+    	}
     	catch (SchedulerException se) {
     		throw new SchedulingException("Unable to shutdown scheduler", se);
     	}
@@ -155,10 +157,9 @@ public class DefaultSchedulingEngine implements SchedulingEngine {
         }
     }
 
-    
     public void unschedule(String jobName, String groupName)
 	    throws SchedulingException {
-	
+
 	    try {
 	        _scheduler.unscheduleJob(jobName, groupName);
 	    }
@@ -169,7 +170,7 @@ public class DefaultSchedulingEngine implements SchedulingEngine {
 	}
 
     private Log _log = LogFactory.getLog(DefaultSchedulingEngine.class);
-    
+
     private Scheduler _scheduler;
 
 }
