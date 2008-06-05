@@ -10,7 +10,7 @@
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
-		<licenses>mit</licenses>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>1-3-1-columns-layouttpl</artifact-id>
@@ -23,7 +23,7 @@
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
-		<licenses>mit</licenses>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>2-1-2-columns-layouttpl</artifact-id>
@@ -36,7 +36,7 @@
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
-		<licenses>mit</licenses>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>3-2-3-columns-layouttpl</artifact-id>
@@ -49,7 +49,7 @@
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
-		<licenses>mit</licenses>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>alfresco-content-portlet</artifact-id>
@@ -74,8 +74,30 @@
 		<licenses>GPL</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>analog-clock-portlet</artifact-id>
+		<name>Analog Clock</name>
+		<type>portlet</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>chat-portlet</artifact-id>
 		<name>Chat</name>
+		<type>portlet</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>flash-portlet</artifact-id>
+		<name>Flash</name>
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
@@ -499,7 +521,7 @@
 		<short-description>This plugin shows how to use Spring in Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
-		<author>SpringSource</author>
+		<author>SpringSource, Inc.</author>
 		<licenses>Apache</licenses>
 	</plugin>
 	<plugin>
@@ -510,7 +532,7 @@
 		<short-description>This plugin shows how to use Spring in Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
-		<author>SpringSource</author>
+		<author>SpringSource, Inc.</author>
 		<licenses>Apache</licenses>
 	</plugin>
 	<plugin>
@@ -932,6 +954,17 @@
 		<licenses>GPL</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>westminstercatechism-portlet</artifact-id>
+		<name>Westminster Catechism</name>
+		<type>portlet</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>wol-portlet</artifact-id>
 		<name>World of Liferay</name>
 		<type>portlet</type>
@@ -950,7 +983,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://opensourcetemplates.org/template_info.php?id=104</page-url>
-		<author>Zeb</author>
+		<author>Studio7Designs</author>
 		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
@@ -972,7 +1005,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/2493</page-url>
-		<author>Andreas</author>
+		<author>Andreas Viklund</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -982,8 +1015,8 @@
 		<tags></tags>
 		<short-description></short-description>
 		<change-log></change-log>
-		<page-url>http://www.oswd.org/design/information/id/3469</page-url>
-		<author>Dieter</author>
+		<page-url>http://www.csstemplateheaven.com</page-url>
+		<author>Dieter Schneider</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1004,7 +1037,7 @@
 		<tags></tags>
 		<short-description></short-description>
 		<change-log></change-log>
-		<page-url>http://www.oswd.org/design/information/id/3569</page-url>
+		<page-url>http://templates.arcsin.se</page-url>
 		<author>Arcsin</author>
 		<licenses>CCA</licenses>
 	</plugin>
@@ -1020,6 +1053,28 @@
 		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>blue-ring-theme</artifact-id>
+		<name>Blue Ring</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.osskins.com/main/joomla-mambo/free-joomla-15-template-blue-ring/2008/06/04</page-url>
+		<author>Siteground</author>
+		<licenses>Public Domain</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>bluebridge-theme</artifact-id>
+		<name>Blue Bridge</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.osskins.com/main/wordpress/free-wordpress-theme-blue-bridge/2008/05/08</page-url>
+		<author>Saroyama</author>
+		<licenses>GPL</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>blueleaves-theme</artifact-id>
 		<name>Blue Leaves</name>
 		<type>theme</type>
@@ -1027,7 +1082,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/2527</page-url>
-		<author>JJenZz</author>
+		<author>GrowlDesign</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1049,7 +1104,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/user/profile/id/17906</page-url>
-		<author>Prog</author>
+		<author>Unknown</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1093,7 +1148,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.cgshow.com/wordpress</page-url>
-		<author>Liuzhoou</author>
+		<author>Unknown</author>
 		<licenses>Unknown</licenses>
 	</plugin>
 	<plugin>
@@ -1104,7 +1159,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3698</page-url>
-		<author>Boilers</author>
+		<author>360guide.info</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1247,7 +1302,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3459</page-url>
-		<author>Don</author>
+		<author>Unknown</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1258,7 +1313,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://sourceforge.net/project/showfiles.php?group_id=185847</page-url>
-		<author>Peter</author>
+		<author>Unknown</author>
 		<licenses>GPL</licenses>
 	</plugin>
 	<plugin>
@@ -1291,7 +1346,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3207</page-url>
-		<author>Fusion8</author>
+		<author>Technology Directory</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1313,7 +1368,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3401</page-url>
-		<author>mrpires</author>
+		<author>Tony Pires</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1323,8 +1378,8 @@
 		<tags></tags>
 		<short-description></short-description>
 		<change-log></change-log>
-		<page-url>http://www.oswd.org/design/information/id/3181</page-url>
-		<author>ppdigital</author>
+		<page-url>http://www.designsbydarren.com/</page-url>
+		<author>Darren Hester</author>
 		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
@@ -1346,7 +1401,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3696</page-url>
-		<author>heartlessg</author>
+		<author>Ernani Danting</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1356,8 +1411,8 @@
 		<tags></tags>
 		<short-description></short-description>
 		<change-log></change-log>
-		<page-url>http://www.oswd.org/design/information/id/3485</page-url>
-		<author>Dieter</author>
+		<page-url>http://www.csstemplateheaven.com</page-url>
+		<author>Dieter Schneider</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1368,7 +1423,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.styleshout.com/templates/preview/HigherGround1-0/index.html</page-url>
-		<author>styleshout</author>
+		<author>Styleshout</author>
 		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
@@ -1379,7 +1434,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/2710</page-url>
-		<author>J.M.</author>
+		<author>Jochum Meester</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1456,7 +1511,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/2839</page-url>
-		<author>snop</author>
+		<author>Fullahead</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1467,7 +1522,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/2450</page-url>
-		<author>bartosz</author>
+		<author>Bartosz Brzezinski</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1500,7 +1555,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/user/profile/id/6345</page-url>
-		<author>ad_267</author>
+		<author>Ad_267</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1511,8 +1566,8 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.csstemplateheaven.com</page-url>
-		<author>Dieter</author>
-		<licenses>Unknown</licenses>
+		<author>Dieter Schneider</author>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>marketplace-theme</artifact-id>
@@ -1522,7 +1577,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.styleshout.com</page-url>
-		<author>styleshout</author>
+		<author>Styleshout</author>
 		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
@@ -1544,7 +1599,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/user/profile/id/14474</page-url>
-		<author>Kulor</author>
+		<author>James Broad</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1555,7 +1610,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3533</page-url>
-		<author>lazar</author>
+		<author>Minimalistic Design</author>
 		<licenses>GNU</licenses>
 	</plugin>
 	<plugin>
@@ -1577,7 +1632,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3126</page-url>
-		<author>nautica</author>
+		<author>Studio7Designs</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1588,7 +1643,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.osskins.com/main/typo3/free-typo3-theme-logistix/2007/09/20</page-url>
-		<author>rasi</author>
+		<author>Unknown</author>
 		<licenses>GPL</licenses>
 	</plugin>
 	<plugin>
@@ -1599,7 +1654,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.osskins.com/main/wordpress/free-wordpress-theme-peace/2008/03/05</page-url>
-		<author>themetube</author>
+		<author>Unknown</author>
 		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
@@ -1610,7 +1665,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/2619</page-url>
-		<author>acousticsam</author>
+		<author>Unknown</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1632,7 +1687,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/2087</page-url>
-		<author>JayKay</author>
+		<author>James Koster</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1647,6 +1702,17 @@
 		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>reginearena-theme</artifact-id>
+		<name>Regine Arena</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.osskins.com/main/wordpress/free-wordpress-theme-regine-arena/2008/05/11</page-url>
+		<author>Mariah K.L.</author>
+		<licenses>CCA</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>rising-sun-theme</artifact-id>
 		<name>Rising Sun</name>
 		<type>theme</type>
@@ -1654,7 +1720,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.osskins.com/main/wordpress/free-wordpress-theme-rising-sun/2008/03/03</page-url>
-		<author>Rating</author>
+		<author>Unknown</author>
 		<licenses>GPL</licenses>
 	</plugin>
 	<plugin>
@@ -1666,7 +1732,7 @@
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Mika Koivisto</author>
-		<licenses>mit</licenses>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>sample-styled-advanced-theme</artifact-id>
@@ -1680,7 +1746,7 @@
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
-		<licenses>mit</licenses>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>sample-styled-minimal-theme</artifact-id>
@@ -1694,7 +1760,7 @@
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
-		<licenses>mit</licenses>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>sample-unstyled-theme</artifact-id>
@@ -1708,7 +1774,7 @@
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
-		<licenses>mit</licenses>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>sample-wap-theme</artifact-id>
@@ -1719,7 +1785,7 @@
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
-		<licenses>mit</licenses>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>section-508-theme</artifact-id>
@@ -1763,7 +1829,7 @@
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
-		<licenses>Unknown</licenses>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>sliver-theme</artifact-id>
@@ -1805,7 +1871,7 @@
 		<tags></tags>
 		<short-description></short-description>
 		<change-log></change-log>
-		<page-url>http://www.oswd.org/design/information/id/3200</page-url>
+		<page-url>http://templates.arcsin.se</page-url>
 		<author>Arcsin</author>
 		<licenses>CCA</licenses>
 	</plugin>
@@ -1817,7 +1883,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.wpthemesfree.com/view.php?theme_id=2340</page-url>
-		<author>Conquerer LLC.</author>
+		<author>Conquerer LLC</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1839,7 +1905,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3557</page-url>
-		<author>nodethirtythree</author>
+		<author>NodeThirtyThree</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1849,7 +1915,7 @@
 		<tags></tags>
 		<short-description></short-description>
 		<change-log></change-log>
-		<page-url>http://www.oswd.org/design/information/id/3515</page-url>
+		<page-url>http://templates.arcsin.se</page-url>
 		<author>Arcsin</author>
 		<licenses>CCA</licenses>
 	</plugin>
@@ -1860,8 +1926,8 @@
 		<tags></tags>
 		<short-description></short-description>
 		<change-log></change-log>
-		<page-url>http://www.oswd.org/design/information/id/3467</page-url>
-		<author>Dieter</author>
+		<page-url>http://www.csstemplateheaven.com</page-url>
+		<author>Dieter Schneider</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1883,7 +1949,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3559</page-url>
-		<author>nodethirtythree</author>
+		<author>NodeThirtyThree</author>
 		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
@@ -1920,17 +1986,6 @@
 		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
-		<artifact-id>scheduler-web</artifact-id>
-		<name>Scheduler</name>
-		<type>web</type>
-		<tags></tags>
-		<short-description>This is the Scheduler plugin.</short-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>MIT</licenses>
-	</plugin>
-	<plugin>
 		<artifact-id>servicemix-web</artifact-id>
 		<name>ServiceMix</name>
 		<type>web</type>
@@ -1952,53 +2007,47 @@
 		<author>Liferay, Inc.</author>
 		<licenses>MIT</licenses>
 	</plugin>
+	<author>360guide.info</author>
 	<author>3SP, Ltd.</author>
+	<author>Ad_267</author>
 	<author>Alfresco Software, Inc.</author>
-	<author>Andreas</author>
+	<author>Andreas Viklund</author>
 	<author>Arcsin</author>
-	<author>Boilers</author>
-	<author>Conquerer LLC.</author>
-	<author>Dieter</author>
-	<author>Don</author>
-	<author>Fusion8</author>
+	<author>Bartosz Brzezinski</author>
+	<author>Conquerer LLC</author>
+	<author>Darren Hester</author>
+	<author>Dieter Schneider</author>
+	<author>Ernani Danting</author>
+	<author>Fullahead</author>
 	<author>GetTemplate</author>
+	<author>GrowlDesign</author>
 	<author>Health Tags</author>
-	<author>J.M.</author>
-	<author>JJenZz</author>
-	<author>JayKay</author>
-	<author>Kulor</author>
+	<author>James Broad</author>
+	<author>James Koster</author>
+	<author>Jochum Meester</author>
 	<author>Liferay, Inc.</author>
-	<author>Liuzhoou</author>
+	<author>Mariah K.L.</author>
 	<author>Mika Koivisto</author>
+	<author>Minimalistic Design</author>
+	<author>NodeThirtyThree</author>
 	<author>Orbeon, Inc.</author>
-	<author>Peter</author>
-	<author>Prog</author>
-	<author>Rating</author>
 	<author>Reality Software</author>
 	<author>SD Workz</author>
+	<author>Saroyama</author>
+	<author>Siteground</author>
 	<author>Solucija</author>
-	<author>SpringSource</author>
+	<author>SpringSource, Inc.</author>
+	<author>Studio7Designs</author>
 	<author>Styleshout</author>
 	<author>Sun Microsystems, Inc.</author>
 	<author>Super J Man</author>
+	<author>Technology Directory</author>
 	<author>The All Beauty Directory</author>
 	<author>Theme Studio</author>
+	<author>Tony Pires</author>
+	<author>Unknown</author>
 	<author>Viktor Persson</author>
 	<author>Vit Dlouhy</author>
-	<author>Zeb</author>
-	<author>acousticsam</author>
-	<author>ad_267</author>
-	<author>bartosz</author>
-	<author>heartlessg</author>
-	<author>lazar</author>
-	<author>mrpires</author>
-	<author>nautica</author>
-	<author>nodethirtythree</author>
-	<author>ppdigital</author>
-	<author>rasi</author>
-	<author>snop</author>
-	<author>styleshout</author>
-	<author>themetube</author>
 	<license>Apache</license>
 	<license>BSD</license>
 	<license>CCA</license>
@@ -2009,5 +2058,4 @@
 	<license>MIT</license>
 	<license>Public Domain</license>
 	<license>Unknown</license>
-	<license>mit</license>
 </plugins-summary>
