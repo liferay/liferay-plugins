@@ -67,6 +67,24 @@
 	<target name="compile">
 		<antcall target="merge" />
 
+		<for param="js.file">
+			<path>
+				<fileset dir="docroot" includes="unpacked.js" />
+			</path>
+			<sequential>
+				<antelope:stringutil string="@{js.file}" property="js.file.unix">
+					<replace regex="\\" replacement="/" />
+				</antelope:stringutil>
+
+				<antelope:grep in="${js.file.unix}" regex="(.*/)(.*)" group="1" property="js.dir" />
+
+				<antcall target="build-javascript-cmd">
+					<param name="js.from.file" value="${js.file.unix}" />
+					<param name="js.to.file" value="${js.dir}packed.js" />
+				</antcall>
+			</sequential>
+		</for>
+
 		<mkdir dir="docroot/WEB-INF/classes" />
 		<mkdir dir="docroot/WEB-INF/lib" />
 
