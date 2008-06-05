@@ -26,7 +26,7 @@
 
 <%
 if (movie.equals(StringPool.BLANK)) {
-	movie = "http://www.adobe.com/shockwave/welcome/flash.swf";
+	movie = "http://www.youtube.com/v/WqjxI3kFPH0&hl=en";
 }
 
 if (flashAttributes.equals(StringPool.BLANK)) {
@@ -36,7 +36,7 @@ if (flashAttributes.equals(StringPool.BLANK)) {
 		"base=.\n" +
 		"bgcolor=#FFFFFF\n" +
 		"devicefont=true\n" +
-		"height=500\n" +
+		"height=200\n" +
 		"loop=true\n" +
 		"menu=false\n" +
 		"play=false\n" +
