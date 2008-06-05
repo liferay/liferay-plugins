@@ -32,38 +32,38 @@ import com.liferay.portal.model.User;
  */
 public class MailAccount {
 
-    public MailAccount(User user, int accountId) {
-    	if (accountId == 0) {
-        	_emailAddress = "liferay.mail.1@gmail.com";
-        	_mailInHostName = "imap.gmail.com";
-        	_mailInPort = "993";
-        	_mailOutHostName = "smtp.gmail.com";
-        	_mailOutPort = "465";
-        	_mailSecure = true;
-            _password = "loveispatient";
-            _username = "liferay.mail.1";
-    	}
-    	else if (accountId == 1) {
-        	_emailAddress = "liferay.mail.2@gmail.com";
-        	_mailInHostName = "imap.gmail.com";
-        	_mailInPort = "993";
-        	_mailOutHostName = "smtp.gmail.com";
-        	_mailOutPort = "465";
-        	_mailSecure = true;
-            _password = "loveispatient";
-        	_username = "liferay.mail.2";
-    	}
-    	else if (accountId == 2) {
-        	_emailAddress = "liferay.mail.2@gmail.com";
-        	_mailInHostName = "imap.gmail.com";
-        	_mailInPort = "993";
-        	_mailOutHostName = "smtp.gmail.com";
-        	_mailOutPort = "465";
-        	_mailSecure = true;
-            _password = "loveispatient";
-            _username = "liferay.mail.3";
-    	}
-    }
+	public MailAccount(User user, int accountId) {
+		if (accountId == 0) {
+			_emailAddress = "liferay.mail.1@gmail.com";
+			_mailInHostName = "imap.gmail.com";
+			_mailInPort = "993";
+			_mailOutHostName = "smtp.gmail.com";
+			_mailOutPort = "465";
+			_mailSecure = true;
+			_password = "loveispatient";
+			_username = "liferay.mail.1";
+		}
+		else if (accountId == 1) {
+			_emailAddress = "liferay.mail.2@gmail.com";
+			_mailInHostName = "imap.gmail.com";
+			_mailInPort = "993";
+			_mailOutHostName = "smtp.gmail.com";
+			_mailOutPort = "465";
+			_mailSecure = true;
+			_password = "loveispatient";
+			_username = "liferay.mail.2";
+		}
+		else if (accountId == 2) {
+			_emailAddress = "liferay.mail.2@gmail.com";
+			_mailInHostName = "imap.gmail.com";
+			_mailInPort = "993";
+			_mailOutHostName = "smtp.gmail.com";
+			_mailOutPort = "465";
+			_mailSecure = true;
+			_password = "loveispatient";
+			_username = "liferay.mail.3";
+		}
+	}
 
 	public String getEmailAddress() {
 		return _emailAddress;
@@ -103,7 +103,7 @@ public class MailAccount {
 	private String _mailOutHostName;
 	private String _mailOutPort;
 	private boolean _mailSecure;
-    private String _password;
-    private String _username;
+	private String _password;
+	private String _username;
 
 }

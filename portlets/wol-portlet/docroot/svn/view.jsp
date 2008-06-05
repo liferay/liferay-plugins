@@ -52,7 +52,7 @@
 			title = LanguageUtil.format(pageContext, "all-commits-on-x", svnURL);
 		}
 		else {
-		    title = LanguageUtil.format(pageContext, "x's-commits-on-x", new Object[] {user2.getFullName(), svnURL});
+			title = LanguageUtil.format(pageContext, "x's-commits-on-x", new Object[] {user2.getFullName(), svnURL});
 		}
 
 		SyndFeed syndFeed = new SyndFeedImpl();
@@ -71,10 +71,10 @@
 
 			SyndEntry syndEntry = new SyndEntryImpl();
 
-		    syndEntry.setAuthor(user2.getFullName());
-		    syndEntry.setTitle(LanguageUtil.get(pageContext, "revision") + StringPool.SPACE + svnRevision.getRevisionNumber());
-		    syndEntry.setLink(link);
-		    syndEntry.setPublishedDate(svnRevision.getCreateDate());
+			syndEntry.setAuthor(user2.getFullName());
+			syndEntry.setTitle(LanguageUtil.get(pageContext, "revision") + StringPool.SPACE + svnRevision.getRevisionNumber());
+			syndEntry.setLink(link);
+			syndEntry.setPublishedDate(svnRevision.getCreateDate());
 
 			Object[] jiraIssueAndComments = svnRevision.getJIRAIssueAndComments();
 
@@ -108,7 +108,7 @@
 				comments = sm.toString();
 			}
 
-		    SyndContent syndContent = new SyndContentImpl();
+			SyndContent syndContent = new SyndContentImpl();
 
 			syndContent.setType(RSSUtil.DEFAULT_ENTRY_TYPE);
 			syndContent.setValue(comments);
@@ -124,7 +124,7 @@
 			feedXML = RSSUtil.export(syndFeed);
 		}
 		catch (Exception e) {
-		    _log.error(e, e);
+			_log.error(e, e);
 		}
 
 		response.setContentType(ContentTypes.TEXT_XML_UTF8);

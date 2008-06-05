@@ -38,15 +38,15 @@ import org.hibernate.cfg.Configuration;
  */
 public class HibernateUtil {
 
-    public static final String COUNT_COLUMN_NAME = "COUNT_VALUE";
+	public static final String COUNT_COLUMN_NAME = "COUNT_VALUE";
 
 	public static String getCountColumnName() {
 		return COUNT_COLUMN_NAME;
 	}
 
-    public static SessionFactory getSessionFactory() {
-        return _instance._sessionFactory;
-    }
+	public static SessionFactory getSessionFactory() {
+		return _instance._sessionFactory;
+	}
 
 	public static void closeSession(Session session) {
 		try {
@@ -70,16 +70,16 @@ public class HibernateUtil {
 	}
 
 	private HibernateUtil() {
-        try {
+		try {
 			Configuration configuration = new Configuration();
 
 			configuration = configuration.configure();
 
 			_sessionFactory = configuration.buildSessionFactory();
-        }
+		}
 		catch (Exception e) {
-           _log.error(e, e);
-        }
+		   _log.error(e, e);
+		}
 	}
 
 	private static Log _log = LogFactory.getLog(HibernateUtil.class);

@@ -86,7 +86,7 @@ import org.json.JSONObject;
 public class MailBoxManager {
 
 	public static String getJSONAccounts(User user) throws MessagingException {
-    	JSONObject jsonObj = new JSONObject();
+		JSONObject jsonObj = new JSONObject();
 
 		// Accounts
 
@@ -94,7 +94,7 @@ public class MailBoxManager {
 
 		JSONUtil.put(jsonObj, "accounts", jsonArray);
 
-    	// Account 1
+		// Account 1
 
 		JSONObject account1 = new JSONObject();
 
@@ -126,10 +126,10 @@ public class MailBoxManager {
 		return jsonObj.toString();
 	}
 
-    public MailBoxManager(User user, int accountId) {
-    	_user = user;
-    	_mailAccount = new MailAccount(user, accountId);
-    }
+	public MailBoxManager(User user, int accountId) {
+		_user = user;
+		_mailAccount = new MailAccount(user, accountId);
+	}
 
 	public void createFolder(String folderName) throws Exception {
 		Folder newFolder = getStore().getFolder(folderName);
@@ -139,11 +139,11 @@ public class MailBoxManager {
 		}
 	}
 
-    public void deleteMessage(Folder folder, Message message) {
-        try {
-        	if (!folder.isOpen()) {
-        		folder.open(Folder.READ_WRITE);
-        	}
+	public void deleteMessage(Folder folder, Message message) {
+		try {
+			if (!folder.isOpen()) {
+				folder.open(Folder.READ_WRITE);
+			}
 
 			message.setFlag(Flags.Flag.DELETED, true);
 
@@ -151,52 +151,52 @@ public class MailBoxManager {
 		}
 		catch (MessagingException me) {
 			_log.error(me, me);
-        }
+		}
 	}
 
-    public void deleteMessagesByUids(String folderName, String messageUids)
-    	throws MessagingException {
+	public void deleteMessagesByUids(String folderName, String messageUids)
+		throws MessagingException {
 
-    	Folder folder = getFolder(folderName);
+		Folder folder = getFolder(folderName);
 
-    	deleteMessagesByUids(folder, messageUids);
-    }
+		deleteMessagesByUids(folder, messageUids);
+	}
 
-    public void deleteMessagesByUids(Folder folder, String messageUids) {
-        try {
-        	int[] messageUidsArray = GetterUtil.getIntegerValues(
-        		messageUids.split("\\s*,\\s*"));
+	public void deleteMessagesByUids(Folder folder, String messageUids) {
+		try {
+			int[] messageUidsArray = GetterUtil.getIntegerValues(
+				messageUids.split("\\s*,\\s*"));
 
-        	if (!folder.isOpen()) {
-        		folder.open(Folder.READ_WRITE);
-        	}
+			if (!folder.isOpen()) {
+				folder.open(Folder.READ_WRITE);
+			}
 
-        	for (int messageUid : messageUidsArray) {
-        		try {
-            		Message message = getMessageByUid(folder, messageUid);
+			for (int messageUid : messageUidsArray) {
+				try {
+					Message message = getMessageByUid(folder, messageUid);
 
-        			message.setFlag(Flags.Flag.DELETED, true);
-        		}
-        		catch (MessagingException me) {
-        			_log.error(me, me);
-        		}
-        	}
+					message.setFlag(Flags.Flag.DELETED, true);
+				}
+				catch (MessagingException me) {
+					_log.error(me, me);
+				}
+			}
 
 			folder.close(true);
 		}
 		catch (MessagingException me) {
 			_log.error(me, me);
-        }
+		}
 	}
 
 	public String getAddresses(Address[] addresses) {
-        StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder();
 
 		if (addresses == null) {
 			return StringPool.BLANK;
 		}
 
-        try {
+		try {
 			for (int i = 0; i < addresses.length; i++) {
 				InternetAddress address = (InternetAddress)addresses[i];
 
@@ -206,12 +206,12 @@ public class MailBoxManager {
 
 				sb.append(address.getAddress());
 			}
-        }
-        catch (Exception e) {
-            _log.error(e, e);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
 
-            return null;
-        }
+			return null;
+		}
 
 		return sb.toString();
 	}
@@ -225,16 +225,16 @@ public class MailBoxManager {
 		return getMessagePart(message, contentPath);
 	}
 
-    public Folder getFolder(String folderName) throws MessagingException {
+	public Folder getFolder(String folderName) throws MessagingException {
 		Folder folder = getStore().getDefaultFolder();
 
-        folder = folder.getFolder(folderName);
+		folder = folder.getFolder(folderName);
 
-        if (folder == null) {
+		if (folder == null) {
 			_log.error("Invalid folder " + folderName);
-        }
+		}
 
-        return folder;
+		return folder;
 	}
 
 	public List getFolders() throws MessagingException {
@@ -249,25 +249,25 @@ public class MailBoxManager {
 		return allFolders;
 	}
 
-    public JSONObject getJSONFolder(IMAPFolder folder)
+	public JSONObject getJSONFolder(IMAPFolder folder)
 		throws MessagingException {
 
-    	JSONObject jsonObj = new JSONObject();
+		JSONObject jsonObj = new JSONObject();
 
-    	if (folder.getType() != Folder.HOLDS_FOLDERS) {
-    		folder.open(Folder.READ_ONLY);
+		if (folder.getType() != Folder.HOLDS_FOLDERS) {
+			folder.open(Folder.READ_ONLY);
 
-    		JSONUtil.put(jsonObj, "name", folder.getFullName());
+			JSONUtil.put(jsonObj, "name", folder.getFullName());
 
-    		folder.close(false);
+			folder.close(false);
 
-    		return jsonObj;
-    	}
+			return jsonObj;
+		}
 
-    	return null;
-    }
+		return null;
+	}
 
-    public String getJSONFolders() throws MessagingException {
+	public String getJSONFolders() throws MessagingException {
 		JSONObject jsonObj = new JSONObject();
 
 		JSONArray jsonArray = new JSONArray();
@@ -285,11 +285,11 @@ public class MailBoxManager {
 		JSONUtil.put(jsonObj, "folderCount", folders.size());
 
 		return jsonObj.toString();
-    }
+	}
 
-    public JSONObject getJSONMessage(
-    		IMAPFolder folder, Message message, boolean preview)
-    	throws MessagingException {
+	public JSONObject getJSONMessage(
+			IMAPFolder folder, Message message, boolean preview)
+		throws MessagingException {
 
 		String read = "read";
 
@@ -334,34 +334,34 @@ public class MailBoxManager {
 		}
 
 		return jsonObj;
-    }
+	}
 
-    public String getJSONMessageByNumber(String folderName, int messageNumber)
-    	throws MessagingException {
+	public String getJSONMessageByNumber(String folderName, int messageNumber)
+		throws MessagingException {
 
-    	IMAPFolder folder = (IMAPFolder)openFolder(folderName);
+		IMAPFolder folder = (IMAPFolder)openFolder(folderName);
 
 		Message message = folder.getMessage(messageNumber);
 
 		return getJSONMessage(folder, message, false).toString();
-    }
+	}
 
-    public String getJSONMessageByUid(String folderName, int messageUid)
-    	throws MessagingException {
+	public String getJSONMessageByUid(String folderName, int messageUid)
+		throws MessagingException {
 
-    	IMAPFolder folder = (IMAPFolder)openFolder(folderName);
+		IMAPFolder folder = (IMAPFolder)openFolder(folderName);
 
 		Message message = folder.getMessageByUID(messageUid);
 
 		return getJSONMessage(folder, message, false).toString();
-    }
+	}
 
-    public String getJSONMessages(
-    		IMAPFolder folder, String messageNumbersToInclude,
-    		String messageUidsToExclude)
-    	throws MessagingException {
+	public String getJSONMessages(
+			IMAPFolder folder, String messageNumbersToInclude,
+			String messageUidsToExclude)
+		throws MessagingException {
 
-    	int[] messageNumbersArray = GetterUtil.getIntegerValues(
+		int[] messageNumbersArray = GetterUtil.getIntegerValues(
 			messageNumbersToInclude.split("\\s*,\\s*"));
 		int[] messageUidsArray = GetterUtil.getIntegerValues(
 			messageUidsToExclude.split("\\s*,\\s*"));
@@ -398,12 +398,12 @@ public class MailBoxManager {
 		}
 
 		return jsonObj.toString();
-    }
+	}
 
-    public String getJSONMessages(
-    		IMAPFolder folder, int pageNumber, int messagesPerPage,
-    		String messageUidsToExclude)
-    	throws MessagingException {
+	public String getJSONMessages(
+			IMAPFolder folder, int pageNumber, int messagesPerPage,
+			String messageUidsToExclude)
+		throws MessagingException {
 
 		int messageCount = folder.getMessageCount();
 		int end = messageCount - ((pageNumber - 1) * messagesPerPage);
@@ -415,7 +415,7 @@ public class MailBoxManager {
 
 		double pageCount = Math.ceil((double)messageCount / messagesPerPage);
 
-    	int[] messageUids = GetterUtil.getIntegerValues(
+		int[] messageUids = GetterUtil.getIntegerValues(
 			messageUidsToExclude.split("\\s*,\\s*"));
 
 		// Create JSON object
@@ -446,14 +446,14 @@ public class MailBoxManager {
 		}
 
 		return jsonObj.toString();
-    }
+	}
 
-    public String getJSONMessagesBySearch(
-    		IMAPFolder folder, int pageNumber, int messagesPerPage,
-    		String searchString, String messageUidsToExclude)
-    	throws Exception {
+	public String getJSONMessagesBySearch(
+			IMAPFolder folder, int pageNumber, int messagesPerPage,
+			String searchString, String messageUidsToExclude)
+		throws Exception {
 
-    	SearchTerm st = getSearchTerm(searchString);
+		SearchTerm st = getSearchTerm(searchString);
 
 		Message[] messages = folder.search(st);
 
@@ -493,7 +493,7 @@ public class MailBoxManager {
 		return jsonObj.toString();
 	}
 
-    public Message getMessageByUid(String folderName, int messageUid)
+	public Message getMessageByUid(String folderName, int messageUid)
 		throws MessagingException {
 
 		IMAPFolder folder = (IMAPFolder)openFolder(folderName);
@@ -507,18 +507,18 @@ public class MailBoxManager {
 		return ((IMAPFolder)folder).getMessageByUID(messageUid);
 	}
 
-    public List getMessageUids(String folderName, String messageNumbers)
-    	throws MessagingException {
+	public List getMessageUids(String folderName, String messageNumbers)
+		throws MessagingException {
 
 		IMAPFolder folder = (IMAPFolder)openFolder(folderName);
 
 		return getMessageUids(folder, messageNumbers);
 	}
 
-    public List getMessageUids(IMAPFolder folder, String messageNumbers)
-    	throws MessagingException {
+	public List getMessageUids(IMAPFolder folder, String messageNumbers)
+		throws MessagingException {
 
-    	int[] messageNumbersArray = GetterUtil.getIntegerValues(
+		int[] messageNumbersArray = GetterUtil.getIntegerValues(
 			messageNumbers.split("\\s*,\\s*"));
 
 		List messageUids = new ArrayList();
@@ -530,70 +530,70 @@ public class MailBoxManager {
 		}
 
 		return messageUids;
-    }
+	}
 
-    public void markMessagesAsRead(
+	public void markMessagesAsRead(
 			String folderName, String messageUids, boolean read)
-    	throws MessagingException {
+		throws MessagingException {
 
 		IMAPFolder folder = (IMAPFolder)openFolder(folderName);
 
-    	markMessagesAsRead(folder, messageUids, read);
-    }
+		markMessagesAsRead(folder, messageUids, read);
+	}
 
-    public void markMessagesAsRead(
-    		Folder folder, String messageUids, boolean read)
-    	throws MessagingException {
+	public void markMessagesAsRead(
+			Folder folder, String messageUids, boolean read)
+		throws MessagingException {
 
-    	try {
-        	int[] messageUidsArray = GetterUtil.getIntegerValues(
-        		messageUids.split("\\s*,\\s*"));
+		try {
+			int[] messageUidsArray = GetterUtil.getIntegerValues(
+				messageUids.split("\\s*,\\s*"));
 
-        	if (!folder.isOpen()) {
-        		folder.open(Folder.READ_WRITE);
-        	}
+			if (!folder.isOpen()) {
+				folder.open(Folder.READ_WRITE);
+			}
 
-        	for (int messageUid : messageUidsArray) {
-        		try {
-            		Message message = getMessageByUid(folder, messageUid);
+			for (int messageUid : messageUidsArray) {
+				try {
+					Message message = getMessageByUid(folder, messageUid);
 
-        			message.setFlag(Flags.Flag.SEEN, read);
-        		}
-        		catch (MessagingException me) {
-        			_log.error(me, me);
-        		}
-        	}
+					message.setFlag(Flags.Flag.SEEN, read);
+				}
+				catch (MessagingException me) {
+					_log.error(me, me);
+				}
+			}
 
 			folder.close(true);
 		}
 		catch (MessagingException me) {
 			_log.error(me, me);
-        }
+		}
 	}
 
-    public Folder openFolder(String folderName) throws MessagingException {
+	public Folder openFolder(String folderName) throws MessagingException {
 		Folder folder = getStore().getDefaultFolder();
 
-        folder = folder.getFolder(folderName);
+		folder = folder.getFolder(folderName);
 
-        if (folder == null) {
-            return null;
-        }
+		if (folder == null) {
+			return null;
+		}
 
 		try {
-            folder.open(Folder.READ_WRITE);
-        }
-        catch (MessagingException me) {
-            folder.open(Folder.READ_ONLY);
-        }
+			folder.open(Folder.READ_WRITE);
+		}
+		catch (MessagingException me) {
+			folder.open(Folder.READ_ONLY);
+		}
 
-        return folder;
-    }
+		return folder;
+	}
 
-    public void sendForward(
-    		Message message, int fromAccountId, String to, String cc,
+	public void sendForward(
+			Message message, int fromAccountId, String to, String cc,
 			String bcc, String subject, String content, Multipart multipart)
-    	throws MessagingException {
+		throws MessagingException {
 
 		// Create the message to forward
 
@@ -615,30 +615,30 @@ public class MailBoxManager {
 
 		multipart.addBodyPart(messageBodyPart);
 
-    	send(forward, fromAccountId, to, cc, bcc, subject, content, multipart);
-    }
+		send(forward, fromAccountId, to, cc, bcc, subject, content, multipart);
+	}
 
-    public void sendNew(
-    		int fromAccountId, String to, String cc, String bcc, String subject,
+	public void sendNew(
+			int fromAccountId, String to, String cc, String bcc, String subject,
 			String content, Multipart multipart)
-    	throws MessagingException {
+		throws MessagingException {
 
-    	// Instantiate a message
+		// Instantiate a message
 
 		Message message = new MimeMessage(getSession());
 
-    	send(message, fromAccountId, to, cc, bcc, subject, content, multipart);
-    }
+		send(message, fromAccountId, to, cc, bcc, subject, content, multipart);
+	}
 
-    public void sendReply(
-    		Message message, int fromAccountId, String to, String cc,
+	public void sendReply(
+			Message message, int fromAccountId, String to, String cc,
 			String bcc, String subject, String content, Multipart multipart)
-    	throws MessagingException {
+		throws MessagingException {
 
-    	MimeMessage reply = (MimeMessage)message.reply(false);
+		MimeMessage reply = (MimeMessage)message.reply(false);
 
-    	send(reply, fromAccountId, to, cc, bcc, subject, content, multipart);
-    }
+		send(reply, fromAccountId, to, cc, bcc, subject, content, multipart);
+	}
 
 	protected void getBody(
 			StringBuilder sb, String contentPath, Part messagePart,
@@ -750,7 +750,7 @@ public class MailBoxManager {
 		}
 	}
 
-    protected void getFolders(List list, Folder[] folders) {
+	protected void getFolders(List list, Folder[] folders) {
 		for (Folder folder : folders) {
 			try {
 				int folderType = folder.getType();
@@ -826,7 +826,7 @@ public class MailBoxManager {
 			if (_log.isErrorEnabled()) {
 				_log.error(me, me);
 			}
-        }
+		}
 	}
 
 	protected Part getMessagePart(Part part, String contentPath)
@@ -916,7 +916,7 @@ public class MailBoxManager {
 		return _session;
 	}
 
-    protected Store getStore() {
+	protected Store getStore() {
 		if (_store == null) {
 			getIncomingStore(_mailAccount);
 		}
@@ -992,7 +992,7 @@ public class MailBoxManager {
 
 	private User _user;
 	private MailAccount _mailAccount;
-    private Session _session = null;
-    private Store _store = null;
+	private Session _session = null;
+	private Store _store = null;
 
 }

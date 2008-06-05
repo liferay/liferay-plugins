@@ -77,11 +77,11 @@ public class AlfrescoContentUtil {
 			Reference reference = null;
 
 			if (Validator.isNull(uuid)) {
-	            Predicate predicate = new Predicate(null, _SPACES_STORE, null);
+				Predicate predicate = new Predicate(null, _SPACES_STORE, null);
 
-	            Node[] nodes = repositoryService.get(predicate);
+				Node[] nodes = repositoryService.get(predicate);
 
-	            reference = nodes[0].getReference();
+				reference = nodes[0].getReference();
 			}
 			else {
 				reference = new Reference(_SPACES_STORE, uuid, null);
