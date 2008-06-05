@@ -29,11 +29,9 @@ long createDate = ParamUtil.getLong(request, "createDate");
 
 List<Entry> entries = EntryLocalServiceUtil.getNewEntries(createDate, themeDisplay.getUserId(), 0, 20);
 
-JSONObject jsonObj = new JSONObject();
+Collections.reverse(entries);
 
 JSONArray jsonArray = new JSONArray();
-
-JSONUtil.put(jsonObj, "entries", jsonArray);
 
 for (Entry entry : entries) {
 	JSONObject entryJSON = new JSONObject();
@@ -47,4 +45,4 @@ for (Entry entry : entries) {
 }
 %>
 
-<%= jsonObj %>
+<%= jsonArray %>

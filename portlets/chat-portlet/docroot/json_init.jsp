@@ -34,6 +34,7 @@
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.util.JSONUtil" %>
 
+<%@ page import="java.util.Collections" %>
 <%@ page import="java.util.List" %>
 
 <%@ page import="org.json.JSONArray" %>
