@@ -22,11 +22,11 @@
  */
 %>
 
-<%@ include file="/html/portlet/flash/init.jsp" %>
+<%@ include file="/init.jsp" %>
 
 <%
 if (movie.equals(StringPool.BLANK)) {
-	movie = themeDisplay.getPathFlash() + "/tennis.swf";
+	movie = "http://www.adobe.com/shockwave/welcome/flash.swf";
 }
 
 if (flashAttributes.equals(StringPool.BLANK)) {
