@@ -866,6 +866,17 @@
 		<licenses>CDDL</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>sun-tour-ipc-portlet</artifact-id>
+		<name>Tour IPC Portlet</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>sun-video-portlet</artifact-id>
 		<name>Video</name>
 		<type>portlet</type>
