@@ -1,0 +1,125 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+body {
+	background-color: #0070A2;
+	background-image: url(../images/comment/body-bg.jpg);
+	background-position: center top;
+	background-repeat: repeat-y;
+	color: #C6C6C6;
+	font-family: Verdana, Arial, Georgia;
+	font-size: 62.5%;
+	font-weight: normal;
+	line-height: 12px;
+	margin: 0pt;
+	padding: 0pt;
+	text-align: justify;
+}
+
+#banner {
+	background-color: #ED8D29;
+	background-image: url(../images/comment/header.jpg);
+	background-position: left top;
+	background-repeat: no-repeat;
+	float: none;
+	height: 370px;
+	margin: 0pt auto;
+	padding: 0pt;
+	text-align: left;
+	width: 900px;
+}
+
+#navigation {
+	margin: 150pt auto;
+	min-height: none;
+	overflow: hidden;
+	padding-right: 1em;
+	background: #ED8D29;
+	width: 100%;
+}
+
+#footer {
+	background-color: #020203;
+	background-image: url(../images/comment/footer-bg.jpg);
+	background-position: left top;
+	background-repeat: repeat-x;
+	color: #FFFFFF;
+	float: none;
+	font-size: 11px;
+	height: 74px;
+	line-height: 18px;
+	margin-top: none;
+	padding-top: 18px;
+	text-align: center;
+	width: 900px;
+	margin: 1px auto;
+}
+
+#wrapper {
+	margin: 0px auto;
+	width: 71%;
+}
+
+.portlet-topper {
+	background: #1091CB url(../images/comment/portlet_top.png) repeat-x
+		scroll 0% 1%;
+	position: relative;
+}
+
+.portlet-title {
+	color: #FFFFFF;
+	display: block;
+	font-size: 18px;
+	min-width: 50%;
+	padding: 8px 0pt 4px 10px;
+}
+
+a:hover {
+	color: #ED8D29;
+	text-decoration: none;
+}
+
+.portlet {
+	background: #C0C0C0 none repeat scroll 0%;
+	border: none;
+	margin-bottom: 1em;
+	text-align: left;
+	margin-top: 6px;
+}
+
+#navigation li.selected {
+	border-top: none;
+	font-weight: bold;
+}
+
+#navigation li {
+	background: none;
+	display: inline;
+	float: left;
+	margin-right: 0.5em;
+	position: relative;
+}
+
+#navigation li a:hover {
+	padding-bottom: 1em;
+	color: #1FA0DA;
+}
+
+#navigation li a {
+	text-decoration: none;
+	font-size: 13px;
+}
+
+#content-wrapper {
+	margin:0pt auto;
+	width:91%;
+}
+
+.taglib-page-iterator .search-results {
+	color:black;
+	float:left;
+}
+
+fieldset {
+	border:1px solid #CCCCCC;
+	color:black;
+	padding:0.7em;
+}
