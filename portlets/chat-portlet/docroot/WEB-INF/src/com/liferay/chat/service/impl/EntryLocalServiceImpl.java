@@ -38,17 +38,17 @@ import java.util.List;
  */
 public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 
-	public Entry addEntry(long userId, String content, long receiverUserId)
+	public Entry addEntry(long fromUserId, long toUserId, String content)
 		throws PortalException, SystemException {
 
 		long entryId = CounterLocalServiceUtil.increment();
 
 		Entry entry = entryPersistence.create(entryId);
 
-		entry.setUserId(userId);
 		entry.setCreateDate(System.currentTimeMillis());
+		entry.setFromUserId(fromUserId);
+		entry.setToUserId(toUserId);
 		entry.setContent(content);
-		entry.setReceiverUserId(receiverUserId);
 
 		entryPersistence.update(entry, false);
 
@@ -56,15 +56,21 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 	}
 
 	public void deleteEntries(long userId) throws SystemException {
-		entryPersistence.removeByUserId(userId);
-		entryPersistence.removeByReceiverUserId(userId);
+		entryPersistence.removeByFromUserId(userId);
+		entryPersistence.removeByToUserId(userId);
 	}
 
-	public List<Entry> getEntries(
-			long userId, long createDate, int start, int end)
+	public List<Entry> getNewEntries(
+			long createDate, long userId, int start, int end)
 		throws SystemException {
 
-		return entryFinder.findByU_CD(userId, createDate, start, end);
+		return entryFinder.findByNew(createDate, userId, start, end);
+	}
+
+	public List<Entry> getOldEntries(long createDate, int start, int end)
+		throws SystemException {
+
+		return entryFinder.findByOld(createDate, start, end);
 	}
 
 }

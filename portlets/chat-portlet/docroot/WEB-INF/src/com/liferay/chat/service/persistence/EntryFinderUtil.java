@@ -29,10 +29,16 @@ package com.liferay.chat.service.persistence;
  *
  */
 public class EntryFinderUtil {
-	public static java.util.List<com.liferay.chat.model.Entry> findByU_CD(
-		long userId, long createDate, int start, int end)
+	public static java.util.List<com.liferay.chat.model.Entry> findByNew(
+		long createDate, long userId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return getFinder().findByU_CD(userId, createDate, start, end);
+		return getFinder().findByNew(createDate, userId, start, end);
+	}
+
+	public static java.util.List<com.liferay.chat.model.Entry> findByOld(
+		long createDate, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getFinder().findByOld(createDate, start, end);
 	}
 
 	public static EntryFinder getFinder() {

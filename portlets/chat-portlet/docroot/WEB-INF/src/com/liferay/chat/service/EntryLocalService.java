@@ -38,8 +38,7 @@ public interface EntryLocalService {
 			com.liferay.portal.PortalException;
 
 	public void deleteEntry(com.liferay.chat.model.Entry entry)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
+		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.chat.model.Entry> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
@@ -57,15 +56,19 @@ public interface EntryLocalService {
 		com.liferay.chat.model.Entry entry)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.chat.model.Entry addEntry(long userId,
-		java.lang.String content, long receiverUserId)
+	public com.liferay.chat.model.Entry addEntry(long fromUserId,
+		long toUserId, java.lang.String content)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
 	public void deleteEntries(long userId)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.chat.model.Entry> getEntries(
-		long userId, long createDate, int start, int end)
+	public java.util.List<com.liferay.chat.model.Entry> getNewEntries(
+		long createDate, long userId, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.chat.model.Entry> getOldEntries(
+		long createDate, int start, int end)
 		throws com.liferay.portal.SystemException;
 }

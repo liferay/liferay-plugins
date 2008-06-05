@@ -29,12 +29,12 @@ if (!themeDisplay.isSignedIn()) {
 	return;
 }
 
+long toUserId = ParamUtil.getLong(request, "toUserId");
 String content = ParamUtil.getString(request, "content");
-long receiverUserId = ParamUtil.getLong(request, "receiverUserId");
 
-if (receiverUserId == 0) {
+if (toUserId == 0) {
 	return;
 }
 
-EntryLocalServiceUtil.addEntry(themeDisplay.getUserId(), content, receiverUserId);
+EntryLocalServiceUtil.addEntry(themeDisplay.getUserId(), toUserId, content);
 %>

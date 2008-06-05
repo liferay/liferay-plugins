@@ -56,8 +56,7 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService,
 		entryPersistence.remove(entryId);
 	}
 
-	public void deleteEntry(Entry entry)
-		throws PortalException, SystemException {
+	public void deleteEntry(Entry entry) throws SystemException {
 		entryPersistence.remove(entry);
 	}
 

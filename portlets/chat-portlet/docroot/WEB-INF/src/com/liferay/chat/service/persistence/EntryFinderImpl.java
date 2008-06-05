@@ -43,11 +43,14 @@ import org.hibernate.Session;
  */
 public class EntryFinderImpl implements EntryFinder {
 
-	public static String FIND_BY_U_CD =
-		EntryFinder.class.getName() + ".findByU_CD";
+	public static String FIND_BY_NEW =
+		EntryFinder.class.getName() + ".findByNew";
 
-	public List<Entry> findByU_CD(
-			long userId, long createDate, int start, int end)
+	public static String FIND_BY_OLD =
+		EntryFinder.class.getName() + ".findByOld";
+
+	public List<Entry> findByNew(
+			long createDate, long userId, int start, int end)
 		throws SystemException {
 
 		Session session = null;
@@ -55,7 +58,7 @@ public class EntryFinderImpl implements EntryFinder {
 		try {
 			session = HibernateUtil.openSession();
 
-			String sql = CustomSQLUtil.get(FIND_BY_U_CD);
+			String sql = CustomSQLUtil.get(FIND_BY_NEW);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -63,7 +66,37 @@ public class EntryFinderImpl implements EntryFinder {
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
+			qPos.add(createDate);
 			qPos.add(userId);
+			qPos.add(userId);
+
+			return (List<Entry>)QueryUtil.list(
+				q, HibernateUtil.getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			HibernateUtil.closeSession(session);
+		}
+	}
+
+	public List<Entry> findByOld(long createDate, int start, int end)
+		throws SystemException {
+
+		Session session = null;
+
+		try {
+			session = HibernateUtil.openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_OLD);
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addEntity("Chat_Entry", EntryImpl.class);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
 			qPos.add(createDate);
 
 			return (List<Entry>)QueryUtil.list(

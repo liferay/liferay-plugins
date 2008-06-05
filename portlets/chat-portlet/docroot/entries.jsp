@@ -27,7 +27,7 @@
 <%
 long createDate = ParamUtil.getLong(request, "createDate");
 
-List<Entry> entries = EntryLocalServiceUtil.getEntries(themeDisplay.getUserId(), createDate, 0, 20);
+List<Entry> entries = EntryLocalServiceUtil.getNewEntries(createDate, themeDisplay.getUserId(), 0, 20);
 
 JSONObject jsonObj = new JSONObject();
 
@@ -38,10 +38,10 @@ JSONUtil.put(jsonObj, "entries", jsonArray);
 for (Entry entry : entries) {
 	JSONObject entryJSON = new JSONObject();
 
-	JSONUtil.put(entryJSON, "userId", entry.getUserId());
 	JSONUtil.put(entryJSON, "createDate", entry.getCreateDate());
+	JSONUtil.put(entryJSON, "fromUserId", entry.getFromUserId());
+	JSONUtil.put(entryJSON, "toUserId", entry.getToUserId());
 	JSONUtil.put(entryJSON, "content", entry.getContent());
-	JSONUtil.put(entryJSON, "receiverUserId", entry.getReceiverUserId());
 
 	jsonArray.put(entryJSON);
 }

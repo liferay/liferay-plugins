@@ -46,8 +46,7 @@ public class EntryLocalServiceUtil {
 	}
 
 	public static void deleteEntry(com.liferay.chat.model.Entry entry)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.SystemException {
 		EntryLocalService entryLocalService = EntryLocalServiceFactory.getService();
 
 		entryLocalService.deleteEntry(entry);
@@ -85,13 +84,13 @@ public class EntryLocalServiceUtil {
 		return entryLocalService.updateEntry(entry);
 	}
 
-	public static com.liferay.chat.model.Entry addEntry(long userId,
-		java.lang.String content, long receiverUserId)
+	public static com.liferay.chat.model.Entry addEntry(long fromUserId,
+		long toUserId, java.lang.String content)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		EntryLocalService entryLocalService = EntryLocalServiceFactory.getService();
 
-		return entryLocalService.addEntry(userId, content, receiverUserId);
+		return entryLocalService.addEntry(fromUserId, toUserId, content);
 	}
 
 	public static void deleteEntries(long userId)
@@ -101,11 +100,19 @@ public class EntryLocalServiceUtil {
 		entryLocalService.deleteEntries(userId);
 	}
 
-	public static java.util.List<com.liferay.chat.model.Entry> getEntries(
-		long userId, long createDate, int start, int end)
+	public static java.util.List<com.liferay.chat.model.Entry> getNewEntries(
+		long createDate, long userId, int start, int end)
 		throws com.liferay.portal.SystemException {
 		EntryLocalService entryLocalService = EntryLocalServiceFactory.getService();
 
-		return entryLocalService.getEntries(userId, createDate, start, end);
+		return entryLocalService.getNewEntries(createDate, userId, start, end);
+	}
+
+	public static java.util.List<com.liferay.chat.model.Entry> getOldEntries(
+		long createDate, int start, int end)
+		throws com.liferay.portal.SystemException {
+		EntryLocalService entryLocalService = EntryLocalServiceFactory.getService();
+
+		return entryLocalService.getOldEntries(createDate, start, end);
 	}
 }

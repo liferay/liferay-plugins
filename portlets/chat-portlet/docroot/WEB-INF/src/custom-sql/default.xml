@@ -1,15 +1,31 @@
 <?xml version="1.0"?>
 
 <custom-sql>
-	<sql id="com.liferay.chat.service.persistence.EntryFinder.findByU_CD">
+	<sql id="com.liferay.chat.service.persistence.EntryFinder.findByNew">
 		<![CDATA[
 			SELECT
 				{Chat_Entry.*}
 			FROM
 				Chat_Entry
 			WHERE
-				(userId = ?) AND
-				(createDate > ?)
+				(createDate > ?) AND
+				(
+					(fromUserId = ?) OR (toUserId = ?)
+				)
+			ORDER BY
+				createDate DESC
+		]]>
+	</sql>
+	<sql id="com.liferay.chat.service.persistence.EntryFinder.findByOld">
+		<![CDATA[
+			SELECT
+				{Chat_Entry.*}
+			FROM
+				Chat_Entry
+			WHERE
+				(createDate < ?)
+			ORDER BY
+				createDate DESC
 		]]>
 	</sql>
 </custom-sql>

@@ -38,10 +38,10 @@ public class EntrySoap implements Serializable {
 		EntrySoap soapModel = new EntrySoap();
 
 		soapModel.setEntryId(model.getEntryId());
-		soapModel.setUserId(model.getUserId());
 		soapModel.setCreateDate(model.getCreateDate());
+		soapModel.setFromUserId(model.getFromUserId());
+		soapModel.setToUserId(model.getToUserId());
 		soapModel.setContent(model.getContent());
-		soapModel.setReceiverUserId(model.getReceiverUserId());
 
 		return soapModel;
 	}
@@ -75,20 +75,28 @@ public class EntrySoap implements Serializable {
 		_entryId = entryId;
 	}
 
-	public long getUserId() {
-		return _userId;
-	}
-
-	public void setUserId(long userId) {
-		_userId = userId;
-	}
-
 	public long getCreateDate() {
 		return _createDate;
 	}
 
 	public void setCreateDate(long createDate) {
 		_createDate = createDate;
+	}
+
+	public long getFromUserId() {
+		return _fromUserId;
+	}
+
+	public void setFromUserId(long fromUserId) {
+		_fromUserId = fromUserId;
+	}
+
+	public long getToUserId() {
+		return _toUserId;
+	}
+
+	public void setToUserId(long toUserId) {
+		_toUserId = toUserId;
 	}
 
 	public String getContent() {
@@ -99,17 +107,9 @@ public class EntrySoap implements Serializable {
 		_content = content;
 	}
 
-	public long getReceiverUserId() {
-		return _receiverUserId;
-	}
-
-	public void setReceiverUserId(long receiverUserId) {
-		_receiverUserId = receiverUserId;
-	}
-
 	private long _entryId;
-	private long _userId;
 	private long _createDate;
+	private long _fromUserId;
+	private long _toUserId;
 	private String _content;
-	private long _receiverUserId;
 }

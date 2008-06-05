@@ -11,13 +11,13 @@
 
 		<!-- Audit fields -->
 
-		<column name="userId" type="long" />
 		<column name="createDate" type="long" />
 
 		<!-- Other fields -->
 
+		<column name="fromUserId" type="long" />
+		<column name="toUserId" type="long" />
 		<column name="content" type="String" />
-		<column name="receiverUserId" type="long" />
 
 		<!-- Order -->
 
@@ -27,11 +27,14 @@
 
 		<!-- Finder methods -->
 
-		<finder name="UserId" return-type="Collection">
-			<finder-column name="userId" />
+		<finder name="CreateDate" return-type="Collection">
+			<finder-column name="createDate" />
 		</finder>
-		<finder name="ReceiverUserId" return-type="Collection">
-			<finder-column name="receiverUserId" />
+		<finder name="FromUserId" return-type="Collection">
+			<finder-column name="fromUserId" />
+		</finder>
+		<finder name="ToUserId" return-type="Collection">
+			<finder-column name="toUserId" />
 		</finder>
 	</entity>
 </service-builder>

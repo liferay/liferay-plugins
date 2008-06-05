@@ -53,18 +53,18 @@ public class EntryModelImpl extends BaseModelImpl {
 			{ "entryId", new Integer(Types.BIGINT) },
 			
 
-			{ "userId", new Integer(Types.BIGINT) },
-			
-
 			{ "createDate", new Integer(Types.BIGINT) },
 			
 
-			{ "content", new Integer(Types.VARCHAR) },
+			{ "fromUserId", new Integer(Types.BIGINT) },
 			
 
-			{ "receiverUserId", new Integer(Types.BIGINT) }
+			{ "toUserId", new Integer(Types.BIGINT) },
+			
+
+			{ "content", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Chat_Entry (entryId LONG not null primary key,userId LONG,createDate LONG,content VARCHAR(75) null,receiverUserId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Chat_Entry (entryId LONG not null primary key,createDate LONG,fromUserId LONG,toUserId LONG,content VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Chat_Entry";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -77,10 +77,10 @@ public class EntryModelImpl extends BaseModelImpl {
 		Entry model = new EntryImpl();
 
 		model.setEntryId(soapModel.getEntryId());
-		model.setUserId(soapModel.getUserId());
 		model.setCreateDate(soapModel.getCreateDate());
+		model.setFromUserId(soapModel.getFromUserId());
+		model.setToUserId(soapModel.getToUserId());
 		model.setContent(soapModel.getContent());
-		model.setReceiverUserId(soapModel.getReceiverUserId());
 
 		return model;
 	}
@@ -123,16 +123,6 @@ public class EntryModelImpl extends BaseModelImpl {
 		}
 	}
 
-	public long getUserId() {
-		return _userId;
-	}
-
-	public void setUserId(long userId) {
-		if (userId != _userId) {
-			_userId = userId;
-		}
-	}
-
 	public long getCreateDate() {
 		return _createDate;
 	}
@@ -140,6 +130,26 @@ public class EntryModelImpl extends BaseModelImpl {
 	public void setCreateDate(long createDate) {
 		if (createDate != _createDate) {
 			_createDate = createDate;
+		}
+	}
+
+	public long getFromUserId() {
+		return _fromUserId;
+	}
+
+	public void setFromUserId(long fromUserId) {
+		if (fromUserId != _fromUserId) {
+			_fromUserId = fromUserId;
+		}
+	}
+
+	public long getToUserId() {
+		return _toUserId;
+	}
+
+	public void setToUserId(long toUserId) {
+		if (toUserId != _toUserId) {
+			_toUserId = toUserId;
 		}
 	}
 
@@ -156,16 +166,6 @@ public class EntryModelImpl extends BaseModelImpl {
 		}
 	}
 
-	public long getReceiverUserId() {
-		return _receiverUserId;
-	}
-
-	public void setReceiverUserId(long receiverUserId) {
-		if (receiverUserId != _receiverUserId) {
-			_receiverUserId = receiverUserId;
-		}
-	}
-
 	public Entry toEscapedModel() {
 		if (isEscapedModel()) {
 			return (Entry)this;
@@ -176,10 +176,10 @@ public class EntryModelImpl extends BaseModelImpl {
 			model.setEscapedModel(true);
 
 			model.setEntryId(getEntryId());
-			model.setUserId(getUserId());
 			model.setCreateDate(getCreateDate());
+			model.setFromUserId(getFromUserId());
+			model.setToUserId(getToUserId());
 			model.setContent(HtmlUtil.escape(getContent()));
-			model.setReceiverUserId(getReceiverUserId());
 
 			model = (Entry)Proxy.newProxyInstance(Entry.class.getClassLoader(),
 					new Class[] { Entry.class }, new ReadOnlyBeanHandler(model));
@@ -192,10 +192,10 @@ public class EntryModelImpl extends BaseModelImpl {
 		EntryImpl clone = new EntryImpl();
 
 		clone.setEntryId(getEntryId());
-		clone.setUserId(getUserId());
 		clone.setCreateDate(getCreateDate());
+		clone.setFromUserId(getFromUserId());
+		clone.setToUserId(getToUserId());
 		clone.setContent(getContent());
-		clone.setReceiverUserId(getReceiverUserId());
 
 		return clone;
 	}
@@ -257,8 +257,8 @@ public class EntryModelImpl extends BaseModelImpl {
 	}
 
 	private long _entryId;
-	private long _userId;
 	private long _createDate;
+	private long _fromUserId;
+	private long _toUserId;
 	private String _content;
-	private long _receiverUserId;
 }

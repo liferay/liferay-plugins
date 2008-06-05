@@ -39,21 +39,21 @@ public interface EntryModel extends BaseModel {
 
 	public void setEntryId(long entryId);
 
-	public long getUserId();
-
-	public void setUserId(long userId);
-
 	public long getCreateDate();
 
 	public void setCreateDate(long createDate);
 
+	public long getFromUserId();
+
+	public void setFromUserId(long fromUserId);
+
+	public long getToUserId();
+
+	public void setToUserId(long toUserId);
+
 	public String getContent();
 
 	public void setContent(String content);
-
-	public long getReceiverUserId();
-
-	public void setReceiverUserId(long receiverUserId);
 
 	public Entry toEscapedModel();
 }
