@@ -6,6 +6,8 @@
 		<field name="createDate" type="long" />
 		<field name="fromUserId" type="long" />
 		<field name="toUserId" type="long" />
-		<field name="content" type="String" />
+		<field name="content" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
 	</model>
 </model-hints>

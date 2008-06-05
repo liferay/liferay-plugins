@@ -64,7 +64,7 @@ public class EntryModelImpl extends BaseModelImpl {
 
 			{ "content", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Chat_Entry (entryId LONG not null primary key,createDate LONG,fromUserId LONG,toUserId LONG,content VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Chat_Entry (entryId LONG not null primary key,createDate LONG,fromUserId LONG,toUserId LONG,content STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table Chat_Entry";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";

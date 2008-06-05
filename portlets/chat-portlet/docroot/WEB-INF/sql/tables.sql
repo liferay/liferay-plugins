@@ -4,5 +4,5 @@ create table Chat_Entry (
 	createDate LONG,
 	fromUserId LONG,
 	toUserId LONG,
-	content VARCHAR(75) null
+	content STRING null
 );
