@@ -53,7 +53,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 		fooPersistence.remove(fooId);
 	}
 
-	public void deleteFoo(Foo foo) throws PortalException, SystemException {
+	public void deleteFoo(Foo foo) throws SystemException {
 		fooPersistence.remove(foo);
 	}
 
@@ -65,6 +65,10 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	public List<Foo> dynamicQuery(DynamicQueryInitializer queryInitializer,
 		int start, int end) throws SystemException {
 		return fooPersistence.findWithDynamicQuery(queryInitializer, start, end);
+	}
+
+	public Foo getFoo(long fooId) throws PortalException, SystemException {
+		return fooPersistence.findByPrimaryKey(fooId);
 	}
 
 	public Foo updateFoo(Foo foo) throws SystemException {

@@ -38,8 +38,7 @@ public interface JIRAActionLocalService {
 			com.liferay.portal.PortalException;
 
 	public void deleteJIRAAction(com.liferay.wol.model.JIRAAction jiraAction)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
+		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAAction> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
@@ -49,11 +48,11 @@ public interface JIRAActionLocalService {
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
 		int start, int end) throws com.liferay.portal.SystemException;
 
-	public com.liferay.wol.model.JIRAAction updateJIRAAction(
-		com.liferay.wol.model.JIRAAction jiraAction)
-		throws com.liferay.portal.SystemException;
-
 	public com.liferay.wol.model.JIRAAction getJIRAAction(long jiraActionId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
+
+	public com.liferay.wol.model.JIRAAction updateJIRAAction(
+		com.liferay.wol.model.JIRAAction jiraAction)
+		throws com.liferay.portal.SystemException;
 }

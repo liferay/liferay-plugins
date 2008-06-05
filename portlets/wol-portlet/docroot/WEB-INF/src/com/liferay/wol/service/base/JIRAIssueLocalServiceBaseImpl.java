@@ -87,8 +87,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 		jiraIssuePersistence.remove(jiraIssueId);
 	}
 
-	public void deleteJIRAIssue(JIRAIssue jiraIssue)
-		throws PortalException, SystemException {
+	public void deleteJIRAIssue(JIRAIssue jiraIssue) throws SystemException {
 		jiraIssuePersistence.remove(jiraIssue);
 	}
 
@@ -102,6 +101,11 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 		throws SystemException {
 		return jiraIssuePersistence.findWithDynamicQuery(queryInitializer,
 			start, end);
+	}
+
+	public JIRAIssue getJIRAIssue(long jiraIssueId)
+		throws PortalException, SystemException {
+		return jiraIssuePersistence.findByPrimaryKey(jiraIssueId);
 	}
 
 	public JIRAIssue updateJIRAIssue(JIRAIssue jiraIssue)

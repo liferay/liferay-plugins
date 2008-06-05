@@ -46,8 +46,7 @@ public class FeedLocalServiceUtil {
 	}
 
 	public static void deleteFeed(com.liferay.twitter.model.Feed feed)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.SystemException {
 		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
 
 		feedLocalService.deleteFeed(feed);
@@ -67,6 +66,14 @@ public class FeedLocalServiceUtil {
 		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
 
 		return feedLocalService.dynamicQuery(queryInitializer, start, end);
+	}
+
+	public static com.liferay.twitter.model.Feed getFeed(long feedId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
+
+		return feedLocalService.getFeed(feedId);
 	}
 
 	public static com.liferay.twitter.model.Feed updateFeed(

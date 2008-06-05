@@ -88,7 +88,7 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	}
 
 	public void deleteJIRAAction(JIRAAction jiraAction)
-		throws PortalException, SystemException {
+		throws SystemException {
 		jiraActionPersistence.remove(jiraAction);
 	}
 
@@ -102,6 +102,11 @@ public abstract class JIRAActionLocalServiceBaseImpl
 		throws SystemException {
 		return jiraActionPersistence.findWithDynamicQuery(queryInitializer,
 			start, end);
+	}
+
+	public JIRAAction getJIRAAction(long jiraActionId)
+		throws PortalException, SystemException {
+		return jiraActionPersistence.findByPrimaryKey(jiraActionId);
 	}
 
 	public JIRAAction updateJIRAAction(JIRAAction jiraAction)

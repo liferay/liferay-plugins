@@ -47,8 +47,7 @@ public class SVNRepositoryLocalServiceUtil {
 
 	public static void deleteSVNRepository(
 		com.liferay.wol.model.SVNRepository svnRepository)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.SystemException {
 		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
 
 		svnRepositoryLocalService.deleteSVNRepository(svnRepository);
@@ -71,14 +70,6 @@ public class SVNRepositoryLocalServiceUtil {
 			end);
 	}
 
-	public static com.liferay.wol.model.SVNRepository updateSVNRepository(
-		com.liferay.wol.model.SVNRepository svnRepository)
-		throws com.liferay.portal.SystemException {
-		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
-
-		return svnRepositoryLocalService.updateSVNRepository(svnRepository);
-	}
-
 	public static com.liferay.wol.model.SVNRepository getSVNRepository(
 		long svnRepositoryId)
 		throws com.liferay.portal.PortalException,
@@ -86,6 +77,14 @@ public class SVNRepositoryLocalServiceUtil {
 		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
 
 		return svnRepositoryLocalService.getSVNRepository(svnRepositoryId);
+	}
+
+	public static com.liferay.wol.model.SVNRepository updateSVNRepository(
+		com.liferay.wol.model.SVNRepository svnRepository)
+		throws com.liferay.portal.SystemException {
+		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
+
+		return svnRepositoryLocalService.updateSVNRepository(svnRepository);
 	}
 
 	public static com.liferay.wol.model.SVNRepository getSVNRepository(

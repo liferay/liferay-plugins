@@ -88,7 +88,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	public void deleteSVNRevision(SVNRevision svnRevision)
-		throws PortalException, SystemException {
+		throws SystemException {
 		svnRevisionPersistence.remove(svnRevision);
 	}
 
@@ -102,6 +102,11 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 		throws SystemException {
 		return svnRevisionPersistence.findWithDynamicQuery(queryInitializer,
 			start, end);
+	}
+
+	public SVNRevision getSVNRevision(long svnRevisionId)
+		throws PortalException, SystemException {
+		return svnRevisionPersistence.findByPrimaryKey(svnRevisionId);
 	}
 
 	public SVNRevision updateSVNRevision(SVNRevision svnRevision)

@@ -47,8 +47,7 @@ public class SVNRevisionLocalServiceUtil {
 
 	public static void deleteSVNRevision(
 		com.liferay.wol.model.SVNRevision svnRevision)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.SystemException {
 		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
 
 		svnRevisionLocalService.deleteSVNRevision(svnRevision);
@@ -68,6 +67,15 @@ public class SVNRevisionLocalServiceUtil {
 		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
 
 		return svnRevisionLocalService.dynamicQuery(queryInitializer, start, end);
+	}
+
+	public static com.liferay.wol.model.SVNRevision getSVNRevision(
+		long svnRevisionId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
+
+		return svnRevisionLocalService.getSVNRevision(svnRevisionId);
 	}
 
 	public static com.liferay.wol.model.SVNRevision updateSVNRevision(
@@ -105,15 +113,6 @@ public class SVNRevisionLocalServiceUtil {
 		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
 
 		return svnRevisionLocalService.getLastSVNRevision(svnUserId);
-	}
-
-	public static com.liferay.wol.model.SVNRevision getSVNRevision(
-		long svnRevisionId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
-
-		return svnRevisionLocalService.getSVNRevision(svnRevisionId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(

@@ -53,7 +53,7 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 		feedPersistence.remove(feedId);
 	}
 
-	public void deleteFeed(Feed feed) throws PortalException, SystemException {
+	public void deleteFeed(Feed feed) throws SystemException {
 		feedPersistence.remove(feed);
 	}
 
@@ -65,6 +65,10 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 	public List<Feed> dynamicQuery(DynamicQueryInitializer queryInitializer,
 		int start, int end) throws SystemException {
 		return feedPersistence.findWithDynamicQuery(queryInitializer, start, end);
+	}
+
+	public Feed getFeed(long feedId) throws PortalException, SystemException {
+		return feedPersistence.findByPrimaryKey(feedId);
 	}
 
 	public Feed updateFeed(Feed feed) throws SystemException {

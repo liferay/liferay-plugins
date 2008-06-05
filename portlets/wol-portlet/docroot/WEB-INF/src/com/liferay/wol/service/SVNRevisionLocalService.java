@@ -38,8 +38,7 @@ public interface SVNRevisionLocalService {
 			com.liferay.portal.PortalException;
 
 	public void deleteSVNRevision(com.liferay.wol.model.SVNRevision svnRevision)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
+		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.SVNRevision> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
@@ -48,6 +47,10 @@ public interface SVNRevisionLocalService {
 	public java.util.List<com.liferay.wol.model.SVNRevision> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
 		int start, int end) throws com.liferay.portal.SystemException;
+
+	public com.liferay.wol.model.SVNRevision getSVNRevision(long svnRevisionId)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.PortalException;
 
 	public com.liferay.wol.model.SVNRevision updateSVNRevision(
 		com.liferay.wol.model.SVNRevision svnRevision)
@@ -66,10 +69,6 @@ public interface SVNRevisionLocalService {
 
 	public com.liferay.wol.model.SVNRevision getLastSVNRevision(
 		java.lang.String svnUserId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
-
-	public com.liferay.wol.model.SVNRevision getSVNRevision(long svnRevisionId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 

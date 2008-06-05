@@ -88,7 +88,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	public void deleteJIRAChangeItem(JIRAChangeItem jiraChangeItem)
-		throws PortalException, SystemException {
+		throws SystemException {
 		jiraChangeItemPersistence.remove(jiraChangeItem);
 	}
 
@@ -102,6 +102,11 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 		throws SystemException {
 		return jiraChangeItemPersistence.findWithDynamicQuery(queryInitializer,
 			start, end);
+	}
+
+	public JIRAChangeItem getJIRAChangeItem(long jiraChangeItemId)
+		throws PortalException, SystemException {
+		return jiraChangeItemPersistence.findByPrimaryKey(jiraChangeItemId);
 	}
 
 	public JIRAChangeItem updateJIRAChangeItem(JIRAChangeItem jiraChangeItem)

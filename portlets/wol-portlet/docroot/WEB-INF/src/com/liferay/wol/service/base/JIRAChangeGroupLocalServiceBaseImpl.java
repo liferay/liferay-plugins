@@ -88,7 +88,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	public void deleteJIRAChangeGroup(JIRAChangeGroup jiraChangeGroup)
-		throws PortalException, SystemException {
+		throws SystemException {
 		jiraChangeGroupPersistence.remove(jiraChangeGroup);
 	}
 
@@ -102,6 +102,11 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 		throws SystemException {
 		return jiraChangeGroupPersistence.findWithDynamicQuery(queryInitializer,
 			start, end);
+	}
+
+	public JIRAChangeGroup getJIRAChangeGroup(long jiraChangeGroupId)
+		throws PortalException, SystemException {
+		return jiraChangeGroupPersistence.findByPrimaryKey(jiraChangeGroupId);
 	}
 
 	public JIRAChangeGroup updateJIRAChangeGroup(

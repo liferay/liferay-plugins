@@ -38,8 +38,7 @@ public interface JIRAIssueLocalService {
 			com.liferay.portal.PortalException;
 
 	public void deleteJIRAIssue(com.liferay.wol.model.JIRAIssue jiraIssue)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
+		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
@@ -48,6 +47,10 @@ public interface JIRAIssueLocalService {
 	public java.util.List<com.liferay.wol.model.JIRAIssue> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
 		int start, int end) throws com.liferay.portal.SystemException;
+
+	public com.liferay.wol.model.JIRAIssue getJIRAIssue(long jiraIssueId)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.PortalException;
 
 	public com.liferay.wol.model.JIRAIssue updateJIRAIssue(
 		com.liferay.wol.model.JIRAIssue jiraIssue)
@@ -86,10 +89,6 @@ public interface JIRAIssueLocalService {
 
 	public com.liferay.wol.model.JIRAIssue getFirstReporterJIRAIssue(
 		long projectId, java.lang.String reporterJiraUserId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
-
-	public com.liferay.wol.model.JIRAIssue getJIRAIssue(long jiraIssueId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 

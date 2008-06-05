@@ -47,8 +47,7 @@ public class JIRAActionLocalServiceUtil {
 
 	public static void deleteJIRAAction(
 		com.liferay.wol.model.JIRAAction jiraAction)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.SystemException {
 		JIRAActionLocalService jiraActionLocalService = JIRAActionLocalServiceFactory.getService();
 
 		jiraActionLocalService.deleteJIRAAction(jiraAction);
@@ -70,14 +69,6 @@ public class JIRAActionLocalServiceUtil {
 		return jiraActionLocalService.dynamicQuery(queryInitializer, start, end);
 	}
 
-	public static com.liferay.wol.model.JIRAAction updateJIRAAction(
-		com.liferay.wol.model.JIRAAction jiraAction)
-		throws com.liferay.portal.SystemException {
-		JIRAActionLocalService jiraActionLocalService = JIRAActionLocalServiceFactory.getService();
-
-		return jiraActionLocalService.updateJIRAAction(jiraAction);
-	}
-
 	public static com.liferay.wol.model.JIRAAction getJIRAAction(
 		long jiraActionId)
 		throws com.liferay.portal.PortalException,
@@ -85,5 +76,13 @@ public class JIRAActionLocalServiceUtil {
 		JIRAActionLocalService jiraActionLocalService = JIRAActionLocalServiceFactory.getService();
 
 		return jiraActionLocalService.getJIRAAction(jiraActionId);
+	}
+
+	public static com.liferay.wol.model.JIRAAction updateJIRAAction(
+		com.liferay.wol.model.JIRAAction jiraAction)
+		throws com.liferay.portal.SystemException {
+		JIRAActionLocalService jiraActionLocalService = JIRAActionLocalServiceFactory.getService();
+
+		return jiraActionLocalService.updateJIRAAction(jiraAction);
 	}
 }

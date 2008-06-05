@@ -47,8 +47,7 @@ public class JIRAIssueLocalServiceUtil {
 
 	public static void deleteJIRAIssue(
 		com.liferay.wol.model.JIRAIssue jiraIssue)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.SystemException {
 		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
 
 		jiraIssueLocalService.deleteJIRAIssue(jiraIssue);
@@ -68,6 +67,14 @@ public class JIRAIssueLocalServiceUtil {
 		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
 
 		return jiraIssueLocalService.dynamicQuery(queryInitializer, start, end);
+	}
+
+	public static com.liferay.wol.model.JIRAIssue getJIRAIssue(long jiraIssueId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
+
+		return jiraIssueLocalService.getJIRAIssue(jiraIssueId);
 	}
 
 	public static com.liferay.wol.model.JIRAIssue updateJIRAIssue(
@@ -152,14 +159,6 @@ public class JIRAIssueLocalServiceUtil {
 
 		return jiraIssueLocalService.getFirstReporterJIRAIssue(projectId,
 			reporterJiraUserId);
-	}
-
-	public static com.liferay.wol.model.JIRAIssue getJIRAIssue(long jiraIssueId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
-
-		return jiraIssueLocalService.getJIRAIssue(jiraIssueId);
 	}
 
 	public static com.liferay.wol.model.JIRAIssue getJIRAIssue(

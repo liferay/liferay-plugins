@@ -39,8 +39,7 @@ public interface JIRAChangeItemLocalService {
 
 	public void deleteJIRAChangeItem(
 		com.liferay.wol.model.JIRAChangeItem jiraChangeItem)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
+		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAChangeItem> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
@@ -50,14 +49,14 @@ public interface JIRAChangeItemLocalService {
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
 		int start, int end) throws com.liferay.portal.SystemException;
 
-	public com.liferay.wol.model.JIRAChangeItem updateJIRAChangeItem(
-		com.liferay.wol.model.JIRAChangeItem jiraChangeItem)
-		throws com.liferay.portal.SystemException;
-
 	public com.liferay.wol.model.JIRAChangeItem getJIRAChangeItem(
 		long jiraChangeItemId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
+
+	public com.liferay.wol.model.JIRAChangeItem updateJIRAChangeItem(
+		com.liferay.wol.model.JIRAChangeItem jiraChangeItem)
+		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAChangeItem> getJIRAChangeItems(
 		long jiraChangeGroupId) throws com.liferay.portal.SystemException;

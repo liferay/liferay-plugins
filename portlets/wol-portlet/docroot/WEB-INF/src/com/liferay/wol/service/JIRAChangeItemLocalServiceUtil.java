@@ -47,8 +47,7 @@ public class JIRAChangeItemLocalServiceUtil {
 
 	public static void deleteJIRAChangeItem(
 		com.liferay.wol.model.JIRAChangeItem jiraChangeItem)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.SystemException {
 		JIRAChangeItemLocalService jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getService();
 
 		jiraChangeItemLocalService.deleteJIRAChangeItem(jiraChangeItem);
@@ -71,14 +70,6 @@ public class JIRAChangeItemLocalServiceUtil {
 			end);
 	}
 
-	public static com.liferay.wol.model.JIRAChangeItem updateJIRAChangeItem(
-		com.liferay.wol.model.JIRAChangeItem jiraChangeItem)
-		throws com.liferay.portal.SystemException {
-		JIRAChangeItemLocalService jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getService();
-
-		return jiraChangeItemLocalService.updateJIRAChangeItem(jiraChangeItem);
-	}
-
 	public static com.liferay.wol.model.JIRAChangeItem getJIRAChangeItem(
 		long jiraChangeItemId)
 		throws com.liferay.portal.PortalException,
@@ -86,6 +77,14 @@ public class JIRAChangeItemLocalServiceUtil {
 		JIRAChangeItemLocalService jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getService();
 
 		return jiraChangeItemLocalService.getJIRAChangeItem(jiraChangeItemId);
+	}
+
+	public static com.liferay.wol.model.JIRAChangeItem updateJIRAChangeItem(
+		com.liferay.wol.model.JIRAChangeItem jiraChangeItem)
+		throws com.liferay.portal.SystemException {
+		JIRAChangeItemLocalService jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getService();
+
+		return jiraChangeItemLocalService.updateJIRAChangeItem(jiraChangeItem);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAChangeItem> getJIRAChangeItems(

@@ -47,8 +47,7 @@ public class WallEntryLocalServiceUtil {
 
 	public static void deleteWallEntry(
 		com.liferay.wol.model.WallEntry wallEntry)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.SystemException {
 		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
 
 		wallEntryLocalService.deleteWallEntry(wallEntry);
@@ -68,6 +67,14 @@ public class WallEntryLocalServiceUtil {
 		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
 
 		return wallEntryLocalService.dynamicQuery(queryInitializer, start, end);
+	}
+
+	public static com.liferay.wol.model.WallEntry getWallEntry(long wallEntryId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
+
+		return wallEntryLocalService.getWallEntry(wallEntryId);
 	}
 
 	public static com.liferay.wol.model.WallEntry updateWallEntry(
@@ -102,14 +109,6 @@ public class WallEntryLocalServiceUtil {
 		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
 
 		return wallEntryLocalService.getWallEntriesCount(groupId);
-	}
-
-	public static com.liferay.wol.model.WallEntry getWallEntry(long wallEntryId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
-
-		return wallEntryLocalService.getWallEntry(wallEntryId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.WallEntry> getWallToWallEntries(

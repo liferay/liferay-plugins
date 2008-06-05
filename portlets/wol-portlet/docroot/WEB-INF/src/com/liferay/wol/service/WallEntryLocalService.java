@@ -38,8 +38,7 @@ public interface WallEntryLocalService {
 			com.liferay.portal.PortalException;
 
 	public void deleteWallEntry(com.liferay.wol.model.WallEntry wallEntry)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
+		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.WallEntry> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
@@ -48,6 +47,10 @@ public interface WallEntryLocalService {
 	public java.util.List<com.liferay.wol.model.WallEntry> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
 		int start, int end) throws com.liferay.portal.SystemException;
+
+	public com.liferay.wol.model.WallEntry getWallEntry(long wallEntryId)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.PortalException;
 
 	public com.liferay.wol.model.WallEntry updateWallEntry(
 		com.liferay.wol.model.WallEntry wallEntry)
@@ -65,10 +68,6 @@ public interface WallEntryLocalService {
 
 	public int getWallEntriesCount(long groupId)
 		throws com.liferay.portal.SystemException;
-
-	public com.liferay.wol.model.WallEntry getWallEntry(long wallEntryId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
 
 	public java.util.List<com.liferay.wol.model.WallEntry> getWallToWallEntries(
 		long groupId1, long groupId2, long userId1, long userId2, int start,

@@ -88,7 +88,7 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 	}
 
 	public void deleteSVNRepository(SVNRepository svnRepository)
-		throws PortalException, SystemException {
+		throws SystemException {
 		svnRepositoryPersistence.remove(svnRepository);
 	}
 
@@ -102,6 +102,11 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 		throws SystemException {
 		return svnRepositoryPersistence.findWithDynamicQuery(queryInitializer,
 			start, end);
+	}
+
+	public SVNRepository getSVNRepository(long svnRepositoryId)
+		throws PortalException, SystemException {
+		return svnRepositoryPersistence.findByPrimaryKey(svnRepositoryId);
 	}
 
 	public SVNRepository updateSVNRepository(SVNRepository svnRepository)

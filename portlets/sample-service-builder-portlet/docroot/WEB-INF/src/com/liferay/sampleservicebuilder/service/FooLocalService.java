@@ -38,8 +38,7 @@ public interface FooLocalService {
 			com.liferay.portal.PortalException;
 
 	public void deleteFoo(com.liferay.sampleservicebuilder.model.Foo foo)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
+		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
@@ -49,16 +48,16 @@ public interface FooLocalService {
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	public com.liferay.sampleservicebuilder.model.Foo getFoo(long fooId)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.PortalException;
+
 	public com.liferay.sampleservicebuilder.model.Foo updateFoo(
 		com.liferay.sampleservicebuilder.model.Foo foo)
 		throws com.liferay.portal.SystemException;
 
 	public void addFoo(java.lang.String field1, boolean field2, int field3,
 		java.util.Date field4, java.lang.String field5)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
-
-	public com.liferay.sampleservicebuilder.model.Foo getFoo(long fooId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 

@@ -39,8 +39,7 @@ public interface SVNRepositoryLocalService {
 
 	public void deleteSVNRepository(
 		com.liferay.wol.model.SVNRepository svnRepository)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
+		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.SVNRepository> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
@@ -50,14 +49,14 @@ public interface SVNRepositoryLocalService {
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
 		int start, int end) throws com.liferay.portal.SystemException;
 
-	public com.liferay.wol.model.SVNRepository updateSVNRepository(
-		com.liferay.wol.model.SVNRepository svnRepository)
-		throws com.liferay.portal.SystemException;
-
 	public com.liferay.wol.model.SVNRepository getSVNRepository(
 		long svnRepositoryId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
+
+	public com.liferay.wol.model.SVNRepository updateSVNRepository(
+		com.liferay.wol.model.SVNRepository svnRepository)
+		throws com.liferay.portal.SystemException;
 
 	public com.liferay.wol.model.SVNRepository getSVNRepository(
 		java.lang.String url)

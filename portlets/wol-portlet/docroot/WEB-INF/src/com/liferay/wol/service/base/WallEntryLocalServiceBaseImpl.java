@@ -87,8 +87,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 		wallEntryPersistence.remove(wallEntryId);
 	}
 
-	public void deleteWallEntry(WallEntry wallEntry)
-		throws PortalException, SystemException {
+	public void deleteWallEntry(WallEntry wallEntry) throws SystemException {
 		wallEntryPersistence.remove(wallEntry);
 	}
 
@@ -102,6 +101,11 @@ public abstract class WallEntryLocalServiceBaseImpl
 		throws SystemException {
 		return wallEntryPersistence.findWithDynamicQuery(queryInitializer,
 			start, end);
+	}
+
+	public WallEntry getWallEntry(long wallEntryId)
+		throws PortalException, SystemException {
+		return wallEntryPersistence.findByPrimaryKey(wallEntryId);
 	}
 
 	public WallEntry updateWallEntry(WallEntry wallEntry)

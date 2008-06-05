@@ -46,8 +46,7 @@ public class FooLocalServiceUtil {
 	}
 
 	public static void deleteFoo(com.liferay.sampleservicebuilder.model.Foo foo)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.SystemException {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
 
 		fooLocalService.deleteFoo(foo);
@@ -69,6 +68,14 @@ public class FooLocalServiceUtil {
 		return fooLocalService.dynamicQuery(queryInitializer, start, end);
 	}
 
+	public static com.liferay.sampleservicebuilder.model.Foo getFoo(long fooId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		return fooLocalService.getFoo(fooId);
+	}
+
 	public static com.liferay.sampleservicebuilder.model.Foo updateFoo(
 		com.liferay.sampleservicebuilder.model.Foo foo)
 		throws com.liferay.portal.SystemException {
@@ -84,14 +91,6 @@ public class FooLocalServiceUtil {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
 
 		fooLocalService.addFoo(field1, field2, field3, field4, field5);
-	}
-
-	public static com.liferay.sampleservicebuilder.model.Foo getFoo(long fooId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
-
-		return fooLocalService.getFoo(fooId);
 	}
 
 	public static java.util.List getFoos()

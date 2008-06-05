@@ -47,8 +47,7 @@ public class JIRAChangeGroupLocalServiceUtil {
 
 	public static void deleteJIRAChangeGroup(
 		com.liferay.wol.model.JIRAChangeGroup jiraChangeGroup)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.SystemException {
 		JIRAChangeGroupLocalService jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getService();
 
 		jiraChangeGroupLocalService.deleteJIRAChangeGroup(jiraChangeGroup);
@@ -71,14 +70,6 @@ public class JIRAChangeGroupLocalServiceUtil {
 			start, end);
 	}
 
-	public static com.liferay.wol.model.JIRAChangeGroup updateJIRAChangeGroup(
-		com.liferay.wol.model.JIRAChangeGroup jiraChangeGroup)
-		throws com.liferay.portal.SystemException {
-		JIRAChangeGroupLocalService jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getService();
-
-		return jiraChangeGroupLocalService.updateJIRAChangeGroup(jiraChangeGroup);
-	}
-
 	public static com.liferay.wol.model.JIRAChangeGroup getJIRAChangeGroup(
 		long jiraChangeGroupId)
 		throws com.liferay.portal.PortalException,
@@ -86,5 +77,13 @@ public class JIRAChangeGroupLocalServiceUtil {
 		JIRAChangeGroupLocalService jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getService();
 
 		return jiraChangeGroupLocalService.getJIRAChangeGroup(jiraChangeGroupId);
+	}
+
+	public static com.liferay.wol.model.JIRAChangeGroup updateJIRAChangeGroup(
+		com.liferay.wol.model.JIRAChangeGroup jiraChangeGroup)
+		throws com.liferay.portal.SystemException {
+		JIRAChangeGroupLocalService jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getService();
+
+		return jiraChangeGroupLocalService.updateJIRAChangeGroup(jiraChangeGroup);
 	}
 }
