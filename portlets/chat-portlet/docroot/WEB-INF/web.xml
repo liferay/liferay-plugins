@@ -13,8 +13,4 @@
 	<listener>
 		<listener-class>com.liferay.portlet.service.PortalContextLoaderListener</listener-class>
 	</listener>
-	<taglib>
-		<taglib-uri>http://liferay.com/tld/theme</taglib-uri>
-		<taglib-location>/WEB-INF/tld/liferay-theme.tld</taglib-location>
-	</taglib>
 </web-app>

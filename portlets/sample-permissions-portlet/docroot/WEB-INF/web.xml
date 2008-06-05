@@ -10,12 +10,4 @@
 		<taglib-uri>http://java.sun.com/jstl/core_rt</taglib-uri>
 		<taglib-location>/WEB-INF/tld/c-rt.tld</taglib-location>
 	</taglib>
-	<taglib>
-		<taglib-uri>http://liferay.com/tld/security</taglib-uri>
-		<taglib-location>/WEB-INF/tld/liferay-security.tld</taglib-location>
-	</taglib>
-	<taglib>
-		<taglib-uri>http://liferay.com/tld/theme</taglib-uri>
-		<taglib-location>/WEB-INF/tld/liferay-theme.tld</taglib-location>
-	</taglib>
 </web-app>
