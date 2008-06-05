@@ -1,0 +1,114 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+#wrapper {
+	background: #FEFEFE url(../images/comment/bg.jpg) repeat-x scroll left
+		top;
+	padding: 0pt;
+	width: 970px;
+	margin: 0px auto;
+}
+
+body {
+	background: #FEFEFE url(../images/comment/bg.jpg) repeat-x scroll left
+		top;
+	color: #000000;
+	font-family: Tahoma, Arial, sans-serif;
+	font-size: 12px;
+	line-height: 1.3em;
+	margin: 0pt;
+	padding: 0pt;
+}
+
+#banner {
+	background: transparent url(../images/comment/header.jpg) no-repeat
+		scroll center top;
+	height: 219px;
+	margin: 0pt auto;
+	width: 970px;
+	border-bottom: none;
+}
+
+#banner .logo {
+	display:block;
+	font-size:2em;
+	margin:17pt auto;
+	padding:2.25em 0pt 1.45em;
+}
+
+
+#navigation {
+	background:none;
+	height: 29px;
+	margin: 10px 31px;
+	overflow: hidden;
+	padding: 0pt 0em 0pt 0pt;
+	text-align: left;
+}
+
+.portlet {
+	border: 2px solid #D8F0FA;
+	margin-bottom: 5px;
+	text-align: left;
+	margin-top:0px;
+}
+
+#navigation li {
+	background: none;
+	display: inline;
+	float: left;
+	margin-right: 0.5em;
+	position: relative;
+}
+
+#navigation li.selected {
+	border-top: none;
+	font-weight: bold;
+}
+
+#navigation li a span {
+	display: block;
+	padding: 5px;
+}
+
+.portlet-topper {
+	background: #D8F0FA url(../images/comment/portlet_top.png) repeat-x
+		scroll 0% 0%;
+	position: relative;
+}
+
+#footer {
+	background-image: url(../images/comment/content_bottom.jpg);
+	background-position: left top;
+	background-repeat: repeat-x;
+	color: #FFFFFF;
+	float: none;
+	font-size: 11px;
+	height: 74px;
+	line-height: 18px;
+	margin: 0px auto;
+	padding-top: 0px;
+	text-align: center;
+	width: 920px;
+}
+
+.js .interactive-mode {
+	float: right;
+	min-width: 150px;
+	position: relative;
+	right: 30pt;
+	top: 14pt;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	
+	display:block;
+	font-size:1.2em;
+	margin-bottom:-3pt;
+	min-height:16px;
+	min-width:90px;
+	padding:0.5em 0.5em 0.5em 2em;
+}
+
+.js .lfr-dock.interactive-mode {
+
+	right:38px;
+}
