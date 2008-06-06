@@ -37,22 +37,21 @@ a {
 
 /* --- Styles in navigation.css --- */
 
-.js .interactive-mode {
-	background: transparent url(../images/navigation/dock_spacer.png) no-repeat scroll 0% 0%;
-	height: 30px;
+.js #navigation-container .interactive-mode {
+	background: none;
 	right: 0;
 	top: 0;
 	width: 170px;
 }
 
-.js .interactive-mode h2 {
+.js #navigation-container .interactive-mode h2 {
 	background: none;
 	height: 30px;
 	margin: 0;
 	padding: 0;
 }
 
-.js .interactive-mode h2 span {
+.js #navigation-container .interactive-mode h2 span {
 	background: none;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 1em;
@@ -63,25 +62,30 @@ a {
 	top: 50%;
 }
 
-.js .lfr-dock.expanded .lfr-dock-list-container {
+.js #navigation-container .lfr-dock.expanded .lfr-dock-list-container {
 	margin-left: 1px;
 	margin-top: 0.9em;
 }
 
-.ie.js .lfr-dock.expanded .lfr-dock-list-container {
+.ie.js #navigation-container .lfr-dock.expanded .lfr-dock-list-container {
 	margin-top: auto;
 }
 
-.js .interactive-mode ul {
+.js #navigation-container .interactive-mode ul {
 	background: #FFF;
 	border-left: none;
 }
 
-.js .interactive-mode li {
+.js #navigation-container .interactive-mode li {
+	border-top: none;
+}
+
+.js #navigation-container .interactive-mode li a {
 	border-top: none;
 }
 
 .js .interactive-mode li a {
+	border-top: none;
 	color: #000;
 	font-size: 1.1em;
 	margin-left: 0;
@@ -89,16 +93,16 @@ a {
 	padding: 0.5em 0pt 0.5em 3em;
 }
 
-.js .interactive-mode .my-places li.current-community {
-	background-color: #AFD1FF;
-}
-
-.js .interactive-mode .my-places li.current a {
-	background: #AFD1FF url(../images/dock/my_place_current.png) no-repeat scroll 1em 50%;
-}
-
 .ie.js .interactive-mode .lfr-flyout.has-children {
 	min-width: 155px;
+}
+
+.js .interactive-mode .my-places .show-my-places {
+	right: 99%;
+}
+
+.js .interactive-mode .my-places li .my-places-toggle {
+	border-bottom: 1px solid #CCCCCC;
 }
 
 /* --- Styles in portlet.css --- */
@@ -221,6 +225,15 @@ body.nonfreeform {
 	background: transparent url(../images/navigation/menu_spacer.png) no-repeat scroll 0% 0%;
 	height: 30px;
 	width: 12px;
+}
+
+#navigation-container .dock-spacer {
+	background: transparent url(../images/navigation/dock_spacer.png) no-repeat scroll 0% 0%;
+	height: 30px;
+	position: absolute;
+	right: 170px;
+	top: 0;
+	width: 2px;
 }
 
 /* --- Bottom Navigation --- */
