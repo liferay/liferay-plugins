@@ -485,9 +485,9 @@
 		<name>Sample Seam</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This plugin shows how to use JBoss Seam within Liferay.</short-description>
+		<short-description>This portlet shows how to use JBoss Seam within Liferay.</short-description>
 		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
+		<page-url>http://www.liferay.com/web/guest/downloads</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>MIT</licenses>
 	</plugin>
@@ -529,10 +529,10 @@
 		<name>Sample Spring</name>
 		<type>portlet</type>
 		<tags>sample</tags>
-		<short-description>This plugin shows how to use Spring in Liferay.</short-description>
+		<short-description>This portlet shows how to use Spring in Liferay.</short-description>
 		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>SpringSource, Inc.</author>
+		<page-url>http://www.liferay.com/web/guest/downloads</page-url>
+		<author>Interface21</author>
 		<licenses>Apache</licenses>
 	</plugin>
 	<plugin>
@@ -619,7 +619,7 @@
 		<tags>gadget opensocial shindig</tags>
 		<short-description>This is a Gadget portlet build on the Shindig platform.</short-description>
 		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
+		<page-url>http://www.liferay.com/web/guest/downloads</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>MIT</licenses>
 	</plugin>
@@ -661,7 +661,7 @@
 		<name>Bookmark</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Bookmark plugin.</short-description>
+		<short-description>This is the Sun Bookmark portlet.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -683,7 +683,7 @@
 		<name>Elluminate</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Elluminate plugin.</short-description>
+		<short-description>This is the Sun Elluminate portlet.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -705,7 +705,7 @@
 		<name>Flickr</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Flickr plugin.</short-description>
+		<short-description>This is the Sun Flickr portlet.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -727,7 +727,7 @@
 		<name>iFrame</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun iFrame plugin.</short-description>
+		<short-description>This is the Sun iFrame portlet.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -749,7 +749,7 @@
 		<name>MashUp</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun MashUp plugin.</short-description>
+		<short-description>This is the Sun MashUp portlet.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -771,7 +771,7 @@
 		<name>Notepad</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Notepad plugin.</short-description>
+		<short-description>This is the Sun Notepad portlet.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -793,7 +793,7 @@
 		<name>PhotoShow Ajax</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun PhotoShow Ajax plugin.</short-description>
+		<short-description>This is the Sun PhotoShow Ajax portlet.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -815,7 +815,7 @@
 		<name>Privacy Guard</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Privacy Guard plugin.</short-description>
+		<short-description>This is the Sun Privacy Guard portlet.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -837,7 +837,7 @@
 		<name>RSS</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun RSS plugin.</short-description>
+		<short-description>This is the Sun RSS portlet.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -859,7 +859,7 @@
 		<name>ShowTime Portlet</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun ShowTime plugin.</short-description>
+		<short-description>This is the Sun ShowTime portlet.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -892,7 +892,7 @@
 		<name>Video</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Video plugin.</short-description>
+		<short-description>This is the Sun Video portlet.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -914,7 +914,7 @@
 		<name>Weather</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Weather plugin.</short-description>
+		<short-description>This is the Sun Weather portlet.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -1018,6 +1018,17 @@
 		<page-url>http://www.oswd.org/design/information/id/2493</page-url>
 		<author>Andreas Viklund</author>
 		<licenses>Public Domain</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>apex-elie-theme</artifact-id>
+		<name>Apex Elie</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.ceo2design.com/</page-url>
+		<author>Mariah K.L.</author>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>autumn-theme</artifact-id>
@@ -2033,6 +2044,7 @@
 	<author>GetTemplate</author>
 	<author>GrowlDesign</author>
 	<author>Health Tags</author>
+	<author>Interface21</author>
 	<author>James Broad</author>
 	<author>James Koster</author>
 	<author>Jochum Meester</author>
