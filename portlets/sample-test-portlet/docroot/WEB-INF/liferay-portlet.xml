@@ -4,6 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
+		<icon>/icon.png</icon>
 		<scheduler-class>com.liferay.sampletest.job.TestScheduler</scheduler-class>
 		<friendly-url-mapper-class>com.liferay.sampletest.portlet.TestFriendlyURLMapper</friendly-url-mapper-class>
 	</portlet>

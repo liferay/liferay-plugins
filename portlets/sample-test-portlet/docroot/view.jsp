@@ -32,7 +32,7 @@ This is the <b>Sample Test Portlet</b>. This was made to test some portlet featu
 
 <br /><br />
 
-<b>Portlet Response:</b> <a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_response/buffer_size.jsp" /></portlet:renderURL>">Buffer Size</a>
+<b>Portlet Response:</b> <a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_response/buffer_size.jsp" /></portlet:renderURL>">Buffer Size</a> | <a href="<portlet:resourceURL id="logo.png" />">Download File</a>
 
 <br /><br />
 

@@ -43,13 +43,31 @@ import javax.portlet.WindowState;
 public class TestFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 	public String buildPath(LiferayPortletURL portletURL) {
+		String resourceID = portletURL.getResourceID();
+
+		if (Validator.isNotNull(resourceID)) {
+			portletURL.addParameterIncludedInPath("p_p_id");
+			portletURL.addParameterIncludedInPath("p_p_lifecycle");
+			portletURL.addParameterIncludedInPath("p_p_resource_id");
+			portletURL.addParameterIncludedInPath("p_p_cacheability");
+
+			StringMaker sm = new StringMaker();
+
+			sm.append(StringPool.SLASH);
+			sm.append(_MAPPING);
+			sm.append(StringPool.SLASH);
+			sm.append(resourceID);
+
+			return sm.toString();
+		}
+
 		WindowState windowState = portletURL.getWindowState();
 
 		String jspPage = GetterUtil.getString(
 			portletURL.getParameter("jspPage"));
 
-		if ((Validator.isNotNull(jspPage)) ||
-			(windowState == null) || (windowState.equals(WindowState.NORMAL))) {
+		if ((windowState == null) || (windowState.equals(WindowState.NORMAL)) ||
+			(Validator.isNotNull(jspPage))) {
 
 			portletURL.addParameterIncludedInPath("p_p_id");
 			portletURL.addParameterIncludedInPath("jspPage");
@@ -75,9 +93,9 @@ public class TestFriendlyURLMapper extends BaseFriendlyURLMapper {
 	}
 
 	public void populateParams(String friendlyURLPath, Map params) {
-		params.put("p_p_id", _PORTLET_ID);
-		params.put("p_p_action", "0");
-		params.put("p_p_mode", PortletMode.VIEW.toString());
+		addParam(params, "p_p_id", _PORTLET_ID);
+		addParam(params, "p_p_lifecycle", "0");
+		addParam(params, "p_p_mode", PortletMode.VIEW);
 
 		int x = friendlyURLPath.indexOf("/", 1);
 
@@ -85,7 +103,16 @@ public class TestFriendlyURLMapper extends BaseFriendlyURLMapper {
 			return;
 		}
 
-		String jspPage = friendlyURLPath.substring(x);
+		String resourceID = friendlyURLPath.substring(x);
+
+		if (resourceID.equals("/logo.png")) {
+			addParam(params, "p_p_lifecycle", "2");
+			addParam(params, "p_p_resource_id", resourceID.substring(1));
+
+			return;
+		}
+
+		String jspPage = resourceID;
 
 		addParam(params, "jspPage", jspPage);
 	}

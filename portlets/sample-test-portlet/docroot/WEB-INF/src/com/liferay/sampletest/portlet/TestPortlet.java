@@ -22,15 +22,23 @@
 
 package com.liferay.sampletest.portlet;
 
+import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.util.servlet.PortletResponseUtil;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.portlet.GenericPortlet;
 import javax.portlet.PortletException;
 import javax.portlet.PortletRequestDispatcher;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import javax.portlet.ResourceRequest;
+import javax.portlet.ResourceResponse;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -53,6 +61,19 @@ public class TestPortlet extends GenericPortlet {
 		}
 
 		include(jspPage, req, res);
+	}
+
+	public void serveResource(ResourceRequest req, ResourceResponse res)
+		throws IOException, PortletException {
+
+		HttpServletResponse httpRes = PortalUtil.getHttpServletResponse(res);
+
+		String fileName = req.getResourceID();
+		InputStream is = getPortletContext().getResourceAsStream(
+			"/WEB-INF/images/logo.png");
+		String contentType = MimeTypesUtil.getContentType(fileName);
+
+		PortletResponseUtil.sendFile(res, fileName, is, contentType);
 	}
 
 	protected void include(String path, RenderRequest req, RenderResponse res)
