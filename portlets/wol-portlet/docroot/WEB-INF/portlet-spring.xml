@@ -236,6 +236,114 @@
 			<ref bean="com.liferay.wol.service.persistence.JIRAIssueFinder.impl" />
 		</property>
 	</bean>
+	<bean id="com.liferay.wol.service.MeetupEntryLocalService.impl" class="com.liferay.wol.service.impl.MeetupEntryLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.wol.service.MeetupEntryLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+		<property name="transactionManager">
+			<ref bean="liferayTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.wol.service.MeetupEntryLocalService.impl" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="check*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="clear*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="com.liferay.wol.service.MeetupEntryLocalServiceFactory" class="com.liferay.wol.service.MeetupEntryLocalServiceFactory" lazy-init="true">
+		<property name="service">
+			<ref bean="com.liferay.wol.service.MeetupEntryLocalService.transaction" />
+		</property>
+	</bean>
+	<bean id="com.liferay.wol.service.persistence.MeetupEntryPersistence.impl" class="com.liferay.wol.service.persistence.MeetupEntryPersistenceImpl" lazy-init="true">
+		<property name="dataSource">
+			<ref bean="liferayDataSource" />
+		</property>
+		<property name="sessionFactory">
+			<ref bean="liferaySessionFactory" />
+		</property>
+	</bean>
+	<bean id="com.liferay.wol.service.persistence.MeetupEntryPersistence.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+		<property name="transactionManager">
+			<ref bean="liferayTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.wol.service.persistence.MeetupEntryPersistence.impl" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="remove*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="com.liferay.wol.service.persistence.MeetupEntryUtil" class="com.liferay.wol.service.persistence.MeetupEntryUtil" lazy-init="true">
+		<property name="persistence">
+			<ref bean="com.liferay.wol.service.persistence.MeetupEntryPersistence.impl" />
+		</property>
+	</bean>
+	<bean id="com.liferay.wol.service.MeetupRegistrationLocalService.impl" class="com.liferay.wol.service.impl.MeetupRegistrationLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.wol.service.MeetupRegistrationLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+		<property name="transactionManager">
+			<ref bean="liferayTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.wol.service.MeetupRegistrationLocalService.impl" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="check*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="clear*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="com.liferay.wol.service.MeetupRegistrationLocalServiceFactory" class="com.liferay.wol.service.MeetupRegistrationLocalServiceFactory" lazy-init="true">
+		<property name="service">
+			<ref bean="com.liferay.wol.service.MeetupRegistrationLocalService.transaction" />
+		</property>
+	</bean>
+	<bean id="com.liferay.wol.service.persistence.MeetupRegistrationPersistence.impl" class="com.liferay.wol.service.persistence.MeetupRegistrationPersistenceImpl" lazy-init="true">
+		<property name="dataSource">
+			<ref bean="liferayDataSource" />
+		</property>
+		<property name="sessionFactory">
+			<ref bean="liferaySessionFactory" />
+		</property>
+	</bean>
+	<bean id="com.liferay.wol.service.persistence.MeetupRegistrationPersistence.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+		<property name="transactionManager">
+			<ref bean="liferayTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.wol.service.persistence.MeetupRegistrationPersistence.impl" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="remove*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="com.liferay.wol.service.persistence.MeetupRegistrationUtil" class="com.liferay.wol.service.persistence.MeetupRegistrationUtil" lazy-init="true">
+		<property name="persistence">
+			<ref bean="com.liferay.wol.service.persistence.MeetupRegistrationPersistence.impl" />
+		</property>
+	</bean>
 	<bean id="com.liferay.wol.service.SVNRepositoryLocalService.impl" class="com.liferay.wol.service.impl.SVNRepositoryLocalServiceImpl" lazy-init="true" />
 	<bean id="com.liferay.wol.service.SVNRepositoryLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">

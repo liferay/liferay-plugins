@@ -52,6 +52,39 @@
 		<property name="resolution" type="com.liferay.util.dao.hibernate.StringType" />
 		<property name="status" column="issuestatus" type="com.liferay.util.dao.hibernate.StringType" />
 	</class>
+	<class name="com.liferay.wol.model.impl.MeetupEntryImpl" table="WOL_MeetupEntry">
+		<cache usage="read-write" />
+		<id name="meetupEntryId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="userId" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="userName" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="createDate" />
+		<property name="modifiedDate" />
+		<property name="title" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="description" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="startDate" />
+		<property name="endDate" />
+		<property name="addressId" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="totalAttendees" type="com.liferay.util.dao.hibernate.IntegerType" />
+		<property name="maxAttendees" type="com.liferay.util.dao.hibernate.IntegerType" />
+		<property name="price" type="com.liferay.util.dao.hibernate.DoubleType" />
+	</class>
+	<class name="com.liferay.wol.model.impl.MeetupRegistrationImpl" table="WOL_MeetupRegistration">
+		<cache usage="read-write" />
+		<id name="meetupRegistrationId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="userId" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="userName" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="createDate" />
+		<property name="modifiedDate" />
+		<property name="meetupEntryId" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="status" type="com.liferay.util.dao.hibernate.IntegerType" />
+		<property name="comments" type="com.liferay.util.dao.hibernate.StringType" />
+	</class>
 	<class name="com.liferay.wol.model.impl.SVNRepositoryImpl" table="WOL_SVNRepository">
 		<cache usage="read-write" />
 		<id name="svnRepositoryId" type="long">

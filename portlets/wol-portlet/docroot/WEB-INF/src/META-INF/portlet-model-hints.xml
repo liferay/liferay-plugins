@@ -39,6 +39,35 @@
 		<field name="resolution" type="String" />
 		<field name="status" type="String" />
 	</model>
+	<model name="com.liferay.wol.model.MeetupEntry">
+		<field name="meetupEntryId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="title" type="String" />
+		<field name="description" type="String" />
+		<field name="startDate" type="Date" />
+		<field name="endDate" type="Date" />
+		<field name="addressId" type="long" />
+		<field name="totalAttendees" type="int" />
+		<field name="maxAttendees" type="int" />
+		<field name="price" type="double" />
+	</model>
+	<model name="com.liferay.wol.model.MeetupRegistration">
+		<field name="meetupRegistrationId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="meetupEntryId" type="long" />
+		<field name="status" type="int" />
+		<field name="comments" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
+	</model>
 	<model name="com.liferay.wol.model.SVNRepository">
 		<field name="svnRepositoryId" type="long" />
 		<field name="url" type="String">

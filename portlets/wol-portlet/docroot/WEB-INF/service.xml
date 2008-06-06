@@ -166,6 +166,75 @@
 			<finder-column name="status" />
 		</finder>
 	</entity>
+	<entity name="MeetupEntry" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="meetupEntryId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="title" type="String" />
+		<column name="description" type="String" />
+		<column name="startDate" type="Date" />
+		<column name="endDate" type="Date" />
+		<column name="addressId" type="long" />
+		<column name="totalAttendees" type="int" />
+		<column name="maxAttendees" type="int" />
+		<column name="price" type="double" />
+
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="startDate" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
+	</entity>
+	<entity name="MeetupRegistration" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="meetupRegistrationId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="meetupEntryId" type="long" />
+		<column name="status" type="int" />
+		<column name="comments" type="String" />
+
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="modifiedDate" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="MeetupEntryId" return-type="Collection">
+			<finder-column name="meetupEntryId" />
+		</finder>
+	</entity>
 	<entity name="SVNRepository" local-service="true" remote-service="false">
 
 		<!-- PK fields -->

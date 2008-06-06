@@ -35,6 +35,10 @@ import com.liferay.wol.service.JIRAChangeItemLocalService;
 import com.liferay.wol.service.JIRAChangeItemLocalServiceFactory;
 import com.liferay.wol.service.JIRAIssueLocalService;
 import com.liferay.wol.service.JIRAIssueLocalServiceFactory;
+import com.liferay.wol.service.MeetupEntryLocalService;
+import com.liferay.wol.service.MeetupEntryLocalServiceFactory;
+import com.liferay.wol.service.MeetupRegistrationLocalService;
+import com.liferay.wol.service.MeetupRegistrationLocalServiceFactory;
 import com.liferay.wol.service.SVNRepositoryLocalService;
 import com.liferay.wol.service.SVNRevisionLocalService;
 import com.liferay.wol.service.SVNRevisionLocalServiceFactory;
@@ -54,6 +58,10 @@ import com.liferay.wol.service.persistence.JIRAIssueFinder;
 import com.liferay.wol.service.persistence.JIRAIssueFinderUtil;
 import com.liferay.wol.service.persistence.JIRAIssuePersistence;
 import com.liferay.wol.service.persistence.JIRAIssueUtil;
+import com.liferay.wol.service.persistence.MeetupEntryPersistence;
+import com.liferay.wol.service.persistence.MeetupEntryUtil;
+import com.liferay.wol.service.persistence.MeetupRegistrationPersistence;
+import com.liferay.wol.service.persistence.MeetupRegistrationUtil;
 import com.liferay.wol.service.persistence.SVNRepositoryPersistence;
 import com.liferay.wol.service.persistence.SVNRepositoryUtil;
 import com.liferay.wol.service.persistence.SVNRevisionPersistence;
@@ -213,6 +221,42 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 		this.jiraIssueFinder = jiraIssueFinder;
 	}
 
+	public MeetupEntryLocalService getMeetupEntryLocalService() {
+		return meetupEntryLocalService;
+	}
+
+	public void setMeetupEntryLocalService(
+		MeetupEntryLocalService meetupEntryLocalService) {
+		this.meetupEntryLocalService = meetupEntryLocalService;
+	}
+
+	public MeetupEntryPersistence getMeetupEntryPersistence() {
+		return meetupEntryPersistence;
+	}
+
+	public void setMeetupEntryPersistence(
+		MeetupEntryPersistence meetupEntryPersistence) {
+		this.meetupEntryPersistence = meetupEntryPersistence;
+	}
+
+	public MeetupRegistrationLocalService getMeetupRegistrationLocalService() {
+		return meetupRegistrationLocalService;
+	}
+
+	public void setMeetupRegistrationLocalService(
+		MeetupRegistrationLocalService meetupRegistrationLocalService) {
+		this.meetupRegistrationLocalService = meetupRegistrationLocalService;
+	}
+
+	public MeetupRegistrationPersistence getMeetupRegistrationPersistence() {
+		return meetupRegistrationPersistence;
+	}
+
+	public void setMeetupRegistrationPersistence(
+		MeetupRegistrationPersistence meetupRegistrationPersistence) {
+		this.meetupRegistrationPersistence = meetupRegistrationPersistence;
+	}
+
 	public SVNRepositoryPersistence getSVNRepositoryPersistence() {
 		return svnRepositoryPersistence;
 	}
@@ -311,6 +355,22 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 			jiraIssueFinder = JIRAIssueFinderUtil.getFinder();
 		}
 
+		if (meetupEntryLocalService == null) {
+			meetupEntryLocalService = MeetupEntryLocalServiceFactory.getImpl();
+		}
+
+		if (meetupEntryPersistence == null) {
+			meetupEntryPersistence = MeetupEntryUtil.getPersistence();
+		}
+
+		if (meetupRegistrationLocalService == null) {
+			meetupRegistrationLocalService = MeetupRegistrationLocalServiceFactory.getImpl();
+		}
+
+		if (meetupRegistrationPersistence == null) {
+			meetupRegistrationPersistence = MeetupRegistrationUtil.getPersistence();
+		}
+
 		if (svnRepositoryPersistence == null) {
 			svnRepositoryPersistence = SVNRepositoryUtil.getPersistence();
 		}
@@ -347,6 +407,10 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 	protected JIRAIssueLocalService jiraIssueLocalService;
 	protected JIRAIssuePersistence jiraIssuePersistence;
 	protected JIRAIssueFinder jiraIssueFinder;
+	protected MeetupEntryLocalService meetupEntryLocalService;
+	protected MeetupEntryPersistence meetupEntryPersistence;
+	protected MeetupRegistrationLocalService meetupRegistrationLocalService;
+	protected MeetupRegistrationPersistence meetupRegistrationPersistence;
 	protected SVNRepositoryPersistence svnRepositoryPersistence;
 	protected SVNRevisionLocalService svnRevisionLocalService;
 	protected SVNRevisionPersistence svnRevisionPersistence;
