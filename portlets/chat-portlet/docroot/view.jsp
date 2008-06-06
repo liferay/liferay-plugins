@@ -30,4 +30,14 @@
 
 <script src="<%= request.getContextPath() %>/javascript.js" type="text/javascript"></script>
 
-Chat
+<ul class="chat-bar">
+	<li class="item">
+		<a class="item-link" href="javascript: ;">Chat</a>
+
+		<div class="popup">
+			<div id="buddy-list">
+				<ul class="chat-popup"></ul>
+			</div>
+		</div>
+	</li>
+</ul>

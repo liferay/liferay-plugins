@@ -23,3 +23,212 @@
 %>
 
 <%@ include file="/css_init.jsp" %>
+
+.chat-portlet {
+	background: #e5e5e5;
+	border-top: 1px solid #b5b5b5;
+	bottom: 0;
+	font: 11px 'lucida grande', 'tahoma', 'verdana', 'arial', sans-serif;
+	height: 24px;
+	left: 0;
+	position: fixed;
+	width: 100%;
+	z-index: 20;
+}
+
+.chat-portlet #buddy-list {
+	border: 1px solid #254588;
+	padding: 10px;
+	width: 120px;
+}
+
+.chat-portlet .chat {
+	cursor: default;
+	position: relative;
+	width: 228px;
+}
+
+.chat-portlet .chat .head {
+	background: #526ea6;
+	border: 1px solid #254588;
+	border-bottom: 0;
+	color: #fff;
+	font-weight: bold;
+	height: 21px;
+	line-height: 21px;
+	text-indent: 54px;
+}
+
+.chat-portlet .chat .head .close {
+	background: url('<%= themeImagesPath %>/dock/collapse_community.png');
+	height: 16px;
+	position: absolute;
+	right: 2px;
+	top: 2px;
+	width: 16px;
+}
+
+.chat-portlet .chat .head .close span {
+	display: none;
+}
+
+.chat-portlet .chat .head .image {
+	background: #fff;
+	border-bottom: 1px solid #b5b5b5;
+	border-right: 1px solid #b5b5b5;
+	height: 45px;
+	left: 5px;
+	position: absolute;
+	top: 5px;
+	width: 45px;
+}
+
+.chat-portlet .chat .info {
+	background: #eee;
+	border: 1px solid #333;
+	border-bottom-color: #ccc;
+	border-top: 0;
+	height: 32px;
+}
+
+.chat-portlet .chat .show {
+	background: #f7f7f7;
+	border: 1px solid #333;
+	border-bottom-color: #b9c4da;
+	border-top: 0;
+	height: 206px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: relative;
+}
+
+.chat-portlet .chat .show p {
+	border-top: 1px solid #eee;
+	margin: 0;
+	padding: 4px 5px;
+	position: relative;
+}
+
+.chat-portlet .chat .show p .date {
+	color: #aaa;
+	font-size: 10px;
+	font-style: normal;
+	position: absolute;
+	right: 5px;
+	top: 0;
+}
+
+.chat-portlet .chat .show p .name {
+	display: block;
+	line-height: 11px;
+	padding: 0 0 4px;
+}
+
+.chat-portlet .chat .show p .text {
+	line-height: 14px;
+	padding: 0 1px;
+}
+
+.chat-portlet .chat .show p.not .name {
+	color: #455d8c;
+}
+
+.chat-portlet .chat .show p.you .name {
+	color: #777;
+}
+
+.chat-portlet .chat .type {
+	background: #fff;
+	border: 1px solid #333;
+	border-bottom-color: #545454;
+	border-top-color: #93a2c1;
+	position: relative;
+}
+
+.chat-portlet .chat .type .text, .chat-portlet .chat .type .prep {
+	background: #fff url('../images/icon.png') no-repeat scroll 3px 3px;
+	border: 0;
+	font: 11px 'lucida grande', 'tahoma', 'verdana', 'arial', sans-serif;
+	height: 13px;
+	margin: 0;
+	overflow: hidden;
+	padding: 4px 0 4px 24px;
+	width: 202px;
+	z-index: 1;
+}
+
+.chat-portlet .chat .type .prep {
+	left: 0;
+	position: absolute;
+	top: 0;
+	z-index: -1;
+}
+
+.chat-portlet > ul {
+	padding-right: 10px;
+}
+
+.chat-portlet > ul > li.item {
+	border-left: 1px solid #b5b5b5;
+	float: right;
+	position: relative;
+	z-index: 5;
+}
+
+.chat-portlet > ul > li.item > .popup {
+	bottom: 24px;
+	display: none;
+	position: absolute;
+	right: -1px;
+	z-index: -1;
+	padding: 0;
+}
+
+.chat-portlet > ul > li.item.active > .popup {
+	display: block;
+}
+
+.chat-portlet > ul > li.item > a {
+	color: inherit;
+	display: block;
+	float: left;
+	font-weight: bold;
+	height: 14px;
+	padding: 5px 10px;
+	text-decoration: none;
+}
+
+.chat-portlet > ul > li.item.active > a {
+	background: #fff;
+	border: 1px solid #333;
+	border-top-color: #fff;
+	height: 13px;
+	line-height: 13px;
+	margin: -1px -1px 0 -1px;
+	z-index: 9;
+}
+
+.chat-portlet > ul > li.item.waiting > a {
+	background: #bcf;
+}
+
+.chat-portlet > ul, .chat-portlet > ul > li.item {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.chat-portlet ul.chat-popup > li > a {
+	border-bottom: 1px solid #eee;
+	color: inherit;
+	display: block;
+	font-size: 14px;
+	padding: 6px;
+	text-decoration: none;
+}
+
+.chat-portlet ul.chat-popup, .chat-portlet ul.chat-popup > li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
