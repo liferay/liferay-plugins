@@ -22,31 +22,10 @@
  */
 %>
 
-<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
-
-<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
-
-<%@ page import="com.liferay.chat.model.Entry" %>
-<%@ page import="com.liferay.chat.service.EntryLocalServiceUtil" %>
-<%@ page import="com.liferay.portal.kernel.servlet.HttpHeaders" %>
-<%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-<%@ page import="com.liferay.portal.model.User" %>
-<%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
-<%@ page import="com.liferay.util.JSONUtil" %>
-
-<%@ page import="java.util.Collections" %>
-<%@ page import="java.util.List" %>
-
-<%@ page import="org.json.JSONArray" %>
-<%@ page import="org.json.JSONObject" %>
-
-<portlet:defineObjects />
-
-<liferay-theme:defineObjects />
+<%@ include file="/json_init.jsp" %>
 
 <%
-response.setContentType(ContentTypes.TEXT_JAVASCRIPT);
-response.setHeader(HttpHeaders.CACHE_CONTROL, "no-cache");
+int count = UserLocalServiceUtil.searchCount(company.getCompanyId(), null, Boolean.TRUE, null);
 %>
+
+<%= count %>
