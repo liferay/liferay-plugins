@@ -1,0 +1,125 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+body {
+	background-color: #DA7C2B;
+	background-image: url(../images/comment/body-bg.jpg);
+	background-position: center top;
+	background-repeat: repeat-y;
+	color: #C6C6C6;
+	font-family: Verdana, Arial, Georgia;
+	font-size:65.5%;
+	font-weight: normal;
+	line-height: 12px;
+	margin: 0pt;
+	padding: 0pt;
+	text-align: justify;
+}
+
+#banner {
+	background: #4F0101 url(../images/comment/header.jpg);
+	background-position: left top;
+	background-repeat: no-repeat;
+	float: none;
+	height: 375px;
+	margin: 0pt;
+	padding: 0pt;
+	text-align: left;
+	width: 960px;
+	margin: 0px auto;
+	border-bottom: 0px;
+}
+
+
+#navigation {
+	background-image: url(../images/comment/menu.jpg);
+	background-position: left top;
+	background-repeat: repeat-x;
+	float: left;
+	height: 69px;
+	margin-top:196px;
+	padding-left: 0px;
+	width: 100%;
+}
+
+.columns-1 #column-1, .columns-max #column-1 {
+	padding-left:0pt;
+	padding-right:0pt;
+	width:100%;
+	display: list-item;
+}
+#content-wrapper {
+	background-color:#6A0000;
+	background-image:none;
+	background-position:center top;
+	background-repeat:no-repeat;
+	margin:0px auto;
+	width:68%;
+}
+
+#footer {
+	background-color: #3D0000;
+	color: #FFFFFF;
+	font-size: 11px;
+	height: 74px;
+	line-height: 18px;
+	margin-top: 15px;
+	padding-top: 18px;
+	text-align: center;
+	width: 960px;
+	margin: 0px auto;
+}
+
+.portlet-topper {
+	background: #4E0000 url(../images/portlet/portlet_top.png) repeat-x
+		scroll 0% 0%;
+	position: relative;
+}
+
+#navigation li a {
+	text-decoration: none;
+	color: #fff;
+}
+
+#navigation li.selected {
+	border-top: 0px;
+	font-weight: bold;
+}
+
+.portlet {
+	border: 2px solid #660000;
+	margin-bottom: 1em;
+	text-align: left;
+	background: #4F0101;
+}
+
+#navigation li {
+	background:none;
+	display: inline;
+	float: left;
+	margin-right: 0.5em;
+	position: relative;
+}
+
+.portlet-content-container a {
+	color: wheat;
+	text-decoration:underline;
+}
+
+.js #add-page a span {
+	background:transparent url(../images/navigation/add_page.png) no-repeat scroll 0pt 50%;
+	color:wheat;
+	padding:5px 20px;
+}
+
+.tabs li a, .tabs li span {
+	color:blue;
+	display:block;
+	float:left;
+	padding:0.35em 1em 0pt;
+	text-decoration:none;
+}
+
+legend {
+	color:white;
+	font-weight:bold;
+	padding:0pt 0.5em;
+}
