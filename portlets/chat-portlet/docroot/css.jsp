@@ -146,7 +146,7 @@
 }
 
 .chat-portlet .chat .type .text, .chat-portlet .chat .type .prep {
-	background: #fff url('../images/icon.png') no-repeat scroll 3px 3px;
+	background: #fff url() no-repeat scroll 3px 3px;
 	border: 0;
 	font: 11px 'lucida grande', 'tahoma', 'verdana', 'arial', sans-serif;
 	height: 13px;
@@ -209,7 +209,7 @@
 }
 
 .chat-portlet > ul > li.item.waiting > a {
-	background: #bcf;
+	background: url('<%= request.getContextPath() %>/images/message_waiting_indicator.gif');
 }
 
 .chat-portlet > ul, .chat-portlet > ul > li.item {
