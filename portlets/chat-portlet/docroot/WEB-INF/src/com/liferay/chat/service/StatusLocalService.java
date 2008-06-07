@@ -23,52 +23,44 @@
 package com.liferay.chat.service;
 
 /**
- * <a href="EntryLocalService.java.html"><b><i>View Source</i></b></a>
+ * <a href="StatusLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface EntryLocalService {
-	public com.liferay.chat.model.Entry addEntry(
-		com.liferay.chat.model.Entry entry)
+public interface StatusLocalService {
+	public com.liferay.chat.model.Status addStatus(
+		com.liferay.chat.model.Status status)
 		throws com.liferay.portal.SystemException;
 
-	public void deleteEntry(long entryId)
+	public void deleteStatus(long statusId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
-	public void deleteEntry(com.liferay.chat.model.Entry entry)
+	public void deleteStatus(com.liferay.chat.model.Status status)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.chat.model.Entry> dynamicQuery(
+	public java.util.List<com.liferay.chat.model.Status> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.chat.model.Entry> dynamicQuery(
+	public java.util.List<com.liferay.chat.model.Status> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
 		int start, int end) throws com.liferay.portal.SystemException;
 
-	public com.liferay.chat.model.Entry getEntry(long entryId)
+	public com.liferay.chat.model.Status getStatus(long statusId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
-	public com.liferay.chat.model.Entry updateEntry(
-		com.liferay.chat.model.Entry entry)
+	public com.liferay.chat.model.Status updateStatus(
+		com.liferay.chat.model.Status status)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.chat.model.Entry addEntry(long fromUserId,
-		long toUserId, java.lang.String content)
+	public java.util.List<Object[]> getSocialStatuses(long userId, int type,
+		long modifiedDate, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.chat.model.Status updateStatus(long userId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
-
-	public void deleteEntries(long userId)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<com.liferay.chat.model.Entry> getNewEntries(
-		long userId, long createDate, int start, int end)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<com.liferay.chat.model.Entry> getOldEntries(
-		long createDate, int start, int end)
-		throws com.liferay.portal.SystemException;
 }

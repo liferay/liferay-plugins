@@ -22,8 +22,6 @@
 
 package com.liferay.chat.service.persistence;
 
-import com.liferay.chat.model.Entry;
-import com.liferay.chat.model.impl.EntryImpl;
 import com.liferay.portal.SystemException;
 import com.liferay.portlet.service.CustomSQLUtil;
 import com.liferay.portlet.service.HibernateUtil;
@@ -32,25 +30,23 @@ import com.liferay.util.dao.hibernate.QueryUtil;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 
 /**
- * <a href="EntryFinderImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="StatusFinderImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class EntryFinderImpl implements EntryFinder {
+public class StatusFinderImpl implements StatusFinder {
 
-	public static String FIND_BY_NEW =
-		EntryFinder.class.getName() + ".findByNew";
+	public static String FIND_BY_SOCIAL_RELATION_TYPE =
+		StatusFinder.class.getName() + ".findBySocialRelationType";
 
-	public static String FIND_BY_OLD =
-		EntryFinder.class.getName() + ".findByOld";
-
-	public List<Entry> findByNew(
-			long userId, long createDate, int start, int end)
+	public List<Object[]> findBySocialRelationType(
+			long userId, int type, long modifiedDate, int start, int end)
 		throws SystemException {
 
 		Session session = null;
@@ -58,48 +54,22 @@ public class EntryFinderImpl implements EntryFinder {
 		try {
 			session = HibernateUtil.openSession();
 
-			String sql = CustomSQLUtil.get(FIND_BY_NEW);
+			String sql = CustomSQLUtil.get(FIND_BY_SOCIAL_RELATION_TYPE);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
-			q.addEntity("Chat_Entry", EntryImpl.class);
+			q.addScalar("User_.userId", Hibernate.LONG);
+			q.addScalar("Contact_.firstName", Hibernate.STRING);
+			q.addScalar("Contact_.middleName", Hibernate.STRING);
+			q.addScalar("Contact_.lastName", Hibernate.STRING);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(userId);
-			qPos.add(userId);
-			qPos.add(createDate);
+			qPos.add(type);
+			qPos.add(modifiedDate);
 
-			return (List<Entry>)QueryUtil.list(
-				q, HibernateUtil.getDialect(), start, end);
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-		finally {
-			HibernateUtil.closeSession(session);
-		}
-	}
-
-	public List<Entry> findByOld(long createDate, int start, int end)
-		throws SystemException {
-
-		Session session = null;
-
-		try {
-			session = HibernateUtil.openSession();
-
-			String sql = CustomSQLUtil.get(FIND_BY_OLD);
-
-			SQLQuery q = session.createSQLQuery(sql);
-
-			q.addEntity("Chat_Entry", EntryImpl.class);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(createDate);
-
-			return (List<Entry>)QueryUtil.list(
+			return (List<Object[]>)QueryUtil.list(
 				q, HibernateUtil.getDialect(), start, end);
 		}
 		catch (Exception e) {

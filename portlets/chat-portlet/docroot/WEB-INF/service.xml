@@ -37,4 +37,21 @@
 			<finder-column name="toUserId" />
 		</finder>
 	</entity>
+	<entity name="Status" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="statusId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="userId" type="long" />
+		<column name="modifiedDate" type="long" />
+
+		<!-- Finder methods -->
+
+		<finder name="UserId" return-type="Status">
+			<finder-column name="userId" />
+		</finder>
+	</entity>
 </service-builder>

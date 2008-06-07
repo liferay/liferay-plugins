@@ -34,8 +34,8 @@ public class EntryUtil {
 	}
 
 	public static com.liferay.chat.model.Entry remove(long entryId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException {
 		return getPersistence().remove(entryId);
 	}
 
@@ -64,8 +64,8 @@ public class EntryUtil {
 	}
 
 	public static com.liferay.chat.model.Entry findByPrimaryKey(long entryId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException {
 		return getPersistence().findByPrimaryKey(entryId);
 	}
 
@@ -94,23 +94,23 @@ public class EntryUtil {
 
 	public static com.liferay.chat.model.Entry findByCreateDate_First(
 		long createDate, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException {
 		return getPersistence().findByCreateDate_First(createDate, obc);
 	}
 
 	public static com.liferay.chat.model.Entry findByCreateDate_Last(
 		long createDate, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException {
 		return getPersistence().findByCreateDate_Last(createDate, obc);
 	}
 
 	public static com.liferay.chat.model.Entry[] findByCreateDate_PrevAndNext(
 		long entryId, long createDate,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findByCreateDate_PrevAndNext(entryId, createDate, obc);
 	}
@@ -135,23 +135,23 @@ public class EntryUtil {
 
 	public static com.liferay.chat.model.Entry findByFromUserId_First(
 		long fromUserId, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException {
 		return getPersistence().findByFromUserId_First(fromUserId, obc);
 	}
 
 	public static com.liferay.chat.model.Entry findByFromUserId_Last(
 		long fromUserId, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException {
 		return getPersistence().findByFromUserId_Last(fromUserId, obc);
 	}
 
 	public static com.liferay.chat.model.Entry[] findByFromUserId_PrevAndNext(
 		long entryId, long fromUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findByFromUserId_PrevAndNext(entryId, fromUserId, obc);
 	}
@@ -176,23 +176,23 @@ public class EntryUtil {
 
 	public static com.liferay.chat.model.Entry findByToUserId_First(
 		long toUserId, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException {
 		return getPersistence().findByToUserId_First(toUserId, obc);
 	}
 
 	public static com.liferay.chat.model.Entry findByToUserId_Last(
 		long toUserId, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException {
 		return getPersistence().findByToUserId_Last(toUserId, obc);
 	}
 
 	public static com.liferay.chat.model.Entry[] findByToUserId_PrevAndNext(
 		long entryId, long toUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findByToUserId_PrevAndNext(entryId, toUserId, obc);
 	}

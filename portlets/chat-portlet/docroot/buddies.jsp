@@ -25,19 +25,32 @@
 <%@ include file="/json_init.jsp" %>
 
 <%
-List<User> users = UserLocalServiceUtil.search(company.getCompanyId(), null, Boolean.TRUE, null, 0, 10, null);
+if (!themeDisplay.isSignedIn()) {
+	return;
+}
+
+long modifiedDate = System.currentTimeMillis() - Time.MINUTE;
+
+List<Object[]> buddies = StatusLocalServiceUtil.getSocialStatuses(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, modifiedDate, 0, SearchContainer.DEFAULT_DELTA);
 
 JSONArray jsonArray = new JSONArray();
 
-for (User curUser : users) {
-	if (curUser.getUserId() == themeDisplay.getUserId()) {
+for (Object[] buddy : buddies) {
+	long userId = (Long)buddy[0];
+	String firstName = (String)buddy[1];
+	String middleName = (String)buddy[2];
+	String lastName = (String)buddy[3];
+
+	String fullName = ContactConstants.getFullName(firstName, middleName, lastName);
+
+	if (userId == themeDisplay.getUserId()) {
 		continue;
 	}
 
 	JSONObject curUserJSON = new JSONObject();
 
-	JSONUtil.put(curUserJSON, "userId", curUser.getUserId());
-	JSONUtil.put(curUserJSON, "userName", curUser.getFullName());
+	JSONUtil.put(curUserJSON, "userId", userId);
+	JSONUtil.put(curUserJSON, "userName", fullName);
 
 	jsonArray.put(curUserJSON);
 }

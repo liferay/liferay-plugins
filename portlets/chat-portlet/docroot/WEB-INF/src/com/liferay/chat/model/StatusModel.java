@@ -20,44 +20,32 @@
  * SOFTWARE.
  */
 
-package com.liferay.chat.service.persistence;
+package com.liferay.chat.model;
+
+import com.liferay.portal.model.BaseModel;
 
 /**
- * <a href="EntryFinderUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="StatusModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class EntryFinderUtil {
-	public static java.util.List<com.liferay.chat.model.Entry> findByNew(
-		long userId, long createDate, int start, int end)
-		throws com.liferay.portal.SystemException {
-		return getFinder().findByNew(userId, createDate, start, end);
-	}
+public interface StatusModel extends BaseModel {
+	public long getPrimaryKey();
 
-	public static java.util.List<com.liferay.chat.model.Entry> findByOld(
-		long createDate, int start, int end)
-		throws com.liferay.portal.SystemException {
-		return getFinder().findByOld(createDate, start, end);
-	}
+	public void setPrimaryKey(long pk);
 
-	public static EntryFinder getFinder() {
-		return _getUtil()._finder;
-	}
+	public long getStatusId();
 
-	public void setFinder(EntryFinder finder) {
-		_finder = finder;
-	}
+	public void setStatusId(long statusId);
 
-	private static EntryFinderUtil _getUtil() {
-		if (_util == null) {
-			_util = (EntryFinderUtil)com.liferay.portlet.service.BeanLocatorUtil.locate(_UTIL);
-		}
+	public long getUserId();
 
-		return _util;
-	}
+	public void setUserId(long userId);
 
-	private static final String _UTIL = EntryFinderUtil.class.getName();
-	private static EntryFinderUtil _util;
-	private EntryFinder _finder;
+	public long getModifiedDate();
+
+	public void setModifiedDate(long modifiedDate);
+
+	public Status toEscapedModel();
 }

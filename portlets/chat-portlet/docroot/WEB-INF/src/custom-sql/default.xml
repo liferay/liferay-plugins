@@ -8,10 +8,10 @@
 			FROM
 				Chat_Entry
 			WHERE
-				(createDate > ?) AND
 				(
 					(fromUserId = ?) OR (toUserId = ?)
-				)
+				) AND
+				(createDate > ?)
 			ORDER BY
 				createDate DESC
 		]]>
@@ -26,6 +26,27 @@
 				(createDate < ?)
 			ORDER BY
 				createDate DESC
+		]]>
+	</sql>
+	<sql id="com.liferay.chat.service.persistence.StatusFinder.findBySocialRelationType">
+		<![CDATA[
+			SELECT
+				User_.userId, Contact_.firstName, Contact_.middleName, Contact_.lastName
+			FROM
+				Chat_Status
+			INNER JOIN
+				User_ ON
+					(User_.userId = Chat_Status.userId)
+			INNER JOIN
+				Contact_ ON
+					(Contact_.contactId = User_.contactId)
+			INNER JOIN
+				SocialRelation ON
+					(SocialRelation.userId2 = User_.userId)
+			WHERE
+				(SocialRelation.userId1 = ?) AND
+				(SocialRelation.type_ = ?) AND
+				(Chat_Status.modifiedDate > ?)
 		]]>
 	</sql>
 </custom-sql>

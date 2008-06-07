@@ -23,41 +23,13 @@
 package com.liferay.chat.service.persistence;
 
 /**
- * <a href="EntryFinderUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="StatusFinder.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class EntryFinderUtil {
-	public static java.util.List<com.liferay.chat.model.Entry> findByNew(
-		long userId, long createDate, int start, int end)
-		throws com.liferay.portal.SystemException {
-		return getFinder().findByNew(userId, createDate, start, end);
-	}
-
-	public static java.util.List<com.liferay.chat.model.Entry> findByOld(
-		long createDate, int start, int end)
-		throws com.liferay.portal.SystemException {
-		return getFinder().findByOld(createDate, start, end);
-	}
-
-	public static EntryFinder getFinder() {
-		return _getUtil()._finder;
-	}
-
-	public void setFinder(EntryFinder finder) {
-		_finder = finder;
-	}
-
-	private static EntryFinderUtil _getUtil() {
-		if (_util == null) {
-			_util = (EntryFinderUtil)com.liferay.portlet.service.BeanLocatorUtil.locate(_UTIL);
-		}
-
-		return _util;
-	}
-
-	private static final String _UTIL = EntryFinderUtil.class.getName();
-	private static EntryFinderUtil _util;
-	private EntryFinder _finder;
+public interface StatusFinder {
+	public java.util.List<Object[]> findBySocialRelationType(long userId,
+		int type, long modifiedDate, int start, int end)
+		throws com.liferay.portal.SystemException;
 }

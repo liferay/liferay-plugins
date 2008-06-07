@@ -29,12 +29,17 @@
 
 <%@ page import="com.liferay.chat.model.Entry" %>
 <%@ page import="com.liferay.chat.service.EntryLocalServiceUtil" %>
+<%@ page import="com.liferay.chat.service.StatusLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.servlet.HttpHeaders" %>
 <%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="com.liferay.portal.model.ContactConstants" %>
 <%@ page import="com.liferay.portal.model.User" %>
 <%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
+<%@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
 <%@ page import="com.liferay.util.JSONUtil" %>
+<%@ page import="com.liferay.util.Time" %>
 
 <%@ page import="java.util.Collections" %>
 <%@ page import="java.util.List" %>

@@ -12,4 +12,12 @@
 		<property name="toUserId" type="com.liferay.util.dao.hibernate.LongType" />
 		<property name="content" type="com.liferay.util.dao.hibernate.StringType" />
 	</class>
+	<class name="com.liferay.chat.model.impl.StatusImpl" table="Chat_Status">
+		<cache usage="read-write" />
+		<id name="statusId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="userId" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="modifiedDate" type="com.liferay.util.dao.hibernate.LongType" />
+	</class>
 </hibernate-mapping>

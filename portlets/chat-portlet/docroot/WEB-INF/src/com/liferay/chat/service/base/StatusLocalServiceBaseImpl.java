@@ -22,10 +22,10 @@
 
 package com.liferay.chat.service.base;
 
-import com.liferay.chat.model.Entry;
+import com.liferay.chat.model.Status;
 import com.liferay.chat.service.EntryLocalService;
+import com.liferay.chat.service.EntryLocalServiceFactory;
 import com.liferay.chat.service.StatusLocalService;
-import com.liferay.chat.service.StatusLocalServiceFactory;
 import com.liferay.chat.service.persistence.EntryFinder;
 import com.liferay.chat.service.persistence.EntryFinderUtil;
 import com.liferay.chat.service.persistence.EntryPersistence;
@@ -44,47 +44,56 @@ import org.springframework.beans.factory.InitializingBean;
 import java.util.List;
 
 /**
- * <a href="EntryLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="StatusLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class EntryLocalServiceBaseImpl implements EntryLocalService,
+public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 	InitializingBean {
-	public Entry addEntry(Entry entry) throws SystemException {
-		entry.setNew(true);
+	public Status addStatus(Status status) throws SystemException {
+		status.setNew(true);
 
-		return entryPersistence.update(entry, false);
+		return statusPersistence.update(status, false);
 	}
 
-	public void deleteEntry(long entryId)
+	public void deleteStatus(long statusId)
 		throws PortalException, SystemException {
-		entryPersistence.remove(entryId);
+		statusPersistence.remove(statusId);
 	}
 
-	public void deleteEntry(Entry entry) throws SystemException {
-		entryPersistence.remove(entry);
+	public void deleteStatus(Status status) throws SystemException {
+		statusPersistence.remove(status);
 	}
 
-	public List<Entry> dynamicQuery(DynamicQueryInitializer queryInitializer)
+	public List<Status> dynamicQuery(DynamicQueryInitializer queryInitializer)
 		throws SystemException {
-		return entryPersistence.findWithDynamicQuery(queryInitializer);
+		return statusPersistence.findWithDynamicQuery(queryInitializer);
 	}
 
-	public List<Entry> dynamicQuery(DynamicQueryInitializer queryInitializer,
+	public List<Status> dynamicQuery(DynamicQueryInitializer queryInitializer,
 		int start, int end) throws SystemException {
-		return entryPersistence.findWithDynamicQuery(queryInitializer, start,
+		return statusPersistence.findWithDynamicQuery(queryInitializer, start,
 			end);
 	}
 
-	public Entry getEntry(long entryId) throws PortalException, SystemException {
-		return entryPersistence.findByPrimaryKey(entryId);
+	public Status getStatus(long statusId)
+		throws PortalException, SystemException {
+		return statusPersistence.findByPrimaryKey(statusId);
 	}
 
-	public Entry updateEntry(Entry entry) throws SystemException {
-		entry.setNew(false);
+	public Status updateStatus(Status status) throws SystemException {
+		status.setNew(false);
 
-		return entryPersistence.update(entry, true);
+		return statusPersistence.update(status, true);
+	}
+
+	public EntryLocalService getEntryLocalService() {
+		return entryLocalService;
+	}
+
+	public void setEntryLocalService(EntryLocalService entryLocalService) {
+		this.entryLocalService = entryLocalService;
 	}
 
 	public EntryPersistence getEntryPersistence() {
@@ -101,14 +110,6 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService,
 
 	public void setEntryFinder(EntryFinder entryFinder) {
 		this.entryFinder = entryFinder;
-	}
-
-	public StatusLocalService getStatusLocalService() {
-		return statusLocalService;
-	}
-
-	public void setStatusLocalService(StatusLocalService statusLocalService) {
-		this.statusLocalService = statusLocalService;
 	}
 
 	public StatusPersistence getStatusPersistence() {
@@ -128,16 +129,16 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService,
 	}
 
 	public void afterPropertiesSet() {
+		if (entryLocalService == null) {
+			entryLocalService = EntryLocalServiceFactory.getImpl();
+		}
+
 		if (entryPersistence == null) {
 			entryPersistence = EntryUtil.getPersistence();
 		}
 
 		if (entryFinder == null) {
 			entryFinder = EntryFinderUtil.getFinder();
-		}
-
-		if (statusLocalService == null) {
-			statusLocalService = StatusLocalServiceFactory.getImpl();
 		}
 
 		if (statusPersistence == null) {
@@ -149,9 +150,9 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService,
 		}
 	}
 
+	protected EntryLocalService entryLocalService;
 	protected EntryPersistence entryPersistence;
 	protected EntryFinder entryFinder;
-	protected StatusLocalService statusLocalService;
 	protected StatusPersistence statusPersistence;
 	protected StatusFinder statusFinder;
 }

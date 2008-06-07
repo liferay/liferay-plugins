@@ -37,7 +37,7 @@ Liferay.Chat = {
 			instance.prefs.interval = setInterval(
 				function(){
 					instance.get();
-				}, 
+				},
 				instance.prefs.refresh * 1000);
 		}
 
@@ -85,7 +85,7 @@ Liferay.Chat = {
 			showArea[0].scrollTop = showArea[0].scrollHeight;
 			element[0].scrollTop = prepArea[0].scrollHeight;
 		}
-	},	
+	},
 
 	// Chat window popup function
 
@@ -134,7 +134,7 @@ Liferay.Chat = {
 				),
 				dataType: 'json',
 				success: function(response) {
-					Liferay.Chat.prefs.running = false;					
+					Liferay.Chat.prefs.running = false;
 
 					if (response.length) {
 						if (Liferay.Chat.prefs.refreshEase > 0) {
@@ -168,7 +168,7 @@ Liferay.Chat = {
 							}
 
 							var s = o.children('.popup').children('.chat').children('.show');
-							console.log(response[i].fromUserId, ',', Liferay.Chat.prefs.user);
+
 							s.append('<p class="' + ((response[i].fromUserId == Liferay.Chat.prefs.user) ? 'you' : 'not') + '"><b class="name">' + Liferay.Chat.users[response[i].fromUserId] + '</b><i class="date">' + response[i].createDate + '</i><span class="text">' + response[i].content.replace(/</g, '&lt;') + '</span></p>');
 							s[0].scrollTop = s[0].scrollHeight;
 						}
@@ -200,7 +200,7 @@ Liferay.Chat = {
 			);
 
 			var ta = jQuery('ul.chat-bar li:last .text');
-			
+
 			var keyEvent = function(event){
 				if (event.type == 'keyup') {
 					if (event.keyCode == 13 && jQuery.trim(this.value) != '') {
@@ -208,7 +208,7 @@ Liferay.Chat = {
 						this.value = '';
 					}
 				}
-				
+
 				Liferay.Chat.chatType(this);
 			}
 

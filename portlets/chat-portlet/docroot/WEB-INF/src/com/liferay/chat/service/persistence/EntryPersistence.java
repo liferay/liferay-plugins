@@ -32,8 +32,8 @@ public interface EntryPersistence {
 	public com.liferay.chat.model.Entry create(long entryId);
 
 	public com.liferay.chat.model.Entry remove(long entryId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException;
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException;
 
 	public com.liferay.chat.model.Entry remove(
 		com.liferay.chat.model.Entry entry)
@@ -52,8 +52,8 @@ public interface EntryPersistence {
 		throws com.liferay.portal.SystemException;
 
 	public com.liferay.chat.model.Entry findByPrimaryKey(long entryId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException;
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException;
 
 	public com.liferay.chat.model.Entry fetchByPrimaryKey(long entryId)
 		throws com.liferay.portal.SystemException;
@@ -72,19 +72,19 @@ public interface EntryPersistence {
 
 	public com.liferay.chat.model.Entry findByCreateDate_First(
 		long createDate, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException;
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException;
 
 	public com.liferay.chat.model.Entry findByCreateDate_Last(long createDate,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException;
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException;
 
 	public com.liferay.chat.model.Entry[] findByCreateDate_PrevAndNext(
 		long entryId, long createDate,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException;
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.chat.model.Entry> findByFromUserId(
 		long fromUserId) throws com.liferay.portal.SystemException;
@@ -100,19 +100,19 @@ public interface EntryPersistence {
 
 	public com.liferay.chat.model.Entry findByFromUserId_First(
 		long fromUserId, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException;
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException;
 
 	public com.liferay.chat.model.Entry findByFromUserId_Last(long fromUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException;
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException;
 
 	public com.liferay.chat.model.Entry[] findByFromUserId_PrevAndNext(
 		long entryId, long fromUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException;
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.chat.model.Entry> findByToUserId(
 		long toUserId) throws com.liferay.portal.SystemException;
@@ -128,19 +128,19 @@ public interface EntryPersistence {
 
 	public com.liferay.chat.model.Entry findByToUserId_First(long toUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException;
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException;
 
 	public com.liferay.chat.model.Entry findByToUserId_Last(long toUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException;
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException;
 
 	public com.liferay.chat.model.Entry[] findByToUserId_PrevAndNext(
 		long entryId, long toUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException,
-			com.liferay.chat.NoSuchEntryException;
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.chat.model.Entry> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)

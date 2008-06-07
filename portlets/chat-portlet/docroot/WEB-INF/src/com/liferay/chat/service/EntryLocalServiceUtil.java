@@ -101,11 +101,11 @@ public class EntryLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.chat.model.Entry> getNewEntries(
-		long createDate, long userId, int start, int end)
+		long userId, long createDate, int start, int end)
 		throws com.liferay.portal.SystemException {
 		EntryLocalService entryLocalService = EntryLocalServiceFactory.getService();
 
-		return entryLocalService.getNewEntries(createDate, userId, start, end);
+		return entryLocalService.getNewEntries(userId, createDate, start, end);
 	}
 
 	public static java.util.List<com.liferay.chat.model.Entry> getOldEntries(

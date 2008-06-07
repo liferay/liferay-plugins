@@ -6,3 +6,9 @@ create table Chat_Entry (
 	toUserId LONG,
 	content STRING null
 );
+
+create table Chat_Status (
+	statusId LONG not null primary key,
+	userId LONG,
+	modifiedDate LONG
+);

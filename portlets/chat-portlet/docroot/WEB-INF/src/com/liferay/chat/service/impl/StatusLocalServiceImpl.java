@@ -22,8 +22,8 @@
 
 package com.liferay.chat.service.impl;
 
-import com.liferay.chat.model.Entry;
-import com.liferay.chat.service.base.EntryLocalServiceBaseImpl;
+import com.liferay.chat.model.Status;
+import com.liferay.chat.service.base.StatusLocalServiceBaseImpl;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
@@ -31,46 +31,39 @@ import com.liferay.portal.SystemException;
 import java.util.List;
 
 /**
- * <a href="EntryLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="StatusLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
+public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 
-	public Entry addEntry(long fromUserId, long toUserId, String content)
+	public List<Object[]> getSocialStatuses(
+			long userId, int type, long modifiedDate, int start, int end)
+		throws SystemException {
+
+		return statusFinder.findBySocialRelationType(
+			userId, type, modifiedDate, start, end);
+	}
+
+	public Status updateStatus(long userId)
 		throws PortalException, SystemException {
 
-		long entryId = CounterLocalServiceUtil.increment();
+		Status status = statusPersistence.fetchByUserId(userId);
 
-		Entry entry = entryPersistence.create(entryId);
+		if (status == null) {
+			long statusId = CounterLocalServiceUtil.increment();
 
-		entry.setCreateDate(System.currentTimeMillis());
-		entry.setFromUserId(fromUserId);
-		entry.setToUserId(toUserId);
-		entry.setContent(content);
+			status = statusPersistence.create(statusId);
 
-		entryPersistence.update(entry, false);
+			status.setUserId(userId);
+		}
 
-		return entry;
-	}
+		status.setModifiedDate(System.currentTimeMillis());
 
-	public void deleteEntries(long userId) throws SystemException {
-		entryPersistence.removeByFromUserId(userId);
-		entryPersistence.removeByToUserId(userId);
-	}
+		statusPersistence.update(status, false);
 
-	public List<Entry> getNewEntries(
-			long userId, long createDate, int start, int end)
-		throws SystemException {
-
-		return entryFinder.findByNew(userId, createDate, start, end);
-	}
-
-	public List<Entry> getOldEntries(long createDate, int start, int end)
-		throws SystemException {
-
-		return entryFinder.findByOld(createDate, start, end);
+		return status;
 	}
 
 }

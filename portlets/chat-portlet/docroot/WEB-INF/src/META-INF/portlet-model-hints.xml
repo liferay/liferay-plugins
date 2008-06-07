@@ -10,4 +10,9 @@
 			<hint-collection name="TEXTAREA" />
 		</field>
 	</model>
+	<model name="com.liferay.chat.model.Status">
+		<field name="statusId" type="long" />
+		<field name="userId" type="long" />
+		<field name="modifiedDate" type="long" />
+	</model>
 </model-hints>

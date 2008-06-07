@@ -20,44 +20,32 @@
  * SOFTWARE.
  */
 
-package com.liferay.chat.service.persistence;
+package com.liferay.chat;
+
+import com.liferay.portal.PortalException;
 
 /**
- * <a href="EntryFinderUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="NoSuchStatusException.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class EntryFinderUtil {
-	public static java.util.List<com.liferay.chat.model.Entry> findByNew(
-		long userId, long createDate, int start, int end)
-		throws com.liferay.portal.SystemException {
-		return getFinder().findByNew(userId, createDate, start, end);
+public class NoSuchStatusException extends PortalException {
+
+	public NoSuchStatusException() {
+		super();
 	}
 
-	public static java.util.List<com.liferay.chat.model.Entry> findByOld(
-		long createDate, int start, int end)
-		throws com.liferay.portal.SystemException {
-		return getFinder().findByOld(createDate, start, end);
+	public NoSuchStatusException(String msg) {
+		super(msg);
 	}
 
-	public static EntryFinder getFinder() {
-		return _getUtil()._finder;
+	public NoSuchStatusException(String msg, Throwable cause) {
+		super(msg, cause);
 	}
 
-	public void setFinder(EntryFinder finder) {
-		_finder = finder;
+	public NoSuchStatusException(Throwable cause) {
+		super(cause);
 	}
 
-	private static EntryFinderUtil _getUtil() {
-		if (_util == null) {
-			_util = (EntryFinderUtil)com.liferay.portlet.service.BeanLocatorUtil.locate(_UTIL);
-		}
-
-		return _util;
-	}
-
-	private static final String _UTIL = EntryFinderUtil.class.getName();
-	private static EntryFinderUtil _util;
-	private EntryFinder _finder;
 }

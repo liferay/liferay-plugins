@@ -25,9 +25,19 @@
 <%@ include file="/json_init.jsp" %>
 
 <%
+if (!themeDisplay.isSignedIn()) {
+	return;
+}
+
 long createDate = ParamUtil.getLong(request, "createDate");
 
-List<Entry> entries = EntryLocalServiceUtil.getNewEntries(createDate, themeDisplay.getUserId(), 0, 20);
+if (createDate == 0) {
+	createDate = System.currentTimeMillis() - Time.MINUTE;
+}
+
+StatusLocalServiceUtil.updateStatus(themeDisplay.getUserId());
+
+List<Entry> entries = EntryLocalServiceUtil.getNewEntries(themeDisplay.getUserId(), createDate, 0, SearchContainer.DEFAULT_DELTA);
 
 Collections.reverse(entries);
 
