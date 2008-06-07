@@ -1,11 +1,6 @@
 Liferay.Chat = {
-
-	// Start chat
-
 	init: function(params) {
 		var instance = this;
-
-		// Set chat preferences
 
 		instance.prefs = {
 			refresh: params.refresh || 1,
@@ -14,8 +9,6 @@ Liferay.Chat = {
 			running: false,
 			user: params.user
 		};
-
-		// Set chat AJAX settings
 
 		instance.ajax = {
 			cache: false,
@@ -27,11 +20,7 @@ Liferay.Chat = {
 			url: params.url
 		};
 
-		// Run chat
-
 		instance.get();
-
-		// Set chat to run at an interval
 
 		if (!instance.prefs.interval) {
 			instance.prefs.interval = setInterval(
@@ -48,13 +37,9 @@ Liferay.Chat = {
 		);
 	},
 
-	// Close chat window
-
 	chatClose: function(element) {
 		jQuery(element).parents('.item').remove();
 	},
-
-	// Events triggered when typing a message in chat
 
 	chatType: function(element) {
 		element = jQuery(element);
@@ -62,32 +47,54 @@ Liferay.Chat = {
 		var prepArea = element.siblings('.prep');
 		var showArea = element.parents('.chat').children('.show');
 
-		if(element.val().indexOf('\n') > -1) element.val(element.val().replace(/\n|\r/g, ''));
+		if (element.val().indexOf('\n') > -1) {
+			element.val(element.val().replace(/\n|\r/g, ''));
+		}
 
 		prepArea.val(element.val());
 
 		var chatAreaHeight = 193 - prepArea[0].scrollHeight;
 		var textAreaHeight = prepArea[0].scrollHeight;
 
-		if(jQuery.browser.msie) {
+		if (jQuery.browser.msie) {
 			chatAreaHeight -= 8;
 			textAreaHeight -= 8;
 		}
 
-		if(textAreaHeight != element.height()) {
-			if(textAreaHeight > 78) {
-				showArea.css({ height: 141 });
-				element.css({ height: 78, overflowY: 'scroll' });
-			} else {
-				showArea.css({ height: chatAreaHeight })
-				element.css({ height: textAreaHeight, overflowY: 'hidden' });
+		if (textAreaHeight != element.height()) {
+			if (textAreaHeight > 78) {
+				showArea.css(
+					{
+						height: 141
+					}
+				);
+
+				element.css(
+					{
+						height: 78,
+						overflowY: 'scroll'
+					}
+				);
 			}
+			else {
+				showArea.css(
+					{
+						height: chatAreaHeight
+					}
+				);
+
+				element.css(
+					{
+						height: textAreaHeight,
+						overflowY: 'hidden'
+					}
+				);
+			}
+
 			showArea[0].scrollTop = showArea[0].scrollHeight;
 			element[0].scrollTop = prepArea[0].scrollHeight;
 		}
 	},
-
-	// Chat window popup function
 
 	chatWindowPopup: function(obj) {
 		var element = jQuery(obj || this);
@@ -102,7 +109,9 @@ Liferay.Chat = {
 
 			if (popup.children().is('.chat')) {
 				var cc = popup.find('.show')[0];
+
 				cc.scrollTop = cc.scrollHeight;
+
 				popup.find('.text').trigger('focus');
 			}
 		}
@@ -111,84 +120,89 @@ Liferay.Chat = {
 		}
 	},
 
-	// Get latest chat log from server
-
 	get: function(d) {
 		var instance = this;
 
-		// Run chat if chat not already runnning
+		if (instance.prefs.running) {
+			return;
+		}
 
-		if (!instance.prefs.running) {
-			jQuery.ajax(jQuery.extend(
+		jQuery.ajax(
+			jQuery.extend(
 				{},
-				this.ajax, {
-				beforeSend: function(connection) {
-					Liferay.Chat.prefs.running = true;
-					connection.setRequestHeader('Connection', 'Keep-Alive');
-				},
-				data: jQuery.extend(
-					this.ajax.data,
-					{
-						timestamp: (new Date()).getTime()
-					}
-				),
-				dataType: 'json',
-				success: function(response) {
-					Liferay.Chat.prefs.running = false;
+				this.ajax,
+				{
+					beforeSend: function(connection) {
+						Liferay.Chat.prefs.running = true;
+						connection.setRequestHeader('Connection', 'Keep-Alive');
+					},
+					data: jQuery.extend(
+						this.ajax.data,
+						{
+							timestamp: (new Date()).getTime()
+						}
+					),
+					dataType: 'json',
+					success: function(response) {
+						Liferay.Chat.prefs.running = false;
 
-					if (response.length) {
-						if (Liferay.Chat.prefs.refreshEase > 0) {
-							Liferay.Chat.prefs.refreshEase = 0;
+						if (response.length) {
+							if (Liferay.Chat.prefs.refreshEase > 0) {
+								Liferay.Chat.prefs.refreshEase = 0;
+
+								clearInterval(Liferay.Chat.prefs.interval);
+
+								Liferay.Chat.prefs.interval = setInterval(
+									function() {
+										Liferay.Chat.get();
+									},
+									(Liferay.Chat.prefs.refresh) * 1000
+								);
+							}
+
+							Liferay.Chat.ajax.data.createDate = response[response.length-1].createDate;
+
+							for (i = 0; i < response.length; i++) {
+								var u = (response[i].fromUserId != Liferay.Chat.prefs.user) ? response[i].fromUserId : response[i].toUserId;
+								var uc = u.toString().replace(/ /g, '-').toLowerCase();
+
+								if (jQuery('ul.chat-bar .' + uc).length == 0) {
+									Liferay.Chat.newChat(u);
+								}
+
+								var o = jQuery('ul.chat-bar .' + uc);
+
+								if (!o.is('.active')) {
+									o.addClass('waiting');
+								}
+								else {
+									o.removeClass('waiting');
+								}
+
+								var s = o.children('.popup').children('.chat').children('.show');
+
+								s.append('<p class="' + ((response[i].fromUserId == Liferay.Chat.prefs.user) ? 'you' : 'not') + '"><b class="name">' + Liferay.Chat.users[response[i].fromUserId] + '</b><i class="date">' + response[i].createDate + '</i><span class="text">' + response[i].content.replace(/</g, '&lt;') + '</span></p>');
+								s[0].scrollTop = s[0].scrollHeight;
+							}
+						}
+						else if ((Liferay.Chat.prefs.refreshEase + Liferay.Chat.prefs.refresh) < Liferay.Chat.prefs.refreshMax) {
+							Liferay.Chat.prefs.refreshEase++;
+
 							clearInterval(Liferay.Chat.prefs.interval);
-							Liferay.Chat.prefs.interval = setInterval(
-								function() {
-									Liferay.Chat.get();
-								},
-								(Liferay.Chat.prefs.refresh) * 1000
-							);
+
+							Liferay.Chat.prefs.interval = setInterval('Liferay.Chat.get()', (Liferay.Chat.prefs.refresh + Liferay.Chat.prefs.refreshEase) * 1000);
 						}
-
-						Liferay.Chat.ajax.data.createDate = response[response.length-1].createDate;
-
-						for (i = 0; i < response.length; i++) {
-							var u = (response[i].fromUserId != Liferay.Chat.prefs.user) ? response[i].fromUserId : response[i].toUserId;
-							var uc = u.toString().replace(/ /g, '-').toLowerCase();
-
-							if (jQuery('ul.chat-bar .' + uc).length == 0) {
-								Liferay.Chat.newChat(u);
-							}
-
-							var o = jQuery('ul.chat-bar .' + uc);
-
-							if (!o.is('.active')) {
-								o.addClass('waiting');
-							}
-							else {
-								o.removeClass('waiting');
-							}
-
-							var s = o.children('.popup').children('.chat').children('.show');
-
-							s.append('<p class="' + ((response[i].fromUserId == Liferay.Chat.prefs.user) ? 'you' : 'not') + '"><b class="name">' + Liferay.Chat.users[response[i].fromUserId] + '</b><i class="date">' + response[i].createDate + '</i><span class="text">' + response[i].content.replace(/</g, '&lt;') + '</span></p>');
-							s[0].scrollTop = s[0].scrollHeight;
-						}
-					}
-					else if ((Liferay.Chat.prefs.refreshEase + Liferay.Chat.prefs.refresh) < Liferay.Chat.prefs.refreshMax) {
-						Liferay.Chat.prefs.refreshEase++;
-						clearInterval(Liferay.Chat.prefs.interval);
-						Liferay.Chat.prefs.interval = setInterval('Liferay.Chat.get()', (Liferay.Chat.prefs.refresh + Liferay.Chat.prefs.refreshEase) * 1000);
 					}
 				}
-			}));
-		}
+			)
+		);
 	},
-
-	// Make new chat
 
 	newChat: function(userId) {
 		var instance = this;
 
 		userId = jQuery.trim(userId.toString());
+
 		var userIdClass = userId.replace(/ /, '-').toLowerCase();
 
 		if (!jQuery('ul.chat-bar .item').is('.' + userIdClass)) {
@@ -224,8 +238,6 @@ Liferay.Chat = {
 		}
 	},
 
-	// Make new chat window
-
 	openChatWindow: function(userId) {
 		var instance = this;
 
@@ -241,24 +253,28 @@ Liferay.Chat = {
 		}
 	},
 
-	// Send chat message
-
 	send: function(tag) {
 		var instance = this;
 
-		jQuery.ajax(jQuery.extend({}, instance.ajax, {
-			url: themeDisplay.getLayoutURL() + '/-/chat/send',
-			beforeSend: function(connection) {
-				connection.setRequestHeader('Connection', 'Keep-Alive');
-			},
-			data: jQuery.extend({}, instance.ajax.data, {
-				toUserId: jQuery(tag).attr('with'),
-				content: jQuery.trim(jQuery(tag).val()).replace(/</g, '&lt;').replace(/>/g, '&gt;')
-			}),
-			success: function() {
-				Liferay.Chat.get();
-			}
-		}));
+		jQuery.ajax(
+			jQuery.extend(
+				{},
+				instance.ajax,
+				{
+					url: themeDisplay.getLayoutURL() + '/-/chat/send',
+					beforeSend: function(connection) {
+						connection.setRequestHeader('Connection', 'Keep-Alive');
+					},
+					data: jQuery.extend({}, instance.ajax.data, {
+						toUserId: jQuery(tag).attr('with'),
+						content: jQuery.trim(jQuery(tag).val()).replace(/</g, '&lt;').replace(/>/g, '&gt;')
+					}),
+					success: function() {
+						Liferay.Chat.get();
+					}
+				}
+			)
+		);
 	}
 };
 
@@ -266,20 +282,25 @@ jQuery().ready(
 	function() {
 		jQuery.ajax(
 			{
-				data: { timestamp: (new Date()).getTime() },
+				data: {
+					timestamp: (new Date()).getTime()
+				},
 				dataType: 'json',
-				success: function(buddylist) {
+				success: function(buddies) {
 					var chatPopup = jQuery('#buddy-list .chat-popup');
-					jQuery('.chat-portlet li.item:first > a').html('Chat (' + buddylist.length + ')');
+
+					jQuery('.chat-portlet li.item:first > a').html('Chat (' + buddies.length + ')');
+
 					chatPopup.html('');
 
 					Liferay.Chat.users = {};
 					Liferay.Chat.userIcons = {};
 
-					for (buddy in buddylist) {
-						Liferay.Chat.users[buddylist[buddy].userId] = buddylist[buddy].userName;
-						Liferay.Chat.userIcons[buddylist[buddy].userId] = themeDisplay.getPathImage() + '/user_portrait?img_id=' + buddylist[buddy].userId;
-						chatPopup.append('<li><a href="javascript: ;" onClick="Liferay.Chat.openChatWindow(\'' + buddylist[buddy].userId + '\');">' + buddylist[buddy].userName + '</a></li>');
+					for (buddy in buddies) {
+						Liferay.Chat.users[buddies[buddy].userId] = buddies[buddy].userName;
+						Liferay.Chat.userIcons[buddies[buddy].userId] = themeDisplay.getPathImage() + '/user_portrait?img_id=' + buddies[buddy].userId;
+
+						chatPopup.append('<li><a href="javascript: ;" onClick="Liferay.Chat.openChatWindow(\'' + buddies[buddy].userId + '\');">' + buddies[buddy].userName + '</a></li>');
 					}
 
 					Liferay.Chat.users[themeDisplay.getUserId()] = themeDisplay.getUserName();
