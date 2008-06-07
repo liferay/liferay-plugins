@@ -23,123 +23,123 @@
 package com.liferay.wol.service.persistence;
 
 /**
- * <a href="MeetupEntryUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsEntryUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class MeetupEntryUtil {
-	public static com.liferay.wol.model.MeetupEntry create(long meetupEntryId) {
-		return getPersistence().create(meetupEntryId);
+public class MeetupsEntryUtil {
+	public static com.liferay.wol.model.MeetupsEntry create(long meetupsEntryId) {
+		return getPersistence().create(meetupsEntryId);
 	}
 
-	public static com.liferay.wol.model.MeetupEntry remove(long meetupEntryId)
+	public static com.liferay.wol.model.MeetupsEntry remove(long meetupsEntryId)
 		throws com.liferay.portal.SystemException,
-			com.liferay.wol.NoSuchMeetupEntryException {
-		return getPersistence().remove(meetupEntryId);
+			com.liferay.wol.NoSuchMeetupsEntryException {
+		return getPersistence().remove(meetupsEntryId);
 	}
 
-	public static com.liferay.wol.model.MeetupEntry remove(
-		com.liferay.wol.model.MeetupEntry meetupEntry)
+	public static com.liferay.wol.model.MeetupsEntry remove(
+		com.liferay.wol.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().remove(meetupEntry);
+		return getPersistence().remove(meetupsEntry);
 	}
 
-	public static com.liferay.wol.model.MeetupEntry update(
-		com.liferay.wol.model.MeetupEntry meetupEntry)
+	public static com.liferay.wol.model.MeetupsEntry update(
+		com.liferay.wol.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().update(meetupEntry);
+		return getPersistence().update(meetupsEntry);
 	}
 
-	public static com.liferay.wol.model.MeetupEntry update(
-		com.liferay.wol.model.MeetupEntry meetupEntry, boolean merge)
+	public static com.liferay.wol.model.MeetupsEntry update(
+		com.liferay.wol.model.MeetupsEntry meetupsEntry, boolean merge)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().update(meetupEntry, merge);
+		return getPersistence().update(meetupsEntry, merge);
 	}
 
-	public static com.liferay.wol.model.MeetupEntry updateImpl(
-		com.liferay.wol.model.MeetupEntry meetupEntry, boolean merge)
+	public static com.liferay.wol.model.MeetupsEntry updateImpl(
+		com.liferay.wol.model.MeetupsEntry meetupsEntry, boolean merge)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().updateImpl(meetupEntry, merge);
+		return getPersistence().updateImpl(meetupsEntry, merge);
 	}
 
-	public static com.liferay.wol.model.MeetupEntry findByPrimaryKey(
-		long meetupEntryId)
+	public static com.liferay.wol.model.MeetupsEntry findByPrimaryKey(
+		long meetupsEntryId)
 		throws com.liferay.portal.SystemException,
-			com.liferay.wol.NoSuchMeetupEntryException {
-		return getPersistence().findByPrimaryKey(meetupEntryId);
+			com.liferay.wol.NoSuchMeetupsEntryException {
+		return getPersistence().findByPrimaryKey(meetupsEntryId);
 	}
 
-	public static com.liferay.wol.model.MeetupEntry fetchByPrimaryKey(
-		long meetupEntryId) throws com.liferay.portal.SystemException {
-		return getPersistence().fetchByPrimaryKey(meetupEntryId);
+	public static com.liferay.wol.model.MeetupsEntry fetchByPrimaryKey(
+		long meetupsEntryId) throws com.liferay.portal.SystemException {
+		return getPersistence().fetchByPrimaryKey(meetupsEntryId);
 	}
 
-	public static java.util.List<com.liferay.wol.model.MeetupEntry> findByCompanyId(
+	public static java.util.List<com.liferay.wol.model.MeetupsEntry> findByCompanyId(
 		long companyId) throws com.liferay.portal.SystemException {
 		return getPersistence().findByCompanyId(companyId);
 	}
 
-	public static java.util.List<com.liferay.wol.model.MeetupEntry> findByCompanyId(
+	public static java.util.List<com.liferay.wol.model.MeetupsEntry> findByCompanyId(
 		long companyId, int start, int end)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findByCompanyId(companyId, start, end);
 	}
 
-	public static java.util.List<com.liferay.wol.model.MeetupEntry> findByCompanyId(
+	public static java.util.List<com.liferay.wol.model.MeetupsEntry> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findByCompanyId(companyId, start, end, obc);
 	}
 
-	public static com.liferay.wol.model.MeetupEntry findByCompanyId_First(
+	public static com.liferay.wol.model.MeetupsEntry findByCompanyId_First(
 		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
-			com.liferay.wol.NoSuchMeetupEntryException {
+			com.liferay.wol.NoSuchMeetupsEntryException {
 		return getPersistence().findByCompanyId_First(companyId, obc);
 	}
 
-	public static com.liferay.wol.model.MeetupEntry findByCompanyId_Last(
+	public static com.liferay.wol.model.MeetupsEntry findByCompanyId_Last(
 		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
-			com.liferay.wol.NoSuchMeetupEntryException {
+			com.liferay.wol.NoSuchMeetupsEntryException {
 		return getPersistence().findByCompanyId_Last(companyId, obc);
 	}
 
-	public static com.liferay.wol.model.MeetupEntry[] findByCompanyId_PrevAndNext(
-		long meetupEntryId, long companyId,
+	public static com.liferay.wol.model.MeetupsEntry[] findByCompanyId_PrevAndNext(
+		long meetupsEntryId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
-			com.liferay.wol.NoSuchMeetupEntryException {
+			com.liferay.wol.NoSuchMeetupsEntryException {
 		return getPersistence()
-				   .findByCompanyId_PrevAndNext(meetupEntryId, companyId, obc);
+				   .findByCompanyId_PrevAndNext(meetupsEntryId, companyId, obc);
 	}
 
-	public static java.util.List<com.liferay.wol.model.MeetupEntry> findWithDynamicQuery(
+	public static java.util.List<com.liferay.wol.model.MeetupsEntry> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findWithDynamicQuery(queryInitializer);
 	}
 
-	public static java.util.List<com.liferay.wol.model.MeetupEntry> findWithDynamicQuery(
+	public static java.util.List<com.liferay.wol.model.MeetupsEntry> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
 		int start, int end) throws com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findWithDynamicQuery(queryInitializer, start, end);
 	}
 
-	public static java.util.List<com.liferay.wol.model.MeetupEntry> findAll()
+	public static java.util.List<com.liferay.wol.model.MeetupsEntry> findAll()
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll();
 	}
 
-	public static java.util.List<com.liferay.wol.model.MeetupEntry> findAll(
+	public static java.util.List<com.liferay.wol.model.MeetupsEntry> findAll(
 		int start, int end) throws com.liferay.portal.SystemException {
 		return getPersistence().findAll(start, end);
 	}
 
-	public static java.util.List<com.liferay.wol.model.MeetupEntry> findAll(
+	public static java.util.List<com.liferay.wol.model.MeetupsEntry> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll(start, end, obc);
@@ -163,23 +163,23 @@ public class MeetupEntryUtil {
 		return getPersistence().countAll();
 	}
 
-	public static MeetupEntryPersistence getPersistence() {
+	public static MeetupsEntryPersistence getPersistence() {
 		return _getUtil()._persistence;
 	}
 
-	public void setPersistence(MeetupEntryPersistence persistence) {
+	public void setPersistence(MeetupsEntryPersistence persistence) {
 		_persistence = persistence;
 	}
 
-	private static MeetupEntryUtil _getUtil() {
+	private static MeetupsEntryUtil _getUtil() {
 		if (_util == null) {
-			_util = (MeetupEntryUtil)com.liferay.portlet.service.BeanLocatorUtil.locate(_UTIL);
+			_util = (MeetupsEntryUtil)com.liferay.portlet.service.BeanLocatorUtil.locate(_UTIL);
 		}
 
 		return _util;
 	}
 
-	private static final String _UTIL = MeetupEntryUtil.class.getName();
-	private static MeetupEntryUtil _util;
-	private MeetupEntryPersistence _persistence;
+	private static final String _UTIL = MeetupsEntryUtil.class.getName();
+	private static MeetupsEntryUtil _util;
+	private MeetupsEntryPersistence _persistence;
 }

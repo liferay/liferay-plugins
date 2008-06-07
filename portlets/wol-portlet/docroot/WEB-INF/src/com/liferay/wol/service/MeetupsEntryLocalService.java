@@ -23,38 +23,45 @@
 package com.liferay.wol.service;
 
 /**
- * <a href="MeetupRegistrationLocalService.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsEntryLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface MeetupRegistrationLocalService {
-	public com.liferay.wol.model.MeetupRegistration addMeetupRegistration(
-		com.liferay.wol.model.MeetupRegistration meetupRegistration)
+public interface MeetupsEntryLocalService {
+	public com.liferay.wol.model.MeetupsEntry addMeetupsEntry(
+		com.liferay.wol.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.SystemException;
 
-	public void deleteMeetupRegistration(long meetupRegistrationId)
+	public void deleteMeetupsEntry(long meetupsEntryId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
-	public void deleteMeetupRegistration(
-		com.liferay.wol.model.MeetupRegistration meetupRegistration)
+	public void deleteMeetupsEntry(
+		com.liferay.wol.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.MeetupRegistration> dynamicQuery(
+	public java.util.List<com.liferay.wol.model.MeetupsEntry> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.MeetupRegistration> dynamicQuery(
+	public java.util.List<com.liferay.wol.model.MeetupsEntry> dynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
 		int start, int end) throws com.liferay.portal.SystemException;
 
-	public com.liferay.wol.model.MeetupRegistration getMeetupRegistration(
-		long meetupRegistrationId)
+	public com.liferay.wol.model.MeetupsEntry getMeetupsEntry(
+		long meetupsEntryId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
-	public com.liferay.wol.model.MeetupRegistration updateMeetupRegistration(
-		com.liferay.wol.model.MeetupRegistration meetupRegistration)
+	public com.liferay.wol.model.MeetupsEntry updateMeetupsEntry(
+		com.liferay.wol.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.SystemException;
+
+	public com.liferay.wol.model.MeetupsEntry addMeetupsEntry(long userId,
+		java.lang.String title, java.lang.String description,
+		java.util.Date startDate, java.util.Date endDate, long addressId,
+		int totalAttendees, int maxAttendees, double price)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
 }

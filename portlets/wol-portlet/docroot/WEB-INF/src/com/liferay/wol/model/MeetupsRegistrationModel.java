@@ -22,11 +22,56 @@
 
 package com.liferay.wol.model;
 
+import com.liferay.portal.model.BaseModel;
+
+import java.util.Date;
+
 /**
- * <a href="MeetupRegistration.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsRegistrationModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface MeetupRegistration extends MeetupRegistrationModel {
+public interface MeetupsRegistrationModel extends BaseModel {
+	public long getPrimaryKey();
+
+	public void setPrimaryKey(long pk);
+
+	public long getMeetupsRegistrationId();
+
+	public void setMeetupsRegistrationId(long meetupsRegistrationId);
+
+	public long getCompanyId();
+
+	public void setCompanyId(long companyId);
+
+	public long getUserId();
+
+	public void setUserId(long userId);
+
+	public String getUserName();
+
+	public void setUserName(String userName);
+
+	public Date getCreateDate();
+
+	public void setCreateDate(Date createDate);
+
+	public Date getModifiedDate();
+
+	public void setModifiedDate(Date modifiedDate);
+
+	public long getMeetupsEntryId();
+
+	public void setMeetupsEntryId(long meetupsEntryId);
+
+	public int getStatus();
+
+	public void setStatus(int status);
+
+	public String getComments();
+
+	public void setComments(String comments);
+
+	public MeetupsRegistration toEscapedModel();
 }

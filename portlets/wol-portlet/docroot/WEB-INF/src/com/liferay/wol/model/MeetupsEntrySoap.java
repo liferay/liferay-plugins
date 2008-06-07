@@ -29,16 +29,16 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <a href="MeetupEntrySoap.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsEntrySoap.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class MeetupEntrySoap implements Serializable {
-	public static MeetupEntrySoap toSoapModel(MeetupEntry model) {
-		MeetupEntrySoap soapModel = new MeetupEntrySoap();
+public class MeetupsEntrySoap implements Serializable {
+	public static MeetupsEntrySoap toSoapModel(MeetupsEntry model) {
+		MeetupsEntrySoap soapModel = new MeetupsEntrySoap();
 
-		soapModel.setMeetupEntryId(model.getMeetupEntryId());
+		soapModel.setMeetupsEntryId(model.getMeetupsEntryId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setUserName(model.getUserName());
@@ -56,33 +56,33 @@ public class MeetupEntrySoap implements Serializable {
 		return soapModel;
 	}
 
-	public static MeetupEntrySoap[] toSoapModels(List<MeetupEntry> models) {
-		List<MeetupEntrySoap> soapModels = new ArrayList<MeetupEntrySoap>(models.size());
+	public static MeetupsEntrySoap[] toSoapModels(List<MeetupsEntry> models) {
+		List<MeetupsEntrySoap> soapModels = new ArrayList<MeetupsEntrySoap>(models.size());
 
-		for (MeetupEntry model : models) {
+		for (MeetupsEntry model : models) {
 			soapModels.add(toSoapModel(model));
 		}
 
-		return soapModels.toArray(new MeetupEntrySoap[soapModels.size()]);
+		return soapModels.toArray(new MeetupsEntrySoap[soapModels.size()]);
 	}
 
-	public MeetupEntrySoap() {
+	public MeetupsEntrySoap() {
 	}
 
 	public long getPrimaryKey() {
-		return _meetupEntryId;
+		return _meetupsEntryId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setMeetupEntryId(pk);
+		setMeetupsEntryId(pk);
 	}
 
-	public long getMeetupEntryId() {
-		return _meetupEntryId;
+	public long getMeetupsEntryId() {
+		return _meetupsEntryId;
 	}
 
-	public void setMeetupEntryId(long meetupEntryId) {
-		_meetupEntryId = meetupEntryId;
+	public void setMeetupsEntryId(long meetupsEntryId) {
+		_meetupsEntryId = meetupsEntryId;
 	}
 
 	public long getCompanyId() {
@@ -189,7 +189,7 @@ public class MeetupEntrySoap implements Serializable {
 		_price = price;
 	}
 
-	private long _meetupEntryId;
+	private long _meetupsEntryId;
 	private long _companyId;
 	private long _userId;
 	private String _userName;

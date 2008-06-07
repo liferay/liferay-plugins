@@ -20,32 +20,13 @@
  * SOFTWARE.
  */
 
-package com.liferay.wol;
-
-import com.liferay.portal.PortalException;
+package com.liferay.wol.model;
 
 /**
- * <a href="NoSuchMeetupRegistrationException.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsRegistration.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class NoSuchMeetupRegistrationException extends PortalException {
-
-	public NoSuchMeetupRegistrationException() {
-		super();
-	}
-
-	public NoSuchMeetupRegistrationException(String msg) {
-		super(msg);
-	}
-
-	public NoSuchMeetupRegistrationException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
-
-	public NoSuchMeetupRegistrationException(Throwable cause) {
-		super(cause);
-	}
-
+public interface MeetupsRegistration extends MeetupsRegistrationModel {
 }

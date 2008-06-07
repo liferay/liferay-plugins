@@ -27,21 +27,22 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.wol.model.MeetupEntry;
-import com.liferay.wol.service.base.MeetupEntryLocalServiceBaseImpl;
+import com.liferay.wol.model.MeetupsEntry;
+import com.liferay.wol.service.base.MeetupsEntryLocalServiceBaseImpl;
 
 import java.util.Date;
 
 /**
- * <a href="MeetupEntryLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsEntryLocalServiceImpl.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class MeetupEntryLocalServiceImpl
-	extends MeetupEntryLocalServiceBaseImpl {
+public class MeetupsEntryLocalServiceImpl
+	extends MeetupsEntryLocalServiceBaseImpl {
 
-	public MeetupEntry addMeetupEntry(
+	public MeetupsEntry addMeetupsEntry(
 			long userId, String title, String description, Date startDate,
 			Date endDate, long addressId, int totalAttendees, int maxAttendees,
 			double price)
@@ -50,27 +51,28 @@ public class MeetupEntryLocalServiceImpl
 		User user = UserLocalServiceUtil.getUserById(userId);
 		Date now = new Date();
 
-		long meetupEntryId = CounterLocalServiceUtil.increment();
+		long meetupsEntryId = CounterLocalServiceUtil.increment();
 
-		MeetupEntry meetupEntry = meetupEntryPersistence.create(meetupEntryId);
+		MeetupsEntry meetupsEntry = meetupsEntryPersistence.create(
+			meetupsEntryId);
 
-		meetupEntry.setCompanyId(user.getCompanyId());
-		meetupEntry.setUserId(user.getUserId());
-		meetupEntry.setUserName(user.getFullName());
-		meetupEntry.setCreateDate(now);
-		meetupEntry.setModifiedDate(now);
-		meetupEntry.setTitle(title);
-		meetupEntry.setDescription(description);
-		meetupEntry.setStartDate(startDate);
-		meetupEntry.setEndDate(endDate);
-		meetupEntry.setAddressId(addressId);
-		meetupEntry.setTotalAttendees(totalAttendees);
-		meetupEntry.setMaxAttendees(maxAttendees);
-		meetupEntry.setPrice(price);
+		meetupsEntry.setCompanyId(user.getCompanyId());
+		meetupsEntry.setUserId(user.getUserId());
+		meetupsEntry.setUserName(user.getFullName());
+		meetupsEntry.setCreateDate(now);
+		meetupsEntry.setModifiedDate(now);
+		meetupsEntry.setTitle(title);
+		meetupsEntry.setDescription(description);
+		meetupsEntry.setStartDate(startDate);
+		meetupsEntry.setEndDate(endDate);
+		meetupsEntry.setAddressId(addressId);
+		meetupsEntry.setTotalAttendees(totalAttendees);
+		meetupsEntry.setMaxAttendees(maxAttendees);
+		meetupsEntry.setPrice(price);
 
-		meetupEntryPersistence.update(meetupEntry, false);
+		meetupsEntryPersistence.update(meetupsEntry, false);
 
-		return meetupEntry;
+		return meetupsEntry;
 	}
 
 }

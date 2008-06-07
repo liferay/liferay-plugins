@@ -22,18 +22,18 @@
 
 package com.liferay.wol.model.impl;
 
-import com.liferay.wol.model.MeetupRegistration;
+import com.liferay.wol.model.MeetupsEntry;
 
 /**
- * <a href="MeetupRegistrationImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsEntryImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class MeetupRegistrationImpl
-	extends MeetupRegistrationModelImpl implements MeetupRegistration {
+public class MeetupsEntryImpl
+	extends MeetupsEntryModelImpl implements MeetupsEntry {
 
-	public MeetupRegistrationImpl() {
+	public MeetupsEntryImpl() {
 	}
 
 }

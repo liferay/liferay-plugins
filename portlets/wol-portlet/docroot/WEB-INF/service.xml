@@ -166,11 +166,11 @@
 			<finder-column name="status" />
 		</finder>
 	</entity>
-	<entity name="MeetupEntry" local-service="true" remote-service="false">
+	<entity name="MeetupsEntry" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="meetupEntryId" type="long" primary="true" />
+		<column name="meetupsEntryId" type="long" primary="true" />
 
 		<!-- Audit fields -->
 
@@ -203,11 +203,11 @@
 			<finder-column name="companyId" />
 		</finder>
 	</entity>
-	<entity name="MeetupRegistration" local-service="true" remote-service="false">
+	<entity name="MeetupsRegistration" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="meetupRegistrationId" type="long" primary="true" />
+		<column name="meetupsRegistrationId" type="long" primary="true" />
 
 		<!-- Audit fields -->
 
@@ -219,7 +219,7 @@
 
 		<!-- Other fields -->
 
-		<column name="meetupEntryId" type="long" />
+		<column name="meetupsEntryId" type="long" />
 		<column name="status" type="int" />
 		<column name="comments" type="String" />
 
@@ -231,8 +231,8 @@
 
 		<!-- Finder methods -->
 
-		<finder name="MeetupEntryId" return-type="Collection">
-			<finder-column name="meetupEntryId" />
+		<finder name="MeetupsEntryId" return-type="Collection">
+			<finder-column name="meetupsEntryId" />
 		</finder>
 	</entity>
 	<entity name="SVNRepository" local-service="true" remote-service="false">

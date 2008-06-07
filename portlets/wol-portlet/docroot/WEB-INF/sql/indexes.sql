@@ -1,6 +1,6 @@
-create index IX_58DD7FBD on WOL_MeetupEntry (companyId);
+create index IX_79AEBAB6 on WOL_MeetupsEntry (companyId);
 
-create index IX_239BF70F on WOL_MeetupRegistration (meetupEntryId);
+create index IX_83877F55 on WOL_MeetupsRegistration (meetupsEntryId);
 
 create index IX_75C012F on WOL_SVNRepository (url);
 

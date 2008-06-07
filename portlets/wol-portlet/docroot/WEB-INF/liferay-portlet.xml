@@ -58,6 +58,10 @@
 		<friendly-url-mapper-class>com.liferay.wol.map.portlet.MapFriendlyURLMapper</friendly-url-mapper-class>
 		<css-class-wrapper>wol-portlet-map</css-class-wrapper>
 	</portlet>
+	<portlet>
+		<portlet-name>9</portlet-name>
+		<css-class-wrapper>wol-portlet-meetups</css-class-wrapper>
+	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>

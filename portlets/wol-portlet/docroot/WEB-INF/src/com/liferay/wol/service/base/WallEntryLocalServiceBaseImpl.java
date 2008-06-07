@@ -35,10 +35,10 @@ import com.liferay.wol.service.JIRAChangeItemLocalService;
 import com.liferay.wol.service.JIRAChangeItemLocalServiceFactory;
 import com.liferay.wol.service.JIRAIssueLocalService;
 import com.liferay.wol.service.JIRAIssueLocalServiceFactory;
-import com.liferay.wol.service.MeetupEntryLocalService;
-import com.liferay.wol.service.MeetupEntryLocalServiceFactory;
-import com.liferay.wol.service.MeetupRegistrationLocalService;
-import com.liferay.wol.service.MeetupRegistrationLocalServiceFactory;
+import com.liferay.wol.service.MeetupsEntryLocalService;
+import com.liferay.wol.service.MeetupsEntryLocalServiceFactory;
+import com.liferay.wol.service.MeetupsRegistrationLocalService;
+import com.liferay.wol.service.MeetupsRegistrationLocalServiceFactory;
 import com.liferay.wol.service.SVNRepositoryLocalService;
 import com.liferay.wol.service.SVNRepositoryLocalServiceFactory;
 import com.liferay.wol.service.SVNRevisionLocalService;
@@ -58,10 +58,10 @@ import com.liferay.wol.service.persistence.JIRAIssueFinder;
 import com.liferay.wol.service.persistence.JIRAIssueFinderUtil;
 import com.liferay.wol.service.persistence.JIRAIssuePersistence;
 import com.liferay.wol.service.persistence.JIRAIssueUtil;
-import com.liferay.wol.service.persistence.MeetupEntryPersistence;
-import com.liferay.wol.service.persistence.MeetupEntryUtil;
-import com.liferay.wol.service.persistence.MeetupRegistrationPersistence;
-import com.liferay.wol.service.persistence.MeetupRegistrationUtil;
+import com.liferay.wol.service.persistence.MeetupsEntryPersistence;
+import com.liferay.wol.service.persistence.MeetupsEntryUtil;
+import com.liferay.wol.service.persistence.MeetupsRegistrationPersistence;
+import com.liferay.wol.service.persistence.MeetupsRegistrationUtil;
 import com.liferay.wol.service.persistence.SVNRepositoryPersistence;
 import com.liferay.wol.service.persistence.SVNRepositoryUtil;
 import com.liferay.wol.service.persistence.SVNRevisionPersistence;
@@ -220,40 +220,40 @@ public abstract class WallEntryLocalServiceBaseImpl
 		this.jiraIssueFinder = jiraIssueFinder;
 	}
 
-	public MeetupEntryLocalService getMeetupEntryLocalService() {
-		return meetupEntryLocalService;
+	public MeetupsEntryLocalService getMeetupsEntryLocalService() {
+		return meetupsEntryLocalService;
 	}
 
-	public void setMeetupEntryLocalService(
-		MeetupEntryLocalService meetupEntryLocalService) {
-		this.meetupEntryLocalService = meetupEntryLocalService;
+	public void setMeetupsEntryLocalService(
+		MeetupsEntryLocalService meetupsEntryLocalService) {
+		this.meetupsEntryLocalService = meetupsEntryLocalService;
 	}
 
-	public MeetupEntryPersistence getMeetupEntryPersistence() {
-		return meetupEntryPersistence;
+	public MeetupsEntryPersistence getMeetupsEntryPersistence() {
+		return meetupsEntryPersistence;
 	}
 
-	public void setMeetupEntryPersistence(
-		MeetupEntryPersistence meetupEntryPersistence) {
-		this.meetupEntryPersistence = meetupEntryPersistence;
+	public void setMeetupsEntryPersistence(
+		MeetupsEntryPersistence meetupsEntryPersistence) {
+		this.meetupsEntryPersistence = meetupsEntryPersistence;
 	}
 
-	public MeetupRegistrationLocalService getMeetupRegistrationLocalService() {
-		return meetupRegistrationLocalService;
+	public MeetupsRegistrationLocalService getMeetupsRegistrationLocalService() {
+		return meetupsRegistrationLocalService;
 	}
 
-	public void setMeetupRegistrationLocalService(
-		MeetupRegistrationLocalService meetupRegistrationLocalService) {
-		this.meetupRegistrationLocalService = meetupRegistrationLocalService;
+	public void setMeetupsRegistrationLocalService(
+		MeetupsRegistrationLocalService meetupsRegistrationLocalService) {
+		this.meetupsRegistrationLocalService = meetupsRegistrationLocalService;
 	}
 
-	public MeetupRegistrationPersistence getMeetupRegistrationPersistence() {
-		return meetupRegistrationPersistence;
+	public MeetupsRegistrationPersistence getMeetupsRegistrationPersistence() {
+		return meetupsRegistrationPersistence;
 	}
 
-	public void setMeetupRegistrationPersistence(
-		MeetupRegistrationPersistence meetupRegistrationPersistence) {
-		this.meetupRegistrationPersistence = meetupRegistrationPersistence;
+	public void setMeetupsRegistrationPersistence(
+		MeetupsRegistrationPersistence meetupsRegistrationPersistence) {
+		this.meetupsRegistrationPersistence = meetupsRegistrationPersistence;
 	}
 
 	public SVNRepositoryLocalService getSVNRepositoryLocalService() {
@@ -354,20 +354,20 @@ public abstract class WallEntryLocalServiceBaseImpl
 			jiraIssueFinder = JIRAIssueFinderUtil.getFinder();
 		}
 
-		if (meetupEntryLocalService == null) {
-			meetupEntryLocalService = MeetupEntryLocalServiceFactory.getImpl();
+		if (meetupsEntryLocalService == null) {
+			meetupsEntryLocalService = MeetupsEntryLocalServiceFactory.getImpl();
 		}
 
-		if (meetupEntryPersistence == null) {
-			meetupEntryPersistence = MeetupEntryUtil.getPersistence();
+		if (meetupsEntryPersistence == null) {
+			meetupsEntryPersistence = MeetupsEntryUtil.getPersistence();
 		}
 
-		if (meetupRegistrationLocalService == null) {
-			meetupRegistrationLocalService = MeetupRegistrationLocalServiceFactory.getImpl();
+		if (meetupsRegistrationLocalService == null) {
+			meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getImpl();
 		}
 
-		if (meetupRegistrationPersistence == null) {
-			meetupRegistrationPersistence = MeetupRegistrationUtil.getPersistence();
+		if (meetupsRegistrationPersistence == null) {
+			meetupsRegistrationPersistence = MeetupsRegistrationUtil.getPersistence();
 		}
 
 		if (svnRepositoryLocalService == null) {
@@ -406,10 +406,10 @@ public abstract class WallEntryLocalServiceBaseImpl
 	protected JIRAIssueLocalService jiraIssueLocalService;
 	protected JIRAIssuePersistence jiraIssuePersistence;
 	protected JIRAIssueFinder jiraIssueFinder;
-	protected MeetupEntryLocalService meetupEntryLocalService;
-	protected MeetupEntryPersistence meetupEntryPersistence;
-	protected MeetupRegistrationLocalService meetupRegistrationLocalService;
-	protected MeetupRegistrationPersistence meetupRegistrationPersistence;
+	protected MeetupsEntryLocalService meetupsEntryLocalService;
+	protected MeetupsEntryPersistence meetupsEntryPersistence;
+	protected MeetupsRegistrationLocalService meetupsRegistrationLocalService;
+	protected MeetupsRegistrationPersistence meetupsRegistrationPersistence;
 	protected SVNRepositoryLocalService svnRepositoryLocalService;
 	protected SVNRepositoryPersistence svnRepositoryPersistence;
 	protected SVNRevisionLocalService svnRevisionLocalService;

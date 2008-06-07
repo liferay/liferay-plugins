@@ -20,58 +20,32 @@
  * SOFTWARE.
  */
 
-package com.liferay.wol.model;
+package com.liferay.wol;
 
-import com.liferay.portal.model.BaseModel;
-
-import java.util.Date;
+import com.liferay.portal.PortalException;
 
 /**
- * <a href="MeetupRegistrationModel.java.html"><b><i>View Source</i></b></a>
+ * <a href="NoSuchMeetupsRegistrationException.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface MeetupRegistrationModel extends BaseModel {
-	public long getPrimaryKey();
+public class NoSuchMeetupsRegistrationException extends PortalException {
 
-	public void setPrimaryKey(long pk);
+	public NoSuchMeetupsRegistrationException() {
+		super();
+	}
 
-	public long getMeetupRegistrationId();
+	public NoSuchMeetupsRegistrationException(String msg) {
+		super(msg);
+	}
 
-	public void setMeetupRegistrationId(long meetupRegistrationId);
+	public NoSuchMeetupsRegistrationException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
 
-	public long getCompanyId();
+	public NoSuchMeetupsRegistrationException(Throwable cause) {
+		super(cause);
+	}
 
-	public void setCompanyId(long companyId);
-
-	public long getUserId();
-
-	public void setUserId(long userId);
-
-	public String getUserName();
-
-	public void setUserName(String userName);
-
-	public Date getCreateDate();
-
-	public void setCreateDate(Date createDate);
-
-	public Date getModifiedDate();
-
-	public void setModifiedDate(Date modifiedDate);
-
-	public long getMeetupEntryId();
-
-	public void setMeetupEntryId(long meetupEntryId);
-
-	public int getStatus();
-
-	public void setStatus(int status);
-
-	public String getComments();
-
-	public void setComments(String comments);
-
-	public MeetupRegistration toEscapedModel();
 }

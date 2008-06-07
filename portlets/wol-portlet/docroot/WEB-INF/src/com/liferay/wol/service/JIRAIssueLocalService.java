@@ -84,27 +84,27 @@ public interface JIRAIssueLocalService {
 
 	public com.liferay.wol.model.JIRAIssue getFirstAssigneeJIRAIssue(
 		long projectId, java.lang.String assigneeJiraUserId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
 
 	public com.liferay.wol.model.JIRAIssue getFirstReporterJIRAIssue(
 		long projectId, java.lang.String reporterJiraUserId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
 
 	public com.liferay.wol.model.JIRAIssue getJIRAIssue(java.lang.String key)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
 
 	public com.liferay.wol.model.JIRAIssue getLastAssigneeJIRAIssue(
 		long projectId, java.lang.String assigneeJiraUserId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
 
 	public com.liferay.wol.model.JIRAIssue getLastreporterJIRAIssue(
 		long projectId, java.lang.String reporterJiraUserId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> getReporterJIRAIssues(
 		long projectId, java.lang.String reporterJiraUserId, int start, int end)
@@ -133,6 +133,6 @@ public interface JIRAIssueLocalService {
 		throws com.liferay.portal.SystemException;
 
 	public void updateJIRAIssues(long projectId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
 }

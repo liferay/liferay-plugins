@@ -27,19 +27,19 @@ import com.liferay.portal.model.BaseModel;
 import java.util.Date;
 
 /**
- * <a href="MeetupEntryModel.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsEntryModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface MeetupEntryModel extends BaseModel {
+public interface MeetupsEntryModel extends BaseModel {
 	public long getPrimaryKey();
 
 	public void setPrimaryKey(long pk);
 
-	public long getMeetupEntryId();
+	public long getMeetupsEntryId();
 
-	public void setMeetupEntryId(long meetupEntryId);
+	public void setMeetupsEntryId(long meetupsEntryId);
 
 	public long getCompanyId();
 
@@ -93,5 +93,5 @@ public interface MeetupEntryModel extends BaseModel {
 
 	public void setPrice(double price);
 
-	public MeetupEntry toEscapedModel();
+	public MeetupsEntry toEscapedModel();
 }

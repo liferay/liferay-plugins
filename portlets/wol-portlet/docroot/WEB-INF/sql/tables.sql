@@ -1,6 +1,6 @@
 
-create table WOL_MeetupEntry (
-	meetupEntryId LONG not null primary key,
+create table WOL_MeetupsEntry (
+	meetupsEntryId LONG not null primary key,
 	companyId LONG,
 	userId LONG,
 	userName VARCHAR(75) null,
@@ -16,14 +16,14 @@ create table WOL_MeetupEntry (
 	price DOUBLE
 );
 
-create table WOL_MeetupRegistration (
-	meetupRegistrationId LONG not null primary key,
+create table WOL_MeetupsRegistration (
+	meetupsRegistrationId LONG not null primary key,
 	companyId LONG,
 	userId LONG,
 	userName VARCHAR(75) null,
 	createDate DATE null,
 	modifiedDate DATE null,
-	meetupEntryId LONG,
+	meetupsEntryId LONG,
 	status INTEGER,
 	comments STRING null
 );

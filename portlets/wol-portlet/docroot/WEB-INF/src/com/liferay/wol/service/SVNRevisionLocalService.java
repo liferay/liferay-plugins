@@ -59,18 +59,18 @@ public interface SVNRevisionLocalService {
 	public com.liferay.wol.model.SVNRevision addSVNRevision(
 		java.lang.String svnUserId, java.util.Date createDate,
 		long svnRepositoryId, long revisionNumber, java.lang.String comments)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
 
 	public com.liferay.wol.model.SVNRevision getFirstSVNRevision(
 		java.lang.String svnUserId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
 
 	public com.liferay.wol.model.SVNRevision getLastSVNRevision(
 		java.lang.String svnUserId)
-		throws com.liferay.portal.SystemException,
-			com.liferay.portal.PortalException;
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
 		java.lang.String svnUserId, int start, int end)

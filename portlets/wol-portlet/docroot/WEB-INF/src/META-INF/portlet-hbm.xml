@@ -52,9 +52,9 @@
 		<property name="resolution" type="com.liferay.util.dao.hibernate.StringType" />
 		<property name="status" column="issuestatus" type="com.liferay.util.dao.hibernate.StringType" />
 	</class>
-	<class name="com.liferay.wol.model.impl.MeetupEntryImpl" table="WOL_MeetupEntry">
+	<class name="com.liferay.wol.model.impl.MeetupsEntryImpl" table="WOL_MeetupsEntry">
 		<cache usage="read-write" />
-		<id name="meetupEntryId" type="long">
+		<id name="meetupsEntryId" type="long">
 			<generator class="assigned" />
 		</id>
 		<property name="companyId" type="com.liferay.util.dao.hibernate.LongType" />
@@ -71,9 +71,9 @@
 		<property name="maxAttendees" type="com.liferay.util.dao.hibernate.IntegerType" />
 		<property name="price" type="com.liferay.util.dao.hibernate.DoubleType" />
 	</class>
-	<class name="com.liferay.wol.model.impl.MeetupRegistrationImpl" table="WOL_MeetupRegistration">
+	<class name="com.liferay.wol.model.impl.MeetupsRegistrationImpl" table="WOL_MeetupsRegistration">
 		<cache usage="read-write" />
-		<id name="meetupRegistrationId" type="long">
+		<id name="meetupsRegistrationId" type="long">
 			<generator class="assigned" />
 		</id>
 		<property name="companyId" type="com.liferay.util.dao.hibernate.LongType" />
@@ -81,7 +81,7 @@
 		<property name="userName" type="com.liferay.util.dao.hibernate.StringType" />
 		<property name="createDate" />
 		<property name="modifiedDate" />
-		<property name="meetupEntryId" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="meetupsEntryId" type="com.liferay.util.dao.hibernate.LongType" />
 		<property name="status" type="com.liferay.util.dao.hibernate.IntegerType" />
 		<property name="comments" type="com.liferay.util.dao.hibernate.StringType" />
 	</class>

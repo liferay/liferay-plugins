@@ -20,13 +20,17 @@
  * SOFTWARE.
  */
 
-package com.liferay.wol.model;
+package com.liferay.wol.service.impl;
+
+import com.liferay.wol.service.base.MeetupsRegistrationLocalServiceBaseImpl;
 
 /**
- * <a href="MeetupEntry.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsRegistrationLocalServiceImpl.java.html"><b><i>View Source</i>
+ * </b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface MeetupEntry extends MeetupEntryModel {
+public class MeetupsRegistrationLocalServiceImpl
+	extends MeetupsRegistrationLocalServiceBaseImpl {
 }

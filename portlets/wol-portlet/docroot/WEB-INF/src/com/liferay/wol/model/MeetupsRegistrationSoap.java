@@ -29,56 +29,56 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <a href="MeetupRegistrationSoap.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsRegistrationSoap.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class MeetupRegistrationSoap implements Serializable {
-	public static MeetupRegistrationSoap toSoapModel(MeetupRegistration model) {
-		MeetupRegistrationSoap soapModel = new MeetupRegistrationSoap();
+public class MeetupsRegistrationSoap implements Serializable {
+	public static MeetupsRegistrationSoap toSoapModel(MeetupsRegistration model) {
+		MeetupsRegistrationSoap soapModel = new MeetupsRegistrationSoap();
 
-		soapModel.setMeetupRegistrationId(model.getMeetupRegistrationId());
+		soapModel.setMeetupsRegistrationId(model.getMeetupsRegistrationId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setMeetupEntryId(model.getMeetupEntryId());
+		soapModel.setMeetupsEntryId(model.getMeetupsEntryId());
 		soapModel.setStatus(model.getStatus());
 		soapModel.setComments(model.getComments());
 
 		return soapModel;
 	}
 
-	public static MeetupRegistrationSoap[] toSoapModels(
-		List<MeetupRegistration> models) {
-		List<MeetupRegistrationSoap> soapModels = new ArrayList<MeetupRegistrationSoap>(models.size());
+	public static MeetupsRegistrationSoap[] toSoapModels(
+		List<MeetupsRegistration> models) {
+		List<MeetupsRegistrationSoap> soapModels = new ArrayList<MeetupsRegistrationSoap>(models.size());
 
-		for (MeetupRegistration model : models) {
+		for (MeetupsRegistration model : models) {
 			soapModels.add(toSoapModel(model));
 		}
 
-		return soapModels.toArray(new MeetupRegistrationSoap[soapModels.size()]);
+		return soapModels.toArray(new MeetupsRegistrationSoap[soapModels.size()]);
 	}
 
-	public MeetupRegistrationSoap() {
+	public MeetupsRegistrationSoap() {
 	}
 
 	public long getPrimaryKey() {
-		return _meetupRegistrationId;
+		return _meetupsRegistrationId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setMeetupRegistrationId(pk);
+		setMeetupsRegistrationId(pk);
 	}
 
-	public long getMeetupRegistrationId() {
-		return _meetupRegistrationId;
+	public long getMeetupsRegistrationId() {
+		return _meetupsRegistrationId;
 	}
 
-	public void setMeetupRegistrationId(long meetupRegistrationId) {
-		_meetupRegistrationId = meetupRegistrationId;
+	public void setMeetupsRegistrationId(long meetupsRegistrationId) {
+		_meetupsRegistrationId = meetupsRegistrationId;
 	}
 
 	public long getCompanyId() {
@@ -121,12 +121,12 @@ public class MeetupRegistrationSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
-	public long getMeetupEntryId() {
-		return _meetupEntryId;
+	public long getMeetupsEntryId() {
+		return _meetupsEntryId;
 	}
 
-	public void setMeetupEntryId(long meetupEntryId) {
-		_meetupEntryId = meetupEntryId;
+	public void setMeetupsEntryId(long meetupsEntryId) {
+		_meetupsEntryId = meetupsEntryId;
 	}
 
 	public int getStatus() {
@@ -145,13 +145,13 @@ public class MeetupRegistrationSoap implements Serializable {
 		_comments = comments;
 	}
 
-	private long _meetupRegistrationId;
+	private long _meetupsRegistrationId;
 	private long _companyId;
 	private long _userId;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private long _meetupEntryId;
+	private long _meetupsEntryId;
 	private int _status;
 	private String _comments;
 }

@@ -23,85 +23,85 @@
 package com.liferay.wol.service.persistence;
 
 /**
- * <a href="MeetupEntryPersistence.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsEntryPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface MeetupEntryPersistence {
-	public com.liferay.wol.model.MeetupEntry create(long meetupEntryId);
+public interface MeetupsEntryPersistence {
+	public com.liferay.wol.model.MeetupsEntry create(long meetupsEntryId);
 
-	public com.liferay.wol.model.MeetupEntry remove(long meetupEntryId)
+	public com.liferay.wol.model.MeetupsEntry remove(long meetupsEntryId)
 		throws com.liferay.portal.SystemException,
-			com.liferay.wol.NoSuchMeetupEntryException;
+			com.liferay.wol.NoSuchMeetupsEntryException;
 
-	public com.liferay.wol.model.MeetupEntry remove(
-		com.liferay.wol.model.MeetupEntry meetupEntry)
+	public com.liferay.wol.model.MeetupsEntry remove(
+		com.liferay.wol.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.wol.model.MeetupEntry update(
-		com.liferay.wol.model.MeetupEntry meetupEntry)
+	public com.liferay.wol.model.MeetupsEntry update(
+		com.liferay.wol.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.wol.model.MeetupEntry update(
-		com.liferay.wol.model.MeetupEntry meetupEntry, boolean merge)
+	public com.liferay.wol.model.MeetupsEntry update(
+		com.liferay.wol.model.MeetupsEntry meetupsEntry, boolean merge)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.wol.model.MeetupEntry updateImpl(
-		com.liferay.wol.model.MeetupEntry meetupEntry, boolean merge)
+	public com.liferay.wol.model.MeetupsEntry updateImpl(
+		com.liferay.wol.model.MeetupsEntry meetupsEntry, boolean merge)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.wol.model.MeetupEntry findByPrimaryKey(
-		long meetupEntryId)
+	public com.liferay.wol.model.MeetupsEntry findByPrimaryKey(
+		long meetupsEntryId)
 		throws com.liferay.portal.SystemException,
-			com.liferay.wol.NoSuchMeetupEntryException;
+			com.liferay.wol.NoSuchMeetupsEntryException;
 
-	public com.liferay.wol.model.MeetupEntry fetchByPrimaryKey(
-		long meetupEntryId) throws com.liferay.portal.SystemException;
+	public com.liferay.wol.model.MeetupsEntry fetchByPrimaryKey(
+		long meetupsEntryId) throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.MeetupEntry> findByCompanyId(
+	public java.util.List<com.liferay.wol.model.MeetupsEntry> findByCompanyId(
 		long companyId) throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.MeetupEntry> findByCompanyId(
+	public java.util.List<com.liferay.wol.model.MeetupsEntry> findByCompanyId(
 		long companyId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.MeetupEntry> findByCompanyId(
+	public java.util.List<com.liferay.wol.model.MeetupsEntry> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.wol.model.MeetupEntry findByCompanyId_First(
+	public com.liferay.wol.model.MeetupsEntry findByCompanyId_First(
 		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
-			com.liferay.wol.NoSuchMeetupEntryException;
+			com.liferay.wol.NoSuchMeetupsEntryException;
 
-	public com.liferay.wol.model.MeetupEntry findByCompanyId_Last(
+	public com.liferay.wol.model.MeetupsEntry findByCompanyId_Last(
 		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
-			com.liferay.wol.NoSuchMeetupEntryException;
+			com.liferay.wol.NoSuchMeetupsEntryException;
 
-	public com.liferay.wol.model.MeetupEntry[] findByCompanyId_PrevAndNext(
-		long meetupEntryId, long companyId,
+	public com.liferay.wol.model.MeetupsEntry[] findByCompanyId_PrevAndNext(
+		long meetupsEntryId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
-			com.liferay.wol.NoSuchMeetupEntryException;
+			com.liferay.wol.NoSuchMeetupsEntryException;
 
-	public java.util.List<com.liferay.wol.model.MeetupEntry> findWithDynamicQuery(
+	public java.util.List<com.liferay.wol.model.MeetupsEntry> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.MeetupEntry> findWithDynamicQuery(
+	public java.util.List<com.liferay.wol.model.MeetupsEntry> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
 		int start, int end) throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.MeetupEntry> findAll()
+	public java.util.List<com.liferay.wol.model.MeetupsEntry> findAll()
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.MeetupEntry> findAll(
+	public java.util.List<com.liferay.wol.model.MeetupsEntry> findAll(
 		int start, int end) throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.MeetupEntry> findAll(
+	public java.util.List<com.liferay.wol.model.MeetupsEntry> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 

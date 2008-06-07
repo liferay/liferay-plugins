@@ -40,10 +40,10 @@ import com.liferay.portlet.service.PropsUtil;
 import com.liferay.util.dao.hibernate.QueryPos;
 import com.liferay.util.dao.hibernate.QueryUtil;
 
-import com.liferay.wol.NoSuchMeetupEntryException;
-import com.liferay.wol.model.MeetupEntry;
-import com.liferay.wol.model.impl.MeetupEntryImpl;
-import com.liferay.wol.model.impl.MeetupEntryModelImpl;
+import com.liferay.wol.NoSuchMeetupsEntryException;
+import com.liferay.wol.model.MeetupsEntry;
+import com.liferay.wol.model.impl.MeetupsEntryImpl;
+import com.liferay.wol.model.impl.MeetupsEntryModelImpl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -57,46 +57,46 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * <a href="MeetupEntryPersistenceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsEntryPersistenceImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class MeetupEntryPersistenceImpl extends BasePersistence
-	implements MeetupEntryPersistence {
-	public MeetupEntry create(long meetupEntryId) {
-		MeetupEntry meetupEntry = new MeetupEntryImpl();
+public class MeetupsEntryPersistenceImpl extends BasePersistence
+	implements MeetupsEntryPersistence {
+	public MeetupsEntry create(long meetupsEntryId) {
+		MeetupsEntry meetupsEntry = new MeetupsEntryImpl();
 
-		meetupEntry.setNew(true);
-		meetupEntry.setPrimaryKey(meetupEntryId);
+		meetupsEntry.setNew(true);
+		meetupsEntry.setPrimaryKey(meetupsEntryId);
 
-		return meetupEntry;
+		return meetupsEntry;
 	}
 
-	public MeetupEntry remove(long meetupEntryId)
-		throws NoSuchMeetupEntryException, SystemException {
+	public MeetupsEntry remove(long meetupsEntryId)
+		throws NoSuchMeetupsEntryException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			MeetupEntry meetupEntry = (MeetupEntry)session.get(MeetupEntryImpl.class,
-					new Long(meetupEntryId));
+			MeetupsEntry meetupsEntry = (MeetupsEntry)session.get(MeetupsEntryImpl.class,
+					new Long(meetupsEntryId));
 
-			if (meetupEntry == null) {
+			if (meetupsEntry == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("No MeetupEntry exists with the primary key " +
-						meetupEntryId);
+					_log.warn("No MeetupsEntry exists with the primary key " +
+						meetupsEntryId);
 				}
 
-				throw new NoSuchMeetupEntryException(
-					"No MeetupEntry exists with the primary key " +
-					meetupEntryId);
+				throw new NoSuchMeetupsEntryException(
+					"No MeetupsEntry exists with the primary key " +
+					meetupsEntryId);
 			}
 
-			return remove(meetupEntry);
+			return remove(meetupsEntry);
 		}
-		catch (NoSuchMeetupEntryException nsee) {
+		catch (NoSuchMeetupsEntryException nsee) {
 			throw nsee;
 		}
 		catch (Exception e) {
@@ -107,37 +107,37 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public MeetupEntry remove(MeetupEntry meetupEntry)
+	public MeetupsEntry remove(MeetupsEntry meetupsEntry)
 		throws SystemException {
 		if (_listeners != null) {
 			for (ModelListener listener : _listeners) {
-				listener.onBeforeRemove(meetupEntry);
+				listener.onBeforeRemove(meetupsEntry);
 			}
 		}
 
-		meetupEntry = removeImpl(meetupEntry);
+		meetupsEntry = removeImpl(meetupsEntry);
 
 		if (_listeners != null) {
 			for (ModelListener listener : _listeners) {
-				listener.onAfterRemove(meetupEntry);
+				listener.onAfterRemove(meetupsEntry);
 			}
 		}
 
-		return meetupEntry;
+		return meetupsEntry;
 	}
 
-	protected MeetupEntry removeImpl(MeetupEntry meetupEntry)
+	protected MeetupsEntry removeImpl(MeetupsEntry meetupsEntry)
 		throws SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			session.delete(meetupEntry);
+			session.delete(meetupsEntry);
 
 			session.flush();
 
-			return meetupEntry;
+			return meetupsEntry;
 		}
 		catch (Exception e) {
 			throw HibernateUtil.processException(e);
@@ -145,53 +145,53 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 		finally {
 			closeSession(session);
 
-			FinderCache.clearCache(MeetupEntry.class.getName());
+			FinderCache.clearCache(MeetupsEntry.class.getName());
 		}
 	}
 
-	public MeetupEntry update(MeetupEntry meetupEntry)
+	public MeetupsEntry update(MeetupsEntry meetupsEntry)
 		throws SystemException {
 		if (_log.isWarnEnabled()) {
 			_log.warn(
-				"Using the deprecated update(MeetupEntry meetupEntry) method. Use update(MeetupEntry meetupEntry, boolean merge) instead.");
+				"Using the deprecated update(MeetupsEntry meetupsEntry) method. Use update(MeetupsEntry meetupsEntry, boolean merge) instead.");
 		}
 
-		return update(meetupEntry, false);
+		return update(meetupsEntry, false);
 	}
 
-	public MeetupEntry update(MeetupEntry meetupEntry, boolean merge)
+	public MeetupsEntry update(MeetupsEntry meetupsEntry, boolean merge)
 		throws SystemException {
-		boolean isNew = meetupEntry.isNew();
+		boolean isNew = meetupsEntry.isNew();
 
 		if (_listeners != null) {
 			for (ModelListener listener : _listeners) {
 				if (isNew) {
-					listener.onBeforeCreate(meetupEntry);
+					listener.onBeforeCreate(meetupsEntry);
 				}
 				else {
-					listener.onBeforeUpdate(meetupEntry);
+					listener.onBeforeUpdate(meetupsEntry);
 				}
 			}
 		}
 
-		meetupEntry = updateImpl(meetupEntry, merge);
+		meetupsEntry = updateImpl(meetupsEntry, merge);
 
 		if (_listeners != null) {
 			for (ModelListener listener : _listeners) {
 				if (isNew) {
-					listener.onAfterCreate(meetupEntry);
+					listener.onAfterCreate(meetupsEntry);
 				}
 				else {
-					listener.onAfterUpdate(meetupEntry);
+					listener.onAfterUpdate(meetupsEntry);
 				}
 			}
 		}
 
-		return meetupEntry;
+		return meetupsEntry;
 	}
 
-	public MeetupEntry updateImpl(
-		com.liferay.wol.model.MeetupEntry meetupEntry, boolean merge)
+	public MeetupsEntry updateImpl(
+		com.liferay.wol.model.MeetupsEntry meetupsEntry, boolean merge)
 		throws SystemException {
 		Session session = null;
 
@@ -199,19 +199,19 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 			session = openSession();
 
 			if (merge) {
-				session.merge(meetupEntry);
+				session.merge(meetupsEntry);
 			}
 			else {
-				if (meetupEntry.isNew()) {
-					session.save(meetupEntry);
+				if (meetupsEntry.isNew()) {
+					session.save(meetupsEntry);
 				}
 			}
 
 			session.flush();
 
-			meetupEntry.setNew(false);
+			meetupsEntry.setNew(false);
 
-			return meetupEntry;
+			return meetupsEntry;
 		}
 		catch (Exception e) {
 			throw HibernateUtil.processException(e);
@@ -219,36 +219,37 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 		finally {
 			closeSession(session);
 
-			FinderCache.clearCache(MeetupEntry.class.getName());
+			FinderCache.clearCache(MeetupsEntry.class.getName());
 		}
 	}
 
-	public MeetupEntry findByPrimaryKey(long meetupEntryId)
-		throws NoSuchMeetupEntryException, SystemException {
-		MeetupEntry meetupEntry = fetchByPrimaryKey(meetupEntryId);
+	public MeetupsEntry findByPrimaryKey(long meetupsEntryId)
+		throws NoSuchMeetupsEntryException, SystemException {
+		MeetupsEntry meetupsEntry = fetchByPrimaryKey(meetupsEntryId);
 
-		if (meetupEntry == null) {
+		if (meetupsEntry == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No MeetupEntry exists with the primary key " +
-					meetupEntryId);
+				_log.warn("No MeetupsEntry exists with the primary key " +
+					meetupsEntryId);
 			}
 
-			throw new NoSuchMeetupEntryException(
-				"No MeetupEntry exists with the primary key " + meetupEntryId);
+			throw new NoSuchMeetupsEntryException(
+				"No MeetupsEntry exists with the primary key " +
+				meetupsEntryId);
 		}
 
-		return meetupEntry;
+		return meetupsEntry;
 	}
 
-	public MeetupEntry fetchByPrimaryKey(long meetupEntryId)
+	public MeetupsEntry fetchByPrimaryKey(long meetupsEntryId)
 		throws SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			return (MeetupEntry)session.get(MeetupEntryImpl.class,
-				new Long(meetupEntryId));
+			return (MeetupsEntry)session.get(MeetupsEntryImpl.class,
+				new Long(meetupsEntryId));
 		}
 		catch (Exception e) {
 			throw HibernateUtil.processException(e);
@@ -258,10 +259,10 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<MeetupEntry> findByCompanyId(long companyId)
+	public List<MeetupsEntry> findByCompanyId(long companyId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = MeetupEntryModelImpl.CACHE_ENABLED;
-		String finderClassName = MeetupEntry.class.getName();
+		boolean finderClassNameCacheEnabled = MeetupsEntryModelImpl.CACHE_ENABLED;
+		String finderClassName = MeetupsEntry.class.getName();
 		String finderMethodName = "findByCompanyId";
 		String[] finderParams = new String[] { Long.class.getName() };
 		Object[] finderArgs = new Object[] { new Long(companyId) };
@@ -281,7 +282,7 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 
 				StringMaker query = new StringMaker();
 
-				query.append("FROM com.liferay.wol.model.MeetupEntry WHERE ");
+				query.append("FROM com.liferay.wol.model.MeetupsEntry WHERE ");
 
 				query.append("companyId = ?");
 
@@ -297,7 +298,7 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 
 				qPos.add(companyId);
 
-				List<MeetupEntry> list = q.list();
+				List<MeetupsEntry> list = q.list();
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
@@ -313,19 +314,19 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 			}
 		}
 		else {
-			return (List<MeetupEntry>)result;
+			return (List<MeetupsEntry>)result;
 		}
 	}
 
-	public List<MeetupEntry> findByCompanyId(long companyId, int start, int end)
+	public List<MeetupsEntry> findByCompanyId(long companyId, int start, int end)
 		throws SystemException {
 		return findByCompanyId(companyId, start, end, null);
 	}
 
-	public List<MeetupEntry> findByCompanyId(long companyId, int start,
+	public List<MeetupsEntry> findByCompanyId(long companyId, int start,
 		int end, OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = MeetupEntryModelImpl.CACHE_ENABLED;
-		String finderClassName = MeetupEntry.class.getName();
+		boolean finderClassNameCacheEnabled = MeetupsEntryModelImpl.CACHE_ENABLED;
+		String finderClassName = MeetupsEntry.class.getName();
 		String finderMethodName = "findByCompanyId";
 		String[] finderParams = new String[] {
 				Long.class.getName(),
@@ -354,7 +355,7 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 
 				StringMaker query = new StringMaker();
 
-				query.append("FROM com.liferay.wol.model.MeetupEntry WHERE ");
+				query.append("FROM com.liferay.wol.model.MeetupsEntry WHERE ");
 
 				query.append("companyId = ?");
 
@@ -377,7 +378,7 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 
 				qPos.add(companyId);
 
-				List<MeetupEntry> list = (List<MeetupEntry>)QueryUtil.list(q,
+				List<MeetupsEntry> list = (List<MeetupsEntry>)QueryUtil.list(q,
 						getDialect(), start, end);
 
 				FinderCache.putResult(finderClassNameCacheEnabled,
@@ -394,59 +395,59 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 			}
 		}
 		else {
-			return (List<MeetupEntry>)result;
+			return (List<MeetupsEntry>)result;
 		}
 	}
 
-	public MeetupEntry findByCompanyId_First(long companyId,
+	public MeetupsEntry findByCompanyId_First(long companyId,
 		OrderByComparator obc)
-		throws NoSuchMeetupEntryException, SystemException {
-		List<MeetupEntry> list = findByCompanyId(companyId, 0, 1, obc);
+		throws NoSuchMeetupsEntryException, SystemException {
+		List<MeetupsEntry> list = findByCompanyId(companyId, 0, 1, obc);
 
 		if (list.size() == 0) {
 			StringMaker msg = new StringMaker();
 
-			msg.append("No MeetupEntry exists with the key {");
+			msg.append("No MeetupsEntry exists with the key {");
 
 			msg.append("companyId=" + companyId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			throw new NoSuchMeetupEntryException(msg.toString());
+			throw new NoSuchMeetupsEntryException(msg.toString());
 		}
 		else {
 			return list.get(0);
 		}
 	}
 
-	public MeetupEntry findByCompanyId_Last(long companyId,
+	public MeetupsEntry findByCompanyId_Last(long companyId,
 		OrderByComparator obc)
-		throws NoSuchMeetupEntryException, SystemException {
+		throws NoSuchMeetupsEntryException, SystemException {
 		int count = countByCompanyId(companyId);
 
-		List<MeetupEntry> list = findByCompanyId(companyId, count - 1, count,
+		List<MeetupsEntry> list = findByCompanyId(companyId, count - 1, count,
 				obc);
 
 		if (list.size() == 0) {
 			StringMaker msg = new StringMaker();
 
-			msg.append("No MeetupEntry exists with the key {");
+			msg.append("No MeetupsEntry exists with the key {");
 
 			msg.append("companyId=" + companyId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			throw new NoSuchMeetupEntryException(msg.toString());
+			throw new NoSuchMeetupsEntryException(msg.toString());
 		}
 		else {
 			return list.get(0);
 		}
 	}
 
-	public MeetupEntry[] findByCompanyId_PrevAndNext(long meetupEntryId,
+	public MeetupsEntry[] findByCompanyId_PrevAndNext(long meetupsEntryId,
 		long companyId, OrderByComparator obc)
-		throws NoSuchMeetupEntryException, SystemException {
-		MeetupEntry meetupEntry = findByPrimaryKey(meetupEntryId);
+		throws NoSuchMeetupsEntryException, SystemException {
+		MeetupsEntry meetupsEntry = findByPrimaryKey(meetupsEntryId);
 
 		int count = countByCompanyId(companyId);
 
@@ -457,7 +458,7 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 
 			StringMaker query = new StringMaker();
 
-			query.append("FROM com.liferay.wol.model.MeetupEntry WHERE ");
+			query.append("FROM com.liferay.wol.model.MeetupsEntry WHERE ");
 
 			query.append("companyId = ?");
 
@@ -481,13 +482,13 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 			qPos.add(companyId);
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					meetupEntry);
+					meetupsEntry);
 
-			MeetupEntry[] array = new MeetupEntryImpl[3];
+			MeetupsEntry[] array = new MeetupsEntryImpl[3];
 
-			array[0] = (MeetupEntry)objArray[0];
-			array[1] = (MeetupEntry)objArray[1];
-			array[2] = (MeetupEntry)objArray[2];
+			array[0] = (MeetupsEntry)objArray[0];
+			array[1] = (MeetupsEntry)objArray[1];
+			array[2] = (MeetupsEntry)objArray[2];
 
 			return array;
 		}
@@ -499,7 +500,7 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<MeetupEntry> findWithDynamicQuery(
+	public List<MeetupsEntry> findWithDynamicQuery(
 		DynamicQueryInitializer queryInitializer) throws SystemException {
 		Session session = null;
 
@@ -518,7 +519,7 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<MeetupEntry> findWithDynamicQuery(
+	public List<MeetupsEntry> findWithDynamicQuery(
 		DynamicQueryInitializer queryInitializer, int start, int end)
 		throws SystemException {
 		Session session = null;
@@ -540,19 +541,19 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<MeetupEntry> findAll() throws SystemException {
+	public List<MeetupsEntry> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
-	public List<MeetupEntry> findAll(int start, int end)
+	public List<MeetupsEntry> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
 	}
 
-	public List<MeetupEntry> findAll(int start, int end, OrderByComparator obc)
+	public List<MeetupsEntry> findAll(int start, int end, OrderByComparator obc)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = MeetupEntryModelImpl.CACHE_ENABLED;
-		String finderClassName = MeetupEntry.class.getName();
+		boolean finderClassNameCacheEnabled = MeetupsEntryModelImpl.CACHE_ENABLED;
+		String finderClassName = MeetupsEntry.class.getName();
 		String finderMethodName = "findAll";
 		String[] finderParams = new String[] {
 				"java.lang.Integer", "java.lang.Integer",
@@ -577,7 +578,7 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 
 				StringMaker query = new StringMaker();
 
-				query.append("FROM com.liferay.wol.model.MeetupEntry ");
+				query.append("FROM com.liferay.wol.model.MeetupsEntry ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
@@ -592,7 +593,7 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 
 				Query q = session.createQuery(query.toString());
 
-				List<MeetupEntry> list = (List<MeetupEntry>)QueryUtil.list(q,
+				List<MeetupsEntry> list = (List<MeetupsEntry>)QueryUtil.list(q,
 						getDialect(), start, end);
 
 				if (obc == null) {
@@ -613,25 +614,25 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 			}
 		}
 		else {
-			return (List<MeetupEntry>)result;
+			return (List<MeetupsEntry>)result;
 		}
 	}
 
 	public void removeByCompanyId(long companyId) throws SystemException {
-		for (MeetupEntry meetupEntry : findByCompanyId(companyId)) {
-			remove(meetupEntry);
+		for (MeetupsEntry meetupsEntry : findByCompanyId(companyId)) {
+			remove(meetupsEntry);
 		}
 	}
 
 	public void removeAll() throws SystemException {
-		for (MeetupEntry meetupEntry : findAll()) {
-			remove(meetupEntry);
+		for (MeetupsEntry meetupsEntry : findAll()) {
+			remove(meetupsEntry);
 		}
 	}
 
 	public int countByCompanyId(long companyId) throws SystemException {
-		boolean finderClassNameCacheEnabled = MeetupEntryModelImpl.CACHE_ENABLED;
-		String finderClassName = MeetupEntry.class.getName();
+		boolean finderClassNameCacheEnabled = MeetupsEntryModelImpl.CACHE_ENABLED;
+		String finderClassName = MeetupsEntry.class.getName();
 		String finderMethodName = "countByCompanyId";
 		String[] finderParams = new String[] { Long.class.getName() };
 		Object[] finderArgs = new Object[] { new Long(companyId) };
@@ -652,7 +653,7 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 				StringMaker query = new StringMaker();
 
 				query.append("SELECT COUNT(*) ");
-				query.append("FROM com.liferay.wol.model.MeetupEntry WHERE ");
+				query.append("FROM com.liferay.wol.model.MeetupsEntry WHERE ");
 
 				query.append("companyId = ?");
 
@@ -695,8 +696,8 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 	}
 
 	public int countAll() throws SystemException {
-		boolean finderClassNameCacheEnabled = MeetupEntryModelImpl.CACHE_ENABLED;
-		String finderClassName = MeetupEntry.class.getName();
+		boolean finderClassNameCacheEnabled = MeetupsEntryModelImpl.CACHE_ENABLED;
+		String finderClassName = MeetupsEntry.class.getName();
 		String finderMethodName = "countAll";
 		String[] finderParams = new String[] {  };
 		Object[] finderArgs = new Object[] {  };
@@ -715,7 +716,7 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 				session = openSession();
 
 				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.wol.model.MeetupEntry");
+						"SELECT COUNT(*) FROM com.liferay.wol.model.MeetupsEntry");
 
 				Long count = null;
 
@@ -750,7 +751,7 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 	protected void initDao() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					PropsUtil.get(
-						"value.object.listener.com.liferay.wol.model.MeetupEntry")));
+						"value.object.listener.com.liferay.wol.model.MeetupsEntry")));
 
 		if (listenerClassNames.length > 0) {
 			try {
@@ -769,6 +770,6 @@ public class MeetupEntryPersistenceImpl extends BasePersistence
 		}
 	}
 
-	private static Log _log = LogFactory.getLog(MeetupEntryPersistenceImpl.class);
+	private static Log _log = LogFactory.getLog(MeetupsEntryPersistenceImpl.class);
 	private ModelListener[] _listeners;
 }

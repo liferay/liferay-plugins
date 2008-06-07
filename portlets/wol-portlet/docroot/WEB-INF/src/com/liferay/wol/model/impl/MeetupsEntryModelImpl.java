@@ -30,8 +30,8 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portlet.service.BaseModelImpl;
 import com.liferay.portlet.service.PropsUtil;
 
-import com.liferay.wol.model.MeetupEntry;
-import com.liferay.wol.model.MeetupEntrySoap;
+import com.liferay.wol.model.MeetupsEntry;
+import com.liferay.wol.model.MeetupsEntrySoap;
 
 import java.io.Serializable;
 
@@ -44,15 +44,15 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <a href="MeetupEntryModelImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsEntryModelImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class MeetupEntryModelImpl extends BaseModelImpl {
-	public static final String TABLE_NAME = "WOL_MeetupEntry";
+public class MeetupsEntryModelImpl extends BaseModelImpl {
+	public static final String TABLE_NAME = "WOL_MeetupsEntry";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "meetupEntryId", new Integer(Types.BIGINT) },
+			{ "meetupsEntryId", new Integer(Types.BIGINT) },
 			
 
 			{ "companyId", new Integer(Types.BIGINT) },
@@ -93,19 +93,19 @@ public class MeetupEntryModelImpl extends BaseModelImpl {
 
 			{ "price", new Integer(Types.DOUBLE) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WOL_MeetupEntry (meetupEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(75) null,description VARCHAR(75) null,startDate DATE null,endDate DATE null,addressId LONG,totalAttendees INTEGER,maxAttendees INTEGER,price DOUBLE)";
-	public static final String TABLE_SQL_DROP = "drop table WOL_MeetupEntry";
+	public static final String TABLE_SQL_CREATE = "create table WOL_MeetupsEntry (meetupsEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(75) null,description VARCHAR(75) null,startDate DATE null,endDate DATE null,addressId LONG,totalAttendees INTEGER,maxAttendees INTEGER,price DOUBLE)";
+	public static final String TABLE_SQL_DROP = "drop table WOL_MeetupsEntry";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
 	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.wol.model.MeetupEntry"),
+				"value.object.finder.cache.enabled.com.liferay.wol.model.MeetupsEntry"),
 			true);
 
-	public static MeetupEntry toModel(MeetupEntrySoap soapModel) {
-		MeetupEntry model = new MeetupEntryImpl();
+	public static MeetupsEntry toModel(MeetupsEntrySoap soapModel) {
+		MeetupsEntry model = new MeetupsEntryImpl();
 
-		model.setMeetupEntryId(soapModel.getMeetupEntryId());
+		model.setMeetupsEntryId(soapModel.getMeetupsEntryId());
 		model.setCompanyId(soapModel.getCompanyId());
 		model.setUserId(soapModel.getUserId());
 		model.setUserName(soapModel.getUserName());
@@ -123,10 +123,10 @@ public class MeetupEntryModelImpl extends BaseModelImpl {
 		return model;
 	}
 
-	public static List<MeetupEntry> toModels(MeetupEntrySoap[] soapModels) {
-		List<MeetupEntry> models = new ArrayList<MeetupEntry>(soapModels.length);
+	public static List<MeetupsEntry> toModels(MeetupsEntrySoap[] soapModels) {
+		List<MeetupsEntry> models = new ArrayList<MeetupsEntry>(soapModels.length);
 
-		for (MeetupEntrySoap soapModel : soapModels) {
+		for (MeetupsEntrySoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
 		}
 
@@ -134,30 +134,30 @@ public class MeetupEntryModelImpl extends BaseModelImpl {
 	}
 
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(PropsUtil.get(
-				"lock.expiration.time.com.liferay.wol.model.MeetupEntry"));
+				"lock.expiration.time.com.liferay.wol.model.MeetupsEntry"));
 
-	public MeetupEntryModelImpl() {
+	public MeetupsEntryModelImpl() {
 	}
 
 	public long getPrimaryKey() {
-		return _meetupEntryId;
+		return _meetupsEntryId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setMeetupEntryId(pk);
+		setMeetupsEntryId(pk);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_meetupEntryId);
+		return new Long(_meetupsEntryId);
 	}
 
-	public long getMeetupEntryId() {
-		return _meetupEntryId;
+	public long getMeetupsEntryId() {
+		return _meetupsEntryId;
 	}
 
-	public void setMeetupEntryId(long meetupEntryId) {
-		if (meetupEntryId != _meetupEntryId) {
-			_meetupEntryId = meetupEntryId;
+	public void setMeetupsEntryId(long meetupsEntryId) {
+		if (meetupsEntryId != _meetupsEntryId) {
+			_meetupsEntryId = meetupsEntryId;
 		}
 	}
 
@@ -311,16 +311,16 @@ public class MeetupEntryModelImpl extends BaseModelImpl {
 		}
 	}
 
-	public MeetupEntry toEscapedModel() {
+	public MeetupsEntry toEscapedModel() {
 		if (isEscapedModel()) {
-			return (MeetupEntry)this;
+			return (MeetupsEntry)this;
 		}
 		else {
-			MeetupEntry model = new MeetupEntryImpl();
+			MeetupsEntry model = new MeetupsEntryImpl();
 
 			model.setEscapedModel(true);
 
-			model.setMeetupEntryId(getMeetupEntryId());
+			model.setMeetupsEntryId(getMeetupsEntryId());
 			model.setCompanyId(getCompanyId());
 			model.setUserId(getUserId());
 			model.setUserName(HtmlUtil.escape(getUserName()));
@@ -335,8 +335,8 @@ public class MeetupEntryModelImpl extends BaseModelImpl {
 			model.setMaxAttendees(getMaxAttendees());
 			model.setPrice(getPrice());
 
-			model = (MeetupEntry)Proxy.newProxyInstance(MeetupEntry.class.getClassLoader(),
-					new Class[] { MeetupEntry.class },
+			model = (MeetupsEntry)Proxy.newProxyInstance(MeetupsEntry.class.getClassLoader(),
+					new Class[] { MeetupsEntry.class },
 					new ReadOnlyBeanHandler(model));
 
 			return model;
@@ -344,9 +344,9 @@ public class MeetupEntryModelImpl extends BaseModelImpl {
 	}
 
 	public Object clone() {
-		MeetupEntryImpl clone = new MeetupEntryImpl();
+		MeetupsEntryImpl clone = new MeetupsEntryImpl();
 
-		clone.setMeetupEntryId(getMeetupEntryId());
+		clone.setMeetupsEntryId(getMeetupsEntryId());
 		clone.setCompanyId(getCompanyId());
 		clone.setUserId(getUserId());
 		clone.setUserName(getUserName());
@@ -369,11 +369,11 @@ public class MeetupEntryModelImpl extends BaseModelImpl {
 			return -1;
 		}
 
-		MeetupEntryImpl meetupEntry = (MeetupEntryImpl)obj;
+		MeetupsEntryImpl meetupsEntry = (MeetupsEntryImpl)obj;
 
 		int value = 0;
 
-		value = DateUtil.compareTo(getStartDate(), meetupEntry.getStartDate());
+		value = DateUtil.compareTo(getStartDate(), meetupsEntry.getStartDate());
 
 		value = value * -1;
 
@@ -389,16 +389,16 @@ public class MeetupEntryModelImpl extends BaseModelImpl {
 			return false;
 		}
 
-		MeetupEntryImpl meetupEntry = null;
+		MeetupsEntryImpl meetupsEntry = null;
 
 		try {
-			meetupEntry = (MeetupEntryImpl)obj;
+			meetupsEntry = (MeetupsEntryImpl)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;
 		}
 
-		long pk = meetupEntry.getPrimaryKey();
+		long pk = meetupsEntry.getPrimaryKey();
 
 		if (getPrimaryKey() == pk) {
 			return true;
@@ -412,7 +412,7 @@ public class MeetupEntryModelImpl extends BaseModelImpl {
 		return (int)getPrimaryKey();
 	}
 
-	private long _meetupEntryId;
+	private long _meetupsEntryId;
 	private long _companyId;
 	private long _userId;
 	private String _userName;

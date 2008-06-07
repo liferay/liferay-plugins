@@ -30,8 +30,8 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portlet.service.BaseModelImpl;
 import com.liferay.portlet.service.PropsUtil;
 
-import com.liferay.wol.model.MeetupRegistration;
-import com.liferay.wol.model.MeetupRegistrationSoap;
+import com.liferay.wol.model.MeetupsRegistration;
+import com.liferay.wol.model.MeetupsRegistrationSoap;
 
 import java.io.Serializable;
 
@@ -44,15 +44,15 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <a href="MeetupRegistrationModelImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsRegistrationModelImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class MeetupRegistrationModelImpl extends BaseModelImpl {
-	public static final String TABLE_NAME = "WOL_MeetupRegistration";
+public class MeetupsRegistrationModelImpl extends BaseModelImpl {
+	public static final String TABLE_NAME = "WOL_MeetupsRegistration";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "meetupRegistrationId", new Integer(Types.BIGINT) },
+			{ "meetupsRegistrationId", new Integer(Types.BIGINT) },
 			
 
 			{ "companyId", new Integer(Types.BIGINT) },
@@ -70,7 +70,7 @@ public class MeetupRegistrationModelImpl extends BaseModelImpl {
 			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
 			
 
-			{ "meetupEntryId", new Integer(Types.BIGINT) },
+			{ "meetupsEntryId", new Integer(Types.BIGINT) },
 			
 
 			{ "status", new Integer(Types.INTEGER) },
@@ -78,36 +78,36 @@ public class MeetupRegistrationModelImpl extends BaseModelImpl {
 
 			{ "comments", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WOL_MeetupRegistration (meetupRegistrationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,meetupEntryId LONG,status INTEGER,comments STRING null)";
-	public static final String TABLE_SQL_DROP = "drop table WOL_MeetupRegistration";
+	public static final String TABLE_SQL_CREATE = "create table WOL_MeetupsRegistration (meetupsRegistrationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,meetupsEntryId LONG,status INTEGER,comments STRING null)";
+	public static final String TABLE_SQL_DROP = "drop table WOL_MeetupsRegistration";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
 	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.wol.model.MeetupRegistration"),
+				"value.object.finder.cache.enabled.com.liferay.wol.model.MeetupsRegistration"),
 			true);
 
-	public static MeetupRegistration toModel(MeetupRegistrationSoap soapModel) {
-		MeetupRegistration model = new MeetupRegistrationImpl();
+	public static MeetupsRegistration toModel(MeetupsRegistrationSoap soapModel) {
+		MeetupsRegistration model = new MeetupsRegistrationImpl();
 
-		model.setMeetupRegistrationId(soapModel.getMeetupRegistrationId());
+		model.setMeetupsRegistrationId(soapModel.getMeetupsRegistrationId());
 		model.setCompanyId(soapModel.getCompanyId());
 		model.setUserId(soapModel.getUserId());
 		model.setUserName(soapModel.getUserName());
 		model.setCreateDate(soapModel.getCreateDate());
 		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setMeetupEntryId(soapModel.getMeetupEntryId());
+		model.setMeetupsEntryId(soapModel.getMeetupsEntryId());
 		model.setStatus(soapModel.getStatus());
 		model.setComments(soapModel.getComments());
 
 		return model;
 	}
 
-	public static List<MeetupRegistration> toModels(
-		MeetupRegistrationSoap[] soapModels) {
-		List<MeetupRegistration> models = new ArrayList<MeetupRegistration>(soapModels.length);
+	public static List<MeetupsRegistration> toModels(
+		MeetupsRegistrationSoap[] soapModels) {
+		List<MeetupsRegistration> models = new ArrayList<MeetupsRegistration>(soapModels.length);
 
-		for (MeetupRegistrationSoap soapModel : soapModels) {
+		for (MeetupsRegistrationSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
 		}
 
@@ -115,30 +115,30 @@ public class MeetupRegistrationModelImpl extends BaseModelImpl {
 	}
 
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(PropsUtil.get(
-				"lock.expiration.time.com.liferay.wol.model.MeetupRegistration"));
+				"lock.expiration.time.com.liferay.wol.model.MeetupsRegistration"));
 
-	public MeetupRegistrationModelImpl() {
+	public MeetupsRegistrationModelImpl() {
 	}
 
 	public long getPrimaryKey() {
-		return _meetupRegistrationId;
+		return _meetupsRegistrationId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setMeetupRegistrationId(pk);
+		setMeetupsRegistrationId(pk);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_meetupRegistrationId);
+		return new Long(_meetupsRegistrationId);
 	}
 
-	public long getMeetupRegistrationId() {
-		return _meetupRegistrationId;
+	public long getMeetupsRegistrationId() {
+		return _meetupsRegistrationId;
 	}
 
-	public void setMeetupRegistrationId(long meetupRegistrationId) {
-		if (meetupRegistrationId != _meetupRegistrationId) {
-			_meetupRegistrationId = meetupRegistrationId;
+	public void setMeetupsRegistrationId(long meetupsRegistrationId) {
+		if (meetupsRegistrationId != _meetupsRegistrationId) {
+			_meetupsRegistrationId = meetupsRegistrationId;
 		}
 	}
 
@@ -201,13 +201,13 @@ public class MeetupRegistrationModelImpl extends BaseModelImpl {
 		}
 	}
 
-	public long getMeetupEntryId() {
-		return _meetupEntryId;
+	public long getMeetupsEntryId() {
+		return _meetupsEntryId;
 	}
 
-	public void setMeetupEntryId(long meetupEntryId) {
-		if (meetupEntryId != _meetupEntryId) {
-			_meetupEntryId = meetupEntryId;
+	public void setMeetupsEntryId(long meetupsEntryId) {
+		if (meetupsEntryId != _meetupsEntryId) {
+			_meetupsEntryId = meetupsEntryId;
 		}
 	}
 
@@ -234,27 +234,27 @@ public class MeetupRegistrationModelImpl extends BaseModelImpl {
 		}
 	}
 
-	public MeetupRegistration toEscapedModel() {
+	public MeetupsRegistration toEscapedModel() {
 		if (isEscapedModel()) {
-			return (MeetupRegistration)this;
+			return (MeetupsRegistration)this;
 		}
 		else {
-			MeetupRegistration model = new MeetupRegistrationImpl();
+			MeetupsRegistration model = new MeetupsRegistrationImpl();
 
 			model.setEscapedModel(true);
 
-			model.setMeetupRegistrationId(getMeetupRegistrationId());
+			model.setMeetupsRegistrationId(getMeetupsRegistrationId());
 			model.setCompanyId(getCompanyId());
 			model.setUserId(getUserId());
 			model.setUserName(HtmlUtil.escape(getUserName()));
 			model.setCreateDate(getCreateDate());
 			model.setModifiedDate(getModifiedDate());
-			model.setMeetupEntryId(getMeetupEntryId());
+			model.setMeetupsEntryId(getMeetupsEntryId());
 			model.setStatus(getStatus());
 			model.setComments(HtmlUtil.escape(getComments()));
 
-			model = (MeetupRegistration)Proxy.newProxyInstance(MeetupRegistration.class.getClassLoader(),
-					new Class[] { MeetupRegistration.class },
+			model = (MeetupsRegistration)Proxy.newProxyInstance(MeetupsRegistration.class.getClassLoader(),
+					new Class[] { MeetupsRegistration.class },
 					new ReadOnlyBeanHandler(model));
 
 			return model;
@@ -262,15 +262,15 @@ public class MeetupRegistrationModelImpl extends BaseModelImpl {
 	}
 
 	public Object clone() {
-		MeetupRegistrationImpl clone = new MeetupRegistrationImpl();
+		MeetupsRegistrationImpl clone = new MeetupsRegistrationImpl();
 
-		clone.setMeetupRegistrationId(getMeetupRegistrationId());
+		clone.setMeetupsRegistrationId(getMeetupsRegistrationId());
 		clone.setCompanyId(getCompanyId());
 		clone.setUserId(getUserId());
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
-		clone.setMeetupEntryId(getMeetupEntryId());
+		clone.setMeetupsEntryId(getMeetupsEntryId());
 		clone.setStatus(getStatus());
 		clone.setComments(getComments());
 
@@ -282,12 +282,12 @@ public class MeetupRegistrationModelImpl extends BaseModelImpl {
 			return -1;
 		}
 
-		MeetupRegistrationImpl meetupRegistration = (MeetupRegistrationImpl)obj;
+		MeetupsRegistrationImpl meetupsRegistration = (MeetupsRegistrationImpl)obj;
 
 		int value = 0;
 
 		value = DateUtil.compareTo(getModifiedDate(),
-				meetupRegistration.getModifiedDate());
+				meetupsRegistration.getModifiedDate());
 
 		value = value * -1;
 
@@ -303,16 +303,16 @@ public class MeetupRegistrationModelImpl extends BaseModelImpl {
 			return false;
 		}
 
-		MeetupRegistrationImpl meetupRegistration = null;
+		MeetupsRegistrationImpl meetupsRegistration = null;
 
 		try {
-			meetupRegistration = (MeetupRegistrationImpl)obj;
+			meetupsRegistration = (MeetupsRegistrationImpl)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;
 		}
 
-		long pk = meetupRegistration.getPrimaryKey();
+		long pk = meetupsRegistration.getPrimaryKey();
 
 		if (getPrimaryKey() == pk) {
 			return true;
@@ -326,13 +326,13 @@ public class MeetupRegistrationModelImpl extends BaseModelImpl {
 		return (int)getPrimaryKey();
 	}
 
-	private long _meetupRegistrationId;
+	private long _meetupsRegistrationId;
 	private long _companyId;
 	private long _userId;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private long _meetupEntryId;
+	private long _meetupsEntryId;
 	private int _status;
 	private String _comments;
 }

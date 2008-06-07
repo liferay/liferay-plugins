@@ -25,51 +25,51 @@ package com.liferay.wol.service;
 import com.liferay.portlet.service.BeanLocatorUtil;
 
 /**
- * <a href="MeetupEntryLocalServiceFactory.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsEntryLocalServiceFactory.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class MeetupEntryLocalServiceFactory {
-	public static MeetupEntryLocalService getService() {
+public class MeetupsEntryLocalServiceFactory {
+	public static MeetupsEntryLocalService getService() {
 		return _getFactory()._service;
 	}
 
-	public static MeetupEntryLocalService getImpl() {
+	public static MeetupsEntryLocalService getImpl() {
 		if (_impl == null) {
-			_impl = (MeetupEntryLocalService)BeanLocatorUtil.locate(_IMPL);
+			_impl = (MeetupsEntryLocalService)BeanLocatorUtil.locate(_IMPL);
 		}
 
 		return _impl;
 	}
 
-	public static MeetupEntryLocalService getTxImpl() {
+	public static MeetupsEntryLocalService getTxImpl() {
 		if (_txImpl == null) {
-			_txImpl = (MeetupEntryLocalService)BeanLocatorUtil.locate(_TX_IMPL);
+			_txImpl = (MeetupsEntryLocalService)BeanLocatorUtil.locate(_TX_IMPL);
 		}
 
 		return _txImpl;
 	}
 
-	public void setService(MeetupEntryLocalService service) {
+	public void setService(MeetupsEntryLocalService service) {
 		_service = service;
 	}
 
-	private static MeetupEntryLocalServiceFactory _getFactory() {
+	private static MeetupsEntryLocalServiceFactory _getFactory() {
 		if (_factory == null) {
-			_factory = (MeetupEntryLocalServiceFactory)BeanLocatorUtil.locate(_FACTORY);
+			_factory = (MeetupsEntryLocalServiceFactory)BeanLocatorUtil.locate(_FACTORY);
 		}
 
 		return _factory;
 	}
 
-	private static final String _FACTORY = MeetupEntryLocalServiceFactory.class.getName();
-	private static final String _IMPL = MeetupEntryLocalService.class.getName() +
+	private static final String _FACTORY = MeetupsEntryLocalServiceFactory.class.getName();
+	private static final String _IMPL = MeetupsEntryLocalService.class.getName() +
 		".impl";
-	private static final String _TX_IMPL = MeetupEntryLocalService.class.getName() +
+	private static final String _TX_IMPL = MeetupsEntryLocalService.class.getName() +
 		".transaction";
-	private static MeetupEntryLocalServiceFactory _factory;
-	private static MeetupEntryLocalService _impl;
-	private static MeetupEntryLocalService _txImpl;
-	private MeetupEntryLocalService _service;
+	private static MeetupsEntryLocalServiceFactory _factory;
+	private static MeetupsEntryLocalService _impl;
+	private static MeetupsEntryLocalService _txImpl;
+	private MeetupsEntryLocalService _service;
 }

@@ -20,17 +20,32 @@
  * SOFTWARE.
  */
 
-package com.liferay.wol.service.impl;
+package com.liferay.wol;
 
-import com.liferay.wol.service.base.MeetupRegistrationLocalServiceBaseImpl;
+import com.liferay.portal.PortalException;
 
 /**
- * <a href="MeetupRegistrationLocalServiceImpl.java.html"><b><i>View Source</i>
- * </b></a>
+ * <a href="NoSuchMeetupsEntryException.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class MeetupRegistrationLocalServiceImpl
-	extends MeetupRegistrationLocalServiceBaseImpl {
+public class NoSuchMeetupsEntryException extends PortalException {
+
+	public NoSuchMeetupsEntryException() {
+		super();
+	}
+
+	public NoSuchMeetupsEntryException(String msg) {
+		super(msg);
+	}
+
+	public NoSuchMeetupsEntryException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+	public NoSuchMeetupsEntryException(Throwable cause) {
+		super(cause);
+	}
+
 }
