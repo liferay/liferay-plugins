@@ -65,7 +65,7 @@ for (Object[] buddy : buddies) {
 
 // Entries
 
-long entriesCreateDate = ParamUtil.getLong(request, "entriesCreateDate");
+long entriesCreateDate = ParamUtil.getLong(request, "createDate");
 
 if (entriesCreateDate == 0) {
 	entriesCreateDate = System.currentTimeMillis() - Time.MINUTE;
