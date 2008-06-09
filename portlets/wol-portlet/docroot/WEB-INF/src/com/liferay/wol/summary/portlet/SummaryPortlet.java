@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.Group;
@@ -79,17 +80,21 @@ public class SummaryPortlet extends JSPPortlet {
 			if (actionName.equals("addFriend")) {
 				addFriend(req);
 			}
+			else if (actionName.equals("deleteFriend")) {
+				deleteFriend(req);
+			}
 			else if (actionName.equals("joinOrganization")) {
 				joinOrganization(req);
 			}
 			else if (actionName.equals("leaveOrganization")) {
 				leaveOrganization(req);
 			}
-			else if (actionName.equals("removeFriend")) {
-				removeFriend(req);
-			}
 			else if (actionName.equals("updateSummary")) {
 				updateSummary(req);
+			}
+
+			if (Validator.isNull(actionName)) {
+				return;
 			}
 
 			if (SessionErrors.isEmpty(req)) {
@@ -118,6 +123,20 @@ public class SummaryPortlet extends JSPPortlet {
 			themeDisplay.getUserId(), 0, User.class.getName(),
 			themeDisplay.getUserId(), FriendsRequestKeys.ADD_FRIEND,
 			StringPool.BLANK, user.getUserId());
+	}
+
+	protected void deleteFriend(ActionRequest req) throws Exception {
+		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		Group group = GroupLocalServiceUtil.getGroup(
+			themeDisplay.getPortletGroupId());
+
+		User user = UserLocalServiceUtil.getUserById(group.getClassPK());
+
+		SocialRelationLocalServiceUtil.deleteRelation(
+			themeDisplay.getUserId(), user.getUserId(),
+			SocialRelationConstants.TYPE_BI_FRIEND);
 	}
 
 	protected void joinOrganization(ActionRequest req) throws Exception {
@@ -162,20 +181,6 @@ public class SummaryPortlet extends JSPPortlet {
 
 		UserLocalServiceUtil.unsetOrganizationUsers(
 			group.getClassPK(), new long[] {themeDisplay.getUserId()});
-	}
-
-	protected void removeFriend(ActionRequest req) throws Exception {
-		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		Group group = GroupLocalServiceUtil.getGroup(
-			themeDisplay.getPortletGroupId());
-
-		User user = UserLocalServiceUtil.getUserById(group.getClassPK());
-
-		SocialRelationLocalServiceUtil.deleteRelation(
-			themeDisplay.getUserId(), user.getUserId(),
-			SocialRelationConstants.TYPE_BI_FRIEND);
 	}
 
 	protected void updateSummary(ActionRequest req) throws Exception {

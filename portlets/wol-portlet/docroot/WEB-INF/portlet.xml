@@ -248,10 +248,14 @@
 	<portlet>
 		<portlet-name>9</portlet-name>
 		<display-name>Meetups</display-name>
-		<portlet-class>com.liferay.util.bridges.jsp.JSPPortlet</portlet-class>
+		<portlet-class>com.liferay.wol.meetups.portlet.MeetupsPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/meetups/view.jsp</value>
+		</init-param>
+		<init-param>
+			<name>clear-request-parameters</name>
+			<value>true</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>

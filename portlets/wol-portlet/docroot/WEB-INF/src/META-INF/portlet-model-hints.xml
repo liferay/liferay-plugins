@@ -47,13 +47,15 @@
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="title" type="String" />
-		<field name="description" type="String" />
+		<field name="description" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
 		<field name="startDate" type="Date" />
 		<field name="endDate" type="Date" />
-		<field name="addressId" type="long" />
 		<field name="totalAttendees" type="int" />
 		<field name="maxAttendees" type="int" />
 		<field name="price" type="double" />
+		<field name="thumbnailId" type="long" />
 	</model>
 	<model name="com.liferay.wol.model.MeetupsRegistration">
 		<field name="meetupsRegistrationId" type="long" />

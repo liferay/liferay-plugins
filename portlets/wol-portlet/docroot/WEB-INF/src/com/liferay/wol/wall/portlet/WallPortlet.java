@@ -66,15 +66,17 @@ public class WallPortlet extends JSPPortlet {
 				deleteWallEntry(req);
 			}
 
-			if (Validator.isNotNull(actionName)) {
-				if (SessionErrors.isEmpty(req)) {
-					SessionMessages.add(req, "request_processed");
-				}
-
-				String redirect = ParamUtil.getString(req, "redirect");
-
-				res.sendRedirect(redirect);
+			if (Validator.isNull(actionName)) {
+				return;
 			}
+
+			if (SessionErrors.isEmpty(req)) {
+				SessionMessages.add(req, "request_processed");
+			}
+
+			String redirect = ParamUtil.getString(req, "redirect");
+
+			res.sendRedirect(redirect);
 		}
 		catch (Exception e) {
 			throw new PortletException(e);

@@ -60,6 +60,8 @@
 	</portlet>
 	<portlet>
 		<portlet-name>9</portlet-name>
+		<friendly-url-mapper-class>com.liferay.wol.meetups.portlet.MeetupsFriendlyURLMapper</friendly-url-mapper-class>
+		<restore-current-view>false</restore-current-view>
 		<css-class-wrapper>wol-portlet-meetups</css-class-wrapper>
 	</portlet>
 	<role-mapper>

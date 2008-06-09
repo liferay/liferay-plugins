@@ -22,7 +22,16 @@
 
 package com.liferay.wol.service.impl;
 
+import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.wol.model.MeetupsRegistration;
 import com.liferay.wol.service.base.MeetupsRegistrationLocalServiceBaseImpl;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * <a href="MeetupsRegistrationLocalServiceImpl.java.html"><b><i>View Source</i>
@@ -33,4 +42,61 @@ import com.liferay.wol.service.base.MeetupsRegistrationLocalServiceBaseImpl;
  */
 public class MeetupsRegistrationLocalServiceImpl
 	extends MeetupsRegistrationLocalServiceBaseImpl {
+
+	public List<MeetupsRegistration> getMeetupsRegistrations(
+			long meetupsEntryId, int status, int start, int end)
+		throws SystemException {
+
+		return meetupsRegistrationPersistence.findByME_S(
+			meetupsEntryId, status, start, end);
+	}
+
+	public MeetupsRegistration getMeetupsRegistration(
+			long userId, long meetupsEntryId)
+		throws PortalException, SystemException {
+
+		return meetupsRegistrationPersistence.findByU_ME(
+			userId, meetupsEntryId);
+	}
+
+	public int getMeetupsRegistrationsCount(long meetupsEntryId, int status)
+		throws SystemException {
+
+		return meetupsRegistrationPersistence.countByME_S(
+			meetupsEntryId, status);
+	}
+
+	public MeetupsRegistration updateMeetupsRegistration(
+			long userId, long meetupsEntryId, int status, String comments)
+		throws PortalException, SystemException {
+
+		User user = UserLocalServiceUtil.getUserById(userId);
+		Date now = new Date();
+
+		MeetupsRegistration meetupsRegistration =
+			meetupsRegistrationPersistence.fetchByU_ME(
+				userId, meetupsEntryId);
+
+		if (meetupsRegistration == null) {
+			long meetupsRegistrationId = CounterLocalServiceUtil.increment();
+
+			meetupsRegistration = meetupsRegistrationPersistence.create(
+				meetupsRegistrationId);
+
+			meetupsRegistration.setCompanyId(user.getCompanyId());
+			meetupsRegistration.setUserId(user.getUserId());
+			meetupsRegistration.setUserName(user.getFullName());
+			meetupsRegistration.setCreateDate(now);
+			meetupsRegistration.setMeetupsEntryId(meetupsEntryId);
+		}
+
+		meetupsRegistration.setModifiedDate(now);
+		meetupsRegistration.setStatus(status);
+		meetupsRegistration.setComments(comments);
+
+		meetupsRegistrationPersistence.update(meetupsRegistration, false);
+
+		return meetupsRegistration;
+	}
+
 }

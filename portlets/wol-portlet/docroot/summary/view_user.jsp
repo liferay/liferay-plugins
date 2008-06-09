@@ -43,7 +43,7 @@
 					PortletURL addAsFriendURL = renderResponse.createActionURL();
 
 					addAsFriendURL.setParameter(ActionRequest.ACTION_NAME, "addFriend");
-					addAsFriendURL.setParameter("redirect", PortalUtil.getCurrentURL(request));
+					addAsFriendURL.setParameter("redirect", currentURL);
 					%>
 
 					<p class="add-as-friend">
@@ -156,7 +156,7 @@
 		%>
 
 		<form action="<portlet:actionURL name="updateSummary" />" method="post" name="<portlet:namespace />fm">
-		<input name="<portlet:namespace />redirect" type="hidden" value="<%= PortalUtil.getCurrentURL(request) %>" />
+		<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
 
 		<div class="portlet-msg-info">
 			This form will allow you to change settings used to track your participation in the Liferay Community. Use <a href="<%= themeDisplay.getURLMyAccount() %>">My Account</a> to change regular account settings like profile picture or password.

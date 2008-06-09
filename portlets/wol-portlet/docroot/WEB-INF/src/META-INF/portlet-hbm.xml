@@ -66,10 +66,10 @@
 		<property name="description" type="com.liferay.util.dao.hibernate.StringType" />
 		<property name="startDate" />
 		<property name="endDate" />
-		<property name="addressId" type="com.liferay.util.dao.hibernate.LongType" />
 		<property name="totalAttendees" type="com.liferay.util.dao.hibernate.IntegerType" />
 		<property name="maxAttendees" type="com.liferay.util.dao.hibernate.IntegerType" />
 		<property name="price" type="com.liferay.util.dao.hibernate.DoubleType" />
+		<property name="thumbnailId" type="com.liferay.util.dao.hibernate.LongType" />
 	</class>
 	<class name="com.liferay.wol.model.impl.MeetupsRegistrationImpl" table="WOL_MeetupsRegistration">
 		<cache usage="read-write" />

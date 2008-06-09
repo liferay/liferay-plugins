@@ -89,14 +89,43 @@ public class MeetupsEntryLocalServiceUtil {
 
 	public static com.liferay.wol.model.MeetupsEntry addMeetupsEntry(
 		long userId, java.lang.String title, java.lang.String description,
-		java.util.Date startDate, java.util.Date endDate, long addressId,
-		int totalAttendees, int maxAttendees, double price)
+		int startDateMonth, int startDateDay, int startDateYear,
+		int startDateHour, int startDateMinute, int endDateMonth,
+		int endDateDay, int endDateYear, int endDateHour, int endDateMinute,
+		int totalAttendees, int maxAttendees, double price, byte[] thumbnail)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		MeetupsEntryLocalService meetupsEntryLocalService = MeetupsEntryLocalServiceFactory.getService();
 
 		return meetupsEntryLocalService.addMeetupsEntry(userId, title,
-			description, startDate, endDate, addressId, totalAttendees,
-			maxAttendees, price);
+			description, startDateMonth, startDateDay, startDateYear,
+			startDateHour, startDateMinute, endDateMonth, endDateDay,
+			endDateYear, endDateHour, endDateMinute, totalAttendees,
+			maxAttendees, price, thumbnail);
+	}
+
+	public static java.util.List<com.liferay.wol.model.MeetupsEntry> getMeetupsEntries(
+		long companyId) throws com.liferay.portal.SystemException {
+		MeetupsEntryLocalService meetupsEntryLocalService = MeetupsEntryLocalServiceFactory.getService();
+
+		return meetupsEntryLocalService.getMeetupsEntries(companyId);
+	}
+
+	public static com.liferay.wol.model.MeetupsEntry updateMeetupsEntry(
+		long userId, long meetupsEntryId, java.lang.String title,
+		java.lang.String description, int startDateMonth, int startDateDay,
+		int startDateYear, int startDateHour, int startDateMinute,
+		int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
+		int endDateMinute, int totalAttendees, int maxAttendees, double price,
+		byte[] thumbnail)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		MeetupsEntryLocalService meetupsEntryLocalService = MeetupsEntryLocalServiceFactory.getService();
+
+		return meetupsEntryLocalService.updateMeetupsEntry(userId,
+			meetupsEntryId, title, description, startDateMonth, startDateDay,
+			startDateYear, startDateHour, startDateMinute, endDateMonth,
+			endDateDay, endDateYear, endDateHour, endDateMinute,
+			totalAttendees, maxAttendees, price, thumbnail);
 	}
 }

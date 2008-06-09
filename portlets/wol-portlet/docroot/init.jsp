@@ -40,6 +40,7 @@
 <%@ page import="com.liferay.portal.kernel.log.LogFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.messaging.DestinationNames" %>
 <%@ page import="com.liferay.portal.kernel.messaging.MessageBusUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.CalendarFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
 <%@ page import="com.liferay.portal.kernel.util.DateFormats" %>
@@ -77,19 +78,27 @@
 <%@ page import="com.liferay.portlet.social.service.SocialRelationLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.social.service.SocialRequestLocalServiceUtil" %>
 <%@ page import="com.liferay.util.RSSUtil" %>
+<%@ page import="com.liferay.wol.NoSuchMeetupsEntryException" %>
+<%@ page import="com.liferay.wol.NoSuchMeetupsRegistrationException" %>
 <%@ page import="com.liferay.wol.NoSuchSVNRepositoryException" %>
 <%@ page import="com.liferay.wol.friends.social.FriendsRequestKeys" %>
 <%@ page import="com.liferay.wol.jira.util.JIRAConstants" %>
 <%@ page import="com.liferay.wol.jira.util.JIRAUtil" %>
 <%@ page import="com.liferay.wol.members.social.MembersRequestKeys" %>
+<%@ page import="com.liferay.wol.meetups.util.MeetupsConstants" %>
 <%@ page import="com.liferay.wol.model.JIRAIssue" %>
+<%@ page import="com.liferay.wol.model.MeetupsEntry" %>
+<%@ page import="com.liferay.wol.model.MeetupsRegistration" %>
 <%@ page import="com.liferay.wol.model.SVNRepository" %>
 <%@ page import="com.liferay.wol.model.SVNRevision" %>
 <%@ page import="com.liferay.wol.model.WallEntry" %>
 <%@ page import="com.liferay.wol.service.JIRAIssueLocalServiceUtil" %>
+<%@ page import="com.liferay.wol.service.MeetupsEntryLocalServiceUtil" %>
+<%@ page import="com.liferay.wol.service.MeetupsRegistrationLocalServiceUtil" %>
 <%@ page import="com.liferay.wol.service.SVNRepositoryLocalServiceUtil" %>
 <%@ page import="com.liferay.wol.service.SVNRevisionLocalServiceUtil" %>
 <%@ page import="com.liferay.wol.service.WallEntryLocalServiceUtil" %>
+<%@ page import="com.liferay.wol.summary.util.SummaryConstants" %>
 <%@ page import="com.liferay.wol.svn.util.SVNConstants" %>
 
 <%@ page import="com.sun.syndication.feed.synd.SyndContent" %>
@@ -103,6 +112,7 @@
 <%@ page import="java.text.NumberFormat" %>
 
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.LinkedHashMap" %>
 <%@ page import="java.util.List" %>
@@ -120,7 +130,7 @@
 <%
 WindowState windowState = renderRequest.getWindowState();
 
-String namespace = renderResponse.getNamespace();
+String currentURL = PortalUtil.getCurrentURL(request);
 
 Group group = GroupLocalServiceUtil.getGroup(themeDisplay.getPortletGroupId());
 

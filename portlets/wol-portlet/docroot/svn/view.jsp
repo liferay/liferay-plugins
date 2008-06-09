@@ -58,7 +58,7 @@
 		SyndFeed syndFeed = new SyndFeedImpl();
 
 		syndFeed.setFeedType(RSSUtil.DEFAULT_FEED_TYPE);
-		syndFeed.setLink(PortalUtil.getPortalURL(request) + PortalUtil.getCurrentURL(request));
+		syndFeed.setLink(currentURL);
 		syndFeed.setTitle(title);
 		syndFeed.setDescription(title);
 

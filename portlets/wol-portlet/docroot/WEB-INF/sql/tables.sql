@@ -7,13 +7,13 @@ create table WOL_MeetupsEntry (
 	createDate DATE null,
 	modifiedDate DATE null,
 	title VARCHAR(75) null,
-	description VARCHAR(75) null,
+	description STRING null,
 	startDate DATE null,
 	endDate DATE null,
-	addressId LONG,
 	totalAttendees INTEGER,
 	maxAttendees INTEGER,
-	price DOUBLE
+	price DOUBLE,
+	thumbnailId LONG
 );
 
 create table WOL_MeetupsRegistration (

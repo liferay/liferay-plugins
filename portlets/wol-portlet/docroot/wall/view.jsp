@@ -55,7 +55,7 @@ if (wallToWallUser != null) {
 
 <c:if test="<%= themeDisplay.isSignedIn() %>">
 	<form method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />addWallEntry(); return false;">
-	<input name="<portlet:namespace />redirect" type="hidden" value="<%= PortalUtil.getCurrentURL(request) %>" />
+	<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
 	<input name="<portlet:namespace />wallEntryId" type="hidden" value="" />
 
 	<liferay-ui:input-field model="<%= WallEntry.class %>" bean="<%= null %>" field="comments" />
@@ -146,7 +146,7 @@ for (int i = 0; i < results.size(); i++) {
 
 				String wallToWallHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + "/profile/-/wall/" + wallUser.getScreenName();
 				String postHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + "/profile/-/wall";
-				String deleteHREF = "javascript: " + namespace + "deleteWallEntry(" + wallEntry.getWallEntryId() + ");";
+				String deleteHREF = "javascript: " + renderResponse.getNamespace() + "deleteWallEntry(" + wallEntry.getWallEntryId() + ");";
 				%>
 
 				<liferay-ui:icon-list>

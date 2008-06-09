@@ -82,18 +82,18 @@ public class MeetupsEntryModelImpl extends BaseModelImpl {
 			{ "endDate", new Integer(Types.TIMESTAMP) },
 			
 
-			{ "addressId", new Integer(Types.BIGINT) },
-			
-
 			{ "totalAttendees", new Integer(Types.INTEGER) },
 			
 
 			{ "maxAttendees", new Integer(Types.INTEGER) },
 			
 
-			{ "price", new Integer(Types.DOUBLE) }
+			{ "price", new Integer(Types.DOUBLE) },
+			
+
+			{ "thumbnailId", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WOL_MeetupsEntry (meetupsEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(75) null,description VARCHAR(75) null,startDate DATE null,endDate DATE null,addressId LONG,totalAttendees INTEGER,maxAttendees INTEGER,price DOUBLE)";
+	public static final String TABLE_SQL_CREATE = "create table WOL_MeetupsEntry (meetupsEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(75) null,description STRING null,startDate DATE null,endDate DATE null,totalAttendees INTEGER,maxAttendees INTEGER,price DOUBLE,thumbnailId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table WOL_MeetupsEntry";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -115,10 +115,10 @@ public class MeetupsEntryModelImpl extends BaseModelImpl {
 		model.setDescription(soapModel.getDescription());
 		model.setStartDate(soapModel.getStartDate());
 		model.setEndDate(soapModel.getEndDate());
-		model.setAddressId(soapModel.getAddressId());
 		model.setTotalAttendees(soapModel.getTotalAttendees());
 		model.setMaxAttendees(soapModel.getMaxAttendees());
 		model.setPrice(soapModel.getPrice());
+		model.setThumbnailId(soapModel.getThumbnailId());
 
 		return model;
 	}
@@ -271,16 +271,6 @@ public class MeetupsEntryModelImpl extends BaseModelImpl {
 		}
 	}
 
-	public long getAddressId() {
-		return _addressId;
-	}
-
-	public void setAddressId(long addressId) {
-		if (addressId != _addressId) {
-			_addressId = addressId;
-		}
-	}
-
 	public int getTotalAttendees() {
 		return _totalAttendees;
 	}
@@ -311,6 +301,16 @@ public class MeetupsEntryModelImpl extends BaseModelImpl {
 		}
 	}
 
+	public long getThumbnailId() {
+		return _thumbnailId;
+	}
+
+	public void setThumbnailId(long thumbnailId) {
+		if (thumbnailId != _thumbnailId) {
+			_thumbnailId = thumbnailId;
+		}
+	}
+
 	public MeetupsEntry toEscapedModel() {
 		if (isEscapedModel()) {
 			return (MeetupsEntry)this;
@@ -330,10 +330,10 @@ public class MeetupsEntryModelImpl extends BaseModelImpl {
 			model.setDescription(HtmlUtil.escape(getDescription()));
 			model.setStartDate(getStartDate());
 			model.setEndDate(getEndDate());
-			model.setAddressId(getAddressId());
 			model.setTotalAttendees(getTotalAttendees());
 			model.setMaxAttendees(getMaxAttendees());
 			model.setPrice(getPrice());
+			model.setThumbnailId(getThumbnailId());
 
 			model = (MeetupsEntry)Proxy.newProxyInstance(MeetupsEntry.class.getClassLoader(),
 					new Class[] { MeetupsEntry.class },
@@ -356,10 +356,10 @@ public class MeetupsEntryModelImpl extends BaseModelImpl {
 		clone.setDescription(getDescription());
 		clone.setStartDate(getStartDate());
 		clone.setEndDate(getEndDate());
-		clone.setAddressId(getAddressId());
 		clone.setTotalAttendees(getTotalAttendees());
 		clone.setMaxAttendees(getMaxAttendees());
 		clone.setPrice(getPrice());
+		clone.setThumbnailId(getThumbnailId());
 
 		return clone;
 	}
@@ -422,8 +422,8 @@ public class MeetupsEntryModelImpl extends BaseModelImpl {
 	private String _description;
 	private Date _startDate;
 	private Date _endDate;
-	private long _addressId;
 	private int _totalAttendees;
 	private int _maxAttendees;
 	private double _price;
+	private long _thumbnailId;
 }

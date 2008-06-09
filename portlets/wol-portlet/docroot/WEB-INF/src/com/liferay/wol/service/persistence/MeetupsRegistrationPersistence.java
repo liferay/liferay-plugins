@@ -91,6 +91,45 @@ public interface MeetupsRegistrationPersistence {
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchMeetupsRegistrationException;
 
+	public com.liferay.wol.model.MeetupsRegistration findByU_ME(long userId,
+		long meetupsEntryId)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchMeetupsRegistrationException;
+
+	public com.liferay.wol.model.MeetupsRegistration fetchByU_ME(long userId,
+		long meetupsEntryId) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.wol.model.MeetupsRegistration> findByME_S(
+		long meetupsEntryId, int status)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.wol.model.MeetupsRegistration> findByME_S(
+		long meetupsEntryId, int status, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.wol.model.MeetupsRegistration> findByME_S(
+		long meetupsEntryId, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.wol.model.MeetupsRegistration findByME_S_First(
+		long meetupsEntryId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchMeetupsRegistrationException;
+
+	public com.liferay.wol.model.MeetupsRegistration findByME_S_Last(
+		long meetupsEntryId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchMeetupsRegistrationException;
+
+	public com.liferay.wol.model.MeetupsRegistration[] findByME_S_PrevAndNext(
+		long meetupsRegistrationId, long meetupsEntryId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchMeetupsRegistrationException;
+
 	public java.util.List<com.liferay.wol.model.MeetupsRegistration> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
 		throws com.liferay.portal.SystemException;
@@ -112,9 +151,22 @@ public interface MeetupsRegistrationPersistence {
 	public void removeByMeetupsEntryId(long meetupsEntryId)
 		throws com.liferay.portal.SystemException;
 
+	public void removeByU_ME(long userId, long meetupsEntryId)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchMeetupsRegistrationException;
+
+	public void removeByME_S(long meetupsEntryId, int status)
+		throws com.liferay.portal.SystemException;
+
 	public void removeAll() throws com.liferay.portal.SystemException;
 
 	public int countByMeetupsEntryId(long meetupsEntryId)
+		throws com.liferay.portal.SystemException;
+
+	public int countByU_ME(long userId, long meetupsEntryId)
+		throws com.liferay.portal.SystemException;
+
+	public int countByME_S(long meetupsEntryId, int status)
 		throws com.liferay.portal.SystemException;
 
 	public int countAll() throws com.liferay.portal.SystemException;

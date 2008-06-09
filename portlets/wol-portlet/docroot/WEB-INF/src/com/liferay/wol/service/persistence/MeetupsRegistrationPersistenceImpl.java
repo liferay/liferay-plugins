@@ -505,6 +505,390 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 		}
 	}
 
+	public MeetupsRegistration findByU_ME(long userId, long meetupsEntryId)
+		throws NoSuchMeetupsRegistrationException, SystemException {
+		MeetupsRegistration meetupsRegistration = fetchByU_ME(userId,
+				meetupsEntryId);
+
+		if (meetupsRegistration == null) {
+			StringMaker msg = new StringMaker();
+
+			msg.append("No MeetupsRegistration exists with the key {");
+
+			msg.append("userId=" + userId);
+
+			msg.append(", ");
+			msg.append("meetupsEntryId=" + meetupsEntryId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchMeetupsRegistrationException(msg.toString());
+		}
+
+		return meetupsRegistration;
+	}
+
+	public MeetupsRegistration fetchByU_ME(long userId, long meetupsEntryId)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = MeetupsRegistrationModelImpl.CACHE_ENABLED;
+		String finderClassName = MeetupsRegistration.class.getName();
+		String finderMethodName = "fetchByU_ME";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Long.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(userId), new Long(meetupsEntryId)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCache.getResult(finderClassName, finderMethodName,
+					finderParams, finderArgs, getSessionFactory());
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringMaker query = new StringMaker();
+
+				query.append(
+					"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
+
+				query.append("userId = ?");
+
+				query.append(" AND ");
+
+				query.append("meetupsEntryId = ?");
+
+				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("modifiedDate DESC");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				qPos.add(meetupsEntryId);
+
+				List<MeetupsRegistration> list = q.list();
+
+				FinderCache.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				if (list.size() == 0) {
+					return null;
+				}
+				else {
+					return list.get(0);
+				}
+			}
+			catch (Exception e) {
+				throw HibernateUtil.processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			List<MeetupsRegistration> list = (List<MeetupsRegistration>)result;
+
+			if (list.size() == 0) {
+				return null;
+			}
+			else {
+				return list.get(0);
+			}
+		}
+	}
+
+	public List<MeetupsRegistration> findByME_S(long meetupsEntryId, int status)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = MeetupsRegistrationModelImpl.CACHE_ENABLED;
+		String finderClassName = MeetupsRegistration.class.getName();
+		String finderMethodName = "findByME_S";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Integer.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(meetupsEntryId), new Integer(status)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCache.getResult(finderClassName, finderMethodName,
+					finderParams, finderArgs, getSessionFactory());
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringMaker query = new StringMaker();
+
+				query.append(
+					"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
+
+				query.append("meetupsEntryId = ?");
+
+				query.append(" AND ");
+
+				query.append("status = ?");
+
+				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("modifiedDate DESC");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(meetupsEntryId);
+
+				qPos.add(status);
+
+				List<MeetupsRegistration> list = q.list();
+
+				FinderCache.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw HibernateUtil.processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<MeetupsRegistration>)result;
+		}
+	}
+
+	public List<MeetupsRegistration> findByME_S(long meetupsEntryId,
+		int status, int start, int end) throws SystemException {
+		return findByME_S(meetupsEntryId, status, start, end, null);
+	}
+
+	public List<MeetupsRegistration> findByME_S(long meetupsEntryId,
+		int status, int start, int end, OrderByComparator obc)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = MeetupsRegistrationModelImpl.CACHE_ENABLED;
+		String finderClassName = MeetupsRegistration.class.getName();
+		String finderMethodName = "findByME_S";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				
+				"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(meetupsEntryId), new Integer(status),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCache.getResult(finderClassName, finderMethodName,
+					finderParams, finderArgs, getSessionFactory());
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringMaker query = new StringMaker();
+
+				query.append(
+					"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
+
+				query.append("meetupsEntryId = ?");
+
+				query.append(" AND ");
+
+				query.append("status = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+					query.append(obc.getOrderBy());
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("modifiedDate DESC");
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(meetupsEntryId);
+
+				qPos.add(status);
+
+				List<MeetupsRegistration> list = (List<MeetupsRegistration>)QueryUtil.list(q,
+						getDialect(), start, end);
+
+				FinderCache.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw HibernateUtil.processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<MeetupsRegistration>)result;
+		}
+	}
+
+	public MeetupsRegistration findByME_S_First(long meetupsEntryId,
+		int status, OrderByComparator obc)
+		throws NoSuchMeetupsRegistrationException, SystemException {
+		List<MeetupsRegistration> list = findByME_S(meetupsEntryId, status, 0,
+				1, obc);
+
+		if (list.size() == 0) {
+			StringMaker msg = new StringMaker();
+
+			msg.append("No MeetupsRegistration exists with the key {");
+
+			msg.append("meetupsEntryId=" + meetupsEntryId);
+
+			msg.append(", ");
+			msg.append("status=" + status);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchMeetupsRegistrationException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public MeetupsRegistration findByME_S_Last(long meetupsEntryId, int status,
+		OrderByComparator obc)
+		throws NoSuchMeetupsRegistrationException, SystemException {
+		int count = countByME_S(meetupsEntryId, status);
+
+		List<MeetupsRegistration> list = findByME_S(meetupsEntryId, status,
+				count - 1, count, obc);
+
+		if (list.size() == 0) {
+			StringMaker msg = new StringMaker();
+
+			msg.append("No MeetupsRegistration exists with the key {");
+
+			msg.append("meetupsEntryId=" + meetupsEntryId);
+
+			msg.append(", ");
+			msg.append("status=" + status);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchMeetupsRegistrationException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public MeetupsRegistration[] findByME_S_PrevAndNext(
+		long meetupsRegistrationId, long meetupsEntryId, int status,
+		OrderByComparator obc)
+		throws NoSuchMeetupsRegistrationException, SystemException {
+		MeetupsRegistration meetupsRegistration = findByPrimaryKey(meetupsRegistrationId);
+
+		int count = countByME_S(meetupsEntryId, status);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringMaker query = new StringMaker();
+
+			query.append(
+				"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
+
+			query.append("meetupsEntryId = ?");
+
+			query.append(" AND ");
+
+			query.append("status = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+				query.append(obc.getOrderBy());
+			}
+
+			else {
+				query.append("ORDER BY ");
+
+				query.append("modifiedDate DESC");
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(meetupsEntryId);
+
+			qPos.add(status);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+					meetupsRegistration);
+
+			MeetupsRegistration[] array = new MeetupsRegistrationImpl[3];
+
+			array[0] = (MeetupsRegistration)objArray[0];
+			array[1] = (MeetupsRegistration)objArray[1];
+			array[2] = (MeetupsRegistration)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw HibernateUtil.processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
 	public List<MeetupsRegistration> findWithDynamicQuery(
 		DynamicQueryInitializer queryInitializer) throws SystemException {
 		Session session = null;
@@ -631,6 +1015,22 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 		}
 	}
 
+	public void removeByU_ME(long userId, long meetupsEntryId)
+		throws NoSuchMeetupsRegistrationException, SystemException {
+		MeetupsRegistration meetupsRegistration = findByU_ME(userId,
+				meetupsEntryId);
+
+		remove(meetupsRegistration);
+	}
+
+	public void removeByME_S(long meetupsEntryId, int status)
+		throws SystemException {
+		for (MeetupsRegistration meetupsRegistration : findByME_S(
+				meetupsEntryId, status)) {
+			remove(meetupsRegistration);
+		}
+	}
+
 	public void removeAll() throws SystemException {
 		for (MeetupsRegistration meetupsRegistration : findAll()) {
 			remove(meetupsRegistration);
@@ -673,6 +1073,160 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				qPos.add(meetupsEntryId);
+
+				Long count = null;
+
+				Iterator<Long> itr = q.list().iterator();
+
+				if (itr.hasNext()) {
+					count = itr.next();
+				}
+
+				if (count == null) {
+					count = new Long(0);
+				}
+
+				FinderCache.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, count);
+
+				return count.intValue();
+			}
+			catch (Exception e) {
+				throw HibernateUtil.processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return ((Long)result).intValue();
+		}
+	}
+
+	public int countByU_ME(long userId, long meetupsEntryId)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = MeetupsRegistrationModelImpl.CACHE_ENABLED;
+		String finderClassName = MeetupsRegistration.class.getName();
+		String finderMethodName = "countByU_ME";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Long.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(userId), new Long(meetupsEntryId)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCache.getResult(finderClassName, finderMethodName,
+					finderParams, finderArgs, getSessionFactory());
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringMaker query = new StringMaker();
+
+				query.append("SELECT COUNT(*) ");
+				query.append(
+					"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
+
+				query.append("userId = ?");
+
+				query.append(" AND ");
+
+				query.append("meetupsEntryId = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				qPos.add(meetupsEntryId);
+
+				Long count = null;
+
+				Iterator<Long> itr = q.list().iterator();
+
+				if (itr.hasNext()) {
+					count = itr.next();
+				}
+
+				if (count == null) {
+					count = new Long(0);
+				}
+
+				FinderCache.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, count);
+
+				return count.intValue();
+			}
+			catch (Exception e) {
+				throw HibernateUtil.processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return ((Long)result).intValue();
+		}
+	}
+
+	public int countByME_S(long meetupsEntryId, int status)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = MeetupsRegistrationModelImpl.CACHE_ENABLED;
+		String finderClassName = MeetupsRegistration.class.getName();
+		String finderMethodName = "countByME_S";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Integer.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(meetupsEntryId), new Integer(status)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCache.getResult(finderClassName, finderMethodName,
+					finderParams, finderArgs, getSessionFactory());
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringMaker query = new StringMaker();
+
+				query.append("SELECT COUNT(*) ");
+				query.append(
+					"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
+
+				query.append("meetupsEntryId = ?");
+
+				query.append(" AND ");
+
+				query.append("status = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(meetupsEntryId);
+
+				qPos.add(status);
 
 				Long count = null;
 

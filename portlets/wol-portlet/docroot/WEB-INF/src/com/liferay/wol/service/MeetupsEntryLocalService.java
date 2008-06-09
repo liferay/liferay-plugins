@@ -60,8 +60,23 @@ public interface MeetupsEntryLocalService {
 
 	public com.liferay.wol.model.MeetupsEntry addMeetupsEntry(long userId,
 		java.lang.String title, java.lang.String description,
-		java.util.Date startDate, java.util.Date endDate, long addressId,
-		int totalAttendees, int maxAttendees, double price)
+		int startDateMonth, int startDateDay, int startDateYear,
+		int startDateHour, int startDateMinute, int endDateMonth,
+		int endDateDay, int endDateYear, int endDateHour, int endDateMinute,
+		int totalAttendees, int maxAttendees, double price, byte[] thumbnail)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.wol.model.MeetupsEntry> getMeetupsEntries(
+		long companyId) throws com.liferay.portal.SystemException;
+
+	public com.liferay.wol.model.MeetupsEntry updateMeetupsEntry(long userId,
+		long meetupsEntryId, java.lang.String title,
+		java.lang.String description, int startDateMonth, int startDateDay,
+		int startDateYear, int startDateHour, int startDateMinute,
+		int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
+		int endDateMinute, int totalAttendees, int maxAttendees, double price,
+		byte[] thumbnail)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 }

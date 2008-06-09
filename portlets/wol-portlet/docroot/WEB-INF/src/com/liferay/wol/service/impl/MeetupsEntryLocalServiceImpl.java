@@ -26,11 +26,16 @@ import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.ImageLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.wol.MeetupsEntryEndDateException;
+import com.liferay.wol.MeetupsEntryStartDateException;
 import com.liferay.wol.model.MeetupsEntry;
 import com.liferay.wol.service.base.MeetupsEntryLocalServiceBaseImpl;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * <a href="MeetupsEntryLocalServiceImpl.java.html"><b><i>View Source</i></b>
@@ -43,12 +48,26 @@ public class MeetupsEntryLocalServiceImpl
 	extends MeetupsEntryLocalServiceBaseImpl {
 
 	public MeetupsEntry addMeetupsEntry(
-			long userId, String title, String description, Date startDate,
-			Date endDate, long addressId, int totalAttendees, int maxAttendees,
-			double price)
+			long userId, String title, String description, int startDateMonth,
+			int startDateDay, int startDateYear, int startDateHour,
+			int startDateMinute, int endDateMonth, int endDateDay,
+			int endDateYear, int endDateHour, int endDateMinute,
+			int totalAttendees, int maxAttendees, double price,
+			byte[] thumbnail)
 		throws PortalException, SystemException {
 
 		User user = UserLocalServiceUtil.getUserById(userId);
+
+		Date startDate = PortalUtil.getDate(
+			startDateMonth, startDateDay, startDateYear, startDateHour,
+			startDateMinute, user.getTimeZone(),
+			new MeetupsEntryStartDateException());
+
+		Date endDate = PortalUtil.getDate(
+			endDateMonth, endDateDay, endDateYear, endDateHour,
+			endDateMinute, user.getTimeZone(),
+			new MeetupsEntryEndDateException());
+
 		Date now = new Date();
 
 		long meetupsEntryId = CounterLocalServiceUtil.increment();
@@ -65,12 +84,79 @@ public class MeetupsEntryLocalServiceImpl
 		meetupsEntry.setDescription(description);
 		meetupsEntry.setStartDate(startDate);
 		meetupsEntry.setEndDate(endDate);
-		meetupsEntry.setAddressId(addressId);
+		meetupsEntry.setTotalAttendees(totalAttendees);
+		meetupsEntry.setMaxAttendees(maxAttendees);
+		meetupsEntry.setPrice(price);
+		meetupsEntry.setThumbnailId(CounterLocalServiceUtil.increment());
+
+		meetupsEntryPersistence.update(meetupsEntry, false);
+
+		if ((thumbnail != null) && (thumbnail.length > 0)) {
+			ImageLocalServiceUtil.updateImage(
+				meetupsEntry.getThumbnailId(), thumbnail);
+		}
+
+		return meetupsEntry;
+	}
+
+	public void deleteMeetupsEntry(long meetupsEntryId)
+		throws PortalException, SystemException {
+
+		MeetupsEntry meetupsEntry = meetupsEntryPersistence.findByPrimaryKey(
+			meetupsEntryId);
+
+		meetupsRegistrationPersistence.removeByMeetupsEntryId(meetupsEntryId);
+
+		ImageLocalServiceUtil.deleteImage(meetupsEntry.getThumbnailId());
+
+		meetupsEntryPersistence.remove(meetupsEntryId);
+	}
+
+	public List<MeetupsEntry> getMeetupsEntries(long companyId)
+		throws SystemException {
+
+		return meetupsEntryPersistence.findByCompanyId(companyId);
+	}
+
+	public MeetupsEntry updateMeetupsEntry(
+			long userId, long meetupsEntryId, String title, String description,
+			int startDateMonth, int startDateDay, int startDateYear,
+			int startDateHour, int startDateMinute, int endDateMonth,
+			int endDateDay, int endDateYear, int endDateHour, int endDateMinute,
+			int totalAttendees, int maxAttendees, double price,
+			byte[] thumbnail)
+		throws PortalException, SystemException {
+
+		User user = UserLocalServiceUtil.getUserById(userId);
+
+		Date startDate = PortalUtil.getDate(
+			startDateMonth, startDateDay, startDateYear, startDateHour,
+			startDateMinute, user.getTimeZone(),
+			new MeetupsEntryStartDateException());
+
+		Date endDate = PortalUtil.getDate(
+			endDateMonth, endDateDay, endDateYear, endDateHour,
+			endDateMinute, user.getTimeZone(),
+			new MeetupsEntryEndDateException());
+
+		MeetupsEntry meetupsEntry = meetupsEntryPersistence.findByPrimaryKey(
+			meetupsEntryId);
+
+		meetupsEntry.setModifiedDate(new Date());
+		meetupsEntry.setTitle(title);
+		meetupsEntry.setDescription(description);
+		meetupsEntry.setStartDate(startDate);
+		meetupsEntry.setEndDate(endDate);
 		meetupsEntry.setTotalAttendees(totalAttendees);
 		meetupsEntry.setMaxAttendees(maxAttendees);
 		meetupsEntry.setPrice(price);
 
 		meetupsEntryPersistence.update(meetupsEntry, false);
+
+		if ((thumbnail != null) && (thumbnail.length > 0)) {
+			ImageLocalServiceUtil.updateImage(
+				meetupsEntry.getThumbnailId(), thumbnail);
+		}
 
 		return meetupsEntry;
 	}

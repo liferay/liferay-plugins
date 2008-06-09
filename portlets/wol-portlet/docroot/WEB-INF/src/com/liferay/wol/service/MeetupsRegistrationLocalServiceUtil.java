@@ -86,4 +86,41 @@ public class MeetupsRegistrationLocalServiceUtil {
 
 		return meetupsRegistrationLocalService.updateMeetupsRegistration(meetupsRegistration);
 	}
+
+	public static java.util.List<com.liferay.wol.model.MeetupsRegistration> getMeetupsRegistrations(
+		long meetupsEntryId, int status, int start, int end)
+		throws com.liferay.portal.SystemException {
+		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
+
+		return meetupsRegistrationLocalService.getMeetupsRegistrations(meetupsEntryId,
+			status, start, end);
+	}
+
+	public static com.liferay.wol.model.MeetupsRegistration getMeetupsRegistration(
+		long userId, long meetupsEntryId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
+
+		return meetupsRegistrationLocalService.getMeetupsRegistration(userId,
+			meetupsEntryId);
+	}
+
+	public static int getMeetupsRegistrationsCount(long meetupsEntryId,
+		int status) throws com.liferay.portal.SystemException {
+		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
+
+		return meetupsRegistrationLocalService.getMeetupsRegistrationsCount(meetupsEntryId,
+			status);
+	}
+
+	public static com.liferay.wol.model.MeetupsRegistration updateMeetupsRegistration(
+		long userId, long meetupsEntryId, int status, java.lang.String comments)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
+
+		return meetupsRegistrationLocalService.updateMeetupsRegistration(userId,
+			meetupsEntryId, status, comments);
+	}
 }

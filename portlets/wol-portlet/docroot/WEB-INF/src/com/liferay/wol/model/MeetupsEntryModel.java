@@ -77,10 +77,6 @@ public interface MeetupsEntryModel extends BaseModel {
 
 	public void setEndDate(Date endDate);
 
-	public long getAddressId();
-
-	public void setAddressId(long addressId);
-
 	public int getTotalAttendees();
 
 	public void setTotalAttendees(int totalAttendees);
@@ -92,6 +88,10 @@ public interface MeetupsEntryModel extends BaseModel {
 	public double getPrice();
 
 	public void setPrice(double price);
+
+	public long getThumbnailId();
+
+	public void setThumbnailId(long thumbnailId);
 
 	public MeetupsEntry toEscapedModel();
 }

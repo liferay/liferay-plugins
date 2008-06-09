@@ -122,6 +122,65 @@ public class MeetupsRegistrationUtil {
 			meetupsEntryId, obc);
 	}
 
+	public static com.liferay.wol.model.MeetupsRegistration findByU_ME(
+		long userId, long meetupsEntryId)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchMeetupsRegistrationException {
+		return getPersistence().findByU_ME(userId, meetupsEntryId);
+	}
+
+	public static com.liferay.wol.model.MeetupsRegistration fetchByU_ME(
+		long userId, long meetupsEntryId)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().fetchByU_ME(userId, meetupsEntryId);
+	}
+
+	public static java.util.List<com.liferay.wol.model.MeetupsRegistration> findByME_S(
+		long meetupsEntryId, int status)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByME_S(meetupsEntryId, status);
+	}
+
+	public static java.util.List<com.liferay.wol.model.MeetupsRegistration> findByME_S(
+		long meetupsEntryId, int status, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByME_S(meetupsEntryId, status, start, end);
+	}
+
+	public static java.util.List<com.liferay.wol.model.MeetupsRegistration> findByME_S(
+		long meetupsEntryId, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByME_S(meetupsEntryId, status, start, end, obc);
+	}
+
+	public static com.liferay.wol.model.MeetupsRegistration findByME_S_First(
+		long meetupsEntryId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchMeetupsRegistrationException {
+		return getPersistence().findByME_S_First(meetupsEntryId, status, obc);
+	}
+
+	public static com.liferay.wol.model.MeetupsRegistration findByME_S_Last(
+		long meetupsEntryId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchMeetupsRegistrationException {
+		return getPersistence().findByME_S_Last(meetupsEntryId, status, obc);
+	}
+
+	public static com.liferay.wol.model.MeetupsRegistration[] findByME_S_PrevAndNext(
+		long meetupsRegistrationId, long meetupsEntryId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchMeetupsRegistrationException {
+		return getPersistence()
+				   .findByME_S_PrevAndNext(meetupsRegistrationId,
+			meetupsEntryId, status, obc);
+	}
+
 	public static java.util.List<com.liferay.wol.model.MeetupsRegistration> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
 		throws com.liferay.portal.SystemException {
@@ -156,6 +215,17 @@ public class MeetupsRegistrationUtil {
 		getPersistence().removeByMeetupsEntryId(meetupsEntryId);
 	}
 
+	public static void removeByU_ME(long userId, long meetupsEntryId)
+		throws com.liferay.portal.SystemException,
+			com.liferay.wol.NoSuchMeetupsRegistrationException {
+		getPersistence().removeByU_ME(userId, meetupsEntryId);
+	}
+
+	public static void removeByME_S(long meetupsEntryId, int status)
+		throws com.liferay.portal.SystemException {
+		getPersistence().removeByME_S(meetupsEntryId, status);
+	}
+
 	public static void removeAll() throws com.liferay.portal.SystemException {
 		getPersistence().removeAll();
 	}
@@ -163,6 +233,16 @@ public class MeetupsRegistrationUtil {
 	public static int countByMeetupsEntryId(long meetupsEntryId)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().countByMeetupsEntryId(meetupsEntryId);
+	}
+
+	public static int countByU_ME(long userId, long meetupsEntryId)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().countByU_ME(userId, meetupsEntryId);
+	}
+
+	public static int countByME_S(long meetupsEntryId, int status)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().countByME_S(meetupsEntryId, status);
 	}
 
 	public static int countAll() throws com.liferay.portal.SystemException {

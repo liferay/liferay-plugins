@@ -48,10 +48,10 @@ public class MeetupsEntrySoap implements Serializable {
 		soapModel.setDescription(model.getDescription());
 		soapModel.setStartDate(model.getStartDate());
 		soapModel.setEndDate(model.getEndDate());
-		soapModel.setAddressId(model.getAddressId());
 		soapModel.setTotalAttendees(model.getTotalAttendees());
 		soapModel.setMaxAttendees(model.getMaxAttendees());
 		soapModel.setPrice(model.getPrice());
+		soapModel.setThumbnailId(model.getThumbnailId());
 
 		return soapModel;
 	}
@@ -157,14 +157,6 @@ public class MeetupsEntrySoap implements Serializable {
 		_endDate = endDate;
 	}
 
-	public long getAddressId() {
-		return _addressId;
-	}
-
-	public void setAddressId(long addressId) {
-		_addressId = addressId;
-	}
-
 	public int getTotalAttendees() {
 		return _totalAttendees;
 	}
@@ -189,6 +181,14 @@ public class MeetupsEntrySoap implements Serializable {
 		_price = price;
 	}
 
+	public long getThumbnailId() {
+		return _thumbnailId;
+	}
+
+	public void setThumbnailId(long thumbnailId) {
+		_thumbnailId = thumbnailId;
+	}
+
 	private long _meetupsEntryId;
 	private long _companyId;
 	private long _userId;
@@ -199,8 +199,8 @@ public class MeetupsEntrySoap implements Serializable {
 	private String _description;
 	private Date _startDate;
 	private Date _endDate;
-	private long _addressId;
 	private int _totalAttendees;
 	private int _maxAttendees;
 	private double _price;
+	private long _thumbnailId;
 }
