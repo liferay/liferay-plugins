@@ -275,10 +275,9 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 				extraData,
 				"jiraChangeGroupId", jiraChangeGroup.getJiraChangeGroupId());
 
-			JSONArray jiraChangeItemsJSONArray = new JSONArray();
+			JSONArray jiraChangeItemsJSON = new JSONArray();
 
-			JSONUtil.put(
-				extraData, "jiraChangeItems", jiraChangeItemsJSONArray);
+			JSONUtil.put(extraData, "jiraChangeItems", jiraChangeItemsJSON);
 
 			List<JIRAChangeItem> jiraChangeItems =
 				jiraChangeItemPersistence.findByJiraChangeGroupId(
@@ -302,7 +301,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 					jiraChangeItemJSON, "newString",
 					jiraChangeItem.getNewString());
 
-				jiraChangeItemsJSONArray.put(jiraChangeItemJSON);
+				jiraChangeItemsJSON.put(jiraChangeItemJSON);
 			}
 
 			SocialActivityLocalServiceUtil.addUniqueActivity(
