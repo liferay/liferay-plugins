@@ -63,6 +63,7 @@
 		<friendly-url-mapper-class>com.liferay.wol.meetups.portlet.MeetupsFriendlyURLMapper</friendly-url-mapper-class>
 		<restore-current-view>false</restore-current-view>
 		<css-class-wrapper>wol-portlet-meetups</css-class-wrapper>
+		<add-default-resource>true</add-default-resource>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

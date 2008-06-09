@@ -131,21 +131,24 @@ for (int i = 0; i < meetupsEntries.size(); i++) {
 
 			<liferay-ui:icon-list>
 
-				<%
-				PortletURL editMeetupsEntryURL = renderResponse.createRenderURL();
+				<c:if test="<%= UserLocalServiceUtil.hasOrganizationUser(SummaryConstants.ORGANIZATION_LIFERAY_INC_ID, themeDisplay.getUserId()) %>">
 
-				editMeetupsEntryURL.setWindowState(WindowState.MAXIMIZED);
+					<%
+					PortletURL editMeetupsEntryURL = renderResponse.createRenderURL();
 
-				editMeetupsEntryURL.setParameter("jspPage", "/meetups/edit_entry.jsp");
-				editMeetupsEntryURL.setParameter("redirect", currentURL);
-				editMeetupsEntryURL.setParameter("meetupsEntryId", String.valueOf(meetupsEntry.getMeetupsEntryId()));
-				%>
+					editMeetupsEntryURL.setWindowState(WindowState.MAXIMIZED);
 
-				<liferay-ui:icon
-					image="edit"
-					url="<%= editMeetupsEntryURL.toString() %>"
-					method="get"
-				/>
+					editMeetupsEntryURL.setParameter("jspPage", "/meetups/edit_entry.jsp");
+					editMeetupsEntryURL.setParameter("redirect", currentURL);
+					editMeetupsEntryURL.setParameter("meetupsEntryId", String.valueOf(meetupsEntry.getMeetupsEntryId()));
+					%>
+
+					<liferay-ui:icon
+						image="edit"
+						url="<%= editMeetupsEntryURL.toString() %>"
+						method="get"
+					/>
+				</c:if>
 
 				<liferay-ui:icon
 					image="join"
@@ -154,19 +157,22 @@ for (int i = 0; i < meetupsEntries.size(); i++) {
 					method="get"
 				/>
 
-				<%
-				PortletURL deleteMeetupsEntryURL = renderResponse.createActionURL();
+				<c:if test="<%= UserLocalServiceUtil.hasOrganizationUser(SummaryConstants.ORGANIZATION_LIFERAY_INC_ID, themeDisplay.getUserId()) %>">
 
-				deleteMeetupsEntryURL.setWindowState(WindowState.MAXIMIZED);
+					<%
+					PortletURL deleteMeetupsEntryURL = renderResponse.createActionURL();
 
-				deleteMeetupsEntryURL.setParameter(ActionRequest.ACTION_NAME, "deleteMeetupsEntry");
-				deleteMeetupsEntryURL.setParameter("redirect", currentURL);
-				deleteMeetupsEntryURL.setParameter("meetupsEntryId", String.valueOf(meetupsEntry.getMeetupsEntryId()));
-				%>
+					deleteMeetupsEntryURL.setWindowState(WindowState.MAXIMIZED);
 
-				<liferay-ui:icon-delete
-					url="<%= deleteMeetupsEntryURL.toString() %>"
-				/>
+					deleteMeetupsEntryURL.setParameter(ActionRequest.ACTION_NAME, "deleteMeetupsEntry");
+					deleteMeetupsEntryURL.setParameter("redirect", currentURL);
+					deleteMeetupsEntryURL.setParameter("meetupsEntryId", String.valueOf(meetupsEntry.getMeetupsEntryId()));
+					%>
+
+					<liferay-ui:icon-delete
+						url="<%= deleteMeetupsEntryURL.toString() %>"
+					/>
+				</c:if>
 			</liferay-ui:icon-list>
 		</td>
 	</tr>

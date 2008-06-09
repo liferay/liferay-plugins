@@ -25,7 +25,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1", "yes");
+String tabs1 = ParamUtil.getString(request, "tabs1", "attending");
 
 String redirect = ParamUtil.getString(request, "redirect");
 
@@ -55,6 +55,8 @@ portletURL.setParameter("tabs1", tabs1);
 portletURL.setParameter("meetupsEntryId", String.valueOf(meetupsEntryId));
 %>
 
+<img src="<%= themeDisplay.getPathImage() %>?img_id=<%= meetupsEntry.getThumbnailId() %>&t=<%= ImageServletTokenUtil.getToken(meetupsEntry.getThumbnailId()) %>" style="float: left; margin-right: 10px;" />
+
 <h4>
 	<%= meetupsEntry.getTitle() %>
 </h4>
@@ -79,85 +81,94 @@ int yesTotal = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(
 	<br />
 </c:if>
 
-<form action="<portlet:actionURL name="updateMeetupsRegistration" />" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />updateMeetupsRegistration(); return false;">
-<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
-<input name="<portlet:namespace />meetupsEntryId" type="hidden" value="<%= meetupsEntryId %>" />
+<c:choose>
+	<c:when test="<%= themeDisplay.isSignedIn() %>">
+		<form action="<portlet:actionURL name="updateMeetupsRegistration" />" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />updateMeetupsRegistration(); return false;">
+		<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
+		<input name="<portlet:namespace />meetupsEntryId" type="hidden" value="<%= meetupsEntryId %>" />
 
-<liferay-ui:message key="will-you-attend" />
+		<liferay-ui:message key="will-you-attend" />
 
-<input <%= (status == MeetupsConstants.STATUS_YES) ? "checked" : "" %> name="<portlet:namespace />status" type="radio" value="<%= MeetupsConstants.STATUS_YES %>" /> <liferay-ui:message key="yes" />
+		<input <%= (status == MeetupsConstants.STATUS_YES) ? "checked" : "" %> name="<portlet:namespace />status" type="radio" value="<%= MeetupsConstants.STATUS_YES %>" /> <liferay-ui:message key="yes" />
 
-<input <%= (status == MeetupsConstants.STATUS_NO) ? "checked" : "" %> name="<portlet:namespace />status" type="radio" value="<%= MeetupsConstants.STATUS_NO %>" /> <liferay-ui:message key="no" />
+		<input <%= (status == MeetupsConstants.STATUS_NO) ? "checked" : "" %> name="<portlet:namespace />status" type="radio" value="<%= MeetupsConstants.STATUS_NO %>" /> <liferay-ui:message key="no" />
 
-<input <%= (status == MeetupsConstants.STATUS_MAYBE) ? "checked" : "" %> name="<portlet:namespace />status" type="radio" value="<%= MeetupsConstants.STATUS_MAYBE %>" /> <liferay-ui:message key="maybe" />
+		<input <%= (status == MeetupsConstants.STATUS_MAYBE) ? "checked" : "" %> name="<portlet:namespace />status" type="radio" value="<%= MeetupsConstants.STATUS_MAYBE %>" /> <liferay-ui:message key="maybe" />
 
-<br /><br />
+		<br /><br />
 
-<liferay-ui:input-field model="<%= MeetupsRegistration.class %>" bean="<%= meetupsRegistration %>" field="comments" />
+		<liferay-ui:input-field model="<%= MeetupsRegistration.class %>" bean="<%= meetupsRegistration %>" field="comments" />
 
-<br /><br />
+		<br /><br />
 
-<input type="submit" value="<liferay-ui:message key="register" />" />
+		<input type="submit" value="<liferay-ui:message key="register" />" />
 
-</form>
+		</form>
 
-<br />
+		<br />
 
-<liferay-ui:tabs
-	names="yes,no,maybe"
-	portletURL="<%= portletURL %>"
-/>
+		<liferay-ui:tabs
+			names="attending,not-attending,maybe-attending"
+			portletURL="<%= portletURL %>"
+		/>
 
-<%
-int tabs1Status = MeetupsConstants.STATUS_YES;
+		<%
+		int tabs1Status = MeetupsConstants.STATUS_YES;
 
-if (tabs1.equals("no")) {
-	tabs1Status = MeetupsConstants.STATUS_NO;
-}
-else if (tabs1.equals("maybe")) {
-	tabs1Status = MeetupsConstants.STATUS_MAYBE;
-}
+		if (tabs1.equals("not-attending")) {
+			tabs1Status = MeetupsConstants.STATUS_NO;
+		}
+		else if (tabs1.equals("maybe-attending")) {
+			tabs1Status = MeetupsConstants.STATUS_MAYBE;
+		}
 
-SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
+		SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
 
-int total = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(meetupsEntryId, tabs1Status);
+		int total = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(meetupsEntryId, tabs1Status);
 
-searchContainer.setTotal(total);
+		searchContainer.setTotal(total);
 
-List<MeetupsRegistration> results = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrations(meetupsEntryId, tabs1Status, searchContainer.getStart(), searchContainer.getEnd());
-%>
+		List<MeetupsRegistration> results = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrations(meetupsEntryId, tabs1Status, searchContainer.getStart(), searchContainer.getEnd());
+		%>
 
-<table class="lfr-table" width="100%">
+		<table class="lfr-table" width="100%">
 
-<%
-for (int i = 0; i < results.size(); i++) {
-	MeetupsRegistration curMeetupsRegistration = results.get(i);
-%>
+		<%
+		for (int i = 0; i < results.size(); i++) {
+			MeetupsRegistration curMeetupsRegistration = results.get(i);
+		%>
 
-	<tr>
-		<td align="center" valign="top">
-			<liferay-ui:user-display
-				userId="<%= curMeetupsRegistration.getUserId() %>"
-				userName="<%= curMeetupsRegistration.getUserName() %>"
-				displayStyle="<%= 2 %>"
-			/>
-		</td>
-		<td valign="top" width="99%">
-			<%= curMeetupsRegistration.getComments() %>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			<div class="separator"><!-- --></div>
-		</td>
-	</tr>
+			<tr>
+				<td align="center" valign="top">
+					<liferay-ui:user-display
+						userId="<%= curMeetupsRegistration.getUserId() %>"
+						userName="<%= curMeetupsRegistration.getUserName() %>"
+						displayStyle="<%= 2 %>"
+					/>
+				</td>
+				<td valign="top" width="99%">
+					<%= curMeetupsRegistration.getComments() %>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div class="separator"><!-- --></div>
+				</td>
+			</tr>
 
-<%
-}
-%>
+		<%
+		}
+		%>
 
-</table>
+		</table>
 
-<div class="taglib-search-iterator-page-iterator-bottom">
-	<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
-</div>
+		<div class="taglib-search-iterator-page-iterator-bottom">
+			<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
+		</div>
+	</c:when>
+	<c:otherwise>
+		<div>
+			You have to signed in to register for this meetup. Please <a href="<%= themeDisplay.getURLSignIn() %>">sign in</a> or <a href="<%= themeDisplay.getURLCreateAccount() %>">create an account</a> if you do not already have one.
+		</div>
+	</c:otherwise>
+</c:choose>
