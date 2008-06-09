@@ -54,6 +54,7 @@ if (!activeBrowser && (status != null) && !status.getActiveBrowserKey().equals(a
 	<%= jsonObj %>
 
 <%
+	return;
 }
 
 // Buddies
