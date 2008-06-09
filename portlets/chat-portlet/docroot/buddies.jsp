@@ -40,6 +40,7 @@ for (Object[] buddy : buddies) {
 	String firstName = (String)buddy[1];
 	String middleName = (String)buddy[2];
 	String lastName = (String)buddy[3];
+	long portraitId = (Long)buddy[4];
 
 	String fullName = ContactConstants.getFullName(firstName, middleName, lastName);
 
@@ -50,7 +51,8 @@ for (Object[] buddy : buddies) {
 	JSONObject curUserJSON = new JSONObject();
 
 	JSONUtil.put(curUserJSON, "userId", userId);
-	JSONUtil.put(curUserJSON, "userName", fullName);
+	JSONUtil.put(curUserJSON, "fullName", fullName);
+	JSONUtil.put(curUserJSON, "portraitId", portraitId);
 
 	jsonArray.put(curUserJSON);
 }

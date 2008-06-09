@@ -62,6 +62,7 @@ public class StatusFinderImpl implements StatusFinder {
 			q.addScalar("Contact_.firstName", Hibernate.STRING);
 			q.addScalar("Contact_.middleName", Hibernate.STRING);
 			q.addScalar("Contact_.lastName", Hibernate.STRING);
+			q.addScalar("User_.portraitId", Hibernate.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
