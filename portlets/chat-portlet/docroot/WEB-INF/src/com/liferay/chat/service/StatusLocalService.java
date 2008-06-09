@@ -60,7 +60,11 @@ public interface StatusLocalService {
 		long modifiedDate, int start, int end)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.chat.model.Status updateStatus(long userId)
+	public com.liferay.chat.model.Status getUserStatus(long userId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public com.liferay.chat.model.Status updateUserStatus(long userId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 }

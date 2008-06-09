@@ -27,7 +27,9 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
+<%@ page import="com.liferay.chat.NoSuchStatusException" %>
 <%@ page import="com.liferay.chat.model.Entry" %>
+<%@ page import="com.liferay.chat.model.Status" %>
 <%@ page import="com.liferay.chat.service.EntryLocalServiceUtil" %>
 <%@ page import="com.liferay.chat.service.StatusLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>

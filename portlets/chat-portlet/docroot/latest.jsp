@@ -31,7 +31,13 @@ if (!themeDisplay.isSignedIn()) {
 
 // Status
 
-StatusLocalServiceUtil.updateStatus(themeDisplay.getUserId());
+Status status = null;
+
+try {
+	status = StatusLocalServiceUtil.getUserStatus(themeDisplay.getUserId());
+}
+catch (NoSuchStatusException nsse) {
+}
 
 // Buddies
 
@@ -68,7 +74,12 @@ for (Object[] buddy : buddies) {
 long entriesCreateDate = ParamUtil.getLong(request, "createDate");
 
 if (entriesCreateDate == 0) {
-	entriesCreateDate = System.currentTimeMillis() - Time.MINUTE;
+	if (status != null) {
+		entriesCreateDate = status.getModifiedDate();
+	}
+	else {
+		entriesCreateDate = System.currentTimeMillis() - Time.MINUTE;
+	}
 }
 
 List<Entry> entries = EntryLocalServiceUtil.getNewEntries(themeDisplay.getUserId(), entriesCreateDate, 0, SearchContainer.DEFAULT_DELTA);
@@ -87,6 +98,10 @@ for (Entry entry : entries) {
 
 	entriesJSON.put(entryJSON);
 }
+
+// Status
+
+StatusLocalServiceUtil.updateUserStatus(themeDisplay.getUserId());
 
 // JSON
 

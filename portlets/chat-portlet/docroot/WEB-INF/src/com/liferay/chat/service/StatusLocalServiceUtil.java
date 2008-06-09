@@ -93,11 +93,19 @@ public class StatusLocalServiceUtil {
 			start, end);
 	}
 
-	public static com.liferay.chat.model.Status updateStatus(long userId)
+	public static com.liferay.chat.model.Status getUserStatus(long userId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		StatusLocalService statusLocalService = StatusLocalServiceFactory.getService();
 
-		return statusLocalService.updateStatus(userId);
+		return statusLocalService.getUserStatus(userId);
+	}
+
+	public static com.liferay.chat.model.Status updateUserStatus(long userId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		StatusLocalService statusLocalService = StatusLocalServiceFactory.getService();
+
+		return statusLocalService.updateUserStatus(userId);
 	}
 }

@@ -46,7 +46,13 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 			userId, type, modifiedDate, start, end);
 	}
 
-	public Status updateStatus(long userId)
+	public Status getUserStatus(long userId)
+		throws PortalException, SystemException {
+
+		return statusPersistence.findByUserId(userId);
+	}
+
+	public Status updateUserStatus(long userId)
 		throws PortalException, SystemException {
 
 		Status status = statusPersistence.fetchByUserId(userId);
