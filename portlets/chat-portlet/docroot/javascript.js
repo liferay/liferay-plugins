@@ -288,7 +288,7 @@ Liferay.Chat = {
 				}
 
 				Liferay.Chat.chatType(this);
-			}
+			};
 
 			ta.keydown(keyEvent);
 
