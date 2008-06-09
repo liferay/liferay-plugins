@@ -32,8 +32,7 @@
 		directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("directionsAddress"), directionsAddress);
 		%>
 
-		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= license %>" type="text/javascript">
-		</script>
+		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= license %>" type="text/javascript"></script>
 
 		<script type="text/javascript">
 			var <portlet:namespace />map;
@@ -58,7 +57,7 @@
 			function <portlet:namespace />getAddress(address) {
 				<portlet:namespace />geocoder.getLatLng(
 					address,
-					function (point) {
+					function(point) {
 						if (!point) {
 							//alert(address + " not found");
 						}
