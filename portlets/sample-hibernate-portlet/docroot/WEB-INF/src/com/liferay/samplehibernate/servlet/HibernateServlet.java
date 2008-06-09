@@ -26,9 +26,9 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.samplehibernate.FoodItemComponentImpl;
 import com.liferay.util.servlet.ServletResponseUtil;
-import com.liferay.util.servlet.UploadServletRequest;
 
 import java.io.IOException;
 
@@ -57,7 +57,7 @@ public class HibernateServlet extends HttpServlet {
 		if ((contentType != null) &&
 			(contentType.startsWith(ContentTypes.MULTIPART_FORM_DATA))) {
 
-			req = new UploadServletRequest(req);
+			req = PortalUtil.getUploadServletRequest(req);
 		}
 
 		FoodItemComponentImpl foodItemComponentImpl =
