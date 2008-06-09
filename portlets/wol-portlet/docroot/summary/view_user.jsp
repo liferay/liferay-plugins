@@ -42,7 +42,7 @@
 					<%
 					PortletURL addAsFriendURL = renderResponse.createActionURL();
 
-					addAsFriendURL.setParameter(Constants.CMD, "add_friend");
+					addAsFriendURL.setParameter(ActionRequest.ACTION_NAME, "addFriend");
 					addAsFriendURL.setParameter("redirect", PortalUtil.getCurrentURL(request));
 					%>
 
@@ -155,8 +155,7 @@
 		String aboutMe = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "aboutMe", user2.getUserId(), StringPool.BLANK));
 		%>
 
-		<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
-		<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+		<form action="<portlet:actionURL name="updateSummary" />" method="post" name="<portlet:namespace />fm">
 		<input name="<portlet:namespace />redirect" type="hidden" value="<%= PortalUtil.getCurrentURL(request) %>" />
 
 		<div class="portlet-msg-info">

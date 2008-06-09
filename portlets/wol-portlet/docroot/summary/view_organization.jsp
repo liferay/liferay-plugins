@@ -41,7 +41,7 @@
 						<%
 						PortletURL leaveOrganizationURL = renderResponse.createActionURL();
 
-						leaveOrganizationURL.setParameter(Constants.CMD, "leave_organization");
+						leaveOrganizationURL.setParameter(ActionRequest.ACTION_NAME, "leaveOrganization");
 						leaveOrganizationURL.setParameter("redirect", PortalUtil.getCurrentURL(request));
 
 						String leaveOrganizationHREF = "javascript: if (confirm('" + LanguageUtil.get(pageContext, "are-you-sure-you-want-to-leave-this-organization") + "')) { submitForm(document.hrefFm, '" + leaveOrganizationURL + "'); }";
@@ -61,7 +61,7 @@
 						<%
 						PortletURL joinOrganizationURL = renderResponse.createActionURL();
 
-						joinOrganizationURL.setParameter(Constants.CMD, "join_organization");
+						joinOrganizationURL.setParameter(ActionRequest.ACTION_NAME, "joinOrganization");
 						joinOrganizationURL.setParameter("redirect", PortalUtil.getCurrentURL(request));
 						%>
 

@@ -43,16 +43,18 @@ if (wallToWallUser != null) {
 %>
 
 <script type="text/javascript">
+	function <portlet:namespace />addWallEntry() {
+		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="addWallEntry" />');
+	}
+
 	function <portlet:namespace />deleteWallEntry(wallEntryId) {
-		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.DELETE %>";
 		document.<portlet:namespace />fm.<portlet:namespace />wallEntryId.value = wallEntryId;
-		submitForm(document.<portlet:namespace />fm);
+		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="deleteWallEntry" />');
 	}
 </script>
 
 <c:if test="<%= themeDisplay.isSignedIn() %>">
-	<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
-	<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
+	<form method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />addWallEntry(); return false;">
 	<input name="<portlet:namespace />redirect" type="hidden" value="<%= PortalUtil.getCurrentURL(request) %>" />
 	<input name="<portlet:namespace />wallEntryId" type="hidden" value="" />
 

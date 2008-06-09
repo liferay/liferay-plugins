@@ -24,7 +24,6 @@ package com.liferay.wol.wall.portlet;
 
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -57,16 +56,17 @@ public class WallPortlet extends JSPPortlet {
 		throws IOException, PortletException {
 
 		try {
-			String cmd = ParamUtil.getString(req, Constants.CMD);
+			String actionName = ParamUtil.getString(
+				req, ActionRequest.ACTION_NAME);
 
-			if (cmd.equals(Constants.ADD)) {
+			if (actionName.equals("addWallEntry")) {
 				addWallEntry(req);
 			}
-			else if (cmd.equals(Constants.DELETE)) {
+			else if (actionName.equals("deleteWallEntry")) {
 				deleteWallEntry(req);
 			}
 
-			if (Validator.isNotNull(cmd)) {
+			if (Validator.isNotNull(actionName)) {
 				if (SessionErrors.isEmpty(req)) {
 					SessionMessages.add(req, "request_processed");
 				}

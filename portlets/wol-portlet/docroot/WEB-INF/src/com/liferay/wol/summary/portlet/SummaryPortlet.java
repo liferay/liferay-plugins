@@ -24,7 +24,6 @@ package com.liferay.wol.summary.portlet;
 
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -74,21 +73,22 @@ public class SummaryPortlet extends JSPPortlet {
 		throws IOException, PortletException {
 
 		try {
-			String cmd = ParamUtil.getString(req, Constants.CMD);
+			String actionName = ParamUtil.getString(
+				req, ActionRequest.ACTION_NAME);
 
-			if (cmd.equals("add_friend")) {
+			if (actionName.equals("addFriend")) {
 				addFriend(req);
 			}
-			else if (cmd.equals("join_organization")) {
+			else if (actionName.equals("joinOrganization")) {
 				joinOrganization(req);
 			}
-			else if (cmd.equals("leave_organization")) {
+			else if (actionName.equals("leaveOrganization")) {
 				leaveOrganization(req);
 			}
-			else if (cmd.equals("remove_friend")) {
+			else if (actionName.equals("removeFriend")) {
 				removeFriend(req);
 			}
-			else if (cmd.equals(Constants.UPDATE)) {
+			else if (actionName.equals("updateSummary")) {
 				updateSummary(req);
 			}
 
