@@ -14,5 +14,6 @@
 		<field name="statusId" type="long" />
 		<field name="userId" type="long" />
 		<field name="modifiedDate" type="long" />
+		<field name="activeBrowserKey" type="String" />
 	</model>
 </model-hints>

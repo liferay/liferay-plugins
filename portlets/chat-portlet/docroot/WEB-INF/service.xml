@@ -48,6 +48,10 @@
 		<column name="userId" type="long" />
 		<column name="modifiedDate" type="long" />
 
+		<!-- Other fields -->
+
+		<column name="activeBrowserKey" type="String" />
+
 		<!-- Finder methods -->
 
 		<finder name="UserId" return-type="Status">

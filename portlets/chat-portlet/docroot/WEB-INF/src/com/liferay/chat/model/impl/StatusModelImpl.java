@@ -27,6 +27,7 @@ import com.liferay.chat.model.StatusSoap;
 
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HtmlUtil;
 
 import com.liferay.portlet.service.BaseModelImpl;
 import com.liferay.portlet.service.PropsUtil;
@@ -55,9 +56,12 @@ public class StatusModelImpl extends BaseModelImpl {
 			{ "userId", new Integer(Types.BIGINT) },
 			
 
-			{ "modifiedDate", new Integer(Types.BIGINT) }
+			{ "modifiedDate", new Integer(Types.BIGINT) },
+			
+
+			{ "activeBrowserKey", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Chat_Status (statusId LONG not null primary key,userId LONG,modifiedDate LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Chat_Status (statusId LONG not null primary key,userId LONG,modifiedDate LONG,activeBrowserKey VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Chat_Status";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -72,6 +76,7 @@ public class StatusModelImpl extends BaseModelImpl {
 		model.setStatusId(soapModel.getStatusId());
 		model.setUserId(soapModel.getUserId());
 		model.setModifiedDate(soapModel.getModifiedDate());
+		model.setActiveBrowserKey(soapModel.getActiveBrowserKey());
 
 		return model;
 	}
@@ -134,6 +139,19 @@ public class StatusModelImpl extends BaseModelImpl {
 		}
 	}
 
+	public String getActiveBrowserKey() {
+		return GetterUtil.getString(_activeBrowserKey);
+	}
+
+	public void setActiveBrowserKey(String activeBrowserKey) {
+		if (((activeBrowserKey == null) && (_activeBrowserKey != null)) ||
+				((activeBrowserKey != null) && (_activeBrowserKey == null)) ||
+				((activeBrowserKey != null) && (_activeBrowserKey != null) &&
+				!activeBrowserKey.equals(_activeBrowserKey))) {
+			_activeBrowserKey = activeBrowserKey;
+		}
+	}
+
 	public Status toEscapedModel() {
 		if (isEscapedModel()) {
 			return (Status)this;
@@ -146,6 +164,7 @@ public class StatusModelImpl extends BaseModelImpl {
 			model.setStatusId(getStatusId());
 			model.setUserId(getUserId());
 			model.setModifiedDate(getModifiedDate());
+			model.setActiveBrowserKey(HtmlUtil.escape(getActiveBrowserKey()));
 
 			model = (Status)Proxy.newProxyInstance(Status.class.getClassLoader(),
 					new Class[] { Status.class }, new ReadOnlyBeanHandler(model));
@@ -160,6 +179,7 @@ public class StatusModelImpl extends BaseModelImpl {
 		clone.setStatusId(getStatusId());
 		clone.setUserId(getUserId());
 		clone.setModifiedDate(getModifiedDate());
+		clone.setActiveBrowserKey(getActiveBrowserKey());
 
 		return clone;
 	}
@@ -215,4 +235,5 @@ public class StatusModelImpl extends BaseModelImpl {
 	private long _statusId;
 	private long _userId;
 	private long _modifiedDate;
+	private String _activeBrowserKey;
 }

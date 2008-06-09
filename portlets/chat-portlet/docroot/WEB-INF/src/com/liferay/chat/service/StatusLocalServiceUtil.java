@@ -101,11 +101,12 @@ public class StatusLocalServiceUtil {
 		return statusLocalService.getUserStatus(userId);
 	}
 
-	public static com.liferay.chat.model.Status updateUserStatus(long userId)
+	public static com.liferay.chat.model.Status updateStatus(long userId,
+		java.lang.String activeBrowserKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		StatusLocalService statusLocalService = StatusLocalServiceFactory.getService();
 
-		return statusLocalService.updateUserStatus(userId);
+		return statusLocalService.updateStatus(userId, activeBrowserKey);
 	}
 }

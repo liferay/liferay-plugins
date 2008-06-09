@@ -10,5 +10,6 @@ create table Chat_Entry (
 create table Chat_Status (
 	statusId LONG not null primary key,
 	userId LONG,
-	modifiedDate LONG
+	modifiedDate LONG,
+	activeBrowserKey VARCHAR(75) null
 );

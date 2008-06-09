@@ -19,5 +19,6 @@
 		</id>
 		<property name="userId" type="com.liferay.util.dao.hibernate.LongType" />
 		<property name="modifiedDate" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="activeBrowserKey" type="com.liferay.util.dao.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

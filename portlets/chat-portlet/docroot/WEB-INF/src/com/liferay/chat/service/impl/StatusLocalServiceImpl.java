@@ -52,7 +52,7 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 		return statusPersistence.findByUserId(userId);
 	}
 
-	public Status updateUserStatus(long userId)
+	public Status updateStatus(long userId, String activeBrowserKey)
 		throws PortalException, SystemException {
 
 		Status status = statusPersistence.fetchByUserId(userId);
@@ -66,6 +66,7 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 		}
 
 		status.setModifiedDate(System.currentTimeMillis());
+		status.setActiveBrowserKey(activeBrowserKey);
 
 		statusPersistence.update(status, false);
 

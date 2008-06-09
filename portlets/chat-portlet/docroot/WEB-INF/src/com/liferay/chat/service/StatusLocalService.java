@@ -64,7 +64,8 @@ public interface StatusLocalService {
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public com.liferay.chat.model.Status updateUserStatus(long userId)
+	public com.liferay.chat.model.Status updateStatus(long userId,
+		java.lang.String activeBrowserKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 }

@@ -47,5 +47,9 @@ public interface StatusModel extends BaseModel {
 
 	public void setModifiedDate(long modifiedDate);
 
+	public String getActiveBrowserKey();
+
+	public void setActiveBrowserKey(String activeBrowserKey);
+
 	public Status toEscapedModel();
 }

@@ -40,6 +40,7 @@ public class StatusSoap implements Serializable {
 		soapModel.setStatusId(model.getStatusId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setModifiedDate(model.getModifiedDate());
+		soapModel.setActiveBrowserKey(model.getActiveBrowserKey());
 
 		return soapModel;
 	}
@@ -89,7 +90,16 @@ public class StatusSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
+	public String getActiveBrowserKey() {
+		return _activeBrowserKey;
+	}
+
+	public void setActiveBrowserKey(String activeBrowserKey) {
+		_activeBrowserKey = activeBrowserKey;
+	}
+
 	private long _statusId;
 	private long _userId;
 	private long _modifiedDate;
+	private String _activeBrowserKey;
 }

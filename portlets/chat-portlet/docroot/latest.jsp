@@ -29,6 +29,9 @@ if (!themeDisplay.isSignedIn()) {
 	return;
 }
 
+String activeBrowserKey = ParamUtil.getString(request, "activeBrowserKey");
+boolean activeBrowser = ParamUtil.getBoolean(request, "activeBrowser");
+
 // Status
 
 Status status = null;
@@ -37,6 +40,20 @@ try {
 	status = StatusLocalServiceUtil.getUserStatus(themeDisplay.getUserId());
 }
 catch (NoSuchStatusException nsse) {
+}
+
+if (!activeBrowser && (status != null) && !status.getActiveBrowserKey().equals(activeBrowserKey)) {
+
+	// JSON
+
+	JSONObject jsonObj = new JSONObject();
+
+	JSONUtil.put(jsonObj, "activeBrowser", false);
+%>
+
+	<%= jsonObj %>
+
+<%
 }
 
 // Buddies
@@ -101,12 +118,13 @@ for (Entry entry : entries) {
 
 // Status
 
-StatusLocalServiceUtil.updateUserStatus(themeDisplay.getUserId());
+StatusLocalServiceUtil.updateStatus(themeDisplay.getUserId(), activeBrowserKey);
 
 // JSON
 
 JSONObject jsonObj = new JSONObject();
 
+JSONUtil.put(jsonObj, "activeBrowser", true);
 JSONUtil.put(jsonObj, "buddies", buddiesJSON);
 JSONUtil.put(jsonObj, "entries", entriesJSON);
 %>
