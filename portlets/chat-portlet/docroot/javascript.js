@@ -39,6 +39,7 @@ Liferay.Chat = {
 				instance.chatWindowPopup(this);
 
 				clearInterval(instance.prefs.interval);
+
 				instance.prefs.interval = setInterval(
 					function() {
 						Liferay.Chat.get(true);
@@ -142,10 +143,11 @@ Liferay.Chat = {
 
 		if (instance.prefs.activeBrowser === true) {
 			AJAXdata.activeBrowser = true;
+
 			instance.prefs.activeBrowser = null;
 		}
 
-		if (instance.prefs.running || instance.prefs.activeBrowser === false) {
+		if (instance.prefs.running || (instance.prefs.activeBrowser === false)) {
 			return;
 		}
 
@@ -155,6 +157,7 @@ Liferay.Chat = {
 			{
 				beforeSend: function(connection) {
 					Liferay.Chat.prefs.running = true;
+
 					connection.setRequestHeader('Connection', 'Keep-Alive');
 				},
 				data: AJAXdata,
@@ -164,6 +167,7 @@ Liferay.Chat = {
 
 					if (response.activeBrowser === false) {
 						jQuery('ul.chat-bar .item').removeClass('active');
+
 						Liferay.Chat.prefs.activeBrowser = false;
 					}
 					else {
@@ -185,7 +189,6 @@ Liferay.Chat = {
 							}
 
 							Liferay.Chat.users[themeDisplay.getUserId()] = themeDisplay.getUserName();
-
 						}
 
 						if (response.entries.length) {
@@ -264,6 +267,7 @@ Liferay.Chat = {
 					instance.chatWindowPopup(this);
 
 					clearInterval(instance.prefs.interval);
+
 					instance.prefs.interval = setInterval(
 						function() {
 							Liferay.Chat.get(true);
