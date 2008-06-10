@@ -237,6 +237,7 @@ Liferay.Chat = {
 								var s = o.children('.popup').children('.chat').children('.show');
 
 								s.append('<p class="' + ((response.entries[i].fromUserId == Liferay.Chat.prefs.user) ? 'you' : 'not') + '"><b class="name">' + Liferay.Chat.users[response.entries[i].fromUserId] + '</b><i class="date">' + timeBind + '</i><span class="text">' + response.entries[i].content.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</span></p>');
+
 								s[0].scrollTop = s[0].scrollHeight;
 							}
 						}
