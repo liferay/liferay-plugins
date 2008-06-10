@@ -47,6 +47,10 @@
 				(SocialRelation.userId1 = ?) AND
 				(SocialRelation.type_ = ?) AND
 				(Chat_Status.modifiedDate > ?)
+			ORDER BY
+				Contact_.firstName ASC,
+				Contact_.middleName ASC,
+				Contact_.lastName ASC
 		]]>
 	</sql>
 </custom-sql>
