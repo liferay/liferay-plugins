@@ -217,7 +217,7 @@ Liferay.Chat = {
 
 								var timeAMPM = (time.getHours() < 12) ? 'am' : 'pm';
 								var timeHour = (time.getHours() > 12) ? time.getHours() - 12 : time.getHours();
-								var timeMinute = time.getMinutes();
+								var timeMinute = (time.getMinutes() < 10) ? '0' + time.getMinutes() : time.getMinutes();
 
 								var timeBind = timeHour + ':' + timeMinute + ' ' + timeAMPM;
 
