@@ -180,7 +180,6 @@ Liferay.Chat = {
 							var chatPopup = jQuery('#buddy-list .chat-popup');
 
 							buddyListItem.children('a').removeClass('null');
-
 							buddyListItem.children('a').html('Chat (' + response.buddies.length + ')');
 
 							chatPopup.html('');
@@ -197,7 +196,7 @@ Liferay.Chat = {
 
 							Liferay.Chat.users[themeDisplay.getUserId()] = themeDisplay.getUserName();
 						}
-						else {							
+						else {
 							buddyListItem.children('a').html('Chat (0)');
 							buddyListItem.children('a').addClass('null');
 						}
