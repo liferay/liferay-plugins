@@ -39,7 +39,7 @@ Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(),
 
 <ul class="chat-bar">
 	<li class="item">
-		<a class="item-link" href="javascript: ;">Chat</a>
+		<a class="item-link" href="javascript: ;">Chat (0)</a>
 
 		<div class="popup">
 			<div id="buddy-list">

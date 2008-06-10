@@ -36,7 +36,9 @@ Liferay.Chat = {
 				instance.prefs.refreshThrottle = 0;
 				instance.prefs.activeBrowser = true;
 
-				instance.chatWindowPopup(this);
+				if (!jQuery(this).is('.null')) {
+					instance.chatWindowPopup(this);
+				}
 
 				clearInterval(instance.prefs.interval);
 
@@ -171,10 +173,14 @@ Liferay.Chat = {
 						Liferay.Chat.prefs.activeBrowser = false;
 					}
 					else {
+						var buddyListItem = jQuery('.chat-portlet li.item:first');
+
 						if (response.buddies.length > 0) {
 							var chatPopup = jQuery('#buddy-list .chat-popup');
 
-							jQuery('.chat-portlet li.item:first > a').html('Chat (' + response.buddies.length + ')');
+							chatPopup.removeClass('null');
+
+							buddyListItem.children('a').html('Chat (' + response.buddies.length + ')');
 
 							chatPopup.html('');
 
@@ -189,6 +195,10 @@ Liferay.Chat = {
 							}
 
 							Liferay.Chat.users[themeDisplay.getUserId()] = themeDisplay.getUserName();
+						}
+						else {							
+							buddyListItem.children('a').html('Chat (0)');
+							buddyListItem.children('a').addClass('null');
 						}
 
 						if (response.entries.length) {
