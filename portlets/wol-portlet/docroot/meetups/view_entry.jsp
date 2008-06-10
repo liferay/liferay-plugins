@@ -131,36 +131,41 @@ int yesTotal = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(
 		List<MeetupsRegistration> results = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrations(meetupsEntryId, tabs1Status, searchContainer.getStart(), searchContainer.getEnd());
 		%>
 
-		<table class="lfr-table" width="100%">
-
 		<%
 		for (int i = 0; i < results.size(); i++) {
 			MeetupsRegistration curMeetupsRegistration = results.get(i);
 		%>
-
-			<tr>
-				<td align="center" valign="top">
-					<liferay-ui:user-display
-						userId="<%= curMeetupsRegistration.getUserId() %>"
-						userName="<%= curMeetupsRegistration.getUserName() %>"
-						displayStyle="<%= 2 %>"
-					/>
-				</td>
-				<td valign="top" width="99%">
-					<%= curMeetupsRegistration.getComments() %>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<div class="separator"><!-- --></div>
-				</td>
-			</tr>
-
+			<div class="response">
+				<liferay-ui:user-display
+					userId="<%= curMeetupsRegistration.getUserId() %>"
+					userName="<%= curMeetupsRegistration.getUserName() %>"
+					displayStyle="<%= 2 %>"
+				/>
+				<c:if test="<%= Validator.isNotNull(curMeetupsRegistration.getComments()) %>">
+					<div class="comments">
+						<%= curMeetupsRegistration.getComments() %>
+						<span class="indicator"></span>
+					</div>
+				</c:if>
+			</div>
 		<%
 		}
 		%>
 
-		</table>
+		<script type="text/javascript">
+			jQuery(
+				function () {
+					jQuery('.wol-portlet-meetups .response').hover(
+						function() {
+							jQuery(this).addClass('hovering');
+						}, 
+						function() {
+							jQuery(this).removeClass('hovering');
+						}
+					);
+				}
+			);
+		</script>
 
 		<div class="taglib-search-iterator-page-iterator-bottom">
 			<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
