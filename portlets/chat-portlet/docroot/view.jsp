@@ -24,11 +24,18 @@
 
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 
+<%@ page import="com.liferay.portal.model.Portlet" %>
+<%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
+
 <liferay-theme:defineObjects />
 
-<link href="<%= request.getContextPath() %>/css.jsp?themeId=<%= themeDisplay.getTheme().getThemeId() %>&amp;colorSchemeId=<%= themeDisplay.getColorScheme().getColorSchemeId() %>&amp;t=<%= theme.getTimestamp() %>" rel="stylesheet" type="text/css" />
+<%
+Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletDisplay.getId());
+%>
 
-<script src="<%= request.getContextPath() %>/javascript.js" type="text/javascript"></script>
+<link href="<%= request.getContextPath() %>/css.jsp?themeId=<%= themeDisplay.getTheme().getThemeId() %>&amp;colorSchemeId=<%= themeDisplay.getColorScheme().getColorSchemeId() %>&amp;t=<%= portlet.getTimestamp() %>" rel="stylesheet" type="text/css" />
+
+<script src="<%= request.getContextPath() %>/javascript.js?t=<%= portlet.getTimestamp() %>" type="text/javascript"></script>
 
 <ul class="chat-bar">
 	<li class="item">
