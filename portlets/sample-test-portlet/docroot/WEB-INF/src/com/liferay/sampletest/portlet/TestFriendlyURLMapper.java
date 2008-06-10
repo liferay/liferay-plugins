@@ -70,6 +70,7 @@ public class TestFriendlyURLMapper extends BaseFriendlyURLMapper {
 			(Validator.isNotNull(jspPage))) {
 
 			portletURL.addParameterIncludedInPath("p_p_id");
+
 			portletURL.addParameterIncludedInPath("jspPage");
 
 			StringMaker sm = new StringMaker();

@@ -51,6 +51,7 @@ public class MeetupsFriendlyURLMapper extends BaseFriendlyURLMapper {
 			(meetupsEntryId > 0)) {
 
 			portletURL.addParameterIncludedInPath("p_p_id");
+
 			portletURL.addParameterIncludedInPath("jspPage");
 			portletURL.addParameterIncludedInPath("meetupsEntryId");
 
