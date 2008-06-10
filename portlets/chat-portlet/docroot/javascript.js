@@ -179,7 +179,7 @@ Liferay.Chat = {
 						if (response.buddies.length > 0) {
 							var chatPopup = jQuery('#buddy-list .chat-popup');
 
-							buddyListItem.removeClass('null');
+							buddyListItem.children('a').removeClass('null');
 
 							buddyListItem.children('a').html('Chat (' + response.buddies.length + ')');
 
