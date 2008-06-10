@@ -14,11 +14,12 @@ Liferay.Chat = {
 		instance.ajax = {
 			cache: false,
 			data: {
+				saveLastPath: 0,
 				fromUserId: params.user,
 				activeBrowserKey: Math.floor(Math.random() * 1000000)
 			},
 			type: 'get',
-			url: themeDisplay.getLayoutURL() + '/-/chat/latest?saveLastPath=0'
+			url: themeDisplay.getLayoutURL() + '/-/chat/latest'
 		};
 
 		instance.get(true);
