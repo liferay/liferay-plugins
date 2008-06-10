@@ -111,6 +111,14 @@ for (Entry entry : entries) {
 
 	JSONUtil.put(entryJSON, "createDate", entry.getCreateDate());
 	JSONUtil.put(entryJSON, "fromUserId", entry.getFromUserId());
+
+	if (entry.getFromUserId() != themeDisplay.getUserId()) {
+		User fromUser = UserLocalServiceUtil.getUserById(entry.getFromUserId());
+
+		JSONUtil.put(entryJSON, "fromFullName", fromUser.getFullName());
+		JSONUtil.put(entryJSON, "fromPortraitId", fromUser.getPortraitId());
+	}
+
 	JSONUtil.put(entryJSON, "toUserId", entry.getToUserId());
 	JSONUtil.put(entryJSON, "content", entry.getContent());
 
