@@ -1,0 +1,112 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+body {
+	background-color: #ECB7DA;
+	background-image: url(../images/comment/bg.gif);
+	background-repeat: repeat-x;
+	color: #B53CC3;
+	margin: 0pt;
+	padding: 0pt;
+}
+
+#banner {
+	background-image: url(../images/comment/header-bg.gif);
+	background-repeat: no-repeat;
+	clear: right;
+	height: 410px;
+	padding-bottom: 8px;
+	padding-left: 0px;
+	width: 906px;
+	margin: 0px auto;
+	border-bottom: 0px;
+}
+
+#content-wrapper {
+	margin: -133pt auto 0px auto;
+	width: 766px;
+	background: #FFFFFF none repeat scroll 0%;
+}
+
+#footer {
+	background: #FFFFFF url(../images/comment/footer-bg.gif) no-repeat
+		scroll center bottom;
+	clear: both;
+	color: #BD7AA6;
+	font-size: 11px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+	text-align: left;
+	width: 748px;
+	margin: 0px auto;
+}
+
+#banner .logo {
+	display: block;
+	font-size: 2em;
+	margin: 0pt auto;
+	padding: 1.25em 0pt 87.45px;
+}
+
+#banner-content {
+	margin: 0pt auto;
+	width: 82%;
+}
+
+#navigation li {
+	background: none;
+	display: inline;
+	float: left;
+	margin-right: 0.5em;
+	position: relative;
+}
+
+#navigation li.selected {
+	border-top: 0px;
+	font-weight: bold;
+}
+
+.portlet-title {
+	display: block;
+	font-size: 13px;
+	min-width: 50%;
+	padding: 8px 0pt 4px 10px;
+}
+
+.portlet {
+	border: 1px solid #f4f4f4;
+	margin-bottom: 1em;
+	text-align: left;
+	background: #FAFAFA;
+	font-size: 12px;
+}
+
+.portlet-topper {
+	background: #EAB3D7 url(../images/comment/portlet_top.png) repeat-x
+		scroll 0% 0%;
+	position: relative;
+}
+
+.tabs li.current {
+	background: #EAB3D7 url(../images/comment/tabs_active_bg.png) repeat-x
+		scroll 0pt 0%;
+	font-weight: bold;
+}
+
+.tabs li {
+	background: #F1CFE6 url(../images/comment/tabs_inactive_bg.png) repeat-x
+		scroll 0pt 100%;
+	border-color: #F1CFE6;
+	border-style: solid solid none;
+	border-width: 1px 1px 0pt;
+	display: inline;
+	float: left;
+	line-height: 2.25;
+	margin-right: 0.8em;
+	padding: 0pt;
+	text-decoration: none;
+}
+
+.tabs {
+	border-bottom: 1px solid #E195C7;
+	margin: 0pt 0pt 1.5em;
+	padding: 0pt 0pt 2.6em 1em;
+}
