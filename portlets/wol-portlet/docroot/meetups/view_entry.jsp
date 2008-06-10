@@ -24,6 +24,8 @@
 
 <%@ include file="/init.jsp" %>
 
+<link href="<%= request.getContextPath() %>/meetups/css.jsp?themeId=<%= themeDisplay.getTheme().getThemeId() %>&amp;colorSchemeId=<%= themeDisplay.getColorScheme().getColorSchemeId() %>&amp;t=<%= theme.getTimestamp() %>" rel="stylesheet" type="text/css" />
+
 <%
 String tabs1 = ParamUtil.getString(request, "tabs1", "attending");
 
@@ -122,7 +124,7 @@ int yesTotal = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(
 			tabs1Status = MeetupsConstants.STATUS_MAYBE;
 		}
 
-		SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
+		SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL, null, null);
 
 		int total = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(meetupsEntryId, tabs1Status);
 
