@@ -129,25 +129,26 @@ int yesTotal = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(
 		searchContainer.setTotal(total);
 
 		List<MeetupsRegistration> results = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrations(meetupsEntryId, tabs1Status, searchContainer.getStart(), searchContainer.getEnd());
+
+		for (MeetupsRegistration curMeetupsRegistration : results) {
 		%>
 
-		<%
-		for (int i = 0; i < results.size(); i++) {
-			MeetupsRegistration curMeetupsRegistration = results.get(i);
-		%>
 			<div class="response">
 				<liferay-ui:user-display
 					userId="<%= curMeetupsRegistration.getUserId() %>"
 					userName="<%= curMeetupsRegistration.getUserName() %>"
 					displayStyle="<%= 2 %>"
 				/>
+
 				<c:if test="<%= Validator.isNotNull(curMeetupsRegistration.getComments()) %>">
 					<div class="comments">
 						<%= curMeetupsRegistration.getComments() %>
+
 						<span class="indicator"></span>
 					</div>
 				</c:if>
 			</div>
+
 		<%
 		}
 		%>
@@ -158,7 +159,7 @@ int yesTotal = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(
 					jQuery('.wol-portlet-meetups .response').hover(
 						function() {
 							jQuery(this).addClass('hovering');
-						}, 
+						},
 						function() {
 							jQuery(this).removeClass('hovering');
 						}
