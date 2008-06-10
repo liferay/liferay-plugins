@@ -208,22 +208,24 @@ Liferay.Chat = {
 							Liferay.Chat.ajax.data.createDate = response.entries[response.entries.length-1].createDate;
 
 							for (i = 0; i < response.entries.length; i++) {
-								var u = (response.entries[i].fromUserId != Liferay.Chat.prefs.user) ? response.entries[i].fromUserId : response.entries[i].toUserId;
-								var uc = u.toString().replace(/ /g, '-').toLowerCase();
+								var chatBuddy = (response.entries[i].fromUserId != Liferay.Chat.prefs.user) ? response.entries[i].fromUserId : response.entries[i].toUserId;
+								var chatBuddyCSSname = chatBuddy.toString().replace(/ /g, '-').toLowerCase();
+
+								Liferay.Chat.users[response.entries[i].fromUserId] = response.entries[i].fromFullName || Liferay.Chat.users[response.entries[i].fromUserId];
 
 								var time = new Date(response.entries[i].createDate);
+
 								var timeAMPM = (time.getHours() < 12) ? 'am' : 'pm';
 								var timeHour = (time.getHours() > 12) ? time.getHours() - 12 : time.getHours();
 								var timeMinute = time.getMinutes();
-								var timeBind = timeHour + ':' + timeMinute + ' ' + timeAMPM;
-								
-								
 
-								if (jQuery('ul.chat-bar .' + uc).length == 0) {
-									Liferay.Chat.newChat(u);
+								var timeBind = timeHour + ':' + timeMinute + ' ' + timeAMPM;
+
+								if (jQuery('ul.chat-bar .' + chatBuddyCSSname).length == 0) {
+									Liferay.Chat.newChat(chatBuddy);
 								}
 
-								var o = jQuery('ul.chat-bar .' + uc);
+								var o = jQuery('ul.chat-bar .' + chatBuddyCSSname);
 
 								if (!o.is('.active')) {
 									o.addClass('waiting');
@@ -234,7 +236,7 @@ Liferay.Chat = {
 
 								var s = o.children('.popup').children('.chat').children('.show');
 
-								s.append('<p class="' + ((response.entries[i].fromUserId == Liferay.Chat.prefs.user) ? 'you' : 'not') + '"><b class="name">' + Liferay.Chat.users[response.entries[i].fromUserId] + '</b><i class="date">' + timeBind + '</i><span class="text">' + response.entries[i].content.replace(/</g, '&lt;') + '</span></p>');
+								s.append('<p class="' + ((response.entries[i].fromUserId == Liferay.Chat.prefs.user) ? 'you' : 'not') + '"><b class="name">' + Liferay.Chat.users[response.entries[i].fromUserId] + '</b><i class="date">' + timeBind + '</i><span class="text">' + response.entries[i].content.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</span></p>');
 								s[0].scrollTop = s[0].scrollHeight;
 							}
 						}
