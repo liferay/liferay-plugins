@@ -23,7 +23,7 @@
 package com.liferay.wol.summary.util;
 
 /**
- * <a href="SummaryConstants.java.java.html"><b><i>View Source</i></b></a>
+ * <a href="SummaryConstants.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
