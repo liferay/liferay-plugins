@@ -38,6 +38,8 @@ Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(),
 <script src="<%= request.getContextPath() %>/javascript.js?t=<%= portlet.getTimestamp() %>" type="text/javascript"></script>
 
 <ul class="chat-bar">
+	<div class="hidden-sound">
+	</div>
 	<li class="item">
 		<a class="item-link" href="javascript: ;">Chat (0)</a>
 

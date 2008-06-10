@@ -8,7 +8,8 @@ Liferay.Chat = {
 			refreshMax: params.refreshMax || 8,
 			running: false,
 			user: params.user,
-			activeBrowser: true
+			activeBrowser: true,
+			playSound: false
 		};
 
 		instance.ajax = {
@@ -218,6 +219,10 @@ Liferay.Chat = {
 							Liferay.Chat.ajax.data.createDate = response.entries[response.entries.length-1].createDate;
 
 							for (i = 0; i < response.entries.length; i++) {
+								if (response.entries[i].fromUserId != Liferay.Chat.prefs.user && Liferay.Chat.prefs.playSound) {
+									jQuery('.hidden-sound').html('<embed height="1" width="1" quality="high" src="/chat-portlet/clickpop.swf" type="application/x-shockwave-flash"/>');
+								}
+
 								var chatBuddy = (response.entries[i].fromUserId != Liferay.Chat.prefs.user) ? response.entries[i].fromUserId : response.entries[i].toUserId;
 								var chatBuddyCSSname = chatBuddy.toString().replace(/ /g, '-').toLowerCase();
 
@@ -369,6 +374,16 @@ jQuery().ready(
 		Liferay.Chat.init(
 			{
 				user: themeDisplay.getUserId()
+			}
+		);
+		jQuery().blur(
+			function() {
+				Liferay.Chat.prefs.playSound = true;
+			}
+		);
+		jQuery().focus(
+			function() {
+				Liferay.Chat.prefs.playSound = false;
 			}
 		);
 	}

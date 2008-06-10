@@ -165,6 +165,7 @@
 }
 
 .chat-portlet > ul {
+	position: relative;
 	padding-right: 10px;
 }
 
@@ -231,4 +232,8 @@
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+}
+
+.hidden-sound {
+	position: absolute;
 }
