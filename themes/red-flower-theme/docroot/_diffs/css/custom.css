@@ -1,0 +1,105 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+#wrapper {
+	background-image: none;
+	background-position: right top;
+	background-repeat: none;
+	margin: 0px auto;
+	width: 970px;
+}
+
+body {
+	background-color: #000000;
+	background-image: url(../images/comment/background.jpg);
+	background-position: none;
+	background-repeat: repeat-x;
+	font-family: "Trebuchet MS", "Lucida Sans Std", "Lucida Sans Unicode",
+		sans-serif;
+	font-size: 10px;
+}
+
+#banner .logo {
+	display:block;
+	font-size:2em;
+	margin:0pt auto;
+	padding:1.25em 0pt 376px;
+}
+
+
+#banner {
+	background: none;
+	border-bottom: none;
+	margin-bottom: 1em;
+	min-height: 120px;
+	background-image: url(../images/comment/header_bg.jpg);
+	height: 505px;
+}
+
+#navigation {
+	margin-top: 346px;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding-right: 1em;
+	height: 45px;
+	background: url(../images/comment/nav-bg.png);
+}
+
+.portlet-topper {
+	background: #C10003  url(../images/comment/portlet_top.png) repeat-x
+		scroll 10% 0%;
+	position: relative;
+}
+
+.portlet {
+	border: 0px solid #164E7F;
+	margin-bottom: 1em;
+	text-align: left;
+	background: #fff none repeat scroll 0% 50%;
+	font-size:12px;
+}
+
+.portlet-title {
+	font-weight: bold;
+	min-width: 50%;
+	padding: 8px 0pt 4px 10px;
+	color: #fff;
+	font-size: 12px;
+}
+
+#navigation li.selected {
+	border-top: none;
+	font-weight: bold;
+}
+
+#navigation li {
+	background: none;
+	display: inline;
+	float: left;
+	margin-right: 0.5em;
+	position: relative;
+}
+
+#navigation li a {
+	text-decoration: none;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+#navigation li.selected a {
+	padding-top: none;
+	color: #000;
+}
+
+#footer {
+	color: #FFFFFF;
+	font-size: 11px;
+	height: 74px;
+	line-height: 18px;
+	margin-top: 1px;
+	padding-top: 30px;
+	text-align: center;
+	width:95%;
+	margin: 0px auto;
+	background-image: url(../images/comment/footer.png);
+	background-repeat: repeat-x;
+	background-position: none;
+}
