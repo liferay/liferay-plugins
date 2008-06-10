@@ -1691,6 +1691,17 @@
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>pink-stars-theme</artifact-id>
+		<name>Pink Stars</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.osskins.com/main/wordpress/free-wordpress-theme-pink-stars/2008/01/07</page-url>
+		<author>MakeQuick</author>
+		<licenses>CCA</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>pink-sunset-theme</artifact-id>
 		<name>Pink Sunset</name>
 		<type>theme</type>
@@ -1710,6 +1721,17 @@
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/2087</page-url>
 		<author>James Koster</author>
+		<licenses>Public Domain</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>red-flower-theme</artifact-id>
+		<name>Red Flower</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.osskins.com/main/wordpress/free-wordpress-theme-red-flower/2008/04/05</page-url>
+		<author>Saroyama</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -2049,6 +2071,7 @@
 	<author>James Koster</author>
 	<author>Jochum Meester</author>
 	<author>Liferay, Inc.</author>
+	<author>MakeQuick</author>
 	<author>Mariah K.L.</author>
 	<author>Mika Koivisto</author>
 	<author>Minimalistic Design</author>
