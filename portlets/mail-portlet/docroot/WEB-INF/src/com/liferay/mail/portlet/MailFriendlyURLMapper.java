@@ -69,14 +69,7 @@ public class MailFriendlyURLMapper extends BaseFriendlyURLMapper {
 		}
 
 		addParam(params, "p_p_id", _PORTLET_ID);
-
-		if (jspPage.equals("attachment")) {
-			addParam(params, "p_p_lifecycle", "1");
-		}
-		else {
-			addParam(params, "p_p_lifecycle", "2");
-		}
-
+		addParam(params, "p_p_lifecycle", "2");
 		addParam(params, "p_p_state", WindowState.NORMAL);
 		addParam(params, "p_p_mode", PortletMode.VIEW);
 

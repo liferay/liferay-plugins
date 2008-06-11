@@ -26,10 +26,8 @@
 
 <%
 int accountId = ParamUtil.getInteger(request, "accountId");
-String folderName = ParamUtil.getString(request, "folderName");
-int messageUid = ParamUtil.getInteger(request, "messageUid");
 
 MailBoxManager mailBoxManager = new MailBoxManager(user, accountId);
-%>
 
-<%= mailBoxManager.getJSONMessageByUid(folderName, messageUid) %>
+mailBoxManager.updateAccount();
+%>

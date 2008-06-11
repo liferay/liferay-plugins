@@ -22,34 +22,13 @@
  */
 %>
 
-<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
-
-<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
-
-<%@ page import="com.liferay.mail.util.MailBoxManager" %>
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-<%@ page import="com.liferay.util.mail.JavaMailUtil" %>
-<%@ page import="com.liferay.util.servlet.ServletResponseUtil" %>
-
-<%@ page import="javax.mail.Part" %>
-
-<portlet:defineObjects />
-
-<liferay-theme:defineObjects />
+<%@ include file="/json_init.jsp" %>
 
 <%
 int accountId = ParamUtil.getInteger(request, "accountId");
 String folderName = ParamUtil.getString(request, "folderName");
 int messageUid = ParamUtil.getInteger(request, "messageUid");
-String fileName = ParamUtil.getString(request, "fileName");
-String contentPath = ParamUtil.getString(request, "contentPath");
-
-MailBoxManager mailBoxManager = new MailBoxManager(user, accountId);
-
-Part messagePart = mailBoxManager.getAttachment(folderName, messageUid, contentPath);
-
-byte[] content = JavaMailUtil.getBytes(messagePart);
-String contentType = messagePart.getContentType();
-
-ServletResponseUtil.sendFile(response, fileName, content, contentType);
+int offset = ParamUtil.getInteger(request, "offset");
 %>
+
+<%= MailDiscManager.getJSONMessageRelativeToUid(user, MailBoxManager.getMailAccount(user, accountId), folderName, messageUid, offset) %>

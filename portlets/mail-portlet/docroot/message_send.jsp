@@ -26,14 +26,18 @@
 
 <%
 int accountId = ParamUtil.getInteger(request, "accountId");
+String messageType = ParamUtil.getString(request, "messageType");
+
 String folderName = ParamUtil.getString(request, "folderName");
-int pageNum = ParamUtil.getInteger(request, "pageNum");
-int messagesPerPage = ParamUtil.getInteger(request, "messagesPerPage");
-String messageUidsToExclude = ParamUtil.getString(request, "messageUidsToExclude");
+long messageUid = ParamUtil.getLong(request, "messageUid");
+int fromAccountId = ParamUtil.getInteger(request, "fromAccountId");
+String recipientTo = ParamUtil.getString(request, "recipientTo");
+String recipientCc = ParamUtil.getString(request, "recipientCc");
+String recipientBcc = ParamUtil.getString(request, "recipientBcc");
+String subject = ParamUtil.getString(request, "subject");
+String content = ParamUtil.getString(request, "content");
 
 MailBoxManager mailBoxManager = new MailBoxManager(user, accountId);
-
-IMAPFolder folder = (IMAPFolder)mailBoxManager.openFolder(folderName);
 %>
 
-<%= mailBoxManager.getJSONMessages(folder, pageNum, messagesPerPage, messageUidsToExclude) %>
+<%= mailBoxManager.sendMessage(messageType, folderName, messageUid, fromAccountId, recipientTo, recipientCc, recipientBcc, subject, content, null) %>

@@ -31,6 +31,6 @@ String messageUids = ParamUtil.getString(request, "messageUids");
 boolean read = ParamUtil.getBoolean(request, "read");
 
 MailBoxManager mailBoxManager = new MailBoxManager(user, accountId);
-
-mailBoxManager.markMessagesAsRead(folderName, messageUids, read);
 %>
+
+<%= mailBoxManager.markMessagesAsRead(folderName, messageUids, read) %>

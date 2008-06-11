@@ -26,8 +26,6 @@
 
 <%
 int accountId = ParamUtil.getInteger(request, "accountId");
-
-MailBoxManager mailBoxManager = new MailBoxManager(user, accountId);
 %>
 
-<%= mailBoxManager.getJSONFolders() %>
+<%= MailDiscManager.getJSONFolders(user, MailBoxManager.getMailAccount(user, accountId)) %>

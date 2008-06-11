@@ -30,6 +30,6 @@ String folderName = ParamUtil.getString(request, "folderName");
 String messageUids = ParamUtil.getString(request, "messageUids");
 
 MailBoxManager mailBoxManager = new MailBoxManager(user, accountId);
-
-mailBoxManager.deleteMessagesByUids(folderName, messageUids)
 %>
+
+<%= mailBoxManager.deleteMessagesByUids(folderName, messageUids) %>

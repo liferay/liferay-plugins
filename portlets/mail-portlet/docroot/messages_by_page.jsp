@@ -27,9 +27,8 @@
 <%
 int accountId = ParamUtil.getInteger(request, "accountId");
 String folderName = ParamUtil.getString(request, "folderName");
-int messageNum = ParamUtil.getInteger(request, "messageNum");
-
-MailBoxManager mailBoxManager = new MailBoxManager(user, accountId);
+int pageNumber = ParamUtil.getInteger(request, "pageNumber");
+int messagesPerPage = ParamUtil.getInteger(request, "messagesPerPage");
 %>
 
-<%= mailBoxManager.getJSONMessageByNumber(folderName, messageNum) %>
+<%= MailDiscManager.getJSONMessagesByPage(user, MailBoxManager.getMailAccount(user, accountId), folderName, pageNumber, messagesPerPage) %>

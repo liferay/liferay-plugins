@@ -27,14 +27,9 @@
 <%
 int accountId = ParamUtil.getInteger(request, "accountId");
 String folderName = ParamUtil.getString(request, "folderName");
-int pageNum = ParamUtil.getInteger(request, "pageNum");
+int pageNumber = ParamUtil.getInteger(request, "pageNumber");
 int messagesPerPage = ParamUtil.getInteger(request, "messagesPerPage");
 String searchString = ParamUtil.getString(request, "searchString");
-String messageUidsToExclude = ParamUtil.getString(request, "messageUidsToExclude");
-
-MailBoxManager mailBoxManager = new MailBoxManager(user, accountId);
-
-IMAPFolder folder = (IMAPFolder)mailBoxManager.openFolder(folderName);
 %>
 
-<%= mailBoxManager.getJSONMessagesBySearch(folder, pageNum, messagesPerPage, searchString, messageUidsToExclude) %>
+<%= MailDiscManager.getJSONMessagesBySearch(user, MailBoxManager.getMailAccount(user, accountId), folderName, pageNumber, messagesPerPage, searchString) %>

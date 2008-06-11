@@ -23,22 +23,31 @@
 package com.liferay.mail.portlet;
 
 import com.liferay.mail.util.MailBoxManager;
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.util.mail.JavaMailUtil;
+import com.liferay.util.servlet.PortletResponseUtil;
 import com.liferay.util.servlet.ServletResponseUtil;
 
 import java.io.IOException;
+import java.io.InputStream;
 
+import javax.mail.MessagingException;
 import javax.mail.Part;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.portlet.ResourceRequest;
+import javax.portlet.ResourceResponse;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -81,6 +90,44 @@ public class MailPortlet extends JSPPortlet {
 		}
 		catch (Exception e) {
 			throw new PortletException(e);
+		}
+	}
+
+	public void serveResource(ResourceRequest req, ResourceResponse res)
+		throws IOException, PortletException {
+
+		String jspPage = req.getParameter("jspPage");
+
+		if (!jspPage.equals("/attachment.jsp")) {
+			super.serveResource(req, res);
+		}
+		else {
+			HttpServletRequest httpReq = PortalUtil.getHttpServletRequest(req);
+
+			int accountId = ParamUtil.getInteger(req, "accountId");
+			String folderName = ParamUtil.getString(req, "folderName");
+			int messageUid = ParamUtil.getInteger(req, "messageUid");
+			String fileName = ParamUtil.getString(req, "fileName");
+			String contentPath = ParamUtil.getString(req, "contentPath");
+
+			try {
+				MailBoxManager mailBoxManager = new MailBoxManager(
+					PortalUtil.getUser(httpReq), accountId);
+
+				Part messagePart = mailBoxManager.getAttachment(
+					folderName, messageUid, contentPath);
+
+				InputStream is = messagePart.getInputStream();
+				String contentType = MimeTypesUtil.getContentType(fileName);
+
+				PortletResponseUtil.sendFile(res, fileName, is, contentType);
+			}
+			catch (MessagingException me) {
+			}
+			catch (PortalException pe) {
+			}
+			catch (SystemException se) {
+			}
 		}
 	}
 
