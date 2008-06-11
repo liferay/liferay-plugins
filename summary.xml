@@ -998,6 +998,17 @@
 		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>Lexus-theme</artifact-id>
+		<name>LEXUS</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.osskins.com/main/wordpress/free-wordpress-theme-tuned-car-theme/2008/06/09</page-url>
+		<author>WP Town</author>
+		<licenses>Public Domain</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>alef-theme</artifact-id>
 		<name>Alef</name>
 		<type>theme</type>
@@ -1746,6 +1757,17 @@
 		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>redflowers-theme</artifact-id>
+		<name>Red Flowers</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.osskins.com/main/wordpress/free-wordpress-theme-redflowers/2008/03/09</page-url>
+		<author>Flash Templates</author>
+		<licenses>CCA</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>reginearena-theme</artifact-id>
 		<name>Regine Arena</name>
 		<type>theme</type>
@@ -2062,6 +2084,7 @@
 	<author>Darren Hester</author>
 	<author>Dieter Schneider</author>
 	<author>Ernani Danting</author>
+	<author>Flash Templates</author>
 	<author>Fullahead</author>
 	<author>GetTemplate</author>
 	<author>GrowlDesign</author>
@@ -2094,6 +2117,7 @@
 	<author>Unknown</author>
 	<author>Viktor Persson</author>
 	<author>Vit Dlouhy</author>
+	<author>WP Town</author>
 	<license>Apache</license>
 	<license>BSD</license>
 	<license>CCA</license>
