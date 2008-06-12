@@ -44,33 +44,37 @@ public class IPGeocoderMessageListener implements MessageListener {
 
 	public void receive(String message) {
 		try {
-			JSONObject jsonObj = new JSONObject(message);
-
-			String responseDestination = jsonObj.optString(
-				"lfrResponseDestination");
-			String responseId = jsonObj.optString("lfrResponseId");
-
-			if (Validator.isNotNull(responseDestination) &&
-				Validator.isNotNull(responseId)) {
-
-				String ipAddress = jsonObj.getString("ipAddress");
-
-				IPInfo ipInfo = IPGeocoderUtil.getIPInfo(ipAddress);
-
-				JSONObject jsonObject = new JSONObject();
-
-				JSONUtil.put(jsonObject, "lfrResponseId", responseId);
-				JSONUtil.put(
-					jsonObject, "ipInfo",
-					new JSONObject(JSONUtil.serialize(ipInfo)));
-
-				MessageBusUtil.sendMessage(
-					responseDestination, jsonObject.toString());
-			}
+			doReceive(message);
 		}
 		catch (Exception e) {
-			_log.error(e, e);
+			_log.error("Unable to process message " + message, e);
 		}
+	}
+
+	protected void doReceive(String message) throws Exception {
+		JSONObject jsonObj = new JSONObject(message);
+
+		String responseDestination = jsonObj.optString(
+			"lfrResponseDestination");
+		String responseId = jsonObj.optString("lfrResponseId");
+
+		if (Validator.isNull(responseDestination) ||
+			Validator.isNull(responseId)) {
+
+			return;
+		}
+
+		String ipAddress = jsonObj.getString("ipAddress");
+
+		IPInfo ipInfo = IPGeocoderUtil.getIPInfo(ipAddress);
+
+		JSONObject jsonObject = new JSONObject();
+
+		JSONUtil.put(jsonObject, "lfrResponseId", responseId);
+		JSONUtil.put(
+			jsonObject, "ipInfo", new JSONObject(JSONUtil.serialize(ipInfo)));
+
+		MessageBusUtil.sendMessage(responseDestination, jsonObject.toString());
 	}
 
 	private static Log _log =
