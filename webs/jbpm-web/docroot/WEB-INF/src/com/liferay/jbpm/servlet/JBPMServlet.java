@@ -26,7 +26,6 @@ import com.liferay.jbpm.WorkflowComponentImpl;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
-import com.liferay.portal.kernel.upload.UploadServletRequest;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.servlet.ServletResponseUtil;
@@ -58,8 +57,8 @@ public class JBPMServlet extends HttpServlet {
 
 			if ((contentType != null) &&
 				(contentType.startsWith(ContentTypes.MULTIPART_FORM_DATA))) {
-                                req=PortalUtil.getUploadServletRequest(req);
-				
+
+				req = PortalUtil.getUploadServletRequest(req);
 			}
 
 			WorkflowComponentImpl workflowComponentImpl =
