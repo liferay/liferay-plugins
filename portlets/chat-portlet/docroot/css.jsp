@@ -165,8 +165,8 @@
 }
 
 .chat-portlet > ul {
-	position: relative;
 	padding-right: 10px;
+	position: relative;
 }
 
 .chat-portlet > ul > li.item {
