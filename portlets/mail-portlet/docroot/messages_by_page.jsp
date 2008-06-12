@@ -31,4 +31,4 @@ int pageNumber = ParamUtil.getInteger(request, "pageNumber");
 int messagesPerPage = ParamUtil.getInteger(request, "messagesPerPage");
 %>
 
-<%= MailDiscManager.getJSONMessagesByPage(user, MailBoxManager.getMailAccount(user, accountId), folderName, pageNumber, messagesPerPage) %>
+<%= MailDiskManager.getJSONMessagesByPage(user, MailBoxManager.getMailAccount(user, accountId), folderName, pageNumber, messagesPerPage) %>

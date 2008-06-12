@@ -48,45 +48,46 @@ import org.json.JSONObject;
 
 /**
  *
- * <a href="MailDiscManager.java.html"><b><i>View Source</i></b></a>
+ * <a href="MailDiskManager.java.html"><b><i>View Source</i></b></a>
  *
  * @author Scott Lee
  *
  */
-public class MailDiscManager {
+public class MailDiskManager {
 
 	public static final String MAIL_ROOT_DIR = "d:/mailbox";
 
-	public static String getAccountFilepath(
-			User user, MailAccount mailAccount) {
+	public static String getAccountFilePath(
+		User user, MailAccount mailAccount) {
 
 		return getAccountPath(user, mailAccount) + "/account.json";
 	}
 
 	public static String getAccountPath(User user, MailAccount mailAccount) {
-		String pathName = MAIL_ROOT_DIR + "/" + user.getUserId() +
-			"/" + mailAccount.getEmailAddress();
+		String pathName =
+			MAIL_ROOT_DIR + "/" + user.getUserId() + "/" +
+				mailAccount.getEmailAddress();
 
 		FileUtil.mkdirs(pathName);
 
 		return pathName;
 	}
 
-	public static String getFolderFilepath(
-			User user, MailAccount mailAccount, String folderName) {
+	public static String getFolderFilePath(
+		User user, MailAccount mailAccount, String folderName) {
 
 		return getFolderPath(user, mailAccount, folderName) + "/folder.json";
 	}
 
 	public static String getFolderPath(
-			User user, MailAccount mailAccount, String folderName) {
+		User user, MailAccount mailAccount, String folderName) {
 
 		try {
 			String escapedFolderName = StringUtil.replace(
 				URLEncoder.encode(folderName, "UTF-8"), '*', "%2A");
 
-			String pathName = getAccountPath(user, mailAccount) + "/" +
-				escapedFolderName;
+			String pathName =
+				getAccountPath(user, mailAccount) + "/" + escapedFolderName;
 
 			FileUtil.mkdirs(pathName);
 
@@ -99,34 +100,14 @@ public class MailDiscManager {
 		return StringPool.BLANK;
 	}
 
-	public static String getMessageFilepath(
-			User user, MailAccount mailAccount, String folderName,
-			String messageUid) {
+	public static JSONObject getJSONAccount(
+		User user, MailAccount mailAccount) {
 
-		return getMessagePath(user, mailAccount, folderName, messageUid) +
-			"/message.json";
-	}
-
-	public static String getMessagePath(
-			User user, MailAccount mailAccount, String folderName,
-			String messageUid) {
-
-		String pathName = getFolderPath(user, mailAccount, folderName) + "/" +
-			messageUid;
-
-		FileUtil.mkdirs(pathName);
-
-		return pathName;
-	}
-
-	public static JSONObject getJSONAccount(User user,
-			MailAccount mailAccount) {
-
-		String accountFilepath = getAccountFilepath(user, mailAccount);
+		String accountFilePath = getAccountFilePath(user, mailAccount);
 
 		try {
-			if (FileUtil.exists(accountFilepath)) {
-				return new JSONObject(FileUtil.read(accountFilepath));
+			if (FileUtil.exists(accountFilePath)) {
+				return new JSONObject(FileUtil.read(accountFilePath));
 			}
 		}
 		catch (IOException ioe) {
@@ -139,15 +120,15 @@ public class MailDiscManager {
 		return null;
 	}
 
-	public static JSONObject getJSONFolder(User user, MailAccount mailAccount,
-			String folderName) {
+	public static JSONObject getJSONFolder(
+		User user, MailAccount mailAccount, String folderName) {
 
-		String folderFilepath = getFolderFilepath(
+		String folderFilePath = getFolderFilePath(
 			user, mailAccount, folderName);
 
 		try {
-			if (FileUtil.exists(folderFilepath)) {
-				return new JSONObject(FileUtil.read(folderFilepath));
+			if (FileUtil.exists(folderFilePath)) {
+				return new JSONObject(FileUtil.read(folderFilePath));
 			}
 		}
 		catch (IOException ioe) {
@@ -161,7 +142,7 @@ public class MailDiscManager {
 	}
 
 	public static JSONObject getJSONFolders(
-			User user, MailAccount mailAccount) {
+		User user, MailAccount mailAccount) {
 
 		String accountPath = getAccountPath(user, mailAccount);
 
@@ -194,15 +175,15 @@ public class MailDiscManager {
 	}
 
 	public static JSONObject getJSONMessageByUid(
-			User user, MailAccount mailAccount, String folderName,
-			String messageUid) {
+		User user, MailAccount mailAccount, String folderName,
+		String messageUid) {
 
-		String messageFilepath = getMessageFilepath(
+		String messageFilePath = getMessageFilePath(
 			user, mailAccount, folderName, messageUid);
 
 		try {
-			if (FileUtil.exists(messageFilepath)) {
-				String jsonString = FileUtil.read(messageFilepath);
+			if (FileUtil.exists(messageFilePath)) {
+				String jsonString = FileUtil.read(messageFilePath);
 
 				JSONObject jsonObj = new JSONObject(jsonString);
 
@@ -220,8 +201,8 @@ public class MailDiscManager {
 	}
 
 	public static JSONObject getJSONMessageRelativeToUid(
-			User user, MailAccount mailAccount, String folderName,
-			long messageUid, int offset) {
+		User user, MailAccount mailAccount, String folderName,
+		long messageUid, int offset) {
 
 		String folderPath = getFolderPath(user, mailAccount, folderName);
 
@@ -240,16 +221,16 @@ public class MailDiscManager {
 	}
 
 	public static JSONObject getJSONMessagesByPage(
-			User user, MailAccount mailAccount, String folderName,
-			int pageNumber, int messagesPerPage) {
+		User user, MailAccount mailAccount, String folderName,
+		int pageNumber, int messagesPerPage) {
 
 		String folderPath = getFolderPath(user, mailAccount, folderName);
-		String folderFilepath = getFolderFilepath(
+		String folderFilePath = getFolderFilePath(
 			user, mailAccount, folderName);
 
 		try {
 			JSONObject jsonFolderObj = new JSONObject(
-				FileUtil.read(folderFilepath));
+				FileUtil.read(folderFilePath));
 
 			String[] messageUids = FileUtil.listDirs(folderPath);
 
@@ -295,28 +276,26 @@ public class MailDiscManager {
 	}
 
 	public static JSONObject getJSONMessagesBySearch(
-			User user, MailAccount mailAccount, String folderName,
-			int pageNumber, int messagesPerPage, String searchString) {
-
-		// Get all message which match search criteria
+		User user, MailAccount mailAccount, String folderName, int pageNumber,
+		int messagesPerPage, String searchString) {
 
 		String folderPath = getFolderPath(user, mailAccount, folderName);
-		String folderFilepath = getFolderFilepath(
+		String folderFilePath = getFolderFilePath(
 			user, mailAccount, folderName);
 
 		try {
 			JSONObject jsonFolderObj = new JSONObject(
-				FileUtil.read(folderFilepath));
+				FileUtil.read(folderFilePath));
 
 			String[] messageUids = FileUtil.listDirs(folderPath);
 
 			List matchingMessageUids = new ArrayList();
 
 			for (String messageUid : messageUids) {
-				String messageFilepath = getMessageFilepath(
+				String messageFilePath = getMessageFilePath(
 					user, mailAccount, folderName, messageUid);
 
-				String jsonString = FileUtil.read(messageFilepath);
+				String jsonString = FileUtil.read(messageFilePath);
 
 				if (jsonString.indexOf(searchString) != -1) {
 					matchingMessageUids.add(messageUid);
@@ -364,8 +343,28 @@ public class MailDiscManager {
 		return null;
 	}
 
+	public static String getMessageFilePath(
+		User user, MailAccount mailAccount, String folderName,
+		String messageUid) {
+
+		return getMessagePath(user, mailAccount, folderName, messageUid) +
+			"/message.json";
+	}
+
+	public static String getMessagePath(
+		User user, MailAccount mailAccount, String folderName,
+		String messageUid) {
+
+		String pathName =
+			getFolderPath(user, mailAccount, folderName) + "/" + messageUid;
+
+		FileUtil.mkdirs(pathName);
+
+		return pathName;
+	}
+
 	public static long getNewestStoredMessageUID(
-			User user, MailAccount mailAccount, String folderName) {
+		User user, MailAccount mailAccount, String folderName) {
 
 		String folderPath = getFolderPath(user, mailAccount, folderName);
 
@@ -379,7 +378,7 @@ public class MailDiscManager {
 	}
 
 	public static long getOldestStoredMessageUID(
-			User user, MailAccount mailAccount, String folderName) {
+		User user, MailAccount mailAccount, String folderName) {
 
 		String folderPath = getFolderPath(user, mailAccount, folderName);
 

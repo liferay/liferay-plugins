@@ -32,4 +32,4 @@ int messagesPerPage = ParamUtil.getInteger(request, "messagesPerPage");
 String searchString = ParamUtil.getString(request, "searchString");
 %>
 
-<%= MailDiscManager.getJSONMessagesBySearch(user, MailBoxManager.getMailAccount(user, accountId), folderName, pageNumber, messagesPerPage, searchString) %>
+<%= MailDiskManager.getJSONMessagesBySearch(user, MailBoxManager.getMailAccount(user, accountId), folderName, pageNumber, messagesPerPage, searchString) %>

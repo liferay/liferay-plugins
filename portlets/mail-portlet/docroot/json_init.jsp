@@ -28,7 +28,7 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.mail.util.MailBoxManager" %>
-<%@ page import="com.liferay.mail.util.MailDiscManager" %>
+<%@ page import="com.liferay.mail.util.MailDiskManager" %>
 <%@ page import="com.liferay.portal.kernel.servlet.HttpHeaders" %>
 <%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>

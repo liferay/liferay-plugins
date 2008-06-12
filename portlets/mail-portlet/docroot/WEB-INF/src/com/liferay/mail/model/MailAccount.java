@@ -33,8 +33,8 @@ import com.liferay.portal.model.User;
 public class MailAccount {
 
 	public MailAccount(User user, int accountId) {
-    	_accountId = accountId;
     	_user = user;
+    	_accountId = accountId;
 
 		if (accountId == 0) {
 			_emailAddress = "liferay.mail.1@gmail.com";
@@ -100,12 +100,12 @@ public class MailAccount {
 		return _password;
 	}
 
-	public String getUsername() {
-		return _username;
-	}
-
 	public User getUser() {
 		return _user;
+	}
+
+	public String getUsername() {
+		return _username;
 	}
 
 	private int _accountId;

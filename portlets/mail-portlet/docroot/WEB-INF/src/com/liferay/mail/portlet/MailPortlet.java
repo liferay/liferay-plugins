@@ -98,10 +98,7 @@ public class MailPortlet extends JSPPortlet {
 
 		String jspPage = req.getParameter("jspPage");
 
-		if (!jspPage.equals("/attachment.jsp")) {
-			super.serveResource(req, res);
-		}
-		else {
+		if (jspPage.equals("/attachment.jsp")) {
 			HttpServletRequest httpReq = PortalUtil.getHttpServletRequest(req);
 
 			int accountId = ParamUtil.getInteger(req, "accountId");
@@ -128,6 +125,9 @@ public class MailPortlet extends JSPPortlet {
 			}
 			catch (SystemException se) {
 			}
+		}
+		else {
+			super.serveResource(req, res);
 		}
 	}
 

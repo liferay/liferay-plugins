@@ -31,4 +31,4 @@ int messageUid = ParamUtil.getInteger(request, "messageUid");
 int offset = ParamUtil.getInteger(request, "offset");
 %>
 
-<%= MailDiscManager.getJSONMessageRelativeToUid(user, MailBoxManager.getMailAccount(user, accountId), folderName, messageUid, offset) %>
+<%= MailDiskManager.getJSONMessageRelativeToUid(user, MailBoxManager.getMailAccount(user, accountId), folderName, messageUid, offset) %>
