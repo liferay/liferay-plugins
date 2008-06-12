@@ -163,7 +163,7 @@ public class MailDiskManager {
 				JSONObject jsonFolder = getJSONFolder(
 					user, mailAccount, decodedFolderName);
 
-				// Skip if folder exists but file does not
+				// Skip if the folder exists but the file does not
 
 				if (Validator.isNull(jsonFolder)) {
 					continue;

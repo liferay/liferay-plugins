@@ -22,8 +22,24 @@
 
 package com.liferay.mail.util;
 
+import com.liferay.mail.model.MailAccount;
+import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.User;
+import com.liferay.util.JSONUtil;
+
+import com.sun.mail.imap.IMAPFolder;
+import com.sun.mail.imap.IMAPSSLStore;
+import com.sun.mail.imap.IMAPStore;
+
 import java.io.IOException;
+
 import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,9 +60,9 @@ import javax.mail.Transport;
 import javax.mail.URLName;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage.RecipientType;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import javax.mail.internet.MimeMessage.RecipientType;
 import javax.mail.search.AndTerm;
 import javax.mail.search.BodyTerm;
 import javax.mail.search.FromStringTerm;
@@ -57,21 +73,9 @@ import javax.mail.search.SubjectTerm;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import com.liferay.mail.model.MailAccount;
-import com.liferay.portal.kernel.util.ContentTypes;
-import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.User;
-import com.liferay.util.JSONUtil;
-import com.sun.mail.imap.IMAPFolder;
-import com.sun.mail.imap.IMAPSSLStore;
-import com.sun.mail.imap.IMAPStore;
 
 /**
  *
@@ -440,9 +444,9 @@ public class MailBoxManager {
 						stripUnsafeCss(messagePart.getContent().toString()));
 				}
 				else if (contentType.startsWith(ContentTypes.MESSAGE_RFC822)) {
-//					getBody(
-//						sb, contentPath + StringPool.PERIOD + 0, messagePart,
-//						attachments);
+					//getBody(
+					//	sb, contentPath + StringPool.PERIOD + 0, messagePart,
+					//	attachments);
 				}
 			}
 			else {
@@ -622,12 +626,12 @@ public class MailBoxManager {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy HH:mm");
 
-		String date = "";
-		
+		String date = StringPool.BLANK;
+
 		if (Validator.isNotNull(message.getSentDate())) {
 			date = sdf.format(message.getSentDate());
 		}
-		
+
 		StringBuilder sb = new StringBuilder();
 
 		List<Object[]> attachments = new ArrayList<Object[]>();
@@ -933,25 +937,25 @@ public class MailBoxManager {
 	}
 
 	protected String stripHtml(String html) {
-		html = html.replaceAll( "<[^>]+>", StringPool.BLANK);
-		html = html.replaceAll( "[\r\n]+", StringPool.BLANK);
+		html = html.replaceAll("<[^>]+>", StringPool.BLANK);
+		html = html.replaceAll("[\r\n]+", StringPool.BLANK);
 
 		return html;
 	}
 
 	protected String stripUnsafeCss(String html) {
-		
+
 		// Remove external stylesheets
-		
-		html = html.replaceAll( "<link [^>]+>", StringPool.BLANK);
+
+		html = html.replaceAll("<link [^>]+>", StringPool.BLANK);
 
 		// Remove style blocks
-		
+
 		Pattern pattern = Pattern.compile("<style.*?</style>", Pattern.DOTALL);
-		
+
 		return pattern.matcher(html).replaceAll(StringPool.BLANK);
 	}
-	
+
 	protected void updateJSONMessageField(
 			User user, MailAccount mailAccount, String folderName,
 			String messageUid, String field, String value)
