@@ -73,7 +73,7 @@ public class MuleBindingServlet extends HttpServlet {
 		if ((contentType != null) &&
 			(contentType.startsWith(ContentTypes.MULTIPART_FORM_DATA))) {
 
-			 req = PortalUtil.getUploadServletRequest(req);
+			req = PortalUtil.getUploadServletRequest(req);
 		}
 
 		try {
