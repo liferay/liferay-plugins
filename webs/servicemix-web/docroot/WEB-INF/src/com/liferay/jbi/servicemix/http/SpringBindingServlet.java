@@ -57,8 +57,7 @@ public class SpringBindingServlet
 		if ((contentType != null) &&
 			(contentType.startsWith(ContentTypes.MULTIPART_FORM_DATA))) {
 
-                        req = PortalUtil.getUploadServletRequest(req);
-			
+			req = PortalUtil.getUploadServletRequest(req);
 		}
 
 		try {
