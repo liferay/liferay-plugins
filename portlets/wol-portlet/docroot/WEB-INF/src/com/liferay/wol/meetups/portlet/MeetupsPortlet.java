@@ -35,7 +35,7 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.wol.service.MeetupsEntryLocalServiceUtil;
 import com.liferay.wol.service.MeetupsRegistrationLocalServiceUtil;
-import com.liferay.wol.summary.util.SummaryConstants;
+import com.liferay.wol.util.WOLConstants;
 
 import java.io.File;
 import java.io.IOException;
@@ -96,7 +96,7 @@ public class MeetupsPortlet extends JSPPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		if (!UserLocalServiceUtil.hasOrganizationUser(
-				SummaryConstants.ORGANIZATION_LIFERAY_INC_ID,
+				WOLConstants.ORGANIZATION_LIFERAY_INC_ID,
 				themeDisplay.getUserId())) {
 
 			return;
@@ -115,7 +115,7 @@ public class MeetupsPortlet extends JSPPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		if (!UserLocalServiceUtil.hasOrganizationUser(
-				SummaryConstants.ORGANIZATION_LIFERAY_INC_ID,
+				WOLConstants.ORGANIZATION_LIFERAY_INC_ID,
 				themeDisplay.getUserId())) {
 
 			return;

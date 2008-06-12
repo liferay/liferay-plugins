@@ -37,6 +37,7 @@ import com.liferay.portlet.service.FinderCache;
 import com.liferay.portlet.service.HibernateUtil;
 import com.liferay.portlet.service.PropsUtil;
 
+import com.liferay.util.ListUtil;
 import com.liferay.util.dao.hibernate.QueryPos;
 import com.liferay.util.dao.hibernate.QueryUtil;
 
@@ -110,7 +111,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 
 	public MeetupsRegistration remove(MeetupsRegistration meetupsRegistration)
 		throws SystemException {
-		if (_listeners != null) {
+		if (_listeners.length > 0) {
 			for (ModelListener listener : _listeners) {
 				listener.onBeforeRemove(meetupsRegistration);
 			}
@@ -118,7 +119,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 
 		meetupsRegistration = removeImpl(meetupsRegistration);
 
-		if (_listeners != null) {
+		if (_listeners.length > 0) {
 			for (ModelListener listener : _listeners) {
 				listener.onAfterRemove(meetupsRegistration);
 			}
@@ -164,7 +165,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 		boolean merge) throws SystemException {
 		boolean isNew = meetupsRegistration.isNew();
 
-		if (_listeners != null) {
+		if (_listeners.length > 0) {
 			for (ModelListener listener : _listeners) {
 				if (isNew) {
 					listener.onBeforeCreate(meetupsRegistration);
@@ -177,7 +178,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 
 		meetupsRegistration = updateImpl(meetupsRegistration, merge);
 
-		if (_listeners != null) {
+		if (_listeners.length > 0) {
 			for (ModelListener listener : _listeners) {
 				if (isNew) {
 					listener.onAfterCreate(meetupsRegistration);
@@ -1311,6 +1312,22 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 		}
 	}
 
+	public void registerListener(ModelListener listener) {
+		List<ModelListener> listeners = ListUtil.fromArray(_listeners);
+
+		listeners.add(listener);
+
+		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
+	}
+
+	public void unregisterListener(ModelListener listener) {
+		List<ModelListener> listeners = ListUtil.fromArray(_listeners);
+
+		listeners.remove(listener);
+
+		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
+	}
+
 	protected void initDao() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					PropsUtil.get(
@@ -1334,5 +1351,5 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 	}
 
 	private static Log _log = LogFactory.getLog(MeetupsRegistrationPersistenceImpl.class);
-	private ModelListener[] _listeners;
+	private ModelListener[] _listeners = new ModelListener[0];
 }

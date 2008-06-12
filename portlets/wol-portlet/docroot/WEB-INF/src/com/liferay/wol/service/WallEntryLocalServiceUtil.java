@@ -96,6 +96,13 @@ public class WallEntryLocalServiceUtil {
 			themeDisplay);
 	}
 
+	public static void deleteWallEntries(long groupId)
+		throws com.liferay.portal.SystemException {
+		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
+
+		wallEntryLocalService.deleteWallEntries(groupId);
+	}
+
 	public static java.util.List<com.liferay.wol.model.WallEntry> getWallEntries(
 		long groupId, int start, int end)
 		throws com.liferay.portal.SystemException {

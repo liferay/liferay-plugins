@@ -62,6 +62,9 @@ public interface WallEntryLocalService {
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
+	public void deleteWallEntries(long groupId)
+		throws com.liferay.portal.SystemException;
+
 	public java.util.List<com.liferay.wol.model.WallEntry> getWallEntries(
 		long groupId, int start, int end)
 		throws com.liferay.portal.SystemException;

@@ -37,6 +37,7 @@ import com.liferay.portlet.service.FinderCache;
 import com.liferay.portlet.service.HibernateUtil;
 import com.liferay.portlet.service.PropsUtil;
 
+import com.liferay.util.ListUtil;
 import com.liferay.util.dao.hibernate.QueryPos;
 import com.liferay.util.dao.hibernate.QueryUtil;
 
@@ -109,7 +110,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistence
 
 	public SVNRepository remove(SVNRepository svnRepository)
 		throws SystemException {
-		if (_listeners != null) {
+		if (_listeners.length > 0) {
 			for (ModelListener listener : _listeners) {
 				listener.onBeforeRemove(svnRepository);
 			}
@@ -117,7 +118,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistence
 
 		svnRepository = removeImpl(svnRepository);
 
-		if (_listeners != null) {
+		if (_listeners.length > 0) {
 			for (ModelListener listener : _listeners) {
 				listener.onAfterRemove(svnRepository);
 			}
@@ -163,7 +164,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistence
 		throws SystemException {
 		boolean isNew = svnRepository.isNew();
 
-		if (_listeners != null) {
+		if (_listeners.length > 0) {
 			for (ModelListener listener : _listeners) {
 				if (isNew) {
 					listener.onBeforeCreate(svnRepository);
@@ -176,7 +177,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistence
 
 		svnRepository = updateImpl(svnRepository, merge);
 
-		if (_listeners != null) {
+		if (_listeners.length > 0) {
 			for (ModelListener listener : _listeners) {
 				if (isNew) {
 					listener.onAfterCreate(svnRepository);
@@ -615,6 +616,22 @@ public class SVNRepositoryPersistenceImpl extends BasePersistence
 		}
 	}
 
+	public void registerListener(ModelListener listener) {
+		List<ModelListener> listeners = ListUtil.fromArray(_listeners);
+
+		listeners.add(listener);
+
+		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
+	}
+
+	public void unregisterListener(ModelListener listener) {
+		List<ModelListener> listeners = ListUtil.fromArray(_listeners);
+
+		listeners.remove(listener);
+
+		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
+	}
+
 	protected void initDao() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					PropsUtil.get(
@@ -638,5 +655,5 @@ public class SVNRepositoryPersistenceImpl extends BasePersistence
 	}
 
 	private static Log _log = LogFactory.getLog(SVNRepositoryPersistenceImpl.class);
-	private ModelListener[] _listeners;
+	private ModelListener[] _listeners = new ModelListener[0];
 }

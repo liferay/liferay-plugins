@@ -37,6 +37,7 @@ import com.liferay.portlet.service.FinderCache;
 import com.liferay.portlet.service.HibernateUtil;
 import com.liferay.portlet.service.PropsUtil;
 
+import com.liferay.util.ListUtil;
 import com.liferay.util.dao.hibernate.QueryPos;
 import com.liferay.util.dao.hibernate.QueryUtil;
 
@@ -108,7 +109,7 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 	}
 
 	public JIRAAction remove(JIRAAction jiraAction) throws SystemException {
-		if (_listeners != null) {
+		if (_listeners.length > 0) {
 			for (ModelListener listener : _listeners) {
 				listener.onBeforeRemove(jiraAction);
 			}
@@ -116,7 +117,7 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 
 		jiraAction = removeImpl(jiraAction);
 
-		if (_listeners != null) {
+		if (_listeners.length > 0) {
 			for (ModelListener listener : _listeners) {
 				listener.onAfterRemove(jiraAction);
 			}
@@ -161,7 +162,7 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 		throws SystemException {
 		boolean isNew = jiraAction.isNew();
 
-		if (_listeners != null) {
+		if (_listeners.length > 0) {
 			for (ModelListener listener : _listeners) {
 				if (isNew) {
 					listener.onBeforeCreate(jiraAction);
@@ -174,7 +175,7 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 
 		jiraAction = updateImpl(jiraAction, merge);
 
-		if (_listeners != null) {
+		if (_listeners.length > 0) {
 			for (ModelListener listener : _listeners) {
 				if (isNew) {
 					listener.onAfterCreate(jiraAction);
@@ -1420,6 +1421,22 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 		}
 	}
 
+	public void registerListener(ModelListener listener) {
+		List<ModelListener> listeners = ListUtil.fromArray(_listeners);
+
+		listeners.add(listener);
+
+		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
+	}
+
+	public void unregisterListener(ModelListener listener) {
+		List<ModelListener> listeners = ListUtil.fromArray(_listeners);
+
+		listeners.remove(listener);
+
+		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
+	}
+
 	protected void initDao() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					PropsUtil.get(
@@ -1443,5 +1460,5 @@ public class JIRAActionPersistenceImpl extends BasePersistence
 	}
 
 	private static Log _log = LogFactory.getLog(JIRAActionPersistenceImpl.class);
-	private ModelListener[] _listeners;
+	private ModelListener[] _listeners = new ModelListener[0];
 }

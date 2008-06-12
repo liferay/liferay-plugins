@@ -134,22 +134,6 @@
 	<c:otherwise>
 
 		<%
-		try {
-
-			// Initializaing an Expando table only needs to happen once. In
-			// general, this should be done as a startup event so it only
-			// happens once. This code is left here even though that is bad
-			// practice so it can be easily referenced as an example.
-
-			ExpandoTable table = ExpandoTableLocalServiceUtil.addTable(User.class.getName(), "WOL");
-
-			ExpandoColumnLocalServiceUtil.addColumn(table.getTableId(), "jiraUserId", ExpandoColumnConstants.STRING);
-			ExpandoColumnLocalServiceUtil.addColumn(table.getTableId(), "sfUserId", ExpandoColumnConstants.STRING);
-			ExpandoColumnLocalServiceUtil.addColumn(table.getTableId(), "aboutMe", ExpandoColumnConstants.STRING);
-		}
-		catch (Exception e) {
-		}
-
 		String jiraUserId = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "jiraUserId", user2.getUserId(), StringPool.BLANK));
 		String sfUserId = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "sfUserId", user2.getUserId(), StringPool.BLANK));
 		String aboutMe = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "aboutMe", user2.getUserId(), StringPool.BLANK));
