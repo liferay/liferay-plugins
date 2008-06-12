@@ -65,6 +65,7 @@
 
 .mail-portlet #email-right-column {
 	border: 1px #000 solid;
+	max-width: 1000px;
 	padding: 3px;
 	width: 90%;
 }
@@ -175,6 +176,7 @@
 
 .mail-portlet #message {
 	display: none;
+	overflow: hidden;
 }
 
 .mail-portlet #message-read {

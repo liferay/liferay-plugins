@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.util.JSONUtil;
 
@@ -161,6 +162,12 @@ public class MailDiskManager {
 
 				JSONObject jsonFolder = getJSONFolder(
 					user, mailAccount, decodedFolderName);
+
+				// Skip if folder exists but file does not
+
+				if (Validator.isNull(jsonFolder)) {
+					continue;
+				}
 
 				JSONUtil.put(jsonFolder, "name", decodedFolderName);
 
