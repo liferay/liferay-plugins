@@ -212,9 +212,9 @@ public class MailDiskManager {
 		long messageUid, int offset, String searchString) {
 
 		searchString = searchString.trim();
-		
+
 		String[] messageUids = null;
-		
+
 		if (searchString.equals(StringPool.BLANK)) {
 			messageUids = getMessageUidsByFolder(user, mailAccount, folderName);
 		}
@@ -259,8 +259,8 @@ public class MailDiskManager {
 			int messagesOnDiskCount = messageUids.length - 1;
 
 			return getPaginatedJSONMessages(
-				user, mailAccount, folderName, messageUids, pageNumber, 
-				messagesPerPage, messageCount, messagesOnDiskCount);			
+				user, mailAccount, folderName, messageUids, pageNumber,
+				messagesPerPage, messageCount, messagesOnDiskCount);
 		}
 		catch (IOException ioe) {
 			_log.error(ioe, ioe);
@@ -284,8 +284,8 @@ public class MailDiskManager {
 		int messageCount = messageUids.length;
 
 		return getPaginatedJSONMessages(
-			user, mailAccount, folderName, messageUids, pageNumber, 
-			messagesPerPage, messageCount, messageCount);			
+			user, mailAccount, folderName, messageUids, pageNumber,
+			messagesPerPage, messageCount, messageCount);
 	}
 
 	public static String getMessageFilePath(
@@ -339,9 +339,9 @@ public class MailDiskManager {
 
 		return FileUtil.listDirs(folderPath);
 	}
-	
+
 	protected static String[] getMessageUidsBySearch(
-		User user, MailAccount mailAccount, String folderName, 
+		User user, MailAccount mailAccount, String folderName,
 		String searchString) {
 
 		String folderPath = getFolderPath(user, mailAccount, folderName);
@@ -365,18 +365,18 @@ public class MailDiskManager {
 		catch (IOException ioe) {
 			_log.error(ioe, ioe);
 		}
-			
+
 		return matchingMessageUids.toArray(new String[0]);
 	}
-	
+
 	protected static JSONObject getPaginatedJSONMessages(
-		User user, MailAccount mailAccount, String folderName, 
-		String[] messageUidsOnDisk, int pageNumber, int messagesPerPage, 
+		User user, MailAccount mailAccount, String folderName,
+		String[] messageUidsOnDisk, int pageNumber, int messagesPerPage,
 		int messageCount, int messagesOnDiskCount) {
 
-		int begin = (messagesOnDiskCount + 1) - (messagesPerPage * pageNumber) - 
+		int begin = (messagesOnDiskCount + 1) - (messagesPerPage * pageNumber) -
 			1;
-		int end = messagesOnDiskCount - (messagesPerPage * (pageNumber - 1)) - 
+		int end = messagesOnDiskCount - (messagesPerPage * (pageNumber - 1)) -
 			1;
 
 		if (begin < 0) {
@@ -404,7 +404,7 @@ public class MailDiskManager {
 
 		return jsonObj;
 	}
-	
+
 	private static Log _log = LogFactory.getLog(MailBoxManager.class);
 
 }

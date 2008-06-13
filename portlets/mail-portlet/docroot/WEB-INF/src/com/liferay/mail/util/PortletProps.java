@@ -22,10 +22,11 @@
 
 package com.liferay.mail.util;
 
-import java.util.Properties;
-
 import com.germinus.easyconf.ComponentProperties;
+
 import com.liferay.util.ExtPropertiesLoader;
+
+import java.util.Properties;
 
 /**
  * <a href="PortletProps.java.html"><b><i>View Source</i></b></a>
