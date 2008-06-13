@@ -28,6 +28,6 @@
 int accountId = ParamUtil.getInteger(request, "accountId");
 
 MailBoxManager mailBoxManager = new MailBoxManager(user, accountId);
-
-mailBoxManager.updateAccount();
 %>
+
+<%= mailBoxManager.updateAccount() %>

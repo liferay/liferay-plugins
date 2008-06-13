@@ -28,6 +28,7 @@
 
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
+<%@ page import="com.liferay.mail.util.PortletProps" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
 
 <portlet:defineObjects />
@@ -43,7 +44,8 @@
 		function() {
 			Liferay.Mail.init(
 				{
-					sendBodyEditor: window.<portlet:namespace />editor
+					sendBodyEditor: window.<portlet:namespace />editor,
+					messagesPerPage: <%= PortletProps.get("messages.per.page") %>
 				}
 			);
 		}
@@ -121,7 +123,7 @@
 
 					<a class="older" href="javascript: ;"><liferay-ui:message key="older" /> &gt;</a>
 
-					<a class="oldest" href="javascript: ;"><liferay-ui:message key="oldest" /> &raquo;</a>
+					<!-- <a class="oldest" href="javascript: ;"><liferay-ui:message key="oldest" /> &raquo;</a>  -->
 				</td>
 			</tr>
 			</table>

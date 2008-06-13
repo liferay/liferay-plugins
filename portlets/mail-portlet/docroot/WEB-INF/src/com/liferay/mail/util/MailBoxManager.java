@@ -317,12 +317,18 @@ public class MailBoxManager {
 		return jsonObj;
     }
 
-    public void updateAccount() throws MessagingException {
+    public JSONObject updateAccount() throws MessagingException {
     	List<Folder> folders = getFolders();
 
     	for (Folder folder : folders) {
 			updateFolder(folder);
 		}
+    	
+		JSONObject jsonObj = new JSONObject();
+
+		JSONUtil.put(jsonObj, "success", true);
+
+		return jsonObj;
     }
 
     public void updateFolder(Folder folder) throws MessagingException {
@@ -980,6 +986,7 @@ public class MailBoxManager {
 	private MailAccount _mailAccount;
 	private Session _session = null;
 	private Store _store = null;
-    private int _messagesToPrefetch = 20;
+    private int _messagesToPrefetch = GetterUtil.getInteger(
+    	PortletProps.get("messages.to.prefetch"));
 
 }

@@ -2,8 +2,6 @@ Liferay.Mail = {
 	init: function(params) {
 		var instance = this;
 
-		instance._messagesPerPage = 10;
-
 		// Commonly used jQuery expressions
 
 		instance.accountSelectionSelect = jQuery('#account-selection');
@@ -57,6 +55,7 @@ Liferay.Mail = {
 
 		// Init methods
 
+		instance._messagesPerPage = params.messagesPerPage;
 		instance._assignEvents();
 		instance.setView('composeMessage');
 		instance.setView('viewFolder');
@@ -423,6 +422,7 @@ Liferay.Mail = {
 
 		instance.refreshMessageHandler();
 		instance.refreshFolderControls();
+		instance.setView('viewFolder');
 	},
 
 	loadMessageRelativeToUid: function(messageUid, offset) {
@@ -433,7 +433,14 @@ Liferay.Mail = {
 
 		// Get JSON
 
-		var url = themeDisplay.getLayoutURL() + '/-/mail/message_relative_to_uid?accountId=' + accountId + '&folderName=' + folderName + '&messageUid=' + messageUid + '&offset=' + offset;
+		var url = null;
+		
+		if (instance.isSearchMode()) {
+			url = themeDisplay.getLayoutURL() + '/-/mail/message_relative_to_uid?accountId=' + accountId + '&folderName=' + folderName + '&messageUid=' + messageUid + '&offset=' + offset + '&searchString=' + instance.searchTextInput.val();
+		}
+		else {
+			url = themeDisplay.getLayoutURL() + '/-/mail/message_relative_to_uid?accountId=' + accountId + '&folderName=' + folderName + '&messageUid=' + messageUid + '&offset=' + offset;
+		}
 
 		instance.setStatus(Liferay.Language.get('loading-message'), url);
 

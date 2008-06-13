@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -20,16 +19,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
 
-<%@ include file="/json_init.jsp" %>
+package com.liferay.mail.util;
 
-<%
-int accountId = ParamUtil.getInteger(request, "accountId");
-String folderName = ParamUtil.getString(request, "folderName");
-int messageUid = ParamUtil.getInteger(request, "messageUid");
-int offset = ParamUtil.getInteger(request, "offset");
-String searchString = ParamUtil.getString(request, "searchString");
-%>
+import java.util.Properties;
 
-<%= MailDiskManager.getJSONMessageRelativeToUid(user, MailBoxManager.getMailAccount(user, accountId), folderName, messageUid, offset, searchString) %>
+import com.germinus.easyconf.ComponentProperties;
+import com.liferay.util.ExtPropertiesLoader;
+
+/**
+ * <a href="PortletProps.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Scott Lee
+ *
+ */
+public class PortletProps {
+
+	public static boolean containsKey(String key) {
+		return _getInstance().containsKey(key);
+	}
+
+	public static String get(String key) {
+		return _getInstance().get(key);
+	}
+
+	public static void set(String key, String value) {
+		_getInstance().set(key, value);
+	}
+
+	public static String[] getArray(String key) {
+		return _getInstance().getArray(key);
+	}
+
+	public static Properties getProperties() {
+		return _getInstance().getProperties();
+	}
+
+	public static ComponentProperties getComponentProperties() {
+		return _getInstance().getComponentProperties();
+	}
+
+	private static ExtPropertiesLoader _getInstance() {
+		return ExtPropertiesLoader.getInstance("mail-portlet");
+	}
+
+}

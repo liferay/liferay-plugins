@@ -209,11 +209,19 @@ public class MailDiskManager {
 
 	public static JSONObject getJSONMessageRelativeToUid(
 		User user, MailAccount mailAccount, String folderName,
-		long messageUid, int offset) {
+		long messageUid, int offset, String searchString) {
 
-		String folderPath = getFolderPath(user, mailAccount, folderName);
-
-		String[] messageUids = FileUtil.listDirs(folderPath);
+		searchString = searchString.trim();
+		
+		String[] messageUids = null;
+		
+		if (searchString.equals(StringPool.BLANK)) {
+			messageUids = getMessageUidsByFolder(user, mailAccount, folderName);
+		}
+		else {
+			messageUids = getMessageUidsBySearch(
+				user, mailAccount, folderName, searchString);
+		}
 
 		for (int i = 0; i < messageUids.length; i++) {
 			long tempMessageUid = GetterUtil.getLong(messageUids[i]);
@@ -231,46 +239,28 @@ public class MailDiskManager {
 		User user, MailAccount mailAccount, String folderName,
 		int pageNumber, int messagesPerPage) {
 
-		String folderPath = getFolderPath(user, mailAccount, folderName);
-		String folderFilePath = getFolderFilePath(
-			user, mailAccount, folderName);
-
 		try {
+
+			// Actual message count
+
+			String folderFilePath = getFolderFilePath(
+				user, mailAccount, folderName);
+
 			JSONObject jsonFolderObj = new JSONObject(
 				FileUtil.read(folderFilePath));
 
-			String[] messageUids = FileUtil.listDirs(folderPath);
-
 			int messageCount = jsonFolderObj.getInt("messageCount");
-			int messageUidCount = messageUids.length - 1;
 
-			int begin = (messageUidCount + 1) - (messagesPerPage * pageNumber);
-			int end = messageUidCount - (messagesPerPage * (pageNumber - 1));
+			// Disk message count
 
-			if (begin < 0) {
-				begin = 0;
-			}
+			String[] messageUids = getMessageUidsByFolder(
+				user, mailAccount, folderName);
 
-			double pageCount = Math.ceil(
-				(double)messageCount / messagesPerPage);
+			int messagesOnDiskCount = messageUids.length - 1;
 
-			JSONObject jsonObj = new JSONObject();
-
-			JSONArray jsonArray = new JSONArray();
-
-			JSONUtil.put(jsonObj, "messages", jsonArray);
-			JSONUtil.put(jsonObj, "messageCount", messageCount);
-			JSONUtil.put(jsonObj, "messagesPerPage", messagesPerPage);
-			JSONUtil.put(jsonObj, "pageCount", (int)pageCount);
-			JSONUtil.put(jsonObj, "pageNumber", pageNumber);
-
-			for (int i = begin; i <= end; i++) {
-				jsonArray.put(
-					getJSONMessageByUid(
-						user, mailAccount, folderName, messageUids[i]));
-			}
-
-			return jsonObj;
+			return getPaginatedJSONMessages(
+				user, mailAccount, folderName, messageUids, pageNumber, 
+				messagesPerPage, messageCount, messagesOnDiskCount);			
 		}
 		catch (IOException ioe) {
 			_log.error(ioe, ioe);
@@ -286,68 +276,16 @@ public class MailDiskManager {
 		User user, MailAccount mailAccount, String folderName, int pageNumber,
 		int messagesPerPage, String searchString) {
 
-		String folderPath = getFolderPath(user, mailAccount, folderName);
-		String folderFilePath = getFolderFilePath(
-			user, mailAccount, folderName);
+		searchString = searchString.trim();
 
-		try {
-			JSONObject jsonFolderObj = new JSONObject(
-				FileUtil.read(folderFilePath));
+		String[] messageUids = getMessageUidsBySearch(
+			user, mailAccount, folderName, searchString);
 
-			String[] messageUids = FileUtil.listDirs(folderPath);
+		int messageCount = messageUids.length;
 
-			List matchingMessageUids = new ArrayList();
-
-			for (String messageUid : messageUids) {
-				String messageFilePath = getMessageFilePath(
-					user, mailAccount, folderName, messageUid);
-
-				String jsonString = FileUtil.read(messageFilePath);
-
-				if (jsonString.indexOf(searchString) != -1) {
-					matchingMessageUids.add(messageUid);
-				}
-			}
-
-			int messageCount = matchingMessageUids.size();
-
-			int begin = (messageCount + 1) - (messagesPerPage * pageNumber);
-			int end = messageCount - (messagesPerPage * (pageNumber - 1)) - 1;
-
-			if (begin < 0) {
-				begin = 0;
-			}
-
-			double pageCount = Math.ceil(
-				(double)messageCount / messagesPerPage);
-
-			JSONObject jsonObj = new JSONObject();
-
-			JSONArray jsonArray = new JSONArray();
-
-			JSONUtil.put(jsonObj, "messages", jsonArray);
-			JSONUtil.put(jsonObj, "messageCount", messageCount);
-			JSONUtil.put(jsonObj, "messagesPerPage", messagesPerPage);
-			JSONUtil.put(jsonObj, "pageCount", (int)pageCount);
-			JSONUtil.put(jsonObj, "pageNumber", pageNumber);
-
-			for (int i = begin; i <= end; i++) {
-				jsonArray.put(
-					getJSONMessageByUid(
-						user, mailAccount, folderName,
-						matchingMessageUids.get(i).toString()));
-			}
-
-			return jsonObj;
-		}
-		catch (IOException ioe) {
-			_log.error(ioe, ioe);
-		}
-		catch (JSONException jsone) {
-			_log.error(jsone, jsone);
-		}
-
-		return null;
+		return getPaginatedJSONMessages(
+			user, mailAccount, folderName, messageUids, pageNumber, 
+			messagesPerPage, messageCount, messageCount);			
 	}
 
 	public static String getMessageFilePath(
@@ -394,6 +332,79 @@ public class MailDiskManager {
 		return GetterUtil.getLong(messageUids[0]);
 	}
 
+	protected static String[] getMessageUidsByFolder(
+		User user, MailAccount mailAccount, String folderName) {
+
+		String folderPath = getFolderPath(user, mailAccount, folderName);
+
+		return FileUtil.listDirs(folderPath);
+	}
+	
+	protected static String[] getMessageUidsBySearch(
+		User user, MailAccount mailAccount, String folderName, 
+		String searchString) {
+
+		String folderPath = getFolderPath(user, mailAccount, folderName);
+
+		List<String> matchingMessageUids = new ArrayList<String>();
+
+		try {
+			String[] allMessageUidsInFolder = FileUtil.listDirs(folderPath);
+
+			for (String messageUid : allMessageUidsInFolder) {
+				String messageFilePath = getMessageFilePath(
+					user, mailAccount, folderName, messageUid);
+
+				String jsonString = FileUtil.read(messageFilePath);
+
+				if (jsonString.indexOf(searchString) != -1) {
+					matchingMessageUids.add(messageUid);
+				}
+			}
+		}
+		catch (IOException ioe) {
+			_log.error(ioe, ioe);
+		}
+			
+		return matchingMessageUids.toArray(new String[0]);
+	}
+	
+	protected static JSONObject getPaginatedJSONMessages(
+		User user, MailAccount mailAccount, String folderName, 
+		String[] messageUidsOnDisk, int pageNumber, int messagesPerPage, 
+		int messageCount, int messagesOnDiskCount) {
+
+		int begin = (messagesOnDiskCount + 1) - (messagesPerPage * pageNumber) - 
+			1;
+		int end = messagesOnDiskCount - (messagesPerPage * (pageNumber - 1)) - 
+			1;
+
+		if (begin < 0) {
+			begin = 0;
+		}
+
+		double pageCount = Math.ceil(
+			(double)messageCount / messagesPerPage);
+
+		JSONObject jsonObj = new JSONObject();
+
+		JSONArray jsonArray = new JSONArray();
+
+		JSONUtil.put(jsonObj, "messages", jsonArray);
+		JSONUtil.put(jsonObj, "messageCount", messageCount);
+		JSONUtil.put(jsonObj, "messagesPerPage", messagesPerPage);
+		JSONUtil.put(jsonObj, "pageCount", (int)pageCount);
+		JSONUtil.put(jsonObj, "pageNumber", pageNumber);
+
+		for (int i = begin; i <= end; i++) {
+			jsonArray.put(
+				getJSONMessageByUid(
+					user, mailAccount, folderName, messageUidsOnDisk[i]));
+		}
+
+		return jsonObj;
+	}
+	
 	private static Log _log = LogFactory.getLog(MailBoxManager.class);
 
 }
