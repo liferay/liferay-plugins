@@ -123,7 +123,7 @@
 
 					<a class="older" href="javascript: ;"><liferay-ui:message key="older" /> &gt;</a>
 
-					<!-- <a class="oldest" href="javascript: ;"><liferay-ui:message key="oldest" /> &raquo;</a>  -->
+					<!--<a class="oldest" href="javascript: ;"><liferay-ui:message key="oldest" /> &raquo;</a>-->
 				</td>
 			</tr>
 			</table>

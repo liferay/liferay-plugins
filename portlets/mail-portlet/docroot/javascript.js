@@ -434,7 +434,7 @@ Liferay.Mail = {
 		// Get JSON
 
 		var url = null;
-		
+
 		if (instance.isSearchMode()) {
 			url = themeDisplay.getLayoutURL() + '/-/mail/message_relative_to_uid?accountId=' + accountId + '&folderName=' + folderName + '&messageUid=' + messageUid + '&offset=' + offset + '&searchString=' + instance.searchTextInput.val();
 		}

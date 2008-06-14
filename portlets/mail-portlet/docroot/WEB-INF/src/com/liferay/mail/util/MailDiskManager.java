@@ -216,10 +216,10 @@ public class MailDiskManager {
 		String[] messageUids = null;
 
 		if (searchString.equals(StringPool.BLANK)) {
-			messageUids = getMessageUidsByFolder(user, mailAccount, folderName);
+			messageUids = _getMessageUidsByFolder(user, mailAccount, folderName);
 		}
 		else {
-			messageUids = getMessageUidsBySearch(
+			messageUids = _getMessageUidsBySearch(
 				user, mailAccount, folderName, searchString);
 		}
 
@@ -253,12 +253,12 @@ public class MailDiskManager {
 
 			// Disk message count
 
-			String[] messageUids = getMessageUidsByFolder(
+			String[] messageUids = _getMessageUidsByFolder(
 				user, mailAccount, folderName);
 
 			int messagesOnDiskCount = messageUids.length - 1;
 
-			return getPaginatedJSONMessages(
+			return _getJSONPaginatedMessages(
 				user, mailAccount, folderName, messageUids, pageNumber,
 				messagesPerPage, messageCount, messagesOnDiskCount);
 		}
@@ -278,12 +278,12 @@ public class MailDiskManager {
 
 		searchString = searchString.trim();
 
-		String[] messageUids = getMessageUidsBySearch(
+		String[] messageUids = _getMessageUidsBySearch(
 			user, mailAccount, folderName, searchString);
 
 		int messageCount = messageUids.length;
 
-		return getPaginatedJSONMessages(
+		return _getJSONPaginatedMessages(
 			user, mailAccount, folderName, messageUids, pageNumber,
 			messagesPerPage, messageCount, messageCount);
 	}
@@ -332,44 +332,7 @@ public class MailDiskManager {
 		return GetterUtil.getLong(messageUids[0]);
 	}
 
-	protected static String[] getMessageUidsByFolder(
-		User user, MailAccount mailAccount, String folderName) {
-
-		String folderPath = getFolderPath(user, mailAccount, folderName);
-
-		return FileUtil.listDirs(folderPath);
-	}
-
-	protected static String[] getMessageUidsBySearch(
-		User user, MailAccount mailAccount, String folderName,
-		String searchString) {
-
-		String folderPath = getFolderPath(user, mailAccount, folderName);
-
-		List<String> matchingMessageUids = new ArrayList<String>();
-
-		try {
-			String[] allMessageUidsInFolder = FileUtil.listDirs(folderPath);
-
-			for (String messageUid : allMessageUidsInFolder) {
-				String messageFilePath = getMessageFilePath(
-					user, mailAccount, folderName, messageUid);
-
-				String jsonString = FileUtil.read(messageFilePath);
-
-				if (jsonString.indexOf(searchString) != -1) {
-					matchingMessageUids.add(messageUid);
-				}
-			}
-		}
-		catch (IOException ioe) {
-			_log.error(ioe, ioe);
-		}
-
-		return matchingMessageUids.toArray(new String[0]);
-	}
-
-	protected static JSONObject getPaginatedJSONMessages(
+	private static JSONObject _getJSONPaginatedMessages(
 		User user, MailAccount mailAccount, String folderName,
 		String[] messageUidsOnDisk, int pageNumber, int messagesPerPage,
 		int messageCount, int messagesOnDiskCount) {
@@ -403,6 +366,43 @@ public class MailDiskManager {
 		}
 
 		return jsonObj;
+	}
+
+	private static String[] _getMessageUidsByFolder(
+		User user, MailAccount mailAccount, String folderName) {
+
+		String folderPath = getFolderPath(user, mailAccount, folderName);
+
+		return FileUtil.listDirs(folderPath);
+	}
+
+	private static String[] _getMessageUidsBySearch(
+		User user, MailAccount mailAccount, String folderName,
+		String searchString) {
+
+		String folderPath = getFolderPath(user, mailAccount, folderName);
+
+		List<String> matchingMessageUids = new ArrayList<String>();
+
+		try {
+			String[] allMessageUidsInFolder = FileUtil.listDirs(folderPath);
+
+			for (String messageUid : allMessageUidsInFolder) {
+				String messageFilePath = getMessageFilePath(
+					user, mailAccount, folderName, messageUid);
+
+				String jsonString = FileUtil.read(messageFilePath);
+
+				if (jsonString.indexOf(searchString) != -1) {
+					matchingMessageUids.add(messageUid);
+				}
+			}
+		}
+		catch (IOException ioe) {
+			_log.error(ioe, ioe);
+		}
+
+		return matchingMessageUids.toArray(new String[0]);
 	}
 
 	private static Log _log = LogFactory.getLog(MailBoxManager.class);
