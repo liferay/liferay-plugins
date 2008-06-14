@@ -7,6 +7,7 @@ body {
 }
 
 #wrapper {
+	margin: 0 auto;
 	width: 976px;
 }
 
@@ -18,6 +19,11 @@ body {
 #content-wrapper {
 	margin: 0 auto;
 	padding: 7px;
+	width: auto;
+}
+
+body #content-wrapper {
+	font-size: 12px;
 }
 
 .ie #content-wrapper {
@@ -31,10 +37,13 @@ body {
 #banner {
 	background: url(../images/common/banner_bg.png);
 	height: 99px;
+	position: relative;
 }
 
-#banner .logo {
+#banner h1.logo {
 	background: none;
+	margin: 0;
+	position: static;
 }
 
 #footer {
@@ -50,7 +59,9 @@ body {
 
 #navigation {
 	background: transparent url(../images/navigation/bg.png) no-repeat;
+	border: none;
 	height: 25px;
+	line-height: 1;
 	margin: 0;
 	overflow: visible;
 	padding: 1px 0 0 2px;
@@ -59,11 +70,17 @@ body {
 	z-index: 10;
 }
 
+#navigation ul {
+	float: left;
+	width: auto;
+}
+
 #navigation li {
 	background: none;
+	border: none;
 	border-right: 1px solid #1F242A;
 	margin: 0;
-	padding: 5px 25px 4px;
+	padding: 7px 25px;
 }
 
 #navigation li:hover {
@@ -89,6 +106,7 @@ body {
 }
 
 #navigation li a:hover {
+	background: none;
 	color: #000;
 	padding-bottom: 0;
 }
@@ -99,7 +117,6 @@ body {
 
 #navigation ul li.selected {
 	background: #1F242A url(../images/navigation/bullet_selected.png) no-repeat 12px 50%;
-	padding-bottom: 4px;
 }
 
 .ie6 #navigation li.selected {
@@ -115,6 +132,7 @@ body {
 }
 
 #navigation li.selected a {
+	background: none;
 	color: #FFF;
 	padding: 0;
 }
@@ -147,7 +165,11 @@ body {
 .js #add-page {
 	float: right;
 	font-weight: bold;
+	border: none;
+	margin-right: 15px;
+	margin-top: 3px;
 	padding-top: 0px;
+	position: static;
 }
 
 .js #add-page a:hover span {
@@ -156,6 +178,7 @@ body {
 
 .js #add-page a span {
 	background: none;
+	padding: 0;
 }
 
 /* --- DOCK --- */
@@ -171,7 +194,7 @@ body {
 }
 
 .js .lfr-dock.interactive-mode h2 span {
-	font-size: 1.2em;
+	font-size: 12px;
 	font-weight: normal;
 	padding: 0.3em 0.5em 0.4em 2.2em;
 	text-align: left;
@@ -249,6 +272,7 @@ body {
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: #FFF none;
+	border: none;
 	margin: 0;
 }
 
@@ -316,6 +340,7 @@ body {
 	border: 1px solid #6E7679;
 	margin-bottom: -100001px;
 	padding-bottom: 100000px;
+	position: static !important;
 }
 
 #layout-grid .lfr-column {
@@ -468,12 +493,6 @@ body.portal-popup {
 .portlet-blogs .entry-title {
 	font-size: 1.5em;
 	margin-bottom: 3px;
-}
-
-/* --- CALENDAR --- */
-
-#content-wrapper .portlet-calendar {
-	font-size: 10px;
 }
 
 /* --- MESSAGE BOARDS --- */
@@ -646,10 +665,6 @@ ul.message-board-edit-controls {
 	background: #eef0f2;
 }
 
-.taglib-search-iterator .portlet-section-body-hover td, .taglib-search-iterator .portlet-section-alternate-hover td {
-	background: #d5dade;
-}
-
 .taglib-search-iterator a {
 	text-decoration: none;
 }
@@ -675,6 +690,6 @@ ul.message-board-edit-controls {
 
 /* ---------- Tabs ---------- */
 
-.tabs li {
-	margin-right: 7px;
+.ie body #content-wrapper .tabs li {
+	line-height: 1;
 }
