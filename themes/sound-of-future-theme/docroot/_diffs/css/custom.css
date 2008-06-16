@@ -1,0 +1,112 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+body {
+	background: #E4EDF6 url(../images/comment/background.jpg) repeat-x
+		scroll;
+	color: #9ACDFE;
+	font-family: 'Lucida Grande', Verdana, Arial, Sans-Serif;
+	font-size: 62.5%;
+	margin: 0px auto;
+	padding: 0pt;
+	text-align: center;
+	background-color: none;
+}
+
+#banner {
+	background: #0054A5 url(../images/comment/header.jpg) repeat scroll 0%;
+	font-family: Verdana;
+	font-weight: bold;
+	height: 300px;
+	margin: 0pt auto;
+	padding: 0pt;
+	text-decoration: none;
+	width: 900px;
+	border-bottom: 0px;
+}
+
+#wrapper {
+	background: #0054A5 none repeat scroll 0% 50%;
+	border-left: 1px dotted #E4EDF6;
+	border-right: 1px dotted #E4EDF6;
+	margin: 0pt auto;
+	text-align: left;
+	width: 900px;
+}
+
+.portlet-title {
+	color: #B1CCEA;
+	display: block;
+	font-size: 13px;
+	min-width: 50%;
+	padding: 8px 0pt 4px 10px;
+}
+
+.portlet-topper {
+	background: #092950 none repeat scroll 0%;
+	position: relative;
+}
+
+.portlet {
+	border: 1px solid #0A7BE7;
+	margin-bottom: 1em;
+	text-align: left;
+	background: #066BCC none repeat scroll 0%;
+	font-size: 12px;
+	color: #fff;
+}
+
+#banner .logo {
+	display: block;
+	font-size: 2em;
+	margin: 0pt auto;
+	padding: 1.25em 0pt 5.45em;
+}
+
+#navigation li {
+	background: none;
+	display: inline;
+	float: left;
+	margin-right: 0.5em;
+	position: relative;
+}
+
+#navigation li.selected {
+	border-top: 0px;
+	font-weight: bold;
+}
+
+#navigation li.selected a {
+	padding-top: 0px;
+	font-size: 12px;
+	color: #000;
+}
+
+#navigation li a {
+	text-decoration: none;
+	color: #fff;
+}
+
+#banner-content {
+	margin: 0pt auto;
+	width: 100%;
+}
+
+#footer {
+	background: transparent url(../images/comment/footer.jpg) no-repeat
+		scroll 0%;
+	clear: both;
+	color: #EFF9FD;
+	height: 68px;
+	margin: 0pt auto;
+	text-align: center;
+	width: 900px;
+}
+
+a {
+	color: #59A4FF;
+	text-decoration: underline;
+}
+
+a:hover {
+	color: navy;
+	text-decoration: none;
+}
