@@ -619,7 +619,7 @@
 		<tags>gadget opensocial shindig</tags>
 		<short-description>This is a Gadget portlet build on the Shindig platform.</short-description>
 		<change-log></change-log>
-		<page-url>http://www.liferay.com/web/guest/downloads</page-url>
+		<page-url>http://www.liferay.com/</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>MIT</licenses>
 	</plugin>
@@ -998,14 +998,14 @@
 		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
-		<artifact-id>Lexus-theme</artifact-id>
-		<name>LEXUS</name>
+		<artifact-id>a8-theme</artifact-id>
+		<name>A8</name>
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
 		<change-log></change-log>
-		<page-url>http://www.osskins.com/main/wordpress/free-wordpress-theme-tuned-car-theme/2008/06/09</page-url>
-		<author>WP Town</author>
+		<page-url>http://demo.themza.com/joomla15/?joomla15-template=themza_j15_02</page-url>
+		<author>ThemZa</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -1559,6 +1559,17 @@
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>lexus-theme</artifact-id>
+		<name>LEXUS</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.osskins.com/main/wordpress/free-wordpress-theme-tuned-car-theme/2008/06/09</page-url>
+		<author>WP Town</author>
+		<licenses>Public Domain</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>liferay-jedi-theme</artifact-id>
 		<name>Liferay Jedi</name>
 		<type>theme</type>
@@ -1920,6 +1931,17 @@
 		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>sound-of-future-theme</artifact-id>
+		<name>Sound of the future</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.osskins.com/main/wordpress/free-wordpress-theme-sound-of-the-future/2008/04/01</page-url>
+		<author>Web Hosting Rally</author>
+		<licenses>GPL</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>street-style-theme</artifact-id>
 		<name>Street Style</name>
 		<type>theme</type>
@@ -2112,12 +2134,14 @@
 	<author>Super J Man</author>
 	<author>Technology Directory</author>
 	<author>The All Beauty Directory</author>
+	<author>ThemZa</author>
 	<author>Theme Studio</author>
 	<author>Tony Pires</author>
 	<author>Unknown</author>
 	<author>Viktor Persson</author>
 	<author>Vit Dlouhy</author>
 	<author>WP Town</author>
+	<author>Web Hosting Rally</author>
 	<license>Apache</license>
 	<license>BSD</license>
 	<license>CCA</license>
