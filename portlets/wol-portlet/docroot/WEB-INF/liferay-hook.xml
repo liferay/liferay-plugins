@@ -18,5 +18,5 @@
 		<model-listener-class>com.liferay.wol.hook.listeners.UserListener</model-listener-class>
 		<model-name>com.liferay.portal.model.User</model-name>
 	</model-listener>
-	<portal-properties-file>wol-portal.properties</portal-properties-file>
+	<portal-properties>wol-portal.properties</portal-properties>
 </hook>
