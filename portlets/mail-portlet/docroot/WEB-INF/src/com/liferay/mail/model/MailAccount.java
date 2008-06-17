@@ -23,13 +23,8 @@
 package com.liferay.mail.model;
 
 import com.liferay.mail.util.MailDiskManager;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -41,30 +36,23 @@ import org.json.JSONObject;
 public class MailAccount {
 
 	public MailAccount(User user, String emailAddress) {
-    	_user = user;
+		_user = user;
 
-    	JSONObject jsonObj = MailDiskManager.getJSONAccount(user, emailAddress);
+		JSONObject jsonObj = MailDiskManager.getJSONAccount(user, emailAddress);
 
-    	try {
-	    	if (Validator.isNotNull(jsonObj)) {
-	    		_emailAddress = jsonObj.getString("emailAddress");
-	    		_mailInHostName = jsonObj.getString("mailInHostName");
-	    		_mailInPort = jsonObj.getInt("mailInPort");
-	    		_mailOutHostName = jsonObj.getString("mailOutHostName");
-	    		_mailOutPort = jsonObj.getInt("mailOutPort");
-	    		_mailSecure = jsonObj.getBoolean("mailSecure");
-	    		_password = jsonObj.getString("password");
-	    		_username = jsonObj.getString("username");
-	    	}
-    	}
-    	catch (JSONException jsone) {
-    		_log.error(jsone, jsone);
-    	}
+		_emailAddress = jsonObj.optString("emailAddress");
+		_mailInHostName = jsonObj.optString("mailInHostName");
+		_mailInPort = jsonObj.optInt("mailInPort");
+		_mailOutHostName = jsonObj.optString("mailOutHostName");
+		_mailOutPort = jsonObj.optInt("mailOutPort");
+		_mailSecure = jsonObj.optBoolean("mailSecure");
+		_password = jsonObj.optString("password");
+		_username = jsonObj.optString("username");
 	}
 
-    public int getAccountId() {
-    	return _accountId;
-    }
+	public int getAccountId() {
+		return _accountId;
+	}
 
 	public String getEmailAddress() {
 		return _emailAddress;
@@ -102,8 +90,6 @@ public class MailAccount {
 		return _username;
 	}
 
-	private static Log _log = LogFactory.getLog(MailAccount.class);
-
 	private int _accountId;
 	private String _emailAddress;
 	private String _mailInHostName;
@@ -111,8 +97,8 @@ public class MailAccount {
 	private String _mailOutHostName;
 	private int _mailOutPort;
 	private boolean _mailSecure;
-    private String _password;
-    private User _user;
-    private String _username;
+	private String _password;
+	private User _user;
+	private String _username;
 
 }

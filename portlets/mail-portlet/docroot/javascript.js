@@ -3,7 +3,7 @@ Liferay.Mail = {
 		var instance = this;
 
 		instance.namespace = params.namespace;
-		
+
 		// Commonly used jQuery expressions
 
 		instance.accountSelectionSelect = jQuery('#account-selection');
@@ -536,40 +536,40 @@ Liferay.Mail = {
 			instance.folderControlsOlderLink.css('display', 'none');
 			instance.folderControlsOldestLink.css('display', 'none');
 
-			// Update page range count status	  (  x - x of xxxx )
-	
+			// Update page range count status
+
 			jQuery('.folder-controls .status').html('');
 		}
 		else {
 
 			// On first page
-	
+
 			if (instance.getCurrentPageNumber() == 1) {
 				instance.folderControlsNewestLink.css('display', 'none');
 				instance.folderControlsNewerLink.css('display', 'none');
 			}
-	
+
 			// On second page
-	
+
 			if (instance.getCurrentPageNumber() == 2) {
 				instance.folderControlsNewestLink.css('display', 'none');
 			}
-	
+
 			// On second to last page
-	
+
 			if (instance.getCurrentPageNumber() == instance.getTotalPages() - 1) {
 				instance.folderControlsOldestLink.css('display', 'none');
 			}
-	
+
 			// On last page
-	
+
 			if (instance.getCurrentPageNumber() == instance.getTotalPages()) {
 				instance.folderControlsOlderLink.css('display', 'none');
 				instance.folderControlsOldestLink.css('display', 'none');
 			}
-			
-			// Update page range count status	  (  x - x of xxxx )
-	
+
+			// Update page range count status
+
 			jQuery('.folder-controls .status').html('<span class="status-number">' + instance.getFirstMessageNumOnPage() + ' - ' + instance.getLastMessageNumOnPage() + '</span> of <span class="status-number">' + instance.getTotalMessages() + '</span>');
 		}
 

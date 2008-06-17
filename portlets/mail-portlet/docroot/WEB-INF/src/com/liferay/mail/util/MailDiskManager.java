@@ -59,15 +59,12 @@ public class MailDiskManager {
 
 	public static final String MAIL_ROOT_DIR = "d:/mailbox";
 
-	public static String getAccountFilePath(
-		User user, String emailAddress) {
-
+	public static String getAccountFilePath(User user, String emailAddress) {
 		return getAccountPath(user, emailAddress) + "/account.json";
 	}
 
 	public static String getAccountPath(User user, String emailAddress) {
-		String pathName =
-			getUserPath(user) + "/" + emailAddress;
+		String pathName = getUserPath(user) + "/" + emailAddress;
 
 		FileUtil.mkdirs(pathName);
 
@@ -101,9 +98,7 @@ public class MailDiskManager {
 		return StringPool.BLANK;
 	}
 
-	public static JSONObject getJSONAccount(
-		User user, String emailAddress) {
-
+	public static JSONObject getJSONAccount(User user, String emailAddress) {
 		String accountFilePath = getAccountFilePath(user, emailAddress);
 
 		try {
@@ -172,9 +167,7 @@ public class MailDiskManager {
 		return null;
 	}
 
-	public static JSONObject getJSONFolders(
-		User user, String emailAddress) {
-
+	public static JSONObject getJSONFolders(User user, String emailAddress) {
 		String accountPath = getAccountPath(user, emailAddress);
 
 		String[] folderNames = FileUtil.listDirs(accountPath);
@@ -246,7 +239,8 @@ public class MailDiskManager {
 		String[] messageUids = null;
 
 		if (searchString.equals(StringPool.BLANK)) {
-			messageUids = _getMessageUidsByFolder(user, emailAddress, folderName);
+			messageUids = _getMessageUidsByFolder(
+				user, emailAddress, folderName);
 		}
 		else {
 			messageUids = _getMessageUidsBySearch(

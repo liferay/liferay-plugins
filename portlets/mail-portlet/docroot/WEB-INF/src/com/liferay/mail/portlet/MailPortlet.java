@@ -71,12 +71,8 @@ public class MailPortlet extends JSPPortlet {
 			String actionName = ParamUtil.getString(
 				req, ActionRequest.ACTION_NAME);
 
-			if (actionName.equals("messageSend")) {
+			if (actionName.equals("sendMessage")) {
 				sendMessage(req);
-			}
-
-			if (Validator.isNull(actionName)) {
-				return;
 			}
 		}
 		catch (Exception e) {
@@ -122,9 +118,7 @@ public class MailPortlet extends JSPPortlet {
 		}
 	}
 
-	protected void sendMessage(ActionRequest req)
-		throws MessagingException, PortalException, SystemException {
-
+	protected void sendMessage(ActionRequest req) throws Exception {
 		UploadPortletRequest uploadReq = PortalUtil.getUploadPortletRequest(
 			req);
 
@@ -147,17 +141,17 @@ public class MailPortlet extends JSPPortlet {
 
 		// Create message parts
 
-	    Multipart multipart = new MimeMultipart();
+		Multipart multipart = new MimeMultipart();
 
 		// Add content to multipart
 
-	    BodyPart messageBodyPart = new MimeBodyPart();
+		BodyPart messageBodyPart = new MimeBodyPart();
 
-	    messageBodyPart.setText(body);
+		messageBodyPart.setText(body);
 
-	    multipart.addBodyPart(messageBodyPart);
+		multipart.addBodyPart(messageBodyPart);
 
-	    // Add attachment to multipart
+		// Add attachment to multipart
 
 		File file = uploadReq.getFile("sendAttachments");
 
@@ -166,16 +160,18 @@ public class MailPortlet extends JSPPortlet {
 				multipart = new MimeMultipart();
 			}
 
-			String filename = file.getName();
-		    DataSource source = new FileDataSource(file);
-		    messageBodyPart.setDataHandler(new DataHandler(source));
-		    messageBodyPart.setFileName(filename);
+			String fileName = file.getName();
+			DataSource dataSource = new FileDataSource(file);
 
-		    multipart.addBodyPart(messageBodyPart);
+			messageBodyPart.setDataHandler(new DataHandler(dataSource));
+			messageBodyPart.setFileName(fileName);
+
+			multipart.addBodyPart(messageBodyPart);
 		}
 
 		mailBoxManager.sendMessage(
 			messageType, folderName, messageUid, fromEmailAddress, recipientTo,
 			recipientCc, recipientBcc, subject, multipart);
 	}
+
 }
