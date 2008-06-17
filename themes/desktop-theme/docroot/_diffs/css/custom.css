@@ -27,6 +27,7 @@ body {
 
 #content-wrapper {
 	position: relative;
+	width: 100%;
 }
 
 #layout-grid {
@@ -278,6 +279,7 @@ body {
 }
 
 .portlet {
+	border: none;
 	margin: 0 3px 7px 23px;
 	max-width: 3000px;
 	min-width: 180px;
@@ -401,7 +403,7 @@ body {
 .portlet-modes {
 	display: none;
 	position: absolute;
-	right: 13px;
+	right: 4px;
 	top: 37px;
 }
 
@@ -411,7 +413,7 @@ body {
 
 .portlet-states {
 	position: absolute;
-	right: 9px;
+	right: 0;
 	top: 12px;
 }
 
@@ -547,7 +549,6 @@ body {
 
 .tabs {
 	border-bottom: 1px solid #3566b5;
-	padding:0 0 29px 8px;
 	position: static;
 }
 
@@ -556,7 +557,6 @@ body {
 }
 
 .tabs li {
-	background: transparent url(../images/common/tabs_bg.png) no-repeat scroll 100% -50px;
 	position: static;
 }
 
@@ -567,16 +567,9 @@ body {
 .tabs li a,
 .tabs li a:hover,
 .tabs li span {
-	background: transparent url(../images/common/tabs_bg.png) no-repeat scroll 0 -150px;
-	color: #094a74;
 	font-size: 11px;
 	font-stretch: semi-condensed;
 	font-weight: 300;
-	position: static;
-}
-
-.tabs li.current {
-	background: transparent url(../images/common/tabs_bg.png) no-repeat scroll 100% 0;
 }
 
 .tabs li.current a,
@@ -584,11 +577,20 @@ body {
 .tabs li.current span {
 	color: #333333;
 	font-weight: bold;
-	line-height:27px;
 }
 
 .ie6 .tabs li.current {
 	top: 0;
+}
+
+/* ---------- Styles in application.css ---------- */
+
+.results-header th {
+	color: #000;
+}
+
+.results-header th a {
+	color: #000;
 }
 
 /* ---------- Styles for Taglib Search Iterator ---------- */
