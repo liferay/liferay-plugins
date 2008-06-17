@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<project name="portlet" basedir="." default="deploy">
+	<import file="../build-common-portlet.xml" />
+
+	<!--
+	Download Portlets from
+	http://developer.novell.com/wiki/index.php/Novell_Collaboration_Portlets.
+	-->
+
+	<property name="original.war.file" value="novell-portlets.war" />
+</project>
