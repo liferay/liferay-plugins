@@ -552,8 +552,8 @@ body {
 	position: static;
 }
 
-.ie .tabs {
-	padding:0 0 30px 8px;
+.ie .freeform .tabs {
+	padding:0 0 28px 8px;
 }
 
 .tabs li {
@@ -570,6 +570,8 @@ body {
 	font-size: 11px;
 	font-stretch: semi-condensed;
 	font-weight: 300;
+	margin-bottom: -1px;
+	position: static;
 }
 
 .tabs li.current a,
@@ -591,6 +593,15 @@ body {
 
 .results-header th a {
 	color: #000;
+}
+
+.ui-resizable-se {
+	right: 10px;
+}
+
+.ui-resizable-se,
+.ui-resizable-sw {
+	bottom: 10px;
 }
 
 /* ---------- Styles for Taglib Search Iterator ---------- */
@@ -837,9 +848,14 @@ body {
 	background: transparent;
 }
 
+.lfr-add-content h2 span {
+	font-weight: normal;
+}
+
 .portal-add-content .portlet-msg-info{
 	background: transparent url(../images/messages/info.png) no-repeat scroll 0.5em 50%;
 	color: #ffffff;
+	font-weight: normal;
 	margin: 20px 0 0 0;
 }
 
