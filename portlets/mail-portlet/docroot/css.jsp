@@ -214,6 +214,10 @@
 	text-align: center;
 }
 
+.mail-portlet #message-send .details input, .mail-portlet #message-send .details select, .mail-portlet #message-send .details textarea {
+	width: 95%;
+}
+
 .mail-portlet #message-send .label {
 	font-weight: bold;
 	text-align: right;
@@ -223,11 +227,8 @@
 
 .mail-portlet #message-send .details table {
 	margin-bottom: 10px;
+	text-align: left;
 	width: 100%;
-}
-
-.mail-portlet #send-from,  .mail-portlet #send-to,  .mail-portlet #send-cc,  .mail-portlet #send-bcc,  .mail-portlet #send-subject,  .mail-portlet #send-body {
-	width: 95%;
 }
 
 .mail-portlet #send-body {

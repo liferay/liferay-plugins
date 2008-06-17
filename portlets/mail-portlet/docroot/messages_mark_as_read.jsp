@@ -25,12 +25,12 @@
 <%@ include file="/json_init.jsp" %>
 
 <%
-int accountId = ParamUtil.getInteger(request, "accountId");
+String emailAddress = ParamUtil.getString(request, "emailAddress");
 String folderName = ParamUtil.getString(request, "folderName");
 String messageUids = ParamUtil.getString(request, "messageUids");
 boolean read = ParamUtil.getBoolean(request, "read");
 
-MailBoxManager mailBoxManager = new MailBoxManager(user, accountId);
+MailBoxManager mailBoxManager = new MailBoxManager(user, emailAddress);
 %>
 
 <%= mailBoxManager.markMessagesAsRead(folderName, messageUids, read) %>

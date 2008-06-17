@@ -25,21 +25,28 @@ package com.liferay.mail.portlet;
 import com.liferay.mail.util.MailBoxManager;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
-import com.liferay.util.mail.JavaMailUtil;
 import com.liferay.util.servlet.PortletResponseUtil;
-import com.liferay.util.servlet.ServletResponseUtil;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+
+import javax.mail.BodyPart;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.Part;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMultipart;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -48,7 +55,6 @@ import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * <a href="MailPortlet.java.html"><b><i>View Source</i></b></a>
@@ -62,31 +68,16 @@ public class MailPortlet extends JSPPortlet {
 		throws IOException, PortletException {
 
 		try {
-			int accountId = ParamUtil.getInteger(req, "accountId");
-			String folderName = ParamUtil.getString(req, "folderName");
-			int messageUid = ParamUtil.getInteger(req, "messageUid");
-			String fileName = ParamUtil.getString(req, "fileName");
-			String contentPath = ParamUtil.getString(req, "contentPath");
+			String actionName = ParamUtil.getString(
+				req, ActionRequest.ACTION_NAME);
 
-			ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
-				WebKeys.THEME_DISPLAY);
+			if (actionName.equals("messageSend")) {
+				sendMessage(req);
+			}
 
-			MailBoxManager mailBoxManager = new MailBoxManager(
-				themeDisplay.getUser(), accountId);
-
-			Part messagePart = mailBoxManager.getAttachment(
-				folderName, messageUid, contentPath);
-
-			byte[] content = JavaMailUtil.getBytes(messagePart);
-			String contentType = messagePart.getContentType();
-
-			HttpServletResponse httpRes = PortalUtil.getHttpServletResponse(
-				res);
-
-			req.setAttribute("com.liferay.portal.servlet.filters.strip.StripFilterSKIP_FILTER", Boolean.TRUE);
-
-			ServletResponseUtil.sendFile(httpRes, fileName, content, contentType);
-
+			if (Validator.isNull(actionName)) {
+				return;
+			}
 		}
 		catch (Exception e) {
 			throw new PortletException(e);
@@ -101,7 +92,7 @@ public class MailPortlet extends JSPPortlet {
 		if (jspPage.equals("/attachment.jsp")) {
 			HttpServletRequest httpReq = PortalUtil.getHttpServletRequest(req);
 
-			int accountId = ParamUtil.getInteger(req, "accountId");
+			String emailAddress = ParamUtil.getString(req, "emailAddress");
 			String folderName = ParamUtil.getString(req, "folderName");
 			int messageUid = ParamUtil.getInteger(req, "messageUid");
 			String fileName = ParamUtil.getString(req, "fileName");
@@ -109,7 +100,7 @@ public class MailPortlet extends JSPPortlet {
 
 			try {
 				MailBoxManager mailBoxManager = new MailBoxManager(
-					PortalUtil.getUser(httpReq), accountId);
+					PortalUtil.getUser(httpReq), emailAddress);
 
 				Part messagePart = mailBoxManager.getAttachment(
 					folderName, messageUid, contentPath);
@@ -131,4 +122,60 @@ public class MailPortlet extends JSPPortlet {
 		}
 	}
 
+	protected void sendMessage(ActionRequest req)
+		throws MessagingException, PortalException, SystemException {
+
+		UploadPortletRequest uploadReq = PortalUtil.getUploadPortletRequest(
+			req);
+
+		String emailAddress = ParamUtil.getString(
+			uploadReq, "sendEmailAddress");
+		String messageType = ParamUtil.getString(uploadReq, "sendMessageType");
+
+		String folderName = ParamUtil.getString(uploadReq, "sendFolderName");
+		long messageUid = ParamUtil.getLong(uploadReq, "sendMessageUid");
+		String fromEmailAddress = ParamUtil.getString(
+			uploadReq, "sendFromEmailAddress");
+		String recipientTo = ParamUtil.getString(uploadReq, "sendTo");
+		String recipientCc = ParamUtil.getString(uploadReq, "sendCc");
+		String recipientBcc = ParamUtil.getString(uploadReq, "sendBcc");
+		String subject = ParamUtil.getString(uploadReq, "sendSubject");
+		String body = ParamUtil.getString(uploadReq, "sendBody");
+
+		MailBoxManager mailBoxManager = new MailBoxManager(
+			PortalUtil.getUser(uploadReq), emailAddress);
+
+		// Create message parts
+
+	    Multipart multipart = new MimeMultipart();
+
+		// Add content to multipart
+
+	    BodyPart messageBodyPart = new MimeBodyPart();
+
+	    messageBodyPart.setText(body);
+
+	    multipart.addBodyPart(messageBodyPart);
+
+	    // Add attachment to multipart
+
+		File file = uploadReq.getFile("sendAttachments");
+
+		if (Validator.isNotNull(file)) {
+			if (multipart == null) {
+				multipart = new MimeMultipart();
+			}
+
+			String filename = file.getName();
+		    DataSource source = new FileDataSource(file);
+		    messageBodyPart.setDataHandler(new DataHandler(source));
+		    messageBodyPart.setFileName(filename);
+
+		    multipart.addBodyPart(messageBodyPart);
+		}
+
+		mailBoxManager.sendMessage(
+			messageType, folderName, messageUid, fromEmailAddress, recipientTo,
+			recipientCc, recipientBcc, subject, multipart);
+	}
 }

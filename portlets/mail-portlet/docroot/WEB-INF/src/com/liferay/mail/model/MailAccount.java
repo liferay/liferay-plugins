@@ -22,7 +22,15 @@
 
 package com.liferay.mail.model;
 
+import com.liferay.mail.util.MailDiskManager;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * <a href="MailAccount.java.html"><b><i>View Source</i></b></a>
@@ -32,40 +40,26 @@ import com.liferay.portal.model.User;
  */
 public class MailAccount {
 
-	public MailAccount(User user, int accountId) {
+	public MailAccount(User user, String emailAddress) {
     	_user = user;
-    	_accountId = accountId;
 
-		if (accountId == 0) {
-			_emailAddress = "liferay.mail.1@gmail.com";
-			_mailInHostName = "imap.gmail.com";
-			_mailInPort = "993";
-			_mailOutHostName = "smtp.gmail.com";
-			_mailOutPort = "465";
-			_mailSecure = true;
-			_password = "loveispatient";
-			_username = "liferay.mail.1";
-		}
-		else if (accountId == 1) {
-			_emailAddress = "liferay.mail.2@gmail.com";
-			_mailInHostName = "imap.gmail.com";
-			_mailInPort = "993";
-			_mailOutHostName = "smtp.gmail.com";
-			_mailOutPort = "465";
-			_mailSecure = true;
-			_password = "loveispatient";
-			_username = "liferay.mail.2";
-		}
-		else if (accountId == 2) {
-			_emailAddress = "liferay.mail.2@gmail.com";
-			_mailInHostName = "imap.gmail.com";
-			_mailInPort = "993";
-			_mailOutHostName = "smtp.gmail.com";
-			_mailOutPort = "465";
-			_mailSecure = true;
-			_password = "loveispatient";
-			_username = "liferay.mail.3";
-		}
+    	JSONObject jsonObj = MailDiskManager.getJSONAccount(user, emailAddress);
+
+    	try {
+	    	if (Validator.isNotNull(jsonObj)) {
+	    		_emailAddress = jsonObj.getString("emailAddress");
+	    		_mailInHostName = jsonObj.getString("mailInHostName");
+	    		_mailInPort = jsonObj.getInt("mailInPort");
+	    		_mailOutHostName = jsonObj.getString("mailOutHostName");
+	    		_mailOutPort = jsonObj.getInt("mailOutPort");
+	    		_mailSecure = jsonObj.getBoolean("mailSecure");
+	    		_password = jsonObj.getString("password");
+	    		_username = jsonObj.getString("username");
+	    	}
+    	}
+    	catch (JSONException jsone) {
+    		_log.error(jsone, jsone);
+    	}
 	}
 
     public int getAccountId() {
@@ -80,7 +74,7 @@ public class MailAccount {
 		return _mailInHostName;
 	}
 
-	public String getMailInPort() {
+	public int getMailInPort() {
 		return _mailInPort;
 	}
 
@@ -88,7 +82,7 @@ public class MailAccount {
 		return _mailOutHostName;
 	}
 
-	public String getMailOutPort() {
+	public int getMailOutPort() {
 		return _mailOutPort;
 	}
 
@@ -108,12 +102,14 @@ public class MailAccount {
 		return _username;
 	}
 
+	private static Log _log = LogFactory.getLog(MailAccount.class);
+
 	private int _accountId;
 	private String _emailAddress;
 	private String _mailInHostName;
-	private String _mailInPort;
+	private int _mailInPort;
 	private String _mailOutHostName;
-	private String _mailOutPort;
+	private int _mailOutPort;
 	private boolean _mailSecure;
     private String _password;
     private User _user;

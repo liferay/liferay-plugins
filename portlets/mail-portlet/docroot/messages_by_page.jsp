@@ -25,10 +25,10 @@
 <%@ include file="/json_init.jsp" %>
 
 <%
-int accountId = ParamUtil.getInteger(request, "accountId");
+String emailAddress = ParamUtil.getString(request, "emailAddress");
 String folderName = ParamUtil.getString(request, "folderName");
 int pageNumber = ParamUtil.getInteger(request, "pageNumber");
 int messagesPerPage = ParamUtil.getInteger(request, "messagesPerPage");
 %>
 
-<%= MailDiskManager.getJSONMessagesByPage(user, MailBoxManager.getMailAccount(user, accountId), folderName, pageNumber, messagesPerPage) %>
+<%= MailDiskManager.getJSONMessagesByPage(user, emailAddress, folderName, pageNumber, messagesPerPage) %>

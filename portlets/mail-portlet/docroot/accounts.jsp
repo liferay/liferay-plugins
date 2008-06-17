@@ -24,4 +24,4 @@
 
 <%@ include file="/json_init.jsp" %>
 
-<%= MailBoxManager.getJSONAccounts(user) %>
+<%= MailDiskManager.getJSONAccounts(user) %>

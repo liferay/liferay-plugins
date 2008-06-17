@@ -25,9 +25,9 @@
 <%@ include file="/json_init.jsp" %>
 
 <%
-int accountId = ParamUtil.getInteger(request, "accountId");
+String emailAddress = ParamUtil.getString(request, "emailAddress");
 
-MailBoxManager mailBoxManager = new MailBoxManager(user, accountId);
+MailBoxManager mailBoxManager = new MailBoxManager(user, emailAddress);
 %>
 
 <%= mailBoxManager.updateAccount() %>

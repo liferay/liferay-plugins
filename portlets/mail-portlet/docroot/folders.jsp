@@ -25,7 +25,7 @@
 <%@ include file="/json_init.jsp" %>
 
 <%
-int accountId = ParamUtil.getInteger(request, "accountId");
+String emailAddress = ParamUtil.getString(request, "emailAddress");
 %>
 
-<%= MailDiskManager.getJSONFolders(user, MailBoxManager.getMailAccount(user, accountId)) %>
+<%= MailDiskManager.getJSONFolders(user, emailAddress) %>
