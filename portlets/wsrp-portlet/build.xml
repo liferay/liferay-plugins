@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<project name="wsrp" basedir="." default="deploy">
+	<import file="../build-common-portlet.xml" />
+
+	<target name="build-lang">
+		<antcall target="build-lang-cmd">
+			<param name="lang.dir" value="docroot/WEB-INF/src/content/wsrp-portlet" />
+			<param name="lang.file" value="Language" />
+		</antcall>
+	</target>
+
+	<target name="wsdltojava">
+		<java 
+			classname="org.apache.cxf.tools.wsdlto.WSDLToJava" 
+			classpathref="plugin-lib.classpath"
+			dir="docroot/wsdl"
+			fork="true"
+			maxmemory="256m"
+			newenvironment="true"
+		>
+			<arg value="-verbose"/>
+			<arg value="-p"/>
+			<arg value="urn:oasis:names:tc:wsrp:v2:types=com.liferay.wsrp.soap.v2.types" />
+			<arg value="-p"/>
+			<arg value="urn:oasis:names:tc:wsrp:v2:intf=com.liferay.wsrp.soap.v2.intf" />
+			<arg value="-p"/>
+			<arg value="urn:oasis:names:tc:wsrp:v2:wsdl=com.liferay.wsrp.soap.v2.wsdl" />
+			<arg value="-b"/>
+			<arg value="wsrp-2.0-custom-bindings.xml"/>
+			<arg value="-d"/>
+			<arg value="../WEB-INF/src"/>
+			<arg value="wsrp-2.0-service.wsdl "/>
+		</java>
+	</target>
+</project>

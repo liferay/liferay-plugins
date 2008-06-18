@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+
+<libraries>
+	<library>
+		<file-name>cxf.jar</file-name>
+		<version>2.1</version>
+		<project-name>Apache CXF</project-name>
+		<project-url>http://cxf.apache.org</project-url>
+		<licenses>
+			<license>
+				<license-name>Apache License 2.0</license-name>
+			</license>
+		</licenses>
+	</library>
+	<library>
+		<file-name>FastInfoset.jar</file-name>
+		<version>1.2.2</version>
+		<project-name>Fast Infoset</project-name>
+		<project-url>https://fi.dev.java.net/</project-url>
+		<licenses>
+			<license>
+				<license-name>Apache License 2.0</license-name>
+			</license>
+		</licenses>
+	</library>
+	<library>
+		<file-name>geronimo-annotation_1.0_spec.jar</file-name>
+		<version>1.1.1</version>
+		<project-name>Geronimo Annotation API</project-name>
+		<project-url>http://geronimo.apache.org/</project-url>
+		<licenses>
+			<license>
+				<license-name>Apache License 2.0</license-name>
+			</license>
+		</licenses>
+	</library>
+	<library>
+		<file-name>geronimo-ws-metadata_2.0_spec.jar</file-name>
+		<version>1.1.2</version>
+		<project-name></project-name>
+		<project-url>http://geronimo.apache.org/</project-url>
+		<licenses>
+			<license>
+				<license-name>Apache License 2.0</license-name>
+			</license>
+		</licenses>
+	</library>
+	<library>
+		<file-name>jaxb-api.jar</file-name>
+		<version>2.1-1</version>
+		<project-name>JavaTM Architecture for XML Binding</project-name>
+		<project-url>https://jaxb.dev.java.net</project-url>
+		<licenses>
+			<license>
+				<license-name>CDDL v1.0</license-name>
+			</license>
+		</licenses>
+	</library>
+	<library>
+		<file-name>jaxb-impl.jar</file-name>
+		<version>2.1.6</version>
+		<project-name>JavaTM Architecture for XML Binding</project-name>
+		<project-url>https://jaxb.dev.java.net</project-url>
+		<licenses>
+			<license>
+				<license-name>CDDL v1.0</license-name>
+			</license>
+		</licenses>
+	</library>
+	<library>
+		<file-name>jaxb-xjc.jar</file-name>
+		<version>2.1.6</version>
+		<project-name>JavaTM Architecture for XML Binding</project-name>
+		<project-url></project-url>
+		<licenses>
+			<license>
+				<license-name>CDDL v1.0</license-name>
+				<copyright-notice>Copyright (c) 2004 Kohsuke Kawaguchi</copyright-notice>
+			</license>
+		</licenses>
+	</library>
+	<library>
+		<file-name>jaxws-api.jar</file-name>
+		<version>2.1</version>
+		<project-name>JavaTM API for XML-Based Web Services</project-name>
+		<project-url>https://jax-ws.dev.java.net</project-url>
+		<licenses>
+			<license>
+				<license-name>CDDL v1.0</license-name>
+			</license>
+		</licenses>
+	</library>
+	<library>
+		<file-name>neethi.jar</file-name>
+		<version>2.0.4</version>
+		<project-name>Apache Axiom</project-name>
+		<project-url>http://ws.apache.org/commons/neethi</project-url>
+		<licenses>
+			<license>
+				<license-name>Apache License 2.0</license-name>
+			</license>
+		</licenses>
+	</library>
+	<library>
+		<file-name>stax-utils.jar</file-name>
+		<version>snapshot 20060502</version>
+		<project-name>StAX Utilities Project</project-name>
+		<project-url>http://stax-utils.dev.java.net</project-url>
+		<licenses>
+			<license>
+				<license-name>Berkeley Software Distribution (BSD) License</license-name>
+			</license>
+		</licenses>
+	</library>
+	<library>
+		<file-name>wsrp-common.jar</file-name>
+		<version>2.0-milestone 4</version>
+		<project-name></project-name>
+		<project-url>http://wsrp.dev.java.net</project-url>
+		<licenses>
+			<license>
+				<license-name>CDDL v1.0</license-name>
+			</license>
+		</licenses>
+	</library>
+	<library>
+		<file-name>xml-resolver.jar</file-name>
+		<version>1.2</version>
+		<project-name>Apache XML Resolver</project-name>
+		<project-url>http://xml.apache.org/commons/components/resolver/index.html</project-url>
+		<licenses>
+			<license>
+				<license-name>Apache License 2.0</license-name>
+			</license>
+		</licenses>
+	</library>
+	<library>
+		<file-name>XmlSchema.jar</file-name>
+		<version>1.4.2</version>
+		<project-name>Apache XmlSchema</project-name>
+		<project-url>http://ws.apache.org/commons/XmlSchema</project-url>
+		<licenses>
+			<license>
+				<license-name>Apache License 2.0</license-name>
+			</license>
+		</licenses>
+	</library>
+</libraries>

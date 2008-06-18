@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/wsrp-common.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/portal">
+		<accessrules>
+			<accessrule kind="nonaccessible" pattern="portal-impl/"/>
+			<accessrule kind="nonaccessible" pattern="portal-test/"/>
+		</accessrules>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal/lib/portal/aopalliance.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/asm.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/backport-concurrent.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/commons-beanutils.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/commons-collections.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/commons-configuration.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/commons-digester.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/commons-lang.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/dom4j.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/easyconf.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/ehcache.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/hibernate3.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/jstl.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/jstl-impl.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/saaj-api.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/saaj-impl.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/spring.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/stax.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/velocity.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/wsdl4j.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/xstream.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/global/portlet.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/portal/commons-logging.jar"/>
+	<classpathentry kind="lib" path="/portal/lib/development/servlet.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/cxf.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/FastInfoset.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/geronimo-annotation_1.0_spec.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/geronimo-ws-metadata_2.0_spec.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jaxb-api.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jaxb-impl.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jaxb-xjc.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jaxws-api.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/neethi.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/stax-utils.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/wstx-asl.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/xml-resolver.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/XmlSchema.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

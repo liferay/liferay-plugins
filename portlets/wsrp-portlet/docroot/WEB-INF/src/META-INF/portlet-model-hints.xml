@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model-hints>
+	<model name="com.liferay.wsrp.consumer.model.Producer">
+		<field name="uuid" type="String" />
+		<field name="producerId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="name" type="String" />
+		<field name="wsdlURL" type="String">
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="markupEndpoint" type="String">
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="portletManagementEndpoint" type="String">
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="registrationEndpoint" type="String">
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="serviceDescriptionEndpoint" type="String">
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="registrationContext" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+		<field name="serviceDescription" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+	</model>
+</model-hints>
