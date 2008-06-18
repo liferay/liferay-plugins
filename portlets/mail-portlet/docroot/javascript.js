@@ -6,9 +6,12 @@ Liferay.Mail = {
 
 		// Commonly used jQuery expressions
 
+		instance.accountConfigurationDiv = jQuery('#account-configuration');
+		instance.accountContainerDiv = jQuery('#account-container');
 		instance.accountSelectionSelect = jQuery('#account-selection');
 		instance.composeMailLink = jQuery('#compose-mail');
 		instance.debugSpan = jQuery('#debug');
+		instance.emailContainerDiv = jQuery('#email-container');
 		instance.folderDiv = jQuery('#folder');
 		instance.foldersDiv = jQuery('#folders');
 		instance.folderControlsDeleteButton = jQuery('.folder-controls .delete');
@@ -256,6 +259,14 @@ Liferay.Mail = {
 
 		instance.clearStatus();
 
+		// Prompt user to setup accounts if none are configured
+
+		if (jsonAccounts.accounts.length == 0) {
+			instance.setView('viewAccountConfiguration');
+			
+			return false;
+		}
+
 		// Parse JSON
 
 		var htmlAccountList = '';
@@ -310,7 +321,14 @@ Liferay.Mail = {
 
 			var folderName = fldr.name;
 
-			htmlFolderList += '<div class="folder" folderName="' + fldr.name + '"><a href="#">' + fldr.name + '</a></div>';
+			var htmlFolder = '<div class="folder" folderName="' + folderName + '"><a href="#">' + folderName + '</a></div>';
+
+			if (folderName.toLowerCase() == "inbox") {
+				htmlFolderList = htmlFolder + '<br />' + htmlFolderList;
+			}
+			else {
+				htmlFolderList = htmlFolderList + htmlFolder;
+			}
 		}
 
 		// Inject HTML
@@ -660,25 +678,6 @@ Liferay.Mail = {
 		});
 	},
 
-	updateAccount: function() {
-		var instance = this;
-
-		instance.setStatus(Liferay.Language.get('getting-new-mail'), '');
-
-		var url = themeDisplay.getLayoutURL() + '/-/mail/sycronize_account?emailAddress=' + instance.getCurrentEmailAddress();
-
-		jQuery.ajax(
-			{
-				url: url,
-				dataType: 'json',
-				success: function(jsonAccounts) {
-					instance.loadMessagesByPage(instance.getCurrentFolderName(), instance.getCurrentPageNumber());
-					instance.clearStatus();
-				}
-			}
-		);
-	},
-
 	setCurrentEmailAddress: function(emailAddress) {
 		var instance = this;
 
@@ -741,6 +740,7 @@ Liferay.Mail = {
 
 		// Hide everything
 
+		instance.accountConfigurationDiv.css('display', 'none');
 		instance.folderDiv.css('display', 'none');
 		instance.messageDiv.css('display', 'none');
 
@@ -751,7 +751,12 @@ Liferay.Mail = {
 
 		// Show desired windows
 
-		if (viewMode == 'viewFolder') {
+		if (viewMode == 'viewAccountConfiguration') {
+			instance.accountConfigurationDiv.css('display', 'block');
+			instance.accountContainerDiv.css('display', 'none');
+			instance.emailContainerDiv.css('display', 'none');
+		} 
+		else if (viewMode == 'viewFolder') {
 			instance.clearIncomingMessage();
 
 			instance.folderDiv.css('display', 'block');
@@ -784,6 +789,29 @@ Liferay.Mail = {
 				}
 			}
 		}
+	},
+
+	syncronizeAccount: function(emailAccount, loadMessages) {
+		var instance = this;
+
+		if (loadMessages) {
+			instance.setStatus(Liferay.Language.get('getting-new-mail'), '');
+		}
+		
+		var url = themeDisplay.getLayoutURL() + '/-/mail/sycronize_account?emailAddress=' + emailAccount;
+
+		jQuery.ajax(
+			{
+				url: url,
+				dataType: 'json',
+				success: function(jsonAccounts) {
+					if (loadMessages) {
+						instance.loadMessagesByPage(instance.getCurrentFolderName(), instance.getCurrentPageNumber());
+						instance.clearStatus();
+					}
+				}
+			}
+		);
 	},
 
 	_assignEvents: function() {
@@ -824,7 +852,7 @@ Liferay.Mail = {
 					url: url,
 					dataType: 'json',
 					success: function(jsonResult) {
-						instance.updateAccount();
+						instance.syncronizeAccount(instance.getCurrentEmailAddress(), true);
 
 						instance.setStatus(Liferay.Language.get('messages-have-been-deleted'), url);
 					}
@@ -889,7 +917,7 @@ Liferay.Mail = {
 		});
 
 		instance.folderControlsRefreshLink.click(function() {
-			instance.updateAccount();
+			instance.syncronizeAccount(instance.getCurrentEmailAddress(), true);
 
 			return false;
 		});
@@ -1260,22 +1288,28 @@ Liferay.MailConfiguration = {
 
 			var url = themeDisplay.getLayoutURL() + '/-/mail/update_account';
 
-			//instance.setStatus(Liferay.Language.get('saving-account'), url);
+			var emailAddressValue = detailsTable.find('.email-address:first').val();
+			var mailSecureValue = false;
+			
+			if (detailsTable.find('.secure:first').attr('checked') || (detailsTable.find('.secure:first').val())) {
+				mailSecureValue = true;
+			}
 
 			jQuery.post(
 				url,
 				{
-					emailAddress: detailsTable.find('.email-address:first').val(),
+					emailAddress: emailAddressValue,
 					mailInHostName: detailsTable.find('.in-hostname:first').val(),
 					mailInPort: detailsTable.find('.in-port:first').val(),
 					mailOutHostName: detailsTable.find('.out-hostname:first').val(),
 					mailOutPort: detailsTable.find('.out-port:first').val(),
-					mailSecure: detailsTable.find('.secure:first').val(),
+					mailSecure: mailSecureValue,
 					password: detailsTable.find('.password:first').val(),
 					username: detailsTable.find('.username:first').val()
 				},
 				function(success) {
 					instance.loadJSONAccountsConfiguration();
+					Liferay.Mail.syncronizeAccount(emailAddressValue, false);
 				},
 				'json'
 			);

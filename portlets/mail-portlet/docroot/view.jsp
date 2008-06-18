@@ -38,12 +38,21 @@
 			Liferay.Mail.init(
 				{
 					sendBodyEditor: window.<portlet:namespace />editor,
-					messagesPerPage: <%= PortletProps.get("messages.per.page") %>
+					messagesPerPage: <%= PortletProps.get("messages.per.page") %>,
+					namespace: '<portlet:namespace />'
 				}
 			);
 		}
 	);
 </script>
+
+<div id="account-configuration">
+	<liferay-ui:message key="click-the-configuration-icon-to-setup-your-email-accounts" />
+
+	<br /><br />
+
+	<liferay-ui:icon image="configuration" message="setup-email-accounts" url="<%= portletDisplay.getURLConfiguration() %>" />
+</div>
 
 <table id="account-container">
 <tr>

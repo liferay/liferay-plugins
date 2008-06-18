@@ -24,6 +24,8 @@ package com.liferay.mail.portlet.action;
 
 import com.liferay.portal.kernel.portlet.ConfigurationAction;
 
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -35,6 +37,12 @@ import javax.portlet.RenderResponse;
  *
  */
 public class ConfigurationActionImpl implements ConfigurationAction {
+
+	public void processAction(
+			PortletConfig config, ActionRequest req, ActionResponse res)
+		throws Exception {
+
+	}
 
 	public String render(
 			PortletConfig config, RenderRequest req, RenderResponse res)

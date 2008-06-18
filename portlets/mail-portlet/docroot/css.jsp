@@ -123,7 +123,7 @@
 }
 
 .mail-portlet #message-list .alert {
-	height: 200px;
+	height: 250px;
 	text-align: center;
 	vertical-align: middle;
 }

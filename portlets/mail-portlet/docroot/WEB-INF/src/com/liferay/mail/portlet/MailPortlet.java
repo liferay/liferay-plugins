@@ -163,10 +163,12 @@ public class MailPortlet extends JSPPortlet {
 			String fileName = file.getName();
 			DataSource dataSource = new FileDataSource(file);
 
-			messageBodyPart.setDataHandler(new DataHandler(dataSource));
-			messageBodyPart.setFileName(fileName);
+			BodyPart messageAttachmentPart = new MimeBodyPart();
 
-			multipart.addBodyPart(messageBodyPart);
+			messageAttachmentPart.setDataHandler(new DataHandler(dataSource));
+			messageAttachmentPart.setFileName(fileName);
+
+			multipart.addBodyPart(messageAttachmentPart);
 		}
 
 		mailBoxManager.sendMessage(
