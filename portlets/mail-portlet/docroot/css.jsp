@@ -33,6 +33,30 @@
 	float: left;
 }
 
+.mail-portlet #accounts-configuration .account {
+	border: 1px solid black;
+	margin: 4px;
+	padding: 3px;
+}
+
+.mail-portlet #accounts-configuration .details {
+	border: 1px;
+	margin-left: 10px;
+	margin-top: 4px;
+}
+
+.mail-portlet #accounts-configuration .details td {
+	padding: 2px 4px;
+}
+
+.mail-portlet #accounts-configuration .title {
+	background-color: #E8EEF7;
+	cursor: pointer;
+	font-size: 13px;
+	font-weight: bold;
+	padding: 4px;
+}
+
 .mail-portlet #selection {
 	text-align: left;
 	width: 30%;

@@ -23,6 +23,7 @@
 package com.liferay.mail.model;
 
 import com.liferay.mail.util.MailDiskManager;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.User;
 
 import org.json.JSONObject;
@@ -41,6 +42,7 @@ public class MailAccount {
 		JSONObject jsonObj = MailDiskManager.getJSONAccount(user, emailAddress);
 
 		_emailAddress = jsonObj.optString("emailAddress");
+   		_initialized = jsonObj.optBoolean("initialized");
 		_mailInHostName = jsonObj.optString("mailInHostName");
 		_mailInPort = jsonObj.optInt("mailInPort");
 		_mailOutHostName = jsonObj.optString("mailOutHostName");
@@ -48,6 +50,25 @@ public class MailAccount {
 		_mailSecure = jsonObj.optBoolean("mailSecure");
 		_password = jsonObj.optString("password");
 		_username = jsonObj.optString("username");
+	}
+
+	public MailAccount(
+			User user, String emailAddress, boolean initialized,
+			String mailInHostName, String mailInPort, String mailOutHostName,
+			String mailOutPort, boolean mailSecure, String password,
+			String username) {
+
+		_user = user;
+
+		_emailAddress = emailAddress;
+   		_initialized = initialized;
+		_mailInHostName = mailInHostName;
+		_mailInPort = GetterUtil.getInteger(mailInPort);
+		_mailOutHostName = mailOutHostName;
+		_mailOutPort = GetterUtil.getInteger(mailOutPort);
+		_mailSecure = mailSecure;
+		_password = password;
+		_username = username;
 	}
 
 	public int getAccountId() {
@@ -74,6 +95,10 @@ public class MailAccount {
 		return _mailOutPort;
 	}
 
+	public boolean isInitialized() {
+		return _initialized;
+	}
+
 	public boolean isMailSecure() {
 		return _mailSecure;
 	}
@@ -92,6 +117,7 @@ public class MailAccount {
 
 	private int _accountId;
 	private String _emailAddress;
+	private boolean _initialized;
 	private String _mailInHostName;
 	private int _mailInPort;
 	private String _mailOutHostName;

@@ -91,12 +91,37 @@ public class MailBoxManager {
 		_mailAccount = new MailAccount(user, emailAddress);
 	}
 
+	public MailBoxManager(
+		User user, String emailAddress, boolean initialized,
+		String mailInHostName, String mailInPort, String mailOutHostName,
+		String mailOutPort, boolean mailSecure, String password,
+		String username) {
+
+		_user = user;
+		_mailAccount = new MailAccount(
+			user, emailAddress, initialized, mailInHostName, mailInPort,
+			mailOutHostName, mailOutPort, mailSecure, password, username);
+	}
+
 	public void createFolder(String folderName) throws Exception {
 		Folder newFolder = getStore().getFolder(folderName);
 
 		if (!newFolder.exists()) {
 			newFolder.create(Folder.HOLDS_MESSAGES);
 		}
+	}
+
+	public JSONObject deleteAccountFromDisk() {
+		String filePath = MailDiskManager.getAccountFilePath(
+			_user, _mailAccount.getEmailAddress());
+
+		FileUtil.delete(filePath);
+
+		JSONObject jsonObj = new JSONObject();
+
+		JSONUtil.put(jsonObj, "success", true);
+
+		return jsonObj;
 	}
 
 	public JSONObject deleteMessagesByUids(
@@ -269,11 +294,32 @@ public class MailBoxManager {
 		return jsonObj;
 	}
 
-	public JSONObject updateAccount() throws MessagingException {
-		List<Folder> folders = getFolders();
+	public JSONObject storeAccountToDisk() {
+		try {
+			JSONObject jsonObj = new JSONObject();
 
-		for (Folder folder : folders) {
-			updateFolder(folder);
+			String filePath = MailDiskManager.getAccountFilePath(
+				_user, _mailAccount.getEmailAddress());
+
+			JSONUtil.put(
+				jsonObj, "emailAddress", _mailAccount.getEmailAddress());
+			JSONUtil.put(jsonObj, "initialized", _mailAccount.isInitialized());
+			JSONUtil.put(
+				jsonObj, "mailInHostName", _mailAccount.getMailInHostName());
+			JSONUtil.put(jsonObj, "mailInPort", _mailAccount.getMailInPort());
+			JSONUtil.put(
+				jsonObj, "mailOutHostName", _mailAccount.getMailOutHostName());
+			JSONUtil.put(jsonObj, "mailOutPort", _mailAccount.getMailOutPort());
+			JSONUtil.put(jsonObj, "mailSecure", _mailAccount.isMailSecure());
+			JSONUtil.put(jsonObj, "password", _mailAccount.getPassword());
+			JSONUtil.put(jsonObj, "username", _mailAccount.getUsername());
+
+			FileUtil.write(filePath, jsonObj.toString());
+		}
+		catch (IOException ioe) {
+			_log.error(ioe, ioe);
+
+			return null;
 		}
 
 		JSONObject jsonObj = new JSONObject();
@@ -283,7 +329,21 @@ public class MailBoxManager {
 		return jsonObj;
 	}
 
-	public void updateFolder(Folder folder) throws MessagingException {
+	public JSONObject syncronizeAccount() throws MessagingException {
+		List<Folder> folders = getFolders();
+
+		for (Folder folder : folders) {
+			syncronizeFolder(folder);
+		}
+
+		JSONObject jsonObj = new JSONObject();
+
+		JSONUtil.put(jsonObj, "success", true);
+
+		return jsonObj;
+	}
+
+	public void syncronizeFolder(Folder folder) throws MessagingException {
 
 		// Check if folder has been initialized
 
@@ -811,29 +871,6 @@ public class MailBoxManager {
 
 	protected void setStore(Store store) {
 		_store = store;
-	}
-
-	protected JSONObject storeAccountToDisk(
-		MailAccount account, boolean initialized, Date date) {
-
-		try {
-			JSONObject jsonObj = new JSONObject();
-
-			String filePath = MailDiskManager.getAccountFilePath(
-				_user, _mailAccount.getEmailAddress());
-
-	   		JSONUtil.put(jsonObj, "initialized", initialized);
-			JSONUtil.put(jsonObj, "lastUpdated", date);
-
-			FileUtil.write(filePath, jsonObj.toString());
-
-			return jsonObj;
-		}
-		catch (IOException ioe) {
-			_log.error(ioe, ioe);
-		}
-
-		return null;
 	}
 
 	protected JSONObject storeFolderToDisk(

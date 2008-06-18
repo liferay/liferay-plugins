@@ -22,12 +22,16 @@
  */
 %>
 
-<%@ include file="/json_init.jsp" %>
+<%@ include file="/init.jsp" %>
 
-<%
-String emailAddress = ParamUtil.getString(request, "emailAddress");
+<script type="text/javascript">
+jQuery(
+	function() {
+		Liferay.MailConfiguration.init();
+	}
+);
+</script>
 
-MailBoxManager mailBoxManager = new MailBoxManager(user, emailAddress);
-%>
-
-<%= mailBoxManager.updateAccount() %>
+<div class="mail-portlet">
+	<div id="accounts-configuration"></div>
+</div>

@@ -22,18 +22,7 @@
  */
 %>
 
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
-
-<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
-
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
-
-<%@ page import="com.liferay.mail.util.PortletProps" %>
-<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
-
-<portlet:defineObjects />
-
-<liferay-theme:defineObjects />
+<%@ include file="/init.jsp" %>
 
 <script type="text/javascript">
 	function <portlet:namespace />initEditor() {
@@ -176,7 +165,7 @@
 
 					<a class="older" href="javascript: ;"><liferay-ui:message key="older" /> &gt;</a>
 
-					<a class="oldest" href="javascript: ;"><liferay-ui:message key="oldest" /> &raquo;</a>
+					<!--<a class="oldest" href="javascript: ;"><liferay-ui:message key="oldest" /> &raquo;</a>-->
 				</td>
 			</tr>
 			</table>
