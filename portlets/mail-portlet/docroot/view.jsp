@@ -57,11 +57,11 @@
 <table class="account-container" id="<portlet:namespace />account-container">
 <tr>
 	<td class="selection" id="<portlet:namespace />selection">
-		<select id="<portlet:namespace />account-selection">
-		</select>
+		<select id="<portlet:namespace />account-selection"></select>
 	</td>
 	<td class="status-div" id="<portlet:namespace />status-div">
 		<span class="status" id="<portlet:namespace />status" />
+
 		<span id="<portlet:namespace />debug" />
 	</td>
 	<td class="search" id="<portlet:namespace />search">

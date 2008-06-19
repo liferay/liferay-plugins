@@ -41,7 +41,6 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 	public void processAction(
 			PortletConfig config, ActionRequest req, ActionResponse res)
 		throws Exception {
-
 	}
 
 	public String render(

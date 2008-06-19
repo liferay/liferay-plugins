@@ -25,15 +25,15 @@
 <%@ include file="/init.jsp" %>
 
 <script type="text/javascript">
-jQuery(
-	function() {
-		Liferay.MailConfiguration.init(
-			{
-				preconfiguredMailAccounts : <%= PortletProps.get("preconfigured.mail.accounts") %>
-			}
-		);
-	}
-);
+	jQuery(
+		function() {
+			Liferay.MailConfiguration.init(
+				{
+					preconfiguredMailAccounts : <%= PortletProps.get("preconfigured.mail.accounts") %>
+				}
+			);
+		}
+	);
 </script>
 
 <div class="mail-portlet">

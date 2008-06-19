@@ -1310,6 +1310,7 @@ Liferay.MailConfiguration = {
 				},
 				function(success) {
 					instance.loadJSONAccountsConfiguration();
+
 					Liferay.Mail.syncronizeAccount(emailAddressValue, false);
 				},
 				'json'

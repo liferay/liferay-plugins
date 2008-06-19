@@ -34,9 +34,7 @@ boolean mailSecure = ParamUtil.getBoolean(request, "mailSecure");
 String password = ParamUtil.getString(request, "password");
 String username = ParamUtil.getString(request, "username");
 
-MailBoxManager mailBoxManager = new MailBoxManager(
-	user, emailAddress, false, mailInHostName, mailInPort,
-	mailOutHostName, mailOutPort, mailSecure, password, username);
+MailBoxManager mailBoxManager = new MailBoxManager(user, emailAddress, false, mailInHostName, mailInPort, mailOutHostName, mailOutPort, mailSecure, password, username);
 %>
 
 <%= mailBoxManager.storeAccountToDisk() %>

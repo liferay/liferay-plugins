@@ -57,8 +57,6 @@ import org.json.JSONObject;
  */
 public class MailDiskManager {
 
-	public static final String MAIL_ROOT_DIR = "d:/mailbox";
-
 	public static String getAccountFilePath(User user, String emailAddress) {
 		return getAccountPath(user, emailAddress) + "/account.json";
 	}
@@ -357,7 +355,8 @@ public class MailDiskManager {
 	}
 
 	public static String getUserPath(User user) {
-		String pathName = MAIL_ROOT_DIR + "/" + user.getUserId();;
+		String pathName =
+			PortletProps.get("disk.root.dir") + "/" + user.getUserId();
 
 		FileUtil.mkdirs(pathName);
 

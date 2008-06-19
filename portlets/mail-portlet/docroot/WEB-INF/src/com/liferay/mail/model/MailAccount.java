@@ -53,13 +53,12 @@ public class MailAccount {
 	}
 
 	public MailAccount(
-			User user, String emailAddress, boolean initialized,
-			String mailInHostName, String mailInPort, String mailOutHostName,
-			String mailOutPort, boolean mailSecure, String password,
-			String username) {
+		User user, String emailAddress, boolean initialized,
+		String mailInHostName, String mailInPort, String mailOutHostName,
+		String mailOutPort, boolean mailSecure, String password,
+		String username) {
 
 		_user = user;
-
 		_emailAddress = emailAddress;
    		_initialized = initialized;
 		_mailInHostName = mailInHostName;
