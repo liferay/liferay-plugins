@@ -22,6 +22,7 @@
 
 package com.liferay.portlet.service;
 
+import com.liferay.portal.model.ModelListener;
 import com.liferay.portlet.service.HibernateUtil;
 
 import org.apache.commons.logging.Log;
@@ -48,6 +49,9 @@ public class BasePersistence extends JdbcDaoSupport {
 		return _sessionFactory;
 	}
 
+	public void registerListener(ModelListener listener) {
+	}
+
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		_sessionFactory = (SessionFactoryImplementor)sessionFactory;
 		_dialect = _sessionFactory.getDialect();
@@ -61,12 +65,15 @@ public class BasePersistence extends JdbcDaoSupport {
 		}
 	}
 
-	protected Dialect getDialect() {
-		return _dialect;
+	public void unregisterListener(ModelListener listener) {
 	}
 
-	public void closeSession(Session session) {
+	protected void closeSession(Session session) {
 		HibernateUtil.closeSession(session);
+	}
+
+	protected Dialect getDialect() {
+		return _dialect;
 	}
 
 	protected Session openSession() throws HibernateException {

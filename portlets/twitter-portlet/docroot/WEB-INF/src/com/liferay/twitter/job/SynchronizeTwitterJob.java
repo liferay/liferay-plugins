@@ -26,9 +26,9 @@ import com.liferay.portal.kernel.job.IntervalJob;
 import com.liferay.portal.kernel.job.JobExecutionContext;
 import com.liferay.portal.kernel.job.JobExecutionException;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.Time;
 import com.liferay.portlet.service.PropsUtil;
 import com.liferay.twitter.service.FeedLocalServiceUtil;
-import com.liferay.util.Time;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

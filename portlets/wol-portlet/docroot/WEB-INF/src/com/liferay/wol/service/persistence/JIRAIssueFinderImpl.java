@@ -23,10 +23,10 @@
 package com.liferay.wol.service.persistence;
 
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.util.CalendarUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portlet.service.CustomSQLUtil;
 import com.liferay.portlet.service.HibernateUtil;
-import com.liferay.util.cal.CalendarUtil;
 import com.liferay.util.dao.hibernate.QueryPos;
 import com.liferay.util.dao.hibernate.QueryUtil;
 import com.liferay.wol.model.JIRAIssue;

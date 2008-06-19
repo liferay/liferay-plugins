@@ -26,8 +26,8 @@ import com.liferay.portal.kernel.job.IntervalJob;
 import com.liferay.portal.kernel.job.JobExecutionContext;
 import com.liferay.portal.kernel.job.JobExecutionException;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.Time;
 import com.liferay.portlet.service.PropsUtil;
-import com.liferay.util.Time;
 import com.liferay.wol.service.SVNRepositoryLocalServiceUtil;
 import com.liferay.wol.svn.util.SVNConstants;
 
