@@ -6,14 +6,14 @@ Liferay.Mail = {
 
 		// Commonly used jQuery expressions
 
-		instance.accountConfigurationDiv = jQuery('#account-configuration');
-		instance.accountContainerDiv = jQuery('#account-container');
-		instance.accountSelectionSelect = jQuery('#account-selection');
-		instance.composeMailLink = jQuery('#compose-mail');
-		instance.debugSpan = jQuery('#debug');
-		instance.emailContainerDiv = jQuery('#email-container');
-		instance.folderDiv = jQuery('#folder');
-		instance.foldersDiv = jQuery('#folders');
+		instance.accountContainerDiv = jQuery('#' + instance.namespace + 'account-container');
+		instance.accountSelectionSelect = jQuery('#' + instance.namespace + 'account-selection');
+		instance.composeMailLink = jQuery('#' + instance.namespace + 'compose-mail');
+		instance.configurationPromptDiv = jQuery('#' + instance.namespace + 'configuration-prompt');
+		instance.debugSpan = jQuery('#' + instance.namespace + 'debug');
+		instance.emailContainerDiv = jQuery('#' + instance.namespace + 'email-container');
+		instance.folderDiv = jQuery('#' + instance.namespace + 'folder');
+		instance.foldersDiv = jQuery('#' + instance.namespace + 'folders');
 		instance.folderControlsDeleteButton = jQuery('.folder-controls .delete');
 		instance.folderControlsNewestLink = jQuery('.folder-controls .newest');
 		instance.folderControlsNewerLink = jQuery('.folder-controls .newer');
@@ -30,40 +30,40 @@ Liferay.Mail = {
 		instance.messageControlsNewerLink = jQuery('.message-controls .newer');
 		instance.messageControlsOlderLink = jQuery('.message-controls .older');
 		instance.messageControlsStatus = jQuery('.message-controls .status');
-		instance.messageDiv = jQuery('#message');
-		instance.messageListTable = jQuery('#message-list');
-		instance.messageOptionsDiv = jQuery('#message-options');
-		instance.messageOptionsRespondDivs = jQuery('#reply,#reply-all,#forward');
-		instance.messageReadDiv = jQuery('#message-read');
-		instance.messageSendDiv = jQuery('#message-send');
-		instance.messageSendDiscardButton = jQuery('#message-send .discard');
-		instance.messageSendSaveButton = jQuery('#message-send .save');
-		instance.messageSendSendButton = jQuery('#message-send .send');
-		instance.searchButton = jQuery('#search-button');
-		instance.searchTextInput = jQuery('#search-text');
-		instance.sendEmailAddressHidden = jQuery('#send-email-address');
-		instance.sendAttachmentsFile = jQuery('#send-attachments');
-		instance.sendBccInput = jQuery('#send-bcc');
+		instance.messageDiv = jQuery('#' + instance.namespace + 'message');
+		instance.messageListTable = jQuery('#' + instance.namespace + 'message-list');
+		instance.messageOptionsDiv = jQuery('#' + instance.namespace + 'message-options');
+		instance.messageOptionsRespondDivs = jQuery('#' + instance.namespace + 'reply,#' + instance.namespace + 'reply-all,#' + instance.namespace + 'forward');
+		instance.messageReadDiv = jQuery('#' + instance.namespace + 'message-read');
+		instance.messageSendDiv = jQuery('#' + instance.namespace + 'message-send');
+		instance.messageSendDiscardButton = jQuery('#' + instance.namespace + 'message-send .discard');
+		instance.messageSendSaveButton = jQuery('#' + instance.namespace + 'message-send .save');
+		instance.messageSendSendButton = jQuery('#' + instance.namespace + 'message-send .send');
+		instance.searchButton = jQuery('#' + instance.namespace + 'search-button');
+		instance.searchTextInput = jQuery('#' + instance.namespace + 'search-text');
+		instance.sendEmailAddressHidden = jQuery('#' + instance.namespace + 'send-email-address');
+		instance.sendAttachmentsFile = jQuery('#' + instance.namespace + 'send-attachments');
+		instance.sendBccInput = jQuery('#' + instance.namespace + 'send-bcc');
 		instance.sendBodyEditor = params.sendBodyEditor;
-		instance.sendBodySpan = jQuery('#send-body');
-		instance.sendBodyHidden = jQuery('#send-body-hidden');
-		instance.sendCcInput = jQuery('#send-cc');
-		instance.sendFolderNameHidden = jQuery('#send-folder-name');
-		instance.sendForm = jQuery('#send-form');
-		instance.sendFromSelect = jQuery('#send-from');
-		instance.sendMessageTypeHidden = jQuery('#send-message-type');
-		instance.sendMessageUidHidden = jQuery('#send-message-uid');
-		instance.sendSubjectInput = jQuery('#send-subject');
-		instance.sendToInput = jQuery('#send-to');
-		instance.statusSpan = jQuery('#status');
-		instance.readBodySpan = jQuery('#read-body');
-		instance.readCcSpan = jQuery('#read-cc');
-		instance.readDateSpan = jQuery('#read-date');
-		instance.readFromSpan = jQuery('#read-from');
-		instance.readMailedBySpan = jQuery('#read-mailed-by');
-		instance.readReplyToSpan = jQuery('#read-reply-to');
-		instance.readSubjectSpan = jQuery('#read-subject');
-		instance.readToSpan = jQuery('#read-to');
+		instance.sendBodySpan = jQuery('#' + instance.namespace + 'send-body');
+		instance.sendBodyHidden = jQuery('#' + instance.namespace + 'send-body-hidden');
+		instance.sendCcInput = jQuery('#' + instance.namespace + 'send-cc');
+		instance.sendFolderNameHidden = jQuery('#' + instance.namespace + 'send-folder-name');
+		instance.sendForm = jQuery('#' + instance.namespace + 'send-form');
+		instance.sendFromSelect = jQuery('#' + instance.namespace + 'send-from');
+		instance.sendMessageTypeHidden = jQuery('#' + instance.namespace + 'send-message-type');
+		instance.sendMessageUidHidden = jQuery('#' + instance.namespace + 'send-message-uid');
+		instance.sendSubjectInput = jQuery('#' + instance.namespace + 'send-subject');
+		instance.sendToInput = jQuery('#' + instance.namespace + 'send-to');
+		instance.statusSpan = jQuery('#' + instance.namespace + 'status');
+		instance.readBodySpan = jQuery('#' + instance.namespace + 'read-body');
+		instance.readCcSpan = jQuery('#' + instance.namespace + 'read-cc');
+		instance.readDateSpan = jQuery('#' + instance.namespace + 'read-date');
+		instance.readFromSpan = jQuery('#' + instance.namespace + 'read-from');
+		instance.readMailedBySpan = jQuery('#' + instance.namespace + 'read-mailed-by');
+		instance.readReplyToSpan = jQuery('#' + instance.namespace + 'read-reply-to');
+		instance.readSubjectSpan = jQuery('#' + instance.namespace + 'read-subject');
+		instance.readToSpan = jQuery('#' + instance.namespace + 'read-to');
 
 		// Init methods
 
@@ -740,7 +740,7 @@ Liferay.Mail = {
 
 		// Hide everything
 
-		instance.accountConfigurationDiv.css('display', 'none');
+		instance.configurationPromptDiv.css('display', 'none');
 		instance.folderDiv.css('display', 'none');
 		instance.messageDiv.css('display', 'none');
 
@@ -752,8 +752,8 @@ Liferay.Mail = {
 		// Show desired windows
 
 		if (viewMode == 'viewAccountConfiguration') {
-			instance.accountConfigurationDiv.css('display', 'block');
 			instance.accountContainerDiv.css('display', 'none');
+			instance.configurationPromptDiv.css('display', 'block');
 			instance.emailContainerDiv.css('display', 'none');
 		} 
 		else if (viewMode == 'viewFolder') {
@@ -765,7 +765,7 @@ Liferay.Mail = {
 			instance.clearOutgoingMessage();
 
 			instance.messageDiv.css('display', 'block');
-			jQuery('#message-options td').css('background-color', '#F7F7F7');
+			jQuery('#' + instance.namespace + 'message-options td').css('background-color', '#F7F7F7');
 
 			if (viewMode == 'viewMessage') {
 				instance.messageControlsDiv.css('display', 'block');
@@ -1043,7 +1043,7 @@ Liferay.Mail = {
 
 			var messageModified = false;
 
-			if (jQuery(this).attr('id') == 'forward') {
+			if (jQuery(this).attr('responseType') == 'forward') {
 
 				// Forward
 
@@ -1070,10 +1070,10 @@ Liferay.Mail = {
 				instance.setMessageResponseType('reply');
 				instance.sendSubjectInput.attr('value', 'Re: ' + msgSubject);
 
-				if (jQuery(this).attr('id') == 'reply') {
+				if (jQuery(this).attr('responseType') == 'reply') {
 					instance.sendToInput.attr('value', msgFrom);
 				}
-				else if (jQuery(this).attr('id') == 'reply-all') {
+				else if (jQuery(this).attr('responseType') == 'reply-all') {
 					instance.sendToInput.attr('value', msgFrom);
 					instance.sendCcInput.attr('value', msgTo + ',' + msgCc);
 				}
@@ -1156,8 +1156,9 @@ Liferay.MailConfiguration = {
 
 		// Commonly used jQuery expressions
 
-		instance.accountsConfigurationDiv = jQuery('#accounts-configuration');
-
+		instance.accountsConfigurationDiv = jQuery('.accounts-configuration');
+		instance.preconfiguredMailAccounts = params.preconfiguredMailAccounts;
+		
 		instance.loadJSONAccountsConfiguration();
 	},
 
@@ -1221,7 +1222,7 @@ Liferay.MailConfiguration = {
 
 		var htmlMessageList = '';
 
-		var defaultJSONAccounts = {"accounts" : [{"password":"","mailOutPort":"","mailOutHostName":"","mailInPort":"","emailAddress":"","title":"Add a Mail Account","username":"","mailInHostName":"","mailSecure":false},{"preconfigured":true,"password":"","mailOutPort":"465","mailOutHostName":"smtp.gmail.com","mailInPort":"993","emailAddress":"@gmail.com","title":"Add a Gmail Account","username":"","mailInHostName":"imap.gmail.com","mailSecure":true} ]};
+		var defaultJSONAccounts = instance.preconfiguredMailAccounts;
 
 		for (i = 0; i < defaultJSONAccounts.accounts.length; i++) {
 			var account = defaultJSONAccounts.accounts[i];
@@ -1244,7 +1245,7 @@ Liferay.MailConfiguration = {
 						htmlMessageList += instance.getJSONAccountConfigurationHTML(account, false);
 					}
 
-					jQuery('#accounts-configuration').html(htmlMessageList);
+					instance.accountsConfigurationDiv.html(htmlMessageList);
 
 					instance.refreshAccountEvents();
 				}

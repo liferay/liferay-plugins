@@ -46,7 +46,7 @@
 	);
 </script>
 
-<div id="account-configuration">
+<div class="configuration-prompt" id="<portlet:namespace />configuration-prompt">
 	<liferay-ui:message key="click-the-configuration-icon-to-setup-your-email-accounts" />
 
 	<br /><br />
@@ -54,39 +54,39 @@
 	<liferay-ui:icon image="configuration" message="setup-email-accounts" url="<%= portletDisplay.getURLConfiguration() %>" />
 </div>
 
-<table id="account-container">
+<table class="account-container" id="<portlet:namespace />account-container">
 <tr>
-	<td id="selection">
-		<select id="account-selection">
+	<td class="selection" id="<portlet:namespace />selection">
+		<select id="<portlet:namespace />account-selection">
 		</select>
 	</td>
-	<td id="status-div">
-		<span id="status" />
-		<span id="debug" />
+	<td class="status-div" id="<portlet:namespace />status-div">
+		<span class="status" id="<portlet:namespace />status" />
+		<span id="<portlet:namespace />debug" />
 	</td>
-	<td id="search">
-		<input id="search-text">
+	<td class="search" id="<portlet:namespace />search">
+		<input id="<portlet:namespace />search-text">
 
-		<input id="search-button" type="button" value="<liferay-ui:message key="search" />" />
+		<input id="<portlet:namespace />search-button" type="button" value="<liferay-ui:message key="search" />" />
 	</td>
 </tr>
 </table>
 
-<table id="email-container">
+<table class="email-container" id="<portlet:namespace />email-container">
 <tr>
-	<td id="email-left-column">
-		<div id="compose-mail">
+	<td class="email-left-column" id="<portlet:namespace />email-left-column">
+		<div class="compose-mail" id="<portlet:namespace />compose-mail">
 			<liferay-ui:message key="compose-email" />
 		</div>
 
-		<div id="folders">
+		<div id="<portlet:namespace />folders">
 			<div class="folder" folderName="INBOX">
 				<a href="javascript: ;">INBOX</a>
 			</div>
 		</div>
 	</td>
-	<td id="email-right-column">
-		<div id="folder" folderName="">
+	<td class="email-right-column" id="<portlet:namespace />email-right-column">
+		<div class="folder-container" id="<portlet:namespace />folder" folderName="">
 			<table class="folder-controls">
 			<tr>
 				<td class="actions">
@@ -130,7 +130,7 @@
 			</tr>
 			</table>
 
-			<table id="message-list">
+			<table class="message-list" id="<portlet:namespace />message-list">
 			<tr>
 				<td class="alert"><liferay-ui:message key="no-messages-found" /></td>
 			</tr>
@@ -180,7 +180,7 @@
 			</table>
 		</div>
 
-		<div id="message">
+		<div class="message-container" id="<portlet:namespace />message">
 			<div class="message-controls">
 				<div class="actions">
 					<span class="back">&laquo; <%= LanguageUtil.format(pageContext, "back-to-x", "<span class=\"folder-name\">INBOX</span>") %></span>
@@ -195,79 +195,79 @@
 				</div>
 			</div>
 
-			<div id="message-read">
+			<div class="message-read" id="<portlet:namespace />message-read">
 				<div class="details">
 					<table>
 						<tr>
 							<td class="label">
 								<liferay-ui:message key="from" />
 							</td>
-							<td><span id="read-from"></span></td>
+							<td><span id="<portlet:namespace />read-from"></span></td>
 						</tr>
 						<tr>
 							<td class="label">
 								<liferay-ui:message key="reply-to" />
 							</td>
-							<td><span id="read-reply-to"></span></td>
+							<td><span id="<portlet:namespace />read-reply-to"></span></td>
 						</tr>
 						<tr>
 							<td class="label">
 								<liferay-ui:message key="to" />
 							</td>
-							<td><span id="read-to"></span></td>
+							<td><span id="<portlet:namespace />read-to"></span></td>
 						</tr>
 						<tr>
 							<td class="label">
 								<liferay-ui:message key="cc" />
 							</td>
-							<td><span id="read-cc"></span></td>
+							<td><span id="<portlet:namespace />read-cc"></span></td>
 						</tr>
 						<tr>
 							<td class="label">
 								<liferay-ui:message key="date" />
 							</td>
-							<td><span id="read-date"></span></td>
+							<td><span id="<portlet:namespace />read-date"></span></td>
 						</tr>
 						<tr>
-							<td class="label">
+							<td class="<portlet:namespace />label">
 								<liferay-ui:message key="subject" />
 							</td>
-							<td><span id="read-subject"></span></td>
+							<td><span id="<portlet:namespace />read-subject"></span></td>
 						</tr>
 						<tr style="display: none">
 							<td class="label">
 								<liferay-ui:message key="mailed-by" />
 							</td>
-							<td><span id="read-mailed-by"></span></td>
+							<td><span id="<portlet:namespace />read-mailed-by"></span></td>
 						</tr>
 					</table>
 				</div>
 
-				<div id="read-body">
+				<div id="<portlet:namespace />read-body">
 				</div>
 			</div>
 
-			<table id="message-options">
+			<table class="message-options" id="<portlet:namespace />message-options">
 			<tr>
-				<td id="reply">
+				<td id="<portlet:namespace />reply" responseType="reply">
 					<a href="#message-options"><liferay-ui:message key="reply" /></a>
 				</td>
-				<td id="reply-all">
+				<td id="<portlet:namespace />reply-all" responseType="reply-all">
 					<a href="#message-options"><liferay-ui:message key="reply-all" /></a>
 				</td>
-				<td id="forward">
+				<td id="<portlet:namespace />forward" responseType="forward">
 					<a href="#message-options"><liferay-ui:message key="forward" /></a>
 				</td>
 			</tr>
 			</table>
 
-			<form action="<portlet:actionURL name="sendMessage" />" enctype="multipart/form-data" id="send-form" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />sendMessage(); return false;">
-			<input id="send-email-address" name="<portlet:namespace />sendEmailAddress" type="hidden" value="">
-			<input id="send-folder-name" name="<portlet:namespace />sendFolderName" type="hidden" value="">
-			<input id="send-message-type" name="<portlet:namespace />sendMessageType" type="hidden" value="">
-			<input id="send-message-uid" name="<portlet:namespace />sendMessageUid" type="hidden" value="">
+			<form action="<portlet:actionURL name="sendMessage" />" enctype="multipart/form-data" id="<portlet:namespace />send-form" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />sendMessage(); return false;">
+			<input id="<portlet:namespace />send-email-address" name="<portlet:namespace />sendEmailAddress" type="hidden" value="">
+			<input id="<portlet:namespace />send-folder-name" name="<portlet:namespace />sendFolderName" type="hidden" value="">
+			<input id="<portlet:namespace />send-message-type" name="<portlet:namespace />sendMessageType" type="hidden" value="">
+			<input id="<portlet:namespace />send-message-uid" name="<portlet:namespace />sendMessageUid" type="hidden" value="">
 
-			<div id="message-send">
+			<div class="message-send" id="<portlet:namespace />message-send">
 				<div class="options">
 					<input class="send" type="submit" value="<liferay-ui:message key="send" />">
 
@@ -281,7 +281,7 @@
 							<liferay-ui:message key="from" />:
 						</td>
 						<td>
-							<select id="send-from" name="<portlet:namespace />sendFromEmailAddress">
+							<select id="<portlet:namespace />send-from" name="<portlet:namespace />sendFromEmailAddress">
 							</select>
 						</td>
 					</tr>
@@ -327,10 +327,10 @@
 					</tr>
 					</table>
 
-					<span id="send-body">
+					<span class="send-body" id="<portlet:namespace />send-body">
 						<liferay-ui:input-editor height="500px" width="95%" />
 
-						<input id="send-body-hidden" name="<portlet:namespace />sendBody" type="hidden" />
+						<input id="<portlet:namespace />send-body-hidden" name="<portlet:namespace />sendBody" type="hidden" />
 					</span>
 				</div>
 
