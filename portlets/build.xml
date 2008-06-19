@@ -1,9 +1,31 @@
 <?xml version="1.0"?>
 
-<project name="portlets" basedir="." default="deploy">
+<project name="portlets" basedir="." default="deploy" xmlns:antelope="antlib:ise.antelope.tasks">
 	<property name="project.dir" value=".." />
 
 	<import file="../build-common-plugins.xml" />
+
+	<target name="build-services">
+		<for param="service.file">
+			<path>
+				<fileset
+					dir="."
+					includes="*/docroot/WEB-INF/service.xml"
+				/>
+			</path>
+			<sequential>
+				<antelope:stringutil string="@{service.file}" property="service.file.index">
+					<indexof string="docroot" fromindex="0" />
+				</antelope:stringutil>
+
+				<antelope:stringutil string="@{service.file}" property="portlet.dir">
+					<substring beginindex="0" endindex="${service.file.index}" />
+				</antelope:stringutil>
+
+				<ant dir="${portlet.dir}" target="build-service" inheritAll="false" />
+			</sequential>
+		</for>
+	</target>
 
 	<target name="create">
 		<if>

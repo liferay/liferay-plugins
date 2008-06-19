@@ -5,7 +5,7 @@
 
 	<import file="../build-common-plugin.xml" />
 
-	<target name="build-service" description="build-service">
+	<target name="build-service">
 		<mkdir dir="docroot/WEB-INF/classes" />
 		<mkdir dir="docroot/WEB-INF/lib" />
 		<mkdir dir="docroot/WEB-INF/sql" />
