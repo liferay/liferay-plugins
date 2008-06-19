@@ -42,8 +42,45 @@ import org.hibernate.Session;
  */
 public class StatusFinderImpl implements StatusFinder {
 
+	public static String FIND_BY_MODIFIED_DATE =
+		StatusFinder.class.getName() + ".findByModifiedDate";
+
 	public static String FIND_BY_SOCIAL_RELATION_TYPE =
 		StatusFinder.class.getName() + ".findBySocialRelationType";
+
+	public List<Object[]> findByModifiedDate(
+			long modifiedDate, int start, int end)
+		throws SystemException {
+
+		Session session = null;
+
+		try {
+			session = HibernateUtil.openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_MODIFIED_DATE);
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar("User_.userId", Hibernate.LONG);
+			q.addScalar("Contact_.firstName", Hibernate.STRING);
+			q.addScalar("Contact_.middleName", Hibernate.STRING);
+			q.addScalar("Contact_.lastName", Hibernate.STRING);
+			q.addScalar("User_.portraitId", Hibernate.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(modifiedDate);
+
+			return (List<Object[]>)QueryUtil.list(
+				q, HibernateUtil.getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			HibernateUtil.closeSession(session);
+		}
+	}
 
 	public List<Object[]> findBySocialRelationType(
 			long userId, int type, long modifiedDate, int start, int end)

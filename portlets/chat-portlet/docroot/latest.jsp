@@ -61,7 +61,14 @@ if (!activeBrowser && (status != null) && !status.getActiveBrowserKey().equals(a
 
 long buddiesModifiedDate = System.currentTimeMillis() - Time.MINUTE;
 
-List<Object[]> buddies = StatusLocalServiceUtil.getSocialStatuses(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, buddiesModifiedDate, 0, SearchContainer.DEFAULT_DELTA);
+List<Object[]> buddies = null;
+
+if (true) {
+	buddies = StatusLocalServiceUtil.getAllStatuses(buddiesModifiedDate, 0, SearchContainer.DEFAULT_DELTA);
+}
+else {
+	buddies = StatusLocalServiceUtil.getSocialStatuses(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, buddiesModifiedDate, 0, SearchContainer.DEFAULT_DELTA);
+}
 
 JSONArray buddiesJSON = new JSONArray();
 

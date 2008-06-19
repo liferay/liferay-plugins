@@ -38,6 +38,12 @@ import java.util.List;
  */
 public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 
+	public List<Object[]> getAllStatuses(long modifiedDate, int start, int end)
+		throws SystemException {
+
+		return statusFinder.findByModifiedDate(modifiedDate, start, end);
+	}
+
 	public List<Object[]> getSocialStatuses(
 			long userId, int type, long modifiedDate, int start, int end)
 		throws SystemException {

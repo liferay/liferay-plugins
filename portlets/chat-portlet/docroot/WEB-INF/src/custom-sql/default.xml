@@ -28,6 +28,26 @@
 				createDate DESC
 		]]>
 	</sql>
+	<sql id="com.liferay.chat.service.persistence.StatusFinder.findByModifiedDate">
+		<![CDATA[
+			SELECT
+				User_.userId, Contact_.firstName, Contact_.middleName, Contact_.lastName, User_.portraitId
+			FROM
+				Chat_Status
+			INNER JOIN
+				User_ ON
+					(User_.userId = Chat_Status.userId)
+			INNER JOIN
+				Contact_ ON
+					(Contact_.contactId = User_.contactId)
+			WHERE
+				(Chat_Status.modifiedDate > ?)
+			ORDER BY
+				Contact_.firstName ASC,
+				Contact_.middleName ASC,
+				Contact_.lastName ASC
+		]]>
+	</sql>
 	<sql id="com.liferay.chat.service.persistence.StatusFinder.findBySocialRelationType">
 		<![CDATA[
 			SELECT
