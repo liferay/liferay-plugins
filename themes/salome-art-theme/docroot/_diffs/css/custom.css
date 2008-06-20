@@ -1,8 +1,9 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 body {
-	background-image: url(../images/comment/body-bg.gif);
+	background-color: #9DB4A8;
+	background-image: url(../images/comment/body-bg.jpg);
 	background-position: center top;
-	background-repeat: repeat;
+	background-repeat: no-repeat;
 	color: #000000;
 	font-family: Verdana, Arial, Georgia;
 	font-weight: normal;
@@ -13,28 +14,23 @@ body {
 }
 
 #banner {
-	background: url(../images/comment/header.png);
+	background-image: url(../images/comment/header.png);
 	background-position: left top;
 	background-repeat: no-repeat;
-	float: none;
-	height: 248px;
+	height: 390px;
 	margin: 0pt auto;
 	padding: 0pt;
 	text-align: left;
-	width: 900px;
+	width: 946px;
 	border-bottom: 0px solid #89C8FF;
+	margin-bottom: 0em;
 }
 
-#navigation {
-	background-image: url(../images/comment/menu-bg.jpg);
-	background-position: left top;
-	background-repeat: repeat-x;
-	float: left;
-	height: 48px;
-	margin-bottom: 0px;
-	padding-left: 14px;
-	width: 876px;
-	margin-top: -23px;
+#banner .logo {
+	display: block;
+	font-size: 2em;
+	margin: 0pt auto;
+	padding: 2.25em 0pt 219px;
 }
 
 #banner-content {
@@ -42,61 +38,32 @@ body {
 	width: 100%;
 }
 
-.portlet-title {
-	background: #F0EEE9 none repeat scroll 0% 50%;
-	display: block;
-	font-weight: bold;
-	min-width: 50%;
-	padding: 8px 0pt 4px 10px;
-}
-
-.portlet {
-	border: 1px solid #D2CBB8;
-	margin-bottom: 1em;
-	text-align: left;
-}
-
 #content-wrapper {
+	background: #FFFFFF none repeat scroll 0%;
 	margin: 0pt auto;
-	width: 890px;
-	background: #fff;
-	padding: 5px;
+	padding: 10px;
+	width: 926px;
 }
 
-.portlet-content {
-	background: #E8E5DD none repeat scroll 0%;
-	padding: 10px 5px 25px 15px;
+#navigation {
+	background-image: url(../images/comment/menu-bg.jpg);
+	background-position: left top;
+	background-repeat: repeat-x;
+	height: 52px;
+	margin-bottom: 2px;
+	margin-top: 2px;
+	padding-left: 8px;
+	width: 928px;
 }
 
-#footer {
-	background-color: #E8E5DD;
-	color: #807B6C;
-	font-size: 11px;
-	height: 74px;
-	line-height: 18px;
-	padding-top: 18px;
-	margin: 0px auto;
-	width: 900px;
-}
-
-#banner .logo {
-	display: block;
-	font-size: 2em;
-	margin: 0pt auto;
-	padding: 1.25em 0pt 122px 0px;
-}
-
-#navigation li {
-	background: none;
-	display: inline;
-	float: left;
-	margin-right: 0.5em;
-	position: relative;
+#navigation ul li a:hover {
+	color: #FFFFFF;
+	text-decoration: none;
 }
 
 #navigation ul li {
 	background: transparent url(../images/comment/menu-l.jpg) no-repeat
-		scroll 0% 50%;
+		scroll 0%;
 	color: #000000;
 	float: left;
 	font-family: Times New Roman, Verdana;
@@ -104,8 +71,8 @@ body {
 	font-style: normal;
 	font-variant: normal;
 	font-weight: bold;
-	height: 38px;
-	line-height: 38px;
+	height: 46px;
+	line-height: 46px;
 	margin-right: 8px;
 	margin-top: 3px;
 	text-transform: uppercase;
@@ -114,7 +81,7 @@ body {
 #navigation ul li a {
 	background: transparent url(../images/comment/menu-r.jpg) no-repeat
 		scroll right top;
-	color: #8C8166;
+	color: #000000;
 	display: block;
 	padding: 0pt 20px 0pt 20px;
 	text-decoration: none;
@@ -125,58 +92,53 @@ body {
 	font-weight: bold;
 }
 
-#navigation li.selected a {
-	padding-top: 0em;
-	color: #000;
-}
-
-#banner .logo a {
-	background: transparent
-		url(/image/company_logo?img_id=0&t=1213769250796) no-repeat scroll 0%;
-	display: block;
-	font-size: 0pt;
-	height: 49px;
-	text-indent: -9999em;
-	width: 198px;
-	margin-top: 10px;
-	margin-left: 10px;
-}
-
 #navigation li a span {
 	display: block;
 	padding: 0px;
 }
 
-#navigation li a:hover {
-	color: #000000;
-	padding-bottom: 1em;
+#navigation li.selected a {
+	padding-top: 0em;
+	color: #fff;
 }
 
-.js .interactive-mode {
-	float: right;
-	min-width: 150px;
+#footer {
+	background: transparent url(../images/comment/footer-bg.jpg) repeat-x
+		scroll left bottom;
+	color: #627069;
+	font-size: 11px;
+	height: 74px;
+	line-height: 18px;
+	margin-top: 0px;
+	padding-top: 18px;
+	text-align: center;
+	width: 946px;
+	margin: 0px auto;
+}
+
+.portlet {
+	border: 1px solid #98ACA1;
+	margin-bottom: 1em;
+	text-align: left;
+}
+
+.portlet-topper {
+	background: #76877D url(../images/portlet/portlet_top.png) repeat-x
+		scroll 0% 0px;
 	position: relative;
-	right: 20pt;
-	top: 10pt;
+	color: #fff;
 }
 
 .tabs {
-	border-bottom: 1px solid #8C8166;
+	border-bottom: 1px solid #9EB4A8;
 	margin: 0pt 0pt 1.5em;
 	padding: 0pt 0pt 2.6em 1em;
 }
 
-.tabs li.current {
-	background: #D6D0C5 url(../images/common/tabs_active_bg.png) repeat-x
-		scroll 0pt 0px;
-	font-weight: bold;
-	border-color: none;
-}
-
 .tabs li {
-	background: #E0DCD3 url(../images/common/tabs_inactive_bg.png) repeat-x
-		scroll 0pt -72%;
-	border-color: #ccc;
+	background: #A8BDB9 url(../images/common/tabs_inactive_bg.png) repeat-x
+		scroll 0pt -65%;
+	border-color: #9EB4A8;
 	border-style: solid solid none;
 	border-width: 1px 1px 0pt;
 	display: inline;
@@ -185,4 +147,29 @@ body {
 	margin-right: 0.8em;
 	padding: 0pt;
 	text-decoration: none;
+}
+
+.tabs li.current {
+	background: #8DA196 url(../images/common/tabs_active_bg.png) repeat-x
+		scroll 0pt 0%;
+	font-weight: bold;
+}
+
+.js .interactive-mode {
+	float: right;
+	min-width: 150px;
+	position: relative;
+	right: 30pt;
+	top: 10pt;
+}
+
+#banner .logo a {
+	background: transparent
+		url(/image/company_logo?img_id=0&t=1213776897250) no-repeat scroll 0%;
+	display: block;
+	font-size: 0pt;
+	height: 49px;
+	margin-left: 50px;
+	text-indent: -9999em;
+	width: 198px;
 }
