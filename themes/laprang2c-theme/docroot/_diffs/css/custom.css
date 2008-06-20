@@ -13,15 +13,6 @@
 
 body {
 	background: #404040 url(../images/comment/bg2.jpg) repeat-x fixed 0%;
-	font-family: 'Trebuchet MS', Verdana, Tahoma, arial, sans-serif;
-	font-size-adjust: none;
-	font-stretch: normal;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: normal;
-	line-height: normal;
-	margin: 0pt;
-	font-size: 60%;
 }
 
 #footer {
@@ -44,9 +35,9 @@ body {
 }
 
 #content-wrapper {
-	margin: 0pt auto;
+	background: #000000 none repeat scroll 0%;
+	margin: 22pt auto 0px;
 	width: 800px;
-	background: #000000;
 }
 
 #content-wrapper a:link {
@@ -72,7 +63,6 @@ body {
 	float: left;
 	padding: 0.35em 1em 0pt;
 	text-decoration: none;
-	color: #000;
 }
 
 #navigation {
@@ -97,7 +87,7 @@ body {
 	display: block;
 	font-size: 2em;
 	margin: 0pt auto;
-	padding: 1.25em 0pt 54.45px;
+	padding: 1.25em 0pt 83.45px;
 }
 
 #navigation li {
@@ -129,6 +119,12 @@ body {
 	border-bottom: 1px solid #ccc;
 	margin: 0pt 0pt 1.5em;
 	padding: 0pt 0pt 2.6em 1em;
+	color: #fff;
+}
+
+.tabs li.current a,.tabs li.current span {
+	color: #fff;
+	padding: 0.15em 1em;
 }
 
 .tabs li.current {
