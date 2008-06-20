@@ -1,0 +1,176 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+#banner {
+	background: #F1EAD8 url(../images/comment/header.jpg) no-repeat scroll
+		center top;
+	height: 200px;
+	padding: 0pt;
+	position: relative;
+	width: 800px;
+	border-bottom: 0px solid #89C8FF;
+	margin-bottom: 0em;
+	margin: 0px auto;
+}
+
+body {
+	background: #404040 url(../images/comment/bg2.jpg) repeat-x fixed 0%;
+	font-family: 'Trebuchet MS', Verdana, Tahoma, arial, sans-serif;
+	font-size-adjust: none;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: normal;
+	margin: 0pt;
+	font-size: 60%;
+}
+
+#footer {
+	background: transparent url(../images/comment/footer.jpg) no-repeat
+		scroll center top;
+	clear: both;
+	color: #FFFFFF;
+	font-family: 'Trebucet MS', Tahoma, Sans-serif;
+	font-size-adjust: none;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	height: 25px;
+	line-height: normal;
+	padding-top: 22px;
+	text-align: center;
+	width: 800px;
+	margin: 0px auto;
+}
+
+#content-wrapper {
+	margin: 0pt auto;
+	width: 800px;
+	background: #000000;
+}
+
+#content-wrapper a:link {
+	color: #4BACF7;
+}
+
+.portlet-topper {
+	background: #D9EBFD url(../images/comment/h2_btn.jpg) repeat-x scroll 0%
+		;
+	position: relative;
+}
+
+.portlet {
+	border: 1px solid #404040;
+	margin-bottom: 1em;
+	text-align: left;
+	background: #333;
+	color: #BBB89F;
+}
+
+.tabs li a,.tabs li span {
+	display: block;
+	float: left;
+	padding: 0.35em 1em 0pt;
+	text-decoration: none;
+	color: #000;
+}
+
+#navigation {
+	margin: 0pt auto;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding-right: 1em;
+	height: 50px;
+	background: url(../images/comment/nav.png);
+}
+
+#navigation a:hover {
+	color: #5AA2DC;
+}
+
+#banner-content {
+	margin: 0pt auto;
+	width: 100%;
+}
+
+#banner .logo {
+	display: block;
+	font-size: 2em;
+	margin: 0pt auto;
+	padding: 1.25em 0pt 54.45px;
+}
+
+#navigation li {
+	background: none;
+	display: inline;
+	float: left;
+	margin-right: 0.5em;
+	position: relative;
+}
+
+#navigation li.selected {
+	border-top: 0px solid #89C8FF;
+	font-weight: bold;
+}
+
+#navigation li a {
+	text-decoration: none;
+	font-size: 12px;
+	color: #fff;
+	font-weight: bold;
+}
+
+#navigation li a span {
+	display: block;
+	padding: 17px 10px;
+}
+
+.tabs {
+	border-bottom: 1px solid #ccc;
+	margin: 0pt 0pt 1.5em;
+	padding: 0pt 0pt 2.6em 1em;
+}
+
+.tabs li.current {
+	background: #333333 url(../images/common/tabs_active_bg.png) repeat-x
+		scroll 0pt 0%;
+	font-weight: bold;
+}
+
+.tabs li {
+	background: #ccc url(../images/common/tabs_inactive_bg.png) repeat-x
+		scroll 0pt 100%;
+	border-color: #ccc;
+	border-style: solid solid none;
+	border-width: 1px 1px 0pt;
+	display: inline;
+	float: left;
+	line-height: 2.25;
+	margin-right: 0.8em;
+	padding: 0pt;
+	text-decoration: none;
+}
+
+#banner .logo a {
+	background: transparent
+		url(/image/company_logo?img_id=0&t=1213925971812) no-repeat scroll 0%;
+	display: block;
+	font-size: 0pt;
+	height: 49px;
+	margin-left: 10px;
+	text-indent: -9999em;
+	width: 198px;
+}
+
+.js .interactive-mode {
+	float: right;
+	min-width: 150px;
+	position: relative;
+	right: 30pt;
+	top: 0pt;
+}
+
+a {
+	color: #5AA2DC;
+	text-decoration: underline;
+}
