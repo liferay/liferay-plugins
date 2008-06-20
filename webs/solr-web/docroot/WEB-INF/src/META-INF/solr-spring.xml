@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>	
+    <bean id="index-writer" class="com.liferay.portal.search.solr.SolrIndexWriterImpl">
+    	<property name="serverURL" value="http://localhost:8080/solr/update" />
+    </bean>
+    
+    <bean id="index-searcher" class="com.liferay.portal.search.solr.SolrIndexSearcherImpl">
+    	<property name="serverURL" value="http://localhost:8080/solr/select" />
+    </bean>
+
+    <bean id="search-engine" class="com.liferay.portal.search.solr.SolrSearchEngineImpl">
+		<property name="name" value="Solr" />
+		<property name="writer" ref="index-writer" />
+		<property name="searcher" ref="index-searcher" />
+		<property name="indexReadOnly" value="false" />    	
+    </bean>
+    
+    <bean id="search-engine-util" class="com.liferay.portal.search.solr.SolrSearchEngineUtil" lazy-init="false">
+    	<constructor-arg ref="search-engine" />
+    	<constructor-arg>
+    		<bean class="com.liferay.portal.search.solr.messaging.SolrMessageListener" />
+    	</constructor-arg>
+    	<constructor-arg value="true" />
+    </bean>
+</beans>

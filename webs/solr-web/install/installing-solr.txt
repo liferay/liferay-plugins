@@ -1,0 +1,20 @@
+Installing a Solr to a servlet container:
+
+1) Choose a folder for storing the index and other Solr configuration files, unzip solr.zip this folder, the complete path to the /solr dir will be referred as $SOLR_HOME later.
+
+2) Replace the schema.xml inside of $SOLR_HOME/conf.
+
+3) Add a system property called solr.solr.home to your servlet container, this property should contain the $SOLR_HOME value.
+If you are deploying Solr in Tomcat this means that you need to open catalina.bat(.sh) and append the following to JAVA_OPTS:
+
+-Dsolr.solr.home=$SOLR_HOME
+
+4) Deploy solr.war to this servlet container. In Tomcat, do that by dropping solr.war to /webapps.
+
+5) Start the servlet container, see in console if Solr was deployed correctly, go to http://localhost:8080/solr and check if Solr is running normally.
+
+Installing the Solr Search Engine plugin to Liferay
+
+1) Open solr-web-5.0.1.1.war, edit WEB-INF/classes/META-INF/solr-spring.xml, change serverURL to point to the Solr server.
+
+2) Copy solr-web-5.0.1.1.war to liferay/deploy, you should see on the console if the plugin was successfully installed.

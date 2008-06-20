@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<project name="solr">
+	<import file="../build-common-web.xml" />
+	
+	<target name="format-source">
+		<java
+			classname="com.liferay.portal.tools.SourceFormatter"
+			classpathref="portal.classpath"
+			fork="true"
+			newenvironment="true"
+		/>
+	</target>
+</project>
