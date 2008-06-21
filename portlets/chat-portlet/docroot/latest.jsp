@@ -63,11 +63,14 @@ long buddiesModifiedDate = System.currentTimeMillis() - Time.MINUTE;
 
 List<Object[]> buddies = null;
 
-if (true) {
+if (_BUDDY_LIST_STRATEGY.equals("all")) {
 	buddies = StatusLocalServiceUtil.getAllStatuses(buddiesModifiedDate, 0, SearchContainer.DEFAULT_DELTA);
 }
-else {
+else if (_BUDDY_LIST_STRATEGY.equals("friends")) {
 	buddies = StatusLocalServiceUtil.getSocialStatuses(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, buddiesModifiedDate, 0, SearchContainer.DEFAULT_DELTA);
+}
+else {
+	buddies = new ArrayList<Object[]>();
 }
 
 JSONArray buddiesJSON = new JSONArray();
@@ -146,3 +149,7 @@ JSONUtil.put(jsonObj, "entries", entriesJSON);
 %>
 
 <%= jsonObj %>
+
+<%!
+private static final String _BUDDY_LIST_STRATEGY = GetterUtil.getString(PortletProps.get("buddy.list.strategy"));
+%>

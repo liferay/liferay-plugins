@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.liferay.portlet.service;
+package com.liferay.chat.util;
 
 import com.liferay.portal.kernel.configuration.Configuration;
 import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
@@ -29,12 +29,13 @@ import com.liferay.portal.kernel.configuration.Filter;
 import java.util.Properties;
 
 /**
- * <a href="PropsUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="PortletProps.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class PropsUtil {
+public class PortletProps {
+
 	public static void addProperties(Properties properties) {
 		_instance._configuration.addProperties(properties);
 	}
@@ -71,11 +72,13 @@ public class PropsUtil {
 		_instance._configuration.set(key, value);
 	}
 
-	private PropsUtil() {
-		_configuration = ConfigurationFactoryUtil.getConfiguration(PropsUtil.class.getClassLoader(),
-				"portlet-service");
+	private PortletProps() {
+		_configuration = ConfigurationFactoryUtil.getConfiguration(
+			PortletProps.class.getClassLoader(), "chat-portlet");
 	}
 
-	private static PropsUtil _instance = new PropsUtil();
+	private static PortletProps _instance = new PortletProps();
+
 	private Configuration _configuration;
+
 }
