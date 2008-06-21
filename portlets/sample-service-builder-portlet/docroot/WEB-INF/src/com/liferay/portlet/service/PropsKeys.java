@@ -22,38 +22,19 @@
 
 package com.liferay.portlet.service;
 
-import com.liferay.portal.model.BaseModel;
-
 /**
- * <a href="BaseModelImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="PropsKeys.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class BaseModelImpl implements BaseModel {
-
-	public BaseModelImpl() {
-	}
-
-	public boolean isNew() {
-		return _new;
-	}
-
-	public boolean setNew(boolean n) {
-		return _new = n;
-	}
-
-	public boolean isEscapedModel() {
-		return _escapedModel;
-	}
-
-	public void setEscapedModel(boolean escapedModel) {
-		_escapedModel = escapedModel;
-	}
-
-	public abstract Object clone();
-
-	private boolean _new;
-	private boolean _escapedModel;
-
+public class PropsKeys {
+	public static final String SPRING_CONFIGS = "spring.configs";
+	public static final String SPRING_HIBERNATE_DATA_SOURCE = "spring.hibernate.data.source";
+	public static final String SPRING_HIBERNATE_SESSION_FACTORY = "spring.hibernate.session.factory";
+	public static final String HIBERNATE_CONFIGS = "hibernate.configs";
+	public static final String CUSTOM_SQL_CONFIGS = "custom.sql.configs";
+	public static final String CUSTOM_SQL_FUNCTION_ISNULL = "custom.sql.function.isnull";
+	public static final String CUSTOM_SQL_FUNCTION_ISNOTNULL = "custom.sql.function.isnotnull";
+	public static final String VALUE_OBJECT_FINDER_CACHE_ENABLED = "value.object.finder.cache.enabled";
 }

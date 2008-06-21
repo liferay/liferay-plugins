@@ -22,9 +22,9 @@
 
 package com.liferay.portlet.service;
 
-import com.germinus.easyconf.ComponentProperties;
-
-import com.liferay.util.ExtPropertiesLoader;
+import com.liferay.portal.kernel.configuration.Configuration;
+import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
+import com.liferay.portal.kernel.configuration.Filter;
 
 import java.util.Properties;
 
@@ -35,40 +35,47 @@ import java.util.Properties;
  *
  */
 public class PropsUtil {
-	public static final String SPRING_CONFIGS = "spring.configs";
-	public static final String SPRING_HIBERNATE_DATA_SOURCE = "spring.hibernate.data.source";
-	public static final String SPRING_HIBERNATE_SESSION_FACTORY = "spring.hibernate.session.factory";
-	public static final String HIBERNATE_CONFIGS = "hibernate.configs";
-	public static final String CUSTOM_SQL_CONFIGS = "custom.sql.configs";
-	public static final String CUSTOM_SQL_FUNCTION_ISNULL = "custom.sql.function.isnull";
-	public static final String CUSTOM_SQL_FUNCTION_ISNOTNULL = "custom.sql.function.isnotnull";
-	public static final String VALUE_OBJECT_FINDER_CACHE_ENABLED = "value.object.finder.cache.enabled";
+	public static void addProperties(Properties properties) {
+		_instance._configuration.addProperties(properties);
+	}
 
-	public static boolean containsKey(String key) {
-		return _getInstance().containsKey(key);
+	public static boolean contains(String key) {
+		return _instance._configuration.contains(key);
 	}
 
 	public static String get(String key) {
-		return _getInstance().get(key);
+		return _instance._configuration.get(key);
 	}
 
-	public static void set(String key, String value) {
-		_getInstance().set(key, value);
+	public static String get(String key, Filter filter) {
+		return _instance._configuration.get(key, filter);
 	}
 
 	public static String[] getArray(String key) {
-		return _getInstance().getArray(key);
+		return _instance._configuration.getArray(key);
+	}
+
+	public static String[] getArray(String key, Filter filter) {
+		return _instance._configuration.getArray(key, filter);
 	}
 
 	public static Properties getProperties() {
-		return _getInstance().getProperties();
+		return _instance._configuration.getProperties();
 	}
 
-	public static ComponentProperties getComponentProperties() {
-		return _getInstance().getComponentProperties();
+	public static void removeProperties(Properties properties) {
+		_instance._configuration.removeProperties(properties);
 	}
 
-	private static ExtPropertiesLoader _getInstance() {
-		return ExtPropertiesLoader.getInstance("portlet-service");
+	public static void set(String key, String value) {
+		_instance._configuration.set(key, value);
 	}
+
+	private PropsUtil() {
+		_configuration = ConfigurationFactoryUtil.getConfiguration(PropsUtil.class.getClassLoader(),
+				"portlet-service");
+	}
+
+	private static PropsUtil _instance = new PropsUtil();
+	private Configuration _configuration;
 }

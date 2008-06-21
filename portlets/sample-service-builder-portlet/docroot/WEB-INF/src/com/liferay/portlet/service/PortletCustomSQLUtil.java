@@ -23,6 +23,7 @@
 package com.liferay.portlet.service;
 
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.service.PropsKeys;
 import com.liferay.portlet.service.PropsUtil;
 
 import java.sql.SQLException;
@@ -39,12 +40,12 @@ public class PortletCustomSQLUtil
 	public PortletCustomSQLUtil() throws SQLException {
 		super(
 			HibernateUtil.getConnection(),
-			PropsUtil.get(PropsUtil.CUSTOM_SQL_FUNCTION_ISNULL),
-			PropsUtil.get(PropsUtil.CUSTOM_SQL_FUNCTION_ISNOTNULL));
+			PropsUtil.get(PropsKeys.CUSTOM_SQL_FUNCTION_ISNULL),
+			PropsUtil.get(PropsKeys.CUSTOM_SQL_FUNCTION_ISNOTNULL));
 	}
 
 	protected String[] getConfigs() {
-		return PropsUtil.getArray(PropsUtil.CUSTOM_SQL_CONFIGS);
+		return PropsUtil.getArray(PropsKeys.CUSTOM_SQL_CONFIGS);
 	}
 
 	protected String transform(String sql) {
