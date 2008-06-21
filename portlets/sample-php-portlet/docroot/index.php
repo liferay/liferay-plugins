@@ -14,7 +14,7 @@ Get parameters: <?php print_r($_GET); ?>
 
 <form action="index.php" method="post">
 
-Foo: <input type="text" name="foo" value="<?php echo $_GET["foo"]?$_GET["foo"]:$_POST["foo"]; ?>">
+Foo: <input name="foo" type="text" value="<?php echo $_GET["foo"]?$_GET["foo"]:$_POST["foo"]; ?>">
 
 <input type="submit" value="Submit" />
 
