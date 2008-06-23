@@ -22,6 +22,7 @@
 
 package com.liferay.portlet.service;
 
+import com.liferay.portlet.service.PropsKeys;
 import com.liferay.portlet.service.PropsUtil;
 
 import org.apache.commons.logging.Log;
@@ -60,7 +61,7 @@ public class LazyClassPathApplicationContext extends XmlWebApplicationContext {
 
 		reader.setResourceLoader(new DefaultResourceLoader());
 
-		String[] configLocations = PropsUtil.getArray(PropsUtil.SPRING_CONFIGS);
+		String[] configLocations = PropsUtil.getArray(PropsKeys.SPRING_CONFIGS);
 
 		for (int i = 0; i < configLocations.length; i++) {
 			try {
