@@ -37,6 +37,7 @@
 }
 
 .chat-portlet #buddy-list {
+	background: #fff;
 	border: 1px solid #254588;
 	padding: 10px;
 	width: 120px;
