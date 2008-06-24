@@ -196,7 +196,7 @@ body #content-wrapper {
 .js .lfr-dock.interactive-mode h2 span {
 	font-size: 12px;
 	font-weight: normal;
-	padding: 0.3em 0.5em 0.4em 2.2em;
+	padding: 10px 20px 4px;
 	text-align: left;
 }
 
@@ -401,7 +401,11 @@ body.portal-popup {
 }
 
 .ie #navigation .child-menu {
-	height: 1;
+	height: auto;
+}
+
+.ie6 #navigation .child-menu {
+	height: 1%;
 }
 
 #navigation .child-menu ul {
