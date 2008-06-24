@@ -23,6 +23,7 @@
 package com.liferay.portlet.service;
 
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portlet.service.PropsKeys;
 import com.liferay.portlet.service.PropsUtil;
 
 import java.io.InputStream;
@@ -47,7 +48,7 @@ public class HibernateConfiguration extends org.springframework.orm.hibernate3.L
 		try {
 			ClassLoader classLoader = getClass().getClassLoader();
 
-			String[] configs = PropsUtil.getArray(PropsUtil.HIBERNATE_CONFIGS);
+			String[] configs = PropsUtil.getArray(PropsKeys.HIBERNATE_CONFIGS);
 
 			for (int i = 0; i < configs.length; i++) {
 				try {

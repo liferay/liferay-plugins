@@ -22,9 +22,9 @@
 
 package com.liferay.ipgeocoder.util;
 
-import com.germinus.easyconf.ComponentProperties;
-
-import com.liferay.util.ExtPropertiesLoader;
+import com.liferay.portal.kernel.configuration.Configuration;
+import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
+import com.liferay.portal.kernel.configuration.Filter;
 
 import java.util.Properties;
 
@@ -36,32 +36,49 @@ import java.util.Properties;
  */
 public class PortletProps {
 
-	public static boolean containsKey(String key) {
-		return _getInstance().containsKey(key);
+	public static void addProperties(Properties properties) {
+		_instance._configuration.addProperties(properties);
+	}
+
+	public static boolean contains(String key) {
+		return _instance._configuration.contains(key);
 	}
 
 	public static String get(String key) {
-		return _getInstance().get(key);
+		return _instance._configuration.get(key);
 	}
 
-	public static void set(String key, String value) {
-		_getInstance().set(key, value);
+	public static String get(String key, Filter filter) {
+		return _instance._configuration.get(key, filter);
 	}
 
 	public static String[] getArray(String key) {
-		return _getInstance().getArray(key);
+		return _instance._configuration.getArray(key);
+	}
+
+	public static String[] getArray(String key, Filter filter) {
+		return _instance._configuration.getArray(key, filter);
 	}
 
 	public static Properties getProperties() {
-		return _getInstance().getProperties();
+		return _instance._configuration.getProperties();
 	}
 
-	public static ComponentProperties getComponentProperties() {
-		return _getInstance().getComponentProperties();
+	public static void removeProperties(Properties properties) {
+		_instance._configuration.removeProperties(properties);
 	}
 
-	private static ExtPropertiesLoader _getInstance() {
-		return ExtPropertiesLoader.getInstance("ip-geocoder-portlet");
+	public static void set(String key, String value) {
+		_instance._configuration.set(key, value);
 	}
+
+	private PortletProps() {
+		_configuration = ConfigurationFactoryUtil.getConfiguration(
+			PortletProps.class.getClassLoader(), "ip-geocoder-portlet");
+	}
+
+	private static PortletProps _instance = new PortletProps();
+
+	private Configuration _configuration;
 
 }
