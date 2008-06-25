@@ -23,12 +23,14 @@
 package com.liferay.wsrp.admin.portlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import javax.xml.namespace.QName;
 
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.Constants;
@@ -41,6 +43,12 @@ import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.wsrp.consumer.NoSuchProducerException;
 import com.liferay.wsrp.consumer.model.Producer;
 import com.liferay.wsrp.consumer.service.ProducerServiceUtil;
+import com.liferay.wsrp.soap.v2.intf.WSRPV2RegistrationPortType;
+import com.liferay.wsrp.soap.v2.types.Property;
+import com.liferay.wsrp.soap.v2.types.Register;
+import com.liferay.wsrp.soap.v2.types.RegistrationContext;
+import com.liferay.wsrp.soap.v2.types.RegistrationData;
+import com.liferay.wsrp.util.ServiceFactory;
 
 /**
  * <a href="AdminPortlet.java.html"><b><i>View Source</i></b></a>
@@ -116,7 +124,54 @@ public class AdminPortlet extends JSPPortlet {
 
 		ProducerServiceUtil.deleteProducer(producerId);
 	}
-
+	
+	protected RegistrationContext register(Producer producer) throws Exception {
+		Register register = new Register();
+		
+		RegistrationData registrationData = new RegistrationData();
+		
+		registrationData.setConsumerAgent("Liferay Portal");
+		registrationData.setConsumerName("Liferay");
+		registrationData.setMethodGetSupported(false);
+		
+		List<Property> registrationProperties = 
+			registrationData.getRegistrationProperties();
+		
+		Property property = null;
+		QName propertyName = null;
+	
+		property = new Property();
+		propertyName = 
+			new QName("urn:oasis:names:tc:wsrp:v2:types",
+				"ConsumerRegistrationState");
+		property.setName(propertyName);
+		property.setStringValue("LiferayConsumerRegistrationState");
+	
+		property = new Property();
+		propertyName = new QName("urn:oasis:names:tc:wsrp:v2:types",
+			"ProducerRegistrationState");
+		property.setName(propertyName);
+		property.setStringValue("LiferayProducerRegistrationState");
+	
+		property = new Property();
+		propertyName = new QName("urn:oasis:names:tc:wsrp:v2:types",
+			"ThrowOperationFailed");
+		property.setName(propertyName);
+		property.setStringValue("No");
+		
+		registrationProperties.add(property);
+		
+		register.setRegistrationData(registrationData);
+	
+		WSRPV2RegistrationPortType registrationService = 
+			ServiceFactory.createRegistrationService(producer);
+	
+		RegistrationContext registrationContext = 
+			registrationService.register(register);
+		
+		return registrationContext;
+	}
+	
 	protected void updateProducer(ActionRequest req) throws Exception {
 		ThemeDisplay themeDisplay = 
 			(ThemeDisplay)req.getAttribute(WebKeys.THEME_DISPLAY);

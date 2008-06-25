@@ -284,7 +284,9 @@ public class URLRewriter {
 					_log.error(e.getMessage(), e);
 				}
 			}
-			else {
+			else if (key.equals(WSRPSpecKeys.NAVIGATIONAL_STATE) ||
+				key.equals(WSRPSpecKeys.INTERACTION_STATE)) {
+				
 				url.setParameter(key, value);
 			}
 		}
