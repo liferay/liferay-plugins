@@ -203,6 +203,20 @@ public class ConsumerPortlet extends GenericPortlet {
 		processMarkupResponse(req, res, markupResponse);
 	}
 	
+	protected void addFormField(
+		List<NamedString> formParams, String name, String values[]) {
+		
+		for (int i = 0; i < values.length; i++) {
+			NamedString paramPair = new NamedString();
+			
+			paramPair.setName(name);
+			paramPair.setValue(values[i]);
+
+			formParams.add(paramPair);
+		}
+
+	}	
+
 	protected void addFormFields(
 		PortletRequest req, List<NamedString> params) {
 		
@@ -220,21 +234,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			addFormField(params, name, values);
 		}
 	}
-
-	protected void addFormField(
-		List<NamedString> formParams, String name, String values[]) {
-		
-		for (int i = 0; i < values.length; i++) {
-			NamedString paramPair = new NamedString();
-			
-			paramPair.setName(name);
-			paramPair.setValue(values[i]);
-
-			formParams.add(paramPair);
-		}
-
-	}	
-
+	
 	protected WSRPV2MarkupPortType createMarkupService(PortletRequest req) 
 		throws Exception {
 
