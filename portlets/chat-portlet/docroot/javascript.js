@@ -73,6 +73,11 @@ Liferay.Chat = {
 		var chatAreaHeight = 219 - prepArea[0].scrollHeight;
 		var textAreaHeight = prepArea[0].scrollHeight;
 
+		if (jQuery.browser.msie === true) {
+			chatAreaHeight = chatAreaHeight + 8;
+			textAreaHeight = textAreaHeight - 8;
+		}
+
 		if (textAreaHeight != element.height()) {
 			if (textAreaHeight > 78) {
 				showArea.css(

@@ -50,14 +50,14 @@
 }
 
 .chat-portlet .chat .head {
-	background: #526ea6;
-	border: 1px solid #254588;
+	background: #333;
+	border: 1px solid #262626;
 	border-bottom: 0;
 	color: #fff;
 	font-weight: bold;
-	height: 21px;
-	line-height: 21px;
-	text-indent: 54px;
+	height: 24px;
+	line-height: 22px;
+	text-indent: 58px;
 }
 
 .chat-portlet .chat .head .close {
@@ -93,9 +93,9 @@
 }
 
 .chat-portlet .chat .show {
-	background: #f7f7f7;
+	background: #f8f8f8;
 	border: 1px solid #333;
-	border-bottom-color: #b9c4da;
+	border-bottom-color: #333;
 	border-top: 0;
 	height: 206px;
 	overflow-x: hidden;
@@ -104,8 +104,7 @@
 }
 
 .chat-portlet .chat .show p {
-	border-top: 1px solid #eee;
-	margin: 0;
+	margin: 0 0 10px;
 	padding: 4px 5px;
 	position: relative;
 }
@@ -115,27 +114,30 @@
 	font-size: 10px;
 	font-style: normal;
 	position: absolute;
-	right: 5px;
-	top: 0;
+	right: 8px;
+	top: 6px;
 }
 
 .chat-portlet .chat .show p .name {
 	display: block;
 	line-height: 11px;
-	padding: 0 0 4px;
+	padding: 2px 4px 3px;
 }
 
 .chat-portlet .chat .show p .text {
+	display: block;
 	line-height: 14px;
-	padding: 0 1px;
+	padding: 4px 8px;
 }
 
 .chat-portlet .chat .show p.not .name {
-	color: #455d8c;
+	background: #eee;
+	color: #555;
 }
 
 .chat-portlet .chat .show p.you .name {
-	color: #777;
+	background: #ddf;
+	color: #009;
 }
 
 .chat-portlet .chat .type {
@@ -153,8 +155,8 @@
 	height: 13px;
 	margin: 0;
 	overflow: hidden;
-	padding: 4px 0 4px 24px;
-	width: 202px;
+	padding: 4px 8px;
+	width: 210px;
 	z-index: 1;
 }
 
@@ -191,6 +193,7 @@
 }
 
 .chat-portlet > ul > li.item > a {
+	border-left: 1px solid #fff;
 	color: inherit;
 	display: block;
 	float: left;
