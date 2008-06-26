@@ -5,11 +5,11 @@ html, body {
 }
 
 html {
-	background: #1B2531 url(../images/common/html_bg.gif) repeat;
+	/*background: #1B2531 url(../images/common/html_bg.gif) repeat;*/
 }
 
 body {
-	background: url(../images/common/body_bg.png) repeat-x left top;
+	/*background: url(../images/common/body_bg.png) repeat-x left top;*/
 	font-family: Arial,Helvetica,sans-serif;
 	height: auto;
 }
@@ -24,13 +24,13 @@ table {
 }
 
 a {
-	color: #83B4E1;
-	text-decoration: underline;
+	color: #33586f;
+	text-decoration: none;
 }
 
 a:hover {
-	color: #557B9F;
-	text-decoration: none;
+	color: #ffffff;
+	text-decoration: underline;
 }
 
 .lfr-column.dragging {
@@ -92,7 +92,7 @@ a:hover {
 #wrapper {
 	background: url(../images/common/wrapper_bg.png) repeat-y center top;
 	margin-bottom: 0;
-	padding: 3em 63px;
+	/*padding: 3em 63px;*/
 	width: 962px;
 }
 
@@ -102,8 +102,7 @@ a:hover {
 }
 
 #content-wrapper {
-	background: #1C2633 url(../images/common/content_wrapper_bg.png) repeat;
-	color: #e0eaf4;
+	background: #5989a6 url(../images/common/content_wrapper_bg.png) repeat;
 	padding: 0 5px;
 }
 
@@ -190,7 +189,7 @@ a:hover {
 #navigation li.selected a,  #navigation li.selected a:hover {
 	background: url(../images/navigation/selected_bg.png) no-repeat;
 	color: #fff;
-	padding-left: 15px;
+	padding-left: 18px;
 }
 
 .ie #navigation li.selected a, .ie #navigation li.selected a:hover {
@@ -208,8 +207,8 @@ a:hover {
 
 .js #add-page {
 	position: absolute;
-	right: 300px;
-	top: -45px;
+	right: 0px;
+	top: -5px;
 }
 
 #navigation ul .sort-helper {
@@ -260,9 +259,11 @@ a:hover {
 }
 
 .portlet-title {
-	background-position: left -46px;
+	/*background-position: left -46px;*/
+	background-position: left 0px;
 	height: 25px;
 	padding: 15px 0 6px 10px;
+        width: 90%;
 }
 
 .portlet-content {
@@ -356,30 +357,34 @@ a:hover {
 }
 
 .tabs {
-	background: #0E1118;
-	border-bottom-color: #141B24;
-	margin: -10px -20px 1.5em;
+	background: #5989a6 url(../images/common/content_wrapper_bg.png) repeat;
+	border: none;
+	margin: -10px -10px 1.5em;
 	list-style: none;
 	padding-top: 1em;
 }
 
 .tabs li {
+        background: none;
 	margin-right: 0;
 	padding-left: 0;
 }
 
 .tabs li a {
-	color: #000;
+        background: none;
+	color: #33586f;
 	font-weight: bold;
 	text-transform: uppercase;
 }
 
 .tabs li.current a, .tabs li.current span {
+        background: #33586f;
 	background-position: 0 -101px;
 	color: #fff;
 }
 
 .tabs li.current {
+        background: none;
 	padding-top: 1px;
 	margin-top: 1px;
 	top: 0;
@@ -418,41 +423,41 @@ a:hover {
 }
 
 .js .lfr-dock.interactive-mode ul {
-	background: #0E1118;
+	background: #ffffff;
 	border-left: none;
 	padding: 0 15px;
 }
 
 .js .lfr-flyout.has-children {
-	background-image: url(../images/dock/my_places.png);
+	/*background-image: url(../images/dock/my_places.png);*/
 	background-position: 0 50%;
 }
 
 .js .interactive-mode .lfr-flyout.has-children ul {
-	background: #0E1118;
+	background: #ffffff;
 	border-color: #212C3A;
 	padding: 0px;
 }
 
 .js .lfr-dock.interactive-mode li {
-	border-color: #222D3A;
+	border-color: #ffffff;
 }
 
 .js .lfr-dock.interactive-mode li a {
 	background-position: left center;
-	border-top: 1px solid #222D3A;
+	/*border-top: 1px solid #222D3A;*/
 	padding-left: 25px;
 }
 
 .js .lfr-dock.interactive-mode li a:hover {
-	background-color: #222D3A;
+	background-color: #5989a6;
 	background-position: 0 50%;
-	border-top: 1px solid #222D3A;
+	border-top: 1px solid #5989a6;
 	padding-left: 2.5em;
 }
 
 .lfr-dock li.home a, .lfr-dock li.my-account a,   .lfr-dock li.sign-in a,   .lfr-dock li.sign-out a,   .lfr-dock li.add-content a,   .lfr-dock li.layout a,   .lfr-dock li.page-settings a {
-	background-image: url(../images/dock/dock_items.png);
+	background-image: url(../images/dock/my_places.png);
 }
 
 .js .lfr-dock.interactive-mode li.my-places {
@@ -529,11 +534,11 @@ a:hover {
 }
 
 .js .interactive-mode .my-places li.current-community {
-	background-color: #0E1118;
+	background-color: #5989a6;
 }
 
 .js .interactive-mode .my-places li.current-community a {
-	background-colsor: #212C3A;
+	background-color: #5989a6;
 }
 
 .portlet-msg-success, .portlet-msg-error, .portlet-msg-alert, .portlet-msg-info {
@@ -598,9 +603,9 @@ a:hover {
 }
 
 input[type="submit"], input[type="button"], input[type="reset"] {
-	background: #3D536D url(../images/common/arrow.png) no-repeat 97% center;
+	background: #33586f url(../images/common/arrow.png) no-repeat 97% center;
 	border: none;
-	color: #fff;
+	color: #ffffff;
 	font-weight: bold;
 	margin: 1px;
 	padding: 0.5em;
