@@ -24,6 +24,11 @@
 
 <%@ include file="/css_init.jsp" %>
 
+body {
+	height: auto;
+	padding-bottom: 24px;
+}
+
 .chat-portlet {
 	background: #e5e5e5;
 	border-top: 1px solid #b5b5b5;
