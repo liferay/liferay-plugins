@@ -1162,75 +1162,37 @@ Liferay.MailConfiguration = {
 		instance.loadJSONAccountsConfiguration();
 	},
 
-	getJSONAccountConfigurationHTML: function(jsonAccount, newAccount) {
-		var checkedHtml = '';
+	appendJSONAccountConfigurationHTML: function(jsonAccount, newAccount) {	
+		var instance = this;
 
-		if (jsonAccount.mailSecure) {
-			checkedHtml = ' checked="checked" ';
-		}
-		
-		htmlMessageList = '';
+		var url = themeDisplay.getLayoutURL() + '/-/mail/account_configuration_html?emailAddress=' + jsonAccount.emailAddress + '&mailInHostName=' + jsonAccount.mailInHostName + '&mailInPort=' + jsonAccount.mailInPort + '&mailOutHostName=' + jsonAccount.mailOutHostName + '&mailOutPort=' + jsonAccount.mailOutPort + '&mailSecure=' + jsonAccount.mailSecure + '&newAccount=' + newAccount + '&password=' + jsonAccount.password + '&preconfigured=' + jsonAccount.preconfigured + '&title=' + jsonAccount.title + '&username=' + jsonAccount.username;
 
-		htmlMessageList += '	<div class="account">';
-
-		if (newAccount) {
-			htmlMessageList += '	<div class="title">' + jsonAccount.title + '</div>';
-			htmlMessageList += '	<table class="details">';
-			htmlMessageList += '		<tr><td>' + Liferay.Language.get('email-address') + '</td><td><input class="email-address" type="text" value="' + jsonAccount.emailAddress + '" /></td><td></td></tr>';
-			htmlMessageList += '		<tr><td>' + Liferay.Language.get('username') + '</td><td><input class="username" type="text" value="' + jsonAccount.username + '" /></td><td></td></tr>';
-			htmlMessageList += '		<tr><td>' + Liferay.Language.get('password') + '</td><td><input class="password" type="password" value="' + jsonAccount.password + '" /></td><td></td></tr>';
-
-			if (jsonAccount.preconfigured) {
-				htmlMessageList += '		<input class="in-hostname" type="hidden" value="' + jsonAccount.mailInHostName + '" />';
-				htmlMessageList += '		<input class="in-port" type="hidden" value="' + jsonAccount.mailInPort + '" />';
-				htmlMessageList += '		<input class="secure" type="hidden" value="' + jsonAccount.mailSecure + '" />';
-				htmlMessageList += '		<input class="out-hostname" type="hidden" value="' + jsonAccount.mailOutHostName + '" />';
-				htmlMessageList += '		<input class="out-port" type="hidden" value="' + jsonAccount.mailOutPort + '" />';
+		jQuery.ajax(
+			{
+				async: false,
+				url: url,
+				dataType: 'html',
+				success: function(accountConfigurationHTML) {
+					instance.accountsConfigurationDiv.append(accountConfigurationHTML);
+				}
 			}
-			else {
-				htmlMessageList += '		<tr><td>' + Liferay.Language.get('incoming-server') + '</td><td><input class="in-hostname" type="text" value="' + jsonAccount.mailInHostName + '" /></td><td></td></tr>';
-				htmlMessageList += '		<tr><td>' + Liferay.Language.get('incoming-port') + '</td><td><input class="in-port" type="text" value="' + jsonAccount.mailInPort + '" /></td><td></td></tr>';
-				htmlMessageList += '		<tr><td>' + Liferay.Language.get('use-secure-connection') + '</td><td><input class="secure" type="checkbox" ' + checkedHtml + '" /></td><td></td></tr>';
-				htmlMessageList += '		<tr><td>' + Liferay.Language.get('outgoing-server-smtp') + '</td><td><input class="out-hostname" type="text" value="' + jsonAccount.mailOutHostName + '" /></td><td></td></tr>';
-				htmlMessageList += '		<tr><td>' + Liferay.Language.get('outgoing-port') + '</td><td><input class="out-port" type="text" value="' + jsonAccount.mailOutPort + '" /></td><td></td></tr>';
-			}
-
-			htmlMessageList += '		<tr><td colspan="2"><input class="save-account" type="button" value="' + Liferay.Language.get('save') + '" /><input class="cancel-account" type="button" value="' + Liferay.Language.get('cancel') + '" /></td></tr>';
-		}
-		else {
-			htmlMessageList += '	<div class="title">' + jsonAccount.emailAddress + '</div>';
-			htmlMessageList += '	<table class="details">';
-			htmlMessageList += '		<input class="email-address" type="hidden" value="' + jsonAccount.emailAddress + '" />';
-			htmlMessageList += '		<tr><td>' + Liferay.Language.get('username') + '</td><td><input class="username" type="text" value="' + jsonAccount.username + '" /></td><td></td></tr>';
-			htmlMessageList += '		<tr><td>' + Liferay.Language.get('password') + '</td><td><input class="password" type="password" value="' + jsonAccount.password + '" /></td><td></td></tr>';
-			htmlMessageList += '		<tr><td>' + Liferay.Language.get('incoming-server') + '</td><td><input class="in-hostname" type="text" value="' + jsonAccount.mailInHostName + '" /></td><td></td></tr>';
-			htmlMessageList += '		<tr><td>' + Liferay.Language.get('incoming-port') + '</td><td><input class="in-port" type="text" value="' + jsonAccount.mailInPort + '" /></td><td></td></tr>';
-			htmlMessageList += '		<tr><td>' + Liferay.Language.get('use-secure-connection') + '</td><td><input class="secure" type="checkbox" ' + checkedHtml + '" /></td><td></td></tr>';
-			htmlMessageList += '		<tr><td>' + Liferay.Language.get('outgoing-server-smtp') + '</td><td><input class="out-hostname" type="text" value="' + jsonAccount.mailOutHostName + '" /></td><td></td></tr>';
-			htmlMessageList += '		<tr><td>' + Liferay.Language.get('outgoing-port') + '</td><td><input class="out-port" type="text" value="' + jsonAccount.mailOutPort + '" /></td><td></td></tr>';
-			htmlMessageList += '		<tr><td colspan="2"><input class="save-account" type="button" value="' + Liferay.Language.get('save') + '" /><input class="delete-account" type="button" value="' + Liferay.Language.get('delete') + '" /></td></tr>';
-		}
-
-		htmlMessageList += '	</table>';
-		htmlMessageList += '	</div>';
-
-		return htmlMessageList;
+		);
 	},
 
 	loadJSONAccountsConfiguration: function () {
 		var instance = this;
 
-		var htmlMessageList = '';
+		instance.accountsConfigurationDiv.html("");
 
 		var defaultJSONAccounts = instance.preconfiguredMailAccounts;
 
 		for (i = 0; i < defaultJSONAccounts.accounts.length; i++) {
 			var account = defaultJSONAccounts.accounts[i];
 
-			htmlMessageList += instance.getJSONAccountConfigurationHTML(account, true);
+			instance.appendJSONAccountConfigurationHTML(account, true);
 		}
 
-		htmlMessageList += "<br /><br />";
+		instance.accountsConfigurationDiv.append("<br /><br />");
 
 		var url = themeDisplay.getLayoutURL() + '/-/mail/accounts';
 
@@ -1242,10 +1204,8 @@ Liferay.MailConfiguration = {
 					for (i = 0; i < jsonAccounts.accounts.length; i++) {
 						var account = jsonAccounts.accounts[i];
 
-						htmlMessageList += instance.getJSONAccountConfigurationHTML(account, false);
+						instance.appendJSONAccountConfigurationHTML(account, false);
 					}
-
-					instance.accountsConfigurationDiv.html(htmlMessageList);
 
 					instance.refreshAccountEvents();
 				}
@@ -1285,6 +1245,15 @@ Liferay.MailConfiguration = {
 		jQuery('.save-account').click(function() {
 			var detailsTable = jQuery(this).parents('.details:first');
 
+			var passwordVal = detailsTable.find('.password:first').val();
+			var usernameVal = detailsTable.find('.username:first').val();
+
+			// Validation
+			
+			if ((passwordVal == '') || (usernameVal == '')) {
+				return false;
+			}
+			
 			// Get JSON
 
 			var url = themeDisplay.getLayoutURL() + '/-/mail/update_account';
@@ -1292,7 +1261,10 @@ Liferay.MailConfiguration = {
 			var emailAddressValue = detailsTable.find('.email-address:first').val();
 			var mailSecureValue = false;
 			
-			if (detailsTable.find('.secure:first').attr('checked') || (detailsTable.find('.secure:first').val())) {
+			if (detailsTable.find('.secure:first').attr('checked')) {
+				mailSecureValue = true;
+			}
+			else if ((detailsTable.find('.secure:first').attr('type') == 'hidden') && (detailsTable.find('.secure:first').val())) {
 				mailSecureValue = true;
 			}
 
@@ -1305,8 +1277,8 @@ Liferay.MailConfiguration = {
 					mailOutHostName: detailsTable.find('.out-hostname:first').val(),
 					mailOutPort: detailsTable.find('.out-port:first').val(),
 					mailSecure: mailSecureValue,
-					password: detailsTable.find('.password:first').val(),
-					username: detailsTable.find('.username:first').val()
+					password: passwordVal,
+					username: usernameVal
 				},
 				function(success) {
 					instance.loadJSONAccountsConfiguration();
