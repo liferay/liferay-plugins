@@ -5,7 +5,7 @@
 	<compatibility>
 		<version>5.0.0+</version>
 	</compatibility>
-	<theme id="sun-theme" name="Sun Microsystems">
+	<theme id="liferay-noir" name="Liferay Noir">
 		<settings>
 			<setting key="css-template-id" value="CSS-TEMPLATE" />
 			<setting key="footer-article-id" value="4280" />
