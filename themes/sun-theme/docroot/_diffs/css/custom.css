@@ -1,0 +1,739 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+html, body {
+	min-height: 100%;
+}
+
+html {
+	/*background: #1B2531 url(../images/common/html_bg.gif) repeat;*/
+}
+
+body {
+	/*background: url(../images/common/body_bg.png) repeat-x left top;*/
+	font-family: Arial,Helvetica,sans-serif;
+	height: auto;
+}
+
+
+body.portal-popup {
+	background: #1C2633;
+}
+
+table {
+	clear: both;
+}
+
+a {
+	color: #33586f;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #ffffff;
+	text-decoration: underline;
+}
+
+.lfr-column.dragging {
+	background: #576f85;
+}
+
+.drop-area {
+	opacity: .20;
+}
+
+.ie .drop-area {
+	filter: alpha(opacity=20);
+}
+
+.popup {
+	background: #1C2633;
+	border: 1px solid #131922;
+	color: #e0eaf4;
+	padding: 0 0 10px 10px;
+}
+
+.popup-header, .popup-title {
+	background: url(../images/portlet/portlet_title_bg.png) no-repeat right top;
+}
+
+.ie6 .popup-header, .ie6 .popup-title {
+	background-image: url(../images/portlet/portlet_title_ie6_bg.png);
+}
+
+.popup-header {
+	border: none;
+	height: 46px;
+	margin: -1px -1px 0 -11px;
+	margin-left: -11px;
+	margin-top: -1px;
+	padding: 0;
+}
+
+.popup-title {
+	background-position: 0 -46px;
+	color: #fff;
+	display: block;
+	height: 25px;
+	padding: 15px 0 6px 10px;
+}
+
+.popup-close {
+	top: 15px;
+}
+
+.portal-add-content {
+	background: transparent;
+}
+
+.uni-form fieldset legend {
+	color: #e0eaf4;
+}
+
+#wrapper {
+	background: url(../images/common/wrapper_bg.png) repeat-y center top;
+	margin-bottom: 0;
+	/*padding: 3em 63px;*/
+	width: 962px;
+}
+
+.ie6 #wrapper {
+	background: none;
+	padding: 0;
+}
+
+#content-wrapper {
+	background: #5989a6 url(../images/common/content_wrapper_bg.png) repeat;
+	padding: 0 5px;
+}
+
+.portal-popup #content-wrapper {
+	background: none;
+	font-size: 1.2em;
+}
+
+#banner {
+	background-image: url(../images/common/banner_bg.jpg);
+	height: 135px;
+}
+
+#banner .logo {
+	background: none;
+}
+
+#banner .search {
+	position: absolute;
+	right: 10px;
+	top: 50px;
+}
+
+#banner .search form {
+	padding-right: 49px;
+	padding-top: 2px;
+	position: relative;
+}
+
+#banner .search input {
+	border: none;
+	font-size: 1.5em;
+	padding: 6px 3px;
+}
+
+#banner .search input[type=image] {
+	display: none;
+}
+
+#banner .search .search-input-link {
+	background: url(../images/common/search_btn_bg.png) no-repeat;
+	display: block;
+	height: 35px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 51px;
+}
+
+.ie #banner .search .search-input-link {
+	top: 1px;
+}
+
+#navigation {
+	bottom: 0;
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	left: 15px;
+	overflow: visible;
+	position: absolute;
+	z-index: 0;
+	width: 945px;
+}
+
+#navigation ul {
+	width: 100%;
+}
+
+#navigation li,   #navigation li a,   #navigation li a span,   #navigation li.selected a,   #navigation li.selected a:hover,  #navigation li a:hover span,  #navigation li.selected a span,   #navigation li a:hover,   .js #navigation .enter-page {
+	background: none;
+	color: #96C0E6;
+	font-size: 1em;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
+	text-transform: uppercase;
+}
+
+#navigation li {
+	font-size: 1.1em;
+	margin: 0 20px 0 22px;
+}
+
+#navigation li.selected a,  #navigation li.selected a:hover {
+	background: url(../images/navigation/selected_bg.png) no-repeat;
+	color: #fff;
+	padding-left: 18px;
+}
+
+.ie #navigation li.selected a, .ie #navigation li.selected a:hover {
+	height: 1%;
+}
+
+.ie6 #navigation li.selected a, .ie6 #navigation li.selected a:hover {
+	white-space: nowrap;
+	width: 20px;
+}
+
+#navigation li.selected a span {
+	color: #fff;
+}
+
+.js #add-page {
+	position: absolute;
+	right: 0px;
+	top: -5px;
+}
+
+#navigation ul .sort-helper {
+	padding: 0.1em 0.5em;
+}
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: #141B24;
+	padding: 0;
+}
+
+.portlet {
+	margin-top: 0;
+}
+
+.portlet.html-editor {
+	color: #e0eaf4;
+}
+
+.ie6 .portlet {
+	position: relative;
+	zoom: 1;
+}
+
+.portlet, .portlet-content {
+	background: url(../images/portlet/portlet_bg.png) no-repeat left bottom;
+}
+
+.portlet-title span {
+	background: url(../images/common/arrow.png) no-repeat right center;
+	padding-right: 20px;
+}
+
+.portlet-topper, .portlet-title {
+	background: url(../images/portlet/portlet_title_bg.png) no-repeat right top;
+}
+
+.ie6 .portlet-topper, .ie6 .portlet-title {
+	background-image: url(../images/portlet/portlet_title_ie6_bg.png);
+}
+
+.portlet-topper {
+	color: #fff;
+	font: 1.5em Arial,Verdana,Helvetica,sans-serif;
+	height: 46px;
+	margin: 0;
+	position: relative;
+}
+
+.portlet-title {
+	/*background-position: left -46px;*/
+	background-position: left 0px;
+	height: 25px;
+	padding: 15px 0 6px 10px;
+        width: 90%;
+}
+
+.portlet-content {
+	background-color: #1C2633;
+	background-position: right bottom;
+	color: #e0eaf4;
+	font-size: 1.2em;
+	margin-left: 10px;
+	padding: 10px 20px 20px 10px;
+}
+
+.portlet-content li {
+    padding-left: 1em;
+}
+
+.portlet-content li li {
+    list-style-type: circle;
+}
+
+.portlet-content ul{
+	list-style: inside disc;
+}
+
+.portlet-content ol {
+	list-style: inside decimal;
+}
+
+.toggle-expand, .root-container, .root-container ul li {
+	padding-left: 0;
+	list-style: none;
+}
+
+.portlet-icons {
+	top: 10px;
+}
+
+.portlet-icon-back {
+	padding: 0.5em 0 0.5em 1.4em;
+}
+
+.portlet-placeholder {
+	border: 1px dashed #e0eaf4;
+}
+
+.js .delete-tab {
+	right: -10px;
+}
+
+#footer {
+	background: url(../images/common/footer_bg.jpg) no-repeat;
+	color: #739ABE;
+	height: 106px;
+	position: relative;
+	width: 962px;
+}
+
+#footer .copyright-notice, #footer ul {
+	bottom: -25px;
+	position: absolute;
+}
+
+#footer .copyright-notice {
+	left: 30px;
+}
+
+#footer ul {
+	right: 30px;
+}
+
+#footer li {
+	border-right: 1px solid #557B9F;
+	display: inline;
+	float: left;
+	margin-left: 9px;
+	padding-right: 8px;
+}
+
+#footer li.last-child, #footer li:last-child {
+	border: none;
+	padding: 0;
+}
+
+#footer li a {
+	color: #557B9F;
+	text-decoration: none;
+}
+
+#footer li a:hover {
+	color: #83B4E1;
+	text-decoration: underline;
+}
+
+.tabs {
+	background: #5989a6 url(../images/common/content_wrapper_bg.png) repeat;
+	border: none;
+	margin: -10px -10px 1.5em;
+	list-style: none;
+	padding-top: 1em;
+}
+
+.tabs li {
+        background: none;
+	margin-right: 0;
+	padding-left: 0;
+}
+
+.tabs li a {
+        background: none;
+	color: #33586f;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.tabs li.current a, .tabs li.current span {
+        background: #33586f;
+	background-position: 0 -101px;
+	color: #fff;
+}
+
+.tabs li.current {
+        background: none;
+	padding-top: 1px;
+	margin-top: 1px;
+	top: 0;
+}
+
+.ie .tabs li.current {
+	top: 1px;
+}
+
+.ie6 .tabs li,
+.ie6 .tabs li a,
+.ie6 .tabs li span,
+.ie6 .tabs li.current,
+.ie6 .tabs li.current a,
+.ie6 .tabs li.current span {
+	background-image: url(../images/common/tabs_ie6_bg.png);
+}
+
+.popup .tabs {
+	margin: -5px -5px -16px -15px;
+}
+
+.js .interactive-mode {
+	top: 0;
+}
+
+.js .lfr-dock.interactive-mode h2 {
+	background-position: right -31px;
+	padding-right: 46px;
+}
+
+.js .lfr-dock.expanded .lfr-dock-list-container {
+	background: #0E1118;
+	border: 1px solid #0B0F15;
+	border-top: none;
+}
+
+.js .lfr-dock.interactive-mode ul {
+	background: #ffffff;
+	border-left: none;
+	padding: 0 15px;
+}
+
+.js .lfr-flyout.has-children {
+	/*background-image: url(../images/dock/my_places.png);*/
+	background-position: 0 50%;
+}
+
+.js .interactive-mode .lfr-flyout.has-children ul {
+	background: #ffffff;
+	border-color: #212C3A;
+	padding: 0px;
+}
+
+.js .lfr-dock.interactive-mode li {
+	border-color: #ffffff;
+}
+
+.js .lfr-dock.interactive-mode li a {
+	background-position: left center;
+	/*border-top: 1px solid #222D3A;*/
+	padding-left: 25px;
+}
+
+.js .lfr-dock.interactive-mode li a:hover {
+	background-color: #5989a6;
+	background-position: 0 50%;
+	border-top: 1px solid #5989a6;
+	padding-left: 2.5em;
+}
+
+.lfr-dock li.home a, .lfr-dock li.my-account a,   .lfr-dock li.sign-in a,   .lfr-dock li.sign-out a,   .lfr-dock li.add-content a,   .lfr-dock li.layout a,   .lfr-dock li.page-settings a {
+	background-image: url(../images/dock/my_places.png);
+}
+
+.js .lfr-dock.interactive-mode li.my-places {
+	margin-left: 0;
+	background: none;
+	padding-left: 0;
+}
+
+.ie.js .lfr-dock.interactive-mode li.my-places {
+	padding-right: 2.5em;
+}
+
+.js .lfr-dock.interactive-mode li.my-places a {
+	padding-left: 2.5em;
+}
+
+.js .interactive-mode .my-places .show-my-places {
+	background: #0E1118;
+	border: 1px solid #0B0F15;
+}
+
+.js .lfr-dock.interactive-mode li.my-places h3 a {
+	background-position: 5px 50%;
+}
+
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle,  .js .interactive-mode .my-places .show-my-places ul li.public a, .js .my-places .show-my-places ul li.public a:hover,  .js .interactive-mode .my-places .show-my-places li.private a, .js .my-places .show-my-places li.private a:hover {
+	background-image: url(../images/dock/dock_items.png);
+	padding-left: 25px;
+}
+
+.js .my-places .show-my-places ul li a:hover {
+	background-color: #1B2431;
+}
+
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle {
+	border-bottom: 1px solid #212C3A;
+	color: #96C0E6;
+	margin-left: 10px;
+	padding-left: 28px;
+}
+
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
+	font-size: 1em;
+	font-weight: normal;
+}
+
+.js .interactive-mode .my-places .show-my-places ul li a.add-page {
+	padding: 0;
+}
+
+.js .interactive-mode .my-places .show-my-places li ul li.public {
+	border-bottom: 1px solid #151C25;
+}
+
+.js .interactive-mode .my-places .show-my-places li ul {
+	background: #212C3A;
+	margin-left: 0;
+	margin-top: -1px;
+	padding: 0 10px;
+}
+
+.js .lfr-dock.interactive-mode li.my-places li ul li.current a,   .js .lfr-dock.interactive-mode li.my-places li ul li.current a:hover {
+	background-color: transparent;
+	background-position: 1px center;
+}
+
+.js .interactive-mode .my-places .show-my-places li ul li a {
+	border-bottom-color: #151C25;
+	color: #445B78;
+}
+
+.js .interactive-mode .my-places .show-my-places li ul li a .page-count {
+	color: #96C0E6;
+}
+
+.js .interactive-mode .my-places li.current-community {
+	background-color: #5989a6;
+}
+
+.js .interactive-mode .my-places li.current-community a {
+	background-color: #5989a6;
+}
+
+.portlet-msg-success, .portlet-msg-error, .portlet-msg-alert, .portlet-msg-info {
+	color: #000;
+	font-style: normal;
+	margin: 0.15em auto 2.2em;
+}
+
+/* ---------- Sections ---------- */
+/* ---------- Table or section header ---------- */
+.portlet-section-header {
+	background: #465E7B;
+	padding: 1px 0 0;
+}
+
+.portlet-section-header th {
+	border-bottom: 1px solid #151C25;
+	color: #fff;
+	font-weight: bold;
+	padding: 0.3em 1em;
+}
+
+/* ---------- Normal text in a table cell ---------- */
+.portlet-section-body {
+	background: #4A6483;
+	color: #e0eaf4;
+}
+
+.portlet-section-body td {
+	background: #212C3A;
+	border-bottom: 1px solid #1C2633;
+	border-top: 1px solid #151C25;
+	padding: 0.3em 1em;
+}
+
+/* ---------- Text in every other row in the cell ---------- */
+.portlet-section-alternate {
+	background: #96C0E6;
+	color: #000;
+}
+
+.portlet-section-alternate td {
+	background: #3A4E66;
+	border-bottom: 1px solid #1C2633;
+	border-top: 1px solid #151C25;
+	padding: 0.3em 1em;
+}
+
+.portlet-section-alternate-hover td, .portlet-section-body-hover td {
+	background: #141B23;
+	border-bottom: 1px solid #151C25;
+	border-top: 1px solid #151C25;
+	padding: 0.3em 1em;
+}
+
+.drop-position-top {
+	background: url(../images/portlet/drag_arrows_up.png) scroll no-repeat center top;
+}
+
+.drop-position-bottom {
+	background: url(../images/portlet/drag_arrows_down.png) scroll no-repeat center bottom;
+}
+
+input[type="submit"], input[type="button"], input[type="reset"] {
+	background: #33586f url(../images/common/arrow.png) no-repeat 97% center;
+	border: none;
+	color: #ffffff;
+	font-weight: bold;
+	margin: 1px;
+	padding: 0.5em;
+	padding-right: 20px;
+	text-transform: uppercase;
+}
+
+.ie6 input.submit, .ie6 input.button {
+	background: #3D536D none url(../images/common/arrow.png) no-repeat 90% center;
+	border: none;
+	color: #fff;
+	font-weight: bold;
+	margin: 1px;
+	padding: 0.5em;
+	padding-right: 20px;
+	text-transform: uppercase;
+}
+
+.separator {
+	border-color: #101318;
+}
+
+input[type="text"], input[type="password"], input[type="file"],input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	border-color: #fff;
+}
+
+.ie6 input.text, input.password, .ie6 input.submit, .ie6 input.file, .ie6 input.button {
+	border-color: #fff;
+}
+
+/* ---------- Message boards ---------- */
+
+.portlet-section-body .message-board-thread-top {
+	border-bottom-color: #3A4E66;
+}
+
+.portlet-section-alternate .message-board-thread-top {
+	border-bottom-color: #212C3A;
+}
+
+.message-board-message-container .portlet-section-alternate td {
+	border: 1px solid #212C3A;
+}
+
+.message-board-message-container .portlet-section-body td {
+	border:1px solid #3A4E66;
+}
+
+#content-wrapper .message-board-thread-controls {
+	border: none;
+}
+
+#content-wrapper .message-board-title {
+	color: #151C25;
+	padding: 5px;
+	border: none;
+}
+
+#content-wrapper .toggle_id_message_boards_view_message_thread {
+	border: none;
+	margin-bottom: 10px;
+}
+
+.message-board-message-container table {
+	color: #e7eef6;
+}
+
+.message-board-code, .message-board-quote {
+	color: #212C3A;
+}
+
+.lfr-highlighted, .lfr-highlighted a {
+	color: #ffc;
+}
+
+ul.message-board-edit-controls {
+	list-style: none;
+}
+
+/* ---------- Taglib styling ---------- */
+
+.taglib-ratings {
+	margin-bottom: 1em;
+}
+
+.lfr-actions .lfr-trigger {
+	color: #000;
+}
+
+ul.lfr-actions, .lfr-actions ul {
+	list-style: none outside;
+}
+
+.lfr-actions li a {
+	color: #1C2633;
+	font-size: 1.1em;
+}
+
+.lfr-actions li a:hover {
+	text-decoration: underline;
+	color: #3D536D;
+}
+
+.lfr-actions ul {
+	border: 3px double #465E7B;
+}
+
+.lfr-actions li, .lfr-actions li li {
+	list-style: none;
+	padding-left: 0;
+}
+
+.lfr-actions .lfr-trigger strong span {
+	font-size: 0.8em;
+	background-position: 5px 1px;
+}
+
+/* ---------- Blogs styling ---------- */
+
+#portlet-wrapper-33 p {
+	margin-bottom: 1em;
+}
+
+#portlet-wrapper-33 code {
+	background-color: #deedff;
+	border: 1px dotted #3D536D;
+	color: #141B23;
+	display: block;
+	padding: 5px;
+	margin: 10px 0;
+}
