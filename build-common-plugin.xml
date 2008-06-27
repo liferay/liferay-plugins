@@ -155,15 +155,6 @@
 			</then>
 		</if>
 
-		<if>
-			<not>
-				<available file="docroot/WEB-INF/classes/log4j.properties" />
-			</not>
-			<then>
-				<copy file="${project.dir}/misc/log4j.properties" todir="docroot/WEB-INF/classes" />
-			</then>
-		</if>
-
 		<antcall target="merge" />
 	</target>
 
