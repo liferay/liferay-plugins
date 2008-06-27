@@ -35,8 +35,6 @@
 			<jvmarg value="-Dthumbnail.overwrite=false" />
 		</java>
 
-		<mkdir dir="docroot/WEB-INF/classes" />
-
 		<if>
 			<equals arg1="${theme.parent}" arg2="_unstyled" />
 			<then>
