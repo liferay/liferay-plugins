@@ -90,7 +90,7 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String body = sm.toString();
 
-		return new SocialActivityFeedEntry(title, body);
+		return new SocialActivityFeedEntry(title, body, wallEntryURL);
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {

@@ -74,10 +74,24 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 			jiraAction = JIRAActionLocalServiceUtil.getJIRAAction(jiraActionId);
 		}
 
-		// Title
+		// Link
 
 		JIRAIssue jiraIssue = JIRAIssueLocalServiceUtil.getJIRAIssue(
 			activity.getClassPK());
+
+		StringMaker sm = new StringMaker();
+
+		sm.append("http://support.liferay.com/browse/");
+		sm.append(jiraIssue.getKey());
+
+		if (activityType == JIRAActivityKeys.ADD_COMMENT) {
+			sm.append("#action_");
+			sm.append(jiraAction.getJiraActionId());
+		}
+
+		String link = sm.toString();
+
+		// Title
 
 		String title = StringPool.BLANK;
 
@@ -99,15 +113,10 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		// Body
 
-		StringMaker sm = new StringMaker();
+		sm = new StringMaker();
 
-		sm.append("<a href=\"http://support.liferay.com/browse/");
-		sm.append(jiraIssue.getKey());
-
-		if (activityType == JIRAActivityKeys.ADD_COMMENT) {
-			sm.append("#action_");
-			sm.append(jiraAction.getJiraActionId());
-		}
+		sm.append("<a href=\"");
+		sm.append(link);
 
 		sm.append("\" target=\"_blank\">");
 
@@ -127,7 +136,7 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String body = sm.toString();
 
-		return new SocialActivityFeedEntry(title, body);
+		return new SocialActivityFeedEntry(title, body, link);
 	}
 
 	protected String interpretJIRAChangeItem(

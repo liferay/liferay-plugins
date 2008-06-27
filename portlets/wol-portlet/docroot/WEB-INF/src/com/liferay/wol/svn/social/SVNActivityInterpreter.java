@@ -53,10 +53,14 @@ public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		int activityType = activity.getType();
 
-		// Title
+		// Link
 
 		SVNRevision svnRevision = SVNRevisionLocalServiceUtil.getSVNRevision(
 			activity.getClassPK());
+
+		String link = svnRevision.getWebRevisionNumberURL();
+
+		// Title
 
 		SVNRepository svnRepository = svnRevision.getSVNRepository();
 
@@ -84,7 +88,7 @@ public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String body = sm.toString();
 
-		return new SocialActivityFeedEntry(title, body);
+		return new SocialActivityFeedEntry(title, body, link);
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {

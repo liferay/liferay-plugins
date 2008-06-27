@@ -59,12 +59,26 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		int activityType = activity.getType();
 
+		StringMaker sm = null;
+		
+		// Link
+
+		sm = new StringMaker();
+
+		sm.append(themeDisplay.getURLPortal());
+		sm.append(themeDisplay.getPathFriendlyURLPublic());
+		sm.append(StringPool.SLASH);
+		sm.append(creatorUser.getScreenName());
+		sm.append("/friends");
+
+		String link = sm.toString();
+
 		// Title
 
 		String title = StringPool.BLANK;
 
 		if (activityType == FriendsActivityKeys.ADD_FRIEND) {
-			StringMaker sm = new StringMaker();
+			sm = new StringMaker();
 
 			sm.append("<a href=\"");
 			sm.append(themeDisplay.getURLPortal());
@@ -99,7 +113,7 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String body = StringPool.BLANK;
 
-		return new SocialActivityFeedEntry(title, body);
+		return new SocialActivityFeedEntry(title, body, link);
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {

@@ -58,6 +58,24 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		int activityType = activity.getType();
 
+		// Link
+
+		StringMaker sm = null;
+
+		String link = StringPool.BLANK;
+
+		if (activityType == MembersActivityKeys.ADD_MEMBER) {
+			sm = new StringMaker();
+
+			sm.append(themeDisplay.getURLPortal());
+			sm.append(themeDisplay.getPathFriendlyURLPublic());
+			sm.append(StringPool.SLASH);
+			sm.append(creatorUser.getScreenName());
+			sm.append("/profile");
+
+			link = sm.toString();
+		}
+
 		// Title
 
 		Organization organization =
@@ -68,14 +86,13 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 		String title = StringPool.BLANK;
 
 		if (activityType == MembersActivityKeys.ADD_MEMBER) {
-			StringMaker sm = new StringMaker();
+			sm = new StringMaker();
+
+			sm = new StringMaker();
 
 			sm.append("<a href=\"");
-			sm.append(themeDisplay.getURLPortal());
-			sm.append(themeDisplay.getPathFriendlyURLPublic());
-			sm.append(StringPool.SLASH);
-			sm.append(creatorUser.getScreenName());
-			sm.append("/profile\">");
+			sm.append(link);
+			sm.append("\">");
 			sm.append(creatorUserName);
 			sm.append("</a>");
 
@@ -102,7 +119,7 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String body = StringPool.BLANK;
 
-		return new SocialActivityFeedEntry(title, body);
+		return new SocialActivityFeedEntry(title, body, link);
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {
