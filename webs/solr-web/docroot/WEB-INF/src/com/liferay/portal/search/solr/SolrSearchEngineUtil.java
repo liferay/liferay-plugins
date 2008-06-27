@@ -26,7 +26,7 @@ import com.liferay.portal.kernel.messaging.Destination;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
-import com.liferay.portal.kernel.messaging.SerialDestination;
+import com.liferay.portal.kernel.messaging.ParallelDestination;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.HitsImpl;
@@ -64,7 +64,7 @@ public class SolrSearchEngineUtil {
 				MessageBusUtil.removeDestination(DestinationNames.SEARCH);
 			}
 
-			Destination destination = new SerialDestination(
+			Destination destination = new ParallelDestination(
 				DestinationNames.SEARCH);
 
 			MessageBusUtil.addDestination(destination);
