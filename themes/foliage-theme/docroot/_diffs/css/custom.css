@@ -1,0 +1,136 @@
+#wrapper {
+	width:900px;
+}
+body {
+	margin: 0;
+	padding: 0;
+	background: url(../images/theme/bg2.jpg);
+	font-family: Verdana;
+	font-size: 11px;	
+	line-height: 1.6em;
+	font-size: 10px; /* IE5 Win */
+  	voice-family: "\"}\""; 
+  	voice-family: inherit;
+  	font-size: 10px; /* easy scaling */
+  	font-size: 0.76em;
+	color: #333;
+}
+#banner {
+	 background:url(../images/theme/header.jpg) no-repeat center;
+	 height:251px;
+	 margin:0px auto 0;
+	 border-bottom: 5px solid #000;
+	 margin-top: 30px;
+}
+#banner .logo {
+	background: none;
+}
+#navigation {
+	position: absolute;
+	top:0px;
+	margin: 0px;
+	padding-right: 0px;
+}
+#navigation ul {
+	margin: 0 10px;
+	padding:0;
+	list-style: none;	
+}
+#navigation li {
+	display: inline;
+	background: #000;
+	padding: 0px;
+	padding-bottom: 0px;
+	font-size: 11px;
+}
+.js #add-page {
+	position:relative;
+	right:11px;
+	top:2px;
+}
+#navigation li a span, .js #add-page a span {
+	background: none;
+	padding-left: 0px;
+	padding:0px;
+}
+#navigation li a, #navigation li.selected a, .js #add-page a {
+	padding:6px 16px;
+	text-decoration: none;
+	font-size:11px;
+	border:0;
+	color:#DA1C5C;
+	background: #000;
+	font-weight: normal;
+}
+.js #add-page a {
+	padding: 10px;
+}
+#navigation li a:hover span, #navigation li.selected a span, .js #add-page a:hover span {
+	background: none;
+	font-size: 11px;
+	font-weight: normal;
+	color: white;
+}
+#content-wrapper, #portlet-wrapper-sign-in {
+	float:left;
+	overflow:hidden;
+	width:100%;
+	background: white;
+}
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	margin: 0px auto;
+	background:#fff;
+	font-weight: normal;
+}
+.portlet-content {
+	float:left;
+	overflow:hidden;
+	width:100%;
+}
+.portlet-topper {
+	padding: 4px;
+	font-size: 1.6em;		
+	line-height:1.4em;
+	border-bottom:#ddd 1px solid;
+}
+#footer {
+	margin: 0px auto 0;
+	padding-left:10px;
+	padding-right:10px;
+	border-top: 5px solid #000;
+	width:880px;
+	background:#000 url(../images/theme/footer.jpg);
+	color: #fff;
+	height: 162px;
+}
+#header, #main, #sidebar, #footer, .textwidget {
+	overflow:hidden;
+}
+.js .delete-tab {
+	background:transparent url(../images/theme/bullet.gif) no-repeat scroll 42% 50%;
+}
+.js #navigation .enter-page {
+	background: transparent;
+}
+.js #navigation .enter-page a {
+	font-weight: 0px;
+}
+.js .interactive-mode h2 span {
+	background:transparent url(../images/dock/menu_bar.png) no-repeat scroll 0pt 0pt;
+	display:block;
+	font-size:11px;
+	margin-bottom:0pt;
+	padding:0.5em 0.5em 0.5em 2em;
+}
+ul li, ol ul li {
+	list-style-image:url(../images/theme/bullet.gif);
+}
+a:link, a:visited {
+	color: #000;
+	text-decoration:none;
+	border-bottom:#c96 1px;
+	font-weight: bold;
+}
+h1, h2, h3, h4, h5, h6, strong {
+	font-weight: normal;
+}
