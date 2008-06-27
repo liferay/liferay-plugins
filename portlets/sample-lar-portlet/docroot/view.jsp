@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
+<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
 <%@page import="java.util.Date"%>
 
