@@ -74,9 +74,13 @@ String username = ParamUtil.getString(request, "username");
 			<c:choose>
 				<c:when test="<%= preconfigured %>">
 					<input class="in-hostname" type="hidden" value="<%= mailInHostName %>" />
+
 					<input class="in-port" type="hidden" value="<%= mailInPort %>" />
+
 					<input class="secure" type="hidden" value="<%= mailSecure %>" />
+
 					<input class="out-hostname" type="hidden" value="<%= mailOutHostName %>" />
+
 					<input class="out-port" type="hidden" value="<%= mailOutPort %>" />
 				</c:when>
 				<c:otherwise>
@@ -113,7 +117,7 @@ String username = ParamUtil.getString(request, "username");
 					</tr>
 					<tr>
 						<td>
-							<liferay-ui:message key="outgoing-server-smtp" />
+							<liferay-ui:message key="outgoing-server" />
 						</td>
 						<td>
 							<input class="out-hostname" type="text" value="<%= mailOutHostName %>" />
@@ -133,6 +137,7 @@ String username = ParamUtil.getString(request, "username");
 			<tr>
 				<td colspan="2">
 					<input class="save-account" type="button" value="<liferay-ui:message key="save" />" />
+
 					<input class="cancel-account" type="button" value="<liferay-ui:message key="cancel" />" />
 				</td>
 			</tr>
@@ -143,11 +148,12 @@ String username = ParamUtil.getString(request, "username");
 				<%= emailAddress %>
 			</div>
 
-			<table class="details">
 			<input class="email-address" type="hidden" value="<%= emailAddress %>" />
+
+			<table class="details">
 			<tr>
 				<td>
-					<liferay-ui:message key="username" />
+					<liferay-ui:message key="user-name" />
 				</td>
 				<td>
 					<input class="username" type="text" value="<%= username %>" />
@@ -163,7 +169,7 @@ String username = ParamUtil.getString(request, "username");
 			</tr>
 			<tr>
 				<td>
-					<liferay-ui:message key="incoming-server" />
+					<liferay-ui:message key="incoming-imap-server" />
 				</td>
 				<td>
 					<input class="in-hostname" type="text" value="<%= mailInHostName %>" />
@@ -179,7 +185,7 @@ String username = ParamUtil.getString(request, "username");
 			</tr>
 			<tr>
 				<td>
-					<liferay-ui:message key="use-secure-connection" />
+					<liferay-ui:message key="use-a-secure-network-connection" />
 				</td>
 				<td>
 					<c:choose>
@@ -194,7 +200,7 @@ String username = ParamUtil.getString(request, "username");
 			</tr>
 			<tr>
 				<td>
-					<liferay-ui:message key="outgoing-server-smtp" />
+					<liferay-ui:message key="outgoing-smtp-server" />
 				</td>
 				<td>
 					<input class="out-hostname" type="text" value="<%= mailOutHostName %>" />
@@ -211,6 +217,7 @@ String username = ParamUtil.getString(request, "username");
 			<tr>
 				<td colspan="2">
 					<input class="save-account" type="button" value="<liferay-ui:message key="save" /> " />
+
 					<input class="delete-account" type="button" value="<liferay-ui:message key="delete" /> " />
 				</td>
 			</tr>

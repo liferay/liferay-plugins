@@ -51,7 +51,7 @@
 
 	<br /><br />
 
-	<liferay-ui:icon image="configuration" message="setup-email-accounts" url="<%= portletDisplay.getURLConfiguration() %>" />
+	<liferay-ui:icon image="configuration" message="configuration" url="<%= portletDisplay.getURLConfiguration() %>" />
 </div>
 
 <table class="account-container" id="<portlet:namespace />account-container">
