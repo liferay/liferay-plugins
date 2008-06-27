@@ -7,6 +7,7 @@ body {
 }
 
 #wrapper {
+	background: none;
 	margin: 0 auto;
 	width: 976px;
 }
