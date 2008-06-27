@@ -1,0 +1,193 @@
+a, .nav-menu li a.selected {
+	color:#06FF00;
+	text-decoration:none;
+	font-weight: normal;
+}
+a:hover {
+	color: #fff;
+	text-decoration: underline
+}
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-family: "Trebuchet MS", Arial, sans-serif;
+}
+body {
+	background:#262626 none repeat scroll 0% 0%;
+	margin:0pt;
+	padding:0pt;
+	border:0pt none;
+	font-family:"Trebuchet MS",Arial,sans-serif;
+	margin:0pt;
+	padding:0pt;
+	font-size: 100%;
+	color:#FFFFFF;
+	font-size:0.8em;
+	line-height:1.4em;
+	text-align:justify;
+}
+#wrapper {
+	width: 100%;
+}
+#banner {
+	background:transparent url(../images/theme/hdr.gif) repeat-x scroll 0% 0%;
+	height:150px;
+	margin-bottom:5px;
+	voice-family:inherit;
+	width:100%;
+	margin-bottom: 5px;
+	overflow: visible;
+	padding: 10px 0pt;
+}
+#banner .logo {
+	background: none;
+}
+#navigation {
+	height:25px;
+	overflow:visible;
+	position:absolute;
+	right:265px;
+	top: 145px;
+	width:100%;
+	margin:0px;
+	padding-right: 0px;
+}
+#navigation li {
+	background: transparent;
+	float:left;
+	margin-right: 5px;
+	font-size:13px;
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+	text-align:center;
+	padding: 0px;
+}
+#navigation ul, .js #add-page ul {
+	background: none;
+	left: 270px;
+	position: absolute;
+	z-index: 22;
+}
+#navigation li a, .js #add-page a {
+	background:transparent url(../images/theme/tab.gif) no-repeat scroll 0pt -25px;
+	color:#06FF00;
+	float:right;
+	height:25px;
+	padding:0px;
+	display:block;
+	line-height: 25px;
+	text-decoration:none;
+	width:90px;
+	text-transform: lowercase;	
+	line-height: 25px;
+}
+#navigation li.selected a {
+	background:transparent url(../images/theme/tab.gif) no-repeat scroll 0px 0px;
+	padding-top: 0px;
+	font-weight:normal;
+}
+#navigation li a span, #navigation li.selected a span {
+	background: none;
+	font-size: 13px;
+	padding-left: 0px;
+	font-weight:normal;
+}
+#navigation li a:hover, #navigation li.selected a:hover, .js #add-page a:hover {
+	background:transparent url(../images/theme/tab.gif) no-repeat scroll 0px 0px;
+	color:#FFFFFF;
+	font-weight:normal;
+	text-decoration:none;
+	height: 12px;
+}
+#navigation li.selected a:hover {
+	height: 18px;
+}
+#navigation li a:hover span, .js #add-page a:hover span {
+	background: none;
+}
+#content-wrapper {
+	float:left;
+	margin-bottom:5px;
+	overflow:hidden;
+	width:100%;
+	background:#333333 none repeat scroll 0% 0%;
+}
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: transparent;
+	border: medium none;
+	clear: both;
+	font-size: 13px;
+	line-height:1.4em;
+	text-align:justify;
+	color:#FFFFFF;
+	font-weight:normal;
+	text-decoration:none;
+}
+.portlet-content {
+	float:left;
+	margin-bottom:5px;	
+	overflow:hidden;
+	width:100%;
+}
+ul li, ol ul li {
+	list-style-image:url(../images/theme/bullet.gif);
+}
+.js #navigation .enter-page a {
+	background:transparent url(../images/theme/tab.gif) no-repeat scroll 0pt -25px;
+	position: relative;
+	top: -25px;
+	right:8px;
+	font-weight:normal;
+}
+.js #navigation .enter-page {
+    background:transparent url(../images/theme/tab.gif) no-repeat scroll 0pt -25px;
+	padding:0.5em 0em 0.7em 1.5em;
+}
+#navigation li.selected a:hover {
+	padding-bottom:7px;
+}
+.js .interactive-mode {
+	float:right;
+	min-width:150px;
+	position:relative;
+	right:4px;
+	top:130px;
+}
+#navigation input[type="text"], select, textarea, .textarea {
+-x-system-font:none;
+height:13px;
+padding:0px 0px 3px;
+position:relative;
+right:62px;
+top:-3px;
+width:68px;
+}
+.js .interactive-mode h2 span {
+height:6px;
+padding:0px 0px 19px 26px;
+color:#06FF00;
+line-height:25px;
+text-decoration:none;
+text-transform:lowercase;
+font-family:"Trebuchet MS",Arial,sans-serif;
+min-height: 0px;
+font-weight: normal;
+font-size:13px;
+min-width:60px;
+text-align: center;
+}
+.js .interactive-mode h2:hover {
+	color: white;
+	margin-left: 0px;
+}
+.js .interactive-mode li a {
+	color:#003366;
+}
+#footer {
+	background:transparent url(../images/theme/hdr.gif) repeat-x scroll center bottom;
+	float:left;
+	height:55px;
+	width:100%;
+}
