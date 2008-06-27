@@ -59,11 +59,9 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		int activityType = activity.getType();
 
-		StringMaker sm = null;
-		
 		// Link
 
-		sm = new StringMaker();
+		StringMaker sm = new StringMaker();
 
 		sm.append(themeDisplay.getURLPortal());
 		sm.append(themeDisplay.getPathFriendlyURLPublic());
@@ -113,7 +111,7 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String body = StringPool.BLANK;
 
-		return new SocialActivityFeedEntry(title, body, link);
+		return new SocialActivityFeedEntry(link, title, body);
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {

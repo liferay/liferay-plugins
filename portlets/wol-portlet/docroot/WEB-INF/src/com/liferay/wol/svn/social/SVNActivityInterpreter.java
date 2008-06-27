@@ -81,14 +81,14 @@ public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 		StringMaker sm = new StringMaker();
 
 		sm.append("<a href=\"");
-		sm.append(svnRevision.getWebRevisionNumberURL());
+		sm.append(link);
 		sm.append("\" target=\"_blank\">");
 		sm.append(svnRevision.getComments());
 		sm.append("</a>");
 
 		String body = sm.toString();
 
-		return new SocialActivityFeedEntry(title, body, link);
+		return new SocialActivityFeedEntry(link, title, body);
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {

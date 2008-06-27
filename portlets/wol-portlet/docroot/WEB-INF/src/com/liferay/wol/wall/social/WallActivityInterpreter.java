@@ -59,6 +59,17 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		int activityType = activity.getType();
 
+		// Link
+
+		WallEntry wallEntry = WallEntryLocalServiceUtil.getWallEntry(
+			activity.getClassPK());
+
+		String link =
+			themeDisplay.getURLPortal() +
+				themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH +
+					receiverUser.getScreenName() + "/profile/-/wall/" +
+						activity.getClassPK();
+
 		// Title
 
 		String title = StringPool.BLANK;
@@ -71,26 +82,17 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		// Body
 
-		WallEntry wallEntry = WallEntryLocalServiceUtil.getWallEntry(
-			activity.getClassPK());
-
-		String wallEntryURL =
-			themeDisplay.getURLPortal() +
-				themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH +
-					receiverUser.getScreenName() + "/profile/-/wall/" +
-						activity.getClassPK();
-
 		StringMaker sm = new StringMaker();
 
 		sm.append("<a href=\"");
-		sm.append(wallEntryURL);
+		sm.append(link);
 		sm.append("\">");
 		sm.append(cleanContent(wallEntry.getComments()));
 		sm.append("</a>");
 
 		String body = sm.toString();
 
-		return new SocialActivityFeedEntry(title, body, wallEntryURL);
+		return new SocialActivityFeedEntry(link, title, body);
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {

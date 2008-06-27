@@ -60,12 +60,10 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		// Link
 
-		StringMaker sm = null;
-
 		String link = StringPool.BLANK;
 
 		if (activityType == MembersActivityKeys.ADD_MEMBER) {
-			sm = new StringMaker();
+			StringMaker sm = new StringMaker();
 
 			sm.append(themeDisplay.getURLPortal());
 			sm.append(themeDisplay.getPathFriendlyURLPublic());
@@ -86,9 +84,7 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 		String title = StringPool.BLANK;
 
 		if (activityType == MembersActivityKeys.ADD_MEMBER) {
-			sm = new StringMaker();
-
-			sm = new StringMaker();
+			StringMaker sm = new StringMaker();
 
 			sm.append("<a href=\"");
 			sm.append(link);
@@ -119,7 +115,7 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String body = StringPool.BLANK;
 
-		return new SocialActivityFeedEntry(title, body, link);
+		return new SocialActivityFeedEntry(link, title, body);
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {

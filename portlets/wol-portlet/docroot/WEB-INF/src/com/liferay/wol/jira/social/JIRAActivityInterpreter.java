@@ -136,7 +136,7 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String body = sm.toString();
 
-		return new SocialActivityFeedEntry(title, body, link);
+		return new SocialActivityFeedEntry(link, title, body);
 	}
 
 	protected String interpretJIRAChangeItem(
