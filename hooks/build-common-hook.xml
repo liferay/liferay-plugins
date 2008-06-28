@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<project name="build-common-hook">
+	<property name="project.dir" value="../.." />
+
+	<import file="../build-common-plugin.xml" />
+</project>
