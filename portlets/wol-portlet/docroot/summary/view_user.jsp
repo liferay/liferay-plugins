@@ -32,6 +32,26 @@
 			<img class="user-profile-image" src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user2.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user2.getPortraitId()) %>" />
 
 			<c:choose>
+				<c:when test="<%= SocialRelationLocalServiceUtil.hasRelation(user.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) %>">
+
+					<%
+					PortletURL removeFriendURL = renderResponse.createActionURL();
+
+					removeFriendURL.setParameter(ActionRequest.ACTION_NAME, "deleteFriend");
+					removeFriendURL.setParameter("redirect", currentURL);
+
+					String removeFriendHREF = "javascript: if (confirm('" + LanguageUtil.format(pageContext, "are-you-sure-you-want-to-remove-x-as-a-friend-x-will-not-be-notified", user2.getFullName()) + "')) { submitForm(document.hrefFm, '" + removeFriendURL + "'); }";
+					%>
+
+					<p class="remove-friend">
+						<liferay-ui:icon
+							image="join"
+							message="remove-friend"
+							url="<%= removeFriendHREF %>"
+							label="<%= true %>"
+						/>
+					</p>
+				</c:when>
 				<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(user.getUserId(), User.class.getName(), user.getUserId(), FriendsRequestKeys.ADD_FRIEND, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
 					<div class="portlet-msg-info add-as-friend pending">
 						<liferay-ui:message key="friend-requested" />
