@@ -66,19 +66,19 @@ for (int i = 0; i < results.size(); i++) {
 	// Registration
 
 	ServiceDescription sd = ProducerModelUtil.getServiceDescription(producerOrig);
-	
+
 	if (sd.isRequiresRegistration()) {
 		if (Validator.isNull(producer.getRegistrationContext())) {
-			row.addText(LanguageUtil.get(pageContext, "required"));		
+			row.addText(LanguageUtil.get(pageContext, "required"));
 		}
 		else {
 			row.addText(LanguageUtil.get(pageContext, "registered"));
 		}
 	}
 	else {
-		row.addText(LanguageUtil.get(pageContext, "not-required"));		
+		row.addText(LanguageUtil.get(pageContext, "not-required"));
 	}
-	
+
 	// Action
 
 	row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/admin/producer_action.jsp", application, request, response);
@@ -96,14 +96,13 @@ for (int i = 0; i < results.size(); i++) {
 />
 <portlet:renderURL var="redirectURL" />
 
-<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, plid.longValue(), portletDisplay.getRootPortletId(), "ADD_PRODUCER") %>">
+<c:if test='<%= PortletPermissionUtil.contains(permissionChecker, plid.longValue(), portletDisplay.getRootPortletId(), "ADD_PRODUCER") %>'>
 	<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="addProducerURL">
 		<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
 		<portlet:param name="redirect" value="<%= HtmlUtil.escape(redirectURL) %>" />
-	</portlet:renderURL>	
-	
-	<input type="button" value="<liferay-ui:message key='add-producer' />" onClick="location.href = '<%= addProducerURL %>';" />		
+	</portlet:renderURL>
+
+	<input type="button" value="<liferay-ui:message key='add-producer' />" onClick="location.href = '<%= addProducerURL %>';" />
 </c:if>
 
 <liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
-				

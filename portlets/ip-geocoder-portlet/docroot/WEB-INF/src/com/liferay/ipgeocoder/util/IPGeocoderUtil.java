@@ -23,6 +23,7 @@
 package com.liferay.ipgeocoder.util;
 
 import com.liferay.ipgeocoder.model.IPInfo;
+import com.liferay.util.portlet.PortletProps;
 
 import com.maxmind.geoip.Location;
 import com.maxmind.geoip.LookupService;

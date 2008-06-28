@@ -24,6 +24,7 @@ package com.liferay.alfrescocontent.util;
 
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.util.portlet.PortletProps;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

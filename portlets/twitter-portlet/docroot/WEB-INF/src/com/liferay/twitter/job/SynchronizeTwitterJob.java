@@ -27,8 +27,8 @@ import com.liferay.portal.kernel.job.JobExecutionContext;
 import com.liferay.portal.kernel.job.JobExecutionException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Time;
-import com.liferay.portlet.service.PropsUtil;
 import com.liferay.twitter.service.FeedLocalServiceUtil;
+import com.liferay.util.portlet.PortletProps;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -41,7 +41,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class SynchronizeTwitterJob implements IntervalJob {
 
-	public static final long INTERVAL = GetterUtil.getLong(PropsUtil.get(
+	public static final long INTERVAL = GetterUtil.getLong(PortletProps.get(
 		"twitter.synchronization.interval")) * Time.MINUTE;
 
 	public void execute(JobExecutionContext context)

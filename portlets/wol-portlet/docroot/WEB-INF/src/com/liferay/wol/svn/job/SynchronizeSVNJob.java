@@ -27,7 +27,7 @@ import com.liferay.portal.kernel.job.JobExecutionContext;
 import com.liferay.portal.kernel.job.JobExecutionException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Time;
-import com.liferay.portlet.service.PropsUtil;
+import com.liferay.util.portlet.PortletProps;
 import com.liferay.wol.service.SVNRepositoryLocalServiceUtil;
 import com.liferay.wol.svn.util.SVNConstants;
 
@@ -42,7 +42,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class SynchronizeSVNJob implements IntervalJob {
 
-	public static final long INTERVAL = GetterUtil.getLong(PropsUtil.get(
+	public static final long INTERVAL = GetterUtil.getLong(PortletProps.get(
 		"svn.synchronization.interval")) * Time.MINUTE;
 
 	public void execute(JobExecutionContext context)

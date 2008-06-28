@@ -33,7 +33,6 @@
 
 <%@ page import="com.liferay.alfrescocontent.util.AlfrescoContentCacheUtil" %>
 <%@ page import="com.liferay.alfrescocontent.util.AlfrescoContentUtil" %>
-<%@ page import="com.liferay.alfrescocontent.util.PortletProps" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.log.Log" %>
@@ -48,6 +47,7 @@
 <%@ page import="com.liferay.portal.service.permission.PortletPermissionUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
+<%@ page import="com.liferay.util.portlet.PortletProps" %>
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>

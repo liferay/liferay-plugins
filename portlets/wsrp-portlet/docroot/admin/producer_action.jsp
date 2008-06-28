@@ -34,7 +34,7 @@ Producer producer = (Producer)row.getObject();
 	<c:if test="<%= ProducerPermission.contains(permissionChecker, producer, ActionKeys.UPDATE) %>">
 		<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UPDATE %>" />
-			<portlet:param name="redirect" value="<%= "" %>" />
+			<portlet:param name="redirect" value='<%= "" %>' />
 			<portlet:param name="producerId" value="<%= String.valueOf(producer.getProducerId()) %>" />
 		</portlet:renderURL>
 
@@ -55,7 +55,7 @@ Producer producer = (Producer)row.getObject();
 	<c:if test="<%= ProducerPermission.contains(permissionChecker, producer, ActionKeys.DELETE) %>">
 		<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="deleteURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
-			<portlet:param name="redirect" value="<%= "" %>" />
+			<portlet:param name="redirect" value='<%= "" %>' />
 			<portlet:param name="producerId" value="<%= String.valueOf(producer.getProducerId()) %>" />
 		</portlet:actionURL>
 

@@ -66,7 +66,7 @@ String wsdlURL = BeanParamUtil.getString(producer, request, "wsdlURL");
 </tr>
 </table>
 
-<br/>
+<br />
 
 <input type="submit" value="<liferay-ui:message key="save" />" />
 <input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />

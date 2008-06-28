@@ -3,10 +3,6 @@
 
 <web-app>
 	<context-param>
-		<param-name>portlet_properties</param-name>
-		<param-value>wsrp-portlet.properties</param-value>
-	</context-param>
-	<context-param>
 		<param-name>contextClass</param-name>
 		<param-value>com.liferay.portlet.service.LazyClassPathApplicationContext</param-value>
 	</context-param>

@@ -45,7 +45,7 @@ if (producerId > 0) {
 	selectedProducer = ProducerLocalServiceUtil.getProducer(producerId);
 	ServiceDescription sd = ProducerModelUtil.getServiceDescription(selectedProducer);
 	portletDescriptions = sd.getOfferedPortlets();
-} 
+}
 else if (producers.size() > 0) {
 	selectedProducer = producers.get(0);
 	ServiceDescription sd = ProducerModelUtil.getServiceDescription(selectedProducer);
@@ -102,6 +102,6 @@ function refresh() {
 
 <br />
 
-<input type="submit" value="<liferay-ui:message key="save" />"/>
+<input type="submit" value="<liferay-ui:message key="save" />" />
 
 </form>

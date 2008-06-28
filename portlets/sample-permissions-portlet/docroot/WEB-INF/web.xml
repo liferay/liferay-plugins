@@ -2,10 +2,6 @@
 <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app>
-	<context-param>
-		<param-name>portlet_properties</param-name>
-		<param-value>sample-permissions-portlet.properties</param-value>
-	</context-param>
 	<taglib>
 		<taglib-uri>http://java.sun.com/jstl/core_rt</taglib-uri>
 		<taglib-location>/WEB-INF/tld/c-rt.tld</taglib-location>

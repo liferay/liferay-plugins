@@ -50,7 +50,7 @@ else {
 }
 %>
 
-<script src="http://www.google.com/jsapi?key=<%= PropsUtil.get("map.google.maps.api.key") %>" type="text/javascript"></script>
+<script src="http://www.google.com/jsapi?key=<%= PortletProps.get("map.google.maps.api.key") %>" type="text/javascript"></script>
 
 <script type="text/javascript">
 	google.load("maps", "2.x", {"language" : "ja_JP"});

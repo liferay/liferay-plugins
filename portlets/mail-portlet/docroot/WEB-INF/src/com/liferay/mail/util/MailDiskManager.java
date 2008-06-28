@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.util.JSONUtil;
+import com.liferay.util.portlet.PortletProps;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
