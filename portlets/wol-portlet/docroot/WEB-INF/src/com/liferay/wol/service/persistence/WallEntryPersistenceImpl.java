@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
@@ -276,7 +275,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
 
@@ -349,7 +348,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
 
@@ -400,7 +399,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 		List<WallEntry> list = findByGroupId(groupId, 0, 1, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WallEntry exists with the key {");
 
@@ -422,7 +421,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 		List<WallEntry> list = findByGroupId(groupId, count - 1, count, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WallEntry exists with the key {");
 
@@ -449,7 +448,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 		try {
 			session = openSession();
 
-			StringMaker query = new StringMaker();
+			StringBuilder query = new StringBuilder();
 
 			query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
 
@@ -513,7 +512,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
 
@@ -586,7 +585,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
 
@@ -637,7 +636,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 		List<WallEntry> list = findByUserId(userId, 0, 1, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WallEntry exists with the key {");
 
@@ -659,7 +658,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 		List<WallEntry> list = findByUserId(userId, count - 1, count, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WallEntry exists with the key {");
 
@@ -685,7 +684,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 		try {
 			session = openSession();
 
-			StringMaker query = new StringMaker();
+			StringBuilder query = new StringBuilder();
 
 			query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
 
@@ -752,7 +751,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
 
@@ -831,7 +830,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
 
@@ -888,7 +887,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 		List<WallEntry> list = findByG_U(groupId, userId, 0, 1, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WallEntry exists with the key {");
 
@@ -913,7 +912,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 		List<WallEntry> list = findByG_U(groupId, userId, count - 1, count, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WallEntry exists with the key {");
 
@@ -943,7 +942,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 		try {
 			session = openSession();
 
-			StringMaker query = new StringMaker();
+			StringBuilder query = new StringBuilder();
 
 			query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
 
@@ -1069,7 +1068,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.WallEntry ");
 
@@ -1156,7 +1155,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
@@ -1221,7 +1220,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");
@@ -1288,7 +1287,7 @@ public class WallEntryPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append("FROM com.liferay.wol.model.WallEntry WHERE ");

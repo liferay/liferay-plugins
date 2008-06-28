@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
@@ -281,7 +280,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAChangeItem WHERE ");
 
@@ -351,7 +350,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAChangeItem WHERE ");
 
@@ -398,7 +397,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistence
 				0, 1, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAChangeItem exists with the key {");
 
@@ -422,7 +421,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistence
 				count - 1, count, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAChangeItem exists with the key {");
 
@@ -449,7 +448,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistence
 		try {
 			session = openSession();
 
-			StringMaker query = new StringMaker();
+			StringBuilder query = new StringBuilder();
 
 			query.append("FROM com.liferay.wol.model.JIRAChangeItem WHERE ");
 
@@ -563,7 +562,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAChangeItem ");
 
@@ -634,7 +633,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append("FROM com.liferay.wol.model.JIRAChangeItem WHERE ");

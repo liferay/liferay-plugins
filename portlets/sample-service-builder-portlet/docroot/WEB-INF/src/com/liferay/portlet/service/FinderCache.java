@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.cache.MultiVMPoolUtil;
 import com.liferay.portal.kernel.cache.PortalCache;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portlet.service.PropsKeys;
@@ -232,40 +231,40 @@ public class FinderCache implements CacheRegistryItem {
 	}
 
 	private String _encodeGroupKey(String className) {
-		StringMaker sm = new StringMaker();
+		StringBuilder sb = new StringBuilder();
 
-		sm.append(CACHE_NAME);
-		sm.append(StringPool.POUND);
-		sm.append(className);
+		sb.append(CACHE_NAME);
+		sb.append(StringPool.POUND);
+		sb.append(className);
 
-		return sm.toString();
+		return sb.toString();
 	}
 
 	private String _encodeKey(
 		String className, String methodName, String[] params, Object[] args) {
 
-		StringMaker sm = new StringMaker();
+		StringBuilder sb = new StringBuilder();
 
-		sm.append(CACHE_NAME);
-		sm.append(StringPool.POUND);
-		sm.append(className);
-		sm.append(StringPool.POUND);
-		sm.append(methodName);
-		sm.append(_PARAMS_SEPARATOR);
+		sb.append(CACHE_NAME);
+		sb.append(StringPool.POUND);
+		sb.append(className);
+		sb.append(StringPool.POUND);
+		sb.append(methodName);
+		sb.append(_PARAMS_SEPARATOR);
 
 		for (String param : params) {
-			sm.append(StringPool.POUND);
-			sm.append(param);
+			sb.append(StringPool.POUND);
+			sb.append(param);
 		}
 
-		sm.append(_ARGS_SEPARATOR);
+		sb.append(_ARGS_SEPARATOR);
 
 		for (Object arg : args) {
-			sm.append(StringPool.POUND);
-			sm.append(String.valueOf(arg));
+			sb.append(StringPool.POUND);
+			sb.append(String.valueOf(arg));
 		}
 
-		return sm.toString();
+		return sb.toString();
 	}
 
 	private Object _primaryKeyToResult(

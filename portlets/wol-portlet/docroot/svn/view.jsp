@@ -85,27 +85,27 @@
 				jiraIssue = (JIRAIssue)jiraIssueAndComments[0];
 				comments = (String)jiraIssueAndComments[1];
 
-				StringMaker sm = new StringMaker();
+				StringBuilder sb = new StringBuilder();
 
-				sm.append(comments);
-				sm.append("<br />");
+				sb.append(comments);
+				sb.append("<br />");
 
-				sm.append(jiraIssue.getSummary());
-				sm.append("<br />");
+				sb.append(jiraIssue.getSummary());
+				sb.append("<br />");
 
-				sm.append("<a href=\"");
-				sm.append(link);
-				sm.append("\"><img border=\"0\" src=\"");
-				sm.append(request.getContextPath());
-				sm.append("/svn/icon.png\" />SVN</a><br />");
+				sb.append("<a href=\"");
+				sb.append(link);
+				sb.append("\"><img border=\"0\" src=\"");
+				sb.append(request.getContextPath());
+				sb.append("/svn/icon.png\" />SVN</a><br />");
 
-				sm.append("<a href=\"http://support.liferay.com/browse/");
-				sm.append(jiraIssue.getKey());
-				sm.append("\"><img border=\"0\" src=\"");
-				sm.append(request.getContextPath());
-				sm.append("/jira/icon.png\" />JIRA</a>");
+				sb.append("<a href=\"http://support.liferay.com/browse/");
+				sb.append(jiraIssue.getKey());
+				sb.append("\"><img border=\"0\" src=\"");
+				sb.append(request.getContextPath());
+				sb.append("/jira/icon.png\" />JIRA</a>");
 
-				comments = sm.toString();
+				comments = sb.toString();
 			}
 
 			SyndContent syndContent = new SyndContentImpl();

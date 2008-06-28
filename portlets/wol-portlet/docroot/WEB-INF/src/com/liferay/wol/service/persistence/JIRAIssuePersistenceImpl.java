@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.util.CalendarUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
@@ -278,7 +277,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -351,7 +350,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -402,7 +401,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		List<JIRAIssue> list = findByProjectId(projectId, 0, 1, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -424,7 +423,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		List<JIRAIssue> list = findByProjectId(projectId, count - 1, count, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -451,7 +450,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		try {
 			session = openSession();
 
-			StringMaker query = new StringMaker();
+			StringBuilder query = new StringBuilder();
 
 			query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -500,7 +499,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		JIRAIssue jiraIssue = fetchByKey(key);
 
 		if (jiraIssue == null) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -538,7 +537,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -616,7 +615,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -696,7 +695,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -755,7 +754,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				1, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -778,7 +777,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				count - 1, count, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -805,7 +804,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		try {
 			session = openSession();
 
-			StringMaker query = new StringMaker();
+			StringBuilder query = new StringBuilder();
 
 			query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -877,7 +876,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -957,7 +956,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -1016,7 +1015,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				1, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -1039,7 +1038,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				count - 1, count, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -1066,7 +1065,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		try {
 			session = openSession();
 
-			StringMaker query = new StringMaker();
+			StringBuilder query = new StringBuilder();
 
 			query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -1140,7 +1139,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -1226,7 +1225,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -1290,7 +1289,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		List<JIRAIssue> list = findByMD_P(modifiedDate, projectId, 0, 1, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -1316,7 +1315,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				count, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -1346,7 +1345,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		try {
 			session = openSession();
 
-			StringMaker query = new StringMaker();
+			StringBuilder query = new StringBuilder();
 
 			query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -1430,7 +1429,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -1520,7 +1519,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -1586,7 +1585,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				1, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -1613,7 +1612,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				count - 1, count, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -1643,7 +1642,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		try {
 			session = openSession();
 
-			StringMaker query = new StringMaker();
+			StringBuilder query = new StringBuilder();
 
 			query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -1727,7 +1726,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -1817,7 +1816,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -1883,7 +1882,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				1, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -1910,7 +1909,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				count - 1, count, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -1940,7 +1939,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		try {
 			session = openSession();
 
-			StringMaker query = new StringMaker();
+			StringBuilder query = new StringBuilder();
 
 			query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -2025,7 +2024,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -2130,7 +2129,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -2209,7 +2208,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				reporterJiraUserId, 0, 1, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -2239,7 +2238,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				reporterJiraUserId, count - 1, count, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -2272,7 +2271,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		try {
 			session = openSession();
 
-			StringMaker query = new StringMaker();
+			StringBuilder query = new StringBuilder();
 
 			query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -2370,7 +2369,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -2475,7 +2474,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -2554,7 +2553,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				assigneeJiraUserId, 0, 1, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -2584,7 +2583,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				assigneeJiraUserId, count - 1, count, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -2617,7 +2616,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		try {
 			session = openSession();
 
-			StringMaker query = new StringMaker();
+			StringBuilder query = new StringBuilder();
 
 			query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -2717,7 +2716,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -2824,7 +2823,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -2903,7 +2902,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				status, 0, 1, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -2933,7 +2932,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				status, count - 1, count, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -2966,7 +2965,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		try {
 			session = openSession();
 
-			StringMaker query = new StringMaker();
+			StringBuilder query = new StringBuilder();
 
 			query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -3066,7 +3065,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -3173,7 +3172,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -3252,7 +3251,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				status, 0, 1, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -3282,7 +3281,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 				status, count - 1, count, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
 
@@ -3315,7 +3314,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 		try {
 			session = openSession();
 
-			StringMaker query = new StringMaker();
+			StringBuilder query = new StringBuilder();
 
 			query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
 
@@ -3461,7 +3460,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.JIRAIssue ");
 
@@ -3609,7 +3608,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
@@ -3674,7 +3673,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
@@ -3747,7 +3746,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
@@ -3820,7 +3819,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
@@ -3895,7 +3894,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
@@ -3980,7 +3979,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
@@ -4065,7 +4064,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
@@ -4151,7 +4150,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
@@ -4250,7 +4249,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
@@ -4351,7 +4350,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");
@@ -4452,7 +4451,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append("FROM com.liferay.wol.model.JIRAIssue WHERE ");

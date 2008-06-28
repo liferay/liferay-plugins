@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
@@ -252,7 +251,7 @@ public class FeedPersistenceImpl extends BasePersistence
 		Feed feed = fetchByTwitterUserId(twitterUserId);
 
 		if (feed == null) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No Feed exists with the key {");
 
@@ -291,7 +290,7 @@ public class FeedPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.twitter.model.Feed WHERE ");
 
@@ -342,7 +341,7 @@ public class FeedPersistenceImpl extends BasePersistence
 		Feed feed = fetchByTwitterScreenName(twitterScreenName);
 
 		if (feed == null) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No Feed exists with the key {");
 
@@ -381,7 +380,7 @@ public class FeedPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.twitter.model.Feed WHERE ");
 
@@ -509,7 +508,7 @@ public class FeedPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.twitter.model.Feed ");
 
@@ -586,7 +585,7 @@ public class FeedPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append("FROM com.liferay.twitter.model.Feed WHERE ");
@@ -652,7 +651,7 @@ public class FeedPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append("FROM com.liferay.twitter.model.Feed WHERE ");

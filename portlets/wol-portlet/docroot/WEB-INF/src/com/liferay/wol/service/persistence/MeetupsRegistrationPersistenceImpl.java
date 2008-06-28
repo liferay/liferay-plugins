@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
@@ -282,7 +281,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append(
 					"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
@@ -356,7 +355,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append(
 					"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
@@ -410,7 +409,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 				0, 1, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No MeetupsRegistration exists with the key {");
 
@@ -434,7 +433,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 				count - 1, count, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No MeetupsRegistration exists with the key {");
 
@@ -461,7 +460,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 		try {
 			session = openSession();
 
-			StringMaker query = new StringMaker();
+			StringBuilder query = new StringBuilder();
 
 			query.append(
 				"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
@@ -512,7 +511,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 				meetupsEntryId);
 
 		if (meetupsRegistration == null) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No MeetupsRegistration exists with the key {");
 
@@ -558,7 +557,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append(
 					"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
@@ -640,7 +639,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append(
 					"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
@@ -721,7 +720,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append(
 					"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
@@ -781,7 +780,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 				1, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No MeetupsRegistration exists with the key {");
 
@@ -808,7 +807,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 				count - 1, count, obc);
 
 		if (list.size() == 0) {
-			StringMaker msg = new StringMaker();
+			StringBuilder msg = new StringBuilder();
 
 			msg.append("No MeetupsRegistration exists with the key {");
 
@@ -839,7 +838,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 		try {
 			session = openSession();
 
-			StringMaker query = new StringMaker();
+			StringBuilder query = new StringBuilder();
 
 			query.append(
 				"FROM com.liferay.wol.model.MeetupsRegistration WHERE ");
@@ -966,7 +965,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("FROM com.liferay.wol.model.MeetupsRegistration ");
 
@@ -1059,7 +1058,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append(
@@ -1130,7 +1129,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append(
@@ -1207,7 +1206,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistence
 			try {
 				session = openSession();
 
-				StringMaker query = new StringMaker();
+				StringBuilder query = new StringBuilder();
 
 				query.append("SELECT COUNT(*) ");
 				query.append(
