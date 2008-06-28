@@ -34,6 +34,8 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.permission.UserPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portlet.social.model.SocialRelationConstants;
+import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.wol.model.WallEntry;
 import com.liferay.wol.service.WallEntryLocalServiceUtil;
@@ -88,6 +90,26 @@ public class WallPortlet extends JSPPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		if (!themeDisplay.isSignedIn()) {
+			return;
+		}
+
+		Group group = GroupLocalServiceUtil.getGroup(
+			themeDisplay.getPortletGroupId());
+
+		User user = null;
+
+		if (group.isUser()) {
+			user = UserLocalServiceUtil.getUserById(group.getClassPK());
+		}
+		else {
+			return;
+		}
+
+		if ((themeDisplay.getUserId() != user.getUserId()) &&
+			(!SocialRelationLocalServiceUtil.hasRelation(
+				themeDisplay.getUserId(), user.getUserId(),
+				SocialRelationConstants.TYPE_BI_FRIEND))) {
+
 			return;
 		}
 

@@ -24,156 +24,184 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-User wallToWallUser = null;
+<c:choose>
+	<c:when test="<%= themeDisplay.isSignedIn() && ((user.getUserId() == user2.getUserId()) || SocialRelationLocalServiceUtil.hasRelation(user.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND)) %>">
 
-try {
-	String wallToWallScreenName = ParamUtil.getString(request, "wallToWallScreenName");
+		<%
+		User wallToWallUser = null;
 
-	if (themeDisplay.isSignedIn() && Validator.isNotNull(wallToWallScreenName)) {
-		wallToWallUser = UserLocalServiceUtil.getUserByScreenName(themeDisplay.getCompanyId(), wallToWallScreenName);
-	}
-}
-catch (Exception e) {
-}
+		try {
+			String wallToWallScreenName = ParamUtil.getString(request, "wallToWallScreenName");
 
-if (wallToWallUser != null) {
-	renderResponse.setTitle(LanguageUtil.format(pageContext, "my-wall-to-wall-with-x", wallToWallUser.getFullName()));
-}
-%>
+			if (themeDisplay.isSignedIn() && Validator.isNotNull(wallToWallScreenName)) {
+				wallToWallUser = UserLocalServiceUtil.getUserByScreenName(themeDisplay.getCompanyId(), wallToWallScreenName);
+			}
+		}
+		catch (Exception e) {
+		}
 
-<script type="text/javascript">
-	function <portlet:namespace />addWallEntry() {
-		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="addWallEntry" />');
-	}
+		if (wallToWallUser != null) {
+			renderResponse.setTitle(LanguageUtil.format(pageContext, "my-wall-to-wall-with-x", wallToWallUser.getFullName()));
+		}
+		%>
 
-	function <portlet:namespace />deleteWallEntry(wallEntryId) {
-		document.<portlet:namespace />fm.<portlet:namespace />wallEntryId.value = wallEntryId;
-		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="deleteWallEntry" />');
-	}
-</script>
+		<script type="text/javascript">
+			function <portlet:namespace />addWallEntry() {
+				submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="addWallEntry" />');
+			}
 
-<c:if test="<%= themeDisplay.isSignedIn() %>">
-	<form method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />addWallEntry(); return false;">
-	<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
-	<input name="<portlet:namespace />wallEntryId" type="hidden" value="" />
+			function <portlet:namespace />deleteWallEntry(wallEntryId) {
+				document.<portlet:namespace />fm.<portlet:namespace />wallEntryId.value = wallEntryId;
+				submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="deleteWallEntry" />');
+			}
+		</script>
 
-	<liferay-ui:input-field model="<%= WallEntry.class %>" bean="<%= null %>" field="comments" />
+		<form method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />addWallEntry(); return false;">
+		<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
+		<input name="<portlet:namespace />wallEntryId" type="hidden" value="" />
 
-	<br /><br />
+		<liferay-ui:input-field model="<%= WallEntry.class %>" bean="<%= null %>" field="comments" />
 
-	<input type="submit" value="<liferay-ui:message key="post" />" />
+		<br /><br />
 
-	</form>
+		<input type="submit" value="<liferay-ui:message key="post" />" />
 
-	<div class="separator"><!-- --></div>
-</c:if>
+		</form>
 
-<%
-PortletURL portletURL = renderResponse.createRenderURL();
+		<div class="separator"><!-- --></div>
 
-SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
+		<%
+		PortletURL portletURL = renderResponse.createRenderURL();
 
-int total = 0;
+		SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
 
-if (wallToWallUser != null) {
-	total = WallEntryLocalServiceUtil.getWallToWallEntriesCount(group.getGroupId(), user.getGroup().getGroupId(), user2.getUserId(), user.getUserId());
-}
-else {
-	total = WallEntryLocalServiceUtil.getWallEntriesCount(group.getGroupId());
-}
+		int total = 0;
 
-searchContainer.setTotal(total);
+		if (wallToWallUser != null) {
+			total = WallEntryLocalServiceUtil.getWallToWallEntriesCount(group.getGroupId(), user.getGroup().getGroupId(), user2.getUserId(), user.getUserId());
+		}
+		else {
+			total = WallEntryLocalServiceUtil.getWallEntriesCount(group.getGroupId());
+		}
 
-List<WallEntry> results = null;
+		searchContainer.setTotal(total);
 
-if (wallToWallUser != null) {
-	results = WallEntryLocalServiceUtil.getWallToWallEntries(group.getGroupId(), user.getGroup().getGroupId(), user2.getUserId(), user.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-}
-else {
-	results = WallEntryLocalServiceUtil.getWallEntries(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
-}
-%>
+		List<WallEntry> results = null;
 
-<table class="lfr-table" width="100%">
+		if (wallToWallUser != null) {
+			results = WallEntryLocalServiceUtil.getWallToWallEntries(group.getGroupId(), user.getGroup().getGroupId(), user2.getUserId(), user.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
+		}
+		else {
+			results = WallEntryLocalServiceUtil.getWallEntries(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
+		}
+		%>
 
-<%
-for (int i = 0; i < results.size(); i++) {
-	WallEntry wallEntry = results.get(i);
+		<table class="lfr-table" width="100%">
 
-	User wallUser = UserLocalServiceUtil.getUserById(wallEntry.getUserId());
-%>
+		<%
+		for (int i = 0; i < results.size(); i++) {
+			WallEntry wallEntry = results.get(i);
 
-	<c:if test="<%= i != 0 %>">
-		<tr>
-			<td colspan="2">
-				<div class="separator"><!-- --></div>
-			</td>
-		</tr>
-	</c:if>
+			User wallUser = UserLocalServiceUtil.getUserById(wallEntry.getUserId());
+		%>
 
-	<tr>
-		<td align="center" valign="top">
-			<liferay-ui:user-display
-				userId="<%= wallEntry.getUserId() %>"
-				userName="<%= wallEntry.getUserName() %>"
-				displayStyle="<%= 2 %>"
-			/>
-		</td>
-		<td valign="top" width="99%">
-			<div>
-				<%= wallEntry.getComments() %>
-			</div>
-
-			<br />
-
-			<div>
-				<%= LanguageUtil.format(pageContext, "posted-on-x", dateFormatDateTime.format(wallEntry.getCreateDate())) %>
-			</div>
-
-			<c:if test="<%= themeDisplay.isSignedIn() && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
-				<br />
-
-				<%
-				String postMessage = null;
-
-				if (wallUser.getUserId() == themeDisplay.getUserId()) {
-					postMessage = "write-on-my-wall";
-				}
-				else {
-					postMessage = LanguageUtil.format(pageContext, "write-on-x-wall", wallUser.getFirstName());
-				}
-
-				String wallToWallHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + "/profile/-/wall/" + wallUser.getScreenName();
-				String postHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + "/profile/-/wall";
-				String deleteHREF = "javascript: " + renderResponse.getNamespace() + "deleteWallEntry(" + wallEntry.getWallEntryId() + ");";
-				%>
-
-				<liferay-ui:icon-list>
-					<c:if test="<%= (wallToWallUser == null) && (wallUser.getUserId() != themeDisplay.getUserId()) %>">
-						<liferay-ui:icon image="all_pages" message="wall-to-wall" url="<%= wallToWallHREF %>" label="<%= true %>" />
-					</c:if>
-
-					<liferay-ui:icon image="post" message='<%= postMessage %>' url="<%= postHREF %>" label="<%= true %>" />
-
-					<c:if test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
-						<liferay-ui:icon-delete url="<%= deleteHREF %>" label="<%= true %>" />
-					</c:if>
-				</liferay-ui:icon-list>
+			<c:if test="<%= i != 0 %>">
+				<tr>
+					<td colspan="2">
+						<div class="separator"><!-- --></div>
+					</td>
+				</tr>
 			</c:if>
-		</td>
-	</tr>
 
-<%
-}
-%>
+			<tr>
+				<td align="center" valign="top">
+					<liferay-ui:user-display
+						userId="<%= wallEntry.getUserId() %>"
+						userName="<%= wallEntry.getUserName() %>"
+						displayStyle="<%= 2 %>"
+					/>
+				</td>
+				<td valign="top" width="99%">
+					<div>
+						<%= wallEntry.getComments() %>
+					</div>
 
-</table>
+					<br />
 
-<c:if test="<%= results.size() > 0 %>">
-	<div class="separator"><!-- --></div>
+					<div>
+						<%= LanguageUtil.format(pageContext, "posted-on-x", dateFormatDateTime.format(wallEntry.getCreateDate())) %>
+					</div>
 
-	<div class="taglib-search-iterator-page-iterator-bottom">
-		<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
-	</div>
-</c:if>
+					<c:if test="<%= themeDisplay.isSignedIn() && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
+						<br />
+
+						<%
+						String postMessage = null;
+
+						if (wallUser.getUserId() == themeDisplay.getUserId()) {
+							postMessage = "write-on-my-wall";
+						}
+						else {
+							postMessage = LanguageUtil.format(pageContext, "write-on-x-wall", wallUser.getFirstName());
+						}
+
+						String wallToWallHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + "/profile/-/wall/" + wallUser.getScreenName();
+						String postHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + "/profile/-/wall";
+						String deleteHREF = "javascript: " + renderResponse.getNamespace() + "deleteWallEntry(" + wallEntry.getWallEntryId() + ");";
+						%>
+
+						<liferay-ui:icon-list>
+							<c:if test="<%= (wallToWallUser == null) && (wallUser.getUserId() != themeDisplay.getUserId()) %>">
+								<liferay-ui:icon image="all_pages" message="wall-to-wall" url="<%= wallToWallHREF %>" label="<%= true %>" />
+							</c:if>
+
+							<liferay-ui:icon image="post" message='<%= postMessage %>' url="<%= postHREF %>" label="<%= true %>" />
+
+							<c:if test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
+								<liferay-ui:icon-delete url="<%= deleteHREF %>" label="<%= true %>" />
+							</c:if>
+						</liferay-ui:icon-list>
+					</c:if>
+				</td>
+			</tr>
+
+		<%
+		}
+		%>
+
+		</table>
+
+		<c:if test="<%= results.size() > 0 %>">
+			<div class="separator"><!-- --></div>
+
+			<div class="taglib-search-iterator-page-iterator-bottom">
+				<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
+			</div>
+		</c:if>
+	</c:when>
+	<c:when test="<%= user.getUserId() != user2.getUserId() %>">
+		<div class="portlet-msg-info">
+			<%= LanguageUtil.format(pageContext, (user2.isMale() ? "you-have-to-be-x's-friend-to-access-his-wall" : "you-have-to-be-x's-friend-to-access-her-wall"), user2.getFirstName()) %>
+
+			<c:choose>
+				<c:when test="<%= themeDisplay.isSignedIn() %>">
+					<c:choose>
+						<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(user.getUserId(), User.class.getName(), user.getUserId(), FriendsRequestKeys.ADD_FRIEND, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
+							<%= LanguageUtil.format(pageContext, (user2.isMale() ? "x-needs-to-approve-you-as-his-friend" : "x-needs-to-approve-you-as-her-friend"), user2.getFirstName()) %>
+						</c:when>
+						<c:otherwise>
+							<liferay-portlet:actionURL var="addAsFriendURL" name="addFriend" portletName="1_WAR_wolportlet">
+								<liferay-portlet:param name="redirect" value='<%= PortalUtil.getPathFriendlyURLPublic() + StringPool.SLASH + user2.getScreenName() + "/profile" %>' />
+							</liferay-portlet:actionURL>
+
+							<a href="<%= addAsFriendURL %>"><%= LanguageUtil.format(pageContext, "ask-x-to-be-your-friend", user2.getFirstName()) %></a>
+						</c:otherwise>
+					</c:choose>
+				</c:when>
+				<c:otherwise>
+					<a href="<%= themeDisplay.getURLSignIn() %>"><liferay-ui:message key="sign-in-to-your-account" /></a>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</c:when>
+</c:choose>
