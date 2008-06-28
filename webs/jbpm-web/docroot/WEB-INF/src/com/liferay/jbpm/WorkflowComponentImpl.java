@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -278,15 +277,15 @@ public class WorkflowComponentImpl implements WorkflowComponent {
 
 		jbpmContext.deployProcessDefinition(definition);
 
-		StringMaker sm = new StringMaker();
+		StringBuilder sb = new StringBuilder();
 
-		sm.append("<result>");
-		sm.append("<definitionId>");
-		sm.append(definition.getId());
-		sm.append("</definitionId>");
-		sm.append("</result>");
+		sb.append("<result>");
+		sb.append("<definitionId>");
+		sb.append(definition.getId());
+		sb.append("</definitionId>");
+		sb.append("</result>");
 
-		return sm.toString();
+		return sb.toString();
 	}
 
 	public List getCurrentTasks(long instanceId, long tokenId)
@@ -1088,15 +1087,15 @@ public class WorkflowComponentImpl implements WorkflowComponent {
 	}
 
 	protected String getCountXml(int count) {
-		StringMaker sm = new StringMaker();
+		StringBuilder sb = new StringBuilder();
 
-		sm.append("<result>");
-		sm.append("<count>");
-		sm.append(count);
-		sm.append("</count>");
-		sm.append("</result>");
+		sb.append("<result>");
+		sb.append("<count>");
+		sb.append(count);
+		sb.append("</count>");
+		sb.append("</result>");
 
-		return sm.toString();
+		return sb.toString();
 	}
 
 	protected String getParamValue(Map parameterMap, String name) {
