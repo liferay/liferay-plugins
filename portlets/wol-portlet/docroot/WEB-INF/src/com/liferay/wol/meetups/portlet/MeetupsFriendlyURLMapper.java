@@ -25,7 +25,6 @@ package com.liferay.wol.meetups.portlet;
 import com.liferay.portal.kernel.portlet.BaseFriendlyURLMapper;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
 
 import java.util.Map;
@@ -55,14 +54,14 @@ public class MeetupsFriendlyURLMapper extends BaseFriendlyURLMapper {
 			portletURL.addParameterIncludedInPath("jspPage");
 			portletURL.addParameterIncludedInPath("meetupsEntryId");
 
-			StringMaker sm = new StringMaker();
+			StringBuilder sb = new StringBuilder();
 
-			sm.append(StringPool.SLASH);
-			sm.append(_MAPPING);
-			sm.append("/entry/");
-			sm.append(meetupsEntryId);
+			sb.append(StringPool.SLASH);
+			sb.append(_MAPPING);
+			sb.append("/entry/");
+			sb.append(meetupsEntryId);
 
-			return sm.toString();
+			return sb.toString();
 		}
 
 		return null;

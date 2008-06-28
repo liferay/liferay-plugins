@@ -22,7 +22,6 @@
 
 package com.liferay.wol.jira.social;
 
-import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -79,17 +78,17 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 		JIRAIssue jiraIssue = JIRAIssueLocalServiceUtil.getJIRAIssue(
 			activity.getClassPK());
 
-		StringMaker sm = new StringMaker();
+		StringBuilder sb = new StringBuilder();
 
-		sm.append("http://support.liferay.com/browse/");
-		sm.append(jiraIssue.getKey());
+		sb.append("http://support.liferay.com/browse/");
+		sb.append(jiraIssue.getKey());
 
 		if (activityType == JIRAActivityKeys.ADD_COMMENT) {
-			sm.append("#action_");
-			sm.append(jiraAction.getJiraActionId());
+			sb.append("#action_");
+			sb.append(jiraAction.getJiraActionId());
 		}
 
-		String link = sm.toString();
+		String link = sb.toString();
 
 		// Title
 
@@ -113,28 +112,27 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		// Body
 
-		sm = new StringMaker();
+		sb = new StringBuilder();
 
-		sm.append("<a href=\"");
-		sm.append(link);
-
-		sm.append("\" target=\"_blank\">");
+		sb.append("<a href=\"");
+		sb.append(link);
+		sb.append("\" target=\"_blank\">");
 
 		if (activityType == JIRAActivityKeys.ADD_CHANGE) {
-			sm.append(
+			sb.append(
 				interpretJIRAChangeItems(
 					extraData.optJSONArray("jiraChangeItems"), themeDisplay));
 		}
 		else if (activityType == JIRAActivityKeys.ADD_COMMENT) {
-			sm.append(cleanContent(jiraAction.getBody()));
+			sb.append(cleanContent(jiraAction.getBody()));
 		}
 		else if (activityType == JIRAActivityKeys.ADD_ISSUE) {
-			sm.append(cleanContent(jiraIssue.getSummary()));
+			sb.append(cleanContent(jiraIssue.getSummary()));
 		}
 
-		sm.append("</a>");
+		sb.append("</a>");
 
-		String body = sm.toString();
+		String body = sb.toString();
 
 		return new SocialActivityFeedEntry(link, title, body);
 	}
@@ -155,34 +153,34 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 			return StringPool.BLANK;
 		}
 
-		StringMaker sm = new StringMaker();
+		StringBuilder sb = new StringBuilder();
 
 		if (field.equals("description") || field.equals("summary")) {
-			sm.append(
+			sb.append(
 				themeDisplay.translate(
 					"activity-wol-jira-add-change-" + field));
-			sm.append("<br />");
+			sb.append("<br />");
 		}
 		else if (field.equals("assignee") || field.equals("attachment") ||
 				 field.equals("fix-version") || field.equals("issuetype") ||
 				 field.equals("priority") || field.equals("resolution") ||
 				 field.equals("status") || field.equals("version")) {
 
-			sm.append(
+			sb.append(
 				themeDisplay.translate(
 					"activity-wol-jira-add-change-" + field,
 					new Object[] {newString}));
-			sm.append("<br />");
+			sb.append("<br />");
 		}
 		else if (field.equals("link") && newValue.startsWith("LEP-")) {
-			sm.append(
+			sb.append(
 				themeDisplay.translate(
 					"activity-wol-jira-add-change-" + field,
 					new Object[] {newValue}));
-			sm.append("<br />");
+			sb.append("<br />");
 		}
 
-		return sm.toString();
+		return sb.toString();
 	}
 
 	protected String interpretJIRAChangeItems(
@@ -193,20 +191,20 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 			return StringPool.BLANK;
 		}
 
-		StringMaker sm = new StringMaker();
+		StringBuilder sb = new StringBuilder();
 
 		for (int i = 0; i < jiraChangeItems.length(); i++) {
 			JSONObject jiraChangeItem = jiraChangeItems.getJSONObject(i);
 
-			sm.append(interpretJIRAChangeItem(jiraChangeItem, themeDisplay));
+			sb.append(interpretJIRAChangeItem(jiraChangeItem, themeDisplay));
 		}
 
-		if (sm.length() == 0) {
-			sm.append(
+		if (sb.length() == 0) {
+			sb.append(
 				themeDisplay.translate("activity-wol-jira-add-change-default"));
 		}
 
-		return sm.toString();
+		return sb.toString();
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {

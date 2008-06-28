@@ -22,7 +22,6 @@
 
 package com.liferay.twitter.social;
 
-import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -62,35 +61,35 @@ public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String title = StringPool.BLANK;
 
-		StringMaker sm = new StringMaker();
+		StringBuilder sb = new StringBuilder();
 
-		sm.append("<a href=\"");
-		sm.append(themeDisplay.getURLPortal());
-		sm.append(themeDisplay.getPathFriendlyURLPublic());
-		sm.append(StringPool.SLASH);
-		sm.append(creatorUser.getScreenName());
-		sm.append("/profile\">");
-		sm.append(creatorUserName);
-		sm.append("</a>");
+		sb.append("<a href=\"");
+		sb.append(themeDisplay.getURLPortal());
+		sb.append(themeDisplay.getPathFriendlyURLPublic());
+		sb.append(StringPool.SLASH);
+		sb.append(creatorUser.getScreenName());
+		sb.append("/profile\">");
+		sb.append(creatorUserName);
+		sb.append("</a>");
 
-		String creatorUserNameURL = sm.toString();
+		String creatorUserNameURL = sb.toString();
 
 		title = themeDisplay.translate(
 			"activity-twitter-add-status", new Object[] {creatorUserNameURL});
 
 		// Body
 
-		sm = new StringMaker();
+		sb = new StringBuilder();
 
-		sm.append("<a href=\"http://twitter.com/");
-		sm.append(creatorUser.getContact().getTwitterSn());
-		sm.append("/statuses/");
-		sm.append(activity.getClassPK());
-		sm.append("\" target=\"_blank\">");
-		sm.append(extraData.optString("text"));
-		sm.append("</a>");
+		sb.append("<a href=\"http://twitter.com/");
+		sb.append(creatorUser.getContact().getTwitterSn());
+		sb.append("/statuses/");
+		sb.append(activity.getClassPK());
+		sb.append("\" target=\"_blank\">");
+		sb.append(extraData.optString("text"));
+		sb.append("</a>");
 
-		String body = sm.toString();
+		String body = sb.toString();
 
 		return new SocialActivityFeedEntry(title, body);
 	}

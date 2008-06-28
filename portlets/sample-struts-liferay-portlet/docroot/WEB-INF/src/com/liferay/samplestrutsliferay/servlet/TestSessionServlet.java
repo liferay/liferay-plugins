@@ -22,8 +22,6 @@
 
 package com.liferay.samplestrutsliferay.servlet;
 
-import com.liferay.portal.kernel.util.StringMaker;
-
 import java.io.IOException;
 
 import java.util.Enumeration;
@@ -47,23 +45,23 @@ public class TestSessionServlet extends HttpServlet {
 
 		HttpSession ses = req.getSession();
 
-		StringMaker sm = new StringMaker();
+		StringBuilder sb = new StringBuilder();
 
 		// Remote User
 
-		sm.append("<b>Remote User:</b><br /><br />");
-		sm.append(req.getRemoteUser());
-		sm.append("<br /><br />");
+		sb.append("<b>Remote User:</b><br /><br />");
+		sb.append(req.getRemoteUser());
+		sb.append("<br /><br />");
 
 		// Session ID
 
-		sm.append("<b>Session ID:</b><br /><br />");
-		sm.append(req.getRequestedSessionId());
-		sm.append("<br /><br />");
+		sb.append("<b>Session ID:</b><br /><br />");
+		sb.append(req.getRequestedSessionId());
+		sb.append("<br /><br />");
 
 		// Servlet Session Attributes
 
-		sm.append("<b>Servlet Session Attributes:</b><br /><br />");
+		sb.append("<b>Servlet Session Attributes:</b><br /><br />");
 
 		Enumeration enu = ses.getAttributeNames();
 
@@ -72,15 +70,15 @@ public class TestSessionServlet extends HttpServlet {
 
 			Object attrValue = ses.getAttribute(attrName);
 
-			sm.append(attrName);
-			sm.append("=");
-			sm.append(attrValue);
-			sm.append("<br />");
+			sb.append(attrName);
+			sb.append("=");
+			sb.append(attrValue);
+			sb.append("<br />");
 		}
 
 		res.setContentType("text/html");
 
-		res.getOutputStream().print(sm.toString());
+		res.getOutputStream().print(sb.toString());
 		res.getOutputStream().flush();
 	}
 

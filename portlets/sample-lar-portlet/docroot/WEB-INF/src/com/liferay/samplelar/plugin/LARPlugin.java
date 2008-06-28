@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.lar.PortletDataHandler;
 import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
 import com.liferay.portal.kernel.lar.PortletDataHandlerChoice;
 import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
-import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.kernel.zip.ZipWriter;
@@ -115,7 +114,7 @@ public class LARPlugin implements PortletDataHandler {
 					parameterMap, "data-type", _dataType.getDefaultChoice());
 
 				if (Validator.equals(dataType, "csv")) {
-					StringMaker csv = new StringMaker();
+					StringBuilder csv = new StringBuilder();
 
 					csv.append("data 1," + new Date() + "\n");
 					csv.append("data 2," + new Date() + "\n");
@@ -127,7 +126,7 @@ public class LARPlugin implements PortletDataHandler {
 					zipWriter.addEntry(filePath, csv.toString());
 				}
 				else if (Validator.equals(dataType, "xml")) {
-					StringMaker xml = new StringMaker();
+					StringBuilder xml = new StringBuilder();
 
 					xml.append("<?xml version=\"1.0\"?>\n\n");
 					xml.append("<records>\n");

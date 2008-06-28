@@ -24,7 +24,6 @@ package com.liferay.portlet.shindig.util;
 
 import com.liferay.portal.kernel.servlet.ImageServletTokenUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.EmailAddress;
@@ -86,19 +85,19 @@ public class ShindigUtil {
 			String ownerId, long viewerId, String appId, String domain,
 			String appUrl) {
 
-		StringMaker sm = new StringMaker();
+		StringBuilder sb = new StringBuilder();
 
-		sm.append(HttpUtil.encodeURL(ownerId, true));
-		sm.append(StringPool.COLON);
-		sm.append(HttpUtil.encodeURL(String.valueOf(viewerId), true));
-		sm.append(StringPool.COLON);
-		sm.append(HttpUtil.encodeURL(appId, true));
-		sm.append(StringPool.COLON);
-		sm.append(HttpUtil.encodeURL(domain, true));
-		sm.append(StringPool.COLON);
-		sm.append(HttpUtil.encodeURL(appUrl, true));
+		sb.append(HttpUtil.encodeURL(ownerId, true));
+		sb.append(StringPool.COLON);
+		sb.append(HttpUtil.encodeURL(String.valueOf(viewerId), true));
+		sb.append(StringPool.COLON);
+		sb.append(HttpUtil.encodeURL(appId, true));
+		sb.append(StringPool.COLON);
+		sb.append(HttpUtil.encodeURL(domain, true));
+		sb.append(StringPool.COLON);
+		sb.append(HttpUtil.encodeURL(appUrl, true));
 
-		return sm.toString();
+		return sb.toString();
 	}
 
 	public static Activity getActivity(SocialActivity socialActivity) {
@@ -370,24 +369,24 @@ public class ShindigUtil {
 
 			// Required Fields
 
-			StringMaker sm = new StringMaker();
-			sm.append(token.getDomain());
-			sm.append(PortalUtil.getPathFriendlyURLPublic());
-			sm.append(user.getScreenName());
+			StringBuilder sb = new StringBuilder();
+			sb.append(token.getDomain());
+			sb.append(PortalUtil.getPathFriendlyURLPublic());
+			sb.append(user.getScreenName());
 
-			person.setProfileUrl(sm.toString());
+			person.setProfileUrl(sb.toString());
 
-			sm = new StringMaker();
-			sm.append(token.getDomain());
-			sm.append(PortalUtil.getPathImage());
-			sm.append("/user_");
-			sm.append(user.isFemale() ? "female" : "male");
-			sm.append("_portrait?img_id=");
-			sm.append(user.getPortraitId());
-			sm.append("&t=");
-			sm.append(ImageServletTokenUtil.getToken(user.getPortraitId()));
+			sb = new StringBuilder();
+			sb.append(token.getDomain());
+			sb.append(PortalUtil.getPathImage());
+			sb.append("/user_");
+			sb.append(user.isFemale() ? "female" : "male");
+			sb.append("_portrait?img_id=");
+			sb.append(user.getPortraitId());
+			sb.append("&t=");
+			sb.append(ImageServletTokenUtil.getToken(user.getPortraitId()));
 
-			person.setThumbnailUrl(sm.toString());
+			person.setThumbnailUrl(sb.toString());
 
 			// Optional Fields
 

@@ -22,7 +22,6 @@
 
 package com.liferay.wol.svn.social;
 
-import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
@@ -78,15 +77,15 @@ public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		// Body
 
-		StringMaker sm = new StringMaker();
+		StringBuilder sb = new StringBuilder();
 
-		sm.append("<a href=\"");
-		sm.append(link);
-		sm.append("\" target=\"_blank\">");
-		sm.append(svnRevision.getComments());
-		sm.append("</a>");
+		sb.append("<a href=\"");
+		sb.append(link);
+		sb.append("\" target=\"_blank\">");
+		sb.append(svnRevision.getComments());
+		sb.append("</a>");
 
-		String body = sm.toString();
+		String body = sb.toString();
 
 		return new SocialActivityFeedEntry(link, title, body);
 	}

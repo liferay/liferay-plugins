@@ -22,7 +22,6 @@
 
 package com.liferay.wol.wall.social;
 
-import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -82,15 +81,15 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		// Body
 
-		StringMaker sm = new StringMaker();
+		StringBuilder sb = new StringBuilder();
 
-		sm.append("<a href=\"");
-		sm.append(link);
-		sm.append("\">");
-		sm.append(cleanContent(wallEntry.getComments()));
-		sm.append("</a>");
+		sb.append("<a href=\"");
+		sb.append(link);
+		sb.append("\">");
+		sb.append(cleanContent(wallEntry.getComments()));
+		sb.append("</a>");
 
-		String body = sm.toString();
+		String body = sb.toString();
 
 		return new SocialActivityFeedEntry(link, title, body);
 	}

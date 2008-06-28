@@ -49,7 +49,6 @@ import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
@@ -98,40 +97,40 @@ import org.apache.commons.logging.LogFactory;
  *
  */
 public class ConsumerPortlet extends GenericPortlet {
-	public void processAction(ActionRequest req, ActionResponse res) 
+	public void processAction(ActionRequest req, ActionResponse res)
 		throws PortletException {
-	
+
 		WSRPV2MarkupPortType markupService = null;
-		
+
 		try {
 			markupService = getMarkupService(req);
 		}
 		catch (Exception e) {
 			_log.error(e.getMessage(), e);
-			
+
 			return;
-		}	
+		}
 
 		PortletContext portletContext = new PortletContext();
 		RuntimeContext runtimeContext = new RuntimeContext();
 		MarkupParams markupParams = new MarkupParams();
 		UserContext userContext = new UserContext();
 		InteractionParams interactionParams = new InteractionParams();
-		
+
 		initPerformBlockingInteraction(
-			req, portletContext, runtimeContext, markupParams, 
+			req, portletContext, runtimeContext, markupParams,
 			userContext, interactionParams);
-		
-		PerformBlockingInteraction pbi = new PerformBlockingInteraction();		
+
+		PerformBlockingInteraction pbi = new PerformBlockingInteraction();
 
 		pbi.setPortletContext(portletContext);
 		pbi.setRuntimeContext(runtimeContext);
 		pbi.setMarkupParams(markupParams);
 		pbi.setUserContext(userContext);
 		pbi.setInteractionParams(interactionParams);
-		
+
 		BlockingInteractionResponse bir = null;
-		
+
 		try {
 			bir = markupService.performBlockingInteraction(pbi);
 		}
@@ -140,57 +139,57 @@ public class ConsumerPortlet extends GenericPortlet {
 
 			return;
 		}
-		
+
 		processBlockingInteractionResponse(req, res, bir);
 	}
-	
+
 	public void render(RenderRequest req, RenderResponse res)
 		throws PortletException {
 
 		PortletSession ses = req.getPortletSession();
 
-		MarkupContext cachedMarkup = 
+		MarkupContext cachedMarkup =
 			(MarkupContext)ses.getAttribute("markupContext");
-		
+
 		// Optimization for markup from previous blocking interaction
-		
+
 		if (cachedMarkup != null) {
 			processMarkupContext(req, res, cachedMarkup);
-			
+
 			ses.removeAttribute("markupContext");
-			
+
 			return;
-		}		
+		}
 
 		WSRPV2MarkupPortType markupService = null;
-		
+
 		try {
 			markupService = getMarkupService(req);
 		}
 		catch (Exception e) {
 			_log.error(e.getMessage(), e);
-			
+
 			return;
-		}	
+		}
 
 		PortletContext portletContext = new PortletContext();
 		RuntimeContext runtimeContext = new RuntimeContext();
 		UserContext userContext = new UserContext();
 		MarkupParams markupParams = new MarkupParams();
-		
+
 		initGetMarkup(
-			req, portletContext, runtimeContext, markupParams, 
+			req, portletContext, runtimeContext, markupParams,
 			userContext);
-				
-		GetMarkup getMarkup = new GetMarkup();		
+
+		GetMarkup getMarkup = new GetMarkup();
 
 		getMarkup.setPortletContext(portletContext);
 		getMarkup.setRuntimeContext(runtimeContext);
 		getMarkup.setMarkupParams(markupParams);
 		getMarkup.setUserContext(userContext);
-		
+
 		MarkupResponse markupResponse = null;
-		
+
 		try {
 			markupResponse = markupService.getMarkup(getMarkup);
 		}
@@ -202,24 +201,24 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		processMarkupResponse(req, res, markupResponse);
 	}
-	
+
 	protected void addFormField(
 		List<NamedString> formParams, String name, String values[]) {
-		
+
 		for (int i = 0; i < values.length; i++) {
 			NamedString paramPair = new NamedString();
-			
+
 			paramPair.setName(name);
 			paramPair.setValue(values[i]);
 
 			formParams.add(paramPair);
 		}
 
-	}	
+	}
 
 	protected void addFormFields(
 		PortletRequest req, List<NamedString> params) {
-		
+
 		Enumeration<String> paramNames = req.getParameterNames();
 
 		while (paramNames.hasMoreElements()) {
@@ -234,184 +233,184 @@ public class ConsumerPortlet extends GenericPortlet {
 			addFormField(params, name, values);
 		}
 	}
-	
-	protected WSRPV2MarkupPortType createMarkupService(PortletRequest req) 
+
+	protected WSRPV2MarkupPortType createMarkupService(PortletRequest req)
 		throws Exception {
 
 		PortletPreferences prefs = req.getPreferences();
-		
+
 		long producerId = GetterUtil.getLong(
 			prefs.getValue("producerId", StringPool.BLANK));
-		
+
 		if (producerId <= 0) {
 			return null;
 		}
 
 		Producer producer = ProducerServiceUtil.getProducer(producerId);
-		
-		WSRPV2MarkupPortType markupService = 
+
+		WSRPV2MarkupPortType markupService =
 			ServiceFactory.createMarkupService(producer);
-		
-		ServiceDescription sd = 
+
+		ServiceDescription sd =
 			ProducerModelUtil.getServiceDescription(producer);
-		
+
 		// cookie support
 
 		if (sd.getRequiresInitCookie() != CookieProtocol.NONE) {
 			BindingProvider bindingProvider = (BindingProvider)markupService;
-			
+
 			bindingProvider.getRequestContext().put(
 				BindingProvider.SESSION_MAINTAIN_PROPERTY, true);
 
-			markupService.initCookie(new InitCookie());			
+			markupService.initCookie(new InitCookie());
 		}
-		
+
 		return markupService;
-		
+
 	}
-	
-	protected WSRPV2MarkupPortType getMarkupService(PortletRequest req) 
+
+	protected WSRPV2MarkupPortType getMarkupService(PortletRequest req)
 		throws Exception {
 
 		PortletSession ses = req.getPortletSession();
 
-		WSRPV2MarkupPortType markupService = 
+		WSRPV2MarkupPortType markupService =
 			(WSRPV2MarkupPortType)ses.getAttribute("markupService");
-		
+
 		if (markupService == null) {
 			markupService = createMarkupService(req);
-						
+
 			ses.setAttribute("markupService", markupService);
 		}
-		
+
 		return markupService;
 	}
-	
+
 	protected SessionContext getSessionContext(PortletRequest req) {
 		PortletSession ses = req.getPortletSession();
-		
+
 		return (SessionContext)ses.getAttribute("sessionContext");
 	}
-	
+
 	protected void initFormParams(
-		ActionRequest req, List<NamedString> formParams, 
+		ActionRequest req, List<NamedString> formParams,
 		List<UploadContext> uploadContexts) {
 
-		HttpServletRequest httpReq = 
+		HttpServletRequest httpReq =
 			PortalUtil.getHttpServletRequest(req);
 
 		String contentType = httpReq.getContentType();
 
 		if (Validator.isNotNull(contentType) &&
 				contentType.startsWith(ContentTypes.MULTIPART_FORM_DATA)) {
-			
+
 			initUploadContexts(req, uploadContexts, formParams);
 		}
 		else {
 			addFormFields(req, formParams);
-		}		
+		}
 	}
 
 	protected void initGetMarkup(
-		PortletRequest req, PortletContext pc, RuntimeContext rc, 
+		PortletRequest req, PortletContext pc, RuntimeContext rc,
 		MarkupParams mp, UserContext uc) {
 
 		// PortletContext
-		
+
 		PortletPreferences prefs = req.getPreferences();
 
 		String portletHandle = prefs.getValue(
 				"portletHandle", StringPool.BLANK);
 
 		if (Validator.isNull(portletHandle)) {
-			return;			
+			return;
 		}
-		
+
 		pc.setPortletHandle(portletHandle);
-				
+
 		PortletSession ses = req.getPortletSession();
-		
+
 		byte[] portletState = (byte[])ses.getAttribute("portletState");
-		
+
 		pc.setPortletState(portletState);
-		
+
 		// RuntimeContext
-		
+
 		rc.setUserAuthentication(WSRPSpecKeys.AUTH_PASSWORD);
-		
+
 		SessionContext sessionContext = getSessionContext(req);
-		
+
 		if (sessionContext != null) {
 			SessionParams sessionParams = new SessionParams();
-		
+
 			sessionParams.setSessionID(sessionContext.getSessionID());
-			
+
 			rc.setSessionParams(sessionParams);
 		}
-			
+
 		// MarkupParams
-		
+
 		mp.setSecureClientCommunication(false);
-	
+
 		PortletMode portletMode = req.getPortletMode();
-		
+
 		mp.setMode(WSRPMode.fromPortlet(portletMode).getWSRP());
-		
+
 		WindowState windowState = req.getWindowState();
 
 		mp.setWindowState(
 			WSRPState.fromPortlet(windowState).getWSRP());
 
 		mp.getLocales().add(req.getLocale().toString());
-		
+
 		mp.getMimeTypes().add(ContentTypes.TEXT_HTML_UTF8);
-		
+
 		String navState = req.getParameter(WSRPSpecKeys.NAVIGATIONAL_STATE);
-		
+
 		NavigationalContext navigationalContext = new NavigationalContext();
-		
+
 		navigationalContext.setOpaqueValue(navState);
 
 		mp.setNavigationalContext(navigationalContext);
-				
+
 		LiferayRenderRequest lrReq = (LiferayRenderRequest) req;
-		
+
 		HttpServletRequest httpReq = lrReq.getHttpServletRequest();
 
 		ClientData clientData = new ClientData();
-		
+
 		clientData.setUserAgent(httpReq.getHeader("User-Agent"));
-		
+
 		// UserContext
 
 		String userId = req.getRemoteUser();
-		
+
 		try {
-			User user = 
+			User user =
 				UserLocalServiceUtil.getUser(GetterUtil.getLong(userId, -1));
-			
+
 			if (user != null) {
-	
+
 				uc.setUserContextKey(userId);
-				
+
 				UserProfile userProfile = new UserProfile();
-				
+
 				PersonName personName = new PersonName();
-				
+
 				personName.setFamily(user.getLastName());
 				personName.setMiddle(user.getMiddleName());
 				personName.setGiven(user.getFirstName());
 				personName.setNickname(user.getScreenName());
-	
+
 				userProfile.setName(personName);
-				
+
 				if (user.isMale()) {
 					userProfile.setGender("M");
 				}
 				else {
 					userProfile.setGender("F");
 				}
-				
+
 				uc.setProfile(userProfile);
 			}
 		}
@@ -423,30 +422,30 @@ public class ConsumerPortlet extends GenericPortlet {
 	}
 
 	protected void initPerformBlockingInteraction(
-		ActionRequest req, PortletContext pc, RuntimeContext rc, 
+		ActionRequest req, PortletContext pc, RuntimeContext rc,
 		MarkupParams mp, UserContext uc, InteractionParams ip) {
-		
+
 		initGetMarkup(req, pc, rc, mp, uc);
-		
+
 		// InteractionParams
-		
+
 		ip.setPortletStateChange(StateChange.READ_WRITE);
-		
-		String interactionState = 
+
+		String interactionState =
 			req.getParameter(WSRPSpecKeys.INTERACTION_STATE);
-		
+
 		ip.setInteractionState(interactionState);
-		
+
 		initFormParams(req, ip.getFormParameters(), ip.getUploadContexts());
 	}
-	
+
 	protected void initUploadContexts(
-		ActionRequest req, List<UploadContext> uploadContexts, 
+		ActionRequest req, List<UploadContext> uploadContexts,
 		List<NamedString> params) {
 
 		UploadPortletRequest upr =
 			PortalUtil.getUploadPortletRequest(req);
-		
+
 		Enumeration keys = upr.getParameterNames();
 
 		while (keys.hasMoreElements()) {
@@ -467,21 +466,21 @@ public class ConsumerPortlet extends GenericPortlet {
 
 				uploadContext.setMimeType(partContentType);
 
-				StringMaker sm = new StringMaker();
+				StringBuilder sb = new StringBuilder();
 
-				sm.append("form-data; ");
-				sm.append("name=");
-				sm.append(name);
-				sm.append("; filename=");
-				sm.append(upr.getFileName(name));
+				sb.append("form-data; ");
+				sb.append("name=");
+				sb.append(name);
+				sb.append("; filename=");
+				sb.append(upr.getFileName(name));
 
 				NamedString mimeAttr = new NamedString();
 
 				mimeAttr.setName("Content-Disposition");
-				mimeAttr.setValue(sm.toString());
+				mimeAttr.setValue(sb.toString());
 
 				List<NamedString> mimeAttrs = uploadContext.getMimeAttributes();
-				
+
 				mimeAttrs.add(mimeAttr);
 
 				File file = upr.getFile(name);
@@ -515,16 +514,16 @@ public class ConsumerPortlet extends GenericPortlet {
 			return false;
 		}
 	}
-	
+
 	protected void processBlockingInteractionResponse(
-		ActionRequest req, ActionResponse res, BlockingInteractionResponse bir) 
+		ActionRequest req, ActionResponse res, BlockingInteractionResponse bir)
 	{
 		UpdateResponse updateResponse = bir.getUpdateResponse();
 
 		// The producer can either send a update response or a redirect
 
 		String redirectURL = bir.getRedirectURL();
-		
+
 		if (Validator.isNotNull(redirectURL)) {
 			try {
 				res.sendRedirect(redirectURL);
@@ -536,26 +535,26 @@ public class ConsumerPortlet extends GenericPortlet {
 			return;
 		}
 
-		// Cache MarkupContext in session so that render does not need to 
+		// Cache MarkupContext in session so that render does not need to
 		// make an additional remote invocation
-		
+
 		MarkupContext markupContext = updateResponse.getMarkupContext();
-		
+
 		if (markupContext != null) {
 			processMarkupContext(req, markupContext);
 		}
-		
+
 		PortletContext portletContext = updateResponse.getPortletContext();
-		
+
 		if (portletContext != null) {
-			processPortletContext(req, portletContext);	
+			processPortletContext(req, portletContext);
 		}
 
 		// Pass navState to next getMarkup by using the render params
-		
-		String navState = 
+
+		String navState =
 			updateResponse.getNavigationalContext().getOpaqueValue();
-		
+
 		if (Validator.isNotNull(navState)) {
 			res.setRenderParameter(WSRPSpecKeys.NAVIGATIONAL_STATE, navState);
 		}
@@ -582,18 +581,18 @@ public class ConsumerPortlet extends GenericPortlet {
 				_log.error(e.getMessage(), e);
 			}
 		}
-		
+
 		processSessionContext(req, updateResponse.getSessionContext());
 	}
 
 	protected void processMarkupContext(
 		ActionRequest req, MarkupContext markupContext) {
-		
+
 		PortletSession ses = req.getPortletSession();
 
 		ses.setAttribute("markupContext", markupContext);
 	}
-	
+
 	protected void processMarkupContext(
 		RenderRequest req, RenderResponse res, MarkupContext markupContext) {
 
@@ -604,11 +603,11 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 
 		String markup = markupContext.getItemString();
-		
+
 		markup = URLRewriter.rewrite(markup, res);
-		
+
 		res.setContentType(ContentTypes.TEXT_HTML_UTF8);
-		
+
 		try {
 			res.getWriter().write(markup);
 		}
@@ -618,33 +617,33 @@ public class ConsumerPortlet extends GenericPortlet {
 			return;
 		}
 	}
-	
+
 	protected void processMarkupResponse(
 		RenderRequest req, RenderResponse res, MarkupResponse markupResponse) {
 
 		MarkupContext markupContext = markupResponse.getMarkupContext();
-		
+
 		if (markupContext != null) {
 			processMarkupContext(req, res, markupContext);
 		}
-		
+
 		// Subsequent getMarkup request need to include this session context
 
 		processSessionContext(req, markupResponse.getSessionContext());
 	}
-	
+
 	protected void processPortletContext(
 		ActionRequest req, PortletContext portletContext) {
-		
+
 		PortletPreferences prefs = req.getPreferences();
 
 		String portletHandle = prefs.getValue(
 			"portletHandle", StringPool.BLANK);
 
 		// Producer cloned this portlet
-		
+
 		String newPortletHandle = portletContext.getPortletHandle();
-		
+
 		if (!portletHandle.equals(newPortletHandle)) {
 			try {
 				prefs.setValue(newPortletHandle, portletHandle);
@@ -653,22 +652,22 @@ public class ConsumerPortlet extends GenericPortlet {
 				_log.error(e.getMessage(), e);
 			}
 		}
-		
+
 		PortletSession ses = req.getPortletSession();
-		
+
 		ses.setAttribute("portletState", portletContext.getPortletState());
 	}
-	
+
 	protected void processSessionContext(
 		PortletRequest req, SessionContext sessionContext) {
 
 		if (sessionContext != null) {
 			PortletSession ses = req.getPortletSession();
-			
+
 			ses.setAttribute("sessionContext", sessionContext);
-		}		
+		}
 	}
-			
+
 	private static Log _log = LogFactory.getLog(ConsumerPortlet.class);
 
 }

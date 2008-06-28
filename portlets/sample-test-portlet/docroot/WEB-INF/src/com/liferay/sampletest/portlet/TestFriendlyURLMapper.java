@@ -25,7 +25,6 @@ package com.liferay.sampletest.portlet;
 import com.liferay.portal.kernel.portlet.BaseFriendlyURLMapper;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -51,14 +50,14 @@ public class TestFriendlyURLMapper extends BaseFriendlyURLMapper {
 			portletURL.addParameterIncludedInPath("p_p_resource_id");
 			portletURL.addParameterIncludedInPath("p_p_cacheability");
 
-			StringMaker sm = new StringMaker();
+			StringBuilder sb = new StringBuilder();
 
-			sm.append(StringPool.SLASH);
-			sm.append(_MAPPING);
-			sm.append(StringPool.SLASH);
-			sm.append(resourceID);
+			sb.append(StringPool.SLASH);
+			sb.append(_MAPPING);
+			sb.append(StringPool.SLASH);
+			sb.append(resourceID);
 
-			return sm.toString();
+			return sb.toString();
 		}
 
 		WindowState windowState = portletURL.getWindowState();
@@ -73,13 +72,13 @@ public class TestFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 			portletURL.addParameterIncludedInPath("jspPage");
 
-			StringMaker sm = new StringMaker();
+			StringBuilder sb = new StringBuilder();
 
-			sm.append(StringPool.SLASH);
-			sm.append(_MAPPING);
-			sm.append(jspPage);
+			sb.append(StringPool.SLASH);
+			sb.append(_MAPPING);
+			sb.append(jspPage);
 
-			return sm.toString();
+			return sb.toString();
 		}
 
 		return null;

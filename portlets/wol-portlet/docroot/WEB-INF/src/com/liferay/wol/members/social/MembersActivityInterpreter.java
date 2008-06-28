@@ -22,7 +22,6 @@
 
 package com.liferay.wol.members.social;
 
-import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
@@ -63,15 +62,15 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 		String link = StringPool.BLANK;
 
 		if (activityType == MembersActivityKeys.ADD_MEMBER) {
-			StringMaker sm = new StringMaker();
+			StringBuilder sb = new StringBuilder();
 
-			sm.append(themeDisplay.getURLPortal());
-			sm.append(themeDisplay.getPathFriendlyURLPublic());
-			sm.append(StringPool.SLASH);
-			sm.append(creatorUser.getScreenName());
-			sm.append("/profile");
+			sb.append(themeDisplay.getURLPortal());
+			sb.append(themeDisplay.getPathFriendlyURLPublic());
+			sb.append(StringPool.SLASH);
+			sb.append(creatorUser.getScreenName());
+			sb.append("/profile");
 
-			link = sm.toString();
+			link = sb.toString();
 		}
 
 		// Title
@@ -84,27 +83,27 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 		String title = StringPool.BLANK;
 
 		if (activityType == MembersActivityKeys.ADD_MEMBER) {
-			StringMaker sm = new StringMaker();
+			StringBuilder sb = new StringBuilder();
 
-			sm.append("<a href=\"");
-			sm.append(link);
-			sm.append("\">");
-			sm.append(creatorUserName);
-			sm.append("</a>");
+			sb.append("<a href=\"");
+			sb.append(link);
+			sb.append("\">");
+			sb.append(creatorUserName);
+			sb.append("</a>");
 
-			String creatorUserNameURL = sm.toString();
+			String creatorUserNameURL = sb.toString();
 
-			sm = new StringMaker();
+			sb = new StringBuilder();
 
-			sm.append("<a href=\"");
-			sm.append(themeDisplay.getURLPortal());
-			sm.append(themeDisplay.getPathFriendlyURLPublic());
-			sm.append(group.getFriendlyURL());
-			sm.append("/profile\">");
-			sm.append(organization.getName());
-			sm.append("</a>");
+			sb.append("<a href=\"");
+			sb.append(themeDisplay.getURLPortal());
+			sb.append(themeDisplay.getPathFriendlyURLPublic());
+			sb.append(group.getFriendlyURL());
+			sb.append("/profile\">");
+			sb.append(organization.getName());
+			sb.append("</a>");
 
-			String organizationNameURL = sm.toString();
+			String organizationNameURL = sb.toString();
 
 			title = themeDisplay.translate(
 				"activity-wol-summary-join-organization",

@@ -24,7 +24,6 @@ package com.liferay.alfrescocontent.util;
 
 import com.liferay.portal.kernel.cache.MultiVMPoolUtil;
 import com.liferay.portal.kernel.cache.PortalCache;
-import com.liferay.portal.kernel.util.StringMaker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -81,13 +80,13 @@ public class AlfrescoContentCacheUtil {
 	}
 
 	private static String _encodeKey(String key) {
-		StringMaker sm = new StringMaker();
+		StringBuilder sb = new StringBuilder();
 
-		sm.append(CACHE_NAME);
-		sm.append(StringPool.POUND);
-		sm.append(key);
+		sb.append(CACHE_NAME);
+		sb.append(StringPool.POUND);
+		sb.append(key);
 
-		return sm.toString();
+		return sb.toString();
 	}
 
 	private static Log _log = LogFactory.getLog(AlfrescoContentCacheUtil.class);
