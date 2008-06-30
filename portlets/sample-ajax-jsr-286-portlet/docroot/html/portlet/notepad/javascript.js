@@ -43,6 +43,16 @@ Liferay.Notepad = {
 		});
 	},
 
+	setNotesContainer: function() {
+		var instance = this;
+
+		var totalNotes = jQuery('.sample-portlet-notepad .notes-holder').size();
+
+		if (totalNotes != 0) {
+			instance.notesContainer.css({display: 'block'});
+		}
+	},
+
 	notepadLink: function() {
 		var instance = this;
 
@@ -57,16 +67,6 @@ Liferay.Notepad = {
 			instance.entry.slideUp("normal");
 			instance.entryLink.text(instance.notepadShowAllText);
 			instance.entryLink.attr("action", "expand");
-		}
-	},
-
-	setNotesContainer: function() {
-		var instance = this;
-
-		var totalNotes = jQuery('.sample-portlet-notepad .notes-holder').size();
-
-		if (totalNotes != 0) {
-			instance.notesContainer.css({display: 'block'});
 		}
 	},
 

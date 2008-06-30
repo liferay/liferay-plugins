@@ -150,11 +150,11 @@
 		Liferay.Notepad.init({
 			addConstant: '<%= Constants.ADD %>',
 			deleteConstant: '<%= Constants.DELETE %>',
-			notepadShowAllText: 'Full view »',
-			notepadShowLessText: 'Compact view »',
-			namespace: '<portlet:namespace />',
 			imagePath: '<%= notepadImagePath %>',
 			infoMessage: 'Add a new note!',
+			namespace: '<portlet:namespace />',
+			notepadShowAllText: 'Full view »',
+			notepadShowLessText: 'Compact view »',
 			successText: '<liferay-ui:message key="your-request-processed-successfully" />',
 			url: '<%= notepadURL %>'
 		});
