@@ -23,6 +23,8 @@
 package com.liferay.mail.util;
 
 import com.liferay.mail.model.MailAccount;
+import com.liferay.portal.kernel.messaging.DestinationNames;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -39,6 +41,7 @@ import com.sun.mail.imap.IMAPStore;
 
 import java.io.IOException;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
@@ -104,6 +107,32 @@ public class MailBoxManager {
 			mailOutHostName, mailOutPort, mailSecure, password, username);
 	}
 
+	public static void removeAccountLock(User user, String emailAddress) {
+		String filePath = MailDiskManager.getAccountLockPath(
+			user, emailAddress);
+
+		FileUtil.delete(filePath);
+	}
+
+	public static void writeAccountLock(User user, String emailAddress) {
+		try {
+			JSONObject jsonObj = new JSONObject();
+
+			String filePath = MailDiskManager.getAccountLockPath(
+				user, emailAddress);
+
+			DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+
+			JSONUtil.put(jsonObj, "locked", true);
+			JSONUtil.put(jsonObj, "dateLocked", df.format(new Date()));
+
+			FileUtil.write(filePath, jsonObj.toString());
+		}
+		catch (IOException ioe) {
+			_log.error(ioe, ioe);
+		}
+	}
+
 	public void createFolder(String folderName) throws Exception {
 		Folder newFolder = getStore().getFolder(folderName);
 
@@ -152,7 +181,7 @@ public class MailBoxManager {
 
 					String messagePath = MailDiskManager.getMessagePath(
 						_user, _mailAccount.getEmailAddress(), folderName,
-						String.valueOf(messageUid));
+						messageUid);
 
 					FileUtil.deltree(messagePath);
 				}
@@ -208,8 +237,8 @@ public class MailBoxManager {
 				// Update message on local disk
 
 				updateJSONMessageField(
-					_user, _mailAccount, folderName, String.valueOf(messageUid),
-					"read", String.valueOf(read));
+					_user, _mailAccount, folderName, messageUid, "read",
+					String.valueOf(read));
 			}
 			catch (IOException ioe) {
 				_log.error(ioe, ioe);
@@ -295,6 +324,26 @@ public class MailBoxManager {
 		return jsonObj;
 	}
 
+	public JSONObject sendUpdateMessage() {
+		JSONObject mailRequestJSON = new JSONObject();
+
+		JSONUtil.put(
+			mailRequestJSON,
+			"emailAddress", _mailAccount.getEmailAddress());
+		JSONUtil.put(
+			mailRequestJSON,
+			"userId", _user.getUserId());
+
+		MessageBusUtil.sendMessage(
+			DestinationNames.MAIL, mailRequestJSON.toString());
+
+		JSONObject jsonObj = new JSONObject();
+
+		JSONUtil.put(jsonObj, "success", true);
+
+		return jsonObj;
+	}
+
 	public JSONObject storeAccountToDisk() {
 		try {
 			JSONObject jsonObj = new JSONObject();
@@ -333,13 +382,18 @@ public class MailBoxManager {
 	public JSONObject syncronizeAccount() throws MessagingException {
 		List<Folder> folders = getFolders();
 
-		for (Folder folder : folders) {
-			syncronizeFolder(folder);
-		}
-
 		JSONObject jsonObj = new JSONObject();
 
-		JSONUtil.put(jsonObj, "success", true);
+		if (Validator.isNotNull(folders)) {
+			for (Folder folder : folders) {
+				syncronizeFolder(folder);
+			}
+
+			JSONUtil.put(jsonObj, "success", true);
+		}
+		else {
+			JSONUtil.put(jsonObj, "success", false);
+		}
 
 		return jsonObj;
 	}
@@ -361,6 +415,10 @@ public class MailBoxManager {
 		}
 
 		folder = openFolder(folder);
+
+		if (Validator.isNull(folder)) {
+			return;
+		}
 
 		int messageCount = folder.getMessageCount();
 
@@ -818,7 +876,11 @@ public class MailBoxManager {
 			}
 			catch (MessagingException me2) {
 				_log.error(
-					"Unable to open folder " + folder.getFullName(), me2);
+					"Skipping folder " + folder.getFullName() +
+					" for email address " +
+					_mailAccount.getEmailAddress(), me2);
+
+				return null;
 			}
 		}
 
@@ -911,11 +973,10 @@ public class MailBoxManager {
 			IMAPFolder imapFolder = (IMAPFolder)folder;
 
 			String jsonMessage = getJSONMessage(imapFolder, message).toString();
-			String messageUid = String.valueOf(imapFolder.getUID(message));
 
 			String filePath = MailDiskManager.getMessageFilePath(
 				_user, _mailAccount.getEmailAddress(), folder.getFullName(),
-				messageUid);
+				imapFolder.getUID(message));
 
 			FileUtil.write(filePath, jsonMessage);
 		}
@@ -949,12 +1010,11 @@ public class MailBoxManager {
 
 	protected void updateJSONMessageField(
 			User user, MailAccount mailAccount, String folderName,
-			String messageUid, String field, String value)
+			long messageUid, String field, String value)
 		throws IOException {
 
 		JSONObject jsonObj = MailDiskManager.getJSONMessageByUid(
-			_user, _mailAccount.getEmailAddress(), folderName,
-			String.valueOf(messageUid));
+			_user, _mailAccount.getEmailAddress(), folderName, messageUid);
 
 		JSONUtil.put(jsonObj, field, value);
 

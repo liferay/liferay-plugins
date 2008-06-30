@@ -37,7 +37,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -60,6 +65,10 @@ public class MailDiskManager {
 
 	public static String getAccountFilePath(User user, String emailAddress) {
 		return getAccountPath(user, emailAddress) + "/account.json";
+	}
+
+	public static String getAccountLockPath(User user, String emailAddress) {
+		return MailDiskManager.getAccountPath(user, emailAddress) + "/.lock";
 	}
 
 	public static String getAccountPath(User user, String emailAddress) {
@@ -205,7 +214,7 @@ public class MailDiskManager {
 
 	public static JSONObject getJSONMessageByUid(
 		User user, String emailAddress, String folderName,
-		String messageUid) {
+		long messageUid) {
 
 		String messageFilePath = getMessageFilePath(
 			user, emailAddress, folderName, messageUid);
@@ -235,7 +244,7 @@ public class MailDiskManager {
 
 		searchString = searchString.trim();
 
-		String[] messageUids = null;
+		long[] messageUids = null;
 
 		if (searchString.equals(StringPool.BLANK)) {
 			messageUids = _getMessageUidsByFolder(
@@ -247,9 +256,7 @@ public class MailDiskManager {
 		}
 
 		for (int i = 0; i < messageUids.length; i++) {
-			long tempMessageUid = GetterUtil.getLong(messageUids[i]);
-
-			if (messageUid == tempMessageUid) {
+			if (messageUid == messageUids[i]) {
 				return getJSONMessageByUid(
 					user, emailAddress, folderName, messageUids[i + offset]);
 			}
@@ -276,10 +283,10 @@ public class MailDiskManager {
 
 			// Disk message count
 
-			String[] messageUids = _getMessageUidsByFolder(
+			long[] messageUids = _getMessageUidsByFolder(
 				user, emailAddress, folderName);
 
-			int messagesOnDiskCount = messageUids.length - 1;
+			int messagesOnDiskCount = messageUids.length;
 
 			return _getJSONPaginatedMessages(
 				user, emailAddress, folderName, messageUids, pageNumber,
@@ -301,7 +308,7 @@ public class MailDiskManager {
 
 		searchString = searchString.trim();
 
-		String[] messageUids = _getMessageUidsBySearch(
+		long[] messageUids = _getMessageUidsBySearch(
 			user, emailAddress, folderName, searchString);
 
 		int messageCount = messageUids.length;
@@ -312,16 +319,14 @@ public class MailDiskManager {
 	}
 
 	public static String getMessageFilePath(
-		User user, String emailAddress, String folderName,
-		String messageUid) {
+		User user, String emailAddress, String folderName, long messageUid) {
 
 		return getMessagePath(user, emailAddress, folderName, messageUid) +
 			"/message.json";
 	}
 
 	public static String getMessagePath(
-		User user, String emailAddress, String folderName,
-		String messageUid) {
+		User user, String emailAddress, String folderName, long messageUid) {
 
 		String pathName =
 			getFolderPath(user, emailAddress, folderName) + "/" + messageUid;
@@ -364,22 +369,62 @@ public class MailDiskManager {
 		return pathName;
 	}
 
+	public static boolean isAccountLocked(User user, String emailAddress) {
+		boolean locked = false;
+
+		try {
+			String filePath = MailDiskManager.getAccountLockPath(
+				user, emailAddress);
+
+			if (!FileUtil.exists(filePath)) {
+				return false;
+			}
+
+			JSONObject jsonObj = new JSONObject(FileUtil.read(filePath));
+
+			if (GetterUtil.getBoolean(jsonObj.get("locked").toString())) {
+				DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+
+				Date dateLocked = GetterUtil.getDate(
+					jsonObj.get("dateLocked").toString(), df);
+
+				Date now = new Date();
+
+				// Lock expires in 1 hour
+
+				long nowTime = now.getTime();
+				long expireTime = dateLocked.getTime() + 360000;
+
+				if (nowTime < expireTime) {
+					return true;
+				}
+			}
+		}
+		catch (IOException ioe) {
+			_log.error(ioe, ioe);
+		}
+		catch (JSONException jsone) {
+			_log.error(jsone, jsone);
+		}
+
+		return locked;
+	}
+
 	private static JSONObject _getJSONPaginatedMessages(
 		User user, String emailAddress, String folderName,
-		String[] messageUidsOnDisk, int pageNumber, int messagesPerPage,
+		long[] messageUidsOnDisk, int pageNumber, int messagesPerPage,
 		int messageCount, int messagesOnDiskCount) {
 
-		int begin = (messagesOnDiskCount + 1) - (messagesPerPage * pageNumber) -
+		int begin = (messagesOnDiskCount + 1) - (messagesPerPage * pageNumber) - 
 			1;
-		int end = messagesOnDiskCount - (messagesPerPage * (pageNumber - 1)) -
+		int end = messagesOnDiskCount - (messagesPerPage * (pageNumber - 1)) - 
 			1;
 
 		if (begin < 0) {
 			begin = 0;
 		}
 
-		double pageCount = Math.ceil(
-			(double)messageCount / messagesPerPage);
+		double pageCount = Math.ceil((double)messageCount / messagesPerPage);
 
 		JSONObject jsonObj = new JSONObject();
 
@@ -400,33 +445,37 @@ public class MailDiskManager {
 		return jsonObj;
 	}
 
-	private static String[] _getMessageUidsByFolder(
+	private static long[] _getMessageUidsByFolder(
 		User user, String emailAddress, String folderName) {
 
 		String folderPath = getFolderPath(user, emailAddress, folderName);
 
-		return FileUtil.listDirs(folderPath);
+		long[] messageUids = GetterUtil.getLongValues(
+			FileUtil.listDirs(folderPath));
+
+		Arrays.sort(messageUids);
+
+		return messageUids;
 	}
 
-	private static String[] _getMessageUidsBySearch(
+	private static long[] _getMessageUidsBySearch(
 		User user, String emailAddress, String folderName,
 		String searchString) {
-
-		String folderPath = getFolderPath(user, emailAddress, folderName);
 
 		List<String> matchingMessageUids = new ArrayList<String>();
 
 		try {
-			String[] allMessageUidsInFolder = FileUtil.listDirs(folderPath);
+			long[] allMessageUidsInFolder = _getMessageUidsByFolder(
+				user, emailAddress, folderName);
 
-			for (String messageUid : allMessageUidsInFolder) {
+			for (long messageUid : allMessageUidsInFolder) {
 				String messageFilePath = getMessageFilePath(
 					user, emailAddress, folderName, messageUid);
 
 				String jsonString = FileUtil.read(messageFilePath);
 
 				if (jsonString.indexOf(searchString) != -1) {
-					matchingMessageUids.add(messageUid);
+					matchingMessageUids.add(String.valueOf(messageUid));
 				}
 			}
 		}
@@ -434,7 +483,13 @@ public class MailDiskManager {
 			_log.error(ioe, ioe);
 		}
 
-		return matchingMessageUids.toArray(new String[0]);
+		long[] messageUids = new long[matchingMessageUids.size()];
+
+		for (int i = 0; i < matchingMessageUids.size(); i++) {
+			messageUids[i] = GetterUtil.getLong(matchingMessageUids.get(i));
+		}
+
+		return messageUids;
 	}
 
 	private static Log _log = LogFactory.getLog(MailBoxManager.class);

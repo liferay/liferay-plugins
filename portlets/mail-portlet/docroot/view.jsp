@@ -101,7 +101,7 @@
 							<option value="unread">- <liferay-ui:message key="mark-as-unread" /></option>
 						</select>
 
-						<a class="refresh" href="javascript: ;"><liferay-ui:message key="refresh" /></a>
+						<!-- <a class="refresh" href="javascript: ;"><liferay-ui:message key="refresh" /></a> -->
 					</div>
 
 					<div>

@@ -294,6 +294,10 @@ Liferay.Mail = {
 
 			htmlAccountList += tempEmailAddress;
 			htmlAccountList += '</option>';
+
+			// Auto update accounts
+			
+			instance.sendUpdateMessage(tempEmailAddress, false);
 		}
 
 		// Inject HTML
@@ -477,7 +481,9 @@ Liferay.Mail = {
 				},
 				dataType: 'json',
 				success: function(jsonMessage) {
-					instance.loadJsonMessage(jsonMessage);
+					if (jsonMessage != null) {
+						instance.loadJsonMessage(jsonMessage);
+					}
 				},
 				type: 'POST'
 			}
@@ -690,6 +696,34 @@ Liferay.Mail = {
 		});
 	},
 
+	sendUpdateMessage: function(emailAccount, loadMessages) {
+		var instance = this;
+
+		if (loadMessages) {
+			instance.setStatus(Liferay.Language.get('getting-new-mail'), '');
+		}
+		
+		jQuery.ajax(
+			{
+				url: themeDisplay.getLayoutURL() + '/-/mail/syncronize_account',
+				data: {
+					emailAddress: emailAccount
+				},
+				dataType: 'json',
+				success: function(jsonAccounts) {
+					if (loadMessages) {
+						instance.loadMessagesByPage(instance.getCurrentFolderName(), instance.getCurrentPageNumber());
+						instance.clearStatus();
+					}
+					else {
+						setTimeout('Liferay.Mail.sendUpdateMessage(\'' + emailAccount + '\', false)', 30000);
+					}
+				},
+				type: 'POST'
+			}
+		);
+	},
+
 	setCurrentEmailAddress: function(emailAddress) {
 		var instance = this;
 
@@ -803,31 +837,6 @@ Liferay.Mail = {
 		}
 	},
 
-	syncronizeAccount: function(emailAccount, loadMessages) {
-		var instance = this;
-
-		if (loadMessages) {
-			instance.setStatus(Liferay.Language.get('getting-new-mail'), '');
-		}
-		
-		jQuery.ajax(
-			{
-				url: themeDisplay.getLayoutURL() + '/-/mail/sycronize_account',
-				data: {
-					emailAddress: emailAccount
-				},
-				dataType: 'json',
-				success: function(jsonAccounts) {
-					if (loadMessages) {
-						instance.loadMessagesByPage(instance.getCurrentFolderName(), instance.getCurrentPageNumber());
-						instance.clearStatus();
-					}
-				},
-				type: 'POST'
-			}
-		);
-	},
-
 	_assignEvents: function() {
 		var instance = this;
 
@@ -869,7 +878,7 @@ Liferay.Mail = {
 					},
 					dataType: 'json',
 					success: function(jsonResult) {
-						instance.syncronizeAccount(instance.getCurrentEmailAddress(), true);
+						instance.sendUpdateMessage(instance.getCurrentEmailAddress(), true);
 
 						instance.setStatus(Liferay.Language.get('messages-have-been-deleted'), '');
 					},
@@ -935,7 +944,7 @@ Liferay.Mail = {
 		});
 
 		instance.folderControlsRefreshLink.click(function() {
-			instance.syncronizeAccount(instance.getCurrentEmailAddress(), true);
+			instance.sendUpdateMessage(instance.getCurrentEmailAddress(), true);
 
 			return false;
 		});
@@ -1319,7 +1328,7 @@ Liferay.MailConfiguration = {
 					dataType: 'json',
 					success: function(success) {
 						instance.loadJSONAccountsConfiguration();
-	
+
 						Liferay.Mail.syncronizeAccount(emailAddressValue, false);
 					},
 					type: 'POST'

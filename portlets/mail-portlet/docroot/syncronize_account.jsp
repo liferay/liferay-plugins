@@ -30,4 +30,4 @@ String emailAddress = ParamUtil.getString(request, "emailAddress");
 MailBoxManager mailBoxManager = new MailBoxManager(user, emailAddress);
 %>
 
-<%= mailBoxManager.syncronizeAccount() %>
+<%= mailBoxManager.sendUpdateMessage() %>
