@@ -56,7 +56,7 @@ String username = ParamUtil.getString(request, "username");
 			</tr>
 			<tr>
 				<td>
-					<liferay-ui:message key="username" />
+					<liferay-ui:message key="user-name" />
 				</td>
 				<td>
 					<input class="username" type="text" value="<%= username %>" />
@@ -86,7 +86,7 @@ String username = ParamUtil.getString(request, "username");
 				<c:otherwise>
 					<tr>
 						<td>
-							<liferay-ui:message key="incoming-server" />
+							<liferay-ui:message key="incoming-imap-server" />
 						</td>
 						<td>
 							<input class="in-hostname" type="text" value="<%= mailInHostName %>" />
@@ -102,7 +102,7 @@ String username = ParamUtil.getString(request, "username");
 					</tr>
 					<tr>
 						<td>
-							<liferay-ui:message key="use-secure-connection" />
+							<liferay-ui:message key="use-a-secure-network-connection" />
 						</td>
 						<td>
 							<c:choose>
@@ -117,7 +117,7 @@ String username = ParamUtil.getString(request, "username");
 					</tr>
 					<tr>
 						<td>
-							<liferay-ui:message key="outgoing-server" />
+							<liferay-ui:message key="outgoing-smtp-server" />
 						</td>
 						<td>
 							<input class="out-hostname" type="text" value="<%= mailOutHostName %>" />
