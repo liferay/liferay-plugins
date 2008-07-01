@@ -35,6 +35,8 @@
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchEntry" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
+<%@ page import="com.liferay.portal.kernel.servlet.SessionErrors" %>
+<%@ page import="com.liferay.portal.kernel.servlet.SessionMessages" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
@@ -59,6 +61,9 @@
 <%@ page import="javax.portlet.PortletPreferences" %>
 <%@ page import="javax.portlet.PortletURL" %>
 <%@ page import="javax.portlet.WindowState" %>
+
+<%@ page import="javax.xml.ws.soap.SOAPFaultException" %>
+
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>

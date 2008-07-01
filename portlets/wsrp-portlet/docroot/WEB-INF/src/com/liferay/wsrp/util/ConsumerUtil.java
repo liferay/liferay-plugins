@@ -22,20 +22,6 @@
 
 package com.liferay.wsrp.util;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-
-import javax.wsdl.Binding;
-import javax.wsdl.Definition;
-import javax.wsdl.Port;
-import javax.wsdl.Service;
-import javax.wsdl.WSDLException;
-import javax.wsdl.extensions.ExtensibilityElement;
-import javax.wsdl.extensions.soap.SOAPAddress;
-import javax.wsdl.factory.WSDLFactory;
-import javax.wsdl.xml.WSDLReader;
-
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.wsrp.consumer.model.Producer;
 import com.liferay.wsrp.soap.v2.intf.InvalidRegistration;
@@ -53,6 +39,20 @@ import com.liferay.wsrp.soap.v2.types.Register;
 import com.liferay.wsrp.soap.v2.types.RegistrationContext;
 import com.liferay.wsrp.soap.v2.types.RegistrationData;
 import com.liferay.wsrp.soap.v2.types.ServiceDescription;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+
+import javax.wsdl.Binding;
+import javax.wsdl.Definition;
+import javax.wsdl.Port;
+import javax.wsdl.Service;
+import javax.wsdl.WSDLException;
+import javax.wsdl.extensions.ExtensibilityElement;
+import javax.wsdl.extensions.soap.SOAPAddress;
+import javax.wsdl.factory.WSDLFactory;
+import javax.wsdl.xml.WSDLReader;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

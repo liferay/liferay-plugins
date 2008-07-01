@@ -22,13 +22,6 @@
 
 package com.liferay.wsrp.consumer.service.impl;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Date;
-import java.util.List;
-
-import javax.wsdl.WSDLException;
-
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
@@ -43,6 +36,13 @@ import com.liferay.wsrp.consumer.model.Producer;
 import com.liferay.wsrp.consumer.service.base.ProducerLocalServiceBaseImpl;
 import com.liferay.wsrp.soap.v2.types.ServiceDescription;
 import com.liferay.wsrp.util.ConsumerUtil;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Date;
+import java.util.List;
+
+import javax.wsdl.WSDLException;
 
 /**
  * <a href="ProducerLocalServiceImpl.java.html"><b><i>View Source</i></b></a>

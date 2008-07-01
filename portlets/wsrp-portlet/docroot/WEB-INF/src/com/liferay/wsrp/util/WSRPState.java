@@ -22,13 +22,13 @@
 
 package com.liferay.wsrp.util;
 
+import com.sun.portal.wsrp.common.WSRPSpecKeys;
+
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.portlet.WindowState;
-
-import com.sun.portal.wsrp.common.WSRPSpecKeys;
 
 /**
  * <a href="WSRPWindowState.java.html"><b><i>View Source</i></b></a>

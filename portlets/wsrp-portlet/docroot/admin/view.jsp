@@ -36,7 +36,7 @@ headerNames.add("wsdl-url");
 headerNames.add("registration");
 headerNames.add(StringPool.BLANK);
 
-SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
+SearchContainer<Producer> searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
 
 int total = ProducerLocalServiceUtil.getProducerCount();
 

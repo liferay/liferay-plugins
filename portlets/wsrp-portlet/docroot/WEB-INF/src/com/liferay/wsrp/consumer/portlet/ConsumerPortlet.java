@@ -22,29 +22,9 @@
 
 package com.liferay.wsrp.consumer.portlet;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Enumeration;
-import java.util.List;
-
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.GenericPortlet;
-import javax.portlet.PortletException;
-import javax.portlet.PortletMode;
-import javax.portlet.PortletModeException;
-import javax.portlet.PortletPreferences;
-import javax.portlet.PortletRequest;
-import javax.portlet.PortletSession;
-import javax.portlet.ReadOnlyException;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
-import javax.portlet.WindowState;
-import javax.portlet.WindowStateException;
-import javax.servlet.http.HttpServletRequest;
-import javax.xml.ws.BindingProvider;
-
-import com.liferay.portal.kernel.portlet.LiferayRenderRequest;
+import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
+import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -54,6 +34,8 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.util.bridges.jsp.JSPPortlet;
+import com.liferay.wsrp.consumer.NoSuchProducerException;
 import com.liferay.wsrp.consumer.model.Producer;
 import com.liferay.wsrp.consumer.service.ProducerServiceUtil;
 import com.liferay.wsrp.soap.v2.intf.WSRPV2MarkupPortType;
@@ -87,6 +69,28 @@ import com.liferay.wsrp.util.WSRPMode;
 import com.liferay.wsrp.util.WSRPState;
 import com.sun.portal.wsrp.common.WSRPSpecKeys;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.List;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
+import javax.portlet.PortletException;
+import javax.portlet.PortletMode;
+import javax.portlet.PortletModeException;
+import javax.portlet.PortletPreferences;
+import javax.portlet.PortletRequest;
+import javax.portlet.PortletResponse;
+import javax.portlet.PortletSession;
+import javax.portlet.ReadOnlyException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
+import javax.portlet.WindowState;
+import javax.portlet.WindowStateException;
+import javax.servlet.http.HttpServletRequest;
+import javax.xml.ws.BindingProvider;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -96,7 +100,7 @@ import org.apache.commons.logging.LogFactory;
  * @author Michael Young
  *
  */
-public class ConsumerPortlet extends GenericPortlet {
+public class ConsumerPortlet extends JSPPortlet {
 	public void processAction(ActionRequest req, ActionResponse res)
 		throws PortletException {
 
@@ -136,7 +140,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 		catch (Exception e) {
 			_log.error(e.getMessage(), e);
-
+			
 			return;
 		}
 
@@ -166,10 +170,17 @@ public class ConsumerPortlet extends GenericPortlet {
 		try {
 			markupService = getMarkupService(req);
 		}
+		catch (NoSuchProducerException e) {
+			include(null, "configure", req, res);
+			
+			return;
+		}
 		catch (Exception e) {
+			include(e, null, req, res);
+			
 			_log.error(e.getMessage(), e);
 
-			return;
+			return;			
 		}
 
 		PortletContext portletContext = new PortletContext();
@@ -223,6 +234,10 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		while (paramNames.hasMoreElements()) {
 			String name = (String) paramNames.nextElement();
+			
+			if (isReservedParam(name)) {
+				continue;
+			}
 
 			String[] values = req.getParameterValues(name);
 
@@ -241,10 +256,6 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		long producerId = GetterUtil.getLong(
 			prefs.getValue("producerId", StringPool.BLANK));
-
-		if (producerId <= 0) {
-			return null;
-		}
 
 		Producer producer = ProducerServiceUtil.getProducer(producerId);
 
@@ -290,6 +301,25 @@ public class ConsumerPortlet extends GenericPortlet {
 		PortletSession ses = req.getPortletSession();
 
 		return (SessionContext)ses.getAttribute("sessionContext");
+	}
+
+	protected void include(Exception e, String key, PortletRequest req, 
+		PortletResponse res) throws PortletException {
+
+		if (e != null) {
+			SessionErrors.add(req, e.getClass().getName(), e);
+		}
+		
+		if (Validator.isNotNull(key)) {
+			SessionMessages.add(req, key);
+		}
+		
+		try {
+			include("/consumer/view.jsp", req, res);
+		}
+		catch (IOException ioe) {
+			_log.error(ioe.getMessage(), ioe);
+		}
 	}
 
 	protected void initFormParams(
@@ -373,7 +403,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		mp.setNavigationalContext(navigationalContext);
 
-		LiferayRenderRequest lrReq = (LiferayRenderRequest) req;
+		LiferayPortletRequest lrReq = (LiferayPortletRequest) req;
 
 		HttpServletRequest httpReq = lrReq.getHttpServletRequest();
 
@@ -429,7 +459,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		// InteractionParams
 
-		ip.setPortletStateChange(StateChange.READ_WRITE);
+		ip.setPortletStateChange(StateChange.CLONE_BEFORE_WRITE);
 
 		String interactionState =
 			req.getParameter(WSRPSpecKeys.INTERACTION_STATE);

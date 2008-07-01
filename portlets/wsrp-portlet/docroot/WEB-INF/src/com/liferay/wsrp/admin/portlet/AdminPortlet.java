@@ -22,16 +22,6 @@
 
 package com.liferay.wsrp.admin.portlet;
 
-import java.io.IOException;
-import java.util.List;
-
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.PortletException;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
-import javax.xml.namespace.QName;
-
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -49,6 +39,16 @@ import com.liferay.wsrp.soap.v2.types.Register;
 import com.liferay.wsrp.soap.v2.types.RegistrationContext;
 import com.liferay.wsrp.soap.v2.types.RegistrationData;
 import com.liferay.wsrp.util.ServiceFactory;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
+import javax.portlet.PortletException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
+import javax.xml.namespace.QName;
 
 /**
  * <a href="AdminPortlet.java.html"><b><i>View Source</i></b></a>

@@ -22,6 +22,9 @@
 
 package com.liferay.wsrp.util;
 
+import com.liferay.portal.kernel.util.StringPool;
+import com.sun.portal.wsrp.common.WSRPSpecKeys;
+
 import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,9 +35,6 @@ import javax.portlet.PortletURL;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceURL;
 import javax.portlet.WindowStateException;
-
-import com.liferay.portal.kernel.util.StringPool;
-import com.sun.portal.wsrp.common.WSRPSpecKeys;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
