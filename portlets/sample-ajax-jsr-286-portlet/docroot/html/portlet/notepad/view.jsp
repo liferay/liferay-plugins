@@ -78,8 +78,7 @@
 
 	<table class="lfr-table notes-table">
 	<tr id="notes-spacer">
-		<td class="notes-category"><!-- --></td>
-		<td class="notes"><!-- --></td>
+		<td colspan="2"><!-- --></td>
 	</tr>
 
 	<%

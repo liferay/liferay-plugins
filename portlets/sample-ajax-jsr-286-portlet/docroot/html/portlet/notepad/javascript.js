@@ -101,7 +101,7 @@ Liferay.Notepad = {
 					newNotepadEntry += '	</td>';
 					newNotepadEntry += '</tr>';
 
-					jQuery('.sample-portlet-notepad .notes-table tr:first').before(newNotepadEntry);
+					jQuery('.sample-portlet-notepad .notes-table tr:first').after(newNotepadEntry);
 
 					instance.notes.val("");
 
