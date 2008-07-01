@@ -173,6 +173,17 @@
 		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>novell-collaboration-portlet</artifact-id>
+		<name>Novell</name>
+		<type>portlet</type>
+		<tags>novell</tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://developer.novell.com/wiki/index.php/Novell_Collaboration_Portlets</page-url>
+		<author>Novell, Inc.</author>
+		<licenses>LGPL</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>release-tools-portlet</artifact-id>
 		<name>Release Tools</name>
 		<type>portlet</type>
@@ -189,6 +200,17 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin provides a console for executing arbitrary Ruby code. Use this portlet should only be used for development.</short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sample-ajax-jsr-286-portlet</artifact-id>
+		<name>Sample Ajax JSR 286</name>
+		<type>portlet</type>
+		<tags></tags>
+		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -987,6 +1009,17 @@
 		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>wsrp-portlet</artifact-id>
+		<name></name>
+		<type>portlet</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>08-gulona-theme</artifact-id>
 		<name>08 Gulona</name>
 		<type>theme</type>
@@ -1172,6 +1205,17 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>castalia-theme</artifact-id>
+		<name>Castalia</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.osskins.com/main/wordpress/free-wordpress-theme-castalia/2008/06/11</page-url>
+		<author>Mariah K.L</author>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>cgshow-blog-theme</artifact-id>
@@ -1383,6 +1427,28 @@
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>fluidity-theme</artifact-id>
+		<name>fluidity</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>foliage-theme</artifact-id>
+		<name>Foliage</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>foosball-theme</artifact-id>
 		<name>Foosball</name>
 		<type>theme</type>
@@ -1535,6 +1601,17 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>laprang2c-theme</artifact-id>
+		<name>Laprang2c</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.osskins.com/main/wordpress/free-wordpress-theme-laprang2c/2008/03/05</page-url>
+		<author>Bozze</author>
+		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>lazy-days-theme</artifact-id>
@@ -1746,6 +1823,17 @@
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>purple_theme-theme</artifact-id>
+		<name>Purple Theme</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>red-flower-theme</artifact-id>
 		<name>Red Flower</name>
 		<type>theme</type>
@@ -1799,6 +1887,17 @@
 		<page-url>http://www.osskins.com/main/wordpress/free-wordpress-theme-rising-sun/2008/03/03</page-url>
 		<author>Unknown</author>
 		<licenses>GPL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>salome-art-theme</artifact-id>
+		<name>Salome Art</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.osskins.com/main/wordpress/free-wordpress-theme-salome-art/2008/06/16</page-url>
+		<author>Mariah K.L</author>
+		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>sample-div-based-theme</artifact-id>
@@ -1942,6 +2041,17 @@
 		<licenses>GPL</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>spirit-of-nature-theme</artifact-id>
+		<name>Spirit Of Nature</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.osskins.com/main/joomla-mambo/free-joomla-15-template-spirit-of-nature/2008/06/08</page-url>
+		<author>Themza</author>
+		<licenses>Public Domain</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>street-style-theme</artifact-id>
 		<name>Street Style</name>
 		<type>theme</type>
@@ -1962,6 +2072,17 @@
 		<page-url>http://templates.arcsin.se</page-url>
 		<author>Arcsin</author>
 		<licenses>CCA</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-theme</artifact-id>
+		<name>Sun Microsystems</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.sun.com</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>supastar-theme</artifact-id>
@@ -2085,6 +2206,17 @@
 		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>solr-web</artifact-id>
+		<name>Solr Search Engine</name>
+		<type>web</type>
+		<tags></tags>
+		<short-description>This is the Solr Search Engine implementation.</short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>theme-loader-web</artifact-id>
 		<name>Theme Loader</name>
 		<type>web</type>
@@ -2102,6 +2234,7 @@
 	<author>Andreas Viklund</author>
 	<author>Arcsin</author>
 	<author>Bartosz Brzezinski</author>
+	<author>Bozze</author>
 	<author>Conquerer LLC</author>
 	<author>Darren Hester</author>
 	<author>Dieter Schneider</author>
@@ -2117,10 +2250,12 @@
 	<author>Jochum Meester</author>
 	<author>Liferay, Inc.</author>
 	<author>MakeQuick</author>
+	<author>Mariah K.L</author>
 	<author>Mariah K.L.</author>
 	<author>Mika Koivisto</author>
 	<author>Minimalistic Design</author>
 	<author>NodeThirtyThree</author>
+	<author>Novell, Inc.</author>
 	<author>Orbeon, Inc.</author>
 	<author>Reality Software</author>
 	<author>SD Workz</author>
@@ -2136,6 +2271,7 @@
 	<author>The All Beauty Directory</author>
 	<author>ThemZa</author>
 	<author>Theme Studio</author>
+	<author>Themza</author>
 	<author>Tony Pires</author>
 	<author>Unknown</author>
 	<author>Viktor Persson</author>
