@@ -263,10 +263,8 @@ public class URLRewriter {
 	private static String _getPortletURL(
 		PortletURL url, Map<String, String> params) {
 		
-		String value = StringPool.BLANK;
-
 		for (String key : params.keySet()) {
-			value = params.get(key);
+			String value = params.get(key);
 
 			if (key.equalsIgnoreCase(WSRPSpecKeys.WINDOW_STATE)) {
 				try {
@@ -296,8 +294,23 @@ public class URLRewriter {
 
 	private static String _getResourceURL(
 		ResourceURL url, Map<String, String> params) {
+
+		for (String key : params.keySet()) {
+			String value = params.get(key);
+
+			if (key.equalsIgnoreCase(WSRPSpecKeys.WINDOW_STATE) ||
+				key.equalsIgnoreCase(WSRPSpecKeys.MODE) ||
+				key.equalsIgnoreCase(WSRPSpecKeys.NAVIGATIONAL_STATE) ||
+				key.equalsIgnoreCase(WSRPSpecKeys.INTERACTION_STATE)) {
+				
+				url.setParameter(key, value);
+			}
+			else if (key.equalsIgnoreCase(WSRPSpecKeys.URL)) {
+				url.setResourceID(value);
+			}
+		}	
 		
-		return url.toString();
+		return url.toString() + "&compress=0&strip=0";
 	}
 	
 	private static Log _log = LogFactory.getLog(URLRewriter.class);

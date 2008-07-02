@@ -70,7 +70,13 @@ import com.liferay.wsrp.util.WSRPState;
 import com.sun.portal.wsrp.common.WSRPSpecKeys;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Writer;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -86,6 +92,8 @@ import javax.portlet.PortletSession;
 import javax.portlet.ReadOnlyException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import javax.portlet.ResourceRequest;
+import javax.portlet.ResourceResponse;
 import javax.portlet.WindowState;
 import javax.portlet.WindowStateException;
 import javax.servlet.http.HttpServletRequest;
@@ -211,6 +219,36 @@ public class ConsumerPortlet extends JSPPortlet {
 		}
 
 		processMarkupResponse(req, res, markupResponse);
+	}
+
+	public void serveResource(ResourceRequest req,
+		ResourceResponse res) throws IOException, 
+		PortletException {
+
+		URL url = new URL(req.getResourceID());
+		URLConnection con = url.openConnection();
+
+		// Pass-thru existing cookie
+
+		//cookie = Encryptor.decryptRaw(key, Base64.decode(cookie));
+
+		//con.setRequestProperty("Cookie", cookie);
+
+		con.connect();
+
+		res.setContentType(con.getContentType());
+		res.setContentLength(con.getContentLength());
+
+		InputStream in = con.getInputStream();
+		OutputStream out = res.getPortletOutputStream();
+
+		int next;
+
+		while ((next = in.read()) != -1) {
+			out.write(next);
+		}
+
+		out.close();
 	}
 
 	protected void addFormField(
