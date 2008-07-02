@@ -50,7 +50,7 @@ import org.apache.bsf.BSFException;
 public class RubyConsolePortlet extends RubyPortlet {
 
 	public void serveResource(ResourceRequest req, ResourceResponse res)
-		throws PortletException, IOException {
+		throws IOException {
 
 		String cmd = ParamUtil.getString(req, Constants.CMD);
 
@@ -66,7 +66,7 @@ public class RubyConsolePortlet extends RubyPortlet {
 
 	protected void includeConsoleInput(
 			String consoleInput, PortletRequest req, PortletResponse res)
-		throws IOException, PortletException {
+		throws IOException {
 
 		try {
 			declareBeans(consoleInput, req, res);
