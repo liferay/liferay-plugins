@@ -103,7 +103,7 @@ a:hover {
 
 #content-wrapper {
 	background: #5989a6 url(../images/common/content_wrapper_bg.png) repeat;
-	padding: 0 5px;
+	padding: 0 48px;
 }
 
 .portal-popup #content-wrapper {
@@ -114,6 +114,7 @@ a:hover {
 #banner {
 	background-image: url(../images/common/banner_bg.jpg);
 	height: 135px;
+        top: 0px;
 }
 
 #banner .logo {
@@ -122,14 +123,12 @@ a:hover {
 
 #banner .search {
 	position: absolute;
-	right: 10px;
+	right: 46px;
 	top: 50px;
 }
 
 #banner .search form {
 	padding-right: 49px;
-	padding-top: 2px;
-	position: relative;
 }
 
 #banner .search input {
@@ -157,7 +156,9 @@ a:hover {
 }
 
 #navigation {
-	bottom: 0;
+        background: transparent;
+        border: none;
+	bottom: -110px;
 	font-family: Verdana,Arial,Helvetica,sans-serif;
 	font-weight: bold;
 	left: 15px;
@@ -173,6 +174,7 @@ a:hover {
 
 #navigation li,   #navigation li a,   #navigation li a span,   #navigation li.selected a,   #navigation li.selected a:hover,  #navigation li a:hover span,  #navigation li.selected a span,   #navigation li a:hover,   .js #navigation .enter-page {
 	background: none;
+        border: none;
 	color: #96C0E6;
 	font-size: 1em;
 	font-weight: bold;
@@ -207,8 +209,10 @@ a:hover {
 
 .js #add-page {
 	position: absolute;
-	right: 0px;
+	right: 26pt;
 	top: -5px;
+        background: transparent;
+        border: none;
 }
 
 #navigation ul .sort-helper {
@@ -218,6 +222,7 @@ a:hover {
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: #141B24;
 	padding: 0;
+        border: none;
 }
 
 .portlet {
@@ -381,6 +386,7 @@ a:hover {
         background: #33586f;
 	background-position: 0 -101px;
 	color: #fff;
+        border: none;
 }
 
 .tabs li.current {
@@ -405,10 +411,6 @@ a:hover {
 
 .popup .tabs {
 	margin: -5px -5px -16px -15px;
-}
-
-.js .interactive-mode {
-	top: 0;
 }
 
 .js .lfr-dock.interactive-mode h2 {
@@ -472,6 +474,11 @@ a:hover {
 
 .js .lfr-dock.interactive-mode li.my-places a {
 	padding-left: 2.5em;
+}
+
+.js .interactive-mode h2 span {
+  font-size: 1.5em;
+  padding: 10px 20px 10px;
 }
 
 .js .interactive-mode .my-places .show-my-places {
@@ -629,7 +636,7 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 }
 
 input[type="text"], input[type="password"], input[type="file"],input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
-	border-color: #fff;
+	margin: 2px;
 }
 
 .ie6 input.text, input.password, .ie6 input.submit, .ie6 input.file, .ie6 input.button {
