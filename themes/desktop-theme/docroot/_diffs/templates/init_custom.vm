@@ -1,0 +1,7 @@
+#*
+This file allows you to override and define new velocity variables.
+*#
+
+## --- Common variables --- ##
+
+#set ($theme_flash_folder = "$themeDisplay.getPathThemeRoot()/flash")

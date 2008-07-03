@@ -2,10 +2,20 @@
 	<div id="sidebar" plid="$plid" ppid="87" doasuserid="$themeDisplay.getDoAsUserId()">
 		<div id="sidebar-top">
 			<span class="clock">
-				<embed allowscriptaccess="sameDomain" base="." devicefont="true"
-						height="100" loop="true" menu="false" play="false" quality="best"
-						scale="showall" src="/flash/analogclock.swf" swliveconnect="false"
-						type="application/x-shockwave-flash" width="100" wmode="transparent" />
+				<embed allowscriptaccess="sameDomain"
+					base="."
+					devicefont="true"
+					height="100"
+					loop="true"
+					menu="false"
+					play="false"
+					quality="best"
+					scale="showall"
+					src="$theme_flash_folder/clock.swf"
+					swliveconnect="false"
+					type="application/x-shockwave-flash"
+					width="100"
+					wmode="transparent" />
 			</span>
 			<span class="calendar">
 				<span class="month">

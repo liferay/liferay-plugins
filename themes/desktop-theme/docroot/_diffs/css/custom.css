@@ -552,10 +552,6 @@ body {
 	position: static;
 }
 
-.ie .freeform .tabs {
-	padding:0 0 28px 8px;
-}
-
 .tabs li {
 	position: static;
 }

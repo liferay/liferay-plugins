@@ -151,7 +151,7 @@ var DesktopAddContent = {
 			}
 
 			var placeHolder = jQuery('<div class="loading-animation"></div>');
-			var onComplete = null;
+			var onComplete = LiferayDesktop.addPortlet(portletId);
 			var beforePortletLoaded = null;
 
 			if (options) {
