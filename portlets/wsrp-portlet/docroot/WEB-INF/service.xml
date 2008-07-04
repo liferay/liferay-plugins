@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_0_0.dtd">
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
 
 <service-builder package-path="com.liferay.wsrp.consumer">
 	<namespace>WSRP</namespace>
@@ -43,9 +43,9 @@
 		<reference package-path="com.liferay.portal" entity="User" />
 	</entity>
 	<exceptions>
-		<exception>InvalidWSDL</exception>		
+		<exception>InvalidWSDL</exception>
 		<exception>Name</exception>
 		<exception>WSDLURL</exception>
 	</exceptions>
-	
+
 </service-builder>
