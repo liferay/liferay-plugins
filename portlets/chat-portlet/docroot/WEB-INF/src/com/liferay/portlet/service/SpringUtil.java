@@ -33,23 +33,24 @@ import org.springframework.context.ApplicationContext;
 public class SpringUtil {
 
 	public static ApplicationContext getContext() {
-		return _ctx;
+		return _applicationContext;
 	}
 
-	public static void initContext(ApplicationContext ctx) {
-		String[] beanDefinitionNames = _ctx.getBeanDefinitionNames();
+	public static void initContext(ApplicationContext applicationContext) {
+		String[] beanDefinitionNames =
+			_applicationContext.getBeanDefinitionNames();
 
 		for (String beanDefinitionName : beanDefinitionNames) {
-			_ctx.getBean(beanDefinitionName);
+			_applicationContext.getBean(beanDefinitionName);
 		}
 	}
 
-	public static void setContext(ApplicationContext ctx) {
-		_ctx = ctx;
+	public static void setContext(ApplicationContext applicationContext) {
+		_applicationContext = applicationContext;
 
-		initContext(ctx);
+		initContext(applicationContext);
 	}
 
-	private static ApplicationContext _ctx = null;
+	private static ApplicationContext _applicationContext = null;
 
 }

@@ -6,7 +6,6 @@
     # Specify where to get the overridden properties. Updates should not be made
     # on this file but on the overridden version of this file.
     #
-    include-and-override=portlet-service-impl.properties
     include-and-override=portlet-service-ext.properties
 
 ##

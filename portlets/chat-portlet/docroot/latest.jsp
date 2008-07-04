@@ -46,9 +46,9 @@ if (!activeBrowser && (status != null) && !status.getActiveBrowserKey().equals(a
 
 	// JSON
 
-	JSONObject jsonObj = new JSONObject();
+	JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
-	JSONUtil.put(jsonObj, "activeBrowser", false);
+	jsonObj.put("activeBrowser", false);
 %>
 
 	<%= jsonObj %>
@@ -73,7 +73,7 @@ else {
 	buddies = new ArrayList<Object[]>();
 }
 
-JSONArray buddiesJSON = new JSONArray();
+JSONArray buddiesJSON = JSONFactoryUtil.createJSONArray();
 
 for (Object[] buddy : buddies) {
 	long userId = (Long)buddy[0];
@@ -88,11 +88,11 @@ for (Object[] buddy : buddies) {
 		continue;
 	}
 
-	JSONObject curUserJSON = new JSONObject();
+	JSONObject curUserJSON = JSONFactoryUtil.createJSONObject();
 
-	JSONUtil.put(curUserJSON, "userId", userId);
-	JSONUtil.put(curUserJSON, "fullName", fullName);
-	JSONUtil.put(curUserJSON, "portraitId", portraitId);
+	curUserJSON.put("userId", userId);
+	curUserJSON.put("fullName", fullName);
+	curUserJSON.put("portraitId", portraitId);
 
 	buddiesJSON.put(curUserJSON);
 }
@@ -114,23 +114,23 @@ List<Entry> entries = EntryLocalServiceUtil.getNewEntries(themeDisplay.getUserId
 
 Collections.reverse(entries);
 
-JSONArray entriesJSON = new JSONArray();
+JSONArray entriesJSON = JSONFactoryUtil.createJSONArray();
 
 for (Entry entry : entries) {
-	JSONObject entryJSON = new JSONObject();
+	JSONObject entryJSON = JSONFactoryUtil.createJSONObject();
 
-	JSONUtil.put(entryJSON, "createDate", entry.getCreateDate());
-	JSONUtil.put(entryJSON, "fromUserId", entry.getFromUserId());
+	entryJSON.put("createDate", entry.getCreateDate());
+	entryJSON.put("fromUserId", entry.getFromUserId());
 
 	if (entry.getFromUserId() != themeDisplay.getUserId()) {
 		User fromUser = UserLocalServiceUtil.getUserById(entry.getFromUserId());
 
-		JSONUtil.put(entryJSON, "fromFullName", fromUser.getFullName());
-		JSONUtil.put(entryJSON, "fromPortraitId", fromUser.getPortraitId());
+		entryJSON.put("fromFullName", fromUser.getFullName());
+		entryJSON.put("fromPortraitId", fromUser.getPortraitId());
 	}
 
-	JSONUtil.put(entryJSON, "toUserId", entry.getToUserId());
-	JSONUtil.put(entryJSON, "content", entry.getContent());
+	entryJSON.put("toUserId", entry.getToUserId());
+	entryJSON.put("content", entry.getContent());
 
 	entriesJSON.put(entryJSON);
 }
@@ -141,11 +141,11 @@ StatusLocalServiceUtil.updateStatus(themeDisplay.getUserId(), activeBrowserKey);
 
 // JSON
 
-JSONObject jsonObj = new JSONObject();
+JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
-JSONUtil.put(jsonObj, "activeBrowser", true);
-JSONUtil.put(jsonObj, "buddies", buddiesJSON);
-JSONUtil.put(jsonObj, "entries", entriesJSON);
+jsonObj.put("activeBrowser", true);
+jsonObj.put("buddies", buddiesJSON);
+jsonObj.put("entries", entriesJSON);
 %>
 
 <%= jsonObj %>
