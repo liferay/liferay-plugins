@@ -45,7 +45,6 @@
 			<jvmarg value="-Dservice.auto.namespace.tables=true" />
 			<jvmarg value="-Dservice.base.persistence.package=com.liferay.portlet.service" />
 			<jvmarg value="-Dservice.bean.locator.util.package=com.liferay.portlet.service" />
-			<jvmarg value="-Dservice.principal.bean.package=com.liferay.portlet.service" />
 			<jvmarg value="-Dservice.props.util.package=com.liferay.portlet.service" />
 			<jvmarg value="-Dservice.spring.context.package=com.liferay.portlet.service" />
 			<jvmarg value="-Dservice.spring.hibernate.package=com.liferay.portlet.service" />
