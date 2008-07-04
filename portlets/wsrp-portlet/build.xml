@@ -10,27 +10,27 @@
 		</antcall>
 	</target>
 
-	<target name="wsdltojava">
-		<java 
-			classname="org.apache.cxf.tools.wsdlto.WSDLToJava" 
+	<target name="build-wsdl">
+		<java
+			classname="org.apache.cxf.tools.wsdlto.WSDLToJava"
 			classpathref="plugin-lib.classpath"
 			dir="docroot/wsdl"
 			fork="true"
 			maxmemory="256m"
 			newenvironment="true"
 		>
-			<arg value="-verbose"/>
-			<arg value="-p"/>
+			<arg value="-verbose" />
+			<arg value="-p" />
 			<arg value="urn:oasis:names:tc:wsrp:v2:types=com.liferay.wsrp.soap.v2.types" />
-			<arg value="-p"/>
+			<arg value="-p" />
 			<arg value="urn:oasis:names:tc:wsrp:v2:intf=com.liferay.wsrp.soap.v2.intf" />
-			<arg value="-p"/>
+			<arg value="-p" />
 			<arg value="urn:oasis:names:tc:wsrp:v2:wsdl=com.liferay.wsrp.soap.v2.wsdl" />
-			<arg value="-b"/>
-			<arg value="wsrp-2.0-custom-bindings.xml"/>
-			<arg value="-d"/>
-			<arg value="../WEB-INF/src"/>
-			<arg value="wsrp-2.0-service.wsdl "/>
+			<arg value="-b" />
+			<arg value="wsrp-2.0-custom-bindings.xml" />
+			<arg value="-d" />
+			<arg value="../WEB-INF/src" />
+			<arg value="wsrp-2.0-service.wsdl " />
 		</java>
 	</target>
 </project>
