@@ -43,7 +43,6 @@
 			<jvmarg value="-Dservice.sql.indexes.properties.file=indexes.properties" />
 			<jvmarg value="-Dservice.sql.sequences.file=sequences.sql" />
 			<jvmarg value="-Dservice.auto.namespace.tables=true" />
-			<jvmarg value="-Dservice.base.model.impl.package=com.liferay.portlet.service" />
 			<jvmarg value="-Dservice.base.persistence.package=com.liferay.portlet.service" />
 			<jvmarg value="-Dservice.bean.locator.util.package=com.liferay.portlet.service" />
 			<jvmarg value="-Dservice.principal.bean.package=com.liferay.portlet.service" />
