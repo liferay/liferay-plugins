@@ -28,8 +28,8 @@ import com.liferay.chat.model.StatusSoap;
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.model.impl.BaseModelImpl;
 
-import com.liferay.portlet.service.BaseModelImpl;
 import com.liferay.portlet.service.PropsUtil;
 
 import java.io.Serializable;
