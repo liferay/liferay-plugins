@@ -2,7 +2,7 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-	<bean id="com.liferay.chat.service.EntryLocalService.impl" class="com.liferay.chat.service.impl.EntryLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.chat.service.EntryLocalService.impl" class="com.liferay.chat.service.impl.EntryLocalServiceImpl" lazy-init="true" init-method="init" />
 	<bean id="com.liferay.chat.service.EntryLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
@@ -62,7 +62,7 @@
 			<ref bean="com.liferay.chat.service.persistence.EntryFinder.impl" />
 		</property>
 	</bean>
-	<bean id="com.liferay.chat.service.StatusLocalService.impl" class="com.liferay.chat.service.impl.StatusLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.chat.service.StatusLocalService.impl" class="com.liferay.chat.service.impl.StatusLocalServiceImpl" lazy-init="true" init-method="init" />
 	<bean id="com.liferay.chat.service.StatusLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />

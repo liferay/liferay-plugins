@@ -84,6 +84,12 @@ public class EntryLocalServiceUtil {
 		return entryLocalService.updateEntry(entry);
 	}
 
+	public static void init() {
+		EntryLocalService entryLocalService = EntryLocalServiceFactory.getService();
+
+		entryLocalService.init();
+	}
+
 	public static com.liferay.chat.model.Entry addEntry(long fromUserId,
 		long toUserId, java.lang.String content)
 		throws com.liferay.portal.PortalException,

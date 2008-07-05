@@ -56,6 +56,8 @@ public interface StatusLocalService {
 		com.liferay.chat.model.Status status)
 		throws com.liferay.portal.SystemException;
 
+	public void init();
+
 	public java.util.List<Object[]> getAllStatuses(long modifiedDate,
 		int start, int end) throws com.liferay.portal.SystemException;
 

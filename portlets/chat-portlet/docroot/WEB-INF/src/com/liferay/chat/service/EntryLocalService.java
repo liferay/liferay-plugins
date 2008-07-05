@@ -56,6 +56,8 @@ public interface EntryLocalService {
 		com.liferay.chat.model.Entry entry)
 		throws com.liferay.portal.SystemException;
 
+	public void init();
+
 	public com.liferay.chat.model.Entry addEntry(long fromUserId,
 		long toUserId, java.lang.String content)
 		throws com.liferay.portal.PortalException,

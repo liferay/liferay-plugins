@@ -39,8 +39,6 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
 
-import org.springframework.beans.factory.InitializingBean;
-
 import java.util.List;
 
 /**
@@ -49,8 +47,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class EntryLocalServiceBaseImpl implements EntryLocalService,
-	InitializingBean {
+public abstract class EntryLocalServiceBaseImpl implements EntryLocalService {
 	public Entry addEntry(Entry entry) throws SystemException {
 		entry.setNew(true);
 
@@ -127,7 +124,7 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService,
 		this.statusFinder = statusFinder;
 	}
 
-	public void afterPropertiesSet() {
+	public void init() {
 		if (entryPersistence == null) {
 			entryPersistence = EntryUtil.getPersistence();
 		}

@@ -84,6 +84,12 @@ public class StatusLocalServiceUtil {
 		return statusLocalService.updateStatus(status);
 	}
 
+	public static void init() {
+		StatusLocalService statusLocalService = StatusLocalServiceFactory.getService();
+
+		statusLocalService.init();
+	}
+
 	public static java.util.List<Object[]> getAllStatuses(long modifiedDate,
 		int start, int end) throws com.liferay.portal.SystemException {
 		StatusLocalService statusLocalService = StatusLocalServiceFactory.getService();
