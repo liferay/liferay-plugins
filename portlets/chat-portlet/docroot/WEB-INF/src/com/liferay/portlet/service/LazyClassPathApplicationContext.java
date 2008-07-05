@@ -56,7 +56,9 @@ public class LazyClassPathApplicationContext extends XmlWebApplicationContext {
 			super.loadBeanDefinitions(reader);
 		}
 		catch (Exception e) {
-			_log.warn(e);
+			if (_log.isWarnEnabled()) {
+				_log.warn(e);
+			}
 		}
 
 		reader.setResourceLoader(new DefaultResourceLoader());
@@ -68,7 +70,9 @@ public class LazyClassPathApplicationContext extends XmlWebApplicationContext {
 				reader.loadBeanDefinitions(configLocations[i]);
 			}
 			catch (Exception e) {
-				_log.warn(e);
+				if (_log.isWarnEnabled()) {
+					_log.warn(e);
+				}
 			}
 		}
 	}
