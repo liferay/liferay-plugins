@@ -43,7 +43,7 @@
 			<jvmarg value="-Dservice.sql.indexes.properties.file=indexes.properties" />
 			<jvmarg value="-Dservice.sql.sequences.file=sequences.sql" />
 			<jvmarg value="-Dservice.auto.namespace.tables=true" />
-			<jvmarg value="-Dservice.bean.locator.util=com.liferay.util.bean.BeanLocatorUtil" />
+			<jvmarg value="-Dservice.bean.locator.util=com.liferay.util.bean.PortletBeanLocatorUtil" />
 			<jvmarg value="-Dservice.props.util=com.liferay.util.service.ServiceProps" />
 		</java>
 
