@@ -51,51 +51,54 @@ import org.apache.commons.logging.LogFactory;
  */
 public class TestPortlet extends GenericPortlet {
 
-	public void doDispatch(RenderRequest req, RenderResponse res)
+	public void doDispatch(
+			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		String jspPage = ParamUtil.getString(req, "jspPage", "/view.jsp");
+		String jspPage = ParamUtil.getString(
+			renderRequest, "jspPage", "/view.jsp");
 
-		if (jspPage.equals("/response/buffer_size.jsp")) {
-			testResponseBufferSize(res);
+		if (jspPage.equals("/renderResponseponse/buffer_size.jsp")) {
+			testResponseBufferSize(renderResponse);
 		}
 
-		include(jspPage, req, res);
+		include(jspPage, renderRequest, renderResponse);
 	}
 
-	public void serveResource(ResourceRequest req, ResourceResponse res)
+	public void serveResource(
+			ResourceRequest renderRequest, ResourceResponse renderResponse)
 		throws IOException, PortletException {
 
-		HttpServletResponse httpRes = PortalUtil.getHttpServletResponse(res);
-
-		String fileName = req.getResourceID();
+		String fileName = renderRequest.getResourceID();
 		InputStream is = getPortletContext().getResourceAsStream(
 			"/WEB-INF/images/logo.png");
 		String contentType = MimeTypesUtil.getContentType(fileName);
 
-		PortletResponseUtil.sendFile(res, fileName, is, contentType);
+		PortletResponseUtil.sendFile(renderResponse, fileName, is, contentType);
 	}
 
-	protected void include(String path, RenderRequest req, RenderResponse res)
+	protected void include(
+			String path, RenderRequest renderRequest,
+			RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		PortletRequestDispatcher prd =
+		PortletRequestDispatcher portletRequestDispatcher =
 			getPortletContext().getRequestDispatcher(path);
 
-		if (prd == null) {
+		if (portletRequestDispatcher == null) {
 			_log.error(path + " is not a valid include");
 		}
 		else {
-			prd.include(req, res);
+			portletRequestDispatcher.include(renderRequest, renderResponse);
 		}
 	}
 
-	protected void testResponseBufferSize(RenderResponse res) {
-		_log.info("Original buffer size " + res.getBufferSize());
+	protected void testResponseBufferSize(RenderResponse renderResponse) {
+		_log.info("Original buffer size " + renderResponse.getBufferSize());
 
-		res.setBufferSize(12345);
+		renderResponse.setBufferSize(12345);
 
-		_log.info("New buffer size " + res.getBufferSize());
+		_log.info("New buffer size " + renderResponse.getBufferSize());
 	}
 
 	private static Log _log = LogFactory.getLog(TestPortlet.class);

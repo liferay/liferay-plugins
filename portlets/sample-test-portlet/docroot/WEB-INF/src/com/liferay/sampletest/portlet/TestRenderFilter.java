@@ -42,17 +42,18 @@ import org.apache.commons.logging.LogFactory;
  */
 public class TestRenderFilter implements RenderFilter {
 
-	public void init(FilterConfig config) throws PortletException {
+	public void init(FilterConfig filterConfig) throws PortletException {
 		_log.info("Init");
 	}
 
 	public void doFilter(
-			RenderRequest req, RenderResponse res, FilterChain chain)
+			RenderRequest renderRequest, RenderResponse renderResponse,
+			FilterChain filterChain)
 		throws IOException, PortletException {
 
 		_log.info("Before filter");
 
-		chain.doFilter(req, res);
+		filterChain.doFilter(renderRequest, renderResponse);
 
 		_log.info("After filter");
 	}
