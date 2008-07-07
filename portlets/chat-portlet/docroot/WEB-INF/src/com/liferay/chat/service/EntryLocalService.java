@@ -41,11 +41,11 @@ public interface EntryLocalService {
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.chat.model.Entry> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
+		com.liferay.portal.kernel.dao.search.DynamicQueryInitializer queryInitializer)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.chat.model.Entry> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
+		com.liferay.portal.kernel.dao.search.DynamicQueryInitializer queryInitializer,
 		int start, int end) throws com.liferay.portal.SystemException;
 
 	public com.liferay.chat.model.Entry getEntry(long entryId)
@@ -55,8 +55,6 @@ public interface EntryLocalService {
 	public com.liferay.chat.model.Entry updateEntry(
 		com.liferay.chat.model.Entry entry)
 		throws com.liferay.portal.SystemException;
-
-	public void init();
 
 	public com.liferay.chat.model.Entry addEntry(long fromUserId,
 		long toUserId, java.lang.String content)

@@ -25,15 +25,14 @@ package com.liferay.chat.service.persistence;
 import com.liferay.chat.model.Entry;
 import com.liferay.chat.model.impl.EntryImpl;
 import com.liferay.portal.SystemException;
-import com.liferay.portlet.service.CustomSQLUtil;
-import com.liferay.portlet.service.HibernateUtil;
-import com.liferay.util.dao.hibernate.QueryPos;
-import com.liferay.util.dao.hibernate.QueryUtil;
+import com.liferay.portal.kernel.dao.hibernate.QueryPos;
+import com.liferay.portal.kernel.dao.hibernate.QueryUtil;
+import com.liferay.portal.kernel.dao.hibernate.Session;
+import com.liferay.portal.kernel.dao.hibernate.SQLQuery;
+import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
+import com.liferay.util.dao.hibernate.CustomSQLUtil;
 
 import java.util.List;
-
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
 
 /**
  * <a href="EntryFinderImpl.java.html"><b><i>View Source</i></b></a>
@@ -41,7 +40,8 @@ import org.hibernate.Session;
  * @author Brian Wing Shun Chan
  *
  */
-public class EntryFinderImpl implements EntryFinder {
+public class EntryFinderImpl
+	extends BasePersistenceImpl implements EntryFinder {
 
 	public static String FIND_BY_NEW =
 		EntryFinder.class.getName() + ".findByNew";
@@ -56,7 +56,7 @@ public class EntryFinderImpl implements EntryFinder {
 		Session session = null;
 
 		try {
-			session = HibernateUtil.openSession();
+			session = openSession();
 
 			String sql = CustomSQLUtil.get(FIND_BY_NEW);
 
@@ -70,14 +70,13 @@ public class EntryFinderImpl implements EntryFinder {
 			qPos.add(userId);
 			qPos.add(createDate);
 
-			return (List<Entry>)QueryUtil.list(
-				q, HibernateUtil.getDialect(), start, end);
+			return (List<Entry>)QueryUtil.list(q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
 		}
 		finally {
-			HibernateUtil.closeSession(session);
+			closeSession(session);
 		}
 	}
 
@@ -87,7 +86,7 @@ public class EntryFinderImpl implements EntryFinder {
 		Session session = null;
 
 		try {
-			session = HibernateUtil.openSession();
+			session = openSession();
 
 			String sql = CustomSQLUtil.get(FIND_BY_OLD);
 
@@ -99,14 +98,13 @@ public class EntryFinderImpl implements EntryFinder {
 
 			qPos.add(createDate);
 
-			return (List<Entry>)QueryUtil.list(
-				q, HibernateUtil.getDialect(), start, end);
+			return (List<Entry>)QueryUtil.list(q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
 		}
 		finally {
-			HibernateUtil.closeSession(session);
+			closeSession(session);
 		}
 	}
 

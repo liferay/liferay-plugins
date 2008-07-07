@@ -37,7 +37,7 @@ import com.liferay.chat.service.persistence.StatusUtil;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
+import com.liferay.portal.kernel.dao.search.DynamicQueryInitializer;
 
 import java.util.List;
 
@@ -124,7 +124,7 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService {
 		this.statusFinder = statusFinder;
 	}
 
-	public void init() {
+	protected void init() {
 		if (entryPersistence == null) {
 			entryPersistence = EntryUtil.getPersistence();
 		}

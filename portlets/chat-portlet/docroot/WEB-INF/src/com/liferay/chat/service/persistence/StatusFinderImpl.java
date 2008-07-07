@@ -23,16 +23,15 @@
 package com.liferay.chat.service.persistence;
 
 import com.liferay.portal.SystemException;
-import com.liferay.portlet.service.CustomSQLUtil;
-import com.liferay.portlet.service.HibernateUtil;
-import com.liferay.util.dao.hibernate.QueryPos;
-import com.liferay.util.dao.hibernate.QueryUtil;
+import com.liferay.portal.kernel.dao.hibernate.QueryPos;
+import com.liferay.portal.kernel.dao.hibernate.QueryUtil;
+import com.liferay.portal.kernel.dao.hibernate.Session;
+import com.liferay.portal.kernel.dao.hibernate.SQLQuery;
+import com.liferay.portal.kernel.dao.hibernate.Type;
+import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
+import com.liferay.util.dao.hibernate.CustomSQLUtil;
 
 import java.util.List;
-
-import org.hibernate.Hibernate;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
 
 /**
  * <a href="StatusFinderImpl.java.html"><b><i>View Source</i></b></a>
@@ -40,7 +39,8 @@ import org.hibernate.Session;
  * @author Brian Wing Shun Chan
  *
  */
-public class StatusFinderImpl implements StatusFinder {
+public class StatusFinderImpl
+	extends BasePersistenceImpl implements StatusFinder {
 
 	public static String FIND_BY_MODIFIED_DATE =
 		StatusFinder.class.getName() + ".findByModifiedDate";
@@ -55,30 +55,29 @@ public class StatusFinderImpl implements StatusFinder {
 		Session session = null;
 
 		try {
-			session = HibernateUtil.openSession();
+			session = openSession();
 
 			String sql = CustomSQLUtil.get(FIND_BY_MODIFIED_DATE);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
-			q.addScalar("User_.userId", Hibernate.LONG);
-			q.addScalar("Contact_.firstName", Hibernate.STRING);
-			q.addScalar("Contact_.middleName", Hibernate.STRING);
-			q.addScalar("Contact_.lastName", Hibernate.STRING);
-			q.addScalar("User_.portraitId", Hibernate.LONG);
+			q.addScalar("User_.userId", Type.LONG);
+			q.addScalar("Contact_.firstName", Type.STRING);
+			q.addScalar("Contact_.middleName", Type.STRING);
+			q.addScalar("Contact_.lastName", Type.STRING);
+			q.addScalar("User_.portraitId", Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(modifiedDate);
 
-			return (List<Object[]>)QueryUtil.list(
-				q, HibernateUtil.getDialect(), start, end);
+			return (List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
 		}
 		finally {
-			HibernateUtil.closeSession(session);
+			closeSession(session);
 		}
 	}
 
@@ -89,17 +88,17 @@ public class StatusFinderImpl implements StatusFinder {
 		Session session = null;
 
 		try {
-			session = HibernateUtil.openSession();
+			session = openSession();
 
 			String sql = CustomSQLUtil.get(FIND_BY_SOCIAL_RELATION_TYPE);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
-			q.addScalar("User_.userId", Hibernate.LONG);
-			q.addScalar("Contact_.firstName", Hibernate.STRING);
-			q.addScalar("Contact_.middleName", Hibernate.STRING);
-			q.addScalar("Contact_.lastName", Hibernate.STRING);
-			q.addScalar("User_.portraitId", Hibernate.LONG);
+			q.addScalar("User_.userId", Type.LONG);
+			q.addScalar("Contact_.firstName", Type.STRING);
+			q.addScalar("Contact_.middleName", Type.STRING);
+			q.addScalar("Contact_.lastName", Type.STRING);
+			q.addScalar("User_.portraitId", Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -107,14 +106,13 @@ public class StatusFinderImpl implements StatusFinder {
 			qPos.add(type);
 			qPos.add(modifiedDate);
 
-			return (List<Object[]>)QueryUtil.list(
-				q, HibernateUtil.getDialect(), start, end);
+			return (List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
 		}
 		finally {
-			HibernateUtil.closeSession(session);
+			closeSession(session);
 		}
 	}
 

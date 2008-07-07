@@ -53,7 +53,7 @@ public class EntryLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.chat.model.Entry> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
+		com.liferay.portal.kernel.dao.search.DynamicQueryInitializer queryInitializer)
 		throws com.liferay.portal.SystemException {
 		EntryLocalService entryLocalService = EntryLocalServiceFactory.getService();
 
@@ -61,7 +61,7 @@ public class EntryLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.chat.model.Entry> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
+		com.liferay.portal.kernel.dao.search.DynamicQueryInitializer queryInitializer,
 		int start, int end) throws com.liferay.portal.SystemException {
 		EntryLocalService entryLocalService = EntryLocalServiceFactory.getService();
 
@@ -82,12 +82,6 @@ public class EntryLocalServiceUtil {
 		EntryLocalService entryLocalService = EntryLocalServiceFactory.getService();
 
 		return entryLocalService.updateEntry(entry);
-	}
-
-	public static void init() {
-		EntryLocalService entryLocalService = EntryLocalServiceFactory.getService();
-
-		entryLocalService.init();
 	}
 
 	public static com.liferay.chat.model.Entry addEntry(long fromUserId,

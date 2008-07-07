@@ -53,7 +53,7 @@ public class StatusLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.chat.model.Status> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
+		com.liferay.portal.kernel.dao.search.DynamicQueryInitializer queryInitializer)
 		throws com.liferay.portal.SystemException {
 		StatusLocalService statusLocalService = StatusLocalServiceFactory.getService();
 
@@ -61,7 +61,7 @@ public class StatusLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.chat.model.Status> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
+		com.liferay.portal.kernel.dao.search.DynamicQueryInitializer queryInitializer,
 		int start, int end) throws com.liferay.portal.SystemException {
 		StatusLocalService statusLocalService = StatusLocalServiceFactory.getService();
 
@@ -82,12 +82,6 @@ public class StatusLocalServiceUtil {
 		StatusLocalService statusLocalService = StatusLocalServiceFactory.getService();
 
 		return statusLocalService.updateStatus(status);
-	}
-
-	public static void init() {
-		StatusLocalService statusLocalService = StatusLocalServiceFactory.getService();
-
-		statusLocalService.init();
 	}
 
 	public static java.util.List<Object[]> getAllStatuses(long modifiedDate,

@@ -86,13 +86,13 @@ public class StatusUtil {
 	}
 
 	public static java.util.List<com.liferay.chat.model.Status> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
+		com.liferay.portal.kernel.dao.search.DynamicQueryInitializer queryInitializer)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findWithDynamicQuery(queryInitializer);
 	}
 
 	public static java.util.List<com.liferay.chat.model.Status> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
+		com.liferay.portal.kernel.dao.search.DynamicQueryInitializer queryInitializer,
 		int start, int end) throws com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findWithDynamicQuery(queryInitializer, start, end);
@@ -153,7 +153,7 @@ public class StatusUtil {
 
 	private static StatusUtil _getUtil() {
 		if (_util == null) {
-			_util = (StatusUtil)com.liferay.portlet.service.BeanLocatorUtil.locate(_UTIL);
+			_util = (StatusUtil)com.liferay.util.bean.BeanLocatorUtil.locate(_UTIL);
 		}
 
 		return _util;
