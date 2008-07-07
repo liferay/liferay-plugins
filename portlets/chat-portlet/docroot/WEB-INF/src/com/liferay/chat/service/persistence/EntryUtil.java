@@ -198,16 +198,15 @@ public class EntryUtil {
 	}
 
 	public static java.util.List<com.liferay.chat.model.Entry> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.search.DynamicQueryInitializer queryInitializer)
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(queryInitializer);
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<com.liferay.chat.model.Entry> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.search.DynamicQueryInitializer queryInitializer,
-		int start, int end) throws com.liferay.portal.SystemException {
-		return getPersistence()
-				   .findWithDynamicQuery(queryInitializer, start, end);
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end) throws com.liferay.portal.SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static java.util.List<com.liferay.chat.model.Entry> findAll()
@@ -284,7 +283,7 @@ public class EntryUtil {
 
 	private static EntryUtil _getUtil() {
 		if (_util == null) {
-			_util = (EntryUtil)com.liferay.util.bean.BeanLocatorUtil.locate(_UTIL);
+			_util = (EntryUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
 		}
 
 		return _util;

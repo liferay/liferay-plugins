@@ -51,7 +51,7 @@ public class EntryFinderUtil {
 
 	private static EntryFinderUtil _getUtil() {
 		if (_util == null) {
-			_util = (EntryFinderUtil)com.liferay.util.bean.BeanLocatorUtil.locate(_UTIL);
+			_util = (EntryFinderUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
 		}
 
 		return _util;

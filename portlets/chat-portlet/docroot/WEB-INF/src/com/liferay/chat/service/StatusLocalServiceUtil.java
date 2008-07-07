@@ -53,19 +53,19 @@ public class StatusLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.chat.model.Status> dynamicQuery(
-		com.liferay.portal.kernel.dao.search.DynamicQueryInitializer queryInitializer)
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
 		StatusLocalService statusLocalService = StatusLocalServiceFactory.getService();
 
-		return statusLocalService.dynamicQuery(queryInitializer);
+		return statusLocalService.dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<com.liferay.chat.model.Status> dynamicQuery(
-		com.liferay.portal.kernel.dao.search.DynamicQueryInitializer queryInitializer,
-		int start, int end) throws com.liferay.portal.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end) throws com.liferay.portal.SystemException {
 		StatusLocalService statusLocalService = StatusLocalServiceFactory.getService();
 
-		return statusLocalService.dynamicQuery(queryInitializer, start, end);
+		return statusLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.chat.model.Status getStatus(long statusId)

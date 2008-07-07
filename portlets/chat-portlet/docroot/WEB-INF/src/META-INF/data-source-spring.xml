@@ -14,7 +14,7 @@
 			<ref bean="liferayDataSource" />
 		</property>
 	</bean>
-	<bean id="liferaySessionFactory" class="com.liferay.portal.dao.hibernate.SessionFactoryImpl" lazy-init="true">
+	<bean id="liferaySessionFactory" class="com.liferay.portal.dao.orm.hibernate.SessionFactoryImpl" lazy-init="true">
 		<property name="sessionFactoryImplementor">
 			<ref bean="liferayHibernateSessionFactory" />
 		</property>

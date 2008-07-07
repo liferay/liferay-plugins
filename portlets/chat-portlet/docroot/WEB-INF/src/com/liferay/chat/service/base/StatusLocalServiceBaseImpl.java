@@ -37,7 +37,7 @@ import com.liferay.chat.service.persistence.StatusUtil;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.dao.search.DynamicQueryInitializer;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import java.util.List;
 
@@ -63,15 +63,14 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService {
 		statusPersistence.remove(status);
 	}
 
-	public List<Status> dynamicQuery(DynamicQueryInitializer queryInitializer)
+	public List<Status> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
-		return statusPersistence.findWithDynamicQuery(queryInitializer);
+		return statusPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<Status> dynamicQuery(DynamicQueryInitializer queryInitializer,
-		int start, int end) throws SystemException {
-		return statusPersistence.findWithDynamicQuery(queryInitializer, start,
-			end);
+	public List<Status> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) throws SystemException {
+		return statusPersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
 	public Status getStatus(long statusId)

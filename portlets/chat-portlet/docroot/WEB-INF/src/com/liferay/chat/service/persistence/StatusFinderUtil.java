@@ -53,7 +53,7 @@ public class StatusFinderUtil {
 
 	private static StatusFinderUtil _getUtil() {
 		if (_util == null) {
-			_util = (StatusFinderUtil)com.liferay.util.bean.BeanLocatorUtil.locate(_UTIL);
+			_util = (StatusFinderUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
 		}
 
 		return _util;

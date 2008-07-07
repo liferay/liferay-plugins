@@ -35,7 +35,7 @@ public class StatusLocalServiceFactory {
 
 	public static StatusLocalService getImpl() {
 		if (_impl == null) {
-			_impl = (StatusLocalService)com.liferay.util.bean.BeanLocatorUtil.locate(_IMPL);
+			_impl = (StatusLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_IMPL);
 		}
 
 		return _impl;
@@ -43,7 +43,7 @@ public class StatusLocalServiceFactory {
 
 	public static StatusLocalService getTxImpl() {
 		if (_txImpl == null) {
-			_txImpl = (StatusLocalService)com.liferay.util.bean.BeanLocatorUtil.locate(_TX_IMPL);
+			_txImpl = (StatusLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_TX_IMPL);
 		}
 
 		return _txImpl;
@@ -55,7 +55,7 @@ public class StatusLocalServiceFactory {
 
 	private static StatusLocalServiceFactory _getFactory() {
 		if (_factory == null) {
-			_factory = (StatusLocalServiceFactory)com.liferay.util.bean.BeanLocatorUtil.locate(_FACTORY);
+			_factory = (StatusLocalServiceFactory)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_FACTORY);
 		}
 
 		return _factory;

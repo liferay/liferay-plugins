@@ -35,7 +35,7 @@ public class EntryLocalServiceFactory {
 
 	public static EntryLocalService getImpl() {
 		if (_impl == null) {
-			_impl = (EntryLocalService)com.liferay.util.bean.BeanLocatorUtil.locate(_IMPL);
+			_impl = (EntryLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_IMPL);
 		}
 
 		return _impl;
@@ -43,7 +43,7 @@ public class EntryLocalServiceFactory {
 
 	public static EntryLocalService getTxImpl() {
 		if (_txImpl == null) {
-			_txImpl = (EntryLocalService)com.liferay.util.bean.BeanLocatorUtil.locate(_TX_IMPL);
+			_txImpl = (EntryLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_TX_IMPL);
 		}
 
 		return _txImpl;
@@ -55,7 +55,7 @@ public class EntryLocalServiceFactory {
 
 	private static EntryLocalServiceFactory _getFactory() {
 		if (_factory == null) {
-			_factory = (EntryLocalServiceFactory)com.liferay.util.bean.BeanLocatorUtil.locate(_FACTORY);
+			_factory = (EntryLocalServiceFactory)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_FACTORY);
 		}
 
 		return _factory;

@@ -37,7 +37,7 @@ import com.liferay.chat.service.persistence.StatusUtil;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.dao.search.DynamicQueryInitializer;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import java.util.List;
 
@@ -63,15 +63,14 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService {
 		entryPersistence.remove(entry);
 	}
 
-	public List<Entry> dynamicQuery(DynamicQueryInitializer queryInitializer)
+	public List<Entry> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
-		return entryPersistence.findWithDynamicQuery(queryInitializer);
+		return entryPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<Entry> dynamicQuery(DynamicQueryInitializer queryInitializer,
-		int start, int end) throws SystemException {
-		return entryPersistence.findWithDynamicQuery(queryInitializer, start,
-			end);
+	public List<Entry> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) throws SystemException {
+		return entryPersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
 	public Entry getEntry(long entryId) throws PortalException, SystemException {

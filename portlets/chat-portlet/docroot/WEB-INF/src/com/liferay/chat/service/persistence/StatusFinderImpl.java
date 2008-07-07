@@ -23,13 +23,13 @@
 package com.liferay.chat.service.persistence;
 
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.dao.hibernate.QueryPos;
-import com.liferay.portal.kernel.dao.hibernate.QueryUtil;
-import com.liferay.portal.kernel.dao.hibernate.Session;
-import com.liferay.portal.kernel.dao.hibernate.SQLQuery;
-import com.liferay.portal.kernel.dao.hibernate.Type;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.Session;
+import com.liferay.portal.kernel.dao.orm.SQLQuery;
+import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
-import com.liferay.util.dao.hibernate.CustomSQLUtil;
+import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.List;
 
