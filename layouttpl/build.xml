@@ -4,7 +4,7 @@
 	<property name="project.dir" value=".." />
 
 	<import file="../build-common-plugins.xml" />
-	
+
 	<target name="create">
 		<if>
 			<equals arg1="${layouttpl.name}" arg2="$${layouttpl.name}" />
@@ -24,12 +24,23 @@
 							<replacefilter token="@layouttpl.name@" value="${layouttpl.name}" />
 							<replacefilter token="@layouttpl.display.name@" value="${layouttpl.display.name}" />
 						</replace>
-						
-						<move file="${layouttpl.name}-layouttpl/docroot/blank_columns.png" tofile="${layouttpl.name}-layouttpl/docroot/${layouttpl.name}.png"/>
-						<move file="${layouttpl.name}-layouttpl/docroot/blank_columns.tpl" tofile="${layouttpl.name}-layouttpl/docroot/${layouttpl.name}.tpl"/>
-						<move file="${layouttpl.name}-layouttpl/docroot/blank_columns.wap.tpl" tofile="${layouttpl.name}-layouttpl/docroot/${layouttpl.name}.wap.tpl"/>
-						<touch file="${layouttpl.name}-layouttpl/docroot/${layouttpl.name}.wap.tpl"/>
-						
+
+						<move
+							file="${layouttpl.name}-layouttpl/docroot/blank_columns.png"
+							tofile="${layouttpl.name}-layouttpl/docroot/${layouttpl.name}.png"
+						/>
+
+						<move
+							file="${layouttpl.name}-layouttpl/docroot/blank_columns.tpl"
+							tofile="${layouttpl.name}-layouttpl/docroot/${layouttpl.name}.tpl"
+						/>
+
+						<move
+							file="${layouttpl.name}-layouttpl/docroot/blank_columns.wap.tpl"
+							tofile="${layouttpl.name}-layouttpl/docroot/${layouttpl.name}.wap.tpl"
+						/>
+
+						<touch file="${layouttpl.name}-layouttpl/docroot/${layouttpl.name}.wap.tpl" />
 					</else>
 				</if>
 			</else>
