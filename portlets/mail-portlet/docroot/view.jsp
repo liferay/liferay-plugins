@@ -29,10 +29,6 @@
 		return '';
 	}
 
-	function <portlet:namespace />sendMessage() {
-		submitForm(document.<portlet:namespace />fm);
-	}
-
 	jQuery(
 		function() {
 			Liferay.Mail.init(
@@ -96,9 +92,9 @@
 						<select class="select-actions">
 							<option value="none"><liferay-ui:message key="more-actions" /></option>
 
-							<option value="read">- <liferay-ui:message key="mark-as-read" /></option>
+							<option value="seen,true">- <liferay-ui:message key="mark-as-read" /></option>
 
-							<option value="unread">- <liferay-ui:message key="mark-as-unread" /></option>
+							<option value="seen,false">- <liferay-ui:message key="mark-as-unread" /></option>
 						</select>
 
 						<!-- <a class="refresh" href="javascript: ;"><liferay-ui:message key="refresh" /></a> -->
@@ -157,9 +153,9 @@
 						<select class="select-actions">
 							<option value="none"><liferay-ui:message key="more-actions" /></option>
 
-							<option value="read">- <liferay-ui:message key="mark-as-read" /></option>
+							<option value="seen,true">- <liferay-ui:message key="mark-as-read" /></option>
 
-							<option value="unread">- <liferay-ui:message key="mark-as-unread" /></option>
+							<option value="seen,false">- <liferay-ui:message key="mark-as-unread" /></option>
 						</select>
 
 						<a class="refresh" href="javascript: ;"><liferay-ui:message key="refresh" /></a>
@@ -195,7 +191,7 @@
 				</div>
 			</div>
 
-			<div class="message-read" id="<portlet:namespace />message-read">
+			<div class="message-read" id="<portlet:namespace />messageRead">
 				<div class="details">
 					<table>
 						<tr>
@@ -229,7 +225,7 @@
 							<td><span id="<portlet:namespace />read-date"></span></td>
 						</tr>
 						<tr>
-							<td class="<portlet:namespace />label">
+							<td class="label">
 								<liferay-ui:message key="subject" />
 							</td>
 							<td><span id="<portlet:namespace />read-subject"></span></td>
@@ -247,7 +243,7 @@
 				</div>
 			</div>
 
-			<table class="message-options" id="<portlet:namespace />message-options">
+			<table class="message-options" id="<portlet:namespace />messageOptions" name="message-options">
 			<tr>
 				<td id="<portlet:namespace />reply" responseType="reply">
 					<a href="#message-options"><liferay-ui:message key="reply" /></a>
@@ -261,15 +257,19 @@
 			</tr>
 			</table>
 
-			<form action="<portlet:actionURL name="sendMessage" />" enctype="multipart/form-data" id="<portlet:namespace />send-form" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />sendMessage(); return false;">
-			<input id="<portlet:namespace />send-email-address" name="<portlet:namespace />sendEmailAddress" type="hidden" value="">
-			<input id="<portlet:namespace />send-folder-name" name="<portlet:namespace />sendFolderName" type="hidden" value="">
-			<input id="<portlet:namespace />send-message-type" name="<portlet:namespace />sendMessageType" type="hidden" value="">
-			<input id="<portlet:namespace />send-message-uid" name="<portlet:namespace />sendMessageUid" type="hidden" value="">
+			<form action="<portlet:actionURL name="saveOrSendMessage" />" enctype="multipart/form-data" id="<portlet:namespace />fm" method="post" name="<portlet:namespace />fm">
+			<input id="<portlet:namespace />sendDraftMessageUid" name="<portlet:namespace />sendDraftMessageUid" type="hidden" value="">
+			<input id="<portlet:namespace />sendEmailAddress" name="<portlet:namespace />sendEmailAddress" type="hidden" value="">
+			<input id="<portlet:namespace />sendFolderName" name="<portlet:namespace />sendFolderName" type="hidden" value="">
+			<input id="<portlet:namespace />sendMessageType" name="<portlet:namespace />sendMessageType" type="hidden" value="">
+			<input id="<portlet:namespace />sendMessageUid" name="<portlet:namespace />sendMessageUid" type="hidden" value="">
+			<input id="<portlet:namespace />sendMessage" name="<portlet:namespace />sendMessage" type="hidden" value="">
 
-			<div class="message-send" id="<portlet:namespace />message-send">
+			<div class="message-send" id="<portlet:namespace />messageSend">
 				<div class="options">
-					<input class="send" type="submit" value="<liferay-ui:message key="send" />">
+					<input class="send" type="button" value="<liferay-ui:message key="send" />">
+
+					<!--<input class="save" type=""button"" value="<liferay-ui:message key="save" />">-->
 
 					<input class="discard" type="button" value="<liferay-ui:message key="discard" />">
 				</div>
@@ -281,7 +281,7 @@
 							<liferay-ui:message key="from" />:
 						</td>
 						<td>
-							<select id="<portlet:namespace />send-from" name="<portlet:namespace />sendFromEmailAddress">
+							<select id="<portlet:namespace />sendFrom" name="<portlet:namespace />sendFrom">
 							</select>
 						</td>
 					</tr>
@@ -290,7 +290,7 @@
 							<liferay-ui:message key="to" />:
 						</td>
 						<td>
-							<textarea name="<portlet:namespace />sendTo"></textarea>
+							<textarea id="<portlet:namespace />sendTo" name="<portlet:namespace />sendTo"></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -298,7 +298,7 @@
 							<liferay-ui:message key="cc" />:
 						</td>
 						<td>
-							<input name="<portlet:namespace />sendCc" type="text">
+							<input id="<portlet:namespace />sendCc" name="<portlet:namespace />sendCc" type="text">
 						</td>
 					</tr>
 					<tr>
@@ -306,7 +306,7 @@
 							<liferay-ui:message key="bcc" />:
 						</td>
 						<td>
-							<input name="<portlet:namespace />sendBcc" type="text">
+							<input id="<portlet:namespace />sendBcc" name="<portlet:namespace />sendBcc" type="text">
 						</td>
 					</tr>
 					<tr>
@@ -314,7 +314,7 @@
 							<liferay-ui:message key="subject" />:
 						</td>
 						<td>
-							<input name="<portlet:namespace />sendSubject" type="text">
+							<input id="<portlet:namespace />sendSubject" name="<portlet:namespace />sendSubject" type="text">
 						</td>
 					</tr>
 					<tr>
@@ -322,20 +322,22 @@
 							<liferay-ui:message key="attachments" />:
 						</td>
 						<td>
-							<input name="<portlet:namespace />sendAttachments" size="50" type="file" />
+							<input id="<portlet:namespace />sendAttachments" name="<portlet:namespace />sendAttachments" size="50" type="file" />
 						</td>
 					</tr>
 					</table>
 
-					<span class="send-body" id="<portlet:namespace />send-body">
+					<span class="send-body-span">
 						<liferay-ui:input-editor height="500px" width="95%" />
 
-						<input id="<portlet:namespace />send-body-hidden" name="<portlet:namespace />sendBody" type="hidden" />
+						<input id="<portlet:namespace />sendBody" name="<portlet:namespace />sendBody" type="hidden" />
 					</span>
 				</div>
 
 				<div class="options">
-					<input class="send" type="submit" value="<liferay-ui:message key="send" />">
+					<input class="send" type="button" value="<liferay-ui:message key="send" />">
+
+					<!--<input class="save" type="button" value="<liferay-ui:message key="save" />">-->
 
 					<input class="discard" type="button" value="<liferay-ui:message key="discard" />">
 				</div>

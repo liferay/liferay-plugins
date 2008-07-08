@@ -41,6 +41,7 @@ import com.sun.mail.imap.IMAPFolder;
 import com.sun.mail.imap.IMAPSSLStore;
 import com.sun.mail.imap.IMAPStore;
 
+import java.io.File;
 import java.io.IOException;
 
 import java.text.DateFormat;
@@ -51,6 +52,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import java.util.regex.Pattern;
+
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 
 import javax.mail.Address;
 import javax.mail.BodyPart;
@@ -132,12 +137,93 @@ public class MailBoxManager {
 			mailOutHostName, mailOutPort, mailSecure, password, username);
 	}
 
-	public void createFolder(String folderName) throws Exception {
+	public long createDraftMessage(
+			String oldDraftMessageUid, String from, String to, String cc,
+			String bcc, String subject, String body, File[] files)
+		throws MessagingException {
+
+		// Create new draft message
+
+		Message message = new MimeMessage(getSession());
+		Folder draftsFolder = getDraftsFolder();
+
+		// Fill message fields
+
+		message.setFrom(new InternetAddress(from));
+
+		if (Validator.isNotNull(to)) {
+			message.setRecipients(
+				Message.RecipientType.TO, InternetAddress.parse(to, false));
+		}
+
+		if (Validator.isNotNull(cc)) {
+			message.setRecipients(
+				Message.RecipientType.CC, InternetAddress.parse(cc, false));
+		}
+
+		if (Validator.isNotNull(bcc)) {
+			message.setRecipients(
+				Message.RecipientType.BCC, InternetAddress.parse(bcc, false));
+		}
+
+		message.setSentDate(new Date());
+		message.setSubject(subject);
+
+		MimeMultipart multipart = new MimeMultipart();
+
+		// Add message body to multipart
+
+		BodyPart messageBodyPart = new MimeBodyPart();
+
+		messageBodyPart.setContent(body, ContentTypes.TEXT_HTML);
+
+		multipart.addBodyPart(messageBodyPart);
+
+		// Add message attachments to multipart
+
+		if (Validator.isNotNull(files)) {
+			for (File file : files) {
+				String fileName = file.getName();
+				DataSource dataSource = new FileDataSource(file);
+
+				BodyPart messageAttachmentPart = new MimeBodyPart();
+
+				messageAttachmentPart.setDataHandler(new DataHandler(dataSource));
+				messageAttachmentPart.setFileName(fileName);
+
+				multipart.addBodyPart(messageAttachmentPart);
+			}
+		}
+
+		message.setContent(multipart);
+
+		// Append message to folder and get messageUid
+
+		long newDraftMessageUid = ((IMAPFolder)draftsFolder).getUIDNext();
+
+		draftsFolder.appendMessages(new Message[]{message});
+		draftsFolder.close(true);
+
+		storeMessageToDisk(getMessageByUid(draftsFolder, newDraftMessageUid));
+
+		// Remove old draft message
+
+		if (Validator.isNotNull(oldDraftMessageUid)) {
+			deleteMessage(
+				draftsFolder, GetterUtil.getLong(oldDraftMessageUid), true);
+		}
+
+		return newDraftMessageUid;
+	}
+
+	public Folder createFolder(String folderName) throws MessagingException {
 		Folder newFolder = getStore().getFolder(folderName);
 
 		if (!newFolder.exists()) {
 			newFolder.create(Folder.HOLDS_MESSAGES);
 		}
+
+		return newFolder;
 	}
 
 	public JSONObject deleteAccountFromDisk() {
@@ -153,46 +239,49 @@ public class MailBoxManager {
 		return jsonObj;
 	}
 
+	public void deleteMessage(Folder folder, long messageUid, boolean expunge)
+		throws MessagingException {
+
+		if (!folder.isOpen()) {
+			folder.open(Folder.READ_WRITE);
+		}
+
+		// Delete from server
+
+		Message message = getMessageByUid(folder, messageUid);
+
+		if (Validator.isNotNull(message)) {
+			message.setFlag(Flags.Flag.DELETED, true);
+
+			if (expunge) {
+				folder.close(true);
+			}
+		}
+
+		// Delete from local disk
+
+		String messagePath = MailDiskManager.getMessagePath(
+			_user, _mailAccount.getEmailAddress(), folder.getFullName(),
+			messageUid);
+
+		FileUtil.deltree(messagePath);
+	}
+
 	public JSONObject deleteMessagesByUids(
 			String folderName, String messageUids)
 		throws MessagingException {
 
-		Folder folder = getFolder(folderName);
+		long[] messageUidsArray = GetterUtil.getLongValues(
+			messageUids.split("\\s*,\\s*"));
 
-		try {
-			long[] messageUidsArray = GetterUtil.getLongValues(
-				messageUids.split("\\s*,\\s*"));
-
-			if (!folder.isOpen()) {
-				folder.open(Folder.READ_WRITE);
-			}
+		if (Validator.isNotNull(messageUidsArray)) {
+			Folder folder = openFolder(folderName);
 
 			for (long messageUid : messageUidsArray) {
-				try {
-
-					// Delete from server
-
-					Message message = getMessageByUid(folder, messageUid);
-
-					message.setFlag(Flags.Flag.DELETED, true);
-
-					// Delete from local disk
-
-					String messagePath = MailDiskManager.getMessagePath(
-						_user, _mailAccount.getEmailAddress(), folderName,
-						messageUid);
-
-					FileUtil.deltree(messagePath);
-				}
-				catch (MessagingException me) {
-					_log.error(me, me);
-				}
+				deleteMessage(folder, messageUid, false);
 			}
 
 			folder.close(true);
-		}
-		catch (MessagingException me) {
-			_log.error(me, me);
 		}
 
 		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
@@ -211,8 +300,8 @@ public class MailBoxManager {
 		return getMessagePart(message, contentPath);
 	}
 
-	public JSONObject markMessagesAsRead(
-			String folderName, String messageUids, boolean read)
+	public JSONObject flagMessages(
+			String folderName, String messageUids, String flag, boolean value)
 		throws MessagingException {
 
 		IMAPFolder folder = (IMAPFolder)openFolder(folderName);
@@ -231,13 +320,20 @@ public class MailBoxManager {
 
 				Message message = getMessageByUid(folder, messageUid);
 
-				message.setFlag(Flags.Flag.SEEN, read);
+				if (flag.equals("answered")) {
+					message.setFlag(Flags.Flag.ANSWERED, value);
+				}
+				else if (flag.equals("flagged")) {
+					message.setFlag(Flags.Flag.FLAGGED, value);
+				}
+				else if (flag.equals("seen")) {
+					message.setFlag(Flags.Flag.SEEN, value);
+				}
 
 				// Update message on local disk
 
-				updateJSONMessageField(
-					_user, _mailAccount, folderName, messageUid, "read",
-					String.valueOf(read));
+				updateJSONMessageFlag(
+					_user, _mailAccount, folderName, messageUid, flag, value);
 			}
 			catch (IOException ioe) {
 				_log.error(ioe, ioe);
@@ -256,71 +352,35 @@ public class MailBoxManager {
 		return jsonObj;
 	}
 
-	public JSONObject sendMessage(
-			String messageType, String folderName, long messageUid,
-			String fromEmailAddress, String to, String cc, String bcc,
-			String subject, Multipart multipart)
+	public void sendMessage(MailAccount fromMailAccount, long draftMessageUid)
 		throws MessagingException {
 
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
+		// Get message draft
 
-		Message message = null;
+		Folder draftsFolder = getDraftsFolder();
 
-		if (messageType.equalsIgnoreCase("new")) {
+		Message message = getMessageByUid(draftsFolder, draftMessageUid);
 
-			// Instantiate a message
+		// Send message
 
-			message = new MimeMessage(getSession());
+		Session session = getOutgoingSession(fromMailAccount);
 
-			send(message, fromEmailAddress, to, cc, bcc, subject, multipart);
+		Transport transport = session.getTransport("smtp");
 
-			jsonObj.put("success", true);
+		try {
+			transport.connect(
+				fromMailAccount.getUsername(), fromMailAccount.getPassword());
+
+			transport.sendMessage(message, message.getAllRecipients());
+
+			deleteMessage(draftsFolder, draftMessageUid, true);
 		}
-		else {
-			Message oldMessage = getMessageByUid(folderName, messageUid);
-
-			if (messageType.equalsIgnoreCase("forward")) {
-
-				// Create the message to forward
-
-				message = new MimeMessage(getSession());
-
-				// Create multipart to combine the parts
-
-				if (multipart == null) {
-					multipart = new MimeMultipart();
-				}
-
-				// Create and fill part for the forwarded content
-
-				BodyPart messageBodyPart = new MimeBodyPart();
-
-				messageBodyPart.setDataHandler(message.getDataHandler());
-
-				// Add part to multipart
-
-				multipart.addBodyPart(messageBodyPart);
-
-				send(
-					oldMessage, fromEmailAddress, to, cc, bcc, subject,
-					multipart);
-
-				jsonObj.put("success", true);
-			}
-			else if (messageType.equalsIgnoreCase("reply")) {
-				message = (MimeMessage)oldMessage.reply(false);
-
-				send(
-					message, fromEmailAddress, to, cc, bcc, subject, multipart);
-
-				jsonObj.put("success", true);
-			}
-			else {
-				jsonObj.put("success", false);
-			}
+		catch (MessagingException me) {
+			_log.error(me, me);
 		}
-
-		return jsonObj;
+		finally {
+			transport.close();
+		}
 	}
 
 	public JSONObject sendUpdateMessage() {
@@ -397,12 +457,12 @@ public class MailBoxManager {
 		JSONObject jsonObj = MailDiskManager.getJSONFolder(
 			_user, _mailAccount.getEmailAddress(), folder.getFullName());
 
-		long latestMessageUid = MailDiskManager.getNewestStoredMessageUID(
+		Message latestMessage = MailDiskManager.getNewestStoredMessage(
 			_user, _mailAccount.getEmailAddress(), folder.getFullName());
 
 		boolean initialized = false;
 
-		if ((jsonObj != null) && jsonObj.optBoolean("initialized")) {
+		if ((jsonObj != null) && jsonObj.getBoolean("initialized")) {
 			initialized = true;
 		}
 
@@ -416,7 +476,7 @@ public class MailBoxManager {
 
 		Message[] messages = null;
 
-		if (!initialized || (latestMessageUid == -1)) {
+		if (!initialized || (Validator.isNull(latestMessage))) {
 			if (messageCount < _messagesToPrefetch) {
 				messages = folder.getMessages(1, messageCount);
 			}
@@ -425,7 +485,7 @@ public class MailBoxManager {
 					(messageCount - _messagesToPrefetch + 1), messageCount);
 			}
 
-			storeMessagesToDisk(folder, messages);
+			storeMessagesToDisk(messages);
 
 			// Write new JSON folder
 
@@ -435,14 +495,11 @@ public class MailBoxManager {
 
 			// Get new messages since last update
 
-			Message message = ((IMAPFolder)folder).getMessageByUID(
-				latestMessageUid);
-
-			int messageNumber = message.getMessageNumber();
+			int messageNumber = latestMessage.getMessageNumber();
 
 			messages = folder.getMessages(messageNumber, messageCount);
 
-			storeMessagesToDisk(folder, messages);
+			storeMessagesToDisk(messages);
 			storeFolderToDisk(folder, true, new Date());
 		}
 	}
@@ -570,6 +627,32 @@ public class MailBoxManager {
 		return messageBody;
 	}
 
+	protected Folder getDraftsFolder() throws MessagingException {
+		Folder draftsFolder = null;
+
+		JSONObject jsonDraftFolder = MailDiskManager.getJSONDraftsFolder(
+			_user, _mailAccount.getEmailAddress());
+
+		if (Validator.isNull(jsonDraftFolder)) {
+			List<Folder> folders = getFolders();
+
+			for (Folder tempFolder : folders) {
+				if (tempFolder.getName().equalsIgnoreCase("drafts")) {
+					draftsFolder = tempFolder;
+				}
+			}
+
+			if (Validator.isNull(draftsFolder)) {
+				draftsFolder = createFolder("Drafts");
+			}
+		}
+		else {
+			draftsFolder = getFolder(jsonDraftFolder.getString("fullName"));
+		}
+
+		return openFolder(draftsFolder);
+	}
+
 	protected Folder getFolder(String folderName) throws MessagingException {
 		Folder folder = getStore().getDefaultFolder();
 
@@ -664,8 +747,8 @@ public class MailBoxManager {
 		for (Object[] attachment : attachments) {
 			JSONArray tempJsonArray = JSONFactoryUtil.createJSONArray();
 
-			tempJsonArray.put(attachment[0]);
-			tempJsonArray.put(attachment[1]);
+			tempJsonArray.put(attachment[0].toString());
+			tempJsonArray.put(attachment[1].toString());
 
 			jsonArray.put(tempJsonArray);
 		}
@@ -681,8 +764,9 @@ public class MailBoxManager {
 		if (folder.getType() != Folder.HOLDS_FOLDERS) {
 			openFolder(folder);
 
+			jsonObj.put("fullName", folder.getFullName());
 			jsonObj.put("messageCount", folder.getMessageCount());
-			jsonObj.put("name", folder.getFullName());
+			jsonObj.put("name", folder.getName());
 
 			return jsonObj;
 		}
@@ -690,7 +774,7 @@ public class MailBoxManager {
 		return null;
 	}
 
-	protected JSONObject getJSONMessage(Folder folder, Message message)
+	protected JSONObject getJSONMessage(Message message)
 		throws MessagingException {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy HH:mm");
@@ -705,20 +789,39 @@ public class MailBoxManager {
 
 		List<Object[]> attachments = new ArrayList<Object[]>();
 
+		boolean seen = false;
+
+		if (message.isSet(Flags.Flag.SEEN)) {
+			seen = true;
+		}
+
 		getBody(sb, StringPool.BLANK, message, attachments);
 
+		if (!seen) {
+			message.setFlag(Flags.Flag.SEEN, false);
+		}
+
 		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
+		JSONObject jsonFlags = JSONFactoryUtil.createJSONObject();
 
 		jsonObj.put("attachments", getJSONAttachments(attachments));
 		jsonObj.put("body", sb.toString());
 		jsonObj.put("bodyPreview", getBodyPreview(sb.toString()));
 		jsonObj.put("date", date);
+		jsonObj.put("flags", jsonFlags);
 		jsonObj.put("from", getAddresses(message.getFrom()));
 		jsonObj.put("html", false);
 		jsonObj.put("messageNumber", message.getMessageNumber());
-		jsonObj.put("read", message.isSet(Flags.Flag.SEEN));
 		jsonObj.put("subject", message.getSubject());
-		jsonObj.put("uid", ((IMAPFolder)folder).getUID(message));
+		jsonObj.put("uid", ((IMAPFolder)message.getFolder()).getUID(message));
+
+		jsonFlags.put("answered", message.isSet(Flags.Flag.ANSWERED));
+		jsonFlags.put("deleted", message.isSet(Flags.Flag.DELETED));
+		jsonFlags.put("draft", message.isSet(Flags.Flag.DRAFT));
+		jsonFlags.put("flagged", message.isSet(Flags.Flag.FLAGGED));
+		jsonFlags.put("recent", message.isSet(Flags.Flag.RECENT));
+		jsonFlags.put("seen", seen);
+		jsonFlags.put("user", message.isSet(Flags.Flag.USER));
 
 		jsonObj.put(
 			"to", getAddresses(message.getRecipients(RecipientType.TO)));
@@ -740,6 +843,8 @@ public class MailBoxManager {
 
 	protected Message getMessageByUid(Folder folder, long messageUid)
 		throws MessagingException {
+
+		folder = openFolder(folder);
 
 		return ((IMAPFolder)folder).getMessageByUID(messageUid);
 	}
@@ -771,6 +876,17 @@ public class MailBoxManager {
 			_log.error(ioe, ioe);
 
 			return null;
+		}
+	}
+
+	protected long getMessageUid(Message message) throws MessagingException {
+		IMAPFolder folder = (IMAPFolder)message.getFolder();
+
+		if (Validator.isNull(folder)) {
+			throw new MessagingException("message does not belong to any folder");
+		}
+		else {
+			return folder.getUID(message);
 		}
 	}
 
@@ -876,51 +992,6 @@ public class MailBoxManager {
 		return folder;
 	}
 
-	protected void send(
-			Message message, String fromEmailAddress, String to, String cc,
-			String bcc, String subject, Multipart multipart)
-		throws MessagingException {
-
-		MailAccount fromMailAccount = new MailAccount(_user, fromEmailAddress);
-
-		message.setSentDate(new Date());
-		message.setFrom(new InternetAddress(fromMailAccount.getEmailAddress()));
-
-		if (Validator.isNotNull(to)) {
-			message.setRecipients(
-				Message.RecipientType.TO, InternetAddress.parse(to, false));
-		}
-
-		if (Validator.isNotNull(cc)) {
-			message.setRecipients(
-				Message.RecipientType.CC, InternetAddress.parse(cc, false));
-		}
-
-		if (Validator.isNotNull(bcc)) {
-			message.setRecipients(
-				Message.RecipientType.BCC, InternetAddress.parse(bcc, false));
-		}
-
-		message.setSubject(subject);
-		message.setContent(multipart);
-
-		message.saveChanges();
-
-		Session session = getOutgoingSession(fromMailAccount);
-
-		Transport transport = session.getTransport("smtp");
-
-		try {
-			transport.connect(
-				fromMailAccount.getUsername(), fromMailAccount.getPassword());
-
-			transport.sendMessage(message, message.getAllRecipients());
-		}
-		finally {
-			transport.close();
-		}
-	}
-
 	protected void setStore(Store store) {
 		_store = store;
 	}
@@ -951,21 +1022,21 @@ public class MailBoxManager {
 		return null;
 	}
 
-	protected void storeMessagesToDisk(Folder folder, Message[] messages) {
+	protected void storeMessagesToDisk(Message[] messages) {
 		for (Message message : messages) {
-			storeMessageToDisk(folder, message);
+			storeMessageToDisk(message);
 		}
 	}
 
-	protected void storeMessageToDisk(Folder folder, Message message) {
+	protected void storeMessageToDisk(Message message) {
 		try {
-			IMAPFolder imapFolder = (IMAPFolder)folder;
+			IMAPFolder folder = (IMAPFolder)message.getFolder();
 
-			String jsonMessage = getJSONMessage(imapFolder, message).toString();
+			String jsonMessage = getJSONMessage(message).toString();
 
 			String filePath = MailDiskManager.getMessageFilePath(
 				_user, _mailAccount.getEmailAddress(), folder.getFullName(),
-				imapFolder.getUID(message));
+				folder.getUID(message));
 
 			FileUtil.write(filePath, jsonMessage);
 		}
@@ -997,20 +1068,22 @@ public class MailBoxManager {
 		return pattern.matcher(html).replaceAll(StringPool.BLANK);
 	}
 
-	protected void updateJSONMessageField(
+	protected void updateJSONMessageFlag(
 			User user, MailAccount mailAccount, String folderName,
-			long messageUid, String field, String value)
+			long messageUid, String flag, boolean value)
 		throws IOException {
 
-		JSONObject jsonObj = MailDiskManager.getJSONMessageByUid(
+		JSONObject jsonMessage = MailDiskManager.getJSONMessageByUid(
 			_user, _mailAccount.getEmailAddress(), folderName, messageUid);
 
-		jsonObj.put(field, value);
+		JSONObject jsonFlags = jsonMessage.getJSONObject("flags");
+
+		jsonFlags.put(flag, value);
 
 		String filePath = MailDiskManager.getMessageFilePath(
 			_user, _mailAccount.getEmailAddress(), folderName, messageUid);
 
-		FileUtil.write(filePath, jsonObj.toString());
+		FileUtil.write(filePath, jsonMessage.toString());
 	}
 
 	public static final String _SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";

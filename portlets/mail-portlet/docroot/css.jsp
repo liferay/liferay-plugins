@@ -251,7 +251,7 @@
 	width: 100%;
 }
 
-.mail-portlet .send-body {
+.mail-portlet .send-body-span {
 	height: 300px;
 	overflow: auto;
 }

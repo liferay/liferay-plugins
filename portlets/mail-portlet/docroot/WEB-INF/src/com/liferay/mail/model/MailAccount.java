@@ -40,15 +40,15 @@ public class MailAccount {
 
 		JSONObject jsonObj = MailDiskManager.getJSONAccount(user, emailAddress);
 
-		_emailAddress = jsonObj.optString("emailAddress");
-   		_initialized = jsonObj.optBoolean("initialized");
-		_mailInHostName = jsonObj.optString("mailInHostName");
-		_mailInPort = jsonObj.optInt("mailInPort");
-		_mailOutHostName = jsonObj.optString("mailOutHostName");
-		_mailOutPort = jsonObj.optInt("mailOutPort");
-		_mailSecure = jsonObj.optBoolean("mailSecure");
-		_password = jsonObj.optString("password");
-		_username = jsonObj.optString("username");
+		_emailAddress = jsonObj.getString("emailAddress");
+   		_initialized = jsonObj.getBoolean("initialized");
+		_mailInHostName = jsonObj.getString("mailInHostName");
+		_mailInPort = jsonObj.getInt("mailInPort");
+		_mailOutHostName = jsonObj.getString("mailOutHostName");
+		_mailOutPort = jsonObj.getInt("mailOutPort");
+		_mailSecure = jsonObj.getBoolean("mailSecure");
+		_password = jsonObj.getString("password");
+		_username = jsonObj.getString("username");
 	}
 
 	public MailAccount(

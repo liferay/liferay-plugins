@@ -28,9 +28,10 @@
 String emailAddress = ParamUtil.getString(request, "emailAddress");
 String folderName = ParamUtil.getString(request, "folderName");
 String messageUids = ParamUtil.getString(request, "messageUids");
-boolean read = ParamUtil.getBoolean(request, "read");
+String flag = ParamUtil.getString(request, "flag");
+boolean value = ParamUtil.getBoolean(request, "value");
 
 MailBoxManager mailBoxManager = new MailBoxManager(user, emailAddress);
 %>
 
-<%= mailBoxManager.markMessagesAsRead(folderName, messageUids, read) %>
+<%= mailBoxManager.flagMessages(folderName, messageUids, flag, value) %>

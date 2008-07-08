@@ -34,6 +34,8 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.util.portlet.PortletProps;
 
+import com.sun.mail.imap.IMAPFolder;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
@@ -48,6 +50,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.mail.Message;
 import javax.mail.MessagingException;
 
 import org.apache.commons.logging.Log;
@@ -171,6 +174,26 @@ public class MailDiskManager {
 		}
 		catch (JSONException jsone) {
 			_log.error(jsone, jsone);
+		}
+
+		return null;
+	}
+
+	public static JSONObject getJSONDraftsFolder(User user, String emailAddress)
+		throws MessagingException {
+
+		JSONObject jsonObj = getJSONFolders(user, emailAddress);
+
+		JSONArray jsonArray = jsonObj.getJSONArray("folders");
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonFolder = jsonArray.getJSONObject(i);
+
+			String folderName = jsonFolder.getString("name").toLowerCase();
+
+			if (folderName.indexOf("drafts") != -1) {
+				return jsonFolder;
+			}
 		}
 
 		return null;
@@ -338,18 +361,39 @@ public class MailDiskManager {
 		return pathName;
 	}
 
-	public static long getNewestStoredMessageUID(
-		User user, String emailAddress, String folderName) {
+	public static Message getNewestStoredMessage(
+			User user, String emailAddress, String folderName)
+		throws MessagingException {
 
 		String folderPath = getFolderPath(user, emailAddress, folderName);
 
 		String[] messageUids = FileUtil.listDirs(folderPath);
 
 		if (messageUids.length == 0) {
-			return -1;
+			return null;
 		}
 
-		return GetterUtil.getLong(messageUids[messageUids.length - 1]);
+		// Verify that message still exists, if not delete message from disk
+
+		MailBoxManager mailBoxManager = new MailBoxManager(
+			user, emailAddress);
+
+		IMAPFolder folder = (IMAPFolder)mailBoxManager.openFolder(folderName);
+
+		for (int i = messageUids.length - 1; i >= 0; i--) {
+			long messageUid = GetterUtil.getLong(messageUids[i]);
+
+			Message message = folder.getMessageByUID(messageUid);
+
+			if (Validator.isNull(message)) {
+				mailBoxManager.deleteMessage(folder, messageUid, false);
+			}
+			else {
+				return message;
+			}
+		}
+
+		return null;
 	}
 
 	public static long getOldestStoredMessageUID(
@@ -385,11 +429,11 @@ public class MailDiskManager {
 			JSONObject jsonObj = JSONFactoryUtil.createJSONObject(
 				FileUtil.read(filePath));
 
-			if (GetterUtil.getBoolean(jsonObj.get("locked").toString())) {
+			if (GetterUtil.getBoolean(jsonObj.getString("locked"))) {
 				DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
 
 				Date dateLocked = GetterUtil.getDate(
-					jsonObj.get("dateLocked").toString(), df);
+					jsonObj.getString("dateLocked"), df);
 
 				Date now = new Date();
 

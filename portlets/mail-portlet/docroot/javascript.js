@@ -32,29 +32,31 @@ Liferay.Mail = {
 		instance.messageControlsStatus = jQuery('.message-controls .status');
 		instance.messageDiv = jQuery('#' + instance.namespace + 'message');
 		instance.messageListTable = jQuery('#' + instance.namespace + 'message-list');
-		instance.messageOptionsDiv = jQuery('#' + instance.namespace + 'message-options');
+		instance.messageOptionsDiv = jQuery('#' + instance.namespace + 'messageOptions');
 		instance.messageOptionsRespondDivs = jQuery('#' + instance.namespace + 'reply,#' + instance.namespace + 'reply-all,#' + instance.namespace + 'forward');
-		instance.messageReadDiv = jQuery('#' + instance.namespace + 'message-read');
-		instance.messageSendDiv = jQuery('#' + instance.namespace + 'message-send');
-		instance.messageSendDiscardButton = jQuery('#' + instance.namespace + 'message-send .discard');
-		instance.messageSendSaveButton = jQuery('#' + instance.namespace + 'message-send .save');
-		instance.messageSendSendButton = jQuery('#' + instance.namespace + 'message-send .send');
+		instance.messageReadDiv = jQuery('#' + instance.namespace + 'messageRead');
+		instance.messageSendDiv = jQuery('#' + instance.namespace + 'messageSend');
+		instance.messageSendDiscardButton = jQuery('#' + instance.namespace + 'messageSend .discard');
+		instance.messageSendSaveButton = jQuery('#' + instance.namespace + 'messageSend .save');
+		instance.messageSendSendButton = jQuery('#' + instance.namespace + 'messageSend .send');
 		instance.searchButton = jQuery('#' + instance.namespace + 'search-button');
 		instance.searchTextInput = jQuery('#' + instance.namespace + 'search-text');
-		instance.sendEmailAddressHidden = jQuery('#' + instance.namespace + 'send-email-address');
-		instance.sendAttachmentsFile = jQuery('#' + instance.namespace + 'send-attachments');
-		instance.sendBccInput = jQuery('#' + instance.namespace + 'send-bcc');
+		instance.sendAttachmentsFile = jQuery('#' + instance.namespace + 'sendAttachments');
+		instance.sendBccInput = jQuery('#' + instance.namespace + 'sendBcc');
 		instance.sendBodyEditor = params.sendBodyEditor;
-		instance.sendBodySpan = jQuery('#' + instance.namespace + 'send-body');
-		instance.sendBodyHidden = jQuery('#' + instance.namespace + 'send-body-hidden');
-		instance.sendCcInput = jQuery('#' + instance.namespace + 'send-cc');
-		instance.sendFolderNameHidden = jQuery('#' + instance.namespace + 'send-folder-name');
-		instance.sendForm = jQuery('#' + instance.namespace + 'send-form');
-		instance.sendFromSelect = jQuery('#' + instance.namespace + 'send-from');
-		instance.sendMessageTypeHidden = jQuery('#' + instance.namespace + 'send-message-type');
-		instance.sendMessageUidHidden = jQuery('#' + instance.namespace + 'send-message-uid');
-		instance.sendSubjectInput = jQuery('#' + instance.namespace + 'send-subject');
-		instance.sendToInput = jQuery('#' + instance.namespace + 'send-to');
+		instance.sendBodySpan = jQuery('.send-body-span');
+		instance.sendBodyHidden = jQuery('#' + instance.namespace + 'sendBody');
+		instance.sendCcInput = jQuery('#' + instance.namespace + 'sendCc');
+		instance.sendDraftMessageUidHidden = jQuery('#' + instance.namespace + 'sendDraftMessageUid');
+		instance.sendEmailAddressHidden = jQuery('#' + instance.namespace + 'sendEmailAddress');
+		instance.sendFolderNameHidden = jQuery('#' + instance.namespace + 'sendFolderName');
+		instance.sendForm = jQuery('#' + instance.namespace + 'fm');
+		instance.sendFromSelect = jQuery('#' + instance.namespace + 'sendFrom');
+		instance.sendMessageHidden = jQuery('#' + instance.namespace + 'sendMessage');
+		instance.sendMessageTypeHidden = jQuery('#' + instance.namespace + 'sendMessageType');
+		instance.sendMessageUidHidden = jQuery('#' + instance.namespace + 'sendMessageUid');
+		instance.sendSubjectInput = jQuery('#' + instance.namespace + 'sendSubject');
+		instance.sendToInput = jQuery('#' + instance.namespace + 'sendTo');
 		instance.statusSpan = jQuery('#' + instance.namespace + 'status');
 		instance.readBodySpan = jQuery('#' + instance.namespace + 'read-body');
 		instance.readCcSpan = jQuery('#' + instance.namespace + 'read-cc');
@@ -72,10 +74,6 @@ Liferay.Mail = {
 		instance.setView('composeMessage');
 		instance.setView('viewFolder');
 		instance.loadAccounts();
-
-		// Disable features which have not yet been implemented
-
-		instance.messageSendSaveButton.attr('disabled', 'disabled');
 	},
 
 	clearIncomingMessage: function() {
@@ -105,12 +103,17 @@ Liferay.Mail = {
 	clearOutgoingMessage: function() {
 		var instance = this;
 
-		instance.sendFromSelect.val('');
-		instance.sendToInput.val('');
-		instance.sendCcInput.val('');
 		instance.sendBccInput.val('');
-		instance.sendSubjectInput.val('');
 		instance.sendBodySpan.css('visibility','hidden');
+		instance.sendCcInput.val('');
+		instance.sendDraftMessageUidHidden.val('');
+		instance.sendEmailAddressHidden.val('');
+		instance.sendFolderNameHidden.val('');
+		instance.sendFromSelect.val('');
+		instance.sendSubjectInput.val('');
+		instance.sendToInput.val('');
+		instance.sendMessageTypeHidden.val('');
+		instance.sendMessageUidHidden.val('');
 	},
 
 	clearStatus: function() {
@@ -322,13 +325,14 @@ Liferay.Mail = {
 
 		for (i = 0; i < jsonFolders.folders.length; i++) {
 
-			var fldr = jsonFolders.folders[i];
+			var folder = jsonFolders.folders[i];
 
-			var folderName = fldr.name;
+			var fullName = folder.fullName;
+			var name = folder.name;
 
-			var htmlFolder = '<div class="folder" folderName="' + folderName + '"><a href="#">' + folderName + '</a></div>';
+			var htmlFolder = '<div class="folder" folderName="' + fullName + '"><a href="#">' + name + '</a></div>';
 
-			if (folderName.toLowerCase() == "inbox") {
+			if (fullName.toLowerCase() == "inbox") {
 				htmlFolderList = htmlFolder + '<br />' + htmlFolderList;
 			}
 			else {
@@ -410,6 +414,10 @@ Liferay.Mail = {
 		// Update message navigation
 
 		instance.refreshMessageControlsNavigation();
+		
+		// Update read status
+		
+		instance.setMessageFlags(msgUid, 'seen', 'true', false);
 	},
 
 	loadJsonMessages: function(jsonMessages) {
@@ -430,7 +438,7 @@ Liferay.Mail = {
 			for (i = (jsonMessages.messages.length - 1); i >= 0; i--) {
 				var msg = jsonMessages.messages[i];
 
-				if (msg.read == 'true') {
+				if (msg.flags.seen) {
 					htmlMessageList += '<tr class="message read" messageUid="' + msg.uid + '">';
 				}
 				else {
@@ -696,6 +704,38 @@ Liferay.Mail = {
 		});
 	},
 
+	saveOrSendMessage: function(send) {
+		var instance = this;
+
+		// Set flag to determine whether to save or send the message
+
+		if (send) {
+			instance.sendMessageHidden.val('true');
+		}
+		else {
+			instance.sendMessageHidden.val('false');
+		}
+
+		var fromEmailAddress = instance.sendFromSelect.val();
+		var folderNameVal = '';
+		var messageUidVal = 0;
+
+		if (instance.getMessageResponseType() != 'new') {
+			folderNameVal = instance.getCurrentFolderName();
+			messageUidVal = instance.getCurrentMessageUid();
+		}
+
+		instance.sendBodyHidden.val(instance.sendBodyEditor.getHTML());
+		instance.sendEmailAddressHidden.val(fromEmailAddress);
+		instance.sendFolderNameHidden.val(folderNameVal);
+		instance.sendMessageTypeHidden.val(instance.getMessageResponseType());
+		instance.sendMessageUidHidden.val(messageUidVal);
+
+		instance.sendForm.submit();		
+
+		instance.clearStatus();
+	},
+	
 	sendUpdateMessage: function(emailAccount, loadMessages) {
 		var instance = this;
 
@@ -746,6 +786,32 @@ Liferay.Mail = {
 		var instance = this;
 
 		instance._currentPageNumber = pageNumber;
+	},
+
+	setMessageFlags: function(messageUids, flag, value, reloadMessages) {
+		var instance = this;
+
+		jQuery.ajax(
+			{
+				url: themeDisplay.getLayoutURL() + '/-/mail/flag_messages',
+				data: {
+					emailAddress: instance.getCurrentEmailAddress(),
+					folderName: instance.getCurrentFolderName(),
+					messageUids: messageUids,
+					flag: flag,
+					value: value
+				},
+				dataType: 'json',
+				success: function(jsonSuccess) {				
+					if (reloadMessages) {
+						instance.loadMessagesByPage(instance.getCurrentFolderName(), instance.getCurrentPageNumber());
+					}
+
+					instance.clearStatus();
+				},
+				type: 'POST'
+			}
+		);
 	},
 
 	setMessageResponseType: function(responseType) {
@@ -818,13 +884,15 @@ Liferay.Mail = {
 				instance.messageReadDiv.css('display', 'block');
 				instance.messageOptionsDiv.css('display', 'block');
 			}
-			else if (viewMode == 'replyMessage') {
+			else if (viewMode == 'replyOrForwardMessage') {
 				instance.messageControlsDiv.css('display', 'block');
 				instance.messageReadDiv.css('display', 'block');
 				instance.messageOptionsDiv.css('display', 'block');
 				instance.messageSendDiv.css('display', 'block');
 			}
 			else if (viewMode == 'composeMessage') {
+				instance.clearOutgoingMessage();
+
 				instance.messageSendDiv.css('display', 'block');
 
 				try {
@@ -953,9 +1021,12 @@ Liferay.Mail = {
 
 			// Do nothing if action not recognized
 
-			var option = jQuery(this).val();
+			var option = (instance.folderControlsSelectAction.val()).split(",");
 
-			if ((option != 'read') && (option != 'unread')) {
+			var flag = option[0];
+			var value = option[1];
+
+			if (flag == '') {
 				instance.refreshFolderControls();
 
 				return false;
@@ -975,34 +1046,16 @@ Liferay.Mail = {
 
 			// Do selected folder action
 
-			var url = null;
-			var read = false;
-
-			if (option == 'read') {
-				read = true;
-
-				instance.setStatus(Liferay.Language.get('marking-messages-as-read'), '');
-			}
-			else if (option == 'unread') {
-				instance.setStatus(Liferay.Language.get('marking-messages-as-unread'), '');
-			}
-
-			jQuery.ajax(
-				{
-					url: themeDisplay.getLayoutURL() + '/-/mail/messages_mark_as_read',
-					data: {
-						emailAddress: jsonAccount.emailAddress,
-						folderName: jsonAccount.mailInHostName,
-						messageUids: jsonAccount.mailInPort,
-						read: read
-					},
-					dataType: 'json',
-					success: function(jsonSuccess) {
-						instance.loadMessagesByPage(instance.getCurrentFolderName(), instance.getCurrentPageNumber());
-					},
-					type: 'POST'
+			if (flag == 'seen') {
+				if (value == 'true') {
+					instance.setStatus(Liferay.Language.get('marking-messages-as-read'), '');
 				}
-			);
+				else {
+					instance.setStatus(Liferay.Language.get('marking-messages-as-unread'), '');
+				}
+
+				instance.setMessageFlags(messageUids, flag, value, true);
+			}
 		});
 
 		instance.folderControlsSelectAllLink.click(function() {
@@ -1057,7 +1110,7 @@ Liferay.Mail = {
 
 			// Show message send
 
-			instance.setView('replyMessage');
+			instance.setView('replyOrForwardMessage');
 			jQuery(this).css('background-color', '#C3D9FF');
 
 			// Load default values for response message based on original message
@@ -1126,30 +1179,47 @@ Liferay.Mail = {
 		});
 
 		instance.messageSendDiscardButton.click(function() {
-			instance.setView('viewMessage');
+			if (instance.getCurrentMessageUid() == '') {
+				jQuery('.folder:first').click();		
+			}
+			else {
+				instance.setView('viewMessage');
+			}
 
 			instance.setStatus(Liferay.Language.get('your-message-was-discarded'), '');
+		});
+
+		instance.sendForm.submit(function() {
+		    var options = { 
+		        beforeSubmit: function(formData, jqForm, options) {
+		        	// validate message and return false if not valid
+		        	
+		        	alert("validating message.. before sending mail message");
+		        	
+		        	return true;
+		        },
+		        dataType: 'json',
+		        iframe: true,
+		        success: function() {
+	            	alert("ajax form submitted");
+	        	}
+		    }; 		
+
+	        instance.sendForm.ajaxSubmit(options); 
+	 
+	        return false; 
+		});
+		
+		instance.messageSendSaveButton.click(function() {
+			instance.setStatus(Liferay.Language.get('saving-message'), '');
+
+			instance.saveOrSendMessage(false);
 		});
 
 		instance.messageSendSendButton.click(function() {
 			instance.setStatus(Liferay.Language.get('sending-message'), '');
 
-			var fromEmailAddress = instance.sendFromSelect.val();
-			var folderNameVal = '';
-			var messageUidVal = 0;
-
-			if (instance.getMessageResponseType() != 'new') {
-				folderNameVal = instance.getCurrentFolderName();
-				messageUidVal = instance.getCurrentMessage().uid;
-			}
-
-			instance.sendEmailAddressHidden.val(fromEmailAddress);
-			instance.sendFolderNameHidden.val(folderNameVal);
-			instance.sendMessageTypeHidden.val(instance.getMessageResponseType());
-			instance.sendMessageUidHidden.val(messageUidVal);
-			instance.sendBodyHidden.val(instance.sendBodyEditor.getHTML());
-
-			instance.sendForm.submit();
+			instance.saveOrSendMessage(true);
 		});
 
 		instance.searchButton.click(function() {
@@ -1328,8 +1398,6 @@ Liferay.MailConfiguration = {
 					dataType: 'json',
 					success: function(success) {
 						instance.loadJSONAccountsConfiguration();
-
-						Liferay.Mail.syncronizeAccount(emailAddressValue, false);
 					},
 					type: 'POST'
 				}
