@@ -11,9 +11,21 @@
 	</target>
 
 	<target name="build-wsdl">
+		<tstamp>
+			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+		</tstamp>
+
+		<mkdir dir="${tstamp.value}" />
+
+		<path id="plugin-lib.classpath">
+			<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
+			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+			<pathelement location="docroot/WEB-INF/classes" />
+		</path>
+
 		<java
 			classname="org.apache.cxf.tools.wsdlto.WSDLToJava"
-			classpathref="plugin-lib.classpath"
+			classpathref="plugin.classpath"
 			dir="docroot/wsdl"
 			fork="true"
 			maxmemory="256m"
@@ -29,8 +41,25 @@
 			<arg value="-b" />
 			<arg value="wsrp-2.0-custom-bindings.xml" />
 			<arg value="-d" />
-			<arg value="../WEB-INF/src" />
+			<arg value="../../${tstamp.value}" />
 			<arg value="wsrp-2.0-service.wsdl " />
 		</java>
+
+		<javac
+			classpathref="plugin.classpath"
+			compiler="${javac.compiler}"
+			debug="${javac.debug}"
+			deprecation="${javac.deprecation}"
+			destdir="${tstamp.value}"
+			nowarn="${javac.nowarn}"
+			srcdir="${tstamp.value}"
+		/>
+
+		<zip
+			basedir="${tstamp.value}"
+			destfile="docroot/WEB-INF/lib/wsrp-client.jar"
+		/>
+
+		<delete dir="${tstamp.value}" />
 	</target>
 </project>
