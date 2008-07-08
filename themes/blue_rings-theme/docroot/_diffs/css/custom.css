@@ -1,0 +1,132 @@
+body {
+	background: url(../images/theme/bck.jpg) repeat-y center;
+	font-family: Arial;
+	overflow: scroll;
+}
+#wrapper {
+	width: 100%;
+	background: transparent;
+}
+#content-wrapper {
+	background: black;
+	width: 730px;
+	min-height: 415px;
+}
+#banner {
+	background: url(../images/theme/bckpage.jpg) no-repeat center;
+	height:325px;
+}
+#banner .logo a {
+	margin-left: 283px;
+	margin-top: 75px;
+}
+#banner2 {
+	background:transparent url(../images/theme/bckbodytop.jpg) repeat-y center;
+	height:259px;
+	margin-top:-275px;
+	position:absolute;
+	width:1265px;
+	z-index:-1;
+}
+#navigation {
+	background: transparent;
+	border-top: none;
+	margin:-80pt auto 20px;
+	width: 100%
+}
+#navigation ul {
+	margin:0pt auto 0pt 265px;
+	width: 75%;
+}
+#navigation li {
+	border: none;
+}
+#navigation li a {
+	padding: 11px 10px 2px;
+	margin-left: 14px;
+}
+#navigation li a span {
+	font-size:14px;
+	font-family: verdana;
+}
+#navigation li a:hover {
+	background:transparent url(../images/theme/bckmenulihover.gif) repeat-x scroll 0% 0%;
+	color:#47A4F6;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+#navigation li.selected a {
+	background:transparent url(../images/theme/bckmenulihover.gif) repeat-x scroll 0% 0%;
+	color:#47A4F6;
+}
+#footer {
+	height: 24px; line-height: 24px;
+	background: repeat-x url(../images/theme/bckfooter.gif);
+	text-align: center;
+	font-family: Verdana; font-size: 9px;
+	margin-top: 130px;
+	color: white;
+}
+#footer a {
+	color: #47a4f6;
+	text-decoration: none;
+}
+#footer2 {
+	position: absolute;
+	background: url(../images/theme/bckcontainer.jpg) no-repeat;
+	width: 175px;
+	height: 140px;
+	margin-left: 828px;
+	margin-top: -164px;
+}
+.js .interactive-mode {
+	margin-top:13px;
+	right:62%;
+}
+.js .delete-tab {
+	right:3px;
+	top:9px;
+}
+.js #add-page a span {
+	background: transparent;
+	display: block;
+	font-size: 14px;
+	font-family: verdana;
+	font-weight: normal;
+	margin-left: 15px;
+	padding: 11px 9px 2px 0px;
+}
+.js #add-page a:hover {
+	background: transparent url(../images/theme/bckmenulihover.gif) repeat-x scroll 0% 0%;
+	color: #47A4F6;
+	height: 35px;
+}
+.js #navigation .enter-page .save-page {
+	background: transparent;
+	font-weight: normal;
+	margin-left: 0px;
+	padding: 4px 7px 6px 9px;
+	font-size: 14px;
+	color: white;
+}
+.js #navigation .enter-page .save-page:hover {
+	background: url(../images/theme/bckmenulinkhover.gif) repeat-x scroll 0% 0%;
+}
+.js #navigation .enter-page {
+	background-color: transparent;
+	margin-top: 5px
+}
+input.focus, textare.focus, ie6 input.focus, ie6 textarea.focus {
+	background: white;
+	border: white;
+}
+.js #add-page a {
+	margin-left: -288px;
+	margin-top: 0px;
+	position: absolute;
+}
+.js #navigation {
+	height:35px;
+}
