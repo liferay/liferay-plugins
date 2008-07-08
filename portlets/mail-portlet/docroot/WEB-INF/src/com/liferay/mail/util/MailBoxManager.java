@@ -188,7 +188,8 @@ public class MailBoxManager {
 
 				BodyPart messageAttachmentPart = new MimeBodyPart();
 
-				messageAttachmentPart.setDataHandler(new DataHandler(dataSource));
+				messageAttachmentPart.setDataHandler(
+					new DataHandler(dataSource));
 				messageAttachmentPart.setFileName(fileName);
 
 				multipart.addBodyPart(messageAttachmentPart);
@@ -883,7 +884,8 @@ public class MailBoxManager {
 		IMAPFolder folder = (IMAPFolder)message.getFolder();
 
 		if (Validator.isNull(folder)) {
-			throw new MessagingException("message does not belong to any folder");
+			throw new MessagingException(
+				"message does not belong to any folder");
 		}
 		else {
 			return folder.getUID(message);
