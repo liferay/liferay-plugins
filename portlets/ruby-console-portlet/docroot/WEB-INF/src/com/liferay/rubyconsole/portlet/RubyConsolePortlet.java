@@ -52,7 +52,7 @@ public class RubyConsolePortlet extends RubyPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException {
 
-		String cmd = ParamUtil.getString(req, Constants.CMD);
+		String cmd = ParamUtil.getString(resourceRequest, Constants.CMD);
 
 		if (cmd.equals("exec")) {
 			String consoleInput = ParamUtil.getString(
