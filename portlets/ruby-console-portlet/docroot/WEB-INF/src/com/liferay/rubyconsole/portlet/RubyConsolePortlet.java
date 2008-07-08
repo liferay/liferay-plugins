@@ -33,7 +33,6 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 import javax.portlet.MimeResponse;
-import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
 import javax.portlet.ResourceRequest;
@@ -49,35 +48,39 @@ import org.apache.bsf.BSFException;
  */
 public class RubyConsolePortlet extends RubyPortlet {
 
-	public void serveResource(ResourceRequest req, ResourceResponse res)
+	public void serveResource(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException {
 
 		String cmd = ParamUtil.getString(req, Constants.CMD);
 
 		if (cmd.equals("exec")) {
-			String consoleInput = ParamUtil.getString(req, "consoleInput");
+			String consoleInput = ParamUtil.getString(
+				resourceRequest, "consoleInput");
 
-			includeConsoleInput(consoleInput, req, res);
+			includeConsoleInput(
+				consoleInput, resourceRequest, resourceResponse);
 		}
 		else {
-			super.serveResource(req, res);
+			super.serveResource(resourceRequest, resourceResponse);
 		}
 	}
 
 	protected void includeConsoleInput(
-			String consoleInput, PortletRequest req, PortletResponse res)
+			String consoleInput, PortletRequest portletRequest,
+			PortletResponse portletResponse)
 		throws IOException {
 
 		try {
-			declareBeans(consoleInput, req, res);
+			declareBeans(consoleInput, portletRequest, portletResponse);
 		}
 		catch (BSFException bsfe) {
-			if (res instanceof MimeResponse) {
-				MimeResponse mimeRes = (MimeResponse)res;
+			if (portletResponse instanceof MimeResponse) {
+				MimeResponse mimeResponse = (MimeResponse)portletResponse;
 
-				mimeRes.setContentType(ContentTypes.TEXT_HTML_UTF8);
+				mimeResponse.setContentType(ContentTypes.TEXT_HTML_UTF8);
 
-				OutputStream out = mimeRes.getPortletOutputStream();
+				OutputStream out = mimeResponse.getPortletOutputStream();
 
 				Throwable te = bsfe.getTargetException();
 
