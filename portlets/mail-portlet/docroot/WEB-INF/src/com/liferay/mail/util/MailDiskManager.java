@@ -22,13 +22,16 @@
 
 package com.liferay.mail.util;
 
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
-import com.liferay.util.JSONUtil;
 import com.liferay.util.portlet.PortletProps;
 
 import java.io.IOException;
@@ -49,10 +52,6 @@ import javax.mail.MessagingException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  *
@@ -111,7 +110,8 @@ public class MailDiskManager {
 
 		try {
 			if (FileUtil.exists(accountFilePath)) {
-				return new JSONObject(FileUtil.read(accountFilePath));
+				return JSONFactoryUtil.createJSONObject(
+					FileUtil.read(accountFilePath));
 			}
 		}
 		catch (IOException ioe) {
@@ -131,13 +131,13 @@ public class MailDiskManager {
 
 		String[] emailAddresses = FileUtil.listDirs(userPath);
 
-		JSONObject jsonObj = new JSONObject();
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
 		// Accounts
 
-		JSONArray jsonArray = new JSONArray();
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		JSONUtil.put(jsonObj, "accounts", jsonArray);
+		jsonObj.put("accounts", jsonArray);
 
 		for (String emailAddress : emailAddresses) {
 			JSONObject jsonAccount = getJSONAccount(user, emailAddress);
@@ -162,7 +162,8 @@ public class MailDiskManager {
 
 		try {
 			if (FileUtil.exists(folderFilePath)) {
-				return new JSONObject(FileUtil.read(folderFilePath));
+				return JSONFactoryUtil.createJSONObject(
+					FileUtil.read(folderFilePath));
 			}
 		}
 		catch (IOException ioe) {
@@ -180,11 +181,11 @@ public class MailDiskManager {
 
 		String[] folderNames = FileUtil.listDirs(accountPath);
 
-		JSONObject jsonObj = new JSONObject();
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
-		JSONArray jsonArray = new JSONArray();
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		JSONUtil.put(jsonObj, "folders", jsonArray);
+		jsonObj.put("folders", jsonArray);
 
 		for (String folderName : folderNames) {
 			try {
@@ -200,7 +201,7 @@ public class MailDiskManager {
 					continue;
 				}
 
-				JSONUtil.put(jsonFolder, "name", decodedFolderName);
+				jsonFolder.put("name", decodedFolderName);
 
 				jsonArray.put(jsonFolder);
 			}
@@ -223,7 +224,8 @@ public class MailDiskManager {
 			if (FileUtil.exists(messageFilePath)) {
 				String jsonString = FileUtil.read(messageFilePath);
 
-				JSONObject jsonObj = new JSONObject(jsonString);
+				JSONObject jsonObj = JSONFactoryUtil.createJSONObject(
+					jsonString);
 
 				return jsonObj;
 			}
@@ -276,7 +278,7 @@ public class MailDiskManager {
 			String folderFilePath = getFolderFilePath(
 				user, emailAddress, folderName);
 
-			JSONObject jsonFolderObj = new JSONObject(
+			JSONObject jsonFolderObj = JSONFactoryUtil.createJSONObject(
 				FileUtil.read(folderFilePath));
 
 			int messageCount = jsonFolderObj.getInt("messageCount");
@@ -380,7 +382,8 @@ public class MailDiskManager {
 				return false;
 			}
 
-			JSONObject jsonObj = new JSONObject(FileUtil.read(filePath));
+			JSONObject jsonObj = JSONFactoryUtil.createJSONObject(
+				FileUtil.read(filePath));
 
 			if (GetterUtil.getBoolean(jsonObj.get("locked").toString())) {
 				DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -415,10 +418,10 @@ public class MailDiskManager {
 		long[] messageUidsOnDisk, int pageNumber, int messagesPerPage,
 		int messageCount, int messagesOnDiskCount) {
 
-		int begin = (messagesOnDiskCount + 1) - (messagesPerPage * pageNumber) - 
-			1;
-		int end = messagesOnDiskCount - (messagesPerPage * (pageNumber - 1)) - 
-			1;
+		int begin =
+			(messagesOnDiskCount + 1) - (messagesPerPage * pageNumber) - 1;
+		int end =
+			messagesOnDiskCount - (messagesPerPage * (pageNumber - 1)) - 1;
 
 		if (begin < 0) {
 			begin = 0;
@@ -426,15 +429,15 @@ public class MailDiskManager {
 
 		double pageCount = Math.ceil((double)messageCount / messagesPerPage);
 
-		JSONObject jsonObj = new JSONObject();
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
-		JSONArray jsonArray = new JSONArray();
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		JSONUtil.put(jsonObj, "messages", jsonArray);
-		JSONUtil.put(jsonObj, "messageCount", messageCount);
-		JSONUtil.put(jsonObj, "messagesPerPage", messagesPerPage);
-		JSONUtil.put(jsonObj, "pageCount", (int)pageCount);
-		JSONUtil.put(jsonObj, "pageNumber", pageNumber);
+		jsonObj.put("messages", jsonArray);
+		jsonObj.put("messageCount", messageCount);
+		jsonObj.put("messagesPerPage", messagesPerPage);
+		jsonObj.put("pageCount", (int)pageCount);
+		jsonObj.put("pageNumber", pageNumber);
 
 		for (int i = begin; i <= end; i++) {
 			jsonArray.put(

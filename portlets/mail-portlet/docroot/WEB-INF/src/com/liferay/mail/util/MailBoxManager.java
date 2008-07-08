@@ -23,6 +23,9 @@
 package com.liferay.mail.util;
 
 import com.liferay.mail.model.MailAccount;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -32,7 +35,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
-import com.liferay.util.JSONUtil;
 import com.liferay.util.portlet.PortletProps;
 
 import com.sun.mail.imap.IMAPFolder;
@@ -78,9 +80,6 @@ import javax.mail.search.SubjectTerm;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 /**
  *
  * <a href="MailBoxManager.java.html"><b><i>View Source</i></b></a>
@@ -89,6 +88,32 @@ import org.json.JSONObject;
  *
  */
 public class MailBoxManager {
+
+	public static void removeAccountLock(User user, String emailAddress) {
+		String filePath = MailDiskManager.getAccountLockPath(
+			user, emailAddress);
+
+		FileUtil.delete(filePath);
+	}
+
+	public static void writeAccountLock(User user, String emailAddress) {
+		try {
+			JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
+
+			String filePath = MailDiskManager.getAccountLockPath(
+				user, emailAddress);
+
+			DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+
+			jsonObj.put("locked", true);
+			jsonObj.put("dateLocked", df.format(new Date()));
+
+			FileUtil.write(filePath, jsonObj.toString());
+		}
+		catch (IOException ioe) {
+			_log.error(ioe, ioe);
+		}
+	}
 
 	public MailBoxManager(User user, String emailAddress) {
 		_user = user;
@@ -107,32 +132,6 @@ public class MailBoxManager {
 			mailOutHostName, mailOutPort, mailSecure, password, username);
 	}
 
-	public static void removeAccountLock(User user, String emailAddress) {
-		String filePath = MailDiskManager.getAccountLockPath(
-			user, emailAddress);
-
-		FileUtil.delete(filePath);
-	}
-
-	public static void writeAccountLock(User user, String emailAddress) {
-		try {
-			JSONObject jsonObj = new JSONObject();
-
-			String filePath = MailDiskManager.getAccountLockPath(
-				user, emailAddress);
-
-			DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-
-			JSONUtil.put(jsonObj, "locked", true);
-			JSONUtil.put(jsonObj, "dateLocked", df.format(new Date()));
-
-			FileUtil.write(filePath, jsonObj.toString());
-		}
-		catch (IOException ioe) {
-			_log.error(ioe, ioe);
-		}
-	}
-
 	public void createFolder(String folderName) throws Exception {
 		Folder newFolder = getStore().getFolder(folderName);
 
@@ -147,9 +146,9 @@ public class MailBoxManager {
 
 		FileUtil.delete(filePath);
 
-		JSONObject jsonObj = new JSONObject();
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
-		JSONUtil.put(jsonObj, "success", true);
+		jsonObj.put("success", true);
 
 		return jsonObj;
 	}
@@ -196,9 +195,9 @@ public class MailBoxManager {
 			_log.error(me, me);
 		}
 
-		JSONObject jsonObj = new JSONObject();
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
-		JSONUtil.put(jsonObj, "success", true);
+		jsonObj.put("success", true);
 
 		return jsonObj;
 	}
@@ -250,9 +249,9 @@ public class MailBoxManager {
 
 		folder.close(true);
 
-		JSONObject jsonObj = new JSONObject();
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
-		JSONUtil.put(jsonObj, "success", true);
+		jsonObj.put("success", true);
 
 		return jsonObj;
 	}
@@ -263,7 +262,7 @@ public class MailBoxManager {
 			String subject, Multipart multipart)
 		throws MessagingException {
 
-		JSONObject jsonObj = new JSONObject();
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
 		Message message = null;
 
@@ -275,7 +274,7 @@ public class MailBoxManager {
 
 			send(message, fromEmailAddress, to, cc, bcc, subject, multipart);
 
-			JSONUtil.put(jsonObj, "success", true);
+			jsonObj.put("success", true);
 		}
 		else {
 			Message oldMessage = getMessageByUid(folderName, messageUid);
@@ -306,7 +305,7 @@ public class MailBoxManager {
 					oldMessage, fromEmailAddress, to, cc, bcc, subject,
 					multipart);
 
-				JSONUtil.put(jsonObj, "success", true);
+				jsonObj.put("success", true);
 			}
 			else if (messageType.equalsIgnoreCase("reply")) {
 				message = (MimeMessage)oldMessage.reply(false);
@@ -314,10 +313,10 @@ public class MailBoxManager {
 				send(
 					message, fromEmailAddress, to, cc, bcc, subject, multipart);
 
-				JSONUtil.put(jsonObj, "success", true);
+				jsonObj.put("success", true);
 			}
 			else {
-				JSONUtil.put(jsonObj, "success", false);
+				jsonObj.put("success", false);
 			}
 		}
 
@@ -325,44 +324,37 @@ public class MailBoxManager {
 	}
 
 	public JSONObject sendUpdateMessage() {
-		JSONObject mailRequestJSON = new JSONObject();
+		JSONObject mailRequestJSON = JSONFactoryUtil.createJSONObject();
 
-		JSONUtil.put(
-			mailRequestJSON,
-			"emailAddress", _mailAccount.getEmailAddress());
-		JSONUtil.put(
-			mailRequestJSON,
-			"userId", _user.getUserId());
+		mailRequestJSON.put("emailAddress", _mailAccount.getEmailAddress());
+		mailRequestJSON.put("userId", _user.getUserId());
 
 		MessageBusUtil.sendMessage(
-			DestinationNames.MAIL, mailRequestJSON.toString());
+			DestinationNames.MAIL_SYNCHRONIZER, mailRequestJSON.toString());
 
-		JSONObject jsonObj = new JSONObject();
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
-		JSONUtil.put(jsonObj, "success", true);
+		jsonObj.put("success", true);
 
 		return jsonObj;
 	}
 
 	public JSONObject storeAccountToDisk() {
 		try {
-			JSONObject jsonObj = new JSONObject();
+			JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
 			String filePath = MailDiskManager.getAccountFilePath(
 				_user, _mailAccount.getEmailAddress());
 
-			JSONUtil.put(
-				jsonObj, "emailAddress", _mailAccount.getEmailAddress());
-			JSONUtil.put(jsonObj, "initialized", _mailAccount.isInitialized());
-			JSONUtil.put(
-				jsonObj, "mailInHostName", _mailAccount.getMailInHostName());
-			JSONUtil.put(jsonObj, "mailInPort", _mailAccount.getMailInPort());
-			JSONUtil.put(
-				jsonObj, "mailOutHostName", _mailAccount.getMailOutHostName());
-			JSONUtil.put(jsonObj, "mailOutPort", _mailAccount.getMailOutPort());
-			JSONUtil.put(jsonObj, "mailSecure", _mailAccount.isMailSecure());
-			JSONUtil.put(jsonObj, "password", _mailAccount.getPassword());
-			JSONUtil.put(jsonObj, "username", _mailAccount.getUsername());
+			jsonObj.put("emailAddress", _mailAccount.getEmailAddress());
+			jsonObj.put("initialized", _mailAccount.isInitialized());
+			jsonObj.put("mailInHostName", _mailAccount.getMailInHostName());
+			jsonObj.put("mailInPort", _mailAccount.getMailInPort());
+			jsonObj.put("mailOutHostName", _mailAccount.getMailOutHostName());
+			jsonObj.put("mailOutPort", _mailAccount.getMailOutPort());
+			jsonObj.put("mailSecure", _mailAccount.isMailSecure());
+			jsonObj.put("password", _mailAccount.getPassword());
+			jsonObj.put("username", _mailAccount.getUsername());
 
 			FileUtil.write(filePath, jsonObj.toString());
 		}
@@ -372,9 +364,9 @@ public class MailBoxManager {
 			return null;
 		}
 
-		JSONObject jsonObj = new JSONObject();
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
-		JSONUtil.put(jsonObj, "success", true);
+		jsonObj.put("success", true);
 
 		return jsonObj;
 	}
@@ -382,17 +374,17 @@ public class MailBoxManager {
 	public JSONObject syncronizeAccount() throws MessagingException {
 		List<Folder> folders = getFolders();
 
-		JSONObject jsonObj = new JSONObject();
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
 		if (Validator.isNotNull(folders)) {
 			for (Folder folder : folders) {
 				syncronizeFolder(folder);
 			}
 
-			JSONUtil.put(jsonObj, "success", true);
+			jsonObj.put("success", true);
 		}
 		else {
-			JSONUtil.put(jsonObj, "success", false);
+			jsonObj.put("success", false);
 		}
 
 		return jsonObj;
@@ -667,10 +659,10 @@ public class MailBoxManager {
 	protected JSONArray getJSONAttachments(List<Object[]> attachments)
 		throws MessagingException {
 
-		JSONArray jsonArray = new JSONArray();
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (Object[] attachment : attachments) {
-			JSONArray tempJsonArray = new JSONArray();
+			JSONArray tempJsonArray = JSONFactoryUtil.createJSONArray();
 
 			tempJsonArray.put(attachment[0]);
 			tempJsonArray.put(attachment[1]);
@@ -684,13 +676,13 @@ public class MailBoxManager {
 	protected JSONObject getJSONFolder(Folder folder)
 		throws MessagingException {
 
-		JSONObject jsonObj = new JSONObject();
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
 		if (folder.getType() != Folder.HOLDS_FOLDERS) {
 			openFolder(folder);
 
-			JSONUtil.put(jsonObj, "messageCount", folder.getMessageCount());
-			JSONUtil.put(jsonObj, "name", folder.getFullName());
+			jsonObj.put("messageCount", folder.getMessageCount());
+			jsonObj.put("name", folder.getFullName());
 
 			return jsonObj;
 		}
@@ -715,28 +707,25 @@ public class MailBoxManager {
 
 		getBody(sb, StringPool.BLANK, message, attachments);
 
-		JSONObject jsonObj = new JSONObject();
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
-		JSONUtil.put(jsonObj, "attachments", getJSONAttachments(attachments));
-		JSONUtil.put(jsonObj, "body", sb.toString());
-		JSONUtil.put(jsonObj, "bodyPreview", getBodyPreview(sb.toString()));
-		JSONUtil.put(jsonObj, "date", date);
-		JSONUtil.put(jsonObj, "from", getAddresses(message.getFrom()));
-		JSONUtil.put(jsonObj, "html", false);
-		JSONUtil.put(jsonObj, "messageNumber", message.getMessageNumber());
-		JSONUtil.put(jsonObj, "read", message.isSet(Flags.Flag.SEEN));
-		JSONUtil.put(jsonObj, "subject", message.getSubject());
-		JSONUtil.put(jsonObj, "uid", ((IMAPFolder)folder).getUID(message));
+		jsonObj.put("attachments", getJSONAttachments(attachments));
+		jsonObj.put("body", sb.toString());
+		jsonObj.put("bodyPreview", getBodyPreview(sb.toString()));
+		jsonObj.put("date", date);
+		jsonObj.put("from", getAddresses(message.getFrom()));
+		jsonObj.put("html", false);
+		jsonObj.put("messageNumber", message.getMessageNumber());
+		jsonObj.put("read", message.isSet(Flags.Flag.SEEN));
+		jsonObj.put("subject", message.getSubject());
+		jsonObj.put("uid", ((IMAPFolder)folder).getUID(message));
 
-		JSONUtil.put(
-			jsonObj, "to",
-			getAddresses(message.getRecipients(RecipientType.TO)));
-		JSONUtil.put(
-			jsonObj, "cc",
-			getAddresses(message.getRecipients(RecipientType.CC)));
-		JSONUtil.put(
-			jsonObj, "bcc",
-			getAddresses(message.getRecipients(RecipientType.BCC)));
+		jsonObj.put(
+			"to", getAddresses(message.getRecipients(RecipientType.TO)));
+		jsonObj.put(
+			"cc", getAddresses(message.getRecipients(RecipientType.CC)));
+		jsonObj.put(
+			"bcc", getAddresses(message.getRecipients(RecipientType.BCC)));
 
 		return jsonObj;
 	}
@@ -877,8 +866,8 @@ public class MailBoxManager {
 			catch (MessagingException me2) {
 				_log.error(
 					"Skipping folder " + folder.getFullName() +
-					" for email address " +
-					_mailAccount.getEmailAddress(), me2);
+						" for email address " + _mailAccount.getEmailAddress(),
+					me2);
 
 				return null;
 			}
@@ -945,8 +934,8 @@ public class MailBoxManager {
 			String filePath = MailDiskManager.getFolderFilePath(
 				_user, _mailAccount.getEmailAddress(), folder.getFullName());
 
-	   		JSONUtil.put(jsonObj, "initialized", initialized);
-			JSONUtil.put(jsonObj, "lastUpdated", date);
+	   		jsonObj.put("initialized", initialized);
+			jsonObj.put("lastUpdated", date);
 
 			FileUtil.write(filePath, jsonObj.toString());
 
@@ -1016,7 +1005,7 @@ public class MailBoxManager {
 		JSONObject jsonObj = MailDiskManager.getJSONMessageByUid(
 			_user, _mailAccount.getEmailAddress(), folderName, messageUid);
 
-		JSONUtil.put(jsonObj, field, value);
+		jsonObj.put(field, value);
 
 		String filePath = MailDiskManager.getMessageFilePath(
 			_user, _mailAccount.getEmailAddress(), folderName, messageUid);

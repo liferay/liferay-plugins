@@ -23,10 +23,9 @@
 package com.liferay.mail.model;
 
 import com.liferay.mail.util.MailDiskManager;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.User;
-
-import org.json.JSONObject;
 
 /**
  * <a href="MailAccount.java.html"><b><i>View Source</i></b></a>

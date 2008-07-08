@@ -42,7 +42,8 @@ public class MailServletContextListener
 	implements ServletContextListener {
 
 	public void contextInitialized(ServletContextEvent event) {
-		_mailDestination = new ParallelDestination(DestinationNames.MAIL);
+		_mailDestination = new ParallelDestination(
+			DestinationNames.MAIL_SYNCHRONIZER);
 
 		MessageBusUtil.addDestination(_mailDestination);
 

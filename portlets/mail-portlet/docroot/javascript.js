@@ -264,7 +264,7 @@ Liferay.Mail = {
 
 		if (jsonAccounts.accounts.length == 0) {
 			instance.setView('viewAccountConfiguration');
-			
+
 			return false;
 		}
 
@@ -296,7 +296,7 @@ Liferay.Mail = {
 			htmlAccountList += '</option>';
 
 			// Auto update accounts
-			
+
 			instance.sendUpdateMessage(tempEmailAddress, false);
 		}
 
@@ -462,7 +462,7 @@ Liferay.Mail = {
 		// Get JSON
 
 		var searchStringVal = '';
-		
+
 		if (instance.isSearchMode()) {
 			searchStringVal = instance.searchTextInput.val();
 		}
@@ -477,7 +477,7 @@ Liferay.Mail = {
 					folderName: instance.getCurrentFolderName(),
 					messageUid: messageUid,
 					offset: offset,
-					searchString: searchStringVal					
+					searchString: searchStringVal
 				},
 				dataType: 'json',
 				success: function(jsonMessage) {
@@ -702,7 +702,7 @@ Liferay.Mail = {
 		if (loadMessages) {
 			instance.setStatus(Liferay.Language.get('getting-new-mail'), '');
 		}
-		
+
 		jQuery.ajax(
 			{
 				url: themeDisplay.getLayoutURL() + '/-/mail/syncronize_account',
@@ -801,7 +801,7 @@ Liferay.Mail = {
 			instance.accountContainerDiv.css('display', 'none');
 			instance.configurationPromptDiv.css('display', 'block');
 			instance.emailContainerDiv.css('display', 'none');
-		} 
+		}
 		else if (viewMode == 'viewFolder') {
 			instance.clearIncomingMessage();
 
@@ -977,7 +977,7 @@ Liferay.Mail = {
 
 			var url = null;
 			var read = false;
-			
+
 			if (option == 'read') {
 				read = true;
 
@@ -1191,11 +1191,11 @@ Liferay.MailConfiguration = {
 
 		instance.accountsConfigurationDiv = jQuery('.accounts-configuration');
 		instance.preconfiguredMailAccounts = params.preconfiguredMailAccounts;
-		
+
 		instance.loadJSONAccountsConfiguration();
 	},
 
-	appendJSONAccountConfigurationHTML: function(jsonAccount, newAccount) {	
+	appendJSONAccountConfigurationHTML: function(jsonAccount, newAccount) {
 		var instance = this;
 
 		jQuery.ajax(
@@ -1213,7 +1213,7 @@ Liferay.MailConfiguration = {
 					password: jsonAccount.password,
 					preconfigured: jsonAccount.preconfigured,
 					title: jsonAccount.title,
-					username: jsonAccount.username					
+					username: jsonAccount.username
 				},
 				dataType: 'html',
 				success: function(accountConfigurationHTML) {
@@ -1295,16 +1295,16 @@ Liferay.MailConfiguration = {
 			var usernameVal = accountTable.find('.username:first').val();
 
 			// Validation
-			
+
 			if ((passwordVal == '') || (usernameVal == '')) {
 				return false;
 			}
-			
+
 			// Get JSON
 
 			var emailAddressValue = accountTable.find('.email-address:first').val();
 			var mailSecureValue = false;
-			
+
 			if (accountTable.find('.secure:first').attr('checked')) {
 				mailSecureValue = true;
 			}
@@ -1345,6 +1345,6 @@ Liferay.MailConfiguration = {
 			return false;
 		});
 
-		jQuery('.details').hide();		
+		jQuery('.details').hide();
 	}
 }
