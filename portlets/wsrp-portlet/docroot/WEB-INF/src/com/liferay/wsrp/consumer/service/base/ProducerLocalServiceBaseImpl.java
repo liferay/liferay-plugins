@@ -29,7 +29,7 @@ import com.liferay.counter.service.CounterServiceFactory;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserLocalServiceFactory;
 import com.liferay.portal.service.UserService;
@@ -42,8 +42,6 @@ import com.liferay.wsrp.consumer.service.ProducerLocalService;
 import com.liferay.wsrp.consumer.service.persistence.ProducerPersistence;
 import com.liferay.wsrp.consumer.service.persistence.ProducerUtil;
 
-import org.springframework.beans.factory.InitializingBean;
-
 import java.util.List;
 
 /**
@@ -53,7 +51,7 @@ import java.util.List;
  *
  */
 public abstract class ProducerLocalServiceBaseImpl
-	implements ProducerLocalService, InitializingBean {
+	implements ProducerLocalService {
 	public Producer addProducer(Producer producer) throws SystemException {
 		producer.setNew(true);
 
@@ -69,16 +67,14 @@ public abstract class ProducerLocalServiceBaseImpl
 		producerPersistence.remove(producer);
 	}
 
-	public List<Producer> dynamicQuery(DynamicQueryInitializer queryInitializer)
+	public List<Producer> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
-		return producerPersistence.findWithDynamicQuery(queryInitializer);
+		return producerPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<Producer> dynamicQuery(
-		DynamicQueryInitializer queryInitializer, int start, int end)
-		throws SystemException {
-		return producerPersistence.findWithDynamicQuery(queryInitializer,
-			start, end);
+	public List<Producer> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) throws SystemException {
+		return producerPersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
 	public Producer getProducer(long producerId)
@@ -140,7 +136,7 @@ public abstract class ProducerLocalServiceBaseImpl
 		this.userPersistence = userPersistence;
 	}
 
-	public void afterPropertiesSet() {
+	protected void init() {
 		if (producerPersistence == null) {
 			producerPersistence = ProducerUtil.getPersistence();
 		}

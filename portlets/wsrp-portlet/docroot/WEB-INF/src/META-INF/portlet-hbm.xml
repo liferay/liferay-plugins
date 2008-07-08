@@ -7,19 +7,19 @@
 		<id name="producerId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="uuid" column="uuid_" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="groupId" type="com.liferay.util.dao.hibernate.LongType" />
-		<property name="companyId" type="com.liferay.util.dao.hibernate.LongType" />
-		<property name="userId" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="uuid" column="uuid_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="createDate" />
 		<property name="modifiedDate" />
-		<property name="name" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="wsdlURL" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="markupEndpoint" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="portletManagementEndpoint" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="registrationEndpoint" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="serviceDescriptionEndpoint" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="registrationContext" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="serviceDescription" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="wsdlURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="markupEndpoint" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="portletManagementEndpoint" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="registrationEndpoint" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="serviceDescriptionEndpoint" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="registrationContext" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="serviceDescription" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

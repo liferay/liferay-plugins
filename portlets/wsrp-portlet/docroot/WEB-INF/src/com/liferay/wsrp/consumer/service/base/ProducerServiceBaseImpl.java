@@ -31,18 +31,15 @@ import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserLocalServiceFactory;
 import com.liferay.portal.service.UserService;
 import com.liferay.portal.service.UserServiceFactory;
+import com.liferay.portal.service.base.PrincipalBean;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.UserUtil;
-
-import com.liferay.portlet.service.PrincipalBean;
 
 import com.liferay.wsrp.consumer.service.ProducerLocalService;
 import com.liferay.wsrp.consumer.service.ProducerLocalServiceFactory;
 import com.liferay.wsrp.consumer.service.ProducerService;
 import com.liferay.wsrp.consumer.service.persistence.ProducerPersistence;
 import com.liferay.wsrp.consumer.service.persistence.ProducerUtil;
-
-import org.springframework.beans.factory.InitializingBean;
 
 /**
  * <a href="ProducerServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
@@ -51,7 +48,7 @@ import org.springframework.beans.factory.InitializingBean;
  *
  */
 public abstract class ProducerServiceBaseImpl extends PrincipalBean
-	implements ProducerService, InitializingBean {
+	implements ProducerService {
 	public ProducerLocalService getProducerLocalService() {
 		return producerLocalService;
 	}
@@ -109,7 +106,7 @@ public abstract class ProducerServiceBaseImpl extends PrincipalBean
 		this.userPersistence = userPersistence;
 	}
 
-	public void afterPropertiesSet() {
+	protected void init() {
 		if (producerLocalService == null) {
 			producerLocalService = ProducerLocalServiceFactory.getImpl();
 		}

@@ -22,8 +22,6 @@
 
 package com.liferay.wsrp.consumer.service;
 
-import com.liferay.portlet.service.BeanLocatorUtil;
-
 /**
  * <a href="ProducerLocalServiceFactory.java.html"><b><i>View Source</i></b></a>
  *
@@ -37,7 +35,7 @@ public class ProducerLocalServiceFactory {
 
 	public static ProducerLocalService getImpl() {
 		if (_impl == null) {
-			_impl = (ProducerLocalService)BeanLocatorUtil.locate(_IMPL);
+			_impl = (ProducerLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_IMPL);
 		}
 
 		return _impl;
@@ -45,7 +43,7 @@ public class ProducerLocalServiceFactory {
 
 	public static ProducerLocalService getTxImpl() {
 		if (_txImpl == null) {
-			_txImpl = (ProducerLocalService)BeanLocatorUtil.locate(_TX_IMPL);
+			_txImpl = (ProducerLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_TX_IMPL);
 		}
 
 		return _txImpl;
@@ -57,7 +55,7 @@ public class ProducerLocalServiceFactory {
 
 	private static ProducerLocalServiceFactory _getFactory() {
 		if (_factory == null) {
-			_factory = (ProducerLocalServiceFactory)BeanLocatorUtil.locate(_FACTORY);
+			_factory = (ProducerLocalServiceFactory)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_FACTORY);
 		}
 
 		return _factory;

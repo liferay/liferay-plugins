@@ -54,19 +54,19 @@ public class ProducerLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.wsrp.consumer.model.Producer> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
 		ProducerLocalService producerLocalService = ProducerLocalServiceFactory.getService();
 
-		return producerLocalService.dynamicQuery(queryInitializer);
+		return producerLocalService.dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<com.liferay.wsrp.consumer.model.Producer> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int start, int end) throws com.liferay.portal.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end) throws com.liferay.portal.SystemException {
 		ProducerLocalService producerLocalService = ProducerLocalServiceFactory.getService();
 
-		return producerLocalService.dynamicQuery(queryInitializer, start, end);
+		return producerLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.wsrp.consumer.model.Producer getProducer(

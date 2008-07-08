@@ -133,16 +133,15 @@ public class ProducerUtil {
 	}
 
 	public static java.util.List<com.liferay.wsrp.consumer.model.Producer> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(queryInitializer);
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<com.liferay.wsrp.consumer.model.Producer> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int start, int end) throws com.liferay.portal.SystemException {
-		return getPersistence()
-				   .findWithDynamicQuery(queryInitializer, start, end);
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end) throws com.liferay.portal.SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static java.util.List<com.liferay.wsrp.consumer.model.Producer> findAll()
@@ -210,7 +209,7 @@ public class ProducerUtil {
 
 	private static ProducerUtil _getUtil() {
 		if (_util == null) {
-			_util = (ProducerUtil)com.liferay.portlet.service.BeanLocatorUtil.locate(_UTIL);
+			_util = (ProducerUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
 		}
 
 		return _util;

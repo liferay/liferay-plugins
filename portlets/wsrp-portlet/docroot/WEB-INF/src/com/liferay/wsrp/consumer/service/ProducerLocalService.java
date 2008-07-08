@@ -42,12 +42,12 @@ public interface ProducerLocalService {
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wsrp.consumer.model.Producer> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wsrp.consumer.model.Producer> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int start, int end) throws com.liferay.portal.SystemException;
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end) throws com.liferay.portal.SystemException;
 
 	public com.liferay.wsrp.consumer.model.Producer getProducer(long producerId)
 		throws com.liferay.portal.SystemException,
