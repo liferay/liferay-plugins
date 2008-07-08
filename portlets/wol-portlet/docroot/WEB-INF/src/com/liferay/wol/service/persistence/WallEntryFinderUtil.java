@@ -53,7 +53,7 @@ public class WallEntryFinderUtil {
 
 	private static WallEntryFinderUtil _getUtil() {
 		if (_util == null) {
-			_util = (WallEntryFinderUtil)com.liferay.portlet.service.BeanLocatorUtil.locate(_UTIL);
+			_util = (WallEntryFinderUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
 		}
 
 		return _util;

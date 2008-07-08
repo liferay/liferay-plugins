@@ -22,6 +22,7 @@
 
 package com.liferay.wol.summary.portlet;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -46,7 +47,6 @@ import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
-import com.liferay.util.dao.hibernate.QueryUtil;
 import com.liferay.wol.friends.social.FriendsRequestKeys;
 import com.liferay.wol.members.social.MembersRequestKeys;
 
@@ -70,48 +70,49 @@ import org.apache.commons.logging.LogFactory;
  */
 public class SummaryPortlet extends JSPPortlet {
 
-	public void processAction(ActionRequest req, ActionResponse res)
+	public void processAction(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
 		try {
 			String actionName = ParamUtil.getString(
-				req, ActionRequest.ACTION_NAME);
+				actionRequest, ActionRequest.ACTION_NAME);
 
 			if (actionName.equals("addFriend")) {
-				addFriend(req);
+				addFriend(actionRequest);
 			}
 			else if (actionName.equals("deleteFriend")) {
-				deleteFriend(req);
+				deleteFriend(actionRequest);
 			}
 			else if (actionName.equals("joinOrganization")) {
-				joinOrganization(req);
+				joinOrganization(actionRequest);
 			}
 			else if (actionName.equals("leaveOrganization")) {
-				leaveOrganization(req);
+				leaveOrganization(actionRequest);
 			}
 			else if (actionName.equals("updateSummary")) {
-				updateSummary(req);
+				updateSummary(actionRequest);
 			}
 
 			if (Validator.isNull(actionName)) {
 				return;
 			}
 
-			if (SessionErrors.isEmpty(req)) {
-				SessionMessages.add(req, "request_processed");
+			if (SessionErrors.isEmpty(actionRequest)) {
+				SessionMessages.add(actionRequest, "request_processed");
 			}
 
-			String redirect = ParamUtil.getString(req, "redirect");
+			String redirect = ParamUtil.getString(actionRequest, "redirect");
 
-			res.sendRedirect(redirect);
+			actionResponse.sendRedirect(redirect);
 		}
 		catch (Exception e) {
 			throw new PortletException(e);
 		}
 	}
 
-	protected void addFriend(ActionRequest req) throws Exception {
-		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
+	protected void addFriend(ActionRequest actionRequest) throws Exception {
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		Group group = GroupLocalServiceUtil.getGroup(
@@ -125,8 +126,8 @@ public class SummaryPortlet extends JSPPortlet {
 			StringPool.BLANK, user.getUserId());
 	}
 
-	protected void deleteFriend(ActionRequest req) throws Exception {
-		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
+	protected void deleteFriend(ActionRequest actionRequest) throws Exception {
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		Group group = GroupLocalServiceUtil.getGroup(
@@ -139,8 +140,10 @@ public class SummaryPortlet extends JSPPortlet {
 			SocialRelationConstants.TYPE_BI_FRIEND);
 	}
 
-	protected void joinOrganization(ActionRequest req) throws Exception {
-		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
+	protected void joinOrganization(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		Group group = GroupLocalServiceUtil.getGroup(
@@ -172,8 +175,10 @@ public class SummaryPortlet extends JSPPortlet {
 		}
 	}
 
-	protected void leaveOrganization(ActionRequest req) throws Exception {
-		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
+	protected void leaveOrganization(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		Group group = GroupLocalServiceUtil.getGroup(
@@ -183,8 +188,8 @@ public class SummaryPortlet extends JSPPortlet {
 			group.getClassPK(), new long[] {themeDisplay.getUserId()});
 	}
 
-	protected void updateSummary(ActionRequest req) throws Exception {
-		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
+	protected void updateSummary(ActionRequest actionRequest) throws Exception {
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		if (!themeDisplay.isSignedIn()) {
@@ -210,10 +215,10 @@ public class SummaryPortlet extends JSPPortlet {
 			return;
 		}
 
-		String jiraUserId = ParamUtil.getString(req, "jiraUserId");
-		String sfUserId = ParamUtil.getString(req, "sfUserId");
-		String jobTitle = ParamUtil.getString(req, "jobTitle");
-		String aboutMe = ParamUtil.getString(req, "aboutMe");
+		String jiraUserId = ParamUtil.getString(actionRequest, "jiraUserId");
+		String sfUserId = ParamUtil.getString(actionRequest, "sfUserId");
+		String jobTitle = ParamUtil.getString(actionRequest, "jobTitle");
+		String aboutMe = ParamUtil.getString(actionRequest, "aboutMe");
 
 		try {
 			ExpandoValueLocalServiceUtil.addValue(

@@ -23,8 +23,11 @@
 package com.liferay.wol.hook.events;
 
 import com.liferay.portal.LayoutFriendlyURLException;
+import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.events.ActionException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.Organization;
@@ -33,9 +36,6 @@ import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
-import com.liferay.portlet.service.HibernateUtil;
-import com.liferay.util.JSONUtil;
-import com.liferay.util.dao.DataAccess;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,8 +45,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.json.JSONObject;
 
 /**
  * <a href="LoginPostAction.java.html"><b><i>View Source</i></b></a>
@@ -74,7 +72,7 @@ public class LoginPostAction extends Action {
 		ResultSet rs = null;
 
 		try {
-			con = HibernateUtil.getConnection();
+			con = DataAccess.getConnection();
 
 			ps = con.prepareStatement(_GET_JIRA_USER_ID);
 
@@ -258,9 +256,9 @@ public class LoginPostAction extends Action {
 
 		addOrganizationsLayouts(organizations);
 
-		JSONObject jsonObj = new JSONObject();
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
-		JSONUtil.put(jsonObj, "ipAddress", user.getLastLoginIP());
+		jsonObj.put("ipAddress", user.getLastLoginIP());
 	}
 
 	private static final String _GET_JIRA_USER_ID =

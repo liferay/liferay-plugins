@@ -54,39 +54,40 @@ import javax.portlet.PortletException;
  */
 public class WallPortlet extends JSPPortlet {
 
-	public void processAction(ActionRequest req, ActionResponse res)
+	public void processAction(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
 		try {
 			String actionName = ParamUtil.getString(
-				req, ActionRequest.ACTION_NAME);
+				actionRequest, ActionRequest.ACTION_NAME);
 
 			if (actionName.equals("addWallEntry")) {
-				addWallEntry(req);
+				addWallEntry(actionRequest);
 			}
 			else if (actionName.equals("deleteWallEntry")) {
-				deleteWallEntry(req);
+				deleteWallEntry(actionRequest);
 			}
 
 			if (Validator.isNull(actionName)) {
 				return;
 			}
 
-			if (SessionErrors.isEmpty(req)) {
-				SessionMessages.add(req, "request_processed");
+			if (SessionErrors.isEmpty(actionRequest)) {
+				SessionMessages.add(actionRequest, "request_processed");
 			}
 
-			String redirect = ParamUtil.getString(req, "redirect");
+			String redirect = ParamUtil.getString(actionRequest, "redirect");
 
-			res.sendRedirect(redirect);
+			actionResponse.sendRedirect(redirect);
 		}
 		catch (Exception e) {
 			throw new PortletException(e);
 		}
 	}
 
-	protected void addWallEntry(ActionRequest req) throws Exception {
-		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
+	protected void addWallEntry(ActionRequest actionRequest) throws Exception {
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		if (!themeDisplay.isSignedIn()) {
@@ -113,22 +114,24 @@ public class WallPortlet extends JSPPortlet {
 			return;
 		}
 
-		String comments = ParamUtil.getString(req, "comments");
+		String comments = ParamUtil.getString(actionRequest, "comments");
 
 		WallEntryLocalServiceUtil.addWallEntry(
 			themeDisplay.getPortletGroupId(), themeDisplay.getUserId(),
 			comments, themeDisplay);
 	}
 
-	protected void deleteWallEntry(ActionRequest req) throws Exception {
-		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
+	protected void deleteWallEntry(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		if (!themeDisplay.isSignedIn()) {
 			return;
 		}
 
-		long wallEntryId = ParamUtil.getLong(req, "wallEntryId");
+		long wallEntryId = ParamUtil.getLong(actionRequest, "wallEntryId");
 
 		WallEntry wallEntry = null;
 

@@ -56,7 +56,7 @@ public class JIRAActionFinderUtil {
 
 	private static JIRAActionFinderUtil _getUtil() {
 		if (_util == null) {
-			_util = (JIRAActionFinderUtil)com.liferay.portlet.service.BeanLocatorUtil.locate(_UTIL);
+			_util = (JIRAActionFinderUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
 		}
 
 		return _util;

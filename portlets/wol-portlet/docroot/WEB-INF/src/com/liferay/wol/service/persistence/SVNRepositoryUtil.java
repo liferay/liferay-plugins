@@ -90,16 +90,15 @@ public class SVNRepositoryUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.SVNRepository> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().findWithDynamicQuery(queryInitializer);
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<com.liferay.wol.model.SVNRepository> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int start, int end) throws com.liferay.portal.SystemException {
-		return getPersistence()
-				   .findWithDynamicQuery(queryInitializer, start, end);
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end) throws com.liferay.portal.SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.SVNRepository> findAll()
@@ -157,7 +156,7 @@ public class SVNRepositoryUtil {
 
 	private static SVNRepositoryUtil _getUtil() {
 		if (_util == null) {
-			_util = (SVNRepositoryUtil)com.liferay.portlet.service.BeanLocatorUtil.locate(_UTIL);
+			_util = (SVNRepositoryUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
 		}
 
 		return _util;

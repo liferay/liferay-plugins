@@ -24,6 +24,9 @@ package com.liferay.wol.service.impl;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
@@ -31,7 +34,6 @@ import com.liferay.portlet.expando.model.ExpandoValue;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
-import com.liferay.util.JSONUtil;
 import com.liferay.wol.NoSuchJIRAIssueException;
 import com.liferay.wol.jira.social.JIRAActivityKeys;
 import com.liferay.wol.jira.util.JIRAUtil;
@@ -43,9 +45,6 @@ import com.liferay.wol.service.base.JIRAIssueLocalServiceBaseImpl;
 
 import java.util.Date;
 import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 /**
  * <a href="JIRAIssueLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -248,10 +247,9 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 				continue;
 			}
 
-			JSONObject extraData = new JSONObject();
+			JSONObject extraData = JSONFactoryUtil.createJSONObject();
 
-			JSONUtil.put(
-				extraData, "jiraActionId", jiraAction.getJiraActionId());
+			extraData.put("jiraActionId", jiraAction.getJiraActionId());
 
 			SocialActivityLocalServiceUtil.addUniqueActivity(
 				userId, 0, JIRAUtil.getLiferayDate(jiraAction.getCreateDate()),
@@ -269,37 +267,32 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 				continue;
 			}
 
-			JSONObject extraData = new JSONObject();
+			JSONObject extraData = JSONFactoryUtil.createJSONObject();
 
-			JSONUtil.put(
-				extraData,
+			extraData.put(
 				"jiraChangeGroupId", jiraChangeGroup.getJiraChangeGroupId());
 
-			JSONArray jiraChangeItemsJSON = new JSONArray();
+			JSONArray jiraChangeItemsJSON = JSONFactoryUtil.createJSONArray();
 
-			JSONUtil.put(extraData, "jiraChangeItems", jiraChangeItemsJSON);
+			extraData.put("jiraChangeItems", jiraChangeItemsJSON);
 
 			List<JIRAChangeItem> jiraChangeItems =
 				jiraChangeItemPersistence.findByJiraChangeGroupId(
 					jiraChangeGroup.getJiraChangeGroupId());
 
 			for (JIRAChangeItem jiraChangeItem : jiraChangeItems) {
-				JSONObject jiraChangeItemJSON = new JSONObject();
+				JSONObject jiraChangeItemJSON =
+					JSONFactoryUtil.createJSONObject();
 
-				JSONUtil.put(
-					jiraChangeItemJSON, "field", jiraChangeItem.getField());
-				JSONUtil.put(
-					jiraChangeItemJSON, "oldValue",
-					jiraChangeItem.getOldValue());
-				JSONUtil.put(
-					jiraChangeItemJSON, "oldString",
-					jiraChangeItem.getOldString());
-				JSONUtil.put(
-					jiraChangeItemJSON, "newValue",
-					jiraChangeItem.getNewValue());
-				JSONUtil.put(
-					jiraChangeItemJSON, "newString",
-					jiraChangeItem.getNewString());
+				jiraChangeItemJSON.put("field", jiraChangeItem.getField());
+				jiraChangeItemJSON.put(
+					"oldValue", jiraChangeItem.getOldValue());
+				jiraChangeItemJSON.put(
+					"oldString", jiraChangeItem.getOldString());
+				jiraChangeItemJSON.put(
+					"newValue", jiraChangeItem.getNewValue());
+				jiraChangeItemJSON.put(
+					"newString", jiraChangeItem.getNewString());
 
 				jiraChangeItemsJSON.put(jiraChangeItemJSON);
 			}

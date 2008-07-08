@@ -54,19 +54,19 @@ public class SVNRevisionLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.SVNRevision> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
 		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
 
-		return svnRevisionLocalService.dynamicQuery(queryInitializer);
+		return svnRevisionLocalService.dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<com.liferay.wol.model.SVNRevision> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int start, int end) throws com.liferay.portal.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end) throws com.liferay.portal.SystemException {
 		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
 
-		return svnRevisionLocalService.dynamicQuery(queryInitializer, start, end);
+		return svnRevisionLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.wol.model.SVNRevision getSVNRevision(

@@ -22,8 +22,6 @@
 
 package com.liferay.wol.service;
 
-import com.liferay.portlet.service.BeanLocatorUtil;
-
 /**
  * <a href="JIRAIssueLocalServiceFactory.java.html"><b><i>View Source</i></b></a>
  *
@@ -37,7 +35,7 @@ public class JIRAIssueLocalServiceFactory {
 
 	public static JIRAIssueLocalService getImpl() {
 		if (_impl == null) {
-			_impl = (JIRAIssueLocalService)BeanLocatorUtil.locate(_IMPL);
+			_impl = (JIRAIssueLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_IMPL);
 		}
 
 		return _impl;
@@ -45,7 +43,7 @@ public class JIRAIssueLocalServiceFactory {
 
 	public static JIRAIssueLocalService getTxImpl() {
 		if (_txImpl == null) {
-			_txImpl = (JIRAIssueLocalService)BeanLocatorUtil.locate(_TX_IMPL);
+			_txImpl = (JIRAIssueLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_TX_IMPL);
 		}
 
 		return _txImpl;
@@ -57,7 +55,7 @@ public class JIRAIssueLocalServiceFactory {
 
 	private static JIRAIssueLocalServiceFactory _getFactory() {
 		if (_factory == null) {
-			_factory = (JIRAIssueLocalServiceFactory)BeanLocatorUtil.locate(_FACTORY);
+			_factory = (JIRAIssueLocalServiceFactory)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_FACTORY);
 		}
 
 		return _factory;

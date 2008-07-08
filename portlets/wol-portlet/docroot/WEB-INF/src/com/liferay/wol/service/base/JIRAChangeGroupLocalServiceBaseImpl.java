@@ -24,7 +24,7 @@ package com.liferay.wol.service.base;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import com.liferay.wol.model.JIRAChangeGroup;
 import com.liferay.wol.service.JIRAActionLocalService;
@@ -71,8 +71,6 @@ import com.liferay.wol.service.persistence.WallEntryFinderUtil;
 import com.liferay.wol.service.persistence.WallEntryPersistence;
 import com.liferay.wol.service.persistence.WallEntryUtil;
 
-import org.springframework.beans.factory.InitializingBean;
-
 import java.util.List;
 
 /**
@@ -82,7 +80,7 @@ import java.util.List;
  *
  */
 public abstract class JIRAChangeGroupLocalServiceBaseImpl
-	implements JIRAChangeGroupLocalService, InitializingBean {
+	implements JIRAChangeGroupLocalService {
 	public JIRAChangeGroup addJIRAChangeGroup(JIRAChangeGroup jiraChangeGroup)
 		throws SystemException {
 		jiraChangeGroup.setNew(true);
@@ -100,15 +98,14 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 		jiraChangeGroupPersistence.remove(jiraChangeGroup);
 	}
 
-	public List<JIRAChangeGroup> dynamicQuery(
-		DynamicQueryInitializer queryInitializer) throws SystemException {
-		return jiraChangeGroupPersistence.findWithDynamicQuery(queryInitializer);
+	public List<JIRAChangeGroup> dynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return jiraChangeGroupPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<JIRAChangeGroup> dynamicQuery(
-		DynamicQueryInitializer queryInitializer, int start, int end)
-		throws SystemException {
-		return jiraChangeGroupPersistence.findWithDynamicQuery(queryInitializer,
+	public List<JIRAChangeGroup> dynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		return jiraChangeGroupPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
 
@@ -310,7 +307,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 		this.wallEntryFinder = wallEntryFinder;
 	}
 
-	public void afterPropertiesSet() {
+	protected void init() {
 		if (jiraActionLocalService == null) {
 			jiraActionLocalService = JIRAActionLocalServiceFactory.getImpl();
 		}

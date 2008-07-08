@@ -54,19 +54,19 @@ public class MeetupsRegistrationLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.MeetupsRegistration> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
 		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
 
-		return meetupsRegistrationLocalService.dynamicQuery(queryInitializer);
+		return meetupsRegistrationLocalService.dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<com.liferay.wol.model.MeetupsRegistration> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int start, int end) throws com.liferay.portal.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end) throws com.liferay.portal.SystemException {
 		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
 
-		return meetupsRegistrationLocalService.dynamicQuery(queryInitializer,
+		return meetupsRegistrationLocalService.dynamicQuery(dynamicQuery,
 			start, end);
 	}
 

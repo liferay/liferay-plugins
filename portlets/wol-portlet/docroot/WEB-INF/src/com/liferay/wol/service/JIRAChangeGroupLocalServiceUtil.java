@@ -54,20 +54,19 @@ public class JIRAChangeGroupLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAChangeGroup> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
 		JIRAChangeGroupLocalService jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getService();
 
-		return jiraChangeGroupLocalService.dynamicQuery(queryInitializer);
+		return jiraChangeGroupLocalService.dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAChangeGroup> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int start, int end) throws com.liferay.portal.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end) throws com.liferay.portal.SystemException {
 		JIRAChangeGroupLocalService jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getService();
 
-		return jiraChangeGroupLocalService.dynamicQuery(queryInitializer,
-			start, end);
+		return jiraChangeGroupLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.wol.model.JIRAChangeGroup getJIRAChangeGroup(

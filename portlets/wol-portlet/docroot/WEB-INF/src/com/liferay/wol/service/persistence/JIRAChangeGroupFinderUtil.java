@@ -56,7 +56,7 @@ public class JIRAChangeGroupFinderUtil {
 
 	private static JIRAChangeGroupFinderUtil _getUtil() {
 		if (_util == null) {
-			_util = (JIRAChangeGroupFinderUtil)com.liferay.portlet.service.BeanLocatorUtil.locate(_UTIL);
+			_util = (JIRAChangeGroupFinderUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
 		}
 
 		return _util;

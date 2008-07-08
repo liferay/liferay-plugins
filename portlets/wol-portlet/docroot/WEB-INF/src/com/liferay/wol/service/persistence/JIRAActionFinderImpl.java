@@ -23,15 +23,16 @@
 package com.liferay.wol.service.persistence;
 
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.SQLQuery;
+import com.liferay.portal.kernel.dao.orm.Session;
+import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.util.CalendarUtil;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portlet.service.CustomSQLUtil;
-import com.liferay.portlet.service.HibernateUtil;
-import com.liferay.util.dao.hibernate.QueryPos;
-import com.liferay.util.dao.hibernate.QueryUtil;
+import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
+import com.liferay.util.dao.orm.CustomSQLUtil;
 import com.liferay.wol.model.JIRAAction;
 import com.liferay.wol.model.impl.JIRAActionImpl;
-import com.liferay.wol.model.impl.JIRAActionModelImpl;
 
 import java.sql.Timestamp;
 
@@ -39,17 +40,14 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import org.hibernate.Hibernate;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-
 /**
  * <a href="JIRAActionFinderImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class JIRAActionFinderImpl implements JIRAActionFinder {
+public class JIRAActionFinderImpl
+	extends BasePersistenceImpl implements JIRAActionFinder {
 
 	public static String COUNT_BY_CD_P =
 		JIRAActionFinder.class.getName() + ".countByCD_P";
@@ -65,14 +63,13 @@ public class JIRAActionFinderImpl implements JIRAActionFinder {
 		Session session = null;
 
 		try {
-			session = HibernateUtil.openSession(
-				StringPool.AMPERSAND + JIRAActionModelImpl.SESSION_FACTORY);
+			session = openSession();
 
 			String sql = CustomSQLUtil.get(COUNT_BY_CD_P);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
-			q.addScalar(HibernateUtil.getCountColumnName(), Hibernate.LONG);
+			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -95,7 +92,7 @@ public class JIRAActionFinderImpl implements JIRAActionFinder {
 			throw new SystemException(e);
 		}
 		finally {
-			HibernateUtil.closeSession(session);
+			closeSession(session);
 		}
 	}
 
@@ -115,8 +112,7 @@ public class JIRAActionFinderImpl implements JIRAActionFinder {
 		Session session = null;
 
 		try {
-			session = HibernateUtil.openSession(
-				StringPool.AMPERSAND + JIRAActionModelImpl.SESSION_FACTORY);
+			session = openSession();
 
 			String sql = CustomSQLUtil.get(FIND_BY_CD_P);
 
@@ -130,13 +126,13 @@ public class JIRAActionFinderImpl implements JIRAActionFinder {
 			qPos.add(createDate_TS);
 
 			return (List<JIRAAction>)QueryUtil.list(
-				q, HibernateUtil.getDialect(), start, end);
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
 		}
 		finally {
-			HibernateUtil.closeSession(session);
+			closeSession(session);
 		}
 	}
 

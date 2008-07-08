@@ -2,7 +2,7 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-	<bean id="com.liferay.wol.service.JIRAActionLocalService.impl" class="com.liferay.wol.service.impl.JIRAActionLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.wol.service.JIRAActionLocalService.impl" class="com.liferay.wol.service.impl.JIRAActionLocalServiceImpl" lazy-init="true" init-method="init" />
 	<bean id="com.liferay.wol.service.JIRAActionLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="jiraTransactionManager" />
@@ -27,7 +27,7 @@
 			<ref bean="com.liferay.wol.service.JIRAActionLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.JIRAActionPersistence.impl" class="com.liferay.wol.service.persistence.JIRAActionPersistenceImpl" lazy-init="true">
+	<bean id="com.liferay.wol.service.persistence.JIRAActionPersistence.impl" class="com.liferay.wol.service.persistence.JIRAActionPersistenceImpl" lazy-init="true" init-method="init">
 		<property name="dataSource">
 			<ref bean="jiraDataSource" />
 		</property>
@@ -35,34 +35,25 @@
 			<ref bean="jiraSessionFactory" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.JIRAActionPersistence.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<ref bean="com.liferay.wol.service.persistence.JIRAActionPersistence.impl" />
-		</property>
-		<property name="transactionAttributes">
-			<props>
-				<prop key="remove*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
-	</bean>
 	<bean id="com.liferay.wol.service.persistence.JIRAActionUtil" class="com.liferay.wol.service.persistence.JIRAActionUtil" lazy-init="true">
 		<property name="persistence">
 			<ref bean="com.liferay.wol.service.persistence.JIRAActionPersistence.impl" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.JIRAActionFinder.impl" class="com.liferay.wol.service.persistence.JIRAActionFinderImpl" lazy-init="true" />
+	<bean id="com.liferay.wol.service.persistence.JIRAActionFinder.impl" class="com.liferay.wol.service.persistence.JIRAActionFinderImpl" lazy-init="true">
+		<property name="dataSource">
+			<ref bean="jiraDataSource" />
+		</property>
+		<property name="sessionFactory">
+			<ref bean="jiraSessionFactory" />
+		</property>
+	</bean>
 	<bean id="com.liferay.wol.service.persistence.JIRAActionFinderUtil" class="com.liferay.wol.service.persistence.JIRAActionFinderUtil" lazy-init="true">
 		<property name="finder">
 			<ref bean="com.liferay.wol.service.persistence.JIRAActionFinder.impl" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.JIRAChangeGroupLocalService.impl" class="com.liferay.wol.service.impl.JIRAChangeGroupLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.wol.service.JIRAChangeGroupLocalService.impl" class="com.liferay.wol.service.impl.JIRAChangeGroupLocalServiceImpl" lazy-init="true" init-method="init" />
 	<bean id="com.liferay.wol.service.JIRAChangeGroupLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="jiraTransactionManager" />
@@ -87,7 +78,7 @@
 			<ref bean="com.liferay.wol.service.JIRAChangeGroupLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.JIRAChangeGroupPersistence.impl" class="com.liferay.wol.service.persistence.JIRAChangeGroupPersistenceImpl" lazy-init="true">
+	<bean id="com.liferay.wol.service.persistence.JIRAChangeGroupPersistence.impl" class="com.liferay.wol.service.persistence.JIRAChangeGroupPersistenceImpl" lazy-init="true" init-method="init">
 		<property name="dataSource">
 			<ref bean="jiraDataSource" />
 		</property>
@@ -95,34 +86,25 @@
 			<ref bean="jiraSessionFactory" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.JIRAChangeGroupPersistence.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<ref bean="com.liferay.wol.service.persistence.JIRAChangeGroupPersistence.impl" />
-		</property>
-		<property name="transactionAttributes">
-			<props>
-				<prop key="remove*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
-	</bean>
 	<bean id="com.liferay.wol.service.persistence.JIRAChangeGroupUtil" class="com.liferay.wol.service.persistence.JIRAChangeGroupUtil" lazy-init="true">
 		<property name="persistence">
 			<ref bean="com.liferay.wol.service.persistence.JIRAChangeGroupPersistence.impl" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.JIRAChangeGroupFinder.impl" class="com.liferay.wol.service.persistence.JIRAChangeGroupFinderImpl" lazy-init="true" />
+	<bean id="com.liferay.wol.service.persistence.JIRAChangeGroupFinder.impl" class="com.liferay.wol.service.persistence.JIRAChangeGroupFinderImpl" lazy-init="true">
+		<property name="dataSource">
+			<ref bean="jiraDataSource" />
+		</property>
+		<property name="sessionFactory">
+			<ref bean="jiraSessionFactory" />
+		</property>
+	</bean>
 	<bean id="com.liferay.wol.service.persistence.JIRAChangeGroupFinderUtil" class="com.liferay.wol.service.persistence.JIRAChangeGroupFinderUtil" lazy-init="true">
 		<property name="finder">
 			<ref bean="com.liferay.wol.service.persistence.JIRAChangeGroupFinder.impl" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.JIRAChangeItemLocalService.impl" class="com.liferay.wol.service.impl.JIRAChangeItemLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.wol.service.JIRAChangeItemLocalService.impl" class="com.liferay.wol.service.impl.JIRAChangeItemLocalServiceImpl" lazy-init="true" init-method="init" />
 	<bean id="com.liferay.wol.service.JIRAChangeItemLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="jiraTransactionManager" />
@@ -147,7 +129,7 @@
 			<ref bean="com.liferay.wol.service.JIRAChangeItemLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.JIRAChangeItemPersistence.impl" class="com.liferay.wol.service.persistence.JIRAChangeItemPersistenceImpl" lazy-init="true">
+	<bean id="com.liferay.wol.service.persistence.JIRAChangeItemPersistence.impl" class="com.liferay.wol.service.persistence.JIRAChangeItemPersistenceImpl" lazy-init="true" init-method="init">
 		<property name="dataSource">
 			<ref bean="jiraDataSource" />
 		</property>
@@ -155,28 +137,12 @@
 			<ref bean="jiraSessionFactory" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.JIRAChangeItemPersistence.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<ref bean="com.liferay.wol.service.persistence.JIRAChangeItemPersistence.impl" />
-		</property>
-		<property name="transactionAttributes">
-			<props>
-				<prop key="remove*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
-	</bean>
 	<bean id="com.liferay.wol.service.persistence.JIRAChangeItemUtil" class="com.liferay.wol.service.persistence.JIRAChangeItemUtil" lazy-init="true">
 		<property name="persistence">
 			<ref bean="com.liferay.wol.service.persistence.JIRAChangeItemPersistence.impl" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.JIRAIssueLocalService.impl" class="com.liferay.wol.service.impl.JIRAIssueLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.wol.service.JIRAIssueLocalService.impl" class="com.liferay.wol.service.impl.JIRAIssueLocalServiceImpl" lazy-init="true" init-method="init" />
 	<bean id="com.liferay.wol.service.JIRAIssueLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="jiraTransactionManager" />
@@ -201,7 +167,7 @@
 			<ref bean="com.liferay.wol.service.JIRAIssueLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.JIRAIssuePersistence.impl" class="com.liferay.wol.service.persistence.JIRAIssuePersistenceImpl" lazy-init="true">
+	<bean id="com.liferay.wol.service.persistence.JIRAIssuePersistence.impl" class="com.liferay.wol.service.persistence.JIRAIssuePersistenceImpl" lazy-init="true" init-method="init">
 		<property name="dataSource">
 			<ref bean="jiraDataSource" />
 		</property>
@@ -209,34 +175,25 @@
 			<ref bean="jiraSessionFactory" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.JIRAIssuePersistence.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<ref bean="com.liferay.wol.service.persistence.JIRAIssuePersistence.impl" />
-		</property>
-		<property name="transactionAttributes">
-			<props>
-				<prop key="remove*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
-	</bean>
 	<bean id="com.liferay.wol.service.persistence.JIRAIssueUtil" class="com.liferay.wol.service.persistence.JIRAIssueUtil" lazy-init="true">
 		<property name="persistence">
 			<ref bean="com.liferay.wol.service.persistence.JIRAIssuePersistence.impl" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.JIRAIssueFinder.impl" class="com.liferay.wol.service.persistence.JIRAIssueFinderImpl" lazy-init="true" />
+	<bean id="com.liferay.wol.service.persistence.JIRAIssueFinder.impl" class="com.liferay.wol.service.persistence.JIRAIssueFinderImpl" lazy-init="true">
+		<property name="dataSource">
+			<ref bean="jiraDataSource" />
+		</property>
+		<property name="sessionFactory">
+			<ref bean="jiraSessionFactory" />
+		</property>
+	</bean>
 	<bean id="com.liferay.wol.service.persistence.JIRAIssueFinderUtil" class="com.liferay.wol.service.persistence.JIRAIssueFinderUtil" lazy-init="true">
 		<property name="finder">
 			<ref bean="com.liferay.wol.service.persistence.JIRAIssueFinder.impl" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.MeetupsEntryLocalService.impl" class="com.liferay.wol.service.impl.MeetupsEntryLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.wol.service.MeetupsEntryLocalService.impl" class="com.liferay.wol.service.impl.MeetupsEntryLocalServiceImpl" lazy-init="true" init-method="init" />
 	<bean id="com.liferay.wol.service.MeetupsEntryLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
@@ -261,7 +218,7 @@
 			<ref bean="com.liferay.wol.service.MeetupsEntryLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.MeetupsEntryPersistence.impl" class="com.liferay.wol.service.persistence.MeetupsEntryPersistenceImpl" lazy-init="true">
+	<bean id="com.liferay.wol.service.persistence.MeetupsEntryPersistence.impl" class="com.liferay.wol.service.persistence.MeetupsEntryPersistenceImpl" lazy-init="true" init-method="init">
 		<property name="dataSource">
 			<ref bean="liferayDataSource" />
 		</property>
@@ -269,28 +226,12 @@
 			<ref bean="liferaySessionFactory" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.MeetupsEntryPersistence.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<ref bean="com.liferay.wol.service.persistence.MeetupsEntryPersistence.impl" />
-		</property>
-		<property name="transactionAttributes">
-			<props>
-				<prop key="remove*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
-	</bean>
 	<bean id="com.liferay.wol.service.persistence.MeetupsEntryUtil" class="com.liferay.wol.service.persistence.MeetupsEntryUtil" lazy-init="true">
 		<property name="persistence">
 			<ref bean="com.liferay.wol.service.persistence.MeetupsEntryPersistence.impl" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.MeetupsRegistrationLocalService.impl" class="com.liferay.wol.service.impl.MeetupsRegistrationLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.wol.service.MeetupsRegistrationLocalService.impl" class="com.liferay.wol.service.impl.MeetupsRegistrationLocalServiceImpl" lazy-init="true" init-method="init" />
 	<bean id="com.liferay.wol.service.MeetupsRegistrationLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
@@ -315,7 +256,7 @@
 			<ref bean="com.liferay.wol.service.MeetupsRegistrationLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.MeetupsRegistrationPersistence.impl" class="com.liferay.wol.service.persistence.MeetupsRegistrationPersistenceImpl" lazy-init="true">
+	<bean id="com.liferay.wol.service.persistence.MeetupsRegistrationPersistence.impl" class="com.liferay.wol.service.persistence.MeetupsRegistrationPersistenceImpl" lazy-init="true" init-method="init">
 		<property name="dataSource">
 			<ref bean="liferayDataSource" />
 		</property>
@@ -323,28 +264,12 @@
 			<ref bean="liferaySessionFactory" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.MeetupsRegistrationPersistence.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<ref bean="com.liferay.wol.service.persistence.MeetupsRegistrationPersistence.impl" />
-		</property>
-		<property name="transactionAttributes">
-			<props>
-				<prop key="remove*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
-	</bean>
 	<bean id="com.liferay.wol.service.persistence.MeetupsRegistrationUtil" class="com.liferay.wol.service.persistence.MeetupsRegistrationUtil" lazy-init="true">
 		<property name="persistence">
 			<ref bean="com.liferay.wol.service.persistence.MeetupsRegistrationPersistence.impl" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.SVNRepositoryLocalService.impl" class="com.liferay.wol.service.impl.SVNRepositoryLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.wol.service.SVNRepositoryLocalService.impl" class="com.liferay.wol.service.impl.SVNRepositoryLocalServiceImpl" lazy-init="true" init-method="init" />
 	<bean id="com.liferay.wol.service.SVNRepositoryLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
@@ -369,7 +294,7 @@
 			<ref bean="com.liferay.wol.service.SVNRepositoryLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.SVNRepositoryPersistence.impl" class="com.liferay.wol.service.persistence.SVNRepositoryPersistenceImpl" lazy-init="true">
+	<bean id="com.liferay.wol.service.persistence.SVNRepositoryPersistence.impl" class="com.liferay.wol.service.persistence.SVNRepositoryPersistenceImpl" lazy-init="true" init-method="init">
 		<property name="dataSource">
 			<ref bean="liferayDataSource" />
 		</property>
@@ -377,28 +302,12 @@
 			<ref bean="liferaySessionFactory" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.SVNRepositoryPersistence.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<ref bean="com.liferay.wol.service.persistence.SVNRepositoryPersistence.impl" />
-		</property>
-		<property name="transactionAttributes">
-			<props>
-				<prop key="remove*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
-	</bean>
 	<bean id="com.liferay.wol.service.persistence.SVNRepositoryUtil" class="com.liferay.wol.service.persistence.SVNRepositoryUtil" lazy-init="true">
 		<property name="persistence">
 			<ref bean="com.liferay.wol.service.persistence.SVNRepositoryPersistence.impl" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.SVNRevisionLocalService.impl" class="com.liferay.wol.service.impl.SVNRevisionLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.wol.service.SVNRevisionLocalService.impl" class="com.liferay.wol.service.impl.SVNRevisionLocalServiceImpl" lazy-init="true" init-method="init" />
 	<bean id="com.liferay.wol.service.SVNRevisionLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
@@ -423,7 +332,7 @@
 			<ref bean="com.liferay.wol.service.SVNRevisionLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.SVNRevisionPersistence.impl" class="com.liferay.wol.service.persistence.SVNRevisionPersistenceImpl" lazy-init="true">
+	<bean id="com.liferay.wol.service.persistence.SVNRevisionPersistence.impl" class="com.liferay.wol.service.persistence.SVNRevisionPersistenceImpl" lazy-init="true" init-method="init">
 		<property name="dataSource">
 			<ref bean="liferayDataSource" />
 		</property>
@@ -431,28 +340,12 @@
 			<ref bean="liferaySessionFactory" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.SVNRevisionPersistence.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<ref bean="com.liferay.wol.service.persistence.SVNRevisionPersistence.impl" />
-		</property>
-		<property name="transactionAttributes">
-			<props>
-				<prop key="remove*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
-	</bean>
 	<bean id="com.liferay.wol.service.persistence.SVNRevisionUtil" class="com.liferay.wol.service.persistence.SVNRevisionUtil" lazy-init="true">
 		<property name="persistence">
 			<ref bean="com.liferay.wol.service.persistence.SVNRevisionPersistence.impl" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.WallEntryLocalService.impl" class="com.liferay.wol.service.impl.WallEntryLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.wol.service.WallEntryLocalService.impl" class="com.liferay.wol.service.impl.WallEntryLocalServiceImpl" lazy-init="true" init-method="init" />
 	<bean id="com.liferay.wol.service.WallEntryLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
@@ -477,7 +370,7 @@
 			<ref bean="com.liferay.wol.service.WallEntryLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.WallEntryPersistence.impl" class="com.liferay.wol.service.persistence.WallEntryPersistenceImpl" lazy-init="true">
+	<bean id="com.liferay.wol.service.persistence.WallEntryPersistence.impl" class="com.liferay.wol.service.persistence.WallEntryPersistenceImpl" lazy-init="true" init-method="init">
 		<property name="dataSource">
 			<ref bean="liferayDataSource" />
 		</property>
@@ -485,28 +378,19 @@
 			<ref bean="liferaySessionFactory" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.WallEntryPersistence.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<ref bean="com.liferay.wol.service.persistence.WallEntryPersistence.impl" />
-		</property>
-		<property name="transactionAttributes">
-			<props>
-				<prop key="remove*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
-	</bean>
 	<bean id="com.liferay.wol.service.persistence.WallEntryUtil" class="com.liferay.wol.service.persistence.WallEntryUtil" lazy-init="true">
 		<property name="persistence">
 			<ref bean="com.liferay.wol.service.persistence.WallEntryPersistence.impl" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.persistence.WallEntryFinder.impl" class="com.liferay.wol.service.persistence.WallEntryFinderImpl" lazy-init="true" />
+	<bean id="com.liferay.wol.service.persistence.WallEntryFinder.impl" class="com.liferay.wol.service.persistence.WallEntryFinderImpl" lazy-init="true">
+		<property name="dataSource">
+			<ref bean="liferayDataSource" />
+		</property>
+		<property name="sessionFactory">
+			<ref bean="liferaySessionFactory" />
+		</property>
+	</bean>
 	<bean id="com.liferay.wol.service.persistence.WallEntryFinderUtil" class="com.liferay.wol.service.persistence.WallEntryFinderUtil" lazy-init="true">
 		<property name="finder">
 			<ref bean="com.liferay.wol.service.persistence.WallEntryFinder.impl" />

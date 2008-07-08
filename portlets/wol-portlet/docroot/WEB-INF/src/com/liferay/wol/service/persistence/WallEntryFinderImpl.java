@@ -23,19 +23,18 @@
 package com.liferay.wol.service.persistence;
 
 import com.liferay.portal.SystemException;
-import com.liferay.portlet.service.CustomSQLUtil;
-import com.liferay.portlet.service.HibernateUtil;
-import com.liferay.util.dao.hibernate.QueryPos;
-import com.liferay.util.dao.hibernate.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.SQLQuery;
+import com.liferay.portal.kernel.dao.orm.Session;
+import com.liferay.portal.kernel.dao.orm.Type;
+import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
+import com.liferay.util.dao.orm.CustomSQLUtil;
 import com.liferay.wol.model.WallEntry;
 import com.liferay.wol.model.impl.WallEntryImpl;
 
 import java.util.Iterator;
 import java.util.List;
-
-import org.hibernate.Hibernate;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
 
 /**
  * <a href="WallEntryFinderImpl.java.html"><b><i>View Source</i></b></a>
@@ -43,7 +42,8 @@ import org.hibernate.Session;
  * @author Brian Wing Shun Chan
  *
  */
-public class WallEntryFinderImpl implements WallEntryFinder {
+public class WallEntryFinderImpl
+	extends BasePersistenceImpl implements WallEntryFinder {
 
 	public static String COUNT_BY_G1_G2_U1_U2 =
 		WallEntryFinder.class.getName() + ".countByG1_G2_U1_U2";
@@ -58,13 +58,13 @@ public class WallEntryFinderImpl implements WallEntryFinder {
 		Session session = null;
 
 		try {
-			session = HibernateUtil.openSession();
+			session = openSession();
 
 			String sql = CustomSQLUtil.get(COUNT_BY_G1_G2_U1_U2);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
-			q.addScalar(HibernateUtil.getCountColumnName(), Hibernate.LONG);
+			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -89,7 +89,7 @@ public class WallEntryFinderImpl implements WallEntryFinder {
 			throw new SystemException(e);
 		}
 		finally {
-			HibernateUtil.closeSession(session);
+			closeSession(session);
 		}
 	}
 
@@ -101,7 +101,7 @@ public class WallEntryFinderImpl implements WallEntryFinder {
 		Session session = null;
 
 		try {
-			session = HibernateUtil.openSession();
+			session = openSession();
 
 			String sql = CustomSQLUtil.get(FIND_BY_G1_G2_U1_U2);
 
@@ -116,14 +116,13 @@ public class WallEntryFinderImpl implements WallEntryFinder {
 			qPos.add(userId1);
 			qPos.add(userId2);
 
-			return (List<WallEntry>)QueryUtil.list(
-				q, HibernateUtil.getDialect(), start, end);
+			return (List<WallEntry>)QueryUtil.list(q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
 		}
 		finally {
-			HibernateUtil.closeSession(session);
+			closeSession(session);
 		}
 	}
 

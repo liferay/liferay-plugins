@@ -25,9 +25,7 @@ package com.liferay.wol.model.impl;
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
-
-import com.liferay.portlet.service.BaseModelImpl;
-import com.liferay.portlet.service.PropsUtil;
+import com.liferay.portal.model.impl.BaseModelImpl;
 
 import com.liferay.wol.model.SVNRepository;
 import com.liferay.wol.model.SVNRepositorySoap;
@@ -63,7 +61,7 @@ public class SVNRepositoryModelImpl extends BaseModelImpl {
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(PropsUtil.get(
+	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.wol.model.SVNRepository"),
 			true);
 
@@ -87,7 +85,7 @@ public class SVNRepositoryModelImpl extends BaseModelImpl {
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(PropsUtil.get(
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.wol.model.SVNRepository"));
 
 	public SVNRepositoryModelImpl() {

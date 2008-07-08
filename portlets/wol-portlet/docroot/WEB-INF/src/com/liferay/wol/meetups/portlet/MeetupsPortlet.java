@@ -57,42 +57,45 @@ import org.apache.commons.logging.LogFactory;
  */
 public class MeetupsPortlet extends JSPPortlet {
 
-	public void processAction(ActionRequest req, ActionResponse res)
+	public void processAction(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
 		try {
 			String actionName = ParamUtil.getString(
-				req, ActionRequest.ACTION_NAME);
+				actionRequest, ActionRequest.ACTION_NAME);
 
 			if (actionName.equals("deleteMeetupsEntry")) {
-				deleteMeetupsEntry(req);
+				deleteMeetupsEntry(actionRequest);
 			}
 			else if (actionName.equals("updateMeetupsEntry")) {
-				updateMeetupsEntry(req);
+				updateMeetupsEntry(actionRequest);
 			}
 			else if (actionName.equals("updateMeetupsRegistration")) {
-				updateMeetupsRegistration(req);
+				updateMeetupsRegistration(actionRequest);
 			}
 
 			if (Validator.isNull(actionName)) {
 				return;
 			}
 
-			if (SessionErrors.isEmpty(req)) {
-				SessionMessages.add(req, "request_processed");
+			if (SessionErrors.isEmpty(actionRequest)) {
+				SessionMessages.add(actionRequest, "request_processed");
 			}
 
-			String redirect = ParamUtil.getString(req, "redirect");
+			String redirect = ParamUtil.getString(actionRequest, "redirect");
 
-			res.sendRedirect(redirect);
+			actionResponse.sendRedirect(redirect);
 		}
 		catch (Exception e) {
 			throw new PortletException(e);
 		}
 	}
 
-	protected void deleteMeetupsEntry(ActionRequest req) throws Exception {
-		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
+	protected void deleteMeetupsEntry(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		if (!UserLocalServiceUtil.hasOrganizationUser(
@@ -102,16 +105,19 @@ public class MeetupsPortlet extends JSPPortlet {
 			return;
 		}
 
-		long meetupsEntryId = ParamUtil.getLong(req, "meetupsEntryId");
+		long meetupsEntryId = ParamUtil.getLong(
+			actionRequest, "meetupsEntryId");
 
 		MeetupsEntryLocalServiceUtil.deleteMeetupsEntry(meetupsEntryId);
 	}
 
-	protected void updateMeetupsEntry(ActionRequest req) throws Exception {
-		UploadPortletRequest uploadReq = PortalUtil.getUploadPortletRequest(
-			req);
+	protected void updateMeetupsEntry(ActionRequest actionRequest)
+		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)uploadReq.getAttribute(
+		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(
+			actionRequest);
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)uploadRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		if (!UserLocalServiceUtil.hasOrganizationUser(
@@ -121,39 +127,46 @@ public class MeetupsPortlet extends JSPPortlet {
 			return;
 		}
 
-		long meetupsEntryId = ParamUtil.getLong(uploadReq, "meetupsEntryId");
+		long meetupsEntryId = ParamUtil.getLong(
+			uploadRequest, "meetupsEntryId");
 
-		String title = ParamUtil.getString(uploadReq, "title");
-		String description = ParamUtil.getString(uploadReq, "description");
+		String title = ParamUtil.getString(uploadRequest, "title");
+		String description = ParamUtil.getString(uploadRequest, "description");
 
-		int startDateMonth = ParamUtil.getInteger(uploadReq, "startDateMonth");
-		int startDateDay = ParamUtil.getInteger(uploadReq, "startDateDay");
-		int startDateYear = ParamUtil.getInteger(uploadReq, "startDateYear");
-		int startDateHour = ParamUtil.getInteger(uploadReq, "startDateHour");
+		int startDateMonth = ParamUtil.getInteger(
+			uploadRequest, "startDateMonth");
+		int startDateDay = ParamUtil.getInteger(uploadRequest, "startDateDay");
+		int startDateYear = ParamUtil.getInteger(
+			uploadRequest, "startDateYear");
+		int startDateHour = ParamUtil.getInteger(
+			uploadRequest, "startDateHour");
 		int startDateMinute = ParamUtil.getInteger(
-			uploadReq, "startDateMinute");
-		int startDateAmPm = ParamUtil.getInteger(uploadReq, "startDateAmPm");
+			uploadRequest, "startDateMinute");
+		int startDateAmPm = ParamUtil.getInteger(
+			uploadRequest, "startDateAmPm");
 
 		if (startDateAmPm == Calendar.PM) {
 			startDateHour += 12;
 		}
 
-		int endDateMonth = ParamUtil.getInteger(uploadReq, "endDateMonth");
-		int endDateDay = ParamUtil.getInteger(uploadReq, "endDateDay");
-		int endDateYear = ParamUtil.getInteger(uploadReq, "endDateYear");
-		int endDateHour = ParamUtil.getInteger(uploadReq, "endDateHour");
-		int endDateMinute = ParamUtil.getInteger(uploadReq, "endDateMinute");
-		int endDateAmPm = ParamUtil.getInteger(uploadReq, "endDateAmPm");
+		int endDateMonth = ParamUtil.getInteger(uploadRequest, "endDateMonth");
+		int endDateDay = ParamUtil.getInteger(uploadRequest, "endDateDay");
+		int endDateYear = ParamUtil.getInteger(uploadRequest, "endDateYear");
+		int endDateHour = ParamUtil.getInteger(uploadRequest, "endDateHour");
+		int endDateMinute = ParamUtil.getInteger(
+			uploadRequest, "endDateMinute");
+		int endDateAmPm = ParamUtil.getInteger(uploadRequest, "endDateAmPm");
 
 		if (endDateAmPm == Calendar.PM) {
 			endDateHour += 12;
 		}
 
-		int totalAttendees = ParamUtil.getInteger(uploadReq, "totalAttendees");
-		int maxAttendees = ParamUtil.getInteger(uploadReq, "maxAttendees");
-		double price = ParamUtil.getDouble(uploadReq, "price");
+		int totalAttendees = ParamUtil.getInteger(
+			uploadRequest, "totalAttendees");
+		int maxAttendees = ParamUtil.getInteger(uploadRequest, "maxAttendees");
+		double price = ParamUtil.getDouble(uploadRequest, "price");
 
-		File file = uploadReq.getFile("fileName");
+		File file = uploadRequest.getFile("fileName");
 		byte[] bytes = FileUtil.getBytes(file);
 
 		if (meetupsEntryId <= 0) {
@@ -173,15 +186,16 @@ public class MeetupsPortlet extends JSPPortlet {
 		}
 	}
 
-	protected void updateMeetupsRegistration(ActionRequest req)
+	protected void updateMeetupsRegistration(ActionRequest actionRequest)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long meetupsEntryId = ParamUtil.getLong(req, "meetupsEntryId");
-		int status = ParamUtil.getInteger(req, "status");
-		String comments = ParamUtil.getString(req, "comments");
+		long meetupsEntryId = ParamUtil.getLong(
+			actionRequest, "meetupsEntryId");
+		int status = ParamUtil.getInteger(actionRequest, "status");
+		String comments = ParamUtil.getString(actionRequest, "comments");
 
 		MeetupsRegistrationLocalServiceUtil.updateMeetupsRegistration(
 			themeDisplay.getUserId(), meetupsEntryId, status, comments);

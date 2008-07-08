@@ -24,7 +24,7 @@ package com.liferay.wol.service.base;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import com.liferay.wol.model.JIRAAction;
 import com.liferay.wol.service.JIRAActionLocalService;
@@ -71,8 +71,6 @@ import com.liferay.wol.service.persistence.WallEntryFinderUtil;
 import com.liferay.wol.service.persistence.WallEntryPersistence;
 import com.liferay.wol.service.persistence.WallEntryUtil;
 
-import org.springframework.beans.factory.InitializingBean;
-
 import java.util.List;
 
 /**
@@ -82,7 +80,7 @@ import java.util.List;
  *
  */
 public abstract class JIRAActionLocalServiceBaseImpl
-	implements JIRAActionLocalService, InitializingBean {
+	implements JIRAActionLocalService {
 	public JIRAAction addJIRAAction(JIRAAction jiraAction)
 		throws SystemException {
 		jiraAction.setNew(true);
@@ -100,16 +98,15 @@ public abstract class JIRAActionLocalServiceBaseImpl
 		jiraActionPersistence.remove(jiraAction);
 	}
 
-	public List<JIRAAction> dynamicQuery(
-		DynamicQueryInitializer queryInitializer) throws SystemException {
-		return jiraActionPersistence.findWithDynamicQuery(queryInitializer);
+	public List<JIRAAction> dynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return jiraActionPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<JIRAAction> dynamicQuery(
-		DynamicQueryInitializer queryInitializer, int start, int end)
-		throws SystemException {
-		return jiraActionPersistence.findWithDynamicQuery(queryInitializer,
-			start, end);
+	public List<JIRAAction> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) throws SystemException {
+		return jiraActionPersistence.findWithDynamicQuery(dynamicQuery, start,
+			end);
 	}
 
 	public JIRAAction getJIRAAction(long jiraActionId)
@@ -310,7 +307,7 @@ public abstract class JIRAActionLocalServiceBaseImpl
 		this.wallEntryFinder = wallEntryFinder;
 	}
 
-	public void afterPropertiesSet() {
+	protected void init() {
 		if (jiraActionPersistence == null) {
 			jiraActionPersistence = JIRAActionUtil.getPersistence();
 		}

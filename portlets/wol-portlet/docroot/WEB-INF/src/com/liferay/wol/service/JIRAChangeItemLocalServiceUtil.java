@@ -54,20 +54,19 @@ public class JIRAChangeItemLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAChangeItem> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
 		JIRAChangeItemLocalService jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getService();
 
-		return jiraChangeItemLocalService.dynamicQuery(queryInitializer);
+		return jiraChangeItemLocalService.dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAChangeItem> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int start, int end) throws com.liferay.portal.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end) throws com.liferay.portal.SystemException {
 		JIRAChangeItemLocalService jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getService();
 
-		return jiraChangeItemLocalService.dynamicQuery(queryInitializer, start,
-			end);
+		return jiraChangeItemLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.wol.model.JIRAChangeItem getJIRAChangeItem(

@@ -94,7 +94,7 @@ else {
 					continue;
 				}
 
-				JSONObject ipGeocoderRequestJSON = new JSONObject();
+				JSONObject ipGeocoderRequestJSON = JSONFactoryUtil.createJSONObject();
 
 				ipGeocoderRequestJSON.put("ipAddress", mapUser.getLastLoginIP());
 
@@ -104,16 +104,16 @@ else {
 					continue;
 				}
 
-				JSONObject ipGeocoderResponseJSON = new JSONObject(ipGeocoderResponse);
+				JSONObject ipGeocoderResponseJSON = JSONFactoryUtil.createJSONObject(ipGeocoderResponse);
 
-				JSONObject ipInfoJSON = ipGeocoderResponseJSON.optJSONObject("ipInfo");
+				JSONObject ipInfoJSON = ipGeocoderResponseJSON.getJSONObject("ipInfo");
 
 				if (ipInfoJSON == null) {
 					continue;
 				}
 
-				float latitude = GetterUtil.getFloat(ipInfoJSON.optString("latitude"));
-				float longitude = GetterUtil.getFloat(ipInfoJSON.optString("longitude"));
+				float latitude = GetterUtil.getFloat(ipInfoJSON.getString("latitude"));
+				float longitude = GetterUtil.getFloat(ipInfoJSON.getString("longitude"));
 
 				if ((latitude == 0) && (longitude == 0)) {
 					continue;

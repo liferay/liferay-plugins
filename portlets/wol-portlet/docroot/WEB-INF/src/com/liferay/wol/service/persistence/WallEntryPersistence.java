@@ -143,12 +143,12 @@ public interface WallEntryPersistence {
 			com.liferay.wol.NoSuchWallEntryException;
 
 	public java.util.List<com.liferay.wol.model.WallEntry> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.WallEntry> findWithDynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int start, int end) throws com.liferay.portal.SystemException;
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.WallEntry> findAll()
 		throws com.liferay.portal.SystemException;

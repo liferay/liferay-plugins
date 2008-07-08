@@ -24,7 +24,7 @@ package com.liferay.wol.service.base;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import com.liferay.wol.model.WallEntry;
 import com.liferay.wol.service.JIRAActionLocalService;
@@ -71,8 +71,6 @@ import com.liferay.wol.service.persistence.WallEntryFinderUtil;
 import com.liferay.wol.service.persistence.WallEntryPersistence;
 import com.liferay.wol.service.persistence.WallEntryUtil;
 
-import org.springframework.beans.factory.InitializingBean;
-
 import java.util.List;
 
 /**
@@ -82,7 +80,7 @@ import java.util.List;
  *
  */
 public abstract class WallEntryLocalServiceBaseImpl
-	implements WallEntryLocalService, InitializingBean {
+	implements WallEntryLocalService {
 	public WallEntry addWallEntry(WallEntry wallEntry)
 		throws SystemException {
 		wallEntry.setNew(true);
@@ -99,16 +97,15 @@ public abstract class WallEntryLocalServiceBaseImpl
 		wallEntryPersistence.remove(wallEntry);
 	}
 
-	public List<WallEntry> dynamicQuery(
-		DynamicQueryInitializer queryInitializer) throws SystemException {
-		return wallEntryPersistence.findWithDynamicQuery(queryInitializer);
+	public List<WallEntry> dynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return wallEntryPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<WallEntry> dynamicQuery(
-		DynamicQueryInitializer queryInitializer, int start, int end)
-		throws SystemException {
-		return wallEntryPersistence.findWithDynamicQuery(queryInitializer,
-			start, end);
+	public List<WallEntry> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) throws SystemException {
+		return wallEntryPersistence.findWithDynamicQuery(dynamicQuery, start,
+			end);
 	}
 
 	public WallEntry getWallEntry(long wallEntryId)
@@ -309,7 +306,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 		this.wallEntryFinder = wallEntryFinder;
 	}
 
-	public void afterPropertiesSet() {
+	protected void init() {
 		if (jiraActionLocalService == null) {
 			jiraActionLocalService = JIRAActionLocalServiceFactory.getImpl();
 		}

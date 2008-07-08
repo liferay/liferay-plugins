@@ -22,8 +22,6 @@
 
 package com.liferay.wol.service;
 
-import com.liferay.portlet.service.BeanLocatorUtil;
-
 /**
  * <a href="JIRAChangeGroupLocalServiceFactory.java.html"><b><i>View Source</i></b></a>
  *
@@ -37,7 +35,7 @@ public class JIRAChangeGroupLocalServiceFactory {
 
 	public static JIRAChangeGroupLocalService getImpl() {
 		if (_impl == null) {
-			_impl = (JIRAChangeGroupLocalService)BeanLocatorUtil.locate(_IMPL);
+			_impl = (JIRAChangeGroupLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_IMPL);
 		}
 
 		return _impl;
@@ -45,7 +43,7 @@ public class JIRAChangeGroupLocalServiceFactory {
 
 	public static JIRAChangeGroupLocalService getTxImpl() {
 		if (_txImpl == null) {
-			_txImpl = (JIRAChangeGroupLocalService)BeanLocatorUtil.locate(_TX_IMPL);
+			_txImpl = (JIRAChangeGroupLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_TX_IMPL);
 		}
 
 		return _txImpl;
@@ -57,7 +55,7 @@ public class JIRAChangeGroupLocalServiceFactory {
 
 	private static JIRAChangeGroupLocalServiceFactory _getFactory() {
 		if (_factory == null) {
-			_factory = (JIRAChangeGroupLocalServiceFactory)BeanLocatorUtil.locate(_FACTORY);
+			_factory = (JIRAChangeGroupLocalServiceFactory)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_FACTORY);
 		}
 
 		return _factory;

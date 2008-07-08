@@ -22,6 +22,10 @@
 
 package com.liferay.wol.jira.social;
 
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -33,10 +37,6 @@ import com.liferay.wol.model.JIRAAction;
 import com.liferay.wol.model.JIRAIssue;
 import com.liferay.wol.service.JIRAActionLocalServiceUtil;
 import com.liferay.wol.service.JIRAIssueLocalServiceUtil;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * <a href="JIRAActivityInterpreter.java.html"><b><i>View Source</i></b></a>
@@ -62,7 +62,8 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 		JSONObject extraData = null;
 
 		if (Validator.isNotNull(activity.getExtraData())) {
-			extraData = new JSONObject(activity.getExtraData());
+			extraData = JSONFactoryUtil.createJSONObject(
+				activity.getExtraData());
 		}
 
 		JIRAAction jiraAction = null;
@@ -121,7 +122,7 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 		if (activityType == JIRAActivityKeys.ADD_CHANGE) {
 			sb.append(
 				interpretJIRAChangeItems(
-					extraData.optJSONArray("jiraChangeItems"), themeDisplay));
+					extraData.getJSONArray("jiraChangeItems"), themeDisplay));
 		}
 		else if (activityType == JIRAActivityKeys.ADD_COMMENT) {
 			sb.append(cleanContent(jiraAction.getBody()));

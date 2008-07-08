@@ -7,34 +7,34 @@
 		<id name="jiraActionId" column="id" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="jiraUserId" column="author" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="jiraUserId" column="author" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createDate" column="created" />
 		<property name="modifiedDate" column="updated" />
-		<property name="jiraIssueId" column="issueid" type="com.liferay.util.dao.hibernate.LongType" />
-		<property name="type" column="actiontype" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="body" column="actionbody" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="jiraGroupName" column="actionlevel" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="jiraIssueId" column="issueid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="type" column="actiontype" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="body" column="actionbody" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="jiraGroupName" column="actionlevel" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.wol.model.impl.JIRAChangeGroupImpl" table="changegroup">
 		<cache usage="read-write" />
 		<id name="jiraChangeGroupId" column="id" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="jiraUserId" column="author" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="jiraUserId" column="author" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createDate" column="created" />
-		<property name="jiraIssueId" column="issueid" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="jiraIssueId" column="issueid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="com.liferay.wol.model.impl.JIRAChangeItemImpl" table="changeitem">
 		<cache usage="read-write" />
 		<id name="jiraChangeItemId" column="id" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="jiraChangeGroupId" column="groupid" type="com.liferay.util.dao.hibernate.LongType" />
-		<property name="field" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="oldValue" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="oldString" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="newValue" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="newString" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="jiraChangeGroupId" column="groupid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="field" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="oldValue" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="oldString" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="newValue" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="newString" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.wol.model.impl.JIRAIssueImpl" table="jiraissue">
 		<cache usage="read-write" />
@@ -43,78 +43,78 @@
 		</id>
 		<property name="createDate" column="created" />
 		<property name="modifiedDate" column="updated" />
-		<property name="projectId" column="project" type="com.liferay.util.dao.hibernate.LongType" />
-		<property name="key" column="pkey" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="summary" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="description" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="reporterJiraUserId" column="reporter" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="assigneeJiraUserId" column="assignee" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="resolution" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="status" column="issuestatus" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="projectId" column="project" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="key" column="pkey" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="summary" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="reporterJiraUserId" column="reporter" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="assigneeJiraUserId" column="assignee" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="resolution" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="status" column="issuestatus" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.wol.model.impl.MeetupsEntryImpl" table="WOL_MeetupsEntry">
 		<cache usage="read-write" />
 		<id name="meetupsEntryId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="companyId" type="com.liferay.util.dao.hibernate.LongType" />
-		<property name="userId" type="com.liferay.util.dao.hibernate.LongType" />
-		<property name="userName" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createDate" />
 		<property name="modifiedDate" />
-		<property name="title" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="description" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="startDate" />
 		<property name="endDate" />
-		<property name="totalAttendees" type="com.liferay.util.dao.hibernate.IntegerType" />
-		<property name="maxAttendees" type="com.liferay.util.dao.hibernate.IntegerType" />
-		<property name="price" type="com.liferay.util.dao.hibernate.DoubleType" />
-		<property name="thumbnailId" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="totalAttendees" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="maxAttendees" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="price" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="thumbnailId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="com.liferay.wol.model.impl.MeetupsRegistrationImpl" table="WOL_MeetupsRegistration">
 		<cache usage="read-write" />
 		<id name="meetupsRegistrationId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="companyId" type="com.liferay.util.dao.hibernate.LongType" />
-		<property name="userId" type="com.liferay.util.dao.hibernate.LongType" />
-		<property name="userName" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createDate" />
 		<property name="modifiedDate" />
-		<property name="meetupsEntryId" type="com.liferay.util.dao.hibernate.LongType" />
-		<property name="status" type="com.liferay.util.dao.hibernate.IntegerType" />
-		<property name="comments" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="meetupsEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="comments" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.wol.model.impl.SVNRepositoryImpl" table="WOL_SVNRepository">
 		<cache usage="read-write" />
 		<id name="svnRepositoryId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="url" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="revisionNumber" type="com.liferay.util.dao.hibernate.LongType" />
+		<property name="url" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="revisionNumber" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="com.liferay.wol.model.impl.SVNRevisionImpl" table="WOL_SVNRevision">
 		<cache usage="read-write" />
 		<id name="svnRevisionId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="svnUserId" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="svnUserId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createDate" />
-		<property name="svnRepositoryId" type="com.liferay.util.dao.hibernate.LongType" />
-		<property name="revisionNumber" type="com.liferay.util.dao.hibernate.LongType" />
-		<property name="comments" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="svnRepositoryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="revisionNumber" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="comments" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.wol.model.impl.WallEntryImpl" table="WOL_WallEntry">
 		<cache usage="read-write" />
 		<id name="wallEntryId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="groupId" type="com.liferay.util.dao.hibernate.LongType" />
-		<property name="companyId" type="com.liferay.util.dao.hibernate.LongType" />
-		<property name="userId" type="com.liferay.util.dao.hibernate.LongType" />
-		<property name="userName" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createDate" />
 		<property name="modifiedDate" />
-		<property name="comments" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="comments" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

@@ -22,8 +22,6 @@
 
 package com.liferay.wol.service;
 
-import com.liferay.portlet.service.BeanLocatorUtil;
-
 /**
  * <a href="WallEntryLocalServiceFactory.java.html"><b><i>View Source</i></b></a>
  *
@@ -37,7 +35,7 @@ public class WallEntryLocalServiceFactory {
 
 	public static WallEntryLocalService getImpl() {
 		if (_impl == null) {
-			_impl = (WallEntryLocalService)BeanLocatorUtil.locate(_IMPL);
+			_impl = (WallEntryLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_IMPL);
 		}
 
 		return _impl;
@@ -45,7 +43,7 @@ public class WallEntryLocalServiceFactory {
 
 	public static WallEntryLocalService getTxImpl() {
 		if (_txImpl == null) {
-			_txImpl = (WallEntryLocalService)BeanLocatorUtil.locate(_TX_IMPL);
+			_txImpl = (WallEntryLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_TX_IMPL);
 		}
 
 		return _txImpl;
@@ -57,7 +55,7 @@ public class WallEntryLocalServiceFactory {
 
 	private static WallEntryLocalServiceFactory _getFactory() {
 		if (_factory == null) {
-			_factory = (WallEntryLocalServiceFactory)BeanLocatorUtil.locate(_FACTORY);
+			_factory = (WallEntryLocalServiceFactory)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_FACTORY);
 		}
 
 		return _factory;

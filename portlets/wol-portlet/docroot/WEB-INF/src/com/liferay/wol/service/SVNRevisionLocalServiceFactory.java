@@ -22,8 +22,6 @@
 
 package com.liferay.wol.service;
 
-import com.liferay.portlet.service.BeanLocatorUtil;
-
 /**
  * <a href="SVNRevisionLocalServiceFactory.java.html"><b><i>View Source</i></b></a>
  *
@@ -37,7 +35,7 @@ public class SVNRevisionLocalServiceFactory {
 
 	public static SVNRevisionLocalService getImpl() {
 		if (_impl == null) {
-			_impl = (SVNRevisionLocalService)BeanLocatorUtil.locate(_IMPL);
+			_impl = (SVNRevisionLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_IMPL);
 		}
 
 		return _impl;
@@ -45,7 +43,7 @@ public class SVNRevisionLocalServiceFactory {
 
 	public static SVNRevisionLocalService getTxImpl() {
 		if (_txImpl == null) {
-			_txImpl = (SVNRevisionLocalService)BeanLocatorUtil.locate(_TX_IMPL);
+			_txImpl = (SVNRevisionLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_TX_IMPL);
 		}
 
 		return _txImpl;
@@ -57,7 +55,7 @@ public class SVNRevisionLocalServiceFactory {
 
 	private static SVNRevisionLocalServiceFactory _getFactory() {
 		if (_factory == null) {
-			_factory = (SVNRevisionLocalServiceFactory)BeanLocatorUtil.locate(_FACTORY);
+			_factory = (SVNRevisionLocalServiceFactory)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_FACTORY);
 		}
 
 		return _factory;
