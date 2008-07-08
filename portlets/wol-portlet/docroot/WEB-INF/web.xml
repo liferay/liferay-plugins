@@ -4,14 +4,14 @@
 <web-app>
 	<context-param>
 		<param-name>contextClass</param-name>
-		<param-value>com.liferay.portlet.service.LazyClassPathApplicationContext</param-value>
+		<param-value>com.liferay.portal.spring.context.PortletApplicationContext</param-value>
 	</context-param>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>WEB-INF/data-source-spring.xml,WEB-INF/portlet-spring.xml,WEB-INF/ext-spring.xml</param-value>
+		<param-value>WEB-INF/classes/META-INF/data-source-spring.xml,WEB-INF/classes/META-INF/portlet-spring.xml,WEB-INF/classes/META-INF/ext-spring.xml</param-value>
 	</context-param>
 	<listener>
-		<listener-class>com.liferay.portlet.service.PortalContextLoaderListener</listener-class>
+		<listener-class>com.liferay.portal.kernel.spring.context.PortletContextLoaderListener</listener-class>
 	</listener>
 	<taglib>
 		<taglib-uri>http://java.sun.com/jstl/core_rt</taglib-uri>
