@@ -24,15 +24,14 @@ package com.liferay.ipgeocoder.messaging;
 
 import com.liferay.ipgeocoder.model.IPInfo;
 import com.liferay.ipgeocoder.util.IPGeocoderUtil;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.util.JSONUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import org.json.JSONObject;
 
 /**
  * <a href="IPGeocoderMessageListener.java.html"><b><i>View Source</i></b></a>
@@ -51,12 +50,16 @@ public class IPGeocoderMessageListener implements MessageListener {
 		}
 	}
 
-	protected void doReceive(String message) throws Exception {
-		JSONObject jsonObj = new JSONObject(message);
+	public void receive(Object message) {
+		throw new UnsupportedOperationException();
+	}
 
-		String responseDestination = jsonObj.optString(
+	protected void doReceive(String message) throws Exception {
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject(message);
+
+		String responseDestination = jsonObj.getString(
 			"lfrResponseDestination");
-		String responseId = jsonObj.optString("lfrResponseId");
+		String responseId = jsonObj.getString("lfrResponseId");
 
 		if (Validator.isNull(responseDestination) ||
 			Validator.isNull(responseId)) {
@@ -68,13 +71,15 @@ public class IPGeocoderMessageListener implements MessageListener {
 
 		IPInfo ipInfo = IPGeocoderUtil.getIPInfo(ipAddress);
 
-		JSONObject jsonObject = new JSONObject();
+		jsonObj = JSONFactoryUtil.createJSONObject();
 
-		JSONUtil.put(jsonObject, "lfrResponseId", responseId);
-		JSONUtil.put(
-			jsonObject, "ipInfo", new JSONObject(JSONUtil.serialize(ipInfo)));
+		jsonObj.put("lfrResponseId", responseId);
+		jsonObj.put(
+			"ipInfo",
+			JSONFactoryUtil.createJSONObject(
+				JSONFactoryUtil.serialize(ipInfo)));
 
-		MessageBusUtil.sendMessage(responseDestination, jsonObject.toString());
+		MessageBusUtil.sendMessage(responseDestination, jsonObj.toString());
 	}
 
 	private static Log _log =
