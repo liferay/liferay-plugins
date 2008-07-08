@@ -41,12 +41,12 @@ public interface FeedLocalService {
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.twitter.model.Feed> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.twitter.model.Feed> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int start, int end) throws com.liferay.portal.SystemException;
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end) throws com.liferay.portal.SystemException;
 
 	public com.liferay.twitter.model.Feed getFeed(long feedId)
 		throws com.liferay.portal.SystemException,

@@ -24,14 +24,12 @@ package com.liferay.twitter.service.base;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import com.liferay.twitter.model.Feed;
 import com.liferay.twitter.service.FeedLocalService;
 import com.liferay.twitter.service.persistence.FeedPersistence;
 import com.liferay.twitter.service.persistence.FeedUtil;
-
-import org.springframework.beans.factory.InitializingBean;
 
 import java.util.List;
 
@@ -41,8 +39,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
-	InitializingBean {
+public abstract class FeedLocalServiceBaseImpl implements FeedLocalService {
 	public Feed addFeed(Feed feed) throws SystemException {
 		feed.setNew(true);
 
@@ -57,14 +54,14 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 		feedPersistence.remove(feed);
 	}
 
-	public List<Feed> dynamicQuery(DynamicQueryInitializer queryInitializer)
+	public List<Feed> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
-		return feedPersistence.findWithDynamicQuery(queryInitializer);
+		return feedPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<Feed> dynamicQuery(DynamicQueryInitializer queryInitializer,
-		int start, int end) throws SystemException {
-		return feedPersistence.findWithDynamicQuery(queryInitializer, start, end);
+	public List<Feed> dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
+		throws SystemException {
+		return feedPersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
 	public Feed getFeed(long feedId) throws PortalException, SystemException {
@@ -85,7 +82,7 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 		this.feedPersistence = feedPersistence;
 	}
 
-	public void afterPropertiesSet() {
+	protected void init() {
 		if (feedPersistence == null) {
 			feedPersistence = FeedUtil.getPersistence();
 		}

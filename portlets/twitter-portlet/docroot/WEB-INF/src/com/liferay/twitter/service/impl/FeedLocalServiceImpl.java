@@ -25,6 +25,10 @@ package com.liferay.twitter.service.impl;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
@@ -35,8 +39,6 @@ import com.liferay.twitter.FeedTwitterScreenNameException;
 import com.liferay.twitter.model.Feed;
 import com.liferay.twitter.service.base.FeedLocalServiceBaseImpl;
 import com.liferay.twitter.social.TwitterActivityKeys;
-import com.liferay.util.JSONUtil;
-import com.liferay.util.dao.hibernate.QueryUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -47,9 +49,6 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 /**
  * <a href="FeedLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -102,7 +101,7 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 		try {
 			String url = _URL + twitterScreenName + ".json?since_id=" + sinceId;
 
-			return new JSONArray(HttpUtil.URLtoString(url));
+			return JSONFactoryUtil.createJSONArray(HttpUtil.URLtoString(url));
 		}
 		catch (Exception e) {
 			return null;
@@ -151,7 +150,7 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 		}
 
 		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject statusJSON = jsonArray.optJSONObject(i);
+			JSONObject statusJSON = jsonArray.getJSONObject(i);
 
 			SimpleDateFormat sdf = new SimpleDateFormat(
 				"EEE MMM d hh:mm:ss Z yyyy");
@@ -159,28 +158,28 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 			Date createDate = null;
 
 			try {
-				createDate = sdf.parse(statusJSON.optString("created_at"));
+				createDate = sdf.parse(statusJSON.getString("created_at"));
 			}
 			catch (ParseException pe) {
 				throw new SystemException(pe);
 			}
 
-			long statusId = statusJSON.optLong("id");
-			String text = statusJSON.optString("text");
+			long statusId = statusJSON.getLong("id");
+			String text = statusJSON.getString("text");
 
 			if (feed.getTwitterUserId() <= 0) {
-				JSONObject userJSON = statusJSON.optJSONObject("user");
+				JSONObject userJSON = statusJSON.getJSONObject("user");
 
-				feed.setTwitterUserId(userJSON.optLong("id"));
+				feed.setTwitterUserId(userJSON.getLong("id"));
 			}
 
 			if (feed.getLastStatusId() < statusId) {
 				feed.setLastStatusId(statusId);
 			}
 
-			JSONObject extraData = new JSONObject();
+			JSONObject extraData = JSONFactoryUtil.createJSONObject();
 
-			JSONUtil.put(extraData, "text", text);
+			extraData.put("text", text);
 
 			SocialActivityLocalServiceUtil.addActivity(
 				user.getUserId(), 0, createDate, Feed.class.getName(),

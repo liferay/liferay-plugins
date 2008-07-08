@@ -53,19 +53,19 @@ public class FeedLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.twitter.model.Feed> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
 		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
 
-		return feedLocalService.dynamicQuery(queryInitializer);
+		return feedLocalService.dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<com.liferay.twitter.model.Feed> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int start, int end) throws com.liferay.portal.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end) throws com.liferay.portal.SystemException {
 		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
 
-		return feedLocalService.dynamicQuery(queryInitializer, start, end);
+		return feedLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.twitter.model.Feed getFeed(long feedId)

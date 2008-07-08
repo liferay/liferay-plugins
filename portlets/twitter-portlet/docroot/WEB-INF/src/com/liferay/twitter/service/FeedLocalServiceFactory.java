@@ -22,8 +22,6 @@
 
 package com.liferay.twitter.service;
 
-import com.liferay.portlet.service.BeanLocatorUtil;
-
 /**
  * <a href="FeedLocalServiceFactory.java.html"><b><i>View Source</i></b></a>
  *
@@ -37,7 +35,7 @@ public class FeedLocalServiceFactory {
 
 	public static FeedLocalService getImpl() {
 		if (_impl == null) {
-			_impl = (FeedLocalService)BeanLocatorUtil.locate(_IMPL);
+			_impl = (FeedLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_IMPL);
 		}
 
 		return _impl;
@@ -45,7 +43,7 @@ public class FeedLocalServiceFactory {
 
 	public static FeedLocalService getTxImpl() {
 		if (_txImpl == null) {
-			_txImpl = (FeedLocalService)BeanLocatorUtil.locate(_TX_IMPL);
+			_txImpl = (FeedLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_TX_IMPL);
 		}
 
 		return _txImpl;
@@ -57,7 +55,7 @@ public class FeedLocalServiceFactory {
 
 	private static FeedLocalServiceFactory _getFactory() {
 		if (_factory == null) {
-			_factory = (FeedLocalServiceFactory)BeanLocatorUtil.locate(_FACTORY);
+			_factory = (FeedLocalServiceFactory)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_FACTORY);
 		}
 
 		return _factory;

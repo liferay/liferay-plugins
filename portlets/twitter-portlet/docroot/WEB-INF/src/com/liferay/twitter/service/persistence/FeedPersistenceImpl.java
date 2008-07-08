@@ -23,33 +23,27 @@
 package com.liferay.twitter.service.persistence;
 
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.dao.DynamicQuery;
-import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
+import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
-
-import com.liferay.portlet.service.BasePersistence;
-import com.liferay.portlet.service.FinderCache;
-import com.liferay.portlet.service.HibernateUtil;
-import com.liferay.portlet.service.PropsUtil;
+import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.twitter.NoSuchFeedException;
 import com.liferay.twitter.model.Feed;
 import com.liferay.twitter.model.impl.FeedImpl;
 import com.liferay.twitter.model.impl.FeedModelImpl;
 
-import com.liferay.util.dao.hibernate.QueryPos;
-import com.liferay.util.dao.hibernate.QueryUtil;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import org.hibernate.Query;
-import org.hibernate.Session;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -62,7 +56,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public class FeedPersistenceImpl extends BasePersistence
+public class FeedPersistenceImpl extends BasePersistenceImpl
 	implements FeedPersistence {
 	public Feed create(long feedId) {
 		Feed feed = new FeedImpl();
@@ -96,7 +90,7 @@ public class FeedPersistenceImpl extends BasePersistence
 			throw nsee;
 		}
 		catch (Exception e) {
-			throw HibernateUtil.processException(e);
+			throw processException(e);
 		}
 		finally {
 			closeSession(session);
@@ -134,12 +128,12 @@ public class FeedPersistenceImpl extends BasePersistence
 			return feed;
 		}
 		catch (Exception e) {
-			throw HibernateUtil.processException(e);
+			throw processException(e);
 		}
 		finally {
 			closeSession(session);
 
-			FinderCache.clearCache(Feed.class.getName());
+			FinderCacheUtil.clearCache(Feed.class.getName());
 		}
 	}
 
@@ -205,12 +199,12 @@ public class FeedPersistenceImpl extends BasePersistence
 			return feed;
 		}
 		catch (Exception e) {
-			throw HibernateUtil.processException(e);
+			throw processException(e);
 		}
 		finally {
 			closeSession(session);
 
-			FinderCache.clearCache(Feed.class.getName());
+			FinderCacheUtil.clearCache(Feed.class.getName());
 		}
 	}
 
@@ -239,7 +233,7 @@ public class FeedPersistenceImpl extends BasePersistence
 			return (Feed)session.get(FeedImpl.class, new Long(feedId));
 		}
 		catch (Exception e) {
-			throw HibernateUtil.processException(e);
+			throw processException(e);
 		}
 		finally {
 			closeSession(session);
@@ -280,8 +274,8 @@ public class FeedPersistenceImpl extends BasePersistence
 		Object result = null;
 
 		if (finderClassNameCacheEnabled) {
-			result = FinderCache.getResult(finderClassName, finderMethodName,
-					finderParams, finderArgs, getSessionFactory());
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
 		}
 
 		if (result == null) {
@@ -306,7 +300,7 @@ public class FeedPersistenceImpl extends BasePersistence
 
 				List<Feed> list = q.list();
 
-				FinderCache.putResult(finderClassNameCacheEnabled,
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
 					finderArgs, list);
 
@@ -318,7 +312,7 @@ public class FeedPersistenceImpl extends BasePersistence
 				}
 			}
 			catch (Exception e) {
-				throw HibernateUtil.processException(e);
+				throw processException(e);
 			}
 			finally {
 				closeSession(session);
@@ -370,8 +364,8 @@ public class FeedPersistenceImpl extends BasePersistence
 		Object result = null;
 
 		if (finderClassNameCacheEnabled) {
-			result = FinderCache.getResult(finderClassName, finderMethodName,
-					finderParams, finderArgs, getSessionFactory());
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
 		}
 
 		if (result == null) {
@@ -403,7 +397,7 @@ public class FeedPersistenceImpl extends BasePersistence
 
 				List<Feed> list = q.list();
 
-				FinderCache.putResult(finderClassNameCacheEnabled,
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
 					finderArgs, list);
 
@@ -415,7 +409,7 @@ public class FeedPersistenceImpl extends BasePersistence
 				}
 			}
 			catch (Exception e) {
-				throw HibernateUtil.processException(e);
+				throw processException(e);
 			}
 			finally {
 				closeSession(session);
@@ -433,41 +427,36 @@ public class FeedPersistenceImpl extends BasePersistence
 		}
 	}
 
-	public List<Feed> findWithDynamicQuery(
-		DynamicQueryInitializer queryInitializer) throws SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			DynamicQuery query = queryInitializer.initialize(session);
-
-			return query.list();
-		}
-		catch (Exception e) {
-			throw HibernateUtil.processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public List<Feed> findWithDynamicQuery(
-		DynamicQueryInitializer queryInitializer, int start, int end)
+	public List<Feed> findWithDynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			DynamicQuery query = queryInitializer.initialize(session);
-
-			query.setLimit(start, end);
-
-			return query.list();
+			return dynamicQuery.list();
 		}
 		catch (Exception e) {
-			throw HibernateUtil.processException(e);
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<Feed> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			dynamicQuery.setLimit(start, end);
+
+			return dynamicQuery.list();
+		}
+		catch (Exception e) {
+			throw processException(e);
 		}
 		finally {
 			closeSession(session);
@@ -498,8 +487,8 @@ public class FeedPersistenceImpl extends BasePersistence
 		Object result = null;
 
 		if (finderClassNameCacheEnabled) {
-			result = FinderCache.getResult(finderClassName, finderMethodName,
-					finderParams, finderArgs, getSessionFactory());
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
 		}
 
 		if (result == null) {
@@ -526,14 +515,14 @@ public class FeedPersistenceImpl extends BasePersistence
 					Collections.sort(list);
 				}
 
-				FinderCache.putResult(finderClassNameCacheEnabled,
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
 					finderArgs, list);
 
 				return list;
 			}
 			catch (Exception e) {
-				throw HibernateUtil.processException(e);
+				throw processException(e);
 			}
 			finally {
 				closeSession(session);
@@ -575,8 +564,8 @@ public class FeedPersistenceImpl extends BasePersistence
 		Object result = null;
 
 		if (finderClassNameCacheEnabled) {
-			result = FinderCache.getResult(finderClassName, finderMethodName,
-					finderParams, finderArgs, getSessionFactory());
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
 		}
 
 		if (result == null) {
@@ -612,14 +601,14 @@ public class FeedPersistenceImpl extends BasePersistence
 					count = new Long(0);
 				}
 
-				FinderCache.putResult(finderClassNameCacheEnabled,
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
 					finderArgs, count);
 
 				return count.intValue();
 			}
 			catch (Exception e) {
-				throw HibernateUtil.processException(e);
+				throw processException(e);
 			}
 			finally {
 				closeSession(session);
@@ -641,8 +630,8 @@ public class FeedPersistenceImpl extends BasePersistence
 		Object result = null;
 
 		if (finderClassNameCacheEnabled) {
-			result = FinderCache.getResult(finderClassName, finderMethodName,
-					finderParams, finderArgs, getSessionFactory());
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
 		}
 
 		if (result == null) {
@@ -685,14 +674,14 @@ public class FeedPersistenceImpl extends BasePersistence
 					count = new Long(0);
 				}
 
-				FinderCache.putResult(finderClassNameCacheEnabled,
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
 					finderArgs, count);
 
 				return count.intValue();
 			}
 			catch (Exception e) {
-				throw HibernateUtil.processException(e);
+				throw processException(e);
 			}
 			finally {
 				closeSession(session);
@@ -713,8 +702,8 @@ public class FeedPersistenceImpl extends BasePersistence
 		Object result = null;
 
 		if (finderClassNameCacheEnabled) {
-			result = FinderCache.getResult(finderClassName, finderMethodName,
-					finderParams, finderArgs, getSessionFactory());
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
 		}
 
 		if (result == null) {
@@ -738,14 +727,14 @@ public class FeedPersistenceImpl extends BasePersistence
 					count = new Long(0);
 				}
 
-				FinderCache.putResult(finderClassNameCacheEnabled,
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
 					finderArgs, count);
 
 				return count.intValue();
 			}
 			catch (Exception e) {
-				throw HibernateUtil.processException(e);
+				throw processException(e);
 			}
 			finally {
 				closeSession(session);
@@ -772,9 +761,9 @@ public class FeedPersistenceImpl extends BasePersistence
 		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
 	}
 
-	protected void initDao() {
+	protected void init() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
-					PropsUtil.get(
+					com.liferay.util.service.ServiceProps.get(
 						"value.object.listener.com.liferay.twitter.model.Feed")));
 
 		if (listenerClassNames.length > 0) {

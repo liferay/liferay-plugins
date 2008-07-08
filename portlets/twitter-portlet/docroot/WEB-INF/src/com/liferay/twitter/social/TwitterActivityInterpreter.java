@@ -22,6 +22,8 @@
 
 package com.liferay.twitter.social;
 
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -30,8 +32,6 @@ import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.twitter.model.Feed;
-
-import org.json.JSONObject;
 
 /**
  * <a href="TwitterActivityInterpreter.java.html"><b><i>View Source</i></b></a>
@@ -55,7 +55,8 @@ public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 		User creatorUser = UserLocalServiceUtil.getUserById(
 			activity.getUserId());
 
-		JSONObject extraData = new JSONObject(activity.getExtraData());
+		JSONObject extraData = JSONFactoryUtil.createJSONObject(
+			activity.getExtraData());
 
 		// Title
 
@@ -86,7 +87,7 @@ public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 		sb.append("/statuses/");
 		sb.append(activity.getClassPK());
 		sb.append("\" target=\"_blank\">");
-		sb.append(extraData.optString("text"));
+		sb.append(extraData.getString("text"));
 		sb.append("</a>");
 
 		String body = sb.toString();
