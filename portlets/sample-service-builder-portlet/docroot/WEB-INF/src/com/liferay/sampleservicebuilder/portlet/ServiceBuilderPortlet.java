@@ -49,27 +49,29 @@ import javax.portlet.PortletException;
  */
 public class ServiceBuilderPortlet extends JSPPortlet {
 
-	public void processAction(ActionRequest req, ActionResponse res)
+	public void processAction(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
 		try {
-			String cmd = ParamUtil.getString(req, Constants.CMD);
+			String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 			if (cmd.equals(Constants.ADD)) {
-				addFoo(req);
+				addFoo(actionRequest);
 			}
 			else if (cmd.equals(Constants.DELETE)) {
-				deleteFoo(req);
+				deleteFoo(actionRequest);
 			}
 
 			if (Validator.isNotNull(cmd)) {
-				if (SessionErrors.isEmpty(req)) {
-					SessionMessages.add(req, "request_processed");
+				if (SessionErrors.isEmpty(actionRequest)) {
+					SessionMessages.add(actionRequest, "request_processed");
 				}
 
-				String redirect = ParamUtil.getString(req, "redirect");
+				String redirect = ParamUtil.getString(
+					actionRequest, "redirect");
 
-				res.sendRedirect(redirect);
+				actionResponse.sendRedirect(redirect);
 			}
 		}
 		catch (Exception e) {
@@ -77,18 +79,18 @@ public class ServiceBuilderPortlet extends JSPPortlet {
 		}
 	}
 
-	protected void addFoo(ActionRequest req) throws Exception {
-		String field1 = ParamUtil.getString(req, "field1");
-		boolean field2 = ParamUtil.getBoolean(req, "field2");
-		int field3 = ParamUtil.getInteger(req, "field3");
-		String field5 = ParamUtil.getString(req, "field5");
+	protected void addFoo(ActionRequest actionRequest) throws Exception {
+		String field1 = ParamUtil.getString(actionRequest, "field1");
+		boolean field2 = ParamUtil.getBoolean(actionRequest, "field2");
+		int field3 = ParamUtil.getInteger(actionRequest, "field3");
+		String field5 = ParamUtil.getString(actionRequest, "field5");
 
-		int dateMonth = ParamUtil.getInteger(req, "field4Month");
-		int dateDay = ParamUtil.getInteger(req, "field4Day");
-		int dateYear = ParamUtil.getInteger(req, "field4Year");
-		int dateHour = ParamUtil.getInteger(req, "field4Hour");
-		int dateMinute = ParamUtil.getInteger(req, "field4Minute");
-		int dateAmPm = ParamUtil.getInteger(req, "field4AmPm");
+		int dateMonth = ParamUtil.getInteger(actionRequest, "field4Month");
+		int dateDay = ParamUtil.getInteger(actionRequest, "field4Day");
+		int dateYear = ParamUtil.getInteger(actionRequest, "field4Year");
+		int dateHour = ParamUtil.getInteger(actionRequest, "field4Hour");
+		int dateMinute = ParamUtil.getInteger(actionRequest, "field4Minute");
+		int dateAmPm = ParamUtil.getInteger(actionRequest, "field4AmPm");
 
 		if (dateAmPm == Calendar.PM) {
 			dateHour += 12;
@@ -101,8 +103,8 @@ public class ServiceBuilderPortlet extends JSPPortlet {
 		FooLocalServiceUtil.addFoo(field1, field2, field3, field4, field5);
 	}
 
-	protected void deleteFoo(ActionRequest req) throws Exception {
-		long fooId = ParamUtil.getLong(req, "fooId");
+	protected void deleteFoo(ActionRequest actionRequest) throws Exception {
+		long fooId = ParamUtil.getLong(actionRequest, "fooId");
 
 		FooLocalServiceUtil.deleteFoo(fooId);
 	}

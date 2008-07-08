@@ -22,15 +22,13 @@
 
 package com.liferay.sampleservicebuilder.service.base;
 
-import com.liferay.portlet.service.PrincipalBean;
+import com.liferay.portal.service.base.PrincipalBean;
 
 import com.liferay.sampleservicebuilder.service.FooLocalService;
 import com.liferay.sampleservicebuilder.service.FooLocalServiceFactory;
 import com.liferay.sampleservicebuilder.service.FooService;
 import com.liferay.sampleservicebuilder.service.persistence.FooPersistence;
 import com.liferay.sampleservicebuilder.service.persistence.FooUtil;
-
-import org.springframework.beans.factory.InitializingBean;
 
 /**
  * <a href="FooServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
@@ -39,7 +37,7 @@ import org.springframework.beans.factory.InitializingBean;
  *
  */
 public abstract class FooServiceBaseImpl extends PrincipalBean
-	implements FooService, InitializingBean {
+	implements FooService {
 	public FooLocalService getFooLocalService() {
 		return fooLocalService;
 	}
@@ -56,7 +54,7 @@ public abstract class FooServiceBaseImpl extends PrincipalBean
 		this.fooPersistence = fooPersistence;
 	}
 
-	public void afterPropertiesSet() {
+	protected void init() {
 		if (fooLocalService == null) {
 			fooLocalService = FooLocalServiceFactory.getImpl();
 		}

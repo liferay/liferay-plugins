@@ -22,8 +22,6 @@
 
 package com.liferay.sampleservicebuilder.service;
 
-import com.liferay.portlet.service.BeanLocatorUtil;
-
 /**
  * <a href="FooServiceFactory.java.html"><b><i>View Source</i></b></a>
  *
@@ -37,7 +35,7 @@ public class FooServiceFactory {
 
 	public static FooService getImpl() {
 		if (_impl == null) {
-			_impl = (FooService)BeanLocatorUtil.locate(_IMPL);
+			_impl = (FooService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_IMPL);
 		}
 
 		return _impl;
@@ -45,7 +43,7 @@ public class FooServiceFactory {
 
 	public static FooService getTxImpl() {
 		if (_txImpl == null) {
-			_txImpl = (FooService)BeanLocatorUtil.locate(_TX_IMPL);
+			_txImpl = (FooService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_TX_IMPL);
 		}
 
 		return _txImpl;
@@ -57,7 +55,7 @@ public class FooServiceFactory {
 
 	private static FooServiceFactory _getFactory() {
 		if (_factory == null) {
-			_factory = (FooServiceFactory)BeanLocatorUtil.locate(_FACTORY);
+			_factory = (FooServiceFactory)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_FACTORY);
 		}
 
 		return _factory;

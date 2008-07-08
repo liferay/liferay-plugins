@@ -22,8 +22,7 @@
 
 package com.liferay.sampleservicebuilder.service.impl;
 
-import com.liferay.portlet.service.PrincipalBean;
-import com.liferay.sampleservicebuilder.service.FooService;
+import com.liferay.sampleservicebuilder.service.base.FooServiceBaseImpl;
 
 /**
  * <a href="FooServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -31,5 +30,5 @@ import com.liferay.sampleservicebuilder.service.FooService;
  * @author Brian Wing Shun Chan
  *
  */
-public class FooServiceImpl extends PrincipalBean implements FooService {
+public class FooServiceImpl extends FooServiceBaseImpl {
 }

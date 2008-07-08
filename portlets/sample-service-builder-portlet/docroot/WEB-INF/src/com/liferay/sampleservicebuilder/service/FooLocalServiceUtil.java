@@ -53,19 +53,19 @@ public class FooLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer)
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
 
-		return fooLocalService.dynamicQuery(queryInitializer);
+		return fooLocalService.dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> dynamicQuery(
-		com.liferay.portal.kernel.dao.DynamicQueryInitializer queryInitializer,
-		int start, int end) throws com.liferay.portal.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end) throws com.liferay.portal.SystemException {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
 
-		return fooLocalService.dynamicQuery(queryInitializer, start, end);
+		return fooLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.sampleservicebuilder.model.Foo getFoo(long fooId)

@@ -7,10 +7,10 @@
 		<id name="fooId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="field1" type="com.liferay.util.dao.hibernate.StringType" />
-		<property name="field2" type="com.liferay.util.dao.hibernate.BooleanType" />
-		<property name="field3" type="com.liferay.util.dao.hibernate.IntegerType" />
+		<property name="field1" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="field2" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="field3" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="field4" />
-		<property name="field5" type="com.liferay.util.dao.hibernate.StringType" />
+		<property name="field5" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

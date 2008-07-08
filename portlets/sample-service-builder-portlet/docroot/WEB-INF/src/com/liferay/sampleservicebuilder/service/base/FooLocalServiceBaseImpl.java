@@ -24,14 +24,12 @@ package com.liferay.sampleservicebuilder.service.base;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.dao.DynamicQueryInitializer;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import com.liferay.sampleservicebuilder.model.Foo;
 import com.liferay.sampleservicebuilder.service.FooLocalService;
 import com.liferay.sampleservicebuilder.service.persistence.FooPersistence;
 import com.liferay.sampleservicebuilder.service.persistence.FooUtil;
-
-import org.springframework.beans.factory.InitializingBean;
 
 import java.util.List;
 
@@ -41,8 +39,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class FooLocalServiceBaseImpl implements FooLocalService,
-	InitializingBean {
+public abstract class FooLocalServiceBaseImpl implements FooLocalService {
 	public Foo addFoo(Foo foo) throws SystemException {
 		foo.setNew(true);
 
@@ -57,14 +54,14 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 		fooPersistence.remove(foo);
 	}
 
-	public List<Foo> dynamicQuery(DynamicQueryInitializer queryInitializer)
+	public List<Foo> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
-		return fooPersistence.findWithDynamicQuery(queryInitializer);
+		return fooPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<Foo> dynamicQuery(DynamicQueryInitializer queryInitializer,
-		int start, int end) throws SystemException {
-		return fooPersistence.findWithDynamicQuery(queryInitializer, start, end);
+	public List<Foo> dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
+		throws SystemException {
+		return fooPersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
 	public Foo getFoo(long fooId) throws PortalException, SystemException {
@@ -85,7 +82,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 		this.fooPersistence = fooPersistence;
 	}
 
-	public void afterPropertiesSet() {
+	protected void init() {
 		if (fooPersistence == null) {
 			fooPersistence = FooUtil.getPersistence();
 		}

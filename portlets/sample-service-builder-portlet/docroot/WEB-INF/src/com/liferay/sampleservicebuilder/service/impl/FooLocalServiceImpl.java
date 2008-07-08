@@ -25,11 +25,11 @@ package com.liferay.sampleservicebuilder.service.impl;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.sampleservicebuilder.model.Foo;
 import com.liferay.sampleservicebuilder.service.base.FooLocalServiceBaseImpl;
 import com.liferay.sampleservicebuilder.service.persistence.FooUtil;
-import com.liferay.util.dao.hibernate.QueryUtil;
 
 import java.util.Date;
 import java.util.List;
