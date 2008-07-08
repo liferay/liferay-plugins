@@ -36,7 +36,7 @@ String themeId = ParamUtil.getString(request, "themeId");
 
 Theme theme = ThemeLocalServiceUtil.getTheme(companyId, themeId, false);
 
-String themeContextPath = request.getContextPath();
+String themeContextPath = PortalUtil.getPathContext();
 
 if (theme.isWARFile()) {
 	themeContextPath = theme.getContextPath();
