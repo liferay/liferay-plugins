@@ -1,0 +1,126 @@
+#wrapper {
+	background: transparent;
+	width: 100%;
+}
+#content-wrapper {
+	margin-top: 61px;
+	width: 780px;
+}
+body {
+	background: url(../images/theme/body_all_bckg.jpg) repeat scroll center top;
+	font-family: Tahoma, Arial;
+	font-size: 11px;
+	overflow: scroll;
+}
+#banner {
+	background: url(../images/theme/body_top_bckg.jpg) no-repeat center top #171c20;
+	height: 377px;
+}
+#banner .logo a {
+	margin-left: 458px;
+	margin-top: 101px;
+}
+#navigation {
+	background: transparent;
+	border-top: none;
+	margin-left: -9px;
+	margin-top: -85px;
+}
+#navigation ul {
+	margin: 0pt auto 0px 340pt;
+	width:55%;
+}
+#navigation li a {
+	background-color: #445D6C;
+	color: #FFFFFF;
+	font-size: 14px;
+	font-weight: bold;
+	margin-left: 4px;
+	padding: 0pt 10px 1px;
+	text-decoration: none;
+	text-transform: lowercase;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+#navigation li.selected a {
+	background-color: #445D6C;
+}
+#navigation li {
+	border: none;
+}
+#navigation li a:hover {
+	background-color:#F26513;
+}
+.js #add-page a span {
+	background: transparent;
+	background-color: #445D6C;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	margin-left: -432px;
+	margin-top: -1px;
+	padding: 0px 10px 1px;
+	position: absolute;
+	text-transform: lowercase;
+}
+.js #add-page a:hover span {
+	background-color:#F26513;
+}
+#footer {
+	background: url(../images/theme/footer_bckg.jpg) no-repeat top center;
+	clear: both;
+	height: 102px;
+	margin: 0 auto;
+	width: 780px;
+}
+#left_footer {
+	color: #fff;
+	float: left;
+	font-size: 12px;
+	padding: 60px 0 0 30px;
+}
+#left_footer a {
+	color: #fff;
+}
+#left_footer a:hover {
+	text-decoration: none;
+}
+#right_footer {
+	color: #fff;
+	float: right;
+	font-size: 12px;
+	padding: 60px 30px 0 0;
+	text-align: right;
+}
+#right_footer a {
+	color: #fff;
+}
+#right_footer a:hover {
+	text-decoration: none;
+}
+input.focus, textare.focus, ie6 input.focus, ie6 textarea.focus {
+	background: white;
+	border: white;
+}
+.js #navigation .enter-page {
+	background-color:transparent;
+	margin-top: -2px;
+}
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	padding:2px 1px;
+}
+.js #navigation .enter-page .save-page {
+	background:#445D6C;
+	margin:0pt 0px;
+	padding-bottom:2px;
+	padding-left:11px;
+	padding-right:8px;
+}
+.js #navigation .enter-page .save-page:hover {
+	background: #F26513;
+}
+.js .interactive-mode {
+	right:1%;
+}
