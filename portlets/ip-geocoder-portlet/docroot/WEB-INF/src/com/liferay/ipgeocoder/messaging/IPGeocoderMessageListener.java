@@ -41,6 +41,10 @@ import org.apache.commons.logging.LogFactory;
  */
 public class IPGeocoderMessageListener implements MessageListener {
 
+	public void receive(Object message) {
+		throw new UnsupportedOperationException();
+	}
+
 	public void receive(String message) {
 		try {
 			doReceive(message);
@@ -48,10 +52,6 @@ public class IPGeocoderMessageListener implements MessageListener {
 		catch (Exception e) {
 			_log.error("Unable to process message " + message, e);
 		}
-	}
-
-	public void receive(Object message) {
-		throw new UnsupportedOperationException();
 	}
 
 	protected void doReceive(String message) throws Exception {
