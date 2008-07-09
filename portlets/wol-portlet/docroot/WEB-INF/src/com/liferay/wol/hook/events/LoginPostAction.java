@@ -23,6 +23,7 @@
 package com.liferay.wol.hook.events;
 
 import com.liferay.portal.LayoutFriendlyURLException;
+import com.liferay.portal.NoSuchLayoutException;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.events.ActionException;
@@ -97,14 +98,18 @@ public class LoginPostAction extends Action {
 			long userId, long groupId, String name, String friendlyURL)
 		throws Exception {
 
+		boolean privateLayout = false;
+
 		try {
+			LayoutLocalServiceUtil.getFriendlyURLLayout(
+				groupId, privateLayout, friendlyURL);
+		}
+		catch (NoSuchLayoutException nsle) {
 			LayoutLocalServiceUtil.addLayout(
-				userId, groupId, false,
+				userId, groupId, privateLayout,
 				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, name,
 				StringPool.BLANK, StringPool.BLANK,
 				LayoutConstants.TYPE_PORTLET, false, friendlyURL);
-		}
-		catch (LayoutFriendlyURLException lfurle) {
 		}
 	}
 
@@ -194,7 +199,7 @@ public class LoginPostAction extends Action {
 
 		int publicLayoutsPageCount = user.getPublicLayoutsPageCount();
 
-		if (publicLayoutsPageCount > 0) {
+		if (publicLayoutsPageCount >= 4) {
 			return;
 		}
 
