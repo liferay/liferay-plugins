@@ -12,7 +12,10 @@ out.write(custom.sayHello() + "\n");
 out.write("<br />");
 
 if (params['type'] and params['type'][0] == 'user'):
-	out.write(lp.showUserDetails(userInfo) + "\n");
+    if (userInfo != None):
+	   out.write(lp.showUserDetails(userInfo) + "\n");
+    else:
+       out.write("User is not logged in<br/>");
 else:
 	out.write(lp.showPortletDetails(portletConfig) + "\n");
 

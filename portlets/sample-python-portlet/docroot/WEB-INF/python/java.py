@@ -35,12 +35,17 @@ out.write("""
 	<br /><br /> \n
 """);
 
-userId = int(userInfo['liferay.user.id']);
-
-organizations = OrganizationServiceUtil.getUserOrganizations(userId);
-
-out.write("""
-	You belong to """ + str(organizations.size())+ """ organizations.\n
-""");
+if (userInfo != None):
+    userId = int(userInfo['liferay.user.id']);
+    
+    organizations = OrganizationServiceUtil.getUserOrganizations(userId);
+    
+    out.write("""
+        You belong to """ + str(organizations.size())+ """ organizations.\n
+    """);
+else:
+    out.write("""
+        You do not belong to any organizations.\n
+    """);
 
 out.write(custom.navigation() + "\n");
