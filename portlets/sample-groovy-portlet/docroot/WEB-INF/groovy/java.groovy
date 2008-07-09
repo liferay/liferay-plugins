@@ -32,12 +32,18 @@ out << """
 	<br /><br />
 """;
 
-userId = userInfo['liferay.user.id'].toInteger();
-
-organizations = OrganizationServiceUtil.getUserOrganizations(userId);
-
-out << """
-	You belong to ${organizations.size()} organizations.
-""";
+if (userInfo != null) {
+    userId = userInfo['liferay.user.id'].toInteger();
+    
+    organizations = OrganizationServiceUtil.getUserOrganizations(userId);
+    
+    out << """
+        You belong to ${organizations.size()} organizations.
+    """;
+} else {
+    out << """
+        You do not belong to any organizations.
+    """;
+}
 
 out << Custom.navigation(renderResponse);
