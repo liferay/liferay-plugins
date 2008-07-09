@@ -91,7 +91,7 @@
 			<finder-column name="jiraChangeGroupId" />
 		</finder>
 	</entity>
-	<entity name="JIRAIssue" table="jiraissue" local-service="true" remote-service="false" data-source="jiraDataSource" session-factory="jiraSessionFactory" tx-manager="jiraTransactionManager">
+	<entity name="JIRAIssue" table="jiraissue" local-service="true" remote-service="false" data-source="jiraDataSource" session-factory="jiraSessionFactory" tx-manager="jiraTransactionManager" cache-enabled="false">
 
 		<!-- PK fields -->
 

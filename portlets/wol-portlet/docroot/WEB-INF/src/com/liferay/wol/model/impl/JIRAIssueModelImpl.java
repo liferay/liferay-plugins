@@ -89,7 +89,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl {
 	public static final String TX_MANAGER = "jiraTransactionManager";
 	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.wol.model.JIRAIssue"),
-			true);
+			false);
 
 	public static JIRAIssue toModel(JIRAIssueSoap soapModel) {
 		JIRAIssue model = new JIRAIssueImpl();

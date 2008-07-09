@@ -37,7 +37,6 @@
 		<property name="newString" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.wol.model.impl.JIRAIssueImpl" table="jiraissue">
-		<cache usage="read-write" />
 		<id name="jiraIssueId" column="id" type="long">
 			<generator class="assigned" />
 		</id>
