@@ -414,9 +414,9 @@ Liferay.Mail = {
 		// Update message navigation
 
 		instance.refreshMessageControlsNavigation();
-		
+
 		// Update read status
-		
+
 		instance.setMessageFlags(msgUid, 'seen', 'true', false);
 	},
 
@@ -731,11 +731,11 @@ Liferay.Mail = {
 		instance.sendMessageTypeHidden.val(instance.getMessageResponseType());
 		instance.sendMessageUidHidden.val(messageUidVal);
 
-		instance.sendForm.submit();		
+		instance.sendForm.submit();
 
 		instance.clearStatus();
 	},
-	
+
 	sendUpdateMessage: function(emailAccount, loadMessages) {
 		var instance = this;
 
@@ -802,7 +802,7 @@ Liferay.Mail = {
 					value: value
 				},
 				dataType: 'json',
-				success: function(jsonSuccess) {				
+				success: function(jsonSuccess) {
 					if (reloadMessages) {
 						instance.loadMessagesByPage(instance.getCurrentFolderName(), instance.getCurrentPageNumber());
 					}
@@ -1180,7 +1180,7 @@ Liferay.Mail = {
 
 		instance.messageSendDiscardButton.click(function() {
 			if (instance.getCurrentMessageUid() == '') {
-				jQuery('.folder:first').click();		
+				jQuery('.folder:first').click();
 			}
 			else {
 				instance.setView('viewMessage');
@@ -1190,12 +1190,12 @@ Liferay.Mail = {
 		});
 
 		instance.sendForm.submit(function() {
-		    var options = { 
+		    var options = {
 		        beforeSubmit: function(formData, jqForm, options) {
 		        	// validate message and return false if not valid
-		        	
+
 		        	alert("validating message.. before sending mail message");
-		        	
+
 		        	return true;
 		        },
 		        dataType: 'json',
@@ -1203,13 +1203,13 @@ Liferay.Mail = {
 		        success: function() {
 	            	alert("ajax form submitted");
 	        	}
-		    }; 		
+		    };
 
-	        instance.sendForm.ajaxSubmit(options); 
-	 
-	        return false; 
+	        instance.sendForm.ajaxSubmit(options);
+
+	        return false;
 		});
-		
+
 		instance.messageSendSaveButton.click(function() {
 			instance.setStatus(Liferay.Language.get('saving-message'), '');
 
