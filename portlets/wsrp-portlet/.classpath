@@ -41,5 +41,6 @@
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/wstx-asl.jar"/>
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/xml-resolver.jar"/>
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/XmlSchema.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/wsrp-client.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
