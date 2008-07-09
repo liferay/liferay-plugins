@@ -37,5 +37,15 @@
 </script>
 
 <div class="mail-portlet">
-	<div class="accounts-configuration"></div>
+	<div class="accounts-configuration">
+		<liferay-ui:tabs names="add-an-email-account" />
+
+		<div class="preconfigured-mail-accounts"></div>
+
+		<br />
+
+		<liferay-ui:tabs names="your-current-email-accounts" />
+
+		<div class="current-mail-accounts"></div>
+	</div>
 </div>

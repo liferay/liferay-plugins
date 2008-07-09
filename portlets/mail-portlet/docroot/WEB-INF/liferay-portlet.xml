@@ -5,7 +5,6 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
-		<configuration-action-class>com.liferay.mail.portlet.action.ConfigurationActionImpl</configuration-action-class>
 		<friendly-url-mapper-class>com.liferay.mail.portlet.MailFriendlyURLMapper</friendly-url-mapper-class>
 		<render-weight>1</render-weight>
 		<ajaxable>false</ajaxable>

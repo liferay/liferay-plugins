@@ -6,12 +6,17 @@
 		<display-name>Mail</display-name>
 		<portlet-class>com.liferay.mail.portlet.MailPortlet</portlet-class>
 		<init-param>
+			<name>edit-jsp</name>
+			<value>/edit.jsp</value>
+		</init-param>
+		<init-param>
 			<name>view-jsp</name>
 			<value>/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
+			<portlet-mode>edit</portlet-mode>
 		</supports>
 		<portlet-info>
 			<title>Mail</title>

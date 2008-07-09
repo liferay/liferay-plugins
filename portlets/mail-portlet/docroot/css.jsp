@@ -25,11 +25,13 @@
 <%@ include file="/css_init.jsp" %>
 
 .mail-portlet .account-container {
+	display: none;
 	margin-bottom: 7px;
 	width: 100%;
 }
 
 .mail-portlet .account-container div {
+	display: none;
 	float: left;
 }
 
@@ -57,6 +59,10 @@
 	padding: 4px;
 }
 
+.mail-portlet .configuration-prompt {
+	display: none;
+}
+
 .mail-portlet .selection {
 	text-align: left;
 	width: 30%;
@@ -73,6 +79,7 @@
 }
 
 .mail-portlet .email-container {
+	display: none;
 	height: 400px;
 	width: 100%;
 }
@@ -118,6 +125,10 @@
 	padding-bottom: 20px;
 }
 
+.mail-portlet .folder-selected {
+	/* background-color: #C3D9FF; */
+}
+
 .mail-portlet .message-list {
 	width: 100%;
 }
@@ -137,20 +148,20 @@
 	padding: 2px;
 }
 
-.mail-portlet .read {
-	background: #E8EEF7 none repeat scroll 0% 50%;
+.mail-portlet .read td {
+	/* background: #E8EEF7; */
 }
 
-.mail-portlet .unread {
-	background: #FFF none repeat scroll 0%;
+.mail-portlet .unread td {
+	/* background: #FFF; */
+	font-weight: bold;
 }
 
 .mail-portlet .message-from {
-	font-weight: bold;
 	padding-right: 5px;
 }
 
-.mail-portlet .message-subject, .mail-portlet .message-controls .status-number, .mail-portlet .message-date {
+.mail-portlet .message-controls .status-number {
 	font-weight: bold;
 }
 
@@ -180,7 +191,7 @@
 }
 
 .mail-portlet .folder-controls {
-	background-color: #C3D9FF;
+	/* background-color: #C3D9FF; */
 	padding: 3px;
 	width: 100%;
 }
@@ -224,7 +235,7 @@
 }
 
 .mail-portlet .message-send {
-	background-color: #C3D9FF;
+	/* background-color: #C3D9FF; */
 	display: none;
 	padding-bottom: 20px;
 }
@@ -264,13 +275,17 @@
 	background-color: #F7F7F7;
 }
 
+.mail-portlet .message-options .selected-response-type {
+	/* background-color: #C3D9FF; */
+}
+
 .mail-portlet .message-options td {
 	cursor: pointer;
 	padding: 5px;
 }
 
 .mail-portlet .message-controls {
-	background-color: #C3D9FF;
+	/* background-color: #C3D9FF; */
 }
 
 .mail-portlet .message-controls .actions {

@@ -219,6 +219,8 @@ String username = ParamUtil.getString(request, "username");
 					<input class="save-account" type="button" value="<liferay-ui:message key="save" /> " />
 
 					<input class="delete-account" type="button" value="<liferay-ui:message key="delete" /> " />
+
+					<input class="cancel-account" type="button" value="<liferay-ui:message key="cancel" />" />
 				</td>
 			</tr>
 			</table>

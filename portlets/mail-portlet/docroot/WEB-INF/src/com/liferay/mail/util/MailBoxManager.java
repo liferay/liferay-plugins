@@ -562,11 +562,17 @@ public class MailBoxManager {
 				// Plain text, HTML or forwarded message
 
 				if (contentType.startsWith(ContentTypes.TEXT_PLAIN)) {
-					sb.append(StringPool.NEW_LINE + StringPool.NEW_LINE);
+					if (sb.length() > 0) {
+						sb.append(StringPool.NEW_LINE + StringPool.NEW_LINE);
+					}
+
 					sb.append(messagePart.getContent());
 				}
 				else if (contentType.startsWith(ContentTypes.TEXT_HTML)) {
-					sb.append("<hr />");
+					if (sb.length() > 0) {
+						sb.append("<hr />");
+					}
+
 					sb.append(
 						stripUnsafeCss(messagePart.getContent().toString()));
 				}
