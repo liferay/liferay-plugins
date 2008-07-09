@@ -9,11 +9,11 @@ out << Custom.sayHello();
 out << "<br />";
 
 if (params['type'] && (params['type'][0] == 'user')) {
-    if (userInfo != null) {
+	if (userInfo != null) {
 	   out << LiferayPortlet.showUserDetails(userInfo);
-    } else {
-       out << "User is not logged in<br/>";
-    }
+	} else {
+	   out << "You are not signed in<br />";
+	}
 }
 else {
 	out << LiferayPortlet.showPortletDetails(portletConfig, renderRequest);

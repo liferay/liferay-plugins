@@ -9,11 +9,11 @@ out.println Custom.sayHello
 out.println "<br />"
 
 if (params['type'] && (params['type'][0] == 'user'))
-    if ($userInfo != nil)
+	if ($userInfo != nil)
 	   out.println LiferayPortlet.showUserDetails($userInfo)
-    elsif
-       out.println "User is not logged in<br/>"
-    end
+	elsif
+	   out.println "You are not signed in.<br />"
+	end
 elsif
 	out.println LiferayPortlet.showPortletDetails($renderRequest)
 end

@@ -35,16 +35,16 @@ out.println """
 	<br /><br />
 """
 if ($userInfo != nil)
-    userId = $userInfo['liferay.user.id'].to_i
-    
-    organizations = OrganizationServiceUtil.getUserOrganizations(userId)
-    
-    out.println """
-        You belong to #{organizations.size} organizations.
-    """
+	userId = $userInfo['liferay.user.id'].to_i
+	
+	organizations = OrganizationServiceUtil.getUserOrganizations(userId)
+	
+	out.println """
+		You belong to #{organizations.size} organizations.
+	"""
 elsif
-    out.println """
-        You do not belong to any organizations.
-    """
+	out.println """
+		You do not belong to any organizations.
+	"""
 end
 out.println Custom.navigation
