@@ -98,12 +98,12 @@ public abstract class JIRAActionLocalServiceBaseImpl
 		jiraActionPersistence.remove(jiraAction);
 	}
 
-	public List<JIRAAction> dynamicQuery(DynamicQuery dynamicQuery)
+	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return jiraActionPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<JIRAAction> dynamicQuery(DynamicQuery dynamicQuery, int start,
+	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end) throws SystemException {
 		return jiraActionPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);

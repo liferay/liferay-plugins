@@ -3378,12 +3378,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<JIRAIssue> findWithDynamicQuery(DynamicQuery dynamicQuery)
+	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
+
+			dynamicQuery.compile(session);
 
 			return dynamicQuery.list();
 		}
@@ -3395,7 +3397,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<JIRAIssue> findWithDynamicQuery(DynamicQuery dynamicQuery,
+	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
 		int start, int end) throws SystemException {
 		Session session = null;
 
@@ -3403,6 +3405,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 			session = openSession();
 
 			dynamicQuery.setLimit(start, end);
+
+			dynamicQuery.compile(session);
 
 			return dynamicQuery.list();
 		}

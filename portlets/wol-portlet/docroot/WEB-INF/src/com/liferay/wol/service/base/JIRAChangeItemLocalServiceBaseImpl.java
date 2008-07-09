@@ -98,13 +98,13 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 		jiraChangeItemPersistence.remove(jiraChangeItem);
 	}
 
-	public List<JIRAChangeItem> dynamicQuery(DynamicQuery dynamicQuery)
+	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return jiraChangeItemPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<JIRAChangeItem> dynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end) throws SystemException {
+	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) throws SystemException {
 		return jiraChangeItemPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}

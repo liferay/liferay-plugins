@@ -52,7 +52,7 @@ public class FeedLocalServiceUtil {
 		feedLocalService.deleteFeed(feed);
 	}
 
-	public static java.util.List<com.liferay.twitter.model.Feed> dynamicQuery(
+	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
 		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
@@ -60,7 +60,7 @@ public class FeedLocalServiceUtil {
 		return feedLocalService.dynamicQuery(dynamicQuery);
 	}
 
-	public static java.util.List<com.liferay.twitter.model.Feed> dynamicQuery(
+	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
 		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();

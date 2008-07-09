@@ -2,7 +2,7 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-	<bean id="jiraDataSourceTarget" class="com.liferay.util.spring.jndi.JndiObjectFactoryBean" lazy-init="true">
+	<bean id="jiraDataSourceTarget" class="com.liferay.portal.spring.jndi.JndiObjectFactoryBean" lazy-init="true">
 		<property name="jndiName">
 			<value>jdbc/JIRAPool</value>
 		</property>
@@ -12,9 +12,14 @@
 			<ref bean="jiraDataSourceTarget" />
 		</property>
 	</bean>
-	<bean id="jiraSessionFactory" class="com.liferay.portlet.service.HibernateConfiguration" lazy-init="true">
+	<bean id="jiraHibernateSessionFactory" class="com.liferay.portal.spring.hibernate.PortletHibernateConfiguration" lazy-init="true">
 		<property name="dataSource">
 			<ref bean="jiraDataSource" />
+		</property>
+	</bean>
+	<bean id="jiraSessionFactory" class="com.liferay.portal.dao.orm.hibernate.SessionFactoryImpl" lazy-init="true">
+		<property name="sessionFactoryImplementor">
+			<ref bean="jiraHibernateSessionFactory" />
 		</property>
 	</bean>
 	<bean id="jiraTransactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager" lazy-init="true">
@@ -22,7 +27,7 @@
 			<ref bean="jiraDataSource" />
 		</property>
 		<property name="sessionFactory">
-			<ref bean="jiraSessionFactory" />
+			<ref bean="jiraHibernateSessionFactory" />
 		</property>
 	</bean>
 </beans>

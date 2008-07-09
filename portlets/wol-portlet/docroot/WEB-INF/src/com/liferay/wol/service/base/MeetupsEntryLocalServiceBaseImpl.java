@@ -98,13 +98,13 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 		meetupsEntryPersistence.remove(meetupsEntry);
 	}
 
-	public List<MeetupsEntry> dynamicQuery(DynamicQuery dynamicQuery)
+	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return meetupsEntryPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<MeetupsEntry> dynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end) throws SystemException {
+	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) throws SystemException {
 		return meetupsEntryPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}

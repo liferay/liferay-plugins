@@ -97,12 +97,12 @@ public abstract class WallEntryLocalServiceBaseImpl
 		wallEntryPersistence.remove(wallEntry);
 	}
 
-	public List<WallEntry> dynamicQuery(DynamicQuery dynamicQuery)
+	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return wallEntryPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<WallEntry> dynamicQuery(DynamicQuery dynamicQuery, int start,
+	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end) throws SystemException {
 		return wallEntryPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);

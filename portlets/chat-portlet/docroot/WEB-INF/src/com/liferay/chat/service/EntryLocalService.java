@@ -40,11 +40,11 @@ public interface EntryLocalService {
 	public void deleteEntry(com.liferay.chat.model.Entry entry)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.chat.model.Entry> dynamicQuery(
+	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.chat.model.Entry> dynamicQuery(
+	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 

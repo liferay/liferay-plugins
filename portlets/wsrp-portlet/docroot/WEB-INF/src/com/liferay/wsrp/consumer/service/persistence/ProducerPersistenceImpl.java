@@ -631,12 +631,14 @@ public class ProducerPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<Producer> findWithDynamicQuery(DynamicQuery dynamicQuery)
+	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
+
+			dynamicQuery.compile(session);
 
 			return dynamicQuery.list();
 		}
@@ -648,7 +650,7 @@ public class ProducerPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<Producer> findWithDynamicQuery(DynamicQuery dynamicQuery,
+	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
 		int start, int end) throws SystemException {
 		Session session = null;
 
@@ -656,6 +658,8 @@ public class ProducerPersistenceImpl extends BasePersistenceImpl
 			session = openSession();
 
 			dynamicQuery.setLimit(start, end);
+
+			dynamicQuery.compile(session);
 
 			return dynamicQuery.list();
 		}

@@ -53,7 +53,7 @@ public class JIRAActionLocalServiceUtil {
 		jiraActionLocalService.deleteJIRAAction(jiraAction);
 	}
 
-	public static java.util.List<com.liferay.wol.model.JIRAAction> dynamicQuery(
+	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
 		JIRAActionLocalService jiraActionLocalService = JIRAActionLocalServiceFactory.getService();
@@ -61,7 +61,7 @@ public class JIRAActionLocalServiceUtil {
 		return jiraActionLocalService.dynamicQuery(dynamicQuery);
 	}
 
-	public static java.util.List<com.liferay.wol.model.JIRAAction> dynamicQuery(
+	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
 		JIRAActionLocalService jiraActionLocalService = JIRAActionLocalServiceFactory.getService();

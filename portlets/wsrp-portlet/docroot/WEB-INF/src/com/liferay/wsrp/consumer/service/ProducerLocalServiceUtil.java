@@ -53,7 +53,7 @@ public class ProducerLocalServiceUtil {
 		producerLocalService.deleteProducer(producer);
 	}
 
-	public static java.util.List<com.liferay.wsrp.consumer.model.Producer> dynamicQuery(
+	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
 		ProducerLocalService producerLocalService = ProducerLocalServiceFactory.getService();
@@ -61,7 +61,7 @@ public class ProducerLocalServiceUtil {
 		return producerLocalService.dynamicQuery(dynamicQuery);
 	}
 
-	public static java.util.List<com.liferay.wsrp.consumer.model.Producer> dynamicQuery(
+	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
 		ProducerLocalService producerLocalService = ProducerLocalServiceFactory.getService();

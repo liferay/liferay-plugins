@@ -41,11 +41,11 @@ public interface JIRAChangeGroupLocalService {
 		com.liferay.wol.model.JIRAChangeGroup jiraChangeGroup)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.JIRAChangeGroup> dynamicQuery(
+	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.JIRAChangeGroup> dynamicQuery(
+	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 

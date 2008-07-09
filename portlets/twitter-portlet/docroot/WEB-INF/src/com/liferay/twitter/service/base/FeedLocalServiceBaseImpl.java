@@ -54,13 +54,13 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService {
 		feedPersistence.remove(feed);
 	}
 
-	public List<Feed> dynamicQuery(DynamicQuery dynamicQuery)
+	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return feedPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<Feed> dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) throws SystemException {
 		return feedPersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 

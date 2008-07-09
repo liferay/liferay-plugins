@@ -40,11 +40,11 @@ public interface SVNRevisionLocalService {
 	public void deleteSVNRevision(com.liferay.wol.model.SVNRevision svnRevision)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.SVNRevision> dynamicQuery(
+	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.SVNRevision> dynamicQuery(
+	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 

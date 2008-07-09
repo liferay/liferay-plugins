@@ -63,12 +63,12 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService {
 		entryPersistence.remove(entry);
 	}
 
-	public List<Entry> dynamicQuery(DynamicQuery dynamicQuery)
+	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return entryPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<Entry> dynamicQuery(DynamicQuery dynamicQuery, int start,
+	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end) throws SystemException {
 		return entryPersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}

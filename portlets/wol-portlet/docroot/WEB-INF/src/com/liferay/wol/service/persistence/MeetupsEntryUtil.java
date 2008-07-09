@@ -116,13 +116,13 @@ public class MeetupsEntryUtil {
 				   .findByCompanyId_PrevAndNext(meetupsEntryId, companyId, obc);
 	}
 
-	public static java.util.List<com.liferay.wol.model.MeetupsEntry> findWithDynamicQuery(
+	public static java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
-	public static java.util.List<com.liferay.wol.model.MeetupsEntry> findWithDynamicQuery(
+	public static java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);

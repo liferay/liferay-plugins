@@ -67,12 +67,12 @@ public abstract class ProducerLocalServiceBaseImpl
 		producerPersistence.remove(producer);
 	}
 
-	public List<Producer> dynamicQuery(DynamicQuery dynamicQuery)
+	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return producerPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<Producer> dynamicQuery(DynamicQuery dynamicQuery, int start,
+	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end) throws SystemException {
 		return producerPersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}

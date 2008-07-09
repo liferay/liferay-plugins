@@ -8,8 +8,8 @@
 			<generator class="assigned" />
 		</id>
 		<property name="jiraUserId" column="author" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="createDate" column="created" />
-		<property name="modifiedDate" column="updated" />
+		<property name="createDate" column="created" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" column="updated" type="org.hibernate.type.TimestampType" />
 		<property name="jiraIssueId" column="issueid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="type" column="actiontype" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="body" column="actionbody" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -21,7 +21,7 @@
 			<generator class="assigned" />
 		</id>
 		<property name="jiraUserId" column="author" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="createDate" column="created" />
+		<property name="createDate" column="created" type="org.hibernate.type.TimestampType" />
 		<property name="jiraIssueId" column="issueid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="com.liferay.wol.model.impl.JIRAChangeItemImpl" table="changeitem">
@@ -41,8 +41,8 @@
 		<id name="jiraIssueId" column="id" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="createDate" column="created" />
-		<property name="modifiedDate" column="updated" />
+		<property name="createDate" column="created" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" column="updated" type="org.hibernate.type.TimestampType" />
 		<property name="projectId" column="project" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="key" column="pkey" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="summary" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -60,12 +60,12 @@
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="createDate" />
-		<property name="modifiedDate" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="startDate" />
-		<property name="endDate" />
+		<property name="startDate" type="org.hibernate.type.TimestampType" />
+		<property name="endDate" type="org.hibernate.type.TimestampType" />
 		<property name="totalAttendees" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="maxAttendees" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="price" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
@@ -79,8 +79,8 @@
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="createDate" />
-		<property name="modifiedDate" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="meetupsEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="comments" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -99,7 +99,7 @@
 			<generator class="assigned" />
 		</id>
 		<property name="svnUserId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="createDate" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="svnRepositoryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="revisionNumber" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="comments" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -113,8 +113,8 @@
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="createDate" />
-		<property name="modifiedDate" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="comments" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

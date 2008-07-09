@@ -41,11 +41,11 @@ public interface JIRAChangeItemLocalService {
 		com.liferay.wol.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.JIRAChangeItem> dynamicQuery(
+	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.wol.model.JIRAChangeItem> dynamicQuery(
+	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 

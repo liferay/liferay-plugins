@@ -52,7 +52,7 @@ public class EntryLocalServiceUtil {
 		entryLocalService.deleteEntry(entry);
 	}
 
-	public static java.util.List<com.liferay.chat.model.Entry> dynamicQuery(
+	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
 		EntryLocalService entryLocalService = EntryLocalServiceFactory.getService();
@@ -60,7 +60,7 @@ public class EntryLocalServiceUtil {
 		return entryLocalService.dynamicQuery(dynamicQuery);
 	}
 
-	public static java.util.List<com.liferay.chat.model.Entry> dynamicQuery(
+	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
 		EntryLocalService entryLocalService = EntryLocalServiceFactory.getService();

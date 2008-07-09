@@ -9,8 +9,8 @@
 		</id>
 		<property name="twitterUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="twitterScreenName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="createDate" />
-		<property name="modifiedDate" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="lastStatusId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 </hibernate-mapping>

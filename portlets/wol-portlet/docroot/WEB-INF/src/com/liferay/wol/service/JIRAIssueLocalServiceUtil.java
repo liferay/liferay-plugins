@@ -53,7 +53,7 @@ public class JIRAIssueLocalServiceUtil {
 		jiraIssueLocalService.deleteJIRAIssue(jiraIssue);
 	}
 
-	public static java.util.List<com.liferay.wol.model.JIRAIssue> dynamicQuery(
+	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
 		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
@@ -61,7 +61,7 @@ public class JIRAIssueLocalServiceUtil {
 		return jiraIssueLocalService.dynamicQuery(dynamicQuery);
 	}
 
-	public static java.util.List<com.liferay.wol.model.JIRAIssue> dynamicQuery(
+	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
 		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();

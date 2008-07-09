@@ -98,12 +98,12 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 		svnRevisionPersistence.remove(svnRevision);
 	}
 
-	public List<SVNRevision> dynamicQuery(DynamicQuery dynamicQuery)
+	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return svnRevisionPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
-	public List<SVNRevision> dynamicQuery(DynamicQuery dynamicQuery, int start,
+	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end) throws SystemException {
 		return svnRevisionPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);

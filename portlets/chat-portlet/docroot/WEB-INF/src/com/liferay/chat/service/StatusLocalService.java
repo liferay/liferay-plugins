@@ -40,11 +40,11 @@ public interface StatusLocalService {
 	public void deleteStatus(com.liferay.chat.model.Status status)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.chat.model.Status> dynamicQuery(
+	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.chat.model.Status> dynamicQuery(
+	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 

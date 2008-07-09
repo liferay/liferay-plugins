@@ -883,12 +883,14 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<MeetupsRegistration> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
+
+			dynamicQuery.compile(session);
 
 			return dynamicQuery.list();
 		}
@@ -900,15 +902,16 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<MeetupsRegistration> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+		int start, int end) throws SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			dynamicQuery.setLimit(start, end);
+
+			dynamicQuery.compile(session);
 
 			return dynamicQuery.list();
 		}

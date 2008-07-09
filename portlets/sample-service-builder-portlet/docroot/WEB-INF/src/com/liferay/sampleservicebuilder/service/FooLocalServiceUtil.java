@@ -52,7 +52,7 @@ public class FooLocalServiceUtil {
 		fooLocalService.deleteFoo(foo);
 	}
 
-	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> dynamicQuery(
+	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
@@ -60,7 +60,7 @@ public class FooLocalServiceUtil {
 		return fooLocalService.dynamicQuery(dynamicQuery);
 	}
 
-	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> dynamicQuery(
+	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
 		FooLocalService fooLocalService = FooLocalServiceFactory.getService();

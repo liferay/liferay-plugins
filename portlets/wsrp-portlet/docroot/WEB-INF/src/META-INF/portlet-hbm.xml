@@ -11,8 +11,8 @@
 		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="createDate" />
-		<property name="modifiedDate" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="wsdlURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="markupEndpoint" type="com.liferay.portal.dao.orm.hibernate.StringType" />
