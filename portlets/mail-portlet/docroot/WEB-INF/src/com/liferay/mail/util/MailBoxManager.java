@@ -51,6 +51,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
 import javax.activation.DataHandler;
@@ -594,13 +595,10 @@ public class MailBoxManager {
 				attachments.add(attachment);
 			}
 		}
-		catch (IOException ioe) {
-			_log.error(ioe, ioe);
-		}
-		catch (MessagingException me) {
+		catch (Exception e) {
 			sb.append("Error retrieving message content");
 
-			_log.error(me, me);
+			_log.error(e, e);
 		}
 	}
 
@@ -699,49 +697,6 @@ public class MailBoxManager {
 			}
 			catch (MessagingException me) {
 				_log.error("Skipping IMAP folder: " + me.getMessage());
-			}
-		}
-	}
-
-	protected void getIncomingStore(MailAccount mailAccount) {
-		try {
-			Properties props = new Properties();
-
-			URLName url = new URLName(
-				"imap", mailAccount.getMailInHostName(),
-				mailAccount.getMailInPort(), StringPool.BLANK,
-				mailAccount.getUsername(), mailAccount.getPassword());
-
-			props.setProperty(
-				"mail.imap.port", String.valueOf(mailAccount.getMailInPort()));
-
-			if (mailAccount.isMailSecure()) {
-				props.setProperty(
-					"mail.imap.socketFactory.port",
-					String.valueOf(mailAccount.getMailInPort()));
-				props.setProperty(
-					"mail.imap.socketFactory.class", _SSL_FACTORY);
-				props.setProperty("mail.imap.socketFactory.fallback", "false");
-			}
-
-			Session session = Session.getInstance(props, null);
-
-			Store store = null;
-
-			if (mailAccount.isMailSecure()) {
-				store = new IMAPSSLStore(session, url);
-			}
-			else {
-				store = new IMAPStore(session, url);
-			}
-
-			store.connect();
-
-			setStore(store);
-		}
-		catch (MessagingException me) {
-			if (_log.isErrorEnabled()) {
-				_log.error(me, me);
 			}
 		}
 	}
@@ -851,9 +806,14 @@ public class MailBoxManager {
 	protected Message getMessageByUid(Folder folder, long messageUid)
 		throws MessagingException {
 
-		folder = openFolder(folder);
+		try {
+			folder = openFolder(folder);
 
-		return ((IMAPFolder)folder).getMessageByUID(messageUid);
+			return ((IMAPFolder)folder).getMessageByUID(messageUid);
+		}
+		catch (MessagingException me) {
+			return null;
+		}
 	}
 
 	protected Part getMessagePart(Part part, String contentPath)
@@ -955,12 +915,59 @@ public class MailBoxManager {
 		return _session;
 	}
 
-	protected Store getStore() {
-		if (_store == null) {
-			getIncomingStore(_mailAccount);
+	protected Store getStore() throws MessagingException {
+		if (_allStores == null) {
+			_allStores = new ConcurrentHashMap<String, Store>();
 		}
 
-		return _store;
+		String key = _user.getUserId() + "." + _mailAccount.getEmailAddress();
+
+		Store store = (Store)_allStores.get(key);
+
+		if (store != null && !store.isConnected()) {
+			store.close();
+
+			store = null;
+		}
+
+		if (store == null) {
+
+			// Create new store connection
+
+			Properties props = new Properties();
+
+			URLName url = new URLName(
+				"imap", _mailAccount.getMailInHostName(),
+				_mailAccount.getMailInPort(), StringPool.BLANK,
+				_mailAccount.getUsername(), _mailAccount.getPassword());
+
+			props.setProperty(
+				"mail.imap.port", String.valueOf(_mailAccount.getMailInPort()));
+
+			if (_mailAccount.isMailSecure()) {
+				props.setProperty(
+					"mail.imap.socketFactory.port",
+					String.valueOf(_mailAccount.getMailInPort()));
+				props.setProperty(
+					"mail.imap.socketFactory.class", _SSL_FACTORY);
+				props.setProperty("mail.imap.socketFactory.fallback", "false");
+			}
+
+			Session session = Session.getInstance(props, null);
+
+			if (_mailAccount.isMailSecure()) {
+				store = new IMAPSSLStore(session, url);
+			}
+			else {
+				store = new IMAPStore(session, url);
+			}
+
+			store.connect();
+
+			_allStores.put(key, store);
+		}
+
+		return store;
 	}
 
 	protected Folder openFolder(String folderName) throws MessagingException {
@@ -984,8 +991,16 @@ public class MailBoxManager {
 			folder.open(Folder.READ_WRITE);
 		}
 		catch (MessagingException me1) {
+			Store store = folder.getStore();
+
+			if (!store.isConnected()) {
+				store = getStore();
+			}
+
+			folder = store.getFolder(folder.getFullName());
+
 			try {
-				folder.open(Folder.READ_ONLY);
+				folder.open(Folder.READ_WRITE);
 			}
 			catch (MessagingException me2) {
 				_log.error(
@@ -998,10 +1013,6 @@ public class MailBoxManager {
 		}
 
 		return folder;
-	}
-
-	protected void setStore(Store store) {
-		_store = store;
 	}
 
 	protected JSONObject storeFolderToDisk(
@@ -1096,12 +1107,12 @@ public class MailBoxManager {
 
 	public static final String _SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 
+	private static ConcurrentHashMap<String, Store> _allStores = null;
 	private static Log _log = LogFactory.getLog(MailBoxManager.class);
 
 	private User _user;
 	private MailAccount _mailAccount;
 	private Session _session = null;
-	private Store _store = null;
 	private int _messagesToPrefetch = GetterUtil.getInteger(
 		PortletProps.get("messages.to.prefetch"));
 

@@ -383,6 +383,10 @@ public class MailDiskManager {
 		for (int i = messageUids.length - 1; i >= 0; i--) {
 			long messageUid = GetterUtil.getLong(messageUids[i]);
 
+			if (messageUid == -1) {
+				break;
+			}
+
 			Message message = folder.getMessageByUID(messageUid);
 
 			if (Validator.isNull(message)) {
@@ -437,10 +441,10 @@ public class MailDiskManager {
 
 				Date now = new Date();
 
-				// Lock expires in 1 hour
+				// Lock expires in 5 minutes
 
 				long nowTime = now.getTime();
-				long expireTime = dateLocked.getTime() + 360000;
+				long expireTime = dateLocked.getTime() + 300000;
 
 				if (nowTime < expireTime) {
 					return true;
