@@ -55,7 +55,7 @@ body {
 }
 
 .chat-portlet .chat .head {
-	background: #333;
+	background: #20272b;
 	border: 1px solid #262626;
 	border-bottom: 0;
 	color: #fff;
@@ -66,8 +66,9 @@ body {
 }
 
 .chat-portlet .chat .head .close {
-	background: url('<%= themeImagesPath %>/dock/collapse_community.png');
+	background: url('<%= themeImagesPath %>/portlet/close.png') no-repeat 3px 3px;
 	height: 16px;
+	padding: 3px;
 	position: absolute;
 	right: 2px;
 	top: 2px;
@@ -115,12 +116,16 @@ body {
 }
 
 .chat-portlet .chat .show p .date {
-	color: #aaa;
+	color: #eee;
 	font-size: 10px;
 	font-style: normal;
 	position: absolute;
 	right: 8px;
 	top: 6px;
+}
+
+.chat-portlet .chat .show .not .date {
+	color: #555;
 }
 
 .chat-portlet .chat .show p .name {
@@ -136,20 +141,20 @@ body {
 }
 
 .chat-portlet .chat .show p.not .name {
-	background: #eee;
+	background: #D3DADD;
 	color: #555;
 }
 
 .chat-portlet .chat .show p.you .name {
-	background: #ddf;
-	color: #009;
+	background: #828F95;
+	color: #fff;
 }
 
 .chat-portlet .chat .type {
 	background: #fff;
 	border: 1px solid #333;
 	border-bottom-color: #545454;
-	border-top-color: #93a2c1;
+	border-top-color: #369;
 	position: relative;
 }
 
