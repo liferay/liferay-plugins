@@ -433,14 +433,14 @@ public class MailBoxManager {
 		return jsonObj;
 	}
 
-	public JSONObject syncronizeAccount() throws MessagingException {
+	public JSONObject synchronizeAccount() throws MessagingException {
 		List<Folder> folders = getFolders();
 
 		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
 		if (Validator.isNotNull(folders)) {
 			for (Folder folder : folders) {
-				syncronizeFolder(folder);
+				synchronizeFolder(folder);
 			}
 
 			jsonObj.put("success", true);
@@ -452,7 +452,7 @@ public class MailBoxManager {
 		return jsonObj;
 	}
 
-	public void syncronizeFolder(Folder folder) throws MessagingException {
+	public void synchronizeFolder(Folder folder) throws MessagingException {
 
 		// Check if folder has been initialized
 

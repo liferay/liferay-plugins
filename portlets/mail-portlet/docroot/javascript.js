@@ -784,7 +784,7 @@ Liferay.Mail = {
 
 		jQuery.ajax(
 			{
-				url: themeDisplay.getLayoutURL() + '/-/mail/syncronize_account',
+				url: themeDisplay.getLayoutURL() + '/-/mail/synchronize_account',
 				data: {
 					emailAddress: emailAccount
 				},

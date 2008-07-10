@@ -70,7 +70,7 @@ public class MailMessageListener implements MessageListener {
 
 		MailBoxManager.writeAccountLock(user, emailAddress);
 
-		mailBoxManager.syncronizeAccount();
+		mailBoxManager.synchronizeAccount();
 
 		MailBoxManager.removeAccountLock(user, emailAddress);
 	}
