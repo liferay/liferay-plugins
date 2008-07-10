@@ -22,10 +22,10 @@
 
 package com.liferay.samplestrutsliferay.struts.action;
 
+import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.struts.PortletAction;
-import com.liferay.portal.util.UploadRequestUtil;
-import com.liferay.util.servlet.UploadPortletRequest;
+import com.liferay.portal.util.PortalUtil;
 
 import java.io.File;
 
@@ -55,7 +55,7 @@ public class UploadAction extends PortletAction {
 		throws Exception {
 
 		UploadPortletRequest uploadReq =
-			UploadRequestUtil.getUploadPortletRequest(req);
+			PortalUtil.getUploadPortletRequest(req);
 
 		File file = uploadReq.getFile("file_location");
 
