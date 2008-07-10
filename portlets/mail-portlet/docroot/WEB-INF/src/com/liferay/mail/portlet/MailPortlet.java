@@ -29,6 +29,7 @@ import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.util.servlet.PortletResponseUtil;
@@ -93,10 +94,12 @@ public class MailPortlet extends JSPPortlet {
 				Part messagePart = mailBoxManager.getAttachment(
 					folderName, messageUid, contentPath);
 
-				InputStream is = messagePart.getInputStream();
-				String contentType = MimeTypesUtil.getContentType(fileName);
+				if (Validator.isNotNull(messagePart)) {
+					InputStream is = messagePart.getInputStream();
+					String contentType = MimeTypesUtil.getContentType(fileName);
 
-				PortletResponseUtil.sendFile(res, fileName, is, contentType);
+					PortletResponseUtil.sendFile(res, fileName, is, contentType);
+				}
 			}
 			catch (MessagingException me) {
 			}

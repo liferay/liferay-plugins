@@ -270,13 +270,20 @@ public class MailBoxManager {
 	}
 
 	public JSONObject deleteMessagesByUids(
-			String folderName, String messageUids)
-		throws MessagingException {
+		String folderName, String messageUids) {
+
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
 		long[] messageUidsArray = GetterUtil.getLongValues(
 			messageUids.split("\\s*,\\s*"));
 
-		if (Validator.isNotNull(messageUidsArray)) {
+		if (Validator.isNull(messageUidsArray)) {
+			jsonObj.put("success", false);
+
+			return jsonObj;
+		}
+
+		try {
 			Folder folder = openFolder(folderName);
 
 			for (long messageUid : messageUidsArray) {
@@ -284,11 +291,14 @@ public class MailBoxManager {
 			}
 
 			folder.close(true);
+
+			jsonObj.put("success", true);
 		}
+		catch (MessagingException me) {
+			_log.error(me, me);
 
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
-
-		jsonObj.put("success", true);
+			jsonObj.put("success", false);
+		}
 
 		return jsonObj;
 	}
@@ -303,70 +313,79 @@ public class MailBoxManager {
 	}
 
 	public JSONObject flagMessages(
-			String folderName, String messageUids, String flag, boolean value)
-		throws MessagingException {
+			String folderName, String messageUids, String flag, boolean value) {
 
-		Folder folder = getFolder(folderName);
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
 		long[] messageUidsArray = GetterUtil.getLongValues(
 			messageUids.split("\\s*,\\s*"));
 
-		for (long messageUid : messageUidsArray) {
-			try {
-				folder = openFolder(folder);
+		if (Validator.isNull(messageUidsArray)) {
+			jsonObj.put("success", false);
 
-				// Update message on server
-
-				Message message = getMessageByUid(folder, messageUid);
-
-				if (flag.equals("answered")) {
-					message.setFlag(Flags.Flag.ANSWERED, value);
-				}
-				else if (flag.equals("flagged")) {
-					message.setFlag(Flags.Flag.FLAGGED, value);
-				}
-				else if (flag.equals("seen")) {
-					message.setFlag(Flags.Flag.SEEN, value);
-				}
-
-				// Update message on local disk
-
-				updateJSONMessageFlag(
-					_user, _mailAccount, folderName, messageUid, flag, value);
-			}
-			catch (IOException ioe) {
-				_log.error(ioe, ioe);
-			}
-			catch (MessagingException me) {
-				_log.error(me, me);
-			}
+			return jsonObj;
 		}
 
-		folder.close(true);
+		try {
+			Folder folder = getFolder(folderName);
 
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
+			for (long messageUid : messageUidsArray) {
+				try {
 
-		jsonObj.put("success", true);
+					// Update message on server
+
+					Message message = getMessageByUid(folder, messageUid);
+
+					if (flag.equals("answered")) {
+						message.setFlag(Flags.Flag.ANSWERED, value);
+					}
+					else if (flag.equals("flagged")) {
+						message.setFlag(Flags.Flag.FLAGGED, value);
+					}
+					else if (flag.equals("seen")) {
+						message.setFlag(Flags.Flag.SEEN, value);
+					}
+
+					// Update message on local disk
+
+					updateJSONMessageFlag(
+						_user, _mailAccount, folderName, messageUid, flag,
+						value);
+				}
+				catch (MessagingException me) {
+					_log.error(me, me);
+				}
+			}
+
+			folder.close(true);
+
+			jsonObj.put("success", true);
+		}
+		catch (MessagingException me) {
+			_log.error(me, me);
+
+			jsonObj.put("success", false);
+		}
 
 		return jsonObj;
 	}
 
-	public void sendMessage(MailAccount fromMailAccount, long draftMessageUid)
-		throws MessagingException {
-
-		// Get message draft
-
-		Folder draftsFolder = getDraftsFolder();
-
-		Message message = getMessageByUid(draftsFolder, draftMessageUid);
-
-		// Send message
-
-		Session session = getOutgoingSession(fromMailAccount);
-
-		Transport transport = session.getTransport("smtp");
+	public void sendMessage(MailAccount fromMailAccount, long draftMessageUid) {
+		Transport transport = null;
 
 		try {
+			// Get message draft
+
+			Folder draftsFolder = getDraftsFolder();
+
+			Message message = getMessageByUid(draftsFolder, draftMessageUid);
+
+			// Send message
+
+			Session session = getOutgoingSession(fromMailAccount);
+
+			transport = session.getTransport("smtp");
+
 			transport.connect(
 				fromMailAccount.getUsername(), fromMailAccount.getPassword());
 
@@ -378,7 +397,12 @@ public class MailBoxManager {
 			_log.error(me, me);
 		}
 		finally {
-			transport.close();
+			try {
+				transport.close();
+			}
+			catch (MessagingException me) {
+				_log.error(me, me);
+			}
 		}
 	}
 
@@ -437,7 +461,12 @@ public class MailBoxManager {
 
 		if (Validator.isNotNull(folders)) {
 			for (Folder folder : folders) {
-				synchronizeFolder(folder);
+				try {
+					synchronizeFolder(folder);
+				}
+				catch (MessagingException me) {
+					_log.error(me, me);
+				}
 			}
 
 			jsonObj.put("success", true);
@@ -484,7 +513,9 @@ public class MailBoxManager {
 					(messageCount - _messagesToPrefetch + 1), messageCount);
 			}
 
-			storeMessagesToDisk(messages);
+			if (Validator.isNotNull(messages)) {
+				storeMessagesToDisk(messages);
+			}
 
 			// Write new JSON folder
 
@@ -506,25 +537,10 @@ public class MailBoxManager {
 	protected String getAddresses(Address[] addresses) {
 		StringBuilder sb = new StringBuilder();
 
-		if (addresses == null) {
-			return StringPool.BLANK;
-		}
-
-		try {
-			for (int i = 0; i < addresses.length; i++) {
-				InternetAddress address = (InternetAddress)addresses[i];
-
-				if (i != 0) {
-					sb.append(StringPool.COMMA);
-				}
-
-				sb.append(address.getAddress());
+		if (Validator.isNotNull(addresses)) {
+			for (InternetAddress address : (InternetAddress[])addresses) {
+				sb.append(address.getAddress() + StringPool.COMMA);
 			}
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			return null;
 		}
 
 		return sb.toString();
@@ -571,8 +587,14 @@ public class MailBoxManager {
 						sb.append("<hr />");
 					}
 
-					sb.append(
-						stripUnsafeCss(messagePart.getContent().toString()));
+					try {
+						sb.append(
+							stripUnsafeCss(
+								messagePart.getContent().toString()));
+					}
+					catch (IOException ioe) {
+						// ignore
+					}
 				}
 				else if (contentType.startsWith(ContentTypes.MESSAGE_RFC822)) {
 					//getBody(
@@ -658,13 +680,7 @@ public class MailBoxManager {
 	protected Folder getFolder(String folderName) throws MessagingException {
 		Folder folder = getStore().getDefaultFolder();
 
-		folder = folder.getFolder(folderName);
-
-		if (folder == null) {
-			_log.error("Invalid folder " + folderName);
-		}
-
-		return folder;
+		return folder.getFolder(folderName);
 	}
 
 	protected List<Folder> getFolders() throws MessagingException {
@@ -698,9 +714,7 @@ public class MailBoxManager {
 		}
 	}
 
-	protected JSONArray getJSONAttachments(List<Object[]> attachments)
-		throws MessagingException {
-
+	protected JSONArray getJSONAttachments(List<Object[]> attachments) {
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (Object[] attachment : attachments) {
@@ -720,17 +734,16 @@ public class MailBoxManager {
 
 		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
+		folder = openFolder(folder);
+
+		jsonObj.put("fullName", folder.getFullName());
+		jsonObj.put("name", folder.getName());
+
 		if (folder.getType() != Folder.HOLDS_FOLDERS) {
-			openFolder(folder);
-
-			jsonObj.put("fullName", folder.getFullName());
 			jsonObj.put("messageCount", folder.getMessageCount());
-			jsonObj.put("name", folder.getName());
-
-			return jsonObj;
 		}
 
-		return null;
+		return jsonObj;
 	}
 
 	protected JSONObject getJSONMessage(Message message)
@@ -795,22 +808,15 @@ public class MailBoxManager {
 	protected Message getMessageByUid(String folderName, long messageUid)
 		throws MessagingException {
 
-		IMAPFolder folder = (IMAPFolder)openFolder(folderName);
-
-		return getMessageByUid(folder, messageUid);
+		return getMessageByUid(getFolder(folderName), messageUid);
 	}
 
 	protected Message getMessageByUid(Folder folder, long messageUid)
 		throws MessagingException {
 
-		try {
-			folder = openFolder(folder);
+		folder = openFolder(folder);
 
-			return ((IMAPFolder)folder).getMessageByUID(messageUid);
-		}
-		catch (MessagingException me) {
-			return null;
-		}
+		return ((IMAPFolder)folder).getMessageByUID(messageUid);
 	}
 
 	protected Part getMessagePart(Part part, String contentPath)
@@ -846,13 +852,7 @@ public class MailBoxManager {
 	protected long getMessageUid(Message message) throws MessagingException {
 		IMAPFolder folder = (IMAPFolder)openFolder(message.getFolder());
 
-		if (Validator.isNull(folder)) {
-			throw new MessagingException(
-				"message does not belong to any folder");
-		}
-		else {
-			return folder.getUID(message);
-		}
+		return folder.getUID(message);
 	}
 
 	protected Session getOutgoingSession(MailAccount mailAccount) {
@@ -905,7 +905,7 @@ public class MailBoxManager {
 	}
 
 	protected Session getSession() {
-		if (_session == null) {
+		if (Validator.isNull(_session)) {
 			_session = getOutgoingSession(_mailAccount);
 		}
 
@@ -913,7 +913,7 @@ public class MailBoxManager {
 	}
 
 	protected Store getStore() throws MessagingException {
-		if (_allStores == null) {
+		if (Validator.isNull(_allStores)) {
 			_allStores = new ConcurrentHashMap<String, Store>();
 		}
 
@@ -921,13 +921,13 @@ public class MailBoxManager {
 
 		Store store = (Store)_allStores.get(key);
 
-		if (store != null && !store.isConnected()) {
+		if (Validator.isNotNull(store) && !store.isConnected()) {
 			store.close();
 
 			store = null;
 		}
 
-		if (store == null) {
+		if (Validator.isNull(store)) {
 
 			// Create new store connection
 
@@ -968,18 +968,10 @@ public class MailBoxManager {
 	}
 
 	protected Folder openFolder(String folderName) throws MessagingException {
-		Folder folder = getStore().getDefaultFolder();
-
-		folder = folder.getFolder(folderName);
-
-		return openFolder(folder);
+		return openFolder(getFolder(folderName));
 	}
 
 	protected Folder openFolder(Folder folder) throws MessagingException {
-		if (folder == null) {
-			return null;
-		}
-
 		if (folder.isOpen()) {
 			return folder;
 		}
@@ -996,24 +988,15 @@ public class MailBoxManager {
 
 			folder = store.getFolder(folder.getFullName());
 
-			try {
-				folder.open(Folder.READ_WRITE);
-			}
-			catch (MessagingException me2) {
-				_log.error(
-					"Skipping folder " + folder.getFullName() +
-						" for email address " + _mailAccount.getEmailAddress(),
-					me2);
-
-				return null;
-			}
+			folder.open(Folder.READ_WRITE);
 		}
 
 		return folder;
 	}
 
 	protected JSONObject storeFolderToDisk(
-		Folder folder, boolean initialized, Date date) {
+			Folder folder, boolean initialized, Date date)
+		throws MessagingException {
 
 		try {
 			JSONObject jsonObj = getJSONFolder(folder);
@@ -1030,21 +1013,25 @@ public class MailBoxManager {
 		}
 		catch (IOException ioe) {
 			_log.error(ioe, ioe);
-		}
-		catch (MessagingException me) {
-			_log.error(me, me);
-		}
 
-		return null;
+			return null;
+		}
 	}
 
 	protected void storeMessagesToDisk(Message[] messages) {
 		for (Message message : messages) {
-			storeMessageToDisk(message);
+			try {
+				storeMessageToDisk(message);
+			}
+			catch (MessagingException me) {
+				_log.error(me, me);
+			}
 		}
 	}
 
-	protected void storeMessageToDisk(Message message) {
+	protected void storeMessageToDisk(Message message)
+		throws MessagingException  {
+
 		try {
 			IMAPFolder folder = (IMAPFolder)openFolder(message.getFolder());
 
@@ -1058,9 +1045,6 @@ public class MailBoxManager {
 		}
 		catch (IOException ioe) {
 			_log.error(ioe, ioe);
-		}
-		catch (MessagingException me) {
-			_log.error(me, me);
 		}
 	}
 
@@ -1085,9 +1069,8 @@ public class MailBoxManager {
 	}
 
 	protected void updateJSONMessageFlag(
-			User user, MailAccount mailAccount, String folderName,
-			long messageUid, String flag, boolean value)
-		throws IOException {
+		User user, MailAccount mailAccount, String folderName, long messageUid,
+		String flag, boolean value) {
 
 		JSONObject jsonMessage = MailDiskManager.getJSONMessageByUid(
 			_user, _mailAccount.getEmailAddress(), folderName, messageUid);
@@ -1099,7 +1082,12 @@ public class MailBoxManager {
 		String filePath = MailDiskManager.getMessageFilePath(
 			_user, _mailAccount.getEmailAddress(), folderName, messageUid);
 
-		FileUtil.write(filePath, jsonMessage.toString());
+		try {
+			FileUtil.write(filePath, jsonMessage.toString());
+		}
+		catch (IOException ioe) {
+			_log.error(ioe, ioe);
+		}
 	}
 
 	public static final String _SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";

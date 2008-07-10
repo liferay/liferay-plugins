@@ -180,8 +180,8 @@ public class MailDiskManager {
 		return null;
 	}
 
-	public static JSONObject getJSONDraftsFolder(User user, String emailAddress)
-		throws MessagingException {
+	public static JSONObject getJSONDraftsFolder(
+		User user, String emailAddress) {
 
 		JSONObject jsonObj = getJSONFolders(user, emailAddress);
 
@@ -238,8 +238,7 @@ public class MailDiskManager {
 	}
 
 	public static JSONObject getJSONMessageByUid(
-		User user, String emailAddress, String folderName,
-		long messageUid) {
+		User user, String emailAddress, String folderName, long messageUid) {
 
 		String messageFilePath = getMessageFilePath(
 			user, emailAddress, folderName, messageUid);
@@ -265,8 +264,8 @@ public class MailDiskManager {
 	}
 
 	public static JSONObject getJSONMessageRelativeToUid(
-		User user, String emailAddress, String folderName,
-		long messageUid, int offset, String searchString) {
+		User user, String emailAddress, String folderName, long messageUid,
+		int offset, String searchString) {
 
 		searchString = searchString.trim();
 
@@ -292,8 +291,8 @@ public class MailDiskManager {
 	}
 
 	public static JSONObject getJSONMessagesByPage(
-		User user, String emailAddress, String folderName,
-		int pageNumber, int messagesPerPage) {
+		User user, String emailAddress, String folderName, int pageNumber,
+		int messagesPerPage) {
 
 		try {
 
@@ -374,7 +373,7 @@ public class MailDiskManager {
 			return null;
 		}
 
-		// Verify message still exists, if not delete message from disk and get next
+		// Verify message exists, if not delete message from disk and get next
 
 		MailBoxManager mailBoxManager = new MailBoxManager(
 			user, emailAddress);
