@@ -1,0 +1,71 @@
+.jmakiTitleBar {
+  background:#4d371f;
+  background-image : url(images/brown-l.jpg);
+  background-repeat: repeat-x;  
+}
+
+.jmakiBackround {
+  background:#4d371f;
+}
+
+.jmakiBackroundHover {
+  background:#7b5831;
+}
+
+.jmakiFont {
+  color : #FFFFFFF;
+}
+
+.jmakiShadow{
+  color : #0085af;
+}
+
+.jmakiFontHover {
+  color : #0085af;
+}
+
+body  {
+  background-image:url(images/bg-gradient.gif);
+}
+
+#outerBorder {
+}
+
+#header {
+  background-image : url(images/banner.jpg);
+  background-repeat: repeat-x;  
+  color : #FFFFFF;
+}
+
+#subheader, #subheader div a {
+  color : #FFFFFF;
+  border : 0;
+  padding : 0;
+}
+
+#main {
+}
+
+#content {
+  background : #FFFFFF;
+}
+
+#leftSidebar {
+  background : #FFFFFF;
+}
+
+#leftColumn {
+  background : #FFFFFF;
+}
+
+#rightColumn {
+  background : #FFFFFF;
+}
+
+#banner {
+}
+
+#footer {
+  color : #FFFFFF;
+  background : #4d371f;
+}

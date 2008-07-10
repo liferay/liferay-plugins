@@ -1,0 +1,8 @@
+{
+  'config': {
+    'version': '1.0',
+    'glue' : {
+         'includes': ['/glue.js', '/resources/system-glue.js']
+       }
+    }
+}

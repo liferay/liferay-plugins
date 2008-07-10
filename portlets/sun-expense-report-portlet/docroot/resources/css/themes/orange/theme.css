@@ -1,0 +1,71 @@
+.jmakiTitleBar {
+  background:#FF8E0F;
+}
+
+.jmakiBackround {
+  background:#FF8E0F;
+}
+
+.jmakiBackroundHover {
+  background:#FFC787;
+}
+
+.jmakiFont {
+  color : #FFFFFF;
+}
+
+.jmakiFontHover {
+  color : #FFC787;
+}
+
+.jmakiShadow {
+  color : #FFC787;
+}
+
+body  {
+    background : #FFFFFF;
+}
+
+#outerBorder {
+  background : #FFFFFF;
+}
+
+#header {
+  color : #000000;
+  background : #FFC226;
+}
+
+#subheader, #subheader div a {
+  color : #FFFFFF;
+}
+
+#subheader  {
+}
+
+#main {
+
+}
+
+#content {
+  background : #FFFFFF;
+}
+
+#leftColumn {
+  background : #FFFFFF;
+}
+
+#rightColumn {
+  background : #FFFFFF;
+}
+
+#leftSidebar {
+  background : #FFFFFF;
+}
+
+#banner {
+}
+
+#footer {
+  color : #000000;
+  background : #FFC226;
+}

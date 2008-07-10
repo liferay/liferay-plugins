@@ -1,0 +1,75 @@
+.jmakiTitle {
+  background:#4d371f;
+}
+
+.jmakiBackround {
+  background:#4d371f;
+}
+
+.jmakiBackroundHover {
+  background:#7b5831;
+}
+
+.jmakiFont {
+  color : #FFFFFFF;
+}
+
+.jmakiShadow{
+  color : #0085af;
+}
+
+.jmakiFontHover {
+  color : #0085af;
+}
+
+body  {
+  background : #FFFFFF;
+}
+
+#outerBorder {
+}
+
+#header {
+  padding-right: 3px;
+  color : #000000;
+  background : #C7F1B3;
+  border : 0;
+}
+
+#subheader, #subheader div a {
+  color : #000000;
+  border : 0;
+  padding : 0;
+}
+
+#subheader div {
+}
+
+#main {
+
+}
+
+#content {
+  background : white;
+}
+
+#leftSidebar {
+  background : white;
+}
+
+#leftColumn {
+  background : #FFFFFF;
+}
+
+#rightColumn {
+  background : #FFFFFF;
+}
+
+#banner {
+  padding-left : 10px;
+}
+
+#footer {
+  color : #000000;
+  background : #C7F1B3;
+}
