@@ -1,0 +1,17 @@
+#set ($portlet_display = $portletDisplay)
+
+#set ($portlet_id = $portlet_display.getId())
+#set ($portlet_title = $portlet_display.getTitle())
+#set ($portlet_content = $portlet_display.getContent())
+#set ($portlet_back_url = $portlet_display.getURLBack())
+
+<div class="portlet" id="portlet-wrapper-$portlet_id">
+	<div class="portlet-topper">
+		<span class="portlet-title">
+			$portlet_title
+		</span>
+	</div>
+	<div class="portlet-content">
+		$portlet_content
+	</div>
+</div>
