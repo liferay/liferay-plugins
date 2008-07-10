@@ -306,17 +306,14 @@ public class MailBoxManager {
 			String folderName, String messageUids, String flag, boolean value)
 		throws MessagingException {
 
-		IMAPFolder folder = (IMAPFolder)openFolder(folderName);
+		Folder folder = getFolder(folderName);
 
 		long[] messageUidsArray = GetterUtil.getLongValues(
 			messageUids.split("\\s*,\\s*"));
 
-		if (!folder.isOpen()) {
-			folder.open(Folder.READ_WRITE);
-		}
-
 		for (long messageUid : messageUidsArray) {
 			try {
+				folder = openFolder(folder);
 
 				// Update message on server
 
@@ -775,7 +772,7 @@ public class MailBoxManager {
 		jsonObj.put("html", false);
 		jsonObj.put("messageNumber", message.getMessageNumber());
 		jsonObj.put("subject", message.getSubject());
-		jsonObj.put("uid", ((IMAPFolder)message.getFolder()).getUID(message));
+		jsonObj.put("uid", getMessageUid(message));
 
 		jsonFlags.put("answered", message.isSet(Flags.Flag.ANSWERED));
 		jsonFlags.put("deleted", message.isSet(Flags.Flag.DELETED));
@@ -847,7 +844,7 @@ public class MailBoxManager {
 	}
 
 	protected long getMessageUid(Message message) throws MessagingException {
-		IMAPFolder folder = (IMAPFolder)message.getFolder();
+		IMAPFolder folder = (IMAPFolder)openFolder(message.getFolder());
 
 		if (Validator.isNull(folder)) {
 			throw new MessagingException(
@@ -1049,7 +1046,7 @@ public class MailBoxManager {
 
 	protected void storeMessageToDisk(Message message) {
 		try {
-			IMAPFolder folder = (IMAPFolder)message.getFolder();
+			IMAPFolder folder = (IMAPFolder)openFolder(message.getFolder());
 
 			String jsonMessage = getJSONMessage(message).toString();
 

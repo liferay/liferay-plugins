@@ -50,6 +50,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 
@@ -373,12 +374,12 @@ public class MailDiskManager {
 			return null;
 		}
 
-		// Verify that message still exists, if not delete message from disk
+		// Verify message still exists, if not delete message from disk and get next
 
 		MailBoxManager mailBoxManager = new MailBoxManager(
 			user, emailAddress);
 
-		IMAPFolder folder = (IMAPFolder)mailBoxManager.openFolder(folderName);
+		Folder folder = mailBoxManager.getFolder(folderName);
 
 		for (int i = messageUids.length - 1; i >= 0; i--) {
 			long messageUid = GetterUtil.getLong(messageUids[i]);
@@ -387,7 +388,9 @@ public class MailDiskManager {
 				break;
 			}
 
-			Message message = folder.getMessageByUID(messageUid);
+			folder = mailBoxManager.openFolder(folder);
+
+			Message message = ((IMAPFolder)folder).getMessageByUID(messageUid);
 
 			if (Validator.isNull(message)) {
 				mailBoxManager.deleteMessage(folder, messageUid, false);
