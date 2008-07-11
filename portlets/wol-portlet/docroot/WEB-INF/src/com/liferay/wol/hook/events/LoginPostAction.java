@@ -22,7 +22,6 @@
 
 package com.liferay.wol.hook.events;
 
-import com.liferay.portal.LayoutFriendlyURLException;
 import com.liferay.portal.NoSuchLayoutException;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.events.Action;
