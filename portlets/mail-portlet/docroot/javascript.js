@@ -70,6 +70,7 @@ Liferay.Mail = {
 		instance._messagesPerPage = params.messagesPerPage;
 		instance._assignEvents();
 		instance.loadAccounts();
+		instance.initializeEditor();
 	},
 
 	clearIncomingMessage: function() {
@@ -102,7 +103,7 @@ Liferay.Mail = {
 		var instance = this;
 
 		instance.sendBccInput.val('');
-		instance.sendBodySpan.css('visibility','hidden');
+		instance.sendBodySpan.hide();
 		instance.sendCcInput.val('');
 		instance.sendDraftMessageUidHidden.val('');
 		instance.sendEmailAddressHidden.val('');
@@ -119,7 +120,7 @@ Liferay.Mail = {
 
 		instance.setStatus('');
 
-		instance.statusSpan.css('display', 'none');
+		instance.statusSpan.hide();
 	},
 
 	deleteMessages: function(messageUids, preMessage, success) {
@@ -234,6 +235,12 @@ Liferay.Mail = {
 		return instance._currentView;
 	},
 
+	initializeEditor: function() {
+		setTimeout('Liferay.Mail.messageDiv.show()', 1000);
+		setTimeout('Liferay.Mail.messageSendDiv.show()', 1000);
+		setTimeout('Liferay.Mail.messageDiv.hide()', 2000);
+	},
+
 	isSearchMode: function() {
 		return _isSearchMode;
 	},
@@ -264,7 +271,9 @@ Liferay.Mail = {
 
 		// Get JSON
 
-		instance.setStatus(Liferay.Language.get('loading-folders'));
+		if (!silentUpdate) {
+			instance.setStatus(Liferay.Language.get('loading-folders'));
+		}
 
 		jQuery.ajax(
 			{
@@ -342,7 +351,9 @@ Liferay.Mail = {
 	loadJsonFolders: function(jsonFolders, silentUpdate) {
 		var instance = this;
 
-		instance.clearStatus();
+		if (!silentUpdate) {
+			instance.clearStatus();
+		}
 
 		// Parse JSON
 
@@ -368,6 +379,7 @@ Liferay.Mail = {
 		// Inject HTML
 
 		instance.foldersDiv.html(htmlFolderList);
+		jQuery(".folder[folderName='" + instance.getCurrentFolderName() + "']").addClass('folder-selected results-header');
 
 		// Refresh folder handlers
 
@@ -623,10 +635,10 @@ Liferay.Mail = {
 
 			// No pages
 
-			instance.folderControlsNewestLink.css('display', 'none');
-			instance.folderControlsNewerLink.css('display', 'none');
-			instance.folderControlsOlderLink.css('display', 'none');
-			instance.folderControlsOldestLink.css('display', 'none');
+			instance.folderControlsNewestLink.hide();
+			instance.folderControlsNewerLink.hide();
+			instance.folderControlsOlderLink.hide();
+			instance.folderControlsOldestLink.hide();
 
 			// Update page range count status
 
@@ -637,27 +649,27 @@ Liferay.Mail = {
 			// On first page
 
 			if (instance.getCurrentPageNumber() == 1) {
-				instance.folderControlsNewestLink.css('display', 'none');
-				instance.folderControlsNewerLink.css('display', 'none');
+				instance.folderControlsNewestLink.hide();
+				instance.folderControlsNewerLink.hide();
 			}
 
 			// On second page
 
 			if (instance.getCurrentPageNumber() == 2) {
-				instance.folderControlsNewestLink.css('display', 'none');
+				instance.folderControlsNewestLink.hide();
 			}
 
 			// On second to last page
 
 			if (instance.getCurrentPageNumber() == instance.getTotalPages() - 1) {
-				instance.folderControlsOldestLink.css('display', 'none');
+				instance.folderControlsOldestLink.hide();
 			}
 
 			// On last page
 
 			if (instance.getCurrentPageNumber() == instance.getTotalPages()) {
-				instance.folderControlsOlderLink.css('display', 'none');
-				instance.folderControlsOldestLink.css('display', 'none');
+				instance.folderControlsOlderLink.hide();
+				instance.folderControlsOldestLink.hide();
 			}
 
 			// Update page range count status
@@ -696,8 +708,6 @@ Liferay.Mail = {
 
 			return false;
 		});
-		
-		jQuery(".folder[folderName='" + instance.getCurrentFolderName() + "']").addClass('folder-selected results-header');
 	},
 
 	refreshMessageControlsNavigation: function() {
@@ -709,7 +719,7 @@ Liferay.Mail = {
 		// If on first message
 
 		if (instance.getCurrentMessage().messageNumber == instance.getTotalMessages()) {
-			instance.messageControlsNewerLink.css('display', 'none');
+			instance.messageControlsNewerLink.hide();
 			instance.messageControlsOlderLink.css('display', 'inline');
 		}
 
@@ -717,7 +727,7 @@ Liferay.Mail = {
 
 		if (instance.getCurrentMessage().messageNumber == 1) {
 			instance.messageControlsNewerLink.css('display', 'inline');
-			instance.messageControlsOlderLink.css('display', 'none');
+			instance.messageControlsOlderLink.hide();
 		}
 
 		// Update page count status
@@ -908,55 +918,55 @@ Liferay.Mail = {
 
 		// Hide everything
 
-		instance.configurationPromptDiv.css('display', 'none');
-		instance.folderDiv.css('display', 'none');
-		instance.messageDiv.css('display', 'none');
+		instance.configurationPromptDiv.hide();
+		instance.folderDiv.hide();
+		instance.messageDiv.hide();
 
-		instance.messageControlsDiv.css('display', 'none');
-		instance.messageReadDiv.css('display', 'none');
-		instance.messageOptionsDiv.css('display', 'none');
-		instance.messageSendDiv.css('display', 'none');
+		instance.messageControlsDiv.hide();
+		instance.messageReadDiv.hide();
+		instance.messageOptionsDiv.hide();
+		instance.messageSendDiv.hide();
 
 		// Show desired windows
 
 		if (viewMode == 'viewAccountConfiguration') {
-			instance.accountContainerDiv.css('display', 'none');
-			instance.configurationPromptDiv.css('display', 'block');
-			instance.emailContainerDiv.css('display', 'none');
+			instance.accountContainerDiv.hide();
+			instance.configurationPromptDiv.show();
+			instance.emailContainerDiv.hide();
 		}
 		else {
-			instance.accountContainerDiv.css('display', 'block');
-			instance.emailContainerDiv.css('display', 'block');
+			instance.accountContainerDiv.show();
+			instance.emailContainerDiv.show();
 
 			if (viewMode == 'viewFolder') {
 				instance.clearIncomingMessage();
 
-				instance.folderDiv.css('display', 'block');
+				instance.folderDiv.show();
 			}
 			else {
 				instance.clearOutgoingMessage();
 
-				instance.messageDiv.css('display', 'block');
+				instance.messageDiv.show();
 				jQuery('#' + instance.namespace + 'message-options td').css('background-color', '#F7F7F7');
 
 				if (viewMode == 'viewMessage') {
-					instance.messageControlsDiv.css('display', 'block');
-					instance.messageReadDiv.css('display', 'block');
-					instance.messageOptionsDiv.css('display', 'block');
+					instance.messageControlsDiv.show();
+					instance.messageReadDiv.show();
+					instance.messageOptionsDiv.show();
 				}
 				else if (viewMode == 'replyOrForwardMessage') {
-					instance.messageControlsDiv.css('display', 'block');
-					instance.messageReadDiv.css('display', 'block');
-					instance.messageOptionsDiv.css('display', 'block');
-					instance.messageSendDiv.css('display', 'block');
+					instance.messageControlsDiv.show();
+					instance.messageReadDiv.show();
+					instance.messageOptionsDiv.show();
+					instance.messageSendDiv.show();
 				}
 				else if (viewMode == 'composeMessage') {
 					instance.clearOutgoingMessage();
 
-					instance.messageSendDiv.css('display', 'block');
+					instance.messageSendDiv.show();
 
 					try {
-						instance.sendBodySpan.css('visibility', 'visible');
+						instance.sendBodySpan.show();
 						//instance.sendBodyEditor.setHTML('');
 					}
 					catch (ex) {
@@ -1190,7 +1200,7 @@ Liferay.Mail = {
 					fwdHeader += 'Subject: ' + msgSubject + '<br />';
 					fwdHeader += 'To: ' + msgTo + '<br /><br />';
 
-					instance.sendBodySpan.css('visibility', 'visible');
+					instance.sendBodySpan.show();
 					instance.sendBodyEditor.setHTML(fwdHeader + msgBody);
 				}
 			}
@@ -1217,7 +1227,7 @@ Liferay.Mail = {
 				if (!messageModified) {
 					var replyHeader = '<br /><br />On ' + msgDate + ', <' + msgFrom + '> wrote:<br /><br />';
 
-					instance.sendBodySpan.css('visibility', 'visible');
+					instance.sendBodySpan.show();
 					instance.sendBodyEditor.setHTML(replyHeader + msgBody);
 				}
 			}
