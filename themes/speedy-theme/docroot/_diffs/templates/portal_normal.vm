@@ -1,196 +1,203 @@
-#parse ($init)
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+#parse ($init)
+
 <html>
 <head>
-<title>$company_name - $the_title</title>
-<script type="text/javascript">
-efn = function () {};
-jQuery = Class = function () {
-	return {
-		length: 0,
-		val: efn
-	};
-};
+	<title>$company_name - $the_title</title>
 
-Liferay = {
-	Portal: {
-		Tabs: {
-			show: efn
+	<script type="text/javascript">
+		efn = function() {};
+
+		jQuery = Class = function() {
+			return {
+				length: 0,
+				val: efn
+			};
+		};
+
+		Liferay = {
+			Portal: {
+				Tabs: {
+					show: efn
+				}
+			},
+			Portlet: {
+				onLoad: efn
+			},
+			Util: {
+				focusFormField: efn
+			}
+		};
+
+		submitForm = function(f, a) {
+			if (a) {
+				f.action = a;
+			}
+
+			f.submit();
+		};
+	</script>
+
+	<style type="text/css">
+		body, h1, h2, ul, li, #banner h1.logo {
+			margin: 0;
+			padding: 0;
 		}
-	},
-	Portlet: {
-		onLoad: efn
-	},
-	Util: {
-		focusFormField: efn
- 	}
-};
 
-submitForm = function (f, a) {
-	if (a) { f.action = a; }
-	f.submit();
-};
-</script>
-<style type="text/css">
-body, h1, h2, ul, li, #banner h1.logo {
-	margin: 0;
-	padding: 0;
-}
+		body {
+			background: #f2f2f2;
+			cursor: default;
+			font: 11px/1.6 'Arial', 'Helvetica', 'Verdana', sans-serif;
+		}
 
-body {
-	background: #f2f2f2;
-	cursor: default;
-	font: 11px/1.6 'Arial', 'Helvetica', 'Verdana', sans-serif;
-}
+		li {
+			list-style-type: none;
+		}
 
-li {
-	list-style-type: none;
-}
+		a {
+			color: #369;
+		}
 
-a {
-	color: #369;
-}
+		#banner {
+			background: #2a2a33;
+			color: #eee;
+			height: 90px;
+			padding: 5px 10px;
+			position: relative;
+		}
 
-#banner {
-	background: #2a2a33;
-	color: #eee;
-	height: 90px;
-	padding: 5px 10px;
-	position: relative;
-}
+		#banner h1.logo {
+			font-size: 2em;
+			left: 5%;
+			position: absolute;
+			top: 16px;
+		}
 
-#banner h1.logo {
-	font-size: 2em;
-	left: 5%;
-	position: absolute;
-	top: 16px;
-}
+		#banner .logo a {
+			text-decoration: none;
+		}
 
-#banner .logo a {
-	text-decoration: none;
-}
+		#navigation {
+			background: #020509;
+			border-top: 1px solid #304049;
+			height: 29px;
+			margin: 0 auto 20px;
+		}
 
-#navigation {
-	background: #020509;
-	border-top: 1px solid #304049;
-	height: 29px;
-	margin: 0 auto 20px;
-}
+		#navigation ul, #content-wrapper {
+			margin: 0 auto;
+			width: 90%;
+		}
 
-#navigation ul, #content-wrapper {
-	margin: 0 auto;
-	width: 90%;
-}
+		#navigation li {
+			border: 1px solid #304049;
+			display: inline;
+			float: left;
+			margin: -1px 0pt 0pt -1px;
+			position: relative;
+		}
 
-#navigation li {
-	border: 1px solid #304049;
-	display: inline;
-	float: left;
-	margin: -1px 0pt 0pt -1px;
-	position: relative;
-}
+		#navigation li.selected a, #navigation li.selected a:hover {
+			background-color: #1E2529;
+			color: #FFFFFF;
+		}
 
-#navigation li.selected a, #navigation li.selected a:hover {
-	background-color: #1E2529;
-	color: #FFFFFF;
-}
+		#navigation li a:hover {
+			background-color: #161c1f;
+			color: #FFFFFF;
+		}
 
-#navigation li a:hover {
-	background-color: #161c1f;
-	color: #FFFFFF;
-}
+		#navigation li a, .lfr-dock a {
+			color: #D3DADD;
+			display: block;
+			padding: 5px 20px;
+			text-decoration: none;
+		}
 
-#navigation li a, .lfr-dock a {
-	color: #D3DADD;
-	display: block;
-	padding: 5px 20px;
-	text-decoration: none;
-}
+		.portlet {
+			background: #fff;
+			border: 2px solid #828F95;
+			margin: 0 0 10px;
+			padding: 3px;
+		}
 
-.portlet {
-	background: #fff;
-	border: 2px solid #828F95;
-	margin: 0 0 10px;
-	padding: 3px;
-}
+		.portlet-topper {
+			background: #D3DADD none repeat scroll 0% 0%;
+			border-bottom: 1px solid #AEB8BC;
+			padding-right: 40px;
+			position: relative;
+		}
 
-.portlet-topper {
-	background: #D3DADD none repeat scroll 0% 0%;
-	border-bottom: 1px solid #AEB8BC;
-	padding-right: 40px;
-	position: relative;
-}
+		.portlet-title {
+			display: block;
+			font-weight: bold;
+			min-width: 50%;
+			padding: 5px;
+		}
 
-.portlet-title {
-	display: block;
-	font-weight: bold;
-	min-width: 50%;
-	padding: 5px;
-}
+		.portlet-content, .portlet-minimized .portlet-content-container {
+			padding: 12px 10px 10px;
+		}
 
-.portlet-content, .portlet-minimized .portlet-content-container {
-	padding: 12px 10px 10px;
-}
+		.lfr-dock {
+			position: absolute;
+			right: 5%;
+			top: 10px;
+		}
 
-.lfr-dock {
-	position: absolute;
-	right: 5%;
-	top: 10px;
-}
+		.lfr-dock h2 {
+			text-align: right;
+			padding: 0 20px;
+		}
 
-.lfr-dock h2 {
-	text-align: right;
-	padding: 0 20px;
-}
+		.lfr-dock li {
+			float: left;
+			list-style-type: none;
+		}
 
-.lfr-dock li {
-	float: left;
-	list-style-type: none;
-}
-
-#tabs1already-registeredTabsSection, #tabs1forgot-passwordTabsSection, #_88_tabs5themesTabsSection, .ui-tab-content {
-	display: block !important;
-}
-
-</style>
+		#tabs1already-registeredTabsSection, #tabs1forgot-passwordTabsSection, #_88_tabs5themesTabsSection, .ui-tab-content {
+			display: block !important;
+		}
+	</style>
 </head>
 
 <body>
+	$theme.include($top_messages_include)
 
-$theme.include($top_messages_include)
+	<div id="wrapper">
+		<div id="banner">
+			<h1 class="logo">
+				<a href="$company_url">
+					<span>$company_name</span>
+				</a>
+			</h1>
 
-<div id="wrapper">
-	<div id="banner">
-		<h1 class="logo">
-			<a href="$company_url">
-				<span>$company_name</span>
-			</a>
-		</h1>
+			#parse ("$full_templates_path/dock.vm")
 
-		#parse ("$full_templates_path/dock.vm")
+			#if ($update_available_url)
+				<div class="popup-alert-notice">
+					<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>
+				</div>
+			#end
+		</div>
 
-		#if ($update_available_url)
-			<div class="popup-alert-notice">
-				<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>
-			</div>
+		#if ($has_navigation)
+			#parse ("$full_templates_path/navigation.vm")
+		#end
+
+		#if ($selectable)
+			$theme.include($content_include)
+		#else
+			$portletDisplay.recycle()
+
+			$portletDisplay.setTitle($the_title)
+
+			$theme.wrapPortlet("portlet.vm", $content_include)
 		#end
 	</div>
 
-	#if ($has_navigation)
-		#parse ("$full_templates_path/navigation.vm")
-	#end
-
-	#if ($selectable)
-		$theme.include($content_include)
-	#else
-		$portletDisplay.recycle()
-
-		$portletDisplay.setTitle($the_title)
-
-		$theme.wrapPortlet("portlet.vm", $content_include)
-	#end
-</div>
-<form name="hrefFm" method="post"></form>
+	<form name="hrefFm" method="post"></form>
 </body>
 
 </html>
