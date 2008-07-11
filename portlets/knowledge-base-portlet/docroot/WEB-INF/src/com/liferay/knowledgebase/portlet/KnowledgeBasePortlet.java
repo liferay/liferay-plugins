@@ -150,5 +150,5 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 	}
 
 	private static final String _KB_NODE = "KB";
-	
+
 }
