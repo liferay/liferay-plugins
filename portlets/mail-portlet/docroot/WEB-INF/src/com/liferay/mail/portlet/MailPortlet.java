@@ -136,7 +136,7 @@ public class MailPortlet extends JSPPortlet {
 		boolean sendMessage = ParamUtil.getBoolean(uploadReq, "sendMessage");
 
 		Message message = mailBoxManager.createMessage(
-				from, to, cc, bcc, subject, body, null);
+			from, to, cc, bcc, subject, body, null);
 
 		if (sendMessage) {
 			MailAccount fromMailAccount = new MailAccount(

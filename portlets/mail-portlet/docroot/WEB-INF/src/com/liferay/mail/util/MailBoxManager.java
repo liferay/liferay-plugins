@@ -211,19 +211,6 @@ public class MailBoxManager {
 		return message;
 	}
 
-	public Message createTestMessage() throws MessagingException {
-		SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy HH:mm");
-
-		Message message = new MimeMessage(getSession());
-
-		message.setFrom(new InternetAddress("liferay.mail.1@gmail.com"));
-		message.setRecipient(Message.RecipientType.TO, new InternetAddress("liferay.mail.2@gmail.com"));
-		message.setSubject("[" + sdf.format(new Date()) + "] dummy subject");
-		message.setContent("dummy content", "text/plain");
-
-		return message;
-	}
-
 	public JSONObject deleteAccountFromDisk() {
 		String filePath = MailDiskManager.getAccountFilePath(
 			_user, _mailAccount.getEmailAddress());

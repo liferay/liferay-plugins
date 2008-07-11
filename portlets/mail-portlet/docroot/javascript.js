@@ -228,10 +228,10 @@ Liferay.Mail = {
 
 		return instance._totalPages;
 	},
-	
+
 	getView: function() {
 		var instance = this;
-		
+
 		return instance._currentView;
 	},
 
@@ -384,8 +384,8 @@ Liferay.Mail = {
 		// Refresh folder handlers
 
 		instance.refreshFolderHandler();
-		
-		if (!silentUpdate) {		
+
+		if (!silentUpdate) {
 			instance.clearMessages();
 			instance.setView('viewFolder');
 
@@ -813,7 +813,7 @@ Liferay.Mail = {
 						instance.loadFolders(instance.getCurrentEmailAddress(), true);
 
 						if (instance.getCurrentFolderName() == null) {
-							jQuery('.folder:first').click();			
+							jQuery('.folder:first').click();
 						}
 					}
 
@@ -1004,8 +1004,8 @@ Liferay.Mail = {
 			var preMessage = Liferay.Language.get('deleting-messages');
 
 			instance.deleteMessages(
-				messageUids, 
-				preMessage, 
+				messageUids,
+				preMessage,
 				function(jsonResult) {
 					instance.sendUpdateMessage(instance.getCurrentEmailAddress(), true);
 
@@ -1238,10 +1238,10 @@ Liferay.Mail = {
 
 				var messageUids = instance.sendDraftMessageUidHidden.val();
 				var preMessage = Liferay.Language.get('discarding-draft');
-				
+
 				instance.deleteMessages(
-					messageUids, 
-					preMessage, 
+					messageUids,
+					preMessage,
 					function(jsonResult) {
 						instance.sendUpdateMessage(instance.getCurrentEmailAddress(), true);
 
@@ -1250,7 +1250,7 @@ Liferay.Mail = {
 				);
 			}
 
-			if (instance.getCurrentMessage() == null || instance.getCurrentMessage() == '') {
+			if ((instance.getCurrentMessage() == null) || instance.getCurrentMessage() == '') {
 				jQuery('.folder:first').click();
 			}
 			else {

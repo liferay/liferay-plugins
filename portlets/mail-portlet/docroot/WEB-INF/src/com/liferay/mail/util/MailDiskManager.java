@@ -113,7 +113,6 @@ public class MailDiskManager {
 		String accountFilePath = getAccountFilePath(user, emailAddress);
 
 		if (Validator.isNull(user) || Validator.isNull(emailAddress)) {
-
 			return null;
 		}
 
@@ -137,7 +136,6 @@ public class MailDiskManager {
 		throws MessagingException {
 
 		if (Validator.isNull(user)) {
-
 			return null;
 		}
 
@@ -200,7 +198,6 @@ public class MailDiskManager {
 		User user, String emailAddress) {
 
 		if (Validator.isNull(user) || Validator.isNull(emailAddress)) {
-
 			return null;
 		}
 
@@ -223,7 +220,6 @@ public class MailDiskManager {
 
 	public static JSONObject getJSONFolders(User user, String emailAddress) {
 		if (Validator.isNull(user) || Validator.isNull(emailAddress)) {
-
 			return null;
 		}
 
