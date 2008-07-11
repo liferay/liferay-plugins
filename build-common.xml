@@ -76,4 +76,16 @@ ECJ was automatically installed. Please rerun your task.
 
 		<echo message="${current.time}" />
 	</target>
+
+	<target name="build-plugin-env">
+		<java
+			classname="com.liferay.portal.tools.PluginsEnvironmentBuilder"
+			classpathref="portal.classpath"
+			fork="true"
+			maxmemory="256m"
+			newenvironment="true"
+		>
+			<arg line="." />
+		</java>
+	</target>
 </project>
