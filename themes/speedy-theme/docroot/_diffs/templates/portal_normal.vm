@@ -7,7 +7,9 @@
 	<title>$company_name - $the_title</title>
 
 	<script type="text/javascript">
-		efn = function() {};
+		efn = function() {
+			return 0;
+		};
 
 		jQuery = Class = function() {
 			return {
@@ -23,10 +25,13 @@
 				}
 			},
 			Portlet: {
-				onLoad: efn
+				isAjax: efn,
+				onLoad: efn,
+				process: efn
 			},
 			Util: {
-				focusFormField: efn
+				focusFormField: efn,
+				getSelectedIndex: efn
 			}
 		};
 
@@ -37,6 +42,10 @@
 
 			f.submit();
 		};
+
+		Tabs = {
+			show: efn
+		};
 	</script>
 
 	<style type="text/css">
@@ -46,7 +55,7 @@
 		}
 
 		body {
-			background: #f2f2f2;
+			background: #F2F2F2;
 			cursor: default;
 			font: 11px/1.6 'Arial', 'Helvetica', 'Verdana', sans-serif;
 		}
@@ -60,7 +69,7 @@
 		}
 
 		#banner {
-			background: #2a2a33;
+			background: #2A2A33;
 			color: #eee;
 			height: 90px;
 			padding: 5px 10px;
@@ -94,18 +103,18 @@
 			border: 1px solid #304049;
 			display: inline;
 			float: left;
-			margin: -1px 0pt 0pt -1px;
+			margin: -1px 0 0 -1px;
 			position: relative;
 		}
 
 		#navigation li.selected a, #navigation li.selected a:hover {
 			background-color: #1E2529;
-			color: #FFFFFF;
+			color: #FFF;
 		}
 
 		#navigation li a:hover {
-			background-color: #161c1f;
-			color: #FFFFFF;
+			background-color: #161C1F;
+			color: #FFF;
 		}
 
 		#navigation li a, .lfr-dock a {
@@ -116,7 +125,7 @@
 		}
 
 		.portlet {
-			background: #fff;
+			background: #FFF;
 			border: 2px solid #828F95;
 			margin: 0 0 10px;
 			padding: 3px;
