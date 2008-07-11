@@ -54,8 +54,8 @@ public class UploadAction extends PortletAction {
 			ActionRequest req, ActionResponse res)
 		throws Exception {
 
-		UploadPortletRequest uploadReq =
-			PortalUtil.getUploadPortletRequest(req);
+		UploadPortletRequest uploadReq = PortalUtil.getUploadPortletRequest(
+			req);
 
 		File file = uploadReq.getFile("file_location");
 
