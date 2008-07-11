@@ -3,6 +3,18 @@
 <project name="build-common-plugins" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="build-common.xml" />
 
+	<target name="build-plugin-envs">
+		<java
+			classname="com.liferay.portal.tools.PluginsEnvironmentBuilder"
+			classpathref="portal.classpath"
+			fork="true"
+			maxmemory="256m"
+			newenvironment="true"
+		>
+			<arg line="${basedir}" />
+		</java>
+	</target>
+
 	<target name="clean">
 		<antcall target="loop-modules">
 			<param name="loop.modules.cmd" value="clean-module" />
