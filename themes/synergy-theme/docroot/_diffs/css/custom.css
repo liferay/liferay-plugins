@@ -1,0 +1,124 @@
+body {
+    background: url(../images/common/body_bg.png) repeat-x left top;
+    font-family: Arial,Helvetica,sans-serif;
+    height: auto;
+}
+
+#content-wrapper {
+    margin: 0pt auto;
+    width: 99%;
+}
+
+#banner {
+    background: transparent;
+    height:100px;
+    top:-1px;
+}
+
+#wrapper {
+    background: transparent;
+    width: 100%;
+}
+
+#banner .logo {
+    padding: 18px 15px 0;
+}
+
+#banner .logo a {
+    background: url(../images/common/logo.png) no-repeat;
+    display: block;
+    font-size: 0;
+    height: 94px;
+    text-indent: -9999em;
+    width: 433px;
+}
+
+#navigation {
+    background: transparent;
+    border-top: 2px solid #0072b9;
+    margin: 12pt auto 20px;
+}
+
+#navigation li {
+    border: none;
+    margin-top: 0;
+    font-weight: bold;
+    text-align: center;
+    margin-right: 8px;    
+}
+
+#navigation li.selected a {
+    background: transparent url(../images/synergy/tab-selected.png) no-repeat;
+    color: #ffffff;
+    border: none;
+}
+
+#navigation li a {
+    background: transparent url(../images/synergy/tab-unselected.png) no-repeat;
+    width: 150px;
+    height: 75px;
+    padding: 5px 0px;
+}
+
+#navigation li a:hover {
+    background: transparent url(../images/synergy/tab-selected-hover.png) no-repeat;
+    border: none;
+}
+
+#navigation a {
+    color: #0072b9;
+}
+
+.js #add-page {
+    background: transparent none repeat scroll 0% 0%;
+    border: none;
+    padding-bottom: 6px;
+    color: #ffffff;
+}
+
+.js #navigation .enter-page .save-page {
+    color: #000000;
+}
+
+.js #navigation .enter-page {
+    background-color: transparent;
+    padding: 1px;
+}
+
+.js .interactive-mode {
+  background: transparent;
+}
+
+.js .interactive-mode h2 {
+  background: transparent;
+}
+
+.js .interactive-mode h2 span {
+  background: transparent;
+  border-right: none;
+}
+
+
+.js .save-page {
+    background: transparent;
+    margin: 0pt 10px;
+    padding-left: 20px;
+}
+
+.portlet-topper {
+    background: transparent none repeat scroll 0% 0%;
+    border-bottom: 2px solid #0072b9;
+    padding-right:40px;
+    position:relative;
+}
+
+.portlet {
+    background: #ffffff;
+    border-bottom: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+    margin:0pt 0pt 10px;
+    padding:3px;
+    text-align:left;
+}
