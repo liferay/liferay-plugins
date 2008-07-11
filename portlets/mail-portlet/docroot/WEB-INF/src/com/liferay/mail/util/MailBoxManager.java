@@ -138,15 +138,24 @@ public class MailBoxManager {
 			mailOutHostName, mailOutPort, mailSecure, password, username);
 	}
 
-	public long createDraftMessage(
-			String oldDraftMessageUid, String from, String to, String cc,
-			String bcc, String subject, String body, File[] files)
+	public Folder createFolder(String folderName) throws MessagingException {
+		Folder newFolder = getStore().getFolder(folderName);
+
+		if (!newFolder.exists()) {
+			newFolder.create(Folder.HOLDS_MESSAGES);
+		}
+
+		return newFolder;
+	}
+
+	public Message createMessage(
+			String from, String to, String cc, String bcc, String subject,
+			String body, File[] files)
 		throws MessagingException {
 
-		// Create new draft message
+		// Create new message
 
 		Message message = new MimeMessage(getSession());
-		Folder draftsFolder = getDraftsFolder();
 
 		// Fill message fields
 
@@ -199,33 +208,20 @@ public class MailBoxManager {
 
 		message.setContent(multipart);
 
-		// Append message to folder and get messageUid
-
-		long newDraftMessageUid = ((IMAPFolder)draftsFolder).getUIDNext();
-
-		draftsFolder.appendMessages(new Message[]{message});
-		draftsFolder.close(true);
-
-		storeMessageToDisk(getMessageByUid(draftsFolder, newDraftMessageUid));
-
-		// Remove old draft message
-
-		if (Validator.isNotNull(oldDraftMessageUid)) {
-			deleteMessage(
-				draftsFolder, GetterUtil.getLong(oldDraftMessageUid), true);
-		}
-
-		return newDraftMessageUid;
+		return message;
 	}
 
-	public Folder createFolder(String folderName) throws MessagingException {
-		Folder newFolder = getStore().getFolder(folderName);
+	public Message createTestMessage() throws MessagingException {
+		SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy HH:mm");
 
-		if (!newFolder.exists()) {
-			newFolder.create(Folder.HOLDS_MESSAGES);
-		}
+		Message message = new MimeMessage(getSession());
 
-		return newFolder;
+		message.setFrom(new InternetAddress("liferay.mail.1@gmail.com"));
+		message.setRecipient(Message.RecipientType.TO, new InternetAddress("liferay.mail.2@gmail.com"));
+		message.setSubject("[" + sdf.format(new Date()) + "] dummy subject");
+		message.setContent("dummy content", "text/plain");
+
+		return message;
 	}
 
 	public JSONObject deleteAccountFromDisk() {
@@ -241,23 +237,23 @@ public class MailBoxManager {
 		return jsonObj;
 	}
 
-	public void deleteMessage(Folder folder, long messageUid, boolean expunge)
-		throws MessagingException {
+	public void deleteMessage(Folder folder, long messageUid, boolean expunge) {
+		try {
 
-		if (!folder.isOpen()) {
-			folder.open(Folder.READ_WRITE);
-		}
+			// Delete from server
 
-		// Delete from server
+			Message message = getMessageByUid(folder, messageUid);
 
-		Message message = getMessageByUid(folder, messageUid);
+			if (Validator.isNotNull(message)) {
+				message.setFlag(Flags.Flag.DELETED, true);
 
-		if (Validator.isNotNull(message)) {
-			message.setFlag(Flags.Flag.DELETED, true);
-
-			if (expunge) {
-				folder.close(true);
+				if (expunge) {
+					folder.close(true);
+				}
 			}
+		}
+		catch (MessagingException me) {
+			_log.error(me, me);
 		}
 
 		// Delete from local disk
@@ -370,39 +366,53 @@ public class MailBoxManager {
 		return jsonObj;
 	}
 
-	public void sendMessage(MailAccount fromMailAccount, long draftMessageUid) {
+	public long saveMessage(Message message, String oldDraftMessageUid)
+		throws MessagingException {
+
+		Folder draftsFolder = getDraftsFolder();
+
+		// Append message to folder and get messageUid
+
+		long newDraftMessageUid = ((IMAPFolder)draftsFolder).getUIDNext();
+
+		draftsFolder.appendMessages(new Message[]{message});
+
+		storeMessageToDisk(getMessageByUid(draftsFolder, newDraftMessageUid));
+
+		// Remove old draft message
+
+		if (Validator.isNotNull(oldDraftMessageUid)) {
+			deleteMessage(
+				draftsFolder, GetterUtil.getLong(oldDraftMessageUid), true);
+		}
+
+		return newDraftMessageUid;
+	}
+
+	public void sendMessage(MailAccount fromMailAccount, Message message) {
 		Transport transport = null;
 
 		try {
-			// Get message draft
-
-			Folder draftsFolder = getDraftsFolder();
-
-			Message message = getMessageByUid(draftsFolder, draftMessageUid);
 
 			// Send message
 
 			Session session = getOutgoingSession(fromMailAccount);
 
-			transport = session.getTransport("smtp");
+			if (fromMailAccount.isMailSecure()) {
+				transport = session.getTransport("smtps");
+			}
+			else {
+				transport = session.getTransport("smtp");
+			}
 
 			transport.connect(
+				fromMailAccount.getMailOutHostName(),
 				fromMailAccount.getUsername(), fromMailAccount.getPassword());
 
 			transport.sendMessage(message, message.getAllRecipients());
-
-			deleteMessage(draftsFolder, draftMessageUid, true);
 		}
 		catch (MessagingException me) {
 			_log.error(me, me);
-		}
-		finally {
-			try {
-				transport.close();
-			}
-			catch (MessagingException me) {
-				_log.error(me, me);
-			}
 		}
 	}
 
@@ -537,13 +547,15 @@ public class MailBoxManager {
 	protected String getAddresses(Address[] addresses) {
 		StringBuilder sb = new StringBuilder();
 
-		if (Validator.isNotNull(addresses)) {
-			for (InternetAddress address : (InternetAddress[])addresses) {
-				sb.append(address.getAddress() + StringPool.COMMA);
-			}
+		if (Validator.isNull(addresses)) {
+			return StringPool.BLANK;
 		}
 
-		return sb.toString();
+		for (InternetAddress address : (InternetAddress[])addresses) {
+			sb.append(address.getAddress() + StringPool.COMMA + StringPool.SPACE);
+		}
+
+		return sb.substring(0, sb.length() - 2);
 	}
 
 	protected void getBody(
@@ -869,11 +881,11 @@ public class MailBoxManager {
 			props.put("mail.smtp.auth", "true");
 		}
 
-		props.put("mail.debug", "false");
+		props.put("mail.debug", "true");
 
 		Session session = Session.getDefaultInstance(props, null);
 
-		session.setDebug(false);
+		session.setDebug(true);
 
 		return session;
 	}

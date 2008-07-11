@@ -112,6 +112,11 @@ public class MailDiskManager {
 	public static JSONObject getJSONAccount(User user, String emailAddress) {
 		String accountFilePath = getAccountFilePath(user, emailAddress);
 
+		if (Validator.isNull(user) || Validator.isNull(emailAddress)) {
+
+			return null;
+		}
+
 		try {
 			if (FileUtil.exists(accountFilePath)) {
 				return JSONFactoryUtil.createJSONObject(
@@ -130,6 +135,11 @@ public class MailDiskManager {
 
 	public static JSONObject getJSONAccounts(User user)
 		throws MessagingException {
+
+		if (Validator.isNull(user)) {
+
+			return null;
+		}
 
 		String userPath = getUserPath(user);
 
@@ -161,6 +171,12 @@ public class MailDiskManager {
 	public static JSONObject getJSONFolder(
 		User user, String emailAddress, String folderName) {
 
+		if (Validator.isNull(user) || Validator.isNull(emailAddress) ||
+			Validator.isNull(folderName)) {
+
+			return null;
+		}
+
 		String folderFilePath = getFolderFilePath(
 			user, emailAddress, folderName);
 
@@ -183,6 +199,11 @@ public class MailDiskManager {
 	public static JSONObject getJSONDraftsFolder(
 		User user, String emailAddress) {
 
+		if (Validator.isNull(user) || Validator.isNull(emailAddress)) {
+
+			return null;
+		}
+
 		JSONObject jsonObj = getJSONFolders(user, emailAddress);
 
 		JSONArray jsonArray = jsonObj.getJSONArray("folders");
@@ -201,6 +222,11 @@ public class MailDiskManager {
 	}
 
 	public static JSONObject getJSONFolders(User user, String emailAddress) {
+		if (Validator.isNull(user) || Validator.isNull(emailAddress)) {
+
+			return null;
+		}
+
 		String accountPath = getAccountPath(user, emailAddress);
 
 		String[] folderNames = FileUtil.listDirs(accountPath);
@@ -240,6 +266,12 @@ public class MailDiskManager {
 	public static JSONObject getJSONMessageByUid(
 		User user, String emailAddress, String folderName, long messageUid) {
 
+		if (Validator.isNull(user) || Validator.isNull(emailAddress) ||
+			Validator.isNull(folderName)) {
+
+			return null;
+		}
+
 		String messageFilePath = getMessageFilePath(
 			user, emailAddress, folderName, messageUid);
 
@@ -267,6 +299,12 @@ public class MailDiskManager {
 		User user, String emailAddress, String folderName, long messageUid,
 		int offset, String searchString) {
 
+		if (Validator.isNull(user) || Validator.isNull(emailAddress) ||
+			Validator.isNull(folderName)) {
+
+			return null;
+		}
+
 		searchString = searchString.trim();
 
 		long[] messageUids = null;
@@ -293,6 +331,12 @@ public class MailDiskManager {
 	public static JSONObject getJSONMessagesByPage(
 		User user, String emailAddress, String folderName, int pageNumber,
 		int messagesPerPage) {
+
+		if (Validator.isNull(user) || Validator.isNull(emailAddress) ||
+			Validator.isNull(folderName)) {
+
+			return null;
+		}
 
 		try {
 
@@ -330,6 +374,12 @@ public class MailDiskManager {
 	public static JSONObject getJSONMessagesBySearch(
 		User user, String emailAddress, String folderName, int pageNumber,
 		int messagesPerPage, String searchString) {
+
+		if (Validator.isNull(user) || Validator.isNull(emailAddress) ||
+			Validator.isNull(folderName)) {
+
+			return null;
+		}
 
 		searchString = searchString.trim();
 

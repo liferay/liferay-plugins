@@ -38,6 +38,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Part;
 
@@ -134,14 +135,17 @@ public class MailPortlet extends JSPPortlet {
 		String body = ParamUtil.getString(uploadReq, "sendBody");
 		boolean sendMessage = ParamUtil.getBoolean(uploadReq, "sendMessage");
 
-		long newDraftMessageUid = mailBoxManager.createDraftMessage(
-			oldDraftMessageUid, from, to, cc, bcc, subject, body, null);
+		Message message = mailBoxManager.createMessage(
+				from, to, cc, bcc, subject, body, null);
 
 		if (sendMessage) {
 			MailAccount fromMailAccount = new MailAccount(
 				PortalUtil.getUser(uploadReq), from);
 
-			mailBoxManager.sendMessage(fromMailAccount, newDraftMessageUid);
+			mailBoxManager.sendMessage(fromMailAccount, message);
+		}
+		else {
+			mailBoxManager.saveMessage(message, oldDraftMessageUid);
 		}
 	}
 

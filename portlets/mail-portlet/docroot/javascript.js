@@ -227,6 +227,12 @@ Liferay.Mail = {
 
 		return instance._totalPages;
 	},
+	
+	getView: function() {
+		var instance = this;
+		
+		return instance._currentView;
+	},
 
 	isSearchMode: function() {
 		return _isSearchMode;
@@ -249,7 +255,7 @@ Liferay.Mail = {
 		);
 	},
 
-	loadFolders: function(emailAddress) {
+	loadFolders: function(emailAddress, silentUpdate) {
  		var instance = this;
 
 		// Set account id
@@ -268,7 +274,7 @@ Liferay.Mail = {
 				},
 				dataType: 'json',
 				success: function(jsonFolders) {
-					instance.loadJsonFolders(jsonFolders);
+					instance.loadJsonFolders(jsonFolders, silentUpdate);
 					instance.accountSelectionSelect.val(emailAddress);
 					instance.sendFromSelect.val(emailAddress);
 				},
@@ -330,10 +336,10 @@ Liferay.Mail = {
 		// Refresh folder handlers
 
 		instance.setCurrentEmailAddress(firstEmailAddress);
-		instance.loadFolders(firstEmailAddress);
+		instance.loadFolders(firstEmailAddress, false);
 	},
 
-	loadJsonFolders: function(jsonFolders) {
+	loadJsonFolders: function(jsonFolders, silentUpdate) {
 		var instance = this;
 
 		instance.clearStatus();
@@ -366,10 +372,13 @@ Liferay.Mail = {
 		// Refresh folder handlers
 
 		instance.refreshFolderHandler();
-		instance.clearMessages();
-		instance.setView('viewFolder');
+		
+		if (!silentUpdate) {		
+			instance.clearMessages();
+			instance.setView('viewFolder');
 
-		jQuery('.folder:first').click();
+			jQuery('.folder:first').click();
+		}
 	},
 
 	loadJsonMessage: function(jsonMessage) {
@@ -687,14 +696,8 @@ Liferay.Mail = {
 
 			return false;
 		});
-	},
-
-	refreshFolders: function(resetCache) {
-		var instance = this;
-
-		instance.setStatus(Liferay.Language.get('refreshing-account'));
-
-		instance.loadFolders(instance.getCurrentEmailAddress());
+		
+		jQuery(".folder[folderName='" + instance.getCurrentFolderName() + "']").addClass('folder-selected results-header');
 	},
 
 	refreshMessageControlsNavigation: function() {
@@ -790,6 +793,20 @@ Liferay.Mail = {
 				},
 				dataType: 'json',
 				success: function(jsonAccounts) {
+
+					// If looking at a folder, auto update data
+
+					if (instance.getView() == 'viewFolder') {
+
+						// Automatically update folder listing
+
+						instance.loadFolders(instance.getCurrentEmailAddress(), true);
+
+						if (instance.getCurrentFolderName() == null) {
+							jQuery('.folder:first').click();			
+						}
+					}
+
 					if (loadMessages) {
 						instance.loadMessagesByPage(instance.getCurrentFolderName(), instance.getCurrentPageNumber());
 						instance.clearStatus();
@@ -887,6 +904,8 @@ Liferay.Mail = {
 	setView: function(viewMode) {
 		var instance = this;
 
+		_currentView = viewMode;
+
 		// Hide everything
 
 		instance.configurationPromptDiv.css('display', 'none');
@@ -906,8 +925,8 @@ Liferay.Mail = {
 			instance.emailContainerDiv.css('display', 'none');
 		}
 		else {
-			instance.accountContainerDiv.css('display', 'table');
-			instance.emailContainerDiv.css('display', 'table');
+			instance.accountContainerDiv.css('display', 'block');
+			instance.emailContainerDiv.css('display', 'block');
 
 			if (viewMode == 'viewFolder') {
 				instance.clearIncomingMessage();
@@ -953,7 +972,7 @@ Liferay.Mail = {
 		instance.accountSelectionSelect.change(function() {
 			var newEmailAddress = jQuery(this).val();
 
-			instance.loadFolders(newEmailAddress);
+			instance.loadFolders(newEmailAddress, false);
 		});
 
 		instance.composeMailLink.click(function() {
@@ -1221,7 +1240,7 @@ Liferay.Mail = {
 				);
 			}
 
-			if (instance.getCurrentMessage() == '') {
+			if (instance.getCurrentMessage() == null || instance.getCurrentMessage() == '') {
 				jQuery('.folder:first').click();
 			}
 			else {
@@ -1240,8 +1259,10 @@ Liferay.Mail = {
 		        },
 		        dataType: 'json',
 		        iframe: true,
-		        success: function() {
+		        success: function(responseText, statusText) {
+					instance.setView('viewFolder');
 
+					instance.setStatus(Liferay.Language.get('the-email-was-sent-successfully'));
 	        	}
 		    };
 
@@ -1276,8 +1297,9 @@ Liferay.Mail = {
 
 	_currentEmailAddress: null,
 	_currentFolderName: null,
-	_currentPageNumber: null,
 	_currentMessage: null,
+	_currentPageNumber: null,
+	_currentView: 'viewFolder',
 	_isSearchMode: false,
 
 	_accounts: null,
