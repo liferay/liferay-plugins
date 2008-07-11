@@ -925,7 +925,7 @@ Liferay.Mail = {
 	setView: function(viewMode) {
 		var instance = this;
 
-		_currentView = viewMode;
+		instance._currentView = viewMode;
 
 		// Hide everything
 
