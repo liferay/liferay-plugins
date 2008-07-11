@@ -22,30 +22,19 @@
  */
 %>
 
-<%@ include file="/init.jsp" %>
+<%@ include file="/json_init.jsp" %>
 
-<script type="text/javascript">
-	jQuery(
-		function() {
-			Liferay.MailConfiguration.init(
-				{
-					preconfiguredMailAccounts : <%= PortletProps.get("preconfigured.mail.accounts") %>
-				}
-			);
-		}
-	);
-</script>
+<%
+String emailAddress = ParamUtil.getString(request, "emailAddress");
+String mailInHostName = ParamUtil.getString(request, "mailInHostName");
+String mailInPort = ParamUtil.getString(request, "mailInPort");
+String mailOutHostName = ParamUtil.getString(request, "mailOutHostName");
+String mailOutPort = ParamUtil.getString(request, "mailOutPort");
+boolean mailSecure = ParamUtil.getBoolean(request, "mailSecure");
+String password = ParamUtil.getString(request, "password");
+String username = ParamUtil.getString(request, "username");
 
-<div class="mail-portlet">
-	<div class="accounts-configuration">
-		<liferay-ui:tabs names="add-email-accounts" />
+MailBoxManager mailBoxManager = new MailBoxManager(user, emailAddress, false, mailInHostName, mailInPort, mailOutHostName, mailOutPort, mailSecure, password, username);
+%>
 
-		<div class="preconfigured-mail-accounts"></div>
-
-		<br />
-
-		<liferay-ui:tabs names="your-current-email-accounts" />
-
-		<div class="current-mail-accounts"></div>
-	</div>
-</div>
+<%= mailBoxManager.testAccount() %>

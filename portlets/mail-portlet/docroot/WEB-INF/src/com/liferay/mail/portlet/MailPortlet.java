@@ -26,10 +26,14 @@ import com.liferay.mail.model.MailAccount;
 import com.liferay.mail.util.MailBoxManager;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.util.servlet.PortletResponseUtil;
@@ -66,7 +70,7 @@ public class MailPortlet extends JSPPortlet {
 				req, ActionRequest.ACTION_NAME);
 
 			if (actionName.equals("saveOrSendMessage")) {
-				saveOrSendMessage(req);
+				saveOrSendMessage(req, res);
 			}
 		}
 		catch (Exception e) {
@@ -114,7 +118,10 @@ public class MailPortlet extends JSPPortlet {
 		}
 	}
 
-	protected void saveOrSendMessage(ActionRequest req) throws Exception {
+	protected void saveOrSendMessage(
+			ActionRequest req, ActionResponse res)
+		throws Exception {
+
 		UploadPortletRequest uploadReq = PortalUtil.getUploadPortletRequest(
 			req);
 
@@ -138,15 +145,28 @@ public class MailPortlet extends JSPPortlet {
 		Message message = mailBoxManager.createMessage(
 			from, to, cc, bcc, subject, body, null);
 
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
+
 		if (sendMessage) {
 			MailAccount fromMailAccount = new MailAccount(
 				PortalUtil.getUser(uploadReq), from);
 
-			mailBoxManager.sendMessage(fromMailAccount, message);
+			jsonObj = mailBoxManager.sendMessage(fromMailAccount, message);
 		}
 		else {
-			mailBoxManager.saveMessage(message, oldDraftMessageUid);
+			jsonObj = mailBoxManager.saveMessage(message, oldDraftMessageUid);
 		}
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String url =
+			PortalUtil.getLayoutURL(themeDisplay) + "/-/mail/message_result?" +
+			jsonObj.toString();
+
+		String redirect = ParamUtil.getString(uploadReq, "redirect");
+
+		res.sendRedirect(redirect);
 	}
 
 }

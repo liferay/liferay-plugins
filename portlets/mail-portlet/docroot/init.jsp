@@ -36,6 +36,26 @@
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.util.portlet.PortletProps" %>
 
+<%@ page import="javax.portlet.PortletMode" %>
+<%@ page import="javax.portlet.PortletURL" %>
+<%@ page import="javax.portlet.WindowState" %>
+
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />
+
+<%
+WindowState windowState = null;
+PortletMode portletMode = null;
+
+if (renderRequest != null) {
+	windowState = renderRequest.getWindowState();
+	portletMode = renderRequest.getPortletMode();
+}
+else if (resourceRequest != null) {
+	windowState = resourceRequest.getWindowState();
+	portletMode = resourceRequest.getPortletMode();
+}
+
+String currentURL = PortalUtil.getCurrentURL(request);
+%>

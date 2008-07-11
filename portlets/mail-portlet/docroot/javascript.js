@@ -238,7 +238,7 @@ Liferay.Mail = {
 	initializeEditor: function() {
 		setTimeout('Liferay.Mail.messageDiv.show()', 1000);
 		setTimeout('Liferay.Mail.messageSendDiv.show()', 1000);
-		setTimeout('Liferay.Mail.messageDiv.hide()', 2000);
+		setTimeout('Liferay.Mail.messageDiv.hide()', 3000);
 	},
 
 	isSearchMode: function() {
@@ -284,8 +284,11 @@ Liferay.Mail = {
 				dataType: 'json',
 				success: function(jsonFolders) {
 					instance.loadJsonFolders(jsonFolders, silentUpdate);
-					instance.accountSelectionSelect.val(emailAddress);
-					instance.sendFromSelect.val(emailAddress);
+
+					if (!silentUpdate) {
+						instance.accountSelectionSelect.val(emailAddress);
+						instance.sendFromSelect.val(emailAddress);
+					}
 				},
 				type: 'POST'
 			}
@@ -379,7 +382,15 @@ Liferay.Mail = {
 		// Inject HTML
 
 		instance.foldersDiv.html(htmlFolderList);
-		jQuery(".folder[folderName='" + instance.getCurrentFolderName() + "']").addClass('folder-selected results-header');
+
+		if (instance.getView() == 'composeMessage') {
+			jQuery('.folder').removeClass('folder-selected results-header');
+			instance.composeMailLink.addClass('folder-selected results-header');
+		}
+		else {
+			jQuery(".folder[folderName='" + instance.getCurrentFolderName() + "']").addClass('folder-selected results-header');
+			instance.composeMailLink.removeClass('folder-selected results-header');
+		}
 
 		// Refresh folder handlers
 
@@ -1261,6 +1272,7 @@ Liferay.Mail = {
 		});
 
 		instance.sendForm.submit(function() {
+		    /*
 		    var options = {
 		        beforeSubmit: function(formData, jqForm, options) {
 		        	// validate message and return false if not valid
@@ -1279,6 +1291,7 @@ Liferay.Mail = {
 	        instance.sendForm.ajaxSubmit(options);
 
 	        return false;
+	        */
 		});
 
 		instance.messageSendSaveButton.click(function() {
@@ -1367,6 +1380,33 @@ Liferay.MailConfiguration = {
 		);
 	},
 
+	saveAccountConfiguration: function (emailAddressValue, mailInHostNameValue, mailInPortValue, mailOutHostNameValue, mailOutPortValue, mailSecureValue, passwordValue, usernameValue) {
+		var instance = this;
+
+		jQuery.ajax(
+			{
+				url: themeDisplay.getLayoutURL() + '/-/mail/update_account',
+				data: {
+					emailAddress: emailAddressValue,
+					mailInHostName: mailInHostNameValue,
+					mailInPort: mailInPortValue,
+					mailOutHostName: mailOutHostNameValue,
+					mailOutPort: mailOutPortValue,
+					mailSecure: mailSecureValue,
+					password: passwordValue,
+					username: usernameValue
+				},
+				dataType: 'json',
+				success: function(success) {
+					instance.loadJSONAccountsConfiguration();
+
+					alert(Liferay.Language.get('you-have-successfully-added-a-new-email-account'));
+				},
+				type: 'POST'
+			}
+		);
+	},
+
 	loadJSONAccountsConfiguration: function () {
 		var instance = this;
 
@@ -1433,18 +1473,13 @@ Liferay.MailConfiguration = {
 		jQuery('.save-account').click(function() {
 			var accountTable = jQuery(this).parents('.account:first');
 
-			var passwordVal = accountTable.find('.password:first').val();
-			var usernameVal = accountTable.find('.username:first').val();
-
-			// Validation
-
-			if ((passwordVal == '') || (usernameVal == '')) {
-				return false;
-			}
-
 			// Get JSON
 
 			var emailAddressValue = accountTable.find('.email-address:first').val();
+			var mailInHostNameValue = accountTable.find('.in-hostname:first').val();
+			var mailInPortValue = accountTable.find('.in-port:first').val(); 
+			var mailOutHostNameValue = accountTable.find('.out-hostname:first').val();
+			var mailOutPortValue = accountTable.find('.out-port:first').val();
 			var mailSecureValue = false;
 
 			if (accountTable.find('.secure:first').attr('checked')) {
@@ -1454,22 +1489,38 @@ Liferay.MailConfiguration = {
 				mailSecureValue = true;
 			}
 
+			var passwordValue = accountTable.find('.password:first').val();
+			var usernameValue = accountTable.find('.username:first').val();
+
+			// Test account configuration
+
 			jQuery.ajax(
 				{
-					url: themeDisplay.getLayoutURL() + '/-/mail/update_account',
+					url: themeDisplay.getLayoutURL() + '/-/mail/test_account',
 					data: {
 						emailAddress: emailAddressValue,
-						mailInHostName: accountTable.find('.in-hostname:first').val(),
-						mailInPort: accountTable.find('.in-port:first').val(),
-						mailOutHostName: accountTable.find('.out-hostname:first').val(),
-						mailOutPort: accountTable.find('.out-port:first').val(),
+						mailInHostName: mailInHostNameValue,
+						mailInPort: mailInPortValue,
+						mailOutHostName: mailOutHostNameValue,
+						mailOutPort: mailOutPortValue,
 						mailSecure: mailSecureValue,
-						password: passwordVal,
-						username: usernameVal
+						password: passwordValue,
+						username: usernameValue
 					},
 					dataType: 'json',
-					success: function(success) {
-						instance.loadJSONAccountsConfiguration();
+					success: function(result) {
+						if (result.incoming && result.outgoing) {
+							instance.saveAccountConfiguration(emailAddressValue, mailInHostNameValue, mailInPortValue, mailOutHostNameValue, mailOutPortValue, mailSecureValue, passwordValue, usernameValue);
+						}
+						else if (!result.outgoing && !result.incoming) {
+							alert(Liferay.Language.get('you-have-failed-to-connect-to-the-imap-and-smtp-server'));
+						}
+						else if (!result.outgoing) {
+							alert(Liferay.Language.get('you-have-successfully-connected-to-the-imap-server-but-failed-to-connect-to-the-smtp-server'));
+						}
+						else if (!result.incoming) {
+							alert(Liferay.Language.get('you-have-failed-to-connect-to-the-imap-server-but-successfully-connected-to-the-smtp-server'));
+						}
 					},
 					type: 'POST'
 				}

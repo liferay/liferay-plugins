@@ -139,7 +139,7 @@ public class MailBoxManager {
 	}
 
 	public Folder createFolder(String folderName) throws MessagingException {
-		Folder newFolder = getStore().getFolder(folderName);
+		Folder newFolder = getStore(true).getFolder(folderName);
 
 		if (!newFolder.exists()) {
 			newFolder.create(Folder.HOLDS_MESSAGES);
@@ -207,6 +207,22 @@ public class MailBoxManager {
 		}
 
 		message.setContent(multipart);
+
+		return message;
+	}
+
+	public Message createTestMessage() throws MessagingException {
+		SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy HH:mm");
+
+		Message message = new MimeMessage(getSession());
+
+		message.setFrom(new InternetAddress(_mailAccount.getEmailAddress()));
+		message.setRecipient(
+			Message.RecipientType.TO,
+			new InternetAddress(_mailAccount.getEmailAddress()));
+		message.setSubject(
+			"[" + sdf.format(new Date()) + "] testing outgoing email");
+		message.setContent("testing outgoing email", "text/plain");
 
 		return message;
 	}
@@ -353,8 +369,10 @@ public class MailBoxManager {
 		return jsonObj;
 	}
 
-	public long saveMessage(Message message, String oldDraftMessageUid)
+	public JSONObject saveMessage(Message message, String oldDraftMessageUid)
 		throws MessagingException {
+
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
 		Folder draftsFolder = getDraftsFolder();
 
@@ -373,10 +391,17 @@ public class MailBoxManager {
 				draftsFolder, GetterUtil.getLong(oldDraftMessageUid), true);
 		}
 
-		return newDraftMessageUid;
+		jsonObj.put("success", true);
+		jsonObj.put("draftMessageUid", newDraftMessageUid);
+
+		return jsonObj;
 	}
 
-	public void sendMessage(MailAccount fromMailAccount, Message message) {
+	public JSONObject sendMessage(
+		MailAccount fromMailAccount, Message message) {
+
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
+
 		Transport transport = null;
 
 		try {
@@ -397,10 +422,16 @@ public class MailBoxManager {
 				fromMailAccount.getUsername(), fromMailAccount.getPassword());
 
 			transport.sendMessage(message, message.getAllRecipients());
+
+			jsonObj.put("success", true);
 		}
 		catch (MessagingException me) {
 			_log.error(me, me);
+
+			jsonObj.put("success", false);
 		}
+
+		return jsonObj;
 	}
 
 	public JSONObject sendUpdateMessage() {
@@ -529,6 +560,44 @@ public class MailBoxManager {
 			storeMessagesToDisk(messages);
 			storeFolderToDisk(folder, true, new Date());
 		}
+	}
+
+	public JSONObject testAccount() {
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
+
+		// Test incoming
+
+		Folder folder = null;
+
+		try {
+			folder = getStore(false).getDefaultFolder();
+
+			if (Validator.isNotNull(folder) &&
+				Validator.isNotNull(folder.list())) {
+
+				jsonObj.put("incoming", true);
+			}
+			else {
+				jsonObj.put("incoming", false);
+			}
+		}
+		catch (MessagingException me) {
+			jsonObj.put("incoming", false);
+		}
+
+		// Test outgoing
+
+		try {
+			JSONObject outgoing = sendMessage(
+				_mailAccount, createTestMessage());
+
+			jsonObj.put("outgoing", outgoing.getBoolean("success"));
+		}
+		catch (MessagingException me) {
+			jsonObj.put("outgoing", false);
+		}
+
+		return jsonObj;
 	}
 
 	protected String getAddresses(Address[] addresses) {
@@ -677,13 +746,13 @@ public class MailBoxManager {
 	}
 
 	protected Folder getFolder(String folderName) throws MessagingException {
-		Folder folder = getStore().getDefaultFolder();
+		Folder folder = getStore(true).getDefaultFolder();
 
 		return folder.getFolder(folderName);
 	}
 
 	protected List<Folder> getFolders() throws MessagingException {
-		Store store = getStore();
+		Store store = getStore(true);
 
 		IMAPFolder rootFolder = (IMAPFolder)store.getDefaultFolder();
 
@@ -857,22 +926,25 @@ public class MailBoxManager {
 	protected Session getOutgoingSession(MailAccount mailAccount) {
 		Properties props = new Properties();
 
-		props.put("mail.smtp.host", mailAccount.getMailOutHostName());
-		props.put("mail.smtp.port", mailAccount.getMailOutPort());
-
 		if (mailAccount.isMailSecure()) {
+			props.put("mail.smtps.auth", "true");
+			props.put("mail.smtp.host", mailAccount.getMailOutHostName());
+			props.put("mail.smtps.port", mailAccount.getMailOutPort());
 			props.put(
-				"mail.smtp.socketFactory.port", mailAccount.getMailOutPort());
-			props.put("mail.smtp.socketFactory.class", _SSL_FACTORY);
-			props.put("mail.smtp.socketFactory.fallback", "false");
-			props.put("mail.smtp.auth", "true");
+				"mail.smtps.socketFactory.port", mailAccount.getMailOutPort());
+			props.put("mail.smtps.socketFactory.class", _SSL_FACTORY);
+			props.put("mail.smtps.socketFactory.fallback", "false");
+		}
+		else {
+			props.put("mail.smtp.host", mailAccount.getMailOutHostName());
+			props.put("mail.smtp.port", mailAccount.getMailOutPort());
 		}
 
-		props.put("mail.debug", "true");
+		props.put("mail.debug", "false");
 
-		Session session = Session.getDefaultInstance(props, null);
+		Session session = Session.getInstance(props, null);
 
-		session.setDebug(true);
+		session.setDebug(false);
 
 		return session;
 	}
@@ -911,14 +983,18 @@ public class MailBoxManager {
 		return _session;
 	}
 
-	protected Store getStore() throws MessagingException {
-		if (Validator.isNull(_allStores)) {
-			_allStores = new ConcurrentHashMap<String, Store>();
-		}
+	protected Store getStore(boolean useOldStores) throws MessagingException {
+		Store store = null;
 
 		String key = _user.getUserId() + "." + _mailAccount.getEmailAddress();
 
-		Store store = (Store)_allStores.get(key);
+		if (useOldStores) {
+			if (Validator.isNull(_allStores)) {
+				_allStores = new ConcurrentHashMap<String, Store>();
+			}
+
+			store = (Store)_allStores.get(key);
+		}
 
 		if (Validator.isNotNull(store) && !store.isConnected()) {
 			store.close();
@@ -960,7 +1036,9 @@ public class MailBoxManager {
 
 			store.connect();
 
-			_allStores.put(key, store);
+			if (useOldStores) {
+				_allStores.put(key, store);
+			}
 		}
 
 		return store;
@@ -982,7 +1060,7 @@ public class MailBoxManager {
 			Store store = folder.getStore();
 
 			if (!store.isConnected()) {
-				store = getStore();
+				store = getStore(true);
 			}
 
 			folder = store.getFolder(folder.getFullName());

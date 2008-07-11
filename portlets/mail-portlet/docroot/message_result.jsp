@@ -22,30 +22,6 @@
  */
 %>
 
-<%@ include file="/init.jsp" %>
+<%@ include file="/json_init.jsp" %>
 
-<script type="text/javascript">
-	jQuery(
-		function() {
-			Liferay.MailConfiguration.init(
-				{
-					preconfiguredMailAccounts : <%= PortletProps.get("preconfigured.mail.accounts") %>
-				}
-			);
-		}
-	);
-</script>
-
-<div class="mail-portlet">
-	<div class="accounts-configuration">
-		<liferay-ui:tabs names="add-email-accounts" />
-
-		<div class="preconfigured-mail-accounts"></div>
-
-		<br />
-
-		<liferay-ui:tabs names="your-current-email-accounts" />
-
-		<div class="current-mail-accounts"></div>
-	</div>
-</div>
+<%= ParamUtil.getString(request, "result") %>
