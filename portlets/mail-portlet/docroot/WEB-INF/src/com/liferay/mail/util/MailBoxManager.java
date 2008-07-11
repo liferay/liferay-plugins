@@ -1093,6 +1093,7 @@ public class MailBoxManager {
 	public static final String _SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 
 	private static ConcurrentHashMap<String, Store> _allStores = null;
+
 	private static Log _log = LogFactory.getLog(MailBoxManager.class);
 
 	private User _user;
