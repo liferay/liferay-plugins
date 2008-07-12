@@ -77,6 +77,17 @@ ECJ was automatically installed. Please rerun your task.
 		<echo message="${current.time}" />
 	</target>
 
+	<target name="format-source">
+		<java
+			classname="com.liferay.portal.tools.SourceFormatter"
+			classpathref="portal.classpath"
+			fork="true"
+			newenvironment="true"
+		/>
+
+		<delete file="ServiceBuilder.temp" />
+	</target>
+
 	<target name="setup-eclipse">
 		<java
 			classname="com.liferay.portal.tools.PluginsEnvironmentBuilder"

@@ -51,15 +51,4 @@
 			</else>
 		</if>
 	</target>
-
-	<target name="format-source">
-		<java
-			classname="com.liferay.portal.tools.SourceFormatter"
-			classpathref="portal.classpath"
-			fork="true"
-			newenvironment="true"
-		/>
-
-		<delete file="ServiceBuilder.temp" />
-	</target>
 </project>
