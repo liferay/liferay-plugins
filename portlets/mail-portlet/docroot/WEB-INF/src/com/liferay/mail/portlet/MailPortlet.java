@@ -62,15 +62,16 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class MailPortlet extends JSPPortlet {
 
-	public void processAction(ActionRequest req, ActionResponse res)
+	public void processAction(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
 		try {
 			String actionName = ParamUtil.getString(
-				req, ActionRequest.ACTION_NAME);
+				actionRequest, ActionRequest.ACTION_NAME);
 
 			if (actionName.equals("saveOrSendMessage")) {
-				saveOrSendMessage(req, res);
+				saveOrSendMessage(actionRequest, actionResponse);
 			}
 		}
 		catch (Exception e) {
@@ -78,23 +79,29 @@ public class MailPortlet extends JSPPortlet {
 		}
 	}
 
-	public void serveResource(ResourceRequest req, ResourceResponse res)
+	public void serveResource(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException, PortletException {
 
-		String jspPage = req.getParameter("jspPage");
+		String jspPage = resourceRequest.getParameter("jspPage");
 
 		if (jspPage.equals("/attachment.jsp")) {
-			HttpServletRequest httpReq = PortalUtil.getHttpServletRequest(req);
+			HttpServletRequest request = PortalUtil.getHttpServletRequest(
+				resourceRequest);
 
-			String emailAddress = ParamUtil.getString(req, "emailAddress");
-			String folderName = ParamUtil.getString(req, "folderName");
-			int messageUid = ParamUtil.getInteger(req, "messageUid");
-			String fileName = ParamUtil.getString(req, "fileName");
-			String contentPath = ParamUtil.getString(req, "contentPath");
+			String emailAddress = ParamUtil.getString(
+				resourceRequest, "emailAddress");
+			String folderName = ParamUtil.getString(
+				resourceRequest, "folderName");
+			int messageUid = ParamUtil.getInteger(
+				resourceRequest, "messageUid");
+			String fileName = ParamUtil.getString(resourceRequest, "fileName");
+			String contentPath = ParamUtil.getString(
+				resourceRequest, "contentPath");
 
 			try {
 				MailBoxManager mailBoxManager = new MailBoxManager(
-					PortalUtil.getUser(httpReq), emailAddress);
+					PortalUtil.getUser(request), emailAddress);
 
 				Part messagePart = mailBoxManager.getAttachment(
 					folderName, messageUid, contentPath);
@@ -103,7 +110,8 @@ public class MailPortlet extends JSPPortlet {
 					InputStream is = messagePart.getInputStream();
 					String contentType = MimeTypesUtil.getContentType(fileName);
 
-					PortletResponseUtil.sendFile(res, fileName, is, contentType);
+					PortletResponseUtil.sendFile(
+						resourceResponse, fileName, is, contentType);
 				}
 			}
 			catch (MessagingException me) {
@@ -114,16 +122,16 @@ public class MailPortlet extends JSPPortlet {
 			}
 		}
 		else {
-			super.serveResource(req, res);
+			super.serveResource(resourceRequest, resourceResponse);
 		}
 	}
 
 	protected void saveOrSendMessage(
-			ActionRequest req, ActionResponse res)
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		UploadPortletRequest uploadReq = PortalUtil.getUploadPortletRequest(
-			req);
+			actionRequest);
 
 		String emailAddress = ParamUtil.getString(
 			uploadReq, "sendEmailAddress");
@@ -143,7 +151,7 @@ public class MailPortlet extends JSPPortlet {
 		boolean sendMessage = ParamUtil.getBoolean(uploadReq, "sendMessage");
 
 		Message message = mailBoxManager.createMessage(
-			from, to, cc, bcc, subject, body, new File[] { attachments });
+			from, to, cc, bcc, subject, body, new File[] {attachments});
 
 		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
@@ -157,16 +165,16 @@ public class MailPortlet extends JSPPortlet {
 			jsonObj = mailBoxManager.saveMessage(message, oldDraftMessageUid);
 		}
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)req.getAttribute(
+		ThemeDisplay themeDisplay = (ThemeDisplay)uploadReq.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		String url =
 			PortalUtil.getLayoutURL(themeDisplay) + "/-/mail/message_result?" +
-			jsonObj.toString();
+				jsonObj.toString();
 
 		String redirect = ParamUtil.getString(uploadReq, "redirect");
 
-		res.sendRedirect(redirect);
+		actionResponse.sendRedirect(redirect);
 	}
 
 }
