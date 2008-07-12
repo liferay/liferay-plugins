@@ -77,7 +77,7 @@ ECJ was automatically installed. Please rerun your task.
 		<echo message="${current.time}" />
 	</target>
 
-	<target name="build-plugin-env">
+	<target name="setup-eclipse">
 		<java
 			classname="com.liferay.portal.tools.PluginsEnvironmentBuilder"
 			classpathref="portal.classpath"
@@ -85,11 +85,13 @@ ECJ was automatically installed. Please rerun your task.
 			maxmemory="256m"
 			newenvironment="true"
 		>
-			<arg line="." />
+			<jvmarg value="-Dplugins.env.dir=." />
+			<jvmarg value="-Dplugins.env.svn=true" />
+			<jvmarg value="-Dplugins.env.eclipse=true" />
 		</java>
 	</target>
 
-	<target name="update-plugin-env">
+	<target name="setup-svn-ignores">
 		<java
 			classname="com.liferay.portal.tools.PluginsEnvironmentBuilder"
 			classpathref="portal.classpath"
@@ -97,8 +99,9 @@ ECJ was automatically installed. Please rerun your task.
 			maxmemory="256m"
 			newenvironment="true"
 		>
-			<arg line="." />
-			<arg line="true" />
+			<jvmarg value="-Dplugins.env.dir=." />
+			<jvmarg value="-Dplugins.env.svn=true" />
+			<jvmarg value="-Dplugins.env.eclipse=false" />
 		</java>
 	</target>
 </project>

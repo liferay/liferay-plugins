@@ -59,7 +59,7 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 	}
 
 	public Status updateStatus(long userId, String activeBrowserKey)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		Status status = statusPersistence.fetchByUserId(userId);
 

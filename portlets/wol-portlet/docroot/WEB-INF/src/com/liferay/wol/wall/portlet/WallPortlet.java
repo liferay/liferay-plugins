@@ -40,8 +40,6 @@ import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.wol.model.WallEntry;
 import com.liferay.wol.service.WallEntryLocalServiceUtil;
 
-import java.io.IOException;
-
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
@@ -56,7 +54,7 @@ public class WallPortlet extends JSPPortlet {
 
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws IOException, PortletException {
+		throws PortletException {
 
 		try {
 			String actionName = ParamUtil.getString(

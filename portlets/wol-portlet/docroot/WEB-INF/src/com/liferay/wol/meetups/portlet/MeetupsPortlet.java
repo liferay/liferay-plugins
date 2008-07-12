@@ -38,16 +38,12 @@ import com.liferay.wol.service.MeetupsRegistrationLocalServiceUtil;
 import com.liferay.wol.util.WOLConstants;
 
 import java.io.File;
-import java.io.IOException;
 
 import java.util.Calendar;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="MeetupsPortlet.java.html"><b><i>View Source</i></b></a>
@@ -59,7 +55,7 @@ public class MeetupsPortlet extends JSPPortlet {
 
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws IOException, PortletException {
+		throws PortletException {
 
 		try {
 			String actionName = ParamUtil.getString(
@@ -200,7 +196,5 @@ public class MeetupsPortlet extends JSPPortlet {
 		MeetupsRegistrationLocalServiceUtil.updateMeetupsRegistration(
 			themeDisplay.getUserId(), meetupsEntryId, status, comments);
 	}
-
-	private static Log _log = LogFactory.getLog(MeetupsPortlet.class);
 
 }

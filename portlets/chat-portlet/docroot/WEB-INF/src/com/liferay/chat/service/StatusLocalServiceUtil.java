@@ -110,8 +110,7 @@ public class StatusLocalServiceUtil {
 
 	public static com.liferay.chat.model.Status updateStatus(long userId,
 		java.lang.String activeBrowserKey)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.SystemException {
 		StatusLocalService statusLocalService = StatusLocalServiceFactory.getService();
 
 		return statusLocalService.updateStatus(userId, activeBrowserKey);

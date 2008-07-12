@@ -25,7 +25,6 @@ package com.liferay.chat.service.impl;
 import com.liferay.chat.model.Entry;
 import com.liferay.chat.service.base.EntryLocalServiceBaseImpl;
 import com.liferay.counter.service.CounterLocalServiceUtil;
-import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 
 import java.util.List;
@@ -39,7 +38,7 @@ import java.util.List;
 public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 
 	public Entry addEntry(long fromUserId, long toUserId, String content)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		long entryId = CounterLocalServiceUtil.increment();
 

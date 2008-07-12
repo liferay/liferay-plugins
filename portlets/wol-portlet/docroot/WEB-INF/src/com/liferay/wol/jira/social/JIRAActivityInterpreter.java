@@ -23,7 +23,6 @@
 package com.liferay.wol.jira.social;
 
 import com.liferay.portal.kernel.json.JSONArray;
-import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.StringPool;
@@ -139,8 +138,7 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	protected String interpretJIRAChangeItem(
-			JSONObject jiraChangeItem, ThemeDisplay themeDisplay)
-		throws JSONException {
+		JSONObject jiraChangeItem, ThemeDisplay themeDisplay) {
 
 		String field = jiraChangeItem.getString("field");
 
@@ -185,8 +183,7 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	protected String interpretJIRAChangeItems(
-			JSONArray jiraChangeItems, ThemeDisplay themeDisplay)
-		throws JSONException {
+		JSONArray jiraChangeItems, ThemeDisplay themeDisplay) {
 
 		if (jiraChangeItems == null) {
 			return StringPool.BLANK;

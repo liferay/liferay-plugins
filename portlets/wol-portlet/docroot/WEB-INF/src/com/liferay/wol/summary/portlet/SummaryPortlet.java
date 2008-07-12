@@ -50,8 +50,6 @@ import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.wol.friends.social.FriendsRequestKeys;
 import com.liferay.wol.members.social.MembersRequestKeys;
 
-import java.io.IOException;
-
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -72,7 +70,7 @@ public class SummaryPortlet extends JSPPortlet {
 
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws IOException, PortletException {
+		throws PortletException {
 
 		try {
 			String actionName = ParamUtil.getString(

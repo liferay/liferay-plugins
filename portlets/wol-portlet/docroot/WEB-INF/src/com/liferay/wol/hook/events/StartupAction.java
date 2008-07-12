@@ -39,9 +39,6 @@ import com.liferay.wol.util.WOLConstants;
 
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 /**
  * <a href="StartupAction.java.html"><b><i>View Source</i></b></a>
  *
@@ -113,7 +110,5 @@ public class StartupAction extends SimpleAction {
 			}
 		}
 	}
-
-	private static Log _log = LogFactory.getLog(StartupAction.class);
 
 }

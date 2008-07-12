@@ -24,7 +24,6 @@ package com.liferay.wol.jira.job;
 
 import com.liferay.portal.kernel.job.IntervalJob;
 import com.liferay.portal.kernel.job.JobExecutionContext;
-import com.liferay.portal.kernel.job.JobExecutionException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.util.portlet.PortletProps;
@@ -45,9 +44,7 @@ public class SynchronizeJIRAJob implements IntervalJob {
 	public static final long INTERVAL = GetterUtil.getLong(PortletProps.get(
 		"jira.synchronization.interval")) * Time.MINUTE;
 
-	public void execute(JobExecutionContext context)
-		throws JobExecutionException {
-
+	public void execute(JobExecutionContext context) {
 		try {
 			JIRAIssueLocalServiceUtil.updateJIRAIssues(
 				JIRAConstants.PROJECT_LEP);
