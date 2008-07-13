@@ -28,6 +28,8 @@ import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.messaging.ParallelDestination;
+import com.liferay.portal.kernel.util.PortalInitable;
+import com.liferay.portal.kernel.util.PortalInitableUtil;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -40,9 +42,20 @@ import javax.servlet.ServletContextListener;
  *
  */
 public class IPGeocoderServletContextListener
-	implements ServletContextListener {
+	implements PortalInitable, ServletContextListener {
+
+	public void contextDestroyed(ServletContextEvent event) {
+		_ipGeocoderDestination.unregister(_ipGeocoderMessageListener);
+
+		MessageBusUtil.removeDestination(
+			_ipGeocoderDestination.getName());
+	}
 
 	public void contextInitialized(ServletContextEvent event) {
+		PortalInitableUtil.init(this);
+	}
+
+	public void portalInit() {
 		_ipGeocoderDestination = new ParallelDestination(
 			DestinationNames.IP_GEOCODER);
 
@@ -51,13 +64,6 @@ public class IPGeocoderServletContextListener
 		_ipGeocoderMessageListener = new IPGeocoderMessageListener();
 
 		_ipGeocoderDestination.register(_ipGeocoderMessageListener);
-	}
-
-	public void contextDestroyed(ServletContextEvent event) {
-		_ipGeocoderDestination.unregister(_ipGeocoderMessageListener);
-
-		MessageBusUtil.removeDestination(
-			_ipGeocoderDestination.getName());
 	}
 
 	private Destination _ipGeocoderDestination;
