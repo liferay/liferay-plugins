@@ -193,6 +193,10 @@ public class MailBoxManager {
 
 		if (Validator.isNotNull(files)) {
 			for (File file : files) {
+				if (!file.exists()) {
+					continue;
+				}
+
 				String fileName = file.getName();
 				DataSource dataSource = new FileDataSource(file);
 
@@ -943,6 +947,8 @@ public class MailBoxManager {
 		props.put("mail.debug", "false");
 
 		Session session = Session.getInstance(props, null);
+
+		System.out.println(session.getProperties().toString());
 
 		session.setDebug(false);
 
