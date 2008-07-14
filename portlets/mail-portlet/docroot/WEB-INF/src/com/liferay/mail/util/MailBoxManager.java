@@ -612,7 +612,8 @@ public class MailBoxManager {
 		}
 
 		for (InternetAddress address : (InternetAddress[])addresses) {
-			sb.append(address.getAddress() + StringPool.COMMA + StringPool.SPACE);
+			sb.append(
+				address.getAddress() + StringPool.COMMA + StringPool.SPACE);
 		}
 
 		return sb.substring(0, sb.length() - 2);
@@ -661,7 +662,7 @@ public class MailBoxManager {
 
 					try {
 						sb.append(
-							stripUnsafeCss(
+							stripUnsafeHtmlAndCss(
 								messagePart.getContent().toString()));
 					}
 					catch (IOException ioe) {
@@ -1138,17 +1139,25 @@ public class MailBoxManager {
 		return html;
 	}
 
-	protected String stripUnsafeCss(String html) {
+	protected String stripUnsafeHtmlAndCss(String html) {
 
-		// Remove external stylesheets
+		// Remove lines (external stylesheets, html, body)
 
 		html = html.replaceAll("<link [^>]+>", StringPool.BLANK);
+		html = html.replaceAll("<html [^>]+>", StringPool.BLANK);
+		html = html.replaceAll("<body [^>]+>", StringPool.BLANK);
 
-		// Remove style blocks
+		// Remove blocks (style, head)
 
-		Pattern pattern = Pattern.compile("<style.*?</style>", Pattern.DOTALL);
+		Pattern patternStyle = Pattern.compile(
+			"<style.*?</style>", Pattern.DOTALL);
+		Pattern patternHead = Pattern.compile(
+			"<head.*?</head>", Pattern.DOTALL);
 
-		return pattern.matcher(html).replaceAll(StringPool.BLANK);
+		html = patternStyle.matcher(html).replaceAll(StringPool.BLANK);
+		html = patternHead.matcher(html).replaceAll(StringPool.BLANK);
+
+		return html;
 	}
 
 	protected void updateJSONMessageFlag(

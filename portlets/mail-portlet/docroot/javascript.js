@@ -1344,6 +1344,7 @@ Liferay.MailConfiguration = {
 
 		// Commonly used jQuery expressions
 
+		instance.accountsConfigurationDiv = jQuery('.accounts-configuration');
 		instance.currentMailAccountsDiv = jQuery('.current-mail-accounts');
 		instance.preconfiguredMailAccountsDiv = jQuery('.preconfigured-mail-accounts');
 		instance.preconfiguredMailAccounts = params.preconfiguredMailAccounts;
@@ -1400,7 +1401,7 @@ Liferay.MailConfiguration = {
 				success: function(success) {
 					instance.loadJSONAccountsConfiguration();
 
-					alert(Liferay.Language.get('you-have-successfully-added-a-new-email-account'));
+					instance.sendMessage('success', 'you-have-successfully-added-a-new-email-account');
 				},
 				type: 'POST'
 			}
@@ -1471,6 +1472,8 @@ Liferay.MailConfiguration = {
 		});
 
 		jQuery('.save-account').click(function() {
+			instance.sendMessage('success','please-wait-attempting-to-save-account-settings');
+
 			var accountTable = jQuery(this).parents('.account:first');
 
 			// Get JSON
@@ -1513,13 +1516,13 @@ Liferay.MailConfiguration = {
 							instance.saveAccountConfiguration(emailAddressValue, mailInHostNameValue, mailInPortValue, mailOutHostNameValue, mailOutPortValue, mailSecureValue, passwordValue, usernameValue);
 						}
 						else if (!result.outgoing && !result.incoming) {
-							alert(Liferay.Language.get('you-have-failed-to-connect-to-the-imap-and-smtp-server'));
+							instance.sendMessage('error', 'you-have-failed-to-connect-to-the-imap-and-smtp-server');
 						}
 						else if (!result.outgoing) {
-							alert(Liferay.Language.get('you-have-successfully-connected-to-the-imap-server-but-failed-to-connect-to-the-smtp-server'));
+							instance.sendMessage('error', 'you-have-successfully-connected-to-the-imap-server-but-failed-to-connect-to-the-smtp-server');
 						}
 						else if (!result.incoming) {
-							alert(Liferay.Language.get('you-have-failed-to-connect-to-the-imap-server-but-successfully-connected-to-the-smtp-server'));
+							instance.sendMessage('error', 'you-have-failed-to-connect-to-the-imap-server-but-successfully-connected-to-the-smtp-server');
 						}
 					},
 					type: 'POST'
@@ -1536,5 +1539,40 @@ Liferay.MailConfiguration = {
 		});
 
 		jQuery('.details').hide();
+	},
+
+	sendMessage: function(type, key) {
+		var instance = this;
+
+		var msgType = 'portlet-msg-error';
+
+		if (type == 'success') {
+			msgType = 'portlet-msg-success';
+		}
+
+		var message = Liferay.Language.get(key);
+
+		var currentMsg = jQuery('.lfr-message-response');
+
+		if (currentMsg.length) {
+			currentMsg.html(message);
+			currentMsg.removeClass('portlet-msg-success').removeClass('portlet-msg-error');
+			currentMsg.addClass(msgType);
+			currentMsg.fadeIn('fast');
+		}
+		else {
+			currentMsg = jQuery('<div class="' + msgType + ' lfr-message-response">' + message + '</div>');
+
+			instance.accountsConfigurationDiv.prepend(currentMsg);
+		}
+
+		var fadeOutTimeout = setTimeout(
+			function() {
+				currentMsg.fadeOut('slow');
+				clearTimeout(fadeOutTimeout);
+			},
+			7000
+		);
 	}
+
 }
