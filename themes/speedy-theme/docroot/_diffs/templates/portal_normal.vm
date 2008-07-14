@@ -256,6 +256,10 @@
 		.ninety {
 			width: 90%;
 		}
+
+		#tabs1already-registeredTabsSection, #tabs1forgot-passwordTabsSection, #_88_tabs5themesTabsSection, .ui-tab-content {
+			display: block !important;
+		}
 	</style>
 </head>
 
