@@ -1,0 +1,86 @@
+/* general  styles */
+.jmakiBackround {
+  background:#EEEEEE;
+}
+
+.jmakiBackroundHover {
+  background:#FFC787;
+}
+
+.jmakiFont {
+  color : #FFF;
+}
+
+/* title used in accordion menu */
+
+.jmakiTitle {
+  background:#4d371f;
+  background-image : url(images/title-orange-dark-m.jpg);
+  background-repeat: repeat-x;
+}
+
+.jmakiMenuItem {
+  color:#FFF;
+  background:#95999C;
+}
+
+.jmakiMenuItem:hover {
+  background:#EC5400;
+}
+
+/* tab menu styles */
+
+.jm-tm-center {
+  float : left;
+  height: 25px;
+  padding-top:5px;
+  background-image : url(images/tab-m.gif);
+  background-repeat: repeat-x;  
+}
+
+.jm-tm-center-selected {
+  height: 25px;
+  padding-top:5px;    
+  float : left;    
+  background-image : url(images/tab-m-selected.gif);
+  background-repeat: repeat-x;
+  cursor : pointer;
+}
+
+.jm-tm-right {
+  float : left;
+  width : 25px;
+  height : 25px;
+  background-image : url(images/tab-r.gif);
+  background-repeat: no-repeat;  
+}
+
+.jm-tm-right-selected {
+  float : left;    
+  width : 25px;
+  height : 25px;    
+  background-image : url(images/tab-r-selected.gif);
+  background-repeat: no-repeat;  
+}
+
+
+.jm-tm-left {
+  float : left;
+  width : 25px;
+  height : 25px;      
+  background-image : url(images/tab-l.gif);
+  background-repeat: no-repeat;  
+}
+
+.jm-tm-left-selected {
+  float : left;    
+  width : 25px;
+  height : 25px;      
+  background-image : url(images/tab-l-selected.gif);
+  background-repeat: no-repeat;  
+}
+
+/** tabbed menu bottom  border**/
+.jm-tm-centered {
+  border-bottom: 2px solid #4d371f;
+}

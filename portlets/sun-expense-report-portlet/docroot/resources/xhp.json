@@ -1,0 +1,36 @@
+{"xhp": {
+     "version": "1.0",
+     "services": [
+     {"id": "yahoogeocoder",
+      "url":"http://api.local.yahoo.com/MapsService/V1/geocode",
+      "apikey" : "appid=jmaki-key",
+      "xslStyleSheet": "yahoo-geocoder.xsl",
+      "defaultURLParams": "location=santa+clara,+ca"
+     },
+     {"id": "flickrtagsearch",
+      "url":"http://www.flickr.com/services/rest/?method=flickr.photos.search",
+      "apikey" : "api_key=06d3805b73897217be9e0b532c85b15e",
+      "xslStyleSheet": "flickr-search.xsl",
+      "defaultURLParams": "tags=theKt"
+     },
+     {"id": "yahoosearch",
+      "url":"http://api.search.yahoo.com/WebSearchService/V1/webSearch",
+      "apikey" : "appid=jmaki-key",
+      "defaultURLParams": "query=jMaki"
+     },
+     {"id": "yahoospell",
+      "url":"http://api.search.yahoo.com/WebSearchService/V1/spellingSuggestion",
+      "apikey" : "appid=jmaki-key",
+      "defaultURLParams": "query=jMaki"
+     },     
+     {"id": "yahooweather",
+      "url":"http://weather.yahooapis.com/forecastrss",
+      "xslStyleSheet": "yahoo-weather.xsl"
+     },
+     {"id": "rss",
+      "url":"http://weblogs.java.net/blog/ludo/index.rdf",
+      "xslStyleSheet": "rss.xsl"
+     }
+     ]
+   }
+ }
