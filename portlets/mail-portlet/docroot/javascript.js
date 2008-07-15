@@ -102,6 +102,8 @@ Liferay.Mail = {
 	clearOutgoingMessage: function() {
 		var instance = this;
 
+		instance.messageOptionsRespondDivs.removeClass('selected-response-type results-header');
+
 		instance.sendBccInput.val('');
 		instance.sendBodySpan.hide();
 		instance.sendCcInput.val('');
@@ -236,8 +238,8 @@ Liferay.Mail = {
 	},
 
 	initializeEditor: function() {
-		setTimeout('Liferay.Mail.messageDiv.show()', 1000);
-		setTimeout('Liferay.Mail.messageSendDiv.show()', 1000);
+		setTimeout('Liferay.Mail.messageDiv.show()', 100);
+		setTimeout('Liferay.Mail.messageSendDiv.show()', 100);
 		setTimeout('Liferay.Mail.messageDiv.hide()', 3000);
 	},
 
@@ -1472,7 +1474,7 @@ Liferay.MailConfiguration = {
 		});
 
 		jQuery('.save-account').click(function() {
-			instance.sendMessage('success','please-wait-attempting-to-save-account-settings');
+			instance.sendMessage('info','please-wait-attempting-to-save-account-settings');
 
 			var accountTable = jQuery(this).parents('.account:first');
 
@@ -1549,6 +1551,9 @@ Liferay.MailConfiguration = {
 		if (type == 'success') {
 			msgType = 'portlet-msg-success';
 		}
+		else if (type == 'info') {
+			msgType = 'portlet-msg-info';
+		}
 
 		var message = Liferay.Language.get(key);
 
@@ -1556,7 +1561,7 @@ Liferay.MailConfiguration = {
 
 		if (currentMsg.length) {
 			currentMsg.html(message);
-			currentMsg.removeClass('portlet-msg-success').removeClass('portlet-msg-error');
+			currentMsg.removeClass('portlet-msg-success').removeClass('portlet-msg-info').removeClass('portlet-msg-error');
 			currentMsg.addClass(msgType);
 			currentMsg.fadeIn('fast');
 		}
