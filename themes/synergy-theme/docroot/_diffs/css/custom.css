@@ -82,7 +82,7 @@ body {
 
 .js #navigation .enter-page {
     background-color: transparent;
-    padding: 1px;
+    padding: 4px;
 }
 
 .js .interactive-mode {
@@ -90,11 +90,12 @@ body {
 }
 
 .js .interactive-mode h2 {
-  background: transparent;
+  background: transparent url(../images/synergy/dock.png);
+  padding: 0pt 37px 0pt 4pt;  
 }
 
 .js .interactive-mode h2 span {
-  background: transparent;
+  background: transparent url(../images/synergy/dock.png);
   border-right: none;
 }
 

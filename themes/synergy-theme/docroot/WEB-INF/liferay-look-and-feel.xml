@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 5.1.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_5_1_0.dtd">
+
+<look-and-feel>
+	<compatibility>
+		<version>5.1.0+</version>
+	</compatibility>
+	<theme id="synergy-theme" name="WebSynergy">
+		<settings>
+			<setting key="css-template-id" value="CSS-TEMPLATE" />
+			<setting key="footer-article-id" value="4280" />
+		</settings>
+	</theme>
+</look-and-feel>
