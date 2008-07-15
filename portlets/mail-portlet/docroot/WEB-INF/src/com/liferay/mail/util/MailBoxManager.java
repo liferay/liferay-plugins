@@ -949,8 +949,6 @@ public class MailBoxManager {
 
 		Session session = Session.getInstance(props, null);
 
-		System.out.println(session.getProperties().toString());
-
 		session.setDebug(false);
 
 		return session;
