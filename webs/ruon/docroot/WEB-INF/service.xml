@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_0_0.dtd">
+
+<service-builder package-path="com.liferay.portal.ruon">
+	<namespace>Ruon</namespace>
+	<entity name="PresenceUser" local-service="true" remote-service="true">
+		<column name="presenceUserId" type="long" primary="true"/>
+		<column name="presenceStatus" type="long"/>
+
+	</entity>
+	<entity name="PresenceStatuses" local-service="true" remote-service="true">
+		<column name="presenceStatusId" type="long" primary="true"/>
+		<column name="presenceStatusMessage" type="String"/>
+	</entity>
+	<entity name="Communication" local-service="true" remote-service="true"/>
+	<entity name="Presence" local-service="true" remote-service="true"/>
+</service-builder>
