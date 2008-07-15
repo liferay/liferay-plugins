@@ -31,21 +31,17 @@ String title = wikiPage.getTitle();
 
 boolean print = ParamUtil.getBoolean(request, Constants.PRINT);
 
-PortletURL listURL = renderResponse.createRenderURL();
-
-listURL.setParameter(Constants.CMD, "list");
+PortletURL viewAllURL = renderResponse.createRenderURL();
 
 PortletURL viewPageURL = renderResponse.createRenderURL();
 
 viewPageURL.setParameter(Constants.CMD, "view_page");
-viewPageURL.setParameter("nodeName", node.getName());
 viewPageURL.setParameter("title", title);
 
 PortletURL addPageURL = renderResponse.createRenderURL();
 
 addPageURL.setParameter(Constants.CMD, "edit_page");
 addPageURL.setParameter("redirect", currentURL);
-addPageURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
 addPageURL.setParameter("editTitle", "1");
 
 if (wikiPage != null) {
@@ -56,13 +52,11 @@ PortletURL editPageURL = renderResponse.createRenderURL();
 
 editPageURL.setParameter(Constants.CMD, "edit_page");
 editPageURL.setParameter("redirect", currentURL);
-editPageURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
 editPageURL.setParameter("title", title);
 
 PortletURL printPageURL = renderResponse.createRenderURL();
 
 printPageURL.setParameter(Constants.CMD, "view_page");
-printPageURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
 printPageURL.setParameter("title", title);
 printPageURL.setWindowState(LiferayWindowState.POP_UP);
 
@@ -71,13 +65,11 @@ printPageURL.setParameter("print", "true");
 PortletURL taggedPagesURL = renderResponse.createRenderURL();
 
 taggedPagesURL.setParameter(Constants.CMD, "view_tagged_pages");
-taggedPagesURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
-
 %>
 
 <c:if test="<%= !print %>">
 	<div style="text-align: right; margin-bottom: 1em">
-		<a href="<%= listURL %>">&laquo; <liferay-ui:message key="back" /></a>
+		<a href="<%= viewAllURL %>">&laquo; <liferay-ui:message key="back" /></a>
 	</div>
 </c:if>
 
@@ -107,7 +99,6 @@ taggedPagesURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
 		PortletURL viewParentPageURL = renderResponse.createRenderURL();
 
 		viewParentPageURL.setParameter(Constants.CMD, "view_page");
-		viewParentPageURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
 
 		List parentPages = wikiPage.getParentPages();
 

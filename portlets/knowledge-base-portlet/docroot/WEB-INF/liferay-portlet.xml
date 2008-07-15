@@ -5,7 +5,7 @@
 	<portlet>
 		<portlet-name>knowledge-base</portlet-name>
 		<icon>/icon.png</icon>
-		<instanceable>true</instanceable>
+		<friendly-url-mapper-class>com.liferay.knowledgebase.portlet.KBFriendlyURLMapper</friendly-url-mapper-class>
 		<header-portlet-css>/css/knowledge-base.css</header-portlet-css>
 		<css-class-wrapper>portlet-knowledge-base</css-class-wrapper>		
 	</portlet>

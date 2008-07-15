@@ -23,6 +23,8 @@
 package com.liferay.knowledgebase.portlet;
 
 import com.liferay.knowledgebase.KnowledgeBaseKeys;
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
@@ -39,6 +41,8 @@ import com.liferay.portlet.wiki.service.WikiPageServiceUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 
 import java.io.IOException;
+
+import java.rmi.RemoteException;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -93,16 +97,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		String title = ParamUtil.getString(renderRequest, "title");
 
 		try {
-			WikiNode node = null;
-
-			try {
-				node = WikiNodeServiceUtil.getNode(
-					themeDisplay.getPortletGroupId(), _KB_NODE);
-			}
-			catch(NoSuchNodeException e) {
-				node = WikiNodeServiceUtil.addNode(
-					themeDisplay.getPlid(), _KB_NODE, _KB_NODE, true, true);
-			}
+			WikiNode node = getNode(themeDisplay);
 
 			renderRequest.setAttribute(KnowledgeBaseKeys.WIKI_NODE, node);
 
@@ -122,6 +117,22 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		super.render(renderRequest, renderResponse);
 	}
 
+	protected WikiNode getNode(ThemeDisplay themeDisplay)
+		throws PortalException, SystemException, RemoteException {
+
+		WikiNode node;
+
+		try {
+			node = WikiNodeServiceUtil.getNode(
+				themeDisplay.getPortletGroupId(), _KB_NODE);
+		}
+		catch(NoSuchNodeException e) {
+			node = WikiNodeServiceUtil.addNode(
+				themeDisplay.getPlid(), _KB_NODE, _KB_NODE, true, true);
+		}
+		return node;
+	}
+
 	protected WikiPage updatePage(ActionRequest actionRequest)
 		throws Exception {
 
@@ -130,7 +141,8 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 		PortletPreferences prefs = actionRequest.getPreferences();
 
-		long nodeId = ParamUtil.getLong(actionRequest, "nodeId");
+		WikiNode node = getNode(themeDisplay);
+
 		String title = ParamUtil.getString(actionRequest, "title");
 		double version = ParamUtil.getDouble(actionRequest, "version");
 
@@ -145,8 +157,9 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			ParamUtil.getString(actionRequest, "tagsEntries"));
 
 		return WikiPageServiceUtil.updatePage(
-			nodeId, title, version, content, summary, minorEdit, format,
-			parentTitle, redirectTitle, tagsEntries, prefs, themeDisplay);
+			node.getNodeId(), title, version, content, summary, minorEdit,
+			format, parentTitle, redirectTitle, tagsEntries, prefs,
+			themeDisplay);
 	}
 
 	private static final String _KB_NODE = "KB";

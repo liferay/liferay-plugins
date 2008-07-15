@@ -45,7 +45,6 @@ else {
 PortletURL viewPageURL = renderResponse.createRenderURL();
 
 viewPageURL.setParameter(Constants.CMD, "view_page");
-viewPageURL.setParameter("nodeName", node.getName());
 viewPageURL.setParameter("title", title);
 %>
 
@@ -68,7 +67,6 @@ viewPageURL.setParameter("title", title);
 <form action="<portlet:actionURL><portlet:param name="struts_action" value="/wiki/edit_page" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />savePage(); return false;">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
-<input name="<portlet:namespace />nodeId" type="hidden" value="<%= node.getNodeId() %>" />
 <input name="<portlet:namespace />parentTitle" type="hidden" value="<%= parentTitle %>" />
 <input name="<portlet:namespace />format" type="hidden" value="html" />
 

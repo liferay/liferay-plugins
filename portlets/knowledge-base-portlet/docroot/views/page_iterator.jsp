@@ -101,7 +101,6 @@ for (int i = 0; i < results.size(); i++) {
 	PortletURL rowURL = renderResponse.createRenderURL();
 
 	rowURL.setParameter(Constants.CMD, "view_page");
-	rowURL.setParameter("nodeId", String.valueOf(curWikiPage.getNodeId()));
 	rowURL.setParameter("title", curWikiPage.getTitle());
 
 	// Title
