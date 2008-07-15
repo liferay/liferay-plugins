@@ -21,23 +21,38 @@
  * SOFTWARE.
  */
 %>
-
 <%@ include file="/init.jsp" %>
 
 <%
-String view = ParamUtil.getString(request, Constants.CMD, "view_all_pages");
+String tag = ParamUtil.getString(renderRequest, "tag");
 
-String[] supportedViews = {"view_all_pages", "view_page", "view_tagged_pages", "edit_page"};
+String description = null;
 
-if (!ArrayUtil.contains(supportedViews, view)) {
-	view = supportedViews[0];
+try {
+	TagsEntry tagsEntry = TagsEntryLocalServiceUtil.getEntry(themeDisplay.getCompanyId(), tag);
+
+	TagsProperty tagsProperty = TagsPropertyLocalServiceUtil.getProperty(tagsEntry.getEntryId(), "description");
+
+	description = tagsProperty.getValue();
 }
-
-_log.info("Including view: " + "/" + view + ".jsp");
+catch (NoSuchEntryException nsee) {
+}
+catch (NoSuchPropertyException nspe) {
+}
 %>
 
-<jsp:include page='<%= "/views/" + view + ".jsp" %>' flush="true" />
+<h1 class="page-title">
+	<%= LanguageUtil.format(pageContext, "pages-with-tag-x", tag) %>
+</h1>
 
-<%!
-private static Log _log = LogFactoryUtil.getLog("knowledge-base-portlet.view.jsp");
+<c:if test="<%= Validator.isNotNull(description) %>">
+	<p class="tag-description">
+		<%= description %>
+	</p>
+</c:if>
+
+<%
+request.setAttribute("page_iterator.type", "tagged_pages");
 %>
+
+<jsp:include page="/views/page_iterator.jsp" />

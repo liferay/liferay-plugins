@@ -68,6 +68,11 @@ printPageURL.setWindowState(LiferayWindowState.POP_UP);
 
 printPageURL.setParameter("print", "true");
 
+PortletURL taggedPagesURL = renderResponse.createRenderURL();
+
+taggedPagesURL.setParameter(Constants.CMD, "view_tagged_pages");
+taggedPagesURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
+
 %>
 
 <c:if test="<%= !print %>">
@@ -136,6 +141,12 @@ printPageURL.setParameter("print", "true");
 
 	<%= title %>
 </h1>
+
+<liferay-ui:tags-summary
+	className="<%= WikiPage.class.getName() %>"
+	classPK="<%= wikiPage.getResourcePrimKey() %>"
+	portletURL="<%= taggedPagesURL %>"
+/>
 
 <div>
 	<div class="knowledge-base-body">
