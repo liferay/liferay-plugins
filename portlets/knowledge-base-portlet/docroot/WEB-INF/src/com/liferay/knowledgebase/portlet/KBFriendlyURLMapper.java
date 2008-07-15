@@ -74,6 +74,25 @@ public class KBFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 			friendlyURLPath = sb.toString();
 		}
+		else if (cmd.equals("view_tagged_pages")) {
+			String tag = portletURL.getParameter("tag");
+
+			StringBuilder sb = new StringBuilder();
+
+			if (Validator.isNotNull(tag)) {
+				sb.append(StringPool.SLASH);
+				sb.append(_MAPPING);
+				sb.append(StringPool.SLASH);
+				sb.append("tag");
+				sb.append(StringPool.SLASH);
+
+				sb.append(HttpUtil.encodeURL(tag));
+
+				portletURL.addParameterIncludedInPath("tag");
+			}
+
+			friendlyURLPath = sb.toString();
+		}
 
 		if (Validator.isNotNull(friendlyURLPath)) {
 			portletURL.addParameterIncludedInPath("p_p_id");
@@ -99,23 +118,37 @@ public class KBFriendlyURLMapper extends BaseFriendlyURLMapper {
 		addParam(params, "p_p_lifecycle", "0");
 		addParam(params, "p_p_mode", PortletMode.VIEW);
 
-		addParam(params, Constants.CMD, "view_page");
-
 		int x = friendlyURLPath.indexOf(StringPool.SLASH, 1);
 
 		String[] urlFragments = StringUtil.split(
 			friendlyURLPath.substring(x + 1), StringPool.SLASH);
 
 		if (urlFragments.length >= 1) {
-			String title = HttpUtil.decodeURL(urlFragments[0]);
+			String fragment0 = HttpUtil.decodeURL(urlFragments[0]);
 
-			addParam(params, "title", title);
+			if (fragment0.equals("tag")) {
+				if (urlFragments.length >= 2) {
+					addParam(params, Constants.CMD, "view_tagged_pages");
 
-			if (urlFragments.length >= 2) {
-				String windowState = urlFragments[1];
+					String tag = HttpUtil.decodeURL(urlFragments[1]);
 
-				addParam(params, "p_p_state", windowState);
+					addParam(params, "tag", tag);
+				}
 			}
+			else {
+				addParam(params, Constants.CMD, "view_page");
+
+				addParam(params, "title", fragment0);
+
+				if (urlFragments.length >= 2) {
+					String windowState = urlFragments[1];
+
+					addParam(params, "p_p_state", windowState);
+				}
+			}
+		}
+		else {
+			addParam(params, Constants.CMD, "view_all_pages");
 		}
 	}
 
