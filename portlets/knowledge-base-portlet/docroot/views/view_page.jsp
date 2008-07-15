@@ -24,7 +24,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-WikiNode node = (WikiNode)request.getAttribute(KnowledgeBaseKeys.WIKI_NODE);
 WikiPage wikiPage = (WikiPage)request.getAttribute(KnowledgeBaseKeys.WIKI_PAGE);
 
 String title = wikiPage.getTitle();
@@ -47,6 +46,8 @@ addPageURL.setParameter("editTitle", "1");
 if (wikiPage != null) {
 	addPageURL.setParameter("parentTitle", wikiPage.getTitle());
 }
+
+List childPages = wikiPage.getChildPages();
 
 PortletURL editPageURL = renderResponse.createRenderURL();
 
@@ -143,4 +144,40 @@ taggedPagesURL.setParameter(Constants.CMD, "view_tagged_pages");
 	<div class="knowledge-base-body">
 		<%= wikiPage.getContent() %>
 	</div>
+</div>
+
+<c:if test="<%= (childPages.size() > 0) %>">
+	<div class="separator"><!-- --></div>
+</c:if>
+
+<c:if test="<%= childPages.size() > 0 %>">
+	<div class="child-pages">
+		<h3><liferay-ui:message key="children" /></h3>
+
+		<ul class="child-pages">
+
+			<%
+			PortletURL curPageURL = renderResponse.createRenderURL();
+			curPageURL.setParameter(Constants.CMD, "view_page");
+
+			for (int i = 0; i < childPages.size(); i++) {
+				WikiPage curPage = (WikiPage)childPages.get(i);
+
+				curPageURL.setParameter("title", curPage.getTitle());
+			%>
+
+				<li>
+					<a href="<%= curPageURL %>"><%= curPage.getTitle() %></a>
+				</li>
+
+			<%
+			}
+			%>
+
+		</ul>
+	</div>
+</c:if>
+
+<div class="page-actions">
+	<liferay-ui:icon image="add_article" message="add-child-article" url="<%= addPageURL.toString() %>" label="<%= true %>" />
 </div>
