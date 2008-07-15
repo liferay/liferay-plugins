@@ -1,0 +1,12 @@
+.yahoo-grid {
+  margin:.25em;
+}
+
+.yahoo-grid a {text-decoration : underline; color : white}
+.yahoo-grid table {border-collapse:collapse;}
+.yahoo-grid th, .yahoo-grid td {border:1px solid #000;padding:.30em;}
+.yahoo-grid th {background-color:#696969;color:#fff;}/*dark gray*/
+
+.yui-dt-odd {background-color:#eee;} /*light gray*/
+.yui-dt-editable .yui-dt-highlight {background-color:#BEDAFF;} /*light blue*/
+.yui-dt-selected {background-color:#97C0A5;} /*green*/  

@@ -1,0 +1,48 @@
+{'name': 'Horizontal Menu',
+         'type': 'jmaki',
+         'version' : '1.0',
+         'jmakiVersion' : '1.0',
+         'author' : 'Greg Murray',
+         'url' : 'https://ajax.dev.java.net',         
+         'image' : 'images/jmaki-menu.jpg', 
+         'dataModel' : 'http://wiki.java.net/bin/view/Projects/jMakiMenuDataModel',
+         'description':'An object containing an array of row objects. Each column object has a label property and contains an array of menu items which url that maps to an external resource or a content attribute which contains inline text.',
+         'value':{'type' : 'OBJECT',
+                'defaultValue':
+                {'menu' : [
+                 {'label': 'Some Topic',
+              	'menu': [
+             	  {'label':'Some Item', 'href':'http://www.sun.com'},
+                  {'label':'Some Item 2', 'href':'http://www.jmaki.com'}
+               	 ]},
+		         {'label': 'Some Other Topic',
+                  'menu': [
+		          {'label':'Some Other Item', 'href':'http://www.java.sun.com'},
+                  {'label':'Some Other Item 2',  action:{topic: '/mytopic', message: '2.jsp'}}
+               	 ]}
+            ]
+        }
+    },
+    'topicInfo': {
+        'type':'publish',
+        'topicName':'/jmaki/menu',
+        'description':'on onclick event publish to /jmaki/menu topic passing the cooresponding string for the menu item if the active property is used.  If the href property is used then navigation goes to the URL represented by that cooresponding string.'
+    },
+    'config' : {
+          'type' :
+           { 'id' : 'jmaki',
+              'themes' : [
+                   {'id' : 'orange',
+                    'default' : true,
+                     'style' : '../resources/styles/themes/orange/theme.css'
+                   },
+                   {'id' : 'chocolate',
+                     'style' : '../resources/styles/themes/chocolate/theme.css'
+                   }
+               ],
+               'resources' : [
+                   '../resources/styles'
+               ]
+          }  
+    }
+ }
