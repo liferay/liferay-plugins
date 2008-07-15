@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model-hints>
+	<model name="com.liferay.ruon.model.PresenceUser">
+		<field name="presenceUserId" type="long" />
+		<field name="presenceStatus" type="long" />
+	</model>
+	<model name="com.liferay.ruon.model.PresenceStatuses">
+		<field name="presenceStatusId" type="long" />
+		<field name="presenceStatusMessage" type="String" />
+	</model>
+</model-hints>
