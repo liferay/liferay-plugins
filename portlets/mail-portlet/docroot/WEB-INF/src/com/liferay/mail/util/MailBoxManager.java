@@ -612,8 +612,9 @@ public class MailBoxManager {
 		}
 
 		for (InternetAddress address : (InternetAddress[])addresses) {
-			sb.append(
-				address.getAddress() + StringPool.COMMA + StringPool.SPACE);
+			sb.append(address.getAddress());
+			sb.append(StringPool.COMMA);
+			sb.append(StringPool.SPACE);
 		}
 
 		return sb.substring(0, sb.length() - 2);
