@@ -34,8 +34,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.util.portlet.PortletProps;
 
-import com.sun.mail.imap.IMAPFolder;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
@@ -50,8 +48,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import javax.mail.Folder;
-import javax.mail.Message;
 import javax.mail.MessagingException;
 
 import org.apache.commons.logging.Log;
@@ -306,11 +302,11 @@ public class MailDiskManager {
 		long[] messageUids = null;
 
 		if (searchString.equals(StringPool.BLANK)) {
-			messageUids = _getMessageUidsByFolder(
+			messageUids = getMessageUidsByFolder(
 				user, emailAddress, folderName);
 		}
 		else {
-			messageUids = _getMessageUidsBySearch(
+			messageUids = getMessageUidsBySearch(
 				user, emailAddress, folderName, searchString);
 		}
 
@@ -348,12 +344,12 @@ public class MailDiskManager {
 
 			// Disk message count
 
-			long[] messageUids = _getMessageUidsByFolder(
+			long[] messageUids = getMessageUidsByFolder(
 				user, emailAddress, folderName);
 
 			int messagesOnDiskCount = messageUids.length;
 
-			return _getJSONPaginatedMessages(
+			return getJSONPaginatedMessages(
 				user, emailAddress, folderName, messageUids, pageNumber,
 				messagesPerPage, messageCount, messagesOnDiskCount);
 		}
@@ -379,12 +375,12 @@ public class MailDiskManager {
 
 		searchString = searchString.trim();
 
-		long[] messageUids = _getMessageUidsBySearch(
+		long[] messageUids = getMessageUidsBySearch(
 			user, emailAddress, folderName, searchString);
 
 		int messageCount = messageUids.length;
 
-		return _getJSONPaginatedMessages(
+		return getJSONPaginatedMessages(
 			user, emailAddress, folderName, messageUids, pageNumber,
 			messagesPerPage, messageCount, messageCount);
 	}
@@ -407,55 +403,17 @@ public class MailDiskManager {
 		return pathName;
 	}
 
-	public static Message getNewestStoredMessage(
-			User user, String emailAddress, String folderName)
-		throws MessagingException {
-
-		String folderPath = getFolderPath(user, emailAddress, folderName);
-
-		String[] messageUids = FileUtil.listDirs(folderPath);
-
-		if (messageUids.length == 0) {
-			return null;
-		}
-
-		// Verify message exists, if not delete message from disk and get next
-
-		MailBoxManager mailBoxManager = new MailBoxManager(
-			user, emailAddress);
-
-		Folder folder = mailBoxManager.getFolder(folderName);
-
-		for (int i = messageUids.length - 1; i >= 0; i--) {
-			long messageUid = GetterUtil.getLong(messageUids[i]);
-
-			if (messageUid == -1) {
-				break;
-			}
-
-			folder = mailBoxManager.openFolder(folder);
-
-			Message message = ((IMAPFolder)folder).getMessageByUID(messageUid);
-
-			if (Validator.isNull(message)) {
-				mailBoxManager.deleteMessage(folder, messageUid, false);
-			}
-			else {
-				return message;
-			}
-		}
-
-		return null;
-	}
-
-	public static long getOldestStoredMessageUID(
+	public static long[] getMessageUidsByFolder(
 		User user, String emailAddress, String folderName) {
 
 		String folderPath = getFolderPath(user, emailAddress, folderName);
 
-		String[] messageUids = FileUtil.listDirs(folderPath);
+		long[] messageUids = GetterUtil.getLongValues(
+			FileUtil.listDirs(folderPath));
 
-		return GetterUtil.getLong(messageUids[0]);
+		Arrays.sort(messageUids);
+
+		return messageUids;
 	}
 
 	public static String getUserPath(User user) {
@@ -509,7 +467,7 @@ public class MailDiskManager {
 		return locked;
 	}
 
-	private static JSONObject _getJSONPaginatedMessages(
+	protected static JSONObject getJSONPaginatedMessages(
 		User user, String emailAddress, String folderName,
 		long[] messageUidsOnDisk, int pageNumber, int messagesPerPage,
 		int messageCount, int messagesOnDiskCount) {
@@ -544,27 +502,14 @@ public class MailDiskManager {
 		return jsonObj;
 	}
 
-	private static long[] _getMessageUidsByFolder(
-		User user, String emailAddress, String folderName) {
-
-		String folderPath = getFolderPath(user, emailAddress, folderName);
-
-		long[] messageUids = GetterUtil.getLongValues(
-			FileUtil.listDirs(folderPath));
-
-		Arrays.sort(messageUids);
-
-		return messageUids;
-	}
-
-	private static long[] _getMessageUidsBySearch(
+	protected static long[] getMessageUidsBySearch(
 		User user, String emailAddress, String folderName,
 		String searchString) {
 
 		List<String> matchingMessageUids = new ArrayList<String>();
 
 		try {
-			long[] allMessageUidsInFolder = _getMessageUidsByFolder(
+			long[] allMessageUidsInFolder = getMessageUidsByFolder(
 				user, emailAddress, folderName);
 
 			for (long messageUid : allMessageUidsInFolder) {

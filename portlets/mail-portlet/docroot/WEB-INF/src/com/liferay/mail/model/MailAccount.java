@@ -93,14 +93,6 @@ public class MailAccount {
 		return _mailOutPort;
 	}
 
-	public boolean isInitialized() {
-		return _initialized;
-	}
-
-	public boolean isMailSecure() {
-		return _mailSecure;
-	}
-
 	public String getPassword() {
 		return _password;
 	}
@@ -111,6 +103,18 @@ public class MailAccount {
 
 	public String getUsername() {
 		return _username;
+	}
+
+	public boolean isInitialized() {
+		return _initialized;
+	}
+
+	public boolean isMailSecure() {
+		return _mailSecure;
+	}
+
+	public void setInitialized(boolean initialized) {
+		this._initialized = initialized;
 	}
 
 	private int _accountId;

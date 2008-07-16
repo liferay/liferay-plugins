@@ -48,6 +48,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -501,6 +502,10 @@ public class MailBoxManager {
 				}
 			}
 
+			_mailAccount.setInitialized(true);
+
+			storeAccountToDisk();
+
 			jsonObj.put("success", true);
 		}
 		else {
@@ -515,9 +520,6 @@ public class MailBoxManager {
 		// Check if folder has been initialized
 
 		JSONObject jsonObj = MailDiskManager.getJSONFolder(
-			_user, _mailAccount.getEmailAddress(), folder.getFullName());
-
-		Message latestMessage = MailDiskManager.getNewestStoredMessage(
 			_user, _mailAccount.getEmailAddress(), folder.getFullName());
 
 		boolean initialized = false;
@@ -536,7 +538,10 @@ public class MailBoxManager {
 
 		Message[] messages = null;
 
-		if (!initialized || (Validator.isNull(latestMessage))) {
+		if (!initialized) {
+
+			// Get just enough messages to initialize folder
+
 			if (messageCount < _messagesToPrefetch) {
 				messages = folder.getMessages(1, messageCount);
 			}
@@ -555,14 +560,44 @@ public class MailBoxManager {
 		}
 		else {
 
-			// Get new messages since last update
+			// Get all new messages since last update
 
-			int messageNumber = latestMessage.getMessageNumber();
+			Message newestStoredMessage = getNewestOrOldestStoredMessage(
+				folder, true);
 
-			messages = folder.getMessages(messageNumber, messageCount);
+			if (Validator.isNotNull(newestStoredMessage)) {
 
-			storeMessagesToDisk(messages);
-			storeFolderToDisk(folder, true, new Date());
+				int messageNumber = newestStoredMessage.getMessageNumber();
+
+				if (messageNumber != messageCount) {
+					messages = folder.getMessages(messageNumber, messageCount);
+
+					storeMessagesToDisk(messages);
+					storeFolderToDisk(folder, true, new Date());
+				}
+			}
+
+			// Get some older messages since last update
+
+			Message oldestStoredMessage = getNewestOrOldestStoredMessage(
+				folder, false);
+
+			if (Validator.isNotNull(oldestStoredMessage)) {
+				int messageNumber = oldestStoredMessage.getMessageNumber();
+
+				if (messageCount != 1) {
+					if ((messageNumber - _messagesToPrefetch) < 0) {
+						messages = folder.getMessages(1, messageNumber);
+					}
+					else {
+						messages = folder.getMessages(
+							(messageNumber - _messagesToPrefetch), messageNumber);
+					}
+				}
+
+				storeMessagesToDisk(messages);
+				storeFolderToDisk(folder, true, new Date());
+			}
 		}
 	}
 
@@ -927,6 +962,49 @@ public class MailBoxManager {
 		IMAPFolder folder = (IMAPFolder)openFolder(message.getFolder());
 
 		return folder.getUID(message);
+	}
+
+	protected Message getNewestOrOldestStoredMessage(
+		Folder folder, boolean newest) {
+
+		long[] messageUids = MailDiskManager.getMessageUidsByFolder(
+			_user, _mailAccount.getEmailAddress(), folder.getFullName());
+
+		if (Validator.isNull(folder)) {
+			return null;
+		}
+
+		if (messageUids.length == 0) {
+			return null;
+		}
+
+		Arrays.sort(messageUids);
+
+		// If message no longer exists, delete message from disk and get next
+
+		if (newest) {
+			for (int i = messageUids.length - 1; i >= 0; i--) {
+				try {
+					return getMessageByUid(folder, messageUids[i]);
+				}
+				catch (MessagingException me) {
+					deleteMessage(folder, messageUids[i], false);
+				}
+			}
+		}
+		else {
+			for (int i = 0; i < messageUids.length; i++) {
+				try {
+					return getMessageByUid(folder, messageUids[i]);
+				}
+				catch (MessagingException me) {
+					deleteMessage(folder, messageUids[i], false);
+				}
+			}
+
+		}
+
+		return null;
 	}
 
 	protected Session getOutgoingSession(MailAccount mailAccount) {
