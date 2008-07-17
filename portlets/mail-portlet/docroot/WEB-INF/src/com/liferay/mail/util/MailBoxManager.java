@@ -591,7 +591,8 @@ public class MailBoxManager {
 					}
 					else {
 						messages = folder.getMessages(
-							(messageNumber - _messagesToPrefetch), messageNumber);
+							(messageNumber - _messagesToPrefetch),
+							messageNumber);
 					}
 				}
 
@@ -1191,7 +1192,7 @@ public class MailBoxManager {
 	}
 
 	protected void storeMessageToDisk(Message message)
-		throws MessagingException  {
+		throws MessagingException {
 
 		try {
 			IMAPFolder folder = (IMAPFolder)openFolder(message.getFolder());
