@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+
+<!---->
+
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd">
+	<portlet>
+		<portlet-name>1</portlet-name>
+		<display-name>Sample Javascript</display-name>
+		<portlet-class>com.liferay.util.bridges.javascript.JavascriptPortlet</portlet-class>
+		<init-param>
+			<name>view-file</name>
+			<value>/WEB-INF/javascript/view.js</value>
+		</init-param>
+		<init-param>
+			<name>action-file</name>
+			<value>/WEB-INF/javascript/action.js</value>
+		</init-param>
+		<init-param>
+			<name>global-files</name>
+			<value>/WEB-INF/javascript/global/LiferayPortlet.js,/WEB-INF/javascript/global/Custom.js</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<portlet-info>
+			<title>Sample Javascript</title>
+			<short-title>Sample Javascript</short-title>
+			<keywords>Sample Javascript</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<user-attribute>
+		<description>User Given Name</description>
+		<name>user.name.given</name>
+	</user-attribute>
+	<user-attribute>
+		<description>User Last Name</description>
+		<name>user.name.family</name>
+	</user-attribute>
+	<user-attribute>
+		<description>User Email</description>
+		<name>user.home-info.online.email</name>
+	</user-attribute>
+</portlet-app>
