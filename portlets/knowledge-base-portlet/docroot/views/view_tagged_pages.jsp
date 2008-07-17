@@ -43,10 +43,6 @@ catch (NoSuchPropertyException nspe) {
 PortletURL viewAllURL = renderResponse.createRenderURL();
 %>
 
-<div style="text-align: right; margin-bottom: 1em">
-	<a href="<%= viewAllURL %>">&laquo; <liferay-ui:message key="back" /></a>
-</div>
-
 <h1 class="page-title">
 	<%= LanguageUtil.format(pageContext, "pages-with-tag-x", tag) %>
 </h1>

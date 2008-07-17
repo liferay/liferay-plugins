@@ -25,21 +25,42 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String view = ParamUtil.getString(request, Constants.CMD, "view_all_pages");
-
-String[] supportedViews = {"view_all_pages", "view_page", "view_tagged_pages", "edit_page", "search"};
-
-if (!ArrayUtil.contains(supportedViews, view)) {
-	view = supportedViews[0];
-}
-
-_log.info("Including view: " + "/" + view + ".jsp");
+boolean print = ParamUtil.getBoolean(request, Constants.PRINT);
 %>
 
-<jsp:include page="/top.jsp" />
+<c:if test="<%= !print %>">
+	<%
+	String keywords = ParamUtil.getString(request, "keywords");
 
-<jsp:include page='<%= "/views/" + view + ".jsp" %>' flush="true" />
+	PortletURL portletURL = renderResponse.createRenderURL();
+	%>
 
-<%!
-private static Log _log = LogFactoryUtil.getLog("knowledge-base-portlet.view.jsp");
-%>
+	<div class="top-links">
+		<table class="lfr-table">
+		<tr>
+			<td valign="top">
+				<!-- Search by categories -->
+			</td>
+			<td align="right" valign="top">
+				<liferay-portlet:renderURL varImpl="searchURL"><portlet:param name="<%= Constants.CMD %>" value="search" /></liferay-portlet:renderURL>
+
+				<form action="<%= searchURL %>" method="get" name="<portlet:namespace />fmSearch">
+				<liferay-portlet:renderURLParams varImpl="searchURL" />
+				<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(currentURL) %>" />
+
+				<a href="<%= portletURL.toString() %>"><liferay-ui:message key="all-articles" /></a>
+
+				&nbsp;
+
+				<span class="nobr">
+					<input name="<portlet:namespace />keywords" size="30" type="text" value="<%= HtmlUtil.escape(keywords) %>" />
+
+					<input type="submit" value="<liferay-ui:message key="search" />" />
+				</span>
+
+				</form>
+			</td>
+		</tr>
+		</table>
+	</div>
+</c:if>

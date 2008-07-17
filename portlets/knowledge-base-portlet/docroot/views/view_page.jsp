@@ -70,12 +70,6 @@ PortletURL taggedPagesURL = renderResponse.createRenderURL();
 taggedPagesURL.setParameter(Constants.CMD, "view_tagged_pages");
 %>
 
-<c:if test="<%= !print %>">
-	<div style="text-align: right; margin-bottom: 1em">
-		<a href="<%= viewAllURL %>">&laquo; <liferay-ui:message key="back" /></a>
-	</div>
-</c:if>
-
 <c:choose>
 	<c:when test="<%= print %>">
 		<script type="text/javascript">
