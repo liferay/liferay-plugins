@@ -29,6 +29,8 @@
 		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
 			<script type="text/javascript">
 				function <portlet:namespace />initEditor() {
+					Liferay.Mail.messageDiv.hide();
+
 					return '';
 				}
 
@@ -50,7 +52,7 @@
 
 				<br /><br />
 
-				<liferay-ui:icon image="edit" message="setup-mail-accounts" url="<%= portletDisplay.getURLEdit() %>" />
+				<liferay-ui:icon image="edit" message="setup-email-accounts" url="<%= portletDisplay.getURLEdit() %>" />
 			</div>
 
 			<table class="account-container" id="<portlet:namespace />account-container">
@@ -364,7 +366,7 @@
 		<c:if test="<%= !windowState.equals(WindowState.MAXIMIZED) %>">
 			<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="maximizeURL" />
 
-			<a href="<%= maximizeURL %>">Click here to view mail</a>
+			<a href="<%= maximizeURL %>"><liferay-ui:message key="view-email" /></a>
 		</c:if>
 	</c:when>
 	<c:otherwise>

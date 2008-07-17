@@ -25,6 +25,7 @@ package com.liferay.mail.model;
 import com.liferay.mail.util.MailDiskManager;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 
 /**
@@ -40,15 +41,17 @@ public class MailAccount {
 
 		JSONObject jsonObj = MailDiskManager.getJSONAccount(user, emailAddress);
 
-		_emailAddress = jsonObj.getString("emailAddress");
-   		_initialized = jsonObj.getBoolean("initialized");
-		_mailInHostName = jsonObj.getString("mailInHostName");
-		_mailInPort = jsonObj.getInt("mailInPort");
-		_mailOutHostName = jsonObj.getString("mailOutHostName");
-		_mailOutPort = jsonObj.getInt("mailOutPort");
-		_mailSecure = jsonObj.getBoolean("mailSecure");
-		_password = jsonObj.getString("password");
-		_username = jsonObj.getString("username");
+		if (Validator.isNotNull(jsonObj)) {
+			_emailAddress = jsonObj.getString("emailAddress");
+	   		_initialized = jsonObj.getBoolean("initialized");
+			_mailInHostName = jsonObj.getString("mailInHostName");
+			_mailInPort = jsonObj.getInt("mailInPort");
+			_mailOutHostName = jsonObj.getString("mailOutHostName");
+			_mailOutPort = jsonObj.getInt("mailOutPort");
+			_mailSecure = jsonObj.getBoolean("mailSecure");
+			_password = jsonObj.getString("password");
+			_username = jsonObj.getString("username");
+		}
 	}
 
 	public MailAccount(

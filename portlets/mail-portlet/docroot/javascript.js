@@ -238,9 +238,8 @@ Liferay.Mail = {
 	},
 
 	initializeEditor: function() {
-		setTimeout('Liferay.Mail.messageDiv.show()', 100);
-		setTimeout('Liferay.Mail.messageSendDiv.show()', 100);
-		setTimeout('Liferay.Mail.messageDiv.hide()', 3000);
+		setTimeout('Liferay.Mail.messageDiv.show()', 1000);
+		setTimeout('Liferay.Mail.messageSendDiv.show()', 1000);
 	},
 
 	isSearchMode: function() {
@@ -425,13 +424,6 @@ Liferay.Mail = {
 		var msgBodyPreview = msg.bodyPreview;
 		var msgBody = msg.body;
 		var msgDate = msg.date;
-
-		// Add line breaks if it is plain text
-
-		if (msgBody.indexOf('<a') == -1) {
-			msgBody = msgBody.replace(/\r\n/g,'<br />');
-			msgBody = msgBody.replace(/\n\n/g,'<br />');
-		}
 
 		// Add links to attachments
 
@@ -1312,11 +1304,6 @@ Liferay.Mail = {
 			instance.setSearchMode(true);
 
 			instance.loadMessagesBySearch(instance.getCurrentFolderName(), 1, instance.searchTextInput.val());
-
-			// Reset and set backgrounds
-
-			jQuery('.folder').removeClass('folder-selected results-header');
-			instance.composeMailLink.removeClass('folder-selected results-header');
 		});
 	},
 
@@ -1474,7 +1461,7 @@ Liferay.MailConfiguration = {
 		});
 
 		jQuery('.save-account').click(function() {
-			instance.sendMessage('info','please-wait-attempting-to-save-account-settings');
+			instance.sendMessage('info','saving-account-settings');
 
 			var accountTable = jQuery(this).parents('.account:first');
 
@@ -1576,7 +1563,7 @@ Liferay.MailConfiguration = {
 				currentMsg.fadeOut('slow');
 				clearTimeout(fadeOutTimeout);
 			},
-			7000
+			15000
 		);
 	}
 

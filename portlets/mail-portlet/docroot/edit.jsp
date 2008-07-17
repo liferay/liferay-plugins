@@ -48,4 +48,13 @@
 
 		<div class="current-mail-accounts"></div>
 	</div>
+
+	<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="maximizeURL">
+		<portlet:param name="jspPage" value="/view.jsp" />
+	</portlet:renderURL>
+
+	<br />
+
+	<a href="<%= maximizeURL %>"><liferay-ui:message key="view-email" /></a>
+
 </div>

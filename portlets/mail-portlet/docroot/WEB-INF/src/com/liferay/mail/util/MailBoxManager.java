@@ -63,6 +63,7 @@ import javax.mail.Address;
 import javax.mail.BodyPart;
 import javax.mail.Flags;
 import javax.mail.Folder;
+import javax.mail.FolderClosedException;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -407,24 +408,8 @@ public class MailBoxManager {
 
 		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
-		Transport transport = null;
-
 		try {
-
-			// Send message
-
-			Session session = getOutgoingSession(fromMailAccount);
-
-			if (fromMailAccount.isMailSecure()) {
-				transport = session.getTransport("smtps");
-			}
-			else {
-				transport = session.getTransport("smtp");
-			}
-
-			transport.connect(
-				fromMailAccount.getMailOutHostName(),
-				fromMailAccount.getUsername(), fromMailAccount.getPassword());
+			Transport transport = getConnectedTransport(fromMailAccount);
 
 			transport.sendMessage(message, message.getAllRecipients());
 
@@ -554,8 +539,6 @@ public class MailBoxManager {
 				storeMessagesToDisk(messages);
 			}
 
-			// Write new JSON folder
-
 			storeFolderToDisk(folder, true, new Date());
 		}
 		else {
@@ -566,7 +549,6 @@ public class MailBoxManager {
 				folder, true);
 
 			if (Validator.isNotNull(newestStoredMessage)) {
-
 				int messageNumber = newestStoredMessage.getMessageNumber();
 
 				if (messageNumber != messageCount) {
@@ -594,10 +576,10 @@ public class MailBoxManager {
 							(messageNumber - _messagesToPrefetch),
 							messageNumber);
 					}
-				}
 
-				storeMessagesToDisk(messages);
-				storeFolderToDisk(folder, true, new Date());
+					storeMessagesToDisk(messages);
+					storeFolderToDisk(folder, true, new Date());
+				}
 			}
 		}
 	}
@@ -628,10 +610,14 @@ public class MailBoxManager {
 		// Test outgoing
 
 		try {
-			JSONObject outgoing = sendMessage(
-				_mailAccount, createTestMessage());
+			Transport transport = getConnectedTransport(_mailAccount);
 
-			jsonObj.put("outgoing", outgoing.getBoolean("success"));
+			if (transport.isConnected()) {
+				jsonObj.put("outgoing", true);
+			}
+			else {
+				jsonObj.put("outgoing", false);
+			}
 		}
 		catch (MessagingException me) {
 			jsonObj.put("outgoing", false);
@@ -690,7 +676,9 @@ public class MailBoxManager {
 						sb.append(StringPool.NEW_LINE + StringPool.NEW_LINE);
 					}
 
-					sb.append(messagePart.getContent());
+					String messageText = messagePart.getContent().toString();
+
+					sb.append(messageText.replaceAll("\r\n", "<br />"));
 				}
 				else if (contentType.startsWith(ContentTypes.TEXT_HTML)) {
 					if (sb.length() > 0) {
@@ -726,8 +714,6 @@ public class MailBoxManager {
 		}
 		catch (Exception e) {
 			sb.append("Error retrieving message content");
-
-			_log.error(e, e);
 		}
 	}
 
@@ -759,6 +745,27 @@ public class MailBoxManager {
 		messageBody = StringUtil.shorten(messageBody, 150);
 
 		return messageBody;
+	}
+
+	protected Transport getConnectedTransport(MailAccount mailAccount)
+		throws MessagingException {
+
+		Transport transport = null;
+
+		Session session = getOutgoingSession(mailAccount);
+
+		if (mailAccount.isMailSecure()) {
+			transport = session.getTransport("smtps");
+		}
+		else {
+			transport = session.getTransport("smtp");
+		}
+
+		transport.connect(
+			mailAccount.getMailOutHostName(), mailAccount.getUsername(),
+			mailAccount.getPassword());
+
+		return transport;
 	}
 
 	protected Folder getDraftsFolder() throws MessagingException {
@@ -873,6 +880,8 @@ public class MailBoxManager {
 
 		boolean seen = false;
 
+		openFolder(message.getFolder());
+
 		if (message.isSet(Flags.Flag.SEEN)) {
 			seen = true;
 		}
@@ -892,7 +901,6 @@ public class MailBoxManager {
 		jsonObj.put("date", date);
 		jsonObj.put("flags", jsonFlags);
 		jsonObj.put("from", getAddresses(message.getFrom()));
-		jsonObj.put("html", false);
 		jsonObj.put("messageNumber", message.getMessageNumber());
 		jsonObj.put("subject", message.getSubject());
 		jsonObj.put("uid", getMessageUid(message));
