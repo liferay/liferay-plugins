@@ -24,6 +24,7 @@ package com.liferay.twitter.service.base;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import com.liferay.twitter.model.Feed;
@@ -39,7 +40,8 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class FeedLocalServiceBaseImpl implements FeedLocalService {
+public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
+	InitializingBean {
 	public Feed addFeed(Feed feed) throws SystemException {
 		feed.setNew(true);
 
@@ -82,7 +84,7 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService {
 		this.feedPersistence = feedPersistence;
 	}
 
-	protected void init() {
+	public void afterPropertiesSet() {
 		if (feedPersistence == null) {
 			feedPersistence = FeedUtil.getPersistence();
 		}

@@ -24,6 +24,7 @@ package com.liferay.wol.service.base;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import com.liferay.wol.model.WallEntry;
@@ -80,7 +81,7 @@ import java.util.List;
  *
  */
 public abstract class WallEntryLocalServiceBaseImpl
-	implements WallEntryLocalService {
+	implements WallEntryLocalService, InitializingBean {
 	public WallEntry addWallEntry(WallEntry wallEntry)
 		throws SystemException {
 		wallEntry.setNew(true);
@@ -306,7 +307,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 		this.wallEntryFinder = wallEntryFinder;
 	}
 
-	protected void init() {
+	public void afterPropertiesSet() {
 		if (jiraActionLocalService == null) {
 			jiraActionLocalService = JIRAActionLocalServiceFactory.getImpl();
 		}

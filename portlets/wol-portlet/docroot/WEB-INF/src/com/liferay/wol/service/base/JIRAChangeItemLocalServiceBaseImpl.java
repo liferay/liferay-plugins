@@ -24,6 +24,7 @@ package com.liferay.wol.service.base;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import com.liferay.wol.model.JIRAChangeItem;
@@ -80,7 +81,7 @@ import java.util.List;
  *
  */
 public abstract class JIRAChangeItemLocalServiceBaseImpl
-	implements JIRAChangeItemLocalService {
+	implements JIRAChangeItemLocalService, InitializingBean {
 	public JIRAChangeItem addJIRAChangeItem(JIRAChangeItem jiraChangeItem)
 		throws SystemException {
 		jiraChangeItem.setNew(true);
@@ -307,7 +308,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 		this.wallEntryFinder = wallEntryFinder;
 	}
 
-	protected void init() {
+	public void afterPropertiesSet() {
 		if (jiraActionLocalService == null) {
 			jiraActionLocalService = JIRAActionLocalServiceFactory.getImpl();
 		}

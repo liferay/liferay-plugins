@@ -2,7 +2,7 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-	<bean id="com.liferay.twitter.service.FeedLocalService.impl" class="com.liferay.twitter.service.impl.FeedLocalServiceImpl" lazy-init="true" init-method="init" />
+	<bean id="com.liferay.twitter.service.FeedLocalService.impl" class="com.liferay.twitter.service.impl.FeedLocalServiceImpl" lazy-init="true" />
 	<bean id="com.liferay.twitter.service.FeedLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
@@ -27,12 +27,28 @@
 			<ref bean="com.liferay.twitter.service.FeedLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.twitter.service.persistence.FeedPersistence.impl" class="com.liferay.twitter.service.persistence.FeedPersistenceImpl" lazy-init="true" init-method="init">
+	<bean id="com.liferay.twitter.service.persistence.FeedPersistence.impl" class="com.liferay.twitter.service.persistence.FeedPersistenceImpl" lazy-init="true">
 		<property name="dataSource">
 			<ref bean="liferayDataSource" />
 		</property>
 		<property name="sessionFactory">
 			<ref bean="liferaySessionFactory" />
+		</property>
+	</bean>
+	<bean id="com.liferay.twitter.service.persistence.FeedPersistence.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+		<property name="transactionManager">
+			<ref bean="liferayTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.twitter.service.persistence.FeedPersistence.impl" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="remove*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
+			</props>
 		</property>
 	</bean>
 	<bean id="com.liferay.twitter.service.persistence.FeedUtil" class="com.liferay.twitter.service.persistence.FeedUtil" lazy-init="true">

@@ -23,6 +23,7 @@
 package com.liferay.wol.service.persistence;
 
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -57,7 +58,7 @@ import java.util.List;
  *
  */
 public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
-	implements SVNRevisionPersistence {
+	implements SVNRevisionPersistence, InitializingBean {
 	public SVNRevision create(long svnRevisionId) {
 		SVNRevision svnRevision = new SVNRevisionImpl();
 
@@ -1478,7 +1479,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
 	}
 
-	protected void init() {
+	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
 						"value.object.listener.com.liferay.wol.model.SVNRevision")));

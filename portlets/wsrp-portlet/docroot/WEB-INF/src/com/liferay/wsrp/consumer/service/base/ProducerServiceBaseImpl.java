@@ -27,6 +27,7 @@ import com.liferay.counter.service.CounterLocalServiceFactory;
 import com.liferay.counter.service.CounterService;
 import com.liferay.counter.service.CounterServiceFactory;
 
+import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserLocalServiceFactory;
 import com.liferay.portal.service.UserService;
@@ -48,7 +49,7 @@ import com.liferay.wsrp.consumer.service.persistence.ProducerUtil;
  *
  */
 public abstract class ProducerServiceBaseImpl extends PrincipalBean
-	implements ProducerService {
+	implements ProducerService, InitializingBean {
 	public ProducerLocalService getProducerLocalService() {
 		return producerLocalService;
 	}
@@ -106,7 +107,7 @@ public abstract class ProducerServiceBaseImpl extends PrincipalBean
 		this.userPersistence = userPersistence;
 	}
 
-	protected void init() {
+	public void afterPropertiesSet() {
 		if (producerLocalService == null) {
 			producerLocalService = ProducerLocalServiceFactory.getImpl();
 		}

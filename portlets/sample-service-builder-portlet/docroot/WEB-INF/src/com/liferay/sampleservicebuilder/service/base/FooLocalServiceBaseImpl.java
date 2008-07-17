@@ -24,6 +24,7 @@ package com.liferay.sampleservicebuilder.service.base;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import com.liferay.sampleservicebuilder.model.Foo;
@@ -39,7 +40,8 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class FooLocalServiceBaseImpl implements FooLocalService {
+public abstract class FooLocalServiceBaseImpl implements FooLocalService,
+	InitializingBean {
 	public Foo addFoo(Foo foo) throws SystemException {
 		foo.setNew(true);
 
@@ -82,7 +84,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService {
 		this.fooPersistence = fooPersistence;
 	}
 
-	protected void init() {
+	public void afterPropertiesSet() {
 		if (fooPersistence == null) {
 			fooPersistence = FooUtil.getPersistence();
 		}

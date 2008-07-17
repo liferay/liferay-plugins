@@ -22,6 +22,7 @@
 
 package com.liferay.sampleservicebuilder.service.base;
 
+import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.service.base.PrincipalBean;
 
 import com.liferay.sampleservicebuilder.service.FooLocalService;
@@ -37,7 +38,7 @@ import com.liferay.sampleservicebuilder.service.persistence.FooUtil;
  *
  */
 public abstract class FooServiceBaseImpl extends PrincipalBean
-	implements FooService {
+	implements FooService, InitializingBean {
 	public FooLocalService getFooLocalService() {
 		return fooLocalService;
 	}
@@ -54,7 +55,7 @@ public abstract class FooServiceBaseImpl extends PrincipalBean
 		this.fooPersistence = fooPersistence;
 	}
 
-	protected void init() {
+	public void afterPropertiesSet() {
 		if (fooLocalService == null) {
 			fooLocalService = FooLocalServiceFactory.getImpl();
 		}

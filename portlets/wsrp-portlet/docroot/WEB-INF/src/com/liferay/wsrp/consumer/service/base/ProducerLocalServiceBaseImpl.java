@@ -29,6 +29,7 @@ import com.liferay.counter.service.CounterServiceFactory;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserLocalServiceFactory;
@@ -51,7 +52,7 @@ import java.util.List;
  *
  */
 public abstract class ProducerLocalServiceBaseImpl
-	implements ProducerLocalService {
+	implements ProducerLocalService, InitializingBean {
 	public Producer addProducer(Producer producer) throws SystemException {
 		producer.setNew(true);
 
@@ -136,7 +137,7 @@ public abstract class ProducerLocalServiceBaseImpl
 		this.userPersistence = userPersistence;
 	}
 
-	protected void init() {
+	public void afterPropertiesSet() {
 		if (producerPersistence == null) {
 			producerPersistence = ProducerUtil.getPersistence();
 		}

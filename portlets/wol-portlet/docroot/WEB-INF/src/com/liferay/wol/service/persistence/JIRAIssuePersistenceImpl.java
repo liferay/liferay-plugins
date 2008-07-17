@@ -23,6 +23,7 @@
 package com.liferay.wol.service.persistence;
 
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -59,7 +60,7 @@ import java.util.List;
  *
  */
 public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
-	implements JIRAIssuePersistence {
+	implements JIRAIssuePersistence, InitializingBean {
 	public JIRAIssue create(long jiraIssueId) {
 		JIRAIssue jiraIssue = new JIRAIssueImpl();
 
@@ -4584,7 +4585,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
 	}
 
-	protected void init() {
+	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
 						"value.object.listener.com.liferay.wol.model.JIRAIssue")));
