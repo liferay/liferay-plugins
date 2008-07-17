@@ -44,8 +44,9 @@ import com.liferay.ruon.util.PresenceStatusConstants;
 
 import javax.ws.rs.ConsumeMime;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.POST;
 import javax.ws.rs.ProduceMime;
 
 /**
