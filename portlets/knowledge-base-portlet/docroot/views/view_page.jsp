@@ -200,6 +200,15 @@ taggedPagesURL.setParameter(Constants.CMD, "view_tagged_pages");
 							<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" label="<%= true %>" />
 						</c:otherwise>
 						</c:choose>
+						<%
+						PortletURL deletePageURL = renderResponse.createActionURL();
+
+						deletePageURL.setParameter(Constants.CMD, Constants.DELETE);
+						deletePageURL.setParameter("title", wikiPage.getTitle());
+						deletePageURL.setParameter("redirect", viewAllURL.toString());
+						%>
+
+						<liferay-ui:icon-delete url="<%= deletePageURL.toString() %>" label="<%= true %>" />
 					</liferay-ui:icon-list>
 				</div>
 			</div>

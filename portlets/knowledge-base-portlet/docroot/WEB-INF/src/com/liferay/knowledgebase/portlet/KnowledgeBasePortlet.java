@@ -71,6 +71,9 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			if (cmd.equals(Constants.UPDATE)) {
 				page = updatePage(actionRequest);
 			}
+			else if (cmd.equals(Constants.DELETE)) {
+				deletePage(actionRequest);
+			}
 
 			boolean preview = ParamUtil.getBoolean(actionRequest, "preview");
 
@@ -171,6 +174,18 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		if (Validator.isNotNull(redirect)) {
 			actionResponse.sendRedirect(redirect);
 		}
+	}
+
+	protected void deletePage(ActionRequest actionRequest) throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		WikiNode node = getNode(themeDisplay);
+
+		String title = ParamUtil.getString(actionRequest, "title");
+
+		WikiPageServiceUtil.deletePage(node.getNodeId(), title);
 	}
 
 	protected WikiPage updatePage(ActionRequest actionRequest)
