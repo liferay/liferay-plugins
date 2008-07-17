@@ -26,31 +26,45 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-WikiNode node = (WikiNode)request.getAttribute(KnowledgeBaseKeys.WIKI_NODE);
 WikiPage wikiPage = (WikiPage)request.getAttribute(KnowledgeBaseKeys.WIKI_PAGE);
 
 String title = BeanParamUtil.getString(wikiPage, request, "title");
 String parentTitle = BeanParamUtil.getString(wikiPage, request, "parentTitle");
 
+boolean preview = ParamUtil.getBoolean(request, "preview");
+
 boolean newPage = false;
-String content = StringPool.BLANK;
+String content = BeanParamUtil.getString(wikiPage, request, "content");
 
 if (wikiPage == null) {
 	newPage = true;
-}
-else {
-	content = wikiPage.getContent();
 }
 
 PortletURL viewPageURL = renderResponse.createRenderURL();
 
 viewPageURL.setParameter(Constants.CMD, "view_page");
 viewPageURL.setParameter("title", title);
+
+PortletURL editPageURL = renderResponse.createRenderURL();
+
+editPageURL.setParameter(Constants.CMD, "edit_page");
+editPageURL.setParameter("title", title);
 %>
 
 <script type="text/javascript">
 	function <portlet:namespace />initEditor() {
 		return "<%= UnicodeFormatter.toString(content) %>";
+	}
+
+	function <portlet:namespace />previewPage() {
+		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "edit_page";
+		document.<portlet:namespace />fm.<portlet:namespace />preview.value = "true";
+
+		if (window.<portlet:namespace />editor) {
+			document.<portlet:namespace />fm.<portlet:namespace />content.value = window.<portlet:namespace />editor.getHTML();
+		}
+
+		submitForm(document.<portlet:namespace />fm);
 	}
 
 	function <portlet:namespace />savePage() {
@@ -62,9 +76,30 @@ viewPageURL.setParameter("title", title);
 
 		submitForm(document.<portlet:namespace />fm);
 	}
+
+	function <portlet:namespace />saveAndContinuePage() {
+		document.<portlet:namespace />fm.<portlet:namespace />saveAndContinueRedirect.value = "<%= editPageURL.toString() %>";
+		<portlet:namespace />savePage();
+	}
 </script>
 
-<form action="<portlet:actionURL><portlet:param name="struts_action" value="/wiki/edit_page" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />savePage(); return false;">
+<c:if test="<%= preview && (wikiPage != null)%>">
+
+	<liferay-ui:message key="preview" />:
+
+	<div class="preview">
+		<h1 class="page-title">
+			<%= title %>
+		</h1>
+		<div class="knowledge-base-body">
+			<%= content %>
+		</div>
+	</div>
+
+	<br />
+</c:if>
+
+<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />savePage(); return false;">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />parentTitle" type="hidden" value="<%= parentTitle %>" />
@@ -73,6 +108,9 @@ viewPageURL.setParameter("title", title);
 <c:if test="<%= wikiPage != null %>">
 	<input name="<portlet:namespace />version" type="hidden" value="<%= wikiPage.getVersion() %>" />
 </c:if>
+
+<input name="<portlet:namespace />preview" type="hidden" value="0" />
+<input name="<portlet:namespace />saveAndContinueRedirect" type="hidden" value="" />
 
 <liferay-ui:error exception="<%= PageContentException.class %>" message="the-content-is-not-valid" />
 <liferay-ui:error exception="<%= PageTitleException.class %>" message="please-enter-a-valid-title" />
@@ -168,6 +206,10 @@ viewPageURL.setParameter("title", title);
 <br />
 
 <input type="submit" value="<liferay-ui:message key="save" />" />
+
+<input type="button" value="<liferay-ui:message key="save-and-continue" />" onClick="<portlet:namespace />saveAndContinuePage();" />
+
+<input type="button" value="<liferay-ui:message key="preview" />" onClick="<portlet:namespace />previewPage();" />
 
 <input type="button" value="<liferay-ui:message key="cancel" />" onClick="document.location = '<%= HtmlUtil.escape(redirect) %>'" />
 

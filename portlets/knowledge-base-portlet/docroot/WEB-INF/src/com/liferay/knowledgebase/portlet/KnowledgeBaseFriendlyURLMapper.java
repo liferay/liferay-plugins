@@ -37,12 +37,13 @@ import javax.portlet.PortletMode;
 import javax.portlet.WindowState;
 
 /**
- * <a href="KBFriendlyURLMapper.java.html"><b><i>View Source</i></b></a>
+ * <a href="KnowledgeBaseFriendlyURLMapper.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Jorge Ferrer
  *
  */
-public class KBFriendlyURLMapper extends BaseFriendlyURLMapper {
+public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 	public String buildPath(LiferayPortletURL portletURL) {
 		String friendlyURLPath = null;
@@ -124,9 +125,9 @@ public class KBFriendlyURLMapper extends BaseFriendlyURLMapper {
 			friendlyURLPath.substring(x + 1), StringPool.SLASH);
 
 		if (urlFragments.length >= 1) {
-			String fragment0 = HttpUtil.decodeURL(urlFragments[0]);
+			String urlFragment0 = HttpUtil.decodeURL(urlFragments[0]);
 
-			if (fragment0.equals("tag")) {
+			if (urlFragment0.equals("tag")) {
 				if (urlFragments.length >= 2) {
 					addParam(params, Constants.CMD, "view_tagged_pages");
 
@@ -138,7 +139,7 @@ public class KBFriendlyURLMapper extends BaseFriendlyURLMapper {
 			else {
 				addParam(params, Constants.CMD, "view_page");
 
-				addParam(params, "title", fragment0);
+				addParam(params, "title", urlFragment0);
 
 				if (urlFragments.length >= 2) {
 					String windowState = urlFragments[1];

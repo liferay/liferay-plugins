@@ -66,21 +66,43 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		try {
 			String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
+			WikiPage page = null;
+
 			if (cmd.equals(Constants.UPDATE)) {
-				updatePage(actionRequest);
+				page = updatePage(actionRequest);
 			}
 
-			if (Validator.isNull(cmd)) {
+			boolean preview = ParamUtil.getBoolean(actionRequest, "preview");
+
+			if (preview) {
+				actionResponse.setRenderParameters(
+					actionRequest.getParameterMap());
+			}
+			else if (Validator.isNotNull(cmd)) {
+				String redirect = ParamUtil.getString(
+					actionRequest, "redirect");
+
+				if (page != null) {
+					String saveAndContinueRedirect = ParamUtil.getString(
+						actionRequest, "saveAndContinueRedirect");
+
+					if (Validator.isNotNull(saveAndContinueRedirect)) {
+						redirect = saveAndContinueRedirect;
+					}
+					else if (redirect.endsWith("title=")) {
+						redirect += page.getTitle();
+					}
+				}
+
+				if (SessionErrors.isEmpty(actionRequest)) {
+					SessionMessages.add(actionRequest, "request_processed");
+				}
+
+				sendRedirect(actionRequest, actionResponse, redirect);
+
 				return;
 			}
 
-			if (SessionErrors.isEmpty(actionRequest)) {
-				SessionMessages.add(actionRequest, "request_processed");
-			}
-
-			String redirect = ParamUtil.getString(actionRequest, "redirect");
-
-			actionResponse.sendRedirect(redirect);
 		}
 		catch (Exception e) {
 			throw new PortletException(e);
@@ -131,6 +153,24 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 				themeDisplay.getPlid(), _KB_NODE, _KB_NODE, true, true);
 		}
 		return node;
+	}
+
+	protected void sendRedirect(
+			ActionRequest actionRequest, ActionResponse actionResponse,
+			String redirect)
+		throws IOException {
+
+		if (SessionErrors.isEmpty(actionRequest)) {
+			SessionMessages.add(actionRequest, "request_processed");
+		}
+
+		if (redirect == null) {
+			redirect = ParamUtil.getString(actionRequest, "redirect");
+		}
+
+		if (Validator.isNotNull(redirect)) {
+			actionResponse.sendRedirect(redirect);
+		}
 	}
 
 	protected WikiPage updatePage(ActionRequest actionRequest)

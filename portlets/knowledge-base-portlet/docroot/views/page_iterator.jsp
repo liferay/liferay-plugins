@@ -36,6 +36,7 @@ if (type.equals("all_pages")) {
 }
 else if (type.equals("tagged_pages")) {
 	portletURL.setParameter(Constants.CMD, "view_tagged_pages");
+	portletURL.setParameter("tag", tag);
 }
 
 List headerNames = new ArrayList();
@@ -61,7 +62,7 @@ int total = 0;
 List<WikiPage> results = null;
 
 if (type.equals("all_pages")) {
-	total = WikiPageLocalServiceUtil.getPagesCount(node.getNodeId());
+	total = WikiPageLocalServiceUtil.getPagesCount(node.getNodeId(), true);
 	results = WikiPageLocalServiceUtil.getPages(node.getNodeId(), true, searchContainer.getStart(), searchContainer.getEnd());
 }
 else if (type.equals("tagged_pages")) {
@@ -84,7 +85,6 @@ else if (type.equals("tagged_pages")) {
 	}
 }
 else {
-	System.out.println("Warning type " + type + " not supported");
 	results = Collections.EMPTY_LIST;
 }
 

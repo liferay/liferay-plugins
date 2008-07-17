@@ -1,5 +1,5 @@
 .portlet-knowledge-base .knowledge-base-body pre {
-	background : white;
+	background: white;
 	border: 1px dashed #2f6fab;
 	margin: 5px 0px 5px 0px;
 	padding: 0.5em;
@@ -38,8 +38,11 @@
 }
 
 .portlet-knowledge-base .taglib-tags-summary {
-	margin: -10px 0px 10px 0px;
-	color: #7d7d7d;
+	font-weight: bold;
+}
+
+.portlet-knowledge-base .taglib-tags-summary a {
+	font-weight: normal;
 }
 
 .portlet-knowledge-base h1.page-title {
@@ -50,7 +53,7 @@
 }
 
 .portlet-knowledge-base h1.page-title .return-to-page {
-	background: url(<%= themeImagesPath %>/wiki/return_to_page.png) no-repeat 0 50%;
+	background: url(/html/themes/classic/images/wiki/return_to_page.png) no-repeat 0 50%;
 	padding-left: 20px;
 	text-decoration: none;
 }
@@ -94,13 +97,13 @@
 }
 
 .portlet-knowledge-base .content-body a.external-link {
-	background: transparent url(<%= themeImagesPath %>/wiki/external.png) right top no-repeat;
+	background: transparent url(/html/themes/classic/images/wiki/external.png) right top no-repeat;
 	text-decoration: none;
 	padding-right: 10px;
 }
 
 .portlet-knowledge-base .content-body a.external-link:hover {
-	background: transparent url(<%= themeImagesPath %>/wiki/external.png) right top no-repeat;
+	background: transparent url(/html/themes/classic/images/wiki/external.png) right top no-repeat;
 	text-decoration: underline;
 	padding-right: 11px;
 }
@@ -163,6 +166,25 @@
 
 .portlet-knowledge-base .popup-print {
 	float: right;
+}
+
+.portlet-knowledge-base .side-boxes {
+	float: right;
+	margin-left: 10px;
+}
+
+.portlet-knowledge-base .side-box {
+	background: #eee;
+	border: 1px dashed #ccc;
+	margin-bottom: 10px;
+	padding: 5px;
+}
+
+.portlet-knowledge-base .side-box-title {
+	border-bottom: 1px dashed gray;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-bottom: 3px;
 }
 
 .portlet-knowledge-base .syntax-help {

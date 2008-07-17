@@ -30,6 +30,8 @@ String title = wikiPage.getTitle();
 
 boolean print = ParamUtil.getBoolean(request, Constants.PRINT);
 
+TagsAssetLocalServiceUtil.incrementViewCounter(WikiPage.class.getName(), wikiPage.getResourcePrimKey());
+
 PortletURL viewAllURL = renderResponse.createRenderURL();
 
 PortletURL viewPageURL = renderResponse.createRenderURL();
@@ -123,24 +125,60 @@ taggedPagesURL.setParameter(Constants.CMD, "view_tagged_pages");
 </c:if>
 
 <h1 class="page-title">
-	<c:if test="<%= !print %>">
-		<div class="page-actions">
-			<liferay-ui:icon image="edit" url="<%= editPageURL.toString() %>" />
-
-			<liferay-ui:icon image="print" message="print" url='<%= "javascript: " + renderResponse.getNamespace() + "printPage();" %>' />
-		</div>
-	</c:if>
-
 	<%= title %>
 </h1>
 
-<liferay-ui:tags-summary
-	className="<%= WikiPage.class.getName() %>"
-	classPK="<%= wikiPage.getResourcePrimKey() %>"
-	portletURL="<%= taggedPagesURL %>"
-/>
-
 <div>
+	<c:if test="<%= !print %>">
+		<div class="side-boxes">
+			<div class="side-box">
+				<div class="side-box-title"><liferay-ui:message key="details" /></div>
+				<div class="side-box-content">
+					<ul class="lfr-component">
+						<li>
+							<b><liferay-ui:message key="version" /></b>: <%= wikiPage.getVersion() %>
+						</li>
+						<li>
+							<b><liferay-ui:message key="updated" /></b>: <%= dateFormatDateTime.format(wikiPage.getModifiedDate()) %>
+						</li>
+						<li>
+							<b><liferay-ui:message key="by" /></b>: <%= wikiPage.getUserName() %>
+						</li>
+						<li>
+							<b><liferay-ui:message key="views" /></b>:
+							<%
+							TagsAsset asset = TagsAssetLocalServiceUtil.getAsset(WikiPage.class.getName(), wikiPage.getResourcePrimKey());
+							%>
+							<%= asset.getViewCount() %>
+						</li>
+						<li>
+							<liferay-ui:tags-summary
+								className="<%= WikiPage.class.getName() %>"
+								classPK="<%= wikiPage.getResourcePrimKey() %>"
+								portletURL="<%= taggedPagesURL %>"
+							/>
+						</li>
+
+				</div>
+			</div>
+			<div class="side-box">
+				<div class="side-box-title"><liferay-ui:message key="attachments" /></div>
+				<div class="side-box-content">
+					0 <liferay-ui:message key="attachments" />
+				</div>
+			</div>
+			<div class="side-box">
+				<div class="side-box-title"><liferay-ui:message key="actions" /></div>
+				<div class="side-box-content">
+					<ul class="lfr-component">
+						<li><liferay-ui:icon image="edit" label="<%= true %>" url="<%= editPageURL.toString() %>" /></li>
+						<li><liferay-ui:icon image="print" label="<%= true %>" message="print" url='<%= "javascript: " + renderResponse.getNamespace() + "printPage();" %>' /></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</c:if>
+
 	<div class="knowledge-base-body">
 		<%= wikiPage.getContent() %>
 	</div>
@@ -178,6 +216,8 @@ taggedPagesURL.setParameter(Constants.CMD, "view_tagged_pages");
 	</div>
 </c:if>
 
-<div class="page-actions">
-	<liferay-ui:icon image="add_article" message="add-child-article" url="<%= addPageURL.toString() %>" label="<%= true %>" />
-</div>
+<c:if test="<%= !print %>">
+	<div class="page-actions">
+		<liferay-ui:icon image="add_article" message="add-child-article" url="<%= addPageURL.toString() %>" label="<%= true %>" />
+	</div>
+</c:if>
