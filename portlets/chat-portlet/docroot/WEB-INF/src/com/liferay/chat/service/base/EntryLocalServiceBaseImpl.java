@@ -37,6 +37,7 @@ import com.liferay.chat.service.persistence.StatusUtil;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import java.util.List;
@@ -47,7 +48,8 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class EntryLocalServiceBaseImpl implements EntryLocalService {
+public abstract class EntryLocalServiceBaseImpl implements EntryLocalService,
+	InitializingBean {
 	public Entry addEntry(Entry entry) throws SystemException {
 		entry.setNew(true);
 
@@ -123,7 +125,7 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService {
 		this.statusFinder = statusFinder;
 	}
 
-	protected void init() {
+	public void afterPropertiesSet() {
 		if (entryPersistence == null) {
 			entryPersistence = EntryUtil.getPersistence();
 		}

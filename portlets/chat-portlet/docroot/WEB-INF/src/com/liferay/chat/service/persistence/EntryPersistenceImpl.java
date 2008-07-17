@@ -28,6 +28,7 @@ import com.liferay.chat.model.impl.EntryImpl;
 import com.liferay.chat.model.impl.EntryModelImpl;
 
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -57,7 +58,7 @@ import java.util.List;
  *
  */
 public class EntryPersistenceImpl extends BasePersistenceImpl
-	implements EntryPersistence {
+	implements EntryPersistence, InitializingBean {
 	public Entry create(long entryId) {
 		Entry entry = new EntryImpl();
 
@@ -1353,7 +1354,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
 	}
 
-	protected void init() {
+	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
 						"value.object.listener.com.liferay.chat.model.Entry")));
