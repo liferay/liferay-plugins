@@ -24,6 +24,7 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
 
+<%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
@@ -40,6 +41,7 @@
 <%@ page import="com.liferay.portal.kernel.util.ArrayUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.DateFormats" %>
+<%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HttpUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
@@ -49,7 +51,10 @@
 <%@ page import="com.liferay.portal.kernel.log.LogFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
+<%@ page import="com.liferay.portal.service.SubscriptionLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
+<%@ page import="com.liferay.portal.util.PortletKeys" %>
+<%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
 <%@ page import="com.liferay.portlet.tags.NoSuchEntryException" %>
 <%@ page import="com.liferay.portlet.tags.NoSuchPropertyException" %>
 <%@ page import="com.liferay.portlet.tags.model.TagsAsset" %>
@@ -72,6 +77,7 @@
 <%@ page import="com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.wiki.service.WikiPageServiceUtil" %>
 <%@ page import="com.liferay.util.BeanParamUtil" %>
+<%@ page import="com.liferay.util.RSSUtil" %>
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Collections" %>
@@ -81,6 +87,7 @@
 <%@ page import="java.text.DateFormat" %>
 
 <%@ page import="javax.portlet.ActionRequest" %>
+<%@ page import="javax.portlet.PortletPreferences" %>
 <%@ page import="javax.portlet.PortletURL" %>
 <%@ page import="javax.portlet.WindowState" %>
 
@@ -88,7 +95,50 @@
 <liferay-theme:defineObjects />
 
 <%
+PortletPreferences prefs = renderRequest.getPreferences();
+
+String portletResource = ParamUtil.getString(request, "portletResource");
+
+if (Validator.isNotNull(portletResource)) {
+	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
+}
+
 String currentURL = PortalUtil.getCurrentURL(request);
+
+int rssDelta = GetterUtil.getInteger(prefs.getValue("rss-delta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
+String rssDisplayStyle = prefs.getValue("rss-display-style", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
+
+StringBuilder rssURLParams = new StringBuilder();
+
+if ((rssDelta != SearchContainer.DEFAULT_DELTA) || !rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT)) {
+	if (rssDelta != SearchContainer.DEFAULT_DELTA) {
+		rssURLParams.append("&max=");
+		rssURLParams.append(rssDelta);
+	}
+
+	if (!rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT)) {
+		rssURLParams.append("&displayStyle=");
+		rssURLParams.append(rssDisplayStyle);
+	}
+}
+
+StringBuilder rssURLAtomParams = new StringBuilder(rssURLParams.toString());
+
+rssURLAtomParams.append("&type=");
+rssURLAtomParams.append(RSSUtil.ATOM);
+rssURLAtomParams.append("&version=1.0");
+
+StringBuilder rssURLRSS10Params = new StringBuilder(rssURLParams.toString());
+
+rssURLRSS10Params.append("&type=");
+rssURLRSS10Params.append(RSSUtil.RSS);
+rssURLRSS10Params.append("&version=1.0");
+
+StringBuilder rssURLRSS20Params = new StringBuilder(rssURLParams.toString());
+
+rssURLRSS20Params.append("&type=");
+rssURLRSS20Params.append(RSSUtil.RSS);
+rssURLRSS20Params.append("&version=2.0");
 
 DateFormat dateFormatDateTime = DateFormats.getDateTime(locale, timeZone);
 %>

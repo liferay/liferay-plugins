@@ -187,6 +187,10 @@
 	margin-bottom: 3px;
 }
 
+.portlet-knowledge-base .side-box .taglib-icon-list li {
+	float: none;
+}
+
 .portlet-knowledge-base .syntax-help {
 	border: 1px dotted gray;
 	padding-left: 10px;

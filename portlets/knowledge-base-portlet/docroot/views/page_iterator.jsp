@@ -41,9 +41,10 @@ else if (type.equals("tagged_pages")) {
 
 List headerNames = new ArrayList();
 
-headerNames.add("article");
-headerNames.add("revision");
-headerNames.add("user");
+headerNames.add("id");
+headerNames.add("title");
+headerNames.add("author");
+headerNames.add("views");
 headerNames.add("date");
 headerNames.add("");
 
@@ -103,17 +104,23 @@ for (int i = 0; i < results.size(); i++) {
 	rowURL.setParameter(Constants.CMD, "view_page");
 	rowURL.setParameter("title", curWikiPage.getTitle());
 
+	// Id
+
+	row.addText(String.valueOf(curWikiPage.getResourcePrimKey()), rowURL);
+
 	// Title
 
 	row.addText(curWikiPage.getTitle(), rowURL);
 
-	// Revision
-
-	row.addText(String.valueOf(curWikiPage.getVersion()), rowURL);
-
-	// User
+	// Author
 
 	row.addText(PortalUtil.getUserName(curWikiPage.getUserId(), curWikiPage.getUserName()), rowURL);
+
+	// Views
+
+	TagsAsset asset = TagsAssetLocalServiceUtil.getAsset(WikiPage.class.getName(), curWikiPage.getResourcePrimKey());
+
+	row.addText(String.valueOf(asset.getViewCount()), rowURL);
 
 	// Date
 
@@ -136,3 +143,34 @@ for (int i = 0; i < results.size(); i++) {
 <br />
 
 <liferay-ui:search-iterator searchContainer="<%= searchContainer %>" paginate="true" />
+
+<liferay-ui:icon-list>
+	<liferay-ui:icon image="rss" message="Atom 1.0" url='<%= themeDisplay.getPathMain() + "/wiki/rss?p_l_id=" + plid + "&nodeId=" + node.getNodeId() + rssURLAtomParams %>' target="_blank" label="<%= true %>" />
+
+	<liferay-ui:icon image="rss" message="RSS 1.0" url='<%= themeDisplay.getPathMain() + "/wiki/rss?p_l_id=" + plid + "&nodeId=" + node.getNodeId() + rssURLRSS10Params %>' target="_blank" label="<%= true %>" />
+
+	<liferay-ui:icon image="rss" message="RSS 2.0" url='<%= themeDisplay.getPathMain() + "/wiki/rss?p_l_id=" + plid + "&nodeId=" + node.getNodeId() + rssURLRSS20Params %>' target="_blank" label="<%= true %>" />
+
+	<c:choose>
+		<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), WikiNode.class.getName(), node.getNodeId()) %>">
+			<liferay-portlet:actionURL portletName="<%= PortletKeys.WIKI %>" windowState="<%= WindowState.MAXIMIZED.toString() %>" var="unsubscribeURL">
+				<portlet:param name="struts_action" value="/wiki/edit_node" />
+				<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UNSUBSCRIBE %>" />
+				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="nodeId" value="<%= String.valueOf(node.getNodeId()) %>" />
+			</liferay-portlet:actionURL>
+
+			<liferay-ui:icon image="unsubscribe" url="<%= unsubscribeURL %>" />
+		</c:when>
+		<c:otherwise>
+			<liferay-portlet:actionURL portletName="<%= PortletKeys.WIKI %>" windowState="<%= WindowState.MAXIMIZED.toString() %>" var="subscribeURL">
+				<portlet:param name="struts_action" value="/wiki/edit_node" />
+				<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.SUBSCRIBE %>" />
+				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="nodeId" value="<%= String.valueOf(node.getNodeId()) %>" />
+			</liferay-portlet:actionURL>
+
+			<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" />
+		</c:otherwise>
+	</c:choose>
+</liferay-ui:icon-list>
