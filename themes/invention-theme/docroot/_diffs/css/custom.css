@@ -1,115 +1,122 @@
-/* --- GLOBAL --- */
-body{
+body {
 	background: transparent url(../images/common/bg.png);
 }
-
 #wrapper {
-	position: relative;
 	background: #FFFFFF none;
+	margin-left: 85px;
 	padding: 75px 10px 15px;
+	position: relative;
 	width: 85%;
 }
-
-/* --- BANNER --- */
-#banner { 
+#banner {
 	background: #9BBE00 url(../images/common/main_img.jpg) no-repeat top right;
 	height: 132px;
 }
-
 #banner .logo {
 	background: transparent none;
-
+	left: 0px;
 	position: absolute;
 	top: -75px;
-	left: 0px;
 }
-
-/* --- NAVIGATION --- */
 #navigation {
+	background: none;
+	border: none;
+	left: 180px;
 	position: absolute;
-	top: 50px;
-	left: 250px;
-	width: auto;
+	top: -155px;
+	width: 905px;
 }
-
 #navigation li , .js #add-page {
 	background: #F4A80A none;
-	padding: 5px 25px;
-	margin-right: 1px;
+	border: none;
+	margin-right: 5px;
+	padding:0pt;
 }
-
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
 #navigation li.selected {
 	background: #F4A80A none;
-	padding-bottom:8px;
+padding:3px 25px;
 }
-
 #navigation li a , .js #add-page a {
 	background: none;
-	padding: 0;
 	color: #FFFFFF;
 	font-size: 11px;
+	padding: 0;
 }
-
+#navigation li a {
+padding:3px 25px;
+}
 #navigation li a:hover , .js #add-page a:hover {
-	padding-bottom: 0;
+	padding-bottom: 1;
 }
-
 #navigation li.selected a {
 	padding: 0;
 }
-
 #navigation li.selected a:hover {
 	padding-bottom: 0;
 }
-
 #navigation li a span , .js #add-page a span {
 	background: none;
-	padding: 0;
 	font-weight: normal;
+	margin-left: 0;
+	padding: 0;
 }
-
+#banner .logo a {
+	margin-left: -46px;
+	margin-top: 59px;
+}
 #navigation li a:hover span , .js #add-page a:hover span {
 	background: none;
 }
-
 #navigation li.selected a span {
 	background: none;
 	font-size: 1em;
 	padding: 0;
 }
-
 .js #navigation .enter-page {
 	background: none;
-	padding: 0;
+	padding:0pt 0pt 0px;
+	margin-top: 0px;
 }
-
 .tabs li a:hover {
 	color: #000;
 }
-
-/* --- PORTLET --- */
+.js #add-page {
+	height: 18px;
+	right: 10%;
+	padding:3px 25px;
+	top: -1px;
+}
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: none;
 }
-
 .portlet-title {
 	color: #EE8907;
 	font-size: 18px;
 }
-
-/* --- LAYOUT --- */
 #layout-grid {
 	margin-top: 15px;
 }
-
 #column-2 {
-	border-left: 1px solid #7689A2;	
+	border-left: 1px solid #7689A2;
 }
-
 #column-3 {
-	border-left: 1px solid #7689A2;	
+	border-left: 1px solid #7689A2;
 }
-
-
-
-
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	padding:3px;
+}
+#content-wrapper {
+	margin:-22px auto 0pt;
+}
+.js .interactive-mode {
+	right:1.5%;
+	top:84px;
+}
+.js #navigation .enter-page .save-page {
+	background:transparent;
+	height:0px;
+	padding-left:0px;
+}
