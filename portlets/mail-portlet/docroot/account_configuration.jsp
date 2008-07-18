@@ -26,6 +26,7 @@
 
 <%
 String emailAddress = ParamUtil.getString(request, "emailAddress");
+boolean emailAddressSameAsUsername = ParamUtil.getBoolean(request, "emailAddressSameAsUsername");
 String mailInHostName = ParamUtil.getString(request, "mailInHostName");
 String mailInPort = ParamUtil.getString(request, "mailInPort");
 String mailOutHostName = ParamUtil.getString(request, "mailOutHostName");
@@ -46,14 +47,25 @@ String username = ParamUtil.getString(request, "username");
 			</div>
 
 			<table class="details">
-			<tr>
-				<td>
-					<liferay-ui:message key="email-address" />
-				</td>
-				<td>
-					<input class="email-address" type="text" value="<%= emailAddress %>" />
-				</td>
-			</tr>
+
+			<c:choose>
+				<c:when test="<%= emailAddressSameAsUsername %>">
+					<input class="email-address" type="hidden" value="<%= emailAddress %>" />
+					<input class="email-address-same-as-username" type="hidden" value="<%= emailAddressSameAsUsername %>" />
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<td>
+							<liferay-ui:message key="email-address" />
+						</td>
+						<td>
+							<input class="email-address" type="text" value="<%= emailAddress %>" />
+							<input class="email-address-same-as-username" type="hidden" value="<%= emailAddressSameAsUsername %>" />
+						</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+
 			<tr>
 				<td>
 					<liferay-ui:message key="user-name" />

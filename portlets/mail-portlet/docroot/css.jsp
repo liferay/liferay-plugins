@@ -210,7 +210,6 @@
 }
 
 .mail-portlet .message-container {
-	display: none;
 	overflow: hidden;
 }
 
@@ -236,7 +235,6 @@
 
 .mail-portlet .message-send {
 	/* background-color: #C3D9FF; */
-	display: none;
 	padding-bottom: 20px;
 }
 

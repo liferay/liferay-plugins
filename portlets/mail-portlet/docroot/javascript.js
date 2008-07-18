@@ -71,7 +71,6 @@ Liferay.Mail = {
 		instance._messagesPerPage = params.messagesPerPage;
 		instance._assignEvents();
 		instance.loadAccounts();
-		instance.initializeEditor();
 	},
 
 	clearIncomingMessage: function() {
@@ -242,11 +241,6 @@ Liferay.Mail = {
 		var instance = this;
 
 		return instance._currentView;
-	},
-
-	initializeEditor: function() {
-		setTimeout('Liferay.Mail.messageDiv.show()', 1000);
-		setTimeout('Liferay.Mail.messageSendDiv.show()', 1000);
 	},
 
 	isAccountInitialized: function(emailAddress) {
@@ -1392,6 +1386,7 @@ Liferay.MailConfiguration = {
 				async: false,
 				data: {
 					emailAddress: jsonAccount.emailAddress,
+					emailAddressSameAsUsername: jsonAccount.emailAddressSameAsUsername,
 					mailInHostName: jsonAccount.mailInHostName,
 					mailInPort: jsonAccount.mailInPort,
 					mailOutHostName: jsonAccount.mailOutHostName,
@@ -1412,7 +1407,7 @@ Liferay.MailConfiguration = {
 		);
 	},
 
-	saveAccountConfiguration: function (emailAddressValue, mailInHostNameValue, mailInPortValue, mailOutHostNameValue, mailOutPortValue, mailSecureValue, passwordValue, usernameValue) {
+	saveAccountConfiguration: function (emailAddressValue, emailAddressSameAsUsernameValue, mailInHostNameValue, mailInPortValue, mailOutHostNameValue, mailOutPortValue, mailSecureValue, passwordValue, usernameValue) {
 		var instance = this;
 
 		jQuery.ajax(
@@ -1420,6 +1415,7 @@ Liferay.MailConfiguration = {
 				url: themeDisplay.getLayoutURL() + '/-/mail/update_account',
 				data: {
 					emailAddress: emailAddressValue,
+					emailAddressSameAsUsername: emailAddressSameAsUsernameValue,
 					mailInHostName: mailInHostNameValue,
 					mailInPort: mailInPortValue,
 					mailOutHostName: mailOutHostNameValue,
@@ -1510,6 +1506,7 @@ Liferay.MailConfiguration = {
 			// Get JSON
 
 			var emailAddressValue = accountTable.find('.email-address:first').val();
+			var emailAddressSameAsUsernameValue = accountTable.find('.email-address-same-as-username:first').val();
 			var mailInHostNameValue = accountTable.find('.in-hostname:first').val();
 			var mailInPortValue = accountTable.find('.in-port:first').val();
 			var mailOutHostNameValue = accountTable.find('.out-hostname:first').val();
@@ -1533,6 +1530,7 @@ Liferay.MailConfiguration = {
 					url: themeDisplay.getLayoutURL() + '/-/mail/test_account',
 					data: {
 						emailAddress: emailAddressValue,
+						emailAddressSameAsUsername: emailAddressSameAsUsernameValue,
 						mailInHostName: mailInHostNameValue,
 						mailInPort: mailInPortValue,
 						mailOutHostName: mailOutHostNameValue,
@@ -1544,7 +1542,7 @@ Liferay.MailConfiguration = {
 					dataType: 'json',
 					success: function(result) {
 						if (result.incoming && result.outgoing) {
-							instance.saveAccountConfiguration(emailAddressValue, mailInHostNameValue, mailInPortValue, mailOutHostNameValue, mailOutPortValue, mailSecureValue, passwordValue, usernameValue);
+							instance.saveAccountConfiguration(emailAddressValue, emailAddressSameAsUsernameValue, mailInHostNameValue, mailInPortValue, mailOutHostNameValue, mailOutPortValue, mailSecureValue, passwordValue, usernameValue);
 						}
 						else if (!result.outgoing && !result.incoming) {
 							instance.sendMessage('error', 'you-have-failed-to-connect-to-the-imap-and-smtp-server');
