@@ -94,7 +94,13 @@ Liferay.Mail = {
 		instance.setTotalPages(0);
 		instance.setTotalMessages(0);
 		instance.clearStatus();
-		instance.messageListTable.html('<tr><td class="alert">' + Liferay.Language.get('no-messages-found') + '</td></tr>');
+
+		if ((instance.getCurrentFolderName() == '') || instance.getCurrentFolderName() == null) {
+			instance.messageListTable.html('<tr><td class="alert">' + Liferay.Language.get('you-have-successfully-added-a-new-email-account') + '</td></tr>');
+		}
+		else {
+			instance.messageListTable.html('<tr><td class="alert">' + Liferay.Language.get('no-messages-found') + '</td></tr>');
+		}
 
 		instance.refreshMessageHandler();
 		instance.refreshFolderControls();
@@ -243,6 +249,22 @@ Liferay.Mail = {
 		setTimeout('Liferay.Mail.messageSendDiv.show()', 1000);
 	},
 
+	isAccountInitialized: function(emailAddress) {
+		var instance = this;
+
+		for (i = 0; i < instance._accounts.length; i++) {
+			var account = instance._accounts[i];
+
+			var tempEmailAddress = account.emailAddress;
+
+			if (tempEmailAddress == emailAddress) {
+				return account.initialized;
+			}
+		}
+
+		return false;
+	},
+
 	isSearchMode: function() {
 		return _isSearchMode;
 	},
@@ -309,6 +331,8 @@ Liferay.Mail = {
 
 			return false;
 		}
+
+		instance._accounts = jsonAccounts.accounts;
 
 		// Parse JSON
 
@@ -381,9 +405,21 @@ Liferay.Mail = {
 			}
 		}
 
+		// Add status message if account is not fully initialized
+
+		if (!instance.isAccountInitialized(instance.getCurrentEmailAddress())) {
+			htmlFolderList = htmlFolderList + '<br /><div class=\'folder-status\'>' + Liferay.Language.get('loading-folders') + '</div>';
+
+			// Refresh folders
+
+			setTimeout('Liferay.Mail.loadFolders(\'' + instance.getCurrentEmailAddress() + '\', true)', 10000);
+		}
+
 		// Inject HTML
 
 		instance.foldersDiv.html(htmlFolderList);
+
+		// Refresh style for selected folder
 
 		if (instance.getView() == 'composeMessage') {
 			jQuery('.folder').removeClass('folder-selected results-header');

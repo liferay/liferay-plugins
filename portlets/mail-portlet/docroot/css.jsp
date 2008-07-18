@@ -115,7 +115,7 @@
 	text-align: center;
 }
 
-.mail-portlet .folder {
+.mail-portlet .folder, .mail-portlet .folder-status {
 	min-width: 80px;
 	padding: 5px;
 }
