@@ -207,7 +207,9 @@ public class MailDiskManager {
 	}
 
 	public static JSONObject getJSONFolders(User user, String emailAddress) {
-		if (Validator.isNull(user) || Validator.isNull(emailAddress)) {
+		if (Validator.isNull(user) || Validator.isNull(emailAddress) ||
+			user.isDefaultUser()) {
+
 			return null;
 		}
 

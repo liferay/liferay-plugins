@@ -1051,10 +1051,12 @@ public class MailBoxManager {
 	protected Store getStore(boolean useOldStores) throws MessagingException {
 		Store store = null;
 
-		String key = _user.getUserId() + "." + _mailAccount.getEmailAddress();
+		String storeKey =
+			"" + _mailAccount.getUser().getUserId() + "_STORE_" +
+			_mailAccount.getEmailAddress();
 
 		if (useOldStores) {
-			store = (Store)_allStores.get(key);
+			store = (Store)_allStores.get(storeKey);
 
 			if (Validator.isNotNull(store) && !store.isConnected()) {
 				store.close();
@@ -1095,23 +1097,19 @@ public class MailBoxManager {
 				store = new IMAPStore(session, url);
 			}
 
-			String serviceName =
-				"MailStore{" + _mailAccount.getUser().getUserId() + ", " +
-				_mailAccount.getEmailAddress() + ", "  + ++_connections + "}";
-
-			store.addConnectionListener(new ConnectionListener(serviceName));
+			store.addConnectionListener(new ConnectionListener(storeKey));
 
 			try {
 				store.connect();
 			}
 			catch (MessagingException me) {
-				_log.error("Failed on connecting to " + serviceName);
+				_log.error("Failed on connecting to " + storeKey);
 
 				throw me;
 			}
 
 			if (useOldStores) {
-				_allStores.put(key, store);
+				_allStores.put(storeKey, store);
 			}
 		}
 
@@ -1254,7 +1252,6 @@ public class MailBoxManager {
 	private static ConcurrentHashMap<String, Store> _allStores =
 		new ConcurrentHashMap<String, Store>();
 
-	private static long _connections = 0;
 	private static Log _log = LogFactory.getLog(MailBoxManager.class);
 
 	private User _user;

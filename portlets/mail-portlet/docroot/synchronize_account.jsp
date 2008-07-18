@@ -27,7 +27,12 @@
 <%
 String emailAddress = ParamUtil.getString(request, "emailAddress");
 
-MailBoxManager mailBoxManager = new MailBoxManager(user, emailAddress);
+if (!user.isDefaultUser()) {
+	MailBoxManager mailBoxManager = new MailBoxManager(user, emailAddress);
 %>
 
-<%= mailBoxManager.sendUpdateMessage() %>
+	<%= mailBoxManager.sendUpdateMessage() %>
+
+<%
+}
+%>
