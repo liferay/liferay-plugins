@@ -1,172 +1,171 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 #banner {
-	background: #F1EAD8 url(../images/comment/header.jpg) no-repeat scroll
-		center top;
+	background: #F1EAD8 url(../images/custom/header.jpg) no-repeat scroll center top;
+	border-bottom: 0px solid #89C8FF;
 	height: 200px;
+	margin: 0px auto;
+	margin-bottom: 0em;
 	padding: 0pt;
 	position: relative;
 	width: 800px;
-	border-bottom: 0px solid #89C8FF;
-	margin-bottom: 0em;
-	margin: 0px auto;
 }
-
 body {
-	background: #404040 url(../images/comment/bg2.jpg) repeat-x fixed 0%;
+	background: #404040 url(../images/custom/bg2.jpg) repeat-x fixed 0%;
 }
-
 #footer {
-	background: transparent url(../images/comment/footer.jpg) no-repeat
-		scroll center top;
-	clear: both;
+	background: transparent url(../images/custom/footer.jpg) no-repeat scroll center top;
 	color: #FFFFFF;
 	font-family: 'Trebucet MS', Tahoma, Sans-serif;
-	font-size-adjust: none;
-	font-stretch: normal;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: normal;
 	height: 25px;
 	line-height: normal;
+	margin: 0px auto;
 	padding-top: 22px;
 	text-align: center;
 	width: 800px;
-	margin: 0px auto;
 }
-
 #content-wrapper {
 	background: #000000 none repeat scroll 0%;
-	margin: 22pt auto 0px;
+	margin: 0pt auto 0px;
+	min-height: 400px;
 	width: 800px;
 }
-
 #content-wrapper a:link {
 	color: #4BACF7;
 }
-
-.portlet-topper {
-	background: #D9EBFD url(../images/comment/h2_btn.jpg) repeat-x scroll 0%
-		;
-	position: relative;
+#wrapper {
+	background: transparent;
 }
-
+.portlet-topper {
+	background: #D9EBFD url(../images/custom/h2_btn.jpg) repeat-x scroll 0%;
+}
 .portlet {
+	background: #333;
 	border: 1px solid #404040;
+	color: #BBB89F;
 	margin-bottom: 1em;
 	text-align: left;
-	background: #333;
-	color: #BBB89F;
 }
-
-.tabs li a,.tabs li span {
-	display: block;
-	float: left;
-	padding: 0.35em 1em 0pt;
-	text-decoration: none;
-}
-
 #navigation {
-	margin: 0pt auto;
+	background: black;
+	margin: -1pt 232px;
 	min-height: 2.2em;
 	overflow: hidden;
 	padding-right: 1em;
-	height: 50px;
-	background: url(../images/comment/nav.png);
+	width: 790px;
+	border: none;
 }
-
-#navigation a:hover {
-	color: #5AA2DC;
-}
-
-#banner-content {
-	margin: 0pt auto;
-	width: 100%;
-}
-
 #banner .logo {
-	display: block;
 	font-size: 2em;
 	margin: 0pt auto;
 	padding: 1.25em 0pt 83.45px;
 }
-
 #navigation li {
-	background: none;
-	display: inline;
-	float: left;
-	margin-right: 0.5em;
-	position: relative;
+	background: #202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0% 0%;
+	border: none;
+	margin-left: 10px;
 }
-
 #navigation li.selected {
 	border-top: 0px solid #89C8FF;
 	font-weight: bold;
 }
-
-#navigation li a {
-	text-decoration: none;
-	font-size: 12px;
-	color: #fff;
-	font-weight: bold;
+#navigation li.selected a span {
+	background: #202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0% 0%;
+	padding-left:24px;
 }
-
+#navigation li a {
+	color: #C0C0C0;
+	font-family: "Trebuchet MS",Tahoma,Arial;
+	font-size: 12pt;
+	font-weight: bold;
+	text-decoration: none;
+	text-transform: uppercase;
+	padding: 1px 0px;
+}
 #navigation li a span {
 	display: block;
-	padding: 17px 10px;
+	padding: 3px 1.5em;
 }
-
-.tabs {
-	border-bottom: 1px solid #ccc;
-	margin: 0pt 0pt 1.5em;
-	padding: 0pt 0pt 2.6em 1em;
-	color: #fff;
+#navigation li a:hover {
+	background: #202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0% 0%;
 }
-
-.tabs li.current a,.tabs li.current span {
-	color: #fff;
-	padding: 0.15em 1em;
-}
-
-.tabs li.current {
-	background: #333333 url(../images/common/tabs_active_bg.png) repeat-x
-		scroll 0pt 0%;
-	font-weight: bold;
-}
-
-.tabs li {
-	background: #ccc url(../images/common/tabs_inactive_bg.png) repeat-x
-		scroll 0pt 100%;
-	border-color: #ccc;
-	border-style: solid solid none;
-	border-width: 1px 1px 0pt;
-	display: inline;
-	float: left;
-	line-height: 2.25;
-	margin-right: 0.8em;
-	padding: 0pt;
-	text-decoration: none;
-}
-
 #banner .logo a {
-	background: transparent
-		url(/image/company_logo?img_id=0&t=1213925971812) no-repeat scroll 0%;
+	background: transparent url(/image/company_logo?img_id=0&t=1213925971812) no-repeat scroll 0%;
 	display: block;
 	font-size: 0pt;
 	height: 49px;
-	margin-left: 10px;
+	margin-left: 0px;
 	text-indent: -9999em;
 	width: 198px;
 }
-
+a {
+	color: #05FFDF;
+}
 .js .interactive-mode {
 	float: right;
 	min-width: 150px;
 	position: relative;
-	right: 30pt;
+	right: 7pt;
 	top: 0pt;
 }
-
-a {
+.js #navigation .enter-page {
+	height:22px;
+	padding:2px 1em 1px 0em;
+	background:#202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0% 0%;
+}
+input.focus, textarea.focus, .ie6 input.focus, .ie6 textarea.focus {
+	background: #fff none;
+	border: none;
+}
+.js #add-page {
+	border: none;
+	top:1px;
+}
+.js #add-page a span {
+	background: #202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0% 0%;
+	color: #C0C0C0;
+	font-family: "Trebuchet MS",Tahoma,Arial;
+	font-size: 12pt;
+	font-weight: bold;
+	padding: 5px 20px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+.js #add-page a:hover span {
+	background: #202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0% 0%;
 	color: #5AA2DC;
-	text-decoration: underline;
+}
+.js .interactive-mode ul {
+	background: black;
+	border: none;
+}
+.js .lfr-dock.interactive-mode .my-places li h3 a {
+	background-image: url(../images/dock/my_place.png);
+}
+.js .lfr-dock.interactive-mode .my-places li a {
+	background-image: none;
+}
+.js .interactive-mode li a {
+	background-position: 0.5em 50%;
+	background-repeat: no-repeat;
+	display: block;
+	margin-left: 0.3em;
+	padding: 0.5em 0pt 0.5em 2.5em;
+	text-decoration: none;
+}
+.lfr-dock li.my-places a {
+	background-image: url(../images/dock/my_places.png);
+}
+.js .interactive-mode li a {
+	background-position: 0.5em 50%;
+	background-repeat: no-repeat;
+	display: block;
+	margin-left: 0.3em;
+	padding: 0.5em 0pt 0.5em 2.5em;
+	text-decoration: none;
+}
+.lfr-dock li a {
+	background: black none repeat scroll 0% 0%;
+}
+.lfr-dock-list-container {
+	height: 1px;
+	overflow: visible;
 }
