@@ -63,7 +63,6 @@ import javax.mail.Address;
 import javax.mail.BodyPart;
 import javax.mail.Flags;
 import javax.mail.Folder;
-import javax.mail.FolderClosedException;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -1082,17 +1081,13 @@ public class MailBoxManager {
 		String key = _user.getUserId() + "." + _mailAccount.getEmailAddress();
 
 		if (useOldStores) {
-			if (Validator.isNull(_allStores)) {
-				_allStores = new ConcurrentHashMap<String, Store>();
-			}
-
 			store = (Store)_allStores.get(key);
-		}
 
-		if (Validator.isNotNull(store) && !store.isConnected()) {
-			store.close();
+			if (Validator.isNotNull(store) && !store.isConnected()) {
+				store.close();
 
-			store = null;
+				store = null;
+			}
 		}
 
 		if (Validator.isNull(store)) {
@@ -1127,7 +1122,20 @@ public class MailBoxManager {
 				store = new IMAPStore(session, url);
 			}
 
-			store.connect();
+			String serviceName =
+				_mailAccount.getEmailAddress() + " (" + ++_connections + ") " +
+				_mailAccount.getUser().getUserId();
+
+			store.addConnectionListener(new ConnectionListener(serviceName));
+
+			try {
+				store.connect();
+			}
+			catch (MessagingException me) {
+				_log.error("Failed on connecting to " + serviceName);
+
+				throw me;
+			}
 
 			if (useOldStores) {
 				_allStores.put(key, store);
@@ -1270,8 +1278,10 @@ public class MailBoxManager {
 
 	public static final String _SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 
-	private static ConcurrentHashMap<String, Store> _allStores = null;
+	private static ConcurrentHashMap<String, Store> _allStores =
+		new ConcurrentHashMap<String, Store>();
 
+	private static long _connections = 0;
 	private static Log _log = LogFactory.getLog(MailBoxManager.class);
 
 	private User _user;
