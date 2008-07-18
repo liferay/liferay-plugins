@@ -1,15 +1,15 @@
 /* ---- GLOBAL ---- */
 .light {
-	background: transparent url(../../images/common/background.png) repeat top center;
+	background: transparent url(../../images/custom/background.png) repeat top center;
 }
 
 .light #wrapper {
-	background: #FFFFFF url(../../images/common/header_bg.png) repeat-x top center;
+	background: #FFFFFF url(../../images/custom/header_bg.png) repeat-x top center;
 }
 
 /* ---- BANNER ---- */
 .light #banner {
-	background: transparent url(../../images/common/banner_bg.jpg) no-repeat;
+	background: transparent url(../../images/custom/banner_bg.jpg) no-repeat;
 	border-top: 2px solid #48525B;
 }
 
@@ -59,11 +59,11 @@
 }
 
 .light .tabs li {
-	background: url(../../images/common/header_bg.png);
+	background: url(../../images/custom/header_bg.png);
 }
 
 .light .tabs li a, .light .tabs li span {
-	background: url(../../images/common/header_bg.png);
+	background: url(../../images/custom/header_bg.png);
 	color: #FFFFFF;
 }
 

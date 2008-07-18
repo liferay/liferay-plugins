@@ -1,116 +1,99 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
-/* ---- COLOR SCHEMES ---- */
 @import url(color_schemes/light.css);
 @import url(color_schemes/dark.css);
-
-
-/* ---- FRAMEWORK ---- */
-
-/* ---- GLOBAL ---- */
 #wrapper {
+	margin-left: 244px;
 	padding-top: 56px;
-	width: 776px;
+	width: 61.4%;
 }
-
+.ie #wrapper {
+	margin-left: 242px;
+	width: 61.6%;
+}
 #content-wrapper {
 	font-size: 1.2em;
 }
-
-/* ---- BANNER ---- */
+html {
+	overflow-y: scroll;
+}
 #banner {
 	height: 143px;
 }
-
 #banner .logo {
 	background: transparent none;
 }
-
-/* ---- NAVIGATION ---- */
+#banner .logo a {
+	margin-left: 185px;
+	margin-top: -21px;
+}
 #navigation {
-	width: 100%;
+	border: none;
 	height: 35px;
 	margin: 0;
 	padding: 0;
+	width: 100%;
 }
-
 #navigation li {
-	overflow: hidden;
-	background: none;
-	padding: 8px 15px;
+	background: transparent;
+	border: none;
 	margin: 0;
+	overflow: hidden;
+	padding: 8px 15px;
 }
-
 #navigation li a {
-	background: none;
-	padding: 0;
+	background: transparent;
 	font-size: 11px;
+	padding: 0;
 }
-
 #navigation li a span {
 	background: none;
 	padding: 0;
 }
-
 #navigation li a:hover {
+	background: transparent;
 	padding-bottom: 0;
 }
-
 #navigation li a:hover span {
 	background: none;
 }
-
 #navigation li.selected {
-	padding-bottom: 11px;
+	padding-bottom: 1px;
 }
-
 #navigation li.selected a {
 	padding: 0;
 }
-
 #navigation li.selected a span {
-	background: none;
+	background: transparent;
 	font-size: 1em;
 	padding: 0;
 }
-
 #navigation li.selected a:hover {
 	padding-bottom: 0;
 }
-
 .js #navigation .enter-page {
 	background: none;
 	padding: 0;
+	margin-top: 1px;
 }
-
 .js #add-page {
 	float: right;
 	font-weight: bold;
 	padding-top: 8px;
 }
-
-/* ---- PORTLETS ---- */
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: none;
 }
-
 .portlet {
 	padding-right: 0;
 }
-
 .portlet-title {
 	font-size: 16px;
 }
-
 .portlet-title img {
 	display: none;
 }
-
-/* ---- TABS ---- */
 .tabs {
 	padding: 0 0 18px 1em;
 }
-
 .tabs li {
 	line-height: 15px;
 	margin-right: 0.3em;
@@ -119,23 +102,33 @@
 .tabs li a, .tabs li span {
 	padding: 0.1em 1em 0;
 }
-
 .tabs li.current a, .tabs li.current span {
 	padding: 0.1em 1em;
 }
-
 .ie .tabs li {
 	line-height: 15px;
 }
-
 .ie .tabs li.current {
 	top: 0.2em;
 }
-
 .ie .tabs li {
 	top: 0.2em;
 }
-
 .liferay-table {
 	font: 9px/9px Arial;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
+.js .interactive-mode {
+	right: 21%;
+}
+.js #add-page {
+	background: none;
+	border: none;
+	right: 0%;
+	top: -7px;
+}
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	padding:1px;
 }

@@ -1,21 +1,21 @@
 /* ---- GLOBAL ---- */
 .dark {
-	background: transparent url(../../images/common/background_dark.png) repeat top center;
+	background: transparent url(../../images/custom/background_dark.png) repeat top center;
 }
 
 .dark #wrapper {
-	background: #FFFFFF url(../../images/common/header_bg_dark.png) repeat-x top center;
+	background: #FFFFFF url(../../images/custom/header_bg_dark.png) repeat-x top center;
 }
 
 /* ---- BANNER ---- */
 .dark #banner {
-	background: transparent url(../../images/common/banner_bg_dark.jpg) no-repeat;
+	background: transparent url(../../images/custom/banner_bg_dark.jpg) no-repeat;
 	border-top: 2px solid #48525B;
 }
 
 /* ---- NAVIGATION ---- */
 .dark #navigation {
-	background: url(../../images/navigation/bg_dark.png);
+	background: url(../../images/custom/bg_dark.png);
 	border-top: 7px solid #000000;
 }
 
@@ -59,11 +59,11 @@
 }
 
 .dark .tabs li {
-	background: url(../../images/common/header_bg_dark.png);
+	background: url(../../images/custom/header_bg_dark.png);
 }
 
 .dark .tabs li a, .dark .tabs li span {
-	background: url(../../images/common/header_bg_dark.png);
+	background: url(../../images/custom/header_bg_dark.png);
 	color: #FFFFFF;
 }
 
