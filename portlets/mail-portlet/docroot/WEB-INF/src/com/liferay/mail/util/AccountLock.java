@@ -71,11 +71,11 @@ public class AccountLock {
 		}
 	}
 
-	private static ConcurrentHashMap<String, Long> _lockMaps =
-		new ConcurrentHashMap<String, Long>();
-
 	private static final long _EXPIRY_TIME = Time.MINUTE * 5;
 
 	private static Log _log = LogFactory.getLog(AccountLock.class);
+
+	private static ConcurrentHashMap<String, Long> _lockMaps =
+		new ConcurrentHashMap<String, Long>();
 
 }

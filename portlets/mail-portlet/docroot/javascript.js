@@ -1461,7 +1461,7 @@ Liferay.MailConfiguration = {
 		});
 
 		jQuery('.save-account').click(function() {
-			instance.sendMessage('info','saving-account-settings');
+			instance.sendMessage('info', 'saving-account-settings');
 
 			var accountTable = jQuery(this).parents('.account:first');
 
@@ -1469,7 +1469,7 @@ Liferay.MailConfiguration = {
 
 			var emailAddressValue = accountTable.find('.email-address:first').val();
 			var mailInHostNameValue = accountTable.find('.in-hostname:first').val();
-			var mailInPortValue = accountTable.find('.in-port:first').val(); 
+			var mailInPortValue = accountTable.find('.in-port:first').val();
 			var mailOutHostNameValue = accountTable.find('.out-hostname:first').val();
 			var mailOutPortValue = accountTable.find('.out-port:first').val();
 			var mailSecureValue = false;

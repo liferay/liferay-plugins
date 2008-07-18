@@ -66,8 +66,8 @@ public class MailMessageListener implements MessageListener {
 			try {
 				User user = UserLocalServiceUtil.getUser(userId);
 
-				MailBoxManager mailBoxManager =
-					new MailBoxManager(user, emailAddress);
+				MailBoxManager mailBoxManager = new MailBoxManager(
+					user, emailAddress);
 
 				mailBoxManager.synchronizeAccount();
 			}

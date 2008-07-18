@@ -56,5 +56,4 @@
 	<br />
 
 	<a href="<%= maximizeURL %>"><liferay-ui:message key="view-email" /></a>
-
 </div>

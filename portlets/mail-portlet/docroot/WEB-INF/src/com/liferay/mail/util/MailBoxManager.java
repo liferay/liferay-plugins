@@ -1052,8 +1052,8 @@ public class MailBoxManager {
 		Store store = null;
 
 		String storeKey =
-			"" + _mailAccount.getUser().getUserId() + "_STORE_" +
-			_mailAccount.getEmailAddress();
+			_mailAccount.getUser().getUserId() + "_STORE_" +
+				_mailAccount.getEmailAddress();
 
 		if (useOldStores) {
 			store = (Store)_allStores.get(storeKey);
@@ -1249,10 +1249,10 @@ public class MailBoxManager {
 
 	public static final String _SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 
+	private static Log _log = LogFactory.getLog(MailBoxManager.class);
+
 	private static ConcurrentHashMap<String, Store> _allStores =
 		new ConcurrentHashMap<String, Store>();
-
-	private static Log _log = LogFactory.getLog(MailBoxManager.class);
 
 	private User _user;
 	private MailAccount _mailAccount;
