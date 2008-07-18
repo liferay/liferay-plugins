@@ -1111,14 +1111,14 @@ public class MailBoxManager {
 				props.setProperty(
 					"mail.imap.socketFactory.class", _SSL_FACTORY);
 				props.setProperty("mail.imap.socketFactory.fallback", "false");
-			}
 
-			Session session = Session.getInstance(props, null);
+				Session session = Session.getInstance(props);
 
-			if (_mailAccount.isMailSecure()) {
 				store = new IMAPSSLStore(session, url);
 			}
 			else {
+				Session session = Session.getInstance(props);
+
 				store = new IMAPStore(session, url);
 			}
 
