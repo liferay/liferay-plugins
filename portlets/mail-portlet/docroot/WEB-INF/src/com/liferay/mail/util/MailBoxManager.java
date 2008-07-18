@@ -1123,8 +1123,8 @@ public class MailBoxManager {
 			}
 
 			String serviceName =
-				_mailAccount.getEmailAddress() + " (" + ++_connections + ") " +
-				_mailAccount.getUser().getUserId();
+				"MailStore{" + _mailAccount.getUser().getUserId() + ", " + 
+				_mailAccount.getEmailAddress() + ", "  + ++_connections + "}";
 
 			store.addConnectionListener(new ConnectionListener(serviceName));
 
