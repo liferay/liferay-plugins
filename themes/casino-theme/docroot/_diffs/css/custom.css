@@ -9,21 +9,53 @@ body {
 
 #banner {
 	height: 160px;
+	background:transparent url(../images/custom/common/banner_bg.png) no-repeat scroll 0% 0pt;
+	width:86%;
+	margin: 0px 71px;
+}
+
+#banner h1.logo {
+	background:transparent url(../images/custom/common/banner_bg.png) no-repeat scroll right bottom;
+	height:145px;
+	left:81.4%;
+	margin:25px 0pt 0pt;
+	position:absolute;
+	top:-12px;
+	width:14%;
+}
+
+#banner .logo a {
+	margin-left:-20000px;
+}
+
+#wrapper {
+	background: none;
 }
 
 /* ---- NAVIGATION ---- */
 
-#navigation {
+.js #navigation {
 	position: absolute;
-	left: 75px;
+}
+
+#navigation {
+	left: 115px;
 	top: 135px;
 	width: auto;
 	z-index: 21;
+	background: transparent;
+	border-top: none;
+}
+
+#navigation ul {
+	width: auto;
 }
 
 #navigation li {
 	background: transparent url(../images/navigation/tab-unselected.png) no-repeat top right;
 	padding: 0em 2em .5em 0;
+	margin-right:10px;
+	border: none;
 }
 
 #navigation li.selected {
@@ -65,11 +97,46 @@ body {
 }
 
 .js .lfr-dock.interactive-mode {
-	right:25px;
+	right:100px;
 	top:40px;
 }
 
+.js #add-page {
+	background: url(../images/custom/navigation/tab-unselected.png) no-repeat right top;
+	padding: 0em 2em 0.5em 0px;
+	border: none;
+	bottom: 0px;
+	right: -94px;
+}
+
+.js #add-page a {
+	background:transparent url(../images/navigation/tab-unselected.png) no-repeat scroll left top;
+	padding:0pt 0pt 0.5em 2em;
+}
+
+.js #add-page a span {
+	background:transparent;
+	margin-left: 0px;
+	padding: 0px;
+}
+
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
+
 /* ---- PORTLET ---- */
+
+.portlet {
+	background: url(../images/custom/portlet/portlet_bg.png);
+	border: none;
+	padding: 0px;
+}
+
+.portlet-topper {
+	background:transparent url(../images/custom/portlet/portlet_bg.png) repeat scroll right 0px;
+	border:medium none;
+	margin:-3px -3px 0pt 9px;
+}
 
 .portlet-title {
 	padding: 30px 0 15px 15px;
@@ -78,7 +145,10 @@ body {
 }
 
 .portlet-content {
-	background-position: left -64px;
+	background:transparent url(../images/custom/portlet/portlet_bg.png) repeat scroll right bottom;
+	margin:0px -3px 20px 8px;
+	padding-bottom:21px;
+	padding-top:19px;
 }
 
 /* ---- TABS ---- */
@@ -86,3 +156,4 @@ body {
 
 
 /* ---- MISS. OTHERS ---- */
+
