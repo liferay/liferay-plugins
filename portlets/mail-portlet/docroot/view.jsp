@@ -29,7 +29,7 @@
 		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
 			<script type="text/javascript">
 				function <portlet:namespace />initEditor() {
-					Liferay.Mail.messageDiv.hide();
+					setTimeout('Liferay.Mail.messageDiv.hide()', 1000);
 
 					return '';
 				}
@@ -39,6 +39,7 @@
 						Liferay.Mail.init(
 							{
 								sendBodyEditor: window.<portlet:namespace />editor,
+								synchronizeInterval: <%= PortletProps.get("synchronize.interval.minutes") %>,
 								messagesPerPage: <%= PortletProps.get("messages.per.page") %>,
 								namespace: '<portlet:namespace />'
 							}

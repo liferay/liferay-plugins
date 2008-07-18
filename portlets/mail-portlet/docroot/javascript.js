@@ -3,6 +3,7 @@ Liferay.Mail = {
 		var instance = this;
 
 		instance.namespace = params.namespace;
+		instance._synchronizeInterval = params.synchronizeInterval;
 
 		// Commonly used jQuery expressions
 
@@ -827,7 +828,7 @@ Liferay.Mail = {
 						instance.clearStatus();
 					}
 					else {
-						setTimeout('Liferay.Mail.sendUpdateMessage(\'' + emailAccount + '\', false)', 30000);
+						setTimeout('Liferay.Mail.sendUpdateMessage(\'' + emailAccount + '\', false)', instance._synchronizeInterval * 60000);
 					}
 				},
 				type: 'POST'
@@ -1320,7 +1321,7 @@ Liferay.Mail = {
 
 	_totalMessages: null,
 	_totalPages: null,
-	_uidList: null,
+	_synchronizeInterval: null,
 
 	_jsonFolders: {},
 	_jsonMessages: {},
