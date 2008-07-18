@@ -2,6 +2,6 @@
 
 <project name="build-common-portlet">
 	<property name="project.dir" value="../.." />
-	
+
 	<import file="../build-common-plugin.xml" />
 </project>
