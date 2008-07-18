@@ -1,0 +1,166 @@
+/**
+ * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+package com.liferay.portal.iweb.service.persistence;
+
+/**
+ * <a href="PostPersistence.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public interface PostPersistence {
+	public com.liferay.portal.iweb.model.Post create(long uid);
+
+	public com.liferay.portal.iweb.model.Post remove(long uid)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.iweb.NoSuchPostException;
+
+	public com.liferay.portal.iweb.model.Post remove(
+		com.liferay.portal.iweb.model.Post post)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.portal.iweb.model.Post update(
+		com.liferay.portal.iweb.model.Post post)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.portal.iweb.model.Post update(
+		com.liferay.portal.iweb.model.Post post, boolean merge)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.portal.iweb.model.Post updateImpl(
+		com.liferay.portal.iweb.model.Post post, boolean merge)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.portal.iweb.model.Post findByPrimaryKey(long uid)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.iweb.NoSuchPostException;
+
+	public com.liferay.portal.iweb.model.Post fetchByPrimaryKey(long uid)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.portal.iweb.model.Post findById_Type(long pid,
+		java.lang.String type)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.iweb.NoSuchPostException;
+
+	public com.liferay.portal.iweb.model.Post fetchById_Type(long pid,
+		java.lang.String type) throws com.liferay.portal.SystemException;
+
+	public java.util.List<Object> findWithDynamicQuery(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<Object> findWithDynamicQuery(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.iweb.model.Post> findAll()
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.iweb.model.Post> findAll(
+		int start, int end) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.iweb.model.Post> findAll(
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public void removeById_Type(long pid, java.lang.String type)
+		throws com.liferay.portal.SystemException,
+			com.liferay.portal.iweb.NoSuchPostException;
+
+	public void removeAll() throws com.liferay.portal.SystemException;
+
+	public int countById_Type(long pid, java.lang.String type)
+		throws com.liferay.portal.SystemException;
+
+	public int countAll() throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.iweb.model.SemanticsElement> getSemanticsElements(
+		long pk) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.iweb.model.SemanticsElement> getSemanticsElements(
+		long pk, int start, int end) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.portal.iweb.model.SemanticsElement> getSemanticsElements(
+		long pk, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public int getSemanticsElementsSize(long pk)
+		throws com.liferay.portal.SystemException;
+
+	public boolean containsSemanticsElement(long pk,
+		java.lang.String semanticsElementPK)
+		throws com.liferay.portal.SystemException;
+
+	public boolean containsSemanticsElements(long pk)
+		throws com.liferay.portal.SystemException;
+
+	public void addSemanticsElement(long pk, java.lang.String semanticsElementPK)
+		throws com.liferay.portal.SystemException;
+
+	public void addSemanticsElement(long pk,
+		com.liferay.portal.iweb.model.SemanticsElement semanticsElement)
+		throws com.liferay.portal.SystemException;
+
+	public void addSemanticsElements(long pk,
+		java.lang.String[] semanticsElementPKs)
+		throws com.liferay.portal.SystemException;
+
+	public void addSemanticsElements(long pk,
+		java.util.List<com.liferay.portal.iweb.model.SemanticsElement> semanticsElements)
+		throws com.liferay.portal.SystemException;
+
+	public void clearSemanticsElements(long pk)
+		throws com.liferay.portal.SystemException;
+
+	public void removeSemanticsElement(long pk,
+		java.lang.String semanticsElementPK)
+		throws com.liferay.portal.SystemException;
+
+	public void removeSemanticsElement(long pk,
+		com.liferay.portal.iweb.model.SemanticsElement semanticsElement)
+		throws com.liferay.portal.SystemException;
+
+	public void removeSemanticsElements(long pk,
+		java.lang.String[] semanticsElementPKs)
+		throws com.liferay.portal.SystemException;
+
+	public void removeSemanticsElements(long pk,
+		java.util.List<com.liferay.portal.iweb.model.SemanticsElement> semanticsElements)
+		throws com.liferay.portal.SystemException;
+
+	public void setSemanticsElements(long pk,
+		java.lang.String[] semanticsElementPKs)
+		throws com.liferay.portal.SystemException;
+
+	public void setSemanticsElements(long pk,
+		java.util.List<com.liferay.portal.iweb.model.SemanticsElement> semanticsElements)
+		throws com.liferay.portal.SystemException;
+
+	public void registerListener(
+		com.liferay.portal.model.ModelListener listener);
+
+	public void unregisterListener(
+		com.liferay.portal.model.ModelListener listener);
+}

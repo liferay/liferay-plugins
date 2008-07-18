@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model-hints>
+	<model name="com.liferay.portal.iweb.model.Community">
+		<field name="cid" type="long" />
+		<field name="type" type="int" />
+	</model>
+	<model name="com.liferay.portal.iweb.model.Post">
+		<field name="uid" type="long" />
+		<field name="pid" type="long" />
+		<field name="type" type="String" />
+		<field name="communityid" type="long" />
+	</model>
+	<model name="com.liferay.portal.iweb.model.Semantics">
+		<field name="semanticsName" type="String" />
+		<field name="semanticsURI" type="String" />
+		<field name="createdInCommunity" type="long" />
+	</model>
+	<model name="com.liferay.portal.iweb.model.SemanticsElement">
+		<field name="elementURI" type="String" />
+		<field name="semanticsURI" type="String" />
+	</model>
+</model-hints>
