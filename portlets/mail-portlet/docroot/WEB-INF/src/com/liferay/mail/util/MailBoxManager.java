@@ -44,7 +44,6 @@ import com.sun.mail.imap.IMAPStore;
 import java.io.File;
 import java.io.IOException;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
@@ -95,32 +94,6 @@ import org.apache.commons.logging.LogFactory;
  *
  */
 public class MailBoxManager {
-
-	public static void removeAccountLock(User user, String emailAddress) {
-		String filePath = MailDiskManager.getAccountLockPath(
-			user, emailAddress);
-
-		FileUtil.delete(filePath);
-	}
-
-	public static void writeAccountLock(User user, String emailAddress) {
-		try {
-			JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
-
-			String filePath = MailDiskManager.getAccountLockPath(
-				user, emailAddress);
-
-			DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-
-			jsonObj.put("locked", true);
-			jsonObj.put("dateLocked", df.format(new Date()));
-
-			FileUtil.write(filePath, jsonObj.toString());
-		}
-		catch (IOException ioe) {
-			_log.error(ioe, ioe);
-		}
-	}
 
 	public MailBoxManager(User user, String emailAddress) {
 		_user = user;
@@ -1123,7 +1096,7 @@ public class MailBoxManager {
 			}
 
 			String serviceName =
-				"MailStore{" + _mailAccount.getUser().getUserId() + ", " + 
+				"MailStore{" + _mailAccount.getUser().getUserId() + ", " +
 				_mailAccount.getEmailAddress() + ", "  + ++_connections + "}";
 
 			store.addConnectionListener(new ConnectionListener(serviceName));

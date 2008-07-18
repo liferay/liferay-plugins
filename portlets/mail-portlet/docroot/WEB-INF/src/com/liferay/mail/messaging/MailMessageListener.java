@@ -22,8 +22,8 @@
 
 package com.liferay.mail.messaging;
 
+import com.liferay.mail.util.AccountLock;
 import com.liferay.mail.util.MailBoxManager;
-import com.liferay.mail.util.MailDiskManager;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.messaging.MessageListener;
@@ -60,19 +60,21 @@ public class MailMessageListener implements MessageListener {
 		String emailAddress = jsonObj.getString("emailAddress");
 		long userId = jsonObj.getLong("userId");
 
-		User user = UserLocalServiceUtil.getUser(userId);
+		String key = AccountLock.getKey(userId, emailAddress);
 
-		if (MailDiskManager.isAccountLocked(user, emailAddress)) {
-			return;
+		if (AccountLock.acquireLock(key)) {
+			try {
+				User user = UserLocalServiceUtil.getUser(userId);
+
+				MailBoxManager mailBoxManager =
+					new MailBoxManager(user, emailAddress);
+
+				mailBoxManager.synchronizeAccount();
+			}
+			finally {
+				AccountLock.releaseLock(key);
+			}
 		}
-
-		MailBoxManager mailBoxManager = new MailBoxManager(user, emailAddress);
-
-		MailBoxManager.writeAccountLock(user, emailAddress);
-
-		mailBoxManager.synchronizeAccount();
-
-		MailBoxManager.removeAccountLock(user, emailAddress);
 	}
 
 	private static Log _log = LogFactory.getLog(MailMessageListener.class);

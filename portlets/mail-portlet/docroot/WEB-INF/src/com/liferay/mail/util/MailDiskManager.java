@@ -40,12 +40,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -64,10 +60,6 @@ public class MailDiskManager {
 
 	public static String getAccountFilePath(User user, String emailAddress) {
 		return getAccountPath(user, emailAddress) + "/account.json";
-	}
-
-	public static String getAccountLockPath(User user, String emailAddress) {
-		return MailDiskManager.getAccountPath(user, emailAddress) + "/.lock";
 	}
 
 	public static String getAccountPath(User user, String emailAddress) {
@@ -423,48 +415,6 @@ public class MailDiskManager {
 		FileUtil.mkdirs(pathName);
 
 		return pathName;
-	}
-
-	public static boolean isAccountLocked(User user, String emailAddress) {
-		boolean locked = false;
-
-		try {
-			String filePath = MailDiskManager.getAccountLockPath(
-				user, emailAddress);
-
-			if (!FileUtil.exists(filePath)) {
-				return false;
-			}
-
-			JSONObject jsonObj = JSONFactoryUtil.createJSONObject(
-				FileUtil.read(filePath));
-
-			if (GetterUtil.getBoolean(jsonObj.getString("locked"))) {
-				DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-
-				Date dateLocked = GetterUtil.getDate(
-					jsonObj.getString("dateLocked"), df);
-
-				Date now = new Date();
-
-				// Lock expires in 5 minutes
-
-				long nowTime = now.getTime();
-				long expireTime = dateLocked.getTime() + 300000;
-
-				if (nowTime < expireTime) {
-					return true;
-				}
-			}
-		}
-		catch (IOException ioe) {
-			_log.error(ioe, ioe);
-		}
-		catch (JSONException jsone) {
-			_log.error(jsone, jsone);
-		}
-
-		return locked;
 	}
 
 	protected static JSONObject getJSONPaginatedMessages(

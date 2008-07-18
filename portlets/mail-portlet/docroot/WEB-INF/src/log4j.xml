@@ -12,9 +12,15 @@
 		<priority value="INFO" />
 	</category>
 
-	<category name="com.liferay.mail.util.ConnectionListener">
-		<priority value="ERROR" />
+<!--
+	<category name="com.liferay.mail.util.AccountLock">
+		<priority value="DEBUG" />
 	</category>
+
+	<category name="com.liferay.mail.util.ConnectionListener">
+		<priority value="DEBUG" />
+	</category>
+-->
 
 	<root>
 		<priority value="INFO" />
