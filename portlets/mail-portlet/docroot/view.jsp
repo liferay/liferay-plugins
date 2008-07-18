@@ -29,7 +29,7 @@
 		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
 			<script type="text/javascript">
 				function <portlet:namespace />initEditor() {
-					setTimeout('Liferay.Mail.messageDiv.hide()', 1000);
+					setTimeout('Liferay.Mail.messageDiv.hide()', 500);
 
 					return '';
 				}

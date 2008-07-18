@@ -412,7 +412,7 @@ Liferay.Mail = {
 
 			// Refresh folders
 
-			setTimeout('Liferay.Mail.loadFolders(\'' + instance.getCurrentEmailAddress() + '\', true)', 10000);
+			setTimeout('Liferay.Mail.loadFolders(Liferay.Mail.getCurrentEmailAddress(), true)', 10000);
 		}
 
 		// Inject HTML
@@ -534,7 +534,12 @@ Liferay.Mail = {
 		var htmlMessageList = '';
 
 		if (jsonMessages.messages.length == 0) {
-			htmlMessageList += '<tr><td class="alert">' + Liferay.Language.get('no-messages-found') + '</td></tr>';
+			if (instance.getCurrentPageNumber() == 1) {
+				htmlMessageList += '<tr><td class="alert">' + Liferay.Language.get('no-messages-found') + '</td></tr>';
+			}
+			else {
+				htmlMessageList += '<tr><td class="alert">' + Liferay.Language.get('loading-messages') + '</td></tr>';
+			}
 		}
 		else {
 			for (i = (jsonMessages.messages.length - 1); i >= 0; i--) {
