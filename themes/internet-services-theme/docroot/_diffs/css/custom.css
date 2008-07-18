@@ -1,158 +1,147 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
 body {
-	background:#FFFFFF none repeat scroll 0%;
-	color:#454545;
-	font-family:Tahoma,sans-serif;
+	background: #FFFFFF none repeat scroll 0%;
+	color: #454545;
+	font-family: Tahoma,sans-serif;
 }
-
-/* ---------- Main content body ---------- */
-
 #wrapper {
+	background: none;
 	margin: 0 auto;
 	width: 900px;
 }
-
 #content-wrapper {
 	width: 100%;
 }
-
 #footer {
-	border-top:1px solid #CCCCCC;
-	clear:both;
-	line-height:1.8em;
-	margin:0pt;
-	padding:10px 0pt;
-	text-align:center;
+	border-top: 1px solid #CCCCCC;
+	clear: both;
+	line-height: 1.8em;
+	margin: 0pt;
+	padding: 10px 0pt;
+	text-align: center;
 }
-
-/* ---------- Banner ---------- */
-
 #banner {
-	background:#EEEEEE none repeat scroll 0%;
-	border-bottom:1px solid #CCCCCC;
-	color:#808080;
-	height:55px;
-	margin:3px 0pt;
-	padding:10px 0pt 0pt;
+	background: #EEEEEE none repeat scroll 0%;
+	border-bottom: 1px solid #CCCCCC;
+	color: #808080;
+	height: 55px;
+	margin: 3px 0pt;
+	padding: 10px 0pt 0pt;
 }
-
 #banner .logo {
 	background: none;
 	display: block;
 	float: left;
 	font-size: 2em;
-	padding: 1.25em 0.6em 1.45em;
 	margin-bottom: -12px;
-	top: -11px;
+	padding: 1.25em 0.6em 1.45em;
 	position: relative;
+	top: -11px;
 }
-
 #banner .logo a {
+	margin-left: 130px;
 	text-decoration: none;
 }
-
+.js .interactive-mode {
+	right: 15%;
+}
 #navigation {
-	background:#FF9148 none repeat scroll 0%;
-	border-bottom:1px solid #CCCCCC;
-	clear:both;
-	font-size:1.1em;
-	height:30px;
-	margin:0pt 0pt 0pt 0px;
+	background: #FF9148 none repeat scroll 0%;
+	border: none;
+	border-bottom: 1px solid #CCCCCC;
+	clear: both;
+	font-size: 1.1em;
+	height: 30px;
+	margin: 0pt 0pt 0pt 0px;
 	min-height: 2.2em;
 	overflow: hidden;
 	padding-right: 1em;
 	width: 889px;
 }
-
 #navigation ul {
 	float: left;
 	min-height: 2em;
 	padding-top: 0em;
 	width: auto;
 }
-
 #navigation li {
 	background: none;
+	border: none;
 	display: inline;
 	float: left;
 	margin-right: 0.5em;
 	padding: 0 0.5em 0 0;
 	position: relative;
 }
-
 #navigation li a {
 	background: none;
 	color: #FFEADC;
-	font-weight: bold;
 	display: block;
+	font-weight: bold;
 	padding: 4pt 2em 1.5em 2px;
 	text-decoration: none;
 }
-
 .ie6 #navigation li a {
 	padding: 4pt 2em 5pt 2px;
 }
-
 #navigation li a:hover {
 	color: #E0691A;
 	padding-bottom: 1em;
 }
-
 .ie6 #navigation li a:hover {
 	padding-bottom: 5pt;
 }
-
 #navigation li a span {
 	background: none;
 	padding-left: 17px;
 	text-decoration: none;
 }
-
 #navigation li.selected a {
-	background: #E0691A url(../images/bar.png) no-repeat scroll center top;
+	background: #E0691A url(../images/custom/bar.png) no-repeat scroll center top;
+	padding-left: 19px;
 	padding-top: 4pt;
 }
-
 #navigation li.selected a span {
-	background:none;
+	background: none;
 	font-size: 1em;
 	font-weight: bold;
+	padding-left: 0px;
 }
-
 #navigation li.selected a:hover {
 	color: #FFEADC;
 	padding-bottom: 1em;
 }
-
 .ie6 #navigation li.selected a:hover {
 	padding-bottom: 5pt;
 }
-
 #navigation li a:hover span {
 	background: none;
 }
-
 .js .lfr-dock.interactive-mode ul {
 	background: url(../images/dock/menu_bg.png) no-repeat 0 0;
 	border-left: 20px solid #E0691A;
 	display: none;
 	float: none;
 }
-
-/* ---------- Portlet wrapper and icons ---------- */
-
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: none;
+	border: none;
 }
-
 .portlet-topper {
-	background:#A9C0CE url(../images/corner.png) no-repeat scroll right top; 
+	background: #A9C0CE url(../images/custom/corner.png) no-repeat scroll right top;
 	background-position: right top;
-	border-bottom:1px solid #CCCCCC;
-	margin-right: -10px;
+	border-bottom: 1px solid #CCCCCC;
 	padding-right: 40px;
 	position: relative;
 }
-
-
+.js #add-page {
+	background:transparent none repeat scroll 0% 0%;
+	border:medium none;
+	right:-1%;
+	top:-3px;
+}
+.js #add-page a span {
+	color: white;
+}
+.js #navigation .enter-page {
+	background-color:transparent;
+}
