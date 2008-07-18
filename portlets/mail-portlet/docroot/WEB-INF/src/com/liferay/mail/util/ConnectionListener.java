@@ -42,20 +42,20 @@ public class ConnectionListener implements javax.mail.event.ConnectionListener {
 	}
 
 	public void closed(ConnectionEvent event) {
-		if (_log.isInfoEnabled()) {
+		if (_log.isDebugEnabled()) {
 			long uptime = (System.currentTimeMillis() - _startTime) / 1000;
 
-			_log.info(
+			_log.debug(
 				"The " + _service + " service has been closed after " +
 					uptime + "secs of uptime.");
 		}
 	}
 
 	public void disconnected(ConnectionEvent event) {
-		if (_log.isInfoEnabled()) {
+		if (_log.isDebugEnabled()) {
 			long uptime = (System.currentTimeMillis() - _startTime) / 1000;
 
-			_log.info(
+			_log.debug(
 				"The " + _service + " service has been disconnected after " +
 					uptime + "secs of uptime.");
 		}
@@ -64,8 +64,8 @@ public class ConnectionListener implements javax.mail.event.ConnectionListener {
 	public void opened(ConnectionEvent event) {
 		_startTime = System.currentTimeMillis();
 
-		if (_log.isInfoEnabled()) {
-			_log.info("The " + _service + " service has been opened");
+		if (_log.isDebugEnabled()) {
+			_log.debug("The " + _service + " service has been opened");
 		}
 	}
 
