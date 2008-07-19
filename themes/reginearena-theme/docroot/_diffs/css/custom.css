@@ -1,7 +1,6 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 body {
 	background-color: #0070A2;
-	background-image: url(../images/comment/body-bg.jpg);
+	background-image: url(../images/custom/body-bg.jpg);
 	background-position: center top;
 	background-repeat: repeat-y;
 	color: #C6C6C6;
@@ -13,10 +12,9 @@ body {
 	padding: 0pt;
 	text-align: justify;
 }
-
 #banner {
 	background-color: #ED8D29;
-	background-image: url(../images/comment/header.jpg);
+	background-image: url(../images/custom/header.jpg);
 	background-position: left top;
 	background-repeat: no-repeat;
 	float: none;
@@ -26,19 +24,22 @@ body {
 	text-align: left;
 	width: 900px;
 }
-
+#banner .logo a {
+	margin-left:160px;
+}
 #navigation {
-	margin: 150pt auto;
+	background: #ED8D29;
+	height: 45px;
+	margin: -21pt auto;
 	min-height: none;
 	overflow: hidden;
 	padding-right: 1em;
-	background: #ED8D29;
-	width: 100%;
+	width: 890px;
+	border: none;
 }
-
 #footer {
 	background-color: #020203;
-	background-image: url(../images/comment/footer-bg.jpg);
+	background-image: url(../images/custom/footer-bg.jpg);
 	background-position: left top;
 	background-repeat: repeat-x;
 	color: #FFFFFF;
@@ -46,24 +47,21 @@ body {
 	font-size: 11px;
 	height: 74px;
 	line-height: 18px;
+	margin: 1px auto;
 	margin-top: none;
 	padding-top: 18px;
 	text-align: center;
 	width: 900px;
-	margin: 1px auto;
 }
-
 #wrapper {
 	margin: 0px auto;
 	width: 71%;
 }
-
 .portlet-topper {
-	background: #1091CB url(../images/comment/portlet_top.png) repeat-x
+	background: #1091CB url(../images/custom/portlet_top.png) repeat-x
 		scroll 0% 1%;
 	position: relative;
 }
-
 .portlet-title {
 	color: #FFFFFF;
 	display: block;
@@ -71,55 +69,72 @@ body {
 	min-width: 50%;
 	padding: 8px 0pt 4px 10px;
 }
-
 a:hover {
 	color: #ED8D29;
 	text-decoration: none;
 }
-
 .portlet {
 	background: #C0C0C0 none repeat scroll 0%;
 	border: none;
 	margin-bottom: 1em;
-	text-align: left;
 	margin-top: 6px;
+	text-align: left;
 }
-
 #navigation li.selected {
 	border-top: none;
 	font-weight: bold;
 }
-
 #navigation li {
 	background: none;
 	display: inline;
 	float: left;
 	margin-right: 0.5em;
 	position: relative;
+	border: none;
 }
-
 #navigation li a:hover {
-	padding-bottom: 1em;
 	color: #1FA0DA;
 }
-
 #navigation li a {
-	text-decoration: none;
 	font-size: 13px;
+	text-decoration: none;
 }
-
+#navigation a {
+	color: #336699;
+}
+#navigation li.selected a span {
+	background:transparent;
+	padding-left:0px;
+}
 #content-wrapper {
-	margin:0pt auto;
-	width:91%;
+	margin: 30pt auto;
+	width: 91%;
 }
-
 .taglib-page-iterator .search-results {
-	color:black;
-	float:left;
+	color: black;
+	float: left;
 }
-
 fieldset {
-	border:1px solid #CCCCCC;
+	border: 1px solid #CCCCCC;
+	color: black;
+	padding: 0.7em;
+}
+.js .interactive-mode {
+	right: 16%;
+}
+.portlet {
 	color:black;
-	padding:0.7em;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color:transparent;
+	color: #336699;
+}
+.js #add-page {
+	background:transparent;
+	border: none;
+	top:-3px;
+}
+.js #navigation .enter-page {
+	background-color:transparent;
+	padding:0px;
 }
