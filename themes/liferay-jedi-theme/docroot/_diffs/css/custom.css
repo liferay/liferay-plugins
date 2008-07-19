@@ -3,7 +3,7 @@
 /* --- BASE --- */
 
 body {
-	background: #828F95 url(../images/common/background.png) repeat-x;
+	background: #828F95 url(../images/custom/background.png) repeat-x;
 }
 
 #wrapper {
@@ -13,7 +13,7 @@ body {
 }
 
 #back-container {
-	background: transparent url(../images/common/content_bg.png) no-repeat;
+	background: transparent url(../images/custom/content_bg.png) no-repeat;
 	min-height: 465px;
 }
 
@@ -36,7 +36,7 @@ body #content-wrapper {
 }
 
 #banner {
-	background: url(../images/common/banner_bg.png);
+	background: url(../images/custom/banner_bg.png);
 	height: 99px;
 	position: relative;
 }
@@ -48,7 +48,7 @@ body #content-wrapper {
 }
 
 #footer {
-	background: #E2E6E8 url(../images/common/footer_bg.jpg) no-repeat 50% 50%;
+	background: #E2E6E8 url(../images/custom/footer_bg.jpg) no-repeat 50% 50%;
 	border: 1px solid #6B767B;
 	height: 125px;
 	margin: 0 auto;
@@ -59,7 +59,7 @@ body #content-wrapper {
 /* ---- NAVIGATION ---- */
 
 #navigation {
-	background: transparent url(../images/navigation/bg.png) no-repeat;
+	background: url(../images/custom/bg.png) no-repeat;
 	border: none;
 	height: 25px;
 	line-height: 1;
@@ -87,6 +87,15 @@ body #content-wrapper {
 #navigation li:hover {
 	background: #D8DDE0;
 	border-bottom: #ABAFB2;
+}
+
+.js #navigation .enter-page .save-page:hover {
+	color: white;
+}
+
+.js #navigation .enter-page:hover {
+	background: none;
+	color: white;
 }
 
 #navigation li:hover a {
@@ -117,7 +126,7 @@ body #content-wrapper {
 }
 
 #navigation ul li.selected {
-	background: #1F242A url(../images/navigation/bullet_selected.png) no-repeat 12px 50%;
+	background: #1F242A url(../images/custom/bullet_selected.png) no-repeat 12px 50%;
 }
 
 .ie6 #navigation li.selected {
@@ -154,9 +163,12 @@ body #content-wrapper {
 }
 
 .js #navigation .enter-page {
-	background: none;
-	margin-top: -2px;
-	padding: 0;
+	background:transparent none repeat scroll 0% 0%;
+	margin-top:-7px;
+	padding:0pt;
+	position:absolute;
+	width:195px;
+	margin-left: -25px;
 }
 
 .js #add-page a {
@@ -171,6 +183,7 @@ body #content-wrapper {
 	margin-top: 3px;
 	padding-top: 0px;
 	position: static;
+	background: transparent;
 }
 
 .js #add-page a:hover span {
@@ -246,7 +259,7 @@ body #content-wrapper {
 }
 
 #banner .search .search-input-link {
-	background: url(../images/common/search_btn.png) no-repeat;
+	background: url(../images/custom/search_btn.png) no-repeat;
 	display: block;
 	height: 26px;
 	position: absolute;
@@ -390,7 +403,7 @@ body.portal-popup {
 /* --- DROP DOWN MENU --- */
 
 #navigation .child-menu {
-	background: url(../images/common/menu_drop.png) scroll no-repeat left bottom;
+	background: url(../images/custom/menu_drop.png) scroll no-repeat left bottom;
 	height: auto;
 	left: -1px;
 	overflow: visible;
@@ -425,20 +438,12 @@ body.portal-popup {
 #navigation .child-menu li {
 	border: none;
 	display: block;
-	padding: 2px 10px;
+	padding: 5px 10px;
 }
 
 #navigation .child-menu li a {
 	color: #000;
-	padding: 7px 10px;
-}
-
-.gecko #navigation .child-menu li a {
-	-moz-border-radius: 3px;
-}
-
-.webkit #navigation .child-menu li a {
-	-webkit-border-radius: 3px;
+	padding: 0 10px;
 }
 
 #navigation .child-menu a:hover {
@@ -583,7 +588,7 @@ ul.message-board-edit-controls {
 }
 
 #navigation.profile {
-	background-image: url(../images/navigation/profile_bg.png);
+	background-image: url(../images/custom/profile_bg.png);
 }
 
 #navigation.profile li {
@@ -598,7 +603,7 @@ ul.message-board-edit-controls {
 }
 
 #navigation.profile .group .group-indicator {
-	background: url('../images/navigation/group_indicator.png') no-repeat;
+	background: url('../images/custom/group_indicator.png') no-repeat;
 	height: 10px;
 	position: absolute;
 	right: -7px;
@@ -633,7 +638,7 @@ ul.message-board-edit-controls {
 }
 
 #navigation.profile ul li.selected:hover {
-	background: #1F242A url(../images/navigation/bullet_selected.png) no-repeat 12px 50%;
+	background: #1F242A url(../images/custom/bullet_selected.png) no-repeat 12px 50%;
 }
 
 #navigation.profile ul li a:hover span {
