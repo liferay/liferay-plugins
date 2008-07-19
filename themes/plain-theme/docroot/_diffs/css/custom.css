@@ -1,170 +1,143 @@
-* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
-/* Reset Styles */
 html {
- overflow-y : scroll ;
+	overflow-y: scroll;
 }
-#wrapper , #banner , #banner .logo , #banner .logo a ,
-#navigation , #navigation ul , #navigation ul li , #navigation li.selected ,
-#navigation ul li a , #navigation li a span , #navigation ul li.selected a , #navigation ul li.selected a span , 
-#navigation ul li a:hover , #navigation li a:hover span , #navigation ul li.selected a:hover , #navigation ul li.selected a:hover span ,
-.js #add-page , .js #add-page a , .js #add-page a span , .js #add-page a:hover , .js #add-page a:hover span ,
-.js #navigation .enter-page , .js #navigation .enter-page a , .js #navigation .enter-page a:hover ,
-#content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content
-{
- float : none ;
- margin : auto ;
- padding : 0 ;
- width : auto ;
- min-width : 0 ;
- height : auto ;
- min-height : 0 ;
- background : transparent none no-repeat scroll 0 0 ;
- font-size : 100% ;
- font-size-adjust : none ;
- font-stretch : normal ;
- font-style : normal ;
- font-variant : normal ;
- font-weight : normal ;
- text-indent : 0 ;
- text-decoration : none ;
- line-height : normal ;
- color : inherit ;
-}
-
-/* Handy Defaults */
-html {
- overflow-y : scroll ;
-}
-#banner , #navigation , #navigation ul , .portlet { background-color : transparent ; }
-#wrapper , #banner , #navigation , #content-wrapper , 
-.portlet , .portlet-topper , .portlet-title , .portlet-content { display : block ; }
-#layout-grid .lfr-column  { margin : 0 ; padding : 0 ;}
-.portlet-icons { top : 0 ; right : 0 ; }
-.tabs { border : 0 ; }
-.portlet-section-header { background : transparent none ; }
-.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 { font-size : 8pt ; padding-right : 0 ; }
-ul.child-menu { display : none ; }
-
-/* Theme */
-
-html {
-}
-
 body {
- font-family : "Trebuchet MS", Arial, Verdana ;
- font-size : 0.74em ;
- color : #555 ;
- background-color : #fff ;
+	background-color: #fff;
+	color: #555;
+	font-family: "Trebuchet MS", Arial, Verdana;
+	font-size: 0.74em;
 }
-
 #wrapper {
- padding-top: 1px;
+	background: none;
+	padding-top: 1px;
 }
-
 #banner {
- margin : 0 auto ;
- width : 750px ;
+	background: none;
+	margin: 0 auto;
+	width: 750px;
 }
 #banner .logo {
- display : block ;
+	display: block;
 }
-
 #banner .logo a {
- display : block ;
- margin : 106px 0 0 0 ;
- color : #736451 ;
- font-family : "Century Gothic","Trebuchet MS","Arial Narrow",Arial,sans-serif ;
- font-size : 30px ;
- font-weight : normal ;
- text-transform : uppercase ;
+	color: #736451;
+	display: block;
+	font-family: "Century Gothic","Trebuchet MS","Arial Narrow",Arial,sans-serif;
+	font-size: 30px;
+	font-weight: normal;
+	margin: 106px 0 0 0;
+	text-transform: uppercase;
 }
-
-.js .lfr-dock.interactive-mode {
+.ie #banner .logo a {
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
-
 .js .lfr-dock.interactive-mode h2 span {
- font-size : 10pt ;
- padding : 8px 16px 16px 16px ;
- color : #222 ;
+	color: #222;
+	font-size: 10pt;
+	padding: 8px 16px 16px 16px;
 }
-
-.js .lfr-dock.interactive-mode h2 , .js .lfr-dock.interactive-mode h2 span {
- background-image : none ;
-}
-
 #navigation {
- background : #94AE62 url('../images/custom/menu.png') ;
- color : #fff ;
- font-variant : small-caps ;
- margin : 0 0 50px 0 ;
- display : block ;
- position : absolute ;
- top : 0 ; 
- width : 100%;
+	background: #94AE62 url('../images/custom/menu.png');
+	border: none;
+	color: #fff;
+	display: block;
+	font-variant: small-caps;
+	height: 60px;
+	margin: 0 0 50px 0;
+	position: absolute;
+	top: -76pt;
+	width: 100%;
+}
+#navigation li {
+	border: none;
 }
 #navigation ul {
- display : block ;
- float : left ;
- width : auto ;
- margin : 0 0 0 24px ;
+	display: block;
+	float: left;
+	margin: 0 0 0 24px;
+	width: auto;
 }
 #navigation ul li , #navigation ul li.selected , .js #add-page {
- display : block ;
- float : left ;
- list-style-image : url('../images/custom/li.png') ;
+	display: block;
+	float: left;
+	list-style-image: url('../images/custom/li.png');
 }
 #navigation ul li a , #navigation ul li a:hover , #navigation ul li.selected a , #navigation ul li.selected a:hover , .js #add-page a , .js #add-page a:hover {
- display : block ;
- float : left ;
- padding : 20px 10px ;
- text-decoration : none ;
- line-height : 20px ;
+	display: block;
+	float: left;
+	line-height: 20px;
+	padding: 17px 10px;
+	text-decoration: none;
 }
 #navigation ul li a span , #navigation ul li a:hover span , #navigation ul li.selected a span , #navigation ul li.selected a:hover span , .js #add-page a span , .js #add-page a:hover span {
- display : block ;
- float : left ;
- font-family : Verdana,Arial,Helvetica,sans-serif ;
- font-size : 11px ;
+	display: block;
+	float: left;
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+	font-size: 11px;
 }
-#navigation ul li:hover , #navigation ul li.selected:hover{
- background : #fff url('../images/custom/a_hover.png');
+#navigation ul li:hover , #navigation ul li.selected:hover {
+	background: #fff url('../images/custom/a_hover.png');
 }
 #navigation ul li a:hover , #navigation ul li.selected a:hover {
- color : #000 ;
+	color: black;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
 }
 #navigation ul .sort-helper {
- /* background: transparent url('../images/custom/placeholder_bg.png'); */
 }
-.js #add-page { }
-
 #content-wrapper , #portlet-wrapper- {
- background : transparent url('../images/custom/portlet.png') no-repeat scroll top center;
- width : 900px ;
- margin : 0 auto ;
+	background: transparent url('../images/custom/portlet.png') no-repeat scroll top center;
+	margin: 0 auto;
+	width: 900px;
 }
-
 .portlet {
- padding : 32px 16px ;
+	padding: 32px 16px;
 }
-.portlet-title {
+#navigation li.selected a span {
+	background: transparent;
+	color: white;
+	padding-left: 0px;
 }
-.portlet-content {
+#navigation li.selected a:hover span {
+	color: black;
 }
-
-.columns-1 #column-1 {
+.js .lfr-dock.interactive-mode h2 span {
+	color:white;
+	font-size:10pt;
+	padding:7px 16px;
 }
-.columns-2 #column-1 {
+.js .interactive-mode {
+	right:19%;
+	top:134px;
 }
-.columns-2 #column-2 {
+.js #navigation .enter-page {
+	margin-right: 45px;
+	padding: 2px 2px 10px;
 }
-
-#footer {
+.js #navigation .enter-page .save-page {
+	position: absolute;
+	top: 21px;
+	right: 11px;
+	background: transparent;
+	color: white;
+	margin: 0px;
 }
-
-#column-2 .tabs li.current , #column-2 .tabs li.current a , #column-2 .tabs li.current span ,
-#column-2 .tabs li , #column-2 .tabs li a , #column-2 .tabs li span {
+.js #navigation .enter-page a:hover {
+	padding: 0px;
+	color: black;
 }
-#column-2 .tabs li a:hover { }
-
-/*** THE END ***/
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	margin-top:15px;
+	padding:5px 1px;
+}
+.js #navigation .enter-page {
+	background-color:transparent;
+}
+.js #add-page {
+	background:transparent none repeat scroll 0% 0%;
+	border:medium none;
+	right:5%;
+	top:-8px;
+}
