@@ -1,334 +1,256 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
 address, caption, cite, code, dfn, em, strong, th, var {
 	color: black;
 }
-
 body {
-	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','courier','Lucida',Arial,Verdana,sans-serif;
-	text-align: center;
-	background-color:#c0c0c0;
+	background-color: #c0c0c0;
 	background-repeat: repeat;
-	margin-top:10px;
-	margin-bottom:10px;
+	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','courier','Lucida',Arial,Verdana,sans-serif;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	text-align: center;
 }
-
 a {
 	color: #000000;
 }
-
 a:hover {
 	color: #8cd749;
 }
-
-a:visited { 
-	color:#000000;
-	text-decoration:none;
+a:visited {
+	color: #000000;
+	text-decoration: none;
 }
-
 b, strong {
 	color: black;
 }
-
 i, em {
 	color: black;
 }
-
 .important {
 	color: black;
 }
-
 body.staging {
 	border: 100px solid #c00;
 }
-
 #wrapper {
-	margin: 0pt auto;
-	width: 850px;
 	background: white;
 	border: 1px solid #D3D3D3;
+	margin: 0pt auto;
+	width: 850px;
 }
-
-
-#banner { 
-	background-color:#FFFFFF;
-	background-image:url(../images/common/leaf.jpg);
-	background-position:right top;
-	background-repeat:no-repeat;
-	height:185px;
-	left:0px;
-	position:relative;
-	top:0px;
-	width:850px;
+#banner {
+	background-color: #FFFFFF;
+	background-image: url(../images/common/leaf.jpg);
+	background-position: right top;
+	background-repeat: no-repeat;
+	height: 185px;
+	left: 0px;
+	position: relative;
+	top: 0px;
+	width: 850px;
 }
-
 #banner .logo {
 	background: transparent;
-	position: absolute;
+	display: auto;
+	float: none;
+	font-size: auto;
 	left: 10px;
+	padding: 0;
+	position: absolute;
 	top: 10px;
-	display:auto;
-	float:none;
-	font-size:auto;
-	padding:0;
-	
 }
-
 #banner .logo a {
-	text-decoration:none;
+	background-color: #999999;
+	background-color: grey;
+	display: block;
+	font-size: 0pt;
+	height: 76px;
+	text-decoration: none;
+	text-indent: -9999em;
+	width: 209px;
 }
-
 .popup-close {
-	cursor:  crosshair;
+	cursor: crosshair;
 }
-
 .loading-animation {
 	background: url(../images/progress_bar/loading_animation.gif) no-repeat top center;
 }
-
-.columns-1 #column-1 {
-	padding-left: 10px;
-	padding-right: 10px;
+#content-wrapper{
+	min-height: 400px;
+	width: 850px;
 }
-
-.columns-2 #column-1 {
-	padding-left: 10px;
-	padding-bottom: 10px;
-	padding-top:0;
-	}
-
-.columns-2 #column-2 {
-	padding-right:10px;
-	padding-bottom: 10px;
-	border-left: none;
-	padding-top:0;
-}
-
-.columns-3 #column-1 {
-	padding-left: 10px;
-}
-
-.columns-3 #column-3 {
-	padding-right: 10px;
-}
-
-.columns-1-2-1 #column-1, .columns-1-2-1 #column-4 {
-	padding-left: 10px;
-	padding-right: 10px;
-}
-
-.columns-1-2-1 #column-2 {
-	padding-left: 10px;
-}
-
-.columns-1-2-1 #column-3 {
-	padding-right: 10px;
-}
-
-.columns-2-2 #column-1, .columns-2-2 #column-2 {
-	padding-left: 10px;
-}
-
-.columns-2-2 #column-4 {
-	padding-right: 10px;
-}
-
 #navigation {
-	width: 100%;
 	background-color: #999;
+	border: none;
+	height: 50px;
 	padding: 0;
+	width: 100%;
 }
-
 #navigation ul {
-	height:50px;
 	float: left;
+	height: 50px;
 }
-
 #navigation li , .js #add-page {
-	width:125px;
-	height:30px;
-	margin:0;
-	padding:0;
 	background: #999 none;
-	font-size:8pt;
+	border: none;
+	font-size: 8pt;
+	height: 30px;
+	margin: 0;
+	padding: 0;
+	width: 125px;
 }
-
+.js #add-page {
+	position: absolute;
+	right: 5%;
+	top: 0px;
+}
 #navigation li a , .js #add-page a {
 	background: #999999 none;
 	color: white;
-	font-weight: normal;
-	text-decoration:none;
 	font-size: small;
-	padding:0;
-	text-decoration:none;
-	text-align:center;
+	font-weight: normal;
+	padding: 0;
+	text-align: center;
+	text-decoration: none;
 }
-
 #navigation li a:hover , .js #add-page a:hover {
-	padding-bottom:0;
+	padding-bottom: 0;
 }
-
 #navigation li.selected a {
-	padding:0;
 	background: #999999 none;
+	color: #444444;
 	font-weight: bold;
-	color: 	#444444;
-	text-align:center;
-}
-
-#navigation li.selected a:hover {
-	background: #999999 none;
-	padding-bottom:0;
-	text-align:center;
-}
-
-#navigation li a span , .js #add-page a span {
-	background: #999999 none;
-	padding:0pt;
-	position:relative;
-	text-align:center;
-	text-decoration:none;
-	top:10px;
-}
-
-#navigation li a:hover span , .js #add-page a:hover span {
-	text-decoration: underline;
-	background: #999999 none;
+	padding: 0;
 	text-align: center;
 }
-
+#navigation li.selected a:hover {
+	background: #999999 none;
+	padding-bottom: 0;
+	text-align: center;
+}
+#navigation li a span , .js #add-page a span {
+	background: #999999 none;
+	padding: 0pt;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	top: 10px;
+}
+#navigation li a:hover span , .js #add-page a:hover span {
+	background: #999999 none;
+	color: #444444;
+	text-align: center;
+	text-decoration: underline;
+}
 #navigation li.selected a span {
+	background: none;
 	background-color: #999999;
-	font-size:small;
-	font-weight:bold;
-	background:none;
-	position:relative;
-	top:10px;
-	text-align:center;
-	text-decoration:underline;
+	font-size: small;
+	font-weight: bold;
+	position: relative;
+	text-align: center;
+	text-decoration: underline;
+	top: 10px;
 }
-
+#navigation li a:hover {
+	background: #999999;
+	color: #444444;
+}
 .js #navigation .enter-page {
-	width:115px;
 	background: transparent none;
+	width: 115px;
+	margin-top: 2px;
 }
-
-.js .lfr-dock.interactive-mode {
-	min-width: 211px;
-}
-
-.js .lfr-dock.interactive-mode h2 {
-	position:auto;
-	z-index:200;
-}
-
 #content-wrapper {
 	margin: 10px 0 0;
 }
-
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: none;
+	left: 0px;
 	position: relative;
-	left: 0px;
 	top: 0px;
-	background:none;
 }
-
 .portlet {
-	margin: 0 10px 0 0;
 	background: white top center no-repeat fixed;
-	border:none;
-}
-
-.portlet-topper {
-	left: 0px;
-	top: 0px;
-	background:#dddddd top center no-repeat fixed;
 	border: none;
-	margin-right:0;
-	padding-right:0;
-	height:40px;
+	margin: 0 10px 0 0;
 }
-
-
+.portlet-topper {
+	background: #dddddd top center no-repeat fixed;
+	border: none;
+	height: 40px;
+	left: 0px;
+	margin-right: 0;
+	padding-right: 0;
+	top: 0px;
+}
 .portlet-title {
 	font-size: 9pt;
 	padding: 8px 0 0px 10px;
 }
-
 .portlet-icons {
-	background:#dddddd top center no-repeat fixed;
+	background: #dddddd top center no-repeat fixed;
 }
-
 .portlet-icon-back {
 	font-size: 10pt;
 }
-
 .portlet-section-header {
 	background-color: #999999;
 	border: 1px solid white;
 }
-
 .portlet-section-header th {
 	border: 1px solid white;
 	color: white;
-	}
-
+}
 .portlet-section-body td {
-	border-top:none;
+	border-top: none;
 }
-
 .portlet-section-alternate td {
-	border-top:none;
+	border-top: none;
 }
-
 .portlet-section-alternate-hover td, .portlet-section-body-hover td {
-	border-bottom:none;
-	border-top:none;
+	border-bottom: none;
+	border-top: none;
 }
-
 .tabs {
+	background-image: none;
+	border-bottom: none;
 	padding: 0 0 2.6em 0;
-	border-bottom:none;
-	background-image:none;
 }
-
 .tabs li {
 	background-color: #999999;
+	background-image: none;
 	font-size: 8pt;
-	margin-right:none;
-	background-image:none;
+	margin-right: none;
 }
-
 .tabs li a, .tabs li span {
 	background-color: #999999;
+	background-image: none;
 	color: white;
-	background-image:none;
 }
-
 .tabs li.current {
 	background-color: #999999;
-	top:0;
-	background-image:none;
+	background-image: none;
+	top: 0;
 }
-
 .tabs li.current a, .tabs li.current span {
-	background-image:none;
-	color:none;
+	background-image: none;
+	color: none;
 }
-
 .ie .tabs li.current {
-	top:0;
-	background-image:none;
 	background-color: #999999;
+	background-image: none;
+	top: 0;
 }
-
-
-
-
-
-
-
-
-
-
-
+.js .delete-tab {
+	right: 34px;
+	top: 6px;
+}
+.js #navigation .enter-page .save-page {
+	background:transparent;
+	margin:3pt -10px;
+	position:absolute;
+	z-index:1;
+}
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	width:85px;
+}
