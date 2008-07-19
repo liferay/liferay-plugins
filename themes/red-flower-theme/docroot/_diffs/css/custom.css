@@ -1,4 +1,3 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 #wrapper {
 	background-image: none;
 	background-position: right top;
@@ -6,100 +5,113 @@
 	margin: 0px auto;
 	width: 970px;
 }
-
 body {
 	background-color: #000000;
-	background-image: url(../images/comment/background.jpg);
+	background-image: url(../images/custom/background.jpg);
 	background-position: none;
 	background-repeat: repeat-x;
 	font-family: "Trebuchet MS", "Lucida Sans Std", "Lucida Sans Unicode",
 		sans-serif;
 	font-size: 10px;
 }
-
 #banner .logo {
-	display:block;
-	font-size:2em;
-	margin:0pt auto;
-	padding:1.25em 0pt 376px;
+	display: block;
+	font-size: 2em;
+	margin: 0pt auto;
+	padding: 1.25em 0pt 376px;
 }
-
-
 #banner {
 	background: none;
+	background-image: url(../images/custom/header_bg.jpg);
 	border-bottom: none;
+	height: 505px;
 	margin-bottom: 1em;
 	min-height: 120px;
-	background-image: url(../images/comment/header_bg.jpg);
-	height: 505px;
 }
-
 #navigation {
-	margin-top: 346px;
+	background: url(../images/custom/nav-bg.png);
+	height: 45px;
+	margin-top: -74px;
 	min-height: 2.2em;
 	overflow: hidden;
 	padding-right: 1em;
-	height: 45px;
-	background: url(../images/comment/nav-bg.png);
+	border: none;
 }
-
 .portlet-topper {
-	background: #C10003  url(../images/comment/portlet_top.png) repeat-x
+	background: #C10003 url(../images/custom/portlet_top.png) repeat-x
 		scroll 10% 0%;
 	position: relative;
 }
 
 .portlet {
+	background: #fff none repeat scroll 0% 50%;
 	border: 0px solid #164E7F;
+	font-size: 12px;
 	margin-bottom: 1em;
 	text-align: left;
-	background: #fff none repeat scroll 0% 50%;
-	font-size:12px;
 }
-
 .portlet-title {
+	color: #fff;
+	font-size: 12px;
 	font-weight: bold;
 	min-width: 50%;
 	padding: 8px 0pt 4px 10px;
-	color: #fff;
-	font-size: 12px;
 }
-
 #navigation li.selected {
 	border-top: none;
 	font-weight: bold;
 }
-
 #navigation li {
 	background: none;
 	display: inline;
 	float: left;
 	margin-right: 0.5em;
 	position: relative;
+	border: none;
 }
-
 #navigation li a {
-	text-decoration: none;
 	font-size: 15px;
 	font-weight: bold;
+	text-decoration: none;
 }
-
 #navigation li.selected a {
-	padding-top: none;
 	color: #000;
+	padding-top: none;
 }
-
 #footer {
+	background-image: url(../images/custom/footer.png);
+	background-position: none;
+	background-repeat: repeat-x;
 	color: #FFFFFF;
 	font-size: 11px;
 	height: 74px;
 	line-height: 18px;
+	margin: 0px auto;
 	margin-top: 1px;
 	padding-top: 30px;
 	text-align: center;
-	width:95%;
-	margin: 0px auto;
-	background-image: url(../images/comment/footer.png);
-	background-repeat: repeat-x;
-	background-position: none;
+	width: 95%;
+}
+#navigation ul {
+	margin:8pt auto;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color:transparent;
+}
+#navigation li.selected a span {
+	background:transparent;
+	padding-left:0px;
+}
+.js #navigation .enter-page .save-page {
+	color:white;
+}
+.js #add-page {
+	background:transparent none repeat scroll 0% 0%;
+	border:medium none;
+	right:-1%;
+	top:9px;
+}
+.js #navigation .enter-page {
+	background-color:transparent;
+	padding:1px;
 }
