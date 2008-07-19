@@ -1,183 +1,181 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-	/* Header */
 body {
-	margin: 0;
-	padding: 0;
-	background: #FFFFFF url(../images/common/img01.png) repeat-x;
-	font: normal 11px Tahoma, Arial, Helvetica, sans-serif;
+	background: #FFFFFF url(../images/custom/img01.png) repeat-x;
 	color: #666666;
-}
-
-h1,h2,h3 {
+	font: normal 11px Tahoma, Arial, Helvetica, sans-serif;
 	margin: 0;
 	padding: 0;
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+h1,h2,h3 {
 	color: #F49500;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
 }
-
 h2 {
-	text-transform: uppercase;
 	font-size: 18px;
-}
-
-h3 {
 	text-transform: uppercase;
-	letter-spacing: 2px;
-	font-size: 11px;
 }
-
+h3 {
+	font-size: 11px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
 p,blockquote,ul,ol {
 	line-height: 18px;
 	text-align: justify;
 }
-
 blockquote {
+	background: url(../images/custom/img05.png) repeat-y;
 	padding-left: 20px;
-	background: url(../images/common/img05.png) repeat-y;
 }
-
 a {
 	color: #F49500;
 }
-
 a:hover {
 	text-decoration: none;
 }
-
-/* Header */
 #header {
-	width: 760px;
+	background: url(../images/custom/img02.jpg);
 	height: 180px;
 	margin: 0 auto;
-	background: url(../images/common/img02.jpg);
+	width: 760px;
 }
-
 #header h1,#header h2 {
-	text-transform: lowercase;
-	font-weight: normal;
 	color: #FFFFFF;
+	font-weight: normal;
+	text-transform: lowercase;
 }
-
 #header h1 {
 	float: left;
-	padding: 120px 0 0 20px;
 	font-size: 36px;
+	padding: 120px 0 0 20px;
 }
-
 #header h2 {
 	float: right;
-	padding: 134px 20px 0 0;
 	font-size: 22px;
+	padding: 134px 20px 0 0;
 }
-
 #banner {
 	border-bottom: 1px solid #89C8FF;
 	margin-bottom: 0;
 	min-height: 120px;
 	position: relative;
+	background: none;
 }
-
-/* Menu */
 #navigation {
-	width: 853px;
+	border: none;
 	height: 50px;
-	margin: 0 auto;
+	margin: 53pt auto;
+	width: 853px;
+	background: transparent;
 }
-
 #navigation ul {
+	list-style: none;
 	margin: -2pt;
 	padding: 0;
-	list-style: none;
 }
-
 #navigation li {
 	background: none;
+	border: none;
 	display: inline;
 }
-
 #navigation li.selected {
 	border: none;
 	font-size: 1em;
 }
-
 #navigation li a,#navigation li.selected a {
+	background: url(../images/custom/img03.png) no-repeat;
+	color: #D8D8D8;
 	display: block;
 	float: left;
-	padding: 10px 20px 0 20px;
-	background: url(../images/common/img03.png) no-repeat;
-	text-transform: uppercase;
-	text-decoration: none;
 	font: bold 12px "Trebuchet MS", Arial, Helvetica, sans-serif;
-	color: #D8D8D8;
+	padding: 10px 20px 0 20px;
+	text-decoration: none;
+	text-transform: uppercase;
 }
-
 #navigation a:hover {
 	color: #FFFFFF;
 }
-
 #navigation .first a {
 	background: none;
 }
-
-/* Content */
 #content {
-	width: 720px;
+	background: #FFFFFF url(../images/custom/img04.png) repeat-x left bottom;
 	margin: 0 auto 20px auto;
 	padding: 20px;
-	background: #FFFFFF url(../images/common/img04.png) repeat-x left bottom
-		;
+	width: 720px;
 }
-
 #wrapper {
-	width: 761px;
 	margin: 0 auto 20px auto;
+	width: 761px;
+	background: none;
 }
-
 #content-wrapper {
-	margin: 0 auto;
+	margin: -68px auto 0pt;
 	width: 95%;
 }
-
 .portlet-topper {
-	background: #FFFFFF url(../images/common/img01.png) repeat-x;
+	background: #FFFFFF url(../images/custom/img01.png) repeat-x;
 	position: relative;
 }
-
 .portlet {
 	border: 2px solid #F49500;
 	margin-bottom: 1em;
 	text-align: left;
 }
-
 #footer {
+	background: #2D2D2D url(../images/custom/img07.png) repeat-x;
 	height: 30px;
-	padding: 20px;
-	background: #2D2D2D url(../images/common/img07.png) repeat-x;
 	margin-left: -261px;
+	padding: 20px;
 }
-
 #footer p {
-	text-align: center;
 	color: #999999;
+	text-align: center;
 }
-
 .js .lfr-dock.interactive-mode {
 	float: right;
 	min-width: 150px;
 	position: relative;
 	right: 0px;
-	top: 4px;
+	top: -175px;
+	height: 28px;
 }
-
 .js .lfr-dock.interactive-mode h2 span {
-	background: url(../images/dock/menu_bar.png) no-repeat 0 0;
+	background: transparent;
 	color: #fff;
 	display: block;
 	margin-bottom: -9px;
 	padding: 0.5em 0.5em 0.5em 2em;
+	border: none;
 }
-
 .js #navigation .enter-page {
-	background: none;
-	padding: 0.5em 2em 0.7em 1.5em;
+	background:transparent none repeat scroll 0% 0%;
+	margin-right:56px;
+}
+.js .interactive-mode h2 {
+	background:transparent url(../images/dock/right_bg.png) no-repeat scroll 100% 0pt;
+	padding:3pt 37px 7pt 0pt;
+}
+.js #add-page {
+	background:none;
+	border: none;
+	top: 6px;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
+#navigation li.selected a span {
+	background:transparent;
+	padding-left:0px;
+}
+.lfr-dock-list-container {
+	height: 1px;
+	overflow: visible;
+}
+.js #navigation .enter-page .save-page {
+	background:transparent none repeat scroll 0% 0%;
+	padding-left:6px;
+	position:absolute;
+	top:6px;
 }
