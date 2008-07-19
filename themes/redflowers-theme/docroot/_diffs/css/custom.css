@@ -1,7 +1,6 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 body {
 	background-color: #ED0304;
-	background-image: url(../images/comment/bg.gif);
+	background-image: url(../images/custom/bg.gif);
 	background-position: left top;
 	background-repeat: no-repeat;
 	color: #222222;
@@ -10,10 +9,8 @@ body {
 	margin: 0pt;
 	padding: 0pt;
 }
-
 #banner {
-	background: transparent url(../images/comment/header.png) repeat scroll
-		0%;
+	background: transparent url(../images/custom/header.png) repeat scroll 0%;
 	border-bottom: 0px none;
 	clear: both;
 	height: 216px;
@@ -21,70 +18,78 @@ body {
 	padding-right: 20px;
 	width: 930px;
 }
-
 #content-wrapper {
-	margin: 0pt auto;
-	width: 950px;
 	background: #FFFFFF none repeat scroll 0%;
 	clear: both;
 	color: #555555;
+	margin: 0pt auto;
+	width: 950px;
 }
-
+#wrapper {
+	background: transparent;
+}
 #banner .logo {
 	display: block;
 	font-size: 2em;
 	margin: 0pt auto;
 	padding: 1.25em 0pt 55px;
 }
-
+#banner .logo a {
+	margin-left: 138px;
+	margin-top: -7px;
+}
 .portlet {
 	border: none;
+	font-size: 12px;
 	margin-bottom: 1em;
 	text-align: left;
-	font-size: 12px;
 }
-
 a:link {
 	color: #ED0304;
 	text-decoration: none;
 }
-
 .portlet-title {
 	color: #7B7B7B;
 	display: block;
-	min-width: 50%;
-	padding: 8px 0pt 4px 10px;
 	font-size: 14px;
 	font-weight: bold;
+	min-width: 50%;
+	padding: 8px 0pt 4px 10px;
 }
-
 #footer {
-	background: #FFFFFF url(../images/comment/footer-bg.gif) no-repeat
-		scroll center bottom;
+	background: #FFFFFF url(../images/custom/footer-bg.gif) no-repeat scroll center bottom;
 	clear: both;
 	color: #ED0304;
 	font-size: 11px;
+	margin: 0px auto;
 	padding-bottom: 10px;
 	padding-left: 20px;
 	text-align: left;
 	width: 930px;
-	margin: 0px auto;
 }
-
+#navigation {
+	background: transparent;
+	border: none;
+	margin-top: -74px;
+}
+#navigation ul {
+	width: 74%;
+}
 #navigation li {
 	background: none;
 	display: inline;
 	float: left;
 	margin-right: 0.5em;
 	position: relative;
+	border: none;
 }
-
 #navigation li a span {
-	color: black;
 	display: block;
 	padding: 1em 1.5em;
 }
-
+#navigation a {
+	color:black;
+}
 .js .lfr-dock.interactive-mode li a {
 	background-position: 0.5em 50%;
 	background-repeat: no-repeat;
@@ -95,35 +100,29 @@ a:link {
 	padding: 0.5em 0pt 0.5em 2.5em;
 	text-decoration: none;
 }
-
 #navigation li a {
-	text-decoration: none;
 	font-size: 13px;
+	text-decoration: none;
 }
-
 #navigation li.selected a {
 	padding-top: 0.5em;
 }
-
 #navigation li.selected {
 	border-top: 0px;
 	font-weight: bold;
 }
-
 .portlet-topper {
-	background: #FE8787 url(../images/comment/portlet_top.png) repeat-x
+	background: #FE8787 url(../images/custom/portlet_top.png) repeat-x
 		scroll 0% 0%;
 	position: relative;
 }
-
 .tabs li.current {
-	background: #FFAAAA url(../images/comment/tabs_active_bg.png) repeat-x
+	background: #FFAAAA url(../images/custom/tabs_active_bg.png) repeat-x
 		scroll 0pt 0%;
 	font-weight: bold;
 }
-
 .tabs li {
-	background: #FFAAAA url(../images/commnet/tabs_inactive_bg.png) repeat-x
+	background: #FFAAAA url(../images/custom/tabs_inactive_bg.png) repeat-x
 		scroll 0pt 100%;
 	border-color: #FFAAAA;
 	border-style: solid solid none;
@@ -135,9 +134,29 @@ a:link {
 	padding: 0pt;
 	text-decoration: none;
 }
-
 .tabs {
 	border-bottom: 1px solid #FF2626;
 	margin: 0pt 0pt 1.5em;
 	padding: 0pt 0pt 2.6em 1em;
+}
+.js .interactive-mode {
+	right: 15%;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color:transparent;
+}
+#navigation li.selected a span {
+	color: black;
+	background:transparent;
+	padding-left:0px;
+}
+.js #add-page {
+	background:transparent;
+	border: none;
+	right:13%;
+	top:10px;
+}
+.js #navigation .enter-page {
+	background-color:transparent;
+	margin-top: 13px;
 }
