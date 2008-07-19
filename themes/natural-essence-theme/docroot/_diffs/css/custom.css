@@ -1,162 +1,185 @@
-* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
-/* Reset Styles */
 html {
- overflow-y : scroll ;
+	overflow-y: scroll;
 }
-#wrapper , #banner , #banner .logo , #banner .logo a ,
-#navigation , #navigation ul , #navigation ul li , #navigation li.selected ,
-#navigation ul li a , #navigation li a span , #navigation ul li.selected a , #navigation ul li.selected a span , 
-#navigation ul li a:hover , #navigation li a:hover span , #navigation ul li.selected a:hover , #navigation ul li.selected a:hover span ,
-.js #add-page , .js #add-page a , .js #add-page a span , .js #add-page a:hover , .js #add-page a:hover span ,
-.js #navigation .enter-page , .js #navigation .enter-page a , .js #navigation .enter-page a:hover ,
-#content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content
-{
- float : none ;
- margin : auto ;
- padding : 0 ;
- width : auto ;
- min-width : 0 ;
- height : auto ;
- min-height : 0 ;
- background : transparent none no-repeat scroll 0 0 ;
- font-size : 100% ;
- font-size-adjust : none ;
- font-stretch : normal ;
- font-style : normal ;
- font-variant : normal ;
- font-weight : normal ;
- text-indent : 0 ;
- text-decoration : none ;
- line-height : normal ;
- color : inherit ;
+#banner , #navigation , #navigation ul , .portlet {
+	background-color: transparent;
 }
-
-/* Handy Defaults */
-html {
- overflow-y : scroll ;
-}
-#banner , #navigation , #navigation ul , .portlet { background-color : transparent ; }
 #wrapper , #banner , #navigation , #content-wrapper , 
-.portlet , .portlet-topper , .portlet-title , .portlet-content { display : block ; }
-#layout-grid .lfr-column  { margin : 0 ; padding : 0 ;}
-.portlet-icons { top : 0 ; right : 0 ; }
-.tabs { border : 0 ; }
-.portlet-section-header { background : transparent none ; }
-.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 { font-size : 8pt ; padding-right : 0 ; }
-ul.child-menu { display : none ; }
-
-/* Theme */
-
-body {
-	background: #7C6F5C url(../images/common/bg.jpg) repeat scroll 0 0;
-	color: #222;
-	font: normal normal normal 62.5% sans-serif;
+.portlet , .portlet-topper , .portlet-title , .portlet-content {
+	display: block;
 }
-
-#outter {
-	background: #333322;
-	margin:38px auto;
-	width:912px;
-}
-
-#wrapper {
-	background:#FBF9F4 none repeat scroll 0%;
-	border-top:6px solid #333322;
-	font-size:1.3em;
-	line-height:1.3em;
-	margin:0pt auto;
-	width:900px;
-}
-
-#banner {
-	height: 277px;
-	background: #DAD7C5 url(../images/common/header.jpg) no-repeat scroll left bottom;
+#layout-grid .lfr-column {
 	margin: 0;
 	padding: 0;
 }
-
+.portlet-icons {
+	right: 0;
+	top: 0;
+}
+.tabs {
+	border: 0;
+}
+.portlet-section-header {
+	background: transparent none;
+}
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
+	font-size: 8pt;
+	padding-right: 0;
+}
+ul.child-menu {
+	display: none;
+}
+body {
+	background: #7C6F5C url(../images/custom/bg.jpg) repeat scroll 0 0;
+	color: #222;
+	font: normal normal normal 62.5% sans-serif;
+}
+#outter {
+	background: #333322;
+	margin: 38px auto;
+	width: 912px;
+}
+#wrapper {
+	background: #FBF9F4 none repeat scroll 0%;
+	border-top: 6px solid #333322;
+	font-size: 1.3em;
+	line-height: 1.3em;
+	margin: 0pt auto;
+	width: 900px;
+}
+#banner {
+	background: #DAD7C5 url(../images/custom/header.jpg) no-repeat scroll left bottom;
+	height: 277px;
+	margin: 0;
+	padding: 0;
+}
 #banner .logo {
-	display: block;
-	background:#E2DED5 url(../images/common/header-h1.jpg) repeat-x scroll 0 0;
-	border-top: 1px solid #996;
+	background: #E2DED5 url(../images/custom/header-h1.jpg) repeat-x scroll 0 0;
 	border-bottom: 2px solid #663;
+	border-top: 1px solid #996;
+	display: block;
 	margin: 0;
 	padding: 0;
 }
 #banner .logo a {
+	color: #642;
 	display: block;
 	font: normal normal normal 2.2em/54px Georgia,"Trebuchet MS",sans-serif;
+	margin-left: 9px;
+	margin-top: 0px;
 	padding: 0 18px;
-	color : #642;
 }
-
 .js .lfr-dock.interactive-mode h2 span {
 	font-size: 10pt;
 }
-
 #navigation {
-background:#EAE7DF url(../images/common/nav.png) repeat-x scroll 0 0;
-border-top:1px solid #999966;
-height:41px;
+	background: #EAE7DF url(../images/custom/nav.png) repeat-x scroll 0 0;
+	border: none;
+	height: 41px;
 }
-
+#navigation li {
+	border: none;
+}
 #navigation ul li.selected a , #navigation ul li a , #navigation ul li.selected a:hover , #navigation ul li a:hover , .js #add-page a span , .js #add-page a:hover span {
-	float: left;
 	display: block;
+	float: left;
 }
-
 #navigation ul li.selected a span , #navigation ul li a span , #navigation ul li.selected a:hover span , #navigation ul li a:hover span , .js #add-page a span , .js #add-page a:hover span {
-	float: left;
+	border-right: 1px solid #C9C6B3;
+	color: #553;
 	display: block;
-	padding: 0 14px;
-	border-right:1px solid #C9C6B3;
-	color:#553;
+	float: left;
 	font: bold normal normal 1em/41px Tahoma,sans-serif;
+	padding: 0 14px;
 	text-align: center;
-	text-decoration:none;
+	text-decoration: none;
 }
-
 #navigation ul li.selected a:hover span , #navigation ul li a:hover span , .js #add-page a:hover span {
-	background: url(../images/common/nav.png) repeat-x scroll left bottom;;
+	background: url(../images/custom/nav.png) repeat-x scroll left bottom;
 	color: #221;
 }
-
 #navigation ul , #navigation ul li , #navigation ul li.selected , .js #add-page {
 	float: left;
 }
-
 #content-wrapper {
 }
-
-#column-1 {
-}
-
-#column-2 {
-}
-
 .portlet {
 	padding: 20px;
 }
-
 .portlet-title {
 	color: #442;
-	font-family:serif,sans-serif;
-	font-size:2.4em;
+	font-family: serif,sans-serif;
+	font-size: 2.4em;
 }
-
 .portlet-content {
-	padding: 2px 0 20px 0;
 	border-bottom: 1px dashed #aaaa9a;
 	font-size: 9pt;
+	padding: 2px 0 20px 0;
 }
-
 #footer {
 	background: #332 none repeat scroll 0%;
 	color: #eed;
 	padding: 10px;
 }
-
 .liferay-table {
 	font: 10px/10px Arial;
+}
+.js .interactive-mode {
+	right: 16%;
+	top: 29px;
+}
+#banner h1.logo {
+	margin: 0px 89pt 0pt;
+	width: 900px;
+}
+.js .interactive-mode h2 span {
+	background: transparent url(/natural-essence-theme/images/custom/menu_bar.png) no-repeat scroll 0pt 0pt;
+	border: none;
+}
+.js .interactive-mode h2 {
+	background: transparent url(/natural-essence-theme/images/custom/menu_bar.png) no-repeat scroll 100% -30px;
+	font-size: 1.2em;
+	margin-bottom: 0pt;
+	padding: 0pt 29px 0pt 0pt;
+}
+.js #add-page {
+	right: -1px;
+	top: -1px;
+}
+.js #navigation .enter-page {
+	margin-right: 55px;
+	background-color:transparent;
+	padding:0px;
+	margin-left: 10px;
+}
+.js #navigation .enter-page .save-page {
+	position: absolute;
+	top: 13px;
+	right: 14px;
+	margin: 0;
+	background: transparent;
+	border: none;
+	color: #222222;
+}
+.js #navigation .enter-page a:hover {
+	padding: 0px;
+}
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+margin-top:8px;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color:transparent;
+}
+#navigation li.selected a span {
+	background:transparent;
+	padding-left:0px;
+}
+.js #add-page a span {
+	background:transparent;
+}
+#navigation li a {
+	padding:0;
+}
+#navigation ul {
+	margin:1px auto;
 }
