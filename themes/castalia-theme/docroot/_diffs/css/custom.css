@@ -1,7 +1,7 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 body {
 	background-color: #9DB4A8;
-	background-image: url(../images/comment/body-bg.jpg);
+	background-image: url(../images/custom/comment/body-bg.jpg);
 	background-position: center top;
 	background-repeat: no-repeat;
 	color: #000000;
@@ -13,11 +13,15 @@ body {
 	text-align: justify;
 }
 
+#wrapper {
+	background: transparent;
+}
+
 #banner {
-	background-image: url(../images/comment/header.png);
+	background-image: url(../images/custom/comment/header.png);
 	background-position: left top;
 	background-repeat: no-repeat;
-	height: 390px;
+	height: 335px;
 	margin: 0pt auto;
 	padding: 0pt;
 	text-align: left;
@@ -46,14 +50,13 @@ body {
 }
 
 #navigation {
-	background-image: url(../images/comment/menu-bg.jpg);
+	background-image: url(../images/custom/comment/menu-bg.jpg);
 	background-position: left top;
 	background-repeat: repeat-x;
-	height: 52px;
-	margin-bottom: 2px;
-	margin-top: 2px;
+	height: 54px;
+	margin: 0px auto;
 	padding-left: 8px;
-	width: 928px;
+	width: 938px;
 }
 
 #navigation ul li a:hover {
@@ -62,7 +65,7 @@ body {
 }
 
 #navigation ul li {
-	background: transparent url(../images/comment/menu-l.jpg) no-repeat
+	background: transparent url(../images/custom/comment/menu-l.jpg) no-repeat
 		scroll 0%;
 	color: #000000;
 	float: left;
@@ -78,8 +81,20 @@ body {
 	text-transform: uppercase;
 }
 
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
+
+.js #navigation .enter-page {
+	background: transparent;
+}
+
+#banner h1.logo {
+	left: 15%;
+}
+
 #navigation ul li a {
-	background: transparent url(../images/comment/menu-r.jpg) no-repeat
+	background: transparent url(../images/custom/comment/menu-r.jpg) no-repeat
 		scroll right top;
 	color: #000000;
 	display: block;
@@ -103,7 +118,7 @@ body {
 }
 
 #footer {
-	background: transparent url(../images/comment/footer-bg.jpg) repeat-x
+	background: transparent url(../images/custom/comment/footer-bg.jpg) repeat-x
 		scroll left bottom;
 	color: #627069;
 	font-size: 11px;
@@ -123,7 +138,7 @@ body {
 }
 
 .portlet-topper {
-	background: #76877D url(../images/portlet/portlet_top.png) repeat-x
+	background: #76877D url(../images/custom/portlet/portlet_top.png) repeat-x
 		scroll 0% 0px;
 	position: relative;
 	color: #fff;
@@ -136,7 +151,7 @@ body {
 }
 
 .tabs li {
-	background: #A8BDB9 url(../images/common/tabs_inactive_bg.png) repeat-x
+	background: #A8BDB9 url(../images/custom/common/tabs_inactive_bg.png) repeat-x
 		scroll 0pt -65%;
 	border-color: #9EB4A8;
 	border-style: solid solid none;
@@ -150,7 +165,7 @@ body {
 }
 
 .tabs li.current {
-	background: #8DA196 url(../images/common/tabs_active_bg.png) repeat-x
+	background: #8DA196 url(../images/custom/common/tabs_active_bg.png) repeat-x
 		scroll 0pt 0%;
 	font-weight: bold;
 }
