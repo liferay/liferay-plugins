@@ -1,224 +1,245 @@
-/* Reset Styles
-=============== */
-#wrapper , #banner , #banner .logo , #banner .logo a , #navigation , #navigation ul , #navigation ul li , #navigation li.selected , #navigation ul li a , #navigation li a span , #navigation ul li.selected a , #navigation ul li.selected a span , #navigation ul li a:hover , #navigation li a:hover span , #navigation ul li.selected a:hover , #navigation ul li.selected a:hover span , .js #add-page , .js #add-page a , .js #add-page a span , .js #add-page a:hover , .js #add-page a:hover span , .js #navigation .enter-page , .js #navigation .enter-page a , .js #navigation .enter-page a:hover , #content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content {
-	background: transparent none no-repeat scroll 0 0;
-	color: inherit;
-	float: none;
-	font-size: 100%;
+#banner , #navigation , #navigation ul , .portlet {
+	background-color: transparent;
+}
+#wrapper , #banner , #navigation , #content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content {
+	display: block;
+}
+#layout-grid .lfr-column {
+	margin: 0;
+	padding: 0;
+}
+.portlet-icons {
+	right: 0;
+	top: 0;
+}
+.tabs {
+	border: 0;
+}
+.portlet-section-header {
+	background: transparent none;
+}
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
+	font-size: 8pt;
+	padding-right: 0;
+}
+body {
+	background: #fff none repeat scroll 0%;
+	color: #666;
+	font-family: Verdana,Tahoma,arial,sans-serif;
+	font-size: 11px;
 	font-size-adjust: none;
 	font-stretch: normal;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: normal;
-	height: auto;
-	line-height: normal;
-	margin: auto;
-	min-height: 0;
-	min-width: 0;
-	padding: 0;
-	text-decoration: none;
-	text-indent: 0;
-	width: auto;
+	line-height: 1.75em;
+	margin: 0 0 15px 0;
+	text-align: center;
 }
-#banner , #navigation , #navigation ul , .portlet { background-color: transparent; }
-#wrapper , #banner , #navigation , #content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content { display: block; }
-#layout-grid .lfr-column { margin: 0; padding: 0; }
-.portlet-icons { right: 0; top: 0; }
-.tabs { border: 0; }
-.portlet-section-header { background: transparent none; }
-.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 { font-size: 8pt; padding-right: 0; }
-
-body {
- background : #fff none repeat scroll 0% ;
- color : #666 ;
- font-family : Verdana,Tahoma,arial,sans-serif ;
- font-size : 11px ;
- font-size-adjust : none ;
- font-stretch : normal ;
- font-style : normal ;
- font-variant : normal ;
- font-weight : normal ;
- line-height : 1.75em ;
- margin : 0 0 15px 0 ;
- text-align : center ;
-}
-
 #wrapper {
- background : #fff url('../images/custom/content.png') repeat-y scroll center top ;
- margin : 0 auto ;
- position : relative ;
- text-align : left ;
- width : 910px ;
+	background: #fff url('../images/custom/content.png') repeat-y scroll center top;
+	margin: 0 auto;
+	position: relative;
+	text-align: left;
+	width: 910px;
 }
-
 #header {
- background: #fff url('../images/custom/header-bg.png') repeat-y scroll center top ;
- color: #fff ;
- height: 35px ;
- padding: 0 ;
- position: relative ;
- width: 910px ;
+	background: #fff url('../images/custom/header-bg.png') repeat-y scroll center top;
+	color: #fff;
+	height: 35px;
+	padding: 0;
+	position: relative;
+	width: 910px;
 }
-
 #header #header-links {
-color:#838181;
-font-size:10px;
-font-weight:bold;
-position:absolute;
-right:45px;
-top:8px;
+	color: #838181;
+	font-size: 10px;
+	font-weight: bold;
+	position: absolute;
+	right: 45px;
+	top: 8px;
 }
-
-#header #header-links p { margin : 0 ; padding : 0 ; }
-
+#header #header-links p {
+	margin: 0;
+	padding: 0;
+}
 #header #header-links a {
- color:#838181;
- text-decoration:none;
+	color: #838181;
+	text-decoration: none;
 }
-
-
 #banner {
- background : #fff url('../images/custom/header-photo.jpg') no-repeat scroll top center ;
- clear : both ;
- height : 250px ;
- margin : 5px auto ;
- position : relative ;
- width : 850px ;
+	background: #fff url('../images/custom/header-photo.jpg') no-repeat scroll top center;
+	clear: both;
+	height: 250px;
+	margin: 5px auto;
+	position: relative;
+	width: 850px;
 }
-
 #banner .logo a {
-border:medium none;
-color:#FFFFFF;
-font-family:'Trebuchet MS',Arial,Sans-serif;
-font-size:48px;
-font-size-adjust:none;
-font-stretch:normal;
-font-style:normal;
-font-variant:normal;
-font-weight:bold;
-left:30px;
-letter-spacing:-1px;
-line-height:normal;
-margin:0pt;
-padding:0pt;
-position:absolute;
-text-decoration:none;
-text-transform:none;
-top:25px;
+	border: medium none;
+	color: #FFFFFF;
+	font-family: 'Trebuchet MS',Arial,Sans-serif;
+	font-size: 48px;
+	font-size-adjust: none;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	left: 30px;
+	letter-spacing: -1px;
+	line-height: normal;
+	margin: 0pt;
+	padding: 0pt;
+	position: absolute;
+	text-decoration: none;
+	text-transform: none;
+	top: 25px;
 }
-
 #navigation {
- clear : both ;
- padding : 0 ;
- background : #E4E4E4 url('../images/custom/nav.png') repeat-x scroll 0 0 ;
- margin : 0 30px;
+	background: #E4E4E4 url('../images/custom/nav.png') repeat-x scroll 0 0;
+	border: none;
+	clear: both;
+	margin: 0 30px;
+	padding: 0;
+	width: 850px;
 }
-
+#navigation li {
+	border: none;
+}
 #navigation ul , .js #add-page {
- display:block;
- float:left;
- height:45px;
- list-style-image:none;
- list-style-position:outside;
- list-style-type:none;
- padding:0pt;
- text-transform:uppercase;
+	display: block;
+	float: left;
+	height: 45px;
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	padding: 0pt;
+	text-transform: uppercase;
 }
-
+#navigation li.selected a, #navigation li a:hover {
+	background-color:transparent;
+}
+#navigation li a {
+	padding:0;
+}
 #navigation ul li , #navigation ul li.selected , .js #add-page a {
- margin:0pt;
- padding:0pt;
- display: block;
- float : left ;
+	display: block;
+	float: left;
+	margin: 0pt;
+	padding: 0pt;
 }
-
-ul.child-menu { display : none ; }
-
+ul.child-menu {
+	display: none;
+}
 #navigation ul li a , #navigation ul li.selected a ,
 #navigation ul li a:hover , #navigation ul li.selected a:hover ,
 .js #add-page a , .js #add-page a:hover {
 	display: block;
 	float: left;
 }
-
 #navigation ul li a span , #navigation ul li.selected a span ,
 #navigation ul li a:hover span , #navigation ul li.selected a:hover span ,
 .js #add-page a span , .js #add-page a:hover span {
-border-bottom:medium none;
-border-left:1px solid #FAFAFA;
-border-right:1px solid #DADADA;
-color:#555555;
-display:block;
-float:left;
-font-family:"Century Gothic","Trebuchet MS",Helvetica,Arial,Geneva,sans-serif;
-font-size:14px;
-font-size-adjust:none;
-font-stretch:normal;
-font-style:normal;
-font-variant:normal;
-font-weight:bold;
-letter-spacing:1px;
-line-height:45px;
-margin:0pt;
-padding:0pt 15px;
-text-decoration:none;
-text-transform:uppercase;
-width:auto;
+	border-bottom: medium none;
+	border-left: 1px solid #FAFAFA;
+	border-right: 1px solid #DADADA;
+	color: #555555;
+	display: block;
+	float: left;
+	font-family: "Century Gothic","Trebuchet MS",Helvetica,Arial,Geneva,sans-serif;
+	font-size: 14px;
+	font-size-adjust: none;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	letter-spacing: 1px;
+	line-height: 45px;
+	margin: 0pt;
+	padding: 0pt 15px;
+	text-decoration: none;
+	text-transform: uppercase;
+	width: auto;
 }
-
 #navigation ul li a:hover span , #navigation ul li.selected a:hover span , .js #add-page a:hover span {
- color : #326EA1 ;
+	color: #326EA1;
 }
-
 #navigation ul li.selected a span , #navigation ul li.selected a:hover span {
-background : #DBDBDB url('../images/custom/nav-current.png') repeat-x scroll 0%;
+	background: #DBDBDB url('../images/custom/nav-current.png') repeat-x scroll 0%;
 }
-
 #content-wrapper {
-background:#FFFFFF url('../images/custom/content-wrap.png') repeat-x scroll 0%;
-border-top:5px solid #FFFFFF;
-margin-left:30px;
-padding:0pt;
-width:850px;
+	background: #FFFFFF url('../images/custom/content-wrap.png') repeat-x scroll 0%;
+	border-top: 5px solid #FFFFFF;
+	margin-left: 30px;
+	padding: 0pt;
+	width: 850px;
 }
-
 #footer {
- display : block ; 
- background:#F8F7F7 none repeat scroll 0%;
- border-top:1px solid #F2F2F2;
- clear:both;
- color:#666666;
- margin : 0 auto 10px auto ;
- padding : 15px 0pt;
- text-align:center;
- width:850px;
+	background: #F8F7F7 none repeat scroll 0%;
+	border-top: 1px solid #F2F2F2;
+	clear: both;
+	color: #666666;
+	display: block;
+	margin: 0 auto 10px auto;
+	padding: 15px 0pt;
+	text-align: center;
+	width: 850px;
 }
-
 .portlet-title {
-border-bottom:1px solid #DADADA;
-color:#444444;
-font-family:Georgia,"Times New Roman",Times,serif;
-font-size:1.8em;
-font-size-adjust:none;
-font-stretch:normal;
-font-style:normal;
-font-variant:normal;
-font-weight:normal;
-line-height:normal;
-margin:10px 10px 0pt;
-padding:15px 0pt 2px 0px;
+	border-bottom: 1px solid #DADADA;
+	color: #444444;
+	font-family: Georgia,"Times New Roman",Times,serif;
+	font-size: 1.8em;
+	font-size-adjust: none;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: normal;
+	margin: 10px 10px 0pt;
+	padding: 15px 0pt 2px 0px;
 }
-
 .portlet-content {
- padding:10px;
+	padding: 10px;
 }
-
-.js .lfr-dock.interactive-mode h2 , .js .lfr-dock.interactive-mode h2 span {
- background-image : url('../images/custom/menu_bar.png') ;
-}
-
 .portlet-section-header {
-background : transparent none ;
+	background: transparent none;
 }
-
-#_88_tabs1themesTabsSection table { width : 100% ; }
+#_88_tabs1themesTabsSection table {
+	width: 100%;
+}
+.js #add-page {
+	background:transparent none repeat scroll 0% 0%;
+	border-color:-moz-use-text-color;
+	border-style:none;
+	border-width:1px 1px medium;
+	bottom:100%;
+	font-weight:bold;
+	position:absolute;
+	right:0px;
+	top:0px;
+}
+.js #navigation .enter-page {
+	margin-right: 45px;
+	background-color: transparent;
+}
+.js #navigation .enter-page .save-page {
+	position: absolute;
+	top: 16px;
+	right: 5px;
+	margin:0;
+	background: transparent;
+	color: black;
+}
+.ie.js #navigation .enter-page .save-page {
+	margin-top: -5px;
+	}
+.js #navigation .enter-page a:hover {
+	padding: 0px;
+}
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+margin-top:9px;
+}
+.js #add-page a span {
+	background:transparent;
+}
