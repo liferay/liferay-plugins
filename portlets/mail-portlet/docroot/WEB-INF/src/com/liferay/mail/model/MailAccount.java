@@ -46,9 +46,10 @@ public class MailAccount {
 	   		_initialized = jsonObj.getBoolean("initialized");
 			_mailInHostName = jsonObj.getString("mailInHostName");
 			_mailInPort = jsonObj.getInt("mailInPort");
+			_mailInSecure = jsonObj.getBoolean("mailInSecure");
 			_mailOutHostName = jsonObj.getString("mailOutHostName");
 			_mailOutPort = jsonObj.getInt("mailOutPort");
-			_mailSecure = jsonObj.getBoolean("mailSecure");
+			_mailOutSecure = jsonObj.getBoolean("_mailOutSecure");
 			_password = jsonObj.getString("password");
 			_username = jsonObj.getString("username");
 		}
@@ -56,18 +57,19 @@ public class MailAccount {
 
 	public MailAccount(
 		User user, String emailAddress, boolean initialized,
-		String mailInHostName, String mailInPort, String mailOutHostName,
-		String mailOutPort, boolean mailSecure, String password,
-		String username) {
+		String mailInHostName, String mailInPort, boolean mailInSecure,
+		String mailOutHostName, String mailOutPort, boolean mailOutSecure,
+		String password, String username) {
 
 		_user = user;
 		_emailAddress = emailAddress;
    		_initialized = initialized;
 		_mailInHostName = mailInHostName;
 		_mailInPort = GetterUtil.getInteger(mailInPort);
+		_mailInSecure = mailInSecure;
 		_mailOutHostName = mailOutHostName;
 		_mailOutPort = GetterUtil.getInteger(mailOutPort);
-		_mailSecure = mailSecure;
+		_mailOutSecure = mailOutSecure;
 		_password = password;
 		_username = username;
 	}
@@ -88,12 +90,20 @@ public class MailAccount {
 		return _mailInPort;
 	}
 
+	public boolean isMailInSecure() {
+		return _mailInSecure;
+	}
+
 	public String getMailOutHostName() {
 		return _mailOutHostName;
 	}
 
 	public int getMailOutPort() {
 		return _mailOutPort;
+	}
+
+	public boolean isMailOutSecure() {
+		return _mailOutSecure;
 	}
 
 	public String getPassword() {
@@ -112,10 +122,6 @@ public class MailAccount {
 		return _initialized;
 	}
 
-	public boolean isMailSecure() {
-		return _mailSecure;
-	}
-
 	public void setInitialized(boolean initialized) {
 		this._initialized = initialized;
 	}
@@ -125,9 +131,10 @@ public class MailAccount {
 	private boolean _initialized;
 	private String _mailInHostName;
 	private int _mailInPort;
+	private boolean _mailInSecure;
 	private String _mailOutHostName;
 	private int _mailOutPort;
-	private boolean _mailSecure;
+	private boolean _mailOutSecure;
 	private String _password;
 	private User _user;
 	private String _username;

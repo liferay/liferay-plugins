@@ -29,9 +29,10 @@ String emailAddress = ParamUtil.getString(request, "emailAddress");
 boolean emailAddressSameAsUsername = ParamUtil.getBoolean(request, "emailAddressSameAsUsername");
 String mailInHostName = ParamUtil.getString(request, "mailInHostName");
 String mailInPort = ParamUtil.getString(request, "mailInPort");
+boolean mailInSecure = ParamUtil.getBoolean(request, "mailInSecure");
 String mailOutHostName = ParamUtil.getString(request, "mailOutHostName");
 String mailOutPort = ParamUtil.getString(request, "mailOutPort");
-boolean mailSecure = ParamUtil.getBoolean(request, "mailSecure");
+boolean mailOutSecure = ParamUtil.getBoolean(request, "mailOutSecure");
 boolean newAccount = ParamUtil.getBoolean(request, "newAccount");
 String password = ParamUtil.getString(request, "password");
 boolean preconfigured = ParamUtil.getBoolean(request, "preconfigured");
@@ -89,11 +90,13 @@ String username = ParamUtil.getString(request, "username");
 
 					<input class="in-port" type="hidden" value="<%= mailInPort %>" />
 
-					<input class="secure" type="hidden" value="<%= mailSecure %>" />
+					<input class="in-secure" type="hidden" value="<%= mailInSecure %>" />
 
 					<input class="out-hostname" type="hidden" value="<%= mailOutHostName %>" />
 
 					<input class="out-port" type="hidden" value="<%= mailOutPort %>" />
+
+					<input class="out-secure" type="hidden" value="<%= mailOutSecure %>" />
 				</c:when>
 				<c:otherwise>
 					<tr>
@@ -114,15 +117,15 @@ String username = ParamUtil.getString(request, "username");
 					</tr>
 					<tr>
 						<td>
-							<liferay-ui:message key="use-a-secure-network-connection" />
+							<liferay-ui:message key="use-a-secure-incoming-network-connection" />
 						</td>
 						<td>
 							<c:choose>
-								<c:when test="mailSecure">
-									<input class="secure" type="checkbox" checked="checked" />
+								<c:when test="<%= mailInSecure %>">
+									<input class="in-secure" type="checkbox" checked="checked" />
 								</c:when>
 								<c:otherwise>
-									<input class="secure" type="checkbox" />
+									<input class="in-secure" type="checkbox" />
 								</c:otherwise>
 							</c:choose>
 						</td>
@@ -141,6 +144,21 @@ String username = ParamUtil.getString(request, "username");
 						</td>
 						<td>
 							<input class="out-port" type="text" value="<%= mailOutPort %>" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<liferay-ui:message key="use-a-secure-outgoing-network-connection" />
+						</td>
+						<td>
+							<c:choose>
+								<c:when test="<%= mailOutSecure %>">
+									<input class="out-secure" type="checkbox" checked="checked" />
+								</c:when>
+								<c:otherwise>
+									<input class="out-secure" type="checkbox" />
+								</c:otherwise>
+							</c:choose>
 						</td>
 					</tr>
 				</c:otherwise>
@@ -197,15 +215,15 @@ String username = ParamUtil.getString(request, "username");
 			</tr>
 			<tr>
 				<td>
-					<liferay-ui:message key="use-a-secure-network-connection" />
+					<liferay-ui:message key="use-a-secure-incoming-network-connection" />
 				</td>
 				<td>
 					<c:choose>
-						<c:when test="<%= mailSecure %>">
-							<input class="secure" type="checkbox" checked="checked" />
+						<c:when test="<%= mailInSecure  %>">
+							<input class="in-secure" type="checkbox" checked="checked" />
 						</c:when>
 						<c:otherwise>
-							<input class="secure" type="checkbox" />
+							<input class="in-secure" type="checkbox" />
 						</c:otherwise>
 					</c:choose>
 				</td>
@@ -224,6 +242,21 @@ String username = ParamUtil.getString(request, "username");
 				</td>
 				<td>
 					<input class="out-port" type="text" value="<%= mailOutPort %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<liferay-ui:message key="use-a-secure-outgoing-network-connection" />
+				</td>
+				<td>
+					<c:choose>
+						<c:when test="<%= mailOutSecure %>">
+							<input class="out-secure" type="checkbox" checked="checked" />
+						</c:when>
+						<c:otherwise>
+							<input class="out-secure" type="checkbox" />
+						</c:otherwise>
+					</c:choose>
 				</td>
 			</tr>
 			<tr>

@@ -1389,9 +1389,10 @@ Liferay.MailConfiguration = {
 					emailAddressSameAsUsername: jsonAccount.emailAddressSameAsUsername,
 					mailInHostName: jsonAccount.mailInHostName,
 					mailInPort: jsonAccount.mailInPort,
+					mailInSecure: jsonAccount.mailInSecure,
 					mailOutHostName: jsonAccount.mailOutHostName,
 					mailOutPort: jsonAccount.mailOutPort,
-					mailSecure: jsonAccount.mailSecure,
+					mailOutSecure: jsonAccount.mailOutSecure,
 					newAccount: newAccount,
 					password: jsonAccount.password,
 					preconfigured: jsonAccount.preconfigured,
@@ -1407,7 +1408,7 @@ Liferay.MailConfiguration = {
 		);
 	},
 
-	saveAccountConfiguration: function (emailAddressValue, emailAddressSameAsUsernameValue, mailInHostNameValue, mailInPortValue, mailOutHostNameValue, mailOutPortValue, mailSecureValue, passwordValue, usernameValue) {
+	saveAccountConfiguration: function (emailAddressValue, emailAddressSameAsUsernameValue, mailInHostNameValue, mailInPortValue, mailInSecureValue, mailOutHostNameValue, mailOutPortValue, mailOutSecureValue, passwordValue, usernameValue) {
 		var instance = this;
 
 		jQuery.ajax(
@@ -1418,9 +1419,10 @@ Liferay.MailConfiguration = {
 					emailAddressSameAsUsername: emailAddressSameAsUsernameValue,
 					mailInHostName: mailInHostNameValue,
 					mailInPort: mailInPortValue,
+					mailInSecure: mailInSecureValue,
 					mailOutHostName: mailOutHostNameValue,
 					mailOutPort: mailOutPortValue,
-					mailSecure: mailSecureValue,
+					mailOutSecure: mailOutSecureValue,
 					password: passwordValue,
 					username: usernameValue
 				},
@@ -1509,15 +1511,23 @@ Liferay.MailConfiguration = {
 			var emailAddressSameAsUsernameValue = accountTable.find('.email-address-same-as-username:first').val();
 			var mailInHostNameValue = accountTable.find('.in-hostname:first').val();
 			var mailInPortValue = accountTable.find('.in-port:first').val();
+			var mailInSecureValue = false;
 			var mailOutHostNameValue = accountTable.find('.out-hostname:first').val();
 			var mailOutPortValue = accountTable.find('.out-port:first').val();
-			var mailSecureValue = false;
+			var mailOutSecureValue = false;
 
-			if (accountTable.find('.secure:first').attr('checked')) {
-				mailSecureValue = true;
+			if (accountTable.find('.in-secure:first').attr('checked')) {
+				mailInSecureValue = true;
 			}
-			else if ((accountTable.find('.secure:first').attr('type') == 'hidden') && (accountTable.find('.secure:first').val())) {
-				mailSecureValue = true;
+			else if ((accountTable.find('.in-secure:first').attr('type') == 'hidden') && (accountTable.find('.in-secure:first').val())) {
+				mailInSecureValue = true;
+			}
+
+			if (accountTable.find('.out-secure:first').attr('checked')) {
+				mailOutSecureValue = true;
+			}
+			else if ((accountTable.find('.out-secure:first').attr('type') == 'hidden') && (accountTable.find('.out-secure:first').val())) {
+				mailOutSecureValue = true;
 			}
 
 			var passwordValue = accountTable.find('.password:first').val();
@@ -1533,16 +1543,17 @@ Liferay.MailConfiguration = {
 						emailAddressSameAsUsername: emailAddressSameAsUsernameValue,
 						mailInHostName: mailInHostNameValue,
 						mailInPort: mailInPortValue,
+						mailInSecure: mailInSecureValue,
 						mailOutHostName: mailOutHostNameValue,
 						mailOutPort: mailOutPortValue,
-						mailSecure: mailSecureValue,
+						mailOutSecure: mailOutSecureValue,
 						password: passwordValue,
 						username: usernameValue
 					},
 					dataType: 'json',
 					success: function(result) {
 						if (result.incoming && result.outgoing) {
-							instance.saveAccountConfiguration(emailAddressValue, emailAddressSameAsUsernameValue, mailInHostNameValue, mailInPortValue, mailOutHostNameValue, mailOutPortValue, mailSecureValue, passwordValue, usernameValue);
+							instance.saveAccountConfiguration(emailAddressValue, emailAddressSameAsUsernameValue, mailInHostNameValue, mailInPortValue, mailInSecureValue, mailOutHostNameValue, mailOutPortValue, mailOutSecureValue, passwordValue, usernameValue);
 						}
 						else if (!result.outgoing && !result.incoming) {
 							instance.sendMessage('error', 'you-have-failed-to-connect-to-the-imap-and-smtp-server');

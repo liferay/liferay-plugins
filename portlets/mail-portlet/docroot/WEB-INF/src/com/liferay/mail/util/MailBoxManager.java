@@ -38,8 +38,6 @@ import com.liferay.portal.model.User;
 import com.liferay.util.portlet.PortletProps;
 
 import com.sun.mail.imap.IMAPFolder;
-import com.sun.mail.imap.IMAPSSLStore;
-import com.sun.mail.imap.IMAPStore;
 
 import java.io.File;
 import java.io.IOException;
@@ -69,7 +67,6 @@ import javax.mail.Part;
 import javax.mail.Session;
 import javax.mail.Store;
 import javax.mail.Transport;
-import javax.mail.URLName;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage.RecipientType;
@@ -87,7 +84,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- *
  * <a href="MailBoxManager.java.html"><b><i>View Source</i></b></a>
  *
  * @author Scott Lee
@@ -102,14 +98,15 @@ public class MailBoxManager {
 
 	public MailBoxManager(
 		User user, String emailAddress, boolean initialized,
-		String mailInHostName, String mailInPort, String mailOutHostName,
-		String mailOutPort, boolean mailSecure, String password,
-		String username) {
+		String mailInHostName, String mailInPort, boolean mailInSecure,
+		String mailOutHostName, String mailOutPort, boolean mailOutSecure,
+		String password, String username) {
 
 		_user = user;
 		_mailAccount = new MailAccount(
 			user, emailAddress, initialized, mailInHostName, mailInPort,
-			mailOutHostName, mailOutPort, mailSecure, password, username);
+			mailInSecure, mailOutHostName, mailOutPort, mailOutSecure, password,
+			username);
 	}
 
 	public Folder createFolder(String folderName) throws MessagingException {
@@ -381,9 +378,11 @@ public class MailBoxManager {
 		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
 		try {
-			Transport transport = getConnectedTransport(fromMailAccount);
+			Transport transport = getTransport(fromMailAccount);
 
 			transport.sendMessage(message, message.getAllRecipients());
+
+			transport.close();
 
 			jsonObj.put("success", true);
 		}
@@ -423,9 +422,10 @@ public class MailBoxManager {
 			jsonObj.put("initialized", _mailAccount.isInitialized());
 			jsonObj.put("mailInHostName", _mailAccount.getMailInHostName());
 			jsonObj.put("mailInPort", _mailAccount.getMailInPort());
+			jsonObj.put("mailInSecure", _mailAccount.isMailInSecure());
 			jsonObj.put("mailOutHostName", _mailAccount.getMailOutHostName());
 			jsonObj.put("mailOutPort", _mailAccount.getMailOutPort());
-			jsonObj.put("mailSecure", _mailAccount.isMailSecure());
+			jsonObj.put("mailOutSecure", _mailAccount.isMailOutSecure());
 			jsonObj.put("password", _mailAccount.getPassword());
 			jsonObj.put("username", _mailAccount.getUsername());
 
@@ -561,10 +561,10 @@ public class MailBoxManager {
 
 		// Test incoming
 
-		Folder folder = null;
-
 		try {
-			folder = getStore(false).getDefaultFolder();
+			Store store = getStore(false);
+
+			Folder folder = store.getDefaultFolder();
 
 			if (Validator.isNotNull(folder) &&
 				Validator.isNotNull(folder.list())) {
@@ -574,6 +574,8 @@ public class MailBoxManager {
 			else {
 				jsonObj.put("incoming", false);
 			}
+
+			store.close();
 		}
 		catch (MessagingException me) {
 			jsonObj.put("incoming", false);
@@ -582,7 +584,7 @@ public class MailBoxManager {
 		// Test outgoing
 
 		try {
-			Transport transport = getConnectedTransport(_mailAccount);
+			Transport transport = getTransport(_mailAccount);
 
 			if (transport.isConnected()) {
 				jsonObj.put("outgoing", true);
@@ -590,6 +592,8 @@ public class MailBoxManager {
 			else {
 				jsonObj.put("outgoing", false);
 			}
+
+			transport.close();
 		}
 		catch (MessagingException me) {
 			jsonObj.put("outgoing", false);
@@ -717,27 +721,6 @@ public class MailBoxManager {
 		messageBody = StringUtil.shorten(messageBody, 150);
 
 		return messageBody;
-	}
-
-	protected Transport getConnectedTransport(MailAccount mailAccount)
-		throws MessagingException {
-
-		Transport transport = null;
-
-		Session session = getOutgoingSession(mailAccount);
-
-		if (mailAccount.isMailSecure()) {
-			transport = session.getTransport("smtps");
-		}
-		else {
-			transport = session.getTransport("smtp");
-		}
-
-		transport.connect(
-			mailAccount.getMailOutHostName(), mailAccount.getUsername(),
-			mailAccount.getPassword());
-
-		return transport;
 	}
 
 	protected Folder getDraftsFolder() throws MessagingException {
@@ -988,32 +971,6 @@ public class MailBoxManager {
 		return null;
 	}
 
-	protected Session getOutgoingSession(MailAccount mailAccount) {
-		Properties props = new Properties();
-
-		if (mailAccount.isMailSecure()) {
-			props.put("mail.smtps.auth", "true");
-			props.put("mail.smtp.host", mailAccount.getMailOutHostName());
-			props.put("mail.smtps.port", mailAccount.getMailOutPort());
-			props.put(
-				"mail.smtps.socketFactory.port", mailAccount.getMailOutPort());
-			props.put("mail.smtps.socketFactory.class", _SSL_FACTORY);
-			props.put("mail.smtps.socketFactory.fallback", "false");
-		}
-		else {
-			props.put("mail.smtp.host", mailAccount.getMailOutHostName());
-			props.put("mail.smtp.port", mailAccount.getMailOutPort());
-		}
-
-		props.put("mail.debug", "false");
-
-		Session session = Session.getInstance(props, null);
-
-		session.setDebug(false);
-
-		return session;
-	}
-
 	protected SearchTerm getSearchTerm(String searchString) {
 		String searchStrings[] = searchString.split("\\s");
 
@@ -1042,10 +999,46 @@ public class MailBoxManager {
 
 	protected Session getSession() {
 		if (Validator.isNull(_session)) {
-			_session = getOutgoingSession(_mailAccount);
+			_session = getSession(_mailAccount);
 		}
 
 		return _session;
+	}
+
+	protected Session getSession(MailAccount mailAccount) {
+		boolean debug =
+			GetterUtil.getBoolean(PortletProps.get("javamail.debug"));
+
+		Properties props = new Properties();
+
+		props.put("mail.imap.host", mailAccount.getMailInHostName());
+		props.put("mail.imap.port", mailAccount.getMailInPort());
+
+		props.put("mail.imaps.auth", "true");
+		props.put("mail.imaps.host", mailAccount.getMailInHostName());
+		props.put("mail.imaps.port", mailAccount.getMailInPort());
+		props.put("mail.imaps.socketFactory.port", mailAccount.getMailInPort());
+		props.put("mail.imaps.socketFactory.class", _SSL_FACTORY);
+		props.put("mail.imaps.socketFactory.fallback", "false");
+
+		props.put("mail.smtp.host", mailAccount.getMailOutHostName());
+		props.put("mail.smtp.port", mailAccount.getMailOutPort());
+
+		props.put("mail.smtps.auth", "true");
+		props.put("mail.smtps.host", mailAccount.getMailOutHostName());
+		props.put("mail.smtps.port", mailAccount.getMailOutPort());
+		props.put(
+			"mail.smtps.socketFactory.port", mailAccount.getMailOutPort());
+		props.put("mail.smtps.socketFactory.class", _SSL_FACTORY);
+		props.put("mail.smtps.socketFactory.fallback", "false");
+
+		props.put("mail.debug", Boolean.toString(debug));
+
+		Session session = Session.getInstance(props);
+
+		session.setDebug(debug);
+
+		return session;
 	}
 
 	protected Store getStore(boolean useOldStores) throws MessagingException {
@@ -1066,41 +1059,22 @@ public class MailBoxManager {
 		}
 
 		if (Validator.isNull(store)) {
+			Session session = getSession();
 
-			// Create new store connection
-
-			Properties props = new Properties();
-
-			URLName url = new URLName(
-				"imap", _mailAccount.getMailInHostName(),
-				_mailAccount.getMailInPort(), StringPool.BLANK,
-				_mailAccount.getUsername(), _mailAccount.getPassword());
-
-			props.setProperty(
-				"mail.imap.port", String.valueOf(_mailAccount.getMailInPort()));
-
-			if (_mailAccount.isMailSecure()) {
-				props.setProperty(
-					"mail.imap.socketFactory.port",
-					String.valueOf(_mailAccount.getMailInPort()));
-				props.setProperty(
-					"mail.imap.socketFactory.class", _SSL_FACTORY);
-				props.setProperty("mail.imap.socketFactory.fallback", "false");
-
-				Session session = Session.getInstance(props);
-
-				store = new IMAPSSLStore(session, url);
+			if (_mailAccount.isMailInSecure()) {
+				store = session.getStore("imaps");
 			}
 			else {
-				Session session = Session.getInstance(props);
-
-				store = new IMAPStore(session, url);
+				store = session.getStore("imap");
 			}
 
 			store.addConnectionListener(new ConnectionListener(storeKey));
 
 			try {
-				store.connect();
+				store.connect(
+					_mailAccount.getMailInHostName(),
+					_mailAccount.getMailInPort(), _mailAccount.getUsername(),
+					_mailAccount.getPassword());
 			}
 			catch (MessagingException me) {
 				_log.error("Failed on connecting to " + storeKey);
@@ -1114,6 +1088,33 @@ public class MailBoxManager {
 		}
 
 		return store;
+	}
+
+	protected Transport getTransport(MailAccount mailAccount)
+		throws MessagingException {
+
+		String transportKey =
+			"" + _mailAccount.getUser().getUserId() + "_TRANSPORT_" +
+			_mailAccount.getEmailAddress();
+
+		Transport transport = null;
+
+		Session session = getSession(mailAccount);
+
+		if (mailAccount.isMailOutSecure()) {
+			transport = session.getTransport("smtps");
+		}
+		else {
+			transport = session.getTransport("smtp");
+		}
+
+		transport.addConnectionListener(new ConnectionListener(transportKey));
+
+		transport.connect(
+			mailAccount.getMailOutHostName(), mailAccount.getMailOutPort(),
+			mailAccount.getUsername(), mailAccount.getPassword());
+
+		return transport;
 	}
 
 	protected Folder openFolder(String folderName) throws MessagingException {

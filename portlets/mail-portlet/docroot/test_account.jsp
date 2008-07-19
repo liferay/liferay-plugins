@@ -28,13 +28,14 @@
 String emailAddress = ParamUtil.getString(request, "emailAddress");
 String mailInHostName = ParamUtil.getString(request, "mailInHostName");
 String mailInPort = ParamUtil.getString(request, "mailInPort");
+boolean mailInSecure = ParamUtil.getBoolean(request, "mailInSecure");
 String mailOutHostName = ParamUtil.getString(request, "mailOutHostName");
 String mailOutPort = ParamUtil.getString(request, "mailOutPort");
-boolean mailSecure = ParamUtil.getBoolean(request, "mailSecure");
+boolean mailOutSecure = ParamUtil.getBoolean(request, "mailOutSecure");
 String password = ParamUtil.getString(request, "password");
 String username = ParamUtil.getString(request, "username");
 
-MailBoxManager mailBoxManager = new MailBoxManager(user, emailAddress, false, mailInHostName, mailInPort, mailOutHostName, mailOutPort, mailSecure, password, username);
+MailBoxManager mailBoxManager = new MailBoxManager(user, emailAddress, false, mailInHostName, mailInPort, mailInSecure, mailOutHostName, mailOutPort, mailOutSecure, password, username);
 %>
 
 <%= mailBoxManager.testAccount() %>
