@@ -4,10 +4,15 @@
 }
 
 #banner {
-	background:#D9EBFD url(../images/dalian/dalian.jpg) repeat-x scroll 0pt;
+	background:#D9EBFD url(../images/custom/dalian/dalian.jpg) repeat-x scroll 0pt;
 	border-bottom:medium none;
 	margin-bottom:1em;
 	height:219px;
+}
+
+#content-wrapper {
+	margin-top: -32px;
+	width: 900px;
 }
 
 /* ---------- Main navigation ---------- */
@@ -18,7 +23,10 @@
 	overflow: hidden;
 	padding-right: 1em;
 	position:absolute;
-	top:193px;
+	border: 0px;
+	top: -48px;
+	background: transparent;
+	margin-left: 50px;
 }
 
 #navigation ul {
@@ -48,10 +56,10 @@
 
 #navigation li a {
 	text-decoration: none;
+	padding: 5px 10px;
 }
 
 #navigation li a:hover {
-	padding-bottom: 1em;
 	color: #E57700;
 }
 
@@ -66,10 +74,11 @@
 
 #navigation li.selected a span {
 	color: #E57700;
+	background: transparent;
+	padding-left: 1.5em;
 }
 
 #navigation li.selected a {
-	padding-top: 0em;
 	color:#E57700;
 }
 
@@ -82,11 +91,40 @@
 	display: none;
 }
 .js #add-page a span {
-	background:transparent url(../images/navigation/add_page.png) no-repeat scroll 0pt 50%;
-	color:#D9EBFD;
-	padding:5px 20px;
+	background: white;
+	color: #155D73;
+	padding:13px 20px;
+	display: inline;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background: transparent;
 }
 
+.js .ineractive-mode {
+	right: 17%;
+}
+
+#banner h1.logo {
+	left: 20%;
+}
+.js #navigation .enter-page {
+	background-color: trasnparent;
+	padding:6px 2px;
+}
+.js #add-page a {
+	display:inline;
+}
+.js #add-page {
+	background: transparent;
+	border: 0px;
+	display: inline;
+	right: 15px;
+	top: 11px;
+	position: relative;
+}
+.js .interactive-mode {
+	right: 17%;
+}
 /* ---------- portlet ---------- */
 .portlet {
 	border:1px solid #777777;
@@ -95,7 +133,7 @@
 }
 
 .portlet-topper {
-	background:#D9EBFD url(../images/portlet/portlet_top.png) repeat-x scroll 0% 0%;
+	background:#D9EBFD url(../images/custom/portlet/portlet_top.png) repeat-x scroll 0% 0%;
 	position:relative;
 }
 
