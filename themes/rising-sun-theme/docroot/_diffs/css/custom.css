@@ -1,5 +1,5 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-.banner {
+#banner {
 	float: center;
 	height: 242px;
 	width: 1003px;
@@ -7,9 +7,8 @@
 	margin: 0 auto;
 	padding: 0 0 0 0;
 	position: relative;
-	background: #000 url(../images/common/header.jpg) no-repeat;
+	background: #000 url(../images/custom/header.jpg) no-repeat;
 }
-
 blockquote {
 	padding: 0 10px;
 	color: #B2B2B2;
@@ -20,15 +19,16 @@ blockquote {
 	clear: both;
 }
 
-.wrapper {
+#wrapper {
 	width: 1003px;
 	margin: 0 auto;
+	background: none;
 }
 
 #content-wrapper {
-	background: #000000 url(../images/common/container.png) repeat-y scroll
-		0%;
+	background: #000000 url(../images/custom/container.png) repeat-y scroll 0%;
 	padding: 0pt 35px 0px;
+	width: 93%;
 }
 
 .top {
@@ -39,7 +39,7 @@ blockquote {
 	padding: 0 0 0 0;
 	font-style: "Times New Roman", Times, serif;
 	position: relative;
-	background: #000 url(../images/common/top.jpg) no-repeat;
+	background: #000 url(../images/custom/top.jpg) no-repeat;
 }
 
 .top h1 {
@@ -84,7 +84,7 @@ blockquote {
 }
 
 #wrapper {
-	background: #000000 url(../images/common/container.png) repeat scroll 0%
+	background: #000000 url(../images/custom/container.png) repeat scroll 0%
 		50%;
 	width: 1003px;
 	margin: 0 auto;
@@ -99,20 +99,21 @@ blockquote {
 	text-transform: uppercase;
 	font-weight: bold;
 	border-bottom: 2px dashed #E38200;
-	background: #000 url(../images/common/pbg.jpg) left top no-repeat;
+	background: #000 url(../images/custom/pbg.jpg) left top no-repeat;
 	padding: 0px 0px 5px 30px;
 }
 
 .portlet {
 	margin-bottom: 1em;
 	text-align: left;
+	background: black;
 }
 
 .js .lfr-dock.interactive-mode {
 	float: right;
 	min-width: 105px;
 	right: 6px;
-	top: -92px;
+	top: -230px;
 }
 
 .js .lfr-dock.interactive-mode h2 span {
@@ -154,7 +155,7 @@ blockquote {
 	height: 75px;
 	width: 1003px;
 	color: #FFF;
-	background: #fff url(../images/common/footer.jpg) 0 0 no-repeat;
+	background: #fff url(../images/custom/footer.jpg) 0 0 no-repeat;
 	font-family: arial, verdana;
 }
 
@@ -201,9 +202,14 @@ blockquote {
 	margin: 0 auto;
 	padding: 0px 0px 0px 400px;
 	font-style: "Times New Roman", Times, serif;
+	border: none;
+	background: transparent;
 }
-
-.navigation ul {
+#navigation li.selected a span {
+	background:transparent;
+	padding-left:0px;
+}
+#navigation ul {
 	margin: 0 auto;
 	padding: 0px 0 0px 0px;
 	font-style: "Times New Roman", Times, serif;
@@ -211,12 +217,13 @@ blockquote {
 	top: 0px;
 }
 
-.navigation li {
+#navigation li {
 	display: block;
 	float: left;
 	height: 26px;
 	padding: 0 0 0px 0;
 	margin-right: 4px;
+	border: none;
 }
 
 #navigation li a {
@@ -264,4 +271,10 @@ blockquote {
 	margin: 0 auto;
 	padding: 1.25em 406pt 1.45em;
 	background: none;
+}
+.portlet {
+	color:white;
+}
+.portlet-topper {
+	background:black none repeat scroll 0% 0%;
 }
