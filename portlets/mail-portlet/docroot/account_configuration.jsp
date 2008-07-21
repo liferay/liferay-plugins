@@ -117,7 +117,7 @@ String username = ParamUtil.getString(request, "username");
 					</tr>
 					<tr>
 						<td>
-							<liferay-ui:message key="use-a-secure-incoming-network-connection" />
+							<liferay-ui:message key="use-secure-incoming-connection" />
 						</td>
 						<td>
 							<c:choose>
@@ -148,7 +148,7 @@ String username = ParamUtil.getString(request, "username");
 					</tr>
 					<tr>
 						<td>
-							<liferay-ui:message key="use-a-secure-outgoing-network-connection" />
+							<liferay-ui:message key="use-secure-outgoing-connection" />
 						</td>
 						<td>
 							<c:choose>
@@ -215,7 +215,7 @@ String username = ParamUtil.getString(request, "username");
 			</tr>
 			<tr>
 				<td>
-					<liferay-ui:message key="use-a-secure-incoming-network-connection" />
+					<liferay-ui:message key="use-secure-incoming-connection" />
 				</td>
 				<td>
 					<c:choose>
@@ -246,7 +246,7 @@ String username = ParamUtil.getString(request, "username");
 			</tr>
 			<tr>
 				<td>
-					<liferay-ui:message key="use-a-secure-outgoing-network-connection" />
+					<liferay-ui:message key="use-secure-outgoing-connection" />
 				</td>
 				<td>
 					<c:choose>
