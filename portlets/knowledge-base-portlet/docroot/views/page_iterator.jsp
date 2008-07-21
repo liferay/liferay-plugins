@@ -128,7 +128,7 @@ for (int i = 0; i < results.size(); i++) {
 
 	// Action
 
-	row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/page_action.jsp");
+	// row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/views/page_action.jsp");
 
 	// Add result row
 
