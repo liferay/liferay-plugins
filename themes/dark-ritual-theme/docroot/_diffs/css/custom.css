@@ -10,7 +10,7 @@
 }
 
 body {
-	background: url(../images/common/bg.png) repeat;
+	background: url(../images/custom/common/bg.png) repeat;
 	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
 }
 
@@ -20,12 +20,13 @@ body {
 	background: #F7F7F7;
 	border-collapse: collapse;
 	margin: 0;
+	width: 100%;
 }
 
 /* ---------- Banner ---------- */
 
 #banner {
-	background: url(../images/common/header.jpg) no-repeat scroll 0 0;
+	background: url(../images/custom/common/header.jpg) no-repeat scroll 0 0;
 	height: 149px;
 	position: relative;
 }
@@ -55,16 +56,17 @@ body {
 #navigation ul {
 	min-height: 2em;
 	float: left;
+	width: auto;
 }
 
 #navigation li , #navigation.selected , .js #add-page {
 	background: none;
 	display: inline;
-	float: left;
 	margin-right: 0px;
 	margin-top: .5px;
 	padding: 0;
 	position: relative; 
+	border: none;
 }
 
 #navigation li a , #navigation li.selected a , #navigation li a:hover , #navigation li.selected a:hover , .js #add-page a , .js #add-page a:hover {
@@ -97,7 +99,7 @@ body {
 }
 
 .js .delete-tab {
-	background: url(../images/common/remove.png) no-repeat 42%;
+	background: url(../images/custom/common/remove.png) no-repeat 42%;
 	cursor: pointer;
 	display: block;
 	height: 7px;
@@ -106,50 +108,6 @@ body {
 	text-indent: -9999em;
 	top: 0px;
 	width: 8px;
-}
-
-/* ---------- Dock with Javascript ---------- */
-
-.js .lfr-dock.interactive-mode {
-	float: right;
-	min-width: 150px;
-	position: relative;
-	right: 5px;
-	top: 5px;
-}
-
-.js .lfr-dock.interactive-mode h2 {
-	background: #F7F7F7;
-	border: 1px outset;
-	font-size: 1.2em;
-	margin-bottom: 0;
-	padding: 0 29px 0 0;
-	position: relative;
-	z-index: 82;
-}
-
-.js .lfr-dock.interactive-mode h2 span {
-	background: none;
-	color: #000;
-	display: block;
-	font-size: 1.2em;
-	margin-bottom: 0;
-	padding: 0.5em 0.5em 0.5em 2em;
-}
-
-.js .lfr-dock.interactive-mode ul {
-	background: url(../images/dock/menu_bg.png) no-repeat 0 0;
-	border-left: 20px solid #151515;
-	display: none;
-	float: none;
-}
-
-.lfr-dock h2 {
-	background: url(../images/navigation/welcome_message.png) no-repeat 0 50%;
-	font-size: 1.2em;
-	margin-bottom: 0.5em;
-	padding-left: 2em;
-	text-align: center;
 }
 
 /* ---------- Portlet wrapper and icons ---------- */
@@ -162,6 +120,7 @@ body {
 	margin: 0 0 5px;
 	padding-right: 10px;
 	text-align: left;
+	border: 0px;
 }
 
 .portlet-topper {
@@ -183,7 +142,7 @@ body {
 }
 
 #footer {
-	background: url(../images/common/bgfooter.png) repeat-x;
+	background: url(../images/custom/common/bgfooter.png) repeat-x;
 	margin-top: 1px;
 	height: 4em;
 	width: 639px;
@@ -216,9 +175,9 @@ body {
 	background: transparent none;
 	display: block;
 	float: left;
-	padding: .35em 1.5em 0;
 	text-decoration: none;
 	color: #fff;
+	border: none;
 }
 
 .tabs li.current a, .tabs li.current span {
@@ -252,7 +211,44 @@ table {
 }
 
 .columns-2 #column-2 {
-	background: url(../images/common/bg_column.png) repeat;
+	background: url(../images/custom/common/bg_column.png) repeat;
 	padding-right: 5px;
 	padding-top: 1px;
+}
+
+.js #add-page, .js #add-page a, .js #add-page a span {
+	display: inline;
+	padding: 0px;
+}
+
+.js #add-page {
+	right: -13px;
+	top:7px;
+}
+
+.js #add-page a:hover{
+	padding: 0px;
+}
+
+.js #navigation .enter-page {
+	background: transparent;
+}
+
+.js #navigation .enter-page {
+	margin-right: 70px;
+}
+
+.js #navigation .enter-page .save-page{
+	position:absolute;
+	right:8px;
+	top:6px;
+	background: transparent;
+	padding-left: 0px;
+}
+.js #navigation .enter-page a:hover{
+	padding: 0px;
+	font-weight: bold;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background: #89866F ;
 }
