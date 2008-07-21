@@ -8,7 +8,7 @@
 /* --- Styles in base.css --- */
 
 body {
-	background: #000 url(../images/common/bg.png) repeat fixed 0% 100%;
+	background: #000 url(../images/custom/common/bg.png) repeat fixed 0% 100%;
 }
 
 a {
@@ -172,7 +172,7 @@ body.nonfreeform {
 /* --- Navigation --- */
 
 #navigation-container {
-	background: transparent url(../images/navigation/bg.png) repeat-x scroll 0% 0%;
+	background: transparent url(../images/custom/navigation/bg.png) repeat-x scroll 0% 0%;
 	height: 30px;
 	width: 100%;
 }
@@ -222,13 +222,13 @@ body.nonfreeform {
 }
 
 #navigation-container li.spacer {
-	background: transparent url(../images/navigation/menu_spacer.png) no-repeat scroll 0% 0%;
+	background: transparent url(../images/custom/navigation/menu_spacer.png) no-repeat scroll 0% 0%;
 	height: 30px;
 	width: 12px;
 }
 
 #navigation-container .dock-spacer {
-	background: transparent url(../images/navigation/dock_spacer.png) no-repeat scroll 0% 0%;
+	background: transparent url(../images/custom/navigation/dock_spacer.png) no-repeat scroll 0% 0%;
 	height: 30px;
 	position: absolute;
 	right: 170px;
@@ -283,36 +283,40 @@ a.bottom-item {
 	position: relative;
 }
 
+.portlet {
+	border: 0px;
+}
+
 .portlet .top-left-corner {
-	background: transparent url(../images/portlet/top_left_corner.png) no-repeat scroll 0% 0%;
+	background: transparent url(../images/custom/portlet/top_left_corner.png) no-repeat scroll 0% 0%;
 	height: 38px;
 	width: 10px;
 }
 
 .portlet .top-left {
-	background: transparent url(../images/portlet/top_left.png) no-repeat scroll 0% 0%;
+	background: transparent url(../images/custom/portlet/top_left.png) no-repeat scroll 0% 0%;
 	height: 38px;
 	width: 5px;
 }
 
 .portlet .top-center {
-	background: transparent url(../images/portlet/top_center.png) repeat-x scroll 0% 0%;
+	background: transparent url(../images/custom/portlet/top_center.png) repeat-x scroll 0% 0%;
 }
 
 .portlet .top-right {
-	background: transparent url(../images/portlet/top_right.png) no-repeat scroll 0% 0%;
+	background: transparent url(../images/custom/portlet/top_right.png) no-repeat scroll 0% 0%;
 	height: 38px;
 	width: 5px;
 }
 
 .portlet .top-right-corner {
-	background: transparent url(../images/portlet/top_right_corner.png) no-repeat scroll 0% 0%;
+	background: transparent url(../images/custom/portlet/top_right_corner.png) no-repeat scroll 0% 0%;
 	height: 38px;
 	width: 10px;
 }
 
 .portlet .middle-left {
-	background: transparent url(../images/portlet/middle_left.png) repeat-y scroll 0% 0%;
+	background: transparent url(../images/custom/portlet/middle_left.png) repeat-y scroll 0% 0%;
 	width: 10px;
 }
 
@@ -321,34 +325,34 @@ a.bottom-item {
 }
 
 .portlet .middle-right {
-	background: transparent url(../images/portlet/middle_right.png) repeat-y scroll 0% 0%;
+	background: transparent url(../images/custom/portlet/middle_right.png) repeat-y scroll 0% 0%;
 	width: 10px;
 }
 
 .portlet .bottom-left-corner {
-	background: transparent url(../images/portlet/bottom_left_corner.png) no-repeat scroll 0% 0%;
+	background: transparent url(../images/custom/portlet/bottom_left_corner.png) no-repeat scroll 0% 0%;
 	height: 16px;
 	width: 10px;
 }
 
 .portlet .bottom-left {
-	background: transparent url(../images/portlet/bottom_left.png) no-repeat scroll 0% 0%;
+	background: transparent url(../images/custom/portlet/bottom_left.png) no-repeat scroll 0% 0%;
 	height: 16px;
 	width: 5px;
 }
 
 .portlet .bottom-center {
-	background: transparent url(../images/portlet/bottom_center.png) repeat-x scroll 0% 0%;
+	background: transparent url(../images/custom/portlet/bottom_center.png) repeat-x scroll 0% 0%;
 }
 
 .portlet .bottom-right {
-	background: transparent url(../images/portlet/bottom_right.png) no-repeat scroll 0% 0%;
+	background: transparent url(../images/custom/portlet/bottom_right.png) no-repeat scroll 0% 0%;
 	height: 16px;
 	width: 5px;
 }
 
 .portlet .bottom-right-corner {
-	background: transparent url(../images/portlet/bottom_right_corner.png) no-repeat scroll 0% 0%;
+	background: transparent url(../images/custom/portlet/bottom_right_corner.png) no-repeat scroll 0% 0%;
 	height: 16px;
 	width: 10px;
 }
