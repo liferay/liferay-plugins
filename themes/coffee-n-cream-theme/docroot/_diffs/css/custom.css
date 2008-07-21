@@ -1,7 +1,7 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
 body {
-	background: transparent url(../images/common/bg.png) repeat;
+	background: transparent url(../images/custom/common/bg.png) repeat;
 }
 
 a {
@@ -18,10 +18,11 @@ a:hover {
 	border-left: 3px solid #665D4B;
 	background: #FCFAEA none;
 	border-right: 3px solid #665D4B;
+	margin: auto;
 }
 
 #banner {
-	background: transparent url(../images/common/banner_bg.png) repeat scroll 100% 100%;
+	background: transparent url(../images/custom/common/banner_bg.png) repeat scroll 100% 100%;
 	height: 120px;
 	border-bottom: 1px solid #FFF7EC;
 }
@@ -31,7 +32,7 @@ a:hover {
 }
 
 .loading-animation {
-	background: url(../images/progress_bar/loading_animationbar.gif) no-repeat top center;
+	background: url(../images/custom/progress_bar/loading_animationbar.gif) no-repeat top center;
 }
 
 .columns-1 #column-1 {
@@ -76,6 +77,10 @@ a:hover {
 	padding-right: 5px;
 }
 
+#navigation li.selected a, #navigation li a:hover {
+	color: #665544;
+}
+
 #navigation {
 	margin:0pt 0pt 0.5em;
 	min-height:2.2em;
@@ -86,7 +91,7 @@ a:hover {
 
 #navigation ul {
 	width: 975px;
-	background: transparent url(../images/navigation/navigation_bg.png) repeat-x 100% 100%;
+	background: transparent url(../images/custom/navigation/navigation_bg.png) repeat-x 100% 100%;
 }
 
 .ie6 #navigation, .ie6 #navigation ul {
@@ -94,17 +99,19 @@ a:hover {
 }
 
 #navigation li {
-	background: transparent url(../images/navigation/navigation_bg.png) repeat-x 100% 100%;
+	background: transparent url(../images/custom/navigation/navigation_bg.png) repeat-x 100% 100%;
 	margin-right: 0;
 	padding: 5px 25px 0 0;
+	border: 0px;
 }
 
 #navigation li.selected {
 	padding: 14px 25px 0 0;
+	
 }
 
 #navigation li a {
-	background: transparent url(../images/navigation/navigation_bg.png) repeat-x 0 100%;
+	background: transparent url(../images/custom/navigation/navigation_bg.png) repeat-x 0 100%;
 	padding: 7pt 5pt 1em 1.5em;
 	color: #665544;
 	font-size: 9pt;
@@ -139,12 +146,12 @@ a:hover {
 }
 
 .js #navigation .enter-page {
-	background: transparent url(../images/navigation/navigation_bg.png) repeat-x 0 100%;
-	padding: 5px 2em 13px 1.5em;
+	background:transparent url(../images/custom/navigation/navigation_bg.png) repeat-x scroll 0pt 	100%;
+	margin:-3px -2px 0px;
+	padding:0px 0px 7px 27px;
 }
-
 .ie6.js #navigation .enter-page {
-	background: transparent url(../images/navigation/navigation_bg.png) repeat-x 0 100%;
+	background: transparent url(../images/custom/navigation/navigation_bg.png) repeat-x 0 100%;
 	padding: 0.5em 2em 10px 1.5em;
 }
 
@@ -158,11 +165,11 @@ a:hover {
 
 .portlet-topper {
 	border-bottom: 1px solid #665544;
-	background: transparent url(../images/navigation/navigation_bg.png) repeat-x right top;
+	background: transparent url(../images/custom/navigation/navigation_bg.png) repeat-x right top;
 }
 
 .portlet-title {
-	background: transparent url(../images/navigation/navigation_bg.png) repeat-x left top;
+	background: transparent url(../images/custom/navigation/navigation_bg.png) repeat-x left top;
 	display:block;
 	font-size:14px;
 	font-weight:bold;
@@ -224,14 +231,21 @@ a:hover {
 	top: 0;
 }
 
-.js .lfr-dock.interactive-mode h2 {
-	background: url(../images/dock/menu_barbrown.png) no-repeat 100% -30px;
+#content-wrapper {
+	width: 100%;
 }
 
-.js .lfr-dock.interactive-mode h2 span {
-	background: url(../images/dock/menu_barbrown.png) no-repeat 0 0;
+#banner h1.logo {
+	left: 18%;
 }
 
+.js .interactive-mode {
+	right: 17%;
+}
 
-
+.js #navigation .enter-page .save-page {
+	background: transparent;
+	padding-left: 0px;
+	font-weight: normal;
+}
 
