@@ -1,250 +1,119 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 html {
-	background: url(../images/common/bg1.jpg) repeat;
-}
-
-#banner {
-	background: #FFFFFF url(../images/common/hdrpic.jpg) no-repeat scroll center;
-	height: 8em;								
-	position: fixed;
-	border: none;
-}
-
-#banner .logo {
-	background: #FFFFFF;
-	display: block;
-	float: left;
-	font-size: 2em;
-	padding: none;
+	overflow-y: scroll;
 }
 body {
-
-	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
-	background: url(../images/common/bg2.jpg) repeat-x; 
-    padding: 35px 0px 35px 0px;
-}
-.js .lfr-dock.interactive-mode ul {
-	background: #666600;
-	border-left: 20px solid #003333;
-	display: none;
-	float: none;
-}
-.js .lfr-dock.interactive-mode h2 span {
-	background: url(../images/common/topbg.png) repeat 0 0;
-	border: thin outset;
-	color: #FFFFFF;
-	display: block;
-	font-size: 1.2em;
-	margin-bottom: 0;
-	padding: 0.5em 0.5em 0.5em 2em;
-}
-.js .lfr-dock.interactive-mode h2 {
-	background: url(../images/common/db2.png) no-repeat right;
-	font-size: 1.2em;
-	margin-bottom: 0;
-	padding: 0 29px 0 0;
-	position: relative;
-	z-index: 82;
-}
-.portlet, .portlet-topper, .portlet-content, .portlet-title {
-	background: #FFFFFF url(../images/common/border1.png) repeat-x;
-	border: none;
-	padding: none;
-}
-.portlet {
-	margin: 0 0 10px;
-	padding-right: 10px;
-	text-align: left;
-}
-
-#navigation {
-	background: #7F8400 url(../images/common/menubg.png) repeat-x;
-	overflow: hidden;
-	width: 99%;
-	font-family: Georgia;
+	background: #000000 url(../images/custom/bg1.jpg) repeat scroll 0% 0%;
+	font-family: "georgia","times new roman",serif;
 	font-size: 10pt;
-	color: #FFFFFF;
+	padding: 35px 0px;
 }
-
-#navigation li {
-	background: none;
-	padding: 5px 25px;
+#wrapper {
+	background: #FFFFFF url(../images/custom/bg2.jpg) repeat-x scroll 0% 0%;
+	height: 275px;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	z-index: 1;
 }
-
-#navigation li a {
-	background: none;
-	padding: 0;
+#content-wrapper {
+	background: white none repeat scroll 0% 0%;
+	border: 7px solid white;
+	margin-left: 107px;
+	margin-top: -12px;
+	width: 1036px;
 }
-
-#navigation li a span {
-	background: none;
-	padding: 0;
-}
-
-#navigation li a:hover {
-	padding-bottom: 0;
-}
-
-#navigation li a:hover span {
-	background: none;
-}
-
-#navigation li.selected {
-	background: url(../images/common/menuactive.png) repeat-x top;
-	padding-bottom:8px;
-}
-
-#navigation li.selected a {
-	padding: 0;
-}
-
-#navigation li.selected a span {
-	background: none;
-	font-size: 1em;
-	padding: 0;
-}
-
-#navigation li.selected a:hover {
-	padding-bottom: 0;
-}
-
-.js #navigation .enter-page {
-	background: none;
-	padding: 0;
-}
-
-.tabs {
-	border-bottom: 1px solid #003300;
-	margin: 0 0 1.5em 0;
-	padding: 0 0 2.6em 1em;
-}
-.tabs li {
-	background: #999933;
-	border: none;
-	display: inline;
-	float: left;
-	line-height: 2.25;
-	margin-right: 0.8em;
-	padding: 0;
-	position: relative;
-	text-decoration: none;
-}
-.tabs li a, .tabs li span {
-	background: #999933;
-	border: none;
-	display: block;
-	float: left;
-	padding: 0.35em 1em 0;
-	padding-bottom: none;
-	text-decoration: none;
-}
-.tabs li.current {
-	background: url(../images/common/menubg.png) 100% 0;
-	border: none;
-	font-weight: bold;
-	top: -.5px;
-}
-.tabs li.current a, .tabs li.current span {
-	background: url(../images/common/menubg.png) no-repeat 0 -100px;
-	border: thin outset;
+#banner {
+	background: #FFFFFF url(../images/custom/hdrpic.jpg) no-repeat scroll left top;
+	border: 7px solid white;
 	border-bottom: none;
-	color: #333;
-	padding: 0.15em 1em;
+	border-top: 2px solid white;
+	height: 109px;
+	margin-bottom: 2px;
+	margin-left: 107px;
+	margin-top: 163px;
+	position: relative;
+	width: 1036px;
 }
- /* ---------- Table or section header ---------- */
-
-.portlet-section-header {
-	background: url(../images/common/menuactive.png) repeat-x;
-	padding: 1px 0 0;
+#banner .logo {
+	background: #2B2B2B url(../images/custom/topbg.png) repeat-x scroll 0% 0%;
+	height: 120px;
+	width: 1036px;
 }
-.portlet-section-header th {
-	border-bottom: 1px solid #ccc;
-	color: #333;
-	font-weight: bold;
-	padding: 0.3em 1em;
+#navigation {
+	background: #7F8400 url(../images/custom/menubg.png) repeat-x scroll left top;
+	border: 7px solid white;
+	border-bottom: 2px solid white;
+	border-top: 2px solid white;
+	height: 3.5em;
+	margin-bottom: 2px;
+	margin-left: 107px;
+	margin-top: -3px;
+	padding: 0em 1em;
+	position: relative;
+	width: 1009px;
 }
-
-/* ---------- Normal text in a table cell ---------- */
-
-.portlet-section-body {
-	background: #003300;
-	color: #000;
+#navigation li {
+	border: none;
 }
-.portlet-section-body td {
-	background: #999933;
-	border-top: 1px solid #003300;
-	border-bottom: 1px solid #003300; 
-	padding: 0.3em 1em;
+#banner h1.logo {
+	border: 7px solid white;
+	border-bottom: none;
+	margin: -129px -59px 0pt !important;
 }
-a {
-	color: #000000;
+.portlet-topper {
+	background: #FFFFFF url(../images/custom/border1.png) repeat-x scroll 0% 0%;
+	height: 30px;
+	width: auto;
+}
+.js .interactive-mode {
+	top: -46px;
+}
+#banner .logo a {
+	margin-left: 16px;
+	margin-top: 62px;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background: #7F8400 url(../images/custom/menuactive.png) repeat-x scroll left top;
+	background-color: transparent;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+#navigation ul {
+	margin: 6pt auto 6pt -6px;
+}
+#navigation a {
+	color: white;
+}
+#navigation li a:hover {
 	text-decoration: underline;
 }
-
-a:hover {
- 	color: #996633;
-	text-decoration: none;
-}
-/* ---------- Main content body ---------- */
-
-#wrapper {
-	margin: 0 auto;
-	width: 95%;
-	background: #FFF;
-	border: none;
-	padding-top: 15px;
-	padding-left: 15px;
-	padding-right: 15px;
-	padding-bottom: 15px;
-}
-div.search {
-	position:absolute;
-	right:250px;
-	top:20px;
-}
-input[type="text"], input[type="password"], input[type="file"],input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
-	background: #fff url(../images/common/border2.png) repeat-x;
-	border: 1px solid #003300;
-	border-left-color: #003300;
-	border-top-color: #003300;
-	font: 1em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
-	padding: 0.3em;
-}
-input[type="image"] {
-	background: url(..images/common/db2.png) repeat-x none;
-	border: none;
-	padding: 0;
-}
-/* ---------- 2 columns ---------- */
-
-.columns-2 #column-1 {
-	padding-top: 10px;
-	padding-left: 10px;
-	background: #2B2B2B;
-}
-.columns-2 #column-2 {
-	padding-top: 10px;
-	padding-right: 10px;
-	background: #2B2B2B;
+#footer {
+	background: #FFFFFF url(../images/custom/border2.png) repeat-x scroll 0em 2.5em;
+	clear: both;
+	font-size: 0.8em;
+	height: 2em;
+	margin-left: 107px;
+	padding-top: 5em;
+	position: relative;
+	width: 1050px;
 }
 .js #add-page {
-	float: right;
-	font-weight: bold;
-	padding-top: 0.3em;
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	font-weight: normal;
+	right: -1%;
+	top: 6px;
 }
-.js #add-page a {
-	text-decoration: none;
+.portlet {
+	border: none;
 }
-.js #add-page a span {
-	background: url(../images/navigation/add_page.png) no-repeat 0 50%;
-	padding: 5px 20px;
+.js #navigation .enter-page {
+	background-color:transparent;
 }
-.js #add-page a:hover span {
-	background-image: url(../images/navigation/add_page.png);
+.js #navigation .enter-page .save-page {
+	background:transparent url(../images/custom/menuactive.png) repeat-x scroll left top;
+	padding:8px 20px 20px;
 }
-
-
-
-
-
-
