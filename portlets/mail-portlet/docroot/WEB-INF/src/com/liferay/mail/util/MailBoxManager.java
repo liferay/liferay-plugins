@@ -1006,8 +1006,8 @@ public class MailBoxManager {
 	}
 
 	protected Session getSession(MailAccount mailAccount) {
-		boolean debug =
-			GetterUtil.getBoolean(PortletProps.get("javamail.debug"));
+		boolean debug = GetterUtil.getBoolean(
+			PortletProps.get("javamail.debug"));
 
 		Properties props = new Properties();
 
@@ -1094,8 +1094,8 @@ public class MailBoxManager {
 		throws MessagingException {
 
 		String transportKey =
-			"" + _mailAccount.getUser().getUserId() + "_TRANSPORT_" +
-			_mailAccount.getEmailAddress();
+			_mailAccount.getUser().getUserId() + "_TRANSPORT_" +
+				_mailAccount.getEmailAddress();
 
 		Transport transport = null;
 

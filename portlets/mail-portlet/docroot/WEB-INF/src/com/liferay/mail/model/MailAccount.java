@@ -90,20 +90,12 @@ public class MailAccount {
 		return _mailInPort;
 	}
 
-	public boolean isMailInSecure() {
-		return _mailInSecure;
-	}
-
 	public String getMailOutHostName() {
 		return _mailOutHostName;
 	}
 
 	public int getMailOutPort() {
 		return _mailOutPort;
-	}
-
-	public boolean isMailOutSecure() {
-		return _mailOutSecure;
 	}
 
 	public String getPassword() {
@@ -120,6 +112,14 @@ public class MailAccount {
 
 	public boolean isInitialized() {
 		return _initialized;
+	}
+
+	public boolean isMailInSecure() {
+		return _mailInSecure;
+	}
+
+	public boolean isMailOutSecure() {
+		return _mailOutSecure;
 	}
 
 	public void setInitialized(boolean initialized) {
