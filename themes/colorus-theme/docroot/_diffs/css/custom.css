@@ -7,13 +7,13 @@
 	width: 780px;
 }
 body {
-	background: url(../images/theme/body_all_bckg.jpg) repeat scroll center top;
+	background: url(../images/custom/body_all_bckg.jpg) repeat scroll center top;
 	font-family: Tahoma, Arial;
 	font-size: 11px;
 	overflow: scroll;
 }
 #banner {
-	background: url(../images/theme/body_top_bckg.jpg) no-repeat center top #171c20;
+	background: url(../images/custom/body_top_bckg.jpg) no-repeat center top #171c20;
 	height: 377px;
 }
 #banner .logo a {
@@ -69,7 +69,7 @@ body {
 	background-color:#F26513;
 }
 #footer {
-	background: url(../images/theme/footer_bckg.jpg) no-repeat top center;
+	background: url(../images/custom/footer_bckg.jpg) no-repeat top center;
 	clear: both;
 	height: 102px;
 	margin: 0 auto;
