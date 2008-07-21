@@ -1,107 +1,86 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 #banner {
-	background: transparent url(../images/comment/top.png) no-repeat scroll
-		center top;
-	height: 295px;
-	width: 876px;
-	margin: 0pt auto;
+	background: transparent url(../images/custom/top.png) no-repeat scroll center top;
 	border-bottom: 0px;
+	height: 271px;
+	margin: 0pt auto;
+	width: 876px;
 }
-
 #navigation {
-	background: transparent url(../images/comment/menu.jpg) no-repeat scroll
-		center top;
+	background: transparent url(../images/custom/menu.jpg) no-repeat scroll center top;
 	height: 57px;
 	margin: -25pt auto;
 	padding: 0pt;
 	text-align: center;
 	width: 876px;
 }
-
 .js #add-page a span {
-	background: transparent url(../images/navigation/add_page.png) no-repeat
-		scroll 0pt 50%;
-	padding: 5px 20px;
+	background: transparent url(../images/navigation/add_page.png) no-repeat scroll 0pt 50%;
 	color: wheat;
+	padding: 5px 20px;
 }
-
 #navigation li {
 	background: none;
+	border: none;
 	display: inline;
 	float: left;
 	margin-right: 0.5em;
 	position: relative;
 }
-
 #navigation li.selected a {
 	padding-top: 0px;
 }
-
 #navigation li.selected {
 	border-top: 0px solid #89C8FF;
 	font-weight: bold;
 }
-
 #navigation li a span {
-	display: block;
-	padding: 2em 1.5em;
 	color: #fff;
+	display: block;
 	font-size: 12px;
+	padding: 1.5em 1.5em;
 }
-
 #navigation li a:hover {
-	padding-bottom: 1em;
 	color: #000;
+	padding-bottom: 0em;
 }
-
 #content-wrapper {
-	margin: 0pt auto;
+	background: #fff url(../images/custom/content_top.jpg) no-repeat;
+	margin: 25pt auto;
 	padding: 20pt;
 	width: 821px;
-	background: #fff url(../images/comment/content_top.jpg) no-repeat;
 }
-
 #banner-content {
 	margin: 0pt auto;
 	width: 100%;
 }
-
 #banner .logo {
 	display: block;
 	font-size: 2em;
 	margin: 0pt auto;
 	padding: 1.25em 0pt 139px;
 }
-
 #wrapper {
 	background: #454545 none repeat scroll 0%;
 	padding: 0pt;
 }
-
 .portlet-topper {
-	background: #6C7A2D url(../images/portlet/portlet_top.png) repeat-x
-		scroll 0% 0%;
+	background: #6C7A2D url(../images/portlet/portlet_top.png) repeat-x scroll 0% 0%;
 	position: relative;
 }
-
 .portlet {
 	border: 2px solid #6C7A2D;
 	margin-bottom: 1em;
 	text-align: left;
 }
-
 .tabs {
 	border-bottom: 1px solid #DFE6AE;
 	margin: 0pt 0pt 1.5em;
 	padding: 0pt 0pt 2.6em 1em;
 }
-
 .tabs li.current {
-	background: #AEC056 url(../images/common/tabs_active_bg.png) repeat-x
-		scroll 0pt 0%;
+	background: #AEC056 url(../images/common/tabs_active_bg.png) repeat-x scroll 0pt 0%;
 	font-weight: bold;
 }
-
 .tabs li {
 	background: #DFE6AE url(../images/common/tabs_inactive_bg.png) repeat-x
 		scroll 0pt 100%;
@@ -115,10 +94,8 @@
 	padding: 0pt;
 	text-decoration: none;
 }
-
 #footer {
-	background: transparent url(../images/comment/footerbg.jpg) repeat
-		scroll center top;
+	background: transparent url(../images/custom/footerbg.jpg) repeat scroll center top;
 	height: 47px;
 	margin: 0pt auto;
 	padding-bottom: 10px;
@@ -126,7 +103,6 @@
 	vertical-align: top;
 	width: 876px;
 }
-
 .js .interactive-mode {
 	float: right;
 	min-width: 150px;
@@ -134,15 +110,36 @@
 	right: 20pt;
 	top: 37pt;
 }
-
 #banner .logo a {
-	background: transparent
-		url(/image/company_logo?img_id=0&t=1213852437750) no-repeat scroll 0%;
+	background: transparent url(/image/company_logo?img_id=0&t=1213852437750) no-repeat scroll 0%;
 	display: block;
 	font-size: 0pt;
 	height: 49px;
+	margin-left: 160px;
+	margin-top: 35px;
 	text-indent: -9999em;
 	width: 198px;
-	margin-left: 22px;
-	margin-top: 35px;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 20px;
+}
+#navigation li a {
+	padding: 0px 20px;
+}
+#navigation ul {
+	margin: 3pt auto 3pt 0px;
+}
+.js #add-page {
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	right: 0%;
+	top: 18px;
+}
+.js #navigation .enter-page {
+	margin-top:13px;
+	background-color: transparent;
 }
