@@ -1,249 +1,171 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
-/* Reset Banner */
-#banner {
- margin : 0 ;
- padding : 0 ;
- height : 200px ;
- background : transparent none no-repeat scroll 0% 0% ;
- border : 1px solid #ccc ;
-}
-#banner .logo {
- display : block ;
- margin : 0 ;
- padding : 0 ;
- width : auto ;
- height : auto ;
- background : transparent none no-repeat scroll 0% 0% ;
- text-indent : 0 ;
- font-size : 100% ;
-}
-#banner .logo a {
- display : inline ;
- margin : 0 ;
- padding : 0 ;
- width : auto ;
- height : auto ;
- background : transparent none no-repeat scroll 0% 0% ;
- text-indent : 0 ;
- font-size : 100% ;
-}
-
-/* Reset Portlets */
-.portlet, .portlet-topper, .portlet-content, .portlet-title {
- background : transparent none no-repeat scroll 0% 0% ;
- margin : 0 ;
- padding : 0 ;
-}
-.portlet {
- border : 1px solid #ccc ;
-}
-.portlet-topper {
- background-position: 0% 0% ;
-}
-.portlet-title {
- min-width : 100% ;
- background-position : 0% 0% ;
- font-weight : normal ;
-}
-
-
-
-/* Reset Navigation Menu */
-#navigation {
- margin : 0 ;
- padding : 0 ;
- width : auto ;
- min-height : 100% ;
- border : 1px solid #ccc ;
-}
-#navigation ul {
- /* float : none ; */
- width : auto ;
- min-height : 100% ;
-}
-#navigation li {
- /* float : none ; */
- background : transparent none no-repeat scroll 0% 0% ;
- padding : 0 ;
-}
-#navigation li.selected a {
- padding : 0 ;
-}
-#navigation li.selected a:hover {
- padding : 0 ;
-}
-#navigation li a , #navigation li a:hover , #navigation li a span , #navigation li a:hover span {
- display : inline ;
- padding : 0 ;
- background : transparent none no-repeat scroll 0% 0% ;
-}
-#navigation li a:hover {
- padding : 0 ;
-}
-#navigation li.selected a span {
- padding : 0 ;
- background : transparent none no-repeat scroll 0% 0% ;
- font-size : 100% ;
- font-weight : normal ;
-}
-.js #add-page {
- font-weight : normal ;
- padding : 0 ;
-}
-.js #add-page a span {
- background : transparent none no-repeat scroll 0% 0% ;
- padding : 0 ;
-}
-.js #add-page a:hover span {
- background : transparent none no-repeat scroll 0% 0% ;
-}
-.js #navigation .enter-page {
- background : transparent none no-repeat scroll 0% 0% ;
- padding : 0 ;
-}
-.js #navigation .enter-page a {
- margin : 0 ;
- padding : 0 ;
- font-weight : normal ;
-}
-.js #navigation .enter-page a:hover {
- margin : 0 ;
- padding : 0 ;
-}
-
-
-
-/* Terra Firma */
-/* -- Main */
 html {
- overflow-y : scroll ; 
- background : #F9F9F7 url('../images/common/page_bg_1.png') repeat-x scroll top center ;
+	background: #F9F9F7 url('../images/custom/page_bg_1.png') repeat-x scroll top center;
+	overflow-y: scroll;
 }
 body {
- background : transparent url('../images/common/page_bg_2.png') repeat-y scroll top center ;
- height : auto ;
- color : #8C8C73 ;
- font-family : "trebuchet ms", helvetica, sans-serif ;
- font-size : 11px ;
- line-height : 18px ;
+	background: transparent url('../images/custom/page_bg_2.png') repeat-y scroll top center;
+	color: #8C8C73;
+	font-family: "trebuchet ms", helvetica, sans-serif;
+	font-size: 11px;
+	height: auto;
+	line-height: 18px;
 }
 #wrapper {
- background : transparent url('../images/common/wrapper_bg.png') no-repeat scroll top center ;
- border : 0px solid #ccc ;
- width : 948px ;
+	background: transparent url('../images/custom/wrapper_bg.png') no-repeat scroll top center;
+	border: 0px solid #ccc;
+	width: 100%;
 }
-/* -- Header */
 #banner {
- border : 0 ;
- height : 111px ;
- margin : 0 30px ;
- background : transparent url('../images/common/banner_bg_1.jpg') no-repeat scroll right 13px;
+	background: transparent url(../images/custom/banner_bg_1.jpg) no-repeat scroll right 13px;
+	border: 0pt none;
+	height: 105px;
+	margin-bottom: 0pt;
+	margin-right: 188px;
+	margin-top: 0pt;
 }
 #banner .logo {
- background: #FF7800 url('../images/common/banner_bg_2.png') repeat-x scroll 0 0;
- color: #fff;
- display: block;
- width: 422px;
- height: 92px;
- position: absolute;
- top: 13px;
+	background: #FF7800 url(../images/custom/banner_bg_2.png) repeat-x scroll 0pt 0pt;
+	color: #FFFFFF;
+	display: block;
+	height: 92px;
+	margin: 0px 125px 0pt !important;
+	top: 13px;
+	width: 422px;
 }
 #banner .logo a {
- position : absolute ;
- top : 36px ;
- left : 20px ;
- color : #fff ;
- font-size : 23px ;
- letter-spacing : -1px ;
- font-weight : normal ;
+	color: #fff;
+	font-size: 23px;
+	font-weight: normal;
+	left: 20px;
+	letter-spacing: -1px;
+	position: absolute;
+	top: 36px;
 }
-/* -- Admin Menu */
 .js .lfr-dock.interactive-mode {
- right : 1px ;
- top : 13px ;
+	right: 203px;
+	top: 27px;
 }
 .js .lfr-dock.interactive-mode h2 , .js .lfr-dock.interactive-mode h2 span {
- background-image : url('../images/dock/menu_bar.png') ;
+	background-image: url('../images/custom/menu_bar.png');
 }
 .js .lfr-dock.expanded .lfr-dock-list-container {
- background-color : transparent ;
+	background-color: transparent;
 }
 .js .lfr-dock.interactive-mode ul {
- background-color : transparent ;
- background-image : url('../images/dock/menu_bg.png') ;
- border : 0 ;
+	background-color: transparent;
+	background-image: url('../images/custom/menu_bg.png');
+	border: 0;
 }
-/* -- Main Menu */
+.js .interactive-mode h2 {
+	background: transparent url(/terrafirma-theme/images/custom/menu_bar.png) no-repeat scroll 100% -30px;
+	font-size: 1.2em;
+	margin-bottom: 0pt;
+	padding: 0pt 29px 0pt 0pt;
+	position: relative;
+	z-index: 82;
+}
+.js .interactive-mode h2 span {
+	border: none;
+}
 #navigation {
- margin : 0 30px ;
- height : 67px ;
- background : #46461F url('../images/navigation/bg.gif') repeat-x scroll 0% 0%;
- border : 0 ;
+	background: #46461F url(../images/custom/bg.gif) repeat-x scroll 0% 0%;
+	border: medium none;
+	height: 67px;
+	margin: 5pt 188px;
+	width: 888px;
 }
 #navigation ul {
- margin : 0;
+	margin: 0;
+}
+#navigation li {
+	border: none;
 }
 #navigation ul li {
- margin : 0 ;
+	margin: 0;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
 }
 #navigation ul li a , #navigation ul li.selected a , #navigation ul li a:hover , #navigation ul li.selected a:hover , #add-page a {
- display : block ;
- font-size : 12px ;
- color : #fff ;
- margin : 9px 0px 9px 8px ;
- padding : 8px ;
- text-decoration : underline ;
+	color: #fff;
+	display: block;
+	font-size: 12px;
+	margin: 9px 0px 9px 8px;
+	padding: 8px;
+	text-decoration: underline;
 }
 #navigation ul li a span, #navigation ul li.selected a span, #navigation ul li a:hover span, #navigation ul li.selected a:hover span , #add-page a span {
- margin : 0 ;
- padding : 0 ;
- font-weight : bold;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
 }
-#navigation ul li a:hover , #navigation ul li.selected a:hover , #add-page a:hover {
- background : #FFFFFF url('../images/navigation/bg_2.png') repeat-x scroll center top ;
- color : #4A4A24 ;
- text-decoration : none ;
+#navigation ul li a:hover , #navigation ul li.selected a:hover {
+	background: #FFFFFF url('../images/custom/bg_2.png') repeat-x scroll center top;
+	color: #4A4A24;
+	text-decoration: none;
 }
 .js .delete-tab {
- top : 12px ;
- right : 6px ;
- background : transparent url('../images/navigation/remove.png') no-repeat scroll 42% 50% ;
+	background: transparent url('../images/custom/remove.png') no-repeat scroll 42% 50%;
+	right: 6px;
+	top: 12px;
 }
-/* -- Content & Porlets */
 #content-wrapper {
- margin : 0 30px ;
+	margin: 0 189px;
+	width: 70.1%;
 }
 .portlet {
- border : 0 ;
- background : transparent url('../images/portlet/portlet_bg.png') repeat-x scroll center bottom ;
- margin : 18px 0 ;
+	background: transparent url('../images/custom/portlet_bg.png') repeat-x scroll center bottom;
+	border: 0;
+	margin: 18px 0;
 }
 .portlet-title {
- background : transparent url('../images/portlet/portlet_title_bg.png') repeat-x scroll center bottom ;
- color : #656551;
- font-size : 18px;
- font-weight : bold ;
- letter-spacing  :-1px;
- line-height  :25px;
- margin-bottom : 20px;
- padding-bottom : 10px;
- top : 4px;
+	background: transparent url('../images/custom/portlet_title_bg.png') repeat-x scroll center bottom;
+	color: #656551;
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing: -1px;
+	line-height: 25px;
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+	top: 4px;
 }
 #portlet-wrapper- {
- margin : 0 30px ;
+	margin: 0 30px;
 }
-/* -- Footer */
 #footer {
- background : transparent none ;
- height : 66px ;
- display : block ;
- margin : 0 30px ;
- font-size : 11px ;
- color : #A8A88D ;
- text-align : center ;
- padding : 26px 0 0 0;
+	background: transparent none;
+	color: #A8A88D;
+	display: block;
+	font-size: 11px;
+	height: 66px;
+	margin: 0 30px;
+	padding: 26px 0 0 0;
+	text-align: center;
 }
 #footer a {
- color:#8C8C73;
+	color: #8C8C73;
+}
+.js #add-page {
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	right: 1%;
+	top: 0px;
+}
+.js #navigation .enter-page {
+	margin-top: 9px;
+}
+#navigation li.selected a span {
+background:transparent;
+padding-left:0px;
+}
+.js #navigation .enter-page {
+	background:transparent;
+	padding:4px;
+}
+.js #navigation .enter-page .save-page {
+	color: white;
+	color:black;
+}
+.js #navigation .enter-page:hover {
+	background: #FFFFFF url('../images/custom/bg_2.png') repeat-x scroll center top;
 }
