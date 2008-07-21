@@ -1,7 +1,6 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 body {
 	background-color: #9DB4A8;
-	background-image: url(../images/comment/body-bg.jpg);
+	background-image: url(../images/custom/body-bg.jpg);
 	background-position: center top;
 	background-repeat: no-repeat;
 	color: #000000;
@@ -12,57 +11,56 @@ body {
 	padding: 0pt;
 	text-align: justify;
 }
-
 #banner {
-	background-image: url(../images/comment/header.png);
+	background-image: url(../images/custom/header.png);
 	background-position: left top;
 	background-repeat: no-repeat;
-	height: 390px;
+	border-bottom: 0px solid #89C8FF;
+	height: 338px;
 	margin: 0pt auto;
+	margin-bottom: 0em;
 	padding: 0pt;
 	text-align: left;
 	width: 946px;
-	border-bottom: 0px solid #89C8FF;
-	margin-bottom: 0em;
 }
-
 #banner .logo {
 	display: block;
 	font-size: 2em;
 	margin: 0pt auto;
 	padding: 2.25em 0pt 219px;
 }
-
+#banner .logo a {
+	margin-left: 135px;
+}
 #banner-content {
 	margin: 0pt auto;
 	width: 100%;
 }
-
 #content-wrapper {
 	background: #FFFFFF none repeat scroll 0%;
 	margin: 0pt auto;
 	padding: 10px;
 	width: 926px;
 }
-
+#wrapper {
+	background: transparent;
+}
 #navigation {
-	background-image: url(../images/comment/menu-bg.jpg);
+	background-image: url(../images/custom/menu-bg.jpg);
 	background-position: left top;
 	background-repeat: repeat-x;
+	border: none;
 	height: 52px;
 	margin-bottom: 2px;
-	margin-top: 2px;
 	padding-left: 8px;
-	width: 928px;
+	width: 940px;
 }
-
 #navigation ul li a:hover {
 	color: #FFFFFF;
 	text-decoration: none;
 }
-
 #navigation ul li {
-	background: transparent url(../images/comment/menu-l.jpg) no-repeat
+	background: transparent url(../images/custom/menu-l.jpg) no-repeat
 		scroll 0%;
 	color: #000000;
 	float: left;
@@ -77,64 +75,55 @@ body {
 	margin-top: 3px;
 	text-transform: uppercase;
 }
-
 #navigation ul li a {
-	background: transparent url(../images/comment/menu-r.jpg) no-repeat
+	background: transparent url(../images/custom/menu-r.jpg) no-repeat
 		scroll right top;
 	color: #000000;
 	display: block;
 	padding: 0pt 20px 0pt 20px;
 	text-decoration: none;
 }
-
 #navigation li.selected {
 	border-top: 0px;
 	font-weight: bold;
 }
-
 #navigation li a span {
 	display: block;
 	padding: 0px;
 }
-
 #navigation li.selected a {
-	padding-top: 0em;
 	color: #fff;
+	padding-top: 0em;
 }
-
 #footer {
-	background: transparent url(../images/comment/footer-bg.jpg) repeat-x
+	background: transparent url(../images/custom/footer-bg.jpg) repeat-x
 		scroll left bottom;
 	color: #627069;
 	font-size: 11px;
 	height: 74px;
 	line-height: 18px;
+	margin: 0px auto;
 	margin-top: 0px;
 	padding-top: 18px;
 	text-align: center;
 	width: 946px;
-	margin: 0px auto;
 }
-
 .portlet {
 	border: 1px solid #98ACA1;
 	margin-bottom: 1em;
 	text-align: left;
 }
-
 .portlet-topper {
 	background: #76877D url(../images/portlet/portlet_top.png) repeat-x
 		scroll 0% 0px;
-	position: relative;
 	color: #fff;
+	position: relative;
 }
-
 .tabs {
 	border-bottom: 1px solid #9EB4A8;
 	margin: 0pt 0pt 1.5em;
 	padding: 0pt 0pt 2.6em 1em;
 }
-
 .tabs li {
 	background: #A8BDB9 url(../images/common/tabs_inactive_bg.png) repeat-x
 		scroll 0pt -65%;
@@ -148,13 +137,11 @@ body {
 	padding: 0pt;
 	text-decoration: none;
 }
-
 .tabs li.current {
 	background: #8DA196 url(../images/common/tabs_active_bg.png) repeat-x
 		scroll 0pt 0%;
 	font-weight: bold;
 }
-
 .js .interactive-mode {
 	float: right;
 	min-width: 150px;
@@ -162,14 +149,19 @@ body {
 	right: 30pt;
 	top: 10pt;
 }
-
-#banner .logo a {
-	background: transparent
-		url(/image/company_logo?img_id=0&t=1213776897250) no-repeat scroll 0%;
-	display: block;
-	font-size: 0pt;
-	height: 49px;
-	margin-left: 50px;
-	text-indent: -9999em;
-	width: 198px;
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
+.js #add-page {
+	background: transparent;
+	border: medium none;
+	right: 0%;
+	top: 13px;
+}
+.js #navigation .enter-page {
+	background-color:transparent;
 }
