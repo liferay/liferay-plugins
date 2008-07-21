@@ -3,7 +3,7 @@
 
 /* ---- GLOBAL ---- */
 body {
-	background: #000000 url(../images/common/body_bg.png) repeat-x fixed left bottom;
+	background: #000000 url(../images/custom/common/body_bg.png) repeat-x fixed left bottom;
 }
 
 a {
@@ -21,11 +21,13 @@ a:hover {
 	border-left: 3px double #333333;
 	border-right: 3px double #333333;
 	border-bottom: 3px double #333333;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 /* ---- BANNER ---- */
 #banner {
-	background: transparent url(../images/common/banner_bg.jpg) no-repeat scroll 100% 100%;
+	background: transparent url(../images/custom/common/banner_bg.jpg) no-repeat scroll 100% 100%;
 	height: 240px;
 }
 
@@ -33,6 +35,9 @@ a:hover {
 	background: transparent none;
 }
 
+#banner h1.logo {
+left: 200px;
+}
 
 /* ---- LAYOUT ---- */
 #layout-grid .lfr-column {
@@ -41,11 +46,17 @@ a:hover {
 
 /* ---- NAVIGATION ---- */
 #navigation {
-	background: url(../images/navigation/bg.png) repeat-x;
+	background: url(../images/custom/navigation/bg.png) repeat-x;
 	border-bottom: 1px solid #1A1A1A;
-	width: 100%;
+	width: auto;
 	margin: 0;
 	padding: 0;
+	border-top: none;
+}
+
+#navigation ul {
+	margin:0pt auto 0pt 1px;
+	width:auto;
 }
 
 #navigation li {
@@ -54,6 +65,7 @@ a:hover {
 	border-right: 1px solid #1A1A1A;	
 	padding: 12px 25px;
 	margin-right: 1px;
+	border: none;
 }
 
 #navigation li a {
@@ -76,9 +88,13 @@ a:hover {
 	background: none;
 }
 
-#navigation li.selected {
-	background: url(../images/navigation/bg.png) no-repeat 50% 100%;
+#navigation li.selected, navigation li:hover {
+	background: url(../images/custom/navigation/bg.png) no-repeat 50% 100%;
 	padding-bottom: 11px;
+}
+
+#navigation li.selected a, #navigation li a:hover {
+	background: transparent;
 }
 
 #navigation li.selected a {
@@ -96,14 +112,20 @@ a:hover {
 }
 
 .js #navigation .enter-page {
-	background: none;
-	padding: 0;
+	background:transparent none repeat scroll 0% 0%;
+	margin-bottom:-12px;
+	position:relative;
+	top:-5px;
+	width:auto;
 }
 
 .js #add-page {
 	float: right;
 	font-weight: bold;
 	padding-top: 8px;
+	background: transparent;
+	border: none;
+	bottom:24%;
 }
 
 .js #add-page a {
@@ -113,10 +135,11 @@ a:hover {
 /* ---- PORTLET ---- */
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: none;
+	border: none;
 }
 
 .portlet {
-	background: #010101 url(../images/portlet/portlet_bg.png) repeat-x;
+	background: #010101 url(../images/custom/portlet/portlet_bg.png) repeat-x;
 	margin: 10px 5px;
 	padding-right:10px;
 	text-align:left;
@@ -155,7 +178,7 @@ a:hover {
 }
 
 .loading-animation {
-	background: url(../images/progress_bar/loading_animationbar.gif) no-repeat top center;
+	background: url(../images/custom/progress_bar/loading_animationbar.gif) no-repeat top center;
 }
 
 /* ---- TABS ---- */
@@ -165,23 +188,23 @@ a:hover {
 }
 
 .tabs li {
-	background: url(../images/navigation/bg.png);
+	background: url(../images/custom/navigation/bg.png);
 	line-height: 15px;
 	margin-right: 0.3em;
 	top: 0.15em;
 }
 .tabs li a, .tabs li span {
-	background: url(../images/navigation/bg.png);
+	background: url(../images/custom/navigation/bg.png);
 	padding: 0.15em 1em 0;
 	color: #FFFFFF;
 }
 
 .tabs li.current {
-	background: url(../images/navigation/bg.png) bottom;
+	background: url(../images/custom/navigation/bg.png) bottom;
 }
 
 .tabs li.current a, .tabs li.current span {
-	background: url(../images/navigation/bg.png) bottom;
+	background: url(../images/custom/navigation/bg.png) bottom;
 	padding: 0.1em 1em;
 	color: #FFFFFF;
 }
@@ -199,10 +222,12 @@ a:hover {
 }
 
 /* ---- DOCK ---- */
-.js .lfr-dock.interactive-mode h2 {
-	background: url(../images/dock/menu_bar_grey.png) no-repeat 100% -30px;
+
+.js .interactive-mode {
+	right:160px;
 }
 
-.js .lfr-dock.interactive-mode h2 span {
-	background: url(../images/dock/menu_bar_grey.png) no-repeat 0 0;
+/* ---- TAB BORDER ----*/
+.ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li a, .tabs li span {
+	border: none;
 }
