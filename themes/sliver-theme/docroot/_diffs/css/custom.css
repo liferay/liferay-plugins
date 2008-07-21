@@ -1,27 +1,76 @@
-#banner{
-
-background:url(../images/common/skin_fetch.png) repeat-x scroll 0% 0%;
-margin-left:2.5%;
-max-width:95%;          
+#banner {
+	background: url(../images/custom/skin_fetch.png) repeat-x scroll 0% 0%;
+	border: 1px solid turquoise;
+	height: 135px;
+	margin-left: 2.5%;
+	max-width: 95%;
 }
-.portlet-title{
-color:darkBlue;
+.portlet-title {
+	color: darkBlue;
 }
-
 .portlet-topper {
-background:url(../images/common/skin_fetch.png) repeat-x scroll 0% 0%;
-position:relative;
+	background: url(../images/common/skin_fetch.png) repeat-x scroll 0% 0%;
+	position: relative;
 }
-.portlet{
-border:2px solid #B3B3B3;
+.portlet {
+	border: 2px solid #B3B3B3;
 }
-.tabs{
-border-bottom:1px solid #B3B3B3;
+.tabs {
+	border-bottom: 1px solid #B3B3B3;
 }
-.tabs li.current{
-background: #A9B3BC;
+.tabs li.current {
+	background: #A9B3BC;
 }
-.tabs li{
-background: #B3B3B3;
-border-color: #B3B3B3;
+.tabs li {
+	background: #B3B3B3;
+	border-color: #B3B3B3;
+}
+#navigation {
+	background: transparent;
+	border: none;
+	margin-top: -35px;
+}
+#navigation li {
+	border: none;
+}
+#navigation li a {
+	background: white;
+	margin-left: 7px;
+	padding: 6px 20px;
+}
+#wrapper {
+	background: none;
+}
+#content-wrapper {
+	width: 95%;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: white;
+	color: #336699;
+}
+#navigation li.selected a {
+	border-top: 4px solid turquoise;
+}
+#navigation li a span {
+	color: #336699;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+.js #navigation .enter-page .save-page {
+	border: none;
+	color: #336699;
+}
+.js #add-page {
+	background:transparent none repeat scroll 0% 0%;
+	border:medium none;
+	top:-1px;
+}
+.js #add-page a span {
+	color: #336699;
+}
+.js #navigation .enter-page {
+	background-color:white;
+	margin-left:7px;
 }
