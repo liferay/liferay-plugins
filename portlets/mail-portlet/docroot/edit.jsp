@@ -38,22 +38,18 @@
 
 <div class="mail-portlet">
 	<div class="accounts-configuration">
-		<liferay-ui:tabs names="add-email-accounts" />
+		<liferay-ui:message key="add-a-new-email-account" />
+
+		<br /><br />
 
 		<div class="preconfigured-mail-accounts"></div>
 
 		<br />
 
-		<liferay-ui:tabs names="your-current-email-accounts" />
+		<liferay-ui:message key="your-email-accounts" />
+
+		<br /><br />
 
 		<div class="current-mail-accounts"></div>
 	</div>
-
-	<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="maximizeURL">
-		<portlet:param name="jspPage" value="/view.jsp" />
-	</portlet:renderURL>
-
-	<br />
-
-	<a href="<%= maximizeURL %>"><liferay-ui:message key="view-email" /></a>
 </div>

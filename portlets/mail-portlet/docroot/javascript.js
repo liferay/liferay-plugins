@@ -159,6 +159,24 @@ Liferay.Mail = {
 		return instance._currentEmailAddress;
 	},
 
+	getCurrentFolder: function() {
+		var instance = this;
+
+		if ((instance._jsonFolders == null) || (instance._jsonFolders == '')) {
+			return null;
+		}
+
+		for (i = 0; i < instance._jsonFolders.length; i++) {
+			var folder = instance._jsonFolders[i];
+
+			if (folder.fullName == instance.getCurrentFolderName()) {
+				return folder;
+			}
+		}
+
+		return null;
+	},
+
 	getCurrentFolderName: function() {
 		var instance = this;
 
@@ -322,8 +340,14 @@ Liferay.Mail = {
 
 		if (jsonAccounts.accounts.length == 0) {
 			instance.setView('viewAccountConfiguration');
+			jQuery('.has-accounts').hide();
+			jQuery('.has-no-accounts').show();
 
 			return false;
+		}
+		else {
+			jQuery('.has-accounts').show();
+			jQuery('.has-no-accounts').hide();
 		}
 
 		instance._accounts = jsonAccounts.accounts;
@@ -376,6 +400,12 @@ Liferay.Mail = {
 
 		if (!silentUpdate) {
 			instance.clearStatus();
+		}
+
+		// Save folders in variable
+
+		if ((jsonFolders != null) && (jsonFolders != '')) {
+			instance._jsonFolders = jsonFolders.folders;
 		}
 
 		// Parse JSON
@@ -532,7 +562,7 @@ Liferay.Mail = {
 				htmlMessageList += '<tr><td class="alert">' + Liferay.Language.get('no-messages-found') + '</td></tr>';
 			}
 			else {
-				htmlMessageList += '<tr><td class="alert">' + Liferay.Language.get('loading-messages') + '</td></tr>';
+				htmlMessageList += '<tr><td class="alert">' + Liferay.Language.get('x-of-the-emails-in-this-folder-have-been-downloaded', [instance.getCurrentFolder().percentageDownloaded]) + '</td></tr>';
 			}
 		}
 		else {
@@ -1179,7 +1209,7 @@ Liferay.Mail = {
 		});
 
 		instance.messageControlsBackLink.click(function() {
-			instance.setView('viewFolder');
+			instance.loadMessagesByPage(instance.getCurrentFolderName(), instance.getCurrentPageNumber());
 
 			return false;
 		});
@@ -1408,7 +1438,7 @@ Liferay.MailConfiguration = {
 		);
 	},
 
-	saveAccountConfiguration: function (emailAddressValue, emailAddressSameAsUsernameValue, mailInHostNameValue, mailInPortValue, mailInSecureValue, mailOutHostNameValue, mailOutPortValue, mailOutSecureValue, passwordValue, usernameValue) {
+	saveAccountConfiguration: function (emailAddressValue, mailInHostNameValue, mailInPortValue, mailInSecureValue, mailOutHostNameValue, mailOutPortValue, mailOutSecureValue, passwordValue, usernameValue) {
 		var instance = this;
 
 		jQuery.ajax(
@@ -1416,7 +1446,6 @@ Liferay.MailConfiguration = {
 				url: themeDisplay.getLayoutURL() + '/-/mail/update_account',
 				data: {
 					emailAddress: emailAddressValue,
-					emailAddressSameAsUsername: emailAddressSameAsUsernameValue,
 					mailInHostName: mailInHostNameValue,
 					mailInPort: mailInPortValue,
 					mailInSecure: mailInSecureValue,
@@ -1533,6 +1562,10 @@ Liferay.MailConfiguration = {
 			var passwordValue = accountTable.find('.password:first').val();
 			var usernameValue = accountTable.find('.username:first').val();
 
+			if (emailAddressSameAsUsernameValue) {
+				emailAddressValue = usernameValue;
+			}
+
 			// Test account configuration
 
 			jQuery.ajax(
@@ -1540,7 +1573,6 @@ Liferay.MailConfiguration = {
 					url: themeDisplay.getLayoutURL() + '/-/mail/test_account',
 					data: {
 						emailAddress: emailAddressValue,
-						emailAddressSameAsUsername: emailAddressSameAsUsernameValue,
 						mailInHostName: mailInHostNameValue,
 						mailInPort: mailInPortValue,
 						mailInSecure: mailInSecureValue,
@@ -1553,7 +1585,7 @@ Liferay.MailConfiguration = {
 					dataType: 'json',
 					success: function(result) {
 						if (result.incoming && result.outgoing) {
-							instance.saveAccountConfiguration(emailAddressValue, emailAddressSameAsUsernameValue, mailInHostNameValue, mailInPortValue, mailInSecureValue, mailOutHostNameValue, mailOutPortValue, mailOutSecureValue, passwordValue, usernameValue);
+							instance.saveAccountConfiguration(emailAddressValue, mailInHostNameValue, mailInPortValue, mailInSecureValue, mailOutHostNameValue, mailOutPortValue, mailOutSecureValue, passwordValue, usernameValue);
 						}
 						else if (!result.outgoing && !result.incoming) {
 							instance.sendMessage('error', 'you-have-failed-to-connect-to-the-imap-and-smtp-server');

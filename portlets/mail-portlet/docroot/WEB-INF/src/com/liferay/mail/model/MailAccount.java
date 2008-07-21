@@ -49,7 +49,7 @@ public class MailAccount {
 			_mailInSecure = jsonObj.getBoolean("mailInSecure");
 			_mailOutHostName = jsonObj.getString("mailOutHostName");
 			_mailOutPort = jsonObj.getInt("mailOutPort");
-			_mailOutSecure = jsonObj.getBoolean("_mailOutSecure");
+			_mailOutSecure = jsonObj.getBoolean("mailOutSecure");
 			_password = jsonObj.getString("password");
 			_username = jsonObj.getString("username");
 		}

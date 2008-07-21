@@ -35,6 +35,10 @@
 	float: left;
 }
 
+.mail-portlet .account-container .configure-link {
+	padding-left: 5px;
+}
+
 .mail-portlet .accounts-configuration .account {
 	border: 1px solid black;
 	margin: 4px;
@@ -298,4 +302,8 @@
 
 .mail-portlet .message-controls .newer,  .mail-portlet .message-controls .older, .mail-portlet .message-controls .back {
 	cursor: pointer;
+}
+
+.mail-portlet .summary div {
+	display: none;
 }

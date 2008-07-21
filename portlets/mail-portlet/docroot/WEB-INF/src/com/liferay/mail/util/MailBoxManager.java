@@ -203,10 +203,10 @@ public class MailBoxManager {
 	}
 
 	public JSONObject deleteAccountFromDisk() {
-		String filePath = MailDiskManager.getAccountFilePath(
+		String accountPath = MailDiskManager.getAccountPath(
 			_user, _mailAccount.getEmailAddress());
 
-		FileUtil.delete(filePath);
+		FileUtil.deltree(accountPath);
 
 		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
@@ -287,7 +287,13 @@ public class MailBoxManager {
 	}
 
 	public JSONObject flagMessages(
-			String folderName, String messageUids, String flag, boolean value) {
+		String folderName, String messageUids, String flag, boolean value) {
+
+		// Cancel if account no longer exists
+
+		if (!isJSONAccountExist()) {
+			return null;
+		}
 
 		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
@@ -305,6 +311,12 @@ public class MailBoxManager {
 
 			for (long messageUid : messageUidsArray) {
 				try {
+
+					// Cancel if account no longer exists
+
+					if (!isJSONAccountExist()) {
+						return null;
+					}
 
 					// Update message on server
 
@@ -445,12 +457,26 @@ public class MailBoxManager {
 	}
 
 	public JSONObject synchronizeAccount() throws MessagingException {
+
+		// Cancel if account no longer exists
+
+		if (!isJSONAccountExist()) {
+			return null;
+		}
+
 		List<Folder> folders = getFolders();
 
 		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
 		if (Validator.isNotNull(folders)) {
 			for (Folder folder : folders) {
+
+				// Cancel if account no longer exists
+
+				if (!isJSONAccountExist()) {
+					return null;
+				}
+
 				try {
 					synchronizeFolder(folder);
 				}
@@ -473,6 +499,12 @@ public class MailBoxManager {
 	}
 
 	public void synchronizeFolder(Folder folder) throws MessagingException {
+
+		// Cancel if account no longer exists
+
+		if (!isJSONAccountExist()) {
+			return;
+		}
 
 		// Check if folder has been initialized
 
@@ -1117,6 +1149,17 @@ public class MailBoxManager {
 		return transport;
 	}
 
+	protected boolean isJSONAccountExist() {
+		if (Validator.isNull(
+				MailDiskManager.getJSONAccount(
+					_user, _mailAccount.getEmailAddress()))) {
+
+			return false;
+		}
+
+		return true;
+	}
+
 	protected Folder openFolder(String folderName) throws MessagingException {
 		return openFolder(getFolder(folderName));
 	}
@@ -1148,13 +1191,28 @@ public class MailBoxManager {
 			Folder folder, boolean initialized, Date date)
 		throws MessagingException {
 
+		// Cancel if account no longer exists
+
+		if (!isJSONAccountExist()) {
+			return null;
+		}
+
 		try {
 			JSONObject jsonObj = getJSONFolder(folder);
+
+			String fullName = jsonObj.getString("fullName");
+			double messageCount = jsonObj.getInt("messageCount") * 1.0;
+			int downloadedMessages = MailDiskManager.getMessageUidsByFolder(
+				_user, _mailAccount.getEmailAddress(), fullName).length;
+
+			int percentageDownloaded =
+				(int)((downloadedMessages / messageCount) * 100);
 
 			String filePath = MailDiskManager.getFolderFilePath(
 				_user, _mailAccount.getEmailAddress(), folder.getFullName());
 
-	   		jsonObj.put("initialized", initialized);
+			jsonObj.put("percentageDownloaded", percentageDownloaded);
+			jsonObj.put("initialized", initialized);
 			jsonObj.put("lastUpdated", date);
 
 			FileUtil.write(filePath, jsonObj.toString());
@@ -1170,6 +1228,13 @@ public class MailBoxManager {
 
 	protected void storeMessagesToDisk(Message[] messages) {
 		for (Message message : messages) {
+
+			// Cancel if account no longer exists
+
+			if (!isJSONAccountExist()) {
+				return;
+			}
+
 			try {
 				storeMessageToDisk(message);
 			}
@@ -1181,6 +1246,12 @@ public class MailBoxManager {
 
 	protected void storeMessageToDisk(Message message)
 		throws MessagingException {
+
+		// Cancel if account no longer exists
+
+		if (!isJSONAccountExist()) {
+			return;
+		}
 
 		try {
 			IMAPFolder folder = (IMAPFolder)openFolder(message.getFolder());
@@ -1229,6 +1300,12 @@ public class MailBoxManager {
 	protected void updateJSONMessageFlag(
 		User user, MailAccount mailAccount, String folderName, long messageUid,
 		String flag, boolean value) {
+
+		// Cancel if account no longer exists
+
+		if (!isJSONAccountExist()) {
+			return;
+		}
 
 		JSONObject jsonMessage = MailDiskManager.getJSONMessageByUid(
 			_user, _mailAccount.getEmailAddress(), folderName, messageUid);

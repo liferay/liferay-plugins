@@ -26,30 +26,30 @@
 
 <c:choose>
 	<c:when test="<%= themeDisplay.isSignedIn() %>">
-		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
-			<script type="text/javascript">
-				function <portlet:namespace />initEditor() {
-					setTimeout("Liferay.Mail.setView('viewFolder')", 1000);
+		<script type="text/javascript">
+			function <portlet:namespace />initEditor() {
+				setTimeout("Liferay.Mail.setView('viewFolder')", 1000);
 
-					return '';
+				return '';
+			}
+
+			jQuery(
+				function() {
+					Liferay.Mail.init(
+						{
+							sendBodyEditor: window.<portlet:namespace />editor,
+							synchronizeInterval: <%= PortletProps.get("synchronize.interval.minutes") %>,
+							messagesPerPage: <%= PortletProps.get("messages.per.page") %>,
+							namespace: '<portlet:namespace />'
+						}
+					);
 				}
+			);
+		</script>
 
-				jQuery(
-					function() {
-						Liferay.Mail.init(
-							{
-								sendBodyEditor: window.<portlet:namespace />editor,
-								synchronizeInterval: <%= PortletProps.get("synchronize.interval.minutes") %>,
-								messagesPerPage: <%= PortletProps.get("messages.per.page") %>,
-								namespace: '<portlet:namespace />'
-							}
-						);
-					}
-				);
-			</script>
-
+		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
 			<div class="configuration-prompt" id="<portlet:namespace />configuration-prompt">
-				<liferay-ui:message key="click-the-icon-below-to-setup-your-email-accounts" />
+				<liferay-ui:message key="configure-email-accounts" />
 
 				<br /><br />
 
@@ -60,6 +60,10 @@
 			<tr>
 				<td class="selection" id="<portlet:namespace />selection">
 					<select id="<portlet:namespace />account-selection"></select>
+
+					<span class="configure-link">
+						<a href="<%= portletDisplay.getURLEdit() %>"><liferay-ui:message key="configure-email-accounts" /></a>
+					</span>
 				</td>
 				<td class="status-div" id="<portlet:namespace />status-div">
 					<span class="status" id="<portlet:namespace />status" />
@@ -365,9 +369,15 @@
 			</table>
 		</c:if>
 		<c:if test="<%= !windowState.equals(WindowState.MAXIMIZED) %>">
-			<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="maximizeURL" />
+			<div class="summary">
+				<div class="has-accounts">
+					<%= LanguageUtil.format(pageContext, "check-your-email-or-configure-email-accounts", new String[] {portletDisplay.getURLMax(), portletDisplay.getURLEdit()}) %>
+				</div>
 
-			<a href="<%= maximizeURL %>"><liferay-ui:message key="view-email" /></a>
+				<div class="has-no-accounts">
+					<a href="<%= portletDisplay.getURLEdit() %>"><liferay-ui:message key="configure-email-accounts" /></a>
+				</div>
+			</div>
 		</c:if>
 	</c:when>
 	<c:otherwise>
