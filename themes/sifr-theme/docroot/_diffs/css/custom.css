@@ -1,0 +1,107 @@
+#wrapper {
+	background: transparent;
+	width: 100%;
+}
+#navigation {
+	background: transparent;
+	border: none;
+	margin: 50pt auto 20px;
+}
+#navigation li {
+	border: none;
+}
+#banner {
+	background: none;
+}
+#content-wrapper {
+	width: 75%;
+}
+body {
+	background: #02245c url('../images/custom/body_bg.jpg') no-repeat scroll center top;
+	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+}
+#navigation ul {
+	width: 74%;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+	color: #02245c;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+#navigation li {
+	float: left;
+	font: 18px 'Viper Nora',Arial;
+	list-style-type: none;
+	padding: 6px 10px;
+}
+#navigation li a {
+	color: #02245c;
+}
+#navigation li a span {
+	text-decoration: underline;
+}
+.js #add-page {
+	background: transparent none repeat scroll 0% 0%;
+	border: none;
+	right: 12%;
+	top: 4px;
+}
+.js #add-page a span {
+	color: black;
+}
+.portlet {
+	background: transparent;
+	border: 1px solid white;
+	margin: 0 0 10px;
+	padding-right: 10px;
+	text-align: left;
+}
+.portlet-topper {
+	background: transparent;
+	background-position: right top;
+	margin-right: -10px;
+	padding-right: 40px;
+	position: relative;
+}
+.portlet-title {
+	border-bottom: 1px solid #d0d0e0;
+	color: #02245c;
+	display: block;
+	font: 30px 'AvantGarde Bk BT',Arial;
+	font-weight: bold;
+	min-width: 50%;
+	padding: 8px 0 4px 10px;
+}
+.ie .portlet-title {
+	height: 1%;
+}
+.ie .portlet-title {
+	padding-bottom: 5px;
+}
+.portlet-icons {
+	margin: 3px;
+	position: absolute;
+	right: 7px;
+	text-align: right;
+	top: 4px;
+}
+.portlet-content {
+	background-position: left bottom;
+	padding: 10px 5px 25px 15px;
+}
+#banner .logo a {
+	margin-left: 130px;
+}
+.js #navigation .enter-page {
+background-color:transparent;
+padding:0px;
+}
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	padding:3px 0px;
+}
+.js #navigation .enter-page .save-page {
+	text-decoration:underline;
+}
