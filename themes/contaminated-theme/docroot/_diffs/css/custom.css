@@ -1,7 +1,7 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
 body {
-	background: #111 url(../images/common/bg.jpg) repeat-x;
+	background: #111 url(../images/custom/common/bg.jpg) repeat-x;
 	font: 62.5%/1.6em "Trebuchet MS",Verdana,sans-serif;;
 	color: #DDD;
 }
@@ -10,8 +10,12 @@ table {
 	clear: both;
 }
 
+#wrapper {
+	background: none;
+}
+
 .side-nav {
-	background: url(../images/navigation/sidenav.png) no-repeat;
+	background: url(../images/custom/navigation/sidenav.png) no-repeat;
 	left:598px;
 	padding-bottom:204px;
 	position:absolute;
@@ -21,7 +25,7 @@ table {
 /* ---------- Links ---------- */
 
 a {
-	color: #DDD;
+	color: #99AA33;
 	text-decoration: underline;
 }
 
@@ -49,7 +53,7 @@ a:hover {
 /* ---------- Banner ---------- */
 
 #banner {
-	background: url(../images/common/header.png) no-repeat center top;
+	background: url(../images/custom/common/header.png) no-repeat center top;
 	height: 7em;
 	position: relative;
 }
@@ -87,7 +91,7 @@ a:hover {
 	width: 757px;
 	position: relative;
 	top: 70px;
-	left: -154px;
+	border: 0px;;
 }
 
 .ie6 #navigation {
@@ -108,6 +112,7 @@ a:hover {
 	margin-right: 0.5em;
 	padding: 0 3.5em 0 0;
 	position: relative;
+	border: 0px;
 }
 
 #navigation li a {
@@ -131,14 +136,14 @@ a:hover {
 }
 
 #navigation li.selected a {
-	background: url(../images/common/stripes.png) repeat-x 0px 15px;
+	background: url(../images/custom/common/stripes.png) repeat-x 0px 15px;
 	padding-top: 0;
 	color:#8DCA3F;
 	height: 16px;
 }
 
 .ie6 #navigation li.selected a {
-	background: url(../images/common/stripes.png) repeat-x 0px 15px;
+	background: url(../images/custom/common/stripes.png) repeat-x 0px 15px;
 	float: left;
 	padding-right: 0px;
 	margin-right: 0px;
@@ -156,72 +161,6 @@ a:hover {
 
 #navigation li a:hover span {
 	background: none;
-}
-
-/* ---------- Dock with JavaScript ---------- */
-
-.js .lfr-dock.interactive-mode {
-	float: right;
-	min-width: 150px;
-	position: relative;
-	right: 10px;
-	top: 10px;
-}
-
-.js .lfr-dock.interactive-mode h2 {
-	background: none;
-	font-size: 1.2em;
-	margin-bottom: 0;
-	padding: 0 29px 0 0;
-	position: relative;
-	z-index: 82;
-}
-.js .lfr-dock.expanded .lfr-dock-list-container {
-	background: #60738C;
-	border: 1px solid #B5B9BB;
-	border-top: none;
-	top: -2px;
-	position: relative;
-}
-
-.js .lfr-dock.interactive-mode ul {;
-	background: #000;
-	border-left: 20px solid #99AA33;
-	display: none;
-	float: none;
-}
-
-.js .lfr-dock.interactive-mode h2 span {
-	background: none;
-	color: #fff;
-	display: block;
-	font-size: 1.2em;
-	margin-bottom: 0;
-	padding: 0.5em 0.5em 0.5em 2em;
-}
-
-.js #add-page {
-	float: left;
-	font-weight: bold;
-	padding-top: 0.3em;
-	position: relative;
-	top: 0px;
-}
-
-.js #add-page a{
-	color: #DDD;
-}
-
-.js .delete-tab {
-	background: url(../images/common/remove.png) no-repeat 42%;
-	cursor: pointer;
-	display: block;
-	height: 7px;
-	position: absolute;
-	right: 20px;
-	text-indent: -9999em;
-	top: 0px;
-	width: 8px;
 }
 
 /* ---------- Portlet wrapper and icons ---------- */
@@ -242,6 +181,7 @@ a:hover {
 	margin: 0 0 10px;
 	padding-right: 10px;
 	text-align: left;
+	border: 0px;
 }
 
 .portlet-topper {
@@ -249,13 +189,14 @@ a:hover {
 	margin-right: -10px;
 	padding-right: 40px;
 	position: relative;
+	border: 0px;
 }
 
 .portlet-title {
 	display: block;
 	font-weight: normal;
 	min-width: 50%;
-	background: url(../images/common/stripes.png) repeat-x scroll left bottom;
+	background: url(../images/custom/common/stripes.png) repeat-x scroll left bottom;
 	color:#99AA33;
 	font-family:Impact,sans-serif;
 	font-size:2em;
@@ -328,4 +269,18 @@ a:hover {
 	background: #99AA33 none;
 	color: #000;
 	padding: 0.15em 1em;
+}
+
+.js #navigation .enter-page .save-page {
+	background: transparent;
+	padding-left: 0px;
+}
+
+.js #navigation .enter-page {
+	background: transparent;
+}
+
+.js #add-page {
+	bottom: 0px;
+	border: 0px;
 }
