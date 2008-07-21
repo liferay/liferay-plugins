@@ -12,17 +12,18 @@ a {
 /* ---------- Main content body ---------- */
 
 #wrapper {
-	background: url(../images/common/visual_bg.jpg) no-repeat 0 159px;
+	background: url(../images/custom/common/visual_bg.jpg) no-repeat 0 159px;
 	margin: 0 auto;
 	width: 960px;
 }
 
 .ie6 #wrapper {
-	background: url(../images/common/visual_bg.jpg) no-repeat 0 165px;
+	background: url(../images/custom/common/visual_bg.jpg) no-repeat 0 165px;
 }
 
 #content-wrapper {
 	margin-top: 160px;
+	width: 100%;
 }
 
 .ie6 #content-wrapper {
@@ -76,10 +77,11 @@ table {
 	margin: 45px 0px 2em;
 	min-height: 2.2em;
 	width: 962px;
+	border: none;
 }
 
 #navigation ul {
-	background: #4D4D4D url(../images/navigation/topnav_bg.png) no-repeat right;
+	background: #4D4D4D url(../images/custom/navigation/topnav_bg.png) no-repeat right;
 	float: left;
 	min-height: 2em;
 	width: 960px;
@@ -87,6 +89,7 @@ table {
 }
 
 #navigation li {
+	border: 0px;
 	background: #222;
 	display: inline;
 	margin-right: 0px;
@@ -164,8 +167,9 @@ table {
 
 .js #add-page {
 	position: absolute;
-	top: 160px;
-	left: 331px;
+	top: 20px;
+	right: 27px;
+	border: 0px;
 }
 
 .ie6.js #add-page {
@@ -175,34 +179,6 @@ table {
 	position: relative;
 	top: 0px;
 	left: 0px;
-}
-
-/* ---------- Dock with Javascript ---------- */
-
-.js .lfr-dock.interactive-mode {
-	float: right;
-	min-width: 150px;
-	position: relative;
-	right: 1px;
-	top: 51px;
-}
-
-.js .lfr-dock.interactive-mode ul {
-	background: url(../images/dock/menu_bg.png) no-repeat 0 0;
-	border-left: 20px solid #011838;
-	display: none;
-	float: none;
-}
-
-.js .lfr-dock.interactive-mode li a {
-	color: #000;
-	background-position: 0.5em 50%;
-	background-repeat: no-repeat;
-	border-top: 1px solid #ccc;
-	display: block;
-	margin-left: 0.3em;
-	padding: 0.5em 0pt 0.5em 2.5em;
-	text-decoration: none;
 }
 
 /* ---------- Add/Sort/Remove page ---------- */
@@ -221,6 +197,7 @@ table {
 }
 
 .portlet {
+	border: 0px;
 	background: #222;
 	margin: 0 0 10px;
 	padding-right: 10px;
@@ -279,4 +256,8 @@ table {
 
 .tabs li a {
 	color: #000;
+}
+
+.js .interactive-mode li a {
+	color: black;
 }
