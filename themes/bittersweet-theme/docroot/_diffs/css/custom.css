@@ -9,7 +9,6 @@ html {
 #navigation ul li a , #navigation li a span , #navigation ul li.selected a , #navigation ul li.selected a span , 
 #navigation ul li a:hover , #navigation li a:hover span , #navigation ul li.selected a:hover , #navigation ul li.selected a:hover span ,
 .js #add-page , .js #add-page a , .js #add-page a span , .js #add-page a:hover , .js #add-page a:hover span ,
-.js #navigation .enter-page , .js #navigation .enter-page a , .js #navigation .enter-page a:hover ,
 #content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content
 {
  float : none ;
@@ -30,6 +29,7 @@ html {
  text-decoration : none ;
  line-height : normal ;
  color : inherit ;
+ bottom: 0px;
 }
 
 /* Handy Defaults */
@@ -38,7 +38,7 @@ html {
 }
 #banner , #navigation , #navigation ul , .portlet { background-color : transparent ; }
 #wrapper , #banner , #navigation , #content-wrapper , 
-.portlet , .portlet-topper , .portlet-title , .portlet-content { display : block ; }
+.portlet , .portlet-topper , .portlet-title , .portlet-content { display : block ; border: none; }
 #layout-grid .lfr-column  { margin : 0 ; padding : 0 ;}
 .portlet-icons { top : 0 ; right : 0 ; }
 .tabs { border : 0 ; }
@@ -52,19 +52,19 @@ html {
 }
 
 body {
- background : #5F8000 url('../images/common/page_bg.png') repeat-y scroll center top ;
+ background : #5F8000 url('../images/custom/common/page_bg.png') repeat-y scroll center top ;
  color : #333333 ;
  font : normal normal normal 0.6em "Lucida Sans Unicode",sans-serif;
 }
 
 #wrapper {
- background : transparent url('../images/common/wrapper_bg.png') repeat-y scroll 0 0 ;
+ background : transparent url('../images/custom/common/wrapper_bg.png') repeat-y scroll 0 0 ;
  margin : 0 auto ;
  width : 974px ;
 }
 
 #banner {
- background : #567300 url('../images/common/banner_bg.jpg') no-repeat scroll 0 60px ;
+ background : #567300 url('../images/custom/common/banner_bg.jpg') no-repeat scroll 0 60px ;
  font-family : Verdana,sans-serif;
  margin : 0 auto ;
  width : 902px ;
@@ -88,23 +88,24 @@ body {
  background-image : none ;
 }
 .js .lfr-dock.interactive-mode {
-top : 20px ;
-right : 0 ;
+right:151pt;
+top:20px;
 }
 
 .js .lfr-dock.interactive-mode h2 span {
- font-size : 10pt ;
- padding : 8px 16px 16px 16px ;
- color : #222 ;
+	 font-size : 10pt ;
+	 padding : 8px 16px 16px 16px ;
+	 color:white;
 }
 
 #navigation {
- background : #567300 none repeat scroll 0 0 ;
- color : #fff ;
- line-height : 40px ;
- padding-left : 16px ;
- margin : 0 36px ;
- border-bottom : 1px solid #c5ceb2 ;
+	background:#567300 none repeat scroll 0pt 0pt;
+	border-bottom:1px solid #C5CEB2;
+	color:#FFFFFF;
+	height:25px;
+	line-height:40px;
+	margin:0pt 36px;
+	padding-left:16px;
 }
 #navigation ul {
  display : block ;
@@ -149,7 +150,7 @@ right : 0 ;
 }
 
 #column-1 .portlet {
- background : transparent url('../images/portlet/left_portlet_bg.png') no-repeat scroll 0 0 ;
+ background : transparent url('../images/custom/portlet/left_portlet_bg.png') no-repeat scroll 0 0 ;
  color : #fdd ;
 }
 #column-2 .portlet {
@@ -204,6 +205,31 @@ a.portlet-icon-back:hover {
 }
 .tabs li.current {
 	top: 0;
+}
+.portlet {
+	border: none;
+}
+#navigation li {
+	border: none;
+}
+#banner h1.logo {
+	left: 220px;
+	top: -30px;
+}
+.js #navigation .enter-page .save-page {
+	background:transparent none repeat scroll 0% 0%;
+	font-size:1.2em;
+	padding:4px 12px;
+	position:absolute;
+	right:-3px;
+	top:0px;
+	margin: 0px;
+	font-weight: normal;
+}
+.js #navigation .enter-page {
+	background-color: transparent;
+	padding: 0px 50px 0px 0px;
+	width:auto;
 }
 
 
