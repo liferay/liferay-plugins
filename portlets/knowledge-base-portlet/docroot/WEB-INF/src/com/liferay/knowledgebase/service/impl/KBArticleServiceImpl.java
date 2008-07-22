@@ -113,15 +113,6 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		return kbArticleLocalService.getArticle(groupId, title, version);
 	}
 
-	public void moveArticle(
-			long groupId, String title, String newTitle,
-			PortletPreferences prefs, ThemeDisplay themeDisplay)
-		throws PortalException, SystemException {
-
-		kbArticleLocalService.moveArticle(
-			getUserId(), groupId, title, newTitle, prefs, themeDisplay);
-	}
-
 	public KBArticle revertArticle(
 			long groupId, String title, double version,
 			PortletPreferences prefs, ThemeDisplay themeDisplay)

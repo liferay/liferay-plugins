@@ -165,19 +165,6 @@ public interface KBArticleLocalService {
 	public int getArticlesCount(long groupId, java.lang.String title,
 		boolean head) throws com.liferay.portal.SystemException;
 
-	public void moveArticle(long userId, long groupId, java.lang.String title,
-		java.lang.String newTitle, javax.portlet.PortletPreferences prefs,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException;
-
-	public void moveArticle(long userId, long groupId, java.lang.String title,
-		java.lang.String newTitle, boolean strict,
-		javax.portlet.PortletPreferences prefs,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException;
-
 	public void reIndex(java.lang.String[] ids)
 		throws com.liferay.portal.SystemException;
 

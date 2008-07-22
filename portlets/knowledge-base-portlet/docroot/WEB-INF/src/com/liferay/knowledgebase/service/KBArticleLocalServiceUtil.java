@@ -290,30 +290,6 @@ public class KBArticleLocalServiceUtil {
 		return kbArticleLocalService.getArticlesCount(groupId, title, head);
 	}
 
-	public static void moveArticle(long userId, long groupId,
-		java.lang.String title, java.lang.String newTitle,
-		javax.portlet.PortletPreferences prefs,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		KBArticleLocalService kbArticleLocalService = KBArticleLocalServiceFactory.getService();
-
-		kbArticleLocalService.moveArticle(userId, groupId, title, newTitle,
-			prefs, themeDisplay);
-	}
-
-	public static void moveArticle(long userId, long groupId,
-		java.lang.String title, java.lang.String newTitle, boolean strict,
-		javax.portlet.PortletPreferences prefs,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		KBArticleLocalService kbArticleLocalService = KBArticleLocalServiceFactory.getService();
-
-		kbArticleLocalService.moveArticle(userId, groupId, title, newTitle,
-			strict, prefs, themeDisplay);
-	}
-
 	public static void reIndex(java.lang.String[] ids)
 		throws com.liferay.portal.SystemException {
 		KBArticleLocalService kbArticleLocalService = KBArticleLocalServiceFactory.getService();

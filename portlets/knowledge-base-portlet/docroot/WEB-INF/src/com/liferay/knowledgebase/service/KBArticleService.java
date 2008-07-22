@@ -73,12 +73,6 @@ public interface KBArticleService {
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public void moveArticle(long groupId, java.lang.String title,
-		java.lang.String newTitle, javax.portlet.PortletPreferences prefs,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException;
-
 	public com.liferay.knowledgebase.model.KBArticle revertArticle(
 		long groupId, java.lang.String title, double version,
 		javax.portlet.PortletPreferences prefs,

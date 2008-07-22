@@ -108,17 +108,6 @@ public class KBArticleServiceUtil {
 		return kbArticleService.getArticle(groupId, title, version);
 	}
 
-	public static void moveArticle(long groupId, java.lang.String title,
-		java.lang.String newTitle, javax.portlet.PortletPreferences prefs,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
-
-		kbArticleService.moveArticle(groupId, title, newTitle, prefs,
-			themeDisplay);
-	}
-
 	public static com.liferay.knowledgebase.model.KBArticle revertArticle(
 		long groupId, java.lang.String title, double version,
 		javax.portlet.PortletPreferences prefs,
