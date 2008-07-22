@@ -45,13 +45,13 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 	public KBArticle addArticle(
 			long groupId, String title, String content, String description,
-			String summary, boolean minorEdit, PortletPreferences prefs,
+			boolean minorEdit, PortletPreferences prefs,
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		return kbArticleLocalService.addArticle(
-			getUserId(), groupId, title, content, description, summary,
-			minorEdit, prefs, themeDisplay);
+			getUserId(), groupId, title, content, description, minorEdit, prefs,
+			themeDisplay);
 	}
 
 	public void addArticleAttachments(
@@ -157,13 +157,13 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 	public KBArticle updateArticle(
 			long groupId, String title, double version, String content,
-			String description, String summary, boolean minorEdit,
-			String parentTitle, String[] tagsEntries,
-			PortletPreferences prefs, ThemeDisplay themeDisplay)
+			String description, boolean minorEdit, String parentTitle,
+			String[] tagsEntries, PortletPreferences prefs,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		return kbArticleLocalService.updateArticle(
-			getUserId(), groupId, title, version, content, description, summary,
+			getUserId(), groupId, title, version, content, description,
 			minorEdit, parentTitle, tagsEntries, prefs, themeDisplay);
 	}
 

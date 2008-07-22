@@ -23,6 +23,8 @@
 package com.liferay.knowledgebase.portlet;
 
 import com.liferay.knowledgebase.KnowledgeBaseKeys;
+import com.liferay.knowledgebase.ArticleTitleException;
+import com.liferay.knowledgebase.ArticleVersionException;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
@@ -34,6 +36,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.jsp.JSPPortlet;
+import com.liferay.portlet.tags.EntryNameException;
 
 import java.io.IOException;
 
@@ -117,7 +120,20 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 		}
 		catch (Exception e) {
-			throw new PortletException(e);
+			if (e instanceof ArticleTitleException ||
+				e instanceof ArticleVersionException ||
+				e instanceof EntryNameException) {
+
+				SessionErrors.add(actionRequest, e.getClass().getName());
+
+				actionResponse.setRenderParameters(
+					actionRequest.getParameterMap());
+				actionResponse.setRenderParameter(
+					Constants.CMD, "edit_article");
+			}
+			else {
+				throw new PortletException(e);
+			}
 		}
 	}
 
@@ -236,7 +252,6 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 		String content = ParamUtil.getString(actionRequest, "content");
 		String description = ParamUtil.getString(actionRequest, "description");
-		String summary = ParamUtil.getString(actionRequest, "summary");
 		boolean minorEdit = ParamUtil.getBoolean(actionRequest, "minorEdit");
 		String parentTitle = ParamUtil.getString(actionRequest, "parentTitle");
 
@@ -245,7 +260,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 		return KBArticleServiceUtil.updateArticle(
 			themeDisplay.getPortletGroupId(), title, version, content,
-			description,  summary, minorEdit, parentTitle, tagsEntries, prefs,
+			description,  minorEdit, parentTitle, tagsEntries, prefs,
 			themeDisplay);
 	}
 

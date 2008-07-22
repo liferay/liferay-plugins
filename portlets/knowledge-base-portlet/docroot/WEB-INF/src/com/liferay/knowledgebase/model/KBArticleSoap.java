@@ -50,7 +50,6 @@ public class KBArticleSoap implements Serializable {
 		soapModel.setVersion(model.getVersion());
 		soapModel.setContent(model.getContent());
 		soapModel.setDescription(model.getDescription());
-		soapModel.setSummary(model.getSummary());
 		soapModel.setHead(model.getHead());
 		soapModel.setParentTitle(model.getParentTitle());
 
@@ -174,14 +173,6 @@ public class KBArticleSoap implements Serializable {
 		_description = description;
 	}
 
-	public String getSummary() {
-		return _summary;
-	}
-
-	public void setSummary(String summary) {
-		_summary = summary;
-	}
-
 	public boolean getHead() {
 		return _head;
 	}
@@ -214,7 +205,6 @@ public class KBArticleSoap implements Serializable {
 	private double _version;
 	private String _content;
 	private String _description;
-	private String _summary;
 	private boolean _head;
 	private String _parentTitle;
 }

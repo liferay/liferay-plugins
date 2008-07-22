@@ -31,15 +31,15 @@ package com.liferay.knowledgebase.service;
 public class KBArticleServiceUtil {
 	public static com.liferay.knowledgebase.model.KBArticle addArticle(
 		long groupId, java.lang.String title, java.lang.String content,
-		java.lang.String description, java.lang.String summary,
-		boolean minorEdit, javax.portlet.PortletPreferences prefs,
+		java.lang.String description, boolean minorEdit,
+		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
 
 		return kbArticleService.addArticle(groupId, title, content,
-			description, summary, minorEdit, prefs, themeDisplay);
+			description, minorEdit, prefs, themeDisplay);
 	}
 
 	public static void addArticleAttachments(long groupId,
@@ -166,16 +166,15 @@ public class KBArticleServiceUtil {
 	public static com.liferay.knowledgebase.model.KBArticle updateArticle(
 		long groupId, java.lang.String title, double version,
 		java.lang.String content, java.lang.String description,
-		java.lang.String summary, boolean minorEdit,
-		java.lang.String parentTitle, java.lang.String[] tagsEntries,
-		javax.portlet.PortletPreferences prefs,
+		boolean minorEdit, java.lang.String parentTitle,
+		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
 
 		return kbArticleService.updateArticle(groupId, title, version, content,
-			description, summary, minorEdit, parentTitle, tagsEntries, prefs,
+			description, minorEdit, parentTitle, tagsEntries, prefs,
 			themeDisplay);
 	}
 }

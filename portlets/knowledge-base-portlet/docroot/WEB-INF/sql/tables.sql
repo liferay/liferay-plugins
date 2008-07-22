@@ -8,11 +8,10 @@ create table KB_KBArticle (
 	userId LONG,
 	userName VARCHAR(75) null,
 	modifiedDate DATE null,
-	title VARCHAR(75) null,
+	title VARCHAR(100) null,
 	version DOUBLE,
 	content TEXT null,
 	description STRING null,
-	summary STRING null,
 	head BOOLEAN,
 	parentTitle VARCHAR(75) null
 );

@@ -31,7 +31,6 @@
 		<column name="version" type="double" />
 		<column name="content" type="String" />
 		<column name="description" type="String" />
-		<column name="summary" type="String" />
 		<column name="head" type="boolean" />
 		<column name="parentTitle" type="String" />
 

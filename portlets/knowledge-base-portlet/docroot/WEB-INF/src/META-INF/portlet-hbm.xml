@@ -18,7 +18,6 @@
 		<property name="version" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="summary" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="head" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="parentTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>

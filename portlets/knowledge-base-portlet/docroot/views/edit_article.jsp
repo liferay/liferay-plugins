@@ -114,6 +114,7 @@ editArticleURL.setParameter("title", title);
 
 <liferay-ui:error exception="<%= ArticleTitleException.class %>" message="please-enter-a-valid-title" />
 <liferay-ui:error exception="<%= ArticleVersionException.class %>" message="another-user-has-made-changes-since-you-started-editing-please-copy-your-changes-and-try-again" />
+<liferay-ui:error exception="<%= EntryNameException.class %>" message="please-enter-a-valid-tag-name" />
 <liferay-ui:tags-error />
 
 <table class="lfr-table">
@@ -186,19 +187,6 @@ editArticleURL.setParameter("title", title);
 	</td>                         	
 	<td>
 		<liferay-ui:input-field model="<%= KBArticle.class %>" bean="<%= article %>" field="description" />
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="summary" />
-	</td>
-	<td>
-		<input name="<portlet:namespace />summary-of-changes" size="75" type="text" />
 	</td>
 </tr>
 <tr>

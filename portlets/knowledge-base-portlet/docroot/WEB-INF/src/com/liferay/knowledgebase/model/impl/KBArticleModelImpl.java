@@ -85,15 +85,12 @@ public class KBArticleModelImpl extends BaseModelImpl {
 			{ "description", new Integer(Types.VARCHAR) },
 			
 
-			{ "summary", new Integer(Types.VARCHAR) },
-			
-
 			{ "head", new Integer(Types.BOOLEAN) },
 			
 
 			{ "parentTitle", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KB_KBArticle (uuid_ VARCHAR(75) null,articleId LONG not null primary key,groupId LONG,resourcePrimKey LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,modifiedDate DATE null,title VARCHAR(75) null,version DOUBLE,content TEXT null,description STRING null,summary STRING null,head BOOLEAN,parentTitle VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table KB_KBArticle (uuid_ VARCHAR(75) null,articleId LONG not null primary key,groupId LONG,resourcePrimKey LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,modifiedDate DATE null,title VARCHAR(100) null,version DOUBLE,content TEXT null,description STRING null,head BOOLEAN,parentTitle VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table KB_KBArticle";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -117,7 +114,6 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		model.setVersion(soapModel.getVersion());
 		model.setContent(soapModel.getContent());
 		model.setDescription(soapModel.getDescription());
-		model.setSummary(soapModel.getSummary());
 		model.setHead(soapModel.getHead());
 		model.setParentTitle(soapModel.getParentTitle());
 
@@ -286,19 +282,6 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		}
 	}
 
-	public String getSummary() {
-		return GetterUtil.getString(_summary);
-	}
-
-	public void setSummary(String summary) {
-		if (((summary == null) && (_summary != null)) ||
-				((summary != null) && (_summary == null)) ||
-				((summary != null) && (_summary != null) &&
-				!summary.equals(_summary))) {
-			_summary = summary;
-		}
-	}
-
 	public boolean getHead() {
 		return _head;
 	}
@@ -347,7 +330,6 @@ public class KBArticleModelImpl extends BaseModelImpl {
 			model.setVersion(getVersion());
 			model.setContent(HtmlUtil.escape(getContent()));
 			model.setDescription(HtmlUtil.escape(getDescription()));
-			model.setSummary(HtmlUtil.escape(getSummary()));
 			model.setHead(getHead());
 			model.setParentTitle(HtmlUtil.escape(getParentTitle()));
 
@@ -374,7 +356,6 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		clone.setVersion(getVersion());
 		clone.setContent(getContent());
 		clone.setDescription(getDescription());
-		clone.setSummary(getSummary());
 		clone.setHead(getHead());
 		clone.setParentTitle(getParentTitle());
 
@@ -454,7 +435,6 @@ public class KBArticleModelImpl extends BaseModelImpl {
 	private double _version;
 	private String _content;
 	private String _description;
-	private String _summary;
 	private boolean _head;
 	private String _parentTitle;
 }

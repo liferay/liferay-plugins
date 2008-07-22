@@ -90,8 +90,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	public KBArticle addArticle(
 			long userId, long groupId, String title, String content,
-			String description, String summary, boolean minorEdit,
-			PortletPreferences prefs, ThemeDisplay themeDisplay)
+			String description, boolean minorEdit, PortletPreferences prefs,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		String uuid = null;
@@ -102,13 +102,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		return addArticle(
 			uuid, userId, groupId, title, version, content, description,
-			summary, minorEdit, head, parentTitle, tagsEntries, prefs,
-			themeDisplay);
+			minorEdit, head, parentTitle, tagsEntries, prefs, themeDisplay);
 	}
 
 	public KBArticle addArticle(
 			String uuid, long userId, long groupId, String title,
-			double version, String content, String description, String summary,
+			double version, String content, String description,
 			boolean minorEdit, boolean head, String parentTitle,
 			String[] tagsEntries, PortletPreferences prefs,
 			ThemeDisplay themeDisplay)
@@ -141,7 +140,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		article.setVersion(version);
 		article.setContent(content);
 		article.setDescription(description);
-		article.setSummary(summary);
 		article.setHead(head);
 		article.setParentTitle(parentTitle);
 
@@ -260,14 +258,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		double version = article.getVersion();
 		String content = article.getContent();
-		String summary = themeDisplay.translate(
-			"changed-parent-from-x", originalParentTitle);
 		boolean minorEdit = false;
 		String[] tagsEntries = null;
 
 		updateArticle(
 			userId, groupId, title, version, content, article.getDescription(),
-			summary, minorEdit, newParentTitle, tagsEntries, prefs,
+			minorEdit, newParentTitle, tagsEntries, prefs,
 			themeDisplay);
 
 		List<KBArticle> oldArticles = kbArticlePersistence.findByG_T_H(
@@ -582,13 +578,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		boolean head = true;
 		String parentTitle = article.getParentTitle();
 		String content = StringPool.BLANK;
-		String summary = KBArticleImpl.MOVED + " to " + title;
 		String[] tagsEntries = null;
 
 		addArticle(
 			uuid, userId, groupId, title, version, content, StringPool.BLANK,
-			summary, false, head, parentTitle, tagsEntries, prefs,
-			themeDisplay);
+			false, head, parentTitle, tagsEntries, prefs, themeDisplay);
 
 		// Tags
 
@@ -657,8 +651,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		return updateArticle(
 			userId, groupId, title, 0, oldArticle.getContent(),
-			oldArticle.getDescription(),
-			KBArticleImpl.REVERTED + " to " + version, false, null, null, prefs,
+			oldArticle.getDescription(), false, null, null, prefs,
 			themeDisplay);
 	}
 
@@ -736,8 +729,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	public KBArticle updateArticle(
 			long userId, long groupId, String title, double version,
-			String content, String description, String summary,
-			boolean minorEdit, String parentTitle, String[] tagsEntries,
+			String content, String description, boolean minorEdit,
+			String parentTitle, String[] tagsEntries,
 			PortletPreferences prefs, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
@@ -754,7 +747,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		catch (NoSuchArticleException nspe) {
 			return addArticle(
 				null, userId, groupId, title, KBArticleImpl.DEFAULT_VERSION,
-				content, description, summary, minorEdit, true, parentTitle,
+				content, description, minorEdit, true, parentTitle,
 				tagsEntries, prefs, themeDisplay);
 		}
 
@@ -786,7 +779,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		article.setTitle(title);
 		article.setVersion(newVersion);
 		article.setContent(content);
-		article.setSummary(summary);
+		article.setDescription(description);
 		article.setHead(true);
 
 		if (Validator.isNotNull(parentTitle)) {
@@ -948,7 +941,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				"[$FROM_NAME$]",
 				"[$ARTICLE_CONTENT$]",
 				"[$ARTICLE_DESCRIPTION$]",
-				"[$ARTICLE_SUMMARY$]",
 				"[$ARTICLE_ID$]",
 				"[$ARTICLE_TITLE$]",
 				"[$ARTICLE_USER_ADDRESS$]",
@@ -965,7 +957,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				fromName,
 				article.getContent(),
 				article.getDescription(),
-				article.getSummary(),
 				String.valueOf(article.getArticleId()),
 				article.getTitle(),
 				user.getEmailAddress(),
@@ -985,7 +976,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				"[$FROM_NAME$]",
 				"[$ARTICLE_CONTENT$]",
 				"[$ARTICLE_DESCRIPTION$]",
-				"[$ARTICLE_SUMMARY$]",
 				"[$ARTICLE_ID$]",
 				"[$ARTICLE_TITLE$]",
 				"[$ARTICLE_URL$]",
@@ -1003,7 +993,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				fromName,
 				article.getContent(),
 				article.getDescription(),
-				article.getSummary(),
 				String.valueOf(article.getArticleId()),
 				article.getTitle(),
 				articleURL,

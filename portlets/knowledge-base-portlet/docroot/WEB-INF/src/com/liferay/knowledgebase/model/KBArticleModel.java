@@ -85,10 +85,6 @@ public interface KBArticleModel extends BaseModel {
 
 	public void setDescription(String description);
 
-	public String getSummary();
-
-	public void setSummary(String summary);
-
 	public boolean getHead();
 
 	public boolean isHead();

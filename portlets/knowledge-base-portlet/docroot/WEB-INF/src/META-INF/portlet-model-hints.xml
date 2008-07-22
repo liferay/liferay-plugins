@@ -24,7 +24,6 @@
 			<hint-collection name="TEXTAREA" />
 			<hint name="display-height">40</hint>
 		</field>
-		<field name="summary" type="String"/>
 		<field name="head" type="boolean" />
 		<field name="parentTitle" type="String" />
 	</model>
