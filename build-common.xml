@@ -97,7 +97,7 @@ ECJ was automatically installed. Please rerun your task.
 			newenvironment="true"
 		>
 			<jvmarg value="-Dplugins.env.dir=." />
-			<jvmarg value="-Dplugins.env.svn=true" />
+			<jvmarg value="-Dplugins.env.svn=${svn.enabled}" />
 			<jvmarg value="-Dplugins.env.eclipse=true" />
 		</java>
 	</target>
@@ -111,7 +111,7 @@ ECJ was automatically installed. Please rerun your task.
 			newenvironment="true"
 		>
 			<jvmarg value="-Dplugins.env.dir=." />
-			<jvmarg value="-Dplugins.env.svn=true" />
+			<jvmarg value="-Dplugins.env.svn=${svn.enabled}" />
 			<jvmarg value="-Dplugins.env.eclipse=false" />
 		</java>
 	</target>
