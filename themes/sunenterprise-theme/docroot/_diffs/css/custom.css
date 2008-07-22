@@ -1,0 +1,129 @@
+body {
+    color: #5a7a98;
+}
+
+#banner h1.logo a {
+    background: url(../images/common/logo.png) no-repeat;
+    margin: -10px;
+}
+
+#banner {
+    background: #ced9e2 url(../images/common/banner_bg.gif) no-repeat scroll 0pt 0pt;
+} 
+
+#wrapper {
+    background: transparent;
+}
+
+#navigation {
+    background: #ced9e2 url(../images/common/banner_bg.gif) no-repeat scroll 0pt -1pt;
+    border-top: none;
+}
+
+#navigation li {
+    border-top: 2px solid;
+    border-left: 2px solid;
+    border-right: 2px solid;
+    border-bottom: none;
+    border-color: transparent;
+}
+
+
+#navigation li.selected a {
+    background-color: #FFFFFF;
+    color: #5a7a98;
+}
+
+#navigation li a:hover {
+    background-color: transparent;
+    color: #ffffff;
+}
+
+#navigation li.selected a:hover {
+    background-color: #ffffff;
+    color: #5a7a98;
+}
+
+.portlet {
+    border: 1px solid #CED9E2;
+    padding: 0px;
+}
+
+.js #add-page {
+    background: transparent;
+    border: none;
+}
+
+.js #add-page a {
+    color: #5a7a98;
+}
+
+.js #navigation .enter-page {
+    background-color: transparent;
+    padding: 0px;
+}
+
+.portlet-topper {
+    background: #CED9E2 none repeat scroll 0% 0%;
+}
+
+.js .interactive-mode {
+    background: transparent url(../images/dock/center_bg.png) repeat-x scroll 0% 0%;
+}
+
+.js .interactive-mode h2 {
+    margin: 2pt;
+    background: transparent url(../images/dock/right_bg.png) no-repeat scroll 98% 2pt;
+}
+
+.js .interactive-mode h2 span {
+    background: transparent;
+    border-right: none;
+}
+
+.js .interactive-mode ul {
+    border-color: #5a7a98;
+}
+
+.js .interactive-mode li {
+    border-top: 1px solid #5a7a98;
+}
+
+.js .interactive-mode li:hover a:hover, .js .interactive-mode li:hover > a, .js .interactive-mode li:hover > h3 > a {
+    background-color: #CED9E2;
+}
+
+.js .interactive-mode li:hover, .js .interactive-mode .my-places li:hover {
+    background-color: #CED9E2;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    background: transparent url(../images/dock/center_bg.png) repeat-x scroll 0% 0%;
+}
+
+.ui-dialog {
+    border: 1px solid #5a7a98;
+    padding: 0px;
+}
+
+.ui-tabs {
+    border-bottom: 1px solid #CED9E2;
+}
+
+.ui-tabs li a, .tabs li span {
+    background: #5A7A98 none repeat-x scroll 0pt 100%;
+    border-right:1px solid #CED9E2;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+    background: #CED9E2 none repeat scroll 0% 0%;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+    background: #5A7A98 none repeat scroll 0% 0%;
+    color: #ffffff;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+    background-color: #CED9E2;
+}
