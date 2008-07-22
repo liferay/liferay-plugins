@@ -37,8 +37,6 @@ KBArticle article = (KBArticle)row.getObject();
 
 	<liferay-ui:icon image="edit" url="<%= editURL.toString() %>" />
 
-	<liferay-ui:icon image="print" message="print" url='<%= "javascript: " + renderResponse.getNamespace() + "printArticle();" %>' />
-
 	<c:choose>
 		<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), article.getResourcePrimKey()) %>">
 			<portlet:actionURL var="unsubscribeURL">
