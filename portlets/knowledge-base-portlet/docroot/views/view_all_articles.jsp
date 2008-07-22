@@ -24,7 +24,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-request.setAttribute("page_iterator.type", "all_pages");
+request.setAttribute("article_iterator.type", "all_articles");
 %>
 
-<jsp:include page="/views/page_iterator.jsp" />
+<jsp:include page="/views/article_iterator.jsp" />

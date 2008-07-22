@@ -20,17 +20,33 @@
  * SOFTWARE.
  */
 
-package com.liferay.knowledgebase;
+package com.liferay.knowledgebase.model;
 
 /**
- * <a href="KnowledgeBaseKeys.java.html"><b><i>View Source</i></b></a>
+ * <a href="KBArticle.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
+ *
  */
-public class KnowledgeBaseKeys {
+public interface KBArticle extends KBArticleModel {
+	public java.lang.String getUserUuid()
+		throws com.liferay.portal.SystemException;
 
-	public static final String ARTICLE = "Article";
+	public void setUserUuid(java.lang.String userUuid);
 
-	public static final String PORTLET_ID = "1_WAR_knowledgebaseportlet";
+	public com.liferay.portal.model.Group getGroup();
 
+	public com.liferay.knowledgebase.model.KBArticle getParentArticle();
+
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getParentArticles();
+
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getChildArticles();
+
+	public java.lang.String getAttachmentsDir();
+
+	public void setAttachmentsDir(java.lang.String attachmentsDir);
+
+	public java.lang.String[] getAttachmentsFiles()
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
 }

@@ -22,15 +22,30 @@
 
 package com.liferay.knowledgebase;
 
+import com.liferay.portal.PortalException;
+
 /**
- * <a href="KnowledgeBaseKeys.java.html"><b><i>View Source</i></b></a>
+ * <a href="ArticleVersionException.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
+ *
  */
-public class KnowledgeBaseKeys {
+public class ArticleVersionException extends PortalException {
 
-	public static final String ARTICLE = "Article";
+	public ArticleVersionException() {
+		super();
+	}
 
-	public static final String PORTLET_ID = "1_WAR_knowledgebaseportlet";
+	public ArticleVersionException(String msg) {
+		super(msg);
+	}
+
+	public ArticleVersionException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+	public ArticleVersionException(Throwable cause) {
+		super(cause);
+	}
 
 }

@@ -5,7 +5,7 @@
 	padding: 0.5em;
 }
 
-.portlet-knowledge-base a.createpage {
+.portlet-knowledge-base a.createarticle {
 	color: red;
 }
 
@@ -45,15 +45,15 @@
 	font-weight: normal;
 }
 
-.portlet-knowledge-base h1.page-title {
+.portlet-knowledge-base h1.article-title {
 	border-bottom: 1px solid #AAAAAA;
 	margin: 0px;
 	margin-bottom: 0.5em;
 	padding-bottom: 5px;
 }
 
-.portlet-knowledge-base h1.page-title .return-to-page {
-	background: url(/html/themes/classic/images/wiki/return_to_page.png) no-repeat 0 50%;
+.portlet-knowledge-base h1.article-title .return-to-article {
+	background: url(/html/themes/classic/images/wiki/return_to_article.png) no-repeat 0 50%;
 	padding-left: 20px;
 	text-decoration: none;
 }
@@ -64,20 +64,20 @@
 	padding: 3px;
 }
 
-.portlet-knowledge-base .child-pages h3 {
+.portlet-knowledge-base .child-articles h3 {
 	font-size: 1.2em;
 	margin-bottom: 0.3em;
 }
 
-.ie .portlet-knowledge-base .child-pages h3 {
+.ie .portlet-knowledge-base .child-articles h3 {
 	margin-bottom: 0.2em;
 }
 
-.portlet-knowledge-base .child-pages ul {
+.portlet-knowledge-base .child-articles ul {
 	margin-top: 0;
 }
 
-.portlet-knowledge-base .child-pages li {
+.portlet-knowledge-base .child-articles li {
 	font-weight: bold;
 	font-size: 1.1em;
 }
@@ -113,46 +113,46 @@
 	font-weight: bold;
 }
 
-.portlet-knowledge-base .page-actions {
+.portlet-knowledge-base .article-actions {
 	margin-top: 1.5em;
 }
 
-.portlet-knowledge-base .page-title .page-actions {
+.portlet-knowledge-base .article-title .article-actions {
 	float: right;
 	margin-top: 0;
 }
 
-.portlet-knowledge-base .page-title .page-actions a {
+.portlet-knowledge-base .article-title .article-actions a {
 	text-decoration: none;
 }
 
-.portlet-knowledge-base .page-actions a:hover {
+.portlet-knowledge-base .article-actions a:hover {
 	text-decoration: underline;
 }
 
-.portlet-knowledge-base .page-info {
+.portlet-knowledge-base .article-info {
 	width: 100%;
 }
 
-.portlet-knowledge-base .page-info tr th, .portlet-knowledge-base .page-info tr td {
+.portlet-knowledge-base .article-info tr th, .portlet-knowledge-base .article-info tr td {
 	border: 1px solid #ccc;
 	border-left: none;
 	border-right: none;
 	padding: 0.3em 1em;
 }
 
-.portlet-knowledge-base .page-old-version a {
+.portlet-knowledge-base .article-old-version a {
 	color: #ff9933;
 }
 
-.portlet-knowledge-base .page-old-version {
+.portlet-knowledge-base .article-old-version {
 	color: #ff9933;
 	line-height: 1.2em;
 	margin: -1em 0pt 1.4em 0em;
 	width: auto;
 }
 
-.portlet-knowledge-base .page-redirect {
+.portlet-knowledge-base .article-redirect {
 	color: #7d7d7d;
 	cursor: pointer;
 	line-height: 1.2em;
@@ -160,7 +160,7 @@
 	width: auto;
 }
 
-.portlet-knowledge-base .page-redirect:hover {
+.portlet-knowledge-base .article-redirect:hover {
 	text-decoration: underline;
 }
 

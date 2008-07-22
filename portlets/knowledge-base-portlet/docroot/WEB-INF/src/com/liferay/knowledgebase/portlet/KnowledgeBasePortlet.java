@@ -23,8 +23,8 @@
 package com.liferay.knowledgebase.portlet;
 
 import com.liferay.knowledgebase.KnowledgeBaseKeys;
-import com.liferay.portal.PortalException;
-import com.liferay.portal.SystemException;
+import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
@@ -33,16 +33,9 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.wiki.NoSuchNodeException;
-import com.liferay.portlet.wiki.model.WikiNode;
-import com.liferay.portlet.wiki.model.WikiPage;
-import com.liferay.portlet.wiki.service.WikiNodeServiceUtil;
-import com.liferay.portlet.wiki.service.WikiPageServiceUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 
 import java.io.IOException;
-
-import java.rmi.RemoteException;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -66,13 +59,29 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		try {
 			String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
-			WikiPage page = null;
+			KBArticle article = null;
 
-			if (cmd.equals(Constants.UPDATE)) {
-				page = updatePage(actionRequest);
+			if (cmd.equals(Constants.DELETE)) {
+				deleteArticle(actionRequest);
 			}
-			else if (cmd.equals(Constants.DELETE)) {
-				deletePage(actionRequest);
+			else if (cmd.equals(Constants.UPDATE)) {
+				article = updateArticle(actionRequest);
+			}
+			else if (cmd.equals(Constants.SUBSCRIBE)) {
+				subscribe(actionRequest);
+			}
+			else if (cmd.equals(Constants.UNSUBSCRIBE)) {
+				unsubscribe(actionRequest);
+			}
+			else if (cmd.equals(
+				Constants.SUBSCRIBE + KnowledgeBaseKeys.ARTICLE)) {
+
+				subscribeArticle(actionRequest);
+			}
+			else if (cmd.equals(
+				Constants.UNSUBSCRIBE + KnowledgeBaseKeys.ARTICLE)) {
+
+				unsubscribeArticle(actionRequest);
 			}
 
 			boolean preview = ParamUtil.getBoolean(actionRequest, "preview");
@@ -85,7 +94,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 				String redirect = ParamUtil.getString(
 					actionRequest, "redirect");
 
-				if (page != null) {
+				if (article != null) {
 					String saveAndContinueRedirect = ParamUtil.getString(
 						actionRequest, "saveAndContinueRedirect");
 
@@ -93,7 +102,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 						redirect = saveAndContinueRedirect;
 					}
 					else if (redirect.endsWith("title=")) {
-						redirect += page.getTitle();
+						redirect += article.getTitle();
 					}
 				}
 
@@ -122,17 +131,14 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		String title = ParamUtil.getString(renderRequest, "title");
 
 		try {
-			WikiNode node = getNode(themeDisplay);
-
-			renderRequest.setAttribute(KnowledgeBaseKeys.WIKI_NODE, node);
-
-			WikiPage page = null;
+			KBArticle article = null;
 
 			if (Validator.isNotNull(title)) {
-				page = WikiPageServiceUtil.getPage(node.getNodeId(), title);
+				article = KBArticleServiceUtil.getArticle(
+					themeDisplay.getPortletGroupId(), title);
 			}
 
-			renderRequest.setAttribute(KnowledgeBaseKeys.WIKI_PAGE, page);
+			renderRequest.setAttribute(KnowledgeBaseKeys.ARTICLE, article);
 
 		}
 		catch (Exception e) {
@@ -140,22 +146,6 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		}
 
 		super.render(renderRequest, renderResponse);
-	}
-
-	protected WikiNode getNode(ThemeDisplay themeDisplay)
-		throws PortalException, SystemException, RemoteException {
-
-		WikiNode node;
-
-		try {
-			node = WikiNodeServiceUtil.getNode(
-				themeDisplay.getPortletGroupId(), _KB_NODE);
-		}
-		catch(NoSuchNodeException e) {
-			node = WikiNodeServiceUtil.addNode(
-				themeDisplay.getPlid(), _KB_NODE, _KB_NODE, true, true);
-		}
-		return node;
 	}
 
 	protected void sendRedirect(
@@ -176,19 +166,64 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		}
 	}
 
-	protected void deletePage(ActionRequest actionRequest) throws Exception {
+	protected void deleteArticle(ActionRequest actionRequest) throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		WikiNode node = getNode(themeDisplay);
-
 		String title = ParamUtil.getString(actionRequest, "title");
 
-		WikiPageServiceUtil.deletePage(node.getNodeId(), title);
+		KBArticleServiceUtil.deleteArticle(
+			themeDisplay.getPortletGroupId(), title);
 	}
 
-	protected WikiPage updatePage(ActionRequest actionRequest)
+	protected void subscribe(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long groupId = themeDisplay.getPortletGroupId();
+
+		KBArticleServiceUtil.subscribe(groupId);
+	}
+
+	protected void unsubscribe(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long groupId = themeDisplay.getPortletGroupId();
+
+		KBArticleServiceUtil.unsubscribe(groupId);
+	}
+
+	protected void subscribeArticle(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long groupId = themeDisplay.getPortletGroupId();
+		String title = ParamUtil.getString(actionRequest, "title");
+
+		KBArticleServiceUtil.subscribeArticle(groupId, title);
+	}
+
+	protected void unsubscribeArticle(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long groupId = themeDisplay.getPortletGroupId();
+		String title = ParamUtil.getString(actionRequest, "title");
+
+		KBArticleServiceUtil.unsubscribeArticle(groupId, title);
+	}
+
+	protected KBArticle updateArticle(ActionRequest actionRequest)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
@@ -196,27 +231,22 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 		PortletPreferences prefs = actionRequest.getPreferences();
 
-		WikiNode node = getNode(themeDisplay);
-
 		String title = ParamUtil.getString(actionRequest, "title");
 		double version = ParamUtil.getDouble(actionRequest, "version");
 
 		String content = ParamUtil.getString(actionRequest, "content");
+		String description = ParamUtil.getString(actionRequest, "description");
 		String summary = ParamUtil.getString(actionRequest, "summary");
 		boolean minorEdit = ParamUtil.getBoolean(actionRequest, "minorEdit");
-		String format = ParamUtil.getString(actionRequest, "format");
 		String parentTitle = ParamUtil.getString(actionRequest, "parentTitle");
-		String redirectTitle = null;
 
 		String[] tagsEntries = StringUtil.split(
 			ParamUtil.getString(actionRequest, "tagsEntries"));
 
-		return WikiPageServiceUtil.updatePage(
-			node.getNodeId(), title, version, content, summary, minorEdit,
-			format, parentTitle, redirectTitle, tagsEntries, prefs,
+		return KBArticleServiceUtil.updateArticle(
+			themeDisplay.getPortletGroupId(), title, version, content,
+			description,  summary, minorEdit, parentTitle, tagsEntries, prefs,
 			themeDisplay);
 	}
-
-	private static final String _KB_NODE = "KB";
 
 }

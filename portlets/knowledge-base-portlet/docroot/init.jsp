@@ -31,8 +31,13 @@
 
 <%@ page contentType="text/html; charset=UTF-8" %>
 
+<%@ page import="com.liferay.knowledgebase.ArticleTitleException" %>
+<%@ page import="com.liferay.knowledgebase.ArticleVersionException" %>
 <%@ page import="com.liferay.knowledgebase.KnowledgeBaseKeys" %>
-
+<%@ page import="com.liferay.knowledgebase.model.KBArticle" %>
+<%@ page import="com.liferay.knowledgebase.model.KBArticleResource" %>
+<%@ page import="com.liferay.knowledgebase.service.KBArticleLocalServiceUtil" %>
+<%@ page import="com.liferay.knowledgebase.service.KBArticleResourceLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchEntry" %>
@@ -50,6 +55,7 @@
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.UnicodeFormatter" %>
+<%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
 <%@ page import="com.liferay.portal.kernel.log.Log" %>
 <%@ page import="com.liferay.portal.kernel.log.LogFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
@@ -66,20 +72,6 @@
 <%@ page import="com.liferay.portlet.tags.service.TagsAssetLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.tags.service.TagsEntryLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.tags.service.TagsPropertyLocalServiceUtil" %>
-<%@ page import="com.liferay.portlet.wiki.NoSuchNodeException" %>
-<%@ page import="com.liferay.portlet.wiki.PageTitleException" %>
-<%@ page import="com.liferay.portlet.wiki.PageContentException" %>
-<%@ page import="com.liferay.portlet.wiki.PageVersionException" %>
-<%@ page import="com.liferay.portlet.wiki.WikiFormatException" %>
-<%@ page import="com.liferay.portlet.wiki.model.WikiNode" %>
-<%@ page import="com.liferay.portlet.wiki.model.WikiPage" %>
-<%@ page import="com.liferay.portlet.wiki.model.WikiPageDisplay" %>
-<%@ page import="com.liferay.portlet.wiki.model.WikiPageResource" %>
-<%@ page import="com.liferay.portlet.wiki.service.WikiPageResourceLocalServiceUtil" %>
-<%@ page import="com.liferay.portlet.wiki.service.WikiNodeLocalServiceUtil" %>
-<%@ page import="com.liferay.portlet.wiki.service.WikiNodeServiceUtil" %>
-<%@ page import="com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil" %>
-<%@ page import="com.liferay.portlet.wiki.service.WikiPageServiceUtil" %>
 <%@ page import="com.liferay.util.BeanParamUtil" %>
 <%@ page import="com.liferay.util.RSSUtil" %>
 

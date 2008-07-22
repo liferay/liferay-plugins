@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.liferay.knowledgebase">
+	<author>Jorge Ferrer</author>
+	<namespace>KB</namespace>
+	<entity name="KBArticle" uuid="true" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="articleId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Resource -->
+
+		<column name="resourcePrimKey" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="title" type="String" />
+		<column name="version" type="double" />
+		<column name="content" type="String" />
+		<column name="description" type="String" />
+		<column name="summary" type="String" />
+		<column name="head" type="boolean" />
+		<column name="parentTitle" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="title" case-sensitive="false" />
+			<order-column name="version" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
+		<finder name="G_T" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="title" />
+		</finder>
+		<finder name="G_H" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="head" />
+		</finder>
+		<finder name="G_P" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="parentTitle" />
+		</finder>
+		<finder name="G_T_V" return-type="KBArticle">
+			<finder-column name="groupId" />
+			<finder-column name="title" />
+			<finder-column name="version" />
+		</finder>
+		<finder name="G_T_H" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="title" />
+			<finder-column name="head" />
+		</finder>
+		<finder name="G_H_P" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="head" />
+			<finder-column name="parentTitle" />
+		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.counter" entity="Counter" />
+		<reference package-path="com.liferay.documentlibrary" entity="DL" />
+		<reference package-path="com.liferay.portal" entity="Company" />
+		<reference package-path="com.liferay.portal" entity="Group" />
+		<reference package-path="com.liferay.portal" entity="PortletPreferences" />
+		<reference package-path="com.liferay.portal" entity="Resource" />
+		<reference package-path="com.liferay.portal" entity="Subscription" />
+		<reference package-path="com.liferay.portal" entity="User" />
+		<reference package-path="com.liferay.portlet.messageboards" entity="MBMessage" />
+		<reference package-path="com.liferay.portlet.tags" entity="TagsAsset" />
+		<reference package-path="com.liferay.portlet.tags" entity="TagsEntry" />
+	</entity>
+	<entity name="KBArticleResource" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="resourcePrimKey" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="title" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="G_T" return-type="KBArticleResource">
+			<finder-column name="groupId" />
+			<finder-column name="title" />
+		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.counter" entity="Counter" />
+	</entity>
+	<exceptions>
+		<exception>ArticleTitle</exception>
+		<exception>ArticleVersion</exception>
+	</exceptions>
+</service-builder>

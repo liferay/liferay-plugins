@@ -27,19 +27,15 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-WikiNode node = (WikiNode)request.getAttribute(KnowledgeBaseKeys.WIKI_NODE);
-
 String keywords = ParamUtil.getString(request, "keywords");
 %>
 
-<liferay-util:include page="/html/portlet/wiki/top_links.jsp" />
-
-<liferay-portlet:renderURL varImpl="searchURL"><portlet:param name="struts_action" value="/wiki/search" /></liferay-portlet:renderURL>
+<portlet:renderURL var="searchURL"><portlet:param name="<%= Constants.CMD %>" value="search" /></portlet:renderURL>
 
 <form action="<%= searchURL %>" method="get" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 
-<h1 class="page-title"><liferay-ui:message key="search-results" /></h1>
+<h1 class="article-title"><liferay-ui:message key="search-results" /></h1>
 
 <%
 PortletURL portletURL = renderResponse.createRenderURL();
@@ -57,7 +53,7 @@ headerNames.add("score");
 SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, LanguageUtil.format(pageContext, "no-articles-were-found-that-matched-the-keywords-x", "<b>" + HtmlUtil.escape(keywords) + "</b>"));
 
 try {
-	Hits results = WikiNodeLocalServiceUtil.search(company.getCompanyId(), portletGroupId.longValue(), new long[]{node.getNodeId()}, keywords, searchContainer.getStart(), searchContainer.getEnd());
+	Hits results = KBArticleLocalServiceUtil.search(company.getCompanyId(), portletGroupId.longValue(), keywords, searchContainer.getStart(), searchContainer.getEnd());
 
 	int total = results.getLength();
 
@@ -80,7 +76,7 @@ try {
 
 		PortletURL rowURL = renderResponse.createRenderURL();
 
-		rowURL.setParameter(Constants.CMD, "view_page");
+		rowURL.setParameter(Constants.CMD, "view_article");
 		rowURL.setParameter("title", title);
 
 		row.addText(title, rowURL);

@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -20,5 +19,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
-<%@ include file="/init.jsp" %>
+
+package com.liferay.knowledgebase.model.impl;
+
+import com.liferay.knowledgebase.model.KBArticleResource;
+
+/**
+ * <a href="KBArticleResourceImpl.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Jorge Ferrer
+ *
+ */
+public class KBArticleResourceImpl extends KBArticleResourceModelImpl
+	implements KBArticleResource {
+
+	public KBArticleResourceImpl() {
+	}
+
+}

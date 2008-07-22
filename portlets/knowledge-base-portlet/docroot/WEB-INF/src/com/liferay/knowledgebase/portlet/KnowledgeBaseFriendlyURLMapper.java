@@ -22,6 +22,7 @@
 
 package com.liferay.knowledgebase.portlet;
 
+import com.liferay.knowledgebase.KnowledgeBaseKeys;
 import com.liferay.portal.kernel.portlet.BaseFriendlyURLMapper;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.util.Constants;
@@ -51,7 +52,7 @@ public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 		String cmd = GetterUtil.getString(
 			portletURL.getParameter(Constants.CMD));
 
-		if (cmd.equals("view_page")) {
+		if (cmd.equals("view_article")) {
 			String title = portletURL.getParameter("title");
 
 			StringBuilder sb = new StringBuilder();
@@ -75,7 +76,7 @@ public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 			friendlyURLPath = sb.toString();
 		}
-		else if (cmd.equals("view_tagged_pages")) {
+		else if (cmd.equals("view_tagged_articles")) {
 			String tag = portletURL.getParameter("tag");
 
 			StringBuilder sb = new StringBuilder();
@@ -129,7 +130,7 @@ public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 			if (urlFragment0.equals("tag")) {
 				if (urlFragments.length >= 2) {
-					addParam(params, Constants.CMD, "view_tagged_pages");
+					addParam(params, Constants.CMD, "view_tagged_articles");
 
 					String tag = HttpUtil.decodeURL(urlFragments[1]);
 
@@ -137,7 +138,7 @@ public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 				}
 			}
 			else {
-				addParam(params, Constants.CMD, "view_page");
+				addParam(params, Constants.CMD, "view_article");
 
 				addParam(params, "title", urlFragment0);
 
@@ -149,13 +150,12 @@ public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 			}
 		}
 		else {
-			addParam(params, Constants.CMD, "view_all_pages");
+			addParam(params, Constants.CMD, "view_all_articles");
 		}
 	}
 
 	private static final String _MAPPING = "kb";
 
-	private static final String _PORTLET_ID =
-		"knowledgebase_WAR_knowledgebaseportlet";
+	private static final String _PORTLET_ID = KnowledgeBaseKeys.PORTLET_ID;
 
 }

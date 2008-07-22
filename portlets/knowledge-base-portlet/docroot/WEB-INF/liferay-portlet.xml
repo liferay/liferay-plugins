@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>knowledge-base</portlet-name>
+		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
 		<friendly-url-mapper-class>com.liferay.knowledgebase.portlet.KnowledgeBaseFriendlyURLMapper</friendly-url-mapper-class>
 		<header-portlet-css>/css/knowledge-base.css</header-portlet-css>

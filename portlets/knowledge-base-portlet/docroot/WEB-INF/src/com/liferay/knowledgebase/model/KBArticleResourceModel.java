@@ -20,17 +20,50 @@
  * SOFTWARE.
  */
 
-package com.liferay.knowledgebase;
+package com.liferay.knowledgebase.model;
+
+import com.liferay.portal.model.BaseModel;
+
+import java.util.Date;
 
 /**
- * <a href="KnowledgeBaseKeys.java.html"><b><i>View Source</i></b></a>
+ * <a href="KBArticleResourceModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
+ *
  */
-public class KnowledgeBaseKeys {
+public interface KBArticleResourceModel extends BaseModel {
+	public long getPrimaryKey();
 
-	public static final String ARTICLE = "Article";
+	public void setPrimaryKey(long pk);
 
-	public static final String PORTLET_ID = "1_WAR_knowledgebaseportlet";
+	public long getResourcePrimKey();
 
+	public void setResourcePrimKey(long resourcePrimKey);
+
+	public long getGroupId();
+
+	public void setGroupId(long groupId);
+
+	public long getCompanyId();
+
+	public void setCompanyId(long companyId);
+
+	public long getUserId();
+
+	public void setUserId(long userId);
+
+	public String getUserName();
+
+	public void setUserName(String userName);
+
+	public Date getCreateDate();
+
+	public void setCreateDate(Date createDate);
+
+	public String getTitle();
+
+	public void setTitle(String title);
+
+	public KBArticleResource toEscapedModel();
 }

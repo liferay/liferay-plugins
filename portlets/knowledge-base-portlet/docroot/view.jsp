@@ -25,9 +25,9 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String view = ParamUtil.getString(request, Constants.CMD, "view_all_pages");
+String view = ParamUtil.getString(request, Constants.CMD, "view_all_articles");
 
-String[] supportedViews = {"view_all_pages", "view_page", "view_tagged_pages", "edit_page", "search"};
+String[] supportedViews = {"view_all_articles", "view_article", "view_tagged_articles", "edit_article", "search"};
 
 if (!ArrayUtil.contains(supportedViews, view)) {
 	view = supportedViews[0];

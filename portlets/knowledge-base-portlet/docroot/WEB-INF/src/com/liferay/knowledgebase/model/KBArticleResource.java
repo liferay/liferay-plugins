@@ -20,17 +20,13 @@
  * SOFTWARE.
  */
 
-package com.liferay.knowledgebase;
+package com.liferay.knowledgebase.model;
 
 /**
- * <a href="KnowledgeBaseKeys.java.html"><b><i>View Source</i></b></a>
+ * <a href="KBArticleResource.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
+ *
  */
-public class KnowledgeBaseKeys {
-
-	public static final String ARTICLE = "Article";
-
-	public static final String PORTLET_ID = "1_WAR_knowledgebaseportlet";
-
+public interface KBArticleResource extends KBArticleResourceModel {
 }

@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -20,41 +19,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-%>
-<%@ include file="/init.jsp" %>
 
-<%
-String tag = ParamUtil.getString(renderRequest, "tag");
+package com.liferay.knowledgebase;
 
-String description = null;
+import com.liferay.portal.PortalException;
 
-try {
-	TagsEntry tagsEntry = TagsEntryLocalServiceUtil.getEntry(themeDisplay.getCompanyId(), tag);
+/**
+ * <a href="NoSuchArticleResourceException.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Jorge Ferrer
+ *
+ */
+public class NoSuchArticleResourceException extends PortalException {
 
-	TagsProperty tagsProperty = TagsPropertyLocalServiceUtil.getProperty(tagsEntry.getEntryId(), "description");
+	public NoSuchArticleResourceException() {
+		super();
+	}
 
-	description = tagsProperty.getValue();
+	public NoSuchArticleResourceException(String msg) {
+		super(msg);
+	}
+
+	public NoSuchArticleResourceException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+	public NoSuchArticleResourceException(Throwable cause) {
+		super(cause);
+	}
+
 }
-catch (NoSuchEntryException nsee) {
-}
-catch (NoSuchPropertyException nspe) {
-}
-
-PortletURL viewAllURL = renderResponse.createRenderURL();
-%>
-
-<h1 class="page-title">
-	<%= LanguageUtil.format(pageContext, "pages-with-tag-x", tag) %>
-</h1>
-
-<c:if test="<%= Validator.isNotNull(description) %>">
-	<p class="tag-description">
-		<%= description %>
-	</p>
-</c:if>
-
-<%
-request.setAttribute("page_iterator.type", "tagged_pages");
-%>
-
-<jsp:include page="/views/page_iterator.jsp" />

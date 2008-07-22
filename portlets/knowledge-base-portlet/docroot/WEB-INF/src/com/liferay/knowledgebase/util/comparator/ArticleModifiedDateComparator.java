@@ -20,17 +20,55 @@
  * SOFTWARE.
  */
 
-package com.liferay.knowledgebase;
+package com.liferay.knowledgebase.util.comparator;
+
+import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.OrderByComparator;
 
 /**
- * <a href="KnowledgeBaseKeys.java.html"><b><i>View Source</i></b></a>
+ * <a href="ArticleModifiedDateComparator.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
  */
-public class KnowledgeBaseKeys {
+public class ArticleModifiedDateComparator extends OrderByComparator {
 
-	public static final String ARTICLE = "Article";
+	public static String ORDER_BY_ASC = "modifiedDate ASC";
 
-	public static final String PORTLET_ID = "1_WAR_knowledgebaseportlet";
+	public static String ORDER_BY_DESC = "modifiedDate DESC";
+
+	public ArticleModifiedDateComparator() {
+		this(false);
+	}
+
+	public ArticleModifiedDateComparator(boolean asc) {
+		_asc = asc;
+	}
+
+	public int compare(Object obj1, Object obj2) {
+		KBArticle article1 = (KBArticle)obj1;
+		KBArticle article2 = (KBArticle)obj2;
+
+		int value = DateUtil.compareTo(
+			article1.getModifiedDate(), article2.getModifiedDate());
+
+		if (_asc) {
+			return value;
+		}
+		else {
+			return -value;
+		}
+	}
+
+	public String getOrderBy() {
+		if (_asc) {
+			return ORDER_BY_ASC;
+		}
+		else {
+			return ORDER_BY_DESC;
+		}
+	}
+
+	private boolean _asc;
 
 }

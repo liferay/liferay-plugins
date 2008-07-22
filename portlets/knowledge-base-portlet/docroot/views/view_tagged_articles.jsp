@@ -1,3 +1,4 @@
+<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -19,18 +20,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+%>
+<%@ include file="/init.jsp" %>
 
-package com.liferay.knowledgebase;
+<%
+String tag = ParamUtil.getString(renderRequest, "tag");
 
-/**
- * <a href="KnowledgeBaseKeys.java.html"><b><i>View Source</i></b></a>
- *
- * @author Jorge Ferrer
- */
-public class KnowledgeBaseKeys {
+String description = null;
 
-	public static final String ARTICLE = "Article";
+try {
+	TagsEntry tagsEntry = TagsEntryLocalServiceUtil.getEntry(themeDisplay.getCompanyId(), tag);
 
-	public static final String PORTLET_ID = "1_WAR_knowledgebaseportlet";
+	TagsProperty tagsProperty = TagsPropertyLocalServiceUtil.getProperty(tagsEntry.getEntryId(), "description");
 
+	description = tagsProperty.getValue();
 }
+catch (NoSuchEntryException nsee) {
+}
+catch (NoSuchPropertyException nspe) {
+}
+
+PortletURL viewAllURL = renderResponse.createRenderURL();
+%>
+
+<h1 class="article-title">
+	<%= LanguageUtil.format(pageContext, "articles-with-tag-x", tag) %>
+</h1>
+
+<c:if test="<%= Validator.isNotNull(description) %>">
+	<p class="tag-description">
+		<%= description %>
+	</p>
+</c:if>
+
+<%
+request.setAttribute("article_iterator.type", "tagged_articles");
+%>
+
+<jsp:include page="/views/article_iterator.jsp" />

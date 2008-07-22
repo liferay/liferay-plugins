@@ -22,15 +22,30 @@
 
 package com.liferay.knowledgebase;
 
+import com.liferay.portal.PortalException;
+
 /**
- * <a href="KnowledgeBaseKeys.java.html"><b><i>View Source</i></b></a>
+ * <a href="NoSuchArticleException.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
+ *
  */
-public class KnowledgeBaseKeys {
+public class NoSuchArticleException extends PortalException {
 
-	public static final String ARTICLE = "Article";
+	public NoSuchArticleException() {
+		super();
+	}
 
-	public static final String PORTLET_ID = "1_WAR_knowledgebaseportlet";
+	public NoSuchArticleException(String msg) {
+		super(msg);
+	}
+
+	public NoSuchArticleException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+	public NoSuchArticleException(Throwable cause) {
+		super(cause);
+	}
 
 }
