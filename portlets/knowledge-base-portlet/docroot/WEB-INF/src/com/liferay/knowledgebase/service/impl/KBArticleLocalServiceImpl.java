@@ -140,6 +140,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		article.setTitle(title);
 		article.setVersion(version);
 		article.setContent(content);
+		article.setDescription(description);
 		article.setSummary(summary);
 		article.setHead(head);
 		article.setParentTitle(parentTitle);
@@ -907,29 +908,29 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			subjectPrefix= StringUtil.read(
 				classLoader,
 				"com/liferay/knowledgebase/dependencies/" +
-					"article_updated_subject_prefix.tmpl");
+					"email_article_updated_subject_prefix.tmpl");
 			body = StringUtil.read(
 				classLoader,
 				"com/liferay/knowledgebase/dependencies/" +
-					"article_updated_body.tmpl");
+					"email_article_updated_body.tmpl");
 			signature = StringUtil.read(
 				classLoader,
 				"com/liferay/knowledgebase/dependencies/" +
-					"article_updated_signature.tmpl");
+					"email_article_updated_signature.tmpl");
 		}
 		else {
 			subjectPrefix= StringUtil.read(
 				classLoader,
 				"com/liferay/knowledgebase/dependencies/" +
-					"article_added_subject_prefix.tmpl");
+					"email_article_added_subject_prefix.tmpl");
 			body = StringUtil.read(
 				classLoader,
 				"com/liferay/knowledgebase/dependencies/" +
-					"article_added_body.tmpl");
+					"email_article_added_body.tmpl");
 			signature = StringUtil.read(
 				classLoader,
 				"com/liferay/knowledgebase/dependencies/" +
-					"article_added_signature.tmpl");
+					"email_article_added_signature.tmpl");
 		}
 
 		if (Validator.isNotNull(signature)) {

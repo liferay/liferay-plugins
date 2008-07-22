@@ -123,7 +123,7 @@ editArticleURL.setParameter("title", title);
 		<liferay-ui:message key="title" />
 	</td>
 	<td>
-		<input name="<portlet:namespace />title" size="30" type="text" value="<%= title %>" />
+		<input name="<portlet:namespace />title" size="80" type="text" value="<%= title %>" />
 	</td>
 </tr>
 
@@ -198,7 +198,7 @@ editArticleURL.setParameter("title", title);
 		<liferay-ui:message key="summary" />
 	</td>
 	<td>
-		<input name="<portlet:namespace />summary" size="75" type="text" />
+		<input name="<portlet:namespace />summary-of-changes" size="75" type="text" />
 	</td>
 </tr>
 <tr>
