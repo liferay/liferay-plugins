@@ -66,4 +66,7 @@
 	<listener>
 		<listener-class>com.liferay.portal.kernel.spring.context.PortletContextLoaderListener</listener-class>
 	</listener>
+	<listener>
+		<listener-class>com.liferay.ruon.servlet.RUONServletContextListener</listener-class>
+	</listener>
 </web-app>
