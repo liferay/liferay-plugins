@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<class name="com.liferay.iweb.model.impl.InterestGroupImpl" table="IWEB_InterestGroup">
+		<cache usage="read-write" />
+		<id name="cid" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="type" column="type_" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
+	<class name="com.liferay.iweb.model.impl.PostEntryImpl" table="IWEB_PostEntry">
+		<cache usage="read-write" />
+		<id name="uid" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="interestGroupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="pid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="type" column="type_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.iweb.model.impl.SemanticsElementImpl" table="IWEB_SemanticsElement">
+		<cache usage="read-write" />
+		<id name="elementURI" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="semanticsURI" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.iweb.model.impl.SemanticsFileImpl" table="IWEB_SemanticsFile">
+		<cache usage="read-write" />
+		<id name="semanticsURI" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="semanticsName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createdInInterestGroup" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+</hibernate-mapping>

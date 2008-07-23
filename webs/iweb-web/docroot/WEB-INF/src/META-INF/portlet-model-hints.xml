@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model-hints>
+	<model name="com.liferay.iweb.model.InterestGroup">
+		<field name="cid" type="long" />
+		<field name="type" type="int" />
+	</model>
+	<model name="com.liferay.iweb.model.PostEntry">
+		<field name="uid" type="long" />
+		<field name="interestGroupId" type="long" />
+		<field name="pid" type="long" />
+		<field name="type" type="String" />
+	</model>
+	<model name="com.liferay.iweb.model.SemanticsElement">
+		<field name="elementURI" type="String" />
+		<field name="semanticsURI" type="String" />
+	</model>
+	<model name="com.liferay.iweb.model.SemanticsFile">
+		<field name="semanticsName" type="String" />
+		<field name="semanticsURI" type="String" />
+		<field name="createdInInterestGroup" type="long" />
+	</model>
+</model-hints>
