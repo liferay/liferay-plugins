@@ -184,7 +184,7 @@ editArticleURL.setParameter("title", title);
 <tr>
 	<td>
 		<liferay-ui:message key="description" />
-	</td>                         	
+	</td>
 	<td>
 		<liferay-ui:input-field model="<%= KBArticle.class %>" bean="<%= article %>" field="description" />
 	</td>

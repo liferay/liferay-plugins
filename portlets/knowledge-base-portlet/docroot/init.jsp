@@ -73,7 +73,7 @@
 <%@ page import="com.liferay.portlet.tags.service.TagsAssetLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.tags.service.TagsEntryLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.tags.service.TagsPropertyLocalServiceUtil" %>
-<%@ page import="com.liferay.util.BeanParamUtil" %>
+<%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
 <%@ page import="com.liferay.util.RSSUtil" %>
 
 <%@ page import="java.util.ArrayList" %>
