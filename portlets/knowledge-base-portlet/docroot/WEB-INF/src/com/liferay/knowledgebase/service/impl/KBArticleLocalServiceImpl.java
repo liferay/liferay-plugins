@@ -31,7 +31,6 @@ import com.liferay.knowledgebase.ArticleVersionException;
 import com.liferay.knowledgebase.KnowledgeBaseKeys;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.model.KBArticle;
-import com.liferay.knowledgebase.model.KBArticleResource;
 import com.liferay.knowledgebase.model.impl.KBArticleImpl;
 import com.liferay.knowledgebase.service.base.KBArticleLocalServiceBaseImpl;
 import com.liferay.knowledgebase.util.Indexer;

@@ -30,39 +30,56 @@ KBArticle article = (KBArticle)row.getObject();
 %>
 
 <liferay-ui:icon-menu>
-	<portlet:renderURL var="editURL">
-		<portlet:param name="<%= Constants.CMD %>" value="edit_article" />
-		<portlet:param name="title" value="<%= article.getTitle() %>" />
-	</portlet:renderURL>
+	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
+		<portlet:renderURL var="editURL">
+			<portlet:param name="<%= Constants.CMD %>" value="edit_article" />
+			<portlet:param name="title" value="<%= article.getTitle() %>" />
+		</portlet:renderURL>
 
-	<liferay-ui:icon image="edit" url="<%= editURL.toString() %>" />
+		<liferay-ui:icon image="edit" url="<%= editURL.toString() %>" />
+	</c:if>
 
-	<c:choose>
-		<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), article.getResourcePrimKey()) %>">
-			<portlet:actionURL var="unsubscribeURL">
-				<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UNSUBSCRIBE + KnowledgeBaseKeys.ARTICLE %>" />
-				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
-			</portlet:actionURL>
+	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.PERMISSIONS) %>">
+		<liferay-security:permissionsURL
+			modelResource="<%= KBArticle.class.getName() %>"
+			modelResourceDescription="<%= article.getTitle() %>"
+			resourcePrimKey="<%= String.valueOf(article.getResourcePrimKey()) %>"
+			var="permissionsURL"
+			/>
 
-			<liferay-ui:icon image="unsubscribe" url="<%= unsubscribeURL %>" label="<%= true %>" />
-		</c:when>
-		<c:otherwise>
-			<portlet:actionURL var="subscribeURL">
-				<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.SUBSCRIBE + KnowledgeBaseKeys.ARTICLE %>" />
-				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
-			</portlet:actionURL>
+		<liferay-ui:icon image="permissions" url="<%= permissionsURL %>" />
+	</c:if>
 
-			<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" label="<%= true %>" />
-		</c:otherwise>
-	</c:choose>
+	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
+		<c:choose>
+			<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), article.getResourcePrimKey()) %>">
+				<portlet:actionURL var="unsubscribeURL">
+					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UNSUBSCRIBE + KnowledgeBaseKeys.ARTICLE %>" />
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+					<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
+				</portlet:actionURL>
 
-	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="deleteURL">
-		<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
-		<portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="title" value="<%= article.getTitle() %>" />
-	</portlet:actionURL>
+				<liferay-ui:icon image="unsubscribe" url="<%= unsubscribeURL %>" label="<%= true %>" />
+			</c:when>
+			<c:otherwise>
+				<portlet:actionURL var="subscribeURL">
+					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.SUBSCRIBE + KnowledgeBaseKeys.ARTICLE %>" />
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+					<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
+				</portlet:actionURL>
 
-	<liferay-ui:icon-delete url="<%= deleteURL.toString() %>" />
+				<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" label="<%= true %>" />
+			</c:otherwise>
+		</c:choose>
+	</c:if>
+
+	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) %>">
+		<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="deleteURL">
+			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
+			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="title" value="<%= article.getTitle() %>" />
+		</portlet:actionURL>
+
+		<liferay-ui:icon-delete url="<%= deleteURL.toString() %>" />
+	</c:if>
 </liferay-ui:icon-menu>

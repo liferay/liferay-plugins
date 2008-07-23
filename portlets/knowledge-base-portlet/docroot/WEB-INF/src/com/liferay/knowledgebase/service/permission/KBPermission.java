@@ -20,19 +20,39 @@
  * SOFTWARE.
  */
 
-package com.liferay.knowledgebase;
+package com.liferay.knowledgebase.service.permission;
+
+import com.liferay.knowledgebase.KnowledgeBaseKeys;
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.security.permission.PermissionChecker;
 
 /**
- * <a href="KnowledgeBaseKeys.java.html"><b><i>View Source</i></b></a>
+ * <a href="KBPermission.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
  */
-public class KnowledgeBaseKeys {
+public class KBPermission {
 
-	public static final String ADD_CHILD_ARTICLE = "ADD_CHILD_ARTICLE";
+	public static void check(
+			PermissionChecker permissionChecker, long groupId, String actionId)
+		throws PortalException, SystemException {
 
-	public static final String ARTICLE = "Article";
+		if (!contains(permissionChecker, groupId, actionId)) {
+			throw new PrincipalException();
+		}
+	}
 
-	public static final String PORTLET_ID = "1_WAR_knowledgebaseportlet";
+	public static boolean contains(
+			PermissionChecker permissionChecker, long groupId, String actionId)
+		throws PortalException, SystemException {
+
+		String name = KnowledgeBaseKeys.PORTLET_ID;
+		String primKey = name;
+
+		return permissionChecker.hasPermission(
+			groupId, name, primKey, actionId);
+	}
 
 }

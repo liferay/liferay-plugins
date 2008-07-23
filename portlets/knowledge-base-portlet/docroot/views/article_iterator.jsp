@@ -135,31 +135,35 @@ for (int i = 0; i < results.size(); i++) {
 }
 %>
 
-<div>
-	<input type="button" value="<liferay-ui:message key="add-article" />" onClick="location.href = '<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="edit_article" /><portlet:param name="redirect" value="<%= currentURL %>"></portlet:param></portlet:renderURL>'" />
-</div>
+<c:if test="<%= KBPermission.contains(permissionChecker, portletGroupId, ActionKeys.ADD_ARTICLE) %>">
+	<div>
+		<input type="button" value="<liferay-ui:message key="add-article" />" onClick="location.href = '<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="edit_article" /><portlet:param name="redirect" value="<%= currentURL %>"></portlet:param></portlet:renderURL>'" />
+	</div>
+</c:if>
 
 <br />
 
 <liferay-ui:search-iterator searchContainer="<%= searchContainer %>" paginate="true" />
 
-<liferay-ui:icon-list>
-	<c:choose>
-		<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), portletGroupId) %>">
-			<portlet:actionURL var="unsubscribeURL">
-				<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UNSUBSCRIBE %>" />
-				<portlet:param name="redirect" value="<%= currentURL %>" />
-			</portlet:actionURL>
+<c:if test="<%= KBPermission.contains(permissionChecker, portletGroupId, ActionKeys.SUBSCRIBE) %>">
+	<liferay-ui:icon-list>
+		<c:choose>
+			<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), portletGroupId) %>">
+				<portlet:actionURL var="unsubscribeURL">
+					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UNSUBSCRIBE %>" />
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+				</portlet:actionURL>
 
-			<liferay-ui:icon image="unsubscribe" url="<%= unsubscribeURL %>" />
-		</c:when>
-		<c:otherwise>
-			<portlet:actionURL var="subscribeURL">
-				<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.SUBSCRIBE %>" />
-				<portlet:param name="redirect" value="<%= currentURL %>" />
-			</portlet:actionURL>
+				<liferay-ui:icon image="unsubscribe" url="<%= unsubscribeURL %>" />
+			</c:when>
+			<c:otherwise>
+				<portlet:actionURL var="subscribeURL">
+					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.SUBSCRIBE %>" />
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+				</portlet:actionURL>
 
-			<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" />
-		</c:otherwise>
-	</c:choose>
-</liferay-ui:icon-list>
+				<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" />
+			</c:otherwise>
+		</c:choose>
+	</liferay-ui:icon-list>
+</c:if>

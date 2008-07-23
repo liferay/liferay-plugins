@@ -168,42 +168,46 @@ taggedArticlesURL.setParameter(Constants.CMD, "view_tagged_articles");
 				<div class="side-box-title"><liferay-ui:message key="actions" /></div>
 				<div class="side-box-content">
 					<liferay-ui:icon-list>
-						<liferay-ui:icon image="edit" label="<%= true %>" url="<%= editArticleURL.toString() %>" />
+						<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
+							<liferay-ui:icon image="edit" label="<%= true %>" url="<%= editArticleURL.toString() %>" />
+						</c:if>
+
 						<liferay-ui:icon image="print" label="<%= true %>" message="print" url='<%= "javascript: " + renderResponse.getNamespace() + "printArticle();" %>' />
-						<%--
-						<liferay-ui:icon image="rss" message="Atom 1.0" url='<%= themeDisplay.getPathMain() + "/kb/rss?p_l_id=" + plid + "&companyId=" + company.getCompanyId() + "&nodeId=" + article.getNodeId() + "&title=" + article.getTitle() + rssURLAtomParams %>' target="_blank" label="<%= true %>" />
-						<liferay-ui:icon image="rss" message="RSS 1.0" url='<%= themeDisplay.getPathMain() + "/kb/rss?p_l_id=" + plid + "&companyId=" + company.getCompanyId() + "&nodeId=" + article.getNodeId() + "&title=" + article.getTitle() + rssURLRSS10Params %>' target="_blank" label="<%= true %>" />
-						<liferay-ui:icon image="rss" message="RSS 2.0" url='<%= themeDisplay.getPathMain() + "/kb/rss?p_l_id=" + plid + "&companyId=" + company.getCompanyId() + "&nodeId=" + article.getNodeId() + "&title=" + article.getTitle() + rssURLRSS20Params %>' target="_blank" label="<%= true %>" />
-						--%>
-						<c:choose>
-							<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), article.getResourcePrimKey()) %>">
-								<portlet:actionURL var="unsubscribeURL">
-									<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UNSUBSCRIBE + KnowledgeBaseKeys.ARTICLE %>" />
-									<portlet:param name="redirect" value="<%= currentURL %>" />
-									<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
-								</portlet:actionURL>
 
-								<liferay-ui:icon image="unsubscribe" url="<%= unsubscribeURL %>" label="<%= true %>" />
-							</c:when>
-							<c:otherwise>
-								<portlet:actionURL var="subscribeURL">
-									<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.SUBSCRIBE + KnowledgeBaseKeys.ARTICLE %>" />
-									<portlet:param name="redirect" value="<%= currentURL %>" />
-									<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
-								</portlet:actionURL>
+						<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.SUBCRIBE) %>">
+							<c:choose>
+								<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), article.getResourcePrimKey()) %>">
+									<portlet:actionURL var="unsubscribeURL">
+										<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UNSUBSCRIBE + KnowledgeBaseKeys.ARTICLE %>" />
+										<portlet:param name="redirect" value="<%= currentURL %>" />
+										<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
+									</portlet:actionURL>
 
-								<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" label="<%= true %>" />
-							</c:otherwise>
-						</c:choose>
-						<%
-						PortletURL deleteArticleURL = renderResponse.createActionURL();
+									<liferay-ui:icon image="unsubscribe" url="<%= unsubscribeURL %>" label="<%= true %>" />
+								</c:when>
+								<c:otherwise>
+									<portlet:actionURL var="subscribeURL">
+										<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.SUBSCRIBE + KnowledgeBaseKeys.ARTICLE %>" />
+										<portlet:param name="redirect" value="<%= currentURL %>" />
+										<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
+									</portlet:actionURL>
 
-						deleteArticleURL.setParameter(Constants.CMD, Constants.DELETE);
-						deleteArticleURL.setParameter("title", article.getTitle());
-						deleteArticleURL.setParameter("redirect", viewAllURL.toString());
-						%>
+									<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" label="<%= true %>" />
+								</c:otherwise>
+							</c:choose>
+						</c:if>
 
-						<liferay-ui:icon-delete url="<%= deleteArticleURL.toString() %>" label="<%= true %>" />
+						<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) %>">
+							<%
+							PortletURL deleteArticleURL = renderResponse.createActionURL();
+
+							deleteArticleURL.setParameter(Constants.CMD, Constants.DELETE);
+							deleteArticleURL.setParameter("title", article.getTitle());
+							deleteArticleURL.setParameter("redirect", viewAllURL.toString());
+							%>
+
+							<liferay-ui:icon-delete url="<%= deleteArticleURL.toString() %>" label="<%= true %>" />
+						</c:if>
 					</liferay-ui:icon-list>
 				</div>
 			</div>
@@ -247,7 +251,7 @@ taggedArticlesURL.setParameter(Constants.CMD, "view_tagged_articles");
 	</div>
 </c:if>
 
-<c:if test="<%= !print %>">
+<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, KnowledgeBaseKeys.UPDATE) && !print %>">
 	<div class="article-actions">
 		<liferay-ui:icon image="add_article" message="add-child-article" url="<%= addArticleURL.toString() %>" label="<%= true %>" />
 	</div>

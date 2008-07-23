@@ -24,9 +24,12 @@ package com.liferay.knowledgebase.service.impl;
 
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.base.KBArticleServiceBaseImpl;
+import com.liferay.knowledgebase.service.permission.KBArticlePermission;
+import com.liferay.knowledgebase.service.permission.KBPermission;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.util.ObjectValuePair;
+import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 
 import java.util.ArrayList;
@@ -49,6 +52,9 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
+		KBPermission.check(
+			getPermissionChecker(), groupId, ActionKeys.ADD_ARTICLE);
+
 		return kbArticleLocalService.addArticle(
 			getUserId(), groupId, title, content, description, minorEdit, prefs,
 			themeDisplay);
@@ -59,6 +65,9 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			List<ObjectValuePair<String, byte[]>> files)
 		throws PortalException, SystemException {
 
+		KBPermission.check(
+			getPermissionChecker(), groupId, ActionKeys.ADD_ATTACHMENT);
+
 		kbArticleLocalService.addArticleAttachments(groupId, title, files);
 	}
 
@@ -67,6 +76,9 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			PortletPreferences prefs, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
+		KBArticlePermission.check(
+			getPermissionChecker(), groupId, title, ActionKeys.UPDATE);
+
 		kbArticleLocalService.changeParent(
 			getUserId(), groupId, title, newParentTitle, prefs, themeDisplay);
 	}
@@ -74,12 +86,18 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public void deleteArticle(long groupId, String title)
 		throws PortalException, SystemException {
 
+		KBArticlePermission.check(
+			getPermissionChecker(), groupId, title, ActionKeys.DELETE);
+
 		kbArticleLocalService.deleteArticle(groupId, title);
 	}
 
 	public void deleteArticleAttachment(
 			long groupId, String title, String fileName)
 		throws PortalException, SystemException {
+
+		KBArticlePermission.check(
+			getPermissionChecker(), groupId, title, ActionKeys.DELETE);
 
 		kbArticleLocalService.deleteArticleAttachment(groupId, title, fileName);
 	}
@@ -95,7 +113,11 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		while (itr.hasNext() && (articles.size() < max)) {
 			KBArticle article = itr.next();
 
-			articles.add(article);
+			if (KBArticlePermission.contains(getPermissionChecker(), article,
+					ActionKeys.VIEW)) {
+
+				articles.add(article);
+			}
 		}
 
 		return articles;
@@ -104,11 +126,17 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public KBArticle getArticle(long groupId, String title)
 		throws PortalException, SystemException {
 
+		KBArticlePermission.check(
+			getPermissionChecker(), groupId, title, ActionKeys.VIEW);
+
 		return kbArticleLocalService.getArticle(groupId, title);
 	}
 
 	public KBArticle getArticle(long groupId, String title, double version)
 		throws PortalException, SystemException {
+
+		KBArticlePermission.check(
+			getPermissionChecker(), groupId, title, ActionKeys.VIEW);
 
 		return kbArticleLocalService.getArticle(groupId, title, version);
 	}
@@ -118,6 +146,9 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			PortletPreferences prefs, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
+		KBArticlePermission.check(
+			getPermissionChecker(), groupId, title, ActionKeys.UPDATE);
+
 		return kbArticleLocalService.revertArticle(
 			getUserId(), groupId, title, version, prefs, themeDisplay);
 	}
@@ -125,11 +156,17 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public void subscribe(long groupId)
 		throws PortalException, SystemException {
 
+		KBPermission.check(
+			getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
+
 		kbArticleLocalService.subscribe(getUserId(), groupId);
 	}
 
 	public void subscribeArticle(long groupId, String title)
 		throws PortalException, SystemException {
+
+		KBPermission.check(
+			getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
 
 		kbArticleLocalService.subscribeArticle(getUserId(), groupId, title);
 	}
@@ -137,11 +174,17 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public void unsubscribe(long groupId)
 		throws PortalException, SystemException {
 
+		KBPermission.check(
+			getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
+
 		kbArticleLocalService.unsubscribe(getUserId(), groupId);
 	}
 
 	public void unsubscribeArticle(long groupId, String title)
 		throws PortalException, SystemException {
+
+		KBArticlePermission.check(
+			getPermissionChecker(), groupId, title, ActionKeys.SUBSCRIBE);
 
 		kbArticleLocalService.unsubscribeArticle(getUserId(), groupId, title);
 	}
@@ -152,6 +195,9 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			String[] tagsEntries, PortletPreferences prefs,
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
+
+		KBArticlePermission.check(
+			getPermissionChecker(), groupId, title, ActionKeys.UPDATE);
 
 		return kbArticleLocalService.updateArticle(
 			getUserId(), groupId, title, version, content, description,

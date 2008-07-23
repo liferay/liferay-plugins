@@ -25,6 +25,7 @@
 <%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
 
 <%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
+<%@ taglib uri="http://liferay.com/tld/security" prefix="liferay-security" %>
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
@@ -38,6 +39,8 @@
 <%@ page import="com.liferay.knowledgebase.model.KBArticleResource" %>
 <%@ page import="com.liferay.knowledgebase.service.KBArticleLocalServiceUtil" %>
 <%@ page import="com.liferay.knowledgebase.service.KBArticleResourceLocalServiceUtil" %>
+<%@ page import="com.liferay.knowledgebase.service.permission.KBArticlePermission" %>
+<%@ page import="com.liferay.knowledgebase.service.permission.KBPermission" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchEntry" %>
@@ -74,7 +77,6 @@
 <%@ page import="com.liferay.portlet.tags.service.TagsEntryLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.tags.service.TagsPropertyLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
-<%@ page import="com.liferay.util.RSSUtil" %>
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Collections" %>
@@ -101,41 +103,6 @@ if (Validator.isNotNull(portletResource)) {
 }
 
 String currentURL = PortalUtil.getCurrentURL(request);
-
-int rssDelta = GetterUtil.getInteger(prefs.getValue("rss-delta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
-String rssDisplayStyle = prefs.getValue("rss-display-style", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
-
-StringBuilder rssURLParams = new StringBuilder();
-
-if ((rssDelta != SearchContainer.DEFAULT_DELTA) || !rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT)) {
-	if (rssDelta != SearchContainer.DEFAULT_DELTA) {
-		rssURLParams.append("&max=");
-		rssURLParams.append(rssDelta);
-	}
-
-	if (!rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT)) {
-		rssURLParams.append("&displayStyle=");
-		rssURLParams.append(rssDisplayStyle);
-	}
-}
-
-StringBuilder rssURLAtomParams = new StringBuilder(rssURLParams.toString());
-
-rssURLAtomParams.append("&type=");
-rssURLAtomParams.append(RSSUtil.ATOM);
-rssURLAtomParams.append("&version=1.0");
-
-StringBuilder rssURLRSS10Params = new StringBuilder(rssURLParams.toString());
-
-rssURLRSS10Params.append("&type=");
-rssURLRSS10Params.append(RSSUtil.RSS);
-rssURLRSS10Params.append("&version=1.0");
-
-StringBuilder rssURLRSS20Params = new StringBuilder(rssURLParams.toString());
-
-rssURLRSS20Params.append("&type=");
-rssURLRSS20Params.append(RSSUtil.RSS);
-rssURLRSS20Params.append("&version=2.0");
 
 DateFormat dateFormatDateTime = DateFormats.getDateTime(locale, timeZone);
 %>
