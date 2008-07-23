@@ -28,6 +28,7 @@ import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 
 /**
@@ -69,7 +70,8 @@ public class KBArticlePermission {
 			return contains(permissionChecker, article, actionId);
 		}
 		catch (NoSuchArticleException nspe) {
-			return false;
+			return KBPermission.contains(
+				permissionChecker, groupId, ActionKeys.ADD_PAGE);
 		}
 	}
 

@@ -107,7 +107,7 @@ taggedArticlesURL.setParameter(Constants.CMD, "view_tagged_articles");
 
 			<a href="<%= viewParentArticleURL %>"><%= curParentArticle.getTitle() %></a>
 
-			<c:if test="<%= (i + 1) < parentArticles.size() %>">
+			<c:if test="<%= i < parentArticles.size() %>">
 				&raquo;
 			</c:if>
 
@@ -174,7 +174,7 @@ taggedArticlesURL.setParameter(Constants.CMD, "view_tagged_articles");
 
 						<liferay-ui:icon image="print" label="<%= true %>" message="print" url='<%= "javascript: " + renderResponse.getNamespace() + "printArticle();" %>' />
 
-						<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.SUBCRIBE) %>">
+						<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
 							<c:choose>
 								<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), article.getResourcePrimKey()) %>">
 									<portlet:actionURL var="unsubscribeURL">
@@ -251,7 +251,7 @@ taggedArticlesURL.setParameter(Constants.CMD, "view_tagged_articles");
 	</div>
 </c:if>
 
-<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, KnowledgeBaseKeys.UPDATE) && !print %>">
+<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, KnowledgeBaseKeys.ADD_CHILD_ARTICLE) && !print %>">
 	<div class="article-actions">
 		<liferay-ui:icon image="add_article" message="add-child-article" url="<%= addArticleURL.toString() %>" label="<%= true %>" />
 	</div>

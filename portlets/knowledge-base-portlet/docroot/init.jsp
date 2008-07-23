@@ -34,6 +34,7 @@
 
 <%@ page import="com.liferay.knowledgebase.ArticleTitleException" %>
 <%@ page import="com.liferay.knowledgebase.ArticleVersionException" %>
+<%@ page import="com.liferay.knowledgebase.NoSuchArticleException" %>
 <%@ page import="com.liferay.knowledgebase.KnowledgeBaseKeys" %>
 <%@ page import="com.liferay.knowledgebase.model.KBArticle" %>
 <%@ page import="com.liferay.knowledgebase.model.KBArticleResource" %>
@@ -62,6 +63,7 @@
 <%@ page import="com.liferay.portal.kernel.log.Log" %>
 <%@ page import="com.liferay.portal.kernel.log.LogFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
+<%@ page import="com.liferay.portal.security.auth.PrincipalException" %>
 <%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
 <%@ page import="com.liferay.portal.service.SubscriptionLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>

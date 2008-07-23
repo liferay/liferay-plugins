@@ -25,6 +25,7 @@ package com.liferay.knowledgebase.portlet;
 import com.liferay.knowledgebase.ArticleTitleException;
 import com.liferay.knowledgebase.ArticleVersionException;
 import com.liferay.knowledgebase.KnowledgeBaseKeys;
+import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
@@ -34,6 +35,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.tags.EntryNameException;
 import com.liferay.util.bridges.jsp.JSPPortlet;
@@ -120,9 +122,20 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 		}
 		catch (Exception e) {
-			if (e instanceof ArticleTitleException ||
+			if (e instanceof NoSuchArticleException ||
+				e instanceof PrincipalException) {
+
+				SessionErrors.add(actionRequest, e.getClass().getName());
+
+				actionResponse.setRenderParameters(
+					actionRequest.getParameterMap());
+				actionResponse.setRenderParameter(
+					Constants.CMD, "error");
+			}
+			else if (e instanceof ArticleTitleException ||
 				e instanceof ArticleVersionException ||
-				e instanceof EntryNameException) {
+				e instanceof EntryNameException ||
+				e instanceof PrincipalException) {
 
 				SessionErrors.add(actionRequest, e.getClass().getName());
 
