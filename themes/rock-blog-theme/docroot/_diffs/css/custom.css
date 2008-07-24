@@ -1,0 +1,102 @@
+body {
+	background-color: #46423d;
+	color: #000;
+	font-family: Arial;
+	font-size: 13px;
+	margin: 0;
+	padding: 0;
+}
+#navigation {
+	background: transparent url(../images/custom/bckmenu.gif) no-repeat scroll 0% 0%;
+	border: none;
+	height: 34px;
+	width: 57%;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background: transparent url(../images/custom/bckmenuli.gif) repeat-x scroll 0% 0%;
+	background-color: transparent;
+	color: #FFFFFF;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+#navigation li {
+	border: none;
+}
+#navigation li a {
+	color: black;
+	font-size: 16px;
+	margin-right: 16px;
+	padding: 5px;
+}
+#banner {
+	background: no-repeat url(../images/custom/bckheader.gif);
+	font-family: Verdana;
+	height: 140px;
+	margin-left: 270px;
+}
+#wrapper {
+	background: none;
+}
+#banner .logo a {
+	margin-left: 697px;
+	margin-top: 25px;
+}
+.js .interactive-mode {
+	right: 22%;
+}
+.js #add-page {
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	right: -1%;
+	top: 0px;
+}
+.js #add-page a span {
+	color: black;
+}
+#navigation ul {
+	margin: 3px auto 3pt 16px;
+	position: absolute !important;
+}
+#content-wrapper {
+	background: #423F3A;
+	width: 57%;
+}
+.portlet {
+	background: transparent;
+	border: none;
+}
+.portlet-topper {
+	background: transparent;
+	border: none;
+	color: #FFFFFF;
+	font-size: 24px;
+}
+.ui-tabs li a, .tabs li span {
+	background: transparent none repeat scroll 0% 0%;
+	border-right: medium none;
+	color: black;
+}
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: transparent url(../images/custom/bckmenuli.gif) repeat-x scroll 0% 0%;
+	border: medium none;
+	color: white;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: transparent url(../images/custom/bckmenuli.gif) repeat-x scroll 0% 0%;
+	color: white;
+}
+.ui-tabs {
+	border-bottom: medium none;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color: transparent;
+}
+a {
+	font-size: 12px;
+}
+.js #navigation .enter-page {
+	background-color:transparent;
+	padding:0px;
+}
