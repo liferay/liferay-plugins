@@ -1,0 +1,134 @@
+html {
+	overflow-y: scroll;
+}
+body {
+	background: #66719d center top repeat-y url(../images/custom/bck.gif);
+	color: #fff;
+	font-family: Arial;
+	font-size: 13px;
+	margin: 0;
+	padding: 0;
+}
+#wrapper {
+	background: center top no-repeat url(../images/custom/bckwrapper.gif);
+}
+#banner {
+	background: transparent url(../images/custom/bckheader.jpg) no-repeat scroll center center;
+	font-family: Verdana;
+	height: 308px;
+	margin-left: 2px;
+	margin-top: 0px;
+}
+#navigation {
+	background: none;
+	border: none;
+	margin: -230pt auto 280px;
+	width: 65%;
+	z-index: 82;
+}
+#navigation li {
+	border: none;
+	float: right;
+	font-family: Verdana;
+	font-size: 15px;
+}
+#navigation li.selected a {
+	background: transparent url(../images/custom/bckmenulinkro.gif) repeat-x scroll 0% 0%;
+	border: 1px solid #C49553;
+	color: #66719D;
+	padding: 3pt 8px 6px;
+}
+#navigation li a:hover {
+	background: transparent url(../images/custom/bckmenulinkro.gif) repeat-x scroll 0% 0%;
+	border: 1px solid #C49553;
+	color: #66719D;
+	padding: 4px 8px 6px;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+.js #add-page {
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	right: 82%;
+	top: 1px;
+}
+.js #navigation .enter-page .save-page {
+	background: transparent;
+	border: medium none;
+	padding-left: 2px;
+}
+#content-wrapper {
+	background:black none repeat scroll 0% 0%;
+	border:4px solid black;
+	margin:-4pt auto -4pt 258px;
+	min-height:600px;
+	width:733px;
+}
+.js .interactive-mode {
+	right: 21%;
+	top: 41px;
+}
+.portlet {
+	background: black;
+	border: none;
+}
+.portlet-topper {
+	background: black;
+	border: none;
+	color: #C49553;
+	font-size: 24px;
+}
+#banner .logo a {
+	margin-left: 624px;
+	margin-top: 108px;
+}
+.js #add-page a span {
+	background: transparent;
+	color: white;
+}
+#footer {
+	background: #010101 url(../images/custom/bckfooter.gif) repeat-x scroll 0% 0%;
+	color: #FFFFFF;
+	font-family: Verdana;
+	font-size: 10px;
+	height: 12px;
+	margin-left: 258px;
+	padding: 10px 0pt;
+	text-align: center;
+	width: 741px;
+}
+.js #navigation .enter-page {
+	background-color: transparent;
+	margin-right: 3px;
+	margin-top: 3px;
+	padding: 0.5px;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
+#navigation li a {
+	margin-left: 1px;
+	padding: 3.7pt 9px;
+}
+.ui-dialog.ui-resizable-disabled .ui-dialog-content {
+	background: black;
+}
+.uni-form {
+	color: black;
+}
+.ui-tabs li a, .tabs li span {
+	background:transparent none repeat scroll 0% 0%;
+	border-right:medium none;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:transparent;
+	color:#336699;
+}
+.uni-form .block-labels label, .uni-form .block-labels .label {
+	color:white;
+}
+.ui-dialog {
+	background-color:black;
+}
