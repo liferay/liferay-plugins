@@ -1,0 +1,101 @@
+body {
+	background: black repeat-x url(../images/custom/bckbody.gif);
+	color: #fff;
+	font-family: Verdana, Arial;
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+}
+#banner {
+	background: center top no-repeat url(../images/custom/bckheader.jpg);
+	height: 206px;
+}
+#wrapper {
+	background: transparent;
+}
+#navigation {
+	background: transparent;
+	border: none;
+	margin: -22pt auto 20px;
+	width: 72.4%;
+}
+#navigation li {
+	border: none;
+	margin: -1px 21px 0pt -1px;
+}
+.portlet {
+	background: transparent;
+	border: none;
+}
+.portlet-topper {
+	background: transparent;
+	border: none;
+	color: #BA5300;
+	font-size: 16px;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: black;
+	color: #FFFFFF;
+}
+#navigation li.selected a span {
+	background: transparent none repeat scroll 0% 0%;
+	padding-left: 0px;
+}
+#navigation li a {
+	color: black;
+	font-size: 14px;
+	padding: 5px;
+}
+#banner .logo a {
+	margin-left: 127px;
+}
+.js #add-page {
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	top: 0px;
+}
+.js .interactive-mode {
+	right: 10%;
+}
+#content-wrapper {
+	background: #1E1E1E;
+	min-height: 500px;
+	width: 70%;
+}
+a {
+	font-size: 10px;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color: transparent;
+}
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: black none repeat scroll 0% 0%;
+	border: medium none;
+	color: white;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: black;
+	color: white;
+}
+.ui-tabs li a, .tabs li span {
+	background: transparent none repeat scroll 0% 0%;
+	border-right: medium none;
+	color: black;
+}
+.ui-tabs {
+	border-bottom: medium none;
+}
+.ui-dialog {
+	background-color: black;
+}
+.uni-form {
+	background: black none repeat scroll 0% 0%;
+}
+#footer {
+	background: transparent url(../images/custom/bckfooter.gif) repeat-x scroll 0% 0%;
+	font-size: 9px;
+	height: 25px;
+	line-height: 25px;
+	margin-top: 15px;
+	text-align: center;
+}
