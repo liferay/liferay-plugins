@@ -1,0 +1,94 @@
+body {
+	background: #646464 url(../images/custom/background.jpg) repeat-y center;
+	color: white;
+}
+#banner {
+	background: url(../images/custom/header.jpg) no-repeat center;
+	height: 316px;
+}
+#wrapper {
+	background: transparent;
+}
+#navigation {
+	background: none;
+	border: none;
+	margin: -44pt auto 55px;
+	width: 60%;
+}
+#navigation li {
+	border: none;
+}
+#navigation li a {
+	border-right: 1px solid #FFFFFF;
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+	font-size: 14px;
+	padding: 0px 14px;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+	color: #F5A947;
+}
+#navigation li.selected a {
+	font-weight: bold;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: transparent;
+	color: #F5A947;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+.js #add-page {
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	right: 4%;
+	top: -6px;
+}
+#content-wrapper {
+	margin: -23pt auto;
+	width: 57%;
+}
+.portlet {
+	background: transparent;
+	border: none;
+}
+.portlet-topper {
+	background: transparent;
+	border: none;
+	color: #F5A947;
+	font-size: 18px;
+	text-decoration: underline;
+}
+a {
+	font-size: 12px;
+	text-decoration: none;
+}
+.ui-tabs li a, .tabs li span {
+	background: transparent none repeat scroll 0% 0%;
+	border-right: medium none;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color: transparent;
+}
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	color: #F5A947;
+	font-weight: bold;
+}
+.ui-tabs {
+	border-bottom: medium none;
+}
+#banner .logo a {
+	margin-left: 232px;
+}
+.js .interactive-mode {
+	right: 21.5%;
+}
+.ui-dialog.ui-resizable-disabled .ui-dialog-content {
+	color: black;
+}
+.ui-dialog {
+	background-color: black;
+}
