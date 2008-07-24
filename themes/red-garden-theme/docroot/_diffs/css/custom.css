@@ -1,0 +1,114 @@
+html {
+	overflow-y: scroll;
+}
+body {
+	background: #000 repeat-x url(../images/custom/bck.gif);
+	color: #fff;
+	font-family: Verdana;
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+}
+#banner {
+	background: no-repeat url(../images/custom/bckheader.jpg) center;
+	height: 230px;
+	margin-left: 1px;
+}
+#wrapper {
+	background: none;
+}
+#navigation {
+	background: transparent url(../images/custom/bckmenu.gif) repeat-x scroll 0% 0%;
+	border: 1px solid #870101;
+	margin: -2px auto 20px;
+	width: 988px;
+}
+.js .interactive-mode {
+	right: 12%;
+}
+#content-wrapper {
+	background: #870101;
+	border: 2px solid #870101;
+	margin: -15pt auto;
+	width: 986px;
+}
+#navigation li {
+	border: none;
+}
+#navigation li a {
+	margin-top: 4px;
+	padding: 0px 20px;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background: transparent url(../images/custom/bckmenulinkhover.gif) repeat-x scroll left center;
+	background-color: transparent;
+	color: #000000;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+.js #add-page {
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	right: 10%;
+	top: -2px;
+}
+#banner .logo a {
+	margin-left: 340pt;
+	margin-top: 45pt;
+}
+#navigation ul {
+	width: 35%;
+}
+.portlet {
+	background: transparent;
+	border: none;
+}
+.portlet-topper {
+	background: transparent;
+	border: none;
+	font-family: "Georgia";
+	font-size: 24px;
+}
+.ui-tabs li a, .tabs li span {
+	background: transparent url(../images/custom/bckmenulinkhover.gif) repeat-x scroll left center;
+	border: medium none;
+	margin-left: 1px;
+}
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: transparent url(../images/custom/bckmenulinkhover.gif) repeat-x scroll left center;
+	border: medium none;
+	color: #000000;
+}
+.ui-dialog.ui-resizable-disabled .ui-dialog-content {
+	color: black;
+}
+.ui-tabs {
+	border-bottom: none;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: transparent url(../images/custom/bckmenulinkhover.gif) repeat-x scroll left center;
+	color: white;
+	font-weight: bold;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background: transparent url(../images/custom/bckmenulinkhover.gif) repeat-x scroll left center;
+	background-color: transparent;
+}
+#footer {
+	border-top: 1px solid #430000;
+	font-size: 9px;
+	margin: 0pt 5px 0pt 132px;
+	padding: 5px 0pt;
+	text-align: center;
+	width: 992px;
+}
+a {
+	font-size: 12px;
+}
+.ui-dialog {
+	background-color:black;
+}
