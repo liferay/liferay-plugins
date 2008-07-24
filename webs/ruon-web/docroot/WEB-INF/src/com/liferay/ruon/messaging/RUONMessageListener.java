@@ -95,7 +95,7 @@ public class RUONMessageListener implements MessageListener{
 					getPresenceStatusResponseJSON(
 							getPresenceStatusRequestJSON,responseId);
 
-			 MessageBusUtil.sendMessage(
+			MessageBusUtil.sendMessage(
 					responseDestination,
 					getPresenceStatusResponseJSON.toString());
 
