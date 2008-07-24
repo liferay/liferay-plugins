@@ -1,0 +1,89 @@
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+	color: #256C8E;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+#navigation {
+	background: transparent;
+	border: none;
+	margin: -57pt auto 20px;
+	width: 63%;
+}
+#navigation li {
+	border: none;
+}
+body {
+	background: #898989 url(../images/custom/bg.png) repeat-y fixed center center;
+	color: #FFFFFF;
+	font-family: arial,verdana;
+	font-size: 12px;
+}
+#banner {
+	background: transparent url(../images/custom/header.jpg) no-repeat center;
+	height: 353px;
+	width: 1540px;
+}
+#wrapper {
+	background: none;
+}
+#banner .logo a {
+	margin-left: 233px;
+	margin-top: 53px;
+}
+.js .interactive-mode {
+	right: 22%;
+}
+#navigation li a {
+	font-size: 16px;
+	font-weight: bold;
+}
+#content-wrapper {
+	width: 58%;
+}
+.js #add-page {
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	top: -3px;
+}
+.portlet {
+	background: transparent;
+	border: none;
+}
+.portlet-topper {
+	background: transparent;
+	border: none;
+	color: #256C8E;
+	font-size: 16px;
+}
+a {
+	font-size: 12px;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background-color: transparent;
+	color: #256C8E;
+}
+.ui-tabs li a, .tabs li span {
+	background: transparent none repeat scroll 0% 0%;
+	border-right: medium none;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color: transparent;
+}
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	color: #256C8E;
+}
+.ui-tabs {
+	border-bottom: medium none;
+}
+.ui-dialog.ui-resizable-disabled .ui-dialog-content {
+	background: black none repeat scroll 0% 0%;
+	color: black;
+}
+.ui-dialog {
+	background-color: black;
+}
