@@ -1,0 +1,104 @@
+body { 
+margin:50px 100px; 
+font-size:0.8em; 
+line-height:20px; 
+font-family: "Trebuchet MS", Arial; 
+border:1px solid #666; 
+background: url(../images/custom/bckg.gif) #000;
+}
+#banner { 
+background:url(../images/custom/header_bckg.jpg) no-repeat top right #000;
+}
+#navigation {
+background:#01B0F0 none repeat scroll 0% 0%;
+border-bottom:1px solid #000000;
+border-top:1px solid #E8E8E8;
+height:30px;
+}
+#navigation li {
+border: none;
+}
+#navigation li a {
+border-right:1px solid #59D2FE;
+color:#FFFFFF;
+display:block;
+float:left;
+font-size:14px;
+font-weight:bold;
+text-decoration:none;
+text-transform:uppercase;
+}
+#navigation li.selected a, #navigation li a:hover {
+background-color:transparent;
+}
+#navigation li.selected a span {
+background:transparent;
+padding-left:0px;
+}
+#navigation ul {
+width:100%;
+}
+#content-wrapper {
+background: white;
+border: 8px solid white;
+margin:-14pt auto;
+width:98.5%;
+min-height: 500px;
+}
+.portlet {
+border: none;
+}
+.portlet-topper {
+color:#000000;
+font-size:1.8em;
+text-transform:uppercase;
+background: transparent;
+border: none;
+}
+a {
+font-size:12px;
+}
+#banner .logo a {
+margin-left:71px;
+}
+.js #add-page {
+background:transparent none repeat scroll 0% 0%;
+border:medium none;
+right:0%;
+top:0px;
+}
+.js .interactive-mode {
+right:9%;
+top:60px;
+}
+.ui-tabs li a, .tabs li span {
+background:transparent none repeat scroll 0% 0%;
+border-right:medium none;
+color:black;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+background:transparent;
+color:#9EBAC8;
+}
+.portlet-content, .portlet-minimized .portlet-content-container {
+border:1px solid #D7D7D7;
+}
+.js #navigation .enter-page {
+background-color:transparent;
+padding:0px;
+margin-left:5px;
+margin-top:6px;
+width:215px;
+}
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+padding:1px;
+}
+.js #navigation .enter-page .save-page {
+border:medium none;
+margin:-14pt 160px;
+}
+#footer {
+background:#424E4F url(../images/custom/footer_bckg.jpg) repeat scroll 0% 0%;
+clear:both;
+height:102px;
+}
