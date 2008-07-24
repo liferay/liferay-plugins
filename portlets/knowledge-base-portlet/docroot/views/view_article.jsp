@@ -174,6 +174,28 @@ taggedArticlesURL.setParameter(Constants.CMD, "view_tagged_articles");
 
 						<liferay-ui:icon image="print" label="<%= true %>" message="print" url='<%= "javascript: " + renderResponse.getNamespace() + "printArticle();" %>' />
 
+						<%
+						String[] extensions = prefs.getValues("extensions", new String[] {});
+
+						for (String extension : extensions) {
+							ResourceURL convertURL = renderResponse.createResourceURL();
+
+							convertURL.setParameter(Constants.CMD, "convert");
+							convertURL.setParameter("title", article.getTitle());
+							convertURL.setParameter("version", String.valueOf(article.getVersion()));
+							convertURL.setParameter("targetExtension", extension);
+						%>
+
+							<liferay-ui:icon
+								image='<%= "../document_library/" + extension %>'
+								message="<%= extension.toUpperCase() %>"
+								url='<%= convertURL.toString() %>'
+							/>
+
+						<%
+						}
+						%>
+
 						<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
 							<c:choose>
 								<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), article.getResourcePrimKey()) %>">

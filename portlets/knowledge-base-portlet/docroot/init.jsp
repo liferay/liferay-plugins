@@ -79,6 +79,8 @@
 <%@ page import="com.liferay.portlet.tags.service.TagsEntryLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.tags.service.TagsPropertyLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.DocumentConversionUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.PrefsPropsUtil" %>
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Collections" %>
@@ -90,6 +92,7 @@
 <%@ page import="javax.portlet.ActionRequest" %>
 <%@ page import="javax.portlet.PortletPreferences" %>
 <%@ page import="javax.portlet.PortletURL" %>
+<%@ page import="javax.portlet.ResourceURL" %>
 <%@ page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />

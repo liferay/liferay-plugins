@@ -31,16 +31,23 @@ import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.DocumentConversionUtil;
+import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.tags.EntryNameException;
 import com.liferay.util.bridges.jsp.JSPPortlet;
+import com.liferay.util.servlet.ServletResponseUtil;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -48,11 +55,19 @@ import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import javax.portlet.ResourceRequest;
+import javax.portlet.ResourceResponse;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="KnowledgeBasePortlet.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
+ * @author Bruno Farache
  *
  */
 public class KnowledgeBasePortlet extends JSPPortlet {
@@ -119,7 +134,6 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 				return;
 			}
-
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchArticleException ||
@@ -177,6 +191,13 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		super.render(renderRequest, renderResponse);
 	}
 
+	public void serveResource(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws IOException, PortletException {
+
+		convertArticle(resourceRequest, resourceResponse);
+	}
+
 	protected void sendRedirect(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			String redirect)
@@ -192,6 +213,100 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 		if (Validator.isNotNull(redirect)) {
 			actionResponse.sendRedirect(redirect);
+		}
+	}
+
+	protected void convertArticle(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		{
+
+		InputStream is = null;
+
+		try {
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)resourceRequest.getAttribute(
+					WebKeys.THEME_DISPLAY);
+
+			PortletPreferences prefs = resourceRequest.getPreferences();
+
+			long groupId = themeDisplay.getPortletGroupId();
+			String title = ParamUtil.getString(resourceRequest, "title");
+			double version = ParamUtil.getDouble(resourceRequest, "version");
+
+			String targetExtension = ParamUtil.getString(
+					resourceRequest, "targetExtension");
+
+			String[] extensions = prefs.getValues(
+				"extensions", new String[] {});
+
+			boolean convert = false;
+
+			for (String extension : extensions) {
+				if (extension.equals(targetExtension)) {
+					convert = true;
+
+					break;
+				}
+			}
+
+			if (!convert) {
+				return;
+			}
+
+			KBArticle article =	KBArticleServiceUtil.getArticle(
+				groupId, title, version);
+
+			String content = article.getContent();
+
+			StringBuilder sb = new StringBuilder();
+
+			sb.append("<h1>");
+			sb.append(title);
+			sb.append("</h1>");
+			sb.append(content);
+
+			is = new ByteArrayInputStream(
+				sb.toString().getBytes(StringPool.UTF8));
+
+			String sourceExtension = "html";
+
+			sb = new StringBuilder();
+
+			sb.append(title);
+			sb.append(StringPool.PERIOD);
+			sb.append(sourceExtension);
+
+			String fileName = sb.toString();
+
+			String id = article.getUuid();
+
+			InputStream convertedIS = DocumentConversionUtil.convert(
+				id, is, sourceExtension, targetExtension);
+
+			if (convertedIS != null) {
+				sb = new StringBuilder();
+
+				sb.append(title);
+				sb.append(StringPool.PERIOD);
+				sb.append(targetExtension);
+
+				fileName = sb.toString();
+
+				is = convertedIS;
+			}
+
+			String contentType = MimeTypesUtil.getContentType(fileName);
+
+			HttpServletResponse response = PortalUtil.getHttpServletResponse(
+				resourceResponse);
+
+			ServletResponseUtil.sendFile(response, fileName, is, contentType);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+		finally {
+			ServletResponseUtil.cleanUp(is);
 		}
 	}
 
@@ -276,5 +391,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			description,  minorEdit, parentTitle, tagsEntries, prefs,
 			themeDisplay);
 	}
+
+	private static Log _log = LogFactory.getLog(KnowledgeBasePortlet.class);
 
 }
