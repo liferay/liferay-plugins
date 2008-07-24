@@ -1,0 +1,113 @@
+html {
+	overflow-y: scroll;
+}
+body {
+	background: #929292 url(../images/custom/content.png) repeat-y center;
+	color: white;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	margin: 10px auto 20px auto;
+	width: 805px;
+}
+#banner {
+	background: #929292 url(../images/custom/header.jpg) top no-repeat;
+	border-top: 20px solid #929292;
+	height: 239px;
+	margin-top: -20px;
+}
+#navigation {
+	background: none;
+	border: none;
+	margin: -38pt auto 20px;
+	width: 99.7%;
+}
+#navigation li {
+	border-bottom: none;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+.js #add-page {
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	right: 4%;
+	top: -6px;
+}
+#content-wrapper {
+	background: black;
+	margin: 29px auto;
+	width: 95%;
+}
+.portlet {
+	background: transparent;
+	border: none;
+}
+.portlet-topper {
+	background: transparent;
+	border: none;
+	color: #D51A1A;
+	font-size: 22px;
+	font-weight: bold;
+}
+a {
+	font-size: 12px;
+}
+#navigation li a {
+	border-right: 2px solid #000000;
+	color: black;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 0px 15px;
+}
+#navigation li a:hover {
+	color: #FFFFFF;
+}
+.js .interactive-mode {
+	right: 20%;
+	top: 35px;
+}
+#banner .logo a {
+	margin-left: 195px;
+}
+.ui-dialog.ui-resizable-disabled .ui-dialog-content {
+	color: black;
+}
+.ui-dialog {
+	background-color: black;
+}
+.ui-tabs li a, .tabs li span {
+	background: transparent none repeat scroll 0% 0%;
+	border-right: medium none;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: transparent none repeat scroll 0% 0%;
+	color: red;
+}
+.ui-tabs {
+	border-bottom: medium none;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color: transparent;
+	text-decoration: none;
+}
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	color: red;
+}
+.js #navigation .enter-page {
+	background-color: transparent;
+	margin-left: 4px;
+	margin-top: -6px;
+	padding: 0px;
+}
+.js #navigation .enter-page .save-page {
+	border: none;
+}
