@@ -31,7 +31,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 String[] conversions = DocumentConversionUtil.getConversions("html");
 
-String[] extensions = prefs.getValues("extensions", new String[] {});
+String[] extensions = prefs.getValues("extensions", new String[] {"pdf"});
 %>
 
 <liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="portletURL" portletConfiguration="true">

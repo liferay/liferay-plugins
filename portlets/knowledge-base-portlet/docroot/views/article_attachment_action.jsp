@@ -25,21 +25,23 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String view = ParamUtil.getString(request, Constants.CMD, "view_all_articles");
+ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
-String[] supportedViews = {"view_all_articles", "view_article", "view_article_attachments", "edit_article_attachment", "view_tagged_articles", "edit_article", "search"};
+Object[] objArray = (Object[])row.getObject();
 
-if (!ArrayUtil.contains(supportedViews, view)) {
-	view = supportedViews[0];
-}
-
-_log.info("Including view: " + "/" + view + ".jsp");
+KBArticle article = (KBArticle)objArray[0];
+String fileName = (String)objArray[1];
 %>
 
-<jsp:include page="/top.jsp" />
+<liferay-ui:icon-menu>
+	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) %>">
+		<portlet:actionURL var="deleteURL">
+			<portlet:param name="<%= Constants.CMD %>" value="delete_attachment" />
+			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="title" value="<%= article.getTitle() %>" />
+			<portlet:param name="fileName" value="<%= fileName %>" />
+		</portlet:actionURL>
 
-<jsp:include page='<%= "/views/" + view + ".jsp" %>' flush="true" />
-
-<%!
-private static Log _log = LogFactoryUtil.getLog("knowledge-base-portlet.view.jsp");
-%>
+		<liferay-ui:icon-delete url="<%= deleteURL %>" />
+	</c:if>
+</liferay-ui:icon-menu>

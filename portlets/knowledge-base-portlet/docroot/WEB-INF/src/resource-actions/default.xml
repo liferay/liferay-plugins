@@ -5,6 +5,7 @@
 		<portlet-name>1</portlet-name>
 		<supports>
 			<action-key>ADD_ARTICLE</action-key>
+			<action-key>ADD_ATTACHMENT</action-key>
 			<action-key>CONFIGURATION</action-key>
 			<action-key>VIEW</action-key>
 		</supports>
@@ -34,7 +35,6 @@
 		<community-defaults>
 			<action-key>ADD_DISCUSSION</action-key>
 			<action-key>SUBSCRIBE</action-key>
-			<action-key>UPDATE</action-key>
 			<action-key>VIEW</action-key>
 		</community-defaults>
 		<guest-defaults>

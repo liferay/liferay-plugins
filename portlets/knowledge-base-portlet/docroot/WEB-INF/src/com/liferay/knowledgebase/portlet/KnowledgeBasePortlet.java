@@ -22,6 +22,7 @@
 
 package com.liferay.knowledgebase.portlet;
 
+import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.knowledgebase.ArticleTitleException;
 import com.liferay.knowledgebase.ArticleVersionException;
 import com.liferay.knowledgebase.KnowledgeBaseKeys;
@@ -30,24 +31,33 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.DocumentConversionUtil;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
+import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.tags.EntryNameException;
 import com.liferay.util.bridges.jsp.JSPPortlet;
+import com.liferay.util.servlet.PortletResponseUtil;
 import com.liferay.util.servlet.ServletResponseUtil;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -57,8 +67,6 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -93,15 +101,17 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			else if (cmd.equals(Constants.UNSUBSCRIBE)) {
 				unsubscribe(actionRequest);
 			}
-			else if (cmd.equals(
-				Constants.SUBSCRIBE + KnowledgeBaseKeys.ARTICLE)) {
-
+			else if (cmd.equals("subscribe_article")) {
 				subscribeArticle(actionRequest);
 			}
-			else if (cmd.equals(
-				Constants.UNSUBSCRIBE + KnowledgeBaseKeys.ARTICLE)) {
-
+			else if (cmd.equals("unsubscribe_article")) {
 				unsubscribeArticle(actionRequest);
+			}
+			else if (cmd.equals("add_attachment")) {
+				addAttachment(actionRequest);
+			}
+			else if (cmd.equals("delete_attachment")) {
+				deleteAttachment(actionRequest);
 			}
 
 			boolean preview = ParamUtil.getBoolean(actionRequest, "preview");
@@ -195,7 +205,21 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException, PortletException {
 
-		convertArticle(resourceRequest, resourceResponse);
+		try {
+			String cmd = ParamUtil.getString(resourceRequest, Constants.CMD);
+
+			if (cmd.equals("get_article_attachment")) {
+				String title = ParamUtil.getString(resourceRequest, "title");
+				String fileName = ParamUtil.getString(resourceRequest, "fileName");
+
+				getFile(title, fileName, resourceRequest, resourceResponse);
+			}
+			else if (cmd.equals("convert")) {
+				convertArticle(resourceRequest, resourceResponse);
+			}
+		}
+		catch (Exception e) {
+		}
 	}
 
 	protected void sendRedirect(
@@ -216,9 +240,63 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		}
 	}
 
+	protected void addAttachment(ActionRequest actionRequest)
+		throws Exception {
+
+		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(
+			actionRequest);
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String title = ParamUtil.getString(uploadRequest, "title");
+
+		int numOfFiles = ParamUtil.getInteger(uploadRequest, "numOfFiles");
+
+		List<ObjectValuePair<String, byte[]>> files =
+			new ArrayList<ObjectValuePair<String, byte[]>>();
+
+		if (numOfFiles == 0) {
+			File file = uploadRequest.getFile("file");
+			String fileName = uploadRequest.getFileName("file");
+
+			if (file != null) {
+				byte[] bytes = FileUtil.getBytes(file);
+
+				if ((bytes != null) && (bytes.length > 0)) {
+					ObjectValuePair<String, byte[]> ovp =
+						new ObjectValuePair<String, byte[]>(fileName, bytes);
+
+					files.add(ovp);
+				}
+			}
+		}
+		else {
+			for (int i = 1; i <= numOfFiles; i++) {
+				File file = uploadRequest.getFile("file" + i);
+
+				String fileName = uploadRequest.getFileName("file" + i);
+
+				if (file != null) {
+					byte[] bytes = FileUtil.getBytes(file);
+
+					if ((bytes != null) && (bytes.length > 0)) {
+						ObjectValuePair<String, byte[]> ovp =
+							new ObjectValuePair<String, byte[]>(
+								fileName, bytes);
+
+						files.add(ovp);
+					}
+				}
+			}
+		}
+
+		KBArticleServiceUtil.addArticleAttachments(
+			themeDisplay.getPortletGroupId(), title, files);
+	}
+
 	protected void convertArticle(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		{
+		ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
 
 		InputStream is = null;
 
@@ -297,10 +375,8 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 			String contentType = MimeTypesUtil.getContentType(fileName);
 
-			HttpServletResponse response = PortalUtil.getHttpServletResponse(
-				resourceResponse);
-
-			ServletResponseUtil.sendFile(response, fileName, is, contentType);
+			PortletResponseUtil.sendFile(
+				resourceResponse, fileName, is, contentType);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -308,6 +384,19 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		finally {
 			ServletResponseUtil.cleanUp(is);
 		}
+	}
+
+	protected void deleteAttachment(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String title = ParamUtil.getString(actionRequest, "title");
+		String attachment = ParamUtil.getString(actionRequest, "fileName");
+
+		KBArticleServiceUtil.deleteArticleAttachment(
+			themeDisplay.getPortletGroupId(), title, attachment);
 	}
 
 	protected void deleteArticle(ActionRequest actionRequest) throws Exception {
@@ -319,6 +408,40 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 		KBArticleServiceUtil.deleteArticle(
 			themeDisplay.getPortletGroupId(), title);
+	}
+
+	protected void getFile(
+			String title, String fileName, ResourceRequest request,
+			ResourceResponse response)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		int pos = fileName.indexOf(StringPool.SLASH);
+
+		if (pos != -1) {
+			title = fileName.substring(0, pos);
+			fileName = fileName.substring(pos + 1);
+		}
+
+		InputStream is = null;
+
+		try {
+			KBArticle page = KBArticleServiceUtil.getArticle(
+				themeDisplay.getPortletGroupId(), title);
+
+			is = DLLocalServiceUtil.getFileAsStream(
+				page.getCompanyId(), CompanyConstants.SYSTEM,
+				page.getAttachmentsDir() + "/" + fileName);
+
+			String contentType = MimeTypesUtil.getContentType(fileName);
+
+			PortletResponseUtil.sendFile(response, fileName, is, contentType);
+		}
+		finally {
+			ServletResponseUtil.cleanUp(is);
+		}
 	}
 
 	protected void subscribe(ActionRequest actionRequest)

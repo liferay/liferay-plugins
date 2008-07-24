@@ -28,6 +28,12 @@ KBArticle article = (KBArticle)request.getAttribute(KnowledgeBaseKeys.ARTICLE);
 
 String title = article.getTitle();
 
+String[] attachments = new String[0];
+
+if (article != null) {
+	attachments = article.getAttachmentsFiles();
+}
+
 boolean print = ParamUtil.getBoolean(request, Constants.PRINT);
 
 TagsAssetLocalServiceUtil.incrementViewCounter(KBArticle.class.getName(), article.getResourcePrimKey());
@@ -68,6 +74,11 @@ printArticleURL.setParameter("print", "true");
 PortletURL taggedArticlesURL = renderResponse.createRenderURL();
 
 taggedArticlesURL.setParameter(Constants.CMD, "view_tagged_articles");
+
+PortletURL viewAttachmentsURL = renderResponse.createRenderURL();
+
+viewAttachmentsURL.setParameter(Constants.CMD, "view_article_attachments");
+viewAttachmentsURL.setParameter("title", title);
 %>
 
 <c:choose>
@@ -122,7 +133,7 @@ taggedArticlesURL.setParameter(Constants.CMD, "view_tagged_articles");
 	<%= title %>
 </h1>
 
-<div>
+<div class="float-container">
 	<c:if test="<%= !print %>">
 		<div class="side-boxes">
 			<div class="side-box">
@@ -161,7 +172,7 @@ taggedArticlesURL.setParameter(Constants.CMD, "view_tagged_articles");
 			<div class="side-box">
 				<div class="side-box-title"><liferay-ui:message key="attachments" /></div>
 				<div class="side-box-content">
-					0 <liferay-ui:message key="attachments" />
+					<liferay-ui:icon image="clip" message='<%= attachments.length + " " + LanguageUtil.get(pageContext, "attachments") %>' url="<%= viewAttachmentsURL.toString() %>" method="get" label="<%= true %>" />
 				</div>
 			</div>
 			<div class="side-box">
@@ -175,7 +186,7 @@ taggedArticlesURL.setParameter(Constants.CMD, "view_tagged_articles");
 						<liferay-ui:icon image="print" label="<%= true %>" message="print" url='<%= "javascript: " + renderResponse.getNamespace() + "printArticle();" %>' />
 
 						<%
-						String[] extensions = prefs.getValues("extensions", new String[] {});
+						String[] extensions = prefs.getValues("extensions", new String[] {"pdf"});
 
 						for (String extension : extensions) {
 							ResourceURL convertURL = renderResponse.createResourceURL();
@@ -200,7 +211,7 @@ taggedArticlesURL.setParameter(Constants.CMD, "view_tagged_articles");
 							<c:choose>
 								<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), article.getResourcePrimKey()) %>">
 									<portlet:actionURL var="unsubscribeURL">
-										<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UNSUBSCRIBE + KnowledgeBaseKeys.ARTICLE %>" />
+										<portlet:param name="<%= Constants.CMD %>" value="subscribe_article" />
 										<portlet:param name="redirect" value="<%= currentURL %>" />
 										<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
 									</portlet:actionURL>
@@ -209,7 +220,7 @@ taggedArticlesURL.setParameter(Constants.CMD, "view_tagged_articles");
 								</c:when>
 								<c:otherwise>
 									<portlet:actionURL var="subscribeURL">
-										<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.SUBSCRIBE + KnowledgeBaseKeys.ARTICLE %>" />
+										<portlet:param name="<%= Constants.CMD %>" value="unsubscribe_article" />
 										<portlet:param name="redirect" value="<%= currentURL %>" />
 										<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
 									</portlet:actionURL>

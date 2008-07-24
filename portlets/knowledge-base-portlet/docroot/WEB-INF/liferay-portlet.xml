@@ -8,7 +8,8 @@
 		<configuration-action-class>com.liferay.knowledgebase.action.ConfigurationActionImpl</configuration-action-class>
 		<friendly-url-mapper-class>com.liferay.knowledgebase.portlet.KnowledgeBaseFriendlyURLMapper</friendly-url-mapper-class>
 		<header-portlet-css>/css/knowledge-base.css</header-portlet-css>
-		<css-class-wrapper>portlet-knowledge-base</css-class-wrapper>		
+		<header-portal-javascript>/html/js/misc/swfupload/swfupload.js</header-portal-javascript>
+		<css-class-wrapper>portlet-knowledge-base</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

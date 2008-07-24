@@ -54,7 +54,7 @@ KBArticle article = (KBArticle)row.getObject();
 		<c:choose>
 			<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), article.getResourcePrimKey()) %>">
 				<portlet:actionURL var="unsubscribeURL">
-					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UNSUBSCRIBE + KnowledgeBaseKeys.ARTICLE %>" />
+					<portlet:param name="<%= Constants.CMD %>" value="unsubscribe_article" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
 				</portlet:actionURL>
@@ -63,7 +63,7 @@ KBArticle article = (KBArticle)row.getObject();
 			</c:when>
 			<c:otherwise>
 				<portlet:actionURL var="subscribeURL">
-					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.SUBSCRIBE + KnowledgeBaseKeys.ARTICLE %>" />
+					<portlet:param name="<%= Constants.CMD %>" value="subscribe_article" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
 				</portlet:actionURL>
