@@ -1,0 +1,110 @@
+body {
+	background: #7b7b7b center top repeat-y url(../images/custom/bckbody.gif);
+	color: #9acff8;
+	font-family: Arial;
+	font-size: 13px;
+	margin: 0;
+	padding: 0;
+}
+#wrapper {
+	background: transparent url(../images/custom/bckbodytop.gif) no-repeat scroll center top;
+}
+#banner {
+	background: transparent url(../images/custom/bckpage.jpg) no-repeat center;
+	height: 310px;
+	margin-left: 152px;
+	width: 950px;
+}
+#navigation {
+	background: none;
+	border: none;
+	margin: -220pt auto 275px 622px;
+	width: 55%;
+}
+#navigation li {
+	border: none;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+#navigation li a {
+	color: black;
+	font-size: 18px;
+}
+#content-wrapper {
+	background:black none repeat scroll 0% 0%;
+	border:14px solid black;
+	margin:-9pt auto -9pt 152px;
+	width:922px;
+}
+.js .interactive-mode {
+	right: 14%;
+	top: 55px;
+}
+.js #add-page {
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	right: 32%;
+	top: 70px;
+}
+.js #navigation .enter-page {
+	background-color: transparent;
+	padding: 0px;
+}
+.portlet {
+	background: transparent;
+	border: none;
+}
+.portlet-topper {
+	background: none;
+	border: none;
+	color: #FFFFFF;
+	font-size: 20px;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: transparent;
+	color: #9acff8;
+}
+.ui-tabs li a, .tabs li span {
+	background: transparent;
+	border-right: none;
+}
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	font-weight: bold;
+}
+a {
+	font-size: 12px;
+}
+#banner .logo a {
+	margin-left: 125px;
+}
+#footer {
+	background: #536E7E url(../images/custom/bckfooter.gif) repeat-x scroll 0% 0%;
+	color: #C6CBCE;
+	font-size: 11px;
+	font-weight: bold;
+	line-height: 1.5em;
+	margin-left: 152px;
+	padding: 40px 0pt 60px;
+	position: relative;
+	text-align: center;
+	width: 950px;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color: transparent;
+}
+.ui-tabs {
+	border-bottom: none;
+}
+.ui-dialog {
+	background-color:black;
+}
+.uni-form {
+	background:black none repeat scroll 0% 0%;
+}
