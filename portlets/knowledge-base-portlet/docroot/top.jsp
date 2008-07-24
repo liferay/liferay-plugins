@@ -42,7 +42,7 @@ boolean print = ParamUtil.getBoolean(request, Constants.PRINT);
 				<!-- Search by categories -->
 			</td>
 			<td align="right" valign="top">
-				<liferay-portlet:renderURL varImpl="searchURL"><portlet:param name="<%= Constants.CMD %>" value="search" /></liferay-portlet:renderURL>
+				<liferay-portlet:renderURL varImpl="searchURL"><portlet:param name="view" value="search" /></liferay-portlet:renderURL>
 
 				<form action="<%= searchURL %>" method="get" name="<portlet:namespace />fmSearch">
 				<liferay-portlet:renderURLParams varImpl="searchURL" />

@@ -31,10 +31,10 @@ String tag = ParamUtil.getString(request, "tag");
 PortletURL portletURL = renderResponse.createRenderURL();
 
 if (type.equals("all_articles")) {
-	portletURL.setParameter(Constants.CMD, "view_all_articles");
+	portletURL.setParameter("view", "view_all_articles");
 }
 else if (type.equals("tagged_articles")) {
-	portletURL.setParameter(Constants.CMD, "view_tagged_articles");
+	portletURL.setParameter("view", "view_tagged_articles");
 	portletURL.setParameter("tag", tag);
 }
 
@@ -100,7 +100,7 @@ for (int i = 0; i < results.size(); i++) {
 
 	PortletURL rowURL = renderResponse.createRenderURL();
 
-	rowURL.setParameter(Constants.CMD, "view_article");
+	rowURL.setParameter("view", "view_article");
 	rowURL.setParameter("title", curKBArticle.getTitle());
 
 	// Id
@@ -137,7 +137,7 @@ for (int i = 0; i < results.size(); i++) {
 
 <c:if test="<%= KBPermission.contains(permissionChecker, portletGroupId, ActionKeys.ADD_ARTICLE) %>">
 	<div>
-		<input type="button" value="<liferay-ui:message key="add-article" />" onClick="location.href = '<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="edit_article" /><portlet:param name="redirect" value="<%= currentURL %>"></portlet:param></portlet:renderURL>'" />
+		<input type="button" value="<liferay-ui:message key="add-article" />" onClick="location.href = '<portlet:renderURL><portlet:param name="view" value="edit_article" /><portlet:param name="redirect" value="<%= currentURL %>"></portlet:param></portlet:renderURL>'" />
 	</div>
 </c:if>
 
@@ -150,7 +150,7 @@ for (int i = 0; i < results.size(); i++) {
 		<c:choose>
 			<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), portletGroupId) %>">
 				<portlet:actionURL var="unsubscribeURL">
-					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UNSUBSCRIBE %>" />
+					<portlet:param name="actionName" value="<%= Constants.UNSUBSCRIBE %>" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 				</portlet:actionURL>
 
@@ -158,7 +158,7 @@ for (int i = 0; i < results.size(); i++) {
 			</c:when>
 			<c:otherwise>
 				<portlet:actionURL var="subscribeURL">
-					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.SUBSCRIBE %>" />
+					<portlet:param name="actionName" value="<%= Constants.SUBSCRIBE %>" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 				</portlet:actionURL>
 

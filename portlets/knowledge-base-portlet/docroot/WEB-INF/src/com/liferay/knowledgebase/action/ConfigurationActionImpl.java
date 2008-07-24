@@ -49,9 +49,9 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			ActionResponse actionResponse)
 		throws Exception {
 
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+		String actionName = ParamUtil.getString(actionRequest, "actionName");
 
-		if (!cmd.equals(Constants.UPDATE)) {
+		if (!actionName.equals(Constants.UPDATE)) {
 			return;
 		}
 

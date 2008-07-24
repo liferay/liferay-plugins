@@ -153,7 +153,7 @@ public class Indexer {
 
 		String groupId = doc.get(Field.ENTRY_CLASS_PK);
 
-		portletURL.setParameter(Constants.CMD, "view");
+		portletURL.setParameter("view", "view_article");
 		portletURL.setParameter("groupId", groupId);
 		portletURL.setParameter("title", title);
 

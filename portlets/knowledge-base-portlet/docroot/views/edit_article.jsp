@@ -42,12 +42,12 @@ if (article == null) {
 
 PortletURL viewArticleURL = renderResponse.createRenderURL();
 
-viewArticleURL.setParameter(Constants.CMD, "view_article");
+viewArticleURL.setParameter("view", "view_article");
 viewArticleURL.setParameter("title", title);
 
 PortletURL editArticleURL = renderResponse.createRenderURL();
 
-editArticleURL.setParameter(Constants.CMD, "edit_article");
+editArticleURL.setParameter("view", "edit_article");
 editArticleURL.setParameter("title", title);
 %>
 
@@ -57,7 +57,6 @@ editArticleURL.setParameter("title", title);
 	}
 
 	function <portlet:namespace />previewArticle() {
-		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "edit_article";
 		document.<portlet:namespace />fm.<portlet:namespace />preview.value = "true";
 
 		if (window.<portlet:namespace />editor) {
@@ -68,7 +67,7 @@ editArticleURL.setParameter("title", title);
 	}
 
 	function <portlet:namespace />saveArticle() {
-		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.UPDATE %>";
+		document.<portlet:namespace />fm.<portlet:namespace />actionName.value = "<%= Constants.UPDATE %>";
 
 		if (window.<portlet:namespace />editor) {
 			document.<portlet:namespace />fm.<portlet:namespace />content.value = window.<portlet:namespace />editor.getHTML();
@@ -100,7 +99,7 @@ editArticleURL.setParameter("title", title);
 </c:if>
 
 <form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveArticle(); return false;">
-<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
+<input name="<portlet:namespace />actionName" type="hidden" value="" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />parentTitle" type="hidden" value="<%= parentTitle %>" />
 <input name="<portlet:namespace />format" type="hidden" value="html" />

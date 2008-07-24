@@ -31,7 +31,7 @@ String[] attachments = article.getAttachmentsFiles();
 
 PortletURL portletURL = renderResponse.createActionURL();
 
-portletURL.setParameter(Constants.CMD, "view_article_attachments");
+portletURL.setParameter("view", "view_article_attachments");
 portletURL.setParameter("title", article.getTitle());
 
 List<String> headerNames = new ArrayList<String>();
@@ -65,7 +65,7 @@ for (int i = 0; i < results.size(); i++) {
 
 	ResourceURL rowURL = renderResponse.createResourceURL();
 
-	rowURL.setParameter(Constants.CMD, "get_article_attachment");
+	rowURL.setParameter("actionName", "getArticleAttachment");
 	rowURL.setParameter("title", article.getTitle());
 	rowURL.setParameter("fileName", shortFileName);
 
@@ -96,12 +96,12 @@ for (int i = 0; i < results.size(); i++) {
 }
 %>
 <h1 class="article-title">
-	<a class="return-to-article" href="<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="view_article" /><portlet:param name="title" value="<%= article.getTitle() %>" /></portlet:renderURL>"><%= article.getTitle() %></a>
+	<a class="return-to-article" href="<portlet:renderURL><portlet:param name="view" value="view_article" /><portlet:param name="title" value="<%= article.getTitle() %>" /></portlet:renderURL>"><%= article.getTitle() %></a>
 </h1>
 
 <c:if test="<%= KBPermission.contains(permissionChecker, portletGroupId, ActionKeys.ADD_ATTACHMENT) %>">
 	<div>
-		<input type="button" value="<liferay-ui:message key="add-attachments" />" onClick="location.href = '<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="edit_article_attachment" /><portlet:param name="title" value="<%= article.getTitle() %>" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" />
+		<input type="button" value="<liferay-ui:message key="add-attachments" />" onClick="location.href = '<portlet:renderURL><portlet:param name="view" value="edit_article_attachment" /><portlet:param name="title" value="<%= article.getTitle() %>" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" />
 	</div>
 
 	<br />

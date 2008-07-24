@@ -32,7 +32,7 @@ KBArticle article = (KBArticle)row.getObject();
 <liferay-ui:icon-menu>
 	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
-			<portlet:param name="<%= Constants.CMD %>" value="edit_article" />
+			<portlet:param name="view" value="edit_article" />
 			<portlet:param name="title" value="<%= article.getTitle() %>" />
 		</portlet:renderURL>
 
@@ -54,7 +54,7 @@ KBArticle article = (KBArticle)row.getObject();
 		<c:choose>
 			<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), article.getResourcePrimKey()) %>">
 				<portlet:actionURL var="unsubscribeURL">
-					<portlet:param name="<%= Constants.CMD %>" value="unsubscribe_article" />
+					<portlet:param name="actionName" value="unsubscribeArticle" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
 				</portlet:actionURL>
@@ -63,7 +63,7 @@ KBArticle article = (KBArticle)row.getObject();
 			</c:when>
 			<c:otherwise>
 				<portlet:actionURL var="subscribeURL">
-					<portlet:param name="<%= Constants.CMD %>" value="subscribe_article" />
+					<portlet:param name="actionName" value="subscribeArticle" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
 				</portlet:actionURL>
@@ -75,7 +75,7 @@ KBArticle article = (KBArticle)row.getObject();
 
 	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) %>">
 		<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="deleteURL">
-			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
+			<portlet:param name="actionName" value="<%= Constants.DELETE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="title" value="<%= article.getTitle() %>" />
 		</portlet:actionURL>

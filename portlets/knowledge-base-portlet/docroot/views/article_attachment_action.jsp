@@ -36,7 +36,7 @@ String fileName = (String)objArray[1];
 <liferay-ui:icon-menu>
 	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) %>">
 		<portlet:actionURL var="deleteURL">
-			<portlet:param name="<%= Constants.CMD %>" value="delete_attachment" />
+			<portlet:param name="actionName" value="deleteAttachment" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="title" value="<%= article.getTitle() %>" />
 			<portlet:param name="fileName" value="<%= fileName %>" />

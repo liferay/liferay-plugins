@@ -42,6 +42,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -85,32 +86,33 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		throws IOException, PortletException {
 
 		try {
-			String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+			String actionName = ParamUtil.getString(
+				actionRequest, "actionName");
 
 			KBArticle article = null;
 
-			if (cmd.equals(Constants.DELETE)) {
+			if (actionName.equals(Constants.DELETE)) {
 				deleteArticle(actionRequest);
 			}
-			else if (cmd.equals(Constants.UPDATE)) {
+			else if (actionName.equals(Constants.UPDATE)) {
 				article = updateArticle(actionRequest);
 			}
-			else if (cmd.equals(Constants.SUBSCRIBE)) {
+			else if (actionName.equals(Constants.SUBSCRIBE)) {
 				subscribe(actionRequest);
 			}
-			else if (cmd.equals(Constants.UNSUBSCRIBE)) {
+			else if (actionName.equals(Constants.UNSUBSCRIBE)) {
 				unsubscribe(actionRequest);
 			}
-			else if (cmd.equals("subscribe_article")) {
+			else if (actionName.equals("subscribeArticle")) {
 				subscribeArticle(actionRequest);
 			}
-			else if (cmd.equals("unsubscribe_article")) {
+			else if (actionName.equals("unsubscribeArticle")) {
 				unsubscribeArticle(actionRequest);
 			}
-			else if (cmd.equals("add_attachment")) {
+			else if (actionName.equals("addAttachment")) {
 				addAttachment(actionRequest);
 			}
-			else if (cmd.equals("delete_attachment")) {
+			else if (actionName.equals("deleteAttachment")) {
 				deleteAttachment(actionRequest);
 			}
 
@@ -119,8 +121,9 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			if (preview) {
 				actionResponse.setRenderParameters(
 					actionRequest.getParameterMap());
+				actionResponse.setRenderParameter("view", "edit_article");
 			}
-			else if (Validator.isNotNull(cmd)) {
+			else if (Validator.isNotNull(actionName)) {
 				String redirect = ParamUtil.getString(
 					actionRequest, "redirect");
 
@@ -130,6 +133,12 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 					if (Validator.isNotNull(saveAndContinueRedirect)) {
 						redirect = saveAndContinueRedirect;
+
+						String title = ParamUtil.getString(
+							actionRequest, "title");
+
+						redirect = HttpUtil.addParameter(
+							redirect, "title", title);
 					}
 					else if (redirect.endsWith("title=")) {
 						redirect += article.getTitle();
@@ -153,8 +162,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 				actionResponse.setRenderParameters(
 					actionRequest.getParameterMap());
-				actionResponse.setRenderParameter(
-					Constants.CMD, "error");
+				actionResponse.setRenderParameter("view", "error");
 			}
 			else if (e instanceof ArticleTitleException ||
 				e instanceof ArticleVersionException ||
@@ -166,7 +174,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 				actionResponse.setRenderParameters(
 					actionRequest.getParameterMap());
 				actionResponse.setRenderParameter(
-					Constants.CMD, "edit_article");
+					"view", "edit_article");
 			}
 			else {
 				throw new PortletException(e);
@@ -206,15 +214,17 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		throws IOException, PortletException {
 
 		try {
-			String cmd = ParamUtil.getString(resourceRequest, Constants.CMD);
+			String actionName = ParamUtil.getString(
+				resourceRequest, "actionName");
 
-			if (cmd.equals("get_article_attachment")) {
+			if (actionName.equals("get_article_attachment")) {
 				String title = ParamUtil.getString(resourceRequest, "title");
-				String fileName = ParamUtil.getString(resourceRequest, "fileName");
+				String fileName = ParamUtil.getString(
+					resourceRequest, "fileName");
 
 				getFile(title, fileName, resourceRequest, resourceResponse);
 			}
-			else if (cmd.equals("convert")) {
+			else if (actionName.equals("convert")) {
 				convertArticle(resourceRequest, resourceResponse);
 			}
 		}

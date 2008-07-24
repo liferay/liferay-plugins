@@ -25,7 +25,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String view = ParamUtil.getString(request, Constants.CMD, "view_all_articles");
+String view = ParamUtil.getString(request, "view", "view_all_articles");
 
 String[] supportedViews = {"view_all_articles", "view_article", "view_article_attachments", "edit_article_attachment", "view_tagged_articles", "edit_article", "search"};
 

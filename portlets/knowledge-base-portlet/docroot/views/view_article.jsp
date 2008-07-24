@@ -42,12 +42,12 @@ PortletURL viewAllURL = renderResponse.createRenderURL();
 
 PortletURL viewArticleURL = renderResponse.createRenderURL();
 
-viewArticleURL.setParameter(Constants.CMD, "view_article");
+viewArticleURL.setParameter("view", "view_article");
 viewArticleURL.setParameter("title", title);
 
 PortletURL addArticleURL = renderResponse.createRenderURL();
 
-addArticleURL.setParameter(Constants.CMD, "edit_article");
+addArticleURL.setParameter("view", "edit_article");
 addArticleURL.setParameter("redirect", currentURL);
 addArticleURL.setParameter("editTitle", "1");
 
@@ -59,13 +59,13 @@ List childArticles = article.getChildArticles();
 
 PortletURL editArticleURL = renderResponse.createRenderURL();
 
-editArticleURL.setParameter(Constants.CMD, "edit_article");
+editArticleURL.setParameter("view", "edit_article");
 editArticleURL.setParameter("redirect", currentURL);
 editArticleURL.setParameter("title", title);
 
 PortletURL printArticleURL = renderResponse.createRenderURL();
 
-printArticleURL.setParameter(Constants.CMD, "view_article");
+printArticleURL.setParameter("view", "view_article");
 printArticleURL.setParameter("title", title);
 printArticleURL.setWindowState(LiferayWindowState.POP_UP);
 
@@ -73,11 +73,11 @@ printArticleURL.setParameter("print", "true");
 
 PortletURL taggedArticlesURL = renderResponse.createRenderURL();
 
-taggedArticlesURL.setParameter(Constants.CMD, "view_tagged_articles");
+taggedArticlesURL.setParameter("view", "view_tagged_articles");
 
 PortletURL viewAttachmentsURL = renderResponse.createRenderURL();
 
-viewAttachmentsURL.setParameter(Constants.CMD, "view_article_attachments");
+viewAttachmentsURL.setParameter("view", "view_article_attachments");
 viewAttachmentsURL.setParameter("title", title);
 %>
 
@@ -106,7 +106,7 @@ viewAttachmentsURL.setParameter("title", title);
 		<%
 		PortletURL viewParentArticleURL = renderResponse.createRenderURL();
 
-		viewParentArticleURL.setParameter(Constants.CMD, "view_article");
+		viewParentArticleURL.setParameter("view", "view_article");
 
 		List parentArticles = article.getParentArticles();
 
@@ -191,7 +191,7 @@ viewAttachmentsURL.setParameter("title", title);
 						for (String extension : extensions) {
 							ResourceURL convertURL = renderResponse.createResourceURL();
 
-							convertURL.setParameter(Constants.CMD, "convert");
+							convertURL.setParameter("actionName", "convert");
 							convertURL.setParameter("title", article.getTitle());
 							convertURL.setParameter("version", String.valueOf(article.getVersion()));
 							convertURL.setParameter("targetExtension", extension);
@@ -211,7 +211,7 @@ viewAttachmentsURL.setParameter("title", title);
 							<c:choose>
 								<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), article.getResourcePrimKey()) %>">
 									<portlet:actionURL var="unsubscribeURL">
-										<portlet:param name="<%= Constants.CMD %>" value="subscribe_article" />
+										<portlet:param name="actionName" value="unsubscribeArticle" />
 										<portlet:param name="redirect" value="<%= currentURL %>" />
 										<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
 									</portlet:actionURL>
@@ -220,7 +220,7 @@ viewAttachmentsURL.setParameter("title", title);
 								</c:when>
 								<c:otherwise>
 									<portlet:actionURL var="subscribeURL">
-										<portlet:param name="<%= Constants.CMD %>" value="unsubscribe_article" />
+										<portlet:param name="actionName" value="subscribeArticle" />
 										<portlet:param name="redirect" value="<%= currentURL %>" />
 										<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
 									</portlet:actionURL>
@@ -234,7 +234,7 @@ viewAttachmentsURL.setParameter("title", title);
 							<%
 							PortletURL deleteArticleURL = renderResponse.createActionURL();
 
-							deleteArticleURL.setParameter(Constants.CMD, Constants.DELETE);
+							deleteArticleURL.setParameter("actionName", Constants.DELETE);
 							deleteArticleURL.setParameter("title", article.getTitle());
 							deleteArticleURL.setParameter("redirect", viewAllURL.toString());
 							%>
@@ -264,7 +264,7 @@ viewAttachmentsURL.setParameter("title", title);
 
 			<%
 			PortletURL curArticleURL = renderResponse.createRenderURL();
-			curArticleURL.setParameter(Constants.CMD, "view_article");
+			curArticleURL.setParameter("view", "view_article");
 
 			for (int i = 0; i < childArticles.size(); i++) {
 				KBArticle curArticle = (KBArticle)childArticles.get(i);

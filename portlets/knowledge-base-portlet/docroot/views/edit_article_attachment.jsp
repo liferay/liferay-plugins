@@ -40,18 +40,17 @@ KBArticle article = (KBArticle)request.getAttribute(KnowledgeBaseKeys.ARTICLE);
 				fallbackContainer: '#<portlet:namespace />fallback',
 				maxFileSize: <%= PropsUtil.get("dl.file.max.size") %>,
 				namespace: '<portlet:namespace />',
-				uploadFile: '<liferay-portlet:actionURL windowState="<%= LiferayWindowState.POP_UP.toString() %>" doAsUserId="<%= user.getUserId() %>"><portlet:param name="<%= Constants.CMD %>" value="add_attachment" /><portlet:param name="title" value="<%= article.getTitle() %>" /></liferay-portlet:actionURL><liferay-ui:input-permissions-params modelName="<%= KBArticle.class.getName() %>" />'
+				uploadFile: '<liferay-portlet:actionURL windowState="<%= LiferayWindowState.POP_UP.toString() %>" doAsUserId="<%= user.getUserId() %>"><portlet:param name="actionName" value="addAttachment" /><portlet:param name="title" value="<%= article.getTitle() %>" /></liferay-portlet:actionURL><liferay-ui:input-permissions-params modelName="<%= KBArticle.class.getName() %>" />'
 			});
 		}
 	);
 </script>
 
 <h1 class="article-title">
-	<a class="return-to-article" href="<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="view_article_attachments" /><portlet:param name="title" value="<%= article.getTitle() %>" /></portlet:renderURL>"><%= article.getTitle() %></a>
+	<a class="return-to-article" href="<portlet:renderURL><portlet:param name="view" value="view_article_attachments" /><portlet:param name="title" value="<%= article.getTitle() %>" /></portlet:renderURL>"><%= article.getTitle() %></a>
 </h1>
 
-<form action="<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="add_attachment" /><portlet:param name="redirect" value="<%= HtmlUtil.escape(redirect) %>" /></portlet:actionURL>" class="uni-form" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm">
-<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="add_attachment" />
+<form action="<portlet:actionURL><portlet:param name="actionName" value="addAttachment" /><portlet:param name="redirect" value="<%= HtmlUtil.escape(redirect) %>" /></portlet:actionURL>" class="uni-form" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm">
 <input name="<portlet:namespace />title" type="hidden" value="<%= article.getTitle() %>" />
 <input name="<portlet:namespace />numOfFiles" type="hidden" value="3" />
 

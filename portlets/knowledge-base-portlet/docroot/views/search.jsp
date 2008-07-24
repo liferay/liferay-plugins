@@ -30,7 +30,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 String keywords = ParamUtil.getString(request, "keywords");
 %>
 
-<portlet:renderURL var="searchURL"><portlet:param name="<%= Constants.CMD %>" value="search" /></portlet:renderURL>
+<portlet:renderURL var="searchURL"><portlet:param name="view" value="search" /></portlet:renderURL>
 
 <form action="<%= searchURL %>" method="get" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
@@ -40,7 +40,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 <%
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setParameter(Constants.CMD, "search");
+portletURL.setParameter("view", "search");
 portletURL.setParameter("redirect", redirect);
 portletURL.setParameter("keywords", keywords);
 
@@ -76,7 +76,7 @@ try {
 
 		PortletURL rowURL = renderResponse.createRenderURL();
 
-		rowURL.setParameter(Constants.CMD, "view_article");
+		rowURL.setParameter("view", "view_article");
 		rowURL.setParameter("title", title);
 
 		row.addText(title, rowURL);

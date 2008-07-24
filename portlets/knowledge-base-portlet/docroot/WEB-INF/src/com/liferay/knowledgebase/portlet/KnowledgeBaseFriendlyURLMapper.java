@@ -25,7 +25,6 @@ package com.liferay.knowledgebase.portlet;
 import com.liferay.knowledgebase.KnowledgeBaseKeys;
 import com.liferay.portal.kernel.portlet.BaseFriendlyURLMapper;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -49,10 +48,10 @@ public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 	public String buildPath(LiferayPortletURL portletURL) {
 		String friendlyURLPath = null;
 
-		String cmd = GetterUtil.getString(
-			portletURL.getParameter(Constants.CMD));
+		String view = GetterUtil.getString(
+			portletURL.getParameter("view"));
 
-		if (cmd.equals("view_article")) {
+		if (view.equals("view_article")) {
 			String title = portletURL.getParameter("title");
 
 			StringBuilder sb = new StringBuilder();
@@ -76,7 +75,7 @@ public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 			friendlyURLPath = sb.toString();
 		}
-		else if (cmd.equals("view_tagged_articles")) {
+		else if (view.equals("view_tagged_articles")) {
 			String tag = portletURL.getParameter("tag");
 
 			StringBuilder sb = new StringBuilder();
@@ -99,7 +98,7 @@ public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 		if (Validator.isNotNull(friendlyURLPath)) {
 			portletURL.addParameterIncludedInPath("p_p_id");
 
-			portletURL.addParameterIncludedInPath(Constants.CMD);
+			portletURL.addParameterIncludedInPath("view");
 		}
 
 		return friendlyURLPath;
@@ -130,7 +129,7 @@ public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 			if (urlFragment0.equals("tag")) {
 				if (urlFragments.length >= 2) {
-					addParam(params, Constants.CMD, "view_tagged_articles");
+					addParam(params, "view", "view_tagged_articles");
 
 					String tag = HttpUtil.decodeURL(urlFragments[1]);
 
@@ -138,7 +137,7 @@ public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 				}
 			}
 			else {
-				addParam(params, Constants.CMD, "view_article");
+				addParam(params, "view", "view_article");
 
 				addParam(params, "title", urlFragment0);
 
@@ -150,7 +149,7 @@ public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 			}
 		}
 		else {
-			addParam(params, Constants.CMD, "view_all_articles");
+			addParam(params, "view", "view_all_articles");
 		}
 	}
 
