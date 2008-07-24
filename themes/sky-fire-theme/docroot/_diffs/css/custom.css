@@ -1,0 +1,96 @@
+body {
+	background-color: #212121;
+	color: #4b4b4b;
+	font-family: Arial;
+	font-size: 13px;
+	margin: 0;
+	padding: 0;
+}
+.portlet {
+	background: black;
+	border: none;
+}
+.portlet-topper {
+	background: black none repeat scroll 0% 0%;
+	border-bottom: medium none;
+	color: #CD4400;
+	font-family: Verdana;
+	font-size: 24px;
+}
+#banner {
+	background: no-repeat center url(../images/custom/bckheader.jpg);
+	font-family: Verdana;
+	height: 285px;
+	margin-left: 1px;
+}
+#wrapper {
+	background: transparent;
+}
+#navigation {
+	background: none;
+	border: none;
+	margin: -33pt auto 20px;
+	width: 86.5%;
+}
+#navigation li {
+	border: none;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background: transparent url(../images/custom/bckmenuli.gif) repeat-x scroll 0% 0%;
+	color: #CD4400;
+}
+#navigation li a {
+	color: #4B4B4B;
+	font-family: Arial;
+	font-size: 18px;
+	padding: 7px 10px;
+}
+#content-wrapper {
+	background-color: #0B0B0B;
+	border: 10px solid #0B0B0B;
+	margin: -10px auto;
+	width: 980px;
+}
+a {
+	font-size: 12px;
+}
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: transparent url(../images/custom/bckmenuli.gif) repeat-x scroll 0% 0%;
+	border: none;
+	color: #CD4400;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color: transparent;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: transparent url(../images/custom/bckmenuli.gif) repeat-x scroll 0% 0%;
+	color: #CD4400;
+}
+.ui-tabs li a, .tabs li span {
+	background: transparent none repeat scroll 0% 0%;
+	border-right: medium none;
+	color: #4B4B4B;
+}
+.ui-tabs {
+	border-bottom: medium none;
+}
+#banner .logo a {
+	margin-left: 100px;
+}
+.js .interactive-mode {
+	right: 11%;
+}
+.js #add-page {
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	top: 0px;
+}
+.js #navigation .enter-page {
+	background-color: transparent;
+	margin-top: 5px;
+	padding: 0px;
+}
