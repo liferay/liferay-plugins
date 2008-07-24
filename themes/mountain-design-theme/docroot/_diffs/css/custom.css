@@ -1,0 +1,106 @@
+body {
+	background: #000 repeat-x url(../images/custom/bckbody.gif);
+	color: #fff;
+	font-family: Arial;
+	font-size: 14px;
+	margin: 0;
+	padding: 0;
+}
+#banner {
+	background: no-repeat url(../images/custom/bckheader.jpg) center;
+	border-bottom: #010101 1px solid;
+	height: 400px;
+	margin-left: 1px;
+}
+#navigation li {
+	background: transparent url(../images/custom/bckmenuli.gif) repeat-x scroll 0% 0%;
+	border: 1px solid #838383;
+	font-size: 16px;
+	font-weight: bold;
+	height: 37px;
+	line-height: 37px;
+	margin: 0pt 1px 0pt 0pt;
+	padding: 0pt 30px;
+}
+#navigation {
+	background: none;
+	border: none;
+	margin: -21px auto 20px;
+	width: 80%;
+}
+#wrapper {
+	background: none;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+	color: black;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+#navigation li a {
+	color: black;
+	padding: 0px 0px;
+}
+#banner .logo a {
+	margin-left: 220px;
+	margin-top: 115px;
+}
+.js .interactive-mode {
+	right: 14%;
+}
+.portlet {
+	background: transparent;
+	border: none;
+}
+.portlet-topper {
+	background: transparent;
+	border: none;
+	color: #1E3045;
+	font-size: 18px;
+}
+a {
+	font-size: 12px;
+}
+#content-wrapper {
+	background: #94A5B4;
+	border: 15px solid #94A5B4;
+	margin: -38px auto;
+	width:910px;
+}
+.js #add-page {
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	right: 4%;
+	top: -2px;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: transparent;
+	color: black;
+}
+.ui-tabs li a, .tabs li span {
+	background: transparent none repeat scroll 0% 0%;
+	border-right: medium none;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color: transparent;
+}
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	color: black;
+}
+.ui-tabs {
+	border-bottom: medium none;
+}
+.js #navigation .enter-page {
+	background-color: transparent;
+	padding: 0px;
+}
+.ui-dialog.ui-resizable-disabled .ui-dialog-content {
+	color: black;
+}
+.ui-dialog {
+	background-color:black;
+}
