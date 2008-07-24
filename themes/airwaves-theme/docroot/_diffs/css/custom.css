@@ -1,0 +1,91 @@
+/*Web design released by Flash Gallery
+© Copyright 2008 Your Website*/ 
+body {
+	background: url(../images/custom/body.jpg) repeat-x #8d8d8d;
+	color: #cccccc;
+	font-family: Arial, Tahoma, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 16px;
+	margin: 0;
+}
+#navigation {
+	background: none;
+	border: none;
+	margin: -40pt auto 20px 550px;
+	width: 50%;
+}
+#navigation li {
+	border: none;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+#wrapper {
+	background: transparent url(../images/custom/body_bckg.jpg) repeat-y center;
+}
+#banner {
+	background: none;
+}
+#content-wrapper {
+	width: 75%;
+	min-height: 780px;
+}
+.portlet {
+	background: transparent;
+	border: none;
+}
+#banner .logo a {
+	margin-left: 105px;
+}
+.portlet-topper {
+	background: none;
+	border: none;
+}
+.js #add-page {
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	right: 10%;
+	top: -1px;
+}
+.js #navigation .enter-page {
+	background-color: transparent;
+	padding: 0px;
+}
+.ui-tabs li a, .tabs li span {
+	background: transparent none repeat scroll 0% 0%;
+	border-right: medium none;
+}
+.ui-tabs {
+	border-bottom: medium none;
+}
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+	color: grey;
+	text-decoration: none;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color: black;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: transparent;
+	color: grey;
+}
+.js .interactive-mode {
+	right: 12%;
+}
+#navigation li.selected a span {
+	color:grey;
+	font-weight:bold;
+	text-decoration: underline;
+}
+.ui-dialog {
+	background-color:black;
+}
+.uni-form {
+	background:black none repeat scroll 0% 0%;
+}
