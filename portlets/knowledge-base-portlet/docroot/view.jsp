@@ -26,11 +26,16 @@
 
 <%
 String view = ParamUtil.getString(request, "view", "view_all_articles");
+String tag = ParamUtil.getString(request, "tag");
 
 String[] supportedViews = {"view_all_articles", "view_article", "view_article_attachments", "edit_article_attachment", "view_tagged_articles", "edit_article", "search"};
 
 if (!ArrayUtil.contains(supportedViews, view)) {
 	view = supportedViews[0];
+}
+
+if (Validator.isNotNull(tag)) {
+	view = "view_tagged_articles";
 }
 
 _log.info("Including view: " + "/" + view + ".jsp");

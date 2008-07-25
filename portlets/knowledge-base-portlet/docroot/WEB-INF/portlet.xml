@@ -30,5 +30,10 @@
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
+		<supported-public-render-parameter>tag</supported-public-render-parameter>
 	</portlet>
+	<public-render-parameter>
+   		<identifier>tag</identifier>
+   		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:tag</qname>
+   </public-render-parameter>
 </portlet-app>
