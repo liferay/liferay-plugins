@@ -83,6 +83,15 @@ public abstract class ProducerLocalServiceBaseImpl
 		return producerPersistence.findByPrimaryKey(producerId);
 	}
 
+	public List<Producer> getProducers(int start, int end)
+		throws SystemException {
+		return producerPersistence.findAll(start, end);
+	}
+
+	public int getProducersCount() throws SystemException {
+		return producerPersistence.countAll();
+	}
+
 	public Producer updateProducer(Producer producer) throws SystemException {
 		producer.setNew(false);
 

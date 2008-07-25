@@ -22,6 +22,16 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="com.liferay.wol.service.JIRAActionLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.wol.service.JIRAActionLocalService.transaction" />
+		</property>
+	</bean>
 	<bean id="com.liferay.wol.service.JIRAActionLocalServiceFactory" class="com.liferay.wol.service.JIRAActionLocalServiceFactory" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.wol.service.JIRAActionLocalService.transaction" />
@@ -87,6 +97,16 @@
 				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
 				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
 			</props>
+		</property>
+	</bean>
+	<bean id="com.liferay.wol.service.JIRAChangeGroupLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.wol.service.JIRAChangeGroupLocalService.transaction" />
 		</property>
 	</bean>
 	<bean id="com.liferay.wol.service.JIRAChangeGroupLocalServiceFactory" class="com.liferay.wol.service.JIRAChangeGroupLocalServiceFactory" lazy-init="true">
@@ -156,6 +176,16 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="com.liferay.wol.service.JIRAChangeItemLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.wol.service.JIRAChangeItemLocalService.transaction" />
+		</property>
+	</bean>
 	<bean id="com.liferay.wol.service.JIRAChangeItemLocalServiceFactory" class="com.liferay.wol.service.JIRAChangeItemLocalServiceFactory" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.wol.service.JIRAChangeItemLocalService.transaction" />
@@ -208,6 +238,16 @@
 				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
 				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
 			</props>
+		</property>
+	</bean>
+	<bean id="com.liferay.wol.service.JIRAIssueLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.wol.service.JIRAIssueLocalService.transaction" />
 		</property>
 	</bean>
 	<bean id="com.liferay.wol.service.JIRAIssueLocalServiceFactory" class="com.liferay.wol.service.JIRAIssueLocalServiceFactory" lazy-init="true">
@@ -277,6 +317,16 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="com.liferay.wol.service.MeetupsEntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.wol.service.MeetupsEntryLocalService.transaction" />
+		</property>
+	</bean>
 	<bean id="com.liferay.wol.service.MeetupsEntryLocalServiceFactory" class="com.liferay.wol.service.MeetupsEntryLocalServiceFactory" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.wol.service.MeetupsEntryLocalService.transaction" />
@@ -329,6 +379,16 @@
 				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
 				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
 			</props>
+		</property>
+	</bean>
+	<bean id="com.liferay.wol.service.MeetupsRegistrationLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.wol.service.MeetupsRegistrationLocalService.transaction" />
 		</property>
 	</bean>
 	<bean id="com.liferay.wol.service.MeetupsRegistrationLocalServiceFactory" class="com.liferay.wol.service.MeetupsRegistrationLocalServiceFactory" lazy-init="true">
@@ -385,6 +445,16 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="com.liferay.wol.service.SVNRepositoryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.wol.service.SVNRepositoryLocalService.transaction" />
+		</property>
+	</bean>
 	<bean id="com.liferay.wol.service.SVNRepositoryLocalServiceFactory" class="com.liferay.wol.service.SVNRepositoryLocalServiceFactory" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.wol.service.SVNRepositoryLocalService.transaction" />
@@ -439,6 +509,16 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="com.liferay.wol.service.SVNRevisionLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.wol.service.SVNRevisionLocalService.transaction" />
+		</property>
+	</bean>
 	<bean id="com.liferay.wol.service.SVNRevisionLocalServiceFactory" class="com.liferay.wol.service.SVNRevisionLocalServiceFactory" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.wol.service.SVNRevisionLocalService.transaction" />
@@ -491,6 +571,16 @@
 				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
 				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
 			</props>
+		</property>
+	</bean>
+	<bean id="com.liferay.wol.service.WallEntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.wol.service.WallEntryLocalService.transaction" />
 		</property>
 	</bean>
 	<bean id="com.liferay.wol.service.WallEntryLocalServiceFactory" class="com.liferay.wol.service.WallEntryLocalServiceFactory" lazy-init="true">

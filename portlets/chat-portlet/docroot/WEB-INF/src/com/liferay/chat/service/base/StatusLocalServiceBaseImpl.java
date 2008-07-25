@@ -80,6 +80,15 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 		return statusPersistence.findByPrimaryKey(statusId);
 	}
 
+	public List<Status> getStatuss(int start, int end)
+		throws SystemException {
+		return statusPersistence.findAll(start, end);
+	}
+
+	public int getStatussCount() throws SystemException {
+		return statusPersistence.countAll();
+	}
+
 	public Status updateStatus(Status status) throws SystemException {
 		status.setNew(false);
 

@@ -52,6 +52,11 @@ public interface FooLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
+		int start, int end) throws com.liferay.portal.SystemException;
+
+	public int getFoosCount() throws com.liferay.portal.SystemException;
+
 	public com.liferay.sampleservicebuilder.model.Foo updateFoo(
 		com.liferay.sampleservicebuilder.model.Foo foo)
 		throws com.liferay.portal.SystemException;

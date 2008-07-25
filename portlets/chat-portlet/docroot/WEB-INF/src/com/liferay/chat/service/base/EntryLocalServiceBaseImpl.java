@@ -79,6 +79,14 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService,
 		return entryPersistence.findByPrimaryKey(entryId);
 	}
 
+	public List<Entry> getEntries(int start, int end) throws SystemException {
+		return entryPersistence.findAll(start, end);
+	}
+
+	public int getEntriesCount() throws SystemException {
+		return entryPersistence.countAll();
+	}
+
 	public Entry updateEntry(Entry entry) throws SystemException {
 		entry.setNew(false);
 

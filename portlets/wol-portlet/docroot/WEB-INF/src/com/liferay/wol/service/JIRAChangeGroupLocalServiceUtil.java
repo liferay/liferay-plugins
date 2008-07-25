@@ -78,6 +78,20 @@ public class JIRAChangeGroupLocalServiceUtil {
 		return jiraChangeGroupLocalService.getJIRAChangeGroup(jiraChangeGroupId);
 	}
 
+	public static java.util.List<com.liferay.wol.model.JIRAChangeGroup> getJIRAChangeGroups(
+		int start, int end) throws com.liferay.portal.SystemException {
+		JIRAChangeGroupLocalService jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getService();
+
+		return jiraChangeGroupLocalService.getJIRAChangeGroups(start, end);
+	}
+
+	public static int getJIRAChangeGroupsCount()
+		throws com.liferay.portal.SystemException {
+		JIRAChangeGroupLocalService jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getService();
+
+		return jiraChangeGroupLocalService.getJIRAChangeGroupsCount();
+	}
+
 	public static com.liferay.wol.model.JIRAChangeGroup updateJIRAChangeGroup(
 		com.liferay.wol.model.JIRAChangeGroup jiraChangeGroup)
 		throws com.liferay.portal.SystemException {

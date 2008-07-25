@@ -54,6 +54,12 @@ public interface JIRAChangeGroupLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	public java.util.List<com.liferay.wol.model.JIRAChangeGroup> getJIRAChangeGroups(
+		int start, int end) throws com.liferay.portal.SystemException;
+
+	public int getJIRAChangeGroupsCount()
+		throws com.liferay.portal.SystemException;
+
 	public com.liferay.wol.model.JIRAChangeGroup updateJIRAChangeGroup(
 		com.liferay.wol.model.JIRAChangeGroup jiraChangeGroup)
 		throws com.liferay.portal.SystemException;

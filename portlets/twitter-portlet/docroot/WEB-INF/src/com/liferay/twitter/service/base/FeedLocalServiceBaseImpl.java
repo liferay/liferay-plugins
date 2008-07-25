@@ -70,6 +70,14 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 		return feedPersistence.findByPrimaryKey(feedId);
 	}
 
+	public List<Feed> getFeeds(int start, int end) throws SystemException {
+		return feedPersistence.findAll(start, end);
+	}
+
+	public int getFeedsCount() throws SystemException {
+		return feedPersistence.countAll();
+	}
+
 	public Feed updateFeed(Feed feed) throws SystemException {
 		feed.setNew(false);
 

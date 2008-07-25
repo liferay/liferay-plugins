@@ -114,6 +114,15 @@ public abstract class WallEntryLocalServiceBaseImpl
 		return wallEntryPersistence.findByPrimaryKey(wallEntryId);
 	}
 
+	public List<WallEntry> getWallEntries(int start, int end)
+		throws SystemException {
+		return wallEntryPersistence.findAll(start, end);
+	}
+
+	public int getWallEntriesCount() throws SystemException {
+		return wallEntryPersistence.countAll();
+	}
+
 	public WallEntry updateWallEntry(WallEntry wallEntry)
 		throws SystemException {
 		wallEntry.setNew(false);

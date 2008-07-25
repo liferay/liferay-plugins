@@ -115,6 +115,15 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 		return meetupsEntryPersistence.findByPrimaryKey(meetupsEntryId);
 	}
 
+	public List<MeetupsEntry> getMeetupsEntries(int start, int end)
+		throws SystemException {
+		return meetupsEntryPersistence.findAll(start, end);
+	}
+
+	public int getMeetupsEntriesCount() throws SystemException {
+		return meetupsEntryPersistence.countAll();
+	}
+
 	public MeetupsEntry updateMeetupsEntry(MeetupsEntry meetupsEntry)
 		throws SystemException {
 		meetupsEntry.setNew(false);

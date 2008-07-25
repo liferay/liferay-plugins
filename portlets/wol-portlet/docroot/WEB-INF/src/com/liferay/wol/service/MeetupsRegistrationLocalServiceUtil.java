@@ -79,6 +79,21 @@ public class MeetupsRegistrationLocalServiceUtil {
 		return meetupsRegistrationLocalService.getMeetupsRegistration(meetupsRegistrationId);
 	}
 
+	public static java.util.List<com.liferay.wol.model.MeetupsRegistration> getMeetupsRegistrations(
+		int start, int end) throws com.liferay.portal.SystemException {
+		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
+
+		return meetupsRegistrationLocalService.getMeetupsRegistrations(start,
+			end);
+	}
+
+	public static int getMeetupsRegistrationsCount()
+		throws com.liferay.portal.SystemException {
+		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
+
+		return meetupsRegistrationLocalService.getMeetupsRegistrationsCount();
+	}
+
 	public static com.liferay.wol.model.MeetupsRegistration updateMeetupsRegistration(
 		com.liferay.wol.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.SystemException {

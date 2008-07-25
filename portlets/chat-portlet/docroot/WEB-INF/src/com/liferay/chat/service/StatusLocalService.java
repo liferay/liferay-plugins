@@ -52,6 +52,11 @@ public interface StatusLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	public java.util.List<com.liferay.chat.model.Status> getStatuss(int start,
+		int end) throws com.liferay.portal.SystemException;
+
+	public int getStatussCount() throws com.liferay.portal.SystemException;
+
 	public com.liferay.chat.model.Status updateStatus(
 		com.liferay.chat.model.Status status)
 		throws com.liferay.portal.SystemException;

@@ -22,6 +22,16 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="com.liferay.chat.service.EntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.chat.service.EntryLocalService.transaction" />
+		</property>
+	</bean>
 	<bean id="com.liferay.chat.service.EntryLocalServiceFactory" class="com.liferay.chat.service.EntryLocalServiceFactory" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.chat.service.EntryLocalService.transaction" />
@@ -87,6 +97,16 @@
 				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
 				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
 			</props>
+		</property>
+	</bean>
+	<bean id="com.liferay.chat.service.StatusLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.chat.service.StatusLocalService.transaction" />
 		</property>
 	</bean>
 	<bean id="com.liferay.chat.service.StatusLocalServiceFactory" class="com.liferay.chat.service.StatusLocalServiceFactory" lazy-init="true">

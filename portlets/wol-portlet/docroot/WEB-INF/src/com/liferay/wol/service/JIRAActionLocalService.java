@@ -52,6 +52,11 @@ public interface JIRAActionLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	public java.util.List<com.liferay.wol.model.JIRAAction> getJIRAActions(
+		int start, int end) throws com.liferay.portal.SystemException;
+
+	public int getJIRAActionsCount() throws com.liferay.portal.SystemException;
+
 	public com.liferay.wol.model.JIRAAction updateJIRAAction(
 		com.liferay.wol.model.JIRAAction jiraAction)
 		throws com.liferay.portal.SystemException;

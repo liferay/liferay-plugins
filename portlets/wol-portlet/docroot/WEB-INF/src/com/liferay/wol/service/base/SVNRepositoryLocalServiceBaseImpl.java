@@ -115,6 +115,15 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 		return svnRepositoryPersistence.findByPrimaryKey(svnRepositoryId);
 	}
 
+	public List<SVNRepository> getSVNRepositories(int start, int end)
+		throws SystemException {
+		return svnRepositoryPersistence.findAll(start, end);
+	}
+
+	public int getSVNRepositoriesCount() throws SystemException {
+		return svnRepositoryPersistence.countAll();
+	}
+
 	public SVNRepository updateSVNRepository(SVNRepository svnRepository)
 		throws SystemException {
 		svnRepository.setNew(false);

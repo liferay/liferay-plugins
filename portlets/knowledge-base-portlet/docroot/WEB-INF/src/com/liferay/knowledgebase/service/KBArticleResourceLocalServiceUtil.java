@@ -79,6 +79,20 @@ public class KBArticleResourceLocalServiceUtil {
 		return kbArticleResourceLocalService.getKBArticleResource(resourcePrimKey);
 	}
 
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticleResource> getKBArticleResources(
+		int start, int end) throws com.liferay.portal.SystemException {
+		KBArticleResourceLocalService kbArticleResourceLocalService = KBArticleResourceLocalServiceFactory.getService();
+
+		return kbArticleResourceLocalService.getKBArticleResources(start, end);
+	}
+
+	public static int getKBArticleResourcesCount()
+		throws com.liferay.portal.SystemException {
+		KBArticleResourceLocalService kbArticleResourceLocalService = KBArticleResourceLocalServiceFactory.getService();
+
+		return kbArticleResourceLocalService.getKBArticleResourcesCount();
+	}
+
 	public static com.liferay.knowledgebase.model.KBArticleResource updateKBArticleResource(
 		com.liferay.knowledgebase.model.KBArticleResource kbArticleResource)
 		throws com.liferay.portal.SystemException {

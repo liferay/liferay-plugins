@@ -115,6 +115,15 @@ public abstract class JIRAActionLocalServiceBaseImpl
 		return jiraActionPersistence.findByPrimaryKey(jiraActionId);
 	}
 
+	public List<JIRAAction> getJIRAActions(int start, int end)
+		throws SystemException {
+		return jiraActionPersistence.findAll(start, end);
+	}
+
+	public int getJIRAActionsCount() throws SystemException {
+		return jiraActionPersistence.countAll();
+	}
+
 	public JIRAAction updateJIRAAction(JIRAAction jiraAction)
 		throws SystemException {
 		jiraAction.setNew(false);

@@ -78,6 +78,20 @@ public class JIRAActionLocalServiceUtil {
 		return jiraActionLocalService.getJIRAAction(jiraActionId);
 	}
 
+	public static java.util.List<com.liferay.wol.model.JIRAAction> getJIRAActions(
+		int start, int end) throws com.liferay.portal.SystemException {
+		JIRAActionLocalService jiraActionLocalService = JIRAActionLocalServiceFactory.getService();
+
+		return jiraActionLocalService.getJIRAActions(start, end);
+	}
+
+	public static int getJIRAActionsCount()
+		throws com.liferay.portal.SystemException {
+		JIRAActionLocalService jiraActionLocalService = JIRAActionLocalServiceFactory.getService();
+
+		return jiraActionLocalService.getJIRAActionsCount();
+	}
+
 	public static com.liferay.wol.model.JIRAAction updateJIRAAction(
 		com.liferay.wol.model.JIRAAction jiraAction)
 		throws com.liferay.portal.SystemException {

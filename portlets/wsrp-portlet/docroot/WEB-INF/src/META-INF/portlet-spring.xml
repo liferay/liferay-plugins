@@ -22,6 +22,16 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="com.liferay.wsrp.consumer.service.ProducerLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.wsrp.consumer.service.ProducerLocalService.transaction" />
+		</property>
+	</bean>
 	<bean id="com.liferay.wsrp.consumer.service.ProducerLocalServiceFactory" class="com.liferay.wsrp.consumer.service.ProducerLocalServiceFactory" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.wsrp.consumer.service.ProducerLocalService.transaction" />
@@ -45,6 +55,16 @@
 				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
 				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
 			</props>
+		</property>
+	</bean>
+	<bean id="com.liferay.wsrp.consumer.service.ProducerService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.wsrp.consumer.service.ProducerService.transaction" />
 		</property>
 	</bean>
 	<bean id="com.liferay.wsrp.consumer.service.ProducerServiceFactory" class="com.liferay.wsrp.consumer.service.ProducerServiceFactory" lazy-init="true">

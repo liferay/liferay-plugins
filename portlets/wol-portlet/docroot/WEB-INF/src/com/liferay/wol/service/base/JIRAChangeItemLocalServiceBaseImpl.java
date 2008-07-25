@@ -115,6 +115,15 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 		return jiraChangeItemPersistence.findByPrimaryKey(jiraChangeItemId);
 	}
 
+	public List<JIRAChangeItem> getJIRAChangeItems(int start, int end)
+		throws SystemException {
+		return jiraChangeItemPersistence.findAll(start, end);
+	}
+
+	public int getJIRAChangeItemsCount() throws SystemException {
+		return jiraChangeItemPersistence.countAll();
+	}
+
 	public JIRAChangeItem updateJIRAChangeItem(JIRAChangeItem jiraChangeItem)
 		throws SystemException {
 		jiraChangeItem.setNew(false);

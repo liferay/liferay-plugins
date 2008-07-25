@@ -114,6 +114,15 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 		return jiraIssuePersistence.findByPrimaryKey(jiraIssueId);
 	}
 
+	public List<JIRAIssue> getJIRAIssues(int start, int end)
+		throws SystemException {
+		return jiraIssuePersistence.findAll(start, end);
+	}
+
+	public int getJIRAIssuesCount() throws SystemException {
+		return jiraIssuePersistence.countAll();
+	}
+
 	public JIRAIssue updateJIRAIssue(JIRAIssue jiraIssue)
 		throws SystemException {
 		jiraIssue.setNew(false);

@@ -141,6 +141,15 @@ public abstract class KBArticleLocalServiceBaseImpl
 		return kbArticlePersistence.findByPrimaryKey(articleId);
 	}
 
+	public List<KBArticle> getKBArticles(int start, int end)
+		throws SystemException {
+		return kbArticlePersistence.findAll(start, end);
+	}
+
+	public int getKBArticlesCount() throws SystemException {
+		return kbArticlePersistence.countAll();
+	}
+
 	public KBArticle updateKBArticle(KBArticle kbArticle)
 		throws SystemException {
 		kbArticle.setNew(false);

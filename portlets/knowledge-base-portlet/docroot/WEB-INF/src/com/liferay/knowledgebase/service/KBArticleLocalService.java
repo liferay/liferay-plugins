@@ -54,6 +54,11 @@ public interface KBArticleLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
+		int start, int end) throws com.liferay.portal.SystemException;
+
+	public int getKBArticlesCount() throws com.liferay.portal.SystemException;
+
 	public com.liferay.knowledgebase.model.KBArticle updateKBArticle(
 		com.liferay.knowledgebase.model.KBArticle kbArticle)
 		throws com.liferay.portal.SystemException;

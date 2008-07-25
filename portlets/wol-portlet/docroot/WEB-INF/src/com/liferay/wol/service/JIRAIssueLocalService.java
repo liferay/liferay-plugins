@@ -52,6 +52,11 @@ public interface JIRAIssueLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	public java.util.List<com.liferay.wol.model.JIRAIssue> getJIRAIssues(
+		int start, int end) throws com.liferay.portal.SystemException;
+
+	public int getJIRAIssuesCount() throws com.liferay.portal.SystemException;
+
 	public com.liferay.wol.model.JIRAIssue updateJIRAIssue(
 		com.liferay.wol.model.JIRAIssue jiraIssue)
 		throws com.liferay.portal.SystemException;

@@ -78,6 +78,20 @@ public class ProducerLocalServiceUtil {
 		return producerLocalService.getProducer(producerId);
 	}
 
+	public static java.util.List<com.liferay.wsrp.consumer.model.Producer> getProducers(
+		int start, int end) throws com.liferay.portal.SystemException {
+		ProducerLocalService producerLocalService = ProducerLocalServiceFactory.getService();
+
+		return producerLocalService.getProducers(start, end);
+	}
+
+	public static int getProducersCount()
+		throws com.liferay.portal.SystemException {
+		ProducerLocalService producerLocalService = ProducerLocalServiceFactory.getService();
+
+		return producerLocalService.getProducersCount();
+	}
+
 	public static com.liferay.wsrp.consumer.model.Producer updateProducer(
 		com.liferay.wsrp.consumer.model.Producer producer)
 		throws com.liferay.portal.SystemException {
@@ -100,13 +114,6 @@ public class ProducerLocalServiceUtil {
 		ProducerLocalService producerLocalService = ProducerLocalServiceFactory.getService();
 
 		return producerLocalService.getProducers();
-	}
-
-	public static java.util.List<com.liferay.wsrp.consumer.model.Producer> getProducers(
-		int start, int end) throws com.liferay.portal.SystemException {
-		ProducerLocalService producerLocalService = ProducerLocalServiceFactory.getService();
-
-		return producerLocalService.getProducers(start, end);
 	}
 
 	public static int getProducerCount()

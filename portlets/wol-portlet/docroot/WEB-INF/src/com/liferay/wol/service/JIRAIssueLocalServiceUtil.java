@@ -77,6 +77,20 @@ public class JIRAIssueLocalServiceUtil {
 		return jiraIssueLocalService.getJIRAIssue(jiraIssueId);
 	}
 
+	public static java.util.List<com.liferay.wol.model.JIRAIssue> getJIRAIssues(
+		int start, int end) throws com.liferay.portal.SystemException {
+		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
+
+		return jiraIssueLocalService.getJIRAIssues(start, end);
+	}
+
+	public static int getJIRAIssuesCount()
+		throws com.liferay.portal.SystemException {
+		JIRAIssueLocalService jiraIssueLocalService = JIRAIssueLocalServiceFactory.getService();
+
+		return jiraIssueLocalService.getJIRAIssuesCount();
+	}
+
 	public static com.liferay.wol.model.JIRAIssue updateJIRAIssue(
 		com.liferay.wol.model.JIRAIssue jiraIssue)
 		throws com.liferay.portal.SystemException {

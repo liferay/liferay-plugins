@@ -78,6 +78,20 @@ public class JIRAChangeItemLocalServiceUtil {
 		return jiraChangeItemLocalService.getJIRAChangeItem(jiraChangeItemId);
 	}
 
+	public static java.util.List<com.liferay.wol.model.JIRAChangeItem> getJIRAChangeItems(
+		int start, int end) throws com.liferay.portal.SystemException {
+		JIRAChangeItemLocalService jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getService();
+
+		return jiraChangeItemLocalService.getJIRAChangeItems(start, end);
+	}
+
+	public static int getJIRAChangeItemsCount()
+		throws com.liferay.portal.SystemException {
+		JIRAChangeItemLocalService jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getService();
+
+		return jiraChangeItemLocalService.getJIRAChangeItemsCount();
+	}
+
 	public static com.liferay.wol.model.JIRAChangeItem updateJIRAChangeItem(
 		com.liferay.wol.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.SystemException {

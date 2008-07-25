@@ -52,6 +52,11 @@ public interface FeedLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	public java.util.List<com.liferay.twitter.model.Feed> getFeeds(int start,
+		int end) throws com.liferay.portal.SystemException;
+
+	public int getFeedsCount() throws com.liferay.portal.SystemException;
+
 	public com.liferay.twitter.model.Feed updateFeed(
 		com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.SystemException;

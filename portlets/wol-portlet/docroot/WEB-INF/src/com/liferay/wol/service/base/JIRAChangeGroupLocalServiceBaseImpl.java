@@ -115,6 +115,15 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 		return jiraChangeGroupPersistence.findByPrimaryKey(jiraChangeGroupId);
 	}
 
+	public List<JIRAChangeGroup> getJIRAChangeGroups(int start, int end)
+		throws SystemException {
+		return jiraChangeGroupPersistence.findAll(start, end);
+	}
+
+	public int getJIRAChangeGroupsCount() throws SystemException {
+		return jiraChangeGroupPersistence.countAll();
+	}
+
 	public JIRAChangeGroup updateJIRAChangeGroup(
 		JIRAChangeGroup jiraChangeGroup) throws SystemException {
 		jiraChangeGroup.setNew(false);

@@ -52,6 +52,11 @@ public interface WallEntryLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	public java.util.List<com.liferay.wol.model.WallEntry> getWallEntries(
+		int start, int end) throws com.liferay.portal.SystemException;
+
+	public int getWallEntriesCount() throws com.liferay.portal.SystemException;
+
 	public com.liferay.wol.model.WallEntry updateWallEntry(
 		com.liferay.wol.model.WallEntry wallEntry)
 		throws com.liferay.portal.SystemException;

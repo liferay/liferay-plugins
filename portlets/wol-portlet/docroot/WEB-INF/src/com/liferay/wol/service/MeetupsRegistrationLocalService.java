@@ -54,6 +54,12 @@ public interface MeetupsRegistrationLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	public java.util.List<com.liferay.wol.model.MeetupsRegistration> getMeetupsRegistrations(
+		int start, int end) throws com.liferay.portal.SystemException;
+
+	public int getMeetupsRegistrationsCount()
+		throws com.liferay.portal.SystemException;
+
 	public com.liferay.wol.model.MeetupsRegistration updateMeetupsRegistration(
 		com.liferay.wol.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.SystemException;

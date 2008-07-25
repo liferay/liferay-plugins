@@ -54,6 +54,12 @@ public interface MeetupsEntryLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	public java.util.List<com.liferay.wol.model.MeetupsEntry> getMeetupsEntries(
+		int start, int end) throws com.liferay.portal.SystemException;
+
+	public int getMeetupsEntriesCount()
+		throws com.liferay.portal.SystemException;
+
 	public com.liferay.wol.model.MeetupsEntry updateMeetupsEntry(
 		com.liferay.wol.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.SystemException;

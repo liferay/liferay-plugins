@@ -76,6 +76,20 @@ public class StatusLocalServiceUtil {
 		return statusLocalService.getStatus(statusId);
 	}
 
+	public static java.util.List<com.liferay.chat.model.Status> getStatuss(
+		int start, int end) throws com.liferay.portal.SystemException {
+		StatusLocalService statusLocalService = StatusLocalServiceFactory.getService();
+
+		return statusLocalService.getStatuss(start, end);
+	}
+
+	public static int getStatussCount()
+		throws com.liferay.portal.SystemException {
+		StatusLocalService statusLocalService = StatusLocalServiceFactory.getService();
+
+		return statusLocalService.getStatussCount();
+	}
+
 	public static com.liferay.chat.model.Status updateStatus(
 		com.liferay.chat.model.Status status)
 		throws com.liferay.portal.SystemException {

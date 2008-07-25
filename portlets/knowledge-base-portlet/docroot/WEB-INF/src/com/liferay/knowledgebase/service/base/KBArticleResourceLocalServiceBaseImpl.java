@@ -86,6 +86,15 @@ public abstract class KBArticleResourceLocalServiceBaseImpl
 		return kbArticleResourcePersistence.findByPrimaryKey(resourcePrimKey);
 	}
 
+	public List<KBArticleResource> getKBArticleResources(int start, int end)
+		throws SystemException {
+		return kbArticleResourcePersistence.findAll(start, end);
+	}
+
+	public int getKBArticleResourcesCount() throws SystemException {
+		return kbArticleResourcePersistence.countAll();
+	}
+
 	public KBArticleResource updateKBArticleResource(
 		KBArticleResource kbArticleResource) throws SystemException {
 		kbArticleResource.setNew(false);

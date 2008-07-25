@@ -76,6 +76,19 @@ public class FooLocalServiceUtil {
 		return fooLocalService.getFoo(fooId);
 	}
 
+	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
+		int start, int end) throws com.liferay.portal.SystemException {
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		return fooLocalService.getFoos(start, end);
+	}
+
+	public static int getFoosCount() throws com.liferay.portal.SystemException {
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		return fooLocalService.getFoosCount();
+	}
+
 	public static com.liferay.sampleservicebuilder.model.Foo updateFoo(
 		com.liferay.sampleservicebuilder.model.Foo foo)
 		throws com.liferay.portal.SystemException {

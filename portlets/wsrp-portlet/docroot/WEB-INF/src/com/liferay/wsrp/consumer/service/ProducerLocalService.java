@@ -53,6 +53,11 @@ public interface ProducerLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	public java.util.List<com.liferay.wsrp.consumer.model.Producer> getProducers(
+		int start, int end) throws com.liferay.portal.SystemException;
+
+	public int getProducersCount() throws com.liferay.portal.SystemException;
+
 	public com.liferay.wsrp.consumer.model.Producer updateProducer(
 		com.liferay.wsrp.consumer.model.Producer producer)
 		throws com.liferay.portal.SystemException;
@@ -64,9 +69,6 @@ public interface ProducerLocalService {
 
 	public java.util.List<com.liferay.wsrp.consumer.model.Producer> getProducers()
 		throws com.liferay.portal.SystemException;
-
-	public java.util.List<com.liferay.wsrp.consumer.model.Producer> getProducers(
-		int start, int end) throws com.liferay.portal.SystemException;
 
 	public int getProducerCount() throws com.liferay.portal.SystemException;
 

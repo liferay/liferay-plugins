@@ -76,6 +76,19 @@ public class FeedLocalServiceUtil {
 		return feedLocalService.getFeed(feedId);
 	}
 
+	public static java.util.List<com.liferay.twitter.model.Feed> getFeeds(
+		int start, int end) throws com.liferay.portal.SystemException {
+		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
+
+		return feedLocalService.getFeeds(start, end);
+	}
+
+	public static int getFeedsCount() throws com.liferay.portal.SystemException {
+		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
+
+		return feedLocalService.getFeedsCount();
+	}
+
 	public static com.liferay.twitter.model.Feed updateFeed(
 		com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.SystemException {

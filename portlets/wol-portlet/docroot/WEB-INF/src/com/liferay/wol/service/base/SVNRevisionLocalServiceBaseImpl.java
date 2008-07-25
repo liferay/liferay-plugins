@@ -115,6 +115,15 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 		return svnRevisionPersistence.findByPrimaryKey(svnRevisionId);
 	}
 
+	public List<SVNRevision> getSVNRevisions(int start, int end)
+		throws SystemException {
+		return svnRevisionPersistence.findAll(start, end);
+	}
+
+	public int getSVNRevisionsCount() throws SystemException {
+		return svnRevisionPersistence.countAll();
+	}
+
 	public SVNRevision updateSVNRevision(SVNRevision svnRevision)
 		throws SystemException {
 		svnRevision.setNew(false);

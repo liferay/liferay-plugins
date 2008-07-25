@@ -78,6 +78,20 @@ public class SVNRepositoryLocalServiceUtil {
 		return svnRepositoryLocalService.getSVNRepository(svnRepositoryId);
 	}
 
+	public static java.util.List<com.liferay.wol.model.SVNRepository> getSVNRepositories(
+		int start, int end) throws com.liferay.portal.SystemException {
+		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
+
+		return svnRepositoryLocalService.getSVNRepositories(start, end);
+	}
+
+	public static int getSVNRepositoriesCount()
+		throws com.liferay.portal.SystemException {
+		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
+
+		return svnRepositoryLocalService.getSVNRepositoriesCount();
+	}
+
 	public static com.liferay.wol.model.SVNRepository updateSVNRepository(
 		com.liferay.wol.model.SVNRepository svnRepository)
 		throws com.liferay.portal.SystemException {

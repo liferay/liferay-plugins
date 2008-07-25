@@ -54,6 +54,12 @@ public interface JIRAChangeItemLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	public java.util.List<com.liferay.wol.model.JIRAChangeItem> getJIRAChangeItems(
+		int start, int end) throws com.liferay.portal.SystemException;
+
+	public int getJIRAChangeItemsCount()
+		throws com.liferay.portal.SystemException;
+
 	public com.liferay.wol.model.JIRAChangeItem updateJIRAChangeItem(
 		com.liferay.wol.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.SystemException;
