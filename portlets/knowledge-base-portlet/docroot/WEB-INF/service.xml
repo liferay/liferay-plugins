@@ -32,7 +32,7 @@
 		<column name="content" type="String" />
 		<column name="description" type="String" />
 		<column name="head" type="boolean" />
-		<column name="parentTitle" type="String" />
+		<column name="parentResourcePrimKey" type="long" />
 
 		<!-- Order -->
 
@@ -49,6 +49,12 @@
 		<finder name="GroupId" return-type="Collection">
 			<finder-column name="groupId" />
 		</finder>
+		<finder name="ParentResourcePrimKey" return-type="Collection">
+			<finder-column name="parentResourcePrimKey" />
+		</finder>
+		<finder name="ResourcePrimKey" return-type="Collection">
+			<finder-column name="resourcePrimKey" />
+		</finder>
 		<finder name="G_T" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="title" />
@@ -56,10 +62,6 @@
 		<finder name="G_H" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="head" />
-		</finder>
-		<finder name="G_P" return-type="Collection">
-			<finder-column name="groupId" />
-			<finder-column name="parentTitle" />
 		</finder>
 		<finder name="G_T_V" return-type="KBArticle">
 			<finder-column name="groupId" />
@@ -71,10 +73,17 @@
 			<finder-column name="title" />
 			<finder-column name="head" />
 		</finder>
-		<finder name="G_H_P" return-type="Collection">
-			<finder-column name="groupId" />
+		<finder name="P_H" return-type="Collection">
+			<finder-column name="parentResourcePrimKey" />
 			<finder-column name="head" />
-			<finder-column name="parentTitle" />
+		</finder>
+		<finder name="R_H" return-type="Collection">
+			<finder-column name="resourcePrimKey" />
+			<finder-column name="head" />
+		</finder>
+		<finder name="R_V" return-type="KBArticle">
+			<finder-column name="resourcePrimKey" />
+			<finder-column name="version" />
 		</finder>
 
 		<!-- References -->

@@ -66,6 +66,7 @@ public interface KBArticleLocalService {
 	public com.liferay.knowledgebase.model.KBArticle addArticle(long userId,
 		long groupId, java.lang.String title, java.lang.String content,
 		java.lang.String description, boolean minorEdit,
+		long parentResourcePrimKey, java.lang.String[] tagsEntries,
 		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
@@ -75,13 +76,13 @@ public interface KBArticleLocalService {
 		java.lang.String uuid, long userId, long groupId,
 		java.lang.String title, double version, java.lang.String content,
 		java.lang.String description, boolean minorEdit, boolean head,
-		java.lang.String parentTitle, java.lang.String[] tagsEntries,
+		long parentResourcePrimKey, java.lang.String[] tagsEntries,
 		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public void addArticleAttachments(long groupId, java.lang.String title,
+	public void addArticleAttachments(long resourcePrimKey,
 		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<String, byte[]>> files)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
@@ -99,14 +100,7 @@ public interface KBArticleLocalService {
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public void changeParent(long userId, long groupId, java.lang.String title,
-		java.lang.String newParentTitle,
-		javax.portlet.PortletPreferences prefs,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException;
-
-	public void deleteArticle(long groupId, java.lang.String title)
+	public void deleteArticle(long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
@@ -114,7 +108,7 @@ public interface KBArticleLocalService {
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public void deleteArticleAttachment(long groupId, java.lang.String title,
+	public void deleteArticleAttachment(long resourcePrimKey,
 		java.lang.String fileName)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
@@ -124,11 +118,21 @@ public interface KBArticleLocalService {
 			com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getChildren(
-		long groupId, boolean head, java.lang.String parentTitle)
+		long parentResourcePrimKey, boolean head)
 		throws com.liferay.portal.SystemException;
+
+	public com.liferay.knowledgebase.model.KBArticle getArticle(
+		long resourcePrimKey)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
 
 	public com.liferay.knowledgebase.model.KBArticle getArticle(long groupId,
 		java.lang.String title)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public com.liferay.knowledgebase.model.KBArticle getArticle(
+		long resourcePrimKey, double version)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
@@ -174,7 +178,7 @@ public interface KBArticleLocalService {
 		throws com.liferay.portal.SystemException;
 
 	public com.liferay.knowledgebase.model.KBArticle revertArticle(
-		long userId, long groupId, java.lang.String title, double version,
+		long userId, long resourcePrimKey, double version,
 		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
@@ -188,8 +192,7 @@ public interface KBArticleLocalService {
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public void subscribeArticle(long userId, long groupId,
-		java.lang.String title)
+	public void subscribeArticle(long userId, long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
@@ -197,16 +200,16 @@ public interface KBArticleLocalService {
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public void unsubscribeArticle(long userId, long groupId,
-		java.lang.String title)
+	public void unsubscribeArticle(long userId, long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
 	public com.liferay.knowledgebase.model.KBArticle updateArticle(
-		long userId, long groupId, java.lang.String title, double version,
-		java.lang.String content, java.lang.String description,
-		boolean minorEdit, java.lang.String parentTitle,
-		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
+		long userId, long resourcePrimKey, double version,
+		java.lang.String title, java.lang.String content,
+		java.lang.String description, boolean minorEdit,
+		long parentResourcePrimKey, java.lang.String[] tagsEntries,
+		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;

@@ -29,7 +29,20 @@ String redirect = ParamUtil.getString(request, "redirect");
 KBArticle article = (KBArticle)request.getAttribute(KnowledgeBaseKeys.ARTICLE);
 
 String title = BeanParamUtil.getString(article, request, "title");
-String parentTitle = BeanParamUtil.getString(article, request, "parentTitle");
+
+KBArticle parent = null;
+
+long resourcePrimKey = 0;
+
+if (article != null) {
+	resourcePrimKey = article.getResourcePrimKey();
+}
+
+long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentResourcePrimKey");
+
+if (parentResourcePrimKey > 0) {
+	parent = KBArticleLocalServiceUtil.getArticle(parentResourcePrimKey);
+}
 
 boolean preview = ParamUtil.getBoolean(request, "preview");
 
@@ -39,16 +52,6 @@ String content = BeanParamUtil.getString(article, request, "content");
 if (article == null) {
 	newArticle = true;
 }
-
-PortletURL viewArticleURL = renderResponse.createRenderURL();
-
-viewArticleURL.setParameter("view", "view_article");
-viewArticleURL.setParameter("title", title);
-
-PortletURL editArticleURL = renderResponse.createRenderURL();
-
-editArticleURL.setParameter("view", "edit_article");
-editArticleURL.setParameter("title", title);
 %>
 
 <script type="text/javascript">
@@ -77,7 +80,7 @@ editArticleURL.setParameter("title", title);
 	}
 
 	function <portlet:namespace />saveAndContinueArticle() {
-		document.<portlet:namespace />fm.<portlet:namespace />saveAndContinueRedirect.value = "<%= editArticleURL.toString() %>";
+		document.<portlet:namespace />fm.<portlet:namespace />saveAndContinueRedirect.value = "<portlet:renderURL><portlet:param name="view" value="edit_article"/></portlet:renderURL>";
 		<portlet:namespace />saveArticle();
 	}
 </script>
@@ -101,8 +104,8 @@ editArticleURL.setParameter("title", title);
 <form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveArticle(); return false;">
 <input name="<portlet:namespace />actionName" type="hidden" value="" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
-<input name="<portlet:namespace />parentTitle" type="hidden" value="<%= parentTitle %>" />
-<input name="<portlet:namespace />format" type="hidden" value="html" />
+<input name="<portlet:namespace />resourcePrimKey" type="hidden" value="<%= resourcePrimKey %>" />
+<input name="<portlet:namespace />parentResourcePrimKey" type="hidden" value="<%= parentResourcePrimKey %>" />
 
 <c:if test="<%= article != null %>">
 	<input name="<portlet:namespace />version" type="hidden" value="<%= article.getVersion() %>" />
@@ -127,13 +130,13 @@ editArticleURL.setParameter("title", title);
 	</td>
 </tr>
 
-<c:if test="<%= Validator.isNotNull(parentTitle) %>">
+<c:if test="<%= parent != null %>">
 	<tr>
 		<td>
 			<liferay-ui:message key="parent" />
 		</td>
 		<td>
-			<%= parentTitle %>
+			<%= parent.getTitle() %>
 		</td>
 	</tr>
 </c:if>

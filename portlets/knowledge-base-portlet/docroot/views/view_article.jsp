@@ -52,7 +52,7 @@ addArticleURL.setParameter("redirect", currentURL);
 addArticleURL.setParameter("editTitle", "1");
 
 if (article != null) {
-	addArticleURL.setParameter("parentTitle", article.getTitle());
+	addArticleURL.setParameter("parentResourcePrimKey", String.valueOf(article.getResourcePrimKey()));
 }
 
 List childArticles = article.getChildArticles();
@@ -100,7 +100,7 @@ viewAttachmentsURL.setParameter("title", title);
 	</c:otherwise>
 </c:choose>
 
-<c:if test="<%= Validator.isNotNull(article.getParentTitle()) %>">
+<c:if test="<%= article.hasParent() %>">
 	<div class="breadcrumbs">
 
 		<%
@@ -213,7 +213,7 @@ viewAttachmentsURL.setParameter("title", title);
 									<portlet:actionURL var="unsubscribeURL">
 										<portlet:param name="actionName" value="unsubscribeArticle" />
 										<portlet:param name="redirect" value="<%= currentURL %>" />
-										<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
+										<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 									</portlet:actionURL>
 
 									<liferay-ui:icon image="unsubscribe" url="<%= unsubscribeURL %>" label="<%= true %>" />
@@ -222,7 +222,7 @@ viewAttachmentsURL.setParameter("title", title);
 									<portlet:actionURL var="subscribeURL">
 										<portlet:param name="actionName" value="subscribeArticle" />
 										<portlet:param name="redirect" value="<%= currentURL %>" />
-										<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
+										<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 									</portlet:actionURL>
 
 									<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" label="<%= true %>" />
@@ -235,7 +235,7 @@ viewAttachmentsURL.setParameter("title", title);
 							PortletURL deleteArticleURL = renderResponse.createActionURL();
 
 							deleteArticleURL.setParameter("actionName", Constants.DELETE);
-							deleteArticleURL.setParameter("title", article.getTitle());
+							deleteArticleURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
 							deleteArticleURL.setParameter("redirect", viewAllURL.toString());
 							%>
 

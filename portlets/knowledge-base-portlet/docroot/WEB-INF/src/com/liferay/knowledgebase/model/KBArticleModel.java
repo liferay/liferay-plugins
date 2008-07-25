@@ -91,9 +91,9 @@ public interface KBArticleModel extends BaseModel {
 
 	public void setHead(boolean head);
 
-	public String getParentTitle();
+	public long getParentResourcePrimKey();
 
-	public void setParentTitle(String parentTitle);
+	public void setParentResourcePrimKey(long parentResourcePrimKey);
 
 	public KBArticle toEscapedModel();
 }

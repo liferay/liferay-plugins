@@ -77,9 +77,7 @@ else if (type.equals("tagged_articles")) {
 	results = new ArrayList();
 
 	for (TagsAsset asset : assets) {
-		KBArticleResource articleResource = KBArticleResourceLocalServiceUtil.getArticleResource(asset.getClassPK());
-
-		KBArticle assetArticle = KBArticleLocalServiceUtil.getArticle(articleResource.getGroupId(), articleResource.getTitle());
+		KBArticle assetArticle = KBArticleLocalServiceUtil.getArticle(asset.getClassPK());
 
 		results.add(assetArticle);
 	}

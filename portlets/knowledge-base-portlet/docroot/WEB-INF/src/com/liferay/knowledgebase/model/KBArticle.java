@@ -49,4 +49,6 @@ public interface KBArticle extends KBArticleModel {
 	public java.lang.String[] getAttachmentsFiles()
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
+
+	public boolean hasParent();
 }

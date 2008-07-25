@@ -38,6 +38,7 @@ import java.rmi.RemoteException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -52,11 +53,7 @@ public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 
 	public static final double DEFAULT_VERSION = 1.0;
 
-	public static final String MOVED = "Moved";
-
-	public static final String NEW = "New";
-
-	public static final String REVERTED = "Reverted";
+	public static final long DEFAULT_PARENT = 0;
 
 	public KBArticleImpl() {
 	}
@@ -83,7 +80,7 @@ public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 	}
 
 	public KBArticle getParentArticle() {
-		if (Validator.isNull(getParentTitle())) {
+		if (!hasParent()) {
 			return null;
 		}
 
@@ -91,7 +88,7 @@ public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 
 		try {
 			article = KBArticleLocalServiceUtil.getArticle(
-				getGroupId(), getParentTitle());
+				getParentResourcePrimKey());
 		}
 		catch (Exception e) {
 			_log.error(e);
@@ -116,9 +113,13 @@ public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 	public List<KBArticle> getChildArticles() {
 		List<KBArticle> articles = null;
 
+		if (getParentResourcePrimKey() <= 0) {
+			return Collections.EMPTY_LIST;
+		}
+
 		try {
 			articles = KBArticleLocalServiceUtil.getChildren(
-				getGroupId(), true, getTitle());
+				getParentResourcePrimKey(), true);
 		}
 		catch (Exception e) {
 			articles = new ArrayList<KBArticle>();
@@ -157,6 +158,15 @@ public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 		}
 
 		return fileNames;
+	}
+
+	public boolean hasParent() {
+		if (getParentResourcePrimKey() > 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	private static Log _log = LogFactory.getLog(KBArticleImpl.class);

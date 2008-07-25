@@ -33,7 +33,7 @@ KBArticle article = (KBArticle)row.getObject();
 	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
 			<portlet:param name="view" value="edit_article" />
-			<portlet:param name="title" value="<%= article.getTitle() %>" />
+			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 		</portlet:renderURL>
 
 		<liferay-ui:icon image="edit" url="<%= editURL.toString() %>" />
@@ -56,7 +56,7 @@ KBArticle article = (KBArticle)row.getObject();
 				<portlet:actionURL var="unsubscribeURL">
 					<portlet:param name="actionName" value="unsubscribeArticle" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
-					<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
+					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 				</portlet:actionURL>
 
 				<liferay-ui:icon image="unsubscribe" url="<%= unsubscribeURL %>" label="<%= true %>" />
@@ -65,7 +65,7 @@ KBArticle article = (KBArticle)row.getObject();
 				<portlet:actionURL var="subscribeURL">
 					<portlet:param name="actionName" value="subscribeArticle" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
-					<portlet:param name="title" value="<%= String.valueOf(article.getTitle()) %>" />
+					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 				</portlet:actionURL>
 
 				<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" label="<%= true %>" />
@@ -77,7 +77,7 @@ KBArticle article = (KBArticle)row.getObject();
 		<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="deleteURL">
 			<portlet:param name="actionName" value="<%= Constants.DELETE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="title" value="<%= article.getTitle() %>" />
+			<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 		</portlet:actionURL>
 
 		<liferay-ui:icon-delete url="<%= deleteURL.toString() %>" />

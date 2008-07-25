@@ -32,6 +32,7 @@ public class KBArticleServiceUtil {
 	public static com.liferay.knowledgebase.model.KBArticle addArticle(
 		long groupId, java.lang.String title, java.lang.String content,
 		java.lang.String description, boolean minorEdit,
+		long parentResourcePrimKey, java.lang.String[] tagsEntries,
 		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
@@ -39,46 +40,34 @@ public class KBArticleServiceUtil {
 		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
 
 		return kbArticleService.addArticle(groupId, title, content,
-			description, minorEdit, prefs, themeDisplay);
+			description, minorEdit, parentResourcePrimKey, tagsEntries, prefs,
+			themeDisplay);
 	}
 
-	public static void addArticleAttachments(long groupId,
-		java.lang.String title,
+	public static void addArticleAttachments(long resourcePrimKey,
 		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<String, byte[]>> files)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
 
-		kbArticleService.addArticleAttachments(groupId, title, files);
+		kbArticleService.addArticleAttachments(resourcePrimKey, files);
 	}
 
-	public static void changeParent(long groupId, java.lang.String title,
-		java.lang.String newParentTitle,
-		javax.portlet.PortletPreferences prefs,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+	public static void deleteArticle(long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
 
-		kbArticleService.changeParent(groupId, title, newParentTitle, prefs,
-			themeDisplay);
+		kbArticleService.deleteArticle(resourcePrimKey);
 	}
 
-	public static void deleteArticle(long groupId, java.lang.String title)
+	public static void deleteArticleAttachment(long resourcePrimKey,
+		java.lang.String fileName)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
 
-		kbArticleService.deleteArticle(groupId, title);
-	}
-
-	public static void deleteArticleAttachment(long groupId,
-		java.lang.String title, java.lang.String fileName)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
-
-		kbArticleService.deleteArticleAttachment(groupId, title, fileName);
+		kbArticleService.deleteArticleAttachment(resourcePrimKey, fileName);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getGroupArticles(
@@ -88,6 +77,15 @@ public class KBArticleServiceUtil {
 		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
 
 		return kbArticleService.getGroupArticles(groupId, max);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle getArticle(
+		long resourcePrimKey)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
+		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
+
+		return kbArticleService.getArticle(resourcePrimKey);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getArticle(
@@ -109,14 +107,14 @@ public class KBArticleServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle revertArticle(
-		long groupId, java.lang.String title, double version,
+		long resourcePrimKey, double version,
 		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
 
-		return kbArticleService.revertArticle(groupId, title, version, prefs,
+		return kbArticleService.revertArticle(resourcePrimKey, version, prefs,
 			themeDisplay);
 	}
 
@@ -128,12 +126,12 @@ public class KBArticleServiceUtil {
 		kbArticleService.subscribe(groupId);
 	}
 
-	public static void subscribeArticle(long groupId, java.lang.String title)
+	public static void subscribeArticle(long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
 
-		kbArticleService.subscribeArticle(groupId, title);
+		kbArticleService.subscribeArticle(resourcePrimKey);
 	}
 
 	public static void unsubscribe(long groupId)
@@ -144,26 +142,26 @@ public class KBArticleServiceUtil {
 		kbArticleService.unsubscribe(groupId);
 	}
 
-	public static void unsubscribeArticle(long groupId, java.lang.String title)
+	public static void unsubscribeArticle(long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
 
-		kbArticleService.unsubscribeArticle(groupId, title);
+		kbArticleService.unsubscribeArticle(resourcePrimKey);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle updateArticle(
-		long groupId, java.lang.String title, double version,
+		long resourcePrimKey, double version, java.lang.String title,
 		java.lang.String content, java.lang.String description,
-		boolean minorEdit, java.lang.String parentTitle,
+		boolean minorEdit, long parentResourcePrimKey,
 		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
 
-		return kbArticleService.updateArticle(groupId, title, version, content,
-			description, minorEdit, parentTitle, tagsEntries, prefs,
-			themeDisplay);
+		return kbArticleService.updateArticle(resourcePrimKey, version, title,
+			content, description, minorEdit, parentResourcePrimKey,
+			tagsEntries, prefs, themeDisplay);
 	}
 }

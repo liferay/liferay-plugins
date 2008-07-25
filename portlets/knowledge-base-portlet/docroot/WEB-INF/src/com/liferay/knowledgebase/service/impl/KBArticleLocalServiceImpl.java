@@ -89,25 +89,25 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	public KBArticle addArticle(
 			long userId, long groupId, String title, String content,
-			String description, boolean minorEdit, PortletPreferences prefs,
+			String description, boolean minorEdit, long parentResourcePrimKey,
+			String[] tagsEntries, PortletPreferences prefs,
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		String uuid = null;
 		double version = KBArticleImpl.DEFAULT_VERSION;
 		boolean head = true;
-		String parentTitle = null;
-		String[] tagsEntries = null;
 
 		return addArticle(
 			uuid, userId, groupId, title, version, content, description,
-			minorEdit, head, parentTitle, tagsEntries, prefs, themeDisplay);
+			minorEdit, head, parentResourcePrimKey, tagsEntries, prefs,
+			themeDisplay);
 	}
 
 	public KBArticle addArticle(
 			String uuid, long userId, long groupId, String title,
 			double version, String content, String description,
-			boolean minorEdit, boolean head, String parentTitle,
+			boolean minorEdit, boolean head, long parentResourcePrimKey,
 			String[] tagsEntries, PortletPreferences prefs,
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
@@ -119,6 +119,13 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		Date now = new Date();
 
 		validate(title);
+
+		int count = kbArticlePersistence.countByG_T(groupId, title);
+
+		if (count > 0) {
+			throw new ArticleTitleException(
+				"The title " + title + " is already being used");
+		}
 
 		long articleId = counterLocalService.increment();
 
@@ -140,7 +147,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		article.setContent(content);
 		article.setDescription(description);
 		article.setHead(head);
-		article.setParentTitle(parentTitle);
+		article.setParentResourcePrimKey(parentResourcePrimKey);
 
 		kbArticlePersistence.update(article, false);
 
@@ -152,7 +159,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		if (!minorEdit && NotificationThreadLocal.isNotificationEnabled()) {
 			try {
-				notifySubscribers(groupId, article, prefs, themeDisplay, false);
+				notifySubscribers(article, prefs, themeDisplay, false);
 			} catch (Exception e) {
 				throw new SystemException(e);
 			}
@@ -166,7 +173,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		try {
 			Indexer.addArticle(
-				article.getCompanyId(), groupId, title,
+				article.getCompanyId(), groupId, userId, resourcePrimKey, title,
 				content, description, tagsEntries);
 		}
 		catch (SearchException se) {
@@ -177,15 +184,14 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	public void addArticleAttachments(
-			long groupId, String title,
-			List<ObjectValuePair<String, byte[]>> files)
+			long resourcePrimKey, List<ObjectValuePair<String, byte[]>> files)
 		throws PortalException, SystemException {
 
 		if (files.size() == 0) {
 			return;
 		}
 
-		KBArticle article = getArticle(groupId, title);
+		KBArticle article = getArticle(resourcePrimKey);
 
 		long companyId = article.getCompanyId();
 		String portletId = CompanyConstants.SYSTEM_STRING;
@@ -211,9 +217,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 				try {
 					dlService.addFile(
-						companyId, portletId, groupId, repositoryId,
-						dirName + "/" + fileName, StringPool.BLANK,
-						new String[0], bytes);
+						companyId, portletId, article.getGroupId(),
+						repositoryId, dirName + "/" + fileName,
+						StringPool.BLANK, new String[0], bytes);
 				}
 				catch (DuplicateFileException dfe) {
 				}
@@ -246,40 +252,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			communityPermissions, guestPermissions);
 	}
 
-	public void changeParent(
-			long userId, long groupId, String title, String newParentTitle,
-			PortletPreferences prefs, ThemeDisplay themeDisplay)
+	public void deleteArticle(long resourcePrimKey)
 		throws PortalException, SystemException {
 
-		KBArticle article = getArticle(groupId, title);
-
-		String originalParentTitle = article.getParentTitle();
-
-		double version = article.getVersion();
-		String content = article.getContent();
-		boolean minorEdit = false;
-		String[] tagsEntries = null;
-
-		updateArticle(
-			userId, groupId, title, version, content, article.getDescription(),
-			minorEdit, newParentTitle, tagsEntries, prefs,
-			themeDisplay);
-
-		List<KBArticle> oldArticles = kbArticlePersistence.findByG_T_H(
-			groupId, title, false);
-
-		for (KBArticle oldArticle : oldArticles) {
-			oldArticle.setParentTitle(originalParentTitle);
-
-			kbArticlePersistence.update(oldArticle, false);
-		}
-	}
-
-	public void deleteArticle(long groupId, String title)
-		throws PortalException, SystemException {
-
-		List<KBArticle> articles = kbArticlePersistence.findByG_T_H(
-			groupId, title, true, 0, 1);
+		List<KBArticle> articles = kbArticlePersistence.findByR_H(
+			resourcePrimKey, true, 0, 1);
 
 		if (articles.size() > 0) {
 			KBArticle article = articles.iterator().next();
@@ -293,8 +270,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// Children
 
-		List<KBArticle> children = kbArticlePersistence.findByG_P(
-			article.getGroupId(), article.getTitle());
+		List<KBArticle> children =
+			kbArticlePersistence.findByParentResourcePrimKey(
+				article.getResourcePrimKey());
 
 		for (KBArticle curArticle : children) {
 			deleteArticle(curArticle);
@@ -304,8 +282,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		try {
 			Indexer.deleteArticle(
-				article.getCompanyId(), article.getGroupId(),
- 				article.getTitle());
+				article.getCompanyId(), article.getResourcePrimKey());
 		}
 		catch (SearchException se) {
 			_log.error("Deleting index " + article.getPrimaryKey(), se);
@@ -363,14 +340,14 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	public void deleteArticleAttachment(
-			long groupId, String title, String fileName)
+			long resourcePrimKey, String fileName)
 		throws PortalException, SystemException {
 
 		if (Validator.isNull(fileName)) {
 			return;
 		}
 
-		KBArticle article = getArticle(groupId, title);
+		KBArticle article = getArticle(resourcePrimKey);
 
 		long companyId = article.getCompanyId();
 		String portletId = CompanyConstants.SYSTEM_STRING;
@@ -400,10 +377,24 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	public List<KBArticle> getChildren(
-			long groupId, boolean head, String parentTitle)
+			long parentResourcePrimKey, boolean head)
 		throws SystemException {
 
-		return kbArticlePersistence.findByG_H_P(groupId, head, parentTitle);
+		return kbArticlePersistence.findByP_H(parentResourcePrimKey, head);
+	}
+
+	public KBArticle getArticle(long resourcePrimKey)
+		throws PortalException, SystemException {
+
+		List<KBArticle> articles = kbArticlePersistence.findByR_H(
+			resourcePrimKey, true, 0, 1);
+
+		if (articles.size() > 0) {
+			return articles.get(0);
+		}
+		else {
+			throw new NoSuchArticleException();
+		}
 	}
 
 	public KBArticle getArticle(long groupId, String title)
@@ -420,6 +411,21 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 	}
 
+	public KBArticle getArticle(long resourcePrimKey, double version)
+		throws PortalException, SystemException {
+
+		KBArticle article = null;
+
+		if (version == 0) {
+			article = getArticle(resourcePrimKey);
+		}
+		else {
+			article = kbArticlePersistence.findByR_V(resourcePrimKey, version);
+		}
+
+		return article;
+	}
+
 	public KBArticle getArticle(long groupId, String title, double version)
 		throws PortalException, SystemException {
 
@@ -434,6 +440,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		return article;
 	}
+
 	public List<KBArticle> getArticles(long groupId, int start, int end)
 		throws SystemException {
 
@@ -513,6 +520,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				KBArticle article = articlesItr.next();
 
 				long groupId = article.getGroupId();
+				long userId = article.getUserId();
+				long resourcePrimKey = article.getResourcePrimKey();
 				String title = article.getTitle();
 				String content = article.getContent();
 				String description = article.getDescription();
@@ -522,8 +531,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 				try {
 					Document doc = Indexer.getArticleDocument(
-						companyId, groupId, title, content, description,
-						tagsEntries);
+						companyId, groupId, userId, resourcePrimKey, title,
+						content, description, tagsEntries);
 
 					SearchEngineUtil.addDocument(companyId, doc);
 				}
@@ -541,15 +550,16 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	public KBArticle revertArticle(
-			long userId, long groupId, String title, double version,
+			long userId, long resourcePrimKey, double version,
 			PortletPreferences prefs, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
-		KBArticle oldArticle = getArticle(groupId, title, version);
+		KBArticle oldArticle = getArticle(resourcePrimKey, version);
 
 		return updateArticle(
-			userId, groupId, title, 0, oldArticle.getContent(),
-			oldArticle.getDescription(), false, null, null, prefs,
+			userId, resourcePrimKey, 0, oldArticle.getTitle(),
+			oldArticle.getContent(), oldArticle.getDescription(), false,
+			oldArticle.getParentResourcePrimKey(), null, prefs,
 			themeDisplay);
 	}
 
@@ -600,13 +610,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			userId, KBArticle.class.getName(), groupId);
 	}
 
-	public void subscribeArticle(long userId, long groupId, String title)
+	public void subscribeArticle(long userId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
-		KBArticle article = getArticle(groupId, title);
-
 		subscriptionLocalService.addSubscription(
-			userId, KBArticle.class.getName(), article.getResourcePrimKey());
+			userId, KBArticle.class.getName(), resourcePrimKey);
 	}
 
 	public void unsubscribe(long userId, long groupId)
@@ -616,19 +624,17 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			userId, KBArticle.class.getName(), groupId);
 	}
 
-	public void unsubscribeArticle(long userId, long groupId, String title)
+	public void unsubscribeArticle(long userId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
-		KBArticle article = getArticle(groupId, title);
-
 		subscriptionLocalService.deleteSubscription(
-			userId, KBArticle.class.getName(), article.getResourcePrimKey());
+			userId, KBArticle.class.getName(), resourcePrimKey);
 	}
 
 	public KBArticle updateArticle(
-			long userId, long groupId, String title, double version,
-			String content, String description, boolean minorEdit,
-			String parentTitle, String[] tagsEntries,
+			long userId, long resourcePrimKey, double version,
+			String title, String content, String description, boolean minorEdit,
+			long parentResourcePrimKey, String[] tagsEntries,
 			PortletPreferences prefs, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
@@ -637,25 +643,15 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		User user = userPersistence.findByPrimaryKey(userId);
 		Date now = new Date();
 
-		KBArticle article = null;
+		KBArticle article = getArticle(resourcePrimKey);
 
-		try {
-			article = getArticle(groupId, title);
-		}
-		catch (NoSuchArticleException nspe) {
-			return addArticle(
-				null, userId, groupId, title, KBArticleImpl.DEFAULT_VERSION,
-				content, description, minorEdit, true, parentTitle,
-				tagsEntries, prefs, themeDisplay);
-		}
+		long groupId = article.getGroupId();
 
 		double oldVersion = article.getVersion();
 
 		if ((version > 0) && (version != oldVersion)) {
 			throw new ArticleVersionException();
 		}
-
-		long resourcePrimKey = article.getResourcePrimKey();
 
 		article.setHead(false);
 		article.setModifiedDate(now);
@@ -680,9 +676,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		article.setDescription(description);
 		article.setHead(true);
 
-		if (Validator.isNotNull(parentTitle)) {
-			article.setParentTitle(parentTitle);
-		}
+		article.setParentResourcePrimKey(parentResourcePrimKey);
 
 		kbArticlePersistence.update(article, false);
 
@@ -690,7 +684,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		if (!minorEdit && NotificationThreadLocal.isNotificationEnabled()) {
 			try {
-				notifySubscribers(groupId, article, prefs, themeDisplay, true);
+				notifySubscribers(article, prefs, themeDisplay, true);
 			} catch (Exception e) {
 				throw new SystemException(e);
 			}
@@ -704,7 +698,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		try {
 			Indexer.updateArticle(
-				article.getCompanyId(), groupId, title, content, description,
+				article.getCompanyId(), article.getGroupId(), userId,
+				resourcePrimKey, article.getTitle(), content, description,
 				tagsEntries);
 		}
 		catch (SearchException se) {
@@ -730,7 +725,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 			throw new ArticleTitleException(title + " is reserved");
 		}
-
 	}
 
 	protected boolean isUsedTitle(long groupId, String title)
@@ -745,12 +739,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	protected void notifySubscribers(
-			long groupId, KBArticle article, PortletPreferences prefs,
+			KBArticle article, PortletPreferences prefs,
 			ThemeDisplay themeDisplay, boolean update)
 		throws Exception {
 
 		if (prefs == null) {
-			long ownerId = groupId;
+			long ownerId = article.getGroupId();
 			int ownerType = PortletKeys.PREFS_OWNER_TYPE_GROUP;
 			long plid = PortletKeys.PREFS_PLID_SHARED;
 			String portletId = KnowledgeBaseKeys.PORTLET_ID;
@@ -764,7 +758,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		Company company = companyPersistence.findByPrimaryKey(
 			article.getCompanyId());
 
-		Group group = groupPersistence.findByPrimaryKey(groupId);
+		Group group = groupPersistence.findByPrimaryKey(article.getGroupId());
 
 		User user = userPersistence.findByPrimaryKey(article.getUserId());
 

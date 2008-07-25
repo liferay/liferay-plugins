@@ -133,15 +133,18 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 					if (Validator.isNotNull(saveAndContinueRedirect)) {
 						redirect = saveAndContinueRedirect;
-
-						String title = ParamUtil.getString(
-							actionRequest, "title");
-
-						redirect = HttpUtil.addParameter(
-							redirect, "title", title);
 					}
-					else if (redirect.endsWith("title=")) {
-						redirect += article.getTitle();
+//					else if (redirect.endsWith("title=")) {
+//						redirect += article.getTitle();
+//					}
+
+					if (Validator.isNotNull(redirect)) {
+						redirect = HttpUtil.addParameter(
+							redirect, "resourcePrimKey",
+							article.getResourcePrimKey());
+					
+						redirect = HttpUtil.addParameter(
+							redirect, "title", article.getTitle());
 					}
 				}
 
@@ -189,12 +192,18 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		long resourcePrimKey = ParamUtil.getLong(
+			renderRequest, "resourcePrimKey");
+
 		String title = ParamUtil.getString(renderRequest, "title");
 
 		try {
 			KBArticle article = null;
 
-			if (Validator.isNotNull(title)) {
+			if (resourcePrimKey > 0) {
+				article = KBArticleServiceUtil.getArticle(resourcePrimKey);
+			}
+			else if (Validator.isNotNull(title)) {
 				article = KBArticleServiceUtil.getArticle(
 					themeDisplay.getPortletGroupId(), title);
 			}
@@ -256,10 +265,8 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(
 			actionRequest);
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		String title = ParamUtil.getString(uploadRequest, "title");
+		long resourcePrimKey = ParamUtil.getLong(
+			uploadRequest, "resourcePrimKey");
 
 		int numOfFiles = ParamUtil.getInteger(uploadRequest, "numOfFiles");
 
@@ -301,8 +308,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			}
 		}
 
-		KBArticleServiceUtil.addArticleAttachments(
-			themeDisplay.getPortletGroupId(), title, files);
+		KBArticleServiceUtil.addArticleAttachments(resourcePrimKey, files);
 	}
 
 	protected void convertArticle(
@@ -402,22 +408,20 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String title = ParamUtil.getString(actionRequest, "title");
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
 		String attachment = ParamUtil.getString(actionRequest, "fileName");
 
 		KBArticleServiceUtil.deleteArticleAttachment(
-			themeDisplay.getPortletGroupId(), title, attachment);
+			resourcePrimKey, attachment);
 	}
 
 	protected void deleteArticle(ActionRequest actionRequest) throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
+		long parentResourcePrimKey = ParamUtil.getLong(
+			actionRequest, "parentResourcePrimKey");
 
-		String title = ParamUtil.getString(actionRequest, "title");
-
-		KBArticleServiceUtil.deleteArticle(
-			themeDisplay.getPortletGroupId(), title);
+		KBArticleServiceUtil.deleteArticle(parentResourcePrimKey);
 	}
 
 	protected void getFile(
@@ -479,25 +483,19 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 	protected void subscribeArticle(ActionRequest actionRequest)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
 
-		long groupId = themeDisplay.getPortletGroupId();
-		String title = ParamUtil.getString(actionRequest, "title");
-
-		KBArticleServiceUtil.subscribeArticle(groupId, title);
+		KBArticleServiceUtil.subscribeArticle(resourcePrimKey);
 	}
 
 	protected void unsubscribeArticle(ActionRequest actionRequest)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
 
-		long groupId = themeDisplay.getPortletGroupId();
-		String title = ParamUtil.getString(actionRequest, "title");
-
-		KBArticleServiceUtil.unsubscribeArticle(groupId, title);
+		KBArticleServiceUtil.unsubscribeArticle(resourcePrimKey);
 	}
 
 	protected KBArticle updateArticle(ActionRequest actionRequest)
@@ -508,21 +506,32 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 		PortletPreferences prefs = actionRequest.getPreferences();
 
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
 		String title = ParamUtil.getString(actionRequest, "title");
 		double version = ParamUtil.getDouble(actionRequest, "version");
 
 		String content = ParamUtil.getString(actionRequest, "content");
 		String description = ParamUtil.getString(actionRequest, "description");
 		boolean minorEdit = ParamUtil.getBoolean(actionRequest, "minorEdit");
-		String parentTitle = ParamUtil.getString(actionRequest, "parentTitle");
+		long parentResourcePrimKey = ParamUtil.getLong(
+			actionRequest, "parentResourcePrimKey");
 
 		String[] tagsEntries = StringUtil.split(
 			ParamUtil.getString(actionRequest, "tagsEntries"));
 
-		return KBArticleServiceUtil.updateArticle(
-			themeDisplay.getPortletGroupId(), title, version, content,
-			description,  minorEdit, parentTitle, tagsEntries, prefs,
-			themeDisplay);
+		if (resourcePrimKey <= 0) {
+			return KBArticleServiceUtil.addArticle(
+				themeDisplay.getPortletGroupId(), title, content, description,
+				minorEdit, parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
+		}
+		else {
+			return KBArticleServiceUtil.updateArticle(
+				resourcePrimKey, version, title, content, description,
+				minorEdit, parentResourcePrimKey, tagsEntries, prefs,
+				themeDisplay);
+		}
+
 	}
 
 	private static Log _log = LogFactory.getLog(KnowledgeBasePortlet.class);

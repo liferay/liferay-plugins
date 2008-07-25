@@ -39,8 +39,6 @@ catch (NoSuchEntryException nsee) {
 }
 catch (NoSuchPropertyException nspe) {
 }
-
-PortletURL viewAllURL = renderResponse.createRenderURL();
 %>
 
 <h1 class="article-title">

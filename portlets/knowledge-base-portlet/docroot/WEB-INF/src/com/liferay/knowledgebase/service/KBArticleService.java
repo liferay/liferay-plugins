@@ -32,34 +32,33 @@ public interface KBArticleService {
 	public com.liferay.knowledgebase.model.KBArticle addArticle(long groupId,
 		java.lang.String title, java.lang.String content,
 		java.lang.String description, boolean minorEdit,
+		long parentResourcePrimKey, java.lang.String[] tagsEntries,
 		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public void addArticleAttachments(long groupId, java.lang.String title,
+	public void addArticleAttachments(long resourcePrimKey,
 		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<String, byte[]>> files)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public void changeParent(long groupId, java.lang.String title,
-		java.lang.String newParentTitle,
-		javax.portlet.PortletPreferences prefs,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+	public void deleteArticle(long resourcePrimKey)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public void deleteArticle(long groupId, java.lang.String title)
-		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException;
-
-	public void deleteArticleAttachment(long groupId, java.lang.String title,
+	public void deleteArticleAttachment(long resourcePrimKey,
 		java.lang.String fileName)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getGroupArticles(
 		long groupId, int max)
+		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public com.liferay.knowledgebase.model.KBArticle getArticle(
+		long resourcePrimKey)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
@@ -74,7 +73,7 @@ public interface KBArticleService {
 			com.liferay.portal.SystemException;
 
 	public com.liferay.knowledgebase.model.KBArticle revertArticle(
-		long groupId, java.lang.String title, double version,
+		long resourcePrimKey, double version,
 		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
@@ -84,7 +83,7 @@ public interface KBArticleService {
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public void subscribeArticle(long groupId, java.lang.String title)
+	public void subscribeArticle(long resourcePrimKey)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
@@ -92,14 +91,14 @@ public interface KBArticleService {
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public void unsubscribeArticle(long groupId, java.lang.String title)
+	public void unsubscribeArticle(long resourcePrimKey)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
 	public com.liferay.knowledgebase.model.KBArticle updateArticle(
-		long groupId, java.lang.String title, double version,
+		long resourcePrimKey, double version, java.lang.String title,
 		java.lang.String content, java.lang.String description,
-		boolean minorEdit, java.lang.String parentTitle,
+		boolean minorEdit, long parentResourcePrimKey,
 		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,

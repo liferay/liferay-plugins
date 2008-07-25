@@ -1,3 +1,4 @@
+<%@ page import="java.util.HashSet" %>
 <%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
@@ -32,7 +33,7 @@ String[] attachments = article.getAttachmentsFiles();
 PortletURL portletURL = renderResponse.createActionURL();
 
 portletURL.setParameter("view", "view_article_attachments");
-portletURL.setParameter("title", article.getTitle());
+portletURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
 
 List<String> headerNames = new ArrayList<String>();
 
@@ -66,7 +67,7 @@ for (int i = 0; i < results.size(); i++) {
 	ResourceURL rowURL = renderResponse.createResourceURL();
 
 	rowURL.setParameter("actionName", "getArticleAttachment");
-	rowURL.setParameter("title", article.getTitle());
+	rowURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
 	rowURL.setParameter("fileName", shortFileName);
 
 	// File name
@@ -101,7 +102,7 @@ for (int i = 0; i < results.size(); i++) {
 
 <c:if test="<%= KBPermission.contains(permissionChecker, portletGroupId, ActionKeys.ADD_ATTACHMENT) %>">
 	<div>
-		<input type="button" value="<liferay-ui:message key="add-attachments" />" onClick="location.href = '<portlet:renderURL><portlet:param name="view" value="edit_article_attachment" /><portlet:param name="title" value="<%= article.getTitle() %>" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" />
+		<input type="button" value="<liferay-ui:message key="add-attachments" />" onClick="location.href = '<portlet:renderURL><portlet:param name="view" value="edit_article_attachment" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" />
 	</div>
 
 	<br />
@@ -110,6 +111,38 @@ for (int i = 0; i < results.size(); i++) {
 <liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
 
 <%!
+private static final String _DEFAULT_FILE_EXTENSION = "page";
+
+HashSet<String> _fileExtensions = getFileExtensions();
+
+private HashSet<String> getFileExtensions() {
+
+	HashSet<String> result = new HashSet<String>();
+
+	String[] fileExtensions = new String[0];
+		try {
+			fileExtensions = StringUtil.split(PropsUtil.get("dl.file.extensions"));
+
+		for (int i = 0; i < fileExtensions.length; i++) {
+
+			// Only process non wildcard extensions
+
+			if (!StringPool.STAR.equals(fileExtensions[i])) {
+
+				// Strip starting period
+
+				String extension = fileExtensions[i];
+				extension = extension.substring(1, extension.length());
+
+				result.add(extension);
+			}
+		}
+	} catch (Exception e) {
+	}
+
+	return result;
+}
+	
 private String _getFileExtension(String name) {
 	String extension = StringPool.BLANK;
 
@@ -119,9 +152,9 @@ private String _getFileExtension(String name) {
 		extension = name.substring(pos + 1, name.length()).toLowerCase();
 	}
 
-//	if (!_fileExtensions.contains(extension)) {
-//		extension = _DEFAULT_FILE_EXTENSION;
-//	}
+	if (!_fileExtensions.contains(extension)) {
+		extension = _DEFAULT_FILE_EXTENSION;
+	}
 
 	return extension;
 }

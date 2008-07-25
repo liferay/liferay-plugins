@@ -23,6 +23,8 @@
 package com.liferay.knowledgebase.util;
 
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.knowledgebase.KnowledgeBaseKeys;
+import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.DocumentSummary;
@@ -44,30 +46,31 @@ import org.apache.lucene.search.BooleanQuery;
  * @author Jorge Ferrer
  */
 public class Indexer {
-	public static final String PORTLET_ID = "1";
+	public static final String PORTLET_ID = KnowledgeBaseKeys.PORTLET_ID;
 
 	public static void addArticle(
-		long companyId, long groupId, String title,
-		String content, String description, String[] tagsEntries)
+		long companyId, long groupId, long userId, long resourcePrimKey,
+		String title, String content, String description, String[] tagsEntries)
 		throws SearchException {
 
 		try {
-			deleteArticle(companyId, groupId, title);
+			deleteArticle(companyId, resourcePrimKey);
 		}
 		catch (SearchException se) {
 		}
 
 		Document doc = getArticleDocument(
-			companyId, groupId, title, content, description, tagsEntries);
+			companyId, groupId, userId, resourcePrimKey, title, content,
+			description, tagsEntries);
 
 		SearchEngineUtil.addDocument(companyId, doc);
 	}
 
-	public static void deleteArticle(long companyId, long groupId, String title)
+	public static void deleteArticle(long companyId, long resourcePrimKey)
 		throws SearchException {
 
 		SearchEngineUtil.deleteDocument(
-			companyId, getArticleUID(groupId, title));
+			companyId, getArticleUID(resourcePrimKey));
 	}
 
 	public static void deleteArticles(long companyId, long groupId)
@@ -91,18 +94,20 @@ public class Indexer {
 	}
 
 	public static Document getArticleDocument(
-		long companyId, long groupId, String title,
-		String content, String description, String[] tagsEntries) {
+		long companyId, long groupId, long userId, long resourcePrimKey,
+		String title, String content, String description,
+		String[] tagsEntries) {
 
 		content = HtmlUtil.extractText(content);
 
 		Document doc = new DocumentImpl();
 
-		doc.addUID(PORTLET_ID, groupId, title);
+		doc.addUID(PORTLET_ID, resourcePrimKey);
 
 		doc.addKeyword(Field.COMPANY_ID, companyId);
 		doc.addKeyword(Field.PORTLET_ID, PORTLET_ID);
 		doc.addKeyword(Field.GROUP_ID, groupId);
+		doc.addKeyword(Field.USER_ID, userId);
 
 		doc.addText(Field.TITLE, title);
 		doc.addText(Field.CONTENT, content);
@@ -110,28 +115,30 @@ public class Indexer {
 
 		doc.addModifiedDate();
 
-		doc.addKeyword(Field.ENTRY_CLASS_PK, groupId);
+		doc.addKeyword(Field.ENTRY_CLASS_NAME, KBArticle.class.getName());
+		doc.addKeyword(Field.ENTRY_CLASS_PK, resourcePrimKey);
 
 		doc.addKeyword(Field.TAGS_ENTRIES, tagsEntries);
 
 		return doc;
 	}
 
-	public static String getArticleUID(long groupId, String title) {
+	public static String getArticleUID(long resourcePrimKey) {
 		Document doc = new DocumentImpl();
 
-		doc.addUID(PORTLET_ID, groupId, title);
+		doc.addUID(PORTLET_ID, resourcePrimKey);
 
 		return doc.get(Field.UID);
 	}
 
 	public static void updateArticle(
-		long companyId, long groupId, String title, String content,
-		String description, String[] tagsEntries)
+		long companyId, long groupId, long userId, long resourcePrimKey, String title,
+		String content, String description, String[] tagsEntries)
 		throws SearchException {
 
 		Document doc = getArticleDocument(
-			companyId, groupId, title, content, description, tagsEntries);
+			companyId, groupId, userId, resourcePrimKey, title, content,
+			description, tagsEntries);
 
 		SearchEngineUtil.updateDocument(companyId, doc.get(Field.UID), doc);
 	}
@@ -151,7 +158,7 @@ public class Indexer {
 
 		// Portlet URL
 
-		String groupId = doc.get(Field.ENTRY_CLASS_PK);
+		String groupId = doc.get(Field.GROUP_ID);
 
 		portletURL.setParameter("view", "view_article");
 		portletURL.setParameter("groupId", groupId);

@@ -39,6 +39,16 @@ import com.liferay.portal.security.permission.PermissionChecker;
 public class KBArticlePermission {
 
 	public static void check(
+			PermissionChecker permissionChecker, long resourcePrimKey,
+			String actionId)
+		throws PortalException, SystemException {
+
+		if (!contains(permissionChecker, resourcePrimKey, actionId)) {
+			throw new PrincipalException();
+		}
+	}
+
+	public static void check(
 			PermissionChecker permissionChecker, long groupId, String title,
 			String actionId)
 		throws PortalException, SystemException {
@@ -56,6 +66,17 @@ public class KBArticlePermission {
 		if (!contains(permissionChecker, article, actionId)) {
 			throw new PrincipalException();
 		}
+	}
+
+	public static boolean contains(
+			PermissionChecker permissionChecker, long resourcePrimKey,
+			String actionId)
+		throws PortalException, SystemException {
+
+		KBArticle article = KBArticleLocalServiceUtil.getArticle(
+			resourcePrimKey);
+
+		return contains(permissionChecker, article, actionId);
 	}
 
 	public static boolean contains(

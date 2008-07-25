@@ -13,7 +13,7 @@ create table KB_KBArticle (
 	content TEXT null,
 	description STRING null,
 	head BOOLEAN,
-	parentTitle VARCHAR(75) null
+	parentResourcePrimKey LONG
 );
 
 create table KB_KBArticleResource (

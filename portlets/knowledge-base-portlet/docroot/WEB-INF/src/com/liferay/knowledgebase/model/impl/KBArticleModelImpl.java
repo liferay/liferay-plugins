@@ -88,9 +88,9 @@ public class KBArticleModelImpl extends BaseModelImpl {
 			{ "head", new Integer(Types.BOOLEAN) },
 			
 
-			{ "parentTitle", new Integer(Types.VARCHAR) }
+			{ "parentResourcePrimKey", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KB_KBArticle (uuid_ VARCHAR(75) null,articleId LONG not null primary key,groupId LONG,resourcePrimKey LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,modifiedDate DATE null,title VARCHAR(100) null,version DOUBLE,content TEXT null,description STRING null,head BOOLEAN,parentTitle VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table KB_KBArticle (uuid_ VARCHAR(75) null,articleId LONG not null primary key,groupId LONG,resourcePrimKey LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,modifiedDate DATE null,title VARCHAR(100) null,version DOUBLE,content TEXT null,description STRING null,head BOOLEAN,parentResourcePrimKey LONG)";
 	public static final String TABLE_SQL_DROP = "drop table KB_KBArticle";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -115,7 +115,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		model.setContent(soapModel.getContent());
 		model.setDescription(soapModel.getDescription());
 		model.setHead(soapModel.getHead());
-		model.setParentTitle(soapModel.getParentTitle());
+		model.setParentResourcePrimKey(soapModel.getParentResourcePrimKey());
 
 		return model;
 	}
@@ -296,16 +296,13 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		}
 	}
 
-	public String getParentTitle() {
-		return GetterUtil.getString(_parentTitle);
+	public long getParentResourcePrimKey() {
+		return _parentResourcePrimKey;
 	}
 
-	public void setParentTitle(String parentTitle) {
-		if (((parentTitle == null) && (_parentTitle != null)) ||
-				((parentTitle != null) && (_parentTitle == null)) ||
-				((parentTitle != null) && (_parentTitle != null) &&
-				!parentTitle.equals(_parentTitle))) {
-			_parentTitle = parentTitle;
+	public void setParentResourcePrimKey(long parentResourcePrimKey) {
+		if (parentResourcePrimKey != _parentResourcePrimKey) {
+			_parentResourcePrimKey = parentResourcePrimKey;
 		}
 	}
 
@@ -331,7 +328,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 			model.setContent(HtmlUtil.escape(getContent()));
 			model.setDescription(HtmlUtil.escape(getDescription()));
 			model.setHead(getHead());
-			model.setParentTitle(HtmlUtil.escape(getParentTitle()));
+			model.setParentResourcePrimKey(getParentResourcePrimKey());
 
 			model = (KBArticle)Proxy.newProxyInstance(KBArticle.class.getClassLoader(),
 					new Class[] { KBArticle.class },
@@ -357,7 +354,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		clone.setContent(getContent());
 		clone.setDescription(getDescription());
 		clone.setHead(getHead());
-		clone.setParentTitle(getParentTitle());
+		clone.setParentResourcePrimKey(getParentResourcePrimKey());
 
 		return clone;
 	}
@@ -436,5 +433,5 @@ public class KBArticleModelImpl extends BaseModelImpl {
 	private String _content;
 	private String _description;
 	private boolean _head;
-	private String _parentTitle;
+	private long _parentResourcePrimKey;
 }

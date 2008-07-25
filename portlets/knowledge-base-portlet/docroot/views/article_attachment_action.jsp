@@ -38,7 +38,7 @@ String fileName = (String)objArray[1];
 		<portlet:actionURL var="deleteURL">
 			<portlet:param name="actionName" value="deleteAttachment" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="title" value="<%= article.getTitle() %>" />
+			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 			<portlet:param name="fileName" value="<%= fileName %>" />
 		</portlet:actionURL>
 

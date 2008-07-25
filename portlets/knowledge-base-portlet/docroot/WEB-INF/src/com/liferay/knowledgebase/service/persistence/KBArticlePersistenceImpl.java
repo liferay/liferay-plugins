@@ -1126,6 +1126,502 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
+	public List<KBArticle> findByParentResourcePrimKey(
+		long parentResourcePrimKey) throws SystemException {
+		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
+		String finderClassName = KBArticle.class.getName();
+		String finderMethodName = "findByParentResourcePrimKey";
+		String[] finderParams = new String[] { Long.class.getName() };
+		Object[] finderArgs = new Object[] { new Long(parentResourcePrimKey) };
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
+
+				query.append("parentResourcePrimKey = ?");
+
+				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("title ASC, ");
+				query.append("version ASC");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(parentResourcePrimKey);
+
+				List<KBArticle> list = q.list();
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<KBArticle>)result;
+		}
+	}
+
+	public List<KBArticle> findByParentResourcePrimKey(
+		long parentResourcePrimKey, int start, int end)
+		throws SystemException {
+		return findByParentResourcePrimKey(parentResourcePrimKey, start, end,
+			null);
+	}
+
+	public List<KBArticle> findByParentResourcePrimKey(
+		long parentResourcePrimKey, int start, int end, OrderByComparator obc)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
+		String finderClassName = KBArticle.class.getName();
+		String finderMethodName = "findByParentResourcePrimKey";
+		String[] finderParams = new String[] {
+				Long.class.getName(),
+				
+				"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(parentResourcePrimKey),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
+
+				query.append("parentResourcePrimKey = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+					query.append(obc.getOrderBy());
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("title ASC, ");
+					query.append("version ASC");
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(parentResourcePrimKey);
+
+				List<KBArticle> list = (List<KBArticle>)QueryUtil.list(q,
+						getDialect(), start, end);
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<KBArticle>)result;
+		}
+	}
+
+	public KBArticle findByParentResourcePrimKey_First(
+		long parentResourcePrimKey, OrderByComparator obc)
+		throws NoSuchArticleException, SystemException {
+		List<KBArticle> list = findByParentResourcePrimKey(parentResourcePrimKey,
+				0, 1, obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No KBArticle exists with the key {");
+
+			msg.append("parentResourcePrimKey=" + parentResourcePrimKey);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public KBArticle findByParentResourcePrimKey_Last(
+		long parentResourcePrimKey, OrderByComparator obc)
+		throws NoSuchArticleException, SystemException {
+		int count = countByParentResourcePrimKey(parentResourcePrimKey);
+
+		List<KBArticle> list = findByParentResourcePrimKey(parentResourcePrimKey,
+				count - 1, count, obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No KBArticle exists with the key {");
+
+			msg.append("parentResourcePrimKey=" + parentResourcePrimKey);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public KBArticle[] findByParentResourcePrimKey_PrevAndNext(long articleId,
+		long parentResourcePrimKey, OrderByComparator obc)
+		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = findByPrimaryKey(articleId);
+
+		int count = countByParentResourcePrimKey(parentResourcePrimKey);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append(
+				"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
+
+			query.append("parentResourcePrimKey = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+				query.append(obc.getOrderBy());
+			}
+
+			else {
+				query.append("ORDER BY ");
+
+				query.append("title ASC, ");
+				query.append("version ASC");
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(parentResourcePrimKey);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+					kbArticle);
+
+			KBArticle[] array = new KBArticleImpl[3];
+
+			array[0] = (KBArticle)objArray[0];
+			array[1] = (KBArticle)objArray[1];
+			array[2] = (KBArticle)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<KBArticle> findByResourcePrimKey(long resourcePrimKey)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
+		String finderClassName = KBArticle.class.getName();
+		String finderMethodName = "findByResourcePrimKey";
+		String[] finderParams = new String[] { Long.class.getName() };
+		Object[] finderArgs = new Object[] { new Long(resourcePrimKey) };
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
+
+				query.append("resourcePrimKey = ?");
+
+				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("title ASC, ");
+				query.append("version ASC");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(resourcePrimKey);
+
+				List<KBArticle> list = q.list();
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<KBArticle>)result;
+		}
+	}
+
+	public List<KBArticle> findByResourcePrimKey(long resourcePrimKey,
+		int start, int end) throws SystemException {
+		return findByResourcePrimKey(resourcePrimKey, start, end, null);
+	}
+
+	public List<KBArticle> findByResourcePrimKey(long resourcePrimKey,
+		int start, int end, OrderByComparator obc) throws SystemException {
+		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
+		String finderClassName = KBArticle.class.getName();
+		String finderMethodName = "findByResourcePrimKey";
+		String[] finderParams = new String[] {
+				Long.class.getName(),
+				
+				"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(resourcePrimKey),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
+
+				query.append("resourcePrimKey = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+					query.append(obc.getOrderBy());
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("title ASC, ");
+					query.append("version ASC");
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(resourcePrimKey);
+
+				List<KBArticle> list = (List<KBArticle>)QueryUtil.list(q,
+						getDialect(), start, end);
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<KBArticle>)result;
+		}
+	}
+
+	public KBArticle findByResourcePrimKey_First(long resourcePrimKey,
+		OrderByComparator obc) throws NoSuchArticleException, SystemException {
+		List<KBArticle> list = findByResourcePrimKey(resourcePrimKey, 0, 1, obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No KBArticle exists with the key {");
+
+			msg.append("resourcePrimKey=" + resourcePrimKey);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public KBArticle findByResourcePrimKey_Last(long resourcePrimKey,
+		OrderByComparator obc) throws NoSuchArticleException, SystemException {
+		int count = countByResourcePrimKey(resourcePrimKey);
+
+		List<KBArticle> list = findByResourcePrimKey(resourcePrimKey,
+				count - 1, count, obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No KBArticle exists with the key {");
+
+			msg.append("resourcePrimKey=" + resourcePrimKey);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public KBArticle[] findByResourcePrimKey_PrevAndNext(long articleId,
+		long resourcePrimKey, OrderByComparator obc)
+		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = findByPrimaryKey(articleId);
+
+		int count = countByResourcePrimKey(resourcePrimKey);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append(
+				"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
+
+			query.append("resourcePrimKey = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+				query.append(obc.getOrderBy());
+			}
+
+			else {
+				query.append("ORDER BY ");
+
+				query.append("title ASC, ");
+				query.append("version ASC");
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(resourcePrimKey);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+					kbArticle);
+
+			KBArticle[] array = new KBArticleImpl[3];
+
+			array[0] = (KBArticle)objArray[0];
+			array[1] = (KBArticle)objArray[1];
+			array[2] = (KBArticle)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
 	public List<KBArticle> findByG_T(long groupId, String title)
 		throws SystemException {
 		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
@@ -1691,300 +2187,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<KBArticle> findByG_P(long groupId, String parentTitle)
-		throws SystemException {
-		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
-		String finderClassName = KBArticle.class.getName();
-		String finderMethodName = "findByG_P";
-		String[] finderParams = new String[] {
-				Long.class.getName(), String.class.getName()
-			};
-		Object[] finderArgs = new Object[] { new Long(groupId), parentTitle };
-
-		Object result = null;
-
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
-
-				query.append("groupId = ?");
-
-				query.append(" AND ");
-
-				if (parentTitle == null) {
-					query.append("parentTitle IS NULL");
-				}
-				else {
-					query.append("parentTitle = ?");
-				}
-
-				query.append(" ");
-
-				query.append("ORDER BY ");
-
-				query.append("title ASC, ");
-				query.append("version ASC");
-
-				Query q = session.createQuery(query.toString());
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(groupId);
-
-				if (parentTitle != null) {
-					qPos.add(parentTitle);
-				}
-
-				List<KBArticle> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-		else {
-			return (List<KBArticle>)result;
-		}
-	}
-
-	public List<KBArticle> findByG_P(long groupId, String parentTitle,
-		int start, int end) throws SystemException {
-		return findByG_P(groupId, parentTitle, start, end, null);
-	}
-
-	public List<KBArticle> findByG_P(long groupId, String parentTitle,
-		int start, int end, OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
-		String finderClassName = KBArticle.class.getName();
-		String finderMethodName = "findByG_P";
-		String[] finderParams = new String[] {
-				Long.class.getName(), String.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
-		Object[] finderArgs = new Object[] {
-				new Long(groupId),
-				
-				parentTitle,
-				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
-			};
-
-		Object result = null;
-
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
-
-				query.append("groupId = ?");
-
-				query.append(" AND ");
-
-				if (parentTitle == null) {
-					query.append("parentTitle IS NULL");
-				}
-				else {
-					query.append("parentTitle = ?");
-				}
-
-				query.append(" ");
-
-				if (obc != null) {
-					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
-				}
-
-				else {
-					query.append("ORDER BY ");
-
-					query.append("title ASC, ");
-					query.append("version ASC");
-				}
-
-				Query q = session.createQuery(query.toString());
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(groupId);
-
-				if (parentTitle != null) {
-					qPos.add(parentTitle);
-				}
-
-				List<KBArticle> list = (List<KBArticle>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-		else {
-			return (List<KBArticle>)result;
-		}
-	}
-
-	public KBArticle findByG_P_First(long groupId, String parentTitle,
-		OrderByComparator obc) throws NoSuchArticleException, SystemException {
-		List<KBArticle> list = findByG_P(groupId, parentTitle, 0, 1, obc);
-
-		if (list.size() == 0) {
-			StringBuilder msg = new StringBuilder();
-
-			msg.append("No KBArticle exists with the key {");
-
-			msg.append("groupId=" + groupId);
-
-			msg.append(", ");
-			msg.append("parentTitle=" + parentTitle);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	public KBArticle findByG_P_Last(long groupId, String parentTitle,
-		OrderByComparator obc) throws NoSuchArticleException, SystemException {
-		int count = countByG_P(groupId, parentTitle);
-
-		List<KBArticle> list = findByG_P(groupId, parentTitle, count - 1,
-				count, obc);
-
-		if (list.size() == 0) {
-			StringBuilder msg = new StringBuilder();
-
-			msg.append("No KBArticle exists with the key {");
-
-			msg.append("groupId=" + groupId);
-
-			msg.append(", ");
-			msg.append("parentTitle=" + parentTitle);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	public KBArticle[] findByG_P_PrevAndNext(long articleId, long groupId,
-		String parentTitle, OrderByComparator obc)
-		throws NoSuchArticleException, SystemException {
-		KBArticle kbArticle = findByPrimaryKey(articleId);
-
-		int count = countByG_P(groupId, parentTitle);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			StringBuilder query = new StringBuilder();
-
-			query.append(
-				"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
-
-			query.append("groupId = ?");
-
-			query.append(" AND ");
-
-			if (parentTitle == null) {
-				query.append("parentTitle IS NULL");
-			}
-			else {
-				query.append("parentTitle = ?");
-			}
-
-			query.append(" ");
-
-			if (obc != null) {
-				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
-			}
-
-			else {
-				query.append("ORDER BY ");
-
-				query.append("title ASC, ");
-				query.append("version ASC");
-			}
-
-			Query q = session.createQuery(query.toString());
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(groupId);
-
-			if (parentTitle != null) {
-				qPos.add(parentTitle);
-			}
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					kbArticle);
-
-			KBArticle[] array = new KBArticleImpl[3];
-
-			array[0] = (KBArticle)objArray[0];
-			array[1] = (KBArticle)objArray[1];
-			array[2] = (KBArticle)objArray[2];
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
 	public KBArticle findByG_T_V(long groupId, String title, double version)
 		throws NoSuchArticleException, SystemException {
 		KBArticle kbArticle = fetchByG_T_V(groupId, title, version);
@@ -2439,19 +2641,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<KBArticle> findByG_H_P(long groupId, boolean head,
-		String parentTitle) throws SystemException {
+	public List<KBArticle> findByP_H(long parentResourcePrimKey, boolean head)
+		throws SystemException {
 		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
 		String finderClassName = KBArticle.class.getName();
-		String finderMethodName = "findByG_H_P";
+		String finderMethodName = "findByP_H";
 		String[] finderParams = new String[] {
-				Long.class.getName(), Boolean.class.getName(),
-				String.class.getName()
+				Long.class.getName(), Boolean.class.getName()
 			};
 		Object[] finderArgs = new Object[] {
-				new Long(groupId), Boolean.valueOf(head),
-				
-				parentTitle
+				new Long(parentResourcePrimKey), Boolean.valueOf(head)
 			};
 
 		Object result = null;
@@ -2472,20 +2671,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 				query.append(
 					"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
 
-				query.append("groupId = ?");
+				query.append("parentResourcePrimKey = ?");
 
 				query.append(" AND ");
 
 				query.append("head = ?");
-
-				query.append(" AND ");
-
-				if (parentTitle == null) {
-					query.append("parentTitle IS NULL");
-				}
-				else {
-					query.append("parentTitle = ?");
-				}
 
 				query.append(" ");
 
@@ -2498,13 +2688,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(groupId);
+				qPos.add(parentResourcePrimKey);
 
 				qPos.add(head);
-
-				if (parentTitle != null) {
-					qPos.add(parentTitle);
-				}
 
 				List<KBArticle> list = q.list();
 
@@ -2526,28 +2712,24 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<KBArticle> findByG_H_P(long groupId, boolean head,
-		String parentTitle, int start, int end) throws SystemException {
-		return findByG_H_P(groupId, head, parentTitle, start, end, null);
+	public List<KBArticle> findByP_H(long parentResourcePrimKey, boolean head,
+		int start, int end) throws SystemException {
+		return findByP_H(parentResourcePrimKey, head, start, end, null);
 	}
 
-	public List<KBArticle> findByG_H_P(long groupId, boolean head,
-		String parentTitle, int start, int end, OrderByComparator obc)
-		throws SystemException {
+	public List<KBArticle> findByP_H(long parentResourcePrimKey, boolean head,
+		int start, int end, OrderByComparator obc) throws SystemException {
 		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
 		String finderClassName = KBArticle.class.getName();
-		String finderMethodName = "findByG_H_P";
+		String finderMethodName = "findByP_H";
 		String[] finderParams = new String[] {
 				Long.class.getName(), Boolean.class.getName(),
-				String.class.getName(),
 				
 				"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 		Object[] finderArgs = new Object[] {
-				new Long(groupId), Boolean.valueOf(head),
-				
-				parentTitle,
+				new Long(parentResourcePrimKey), Boolean.valueOf(head),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
@@ -2570,20 +2752,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 				query.append(
 					"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
 
-				query.append("groupId = ?");
+				query.append("parentResourcePrimKey = ?");
 
 				query.append(" AND ");
 
 				query.append("head = ?");
-
-				query.append(" AND ");
-
-				if (parentTitle == null) {
-					query.append("parentTitle IS NULL");
-				}
-				else {
-					query.append("parentTitle = ?");
-				}
 
 				query.append(" ");
 
@@ -2603,13 +2776,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(groupId);
+				qPos.add(parentResourcePrimKey);
 
 				qPos.add(head);
-
-				if (parentTitle != null) {
-					qPos.add(parentTitle);
-				}
 
 				List<KBArticle> list = (List<KBArticle>)QueryUtil.list(q,
 						getDialect(), start, end);
@@ -2632,23 +2801,19 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public KBArticle findByG_H_P_First(long groupId, boolean head,
-		String parentTitle, OrderByComparator obc)
-		throws NoSuchArticleException, SystemException {
-		List<KBArticle> list = findByG_H_P(groupId, head, parentTitle, 0, 1, obc);
+	public KBArticle findByP_H_First(long parentResourcePrimKey, boolean head,
+		OrderByComparator obc) throws NoSuchArticleException, SystemException {
+		List<KBArticle> list = findByP_H(parentResourcePrimKey, head, 0, 1, obc);
 
 		if (list.size() == 0) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No KBArticle exists with the key {");
 
-			msg.append("groupId=" + groupId);
+			msg.append("parentResourcePrimKey=" + parentResourcePrimKey);
 
 			msg.append(", ");
 			msg.append("head=" + head);
-
-			msg.append(", ");
-			msg.append("parentTitle=" + parentTitle);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -2659,12 +2824,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public KBArticle findByG_H_P_Last(long groupId, boolean head,
-		String parentTitle, OrderByComparator obc)
-		throws NoSuchArticleException, SystemException {
-		int count = countByG_H_P(groupId, head, parentTitle);
+	public KBArticle findByP_H_Last(long parentResourcePrimKey, boolean head,
+		OrderByComparator obc) throws NoSuchArticleException, SystemException {
+		int count = countByP_H(parentResourcePrimKey, head);
 
-		List<KBArticle> list = findByG_H_P(groupId, head, parentTitle,
+		List<KBArticle> list = findByP_H(parentResourcePrimKey, head,
 				count - 1, count, obc);
 
 		if (list.size() == 0) {
@@ -2672,13 +2836,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 
 			msg.append("No KBArticle exists with the key {");
 
-			msg.append("groupId=" + groupId);
+			msg.append("parentResourcePrimKey=" + parentResourcePrimKey);
 
 			msg.append(", ");
 			msg.append("head=" + head);
-
-			msg.append(", ");
-			msg.append("parentTitle=" + parentTitle);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -2689,12 +2850,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public KBArticle[] findByG_H_P_PrevAndNext(long articleId, long groupId,
-		boolean head, String parentTitle, OrderByComparator obc)
+	public KBArticle[] findByP_H_PrevAndNext(long articleId,
+		long parentResourcePrimKey, boolean head, OrderByComparator obc)
 		throws NoSuchArticleException, SystemException {
 		KBArticle kbArticle = findByPrimaryKey(articleId);
 
-		int count = countByG_H_P(groupId, head, parentTitle);
+		int count = countByP_H(parentResourcePrimKey, head);
 
 		Session session = null;
 
@@ -2706,20 +2867,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 			query.append(
 				"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
 
-			query.append("groupId = ?");
+			query.append("parentResourcePrimKey = ?");
 
 			query.append(" AND ");
 
 			query.append("head = ?");
-
-			query.append(" AND ");
-
-			if (parentTitle == null) {
-				query.append("parentTitle IS NULL");
-			}
-			else {
-				query.append("parentTitle = ?");
-			}
 
 			query.append(" ");
 
@@ -2739,13 +2891,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			qPos.add(groupId);
+			qPos.add(parentResourcePrimKey);
 
 			qPos.add(head);
-
-			if (parentTitle != null) {
-				qPos.add(parentTitle);
-			}
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
 					kbArticle);
@@ -2763,6 +2911,388 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	public List<KBArticle> findByR_H(long resourcePrimKey, boolean head)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
+		String finderClassName = KBArticle.class.getName();
+		String finderMethodName = "findByR_H";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Boolean.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(resourcePrimKey), Boolean.valueOf(head)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
+
+				query.append("resourcePrimKey = ?");
+
+				query.append(" AND ");
+
+				query.append("head = ?");
+
+				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("title ASC, ");
+				query.append("version ASC");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(resourcePrimKey);
+
+				qPos.add(head);
+
+				List<KBArticle> list = q.list();
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<KBArticle>)result;
+		}
+	}
+
+	public List<KBArticle> findByR_H(long resourcePrimKey, boolean head,
+		int start, int end) throws SystemException {
+		return findByR_H(resourcePrimKey, head, start, end, null);
+	}
+
+	public List<KBArticle> findByR_H(long resourcePrimKey, boolean head,
+		int start, int end, OrderByComparator obc) throws SystemException {
+		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
+		String finderClassName = KBArticle.class.getName();
+		String finderMethodName = "findByR_H";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				
+				"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(resourcePrimKey), Boolean.valueOf(head),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
+
+				query.append("resourcePrimKey = ?");
+
+				query.append(" AND ");
+
+				query.append("head = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+					query.append(obc.getOrderBy());
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("title ASC, ");
+					query.append("version ASC");
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(resourcePrimKey);
+
+				qPos.add(head);
+
+				List<KBArticle> list = (List<KBArticle>)QueryUtil.list(q,
+						getDialect(), start, end);
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<KBArticle>)result;
+		}
+	}
+
+	public KBArticle findByR_H_First(long resourcePrimKey, boolean head,
+		OrderByComparator obc) throws NoSuchArticleException, SystemException {
+		List<KBArticle> list = findByR_H(resourcePrimKey, head, 0, 1, obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No KBArticle exists with the key {");
+
+			msg.append("resourcePrimKey=" + resourcePrimKey);
+
+			msg.append(", ");
+			msg.append("head=" + head);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public KBArticle findByR_H_Last(long resourcePrimKey, boolean head,
+		OrderByComparator obc) throws NoSuchArticleException, SystemException {
+		int count = countByR_H(resourcePrimKey, head);
+
+		List<KBArticle> list = findByR_H(resourcePrimKey, head, count - 1,
+				count, obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No KBArticle exists with the key {");
+
+			msg.append("resourcePrimKey=" + resourcePrimKey);
+
+			msg.append(", ");
+			msg.append("head=" + head);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public KBArticle[] findByR_H_PrevAndNext(long articleId,
+		long resourcePrimKey, boolean head, OrderByComparator obc)
+		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = findByPrimaryKey(articleId);
+
+		int count = countByR_H(resourcePrimKey, head);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append(
+				"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
+
+			query.append("resourcePrimKey = ?");
+
+			query.append(" AND ");
+
+			query.append("head = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+				query.append(obc.getOrderBy());
+			}
+
+			else {
+				query.append("ORDER BY ");
+
+				query.append("title ASC, ");
+				query.append("version ASC");
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(resourcePrimKey);
+
+			qPos.add(head);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+					kbArticle);
+
+			KBArticle[] array = new KBArticleImpl[3];
+
+			array[0] = (KBArticle)objArray[0];
+			array[1] = (KBArticle)objArray[1];
+			array[2] = (KBArticle)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public KBArticle findByR_V(long resourcePrimKey, double version)
+		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByR_V(resourcePrimKey, version);
+
+		if (kbArticle == null) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No KBArticle exists with the key {");
+
+			msg.append("resourcePrimKey=" + resourcePrimKey);
+
+			msg.append(", ");
+			msg.append("version=" + version);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+
+		return kbArticle;
+	}
+
+	public KBArticle fetchByR_V(long resourcePrimKey, double version)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
+		String finderClassName = KBArticle.class.getName();
+		String finderMethodName = "fetchByR_V";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Double.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(resourcePrimKey), new Double(version)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
+
+				query.append("resourcePrimKey = ?");
+
+				query.append(" AND ");
+
+				query.append("version = ?");
+
+				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("title ASC, ");
+				query.append("version ASC");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(resourcePrimKey);
+
+				qPos.add(version);
+
+				List<KBArticle> list = q.list();
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				if (list.size() == 0) {
+					return null;
+				}
+				else {
+					return list.get(0);
+				}
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			List<KBArticle> list = (List<KBArticle>)result;
+
+			if (list.size() == 0) {
+				return null;
+			}
+			else {
+				return list.get(0);
+			}
 		}
 	}
 
@@ -2909,6 +3439,21 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
+	public void removeByParentResourcePrimKey(long parentResourcePrimKey)
+		throws SystemException {
+		for (KBArticle kbArticle : findByParentResourcePrimKey(
+				parentResourcePrimKey)) {
+			remove(kbArticle);
+		}
+	}
+
+	public void removeByResourcePrimKey(long resourcePrimKey)
+		throws SystemException {
+		for (KBArticle kbArticle : findByResourcePrimKey(resourcePrimKey)) {
+			remove(kbArticle);
+		}
+	}
+
 	public void removeByG_T(long groupId, String title)
 		throws SystemException {
 		for (KBArticle kbArticle : findByG_T(groupId, title)) {
@@ -2919,13 +3464,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 	public void removeByG_H(long groupId, boolean head)
 		throws SystemException {
 		for (KBArticle kbArticle : findByG_H(groupId, head)) {
-			remove(kbArticle);
-		}
-	}
-
-	public void removeByG_P(long groupId, String parentTitle)
-		throws SystemException {
-		for (KBArticle kbArticle : findByG_P(groupId, parentTitle)) {
 			remove(kbArticle);
 		}
 	}
@@ -2944,11 +3482,25 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public void removeByG_H_P(long groupId, boolean head, String parentTitle)
+	public void removeByP_H(long parentResourcePrimKey, boolean head)
 		throws SystemException {
-		for (KBArticle kbArticle : findByG_H_P(groupId, head, parentTitle)) {
+		for (KBArticle kbArticle : findByP_H(parentResourcePrimKey, head)) {
 			remove(kbArticle);
 		}
+	}
+
+	public void removeByR_H(long resourcePrimKey, boolean head)
+		throws SystemException {
+		for (KBArticle kbArticle : findByR_H(resourcePrimKey, head)) {
+			remove(kbArticle);
+		}
+	}
+
+	public void removeByR_V(long resourcePrimKey, double version)
+		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = findByR_V(resourcePrimKey, version);
+
+		remove(kbArticle);
 	}
 
 	public void removeAll() throws SystemException {
@@ -3244,6 +3796,140 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
+	public int countByParentResourcePrimKey(long parentResourcePrimKey)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
+		String finderClassName = KBArticle.class.getName();
+		String finderMethodName = "countByParentResourcePrimKey";
+		String[] finderParams = new String[] { Long.class.getName() };
+		Object[] finderArgs = new Object[] { new Long(parentResourcePrimKey) };
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(*) ");
+				query.append(
+					"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
+
+				query.append("parentResourcePrimKey = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(parentResourcePrimKey);
+
+				Long count = null;
+
+				Iterator<Long> itr = q.list().iterator();
+
+				if (itr.hasNext()) {
+					count = itr.next();
+				}
+
+				if (count == null) {
+					count = new Long(0);
+				}
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, count);
+
+				return count.intValue();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return ((Long)result).intValue();
+		}
+	}
+
+	public int countByResourcePrimKey(long resourcePrimKey)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
+		String finderClassName = KBArticle.class.getName();
+		String finderMethodName = "countByResourcePrimKey";
+		String[] finderParams = new String[] { Long.class.getName() };
+		Object[] finderArgs = new Object[] { new Long(resourcePrimKey) };
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(*) ");
+				query.append(
+					"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
+
+				query.append("resourcePrimKey = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(resourcePrimKey);
+
+				Long count = null;
+
+				Iterator<Long> itr = q.list().iterator();
+
+				if (itr.hasNext()) {
+					count = itr.next();
+				}
+
+				if (count == null) {
+					count = new Long(0);
+				}
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, count);
+
+				return count.intValue();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return ((Long)result).intValue();
+		}
+	}
+
 	public int countByG_T(long groupId, String title) throws SystemException {
 		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
 		String finderClassName = KBArticle.class.getName();
@@ -3370,88 +4056,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 				qPos.add(groupId);
 
 				qPos.add(head);
-
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-		else {
-			return ((Long)result).intValue();
-		}
-	}
-
-	public int countByG_P(long groupId, String parentTitle)
-		throws SystemException {
-		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
-		String finderClassName = KBArticle.class.getName();
-		String finderMethodName = "countByG_P";
-		String[] finderParams = new String[] {
-				Long.class.getName(), String.class.getName()
-			};
-		Object[] finderArgs = new Object[] { new Long(groupId), parentTitle };
-
-		Object result = null;
-
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBuilder query = new StringBuilder();
-
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
-
-				query.append("groupId = ?");
-
-				query.append(" AND ");
-
-				if (parentTitle == null) {
-					query.append("parentTitle IS NULL");
-				}
-				else {
-					query.append("parentTitle = ?");
-				}
-
-				query.append(" ");
-
-				Query q = session.createQuery(query.toString());
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(groupId);
-
-				if (parentTitle != null) {
-					qPos.add(parentTitle);
-				}
 
 				Long count = null;
 
@@ -3669,19 +4273,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public int countByG_H_P(long groupId, boolean head, String parentTitle)
+	public int countByP_H(long parentResourcePrimKey, boolean head)
 		throws SystemException {
 		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
 		String finderClassName = KBArticle.class.getName();
-		String finderMethodName = "countByG_H_P";
+		String finderMethodName = "countByP_H";
 		String[] finderParams = new String[] {
-				Long.class.getName(), Boolean.class.getName(),
-				String.class.getName()
+				Long.class.getName(), Boolean.class.getName()
 			};
 		Object[] finderArgs = new Object[] {
-				new Long(groupId), Boolean.valueOf(head),
-				
-				parentTitle
+				new Long(parentResourcePrimKey), Boolean.valueOf(head)
 			};
 
 		Object result = null;
@@ -3703,20 +4304,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 				query.append(
 					"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
 
-				query.append("groupId = ?");
+				query.append("parentResourcePrimKey = ?");
 
 				query.append(" AND ");
 
 				query.append("head = ?");
-
-				query.append(" AND ");
-
-				if (parentTitle == null) {
-					query.append("parentTitle IS NULL");
-				}
-				else {
-					query.append("parentTitle = ?");
-				}
 
 				query.append(" ");
 
@@ -3724,13 +4316,163 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(groupId);
+				qPos.add(parentResourcePrimKey);
 
 				qPos.add(head);
 
-				if (parentTitle != null) {
-					qPos.add(parentTitle);
+				Long count = null;
+
+				Iterator<Long> itr = q.list().iterator();
+
+				if (itr.hasNext()) {
+					count = itr.next();
 				}
+
+				if (count == null) {
+					count = new Long(0);
+				}
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, count);
+
+				return count.intValue();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return ((Long)result).intValue();
+		}
+	}
+
+	public int countByR_H(long resourcePrimKey, boolean head)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
+		String finderClassName = KBArticle.class.getName();
+		String finderMethodName = "countByR_H";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Boolean.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(resourcePrimKey), Boolean.valueOf(head)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(*) ");
+				query.append(
+					"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
+
+				query.append("resourcePrimKey = ?");
+
+				query.append(" AND ");
+
+				query.append("head = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(resourcePrimKey);
+
+				qPos.add(head);
+
+				Long count = null;
+
+				Iterator<Long> itr = q.list().iterator();
+
+				if (itr.hasNext()) {
+					count = itr.next();
+				}
+
+				if (count == null) {
+					count = new Long(0);
+				}
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, count);
+
+				return count.intValue();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return ((Long)result).intValue();
+		}
+	}
+
+	public int countByR_V(long resourcePrimKey, double version)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
+		String finderClassName = KBArticle.class.getName();
+		String finderMethodName = "countByR_V";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Double.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(resourcePrimKey), new Double(version)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(*) ");
+				query.append(
+					"FROM com.liferay.knowledgebase.model.KBArticle WHERE ");
+
+				query.append("resourcePrimKey = ?");
+
+				query.append(" AND ");
+
+				query.append("version = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(resourcePrimKey);
+
+				qPos.add(version);
 
 				Long count = null;
 
