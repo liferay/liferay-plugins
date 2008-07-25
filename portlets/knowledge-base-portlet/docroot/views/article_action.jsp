@@ -30,6 +30,16 @@ KBArticle article = (KBArticle)row.getObject();
 %>
 
 <liferay-ui:icon-menu>
+	<c:if test="<%= article.isTemplate() && KBPermission.contains(permissionChecker, portletGroupId, ActionKeys.ADD_ARTICLE) %>">
+		<portlet:renderURL var="addTemplateBasedArticleURL">
+			<portlet:param name="view" value="edit_article" />
+			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+			<portlet:param name="template" value="false" />
+		</portlet:renderURL>
+
+		<liferay-ui:icon image="add" message="add-article" url="<%= addTemplateBasedArticleURL.toString() %>" />
+	</c:if>
+
 	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
 			<portlet:param name="view" value="edit_article" />

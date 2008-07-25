@@ -142,7 +142,7 @@ private HashSet<String> getFileExtensions() {
 
 	return result;
 }
-	
+
 private String _getFileExtension(String name) {
 	String extension = StringPool.BLANK;
 

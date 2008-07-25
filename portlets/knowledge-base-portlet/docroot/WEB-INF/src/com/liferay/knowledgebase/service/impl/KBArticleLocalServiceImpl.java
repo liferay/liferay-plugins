@@ -89,9 +89,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	public KBArticle addArticle(
 			long userId, long groupId, String title, String content,
-			String description, boolean minorEdit, long parentResourcePrimKey,
-			String[] tagsEntries, PortletPreferences prefs,
-			ThemeDisplay themeDisplay)
+			String description, boolean minorEdit, boolean template,
+			long parentResourcePrimKey, String[] tagsEntries,
+			PortletPreferences prefs, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		String uuid = null;
@@ -100,16 +100,16 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		return addArticle(
 			uuid, userId, groupId, title, version, content, description,
-			minorEdit, head, parentResourcePrimKey, tagsEntries, prefs,
-			themeDisplay);
+			minorEdit, head, template, parentResourcePrimKey, tagsEntries,
+			prefs, themeDisplay);
 	}
 
 	public KBArticle addArticle(
 			String uuid, long userId, long groupId, String title,
 			double version, String content, String description,
-			boolean minorEdit, boolean head, long parentResourcePrimKey,
-			String[] tagsEntries, PortletPreferences prefs,
-			ThemeDisplay themeDisplay)
+			boolean minorEdit, boolean head, boolean template,
+			long parentResourcePrimKey, String[] tagsEntries,
+			PortletPreferences prefs, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		// Article
@@ -147,6 +147,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		article.setContent(content);
 		article.setDescription(description);
 		article.setHead(head);
+		article.setTemplate(template);
 		article.setParentResourcePrimKey(parentResourcePrimKey);
 
 		kbArticlePersistence.update(article, false);
@@ -363,11 +364,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 	}
 
-	public void deleteArticles(long groupId)
+	public void deleteArticles(long groupId, boolean template)
 		throws PortalException, SystemException {
 
-		Iterator<KBArticle> itr = kbArticlePersistence.findByG_H(
-			groupId, true).iterator();
+		Iterator<KBArticle> itr = kbArticlePersistence.findByG_H_T(
+			groupId, true, template).iterator();
 
 		while (itr.hasNext()) {
 			KBArticle article = itr.next();
@@ -466,11 +467,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	public List<KBArticle> getArticles(
-			long groupId, boolean head, int start, int end)
+			long groupId, boolean head, boolean template, int start, int end)
 		throws SystemException {
 
-		return kbArticlePersistence.findByG_H(
-			groupId, head, start, end,
+		return kbArticlePersistence.findByG_H_T(
+			groupId, head, template, start, end,
 			new ArticleModifiedDateComparator(false));
 	}
 
@@ -493,10 +494,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return kbArticlePersistence.countByG_T(groupId, title);
 	}
 
-	public int getArticlesCount(long groupId, boolean head)
+	public int getArticlesCount(long groupId, boolean head, boolean template)
 		throws SystemException {
 
-		return kbArticlePersistence.countByG_H(groupId, head);
+		return kbArticlePersistence.countByG_H_T(groupId, head, template);
 	}
 
 	public int getArticlesCount(long groupId, String title, boolean head)
@@ -559,8 +560,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return updateArticle(
 			userId, resourcePrimKey, 0, oldArticle.getTitle(),
 			oldArticle.getContent(), oldArticle.getDescription(), false,
-			oldArticle.getParentResourcePrimKey(), null, prefs,
-			themeDisplay);
+			oldArticle.isTemplate(), oldArticle.getParentResourcePrimKey(),
+			null, prefs, themeDisplay);
 	}
 
 	public Hits search(
@@ -634,7 +635,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public KBArticle updateArticle(
 			long userId, long resourcePrimKey, double version,
 			String title, String content, String description, boolean minorEdit,
-			long parentResourcePrimKey, String[] tagsEntries,
+			boolean template, long parentResourcePrimKey, String[] tagsEntries,
 			PortletPreferences prefs, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
@@ -675,6 +676,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		article.setContent(content);
 		article.setDescription(description);
 		article.setHead(true);
+		article.setTemplate(template);
 
 		article.setParentResourcePrimKey(parentResourcePrimKey);
 

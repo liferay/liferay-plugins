@@ -24,35 +24,15 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String tag = ParamUtil.getString(renderRequest, "tag");
-
-String description = null;
-
-try {
-	TagsEntry tagsEntry = TagsEntryLocalServiceUtil.getEntry(themeDisplay.getCompanyId(), tag);
-
-	TagsProperty tagsProperty = TagsPropertyLocalServiceUtil.getProperty(tagsEntry.getEntryId(), "description");
-
-	description = tagsProperty.getValue();
-}
-catch (NoSuchEntryException nsee) {
-}
-catch (NoSuchPropertyException nspe) {
-}
+request.setAttribute("article_iterator.type", "all_templates");
 %>
 
-<h1 class="article-title">
-	<%= LanguageUtil.format(pageContext, "articles-with-tag-x", tag) %>
-</h1>
-
-<c:if test="<%= Validator.isNotNull(description) %>">
-	<p class="tag-description">
-		<%= description %>
-	</p>
+<c:if test="<%= KBPermission.contains(permissionChecker, portletGroupId, ActionKeys.ADD_TEMPLATE) %>">
+	<div>
+		<input type="button" value="<liferay-ui:message key="add-template" />" onClick="location.href = '<portlet:renderURL><portlet:param name="view" value="edit_article" /><portlet:param name="template" value="true" /><portlet:param name="redirect" value="<%= currentURL %>"></portlet:param></portlet:renderURL>'" />
+	</div>
 </c:if>
 
-<%
-request.setAttribute("article_iterator.type", "tagged_articles");
-%>
+<br />
 
 <jsp:include page="/views/article_iterator.jsp" />

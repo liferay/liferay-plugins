@@ -51,6 +51,7 @@ public class KBArticleSoap implements Serializable {
 		soapModel.setContent(model.getContent());
 		soapModel.setDescription(model.getDescription());
 		soapModel.setHead(model.getHead());
+		soapModel.setTemplate(model.getTemplate());
 		soapModel.setParentResourcePrimKey(model.getParentResourcePrimKey());
 
 		return soapModel;
@@ -185,6 +186,18 @@ public class KBArticleSoap implements Serializable {
 		_head = head;
 	}
 
+	public boolean getTemplate() {
+		return _template;
+	}
+
+	public boolean isTemplate() {
+		return _template;
+	}
+
+	public void setTemplate(boolean template) {
+		_template = template;
+	}
+
 	public long getParentResourcePrimKey() {
 		return _parentResourcePrimKey;
 	}
@@ -206,5 +219,6 @@ public class KBArticleSoap implements Serializable {
 	private String _content;
 	private String _description;
 	private boolean _head;
+	private boolean _template;
 	private long _parentResourcePrimKey;
 }

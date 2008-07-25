@@ -32,7 +32,10 @@ boolean print = ParamUtil.getBoolean(request, Constants.PRINT);
 	<%
 	String keywords = ParamUtil.getString(request, "keywords");
 
-	PortletURL portletURL = renderResponse.createRenderURL();
+	PortletURL articlesURL = renderResponse.createRenderURL();
+
+	PortletURL templatesURL = renderResponse.createRenderURL();
+	templatesURL.setParameter("view", "view_all_templates");
 	%>
 
 	<div class="top-links">
@@ -48,7 +51,11 @@ boolean print = ParamUtil.getBoolean(request, Constants.PRINT);
 				<liferay-portlet:renderURLParams varImpl="searchURL" />
 				<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(currentURL) %>" />
 
-				<a href="<%= portletURL.toString() %>"><liferay-ui:message key="all-articles" /></a>
+				<a href="<%= articlesURL.toString() %>"><liferay-ui:message key="all-articles" /></a>
+
+				&nbsp;
+
+				<a href="<%= templatesURL.toString() %>"><liferay-ui:message key="all-templates" /></a>
 
 				&nbsp;
 

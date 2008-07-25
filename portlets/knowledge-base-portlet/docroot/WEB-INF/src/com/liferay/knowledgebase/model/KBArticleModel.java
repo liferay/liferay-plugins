@@ -91,6 +91,12 @@ public interface KBArticleModel extends BaseModel {
 
 	public void setHead(boolean head);
 
+	public boolean getTemplate();
+
+	public boolean isTemplate();
+
+	public void setTemplate(boolean template);
+
 	public long getParentResourcePrimKey();
 
 	public void setParentResourcePrimKey(long parentResourcePrimKey);

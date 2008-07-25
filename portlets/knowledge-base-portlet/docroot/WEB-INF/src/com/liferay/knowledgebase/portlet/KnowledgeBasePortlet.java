@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.DocumentConversionUtil;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -42,7 +43,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -142,7 +142,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 						redirect = HttpUtil.addParameter(
 							redirect, "resourcePrimKey",
 							article.getResourcePrimKey());
-					
+
 						redirect = HttpUtil.addParameter(
 							redirect, "title", article.getTitle());
 					}
@@ -514,6 +514,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		String content = ParamUtil.getString(actionRequest, "content");
 		String description = ParamUtil.getString(actionRequest, "description");
 		boolean minorEdit = ParamUtil.getBoolean(actionRequest, "minorEdit");
+		boolean template = ParamUtil.getBoolean(actionRequest, "template");
 		long parentResourcePrimKey = ParamUtil.getLong(
 			actionRequest, "parentResourcePrimKey");
 
@@ -523,13 +524,25 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		if (resourcePrimKey <= 0) {
 			return KBArticleServiceUtil.addArticle(
 				themeDisplay.getPortletGroupId(), title, content, description,
-				minorEdit, parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
+				minorEdit, template, parentResourcePrimKey, tagsEntries, prefs,
+				themeDisplay);
 		}
 		else {
-			return KBArticleServiceUtil.updateArticle(
-				resourcePrimKey, version, title, content, description,
-				minorEdit, parentResourcePrimKey, tagsEntries, prefs,
-				themeDisplay);
+			KBArticle article = KBArticleServiceUtil.getArticle(
+				resourcePrimKey);
+
+			if (article.isTemplate() && (template == false)) {
+				return KBArticleServiceUtil.addArticle(
+					themeDisplay.getPortletGroupId(), title, content,
+					description, minorEdit, template, parentResourcePrimKey,
+					tagsEntries, prefs, themeDisplay);
+			}
+			else {
+				return KBArticleServiceUtil.updateArticle(
+					resourcePrimKey, version, title, content, description,
+					minorEdit, template, parentResourcePrimKey, tagsEntries,
+					prefs, themeDisplay);
+			}
 		}
 
 	}

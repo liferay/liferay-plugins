@@ -88,9 +88,12 @@ public class KBArticleModelImpl extends BaseModelImpl {
 			{ "head", new Integer(Types.BOOLEAN) },
 			
 
+			{ "template", new Integer(Types.BOOLEAN) },
+			
+
 			{ "parentResourcePrimKey", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KB_KBArticle (uuid_ VARCHAR(75) null,articleId LONG not null primary key,groupId LONG,resourcePrimKey LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,modifiedDate DATE null,title VARCHAR(100) null,version DOUBLE,content TEXT null,description STRING null,head BOOLEAN,parentResourcePrimKey LONG)";
+	public static final String TABLE_SQL_CREATE = "create table KB_KBArticle (uuid_ VARCHAR(75) null,articleId LONG not null primary key,groupId LONG,resourcePrimKey LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,modifiedDate DATE null,title VARCHAR(100) null,version DOUBLE,content TEXT null,description STRING null,head BOOLEAN,template BOOLEAN,parentResourcePrimKey LONG)";
 	public static final String TABLE_SQL_DROP = "drop table KB_KBArticle";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -115,6 +118,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		model.setContent(soapModel.getContent());
 		model.setDescription(soapModel.getDescription());
 		model.setHead(soapModel.getHead());
+		model.setTemplate(soapModel.getTemplate());
 		model.setParentResourcePrimKey(soapModel.getParentResourcePrimKey());
 
 		return model;
@@ -296,6 +300,20 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		}
 	}
 
+	public boolean getTemplate() {
+		return _template;
+	}
+
+	public boolean isTemplate() {
+		return _template;
+	}
+
+	public void setTemplate(boolean template) {
+		if (template != _template) {
+			_template = template;
+		}
+	}
+
 	public long getParentResourcePrimKey() {
 		return _parentResourcePrimKey;
 	}
@@ -328,6 +346,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 			model.setContent(HtmlUtil.escape(getContent()));
 			model.setDescription(HtmlUtil.escape(getDescription()));
 			model.setHead(getHead());
+			model.setTemplate(getTemplate());
 			model.setParentResourcePrimKey(getParentResourcePrimKey());
 
 			model = (KBArticle)Proxy.newProxyInstance(KBArticle.class.getClassLoader(),
@@ -354,6 +373,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		clone.setContent(getContent());
 		clone.setDescription(getDescription());
 		clone.setHead(getHead());
+		clone.setTemplate(getTemplate());
 		clone.setParentResourcePrimKey(getParentResourcePrimKey());
 
 		return clone;
@@ -433,5 +453,6 @@ public class KBArticleModelImpl extends BaseModelImpl {
 	private String _content;
 	private String _description;
 	private boolean _head;
+	private boolean _template;
 	private long _parentResourcePrimKey;
 }

@@ -31,7 +31,7 @@ package com.liferay.knowledgebase.service;
 public interface KBArticleService {
 	public com.liferay.knowledgebase.model.KBArticle addArticle(long groupId,
 		java.lang.String title, java.lang.String content,
-		java.lang.String description, boolean minorEdit,
+		java.lang.String description, boolean minorEdit, boolean template,
 		long parentResourcePrimKey, java.lang.String[] tagsEntries,
 		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
@@ -53,7 +53,7 @@ public interface KBArticleService {
 			com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getGroupArticles(
-		long groupId, int max)
+		long groupId, boolean template, int max)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
@@ -98,7 +98,7 @@ public interface KBArticleService {
 	public com.liferay.knowledgebase.model.KBArticle updateArticle(
 		long resourcePrimKey, double version, java.lang.String title,
 		java.lang.String content, java.lang.String description,
-		boolean minorEdit, long parentResourcePrimKey,
+		boolean minorEdit, boolean template, long parentResourcePrimKey,
 		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,

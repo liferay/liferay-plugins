@@ -33,6 +33,9 @@ PortletURL portletURL = renderResponse.createRenderURL();
 if (type.equals("all_articles")) {
 	portletURL.setParameter("view", "view_all_articles");
 }
+else if (type.equals("all_templates")) {
+	portletURL.setParameter("view", "view_all_templates");
+}
 else if (type.equals("tagged_articles")) {
 	portletURL.setParameter("view", "view_tagged_articles");
 	portletURL.setParameter("tag", tag);
@@ -52,6 +55,9 @@ String emptyResultsMessage = null;
 if (type.equals("all_articles")) {
 	emptyResultsMessage = "there-are-no-knowledge-base-articles";
 }
+else if (type.equals("all_templates")) {
+	emptyResultsMessage = "there-are-no-knowledge-base-templates";
+}
 else if (type.equals("tagged_articles")) {
 	emptyResultsMessage = "there-are-no-articles-with-this-tag";
 }
@@ -62,8 +68,12 @@ int total = 0;
 List<KBArticle> results = null;
 
 if (type.equals("all_articles")) {
-	total = KBArticleLocalServiceUtil.getArticlesCount(portletGroupId, true);
-	results = KBArticleLocalServiceUtil.getArticles(portletGroupId, true, searchContainer.getStart(), searchContainer.getEnd());
+	total = KBArticleLocalServiceUtil.getArticlesCount(portletGroupId, true, false);
+	results = KBArticleLocalServiceUtil.getArticles(portletGroupId, true, false, searchContainer.getStart(), searchContainer.getEnd());
+}
+else if (type.equals("all_templates")) {
+	total = KBArticleLocalServiceUtil.getArticlesCount(portletGroupId, true, true);
+	results = KBArticleLocalServiceUtil.getArticles(portletGroupId, true, true, searchContainer.getStart(), searchContainer.getEnd());
 }
 else if (type.equals("tagged_articles")) {
 	long classNameId = PortalUtil.getClassNameId(KBArticle.class.getName());
@@ -132,14 +142,6 @@ for (int i = 0; i < results.size(); i++) {
 	resultRows.add(row);
 }
 %>
-
-<c:if test="<%= KBPermission.contains(permissionChecker, portletGroupId, ActionKeys.ADD_ARTICLE) %>">
-	<div>
-		<input type="button" value="<liferay-ui:message key="add-article" />" onClick="location.href = '<portlet:renderURL><portlet:param name="view" value="edit_article" /><portlet:param name="redirect" value="<%= currentURL %>"></portlet:param></portlet:renderURL>'" />
-	</div>
-</c:if>
-
-<br />
 
 <liferay-ui:search-iterator searchContainer="<%= searchContainer %>" paginate="true" />
 

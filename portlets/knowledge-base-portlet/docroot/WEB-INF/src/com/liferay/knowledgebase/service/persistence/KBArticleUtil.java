@@ -355,49 +355,6 @@ public class KBArticleUtil {
 				   .findByG_T_PrevAndNext(articleId, groupId, title, obc);
 	}
 
-	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_H(
-		long groupId, boolean head) throws com.liferay.portal.SystemException {
-		return getPersistence().findByG_H(groupId, head);
-	}
-
-	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_H(
-		long groupId, boolean head, int start, int end)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findByG_H(groupId, head, start, end);
-	}
-
-	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_H(
-		long groupId, boolean head, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findByG_H(groupId, head, start, end, obc);
-	}
-
-	public static com.liferay.knowledgebase.model.KBArticle findByG_H_First(
-		long groupId, boolean head,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.knowledgebase.NoSuchArticleException,
-			com.liferay.portal.SystemException {
-		return getPersistence().findByG_H_First(groupId, head, obc);
-	}
-
-	public static com.liferay.knowledgebase.model.KBArticle findByG_H_Last(
-		long groupId, boolean head,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.knowledgebase.NoSuchArticleException,
-			com.liferay.portal.SystemException {
-		return getPersistence().findByG_H_Last(groupId, head, obc);
-	}
-
-	public static com.liferay.knowledgebase.model.KBArticle[] findByG_H_PrevAndNext(
-		long articleId, long groupId, boolean head,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.knowledgebase.NoSuchArticleException,
-			com.liferay.portal.SystemException {
-		return getPersistence()
-				   .findByG_H_PrevAndNext(articleId, groupId, head, obc);
-	}
-
 	public static com.liferay.knowledgebase.model.KBArticle findByG_T_V(
 		long groupId, java.lang.String title, double version)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
@@ -560,6 +517,52 @@ public class KBArticleUtil {
 		return getPersistence().fetchByR_V(resourcePrimKey, version);
 	}
 
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_H_T(
+		long groupId, boolean head, boolean template)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByG_H_T(groupId, head, template);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_H_T(
+		long groupId, boolean head, boolean template, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByG_H_T(groupId, head, template, start, end);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_H_T(
+		long groupId, boolean head, boolean template, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByG_H_T(groupId, head, template, start, end, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle findByG_H_T_First(
+		long groupId, boolean head, boolean template,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence().findByG_H_T_First(groupId, head, template, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle findByG_H_T_Last(
+		long groupId, boolean head, boolean template,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence().findByG_H_T_Last(groupId, head, template, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle[] findByG_H_T_PrevAndNext(
+		long articleId, long groupId, boolean head, boolean template,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByG_H_T_PrevAndNext(articleId, groupId, head, template,
+			obc);
+	}
+
 	public static java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
@@ -624,11 +627,6 @@ public class KBArticleUtil {
 		getPersistence().removeByG_T(groupId, title);
 	}
 
-	public static void removeByG_H(long groupId, boolean head)
-		throws com.liferay.portal.SystemException {
-		getPersistence().removeByG_H(groupId, head);
-	}
-
 	public static void removeByG_T_V(long groupId, java.lang.String title,
 		double version)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
@@ -655,6 +653,11 @@ public class KBArticleUtil {
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException {
 		getPersistence().removeByR_V(resourcePrimKey, version);
+	}
+
+	public static void removeByG_H_T(long groupId, boolean head,
+		boolean template) throws com.liferay.portal.SystemException {
+		getPersistence().removeByG_H_T(groupId, head, template);
 	}
 
 	public static void removeAll() throws com.liferay.portal.SystemException {
@@ -697,11 +700,6 @@ public class KBArticleUtil {
 		return getPersistence().countByG_T(groupId, title);
 	}
 
-	public static int countByG_H(long groupId, boolean head)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().countByG_H(groupId, head);
-	}
-
 	public static int countByG_T_V(long groupId, java.lang.String title,
 		double version) throws com.liferay.portal.SystemException {
 		return getPersistence().countByG_T_V(groupId, title, version);
@@ -725,6 +723,11 @@ public class KBArticleUtil {
 	public static int countByR_V(long resourcePrimKey, double version)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().countByR_V(resourcePrimKey, version);
+	}
+
+	public static int countByG_H_T(long groupId, boolean head, boolean template)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().countByG_H_T(groupId, head, template);
 	}
 
 	public static int countAll() throws com.liferay.portal.SystemException {

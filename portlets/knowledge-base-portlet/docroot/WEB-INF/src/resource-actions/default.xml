@@ -5,6 +5,7 @@
 		<portlet-name>1</portlet-name>
 		<supports>
 			<action-key>ADD_ARTICLE</action-key>
+			<action-key>ADD_TEMPLATE</action-key>
 			<action-key>ADD_ATTACHMENT</action-key>
 			<action-key>SUBSCRIBE</action-key>
 			<action-key>CONFIGURATION</action-key>

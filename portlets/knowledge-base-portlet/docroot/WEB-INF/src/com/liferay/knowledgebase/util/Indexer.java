@@ -22,9 +22,9 @@
 
 package com.liferay.knowledgebase.util;
 
-import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.KnowledgeBaseKeys;
 import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.DocumentSummary;
@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.SearchException;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 

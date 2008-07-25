@@ -103,7 +103,7 @@ public class KBArticleLocalServiceUtil {
 	public static com.liferay.knowledgebase.model.KBArticle addArticle(
 		long userId, long groupId, java.lang.String title,
 		java.lang.String content, java.lang.String description,
-		boolean minorEdit, long parentResourcePrimKey,
+		boolean minorEdit, boolean template, long parentResourcePrimKey,
 		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
@@ -111,7 +111,7 @@ public class KBArticleLocalServiceUtil {
 		KBArticleLocalService kbArticleLocalService = KBArticleLocalServiceFactory.getService();
 
 		return kbArticleLocalService.addArticle(userId, groupId, title,
-			content, description, minorEdit, parentResourcePrimKey,
+			content, description, minorEdit, template, parentResourcePrimKey,
 			tagsEntries, prefs, themeDisplay);
 	}
 
@@ -119,15 +119,15 @@ public class KBArticleLocalServiceUtil {
 		java.lang.String uuid, long userId, long groupId,
 		java.lang.String title, double version, java.lang.String content,
 		java.lang.String description, boolean minorEdit, boolean head,
-		long parentResourcePrimKey, java.lang.String[] tagsEntries,
-		javax.portlet.PortletPreferences prefs,
+		boolean template, long parentResourcePrimKey,
+		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		KBArticleLocalService kbArticleLocalService = KBArticleLocalServiceFactory.getService();
 
 		return kbArticleLocalService.addArticle(uuid, userId, groupId, title,
-			version, content, description, minorEdit, head,
+			version, content, description, minorEdit, head, template,
 			parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
 	}
 
@@ -189,12 +189,12 @@ public class KBArticleLocalServiceUtil {
 		kbArticleLocalService.deleteArticleAttachment(resourcePrimKey, fileName);
 	}
 
-	public static void deleteArticles(long groupId)
+	public static void deleteArticles(long groupId, boolean template)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		KBArticleLocalService kbArticleLocalService = KBArticleLocalServiceFactory.getService();
 
-		kbArticleLocalService.deleteArticles(groupId);
+		kbArticleLocalService.deleteArticles(groupId, template);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getChildren(
@@ -267,11 +267,12 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getArticles(
-		long groupId, boolean head, int start, int end)
+		long groupId, boolean head, boolean template, int start, int end)
 		throws com.liferay.portal.SystemException {
 		KBArticleLocalService kbArticleLocalService = KBArticleLocalServiceFactory.getService();
 
-		return kbArticleLocalService.getArticles(groupId, head, start, end);
+		return kbArticleLocalService.getArticles(groupId, head, template,
+			start, end);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getArticles(
@@ -297,11 +298,11 @@ public class KBArticleLocalServiceUtil {
 		return kbArticleLocalService.getArticlesCount(groupId, title);
 	}
 
-	public static int getArticlesCount(long groupId, boolean head)
-		throws com.liferay.portal.SystemException {
+	public static int getArticlesCount(long groupId, boolean head,
+		boolean template) throws com.liferay.portal.SystemException {
 		KBArticleLocalService kbArticleLocalService = KBArticleLocalServiceFactory.getService();
 
-		return kbArticleLocalService.getArticlesCount(groupId, head);
+		return kbArticleLocalService.getArticlesCount(groupId, head, template);
 	}
 
 	public static int getArticlesCount(long groupId, java.lang.String title,
@@ -374,7 +375,7 @@ public class KBArticleLocalServiceUtil {
 	public static com.liferay.knowledgebase.model.KBArticle updateArticle(
 		long userId, long resourcePrimKey, double version,
 		java.lang.String title, java.lang.String content,
-		java.lang.String description, boolean minorEdit,
+		java.lang.String description, boolean minorEdit, boolean template,
 		long parentResourcePrimKey, java.lang.String[] tagsEntries,
 		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
@@ -383,7 +384,7 @@ public class KBArticleLocalServiceUtil {
 		KBArticleLocalService kbArticleLocalService = KBArticleLocalServiceFactory.getService();
 
 		return kbArticleLocalService.updateArticle(userId, resourcePrimKey,
-			version, title, content, description, minorEdit,
+			version, title, content, description, minorEdit, template,
 			parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
 	}
 

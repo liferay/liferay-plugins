@@ -24,6 +24,8 @@
 <%@ include file="/init.jsp" %>
 
 <%
+boolean template = ParamUtil.getBoolean(request, "template");
+
 String redirect = ParamUtil.getString(request, "redirect");
 
 KBArticle article = (KBArticle)request.getAttribute(KnowledgeBaseKeys.ARTICLE);
@@ -80,7 +82,7 @@ if (article == null) {
 	}
 
 	function <portlet:namespace />saveAndContinueArticle() {
-		document.<portlet:namespace />fm.<portlet:namespace />saveAndContinueRedirect.value = "<portlet:renderURL><portlet:param name="view" value="edit_article"/></portlet:renderURL>";
+		document.<portlet:namespace />fm.<portlet:namespace />saveAndContinueRedirect.value = "<portlet:renderURL><portlet:param name="view" value="edit_article" /></portlet:renderURL>";
 		<portlet:namespace />saveArticle();
 	}
 </script>
@@ -103,6 +105,7 @@ if (article == null) {
 
 <form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveArticle(); return false;">
 <input name="<portlet:namespace />actionName" type="hidden" value="" />
+<input name="<portlet:namespace />template" type="hidden" value="<%= template %>" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />resourcePrimKey" type="hidden" value="<%= resourcePrimKey %>" />
 <input name="<portlet:namespace />parentResourcePrimKey" type="hidden" value="<%= parentResourcePrimKey %>" />

@@ -48,7 +48,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 	public KBArticle addArticle(
 			long groupId, String title, String content, String description,
-			boolean minorEdit, long parentResourcePrimKey,
+			boolean minorEdit, boolean template, long parentResourcePrimKey,
 			String[] tagsEntries, PortletPreferences prefs,
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
@@ -58,7 +58,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		return kbArticleLocalService.addArticle(
 			getUserId(), groupId, title, content, description, minorEdit,
-			parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
+			template, parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
 	}
 
 	public void addArticleAttachments(
@@ -93,13 +93,14 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			resourcePrimKey, fileName);
 	}
 
-	public List<KBArticle> getGroupArticles(long groupId, int max)
+	public List<KBArticle> getGroupArticles(
+			long groupId, boolean template, int max)
 		throws PortalException, SystemException {
 
 		List<KBArticle> articles = new ArrayList<KBArticle>();
 
 		Iterator<KBArticle> itr = kbArticleLocalService.getArticles(
-			groupId, true, 0, _MAX_END).iterator();
+			groupId, true, template, 0, _MAX_END).iterator();
 
 		while (itr.hasNext() && (articles.size() < max)) {
 			KBArticle article = itr.next();
@@ -195,9 +196,9 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 	public KBArticle updateArticle(
 			long resourcePrimKey, double version, String title, String content,
-			String description, boolean minorEdit, long parentResourcePrimKey,
-			String[] tagsEntries, PortletPreferences prefs,
-			ThemeDisplay themeDisplay)
+			String description, boolean minorEdit, boolean template,
+			long parentResourcePrimKey, String[] tagsEntries,
+			PortletPreferences prefs, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		KBArticlePermission.check(
@@ -205,7 +206,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		return kbArticleLocalService.updateArticle(
 			getUserId(), resourcePrimKey, version, title, content, description,
-			minorEdit, parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
+			minorEdit, template, parentResourcePrimKey, tagsEntries, prefs,
+			themeDisplay);
 	}
 
 	private static final int _MAX_END = 200;

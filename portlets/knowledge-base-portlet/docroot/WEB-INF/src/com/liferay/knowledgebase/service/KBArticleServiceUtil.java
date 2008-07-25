@@ -31,7 +31,7 @@ package com.liferay.knowledgebase.service;
 public class KBArticleServiceUtil {
 	public static com.liferay.knowledgebase.model.KBArticle addArticle(
 		long groupId, java.lang.String title, java.lang.String content,
-		java.lang.String description, boolean minorEdit,
+		java.lang.String description, boolean minorEdit, boolean template,
 		long parentResourcePrimKey, java.lang.String[] tagsEntries,
 		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
@@ -40,8 +40,8 @@ public class KBArticleServiceUtil {
 		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
 
 		return kbArticleService.addArticle(groupId, title, content,
-			description, minorEdit, parentResourcePrimKey, tagsEntries, prefs,
-			themeDisplay);
+			description, minorEdit, template, parentResourcePrimKey,
+			tagsEntries, prefs, themeDisplay);
 	}
 
 	public static void addArticleAttachments(long resourcePrimKey,
@@ -71,12 +71,12 @@ public class KBArticleServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getGroupArticles(
-		long groupId, int max)
+		long groupId, boolean template, int max)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
 
-		return kbArticleService.getGroupArticles(groupId, max);
+		return kbArticleService.getGroupArticles(groupId, template, max);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getArticle(
@@ -153,7 +153,7 @@ public class KBArticleServiceUtil {
 	public static com.liferay.knowledgebase.model.KBArticle updateArticle(
 		long resourcePrimKey, double version, java.lang.String title,
 		java.lang.String content, java.lang.String description,
-		boolean minorEdit, long parentResourcePrimKey,
+		boolean minorEdit, boolean template, long parentResourcePrimKey,
 		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
@@ -161,7 +161,7 @@ public class KBArticleServiceUtil {
 		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
 
 		return kbArticleService.updateArticle(resourcePrimKey, version, title,
-			content, description, minorEdit, parentResourcePrimKey,
+			content, description, minorEdit, template, parentResourcePrimKey,
 			tagsEntries, prefs, themeDisplay);
 	}
 }
