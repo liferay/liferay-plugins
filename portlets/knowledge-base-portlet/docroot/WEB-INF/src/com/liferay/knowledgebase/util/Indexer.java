@@ -131,8 +131,8 @@ public class Indexer {
 	}
 
 	public static void updateArticle(
-		long companyId, long groupId, long userId, long resourcePrimKey, String title,
-		String content, String description, String[] tagsEntries)
+		long companyId, long groupId, long userId, long resourcePrimKey,
+		String title, String content, String description, String[] tagsEntries)
 		throws SearchException {
 
 		Document doc = getArticleDocument(

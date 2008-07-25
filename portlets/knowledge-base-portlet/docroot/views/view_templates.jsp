@@ -1,3 +1,4 @@
+<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -19,34 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+%>
+<%@ include file="/init.jsp" %>
 
-package com.liferay.knowledgebase;
+<%
+request.setAttribute("article_iterator.type", "templates");
+%>
 
-import com.liferay.portal.PortalException;
+<c:if test="<%= KBPermission.contains(permissionChecker, portletGroupId, ActionKeys.ADD_TEMPLATE) %>">
+	<div>
+		<input type="button" value="<liferay-ui:message key="add-template" />" onClick="location.href = '<portlet:renderURL><portlet:param name="view" value="edit_article" /><portlet:param name="template" value="true" /><portlet:param name="redirect" value="<%= currentURL %>"></portlet:param></portlet:renderURL>'" />
+	</div>
+</c:if>
 
-/**
- * <a href="NoSuchArticleResourceException.java.html"><b><i>View Source</i></b>
- * </a>
- *
- * @author Jorge Ferrer
- *
- */
-public class NoSuchArticleResourceException extends PortalException {
+<br />
 
-	public NoSuchArticleResourceException() {
-		super();
-	}
-
-	public NoSuchArticleResourceException(String msg) {
-		super(msg);
-	}
-
-	public NoSuchArticleResourceException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
-
-	public NoSuchArticleResourceException(Throwable cause) {
-		super(cause);
-	}
-
-}
+<jsp:include page="/views/article_iterator.jsp" />

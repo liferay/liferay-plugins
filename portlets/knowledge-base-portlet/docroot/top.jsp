@@ -35,7 +35,7 @@ boolean print = ParamUtil.getBoolean(request, Constants.PRINT);
 	PortletURL articlesURL = renderResponse.createRenderURL();
 
 	PortletURL templatesURL = renderResponse.createRenderURL();
-	templatesURL.setParameter("view", "view_all_templates");
+	templatesURL.setParameter("view", "view_templates");
 	%>
 
 	<div class="top-links">
@@ -55,7 +55,7 @@ boolean print = ParamUtil.getBoolean(request, Constants.PRINT);
 
 				&nbsp;
 
-				<a href="<%= templatesURL.toString() %>"><liferay-ui:message key="all-templates" /></a>
+				| <a href="<%= templatesURL.toString() %>"><liferay-ui:message key="templates" /></a>
 
 				&nbsp;
 

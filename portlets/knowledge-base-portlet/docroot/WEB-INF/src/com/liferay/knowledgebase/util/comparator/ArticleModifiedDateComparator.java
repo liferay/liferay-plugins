@@ -27,7 +27,8 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
 /**
- * <a href="ArticleModifiedDateComparator.java.html"><b><i>View Source</i></b></a>
+ * <a href="ArticleModifiedDateComparator.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Jorge Ferrer
  */
@@ -46,8 +47,8 @@ public class ArticleModifiedDateComparator extends OrderByComparator {
 	}
 
 	public int compare(Object obj1, Object obj2) {
-		KBArticle article1 = (KBArticle)obj1;
-		KBArticle article2 = (KBArticle)obj2;
+		KBArticle article1 = (KBArticle) obj1;
+		KBArticle article2 = (KBArticle) obj2;
 
 		int value = DateUtil.compareTo(
 			article1.getModifiedDate(), article2.getModifiedDate());

@@ -28,7 +28,7 @@
 String view = ParamUtil.getString(request, "view", "view_all_articles");
 String tag = ParamUtil.getString(request, "tag");
 
-String[] supportedViews = {"view_all_articles", "view_all_templates", "view_article", "view_article_attachments", "edit_article_attachment", "view_tagged_articles", "edit_article", "search"};
+String[] supportedViews = {"view_all_articles", "view_templates", "view_article", "view_article_attachments", "edit_article_attachment", "view_tagged_articles", "edit_article", "search"};
 
 if (!ArrayUtil.contains(supportedViews, view)) {
 	view = supportedViews[0];

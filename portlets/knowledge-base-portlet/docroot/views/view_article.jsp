@@ -36,7 +36,15 @@ if (article != null) {
 
 boolean print = ParamUtil.getBoolean(request, Constants.PRINT);
 
-TagsAssetLocalServiceUtil.incrementViewCounter(KBArticle.class.getName(), article.getResourcePrimKey());
+if (!article.isTemplate()) {
+	TagsAssetLocalServiceUtil.incrementViewCounter(KBArticle.class.getName(), article.getResourcePrimKey());
+}
+
+String className = KBArticle.class.getName();
+
+if (article.isTemplate()) {
+	className += ".template";
+}
 
 PortletURL viewAllURL = renderResponse.createRenderURL();
 
@@ -152,16 +160,18 @@ viewAttachmentsURL.setParameter("title", title);
 						<li>
 							<b><liferay-ui:message key="by" /></b>: <%= PortalUtil.getUserName(article.getUserId(), article.getUserName()) %>
 						</li>
-						<li>
-							<b><liferay-ui:message key="views" /></b>:
-							<%
-							TagsAsset asset = TagsAssetLocalServiceUtil.getAsset(KBArticle.class.getName(), article.getResourcePrimKey());
-							%>
-							<%= asset.getViewCount() %>
-						</li>
+						<c:if test="<%= !article.isTemplate() %>">
+							<li>
+								<b><liferay-ui:message key="views" /></b>:
+								<%
+								TagsAsset asset = TagsAssetLocalServiceUtil.getAsset(KBArticle.class.getName(), article.getResourcePrimKey());
+								%>
+								<%= asset.getViewCount() %>
+							</li>
+						</c:if>
 						<li>
 							<liferay-ui:tags-summary
-								className="<%= KBArticle.class.getName() %>"
+								className="<%= className %>"
 								classPK="<%= article.getResourcePrimKey() %>"
 								portletURL="<%= taggedArticlesURL %>"
 							/>
@@ -169,12 +179,14 @@ viewAttachmentsURL.setParameter("title", title);
 
 				</div>
 			</div>
-			<div class="side-box">
-				<div class="side-box-title"><liferay-ui:message key="attachments" /></div>
-				<div class="side-box-content">
-					<liferay-ui:icon image="clip" message='<%= attachments.length + " " + LanguageUtil.get(pageContext, "attachments") %>' url="<%= viewAttachmentsURL.toString() %>" method="get" label="<%= true %>" />
+			<c:if test="<%= !article.isTemplate() %>">
+				<div class="side-box">
+					<div class="side-box-title"><liferay-ui:message key="attachments" /></div>
+					<div class="side-box-content">
+						<liferay-ui:icon image="clip" message='<%= attachments.length + " " + LanguageUtil.get(pageContext, "attachments") %>' url="<%= viewAttachmentsURL.toString() %>" method="get" label="<%= true %>" />
+					</div>
 				</div>
-			</div>
+			</c:if>
 			<div class="side-box">
 				<div class="side-box-title"><liferay-ui:message key="actions" /></div>
 				<div class="side-box-content">
@@ -185,49 +197,51 @@ viewAttachmentsURL.setParameter("title", title);
 
 						<liferay-ui:icon image="print" label="<%= true %>" message="print" url='<%= "javascript: " + renderResponse.getNamespace() + "printArticle();" %>' />
 
-						<%
-						String[] extensions = prefs.getValues("extensions", new String[] {"pdf"});
+						<c:if test="<%= !article.isTemplate() %>">
+							<%
+							String[] extensions = prefs.getValues("extensions", new String[] {"pdf"});
 
-						for (String extension : extensions) {
-							ResourceURL convertURL = renderResponse.createResourceURL();
+							for (String extension : extensions) {
+								ResourceURL convertURL = renderResponse.createResourceURL();
 
-							convertURL.setParameter("actionName", "convert");
-							convertURL.setParameter("title", article.getTitle());
-							convertURL.setParameter("version", String.valueOf(article.getVersion()));
-							convertURL.setParameter("targetExtension", extension);
-						%>
+								convertURL.setParameter("actionName", "convert");
+								convertURL.setParameter("title", article.getTitle());
+								convertURL.setParameter("version", String.valueOf(article.getVersion()));
+								convertURL.setParameter("targetExtension", extension);
+							%>
 
-							<liferay-ui:icon
-								image='<%= "../document_library/" + extension %>'
-								message="<%= extension.toUpperCase() %>"
-								url='<%= convertURL.toString() %>'
-							/>
+								<liferay-ui:icon
+									image='<%= "../document_library/" + extension %>'
+									message="<%= extension.toUpperCase() %>"
+									url='<%= convertURL.toString() %>'
+								/>
 
-						<%
-						}
-						%>
+							<%
+							}
+							%>
 
-						<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
-							<c:choose>
-								<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), article.getResourcePrimKey()) %>">
-									<portlet:actionURL var="unsubscribeURL">
-										<portlet:param name="actionName" value="unsubscribeArticle" />
-										<portlet:param name="redirect" value="<%= currentURL %>" />
-										<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-									</portlet:actionURL>
+							<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
+								<c:choose>
+									<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), article.getResourcePrimKey()) %>">
+										<portlet:actionURL var="unsubscribeURL">
+											<portlet:param name="actionName" value="unsubscribeArticle" />
+											<portlet:param name="redirect" value="<%= currentURL %>" />
+											<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+										</portlet:actionURL>
 
-									<liferay-ui:icon image="unsubscribe" url="<%= unsubscribeURL %>" label="<%= true %>" />
-								</c:when>
-								<c:otherwise>
-									<portlet:actionURL var="subscribeURL">
-										<portlet:param name="actionName" value="subscribeArticle" />
-										<portlet:param name="redirect" value="<%= currentURL %>" />
-										<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-									</portlet:actionURL>
+										<liferay-ui:icon image="unsubscribe" url="<%= unsubscribeURL %>" label="<%= true %>" />
+									</c:when>
+									<c:otherwise>
+										<portlet:actionURL var="subscribeURL">
+											<portlet:param name="actionName" value="subscribeArticle" />
+											<portlet:param name="redirect" value="<%= currentURL %>" />
+											<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+										</portlet:actionURL>
 
-									<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" label="<%= true %>" />
-								</c:otherwise>
-							</c:choose>
+										<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" label="<%= true %>" />
+									</c:otherwise>
+								</c:choose>
+							</c:if>
 						</c:if>
 
 						<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) %>">
@@ -284,7 +298,7 @@ viewAttachmentsURL.setParameter("title", title);
 	</div>
 </c:if>
 
-<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, KnowledgeBaseKeys.ADD_CHILD_ARTICLE) && !print %>">
+<c:if test="<%= !print && !article.isTemplate() && KBArticlePermission.contains(permissionChecker, article, KnowledgeBaseKeys.ADD_CHILD_ARTICLE) %>">
 	<div class="article-actions">
 		<liferay-ui:icon image="add_article" message="add-child-article" url="<%= addArticleURL.toString() %>" label="<%= true %>" />
 	</div>

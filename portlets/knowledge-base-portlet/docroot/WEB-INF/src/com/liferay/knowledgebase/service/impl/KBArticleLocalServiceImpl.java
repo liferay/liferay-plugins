@@ -715,8 +715,14 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long userId, KBArticle article, String[] tagsEntries)
 		throws PortalException, SystemException {
 
+		String className = KBArticle.class.getName();
+
+		if (article.isTemplate()) {
+			className += ".template";
+		}
+
 		tagsAssetLocalService.updateAsset(
-			userId, article.getGroupId(), KBArticle.class.getName(),
+			userId, article.getGroupId(), className,
 			article.getResourcePrimKey(), tagsEntries, null, null, null, null,
 			ContentTypes.TEXT_HTML, article.getTitle(), null, null, null, 0, 0,
 			null, false);

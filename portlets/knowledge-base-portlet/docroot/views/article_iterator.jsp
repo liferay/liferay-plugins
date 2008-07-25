@@ -33,8 +33,8 @@ PortletURL portletURL = renderResponse.createRenderURL();
 if (type.equals("all_articles")) {
 	portletURL.setParameter("view", "view_all_articles");
 }
-else if (type.equals("all_templates")) {
-	portletURL.setParameter("view", "view_all_templates");
+else if (type.equals("templates")) {
+	portletURL.setParameter("view", "view_templates");
 }
 else if (type.equals("tagged_articles")) {
 	portletURL.setParameter("view", "view_tagged_articles");
@@ -46,7 +46,9 @@ List headerNames = new ArrayList();
 headerNames.add("id");
 headerNames.add("title");
 headerNames.add("author");
-headerNames.add("views");
+if (!type.equals("templates")) {
+	headerNames.add("views");
+}
 headerNames.add("date");
 headerNames.add("");
 
@@ -55,7 +57,7 @@ String emptyResultsMessage = null;
 if (type.equals("all_articles")) {
 	emptyResultsMessage = "there-are-no-knowledge-base-articles";
 }
-else if (type.equals("all_templates")) {
+else if (type.equals("templates")) {
 	emptyResultsMessage = "there-are-no-knowledge-base-templates";
 }
 else if (type.equals("tagged_articles")) {
@@ -71,7 +73,7 @@ if (type.equals("all_articles")) {
 	total = KBArticleLocalServiceUtil.getArticlesCount(portletGroupId, true, false);
 	results = KBArticleLocalServiceUtil.getArticles(portletGroupId, true, false, searchContainer.getStart(), searchContainer.getEnd());
 }
-else if (type.equals("all_templates")) {
+else if (type.equals("templates")) {
 	total = KBArticleLocalServiceUtil.getArticlesCount(portletGroupId, true, true);
 	results = KBArticleLocalServiceUtil.getArticles(portletGroupId, true, true, searchContainer.getStart(), searchContainer.getEnd());
 }
@@ -125,9 +127,11 @@ for (int i = 0; i < results.size(); i++) {
 
 	// Views
 
-	TagsAsset asset = TagsAssetLocalServiceUtil.getAsset(KBArticle.class.getName(), curKBArticle.getResourcePrimKey());
+	if (!type.equals("templates")) {
+		TagsAsset asset = TagsAssetLocalServiceUtil.getAsset(KBArticle.class.getName(), curKBArticle.getResourcePrimKey());
 
-	row.addText(String.valueOf(asset.getViewCount()), rowURL);
+		row.addText(String.valueOf(asset.getViewCount()), rowURL);
+	}
 
 	// Date
 
