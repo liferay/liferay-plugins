@@ -124,6 +124,15 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		return kbArticleLocalService.getArticle(resourcePrimKey);
 	}
 
+	public KBArticle getArticle(long resourcePrimKey, double version)
+		throws PortalException, SystemException {
+
+		KBArticlePermission.check(
+			getPermissionChecker(), resourcePrimKey, ActionKeys.VIEW);
+
+		return kbArticleLocalService.getArticle(resourcePrimKey, version);
+	}
+
 	public KBArticle getArticle(long groupId, String title)
 		throws PortalException, SystemException {
 

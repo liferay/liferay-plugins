@@ -10,6 +10,7 @@ create table KB_KBArticle (
 	modifiedDate DATE null,
 	title VARCHAR(100) null,
 	version DOUBLE,
+	minorEdit BOOLEAN,
 	content TEXT null,
 	description STRING null,
 	head BOOLEAN,

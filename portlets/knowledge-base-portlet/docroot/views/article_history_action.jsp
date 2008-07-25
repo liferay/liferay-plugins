@@ -1,3 +1,4 @@
+<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -19,20 +20,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+%>
 
-package com.liferay.knowledgebase;
+<%@ include file="/init.jsp" %>
 
-/**
- * <a href="KnowledgeBaseKeys.java.html"><b><i>View Source</i></b></a>
- *
- * @author Jorge Ferrer
- */
-public class KnowledgeBaseKeys {
+<%
+ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
-	public static final String PORTLET_ID = "1_WAR_knowledgebaseportlet";
+KBArticle article = (KBArticle)row.getObject();
+%>
 
-	public static final String ADD_CHILD_ARTICLE = "ADD_CHILD_ARTICLE";
+<liferay-ui:icon-menu>
+	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
+		<portlet:actionURL var="revertURL">
+			<portlet:param name="actionName" value="<%= Constants.REVERT %>" />
+			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+			<portlet:param name="version" value="<%= String.valueOf(article.getVersion()) %>" />
+		</portlet:actionURL>
 
-	public static final String ARTICLE = "Article";
-
-}
+		<liferay-ui:icon image="undo" message="revert" url="<%= revertURL %>" />
+	</c:if>
+</liferay-ui:icon-menu>

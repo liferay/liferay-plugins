@@ -24,7 +24,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-KBArticle article = (KBArticle)request.getAttribute(KnowledgeBaseKeys.ARTICLE);
+KBArticle article = (KBArticle) request.getAttribute(KnowledgeBaseKeys.ARTICLE);
 
 String title = article.getTitle();
 
@@ -51,7 +51,7 @@ PortletURL viewAllURL = renderResponse.createRenderURL();
 PortletURL viewArticleURL = renderResponse.createRenderURL();
 
 viewArticleURL.setParameter("view", "view_article");
-viewArticleURL.setParameter("title", title);
+viewArticleURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
 
 PortletURL addArticleURL = renderResponse.createRenderURL();
 
@@ -140,6 +140,12 @@ viewAttachmentsURL.setParameter("title", title);
 <h1 class="article-title">
 	<%= title %>
 </h1>
+
+<c:if test="<%= !article.isHead() %>">
+	<div class="article-old-version">
+		(<liferay-ui:message key="you-are-viewing-an-archived-version-of-this-article" /> (<%= article.getVersion() %>), <a href="<%= viewArticleURL %>"><liferay-ui:message key="go-to-the-latest-version" /></a>)
+	</div>
+</c:if>
 
 <div class="float-container">
 	<c:if test="<%= !print %>">
@@ -243,6 +249,14 @@ viewAttachmentsURL.setParameter("title", title);
 								</c:choose>
 							</c:if>
 						</c:if>
+
+						<portlet:renderURL var="historyURL">
+							<portlet:param name="view" value="view_article_history" />
+							<portlet:param name="redirect" value="<%= currentURL %>" />
+							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+						</portlet:renderURL>
+
+						<liferay-ui:icon image="history" method="get" url="<%= historyURL %>" label="<%= true %>" />
 
 						<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) %>">
 							<%

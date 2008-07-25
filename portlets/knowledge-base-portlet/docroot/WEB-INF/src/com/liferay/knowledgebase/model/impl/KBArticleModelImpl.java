@@ -79,6 +79,9 @@ public class KBArticleModelImpl extends BaseModelImpl {
 			{ "version", new Integer(Types.DOUBLE) },
 			
 
+			{ "minorEdit", new Integer(Types.BOOLEAN) },
+			
+
 			{ "content", new Integer(Types.CLOB) },
 			
 
@@ -93,7 +96,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 
 			{ "parentResourcePrimKey", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KB_KBArticle (uuid_ VARCHAR(75) null,articleId LONG not null primary key,groupId LONG,resourcePrimKey LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,modifiedDate DATE null,title VARCHAR(100) null,version DOUBLE,content TEXT null,description STRING null,head BOOLEAN,template BOOLEAN,parentResourcePrimKey LONG)";
+	public static final String TABLE_SQL_CREATE = "create table KB_KBArticle (uuid_ VARCHAR(75) null,articleId LONG not null primary key,groupId LONG,resourcePrimKey LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,modifiedDate DATE null,title VARCHAR(100) null,version DOUBLE,minorEdit BOOLEAN,content TEXT null,description STRING null,head BOOLEAN,template BOOLEAN,parentResourcePrimKey LONG)";
 	public static final String TABLE_SQL_DROP = "drop table KB_KBArticle";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -115,6 +118,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		model.setModifiedDate(soapModel.getModifiedDate());
 		model.setTitle(soapModel.getTitle());
 		model.setVersion(soapModel.getVersion());
+		model.setMinorEdit(soapModel.getMinorEdit());
 		model.setContent(soapModel.getContent());
 		model.setDescription(soapModel.getDescription());
 		model.setHead(soapModel.getHead());
@@ -260,6 +264,20 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		}
 	}
 
+	public boolean getMinorEdit() {
+		return _minorEdit;
+	}
+
+	public boolean isMinorEdit() {
+		return _minorEdit;
+	}
+
+	public void setMinorEdit(boolean minorEdit) {
+		if (minorEdit != _minorEdit) {
+			_minorEdit = minorEdit;
+		}
+	}
+
 	public String getContent() {
 		return GetterUtil.getString(_content);
 	}
@@ -343,6 +361,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 			model.setModifiedDate(getModifiedDate());
 			model.setTitle(HtmlUtil.escape(getTitle()));
 			model.setVersion(getVersion());
+			model.setMinorEdit(getMinorEdit());
 			model.setContent(HtmlUtil.escape(getContent()));
 			model.setDescription(HtmlUtil.escape(getDescription()));
 			model.setHead(getHead());
@@ -370,6 +389,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		clone.setModifiedDate(getModifiedDate());
 		clone.setTitle(getTitle());
 		clone.setVersion(getVersion());
+		clone.setMinorEdit(getMinorEdit());
 		clone.setContent(getContent());
 		clone.setDescription(getDescription());
 		clone.setHead(getHead());
@@ -450,6 +470,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 	private Date _modifiedDate;
 	private String _title;
 	private double _version;
+	private boolean _minorEdit;
 	private String _content;
 	private String _description;
 	private boolean _head;

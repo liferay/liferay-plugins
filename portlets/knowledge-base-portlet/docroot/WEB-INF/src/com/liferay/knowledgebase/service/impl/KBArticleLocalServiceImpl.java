@@ -144,6 +144,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		article.setGroupId(groupId);
 		article.setTitle(title);
 		article.setVersion(version);
+		article.setMinorEdit(minorEdit);
 		article.setContent(content);
 		article.setDescription(description);
 		article.setHead(head);
@@ -335,8 +336,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// All versions
 
-		kbArticlePersistence.removeByG_T(
-			article.getGroupId(), article.getTitle());
+		kbArticlePersistence.removeByResourcePrimKey(
+			article.getResourcePrimKey());
 
 	}
 
@@ -398,20 +399,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 	}
 
-	public KBArticle getArticle(long groupId, String title)
-		throws PortalException, SystemException {
-
-		List<KBArticle> articles = kbArticlePersistence.findByG_T_H(
-			groupId, title, true, 0, 1);
-
-		if (articles.size() > 0) {
-			return articles.get(0);
-		}
-		else {
-			throw new NoSuchArticleException();
-		}
-	}
-
 	public KBArticle getArticle(long resourcePrimKey, double version)
 		throws PortalException, SystemException {
 
@@ -425,6 +412,20 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		return article;
+	}
+
+	public KBArticle getArticle(long groupId, String title)
+		throws PortalException, SystemException {
+
+		List<KBArticle> articles = kbArticlePersistence.findByG_T_H(
+			groupId, title, true, 0, 1);
+
+		if (articles.size() > 0) {
+			return articles.get(0);
+		}
+		else {
+			throw new NoSuchArticleException();
+		}
 	}
 
 	public KBArticle getArticle(long groupId, String title, double version)
@@ -442,28 +443,21 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return article;
 	}
 
-	public List<KBArticle> getArticles(long groupId, int start, int end)
+	public List<KBArticle> getArticles(long resourcePrimKey, int start, int end)
 		throws SystemException {
 
-		return kbArticlePersistence.findByGroupId(
-			groupId, start, end, new ArticleModifiedDateComparator(false));
-	}
-
-	public List<KBArticle> getArticles(
-			long groupId, String title, int start, int end)
-		throws SystemException {
-
-		return kbArticlePersistence.findByG_T(
-			groupId, title, start, end,
+		return kbArticlePersistence.findByResourcePrimKey(
+			resourcePrimKey, start, end,
 			new ArticleModifiedDateComparator(false));
 	}
 
 	public List<KBArticle> getArticles(
-			long groupId, String title, int start, int end,
+			long resourcePrimKey, int start, int end,
 			OrderByComparator obc)
 		throws SystemException {
 
-		return kbArticlePersistence.findByG_T(groupId, title, start, end, obc);
+		return kbArticlePersistence.findByResourcePrimKey(
+			resourcePrimKey, start, end, obc);
 	}
 
 	public List<KBArticle> getArticles(
@@ -484,14 +478,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			new ArticleModifiedDateComparator(false));
 	}
 
-	public int getArticlesCount(long groupId) throws SystemException {
-		return kbArticlePersistence.countByGroupId(groupId);
-	}
+	public int getArticlesCount(long resourcePrimKey) throws SystemException {
 
-	public int getArticlesCount(long groupId, String title)
-		throws SystemException {
-
-		return kbArticlePersistence.countByG_T(groupId, title);
+		return kbArticlePersistence.countByResourcePrimKey(resourcePrimKey);
 	}
 
 	public int getArticlesCount(long groupId, boolean head, boolean template)
@@ -673,6 +662,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		article.setGroupId(groupId);
 		article.setTitle(title);
 		article.setVersion(newVersion);
+		article.setMinorEdit(minorEdit);
 		article.setContent(content);
 		article.setDescription(description);
 		article.setHead(true);

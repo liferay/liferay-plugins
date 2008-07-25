@@ -77,6 +77,12 @@ public interface KBArticleModel extends BaseModel {
 
 	public void setVersion(double version);
 
+	public boolean getMinorEdit();
+
+	public boolean isMinorEdit();
+
+	public void setMinorEdit(boolean minorEdit);
+
 	public String getContent();
 
 	public void setContent(String content);

@@ -126,13 +126,13 @@ public interface KBArticleLocalService {
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public com.liferay.knowledgebase.model.KBArticle getArticle(long groupId,
-		java.lang.String title)
+	public com.liferay.knowledgebase.model.KBArticle getArticle(
+		long resourcePrimKey, double version)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public com.liferay.knowledgebase.model.KBArticle getArticle(
-		long resourcePrimKey, double version)
+	public com.liferay.knowledgebase.model.KBArticle getArticle(long groupId,
+		java.lang.String title)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
@@ -142,15 +142,11 @@ public interface KBArticleLocalService {
 			com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getArticles(
-		long groupId, int start, int end)
+		long resourcePrimKey, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getArticles(
-		long groupId, java.lang.String title, int start, int end)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getArticles(
-		long groupId, java.lang.String title, int start, int end,
+		long resourcePrimKey, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
@@ -162,10 +158,7 @@ public interface KBArticleLocalService {
 		long groupId, java.lang.String title, boolean head, int start, int end)
 		throws com.liferay.portal.SystemException;
 
-	public int getArticlesCount(long groupId)
-		throws com.liferay.portal.SystemException;
-
-	public int getArticlesCount(long groupId, java.lang.String title)
+	public int getArticlesCount(long resourcePrimKey)
 		throws com.liferay.portal.SystemException;
 
 	public int getArticlesCount(long groupId, boolean head, boolean template)

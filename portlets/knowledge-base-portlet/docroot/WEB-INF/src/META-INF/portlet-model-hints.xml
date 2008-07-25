@@ -14,6 +14,7 @@
 			<hint name="max-length">100</hint>
 		</field>
 		<field name="version" type="double" />
+		<field name="minorEdit" type="boolean" />
 		<field name="content" type="String">
 			<hint-collection name="CLOB" />
 			<hint name="display-height">475</hint>

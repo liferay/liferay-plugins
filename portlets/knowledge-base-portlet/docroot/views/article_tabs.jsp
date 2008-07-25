@@ -25,26 +25,31 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String view = ParamUtil.getString(request, "view", "view_all_articles");
-String tag = ParamUtil.getString(request, "tag");
+KBArticle article = (KBArticle) request.getAttribute(KnowledgeBaseKeys.ARTICLE);
 
-String[] supportedViews = {"compare_versions", "edit_article", "edit_article_attachment", "view_all_articles", "view_article", "view_article_attachments", "view_article_history", "view_tagged_articles", "view_templates", "search", };
+PortletURL editURL = renderResponse.createRenderURL();
 
-if (!ArrayUtil.contains(supportedViews, view)) {
-	view = supportedViews[0];
-}
+editURL.setParameter("view", "edit_article");
+editURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
 
-if (Validator.isNotNull(tag)) {
-	view = "view_tagged_articles";
-}
+PortletURL viewArticleHistoryURL = renderResponse.createRenderURL();
 
-_log.info("Including view: " + "/" + view + ".jsp");
+viewArticleHistoryURL.setParameter("view", "view_article_history");
+viewArticleHistoryURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
+
+PortletURL attachmentsURL = renderResponse.createRenderURL();
+
+attachmentsURL.setParameter("view", "view_article_attachments");
+attachmentsURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
 %>
 
-<jsp:include page="/top.jsp" />
+<h1 class="article-title">
+	<a class="return-to-article" href="<portlet:renderURL><portlet:param name="view" value="view_article" /><portlet:param name="title" value="<%= article.getTitle() %>" /></portlet:renderURL>"><%= article.getTitle() %></a>
+</h1>
 
-<jsp:include page='<%= "/views/" + view + ".jsp" %>' flush="true" />
-
-<%!
-private static Log _log = LogFactoryUtil.getLog("knowledge-base-portlet.view.jsp");
-%>
+<liferay-ui:tabs
+	names="edit, history, attachments"
+	url0="<%= editURL.toString() %>"
+	url1="<%= viewArticleHistoryURL.toString() %>"
+	url2="<%= attachmentsURL.toString() %>"
+/>

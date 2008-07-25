@@ -103,6 +103,9 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			else if (actionName.equals(Constants.UNSUBSCRIBE)) {
 				unsubscribe(actionRequest);
 			}
+			else if (actionName.equals(Constants.REVERT)) {
+				revertPage(actionRequest);
+			}
 			else if (actionName.equals("subscribeArticle")) {
 				subscribeArticle(actionRequest);
 			}
@@ -196,16 +199,18 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			renderRequest, "resourcePrimKey");
 
 		String title = ParamUtil.getString(renderRequest, "title");
+		double version = ParamUtil.getDouble(renderRequest, "version");
 
 		try {
 			KBArticle article = null;
 
 			if (resourcePrimKey > 0) {
-				article = KBArticleServiceUtil.getArticle(resourcePrimKey);
+				article = KBArticleServiceUtil.getArticle(
+					resourcePrimKey, version);
 			}
 			else if (Validator.isNotNull(title)) {
 				article = KBArticleServiceUtil.getArticle(
-					themeDisplay.getPortletGroupId(), title);
+					themeDisplay.getPortletGroupId(), title, version);
 			}
 
 			renderRequest.setAttribute(KnowledgeBaseKeys.ARTICLE, article);
@@ -456,6 +461,20 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		finally {
 			ServletResponseUtil.cleanUp(is);
 		}
+	}
+
+	protected void revertPage(ActionRequest actionRequest) throws Exception {
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		PortletPreferences prefs = actionRequest.getPreferences();
+
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+		double version = ParamUtil.getDouble(actionRequest, "version");
+
+		KBArticleServiceUtil.revertArticle(
+			resourcePrimKey, version, prefs, themeDisplay);
 	}
 
 	protected void subscribe(ActionRequest actionRequest)

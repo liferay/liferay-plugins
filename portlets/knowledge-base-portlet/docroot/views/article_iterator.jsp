@@ -24,7 +24,8 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String type = (String)request.getAttribute("article_iterator.type");
+KBArticle article = (KBArticle) request.getAttribute(KnowledgeBaseKeys.ARTICLE);
+String type = (String) request.getAttribute("article_iterator.type");
 
 String tag = ParamUtil.getString(request, "tag");
 
@@ -32,6 +33,9 @@ PortletURL portletURL = renderResponse.createRenderURL();
 
 if (type.equals("all_articles")) {
 	portletURL.setParameter("view", "view_all_articles");
+}
+else if (type.equals("article_history")) {
+	portletURL.setParameter("view", "view_article_history");
 }
 else if (type.equals("templates")) {
 	portletURL.setParameter("view", "view_templates");
@@ -45,10 +49,17 @@ List headerNames = new ArrayList();
 
 headerNames.add("id");
 headerNames.add("title");
+
+if (type.equals("article_history")) {
+	headerNames.add("version");
+}
+
 headerNames.add("author");
-if (!type.equals("templates")) {
+
+if (type.endsWith("_articles")) {
 	headerNames.add("views");
 }
+
 headerNames.add("date");
 headerNames.add("");
 
@@ -66,12 +77,20 @@ else if (type.equals("tagged_articles")) {
 
 SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, emptyResultsMessage);
 
+if (type.equals("article_history")) {
+	searchContainer.setRowChecker(new RowChecker(renderResponse, RowChecker.ALIGN, RowChecker.VALIGN, RowChecker.FORM_NAME, null, RowChecker.ROW_IDS));
+}
+
 int total = 0;
 List<KBArticle> results = null;
 
 if (type.equals("all_articles")) {
 	total = KBArticleLocalServiceUtil.getArticlesCount(portletGroupId, true, false);
 	results = KBArticleLocalServiceUtil.getArticles(portletGroupId, true, false, searchContainer.getStart(), searchContainer.getEnd());
+}
+else if (type.equals("article_history")) {
+	total = KBArticleLocalServiceUtil.getArticlesCount(article.getResourcePrimKey());
+	results = KBArticleLocalServiceUtil.getArticles(article.getResourcePrimKey(), searchContainer.getStart(), searchContainer.getEnd(), new ArticleVersionComparator());
 }
 else if (type.equals("templates")) {
 	total = KBArticleLocalServiceUtil.getArticlesCount(portletGroupId, true, true);
@@ -104,42 +123,68 @@ searchContainer.setResults(results);
 List resultRows = searchContainer.getResultRows();
 
 for (int i = 0; i < results.size(); i++) {
-	KBArticle curKBArticle = results.get(i);
+	KBArticle curArticle = results.get(i);
 
-	ResultRow row = new ResultRow(curKBArticle, String.valueOf(curKBArticle.getVersion()), i);
+	ResultRow row = new ResultRow(curArticle, String.valueOf(curArticle.getVersion()), i);
 
 	PortletURL rowURL = renderResponse.createRenderURL();
 
 	rowURL.setParameter("view", "view_article");
-	rowURL.setParameter("title", curKBArticle.getTitle());
+	rowURL.setParameter("title", curArticle.getTitle());
+
+	if (type.equals("article_history")) {
+		rowURL.setParameter("version", String.valueOf(curArticle.getVersion()));
+	}
 
 	// Id
 
-	row.addText(String.valueOf(curKBArticle.getResourcePrimKey()), rowURL);
+	row.addText(String.valueOf(curArticle.getResourcePrimKey()), rowURL);
 
 	// Title
 
-	row.addText(curKBArticle.getTitle(), rowURL);
+	row.addText(curArticle.getTitle(), rowURL);
+
+	// Revision
+
+	if (type.equals("article_history")) {
+		String revision = String.valueOf(curArticle.getVersion());
+
+		if (curArticle.isMinorEdit()) {
+			revision += " (" + LanguageUtil.get(pageContext, "minor-edit") + ")";
+		}
+
+		row.addText(revision, rowURL);
+	}
 
 	// Author
 
-	row.addText(PortalUtil.getUserName(curKBArticle.getUserId(), curKBArticle.getUserName()), rowURL);
+	row.addText(PortalUtil.getUserName(curArticle.getUserId(), curArticle.getUserName()), rowURL);
 
 	// Views
 
-	if (!type.equals("templates")) {
-		TagsAsset asset = TagsAssetLocalServiceUtil.getAsset(KBArticle.class.getName(), curKBArticle.getResourcePrimKey());
+	if (type.endsWith("_articles")) {
+		TagsAsset asset = TagsAssetLocalServiceUtil.getAsset(KBArticle.class.getName(), curArticle.getResourcePrimKey());
 
 		row.addText(String.valueOf(asset.getViewCount()), rowURL);
 	}
 
 	// Date
 
-	row.addText(dateFormatDateTime.format(curKBArticle.getModifiedDate()), rowURL);
+	row.addText(dateFormatDateTime.format(curArticle.getModifiedDate()), rowURL);
 
 	// Action
 
-	row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/views/article_action.jsp", config.getServletContext(), request, response);
+	if (type.equals("article_history")) {
+		if (curArticle.isHead()) {
+			row.addText(StringPool.BLANK);
+		}
+		else {
+			row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/views/article_history_action.jsp", config.getServletContext(), request, response);
+		}
+	}
+	else {
+		row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/views/article_action.jsp", config.getServletContext(), request, response);
+	}
 
 	// Add result row
 
@@ -147,9 +192,28 @@ for (int i = 0; i < results.size(); i++) {
 }
 %>
 
+<c:if test='<%= type.equals("article_history") && (results.size() > 1) %>'>
+
+	<%
+	KBArticle latestArticle = results.get(1);
+	%>
+
+	<form action="<portlet:renderURL><portlet:param name="view" value="compare_versions" /></portlet:renderURL>" method="post" name="<portlet:namespace />fmCompare" onSubmit="<portlet:namespace />compare(); return false;">
+	<input name="<portlet:namespace />backURL" type="hidden" value="<%= HtmlUtil.escape(currentURL) %>" />
+	<input name="<portlet:namespace />resourcePrimKey" type="hidden" value="<%= article.getResourcePrimKey() %>" />
+	<input name="<portlet:namespace />sourceVersion" type="hidden" value="<%= latestArticle.getVersion() %>" />
+	<input name="<portlet:namespace />targetVersion" type="hidden" value="<%= article.getVersion() %>" />
+
+	<input type="submit" value="<liferay-ui:message key="compare-versions" />" />
+
+	</form>
+
+	<br />
+</c:if>
+
 <liferay-ui:search-iterator searchContainer="<%= searchContainer %>" paginate="true" />
 
-<c:if test="<%= KBPermission.contains(permissionChecker, portletGroupId, ActionKeys.SUBSCRIBE) %>">
+<c:if test='<%= type.equals("all_articles") && KBPermission.contains(permissionChecker, portletGroupId, ActionKeys.SUBSCRIBE) %>'>
 	<liferay-ui:icon-list>
 		<c:choose>
 			<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), portletGroupId) %>">

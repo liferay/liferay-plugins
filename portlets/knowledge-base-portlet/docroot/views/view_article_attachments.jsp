@@ -1,4 +1,3 @@
-<%@ page import="java.util.HashSet" %>
 <%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
@@ -96,9 +95,9 @@ for (int i = 0; i < results.size(); i++) {
 	resultRows.add(row);
 }
 %>
-<h1 class="article-title">
-	<a class="return-to-article" href="<portlet:renderURL><portlet:param name="view" value="view_article" /><portlet:param name="title" value="<%= article.getTitle() %>" /></portlet:renderURL>"><%= article.getTitle() %></a>
-</h1>
+<jsp:include page="/views/article_tabs.jsp">
+	<jsp:param name="tabs1" value="attachments" />
+</jsp:include>
 
 <c:if test="<%= KBPermission.contains(permissionChecker, portletGroupId, ActionKeys.ADD_ATTACHMENT) %>">
 	<div>

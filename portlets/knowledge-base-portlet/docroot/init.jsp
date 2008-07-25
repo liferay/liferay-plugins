@@ -40,10 +40,13 @@
 <%@ page import="com.liferay.knowledgebase.model.KBArticle" %>
 <%@ page import="com.liferay.knowledgebase.model.KBArticleResource" %>
 <%@ page import="com.liferay.knowledgebase.service.KBArticleLocalServiceUtil" %>
+<%@ page import="com.liferay.knowledgebase.service.KBArticleServiceUtil" %>
 <%@ page import="com.liferay.knowledgebase.service.KBArticleResourceLocalServiceUtil" %>
 <%@ page import="com.liferay.knowledgebase.service.permission.KBArticlePermission" %>
 <%@ page import="com.liferay.knowledgebase.service.permission.KBPermission" %>
+<%@ page import="com.liferay.knowledgebase.util.comparator.ArticleVersionComparator" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
+<%@ page import="com.liferay.portal.kernel.dao.search.RowChecker" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchEntry" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
@@ -88,10 +91,15 @@
 <%@ page import="com.liferay.portal.kernel.util.DocumentConversionUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.PrefsPropsUtil" %>
 <%@ page import="com.liferay.util.TextFormatter" %>
+<%@ page import="com.liferay.util.diff.DiffResult" %>
+<%@ page import="com.liferay.util.diff.DiffUtil" %>
+
+<%@ page import="java.io.StringReader" %>
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Collections" %>
 <%@ page import="java.util.Date" %>
+<%@ page import="java.util.HashSet" %>
 <%@ page import="java.util.List" %>
 
 <%@ page import="java.text.DateFormat" %>

@@ -215,21 +215,21 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getArticle(
-		long groupId, java.lang.String title)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		KBArticleLocalService kbArticleLocalService = KBArticleLocalServiceFactory.getService();
-
-		return kbArticleLocalService.getArticle(groupId, title);
-	}
-
-	public static com.liferay.knowledgebase.model.KBArticle getArticle(
 		long resourcePrimKey, double version)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		KBArticleLocalService kbArticleLocalService = KBArticleLocalServiceFactory.getService();
 
 		return kbArticleLocalService.getArticle(resourcePrimKey, version);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle getArticle(
+		long groupId, java.lang.String title)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		KBArticleLocalService kbArticleLocalService = KBArticleLocalServiceFactory.getService();
+
+		return kbArticleLocalService.getArticle(groupId, title);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getArticle(
@@ -242,28 +242,21 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getArticles(
-		long groupId, int start, int end)
+		long resourcePrimKey, int start, int end)
 		throws com.liferay.portal.SystemException {
 		KBArticleLocalService kbArticleLocalService = KBArticleLocalServiceFactory.getService();
 
-		return kbArticleLocalService.getArticles(groupId, start, end);
+		return kbArticleLocalService.getArticles(resourcePrimKey, start, end);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getArticles(
-		long groupId, java.lang.String title, int start, int end)
-		throws com.liferay.portal.SystemException {
-		KBArticleLocalService kbArticleLocalService = KBArticleLocalServiceFactory.getService();
-
-		return kbArticleLocalService.getArticles(groupId, title, start, end);
-	}
-
-	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getArticles(
-		long groupId, java.lang.String title, int start, int end,
+		long resourcePrimKey, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		KBArticleLocalService kbArticleLocalService = KBArticleLocalServiceFactory.getService();
 
-		return kbArticleLocalService.getArticles(groupId, title, start, end, obc);
+		return kbArticleLocalService.getArticles(resourcePrimKey, start, end,
+			obc);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getArticles(
@@ -284,18 +277,11 @@ public class KBArticleLocalServiceUtil {
 			end);
 	}
 
-	public static int getArticlesCount(long groupId)
+	public static int getArticlesCount(long resourcePrimKey)
 		throws com.liferay.portal.SystemException {
 		KBArticleLocalService kbArticleLocalService = KBArticleLocalServiceFactory.getService();
 
-		return kbArticleLocalService.getArticlesCount(groupId);
-	}
-
-	public static int getArticlesCount(long groupId, java.lang.String title)
-		throws com.liferay.portal.SystemException {
-		KBArticleLocalService kbArticleLocalService = KBArticleLocalServiceFactory.getService();
-
-		return kbArticleLocalService.getArticlesCount(groupId, title);
+		return kbArticleLocalService.getArticlesCount(resourcePrimKey);
 	}
 
 	public static int getArticlesCount(long groupId, boolean head,
