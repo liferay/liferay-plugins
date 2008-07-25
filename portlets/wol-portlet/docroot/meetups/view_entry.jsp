@@ -180,7 +180,7 @@ int yesTotal = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(
 	</c:when>
 	<c:otherwise>
 		<div>
-			You have to signed in to register for this meetup. Please <a href="<%= themeDisplay.getURLSignIn() %>">sign in</a> or <a href="<%= themeDisplay.getURLCreateAccount() %>">create an account</a> if you do not already have one.
+			You have to be signed in to register for this meetup. Please <a href="<%= themeDisplay.getURLSignIn() %>">sign in</a> or <a href="<%= themeDisplay.getURLCreateAccount() %>">create an account</a> if you do not already have one.
 		</div>
 	</c:otherwise>
 </c:choose>
