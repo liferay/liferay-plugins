@@ -77,6 +77,20 @@ public class PostEntryLocalServiceUtil {
 		return postEntryLocalService.getPostEntry(uid);
 	}
 
+	public static java.util.List<com.liferay.iweb.model.PostEntry> getPostEntries(
+		int start, int end) throws com.liferay.portal.SystemException {
+		PostEntryLocalService postEntryLocalService = PostEntryLocalServiceFactory.getService();
+
+		return postEntryLocalService.getPostEntries(start, end);
+	}
+
+	public static int getPostEntriesCount()
+		throws com.liferay.portal.SystemException {
+		PostEntryLocalService postEntryLocalService = PostEntryLocalServiceFactory.getService();
+
+		return postEntryLocalService.getPostEntriesCount();
+	}
+
 	public static com.liferay.iweb.model.PostEntry updatePostEntry(
 		com.liferay.iweb.model.PostEntry postEntry)
 		throws com.liferay.portal.SystemException {

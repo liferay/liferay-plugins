@@ -44,6 +44,8 @@ import com.liferay.iweb.service.persistence.SemanticsElementUtil;
 import com.liferay.iweb.service.persistence.SemanticsFilePersistence;
 import com.liferay.iweb.service.persistence.SemanticsFileUtil;
 
+import com.liferay.portal.kernel.bean.InitializingBean;
+
 /**
  * <a href="CrossContainerLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
  *
@@ -51,7 +53,7 @@ import com.liferay.iweb.service.persistence.SemanticsFileUtil;
  *
  */
 public abstract class CrossContainerLocalServiceBaseImpl
-	implements CrossContainerLocalService {
+	implements CrossContainerLocalService, InitializingBean {
 	public CallBackLocalService getCallBackLocalService() {
 		return callBackLocalService;
 	}
@@ -141,7 +143,7 @@ public abstract class CrossContainerLocalServiceBaseImpl
 		this.semanticsFilePersistence = semanticsFilePersistence;
 	}
 
-	protected void init() {
+	public void afterPropertiesSet() {
 		if (callBackLocalService == null) {
 			callBackLocalService = CallBackLocalServiceFactory.getImpl();
 		}

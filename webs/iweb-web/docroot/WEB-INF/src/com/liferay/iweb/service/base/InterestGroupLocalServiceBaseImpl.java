@@ -47,6 +47,7 @@ import com.liferay.iweb.service.persistence.SemanticsFileUtil;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import java.util.List;
@@ -58,7 +59,7 @@ import java.util.List;
  *
  */
 public abstract class InterestGroupLocalServiceBaseImpl
-	implements InterestGroupLocalService {
+	implements InterestGroupLocalService, InitializingBean {
 	public InterestGroup addInterestGroup(InterestGroup interestGroup)
 		throws SystemException {
 		interestGroup.setNew(true);
@@ -90,6 +91,15 @@ public abstract class InterestGroupLocalServiceBaseImpl
 	public InterestGroup getInterestGroup(long cid)
 		throws PortalException, SystemException {
 		return interestGroupPersistence.findByPrimaryKey(cid);
+	}
+
+	public List<InterestGroup> getInterestGroups(int start, int end)
+		throws SystemException {
+		return interestGroupPersistence.findAll(start, end);
+	}
+
+	public int getInterestGroupsCount() throws SystemException {
+		return interestGroupPersistence.countAll();
 	}
 
 	public InterestGroup updateInterestGroup(InterestGroup interestGroup)
@@ -188,7 +198,7 @@ public abstract class InterestGroupLocalServiceBaseImpl
 		this.semanticsFilePersistence = semanticsFilePersistence;
 	}
 
-	protected void init() {
+	public void afterPropertiesSet() {
 		if (callBackLocalService == null) {
 			callBackLocalService = CallBackLocalServiceFactory.getImpl();
 		}

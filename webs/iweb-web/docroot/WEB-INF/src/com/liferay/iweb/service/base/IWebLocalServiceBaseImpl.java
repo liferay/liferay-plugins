@@ -44,13 +44,16 @@ import com.liferay.iweb.service.persistence.SemanticsElementUtil;
 import com.liferay.iweb.service.persistence.SemanticsFilePersistence;
 import com.liferay.iweb.service.persistence.SemanticsFileUtil;
 
+import com.liferay.portal.kernel.bean.InitializingBean;
+
 /**
  * <a href="IWebLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class IWebLocalServiceBaseImpl implements IWebLocalService {
+public abstract class IWebLocalServiceBaseImpl implements IWebLocalService,
+	InitializingBean {
 	public CallBackLocalService getCallBackLocalService() {
 		return callBackLocalService;
 	}
@@ -141,7 +144,7 @@ public abstract class IWebLocalServiceBaseImpl implements IWebLocalService {
 		this.semanticsFilePersistence = semanticsFilePersistence;
 	}
 
-	protected void init() {
+	public void afterPropertiesSet() {
 		if (callBackLocalService == null) {
 			callBackLocalService = CallBackLocalServiceFactory.getImpl();
 		}

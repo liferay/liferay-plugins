@@ -78,6 +78,20 @@ public class SemanticsFileLocalServiceUtil {
 		return semanticsFileLocalService.getSemanticsFile(semanticsURI);
 	}
 
+	public static java.util.List<com.liferay.iweb.model.SemanticsFile> getSemanticsFiles(
+		int start, int end) throws com.liferay.portal.SystemException {
+		SemanticsFileLocalService semanticsFileLocalService = SemanticsFileLocalServiceFactory.getService();
+
+		return semanticsFileLocalService.getSemanticsFiles(start, end);
+	}
+
+	public static int getSemanticsFilesCount()
+		throws com.liferay.portal.SystemException {
+		SemanticsFileLocalService semanticsFileLocalService = SemanticsFileLocalServiceFactory.getService();
+
+		return semanticsFileLocalService.getSemanticsFilesCount();
+	}
+
 	public static com.liferay.iweb.model.SemanticsFile updateSemanticsFile(
 		com.liferay.iweb.model.SemanticsFile semanticsFile)
 		throws com.liferay.portal.SystemException {

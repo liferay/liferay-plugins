@@ -2,7 +2,7 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-	<bean id="com.liferay.iweb.service.CallBackLocalService.impl" class="com.liferay.iweb.service.impl.CallBackLocalServiceImpl" lazy-init="true" init-method="init" />
+	<bean id="com.liferay.iweb.service.CallBackLocalService.impl" class="com.liferay.iweb.service.impl.CallBackLocalServiceImpl" lazy-init="true" />
 	<bean id="com.liferay.iweb.service.CallBackLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
@@ -22,12 +22,22 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="com.liferay.iweb.service.CallBackLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.iweb.service.CallBackLocalService.transaction" />
+		</property>
+	</bean>
 	<bean id="com.liferay.iweb.service.CallBackLocalServiceFactory" class="com.liferay.iweb.service.CallBackLocalServiceFactory" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.iweb.service.CallBackLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.iweb.service.CrossContainerLocalService.impl" class="com.liferay.iweb.service.impl.CrossContainerLocalServiceImpl" lazy-init="true" init-method="init" />
+	<bean id="com.liferay.iweb.service.CrossContainerLocalService.impl" class="com.liferay.iweb.service.impl.CrossContainerLocalServiceImpl" lazy-init="true" />
 	<bean id="com.liferay.iweb.service.CrossContainerLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
@@ -47,12 +57,22 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="com.liferay.iweb.service.CrossContainerLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.iweb.service.CrossContainerLocalService.transaction" />
+		</property>
+	</bean>
 	<bean id="com.liferay.iweb.service.CrossContainerLocalServiceFactory" class="com.liferay.iweb.service.CrossContainerLocalServiceFactory" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.iweb.service.CrossContainerLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.iweb.service.InterestGroupLocalService.impl" class="com.liferay.iweb.service.impl.InterestGroupLocalServiceImpl" lazy-init="true" init-method="init" />
+	<bean id="com.liferay.iweb.service.InterestGroupLocalService.impl" class="com.liferay.iweb.service.impl.InterestGroupLocalServiceImpl" lazy-init="true" />
 	<bean id="com.liferay.iweb.service.InterestGroupLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
@@ -72,12 +92,22 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="com.liferay.iweb.service.InterestGroupLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.iweb.service.InterestGroupLocalService.transaction" />
+		</property>
+	</bean>
 	<bean id="com.liferay.iweb.service.InterestGroupLocalServiceFactory" class="com.liferay.iweb.service.InterestGroupLocalServiceFactory" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.iweb.service.InterestGroupLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.iweb.service.persistence.InterestGroupPersistence.impl" class="com.liferay.iweb.service.persistence.InterestGroupPersistenceImpl" lazy-init="true" init-method="init">
+	<bean id="com.liferay.iweb.service.persistence.InterestGroupPersistence.impl" class="com.liferay.iweb.service.persistence.InterestGroupPersistenceImpl" lazy-init="true">
 		<property name="dataSource">
 			<ref bean="liferayDataSource" />
 		</property>
@@ -106,7 +136,7 @@
 			<ref bean="com.liferay.iweb.service.persistence.InterestGroupPersistence.impl" />
 		</property>
 	</bean>
-	<bean id="com.liferay.iweb.service.IWebLocalService.impl" class="com.liferay.iweb.service.impl.IWebLocalServiceImpl" lazy-init="true" init-method="init" />
+	<bean id="com.liferay.iweb.service.IWebLocalService.impl" class="com.liferay.iweb.service.impl.IWebLocalServiceImpl" lazy-init="true" />
 	<bean id="com.liferay.iweb.service.IWebLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
@@ -126,12 +156,22 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="com.liferay.iweb.service.IWebLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.iweb.service.IWebLocalService.transaction" />
+		</property>
+	</bean>
 	<bean id="com.liferay.iweb.service.IWebLocalServiceFactory" class="com.liferay.iweb.service.IWebLocalServiceFactory" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.iweb.service.IWebLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.iweb.service.PostEntryLocalService.impl" class="com.liferay.iweb.service.impl.PostEntryLocalServiceImpl" lazy-init="true" init-method="init" />
+	<bean id="com.liferay.iweb.service.PostEntryLocalService.impl" class="com.liferay.iweb.service.impl.PostEntryLocalServiceImpl" lazy-init="true" />
 	<bean id="com.liferay.iweb.service.PostEntryLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
@@ -151,12 +191,22 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="com.liferay.iweb.service.PostEntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.iweb.service.PostEntryLocalService.transaction" />
+		</property>
+	</bean>
 	<bean id="com.liferay.iweb.service.PostEntryLocalServiceFactory" class="com.liferay.iweb.service.PostEntryLocalServiceFactory" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.iweb.service.PostEntryLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.iweb.service.persistence.PostEntryPersistence.impl" class="com.liferay.iweb.service.persistence.PostEntryPersistenceImpl" lazy-init="true" init-method="init">
+	<bean id="com.liferay.iweb.service.persistence.PostEntryPersistence.impl" class="com.liferay.iweb.service.persistence.PostEntryPersistenceImpl" lazy-init="true">
 		<property name="dataSource">
 			<ref bean="liferayDataSource" />
 		</property>
@@ -185,7 +235,7 @@
 			<ref bean="com.liferay.iweb.service.persistence.PostEntryPersistence.impl" />
 		</property>
 	</bean>
-	<bean id="com.liferay.iweb.service.SemanticsElementLocalService.impl" class="com.liferay.iweb.service.impl.SemanticsElementLocalServiceImpl" lazy-init="true" init-method="init" />
+	<bean id="com.liferay.iweb.service.SemanticsElementLocalService.impl" class="com.liferay.iweb.service.impl.SemanticsElementLocalServiceImpl" lazy-init="true" />
 	<bean id="com.liferay.iweb.service.SemanticsElementLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
@@ -205,12 +255,22 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="com.liferay.iweb.service.SemanticsElementLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.iweb.service.SemanticsElementLocalService.transaction" />
+		</property>
+	</bean>
 	<bean id="com.liferay.iweb.service.SemanticsElementLocalServiceFactory" class="com.liferay.iweb.service.SemanticsElementLocalServiceFactory" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.iweb.service.SemanticsElementLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.iweb.service.persistence.SemanticsElementPersistence.impl" class="com.liferay.iweb.service.persistence.SemanticsElementPersistenceImpl" lazy-init="true" init-method="init">
+	<bean id="com.liferay.iweb.service.persistence.SemanticsElementPersistence.impl" class="com.liferay.iweb.service.persistence.SemanticsElementPersistenceImpl" lazy-init="true">
 		<property name="dataSource">
 			<ref bean="liferayDataSource" />
 		</property>
@@ -239,7 +299,7 @@
 			<ref bean="com.liferay.iweb.service.persistence.SemanticsElementPersistence.impl" />
 		</property>
 	</bean>
-	<bean id="com.liferay.iweb.service.SemanticsFileLocalService.impl" class="com.liferay.iweb.service.impl.SemanticsFileLocalServiceImpl" lazy-init="true" init-method="init" />
+	<bean id="com.liferay.iweb.service.SemanticsFileLocalService.impl" class="com.liferay.iweb.service.impl.SemanticsFileLocalServiceImpl" lazy-init="true" />
 	<bean id="com.liferay.iweb.service.SemanticsFileLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
@@ -259,12 +319,22 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="com.liferay.iweb.service.SemanticsFileLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.iweb.service.SemanticsFileLocalService.transaction" />
+		</property>
+	</bean>
 	<bean id="com.liferay.iweb.service.SemanticsFileLocalServiceFactory" class="com.liferay.iweb.service.SemanticsFileLocalServiceFactory" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.iweb.service.SemanticsFileLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.iweb.service.persistence.SemanticsFilePersistence.impl" class="com.liferay.iweb.service.persistence.SemanticsFilePersistenceImpl" lazy-init="true" init-method="init">
+	<bean id="com.liferay.iweb.service.persistence.SemanticsFilePersistence.impl" class="com.liferay.iweb.service.persistence.SemanticsFilePersistenceImpl" lazy-init="true">
 		<property name="dataSource">
 			<ref bean="liferayDataSource" />
 		</property>

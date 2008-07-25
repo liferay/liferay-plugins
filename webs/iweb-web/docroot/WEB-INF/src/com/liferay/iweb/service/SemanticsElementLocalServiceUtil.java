@@ -79,6 +79,20 @@ public class SemanticsElementLocalServiceUtil {
 		return semanticsElementLocalService.getSemanticsElement(elementURI);
 	}
 
+	public static java.util.List<com.liferay.iweb.model.SemanticsElement> getSemanticsElements(
+		int start, int end) throws com.liferay.portal.SystemException {
+		SemanticsElementLocalService semanticsElementLocalService = SemanticsElementLocalServiceFactory.getService();
+
+		return semanticsElementLocalService.getSemanticsElements(start, end);
+	}
+
+	public static int getSemanticsElementsCount()
+		throws com.liferay.portal.SystemException {
+		SemanticsElementLocalService semanticsElementLocalService = SemanticsElementLocalServiceFactory.getService();
+
+		return semanticsElementLocalService.getSemanticsElementsCount();
+	}
+
 	public static com.liferay.iweb.model.SemanticsElement updateSemanticsElement(
 		com.liferay.iweb.model.SemanticsElement semanticsElement)
 		throws com.liferay.portal.SystemException {

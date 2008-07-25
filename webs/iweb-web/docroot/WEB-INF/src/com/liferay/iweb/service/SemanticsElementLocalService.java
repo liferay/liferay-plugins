@@ -54,6 +54,12 @@ public interface SemanticsElementLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	public java.util.List<com.liferay.iweb.model.SemanticsElement> getSemanticsElements(
+		int start, int end) throws com.liferay.portal.SystemException;
+
+	public int getSemanticsElementsCount()
+		throws com.liferay.portal.SystemException;
+
 	public com.liferay.iweb.model.SemanticsElement updateSemanticsElement(
 		com.liferay.iweb.model.SemanticsElement semanticsElement)
 		throws com.liferay.portal.SystemException;

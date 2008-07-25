@@ -52,6 +52,7 @@ import com.liferay.iweb.service.persistence.SemanticsFileUtil;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import java.util.List;
@@ -63,7 +64,7 @@ import java.util.List;
  *
  */
 public abstract class PostEntryLocalServiceBaseImpl
-	implements PostEntryLocalService {
+	implements PostEntryLocalService, InitializingBean {
 	public PostEntry addPostEntry(PostEntry postEntry)
 		throws SystemException {
 		postEntry.setNew(true);
@@ -94,6 +95,15 @@ public abstract class PostEntryLocalServiceBaseImpl
 	public PostEntry getPostEntry(long uid)
 		throws PortalException, SystemException {
 		return postEntryPersistence.findByPrimaryKey(uid);
+	}
+
+	public List<PostEntry> getPostEntries(int start, int end)
+		throws SystemException {
+		return postEntryPersistence.findAll(start, end);
+	}
+
+	public int getPostEntriesCount() throws SystemException {
+		return postEntryPersistence.countAll();
 	}
 
 	public PostEntry updatePostEntry(PostEntry postEntry)
@@ -208,7 +218,7 @@ public abstract class PostEntryLocalServiceBaseImpl
 		this.counterService = counterService;
 	}
 
-	protected void init() {
+	public void afterPropertiesSet() {
 		if (callBackLocalService == null) {
 			callBackLocalService = CallBackLocalServiceFactory.getImpl();
 		}

@@ -54,6 +54,12 @@ public interface SemanticsFileLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	public java.util.List<com.liferay.iweb.model.SemanticsFile> getSemanticsFiles(
+		int start, int end) throws com.liferay.portal.SystemException;
+
+	public int getSemanticsFilesCount()
+		throws com.liferay.portal.SystemException;
+
 	public com.liferay.iweb.model.SemanticsFile updateSemanticsFile(
 		com.liferay.iweb.model.SemanticsFile semanticsFile)
 		throws com.liferay.portal.SystemException;

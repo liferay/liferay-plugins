@@ -78,6 +78,20 @@ public class InterestGroupLocalServiceUtil {
 		return interestGroupLocalService.getInterestGroup(cid);
 	}
 
+	public static java.util.List<com.liferay.iweb.model.InterestGroup> getInterestGroups(
+		int start, int end) throws com.liferay.portal.SystemException {
+		InterestGroupLocalService interestGroupLocalService = InterestGroupLocalServiceFactory.getService();
+
+		return interestGroupLocalService.getInterestGroups(start, end);
+	}
+
+	public static int getInterestGroupsCount()
+		throws com.liferay.portal.SystemException {
+		InterestGroupLocalService interestGroupLocalService = InterestGroupLocalServiceFactory.getService();
+
+		return interestGroupLocalService.getInterestGroupsCount();
+	}
+
 	public static com.liferay.iweb.model.InterestGroup updateInterestGroup(
 		com.liferay.iweb.model.InterestGroup interestGroup)
 		throws com.liferay.portal.SystemException {

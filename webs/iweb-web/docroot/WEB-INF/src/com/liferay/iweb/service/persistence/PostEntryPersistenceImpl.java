@@ -28,6 +28,7 @@ import com.liferay.iweb.model.impl.PostEntryImpl;
 import com.liferay.iweb.model.impl.PostEntryModelImpl;
 
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.jdbc.MappingSqlQuery;
 import com.liferay.portal.kernel.dao.jdbc.MappingSqlQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.RowMapper;
@@ -66,7 +67,7 @@ import java.util.List;
  *
  */
 public class PostEntryPersistenceImpl extends BasePersistenceImpl
-	implements PostEntryPersistence {
+	implements PostEntryPersistence, InitializingBean {
 	public PostEntry create(long uid) {
 		PostEntry postEntry = new PostEntryImpl();
 
@@ -1002,7 +1003,7 @@ public class PostEntryPersistenceImpl extends BasePersistenceImpl
 		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
 	}
 
-	protected void init() {
+	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
 						"value.object.listener.com.liferay.iweb.model.PostEntry")));

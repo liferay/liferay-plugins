@@ -47,6 +47,7 @@ import com.liferay.iweb.service.persistence.SemanticsFileUtil;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import java.util.List;
@@ -58,7 +59,7 @@ import java.util.List;
  *
  */
 public abstract class SemanticsFileLocalServiceBaseImpl
-	implements SemanticsFileLocalService {
+	implements SemanticsFileLocalService, InitializingBean {
 	public SemanticsFile addSemanticsFile(SemanticsFile semanticsFile)
 		throws SystemException {
 		semanticsFile.setNew(true);
@@ -90,6 +91,15 @@ public abstract class SemanticsFileLocalServiceBaseImpl
 	public SemanticsFile getSemanticsFile(String semanticsURI)
 		throws PortalException, SystemException {
 		return semanticsFilePersistence.findByPrimaryKey(semanticsURI);
+	}
+
+	public List<SemanticsFile> getSemanticsFiles(int start, int end)
+		throws SystemException {
+		return semanticsFilePersistence.findAll(start, end);
+	}
+
+	public int getSemanticsFilesCount() throws SystemException {
+		return semanticsFilePersistence.countAll();
 	}
 
 	public SemanticsFile updateSemanticsFile(SemanticsFile semanticsFile)
@@ -188,7 +198,7 @@ public abstract class SemanticsFileLocalServiceBaseImpl
 		this.semanticsFilePersistence = semanticsFilePersistence;
 	}
 
-	protected void init() {
+	public void afterPropertiesSet() {
 		if (callBackLocalService == null) {
 			callBackLocalService = CallBackLocalServiceFactory.getImpl();
 		}

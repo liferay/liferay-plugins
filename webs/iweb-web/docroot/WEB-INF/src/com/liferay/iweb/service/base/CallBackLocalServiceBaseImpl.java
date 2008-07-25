@@ -44,6 +44,7 @@ import com.liferay.iweb.service.persistence.SemanticsElementUtil;
 import com.liferay.iweb.service.persistence.SemanticsFilePersistence;
 import com.liferay.iweb.service.persistence.SemanticsFileUtil;
 
+import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.service.GroupLocalService;
 import com.liferay.portal.service.GroupLocalServiceFactory;
 import com.liferay.portal.service.GroupService;
@@ -83,7 +84,7 @@ import com.liferay.portlet.wiki.service.persistence.WikiPageUtil;
  *
  */
 public abstract class CallBackLocalServiceBaseImpl
-	implements CallBackLocalService {
+	implements CallBackLocalService, InitializingBean {
 	public CrossContainerLocalService getCrossContainerLocalService() {
 		return crossContainerLocalService;
 	}
@@ -297,7 +298,7 @@ public abstract class CallBackLocalServiceBaseImpl
 		this.userPersistence = userPersistence;
 	}
 
-	protected void init() {
+	public void afterPropertiesSet() {
 		if (crossContainerLocalService == null) {
 			crossContainerLocalService = CrossContainerLocalServiceFactory.getImpl();
 		}

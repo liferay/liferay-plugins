@@ -52,6 +52,11 @@ public interface PostEntryLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	public java.util.List<com.liferay.iweb.model.PostEntry> getPostEntries(
+		int start, int end) throws com.liferay.portal.SystemException;
+
+	public int getPostEntriesCount() throws com.liferay.portal.SystemException;
+
 	public com.liferay.iweb.model.PostEntry updatePostEntry(
 		com.liferay.iweb.model.PostEntry postEntry)
 		throws com.liferay.portal.SystemException;

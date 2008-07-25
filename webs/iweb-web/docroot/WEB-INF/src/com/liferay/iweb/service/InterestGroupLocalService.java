@@ -53,6 +53,12 @@ public interface InterestGroupLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	public java.util.List<com.liferay.iweb.model.InterestGroup> getInterestGroups(
+		int start, int end) throws com.liferay.portal.SystemException;
+
+	public int getInterestGroupsCount()
+		throws com.liferay.portal.SystemException;
+
 	public com.liferay.iweb.model.InterestGroup updateInterestGroup(
 		com.liferay.iweb.model.InterestGroup interestGroup)
 		throws com.liferay.portal.SystemException;

@@ -28,6 +28,7 @@ import com.liferay.iweb.model.impl.InterestGroupImpl;
 import com.liferay.iweb.model.impl.InterestGroupModelImpl;
 
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.jdbc.MappingSqlQuery;
 import com.liferay.portal.kernel.dao.jdbc.MappingSqlQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.RowMapper;
@@ -65,7 +66,7 @@ import java.util.List;
  *
  */
 public class InterestGroupPersistenceImpl extends BasePersistenceImpl
-	implements InterestGroupPersistence {
+	implements InterestGroupPersistence, InitializingBean {
 	public InterestGroup create(long cid) {
 		InterestGroup interestGroup = new InterestGroupImpl();
 
@@ -810,7 +811,7 @@ public class InterestGroupPersistenceImpl extends BasePersistenceImpl
 		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
 	}
 
-	protected void init() {
+	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
 						"value.object.listener.com.liferay.iweb.model.InterestGroup")));
