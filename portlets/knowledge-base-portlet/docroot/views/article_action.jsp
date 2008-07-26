@@ -33,7 +33,7 @@ boolean managePermissions = false;
 boolean deletePermission = false;
 
 if (article.isTemplate()) {
-	updatePermission = KBPermission.contains(permissionChecker, article.getGroupId(), KnowledgeBaseKeys.MANAGE_TEMPLATES);
+	updatePermission = KBPermission.contains(permissionChecker, plid, KnowledgeBaseKeys.MANAGE_TEMPLATES);
 	managePermissions = updatePermission;
 	deletePermission = updatePermission;
 }
@@ -45,7 +45,7 @@ else {
 %>
 
 <liferay-ui:icon-menu>
-	<c:if test="<%= article.isTemplate() && KBPermission.contains(permissionChecker, portletGroupId, ActionKeys.ADD_ARTICLE) %>">
+	<c:if test="<%= article.isTemplate() && KBPermission.contains(permissionChecker, plid, ActionKeys.ADD_ARTICLE) %>">
 		<portlet:renderURL var="addTemplateBasedArticleURL">
 			<portlet:param name="view" value="edit_article" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />

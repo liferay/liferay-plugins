@@ -213,7 +213,7 @@ for (int i = 0; i < results.size(); i++) {
 
 <liferay-ui:search-iterator searchContainer="<%= searchContainer %>" paginate="true" />
 
-<c:if test='<%= type.equals("all_articles") && KBPermission.contains(permissionChecker, portletGroupId, ActionKeys.SUBSCRIBE) %>'>
+<c:if test='<%= type.equals("all_articles") && KBPermission.contains(permissionChecker, plid, ActionKeys.SUBSCRIBE) %>'>
 	<liferay-ui:icon-list>
 		<c:choose>
 			<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), portletGroupId) %>">

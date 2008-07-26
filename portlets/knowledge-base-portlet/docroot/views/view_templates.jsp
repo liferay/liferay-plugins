@@ -27,7 +27,7 @@
 request.setAttribute("article_iterator.type", "templates");
 %>
 
-<c:if test="<%= KBPermission.contains(permissionChecker, portletGroupId, ActionKeys.ADD_TEMPLATE) %>">
+<c:if test="<%= KBPermission.contains(permissionChecker, plid, KnowledgeBaseKeys.MANAGE_TEMPLATES) %>">
 	<div>
 		<input type="button" value="<liferay-ui:message key="add-template" />" onClick="location.href = '<portlet:renderURL><portlet:param name="view" value="edit_article" /><portlet:param name="template" value="true" /><portlet:param name="redirect" value="<%= currentURL %>"></portlet:param></portlet:renderURL>'" />
 	</div>

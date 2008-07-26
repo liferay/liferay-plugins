@@ -27,6 +27,7 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.service.permission.PortletPermissionUtil;
 
 /**
  * <a href="KBPermission.java.html"><b><i>View Source</i></b></a>
@@ -45,14 +46,11 @@ public class KBPermission {
 	}
 
 	public static boolean contains(
-			PermissionChecker permissionChecker, long groupId, String actionId)
+			PermissionChecker permissionChecker, long plid, String actionId)
 		throws PortalException, SystemException {
 
-		String name = KnowledgeBaseKeys.PORTLET_ID;
-		String primKey = name;
-
-		return permissionChecker.hasPermission(
-			groupId, name, primKey, actionId);
+		return PortletPermissionUtil.contains(
+			permissionChecker, plid, KnowledgeBaseKeys.PORTLET_ID, actionId);
 	}
 
 }
