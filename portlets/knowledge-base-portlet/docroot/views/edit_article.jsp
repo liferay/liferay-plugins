@@ -87,13 +87,13 @@ if (article == null) {
 	}
 </script>
 
-<c:if test="<%= !preview && (article != null)%>">
+<c:if test="<%= article != null %>">
 	<jsp:include page="/views/article_tabs.jsp">
 		<jsp:param name="tabs1" value="edit" />
 	</jsp:include>
 </c:if>
 
-<c:if test="<%= preview && (article != null)%>">
+<c:if test="<%= preview && (article != null) %>">
 
 	<liferay-ui:message key="preview" />:
 

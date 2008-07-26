@@ -37,10 +37,10 @@ import com.liferay.portal.service.permission.PortletPermissionUtil;
 public class KBPermission {
 
 	public static void check(
-			PermissionChecker permissionChecker, long groupId, String actionId)
+			PermissionChecker permissionChecker, long plid, String actionId)
 		throws PortalException, SystemException {
 
-		if (!contains(permissionChecker, groupId, actionId)) {
+		if (!contains(permissionChecker, plid, actionId)) {
 			throw new PrincipalException();
 		}
 	}

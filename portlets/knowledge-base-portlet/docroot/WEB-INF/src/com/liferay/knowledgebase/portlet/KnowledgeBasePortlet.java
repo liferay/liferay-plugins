@@ -137,9 +137,6 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 					if (Validator.isNotNull(saveAndContinueRedirect)) {
 						redirect = saveAndContinueRedirect;
 					}
-//					else if (redirect.endsWith("title=")) {
-//						redirect += article.getTitle();
-//					}
 
 					if (Validator.isNotNull(redirect)) {
 						redirect = HttpUtil.addParameter(
@@ -410,9 +407,6 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 	protected void deleteAttachment(ActionRequest actionRequest)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
 		String attachment = ParamUtil.getString(actionRequest, "fileName");
@@ -423,10 +417,14 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 	protected void deleteArticle(ActionRequest actionRequest) throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		long parentResourcePrimKey = ParamUtil.getLong(
 			actionRequest, "parentResourcePrimKey");
 
-		KBArticleServiceUtil.deleteArticle(parentResourcePrimKey);
+		KBArticleServiceUtil.deleteArticle(
+			themeDisplay.getPlid(), parentResourcePrimKey);
 	}
 
 	protected void getFile(
@@ -542,7 +540,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 		if (resourcePrimKey <= 0) {
 			return KBArticleServiceUtil.addArticle(
-				themeDisplay.getPortletGroupId(), title, content, description,
+				themeDisplay.getPlid(), title, content, description,
 				minorEdit, template, parentResourcePrimKey, tagsEntries, prefs,
 				themeDisplay);
 		}
@@ -558,9 +556,9 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			}
 			else {
 				return KBArticleServiceUtil.updateArticle(
-					resourcePrimKey, version, title, content, description,
-					minorEdit, template, parentResourcePrimKey, tagsEntries,
-					prefs, themeDisplay);
+					themeDisplay.getPlid(), resourcePrimKey, version, title,
+					content, description, minorEdit, template,
+					parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
 			}
 		}
 

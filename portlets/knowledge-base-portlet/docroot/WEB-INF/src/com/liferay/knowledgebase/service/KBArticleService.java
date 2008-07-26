@@ -29,7 +29,7 @@ package com.liferay.knowledgebase.service;
  *
  */
 public interface KBArticleService {
-	public com.liferay.knowledgebase.model.KBArticle addArticle(long groupId,
+	public com.liferay.knowledgebase.model.KBArticle addArticle(long plid,
 		java.lang.String title, java.lang.String content,
 		java.lang.String description, boolean minorEdit, boolean template,
 		long parentResourcePrimKey, java.lang.String[] tagsEntries,
@@ -43,7 +43,7 @@ public interface KBArticleService {
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public void deleteArticle(long resourcePrimKey)
+	public void deleteArticle(long plid, long resourcePrimKey)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
@@ -84,7 +84,7 @@ public interface KBArticleService {
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public void subscribe(long groupId)
+	public void subscribe(long plid)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
@@ -92,7 +92,7 @@ public interface KBArticleService {
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public void unsubscribe(long groupId)
+	public void unsubscribe(long plid)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
@@ -100,7 +100,7 @@ public interface KBArticleService {
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public com.liferay.knowledgebase.model.KBArticle updateArticle(
+	public com.liferay.knowledgebase.model.KBArticle updateArticle(long plid,
 		long resourcePrimKey, double version, java.lang.String title,
 		java.lang.String content, java.lang.String description,
 		boolean minorEdit, boolean template, long parentResourcePrimKey,

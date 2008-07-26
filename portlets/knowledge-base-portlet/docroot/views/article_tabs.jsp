@@ -27,6 +27,12 @@
 <%
 KBArticle article = (KBArticle) request.getAttribute(KnowledgeBaseKeys.ARTICLE);
 
+String tabNames = "attachments,history";
+
+if (KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE)) {
+	tabNames = "edit," + tabNames;
+}
+
 PortletURL editURL = renderResponse.createRenderURL();
 
 editURL.setParameter("view", "edit_article");
@@ -41,6 +47,16 @@ PortletURL attachmentsURL = renderResponse.createRenderURL();
 
 attachmentsURL.setParameter("view", "view_article_attachments");
 attachmentsURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
+
+String url0 = editURL.toString();
+String url1 = attachmentsURL.toString();
+String url2 = viewArticleHistoryURL.toString();
+
+if (!KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE)) {
+	url0 = url1;
+	url1 = url2;
+}
+
 %>
 
 <h1 class="article-title">
@@ -48,8 +64,8 @@ attachmentsURL.setParameter("resourcePrimKey", String.valueOf(article.getResourc
 </h1>
 
 <liferay-ui:tabs
-	names="edit,history,attachments"
-	url0="<%= editURL.toString() %>"
-	url1="<%= viewArticleHistoryURL.toString() %>"
-	url2="<%= attachmentsURL.toString() %>"
-/>
+	names="<%= tabNames %>"
+	url0="<%= url0 %>"
+	url1="<%= url1 %>"
+	url2="<%= url2 %>"
+	/>

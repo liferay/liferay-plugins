@@ -99,7 +99,7 @@ for (int i = 0; i < results.size(); i++) {
 	<jsp:param name="tabs1" value="attachments" />
 </jsp:include>
 
-<c:if test="<%= KBPermission.contains(permissionChecker, plid, ActionKeys.ADD_ATTACHMENT) %>">
+<c:if test="<%= KBArticlePermission.contains(permissionChecker, article.getResourcePrimKey(), ActionKeys.UPDATE) %>">
 	<div>
 		<input type="button" value="<liferay-ui:message key="add-attachments" />" onClick="location.href = '<portlet:renderURL><portlet:param name="view" value="edit_article_attachment" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" />
 	</div>
