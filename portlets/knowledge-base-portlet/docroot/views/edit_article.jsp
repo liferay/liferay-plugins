@@ -87,9 +87,11 @@ if (article == null) {
 	}
 </script>
 
-<jsp:include page="/views/article_tabs.jsp">
-	<jsp:param name="tabs1" value="edit" />
-</jsp:include>
+<c:if test="<%= !preview && (article != null)%>">
+	<jsp:include page="/views/article_tabs.jsp">
+		<jsp:param name="tabs1" value="edit" />
+	</jsp:include>
+</c:if>
 
 <c:if test="<%= preview && (article != null)%>">
 

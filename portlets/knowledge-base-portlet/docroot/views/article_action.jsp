@@ -27,6 +27,21 @@
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
 KBArticle article = (KBArticle)row.getObject();
+
+boolean updatePermission = false;
+boolean managePermissions = false;
+boolean deletePermission = false;
+
+if (article.isTemplate()) {
+	updatePermission = KBPermission.contains(permissionChecker, article.getGroupId(), KBConstants.MANAGE_TEMPLATES);
+	managePermissions = updatePermission;
+	deletePermission = updatePermission;
+}
+else {
+	updatePermission = KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE);
+	managePermissions = KBArticlePermission.contains(permissionChecker, article, ActionKeys.PERMISSIONS);
+	deletePermission = KBArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE); 
+}
 %>
 
 <liferay-ui:icon-menu>
@@ -40,7 +55,7 @@ KBArticle article = (KBArticle)row.getObject();
 		<liferay-ui:icon image="add" message="add-article" url="<%= addTemplateBasedArticleURL.toString() %>" />
 	</c:if>
 
-	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
+	<c:if test="<%= updatePermission %>">
 		<portlet:renderURL var="editURL">
 			<portlet:param name="view" value="edit_article" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
@@ -49,7 +64,7 @@ KBArticle article = (KBArticle)row.getObject();
 		<liferay-ui:icon image="edit" url="<%= editURL.toString() %>" />
 	</c:if>
 
-	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.PERMISSIONS) %>">
+	<c:if test="<%= managePermissions %>">
 		<liferay-security:permissionsURL
 			modelResource="<%= KBArticle.class.getName() %>"
 			modelResourceDescription="<%= article.getTitle() %>"
@@ -83,7 +98,7 @@ KBArticle article = (KBArticle)row.getObject();
 		</c:choose>
 	</c:if>
 
-	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) %>">
+	<c:if test="<%= deletePermission %>">
 		<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="deleteURL">
 			<portlet:param name="actionName" value="<%= Constants.DELETE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />

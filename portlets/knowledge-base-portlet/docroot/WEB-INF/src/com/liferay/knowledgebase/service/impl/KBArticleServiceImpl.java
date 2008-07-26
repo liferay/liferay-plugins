@@ -26,6 +26,7 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.base.KBArticleServiceBaseImpl;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.service.permission.KBPermission;
+import com.liferay.knowledgebase.util.KBConstants;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.util.ObjectValuePair;
@@ -53,8 +54,14 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
-		KBPermission.check(
-			getPermissionChecker(), groupId, ActionKeys.ADD_ARTICLE);
+		if (template) {
+			KBPermission.check(
+				getPermissionChecker(), groupId, KBConstants.MANAGE_TEMPLATES);
+		}
+		else {
+			KBPermission.check(
+				getPermissionChecker(), groupId, ActionKeys.ADD_ARTICLE);
+		}
 
 		return kbArticleLocalService.addArticle(
 			getUserId(), groupId, title, content, description, minorEdit,
@@ -77,8 +84,17 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public void deleteArticle(long resourcePrimKey)
 		throws PortalException, SystemException {
 
-		KBArticlePermission.check(
-			getPermissionChecker(), resourcePrimKey, ActionKeys.DELETE);
+		KBArticle article = kbArticleLocalService.getArticle(resourcePrimKey);
+		
+		if (article.isTemplate()) {
+			KBPermission.check(
+				getPermissionChecker(), article.getGroupId(),
+				KBConstants.MANAGE_TEMPLATES);
+		}
+		else {
+			KBArticlePermission.check(
+				getPermissionChecker(), resourcePrimKey, ActionKeys.DELETE);
+		}
 
 		kbArticleLocalService.deleteArticle(resourcePrimKey);
 	}
@@ -175,8 +191,6 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public void subscribeArticle(long resourcePrimKey)
 		throws PortalException, SystemException {
 
-		KBArticle article = kbArticleLocalService.getArticle(resourcePrimKey);
-
 		KBArticlePermission.check(
 			getPermissionChecker(), resourcePrimKey, ActionKeys.SUBSCRIBE);
 
@@ -195,8 +209,6 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public void unsubscribeArticle(long resourcePrimKey)
 		throws PortalException, SystemException {
 
-		KBArticle article = kbArticleLocalService.getArticle(resourcePrimKey);
-
 		KBArticlePermission.check(
 			getPermissionChecker(), resourcePrimKey, ActionKeys.SUBSCRIBE);
 
@@ -210,8 +222,17 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			PortletPreferences prefs, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
-		KBArticlePermission.check(
-			getPermissionChecker(), resourcePrimKey, ActionKeys.UPDATE);
+		KBArticle article = kbArticleLocalService.getArticle(resourcePrimKey);
+
+		if (template) {
+			KBPermission.check(
+				getPermissionChecker(), article.getGroupId(),
+				KBConstants.MANAGE_TEMPLATES);
+		}
+		else {
+			KBArticlePermission.check(
+				getPermissionChecker(), resourcePrimKey, ActionKeys.UPDATE);
+		}
 
 		return kbArticleLocalService.updateArticle(
 			getUserId(), resourcePrimKey, version, title, content, description,

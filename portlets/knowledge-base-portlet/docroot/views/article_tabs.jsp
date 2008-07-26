@@ -48,7 +48,7 @@ attachmentsURL.setParameter("resourcePrimKey", String.valueOf(article.getResourc
 </h1>
 
 <liferay-ui:tabs
-	names="edit, history, attachments"
+	names="edit,history,attachments"
 	url0="<%= editURL.toString() %>"
 	url1="<%= viewArticleHistoryURL.toString() %>"
 	url2="<%= attachmentsURL.toString() %>"
