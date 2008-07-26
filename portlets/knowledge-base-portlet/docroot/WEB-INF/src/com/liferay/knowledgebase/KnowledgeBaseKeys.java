@@ -35,4 +35,6 @@ public class KnowledgeBaseKeys {
 
 	public static final String ARTICLE = "Article";
 
+	public static final String MANAGE_TEMPLATES = "MANAGE_TEMPLATES";
+
 }

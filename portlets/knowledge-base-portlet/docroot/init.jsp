@@ -44,7 +44,6 @@
 <%@ page import="com.liferay.knowledgebase.service.KBArticleResourceLocalServiceUtil" %>
 <%@ page import="com.liferay.knowledgebase.service.permission.KBArticlePermission" %>
 <%@ page import="com.liferay.knowledgebase.service.permission.KBPermission" %>
-<%@ page import="com.liferay.knowledgebase.util.KBConstants" %>
 <%@ page import="com.liferay.knowledgebase.util.comparator.ArticleVersionComparator" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.RowChecker" %>

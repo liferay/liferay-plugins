@@ -22,11 +22,11 @@
 
 package com.liferay.knowledgebase.service.impl;
 
+import com.liferay.knowledgebase.KnowledgeBaseKeys;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.base.KBArticleServiceBaseImpl;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.service.permission.KBPermission;
-import com.liferay.knowledgebase.util.KBConstants;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.util.ObjectValuePair;
@@ -56,7 +56,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		if (template) {
 			KBPermission.check(
-				getPermissionChecker(), groupId, KBConstants.MANAGE_TEMPLATES);
+				getPermissionChecker(), groupId,
+				KnowledgeBaseKeys.MANAGE_TEMPLATES);
 		}
 		else {
 			KBPermission.check(
@@ -85,11 +86,11 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		KBArticle article = kbArticleLocalService.getArticle(resourcePrimKey);
-		
+
 		if (article.isTemplate()) {
 			KBPermission.check(
 				getPermissionChecker(), article.getGroupId(),
-				KBConstants.MANAGE_TEMPLATES);
+				KnowledgeBaseKeys.MANAGE_TEMPLATES);
 		}
 		else {
 			KBArticlePermission.check(
@@ -227,7 +228,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		if (template) {
 			KBPermission.check(
 				getPermissionChecker(), article.getGroupId(),
-				KBConstants.MANAGE_TEMPLATES);
+				KnowledgeBaseKeys.MANAGE_TEMPLATES);
 		}
 		else {
 			KBArticlePermission.check(

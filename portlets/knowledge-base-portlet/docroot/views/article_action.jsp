@@ -33,14 +33,14 @@ boolean managePermissions = false;
 boolean deletePermission = false;
 
 if (article.isTemplate()) {
-	updatePermission = KBPermission.contains(permissionChecker, article.getGroupId(), KBConstants.MANAGE_TEMPLATES);
+	updatePermission = KBPermission.contains(permissionChecker, article.getGroupId(), KnowledgeBaseKeys.MANAGE_TEMPLATES);
 	managePermissions = updatePermission;
 	deletePermission = updatePermission;
 }
 else {
 	updatePermission = KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE);
 	managePermissions = KBArticlePermission.contains(permissionChecker, article, ActionKeys.PERMISSIONS);
-	deletePermission = KBArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE); 
+	deletePermission = KBArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE);
 }
 %>
 
