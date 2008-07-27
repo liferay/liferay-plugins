@@ -20,7 +20,10 @@
     <bean id="search-engine-util" class="com.liferay.portal.search.solr.SolrSearchEngineUtil" lazy-init="false">
     	<constructor-arg ref="search-engine" />
     	<constructor-arg>
-    		<bean class="com.liferay.portal.search.solr.messaging.SolrMessageListener" />
+    		<bean class="com.liferay.portal.search.solr.messaging.SolrReaderMessageListener" />
+    	</constructor-arg>
+    	<constructor-arg>
+    		<bean class="com.liferay.portal.search.solr.messaging.SolrWriterMessageListener" />
     	</constructor-arg>
     	<constructor-arg value="true" />
     </bean>

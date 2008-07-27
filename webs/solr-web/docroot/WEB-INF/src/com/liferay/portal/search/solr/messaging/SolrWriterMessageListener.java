@@ -22,18 +22,13 @@
 
 package com.liferay.portal.search.solr.messaging;
 
-import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.search.Document;
-import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.messaging.SearchRequest;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.solr.SolrSearchEngineUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import org.json.JSONObject;
 
 /**
  * <a href="SolrMessageListener.java.html"><b><i>View Source</i></b></a>
@@ -41,9 +36,9 @@ import org.json.JSONObject;
  * @author Bruno Farache
  *
  */
-public class SolrMessageListener implements MessageListener {
+public class SolrWriterMessageListener implements MessageListener {
 
-	public void receive(String message) {
+	public void receive(Object message) {
 		try {
 			doReceive(message);
 		}
@@ -52,18 +47,12 @@ public class SolrMessageListener implements MessageListener {
 		}
 	}
 
-	public void doReceive(String message) throws Exception {
-		JSONObject jsonObj = new JSONObject(message);
+	public void receive(String message) {
+		throw new UnsupportedOperationException();
+	}
 
-		String responseDestination = jsonObj.optString(
-			"lfrResponseDestination");
-		String responseId = jsonObj.optString("lfrResponseId");
-
-		jsonObj.remove("lfrResponseDestination");
-		jsonObj.remove("lfrResponseId");
-
-		SearchRequest searchRequest =
-			(SearchRequest)SolrSearchEngineUtil.deserialize(message);
+	public void doReceive(Object message) throws Exception {
+		SearchRequest searchRequest = (SearchRequest)message;
 
 		String command = searchRequest.getCommand();
 
@@ -80,55 +69,12 @@ public class SolrMessageListener implements MessageListener {
 		else if (command.equals(SearchRequest.COMMAND_DELETE_PORTLET_DOCS)) {
 			SolrSearchEngineUtil.deletePortletDocuments(companyId, id);
 		}
-		else if (command.equals(SearchRequest.COMMAND_INDEX_ONLY) &&
-				 Validator.isNotNull(responseDestination) &&
-				 Validator.isNotNull(responseId)) {
-
-			doCommandIndexOnly(responseDestination, responseId);
-		}
-		else if (command.equals(SearchRequest.COMMAND_SEARCH) &&
-				 Validator.isNotNull(responseDestination) &&
-				 Validator.isNotNull(responseId)) {
-
-			doCommandSearch(responseDestination, responseId, searchRequest);
-		}
 		else if (command.equals(SearchRequest.COMMAND_UPDATE)) {
 			SolrSearchEngineUtil.updateDocument(companyId, id, doc);
 		}
 	}
 
-	protected void doCommandIndexOnly(
-			String responseDestination, String responseId)
-		throws Exception {
-
-		boolean indexOnly = SolrSearchEngineUtil.isIndexReadOnly();
-
-		JSONObject jsonObj = new JSONObject();
-
-		jsonObj.put("lfrResponseId", responseId);
-		jsonObj.put("indexOnly", indexOnly);
-
-		MessageBusUtil.sendMessage(responseDestination, jsonObj.toString());
-	}
-
-	protected void doCommandSearch(
-			String responseDestination, String responseId,
-			SearchRequest searchRequest)
-		throws Exception {
-
-		Hits hits = SolrSearchEngineUtil.search(
-			searchRequest.getCompanyId(), searchRequest.getQuery(),
-			searchRequest.getSort(), searchRequest.getStart(),
-			searchRequest.getEnd());
-
-		JSONObject jsonObj = new JSONObject();
-
-		jsonObj.put("lfrResponseId", responseId);
-		jsonObj.put("hits", SolrSearchEngineUtil.serialize(hits));
-
-		MessageBusUtil.sendMessage(responseDestination, jsonObj.toString());
-	}
-
-	private static Log _log = LogFactory.getLog(SolrMessageListener.class);
+	private static Log _log =
+		LogFactory.getLog(SolrWriterMessageListener.class);
 
 }

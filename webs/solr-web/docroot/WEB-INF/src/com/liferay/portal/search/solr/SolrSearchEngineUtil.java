@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.messaging.ParallelDestination;
+import com.liferay.portal.kernel.messaging.SerialDestination;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.HitsImpl;
@@ -35,10 +36,6 @@ import com.liferay.portal.kernel.search.Sort;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import org.jabsorb.JSONSerializer;
-import org.jabsorb.serializer.MarshallException;
-import org.jabsorb.serializer.UnmarshallException;
 
 /**
  * <a href="SolrSearchEngineUtil.java.html"><b><i>View Source</i></b></a>
@@ -49,27 +46,35 @@ import org.jabsorb.serializer.UnmarshallException;
 public class SolrSearchEngineUtil {
 
 	public SolrSearchEngineUtil(
-			SearchEngine engine, MessageListener messageListener,
+			SearchEngine engine, MessageListener readerMessageListener,
+			MessageListener writerMessageListener,
 			boolean removeExistingDestination)
 		throws Exception {
 
 		try {
 			_engine = engine;
 
-			_serializer = new JSONSerializer();
-
-			_serializer.registerDefaultSerializers();
-
 			if (removeExistingDestination) {
-				MessageBusUtil.removeDestination(DestinationNames.SEARCH);
+				MessageBusUtil.removeDestination(
+					DestinationNames.SEARCH_READER);
+
+				MessageBusUtil.removeDestination(
+					DestinationNames.SEARCH_WRITER);
 			}
 
-			Destination destination = new ParallelDestination(
-				DestinationNames.SEARCH);
+			Destination searchReadDestination = new ParallelDestination(
+				DestinationNames.SEARCH_READER);
 
-			MessageBusUtil.addDestination(destination);
+			MessageBusUtil.addDestination(searchReadDestination);
 
-			destination.register(messageListener);
+			searchReadDestination.register(readerMessageListener);
+
+			Destination searchWriteDestination = new SerialDestination(
+				DestinationNames.SEARCH_WRITER);
+
+			MessageBusUtil.addDestination(searchWriteDestination);
+
+			searchWriteDestination.register(writerMessageListener);
 		}
 		catch (Exception e) {
 			_log.error("Unable to initialize search engine.", e);
@@ -109,17 +114,6 @@ public class SolrSearchEngineUtil {
 		}
 	}
 
-	public static Object deserialize(String json) {
-		try {
-			return _serializer.fromJSON(json);
-		}
-		catch (UnmarshallException ue) {
-			 _log.error(ue, ue);
-
-			throw new IllegalStateException("Unable to deserialize oject", ue);
-		}
-	}
-
 	public static boolean isIndexReadOnly() {
 		return _engine.isIndexReadOnly();
 	}
@@ -153,17 +147,6 @@ public class SolrSearchEngineUtil {
 		}
 	}
 
-	public static String serialize(Object obj) {
-		try {
-			return _serializer.toJSON(obj);
-		}
-		catch (MarshallException me) {
-			_log.error(me, me);
-
-			throw new IllegalStateException("Unable to serialize oject", me);
-		}
-	}
-
 	public static void updateDocument(
 			long companyId, String uid, Document doc) {
 
@@ -178,6 +161,5 @@ public class SolrSearchEngineUtil {
 	private static Log _log = LogFactory.getLog(SolrSearchEngineUtil.class);
 
 	private static SearchEngine _engine;
-	private static JSONSerializer _serializer;
 
 }
