@@ -15,6 +15,9 @@ body {
 	height: 285px;
 	margin-left: 1px;
 }
+.ie #banner {
+	margin-left: 0px;
+}
 #wrapper {
 	background: transparent;
 }
@@ -119,4 +122,7 @@ a {
 	padding: 5px 0pt;
 	text-align: center;
 	width: 1000px;
+}
+.ie #footer {
+	margin-left: 130px;
 }
