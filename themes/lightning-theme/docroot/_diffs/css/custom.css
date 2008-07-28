@@ -4,6 +4,9 @@
 	margin-left: 146px;
 	width: 960px;
 }
+.ie #banner {
+	margin-left: 150px;
+}
 #navigation {
 	background: black;
 	border: none;
