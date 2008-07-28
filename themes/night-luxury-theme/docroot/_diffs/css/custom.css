@@ -104,6 +104,9 @@ a {
 	text-align:center;
 	width:960px;
 }
+.ie #footer {
+	margin-left: 150px;
+}
 .js #navigation .enter-page {
 	background-color:transparent;
 	padding:0px;
