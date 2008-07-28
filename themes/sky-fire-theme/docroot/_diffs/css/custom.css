@@ -23,6 +23,9 @@ body {
 	height: 285px;
 	margin-left: 1px;
 }
+.ie #banner {
+	margin-left: 0px;
+}
 #wrapper {
 	background: transparent;
 }
