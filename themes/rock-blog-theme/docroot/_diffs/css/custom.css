@@ -10,7 +10,7 @@ body {
 	background: transparent url(../images/custom/bckmenu.gif) no-repeat scroll 0% 0%;
 	border: none;
 	height: 34px;
-	width: 57%;
+	width: 80%;
 }
 #navigation li.selected a, #navigation li a:hover {
 	background: transparent url(../images/custom/bckmenuli.gif) repeat-x scroll 0% 0%;
@@ -34,7 +34,7 @@ body {
 	background: no-repeat url(../images/custom/bckheader.gif);
 	font-family: Verdana;
 	height: 140px;
-	margin-left: 270px;
+	margin-left:124px;
 }
 #wrapper {
 	background: none;
@@ -44,12 +44,16 @@ body {
 	margin-top: 25px;
 }
 .js .interactive-mode {
-	right: 22%;
+	right:18%;
+	background:transparent url(../images/custom/bckmenu.gif) no-repeat center;
+	height:34px;
+	top:140px;
 }
 .js #add-page {
-	background: transparent none repeat scroll 0% 0%;
-	border: medium none;
-	right: -1%;
+	background:transparent url(../images/custom/bckmenu.gif) no-repeat scroll right center;
+	border:medium none;
+	height:34px;
+	right: 0%;
 	top: 0px;
 }
 .js #add-page a span {
@@ -61,7 +65,7 @@ body {
 }
 #content-wrapper {
 	background: #423F3A;
-	width: 57%;
+	width:1000px;
 }
 .portlet {
 	background: transparent;
@@ -99,4 +103,12 @@ a {
 .js #navigation .enter-page {
 	background-color:transparent;
 	padding:0px;
+}
+.js .interactive-mode h2 {
+	background: transparent;
+}
+.js .interactive-mode h2 span {
+	background: transparent;
+	border: none;
+	color: black;
 }
