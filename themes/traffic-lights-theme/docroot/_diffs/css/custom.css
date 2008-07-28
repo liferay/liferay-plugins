@@ -2,24 +2,25 @@ html {
 	overflow-y: scroll;
 }
 body {
-	background: #929292 url(../images/custom/content.png) repeat-y center;
+	background: black;
 	color: white;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 10px;
 	margin: 10px auto 20px auto;
-	width: 805px;
 }
 #banner {
 	background: #929292 url(../images/custom/header.jpg) top no-repeat;
 	border-top: 20px solid #929292;
 	height: 239px;
 	margin-top: -20px;
+	width: 960px;
+	margin-left:146px;
 }
 #navigation {
 	background: none;
 	border: none;
 	margin: -38pt auto 20px;
-	width: 99.7%;
+	width:67.7%;
 }
 #navigation li {
 	border-bottom: none;
@@ -41,9 +42,13 @@ body {
 	top: -6px;
 }
 #content-wrapper {
-	background: black;
+	background: #929292;
 	margin: 29px auto;
-	width: 95%;
+	width: 960px;
+}
+#wrapper {
+	background: transparent;
+	width:100%;
 }
 .portlet {
 	background: transparent;
@@ -53,7 +58,7 @@ body {
 	background: transparent;
 	border: none;
 	color: #D51A1A;
-	font-size: 22px;
+	font-size:16px;
 	font-weight: bold;
 }
 a {
@@ -110,4 +115,13 @@ a {
 }
 .js #navigation .enter-page .save-page {
 	border: none;
+}
+.portlet-calendar .calendar-day .day-number {
+	color:black;
+}
+.lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
+	color: red;
+}
+.portlet-section-body td {
+	color: black;
 }
