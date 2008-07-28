@@ -16,6 +16,9 @@ body {
 	width: 960px;
 	margin-left:146px;
 }
+.ie #banner {
+	margin-left: 150px;
+}
 #navigation {
 	background: none;
 	border: none;
