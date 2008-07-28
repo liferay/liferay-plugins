@@ -89,3 +89,12 @@ body {
 .uni-form {
 	background:black none repeat scroll 0% 0%;
 }
+.portlet-calendar .calendar-day .day-number {
+	color:black;
+}
+.lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
+	color: grey;
+}
+.portlet-section-body td {
+	color: black;
+}
