@@ -13,11 +13,12 @@ body {
 	background: center top no-repeat url(../images/custom/bckwrapper.gif);
 }
 #banner {
-	background: transparent url(../images/custom/bckheader.jpg) no-repeat scroll center center;
+	background: black url(../images/custom/bckheader.jpg) no-repeat scroll center center;
 	font-family: Verdana;
 	height: 308px;
-	margin-left: 2px;
-	margin-top: 0px;
+	margin-left:190px;
+	margin-top:0px;
+	width:894px;
 }
 #navigation {
 	background: none;
@@ -62,9 +63,9 @@ body {
 #content-wrapper {
 	background:black none repeat scroll 0% 0%;
 	border:4px solid black;
-	margin:-4pt auto -4pt 258px;
+	margin:-4pt auto -4pt 190px;
 	min-height:600px;
-	width:733px;
+	width:886px;
 }
 .js .interactive-mode {
 	right: 21%;
@@ -94,10 +95,10 @@ body {
 	font-family: Verdana;
 	font-size: 10px;
 	height: 12px;
-	margin-left: 258px;
+	margin-left: 190px;
 	padding: 10px 0pt;
 	text-align: center;
-	width: 741px;
+	width:894px;
 }
 .js #navigation .enter-page {
 	background-color: transparent;
@@ -131,4 +132,16 @@ body {
 }
 .ui-dialog {
 	background-color:black;
+}
+a {
+	font-size: 12px;
+}
+.portlet-section-body td {
+	color: black;
+}
+.lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
+	color: #C49553;
+}
+.portlet-calendar .calendar-day .day-number {
+	background:black none repeat scroll 0% 0%;
 }
