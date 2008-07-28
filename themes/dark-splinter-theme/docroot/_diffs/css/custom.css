@@ -1,0 +1,119 @@
+#wrapper {
+	background: transparent;
+}
+#navigation {
+	background: transparent;
+	background-color: #2F1C07;
+	border: none;
+	margin: 27px auto 20px;
+	padding: 10px 0;
+	width: 90%;
+}
+#navigation li {
+	border: none;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+	color: #FFFF99;
+}
+#navigation li a:hover {
+	text-decoration: underline;
+}
+#navigation li.selected a {
+	background-color: #50300C;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+#banner {
+	background: transparent;
+}
+body {
+	background: #000000 url(../images/custom/bg.jpg) repeat-x scroll 50% 0;
+	color: #FFFFFF;
+	font-family: Tahoma,Arial,Helvetica,sans-serif;
+	font-size: 76%;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+#navigation li a {
+	color: #FFFF99;
+	font-size: 1.2em;
+	font-weight: bold;
+	padding: 10px 33px;
+}
+#navigation ul {
+	width: 98%;
+}
+.portlet {
+	background: transparent;
+	border: none;
+}
+.portlet-topper {
+	background: transparent;
+	border: none;
+	font-size: 18px;
+}
+a {
+	font-size: 12px;
+}
+#content-wrapper {
+	background: black;
+	margin: 40px auto;
+}
+#footer {
+	background-color: #2F1C07;
+	color: #ACA47D;
+	margin: 0 auto;
+	padding: 30px;
+	width: 1078px;
+}
+.js #add-page {
+	background: transparent none repeat scroll 0 0;
+	border: medium none;
+	right: 1%;
+	top: 14px;
+}
+.js .interactive-mode {
+	top: 40px;
+}
+#banner .logo a {
+	margin-top: 18px;
+}
+.ui-tabs {
+	border-bottom: medium none;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: transparent;
+	color: #FFFF99;
+}
+.ui-tabs li a, .tabs li span {
+	background: transparent none repeat scroll 0 0;
+	border-right: medium none;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color: #50300C;
+}
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background-color: #50300C;
+	border: medium none;
+	color: #FFFF99;
+	font-weight: bold;
+}
+.taglib-calendar tr th {
+	color: black;
+}
+.portlet-calendar .calendar-day .day-number {
+	color: black;
+}
+.portlet-section-body td {
+	color: black;
+}
+.ui-dialog {
+	background-color: black;
+}
+.uni-form {
+	background: black;
+}
