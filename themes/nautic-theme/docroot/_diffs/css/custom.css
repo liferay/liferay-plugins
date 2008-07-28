@@ -3,8 +3,18 @@ body {
 	color: #9acff8;
 	font-family: Arial;
 	font-size: 13px;
-	margin: 0;
-	padding: 0;
+}
+.ie body {
+	background: #7b7b7b;
+}
+.ie #wrapper {
+	width: 100%;
+}
+.ie #banner {
+	margin-left: 155px;
+}
+.ie #content-wrapper {
+	margin-left: 155px;
 }
 #wrapper {
 	background: transparent url(../images/custom/bckbodytop.gif) no-repeat scroll center top;
@@ -15,6 +25,7 @@ body {
 	margin-left: 152px;
 	width: 950px;
 }
+
 #navigation {
 	background: none;
 	border: none;
@@ -94,6 +105,9 @@ a {
 	position: relative;
 	text-align: center;
 	width: 950px;
+}
+.ie #footer {
+	margin-left:155px;
 }
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
 	background-color: transparent;
