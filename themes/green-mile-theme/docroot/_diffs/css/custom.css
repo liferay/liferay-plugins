@@ -1,0 +1,113 @@
+body {
+	background: #000;
+	border: 1px solid #666;
+	color: white;
+	font-family: "Trebuchet MS", Arial;
+	font-size: 0.8em;
+	line-height: 20px;
+	margin: 0;
+	padding: 0;
+}
+#wrapper {
+	background: transparent;
+}
+#banner {
+	background: #14A500 url(../images/custom/head_bckg.jpg) no-repeat top left;
+	height: 218px;
+	margin-top: 87px;
+}
+#navigation {
+	background: #000000 url(../images/custom/menu_bckg.gif) repeat-x scroll 0 0;
+	border: none;
+	height: 87px;
+	margin-top: -305px;
+}
+#navigation li {
+	border: none;
+	margin: 27px 0 0 -1px;
+}
+#navigation li a {
+	border-right: 1px solid black;
+	font-size: 13px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+	color: #F6FF00;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+#content-wrapper {
+	background: #1E1E1E;
+	margin: 220px auto;
+	width: 100%;
+}
+.portlet {
+	background: transparent;
+	border: none;
+}
+.portlet-topper {
+	background: transparent;
+	border: none;
+	color: #6BC22A;
+	font-size: 16px;
+}
+a {
+	font-size: 12px;
+}
+.js #add-page {
+	background: transparent none repeat scroll 0 0;
+	border: medium none;
+	top: 27px;
+}
+.js .interactive-mode {
+	top: 105px;
+}
+.ui-tabs {
+	border-bottom: medium none;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color: transparent;
+}
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: transparent;
+	border: none;
+	color: yellow;
+	font-weight: bold;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: transparent;
+	color: yellow;
+}
+.ui-tabs li a, .tabs li span {
+	background: transparent;
+	border-right: none;
+}
+#footer {
+	background: #000000 url(../images/custom/footer_bckg.gif) repeat-x scroll 0 0;
+	clear: both;
+	height: 57px;
+	margin-top: -220px;
+}
+.portlet-calendar .calendar-day .day-number {
+	color: black;
+}
+.portlet-section-body td {
+	color: black;
+}
+.lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
+	color: #6BC22A;
+}
+.uni-form {
+	background: black;
+}
+.ui-dialog {
+	background-color: black;
+}
+.js #navigation .enter-page {
+	background-color: transparent;
+	padding: 0;
+}
