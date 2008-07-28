@@ -1,14 +1,15 @@
 #banner {
-	background: transparent url(../images/custom/header.jpg) no-repeat center;
+	background: black url(../images/custom/header.jpg) no-repeat center;
 	height: 230px;
-	margin-left: 1px;
+	margin-left: 146px;
+	width: 960px;
 }
 #navigation {
 	background: black;
 	border: none;
 	height: 80px;
 	margin: 0pt auto 20px;
-	width: 870px;
+	width:960px;
 }
 #navigation li {
 	border: none;
@@ -24,6 +25,8 @@ body {
 }
 #content-wrapper {
 	background: black;
+	width:960px;
+	margin: -20px auto;
 }
 .portlet {
 	background: transparent;
@@ -56,10 +59,6 @@ a {
 	background: transparent none repeat scroll 0% 0%;
 	border: medium none;
 	top: 18px;
-}
-#content-wrapper {
-	margin: -20px auto;
-	width: 870px;
 }
 #navigation ul {
 	width: 84%;
@@ -97,17 +96,21 @@ a {
 	border-bottom: medium none;
 }
 #footer {
-	background:transparent url(../images/custom/footer.png) no-repeat scroll center bottom;
+	background:transparent url(../images/custom/footer.png) repeat scroll center bottom;
 	color:#2A2557;
 	font-size:9px;
 	height:40px;
-	padding:0pt 40px;
+	margin-left:146px;
+	padding:0 40px;
 	text-align:center;
-	margin-left: 1px;
+	width:880px;
 }
-#footer-left {
-	float:left;
+.portlet-calendar .calendar-day .day-number {
+	color:black;
 }
-#footer-right {
-	float:right;
+.lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
+	color: #2A2557;
+}
+.portlet-section-body td {
+	color: black;
 }
