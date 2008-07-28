@@ -9,7 +9,7 @@
 		</id>
 		<property name="presenceStatusMessage" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="com.liferay.ruon.model.impl.PresenceUserImpl" table="Ruon_PresenceUser">
+	<class name="com.liferay.ruon.model.impl.UserPresenceImpl" table="Ruon_UserPresence">
 		<cache usage="read-write" />
 		<id name="presenceUserId" type="long">
 			<generator class="assigned" />

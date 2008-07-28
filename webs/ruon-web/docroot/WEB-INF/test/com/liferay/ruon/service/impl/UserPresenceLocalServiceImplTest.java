@@ -39,30 +39,60 @@
 
 package com.liferay.ruon.service.impl;
 
-import com.liferay.ruon.model.PresenceUser;
-import com.liferay.ruon.service.base.PresenceUserLocalServiceBaseImpl;
-import com.liferay.ruon.util.RUONException;
+import com.liferay.ruon.model.UserPresence;
+import com.liferay.ruon.service.BaseRUONTestCase;
+import com.liferay.ruon.service.UserPresenceLocalServiceUtil;
+import com.liferay.ruon.util.PresenceStatusConstants;
 
 import java.util.List;
 
 /**
- * <a href="PresenceUserLocalServiceImpl.java.html">
- * <b><i>View Source</i></b></a>
+ * <a href="UserPresenceLocalServiceImplTest.java.html"><b><i>View Source</i>
+ * </b></a>
  *
  * @author Murali Krishna Reddy
- * @author Brian Wing Shun Chan
  *
  */
-public class PresenceUserLocalServiceImpl
-		extends PresenceUserLocalServiceBaseImpl {
+public class UserPresenceLocalServiceImplTest extends BaseRUONTestCase {
 
-	public List<PresenceUser> getAllUsers() throws RUONException {
-		try {
-			return presenceUserPersistence.findAll();
+	public void setUp() throws Exception {
+		super.setUp();
+	}
+
+	public void tearDown() throws Exception {
+		super.tearDown();
+	}
+
+	public void testGetListOfAllUsers() throws Exception {
+		List<UserPresence> puserList =
+				UserPresenceLocalServiceUtil.getAllUsers();
+		boolean hasUser = false;
+		for (UserPresence puser : puserList) {
+			if (puser.getPresenceUserId() == userId) hasUser = true;
 		}
-		catch (Exception e) {
-			throw new RUONException(e);
-		}
+		assertEquals(true, hasUser);
+	}
+
+	public void testGetPresenceStatusOfUser() throws Exception {
+		String pUserStatus =
+				UserPresenceLocalServiceUtil.getPresenceStatusOfUser(userId);
+		assertEquals(true, pUserStatus.contains("offline"));
+	}
+
+	public void testMakeUserOnline() throws Exception {
+		UserPresenceLocalServiceUtil.setPresenceStatusOfUser(
+				userId, PresenceStatusConstants.STATUS_ONLINE);
+		UserPresence pUser =
+				UserPresenceLocalServiceUtil.getUserPresence(userId);
+		assertEquals(pUser.getPresenceStatus(), 1);
+	}
+
+	public void testMakeUserOffline() throws Exception {
+		UserPresenceLocalServiceUtil.setPresenceStatusOfUser(
+				userId, PresenceStatusConstants.STATUS_OFFLINE);
+		UserPresence pUser =
+				UserPresenceLocalServiceUtil.getUserPresence(userId);
+		assertEquals(pUser.getPresenceStatus(), 2);
 	}
 
 }

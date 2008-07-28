@@ -5,7 +5,7 @@
 		<field name="presenceStatusId" type="long" />
 		<field name="presenceStatusMessage" type="String" />
 	</model>
-	<model name="com.liferay.ruon.model.PresenceUser">
+	<model name="com.liferay.ruon.model.UserPresence">
 		<field name="presenceUserId" type="long" />
 		<field name="presenceStatus" type="long" />
 	</model>

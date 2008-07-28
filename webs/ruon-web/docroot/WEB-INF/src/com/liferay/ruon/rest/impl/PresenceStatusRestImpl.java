@@ -39,7 +39,7 @@
 
 package com.liferay.ruon.rest.impl;
 
-import com.liferay.ruon.service.PresenceLocalServiceUtil;
+import com.liferay.ruon.service.UserPresenceLocalServiceUtil;
 import com.liferay.ruon.util.PresenceStatusConstants;
 
 import javax.ws.rs.ConsumeMime;
@@ -67,7 +67,7 @@ public class PresenceStatusRestImpl {
 	@ProduceMime("text/html")
 	public String getPresenceStatus(@PathParam("userId") Long userId) {
 		try {
-			return PresenceLocalServiceUtil.getPresenceStatusOfUser(userId);
+			return UserPresenceLocalServiceUtil.getPresenceStatusOfUser(userId);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -82,11 +82,11 @@ public class PresenceStatusRestImpl {
 			@PathParam("status") String status) {
 		try {
 			if (status.equalsIgnoreCase("online")) {
-				PresenceLocalServiceUtil.
+				UserPresenceLocalServiceUtil.
 						setPresenceStatusOfUser(
 								userId, PresenceStatusConstants.STATUS_ONLINE);
 			} else {
-				PresenceLocalServiceUtil.
+				UserPresenceLocalServiceUtil.
 						setPresenceStatusOfUser(
 								userId, PresenceStatusConstants.STATUS_OFFLINE);
 			}

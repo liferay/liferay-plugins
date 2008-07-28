@@ -3,13 +3,12 @@
 
 <service-builder package-path="com.liferay.ruon">
 	<namespace>Ruon</namespace>
-	<entity name="Communication" local-service="true" remote-service="false"/>
-	<entity name="Presence" local-service="true" remote-service="false"/>
 	<entity name="PresenceStatus" local-service="true" remote-service="false">
 		<column name="presenceStatusId" type="long" primary="true"/>
 		<column name="presenceStatusMessage" type="String"/>
 	</entity>
-	<entity name="PresenceUser" local-service="true" remote-service="false">
+	<entity name="UserCommunication" local-service="true" remote-service="false"/>
+	<entity name="UserPresence" local-service="true" remote-service="false">
 		<column name="presenceUserId" type="long" primary="true"/>
 		<column name="presenceStatus" type="long"/>
 	</entity>

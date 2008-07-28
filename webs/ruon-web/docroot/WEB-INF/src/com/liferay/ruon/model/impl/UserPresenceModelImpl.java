@@ -18,7 +18,24 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- */
+
+ * The contents of this file are subject to the terms of the Common Development
+ * and Distribution License (the License). You may not use this file except in
+ * compliance with the License.
+ *
+ * You can obtain a copy of the License at http://www.sun.com/cddl/cddl.html and
+ * legal/CDDLv1.0.txt. See the License for the specific language governing
+ * permission and limitations under the License.
+ *
+ * When distributing Covered Code, include this CDDL Header Notice in each file
+ * and include the License file at legal/CDDLv1.0.txt.
+ *
+ * If applicable, add the following below the CDDL Header, with the fields
+ * enclosed by brackets [] replaced by your own identifying information:
+ * "Portions Copyrighted [year] [name of copyright owner]"
+ *
+ * Copyright 2008 Sun Microsystems Inc. All rights reserved.
+ **/
 
 package com.liferay.ruon.model.impl;
 
@@ -26,8 +43,8 @@ import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
-import com.liferay.ruon.model.PresenceUser;
-import com.liferay.ruon.model.PresenceUserSoap;
+import com.liferay.ruon.model.UserPresence;
+import com.liferay.ruon.model.UserPresenceSoap;
 
 import java.io.Serializable;
 
@@ -39,30 +56,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <a href="PresenceUserModelImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="UserPresenceModelImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class PresenceUserModelImpl extends BaseModelImpl {
-	public static final String TABLE_NAME = "Ruon_PresenceUser";
+public class UserPresenceModelImpl extends BaseModelImpl {
+	public static final String TABLE_NAME = "Ruon_UserPresence";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "presenceUserId", new Integer(Types.BIGINT) },
 			
 
 			{ "presenceStatus", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Ruon_PresenceUser (presenceUserId LONG not null primary key,presenceStatus LONG)";
-	public static final String TABLE_SQL_DROP = "drop table Ruon_PresenceUser";
+	public static final String TABLE_SQL_CREATE = "create table Ruon_UserPresence (presenceUserId LONG not null primary key,presenceStatus LONG)";
+	public static final String TABLE_SQL_DROP = "drop table Ruon_UserPresence";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
 	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.ruon.model.PresenceUser"),
+				"value.object.finder.cache.enabled.com.liferay.ruon.model.UserPresence"),
 			true);
 
-	public static PresenceUser toModel(PresenceUserSoap soapModel) {
-		PresenceUser model = new PresenceUserImpl();
+	public static UserPresence toModel(UserPresenceSoap soapModel) {
+		UserPresence model = new UserPresenceImpl();
 
 		model.setPresenceUserId(soapModel.getPresenceUserId());
 		model.setPresenceStatus(soapModel.getPresenceStatus());
@@ -70,10 +87,10 @@ public class PresenceUserModelImpl extends BaseModelImpl {
 		return model;
 	}
 
-	public static List<PresenceUser> toModels(PresenceUserSoap[] soapModels) {
-		List<PresenceUser> models = new ArrayList<PresenceUser>(soapModels.length);
+	public static List<UserPresence> toModels(UserPresenceSoap[] soapModels) {
+		List<UserPresence> models = new ArrayList<UserPresence>(soapModels.length);
 
-		for (PresenceUserSoap soapModel : soapModels) {
+		for (UserPresenceSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
 		}
 
@@ -81,9 +98,9 @@ public class PresenceUserModelImpl extends BaseModelImpl {
 	}
 
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
-				"lock.expiration.time.com.liferay.ruon.model.PresenceUser"));
+				"lock.expiration.time.com.liferay.ruon.model.UserPresence"));
 
-	public PresenceUserModelImpl() {
+	public UserPresenceModelImpl() {
 	}
 
 	public long getPrimaryKey() {
@@ -118,20 +135,20 @@ public class PresenceUserModelImpl extends BaseModelImpl {
 		}
 	}
 
-	public PresenceUser toEscapedModel() {
+	public UserPresence toEscapedModel() {
 		if (isEscapedModel()) {
-			return (PresenceUser)this;
+			return (UserPresence)this;
 		}
 		else {
-			PresenceUser model = new PresenceUserImpl();
+			UserPresence model = new UserPresenceImpl();
 
 			model.setEscapedModel(true);
 
 			model.setPresenceUserId(getPresenceUserId());
 			model.setPresenceStatus(getPresenceStatus());
 
-			model = (PresenceUser)Proxy.newProxyInstance(PresenceUser.class.getClassLoader(),
-					new Class[] { PresenceUser.class },
+			model = (UserPresence)Proxy.newProxyInstance(UserPresence.class.getClassLoader(),
+					new Class[] { UserPresence.class },
 					new ReadOnlyBeanHandler(model));
 
 			return model;
@@ -139,7 +156,7 @@ public class PresenceUserModelImpl extends BaseModelImpl {
 	}
 
 	public Object clone() {
-		PresenceUserImpl clone = new PresenceUserImpl();
+		UserPresenceImpl clone = new UserPresenceImpl();
 
 		clone.setPresenceUserId(getPresenceUserId());
 		clone.setPresenceStatus(getPresenceStatus());
@@ -152,9 +169,9 @@ public class PresenceUserModelImpl extends BaseModelImpl {
 			return -1;
 		}
 
-		PresenceUserImpl presenceUser = (PresenceUserImpl)obj;
+		UserPresenceImpl userPresence = (UserPresenceImpl)obj;
 
-		long pk = presenceUser.getPrimaryKey();
+		long pk = userPresence.getPrimaryKey();
 
 		if (getPrimaryKey() < pk) {
 			return -1;
@@ -172,16 +189,16 @@ public class PresenceUserModelImpl extends BaseModelImpl {
 			return false;
 		}
 
-		PresenceUserImpl presenceUser = null;
+		UserPresenceImpl userPresence = null;
 
 		try {
-			presenceUser = (PresenceUserImpl)obj;
+			userPresence = (UserPresenceImpl)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;
 		}
 
-		long pk = presenceUser.getPrimaryKey();
+		long pk = userPresence.getPrimaryKey();
 
 		if (getPrimaryKey() == pk) {
 			return true;

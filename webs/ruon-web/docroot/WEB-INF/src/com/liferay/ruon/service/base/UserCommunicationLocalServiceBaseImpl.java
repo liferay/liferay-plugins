@@ -18,41 +18,47 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- */
+
+ * The contents of this file are subject to the terms of the Common Development
+ * and Distribution License (the License). You may not use this file except in
+ * compliance with the License.
+ *
+ * You can obtain a copy of the License at http://www.sun.com/cddl/cddl.html and
+ * legal/CDDLv1.0.txt. See the License for the specific language governing
+ * permission and limitations under the License.
+ *
+ * When distributing Covered Code, include this CDDL Header Notice in each file
+ * and include the License file at legal/CDDLv1.0.txt.
+ *
+ * If applicable, add the following below the CDDL Header, with the fields
+ * enclosed by brackets [] replaced by your own identifying information:
+ * "Portions Copyrighted [year] [name of copyright owner]"
+ *
+ * Copyright 2008 Sun Microsystems Inc. All rights reserved.
+ **/
 
 package com.liferay.ruon.service.base;
 
 import com.liferay.portal.kernel.bean.InitializingBean;
 
-import com.liferay.ruon.service.CommunicationLocalService;
-import com.liferay.ruon.service.PresenceLocalService;
-import com.liferay.ruon.service.PresenceLocalServiceFactory;
 import com.liferay.ruon.service.PresenceStatusLocalService;
 import com.liferay.ruon.service.PresenceStatusLocalServiceFactory;
-import com.liferay.ruon.service.PresenceUserLocalService;
-import com.liferay.ruon.service.PresenceUserLocalServiceFactory;
+import com.liferay.ruon.service.UserCommunicationLocalService;
+import com.liferay.ruon.service.UserPresenceLocalService;
+import com.liferay.ruon.service.UserPresenceLocalServiceFactory;
 import com.liferay.ruon.service.persistence.PresenceStatusPersistence;
 import com.liferay.ruon.service.persistence.PresenceStatusUtil;
-import com.liferay.ruon.service.persistence.PresenceUserPersistence;
-import com.liferay.ruon.service.persistence.PresenceUserUtil;
+import com.liferay.ruon.service.persistence.UserPresencePersistence;
+import com.liferay.ruon.service.persistence.UserPresenceUtil;
 
 /**
- * <a href="CommunicationLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="UserCommunicationLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class CommunicationLocalServiceBaseImpl
-	implements CommunicationLocalService, InitializingBean {
-	public PresenceLocalService getPresenceLocalService() {
-		return presenceLocalService;
-	}
-
-	public void setPresenceLocalService(
-		PresenceLocalService presenceLocalService) {
-		this.presenceLocalService = presenceLocalService;
-	}
-
+public abstract class UserCommunicationLocalServiceBaseImpl
+	implements UserCommunicationLocalService, InitializingBean {
 	public PresenceStatusLocalService getPresenceStatusLocalService() {
 		return presenceStatusLocalService;
 	}
@@ -71,29 +77,25 @@ public abstract class CommunicationLocalServiceBaseImpl
 		this.presenceStatusPersistence = presenceStatusPersistence;
 	}
 
-	public PresenceUserLocalService getPresenceUserLocalService() {
-		return presenceUserLocalService;
+	public UserPresenceLocalService getUserPresenceLocalService() {
+		return userPresenceLocalService;
 	}
 
-	public void setPresenceUserLocalService(
-		PresenceUserLocalService presenceUserLocalService) {
-		this.presenceUserLocalService = presenceUserLocalService;
+	public void setUserPresenceLocalService(
+		UserPresenceLocalService userPresenceLocalService) {
+		this.userPresenceLocalService = userPresenceLocalService;
 	}
 
-	public PresenceUserPersistence getPresenceUserPersistence() {
-		return presenceUserPersistence;
+	public UserPresencePersistence getUserPresencePersistence() {
+		return userPresencePersistence;
 	}
 
-	public void setPresenceUserPersistence(
-		PresenceUserPersistence presenceUserPersistence) {
-		this.presenceUserPersistence = presenceUserPersistence;
+	public void setUserPresencePersistence(
+		UserPresencePersistence userPresencePersistence) {
+		this.userPresencePersistence = userPresencePersistence;
 	}
 
 	public void afterPropertiesSet() {
-		if (presenceLocalService == null) {
-			presenceLocalService = PresenceLocalServiceFactory.getImpl();
-		}
-
 		if (presenceStatusLocalService == null) {
 			presenceStatusLocalService = PresenceStatusLocalServiceFactory.getImpl();
 		}
@@ -102,18 +104,17 @@ public abstract class CommunicationLocalServiceBaseImpl
 			presenceStatusPersistence = PresenceStatusUtil.getPersistence();
 		}
 
-		if (presenceUserLocalService == null) {
-			presenceUserLocalService = PresenceUserLocalServiceFactory.getImpl();
+		if (userPresenceLocalService == null) {
+			userPresenceLocalService = UserPresenceLocalServiceFactory.getImpl();
 		}
 
-		if (presenceUserPersistence == null) {
-			presenceUserPersistence = PresenceUserUtil.getPersistence();
+		if (userPresencePersistence == null) {
+			userPresencePersistence = UserPresenceUtil.getPersistence();
 		}
 	}
 
-	protected PresenceLocalService presenceLocalService;
 	protected PresenceStatusLocalService presenceStatusLocalService;
 	protected PresenceStatusPersistence presenceStatusPersistence;
-	protected PresenceUserLocalService presenceUserLocalService;
-	protected PresenceUserPersistence presenceUserPersistence;
+	protected UserPresenceLocalService userPresenceLocalService;
+	protected UserPresencePersistence userPresencePersistence;
 }

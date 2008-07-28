@@ -44,8 +44,8 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.ruon.service.CommunicationLocalServiceUtil;
-import com.liferay.ruon.service.PresenceLocalServiceUtil;
+import com.liferay.ruon.service.UserCommunicationLocalServiceUtil;
+import com.liferay.ruon.service.UserPresenceLocalServiceUtil;
 import com.liferay.ruon.util.PresenceStatusConstants;
 
 import org.apache.commons.logging.Log;
@@ -92,7 +92,7 @@ public class RUONMessageListener implements MessageListener{
 		 if (getPresenceStatusRequestJSON != null){
 
 			JSONObject getPresenceStatusResponseJSON =
-					getPresenceStatusResponseJSON(
+					_getPresenceStatusResponseJSON(
 							getPresenceStatusRequestJSON,responseId);
 
 			MessageBusUtil.sendMessage(
@@ -108,7 +108,7 @@ public class RUONMessageListener implements MessageListener{
 		if (communicationWaysRequestJSON != null){
 
 			JSONObject communicationWaysResponseJSON =
-					getCommunicationWaysResponseJSON(
+					_getCommunicationWaysResponseJSON(
 							communicationWaysRequestJSON,responseId);
 
 			 MessageBusUtil.sendMessage(
@@ -123,7 +123,7 @@ public class RUONMessageListener implements MessageListener{
 
 		if (setPresenceStatusRequestJSON != null){
 			String result =
-					handleSetPresenceStatus(setPresenceStatusRequestJSON);
+					_handleSetPresenceStatus(setPresenceStatusRequestJSON);
 
 			JSONObject jsonObj1 = JSONFactoryUtil.createJSONObject();
 
@@ -136,7 +136,7 @@ public class RUONMessageListener implements MessageListener{
 		}
 	}
 
-	private JSONObject getPresenceStatusResponseJSON (
+	private JSONObject _getPresenceStatusResponseJSON (
 		JSONObject getPresenceStatusRequestJSON,String responseId)
 			throws Exception{
 
@@ -144,7 +144,7 @@ public class RUONMessageListener implements MessageListener{
 					getPresenceStatusRequestJSON.getLong("userId");
 
 			String presenceStatus =
-				PresenceLocalServiceUtil.getPresenceStatusOfUser(
+				UserPresenceLocalServiceUtil.getPresenceStatusOfUser(
 						requestUserId);
 
 			JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
@@ -158,7 +158,7 @@ public class RUONMessageListener implements MessageListener{
 		return jsonObj;
 	}
 
-	private JSONObject getCommunicationWaysResponseJSON(
+	private JSONObject _getCommunicationWaysResponseJSON(
 			JSONObject communicationWaysRequestJSON,String responseId)
 			throws Exception{
 
@@ -169,7 +169,7 @@ public class RUONMessageListener implements MessageListener{
 				communicationWaysRequestJSON.getLong("loggedInUserId");
 
 		String communicationWays =
-				CommunicationLocalServiceUtil.getWaysToCommunicate(
+				UserCommunicationLocalServiceUtil.getWaysToCommunicate(
 						requestUserId,loggedInUserId);
 
 		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
@@ -183,7 +183,7 @@ public class RUONMessageListener implements MessageListener{
 		return jsonObj;
 	}
 
-	private String handleSetPresenceStatus(
+	private String _handleSetPresenceStatus(
 		JSONObject setPresenceStatusRequestJSON)
 			throws Exception{
 
@@ -194,12 +194,12 @@ public class RUONMessageListener implements MessageListener{
 				setPresenceStatusRequestJSON.getString("status");
 
 		if (status.equalsIgnoreCase("online")){
-			PresenceLocalServiceUtil.setPresenceStatusOfUser(
+			UserPresenceLocalServiceUtil.setPresenceStatusOfUser(
 					requestUserId, PresenceStatusConstants.STATUS_ONLINE);
 			return "online";
 		}
 		else{
-			PresenceLocalServiceUtil.setPresenceStatusOfUser(
+			UserPresenceLocalServiceUtil.setPresenceStatusOfUser(
 					requestUserId, PresenceStatusConstants.STATUS_OFFLINE);
 			return "offline";
 		}

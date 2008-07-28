@@ -37,19 +37,54 @@
  * Copyright 2008 Sun Microsystems Inc. All rights reserved.
  **/
 
-package com.liferay.ruon.model.impl;
-
-import com.liferay.ruon.model.PresenceUser;
+package com.liferay.ruon.service;
 
 /**
- * <a href="PresenceUserImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="UserCommunicationLocalServiceFactory.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class PresenceUserImpl extends PresenceUserModelImpl
-	implements PresenceUser {
-	public PresenceUserImpl() {
+public class UserCommunicationLocalServiceFactory {
+	public static UserCommunicationLocalService getService() {
+		return _getFactory()._service;
 	}
 
+	public static UserCommunicationLocalService getImpl() {
+		if (_impl == null) {
+			_impl = (UserCommunicationLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_IMPL);
+		}
+
+		return _impl;
+	}
+
+	public static UserCommunicationLocalService getTxImpl() {
+		if (_txImpl == null) {
+			_txImpl = (UserCommunicationLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_TX_IMPL);
+		}
+
+		return _txImpl;
+	}
+
+	public void setService(UserCommunicationLocalService service) {
+		_service = service;
+	}
+
+	private static UserCommunicationLocalServiceFactory _getFactory() {
+		if (_factory == null) {
+			_factory = (UserCommunicationLocalServiceFactory)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_FACTORY);
+		}
+
+		return _factory;
+	}
+
+	private static final String _FACTORY = UserCommunicationLocalServiceFactory.class.getName();
+	private static final String _IMPL = UserCommunicationLocalService.class.getName() +
+		".impl";
+	private static final String _TX_IMPL = UserCommunicationLocalService.class.getName() +
+		".transaction";
+	private static UserCommunicationLocalServiceFactory _factory;
+	private static UserCommunicationLocalService _impl;
+	private static UserCommunicationLocalService _txImpl;
+	private UserCommunicationLocalService _service;
 }

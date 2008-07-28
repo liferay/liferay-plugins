@@ -25,26 +25,26 @@ package com.liferay.ruon;
 import com.liferay.portal.PortalException;
 
 /**
- * <a href="NoSuchPresenceUserException.java.html"><b><i>View Source</i></b></a>
+ * <a href="NoSuchUserPresenceException.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class NoSuchPresenceUserException extends PortalException {
+public class NoSuchUserPresenceException extends PortalException {
 
-	public NoSuchPresenceUserException() {
+	public NoSuchUserPresenceException() {
 		super();
 	}
 
-	public NoSuchPresenceUserException(String msg) {
+	public NoSuchUserPresenceException(String msg) {
 		super(msg);
 	}
 
-	public NoSuchPresenceUserException(String msg, Throwable cause) {
+	public NoSuchUserPresenceException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public NoSuchPresenceUserException(Throwable cause) {
+	public NoSuchUserPresenceException(Throwable cause) {
 		super(cause);
 	}
 

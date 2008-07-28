@@ -39,7 +39,7 @@
 
 package com.liferay.ruon.rest.impl;
 
-import com.liferay.ruon.service.CommunicationLocalServiceUtil;
+import com.liferay.ruon.service.UserCommunicationLocalServiceUtil;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -66,7 +66,7 @@ public class CommunicationRestImpl {
 			@PathParam("userId") Long userId,
 			@PathParam("loggedInUser") Long loggedInUser) {
 		try {
-			return CommunicationLocalServiceUtil.
+			return UserCommunicationLocalServiceUtil.
 					getWaysToCommunicate(userId, loggedInUser);
 		}
 		catch (Exception e) {

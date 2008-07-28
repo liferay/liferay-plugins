@@ -37,50 +37,54 @@
  * Copyright 2008 Sun Microsystems Inc. All rights reserved.
  **/
 
-package com.liferay.ruon.servlet;
-
-import com.liferay.portal.kernel.messaging.Destination;
-import com.liferay.portal.kernel.messaging.DestinationNames;
-import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.messaging.MessageListener;
-import com.liferay.portal.kernel.messaging.ParallelDestination;
-import com.liferay.portal.kernel.util.PortalInitable;
-import com.liferay.portal.kernel.util.PortalInitableUtil;
-import com.liferay.ruon.messaging.RUONMessageListener;
-
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
+package com.liferay.ruon.service;
 
 /**
- * <a href="RUONServletContextListener.java.html"><b><i>View Source</i></b></a>
+ * <a href="UserPresenceLocalServiceFactory.java.html"><b><i>View Source</i></b></a>
  *
- * @author Murali Krishna Reddy
+ * @author Brian Wing Shun Chan
  *
  */
-public class RUONServletContextListener
-		implements PortalInitable, ServletContextListener{
-
-	public void contextDestroyed(ServletContextEvent event){
-		_ruonDestination.unregister(_ruonMessageListener);
-
-		MessageBusUtil.removeDestination(_ruonDestination.getName());
+public class UserPresenceLocalServiceFactory {
+	public static UserPresenceLocalService getService() {
+		return _getFactory()._service;
 	}
 
-	public void contextInitialized(ServletContextEvent event){
-		PortalInitableUtil.init(this);
+	public static UserPresenceLocalService getImpl() {
+		if (_impl == null) {
+			_impl = (UserPresenceLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_IMPL);
+		}
+
+		return _impl;
 	}
 
-	public void portalInit(){
-		_ruonDestination = new ParallelDestination(DestinationNames.RUON_WEB);
+	public static UserPresenceLocalService getTxImpl() {
+		if (_txImpl == null) {
+			_txImpl = (UserPresenceLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_TX_IMPL);
+		}
 
-		MessageBusUtil.addDestination(_ruonDestination);
-
-		_ruonMessageListener = new RUONMessageListener();
-
-		_ruonDestination.register(_ruonMessageListener);
+		return _txImpl;
 	}
 
-	private Destination _ruonDestination;
-	private MessageListener _ruonMessageListener;
+	public void setService(UserPresenceLocalService service) {
+		_service = service;
+	}
 
+	private static UserPresenceLocalServiceFactory _getFactory() {
+		if (_factory == null) {
+			_factory = (UserPresenceLocalServiceFactory)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_FACTORY);
+		}
+
+		return _factory;
+	}
+
+	private static final String _FACTORY = UserPresenceLocalServiceFactory.class.getName();
+	private static final String _IMPL = UserPresenceLocalService.class.getName() +
+		".impl";
+	private static final String _TX_IMPL = UserPresenceLocalService.class.getName() +
+		".transaction";
+	private static UserPresenceLocalServiceFactory _factory;
+	private static UserPresenceLocalService _impl;
+	private static UserPresenceLocalService _txImpl;
+	private UserPresenceLocalService _service;
 }

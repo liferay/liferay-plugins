@@ -18,27 +18,44 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- */
+
+ * The contents of this file are subject to the terms of the Common Development
+ * and Distribution License (the License). You may not use this file except in
+ * compliance with the License.
+ *
+ * You can obtain a copy of the License at http://www.sun.com/cddl/cddl.html and
+ * legal/CDDLv1.0.txt. See the License for the specific language governing
+ * permission and limitations under the License.
+ *
+ * When distributing Covered Code, include this CDDL Header Notice in each file
+ * and include the License file at legal/CDDLv1.0.txt.
+ *
+ * If applicable, add the following below the CDDL Header, with the fields
+ * enclosed by brackets [] replaced by your own identifying information:
+ * "Portions Copyrighted [year] [name of copyright owner]"
+ *
+ * Copyright 2008 Sun Microsystems Inc. All rights reserved.
+ **/
 
 package com.liferay.ruon.service;
 
 /**
- * <a href="PresenceUserLocalService.java.html"><b><i>View Source</i></b></a>
+ * <a href="UserPresenceLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface PresenceUserLocalService {
-	public com.liferay.ruon.model.PresenceUser addPresenceUser(
-		com.liferay.ruon.model.PresenceUser presenceUser)
+public interface UserPresenceLocalService {
+	public com.liferay.ruon.model.UserPresence addUserPresence(
+		com.liferay.ruon.model.UserPresence userPresence)
 		throws com.liferay.portal.SystemException;
 
-	public void deletePresenceUser(long presenceUserId)
+	public void deleteUserPresence(long presenceUserId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
-	public void deletePresenceUser(
-		com.liferay.ruon.model.PresenceUser presenceUser)
+	public void deleteUserPresence(
+		com.liferay.ruon.model.UserPresence userPresence)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<Object> dynamicQuery(
@@ -49,21 +66,33 @@ public interface PresenceUserLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
-	public com.liferay.ruon.model.PresenceUser getPresenceUser(
+	public com.liferay.ruon.model.UserPresence getUserPresence(
 		long presenceUserId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
-	public java.util.List<com.liferay.ruon.model.PresenceUser> getPresenceUsers(
+	public java.util.List<com.liferay.ruon.model.UserPresence> getUserPresences(
 		int start, int end) throws com.liferay.portal.SystemException;
 
-	public int getPresenceUsersCount()
+	public int getUserPresencesCount()
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.ruon.model.PresenceUser updatePresenceUser(
-		com.liferay.ruon.model.PresenceUser presenceUser)
+	public com.liferay.ruon.model.UserPresence updateUserPresence(
+		com.liferay.ruon.model.UserPresence userPresence)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.ruon.model.PresenceUser> getAllUsers()
+	public java.util.List<com.liferay.ruon.model.UserPresence> getAllUsers()
 		throws com.liferay.ruon.util.RUONException;
+
+	public java.lang.String getPresenceStatusOfUser(java.lang.Long userId)
+		throws com.liferay.ruon.util.RUONException;
+
+	public boolean isUserOnline(java.lang.Long userId)
+		throws com.liferay.ruon.util.RUONException;
+
+	public void makeAllUsersOffline()
+		throws com.liferay.ruon.util.RUONException;
+
+	public void setPresenceStatusOfUser(java.lang.Long userId,
+		java.lang.Long status) throws com.liferay.ruon.util.RUONException;
 }

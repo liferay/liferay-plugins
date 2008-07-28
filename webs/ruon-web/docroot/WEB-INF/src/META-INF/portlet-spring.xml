@@ -2,13 +2,13 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-	<bean id="com.liferay.ruon.service.CommunicationLocalService.impl" class="com.liferay.ruon.service.impl.CommunicationLocalServiceImpl" lazy-init="true" />
-	<bean id="com.liferay.ruon.service.CommunicationLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+	<bean id="com.liferay.ruon.service.UserCommunicationLocalService.impl" class="com.liferay.ruon.service.impl.UserCommunicationLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.ruon.service.UserCommunicationLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
 		</property>
 		<property name="target">
-			<ref bean="com.liferay.ruon.service.CommunicationLocalService.impl" />
+			<ref bean="com.liferay.ruon.service.UserCommunicationLocalService.impl" />
 		</property>
 		<property name="transactionAttributes">
 			<props>
@@ -22,54 +22,9 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="com.liferay.ruon.service.CommunicationLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
-		<property name="interceptorNames">
-			<list>
-				<value>velocityServiceInterceptor</value>
-			</list>
-		</property>
-		<property name="target">
-			<ref bean="com.liferay.ruon.service.CommunicationLocalService.transaction" />
-		</property>
-	</bean>
-	<bean id="com.liferay.ruon.service.CommunicationLocalServiceFactory" class="com.liferay.ruon.service.CommunicationLocalServiceFactory" lazy-init="true">
+	<bean id="com.liferay.ruon.service.UserCommunicationLocalServiceFactory" class="com.liferay.ruon.service.UserCommunicationLocalServiceFactory" lazy-init="true">
 		<property name="service">
-			<ref bean="com.liferay.ruon.service.CommunicationLocalService.transaction" />
-		</property>
-	</bean>
-	<bean id="com.liferay.ruon.service.PresenceLocalService.impl" class="com.liferay.ruon.service.impl.PresenceLocalServiceImpl" lazy-init="true" />
-	<bean id="com.liferay.ruon.service.PresenceLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<ref bean="com.liferay.ruon.service.PresenceLocalService.impl" />
-		</property>
-		<property name="transactionAttributes">
-			<props>
-				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="check*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="clear*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="delete*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
-	</bean>
-	<bean id="com.liferay.ruon.service.PresenceLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
-		<property name="interceptorNames">
-			<list>
-				<value>velocityServiceInterceptor</value>
-			</list>
-		</property>
-		<property name="target">
-			<ref bean="com.liferay.ruon.service.PresenceLocalService.transaction" />
-		</property>
-	</bean>
-	<bean id="com.liferay.ruon.service.PresenceLocalServiceFactory" class="com.liferay.ruon.service.PresenceLocalServiceFactory" lazy-init="true">
-		<property name="service">
-			<ref bean="com.liferay.ruon.service.PresenceLocalService.transaction" />
+			<ref bean="com.liferay.ruon.service.UserCommunicationLocalService.transaction" />
 		</property>
 	</bean>
 	<bean id="com.liferay.ruon.service.PresenceStatusLocalService.impl" class="com.liferay.ruon.service.impl.PresenceStatusLocalServiceImpl" lazy-init="true" />
@@ -90,16 +45,6 @@
 				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
 				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
 			</props>
-		</property>
-	</bean>
-	<bean id="com.liferay.ruon.service.PresenceStatusLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
-		<property name="interceptorNames">
-			<list>
-				<value>velocityServiceInterceptor</value>
-			</list>
-		</property>
-		<property name="target">
-			<ref bean="com.liferay.ruon.service.PresenceStatusLocalService.transaction" />
 		</property>
 	</bean>
 	<bean id="com.liferay.ruon.service.PresenceStatusLocalServiceFactory" class="com.liferay.ruon.service.PresenceStatusLocalServiceFactory" lazy-init="true">
@@ -136,13 +81,13 @@
 			<ref bean="com.liferay.ruon.service.persistence.PresenceStatusPersistence.impl" />
 		</property>
 	</bean>
-	<bean id="com.liferay.ruon.service.PresenceUserLocalService.impl" class="com.liferay.ruon.service.impl.PresenceUserLocalServiceImpl" lazy-init="true" />
-	<bean id="com.liferay.ruon.service.PresenceUserLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+	<bean id="com.liferay.ruon.service.UserPresenceLocalService.impl" class="com.liferay.ruon.service.impl.UserPresenceLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.ruon.service.UserPresenceLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
 		</property>
 		<property name="target">
-			<ref bean="com.liferay.ruon.service.PresenceUserLocalService.impl" />
+			<ref bean="com.liferay.ruon.service.UserPresenceLocalService.impl" />
 		</property>
 		<property name="transactionAttributes">
 			<props>
@@ -156,22 +101,12 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="com.liferay.ruon.service.PresenceUserLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
-		<property name="interceptorNames">
-			<list>
-				<value>velocityServiceInterceptor</value>
-			</list>
-		</property>
-		<property name="target">
-			<ref bean="com.liferay.ruon.service.PresenceUserLocalService.transaction" />
-		</property>
-	</bean>
-	<bean id="com.liferay.ruon.service.PresenceUserLocalServiceFactory" class="com.liferay.ruon.service.PresenceUserLocalServiceFactory" lazy-init="true">
+	<bean id="com.liferay.ruon.service.UserPresenceLocalServiceFactory" class="com.liferay.ruon.service.UserPresenceLocalServiceFactory" lazy-init="true">
 		<property name="service">
-			<ref bean="com.liferay.ruon.service.PresenceUserLocalService.transaction" />
+			<ref bean="com.liferay.ruon.service.UserPresenceLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.ruon.service.persistence.PresenceUserPersistence.impl" class="com.liferay.ruon.service.persistence.PresenceUserPersistenceImpl" lazy-init="true">
+	<bean id="com.liferay.ruon.service.persistence.UserPresencePersistence.impl" class="com.liferay.ruon.service.persistence.UserPresencePersistenceImpl" lazy-init="true">
 		<property name="dataSource">
 			<ref bean="liferayDataSource" />
 		</property>
@@ -179,12 +114,12 @@
 			<ref bean="liferaySessionFactory" />
 		</property>
 	</bean>
-	<bean id="com.liferay.ruon.service.persistence.PresenceUserPersistence.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+	<bean id="com.liferay.ruon.service.persistence.UserPresencePersistence.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
 		</property>
 		<property name="target">
-			<ref bean="com.liferay.ruon.service.persistence.PresenceUserPersistence.impl" />
+			<ref bean="com.liferay.ruon.service.persistence.UserPresencePersistence.impl" />
 		</property>
 		<property name="transactionAttributes">
 			<props>
@@ -195,9 +130,9 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="com.liferay.ruon.service.persistence.PresenceUserUtil" class="com.liferay.ruon.service.persistence.PresenceUserUtil" lazy-init="true">
+	<bean id="com.liferay.ruon.service.persistence.UserPresenceUtil" class="com.liferay.ruon.service.persistence.UserPresenceUtil" lazy-init="true">
 		<property name="persistence">
-			<ref bean="com.liferay.ruon.service.persistence.PresenceUserPersistence.impl" />
+			<ref bean="com.liferay.ruon.service.persistence.UserPresencePersistence.impl" />
 		</property>
 	</bean>
 </beans>

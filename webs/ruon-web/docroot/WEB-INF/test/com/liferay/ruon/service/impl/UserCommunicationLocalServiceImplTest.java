@@ -37,50 +37,34 @@
  * Copyright 2008 Sun Microsystems Inc. All rights reserved.
  **/
 
-package com.liferay.ruon.servlet;
+package com.liferay.ruon.service.impl;
 
-import com.liferay.portal.kernel.messaging.Destination;
-import com.liferay.portal.kernel.messaging.DestinationNames;
-import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.messaging.MessageListener;
-import com.liferay.portal.kernel.messaging.ParallelDestination;
-import com.liferay.portal.kernel.util.PortalInitable;
-import com.liferay.portal.kernel.util.PortalInitableUtil;
-import com.liferay.ruon.messaging.RUONMessageListener;
-
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
+import com.liferay.ruon.service.BaseRUONTestCase;
+import com.liferay.ruon.service.UserCommunicationLocalServiceUtil;
 
 /**
- * <a href="RUONServletContextListener.java.html"><b><i>View Source</i></b></a>
+ * <a href="UserCommunicationLocalServiceImplTest.java.html"><b>
+ * <i>View Source</i>
+ * </b></a>
  *
  * @author Murali Krishna Reddy
  *
  */
-public class RUONServletContextListener
-		implements PortalInitable, ServletContextListener{
+public class UserCommunicationLocalServiceImplTest extends BaseRUONTestCase {
 
-	public void contextDestroyed(ServletContextEvent event){
-		_ruonDestination.unregister(_ruonMessageListener);
-
-		MessageBusUtil.removeDestination(_ruonDestination.getName());
+	public void setUp() throws Exception {
+		super.setUp();
 	}
 
-	public void contextInitialized(ServletContextEvent event){
-		PortalInitableUtil.init(this);
+	public void tearDown() throws Exception {
+		super.tearDown();
 	}
 
-	public void portalInit(){
-		_ruonDestination = new ParallelDestination(DestinationNames.RUON_WEB);
-
-		MessageBusUtil.addDestination(_ruonDestination);
-
-		_ruonMessageListener = new RUONMessageListener();
-
-		_ruonDestination.register(_ruonMessageListener);
+	public void testGetListOfWaysToCommunicate() throws Exception {
+		String listOfWaysToCommunicate =
+				UserCommunicationLocalServiceUtil.getWaysToCommunicate(
+						userId, userId);
+		assertEquals("", listOfWaysToCommunicate);
 	}
-
-	private Destination _ruonDestination;
-	private MessageListener _ruonMessageListener;
 
 }

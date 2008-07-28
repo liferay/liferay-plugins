@@ -4,8 +4,7 @@ create table Ruon_PresenceStatus (
 	presenceStatusMessage VARCHAR(75) null
 );
 
-
-create table Ruon_PresenceUser (
+create table Ruon_UserPresence (
 	presenceUserId LONG not null primary key,
 	presenceStatus LONG
 );

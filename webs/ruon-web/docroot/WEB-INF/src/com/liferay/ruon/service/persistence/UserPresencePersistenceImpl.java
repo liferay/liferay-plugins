@@ -18,7 +18,24 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- */
+
+ * The contents of this file are subject to the terms of the Common Development
+ * and Distribution License (the License). You may not use this file except in
+ * compliance with the License.
+ *
+ * You can obtain a copy of the License at http://www.sun.com/cddl/cddl.html and
+ * legal/CDDLv1.0.txt. See the License for the specific language governing
+ * permission and limitations under the License.
+ *
+ * When distributing Covered Code, include this CDDL Header Notice in each file
+ * and include the License file at legal/CDDLv1.0.txt.
+ *
+ * If applicable, add the following below the CDDL Header, with the fields
+ * enclosed by brackets [] replaced by your own identifying information:
+ * "Portions Copyrighted [year] [name of copyright owner]"
+ *
+ * Copyright 2008 Sun Microsystems Inc. All rights reserved.
+ **/
 
 package com.liferay.ruon.service.persistence;
 
@@ -36,10 +53,10 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.ruon.NoSuchPresenceUserException;
-import com.liferay.ruon.model.PresenceUser;
-import com.liferay.ruon.model.impl.PresenceUserImpl;
-import com.liferay.ruon.model.impl.PresenceUserModelImpl;
+import com.liferay.ruon.NoSuchUserPresenceException;
+import com.liferay.ruon.model.UserPresence;
+import com.liferay.ruon.model.impl.UserPresenceImpl;
+import com.liferay.ruon.model.impl.UserPresenceModelImpl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -50,46 +67,46 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * <a href="PresenceUserPersistenceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="UserPresencePersistenceImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class PresenceUserPersistenceImpl extends BasePersistenceImpl
-	implements PresenceUserPersistence, InitializingBean {
-	public PresenceUser create(long presenceUserId) {
-		PresenceUser presenceUser = new PresenceUserImpl();
+public class UserPresencePersistenceImpl extends BasePersistenceImpl
+	implements UserPresencePersistence, InitializingBean {
+	public UserPresence create(long presenceUserId) {
+		UserPresence userPresence = new UserPresenceImpl();
 
-		presenceUser.setNew(true);
-		presenceUser.setPrimaryKey(presenceUserId);
+		userPresence.setNew(true);
+		userPresence.setPrimaryKey(presenceUserId);
 
-		return presenceUser;
+		return userPresence;
 	}
 
-	public PresenceUser remove(long presenceUserId)
-		throws NoSuchPresenceUserException, SystemException {
+	public UserPresence remove(long presenceUserId)
+		throws NoSuchUserPresenceException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			PresenceUser presenceUser = (PresenceUser)session.get(PresenceUserImpl.class,
+			UserPresence userPresence = (UserPresence)session.get(UserPresenceImpl.class,
 					new Long(presenceUserId));
 
-			if (presenceUser == null) {
+			if (userPresence == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("No PresenceUser exists with the primary key " +
+					_log.warn("No UserPresence exists with the primary key " +
 						presenceUserId);
 				}
 
-				throw new NoSuchPresenceUserException(
-					"No PresenceUser exists with the primary key " +
+				throw new NoSuchUserPresenceException(
+					"No UserPresence exists with the primary key " +
 					presenceUserId);
 			}
 
-			return remove(presenceUser);
+			return remove(userPresence);
 		}
-		catch (NoSuchPresenceUserException nsee) {
+		catch (NoSuchUserPresenceException nsee) {
 			throw nsee;
 		}
 		catch (Exception e) {
@@ -100,37 +117,37 @@ public class PresenceUserPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public PresenceUser remove(PresenceUser presenceUser)
+	public UserPresence remove(UserPresence userPresence)
 		throws SystemException {
 		if (_listeners.length > 0) {
 			for (ModelListener listener : _listeners) {
-				listener.onBeforeRemove(presenceUser);
+				listener.onBeforeRemove(userPresence);
 			}
 		}
 
-		presenceUser = removeImpl(presenceUser);
+		userPresence = removeImpl(userPresence);
 
 		if (_listeners.length > 0) {
 			for (ModelListener listener : _listeners) {
-				listener.onAfterRemove(presenceUser);
+				listener.onAfterRemove(userPresence);
 			}
 		}
 
-		return presenceUser;
+		return userPresence;
 	}
 
-	protected PresenceUser removeImpl(PresenceUser presenceUser)
+	protected UserPresence removeImpl(UserPresence userPresence)
 		throws SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			session.delete(presenceUser);
+			session.delete(userPresence);
 
 			session.flush();
 
-			return presenceUser;
+			return userPresence;
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -138,53 +155,53 @@ public class PresenceUserPersistenceImpl extends BasePersistenceImpl
 		finally {
 			closeSession(session);
 
-			FinderCacheUtil.clearCache(PresenceUser.class.getName());
+			FinderCacheUtil.clearCache(UserPresence.class.getName());
 		}
 	}
 
-	public PresenceUser update(PresenceUser presenceUser)
+	public UserPresence update(UserPresence userPresence)
 		throws SystemException {
 		if (_log.isWarnEnabled()) {
 			_log.warn(
-				"Using the deprecated update(PresenceUser presenceUser) method. Use update(PresenceUser presenceUser, boolean merge) instead.");
+				"Using the deprecated update(UserPresence userPresence) method. Use update(UserPresence userPresence, boolean merge) instead.");
 		}
 
-		return update(presenceUser, false);
+		return update(userPresence, false);
 	}
 
-	public PresenceUser update(PresenceUser presenceUser, boolean merge)
+	public UserPresence update(UserPresence userPresence, boolean merge)
 		throws SystemException {
-		boolean isNew = presenceUser.isNew();
+		boolean isNew = userPresence.isNew();
 
 		if (_listeners.length > 0) {
 			for (ModelListener listener : _listeners) {
 				if (isNew) {
-					listener.onBeforeCreate(presenceUser);
+					listener.onBeforeCreate(userPresence);
 				}
 				else {
-					listener.onBeforeUpdate(presenceUser);
+					listener.onBeforeUpdate(userPresence);
 				}
 			}
 		}
 
-		presenceUser = updateImpl(presenceUser, merge);
+		userPresence = updateImpl(userPresence, merge);
 
 		if (_listeners.length > 0) {
 			for (ModelListener listener : _listeners) {
 				if (isNew) {
-					listener.onAfterCreate(presenceUser);
+					listener.onAfterCreate(userPresence);
 				}
 				else {
-					listener.onAfterUpdate(presenceUser);
+					listener.onAfterUpdate(userPresence);
 				}
 			}
 		}
 
-		return presenceUser;
+		return userPresence;
 	}
 
-	public PresenceUser updateImpl(
-		com.liferay.ruon.model.PresenceUser presenceUser, boolean merge)
+	public UserPresence updateImpl(
+		com.liferay.ruon.model.UserPresence userPresence, boolean merge)
 		throws SystemException {
 		Session session = null;
 
@@ -192,19 +209,19 @@ public class PresenceUserPersistenceImpl extends BasePersistenceImpl
 			session = openSession();
 
 			if (merge) {
-				session.merge(presenceUser);
+				session.merge(userPresence);
 			}
 			else {
-				if (presenceUser.isNew()) {
-					session.save(presenceUser);
+				if (userPresence.isNew()) {
+					session.save(userPresence);
 				}
 			}
 
 			session.flush();
 
-			presenceUser.setNew(false);
+			userPresence.setNew(false);
 
-			return presenceUser;
+			return userPresence;
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -212,36 +229,36 @@ public class PresenceUserPersistenceImpl extends BasePersistenceImpl
 		finally {
 			closeSession(session);
 
-			FinderCacheUtil.clearCache(PresenceUser.class.getName());
+			FinderCacheUtil.clearCache(UserPresence.class.getName());
 		}
 	}
 
-	public PresenceUser findByPrimaryKey(long presenceUserId)
-		throws NoSuchPresenceUserException, SystemException {
-		PresenceUser presenceUser = fetchByPrimaryKey(presenceUserId);
+	public UserPresence findByPrimaryKey(long presenceUserId)
+		throws NoSuchUserPresenceException, SystemException {
+		UserPresence userPresence = fetchByPrimaryKey(presenceUserId);
 
-		if (presenceUser == null) {
+		if (userPresence == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No PresenceUser exists with the primary key " +
+				_log.warn("No UserPresence exists with the primary key " +
 					presenceUserId);
 			}
 
-			throw new NoSuchPresenceUserException(
-				"No PresenceUser exists with the primary key " +
+			throw new NoSuchUserPresenceException(
+				"No UserPresence exists with the primary key " +
 				presenceUserId);
 		}
 
-		return presenceUser;
+		return userPresence;
 	}
 
-	public PresenceUser fetchByPrimaryKey(long presenceUserId)
+	public UserPresence fetchByPrimaryKey(long presenceUserId)
 		throws SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			return (PresenceUser)session.get(PresenceUserImpl.class,
+			return (UserPresence)session.get(UserPresenceImpl.class,
 				new Long(presenceUserId));
 		}
 		catch (Exception e) {
@@ -292,19 +309,19 @@ public class PresenceUserPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<PresenceUser> findAll() throws SystemException {
+	public List<UserPresence> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
-	public List<PresenceUser> findAll(int start, int end)
+	public List<UserPresence> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
 	}
 
-	public List<PresenceUser> findAll(int start, int end, OrderByComparator obc)
+	public List<UserPresence> findAll(int start, int end, OrderByComparator obc)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = PresenceUserModelImpl.CACHE_ENABLED;
-		String finderClassName = PresenceUser.class.getName();
+		boolean finderClassNameCacheEnabled = UserPresenceModelImpl.CACHE_ENABLED;
+		String finderClassName = UserPresence.class.getName();
 		String finderMethodName = "findAll";
 		String[] finderParams = new String[] {
 				"java.lang.Integer", "java.lang.Integer",
@@ -329,7 +346,7 @@ public class PresenceUserPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append("FROM com.liferay.ruon.model.PresenceUser ");
+				query.append("FROM com.liferay.ruon.model.UserPresence ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
@@ -338,7 +355,7 @@ public class PresenceUserPersistenceImpl extends BasePersistenceImpl
 
 				Query q = session.createQuery(query.toString());
 
-				List<PresenceUser> list = (List<PresenceUser>)QueryUtil.list(q,
+				List<UserPresence> list = (List<UserPresence>)QueryUtil.list(q,
 						getDialect(), start, end);
 
 				if (obc == null) {
@@ -359,19 +376,19 @@ public class PresenceUserPersistenceImpl extends BasePersistenceImpl
 			}
 		}
 		else {
-			return (List<PresenceUser>)result;
+			return (List<UserPresence>)result;
 		}
 	}
 
 	public void removeAll() throws SystemException {
-		for (PresenceUser presenceUser : findAll()) {
-			remove(presenceUser);
+		for (UserPresence userPresence : findAll()) {
+			remove(userPresence);
 		}
 	}
 
 	public int countAll() throws SystemException {
-		boolean finderClassNameCacheEnabled = PresenceUserModelImpl.CACHE_ENABLED;
-		String finderClassName = PresenceUser.class.getName();
+		boolean finderClassNameCacheEnabled = UserPresenceModelImpl.CACHE_ENABLED;
+		String finderClassName = UserPresence.class.getName();
 		String finderMethodName = "countAll";
 		String[] finderParams = new String[] {  };
 		Object[] finderArgs = new Object[] {  };
@@ -390,7 +407,7 @@ public class PresenceUserPersistenceImpl extends BasePersistenceImpl
 				session = openSession();
 
 				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.ruon.model.PresenceUser");
+						"SELECT COUNT(*) FROM com.liferay.ruon.model.UserPresence");
 
 				Long count = null;
 
@@ -441,7 +458,7 @@ public class PresenceUserPersistenceImpl extends BasePersistenceImpl
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
-						"value.object.listener.com.liferay.ruon.model.PresenceUser")));
+						"value.object.listener.com.liferay.ruon.model.UserPresence")));
 
 		if (listenerClassNames.length > 0) {
 			try {
@@ -460,6 +477,6 @@ public class PresenceUserPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	private static Log _log = LogFactory.getLog(PresenceUserPersistenceImpl.class);
+	private static Log _log = LogFactory.getLog(UserPresencePersistenceImpl.class);
 	private ModelListener[] _listeners = new ModelListener[0];
 }

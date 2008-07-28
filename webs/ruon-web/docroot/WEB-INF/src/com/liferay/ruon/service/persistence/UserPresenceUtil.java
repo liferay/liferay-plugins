@@ -18,61 +18,78 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- */
+
+ * The contents of this file are subject to the terms of the Common Development
+ * and Distribution License (the License). You may not use this file except in
+ * compliance with the License.
+ *
+ * You can obtain a copy of the License at http://www.sun.com/cddl/cddl.html and
+ * legal/CDDLv1.0.txt. See the License for the specific language governing
+ * permission and limitations under the License.
+ *
+ * When distributing Covered Code, include this CDDL Header Notice in each file
+ * and include the License file at legal/CDDLv1.0.txt.
+ *
+ * If applicable, add the following below the CDDL Header, with the fields
+ * enclosed by brackets [] replaced by your own identifying information:
+ * "Portions Copyrighted [year] [name of copyright owner]"
+ *
+ * Copyright 2008 Sun Microsystems Inc. All rights reserved.
+ **/
 
 package com.liferay.ruon.service.persistence;
 
 /**
- * <a href="PresenceUserUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="UserPresenceUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class PresenceUserUtil {
-	public static com.liferay.ruon.model.PresenceUser create(
+public class UserPresenceUtil {
+	public static com.liferay.ruon.model.UserPresence create(
 		long presenceUserId) {
 		return getPersistence().create(presenceUserId);
 	}
 
-	public static com.liferay.ruon.model.PresenceUser remove(
+	public static com.liferay.ruon.model.UserPresence remove(
 		long presenceUserId)
 		throws com.liferay.portal.SystemException,
-			com.liferay.ruon.NoSuchPresenceUserException {
+			com.liferay.ruon.NoSuchUserPresenceException {
 		return getPersistence().remove(presenceUserId);
 	}
 
-	public static com.liferay.ruon.model.PresenceUser remove(
-		com.liferay.ruon.model.PresenceUser presenceUser)
+	public static com.liferay.ruon.model.UserPresence remove(
+		com.liferay.ruon.model.UserPresence userPresence)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().remove(presenceUser);
+		return getPersistence().remove(userPresence);
 	}
 
-	public static com.liferay.ruon.model.PresenceUser update(
-		com.liferay.ruon.model.PresenceUser presenceUser)
+	public static com.liferay.ruon.model.UserPresence update(
+		com.liferay.ruon.model.UserPresence userPresence)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().update(presenceUser);
+		return getPersistence().update(userPresence);
 	}
 
-	public static com.liferay.ruon.model.PresenceUser update(
-		com.liferay.ruon.model.PresenceUser presenceUser, boolean merge)
+	public static com.liferay.ruon.model.UserPresence update(
+		com.liferay.ruon.model.UserPresence userPresence, boolean merge)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().update(presenceUser, merge);
+		return getPersistence().update(userPresence, merge);
 	}
 
-	public static com.liferay.ruon.model.PresenceUser updateImpl(
-		com.liferay.ruon.model.PresenceUser presenceUser, boolean merge)
+	public static com.liferay.ruon.model.UserPresence updateImpl(
+		com.liferay.ruon.model.UserPresence userPresence, boolean merge)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().updateImpl(presenceUser, merge);
+		return getPersistence().updateImpl(userPresence, merge);
 	}
 
-	public static com.liferay.ruon.model.PresenceUser findByPrimaryKey(
+	public static com.liferay.ruon.model.UserPresence findByPrimaryKey(
 		long presenceUserId)
 		throws com.liferay.portal.SystemException,
-			com.liferay.ruon.NoSuchPresenceUserException {
+			com.liferay.ruon.NoSuchUserPresenceException {
 		return getPersistence().findByPrimaryKey(presenceUserId);
 	}
 
-	public static com.liferay.ruon.model.PresenceUser fetchByPrimaryKey(
+	public static com.liferay.ruon.model.UserPresence fetchByPrimaryKey(
 		long presenceUserId) throws com.liferay.portal.SystemException {
 		return getPersistence().fetchByPrimaryKey(presenceUserId);
 	}
@@ -89,17 +106,17 @@ public class PresenceUserUtil {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
-	public static java.util.List<com.liferay.ruon.model.PresenceUser> findAll()
+	public static java.util.List<com.liferay.ruon.model.UserPresence> findAll()
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll();
 	}
 
-	public static java.util.List<com.liferay.ruon.model.PresenceUser> findAll(
+	public static java.util.List<com.liferay.ruon.model.UserPresence> findAll(
 		int start, int end) throws com.liferay.portal.SystemException {
 		return getPersistence().findAll(start, end);
 	}
 
-	public static java.util.List<com.liferay.ruon.model.PresenceUser> findAll(
+	public static java.util.List<com.liferay.ruon.model.UserPresence> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll(start, end, obc);
@@ -123,23 +140,23 @@ public class PresenceUserUtil {
 		getPersistence().unregisterListener(listener);
 	}
 
-	public static PresenceUserPersistence getPersistence() {
+	public static UserPresencePersistence getPersistence() {
 		return _getUtil()._persistence;
 	}
 
-	public void setPersistence(PresenceUserPersistence persistence) {
+	public void setPersistence(UserPresencePersistence persistence) {
 		_persistence = persistence;
 	}
 
-	private static PresenceUserUtil _getUtil() {
+	private static UserPresenceUtil _getUtil() {
 		if (_util == null) {
-			_util = (PresenceUserUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
+			_util = (UserPresenceUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
 		}
 
 		return _util;
 	}
 
-	private static final String _UTIL = PresenceUserUtil.class.getName();
-	private static PresenceUserUtil _util;
-	private PresenceUserPersistence _persistence;
+	private static final String _UTIL = UserPresenceUtil.class.getName();
+	private static UserPresenceUtil _util;
+	private UserPresencePersistence _persistence;
 }

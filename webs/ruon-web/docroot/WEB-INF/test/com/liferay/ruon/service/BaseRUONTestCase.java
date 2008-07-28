@@ -37,59 +37,48 @@
  * Copyright 2008 Sun Microsystems Inc. All rights reserved.
  **/
 
-package com.liferay.ruon.service.impl;
+package com.liferay.ruon.service;
 
-import com.liferay.portal.model.Portlet;
-import com.liferay.portal.service.PortletLocalServiceUtil;
-import com.liferay.ruon.model.PresenceUser;
-import com.liferay.ruon.service.base.CommunicationLocalServiceBaseImpl;
+import com.liferay.portal.service.BaseServiceTestCase;
+import com.liferay.ruon.NoSuchUserPresenceException;
+import com.liferay.ruon.model.UserPresence;
+import com.liferay.ruon.model.impl.UserPresenceImpl;
 import com.liferay.ruon.util.RUONException;
 
 /**
-* <a href="CommunicationLocalServiceImpl.java.html"><b><i>View Source
-* </i></b></a>
-*
-* @author Murali Krishna Reddy
-* @author Brian Wing Shun Chan
-*
-*/
-public class CommunicationLocalServiceImpl
-		extends CommunicationLocalServiceBaseImpl {
-
-	public String getWaysToCommunicate(Long userId, Long loggedInUserId)
-			throws RUONException {
-
-		if (loggedInUserId.equals(new Long(0)) ||
-				!presenceLocalService.isUserOnline(userId) ||
-										userId.equals(loggedInUserId)) {
-			return "";
-		}
-
+ * <a href="BaseRUONTestCase.java.html"><b><i>View Source</i>
+ * </b></a>
+ *
+ * @author Murali Krishna Reddy
+ *
+ */
+public class BaseRUONTestCase extends BaseServiceTestCase {
+	public void setUp() throws Exception {
+		super.setUp();
 		try {
-			PresenceUser pUser = presenceUserLocalService.
-												getPresenceUser(userId);
-
-			if (pUser != null && _isChatPortletDeployed()) {
-				return ("<a onclick=\"Liferay.Chat.openChatWindow('" +
-						userId + "');\" href=\"javascript: ;\">"
-						+ "Chat" + "</a>");
+			UserPresence pUser =
+					UserPresenceLocalServiceUtil.getUserPresence(userId);
+			pUser.setPresenceStatus(1);
+			UserPresenceLocalServiceUtil.updateUserPresence(pUser);
+		} catch (NoSuchUserPresenceException e) {
+			UserPresence pUserNew = new UserPresenceImpl();
+			pUserNew.setPresenceUserId(userId);
+			pUserNew.setPresenceStatus(2);
+			try {
+				UserPresenceLocalServiceUtil.addUserPresence(pUserNew);
+			} catch (Exception se) {
+				throw new RUONException(se);
 			}
-			return "";
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw new RUONException(e);
 		}
 	}
 
-	private boolean _isChatPortletDeployed() {
-		boolean isChatDeployed = false;
-
-		for (Portlet deplPortlet : PortletLocalServiceUtil.getPortlets()) {
-			if ("Chat".equalsIgnoreCase(deplPortlet.getDisplayName()))
-				isChatDeployed = true;
-		}
-
-		return isChatDeployed;
+	public void tearDown() throws Exception {
+		UserPresenceLocalServiceUtil.deleteUserPresence(userId);
+		super.tearDown();
 	}
+
+	protected Long userId = new Long(9876);
 
 }

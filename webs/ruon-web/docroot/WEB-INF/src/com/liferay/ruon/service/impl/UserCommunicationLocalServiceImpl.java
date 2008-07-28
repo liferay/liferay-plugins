@@ -37,50 +37,58 @@
  * Copyright 2008 Sun Microsystems Inc. All rights reserved.
  **/
 
-package com.liferay.ruon.servlet;
+package com.liferay.ruon.service.impl;
 
-import com.liferay.portal.kernel.messaging.Destination;
-import com.liferay.portal.kernel.messaging.DestinationNames;
-import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.messaging.MessageListener;
-import com.liferay.portal.kernel.messaging.ParallelDestination;
-import com.liferay.portal.kernel.util.PortalInitable;
-import com.liferay.portal.kernel.util.PortalInitableUtil;
-import com.liferay.ruon.messaging.RUONMessageListener;
-
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
+import com.liferay.portal.model.Portlet;
+import com.liferay.portal.service.PortletLocalServiceUtil;
+import com.liferay.ruon.model.UserPresence;
+import com.liferay.ruon.service.base.UserCommunicationLocalServiceBaseImpl;
+import com.liferay.ruon.util.RUONException;
 
 /**
- * <a href="RUONServletContextListener.java.html"><b><i>View Source</i></b></a>
+ * <a href="UserCommunicationLocalServiceImpl.java.html"><b><i>View Source</i>
+ * </b></a>
  *
- * @author Murali Krishna Reddy
+ * @author Brian Wing Shun Chan
  *
  */
-public class RUONServletContextListener
-		implements PortalInitable, ServletContextListener{
+public class UserCommunicationLocalServiceImpl
+	extends UserCommunicationLocalServiceBaseImpl {
 
-	public void contextDestroyed(ServletContextEvent event){
-		_ruonDestination.unregister(_ruonMessageListener);
+	public String getWaysToCommunicate(Long userId, Long loggedInUserId)
+			throws RUONException {
 
-		MessageBusUtil.removeDestination(_ruonDestination.getName());
+		if (loggedInUserId.equals(new Long(0)) ||
+				!userPresenceLocalService.isUserOnline(userId) ||
+										userId.equals(loggedInUserId)) {
+			return "";
+		}
+
+		try {
+			UserPresence pUser = userPresenceLocalService.
+												getUserPresence(userId);
+
+			if (pUser != null && _isChatPortletDeployed()) {
+				return ("<a onclick=\"Liferay.Chat.openChatWindow('" +
+						userId + "');\" href=\"javascript: ;\">"
+						+ "Chat" + "</a>");
+			}
+			return "";
+		}
+		catch (Exception e) {
+			throw new RUONException(e);
+		}
 	}
 
-	public void contextInitialized(ServletContextEvent event){
-		PortalInitableUtil.init(this);
+	private boolean _isChatPortletDeployed() {
+		boolean isChatDeployed = false;
+
+		for (Portlet deplPortlet : PortletLocalServiceUtil.getPortlets()) {
+			if ("Chat".equalsIgnoreCase(deplPortlet.getDisplayName()))
+				isChatDeployed = true;
+		}
+
+		return isChatDeployed;
 	}
-
-	public void portalInit(){
-		_ruonDestination = new ParallelDestination(DestinationNames.RUON_WEB);
-
-		MessageBusUtil.addDestination(_ruonDestination);
-
-		_ruonMessageListener = new RUONMessageListener();
-
-		_ruonDestination.register(_ruonMessageListener);
-	}
-
-	private Destination _ruonDestination;
-	private MessageListener _ruonMessageListener;
 
 }

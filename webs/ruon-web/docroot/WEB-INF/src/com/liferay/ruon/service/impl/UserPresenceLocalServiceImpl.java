@@ -39,33 +39,38 @@
 
 package com.liferay.ruon.service.impl;
 
-import com.liferay.ruon.NoSuchPresenceUserException;
-import com.liferay.ruon.model.PresenceUser;
-import com.liferay.ruon.model.impl.PresenceUserImpl;
-import com.liferay.ruon.service.base.PresenceLocalServiceBaseImpl;
+import com.liferay.ruon.NoSuchUserPresenceException;
+import com.liferay.ruon.model.UserPresence;
+import com.liferay.ruon.model.impl.UserPresenceImpl;
+import com.liferay.ruon.service.base.UserPresenceLocalServiceBaseImpl;
 import com.liferay.ruon.util.PresenceStatusConstants;
 import com.liferay.ruon.util.RUONException;
 
 import java.util.List;
 
 /**
- *<a href="PresenceLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="UserPresenceLocalServiceImpl.java.html"><b><i>View Source</i>
+ * </b></a>
  *
- * @author Murali Krishna Reddy
  * @author Brian Wing Shun Chan
  *
  */
-public class PresenceLocalServiceImpl extends PresenceLocalServiceBaseImpl {
-
-	public List<PresenceUser> getListOfAllUsers() throws RUONException {
-		return presenceUserLocalService.getAllUsers();
+public class UserPresenceLocalServiceImpl
+	extends UserPresenceLocalServiceBaseImpl {
+	public List<UserPresence> getAllUsers() throws RUONException {
+		try {
+			return userPresencePersistence.findAll();
+		}
+		catch (Exception e) {
+			throw new RUONException(e);
+		}
 	}
 
 	public String getPresenceStatusOfUser(Long userId) throws RUONException {
 		try {
 
 			Long presenceStatus =
-					presenceUserLocalService.getPresenceUser(userId).
+					getUserPresence(userId).
 							getPresenceStatus();
 
 			if (presenceStatus.equals(PresenceStatusConstants.STATUS_ONLINE)) {
@@ -74,7 +79,7 @@ public class PresenceLocalServiceImpl extends PresenceLocalServiceBaseImpl {
 				return "<img src=\"/ruon/images/status_offline.png\"/>";
 			}
 		}
-		catch (NoSuchPresenceUserException ne) {
+		catch (NoSuchUserPresenceException ne) {
 			return "<img src=\"/ruon/images/status_offline.png\"/>";
 		}
 		catch (Exception exception) {
@@ -84,8 +89,7 @@ public class PresenceLocalServiceImpl extends PresenceLocalServiceBaseImpl {
 
 	public boolean isUserOnline(Long userId) throws RUONException {
 		try {
-			Long presenceStatus = presenceUserLocalService.
-					getPresenceUser(userId).getPresenceStatus();
+			Long presenceStatus = getUserPresence(userId).getPresenceStatus();
 
 			if (presenceStatus.equals(PresenceStatusConstants.STATUS_ONLINE)) {
 				return true;
@@ -99,8 +103,8 @@ public class PresenceLocalServiceImpl extends PresenceLocalServiceBaseImpl {
 	}
 
 	public void makeAllUsersOffline() throws RUONException {
-		for (PresenceUser pUser : getListOfAllUsers()) {
-			Long pUserId = pUser.getPresenceUserId();
+		for (UserPresence userPresence : getAllUsers()) {
+			Long pUserId = userPresence.getPresenceUserId();
 			setPresenceStatusOfUser(
 							pUserId, PresenceStatusConstants.STATUS_OFFLINE);
 		}
@@ -109,18 +113,17 @@ public class PresenceLocalServiceImpl extends PresenceLocalServiceBaseImpl {
 	public void setPresenceStatusOfUser(Long userId, Long status)
 			throws RUONException {
 		try {
-			PresenceUser pUser = presenceUserLocalService.
-					getPresenceUser(userId);
+			UserPresence userPresence = getUserPresence(userId);
 
-			pUser.setPresenceStatus(status);
-			presenceUserLocalService.updatePresenceUser(pUser);
+			userPresence.setPresenceStatus(status);
+			updateUserPresence(userPresence);
 		}
-		catch (NoSuchPresenceUserException e) {
-			PresenceUser pUserNew = new PresenceUserImpl();
+		catch (NoSuchUserPresenceException noSuchUserPresenceException) {
+			UserPresence pUserNew = new UserPresenceImpl();
 			pUserNew.setPresenceUserId(userId);
 			pUserNew.setPresenceStatus(status);
 			try {
-				presenceUserLocalService.addPresenceUser(pUserNew);
+				addUserPresence(pUserNew);
 			}
 			catch (Exception se) {
 				throw new RUONException(se);

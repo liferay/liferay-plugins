@@ -44,12 +44,12 @@ import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
-import com.liferay.ruon.model.PresenceStatus;
+import com.liferay.ruon.model.UserPresence;
 import com.liferay.ruon.service.PresenceStatusLocalService;
+import com.liferay.ruon.service.PresenceStatusLocalServiceFactory;
 import com.liferay.ruon.service.UserCommunicationLocalService;
 import com.liferay.ruon.service.UserCommunicationLocalServiceFactory;
 import com.liferay.ruon.service.UserPresenceLocalService;
-import com.liferay.ruon.service.UserPresenceLocalServiceFactory;
 import com.liferay.ruon.service.persistence.PresenceStatusPersistence;
 import com.liferay.ruon.service.persistence.PresenceStatusUtil;
 import com.liferay.ruon.service.persistence.UserPresencePersistence;
@@ -58,60 +58,69 @@ import com.liferay.ruon.service.persistence.UserPresenceUtil;
 import java.util.List;
 
 /**
- * <a href="PresenceStatusLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="UserPresenceLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class PresenceStatusLocalServiceBaseImpl
-	implements PresenceStatusLocalService, InitializingBean {
-	public PresenceStatus addPresenceStatus(PresenceStatus presenceStatus)
+public abstract class UserPresenceLocalServiceBaseImpl
+	implements UserPresenceLocalService, InitializingBean {
+	public UserPresence addUserPresence(UserPresence userPresence)
 		throws SystemException {
-		presenceStatus.setNew(true);
+		userPresence.setNew(true);
 
-		return presenceStatusPersistence.update(presenceStatus, false);
+		return userPresencePersistence.update(userPresence, false);
 	}
 
-	public void deletePresenceStatus(long presenceStatusId)
+	public void deleteUserPresence(long presenceUserId)
 		throws PortalException, SystemException {
-		presenceStatusPersistence.remove(presenceStatusId);
+		userPresencePersistence.remove(presenceUserId);
 	}
 
-	public void deletePresenceStatus(PresenceStatus presenceStatus)
+	public void deleteUserPresence(UserPresence userPresence)
 		throws SystemException {
-		presenceStatusPersistence.remove(presenceStatus);
+		userPresencePersistence.remove(userPresence);
 	}
 
 	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
-		return presenceStatusPersistence.findWithDynamicQuery(dynamicQuery);
+		return userPresencePersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
 	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end) throws SystemException {
-		return presenceStatusPersistence.findWithDynamicQuery(dynamicQuery,
+		return userPresencePersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
 
-	public PresenceStatus getPresenceStatus(long presenceStatusId)
+	public UserPresence getUserPresence(long presenceUserId)
 		throws PortalException, SystemException {
-		return presenceStatusPersistence.findByPrimaryKey(presenceStatusId);
+		return userPresencePersistence.findByPrimaryKey(presenceUserId);
 	}
 
-	public List<PresenceStatus> getPresenceStatuss(int start, int end)
+	public List<UserPresence> getUserPresences(int start, int end)
 		throws SystemException {
-		return presenceStatusPersistence.findAll(start, end);
+		return userPresencePersistence.findAll(start, end);
 	}
 
-	public int getPresenceStatussCount() throws SystemException {
-		return presenceStatusPersistence.countAll();
+	public int getUserPresencesCount() throws SystemException {
+		return userPresencePersistence.countAll();
 	}
 
-	public PresenceStatus updatePresenceStatus(PresenceStatus presenceStatus)
+	public UserPresence updateUserPresence(UserPresence userPresence)
 		throws SystemException {
-		presenceStatus.setNew(false);
+		userPresence.setNew(false);
 
-		return presenceStatusPersistence.update(presenceStatus, true);
+		return userPresencePersistence.update(userPresence, true);
+	}
+
+	public PresenceStatusLocalService getPresenceStatusLocalService() {
+		return presenceStatusLocalService;
+	}
+
+	public void setPresenceStatusLocalService(
+		PresenceStatusLocalService presenceStatusLocalService) {
+		this.presenceStatusLocalService = presenceStatusLocalService;
 	}
 
 	public PresenceStatusPersistence getPresenceStatusPersistence() {
@@ -132,15 +141,6 @@ public abstract class PresenceStatusLocalServiceBaseImpl
 		this.userCommunicationLocalService = userCommunicationLocalService;
 	}
 
-	public UserPresenceLocalService getUserPresenceLocalService() {
-		return userPresenceLocalService;
-	}
-
-	public void setUserPresenceLocalService(
-		UserPresenceLocalService userPresenceLocalService) {
-		this.userPresenceLocalService = userPresenceLocalService;
-	}
-
 	public UserPresencePersistence getUserPresencePersistence() {
 		return userPresencePersistence;
 	}
@@ -151,6 +151,10 @@ public abstract class PresenceStatusLocalServiceBaseImpl
 	}
 
 	public void afterPropertiesSet() {
+		if (presenceStatusLocalService == null) {
+			presenceStatusLocalService = PresenceStatusLocalServiceFactory.getImpl();
+		}
+
 		if (presenceStatusPersistence == null) {
 			presenceStatusPersistence = PresenceStatusUtil.getPersistence();
 		}
@@ -159,17 +163,13 @@ public abstract class PresenceStatusLocalServiceBaseImpl
 			userCommunicationLocalService = UserCommunicationLocalServiceFactory.getImpl();
 		}
 
-		if (userPresenceLocalService == null) {
-			userPresenceLocalService = UserPresenceLocalServiceFactory.getImpl();
-		}
-
 		if (userPresencePersistence == null) {
 			userPresencePersistence = UserPresenceUtil.getPersistence();
 		}
 	}
 
+	protected PresenceStatusLocalService presenceStatusLocalService;
 	protected PresenceStatusPersistence presenceStatusPersistence;
 	protected UserCommunicationLocalService userCommunicationLocalService;
-	protected UserPresenceLocalService userPresenceLocalService;
 	protected UserPresencePersistence userPresencePersistence;
 }
