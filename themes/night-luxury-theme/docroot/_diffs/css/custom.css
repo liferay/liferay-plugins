@@ -7,10 +7,10 @@ body {
 	padding: 0;
 }
 #banner {
-	background: no-repeat url(../images/custom/bckpage.jpg);
-	height: 391px;
-	margin: 0 auto;
-	width: 741px;
+	background:black url(../images/custom/bckpage.jpg) no-repeat scroll center center;
+	height:391px;
+	margin:0 auto;
+	width:960px;
 }
 #wrapper {
 	background: none;
@@ -66,7 +66,8 @@ body {
 	top: 0px;
 }
 #content-wrapper {
-	width: 55%;
+	width: 960px;
+	background: black;
 }
 .ui-dialog.ui-resizable-disabled .ui-dialog-content {
 	color: black;
@@ -94,12 +95,14 @@ a {
 	border-bottom: medium none;
 }
 #footer {
-	background:transparent url(../images/custom/bckfooter.gif) no-repeat scroll center top;
+	background:transparent url(../images/custom/bckfooter.gif) repeat scroll center top;
 	color:#FFFFFF;
-	height: 15px;
 	font-size:10px;
-	padding:5px 0pt;
+	height:15px;
+	margin-left:146px;
+	padding:5px 0;
 	text-align:center;
+	width:960px;
 }
 .js #navigation .enter-page {
 	background-color:transparent;
@@ -107,4 +110,13 @@ a {
 }
 .ui-dialog {
 	background-color:black;
+}
+.portlet-calendar .calendar-day .day-number {
+	background:black none repeat scroll 0% 0%;
+}
+.portlet-section-body td {
+	color: black;
+}
+.lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
+	color: #00C4C4;
 }
