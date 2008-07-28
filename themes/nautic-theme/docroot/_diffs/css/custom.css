@@ -37,9 +37,8 @@ body {
 }
 #content-wrapper {
 	background:black none repeat scroll 0% 0%;
-	border:14px solid black;
 	margin:-9pt auto -9pt 152px;
-	width:922px;
+	width:950px;
 }
 .js .interactive-mode {
 	right: 14%;
