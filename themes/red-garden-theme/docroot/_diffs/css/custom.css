@@ -112,3 +112,12 @@ a {
 .ui-dialog {
 	background-color:black;
 }
+.portlet-calendar .calendar-day .day-number {
+	color:black;
+}
+.lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
+	color: black;
+}
+.portlet-section-body td {
+	color: black;
+}
