@@ -2,6 +2,9 @@
 	background-color: transparent;
 	color: #256C8E;
 }
+.ie #banner {
+	margin-left: 183px;
+}
 #navigation li.selected a span {
 	background: transparent;
 	padding-left: 0px;
