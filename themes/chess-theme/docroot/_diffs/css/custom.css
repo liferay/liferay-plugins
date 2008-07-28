@@ -10,7 +10,7 @@
 	background: transparent;
 	border: none;
 	margin: -57pt auto 20px;
-	width: 63%;
+	width: 75%;
 }
 #navigation li {
 	border: none;
@@ -22,26 +22,28 @@ body {
 	font-size: 12px;
 }
 #banner {
-	background: transparent url(../images/custom/header.jpg) no-repeat center;
-	height: 353px;
-	width: 1540px;
+	background:black url(../images/custom/header.jpg) no-repeat scroll right center;
+	height:353px;
+	margin-left:179px;
+	width:894px;
 }
 #wrapper {
 	background: none;
 }
 #banner .logo a {
-	margin-left: 233px;
+	margin-left:164px;
 	margin-top: 53px;
 }
 .js .interactive-mode {
-	right: 22%;
+	right: 15%;
 }
 #navigation li a {
 	font-size: 16px;
 	font-weight: bold;
 }
 #content-wrapper {
-	width: 58%;
+	width:894px;
+	background: black;
 }
 .js #add-page {
 	background: transparent none repeat scroll 0% 0%;
@@ -86,4 +88,13 @@ a {
 }
 .ui-dialog {
 	background-color: black;
+}
+.portlet-calendar .calendar-day .day-number {
+	color: black;
+}
+.lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
+	color: #336699;
+}
+.portlet-section-body td {
+	color: black;
 }
