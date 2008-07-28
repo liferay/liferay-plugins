@@ -1,0 +1,78 @@
+body {
+	background: #FFFFFF url(../images/custom/background.gif) repeat-x scroll center top;
+	font-family: "Tahoma","Helvetica","Arial",sans-serif;
+	font-size: 12px;
+}
+#banner {
+	background: transparent;
+}
+#banner .logo a {
+	margin-left: 460px;
+}
+#navigation {
+	background: transparent url(../images/custom/navigation.jpg) no-repeat scroll 0 0;
+	border: none;
+	height: 50px;
+	margin: -5px auto 20px;
+	width: 77%;
+}
+#wrapper {
+	background: transparent;
+}
+#navigation li {
+	border: none;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+#navigation li a {
+	border-right: 1px solid #282727;
+	color: #FFFFFF;
+	display: block;
+	float: left;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 15px;
+	text-decoration: none;
+}
+#navigation ul {
+	width: 96%;
+}
+#content-wrapper {
+	width: 77%;
+}
+.portlet {
+	border: none;
+}
+.portlet-topper {
+	background: transparent;
+	border: none;
+	font-size: 18px;
+	font-weight: lighter;
+}
+a {
+	font-size: 12px;
+}
+.ui-tabs li a, .tabs li span {
+	background: transparent none repeat scroll 0 0;
+	border-right: medium none;
+	color: black;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: transparent;
+	color: #336699;
+}
+.js #add-page {
+	background: transparent none repeat scroll 0 0;
+	border: medium none;
+	right: 0;
+	top: 10px;
+}
+#footer {
+	background: url(../images/custom/background.gif) repeat;
+	height: 15px;
+}
