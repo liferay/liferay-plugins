@@ -99,3 +99,12 @@ a {
 	margin-top: 15px;
 	text-align: center;
 }
+.portlet-calendar .calendar-day .day-number {
+	color: black;
+}
+.portlet-section-body td {
+	color: black;
+}
+.lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
+	color:#BA5300;
+}
