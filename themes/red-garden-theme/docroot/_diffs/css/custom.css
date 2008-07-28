@@ -106,6 +106,9 @@ body {
 	text-align: center;
 	width: 992px;
 }
+.ie #footer {
+	margin-left: 134px;
+}
 a {
 	font-size: 12px;
 }
