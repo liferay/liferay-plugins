@@ -74,9 +74,9 @@ public class UserPresenceLocalServiceImpl
 							getPresenceStatus();
 
 			if (presenceStatus.equals(PresenceStatusConstants.STATUS_ONLINE)) {
-				return "<img src=\"/ruon/images/status_online.png\"/>";
+				return "<img src=\"/ruon-web/images/status_online.png\"/>";
 			} else {
-				return "<img src=\"/ruon/images/status_offline.png\"/>";
+				return "<img src=\"/ruon-web/images/status_offline.png\"/>";
 			}
 		}
 		catch (NoSuchUserPresenceException ne) {
