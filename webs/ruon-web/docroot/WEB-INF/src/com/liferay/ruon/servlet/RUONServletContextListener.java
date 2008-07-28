@@ -71,7 +71,7 @@ public class RUONServletContextListener
 	}
 
 	public void portalInit(){
-		_ruonDestination = new ParallelDestination(DestinationNames.RUON_WEB);
+		_ruonDestination = new ParallelDestination(DestinationNames.RUON);
 
 		MessageBusUtil.addDestination(_ruonDestination);
 
