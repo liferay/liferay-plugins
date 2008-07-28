@@ -1,10 +1,16 @@
 body {
-	background: #646464 url(../images/custom/background.jpg) repeat-y center;
+	background: black;
 	color: white;
 }
 #banner {
-	background: url(../images/custom/header.jpg) no-repeat center;
+	background: #646464 url(../images/custom/header.jpg) no-repeat center;
 	height: 316px;
+	margin-left:165px;
+	width:922px;
+}
+.ie #banner {
+	margin-left: 166px;
+	width: 927px;
 }
 #wrapper {
 	background: transparent;
@@ -47,7 +53,9 @@ body {
 }
 #content-wrapper {
 	margin: -23pt auto;
-	width: 57%;
+	width: 72%;
+	background: #646464;
+	border: 10px solid #646464;
 }
 .portlet {
 	background: transparent;
@@ -91,4 +99,13 @@ a {
 }
 .ui-dialog {
 	background-color: black;
+}
+.portlet-calendar .calendar-day .day-number {
+	color:black;
+}
+.lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
+	color:black;
+}
+.portlet-section-body td {
+	color: black;
 }
