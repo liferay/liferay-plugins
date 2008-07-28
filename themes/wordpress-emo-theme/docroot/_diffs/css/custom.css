@@ -4,6 +4,9 @@
 	width: 960px;
 	margin-left: 146px;
 }
+.ie #banner {
+	margin-left: 150px;
+}
 body {
 	background: #757575 url(../images/custom/bg.jpg) repeat-y scroll center center;
 	color: #FFFFFF;
