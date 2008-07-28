@@ -17,6 +17,9 @@ body {
 #banner .logo a {
 	margin-left: 230px;
 }
+.ie #banner {
+	margin-left: 150px;
+}
 .js .interactive-mode {
 	right: 21.5%;
 	position: relative !important;
