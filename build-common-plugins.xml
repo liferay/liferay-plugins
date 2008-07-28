@@ -53,11 +53,11 @@
 			</path>
 			<sequential>
 				<antelope:stringutil string="@{service.file}" property="service.file.index">
-					<indexof string="docroot" fromindex="0" />
+					<antelope:indexof string="docroot" fromindex="0" />
 				</antelope:stringutil>
 
 				<antelope:stringutil string="@{service.file}" property="portlet.dir">
-					<substring beginindex="0" endindex="${service.file.index}" />
+					<antelope:substring beginindex="0" endindex="${service.file.index}" />
 				</antelope:stringutil>
 
 				<ant dir="${portlet.dir}" target="build-service" inheritAll="false" />
@@ -72,7 +72,7 @@
 			</path>
 			<sequential>
 				<antelope:stringutil string="@{module.name}" property="module.name.unix">
-					<replace regex="\\" replacement="/" />
+					<antelope:replace regex="\\" replacement="/" />
 				</antelope:stringutil>
 
 				<antelope:grep in="${module.name.unix}" regex="(.*/)(.*)" group="2" property="module.name" />

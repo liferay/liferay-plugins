@@ -18,10 +18,10 @@
 	</if>
 
 	<antelope:stringutil string="${basedir}" property="plugin.name.beginindex">
-		<lastindexof string="${file.separator}" />
+		<antelope:lastindexof string="${file.separator}" />
 	</antelope:stringutil>
 
-	<math
+	<antelope:math
 		datatype="int"
 		operand1="${plugin.name.beginindex}"
 		operand2="1"
@@ -30,7 +30,7 @@
 	/>
 
 	<antelope:stringutil string="${basedir}" property="plugin.name">
-		<substring beginindex="${plugin.name.beginindex}" />
+		<antelope:substring beginindex="${plugin.name.beginindex}" />
 	</antelope:stringutil>
 
 	<property name="plugin.file" value="${project.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}.war" />
@@ -73,7 +73,7 @@
 			</path>
 			<sequential>
 				<antelope:stringutil string="@{js.file}" property="js.file.unix">
-					<replace regex="\\" replacement="/" />
+					<antelope:replace regex="\\" replacement="/" />
 				</antelope:stringutil>
 
 				<antelope:grep in="${js.file.unix}" regex="(.*/)(.*)" group="1" property="js.dir" />
