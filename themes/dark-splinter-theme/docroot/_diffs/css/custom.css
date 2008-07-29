@@ -1,5 +1,7 @@
 #wrapper {
 	background: transparent;
+	width: 1264px;
+	position: relative;
 }
 #navigation {
 	background: transparent;
@@ -28,9 +30,10 @@
 }
 #banner {
 	background: transparent;
+	position: relative;
 }
 body {
-	background: #000000 url(../images/custom/bg.jpg) repeat-x scroll 50% 0;
+	background: #000000 url(../images/custom/bg.jpg) repeat-x scroll 0 0;
 	color: #FFFFFF;
 	font-family: Tahoma,Arial,Helvetica,sans-serif;
 	font-size: 76%;
@@ -116,4 +119,7 @@ a {
 }
 .uni-form {
 	background: black;
+}
+.uni-form fieldset legend {
+	color: white;
 }
