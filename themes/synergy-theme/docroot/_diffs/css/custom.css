@@ -1,0 +1,124 @@
+#banner .logo a {
+	background: url('../images/common/logo.png') no-repeat;
+	display: block;
+	font-size: 0;
+	height: 94px;
+	text-indent: -9999em;
+	width: 433px;
+}
+
+#banner .logo {
+	padding: 18px 15px 0;
+}
+
+#banner {
+	background: transparent;
+	height: 100px;
+	top: -1px;
+}
+
+body {
+	background: url('../images/common/body_bg.png') repeat-x left top;
+	font-family: 'Arial', 'Helvetica', sans-serif;
+	height: auto;
+}
+
+#content-wrapper {
+	margin: 0 auto;
+	width: 99%;
+}
+
+.js #add-page {
+	background: transparent none repeat scroll 0 0%;
+	border: none;
+	color: #FFF;
+	padding-bottom: 6px;
+}
+
+.js #navigation .enter-page .save-page {
+	color: #000;
+}
+
+.js #navigation .enter-page {
+	background-color: transparent;
+	padding: 4px;
+}
+
+.js .interactive-mode h2 span {
+	background: transparent url('../images/synergy/dock.png');
+	border-right: none;
+}
+
+.js .interactive-mode h2 {
+	background: transparent url('../images/synergy/dock.png');
+	padding: 0 37px 0 4pt;
+}
+
+.js .interactive-mode {
+	background: transparent;
+}
+
+.js .save-page {
+	background: transparent;
+	margin: 0 10px;
+	padding-left: 20px;
+}
+
+#navigation a {
+	color: #0072B9;
+}
+
+#navigation li a {
+	background: transparent url('../images/synergy/tab-unselected.png') no-repeat;
+	height: 75px;
+	padding: 5px 0;
+	width: 150px;
+}
+
+#navigation li a:hover {
+	background: transparent url('../images/synergy/tab-selected-hover.png') no-repeat;
+	border: none;
+}
+
+#navigation li {
+	border: none;
+	font-weight: bold;
+	margin-right: 8px;
+	margin-top: 0;
+	text-align: center;
+}
+
+#navigation li.selected a {
+	background: transparent url('../images/synergy/tab-selected.png') no-repeat;
+	border: none;
+	color: #FFF;
+}
+
+#navigation {
+	background: transparent;
+	border-top: 2px solid #0072B9;
+	margin: 12pt auto 20px;
+}
+
+.portlet-topper {
+	background: transparent none repeat scroll 0 0%;
+	border-bottom: 2px solid #0072B9;
+	padding-right: 40px;
+	position: relative;
+}
+
+.portlet {
+	background: #FFF;
+	border-bottom: 0;
+	border-left: 0;
+	border-right: 0;
+	border-top: 0;
+	margin: 0 0pt 10px;
+	padding: 3px;
+	text-align: left;
+}
+
+#wrapper {
+	background: transparent;
+	width: 100%;
+}

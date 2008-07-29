@@ -1,13 +1,192 @@
+#banner .logo a {
+	color: #FFF;
+	display: block;
+	font: normal 2em Verdana, sans-serif;
+	padding: 19px 0 0 0;
+	text-align: center;
+	width: 940px;
+}
+
+#banner .logo {
+	display: block;
+	height: auto;
+	margin: 0;
+	width: 940px;
+}
+
+#banner {
+	background: url('../images/custom/header.png') repeat-x;
+	display: block;
+	height: 156px;
+	margin: 0 auto 8px auto;
+	width: 940px;
+}
+
+body {
+	background: url('../images/custom/bgcontainer.png') repeat-y top center;
+	color: #444;
+	font: normal 62.5% Lucida Sans Unicode, sans-serif;
+}
+
+#content-wrapper {
+	margin: 0 0 0 230px;
+	overflow: hidden;
+	width: 728px;
+}
+
 html {
 	background: #EEE url('../images/custom/bg.png');
 	height: auto;
 	overflow-y: scroll;
 }
-body {
-	background: url('../images/custom/bgcontainer.png') repeat-y top center;
-	color: #444;
-	font: normal 62.5% "Lucida Sans Unicode",sans-serif;
+
+.ie #content-wrapper {
+	width: 528px;
 }
+
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	padding: 1px 1px;
+}
+
+.js #add-page a span {
+	background: transparent;
+}
+
+.js #add-page {
+	background: #E5E5E5 none repeat scroll 0 0%;
+	right: 0;
+	top: 145px;
+}
+
+.js #navigation .enter-page .save-page {
+	background: transparent;
+	color: #777;
+	margin-top: -16px;
+	padding-left: 108px;
+}
+
+.js #navigation .enter-page {
+	background-color: transparent;
+	padding: 1.5px;
+}
+
+.js #navigation {
+	position: absolute;
+}
+
+.js .interactive-mode h2 span {
+	background: transparent;
+	border: none;
+}
+
+.js .interactive-mode h2 {
+	background: transparent;
+}
+
+.js .interactive-mode {
+	background: transparent;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	color: #222;
+	font-size: 10pt;
+	padding: 8px 16px 16px 16px;
+}
+
+.js .lfr-dock.interactive-mode {
+	right: 28pt;
+	top: 20px;
+}
+
+#navigation li a {
+	display: block;
+	padding: 0 20px;
+	text-decoration: none;
+}
+
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0;
+}
+
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
+
+#navigation ul .sort-helper {
+}
+
+#navigation ul li a span, #navigation ul li a:hover span, #navigation ul li.selected a span, #navigation ul li.selected a:hover span, .js #add-page a span, .js #add-page a:hover span {
+	color: #777;
+	display: block;
+	float: left;
+	font-size: 0.9em;
+	padding: 3px 6px 3px 0;
+	text-decoration: none;
+	width: 200px;
+}
+
+#navigation ul li a, #navigation ul li a:hover, #navigation ul li.selected a, #navigation ul li.selected a:hover, .js #add-page a, .js #add-page a:hover {
+	display: block;
+	float: left;
+	width: 200px;
+}
+
+#navigation ul li a:hover, #navigation ul li.selected a:hover {
+	color: #111;
+	display: block;
+}
+
+#navigation ul li, #navigation ul li.selected, .js #add-page {
+	border: 1px solid #FAFAFA;
+	display: block;
+	float: left;
+	margin: 0;
+	width: 198px;
+}
+
+#navigation ul {
+	background: url('../images/custom/bgul.png') repeat-x;
+	border-top: 1px solid #FAFAFA;
+	display: block;
+	float: left;
+	width: 200px;
+}
+
+#navigation {
+	background: #EEE none repeat scroll 0 0%;
+	border: 1px solid #E5E5E5;
+	left: 35px;
+	position: absolute;
+	top: 172px;
+	width: 200px;
+}
+
+.portlet-content {
+	font-size: 1.2em;
+	padding-bottom: 1.2em;
+}
+
+.portlet-title {
+	color: #367EA6;
+	padding-top: 6px;
+}
+
+#portlet-wrapper- {
+	width: 728px;
+}
+
+.portlet {
+	background: #FFF;
+	border: 1px solid #EEE;
+	margin-bottom: 8px;
+	padding: 6px 12px;
+}
+
+.tabs, .liferay-table, .portlet-section-body td {
+	font-size: 10px;
+}
+
 #wrapper {
 	background: none;
 	clear: both;
@@ -16,148 +195,4 @@ body {
 	padding: 8px 18px 6px 18px;
 	position: relative;
 	width: 975px;
-}
-#banner {
-	background: url('../images/custom/header.png') repeat-x;
-	display: block;
-	height: 156px;
-	margin: 0 auto 8px auto;
-	width: 940px;
-}
-#banner .logo {
-	display: block;
-	height: auto;
-	margin: 0;
-	width: 940px;
-}
-#banner .logo a {
-	color: #fff;
-	display: block;
-	font: normal 2em Verdana,sans-serif;
-	padding: 19px 0 0 0;
-	text-align: center;
-	width: 940px;
-}
-.js .lfr-dock.interactive-mode {
-	right: 28pt;
-	top: 20px;
-}
-.js .lfr-dock.interactive-mode h2 span {
-	color: #222;
-	font-size: 10pt;
-	padding: 8px 16px 16px 16px;
-}
-#navigation {
-	background: #EEEEEE none repeat scroll 0% 0%;
-	border: 1px solid #E5E5E5;
-	left: -373px;
-	top: -4px;
-	width: 200px;
-}
-#navigation ul {
-	background: url('../images/custom/bgul.png') repeat-x;
-	border-top: 1px solid #fafafa;
-	display: block;
-	float: left;
-	width: 200px;
-}
-#navigation ul li , #navigation ul li.selected , .js #add-page {
-	border: 1px solid #fafafa;
-	display: block;
-	float: left;
-	margin: 0;
-	width: 198px;
-}
-#navigation ul li a , #navigation ul li a:hover , #navigation ul li.selected a , #navigation ul li.selected a:hover , .js #add-page a , .js #add-page a:hover {
-	display: block;
-	float: left;
-	width: 200px;
-}
-#navigation ul li a span , #navigation ul li a:hover span , #navigation ul li.selected a span , #navigation ul li.selected a:hover span , .js #add-page a span , .js #add-page a:hover span {
-	color: #777;
-	display: block;
-	float: left;
-	font-size: 0.9em;
-	padding: 3px 6px 3px 0px;
-	text-decoration: none;
-	width: 200px;
-}
-#navigation ul li a:hover , #navigation ul li.selected a:hover {
-	color: #111;
-	display: block;
-}
-#navigation ul .sort-helper {
-}
-.js #add-page {
-}
-#content-wrapper {
-	margin: -38pt 0 0 230px;
-	overflow: hidden;
-	width: 728px;
-}
-.ie #content-wrapper {
-	width: 528px;
-}
-#portlet-wrapper- {
-	width: 728px;
-}
-.tabs , .liferay-table , .portlet-section-body td {
-	font-size: 10px;
-}
-.portlet {
-	background: #FFF;
-	border: 1px solid #EEE;
-	margin-bottom: 8px;
-	padding: 6px 12px;
-}
-.portlet-title {
-	color: #367EA6;
-	padding-top: 6px;
-}
-.portlet-content {
-	font-size: 1.2em;
-	padding-bottom: 1.2em;
-}
-#navigation li.selected a, #navigation li a:hover {
-	background-color: transparent;
-}
-#navigation li.selected a span {
-	background: transparent;
-	padding-left: 0px;
-}
-#navigation li a {
-	display: block;
-	padding: 0px 20px;
-	text-decoration: none;
-}
-.js #add-page {
-	background: #E5E5E5 none repeat scroll 0% 0%;
-	right: 0%;
-	top: 145px;
-}
-.js #add-page a span {
-	background: transparent;
-}
-.js #navigation .enter-page .save-page {
-	background: transparent;
-	margin-top: -16px;
-	padding-left: 108px;
-	color: #777777;
-}
-.js .interactive-mode {
-	background: transparent;
-}
-.js .interactive-mode h2 span {
-	background: transparent;
-	border: none;
-}
-.js .interactive-mode h2 {
-	background: transparent;
-}
-.js #navigation .enter-page {
-	background-color:transparent;
-	padding: 1.5px;
-}
-input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
-	padding:1px 1px;
 }

@@ -1,0 +1,251 @@
+/* This CSS sets the default styles for the main navigation. */
+
+/* ---------- Main navigation ---------- */
+
+#navigation {
+}
+
+#navigation ul {
+}
+
+#navigation ul:after {
+}
+
+.ie #navigation ul {
+}
+
+.ie6 #navigation, .ie6 #navigation ul {
+}
+
+#navigation li {
+}
+
+#navigation a {
+}
+
+#navigation li a {
+}
+
+#navigation li a span {
+}
+
+#navigation li.selected a, #navigation li a:hover {
+}
+
+#navigation li.selected a span {
+}
+
+#navigation .child-menu {
+}
+
+/* ---------- Dock without JavaScript ---------- */
+
+.lfr-dock {
+}
+
+.lfr-dock h2 {
+}
+
+.lfr-dock ul {
+}
+
+.lfr-dock li {
+}
+
+.lfr-dock li a {
+}
+
+.lfr-dock li.home a {
+}
+
+.lfr-dock li.my-account a {
+}
+
+.lfr-dock li.sign-in a {
+}
+
+.lfr-dock li.sign-out a {
+}
+
+.lfr-dock li.add-content a {
+}
+
+.lfr-dock li.layout a {
+}
+
+.lfr-dock li.page-settings a {
+}
+
+.lfr-dock li.staging a {
+}
+
+.lfr-dock li.my-places a {
+}
+
+.lfr-dock li.my-places {
+}
+
+.lfr-dock li.toggle-controls {
+}
+
+/* ---------- Dock with JavaScript ---------- */
+
+.js .interactive-mode {
+}
+
+.js .interactive-mode h2 {
+}
+
+.js .interactive-mode h2 span {
+}
+
+.js .lfr-dock.expanded .lfr-dock-list-container {
+}
+
+.js .interactive-mode ul {
+}
+
+.js .interactive-mode li {
+}
+
+.js .interactive-mode li a {
+}
+
+.js .interactive-mode li a, .js .interactive-mode li a:hover {
+}
+
+.js .interactive-mode li a:hover, .js .interactive-mode .my-places li.current a:hover {
+}
+
+.js .interactive-mode .lfr-dock-list li.first {
+}
+
+.js .lfr-dock.interactive-mode .my-places li a {
+}
+
+.js .interactive-mode .my-places li {
+}
+
+.js .lfr-dock.interactive-mode .my-places.lfr-flyout.has-children > ul {
+}
+
+.js .interactive-mode .my-places li.current-community {
+}
+
+.js .interactive-mode .my-places li h3 {
+}
+
+.js .interactive-mode .lfr-flyout.has-children h3 {
+}
+
+.js .lfr-dock.interactive-mode .my-places li h3 a {
+}
+
+.js .interactive-mode .lfr-flyout.has-children ul {
+}
+
+.js .interactive-mode .my-places li.public a {
+}
+
+.js .interactive-mode .my-places li.private a {
+}
+
+.js .interactive-mode .my-places li.current {
+}
+
+.js .interactive-mode .my-places li.current a {
+}
+
+.js .interactive-mode li:hover, .js .interactive-mode .my-places li:hover {
+}
+
+.js .interactive-mode li:hover a:hover, .js .interactive-mode li:hover > a, .js .interactive-mode li:hover > h3 > a {
+}
+
+.ie6 .js .interactive-mode li a:hover {
+}
+
+.js .interactive-mode .my-places ul li a.add-page {
+}
+
+.js .interactive-mode .group-end {
+}
+
+.ie6.js .interactive-mode .taglib-my-places li {
+}
+
+.ie6.js .lfr-dock.interactive-mode {
+}
+
+.ie6.js .lfr-dock.interactive-mode li {
+}
+
+.ie6.js .interactive-mode .lfr-flyout.has-children {
+}
+
+.js .interactive-mode li.toggle-controls {
+}
+
+.js .interactive-mode li.toggle-controls a {
+}
+
+.js .controls-hidden .interactive-mode li.toggle-controls a {
+}
+
+/* ---------- Add/remove page ---------- */
+
+.js #navigation .enter-page {
+}
+
+.js #navigation .enter-page a {
+}
+
+.js #navigation .enter-page .save-page {
+}
+
+.ie.js #navigation .enter-page .save-page {
+}
+
+.js #navigation .enter-page .cancel-page {
+}
+
+.ie.js #navigation .enter-page {
+}
+
+.ie.js #navigation .enter-page input.text {
+}
+
+.js #navigation {
+}
+
+.js #add-page {
+}
+
+.js #add-page a {
+}
+
+.js #add-page a span {
+}
+
+.js #add-page a:hover span {
+}
+
+.js .delete-tab {
+}
+
+/*------ Navigation portlet ------*/
+
+.nav-menu li a.ancestor {
+}
+
+.nav-menu li a.selected {
+}
+
+.nav-menu ul {
+}
+
+.nav-menu-style-1 {
+}
+
+.nav-menu-style-2 {
+}

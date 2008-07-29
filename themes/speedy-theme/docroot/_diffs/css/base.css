@@ -1,0 +1,200 @@
+/* This CSS sets the default styles for the base components. */
+
+/* ---------- Browser normalization ---------- */
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+}
+
+table {
+}
+
+fieldset, img {
+}
+
+address, caption, cite, code, dfn, em, strong, th, var {
+}
+
+ol, ul {
+}
+
+caption, th {
+}
+
+q:before, q:after {
+}
+
+abbr, acronym {
+}
+
+body {
+}
+
+html {
+}
+
+body {
+}
+
+body.portal-popup {
+}
+
+body.portal-iframe {
+}
+
+table {
+}
+
+abbr, acronym {
+}
+
+blockquote, ul, ol, dl {
+}
+
+ol, ul, dl {
+}
+
+ol li, ul ol li {
+}
+
+ul li, ol ul li {
+}
+
+ul ul li {
+}
+
+ol ol li {
+}
+
+dl dd {
+}
+
+th {
+}
+
+caption {
+}
+
+p {
+}
+
+/* ---------- Links ---------- */
+
+a {
+}
+
+a:hover {
+}
+
+a:visited {
+}
+
+/* ---------- Headers ---------- */
+
+h1 {
+}
+
+h2 {
+}
+
+h3 {
+}
+
+h1, h2, h3 {
+}
+
+h4, h5, h6 {
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+}
+
+/* ---------- Text formatting ---------- */
+
+b, strong {
+}
+
+i, em {
+}
+
+code, pre {
+}
+
+.important {
+}
+
+/* ---------- Staging area ---------- */
+
+body.staging {
+}
+
+.portal-iframe.staging {
+}
+
+/* ---------- Main content body ---------- */
+
+#wrapper {
+}
+
+#content-wrapper {
+}
+
+.portal-iframe #content-wrapper {
+}
+
+/* ---------- Banner ---------- */
+
+#banner {
+}
+
+#banner h1.logo {
+}
+
+#banner .logo a {
+}
+
+.ie6 #banner .logo {
+}
+
+/* ---------- Alerts and popups ---------- */
+
+.alert-background {
+}
+
+.popup-alert-notice {
+}
+
+.popup-alert-warning {
+}
+
+/* ---------- Portal add content ---------- */
+
+.portal-add-content {
+}
+
+.portal-add-content a {
+}
+
+/* ---------- Portal tool tips ---------- */
+
+.portal-tool-tip {
+}
+
+/* ---------- Loading animation ---------- */
+
+.loading-animation {
+}
+
+/* ---------- Separator ---------- */
+
+hr, .separator {
+}
+
+/* ---------- Update Manager ---------- */
+
+.update-available {
+}
+
+/* ---------- Text highlighting ---------- */
+
+.highlight {
+}

@@ -1,129 +1,723 @@
-body {
-    color: #5a7a98;
+a {
+	color: #33586F;
+	text-decoration: none;
 }
 
-#banner h1.logo a {
-    background: url(../images/common/logo.png) no-repeat;
-    margin: -10px;
+a:hover {
+	color: #FFF;
+	text-decoration: underline;
+}
+
+#banner .logo a {
+	background: transparent url(../images/custom/logo.png) no-repeat scroll 0 0% !important;
+}
+
+#banner .logo {
+	background: none;
+}
+
+#banner .search .search-input-link {
+	background: url(../images/custom/search_btn_bg.png) no-repeat;
+	display: block;
+	height: 35px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 51px;
+}
+
+#banner .search form {
+	padding-right: 49px;
+}
+
+#banner .search input {
+	border: none;
+	font-size: 1.5em;
+	padding: 6px 3px;
+}
+
+#banner .search input[type=image] {
+	display: none;
+}
+
+#banner .search {
+	position: absolute;
+	right: 46px;
+	top: 50px;
 }
 
 #banner {
-    background: #ced9e2 url(../images/common/banner_bg.gif) no-repeat scroll 0pt 0pt;
-} 
-
-#wrapper {
-    background: transparent;
+	background: #5A89A7 url(../images/custom/banner_bg.jpg) repeat-x;
+	height: 160px;
+	top: 0;
 }
 
-#navigation {
-    background: #ced9e2 url(../images/common/banner_bg.gif) no-repeat scroll 0pt -1pt;
-    border-top: none;
+body {
+	font-family: 'Arial', 'Helvetica', sans-serif;
+	height: auto;
 }
 
-#navigation li {
-    border-top: 2px solid;
-    border-left: 2px solid;
-    border-right: 2px solid;
-    border-bottom: none;
-    border-color: transparent;
+body.portal-popup {
+	background: #1C2633;
 }
 
-
-#navigation li.selected a {
-    background-color: #FFFFFF;
-    color: #5a7a98;
+#content-wrapper .message-board-thread-controls {
+	border: none;
 }
 
-#navigation li a:hover {
-    background-color: transparent;
-    color: #ffffff;
+#content-wrapper .message-board-title {
+	border: none;
+	color: #151C25;
+	padding: 5px;
 }
 
-#navigation li.selected a:hover {
-    background-color: #ffffff;
-    color: #5a7a98;
+#content-wrapper .toggle_id_message_boards_view_message_thread {
+	border: none;
+	margin-bottom: 10px;
 }
 
-.portlet {
-    border: 1px solid #CED9E2;
-    padding: 0px;
+#content-wrapper {
+	background: #5989A6 url(../images/custom/content_wrapper_bg.png) repeat;
+	margin: 0;
+	padding: 0 48px;
+	width: auto;
+}
+
+.drop-area {
+	opacity: .20;
+}
+
+.drop-position-bottom {
+	background: url(../images/portlet/drag_arrows_down.png) scroll no-repeat center bottom;
+}
+
+.drop-position-top {
+	background: url(../images/portlet/drag_arrows_up.png) scroll no-repeat center top;
+}
+
+#footer .copyright-notice {
+	left: 30px;
+}
+
+#footer .copyright-notice, #footer ul {
+	bottom: -25px;
+	position: absolute;
+}
+
+#footer li a {
+	color: #557B9F;
+	text-decoration: none;
+}
+
+#footer li a:hover {
+	color: #83B4E1;
+	text-decoration: underline;
+}
+
+#footer li {
+	border-right: 1px solid #557B9F;
+	display: inline;
+	float: left;
+	margin-left: 9px;
+	padding-right: 8px;
+}
+
+#footer li.last-child, #footer li:last-child {
+	border: none;
+	padding: 0;
+}
+
+#footer ul {
+	right: 30px;
+}
+
+#footer {
+	background: transparent url(../images/custom/footer_bg.jpg) repeat-x;
+	color: #739ABE;
+	height: 106px;
+	padding: 3px;
+	position: relative;
+}
+
+html, body {
+	min-height: 100%;
+}
+
+.ie #banner .search .search-input-link {
+	top: 1px;
+}
+
+.ie #navigation li.selected a, .ie #navigation li.selected a:hover {
+	height: 1%;
+}
+
+.ie .drop-area {
+	filter: alpha(opacity=20);
+}
+
+.ie .tabs li.current {
+	top: 1px;
+}
+
+.ie.js .lfr-dock.interactive-mode li.my-places {
+	padding-right: 2.5em;
+}
+
+.ie6 #navigation li.selected a, .ie6 #navigation li.selected a:hover {
+	white-space: nowrap;
+	width: 20px;
+}
+
+.ie6 #wrapper {
+	background: none;
+	padding: 0;
+}
+
+.ie6 .popup-header, .ie6 .popup-title {
+	background-image: url(../images/custom/portlet_title_ie6_bg.png);
+}
+
+.ie6 .portlet-topper, .ie6 .portlet-title {
+	background-image: url(../images/custom/portlet_title_ie6_bg.png);
+}
+
+.ie6 .portlet {
+	position: relative;
+	zoom: 1;
+}
+
+.ie6 .tabs li,.ie6 .tabs li a,.ie6 .tabs li span,.ie6 .tabs li.current,.ie6 .tabs li.current a,.ie6 .tabs li.current span {
+	background-image: url(../images/custom/tabs_ie6_bg.png);
+}
+
+.ie6 input.submit, .ie6 input.button {
+	background: #3D536D none url(../images/common/arrow.png) no-repeat 90% center;
+	border: none;
+	color: #FFF;
+	font-weight: bold;
+	margin: 1px;
+	padding: 0.5em;
+	padding-right: 20px;
+	text-transform: uppercase;
+}
+
+.ie6 input.text, input.password, .ie6 input.submit, .ie6 input.file, .ie6 input.button {
+	border-color: #FFF;
+}
+
+input[type="submit"], input[type="button"], input[type="reset"] {
+	background: #33586F url(../images/common/arrow.png) no-repeat 97% center;
+	border: none;
+	color: #FFF;
+	font-weight: bold;
+	margin: 1px;
+	padding: 0.5em;
+	padding-right: 20px;
+	text-transform: uppercase;
+}
+
+input[type="text"], input[type="password"], input[type="file"],input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	margin: 2px;
+	padding: 1px;
 }
 
 .js #add-page {
-    background: transparent;
-    border: none;
+	background: transparent;
+	border: none;
+	position: absolute;
+	right: -130pt;
+	top: -5px;
 }
 
-.js #add-page a {
-    color: #5a7a98;
+.js .delete-tab {
+	right: -10px;
 }
 
-.js #navigation .enter-page {
-    background-color: transparent;
-    padding: 0px;
+.js .interactive-mode .lfr-flyout.has-children ul {
+	background: #FFF;
+	border-color: #212C3A;
+	padding: 0;
 }
 
-.portlet-topper {
-    background: #CED9E2 none repeat scroll 0% 0%;
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
+	font-size: 1em;
+	font-weight: normal;
 }
 
-.js .interactive-mode {
-    background: transparent url(../images/dock/center_bg.png) repeat-x scroll 0% 0%;
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle, .js .interactive-mode .my-places .show-my-places ul li.public a, .js .my-places .show-my-places ul li.public a:hover, .js .interactive-mode .my-places .show-my-places li.private a, .js .my-places .show-my-places li.private a:hover {
+	background-image: url(../images/custom/dock_items.png);
+	padding-left: 25px;
 }
 
-.js .interactive-mode h2 {
-    margin: 2pt;
-    background: transparent url(../images/dock/right_bg.png) no-repeat scroll 98% 2pt;
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle {
+	border-bottom: 1px solid #212C3A;
+	color: #96C0E6;
+	margin-left: 10px;
+	padding-left: 28px;
+}
+
+.js .interactive-mode .my-places .show-my-places li ul li a .page-count {
+	color: #96C0E6;
+}
+
+.js .interactive-mode .my-places .show-my-places li ul li a {
+	border-bottom-color: #151C25;
+	color: #445B78;
+}
+
+.js .interactive-mode .my-places .show-my-places li ul li.public {
+	border-bottom: 1px solid #151C25;
+}
+
+.js .interactive-mode .my-places .show-my-places li ul {
+	background: #212C3A;
+	margin-left: 0;
+	margin-top: -1px;
+	padding: 0 10px;
+}
+
+.js .interactive-mode .my-places .show-my-places ul li a.add-page {
+	padding: 0;
+}
+
+.js .interactive-mode .my-places .show-my-places {
+	background: #0E1118;
+	border: 1px solid #0B0F15;
+}
+
+.js .interactive-mode .my-places li.current-community a {
+	background-color: #5989A6;
+}
+
+.js .interactive-mode .my-places li.current-community {
+	background-color: #5989A6;
 }
 
 .js .interactive-mode h2 span {
-    background: transparent;
-    border-right: none;
+	font-size: 1.5em;
+	padding: 10px 20px 10px;
 }
 
-.js .interactive-mode ul {
-    border-color: #5a7a98;
+.js .lfr-dock.expanded .lfr-dock-list-container {
+	background: #0E1118;
+	border: 1px solid #0B0F15;
+	border-top: none;
 }
 
-.js .interactive-mode li {
-    border-top: 1px solid #5a7a98;
+.js .lfr-dock.interactive-mode h2 {
+	background-position: right -31px;
+	padding-right: 46px;
 }
 
-.js .interactive-mode li:hover a:hover, .js .interactive-mode li:hover > a, .js .interactive-mode li:hover > h3 > a {
-    background-color: #CED9E2;
+.js .lfr-dock.interactive-mode li a {
+	background-position: left center;
+	padding-left: 25px;
 }
 
-.js .interactive-mode li:hover, .js .interactive-mode .my-places li:hover {
-    background-color: #CED9E2;
+.js .lfr-dock.interactive-mode li a:hover {
+	background-color: #5989A6;
+	background-position: 0 50%;
+	border-top: 1px solid #5989A6;
+	padding-left: 2.5em;
 }
 
-.ui-dialog .ui-dialog-titlebar {
-    background: transparent url(../images/dock/center_bg.png) repeat-x scroll 0% 0%;
+.js .lfr-dock.interactive-mode li {
+	border-color: #FFF;
 }
 
-.ui-dialog {
-    border: 1px solid #5a7a98;
-    padding: 0px;
+.js .lfr-dock.interactive-mode li.my-places a {
+	padding-left: 2.5em;
 }
 
-.ui-tabs {
-    border-bottom: 1px solid #CED9E2;
+.js .lfr-dock.interactive-mode li.my-places h3 a {
+	background-position: 5px 50%;
 }
 
-.ui-tabs li a, .tabs li span {
-    background: #5A7A98 none repeat-x scroll 0pt 100%;
-    border-right:1px solid #CED9E2;
+.js .lfr-dock.interactive-mode li.my-places li ul li.current a, .js .lfr-dock.interactive-mode li.my-places li ul li.current a:hover {
+	background-color: transparent;
+	background-position: 1px center;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span {
-    background: #CED9E2 none repeat scroll 0% 0%;
+.js .lfr-dock.interactive-mode li.my-places {
+	background: none;
+	margin-left: 0;
+	padding-left: 0;
 }
 
-.ui-tabs li a:hover, .ui-tabs li span:hover {
-    background: #5A7A98 none repeat scroll 0% 0%;
-    color: #ffffff;
+.js .lfr-dock.interactive-mode ul {
+	background: #FFF;
+	border-left: none;
+	padding: 0 15px;
 }
 
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-    background-color: #CED9E2;
+.js .lfr-flyout.has-children {
+	background-position: 0 50%;
+}
+
+.js .my-places .show-my-places ul li a:hover {
+	background-color: #1B2431;
+}
+
+.lfr-actions .lfr-trigger strong span {
+	background-position: 5px 1px;
+	font-size: 0.8em;
+}
+
+.lfr-actions .lfr-trigger {
+	color: #000;
+}
+
+.lfr-actions li a {
+	color: #1C2633;
+	font-size: 1.1em;
+}
+
+.lfr-actions li a:hover {
+	color: #3D536D;
+	text-decoration: underline;
+}
+
+.lfr-actions li, .lfr-actions li li {
+	list-style: none;
+	padding-left: 0;
+}
+
+.lfr-actions ul {
+	border: 3px double #465E7B;
+}
+
+.lfr-column.dragging {
+	background: #576F85;
+}
+
+.lfr-dock li.home a, .lfr-dock li.my-account a, .lfr-dock li.sign-in a, .lfr-dock li.sign-out a, .lfr-dock li.add-content a, .lfr-dock li.layout a, .lfr-dock li.page-settings a {
+	background-image: url(../images/custom/my_places.png);
+}
+
+.lfr-highlighted, .lfr-highlighted a {
+	color: #FFC;
+}
+
+.message-board-code, .message-board-quote {
+	color: #212C3A;
+}
+
+.message-board-message-container .portlet-section-alternate td {
+	border: 1px solid #212C3A;
+}
+
+.message-board-message-container .portlet-section-body td {
+	border: 1px solid #3A4E66;
+}
+
+.message-board-message-container table {
+	color: #E7EEF6;
+}
+
+#navigation ul li {
+	font-size: 1.1em;
+	margin: 0 20px 0 22px;
+}
+
+#navigation li, #navigation li a, #navigation li a span, #navigation li.selected a, #navigation li.selected a:hover, #navigation li a:hover span, #navigation li.selected a span, #navigation li a:hover, .js #navigation .enter-page {
+	background: none;
+	border: none;
+	color: #96C0E6;
+	font-size: 1em;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
+	text-transform: uppercase;
+}
+
+#navigation li.selected a span {
+	color: #FFF;
+}
+
+#navigation li.selected a, #navigation li.selected a:hover {
+	background: url(../images/custom/selected_bg.png) no-repeat;
+	color: #FFF;
+	padding-left: 18px;
+}
+
+#navigation ul .sort-helper {
+	padding: 0.1em 0.5em;
+}
+
+#navigation ul {
+	width: 100%;
+}
+
+#navigation {
+	background: transparent;
+	border: none;
+	font-family: 'Verdana', 'Arial', 'Helvetica', sans-serif;
+	font-weight: bold;
+	overflow: visible;
+	padding: 124px 0 0;
+	z-index: 0;
+}
+
+.popup .tabs {
+	margin: -5px -5px -16px -15px;
+}
+
+.popup-close {
+	top: 15px;
+}
+
+.popup-header, .popup-title {
+	background: url(../images/custom/portlet_title_bg.png) no-repeat right top;
+}
+
+.popup-header {
+	border: none;
+	height: 46px;
+	margin: -1px -1px 0 -11px;
+	margin-left: -11px;
+	margin-top: -1px;
+	padding: 0;
+}
+
+.popup-title {
+	background-position: 0 -46px;
+	color: #FFF;
+	display: block;
+	height: 25px;
+	padding: 15px 0 6px 10px;
+}
+
+.popup {
+	background: #1C2633;
+	border: 1px solid #131922;
+	color: #E0EAF4;
+	padding: 0 0 10px 10px;
+}
+
+.portal-add-content {
+	background: transparent;
+}
+
+.portal-popup #content-wrapper {
+	background: none;
+	font-size: 1.2em;
+}
+
+.portlet, .portlet-content {
+	background: url(../images/custom/portlet_bg.png) no-repeat left bottom;
+}
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: #141B24;
+	border: none;
+	padding: 0;
+}
+
+.portlet-content li li {
+	list-style-type: circle;
+}
+
+.portlet-content li {
+	padding-left: 1em;
+}
+
+.portlet-content ol {
+	list-style: inside decimal;
+}
+
+.portlet-content ul {
+	list-style: inside disc;
+}
+
+.portlet-content {
+	background-position: right bottom;
+	color: #E0EAF4;
+	font-size: 1.2em;
+	margin-left: 10px;
+	padding: 10px 20px 20px 10px;
+}
+
+.portlet-icon-back {
+	padding: 0.5em 0 0.5em 1.4em;
+}
+
+.portlet-icons {
+	top: 10px;
+}
+
+.portlet-msg-success, .portlet-msg-error, .portlet-msg-alert, .portlet-msg-info {
+	color: #000;
+	font-style: normal;
+	margin: 0.15em auto 2.2em;
+}
+
+.portlet-placeholder {
+	border: 1px dashed #E0EAF4;
+}
+
+.portlet-section-alternate .message-board-thread-top {
+	border-bottom-color: #212C3A;
+}
+
+.portlet-section-alternate td {
+	background: #3A4E66;
+	border-bottom: 1px solid #1C2633;
+	border-top: 1px solid #151C25;
+	padding: 0.3em 1em;
+}
+
+.portlet-section-alternate-hover td, .portlet-section-body-hover td {
+	background: #141B23;
+	border-bottom: 1px solid #151C25;
+	border-top: 1px solid #151C25;
+	padding: 0.3em 1em;
+}
+
+.portlet-section-alternate {
+	background: #96C0E6;
+	color: #000;
+}
+
+.portlet-section-body .message-board-thread-top {
+	border-bottom-color: #3A4E66;
+}
+
+.portlet-section-body td {
+	background: #212C3A;
+	border-bottom: 1px solid #1C2633;
+	border-top: 1px solid #151C25;
+	padding: 0.3em 1em;
+}
+
+.portlet-section-body {
+	background: #4A6483;
+	color: #E0EAF4;
+}
+
+.portlet-section-header th {
+	border-bottom: 1px solid #151C25;
+	color: #FFF;
+	font-weight: bold;
+	padding: 0.3em 1em;
+}
+
+.portlet-section-header {
+	background: #465E7B;
+	padding: 1px 0 0;
+}
+
+.portlet-title span {
+	background: url(../images/custom/arrow.png) no-repeat right center;
+	padding-right: 20px;
+}
+
+.portlet-title {
+	background-position: left 0;
+	height: 25px;
+	padding: 15px 0 6px 10px;
+	width: 90%;
+}
+
+.portlet-topper, .portlet-title {
+	background: url(../images/custom/portlet_title_bg.png) no-repeat right top;
+}
+
+.portlet-topper {
+	color: #FFF;
+	font: 1.5em Arial, 'Verdana', Helvetica, sans-serif;
+	height: 46px;
+	margin: 0;
+	position: relative;
+}
+
+#portlet-wrapper-33 code {
+	background-color: #DEEDFF;
+	border: 1px dotted #3D536D;
+	color: #141B23;
+	display: block;
+	margin: 10px 0;
+	padding: 5px;
+}
+
+#portlet-wrapper-33 p {
+	margin-bottom: 1em;
+}
+
+.portlet {
+	margin-top: 0;
+}
+
+.portlet.html-editor {
+	color: #E0EAF4;
+}
+
+.separator {
+	border-color: #101318;
+}
+
+table {
+	clear: both;
+}
+
+.tabs li a {
+	background: none;
+	color: #33586F;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.tabs li {
+	background: none;
+	margin-right: 0;
+	padding-left: 0;
+}
+
+.tabs li.current a, .tabs li.current span {
+	background: #33586F;
+	background-position: 0 -101px;
+	border: none;
+	color: #FFF;
+	margin-top: -2px;
+}
+
+.tabs li.current {
+	background: none;
+	margin-top: 1px;
+	padding-top: 1px;
+	top: 0;
+}
+
+.tabs {
+	background: #5989A6 url(../images/custom/content_wrapper_bg.png) repeat;
+	border: none;
+	list-style: none;
+	margin: -10px -10px 1.5em;
+	padding-top: 1em;
+}
+
+.taglib-ratings {
+	margin-bottom: 1em;
+}
+
+.toggle-expand, .root-container, .root-container ul li {
+	list-style: none;
+	padding-left: 0;
+}
+
+ul.lfr-actions, .lfr-actions ul {
+	list-style: none outside;
+}
+
+ul.message-board-edit-controls {
+	list-style: none;
+}
+
+.uni-form fieldset legend {
+	color: #E0EAF4;
+}
+
+#wrapper {
+	background: url(../images/custom/wrapper_bg.png) repeat-y center top;
+	margin: 0 auto;
+	width: 960px;
 }

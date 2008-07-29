@@ -1,21 +1,5 @@
-body {
-	background-color: #6B6D82;
-	font-family: Georgia,"Times New Roman",Times,serif;
-	font-size: 62.5%;
-}
-#wrapper {
-	background-image: url('../images/custom/header.jpg');
-	color: #797D88;
-	font-size: 1.2em;
-	margin: 0 auto;
-	width: 997px;
-}
-#banner {
-	background: none;
-	height: 249px;
-}
 #banner .logo a {
-	color: #FFFFFF;
+	color: #FFF;
 	display: block;
 	font-size: 1.6em;
 	font-style: italic;
@@ -26,74 +10,42 @@ body {
 	padding-top: 200px;
 	text-align: right;
 }
-#navigation {
-	background-image: url('../images/custom/linkbar_bg.jpg');
-	border: none;
-	height: 79px;
+
+#banner h1.logo {
+	left: auto;
 }
-#navigation li {
-	border: none;
+
+#banner {
+	background: none;
+	height: 249px;
+	position: relative;
+	top: 0;
 }
-#navigation ul {
-	color: #fff;
-	float: left;
-	margin-left: 100px !important;
-	margin-top: 10px;
+
+body {
+	background-color: #6B6D82;
+	font-family: 'Georgia', 'Times New Roman', 'Times', serif;
+	font-size: 62.5%;
 }
-#navigation ul {
-	display: block;
-}
-#navigation ul li , #navigation ul li.selected {
-	display: block;
-	float: left;
-}
-ul.child-menu {
-	display: none;
-}
-#navigation ul .sort-helper {
-	background: transparent url('../images/custom/placeholder_bg.png');
-	border-bottom: 0;
-}
-.js .lfr-dock.interactive-mode {
-	right: 170px;
-	top: 12px;
-}
-#navigation ul li a span , #navigation ul li.selected a span ,
-#navigation ul li a:hover span , #navigation ul li.selected a:hover span ,
-.js #add-page a span , .js #add-page a:hover span {
-	color: #fff;
-	display: block;
-	float: left;
-	padding: 0.2em 1em;
-	text-decoration: none;
-}
-.js #add-page a span , .js #add-page a:hover span {
-	margin-top: 14px;
-}
-#navigation ul li a:hover span , #navigation ul li.selected a:hover span , .js #add-page a:hover span {
-	color: #E3E9F1;
-}
-#content-wrapper , #portlet-wrapper- {
-	background: transparent url('../images/custom/content_tile.png') scroll repeat-y 0 0;
-	padding: 0 40px;
-}
+
 #column-1 .portlet {
 	margin-right: 3px;
 }
+
 #column-2 .portlet {
 	margin-left: 3px;
 }
-.portlet {
-	border: none;
+
+#content-wrapper {
+	margin: -15pt auto;
+	width: 92%;
 }
-.portlet-title {
-	color: #787C87;
-	font-size: 1.4em;
-	font-style: italic;
-	font-weight: bold;
-	padding-bottom: 7px;
-	padding-top: 7px;
+
+#content-wrapper, #portlet-wrapper- {
+	background: transparent url('../images/custom/content_tile.png') scroll repeat-y 0 0;
+	padding: 0 40px;
 }
+
 #footer {
 	background: transparent url('../images/custom/footer.jpg') scroll no-repeat center top;
 	font-size: 0.9em;
@@ -103,37 +55,111 @@ ul.child-menu {
 	padding-top: 80px;
 	text-align: center;
 }
-.tabs li {
-	font: 12px/2.25em Arial;
+
+.ie #banner .logo a {
+	padding-bottom: 60px;
 }
+
+.js #add-page a span, .js #add-page a:hover span {
+	margin-top: 14px;
+}
+
+.js #add-page a span {
+	background: transparent;
+}
+
+.js #add-page {
+	background: transparent none repeat scroll 0 0%;
+	border: medium none;
+	right: 3%;
+	top: 0;
+}
+
+.js #navigation .enter-page .save-page {
+	background: transparent;
+	color: white;
+	padding-left: 0;
+}
+
+.js #navigation .enter-page {
+	background-color: transparent;
+}
+
+.js .lfr-dock.interactive-mode {
+	right: 170px;
+	top: 12px;
+}
+
+#navigation li {
+	border: none;
+}
+
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0;
+}
+
 #navigation li.selected a, #navigation li a:hover {
 	background-color: transparent;
 }
-#navigation li.selected a span {
-	background: transparent;
-	padding-left: 0px;
+
+#navigation ul .sort-helper {
+	background: transparent url('../images/custom/placeholder_bg.png');
+	border-bottom: 0;
 }
-.js #add-page {
-	background: transparent none repeat scroll 0% 0%;
-	border: medium none;
-	right: 3%;
-	top: 0px;
+
+#navigation ul li a span, #navigation ul li.selected a span,#navigation ul li a:hover span, #navigation ul li.selected a:hover span,.js #add-page a span, .js #add-page a:hover span {
+	color: #FFF;
+	display: block;
+	float: left;
+	padding: 0.2em 1em;
+	text-decoration: none;
 }
-#content-wrapper {
-	margin: -15pt auto;
-	width: 92%;
+
+#navigation ul li a:hover span, #navigation ul li.selected a:hover span, .js #add-page a:hover span {
+	color: #E3E9F1;
 }
-.js #add-page a span {
-	background:transparent;
+
+#navigation ul li, #navigation ul li.selected {
+	display: block;
+	float: left;
 }
-.js #navigation .enter-page {
-	background-color:transparent;
+
+#navigation ul {
+	display: block;
 }
-.js #navigation .enter-page .save-page {
-	background:transparent;
-	padding-left:0px;
-	color: white;
+
+#navigation {
+	background-image: url('../images/custom/linkbar_bg.jpg');
+	border: none;
+	height: 79px;
 }
-.ie #banner .logo a {
-	padding-bottom: 60px;
+
+.portlet-title {
+	color: #787C87;
+	font-size: 1.4em;
+	font-style: italic;
+	font-weight: bold;
+	padding-bottom: 7px;
+	padding-top: 7px;
+}
+
+.portlet {
+	border: none;
+}
+
+.tabs li {
+	font: 12px/2.25em Arial;
+}
+
+ul.child-menu {
+	display: none;
+}
+
+#wrapper {
+	background-image: url('../images/custom/header.jpg');
+	color: #797D88;
+	font-size: 1.2em;
+	margin: 0 auto;
+	width: 997px;
 }

@@ -1,0 +1,454 @@
+/* ---------- Main ---------- */
+
+.ui-wrapper {
+}
+
+.ui-wrapper input, .ui-wrapper textarea {
+}
+
+.ui-dialog-overlay {
+}
+
+.ie .ui-dialog-overlay {
+}
+
+.results-grid {
+}
+
+.results-header {
+}
+
+.results-header th, .results-header td {
+}
+
+.results-header th a, .results-header td a {
+}
+
+.ui-autocomplete-even, .results-row td {
+}
+
+.ui-autocomplete-odd, .results-row.alt td {
+}
+
+.ui-autocomplete-over, .results-row.hover td {
+}
+
+/* ---------- Dragging/sorting indicators ---------- */
+
+#content-wrapper #layout-grid.dragging {
+}
+
+#content-wrapper #layout-grid.dragging .lfr-column {
+}
+
+.drop-area {
+}
+
+.active-area {
+}
+
+.ui-proxy {
+}
+
+.ie .ui-proxy {
+}
+
+.ui-proxy.generic-portlet {
+}
+
+.ui-proxy.generic-portlet .portlet-title {
+}
+
+.ui-proxy.not-intersecting .forbidden-action {
+}
+
+.ie .ui-proxy.not-intersecting .forbidden-action {
+}
+
+.ui-resizable-proxy {
+}
+
+.navigation-sort-helper {
+}
+
+.portlet-sort-helper {
+}
+
+/* ---------- Resizables ---------- */
+
+.ui-resizable {
+}
+
+.ui-resizable-handle {
+}
+
+.ui-resizable .ui-resizable-handle {
+}
+
+.js .ui-resizable-disabled .ui-resizable-handle {
+}
+
+.js .ui-resizable-autohide .ui-resizable-handle {
+}
+
+.ui-resizable-n, .ui-resizable-s {
+}
+
+.ui-resizable-n {
+}
+
+.ui-resizable-s {
+}
+
+.ui-resizable-e, .ui-resizable-w {
+}
+
+.ui-resizable-e {
+}
+
+.ui-resizable-w {
+}
+
+.ui-resizable-ne, .ui-resizable-nw {
+}
+
+.ui-resizable-ne {
+}
+
+.ui-resizable-nw {
+}
+
+.ui-resizable-se, .ui-resizable-sw {
+}
+
+.ui-resizable-se {
+}
+
+.ui-resizable-sw {
+}
+
+.freeform .portlet-boundary .ui-resizable-handle {
+}
+
+/* ---------- Slider ---------- */
+
+.ui-slider {
+}
+
+.ui-slider-handle {
+}
+
+.ui-slider-disabled .ui-slider-handle {
+}
+
+.ie .ui-slider-disabled .ui-slider-handle {
+}
+
+.ui-slider-range {
+}
+
+.ie .ui-slider-range {
+}
+
+/* ---------- Tabs ---------- */
+
+.ui-tabs {
+}
+
+.ui-tabs:after {
+}
+
+.ie .ui-tabs {
+}
+
+.ie6 .ui-tabs {
+}
+
+.ui-tabs li {
+}
+
+.ui-tabs li.last {
+}
+
+.ui-tabs li a, .tabs li span {
+}
+
+.ui-tabs li a:hover {
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+}
+
+.ui-tabs li.current {
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+}
+
+.ui-tabs .ui-tabs-disabled a {
+}
+
+.ui-tabs-disabled {
+}
+
+.ie .ui-tabs-disabled {
+}
+
+.ui-tabs .ui-tabs-disabled a:link, .ui-tabs .ui-tabs-disabled a:visited {
+}
+
+.ui-tabs-hide {
+}
+
+.ui-tabs .toggle.last {
+}
+
+/* ---------- Dialog ---------- */
+
+.ui-dialog {
+}
+
+.ui-dialog .ui-dialog-titlebar {
+}
+
+.ie .ui-dialog .ui-dialog-container {
+}
+
+.ie6 .ui-dialog .ui-dialog-titlebar {
+}
+
+.ui-dialog.ui-draggable .ui-dialog-titlebar {
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+}
+
+.ui-dialog .ui-dialog-titlebar-close span {
+}
+
+.ui-dialog.has-title .ui-dialog-title {
+}
+
+.ui-dialog.ui-resizable .ui-dialog-content {
+}
+
+.ui-dialog.ui-resizable-disabled .ui-dialog-content {
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+}
+
+.ui-dialog .ui-dialog-buttonpane button {
+}
+
+.ui-dialog.generic-dialog .ui-resizable-handle {
+}
+
+/* ---------- Date picker ---------- */
+
+#ui-datepicker-div, .ui-datepicker-inline {
+}
+
+#ui-datepicker-div {
+}
+
+.ui-datepicker-inline {
+}
+
+.ui-datepicker-dialog {
+}
+
+img.ui-datepicker-trigger {
+}
+
+.ui-datepicker-prompt {
+}
+
+.ie6 .ui-datepicker-prompt {
+}
+
+.ui-datepicker-control, .ui-datepicker-links, .ui-datepicker-header, .ui-datepicker {
+}
+
+.ui-datepicker-control {
+}
+
+.ui-datepicker-links {
+}
+
+.ui-datepicker-links a {
+}
+
+.ui-datepicker-control, .ui-datepicker-links {
+}
+
+.ui-datepicker-links label {
+}
+
+.ui-datepicker-clear, .ui-datepicker-prev {
+}
+
+.ui-datepicker-prev a, .ui-datepicker-next a {
+}
+
+.ui-datepicker-prev a {
+}
+
+.ui-datepicker-next a {
+}
+
+.ui-datepicker-current {
+}
+
+.ui-datepicker-close a {
+}
+
+.ui-datepicker-next {
+}
+
+.ui-datepicker-header {
+}
+
+.ui-datepicker-header select {
+}
+
+.ui-datepicker-header .ui-datepicker-new-month {
+}
+
+.ui-datepicker-header .ui-datepicker-new-year {
+}
+
+.ui-datepicker {
+}
+
+.ui-datepicker a {
+}
+
+.ui-datepicker .ui-datepicker-title-row a {
+}
+
+.ui-datepicker .ui-datepicker-days-row {
+}
+
+.ui-datepicker-week-col {
+}
+
+.ui-datepicker-days-cell a {
+}
+
+.ui-datepicker-days-cell a:hover {
+}
+
+.ui-datepicker-current-day a {
+}
+
+.ui-datepicker-current-day a:hover {
+}
+
+.ui-datepicker .ui-datepicker-unselectable {
+}
+
+#ui-datepicker-div a, .ui-datepicker-inline a {
+}
+
+.ui-datepicker-one-month:after {
+}
+
+.ie .ui-datepicker-one-month {
+}
+
+.ui-datepicker-new-row {
+}
+
+.ie6 .ui-datepicker-cover {
+}
+
+/* ---------- Color picker ---------- */
+
+.ui-colorpicker {
+}
+
+.ui-colorpicker-color {
+}
+
+.ui-colorpicker-color-handle {
+}
+
+.ui-colorpicker-hue {
+}
+
+.ui-colorpicker-hue-handle {
+}
+
+.ui-colorpicker-current {
+}
+
+.ui-colorpicker-values {
+}
+
+.ui-colorpicker-values table {
+}
+
+.ui-colorpicker-values table input {
+}
+
+.ui-colorpicker-rgbR, .ui-colorpicker-rgbG, .ui-colorpicker-rgbB {
+}
+
+.ui-colorpicker-hex {
+}
+
+.ui-colorpicker-close {
+}
+
+/* ---------- Autocomplete ---------- */
+
+.ui-autocomplete-results {
+}
+
+.ui-autocomplete-results ul {
+}
+
+.ui-autocomplete-results li {
+}
+
+.ui-autocomplete-loading, .ui-autocomplete-loading.focus {
+}
+
+.ui-autocomplete-results li strong {
+}
+
+/* ---------- Tags ---------- */
+
+.ui-tags {
+}
+
+.ui-tags:after {
+}
+
+.ie .ui-tags {
+}
+
+.ui-tags.empty {
+}
+
+.ui-tags .ui-tag {
+}
+
+.ui-tags .ui-tag:hover {
+}
+
+.ui-tags .ui-tag-delete {
+}
+
+.ui-tags .ui-tag-delete span {
+}
+
+.ui-tags .ui-tag-delete:hover span {
+}
+
+.ui-tags-input {
+}

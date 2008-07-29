@@ -1,39 +1,5 @@
-html {
-	background: #F9F9F7 url('../images/custom/page_bg_1.png') repeat-x scroll top center;
-	overflow-y: scroll;
-}
-body {
-	background: transparent url('../images/custom/page_bg_2.png') repeat-y scroll top center;
-	color: #8C8C73;
-	font-family: "trebuchet ms", helvetica, sans-serif;
-	font-size: 11px;
-	height: auto;
-	line-height: 18px;
-}
-#wrapper {
-	background: transparent url('../images/custom/wrapper_bg.png') no-repeat scroll top center;
-	border: 0px solid #ccc;
-	width: 100%;
-}
-#banner {
-	background: transparent url(../images/custom/banner_bg_1.jpg) no-repeat scroll right 13px;
-	border: 0pt none;
-	height: 105px;
-	margin-bottom: 0pt;
-	margin-right: 188px;
-	margin-top: 0pt;
-}
-#banner .logo {
-	background: #FF7800 url(../images/custom/banner_bg_2.png) repeat-x scroll 0pt 0pt;
-	color: #FFFFFF;
-	display: block;
-	height: 92px;
-	margin: 0px 125px 0pt !important;
-	top: 13px;
-	width: 422px;
-}
 #banner .logo a {
-	color: #fff;
+	color: #FFF;
 	font-size: 23px;
 	font-weight: normal;
 	left: 20px;
@@ -41,83 +7,170 @@ body {
 	position: absolute;
 	top: 36px;
 }
-.js .lfr-dock.interactive-mode {
-	right: 203px;
-	top: 27px;
-}
-.js .lfr-dock.interactive-mode h2 , .js .lfr-dock.interactive-mode h2 span {
-	background-image: url('../images/custom/menu_bar.png');
-}
-.js .lfr-dock.expanded .lfr-dock-list-container {
-	background-color: transparent;
-}
-.js .lfr-dock.interactive-mode ul {
-	background-color: transparent;
-	background-image: url('../images/custom/menu_bg.png');
-	border: 0;
-}
-.js .interactive-mode h2 {
-	background: transparent url(/terrafirma-theme/images/custom/menu_bar.png) no-repeat scroll 100% -30px;
-	font-size: 1.2em;
-	margin-bottom: 0pt;
-	padding: 0pt 29px 0pt 0pt;
-	position: relative;
-	z-index: 82;
-}
-.js .interactive-mode h2 span {
-	border: none;
-}
-#navigation {
-	background: #46461F url(../images/custom/bg.gif) repeat-x scroll 0% 0%;
-	border: medium none;
-	height: 67px;
-	margin: 5pt 188px;
-	width: 888px;
-}
-#navigation ul {
-	margin: 0;
-}
-#navigation li {
-	border: none;
-}
-#navigation ul li {
-	margin: 0;
-}
-#navigation li.selected a, #navigation li a:hover {
-	background-color: transparent;
-}
-#navigation ul li a , #navigation ul li.selected a , #navigation ul li a:hover , #navigation ul li.selected a:hover , #add-page a {
-	color: #fff;
+
+#banner .logo {
+	background: #FF7800 url('../images/custom/banner_bg_2.png') repeat-x scroll 0 0pt;
+	color: #FFF;
 	display: block;
-	font-size: 12px;
-	margin: 9px 0px 9px 8px;
-	padding: 8px;
-	text-decoration: underline;
+	height: 92px;
+	top: 13px;
+	width: 432px;
 }
-#navigation ul li a span, #navigation ul li.selected a span, #navigation ul li a:hover span, #navigation ul li.selected a:hover span , #add-page a span {
-	font-weight: bold;
+
+#banner h1.logo {
+	left: 24px;
 	margin: 0;
-	padding: 0;
 }
-#navigation ul li a:hover , #navigation ul li.selected a:hover {
-	background: #FFFFFF url('../images/custom/bg_2.png') repeat-x scroll center top;
-	color: #4A4A24;
-	text-decoration: none;
+
+#banner {
+	background: transparent url('../images/custom/banner_bg_1.jpg') no-repeat scroll 464px 13px;
+	border: 0 none;
+	height: 105px;
+	position: relative;
+	top: 0;
 }
+
+body {
+	background: transparent url('../images/custom/page_bg_2.png') repeat-y scroll top center;
+	color: #8C8C73;
+	font-family: 'trebuchet ms', ' helvetica', ' sans-serif';
+	font-size: 11px;
+	height: auto;
+	line-height: 18px;
+}
+
+#content-wrapper {
+	width: 905px;
+}
+
+#footer a {
+	color: #8C8C73;
+}
+
+#footer {
+	background: transparent none;
+	color: #A8A88D;
+	display: block;
+	font-size: 11px;
+	height: 66px;
+	margin: 0 30px;
+	padding: 26px 0 0 0;
+	text-align: center;
+}
+
+html {
+	background: #F9F9F7 url('../images/custom/page_bg_1.png') repeat-x scroll top center;
+	overflow-y: scroll;
+}
+
+.js #add-page {
+	background: transparent none repeat scroll 0 0%;
+	border: medium none;
+	right: 0;
+	top: -4px;
+}
+
+.js #navigation .enter-page .save-page {
+	color: black;
+}
+
+.js #navigation .enter-page {
+	background: transparent;
+	padding: 4px;
+}
+
+.js #navigation .enter-page:hover {
+	background: #FFF url('../images/custom/bg_2.png') repeat-x scroll center top;
+}
+
 .js .delete-tab {
 	background: transparent url('../images/custom/remove.png') no-repeat scroll 42% 50%;
 	right: 6px;
 	top: 12px;
 }
-#content-wrapper {
-	margin: 0 189px;
-	width: 70.1%;
+
+.js .interactive-mode h2 span {
+	border: none;
 }
-.portlet {
-	background: transparent url('../images/custom/portlet_bg.png') repeat-x scroll center bottom;
+
+.js .interactive-mode h2 {
+	background: transparent url('/terrafirma-theme/images/custom/menu_bar.png') no-repeat scroll 100% -30px;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0 29px 0 0pt;
+	position: relative;
+	z-index: 82;
+}
+
+.js .lfr-dock.expanded .lfr-dock-list-container {
+	background-color: transparent;
+}
+
+.js .lfr-dock.interactive-mode h2, .js .lfr-dock.interactive-mode h2 span {
+	background-image: url('../images/custom/menu_bar.png');
+}
+
+.js .lfr-dock.interactive-mode ul {
+	background-color: transparent;
+	background-image: url('../images/custom/menu_bg.png');
 	border: 0;
-	margin: 18px 0;
 }
+
+.js .lfr-dock.interactive-mode {
+	right: 203px;
+	top: 27px;
+}
+
+#navigation li {
+	border: none;
+}
+
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0;
+}
+
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
+
+#navigation ul li a span, #navigation ul li.selected a span, #navigation ul li a:hover span, #navigation ul li.selected a:hover span, #add-page a span {
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
+}
+
+#navigation ul li a, #navigation ul li.selected a, #navigation ul li a:hover, #navigation ul li.selected a:hover, #add-page a {
+	color: #FFF;
+	display: block;
+	font-size: 12px;
+	margin: 9px 0 9px 8px;
+	padding: 8px;
+	text-decoration: none;
+}
+
+#navigation ul li a:hover, #navigation ul li.selected a:hover {
+	background: #FFF url('../images/custom/bg_2.png') repeat-x scroll center top;
+	color: #4A4A24;
+	text-decoration: none;
+}
+
+#navigation ul li {
+	margin: 0;
+}
+
+#navigation ul {
+	margin: 0;
+}
+
+#navigation {
+	background: #46461F url('../images/custom/bg.gif') repeat-x scroll 0 0%;
+	border: medium none;
+	height: 52px;
+	margin: 6px 24px;
+	width: auto;
+}
+
 .portlet-title {
 	background: transparent url('../images/custom/portlet_title_bg.png') repeat-x scroll center bottom;
 	color: #656551;
@@ -129,43 +182,20 @@ body {
 	padding-bottom: 10px;
 	top: 4px;
 }
+
 #portlet-wrapper- {
 	margin: 0 30px;
 }
-#footer {
-	background: transparent none;
-	color: #A8A88D;
-	display: block;
-	font-size: 11px;
-	height: 66px;
-	margin: 0 30px;
-	padding: 26px 0 0 0;
-	text-align: center;
+
+.portlet {
+	background: transparent url('../images/custom/portlet_bg.png') repeat-x scroll center bottom;
+	border: 0;
+	margin: 18px 0;
 }
-#footer a {
-	color: #8C8C73;
-}
-.js #add-page {
-	background: transparent none repeat scroll 0% 0%;
-	border: medium none;
-	right: 1%;
-	top: 0px;
-}
-.js #navigation .enter-page {
-	margin-top: 9px;
-}
-#navigation li.selected a span {
-background:transparent;
-padding-left:0px;
-}
-.js #navigation .enter-page {
-	background:transparent;
-	padding:4px;
-}
-.js #navigation .enter-page .save-page {
-	color: white;
-	color:black;
-}
-.js #navigation .enter-page:hover {
-	background: #FFFFFF url('../images/custom/bg_2.png') repeat-x scroll center top;
+
+#wrapper {
+	background: transparent url('../images/custom/wrapper_bg.png') no-repeat scroll top center;
+	border: 0 solid #CCC;
+	margin: 0 auto;
+	width: 947px;
 }

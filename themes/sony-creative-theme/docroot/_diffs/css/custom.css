@@ -1,68 +1,114 @@
-#navigation {
-	background: url(../images/custom/bg.png) no-repeat;
-	border-bottom: 1px solid #cacaca;
-	border-right: 1px solid #cacaca;
-	border-top: none;
-	width: 60%;
-}
-#navigation ul {
-	margin: 0px auto 0pt 5px;
-}
-#content-wrapper {
-	width: 60%;
-}
-#navigation li {
-	border: none;
-}
-#wrapper {
-	background: none;
-}
-#navigation li.selected a, #navigation li a:hover {
-	background-color: transparent;
-	color: black;
-}
-#navigation li.selected a span {
-	background: transparent;
-	padding-left: 0px;
-}
-#banner {
-	background: none;
-}
-.js #add-page {
-	background: transparent none repeat scroll 0% 0%;
-	border: medium none;
-	right: 0%;
-	top: 1px;
-}
-.js #add-page a span {
-	color: black;
-}
-.js #navigation .enter-page {
-	margin-top: 1.5px;
-	padding: 0px;
-	background-color: transparent;
-}
-#navigation li a span {
-	border-right: 1px solid #cacaca;
-	color: black;
-	padding-right: 5px;
-}
-#navigation li a {
-	padding: 5px;
-}
 #banner .logo a {
 	margin-left: 185px;
 	margin-top: -5px;
 }
+
+#banner {
+	background: none;
+	margin: 0 auto;
+	position: relative;
+	top: 0;
+	width: 960px;
+}
+
+#content-wrapper {
+	width: 60%;
+}
+
+.js #add-page a span {
+	color: black;
+}
+
+.js #add-page {
+	background: transparent none repeat scroll 0 0%;
+	border: medium none;
+	right: 0;
+	top: 1px;
+}
+
+.js #navigation .enter-page .save-page {
+	color: black;
+}
+
+.js #navigation .enter-page {
+	background-color: transparent;
+	margin-top: 1.5px;
+	padding: 0;
+}
+
+#navigation li a span {
+	border-right: 1px solid #CACACA;
+	color: black;
+	padding-right: 5px;
+}
+
+#navigation li a {
+	padding: 5px;
+}
+
+#navigation li {
+	border: none;
+}
+
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0;
+}
+
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+	color: black;
+}
+
+#navigation ul {
+	margin: 0 auto 0 5px;
+}
+
+#navigation {
+	background: url(../images/custom/bg.png) no-repeat;
+	border-bottom: 1px solid #CACACA;
+	border-right: 1px solid #CACACA;
+	border-top: none;
+	width: 60%;
+}
+
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: transparent url(../images/custom/portlet_bg.png) no-repeat center;
 }
-.portlet {
-	border: none;
-	margin: 0 0 9px;
-	padding-right: 9px;
-	text-align: left;
+
+.portlet-content {
+	background-position: left bottom;
+	padding: 0 0 9px 9px;
 }
+
+.portlet-icon-back {
+	background: url(../images/custom/back.png) no-repeat 0 50%;
+	font-weight: bold;
+	padding: 0.2em 0 0.5em 1.8em;
+}
+
+.portlet-icons {
+	position: absolute;
+	right: 9px;
+	text-align: right;
+	top: 4px;
+}
+
+.portlet-title img {
+	vertical-align: middle;
+}
+
+.portlet-title {
+	background-position: top left;
+	color: #4D4D4D;
+	cursor: default;
+	display: block;
+	font: bold 15px Arial, 'Tahoma', Verdana, 'MS Sans Serif';
+	height: 21px;
+	min-width: 50%;
+	padding: 6px 9px 2px;
+}
+
 .portlet-topper {
 	background-position: right top;
 	height: 29px;
@@ -70,34 +116,15 @@
 	padding-right: 9px;
 	position: relative;
 }
-.portlet-title {
-	background-position: top left;
-	color: #4d4d4d;
-	cursor: default;
-	display: block;
-	font: bold 15px Arial,Tahoma,Verdana,MS Sans Serif;
-	height: 21px;
-	min-width: 50%;
-	padding: 6px 9px 2px;
+
+.portlet {
+	background-position: right bottom;
+	border: none;
+	margin: 0 0 9px;
+	padding: 0 9px 0 0;
+	text-align: left;
 }
-.portlet-title img {
-	vertical-align: middle;
-}
-.portlet-icons {
-	position: absolute;
-	right: 9px;
-	text-align: right;
-	top: 4px;
-}
-.portlet-content {
-	background-position: left bottom;
-	padding: 0 0 9px 9px;
-}
-.portlet-icon-back {
-	background: url(../images/custom/back.png) no-repeat 0 50%;
-	font-weight: bold;
-	padding: 0.2em 0 0.5em 1.8em;
-}
-.js #navigation .enter-page .save-page {
-	color:black;
+
+#wrapper {
+	background: none;
 }

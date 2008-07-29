@@ -1,119 +1,131 @@
-html {
-	overflow-y: scroll;
-}
-body {
-	background: #000000 url(../images/custom/bg1.jpg) repeat scroll 0% 0%;
-	font-family: "georgia","times new roman",serif;
-	font-size: 10pt;
-	padding: 35px 0px;
-}
-#wrapper {
-	background: #FFFFFF url(../images/custom/bg2.jpg) repeat-x scroll 0% 0%;
-	height: 275px;
-	left: 0px;
-	position: absolute;
-	top: 0px;
-	width: 100%;
-	z-index: 1;
-}
-#content-wrapper {
-	background: white none repeat scroll 0% 0%;
-	border: 7px solid white;
-	margin-left: 107px;
-	margin-top: -12px;
-	width: 1036px;
-}
-#banner {
-	background: #FFFFFF url(../images/custom/hdrpic.jpg) no-repeat scroll left top;
-	border: 7px solid white;
-	border-bottom: none;
-	border-top: 2px solid white;
-	height: 109px;
-	margin-bottom: 2px;
-	margin-left: 107px;
-	margin-top: 163px;
-	position: relative;
-	width: 1036px;
-}
-#banner .logo {
-	background: #2B2B2B url(../images/custom/topbg.png) repeat-x scroll 0% 0%;
-	height: 120px;
-	width: 1036px;
-}
-#navigation {
-	background: #7F8400 url(../images/custom/menubg.png) repeat-x scroll left top;
-	border: 7px solid white;
-	border-bottom: 2px solid white;
-	border-top: 2px solid white;
-	height: 3.5em;
-	margin-bottom: 2px;
-	margin-left: 107px;
-	margin-top: -3px;
-	padding: 0em 1em;
-	position: relative;
-	width: 1009px;
-}
-#navigation li {
-	border: none;
-}
-#banner h1.logo {
-	border: 7px solid white;
-	border-bottom: none;
-	margin: -129px -59px 0pt !important;
-}
-.portlet-topper {
-	background: #FFFFFF url(../images/custom/border1.png) repeat-x scroll 0% 0%;
-	height: 30px;
-	width: auto;
-}
-.js .interactive-mode {
-	top: -46px;
-}
 #banner .logo a {
 	margin-left: 16px;
-	margin-top: 62px;
+	margin-top: 32px;
 }
-#navigation li.selected a, #navigation li a:hover {
-	background: #7F8400 url(../images/custom/menuactive.png) repeat-x scroll left top;
-	background-color: transparent;
+
+#banner .search {
+	position: absolute;
+	right: 10px;
+	top: 58px;
 }
-#navigation li.selected a span {
-	background: transparent;
-	padding-left: 0px;
+
+#banner h1.logo {
+	background: #2B2B2B url('../images/custom/topbg.png') repeat-x scroll 0 0%;
+	border: 7px solid white;
+	border-bottom: none;
+	height: 120px;
+	left: auto;
+	margin: 0;
+	position: relative;
 }
-#navigation ul {
-	margin: 6pt auto 6pt -6px;
+
+#banner {
+	background: #FFF url('../images/custom/hdrpic.jpg') no-repeat scroll 7px bottom;
+	border: 7px solid white;
+	border-bottom: none;
+	border-top: 2px solid white;
+	height: 240px;
+	position: relative;
+	top: 0;
 }
-#navigation a {
-	color: white;
+
+body {
+	background: #000 url('../images/custom/bg1.jpg') repeat scroll 0 0%;
+	font-family: 'georgia', 'times new roman', serif;
+	font-size: 10pt;
+	padding: 35px 0;
 }
-#navigation li a:hover {
-	text-decoration: underline;
+
+#content-wrapper {
+	background: white none repeat scroll 0 0%;
+	border: 7px solid white;
+	width: auto;
 }
+
 #footer {
-	background: #FFFFFF url(../images/custom/border2.png) repeat-x scroll 0em 2.5em;
+	background: #FFF url('../images/custom/border2.png') repeat-x scroll 0em 2.5em;
 	clear: both;
 	font-size: 0.8em;
 	height: 2em;
-	margin-left: 107px;
 	padding-top: 5em;
 	position: relative;
-	width: 1050px;
 }
+
+html {
+	overflow-y: scroll;
+}
+
 .js #add-page {
-	background: transparent none repeat scroll 0% 0%;
+	background: transparent none repeat scroll 0 0%;
 	border: medium none;
 	font-weight: normal;
 	right: -1%;
 	top: 6px;
 }
+
+.js #navigation .enter-page .save-page {
+	background: transparent url('../images/custom/menuactive.png') repeat-x scroll left top;
+	padding: 8px 20px 20px;
+}
+
+.js #navigation .enter-page {
+	background-color: transparent;
+}
+
+.js .interactive-mode {
+	right: 18px;
+	top: 18px;
+}
+
+#navigation a {
+	color: white;
+}
+
+#navigation li a:hover {
+	text-decoration: underline;
+}
+
+#navigation li {
+	border: none;
+}
+
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0;
+}
+
+#navigation li.selected a, #navigation li a:hover {
+	background: #7F8400 url('../images/custom/menuactive.png') repeat-x scroll left top;
+	background-color: transparent;
+}
+
+#navigation ul {
+	margin: 6pt auto 6pt -6px;
+}
+
+#navigation {
+	background: #7F8400 url('../images/custom/menubg.png') repeat-x scroll left top;
+	border: 14px solid #FFF;
+	border-bottom: 4px solid white;
+	border-top: 4px solid white;
+	margin: 0;
+	padding: 0em 1em;
+	position: relative;
+	width: auto;
+}
+
+.portlet-topper {
+	background: #FFF url('../images/custom/border1.png') repeat-x scroll 0 0%;
+	height: 30px;
+	width: auto;
+}
+
 .portlet {
 	border: none;
 }
-.js #navigation .enter-page {
-	background-color:transparent;
-}
-.js #navigation .enter-page .save-page {
-	background:transparent url(../images/custom/menuactive.png) repeat-x scroll left top;
-	padding:8px 20px 20px;
+
+#wrapper {
+	background: transparent none;
+	margin: 0 auto;
+	width: 960px;
 }

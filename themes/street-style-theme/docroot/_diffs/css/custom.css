@@ -1,52 +1,21 @@
-body {
-	background: url(../images/custom/bg.png) repeat top;
-	color: #fff;
-	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
-}
 a {
 	color: #FFF;
 	font-weight: bold;
 }
-table {
-	clear: both;
+
+#banner .logo a {
+	color: #F09;
+	font-family: 'Arial', sans-serif;
+	font-size: 4em;
+	font-weight: normal;
+	letter-spacing: -2px;
+	margin-left: 135px;
+	margin-top: -62px;
+	padding: 100px;
+	position: absolute;
+	text-decoration: none;
 }
-#wrapper {
-	background: #222;
-	margin: 0 auto;
-	padding-left: 10px;
-	padding-right: 10px;
-	position: relative;
-	width: 720px;
-}
-.ie6 #wrapper {
-	padding-right: 7px;
-	width: 720px;
-}
-#footer {
-	background: url(../images/custom/footerbg.png) no-repeat bottom left;
-	border-top: 133px solid #222;
-	height: 120px;
-	margin: 0pt -10px;
-	width: 740px;
-}
-#content-wrapper {
-	background: #222222 none repeat scroll 0% 0%;
-	border-collapse: collapse;
-	margin-left: -4px;
-	position: relative;
-	top: 100px;
-	width: 725px;
-}
-#banner {
-	background: url(../images/custom/rightbg.png) no-repeat scroll right;
-	height: 28em;
-	position: relative;
-}
-.ie6 #banner {
-	background-position: 215px;
-	margin-right: -1.5px;
-	padding-bottom: 2px;
-}
+
 #banner .logo {
 	background: #000;
 	display: block;
@@ -56,128 +25,118 @@ table {
 	position: relative;
 	top: 280px;
 }
-.ie6 #banner .logo {
-	margin-right: -95px;
-	padding-right: 0px;
+
+#banner h1.logo {
+	height: 113px;
+	margin: 0 0pt 0 -37px;
+	width: 722px;
 }
+
+#banner {
+	background: url(../images/custom/rightbg.png) no-repeat scroll right;
+	height: 28em;
+	position: relative;
+}
+
+body {
+	background: url(../images/custom/bg.png) repeat top;
+	color: #FFF;
+	font: 62.5%/1.6em Tahoma, 'Lucida Sans Unicode', Lucida Grande, 'Lucida', Arial, 'Verdana', sans-serif;
+}
+
+#content-wrapper {
+	background: #222 none repeat scroll 0 0%;
+	border-collapse: collapse;
+	margin-left: -4px;
+	position: relative;
+	top: 100px;
+	width: 725px;
+}
+
+#footer {
+	background: url(../images/custom/footerbg.png) no-repeat bottom left;
+	border-top: 133px solid #222;
+	height: 120px;
+	margin: 0 -10px;
+	width: 740px;
+}
+
 .ie #navigation li a {
 	margin-top: 15px;
 }
+
 .ie #navigation ul {
 	padding-top: 50px;
 }
-#banner .logo a {
-	color:#FF0099;
-	font-family:sans-serif,Arial;
-	font-size:4em;
-	font-weight:normal;
-	letter-spacing:-2px;
-	margin-left:135px;
-	margin-top:-62px;
-	padding:100px;
-	position:absolute;
-	text-decoration:none;
-}
+
 .ie6 #banner .logo a {
 	margin-left: 114px;
 }
-.motto {
-	color: #FFF;
-	font-family: sans-serif,Arial;
-	font-size: 1em;
-	letter-spacing: -1px;
-	margin-left: 337px;
+
+.ie6 #banner .logo {
+	margin-right: -95px;
+	padding-right: 0;
 }
-.ie6.motto {
-	margin-left: 333px;
+
+.ie6 #banner {
+	background-position: 215px;
+	margin-right: -1.5px;
+	padding-bottom: 2px;
 }
-#navigation {
-	background: transparent url(../images/custom/leftbg.png) repeat scroll left top;
-	border: none;
-	height: 170px;
-	left: 10px;
-	margin: -211pt auto 0.5em -11px;
-	min-height: 2.2em;
-	overflow: hidden;
-	padding: 0px 10px 110px 0px;
-	position: absolute;
-	top: 0px;
-	width: 211px;
-	z-index: 20;
-}
-.ie6 #navigation {
-	height: 279px;
-	left: 10px;
-	padding-bottom: 0px;
-	position: absolute;
-	top: 0px;
-	width: 204px;
-}
-#navigation ul {
-	background: url(../images/custom/nav.png) no-repeat 0 0px;
-	float: left;
-	min-height: 2em;
-	padding-right: 3.7em;
-	padding-top: 30px;
-}
-.ie6 #navigation ul {
-	margin-right: -25px;
-	padding-right: 0px;
-	padding-top: 45px;
-}
-#navigation li {
-	background: none;
-	border: none;
-	display: inline;
-	float: none;
-	margin-right: 0.5em;
-	padding: 0 0.5em 0 0;
-	position: relative;
-}
-#navigation li a {
-	background: #000;
-	color: #FFF;
-	display: block;
-	font-family: sans-serif,Arial;
-	font-size: 2.4em;
-	font-weight: bold;
-	height: 26px;
-	letter-spacing: -2px;
-	margin-bottom: -8px;
-	padding: 0 3.3em 0 1.5em;
-	text-decoration: none;
-	width: 120px;
-}
+
 .ie6 #navigation li a {
 	margin-bottom: 7px;
 	padding-top: 2px;
 	width: 100px;
 }
-#navigation li a:hover {
-	color: #FF0099;
-	padding-bottom: 0;
+
+.ie6 #navigation ul {
+	margin-right: -25px;
+	padding-right: 0;
+	padding-top: 45px;
 }
-#navigation li a span {
-	background: none;
-	padding-left: 0px;
+
+.ie6 #navigation {
+	height: 279px;
+	left: 10px;
+	padding-bottom: 0;
+	position: absolute;
+	top: 0;
+	width: 204px;
+}
+
+.ie6 #wrapper {
+	padding-right: 7px;
+	width: 720px;
+}
+
+.ie6.js #add-page {
+	right: -30px;
+	top: 45px;
+}
+
+.ie6.js .delete-tab {
+	right: 200px;
+	top: 0;
+}
+
+.ie6.motto {
+	margin-left: 333px;
+}
+
+.ie6.portlet-topper {
+	margin-right: -6px;
+}
+
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	padding: 5px 1px 0;
+}
+
+.js #add-page a {
+	color: #FFF;
 	text-decoration: none;
 }
-#navigation li.selected a {
-	padding-top: 0;
-}
-#navigation li.selected a span {
-	background: none;
-	color: #FF0099;
-	font-size: 1em;
-	font-weight: bold;
-	padding-left: 0px;
-}
-#navigation li.selected a:hover {
-	padding-bottom: 0;
-}
-#navigation li a:hover span {
-	background: none;
-}
+
 .js #add-page {
 	background: transparent;
 	border: none;
@@ -189,48 +148,19 @@ table {
 	top: 43px;
 	width: 103px;
 }
-#banner h1.logo {
-	height: 113px;
-	margin: 0px 0pt 0pt -37px;
-	width: 722px;
+
+.js #navigation .enter-page .save-page {
+	background: transparent url(../images/dock/my_place_current.png) no-repeat scroll 0 50%;
+	margin: 0 10px;
+	padding-left: 20px;
 }
-.js #add-page a {
-	color: #FFF;
-	text-decoration: none;
+
+.js #navigation .enter-page {
+	background: none;
+	padding: 0.5em 2em 0.7em 1.5em;
+	width: 194px;
 }
-.ie6.js #add-page {
-	right: -30px;
-	top: 45px;
-}
-.js .lfr-dock.interactive-mode h2 {
-	background: url(../images/custom/menu_bar.png) no-repeat 100% -30px;
-	font-size: 1.2em;
-	margin-bottom: 0;
-	padding: 0 29px 0 0;
-	position: relative;
-	z-index: 100;
-}
-.js .lfr-dock.expanded .lfr-dock-list-container {
-	background: #60738C;
-	border: 1px solid #B5B9BB;
-	border-top: none;
-	top: -2px;
-}
-.js .lfr-dock.interactive-mode ul {
-	background: #000;
-	border-left: 20px solid #FF0099;
-	display: none;
-	float: none;
-}
-.js .lfr-dock.interactive-mode h3 {
-	color: #FFF;
-}
-.js .lfr-dock.interactive-mode li.my-places li ul li.current a, .js .lfr-dock.interactive-mode li.my-places li ul li.current a:hover {
-	background-color: #333;
-}
-.js .interactive-mode .my-places .show-my-places {
-	background-color: #000;
-}
+
 .js .delete-tab {
 	background: url(../images/common/remove.png) no-repeat 42%;
 	cursor: pointer;
@@ -242,27 +172,184 @@ table {
 	top: 16px;
 	width: 8px;
 }
-.ie6.js .delete-tab {
-	right: 200px;
-	top: 0px;
+
+.js .interactive-mode .my-places .show-my-places {
+	background-color: #000;
 }
-.js #navigation .enter-page {
+
+.js .interactive-mode h2 span {
+	background: transparent url(/street-style-theme/images/dock/menu_bar.png) no-repeat scroll 0 0pt;
+}
+
+.js .lfr-dock.expanded .lfr-dock-list-container {
+	background: #60738C;
+	border: 1px solid #B5B9BB;
+	border-top: none;
+	top: -2px;
+}
+
+.js .lfr-dock.interactive-mode h2 {
+	background: url(../images/custom/menu_bar.png) no-repeat 100% -30px;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0 29px 0 0;
+	position: relative;
+	z-index: 100;
+}
+
+.js .lfr-dock.interactive-mode h3 {
+	color: #FFF;
+}
+
+.js .lfr-dock.interactive-mode li.my-places li ul li.current a, .js .lfr-dock.interactive-mode li.my-places li ul li.current a:hover {
+	background-color: #333;
+}
+
+.js .lfr-dock.interactive-mode ul {
+	background: #000;
+	border-left: 20px solid #F09;
+	display: none;
+	float: none;
+}
+
+.motto {
+	color: #FFF;
+	font-family: sans-serif, 'Arial';
+	font-size: 1em;
+	letter-spacing: -1px;
+	margin-left: 337px;
+}
+
+#navigation li a span {
 	background: none;
-	padding: 0.5em 2em 0.7em 1.5em;
-	width: 194px;
+	padding-left: 0;
+	text-decoration: none;
 }
-#portlet-wrapper- {
-	margin-top: 98px;
+
+#navigation li a {
+	background: #000;
+	color: #FFF;
+	display: block;
+	font-family: sans-serif, 'Arial';
+	font-size: 2.4em;
+	font-weight: bold;
+	height: 26px;
+	letter-spacing: -2px;
+	margin-bottom: -8px;
+	padding: 0 3.3em 0 1.5em;
+	text-decoration: none;
+	width: 120px;
 }
+
+#navigation li a:hover span {
+	background: none;
+}
+
+#navigation li a:hover {
+	color: #F09;
+	padding-bottom: 0;
+}
+
+#navigation li {
+	background: none;
+	border: none;
+	display: inline;
+	float: none;
+	margin-right: 0.5em;
+	padding: 0 0.5em 0 0;
+	position: relative;
+}
+
+#navigation li.selected a span {
+	background: none;
+	color: #F09;
+	font-size: 1em;
+	font-weight: bold;
+	padding-left: 0;
+}
+
+#navigation li.selected a {
+	padding-top: 0;
+}
+
+#navigation li.selected a, #navigation li a:hover {
+	background-color: black;
+}
+
+#navigation li.selected a:hover {
+	padding-bottom: 0;
+}
+
+#navigation ul {
+	background: url(../images/custom/nav.png) no-repeat 0 0;
+	float: left;
+	min-height: 2em;
+	padding-right: 3.7em;
+	padding-top: 30px;
+}
+
+#navigation {
+	background: transparent url(../images/custom/leftbg.png) repeat scroll left top;
+	border: none;
+	height: 170px;
+	left: 10px;
+	margin: -211pt auto 0.5em -11px;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding: 0 10px 110px 0;
+	position: absolute;
+	top: 0;
+	width: 211px;
+	z-index: 20;
+}
+
+p {
+	margin-top: 92px;
+}
+
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: none;
 }
-.portlet {
-	border: none;
-	margin: 0 0 10px;
-	padding-right: 10px;
-	text-align: left;
+
+.portlet-content {
+	background-position: left bottom;
+	padding: 10px 5px 25px 15px;
 }
+
+.portlet-section-body td {
+	background: #FFF;
+	border-top: 1px solid #BFBFBF;
+	padding: 0.3em 1em;
+}
+
+.portlet-section-body {
+	background: #E7EDF4;
+	color: #000;
+}
+
+.portlet-section-header th {
+	border-bottom: 1px solid #CCC;
+	color: #333;
+	font-weight: bold;
+	padding: 0.3em 1em;
+}
+
+.portlet-section-header {
+	background: #7F7F7F;
+	padding: 1px 0 0;
+}
+
+.portlet-title {
+	background-position: top left;
+	display: block;
+	font-family: sans-serif, 'Arial';
+	font-size: 2em;
+	font-weight: bold;
+	letter-spacing: -1px;
+	min-width: 50%;
+	padding: 8px 0 4px 10px;
+}
+
 .portlet-topper {
 	background: #000;
 	background-position: right top;
@@ -270,56 +357,31 @@ table {
 	padding-right: 40px;
 	position: relative;
 }
-.ie6.portlet-topper {
-	margin-right: -6px;
+
+#portlet-wrapper- {
+	margin-top: 98px;
 }
-.portlet-title {
-	background-position: top left;
-	display: block;
-	font-family: sans-serif,Arial;
-	font-size: 2em;
-	font-weight: bold;
-	letter-spacing: -1px;
-	min-width: 50%;
-	padding: 8px 0 4px 10px;
+
+.portlet {
+	border: none;
+	margin: 0 0 10px;
+	padding-right: 10px;
+	text-align: left;
 }
-.portlet-content {
-	background-position: left bottom;
-	padding: 10px 5px 25px 15px;
+
+table {
+	clear: both;
 }
-.portlet-section-header {
-	background: #7F7F7F;
-	padding: 1px 0 0;
-}
-.portlet-section-header th {
-	border-bottom: 1px solid #ccc;
-	color: #333;
-	font-weight: bold;
-	padding: 0.3em 1em;
-}
-.portlet-section-body {
-	background: #E7EDF4;
-	color: #000;
-}
-.portlet-section-body td {
-	background: #FFF;
-	border-top: 1px solid #BFBFBF;
-	padding: 0.3em 1em;
-}
-.tabs {
-	border-bottom: 1px solid #000;
-	margin: 0 0 1.5em 0;
-	padding: 0 0 2.6em 1em;
-}
+
 .tabs li a, .tabs li span {
-	background: url(../images/custom/tabs_bg.png) 0pt -52px;
-	background-color: yellow
-	display: block;
-	color: #fff;
+	background: url(../images/custom/tabs_bg.png) 0 -52px;
+	background-color: yellowdisplay: block;
+	color: #FFF;
 	float: left;
 	padding: 0.35em 1em 0;
 	text-decoration: none;
 }
+
 .tabs li.current a, .tabs li.current span {
 	background: url(../images/custom/tabs_bg.png) -1pt -1px;
 	color: #FFF;
@@ -327,20 +389,18 @@ table {
 	font-weight: bold;
 	padding: 0.15em 1em;
 }
-.js .interactive-mode h2 span {
-	background: transparent url(/street-style-theme/images/dock/menu_bar.png) no-repeat scroll 0pt 0pt;
+
+.tabs {
+	border-bottom: 1px solid #000;
+	margin: 0 0 1.5em 0;
+	padding: 0 0 2.6em 1em;
 }
-p {
-	margin-top: 92px;
-}
-#navigation li.selected a, #navigation li a:hover {
-	background-color: black;
-}
-.js #navigation .enter-page .save-page {
-	background:transparent url(../images/dock/my_place_current.png) no-repeat scroll 0pt 50%;
-	margin:0pt 10px;
-	padding-left:20px;
-}
-input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
-	padding:5px 1px 0px;
+
+#wrapper {
+	background: #222;
+	margin: 0 auto;
+	padding-left: 10px;
+	padding-right: 10px;
+	position: relative;
+	width: 720px;
 }

@@ -1,0 +1,39 @@
+/* This CSS sets the default styles for forms. */
+
+fieldset {
+}
+
+.ie fieldset {
+}
+
+legend {
+}
+
+input {
+}
+
+input[type="text"], input[type="password"], input[type="file"],input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+}
+
+select {
+}
+
+input[type="image"] {
+}
+
+input[type="submit"], input[type="button"], input[type="reset"] {
+}
+
+input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus {
+}
+
+/* ---------- IE6 chokes on attribute selectors in a chain, so we separate them into their own rule ---------- */
+
+.ie6 input.text, input.password, .ie6 input.submit, .ie6 input.file, .ie6 input.button {
+}
+
+.ie6 input.submit, .ie6 input.button {
+}
+
+input.focus, textarea.focus, .ie6 input.focus, .ie6 textarea.focus {
+}
