@@ -3,22 +3,25 @@
 
 /* ---- BASE ---- */
 
-#banner .logo {
+#banner h1.logo {
 	height: 109px;
+	margin: 0;
 }
 
 #banner {
-	height: 130px;
+	background: url('../images/common/banner_bg.png') repeat scroll -16px -7px;
+	height: 122px;
 	position: relative;
+	top: 0;
 }
 
 body {
-	background: transparent url(../images/common/background.png) repeat scroll;
+	background: transparent url('../images/common/background.png') repeat scroll;
 }
 
-html {
-	overflow-x: hidden;
-	overflow-y: scroll;
+#wrapper {
+	margin: 0 auto;
+	width: 960px;
 }
 
 
@@ -27,7 +30,7 @@ html {
 .js .lfr-dock.interactive-mode {
 	float: right;
 	min-width: 150px;
-	position: relative;
+	position: absolute;
 	right: 30px;
 	top: 40px;
 }
@@ -41,7 +44,9 @@ html {
 }
 
 #navigation {
+	background: #040;
 	padding-left: 10px;
+	width: auto;
 }
 
 
@@ -54,6 +59,10 @@ html {
 .portlet-title {
 	color: #FFF;
 	padding-top: 25px;
+}
+
+.portlet-topper {
+	background: #282;
 }
 
 
