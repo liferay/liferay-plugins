@@ -65,9 +65,9 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 .js .lfr-dock.interactive-mode {
 	float: right;
 	min-width: 150px;
-	position: relative;
+	position: absolute;
 	right: 10px;
-	top: -36px;
+	top: -10px;
 }
 
 .lfr-dock li a {
