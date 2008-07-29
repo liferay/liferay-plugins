@@ -8,6 +8,8 @@ body {
 }
 #wrapper {
 	background: center top no-repeat url(../images/custom/bckbody.jpg);
+	width: 1264px;
+	position: relative;
 }
 #banner {
 	background: black center no-repeat url(../images/custom/bckheader.jpg);
@@ -15,12 +17,14 @@ body {
 	height: 287px;
 	width:894px;
 	margin-left:190px;
+	position: relative;
 }
 #navigation {
 	background: none;
 	border: none;
 	margin: -215pt auto 260px;
 	width: 65.6%;
+	z-index: 60;
 }
 #navigation li {
 	border: none;
@@ -50,7 +54,7 @@ a {
 #content-wrapper {
 	width:894px;
 	background: black;
-	margin:-7pt auto -4pt 190px;
+	margin:-8pt auto -4pt 190px;
 }
 .js #add-page {
 	background: transparent none repeat scroll 0% 0%;
@@ -59,11 +63,11 @@ a {
 	top: 3px;
 }
 #banner .logo a {
-	margin-left: 225px;
+	margin-left:60px;
 	margin-top: 15px;
 }
 .js .interactive-mode {
-	right: 21%;
+	right: 10%;
 	top: 50px;
 }
 #navigation li a {
