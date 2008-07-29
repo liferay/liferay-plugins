@@ -18,19 +18,23 @@ body {
 }
 #wrapper {
 	background: transparent url(../images/custom/bckbodytop.gif) no-repeat scroll center top;
+	width: 1264px;
+	position: relative;
 }
 #banner {
 	background: transparent url(../images/custom/bckpage.jpg) no-repeat center;
 	height: 310px;
-	margin-left: 152px;
+	margin-left: 157px;
 	width: 950px;
+	position: relative;
 }
 
 #navigation {
 	background: none;
 	border: none;
-	margin: -220pt auto 275px 622px;
+	margin:-220pt auto 275px 570px;
 	width: 55%;
+	z-index: 60;
 }
 #navigation li {
 	border: none;
@@ -48,11 +52,11 @@ body {
 }
 #content-wrapper {
 	background:black none repeat scroll 0% 0%;
-	margin:-9pt auto -9pt 152px;
+	margin:-9pt auto -9pt 157px;
 	width:950px;
 }
 .js .interactive-mode {
-	right: 14%;
+	right: 3%;
 	top: 55px;
 }
 .js #add-page {
@@ -92,7 +96,7 @@ a {
 	font-size: 12px;
 }
 #banner .logo a {
-	margin-left: 125px;
+	margin-left: -25px;
 }
 #footer {
 	background: #536E7E url(../images/custom/bckfooter.gif) repeat-x scroll 0% 0%;
@@ -100,7 +104,7 @@ a {
 	font-size: 11px;
 	font-weight: bold;
 	line-height: 1.5em;
-	margin-left: 152px;
+	margin-left: 157px;
 	padding: 40px 0pt 60px;
 	position: relative;
 	text-align: center;
