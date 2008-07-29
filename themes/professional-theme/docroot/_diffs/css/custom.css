@@ -5,6 +5,7 @@ body {
 }
 #banner {
 	background: transparent;
+	position: relative;
 }
 #banner .logo a {
 	margin-left: 460px;
@@ -18,6 +19,8 @@ body {
 }
 #wrapper {
 	background: transparent;
+	position: relative;
+	width: 1264px;
 }
 #navigation li {
 	border: none;
