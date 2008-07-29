@@ -14,22 +14,20 @@ body {
 	height: 239px;
 	margin-top: -20px;
 	width: 960px;
-	margin-left:146px;
-}
-.ie #banner {
-	margin-left: 150px;
+	margin-left:152px;
+	position: relative;
 }
 #navigation {
-	background: none;
-	border: none;
-	margin: -38pt auto 20px;
-	width:67.7%;
+	background:#929292 none repeat scroll 0 0;
+	border:medium none;
+	height:65px;
+	margin-bottom:-29px;
+	margin-top:-1px;
+	width:960px;
 }
 #navigation li {
-	border-bottom: none;
-	border-left: none;
-	border-right: none;
-	border-top: none;
+	border: none;
+	margin-top:20px;
 }
 #navigation li.selected a, #navigation li a:hover {
 	background-color: transparent;
@@ -42,7 +40,7 @@ body {
 	background: transparent none repeat scroll 0% 0%;
 	border: medium none;
 	right: 4%;
-	top: -6px;
+	top:18px;
 }
 #content-wrapper {
 	background: #929292;
@@ -51,7 +49,8 @@ body {
 }
 #wrapper {
 	background: transparent;
-	width:100%;
+	position: relative;
+	width: 1264px;
 }
 .portlet {
 	background: transparent;
@@ -78,11 +77,11 @@ a {
 	color: #FFFFFF;
 }
 .js .interactive-mode {
-	right: 20%;
+	right: 11%;
 	top: 35px;
 }
 #banner .logo a {
-	margin-left: 195px;
+	margin-left:65px;
 }
 .ui-dialog.ui-resizable-disabled .ui-dialog-content {
 	color: black;
@@ -127,4 +126,10 @@ a {
 }
 .portlet-section-body td {
 	color: black;
+}
+#navigation ul {
+	width:83%;
+}
+.uni-form fieldset legend {
+	color: white;
 }
