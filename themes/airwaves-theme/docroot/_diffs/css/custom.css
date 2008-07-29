@@ -26,9 +26,14 @@ body {
 }
 #wrapper {
 	background: transparent url(../images/custom/body_bckg.jpg) repeat-y center;
+	margin:0 auto;
+	width:1264px;
+	position:relative;
 }
 #banner {
 	background: none;
+	position:relative;
+	top:0;
 }
 #content-wrapper {
 	width: 75%;
