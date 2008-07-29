@@ -11,6 +11,7 @@ body {
 	border-bottom: #010101 1px solid;
 	height: 400px;
 	margin-left: 1px;
+	position: relative;
 }
 #navigation li {
 	background: transparent url(../images/custom/bckmenuli.gif) repeat-x scroll 0% 0%;
@@ -23,13 +24,18 @@ body {
 	padding: 0pt 30px;
 }
 #navigation {
-	background: none;
+	background:#94A5B4 none repeat scroll 0 0;
 	border: none;
-	margin: -21px auto 20px;
-	width: 80%;
+	height: 60px;
+	width:940px;
+}
+.ie #navigation {
+	margin-left: 163px;
 }
 #wrapper {
 	background: none;
+	position: relative;
+	width: 1264px;
 }
 #navigation li.selected a, #navigation li a:hover {
 	background-color: transparent;
@@ -66,11 +72,12 @@ a {
 #content-wrapper {
 	background: #94A5B4;
 	border: 15px solid #94A5B4;
-	margin: -38px auto;
+	margin: -60px auto;
 	width:910px;
 }
 .ie #content-wrapper {
-	margin-left:161px;
+	margin-left:163px;
+	margin-top: -60px;
 }
 .js #add-page {
 	background: transparent none repeat scroll 0% 0%;
