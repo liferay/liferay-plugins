@@ -22,9 +22,12 @@ body {
 #banner {
 	background: transparent url(../images/custom/bg-logo.gif) no-repeat center;
 	height: 149px;
+	position: relative;
 }
 #wrapper {
 	background: transparent;
+	position: relative;
+	width: 1264px;
 }
 #banner .logo a {
 	margin-left: 148px;
@@ -84,4 +87,12 @@ a {
 }
 .ui-tabs {
 	border-bottom:medium none;
+}
+.js .interactive-mode {
+	top:-45px;
+}
+.js #add-page {
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+	top:6px;
 }
