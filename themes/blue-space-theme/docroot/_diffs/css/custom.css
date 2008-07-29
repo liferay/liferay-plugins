@@ -8,6 +8,12 @@ body {
 }
 #banner {
 	background: url(../images/custom/header_bckg.jpg) no-repeat top right #000;
+	position: relative;
+	margin-top: 1px;
+}
+#wrapper {
+	position: relative;
+	width:1062px;
 }
 #navigation {
 	background: #01B0F0 none repeat scroll 0% 0%;
@@ -59,7 +65,7 @@ a {
 	font-size: 12px;
 }
 #banner .logo a {
-	margin-left: 71px;
+	margin-left: 0;
 }
 .js #add-page {
 	background: transparent none repeat scroll 0% 0%;
@@ -68,8 +74,8 @@ a {
 	top: 0px;
 }
 .js .interactive-mode {
-	right: 9%;
-	top: 60px;
+	right:2%;
+	top:25px;
 }
 .ui-tabs li a, .tabs li span {
 	background: transparent none repeat scroll 0% 0%;
