@@ -2,13 +2,11 @@
 	background: black url(../images/custom/header.jpg) no-repeat center;
 	height: 296px;
 	width: 960px;
-	margin-left: 146px;
-}
-.ie #banner {
-	margin-left: 150px;
+	margin-left: 152px;
+	position: relative;
 }
 body {
-	background: #757575 url(../images/custom/bg.jpg) repeat-y scroll center center;
+	background: #757575;
 	color: #FFFFFF;
 	font-family: arial,verdana;
 	font-size: 12px;
@@ -16,15 +14,19 @@ body {
 }
 #wrapper {
 	background: transparent;
+	position: relative;
+	width: 1264px;
 }
 #navigation {
-	background: transparent;
-	border: none;
-	margin: -56pt auto 20px 239px;
-	width: 64%;
+	background:black none repeat scroll 0 0;
+	border:medium none;
+	height:55px;
+	margin-top:-1px;
+	width:960px;
 }
 #navigation li {
 	border: none;
+	margin:15px 0 0 -1px;
 }
 #navigation li.selected a, #navigation li a:hover {
 	background-color: transparent;
@@ -44,7 +46,7 @@ body {
 	padding: 5px 10px;
 }
 #banner .logo a {
-	margin-left: 225px;
+	margin-left: 75px;
 }
 .js #add-page {
 	background: transparent none repeat scroll 0% 0%;
@@ -54,6 +56,7 @@ body {
 #content-wrapper {
 	width:960px;
 	background: black;
+	margin:-20px auto;
 }
 .portlet {
 	background: transparent;
@@ -70,7 +73,7 @@ a {
 	font-size: 12px;
 }
 .js .interactive-mode {
-	right: 22%;
+	right: 12%;
 }
 .ui-tabs li a:hover, .ui-tabs li span:hover {
 	background: transparent;
@@ -108,4 +111,10 @@ a {
 }
 .lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
 	color: #336699;
+}
+.uni-form fieldset legend {
+	color: white;
+}
+#navigation ul {
+	width:765px;
 }
