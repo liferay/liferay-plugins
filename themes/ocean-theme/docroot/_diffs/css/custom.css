@@ -13,6 +13,11 @@ html {
 }
 #wrapper {
 	background: transparent;
+	position: relative;
+	width: 1182px;
+}
+.ie #wrapper {
+	width: 1178px;
 }
 #navigation li.selected a, #navigation li a:hover {
 	background-color: transparent;
@@ -31,6 +36,7 @@ html {
 	background: #0EA5FE url(../images/custom/head_bckg.jpg) no-repeat scroll 0 0;
 	height: 181px;
 	margin-top: 50px;
+	position: relative;
 }
 body {
 	background: #0A8FDE url(../images/custom/bckg.jpg) repeat-x scroll 0 0;
