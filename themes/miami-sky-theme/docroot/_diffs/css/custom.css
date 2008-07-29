@@ -1,11 +1,11 @@
 body {
-	background: url(../images/common/bg.png) repeat-x;
+	background: url(../images/custom/bg.png) repeat-x;
 	background-color: #fff;
 	background-position: 10px 0px;
 	font: 62.5%/1.6em 'Trebuchet ms',Helvetica,sans-serif;
 }
 #wrapper {
-	background: url(../images/common/btm_bg.png) repeat-x bottom;
+	background: url(../images/custom/btm_bg.png) repeat-x bottom;
 	margin: 0 auto;
 	position: relative;
 	width: 900px;
@@ -14,7 +14,7 @@ table {
 	clear: both;
 }
 #footer {
-	background: url(../images/common/footer.jpg) no-repeat;
+	background: url(../images/custom/footer.jpg) no-repeat;
 	height: 34px;
 	width: 900px;
 }
@@ -28,7 +28,7 @@ table {
 	width: 900px;
 }
 #banner {
-	background: url(../images/common/header.jpg) no-repeat scroll 100% 0px;
+	background: url(../images/custom/header.jpg) no-repeat scroll 100% 0px;
 	height: 186px;
 	position: relative;
 }
@@ -47,7 +47,7 @@ table {
 	margin-top: -20px;
 }
 .lfr-dock h2 {
-	background: url(../images/navigation/welcome_message.png) no-repeat 0 50%;
+	background: url(../images/custom/welcome_message.png) no-repeat 0 50%;
 	font-size: 1.2em;
 	margin-bottom: 0.5em;
 	padding-left: 2em;
@@ -62,13 +62,12 @@ table {
 	width: 226px;
 }
 .js .lfr-dock.interactive-mode ul {
-	background: url(../images/dock/menu_bg.png) no-repeat 0 0;
 	border-left: 20px solid #AAE501;
 	display: none;
 	float: none;
 }
 .bottom {
-	background: url(../images/navigation/sub_nav_bottom.png) no-repeat 11px 95%;
+	background: url(../images/custom/sub_nav_bottom.png) no-repeat 11px 95%;
 	float: left;
 	left: -150px;
 	padding-bottom: 55px;
@@ -134,7 +133,7 @@ table {
 	position: relative;
 }
 #navigation {
-	background: url(../images/navigation/sub_nav_top.png) no-repeat 11px top;
+	background: url(../images/custom/sub_nav_top.png) no-repeat 11px top;
 	border: none;
 	float: left;
 	margin: 20px auto -7px;
@@ -148,7 +147,7 @@ table {
 	border: none;
 }
 #navigation ul {
-	background: url(../images/navigation/sub_nav.png) repeat-y 9px 10%;
+	background: url(../images/custom/sub_nav.png) repeat-y 9px 10%;
 	float: left;
 	margin-left: 2px;
 	margin-top: 21px;
@@ -241,7 +240,7 @@ table {
 	padding: 0 0 2.6em 1em;
 }
 .tabs li {
-	background: url(../images/common/tabs_bg.png) 2pt -200px;
+	background: url(../images/custom/tabs_bg.png) 2pt -200px;
 	display: inline;
 	float: left;
 	line-height: 2.25em;
@@ -251,14 +250,14 @@ table {
 	text-decoration: none;
 }
 .tabs li a, .tabs li span {
-	background: url(../images/common/tabs_bg.png) -2pt -201px;
+	background: url(../images/custom/tabs_bg.png) -2pt -201px;
 	display: block;
 	float: left;
 	padding: 0.35em 1em 0;
 	text-decoration: none;
 }
 .tabs li.current a, .tabs li.current span {
-	background: url(../images/common/tabs_bg.png) 0 -217px;
+	background: url(../images/custom/tabs_bg.png) 0 -217px;
 	color: #333;
 	margin-top: -1px;
 	padding: 0.15em 1em;
@@ -272,11 +271,11 @@ table {
 	color: #000;
 }
 .js .interactive-mode h2 {
-	background: transparent url(/miami-sky-theme/images/dock/menu_bar.png) no-repeat scroll 100% -30px;
+	background: transparent url(../images/custom/menu_bar.png) no-repeat scroll 100% -30px;
 	padding: 0pt 26px 0pt 0pt;
 }
 .js .interactive-mode h2 span {
-	background: transparent url(/miami-sky-theme/images/dock/menu_bar.png) no-repeat scroll 0pt 0pt;
+	background: transparent url(../images/custom/menu_bar.png) no-repeat scroll 0pt 0pt;
 }
 .lfr-dock-list-container {
 	height: 1px;
