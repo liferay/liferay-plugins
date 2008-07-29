@@ -20,11 +20,14 @@ body {
 }
 #wrapper {
 	background: transparent;
+	position: absolute;
+	width: 1264px;
 }
 #banner {
 	background: no-repeat url(../images/custom/bckheader.jpg);
 	font-family: Verdana;
 	height: 285px;
+	position: relative;
 	margin-left: 40px;
 }
 #navigation li.selected a, #navigation li a:hover {
@@ -109,4 +112,7 @@ a {
 	text-align: right;
 	font-family: Verdana; font-size: 10px;
 	color: #4b4b4b;
+}
+.uni-form fieldset legend {
+	color: white;
 }
