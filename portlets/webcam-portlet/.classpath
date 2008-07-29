@@ -11,16 +11,13 @@
 	<classpathentry kind="lib" path="/portal/lib/global/portlet-container.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/commons-logging.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/jdom.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/jstl-impl.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/jstl.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/log4j.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/rome.jar" />
 	<classpathentry kind="lib" path="/portal/portal-kernel/portal-kernel.jar" />
 	<classpathentry kind="lib" path="/portal/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal/util-taglib/util-taglib.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/svnkit.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
