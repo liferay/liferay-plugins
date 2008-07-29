@@ -1,11 +1,14 @@
 #banner {
 	background:#272727 url(../images/custom/header.jpg) no-repeat scroll center center;
 	height:296px;
-	margin-left:146px;
+	margin-left:152px;
 	width:960px;
+	position: relative;
 }
 #wrapper {
 	background: none;
+	position: relative;
+	width: 1264px;
 }
 body {
 	background: black;
@@ -15,22 +18,19 @@ body {
 	line-height: 17px;
 }
 #banner .logo a {
-	margin-left: 230px;
-}
-.ie #banner {
-	margin-left: 150px;
+	margin-left: 90px;
 }
 .js .interactive-mode {
-	right: 21.5%;
+	right: 12.5%;
 	position: relative !important;
 	z-index: 82 !important;
 }
 #navigation {
-	background: none;
-	border: none;
-	margin: -62pt auto 70px;
-	width: 65%;
-	z-index: 0;
+	background:#272727 none repeat scroll 0 0;
+	border:medium none;
+	margin-bottom:16px;
+	margin-top:-1px;
+	width:960px;
 }
 #navigation li {
 	border: none;
@@ -112,4 +112,10 @@ a {
 }
 .portlet-section-body td {
 	color: black;
+}
+#navigation ul {
+	width:81%;
+}
+.uni-form fieldset legend {
+	color: white;
 }
