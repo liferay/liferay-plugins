@@ -3,42 +3,46 @@
 	color: #256C8E;
 }
 .ie #banner {
-	margin-left: 183px;
+	margin-left: 185px;
 }
 #navigation li.selected a span {
 	background: transparent;
 	padding-left: 0px;
 }
 #navigation {
-	background: transparent;
+	background: black;
 	border: none;
-	margin: -57pt auto 20px;
-	width: 75%;
+	width:894px;
+	margin:-1px auto 20px;
 }
 #navigation li {
 	border: none;
 }
 body {
-	background: #898989 url(../images/custom/bg.png) repeat-y fixed center center;
+	background: #898989 url(../images/custom/bg.png) repeat-y scroll center center;
 	color: #FFFFFF;
 	font-family: arial,verdana;
 	font-size: 12px;
+	position: relative;
 }
 #banner {
 	background:black url(../images/custom/header.jpg) no-repeat scroll right center;
 	height:353px;
-	margin-left:179px;
+	margin-left:185px;
 	width:894px;
+	position: relative;
 }
 #wrapper {
 	background: none;
+	width: 1264px;
+	position: relative;
 }
 #banner .logo a {
-	margin-left:164px;
+	margin-left:20px;
 	margin-top: 53px;
 }
 .js .interactive-mode {
-	right: 15%;
+	right: 2%;
 }
 #navigation li a {
 	font-size: 16px;
@@ -47,6 +51,8 @@ body {
 #content-wrapper {
 	width:894px;
 	background: black;
+	margin:-20px auto;
+	min-height: 600px;
 }
 .js #add-page {
 	background: transparent none repeat scroll 0% 0%;
@@ -100,4 +106,7 @@ a {
 }
 .portlet-section-body td {
 	color: black;
+}
+.uni-form fieldset legend {
+	color: white;
 }
