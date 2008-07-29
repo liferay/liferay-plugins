@@ -67,6 +67,9 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		if (tabs2.equals("export-settings")) {
 			updateExportSettings(actionRequest, prefs);
 		}
+		else if (tabs2.equals("rss")) {
+			updateRSS(actionRequest, prefs);
+		}
 
 		if (SessionErrors.isEmpty(actionRequest)) {
 			prefs.store();
@@ -91,6 +94,24 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		String[] extensions = actionRequest.getParameterValues("extensions");
 
 		prefs.setValues("extensions", extensions);
+	}
+
+	protected void updateRSS(
+			ActionRequest actionRequest, PortletPreferences prefs)
+		throws Exception {
+
+		String[] displayRSSTypes = actionRequest.getParameterValues(
+			"displayRSSTypes");
+		int rssDelta = ParamUtil.getInteger(actionRequest, "rssDelta");
+		String rssDisplayStyle = ParamUtil.getString(
+			actionRequest, "rssDisplayStyle");
+		int abstractLength = ParamUtil.getInteger(
+			actionRequest, "abstractLength");
+
+		prefs.setValues("displayRSSTypes", displayRSSTypes);
+		prefs.setValue("rss-delta", String.valueOf(rssDelta));
+		prefs.setValue("rss-display-style", rssDisplayStyle);
+		prefs.setValue("abstract-length", String.valueOf(abstractLength));
 	}
 
 }

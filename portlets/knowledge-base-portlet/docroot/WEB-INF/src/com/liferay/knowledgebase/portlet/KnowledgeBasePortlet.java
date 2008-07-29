@@ -29,10 +29,12 @@ import com.liferay.knowledgebase.KnowledgeBaseKeys;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
+import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DocumentConversionUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -48,6 +50,7 @@ import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.tags.EntryNameException;
+import com.liferay.util.RSSUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.util.servlet.PortletResponseUtil;
 import com.liferay.util.servlet.ServletResponseUtil;
@@ -68,6 +71,8 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -238,9 +243,58 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			else if (actionName.equals("convert")) {
 				convertArticle(resourceRequest, resourceResponse);
 			}
+			else if (actionName.equals("rss")) {
+				getRSS(resourceRequest, resourceResponse);
+			}
 		}
 		catch (Exception e) {
 		}
+	}
+
+	protected void getRSS(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long groupId = ParamUtil.getLong(resourceRequest, "groupId");
+		long resourcePrimKey = ParamUtil.getLong(
+			resourceRequest, "resourcePrimKey");
+		int max = ParamUtil.getInteger(
+			resourceRequest, "max", SearchContainer.DEFAULT_DELTA);
+		String type = ParamUtil.getString(
+			resourceRequest, "type", RSSUtil.DEFAULT_TYPE);
+		double version = ParamUtil.getDouble(
+			resourceRequest, "version", RSSUtil.DEFAULT_VERSION);
+		String displayStyle = ParamUtil.getString(
+			resourceRequest, "displayStyle",
+			RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
+		int abstractLength = ParamUtil.getInteger(
+			resourceRequest, "abstractLength", SearchContainer.DEFAULT_DELTA);
+
+		String feedURL = PortalUtil.getPortalURL(themeDisplay) +
+			PortalUtil.getLayoutURL(themeDisplay);
+
+		String rss = StringPool.BLANK;
+
+		if (resourcePrimKey > 0) {
+			rss = KBArticleServiceUtil.getArticlesRSS(
+				resourcePrimKey, max, type, version, displayStyle,
+				abstractLength, feedURL);
+		}
+		else if (groupId > 0) {
+			rss = KBArticleServiceUtil.getGroupArticlesRSS(
+				groupId, max, type, version, displayStyle,  abstractLength,
+				feedURL);
+		}
+
+		HttpServletResponse response = PortalUtil.getHttpServletResponse(
+			resourceResponse);
+
+		ServletResponseUtil.sendFile(
+			response, null, rss.getBytes(StringPool.UTF8),
+			ContentTypes.TEXT_XML_UTF8);
 	}
 
 	protected void sendRedirect(

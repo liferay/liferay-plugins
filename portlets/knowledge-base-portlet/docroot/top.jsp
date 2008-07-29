@@ -41,8 +41,27 @@ boolean print = ParamUtil.getBoolean(request, Constants.PRINT);
 	<div class="top-links">
 		<table class="lfr-table">
 		<tr>
-			<td valign="top">
-				<!-- Search by categories -->
+			<td align="left" valign="top">
+
+				<%
+				String[] displayRSSTypes = prefs.getValues("displayRSSTypes", new String[] {rss20});
+
+				rssAtomURL.setParameter("groupId", String.valueOf(themeDisplay.getPortletGroupId()));
+				rssRSS10URL.setParameter("groupId", String.valueOf(themeDisplay.getPortletGroupId()));
+				rssRSS20URL.setParameter("groupId", String.valueOf(themeDisplay.getPortletGroupId()));
+				%>
+
+				<c:if test="<%= ArrayUtil.contains(displayRSSTypes, atom) %>">
+					<liferay-ui:icon image="rss" message="<%= atom %>" method="get" url='<%= rssAtomURL.toString() %>' target="_blank" label="<%= true %>" />
+				</c:if>
+
+				<c:if test="<%= ArrayUtil.contains(displayRSSTypes, rss10) %>">
+					<liferay-ui:icon image="rss" message="<%= rss10 %>" method="get" url='<%= rssRSS10URL.toString() %>' target="_blank" label="<%= true %>" />
+				</c:if>
+
+				<c:if test="<%= ArrayUtil.contains(displayRSSTypes, rss20) %>">
+					<liferay-ui:icon image="rss" message="<%= rss20 %>" method="get" url='<%= rssRSS20URL.toString() %>' target="_blank" label="<%= true %>" />
+				</c:if>
 			</td>
 			<td align="right" valign="top">
 				<liferay-portlet:renderURL varImpl="searchURL"><portlet:param name="view" value="search" /></liferay-portlet:renderURL>

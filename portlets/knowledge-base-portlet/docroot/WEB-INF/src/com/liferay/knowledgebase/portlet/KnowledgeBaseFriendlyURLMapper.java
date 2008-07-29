@@ -45,6 +45,8 @@ import javax.portlet.WindowState;
  */
 public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 
+	public static final String MAPPING = "kb";
+
 	public String buildPath(LiferayPortletURL portletURL) {
 		String friendlyURLPath = null;
 
@@ -58,7 +60,7 @@ public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 			if (Validator.isNotNull(title)) {
 				sb.append(StringPool.SLASH);
-				sb.append(_MAPPING);
+				sb.append(MAPPING);
 				sb.append(StringPool.SLASH);
 
 				sb.append(HttpUtil.encodeURL(title));
@@ -82,7 +84,7 @@ public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 			if (Validator.isNotNull(tag)) {
 				sb.append(StringPool.SLASH);
-				sb.append(_MAPPING);
+				sb.append(MAPPING);
 				sb.append(StringPool.SLASH);
 				sb.append("tag");
 				sb.append(StringPool.SLASH);
@@ -105,7 +107,7 @@ public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 	}
 
 	public String getMapping() {
-		return _MAPPING;
+		return MAPPING;
 	}
 
 	public String getPortletId() {
@@ -152,8 +154,6 @@ public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 			addParam(params, "view", "view_all_articles");
 		}
 	}
-
-	private static final String _MAPPING = "kb";
 
 	private static final String _PORTLET_ID = KnowledgeBaseKeys.PORTLET_ID;
 

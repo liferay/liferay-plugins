@@ -91,6 +91,7 @@
 <%@ page import="com.liferay.portal.kernel.util.DocumentConversionUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.PrefsPropsUtil" %>
 <%@ page import="com.liferay.util.TextFormatter" %>
+<%@ page import="com.liferay.util.RSSUtil" %>
 <%@ page import="com.liferay.util.diff.DiffResult" %>
 <%@ page import="com.liferay.util.diff.DiffUtil" %>
 
@@ -107,6 +108,7 @@
 <%@ page import="javax.portlet.ActionRequest" %>
 <%@ page import="javax.portlet.PortletPreferences" %>
 <%@ page import="javax.portlet.PortletURL" %>
+<%@ page import="javax.portlet.RenderResponse" %>
 <%@ page import="javax.portlet.ResourceURL" %>
 <%@ page import="javax.portlet.WindowState" %>
 
@@ -124,5 +126,46 @@ if (Validator.isNotNull(portletResource)) {
 
 String currentURL = PortalUtil.getCurrentURL(request);
 
+String atom = "Atom 1.0";
+String rss10 = "RSS 1.0";
+String rss20 = "RSS 2.0";
+
+int rssDelta = GetterUtil.getInteger(prefs.getValue("rss-delta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
+String rssDisplayStyle = prefs.getValue("rss-display-style", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
+int abstractLength = GetterUtil.getInteger(prefs.getValue("abstract-length", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
+
+ResourceURL rssAtomURL = _getRSSURL(renderResponse, rssDelta, rssDisplayStyle, abstractLength);
+rssAtomURL.setParameter("type", RSSUtil.ATOM);
+rssAtomURL.setParameter("version", "1.0");
+
+ResourceURL rssRSS10URL = _getRSSURL(renderResponse, rssDelta, rssDisplayStyle, abstractLength);
+rssRSS10URL.setParameter("type", RSSUtil.RSS);
+rssRSS10URL.setParameter("version", "1.0");
+
+ResourceURL rssRSS20URL = _getRSSURL(renderResponse, rssDelta, rssDisplayStyle, abstractLength);
+rssRSS20URL.setParameter("type", RSSUtil.RSS);
+rssRSS20URL.setParameter("version", "2.0");
+
 DateFormat dateFormatDateTime = DateFormats.getDateTime(locale, timeZone);
+%>
+
+<%!
+	private ResourceURL _getRSSURL(RenderResponse renderResponse, int rssDelta, String rssDisplayStyle, int abstractLength) {
+		ResourceURL rssURL = renderResponse.createResourceURL();
+		rssURL.setParameter("actionName", "rss");
+
+		if (rssDelta != SearchContainer.DEFAULT_DELTA) {
+			rssURL.setParameter("max", String.valueOf(rssDelta));
+		}
+
+		if (!rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT)) {
+			rssURL.setParameter("displayStyle", rssDisplayStyle);
+		}
+
+		if (abstractLength != SearchContainer.DEFAULT_DELTA) {
+			rssURL.setParameter("abstractLength", String.valueOf(abstractLength));
+		}
+
+		return rssURL;
+	}
 %>

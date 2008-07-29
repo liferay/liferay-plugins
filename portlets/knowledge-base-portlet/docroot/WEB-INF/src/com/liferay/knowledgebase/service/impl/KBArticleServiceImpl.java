@@ -24,16 +24,39 @@ package com.liferay.knowledgebase.service.impl;
 
 import com.liferay.knowledgebase.KnowledgeBaseKeys;
 import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.portlet.KnowledgeBaseFriendlyURLMapper;
 import com.liferay.knowledgebase.service.base.KBArticleServiceBaseImpl;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.service.permission.KBPermission;
+import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.Organization;
+import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
+import com.liferay.portal.service.OrganizationLocalServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.util.RSSUtil;
+
+import com.sun.syndication.feed.synd.SyndContent;
+import com.sun.syndication.feed.synd.SyndContentImpl;
+import com.sun.syndication.feed.synd.SyndEntry;
+import com.sun.syndication.feed.synd.SyndEntryImpl;
+import com.sun.syndication.feed.synd.SyndFeed;
+import com.sun.syndication.feed.synd.SyndFeedImpl;
+import com.sun.syndication.io.FeedException;
+
+import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -134,6 +157,39 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		return articles;
 	}
 
+	public String getGroupArticlesRSS(
+			long groupId, int max, String type, double version,
+			String displayStyle, int abstractLength, String feedURL)
+		throws PortalException, SystemException {
+
+		boolean template = false;
+
+		List<KBArticle> articles = getGroupArticles(groupId, template, max);
+
+		Group group = GroupLocalServiceUtil.getGroup(groupId);
+
+		String title = group.getName();
+
+		if (group.isUser()) {
+			User user = UserLocalServiceUtil.getUserById(group.getClassPK());
+
+			title = user.getFullName();
+		}
+		else if (group.isOrganization()) {
+			Organization organization =
+				OrganizationLocalServiceUtil.getOrganization(
+					group.getClassPK());
+
+			title = organization.getName();
+		}
+
+		String description = group.getDescription();
+
+		return exportToRSS(
+			title, description, type, version, displayStyle, abstractLength,
+			feedURL, articles);
+	}
+
 	public KBArticle getArticle(long resourcePrimKey)
 		throws PortalException, SystemException {
 
@@ -168,6 +224,32 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			getPermissionChecker(), groupId, title, ActionKeys.VIEW);
 
 		return kbArticleLocalService.getArticle(groupId, title, version);
+	}
+
+	public String getArticlesRSS(
+			long resourcePrimKey, int max, String type, double version,
+			String displayStyle, int abstractLength, String feedURL)
+		throws PortalException, SystemException {
+
+		KBArticlePermission.check(
+			getPermissionChecker(), resourcePrimKey, ActionKeys.VIEW);
+
+		List<KBArticle> articles = kbArticleLocalService.getArticles(
+			resourcePrimKey, 0, max, new ArticleModifiedDateComparator(true));
+
+		String title = StringPool.BLANK;
+		String description = StringPool.BLANK;
+
+		if (articles.size() > 0) {
+			KBArticle article = articles.get(0);
+
+			title = article.getTitle();
+			description = article.getDescription();
+		}
+
+		return exportToRSS(
+			title, description, type, version, displayStyle, abstractLength,
+			feedURL, articles);
 	}
 
 	public KBArticle revertArticle(
@@ -243,6 +325,80 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			getUserId(), resourcePrimKey, version, title, content, description,
 			minorEdit, template, parentResourcePrimKey, tagsEntries, prefs,
 			themeDisplay);
+	}
+
+	protected String exportToRSS(
+			String name, String description, String type, double version,
+			String displayStyle, int abstractLength, String feedURL,
+			List<KBArticle> articles)
+		throws SystemException {
+
+		SyndFeed syndFeed = new SyndFeedImpl();
+
+		syndFeed.setFeedType(RSSUtil.getFeedType(type, version));
+		syndFeed.setTitle(name);
+		syndFeed.setLink(feedURL);
+		syndFeed.setDescription(description);
+
+		List<SyndEntry> entries = new ArrayList<SyndEntry>();
+
+		syndFeed.setEntries(entries);
+
+		for (KBArticle article : articles) {
+			SyndEntry syndEntry = new SyndEntryImpl();
+
+			String author = PortalUtil.getUserName(
+				article.getUserId(), article.getUserName());
+
+			String syndTitle =
+				article.getTitle() + StringPool.SPACE + article.getVersion();
+
+			syndEntry.setAuthor(author);
+			syndEntry.setTitle(syndTitle);
+			syndEntry.setPublishedDate(article.getModifiedDate());
+
+			String value = null;
+
+			if (displayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT)) {
+				value = StringUtil.shorten(
+					HtmlUtil.extractText(article.getContent()),
+					abstractLength, StringPool.BLANK);
+			}
+			else if (displayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE)) {
+				value = article.getTitle();
+			}
+			else {
+				value = article.getContent();
+			}
+
+			SyndContent syndContent = new SyndContentImpl();
+
+			syndContent.setValue(value);
+
+			syndContent.setType(RSSUtil.DEFAULT_ENTRY_TYPE);
+
+			syndContent.setValue(value);
+
+			syndEntry.setDescription(syndContent);
+
+			entries.add(syndEntry);
+
+			String entryURL = feedURL + StringPool.SLASH + StringPool.DASH +
+				StringPool.SLASH +  KnowledgeBaseFriendlyURLMapper.MAPPING +
+					StringPool.SLASH + article.getTitle();
+
+			syndEntry.setLink(entryURL);
+		}
+
+		try {
+			return RSSUtil.export(syndFeed);
+		}
+		catch (FeedException fe) {
+			throw new SystemException(fe);
+		}
+		catch (IOException ioe) {
+			throw new SystemException(ioe);
+		}
 	}
 
 	private static final int _MAX_END = 200;

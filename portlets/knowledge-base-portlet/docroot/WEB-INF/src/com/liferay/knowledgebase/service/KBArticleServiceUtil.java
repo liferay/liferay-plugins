@@ -79,6 +79,17 @@ public class KBArticleServiceUtil {
 		return kbArticleService.getGroupArticles(groupId, template, max);
 	}
 
+	public static java.lang.String getGroupArticlesRSS(long groupId, int max,
+		java.lang.String type, double version, java.lang.String displayStyle,
+		int abstractLength, java.lang.String feedURL)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
+		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
+
+		return kbArticleService.getGroupArticlesRSS(groupId, max, type,
+			version, displayStyle, abstractLength, feedURL);
+	}
+
 	public static com.liferay.knowledgebase.model.KBArticle getArticle(
 		long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
@@ -113,6 +124,18 @@ public class KBArticleServiceUtil {
 		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
 
 		return kbArticleService.getArticle(groupId, title, version);
+	}
+
+	public static java.lang.String getArticlesRSS(long resourcePrimKey,
+		int max, java.lang.String type, double version,
+		java.lang.String displayStyle, int abstractLength,
+		java.lang.String feedURL)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
+		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
+
+		return kbArticleService.getArticlesRSS(resourcePrimKey, max, type,
+			version, displayStyle, abstractLength, feedURL);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle revertArticle(

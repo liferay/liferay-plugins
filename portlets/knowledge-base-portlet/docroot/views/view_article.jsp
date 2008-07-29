@@ -26,6 +26,8 @@
 <%
 KBArticle article = (KBArticle) request.getAttribute(KnowledgeBaseKeys.ARTICLE);
 
+long resourcePrimKey = article.getResourcePrimKey();
+
 String title = article.getTitle();
 
 String[] attachments = new String[0];
@@ -37,7 +39,7 @@ if (article != null) {
 boolean print = ParamUtil.getBoolean(request, Constants.PRINT);
 
 if (!article.isTemplate()) {
-	TagsAssetLocalServiceUtil.incrementViewCounter(KBArticle.class.getName(), article.getResourcePrimKey());
+	TagsAssetLocalServiceUtil.incrementViewCounter(KBArticle.class.getName(), resourcePrimKey);
 }
 
 String className = KBArticle.class.getName();
@@ -51,7 +53,7 @@ PortletURL viewAllURL = renderResponse.createRenderURL();
 PortletURL viewArticleURL = renderResponse.createRenderURL();
 
 viewArticleURL.setParameter("view", "view_article");
-viewArticleURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
+viewArticleURL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
 
 PortletURL addArticleURL = renderResponse.createRenderURL();
 
@@ -60,7 +62,7 @@ addArticleURL.setParameter("redirect", currentURL);
 addArticleURL.setParameter("editTitle", "1");
 
 if (article != null) {
-	addArticleURL.setParameter("parentResourcePrimKey", String.valueOf(article.getResourcePrimKey()));
+	addArticleURL.setParameter("parentResourcePrimKey", String.valueOf(resourcePrimKey));
 }
 
 List childArticles = article.getChildArticles();
@@ -155,7 +157,7 @@ viewAttachmentsURL.setParameter("title", title);
 				<div class="side-box-content">
 					<ul class="lfr-component">
 						<li>
-							<b><liferay-ui:message key="id" /></b>: <%= article.getResourcePrimKey() %>
+							<b><liferay-ui:message key="id" /></b>: <%= resourcePrimKey %>
 						</li>
 						<li>
 							<b><liferay-ui:message key="version" /></b>: <%= article.getVersion() %>
@@ -170,7 +172,7 @@ viewAttachmentsURL.setParameter("title", title);
 							<li>
 								<b><liferay-ui:message key="views" /></b>:
 								<%
-								TagsAsset asset = TagsAssetLocalServiceUtil.getAsset(KBArticle.class.getName(), article.getResourcePrimKey());
+								TagsAsset asset = TagsAssetLocalServiceUtil.getAsset(KBArticle.class.getName(), resourcePrimKey);
 								%>
 								<%= asset.getViewCount() %>
 							</li>
@@ -178,7 +180,7 @@ viewAttachmentsURL.setParameter("title", title);
 						<li>
 							<liferay-ui:tags-summary
 								className="<%= className %>"
-								classPK="<%= article.getResourcePrimKey() %>"
+								classPK="<%= resourcePrimKey %>"
 								portletURL="<%= taggedArticlesURL %>"
 							/>
 						</li>
@@ -204,6 +206,27 @@ viewAttachmentsURL.setParameter("title", title);
 						<liferay-ui:icon image="print" label="<%= true %>" message="print" url='<%= "javascript: " + renderResponse.getNamespace() + "printArticle();" %>' />
 
 						<c:if test="<%= !article.isTemplate() %>">
+
+							<%
+							String[] displayRSSTypes = prefs.getValues("displayRSSTypes", new String[] {rss20});
+
+							rssAtomURL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
+							rssRSS10URL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
+							rssRSS20URL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
+							%>
+
+							<c:if test="<%= ArrayUtil.contains(displayRSSTypes, atom) %>">
+								<liferay-ui:icon image="rss" message="<%= atom %>" method="get" url='<%= rssAtomURL.toString() %>' target="_blank" label="<%= true %>" />
+							</c:if>
+
+							<c:if test="<%= ArrayUtil.contains(displayRSSTypes, rss10) %>">
+								<liferay-ui:icon image="rss" message="<%= rss10 %>" method="get" url='<%= rssRSS10URL.toString() %>' target="_blank" label="<%= true %>" />
+							</c:if>
+
+							<c:if test="<%= ArrayUtil.contains(displayRSSTypes, rss20) %>">
+								<liferay-ui:icon image="rss" message="<%= rss20 %>" method="get" url='<%= rssRSS20URL.toString() %>' target="_blank" label="<%= true %>" />
+							</c:if>
+
 							<%
 							String[] extensions = prefs.getValues("extensions", new String[] {"pdf"});
 
@@ -228,11 +251,11 @@ viewAttachmentsURL.setParameter("title", title);
 
 							<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
 								<c:choose>
-									<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), article.getResourcePrimKey()) %>">
+									<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), resourcePrimKey) %>">
 										<portlet:actionURL var="unsubscribeURL">
 											<portlet:param name="actionName" value="unsubscribeArticle" />
 											<portlet:param name="redirect" value="<%= currentURL %>" />
-											<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+											<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 										</portlet:actionURL>
 
 										<liferay-ui:icon image="unsubscribe" url="<%= unsubscribeURL %>" label="<%= true %>" />
@@ -241,7 +264,7 @@ viewAttachmentsURL.setParameter("title", title);
 										<portlet:actionURL var="subscribeURL">
 											<portlet:param name="actionName" value="subscribeArticle" />
 											<portlet:param name="redirect" value="<%= currentURL %>" />
-											<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+											<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 										</portlet:actionURL>
 
 										<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" label="<%= true %>" />
@@ -253,7 +276,7 @@ viewAttachmentsURL.setParameter("title", title);
 						<portlet:renderURL var="historyURL">
 							<portlet:param name="view" value="view_article_history" />
 							<portlet:param name="redirect" value="<%= currentURL %>" />
-							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 						</portlet:renderURL>
 
 						<liferay-ui:icon image="history" method="get" url="<%= historyURL %>" label="<%= true %>" />
@@ -263,7 +286,7 @@ viewAttachmentsURL.setParameter("title", title);
 							PortletURL deleteArticleURL = renderResponse.createActionURL();
 
 							deleteArticleURL.setParameter("actionName", Constants.DELETE);
-							deleteArticleURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
+							deleteArticleURL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
 							deleteArticleURL.setParameter("redirect", viewAllURL.toString());
 							%>
 
