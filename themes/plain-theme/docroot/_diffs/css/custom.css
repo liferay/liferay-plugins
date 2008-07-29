@@ -1,46 +1,147 @@
-html {
-	overflow-y: scroll;
-}
-body {
-	background-color: #fff;
-	color: #555;
-	font-family: "Trebuchet MS", Arial, Verdana;
-	font-size: 0.74em;
-}
-#wrapper {
-	background: none;
-	padding-top: 1px;
-}
-#banner {
-	background: none;
-	margin: 0 auto;
-	width: 750px;
-}
-#banner .logo {
-	display: block;
-}
 #banner .logo a {
 	color: #736451;
 	display: block;
-	font-family: "Century Gothic","Trebuchet MS","Arial Narrow",Arial,sans-serif;
+	font-family: 'Century Gothic', 'Trebuchet MS', 'Arial Narrow', 'Arial', sans-serif;
 	font-size: 30px;
 	font-weight: normal;
 	margin: 106px 0 0 0;
 	text-transform: uppercase;
 }
+
+#banner .logo {
+	display: block;
+}
+
+#banner {
+	background: none;
+	margin: 0 auto;
+	width: 750px;
+}
+
+body {
+	background-color: #FFF;
+	color: #555;
+	font-family: 'Trebuchet MS', ' Arial', ' Verdana';
+	font-size: 0.74em;
+}
+
+#content-wrapper, #portlet-wrapper- {
+	background: transparent url('../images/custom/portlet.png') no-repeat scroll top center;
+	margin: 0 auto;
+	width: 900px;
+}
+
+html {
+	overflow-y: scroll;
+}
+
 .ie #banner .logo a {
-	padding-top: 10px;
 	padding-bottom: 10px;
+	padding-top: 10px;
 }
+
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	margin-top: 15px;
+	padding: 5px 1px;
+}
+
+.js #add-page {
+	background: transparent none repeat scroll 0 0%;
+	border: medium none;
+	right: 5%;
+	top: -8px;
+}
+
+.js #navigation .enter-page .save-page {
+	background: transparent;
+	color: white;
+	margin: 0;
+	position: absolute;
+	right: 11px;
+	top: 21px;
+}
+
+.js #navigation .enter-page a:hover {
+	color: black;
+	padding: 0;
+}
+
+.js #navigation .enter-page {
+	background-color: transparent;
+}
+
+.js .interactive-mode {
+	right: 19%;
+	top: 134px;
+}
+
 .js .lfr-dock.interactive-mode h2 span {
-	color: #222;
+	color: white;
 	font-size: 10pt;
-	padding: 8px 16px 16px 16px;
+	padding: 7px 16px;
 }
+
+#navigation li {
+	border: none;
+}
+
+#navigation li.selected a span {
+	background: transparent;
+	color: white;
+	padding-left: 0;
+}
+
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
+
+#navigation li.selected a:hover span {
+	color: black;
+}
+
+#navigation ul .sort-helper {
+}
+
+#navigation ul li a span, #navigation ul li a:hover span, #navigation ul li.selected a span, #navigation ul li.selected a:hover span, .js #add-page a span, .js #add-page a:hover span {
+	display: block;
+	float: left;
+	font-family: 'Verdana', 'Arial', 'Helvetica', sans-serif;
+	font-size: 11px;
+}
+
+#navigation ul li a, #navigation ul li a:hover, #navigation ul li.selected a, #navigation ul li.selected a:hover, .js #add-page a, .js #add-page a:hover {
+	display: block;
+	float: left;
+	line-height: 20px;
+	padding: 17px 10px;
+	text-decoration: none;
+}
+
+#navigation ul li a:hover, #navigation ul li.selected a:hover {
+	color: black;
+}
+
+#navigation ul li, #navigation ul li.selected, .js #add-page {
+	display: block;
+	float: left;
+	list-style-image: url('../images/custom/li.png');
+}
+
+#navigation ul li:hover, #navigation ul li.selected:hover {
+	background: #FFF url('../images/custom/a_hover.png');
+}
+
+#navigation ul {
+	display: block;
+	float: left;
+	margin: 0 0 0 24px;
+	width: auto;
+}
+
 #navigation {
 	background: #94AE62 url('../images/custom/menu.png');
 	border: none;
-	color: #fff;
+	color: #FFF;
 	display: block;
 	font-variant: small-caps;
 	height: 60px;
@@ -49,95 +150,12 @@ body {
 	top: -76pt;
 	width: 100%;
 }
-#navigation li {
-	border: none;
-}
-#navigation ul {
-	display: block;
-	float: left;
-	margin: 0 0 0 24px;
-	width: auto;
-}
-#navigation ul li , #navigation ul li.selected , .js #add-page {
-	display: block;
-	float: left;
-	list-style-image: url('../images/custom/li.png');
-}
-#navigation ul li a , #navigation ul li a:hover , #navigation ul li.selected a , #navigation ul li.selected a:hover , .js #add-page a , .js #add-page a:hover {
-	display: block;
-	float: left;
-	line-height: 20px;
-	padding: 17px 10px;
-	text-decoration: none;
-}
-#navigation ul li a span , #navigation ul li a:hover span , #navigation ul li.selected a span , #navigation ul li.selected a:hover span , .js #add-page a span , .js #add-page a:hover span {
-	display: block;
-	float: left;
-	font-family: Verdana,Arial,Helvetica,sans-serif;
-	font-size: 11px;
-}
-#navigation ul li:hover , #navigation ul li.selected:hover {
-	background: #fff url('../images/custom/a_hover.png');
-}
-#navigation ul li a:hover , #navigation ul li.selected a:hover {
-	color: black;
-}
-#navigation li.selected a, #navigation li a:hover {
-	background-color: transparent;
-}
-#navigation ul .sort-helper {
-}
-#content-wrapper , #portlet-wrapper- {
-	background: transparent url('../images/custom/portlet.png') no-repeat scroll top center;
-	margin: 0 auto;
-	width: 900px;
-}
+
 .portlet {
 	padding: 32px 16px;
 }
-#navigation li.selected a span {
-	background: transparent;
-	color: white;
-	padding-left: 0px;
-}
-#navigation li.selected a:hover span {
-	color: black;
-}
-.js .lfr-dock.interactive-mode h2 span {
-	color:white;
-	font-size:10pt;
-	padding:7px 16px;
-}
-.js .interactive-mode {
-	right:19%;
-	top:134px;
-}
-.js #navigation .enter-page {
-	margin-right: 45px;
-	padding: 2px 2px 10px;
-}
-.js #navigation .enter-page .save-page {
-	position: absolute;
-	top: 21px;
-	right: 11px;
-	background: transparent;
-	color: white;
-	margin: 0px;
-}
-.js #navigation .enter-page a:hover {
-	padding: 0px;
-	color: black;
-}
-input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
-	margin-top:15px;
-	padding:5px 1px;
-}
-.js #navigation .enter-page {
-	background-color:transparent;
-}
-.js #add-page {
-	background:transparent none repeat scroll 0% 0%;
-	border:medium none;
-	right:5%;
-	top:-8px;
+
+#wrapper {
+	background: none;
+	padding-top: 1px;
 }

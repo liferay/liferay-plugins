@@ -11,6 +11,7 @@ body {
 #banner {
 	background: #9BBE00 url(../images/common/main_img.jpg) no-repeat top right;
 	height: 132px;
+	position: relative;
 }
 #banner .logo {
 	background: transparent none;

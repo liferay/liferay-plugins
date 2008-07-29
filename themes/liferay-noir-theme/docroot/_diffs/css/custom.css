@@ -97,6 +97,8 @@ a:hover {
 #banner {
 	background: url(../images/custom/banner_bg.jpg) no-repeat center;
 	height: 135px;
+	top: 0;
+	position: relative;
 }
 #banner .logo {
 	background: none;
@@ -137,8 +139,8 @@ a:hover {
 	width: 51px;
 }
 .js .interactive-mode {
-	margin-top: 45px;
-	right: 169px;
+	margin-top: 12px;
+	right: 102px;
 }
 .js .interactive-mode h2 span {
 	background: transparent url(/liferay-noir-theme/images/custom/menu_bar.png) no-repeat scroll 0pt 0pt;

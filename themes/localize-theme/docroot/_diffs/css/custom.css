@@ -1,53 +1,34 @@
+a {
+	color: #000;
+}
+
+a:hover {
+	color: #8CD749;
+}
+
+a:visited {
+	color: #000;
+	text-decoration: none;
+}
+
 address, caption, cite, code, dfn, em, strong, th, var {
 	color: black;
 }
-body {
-	background-color: #c0c0c0;
-	background-repeat: repeat;
-	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','courier','Lucida',Arial,Verdana,sans-serif;
-	margin-bottom: 10px;
-	margin-top: 10px;
-	text-align: center;
-}
-a {
-	color: #000000;
-}
-a:hover {
-	color: #8cd749;
-}
-a:visited {
-	color: #000000;
-	text-decoration: none;
-}
+
 b, strong {
 	color: black;
 }
-i, em {
-	color: black;
+
+#banner .logo a {
+	background-color: grey;
+	display: block;
+	font-size: 0;
+	height: 76px;
+	text-decoration: none;
+	text-indent: -9999em;
+	width: 209px;
 }
-.important {
-	color: black;
-}
-body.staging {
-	border: 100px solid #c00;
-}
-#wrapper {
-	background: white;
-	border: 1px solid #D3D3D3;
-	margin: 0pt auto;
-	width: 850px;
-}
-#banner {
-	background-color: #FFFFFF;
-	background-image: url(../images/common/leaf.jpg);
-	background-position: right top;
-	background-repeat: no-repeat;
-	height: 185px;
-	left: 0px;
-	position: relative;
-	top: 0px;
-	width: 850px;
-}
+
 #banner .logo {
 	background: transparent;
 	display: auto;
@@ -58,38 +39,118 @@ body.staging {
 	position: absolute;
 	top: 10px;
 }
-#banner .logo a {
-	background-color: #999999;
-	background-color: grey;
-	display: block;
-	font-size: 0pt;
-	height: 76px;
-	text-decoration: none;
-	text-indent: -9999em;
-	width: 209px;
+
+#banner {
+	background-color: #FFF;
+	background-image: url(../images/common/leaf.jpg);
+	background-position: right top;
+	background-repeat: no-repeat;
+	height: 185px;
+	left: 0;
+	position: relative;
+	top: 0;
+	width: 850px;
 }
-.popup-close {
-	cursor: crosshair;
+
+body {
+	background-color: #C0C0C0;
+	background-repeat: repeat;
+	font: 62.5%/1.6em Tahoma, 'Lucida Sans Unicode', courier, 'Lucida', Arial, 'Verdana', sans-serif;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	text-align: center;
 }
+
+body.staging {
+	border: 100px solid #C00;
+}
+
+#content-wrapper {
+	margin: 10px 0 0;
+}
+
+i, em {
+	color: black;
+}
+
+.ie .tabs li.current {
+	background-color: #999;
+	background-image: none;
+	top: 0;
+}
+
+.important {
+	color: black;
+}
+
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	width: 85px;
+}
+
+.js #add-page {
+	position: absolute;
+	right: 5%;
+	top: 0;
+}
+
+.js #navigation .enter-page .save-page {
+	background: transparent;
+	margin: 3pt -10px;
+	position: absolute;
+	z-index: 1;
+}
+
+.js #navigation .enter-page {
+	background: transparent none;
+	margin-top: 2px;
+	width: 115px;
+}
+
+.js .delete-tab {
+	right: 34px;
+	top: 6px;
+}
+
 .loading-animation {
 	background: url(../images/progress_bar/loading_animation.gif) no-repeat top center;
 }
-#content-wrapper{
-	min-height: 400px;
-	width: 850px;
-}
-#navigation {
-	background-color: #999;
-	border: none;
-	height: 50px;
+
+#navigation li a span, .js #add-page a span {
+	background: #999 none;
 	padding: 0;
-	width: 100%;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	top: 10px;
 }
-#navigation ul {
-	float: left;
-	height: 50px;
+
+#navigation li a, .js #add-page a {
+	background: #999 none;
+	color: white;
+	font-size: small;
+	font-weight: normal;
+	padding: 0;
+	text-align: center;
+	text-decoration: none;
 }
-#navigation li , .js #add-page {
+
+#navigation li a:hover span, .js #add-page a:hover span {
+	background: #999 none;
+	color: #444;
+	text-align: center;
+	text-decoration: underline;
+}
+
+#navigation li a:hover {
+	background: #999;
+	color: #444;
+}
+
+#navigation li a:hover, .js #add-page a:hover {
+	padding-bottom: 0;
+}
+
+#navigation li, .js #add-page {
 	background: #999 none;
 	border: none;
 	font-size: 8pt;
@@ -98,52 +159,10 @@ body.staging {
 	padding: 0;
 	width: 125px;
 }
-.js #add-page {
-	position: absolute;
-	right: 5%;
-	top: 0px;
-}
-#navigation li a , .js #add-page a {
-	background: #999999 none;
-	color: white;
-	font-size: small;
-	font-weight: normal;
-	padding: 0;
-	text-align: center;
-	text-decoration: none;
-}
-#navigation li a:hover , .js #add-page a:hover {
-	padding-bottom: 0;
-}
-#navigation li.selected a {
-	background: #999999 none;
-	color: #444444;
-	font-weight: bold;
-	padding: 0;
-	text-align: center;
-}
-#navigation li.selected a:hover {
-	background: #999999 none;
-	padding-bottom: 0;
-	text-align: center;
-}
-#navigation li a span , .js #add-page a span {
-	background: #999999 none;
-	padding: 0pt;
-	position: relative;
-	text-align: center;
-	text-decoration: none;
-	top: 10px;
-}
-#navigation li a:hover span , .js #add-page a:hover span {
-	background: #999999 none;
-	color: #444444;
-	text-align: center;
-	text-decoration: underline;
-}
+
 #navigation li.selected a span {
 	background: none;
-	background-color: #999999;
+	background-color: #999;
 	font-size: small;
 	font-weight: bold;
 	position: relative;
@@ -151,106 +170,130 @@ body.staging {
 	text-decoration: underline;
 	top: 10px;
 }
-#navigation li a:hover {
-	background: #999999;
-	color: #444444;
+
+#navigation li.selected a {
+	background: #999 none;
+	color: #444;
+	font-weight: bold;
+	padding: 0;
+	text-align: center;
 }
-.js #navigation .enter-page {
-	background: transparent none;
-	width: 115px;
-	margin-top: 2px;
+
+#navigation li.selected a:hover {
+	background: #999 none;
+	padding-bottom: 0;
+	text-align: center;
 }
-#content-wrapper {
-	margin: 10px 0 0;
+
+#navigation ul {
+	float: left;
+	height: 50px;
 }
+
+#navigation {
+	background-color: #999;
+	border: none;
+	height: 50px;
+	padding: 0;
+	width: 100%;
+}
+
+.popup-close {
+	cursor: crosshair;
+}
+
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: none;
-	left: 0px;
+	left: 0;
 	position: relative;
-	top: 0px;
+	top: 0;
 }
+
+.portlet-icon-back {
+	font-size: 10pt;
+}
+
+.portlet-icons {
+	background: #DDD top center no-repeat fixed;
+}
+
+.portlet-section-alternate td {
+	border-top: none;
+}
+
+.portlet-section-alternate-hover td, .portlet-section-body-hover td {
+	border-bottom: none;
+	border-top: none;
+}
+
+.portlet-section-body td {
+	border-top: none;
+}
+
+.portlet-section-header th {
+	border: 1px solid white;
+	color: white;
+}
+
+.portlet-section-header {
+	background-color: #999;
+	border: 1px solid white;
+}
+
+.portlet-title {
+	font-size: 9pt;
+	padding: 8px 0 0 10px;
+}
+
+.portlet-topper {
+	background: #DDD top center no-repeat fixed;
+	border: none;
+	height: 40px;
+	left: 0;
+	margin-right: 0;
+	padding-right: 0;
+	top: 0;
+}
+
 .portlet {
 	background: white top center no-repeat fixed;
 	border: none;
 	margin: 0 10px 0 0;
 }
-.portlet-topper {
-	background: #dddddd top center no-repeat fixed;
-	border: none;
-	height: 40px;
-	left: 0px;
-	margin-right: 0;
-	padding-right: 0;
-	top: 0px;
-}
-.portlet-title {
-	font-size: 9pt;
-	padding: 8px 0 0px 10px;
-}
-.portlet-icons {
-	background: #dddddd top center no-repeat fixed;
-}
-.portlet-icon-back {
-	font-size: 10pt;
-}
-.portlet-section-header {
-	background-color: #999999;
-	border: 1px solid white;
-}
-.portlet-section-header th {
-	border: 1px solid white;
+
+.tabs li a, .tabs li span {
+	background-color: #999;
+	background-image: none;
 	color: white;
 }
-.portlet-section-body td {
-	border-top: none;
+
+.tabs li {
+	background-color: #999;
+	background-image: none;
+	font-size: 8pt;
+	margin-right: none;
 }
-.portlet-section-alternate td {
-	border-top: none;
+
+.tabs li.current a, .tabs li.current span {
+	background-image: none;
+	color: none;
 }
-.portlet-section-alternate-hover td, .portlet-section-body-hover td {
-	border-bottom: none;
-	border-top: none;
+
+.tabs li.current {
+	background-color: #999;
+	background-image: none;
+	top: 0;
 }
+
 .tabs {
 	background-image: none;
 	border-bottom: none;
 	padding: 0 0 2.6em 0;
 }
-.tabs li {
-	background-color: #999999;
-	background-image: none;
-	font-size: 8pt;
-	margin-right: none;
-}
-.tabs li a, .tabs li span {
-	background-color: #999999;
-	background-image: none;
-	color: white;
-}
-.tabs li.current {
-	background-color: #999999;
-	background-image: none;
-	top: 0;
-}
-.tabs li.current a, .tabs li.current span {
-	background-image: none;
-	color: none;
-}
-.ie .tabs li.current {
-	background-color: #999999;
-	background-image: none;
-	top: 0;
-}
-.js .delete-tab {
-	right: 34px;
-	top: 6px;
-}
-.js #navigation .enter-page .save-page {
-	background:transparent;
-	margin:3pt -10px;
-	position:absolute;
-	z-index:1;
-}
-input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
-	width:85px;
+
+#wrapper {
+	background: white;
+	border: 1px solid #D3D3D3;
+	margin: 0 auto;
+	width: 850px;
 }

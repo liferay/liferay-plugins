@@ -1,0 +1,359 @@
+/* This CSS sets the default styles for the main navigation. */
+
+/* ---------- Main navigation ---------- */
+
+#navigation {
+	margin: 0 auto;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding-right: 1em;
+}
+
+#navigation ul {
+	float: left;
+	margin: 0;
+	min-height: 2em;
+	width: auto;
+}
+
+.ie6 #navigation, .ie6 #navigation ul {
+	height: 2em;
+	overflow: visible;
+}
+
+#navigation li {
+	background: transparent url(../images/navigation/bg.png) repeat;
+	display: inline;
+	float: left;
+	margin-right: 0.5em;
+	position: relative;
+}
+
+.ie6 #navigation li {
+	background-image: none;
+}
+
+#navigation li a {
+	text-decoration: none;
+}
+
+#navigation li a:hover {
+	padding-bottom: 1em;
+}
+
+#navigation li a span {
+	display: block;
+	padding: 1em 1.5em;
+}
+
+#navigation li.selected a {
+	padding-top: 0.5em;
+}
+
+#navigation li.selected {
+	border-top: 3px solid #89C8FF;
+	font-weight: bold;
+}
+
+#navigation .child-menu {
+	display: none;
+}
+
+/* ---------- Dock without JavaScript ---------- */
+
+.lfr-dock {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.lfr-dock h2 {
+	background: url(../images/navigation/welcome_message.png) no-repeat 0 50%;
+	font-size: 1.2em;
+	margin-bottom: 0.5em;
+	padding-left: 2em;
+	text-align: right;
+}
+
+.lfr-dock ul {
+	display: inline;
+	float: left;
+}
+
+.lfr-dock li {
+	display: inline;
+	float: left;
+	margin-left: 15px;
+}
+
+.lfr-dock li a {
+	background: url() no-repeat 0 50%;
+	padding: 2px 0 2px 20px;
+}
+
+.lfr-dock li.home a {
+	background-image: url(../images/dock/home.png);
+}
+
+.lfr-dock li.my-account a {
+	background-image: url(../images/dock/my_account.png);
+}
+
+.lfr-dock li.sign-in a {
+	background-image: url(../images/dock/sign_in.png);
+}
+
+.lfr-dock li.sign-out a {
+	background-image: url(../images/dock/sign_out.png);
+}
+
+.lfr-dock li.add-content a {
+	background-image: url(../images/dock/add_content.png);
+}
+
+.lfr-dock li.layout a {
+	background-image: url(../images/dock/layout.png);
+}
+
+.lfr-dock li.page-settings a {
+	background-image: url(../images/dock/page_settings.png);
+}
+
+.lfr-dock li.staging a {
+	background-image: url(../images/dock/staging.png);
+}
+
+.lfr-dock li.my-places a {
+	background-image: url(../images/dock/my_places.png);
+}
+
+.lfr-dock li.my-places {
+	display: none;
+}
+
+/* ---------- Dock with JavaScript ---------- */
+
+.js .interactive-mode {
+	float: right;
+	min-width: 150px;
+	position: relative;
+	right: 0;
+	top: 0;
+}
+
+.js .interactive-mode h2 {
+	background: url(../images/dock/menu_bar.png) no-repeat 100% -30px;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0 29px 0 0;
+	position: relative;
+	z-index: 82;
+}
+
+.js .interactive-mode h2 span {
+	background: url(../images/dock/menu_bar.png) no-repeat 0 0;
+	color: #fff;
+	display: block;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0.5em 0.5em 0.5em 2em;
+}
+
+.js .lfr-dock.expanded .lfr-dock-list-container {
+	background: #60738C;
+	border: 1px solid #B5B9BB;
+	border-top: none;
+	top: -2px;
+}
+
+.js .interactive-mode ul {
+	background: url(../images/dock/menu_bg.png) no-repeat 0 0;
+	border-left: 20px solid #DAE3EF;
+	display: none;
+	float: none;
+}
+
+.js .interactive-mode li {
+	border-top: 1px solid #ccc;
+	clear: both;
+	display: block;
+	float: none;
+	margin-bottom: 0;
+	margin-left: 0;
+}
+
+.js .interactive-mode li a {
+	background-position: 0.5em 50%;
+	background-repeat: no-repeat;
+	display: block;
+	margin-left: 0.3em;
+	padding: 0.5em 0pt 0.5em 2.5em;
+	text-decoration: none;
+}
+
+.js .interactive-mode li a:hover {
+	background-color: #FFF5BA;
+	background-position: 1.5em 50%;
+	padding-left: 3.5em;
+}
+
+.js .interactive-mode .lfr-dock-list li.first {
+	border-top: none;
+}
+
+.js .lfr-dock.interactive-mode .my-places li a {
+	background-image: none;
+}
+
+.js .interactive-mode .my-places li {
+	background-position: 5px 50%;
+	background-repeat: no-repeat;
+}
+
+.js .lfr-dock.interactive-mode .my-places.lfr-flyout.has-children > ul {
+	margin-right: -1px;
+}
+
+.js .interactive-mode .my-places li.current-community {
+	background-color: #E5FDEC;
+}
+
+.js .interactive-mode .my-places li h3 {
+	font-size: 1em;
+	font-weight: normal;
+	margin: 0;
+}
+
+.js .lfr-dock.interactive-mode .my-places li h3 a {
+	background-image: url(../images/dock/my_place.png);
+}
+
+.js .interactive-mode .lfr-flyout.has-children ul {
+	background: #fff none no-repeat 3px 50%;
+	border: 1px solid #999;
+	display: none;
+	margin-left: 0;
+	top: -1px;
+}
+
+.js .interactive-mode .my-places li.public a {
+	background-image: url(../images/dock/my_places_public.png);
+}
+
+.js .interactive-mode .my-places li.private a {
+	background-image: url(../images/dock/my_places_private.png);
+}
+
+.js .interactive-mode .my-places li.current a {
+	background: #E5F7FD url(../images/dock/my_place_current.png) no-repeat 1em 50%;
+	margin: 0;
+	padding-left: 3.5em;
+}
+
+.js .interactive-mode .group-end {
+	border-bottom: 2px solid #ccc;
+}
+
+.ie.js .interactive-mode .lfr-flyout.has-children {
+	min-width: 175px;
+}
+
+.ie.js .interactive-mode .taglib-my-places > li {
+	height: 24px;
+}
+
+.ie6.js .lfr-dock.interactive-mode {
+	white-space: nowrap;
+	width: 150px;
+}
+
+.ie6.js .lfr-dock.interactive-mode li {
+	height: 1%;
+	width: 100%;
+}
+
+.ie6.js .interactive-mode .lfr-flyout.has-children {
+	width: 150px;
+}
+
+/* ---------- Add/sort/remove page ---------- */
+
+.js #navigation .enter-page {
+	background: transparent url(../images/navigation/bg.png) no-repeat 0 100%;
+	padding: 0.5em 2em 0.7em 1.5em;
+}
+
+.js #navigation .enter-page.editing {
+	background: none;
+	padding: 0.5em 2em 0.7em 1.5em;
+}
+
+.js #navigation .enter-page a {
+	background: none;
+	display: inline;
+	font-weight: bold;
+	margin-left: 1em;
+	padding: 0;
+}
+
+.js #add-page {
+	float: left;
+	font-weight: bold;
+	padding-top: 0.3em;
+}
+
+.js #add-page a {
+	text-decoration: none;
+}
+
+.js #add-page a span {
+	background: url(../images/navigation/add_page.png) no-repeat 0 50%;
+	padding: 5px 20px;
+}
+
+.js #add-page a:hover span {
+	background-image: url(../images/navigation/add_page.png);
+}
+
+.js .delete-tab {
+	background: url(../images/common/remove.png) no-repeat 42%;
+	cursor: pointer;
+	display: block;
+	height: 7px;
+	position: absolute;
+	right: 5px;
+	text-indent: -9999em;
+	top: 2px;
+	width: 8px;
+}
+
+/*------ Drag/drop menu items ------*/
+
+#navigation ul .sort-helper {
+	background: url(../images/portlet/placeholder_bg.png);
+	border: 1px dashed #508FB4;
+	float: left;
+	padding: 0.5em;
+}
+
+/*------ Navigation portlet ------*/
+
+.nav-menu li a.ancestor {
+	font-weight: bold;
+}
+
+.nav-menu li a.selected {
+	color: black;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.nav-menu ul {
+	padding-left: 10px;
+}
+
+.nav-menu-style-1 {
+}
+
+.nav-menu-style-2 {
+}

@@ -1,31 +1,45 @@
-#banner , #navigation , #navigation ul , .portlet {
-	background-color: transparent;
+#_88_tabs1themesTabsSection table {
+	width: 100%;
 }
-#wrapper , #banner , #navigation , #content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content {
-	display: block;
-}
-#layout-grid .lfr-column {
+
+#banner .logo a {
+	border: medium none;
+	color: #FFF;
+	font-family: 'Trebuchet MS', 'Arial', 'Sans-serif';
+	font-size: 48px;
+	font-size-adjust: none;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	left: 30px;
+	letter-spacing: -1px;
+	line-height: normal;
 	margin: 0;
 	padding: 0;
+	position: absolute;
+	text-decoration: none;
+	text-transform: none;
+	top: 25px;
 }
-.portlet-icons {
-	right: 0;
-	top: 0;
+
+#banner {
+	background: #FFF url('../images/custom/header-photo.jpg') no-repeat scroll top center;
+	clear: both;
+	height: 250px;
+	margin: 5px auto;
+	position: relative;
+	width: 850px;
 }
-.tabs {
-	border: 0;
+
+#banner, #navigation, #navigation ul, .portlet {
+	background-color: transparent;
 }
-.portlet-section-header {
-	background: transparent none;
-}
-.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
-	font-size: 8pt;
-	padding-right: 0;
-}
+
 body {
-	background: #fff none repeat scroll 0%;
+	background: #FFF none repeat scroll 0;
 	color: #666;
-	font-family: Verdana,Tahoma,arial,sans-serif;
+	font-family: 'Verdana', 'Tahoma', 'arial', sans-serif;
 	font-size: 11px;
 	font-size-adjust: none;
 	font-stretch: normal;
@@ -36,21 +50,37 @@ body {
 	margin: 0 0 15px 0;
 	text-align: center;
 }
-#wrapper {
-	background: #fff url('../images/custom/content.png') repeat-y scroll center top;
-	margin: 0 auto;
-	position: relative;
-	text-align: left;
-	width: 910px;
-}
-#header {
-	background: #fff url('../images/custom/header-bg.png') repeat-y scroll center top;
-	color: #fff;
-	height: 35px;
+
+#content-wrapper {
+	background: #FFF url('../images/custom/content-wrap.png') repeat-x scroll 0;
+	border-top: 5px solid #FFF;
+	margin-left: 30px;
 	padding: 0;
-	position: relative;
-	width: 910px;
+	width: 850px;
 }
+
+#footer {
+	background: #F8F7F7 none repeat scroll 0;
+	border-top: 1px solid #F2F2F2;
+	clear: both;
+	color: #666;
+	display: block;
+	margin: 0 auto 10px auto;
+	padding: 15px 0;
+	text-align: center;
+	width: 850px;
+}
+
+#header #header-links a {
+	color: #838181;
+	text-decoration: none;
+}
+
+#header #header-links p {
+	margin: 0;
+	padding: 0;
+}
+
 #header #header-links {
 	color: #838181;
 	font-size: 10px;
@@ -59,94 +89,88 @@ body {
 	right: 45px;
 	top: 8px;
 }
-#header #header-links p {
+
+#header {
+	background: #FFF url('../images/custom/header-bg.png') repeat-y scroll center top;
+	color: #FFF;
+	height: 35px;
+	padding: 0;
+	position: relative;
+	width: 910px;
+}
+
+.ie.js #navigation .enter-page .save-page {
+	margin-top: -5px;
+}
+
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	margin-top: 9px;
+}
+
+.js #add-page a span {
+	background: transparent;
+}
+
+.js #add-page {
+	background: transparent none repeat scroll 0 0%;
+	border-color: -moz-use-text-color;
+	border-style: none;
+	border-width: 1px 1px medium;
+	bottom: 100%;
+	font-weight: bold;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.js #navigation .enter-page .save-page {
+	background: transparent;
+	color: black;
+	margin: 0;
+	position: absolute;
+	right: 5px;
+	top: 16px;
+}
+
+.js #navigation .enter-page a:hover {
+	padding: 0;
+}
+
+.js #navigation .enter-page {
+	background-color: transparent;
+	margin-right: 45px;
+}
+
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
+	font-size: 8pt;
+	padding-right: 0;
+}
+
+#layout-grid .lfr-column {
 	margin: 0;
 	padding: 0;
 }
-#header #header-links a {
-	color: #838181;
-	text-decoration: none;
-}
-#banner {
-	background: #fff url('../images/custom/header-photo.jpg') no-repeat scroll top center;
-	clear: both;
-	height: 250px;
-	margin: 5px auto;
-	position: relative;
-	width: 850px;
-}
-#banner .logo a {
-	border: medium none;
-	color: #FFFFFF;
-	font-family: 'Trebuchet MS',Arial,Sans-serif;
-	font-size: 48px;
-	font-size-adjust: none;
-	font-stretch: normal;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: bold;
-	left: 30px;
-	letter-spacing: -1px;
-	line-height: normal;
-	margin: 0pt;
-	padding: 0pt;
-	position: absolute;
-	text-decoration: none;
-	text-transform: none;
-	top: 25px;
-}
-#navigation {
-	background: #E4E4E4 url('../images/custom/nav.png') repeat-x scroll 0 0;
-	border: none;
-	clear: both;
-	margin: 0 30px;
+
+#navigation li a {
 	padding: 0;
-	width: 850px;
 }
+
 #navigation li {
 	border: none;
 }
-#navigation ul , .js #add-page {
-	display: block;
-	float: left;
-	height: 45px;
-	list-style-image: none;
-	list-style-position: outside;
-	list-style-type: none;
-	padding: 0pt;
-	text-transform: uppercase;
-}
+
 #navigation li.selected a, #navigation li a:hover {
-	background-color:transparent;
+	background-color: transparent;
 }
-#navigation li a {
-	padding:0;
-}
-#navigation ul li , #navigation ul li.selected , .js #add-page a {
-	display: block;
-	float: left;
-	margin: 0pt;
-	padding: 0pt;
-}
-ul.child-menu {
-	display: none;
-}
-#navigation ul li a , #navigation ul li.selected a ,
-#navigation ul li a:hover , #navigation ul li.selected a:hover ,
-.js #add-page a , .js #add-page a:hover {
-	display: block;
-	float: left;
-}
-#navigation ul li a span , #navigation ul li.selected a span ,
-#navigation ul li a:hover span , #navigation ul li.selected a:hover span ,
-.js #add-page a span , .js #add-page a:hover span {
+
+#navigation ul li a span, #navigation ul li.selected a span,#navigation ul li a:hover span, #navigation ul li.selected a:hover span,.js #add-page a span, .js #add-page a:hover span {
 	border-bottom: medium none;
 	border-left: 1px solid #FAFAFA;
 	border-right: 1px solid #DADADA;
-	color: #555555;
+	color: #555;
 	display: block;
 	float: left;
-	font-family: "Century Gothic","Trebuchet MS",Helvetica,Arial,Geneva,sans-serif;
+	font-family: 'Century Gothic', 'Trebuchet MS', 'Helvetica', 'Arial', 'Geneva', sans-serif;
 	font-size: 14px;
 	font-size-adjust: none;
 	font-stretch: normal;
@@ -155,40 +179,70 @@ ul.child-menu {
 	font-weight: bold;
 	letter-spacing: 1px;
 	line-height: 45px;
-	margin: 0pt;
-	padding: 0pt 15px;
+	margin: 0;
+	padding: 0 15px;
 	text-decoration: none;
 	text-transform: uppercase;
 	width: auto;
 }
-#navigation ul li a:hover span , #navigation ul li.selected a:hover span , .js #add-page a:hover span {
+
+#navigation ul li a, #navigation ul li.selected a,#navigation ul li a:hover, #navigation ul li.selected a:hover,.js #add-page a, .js #add-page a:hover {
+	display: block;
+	float: left;
+}
+
+#navigation ul li a:hover span, #navigation ul li.selected a:hover span, .js #add-page a:hover span {
 	color: #326EA1;
 }
-#navigation ul li.selected a span , #navigation ul li.selected a:hover span {
-	background: #DBDBDB url('../images/custom/nav-current.png') repeat-x scroll 0%;
-}
-#content-wrapper {
-	background: #FFFFFF url('../images/custom/content-wrap.png') repeat-x scroll 0%;
-	border-top: 5px solid #FFFFFF;
-	margin-left: 30px;
-	padding: 0pt;
-	width: 850px;
-}
-#footer {
-	background: #F8F7F7 none repeat scroll 0%;
-	border-top: 1px solid #F2F2F2;
-	clear: both;
-	color: #666666;
+
+#navigation ul li, #navigation ul li.selected, .js #add-page a {
 	display: block;
-	margin: 0 auto 10px auto;
-	padding: 15px 0pt;
-	text-align: center;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+#navigation ul li.selected a span, #navigation ul li.selected a:hover span {
+	background: #DBDBDB url('../images/custom/nav-current.png') repeat-x scroll 0;
+}
+
+#navigation ul, .js #add-page {
+	display: block;
+	float: left;
+	height: 45px;
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	padding: 0;
+	text-transform: uppercase;
+}
+
+#navigation {
+	background: #E4E4E4 url('../images/custom/nav.png') repeat-x scroll 0 0;
+	border: none;
+	clear: both;
+	margin: 0 30px;
+	padding: 0;
 	width: 850px;
 }
+
+.portlet-content {
+	padding: 10px;
+}
+
+.portlet-icons {
+	right: 0;
+	top: 0;
+}
+
+.portlet-section-header {
+	background: transparent none;
+}
+
 .portlet-title {
 	border-bottom: 1px solid #DADADA;
-	color: #444444;
-	font-family: Georgia,"Times New Roman",Times,serif;
+	color: #444;
+	font-family: 'Georgia', 'Times New Roman', 'Times', serif;
 	font-size: 1.8em;
 	font-size-adjust: none;
 	font-stretch: normal;
@@ -196,50 +250,30 @@ ul.child-menu {
 	font-variant: normal;
 	font-weight: normal;
 	line-height: normal;
-	margin: 10px 10px 0pt;
-	padding: 15px 0pt 2px 0px;
+	margin: 10px 10px 0;
+	padding: 15px 0 2px 0;
 }
-.portlet-content {
-	padding: 10px;
+
+.portlet {
+	border: 0;
 }
-.portlet-section-header {
-	background: transparent none;
+
+.tabs {
+	border: 0;
 }
-#_88_tabs1themesTabsSection table {
-	width: 100%;
+
+ul.child-menu {
+	display: none;
 }
-.js #add-page {
-	background:transparent none repeat scroll 0% 0%;
-	border-color:-moz-use-text-color;
-	border-style:none;
-	border-width:1px 1px medium;
-	bottom:100%;
-	font-weight:bold;
-	position:absolute;
-	right:0px;
-	top:0px;
+
+#wrapper {
+	background: #FFF url('../images/custom/content.png') repeat-y scroll center top;
+	margin: 0 auto;
+	position: relative;
+	text-align: left;
+	width: 910px;
 }
-.js #navigation .enter-page {
-	margin-right: 45px;
-	background-color: transparent;
-}
-.js #navigation .enter-page .save-page {
-	position: absolute;
-	top: 16px;
-	right: 5px;
-	margin:0;
-	background: transparent;
-	color: black;
-}
-.ie.js #navigation .enter-page .save-page {
-	margin-top: -5px;
-	}
-.js #navigation .enter-page a:hover {
-	padding: 0px;
-}
-input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
-margin-top:9px;
-}
-.js #add-page a span {
-	background:transparent;
+
+#wrapper, #banner, #navigation, #content-wrapper, .portlet, .portlet-topper, .portlet-title, .portlet-content {
+	display: block;
 }

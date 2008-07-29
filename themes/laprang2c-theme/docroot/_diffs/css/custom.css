@@ -1,42 +1,185 @@
+a {
+	color: #05FFDF;
+}
+
+#banner .logo a {
+	background: transparent url(/image/company_logo?img_id=0&t=1213925971812) no-repeat scroll 0;
+	display: block;
+	font-size: 0;
+	height: 49px;
+	margin-left: 0;
+	text-indent: -9999em;
+	width: 198px;
+}
+
+#banner .logo {
+	font-size: 2em;
+	margin: 0 auto;
+	padding: 1.25em 0 83.45px;
+}
+
 #banner {
-	background: #F1EAD8 url(../images/custom/header.jpg) no-repeat scroll center top;
-	border-bottom: 0px solid #89C8FF;
-	height: 200px;
-	margin: 0px auto;
+	background: #000 url(../images/custom/header.jpg) no-repeat scroll center top;
+	border-bottom: 0 solid #89C8FF;
+	height: 280px;
+	margin: 0 auto;
 	margin-bottom: 0em;
-	padding: 0pt;
+	padding: 0;
 	position: relative;
 	width: 800px;
 }
+
 body {
-	background: #404040 url(../images/custom/bg2.jpg) repeat-x fixed 0%;
+	background: #404040 url(../images/custom/bg2.jpg) repeat-x fixed 0;
 }
+
+#content-wrapper a:link {
+	color: #4BACF7;
+}
+
+#content-wrapper {
+	background: #000 none repeat scroll 0;
+	margin: 0 auto 0;
+	min-height: 400px;
+	width: 800px;
+}
+
 #footer {
 	background: transparent url(../images/custom/footer.jpg) no-repeat scroll center top;
-	color: #FFFFFF;
-	font-family: 'Trebucet MS', Tahoma, Sans-serif;
+	color: #FFF;
+	font-family: 'Trebucet MS', ' Tahoma', ' Sans-serif';
 	height: 25px;
 	line-height: normal;
-	margin: 0px auto;
+	margin: 0 auto;
 	padding-top: 22px;
 	text-align: center;
 	width: 800px;
 }
-#content-wrapper {
-	background: #000000 none repeat scroll 0%;
-	margin: 0pt auto 0px;
-	min-height: 400px;
-	width: 800px;
+
+input.focus, textarea.focus, .ie6 input.focus, .ie6 textarea.focus {
+	background: #FFF none;
+	border: none;
 }
-#content-wrapper a:link {
-	color: #4BACF7;
+
+.js #add-page a span {
+	background: #202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0 0%;
+	color: #C0C0C0;
+	font-family: 'Trebuchet MS', 'Tahoma', 'Arial';
+	font-size: 12pt;
+	font-weight: bold;
+	padding: 5px 20px;
+	text-decoration: none;
+	text-transform: uppercase;
 }
-#wrapper {
-	background: transparent;
+
+.js #add-page a:hover span {
+	background: #202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0 0%;
+	color: #5AA2DC;
 }
+
+.js #add-page {
+	border: none;
+	top: 1px;
+}
+
+.js #navigation .enter-page {
+	background: #202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0 0%;
+	height: 22px;
+	padding: 2px 1em 1px 0em;
+}
+
+.js .interactive-mode li a {
+	background-position: 0.5em 50%;
+	background-repeat: no-repeat;
+	display: block;
+	margin-left: 0.3em;
+	padding: 0.5em 0 0.5em 2.5em;
+	text-decoration: none;
+}
+
+.js .interactive-mode ul {
+	background: black;
+	border: none;
+}
+
+.js .interactive-mode {
+	float: right;
+	min-width: 150px;
+	position: relative;
+	right: 7pt;
+	top: 0;
+}
+
+.js .lfr-dock.interactive-mode .my-places li a {
+	background-image: none;
+}
+
+.js .lfr-dock.interactive-mode .my-places li h3 a {
+	background-image: url(../images/dock/my_place.png);
+}
+
+.lfr-dock li a {
+	background: black none repeat scroll 0 0%;
+}
+
+.lfr-dock li.my-places a {
+	background-image: url(../images/dock/my_places.png);
+}
+
+.lfr-dock-list-container {
+	height: 1px;
+	overflow: visible;
+}
+
+#navigation li a span {
+	display: block;
+	padding: 3px 1.5em;
+}
+
+#navigation li a {
+	color: #C0C0C0;
+	font-family: 'Trebuchet MS', 'Tahoma', 'Arial';
+	font-size: 12pt;
+	font-weight: bold;
+	padding: 1px 0;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+#navigation li a:hover {
+	background: #202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0 0%;
+}
+
+#navigation li {
+	background: #202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0 0%;
+	border: none;
+	margin-left: 10px;
+}
+
+#navigation li.selected a span {
+	background: #202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0 0%;
+	padding-left: 24px;
+}
+
+#navigation li.selected {
+	border-top: 0 solid #89C8FF;
+	font-weight: bold;
+}
+
+#navigation {
+	background: black;
+	border: none;
+	margin: 0 -24px;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding-right: 1em;
+	width: 790px;
+}
+
 .portlet-topper {
-	background: #D9EBFD url(../images/custom/h2_btn.jpg) repeat-x scroll 0%;
+	background: #D9EBFD url(../images/custom/h2_btn.jpg) repeat-x scroll 0;
 }
+
 .portlet {
 	background: #333;
 	border: 1px solid #404040;
@@ -44,128 +187,7 @@ body {
 	margin-bottom: 1em;
 	text-align: left;
 }
-#navigation {
-	background: black;
-	margin: -1pt 232px;
-	min-height: 2.2em;
-	overflow: hidden;
-	padding-right: 1em;
-	width: 790px;
-	border: none;
-}
-#banner .logo {
-	font-size: 2em;
-	margin: 0pt auto;
-	padding: 1.25em 0pt 83.45px;
-}
-#navigation li {
-	background: #202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0% 0%;
-	border: none;
-	margin-left: 10px;
-}
-#navigation li.selected {
-	border-top: 0px solid #89C8FF;
-	font-weight: bold;
-}
-#navigation li.selected a span {
-	background: #202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0% 0%;
-	padding-left:24px;
-}
-#navigation li a {
-	color: #C0C0C0;
-	font-family: "Trebuchet MS",Tahoma,Arial;
-	font-size: 12pt;
-	font-weight: bold;
-	text-decoration: none;
-	text-transform: uppercase;
-	padding: 1px 0px;
-}
-#navigation li a span {
-	display: block;
-	padding: 3px 1.5em;
-}
-#navigation li a:hover {
-	background: #202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0% 0%;
-}
-#banner .logo a {
-	background: transparent url(/image/company_logo?img_id=0&t=1213925971812) no-repeat scroll 0%;
-	display: block;
-	font-size: 0pt;
-	height: 49px;
-	margin-left: 0px;
-	text-indent: -9999em;
-	width: 198px;
-}
-a {
-	color: #05FFDF;
-}
-.js .interactive-mode {
-	float: right;
-	min-width: 150px;
-	position: relative;
-	right: 7pt;
-	top: 0pt;
-}
-.js #navigation .enter-page {
-	height:22px;
-	padding:2px 1em 1px 0em;
-	background:#202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0% 0%;
-}
-input.focus, textarea.focus, .ie6 input.focus, .ie6 textarea.focus {
-	background: #fff none;
-	border: none;
-}
-.js #add-page {
-	border: none;
-	top:1px;
-}
-.js #add-page a span {
-	background: #202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0% 0%;
-	color: #C0C0C0;
-	font-family: "Trebuchet MS",Tahoma,Arial;
-	font-size: 12pt;
-	font-weight: bold;
-	padding: 5px 20px;
-	text-decoration: none;
-	text-transform: uppercase;
-}
-.js #add-page a:hover span {
-	background: #202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0% 0%;
-	color: #5AA2DC;
-}
-.js .interactive-mode ul {
-	background: black;
-	border: none;
-}
-.js .lfr-dock.interactive-mode .my-places li h3 a {
-	background-image: url(../images/dock/my_place.png);
-}
-.js .lfr-dock.interactive-mode .my-places li a {
-	background-image: none;
-}
-.js .interactive-mode li a {
-	background-position: 0.5em 50%;
-	background-repeat: no-repeat;
-	display: block;
-	margin-left: 0.3em;
-	padding: 0.5em 0pt 0.5em 2.5em;
-	text-decoration: none;
-}
-.lfr-dock li.my-places a {
-	background-image: url(../images/dock/my_places.png);
-}
-.js .interactive-mode li a {
-	background-position: 0.5em 50%;
-	background-repeat: no-repeat;
-	display: block;
-	margin-left: 0.3em;
-	padding: 0.5em 0pt 0.5em 2.5em;
-	text-decoration: none;
-}
-.lfr-dock li a {
-	background: black none repeat scroll 0% 0%;
-}
-.lfr-dock-list-container {
-	height: 1px;
-	overflow: visible;
+
+#wrapper {
+	background: transparent;
 }

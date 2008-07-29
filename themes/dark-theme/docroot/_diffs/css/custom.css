@@ -1,37 +1,20 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-body {
-	background-color: #000;
-	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
-}
-
 a {
 	color: #FFF;
 }
 
+body {
+	background-color: #000;
+	font: 62.5%/1.6em Tahoma, 'Lucida Sans Unicode', Lucida Grande, 'Lucida', Arial, 'Verdana', sans-serif;
+}
+
+
 /* ---------- Main content body ---------- */
-
-#wrapper {
-	background: url(../images/custom/common/visual_bg.jpg) no-repeat 0 159px;
-	margin: 0 auto;
-	width: 960px;
-}
-
-.ie6 #wrapper {
-	background: url(../images/custom/common/visual_bg.jpg) no-repeat 0 165px;
-}
 
 #content-wrapper {
 	margin-top: 160px;
 	width: 100%;
-}
-
-.ie6 #content-wrapper {
-	margin-top: 160px;
-}
-
-table {
-	clear: both;
 }
 
 #footer {
@@ -43,7 +26,41 @@ table {
 	width: 961px;
 }
 
+.ie6 #content-wrapper {
+	margin-top: 160px;
+}
+
+.ie6 #wrapper {
+	background: url('../images/custom/common/visual_bg.jpg') no-repeat 0 165px;
+}
+
+table {
+	clear: both;
+}
+
+#wrapper {
+	background: url('../images/custom/common/visual_bg.jpg') no-repeat 0 159px;
+	margin: 0 auto;
+	width: 960px;
+}
+
+
 /* ---------- Banner ---------- */
+
+#banner .logo a {
+	color: #FFF;
+	letter-spacing: 0.05em;
+	text-decoration: none;
+}
+
+#banner .logo {
+	background: none;
+	display: block;
+	float: left;
+	font-size: 20pt;
+	font-weight: normal;
+	padding: 2em 0.6em .3em;
+}
 
 #banner {
 	background: none;
@@ -56,66 +73,65 @@ table {
 	top: 40px;
 }
 
-#banner .logo {
-	background: none;
-	display: block;
-	float: left;
-	font-size: 20pt;
-	font-weight: normal;
-	padding: 2em 0.6em .3em;
-}
-
-#banner .logo a {
-	text-decoration: none;
-	color: #FFF;
-	letter-spacing: 0.05em;
-}
 
 /* ---------- Main navigation ---------- */
-
-#navigation {
-	margin: 45px 0px 2em;
-	min-height: 2.2em;
-	width: 962px;
-	border: none;
-}
-
-#navigation ul {
-	background: #4D4D4D url(../images/custom/navigation/topnav_bg.png) no-repeat right;
-	float: left;
-	min-height: 2em;
-	width: 960px;
-	margin-top: 0px;
-}
-
-#navigation li {
-	border: 0px;
-	background: #222;
-	display: inline;
-	margin-right: 0px;
-	border-right: 1px solid #000;
-	margin-top: 0px;
-	margin-left: 0px;
-	padding: 0 0.5em 0.1em 0;
-}
-
-#navigation li a {
-	background: none;
-	display: block;
-	text-decoration: none;
-	color: #76DEFC;
-	padding-top: 7px;
-	line-height:27px;
-	margin-left: 0px;
-	margin-right: -5px;
-	padding-left: 16px;
-	padding-right: 25px;
-	padding-bottom: 8px;
-}
 
 .ie6 #navigation li a {
 	padding-bottom: 7px;
 	padding-left: 16px;
+}
+
+.ie6 #navigation li a:hover {
+	padding-bottom: 7px;
+}
+
+.ie6 #navigation li.selected a {
+	padding-bottom: 7px;
+}
+
+.ie6 #navigation li.selected a:hover {
+	padding-bottom: 7px;
+}
+
+.ie6.js #add-page {
+	float: left;
+	font-weight: bold;
+	left: 0;
+	padding-top: 0.3em;
+	position: relative;
+	top: 0;
+}
+
+.js #add-page {
+	border: 0;
+	position: absolute;
+	right: 27px;
+	top: 20px;
+}
+
+#navigation li a span {
+	background: none;
+	color: #FFF;
+	padding-left: 10px;
+	text-decoration: none;
+}
+
+#navigation li a {
+	background: none;
+	color: #76DEFC;
+	display: block;
+	line-height: 27px;
+	margin-left: 0;
+	margin-right: -5px;
+	padding-bottom: 8px;
+	padding-left: 16px;
+	padding-right: 25px;
+	padding-top: 7px;
+	text-decoration: none;
+}
+
+#navigation li a:hover span {
+	background: none;
 }
 
 #navigation li a:hover {
@@ -123,28 +139,15 @@ table {
 	padding-bottom: 8px;
 }
 
-.ie6 #navigation li a:hover {
-	padding-bottom: 7px;
-}
-
-#navigation li a span {
-	background: none;
-	padding-left: 10px;
-	text-decoration: none;
-	color: #FFF;
-}
-
-#navigation li.selected a {
-	background: #4D4D4D;
-	padding-top: 7px;
-	margin-right: -5px;
-	padding-left:16px;
-	padding-right:29px;
-	padding-bottom: 8px;
-}
-
-.ie6 #navigation li.selected a {
-	padding-bottom: 7px;
+#navigation li {
+	background: #222;
+	border: 0;
+	border-right: 1px solid #000;
+	display: inline;
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 0;
+	padding: 0 0.5em 0.1em 0;
 }
 
 #navigation li.selected a span {
@@ -153,33 +156,34 @@ table {
 	font-weight: normal;
 }
 
+#navigation li.selected a {
+	background: #4D4D4D;
+	margin-right: -5px;
+	padding-bottom: 8px;
+	padding-left: 16px;
+	padding-right: 29px;
+	padding-top: 7px;
+}
+
 #navigation li.selected a:hover {
 	padding-bottom: 8px;
 }
 
-.ie6 #navigation li.selected a:hover {
-	padding-bottom: 7px;
-}
-
-#navigation li a:hover span {
-	background: none;
-}
-
-.js #add-page {
-	position: absolute;
-	top: 20px;
-	right: 27px;
-	border: 0px;
-}
-
-.ie6.js #add-page {
+#navigation ul {
+	background: #4D4D4D url('../images/custom/navigation/topnav_bg.png') no-repeat right;
 	float: left;
-	font-weight: bold;
-	padding-top: 0.3em;
-	position: relative;
-	top: 0px;
-	left: 0px;
+	margin-top: 0;
+	min-height: 2em;
+	width: 960px;
 }
+
+#navigation {
+	border: none;
+	margin: 45px 0 2em;
+	min-height: 2.2em;
+	width: 962px;
+}
+
 
 /* ---------- Add/Sort/Remove page ---------- */
 
@@ -196,13 +200,36 @@ table {
 	color: #FFF;
 }
 
-.portlet {
-	border: 0px;
-	background: #222;
-	margin: 0 0 10px;
-	padding-right: 10px;
-	text-align: left;
-	border-bottom: 1px solid #484848;
+.portlet-section-body td {
+	background: #DCDCDC;
+	border-top: 1px solid #BFBFBF;
+	padding: 0.3em 1em;
+}
+
+.portlet-section-header th {
+	border-bottom: 1px solid #CCC;
+	color: #FFF;
+	font-weight: bold;
+	padding: 0.3em 1em;
+}
+
+.portlet-section-header {
+	background: #000405;
+	padding: 1px 0 0;
+}
+
+.portlet-title {
+	background: none;
+	background-position: top left;
+	color: #FFF;
+	display: block;
+	font-family: 'trebuchet ms', 'arial', 'tahoma', 'verdana', sans-serif;
+	font-size: 15pt;
+	font-weight: normal;
+	letter-spacing: 0.05em;
+	min-width: 50%;
+	padding: 8px 0 4px 10px;
+	text-indent: 30px;
 }
 
 .portlet-topper {
@@ -214,50 +241,28 @@ table {
 	position: relative;
 }
 
-.portlet-title {
-	color: #FFF;
-	font-family:"trebuchet ms",arial,tahoma,verdana,sans-serif;
-	font-size:15pt;
-	font-weight:normal;
-	letter-spacing: 0.05em;
-	background: none;
-	background-position: top left;
-	display: block;
-	min-width: 50%;
-	text-indent: 30px;
-	padding: 8px 0 4px 10px;
+.portlet {
+	background: #222;
+	border: 0;
+	border-bottom: 1px solid #484848;
+	margin: 0 0 10px;
+	padding-right: 10px;
+	text-align: left;
 }
 
-.portlet-section-header {
-	background: #000405;
-	padding: 1px 0 0;
-}
-
-.portlet-section-header th {
-	border-bottom: 1px solid #ccc;
-	color: #FFF;
-	font-weight: bold;
-	padding: 0.3em 1em;
-}
-
-.portlet-section-body td {
-	background: #DCDCDC;
-	border-top: 1px solid #BFBFBF;
-	padding: 0.3em 1em;
-}
 
 /* This CSS sets the default styles for tabs. */
 
-.tabs {
-	border-bottom: 1px solid #7F9BCA;
-	margin: 0 0 1.5em 0;
-	padding: 0 0 2.6em 1em;
+.js .interactive-mode li a {
+	color: black;
 }
 
 .tabs li a {
 	color: #000;
 }
 
-.js .interactive-mode li a {
-	color: black;
+.tabs {
+	border-bottom: 1px solid #7F9BCA;
+	margin: 0 0 1.5em 0;
+	padding: 0 0 2.6em 1em;
 }

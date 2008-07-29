@@ -1,0 +1,49 @@
+/* This CSS sets the default styles for tabs. */
+
+.tabs {
+	border-bottom: 1px solid #bfe1ff;
+	margin: 0 0 1.5em 0;
+	padding: 0 0 2.6em 1em;
+}
+
+.tabs li {
+	background: #eaf5ff url(../images/common/tabs_inactive_bg.png) repeat-x 0 100%;
+	border: 1px solid #bfe1ff;
+	border-bottom: 0;
+	display: inline;
+	float: left;
+	line-height: 2.25;
+	margin-right: 0.8em;
+	padding: 0;
+	text-decoration: none;
+}
+
+
+.tabs li a, .tabs li span {
+	display: block;
+	float: left;
+	padding: 0.35em 1em 0;
+	text-decoration: none;
+}
+
+.tabs li.current {
+	background: #bfe1ff url(../images/common/tabs_active_bg.png) repeat-x 0 0;
+	font-weight: bold;
+}
+
+.tabs li.current a, .tabs li.current span {
+	color: #333;
+	padding: 0.15em 1em;
+}
+
+.ie .tabs li {
+	line-height: 2.35;
+}
+
+.ie .tabs li.current {
+	top: 0.2em;
+}
+
+.ie6 .tabs li, .ie6 .tabs li.current {
+	background-image: none;
+}

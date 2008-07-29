@@ -1,185 +1,221 @@
-body {
-	background: #DFF3D7 url(../images/custom/background.png) repeat-y center;
-}
-#wrapper {
-	background: #FFFFFF;
-	margin: 10px auto;
-	width: 900px;
-}
-#banner {
-	background: #3F4A3E url(../images/custom/banner_bg.jpg) no-repeat top left;
-	height: 258px;
-}
-#banner .logo {
-	background: transparent none;
-	display: none;
-}
 #banner .logo a {
 	margin-left: 643px;
 	margin-top: 33px;
 }
-.js .lfr-dock.interactive-mode ul {
-	border-left: 20px solid #3C8323;
-}
-#navigation {
-	background: transparent url(../images/custom/nbackground.png) repeat-x;
-	color: #FFFFFF;
-	height: 32px;
-	margin: 0;
-	padding: 0;
-	width: 100%;
-}
-#navigation ul {
-	float: right;
-	margin: 3pt auto;
-}
-#navigation li {
-	background: none;
-	border: none;
-	overflow: hidden;
-	padding: 7px 10px;
-}
-#navigation li.sortable-item {
-	background: none;
-	float: right;
-	margin-right: 0px;
-	padding: 5px 10px 10px;
-}
-#navigation li a {
-	background: none;
-	color: #FFFFFF;
-	font-size: 9px;
-	padding: 0;
-}
-#navigation li.selected a, #navigation li a:hover {
-	background-color: transparent;
-}
-#navigation li a span {
-	background: none;
-	padding: 0;
-}
-#navigation li a:hover {
-	padding-bottom: 0;
-}
-#navigation li a:hover span {
-	background: none;
-}
-#navigation li.selected {
-	background: #3F4A3E no-repeat 50% 100%;
-	margin-top: -8px;
-	padding-bottom: 5px;
-	padding-top: 13px;
-}
-#navigation li.selected a {
-	padding: 0;
-}
-#navigation li.selected a span {
-	background: none;
-	font-size: 1em;
-	padding: 0;
-}
-#navigation li.selected a:hover {
-	padding-bottom: 0;
-}
-.js #navigation .enter-page {
-	background: none;
-	padding: 0;
-}
-.js #add-page {
-	float: left;
-	font-weight: bold;
-	padding-top: 8px;
-}
-.js #add-page a {
-	color: #FFFFFF;
-	margin: 0 10px;
-}
-.portlet, .portlet-topper, .portlet-content, .portlet-title {
-	background: transparent;
-}
-.portlet {
-	background: #FFFFFF url(../images/custom/pbackground.png) no-repeat top left;
-	border: 1px solid #CCCCCC;
-}
-.portlet-topper {
-	border-bottom: 2px solid #CCCCCC;
-	margin: 0 10px;
-}
-.portlet-title {
-	font-size: 16px;
-}
-.portlet-title img {
+
+#banner .logo {
+	background: transparent none;
 	display: none;
 }
-.portlet-section-header {
-	background: #3F4A3E;
-	color: #FFFFFF;
+
+#banner h1.logo {
+	display: none;
 }
-.portlet-section-header a {
-	color: #FFFFFF;
+
+#banner {
+	background: #3F4A3E url(../images/custom/banner_bg.jpg) no-repeat top left;
+	height: 258px;
+	position: relative;
+	top: 0;
 }
-.portlet-section-header th {
-	color: #FFFFFF;
+
+body {
+	background: #DFF3D7 url(../images/custom/background.png) repeat-y center;
 }
-.portlet-icons {
-	right: 0px;
-}
-.custom-user-text {
-	height: 200px;
-	position: absolute;
-	right: 182px;
-	top: 75px;
-	width: 375px;
-}
+
 .custom-user-text h1 {
-	border-bottom: 2px solid #FFFFFF;
-	color: #FFFFFF;
+	border-bottom: 2px solid #FFF;
+	color: #FFF;
 	font-size: 40px;
 	padding: 20px 10px;
 }
+
 .custom-user-text p {
-	color: #FFFFFF;
+	color: #FFF;
 	font-size: 16px;
 	line-height: 1.1em;
 	margin: 0 10px;
 	padding: 10px 0;
 }
-.js .interactive-mode h2 span {
-	background: transparent url(/leaves-v1-theme/images/custom/menu_bar.png) no-repeat scroll 0pt 0pt;
-	margin-right: -11px;
+
+.custom-user-text {
+	height: 200px;
+	position: absolute;
+	right: 0;
+	top: -32px;
+	width: 375px;
 }
-.js .interactive-mode h2 {
-	background: transparent url(/leaves-v1-theme/images/custom/menu_bar.png) no-repeat scroll 100% -30px;
+
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	padding: 4px 1px;
 }
-.js .interactive-mode {
-	margin-top: 16px;
-	right: 198px;
+
+.js #add-page a span {
+	background: none;
+	padding: 0;
 }
+
+.js #add-page a {
+	color: #FFF;
+	margin: 0 10px;
+}
+
 .js #add-page {
 	background: transparent;
 	border: none;
 	bottom: 100%;
 	right: 813px;
-	top: 0px;
+	top: 0;
 }
-.js #add-page a span {
-	background: none;
-	padding: 0px;
+
+.js #navigation .enter-page {
+	margin-top: -6px;
 }
+
 .js .delete-tab {
 	background: transparent url(../images/common/remove.png) no-repeat scroll 42% 50%;
 	cursor: pointer;
 	display: block;
 	height: 8px;
 	position: absolute;
-	right: 0px;
+	right: 0;
 	text-indent: -9999em;
 	top: 2px;
 	width: 8px;
 }
-.js #navigation .enter-page {
-	margin-top:-6px;
+
+.js .interactive-mode h2 span {
+	background: transparent url(/leaves-v1-theme/images/custom/menu_bar.png) no-repeat scroll 0 0pt;
+	margin-right: -11px;
 }
-input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
-	padding:4px 1px;
+
+.js .interactive-mode h2 {
+	background: transparent url(/leaves-v1-theme/images/custom/menu_bar.png) no-repeat scroll 100% -30px;
+}
+
+.js .interactive-mode {
+	margin-top: 16px;
+	right: 382px;
+}
+
+.js .lfr-dock.interactive-mode ul {
+	border-left: 20px solid #3C8323;
+}
+
+#navigation li a span {
+	background: none;
+	padding: 0;
+}
+
+#navigation li a {
+	background: none;
+	color: #FFF;
+	font-size: 9px;
+	padding: 0;
+}
+
+#navigation li a:hover span {
+	background: none;
+}
+
+#navigation li a:hover {
+	padding-bottom: 0;
+}
+
+#navigation li {
+	background: none;
+	border: none;
+	overflow: hidden;
+	padding: 7px 10px;
+}
+
+#navigation li.selected a span {
+	background: none;
+	font-size: 1em;
+	padding: 0;
+}
+
+#navigation li.selected a {
+	padding: 0;
+}
+
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
+
+#navigation li.selected a:hover {
+	padding-bottom: 0;
+}
+
+#navigation li.selected {
+	background: #3F4A3E no-repeat 50% 100%;
+	margin-top: -8px;
+	padding-bottom: 5px;
+	padding-top: 13px;
+}
+
+#navigation li.sortable-item {
+	background: none;
+	float: right;
+	margin-right: 0;
+	padding: 5px 10px 10px;
+}
+
+#navigation ul {
+	float: right;
+	margin: 3pt auto;
+}
+
+#navigation {
+	background: transparent url(../images/custom/nbackground.png) repeat-x;
+	color: #FFF;
+	height: 32px;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: transparent;
+}
+
+.portlet-icons {
+	right: 0;
+}
+
+.portlet-section-header a {
+	color: #FFF;
+}
+
+.portlet-section-header th {
+	color: #FFF;
+}
+
+.portlet-section-header {
+	background: #3F4A3E;
+	color: #FFF;
+}
+
+.portlet-title img {
+	display: none;
+}
+
+.portlet-title {
+	font-size: 16px;
+}
+
+.portlet-topper {
+	border-bottom: 2px solid #CCC;
+	margin: 0 10px;
+}
+
+.portlet {
+	background: #FFF url(../images/custom/pbackground.png) no-repeat top left;
+	border: 1px solid #CCC;
+}
+
+#wrapper {
+	background: #FFF;
+	margin: 10px auto;
+	width: 900px;
 }

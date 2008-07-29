@@ -1,151 +1,180 @@
+#banner .logo a {
+	margin-left: 140px;
+}
+
+#banner .logo {
+}
+
+#banner {
+	background: transparent none;
+	height: 210px;
+	position: relative;
+	top: 0;
+}
+
+#banner, #navigation, #navigation ul, .portlet {
+	background-color: transparent;
+}
+
+body {
+	background: #FFF url(../images/custom/bg.jpg) repeat-y fixed center bottom;
+	color: #311;
+	font: normal normal normal 12px/normal Trebuchet MS, 'Arial';
+	margin: 20px 0;
+}
+
+#column-1 {
+	background: #F2EEF2 none;
+}
+
+#column-2 {
+	background: #DDD none;
+}
+
+.columns-2 #column-1 {
+	border-right: 5px solid #FFF;
+}
+
+#content-wrapper {
+	width: 900px;
+}
+
+#footer {
+	padding: 0 0 5px 0;
+}
+
 html {
 	overflow-y: scroll;
 }
 
-#banner , #navigation , #navigation ul , .portlet {
-	background-color: transparent;
+.js #add-page a span {
+	background: transparent;
 }
-#banner {
- background: none;
- }
-#layout-grid .lfr-column {
-	margin: 0;
-	padding: 0;
-}
-.portlet-icons {
-	right: 0;
-	top: 0;
-}
-.tabs {
-	border: 0;
-}
-.portlet-section-header {
-	background: transparent none;
-}
-.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
-	font-size: 8pt;
-	padding-right: 0;
-}
-ul.child-menu {
-	display: none;
-}
-body {
-	background: #FFF url(../images/custom/bg.jpg) repeat-y fixed center bottom;
-	color: #311;
-	font: normal normal normal 12px/normal "Trebuchet MS",Arial;
-	margin: 20px 0;
-}
-#wrapper {
-	background: #fff url(../images/custom/top.png) no-repeat scroll 0 0;
-	margin: 0 auto;
-	width: 910px;
-}
-#banner {
-	height: 210px;
-}
-#banner .logo {
-}
-#banner .logo a {
-	color: #F09;
-	font-size: 2.4em;
-	font-weight: bold;
-	line-height: 2.4em;
-	padding-left: 18px;
-}
-.js .lfr-dock.interactive-mode h2 span {
-	font-size: 10pt;
-}
-#navigation {
-	border: none;
-	height: 40px;
-	margin-left: 18px;
-}
-#navigation li {
-	border: none;
-}
-#navigation ul li.selected a , #navigation ul li a , #navigation ul li.selected a:hover , #navigation ul li a:hover , .js #add-page a span , .js #add-page a:hover span {
-	display: block;
-	float: left;
-}
-#navigation ul li.selected a span , #navigation ul li a span , #navigation ul li.selected a:hover span , #navigation ul li a:hover span , .js #add-page a span , .js #add-page a:hover span {
-	color: #F09;
-	display: block;
-	float: left;
-	font-size: 1.2em;
-	margin-right: 12px;
-	padding: 0pt 2px;
-}
-#navigation ul li.selected a:hover span , #navigation ul li a:hover span , .js #add-page a:hover span {
-	background: #F09 none;
-	color: #fff;
-}
-#navigation ul , #navigation ul li , #navigation ul li.selected , .js #add-page {
-	display: block;
-	float: left;
-}
-#content-wrapper {
-	width: 900px;
-}
-#column-1 {
-	background: #F2EEF2 none;
-}
-.columns-2 #column-1 {
-	border-right: 5px solid #fff;
-}
-#column-2 {
-	background: #ddd none;
-}
-.portlet {
-	padding: 20px;
-}
-.portlet-title {
-}
-.portlet-content {
-}
-#footer {
-	padding: 0 0 5px 0;
-}
-.liferay-table {
-	font: 10px/10px Arial;
-}
+
 .js #add-page {
 	border: medium none;
 	right: 5%;
 	top: 1px;
 }
-#banner .logo a {
-	margin-left: 140px;
+
+.js #navigation .enter-page .save-page {
+	background: transparent;
+	color: #F09;
+	margin: 0;
+	position: absolute;
+	right: 11px;
+	top: 0;
 }
-.js .interactive-mode {
-	right: 184px;
-	top: 20px;
+
+.js #navigation .enter-page a:hover {
+	color: white;
+	padding: 0;
 }
+
 .js #navigation .enter-page {
 	margin-right: 45px;
 	margin-top: -8px;
 }
-.js #navigation .enter-page .save-page {
-	position: absolute;
-	top: 0px;
-	right: 11px;
-	background: transparent;
-	color: #FF0099;
-	margin: 0px;
+
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
+	font-size: 8pt;
+	padding-right: 0;
 }
-.js #navigation .enter-page a:hover {
-	padding: 0px;
-	color: white;
+
+.js .interactive-mode {
+	right: 184px;
+	top: 20px;
 }
-#navigation li.selected a, #navigation li a:hover {
-	background-color:transparent;
+
+.js .lfr-dock.interactive-mode h2 span {
+	font-size: 10pt;
 }
-#navigation li.selected a span {
-	background:transparent;
-	padding-left:0px;
+
+#layout-grid .lfr-column {
+	margin: 0;
+	padding: 0;
 }
-.js #add-page a span {
-	background:transparent;
+
+.liferay-table {
+	font: 10px/10px Arial;
 }
+
 #navigation li a {
-	padding:0;
+	padding: 0;
+}
+
+#navigation li {
+	border: none;
+}
+
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0;
+}
+
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
+
+#navigation ul li.selected a span, #navigation ul li a span, #navigation ul li.selected a:hover span, #navigation ul li a:hover span, .js #add-page a span, .js #add-page a:hover span {
+	color: #F09;
+	display: block;
+	float: left;
+	font-size: 1.2em;
+	margin-right: 12px;
+	padding: 0 2px;
+}
+
+#navigation ul li.selected a, #navigation ul li a, #navigation ul li.selected a:hover, #navigation ul li a:hover, .js #add-page a span, .js #add-page a:hover span {
+	display: block;
+	float: left;
+}
+
+#navigation ul li.selected a:hover span, #navigation ul li a:hover span, .js #add-page a:hover span {
+	background: #F09 none;
+	color: #FFF;
+}
+
+#navigation ul, #navigation ul li, #navigation ul li.selected, .js #add-page {
+	display: block;
+	float: left;
+}
+
+#navigation {
+	border: none;
+	height: 40px;
+	margin-left: 18px;
+}
+
+.portlet-content {
+}
+
+.portlet-icons {
+	right: 0;
+	top: 0;
+}
+
+.portlet-section-header {
+	background: transparent none;
+}
+
+.portlet-title {
+}
+
+.portlet {
+	padding: 20px;
+}
+
+.tabs {
+	border: 0;
+}
+
+ul.child-menu {
+	display: none;
+}
+
+#wrapper {
+	background: #FFF url(../images/custom/top.png) no-repeat scroll 0 0;
+	margin: 0 auto;
+	width: 910px;
 }
