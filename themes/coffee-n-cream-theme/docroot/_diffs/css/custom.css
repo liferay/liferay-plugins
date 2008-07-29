@@ -1,58 +1,36 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-body {
-	background: transparent url(../images/custom/common/bg.png) repeat;
-}
-
 a {
 	color: #987E57;
 }
 
 a:hover {
-	color: #CC6600;
+	color: #C60;
 	text-decoration: underline;
-}
-
-#wrapper {
-	width: 975px;
-	border-left: 3px solid #665D4B;
-	background: #FCFAEA none;
-	border-right: 3px solid #665D4B;
-	margin: auto;
-}
-
-#banner {
-	background: transparent url(../images/custom/common/banner_bg.png) repeat scroll 100% 100%;
-	height: 120px;
-	border-bottom: 1px solid #FFF7EC;
 }
 
 #banner .logo {
 	background: transparent none;
 }
 
-.loading-animation {
-	background: url(../images/custom/progress_bar/loading_animationbar.gif) no-repeat top center;
+#banner h1.logo {
+	left: 18%;
+}
+
+#banner {
+	background: transparent url('../images/custom/common/banner_bg.png') repeat scroll 100% 100%;
+	border-bottom: 1px solid #FFF7EC;
+	height: 120px;
+	position: relative;
+	top: 0;
+}
+
+body {
+	background: transparent url('../images/custom/common/bg.png') repeat;
 }
 
 .columns-1 #column-1 {
 	padding-left: 5px;
-	padding-right: 5px;
-}
-
-.columns-2 #column-1 {
-	padding-left: 5px;
-}
-
-.columns-2 #column-2 {
-	padding-right: 5px;
-}
-
-.columns-3 #column-1 {
-	padding-left: 5px;
-}
-
-.columns-3 #column-3 {
 	padding-right: 5px;
 }
 
@@ -69,6 +47,14 @@ a:hover {
 	padding-right: 5px;
 }
 
+.columns-2 #column-1 {
+	padding-left: 5px;
+}
+
+.columns-2 #column-2 {
+	padding-right: 5px;
+}
+
 .columns-2-2 #column-1, .columns-2-2 #column-2 {
 	padding-left: 5px;
 }
@@ -77,148 +63,175 @@ a:hover {
 	padding-right: 5px;
 }
 
-#navigation li.selected a, #navigation li a:hover {
-	color: #665544;
+.columns-3 #column-1 {
+	padding-left: 5px;
 }
 
-#navigation {
-	margin:0pt 0pt 0.5em;
-	min-height:2.2em;
-	overflow:hidden;
-	padding-right:0pt;
-	width:975px;
+.columns-3 #column-3 {
+	padding-right: 5px;
 }
 
-#navigation ul {
-	width: 975px;
-	background: transparent url(../images/custom/navigation/navigation_bg.png) repeat-x 100% 100%;
+#content-wrapper {
+	width: 100%;
+}
+
+.ie .tabs li.current {
+	top: 0;
 }
 
 .ie6 #navigation, .ie6 #navigation ul {
-	width:975px;
+	width: 975px;
 }
 
-#navigation li {
-	background: transparent url(../images/custom/navigation/navigation_bg.png) repeat-x 100% 100%;
-	margin-right: 0;
-	padding: 5px 25px 0 0;
-	border: 0px;
+.ie6.js #navigation .enter-page {
+	background: transparent url('../images/custom/navigation/navigation_bg.png') repeat-x 0 100%;
+	padding: 0.5em 2em 10px 1.5em;
 }
 
-#navigation li.selected {
-	padding: 14px 25px 0 0;
-	
+.js #add-page {
+	bottom: auto;
+	right: 1px;
+	top: 0;
+	z-index: 60;
 }
 
-#navigation li a {
-	background: transparent url(../images/custom/navigation/navigation_bg.png) repeat-x 0 100%;
-	padding: 7pt 5pt 1em 1.5em;
-	color: #665544;
-	font-size: 9pt;
+.js #navigation .enter-page .save-page {
+	background: transparent;
+	font-weight: normal;
+	padding-left: 0;
 }
 
-#navigation li a:hover {
-	color: #FCFAEA;
+.js #navigation .enter-page {
+	background: transparent url('../images/custom/navigation/navigation_bg.png') repeat-x scroll 0pt100%;
+	margin: -3px -2px 0;
+	padding: 0 0px 7px 27px;
+}
+
+.js .interactive-mode {
+	right: 17%;
+}
+
+.loading-animation {
+	background: url('../images/custom/progress_bar/loading_animationbar.gif') no-repeat top center;
 }
 
 #navigation li a span {
 	background: transparent none;
 }
 
-#navigation li.selected a {
-	padding-top: 0;
-}
-
-#navigation li.selected a span {
-	background: transparent none;
+#navigation li a {
+	background: transparent url('../images/custom/navigation/navigation_bg.png') repeat-x 0 100%;
+	color: #654;
 	font-size: 9pt;
-	color: #665544;
-	text-decoration: underline;
-}
-
-#navigation li.selected a:hover {
-	padding-bottom: 1em;
-	color: #FCFAEA;
+	padding: 7pt 5pt 1em 1.5em;
 }
 
 #navigation li a:hover span {
 	background: transparent none;
 }
 
-.js #navigation .enter-page {
-	background:transparent url(../images/custom/navigation/navigation_bg.png) repeat-x scroll 0pt 	100%;
-	margin:-3px -2px 0px;
-	padding:0px 0px 7px 27px;
+#navigation li a:hover {
+	color: #FCFAEA;
 }
-.ie6.js #navigation .enter-page {
-	background: transparent url(../images/custom/navigation/navigation_bg.png) repeat-x 0 100%;
-	padding: 0.5em 2em 10px 1.5em;
+
+#navigation li {
+	background: transparent url('../images/custom/navigation/navigation_bg.png') repeat-x 100% 100%;
+	border: 0;
+	margin-right: 0;
+	padding: 5px 25px 0 0;
+}
+
+#navigation li.selected a span {
+	background: transparent none;
+	color: #654;
+	font-size: 9pt;
+	text-decoration: underline;
+}
+
+#navigation li.selected a {
+	padding-top: 0;
+}
+
+#navigation li.selected a, #navigation li a:hover {
+	color: #654;
+}
+
+#navigation li.selected a:hover {
+	color: #FCFAEA;
+	padding-bottom: 1em;
+}
+
+#navigation li.selected {
+	padding: 14px 25px 0 0;
+}
+
+#navigation ul {
+	background: transparent url('../images/custom/navigation/navigation_bg.png') repeat-x 100% 100%;
+	width: 975px;
+}
+
+#navigation {
+	margin: 0 0pt 0.5em;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding-right: 0;
+	width: 975px;
 }
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: transparent none;
 }
 
-.portlet {
-	border: 1px solid #665544;
+.portlet-section-body td {
+	background: #E4DBCF;
+	color: #C60;
 }
 
-.portlet-topper {
-	border-bottom: 1px solid #665544;
-	background: transparent url(../images/custom/navigation/navigation_bg.png) repeat-x right top;
-}
-
-.portlet-title {
-	background: transparent url(../images/custom/navigation/navigation_bg.png) repeat-x left top;
-	display:block;
-	font-size:14px;
-	font-weight:bold;
-	min-width:50%;
-	padding:8px 0pt 15px 10px;
-}
-
-.portlet-title img {
-	display:none;
+.portlet-section-header th {
+	background: #654 none;
+	border-bottom: 1px solid #CCC;
+	color: #FCFAEA;
+	font-weight: bold;
+	padding: 0.3em 1em;
 }
 
 .portlet-section-header {
 	background: #E4DBCF;
-	color: #665544;
+	color: #654;
 }
 
-.portlet-section-header th {
-	background:#665544 none;
-	border-bottom:1px solid #CCCCCC;
-	color:#FCFAEA;
-	font-weight:bold;
-	padding:0.3em 1em;
+.portlet-title img {
+	display: none;
 }
 
-.portlet-section-body td {
-	background: #E4DBCF;
-	color: #CC6600;
+.portlet-title {
+	background: transparent url('../images/custom/navigation/navigation_bg.png') repeat-x left top;
+	display: block;
+	font-size: 14px;
+	font-weight: bold;
+	min-width: 50%;
+	padding: 8px 0 15px 10px;
 }
 
-.tabs {
-	border-bottom: none;
-	padding: 0 0 2.6em 0;
+.portlet-topper {
+	background: transparent url('../images/custom/navigation/navigation_bg.png') repeat-x right top;
+	border-bottom: 1px solid #654;
+}
+
+.portlet {
+	border: 1px solid #654;
+}
+
+.tabs li a, .tabs li span {
+	background: #E4DBCF none;
+	border-right: none;
+	color: #C60;
+	padding: 0 1em 0;
 }
 
 .tabs li {
 	background: #E4DBCF none;
 	margin-right: 0;
-}
-
-.tabs li a, .tabs li span {
-	background: #E4DBCF none;
-	padding: 0 1em 0;
-	border-right: none;
-	color: #CC6600;
-}
-
-.tabs li.current {
-	background: #695847 none;
-	top: 0;
 }
 
 .tabs li.current a, .tabs li.current span {
@@ -227,25 +240,20 @@ a:hover {
 	padding: 0 2em;
 }
 
-.ie .tabs li.current {
+.tabs li.current {
+	background: #695847 none;
 	top: 0;
 }
 
-#content-wrapper {
-	width: 100%;
+.tabs {
+	border-bottom: none;
+	padding: 0 0 2.6em 0;
 }
 
-#banner h1.logo {
-	left: 18%;
+#wrapper {
+	background: #FCFAEA none;
+	border-left: 3px solid #665D4B;
+	border-right: 3px solid #665D4B;
+	margin: auto;
+	width: 975px;
 }
-
-.js .interactive-mode {
-	right: 17%;
-}
-
-.js #navigation .enter-page .save-page {
-	background: transparent;
-	padding-left: 0px;
-	font-weight: normal;
-}
-

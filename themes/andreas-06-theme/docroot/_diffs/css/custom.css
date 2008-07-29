@@ -1,194 +1,115 @@
-* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
-/* Reset Styles */
-html {
- overflow-y : scroll ;
-}
-#wrapper , #banner , #banner .logo , #banner .logo a ,
-#navigation , #navigation ul , #navigation ul li , #navigation li.selected ,
-#navigation ul li a , #navigation li a span , #navigation ul li.selected a , #navigation ul li.selected a span , 
-#navigation ul li a:hover , #navigation li a:hover span , #navigation ul li.selected a:hover , #navigation ul li.selected a:hover span ,
-.js #add-page , .js #add-page a , .js #add-page a span , .js #add-page a:hover , .js #add-page a:hover span ,
-.js #navigation .enter-page , .js #navigation .enter-page a , .js #navigation .enter-page a:hover ,
-#content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content
-{
- float : none ;
- margin : auto ;
- padding : 0 ;
- width : auto ;
- min-width : 0 ;
- height : auto ;
- min-height : 0 ;
- background : transparent none no-repeat scroll 0 0 ;
- font-size : 100% ;
- font-size-adjust : none ;
- font-stretch : normal ;
- font-style : normal ;
- font-variant : normal ;
- font-weight : normal ;
- text-indent : 0 ;
- text-decoration : none ;
- line-height : normal ;
- color : inherit ;
-}
-
-/* Handy Defaults */
-html {
- overflow-y : scroll ;
-}
-#banner , #navigation , #navigation ul , .portlet { background-color : transparent ; }
-#wrapper , #banner , #navigation , #content-wrapper , 
-.portlet , .portlet-topper , .portlet-title , .portlet-content { display : block ; }
-#layout-grid .lfr-column  { margin : 0 ; padding : 0 ;}
-.portlet-icons { top : 0 ; right : 0 ; }
-.tabs { border : 0 ; }
-.portlet-section-header { background : transparent none ; }
-.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 { font-size : 8pt ; padding-right : 0 ; }
-ul.child-menu { display : none ; }
-
-/* Theme */
-
-html {
-}
-
-body {
- background : #e0e0e0 url('../images/common/page_bg.png') repeat-x ;
- color : #505050 ;
- font : 76% Georgia,Verdana,Tahoma,Arial,sans-serif ;
- margin : 0 ;
- padding : 0 ;
- text-align : center ;
-}
-
-#wrapper {
- margin : 0 auto ;
- text-align : left ;
- width : 900px ;
+#backy {
+	background: #FFF url('../images/custom/wrapper_bg-outer.png') repeat-y;
 }
 
 #banner {
- background : url('../images/common/banner_bg.jpg') top center no-repeat ;
- color : #fff ;
- font-weight : 400;
- height : 80px ;
- margin : 0 20px 10px 0 ;
- text-align : center ;
-}
-#banner .logo {
- font-size : 2.2em ;
- margin : 0 ;
- padding-top : 20px ;
+	background: transparent url('../images/custom/banner_bg.jpg') no-repeat scroll center top;
+	height: 80px;
 }
 
-#banner .logo a {
+body {
+	background: #E0E0E0 url('../images/custom/body_bg.png') repeat-x;
+	color: #505050;
+	font: 76% 'Georgia', 'Verdana', 'Tahoma', 'Arial', sans-serif;
 }
 
-.js .lfr-dock.interactive-mode {
+#content-wrapper {
+	background: transparent url('../images/custom/wrapper_bg-inner.jpg') no-repeat;
+	border: 1px solid #808080;
+	border-top: 0;
+	padding: 56px 24px;
+	width: 852px;
 }
 
-.js .lfr-dock.interactive-mode h2 span {
- font-size : 10pt ;
- padding : 8px 16px 16px 16px ;
- color : #222 ;
+html {
+	overflow-y: hidden;
 }
 
-.js .lfr-dock.interactive-mode h2 , .js .lfr-dock.interactive-mode h2 span {
- background-image : none ;
+.js #add-page a span {
+	margin: 0;
+}
+
+.js #add-page {
+	border: 0;
+	bottom: 0;
+	font-weight: normal;
+}
+
+.js #navigation .enter-page {
+	background: transparent;
+	padding: 0;
+}
+
+.js .interactive-mode h2 span {
+	border: 0;
+}
+
+.js .interactive-mode, .js .interactive-mode h2, .js .interactive-mode h2 span {
+	background: transparent none;
+}
+
+#navigation li a, .js #add-page a {
+	background: url('../images/navigation/tabs.png');
+	color: #333;
+	display: block;
+	line-height: 1.8;
+	margin: 0 0 0 -10px;
+	padding: 5px 20px 0 30px;
+}
+
+#navigation li a:hover, .js #add-page a:hover {
+	color: #700;
+}
+
+#navigation li {
+	border: 0;
+	margin: 0;
+}
+
+#navigation li, .js #add-page {
+	background: url('../images/navigation/tabs.png') scroll right top;
+	margin: 0 2px 0 0;
+	padding: 0 10px;
+}
+
+#navigation li.selected a span, .js #add-page a span {
+	background: transparent none;
+	color: #000;
+	padding: 0;
+}
+
+#navigation ul {
+	width: auto;
 }
 
 #navigation {
- background : url('../images/navigation/bg.png') bottom left repeat-x ;
- width : 900px ;
-}
-#navigation ul {
- display : block ;
- float : left ;
-}
-#navigation ul li , #navigation ul li.selected , .js #add-page {
- display : block ;
- float : left ;
- background : url('../images/navigation/tabs.png') no-repeat 0 0 ;
- margin : 0 4px 1px 0 ;
- padding : 0 0 0 9px ;
-}
-#navigation ul li.selected
-{
- background : url('../images/navigation/tabs.png') no-repeat 0 -41px ;
+	background: transparent none;
+	border: 0;
+	margin: 0;
+	min-height: 0;
+	width: auto;
 }
 
-#navigation ul li a , #navigation ul li a:hover , #navigation ul li.selected a , #navigation ul li.selected a:hover , .js #add-page a , .js #add-page a:hover {
- display : block ;
- float : left ;
- background : url('../images/navigation/tabs.png') no-repeat 100% 0 ;
- color : #808080 ;
- font-size : 1.2em ;
- letter-spacing : -1px ;
- padding : 7px 20px 4px 11px ;
- text-decoration : none ;
-}
-#navigation ul li.selected a {
- background : url('../images/navigation/tabs.png') no-repeat 100% -41px ;
- color : #303030 ;
-}
-#navigation ul li.selected a:hover {
- background : url('../images/navigation/tabs.png') no-repeat 100% -41px ;
-}
-#navigation ul li a span , #navigation ul li a:hover span , #navigation ul li.selected a span , #navigation ul li.selected a:hover span , .js #add-page a span , .js #add-page a:hover span {
- display : block ;
- float : left ;
-}
-#navigation ul li a:hover , #navigation ul li.selected a:hover {
- color : #505050 ;
-}
-#navigation ul .sort-helper {
- /* background: transparent url('../images/custom/placeholder_bg.png'); */
-}
-.js #add-page { }
-
-#backy {
- background : #fff url('../images/common/wrapper_bg_1.png') repeat-y ;
+.portlet-content {
+	margin: 8px 0 0 10px;
 }
 
-#content-wrapper , #portlet-wrapper- {
- background  : transparent url('../images/common/wrapper_bg_2.jpg') no-repeat ;
- border-bottom : 1px solid #808080 ;
- border-left : 1px solid #808080 ;
- border-right : 1px solid #808080 ;
- clear : both ;
- padding: 50px 40px;
- width : 820px ;
+.portlet-topper {
+	background: transparent;
+	border: 0;
+	color: #505050;
+	font-size: 1.5em;
+	font-weight: 400;
 }
 
 .portlet {
-}
-.portlet-title {
- color : #505050 ;
- font-size : 1.5em ;
- font-weight : 400 ;
- margin : 20px 0 10px 0 ;
- padding : 0pt ;
-}
-.portlet-content {
- margin : 8px 0pt 0pt 10px ;
+	background: transparent;
+	border: 0;
 }
 
-#footer {
+#wrapper {
+	background: transparent none;
+	margin: 0 auto;
+	position: relative;
+	width: 900px;
 }
-
-#column-2 .tabs li.current , #column-2 .tabs li.current a , #column-2 .tabs li.current span ,
-#column-2 .tabs li , #column-2 .tabs li a , #column-2 .tabs li span {
-}
-#column-2 .tabs li a:hover { }
-
-.liferay-table {
-	font: 10px/10px Arial;
-}
-
-.tabs li {
-	font: 10px/2.25em Arial;
-}
-.tabs li.current {
-	top: 0;
-}
-
-/*** THE END ***/

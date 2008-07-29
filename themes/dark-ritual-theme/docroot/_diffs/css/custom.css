@@ -1,18 +1,20 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
+
 /* ---------- Main content body ---------- */
+
+body {
+	background: url('../images/custom/common/bg.png') repeat;
+	font: 62.5%/1.6em Tahoma, 'Lucida Sans Unicode', Lucida Grande, 'Lucida', Arial, 'Verdana', sans-serif;
+}
 
 #wrapper {
 	background: #222;
 	margin: 60px auto;
-	width: 900px;
 	padding: 15px;
+	width: 900px;
 }
 
-body {
-	background: url(../images/custom/common/bg.png) repeat;
-	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
-}
 
 /* ---------- Wrapper ---------- */
 
@@ -23,70 +25,72 @@ body {
 	width: 100%;
 }
 
-/* ---------- Banner ---------- */
 
-#banner {
-	background: url(../images/custom/common/header.jpg) no-repeat scroll 0 0;
-	height: 149px;
-	position: relative;
-}
+/* ---------- Banner ---------- */
 
 #banner .logo {
 	background: none;
 	display: block;
 	float: left;
 	font-size: 2em;
+	left: 325px;
 	position: absolute;
 	top: 40px;
-	left: 325px;
 }
+
+#banner {
+	background: url('../images/custom/common/header.jpg') no-repeat scroll 0 0;
+	height: 149px;
+	position: relative;
+}
+
 
 /* ------------- Navigation -------------- */
 
-
-#navigation {
-	background: #89866F;
-	margin: 1px 0;
-	padding: 0;
-	overflow: hidden;
-	width: 100%;
-	min-height: 0;
-}
-
-#navigation ul {
-	min-height: 2em;
-	float: left;
-	width: auto;
-}
-
-#navigation li , #navigation.selected , .js #add-page {
-	background: none;
-	display: inline;
-	margin-right: 0px;
-	margin-top: .5px;
-	padding: 0;
-	position: relative; 
-	border: none;
-}
-
-#navigation li a , #navigation li.selected a , #navigation li a:hover , #navigation li.selected a:hover , .js #add-page a , .js #add-page a:hover {
-	background: none;
+.js .delete-tab {
+	background: url('../images/custom/common/remove.png') no-repeat 42%;
+	cursor: pointer;
 	display: block;
+	height: 7px;
+	position: absolute;
+	right: 2px;
+	text-indent: -9999em;
+	top: 0;
+	width: 8px;
+}
+
+#navigation li a span, #navigation li.selected a span, #navigation li a:hover span, #navigation li.selected a:hover span, .js #add-page a span, .js #add-page a:hover span {
+	background: none;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+}
+
+#navigation li a, #navigation li.selected a, #navigation li a:hover, #navigation li.selected a:hover, .js #add-page a, .js #add-page a:hover {
+	background: none;
+	color: #000;
+	display: block;
+	font: normal normal normal 8pt Lucida Sans Unicode sans-serif;
 	padding: 6px 2.5em;
 	text-decoration: none;
-	font: normal normal normal 8pt 'Lucida Sans Unicode' sans-serif;
-	color: #000;
 }
 
-#navigation li a:hover , #navigation li.selected a:hover , .js #add-page a:hover `{
+#navigation li a:hover span {
+	background: none;
+}
+
+#navigation li a:hover, #navigation li.selected a:hover, .js #add-page a:hover ` {
 	background: #9C997C;
 }
 
-#navigation li a span , #navigation li.selected a span , #navigation li a:hover span , #navigation li.selected a:hover span , .js #add-page a span , .js #add-page a:hover span {
+#navigation li, #navigation.selected, .js #add-page {
 	background: none;
-	text-decoration: none;
-	margin: 0;
+	border: none;
+	display: inline;
+	margin-right: 0;
+	margin-top: .5px;
 	padding: 0;
+	position: relative;
 }
 
 #navigation li.selected a span {
@@ -94,93 +98,70 @@ body {
 	font-weight: bold;
 }
 
-#navigation li a:hover span {
-	background: none;
+#navigation ul {
+	float: left;
+	min-height: 2em;
+	width: auto;
 }
 
-.js .delete-tab {
-	background: url(../images/custom/common/remove.png) no-repeat 42%;
-	cursor: pointer;
-	display: block;
-	height: 7px;
-	position: absolute;
-	right: 2px;
-	text-indent: -9999em;
-	top: 0px;
-	width: 8px;
+#navigation {
+	background: #89866F;
+	margin: 1px 0;
+	min-height: 0;
+	overflow: hidden;
+	padding: 0;
+	width: 100%;
 }
+
 
 /* ---------- Portlet wrapper and icons ---------- */
 
-.portlet, .portlet-topper, .portlet-content, .portlet-title {
-	background: #F7F7F7;
-}
-
-.portlet {
-	margin: 0 0 5px;
-	padding-right: 10px;
-	text-align: left;
-	border: 0px;
-}
-
-.portlet-topper {
-	background-position: right top;
-	margin-right: -10px;
-	padding-right: 40px;
-	position: relative;
-}
-
-.portlet-title {
-	font-family: 'Lucida Sans Unicode',sans-serif;
-	color: #999944;
-	background-position: top left;
-	display: block;
-	font-weight: bold;
-	font-size: 1.2em;
-	min-width: 50%;
-	padding: 8px 0 4px 10px;
+.columns-2 #column-2 {
+	background: url('../images/custom/common/bg_column.png') repeat;
+	padding-right: 5px;
+	padding-top: 1px;
 }
 
 #footer {
-	background: url(../images/custom/common/bgfooter.png) repeat-x;
-	margin-top: 1px;
+	background: url('../images/custom/common/bgfooter.png') repeat-x;
 	height: 4em;
+	margin-top: 1px;
 	width: 639px;
 }
 
-.tabs {
-	border-bottom: 1px solid #7C7C7C;
-	margin: 0 0 1.5em 0;
-	padding: 0 0 2.6em 1em;
-}
-
-.tabs li , .tabs li.current {
-	top: 0;
-	background: #89866F none;
-	border-top: 1px solid #7C7C7C;
-	border-left: 1px solid #7C7C7C;
-	border-right: 1px solid #7C7C7C;
-	display: inline;
-	float: left;
-	margin-right: 0.8em;
+.js #add-page a:hover {
 	padding: 0;
-	position: relative;
-	text-decoration: none;
 }
 
-.tabs li.current {
+.js #add-page, .js #add-page a, .js #add-page a span {
+	display: inline;
+	padding: 0;
 }
 
-.tabs li a, .tabs li span , .tabs li.current a, .tabs li.current span {
-	background: transparent none;
-	display: block;
-	float: left;
-	text-decoration: none;
-	color: #fff;
-	border: none;
+.js #add-page {
+	right: -13px;
+	top: 7px;
 }
 
-.tabs li.current a, .tabs li.current span {
+.js #navigation .enter-page .save-page {
+	background: transparent;
+	padding-left: 0;
+	position: absolute;
+	right: 8px;
+	top: 6px;
+}
+
+.js #navigation .enter-page a:hover {
+	font-weight: bold;
+	padding: 0;
+}
+
+.js #navigation .enter-page {
+	margin-right: 70px;
+}
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: #F7F7F7;
 }
 
 .portlet-section-body td {
@@ -195,60 +176,81 @@ body {
 }
 
 .portlet-section-header th {
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #CCC;
 	color: #333;
 	font-weight: bold;
 	padding: 0.3em 1em;
 }
 
 .portlet-section-header {
-	background: #999944;
+	background: #994;
 	padding: 1px 0 0;
+}
+
+.portlet-title {
+	background-position: top left;
+	color: #994;
+	display: block;
+	font-family: 'Lucida Sans Unicode', sans-serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	min-width: 50%;
+	padding: 8px 0 4px 10px;
+}
+
+.portlet-topper {
+	background-position: right top;
+	margin-right: -10px;
+	padding-right: 40px;
+	position: relative;
+}
+
+.portlet {
+	border: 0;
+	margin: 0 0 5px;
+	padding-right: 10px;
+	text-align: left;
 }
 
 table {
 	clear: both;
 }
 
-.columns-2 #column-2 {
-	background: url(../images/custom/common/bg_column.png) repeat;
-	padding-right: 5px;
-	padding-top: 1px;
+.tabs li a, .tabs li span, .tabs li.current a, .tabs li.current span {
+	background: transparent none;
+	border: none;
+	color: #FFF;
+	display: block;
+	float: left;
+	text-decoration: none;
 }
 
-.js #add-page, .js #add-page a, .js #add-page a span {
+.tabs li, .tabs li.current {
+	background: #89866F none;
+	border-left: 1px solid #7C7C7C;
+	border-right: 1px solid #7C7C7C;
+	border-top: 1px solid #7C7C7C;
 	display: inline;
-	padding: 0px;
+	float: left;
+	margin-right: 0.8em;
+	padding: 0;
+	position: relative;
+	text-decoration: none;
+	top: 0;
 }
 
-.js #add-page {
-	right: -13px;
-	top:7px;
+.tabs li.current a, .tabs li.current span {
 }
 
-.js #add-page a:hover{
-	padding: 0px;
+.tabs li.current {
 }
 
-.js #navigation .enter-page {
-	background: transparent;
+.tabs {
+	border-bottom: 1px solid #7C7C7C;
+	margin: 0 0 1.5em 0;
+	padding: 0 0 2.6em 1em;
 }
 
-.js #navigation .enter-page {
-	margin-right: 70px;
-}
-
-.js #navigation .enter-page .save-page{
-	position:absolute;
-	right:8px;
-	top:6px;
-	background: transparent;
-	padding-left: 0px;
-}
-.js #navigation .enter-page a:hover{
-	padding: 0px;
-	font-weight: bold;
-}
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background: #89866F ;
+	background: #89866F;
 }

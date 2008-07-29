@@ -48,13 +48,5 @@
 				<a href="$publish_to_live_url">$publish_to_live_text</a>
 			</li>
 		#end
-
-		#if ($is_signed_in)
-			<li class="my-places">
-				<a>$my_places_text</a>
-
-				$theme.myPlaces()
-			</li>
-		#end
 	</ul>
 </div>

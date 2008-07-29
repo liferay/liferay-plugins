@@ -1,132 +1,175 @@
-body {
-	background: url(../images/theme/bck.jpg) repeat-y center;
-	font-family: Arial;
-	overflow: scroll;
-}
-#wrapper {
-	width: 100%;
-	background: transparent;
-}
-#content-wrapper {
-	background: black;
-	width: 730px;
-	min-height: 415px;
-}
-#banner {
-	background: url(../images/theme/bckpage.jpg) no-repeat center;
-	height:325px;
-}
 #banner .logo a {
 	margin-left: 283px;
 	margin-top: 75px;
 }
+
+#banner {
+	background: url(../images/theme/bckpage.jpg);
+	height: 254px;
+	margin-left: -63px;
+	position: relative;
+	top: 0;
+}
+
 #banner2 {
-	background:transparent url(../images/theme/bckbodytop.jpg) repeat-y center;
-	height:259px;
-	margin-top:-275px;
-	position:absolute;
-	width:1265px;
-	z-index:-1;
+	height: 259px;
+	margin: -275px;
+	position: absolute;
+	width: 1265px;
+	z-index: -1;
 }
-#navigation {
-	background: transparent;
-	border-top: none;
-	margin:-80pt auto 20px;
-	width: 100%
+
+body {
+	background: url(../images/theme/bck.jpg);
+	font-family: Arial;
 }
-#navigation ul {
-	margin:0pt auto 0pt 265px;
-	width: 75%;
+
+#content-wrapper {
+	background: black;
+	margin: 6px 0 0 -58px;
+	min-height: 415px;
+	width: 730px;
 }
-#navigation li {
-	border: none;
-}
-#navigation li a {
-	padding: 11px 10px 2px;
-	margin-left: 14px;
-}
-#navigation li a span {
-	font-size:14px;
-	font-family: verdana;
-}
-#navigation li a:hover {
-	background:transparent url(../images/theme/bckmenulihover.gif) repeat-x scroll 0% 0%;
-	color:#47A4F6;
-}
-#navigation li.selected a span {
-	background: transparent;
-	padding-left: 0px;
-}
-#navigation li.selected a {
-	background:transparent url(../images/theme/bckmenulihover.gif) repeat-x scroll 0% 0%;
-	color:#47A4F6;
-}
-#footer {
-	height: 24px; line-height: 24px;
-	background: repeat-x url(../images/theme/bckfooter.gif);
-	text-align: center;
-	font-family: Verdana; font-size: 9px;
-	margin-top: 130px;
-	color: white;
-}
+
 #footer a {
-	color: #47a4f6;
+	color: #47A4F6;
 	text-decoration: none;
 }
+
+#footer {
+	background: repeat-x url(../images/theme/bckfooter.gif);
+	color: white;
+	font-family: Verdana;
+	font-size: 9px;
+	height: 24px;
+	line-height: 24px;
+	margin: 0 0 0 -63px;
+	text-align: center;
+	width: 739px;
+}
+
 #footer2 {
-	position: absolute;
 	background: url(../images/theme/bckcontainer.jpg) no-repeat;
-	width: 175px;
 	height: 140px;
 	margin-left: 828px;
 	margin-top: -164px;
+	position: absolute;
+	width: 175px;
 }
-.js .interactive-mode {
-	margin-top:13px;
-	right:62%;
+
+html {
+	overflow-y: scroll;
 }
-.js .delete-tab {
-	right:3px;
-	top:9px;
-}
-.js #add-page a span {
-	background: transparent;
-	display: block;
-	font-size: 14px;
-	font-family: verdana;
-	font-weight: normal;
-	margin-left: 15px;
-	padding: 11px 9px 2px 0px;
-}
-.js #add-page a:hover {
-	background: transparent url(../images/theme/bckmenulihover.gif) repeat-x scroll 0% 0%;
-	color: #47A4F6;
-	height: 35px;
-}
-.js #navigation .enter-page .save-page {
-	background: transparent;
-	font-weight: normal;
-	margin-left: 0px;
-	padding: 4px 7px 6px 9px;
-	font-size: 14px;
-	color: white;
-}
-.js #navigation .enter-page .save-page:hover {
-	background: url(../images/theme/bckmenulinkhover.gif) repeat-x scroll 0% 0%;
-}
-.js #navigation .enter-page {
-	background-color: transparent;
-	margin-top: 5px
-}
+
 input.focus, textare.focus, ie6 input.focus, ie6 textarea.focus {
 	background: white;
 	border: white;
 }
+
+.js #add-page a span {
+	background: transparent;
+	display: block;
+	font-family: verdana;
+	font-size: 14px;
+	font-weight: normal;
+	margin-left: 15px;
+	padding: 11px 9px 2px 0;
+}
+
 .js #add-page a {
 	margin-left: -288px;
-	margin-top: 0px;
+	margin-top: 0;
 	position: absolute;
 }
+
+.js #add-page a:hover {
+	background: transparent url(../images/theme/bckmenulihover.gif) repeat-x scroll 0 0%;
+	color: #47A4F6;
+	height: 35px;
+}
+
+.js #add-page {
+	border: 0;
+	bottom: 36px;
+	left: 220px;
+}
+
+.js #navigation .enter-page .save-page {
+	background: transparent;
+	color: white;
+	font-size: 14px;
+	font-weight: normal;
+	margin-left: 0;
+	padding: 4px 7px 6px 9px;
+}
+
+.js #navigation .enter-page .save-page:hover {
+	background: url(../images/theme/bckmenulinkhover.gif) repeat-x scroll 0 0%;
+}
+
+.js #navigation .enter-page {
+	background-color: transparent;
+	margin-top: 5px;
+}
+
 .js #navigation {
-	height:35px;
+	height: 35px;
+}
+
+.js .delete-tab {
+	right: 3px;
+	top: 9px;
+}
+
+.js .interactive-mode {
+	margin-top: 13px;
+	right: 62%;
+}
+
+#navigation li a span {
+	font-family: verdana;
+	font-size: 14px;
+}
+
+#navigation li a {
+	margin-left: 14px;
+	padding: 12px 10px 7px;
+}
+
+#navigation li a:hover {
+	background: transparent url(../images/theme/bckmenulihover.gif) repeat-x scroll 0 0%;
+	color: #47A4F6;
+}
+
+#navigation li {
+	border: none;
+}
+
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0;
+}
+
+#navigation li.selected a {
+	background: transparent url(../images/theme/bckmenulihover.gif) repeat-x scroll 0 0%;
+	color: #47A4F6;
+}
+
+#navigation ul {
+	float: right;
+	margin: 0;
+	width: auto;
+}
+
+#navigation {
+	background: transparent;
+	border-top: none;
+	margin: -35px 0 0;
+	z-index: 50;
+}
+
+#wrapper {
+	background: transparent;
+	margin: 0 auto;
+	width: 676px;
 }

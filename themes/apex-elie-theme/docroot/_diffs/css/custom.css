@@ -1,125 +1,83 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-body {
-	background-color: #DA7C2B;
-	background-image: url(../images/comment/body-bg.jpg);
-	background-position: center top;
-	background-repeat: repeat-y;
-	color: #C6C6C6;
-	font-family: Verdana, Arial, Georgia;
-	font-size:65.5%;
-	font-weight: normal;
-	line-height: 12px;
-	margin: 0pt;
-	padding: 0pt;
-	text-align: justify;
+
+a {
+	color: #DDD;
+}
+
+a:hover {
+	color: #FFF;
+}
+
+#banner .logo {
+	height: 317px;
+	padding: 0;
 }
 
 #banner {
-	background: #4F0101 url(../images/comment/header.jpg);
-	background-position: left top;
-	background-repeat: no-repeat;
-	float: none;
-	height: 375px;
-	margin: 0pt;
-	padding: 0pt;
-	text-align: left;
-	width: 960px;
-	margin: 0px auto;
-	border-bottom: 0px;
+	background: #4F0101 url('../images/custom/header_bg.jpg');
+	border: 0;
+	margin: 0;
 }
 
-
-#navigation {
-	background-image: url(../images/comment/menu.jpg);
-	background-position: left top;
-	background-repeat: repeat-x;
-	float: left;
-	height: 69px;
-	margin-top:196px;
-	padding-left: 0px;
-	width: 100%;
+#banner-content {
+	width: auto;
 }
 
-.columns-1 #column-1, .columns-max #column-1 {
-	padding-left:0pt;
-	padding-right:0pt;
-	width:100%;
-	display: list-item;
+body {
+	background: #DA7C2B url('../images/custom/body_bg.jpg') repeat-y scroll center top;
+	color: #C6C6C6;
+	font: 65.5%/12px 'Verdana', 'Arial', 'Georgia', sans-serif;
 }
+
 #content-wrapper {
-	background-color:#6A0000;
-	background-image:none;
-	background-position:center top;
-	background-repeat:no-repeat;
-	margin:0px auto;
-	width:68%;
+	width: 954px;
 }
 
-#footer {
-	background-color: #3D0000;
-	color: #FFFFFF;
-	font-size: 11px;
-	height: 74px;
-	line-height: 18px;
-	margin-top: 15px;
-	padding-top: 18px;
-	text-align: center;
-	width: 960px;
-	margin: 0px auto;
+html {
+	overflow-y: scroll;
 }
 
-.portlet-topper {
-	background: #4E0000 url(../images/portlet/portlet_top.png) repeat-x
-		scroll 0% 0%;
-	position: relative;
+.js #add-page a {
+	font-weight: normal;
 }
 
-#navigation li a {
-	text-decoration: none;
-	color: #fff;
+.js #add-page {
+	padding-top: 8px;
+}
+
+.js .interactive-mode {
+	position: absolute;
+}
+
+#navigation li a, .js #add-page a {
+	color: #FFF;
+}
+
+#navigation li, .js #add-page {
+	background: transparent none;
 }
 
 #navigation li.selected {
-	border-top: 0px;
-	font-weight: bold;
+	border: 0;
+}
+
+#navigation {
+	background: transparent url('../images/custom/menu.jpg');
+	height: 45px;
+}
+
+.portlet-topper {
+	background: #4E0000 url('../images/custom/portlet-topper_bg.png') repeat-x;
 }
 
 .portlet {
-	border: 2px solid #660000;
+	background: #4F0101;
+	border: 2px solid #600;
 	margin-bottom: 1em;
 	text-align: left;
-	background: #4F0101;
 }
 
-#navigation li {
-	background:none;
-	display: inline;
-	float: left;
-	margin-right: 0.5em;
-	position: relative;
-}
-
-.portlet-content-container a {
-	color: wheat;
-	text-decoration:underline;
-}
-
-.js #add-page a span {
-	background:transparent url(../images/navigation/add_page.png) no-repeat scroll 0pt 50%;
-	color:wheat;
-	padding:5px 20px;
-}
-
-.tabs li a, .tabs li span {
-	color:blue;
-	display:block;
-	float:left;
-	padding:0.35em 1em 0pt;
-	text-decoration:none;
-}
-
-legend {
-	color:white;
-	font-weight:bold;
-	padding:0pt 0.5em;
+#wrapper {
+	margin: 0 auto;
+	width: 956px;
 }

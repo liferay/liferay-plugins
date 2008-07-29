@@ -1,66 +1,47 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-#wrapper {
-	background-image: none;
-	background-position: right top;
-	background-repeat: none;
-	margin: 0px auto;
-	width: 970px;
-}
-
-body {
-	background-color: #000000;
-	background-image: url(../images/common/background.jpg);
-	background-position: none;
-	background-repeat: repeat-x;
-	font-family: "Trebuchet MS", "Lucida Sans Std", "Lucida Sans Unicode",
-		sans-serif;
-	font-size: 10px;
-}
 
 #banner {
 	background: none;
+	background-image: url(../images/common/header_bg.jpg);
 	border-bottom: none;
+	height: 505px;
 	margin-bottom: 1em;
 	min-height: 120px;
-	background-image: url(../images/common/header_bg.jpg);
-	height: 505px;
 }
 
-#navigation {
-	margin: 236pt auto;
-	min-height: 2.2em;
-	overflow: hidden;
-	padding-right: 1em;
-	height: 45px;
-	background: url(../images/common/nav-bg.png);
+body {
+	background-color: #000;
+	background-image: url(../images/common/background.jpg);
+	background-position: none;
+	background-repeat: repeat-x;
+	font-family: "Trebuchet MS", "Lucida Sans Std", "Lucida Sans Unicode", sans-serif;
+	font-size: 10px;
 }
 
-.portlet-topper {
-	background: #164E7F url(../images/portlet/portlet_top.png) repeat-x
-		scroll 10% 0%;
-	position: relative;
+#footer {
+	background-image: url(../images/common/footer.png);
+	border-top: 1px solid #016FA0;
+	color: #FFF;
+	font-size: 11px;
+	height: 74px;
+	line-height: 18px;
+	margin: 0 auto;
+	margin-top: 1px;
+	padding-top: 30px;
+	text-align: center;
+	width: 95%;
 }
 
-.portlet {
-	border: 2px solid #164E7F;
-	margin-bottom: 1em;
-	text-align: left;
-	color: #000;
-	background: #C6D9EA none repeat scroll 0% 50%;
-	font-size:12px;
+.js #add-page {
+	bottom: 12px;
+	position: absolute;
+	right: 0;
 }
 
-.portlet-title {
+#navigation li a {
+	font-size: 15px;
 	font-weight: bold;
-	min-width: 50%;
-	padding: 8px 0pt 4px 10px;
-	color: #fff;
-	font-size: 12px;
-}
-
-#navigation li.selected {
-	border-top: none;
-	font-weight: bold;
+	text-decoration: none;
 }
 
 #navigation li {
@@ -71,27 +52,51 @@ body {
 	position: relative;
 }
 
-#navigation li a {
-	text-decoration: none;
-	font-size: 15px;
+#navigation li.selected a {
+	color: #000;
+	padding-top: none;
+}
+
+#navigation li.selected {
+	border-top: none;
 	font-weight: bold;
 }
 
-#navigation li.selected a {
-	padding-top: none;
-	color: #000;
+#navigation {
+	background: url(../images/common/nav-bg.png);
+	height: 45px;
+	margin: 310px auto;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding-right: 1em;
 }
 
-#footer {
-	color: #FFFFFF;
-	font-size: 11px;
-	height: 74px;
-	line-height: 18px;
-	margin-top: 1px;
-	padding-top: 30px;
-	text-align: center;
-	width: 95%;
-	margin: 0px auto;
-	background-image: url(../images/common/footer.png);
-	border-top: 1px solid #016FA0;
+.portlet-title {
+	color: #FFF;
+	font-size: 12px;
+	font-weight: bold;
+	min-width: 50%;
+	padding: 8px 0 4px 10px;
+}
+
+.portlet-topper {
+	background: #164E7F url(../images/portlet/portlet_top.png) repeat-x scroll 10% 0;
+	position: relative;
+}
+
+.portlet {
+	background: #C6D9EA none repeat scroll 0 50%;
+	border: 2px solid #164E7F;
+	color: #000;
+	font-size: 12px;
+	margin-bottom: 1em;
+	text-align: left;
+}
+
+#wrapper {
+	background-image: none;
+	background-position: right top;
+	background-repeat: none;
+	margin: 0 auto;
+	width: 970px;
 }

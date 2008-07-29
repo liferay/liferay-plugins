@@ -1,135 +1,122 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-body {
-	font-family: 'Tahoma', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida',
-		Arial, Verdana, sans-serif;
-	font-size: 62.5%;
-	font-size-adjust: none;
-	font-stretch: normal;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: normal;
-	line-height: 1.6em;
-	background: #000000 none repeat scroll 0%;
-	padding: 10px 0px;
-	color: #BEC4C4;
+
+a {
+	color: #EEE;
 }
 
-#banner {
-	background: transparent url(../images/comment/header.jpg) no-repeat
-		scroll center top;
-	height: 280px;
-	margin: 0pt auto;
-	width: 875px;
-}
-
-#content-wrapper {
-	background: #373738 none repeat scroll 0% 50%;
-	margin: 13px auto 0px;
-	width: 875px;
+a:hover {
+	color: #FFF;
 }
 
 #banner .logo {
-	display: block;
-	font-size: 2em;
-	margin: 0pt auto;
-	padding: 1.25em 0pt 145.45px;
+	height: 187px;
+}
+
+#banner {
+	background: transparent url('../images/custom/banner_bg.jpg');
+	border: 0;
+	height: 293px;
+	margin: 0;
 }
 
 #banner-content {
-	margin: 0pt auto;
-	width: 100%;
+	width: auto;
+}
+
+body {
+	background: #000;
+	color: #BEC4C4;
+	padding: 10px 0;
+}
+
+#content-wrapper .tabs a {
+	color: #333;
+}
+
+#content-wrapper a, #content-wrapper .tabs a:hover {
+	color: #F00;
+}
+
+#content-wrapper {
+	background: #373738 none;
+	padding: 10px;
+	width: auto;
+}
+
+#footer {
+	background: url('../images/custom/footer_bg.jpg') no-repeat scroll left top;
+	height: 36px;
+}
+
+.js #add-page a span, .js #add-page a:hover span {
+	background: none;
+	display: block;
+}
+
+.js #add-page {
+	padding: 0;
+}
+
+.js #navigation .enter-page {
+	padding: 14px;
+}
+
+.js .interactive-mode {
+	position: absolute;
+}
+
+#navigation li a span, .js #add-page a span {
+	color: #C1C5C8;
+	font-size: 13px;
+	font-weight: bold;
+	padding: 18px;
+	text-decoration: none;
+}
+
+#navigation li {
+	background: none;
+}
+
+#navigation li.selected {
+	border-top: 0;
 }
 
 #navigation {
-	background: transparent url(../images/comment/menu.jpg) repeat scroll 0%
-		;
+	background: transparent url('../images/custom/navigation_bg.jpg') repeat scroll 0;
 	height: 52px;
-	margin: 0pt auto;
+	margin: 0 auto;
 	min-height: 2.2em;
 	overflow: hidden;
 	padding-right: 1em;
 	width: 866px;
 }
 
-#navigation li {
-	background: none;
-	display: inline;
-	float: left;
-	margin-right: 0.5em;
-	position: relative;
-	font-size: 13px;
-	margin-top: 4px;
-}
-
-#navigation li.selected {
-	border-top: 0px;
-	font-weight: bold;
-}
-
-#navigation li a {
-	text-decoration: none;
-	color: #C1C5C8;
+.portlet-title {
+	border-bottom: 2px solid #CCC;
+	color: #FFF;
+	font-size: 12px;
 }
 
 .portlet-topper {
 	background: none;
-	position: relative;
-}
-
-.portlet-title {
-	border-bottom: 2px solid #CCCCCC;
-	color: #FFFFFF;
-	display: block;
-	font-size: 12px;
-	min-width: 50%;
-	padding: 8px 0pt 4px 10px;
 }
 
 .portlet {
 	border: 1px solid #BEC4C4;
-	margin-bottom: 1em;
-	text-align: left;
-	font-size: 10px;
-}
-
-#content-wrapper a:link {
-	color: red;
-}
-
-#footer {
-	background: #373738 url(../images/comment/bg_footer.jpg) repeat-x scroll
-		left bottom;
-	height: 0px;
-	margin: 0pt auto 10px;
-	padding-bottom: 10px;
-	text-align: center;
-	vertical-align: top;
-	width: 875px;
-}
-
-.tabs {
-	border-bottom: 2px solid #ccc;
-	margin: 0pt 0pt 1.5em;
-	padding: 0pt 0pt 2.6em 1em;
 }
 
 .tabs li {
-	background: #ccc url(../images/comment/tabs_inactive_bg.png) repeat-x
-		scroll 0pt 100%;
-	border-color: #ccc rgb(191, 225, 255) -moz-use-text-color;
-	border-style: solid solid none;
-	border-width: 1px 1px 0pt;
-	display: inline;
-	float: left;
-	line-height: 2.25;
+	background-image: url('../images/comment/tabs_inactive_bg.png');
+	border: 1px solid #CCC;
+	border-bottom: 0;
 	margin-right: 0.8em;
-	padding: 0pt;
-	text-decoration: none;
 }
 
 .tabs li.current {
-	background: #333 url(../images/comment/tabs_active_bg.png) repeat-x
-		scroll 0pt 0%;
-	font-weight: bold;
+	background-image: url('../images/custom/tabs_active_bg.png');
 }
 
+#wrapper {
+	margin: 0 auto;
+	width: 875px;
+}

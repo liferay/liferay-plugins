@@ -1,58 +1,46 @@
-#wrapper {
-	background: transparent;
-	width: 100%;
-}
-#content-wrapper {
-	margin-top: 61px;
-	width: 780px;
-}
-body {
-	background: url(../images/custom/body_all_bckg.jpg) repeat scroll center top;
-	font-family: Tahoma, Arial;
-	font-size: 11px;
-	overflow: scroll;
-}
-#banner {
-	background: url(../images/custom/body_top_bckg.jpg) no-repeat center top #171c20;
-	height: 377px;
-}
 #banner .logo a {
 	margin-left: 458px;
 	margin-top: 101px;
 }
-#navigation {
-	background: transparent;
-	border-top: none;
-	margin-left: -9px;
-	margin-top: -85px;
+
+#banner {
+	background: url('../images/custom/body_top_bckg.jpg') no-repeat center top #171C20;
+	height: 377px;
 }
-#navigation ul {
-	margin: 0pt auto 0px 340pt;
-	width:55%;
+
+body {
+	background: url('../images/custom/body_all_bckg.jpg') repeat scroll center top;
+	font-family: 'Tahoma', ' Arial';
+	font-size: 11px;
 }
-#navigation li a {
-	background-color: #445D6C;
-	color: #FFFFFF;
-	font-size: 14px;
-	font-weight: bold;
-	margin-left: 4px;
-	padding: 0pt 10px 1px;
-	text-decoration: none;
-	text-transform: lowercase;
+
+#content-wrapper {
+	margin-top: 61px;
+	width: 780px;
 }
-#navigation li.selected a span {
-	background: transparent;
-	padding-left: 0px;
+
+#footer {
+	background: url('../images/custom/footer_bckg.jpg') no-repeat top center;
+	clear: both;
+	height: 102px;
+	margin: 0 auto;
+	width: 780px;
 }
-#navigation li.selected a {
-	background-color: #445D6C;
+
+html {
+	overflow-x: auto;
+	overflow-y: scroll;
 }
-#navigation li {
-	border: none;
+
+input.focus, textare.focus, ie6 input.focus, ie6 textarea.focus {
+	background: white;
+	border: white;
 }
-#navigation li a:hover {
-	background-color:#F26513;
+
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	padding: 2px 1px;
 }
+
 .js #add-page a span {
 	background: transparent;
 	background-color: #445D6C;
@@ -61,66 +49,108 @@ body {
 	font-weight: bold;
 	margin-left: -432px;
 	margin-top: -1px;
-	padding: 0px 10px 1px;
+	padding: 0 10px 1px;
 	position: absolute;
 	text-transform: lowercase;
 }
+
 .js #add-page a:hover span {
-	background-color:#F26513;
+	background-color: #F26513;
 }
-#footer {
-	background: url(../images/custom/footer_bckg.jpg) no-repeat top center;
-	clear: both;
-	height: 102px;
-	margin: 0 auto;
-	width: 780px;
+
+.js #navigation .enter-page .save-page {
+	background: #445D6C;
+	margin: 0 0px;
+	padding-bottom: 2px;
+	padding-left: 11px;
+	padding-right: 8px;
 }
+
+.js #navigation .enter-page .save-page:hover {
+	background: #F26513;
+}
+
+.js #navigation .enter-page {
+	background-color: transparent;
+	margin-top: -2px;
+}
+
+.js .interactive-mode {
+	right: 1%;
+}
+
+#left_footer a {
+	color: #FFF;
+}
+
+#left_footer a:hover {
+	text-decoration: none;
+}
+
 #left_footer {
-	color: #fff;
+	color: #FFF;
 	float: left;
 	font-size: 12px;
 	padding: 60px 0 0 30px;
 }
-#left_footer a {
-	color: #fff;
+
+#navigation li a {
+	background-color: #445D6C;
+	color: #FFF;
+	font-size: 14px;
+	font-weight: bold;
+	margin-left: 4px;
+	padding: 0 10px 1px;
+	text-decoration: none;
+	text-transform: lowercase;
 }
-#left_footer a:hover {
+
+#navigation li a:hover {
+	background-color: #F26513;
+}
+
+#navigation li {
+	border: none;
+}
+
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0;
+}
+
+#navigation li.selected a {
+	background-color: #445D6C;
+}
+
+#navigation ul {
+	margin: 0 auto 0 340pt;
+	width: 55%;
+}
+
+#navigation {
+	background: transparent;
+	border-top: none;
+	margin-left: -9px;
+	margin-top: -85px;
+}
+
+#right_footer a {
+	color: #FFF;
+}
+
+#right_footer a:hover {
 	text-decoration: none;
 }
+
 #right_footer {
-	color: #fff;
+	color: #FFF;
 	float: right;
 	font-size: 12px;
 	padding: 60px 30px 0 0;
 	text-align: right;
 }
-#right_footer a {
-	color: #fff;
-}
-#right_footer a:hover {
-	text-decoration: none;
-}
-input.focus, textare.focus, ie6 input.focus, ie6 textarea.focus {
-	background: white;
-	border: white;
-}
-.js #navigation .enter-page {
-	background-color:transparent;
-	margin-top: -2px;
-}
-input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
-	padding:2px 1px;
-}
-.js #navigation .enter-page .save-page {
-	background:#445D6C;
-	margin:0pt 0px;
-	padding-bottom:2px;
-	padding-left:11px;
-	padding-right:8px;
-}
-.js #navigation .enter-page .save-page:hover {
-	background: #F26513;
-}
-.js .interactive-mode {
-	right:1%;
+
+#wrapper {
+	background: transparent;
+	width: 100%;
 }

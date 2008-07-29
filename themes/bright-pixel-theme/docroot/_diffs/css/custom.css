@@ -1,38 +1,28 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
+
 /* ---------- Main content body ---------- */
-
-#wrapper {
-	background: #FFF;
-	margin: 20px auto 600px;
-	width: 880px;
-	border: 3px double #E4E4E4;
-	padding: 10px;
-}
-
-.ie6 #wrapper {
-	padding: 0px;
-	padding-left: 4px;
-	border: 4px double #E4E4E4;
-}
 
 .ie6 #content-wrapper {
 	width: 860px;
 }
 
+.ie6 #wrapper {
+	border: 4px double #E4E4E4;
+	padding: 0;
+	padding-left: 4px;
+}
+
+#wrapper {
+	background: #FFF;
+	border: 3px double #E4E4E4;
+	margin: 20px auto 600px;
+	padding: 10px;
+	width: 880px;
+}
+
+
 /* ---------- Banner ---------- */
-
-#banner {
-	background: url(../images/common/bright_pixel.png) no-repeat scroll 11px 0;
-	height: 25em;
-	position: relative;
-	margin-bottom: -5px;
-}
-
-.ie6 #banner {
-	width: 647px;
-	margin-bottom: -3px;
-}
 
 #banner .logo {
 	background: none;
@@ -42,81 +32,80 @@
 	padding: 1.25em 0.6em 1.45em;
 }
 
-.ie6 #banner .logo {
+#banner {
+	background: url(../images/common/bright_pixel.png) no-repeat scroll 11px 0;
+	height: 25em;
+	margin-bottom: -5px;
 	position: relative;
+}
+
+body {
+	background: #CCC url(../images/common/bg.png) repeat-y fixed center bottom;
+	color: #666;
+	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+}
+
+.ie6 #banner .logo {
 	left: 15px;
+	position: relative;
+}
+
+.ie6 #banner {
+	margin-bottom: -3px;
+	width: 647px;
 }
 
 table {
 	clear: both;
 }
 
-body {
-	background: #CCCCCC url(../images/common/bg.png) repeat-y fixed center bottom;
-	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
-	color: #666666;
-}
 
 /* ---------- Main navigation ---------- */
-
-#navigation {
-	margin: 0 10px 0.5em;
-	min-height: 2.2em;
-	overflow: hidden;
-	padding: none;
-	padding-right: 0px;
-	width: 870px;
-	height: 42px;
-	background: #eee none;
-}
 
 .ie6 #navigation {
 	margin-left: 25px;
 }
 
-#navigation ul {
-	float: left;
-	min-height: 2em;
-	width: auto;
-}
-
-#navigation li {
+.js #navigation .enter-page {
 	background: none;
-	display: inline;
-	float: left;
-	margin-right: 0;
-	padding: 0 0em 0 0;
-	position: relative;
-}
-
-#navigation li a {
-	background: #EEEEEE none repeat scroll 0%;
-	border-right: 1px solid #CECECE;
-	border-top: 1px solid #E5E5E5;
-	display: block;
-	padding-bottom: 20px;
-	padding-left: 0px;
-	text-decoration: none;
-	margin-left: 0px;
-	width: 126px;
-	color: #888888;
-}
-
-#navigation li a:hover {
-	background: #EEEEEE url(../images/common/bgmenu.png) repeat-x scroll top;
-	color: #555555;
-	padding-bottom: 20px;
+	padding: 0.5em 2em 0.7em 1.5em;
 }
 
 #navigation li a span {
 	background: none;
 }
 
-#navigation li.selected a {
-	padding-bottom: 19px;
-	width: 138px;
-	padding-left: 0px;
-	padding-top: 1px;
+#navigation li a {
+	background: #EEE none repeat scroll 0;
+	border-right: 1px solid #CECECE;
+	border-top: 1px solid #E5E5E5;
+	color: #888;
+	display: block;
+	margin-left: 0;
+	padding: 9px 0;
+	text-decoration: none;
+	width: 126px;
+}
+
+#navigation li a:hover span {
+	background: none;
+}
+
+#navigation li a:hover {
+	background: #EEE url(../images/common/bgmenu.png) repeat-x scroll top;
+	color: #555;
+	padding-bottom: 20px;
+}
+
+#navigation li {
+	background: none;
+	border: 0;
+	display: inline;
+	float: left;
+	margin-right: 0;
+	padding: 0;
+	position: relative;
+	text-align: center;
 }
 
 #navigation li.selected a span {
@@ -125,21 +114,34 @@ body {
 	font-weight: bold;
 }
 
-#navigation li.selected a:hover {
-	padding-bottom: 19px;
+#navigation li.selected a {
+	width: 138px;
 }
 
-#navigation li a:hover span {
-	background: none;
+#navigation ul {
+	float: left;
+	min-height: 2em;
+	padding: 3px;
+	width: auto;
 }
 
-.js #navigation .enter-page {
-	background: none;
-	padding: 0.5em 2em 0.7em 1.5em;
+#navigation {
+	background: #EEE none;
+	height: 42px;
+	margin: 0 10px 0.5em;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding: none;
+	padding-right: 0;
+	width: 870px;
 }
 
 
 /* ---------- Dock without Javascript ---------- */
+
+.ie6.lfr-dock h2 {
+	text-align: center;
+}
 
 .lfr-dock h2 {
 	background: url(../images/navigation/welcome_message.png) no-repeat 0 50%;
@@ -149,19 +151,16 @@ body {
 	text-align: center;
 }
 
-.ie6.lfr-dock h2 {
-	text-align: center;
-}
 
 /* ---------- Dock with Javascript ---------- */
 
-.js .lfr-dock.interactive-mode {
-	background: none;
-	float: right;
-	min-width: 150px;
-	position: relative;
-	right: 17px;
-	top: 5px;
+#content-wrapper {
+	margin: 32px auto 32px;
+	padding-top: none;
+}
+
+.ie6 #content-wrapper {
+	margin-left: 16px;
 }
 
 .ie6.js .lfr-dock.interactive-mode {
@@ -170,23 +169,22 @@ body {
 	top: 5px;
 }
 
-.js .lfr-dock.interactive-mode h2 {
-	background: #CCCCCC url(../images/common/menubg.png) repeat-x;
-	border: 3px double #E4E4E4; 
-	font-size: 1.2em;
-	margin-bottom: 0;
-	padding: 0 29px 0 0;
-	position: relative;
-	z-index: 82;
+.ie6.portlet {
 }
 
-.js .lfr-dock.interactive-mode h2 span {
-	background: none;
-	color: #666666;
-	display: block;
-	font-size: 1.2em;
-	margin-bottom: 0;
-	padding: 0.5em 0.5em 0.5em 2em;
+.js #add-page a {
+	color: #000;
+}
+
+.js #add-page {
+	background: transparent;
+	border: 0;
+	float: left;
+	font-weight: bold;
+	padding-top: 0.3em;
+	position: absolute;
+	right: 1px;
+	top: 1px;
 }
 
 .js .lfr-dock.expanded .lfr-dock-list-container {
@@ -196,6 +194,25 @@ body {
 	top: -2px;
 }
 
+.js .lfr-dock.interactive-mode h2 span {
+	background: none;
+	color: #666;
+	display: block;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0.5em 0.5em 0.5em 2em;
+}
+
+.js .lfr-dock.interactive-mode h2 {
+	background: #CCC url(../images/common/menubg.png) repeat-x;
+	border: 3px double #E4E4E4;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0 29px 0 0;
+	position: relative;
+	z-index: 82;
+}
+
 .js .lfr-dock.interactive-mode ul {
 	background: url(../images/dock/menu_bg.png) no-repeat 0 0;
 	border-left: 20px solid #CCC;
@@ -203,20 +220,13 @@ body {
 	float: none;
 }
 
-
-.js #add-page {
-	float: left;
-	font-weight: bold;
-	padding-top: 0.3em;
-	position: absolute;
-	right: 296px;
-	top: 290px;
-}
-
-.ie6.js #add-page {
-	position: absolute;
-	right: 210px;
-	top: 280px;
+.js .lfr-dock.interactive-mode {
+	background: none;
+	float: right;
+	min-width: 150px;
+	position: relative;
+	right: 17px;
+	top: 5px;
 }
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
@@ -234,7 +244,7 @@ body {
 }
 
 .portlet-topper {
-	background: #FCFCFC url(../images/common/bgitem.png) repeat-x scroll 0%;
+	background: #FCFCFC url(../images/common/bgitem.png) repeat-x scroll 0;
 	background-position: right top;
 	margin-right: -10px;
 	padding-right: 40px;
@@ -245,22 +255,13 @@ body {
 	margin-top: -20px;
 }
 
-.ie6.portlet {
-
-}
-
-#content-wrapper {
-	padding-top: none;
-}
-
-.ie6 #content-wrapper {
-	margin-left: 16px;
-}
-
-.tabs {
-	border-bottom: 1px solid #7C7C7C;
-	margin: 0 0 1.5em 0;
-	padding: 0 0 2.6em 1em;
+.tabs li a, .tabs li span {
+	background: url(../images/common/tabs_bg.png) repeat scroll -2px -150px;
+	color: #323232;
+	display: block;
+	float: left;
+	padding: 0.35em 1em 0;
+	text-decoration: none;
 }
 
 .tabs li {
@@ -275,53 +276,53 @@ body {
 	text-decoration: none;
 }
 
-.tabs li a, .tabs li span {
-	background: url(../images/common/tabs_bg.png) repeat scroll -2px -150px;
-	display: block;
-	float: left;
-	padding: 0.35em 1em 0;
-	text-decoration: none;
-	color: #323232;
+.tabs li.current a, .tabs li.current span {
+	background: transparent url(../images/common/tabs_bg.png) repeat scroll -2px -100px;
 }
 
 .tabs li.current {
 	background: url(../images/common/tabs_bg.png) repeat scroll 0 -50px;
-	font-weight: bold;
 	border: 1px solid #BEBEBE;
 	border-bottom: none;
+	font-weight: bold;
 	top: 0.15em;
 }
 
-.tabs li.current a, .tabs li.current span {
-	background:transparent url(../images/common/tabs_bg.png) repeat scroll -2px -100px;
+.tabs {
+	border-bottom: 1px solid #7C7C7C;
+	margin: 0 0 1.5em 0;
+	padding: 0 0 2.6em 1em;
 }
+
 
 /* ---------- Table or section header ---------- */
 
-.portlet-section-header {
-	background: #CCCCCC;
-	padding: 1px 0 0;
-}
-
 .portlet-section-header th {
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #CCC;
 	color: #333;
 	font-weight: bold;
 	padding: 0.3em 1em;
 }
 
-/* ---------- Normal text in a table cell ---------- */
-
-.portlet-section-body {
-	background: #E9E9E9;
-	color: #000;
+.portlet-section-header {
+	background: #CCC;
+	padding: 1px 0 0;
 }
+
+
+/* ---------- Normal text in a table cell ---------- */
 
 .portlet-section-body td {
 	background: #E9E9E9;
 	border-top: 1px solid #BFBFBF;
 	padding: 0.3em 1em;
 }
+
+.portlet-section-body {
+	background: #E9E9E9;
+	color: #000;
+}
+
 
 /* ---------- 1 column ---------- */
 

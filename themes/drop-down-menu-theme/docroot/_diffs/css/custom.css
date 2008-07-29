@@ -1,54 +1,43 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
+
 /* ---------- From portlet.css ---------- */
+
+.js .lfr-dock.interactive-mode {
+	position: absolute;
+}
+
+#navigation li {
+	list-style-type: none;
+}
+
+#navigation ul {
+	margin: 0;
+}
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: none;
 }
 
-.portlet-topper {
-	background-position: right top;
-	margin-right: -10px;
-	padding-right: 40px;
-	position: relative;
-	border-bottom: 1px dotted #333;
-}
-
 .portlet-title {
 	background-position: top left;
+	color: #3A7930;
 	display: block;
 	font-weight: bold;
-	color: #3a7930;
 	min-width: 50%;
 	padding: 8px 0 4px 10px;
 }
 
-/* ---------- From base.css ---------- */
-
-body {
-	background: #567 url(../images/custom/bg_body.png) center repeat-y;
-	font: 0.9em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
-	text-align: center; /* hack for IE5.5 to display website centered */
-}
-
-html, body {
-	height: 100%;
-	height: auto !important;
-	min-height: 100%;
-	color: #474747;
-}
-
-#wrapper {
-	background: #fff;
-	margin: 0 auto;
-	width: 889px;
-}
-
-#banner {
+.portlet-topper {
+	background-position: right top;
+	border-bottom: 1px dotted #333;
+	margin-right: -10px;
+	padding-right: 40px;
 	position: relative;
-	background: url(../images/custom/bg_header_grass.jpg) repeat-x;
-	height: 160px;
 }
+
+
+/* ---------- From base.css ---------- */
 
 #banner .logo {
 	background: none;
@@ -58,6 +47,24 @@ html, body {
 	padding: 1.25em 0.6em 1.45em;
 }
 
+#banner {
+	background: url(../images/custom/bg_header_grass.jpg) repeat-x;
+	height: 160px;
+	position: relative;
+}
+
+body {
+	background: #567 url(../images/custom/bg_body.png) center repeat-y;
+	font: 0.9em Tahoma, ' Lucida Sans Unicode',  Lucida Grande, ' Lucida',  Arial, ' Verdana',  sans-serif;
+	text-align: center;
+}
+
+html, body {
+	color: #474747;
+	height: auto !important;
+	min-height: 100%;
+}
+
 .liferay-table {
 	font: 10px/10px Arial;
 }
@@ -65,6 +72,13 @@ html, body {
 .tabs li {
 	font: 12px/2.25em Arial;
 }
+
 .tabs li.current {
 	top: 0;
+}
+
+#wrapper {
+	background: #FFF;
+	margin: 0 auto;
+	width: 889px;
 }

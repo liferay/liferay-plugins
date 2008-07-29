@@ -1,19 +1,15 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
+
 /* ---- GLOBAL ---- */
-body {
-	background: #E8F7F9 url(../images/common/background.png) repeat-x top center;
-	color: #222222;
-}
 
 a {
-	color: #000000;
+	color: #000;
 }
 
-#wrapper {
-	margin: 0 auto;
-	width: 900px;
-	background: #FFFFFF;
+body {
+	background: #E8F7F9 url(../images/common/background.png) repeat-x top center;
+	color: #222;
 }
 
 #footer {
@@ -21,38 +17,41 @@ a {
 	height: 100px;
 }
 
+#wrapper {
+	background: #FFF;
+	margin: 0 auto;
+	width: 900px;
+}
+
+
 /* ---- BANNER ---- */
 
 #banner {
-	height: 140px;
 	background: url(../images/common/banner_bg.jpg) no-repeat;
+	height: 140px;
+	position: relative;
+	top: 0;
 }
 
-#banner .logo {
-	background: url(../images/common/banner_bg.jpg) no-repeat;
-}
 
 /* ---- NAVIGATION ---- */
-#navigation {
-	background: url(../images/navigation/navigation_bg.png) no-repeat;
-	width: 100%;
-	height: 35px;
-	margin: 0;
-	padding: 0;
+
+.js #add-page a {
+	color: #FFF;
 }
 
-#navigation li {
-	overflow: hidden;
-	background: none;
-	padding: 8px 15px;
-	margin-right: 1px;
+.js #add-page {
+	bottom: auto;
+	float: right;
+	font-weight: bold;
+	padding-top: 8px;
+	right: 0;
+	top: 0;
 }
 
-#navigation li a {
+.js #navigation .enter-page {
 	background: none;
 	padding: 0;
-	color: #FFFFFF;
-	font-size: 11px;
 }
 
 #navigation li a span {
@@ -60,21 +59,26 @@ a {
 	padding: 0;
 }
 
-#navigation li a:hover {
-	padding-bottom: 0;
+#navigation li a {
+	background: none;
+	color: #FFF;
+	font-size: 11px;
+	padding: 0;
 }
 
 #navigation li a:hover span {
 	background: none;
 }
 
-#navigation li.selected {
-	background: url(../images/navigation/navigation_hover.png) no-repeat 50% 100%;
-	padding-bottom: 11px;
+#navigation li a:hover {
+	padding-bottom: 0;
 }
 
-#navigation li.selected a {
-	padding: 0;
+#navigation li {
+	background: none;
+	margin-right: 1px;
+	overflow: hidden;
+	padding: 8px 15px;
 }
 
 #navigation li.selected a span {
@@ -83,45 +87,36 @@ a {
 	padding: 0;
 }
 
+#navigation li.selected a {
+	padding: 0;
+}
+
 #navigation li.selected a:hover {
 	padding-bottom: 0;
 }
 
-.js #navigation .enter-page {
-	background: none;
+#navigation li.selected {
+	background: url(../images/navigation/navigation_hover.png) no-repeat 50% 100%;
+	padding-bottom: 8px;
+}
+
+#navigation {
+	background: url(../images/navigation/navigation_bg.png) no-repeat;
+	height: 35px;
+	margin: 0;
 	padding: 0;
+	width: 100%;
 }
 
-.js #add-page {
-	float: right;
-	font-weight: bold;
-	padding-top: 8px;
-}
-
-.js #add-page a {
-	color: #FFFFFF;
-}
 
 /* ---- PORTLET ---- */
+
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: none;
 }
 
-.portlet-title {
-	color: #ABC229;
-	font-size: 16px;
-}
-
 .portlet-content {
 	border-top: 1px dashed #B4C835;
-}
-
-.portlet-title img {
-	display: none;
-}
-
-.portlet-section-header {
-	background: #B9E4EA none;
 }
 
 .portlet-section-body td {
@@ -132,43 +127,27 @@ a {
 	border-bottom: 1px solid #8DB2E3;
 }
 
+.portlet-section-header {
+	background: #B9E4EA none;
+}
+
+.portlet-title img {
+	display: none;
+}
+
+.portlet-title {
+	color: #ABC229;
+	font-size: 16px;
+}
+
+
 /* ---- TABS ---- */
-.tabs {
-	border-bottom: 1px solid #222222;
-	padding: 0 0 18px 1em;
-}
-
-.tabs li {
-	background: url(../images/navigation/navigation_bg.png);
-	line-height: 15px;
-	margin-right: 0.3em;
-	top: 0.15em;
-}
-.tabs li a, .tabs li span {
-	background: url(../images/navigation/navigation_bg.png);
-	padding: 0.15em 1em 0;
-	color: #FFFFFF;
-}
-
-.tabs li.current {
-	background: url(../images/navigation/navigation_bg.png) bottom;
-}
-
-.tabs li.current a, .tabs li.current span {
-	background: url(../images/navigation/navigation_bg.png) bottom;
-	padding: 0.1em 1em;
-	color: #FFFFFF;
-}
 
 .ie .tabs li {
-	line-height: 15px;
-}
-
-.ie .tabs li.current {
 	top: 0.2em;
 }
 
-.ie .tabs li {
+.ie .tabs li.current {
 	top: 0.2em;
 }
 
@@ -176,9 +155,27 @@ a {
 	font: 10px/10px Arial;
 }
 
+.tabs li a, .tabs li span {
+	background: url(../images/navigation/navigation_bg.png);
+	color: #FFF;
+	padding: 0.15em 1em 0;
+}
+
 .tabs li {
 	font: 10px/2.25em Arial;
 }
+
+.tabs li.current a, .tabs li.current span {
+	background: url(../images/navigation/navigation_bg.png) bottom;
+	color: #FFF;
+	padding: 0.1em 1em;
+}
+
 .tabs li.current {
 	top: 0;
+}
+
+.tabs {
+	border-bottom: 1px solid #222;
+	padding: 0 0 18px 1em;
 }

@@ -1,11 +1,10 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
+
 /* ---------- Banner ---------- */
 
-#banner {
-	background: url(../images/common/header.jpg) no-repeat scroll 100% 100%;
-	height: 10em;
-	position: relative;
+#banner .logo a {
+	text-decoration: none;
 }
 
 #banner .logo {
@@ -16,8 +15,62 @@
 	padding: 1.25em 0.6em 1.45em;
 }
 
-#banner .logo a {
-	text-decoration: none;
+#banner {
+	background: url(../images/common/header.jpg) no-repeat scroll 100% 100%;
+	height: 10em;
+	position: relative;
+}
+
+body {
+	background: #3B2B14 url(../images/common/background.jpg) repeat-x top;
+	font: 62.5%/1.6em Tahoma, 'Lucida Sans Unicode', Lucida Grande, 'Lucida', Arial, 'Verdana', sans-serif;
+}
+
+.ie6.js .lfr-dock.expanded .lfr-dock-list-container {
+}
+
+.js .interactive-mode .my-places .show-my-places {
+	background: #FFF;
+	border: 1px solid #CCC;
+	display: block;
+	left: 85%;
+	min-width: 200px;
+	padding: 0.2em;
+	position: absolute;
+	top: 87%;
+}
+
+.js .lfr-dock.expanded .lfr-dock-list-container {
+	background: #60738C;
+	border: 1px solid #B5B9BB;
+	border-top: none;
+	position: relative;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	background: none;
+	border: 1px outset;
+	color: #FFF;
+	display: block;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+.js .lfr-dock.interactive-mode h2 {
+	background: none;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0 0 0 0;
+	position: relative;
+	z-index: 82;
+}
+
+.js .lfr-dock.interactive-mode ul {
+	background: url(../images/dock/menu_bg.png) no-repeat 0 0;
+	border-left: 20px solid #4E7467;
+	display: none;
+	float: none;
 }
 
 .lfr-dock h2 {
@@ -34,111 +87,75 @@
 	top: 10px;
 }
 
-.js .lfr-dock.interactive-mode h2 {
-	background: none;
-	font-size: 1.2em;
-	margin-bottom: 0;
-	padding: 0 0 0 0;
-	position: relative;
-	right: 900px;
-	top: 25px;
-	z-index: 82;
-}
-
-.js .lfr-dock.interactive-mode h2 span {
-	background: none;
-	border: 1px outset;
-	color: #fff;
-	display: block;
-	font-size: 1.2em;
-	margin-bottom: 0;
-	padding: 0.5em 0.5em 0.5em 0.5em;
-}
-
-.js .lfr-dock.expanded .lfr-dock-list-container {
-	background: #60738C;
-	border: 1px solid #B5B9BB;
-	border-top: none;
-	position: relative;
-	right: 900px;
-	top: 25px;
-}
-
-.ie6.js .lfr-dock.expanded .lfr-dock-list-container {
-	
-}
-
-.js .interactive-mode .my-places .show-my-places {
-	background: #fff;
-	border: 1px solid #ccc;
-	display: block;
-	min-width: 200px;
-	padding: 0.2em;
-	position: absolute;
-	left: 85%;
-	top: 87%;
-}
-
-.js .lfr-dock.interactive-mode ul {
-	background: url(../images/dock/menu_bg.png) no-repeat 0 0;
-	border-left: 20px solid #4E7467;
-	display: none;
-	float: none;
-}
-
-body {
-	background: #3B2B14 url(../images/common/background.jpg) repeat-x top;
-	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
-}
 
 /* ---------- Main content body ---------- */
-
-#wrapper {
-	margin: 0 auto;
-	width: 1100px;
-}
 
 #content-wrapper {
 	margin-top: -5px;
 	width: 1100px;
 }
 
+#wrapper {
+	margin: 0 auto;
+	width: 1100px;
+}
+
+
 /* ---------- Main navigation ---------- */
+
+.ie6.js #add-page a {
+	left: 5px;
+	position: absolute;
+}
+
+.js #add-page a {
+	color: #E4EAAE;
+	text-decoration: none;
+}
 
 .js #add-page {
 	float: left;
 	font-weight: bold;
+	left: 1270px;
 	padding-top: 0;
 	position: absolute;
 	top: 105px;
-	left: 1270px;
 }
 
-.js #add-page a {
-	text-decoration: none;
-	color: #E4EAAE;
-}
-
-.ie6.js #add-page a {
+.js .delete-tab {
+	background: url(../images/common/remove.png) no-repeat 42%;
+	cursor: pointer;
+	display: block;
+	height: 7px;
 	position: absolute;
-	left: 5px;
+	right: 15px;
+	top: 2px;
+	width: 8px;
 }
 
-#navigation {
-	background: url(../images/common/link.jpg) repeat-x;
-	margin: 0 auto 0px;
-	min-height: 2.2em;
-	overflow: hidden;
-	padding-right: 1em;
-	padding-bottom: 5px;
-	width: 99.2%;
-	text-align: middle;
+#navigation li a span {
+	background: none;
+	padding-left: 17px;
+	text-decoration: none;
 }
 
-#navigation ul {
-	float: right;
-	min-height: 2em;
-	width: auto;
+#navigation li a {
+	background: none;
+	color: #E4EAAE;
+	display: block;
+	font-size: 1.3em;
+	padding: .4em 1.5em 0.5em .15em;
+	text-decoration: none;
+}
+
+#navigation li a:hover span {
+	background: none;
+}
+
+#navigation li a:hover {
+	background: #E4EAAE;
+	color: #000;
+	padding-bottom: .73em;
 }
 
 #navigation li {
@@ -150,57 +167,38 @@ body {
 	position: relative;
 }
 
-#navigation li a {
-	background: none;
-	display: block;
-	padding: .4em 1.5em 0.5em .15em;
-	text-decoration: none;
-	font-size: 1.3em;
-	color: #E4EAAE;
-}
-
-#navigation li a span {
-	background: none;
-	padding-left: 17px;
-	text-decoration: none;
-}
-
-#navigation li a:hover {
-	background: #E4EAAE;
-	padding-bottom: .73em;
-	color: #000;
-}
-
-#navigation li.selected a {
-	background: #E4EAAE;
-	color: #000;
-	padding-top: 0.5em;
-	padding-bottom: .65em;
-}
-
-#navigation li.selected a:hover {
-	padding-bottom: 0.65em;
-}
-
 #navigation li.selected a span {
 	background: none;
 	font-size: 1em;
 	font-weight: bold;
 }
 
-#navigation li a:hover span {
-	background: none;
+#navigation li.selected a {
+	background: #E4EAAE;
+	color: #000;
+	padding-bottom: .65em;
+	padding-top: 0.5em;
 }
 
-.js .delete-tab {
-	background: url(../images/common/remove.png) no-repeat 42%;
-	cursor: pointer;
-	display: block;
-	height: 7px;
-	position: absolute;
-	top: 2px;
-	right: 15px;
-	width: 8px;
+#navigation li.selected a:hover {
+	padding-bottom: 0.65em;
+}
+
+#navigation ul {
+	float: right;
+	min-height: 2em;
+	width: auto;
+}
+
+#navigation {
+	background: url(../images/common/link.jpg) repeat-x;
+	margin: 0 auto 0;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding-bottom: 5px;
+	padding-right: 1em;
+	text-align: middle;
+	width: 99.2%;
 }
 
 
@@ -209,41 +207,43 @@ body {
 .columns-1 #column-1, .columns-max #column-1 {
 	background: #E4EAAE;
 	display: table;
+	padding-bottom: 20px;
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-top: 20px;
-	padding-bottom: 20px;
 	width: 1081px;
 }
+
 
 /* ---------- 2 columns ---------- */
 
 .columns-2 #column-1 {
 	background: #E4EAAE;
 	border-right: 1px solid #000;
+	padding-bottom: 20px;
 	padding-left: 10px;
 	padding-top: 20px;
-	padding-bottom: 20px;
 }
 
 .columns-2 #column-2 {
 	background: #E4EAAE;
+	padding-bottom: 20px;
 	padding-right: 10px;
 	padding-top: 20px;
-	padding-bottom: 20px;
 }
+
 
 /* ---------- 3 columns ---------- */
 
 .columns-3 #column-1 {
-	background: #E4EAAE; 
+	background: #E4EAAE;
 	padding-left: 0;
 }
 
 .columns-3 #column-2 {
 	background: #E4EAAE;
-	border-right: 1px solid #000;
 	border-left: 1px solid #000;
+	border-right: 1px solid #000;
 	padding-left: 0;
 }
 
@@ -252,13 +252,14 @@ body {
 	padding-right: 0;
 }
 
+
 /* ---------- 1/2/1 ---------- */
 
 .columns-1-2-1 #column-1, .columns-1-2-1 #column-4 {
 	background: #E4EAAE;
-	padding-top: 20px;
 	padding-left: 10px;
 	padding-right: 10px;
+	padding-top: 20px;
 }
 
 .columns-1-2-1 #column-2 {
@@ -271,13 +272,14 @@ body {
 	padding-right: 0;
 }
 
+
 /* ---------- 2/2 ---------- */
 
 .columns-2-2 #column-1, .columns-2-2 #column-2 {
 	background: #E4EAAE;
-	padding-top: 20px;
 	padding-left: 10px;
 	padding-right: 10px;
+	padding-top: 20px;
 }
 
 .columns-2-2 #column-4 {
@@ -287,9 +289,28 @@ body {
 
 /* ---------- Portlet wrapper and icons ---------- */
 
+.ie6 .tabs li.current {
+	top: 6px;
+}
+
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: #FFF;
 	margin-bottom: -10px;
+}
+
+.portlet-content {
+	background-position: left bottom;
+	padding: 10px 5px 25px 15px;
+}
+
+.portlet-title {
+	background: url(../images/common/topper.jpg) no-repeat;
+	background-position: bottom left;
+	display: block;
+	font-size: 9pt;
+	font-weight: bold;
+	min-width: 50%;
+	padding: 8px 0 4px 10px;
 }
 
 .portlet-topper {
@@ -299,47 +320,10 @@ body {
 	position: relative;
 }
 
-.portlet-title {
-	background: url(../images/common/topper.jpg) no-repeat;
-	background-position: bottom left;
-	display: block;
-	font-weight: bold;
-	font-size: 9pt;
-	min-width: 50%;
-	padding: 8px 0 4px 10px;
-}
-
-.portlet-content {
-	background-position: left bottom;
-	padding: 10px 5px 25px 15px;
-}
-
 .portlet {
 	margin: 0 0 10px;
 	padding-right: 10px;
 	text-align: left;
-}
-
-.tabs li {
-	background: url(../images/common/tab.jpg) repeat-x 100% 0;
-	display: inline;
-	float: left;
-	line-height: 2.25;
-	margin-right: 0.8em;
-	padding: 0;
-	position: relative;
-	top: 6px;
-	text-decoration: none;
-}
-
-.tabs li.current {
-	background: url(../images/common/tab_selected.jpg) repeat-x 100% 0;
-	font-weight: bold;
-	top: 6px;
-}
-
-.ie6 .tabs li.current {
-	top: 6px;
 }
 
 .tabs li a, .tabs li span {
@@ -351,10 +335,28 @@ body {
 	text-decoration: none;
 }
 
+.tabs li {
+	background: url(../images/common/tab.jpg) repeat-x 100% 0;
+	display: inline;
+	float: left;
+	line-height: 2.25;
+	margin-right: 0.8em;
+	padding: 0;
+	position: relative;
+	text-decoration: none;
+	top: 6px;
+}
+
 .tabs li.current a, .tabs li.current span {
 	background: none;
 	color: #E4EAAE;
 	padding: 0 1em;
+}
+
+.tabs li.current {
+	background: url(../images/common/tab_selected.jpg) repeat-x 100% 0;
+	font-weight: bold;
+	top: 6px;
 }
 
 .tabs {
@@ -363,9 +365,18 @@ body {
 	padding: 0 0 2.6em 1em;
 }
 
+
 /* ------------ Tables ----------- */
 
+
 /* ---------- Table or section header ---------- */
+
+.portlet-section-header th {
+	border-bottom: 1px solid #CCC;
+	color: #E4EAAE;
+	font-weight: bold;
+	padding: 0.3em 1em;
+}
 
 .portlet-section-header {
 	background: #4E7467;
@@ -373,36 +384,29 @@ body {
 	padding: 1px 0 0;
 }
 
-.portlet-section-header th {
-	border-bottom: 1px solid #ccc;
-	color: #E4EAAE;
-	font-weight: bold;
-	padding: 0.3em 1em;
-}
 
 /* ---------- Normal text in a table cell ---------- */
 
-.portlet-section-body {
-	background: ;
-	color: #000;
-}
-
 .portlet-section-body td {
 	background: #E4EAAE;
-	color: #000;
 	border-top: 1px solid #BFBFBF;
+	color: #000;
 	padding: 0.3em 1em;
 }
 
-/* ---------- Text in every other row in the cell ---------- */
-
-.portlet-section-alternate {
-	background: #D3DEEB;
+.portlet-section-body {
 	color: #000;
 }
 
+
+/* ---------- Text in every other row in the cell ---------- */
+
+.portlet-section-alternate td td, .portlet-section-alternate-hover td td {
+	border: none;
+}
+
 .portlet-section-alternate td {
-	background: #fff;
+	background: #FFF;
 	border-top: 1px solid #BFBFBF;
 	padding: 0.3em 1em;
 }
@@ -414,13 +418,15 @@ body {
 	padding: 0.3em 1em;
 }
 
+.portlet-section-alternate {
+	background: #D3DEEB;
+	color: #000;
+}
+
 .portlet-section-body td td, .portlet-section-body-hover td td {
 	border: none;
 }
 
-.portlet-section-alternate td td, .portlet-section-alternate-hover td td {
-	border: none;
-}
 
 /* ---------- Text in a selected cell range ---------- */
 

@@ -3,92 +3,59 @@
 
 /* ---- BASE ---- */
 
-body {
-	background: transparent url(../images/common/background.png) repeat scroll 0%;
-}
-
-#banner {
-	height: 160px;
-	background:transparent url(../images/custom/common/banner_bg.png) no-repeat scroll 0% 0pt;
-	width:86%;
-	margin: 0px 71px;
+#banner .logo a {
+	margin-left: -20000px;
 }
 
 #banner h1.logo {
-	background:transparent url(../images/custom/common/banner_bg.png) no-repeat scroll right bottom;
-	height:145px;
-	left:81.4%;
-	margin:25px 0pt 0pt;
-	position:absolute;
-	top:-12px;
-	width:14%;
+	background: transparent url(../images/custom/common/banner_bg.png) no-repeat scroll right bottom;
+	height: 145px;
+	left: 81.4%;
+	margin: 25px 0 0pt;
+	position: absolute;
+	top: -12px;
+	width: 14%;
 }
 
-#banner .logo a {
-	margin-left:-20000px;
+#banner {
+	background: transparent url(../images/custom/common/banner_bg.png) no-repeat scroll 0 0pt;
+	height: 160px;
+	margin: 0 71px;
+	width: 86%;
+}
+
+body {
+	background: transparent url(../images/common/background.png) repeat scroll 0;
 }
 
 #wrapper {
 	background: none;
 }
 
+
 /* ---- NAVIGATION ---- */
 
-.js #navigation {
-	position: absolute;
-}
-
-#navigation {
-	left: 115px;
-	top: 135px;
-	width: auto;
-	z-index: 21;
+.js #add-page a span {
 	background: transparent;
-	border-top: none;
+	margin-left: 0;
+	padding: 0;
 }
 
-#navigation ul {
-	width: auto;
+.js #add-page a {
+	background: url(../images/custom/navigation/tab-unselected.png) no-repeat left top;
+	height: 20px;
+	margin: 0 0 0 -12px;
+	padding: 0 0 0 12px;
 }
 
-#navigation li {
-	background: transparent url(../images/navigation/tab-unselected.png) no-repeat top right;
-	padding: 0em 2em .5em 0;
-	margin-right:10px;
+.js #add-page {
+	background: url(../images/custom/navigation/tab-unselected.png) no-repeat right top;
 	border: none;
-}
-
-#navigation li.selected {
-	background: transparent url(../images/navigation/tab-selected.png) no-repeat top right;
-	padding: 0em 2em .5em 0;
-}
-
-
-#navigation li a {
-	background: transparent url(../images/navigation/tab-unselected.png) no-repeat top left;
-	padding: 0 0 .5em 1em;
-	font-weight: bold;
-	color: #FFFFFF;
-}
-
-#navigation li.selected a {
-	background: transparent url(../images/navigation/tab-selected.png) no-repeat top left;
-	padding: 0 0 .5em 1em;
-	color: #000000;
-}
-
-#navigation li.selected a:hover {
-	padding: 0 0 .5em 1em;
-}
-
-#navigation li a:hover {
-	padding: 0 0 .5em 1em;
-}
-
-#navigation li a span {
-	background: none;
-	padding-left: 1em;
-	text-decoration:none;
+	height: 20px;
+	padding: 0 12px 0 0;
+	right: -94px;
+	top: -2px;
+	z-index: 60;
 }
 
 .js #navigation .enter-page {
@@ -96,64 +63,101 @@ body {
 	padding: 0;
 }
 
+.js #navigation {
+	position: absolute;
+}
+
 .js .lfr-dock.interactive-mode {
-	right:100px;
-	top:40px;
+	right: 100px;
+	top: 40px;
 }
 
-.js #add-page {
-	background: url(../images/custom/navigation/tab-unselected.png) no-repeat right top;
-	padding: 0em 2em 0.5em 0px;
+#navigation li a span {
+	background: none;
+	padding-left: 1em;
+	text-decoration: none;
+}
+
+#navigation li a {
+	background: transparent url(../images/navigation/tab-unselected.png) no-repeat top left;
+	color: #FFF;
+	font-weight: bold;
+	padding: 0 0 .5em 1em;
+}
+
+#navigation li a:hover {
+	padding: 0 0 .5em 1em;
+}
+
+#navigation li {
+	background: transparent url(../images/navigation/tab-unselected.png) no-repeat top right;
 	border: none;
-	bottom: 0px;
-	right: -94px;
+	margin-right: 10px;
+	padding: 0em 2em .5em 0;
 }
 
-.js #add-page a {
-	background:transparent url(../images/navigation/tab-unselected.png) no-repeat scroll left top;
-	padding:0pt 0pt 0.5em 2em;
-}
-
-.js #add-page a span {
-	background:transparent;
-	margin-left: 0px;
-	padding: 0px;
+#navigation li.selected a {
+	background: transparent url(../images/navigation/tab-selected.png) no-repeat top left;
+	color: #000;
+	padding: 0 0 .5em 1em;
 }
 
 #navigation li.selected a, #navigation li a:hover {
 	background-color: transparent;
 }
 
+#navigation li.selected a:hover {
+	padding: 0 0 .5em 1em;
+}
+
+#navigation li.selected {
+	background: transparent url(../images/navigation/tab-selected.png) no-repeat top right;
+	padding: 0em 2em .5em 0;
+}
+
+#navigation ul {
+	width: auto;
+}
+
+#navigation {
+	background: transparent;
+	border-top: none;
+	left: 115px;
+	top: 135px;
+	width: auto;
+	z-index: 21;
+}
+
+
 /* ---- PORTLET ---- */
+
+.portlet-content {
+	background: transparent url(../images/custom/portlet/portlet_bg.png) repeat scroll right bottom;
+	margin: 0 -3px 20px 8px;
+	padding-bottom: 21px;
+	padding-top: 19px;
+}
+
+.portlet-title {
+	color: #FFF;
+	margin-right: 30px;
+	padding: 30px 0 15px 15px;
+}
+
+.portlet-topper {
+	background: transparent url(../images/custom/portlet/portlet_bg.png) repeat scroll right 0;
+	border: medium none;
+	margin: -3px -3px 0 9px;
+}
 
 .portlet {
 	background: url(../images/custom/portlet/portlet_bg.png);
 	border: none;
-	padding: 0px;
+	padding: 0;
 }
 
-.portlet-topper {
-	background:transparent url(../images/custom/portlet/portlet_bg.png) repeat scroll right 0px;
-	border:medium none;
-	margin:-3px -3px 0pt 9px;
-}
-
-.portlet-title {
-	padding: 30px 0 15px 15px;
-	margin-right: 30px;
-	color: #FFFFFF;
-}
-
-.portlet-content {
-	background:transparent url(../images/custom/portlet/portlet_bg.png) repeat scroll right bottom;
-	margin:0px -3px 20px 8px;
-	padding-bottom:21px;
-	padding-top:19px;
-}
 
 /* ---- TABS ---- */
 
 
-
 /* ---- MISS. OTHERS ---- */
-

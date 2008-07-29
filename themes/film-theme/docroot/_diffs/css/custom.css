@@ -1,6 +1,28 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
+
 /* ------------ BASE ------------- */
+
+a {
+	color: #99F;
+}
+
+#banner .logo a {
+	text-indent: -9999em;
+}
+
+#banner h1.logo {
+	background: none;
+	font-size: 2em;
+	left: -22px;
+	margin: 20px 0 0 0;
+	position: absolute;
+}
+
+#banner {
+	background: transparent url(../images/common/banner_bg.png) repeat-x scroll 0 37px;
+	height: 180px;
+}
 
 body {
 	background: url(../images/common/background.png);
@@ -8,61 +30,26 @@ body {
 	padding: 0;
 }
 
-a {
-	color: #99f;
-}
-
-#wrapper {
-	color: #ffffff;
-}
-
-#banner {																						  
-	background: transparent url(../images/common/banner_bg.png) repeat-x scroll 0 37px;
-	height: 180px;
-}
-
-#banner .logo {
-	background: none;
-	font-size: 2em;	
-	position: absolute;
-	left: -22px;
-}
-
-#banner .logo a {
-	text-indent: -9999em;
+html {
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 
 .ie6 #banner {
-	width: 100%;
-	right: 0;
 	position: relative;
+	right: 0;
+	width: 100%;
 }
+
+#wrapper {
+	color: #FFF;
+}
+
 
 /* ------------ NAVIGATION ------------- */
- 
-#navigation {
-	left:200px;
-	margin:0pt auto 0em;
-	padding:0pt 1em 0em 10px;
-	position:absolute;
-	top:180px;
-	right: 300px;
-	z-index:8;
-	width: auto;
-}
 
-#navigation li {
-	margin-right: 0;
-}
-
-.lfr-dock {
-	right: 40px;
-	top: 40px;
-}
-
-.js .lfr-dock.interactive-mode {
-	right: 40px;
-	top: 65px;
+.js #navigation {
+	position: absolute;
 }
 
 .js .lfr-dock.expanded .lfr-dock-list-container {
@@ -73,77 +60,104 @@ a {
 	z-index: 9;
 }
 
+.js .lfr-dock.interactive-mode {
+	right: 40px;
+	top: 65px;
+}
+
+.lfr-dock {
+	right: 40px;
+	top: 40px;
+}
+
+#navigation li {
+	margin-right: 0;
+}
+
+#navigation {
+	left: 200px;
+	margin: 0 auto 0em;
+	padding: 0 1em 0em 10px;
+	position: absolute;
+	right: 300px;
+	top: 180px;
+	width: auto;
+	z-index: 8;
+}
+
+
 /* ------------ PORTLET ------------- */
 
-#portlet-wrapper-88 .portlet-content {
-	margin: 0 48px;
-}
-
-.portlet-topper, .portlet {
-	background: url(../images/portlet/portlet_bg.png) repeat-y scroll right bottom;
-}
-
-.portlet-title, .portlet-content {
-	background: url(../images/portlet/portlet_bg.png) no-repeat left bottom;
-}
-
-.portlet {
-	margin: 0px;
-}
-
-.portlet-title {
-	padding: 8px 0px 15px 25px;
-	color: #CC9900;
+.portlet-content {
+	margin-right: 50px;
+	padding: 0 0px 10px 50px;
 }
 
 .portlet-icons {
 	right: 25px;
 }
 
-.portlet-content {
-	padding: 0px 0px 10px 50px;
-	margin-right: 50px;
-}
-
 .portlet-msg-success {
-	color: #000000;
-}
-
-.portlet-section-header {
-	background: #333333;
+	color: #000;
 }
 
 .portlet-section-header th {
-	color: #999999;
+	color: #999;
+}
+
+.portlet-section-header {
+	background: #333;
+}
+
+.portlet-title, .portlet-content {
+	background: url(../images/portlet/portlet_bg.png) no-repeat left bottom;
+}
+
+.portlet-title {
+	color: #C90;
+	padding: 8px 0 15px 25px;
+}
+
+.portlet-topper, .portlet {
+	background: url(../images/portlet/portlet_bg.png) repeat-y scroll right bottom;
+}
+
+#portlet-wrapper-88 .portlet-content {
+	margin: 0 48px;
+}
+
+.portlet {
+	margin: 0;
 }
 
 
 /* ------------ TABS ------------- */
-.tabs {
-	border-bottom: 1px solid #333333;
-	padding: 0 0 18px 1em;
+
+.tabs li a, .tabs li span {
+	background: none;
 }
 
 .tabs li {
 	background: none;
-	background-color: #333333;
+	background-color: #333;
 	line-height: 15px;
 	margin-right: 0.7em;
 }
-.tabs li a, .tabs li span {
+
+.tabs li.current a, .tabs li.current span {
 	background: none;
+	background-color: #99F;
+	color: #333;
 }
 
 .tabs li.current {
 	background: none;
 }
 
-.tabs li.current a, .tabs li.current span {
-	background: none;
-	color: #333333;
-	background-color: #9999ff;
+.tabs {
+	border-bottom: 1px solid #333;
+	padding: 0 0 18px 1em;
 }
-
 
 
 /* ------------ MIS. CUSTOM ------------- */
@@ -154,13 +168,13 @@ a {
 }
 
 .search-box {
-	float:right;
-	margin-bottom:0pt;
-	position:absolute;
-	right:40px;
-	top:110px;
-	z-index:6;
-}									
+	float: right;
+	margin-bottom: 0;
+	position: absolute;
+	right: 40px;
+	top: 110px;
+	z-index: 6;
+}
 
 .thisisthedock {
 	z-index: 9;

@@ -1,172 +1,199 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+/* Reset */
 
-/* Reset Insignificant Styles */
 html {
- overflow-y : scroll ;
-}
-#wrapper , #banner , #banner .logo , #banner .logo a ,
-#navigation , #navigation ul , #navigation ul li , #navigation li.selected ,
-#navigation ul li a , #navigation li a span , #navigation ul li.selected a , #navigation ul li.selected a span , 
-#navigation ul li a:hover , #navigation li a:hover span , #navigation ul li.selected a:hover , #navigation ul li.selected a:hover span ,
-.js #add-page , .js #add-page a , .js #add-page a span , .js #add-page a:hover , .js #add-page a:hover span ,
-.js #navigation .enter-page , .js #navigation .enter-page a , .js #navigation .enter-page a:hover ,
-#content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content
-{
- display : inline ;
- float : none ;
- margin : 0 ;
- padding : 0 ;
- padding-left : 0 ;
- width : auto ;
- min-width : 0 ;
- height : auto ;
- min-height : 0 ;
- background : transparent none no-repeat scroll 0% 0% ;
- color : inherit ;
- font-size : 100% ;
- font-size-adjust : none ;
- font-stretch : normal ;
- font-style : normal ;
- font-variant : normal ;
- font-weight : normal ;
- text-indent : 0 ;
- text-decoration : none ;
- line-height : normal ;
+	overflow-y: scroll;
 }
 
-/* Handy Defaults */
-#banner , #navigation , #navigation ul , .portlet { background-color : transparent ; }
-#wrapper , #banner , #navigation , #content-wrapper , 
-.portlet , .portlet-topper , .portlet-title , .portlet-content { display : block ; }
-#layout-grid .lfr-column  { margin : 0 ; padding : 0 ;}
-.portlet-icons { top : 0 ; right : 0 ; }
-.tabs { border : 0 ; }
-/* What is Where?  Uncomment me to find out...
-.portlet { margin : 12px 6px ; }
-#banner , #navigation { margin : 12px 6px 0 6px ; }
-*/
-
-
-/* Blue Pigment */
-body {
- background : #001342 url('../images/common/page_bg.png') repeat-x scroll 0 0 ;
- color : #F2F9FF ;
- font-family : verdana,tahoma,sans-serif ;
- font-size : 12px ;
- font-size-adjust : none ;
- font-stretch : normal ;
- font-style : normal ;
- font-variant : normal ;
- font-weight : normal ;
- line-height : 1.7em ;
- margin : 0pt ;
- padding : 0pt ;
- text-align : center ;
+#wrapper, #banner, #banner .logo, #banner .logo a,#navigation, #navigation ul, #navigation ul li, #navigation li.selected,#navigation ul li a, #navigation li a span, #navigation ul li.selected a, #navigation ul li.selected a span,#navigation ul li a:hover, #navigation li a:hover span, #navigation ul li.selected a:hover, #navigation ul li.selected a:hover span,.js #add-page, .js #add-page a, .js #add-page a span, .js #add-page a:hover, .js #add-page a:hover span,.js #navigation .enter-page, .js #navigation .enter-page a, .js #navigation .enter-page a:hover,#content-wrapper, .portlet, .portlet-topper, .portlet-title, .portlet-content {
+	background: transparent none no-repeat scroll 0 0%;
+	color: inherit;
+	display: inline;
+	float: none;
+	font-size: 100%;
+	font-size-adjust: none;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	height: auto;
+	line-height: normal;
+	margin: 0;
+	min-height: 0;
+	min-width: 0;
+	padding: 0;
+	padding-left: 0;
+	text-decoration: none;
+	text-indent: 0;
+	width: auto;
 }
-a , a:link , a:visited , a:hover { text-decoration : none ; color : #fff ; } a:hover { color : #fee ; text-decoration : underline ; }
 
-.js .lfr-dock.interactive-mode {
- right : 32px ;
- top : 32px ;
+
+/* Defaults */
+
+#banner, #navigation, #navigation ul, .portlet {
+	background-color: transparent;
 }
-.lfr-dock-list li a {
- color : #000 ;
+
+#layout-grid .lfr-column {
+	margin: 0;
+	padding: 0;
+}
+
+.portlet-icons {
+	right: 0;
+	top: 0;
+}
+
+.tabs {
+	border: 0;
+}
+
+#wrapper, #banner, #navigation, #content-wrapper,.portlet, .portlet-topper, .portlet-title, .portlet-content {
+	display: block;
+}
+
+
+/* Theme */
+
+a, a:link, a:visited, a:hover {
+	color: #FFF;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #FEE;
+	text-decoration: underline;
+}
+
+#banner .logo a {
+	color: #FFF;
+	font-family: 'Trebuchet MS',Tahoma,Arial,Sans-serif;
+	font-size: 58px;
+	font-weight: bold;
+	left: 10px;
+	letter-spacing: -1px;
+	position: absolute;
+	top: 30px;
 }
 
 #banner {
- position : relative ;
- margin : 0 auto ;
- width : 93% ;
- height : 178px ;
- text-align : left ;
-}
-#banner .logo a {
- position : absolute ;
- top : 30px ;
- left : 10px ;
- color : #fff ;
- font-family : 'Trebuchet MS',Tahoma,Arial,Sans-serif ;
- font-size : 58px ;
- font-weight : bold ;
- letter-spacing : -1px ;
+	height: 178px;
+	margin: 0 auto;
+	position: relative;
+	text-align: left;
+	width: 93%;
 }
 
-#navigation {
- background : transparent url('../images/navigation/bg.png') repeat-x scroll left bottom ;
- height : 64px ;
+body {
+	background: #001342 url('../images/common/page_bg.png') repeat-x scroll 0 0;
+	color: #F2F9FF;
+	font-family: verdana,tahoma,sans-serif;
+	font-size: 12px;
+	font-size-adjust: none;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: 1.7em;
+	margin: 0;
+	padding: 0;
+	text-align: center;
 }
-#navigation ul {
- display : block ;
- margin : 0 auto ;
- width : 93% ;
- height : 50px;
- list-style-image : none ;
- list-style-position : outside ;
- list-style-type : none ;
- text-transform : uppercase ;
-}
-#navigation ul li , #navigation ul li.selected {
- float : left ;
- display : block ;
- height : 64px ;
-}
-#navigation ul li.selected {
- background : transparent url('../images/navigation/nav-current.png') no-repeat scroll center bottom ;
-}
-#navigation ul li a span , #navigation ul li.selected a span ,
-#navigation ul li a:hover span , #navigation ul li.selected a:hover span 
-{
- color : #fff ;
- font-family : "Century Gothic","Trebuchet MS",Helvetica,Arial,Geneva,sans-serif ;
- font-size : 15px ;
- font-weight : bold ;
- letter-spacing : 1px ;
- padding : 0pt 15px ;
-}
-#navigation ul li.selected a span , #navigation ul li.selected a:hover span , #navigation ul li a:hover span
-{
- color : #333 ;
+
+.columns-1 #layout-grid #column-1,.columns-2 #layout-grid #column-1, .columns-2 #layout-grid #column-2,.columns-3 #layout-grid #column-1, .columns-3 #layout-grid #column-2, .columns-3 #layout-grid #column-3 {
+	padding: 0 6px;
 }
 
 #content-wrapper {
- background : #1183DA none repeat scroll 0 0 ;
- padding : 0 3.5% ;
+	background: #1183DA none repeat scroll 0 0;
+	padding: 0 3.5%;
 }
 
-.portlet {
- background : transparent url('../images/portlet/portlet_bg.png') repeat scroll 0 0 ;
- border : 5px solid #1F8ADE ;
- margin : 10px 0 ;
- padding : 10px 10px 20px 24px ;
-}
-.portlet-title {
- font-family : 'Trebuchet MS',Arial,Sans-serif ;
- font-size : 2.8em ;
- font-weight : bold ;
- letter-spacing : -2px ;
- color : #B1E100 ;
-}
-
-.columns-1 #layout-grid #column-1 ,
-.columns-2 #layout-grid #column-1 , .columns-2 #layout-grid #column-2 ,
-.columns-3 #layout-grid #column-1 , .columns-3 #layout-grid #column-2 , .columns-3 #layout-grid #column-3 {
- padding : 0 6px ;
-}
-
-.portlet-msg-success , #portal_add_content_title , .portal-add-content td , .portal-add-content a , .font-small {
- color : #000 ;
+.js #add-page {
+	border: 0;
+	top: 0;
+	z-index: 60;
 }
 
 .js .lfr-dock.interactive-mode h2 span {
- font-size : 10pt ;
+	font-size: 10pt;
 }
 
-/* ---- TABS ---- */
-.tabs li.current a, .tabs li.current span {
-	background: transparent url(../images/common/tabs_bg.png) repeat scroll 100% 0px;
-	margin: 2px;
-	color: #ffff99;
+.js .lfr-dock.interactive-mode {
+	right: 32px;
+	top: 32px;
 }
+
+.lfr-dock-list li a {
+	color: #000;
+}
+
+#navigation ul li a span, #navigation ul li.selected a span,#navigation ul li a:hover span, #navigation ul li.selected a:hover span {
+	color: #FFF;
+	font-family: "Century Gothic","Trebuchet MS",Helvetica,Arial,Geneva,sans-serif;
+	font-size: 15px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	padding: 0 15px;
+}
+
+#navigation ul li, #navigation ul li.selected {
+	border: 0;
+	display: block;
+	float: left;
+	height: 64px;
+}
+
+#navigation ul li.selected a span, #navigation ul li.selected a:hover span, #navigation ul li a:hover span {
+	color: #333;
+}
+
+#navigation ul li.selected {
+	background: transparent url('../images/navigation/nav-current.png') no-repeat scroll center bottom;
+}
+
+#navigation ul {
+	display: block;
+	height: 50px;
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	margin: 0 auto;
+	text-transform: uppercase;
+	width: 93%;
+}
+
+#navigation {
+	background: transparent url('../images/navigation/bg.png') repeat-x scroll left bottom;
+	border: 0;
+	height: 64px;
+}
+
+.portlet-msg-success, #portal_add_content_title, .portal-add-content td, .portal-add-content a, .font-small {
+	color: #000;
+}
+
+.portlet-title {
+	color: #B1E100;
+	font-family: 'Trebuchet MS',Arial,Sans-serif;
+	font-size: 2.8em;
+	font-weight: bold;
+	letter-spacing: -2px;
+}
+
+.portlet {
+	background: transparent url('../images/portlet/portlet_bg.png') repeat scroll 0 0;
+	border: 5px solid #1F8ADE;
+	margin: 10px 0;
+	padding: 10px 10px 20px 24px;
+}
+
+.tabs li.current a, .tabs li.current span {
+	background: transparent url(../images/common/tabs_bg.png) repeat scroll 100% 0;
+	color: #FF9;
+	margin: 2px;
+}
+
 .tabs li.current {
-	background: transparent url(../images/common/tabs_bg.png) repeat scroll 100% 0px;
+	background: transparent url(../images/common/tabs_bg.png) repeat scroll 100% 0;
 }

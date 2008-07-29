@@ -40,8 +40,6 @@
 	margin-bottom: 0;
 	padding: 0 0 0 0;
 	position: relative;
-	right: 900px;
-	top: 25px;
 	z-index: 82;
 }
 
@@ -60,8 +58,6 @@
 	border: 1px solid #B5B9BB;
 	border-top: none;
 	position: relative;
-	right: 900px;
-	top: 25px;
 }
 
 .ie6.js .lfr-dock.expanded .lfr-dock-list-container {
@@ -307,11 +303,13 @@ body {
 	font-size: 9pt;
 	min-width: 50%;
 	padding: 8px 0 4px 10px;
+	margin: -1px;
 }
 
 .portlet-content {
 	background-position: left bottom;
 	padding: 10px 5px 25px 15px;
+	margin: 0;
 }
 
 .portlet {

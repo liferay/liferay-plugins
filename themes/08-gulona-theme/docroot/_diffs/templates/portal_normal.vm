@@ -66,11 +66,8 @@ $theme.include($top_messages_include)
 		$theme.wrapPortlet("portlet.vm", $content_include)
 	#end
 
-	<div id="footer-divider">
-		<!-- -->
-	</div>
 	<div id="footer">
-		Copyright � 2007 $company_name, All rights reserved.
+		Copyright &copy; 2007 $company_name, All rights reserved.
 	</div>
 	<div id="wrapper-bottom">
 		<!-- -->

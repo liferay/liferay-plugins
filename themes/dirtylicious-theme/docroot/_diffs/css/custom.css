@@ -1,58 +1,157 @@
-* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
 /* Reset Styles */
+
 html {
- overflow-y : scroll ;
+	overflow-y: scroll;
 }
-#wrapper , #banner , #banner .logo , #banner .logo a ,
-#navigation , #navigation ul , #navigation ul li , #navigation li.selected ,
-#navigation ul li a , #navigation li a span , #navigation ul li.selected a , #navigation ul li.selected a span , 
-#navigation ul li a:hover , #navigation li a:hover span , #navigation ul li.selected a:hover , #navigation ul li.selected a:hover span ,
-.js #add-page , .js #add-page a , .js #add-page a span , .js #add-page a:hover , .js #add-page a:hover span ,
-.js #navigation .enter-page , .js #navigation .enter-page a , .js #navigation .enter-page a:hover ,
-#content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content
-{
- float : none ;
- margin : auto ;
- padding : 0 ;
- width : auto ;
- min-width : 0 ;
- height : auto ;
- min-height : 0 ;
- background : transparent none no-repeat scroll 0 0 ;
- font-size : 100% ;
- font-size-adjust : none ;
- font-stretch : normal ;
- font-style : normal ;
- font-variant : normal ;
- font-weight : normal ;
- text-indent : 0 ;
- text-decoration : none ;
- line-height : normal ;
- color : inherit ;
+
+#wrapper, #banner, #banner .logo, #banner .logo a,#navigation, #navigation ul, #navigation ul li, #navigation li.selected,#navigation ul li a, #navigation li a span, #navigation ul li.selected a, #navigation ul li.selected a span,#navigation ul li a:hover, #navigation li a:hover span, #navigation ul li.selected a:hover, #navigation ul li.selected a:hover span,.js #add-page, .js #add-page a, .js #add-page a span, .js #add-page a:hover, .js #add-page a:hover span,.js #navigation .enter-page, .js #navigation .enter-page a, .js #navigation .enter-page a:hover,#content-wrapper, .portlet, .portlet-topper, .portlet-title, .portlet-content {
+	background: transparent none no-repeat scroll 0 0;
+	color: inherit;
+	float: none;
+	font-size: 100%;
+	font-size-adjust: none;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	height: auto;
+	line-height: normal;
+	margin: auto;
+	min-height: 0;
+	min-width: 0;
+	padding: 0;
+	text-decoration: none;
+	text-indent: 0;
+	width: auto;
 }
+
 
 /* Handy Defaults */
-html {
- overflow-y : scroll ;
+
+#banner, #navigation, #navigation ul, .portlet {
+	background-color: transparent;
 }
-#banner , #navigation , #navigation ul , .portlet { background-color : transparent ; }
-#wrapper , #banner , #navigation , #content-wrapper , 
-.portlet , .portlet-topper , .portlet-title , .portlet-content { display : block ; }
-#layout-grid .lfr-column  { margin : 0 ; padding : 0 ;}
-.portlet-icons { top : 0 ; right : 0 ; }
-.tabs { border : 0 ; }
-.portlet-section-header { background : transparent none ; }
-.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 { font-size : 8pt ; padding-right : 0 ; }
-ul.child-menu { display : none ; }
+
+html {
+	overflow-y: scroll;
+}
+
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
+	font-size: 8pt;
+	padding-right: 0;
+}
+
+#layout-grid .lfr-column {
+	margin: 0;
+	padding: 0;
+}
+
+.portlet-icons {
+	right: 0;
+	top: 0;
+}
+
+.portlet-section-header {
+	background: transparent none;
+}
+
+.tabs {
+	border: 0;
+}
+
+ul.child-menu {
+	display: none;
+}
+
+#wrapper, #banner, #navigation, #content-wrapper,.portlet, .portlet-topper, .portlet-title, .portlet-content {
+	display: block;
+}
+
 
 /* Theme */
 
+#banner .logo a {
+	color: #FFF;
+	font-size: 26pt;
+	padding-bottom: 2px;
+}
+
+#banner .logo {
+	display: block;
+	left: 0;
+	position: absolute;
+	text-align: center;
+	top: 50px;
+	width: 100%;
+}
+
+#banner {
+	background: #222 url(../images/common/header.jpg) no-repeat scroll 0 0;
+	height: 160px;
+	margin-bottom: 5px;
+	position: relative;
+	text-align: center;
+}
+
 body {
-	padding-top: 64px;
 	background: #E7E7E2 url(../images/common/body.jpg) no-repeat scroll center top;
 	color: #444;
-	font: normal normal normal 62.5% 'Tahoma',sans-serif;
+	font: normal normal normal 62.5% Tahoma, sans-serif;
+	padding-top: 64px;
+}
+
+#column-1 {
+	background: #F7F7F7;
+}
+
+#column-2 {
+	background: #FAFAFA;
+}
+
+#content-wrappper {
+	border-top: 4px solid #FFF;
+	padding: 8px 12px 0 0pt;
+}
+
+.js #add-page {
+	border: 0;
+	bottom: auto;
+	top: 0;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	font-size: 10pt;
+}
+
+.liferay-table {
+	font: 10px/10px Arial;
+}
+
+#navigation ul li {
+	border: 0;
+}
+
+#navigation ul li.selected a, #navigation ul li a, #navigation ul li.selected a:hover, #navigation ul li a:hover, .js #add-page a span, .js #add-page a:hover span {
+	color: #FAFAFA;
+	display: block;
+	float: left;
+	padding: 0 16px 0 0;
+}
+
+#navigation ul li.selected a:hover, #navigation ul li a:hover {
+	text-decoration: underline;
+}
+
+#navigation ul, #navigation ul li, #navigation ul li.selected {
+	float: left;
+}
+
+#navigation {
+	background: #949490 none repeat scroll 0;
+	color: #FFF;
+	font: normal normal normal 1.1em Verdana, sans-serif;
+	height: 16px;
+	padding: 8px 12px;
 }
 
 #outter {
@@ -60,98 +159,34 @@ body {
 	padding-bottom: 64px;
 }
 
-#wrapper {
-	margin: 0pt auto;
-	padding: 10px;
-	background: #fff none repeat scroll 0 0;
-	border: 2px solid #D7D7D2;
-	font-size: 1.2em;
-	width: 900px;
+.portlet-content {
+	font-family: 'Lucida Sans Unicode', sans-serif;
 }
 
-#banner {
-	margin-bottom: 5px;
-	height: 160px;
-	background: #222 url(../images/common/header.jpg) no-repeat scroll 0 0;
-	text-align: center;
-	position: relative;
-}
-
-#banner .logo {
-	display: block;
-	width: 100%;
-	position: absolute;
-	top: 50px;
-	left: 0;
-	text-align: center;
-}
-#banner .logo a {
-	color: #fff;
-	font-size: 26pt;
-	padding-bottom:2px;
-}
-
-.js .lfr-dock.interactive-mode h2 span {
-	font-size: 10pt;
-}
-
-#navigation {
-	padding:8px 12px;
-	background:#949490 none repeat scroll 0%;
-	color: #fff;
-	font: normal normal normal 1.1em Verdana,sans-serif;
-}
-
-#navigation ul li.selected a , #navigation ul li a , #navigation ul li.selected a:hover , #navigation ul li a:hover , .js #add-page a span , .js #add-page a:hover span {
-	float: left;
-	display: block;
-	color: #fafafa;
-	padding: 0 16px 0 0;
-}
-
-#navigation ul li.selected a:hover , #navigation ul li a:hover {
-	text-decoration: underline;
-}
-
-#navigation ul , #navigation ul li , #navigation ul li.selected {
-	float: left;
-}
-
-#content-wrappper {
-	padding: 8px 12px 0pt 0pt;
-	border-top: 4px solid #FFFFFF;
-}
-
-#column-1 {
-	background: #f7f7f7;
-}
-
-#column-2 {
-	background: #fafafa;
+.portlet-title {
+	color: #553;
+	font-size: 14pt;
+	margin-bottom: 4px;
+	padding-top: 6px;
 }
 
 .portlet {
 	padding: 8px 12px;
 }
 
-.portlet-title {
-	font-size: 14pt;
-	margin-bottom:4px;
-	padding-top:6px;
-	color:#555533;
-}
-
-.portlet-content {
-	font-family:"Lucida Sans Unicode",sans-serif;
-}
-
-.liferay-table {
-	font: 10px/10px Arial;
-}
-
 .tabs li {
 	font: 10px/2.25em Arial;
 }
+
 .tabs li.current {
 	top: 0;
+}
+
+#wrapper {
+	background: #FFF none repeat scroll 0 0;
+	border: 2px solid #D7D7D2;
+	font-size: 1.2em;
+	margin: 0 auto;
+	padding: 10px;
+	width: 900px;
 }

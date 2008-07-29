@@ -86,7 +86,6 @@ of
 of
 <a title="Sauna Bausatz" href="http://www.oeko-experten.de/artikelverzeichnis/wohnen-einrichten/57,sauna/">Sauna Bausatz</a>
 </div>
-	<div id="footer2"></div>
 </div>
 
 $theme.include($bottom_ext_include)

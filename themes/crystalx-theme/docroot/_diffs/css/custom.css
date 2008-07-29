@@ -1,215 +1,102 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
-/* Theme */
-
-body {
- background : #F2F5FE url('../images/custom/common/page_bg.png') repeat-x scroll 0 0 ;
- color : #192666 ;
- font-family : "verdana",sans-serif ;
- font-size : 70% ;
- font-size-adjust : none ;
- font-stretch : normal ;
- font-style : normal ;
- font-variant : normal ;
- font-weight : normal ;
- line-height : 160% ;
- padding-bottom : 115px ;
+#banner .logo a {
+	color: #FFF;
 }
 
-#wrapper {
-	margin: 0 auto;
-	padding: 50px 0;
-	width: 900px;
-	background: transparent;;
+#banner .logo {
+	font-family: 'georgia', serif;
+	font-size: 260%;
+	font-weight: normal;
+	left: 35px;
+	line-height: 100%;
+	margin: 0;
+	position: absolute;
+	top: 32px;
 }
 
 #banner {
- background: transparent url(../images/custom/common/banner_bg.jpg) no-repeat scroll 0 0;
- color:#FFFFFF;
- height:100px;
- margin:0pt;
- padding:0pt;
- position:relative;
-}
-#banner .logo {
-left:35px;
-margin:0pt;
-position:absolute;
-top:32px;
-font-family:"georgia",serif;
-font-size:260%;
-font-weight:normal;
-line-height:100%;
-text-decoration : underline ;
-}
-
-#banner .logo a span {
- color : #fff ;
-}
-
-.js .lfr-dock.interactive-mode h2 , .js .lfr-dock.interactive-mode h2 span {
- background-image : url('../images/custom/dock/menu_bar.png') ;
-}
-.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
- padding-right : 0 ;
- font-size : 8pt ;
-}
-
-#navigation {
- background : #192666 ;
- margin : -1px 5px ;
- padding : 20px 0 0 0 ;
- width:	890px;
-}
-#navigation ul {
- display : block ;
- float : left ;
- margin : -7px 10px 0px ;
- padding : 0 ;
- width: auto;
-}
-#navigation ul li , #navigation ul li.selected {
- display : block ;
- float : left ;
- margin : 0 5px 0 0 ;
- border: 0px;
- padding : 0 ;
-}
-#navigation ul li a , #navigation ul li a:hover , #navigation ul li.selected a , #navigation ul li.selected a:hover {
- display : block ;
- position : relative ;
- padding : 7px 15px ;
- border : 0 ;
- background : url('../images/custom/navigation/tab_link.png') 0 0 repeat-x ;
- color : #b5c4e3 ;
- cursor : pointer ;
-}
-#navigation ul li a span , #navigation ul li a:hover span , #navigation ul li.selected a span , #navigation ul li.selected a:hover span {
- font-weight : bold ;
- line-height : 160% ;
-}
-#navigation ul li a span.tab-l, #navigation ul li a:hover span.tab-l ,
-#navigation ul li.selected a span.tab-l, #navigation ul li.selected a:hover span.tab-l {
- position : absolute ;
- top : 0 ;
- left : 0 ;
- width : 8px ;
- height : 8px ;
- background:url('../images/custom/navigation/tab_link_l.png') no-repeat 0 0;
-}
-#navigation ul li a span.tab-r , #navigation ul li a:hover span.tab-r ,
-#navigation ul li.selected a span.tab-r , #navigation ul li.selected a:hover span.tab-r {
- position : absolute ;
- top : 0 ;
- right : 0 ;
- width : 8px ;
- height : 8px ;
- background : url('../images/custom/navigation/tab_link_r.png') 100% 0 no-repeat ;
-}
-#navigation ul li a:hover , #navigation ul li.selected a:hover {
- background : url("../images/custom/navigation/tab_hover.png") 0 0 repeat-x ;
- color : #fff ;
-}
-#navigation ul li a:hover span.tab-l , #navigation ul li.selected a:hover span.tab-l {
- background : url('../images/custom/navigation/tab_hover_l.png') 0 0 no-repeat ;
-}
-#navigation ul li a:hover span.tab-r , #navigation ul li.selected a:hover span.tab-r {
- background : url('../images/custom/navigation/tab_hover_r.png') 100% 0 no-repeat ;
-}
-#navigation ul li.selected a , #navigation ul li.selected a:hover { background : tansparent ; color : #ff9000 ; }
-#navigation ul li.selected a span.tab-l , #navigation ul li.selected a:hover span.tab-l {position:absolute; top:0; left:0; _left:-15px; width:8px; height:8px; background:url("../images/custom/navigation/tab_active_l.png") 0 0 no-repeat;}
-#navigation ul li.selected a span.tab-r , #navigation ul li.selected a:hover span.tab-r {position:absolute; top:0; right:0; width:8px; height:8px; background:url("../images/custom/navigation/tab_active_r.png") 100% 0 no-repeat;}
-
-ul.child-menu { display : none ; }
-
-#navigation ul .sort-helper {
- background: transparent url('../images/custom/navigation/placeholder_bg.png');
-}
-
-#content-wrapper , #portlet-wrapper- {
-	background: #fff;
-	border-left: 10px solid #192666;
-	border-right: 10px solid #192666;
-	margin: 0 5px;
-	
-}
-#content-wrapper #layout-grid {
- display : block ;
- background : transparent url('../images/custom/common/wrapper_bg_2.jpg') no-repeat scroll 0 0 ;
- padding : 41px 0 0 0 ;
-}
-
-.js #add-page { 
-	color : #b5c4e3 ;
-	background: transparent;
-	border: 0px;
+	background: transparent url('../images/custom/common/banner_bg.jpg') no-repeat scroll 0 0;
+	color: #FFF;
+	height: 100px;
+	margin: 0;
+	padding: 0;
 	position: relative;
-	right: 0px;
- }
-
-#p_p_id_88_ , .lfr-portlet-column {
- padding : 41px 0 0 15px;
 }
 
-#footer {
- position : relative ;
- height : 60px ;
- margin:0pt 5px;
- padding-left : 40px ;
- background : #fff;
- clear : both ;
- color : #6685CC ;
- border-bottom: 10px solid #192666;
- border-left: 10px solid #192666;
- border-right: 10px solid #192666;
+body {
+	background: #F2F5FE url('../images/custom/common/page_bg.png') repeat-x scroll 0 0;
+	color: #192666;
+	font-family: 'verdana', sans-serif;
+	font-size: 70%;
+	font-size-adjust: none;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: 160%;
+	padding-bottom: 115px;
 }
 
-.portlet {
- background:transparent url('../images/custom/portlet/content_article_bg.jpg') no-repeat scroll 0 0 ;
- clear:both;
- margin:0pt;
- padding:20px;
- min-height : 229px ;
-}
-
-#portlet-wrapper- .portlet-topper {
-	margin: 41px 0 0 0;
-	background: transparent none;
-}
-
-#portlet-wrapper- .portlet-topper .portlet-title {
-	background: #DEE5FD none;
-}
-
-.portlet-title {
- background : #DEE5FD url('../images/custom/portlet/content_title_bg.png') repeat-y scroll 0 0 ;
- color : #192666 ;
- margin : 0pt -20px ;
- padding : 10px ;
- font-family : "georgia",serif ;
- font-size : 180% ;
- font-weight : normal ;
- line-height : 100% ;
-}
-
-.portlet-content {
- padding-top : 12px ;
- text-align : justify ;
-}
-
-.liferay-table {
-	font: 10px/10px Arial;
-}
-
-.tabs li {
-	font: 10px/2.25em Arial;
-}
-.tabs li.current {
-	top: 0;
+#content-wrapper #layout-grid {
+	background: transparent url('../images/custom/common/wrapper_bg_2.jpg') no-repeat scroll 0 0;
+	display: block;
+	padding: 41px 0 0 0;
 }
 
 #content-wrapper {
 	width: 870px;
+}
+
+#content-wrapper, #portlet-wrapper- {
+	background: #FFF;
+	border-left: 10px solid #192666;
+	border-right: 10px solid #192666;
+	margin: 0 5px;
+}
+
+#footer {
+	background: #FFF;
+	border-bottom: 10px solid #192666;
+	border-left: 10px solid #192666;
+	border-right: 10px solid #192666;
+	clear: both;
+	color: #6685CC;
+	height: 60px;
+	margin: 0 5px;
+	padding-left: 40px;
+	position: relative;
+}
+
+.js #add-page a span, .js #add-page a, .js #add-page {
+	bottom: 0;
+	display: inline;
+}
+
+.js #add-page a span {
+	background: transparent;
+	margin-left: 0;
+	padding: 0;
+}
+
+.js #add-page {
+	background: transparent;
+	border: 0;
+	color: #B5C4E3;
+	position: relative;
+	right: 0;
+}
+
+.js #navigation .enter-page .save-page {
+	background: transparent;
+	margin: 0;
+	padding-left: 0;
+	position: absolute;
+	right: 5px;
+	top: 6px;
+}
+
+.js #navigation .enter-page a:hover {
+	margin: 0;
+	padding: 0;
 }
 
 .js #navigation .enter-page {
@@ -217,29 +104,168 @@ ul.child-menu { display : none ; }
 	margin-right: 45px;
 }
 
-.js #add-page a span {
-	background: transparent;
-	margin-left: 0px;
-	padding: 0px;
+.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
+	font-size: 8pt;
+	padding-right: 0;
 }
 
-.js #add-page a span, .js #add-page a, .js #add-page {
-	display: inline;
-	bottom: 0px;
+.js .lfr-dock.interactive-mode h2, .js .lfr-dock.interactive-mode h2 span {
+	background-image: url('../images/custom/dock/menu_bar.png');
 }
 
-.js #navigation .enter-page .save-page {
-	background: transparent;
-	margin: 0px;
-	padding-left: 0px;
+.liferay-table {
+	font: 10px/10px Arial;
+}
+
+#navigation ul .sort-helper {
+	background: transparent url('../images/custom/navigation/placeholder_bg.png');
+}
+
+#navigation ul li a span, #navigation ul li a:hover span, #navigation ul li.selected a span, #navigation ul li.selected a:hover span {
+	font-weight: bold;
+	line-height: 160%;
+}
+
+#navigation ul li a span.tab-l, #navigation ul li a:hover span.tab-l,#navigation ul li.selected a span.tab-l, #navigation ul li.selected a:hover span.tab-l {
+	background: url('../images/custom/navigation/tab_link_l.png') no-repeat 0 0;
+	height: 8px;
+	left: 0;
 	position: absolute;
-	right: 5px;
-	top: 6px;
-}
-.js #navigation .enter-page a:hover {
-	padding: 0px;
-	margin: 0px;
+	top: 0;
+	width: 8px;
 }
 
-/*** THE END ***/
+#navigation ul li a span.tab-r, #navigation ul li a:hover span.tab-r,#navigation ul li.selected a span.tab-r, #navigation ul li.selected a:hover span.tab-r {
+	background: url('../images/custom/navigation/tab_link_r.png') 100% 0 no-repeat;
+	height: 8px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 8px;
+}
 
+#navigation ul li a, #navigation ul li a:hover, #navigation ul li.selected a, #navigation ul li.selected a:hover {
+	background: url('../images/custom/navigation/tab_link.png') 0 0 repeat-x;
+	border: 0;
+	color: #B5C4E3;
+	cursor: pointer;
+	display: block;
+	padding: 7px 15px;
+	position: relative;
+}
+
+#navigation ul li a:hover span.tab-l, #navigation ul li.selected a:hover span.tab-l {
+	background: url('../images/custom/navigation/tab_hover_l.png') 0 0 no-repeat;
+}
+
+#navigation ul li a:hover span.tab-r, #navigation ul li.selected a:hover span.tab-r {
+	background: url('../images/custom/navigation/tab_hover_r.png') 100% 0 no-repeat;
+}
+
+#navigation ul li a:hover, #navigation ul li.selected a:hover {
+	background: url("../images/custom/navigation/tab_hover.png") 0 0 repeat-x;
+	color: #FFF;
+}
+
+#navigation ul li, #navigation ul li.selected {
+	border: 0;
+	display: block;
+	float: left;
+	margin: 0 5px 0 0;
+	padding: 0;
+}
+
+#navigation ul li.selected a span.tab-l, #navigation ul li.selected a:hover span.tab-l {
+	background: url("../images/custom/navigation/tab_active_l.png") 0 0 no-repeat;
+	height: 8px;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 8px;
+}
+
+#navigation ul li.selected a span.tab-r, #navigation ul li.selected a:hover span.tab-r {
+	background: url("../images/custom/navigation/tab_active_r.png") 100% 0 no-repeat;
+	height: 8px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 8px;
+}
+
+#navigation ul li.selected a, #navigation ul li.selected a:hover {
+	background: tansparent;
+	color: #FF9000;
+}
+
+#navigation ul {
+	display: block;
+	float: left;
+	margin: -7px 10px 0;
+	padding: 0;
+	width: auto;
+}
+
+#navigation {
+	background: #192666;
+	margin: -1px 5px;
+	padding: 20px 0 0 0;
+	width: 890px;
+}
+
+#p_p_id_88_, .lfr-portlet-column {
+	padding: 41px 0 0 15px;
+}
+
+.portlet-content {
+	padding-top: 12px;
+	text-align: justify;
+}
+
+.portlet-title {
+	background: #DEE5FD url('../images/custom/portlet/content_title_bg.png') repeat-y scroll 0 0;
+	color: #192666;
+	font-family: 'georgia', serif;
+	font-size: 180%;
+	font-weight: normal;
+	line-height: 100%;
+	margin: 0 -20px;
+	padding: 10px;
+}
+
+#portlet-wrapper- .portlet-topper .portlet-title {
+	background: #DEE5FD none;
+}
+
+#portlet-wrapper- .portlet-topper {
+	background: transparent none;
+	margin: 41px 0 0 0;
+}
+
+.portlet {
+	background: transparent url('../images/custom/portlet/content_article_bg.jpg') no-repeat scroll 0 0;
+	border: 0;
+	clear: both;
+	margin: 0;
+	min-height: 229px;
+	padding: 20px;
+}
+
+.tabs li {
+	font: 10px/2.25em Arial;
+}
+
+.tabs li.current {
+	top: 0;
+}
+
+ul.child-menu {
+	display: none;
+}
+
+#wrapper {
+	background: transparent;
+	margin: 0 auto;
+	padding: 50px 0;
+	width: 900px;
+}

@@ -1,73 +1,126 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-body {
-	background-color: #9DB4A8;
-	background-image: url(../images/custom/comment/body-bg.jpg);
-	background-position: center top;
-	background-repeat: no-repeat;
-	color: #000000;
-	font-family: Verdana, Arial, Georgia;
-	font-weight: normal;
-	line-height: 12px;
-	margin: 0pt;
-	padding: 0pt;
-	text-align: justify;
+
+#banner .logo a {
+	background: transparent url(/image/company_logo?img_id=0&t=1213776897250) no-repeat scroll 0;
+	display: block;
+	font-size: 0;
+	height: 49px;
+	margin-left: 50px;
+	text-indent: -9999em;
+	width: 198px;
 }
 
-#wrapper {
-	background: transparent;
+#banner .logo {
+	display: block;
+	font-size: 2em;
+	margin: 0 auto;
+	padding: 2.25em 0 216px;
+}
+
+#banner h1.logo {
+	left: 15%;
 }
 
 #banner {
 	background-image: url(../images/custom/comment/header.png);
 	background-position: left top;
 	background-repeat: no-repeat;
+	border-bottom: 0 solid #89C8FF;
 	height: 335px;
-	margin: 0pt auto;
-	padding: 0pt;
+	margin: 0 auto;
+	margin-bottom: 0em;
+	padding: 0;
 	text-align: left;
 	width: 946px;
-	border-bottom: 0px solid #89C8FF;
-	margin-bottom: 0em;
-}
-
-#banner .logo {
-	display: block;
-	font-size: 2em;
-	margin: 0pt auto;
-	padding: 2.25em 0pt 216px;
 }
 
 #banner-content {
-	margin: 0pt auto;
+	margin: 0 auto;
 	width: 100%;
 }
 
+body {
+	background-color: #9DB4A8;
+	background-image: url(../images/custom/comment/body-bg.jpg);
+	background-position: center top;
+	background-repeat: no-repeat;
+	color: #000;
+	font-family: Verdana, Arial, Georgia;
+	font-weight: normal;
+	line-height: 12px;
+	margin: 0;
+	padding: 0;
+	text-align: justify;
+}
+
 #content-wrapper {
-	background: #FFFFFF none repeat scroll 0%;
-	margin: 0pt auto;
+	background: #FFF none repeat scroll 0;
+	margin: 56px auto 0;
 	padding: 10px;
 	width: 926px;
 }
 
-#navigation {
-	background-image: url(../images/custom/comment/menu-bg.jpg);
-	background-position: left top;
-	background-repeat: repeat-x;
-	height: 54px;
-	margin: 0px auto;
-	padding-left: 8px;
-	width: 938px;
+#footer {
+	background: transparent url(../images/custom/comment/footer-bg.jpg) repeat-x scroll left bottom;
+	color: #627069;
+	font-size: 11px;
+	height: 74px;
+	line-height: 18px;
+	margin: 0 auto;
+	margin-top: 0;
+	padding-top: 18px;
+	text-align: center;
+	width: 946px;
+}
+
+.js #navigation .enter-page {
+	background: transparent;
+	padding: 0 10px;
+}
+
+.js .interactive-mode {
+	float: right;
+	min-width: 150px;
+	position: absolute;
+	right: 30pt;
+	top: 10pt;
+}
+
+#navigation li a span {
+	display: block;
+	padding: 0;
+}
+
+#navigation li.selected a {
+	color: #FFF;
+	padding-top: 0em;
+}
+
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
+
+#navigation li.selected {
+	border-top: 0;
+	font-weight: bold;
+}
+
+#navigation ul li a {
+	background: transparent url(../images/custom/comment/menu-r.jpg) no-repeat scroll right top;
+	color: #000;
+	display: block;
+	padding: 0 20px 0 20px;
+	text-decoration: none;
 }
 
 #navigation ul li a:hover {
-	color: #FFFFFF;
+	color: #FFF;
 	text-decoration: none;
 }
 
 #navigation ul li {
-	background: transparent url(../images/custom/comment/menu-l.jpg) no-repeat
-		scroll 0%;
-	color: #000000;
+	background: transparent url(../images/custom/comment/menu-l.jpg) no-repeat scroll 0;
+	color: #000;
 	float: left;
 	font-family: Times New Roman, Verdana;
 	font-size: 12px;
@@ -81,54 +134,20 @@ body {
 	text-transform: uppercase;
 }
 
-#navigation li.selected a, #navigation li a:hover {
-	background-color: transparent;
+#navigation {
+	background-image: url(../images/custom/comment/menu-bg.jpg);
+	background-position: left top;
+	background-repeat: repeat-x;
+	height: 54px;
+	margin: 0 auto;
+	padding-left: 8px;
+	width: 928px;
 }
 
-.js #navigation .enter-page {
-	background: transparent;
-}
-
-#banner h1.logo {
-	left: 15%;
-}
-
-#navigation ul li a {
-	background: transparent url(../images/custom/comment/menu-r.jpg) no-repeat
-		scroll right top;
-	color: #000000;
-	display: block;
-	padding: 0pt 20px 0pt 20px;
-	text-decoration: none;
-}
-
-#navigation li.selected {
-	border-top: 0px;
-	font-weight: bold;
-}
-
-#navigation li a span {
-	display: block;
-	padding: 0px;
-}
-
-#navigation li.selected a {
-	padding-top: 0em;
-	color: #fff;
-}
-
-#footer {
-	background: transparent url(../images/custom/comment/footer-bg.jpg) repeat-x
-		scroll left bottom;
-	color: #627069;
-	font-size: 11px;
-	height: 74px;
-	line-height: 18px;
-	margin-top: 0px;
-	padding-top: 18px;
-	text-align: center;
-	width: 946px;
-	margin: 0px auto;
+.portlet-topper {
+	background: #76877D url(../images/custom/portlet/portlet_top.png) repeat-x scroll 0 0px;
+	color: #FFF;
+	position: relative;
 }
 
 .portlet {
@@ -137,54 +156,30 @@ body {
 	text-align: left;
 }
 
-.portlet-topper {
-	background: #76877D url(../images/custom/portlet/portlet_top.png) repeat-x
-		scroll 0% 0px;
-	position: relative;
-	color: #fff;
-}
-
-.tabs {
-	border-bottom: 1px solid #9EB4A8;
-	margin: 0pt 0pt 1.5em;
-	padding: 0pt 0pt 2.6em 1em;
-}
-
 .tabs li {
-	background: #A8BDB9 url(../images/custom/common/tabs_inactive_bg.png) repeat-x
-		scroll 0pt -65%;
+	background: #A8BDB9 url(../images/custom/common/tabs_inactive_bg.png) repeat-x scroll 0 -65%;
 	border-color: #9EB4A8;
 	border-style: solid solid none;
-	border-width: 1px 1px 0pt;
+	border-width: 1px 1px 0;
 	display: inline;
 	float: left;
 	line-height: 2.25;
 	margin-right: 0.8em;
-	padding: 0pt;
+	padding: 0;
 	text-decoration: none;
 }
 
 .tabs li.current {
-	background: #8DA196 url(../images/custom/common/tabs_active_bg.png) repeat-x
-		scroll 0pt 0%;
+	background: #8DA196 url(../images/custom/common/tabs_active_bg.png) repeat-x scroll 0 0%;
 	font-weight: bold;
 }
 
-.js .interactive-mode {
-	float: right;
-	min-width: 150px;
-	position: relative;
-	right: 30pt;
-	top: 10pt;
+.tabs {
+	border-bottom: 1px solid #9EB4A8;
+	margin: 0 0pt 1.5em;
+	padding: 0 0pt 2.6em 1em;
 }
 
-#banner .logo a {
-	background: transparent
-		url(/image/company_logo?img_id=0&t=1213776897250) no-repeat scroll 0%;
-	display: block;
-	font-size: 0pt;
-	height: 49px;
-	margin-left: 50px;
-	text-indent: -9999em;
-	width: 198px;
+#wrapper {
+	background: transparent;
 }

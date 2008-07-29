@@ -1,9 +1,17 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
 body {
-	background: #111 url(../images/custom/common/bg.jpg) repeat-x;
-	font: 62.5%/1.6em "Trebuchet MS",Verdana,sans-serif;;
+	background: #111 url('../images/custom/common/bg.jpg') repeat-x;
 	color: #DDD;
+	font: 62.5%/1.6em Trebuchet MS, 'Verdana', sans-serif;
+}
+
+.side-nav {
+	background: url('../images/custom/navigation/sidenav.png') no-repeat;
+	left: 598px;
+	padding-bottom: 204px;
+	position: absolute;
+	width: 210px;
 }
 
 table {
@@ -14,18 +22,11 @@ table {
 	background: none;
 }
 
-.side-nav {
-	background: url(../images/custom/navigation/sidenav.png) no-repeat;
-	left:598px;
-	padding-bottom:204px;
-	position:absolute;
-	width:210px;
-}
 
 /* ---------- Links ---------- */
 
 a {
-	color: #99AA33;
+	color: #9A3;
 	text-decoration: underline;
 }
 
@@ -33,29 +34,38 @@ a:hover {
 	text-decoration: none;
 }
 
-/* ---------- Main content body ---------- */
 
-#wrapper {
-	margin: 0 auto;
-	width:780px;
-}
+/* ---------- Main content body ---------- */
 
 #content-wrapper {
 	border-collapse: collapse;
-	width:780px;
 	margin-top: 100px;
+	width: 780px;
 }
 
 .ie6 #content-wrapper {
 	margin-top: 20px;
 }
 
+#wrapper {
+	margin: 0 auto;
+	width: 780px;
+}
+
+
 /* ---------- Banner ---------- */
 
-#banner {
-	background: url(../images/custom/common/header.png) no-repeat center top;
-	height: 7em;
-	position: relative;
+#banner .logo a {
+	color: #DDD;
+	font-family: 'Tahoma', sans-serif;
+	font-size: 32pt;
+	font-size-adjust: none;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: normal;
+	text-decoration: line-through;
 }
 
 #banner .logo {
@@ -63,90 +73,63 @@ a:hover {
 	display: block;
 	float: left;
 	font-size: 2em;
-	padding:3.25em 0.6em 0.45em;
 	margin-top: 20px;
+	padding: 3.25em 0.6em 0.45em;
 }
 
-#banner .logo a {
-	font-family:Tahoma,sans-serif;
-	font-size:32pt;
-	color: #DDD;
-	font-size-adjust:none;
-	font-stretch:normal;
-	font-style:normal;
-	font-variant:normal;
-	font-weight:normal;
-	line-height:normal;	
-	text-decoration:line-through;
+#banner {
+	background: url('../images/custom/common/header.png') no-repeat center top;
+	height: 7em;
+	position: relative;
 }
+
 
 /* ---------- Main navigation ---------- */
 
-#navigation {
-	background: #000;
-	margin: 0 auto 0.5em;
-	min-height: 2.2em;
-	overflow: hidden;
-	padding-right: 1em;
-	width: 757px;
-	position: relative;
-	top: 70px;
-	border: 0px;;
+.ie6 #navigation li.selected a {
+	background: url('../images/custom/common/stripes.png') repeat-x 0 15px;
+	float: left;
+	margin-right: 0;
+	padding-right: 0;
 }
 
 .ie6 #navigation {
 	left: -8px;
-	top: 0px;
+	top: 0;
 }
 
-#navigation ul {
-	float: left;
-	min-height: 2em;
-	width: auto;
-}
-
-#navigation li {
+#navigation li a span {
 	background: none;
-	display: inline;
-	float: left;
-	margin-right: 0.5em;
-	padding: 0 3.5em 0 0;
-	position: relative;
-	border: 0px;
+	padding-left: 0;
+	text-decoration: none;
 }
 
 #navigation li a {
 	background: none;
-	color:#777777;
+	color: #777;
 	display: block;
 	font-size: 12pt;
 	padding: 0 0 10px 0;
 	text-decoration: none;
 }
 
-#navigation li a:hover {
-	padding-bottom: 0;
-	color:#8DCA3F;
-}
-
-#navigation li a span {
+#navigation li a:hover span {
 	background: none;
-	padding-left: 0px;
-	text-decoration: none;
 }
 
-#navigation li.selected a {
-	background: url(../images/custom/common/stripes.png) repeat-x 0px 15px;
-	padding-top: 0;
-	color:#8DCA3F;
-	height: 16px;
+#navigation li a:hover {
+	color: #8DCA3F;
+	padding-bottom: 0;
 }
 
-.ie6 #navigation li.selected a {
-	background: url(../images/custom/common/stripes.png) repeat-x 0px 15px;
+#navigation li {
+	background: none;
+	border: 0;
+	display: inline;
 	float: left;
-	padding-right: 0px;
-	margin-right: 0px;
+	margin-right: 0.5em;
+	padding: 0 3.5em 0 0;
+	position: relative;
 }
 
 #navigation li.selected a span {
@@ -155,59 +138,48 @@ a:hover {
 	font-weight: bold;
 }
 
+#navigation li.selected a {
+	background: url('../images/custom/common/stripes.png') repeat-x 0 15px;
+	color: #8DCA3F;
+	height: 16px;
+	padding-top: 0;
+}
+
 #navigation li.selected a:hover {
 	padding-bottom: 10px;
 }
 
-#navigation li a:hover span {
-	background: none;
+#navigation ul {
+	float: left;
+	min-height: 2em;
+	width: auto;
 }
+
+#navigation {
+	background: #000;
+	border: 0;
+	margin: 0 auto 0.5em;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding-right: 1em;
+	position: relative;
+	top: 70px;
+	width: 757px;
+}
+
 
 /* ---------- Portlet wrapper and icons ---------- */
-
-.portlet, .portlet-topper, .portlet-content, .portlet-title {
-	background: none;
-}
-
-#portlet-wrapper-{
-	margin-top: 70px;
-}
 
 .ie6 #portlet-wrapper- {
 	margin-top: auto;
 }
 
-.portlet {
-	margin: 0 0 10px;
-	padding-right: 10px;
-	text-align: left;
-	border: 0px;
-}
-
-.portlet-topper {
-	background-position: right top;
-	margin-right: -10px;
-	padding-right: 40px;
-	position: relative;
-	border: 0px;
-}
-
-.portlet-title {
-	display: block;
-	font-weight: normal;
-	min-width: 50%;
-	background: url(../images/custom/common/stripes.png) repeat-x scroll left bottom;
-	color:#99AA33;
-	font-family:Impact,sans-serif;
-	font-size:2em;
-	letter-spacing:1px;
-	line-height:normal;
-	margin-bottom:8px;
-	padding-bottom:11px;
-}
-
 .ie6.portlet-title {
 	padding-bottom: 17px;
+}
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: none;
 }
 
 .portlet-content {
@@ -215,26 +187,56 @@ a:hover {
 	padding: 10px 5px 25px 15px;
 }
 
+.portlet-title {
+	background: url('../images/custom/common/stripes.png') repeat-x scroll left bottom;
+	color: #9A3;
+	display: block;
+	font-family: 'Impact', sans-serif;
+	font-size: 2em;
+	font-weight: normal;
+	letter-spacing: 1px;
+	line-height: normal;
+	margin-bottom: 8px;
+	min-width: 50%;
+	padding-bottom: 11px;
+}
+
+.portlet-topper {
+	background-position: right top;
+	border: 0;
+	margin-right: -10px;
+	padding-right: 40px;
+	position: relative;
+}
+
+#portlet-wrapper- {
+	margin-top: 70px;
+}
+
+.portlet {
+	border: 0;
+	margin: 0 0 10px;
+	padding-right: 10px;
+	text-align: left;
+}
+
+
 /* ---------- Table or section header ---------- */
+
+.portlet-section-header th {
+	border-bottom: 1px solid #CCC;
+	color: #DDD;
+	font-weight: bold;
+	padding: 0.3em 1em;
+}
 
 .portlet-section-header {
 	background: #000;
 	padding: 1px 0 0;
 }
 
-.portlet-section-header th {
-	border-bottom: 1px solid #ccc;
-	color: #DDD;
-	font-weight: bold;
-	padding: 0.3em 1em;
-}
 
 /* ---------- Normal text in a table cell ---------- */
-
-.portlet-section-body {
-	background: #E7EDF4;
-	color: #000;
-}
 
 .portlet-section-body td {
 	background: #8DCA3F;
@@ -243,44 +245,50 @@ a:hover {
 	padding: 0.3em 1em;
 }
 
+.portlet-section-body {
+	background: #E7EDF4;
+	color: #000;
+}
+
+
 /* This CSS sets the default styles for tabs. */
 
-.tabs {
-	border-bottom: 1px solid #000;
-	margin: 0 0 1.5em 0;
-	padding: 0 0 2.6em 1em;
-}
-
-.tabs li a, .tabs li span {
-	background: #000 none;
-	display: block;
-	float: left;
-	padding: 0.35em 1em 0;
-	text-decoration: none;
-	color: #DDD;
-}
-
-.tabs li a:hover {
-	background: #99AA33;
-	color: #000;
-}
-
-.tabs li.current a, .tabs li.current span {
-	background: #99AA33 none;
-	color: #000;
-	padding: 0.15em 1em;
+.js #add-page {
+	border: 0;
+	bottom: 0;
 }
 
 .js #navigation .enter-page .save-page {
 	background: transparent;
-	padding-left: 0px;
+	padding-left: 0;
 }
 
 .js #navigation .enter-page {
 	background: transparent;
 }
 
-.js #add-page {
-	bottom: 0px;
-	border: 0px;
+.tabs li a, .tabs li span {
+	background: #000 none;
+	color: #DDD;
+	display: block;
+	float: left;
+	padding: 0.35em 1em 0;
+	text-decoration: none;
+}
+
+.tabs li a:hover {
+	background: #9A3;
+	color: #000;
+}
+
+.tabs li.current a, .tabs li.current span {
+	background: #9A3 none;
+	color: #000;
+	padding: 0.15em 1em;
+}
+
+.tabs {
+	border-bottom: 1px solid #000;
+	margin: 0 0 1.5em 0;
+	padding: 0 0 2.6em 1em;
 }

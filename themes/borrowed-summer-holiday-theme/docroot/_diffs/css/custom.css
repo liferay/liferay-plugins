@@ -1,40 +1,37 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-body {
-	background: #fff url(../images/body-bg.png) repeat-x;
-	color:#333333;
-	font-family:Arial,Helvetica,sans-serif;
-	font-size:63.8%;
-}
 
 a {
-	color: #000000;
+	color: #000;
 }
+
+body {
+	background: #FFF url(../images/body-bg.png) repeat-x;
+	color: #333;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 63.8%;
+}
+
 
 /* ---------- Main content body ---------- */
 
+#content-wrapper {
+	margin-left: 14px;
+	margin-top: 22px;
+	width: 874px;
+}
+
 #wrapper {
-	background:#FCFBE9 none repeat scroll 0%;
-	border:1px solid #BBD1E2;
+	background: #FCFBE9 none repeat scroll 0;
+	border: 1px solid #BBD1E2;
 	margin: 10px auto;
 	width: 900px;
 }
 
-#content-wrapper {
-	margin-left: 14px;
-	margin-top: 9px;
-	width: 870px;
-}
 
 /* ---------- Banner ---------- */
 
-#banner {
-	background:#EACE46 none repeat scroll;
-	border:1px solid #EBCD48;;
-	height: 7em;
-	left: 14px;
-	position: relative;
-	top: 14px;
-	width: 870px;
+#banner .logo a {
+	text-decoration: none;
 }
 
 #banner .logo {
@@ -45,51 +42,26 @@ a {
 	padding: 1.25em 0.6em 1.45em;
 }
 
-#banner .logo a {
-	text-decoration: none;
+#banner {
+	background: #EACE46 none repeat scroll;
+	border: 1px solid #EBCD48;
+	height: 150px;
+	left: 14px;
+	position: relative;
+	top: 14px;
+	width: 870px;
 }
+
 
 /* ---------- Main navigation ---------- */
 
-#navigation {
-	background:#EACE46 none repeat scroll;
-	border:1px solid #EBCD48;;
-	margin: 0 auto 0.5em;
-	min-height: 2.2em;
-	overflow: hidden;
-	padding-right: 1em;
-	position:relative;
-	top: 14px;
-	width: 860px;
-}
-
-#navigation ul {
+.js #add-page {
+	bottom: 0;
 	float: left;
-	min-height: 2em;
-	width: auto;
-}
-
-#navigation li {
-	background:  transparent url(../images/tabrightB.gif) no-repeat 0 12%;
-	display: inline;
-	float: left;
-	margin-right: -4px;
-	margin-left: 0.5em;
-	padding: 0 0.5em 0 0;
-	position: relative;
-}
-
-#navigation li a {
-	background: none;
-	color:#9E8100;
-	display: block;
-	padding: 4pt 2em 0.5em 1.5em;
-	text-decoration: none;
-}
-
-#navigation li a:hover {
-	color: #000000;
-	padding-bottom: 0.5em;
+	font-weight: bold;
+	padding-top: 0.3em;
+	position: absolute;
+	right: 6px;
 }
 
 #navigation li a span {
@@ -98,9 +70,32 @@ a {
 	text-decoration: none;
 }
 
-#navigation li.selected a {
-	color:#000000;
-	padding-top: 0.5em;
+#navigation li a {
+	background: none;
+	color: #9E8100;
+	display: block;
+	padding: 4pt 2em 0.5em 1.5em;
+	text-decoration: none;
+}
+
+#navigation li a:hover span {
+	background: url(../images/navigation/bullet_over.png) no-repeat 0 50%;
+}
+
+#navigation li a:hover {
+	color: #FFF;
+	padding-bottom: 0.5em;
+}
+
+#navigation li {
+	background: transparent url(../images/tabrightB.gif) no-repeat 0 12%;
+	border: 0;
+	display: inline;
+	float: left;
+	margin-left: 0.5em;
+	margin-right: -4px;
+	padding: 0 0.5em 0 0;
+	position: relative;
 }
 
 #navigation li.selected a span {
@@ -109,20 +104,31 @@ a {
 	font-weight: bold;
 }
 
+#navigation li.selected a {
+	color: #FFF;
+	padding-top: 0.5em;
+}
+
 #navigation li.selected a:hover {
 	padding-bottom: 0.5em;
 }
 
-#navigation li a:hover span {
-	background: url(../images/navigation/bullet_over.png) no-repeat 0 50%;
+#navigation ul {
+	float: left;
+	min-height: 2em;
+	width: auto;
 }
 
-.js #add-page {
-	float: left;
-	font-weight: bold;
-	padding-top: 0.3em;
+#navigation {
+	background: #EACE46 none repeat scroll;
+	border: 1px solid #EBCD48;
+	margin: 0 auto 0.5em;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding-right: 1em;
 	position: relative;
-	left: 10px;
+	top: 14px;
+	width: 860px;
 }
 
 
@@ -132,10 +138,19 @@ a {
 	background: none;
 }
 
-.portlet {
-	margin: 0 0 10px;
-	padding-right: 10px;
-	text-align: left;
+.portlet-content {
+	background-position: left bottom;
+	padding: 10px 5px 25px 15px;
+}
+
+.portlet-title {
+	background-position: top left;
+	color: #9E8100;
+	display: block;
+	font-size: 1.3em;
+	font-weight: bold;
+	min-width: 50%;
+	padding: 8px 0 4px 10px;
 }
 
 .portlet-topper {
@@ -145,19 +160,8 @@ a {
 	position: relative;
 }
 
-.portlet-title {
-	background-position: top left;
-	display: block;
-	color:#9E8100;
-	font-size:1.3em;
-	font-weight: bold;
-	min-width: 50%;
-	padding: 8px 0 4px 10px;
+.portlet {
+	margin: 0 0 10px;
+	padding-right: 10px;
+	text-align: left;
 }
-
-.portlet-content {
-	background-position: left bottom;
-	padding: 10px 5px 25px 15px;
-}
-
-

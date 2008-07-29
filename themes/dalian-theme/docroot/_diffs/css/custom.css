@@ -1,13 +1,8 @@
-#wrapper {
-	margin: 0 auto;
-	width:976px;
-}
-
 #banner {
-	background:#D9EBFD url(../images/custom/dalian/dalian.jpg) repeat-x scroll 0pt;
-	border-bottom:medium none;
-	margin-bottom:1em;
-	height:219px;
+	background: #D9EBFD url('../images/custom/dalian/dalian.jpg') repeat-x scroll 0;
+	border-bottom: medium none;
+	height: 219px;
+	margin-bottom: 1em;
 }
 
 #content-wrapper {
@@ -15,18 +10,108 @@
 	width: 900px;
 }
 
+#wrapper {
+	margin: 0 auto;
+	width: 976px;
+}
+
+
 /* ---------- Main navigation ---------- */
 
-#navigation {
-	margin: 0 auto;
-	min-height: 2.2em;
-	overflow: hidden;
-	padding-right: 1em;
-	position:absolute;
-	border: 0px;
-	top: -48px;
+#banner h1.logo {
+	left: 20%;
+}
+
+.ie6 #navigation li {
+	background-image: none;
+}
+
+.ie6 #navigation, .ie6 #navigation ul {
+	height: 2em;
+	overflow: visible;
+}
+
+.js #add-page a span {
+	background: white;
+	color: #155D73;
+	display: inline;
+	padding: 13px 20px;
+}
+
+.js #add-page a {
+	display: inline;
+}
+
+.js #add-page {
 	background: transparent;
-	margin-left: 50px;
+	border: 0;
+	display: inline;
+	position: relative;
+	right: 15px;
+	top: 11px;
+}
+
+.js #navigation .enter-page {
+	background-color: trasnparent;
+	padding: 6px 2px;
+}
+
+.js .ineractive-mode {
+	right: 17%;
+}
+
+.js .interactive-mode {
+	right: 17%;
+}
+
+#navigation .child-menu {
+	display: none;
+}
+
+#navigation li a span {
+	color: #155D73;
+	display: block;
+	font-family: 'Verdana';
+	font-size: 10px;
+	font-weight: bold;
+	padding: 5px 1.5em;
+}
+
+#navigation li a {
+	padding: 5px 10px;
+	text-decoration: none;
+}
+
+#navigation li a:hover {
+	color: #E57700;
+}
+
+#navigation li {
+	background: #FFF none repeat scroll 0;
+	border: medium none;
+	display: inline;
+	float: left;
+	margin-right: 0.5em;
+	position: relative;
+}
+
+#navigation li.selected a span {
+	background: transparent;
+	color: #E57700;
+	padding-left: 1.5em;
+}
+
+#navigation li.selected a {
+	color: #E57700;
+}
+
+#navigation li.selected a, #navigation li a:hover {
+	background: transparent;
+}
+
+#navigation li.selected {
+	border-top: 0 none;
+	font-weight: bold;
 }
 
 #navigation ul {
@@ -36,109 +121,34 @@
 	width: auto;
 }
 
-.ie6 #navigation, .ie6 #navigation ul {
-	height: 2em;
-	overflow: visible;
-}
-
-#navigation li {
-	background:#FFFFFF none repeat scroll 0%;
-	border:medium none;
-	display: inline;
-	float: left;
-	margin-right: 0.5em;
-	position: relative;
-}
-
-.ie6 #navigation li {
-	background-image: none;
-}
-
-#navigation li a {
-	text-decoration: none;
-	padding: 5px 10px;
-}
-
-#navigation li a:hover {
-	color: #E57700;
-}
-
-#navigation li a span {
-	display: block;
-	padding: 5px 1.5em;
-	color: #155D73;
-	font-family:Verdana;
-	font-size:10px;
-	font-weight:bold;
-}
-
-#navigation li.selected a span {
-	color: #E57700;
+#navigation {
 	background: transparent;
-	padding-left: 1.5em;
+	border: 0;
+	left: -40px;
+	margin: 0 auto;
+	margin-left: 50px;
+	min-height: 2.2em;
+	overflow: hidden;
+	padding-right: 1em;
+	position: absolute;
+	top: 148px;
 }
 
-#navigation li.selected a {
-	color:#E57700;
-}
 
-#navigation li.selected {
-	border-top: 0pt none;
-	font-weight: bold;
-}
-
-#navigation .child-menu {
-	display: none;
-}
-.js #add-page a span {
-	background: white;
-	color: #155D73;
-	padding:13px 20px;
-	display: inline;
-}
-#navigation li.selected a, #navigation li a:hover {
-	background: transparent;
-}
-
-.js .ineractive-mode {
-	right: 17%;
-}
-
-#banner h1.logo {
-	left: 20%;
-}
-.js #navigation .enter-page {
-	background-color: trasnparent;
-	padding:6px 2px;
-}
-.js #add-page a {
-	display:inline;
-}
-.js #add-page {
-	background: transparent;
-	border: 0px;
-	display: inline;
-	right: 15px;
-	top: 11px;
-	position: relative;
-}
-.js .interactive-mode {
-	right: 17%;
-}
 /* ---------- portlet ---------- */
-.portlet {
-	border:1px solid #777777;
-	margin-bottom:1em;
-	text-align:left;
+
+.portlet-content {
+	background-position: left bottom;
+	padding: 10px 5px 25px 15px;
 }
 
 .portlet-topper {
-	background:#D9EBFD url(../images/custom/portlet/portlet_top.png) repeat-x scroll 0% 0%;
-	position:relative;
+	background: #D9EBFD url('../images/custom/portlet/portlet_top.png') repeat-x scroll 0 0%;
+	position: relative;
 }
 
-.portlet-content {
-
-	background-position:left bottom;
-	padding:10px 5px 25px 15px;
+.portlet {
+	border: 1px solid #777;
+	margin-bottom: 1em;
+	text-align: left;
 }

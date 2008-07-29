@@ -1,8 +1,10 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
+
 /* ---- BASE ---- */
-body {
-	background:transparent url(../images/common/background.png) repeat scroll;
+
+#banner .logo {
+	height: 109px;
 }
 
 #banner {
@@ -10,49 +12,61 @@ body {
 	position: relative;
 }
 
-#banner .logo {
-	height: 109px;
+body {
+	background: transparent url(../images/common/background.png) repeat scroll;
 }
+
+html {
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
 
 /* ---- NAVIGATION ---- */
-#navigation {
-	padding-left: 10px;
-}
 
-#navigation li {
-	margin-right: 11px;
+.js .lfr-dock.interactive-mode {
+	float: right;
+	min-width: 150px;
+	position: relative;
+	right: 30px;
+	top: 40px;
 }
 
 #navigation li a {
 	margin-left: -10px;
 }
 
-.js .lfr-dock.interactive-mode {
-	float:right;
-	min-width:150px;
-	position:relative;
-	right:30px;
-	top:40px;
+#navigation li {
+	margin-right: 11px;
 }
 
-/* ---- PORTLET ---- */
-.portlet-title {
-	padding-top: 25px;
-	color: #FFFFFF;
+#navigation {
+	padding-left: 10px;
 }
+
+
+/* ---- PORTLET ---- */
 
 .portlet-icons {
 	margin: -2px 40px auto auto;
 }
 
-/* ---- TABS ---- */
-.tabs {
-	border-bottom: 1px solid #996600;
-	padding: 0 0 1.8em 1em;
+.portlet-title {
+	color: #FFF;
+	padding-top: 25px;
 }
+
+
+/* ---- TABS ---- */
 
 .tabs li {
 	line-height: 1.5;
 }
+
+.tabs {
+	border-bottom: 1px solid #960;
+	padding: 0 0 1.8em 1em;
+}
+
 
 /* ---- MIS. CUSTOM ---- */

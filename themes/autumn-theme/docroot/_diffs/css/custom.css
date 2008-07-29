@@ -1,247 +1,103 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
-/* Reset Banner */
-#banner {
- margin : 0 ;
- padding : 0 ;
- height : 200px ;
- background : transparent none no-repeat scroll 0% 0% ;
- border : 1px solid #ccc ;
-}
-#banner .logo {
- display : block ;
- margin : 0 ;
- padding : 0 ;
- width : auto ;
- height : auto ;
- background : transparent none no-repeat scroll 0% 0% ;
- text-indent : 0 ;
- font-size : 100% ;
-}
 #banner .logo a {
- display : inline ;
- margin : 0 ;
- padding : 0 ;
- width : auto ;
- height : auto ;
- background : transparent none no-repeat scroll 0% 0% ;
- text-indent : 0 ;
- font-size : 100% ;
+	color: #FFF;
+	font: bold italic 56px 'Georgia', 'Times New Roman', 'Times', serif;
 }
 
-/* Reset Portlets */
-.portlet, .portlet-topper, .portlet-content, .portlet-title {
- background : transparent none no-repeat scroll 0% 0% ;
- margin : 0 ;
- padding : 0 ;
-}
-.portlet {
- border : 1px solid #ccc ;
-}
-.portlet-topper {
- background-position: 0% 0% ;
-}
-.portlet-title {
- min-width : 100% ;
- background-position : 0% 0% ;
- font-weight : normal ;
+#banner {
+	background: transparent url('../images/custom/header.jpg');
+	height: 113px;
 }
 
-
-
-/* Reset Navigation Menu */
-#navigation {
- margin : 0 ;
- padding : 0 ;
- width : auto ;
- min-height : 100% ;
- border : 1px solid #ccc ;
-}
-#navigation ul {
- /* float : none ; */
- width : auto ;
- min-height : 100% ;
-}
-#navigation li {
- /* float : none ; */
- background : transparent none no-repeat scroll 0% 0% ;
- padding : 0 ;
-}
-#navigation li.selected a {
- padding : 0 ;
-}
-#navigation li.selected a:hover {
- padding : 0 ;
-}
-#navigation li a , #navigation li a:hover , #navigation li a span , #navigation li a:hover span {
- display : inline ;
- padding : 0 ;
- background : transparent none no-repeat scroll 0% 0% ;
-}
-#navigation li a:hover {
- padding : 0 ;
-}
-#navigation li.selected a span {
- padding : 0 ;
- background : transparent none no-repeat scroll 0% 0% ;
- font-size : 100% ;
- font-weight : normal ;
-}
-.js #add-page {
- font-weight : normal ;
- padding : 0 ;
-}
-.js #add-page a span {
- background : transparent none no-repeat scroll 0% 0% ;
- padding : 0 ;
-}
-.js #add-page a:hover span {
- background : transparent none no-repeat scroll 0% 0% ;
-}
-.js #navigation .enter-page {
- background : transparent none no-repeat scroll 0% 0% ;
- padding : 0 ;
-}
-.js #navigation .enter-page a {
- margin : 0 ;
- padding : 0 ;
- font-weight : normal ;
-}
-.js #navigation .enter-page a:hover {
- margin : 0 ;
- padding : 0 ;
-}
-
-
-
-/* Terra Firma */
-/* -- Main */
-html {
- overflow-y : scroll ;
-}
 body {
- background : #e4d9be url('../images/custom/body_bg.png') repeat-y top center;
+	background: #E4D9BE url('../images/custom/body_bg.png') repeat-y top center;
 }
-#wrapper {
- background : #F6EACF ;
- font-size : 0.9em;
- margin : 0px auto;
- width : 900px;
+
+#content-wrapper {
+	width: auto;
 }
-#banner {
- border : 0 ;
- height : 113px ;
- background : transparent url('../images/custom/header.jpg') repeat-y top center;
+
+html {
+	overflow-y: scroll;
 }
-#banner .logo {
- position : absolute ;
- top : 40px ;
- right : 190px ;
-}
-#banner .logo a {
-font: bold 3em/3em Georgia,"Times New Roman",Times,serif;
-font-style:italic;
-color : #fff ;
-}
-.js .lfr-dock.interactive-mode h2 , .js .lfr-dock.interactive-mode h2 span {
- background-image : url('../images/custom/menu_bar.png') ;
-}
+
 .js .lfr-dock.expanded .lfr-dock-list-container {
- background-color : transparent ;
+	background-color: transparent;
 }
+
+.js .lfr-dock.interactive-mode h2, .js .lfr-dock.interactive-mode h2 span {
+	background-image: url('../images/custom/menu_bar.png');
+}
+
 .js .lfr-dock.interactive-mode ul {
- background-color : transparent ;
- background-image : url('../images/custom/menu_bg.png') ;
- border : 0 ;
+	background-color: transparent;
+	background-image: url('../images/custom/menu_bg.png');
+	border: 0;
 }
-#navigation {
- background : transparent url('../images/custom/linkbar_bg.png');
- font-size : small ;
- height : 37px ;
- border : 0 ;
+
+#navigation li a {
+	padding: 8px 16px 5px;
 }
+
+#navigation li {
+	background: transparent none no-repeat scroll 0 0%;
+	border: 0;
+	margin: 0;
+}
+
+#navigation li.selected a span {
+	background: transparent none;
+	padding: 0;
+}
+
 #navigation ul {
- margin : 0 10px ;
-}
-#navigation ul li , #navigation ul li.selected {
- margin : 0 ;
- padding : 0 ;
-}
-#navigation ul li.selected {
- border-bottom : 4px solid #715123 ;
-}
-#navigation ul li a , #navigation ul li.selected a , #navigation ul li a:hover , #navigation ul li.selected a:hover , #add-page a , #add-page a:hover {
- display : block ;
- padding-top : 8px ;
- font-family:Georgia,"Times New Roman",Times,serif;
- color : #fff ;
- padding : 8px 10px 7px 10px;
- margin : 0 ;
-}
-#navigation ul li a:hover , #navigation ul li.selected a:hover , #add-page a:hover {
- background : #fff ;
- color : #000 ;
-}
-#content-wrapper , #portlet-wrapper- {
- margin-top : 23px ;
- border : 0 ;
+	width: auto;
 }
 
-#layout-column_column-1 {
- background : #d1ba84 ;
- border-top : 36px solid #b3af54 ;
+#navigation {
+	background: transparent url('../images/custom/linkbar_bg.png');
+	border: 0;
+	height: 31px;
+	margin: 0;
 }
 
-#layout-column_column-2 {
- background : #d1ba84 ;
- border-top : 36px solid #b3af54 ;
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: transparent none no-repeat scroll 0 0%;
+	margin: 0;
+	padding: 0;
 }
 
-#layout-column_column-3 {
- background : #d1ba84 ;
- border-top : 36px solid #b3af54 ;
-}
-
-.portlet {
- border : 0 ;
- padding : 2px 0 14px 0 ;
-}
-.portlet {
- margin : 12px;
-}
-.portlet-topper {
- height : 59px ;
- background : url('../images/custom/h2.png') no-repeat;
-}
-.portlet-title {
- font-family:Georgia,"Times New Roman",Times,serif;
- padding: 20px 0 0 40px;
- font-size:10pt;
- font-weight: bold;
- color:#FBE09D;
-}
-.portlet-icons {
-padding : 12px 38px 0 0 ;
-}
 .portlet-content {
- font-family : Georgia,"Times New Roman",Times,serif ;
- font-size: 10pt ;
+	font-family: Georgia,"Times New Roman",Times,serif;
+	font-size: 10pt;
 }
 
-.tabs {
- border : 0 ;
-}
-.tabs li , .tabs li a, .tabs li span , .tabs li.current , .tabs li.current a, .tabs li.current span , .tabs li.current a, .tabs li.current span {
-background-image : url('../images/custom/tabs_bg.png') ;
+.portlet-icons {
+	padding: 12px 38px 0 0;
 }
 
-.liferay-table {
-	font: 10px/10px Arial;
+.portlet-title {
+	color: #FBE09D;
+	font-family: Georgia,"Times New Roman",Times,serif;
+	font-size: 10pt;
+	font-weight: bold;
+	padding: 20px 0 0 40px;
 }
 
-.tabs li {
-	font: 10px/2.25em Arial;
+.portlet-topper {
+	background: url('../images/custom/h2.png') no-repeat;
+	height: 39px;
 }
-.tabs li.current {
-	top: 0;
+
+.portlet {
+	border: 0;
+	margin: 12px;
+	padding: 2px 0 14px 0;
+}
+
+#wrapper {
+	background: #F6EACF;
+	font-size: 0.9em;
+	margin: 0 auto;
+	position: relative;
+	width: 903px;
 }
