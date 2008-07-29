@@ -9,9 +9,12 @@ body {
 #banner {
 	background: center top no-repeat url(../images/custom/bckheader.jpg);
 	height: 206px;
+	position: relative;
 }
 #wrapper {
 	background: transparent;
+	position: relative;
+	width: 1264px;
 }
 #navigation {
 	background: transparent;
@@ -107,4 +110,7 @@ a {
 }
 .lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
 	color:#BA5300;
+}
+.uni-form fieldset legend {
+	color: white;
 }
