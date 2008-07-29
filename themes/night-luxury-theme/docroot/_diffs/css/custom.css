@@ -11,15 +11,18 @@ body {
 	height:391px;
 	margin:0 auto;
 	width:960px;
+	position: relative;
 }
 #wrapper {
 	background: none;
+	position: relative;
+	width: 1264px;
 }
 #navigation {
-	background: none;
-	border: none;
-	margin: -123pt auto 65px;
-	width: 60%;
+	background:black none repeat scroll 0 0;
+	border:medium none;
+	margin-top:-1px;
+	width:960px;
 }
 #navigation li {
 	border: none;
@@ -46,11 +49,11 @@ body {
 	font-size: 15px;
 }
 #banner .logo a {
-	margin-left: 235px;
+	margin-left:75px;
 }
 .js .interactive-mode {
 	background: transparent none repeat scroll 0% 0%;
-	right: 18%;
+	right: 5%;
 }
 .js .interactive-mode h2 span {
 	background: transparent none repeat scroll 0% 0%;
@@ -68,6 +71,7 @@ body {
 #content-wrapper {
 	width: 960px;
 	background: black;
+	margin:-20px auto;
 }
 .ui-dialog.ui-resizable-disabled .ui-dialog-content {
 	color: black;
@@ -99,13 +103,10 @@ a {
 	color:#FFFFFF;
 	font-size:10px;
 	height:15px;
-	margin-left:146px;
+	margin-left:152px;
 	padding:5px 0;
 	text-align:center;
 	width:960px;
-}
-.ie #footer {
-	margin-left: 150px;
 }
 .js #navigation .enter-page {
 	background-color:transparent;
