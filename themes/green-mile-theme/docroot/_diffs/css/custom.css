@@ -10,10 +10,13 @@ body {
 }
 #wrapper {
 	background: transparent;
+	position: relative;
+	width: 1264px;
 }
 #banner {
 	background: #14A500 url(../images/custom/head_bckg.jpg) no-repeat top left;
 	height: 218px;
+	position: relative;
 	margin-top: 87px;
 }
 #navigation {
@@ -110,4 +113,7 @@ a {
 .js #navigation .enter-page {
 	background-color: transparent;
 	padding: 0;
+}
+.uni-form fieldset legend {
+	color: white;
 }
