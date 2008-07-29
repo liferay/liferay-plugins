@@ -7,9 +7,12 @@
 }
 #wrapper {
 	background: transparent;
+	position: relative;
+	width: 1162px;
 }
 #banner {
 	background: #C23B01 url(../images/custom/header_bckg.jpg) no-repeat scroll left center;
+	position: relative;
 }
 #navigation li.selected a, #navigation li a:hover {
 	background-color: transparent;
@@ -45,7 +48,8 @@ body {
 	width: 1152px;
 }
 .js .interactive-mode {
-	top: 65px;
+	top:13px;
+	right: 2%;
 }
 .portlet {
 	background: transparent;
