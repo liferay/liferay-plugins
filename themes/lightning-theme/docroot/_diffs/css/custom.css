@@ -1,17 +1,15 @@
 #banner {
 	background: black url(../images/custom/header.jpg) no-repeat center;
 	height: 230px;
-	margin-left: 146px;
+	margin-left: 152px;
 	width: 960px;
-}
-.ie #banner {
-	margin-left: 150px;
+	position: relative;
 }
 #navigation {
 	background: black;
 	border: none;
 	height: 80px;
-	margin: 0pt auto 20px;
+	margin: -1px auto 20px;
 	width:960px;
 }
 #navigation li {
@@ -20,6 +18,8 @@
 }
 #wrapper {
 	background: transparent;
+	position: relative;
+	width: 1264px;
 }
 body {
 	background-color: #5A5A5A;
@@ -67,11 +67,11 @@ a {
 	width: 84%;
 }
 #banner .logo a {
-	margin-left: 160px;
+	margin-left: 30px;
 	margin-top: 55px;
 }
 .js .interactive-mode {
-	right: 17%;
+	right: 2%;
 }
 .uni-form {
 	background: black none repeat scroll 0% 0%;
@@ -103,7 +103,7 @@ a {
 	color:#2A2557;
 	font-size:9px;
 	height:40px;
-	margin-left:146px;
+	margin-left:152px;
 	padding:0 40px;
 	text-align:center;
 	width:880px;
