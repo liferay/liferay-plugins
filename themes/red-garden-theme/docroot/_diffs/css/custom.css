@@ -13,9 +13,12 @@ body {
 	background: no-repeat url(../images/custom/bckheader.jpg) center;
 	height: 230px;
 	margin-left: 1px;
+	position: relative;
 }
 #wrapper {
 	background: none;
+	position: relative;
+	width: 1264px;
 }
 #navigation {
 	background: transparent url(../images/custom/bckmenu.gif) repeat-x scroll 0% 0%;
@@ -59,7 +62,7 @@ body {
 	margin-top: 45pt;
 }
 #navigation ul {
-	width: 35%;
+	width: 90%;
 }
 .portlet {
 	background: transparent;
@@ -101,13 +104,10 @@ body {
 #footer {
 	border-top: 1px solid #430000;
 	font-size: 9px;
-	margin: 0pt 5px 0pt 132px;
+	margin: 0pt 5px 0pt 137px;
 	padding: 5px 0pt;
 	text-align: center;
-	width: 992px;
-}
-.ie #footer {
-	margin-left: 134px;
+	width: 990px;
 }
 a {
 	font-size: 12px;
@@ -123,4 +123,7 @@ a {
 }
 .portlet-section-body td {
 	color: black;
+}
+.uni-form fieldset legend {
+	color: white;
 }
