@@ -1,0 +1,52 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+#banner {
+	background: #D9EBFD url('../images/custom/banner_bg.png');
+}
+
+.js #navigation .enter-page {
+	background: transparent none;
+}
+
+#navigation li a span {
+	background: #F3F9FE;
+}
+
+#navigation li a {
+	color: #777;
+}
+
+#navigation li a:hover {
+	margin-top: 0;
+}
+
+#navigation li, #navigation li.selected {
+	background: #F3F9FE;
+	border: 0;
+	margin-right: 8px;
+}
+
+#navigation li.selected a, #navigation li a:hover, #navigation li.selected a:hover {
+	background: transparent none;
+	color: #000;
+	margin-top: -4px;
+}
+
+#navigation li.selected {
+	border-top: 4px solid #99F;
+}
+
+#navigation {
+	background: #D9EBFD;
+	border: 0;
+}
+
+.portlet-topper {
+	background: url('../images/custom/portlet_bg.png');
+	border: 0;
+}
+
+.portlet {
+	border: 2px solid #89C8FF;
+	padding: 0;
+}
