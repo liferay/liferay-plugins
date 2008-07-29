@@ -10,13 +10,26 @@
 	<classpathentry kind="lib" path="/portal/lib/global/container.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet-container.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/commons-beanutils.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/commons-codec.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/commons-collections.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/commons-digester.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/commons-fileupload.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/commons-lang.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/commons-logging.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/commons-validator.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/log4j.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/oro.jar" />
 	<classpathentry kind="lib" path="/portal/portal-kernel/portal-kernel.jar" />
 	<classpathentry kind="lib" path="/portal/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal/util-taglib/util-taglib.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/maxmind.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/el-api.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/el-ri.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jsf-api.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jsf-facelets.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jsf-impl.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jsf-portlet.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>

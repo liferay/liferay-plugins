@@ -70,14 +70,6 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 		return fooPersistence.findByPrimaryKey(fooId);
 	}
 
-	public List<Foo> getFoos(int start, int end) throws SystemException {
-		return fooPersistence.findAll(start, end);
-	}
-
-	public int getFoosCount() throws SystemException {
-		return fooPersistence.countAll();
-	}
-
 	public Foo updateFoo(Foo foo) throws SystemException {
 		foo.setNew(false);
 
