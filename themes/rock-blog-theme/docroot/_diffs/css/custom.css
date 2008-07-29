@@ -35,9 +35,12 @@ body {
 	font-family: Verdana;
 	height: 140px;
 	margin-left:124px;
+	position: relative;
 }
 #wrapper {
 	background: none;
+	position: relative;
+	width: 1264px;
 }
 #banner .logo a {
 	margin-left: 697px;
@@ -47,7 +50,7 @@ body {
 	right:18%;
 	background:transparent url(../images/custom/bckmenu.gif) no-repeat center;
 	height:34px;
-	top:140px;
+	top:141px;
 }
 .js #add-page {
 	background:transparent url(../images/custom/bckmenu.gif) no-repeat scroll right center;
