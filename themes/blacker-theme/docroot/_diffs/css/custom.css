@@ -1,0 +1,101 @@
+#navigation {
+	background: #FF6600 url(../images/custom/menu_bckg.jpg) repeat scroll 0 0;
+	border: none;
+}
+#navigation li {
+	border: none;
+}
+#wrapper {
+	background: transparent;
+}
+#banner {
+	background: #C23B01 url(../images/custom/header_bckg.jpg) no-repeat scroll left center;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
+#navigation li a:hover {
+	background: #C23B01 url(../images/custom/menu_bckg_over.jpg) repeat scroll 0 0;
+	height: 20px;
+	margin-top: 1px;
+	padding-top: 4px;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+body {
+	background: #000000 url(../images/custom/bckg.gif) repeat scroll 0 0;
+	border: 1px solid #666666;
+	font-family: "Myriad Pro","Trebuchet MS",Arial;
+	font-size: 0.9em;
+	line-height: 20px;
+	margin: 50px;
+}
+#navigation li a {
+	color: white;
+	font-size: 14px;
+	font-style: italic;
+	font-weight: bold;
+}
+#content-wrapper {
+	background: white none repeat scroll 0 0;
+	border: 5px solid white;
+	margin: -20px auto;
+	width: 1152px;
+}
+.js .interactive-mode {
+	top: 65px;
+}
+.portlet {
+	background: transparent;
+	border: none;
+}
+.portlet-topper {
+	background: transparent;
+	border: none;
+	font-size: 18px;
+}
+a {
+	font-size: 12px;
+}
+.js #navigation .enter-page {
+	background-color: transparent;
+}
+.ui-tabs li a, .tabs li span {
+	background: transparent none repeat scroll 0 0;
+	border-right: medium none;
+	color: black;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: transparent;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color: transparent;
+}
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: #FF6600 url(../images/custom/menu_bckg.jpg) repeat scroll 0 0;
+	border: medium none;
+	color: white;
+}
+.ui-tabs {
+	border-bottom: medium none;
+}
+#footer {
+	background: #424E4F url(../images/custom/footer_bckg.jpg) repeat scroll 0 0;
+	clear: both;
+	font-style: italic;
+	height: 102px;
+}
+.js #add-page {
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+	right:0;
+	top:0;
+}
+.js #add-page a span {
+	color:white;
+}
+.ie #content-wrapper {
+	width: 1148px;
+}
