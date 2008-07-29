@@ -14,17 +14,21 @@ body {
 	font-family: Verdana;
 	height: 285px;
 	margin-left: 1px;
+	position:relative;
+	top:0;
 }
 .ie #banner {
 	margin-left: 0px;
 }
 #wrapper {
 	background: transparent;
+	margin:0 auto;
+	width:1000px;
+	position:relative;
 }
 #navigation {
 	background: transparent;
 	border: none;
-	margin: -212pt auto 268px;
 	width: 86.4%;
 }
 #navigation li {
@@ -51,23 +55,23 @@ body {
 	padding: 5px 10px;
 }
 #banner .logo a {
-	margin-left: 167px;
+	margin-left: 10px;
 	margin-top: 65px;
 }
 .js #add-page {
 	background: transparent none repeat scroll 0% 0%;
 	border: medium none;
-	right: 29%;
+	right: 12%;
 	top: -1px;
 }
 .js .interactive-mode {
-	right: 11%;
+	right: 1%;
 }
 #content-wrapper {
 	background: black;
 	border: 10px solid black;
 	margin: -15px auto;
-	width: 980px;
+	width: 979px;
 	min-height: 500px;
 }
 .portlet {
@@ -118,11 +122,20 @@ a {
 	font-family: Verdana;
 	font-size: 10px;
 	height: 15px;
-	margin-left: 128px;
+	margin-left: 1px;
 	padding: 5px 0pt;
 	text-align: center;
-	width: 1000px;
+	width: 999px;
 }
 .ie #footer {
 	margin-left: 130px;
+}
+.js #navigation {
+	left:0;
+	position:absolute;
+	top:0;
+	z-index:60;
+}
+.uni-form fieldset legend {
+	color: white;
 }
