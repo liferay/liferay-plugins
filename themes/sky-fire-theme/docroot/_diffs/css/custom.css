@@ -18,22 +18,25 @@ body {
 	font-size: 16px;
 }
 #banner {
-	background: no-repeat center url(../images/custom/bckheader.jpg);
+	background: black no-repeat center url(../images/custom/bckheader.jpg);
 	font-family: Verdana;
-	height: 285px;
+	height: 283px;
 	margin-left: 1px;
+	position:relative;
+	top:0;
 }
 .ie #banner {
 	margin-left: 0px;
 }
 #wrapper {
 	background: transparent;
+	margin:0 auto;
+	width:1000px;
+	position:relative;
 }
 #navigation {
-	background: none;
+	background: black;
 	border: none;
-	margin: -33pt auto 20px;
-	width: 86.5%;
 }
 #navigation li {
 	border: none;
@@ -82,18 +85,36 @@ a {
 	border-bottom: medium none;
 }
 #banner .logo a {
-	margin-left: 100px;
+	margin-left: 10px;
 }
 .js .interactive-mode {
-	right: 11%;
+	right: 2%;
+	position: absolute;
 }
 .js #add-page {
 	background: transparent none repeat scroll 0% 0%;
 	border: medium none;
-	top: 0px;
+	top:3px;
+	position:relative;
+	float: left;
+	right:auto;
 }
 .js #navigation .enter-page {
 	background-color: transparent;
 	margin-top: 5px;
 	padding: 0px;
+}
+.uni-form fieldset legend {
+	color: orange;
+}
+.js #navigation {
+	margin:0 0 0 1px;
+	width:999px;
+	left: 0;
+	height:40px;
+}
+#navigation ul {
+	float:left;
+	margin:0 auto 0 30px;
+	width:auto;
 }
