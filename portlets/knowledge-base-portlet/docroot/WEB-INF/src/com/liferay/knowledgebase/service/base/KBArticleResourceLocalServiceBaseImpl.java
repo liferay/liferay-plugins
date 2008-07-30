@@ -23,25 +23,21 @@
 package com.liferay.knowledgebase.service.base;
 
 import com.liferay.counter.service.CounterLocalService;
-import com.liferay.counter.service.CounterLocalServiceFactory;
 import com.liferay.counter.service.CounterService;
-import com.liferay.counter.service.CounterServiceFactory;
 
 import com.liferay.knowledgebase.model.KBArticleResource;
 import com.liferay.knowledgebase.service.KBArticleLocalService;
-import com.liferay.knowledgebase.service.KBArticleLocalServiceFactory;
 import com.liferay.knowledgebase.service.KBArticleResourceLocalService;
 import com.liferay.knowledgebase.service.KBArticleService;
-import com.liferay.knowledgebase.service.KBArticleServiceFactory;
 import com.liferay.knowledgebase.service.persistence.KBArticlePersistence;
 import com.liferay.knowledgebase.service.persistence.KBArticleResourcePersistence;
-import com.liferay.knowledgebase.service.persistence.KBArticleResourceUtil;
-import com.liferay.knowledgebase.service.persistence.KBArticleUtil;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+
+import com.liferay.util.bean.PortletBeanLocatorUtil;
 
 import java.util.List;
 
@@ -155,27 +151,33 @@ public abstract class KBArticleResourceLocalServiceBaseImpl
 
 	public void afterPropertiesSet() {
 		if (kbArticleLocalService == null) {
-			kbArticleLocalService = KBArticleLocalServiceFactory.getImpl();
+			kbArticleLocalService = (KBArticleLocalService)PortletBeanLocatorUtil.locate(KBArticleLocalService.class.getName() +
+					".impl");
 		}
 
 		if (kbArticleService == null) {
-			kbArticleService = KBArticleServiceFactory.getImpl();
+			kbArticleService = (KBArticleService)PortletBeanLocatorUtil.locate(KBArticleService.class.getName() +
+					".impl");
 		}
 
 		if (kbArticlePersistence == null) {
-			kbArticlePersistence = KBArticleUtil.getPersistence();
+			kbArticlePersistence = (KBArticlePersistence)PortletBeanLocatorUtil.locate(KBArticlePersistence.class.getName() +
+					".impl");
 		}
 
 		if (kbArticleResourcePersistence == null) {
-			kbArticleResourcePersistence = KBArticleResourceUtil.getPersistence();
+			kbArticleResourcePersistence = (KBArticleResourcePersistence)PortletBeanLocatorUtil.locate(KBArticleResourcePersistence.class.getName() +
+					".impl");
 		}
 
 		if (counterLocalService == null) {
-			counterLocalService = CounterLocalServiceFactory.getImpl();
+			counterLocalService = (CounterLocalService)PortletBeanLocatorUtil.locate(CounterLocalService.class.getName() +
+					".impl");
 		}
 
 		if (counterService == null) {
-			counterService = CounterServiceFactory.getImpl();
+			counterService = (CounterService)PortletBeanLocatorUtil.locate(CounterService.class.getName() +
+					".impl");
 		}
 	}
 

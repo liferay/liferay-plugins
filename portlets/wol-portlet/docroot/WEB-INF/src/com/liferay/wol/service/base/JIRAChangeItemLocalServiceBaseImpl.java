@@ -27,50 +27,31 @@ import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
+import com.liferay.util.bean.PortletBeanLocatorUtil;
+
 import com.liferay.wol.model.JIRAChangeItem;
 import com.liferay.wol.service.JIRAActionLocalService;
-import com.liferay.wol.service.JIRAActionLocalServiceFactory;
 import com.liferay.wol.service.JIRAChangeGroupLocalService;
-import com.liferay.wol.service.JIRAChangeGroupLocalServiceFactory;
 import com.liferay.wol.service.JIRAChangeItemLocalService;
 import com.liferay.wol.service.JIRAIssueLocalService;
-import com.liferay.wol.service.JIRAIssueLocalServiceFactory;
 import com.liferay.wol.service.MeetupsEntryLocalService;
-import com.liferay.wol.service.MeetupsEntryLocalServiceFactory;
 import com.liferay.wol.service.MeetupsRegistrationLocalService;
-import com.liferay.wol.service.MeetupsRegistrationLocalServiceFactory;
 import com.liferay.wol.service.SVNRepositoryLocalService;
-import com.liferay.wol.service.SVNRepositoryLocalServiceFactory;
 import com.liferay.wol.service.SVNRevisionLocalService;
-import com.liferay.wol.service.SVNRevisionLocalServiceFactory;
 import com.liferay.wol.service.WallEntryLocalService;
-import com.liferay.wol.service.WallEntryLocalServiceFactory;
 import com.liferay.wol.service.persistence.JIRAActionFinder;
-import com.liferay.wol.service.persistence.JIRAActionFinderUtil;
 import com.liferay.wol.service.persistence.JIRAActionPersistence;
-import com.liferay.wol.service.persistence.JIRAActionUtil;
 import com.liferay.wol.service.persistence.JIRAChangeGroupFinder;
-import com.liferay.wol.service.persistence.JIRAChangeGroupFinderUtil;
 import com.liferay.wol.service.persistence.JIRAChangeGroupPersistence;
-import com.liferay.wol.service.persistence.JIRAChangeGroupUtil;
 import com.liferay.wol.service.persistence.JIRAChangeItemPersistence;
-import com.liferay.wol.service.persistence.JIRAChangeItemUtil;
 import com.liferay.wol.service.persistence.JIRAIssueFinder;
-import com.liferay.wol.service.persistence.JIRAIssueFinderUtil;
 import com.liferay.wol.service.persistence.JIRAIssuePersistence;
-import com.liferay.wol.service.persistence.JIRAIssueUtil;
 import com.liferay.wol.service.persistence.MeetupsEntryPersistence;
-import com.liferay.wol.service.persistence.MeetupsEntryUtil;
 import com.liferay.wol.service.persistence.MeetupsRegistrationPersistence;
-import com.liferay.wol.service.persistence.MeetupsRegistrationUtil;
 import com.liferay.wol.service.persistence.SVNRepositoryPersistence;
-import com.liferay.wol.service.persistence.SVNRepositoryUtil;
 import com.liferay.wol.service.persistence.SVNRevisionPersistence;
-import com.liferay.wol.service.persistence.SVNRevisionUtil;
 import com.liferay.wol.service.persistence.WallEntryFinder;
-import com.liferay.wol.service.persistence.WallEntryFinderUtil;
 import com.liferay.wol.service.persistence.WallEntryPersistence;
-import com.liferay.wol.service.persistence.WallEntryUtil;
 
 import java.util.List;
 
@@ -319,87 +300,108 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 
 	public void afterPropertiesSet() {
 		if (jiraActionLocalService == null) {
-			jiraActionLocalService = JIRAActionLocalServiceFactory.getImpl();
+			jiraActionLocalService = (JIRAActionLocalService)PortletBeanLocatorUtil.locate(JIRAActionLocalService.class.getName() +
+					".impl");
 		}
 
 		if (jiraActionPersistence == null) {
-			jiraActionPersistence = JIRAActionUtil.getPersistence();
+			jiraActionPersistence = (JIRAActionPersistence)PortletBeanLocatorUtil.locate(JIRAActionPersistence.class.getName() +
+					".impl");
 		}
 
 		if (jiraActionFinder == null) {
-			jiraActionFinder = JIRAActionFinderUtil.getFinder();
+			jiraActionFinder = (JIRAActionFinder)PortletBeanLocatorUtil.locate(JIRAActionFinder.class.getName() +
+					".impl");
 		}
 
 		if (jiraChangeGroupLocalService == null) {
-			jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getImpl();
+			jiraChangeGroupLocalService = (JIRAChangeGroupLocalService)PortletBeanLocatorUtil.locate(JIRAChangeGroupLocalService.class.getName() +
+					".impl");
 		}
 
 		if (jiraChangeGroupPersistence == null) {
-			jiraChangeGroupPersistence = JIRAChangeGroupUtil.getPersistence();
+			jiraChangeGroupPersistence = (JIRAChangeGroupPersistence)PortletBeanLocatorUtil.locate(JIRAChangeGroupPersistence.class.getName() +
+					".impl");
 		}
 
 		if (jiraChangeGroupFinder == null) {
-			jiraChangeGroupFinder = JIRAChangeGroupFinderUtil.getFinder();
+			jiraChangeGroupFinder = (JIRAChangeGroupFinder)PortletBeanLocatorUtil.locate(JIRAChangeGroupFinder.class.getName() +
+					".impl");
 		}
 
 		if (jiraChangeItemPersistence == null) {
-			jiraChangeItemPersistence = JIRAChangeItemUtil.getPersistence();
+			jiraChangeItemPersistence = (JIRAChangeItemPersistence)PortletBeanLocatorUtil.locate(JIRAChangeItemPersistence.class.getName() +
+					".impl");
 		}
 
 		if (jiraIssueLocalService == null) {
-			jiraIssueLocalService = JIRAIssueLocalServiceFactory.getImpl();
+			jiraIssueLocalService = (JIRAIssueLocalService)PortletBeanLocatorUtil.locate(JIRAIssueLocalService.class.getName() +
+					".impl");
 		}
 
 		if (jiraIssuePersistence == null) {
-			jiraIssuePersistence = JIRAIssueUtil.getPersistence();
+			jiraIssuePersistence = (JIRAIssuePersistence)PortletBeanLocatorUtil.locate(JIRAIssuePersistence.class.getName() +
+					".impl");
 		}
 
 		if (jiraIssueFinder == null) {
-			jiraIssueFinder = JIRAIssueFinderUtil.getFinder();
+			jiraIssueFinder = (JIRAIssueFinder)PortletBeanLocatorUtil.locate(JIRAIssueFinder.class.getName() +
+					".impl");
 		}
 
 		if (meetupsEntryLocalService == null) {
-			meetupsEntryLocalService = MeetupsEntryLocalServiceFactory.getImpl();
+			meetupsEntryLocalService = (MeetupsEntryLocalService)PortletBeanLocatorUtil.locate(MeetupsEntryLocalService.class.getName() +
+					".impl");
 		}
 
 		if (meetupsEntryPersistence == null) {
-			meetupsEntryPersistence = MeetupsEntryUtil.getPersistence();
+			meetupsEntryPersistence = (MeetupsEntryPersistence)PortletBeanLocatorUtil.locate(MeetupsEntryPersistence.class.getName() +
+					".impl");
 		}
 
 		if (meetupsRegistrationLocalService == null) {
-			meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getImpl();
+			meetupsRegistrationLocalService = (MeetupsRegistrationLocalService)PortletBeanLocatorUtil.locate(MeetupsRegistrationLocalService.class.getName() +
+					".impl");
 		}
 
 		if (meetupsRegistrationPersistence == null) {
-			meetupsRegistrationPersistence = MeetupsRegistrationUtil.getPersistence();
+			meetupsRegistrationPersistence = (MeetupsRegistrationPersistence)PortletBeanLocatorUtil.locate(MeetupsRegistrationPersistence.class.getName() +
+					".impl");
 		}
 
 		if (svnRepositoryLocalService == null) {
-			svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getImpl();
+			svnRepositoryLocalService = (SVNRepositoryLocalService)PortletBeanLocatorUtil.locate(SVNRepositoryLocalService.class.getName() +
+					".impl");
 		}
 
 		if (svnRepositoryPersistence == null) {
-			svnRepositoryPersistence = SVNRepositoryUtil.getPersistence();
+			svnRepositoryPersistence = (SVNRepositoryPersistence)PortletBeanLocatorUtil.locate(SVNRepositoryPersistence.class.getName() +
+					".impl");
 		}
 
 		if (svnRevisionLocalService == null) {
-			svnRevisionLocalService = SVNRevisionLocalServiceFactory.getImpl();
+			svnRevisionLocalService = (SVNRevisionLocalService)PortletBeanLocatorUtil.locate(SVNRevisionLocalService.class.getName() +
+					".impl");
 		}
 
 		if (svnRevisionPersistence == null) {
-			svnRevisionPersistence = SVNRevisionUtil.getPersistence();
+			svnRevisionPersistence = (SVNRevisionPersistence)PortletBeanLocatorUtil.locate(SVNRevisionPersistence.class.getName() +
+					".impl");
 		}
 
 		if (wallEntryLocalService == null) {
-			wallEntryLocalService = WallEntryLocalServiceFactory.getImpl();
+			wallEntryLocalService = (WallEntryLocalService)PortletBeanLocatorUtil.locate(WallEntryLocalService.class.getName() +
+					".impl");
 		}
 
 		if (wallEntryPersistence == null) {
-			wallEntryPersistence = WallEntryUtil.getPersistence();
+			wallEntryPersistence = (WallEntryPersistence)PortletBeanLocatorUtil.locate(WallEntryPersistence.class.getName() +
+					".impl");
 		}
 
 		if (wallEntryFinder == null) {
-			wallEntryFinder = WallEntryFinderUtil.getFinder();
+			wallEntryFinder = (WallEntryFinder)PortletBeanLocatorUtil.locate(WallEntryFinder.class.getName() +
+					".impl");
 		}
 	}
 

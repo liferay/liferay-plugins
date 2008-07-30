@@ -30,7 +30,8 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.twitter.model.Feed;
 import com.liferay.twitter.service.FeedLocalService;
 import com.liferay.twitter.service.persistence.FeedPersistence;
-import com.liferay.twitter.service.persistence.FeedUtil;
+
+import com.liferay.util.bean.PortletBeanLocatorUtil;
 
 import java.util.List;
 
@@ -94,7 +95,8 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 
 	public void afterPropertiesSet() {
 		if (feedPersistence == null) {
-			feedPersistence = FeedUtil.getPersistence();
+			feedPersistence = (FeedPersistence)PortletBeanLocatorUtil.locate(FeedPersistence.class.getName() +
+					".impl");
 		}
 	}
 

@@ -32,72 +32,54 @@ public class MeetupsEntryLocalServiceUtil {
 	public static com.liferay.wol.model.MeetupsEntry addMeetupsEntry(
 		com.liferay.wol.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.SystemException {
-		MeetupsEntryLocalService meetupsEntryLocalService = MeetupsEntryLocalServiceFactory.getService();
-
-		return meetupsEntryLocalService.addMeetupsEntry(meetupsEntry);
+		return _service.addMeetupsEntry(meetupsEntry);
 	}
 
 	public static void deleteMeetupsEntry(long meetupsEntryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		MeetupsEntryLocalService meetupsEntryLocalService = MeetupsEntryLocalServiceFactory.getService();
-
-		meetupsEntryLocalService.deleteMeetupsEntry(meetupsEntryId);
+		_service.deleteMeetupsEntry(meetupsEntryId);
 	}
 
 	public static void deleteMeetupsEntry(
 		com.liferay.wol.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.SystemException {
-		MeetupsEntryLocalService meetupsEntryLocalService = MeetupsEntryLocalServiceFactory.getService();
-
-		meetupsEntryLocalService.deleteMeetupsEntry(meetupsEntry);
+		_service.deleteMeetupsEntry(meetupsEntry);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		MeetupsEntryLocalService meetupsEntryLocalService = MeetupsEntryLocalServiceFactory.getService();
-
-		return meetupsEntryLocalService.dynamicQuery(dynamicQuery);
+		return _service.dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		MeetupsEntryLocalService meetupsEntryLocalService = MeetupsEntryLocalServiceFactory.getService();
-
-		return meetupsEntryLocalService.dynamicQuery(dynamicQuery, start, end);
+		return _service.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.wol.model.MeetupsEntry getMeetupsEntry(
 		long meetupsEntryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		MeetupsEntryLocalService meetupsEntryLocalService = MeetupsEntryLocalServiceFactory.getService();
-
-		return meetupsEntryLocalService.getMeetupsEntry(meetupsEntryId);
+		return _service.getMeetupsEntry(meetupsEntryId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.MeetupsEntry> getMeetupsEntries(
 		int start, int end) throws com.liferay.portal.SystemException {
-		MeetupsEntryLocalService meetupsEntryLocalService = MeetupsEntryLocalServiceFactory.getService();
-
-		return meetupsEntryLocalService.getMeetupsEntries(start, end);
+		return _service.getMeetupsEntries(start, end);
 	}
 
 	public static int getMeetupsEntriesCount()
 		throws com.liferay.portal.SystemException {
-		MeetupsEntryLocalService meetupsEntryLocalService = MeetupsEntryLocalServiceFactory.getService();
-
-		return meetupsEntryLocalService.getMeetupsEntriesCount();
+		return _service.getMeetupsEntriesCount();
 	}
 
 	public static com.liferay.wol.model.MeetupsEntry updateMeetupsEntry(
 		com.liferay.wol.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.SystemException {
-		MeetupsEntryLocalService meetupsEntryLocalService = MeetupsEntryLocalServiceFactory.getService();
-
-		return meetupsEntryLocalService.updateMeetupsEntry(meetupsEntry);
+		return _service.updateMeetupsEntry(meetupsEntry);
 	}
 
 	public static com.liferay.wol.model.MeetupsEntry addMeetupsEntry(
@@ -108,20 +90,16 @@ public class MeetupsEntryLocalServiceUtil {
 		int totalAttendees, int maxAttendees, double price, byte[] thumbnail)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		MeetupsEntryLocalService meetupsEntryLocalService = MeetupsEntryLocalServiceFactory.getService();
-
-		return meetupsEntryLocalService.addMeetupsEntry(userId, title,
-			description, startDateMonth, startDateDay, startDateYear,
-			startDateHour, startDateMinute, endDateMonth, endDateDay,
-			endDateYear, endDateHour, endDateMinute, totalAttendees,
-			maxAttendees, price, thumbnail);
+		return _service.addMeetupsEntry(userId, title, description,
+			startDateMonth, startDateDay, startDateYear, startDateHour,
+			startDateMinute, endDateMonth, endDateDay, endDateYear,
+			endDateHour, endDateMinute, totalAttendees, maxAttendees, price,
+			thumbnail);
 	}
 
 	public static java.util.List<com.liferay.wol.model.MeetupsEntry> getMeetupsEntries(
 		long companyId) throws com.liferay.portal.SystemException {
-		MeetupsEntryLocalService meetupsEntryLocalService = MeetupsEntryLocalServiceFactory.getService();
-
-		return meetupsEntryLocalService.getMeetupsEntries(companyId);
+		return _service.getMeetupsEntries(companyId);
 	}
 
 	public static com.liferay.wol.model.MeetupsEntry updateMeetupsEntry(
@@ -133,12 +111,20 @@ public class MeetupsEntryLocalServiceUtil {
 		byte[] thumbnail)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		MeetupsEntryLocalService meetupsEntryLocalService = MeetupsEntryLocalServiceFactory.getService();
-
-		return meetupsEntryLocalService.updateMeetupsEntry(userId,
-			meetupsEntryId, title, description, startDateMonth, startDateDay,
-			startDateYear, startDateHour, startDateMinute, endDateMonth,
-			endDateDay, endDateYear, endDateHour, endDateMinute,
-			totalAttendees, maxAttendees, price, thumbnail);
+		return _service.updateMeetupsEntry(userId, meetupsEntryId, title,
+			description, startDateMonth, startDateDay, startDateYear,
+			startDateHour, startDateMinute, endDateMonth, endDateDay,
+			endDateYear, endDateHour, endDateMinute, totalAttendees,
+			maxAttendees, price, thumbnail);
 	}
+
+	public static MeetupsEntryLocalService getService() {
+		return _service;
+	}
+
+	public void setService(MeetupsEntryLocalService service) {
+		_service = service;
+	}
+
+	private static MeetupsEntryLocalService _service;
 }

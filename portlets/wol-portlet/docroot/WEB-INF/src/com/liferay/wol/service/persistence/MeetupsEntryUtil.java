@@ -173,22 +173,12 @@ public class MeetupsEntryUtil {
 	}
 
 	public static MeetupsEntryPersistence getPersistence() {
-		return _getUtil()._persistence;
+		return _persistence;
 	}
 
 	public void setPersistence(MeetupsEntryPersistence persistence) {
 		_persistence = persistence;
 	}
 
-	private static MeetupsEntryUtil _getUtil() {
-		if (_util == null) {
-			_util = (MeetupsEntryUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
-		}
-
-		return _util;
-	}
-
-	private static final String _UTIL = MeetupsEntryUtil.class.getName();
-	private static MeetupsEntryUtil _util;
-	private MeetupsEntryPersistence _persistence;
+	private static MeetupsEntryPersistence _persistence;
 }

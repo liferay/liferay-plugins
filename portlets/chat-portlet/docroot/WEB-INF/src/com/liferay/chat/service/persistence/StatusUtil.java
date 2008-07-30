@@ -143,22 +143,12 @@ public class StatusUtil {
 	}
 
 	public static StatusPersistence getPersistence() {
-		return _getUtil()._persistence;
+		return _persistence;
 	}
 
 	public void setPersistence(StatusPersistence persistence) {
 		_persistence = persistence;
 	}
 
-	private static StatusUtil _getUtil() {
-		if (_util == null) {
-			_util = (StatusUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
-		}
-
-		return _util;
-	}
-
-	private static final String _UTIL = StatusUtil.class.getName();
-	private static StatusUtil _util;
-	private StatusPersistence _persistence;
+	private static StatusPersistence _persistence;
 }

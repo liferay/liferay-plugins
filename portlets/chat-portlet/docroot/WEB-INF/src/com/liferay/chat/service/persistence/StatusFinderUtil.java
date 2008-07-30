@@ -44,22 +44,12 @@ public class StatusFinderUtil {
 	}
 
 	public static StatusFinder getFinder() {
-		return _getUtil()._finder;
+		return _finder;
 	}
 
 	public void setFinder(StatusFinder finder) {
 		_finder = finder;
 	}
 
-	private static StatusFinderUtil _getUtil() {
-		if (_util == null) {
-			_util = (StatusFinderUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
-		}
-
-		return _util;
-	}
-
-	private static final String _UTIL = StatusFinderUtil.class.getName();
-	private static StatusFinderUtil _util;
-	private StatusFinder _finder;
+	private static StatusFinder _finder;
 }

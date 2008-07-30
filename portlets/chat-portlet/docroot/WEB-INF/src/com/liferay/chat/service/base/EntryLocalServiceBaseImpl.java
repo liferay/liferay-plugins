@@ -25,20 +25,17 @@ package com.liferay.chat.service.base;
 import com.liferay.chat.model.Entry;
 import com.liferay.chat.service.EntryLocalService;
 import com.liferay.chat.service.StatusLocalService;
-import com.liferay.chat.service.StatusLocalServiceFactory;
 import com.liferay.chat.service.persistence.EntryFinder;
-import com.liferay.chat.service.persistence.EntryFinderUtil;
 import com.liferay.chat.service.persistence.EntryPersistence;
-import com.liferay.chat.service.persistence.EntryUtil;
 import com.liferay.chat.service.persistence.StatusFinder;
-import com.liferay.chat.service.persistence.StatusFinderUtil;
 import com.liferay.chat.service.persistence.StatusPersistence;
-import com.liferay.chat.service.persistence.StatusUtil;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+
+import com.liferay.util.bean.PortletBeanLocatorUtil;
 
 import java.util.List;
 
@@ -77,6 +74,14 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService,
 
 	public Entry getEntry(long entryId) throws PortalException, SystemException {
 		return entryPersistence.findByPrimaryKey(entryId);
+	}
+
+	public List<Entry> getEntries(int start, int end) throws SystemException {
+		return entryPersistence.findAll(start, end);
+	}
+
+	public int getEntriesCount() throws SystemException {
+		return entryPersistence.countAll();
 	}
 
 	public Entry updateEntry(Entry entry) throws SystemException {
@@ -127,23 +132,28 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService,
 
 	public void afterPropertiesSet() {
 		if (entryPersistence == null) {
-			entryPersistence = EntryUtil.getPersistence();
+			entryPersistence = (EntryPersistence)PortletBeanLocatorUtil.locate(EntryPersistence.class.getName() +
+					".impl");
 		}
 
 		if (entryFinder == null) {
-			entryFinder = EntryFinderUtil.getFinder();
+			entryFinder = (EntryFinder)PortletBeanLocatorUtil.locate(EntryFinder.class.getName() +
+					".impl");
 		}
 
 		if (statusLocalService == null) {
-			statusLocalService = StatusLocalServiceFactory.getImpl();
+			statusLocalService = (StatusLocalService)PortletBeanLocatorUtil.locate(StatusLocalService.class.getName() +
+					".impl");
 		}
 
 		if (statusPersistence == null) {
-			statusPersistence = StatusUtil.getPersistence();
+			statusPersistence = (StatusPersistence)PortletBeanLocatorUtil.locate(StatusPersistence.class.getName() +
+					".impl");
 		}
 
 		if (statusFinder == null) {
-			statusFinder = StatusFinderUtil.getFinder();
+			statusFinder = (StatusFinder)PortletBeanLocatorUtil.locate(StatusFinder.class.getName() +
+					".impl");
 		}
 	}
 

@@ -47,22 +47,12 @@ public class JIRAActionFinderUtil {
 	}
 
 	public static JIRAActionFinder getFinder() {
-		return _getUtil()._finder;
+		return _finder;
 	}
 
 	public void setFinder(JIRAActionFinder finder) {
 		_finder = finder;
 	}
 
-	private static JIRAActionFinderUtil _getUtil() {
-		if (_util == null) {
-			_util = (JIRAActionFinderUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
-		}
-
-		return _util;
-	}
-
-	private static final String _UTIL = JIRAActionFinderUtil.class.getName();
-	private static JIRAActionFinderUtil _util;
-	private JIRAActionFinder _finder;
+	private static JIRAActionFinder _finder;
 }

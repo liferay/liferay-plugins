@@ -22,6 +22,8 @@
 
 package com.liferay.knowledgebase.service;
 
+import com.liferay.util.bean.PortletBeanLocatorUtil;
+
 /**
  * <a href="KBArticleResourceLocalServiceFactory.java.html"><b><i>View Source</i></b></a>
  *
@@ -35,7 +37,7 @@ public class KBArticleResourceLocalServiceFactory {
 
 	public static KBArticleResourceLocalService getImpl() {
 		if (_impl == null) {
-			_impl = (KBArticleResourceLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_IMPL);
+			_impl = (KBArticleResourceLocalService)PortletBeanLocatorUtil.locate(_IMPL);
 		}
 
 		return _impl;
@@ -43,7 +45,7 @@ public class KBArticleResourceLocalServiceFactory {
 
 	public static KBArticleResourceLocalService getTxImpl() {
 		if (_txImpl == null) {
-			_txImpl = (KBArticleResourceLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_TX_IMPL);
+			_txImpl = (KBArticleResourceLocalService)PortletBeanLocatorUtil.locate(_TX_IMPL);
 		}
 
 		return _txImpl;
@@ -55,7 +57,7 @@ public class KBArticleResourceLocalServiceFactory {
 
 	private static KBArticleResourceLocalServiceFactory _getFactory() {
 		if (_factory == null) {
-			_factory = (KBArticleResourceLocalServiceFactory)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_FACTORY);
+			_factory = (KBArticleResourceLocalServiceFactory)PortletBeanLocatorUtil.locate(_FACTORY);
 		}
 
 		return _factory;

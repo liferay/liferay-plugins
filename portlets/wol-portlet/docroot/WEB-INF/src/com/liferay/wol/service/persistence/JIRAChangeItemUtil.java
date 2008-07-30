@@ -182,22 +182,12 @@ public class JIRAChangeItemUtil {
 	}
 
 	public static JIRAChangeItemPersistence getPersistence() {
-		return _getUtil()._persistence;
+		return _persistence;
 	}
 
 	public void setPersistence(JIRAChangeItemPersistence persistence) {
 		_persistence = persistence;
 	}
 
-	private static JIRAChangeItemUtil _getUtil() {
-		if (_util == null) {
-			_util = (JIRAChangeItemUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
-		}
-
-		return _util;
-	}
-
-	private static final String _UTIL = JIRAChangeItemUtil.class.getName();
-	private static JIRAChangeItemUtil _util;
-	private JIRAChangeItemPersistence _persistence;
+	private static JIRAChangeItemPersistence _persistence;
 }

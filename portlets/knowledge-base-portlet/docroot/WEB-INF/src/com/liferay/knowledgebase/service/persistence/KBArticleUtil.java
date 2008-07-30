@@ -745,22 +745,12 @@ public class KBArticleUtil {
 	}
 
 	public static KBArticlePersistence getPersistence() {
-		return _getUtil()._persistence;
+		return _persistence;
 	}
 
 	public void setPersistence(KBArticlePersistence persistence) {
 		_persistence = persistence;
 	}
 
-	private static KBArticleUtil _getUtil() {
-		if (_util == null) {
-			_util = (KBArticleUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
-		}
-
-		return _util;
-	}
-
-	private static final String _UTIL = KBArticleUtil.class.getName();
-	private static KBArticleUtil _util;
-	private KBArticlePersistence _persistence;
+	private static KBArticlePersistence _persistence;
 }

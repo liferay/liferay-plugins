@@ -37,6 +37,11 @@
 			<ref bean="com.liferay.twitter.service.FeedLocalService.transaction" />
 		</property>
 	</bean>
+	<bean id="com.liferay.twitter.service.FeedLocalServiceUtil" class="com.liferay.twitter.service.FeedLocalServiceUtil" lazy-init="true">
+		<property name="service">
+			<ref bean="com.liferay.twitter.service.FeedLocalService.transaction" />
+		</property>
+	</bean>
 	<bean id="com.liferay.twitter.service.persistence.FeedPersistence.impl" class="com.liferay.twitter.service.persistence.FeedPersistenceImpl" lazy-init="true">
 		<property name="dataSource">
 			<ref bean="liferayDataSource" />

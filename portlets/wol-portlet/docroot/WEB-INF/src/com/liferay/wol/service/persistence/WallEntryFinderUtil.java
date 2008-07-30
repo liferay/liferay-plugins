@@ -44,22 +44,12 @@ public class WallEntryFinderUtil {
 	}
 
 	public static WallEntryFinder getFinder() {
-		return _getUtil()._finder;
+		return _finder;
 	}
 
 	public void setFinder(WallEntryFinder finder) {
 		_finder = finder;
 	}
 
-	private static WallEntryFinderUtil _getUtil() {
-		if (_util == null) {
-			_util = (WallEntryFinderUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
-		}
-
-		return _util;
-	}
-
-	private static final String _UTIL = WallEntryFinderUtil.class.getName();
-	private static WallEntryFinderUtil _util;
-	private WallEntryFinder _finder;
+	private static WallEntryFinder _finder;
 }

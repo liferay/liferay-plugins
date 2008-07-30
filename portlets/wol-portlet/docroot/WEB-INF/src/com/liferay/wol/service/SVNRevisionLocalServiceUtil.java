@@ -32,72 +32,54 @@ public class SVNRevisionLocalServiceUtil {
 	public static com.liferay.wol.model.SVNRevision addSVNRevision(
 		com.liferay.wol.model.SVNRevision svnRevision)
 		throws com.liferay.portal.SystemException {
-		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
-
-		return svnRevisionLocalService.addSVNRevision(svnRevision);
+		return _service.addSVNRevision(svnRevision);
 	}
 
 	public static void deleteSVNRevision(long svnRevisionId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
-
-		svnRevisionLocalService.deleteSVNRevision(svnRevisionId);
+		_service.deleteSVNRevision(svnRevisionId);
 	}
 
 	public static void deleteSVNRevision(
 		com.liferay.wol.model.SVNRevision svnRevision)
 		throws com.liferay.portal.SystemException {
-		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
-
-		svnRevisionLocalService.deleteSVNRevision(svnRevision);
+		_service.deleteSVNRevision(svnRevision);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
-
-		return svnRevisionLocalService.dynamicQuery(dynamicQuery);
+		return _service.dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
-
-		return svnRevisionLocalService.dynamicQuery(dynamicQuery, start, end);
+		return _service.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.wol.model.SVNRevision getSVNRevision(
 		long svnRevisionId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
-
-		return svnRevisionLocalService.getSVNRevision(svnRevisionId);
+		return _service.getSVNRevision(svnRevisionId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
 		int start, int end) throws com.liferay.portal.SystemException {
-		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
-
-		return svnRevisionLocalService.getSVNRevisions(start, end);
+		return _service.getSVNRevisions(start, end);
 	}
 
 	public static int getSVNRevisionsCount()
 		throws com.liferay.portal.SystemException {
-		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
-
-		return svnRevisionLocalService.getSVNRevisionsCount();
+		return _service.getSVNRevisionsCount();
 	}
 
 	public static com.liferay.wol.model.SVNRevision updateSVNRevision(
 		com.liferay.wol.model.SVNRevision svnRevision)
 		throws com.liferay.portal.SystemException {
-		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
-
-		return svnRevisionLocalService.updateSVNRevision(svnRevision);
+		return _service.updateSVNRevision(svnRevision);
 	}
 
 	public static com.liferay.wol.model.SVNRevision addSVNRevision(
@@ -105,75 +87,64 @@ public class SVNRevisionLocalServiceUtil {
 		long svnRepositoryId, long revisionNumber, java.lang.String comments)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
-
-		return svnRevisionLocalService.addSVNRevision(svnUserId, createDate,
-			svnRepositoryId, revisionNumber, comments);
+		return _service.addSVNRevision(svnUserId, createDate, svnRepositoryId,
+			revisionNumber, comments);
 	}
 
 	public static com.liferay.wol.model.SVNRevision getFirstSVNRevision(
 		java.lang.String svnUserId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
-
-		return svnRevisionLocalService.getFirstSVNRevision(svnUserId);
+		return _service.getFirstSVNRevision(svnUserId);
 	}
 
 	public static com.liferay.wol.model.SVNRevision getLastSVNRevision(
 		java.lang.String svnUserId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
-
-		return svnRevisionLocalService.getLastSVNRevision(svnUserId);
+		return _service.getLastSVNRevision(svnUserId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
 		java.lang.String svnUserId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
-
-		return svnRevisionLocalService.getSVNRevisions(svnUserId, start, end);
+		return _service.getSVNRevisions(svnUserId, start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
 		long svnRepositoryId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
-
-		return svnRevisionLocalService.getSVNRevisions(svnRepositoryId, start,
-			end);
+		return _service.getSVNRevisions(svnRepositoryId, start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
 		java.lang.String svnUserId, long svnRepositoryId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
-
-		return svnRevisionLocalService.getSVNRevisions(svnUserId,
-			svnRepositoryId, start, end);
+		return _service.getSVNRevisions(svnUserId, svnRepositoryId, start, end);
 	}
 
 	public static int getSVNRevisionsCount(java.lang.String svnUserId)
 		throws com.liferay.portal.SystemException {
-		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
-
-		return svnRevisionLocalService.getSVNRevisionsCount(svnUserId);
+		return _service.getSVNRevisionsCount(svnUserId);
 	}
 
 	public static int getSVNRevisionsCount(long svnRepositoryId)
 		throws com.liferay.portal.SystemException {
-		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
-
-		return svnRevisionLocalService.getSVNRevisionsCount(svnRepositoryId);
+		return _service.getSVNRevisionsCount(svnRepositoryId);
 	}
 
 	public static int getSVNRevisionsCount(java.lang.String svnUserId,
 		long svnRepositoryId) throws com.liferay.portal.SystemException {
-		SVNRevisionLocalService svnRevisionLocalService = SVNRevisionLocalServiceFactory.getService();
-
-		return svnRevisionLocalService.getSVNRevisionsCount(svnUserId,
-			svnRepositoryId);
+		return _service.getSVNRevisionsCount(svnUserId, svnRepositoryId);
 	}
+
+	public static SVNRevisionLocalService getService() {
+		return _service;
+	}
+
+	public void setService(SVNRevisionLocalService service) {
+		_service = service;
+	}
+
+	private static SVNRevisionLocalService _service;
 }

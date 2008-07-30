@@ -276,22 +276,12 @@ public class WallEntryUtil {
 	}
 
 	public static WallEntryPersistence getPersistence() {
-		return _getUtil()._persistence;
+		return _persistence;
 	}
 
 	public void setPersistence(WallEntryPersistence persistence) {
 		_persistence = persistence;
 	}
 
-	private static WallEntryUtil _getUtil() {
-		if (_util == null) {
-			_util = (WallEntryUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
-		}
-
-		return _util;
-	}
-
-	private static final String _UTIL = WallEntryUtil.class.getName();
-	private static WallEntryUtil _util;
-	private WallEntryPersistence _persistence;
+	private static WallEntryPersistence _persistence;
 }

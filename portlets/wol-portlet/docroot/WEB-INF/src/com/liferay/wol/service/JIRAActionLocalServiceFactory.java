@@ -22,6 +22,8 @@
 
 package com.liferay.wol.service;
 
+import com.liferay.util.bean.PortletBeanLocatorUtil;
+
 /**
  * <a href="JIRAActionLocalServiceFactory.java.html"><b><i>View Source</i></b></a>
  *
@@ -35,7 +37,7 @@ public class JIRAActionLocalServiceFactory {
 
 	public static JIRAActionLocalService getImpl() {
 		if (_impl == null) {
-			_impl = (JIRAActionLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_IMPL);
+			_impl = (JIRAActionLocalService)PortletBeanLocatorUtil.locate(_IMPL);
 		}
 
 		return _impl;
@@ -43,7 +45,7 @@ public class JIRAActionLocalServiceFactory {
 
 	public static JIRAActionLocalService getTxImpl() {
 		if (_txImpl == null) {
-			_txImpl = (JIRAActionLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_TX_IMPL);
+			_txImpl = (JIRAActionLocalService)PortletBeanLocatorUtil.locate(_TX_IMPL);
 		}
 
 		return _txImpl;
@@ -55,7 +57,7 @@ public class JIRAActionLocalServiceFactory {
 
 	private static JIRAActionLocalServiceFactory _getFactory() {
 		if (_factory == null) {
-			_factory = (JIRAActionLocalServiceFactory)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_FACTORY);
+			_factory = (JIRAActionLocalServiceFactory)PortletBeanLocatorUtil.locate(_FACTORY);
 		}
 
 		return _factory;

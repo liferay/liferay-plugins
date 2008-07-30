@@ -47,22 +47,12 @@ public class JIRAChangeGroupFinderUtil {
 	}
 
 	public static JIRAChangeGroupFinder getFinder() {
-		return _getUtil()._finder;
+		return _finder;
 	}
 
 	public void setFinder(JIRAChangeGroupFinder finder) {
 		_finder = finder;
 	}
 
-	private static JIRAChangeGroupFinderUtil _getUtil() {
-		if (_util == null) {
-			_util = (JIRAChangeGroupFinderUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
-		}
-
-		return _util;
-	}
-
-	private static final String _UTIL = JIRAChangeGroupFinderUtil.class.getName();
-	private static JIRAChangeGroupFinderUtil _util;
-	private JIRAChangeGroupFinder _finder;
+	private static JIRAChangeGroupFinder _finder;
 }

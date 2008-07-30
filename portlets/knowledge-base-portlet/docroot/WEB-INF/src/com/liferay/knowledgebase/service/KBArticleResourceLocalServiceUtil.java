@@ -32,98 +32,82 @@ public class KBArticleResourceLocalServiceUtil {
 	public static com.liferay.knowledgebase.model.KBArticleResource addKBArticleResource(
 		com.liferay.knowledgebase.model.KBArticleResource kbArticleResource)
 		throws com.liferay.portal.SystemException {
-		KBArticleResourceLocalService kbArticleResourceLocalService = KBArticleResourceLocalServiceFactory.getService();
-
-		return kbArticleResourceLocalService.addKBArticleResource(kbArticleResource);
+		return _service.addKBArticleResource(kbArticleResource);
 	}
 
 	public static void deleteKBArticleResource(long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		KBArticleResourceLocalService kbArticleResourceLocalService = KBArticleResourceLocalServiceFactory.getService();
-
-		kbArticleResourceLocalService.deleteKBArticleResource(resourcePrimKey);
+		_service.deleteKBArticleResource(resourcePrimKey);
 	}
 
 	public static void deleteKBArticleResource(
 		com.liferay.knowledgebase.model.KBArticleResource kbArticleResource)
 		throws com.liferay.portal.SystemException {
-		KBArticleResourceLocalService kbArticleResourceLocalService = KBArticleResourceLocalServiceFactory.getService();
-
-		kbArticleResourceLocalService.deleteKBArticleResource(kbArticleResource);
+		_service.deleteKBArticleResource(kbArticleResource);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		KBArticleResourceLocalService kbArticleResourceLocalService = KBArticleResourceLocalServiceFactory.getService();
-
-		return kbArticleResourceLocalService.dynamicQuery(dynamicQuery);
+		return _service.dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		KBArticleResourceLocalService kbArticleResourceLocalService = KBArticleResourceLocalServiceFactory.getService();
-
-		return kbArticleResourceLocalService.dynamicQuery(dynamicQuery, start,
-			end);
+		return _service.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticleResource getKBArticleResource(
 		long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		KBArticleResourceLocalService kbArticleResourceLocalService = KBArticleResourceLocalServiceFactory.getService();
-
-		return kbArticleResourceLocalService.getKBArticleResource(resourcePrimKey);
+		return _service.getKBArticleResource(resourcePrimKey);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticleResource> getKBArticleResources(
 		int start, int end) throws com.liferay.portal.SystemException {
-		KBArticleResourceLocalService kbArticleResourceLocalService = KBArticleResourceLocalServiceFactory.getService();
-
-		return kbArticleResourceLocalService.getKBArticleResources(start, end);
+		return _service.getKBArticleResources(start, end);
 	}
 
 	public static int getKBArticleResourcesCount()
 		throws com.liferay.portal.SystemException {
-		KBArticleResourceLocalService kbArticleResourceLocalService = KBArticleResourceLocalServiceFactory.getService();
-
-		return kbArticleResourceLocalService.getKBArticleResourcesCount();
+		return _service.getKBArticleResourcesCount();
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticleResource updateKBArticleResource(
 		com.liferay.knowledgebase.model.KBArticleResource kbArticleResource)
 		throws com.liferay.portal.SystemException {
-		KBArticleResourceLocalService kbArticleResourceLocalService = KBArticleResourceLocalServiceFactory.getService();
-
-		return kbArticleResourceLocalService.updateKBArticleResource(kbArticleResource);
+		return _service.updateKBArticleResource(kbArticleResource);
 	}
 
 	public static void deleteArticleResource(long groupId,
 		java.lang.String title)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		KBArticleResourceLocalService kbArticleResourceLocalService = KBArticleResourceLocalServiceFactory.getService();
-
-		kbArticleResourceLocalService.deleteArticleResource(groupId, title);
+		_service.deleteArticleResource(groupId, title);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticleResource getArticleResource(
 		long articleResourcePrimKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		KBArticleResourceLocalService kbArticleResourceLocalService = KBArticleResourceLocalServiceFactory.getService();
-
-		return kbArticleResourceLocalService.getArticleResource(articleResourcePrimKey);
+		return _service.getArticleResource(articleResourcePrimKey);
 	}
 
 	public static long getArticleResourcePrimKey(long groupId,
 		java.lang.String title) throws com.liferay.portal.SystemException {
-		KBArticleResourceLocalService kbArticleResourceLocalService = KBArticleResourceLocalServiceFactory.getService();
-
-		return kbArticleResourceLocalService.getArticleResourcePrimKey(groupId,
-			title);
+		return _service.getArticleResourcePrimKey(groupId, title);
 	}
+
+	public static KBArticleResourceLocalService getService() {
+		return _service;
+	}
+
+	public void setService(KBArticleResourceLocalService service) {
+		_service = service;
+	}
+
+	private static KBArticleResourceLocalService _service;
 }

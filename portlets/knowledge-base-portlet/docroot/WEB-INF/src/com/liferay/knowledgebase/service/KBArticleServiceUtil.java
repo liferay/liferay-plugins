@@ -37,9 +37,7 @@ public class KBArticleServiceUtil {
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
-
-		return kbArticleService.addArticle(plid, title, content, description,
+		return _service.addArticle(plid, title, content, description,
 			minorEdit, template, parentResourcePrimKey, tagsEntries, prefs,
 			themeDisplay);
 	}
@@ -48,35 +46,27 @@ public class KBArticleServiceUtil {
 		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<String, byte[]>> files)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
-
-		kbArticleService.addArticleAttachments(resourcePrimKey, files);
+		_service.addArticleAttachments(resourcePrimKey, files);
 	}
 
 	public static void deleteArticle(long plid, long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
-
-		kbArticleService.deleteArticle(plid, resourcePrimKey);
+		_service.deleteArticle(plid, resourcePrimKey);
 	}
 
 	public static void deleteArticleAttachment(long resourcePrimKey,
 		java.lang.String fileName)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
-
-		kbArticleService.deleteArticleAttachment(resourcePrimKey, fileName);
+		_service.deleteArticleAttachment(resourcePrimKey, fileName);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getGroupArticles(
 		long groupId, boolean template, int max)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
-
-		return kbArticleService.getGroupArticles(groupId, template, max);
+		return _service.getGroupArticles(groupId, template, max);
 	}
 
 	public static java.lang.String getGroupArticlesRSS(long groupId, int max,
@@ -84,46 +74,36 @@ public class KBArticleServiceUtil {
 		int abstractLength, java.lang.String feedURL)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
-
-		return kbArticleService.getGroupArticlesRSS(groupId, max, type,
-			version, displayStyle, abstractLength, feedURL);
+		return _service.getGroupArticlesRSS(groupId, max, type, version,
+			displayStyle, abstractLength, feedURL);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getArticle(
 		long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
-
-		return kbArticleService.getArticle(resourcePrimKey);
+		return _service.getArticle(resourcePrimKey);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getArticle(
 		long resourcePrimKey, double version)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
-
-		return kbArticleService.getArticle(resourcePrimKey, version);
+		return _service.getArticle(resourcePrimKey, version);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getArticle(
 		long groupId, java.lang.String title)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
-
-		return kbArticleService.getArticle(groupId, title);
+		return _service.getArticle(groupId, title);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getArticle(
 		long groupId, java.lang.String title, double version)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
-
-		return kbArticleService.getArticle(groupId, title, version);
+		return _service.getArticle(groupId, title, version);
 	}
 
 	public static java.lang.String getArticlesRSS(long resourcePrimKey,
@@ -132,10 +112,8 @@ public class KBArticleServiceUtil {
 		java.lang.String feedURL)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
-
-		return kbArticleService.getArticlesRSS(resourcePrimKey, max, type,
-			version, displayStyle, abstractLength, feedURL);
+		return _service.getArticlesRSS(resourcePrimKey, max, type, version,
+			displayStyle, abstractLength, feedURL);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle revertArticle(
@@ -144,42 +122,32 @@ public class KBArticleServiceUtil {
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
-
-		return kbArticleService.revertArticle(resourcePrimKey, version, prefs,
+		return _service.revertArticle(resourcePrimKey, version, prefs,
 			themeDisplay);
 	}
 
 	public static void subscribe(long plid)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
-
-		kbArticleService.subscribe(plid);
+		_service.subscribe(plid);
 	}
 
 	public static void subscribeArticle(long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
-
-		kbArticleService.subscribeArticle(resourcePrimKey);
+		_service.subscribeArticle(resourcePrimKey);
 	}
 
 	public static void unsubscribe(long plid)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
-
-		kbArticleService.unsubscribe(plid);
+		_service.unsubscribe(plid);
 	}
 
 	public static void unsubscribeArticle(long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
-
-		kbArticleService.unsubscribeArticle(resourcePrimKey);
+		_service.unsubscribeArticle(resourcePrimKey);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle updateArticle(
@@ -191,10 +159,18 @@ public class KBArticleServiceUtil {
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		KBArticleService kbArticleService = KBArticleServiceFactory.getService();
-
-		return kbArticleService.updateArticle(plid, resourcePrimKey, version,
-			title, content, description, minorEdit, template,
-			parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
+		return _service.updateArticle(plid, resourcePrimKey, version, title,
+			content, description, minorEdit, template, parentResourcePrimKey,
+			tagsEntries, prefs, themeDisplay);
 	}
+
+	public static KBArticleService getService() {
+		return _service;
+	}
+
+	public void setService(KBArticleService service) {
+		_service = service;
+	}
+
+	private static KBArticleService _service;
 }

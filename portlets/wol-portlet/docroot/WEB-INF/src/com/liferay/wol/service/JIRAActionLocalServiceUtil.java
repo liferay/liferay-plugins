@@ -32,71 +32,63 @@ public class JIRAActionLocalServiceUtil {
 	public static com.liferay.wol.model.JIRAAction addJIRAAction(
 		com.liferay.wol.model.JIRAAction jiraAction)
 		throws com.liferay.portal.SystemException {
-		JIRAActionLocalService jiraActionLocalService = JIRAActionLocalServiceFactory.getService();
-
-		return jiraActionLocalService.addJIRAAction(jiraAction);
+		return _service.addJIRAAction(jiraAction);
 	}
 
 	public static void deleteJIRAAction(long jiraActionId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		JIRAActionLocalService jiraActionLocalService = JIRAActionLocalServiceFactory.getService();
-
-		jiraActionLocalService.deleteJIRAAction(jiraActionId);
+		_service.deleteJIRAAction(jiraActionId);
 	}
 
 	public static void deleteJIRAAction(
 		com.liferay.wol.model.JIRAAction jiraAction)
 		throws com.liferay.portal.SystemException {
-		JIRAActionLocalService jiraActionLocalService = JIRAActionLocalServiceFactory.getService();
-
-		jiraActionLocalService.deleteJIRAAction(jiraAction);
+		_service.deleteJIRAAction(jiraAction);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		JIRAActionLocalService jiraActionLocalService = JIRAActionLocalServiceFactory.getService();
-
-		return jiraActionLocalService.dynamicQuery(dynamicQuery);
+		return _service.dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		JIRAActionLocalService jiraActionLocalService = JIRAActionLocalServiceFactory.getService();
-
-		return jiraActionLocalService.dynamicQuery(dynamicQuery, start, end);
+		return _service.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.wol.model.JIRAAction getJIRAAction(
 		long jiraActionId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		JIRAActionLocalService jiraActionLocalService = JIRAActionLocalServiceFactory.getService();
-
-		return jiraActionLocalService.getJIRAAction(jiraActionId);
+		return _service.getJIRAAction(jiraActionId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAAction> getJIRAActions(
 		int start, int end) throws com.liferay.portal.SystemException {
-		JIRAActionLocalService jiraActionLocalService = JIRAActionLocalServiceFactory.getService();
-
-		return jiraActionLocalService.getJIRAActions(start, end);
+		return _service.getJIRAActions(start, end);
 	}
 
 	public static int getJIRAActionsCount()
 		throws com.liferay.portal.SystemException {
-		JIRAActionLocalService jiraActionLocalService = JIRAActionLocalServiceFactory.getService();
-
-		return jiraActionLocalService.getJIRAActionsCount();
+		return _service.getJIRAActionsCount();
 	}
 
 	public static com.liferay.wol.model.JIRAAction updateJIRAAction(
 		com.liferay.wol.model.JIRAAction jiraAction)
 		throws com.liferay.portal.SystemException {
-		JIRAActionLocalService jiraActionLocalService = JIRAActionLocalServiceFactory.getService();
-
-		return jiraActionLocalService.updateJIRAAction(jiraAction);
+		return _service.updateJIRAAction(jiraAction);
 	}
+
+	public static JIRAActionLocalService getService() {
+		return _service;
+	}
+
+	public void setService(JIRAActionLocalService service) {
+		_service = service;
+	}
+
+	private static JIRAActionLocalService _service;
 }

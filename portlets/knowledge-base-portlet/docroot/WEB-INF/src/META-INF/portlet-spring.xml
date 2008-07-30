@@ -37,6 +37,11 @@
 			<ref bean="com.liferay.knowledgebase.service.KBArticleLocalService.transaction" />
 		</property>
 	</bean>
+	<bean id="com.liferay.knowledgebase.service.KBArticleLocalServiceUtil" class="com.liferay.knowledgebase.service.KBArticleLocalServiceUtil" lazy-init="true">
+		<property name="service">
+			<ref bean="com.liferay.knowledgebase.service.KBArticleLocalService.transaction" />
+		</property>
+	</bean>
 	<bean id="com.liferay.knowledgebase.service.KBArticleService.impl" class="com.liferay.knowledgebase.service.impl.KBArticleServiceImpl" lazy-init="true" />
 	<bean id="com.liferay.knowledgebase.service.KBArticleService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
@@ -68,6 +73,11 @@
 		</property>
 	</bean>
 	<bean id="com.liferay.knowledgebase.service.KBArticleServiceFactory" class="com.liferay.knowledgebase.service.KBArticleServiceFactory" lazy-init="true">
+		<property name="service">
+			<ref bean="com.liferay.knowledgebase.service.KBArticleService.transaction" />
+		</property>
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.KBArticleServiceUtil" class="com.liferay.knowledgebase.service.KBArticleServiceUtil" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.knowledgebase.service.KBArticleService.transaction" />
 		</property>
@@ -132,6 +142,11 @@
 		</property>
 	</bean>
 	<bean id="com.liferay.knowledgebase.service.KBArticleResourceLocalServiceFactory" class="com.liferay.knowledgebase.service.KBArticleResourceLocalServiceFactory" lazy-init="true">
+		<property name="service">
+			<ref bean="com.liferay.knowledgebase.service.KBArticleResourceLocalService.transaction" />
+		</property>
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.KBArticleResourceLocalServiceUtil" class="com.liferay.knowledgebase.service.KBArticleResourceLocalServiceUtil" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.knowledgebase.service.KBArticleResourceLocalService.transaction" />
 		</property>

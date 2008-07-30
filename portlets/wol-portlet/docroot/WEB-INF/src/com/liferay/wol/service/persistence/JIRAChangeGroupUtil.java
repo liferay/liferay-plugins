@@ -230,22 +230,12 @@ public class JIRAChangeGroupUtil {
 	}
 
 	public static JIRAChangeGroupPersistence getPersistence() {
-		return _getUtil()._persistence;
+		return _persistence;
 	}
 
 	public void setPersistence(JIRAChangeGroupPersistence persistence) {
 		_persistence = persistence;
 	}
 
-	private static JIRAChangeGroupUtil _getUtil() {
-		if (_util == null) {
-			_util = (JIRAChangeGroupUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
-		}
-
-		return _util;
-	}
-
-	private static final String _UTIL = JIRAChangeGroupUtil.class.getName();
-	private static JIRAChangeGroupUtil _util;
-	private JIRAChangeGroupPersistence _persistence;
+	private static JIRAChangeGroupPersistence _persistence;
 }

@@ -32,71 +32,63 @@ public class JIRAChangeGroupLocalServiceUtil {
 	public static com.liferay.wol.model.JIRAChangeGroup addJIRAChangeGroup(
 		com.liferay.wol.model.JIRAChangeGroup jiraChangeGroup)
 		throws com.liferay.portal.SystemException {
-		JIRAChangeGroupLocalService jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getService();
-
-		return jiraChangeGroupLocalService.addJIRAChangeGroup(jiraChangeGroup);
+		return _service.addJIRAChangeGroup(jiraChangeGroup);
 	}
 
 	public static void deleteJIRAChangeGroup(long jiraChangeGroupId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		JIRAChangeGroupLocalService jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getService();
-
-		jiraChangeGroupLocalService.deleteJIRAChangeGroup(jiraChangeGroupId);
+		_service.deleteJIRAChangeGroup(jiraChangeGroupId);
 	}
 
 	public static void deleteJIRAChangeGroup(
 		com.liferay.wol.model.JIRAChangeGroup jiraChangeGroup)
 		throws com.liferay.portal.SystemException {
-		JIRAChangeGroupLocalService jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getService();
-
-		jiraChangeGroupLocalService.deleteJIRAChangeGroup(jiraChangeGroup);
+		_service.deleteJIRAChangeGroup(jiraChangeGroup);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		JIRAChangeGroupLocalService jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getService();
-
-		return jiraChangeGroupLocalService.dynamicQuery(dynamicQuery);
+		return _service.dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		JIRAChangeGroupLocalService jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getService();
-
-		return jiraChangeGroupLocalService.dynamicQuery(dynamicQuery, start, end);
+		return _service.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.wol.model.JIRAChangeGroup getJIRAChangeGroup(
 		long jiraChangeGroupId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		JIRAChangeGroupLocalService jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getService();
-
-		return jiraChangeGroupLocalService.getJIRAChangeGroup(jiraChangeGroupId);
+		return _service.getJIRAChangeGroup(jiraChangeGroupId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAChangeGroup> getJIRAChangeGroups(
 		int start, int end) throws com.liferay.portal.SystemException {
-		JIRAChangeGroupLocalService jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getService();
-
-		return jiraChangeGroupLocalService.getJIRAChangeGroups(start, end);
+		return _service.getJIRAChangeGroups(start, end);
 	}
 
 	public static int getJIRAChangeGroupsCount()
 		throws com.liferay.portal.SystemException {
-		JIRAChangeGroupLocalService jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getService();
-
-		return jiraChangeGroupLocalService.getJIRAChangeGroupsCount();
+		return _service.getJIRAChangeGroupsCount();
 	}
 
 	public static com.liferay.wol.model.JIRAChangeGroup updateJIRAChangeGroup(
 		com.liferay.wol.model.JIRAChangeGroup jiraChangeGroup)
 		throws com.liferay.portal.SystemException {
-		JIRAChangeGroupLocalService jiraChangeGroupLocalService = JIRAChangeGroupLocalServiceFactory.getService();
-
-		return jiraChangeGroupLocalService.updateJIRAChangeGroup(jiraChangeGroup);
+		return _service.updateJIRAChangeGroup(jiraChangeGroup);
 	}
+
+	public static JIRAChangeGroupLocalService getService() {
+		return _service;
+	}
+
+	public void setService(JIRAChangeGroupLocalService service) {
+		_service = service;
+	}
+
+	private static JIRAChangeGroupLocalService _service;
 }

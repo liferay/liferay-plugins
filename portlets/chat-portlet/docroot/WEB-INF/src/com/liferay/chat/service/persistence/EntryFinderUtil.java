@@ -42,22 +42,12 @@ public class EntryFinderUtil {
 	}
 
 	public static EntryFinder getFinder() {
-		return _getUtil()._finder;
+		return _finder;
 	}
 
 	public void setFinder(EntryFinder finder) {
 		_finder = finder;
 	}
 
-	private static EntryFinderUtil _getUtil() {
-		if (_util == null) {
-			_util = (EntryFinderUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
-		}
-
-		return _util;
-	}
-
-	private static final String _UTIL = EntryFinderUtil.class.getName();
-	private static EntryFinderUtil _util;
-	private EntryFinder _finder;
+	private static EntryFinder _finder;
 }

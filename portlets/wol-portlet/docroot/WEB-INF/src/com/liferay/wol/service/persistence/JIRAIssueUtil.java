@@ -788,22 +788,12 @@ public class JIRAIssueUtil {
 	}
 
 	public static JIRAIssuePersistence getPersistence() {
-		return _getUtil()._persistence;
+		return _persistence;
 	}
 
 	public void setPersistence(JIRAIssuePersistence persistence) {
 		_persistence = persistence;
 	}
 
-	private static JIRAIssueUtil _getUtil() {
-		if (_util == null) {
-			_util = (JIRAIssueUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
-		}
-
-		return _util;
-	}
-
-	private static final String _UTIL = JIRAIssueUtil.class.getName();
-	private static JIRAIssueUtil _util;
-	private JIRAIssuePersistence _persistence;
+	private static JIRAIssuePersistence _persistence;
 }

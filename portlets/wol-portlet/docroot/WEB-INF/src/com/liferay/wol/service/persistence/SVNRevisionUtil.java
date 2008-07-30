@@ -290,22 +290,12 @@ public class SVNRevisionUtil {
 	}
 
 	public static SVNRevisionPersistence getPersistence() {
-		return _getUtil()._persistence;
+		return _persistence;
 	}
 
 	public void setPersistence(SVNRevisionPersistence persistence) {
 		_persistence = persistence;
 	}
 
-	private static SVNRevisionUtil _getUtil() {
-		if (_util == null) {
-			_util = (SVNRevisionUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
-		}
-
-		return _util;
-	}
-
-	private static final String _UTIL = SVNRevisionUtil.class.getName();
-	private static SVNRevisionUtil _util;
-	private SVNRevisionPersistence _persistence;
+	private static SVNRevisionPersistence _persistence;
 }

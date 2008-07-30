@@ -278,22 +278,12 @@ public class JIRAActionUtil {
 	}
 
 	public static JIRAActionPersistence getPersistence() {
-		return _getUtil()._persistence;
+		return _persistence;
 	}
 
 	public void setPersistence(JIRAActionPersistence persistence) {
 		_persistence = persistence;
 	}
 
-	private static JIRAActionUtil _getUtil() {
-		if (_util == null) {
-			_util = (JIRAActionUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
-		}
-
-		return _util;
-	}
-
-	private static final String _UTIL = JIRAActionUtil.class.getName();
-	private static JIRAActionUtil _util;
-	private JIRAActionPersistence _persistence;
+	private static JIRAActionPersistence _persistence;
 }

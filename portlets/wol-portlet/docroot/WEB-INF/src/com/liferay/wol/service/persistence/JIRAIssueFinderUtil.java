@@ -47,22 +47,12 @@ public class JIRAIssueFinderUtil {
 	}
 
 	public static JIRAIssueFinder getFinder() {
-		return _getUtil()._finder;
+		return _finder;
 	}
 
 	public void setFinder(JIRAIssueFinder finder) {
 		_finder = finder;
 	}
 
-	private static JIRAIssueFinderUtil _getUtil() {
-		if (_util == null) {
-			_util = (JIRAIssueFinderUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
-		}
-
-		return _util;
-	}
-
-	private static final String _UTIL = JIRAIssueFinderUtil.class.getName();
-	private static JIRAIssueFinderUtil _util;
-	private JIRAIssueFinder _finder;
+	private static JIRAIssueFinder _finder;
 }

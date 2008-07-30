@@ -32,92 +32,78 @@ public class FeedLocalServiceUtil {
 	public static com.liferay.twitter.model.Feed addFeed(
 		com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.SystemException {
-		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
-
-		return feedLocalService.addFeed(feed);
+		return _service.addFeed(feed);
 	}
 
 	public static void deleteFeed(long feedId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
-
-		feedLocalService.deleteFeed(feedId);
+		_service.deleteFeed(feedId);
 	}
 
 	public static void deleteFeed(com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.SystemException {
-		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
-
-		feedLocalService.deleteFeed(feed);
+		_service.deleteFeed(feed);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
-
-		return feedLocalService.dynamicQuery(dynamicQuery);
+		return _service.dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
-
-		return feedLocalService.dynamicQuery(dynamicQuery, start, end);
+		return _service.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.twitter.model.Feed getFeed(long feedId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
-
-		return feedLocalService.getFeed(feedId);
+		return _service.getFeed(feedId);
 	}
 
 	public static java.util.List<com.liferay.twitter.model.Feed> getFeeds(
 		int start, int end) throws com.liferay.portal.SystemException {
-		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
-
-		return feedLocalService.getFeeds(start, end);
+		return _service.getFeeds(start, end);
 	}
 
 	public static int getFeedsCount() throws com.liferay.portal.SystemException {
-		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
-
-		return feedLocalService.getFeedsCount();
+		return _service.getFeedsCount();
 	}
 
 	public static com.liferay.twitter.model.Feed updateFeed(
 		com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.SystemException {
-		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
-
-		return feedLocalService.updateFeed(feed);
+		return _service.updateFeed(feed);
 	}
 
 	public static void updateFeed(long userId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
-
-		feedLocalService.updateFeed(userId);
+		_service.updateFeed(userId);
 	}
 
 	public static void updateFeeds()
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
-
-		feedLocalService.updateFeeds();
+		_service.updateFeeds();
 	}
 
 	public static void updateFeeds(long companyId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		FeedLocalService feedLocalService = FeedLocalServiceFactory.getService();
-
-		feedLocalService.updateFeeds(companyId);
+		_service.updateFeeds(companyId);
 	}
+
+	public static FeedLocalService getService() {
+		return _service;
+	}
+
+	public void setService(FeedLocalService service) {
+		_service = service;
+	}
+
+	private static FeedLocalService _service;
 }

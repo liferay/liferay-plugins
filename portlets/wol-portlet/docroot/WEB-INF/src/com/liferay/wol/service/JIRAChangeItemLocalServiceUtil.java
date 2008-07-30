@@ -32,78 +32,68 @@ public class JIRAChangeItemLocalServiceUtil {
 	public static com.liferay.wol.model.JIRAChangeItem addJIRAChangeItem(
 		com.liferay.wol.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.SystemException {
-		JIRAChangeItemLocalService jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getService();
-
-		return jiraChangeItemLocalService.addJIRAChangeItem(jiraChangeItem);
+		return _service.addJIRAChangeItem(jiraChangeItem);
 	}
 
 	public static void deleteJIRAChangeItem(long jiraChangeItemId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		JIRAChangeItemLocalService jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getService();
-
-		jiraChangeItemLocalService.deleteJIRAChangeItem(jiraChangeItemId);
+		_service.deleteJIRAChangeItem(jiraChangeItemId);
 	}
 
 	public static void deleteJIRAChangeItem(
 		com.liferay.wol.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.SystemException {
-		JIRAChangeItemLocalService jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getService();
-
-		jiraChangeItemLocalService.deleteJIRAChangeItem(jiraChangeItem);
+		_service.deleteJIRAChangeItem(jiraChangeItem);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		JIRAChangeItemLocalService jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getService();
-
-		return jiraChangeItemLocalService.dynamicQuery(dynamicQuery);
+		return _service.dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		JIRAChangeItemLocalService jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getService();
-
-		return jiraChangeItemLocalService.dynamicQuery(dynamicQuery, start, end);
+		return _service.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.wol.model.JIRAChangeItem getJIRAChangeItem(
 		long jiraChangeItemId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		JIRAChangeItemLocalService jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getService();
-
-		return jiraChangeItemLocalService.getJIRAChangeItem(jiraChangeItemId);
+		return _service.getJIRAChangeItem(jiraChangeItemId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAChangeItem> getJIRAChangeItems(
 		int start, int end) throws com.liferay.portal.SystemException {
-		JIRAChangeItemLocalService jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getService();
-
-		return jiraChangeItemLocalService.getJIRAChangeItems(start, end);
+		return _service.getJIRAChangeItems(start, end);
 	}
 
 	public static int getJIRAChangeItemsCount()
 		throws com.liferay.portal.SystemException {
-		JIRAChangeItemLocalService jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getService();
-
-		return jiraChangeItemLocalService.getJIRAChangeItemsCount();
+		return _service.getJIRAChangeItemsCount();
 	}
 
 	public static com.liferay.wol.model.JIRAChangeItem updateJIRAChangeItem(
 		com.liferay.wol.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.SystemException {
-		JIRAChangeItemLocalService jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getService();
-
-		return jiraChangeItemLocalService.updateJIRAChangeItem(jiraChangeItem);
+		return _service.updateJIRAChangeItem(jiraChangeItem);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAChangeItem> getJIRAChangeItems(
 		long jiraChangeGroupId) throws com.liferay.portal.SystemException {
-		JIRAChangeItemLocalService jiraChangeItemLocalService = JIRAChangeItemLocalServiceFactory.getService();
-
-		return jiraChangeItemLocalService.getJIRAChangeItems(jiraChangeGroupId);
+		return _service.getJIRAChangeItems(jiraChangeGroupId);
 	}
+
+	public static JIRAChangeItemLocalService getService() {
+		return _service;
+	}
+
+	public void setService(JIRAChangeItemLocalService service) {
+		_service = service;
+	}
+
+	private static JIRAChangeItemLocalService _service;
 }

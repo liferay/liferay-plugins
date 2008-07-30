@@ -32,110 +32,90 @@ public class MeetupsRegistrationLocalServiceUtil {
 	public static com.liferay.wol.model.MeetupsRegistration addMeetupsRegistration(
 		com.liferay.wol.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.SystemException {
-		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
-
-		return meetupsRegistrationLocalService.addMeetupsRegistration(meetupsRegistration);
+		return _service.addMeetupsRegistration(meetupsRegistration);
 	}
 
 	public static void deleteMeetupsRegistration(long meetupsRegistrationId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
-
-		meetupsRegistrationLocalService.deleteMeetupsRegistration(meetupsRegistrationId);
+		_service.deleteMeetupsRegistration(meetupsRegistrationId);
 	}
 
 	public static void deleteMeetupsRegistration(
 		com.liferay.wol.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.SystemException {
-		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
-
-		meetupsRegistrationLocalService.deleteMeetupsRegistration(meetupsRegistration);
+		_service.deleteMeetupsRegistration(meetupsRegistration);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
-
-		return meetupsRegistrationLocalService.dynamicQuery(dynamicQuery);
+		return _service.dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
-
-		return meetupsRegistrationLocalService.dynamicQuery(dynamicQuery,
-			start, end);
+		return _service.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.wol.model.MeetupsRegistration getMeetupsRegistration(
 		long meetupsRegistrationId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
-
-		return meetupsRegistrationLocalService.getMeetupsRegistration(meetupsRegistrationId);
+		return _service.getMeetupsRegistration(meetupsRegistrationId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.MeetupsRegistration> getMeetupsRegistrations(
 		int start, int end) throws com.liferay.portal.SystemException {
-		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
-
-		return meetupsRegistrationLocalService.getMeetupsRegistrations(start,
-			end);
+		return _service.getMeetupsRegistrations(start, end);
 	}
 
 	public static int getMeetupsRegistrationsCount()
 		throws com.liferay.portal.SystemException {
-		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
-
-		return meetupsRegistrationLocalService.getMeetupsRegistrationsCount();
+		return _service.getMeetupsRegistrationsCount();
 	}
 
 	public static com.liferay.wol.model.MeetupsRegistration updateMeetupsRegistration(
 		com.liferay.wol.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.SystemException {
-		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
-
-		return meetupsRegistrationLocalService.updateMeetupsRegistration(meetupsRegistration);
+		return _service.updateMeetupsRegistration(meetupsRegistration);
 	}
 
 	public static java.util.List<com.liferay.wol.model.MeetupsRegistration> getMeetupsRegistrations(
 		long meetupsEntryId, int status, int start, int end)
 		throws com.liferay.portal.SystemException {
-		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
-
-		return meetupsRegistrationLocalService.getMeetupsRegistrations(meetupsEntryId,
-			status, start, end);
+		return _service.getMeetupsRegistrations(meetupsEntryId, status, start,
+			end);
 	}
 
 	public static com.liferay.wol.model.MeetupsRegistration getMeetupsRegistration(
 		long userId, long meetupsEntryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
-
-		return meetupsRegistrationLocalService.getMeetupsRegistration(userId,
-			meetupsEntryId);
+		return _service.getMeetupsRegistration(userId, meetupsEntryId);
 	}
 
 	public static int getMeetupsRegistrationsCount(long meetupsEntryId,
 		int status) throws com.liferay.portal.SystemException {
-		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
-
-		return meetupsRegistrationLocalService.getMeetupsRegistrationsCount(meetupsEntryId,
-			status);
+		return _service.getMeetupsRegistrationsCount(meetupsEntryId, status);
 	}
 
 	public static com.liferay.wol.model.MeetupsRegistration updateMeetupsRegistration(
 		long userId, long meetupsEntryId, int status, java.lang.String comments)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		MeetupsRegistrationLocalService meetupsRegistrationLocalService = MeetupsRegistrationLocalServiceFactory.getService();
-
-		return meetupsRegistrationLocalService.updateMeetupsRegistration(userId,
-			meetupsEntryId, status, comments);
+		return _service.updateMeetupsRegistration(userId, meetupsEntryId,
+			status, comments);
 	}
+
+	public static MeetupsRegistrationLocalService getService() {
+		return _service;
+	}
+
+	public void setService(MeetupsRegistrationLocalService service) {
+		_service = service;
+	}
+
+	private static MeetupsRegistrationLocalService _service;
 }

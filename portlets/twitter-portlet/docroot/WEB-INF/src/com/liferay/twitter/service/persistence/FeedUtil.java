@@ -170,22 +170,12 @@ public class FeedUtil {
 	}
 
 	public static FeedPersistence getPersistence() {
-		return _getUtil()._persistence;
+		return _persistence;
 	}
 
 	public void setPersistence(FeedPersistence persistence) {
 		_persistence = persistence;
 	}
 
-	private static FeedUtil _getUtil() {
-		if (_util == null) {
-			_util = (FeedUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
-		}
-
-		return _util;
-	}
-
-	private static final String _UTIL = FeedUtil.class.getName();
-	private static FeedUtil _util;
-	private FeedPersistence _persistence;
+	private static FeedPersistence _persistence;
 }

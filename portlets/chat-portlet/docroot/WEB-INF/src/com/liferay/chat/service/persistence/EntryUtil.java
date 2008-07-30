@@ -274,22 +274,12 @@ public class EntryUtil {
 	}
 
 	public static EntryPersistence getPersistence() {
-		return _getUtil()._persistence;
+		return _persistence;
 	}
 
 	public void setPersistence(EntryPersistence persistence) {
 		_persistence = persistence;
 	}
 
-	private static EntryUtil _getUtil() {
-		if (_util == null) {
-			_util = (EntryUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
-		}
-
-		return _util;
-	}
-
-	private static final String _UTIL = EntryUtil.class.getName();
-	private static EntryUtil _util;
-	private EntryPersistence _persistence;
+	private static EntryPersistence _persistence;
 }

@@ -32,71 +32,53 @@ public class WallEntryLocalServiceUtil {
 	public static com.liferay.wol.model.WallEntry addWallEntry(
 		com.liferay.wol.model.WallEntry wallEntry)
 		throws com.liferay.portal.SystemException {
-		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
-
-		return wallEntryLocalService.addWallEntry(wallEntry);
+		return _service.addWallEntry(wallEntry);
 	}
 
 	public static void deleteWallEntry(long wallEntryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
-
-		wallEntryLocalService.deleteWallEntry(wallEntryId);
+		_service.deleteWallEntry(wallEntryId);
 	}
 
 	public static void deleteWallEntry(
 		com.liferay.wol.model.WallEntry wallEntry)
 		throws com.liferay.portal.SystemException {
-		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
-
-		wallEntryLocalService.deleteWallEntry(wallEntry);
+		_service.deleteWallEntry(wallEntry);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
-
-		return wallEntryLocalService.dynamicQuery(dynamicQuery);
+		return _service.dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
-
-		return wallEntryLocalService.dynamicQuery(dynamicQuery, start, end);
+		return _service.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.wol.model.WallEntry getWallEntry(long wallEntryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
-
-		return wallEntryLocalService.getWallEntry(wallEntryId);
+		return _service.getWallEntry(wallEntryId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.WallEntry> getWallEntries(
 		int start, int end) throws com.liferay.portal.SystemException {
-		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
-
-		return wallEntryLocalService.getWallEntries(start, end);
+		return _service.getWallEntries(start, end);
 	}
 
 	public static int getWallEntriesCount()
 		throws com.liferay.portal.SystemException {
-		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
-
-		return wallEntryLocalService.getWallEntriesCount();
+		return _service.getWallEntriesCount();
 	}
 
 	public static com.liferay.wol.model.WallEntry updateWallEntry(
 		com.liferay.wol.model.WallEntry wallEntry)
 		throws com.liferay.portal.SystemException {
-		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
-
-		return wallEntryLocalService.updateWallEntry(wallEntry);
+		return _service.updateWallEntry(wallEntry);
 	}
 
 	public static com.liferay.wol.model.WallEntry addWallEntry(long groupId,
@@ -104,57 +86,52 @@ public class WallEntryLocalServiceUtil {
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
-
-		return wallEntryLocalService.addWallEntry(groupId, userId, comments,
-			themeDisplay);
+		return _service.addWallEntry(groupId, userId, comments, themeDisplay);
 	}
 
 	public static void deleteWallEntries(long groupId)
 		throws com.liferay.portal.SystemException {
-		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
-
-		wallEntryLocalService.deleteWallEntries(groupId);
+		_service.deleteWallEntries(groupId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.WallEntry> getWallEntries(
 		long groupId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
-
-		return wallEntryLocalService.getWallEntries(groupId, start, end);
+		return _service.getWallEntries(groupId, start, end);
 	}
 
 	public static int getWallEntriesCount(long groupId)
 		throws com.liferay.portal.SystemException {
-		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
-
-		return wallEntryLocalService.getWallEntriesCount(groupId);
+		return _service.getWallEntriesCount(groupId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.WallEntry> getWallToWallEntries(
 		long groupId1, long groupId2, long userId1, long userId2, int start,
 		int end) throws com.liferay.portal.SystemException {
-		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
-
-		return wallEntryLocalService.getWallToWallEntries(groupId1, groupId2,
-			userId1, userId2, start, end);
+		return _service.getWallToWallEntries(groupId1, groupId2, userId1,
+			userId2, start, end);
 	}
 
 	public static int getWallToWallEntriesCount(long groupId1, long groupId2,
 		long userId1, long userId2) throws com.liferay.portal.SystemException {
-		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
-
-		return wallEntryLocalService.getWallToWallEntriesCount(groupId1,
-			groupId2, userId1, userId2);
+		return _service.getWallToWallEntriesCount(groupId1, groupId2, userId1,
+			userId2);
 	}
 
 	public static com.liferay.wol.model.WallEntry updateWallEntry(
 		long wallEntryId, java.lang.String comments)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		WallEntryLocalService wallEntryLocalService = WallEntryLocalServiceFactory.getService();
-
-		return wallEntryLocalService.updateWallEntry(wallEntryId, comments);
+		return _service.updateWallEntry(wallEntryId, comments);
 	}
+
+	public static WallEntryLocalService getService() {
+		return _service;
+	}
+
+	public void setService(WallEntryLocalService service) {
+		_service = service;
+	}
+
+	private static WallEntryLocalService _service;
 }

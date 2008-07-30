@@ -32,88 +32,76 @@ public class SVNRepositoryLocalServiceUtil {
 	public static com.liferay.wol.model.SVNRepository addSVNRepository(
 		com.liferay.wol.model.SVNRepository svnRepository)
 		throws com.liferay.portal.SystemException {
-		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
-
-		return svnRepositoryLocalService.addSVNRepository(svnRepository);
+		return _service.addSVNRepository(svnRepository);
 	}
 
 	public static void deleteSVNRepository(long svnRepositoryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
-
-		svnRepositoryLocalService.deleteSVNRepository(svnRepositoryId);
+		_service.deleteSVNRepository(svnRepositoryId);
 	}
 
 	public static void deleteSVNRepository(
 		com.liferay.wol.model.SVNRepository svnRepository)
 		throws com.liferay.portal.SystemException {
-		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
-
-		svnRepositoryLocalService.deleteSVNRepository(svnRepository);
+		_service.deleteSVNRepository(svnRepository);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
-
-		return svnRepositoryLocalService.dynamicQuery(dynamicQuery);
+		return _service.dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
-
-		return svnRepositoryLocalService.dynamicQuery(dynamicQuery, start, end);
+		return _service.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.wol.model.SVNRepository getSVNRepository(
 		long svnRepositoryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
-
-		return svnRepositoryLocalService.getSVNRepository(svnRepositoryId);
+		return _service.getSVNRepository(svnRepositoryId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.SVNRepository> getSVNRepositories(
 		int start, int end) throws com.liferay.portal.SystemException {
-		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
-
-		return svnRepositoryLocalService.getSVNRepositories(start, end);
+		return _service.getSVNRepositories(start, end);
 	}
 
 	public static int getSVNRepositoriesCount()
 		throws com.liferay.portal.SystemException {
-		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
-
-		return svnRepositoryLocalService.getSVNRepositoriesCount();
+		return _service.getSVNRepositoriesCount();
 	}
 
 	public static com.liferay.wol.model.SVNRepository updateSVNRepository(
 		com.liferay.wol.model.SVNRepository svnRepository)
 		throws com.liferay.portal.SystemException {
-		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
-
-		return svnRepositoryLocalService.updateSVNRepository(svnRepository);
+		return _service.updateSVNRepository(svnRepository);
 	}
 
 	public static com.liferay.wol.model.SVNRepository getSVNRepository(
 		java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
-
-		return svnRepositoryLocalService.getSVNRepository(url);
+		return _service.getSVNRepository(url);
 	}
 
 	public static void updateSVNRepository(java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		SVNRepositoryLocalService svnRepositoryLocalService = SVNRepositoryLocalServiceFactory.getService();
-
-		svnRepositoryLocalService.updateSVNRepository(url);
+		_service.updateSVNRepository(url);
 	}
+
+	public static SVNRepositoryLocalService getService() {
+		return _service;
+	}
+
+	public void setService(SVNRepositoryLocalService service) {
+		_service = service;
+	}
+
+	private static SVNRepositoryLocalService _service;
 }

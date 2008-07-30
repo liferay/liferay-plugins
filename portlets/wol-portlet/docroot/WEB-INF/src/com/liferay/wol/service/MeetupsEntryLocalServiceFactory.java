@@ -22,6 +22,8 @@
 
 package com.liferay.wol.service;
 
+import com.liferay.util.bean.PortletBeanLocatorUtil;
+
 /**
  * <a href="MeetupsEntryLocalServiceFactory.java.html"><b><i>View Source</i></b></a>
  *
@@ -35,7 +37,7 @@ public class MeetupsEntryLocalServiceFactory {
 
 	public static MeetupsEntryLocalService getImpl() {
 		if (_impl == null) {
-			_impl = (MeetupsEntryLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_IMPL);
+			_impl = (MeetupsEntryLocalService)PortletBeanLocatorUtil.locate(_IMPL);
 		}
 
 		return _impl;
@@ -43,7 +45,7 @@ public class MeetupsEntryLocalServiceFactory {
 
 	public static MeetupsEntryLocalService getTxImpl() {
 		if (_txImpl == null) {
-			_txImpl = (MeetupsEntryLocalService)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_TX_IMPL);
+			_txImpl = (MeetupsEntryLocalService)PortletBeanLocatorUtil.locate(_TX_IMPL);
 		}
 
 		return _txImpl;
@@ -55,7 +57,7 @@ public class MeetupsEntryLocalServiceFactory {
 
 	private static MeetupsEntryLocalServiceFactory _getFactory() {
 		if (_factory == null) {
-			_factory = (MeetupsEntryLocalServiceFactory)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_FACTORY);
+			_factory = (MeetupsEntryLocalServiceFactory)PortletBeanLocatorUtil.locate(_FACTORY);
 		}
 
 		return _factory;
