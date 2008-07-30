@@ -1,0 +1,110 @@
+@import url(color_schemes/black.css);
+@import url(color_schemes/green.css);
+@import url(color_schemes/orange.css);
+@import url(color_schemes/purple.css);
+@import url(color_schemes/red.css);
+@import url(color_schemes/blue.css);
+
+#banner {
+	background: transparent;
+	position: relative;
+	top: 0;
+}
+#wrapper {
+	background: transparent;
+	position: relative;
+	width: 1264px;
+	margin: 0 auto;
+}
+body {
+	color:#303030;
+	font-family:Verdana,Tahoma,Arial,sans-serif;
+	font-size:12px;
+}
+#navigation {
+	background:transparent;
+	border: none;
+	margin:2px auto 20px;
+}
+#footer {
+	background:#8B8B8B url(../images/custom/footerbg.jpg) repeat-x scroll left top;
+	clear:both;
+	color:#D0D0D0;
+	font-size:0.9em;
+	font-weight:bold;
+	padding:20px 0;
+	text-align:center;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color:transparent;
+	color:#505050;
+}
+#navigation li a {
+	color:#606060;
+	font-size:1em;
+	text-transform:uppercase;
+	border-right:1px solid #B0B0B0;
+	font-weight: bold;
+	padding:8px 11px;
+	margin-left:1px;
+}
+#navigation ul {
+	width:100%;
+}
+#navigation li {
+	border: none;
+}
+.portlet {
+	background-color:#FAFCFF;
+	border:1px solid #909090;
+	color:#2A2A2A;
+}
+.portlet-topper {
+	color:#606060;
+	font-size:18px;
+	font-weight:bold;
+	background: transparent;
+	border: none;
+}
+a {
+	font-size: 12px;
+}
+#navigation li.selected a span {
+	background:transparent;
+	padding-left:0px;
+}
+#content-wrapper {
+	min-height: 500px;
+}
+.js #add-page {
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+	right:0;
+	top:2px;
+}
+.js #add-page a span {
+	background:transparent;
+	color:#505050;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+}
+.ui-tabs li.current a, .ui-tabs li.current span {
+	color:#505050;
+	border: none;
+}
+.ui-tabs li a, .tabs li span {
+	background: transparent;
+	border-right:none;
+	color:#606060;
+}
+.ui-tabs {
+	border-bottom:none;
+}
+.js #navigation .enter-page {
+	background-color:transparent;
+	padding:4px;
+}
+.js #navigation .enter-page .save-page {
+	border:medium none;
+}

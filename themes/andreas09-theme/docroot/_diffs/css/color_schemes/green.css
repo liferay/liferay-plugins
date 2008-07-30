@@ -1,0 +1,13 @@
+.green #wrapper {
+	background:#F0F0F0 url(../../images/custom/bodybg-green.jpg) repeat-x scroll 0 0;
+}
+.green #navigation li.selected a, .green #navigation li a:hover {
+	background: url(../../images/custom/menuhover-green.jpg) repeat-x scroll;
+}
+.green .ui-tabs li.current a, .ui-tabs li.current span {
+	background: url(../../images/custom/menuhover-green.jpg) repeat-x scroll;
+}
+.green .ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: url(../../images/custom/menuhover-green.jpg) repeat-x scroll;
+	color:#505050;
+}
