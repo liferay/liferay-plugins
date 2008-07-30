@@ -76,20 +76,6 @@ public class EntryLocalServiceUtil {
 		return entryLocalService.getEntry(entryId);
 	}
 
-	public static java.util.List<com.liferay.chat.model.Entry> getEntries(
-		int start, int end) throws com.liferay.portal.SystemException {
-		EntryLocalService entryLocalService = EntryLocalServiceFactory.getService();
-
-		return entryLocalService.getEntries(start, end);
-	}
-
-	public static int getEntriesCount()
-		throws com.liferay.portal.SystemException {
-		EntryLocalService entryLocalService = EntryLocalServiceFactory.getService();
-
-		return entryLocalService.getEntriesCount();
-	}
-
 	public static com.liferay.chat.model.Entry updateEntry(
 		com.liferay.chat.model.Entry entry)
 		throws com.liferay.portal.SystemException {

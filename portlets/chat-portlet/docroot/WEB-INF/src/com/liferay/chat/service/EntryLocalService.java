@@ -52,11 +52,6 @@ public interface EntryLocalService {
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
-	public java.util.List<com.liferay.chat.model.Entry> getEntries(int start,
-		int end) throws com.liferay.portal.SystemException;
-
-	public int getEntriesCount() throws com.liferay.portal.SystemException;
-
 	public com.liferay.chat.model.Entry updateEntry(
 		com.liferay.chat.model.Entry entry)
 		throws com.liferay.portal.SystemException;
