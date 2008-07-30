@@ -1,0 +1,511 @@
+/* This CSS sets the default styles for portlets. */
+
+/* ---------- Portlet wrapper and icons ---------- */
+
+.portlet {
+	text-align: left;
+}
+
+.freeform .portlet {
+	margin-bottom: 0;
+}
+
+body.portlet {
+	border: none;
+}
+
+.portlet-topper {
+	position: relative;
+}
+
+.portlet-title {
+	display: block;
+	font-weight: bold;
+	min-width: 50%;
+}
+
+.portlet-title img {
+	vertical-align: middle;
+}
+
+.portlet-icons {
+	margin: 0;
+	position: absolute;
+	right: 5px;
+	text-align: right;
+	top: 5px;
+}
+
+.portlet-content, .portlet-minimized .portlet-content-container {
+	padding: 12px 10px 10px;
+}
+
+.portlet-minimized .portlet-content {
+	padding: 0;
+}
+
+.portlet-icon-back {
+	background: url(../images/arrows/01_left.png) no-repeat 0 50%;
+	font-weight: bold;
+	padding: 3px 0 3px 18px;
+}
+
+/* ---------- Panel Page ---------- */
+
+.lfr-panel {
+	margin: 0 auto;
+	width: 90%;
+}
+
+.lfr-panel .portlet-title {
+	font-size: 13px;
+}
+
+.lfr-panel #content-wrapper {
+	margin: 0;
+	width: auto;
+}
+
+.lfr-panel .lfr-add-content h2 span {
+	background-color: #D3DADD;
+}
+
+/* ---------- Standard styles defined in the JSR 168 ---------- */
+
+/* ---------- Fonts ---------- */
+
+/* ---------- Font attributes for the 'normal' fragment font ---------- */
+
+.portlet-font {
+}
+
+/* ---------- Font attributes similar to the .portlet-font but the color is lighter ---------- */
+
+.portlet-font-dim {
+}
+
+/* ---------- Messages ---------- */
+
+/* ---------- Status of the current operation ---------- */
+
+.portlet-msg-status {
+}
+
+/* ---------- Help messages, general additional information, etc. ---------- */
+
+.portlet-msg-info {
+	background: #DFF4FF url(../images/messages/info.png) no-repeat 6px 50%;
+	border: 1px solid #A7CEDF;
+	color: #34404F;
+	display: block;
+	font-weight: bold;
+	margin: 2px auto 14px;
+	padding: 6px 6px 6px 30px;
+	text-align: left;
+}
+
+.portlet-msg-info.pending {
+	background-image: url(../images/common/time.png);
+}
+
+/* ---------- Error messages ---------- */
+
+.portlet-msg-error {
+	background: #fdd url(../images/messages/error.png) no-repeat 6px 50%;
+	border: 1px solid #f00;
+	display: block;
+	font-weight: bold;
+	margin: 2px auto 14px;
+	padding: 6px 6px 6px 30px;
+	text-align: left;
+}
+
+/* ---------- Warning messages ---------- */
+
+.portlet-msg-alert {
+	background: #ffc url(../images/messages/alert.png) no-repeat 6px 20%;
+	border: 1px solid #fc0;
+	display: block;
+	font-weight: bold;
+	margin: 2px auto 14px;
+	padding: 6px 6px 6px 30px;
+	text-align: left;
+}
+
+/* ---------- Success messages ---------- */
+
+.portlet-msg-success {
+	background: #F4FDEF url(../images/messages/success.png) no-repeat 6px 50%;
+	border: 1px solid #ACDFA7;
+	color: #384F34;
+	display: block;
+	font-weight: bold;
+	margin: 2px auto 14px;
+	padding: 6px 6px 6px 30px;
+	text-align: left;
+}
+
+/* ---------- Sections ---------- */
+
+/* ---------- Table or section header ---------- */
+
+.portlet-section-header {
+}
+
+.portlet-section-header th {
+}
+
+/* ---------- Normal text in a table cell ---------- */
+
+.portlet-section-body {
+}
+
+.portlet-section-body td {
+}
+
+/* ---------- Text in every other row in the cell ---------- */
+
+.portlet-section-alternate {
+}
+
+.portlet-section-alternate td {
+}
+
+.portlet-section-alternate-hover td, .portlet-section-body-hover td {
+}
+
+.portlet-section-body td td, .portlet-section-body-hover td td {
+}
+
+.portlet-section-alternate td td, .portlet-section-alternate-hover td td {
+}
+
+/* ---------- Text in a selected cell range ---------- */
+
+.portlet-section-selected, .portlet-section-selected a {
+	background: #727C81;
+	color: #fff;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.portlet-section-selected a:hover, .portlet-section-selected a:focus {
+	background-color: #727C81;
+}
+
+/* ---------- Text of a subheading ---------- */
+
+.portlet-section-subheader {
+}
+
+/* ---------- Table or section footnote ---------- */
+
+.portlet-section-footer {
+}
+
+/* ---------- Text that belongs to the table but does not fall in one of the other categories (e.g. explanatory or help text that is associated with the section) ---------- */
+
+.portlet-section-text {
+}
+
+/* ---------- Forms ---------- */
+
+/* ---------- Text used for the descriptive label of the whole form (not the labels for fields) ---------- */
+
+.portlet-form-label {
+}
+
+/* ---------- Text of the user-input in an input field ---------- */
+
+.portlet-form-input-field {
+}
+
+/* ---------- Text on a button ---------- */
+
+.portlet-form-button {
+}
+
+/* ---------- Text that appears beside a context dependent action icon ---------- */
+
+.portlet-icon-label {
+}
+
+/* ---------- Text that appears beside a 'standard' icon (e.g. Ok, or Cancel) ---------- */
+
+.portlet-dlg-icon-label {
+}
+
+/* ---------- Text for a separator of fields (e.g. checkboxes, etc.) ---------- */
+
+.portlet-form-field-label {
+}
+
+/* ---------- Text for a field (not input field, e.g. checkboxes, etc.) ---------- */
+
+.portlet-form-field {
+}
+
+/* ---------- Menus ---------- */
+
+/* ---------- General menu settings such as background color, margins, etc. ---------- */
+
+.portlet-menu {
+}
+
+/* ---------- Normal, unselected menu item ---------- */
+
+.portlet-menu-item {
+}
+
+/* ---------- Selected menu item ---------- */
+
+.portlet-menu-item-selected {
+}
+
+/* ---------- Normal, unselected menu item when the mouse hovers over it ---------- */
+
+.portlet-menu-item-hover {
+}
+
+/* ---------- Selected menu item when the mouse hovers over it ---------- */
+
+.portlet-menu-item-hover-selected {
+}
+
+/* ---------- Normal, unselected menu item that has sub-menus ---------- */
+
+.portlet-menu-cascade-item {
+}
+
+/* ---------- Selected sub-menu item that has sub-menus ---------- */
+
+.portlet-menu-cascade-item-selected {
+}
+
+/* ---------- Descriptive text for the menu (e.g. in a help context below the menu) ---------- */
+
+.portlet-menu-description {
+}
+
+/* ---------- Menu caption ---------- */
+
+.portlet-menu-caption {
+}
+
+/* ---------- Calendar portlet ---------- */
+
+.portlet-calendar .calendar-container {
+	background-position: 0 99%;
+	background-repeat: repeat-x;
+	border: 1px solid #D7D7D7;
+	overflow: hidden;
+}
+
+.ie .portlet-calendar .calendar-container {
+	background-position: 0 98%;
+}
+
+.portlet-calendar .calendar-day {
+	width: 209px;
+}
+
+.portlet-calendar .calendar-day .day-text {
+	background: #727C81;
+	color: #fff;
+	font-size: 1.6em;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: 1px solid #fff;
+	border-bottom: none;
+	font-size: 110px;
+	font-weight: normal;
+	padding-bottom: 12px;
+}
+
+.portlet-calendar .calendar-container .taglib-calendar {
+	background: #fff;
+	border-left: 1px solid #D7D7D7;
+	margin-left: -1px;
+	padding-left: 0;
+}
+
+.taglib-calendar tr.portlet-section-header th, .taglib-calendar tr td {
+	border: none;
+}
+
+.taglib-calendar tr td a {
+	background-color: #F0F5F7;
+	border: 1px solid #fff;
+	border-bottom: none;
+	border-left: none;
+	display: block;
+	height: 15px;
+	padding: 5px 0pt;
+}
+
+.taglib-calendar table td {
+	border-width: 0;
+}
+
+.taglib-calendar tr td a:hover {
+	background-color: #727C81;
+	color: #fff;
+}
+
+.taglib-calendar .calendar-current-day, .taglib-calendar .calendar-current-day a {
+	background-color: #fff;
+}
+
+.taglib-calendar .calendar-current-day a {
+	border: 1px solid #727C81;
+	color: #369;
+	text-decoration: underline;
+}
+
+.portlet-calendar .taglib-calendar tr td.calendar-current-day a:hover, .portlet-calendar .taglib-calendar tr td.calendar-current-day a:focus {
+	background-color: #DFF4FF;
+	border-color: #AEB8BC;
+	color: #06c;
+}
+
+.portlet-calendar .taglib-calendar td.calendar-current-day a span {
+	border: none;
+}
+
+.taglib-calendar tr td.calendar-inactive {
+	background-color: #fff;
+	color: #B5BFC4;
+}
+
+.taglib-calendar tr th {
+	border-bottom-color: #D7D7D7;
+}
+
+.taglib-calendar tr.portlet-section-header th, .taglib-calendar tr td {
+	border-left: none;
+	border-right: none;
+}
+
+.ie .taglib-calendar tr td.first a {
+	border-right: none;
+}
+
+/* ---------- Miscellaneous portlet styles ---------- */
+
+.journal-template-error .scroll-pane {
+	border: 1px solid #BFBFBF;
+	max-height: 200px;
+	min-height: 50px;
+	overflow: auto;
+	width: 100%;
+}
+
+.journal-template-error .scroll-pane .inner-scroll-pane {
+	min-width: 104%;
+}
+
+.journal-template-error .scroll-pane .error-line {
+	background: #fdd;
+}
+
+.journal-template-error .scroll-pane pre {
+	margin: 0px;
+	white-space: pre;
+}
+
+.journal-template-error .scroll-pane pre span {
+	background: #B5BFC4;
+	border-right: 1px solid #BFBFBF;
+	display: block;
+	float: left;
+	margin-right: 4px;
+	padding-right: 4px;
+	text-align: right;
+	width: 40px;
+}
+
+.message-board-code {
+	background: #fff;
+	font-family: "Courier New",Courier,Monaco,monospace;
+	white-space: pre;
+}
+
+.message-board-code-lines {
+	margin-right: 12px;
+}
+
+.restricted, .restricted td {
+	background: #fdd;
+	border: none;
+}
+
+.restricted * {
+	color: #727C81;
+}
+
+.restricted .col-1 {
+	background-image: url(../images/messages/error.png);
+	background-position: 5px 50%;
+	background-repeat: no-repeat;
+	padding-left: 28px;
+}
+
+/* ---------- Miscellaneous component styles ---------- */
+
+/* ---------- Add content dialog ---------- */
+
+.lfr-portlet-item, .lfr-portlet-item p a {
+	font-size: 1em;
+}
+
+/* ---------- Actions button ---------- */
+
+.lfr-actions {
+}
+
+.lfr-actions, .lfr-actions ul {
+	background: #fff url(../images/forms/button.png) repeat-x 0 100%;
+	border: 1px solid;
+	border-color: #DEDEDE #BFBFBF #BFBFBF #DEDEDE;
+}
+
+.lfr-actions ul {
+	bottom: -1px;
+}
+
+.lfr-actions .lfr-trigger, .lfr-actions .lfr-trigger, .lfr-actions .lfr-trigger strong {
+	background: none;
+}
+
+.lfr-actions .lfr-trigger strong span {
+	background: url(../images/common/action.png) no-repeat 5px 50%;
+}
+
+.lfr-actions.left .lfr-trigger strong span {
+	background: url(../images/common/action_right.png) no-repeat 98% 50%;
+}
+
+.lfr-actions .lfr-trigger li {
+	background: transparent;
+	border-bottom: 1px solid #DEDEDE;
+	padding: 2px;
+}
+
+.lfr-actions .lfr-trigger li a {
+	padding: 5px 10px 5px 25px;
+}
+
+.lfr-actions .lfr-trigger li a:hover {
+	background-color: #828F95;
+	color: #fff;
+}
+
+.lfr-actions .lfr-trigger li a img {
+	left: 3px;
+	position: absolute;
+}
+
+.lfr-actions .lfr-trigger li.last {
+	border-bottom: none;
+}
