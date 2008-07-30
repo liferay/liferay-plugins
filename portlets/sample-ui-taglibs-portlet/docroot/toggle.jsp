@@ -30,9 +30,9 @@ Code:
 
 <pre>&lt;liferay-ui:toggle
     id="toggle_id_sample_ui_taglibs_test"
-    onImage='&lt;%= themeDisplay.getPathThemeImages() + "/arrows/01_down.png" %&gt;'
-    offImage='&lt;%= themeDisplay.getPathThemeImages() + "/arrows/01_right.png" %&gt;'
-    defaultOn="true"
+    showImage='&lt;%= themeDisplay.getPathThemeImages() + "/arrows/01_down.png" %&gt;'
+    hideImage='&lt;%= themeDisplay.getPathThemeImages() + "/arrows/01_right.png" %&gt;'
+    defaultShowContent="true"
 /&gt;</pre>
 
 <div class="separator"></div>
@@ -44,9 +44,9 @@ Result:
 <div>
 	<liferay-ui:toggle
 		id="toggle_id_sample_ui_taglibs_test"
-		onImage='<%= themeDisplay.getPathThemeImages() + "/arrows/01_down.png" %>'
-		offImage='<%= themeDisplay.getPathThemeImages() + "/arrows/01_right.png" %>'
-		defaultOn="true"
+		showImage='<%= themeDisplay.getPathThemeImages() + "/arrows/01_down.png" %>'
+		hideImage='<%= themeDisplay.getPathThemeImages() + "/arrows/01_right.png" %>'
+		defaultShowContent="true"
 	/>
 </div>
 
