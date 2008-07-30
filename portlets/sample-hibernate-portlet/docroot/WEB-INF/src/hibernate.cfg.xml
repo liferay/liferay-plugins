@@ -90,6 +90,6 @@
 
 		<!-- Mappings -->
 
-		<mapping resource="com/sample/hibernate/model/FoodItem.hbm.xml" />
+		<mapping resource="com/liferay/samplehibernate/model/FoodItem.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

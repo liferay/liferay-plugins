@@ -66,7 +66,7 @@ public class HibernateUtil {
 	public static Session openSession(SessionFactory sessionFactory)
 		throws HibernateException {
 
-		return _instance._sessionFactory.getCurrentSession();
+		return sessionFactory.getCurrentSession();
 	}
 
 	private HibernateUtil() {
