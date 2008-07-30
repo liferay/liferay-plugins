@@ -19,7 +19,7 @@
 	border: none;
 }
 body {
-	background: #898989 url(../images/custom/bg.png) repeat-y scroll center center;
+	background: #898989 url(../images/custom/bg.png);
 	color: #FFFFFF;
 	font-family: arial,verdana;
 	font-size: 12px;
@@ -28,14 +28,13 @@ body {
 #banner {
 	background:black url(../images/custom/header.jpg) no-repeat scroll right center;
 	height:353px;
-	margin-left:185px;
-	width:894px;
 	position: relative;
 }
 #wrapper {
 	background: none;
-	width: 1264px;
+	width: 894px;
 	position: relative;
+	margin: 0 auto;
 }
 #banner .logo a {
 	margin-left:20px;
