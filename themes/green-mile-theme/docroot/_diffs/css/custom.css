@@ -1,6 +1,5 @@
 body {
 	background: #000;
-	border: 1px solid #666;
 	color: white;
 	font-family: "Trebuchet MS", Arial;
 	font-size: 0.8em;
@@ -12,6 +11,7 @@ body {
 	background: transparent;
 	position: relative;
 	width: 1264px;
+	margin: 0 auto;
 }
 #banner {
 	background: #14A500 url(../images/custom/head_bckg.jpg) no-repeat top left;
