@@ -40,7 +40,7 @@ KBArticle article = (KBArticle)request.getAttribute(KnowledgeBaseKeys.ARTICLE);
 				fallbackContainer: '#<portlet:namespace />fallback',
 				maxFileSize: <%= PropsUtil.get("dl.file.max.size") %>,
 				namespace: '<portlet:namespace />',
-				uploadFile: '<liferay-portlet:actionURL windowState="<%= LiferayWindowState.POP_UP.toString() %>" doAsUserId="<%= user.getUserId() %>"><portlet:param name="actionName" value="addAttachment" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" /></liferay-portlet:actionURL><liferay-ui:input-permissions-params modelName="<%= KBArticle.class.getName() %>" />'
+				uploadFile: '<liferay-portlet:actionURL windowState="<%= LiferayWindowState.POP_UP.toString() %>" doAsUserId="<%= user.getUserId() %>"><portlet:param name="actionName" value="addFile" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" /></liferay-portlet:actionURL><liferay-ui:input-permissions-params modelName="<%= KBArticle.class.getName() %>" />'
 			});
 		}
 	);
@@ -50,7 +50,7 @@ KBArticle article = (KBArticle)request.getAttribute(KnowledgeBaseKeys.ARTICLE);
 	<jsp:param name="tabs1" value="attachments" />
 </jsp:include>
 
-<form action="<portlet:actionURL><portlet:param name="actionName" value="addAttachment" /><portlet:param name="redirect" value="<%= HtmlUtil.escape(redirect) %>" /></portlet:actionURL>" class="uni-form" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm">
+<form action="<portlet:actionURL><portlet:param name="actionName" value="addFile" /><portlet:param name="redirect" value="<%= HtmlUtil.escape(redirect) %>" /></portlet:actionURL>" class="uni-form" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm">
 <input name="<portlet:namespace />resourcePrimKey" type="hidden" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 <input name="<portlet:namespace />numOfFiles" type="hidden" value="3" />
 

@@ -117,7 +117,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			else if (actionName.equals("unsubscribeArticle")) {
 				unsubscribeArticle(actionRequest);
 			}
-			else if (actionName.equals("addAttachment")) {
+			else if (actionName.equals("addFile")) {
 				addAttachment(actionRequest);
 			}
 			else if (actionName.equals("deleteAttachment")) {
