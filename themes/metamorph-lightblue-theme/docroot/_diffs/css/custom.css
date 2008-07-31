@@ -1,0 +1,69 @@
+#wrapper {
+	background: #FFFFFF url(../images/custom/back_all.gif) repeat-x scroll 0 0;
+	margin: 0 auto;
+	position: relative;
+	width: 1264px;
+}
+#navigation li {
+	border: none;
+}
+#banner {
+	background: transparent url(../images/custom/header.jpg) no-repeat scroll center;
+	height: 122px;
+	position: relative;
+	top: 0;
+}
+body {
+	font-family: Arial,Helvetica,sans-serif;
+}
+#navigation {
+	background: transparent;
+	border: none;
+	margin: 3px auto 20px;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+}
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0px;
+}
+.js .interactive-mode {
+	top: 20px;
+}
+.portlet {
+	border: 1px solid black;
+}
+#navigation li a {
+	color: #115B8F;
+	font-weight: bold;
+}
+.portlet-topper {
+	background: transparent none repeat scroll 0 0;
+	border: none;
+	color: #1C7DC2;
+	font-size: 18px;
+}
+a {
+	font-size: 12px;
+}
+.ui-tabs li a, .tabs li span {
+	background: transparent none repeat scroll 0 0;
+	border-right: medium none;
+	color: black;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: transparent none repeat scroll 0 0;
+	color: #9EBAC8;
+}
+#footer {
+	background: transparent url(../images/custom/footer.gif) repeat-x scroll center bottom;
+	border-top: 10px solid #FFFFFF;
+	height: 38px;
+	padding-top: 20px;
+}
+.js #add-page {
+	background: transparent none repeat scroll 0 0;
+	border: medium none;
+	top: 0;
+}
