@@ -1,0 +1,107 @@
+#wrapper {
+	position: relative;
+	width:1203px;
+	margin: 0 auto;
+	background:#F0F0F0 url(../images/custom/contentbg.png) repeat-x scroll 0 0;
+	border-left:1px solid #EEEEFF;
+	border-right:1px solid #EEEEFF;
+}
+#banner {
+	position: relative;
+	top: 0;
+	background:transparent url(../images/custom/globe.gif) no-repeat scroll 0 0;
+	border-bottom:1px solid #EEEEFF;
+}
+body {
+	background:#E6E6E6 url(../images/custom/bodybg.png) repeat-x scroll 0 0;
+}
+#content-wrapper {
+	margin:15px auto;
+	width:97%;
+}
+#navigation {
+	background:#F0F0F0 url(../images/custom/contentbg.png) repeat-x scroll 0 0;
+	border: none;
+	margin:auto;
+	width:auto;
+	border-bottom:1px solid #EEEEFF;
+	height:36px;
+}
+#navigation li {
+	border: none;
+	margin:4px 0 0 -1px;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color:transparent;
+}
+#navigation li.selected a {
+	color: #888888;
+}
+#navigation li a:hover {
+}
+#navigation li.selected a span {
+	background:transparent;
+	padding-left:0px;
+}
+#navigation li a {
+	font-size:1.6em;
+	color: #888888;
+}
+#navigation li a:hover {
+	background:#FFFFFF url(../images/custom/menuhover.png) repeat-x scroll 0 0;
+	color:#226699;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:transparent;
+	color:#226699;
+}
+.js .interactive-mode {
+	right:1%;
+}
+.js #add-page {
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+	right:5%;
+	top:0;
+}
+.js #add-page a span {
+	color: #888888;
+}
+.js #navigation .enter-page {
+	background-color:transparent;
+	padding: 0;
+}
+.portlet {
+	background: #EEEEEE url(../images/custom/entrybg.png) repeat-x scroll 0 0;
+	border: none;
+}
+.portlet-topper {
+	background: transparent;
+	border: none;
+	color:#555555;
+	font-size: 18px;
+	border-bottom:2px solid #AABBBB;
+}
+a {
+	font-size: 12px;
+}
+#footer {
+	background:transparent url(../images/custom/globebottom.gif) no-repeat scroll 0 0;
+	height:78px;
+}
+.ui-tabs li a, .tabs li span {
+	background:transparent none repeat scroll 0 0;
+	border-right:medium none;
+	color:#888888;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+}
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+	font-weight:bold;
+}
+.ui-tabs {
+	border-bottom:medium none;
+}
