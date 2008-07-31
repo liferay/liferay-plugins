@@ -32,6 +32,7 @@ import com.liferay.knowledgebase.KnowledgeBaseKeys;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.impl.KBArticleImpl;
+import com.liferay.knowledgebase.portlet.KnowledgeBaseFriendlyURLMapper;
 import com.liferay.knowledgebase.service.base.KBArticleLocalServiceBaseImpl;
 import com.liferay.knowledgebase.util.Indexer;
 import com.liferay.knowledgebase.util.LuceneUtil;
@@ -767,7 +768,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			String layoutURL = PortalUtil.getLayoutURL(themeDisplay);
 
 			articleURL =
-				portalURL + layoutURL + "/kb/" + article.getTitle();
+				portalURL + layoutURL + StringPool.SLASH + StringPool.DASH +
+					StringPool.SLASH +  KnowledgeBaseFriendlyURLMapper.MAPPING +
+						StringPool.SLASH + article.getTitle();
 		}
 
 		String portletName = PortalUtil.getPortletTitle(
