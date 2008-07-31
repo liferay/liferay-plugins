@@ -1,95 +1,95 @@
 #wrapper {
-background:#000000 url(../images/custom/header.jpg) no-repeat scroll center top;
-position: relative;
-margin: 0 auto;
-width: 1264px;
+	background: #000000 url(../images/custom/header.jpg) no-repeat scroll center top;
+	margin: 0 auto;
+	position: relative;
+	width: 1264px;
 }
 body {
-color: white;
+	color: white;
 }
 #navigation li {
-border: none;
-margin:0px 0 0 -1px;
+	border: none;
+	margin: 0px 0 0 -1px;
 }
 #navigation {
-background:transparent url(../images/custom/menu.gif) repeat-x scroll 0 0;
-border: none;
-height:47px;
-margin:360px auto 100px;
+	background: transparent url(../images/custom/menu.gif) repeat-x scroll 0 0;
+	border: none;
+	height: 47px;
+	margin: 360px auto 100px;
 }
 #banner {
-background: transparent;
+	background: transparent;
 }
 #navigation li.selected a, #navigation li a:hover {
-background-color:transparent;
+	background-color: transparent;
 }
 #navigation li.selected a span {
-background:transparent;
-padding-left:0px;
+	background: transparent;
+	padding-left: 0px;
 }
 .portlet {
-background: transparent;
-border: none;
+	background: transparent;
+	border: none;
 }
 .portlet-topper {
-background: transparent;
-border: none;
-font-size: 18px;
+	background: transparent;
+	border: none;
+	font-size: 18px;
 }
 a {
-font-size: 12px;
+	font-size: 12px;
 }
 #navigation li a {
-color: white;
-padding:15px 20px;
+	color: white;
+	padding: 15px 20px;
 }
 .ui-tabs {
-border-bottom:medium none;
+	border-bottom: medium none;
 }
 #footer {
-background:transparent url(../images/custom/footer.gif) repeat-x scroll 0 0;
-height:47px;
+	background: transparent url(../images/custom/footer.gif) repeat-x scroll 0 0;
+	height: 47px;
 }
 .ui-tabs li a:hover, .ui-tabs li span:hover {
-color:#9EBAC8;
-background:transparent url(../images/custom/menu_back.gif) repeat-x scroll bottom;
+	background: transparent url(../images/custom/menu_back.gif) repeat-x scroll bottom;
+	color: #9EBAC8;
 }
 .ui-tabs li a, .tabs li span {
-background:transparent none repeat scroll 0 0;
-border-right:medium none;
+	background: transparent none repeat scroll 0 0;
+	border-right: medium none;
 }
 .js #add-page {
-background:transparent none repeat scroll 0 0;
-border:medium none;
-top:10px;
+	background: transparent none repeat scroll 0 0;
+	border: medium none;
+	top: 10px;
 }
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-background-color:transparent;
+	background-color: transparent;
 }
 .ui-tabs li.current a, .ui-tabs li.current span {
-background:transparent none repeat scroll 0 0;
-border:medium none;
-background:transparent url(../images/custom/menu.gif) repeat-x scroll bottom;
+	background: transparent none repeat scroll 0 0;
+	background: transparent url(../images/custom/menu.gif) repeat-x scroll bottom;
+	border: medium none;
 }
 .js #navigation .enter-page {
-background-color:transparent;
-padding:0;
+	background-color: transparent;
+	padding: 0;
 }
 .portlet-calendar .calendar-day .day-number {
-color: black;
+	color: black;
 }
 .taglib-calendar tr th {
-color:black;
+	color: black;
 }
 .portlet-section-body td {
-color: black;
+	color: black;
 }
 .ui-dialog {
-background-color:black;
+	background-color: black;
 }
 .uni-form {
-background: black;
+	background: black;
 }
 #navigation li a:hover {
-background:transparent url(../images/custom/menu_back.gif) repeat-x scroll 0 0;
+	background: transparent url(../images/custom/menu_back.gif) repeat-x scroll 0 0;
 }
