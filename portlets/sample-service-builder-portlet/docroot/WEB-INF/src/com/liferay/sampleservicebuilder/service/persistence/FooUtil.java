@@ -172,12 +172,22 @@ public class FooUtil {
 	}
 
 	public static FooPersistence getPersistence() {
-		return _persistence;
+		return _getUtil()._persistence;
 	}
 
 	public void setPersistence(FooPersistence persistence) {
 		_persistence = persistence;
 	}
 
-	private static FooPersistence _persistence;
+	private static FooUtil _getUtil() {
+		if (_util == null) {
+			_util = (FooUtil)com.liferay.util.bean.PortletBeanLocatorUtil.locate(_UTIL);
+		}
+
+		return _util;
+	}
+
+	private static final String _UTIL = FooUtil.class.getName();
+	private static FooUtil _util;
+	private FooPersistence _persistence;
 }

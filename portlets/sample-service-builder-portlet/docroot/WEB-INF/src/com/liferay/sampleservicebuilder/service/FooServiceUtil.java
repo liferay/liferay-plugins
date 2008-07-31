@@ -29,13 +29,4 @@ package com.liferay.sampleservicebuilder.service;
  *
  */
 public class FooServiceUtil {
-	public static FooService getService() {
-		return _service;
-	}
-
-	public void setService(FooService service) {
-		_service = service;
-	}
-
-	private static FooService _service;
 }

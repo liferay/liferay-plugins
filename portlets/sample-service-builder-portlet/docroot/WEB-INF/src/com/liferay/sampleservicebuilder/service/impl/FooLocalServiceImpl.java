@@ -60,27 +60,11 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 		FooUtil.update(foo, false);
 	}
 
-	public void deleteFoo(long fooId) throws PortalException, SystemException {
-		FooUtil.remove(fooId);
-	}
-
-	public Foo getFoo(long fooId) throws PortalException, SystemException {
-		return FooUtil.findByPrimaryKey(fooId);
-	}
-
-	public List getFoos() throws SystemException {
-		return FooUtil.findAll();
-	}
-
-	public List getFoos(OrderByComparator obc) throws SystemException {
+	public List<Foo> getFoos(OrderByComparator obc) throws SystemException {
 		return getFoos(QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
 	}
 
-	public List getFoos(int start, int end) throws SystemException {
-		return FooUtil.findAll(start, end);
-	}
-
-	public List getFoos(int start, int end, OrderByComparator obc)
+	public List<Foo> getFoos(int start, int end, OrderByComparator obc)
 		throws SystemException {
 
 		return FooUtil.findAll(start, end, obc);

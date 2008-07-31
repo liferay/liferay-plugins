@@ -26,10 +26,10 @@ import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.service.base.PrincipalBean;
 
 import com.liferay.sampleservicebuilder.service.FooLocalService;
+import com.liferay.sampleservicebuilder.service.FooLocalServiceFactory;
 import com.liferay.sampleservicebuilder.service.FooService;
 import com.liferay.sampleservicebuilder.service.persistence.FooPersistence;
-
-import com.liferay.util.bean.PortletBeanLocatorUtil;
+import com.liferay.sampleservicebuilder.service.persistence.FooUtil;
 
 /**
  * <a href="FooServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
@@ -57,13 +57,11 @@ public abstract class FooServiceBaseImpl extends PrincipalBean
 
 	public void afterPropertiesSet() {
 		if (fooLocalService == null) {
-			fooLocalService = (FooLocalService)PortletBeanLocatorUtil.locate(FooLocalService.class.getName() +
-					".impl");
+			fooLocalService = FooLocalServiceFactory.getImpl();
 		}
 
 		if (fooPersistence == null) {
-			fooPersistence = (FooPersistence)PortletBeanLocatorUtil.locate(FooPersistence.class.getName() +
-					".impl");
+			fooPersistence = FooUtil.getPersistence();
 		}
 	}
 

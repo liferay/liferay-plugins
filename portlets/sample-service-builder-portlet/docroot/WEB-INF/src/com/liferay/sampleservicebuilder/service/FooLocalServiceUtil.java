@@ -32,80 +32,94 @@ public class FooLocalServiceUtil {
 	public static com.liferay.sampleservicebuilder.model.Foo addFoo(
 		com.liferay.sampleservicebuilder.model.Foo foo)
 		throws com.liferay.portal.SystemException {
-		return _service.addFoo(foo);
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		return fooLocalService.addFoo(foo);
 	}
 
 	public static void deleteFoo(long fooId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.deleteFoo(fooId);
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		fooLocalService.deleteFoo(fooId);
 	}
 
 	public static void deleteFoo(com.liferay.sampleservicebuilder.model.Foo foo)
 		throws com.liferay.portal.SystemException {
-		_service.deleteFoo(foo);
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		fooLocalService.deleteFoo(foo);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery);
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		return fooLocalService.dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery, start, end);
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		return fooLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.sampleservicebuilder.model.Foo getFoo(long fooId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getFoo(fooId);
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		return fooLocalService.getFoo(fooId);
 	}
 
 	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
 		int start, int end) throws com.liferay.portal.SystemException {
-		return _service.getFoos(start, end);
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		return fooLocalService.getFoos(start, end);
 	}
 
 	public static int getFoosCount() throws com.liferay.portal.SystemException {
-		return _service.getFoosCount();
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		return fooLocalService.getFoosCount();
 	}
 
 	public static com.liferay.sampleservicebuilder.model.Foo updateFoo(
 		com.liferay.sampleservicebuilder.model.Foo foo)
 		throws com.liferay.portal.SystemException {
-		return _service.updateFoo(foo);
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		return fooLocalService.updateFoo(foo);
 	}
 
 	public static void addFoo(java.lang.String field1, boolean field2,
 		int field3, java.util.Date field4, java.lang.String field5)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.addFoo(field1, field2, field3, field4, field5);
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		fooLocalService.addFoo(field1, field2, field3, field4, field5);
 	}
 
-	public static java.util.List getFoos()
-		throws com.liferay.portal.SystemException {
-		return _service.getFoos();
-	}
-
-	public static java.util.List getFoos(
+	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
-		return _service.getFoos(obc);
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
+
+		return fooLocalService.getFoos(obc);
 	}
 
-	public static java.util.List getFoos(int start, int end)
+	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
-		return _service.getFoos(start, end);
-	}
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
 
-	public static java.util.List getFoos(int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
-		return _service.getFoos(start, end, obc);
+		return fooLocalService.getFoos(start, end, obc);
 	}
 
 	public static void updateFoo(long fooId, java.lang.String field1,
@@ -113,16 +127,8 @@ public class FooLocalServiceUtil {
 		java.lang.String field5)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.updateFoo(fooId, field1, field2, field3, field4, field5);
-	}
+		FooLocalService fooLocalService = FooLocalServiceFactory.getService();
 
-	public static FooLocalService getService() {
-		return _service;
+		fooLocalService.updateFoo(fooId, field1, field2, field3, field4, field5);
 	}
-
-	public void setService(FooLocalService service) {
-		_service = service;
-	}
-
-	private static FooLocalService _service;
 }

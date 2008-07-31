@@ -66,17 +66,12 @@ public interface FooLocalService {
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public java.util.List getFoos() throws com.liferay.portal.SystemException;
-
-	public java.util.List getFoos(
+	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List getFoos(int start, int end)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List getFoos(int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
 	public void updateFoo(long fooId, java.lang.String field1, boolean field2,

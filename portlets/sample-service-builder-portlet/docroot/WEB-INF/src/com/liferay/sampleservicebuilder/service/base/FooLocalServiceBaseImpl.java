@@ -30,8 +30,7 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.sampleservicebuilder.model.Foo;
 import com.liferay.sampleservicebuilder.service.FooLocalService;
 import com.liferay.sampleservicebuilder.service.persistence.FooPersistence;
-
-import com.liferay.util.bean.PortletBeanLocatorUtil;
+import com.liferay.sampleservicebuilder.service.persistence.FooUtil;
 
 import java.util.List;
 
@@ -95,8 +94,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 
 	public void afterPropertiesSet() {
 		if (fooPersistence == null) {
-			fooPersistence = (FooPersistence)PortletBeanLocatorUtil.locate(FooPersistence.class.getName() +
-					".impl");
+			fooPersistence = FooUtil.getPersistence();
 		}
 	}
 
