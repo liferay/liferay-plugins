@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>mashup_portlet</portlet-name>
+		<portlet-name>MashupPortlet</portlet-name>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

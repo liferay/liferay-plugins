@@ -2,7 +2,7 @@
 <!DOCTYPE display PUBLIC "-//Liferay//DTD Display 5.1.0//EN" "http://www.liferay.com/dtd/liferay-display_5_1_0.dtd">
 
 <display>
-	<category name="category.entertainment">
-		<portlet id="iframe_portlet" />
+	<category name="category.sun">
+		<portlet id="IFramePortlet" />
 	</category>
 </display>

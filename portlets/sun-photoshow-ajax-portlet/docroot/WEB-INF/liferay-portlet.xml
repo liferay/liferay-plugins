@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>photoshow_ajax_portlet</portlet-name>
+		<portlet-name>PhotoShowPortlet</portlet-name>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>privacy_guard_portlet</portlet-name>
+		<portlet-name>PrivacyGuardPortlet</portlet-name>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

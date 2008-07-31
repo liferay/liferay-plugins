@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>notepad_portlet</portlet-name>
+		<portlet-name>NotepadPortlet</portlet-name>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

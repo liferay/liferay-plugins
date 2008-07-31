@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>elluminate_portlet</portlet-name>
+		<portlet-name>ElluminatePortlet</portlet-name>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

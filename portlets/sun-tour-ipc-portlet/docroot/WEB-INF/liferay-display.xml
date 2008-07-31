@@ -2,7 +2,7 @@
 <!DOCTYPE display PUBLIC "-//Liferay//DTD Display 5.1.0//EN" "http://www.liferay.com/dtd/liferay-display_5_1_0.dtd">
 
 <display>
-	<category name="category.sample">
+	<category name="category.sun">
 		<portlet id="detailportlet" />
 		<portlet id="listportlet" />
 		<portlet id="mapportlet" />

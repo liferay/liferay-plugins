@@ -3,7 +3,10 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>video_portlet</portlet-name>
+		<portlet-name>Youtube Portlet</portlet-name>
+	</portlet>
+	<portlet>
+		<portlet-name>SingleVideoPortlet</portlet-name>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
