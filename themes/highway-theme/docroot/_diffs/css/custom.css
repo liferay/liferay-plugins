@@ -1,0 +1,89 @@
+#wrapper {
+	background: transparent;
+	border-left: 5px solid #000000;
+	border-right: 5px solid #000000;
+	margin: 0 auto;
+	position: relative;
+	width: 1020px;
+}
+#banner {
+	background: transparent url(../images/custom/header.jpg) no-repeat scroll center top;
+	height: 323px;
+	position: relative;
+	top: 0;
+}
+#navigation {
+	background: transparent url(../images/custom/menu.jpg) no-repeat scroll center;
+	border: none;
+	height: 101px;
+	margin: 0 auto;
+}
+#navigation li {
+	border: none;
+	margin: 0px 0 0 30px;
+}
+#navigation li a {
+	color: white;
+	font-size: 1.1em;
+	font-weight: bold;
+	padding: 41px 20px;
+}
+#navigation li a:hover {
+	background: transparent url(../images/custom/button_r.gif) repeat-x scroll 0 0;
+}
+body {
+	background: #CD9F46 none repeat scroll 0 0;
+}
+#content-wrapper {
+	background: #FFFFFF url(../images/custom/page_back.gif) repeat-x scroll center top;
+	min-height: 400px;
+	width: 1020px;
+}
+.portlet {
+	background: transparent;
+	border: none;
+}
+.portlet-topper {
+	background: transparent;
+	border: none;
+	color: #CD9F46;
+	font-size: 18px;
+}
+a {
+	font-size: 12px;
+}
+#footer {
+	background: transparent url(../images/custom/footer.gif) repeat-x scroll 0 0;
+	height: 73px;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+#navigation li.selected a span {
+	background: transparent none repeat scroll 0 0;
+	padding-left: 0;
+}
+.js #add-page {
+	background: transparent none repeat scroll 0 0;
+	border: medium none;
+	right: 6%;
+	top: 37px;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color: transparent;
+}
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: transparent url(../images/custom/menu.jpg) no-repeat scroll center bottom;
+	border: medium none;
+	color: white;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: transparent url(../images/custom/button_r.gif) repeat-x scroll center bottom;
+	color: white;
+}
+.ui-tabs li a, .tabs li span {
+	background: transparent none repeat scroll 0 0;
+	border-right: medium none;
+	color: black;
+}
