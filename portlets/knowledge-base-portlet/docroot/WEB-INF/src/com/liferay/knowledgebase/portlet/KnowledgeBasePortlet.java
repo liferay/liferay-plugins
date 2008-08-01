@@ -50,6 +50,11 @@ import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.tags.EntryNameException;
+import com.liferay.portlet.tags.model.TagsEntry;
+import com.liferay.portlet.tags.model.TagsEntryConstants;
+import com.liferay.portlet.tags.model.TagsVocabulary;
+import com.liferay.portlet.tags.service.TagsEntryServiceUtil;
+import com.liferay.portlet.tags.service.TagsVocabularyServiceUtil;
 import com.liferay.util.RSSUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.util.servlet.PortletResponseUtil;
@@ -82,6 +87,7 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author Jorge Ferrer
  * @author Bruno Farache
+ * @author Alvaro del Castillo
  *
  */
 public class KnowledgeBasePortlet extends JSPPortlet {
@@ -589,8 +595,29 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		long parentResourcePrimKey = ParamUtil.getLong(
 			actionRequest, "parentResourcePrimKey");
 
-		String[] tagsEntries = StringUtil.split(
-			ParamUtil.getString(actionRequest, "tagsEntries"));
+		List<TagsVocabulary> vocabularies =
+			TagsVocabularyServiceUtil.getVocabularies(
+				themeDisplay.getCompanyId(), false);
+
+		String tagsEntriesString = ParamUtil.getString(
+				actionRequest, "tagsEntries");
+
+		for (TagsVocabulary vocabulary : vocabularies) {
+			String vocabularyParamName =
+				TagsEntryConstants.VOCABULARY
+					+ Long.toString(vocabulary.getVocabularyId());
+
+			long entryId = ParamUtil.getLong(
+				actionRequest, vocabularyParamName);
+
+			if (Validator.isNotNull(entryId)) {
+				TagsEntry entry = TagsEntryServiceUtil.getEntry(entryId);
+
+				tagsEntriesString += "," + entry.getName();
+			}
+		}
+
+		String[] tagsEntries = StringUtil.split(tagsEntriesString);
 
 		if (resourcePrimKey <= 0) {
 			return KBArticleServiceUtil.addArticle(

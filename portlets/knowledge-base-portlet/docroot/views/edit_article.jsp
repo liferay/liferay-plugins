@@ -166,24 +166,43 @@ if (article == null) {
 
 <table class="lfr-table">
 
+	<%
+	long classPK = 0;
+
+	if (!newArticle) {
+		classPK = article.getResourcePrimKey();
+	}
+	%>
+
+	<tr>
+	<td>
+		<liferay-ui:message key="categories" />
+	</td>
+	<td>
+
+		<liferay-ui:tags-selector
+			className="<%= KBArticle.class.getName() %>"
+			classPK="<%= classPK %>"
+			hiddenInput="none"
+			folksonomy="false"
+		/>
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
+		<br />
+	</td>
+</tr>
 <tr>
 	<td>
 		<liferay-ui:message key="tags" />
 	</td>
 	<td>
-
-		<%
-		long classPK = 0;
-
-		if (!newArticle) {
-			classPK = article.getResourcePrimKey();
-		}
-		%>
-
 		<liferay-ui:tags-selector
 			className="<%= KBArticle.class.getName() %>"
 			classPK="<%= classPK %>"
 			hiddenInput="tagsEntries"
+			folksonomy="true"
 		/>
 	</td>
 </tr>

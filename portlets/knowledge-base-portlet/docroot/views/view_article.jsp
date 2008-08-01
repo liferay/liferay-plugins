@@ -182,6 +182,16 @@ viewAttachmentsURL.setParameter("title", title);
 								className="<%= className %>"
 								classPK="<%= resourcePrimKey %>"
 								portletURL="<%= taggedArticlesURL %>"
+								folksonomy="false"
+								message="categories"
+							/>
+						</li>
+						<li>
+							<liferay-ui:tags-summary
+								className="<%= className %>"
+								classPK="<%= article.getResourcePrimKey() %>"
+								portletURL="<%= taggedArticlesURL %>"
+								folksonomy="true"
 							/>
 						</li>
 
