@@ -1415,6 +1415,7 @@ Liferay.MailConfiguration = {
 				url: themeDisplay.getLayoutURL() + '/-/mail/account_configuration',
 				async: false,
 				data: {
+					description: jsonAccount.description,
 					emailAddress: jsonAccount.emailAddress,
 					emailAddressSameAsUsername: jsonAccount.emailAddressSameAsUsername,
 					mailInHostName: jsonAccount.mailInHostName,
@@ -1485,10 +1486,17 @@ Liferay.MailConfiguration = {
 				url: themeDisplay.getLayoutURL() + '/-/mail/accounts',
 				dataType: 'json',
 				success: function(jsonAccounts) {
-					for (i = 0; i < jsonAccounts.accounts.length; i++) {
-						var account = jsonAccounts.accounts[i];
+					if (jsonAccounts.accounts.length == 0) {
+						jQuery('.accounts-configuration .current-accounts-container').hide();
+					}
+					else {
+						for (i = 0; i < jsonAccounts.accounts.length; i++) {
+							var account = jsonAccounts.accounts[i];
 
-						instance.appendJSONAccountConfigurationHTML(instance.currentMailAccountsDiv, account, false);
+							instance.appendJSONAccountConfigurationHTML(instance.currentMailAccountsDiv, account, false);
+						}
+
+						jQuery('.accounts-configuration .current-accounts-container').show();
 					}
 
 					instance.refreshAccountEvents();

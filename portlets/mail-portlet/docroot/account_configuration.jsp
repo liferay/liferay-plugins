@@ -25,6 +25,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String description = ParamUtil.getString(request, "description");
 String emailAddress = ParamUtil.getString(request, "emailAddress");
 boolean emailAddressSameAsUsername = ParamUtil.getBoolean(request, "emailAddressSameAsUsername");
 String mailInHostName = ParamUtil.getString(request, "mailInHostName");
@@ -48,6 +49,16 @@ String username = ParamUtil.getString(request, "username");
 			</div>
 
 			<table class="details">
+
+			<c:if test='<%= description != "" %>'>
+				<tr>
+					<td colspan="2">
+						<span class="description">
+							<%= description %>
+						</span>
+					</td>
+				</tr>
+			</c:if>
 
 			<c:choose>
 				<c:when test="<%= emailAddressSameAsUsername %>">

@@ -38,18 +38,22 @@
 
 <div class="mail-portlet">
 	<div class="accounts-configuration">
-		<liferay-ui:message key="add-a-new-email-account" />
+		<div class="add-account-container">
+			<liferay-ui:message key="add-a-new-email-account" />
 
-		<br /><br />
+			<br /><br />
 
-		<div class="preconfigured-mail-accounts"></div>
+			<div class="preconfigured-mail-accounts"></div>
+		</div>
 
 		<br />
 
-		<liferay-ui:message key="your-email-accounts" />
+		<div class="current-accounts-container">
+			<liferay-ui:message key="your-email-accounts" />
 
-		<br /><br />
+			<br /><br />
 
-		<div class="current-mail-accounts"></div>
+			<div class="current-mail-accounts"></div>
+		</div>
 	</div>
 </div>
