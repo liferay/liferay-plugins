@@ -142,6 +142,7 @@ html {
 	height: 32px;
 	margin: 105px -66px 0 0;
 	padding: 0 24px 32px 0;
+	position: relative;
 	z-index: 39;
 }
 
