@@ -35,6 +35,7 @@ import com.liferay.knowledgebase.service.persistence.KBArticleResourcePersistenc
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.InitializingBean;
+import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import com.liferay.util.bean.PortletBeanLocatorUtil;
@@ -171,12 +172,12 @@ public abstract class KBArticleResourceLocalServiceBaseImpl
 		}
 
 		if (counterLocalService == null) {
-			counterLocalService = (CounterLocalService)PortletBeanLocatorUtil.locate(CounterLocalService.class.getName() +
+			counterLocalService = (CounterLocalService)PortalBeanLocatorUtil.locate(CounterLocalService.class.getName() +
 					".impl");
 		}
 
 		if (counterService == null) {
-			counterService = (CounterService)PortletBeanLocatorUtil.locate(CounterService.class.getName() +
+			counterService = (CounterService)PortalBeanLocatorUtil.locate(CounterService.class.getName() +
 					".impl");
 		}
 	}
