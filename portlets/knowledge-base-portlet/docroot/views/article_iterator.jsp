@@ -213,25 +213,47 @@ for (int i = 0; i < results.size(); i++) {
 
 <liferay-ui:search-iterator searchContainer="<%= searchContainer %>" paginate="true" />
 
-<c:if test='<%= type.equals("all_articles") && KBPermission.contains(permissionChecker, plid, ActionKeys.SUBSCRIBE) %>'>
+<c:if test='<%= type.equals("all_articles") %>'>
 	<liferay-ui:icon-list>
-		<c:choose>
-			<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), portletGroupId) %>">
-				<portlet:actionURL var="unsubscribeURL">
-					<portlet:param name="actionName" value="<%= Constants.UNSUBSCRIBE %>" />
-					<portlet:param name="redirect" value="<%= currentURL %>" />
-				</portlet:actionURL>
+		<c:if test='<%= KBPermission.contains(permissionChecker, plid, ActionKeys.SUBSCRIBE) %>'>
+			<c:choose>
+				<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), portletGroupId) %>">
+					<portlet:actionURL var="unsubscribeURL">
+						<portlet:param name="actionName" value="<%= Constants.UNSUBSCRIBE %>" />
+						<portlet:param name="redirect" value="<%= currentURL %>" />
+					</portlet:actionURL>
 
-				<liferay-ui:icon image="unsubscribe" url="<%= unsubscribeURL %>" />
-			</c:when>
-			<c:otherwise>
-				<portlet:actionURL var="subscribeURL">
-					<portlet:param name="actionName" value="<%= Constants.SUBSCRIBE %>" />
-					<portlet:param name="redirect" value="<%= currentURL %>" />
-				</portlet:actionURL>
+					<liferay-ui:icon image="unsubscribe" url="<%= unsubscribeURL %>" />
+				</c:when>
+				<c:otherwise>
+					<portlet:actionURL var="subscribeURL">
+						<portlet:param name="actionName" value="<%= Constants.SUBSCRIBE %>" />
+						<portlet:param name="redirect" value="<%= currentURL %>" />
+					</portlet:actionURL>
 
-				<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" />
-			</c:otherwise>
-		</c:choose>
+					<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" />
+				</c:otherwise>
+			</c:choose>
+		</c:if>
+
+		<%
+		String[] displayRSSTypes = prefs.getValues("displayRSSTypes", new String[] {rss20});
+
+		rssAtomURL.setParameter("groupId", String.valueOf(themeDisplay.getPortletGroupId()));
+		rssRSS10URL.setParameter("groupId", String.valueOf(themeDisplay.getPortletGroupId()));
+		rssRSS20URL.setParameter("groupId", String.valueOf(themeDisplay.getPortletGroupId()));
+		%>
+
+		<c:if test="<%= ArrayUtil.contains(displayRSSTypes, atom) %>">
+			<liferay-ui:icon image="rss" message="<%= atom %>" method="get" url='<%= rssAtomURL.toString() %>' target="_blank" label="<%= true %>" />
+		</c:if>
+
+		<c:if test="<%= ArrayUtil.contains(displayRSSTypes, rss10) %>">
+			<liferay-ui:icon image="rss" message="<%= rss10 %>" method="get" url='<%= rssRSS10URL.toString() %>' target="_blank" label="<%= true %>" />
+		</c:if>
+
+		<c:if test="<%= ArrayUtil.contains(displayRSSTypes, rss20) %>">
+			<liferay-ui:icon image="rss" message="<%= rss20 %>" method="get" url='<%= rssRSS20URL.toString() %>' target="_blank" label="<%= true %>" />
+		</c:if>
 	</liferay-ui:icon-list>
 </c:if>
