@@ -50,7 +50,7 @@ String username = ParamUtil.getString(request, "username");
 
 			<table class="details">
 
-			<c:if test='<%= description != "" %>'>
+			<c:if test="<%= Validator.isNotNull(description) %>">
 				<tr>
 					<td colspan="2">
 						<span class="description">
