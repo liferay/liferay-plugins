@@ -29,10 +29,10 @@ jQuery(document).ready(
 			var dock = jQuery('.lfr-dock ul');
 
 			if (dock.css('display') === 'block') {
-				soundPlay('toss');
+				soundPlay('toss', true);
 
 				mario.removeClass('lifted');
-				mario.addClass('throwing', true);
+				mario.addClass('throwing');
 
 				dock.animate({
 					left: -600,

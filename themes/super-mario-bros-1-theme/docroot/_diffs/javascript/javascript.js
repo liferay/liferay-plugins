@@ -6,14 +6,11 @@ jQuery(document).ready(
 	*/
 
 	function() {
-		var soundPlay = function (snd) {
-			var inject = '<embed wmode="transparent" width="1" height="1" src="' + themeDisplay.getPathThemeRoot() + 'javascript/mp3player.swf?file=' + themeDisplay.getPathThemeRoot() + 'javascript/' + snd + '.mp3&autoStart=true&volume=50" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />';
-			if (snd == 'grow' || snd == 'down') {
-				soundFX.html(inject);
+		var soundPlay = function (sound, reset) {
+			if (reset) {
+				soundFX.html('');
 			}
-			else {
-				soundFX.append(inject);
-			}
+			soundFX.append('<embed wmode="transparent" width="1" height="1" src="' + themeDisplay.getPathThemeRoot() + 'javascript/' + sound + '.swf" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />');
 		};
 
 		var soundFX = jQuery('<div style="position: absolute; top: 0; left: 0; "></div>').appendTo('#banner');
@@ -23,14 +20,36 @@ jQuery(document).ready(
 		}, function () {});
 
 		jQuery('.lfr-dock h2').click(function () {
-			var instance = jQuery('.lfr-dock ul');
-			if (instance.css('display') === 'block') {
-				soundPlay('down');
-				instance.hide(200);
+			var mario = jQuery(this);
+			var dock = jQuery('.lfr-dock ul');
+
+			if (dock.css('display') === 'block') {
+				soundPlay('pipe', true);
+				dock.animate({
+					display: 'none',
+					opacity: 0,
+					top: -28
+				}, {
+					duration: 600,
+					complete: function () {
+						dock.hide();
+						mario.removeClass('hit');
+					}
+				});
 			}
 			else {
-				soundPlay('grow');
-				instance.show(500);
+				soundPlay('grow', true);
+				mario.addClass('hit');
+				dock.css({
+					display: 'block',
+					opacity: 1,
+					top: 0
+				});
+				dock.animate({
+					top: -58
+				}, {
+					duration: 500
+				});
 			}
 		});
 	}

@@ -5,6 +5,10 @@ body {
 	min-height: 128px;
 }
 
+a {
+	color: #411;
+}
+
 #content-wrapper {
 	background: transparent url('../images/custom/content-wrapper_bg.png') no-repeat scroll 64px bottom;
 	margin: 0 0 214px;
@@ -129,6 +133,8 @@ html {
 	height: 32px;
 	margin: 56px 0 0;
 	padding: 0 24px 32px 0;
+	position: relative;
+	top: 0;
 }
 
 .lfr-dock {
