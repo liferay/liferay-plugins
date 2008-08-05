@@ -26,11 +26,28 @@
 
 <%@ page import="com.liferay.portal.model.Portlet" %>
 <%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 
 <liferay-theme:defineObjects />
 
 <%
 Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletDisplay.getId());
+boolean usePortletBar = ParamUtil.getBoolean(request, "usePortletBar");
+if (usePortletBar) {
+%>
+<link href="<%= request.getContextPath() %>/bar_view_css.jsp?themeId=<%= themeDisplay.getTheme().getThemeId() %>&amp;colorSchemeId=<%= themeDisplay.getColorScheme().getColorSchemeId() %>&amp;t=<%= portlet.getTimestamp() %>" rel="stylesheet" type="text/css" />
+
+<script src="<%= request.getContextPath() %>/bar_view_javascript.js?t=<%= portlet.getTimestamp() %>" type="text/javascript"></script>
+<script language="javascript">
+	Liferay.PortletBar.add(
+		{
+			itemid: 'chat-li',
+			content: '<a class="item-link" href="javascript: ;">Chat (0)</a><div class="popup"><div id="buddy-list"><ul class="chat-popup"></ul></div></div>'
+		});
+</script>
+<%
+}
+else {
 %>
 
 <link href="<%= request.getContextPath() %>/css.jsp?themeId=<%= themeDisplay.getTheme().getThemeId() %>&amp;colorSchemeId=<%= themeDisplay.getColorScheme().getColorSchemeId() %>&amp;t=<%= portlet.getTimestamp() %>" rel="stylesheet" type="text/css" />
@@ -50,3 +67,6 @@ Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(),
 		</div>
 	</li>
 </ul>
+<%
+}
+%>
