@@ -22,10 +22,19 @@
 
 package com.liferay.mail.util;
 
+import com.liferay.mail.model.MailAccount;
+import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.search.BooleanClauseOccur;
+import com.liferay.portal.kernel.search.BooleanQuery;
+import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;
+import com.liferay.portal.kernel.search.Document;
+import com.liferay.portal.kernel.search.Field;
+import com.liferay.portal.kernel.search.Hits;
+import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -40,9 +49,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.mail.MessagingException;
 
@@ -50,7 +60,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- *
  * <a href="MailDiskManager.java.html"><b><i>View Source</i></b></a>
  *
  * @author Scott Lee
@@ -58,47 +67,100 @@ import org.apache.commons.logging.LogFactory;
  */
 public class MailDiskManager {
 
-	public static String getAccountFilePath(User user, String emailAddress) {
-		return getAccountPath(user, emailAddress) + "/account.json";
-	}
-
-	public static String getAccountPath(User user, String emailAddress) {
-		String pathName = getUserPath(user) + "/" + emailAddress;
-
-		FileUtil.mkdirs(pathName);
-
-		return pathName;
-	}
-
-	public static String getFolderFilePath(
-		User user, String emailAddress, String folderName) {
-
-		return getFolderPath(user, emailAddress, folderName) + "/folder.json";
-	}
-
-	public static String getFolderPath(
-		User user, String emailAddress, String folderName) {
+	public static JSONObject createAccount(User user, MailAccount mailAccount) {
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
 		try {
-			String escapedFolderName = StringUtil.replace(
-				URLEncoder.encode(folderName, "UTF-8"), '*', "%2A");
+			String filePath = _getAccountFilePath(
+				user, mailAccount.getEmailAddress());
 
-			String pathName =
-				getAccountPath(user, emailAddress) + "/" + escapedFolderName;
+			jsonObj.put("emailAddress", mailAccount.getEmailAddress());
+			jsonObj.put("initialized", mailAccount.isInitialized());
+			jsonObj.put("mailInHostName", mailAccount.getMailInHostName());
+			jsonObj.put("mailInPort", mailAccount.getMailInPort());
+			jsonObj.put("mailInSecure", mailAccount.isMailInSecure());
+			jsonObj.put("mailOutHostName", mailAccount.getMailOutHostName());
+			jsonObj.put("mailOutPort", mailAccount.getMailOutPort());
+			jsonObj.put("mailOutSecure", mailAccount.isMailOutSecure());
+			jsonObj.put("password", mailAccount.getPassword());
+			jsonObj.put("username", mailAccount.getUsername());
 
-			FileUtil.mkdirs(pathName);
-
-			return pathName;
+			FileUtil.write(filePath, jsonObj.toString());
 		}
-		catch (UnsupportedEncodingException uee) {
-			_log.error(uee, uee);
+		catch (IOException ioe) {
+			_log.error(ioe, ioe);
+
+			return null;
 		}
 
-		return StringPool.BLANK;
+		return jsonObj;
+	}
+
+	public static void createMessage(
+		User user, String emailAddress, String folderName, long messageUid,
+		JSONObject message) {
+
+		if (!isAccountExists(user, emailAddress)) {
+			return;
+		}
+
+		String filePath =
+			getMessageFilePath(user, emailAddress, folderName, messageUid);
+
+		try {
+			FileUtil.write(filePath, message.toString());
+		}
+		catch (IOException ioe) {
+			_log.error(ioe, ioe);
+		}
+
+		String subject = message.getString("subject");
+		String body = message.getString("body");
+
+		try {
+			Indexer.addMessage(
+				user.getCompanyId(), user.getUserId(), emailAddress,
+				_encodeFolderName(folderName), messageUid, subject, body);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+	}
+
+	public static void deleteAccount(User user, String emailAddress) {
+		String accountPath = _getAccountPath(user, emailAddress);
+
+		FileUtil.deltree(accountPath);
+
+		try {
+			Indexer.deleteMessages(
+				user.getCompanyId(), user.getUserId(), emailAddress);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+	}
+
+	public static void deleteMessage(
+		User user, String emailAddress, String folderName, long messageUid) {
+
+		String messagePath =
+			getMessagePath(user, emailAddress, folderName, messageUid);
+
+		FileUtil.deltree(messagePath);
+
+		try {
+			Indexer.deleteMessage(
+				user.getCompanyId(), user.getUserId(), emailAddress, folderName,
+				messageUid);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
 	}
 
 	public static JSONObject getJSONAccount(User user, String emailAddress) {
-		String accountFilePath = getAccountFilePath(user, emailAddress);
+		String accountFilePath = _getAccountFilePath(user, emailAddress);
 
 		if (Validator.isNull(user) || Validator.isNull(emailAddress)) {
 			return null;
@@ -127,7 +189,7 @@ public class MailDiskManager {
 			return null;
 		}
 
-		String userPath = getUserPath(user);
+		String userPath = _getUserPath(user);
 
 		String[] emailAddresses = FileUtil.listDirs(userPath);
 
@@ -163,7 +225,7 @@ public class MailDiskManager {
 			return null;
 		}
 
-		String folderFilePath = getFolderFilePath(
+		String folderFilePath = _getFolderFilePath(
 			user, emailAddress, folderName);
 
 		try {
@@ -213,7 +275,7 @@ public class MailDiskManager {
 			return null;
 		}
 
-		String accountPath = getAccountPath(user, emailAddress);
+		String accountPath = _getAccountPath(user, emailAddress);
 
 		String[] folderNames = FileUtil.listDirs(accountPath);
 
@@ -283,7 +345,7 @@ public class MailDiskManager {
 
 	public static JSONObject getJSONMessageRelativeToUid(
 		User user, String emailAddress, String folderName, long messageUid,
-		int offset, String searchString) {
+		int offset, String keywords) {
 
 		if (Validator.isNull(user) || Validator.isNull(emailAddress) ||
 			Validator.isNull(folderName)) {
@@ -291,17 +353,14 @@ public class MailDiskManager {
 			return null;
 		}
 
-		searchString = searchString.trim();
-
 		long[] messageUids = null;
 
-		if (searchString.equals(StringPool.BLANK)) {
+		if (keywords.equals(StringPool.BLANK)) {
 			messageUids = getMessageUidsByFolder(
 				user, emailAddress, folderName);
 		}
 		else {
-			messageUids = getMessageUidsBySearch(
-				user, emailAddress, folderName, searchString);
+			messageUids = search(user, emailAddress, folderName, keywords);
 		}
 
 		for (int i = 0; i < messageUids.length; i++) {
@@ -328,7 +387,7 @@ public class MailDiskManager {
 
 			// Actual message count
 
-			String folderFilePath = getFolderFilePath(
+			String folderFilePath = _getFolderFilePath(
 				user, emailAddress, folderName);
 
 			JSONObject jsonFolderObj = JSONFactoryUtil.createJSONObject(
@@ -359,7 +418,7 @@ public class MailDiskManager {
 
 	public static JSONObject getJSONMessagesBySearch(
 		User user, String emailAddress, String folderName, int pageNumber,
-		int messagesPerPage, String searchString) {
+		int messagesPerPage, String keywords) {
 
 		if (Validator.isNull(user) || Validator.isNull(emailAddress) ||
 			Validator.isNull(folderName)) {
@@ -367,10 +426,7 @@ public class MailDiskManager {
 			return null;
 		}
 
-		searchString = searchString.trim();
-
-		long[] messageUids = getMessageUidsBySearch(
-			user, emailAddress, folderName, searchString);
+		long[] messageUids = search(user, emailAddress, folderName, keywords);
 
 		int messageCount = messageUids.length;
 
@@ -383,14 +439,14 @@ public class MailDiskManager {
 		User user, String emailAddress, String folderName, long messageUid) {
 
 		return getMessagePath(user, emailAddress, folderName, messageUid) +
-			"/message.json";
+			_MESSAGE_JSON;
 	}
 
 	public static String getMessagePath(
 		User user, String emailAddress, String folderName, long messageUid) {
 
 		String pathName =
-			getFolderPath(user, emailAddress, folderName) + "/" + messageUid;
+			_getFolderPath(user, emailAddress, folderName) + "/" + messageUid;
 
 		FileUtil.mkdirs(pathName);
 
@@ -400,7 +456,7 @@ public class MailDiskManager {
 	public static long[] getMessageUidsByFolder(
 		User user, String emailAddress, String folderName) {
 
-		String folderPath = getFolderPath(user, emailAddress, folderName);
+		String folderPath = _getFolderPath(user, emailAddress, folderName);
 
 		long[] messageUids = GetterUtil.getLongValues(
 			FileUtil.listDirs(folderPath));
@@ -410,16 +466,7 @@ public class MailDiskManager {
 		return messageUids;
 	}
 
-	public static String getUserPath(User user) {
-		String pathName =
-			PortletProps.get("disk.root.dir") + "/" + user.getUserId();
-
-		FileUtil.mkdirs(pathName);
-
-		return pathName;
-	}
-
-	protected static JSONObject getJSONPaginatedMessages(
+	public static JSONObject getJSONPaginatedMessages(
 		User user, String emailAddress, String folderName,
 		long[] messageUidsOnDisk, int pageNumber, int messagesPerPage,
 		int messageCount, int messagesOnDiskCount) {
@@ -446,48 +493,291 @@ public class MailDiskManager {
 		jsonObj.put("pageNumber", pageNumber);
 
 		for (int i = begin; i <= end; i++) {
-			jsonArray.put(
+			JSONObject message =
 				getJSONMessageByUid(
-					user, emailAddress, folderName, messageUidsOnDisk[i]));
+					user, emailAddress, folderName, messageUidsOnDisk[i]);
+
+			if (message != null) {
+				jsonArray.put(message);
+			}
 		}
 
 		return jsonObj;
 	}
 
-	protected static long[] getMessageUidsBySearch(
-		User user, String emailAddress, String folderName,
-		String searchString) {
+	public static long[] search(
+		User user, String emailAddress, String folderName, String keywords) {
 
-		List<String> matchingMessageUids = new ArrayList<String>();
+		long companyId = user.getCompanyId();
+		long userId = user.getUserId();
 
 		try {
-			long[] allMessageUidsInFolder = getMessageUidsByFolder(
-				user, emailAddress, folderName);
+			String escapedFolderName = _encodeFolderName(folderName);
 
-			for (long messageUid : allMessageUidsInFolder) {
-				String messageFilePath = getMessageFilePath(
-					user, emailAddress, folderName, messageUid);
+			BooleanQuery contextQuery = BooleanQueryFactoryUtil.create();
 
-				String jsonString = FileUtil.read(messageFilePath);
+			contextQuery.addRequiredTerm(Field.COMPANY_ID, companyId);
 
-				if (jsonString.indexOf(searchString) != -1) {
-					matchingMessageUids.add(String.valueOf(messageUid));
+			contextQuery.addRequiredTerm(Field.PORTLET_ID, Indexer.PORTLET_ID);
+
+			contextQuery.addRequiredTerm(Field.USER_ID, userId);
+
+			contextQuery.addRequiredTerm(Indexer.EMAIL_ADDRESS, emailAddress);
+
+			contextQuery.addRequiredTerm(
+				Indexer.FOLDER_NAME, escapedFolderName);
+
+			BooleanQuery fullQuery = BooleanQueryFactoryUtil.create();
+
+			fullQuery.add(contextQuery, BooleanClauseOccur.MUST);
+
+			if (Validator.isNotNull(keywords)) {
+				keywords = keywords.trim();
+
+				BooleanQuery searchQuery = BooleanQueryFactoryUtil.create();
+
+				searchQuery.addTerm(Field.TITLE, keywords);
+				searchQuery.addTerm(Field.CONTENT, keywords);
+
+				fullQuery.add(searchQuery, BooleanClauseOccur.SHOULD);
+			}
+
+			_log.debug("Query string: " + fullQuery.toString());
+
+			Hits hits = SearchEngineUtil.search(
+				companyId, fullQuery.toString(), SearchEngineUtil.ALL_POS,
+				SearchEngineUtil.ALL_POS);
+
+			_log.debug("Hit count: " + hits.getLength());
+
+			Set<Long> messageUidsSet = new HashSet();
+
+			for (int i = 0; i < hits.getLength(); i++) {
+				Document doc = hits.getDocs()[i];
+
+				String messageUid = doc.get(Field.ENTRY_CLASS_PK);
+
+				messageUidsSet.add(GetterUtil.getLong(messageUid));
+			}
+
+			long[] messageUids = new long[messageUidsSet.size()];
+			Long[] messageUidsArray = messageUidsSet.toArray(new Long[0]);
+
+			for (int i = 0; i < messageUids.length; i++) {
+				messageUids[i] = messageUidsArray[i].longValue();
+			}
+
+			Arrays.sort(messageUids);
+
+			return messageUids;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+
+		return new long[0];
+	}
+
+	public static boolean isAccountExists(User user, String emailAddress) {
+		if (Validator.isNull(getJSONAccount(user, emailAddress))) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
+	public static void reIndex(String[] ids) throws SystemException {
+		if (SearchEngineUtil.isIndexReadOnly()) {
+			return;
+		}
+
+		long companyId = GetterUtil.getLong(ids[0]);
+
+		String rootPath = PortletProps.get("disk.root.dir") + "/";
+
+		String[] userIds = FileUtil.listDirs(rootPath);
+
+		try {
+			for (String userIdStr : userIds) {
+				long userId = GetterUtil.getLong(userIdStr);
+				String userPath = rootPath + userId + "/";
+
+				if (!FileUtil.exists(userPath)) {
+					continue;
+				}
+
+				String[] accounts = FileUtil.listDirs(userPath + "/");
+
+				for (String emailAddress : accounts) {
+					String accountPath = userPath + emailAddress + "/";
+
+					if (!FileUtil.exists(accountPath)) {
+						continue;
+					}
+
+					Indexer.deleteMessages(companyId, userId, emailAddress);
+
+					String[] folders = FileUtil.listDirs(accountPath + "/");
+
+					for (String folderName : folders) {
+						String folderPath = accountPath + folderName + "/";
+
+						if (!FileUtil.exists(folderPath)) {
+							continue;
+						}
+
+						String[] messageUids =
+							FileUtil.listDirs(folderPath + "/");
+
+						for (String messageUidStr : messageUids) {
+							long messageUid = GetterUtil.getLong(messageUidStr);
+							String messagePath = folderPath + messageUid + "/";
+
+							if (!FileUtil.exists(messagePath)) {
+								continue;
+							}
+
+							String filePath = messagePath + _MESSAGE_JSON;
+
+							if (FileUtil.exists(filePath)) {
+								String msg = FileUtil.read(filePath);
+
+								JSONObject jsonObj =
+									JSONFactoryUtil.createJSONObject(msg);
+
+								String subject = jsonObj.getString("subject");
+								String content = jsonObj.getString("body");
+
+								Document doc = Indexer.getMessageDocument(
+									companyId, userId, emailAddress, folderName,
+									messageUid, subject, content);
+
+								SearchEngineUtil.addDocument(companyId, doc);
+							}
+						}
+					}
 				}
 			}
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+	}
+
+	public static void updateFolder(
+		User user, String emailAddress, JSONObject folder) {
+
+		if (!isAccountExists(user, emailAddress)) {
+			return;
+		}
+
+		try {
+			String fullName = folder.getString("fullName");
+			double messageCount = folder.getInt("messageCount") * 1.0;
+			int downloadedMessages = getMessageUidsByFolder(
+				user, emailAddress, fullName).length;
+
+			int percentageDownloaded =
+				(int)((downloadedMessages / messageCount) * 100);
+
+			String filePath = _getFolderFilePath(user, emailAddress, fullName);
+
+			folder.put("percentageDownloaded", percentageDownloaded);
+			folder.put("initialized", true);
+			folder.put("lastUpdated", new Date());
+
+			FileUtil.write(filePath, folder.toString());
 		}
 		catch (IOException ioe) {
 			_log.error(ioe, ioe);
 		}
-
-		long[] messageUids = new long[matchingMessageUids.size()];
-
-		for (int i = 0; i < matchingMessageUids.size(); i++) {
-			messageUids[i] = GetterUtil.getLong(matchingMessageUids.get(i));
-		}
-
-		return messageUids;
 	}
 
-	private static Log _log = LogFactory.getLog(MailBoxManager.class);
+	public static void updateMessage(
+		User user, String emailAddress, String folderName, long messageUid,
+		String flag, boolean value) {
+
+		if (!isAccountExists(user, emailAddress)) {
+			return;
+		}
+
+		JSONObject jsonMessage = getJSONMessageByUid(
+			user, emailAddress, folderName, messageUid);
+
+		JSONObject jsonFlags = jsonMessage.getJSONObject("flags");
+
+		jsonFlags.put(flag, value);
+
+		String filePath = getMessageFilePath(
+			user, emailAddress, folderName, messageUid);
+
+		try {
+			FileUtil.write(filePath, jsonMessage.toString());
+		}
+		catch (IOException ioe) {
+			_log.error(ioe, ioe);
+		}
+	}
+
+	private static String _encodeFolderName(String folderName)
+			throws UnsupportedEncodingException {
+
+		return StringUtil.replace(
+			URLEncoder.encode(folderName, "UTF-8"), '*', "%2A");
+	}
+
+	private static String _getAccountFilePath(User user, String emailAddress) {
+		return _getAccountPath(user, emailAddress) + _ACCOUNT_JSON;
+	}
+
+	private static String _getAccountPath(User user, String emailAddress) {
+		String pathName = _getUserPath(user) + "/" + emailAddress;
+
+		FileUtil.mkdirs(pathName);
+
+		return pathName;
+	}
+
+	private static String _getFolderFilePath(
+		User user, String emailAddress, String folderName) {
+
+		return _getFolderPath(user, emailAddress, folderName) + _FOLDER_JSON;
+	}
+
+	private static String _getFolderPath(
+		User user, String emailAddress, String folderName) {
+
+		try {
+			String escapedFolderName = _encodeFolderName(folderName);
+
+			String pathName =
+				_getAccountPath(user, emailAddress) + "/" + escapedFolderName;
+
+			FileUtil.mkdirs(pathName);
+
+			return pathName;
+		}
+		catch (UnsupportedEncodingException uee) {
+			_log.error(uee, uee);
+		}
+
+		return StringPool.BLANK;
+	}
+
+	private static String _getUserPath(User user) {
+		String pathName =
+			PortletProps.get("disk.root.dir") + "/" + user.getUserId();
+
+		FileUtil.mkdirs(pathName);
+
+		return pathName;
+	}
+
+	private static Log _log = LogFactory.getLog(MailDiskManager.class);
+
+	private static final String _FOLDER_JSON = "/folder.json";
+	private static final String _ACCOUNT_JSON = "/account.json";
+	private static final String _MESSAGE_JSON = "/message.json";
 
 }

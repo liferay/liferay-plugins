@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
-import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -202,24 +201,16 @@ public class MailBoxManager {
 		return message;
 	}
 
-	public JSONObject deleteAccountFromDisk() {
-		String accountPath = MailDiskManager.getAccountPath(
-			_user, _mailAccount.getEmailAddress());
+	public JSONObject deleteAccount() {
+		MailDiskManager.deleteAccount(_user, _mailAccount.getEmailAddress());
 
-		FileUtil.deltree(accountPath);
-
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
-
-		jsonObj.put("success", true);
-
-		return jsonObj;
+		return _SUCCESS;
 	}
 
 	public void deleteMessage(Folder folder, long messageUid, boolean expunge) {
+		// Delete from server
+
 		try {
-
-			// Delete from server
-
 			Message message = getMessageByUid(folder, messageUid);
 
 			if (Validator.isNotNull(message)) {
@@ -236,25 +227,19 @@ public class MailBoxManager {
 
 		// Delete from local disk
 
-		String messagePath = MailDiskManager.getMessagePath(
+		MailDiskManager.deleteMessage(
 			_user, _mailAccount.getEmailAddress(), folder.getFullName(),
 			messageUid);
-
-		FileUtil.deltree(messagePath);
 	}
 
 	public JSONObject deleteMessagesByUids(
 		String folderName, String messageUids) {
 
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
-
 		long[] messageUidsArray = GetterUtil.getLongValues(
 			messageUids.split("\\s*,\\s*"));
 
 		if (Validator.isNull(messageUidsArray)) {
-			jsonObj.put("success", false);
-
-			return jsonObj;
+			return _FAILURE;
 		}
 
 		try {
@@ -266,15 +251,13 @@ public class MailBoxManager {
 
 			folder.close(true);
 
-			jsonObj.put("success", true);
+			return _SUCCESS;
 		}
 		catch (MessagingException me) {
 			_log.error(me, me);
 
-			jsonObj.put("success", false);
+			return _FAILURE;
 		}
-
-		return jsonObj;
 	}
 
 	public Part getAttachment(
@@ -291,19 +274,15 @@ public class MailBoxManager {
 
 		// Cancel if account no longer exists
 
-		if (!isJSONAccountExist()) {
+		if (!isAccountExist()) {
 			return null;
 		}
-
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
 		long[] messageUidsArray = GetterUtil.getLongValues(
 			messageUids.split("\\s*,\\s*"));
 
 		if (Validator.isNull(messageUidsArray)) {
-			jsonObj.put("success", false);
-
-			return jsonObj;
+			return _FAILURE;
 		}
 
 		try {
@@ -314,7 +293,7 @@ public class MailBoxManager {
 
 					// Cancel if account no longer exists
 
-					if (!isJSONAccountExist()) {
+					if (!isAccountExist()) {
 						return null;
 					}
 
@@ -345,15 +324,13 @@ public class MailBoxManager {
 
 			folder.close(true);
 
-			jsonObj.put("success", true);
+			return _SUCCESS;
 		}
 		catch (MessagingException me) {
 			_log.error(me, me);
 
-			jsonObj.put("success", false);
+			return _FAILURE;
 		}
-
-		return jsonObj;
 	}
 
 	public JSONObject saveMessage(Message message, String oldDraftMessageUid)
@@ -369,7 +346,9 @@ public class MailBoxManager {
 
 		draftsFolder.appendMessages(new Message[]{message});
 
-		storeMessageToDisk(getMessageByUid(draftsFolder, newDraftMessageUid));
+		storeMessage(
+			_user, _mailAccount,
+			getMessageByUid(draftsFolder, newDraftMessageUid));
 
 		// Remove old draft message
 
@@ -387,8 +366,6 @@ public class MailBoxManager {
 	public JSONObject sendMessage(
 		MailAccount fromMailAccount, Message message) {
 
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
-
 		try {
 			Transport transport = getTransport(fromMailAccount);
 
@@ -396,15 +373,13 @@ public class MailBoxManager {
 
 			transport.close();
 
-			jsonObj.put("success", true);
+			return _SUCCESS;
 		}
 		catch (MessagingException me) {
 			_log.error(me, me);
 
-			jsonObj.put("success", false);
+			return _FAILURE;
 		}
-
-		return jsonObj;
 	}
 
 	public JSONObject sendUpdateMessage() {
@@ -416,64 +391,29 @@ public class MailBoxManager {
 		MessageBusUtil.sendMessage(
 			DestinationNames.MAIL_SYNCHRONIZER, mailRequestJSON.toString());
 
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
-
-		jsonObj.put("success", true);
-
-		return jsonObj;
+		return _SUCCESS;
 	}
 
-	public JSONObject storeAccountToDisk() {
-		try {
-			JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
-
-			String filePath = MailDiskManager.getAccountFilePath(
-				_user, _mailAccount.getEmailAddress());
-
-			jsonObj.put("emailAddress", _mailAccount.getEmailAddress());
-			jsonObj.put("initialized", _mailAccount.isInitialized());
-			jsonObj.put("mailInHostName", _mailAccount.getMailInHostName());
-			jsonObj.put("mailInPort", _mailAccount.getMailInPort());
-			jsonObj.put("mailInSecure", _mailAccount.isMailInSecure());
-			jsonObj.put("mailOutHostName", _mailAccount.getMailOutHostName());
-			jsonObj.put("mailOutPort", _mailAccount.getMailOutPort());
-			jsonObj.put("mailOutSecure", _mailAccount.isMailOutSecure());
-			jsonObj.put("password", _mailAccount.getPassword());
-			jsonObj.put("username", _mailAccount.getUsername());
-
-			FileUtil.write(filePath, jsonObj.toString());
-		}
-		catch (IOException ioe) {
-			_log.error(ioe, ioe);
-
-			return null;
-		}
-
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
-
-		jsonObj.put("success", true);
-
-		return jsonObj;
+	public JSONObject storeAccount() {
+		return MailDiskManager.createAccount(_user, _mailAccount);
 	}
 
 	public JSONObject synchronizeAccount() throws MessagingException {
 
 		// Cancel if account no longer exists
 
-		if (!isJSONAccountExist()) {
+		if (!isAccountExist()) {
 			return null;
 		}
 
 		List<Folder> folders = getFolders();
-
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
 		if (Validator.isNotNull(folders)) {
 			for (Folder folder : folders) {
 
 				// Cancel if account no longer exists
 
-				if (!isJSONAccountExist()) {
+				if (!isAccountExist()) {
 					return null;
 				}
 
@@ -487,22 +427,19 @@ public class MailBoxManager {
 
 			_mailAccount.setInitialized(true);
 
-			storeAccountToDisk();
+			MailDiskManager.createAccount(_user, _mailAccount);
 
-			jsonObj.put("success", true);
-		}
-		else {
-			jsonObj.put("success", false);
+			return _SUCCESS;
 		}
 
-		return jsonObj;
+		return _FAILURE;
 	}
 
 	public void synchronizeFolder(Folder folder) throws MessagingException {
 
 		// Cancel if account no longer exists
 
-		if (!isJSONAccountExist()) {
+		if (!isAccountExist()) {
 			return;
 		}
 
@@ -540,10 +477,10 @@ public class MailBoxManager {
 			}
 
 			if (Validator.isNotNull(messages)) {
-				storeMessagesToDisk(messages);
+				storeMessages(messages);
 			}
 
-			storeFolderToDisk(folder, true, new Date());
+			storeFolder(folder);
 		}
 		else {
 
@@ -558,8 +495,9 @@ public class MailBoxManager {
 				if (messageNumber != messageCount) {
 					messages = folder.getMessages(messageNumber, messageCount);
 
-					storeMessagesToDisk(messages);
-					storeFolderToDisk(folder, true, new Date());
+					storeMessages(messages);
+
+					storeFolder(folder);
 				}
 			}
 
@@ -581,8 +519,9 @@ public class MailBoxManager {
 							messageNumber);
 					}
 
-					storeMessagesToDisk(messages);
-					storeFolderToDisk(folder, true, new Date());
+					storeMessages(messages);
+
+					storeFolder(folder);
 				}
 			}
 		}
@@ -1149,15 +1088,10 @@ public class MailBoxManager {
 		return transport;
 	}
 
-	protected boolean isJSONAccountExist() {
-		if (Validator.isNull(
-				MailDiskManager.getJSONAccount(
-					_user, _mailAccount.getEmailAddress()))) {
+	protected boolean isAccountExist() {
+		String emailAddress = _mailAccount.getEmailAddress();
 
-			return false;
-		}
-
-		return true;
+		return MailDiskManager.isAccountExists(_user, emailAddress);
 	}
 
 	protected Folder openFolder(String folderName) throws MessagingException {
@@ -1187,56 +1121,21 @@ public class MailBoxManager {
 		return folder;
 	}
 
-	protected JSONObject storeFolderToDisk(
-			Folder folder, boolean initialized, Date date)
-		throws MessagingException {
+	protected void storeFolder(Folder folder) throws MessagingException {
+		JSONObject jsonFolder = getJSONFolder(folder);
 
-		// Cancel if account no longer exists
-
-		if (!isJSONAccountExist()) {
-			return null;
-		}
-
-		try {
-			JSONObject jsonObj = getJSONFolder(folder);
-
-			String fullName = jsonObj.getString("fullName");
-			double messageCount = jsonObj.getInt("messageCount") * 1.0;
-			int downloadedMessages = MailDiskManager.getMessageUidsByFolder(
-				_user, _mailAccount.getEmailAddress(), fullName).length;
-
-			int percentageDownloaded =
-				(int)((downloadedMessages / messageCount) * 100);
-
-			String filePath = MailDiskManager.getFolderFilePath(
-				_user, _mailAccount.getEmailAddress(), folder.getFullName());
-
-			jsonObj.put("percentageDownloaded", percentageDownloaded);
-			jsonObj.put("initialized", initialized);
-			jsonObj.put("lastUpdated", date);
-
-			FileUtil.write(filePath, jsonObj.toString());
-
-			return jsonObj;
-		}
-		catch (IOException ioe) {
-			_log.error(ioe, ioe);
-
-			return null;
-		}
+		MailDiskManager.updateFolder(
+			_user, _mailAccount.getEmailAddress(), jsonFolder);
 	}
 
-	protected void storeMessagesToDisk(Message[] messages) {
+	protected void storeMessages(Message[] messages) {
+		if (!isAccountExist()) {
+			return;
+		}
+
 		for (Message message : messages) {
-
-			// Cancel if account no longer exists
-
-			if (!isJSONAccountExist()) {
-				return;
-			}
-
 			try {
-				storeMessageToDisk(message);
+				storeMessage(_user, _mailAccount, message);
 			}
 			catch (MessagingException me) {
 				_log.error(me, me);
@@ -1244,29 +1143,19 @@ public class MailBoxManager {
 		}
 	}
 
-	protected void storeMessageToDisk(Message message)
+	protected void storeMessage(
+			User user, MailAccount mailAccount, Message message)
 		throws MessagingException {
 
-		// Cancel if account no longer exists
+		IMAPFolder folder = (IMAPFolder)openFolder(message.getFolder());
 
-		if (!isJSONAccountExist()) {
-			return;
-		}
+		String folderName = folder.getFullName();
+		long messageUid = folder.getUID(message);
+		JSONObject jsonMessage = getJSONMessage(message);
 
-		try {
-			IMAPFolder folder = (IMAPFolder)openFolder(message.getFolder());
-
-			String jsonMessage = getJSONMessage(message).toString();
-
-			String filePath = MailDiskManager.getMessageFilePath(
-				_user, _mailAccount.getEmailAddress(), folder.getFullName(),
-				folder.getUID(message));
-
-			FileUtil.write(filePath, jsonMessage);
-		}
-		catch (IOException ioe) {
-			_log.error(ioe, ioe);
-		}
+		MailDiskManager.createMessage(
+			user, mailAccount.getEmailAddress(), folderName, messageUid,
+			jsonMessage);
 	}
 
 	protected String stripHtml(String html) {
@@ -1301,41 +1190,37 @@ public class MailBoxManager {
 		User user, MailAccount mailAccount, String folderName, long messageUid,
 		String flag, boolean value) {
 
-		// Cancel if account no longer exists
-
-		if (!isJSONAccountExist()) {
-			return;
-		}
-
-		JSONObject jsonMessage = MailDiskManager.getJSONMessageByUid(
-			_user, _mailAccount.getEmailAddress(), folderName, messageUid);
-
-		JSONObject jsonFlags = jsonMessage.getJSONObject("flags");
-
-		jsonFlags.put(flag, value);
-
-		String filePath = MailDiskManager.getMessageFilePath(
-			_user, _mailAccount.getEmailAddress(), folderName, messageUid);
-
-		try {
-			FileUtil.write(filePath, jsonMessage.toString());
-		}
-		catch (IOException ioe) {
-			_log.error(ioe, ioe);
-		}
+		MailDiskManager.updateMessage(
+			user, mailAccount.getEmailAddress(), folderName, messageUid, flag,
+			value);
 	}
 
-	public static final String _SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+	private static final Log _log = LogFactory.getLog(MailBoxManager.class);
 
-	private static Log _log = LogFactory.getLog(MailBoxManager.class);
+	private static final String _SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+
+	private static final JSONObject _SUCCESS;
+
+	private static final JSONObject _FAILURE;
 
 	private static ConcurrentHashMap<String, Store> _allStores =
 		new ConcurrentHashMap<String, Store>();
 
-	private User _user;
+	static {
+		_SUCCESS = JSONFactoryUtil.createJSONObject();
+		_SUCCESS.put("success", true);
+
+		_FAILURE = JSONFactoryUtil.createJSONObject();
+		_FAILURE.put("success", false);
+	}
+
 	private MailAccount _mailAccount;
+
+	private int _messagesToPrefetch =
+		GetterUtil.getInteger(PortletProps.get("messages.to.prefetch"));
+
 	private Session _session = null;
-	private int _messagesToPrefetch = GetterUtil.getInteger(
-		PortletProps.get("messages.to.prefetch"));
+
+	private User _user;
 
 }

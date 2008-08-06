@@ -38,4 +38,4 @@ String username = ParamUtil.getString(request, "username");
 MailBoxManager mailBoxManager = new MailBoxManager(user, emailAddress, false, mailInHostName, mailInPort, mailInSecure, mailOutHostName, mailOutPort, mailOutSecure, password, username);
 %>
 
-<%= mailBoxManager.storeAccountToDisk() %>
+<%= mailBoxManager.storeAccount() %>
