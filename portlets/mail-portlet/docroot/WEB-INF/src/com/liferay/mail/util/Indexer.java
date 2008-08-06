@@ -46,7 +46,9 @@ import javax.portlet.PortletURL;
 public class Indexer implements com.liferay.portal.kernel.search.Indexer {
 
 	public static final String FOLDER_NAME = "folderName";
+
 	public static final String EMAIL_ADDRESS = "emailAddress";
+
 	public static final String PORTLET_ID = PortletKeys.MAIL;
 
 	public static void addMessage(
@@ -78,9 +80,7 @@ public class Indexer implements com.liferay.portal.kernel.search.Indexer {
 		BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create();
 
 		booleanQuery.addRequiredTerm(Field.PORTLET_ID, PORTLET_ID);
-
 		booleanQuery.addRequiredTerm(Field.USER_ID, userId);
-
 		booleanQuery.addRequiredTerm(EMAIL_ADDRESS, emailAddress);
 
 		Hits hits = SearchEngineUtil.search(

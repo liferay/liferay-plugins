@@ -90,6 +90,19 @@ import org.apache.commons.logging.LogFactory;
  */
 public class MailBoxManager {
 
+	static JSONObject _successJSON;
+	static JSONObject _failureJSON;
+
+	static {
+		_successJSON = JSONFactoryUtil.createJSONObject();
+
+		_successJSON.put("success", true);
+
+		_failureJSON = JSONFactoryUtil.createJSONObject();
+
+		_failureJSON.put("success", false);
+	}
+
 	public MailBoxManager(User user, String emailAddress) {
 		_user = user;
 		_mailAccount = new MailAccount(user, emailAddress);
@@ -204,10 +217,11 @@ public class MailBoxManager {
 	public JSONObject deleteAccount() {
 		MailDiskManager.deleteAccount(_user, _mailAccount.getEmailAddress());
 
-		return _SUCCESS;
+		return _successJSON;
 	}
 
 	public void deleteMessage(Folder folder, long messageUid, boolean expunge) {
+
 		// Delete from server
 
 		try {
@@ -239,7 +253,7 @@ public class MailBoxManager {
 			messageUids.split("\\s*,\\s*"));
 
 		if (Validator.isNull(messageUidsArray)) {
-			return _FAILURE;
+			return _failureJSON;
 		}
 
 		try {
@@ -251,12 +265,12 @@ public class MailBoxManager {
 
 			folder.close(true);
 
-			return _SUCCESS;
+			return _successJSON;
 		}
 		catch (MessagingException me) {
 			_log.error(me, me);
 
-			return _FAILURE;
+			return _failureJSON;
 		}
 	}
 
@@ -274,7 +288,7 @@ public class MailBoxManager {
 
 		// Cancel if account no longer exists
 
-		if (!isAccountExist()) {
+		if (!isAccountExists()) {
 			return null;
 		}
 
@@ -282,7 +296,7 @@ public class MailBoxManager {
 			messageUids.split("\\s*,\\s*"));
 
 		if (Validator.isNull(messageUidsArray)) {
-			return _FAILURE;
+			return _failureJSON;
 		}
 
 		try {
@@ -293,7 +307,7 @@ public class MailBoxManager {
 
 					// Cancel if account no longer exists
 
-					if (!isAccountExist()) {
+					if (!isAccountExists()) {
 						return null;
 					}
 
@@ -324,12 +338,12 @@ public class MailBoxManager {
 
 			folder.close(true);
 
-			return _SUCCESS;
+			return _successJSON;
 		}
 		catch (MessagingException me) {
 			_log.error(me, me);
 
-			return _FAILURE;
+			return _failureJSON;
 		}
 	}
 
@@ -373,12 +387,12 @@ public class MailBoxManager {
 
 			transport.close();
 
-			return _SUCCESS;
+			return _successJSON;
 		}
 		catch (MessagingException me) {
 			_log.error(me, me);
 
-			return _FAILURE;
+			return _failureJSON;
 		}
 	}
 
@@ -391,7 +405,7 @@ public class MailBoxManager {
 		MessageBusUtil.sendMessage(
 			DestinationNames.MAIL_SYNCHRONIZER, mailRequestJSON.toString());
 
-		return _SUCCESS;
+		return _successJSON;
 	}
 
 	public JSONObject storeAccount() {
@@ -402,7 +416,7 @@ public class MailBoxManager {
 
 		// Cancel if account no longer exists
 
-		if (!isAccountExist()) {
+		if (!isAccountExists()) {
 			return null;
 		}
 
@@ -413,7 +427,7 @@ public class MailBoxManager {
 
 				// Cancel if account no longer exists
 
-				if (!isAccountExist()) {
+				if (!isAccountExists()) {
 					return null;
 				}
 
@@ -429,17 +443,17 @@ public class MailBoxManager {
 
 			MailDiskManager.createAccount(_user, _mailAccount);
 
-			return _SUCCESS;
+			return _successJSON;
 		}
 
-		return _FAILURE;
+		return _failureJSON;
 	}
 
 	public void synchronizeFolder(Folder folder) throws MessagingException {
 
 		// Cancel if account no longer exists
 
-		if (!isAccountExist()) {
+		if (!isAccountExists()) {
 			return;
 		}
 
@@ -468,12 +482,12 @@ public class MailBoxManager {
 
 			// Get just enough messages to initialize folder
 
-			if (messageCount < _messagesToPrefetch) {
+			if (messageCount < _MESSAGES_TO_PREFETCH) {
 				messages = folder.getMessages(1, messageCount);
 			}
 			else {
 				messages = folder.getMessages(
-					(messageCount - _messagesToPrefetch + 1), messageCount);
+					(messageCount - _MESSAGES_TO_PREFETCH + 1), messageCount);
 			}
 
 			if (Validator.isNotNull(messages)) {
@@ -510,12 +524,12 @@ public class MailBoxManager {
 				int messageNumber = oldestStoredMessage.getMessageNumber();
 
 				if (messageCount != 1) {
-					if ((messageNumber - _messagesToPrefetch) < 0) {
+					if ((messageNumber - _MESSAGES_TO_PREFETCH) < 0) {
 						messages = folder.getMessages(1, messageNumber);
 					}
 					else {
 						messages = folder.getMessages(
-							(messageNumber - _messagesToPrefetch),
+							(messageNumber - _MESSAGES_TO_PREFETCH),
 							messageNumber);
 					}
 
@@ -1088,7 +1102,7 @@ public class MailBoxManager {
 		return transport;
 	}
 
-	protected boolean isAccountExist() {
+	protected boolean isAccountExists() {
 		String emailAddress = _mailAccount.getEmailAddress();
 
 		return MailDiskManager.isAccountExists(_user, emailAddress);
@@ -1129,7 +1143,7 @@ public class MailBoxManager {
 	}
 
 	protected void storeMessages(Message[] messages) {
-		if (!isAccountExist()) {
+		if (!isAccountExists()) {
 			return;
 		}
 
@@ -1195,32 +1209,18 @@ public class MailBoxManager {
 			value);
 	}
 
-	private static final Log _log = LogFactory.getLog(MailBoxManager.class);
+	private static final int _MESSAGES_TO_PREFETCH = GetterUtil.getInteger(
+		PortletProps.get("messages.to.prefetch"));
 
 	private static final String _SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 
-	private static final JSONObject _SUCCESS;
-
-	private static final JSONObject _FAILURE;
+	private static final Log _log = LogFactory.getLog(MailBoxManager.class);
 
 	private static ConcurrentHashMap<String, Store> _allStores =
 		new ConcurrentHashMap<String, Store>();
 
-	static {
-		_SUCCESS = JSONFactoryUtil.createJSONObject();
-		_SUCCESS.put("success", true);
-
-		_FAILURE = JSONFactoryUtil.createJSONObject();
-		_FAILURE.put("success", false);
-	}
-
-	private MailAccount _mailAccount;
-
-	private int _messagesToPrefetch =
-		GetterUtil.getInteger(PortletProps.get("messages.to.prefetch"));
-
-	private Session _session = null;
-
 	private User _user;
+	private MailAccount _mailAccount;
+	private Session _session;
 
 }
