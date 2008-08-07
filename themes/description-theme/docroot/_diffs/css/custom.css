@@ -1,0 +1,138 @@
+a {
+	font-size: 12px;
+}
+
+.lfr-portal-login .uni-form legend {
+	color: white;
+}
+
+.ui-dialog {
+	background-color: black;
+}
+
+.uni-form {
+	background: black;
+}
+
+
+/** Wrapper **/
+
+#wrapper {
+	background: transparent;
+	margin: 0 auto;
+	position: relative;
+	width: 1264px;
+}
+
+
+/** Banner Body Navigation**/
+
+#banner .logo a {
+	margin-top: -10px;
+}
+
+#banner {
+	background: transparent;
+	position: relative;
+	top: 0;
+}
+
+body {
+	background: #000 url(../images/custom/img01.jpg) repeat-x scroll 0 0;
+	color: #666;
+	font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+	font-size: 11px;
+}
+
+#navigation li a {
+	font-size: 10px;
+	text-transform: uppercase;
+}
+
+#navigation li {
+	border: none;
+}
+
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0;
+}
+
+#navigation li.selected a, #navigation li a:hover {
+	background: transparent url(../images/custom/img05.jpg) repeat-x scroll 0 0;
+	background-color: transparent;
+	color: #FFF;
+}
+
+#navigation {
+	background: transparent;
+	border: none;
+}
+
+
+/** Portlets **/
+
+.portlet-topper {
+	background: transparent url(../images/custom/img06.jpg) repeat-x scroll 0 0;
+	border: 1px solid #4A4A4A;
+	color: #D56E22;
+	font-size: 18px;
+}
+
+.portlet {
+	background: transparent;
+	border: none;
+}
+
+
+/** UI Tabs**/
+
+.ui-tabs li a, .tabs li span {
+	background: transparent none repeat scroll 0 0;
+	border-right: medium none;
+	color: #666;
+	top: 0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: transparent;
+	color: #D56E22;
+	text-decoration: none;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: transparent none repeat scroll 0 0;
+	border: medium none;
+	color: #D56E22;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color: transparent;
+}
+
+.ui-tabs {
+	border-bottom: medium none;
+}
+
+
+/** Javascript **/
+
+.js #add-page {
+	background: transparent none repeat scroll 0 0;
+	border: medium none;
+	right: 0;
+	top: 0;
+}
+
+.js #navigation .enter-page {
+	background-color: transparent;
+	padding: 0;
+}
+
+
+/** Footer **/
+
+#footer {
+	background: #000 url(../images/custom/img06.jpg) repeat-x scroll left top;
+	height: 50px;
+}
