@@ -1,0 +1,103 @@
+a {
+font-size: 12px;
+}
+/** Wrapper **/
+#wrapper {
+background: transparent;
+position: relative;
+margin: 0 auto;
+width: 1264px;
+}
+/** Banner Body Navigation**/
+#banner {
+background:#193441 url(../images/custom/header_bckg.jpg) repeat-x scroll 0 0;
+height:125px;
+position: relative;
+top: 0;
+}
+body {
+background: #D1DBBD url(../images/custom/bckg.jpg) repeat-x;
+font-family:"Trebuchet MS","Myriad Pro",Arial;
+}
+#navigation {
+background:#91AA9D none repeat scroll 0 0;
+height:32px;
+border: none;
+margin:0 auto 10px;
+}
+#navigation li {
+border: none;
+}
+#navigation li a {
+color: white;
+padding:8px 20px;
+font-size:14px;
+font-weight:bold;
+text-transform:uppercase;
+}
+#navigation li.selected a {
+background-color:black;
+color:#FFFFFF;
+}
+#navigation li a:hover {
+background:#FCFFF5 none repeat scroll 0 0;
+color:#193441;
+}
+#navigation li.selected a span {
+background:transparent;
+padding-left:0px;
+}
+/** Portlets **/
+.portlet {
+border: none;
+}
+.portlet-topper {
+background:#D1DBBD none repeat scroll 0 0;
+color:#FFFFFF;
+font-size:1.5em;
+border: none;
+text-transform: uppercase;
+}
+/** UI Tabs**/
+.ui-tabs li.current a, .ui-tabs li.current span {
+background:black;
+border:medium none;
+color:white;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+color:#FFFFFF;
+background:black;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+background:transparent;
+color:#193441;
+text-decoration: none;
+}
+.ui-tabs li a, .tabs li span {
+background:#91AA9D none repeat scroll 0 0;
+border-right:medium none;
+top: 0;
+}
+.ui-tabs {
+border-bottom:medium none;
+}
+/** Javascript **/
+.js #add-page {
+background:transparent none repeat scroll 0 0;
+border:medium none;
+right:0;
+top:3px;
+}
+.js #add-page a span {
+color: white;
+}
+.js #navigation .enter-page {
+background-color:transparent;
+padding:4px;
+}
+/** Footer **/
+#footer {
+background:#193340 url(../images/custom/footer_bckg.jpg) repeat-x scroll 0 2px;
+border-top:2px solid #0A0A0B;
+height:100px;
+}
