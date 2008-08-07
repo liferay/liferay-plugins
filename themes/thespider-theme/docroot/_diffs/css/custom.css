@@ -50,6 +50,7 @@ body {
 	border: none;
 	height: 52px;
 	margin: -107px auto 180px;
+	z-index: 1;
 }
 
 
@@ -120,11 +121,11 @@ body {
 }
 
 .js #add-page {
-	background: transparent url(../images/custom/menu_bg.gif) no-repeat scroll right center;
+	background: transparent;
 	border: medium none;
 	height: 52px;
 	right: 0;
-	top: 0;
+	top:-40px;
 	width: 191px;
 }
 
@@ -148,12 +149,20 @@ body {
 }
 
 .js .interactive-mode {
-	background: transparent url(../images/custom/menu_bg.gif) no-repeat scroll center;
+	background: transparent url(../images/custom/menu_bg.gif) no-repeat scroll center right;
 	height: 52px;
 	margin-top: -62px;
-	right: 191px;
+	right: 0;
+	width:389px;
+	z-index: 0 !important;
 }
 
+.js .lfr-dock-list-container {
+	margin-left:200px;
+	margin-top:40px;
+	position:absolute;
+	width:150px;
+}
 
 /**Footer**/
 
