@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.UserServiceUtil;
 import com.liferay.util.portlet.PortletProps;
 
 import java.io.IOException;
@@ -119,8 +120,9 @@ public class MailDiskManager {
 
 		try {
 			Indexer.addMessage(
-				user.getCompanyId(), user.getUserId(), emailAddress,
-				_encodeFolderName(folderName), messageUid, subject, body);
+				user.getCompanyId(), user.getGroup().getGroupId(),
+				user.getUserId(), emailAddress, _encodeFolderName(folderName),
+				messageUid, subject, body);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -510,6 +512,7 @@ public class MailDiskManager {
 		User user, String emailAddress, String folderName, String keywords) {
 
 		long companyId = user.getCompanyId();
+		long groupId = user.getGroup().getGroupId();
 		long userId = user.getUserId();
 
 		try {
@@ -518,6 +521,7 @@ public class MailDiskManager {
 			BooleanQuery contextQuery = BooleanQueryFactoryUtil.create();
 
 			contextQuery.addRequiredTerm(Field.COMPANY_ID, companyId);
+			contextQuery.addRequiredTerm(Field.GROUP_ID, groupId);
 			contextQuery.addRequiredTerm(Field.PORTLET_ID, Indexer.PORTLET_ID);
 			contextQuery.addRequiredTerm(Field.USER_ID, userId);
 			contextQuery.addRequiredTerm(Indexer.EMAIL_ADDRESS, emailAddress);
@@ -537,7 +541,7 @@ public class MailDiskManager {
 				searchQuery.addTerm(Field.TITLE, keywords);
 				searchQuery.addTerm(Field.CONTENT, keywords);
 
-				fullQuery.add(searchQuery, BooleanClauseOccur.SHOULD);
+				fullQuery.add(searchQuery, BooleanClauseOccur.MUST);
 			}
 
 			if (_log.isDebugEnabled()) {
@@ -601,7 +605,20 @@ public class MailDiskManager {
 		String[] userIds = FileUtil.listDirs(rootPath);
 
 		try {
-			for (String userId : userIds) {
+			for (String userIdStr : userIds) {
+				long userId = 0;
+				long groupId = 0;
+
+				try {
+					userId = GetterUtil.getLong(userIdStr);
+					groupId = UserServiceUtil.getUserById(userId).getGroup().getGroupId();
+				}
+				catch (Exception e) {
+					_log.error(e, e);
+
+					continue;
+				}
+
 				String userPath = rootPath + userId + "/";
 
 				if (!FileUtil.exists(userPath)) {
@@ -612,8 +629,7 @@ public class MailDiskManager {
 
 				for (String emailAddress : emailAddresses) {
 					_reIndexAccount(
-						companyId, GetterUtil.getLong(userId), userPath,
-						emailAddress);
+						companyId, groupId, userId, userPath, emailAddress);
 				}
 			}
 		}
@@ -732,7 +748,8 @@ public class MailDiskManager {
 	}
 
 	private static void _reIndexAccount(
-			long companyId, long userId, String userPath, String emailAddress)
+			long companyId, long groupId, long userId, String userPath,
+			String emailAddress)
 		throws Exception {
 
 		String accountPath = userPath + emailAddress + "/";
@@ -756,15 +773,16 @@ public class MailDiskManager {
 
 			for (String messageUid : messageUids) {
 				_reIndexMessage(
-					companyId, userId, emailAddress, folderName, folderPath,
-					GetterUtil.getLong(messageUid));
+					companyId, groupId, userId, emailAddress, folderName,
+					folderPath, GetterUtil.getLong(messageUid));
 			}
 		}
 	}
 
 	private static void _reIndexMessage(
-		long companyId, long userId, String emailAddress, String folderName,
-		String folderPath, long messageUid) throws Exception {
+			long companyId, long groupId, long userId, String emailAddress,
+			String folderName, String folderPath, long messageUid)
+		throws Exception {
 
 		String messagePath = folderPath + messageUid + "/";
 
@@ -785,8 +803,8 @@ public class MailDiskManager {
 		String content = jsonObj.getString("body");
 
 		Document doc = Indexer.getMessageDocument(
-			companyId, userId, emailAddress, folderName, messageUid, subject,
-			content);
+			companyId, groupId, userId, emailAddress, folderName, messageUid,
+			subject, content);
 
 		SearchEngineUtil.addDocument(companyId, doc);
 	}

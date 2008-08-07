@@ -52,13 +52,13 @@ public class Indexer implements com.liferay.portal.kernel.search.Indexer {
 	public static final String PORTLET_ID = PortletKeys.MAIL;
 
 	public static void addMessage(
-			long companyId, long userId, String emailAddress, String folderName,
-			long messageUid, String subject, String content)
+			long companyId, long groupId, long userId, String emailAddress,
+			String folderName, long messageUid, String subject, String content)
 		throws SearchException {
 
 		Document doc = getMessageDocument(
-			companyId, userId, emailAddress, folderName, messageUid, subject,
-			content);
+			companyId, groupId, userId, emailAddress, folderName, messageUid,
+			subject, content);
 
 		SearchEngineUtil.addDocument(companyId, doc);
 	}
@@ -95,8 +95,8 @@ public class Indexer implements com.liferay.portal.kernel.search.Indexer {
 	}
 
 	public static Document getMessageDocument(
-		long companyId, long userId, String emailAddress, String folderName,
-		long messageUid, String subject, String content) {
+		long companyId, long groupId, long userId, String emailAddress,
+		String folderName, long messageUid, String subject, String content) {
 
 		content = HtmlUtil.extractText(content);
 
@@ -107,6 +107,7 @@ public class Indexer implements com.liferay.portal.kernel.search.Indexer {
 		doc.addUID(PORTLET_ID, uid);
 
 		doc.addKeyword(Field.COMPANY_ID, companyId);
+		doc.addKeyword(Field.GROUP_ID, groupId);
 		doc.addKeyword(Field.PORTLET_ID, PORTLET_ID);
 		doc.addKeyword(Field.USER_ID, userId);
 		doc.addKeyword(EMAIL_ADDRESS, emailAddress);
