@@ -95,7 +95,7 @@ body {
 	min-width: 150px;
 	position: relative;
 	right: 30pt;
-	top: 14pt;
+	top:-130pt;
 }
 
 .js .lfr-dock.interactive-mode h2 span {
