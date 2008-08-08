@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Sample Styled Minimal Theme</name>
-	<module-id>liferay/sample-styled-minimal-theme/5.1.0.1/war</module-id>
+	<module-id>liferay/sample-styled-minimal-theme/5.1.1.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>
