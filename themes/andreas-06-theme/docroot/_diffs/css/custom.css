@@ -22,7 +22,7 @@ body {
 }
 
 html {
-	overflow-y: hidden;
+	overflow-y: scroll;
 }
 
 .js #add-page a span {
