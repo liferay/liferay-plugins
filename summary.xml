@@ -85,6 +85,17 @@
 		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>application-builder-portlet</artifact-id>
+		<name>Ruby Console</name>
+		<type>portlet</type>
+		<tags>sample</tags>
+		<short-description>This plugin provides a console for executing arbitrary Ruby code. Use this portlet should only be used for development.</short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>chat-portlet</artifact-id>
 		<name>Chat</name>
 		<type>portlet</type>
@@ -162,6 +173,17 @@
 		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>knowledge-base-portlet</artifact-id>
+		<name>Knowledge Base</name>
+		<type>portlet</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>mail-portlet</artifact-id>
 		<name>Mail</name>
 		<type>portlet</type>
@@ -200,17 +222,6 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin provides a console for executing arbitrary Ruby code. Use this portlet should only be used for development.</short-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>MIT</licenses>
-	</plugin>
-	<plugin>
-		<artifact-id>sample-ajax-jsr-286-portlet</artifact-id>
-		<name>Sample Ajax JSR 286</name>
-		<type>portlet</type>
-		<tags></tags>
-		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -288,6 +299,17 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use ICEfaces and the JSF 1.2 Sun RI and the Facelets view-handler within Liferay. Requires Tomcat 6.x, GlassFish 2.0.x, or JBoss AS 4.2.x since JSF 1.2 has a JRE5 dependency.</short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sample-javascript-portlet</artifact-id>
+		<name>Sample Javascript</name>
+		<type>portlet</type>
+		<tags>sample</tags>
+		<short-description>This plugin shows how to create Javascript portlets in Liferay.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -503,17 +525,6 @@
 		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
-		<artifact-id>sample-seam-portlet</artifact-id>
-		<name>Sample Seam</name>
-		<type>portlet</type>
-		<tags>sample</tags>
-		<short-description>This portlet shows how to use JBoss Seam within Liferay.</short-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com/web/guest/downloads</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>MIT</licenses>
-	</plugin>
-	<plugin>
 		<artifact-id>sample-service-builder-portlet</artifact-id>
 		<name>Sample Service Builder</name>
 		<type>portlet</type>
@@ -544,17 +555,6 @@
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>SpringSource, Inc.</author>
-		<licenses>Apache</licenses>
-	</plugin>
-	<plugin>
-		<artifact-id>sample-spring-portlet</artifact-id>
-		<name>Sample Spring</name>
-		<type>portlet</type>
-		<tags>sample</tags>
-		<short-description>This portlet shows how to use Spring in Liferay.</short-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com/web/guest/downloads</page-url>
-		<author>Interface21</author>
 		<licenses>Apache</licenses>
 	</plugin>
 	<plugin>
@@ -635,17 +635,6 @@
 		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
-		<artifact-id>shindig-portlet</artifact-id>
-		<name>Shindig Gadget Portlet</name>
-		<type>portlet</type>
-		<tags>gadget opensocial shindig</tags>
-		<short-description>This is a Gadget portlet build on the Shindig platform.</short-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com/</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>MIT</licenses>
-	</plugin>
-	<plugin>
 		<artifact-id>sshterm-portlet</artifact-id>
 		<name>SSHTerm</name>
 		<type>portlet</type>
@@ -672,18 +661,7 @@
 		<name>Bookmark</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Bookmark plugin.</short-description>
-		<change-log></change-log>
-		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
-		<author>Sun Microsystems, Inc.</author>
-		<licenses>CDDL</licenses>
-	</plugin>
-	<plugin>
-		<artifact-id>sun-bookmark-portlet</artifact-id>
-		<name>Bookmark</name>
-		<type>portlet</type>
-		<tags>sun</tags>
-		<short-description>This is the Sun Bookmark portlet.</short-description>
+		<short-description>This is the Sun Bookmark plugin.  Released April 22, 2008.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -694,18 +672,7 @@
 		<name>Elluminate</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Elluminate plugin.</short-description>
-		<change-log></change-log>
-		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
-		<author>Sun Microsystems, Inc.</author>
-		<licenses>CDDL</licenses>
-	</plugin>
-	<plugin>
-		<artifact-id>sun-elluminate-portlet</artifact-id>
-		<name>Elluminate</name>
-		<type>portlet</type>
-		<tags>sun</tags>
-		<short-description>This is the Sun Elluminate portlet.</short-description>
+		<short-description>This is the Sun Elluminate plugin.  Released May 21, 2007.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -716,18 +683,7 @@
 		<name>Flickr</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Flickr plugin.</short-description>
-		<change-log></change-log>
-		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
-		<author>Sun Microsystems, Inc.</author>
-		<licenses>CDDL</licenses>
-	</plugin>
-	<plugin>
-		<artifact-id>sun-flickr-portlet</artifact-id>
-		<name>Flickr</name>
-		<type>portlet</type>
-		<tags>sun</tags>
-		<short-description>This is the Sun Flickr portlet.</short-description>
+		<short-description>This is the Sun Flickr plugin.  Released April 22, 2008.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -738,18 +694,7 @@
 		<name>IFrame</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun IFrame plugin.</short-description>
-		<change-log></change-log>
-		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
-		<author>Sun Microsystems, Inc.</author>
-		<licenses>CDDL</licenses>
-	</plugin>
-	<plugin>
-		<artifact-id>sun-iframe-portlet</artifact-id>
-		<name>iFrame</name>
-		<type>portlet</type>
-		<tags>sun</tags>
-		<short-description>This is the Sun iFrame portlet.</short-description>
+		<short-description>This is the Sun IFrame plugin.  Released May 14, 2007.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -760,18 +705,7 @@
 		<name>MashUp</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun MashUp plugin.</short-description>
-		<change-log></change-log>
-		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
-		<author>Sun Microsystems, Inc.</author>
-		<licenses>CDDL</licenses>
-	</plugin>
-	<plugin>
-		<artifact-id>sun-mashup-portlet</artifact-id>
-		<name>MashUp</name>
-		<type>portlet</type>
-		<tags>sun</tags>
-		<short-description>This is the Sun MashUp portlet.</short-description>
+		<short-description>This is the Sun MashUp plugin.  Released May 14, 2007.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -782,18 +716,7 @@
 		<name>Notepad</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Notepad plugin.</short-description>
-		<change-log></change-log>
-		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
-		<author>Sun Microsystems, Inc.</author>
-		<licenses>CDDL</licenses>
-	</plugin>
-	<plugin>
-		<artifact-id>sun-notepad-portlet</artifact-id>
-		<name>Notepad</name>
-		<type>portlet</type>
-		<tags>sun</tags>
-		<short-description>This is the Sun Notepad portlet.</short-description>
+		<short-description>This is the Sun Notepad plugin.  Released April 22, 2008.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -804,18 +727,7 @@
 		<name>PhotoShow Ajax</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun PhotoShow Ajax plugin.</short-description>
-		<change-log></change-log>
-		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
-		<author>Sun Microsystems, Inc.</author>
-		<licenses>CDDL</licenses>
-	</plugin>
-	<plugin>
-		<artifact-id>sun-photoshow-ajax-portlet</artifact-id>
-		<name>PhotoShow Ajax</name>
-		<type>portlet</type>
-		<tags>sun</tags>
-		<short-description>This is the Sun PhotoShow Ajax portlet.</short-description>
+		<short-description>This is the Sun PhotoShow Ajax plugin.  Released May 14, 2007.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -826,18 +738,7 @@
 		<name>Privacy Guard</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Privacy Guard plugin.</short-description>
-		<change-log></change-log>
-		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
-		<author>Sun Microsystems, Inc.</author>
-		<licenses>CDDL</licenses>
-	</plugin>
-	<plugin>
-		<artifact-id>sun-privacy-guard-portlet</artifact-id>
-		<name>Privacy Guard</name>
-		<type>portlet</type>
-		<tags>sun</tags>
-		<short-description>This is the Sun Privacy Guard portlet.</short-description>
+		<short-description>This is the Sun Privacy Guard plugin.  Released Sep 24, 2007.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -848,18 +749,7 @@
 		<name>RSS</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun RSS plugin.</short-description>
-		<change-log></change-log>
-		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
-		<author>Sun Microsystems, Inc.</author>
-		<licenses>CDDL</licenses>
-	</plugin>
-	<plugin>
-		<artifact-id>sun-rss-portlet</artifact-id>
-		<name>RSS</name>
-		<type>portlet</type>
-		<tags>sun</tags>
-		<short-description>This is the Sun RSS portlet.</short-description>
+		<short-description>This is the Sun RSS plugin.  Released April 22, 2008.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -870,18 +760,7 @@
 		<name>ShowTime Portlet</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun ShowTime plugin.</short-description>
-		<change-log></change-log>
-		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
-		<author>Sun Microsystems, Inc.</author>
-		<licenses>CDDL</licenses>
-	</plugin>
-	<plugin>
-		<artifact-id>sun-showtime-portlet</artifact-id>
-		<name>ShowTime Portlet</name>
-		<type>portlet</type>
-		<tags>sun</tags>
-		<short-description>This is the Sun ShowTime portlet.</short-description>
+		<short-description>This is the Sun ShowTime plugin.  Released April 22, 2008.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -892,7 +771,7 @@
 		<name>Tour IPC Portlet</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description></short-description>
+		<short-description>This is the Sun Tour IPC plugin.  Released April 22, 2008</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -903,18 +782,7 @@
 		<name>Video</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Video plugin.</short-description>
-		<change-log></change-log>
-		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
-		<author>Sun Microsystems, Inc.</author>
-		<licenses>CDDL</licenses>
-	</plugin>
-	<plugin>
-		<artifact-id>sun-video-portlet</artifact-id>
-		<name>Video</name>
-		<type>portlet</type>
-		<tags>sun</tags>
-		<short-description>This is the Sun Video portlet.</short-description>
+		<short-description>This is the Sun Video plugin.  Released May 14, 2007.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -925,18 +793,7 @@
 		<name>Weather</name>
 		<type>portlet</type>
 		<tags>sun</tags>
-		<short-description>This is the Sun Weather plugin.</short-description>
-		<change-log></change-log>
-		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
-		<author>Sun Microsystems, Inc.</author>
-		<licenses>CDDL</licenses>
-	</plugin>
-	<plugin>
-		<artifact-id>sun-weather-portlet</artifact-id>
-		<name>Weather</name>
-		<type>portlet</type>
-		<tags>sun</tags>
-		<short-description>This is the Sun Weather portlet.</short-description>
+		<short-description>This is the Sun Weather plugin.  Released May 14, 2007.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -1009,17 +866,6 @@
 		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
-		<artifact-id>wsrp-portlet</artifact-id>
-		<name></name>
-		<type>portlet</type>
-		<tags></tags>
-		<short-description></short-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>MIT</licenses>
-	</plugin>
-	<plugin>
 		<artifact-id>08-gulona-theme</artifact-id>
 		<name>08 Gulona</name>
 		<type>theme</type>
@@ -1040,6 +886,17 @@
 		<page-url>http://demo.themza.com/joomla15/?joomla15-template=themza_j15_02</page-url>
 		<author>ThemZa</author>
 		<licenses>Public Domain</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>airwaves-theme</artifact-id>
+		<name>Airwaves</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>alef-theme</artifact-id>
@@ -1064,6 +921,28 @@
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>andreas04-theme</artifact-id>
+		<name>Andreas04</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>andreas09-theme</artifact-id>
+		<name>Andreas 09</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>apex-elie-theme</artifact-id>
 		<name>Apex Elie</name>
 		<type>theme</type>
@@ -1084,6 +963,17 @@
 		<page-url>http://www.csstemplateheaven.com</page-url>
 		<author>Dieter Schneider</author>
 		<licenses>Public Domain</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>beach-party-theme</artifact-id>
+		<name>Beach Party</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>beautiful-day-theme</artifact-id>
@@ -1108,6 +998,17 @@
 		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>black-paint-theme</artifact-id>
+		<name>Black Paint</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>blackbox-theme</artifact-id>
 		<name>Black Box</name>
 		<type>theme</type>
@@ -1119,6 +1020,50 @@
 		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>blacker-theme</artifact-id>
+		<name>Blacker</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>blue-eve-theme</artifact-id>
+		<name>Blue Eve</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>blue-fusion-theme</artifact-id>
+		<name>Blue Fusion</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>blue-garden-theme</artifact-id>
+		<name>Blue Garden</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>blue-ring-theme</artifact-id>
 		<name>Blue Ring</name>
 		<type>theme</type>
@@ -1128,6 +1073,28 @@
 		<page-url>http://www.osskins.com/main/joomla-mambo/free-joomla-15-template-blue-ring/2008/06/04</page-url>
 		<author>Siteground</author>
 		<licenses>Public Domain</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>blue-space-theme</artifact-id>
+		<name>Blue Space</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>blue_rings-theme</artifact-id>
+		<name>Blue Rings</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>bluebridge-theme</artifact-id>
@@ -1229,6 +1196,17 @@
 		<licenses>Unknown</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>chess-theme</artifact-id>
+		<name>Chess</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>cloudywatersport-theme</artifact-id>
 		<name>Cloudy Water Sport</name>
 		<type>theme</type>
@@ -1249,6 +1227,39 @@
 		<page-url>http://templates.arcsin.se</page-url>
 		<author>Arcsin</author>
 		<licenses>CCA</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>colorful-net-theme</artifact-id>
+		<name>Colorful Net</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>colorus-theme</artifact-id>
+		<name>Colorus</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>colourise-theme</artifact-id>
+		<name>Colourise</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>contaminated-theme</artifact-id>
@@ -1295,6 +1306,17 @@
 		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>dark-splinter-theme</artifact-id>
+		<name>Dark Splinter</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>dark-theme</artifact-id>
 		<name>Dark</name>
 		<type>theme</type>
@@ -1304,6 +1326,17 @@
 		<page-url>http://www.oswd.org/design/information/id/3360</page-url>
 		<author>GetTemplate</author>
 		<licenses>CCA</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>darkside-theme</artifact-id>
+		<name>Darkside</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>decayed-theme</artifact-id>
@@ -1326,6 +1359,17 @@
 		<page-url>http://www.oswd.org/design/information/id/2634</page-url>
 		<author>Super J Man</author>
 		<licenses>CCA</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>description-theme</artifact-id>
+		<name>description</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>desktop-classic-theme</artifact-id>
@@ -1394,6 +1438,17 @@
 		<licenses>GPL</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>earth-theme</artifact-id>
+		<name>Earth</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>envision-theme</artifact-id>
 		<name>Envision</name>
 		<type>theme</type>
@@ -1403,6 +1458,17 @@
 		<page-url>http://www.styleshout.com</page-url>
 		<author>Styleshout</author>
 		<licenses>CCA</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>feather-theme</artifact-id>
+		<name>Feather</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>film-theme</artifact-id>
@@ -1493,6 +1559,17 @@
 		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>green-mile-theme</artifact-id>
+		<name>Green Mile</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>greeny-blu-theme</artifact-id>
 		<name>Greeny blu</name>
 		<type>theme</type>
@@ -1526,6 +1603,17 @@
 		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>highway-theme</artifact-id>
+		<name>Highway</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>i-see-new-people-theme</artifact-id>
 		<name>I See New People</name>
 		<type>theme</type>
@@ -1557,6 +1645,17 @@
 		<page-url>http://templates.arcsin.se/</page-url>
 		<author>Arcsin</author>
 		<licenses>CCA</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>intech-growth-theme</artifact-id>
+		<name>Intech Growth</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>internet-services-theme</artifact-id>
@@ -1669,6 +1768,28 @@
 		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>lightning-theme</artifact-id>
+		<name>Lightning</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>little-chicken-theme</artifact-id>
+		<name>Little Chicken</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>localize-theme</artifact-id>
 		<name>Localize</name>
 		<type>theme</type>
@@ -1700,6 +1821,17 @@
 		<page-url>http://www.styleshout.com</page-url>
 		<author>Styleshout</author>
 		<licenses>CCA</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>metamorph-lightblue-theme</artifact-id>
+		<name>Metamorph Lightblue</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>miami-sky-theme</artifact-id>
@@ -1735,6 +1867,17 @@
 		<licenses>GNU</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>mountain-design-theme</artifact-id>
+		<name>Mountain Design</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>natural-essence-theme</artifact-id>
 		<name>Natural Essence</name>
 		<type>theme</type>
@@ -1746,6 +1889,17 @@
 		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>nautic-theme</artifact-id>
+		<name>Nautic</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>nautica05-theme</artifact-id>
 		<name>Nautica 05</name>
 		<type>theme</type>
@@ -1755,6 +1909,39 @@
 		<page-url>http://www.oswd.org/design/information/id/3126</page-url>
 		<author>Studio7Designs</author>
 		<licenses>Public Domain</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>neutral-theme</artifact-id>
+		<name>Neutral</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>night-luxury-theme</artifact-id>
+		<name>Night Luxury</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>ocean-theme</artifact-id>
+		<name>Ocean</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>orange-theme</artifact-id>
@@ -1790,6 +1977,17 @@
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>pink-float-theme</artifact-id>
+		<name>Pink Float</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>pink-stars-theme</artifact-id>
 		<name>Pink Stars</name>
 		<type>theme</type>
@@ -1823,8 +2021,41 @@
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
-		<artifact-id>purple_theme-theme</artifact-id>
-		<name>Purple Theme</name>
+		<artifact-id>pointspace-blue-theme</artifact-id>
+		<name>Pointspace Blue</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>professional-theme</artifact-id>
+		<name>Professional</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>r8-theme</artifact-id>
+		<name>R8</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>real-classic-theme</artifact-id>
+		<name>Real Classic</name>
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
@@ -1843,6 +2074,17 @@
 		<page-url>http://www.osskins.com/main/wordpress/free-wordpress-theme-red-flower/2008/04/05</page-url>
 		<author>Saroyama</author>
 		<licenses>Public Domain</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>red-garden-theme</artifact-id>
+		<name>Red Garden</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>reddy-theme</artifact-id>
@@ -1887,6 +2129,17 @@
 		<page-url>http://www.osskins.com/main/wordpress/free-wordpress-theme-rising-sun/2008/03/03</page-url>
 		<author>Unknown</author>
 		<licenses>GPL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>rock-blog-theme</artifact-id>
+		<name>Rock Blog</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>salome-art-theme</artifact-id>
@@ -2008,6 +2261,39 @@
 		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>sky-fire-theme</artifact-id>
+		<name>Sky Fire</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>skyfire-theme</artifact-id>
+		<name>Skyfire</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>skyline-theme</artifact-id>
+		<name>Skyline</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>sliver-theme</artifact-id>
 		<name>Sliver</name>
 		<type>theme</type>
@@ -2039,6 +2325,17 @@
 		<page-url>http://www.osskins.com/main/wordpress/free-wordpress-theme-sound-of-the-future/2008/04/01</page-url>
 		<author>Web Hosting Rally</author>
 		<licenses>GPL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>speedy-theme</artifact-id>
+		<name>Speedy</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>spirit-of-nature-theme</artifact-id>
@@ -2074,8 +2371,8 @@
 		<licenses>CCA</licenses>
 	</plugin>
 	<plugin>
-		<artifact-id>sun-theme</artifact-id>
-		<name>Sun Microsystems</name>
+		<artifact-id>sun-enterprise-theme</artifact-id>
+		<name>Sun Enterprise</name>
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
@@ -2096,8 +2393,8 @@
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
-		<artifact-id>super-mario-bros-theme</artifact-id>
-		<name>Super Mario Bros</name>
+		<artifact-id>super-mario-bros-1-theme</artifact-id>
+		<name>Super Mario Bros 1</name>
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
@@ -2105,6 +2402,28 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>super-mario-bros-2-theme</artifact-id>
+		<name>Super Mario Bros 2</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>synergy-theme</artifact-id>
+		<name>WebSynergy</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.sun.com</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>terrafirma-theme</artifact-id>
@@ -2116,6 +2435,39 @@
 		<page-url>http://www.oswd.org/design/information/id/3557</page-url>
 		<author>NodeThirtyThree</author>
 		<licenses>Public Domain</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>thespider-theme</artifact-id>
+		<name>The Spider</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>traffic-lights-theme</artifact-id>
+		<name>Traffic Lights</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>tranmission-theme</artifact-id>
+		<name>Transmission</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>transparentia-theme</artifact-id>
@@ -2138,6 +2490,17 @@
 		<page-url>http://www.csstemplateheaven.com</page-url>
 		<author>Dieter Schneider</author>
 		<licenses>Public Domain</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>wordpress-emo-theme</artifact-id>
+		<name>Wordpress Emo</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
 		<artifact-id>wordpress-theme</artifact-id>
@@ -2173,6 +2536,17 @@
 		<licenses>BSD</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>iweb-web</artifact-id>
+		<name>iweb</name>
+		<type>web</type>
+		<tags></tags>
+		<short-description>This is IWEB plugin. This plugin provides semantic capabilities for the communities.</short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>jbpm-web</artifact-id>
 		<name>jBPM</name>
 		<type>web</type>
@@ -2189,6 +2563,17 @@
 		<type>web</type>
 		<tags></tags>
 		<short-description>This is the Mule Enterprise Service Bus plugin.</short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>MIT</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>ruon-web</artifact-id>
+		<name>ruon</name>
+		<type>web</type>
+		<tags></tags>
+		<short-description>This is RUON plugin. This provides presence and unified communication layer.</short-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -2244,7 +2629,6 @@
 	<author>GetTemplate</author>
 	<author>GrowlDesign</author>
 	<author>Health Tags</author>
-	<author>Interface21</author>
 	<author>James Broad</author>
 	<author>James Koster</author>
 	<author>Jochum Meester</author>
