@@ -6,27 +6,17 @@
 #banner {
 	background: url(../images/theme/bckpage.jpg);
 	height: 254px;
-	margin-left: -63px;
 	position: relative;
 	top: 0;
 }
 
-#banner2 {
-	height: 259px;
-	margin: -275px;
-	position: absolute;
-	width: 1265px;
-	z-index: -1;
-}
-
 body {
-	background: url(../images/theme/bck.jpg);
+	background: url(../images/theme/bck.jpg) scroll center;
 	font-family: Arial;
 }
 
 #content-wrapper {
 	background: black;
-	margin: 6px 0 0 -58px;
 	min-height: 415px;
 	width: 730px;
 }
@@ -77,7 +67,7 @@ input.focus, textare.focus, ie6 input.focus, ie6 textarea.focus {
 }
 
 .js #add-page a {
-	margin-left: -288px;
+	margin-left:-215px;
 	margin-top: 0;
 	position: absolute;
 }
@@ -171,5 +161,6 @@ input.focus, textare.focus, ie6 input.focus, ie6 textarea.focus {
 #wrapper {
 	background: transparent;
 	margin: 0 auto;
-	width: 676px;
+	width: 740px;
+	position: relative;
 }
