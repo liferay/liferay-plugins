@@ -5,20 +5,18 @@ body {
 #banner {
 	background: #646464 url(../images/custom/header.jpg) no-repeat center;
 	height: 316px;
-	margin-left:165px;
-	width:922px;
-}
-.ie #banner {
-	margin-left: 166px;
-	width: 927px;
+	position: relative;
 }
 #wrapper {
 	background: transparent;
+	position: relative;
+	margin: 0 auto;
+	width: 950px;
 }
 #navigation {
 	background: none;
 	border: none;
-	margin: -44pt auto 55px;
+	margin:4pt auto 30px;
 	width: 60%;
 }
 #navigation li {
@@ -53,7 +51,7 @@ body {
 }
 #content-wrapper {
 	margin: -23pt auto;
-	width: 72%;
+	width:930px;;
 	background: #646464;
 	border: 10px solid #646464;
 }
@@ -89,10 +87,10 @@ a {
 	border-bottom: medium none;
 }
 #banner .logo a {
-	margin-left: 232px;
+	margin-left: 75px;
 }
 .js .interactive-mode {
-	right: 21.5%;
+	right: 11%;
 }
 .ui-dialog.ui-resizable-disabled .ui-dialog-content {
 	color: black;
