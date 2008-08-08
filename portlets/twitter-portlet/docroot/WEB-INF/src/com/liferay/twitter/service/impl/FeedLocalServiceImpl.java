@@ -99,11 +99,19 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 		String twitterScreenName, long sinceId) {
 
 		try {
-			String url = _URL + twitterScreenName + ".json?since_id=" + sinceId;
+			String url = _URL + twitterScreenName + ".json";
+
+			if (sinceId > 0) {
+				url += "?since_id=" + sinceId;
+			}
 
 			return JSONFactoryUtil.createJSONArray(HttpUtil.URLtoString(url));
 		}
 		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(e, e);
+			}
+
 			return null;
 		}
 	}
