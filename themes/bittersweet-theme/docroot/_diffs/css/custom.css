@@ -88,7 +88,6 @@ a.portlet-icon-back:hover {
 }
 
 #banner h1.logo {
-	left: 220px;
 	top: -30px;
 }
 
@@ -188,7 +187,7 @@ body {
 .js .lfr-dock.interactive-mode h2 span {
 	color: white;
 	font-size: 10pt;
-	padding: 8px 16px 16px 16px;
+	padding:8px 13px;
 }
 
 .js .lfr-dock.interactive-mode h2, .js .lfr-dock.interactive-mode h2 span {
@@ -196,8 +195,8 @@ body {
 }
 
 .js .lfr-dock.interactive-mode {
-	right: 151pt;
-	top: 20px;
+	right:10pt;
+	top:10px;
 }
 
 .liferay-table {
