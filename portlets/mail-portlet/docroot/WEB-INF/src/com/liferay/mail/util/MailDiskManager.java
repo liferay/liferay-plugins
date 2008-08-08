@@ -41,7 +41,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.util.portlet.PortletProps;
 
 import java.io.IOException;
@@ -605,13 +605,16 @@ public class MailDiskManager {
 		String[] userIds = FileUtil.listDirs(rootPath);
 
 		try {
-			for (String userIdStr : userIds) {
+			for (String userIdString : userIds) {
 				long userId = 0;
 				long groupId = 0;
 
 				try {
-					userId = GetterUtil.getLong(userIdStr);
-					groupId = UserServiceUtil.getUserById(userId).getGroup().getGroupId();
+					userId = GetterUtil.getLong(userIdString);
+
+					User user = UserLocalServiceUtil.getUserById(userId);
+
+					groupId = user.getGroup().getGroupId();
 				}
 				catch (Exception e) {
 					_log.error(e, e);
