@@ -19,7 +19,7 @@
 	border: none;
 }
 body {
-	background: #898989 url(../images/custom/bg.png);
+	background: #898989 url(../images/custom/bg.png) scroll center;
 	color: #FFFFFF;
 	font-family: arial,verdana;
 	font-size: 12px;
