@@ -544,17 +544,9 @@ public class MailDiskManager {
 				fullQuery.add(searchQuery, BooleanClauseOccur.MUST);
 			}
 
-			if (_log.isDebugEnabled()) {
-				_log.debug("Query string: " + fullQuery.toString());
-			}
-
 			Hits hits = SearchEngineUtil.search(
-				companyId, fullQuery.toString(), SearchEngineUtil.ALL_POS,
+				companyId, fullQuery, SearchEngineUtil.ALL_POS,
 				SearchEngineUtil.ALL_POS);
-
-			if (_log.isDebugEnabled()) {
-				_log.debug("Hit count: " + hits.getLength());
-			}
 
 			Set<Long> messageUidsSet = new HashSet();
 
