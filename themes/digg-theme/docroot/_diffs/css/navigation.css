@@ -35,7 +35,6 @@
 
 #navigation ul li a , .js #add-page a {
 	display: block;
-	float: left;
 	padding: 5px 8px;
 	height: 13px;
 	color: #325B0A;
