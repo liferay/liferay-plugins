@@ -4,7 +4,8 @@
 <beans>
 	<bean id="portletBeanFactoryPostProcessor" class="com.liferay.portal.spring.context.PortletBeanFactoryPostProcessor" />
 	<bean id="portletClassLoader" class="com.liferay.portal.kernel.portlet.PortletClassLoaderUtil" lazy-init="true" factory-method="getClassLoader" />
-	<bean id="velocityServiceInterceptor" class="com.liferay.portal.spring.aop.ServiceInterceptor" lazy-init="true">
+	<bean id="logInterceptor" class="com.liferay.portal.spring.aop.LogInterceptor" lazy-init="true" />
+	<bean id="velocityServiceInterceptor" class="com.liferay.portal.spring.aop.BeanInterceptor" lazy-init="true">
 		<property name="classLoader">
 			<ref bean="portletClassLoader" />
 		</property>
