@@ -26,6 +26,12 @@
 <%
 KBArticle article = (KBArticle) request.getAttribute(KnowledgeBaseKeys.ARTICLE);
 
+KBFeedbackEntry kbFeedbackEntry = (KBFeedbackEntry) request.getAttribute(KnowledgeBaseKeys.KNOWLEDGE_BASE_FEEDBACK_ENTRY);
+
+KBFeedbackStats kbFeedbackStats = (KBFeedbackStats) request.getAttribute(KnowledgeBaseKeys.KNOWLEDGE_BASE_FEEDBACK_STATS);
+
+// KBArticle
+
 long resourcePrimKey = article.getResourcePrimKey();
 
 String title = article.getTitle();
@@ -47,6 +53,30 @@ String className = KBArticle.class.getName();
 if (article.isTemplate()) {
 	className += ".template";
 }
+
+// KBFeedback entry
+
+int score = BeanParamUtil.getInteger(kbFeedbackEntry, request, "score");
+int vote = BeanParamUtil.getInteger(kbFeedbackEntry, request, "vote");
+
+long kbFeedbackEntryId = BeanParamUtil.getLong(kbFeedbackEntry, request, "kbFeedbackEntryId");
+
+String comments = BeanParamUtil.getString(kbFeedbackEntry, request, "comments");
+
+//KBFeedback stats
+
+int totalVotes = BeanParamUtil.getInteger(kbFeedbackStats, request, "totalVotes");
+int yesVotes = BeanParamUtil.getInteger(kbFeedbackStats, request, "yesVotes");
+
+int noPercentage = 0;
+int yesPercentage = 0;
+
+if (totalVotes > 0) {
+	yesPercentage = (int)(yesVotes / totalVotes) * 100;
+	noPercentage = 100 - yesPercentage;
+}
+
+// PortletURLs
 
 PortletURL viewAllURL = renderResponse.createRenderURL();
 
@@ -89,6 +119,8 @@ PortletURL viewAttachmentsURL = renderResponse.createRenderURL();
 
 viewAttachmentsURL.setParameter("view", "view_article_attachments");
 viewAttachmentsURL.setParameter("title", title);
+
+ResourceURL feedbackURL = renderResponse.createResourceURL();
 %>
 
 <c:choose>
@@ -103,6 +135,27 @@ viewAttachmentsURL.setParameter("title", title);
 	</c:when>
 	<c:otherwise>
 		<script type="text/javascript">
+			jQuery(function() {
+				Liferay.KnowledgeBase.init({
+					articleId: '<%= article.getArticleId() %>',
+					averageScore: '<%= kbFeedbackStats.getAverageScore() %>',
+					namespace: '<portlet:namespace />',
+					feedbackURL: '<%= feedbackURL %>',
+					kbFeedbackEntryId: '<%= kbFeedbackEntryId %>',
+					score: '<%= score %>',
+					userId: '<%= themeDisplay.getUserId() %>',
+					textAverage: '<liferay-ui:message key="average" />',
+					textNo: '<liferay-ui:message key="please-let-us-know-why-you-found-this-unhelpful" />',
+					textSuccess: '<liferay-ui:message key="your-request-processed-successfully" />',
+					textThanksVote: '<liferay-ui:message key="thank-you-we-appreciate-your-feedback" />',
+					textThanksComment: '<liferay-ui:message key="thanks-your-feedback-will-help-us-to-improve-this-article" />',
+					textUpdateFeedback: '<liferay-ui:message key="update-your-feedback-for-this-article" />',
+					textVote: '<liferay-ui:message key="vote" />',
+					textVotes: '<liferay-ui:message key="votes" />',
+					textYes: '<liferay-ui:message key="glad-it-helped-what-did-you-find-most-helpful" />'
+				});
+			});
+
 			function <portlet:namespace />printArticle() {
 				window.open('<%= printArticleURL %>', '', "directories=0,height=480,left=80,location=1,menubar=1,resizable=1,scrollbars=yes,status=0,toolbar=0,top=180,width=640");
 			}
@@ -149,204 +202,339 @@ viewAttachmentsURL.setParameter("title", title);
 	</div>
 </c:if>
 
-<div class="float-container">
-	<c:if test="<%= !print %>">
-		<div class="side-boxes">
-			<div class="side-box">
-				<div class="side-box-title"><liferay-ui:message key="details" /></div>
-				<div class="side-box-content">
-					<ul class="lfr-component">
-						<li>
-							<b><liferay-ui:message key="id" /></b>: <%= resourcePrimKey %>
-						</li>
-						<li>
-							<b><liferay-ui:message key="version" /></b>: <%= article.getVersion() %>
-						</li>
-						<li>
-							<b><liferay-ui:message key="updated" /></b>: <%= dateFormatDateTime.format(article.getModifiedDate()) %>
-						</li>
-						<li>
-							<b><liferay-ui:message key="by" /></b>: <%= PortalUtil.getUserName(article.getUserId(), article.getUserName()) %>
-						</li>
-						<c:if test="<%= !article.isTemplate() %>">
-							<li>
-								<b><liferay-ui:message key="views" /></b>:
-								<%
-								TagsAsset asset = TagsAssetLocalServiceUtil.getAsset(KBArticle.class.getName(), resourcePrimKey);
-								%>
-								<%= asset.getViewCount() %>
-							</li>
-						</c:if>
-						<li>
-							<liferay-ui:tags-summary
-								className="<%= className %>"
-								classPK="<%= resourcePrimKey %>"
-								portletURL="<%= taggedArticlesURL %>"
-								folksonomy="false"
-								message="categories"
-							/>
-						</li>
-						<li>
-							<liferay-ui:tags-summary
-								className="<%= className %>"
-								classPK="<%= article.getResourcePrimKey() %>"
-								portletURL="<%= taggedArticlesURL %>"
-								folksonomy="true"
-							/>
-						</li>
-
+<div class="knowledge-base-content-container">
+	<table class="lfr-table" width="100%">
+	<tr>
+		<td valign="top">
+			<div class="knowledge-base-content">
+				<div class="knowledge-base-body">
+					<%= article.getContent() %>
 				</div>
+
+				<c:if test="<%= !print %>">
+					<table border="0" cellpadding="0" cellspacing="0" class="taglib-ratings stars">
+					<tr>
+						<c:if test="<%= themeDisplay.isSignedIn() %>">
+							<td>
+								<div style="font-size: xx-small; padding-bottom: 2px;">
+									<liferay-ui:message key="your-rating" />
+								</div>
+
+								<div id="<portlet:namespace />yourRating">
+									<img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" />
+								</div>
+							</td>
+							<td style="padding-left: 30px;"></td>
+						</c:if>
+
+						<td>
+							<div id="<portlet:namespace />totalEntries" style="font-size: xx-small; padding-bottom: 2px;">
+								<liferay-ui:message key="average" /> (<%= kbFeedbackStats.getTotalScoreEntries() %> <%= LanguageUtil.get(pageContext, (kbFeedbackStats.getTotalScoreEntries() == 1) ? "vote" : "votes") %>)
+							</div>
+
+							<div id="<portlet:namespace />averageRating" onmousemove="Liferay.Portal.ToolTip.show(event, this, '<%= kbFeedbackStats.getAverageScore() %> <liferay-ui:message key="stars" />')">
+								<img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" />
+							</div>
+						</td>
+					</tr>
+					</table>
+				</c:if>
+
+				<c:if test="<%= (childArticles.size() > 0) %>">
+					<p class="child-articles-message"><liferay-ui:message key="children" /></p>
+
+					<ul class="child-articles">
+
+						<%
+						PortletURL curArticleURL = renderResponse.createRenderURL();
+						curArticleURL.setParameter("view", "view_article");
+
+						for (int i = 0; i < childArticles.size(); i++) {
+							KBArticle curArticle = (KBArticle)childArticles.get(i);
+
+							curArticleURL.setParameter("title", curArticle.getTitle());
+						%>
+
+							<li>
+								<a href="<%= curArticleURL %>"><%= curArticle.getTitle() %></a>
+							</li>
+
+						<%
+						}
+						%>
+
+					</ul>
+				</c:if>
+
+				<c:if test="<%= !print && !article.isTemplate() && KBArticlePermission.contains(permissionChecker, article, KnowledgeBaseKeys.ADD_CHILD_ARTICLE) %>">
+					<div class="article-actions">
+						<liferay-ui:icon image="add_article" message="add-child-article" url="<%= addArticleURL.toString() %>" label="<%= true %>" />
+					</div>
+				</c:if>
+
+				<c:if test="<%= !print %>">
+					<div class="knowledge-base-feedback">
+						<liferay-ui:tabs names="feedback" />
+
+						<c:choose>
+							<c:when test="<%= themeDisplay.isSignedIn() %>">
+								<script type="text/javascript">
+									function <portlet:namespace />saveFeedbackVote(vote) {
+										Liferay.KnowledgeBase.saveFeedbackVote(vote);
+									}
+
+									function <portlet:namespace />saveFeedbackComments() {
+										Liferay.KnowledgeBase.saveFeedbackComments();
+									}
+								</script>
+
+								<div
+									id="<portlet:namespace />feedbackContainer"
+									<c:if test="<%= kbFeedbackEntry != null %>">
+										style="display: none;"
+									</c:if>
+								>
+									<div class="portlet-msg-info" id="<portlet:namespace />feedbackStatus">
+										<liferay-ui:message key="let-us-know-what-you-thought" />
+									</div>
+
+									<div id="<portlet:namespace />feedbackForm">
+										<form method="post" name="<portlet:namespace />fm">
+
+										<div class="ctrl-holder-feedback-ratings">
+											<p class="ratings-message"><liferay-ui:message key="did-you-find-this-helpful" /></p>
+
+											<label class="ratings-label" for="<portlet:namespace />entryRatingYes"><input <%= vote == 1 ? "checked" : StringPool.BLANK %> name="entryRating" id="<portlet:namespace />entryRatingYes" value="1" type="radio" onClick="<portlet:namespace />saveFeedbackVote(1);" /> <liferay-ui:message key="yes" /></label>
+
+											<label class="ratings-label" for="<portlet:namespace />entryRatingNo"><input <%= vote == -1 ? "checked" : StringPool.BLANK %> name="entryRating" id="<portlet:namespace />entryRatingNo" value="-1" type="radio" onClick="<portlet:namespace />saveFeedbackVote(-1);" /> <liferay-ui:message key="no" /></label>
+										</div>
+
+										<div
+											class="ctrl-holder-feedback-comments"
+											id="<portlet:namespace />ctrlHolderFeedbackComments"
+											<c:if test="<%= kbFeedbackEntry == null %>">
+												style="display: none;"
+											</c:if>
+										>
+											<c:choose>
+												<c:when test="<%= vote == -1 %>">
+													<p class="comments-message" id="<portlet:namespace />commentsMessage"><liferay-ui:message key="please-let-us-know-why-you-found-this-unhelpful" /></p>
+												</c:when>
+												<c:otherwise>
+													<p class="comments-message" id="<portlet:namespace />commentsMessage"><liferay-ui:message key="glad-it-helped-what-did-you-find-most-helpful" /></p>
+												</c:otherwise>
+											</c:choose>
+
+											<liferay-ui:input-field model="<%= KBFeedbackEntry.class %>" bean="<%= kbFeedbackEntry %>" field="comments" />
+
+											<br /><br />
+
+											<input type="button" value='<%= (comments == StringPool.BLANK) ? LanguageUtil.get(themeDisplay.getLocale(), "add-comments") : LanguageUtil.get(themeDisplay.getLocale(), "update-comments") %>' onClick="<portlet:namespace />saveFeedbackComments();" />
+										</div>
+
+										</form>
+									</div>
+								</div>
+
+								<a
+									href="javascript: Liferay.KnowledgeBase.updateLink();"
+									id="<portlet:namespace />feedbackUpdateLink"
+									<c:if test="<%= kbFeedbackEntry == null %>">
+										style="display: none;"
+									</c:if>
+								>
+									<liferay-ui:message key="update-feedback" />
+								</a>
+							</c:when>
+							<c:otherwise>
+								<div class="portlet-msg-info">
+									<a href="<%= themeDisplay.getURLSignIn() %>"><liferay-ui:message key="sign-in-to-rate-this-article" /></a>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</c:if>
+
 			</div>
-			<c:if test="<%= !article.isTemplate() %>">
-				<div class="side-box">
-					<div class="side-box-title"><liferay-ui:message key="attachments" /></div>
-					<div class="side-box-content">
-						<liferay-ui:icon image="clip" message='<%= attachments.length + " " + LanguageUtil.get(pageContext, "attachments") %>' url="<%= viewAttachmentsURL.toString() %>" method="get" label="<%= true %>" />
+		</td>
+
+		<c:if test="<%= !print %>">
+			<td valign="top" width="180px">
+				<div class="side-boxes">
+					<div class="side-box">
+						<div class="side-box-title"><liferay-ui:message key="details" /></div>
+						<div class="side-box-content">
+							<ul class="lfr-component">
+								<li>
+									<b><liferay-ui:message key="id" /></b>: <%= resourcePrimKey %>
+								</li>
+								<li>
+									<b><liferay-ui:message key="version" /></b>: <%= article.getVersion() %>
+								</li>
+								<li>
+									<b><liferay-ui:message key="updated" /></b>: <%= dateFormatDateTime.format(article.getModifiedDate()) %>
+								</li>
+								<li>
+									<b><liferay-ui:message key="by" /></b>: <%= PortalUtil.getUserName(article.getUserId(), article.getUserName()) %>
+								</li>
+								<c:if test="<%= !article.isTemplate() %>">
+									<li>
+										<b><liferay-ui:message key="views" /></b>:
+										<%
+										TagsAsset asset = TagsAssetLocalServiceUtil.getAsset(KBArticle.class.getName(), resourcePrimKey);
+										%>
+										<%= asset.getViewCount() %>
+									</li>
+								</c:if>
+								<li>
+									<liferay-ui:tags-summary
+										className="<%= className %>"
+										classPK="<%= resourcePrimKey %>"
+										portletURL="<%= taggedArticlesURL %>"
+										folksonomy="false"
+										message="categories"
+									/>
+								</li>
+								<li>
+									<liferay-ui:tags-summary
+										className="<%= className %>"
+										classPK="<%= article.getResourcePrimKey() %>"
+										portletURL="<%= taggedArticlesURL %>"
+										folksonomy="true"
+									/>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<c:if test="<%= !article.isTemplate() %>">
+						<div class="side-box">
+							<div class="side-box-title"><liferay-ui:message key="attachments" /></div>
+							<div class="side-box-content">
+								<liferay-ui:icon image="clip" message='<%= attachments.length + " " + LanguageUtil.get(pageContext, "attachments") %>' url="<%= viewAttachmentsURL.toString() %>" method="get" label="<%= true %>" />
+							</div>
+						</div>
+					</c:if>
+					<div class="side-box">
+						<div class="side-box-title"><liferay-ui:message key="actions" /></div>
+						<div class="side-box-content">
+							<liferay-ui:icon-list>
+								<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
+									<liferay-ui:icon image="edit" label="<%= true %>" url="<%= editArticleURL.toString() %>" />
+								</c:if>
+
+								<liferay-ui:icon image="print" label="<%= true %>" message="print" url='<%= "javascript: " + renderResponse.getNamespace() + "printArticle();" %>' />
+
+								<c:if test="<%= !article.isTemplate() %>">
+
+									<%
+									String[] displayRSSTypes = prefs.getValues("displayRSSTypes", new String[] {rss20});
+
+									rssAtomURL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
+									rssRSS10URL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
+									rssRSS20URL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
+									%>
+
+									<c:if test="<%= ArrayUtil.contains(displayRSSTypes, atom) %>">
+										<liferay-ui:icon image="rss" message="<%= atom %>" method="get" url='<%= rssAtomURL.toString() %>' target="_blank" label="<%= true %>" />
+									</c:if>
+
+									<c:if test="<%= ArrayUtil.contains(displayRSSTypes, rss10) %>">
+										<liferay-ui:icon image="rss" message="<%= rss10 %>" method="get" url='<%= rssRSS10URL.toString() %>' target="_blank" label="<%= true %>" />
+									</c:if>
+
+									<c:if test="<%= ArrayUtil.contains(displayRSSTypes, rss20) %>">
+										<liferay-ui:icon image="rss" message="<%= rss20 %>" method="get" url='<%= rssRSS20URL.toString() %>' target="_blank" label="<%= true %>" />
+									</c:if>
+
+									<%
+									String[] extensions = prefs.getValues("extensions", new String[] {"pdf"});
+
+									for (String extension : extensions) {
+										ResourceURL convertURL = renderResponse.createResourceURL();
+
+										convertURL.setParameter("actionName", "convert");
+										convertURL.setParameter("title", article.getTitle());
+										convertURL.setParameter("version", String.valueOf(article.getVersion()));
+										convertURL.setParameter("targetExtension", extension);
+									%>
+
+										<liferay-ui:icon
+											image='<%= "../document_library/" + extension %>'
+											message="<%= extension.toUpperCase() %>"
+											url='<%= convertURL.toString() %>'
+										/>
+
+									<%
+									}
+									%>
+
+									<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
+										<c:choose>
+											<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), resourcePrimKey) %>">
+												<portlet:actionURL var="unsubscribeURL">
+													<portlet:param name="actionName" value="unsubscribeArticle" />
+													<portlet:param name="redirect" value="<%= currentURL %>" />
+													<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
+												</portlet:actionURL>
+
+												<liferay-ui:icon image="unsubscribe" url="<%= unsubscribeURL %>" label="<%= true %>" />
+											</c:when>
+											<c:otherwise>
+												<portlet:actionURL var="subscribeURL">
+													<portlet:param name="actionName" value="subscribeArticle" />
+													<portlet:param name="redirect" value="<%= currentURL %>" />
+													<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
+												</portlet:actionURL>
+
+												<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" label="<%= true %>" />
+											</c:otherwise>
+										</c:choose>
+									</c:if>
+								</c:if>
+
+								<portlet:renderURL var="historyURL">
+									<portlet:param name="view" value="view_article_history" />
+									<portlet:param name="redirect" value="<%= currentURL %>" />
+									<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
+								</portlet:renderURL>
+
+								<liferay-ui:icon image="history" method="get" url="<%= historyURL %>" label="<%= true %>" />
+
+								<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) %>">
+									<%
+									PortletURL deleteArticleURL = renderResponse.createActionURL();
+
+									deleteArticleURL.setParameter("actionName", Constants.DELETE);
+									deleteArticleURL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
+									deleteArticleURL.setParameter("redirect", viewAllURL.toString());
+									%>
+
+									<liferay-ui:icon-delete url="<%= deleteArticleURL.toString() %>" label="<%= true %>" />
+								</c:if>
+							</liferay-ui:icon-list>
+						</div>
+					</div>
+					<div class="side-box">
+						<div class="side-box-title"><liferay-ui:message key="user-opinions" /></div>
+						<div class="side-box-content">
+							<ul class="lfr-component">
+								<li>
+									<b><liferay-ui:message key="helpful" /></b>: <span id="<portlet:namespace />yesPercentage"><%= yesPercentage %>%</span>
+								</li>
+								<li>
+									<b><liferay-ui:message key="unhelpful" /></b>: <span id="<portlet:namespace />noPercentage"><%= noPercentage %>%</span>
+								</li>
+							</ul>
+
+							<div class="total-votes" id="<portlet:namespace />totalVotes">
+								(<%= totalVotes %> <%= LanguageUtil.get(pageContext, totalVotes == 1 ? "vote" : "votes") %>)
+							</div>
+						</div>
 					</div>
 				</div>
-			</c:if>
-			<div class="side-box">
-				<div class="side-box-title"><liferay-ui:message key="actions" /></div>
-				<div class="side-box-content">
-					<liferay-ui:icon-list>
-						<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
-							<liferay-ui:icon image="edit" label="<%= true %>" url="<%= editArticleURL.toString() %>" />
-						</c:if>
+			</td>
+		</c:if>
 
-						<liferay-ui:icon image="print" label="<%= true %>" message="print" url='<%= "javascript: " + renderResponse.getNamespace() + "printArticle();" %>' />
-
-						<c:if test="<%= !article.isTemplate() %>">
-
-							<%
-							String[] displayRSSTypes = prefs.getValues("displayRSSTypes", new String[] {rss20});
-
-							rssAtomURL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
-							rssRSS10URL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
-							rssRSS20URL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
-							%>
-
-							<c:if test="<%= ArrayUtil.contains(displayRSSTypes, atom) %>">
-								<liferay-ui:icon image="rss" message="<%= atom %>" method="get" url='<%= rssAtomURL.toString() %>' target="_blank" label="<%= true %>" />
-							</c:if>
-
-							<c:if test="<%= ArrayUtil.contains(displayRSSTypes, rss10) %>">
-								<liferay-ui:icon image="rss" message="<%= rss10 %>" method="get" url='<%= rssRSS10URL.toString() %>' target="_blank" label="<%= true %>" />
-							</c:if>
-
-							<c:if test="<%= ArrayUtil.contains(displayRSSTypes, rss20) %>">
-								<liferay-ui:icon image="rss" message="<%= rss20 %>" method="get" url='<%= rssRSS20URL.toString() %>' target="_blank" label="<%= true %>" />
-							</c:if>
-
-							<%
-							String[] extensions = prefs.getValues("extensions", new String[] {"pdf"});
-
-							for (String extension : extensions) {
-								ResourceURL convertURL = renderResponse.createResourceURL();
-
-								convertURL.setParameter("actionName", "convert");
-								convertURL.setParameter("title", article.getTitle());
-								convertURL.setParameter("version", String.valueOf(article.getVersion()));
-								convertURL.setParameter("targetExtension", extension);
-							%>
-
-								<liferay-ui:icon
-									image='<%= "../document_library/" + extension %>'
-									message="<%= extension.toUpperCase() %>"
-									url='<%= convertURL.toString() %>'
-								/>
-
-							<%
-							}
-							%>
-
-							<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
-								<c:choose>
-									<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), resourcePrimKey) %>">
-										<portlet:actionURL var="unsubscribeURL">
-											<portlet:param name="actionName" value="unsubscribeArticle" />
-											<portlet:param name="redirect" value="<%= currentURL %>" />
-											<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-										</portlet:actionURL>
-
-										<liferay-ui:icon image="unsubscribe" url="<%= unsubscribeURL %>" label="<%= true %>" />
-									</c:when>
-									<c:otherwise>
-										<portlet:actionURL var="subscribeURL">
-											<portlet:param name="actionName" value="subscribeArticle" />
-											<portlet:param name="redirect" value="<%= currentURL %>" />
-											<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-										</portlet:actionURL>
-
-										<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" label="<%= true %>" />
-									</c:otherwise>
-								</c:choose>
-							</c:if>
-						</c:if>
-
-						<portlet:renderURL var="historyURL">
-							<portlet:param name="view" value="view_article_history" />
-							<portlet:param name="redirect" value="<%= currentURL %>" />
-							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-						</portlet:renderURL>
-
-						<liferay-ui:icon image="history" method="get" url="<%= historyURL %>" label="<%= true %>" />
-
-						<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) %>">
-							<%
-							PortletURL deleteArticleURL = renderResponse.createActionURL();
-
-							deleteArticleURL.setParameter("actionName", Constants.DELETE);
-							deleteArticleURL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
-							deleteArticleURL.setParameter("redirect", viewAllURL.toString());
-							%>
-
-							<liferay-ui:icon-delete url="<%= deleteArticleURL.toString() %>" label="<%= true %>" />
-						</c:if>
-					</liferay-ui:icon-list>
-				</div>
-			</div>
-		</div>
-	</c:if>
-
-	<div class="knowledge-base-body">
-		<%= article.getContent() %>
-	</div>
+	</tr>
+	</table>
 </div>
-
-<c:if test="<%= (childArticles.size() > 0) %>">
-	<div class="separator"><!-- --></div>
-</c:if>
-
-<c:if test="<%= childArticles.size() > 0 %>">
-	<div class="child-articles">
-		<h3><liferay-ui:message key="children" /></h3>
-
-		<ul class="child-articles">
-
-			<%
-			PortletURL curArticleURL = renderResponse.createRenderURL();
-			curArticleURL.setParameter("view", "view_article");
-
-			for (int i = 0; i < childArticles.size(); i++) {
-				KBArticle curArticle = (KBArticle)childArticles.get(i);
-
-				curArticleURL.setParameter("title", curArticle.getTitle());
-			%>
-
-				<li>
-					<a href="<%= curArticleURL %>"><%= curArticle.getTitle() %></a>
-				</li>
-
-			<%
-			}
-			%>
-
-		</ul>
-	</div>
-</c:if>
-
-<c:if test="<%= !print && !article.isTemplate() && KBArticlePermission.contains(permissionChecker, article, KnowledgeBaseKeys.ADD_CHILD_ARTICLE) %>">
-	<div class="article-actions">
-		<liferay-ui:icon image="add_article" message="add-child-article" url="<%= addArticleURL.toString() %>" label="<%= true %>" />
-	</div>
-</c:if>

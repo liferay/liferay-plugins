@@ -1,17 +1,17 @@
 .portlet-knowledge-base .knowledge-base-body pre {
 	background: white;
-	border: 1px dashed #2f6fab;
+	border: 1px dashed #2F6FAB;
 	margin: 5px 0px 5px 0px;
 	padding: 0.5em;
 }
 
 .portlet-knowledge-base a.createarticle {
-	color: red;
+	color: #FF0000;
 }
 
 .portlet-knowledge-base .toc {
-	border: 1px solid #aaa;
-	background-color: #f9f9f9;
+	border: 1px solid #AAA;
+	background-color: #F9F9F9;
 	padding: 10px;
 }
 
@@ -46,7 +46,7 @@
 }
 
 .portlet-knowledge-base h1.article-title {
-	border-bottom: 1px solid #AAAAAA;
+	border-bottom: 1px solid #AAA;
 	margin: 0px;
 	margin-bottom: 0.5em;
 	padding-bottom: 5px;
@@ -59,9 +59,13 @@
 }
 
 .portlet-knowledge-base .preview {
-	background: #ffc;
+	background: #FFC;
 	border: 1px dotted gray;
 	padding: 3px;
+}
+
+.portlet-knowledge-base .child-articles {
+	margin: 10px 0pt 10px;
 }
 
 .portlet-knowledge-base .child-articles h3 {
@@ -79,18 +83,28 @@
 
 .portlet-knowledge-base .child-articles li {
 	font-weight: bold;
-	font-size: 1.1em;
+	list-style-image: none;
+	list-style-type: none;
+}
+
+.portlet-knowledge-base .child-articles-message {
+	border-bottom: 1px dotted #CCC;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-bottom: 0px;
+	margin-top: 20px;
+	padding-bottom: 3px;
 }
 
 .portlet-knowledge-base .content-body .wiki-code {
-	background: #fff;
+	background: #FFF;
 	border: 1px solid #777;
 	font-family: monospace;
 	white-space: pre;
 }
 
 .portlet-knowledge-base .content-body .code-lines {
-	border-right: 1px solid #ccc;
+	border-right: 1px solid #CCC;
 	color: #000;
 	margin-right: 5px;
 	padding: 0px 5px 0px 5px;
@@ -135,7 +149,7 @@
 }
 
 .portlet-knowledge-base .article-info tr th, .portlet-knowledge-base .article-info tr td {
-	border: 1px solid #ccc;
+	border: 1px solid #CCC;
 	border-left: none;
 	border-right: none;
 	padding: 0.3em 1em;
@@ -146,14 +160,14 @@
 }
 
 .portlet-knowledge-base .article-old-version {
-	color: #ff9933;
+	color: #FF9933;
 	line-height: 1.2em;
 	margin: -1em 0pt 1.4em 0em;
 	width: auto;
 }
 
 .portlet-knowledge-base .article-redirect {
-	color: #7d7d7d;
+	color: #7D7D7D;
 	cursor: pointer;
 	line-height: 1.2em;
 	margin: -1em 0pt 1.4em 0em;
@@ -164,18 +178,29 @@
 	text-decoration: underline;
 }
 
+.portlet-knowledge-base .comments-message {
+	margin: 10px 0pt;
+}
+
+.portlet-knowledge-base .knowledge-base-feedback {
+	margin: 20px 0pt 0pt;
+}
+
 .portlet-knowledge-base .popup-print {
 	float: right;
 }
 
+.portlet-knowledge-base .ratings-label {
+	padding: 0pt 20px 0pt 0pt;
+}
+
 .portlet-knowledge-base .side-boxes {
-	float: right;
-	margin-left: 10px;
+	padding-left: 10px;
 }
 
 .portlet-knowledge-base .side-box {
-	background: #eee;
-	border: 1px dashed #ccc;
+	background: #EEE;
+	border: 1px dashed #CCC;
 	margin-bottom: 10px;
 	padding: 5px;
 }
@@ -214,6 +239,12 @@
 
 .portlet-knowledge-base .top-links table {
 	width: 100%;
+}
+
+.portlet-knowledge-base .total-votes {
+	color: #555;
+	font-size: xx-small;
+	padding-top: 2px;
 }
 
 .portlet-knowledge-base .subscription-info tr td {

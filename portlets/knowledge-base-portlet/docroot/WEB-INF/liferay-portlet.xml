@@ -9,6 +9,7 @@
 		<friendly-url-mapper-class>com.liferay.knowledgebase.portlet.KnowledgeBaseFriendlyURLMapper</friendly-url-mapper-class>
 		<header-portlet-css>/css/knowledge-base.css</header-portlet-css>
 		<header-portal-javascript>/html/js/misc/swfupload/swfupload.js</header-portal-javascript>
+		<header-portlet-javascript>/js/knowledge-base.js</header-portlet-javascript>
 		<css-class-wrapper>portlet-knowledge-base</css-class-wrapper>
 	</portlet>
 	<role-mapper>
