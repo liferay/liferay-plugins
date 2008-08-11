@@ -115,13 +115,13 @@ html {
 }
 
 .js .lfr-dock.interactive-mode h2, .js .lfr-dock.interactive-mode h2 span {
-	background-image: none;
-	color: #838181;
-	font-size: 10px;
-	font-weight: normal;
-	padding: 11px 10px;
+	background-image:none;
+	border:medium none;
+	color:#838181;
+	font-size:10px;
+	font-weight:normal;
+	padding:3px 10px;
 }
-
 #layout-grid .lfr-column {
 	margin: 0;
 	padding: 0;
@@ -129,9 +129,6 @@ html {
 
 .liferay-table {
 	font: 9px/9px Arial;
-}
-
-#navigation ul .sort-helper {
 }
 
 #navigation ul li a span, #navigation ul li a:hover span, #navigation ul li.selected a span, #navigation ul li.selected a:hover span, .js #add-page a span, .js #add-page a:hover span {
@@ -164,12 +161,6 @@ html {
 	float: left;
 }
 
-#navigation ul li.selected a span.tab-l, #navigation ul li.selected a:hover span.tab-l {
-}
-
-#navigation ul li.selected a span.tab-r, #navigation ul li.selected a:hover span.tab-r {
-}
-
 #navigation ul li.selected a, #navigation ul li.selected a:hover {
 	background: transparent url('../images/navigation/nav-current.png') repeat-x scroll 0 0;
 }
@@ -180,12 +171,14 @@ html {
 	text-transform: uppercase;
 }
 
+#navigation li, .js #add-page {
+	border: none;
+}
+
 #navigation {
 	background: transparent url('../images/navigation/bg.png') repeat-x scroll 0 0;
 	margin: 0 15px;
-}
-
-.portlet-content {
+	border: none;
 }
 
 .portlet-icons {
@@ -275,4 +268,8 @@ ul.child-menu {
 
 #wrapper, #banner, #navigation, #content-wrapper,.portlet, .portlet-topper, .portlet-title, .portlet-content {
 	display: block;
+}
+
+.js .interactive-mode {
+	top:20px;
 }

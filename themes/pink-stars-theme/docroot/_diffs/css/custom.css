@@ -37,7 +37,7 @@ body {
 
 #content-wrapper {
 	background: #FFF none repeat scroll 0;
-	margin: 190pt auto 0 auto;
+	margin:-145pt auto 0;
 	width: 766px;
 }
 
@@ -66,7 +66,12 @@ body {
 }
 
 .js .interactive-mode {
-	top: -55px;
+	top:-185px;
+}
+
+.js .lfr-dock-list-container {
+	height: 0px;
+	overflow: visible;
 }
 
 #navigation a {

@@ -10,7 +10,7 @@ a:hover {
 	border-right: 3px double #000000;
 	border-bottom: 3px double #000000;
 	margin: 0pt auto;
-	width: 975px;
+	width:1000px;
 }
 #banner {
 	background: #FFFFFF url(../images/custom/banner_bg.jpg) no-repeat bottom right;

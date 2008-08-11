@@ -98,6 +98,7 @@ body {
 #wrapper {
 	margin: 0 auto;
 	width: 1100px;
+	background: transparent;
 }
 
 
@@ -133,6 +134,10 @@ body {
 	width: 8px;
 }
 
+.js .interactive-mode {
+	background:transparent none repeat scroll 0 0;
+}
+
 #navigation li a span {
 	background: none;
 	padding-left: 17px;
@@ -161,6 +166,7 @@ body {
 #navigation li {
 	background: none;
 	display: inline;
+	border: none;
 	float: left;
 	margin-right: 0.5em;
 	padding: 0 1.5em 0 0;
@@ -192,6 +198,7 @@ body {
 
 #navigation {
 	background: url(../images/common/link.jpg) repeat-x;
+	border: none;
 	margin: 0 auto 0;
 	min-height: 2.2em;
 	overflow: hidden;
@@ -295,7 +302,6 @@ body {
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: #FFF;
-	margin-bottom: -10px;
 }
 
 .portlet-content {
@@ -315,7 +321,7 @@ body {
 
 .portlet-topper {
 	background-position: right top;
-	margin-right: -10px;
+	margin-right: -8px;
 	padding-right: 40px;
 	position: relative;
 }
@@ -433,3 +439,4 @@ body {
 .portlet-section-selected {
 	background: #EEE;
 }
+

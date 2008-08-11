@@ -11,8 +11,9 @@ body {
 #navigation {
 	background: none;
 	border: none;
-	margin: -40pt auto 20px 550px;
-	width: 50%;
+	margin:-72pt auto 120px 110px;
+	width:70%;
+	z-index: 21 !important;
 }
 #navigation li {
 	border: none;
@@ -32,7 +33,6 @@ body {
 }
 #banner {
 	background: none;
-	position:relative;
 	top:0;
 }
 #content-wrapper {
@@ -45,6 +45,7 @@ body {
 }
 #banner .logo a {
 	margin-left: 105px;
+	margin-top:30px;
 }
 .portlet-topper {
 	background: none;
@@ -82,6 +83,7 @@ body {
 }
 .js .interactive-mode {
 	right: 12%;
+	top:0;
 }
 #navigation li.selected a span {
 	color:grey;
@@ -95,11 +97,15 @@ body {
 	background:black none repeat scroll 0% 0%;
 }
 .portlet-calendar .calendar-day .day-number {
-	color:black;
+	color:grey;
+	border: none;
 }
 .lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
 	color: grey;
 }
 .portlet-section-body td {
 	color: black;
+}
+.portlet-calendar .calendar-container {
+	background:black none repeat scroll 0 0;
 }

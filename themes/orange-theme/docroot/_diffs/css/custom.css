@@ -36,7 +36,7 @@ body {
 
 #content-wrapper {
 	margin: 0;
-	width: 95%;
+	width:100%;
 }
 
 #footer p {
@@ -108,16 +108,17 @@ h3 {
 	background: transparent none repeat scroll 0 0;
 	padding-left: 6px;
 	position: absolute;
-	top: 6px;
+	top:20px;
 }
 
 .js #navigation .enter-page {
 	background: transparent none repeat scroll 0 0;
 	margin-right: 56px;
+	margin-top:9px;
 }
 
 .js .interactive-mode h2 {
-	background: transparent url(../images/dock/right_bg.png) no-repeat scroll 100% 0;
+	background:transparent none repeat scroll 0 0;
 	padding: 3pt 37px 7pt 0;
 }
 
@@ -135,7 +136,7 @@ h3 {
 	height: 28px;
 	min-width: 150px;
 	position: relative;
-	right: 0;
+	right:205px;
 	top: -175px;
 }
 
@@ -215,5 +216,5 @@ p, blockquote, ul, ol {
 #wrapper {
 	background: none;
 	margin: 0 auto 20px auto;
-	width: 761px;
+	width:1230px;
 }

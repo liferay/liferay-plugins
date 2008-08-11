@@ -110,9 +110,6 @@ body {
 	padding-top: 50px;
 }
 
-#footer {
-}
-
 .js #add-page a span {
 	color: #FFF;
 }
@@ -123,7 +120,7 @@ body {
 
 .js .lfr-dock.interactive-mode {
 	right: 230px;
-	top: 165px;
+	top:38px;
 }
 
 .liferay-table {
@@ -164,6 +161,16 @@ body {
 	border: 0;
 	height: 59px;
 	position: relative;
+}
+
+#navigation li {
+	border: none;
+}
+
+.js #add-page {
+	border: none;
+	right:18%;
+	top:20px;
 }
 
 .portlet-title {

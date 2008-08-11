@@ -5,25 +5,28 @@
 
 #banner h1.logo {
 	height: 109px;
-	margin: 0;
+	margin:5px;
 }
 
 #banner {
-	background: url('../images/common/banner_bg.png') repeat scroll -16px -7px;
+	background: url('../images/custom/banner_bg.png') repeat scroll right;
 	height: 122px;
 	position: relative;
 	top: 0;
 }
 
 body {
-	background: transparent url('../images/common/background.png') repeat scroll;
+	background: transparent url('../images/custom/background.png') repeat scroll;
 }
 
 #wrapper {
 	margin: 0 auto;
-	width: 960px;
+	width:1240px;
 }
 
+#content-wrapper {
+	width: 100%;
+}
 
 /* ---- NAVIGATION ---- */
 
@@ -41,14 +44,24 @@ body {
 
 #navigation li {
 	margin-right: 11px;
+	border: none;
 }
 
 #navigation {
 	background: #040;
 	padding-left: 10px;
 	width: auto;
+	border: none;
 }
 
+#navigation li.selected a, #navigation li a:hover {
+	background-color:transparent;
+}
+
+#navigation li.selected a span {
+background:transparent;
+padding-left:0px;
+}
 
 /* ---- PORTLET ---- */
 

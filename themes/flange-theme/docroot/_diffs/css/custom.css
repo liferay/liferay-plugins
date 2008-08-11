@@ -22,6 +22,7 @@
 
 #wrapper {
 	width: 100%;
+	background: transparent;
 }
 
 #wrapper-border {
@@ -50,6 +51,10 @@
 	top: 170px;
 }
 
+#banner .logo a {
+	margin-top:-40px;
+}
+
 #banner {
 	background: none;
 	height: 225px;
@@ -60,7 +65,7 @@
 
 .js .lfr-dock.interactive-mode {
 	right: 0;
-	top: 0;
+	top:45px;
 }
 
 
@@ -97,6 +102,11 @@
 	background: none;
 }
 
+#navigation li.selected a, #navigation li a:hover {
+	background-color:transparent;
+	color:#FFFFFF;
+}
+
 #navigation li a:hover {
 	padding-bottom: 0;
 }
@@ -106,6 +116,8 @@
 	margin-right: 0;
 	overflow: hidden;
 	padding: 2px 15px;
+	border: none;
+	float:right;
 }
 
 #navigation li.selected a span {
@@ -142,6 +154,9 @@
 	width: 100%;
 }
 
+#navigation li a {
+	color: black;
+}
 
 /* ---- PORTLETS ---- */
 

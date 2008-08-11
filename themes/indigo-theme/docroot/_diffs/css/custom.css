@@ -1,7 +1,7 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
 body {
-	background: #FFF url(../images/bg.png) repeat-x scroll 0 0;
+	background: #FFF url(../images/custom/bg.png) repeat-x scroll 0 0;
 	color: #466;
 	font-family: 'Lucida Sans Unicode', ' sans-serif';
 	font-size: 62.5%;
@@ -15,7 +15,7 @@ body {
 }
 
 #footer {
-	background: #0094D6 url(../images/bgfooter.png) repeat-x scroll bottom;
+	background: #0094D6 url(../images/custom/bgfooter.png) repeat-x scroll bottom;
 	color: #C1DEF0;
 	font-size: 1.1em;
 	height: 40px;
@@ -26,17 +26,17 @@ body {
 /* ---------- Main content body ---------- */
 
 #content-wrapper {
-	background: #FFF url(../images/bgmain.png) no-repeat scroll 0 0;
+	background: #FFF url(../images/custom/bgmain.png) no-repeat scroll 0 0;
 	clear: both;
 	margin-left: 0;
 	margin-right: auto;
-	margin-top: -7px;
-	padding: 12px 12px 0 52px;
-	width: 67%;
+	margin-top:-15px;
+	padding:12px 12px 0 52px;
+	width:94%;
 }
 
 #wrapper {
-	background: transparent url(../images/topleft.png) no-repeat scroll 0 0;
+	background: transparent url(../images/custom/topleft.png) no-repeat scroll 0 0;
 	margin: 0 auto;
 	width: 100%;
 }
@@ -63,18 +63,11 @@ body {
 	background: none;
 	height: 92px;
 	position: relative;
+	top:0;
 }
-
-.ie6 #banner .logo {
-	margin-left: 30px;
-}
-
 
 /* ---------- Main navigation ---------- */
 
-.ie6 #navigation ul {
-	margin-left: 75px;
-}
 
 #navigation li a span {
 	background: none;
@@ -85,7 +78,6 @@ body {
 #navigation li a {
 	background: none;
 	color: #FFF;
-	float: left;
 	font-family: 'Trebuchet MS', ' sans-serif';
 	font-size: 1.2em;
 	font-size-adjust: none;
@@ -95,7 +87,7 @@ body {
 	font-weight: bold;
 	line-height: normal;
 	margin-top: -10px;
-	padding: 14px 17px 2px 0;
+	padding:14px 10px 0 0;
 	text-align: center;
 	text-decoration: none;
 }
@@ -112,11 +104,8 @@ body {
 
 #navigation li {
 	background: none;
-	display: inline;
-	float: left;
 	margin-right: 0.5em;
-	padding: 0 0.5em 0 0;
-	position: relative;
+	border: none;
 }
 
 #navigation li.selected a span {
@@ -127,7 +116,7 @@ body {
 
 #navigation li.selected a, #navigation li a:hover {
 	background: #4A91C3 none repeat scroll;
-	padding-bottom: 2px;
+	padding-bottom:1px;
 	padding-top: 14px;
 }
 
@@ -143,11 +132,14 @@ body {
 }
 
 #navigation {
-	margin: 0;
+	margin-top:-27px;
 	min-height: 2.2em;
 	overflow: hidden;
 	padding-right: 1em;
 	width: auto;
+	background: transparent;
+	border: none;
+	z-index:21;
 }
 
 
@@ -184,10 +176,15 @@ body {
 /*-----------Javascript--------------*/
 
 .js #add-page {
-	float: left;
-	font-weight: bold;
-	left: 65px;
-	padding-top: 0.3em;
-	position: absolute;
-	top: 66px;
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+	right:88%;
+	top:-2px;
+}
+.js #navigation .enter-page {
+	background-color:transparent;
+	padding:0;
+}
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	padding:4px 1px;
 }

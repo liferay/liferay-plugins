@@ -20,12 +20,13 @@ body {
 	background: transparent url(../images/custom/bckbodytop.gif) no-repeat scroll center top;
 	width: 1264px;
 	position: relative;
+	margin: 0 auto;
 }
 #banner {
 	background: transparent url(../images/custom/bckpage.jpg) no-repeat center;
 	height: 310px;
-	margin-left: 157px;
 	width: 950px;
+	margin:0 auto;
 	position: relative;
 }
 
@@ -52,7 +53,7 @@ body {
 }
 #content-wrapper {
 	background:black none repeat scroll 0% 0%;
-	margin:-9pt auto -9pt 157px;
+	margin:-9pt auto;
 	width:950px;
 }
 .js .interactive-mode {
@@ -62,8 +63,8 @@ body {
 .js #add-page {
 	background: transparent none repeat scroll 0% 0%;
 	border: medium none;
-	right: 32%;
-	top: 70px;
+	right:59%;
+	top:38px;
 }
 .js #navigation .enter-page {
 	background-color: transparent;
@@ -124,4 +125,10 @@ a {
 }
 .uni-form {
 	background:black none repeat scroll 0% 0%;
+}
+.portlet-calendar .calendar-container {
+	background: black;
+}
+.portlet-calendar .calendar-day .day-number {
+	border: none;
 }

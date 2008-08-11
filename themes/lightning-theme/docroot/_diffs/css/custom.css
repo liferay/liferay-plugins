@@ -1,8 +1,7 @@
 #banner {
 	background: black url(../images/custom/header.jpg) no-repeat center;
 	height: 230px;
-	margin-left: 152px;
-	width: 960px;
+	top: 0;
 	position: relative;
 }
 #navigation {
@@ -10,7 +9,7 @@
 	border: none;
 	height: 80px;
 	margin: -1px auto 20px;
-	width:960px;
+	width:100%;
 }
 #navigation li {
 	border: none;
@@ -20,6 +19,7 @@
 	background: transparent;
 	position: relative;
 	width: 1264px;
+	margin: 0 auto;
 }
 body {
 	background-color: #5A5A5A;
@@ -28,7 +28,7 @@ body {
 }
 #content-wrapper {
 	background: black;
-	width:960px;
+	width:100%;
 	margin: -20px auto;
 }
 .portlet {
@@ -67,8 +67,7 @@ a {
 	width: 84%;
 }
 #banner .logo a {
-	margin-left: 30px;
-	margin-top: 55px;
+	margin-left:-40px;
 }
 .js .interactive-mode {
 	right: 2%;

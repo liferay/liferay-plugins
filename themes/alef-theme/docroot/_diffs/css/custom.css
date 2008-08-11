@@ -50,3 +50,12 @@
 	border: 2px solid #89C8FF;
 	padding: 0;
 }
+
+.js .interactive-mode {
+	top:-130px;
+}
+
+.js .lfr-dock-list-container {
+	height: 1px;
+	overflow: visible;
+}

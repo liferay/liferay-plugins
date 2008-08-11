@@ -23,6 +23,9 @@ body {
 	width: 900px;
 }
 
+#content-wrapper {
+	width: 100%
+}
 
 /* ---- BANNER ---- */
 
@@ -44,14 +47,16 @@ body {
 	bottom: auto;
 	float: right;
 	font-weight: bold;
-	padding-top: 8px;
+	padding-top: 4px;
 	right: 0;
 	top: 0;
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
 }
 
 .js #navigation .enter-page {
 	background: none;
-	padding: 0;
+	padding: 4px;
 }
 
 #navigation li a span {
@@ -66,6 +71,10 @@ body {
 	padding: 0;
 }
 
+#navigation li.selected a, #navigation li a:hover {
+	background-color:transparent;
+}
+
 #navigation li a:hover span {
 	background: none;
 }
@@ -78,7 +87,6 @@ body {
 	background: none;
 	margin-right: 1px;
 	overflow: hidden;
-	padding: 8px 15px;
 }
 
 #navigation li.selected a span {
@@ -89,6 +97,7 @@ body {
 
 #navigation li.selected a {
 	padding: 0;
+	padding:8px 15px;
 }
 
 #navigation li.selected a:hover {
@@ -97,7 +106,6 @@ body {
 
 #navigation li.selected {
 	background: url(../images/navigation/navigation_hover.png) no-repeat 50% 100%;
-	padding-bottom: 8px;
 }
 
 #navigation {
@@ -108,7 +116,9 @@ body {
 	width: 100%;
 }
 
-
+#navigation li a {
+	padding:8px 15px;
+}
 /* ---- PORTLET ---- */
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {

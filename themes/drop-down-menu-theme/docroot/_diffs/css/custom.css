@@ -19,6 +19,10 @@
 	background: none;
 }
 
+.portlet {
+	border: none;
+}
+
 .portlet-title {
 	background-position: top left;
 	color: #3A7930;
@@ -31,7 +35,6 @@
 .portlet-topper {
 	background-position: right top;
 	border-bottom: 1px dotted #333;
-	margin-right: -10px;
 	padding-right: 40px;
 	position: relative;
 }
@@ -80,5 +83,9 @@ html, body {
 #wrapper {
 	background: #FFF;
 	margin: 0 auto;
-	width: 889px;
+	width: 957px;
+}
+
+#content-wrapper {
+	width: 100%;
 }

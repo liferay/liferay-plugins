@@ -1,8 +1,5 @@
 #banner .logo a {
-	margin-left: 140px;
-}
-
-#banner .logo {
+	margin-left: 15px;
 }
 
 #banner {
@@ -82,7 +79,7 @@ html {
 }
 
 .js .interactive-mode {
-	right: 184px;
+	right:25px;
 	top: 20px;
 }
 

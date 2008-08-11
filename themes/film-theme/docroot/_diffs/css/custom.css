@@ -43,8 +43,25 @@ html {
 
 #wrapper {
 	color: #FFF;
+	background:transparent none repeat scroll 0 0;
 }
 
+#navigation li.selected a, #navigation li a:hover {
+	background-color:transparent;
+}
+
+#navigation li.selected a span {
+	background:transparent;
+	padding-left:0px;
+}
+
+.portlet-calendar .calendar-container {
+	background:black none repeat scroll 0 0;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
+}
 
 /* ------------ NAVIGATION ------------- */
 
@@ -72,19 +89,27 @@ html {
 
 #navigation li {
 	margin-right: 0;
+	border: none;
 }
 
 #navigation {
 	left: 200px;
+	background: black;
 	margin: 0 auto 0em;
 	padding: 0 1em 0em 10px;
 	position: absolute;
 	right: 300px;
 	top: 180px;
 	width: auto;
+	border: none;
 	z-index: 8;
 }
 
+.js #add-page {
+	border: none;
+	background: transparent;
+	top: 0;
+}
 
 /* ------------ PORTLET ------------- */
 
