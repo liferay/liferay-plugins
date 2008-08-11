@@ -1086,17 +1086,6 @@
 		<licenses>MIT</licenses>
 	</plugin>
 	<plugin>
-		<artifact-id>blue_rings-theme</artifact-id>
-		<name>Blue Rings</name>
-		<type>theme</type>
-		<tags></tags>
-		<short-description></short-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>MIT</licenses>
-	</plugin>
-	<plugin>
 		<artifact-id>bluebridge-theme</artifact-id>
 		<name>Blue Bridge</name>
 		<type>theme</type>
