@@ -25,11 +25,15 @@ package com.liferay.knowledgebase.portlet;
 import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.knowledgebase.ArticleTitleException;
 import com.liferay.knowledgebase.ArticleVersionException;
-import com.liferay.knowledgebase.KnowledgeBaseKeys;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBFeedbackStats;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
+import com.liferay.knowledgebase.service.KBFeedbackEntryLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBFeedbackStatsLocalServiceUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
@@ -66,7 +70,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -88,6 +94,7 @@ import org.apache.commons.logging.LogFactory;
  * @author Jorge Ferrer
  * @author Bruno Farache
  * @author Alvaro del Castillo
+ * @author Peter Shin
  *
  */
 public class KnowledgeBasePortlet extends JSPPortlet {
@@ -200,29 +207,8 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException, IOException {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		long resourcePrimKey = ParamUtil.getLong(
-			renderRequest, "resourcePrimKey");
-
-		String title = ParamUtil.getString(renderRequest, "title");
-		double version = ParamUtil.getDouble(renderRequest, "version");
-
 		try {
-			KBArticle article = null;
-
-			if (resourcePrimKey > 0) {
-				article = KBArticleServiceUtil.getArticle(
-					resourcePrimKey, version);
-			}
-			else if (Validator.isNotNull(title)) {
-				article = KBArticleServiceUtil.getArticle(
-					themeDisplay.getPortletGroupId(), title, version);
-			}
-
-			renderRequest.setAttribute(KnowledgeBaseKeys.ARTICLE, article);
-
+			PortletUtil.getKBBeans(renderRequest);
 		}
 		catch (Exception e) {
 			throw new PortletException(e);
@@ -249,75 +235,20 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			else if (actionName.equals("convert")) {
 				convertArticle(resourceRequest, resourceResponse);
 			}
+			else if (actionName.equals("feedback_comments")) {
+				saveFeedbackComments(resourceRequest, resourceResponse);
+			}
+			else if (actionName.equals("feedback_score")) {
+				saveFeedbackScore(resourceRequest, resourceResponse);
+			}
+			else if (actionName.equals("feedback_vote")) {
+				saveFeedbackVote(resourceRequest, resourceResponse);
+			}
 			else if (actionName.equals("rss")) {
 				getRSS(resourceRequest, resourceResponse);
 			}
 		}
 		catch (Exception e) {
-		}
-	}
-
-	protected void getRSS(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		long groupId = ParamUtil.getLong(resourceRequest, "groupId");
-		long resourcePrimKey = ParamUtil.getLong(
-			resourceRequest, "resourcePrimKey");
-		int max = ParamUtil.getInteger(
-			resourceRequest, "max", SearchContainer.DEFAULT_DELTA);
-		String type = ParamUtil.getString(
-			resourceRequest, "type", RSSUtil.DEFAULT_TYPE);
-		double version = ParamUtil.getDouble(
-			resourceRequest, "version", RSSUtil.DEFAULT_VERSION);
-		String displayStyle = ParamUtil.getString(
-			resourceRequest, "displayStyle",
-			RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
-		int abstractLength = ParamUtil.getInteger(
-			resourceRequest, "abstractLength", SearchContainer.DEFAULT_DELTA);
-
-		String feedURL = PortalUtil.getPortalURL(themeDisplay) +
-			PortalUtil.getLayoutURL(themeDisplay);
-
-		String rss = StringPool.BLANK;
-
-		if (resourcePrimKey > 0) {
-			rss = KBArticleServiceUtil.getArticlesRSS(
-				resourcePrimKey, max, type, version, displayStyle,
-				abstractLength, feedURL);
-		}
-		else if (groupId > 0) {
-			rss = KBArticleServiceUtil.getGroupArticlesRSS(
-				groupId, max, type, version, displayStyle,  abstractLength,
-				feedURL);
-		}
-
-		HttpServletResponse response = PortalUtil.getHttpServletResponse(
-			resourceResponse);
-
-		ServletResponseUtil.sendFile(
-			response, null, rss.getBytes(StringPool.UTF8),
-			ContentTypes.TEXT_XML_UTF8);
-	}
-
-	protected void sendRedirect(
-			ActionRequest actionRequest, ActionResponse actionResponse,
-			String redirect)
-		throws IOException {
-
-		if (SessionErrors.isEmpty(actionRequest)) {
-			SessionMessages.add(actionRequest, "request_processed");
-		}
-
-		if (redirect == null) {
-			redirect = ParamUtil.getString(actionRequest, "redirect");
-		}
-
-		if (Validator.isNotNull(redirect)) {
-			actionResponse.sendRedirect(redirect);
 		}
 	}
 
@@ -464,17 +395,6 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		}
 	}
 
-	protected void deleteAttachment(ActionRequest actionRequest)
-		throws Exception {
-
-		long resourcePrimKey = ParamUtil.getLong(
-			actionRequest, "resourcePrimKey");
-		String attachment = ParamUtil.getString(actionRequest, "fileName");
-
-		KBArticleServiceUtil.deleteArticleAttachment(
-			resourcePrimKey, attachment);
-	}
-
 	protected void deleteArticle(ActionRequest actionRequest) throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
@@ -485,6 +405,17 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 		KBArticleServiceUtil.deleteArticle(
 			themeDisplay.getPlid(), parentResourcePrimKey);
+	}
+
+	protected void deleteAttachment(ActionRequest actionRequest)
+		throws Exception {
+
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+		String attachment = ParamUtil.getString(actionRequest, "fileName");
+
+		KBArticleServiceUtil.deleteArticleAttachment(
+			resourcePrimKey, attachment);
 	}
 
 	protected void getFile(
@@ -521,6 +452,52 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		}
 	}
 
+	protected void getRSS(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long groupId = ParamUtil.getLong(resourceRequest, "groupId");
+		long resourcePrimKey = ParamUtil.getLong(
+			resourceRequest, "resourcePrimKey");
+		int max = ParamUtil.getInteger(
+			resourceRequest, "max", SearchContainer.DEFAULT_DELTA);
+		String type = ParamUtil.getString(
+			resourceRequest, "type", RSSUtil.DEFAULT_TYPE);
+		double version = ParamUtil.getDouble(
+			resourceRequest, "version", RSSUtil.DEFAULT_VERSION);
+		String displayStyle = ParamUtil.getString(
+			resourceRequest, "displayStyle",
+			RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
+		int abstractLength = ParamUtil.getInteger(
+			resourceRequest, "abstractLength", SearchContainer.DEFAULT_DELTA);
+
+		String feedURL = PortalUtil.getPortalURL(themeDisplay) +
+			PortalUtil.getLayoutURL(themeDisplay);
+
+		String rss = StringPool.BLANK;
+
+		if (resourcePrimKey > 0) {
+			rss = KBArticleServiceUtil.getArticlesRSS(
+				resourcePrimKey, max, type, version, displayStyle,
+				abstractLength, feedURL);
+		}
+		else if (groupId > 0) {
+			rss = KBArticleServiceUtil.getGroupArticlesRSS(
+				groupId, max, type, version, displayStyle,  abstractLength,
+				feedURL);
+		}
+
+		HttpServletResponse response = PortalUtil.getHttpServletResponse(
+			resourceResponse);
+
+		ServletResponseUtil.sendFile(
+			response, null, rss.getBytes(StringPool.UTF8),
+			ContentTypes.TEXT_XML_UTF8);
+	}
+
 	protected void revertPage(ActionRequest actionRequest) throws Exception {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -535,6 +512,108 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			resourcePrimKey, version, prefs, themeDisplay);
 	}
 
+	protected void saveFeedbackComments(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		long articleId = ParamUtil.getLong(resourceRequest, "articleId");
+		long userId = ParamUtil.getLong(resourceRequest, "userId");
+		String comments = ParamUtil.getString(resourceRequest, "comments");
+
+		KBFeedbackEntryLocalServiceUtil.updateComments(
+			articleId, userId, comments);
+
+		Map<String, String> parameterMap = new HashMap<String, String>();
+
+		sendJSON(resourceResponse, parameterMap);
+	}
+
+	protected void saveFeedbackScore(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		long articleId = ParamUtil.getLong(resourceRequest, "articleId");
+		long userId = ParamUtil.getLong(resourceRequest, "userId");
+		int score = ParamUtil.getInteger(resourceRequest, "score");
+
+		KBFeedbackEntryLocalServiceUtil.updateScore(articleId, userId, score);
+
+		KBFeedbackStats kbFeedbackStats =
+			KBFeedbackStatsLocalServiceUtil.getArticleKBFeedbackStats(
+				articleId);
+
+		Map<String, String> parameterMap = new HashMap<String, String>();
+
+		parameterMap.put(
+			"averageScore", String.valueOf(kbFeedbackStats.getAverageScore()));
+		parameterMap.put(
+			"totalScoreEntries",
+			String.valueOf(kbFeedbackStats.getTotalScoreEntries()));
+
+		sendJSON(resourceResponse, parameterMap);
+	}
+
+	protected void saveFeedbackVote(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		int vote = ParamUtil.getInteger(resourceRequest, "vote");
+		long articleId = ParamUtil.getLong(resourceRequest, "articleId");
+		long userId = ParamUtil.getLong(resourceRequest, "userId");
+
+		KBFeedbackEntryLocalServiceUtil.updateVote(articleId, userId, vote);
+
+		KBFeedbackStats kbFeedbackStats =
+			KBFeedbackStatsLocalServiceUtil.getArticleKBFeedbackStats(
+				articleId);
+
+		Map<String, String> parameterMap = new HashMap<String, String>();
+
+		parameterMap.put(
+			"totalVotes", String.valueOf(kbFeedbackStats.getTotalVotes()));
+		parameterMap.put(
+			"yesVotes", String.valueOf(kbFeedbackStats.getYesVotes()));
+
+		sendJSON(resourceResponse, parameterMap);
+	}
+
+	protected void sendJSON(
+			ResourceResponse resourceResponse, Map<String, String> parameterMap)
+		throws IOException {
+
+		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
+
+		for (Map.Entry<String, String> entry : parameterMap.entrySet()) {
+			String key = entry.getKey();
+			String value = entry.getValue();
+
+			jsonObj.put(key, value);
+		}
+
+		String contentType = ContentTypes.APPLICATION_TEXT;
+
+		resourceResponse.setContentType(contentType);
+		resourceResponse.getWriter().write(jsonObj.toString());
+	}
+
+	protected void sendRedirect(
+			ActionRequest actionRequest, ActionResponse actionResponse,
+			String redirect)
+		throws IOException {
+
+		if (SessionErrors.isEmpty(actionRequest)) {
+			SessionMessages.add(actionRequest, "request_processed");
+		}
+
+		if (redirect == null) {
+			redirect = ParamUtil.getString(actionRequest, "redirect");
+		}
+
+		if (Validator.isNotNull(redirect)) {
+			actionResponse.sendRedirect(redirect);
+		}
+	}
+
 	protected void subscribe(ActionRequest actionRequest)
 		throws Exception {
 
@@ -546,6 +625,15 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		KBArticleServiceUtil.subscribe(groupId);
 	}
 
+	protected void subscribeArticle(ActionRequest actionRequest)
+		throws Exception {
+
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+
+		KBArticleServiceUtil.subscribeArticle(resourcePrimKey);
+	}
+
 	protected void unsubscribe(ActionRequest actionRequest)
 		throws Exception {
 
@@ -555,15 +643,6 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		long groupId = themeDisplay.getPortletGroupId();
 
 		KBArticleServiceUtil.unsubscribe(groupId);
-	}
-
-	protected void subscribeArticle(ActionRequest actionRequest)
-		throws Exception {
-
-		long resourcePrimKey = ParamUtil.getLong(
-			actionRequest, "resourcePrimKey");
-
-		KBArticleServiceUtil.subscribeArticle(resourcePrimKey);
 	}
 
 	protected void unsubscribeArticle(ActionRequest actionRequest)
@@ -642,7 +721,6 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 					parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
 			}
 		}
-
 	}
 
 	private static Log _log = LogFactory.getLog(KnowledgeBasePortlet.class);

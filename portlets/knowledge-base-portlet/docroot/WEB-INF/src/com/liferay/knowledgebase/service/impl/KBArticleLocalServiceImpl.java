@@ -35,12 +35,14 @@ import com.liferay.knowledgebase.model.impl.KBArticleImpl;
 import com.liferay.knowledgebase.portlet.KnowledgeBaseFriendlyURLMapper;
 import com.liferay.knowledgebase.service.base.KBArticleLocalServiceBaseImpl;
 import com.liferay.knowledgebase.util.Indexer;
-import com.liferay.knowledgebase.util.LuceneUtil;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
 import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.mail.MailMessage;
+import com.liferay.portal.kernel.search.BooleanClauseOccur;
+import com.liferay.portal.kernel.search.BooleanQuery;
+import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
@@ -77,8 +79,6 @@ import javax.portlet.PortletPreferences;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.lucene.search.BooleanClause;
-import org.apache.lucene.search.BooleanQuery;
 
 /**
  * <a href="KBArticleLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -317,6 +317,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		subscriptionLocalService.deleteSubscriptions(
 			article.getCompanyId(), KBArticle.class.getName(),
+			article.getArticleId());
+
+		// KBFeedback
+
+		kbFeedbackEntryLocalService.deleteKBFeedbackEntries(
 			article.getArticleId());
 
 		// Message boards
@@ -559,35 +564,33 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		throws SystemException {
 
 		try {
-			BooleanQuery contextQuery = new BooleanQuery();
+			BooleanQuery contextQuery = BooleanQueryFactoryUtil.create();
 
-			LuceneUtil.addRequiredTerm(
-				contextQuery, Field.PORTLET_ID, Indexer.PORTLET_ID);
+			contextQuery.addRequiredTerm(Field.PORTLET_ID, Indexer.PORTLET_ID);
 
 			if (groupId > 0) {
-				LuceneUtil.addRequiredTerm(
-					contextQuery, Field.GROUP_ID, groupId);
+				contextQuery.addRequiredTerm(Field.GROUP_ID, groupId);
 			}
 
-			BooleanQuery searchQuery = new BooleanQuery();
+			BooleanQuery searchQuery = BooleanQueryFactoryUtil.create();
 
 			if (Validator.isNotNull(keywords)) {
-				LuceneUtil.addTerm(searchQuery, Field.TITLE, keywords);
-				LuceneUtil.addTerm(searchQuery, Field.CONTENT, keywords);
-				LuceneUtil.addTerm(searchQuery, Field.DESCRIPTION, keywords);
-				LuceneUtil.addTerm(searchQuery, Field.TAGS_ENTRIES, keywords);
+				searchQuery.addTerm(Field.TITLE, keywords);
+				searchQuery.addTerm(Field.CONTENT, keywords);
+				searchQuery.addTerm(Field.DESCRIPTION, keywords);
+				searchQuery.addTerm(Field.TAGS_ENTRIES, keywords);
 			}
 
-			BooleanQuery fullQuery = new BooleanQuery();
+			BooleanQuery fullQuery = BooleanQueryFactoryUtil.create();
 
-			fullQuery.add(contextQuery, BooleanClause.Occur.MUST);
+			fullQuery.add(contextQuery, BooleanClauseOccur.MUST);
 
 			if (searchQuery.clauses().size() > 0) {
-				fullQuery.add(searchQuery, BooleanClause.Occur.MUST);
+				fullQuery.add(searchQuery, BooleanClauseOccur.MUST);
 			}
 
 			return SearchEngineUtil.search(
-				companyId, fullQuery.toString(), start, end);
+				companyId, fullQuery, start, end);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);

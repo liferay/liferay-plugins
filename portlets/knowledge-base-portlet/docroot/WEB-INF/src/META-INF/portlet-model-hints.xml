@@ -38,4 +38,26 @@
 		<field name="createDate" type="Date" />
 		<field name="title" type="String" />
 	</model>
+	<model name="com.liferay.knowledgebase.model.KBFeedbackEntry">
+		<field name="kbFeedbackEntryId" type="long" />
+		<field name="articleId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="comments" type="String">
+			<hint-collection name="TEXTAREA" />
+			<hint name="display-width">98%</hint>
+		</field>
+		<field name="score" type="int" />
+		<field name="vote" type="int" />
+	</model>
+	<model name="com.liferay.knowledgebase.model.KBFeedbackStats">
+		<field name="kbFeedbackStatsId" type="long" />
+		<field name="articleId" type="long" />
+		<field name="averageScore" type="double" />
+		<field name="totalScoreEntries" type="int" />
+		<field name="totalVotes" type="int" />
+		<field name="yesVotes" type="int" />
+	</model>
 </model-hints>

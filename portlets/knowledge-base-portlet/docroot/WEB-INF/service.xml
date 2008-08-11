@@ -135,6 +135,76 @@
 
 		<reference package-path="com.liferay.counter" entity="Counter" />
 	</entity>
+	<entity name="KBFeedbackEntry" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="kbFeedbackEntryId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="articleId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="comments" type="String" />
+		<column name="score" type="int" />
+		<column name="vote" type="int" />
+
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="createDate" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="ArticleId" return-type="Collection">
+			<finder-column name="articleId" />
+		</finder>
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
+		<finder name="A_S" return-type="Collection">
+			<finder-column name="articleId" />
+			<finder-column name="score" />
+		</finder>
+		<finder name="A_U" return-type="KBFeedbackEntry">
+			<finder-column name="articleId" />
+			<finder-column name="userId" />
+		</finder>
+		<finder name="A_V" return-type="Collection">
+			<finder-column name="articleId" />
+			<finder-column name="vote" />
+		</finder>
+	</entity>
+	<entity name="KBFeedbackStats" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="kbFeedbackStatsId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="articleId" type="long" />
+
+		<!-- Other fields -->
+
+		<column name="averageScore" type="double" />
+		<column name="totalScoreEntries" type="int" />
+		<column name="totalVotes" type="int" />
+		<column name="yesVotes" type="int" />
+
+		<!-- Finder methods -->
+
+		<finder name="ArticleId" return-type="KBFeedbackStats">
+			<finder-column name="articleId" />
+		</finder>
+	</entity>
 	<exceptions>
 		<exception>ArticleTitle</exception>
 		<exception>ArticleVersion</exception>

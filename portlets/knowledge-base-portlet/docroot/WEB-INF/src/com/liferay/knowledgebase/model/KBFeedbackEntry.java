@@ -20,28 +20,13 @@
  * SOFTWARE.
  */
 
-package com.liferay.knowledgebase;
+package com.liferay.knowledgebase.model;
 
 /**
- * <a href="KnowledgeBaseKeys.java.html"><b><i>View Source</i></b></a>
+ * <a href="KBFeedbackEntry.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
- * @author Peter Shin
+ *
  */
-public class KnowledgeBaseKeys {
-
-	public static final String PORTLET_ID = "1_WAR_knowledgebaseportlet";
-
-	public static final String ADD_CHILD_ARTICLE = "ADD_CHILD_ARTICLE";
-
-	public static final String ARTICLE = "Article";
-
-	public static final String KNOWLEDGE_BASE_FEEDBACK_ENTRY =
-		"KNOWLEDGE_BASE_FEEDBACK_ENTRY";
-
-	public static final String KNOWLEDGE_BASE_FEEDBACK_STATS =
-		"KNOWLEDGE_BASE_FEEDBACK_STATS";
-
-	public static final String MANAGE_TEMPLATES = "MANAGE_TEMPLATES";
-
+public interface KBFeedbackEntry extends KBFeedbackEntryModel {
 }

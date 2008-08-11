@@ -25,6 +25,8 @@ package com.liferay.knowledgebase.util;
 import com.liferay.knowledgebase.KnowledgeBaseKeys;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.portal.kernel.search.BooleanQuery;
+import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.DocumentSummary;
@@ -37,14 +39,13 @@ import com.liferay.portal.kernel.util.StringUtil;
 
 import javax.portlet.PortletURL;
 
-import org.apache.lucene.search.BooleanQuery;
-
 /**
  * <a href="Indexer.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
  */
 public class Indexer {
+
 	public static final String PORTLET_ID = KnowledgeBaseKeys.PORTLET_ID;
 
 	public static void addArticle(
@@ -75,14 +76,14 @@ public class Indexer {
 	public static void deleteArticles(long companyId, long groupId)
 		throws SearchException {
 
-		BooleanQuery booleanQuery = new BooleanQuery();
+		BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create();
 
-		LuceneUtil.addRequiredTerm(booleanQuery, Field.PORTLET_ID, PORTLET_ID);
+		booleanQuery.addRequiredTerm(Field.PORTLET_ID, PORTLET_ID);
 
-		LuceneUtil.addRequiredTerm(booleanQuery, "groupId", groupId);
+		booleanQuery.addRequiredTerm(Field.GROUP_ID, groupId);
 
 		Hits hits = SearchEngineUtil.search(
-			companyId, booleanQuery.toString(), SearchEngineUtil.ALL_POS,
+			companyId, booleanQuery, SearchEngineUtil.ALL_POS,
 			SearchEngineUtil.ALL_POS);
 
 		for (int i = 0; i < hits.getLength(); i++) {

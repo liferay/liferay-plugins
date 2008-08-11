@@ -20,28 +20,58 @@
  * SOFTWARE.
  */
 
-package com.liferay.knowledgebase;
+package com.liferay.knowledgebase.model;
+
+import com.liferay.portal.model.BaseModel;
+
+import java.util.Date;
 
 /**
- * <a href="KnowledgeBaseKeys.java.html"><b><i>View Source</i></b></a>
+ * <a href="KBFeedbackEntryModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
- * @author Peter Shin
+ *
  */
-public class KnowledgeBaseKeys {
+public interface KBFeedbackEntryModel extends BaseModel {
+	public long getPrimaryKey();
 
-	public static final String PORTLET_ID = "1_WAR_knowledgebaseportlet";
+	public void setPrimaryKey(long pk);
 
-	public static final String ADD_CHILD_ARTICLE = "ADD_CHILD_ARTICLE";
+	public long getKbFeedbackEntryId();
 
-	public static final String ARTICLE = "Article";
+	public void setKbFeedbackEntryId(long kbFeedbackEntryId);
 
-	public static final String KNOWLEDGE_BASE_FEEDBACK_ENTRY =
-		"KNOWLEDGE_BASE_FEEDBACK_ENTRY";
+	public long getArticleId();
 
-	public static final String KNOWLEDGE_BASE_FEEDBACK_STATS =
-		"KNOWLEDGE_BASE_FEEDBACK_STATS";
+	public void setArticleId(long articleId);
 
-	public static final String MANAGE_TEMPLATES = "MANAGE_TEMPLATES";
+	public long getUserId();
 
+	public void setUserId(long userId);
+
+	public String getUserName();
+
+	public void setUserName(String userName);
+
+	public Date getCreateDate();
+
+	public void setCreateDate(Date createDate);
+
+	public Date getModifiedDate();
+
+	public void setModifiedDate(Date modifiedDate);
+
+	public String getComments();
+
+	public void setComments(String comments);
+
+	public int getScore();
+
+	public void setScore(int score);
+
+	public int getVote();
+
+	public void setVote(int vote);
+
+	public KBFeedbackEntry toEscapedModel();
 }

@@ -180,4 +180,142 @@
 			<ref bean="com.liferay.knowledgebase.service.persistence.KBArticleResourcePersistence.impl" />
 		</property>
 	</bean>
+	<bean id="com.liferay.knowledgebase.service.KBFeedbackEntryLocalService.impl" class="com.liferay.knowledgebase.service.impl.KBFeedbackEntryLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.knowledgebase.service.KBFeedbackEntryLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+		<property name="transactionManager">
+			<ref bean="liferayTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.knowledgebase.service.KBFeedbackEntryLocalService.impl" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="check*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="clear*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.KBFeedbackEntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.knowledgebase.service.KBFeedbackEntryLocalService.transaction" />
+		</property>
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.KBFeedbackEntryLocalServiceFactory" class="com.liferay.knowledgebase.service.KBFeedbackEntryLocalServiceFactory" lazy-init="true">
+		<property name="service">
+			<ref bean="com.liferay.knowledgebase.service.KBFeedbackEntryLocalService.transaction" />
+		</property>
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.KBFeedbackEntryLocalServiceUtil" class="com.liferay.knowledgebase.service.KBFeedbackEntryLocalServiceUtil" lazy-init="true">
+		<property name="service">
+			<ref bean="com.liferay.knowledgebase.service.KBFeedbackEntryLocalService.transaction" />
+		</property>
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.persistence.KBFeedbackEntryPersistence.impl" class="com.liferay.knowledgebase.service.persistence.KBFeedbackEntryPersistenceImpl" lazy-init="true">
+		<property name="dataSource">
+			<ref bean="liferayDataSource" />
+		</property>
+		<property name="sessionFactory">
+			<ref bean="liferaySessionFactory" />
+		</property>
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.persistence.KBFeedbackEntryPersistence.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+		<property name="transactionManager">
+			<ref bean="liferayTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.knowledgebase.service.persistence.KBFeedbackEntryPersistence.impl" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="remove*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.persistence.KBFeedbackEntryUtil" class="com.liferay.knowledgebase.service.persistence.KBFeedbackEntryUtil" lazy-init="true">
+		<property name="persistence">
+			<ref bean="com.liferay.knowledgebase.service.persistence.KBFeedbackEntryPersistence.impl" />
+		</property>
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.KBFeedbackStatsLocalService.impl" class="com.liferay.knowledgebase.service.impl.KBFeedbackStatsLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.knowledgebase.service.KBFeedbackStatsLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+		<property name="transactionManager">
+			<ref bean="liferayTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.knowledgebase.service.KBFeedbackStatsLocalService.impl" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="check*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="clear*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.KBFeedbackStatsLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
+		<property name="interceptorNames">
+			<list>
+				<value>velocityServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.knowledgebase.service.KBFeedbackStatsLocalService.transaction" />
+		</property>
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.KBFeedbackStatsLocalServiceFactory" class="com.liferay.knowledgebase.service.KBFeedbackStatsLocalServiceFactory" lazy-init="true">
+		<property name="service">
+			<ref bean="com.liferay.knowledgebase.service.KBFeedbackStatsLocalService.transaction" />
+		</property>
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.KBFeedbackStatsLocalServiceUtil" class="com.liferay.knowledgebase.service.KBFeedbackStatsLocalServiceUtil" lazy-init="true">
+		<property name="service">
+			<ref bean="com.liferay.knowledgebase.service.KBFeedbackStatsLocalService.transaction" />
+		</property>
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.persistence.KBFeedbackStatsPersistence.impl" class="com.liferay.knowledgebase.service.persistence.KBFeedbackStatsPersistenceImpl" lazy-init="true">
+		<property name="dataSource">
+			<ref bean="liferayDataSource" />
+		</property>
+		<property name="sessionFactory">
+			<ref bean="liferaySessionFactory" />
+		</property>
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.persistence.KBFeedbackStatsPersistence.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+		<property name="transactionManager">
+			<ref bean="liferayTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="com.liferay.knowledgebase.service.persistence.KBFeedbackStatsPersistence.impl" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="remove*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
+				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.persistence.KBFeedbackStatsUtil" class="com.liferay.knowledgebase.service.persistence.KBFeedbackStatsUtil" lazy-init="true">
+		<property name="persistence">
+			<ref bean="com.liferay.knowledgebase.service.persistence.KBFeedbackStatsPersistence.impl" />
+		</property>
+	</bean>
 </beans>

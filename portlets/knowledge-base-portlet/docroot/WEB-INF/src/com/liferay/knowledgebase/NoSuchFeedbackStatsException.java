@@ -22,26 +22,30 @@
 
 package com.liferay.knowledgebase;
 
+import com.liferay.portal.PortalException;
+
 /**
- * <a href="KnowledgeBaseKeys.java.html"><b><i>View Source</i></b></a>
+ * <a href="NoSuchFeedbackStatsException.java.html"><b><i>View Source</i></b></a>
  *
- * @author Jorge Ferrer
- * @author Peter Shin
+ * @author Brian Wing Shun Chan
+ *
  */
-public class KnowledgeBaseKeys {
+public class NoSuchFeedbackStatsException extends PortalException {
 
-	public static final String PORTLET_ID = "1_WAR_knowledgebaseportlet";
+	public NoSuchFeedbackStatsException() {
+		super();
+	}
 
-	public static final String ADD_CHILD_ARTICLE = "ADD_CHILD_ARTICLE";
+	public NoSuchFeedbackStatsException(String msg) {
+		super(msg);
+	}
 
-	public static final String ARTICLE = "Article";
+	public NoSuchFeedbackStatsException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
 
-	public static final String KNOWLEDGE_BASE_FEEDBACK_ENTRY =
-		"KNOWLEDGE_BASE_FEEDBACK_ENTRY";
-
-	public static final String KNOWLEDGE_BASE_FEEDBACK_STATS =
-		"KNOWLEDGE_BASE_FEEDBACK_STATS";
-
-	public static final String MANAGE_TEMPLATES = "MANAGE_TEMPLATES";
+	public NoSuchFeedbackStatsException(Throwable cause) {
+		super(cause);
+	}
 
 }

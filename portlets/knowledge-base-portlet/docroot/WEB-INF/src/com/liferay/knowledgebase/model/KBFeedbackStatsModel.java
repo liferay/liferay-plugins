@@ -20,28 +20,44 @@
  * SOFTWARE.
  */
 
-package com.liferay.knowledgebase;
+package com.liferay.knowledgebase.model;
+
+import com.liferay.portal.model.BaseModel;
 
 /**
- * <a href="KnowledgeBaseKeys.java.html"><b><i>View Source</i></b></a>
+ * <a href="KBFeedbackStatsModel.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
- * @author Peter Shin
+ *
  */
-public class KnowledgeBaseKeys {
+public interface KBFeedbackStatsModel extends BaseModel {
+	public long getPrimaryKey();
 
-	public static final String PORTLET_ID = "1_WAR_knowledgebaseportlet";
+	public void setPrimaryKey(long pk);
 
-	public static final String ADD_CHILD_ARTICLE = "ADD_CHILD_ARTICLE";
+	public long getKbFeedbackStatsId();
 
-	public static final String ARTICLE = "Article";
+	public void setKbFeedbackStatsId(long kbFeedbackStatsId);
 
-	public static final String KNOWLEDGE_BASE_FEEDBACK_ENTRY =
-		"KNOWLEDGE_BASE_FEEDBACK_ENTRY";
+	public long getArticleId();
 
-	public static final String KNOWLEDGE_BASE_FEEDBACK_STATS =
-		"KNOWLEDGE_BASE_FEEDBACK_STATS";
+	public void setArticleId(long articleId);
 
-	public static final String MANAGE_TEMPLATES = "MANAGE_TEMPLATES";
+	public double getAverageScore();
 
+	public void setAverageScore(double averageScore);
+
+	public int getTotalScoreEntries();
+
+	public void setTotalScoreEntries(int totalScoreEntries);
+
+	public int getTotalVotes();
+
+	public void setTotalVotes(int totalVotes);
+
+	public int getYesVotes();
+
+	public void setYesVotes(int yesVotes);
+
+	public KBFeedbackStats toEscapedModel();
 }

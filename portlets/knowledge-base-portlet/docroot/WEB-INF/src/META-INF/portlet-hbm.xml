@@ -35,4 +35,29 @@
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
+	<class name="com.liferay.knowledgebase.model.impl.KBFeedbackEntryImpl" table="KB_KBFeedbackEntry">
+		<cache usage="read-write" />
+		<id name="kbFeedbackEntryId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="articleId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="comments" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="score" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="vote" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
+	<class name="com.liferay.knowledgebase.model.impl.KBFeedbackStatsImpl" table="KB_KBFeedbackStats">
+		<cache usage="read-write" />
+		<id name="kbFeedbackStatsId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="articleId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="averageScore" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="totalScoreEntries" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="totalVotes" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="yesVotes" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
 </hibernate-mapping>

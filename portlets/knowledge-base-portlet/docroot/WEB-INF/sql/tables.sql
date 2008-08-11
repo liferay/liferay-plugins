@@ -27,3 +27,24 @@ create table KB_KBArticleResource (
 	createDate DATE null,
 	title VARCHAR(75) null
 );
+
+create table KB_KBFeedbackEntry (
+	kbFeedbackEntryId LONG not null primary key,
+	articleId LONG,
+	userId LONG,
+	userName VARCHAR(75) null,
+	createDate DATE null,
+	modifiedDate DATE null,
+	comments STRING null,
+	score INTEGER,
+	vote INTEGER
+);
+
+create table KB_KBFeedbackStats (
+	kbFeedbackStatsId LONG not null primary key,
+	articleId LONG,
+	averageScore DOUBLE,
+	totalScoreEntries INTEGER,
+	totalVotes INTEGER,
+	yesVotes INTEGER
+);

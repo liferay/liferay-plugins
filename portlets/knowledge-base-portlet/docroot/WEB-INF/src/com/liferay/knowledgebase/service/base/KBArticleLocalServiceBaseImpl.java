@@ -31,8 +31,12 @@ import com.liferay.documentlibrary.service.DLService;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleLocalService;
 import com.liferay.knowledgebase.service.KBArticleResourceLocalService;
+import com.liferay.knowledgebase.service.KBFeedbackEntryLocalService;
+import com.liferay.knowledgebase.service.KBFeedbackStatsLocalService;
 import com.liferay.knowledgebase.service.persistence.KBArticlePersistence;
 import com.liferay.knowledgebase.service.persistence.KBArticleResourcePersistence;
+import com.liferay.knowledgebase.service.persistence.KBFeedbackEntryPersistence;
+import com.liferay.knowledgebase.service.persistence.KBFeedbackStatsPersistence;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
@@ -152,6 +156,42 @@ public abstract class KBArticleLocalServiceBaseImpl
 	public void setKBArticleResourcePersistence(
 		KBArticleResourcePersistence kbArticleResourcePersistence) {
 		this.kbArticleResourcePersistence = kbArticleResourcePersistence;
+	}
+
+	public KBFeedbackEntryLocalService getKBFeedbackEntryLocalService() {
+		return kbFeedbackEntryLocalService;
+	}
+
+	public void setKBFeedbackEntryLocalService(
+		KBFeedbackEntryLocalService kbFeedbackEntryLocalService) {
+		this.kbFeedbackEntryLocalService = kbFeedbackEntryLocalService;
+	}
+
+	public KBFeedbackEntryPersistence getKBFeedbackEntryPersistence() {
+		return kbFeedbackEntryPersistence;
+	}
+
+	public void setKBFeedbackEntryPersistence(
+		KBFeedbackEntryPersistence kbFeedbackEntryPersistence) {
+		this.kbFeedbackEntryPersistence = kbFeedbackEntryPersistence;
+	}
+
+	public KBFeedbackStatsLocalService getKBFeedbackStatsLocalService() {
+		return kbFeedbackStatsLocalService;
+	}
+
+	public void setKBFeedbackStatsLocalService(
+		KBFeedbackStatsLocalService kbFeedbackStatsLocalService) {
+		this.kbFeedbackStatsLocalService = kbFeedbackStatsLocalService;
+	}
+
+	public KBFeedbackStatsPersistence getKBFeedbackStatsPersistence() {
+		return kbFeedbackStatsPersistence;
+	}
+
+	public void setKBFeedbackStatsPersistence(
+		KBFeedbackStatsPersistence kbFeedbackStatsPersistence) {
+		this.kbFeedbackStatsPersistence = kbFeedbackStatsPersistence;
 	}
 
 	public CounterLocalService getCounterLocalService() {
@@ -422,6 +462,26 @@ public abstract class KBArticleLocalServiceBaseImpl
 					".impl");
 		}
 
+		if (kbFeedbackEntryLocalService == null) {
+			kbFeedbackEntryLocalService = (KBFeedbackEntryLocalService)PortletBeanLocatorUtil.locate(KBFeedbackEntryLocalService.class.getName() +
+					".impl");
+		}
+
+		if (kbFeedbackEntryPersistence == null) {
+			kbFeedbackEntryPersistence = (KBFeedbackEntryPersistence)PortletBeanLocatorUtil.locate(KBFeedbackEntryPersistence.class.getName() +
+					".impl");
+		}
+
+		if (kbFeedbackStatsLocalService == null) {
+			kbFeedbackStatsLocalService = (KBFeedbackStatsLocalService)PortletBeanLocatorUtil.locate(KBFeedbackStatsLocalService.class.getName() +
+					".impl");
+		}
+
+		if (kbFeedbackStatsPersistence == null) {
+			kbFeedbackStatsPersistence = (KBFeedbackStatsPersistence)PortletBeanLocatorUtil.locate(KBFeedbackStatsPersistence.class.getName() +
+					".impl");
+		}
+
 		if (counterLocalService == null) {
 			counterLocalService = (CounterLocalService)PortalBeanLocatorUtil.locate(CounterLocalService.class.getName() +
 					".impl");
@@ -576,6 +636,10 @@ public abstract class KBArticleLocalServiceBaseImpl
 	protected KBArticlePersistence kbArticlePersistence;
 	protected KBArticleResourceLocalService kbArticleResourceLocalService;
 	protected KBArticleResourcePersistence kbArticleResourcePersistence;
+	protected KBFeedbackEntryLocalService kbFeedbackEntryLocalService;
+	protected KBFeedbackEntryPersistence kbFeedbackEntryPersistence;
+	protected KBFeedbackStatsLocalService kbFeedbackStatsLocalService;
+	protected KBFeedbackStatsPersistence kbFeedbackStatsPersistence;
 	protected CounterLocalService counterLocalService;
 	protected CounterService counterService;
 	protected DLLocalService dlLocalService;
