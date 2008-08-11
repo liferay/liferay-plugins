@@ -99,7 +99,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 		Element resultEl = root.element("result");
 
-		int length = Integer.parseInt(resultEl.attributeValue("numFound"));
+		int length = GetterUtil.getInteger(resultEl.attributeValue("numFound"));
 
 		float maxScore = GetterUtil.getFloat(
 			resultEl.attributeValue("maxScore"));
