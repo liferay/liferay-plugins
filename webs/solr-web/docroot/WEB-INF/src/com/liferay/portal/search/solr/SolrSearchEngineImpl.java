@@ -67,9 +67,8 @@ public class SolrSearchEngineImpl implements SearchEngine {
 	}
 
 	private String _name;
-	private boolean _indexReadOnly;
-
 	private IndexSearcher _searcher;
 	private IndexWriter _writer;
+	private boolean _indexReadOnly;
 
 }

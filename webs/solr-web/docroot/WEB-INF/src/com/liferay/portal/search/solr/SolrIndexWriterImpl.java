@@ -26,9 +26,8 @@ import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.IndexWriter;
 import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.StringPool;
-
-import java.io.IOException;
 
 import java.util.Collection;
 
@@ -50,27 +49,20 @@ import org.dom4j.Element;
  */
 public class SolrIndexWriterImpl implements IndexWriter {
 
-	public String getServerURL() {
-		return _serverURL;
-	}
-
-	public void setServerURL(String serverURL) {
-		_serverURL = serverURL;
-	}
-
 	public void addDocument(long companyId, Document doc)
 		throws SearchException {
 
 		org.dom4j.Document xml = DocumentHelper.createDocument();
 
-		Element root = xml.addElement("add");
-		_addDocumentEl(root, doc);
+		Element addEl = xml.addElement("add");
+
+		addFieldEls(addEl, doc);
 
 		try {
-			_write(companyId, xml);
+			write(xml);
 		}
-		catch (IOException ioe) {
-			throw new SearchException(ioe);
+		catch (Exception e) {
+			throw new SearchException(e);
 		}
 	}
 
@@ -79,15 +71,17 @@ public class SolrIndexWriterImpl implements IndexWriter {
 
 		org.dom4j.Document xml = DocumentHelper.createDocument();
 
-		Element root = xml.addElement("delete");
+		Element deleteEl = xml.addElement("delete");
 
-		root.addElement("id").setText(uid);
+		Element idEl = deleteEl.addElement("id");
+
+		idEl.setText(uid);
 
 		try {
-			_write(companyId, xml);
+			write(xml);
 		}
-		catch (IOException ioe) {
-			throw new SearchException(ioe);
+		catch (Exception e) {
+			throw new SearchException(e);
 		}
 	}
 
@@ -96,17 +90,26 @@ public class SolrIndexWriterImpl implements IndexWriter {
 
 		org.dom4j.Document xml = DocumentHelper.createDocument();
 
-		Element root = xml.addElement("delete");
+		Element deleteEl = xml.addElement("delete");
 
-		root.addElement("query").setText(Field.PORTLET_ID + StringPool.COLON +
-			portletId);
+		Element queryEl = deleteEl.addElement("query");
+
+		queryEl.setText(Field.PORTLET_ID + StringPool.COLON + portletId);
 
 		try {
-			_write(companyId, xml);
+			write(xml);
 		}
-		catch (IOException ioe) {
-			throw new SearchException(ioe);
+		catch (Exception e) {
+			throw new SearchException(e);
 		}
+	}
+
+	public String getServerURL() {
+		return _serverURL;
+	}
+
+	public void setServerURL(String serverURL) {
+		_serverURL = serverURL;
 	}
 
 	public void updateDocument(long companyId, String uid, Document doc)
@@ -114,24 +117,24 @@ public class SolrIndexWriterImpl implements IndexWriter {
 
 		org.dom4j.Document xml = DocumentHelper.createDocument();
 
-		Element root = xml.addElement("update");
-		_addDocumentEl(root, doc);
+		Element updateEl = xml.addElement("update");
+
+		addFieldEls(updateEl, doc);
 
 		try {
-			_write(companyId, xml);
+			write(xml);
 		}
-		catch (IOException ioe) {
-			throw new SearchException(ioe);
+		catch (Exception e) {
+			throw new SearchException(e);
 		}
 	}
 
-	private void _addDocumentEl(Element root, Document doc) {
-		Element docEl = root.addElement("doc");
+	protected void addFieldEls(Element el, Document doc) {
+		Element docEl = el.addElement("doc");
 
 		Collection<Field> fields = doc.getFields().values();
 
 		for (Field field : fields) {
-
 			String name = field.getName();
 			String value = field.getValue();
 
@@ -144,13 +147,17 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		}
 	}
 
-	private void _sendPostCommand(String url, String xml) throws IOException {
-		HttpClient client = new HttpClient();
-		PostMethod method = new PostMethod(url);
+	protected void submitRequest(String xml) throws Exception {
+		PostMethod method = null;
 
 		try {
+			HttpClient client = new HttpClient();
+
+			method = new PostMethod(_serverURL);
+
 			RequestEntity entity = new StringRequestEntity(
-				xml, "text/xml", "UTF-8");
+				xml, ContentTypes.TEXT_XML, StringPool.UTF8);
+
 			method.setRequestEntity(entity);
 
 			client.executeMethod(method);
@@ -167,14 +174,12 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		}
 	}
 
-	private void _write(long companyId, org.dom4j.Document xml)
-		throws IOException {
-
-		String url = _serverURL;
-
-		_sendPostCommand(url, xml.asXML());
-		_sendPostCommand(url, "<commit/>");
+	protected void write(org.dom4j.Document xml) throws Exception {
+		submitRequest(xml.asXML());
+		submitRequest(_COMMIT_XML);
 	}
+
+	private static final String _COMMIT_XML = "<commit />";
 
 	private static Log _log = LogFactory.getLog(SolrIndexWriterImpl.class);
 

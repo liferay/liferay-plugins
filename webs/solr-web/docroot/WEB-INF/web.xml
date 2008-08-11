@@ -3,6 +3,6 @@
 
 <web-app>
 	<listener>
-		<listener-class>com.liferay.portal.search.solr.servlet.SolrContextListener</listener-class>
+		<listener-class>com.liferay.portal.search.solr.servlet.SolrServletContextListener</listener-class>
 	</listener>
 </web-app>

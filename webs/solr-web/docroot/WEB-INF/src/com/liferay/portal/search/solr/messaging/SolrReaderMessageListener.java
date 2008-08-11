@@ -34,7 +34,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * <a href="SolrMessageListener.java.html"><b><i>View Source</i></b></a>
+ * <a href="SolrReaderMessageListener.java.html"><b><i>View Source</i></b></a>
  *
  * @author Bruno Farache
  *
@@ -63,8 +63,8 @@ public class SolrReaderMessageListener implements MessageListener {
 		String command = searchRequest.getCommand();
 
 		if (command.equals(SearchRequest.COMMAND_INDEX_ONLY) &&
-				 Validator.isNotNull(responseDestination) &&
-				 Validator.isNotNull(responseId)) {
+			Validator.isNotNull(responseDestination) &&
+			Validator.isNotNull(responseId)) {
 
 			doCommandIndexOnly(message);
 		}

@@ -28,12 +28,12 @@ import javax.servlet.ServletContextListener;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * <a href="SolrContextListener.java.html"><b><i>View Source</i></b></a>
+ * <a href="SolrServletContextListener.java.html"><b><i>View Source</i></b></a>
  *
  * @author Bruno Farache
  *
  */
-public class SolrContextListener implements ServletContextListener {
+public class SolrServletContextListener implements ServletContextListener {
 
 	public void contextDestroyed(ServletContextEvent event) {
 	}

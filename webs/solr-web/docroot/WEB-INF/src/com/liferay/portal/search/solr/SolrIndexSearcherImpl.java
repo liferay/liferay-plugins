@@ -28,13 +28,13 @@ import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.HitsImpl;
 import com.liferay.portal.kernel.search.IndexSearcher;
+import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.Time;
 
-import java.io.IOException;
 import java.io.StringReader;
 
 import java.util.List;
@@ -57,105 +57,97 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		return _serverURL;
 	}
 
-	public void setServerURL(String serverURL) {
-		_serverURL = serverURL;
-	}
-
-	public Hits search(long companyId, String query, int start, int end)
+	public Hits search(long companyId, Query query, int start, int end)
 		throws SearchException {
 
-		Sort sort = null;
-
-		return search(companyId, query, sort, start, end);
+		return search(companyId, query, null, start, end);
 	}
 
 	public Hits search(
-			long companyId, String query, Sort sort, int start, int end)
+			long companyId, Query query, Sort sort, int start, int end)
 		throws SearchException {
 
 		try {
-			String url = HttpUtil.addParameter(_serverURL, "q", query);
+			String url = HttpUtil.addParameter(
+				_serverURL, "q", query.toString());
 
 			url = HttpUtil.addParameter(url, "fl", "score");
 
 			return subset(HttpUtil.URLtoString(url), start, end);
 		}
-		catch (IOException ioe) {
-			_log.error("Error while sending request to Solr", ioe);
+		catch (Exception e) {
+			_log.error("Error while sending request to Solr", e);
 
-			throw new SearchException(ioe);
+			throw new SearchException(e);
 		}
 	}
 
-	protected Hits subset(String xml, int start, int end)
-		throws SearchException {
+	public void setServerURL(String serverURL) {
+		_serverURL = serverURL;
+	}
 
+	protected Hits subset(String xml, int start, int end) throws Exception {
 		long startTime = System.currentTimeMillis();
 
 		Hits subset = new HitsImpl();
 
-		try {
-			SAXReader reader = new SAXReader();
+		SAXReader reader = new SAXReader();
 
-			org.dom4j.Document xmlDoc = reader.read(new StringReader(xml));
+		org.dom4j.Document xmlDoc = reader.read(new StringReader(xml));
 
-			Element root = xmlDoc.getRootElement();
-			Element resultEl = root.element("result");
+		Element root = xmlDoc.getRootElement();
 
-			int length = Integer.parseInt(resultEl.attributeValue("numFound"));
+		Element resultEl = root.element("result");
 
-			float maxScore = Float.parseFloat(
-				resultEl.attributeValue("maxScore"));
+		int length = Integer.parseInt(resultEl.attributeValue("numFound"));
 
-			if ((start > - 1) && (start <= end)) {
-				if (end > length) {
-					end = length;
-				}
+		float maxScore = GetterUtil.getFloat(
+			resultEl.attributeValue("maxScore"));
 
-				int subsetTotal = end - start;
-
-				Document[] subsetDocs = new DocumentImpl[subsetTotal];
-				float[] subsetScores = new float[subsetTotal];
-
-				List<Element> docsEl = resultEl.elements();
-
-				int j = 0;
-
-				for (int i = start; i < end; i++, j++) {
-					Element docEl = docsEl.get(i);
-
-					DocumentImpl doc = new DocumentImpl();
-
-					List<Element> fields = docEl.elements();
-
-					for (int k = 0; k < fields.size(); k++) {
-						Element arrEl = fields.get(k);
-
-						doc.add(
-							new Field(
-								arrEl.attributeValue("name"), arrEl.getText(),
-								false));
-					}
-
-					subsetDocs[j] = doc;
-					subsetScores[j] = GetterUtil.getFloat(doc.get("score")) /
-						maxScore;
-				}
-
-				subset.setLength(length);
-				subset.setDocs(subsetDocs);
-				subset.setScores(subsetScores);
-				subset.setStart(startTime);
-
-				float searchTime =
-					(float)(System.currentTimeMillis() - startTime) /
-						Time.SECOND;
-
-				subset.setSearchTime(searchTime);
+		if ((start > - 1) && (start <= end)) {
+			if (end > length) {
+				end = length;
 			}
-		}
-		catch (Exception e) {
-			throw new SearchException(e);
+
+			int subsetTotal = end - start;
+
+			Document[] subsetDocs = new DocumentImpl[subsetTotal];
+			float[] subsetScores = new float[subsetTotal];
+
+			List<Element> docsEl = resultEl.elements();
+
+			int j = 0;
+
+			for (int i = start; i < end; i++, j++) {
+				Element docEl = docsEl.get(i);
+
+				Document doc = new DocumentImpl();
+
+				List<Element> fieldEls = docEl.elements();
+
+				for (Element fieldEl : fieldEls) {
+					Field field = new Field(
+						fieldEl.attributeValue("name"), fieldEl.getText(),
+						false);
+
+					doc.add(field);
+				}
+
+				float score = GetterUtil.getFloat(doc.get("score"));
+
+				subsetDocs[j] = doc;
+				subsetScores[j] = score / maxScore;
+			}
+
+			subset.setLength(length);
+			subset.setDocs(subsetDocs);
+			subset.setScores(subsetScores);
+			subset.setStart(startTime);
+
+			float searchTime =
+				(float)(System.currentTimeMillis() - startTime) / Time.SECOND;
+
+			subset.setSearchTime(searchTime);
 		}
 
 		return subset;

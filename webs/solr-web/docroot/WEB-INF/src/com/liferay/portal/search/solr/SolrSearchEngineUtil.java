@@ -30,12 +30,10 @@ import com.liferay.portal.kernel.messaging.ParallelDestination;
 import com.liferay.portal.kernel.messaging.SerialDestination;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Hits;
-import com.liferay.portal.kernel.search.HitsImpl;
+import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.SearchEngine;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="SolrSearchEngineUtil.java.html"><b><i>View Source</i></b></a>
@@ -45,121 +43,76 @@ import org.apache.commons.logging.LogFactory;
  */
 public class SolrSearchEngineUtil {
 
-	public SolrSearchEngineUtil(
-			SearchEngine engine, MessageListener readerMessageListener,
-			MessageListener writerMessageListener,
-			boolean removeExistingDestination)
-		throws Exception {
+	public static void addDocument(long companyId, Document doc)
+		throws SearchException {
 
-		try {
-			_engine = engine;
-
-			if (removeExistingDestination) {
-				MessageBusUtil.removeDestination(
-					DestinationNames.SEARCH_READER);
-
-				MessageBusUtil.removeDestination(
-					DestinationNames.SEARCH_WRITER);
-			}
-
-			Destination searchReadDestination = new ParallelDestination(
-				DestinationNames.SEARCH_READER);
-
-			MessageBusUtil.addDestination(searchReadDestination);
-
-			searchReadDestination.register(readerMessageListener);
-
-			Destination searchWriteDestination = new SerialDestination(
-				DestinationNames.SEARCH_WRITER);
-
-			MessageBusUtil.addDestination(searchWriteDestination);
-
-			searchWriteDestination.register(writerMessageListener);
-		}
-		catch (Exception e) {
-			_log.error("Unable to initialize search engine.", e);
-
-			throw e;
-		}
+		_searchEngine.getWriter().addDocument(companyId, doc);
 	}
 
-	public static void addDocument(long companyId, Document doc) {
-		try {
-			_engine.getWriter().addDocument(companyId, doc);
-		}
-		catch (Exception e) {
-			_log.error("Unable to add document:" + doc, e);
-		}
+	public static void deleteDocument(long companyId, String uid)
+		throws SearchException {
+
+		_searchEngine.getWriter().deleteDocument(companyId, uid);
 	}
 
-	public static void deleteDocument(long companyId, String uid) {
-		try {
-			_engine.getWriter().deleteDocument(companyId, uid);
-		}
-		catch (Exception e) {
-			_log.error("Unable to delete document: companyId=" + companyId +
-				", uid=" + uid, e);
-		}
-	}
+	public static void deletePortletDocuments(long companyId, String portletId)
+		throws SearchException {
 
-	public static void deletePortletDocuments(
-			long companyId, String portletId) {
-
-		try {
-			_engine.getWriter().deletePortletDocuments(companyId, portletId);
-		}
-		catch (Exception e) {
-			_log.error("Unable to delete portlet documents: companyId=" +
-				companyId + ", portletId=" + portletId, e);
-		}
+		_searchEngine.getWriter().deletePortletDocuments(companyId, portletId);
 	}
 
 	public static boolean isIndexReadOnly() {
-		return _engine.isIndexReadOnly();
+		return _searchEngine.isIndexReadOnly();
+	}
+
+	public static Hits search(long companyId, Query query, int start, int end)
+		throws SearchException {
+
+		return _searchEngine.getSearcher().search(companyId, query, start, end);
 	}
 
 	public static Hits search(
-			long companyId, String query, int start, int end) {
+			long companyId, Query query, Sort sort, int start, int end)
+		throws SearchException {
 
-		try {
-			return _engine.getSearcher().search(companyId, query, start, end);
-		}
-		catch (Exception e) {
-			_log.error("Unable to search: companyId=" + companyId + ", query=" +
-				query, e);
-
-			return new HitsImpl();
-		}
-	}
-
-	public static Hits search(
-			long companyId, String query, Sort sort, int start, int end)  {
-
-		try {
-			return _engine.getSearcher().search(
-				companyId, query, sort, start, end);
-		}
-		catch (Exception e) {
-			_log.error("Unable to search: companyId=" + companyId + ", query=" +
-				query + ", sort=" + sort, e);
-
-			return new HitsImpl();
-		}
+		return _searchEngine.getSearcher().search(
+			companyId, query, sort, start, end);
 	}
 
 	public static void updateDocument(
-			long companyId, String uid, Document doc) {
+			long companyId, String uid, Document doc)
+		throws SearchException {
 
-		try {
-			_engine.getWriter().updateDocument(companyId, uid, doc);
-		}
-		catch (Exception e) {
-			_log.error("Unable to update document:" + doc, e);
-		}
+		_searchEngine.getWriter().updateDocument(companyId, uid, doc);
 	}
 
-	private static Log _log = LogFactory.getLog(SolrSearchEngineUtil.class);
+	public SolrSearchEngineUtil(
+			SearchEngine searchEngine,
+			MessageListener searchReaderMessageListener,
+			MessageListener searchWriterMessageListener)
+		throws Exception {
 
-	private static SearchEngine _engine;
+		_searchEngine = searchEngine;
+
+		MessageBusUtil.removeDestination(DestinationNames.SEARCH_READER);
+
+		Destination searchReaderDestination = new ParallelDestination(
+			DestinationNames.SEARCH_READER);
+
+		MessageBusUtil.addDestination(searchReaderDestination);
+
+		searchReaderDestination.register(searchReaderMessageListener);
+
+		MessageBusUtil.removeDestination(DestinationNames.SEARCH_WRITER);
+
+		Destination searchWriterDestination = new SerialDestination(
+			DestinationNames.SEARCH_WRITER);
+
+		MessageBusUtil.addDestination(searchWriterDestination);
+
+		searchWriterDestination.register(searchWriterMessageListener);
+	}
+
+	private static SearchEngine _searchEngine;
 
 }
