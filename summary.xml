@@ -206,6 +206,17 @@
 		<licenses>LGPL</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>novell-collaboration-portlet</artifact-id>
+		<name>Novell</name>
+		<type>portlet</type>
+		<tags>novell</tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://developer.novell.com/wiki/index.php/Novell_Collaboration_Portlets</page-url>
+		<author>Novell, Inc.</author>
+		<licenses>LGPL</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>release-tools-portlet</artifact-id>
 		<name>Release Tools</name>
 		<type>portlet</type>
@@ -668,11 +679,44 @@
 		<licenses>CDDL</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>sun-bookmark-portlet</artifact-id>
+		<name>Bookmark</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun Bookmark plugin.  Released April 22, 2008.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>sun-elluminate-portlet</artifact-id>
 		<name>Elluminate</name>
 		<type>portlet</type>
 		<tags>sun</tags>
 		<short-description>This is the Sun Elluminate plugin.  Released May 21, 2007.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-elluminate-portlet</artifact-id>
+		<name>Elluminate</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun Elluminate plugin.  Released May 21, 2007.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-flickr-portlet</artifact-id>
+		<name>Flickr</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun Flickr plugin.  Released April 22, 2008.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -701,11 +745,44 @@
 		<licenses>CDDL</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>sun-iframe-portlet</artifact-id>
+		<name>IFrame</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun IFrame plugin.  Released May 14, 2007.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>sun-mashup-portlet</artifact-id>
 		<name>MashUp</name>
 		<type>portlet</type>
 		<tags>sun</tags>
 		<short-description>This is the Sun MashUp plugin.  Released May 14, 2007.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-mashup-portlet</artifact-id>
+		<name>MashUp</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun MashUp plugin.  Released May 14, 2007.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-notepad-portlet</artifact-id>
+		<name>Notepad</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun Notepad plugin.  Released April 22, 2008.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -734,11 +811,44 @@
 		<licenses>CDDL</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>sun-photoshow-ajax-portlet</artifact-id>
+		<name>PhotoShow Ajax</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun PhotoShow Ajax plugin.  Released May 14, 2007.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>sun-privacy-guard-portlet</artifact-id>
 		<name>Privacy Guard</name>
 		<type>portlet</type>
 		<tags>sun</tags>
 		<short-description>This is the Sun Privacy Guard plugin.  Released Sep 24, 2007.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-privacy-guard-portlet</artifact-id>
+		<name>Privacy Guard</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun Privacy Guard plugin.  Released Sep 24, 2007.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-rss-portlet</artifact-id>
+		<name>RSS</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun RSS plugin.  Released April 22, 2008.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -767,6 +877,28 @@
 		<licenses>CDDL</licenses>
 	</plugin>
 	<plugin>
+		<artifact-id>sun-showtime-portlet</artifact-id>
+		<name>ShowTime Portlet</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun ShowTime plugin.  Released April 22, 2008.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-tour-ipc-portlet</artifact-id>
+		<name>Tour IPC Portlet</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun Tour IPC plugin.  Released April 22, 2008</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
 		<artifact-id>sun-tour-ipc-portlet</artifact-id>
 		<name>Tour IPC Portlet</name>
 		<type>portlet</type>
@@ -783,6 +915,28 @@
 		<type>portlet</type>
 		<tags>sun</tags>
 		<short-description>This is the Sun Video plugin.  Released May 14, 2007.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-video-portlet</artifact-id>
+		<name>Video</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun Video plugin.  Released May 14, 2007.</short-description>
+		<change-log></change-log>
+		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
+		<author>Sun Microsystems, Inc.</author>
+		<licenses>CDDL</licenses>
+	</plugin>
+	<plugin>
+		<artifact-id>sun-weather-portlet</artifact-id>
+		<name>Weather</name>
+		<type>portlet</type>
+		<tags>sun</tags>
+		<short-description>This is the Sun Weather plugin.  Released May 14, 2007.</short-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
@@ -2334,7 +2488,7 @@
 		<short-description></short-description>
 		<change-log></change-log>
 		<page-url>http://www.osskins.com/main/joomla-mambo/free-joomla-15-template-spirit-of-nature/2008/06/08</page-url>
-		<author>Themza</author>
+		<author>ThemZa</author>
 		<licenses>Public Domain</licenses>
 	</plugin>
 	<plugin>
@@ -2644,7 +2798,6 @@
 	<author>The All Beauty Directory</author>
 	<author>ThemZa</author>
 	<author>Theme Studio</author>
-	<author>Themza</author>
 	<author>Tony Pires</author>
 	<author>Unknown</author>
 	<author>Viktor Persson</author>
