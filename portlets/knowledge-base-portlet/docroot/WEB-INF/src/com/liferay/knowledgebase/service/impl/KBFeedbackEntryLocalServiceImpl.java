@@ -24,6 +24,7 @@ package com.liferay.knowledgebase.service.impl;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.knowledgebase.NoSuchFeedbackEntryException;
+import com.liferay.knowledgebase.NoSuchFeedbackStatsException;
 import com.liferay.knowledgebase.model.KBFeedbackEntry;
 import com.liferay.knowledgebase.model.KBFeedbackStats;
 import com.liferay.knowledgebase.service.base.KBFeedbackEntryLocalServiceBaseImpl;
@@ -36,6 +37,9 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * <a href="KBFeedbackEntryLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
  *
@@ -45,8 +49,8 @@ import java.util.List;
 public class KBFeedbackEntryLocalServiceImpl
 	extends KBFeedbackEntryLocalServiceBaseImpl {
 
-	public KBFeedbackEntry addKBFeedbackEntry(
-			long articleId, long userId, int score, int vote,
+	public KBFeedbackEntry addFeedbackEntry(
+			long articleResourcePrimKey, long userId, int score, int vote,
 			String comments)
 		throws PortalException, SystemException {
 
@@ -55,39 +59,41 @@ public class KBFeedbackEntryLocalServiceImpl
 
 		// KBFeedback entry
 
-		long kbFeedbackEntryId = CounterLocalServiceUtil.increment();
+		long feedbackEntryId = CounterLocalServiceUtil.increment();
 
-		KBFeedbackEntry kbFeedbackEntry = kbFeedbackEntryPersistence.create(
-			kbFeedbackEntryId);
+		KBFeedbackEntry feedbackEntry = kbFeedbackEntryPersistence.create(
+			feedbackEntryId);
 
-		kbFeedbackEntry.setArticleId(articleId);
-		kbFeedbackEntry.setCreateDate(now);
-		kbFeedbackEntry.setComments(comments);
-		kbFeedbackEntry.setModifiedDate(now);
-		kbFeedbackEntry.setScore(score);
-		kbFeedbackEntry.setUserId(userId);
-		kbFeedbackEntry.setUserName(user.getFullName());
-		kbFeedbackEntry.setVote(vote);
+		feedbackEntry.setArticleResourcePrimKey(articleResourcePrimKey);
+		feedbackEntry.setCreateDate(now);
+		feedbackEntry.setComments(comments);
+		feedbackEntry.setModifiedDate(now);
+		feedbackEntry.setScore(score);
+		feedbackEntry.setUserId(userId);
+		feedbackEntry.setUserName(user.getFullName());
+		feedbackEntry.setVote(vote);
 
-		kbFeedbackEntryPersistence.update(kbFeedbackEntry, false);
+		kbFeedbackEntryPersistence.update(feedbackEntry, false);
 
 		// KBFeedback stats
 
-		KBFeedbackStats kbFeedbackStats =
-			kbFeedbackStatsLocalService.getArticleKBFeedbackStats(
-				articleId);
+		KBFeedbackStats feedbackStats =
+			kbFeedbackStatsLocalService.getArticleFeedbackStats(
+				articleResourcePrimKey);
 
-		int totalScoreEntries = kbFeedbackStats.getTotalScoreEntries();
-		int totalVotes = kbFeedbackStats.getTotalVotes();
-		int yesVotes = kbFeedbackStats.getYesVotes();
-		double averageScore = kbFeedbackStats.getAverageScore();
+		int totalScoreEntries = feedbackStats.getTotalScoreEntries();
+		int totalVotes = feedbackStats.getTotalVotes();
+		int yesVotes = feedbackStats.getYesVotes();
+		double averageScore = feedbackStats.getAverageScore();
 		double totalScore = averageScore * totalScoreEntries;
 
 		if (score != 0) {
 			totalScoreEntries = totalScoreEntries + 1;
 		}
 
-		averageScore = (totalScore + score) / totalScoreEntries;
+		if (totalScoreEntries != 0) {
+			averageScore = (totalScore + score) / totalScoreEntries;
+		}
 
 		if (vote == 1) {
 			yesVotes++;
@@ -97,57 +103,76 @@ public class KBFeedbackEntryLocalServiceImpl
 			totalVotes++;
 		}
 
-		kbFeedbackStats.setAverageScore(averageScore);
-		kbFeedbackStats.setTotalScoreEntries(totalScoreEntries);
-		kbFeedbackStats.setTotalVotes(totalVotes);
-		kbFeedbackStats.setYesVotes(yesVotes);
+		feedbackStats.setAverageScore(averageScore);
+		feedbackStats.setTotalScoreEntries(totalScoreEntries);
+		feedbackStats.setTotalVotes(totalVotes);
+		feedbackStats.setYesVotes(yesVotes);
 
-		kbFeedbackStatsPersistence.update(kbFeedbackStats, false);
+		kbFeedbackStatsPersistence.update(feedbackStats, false);
 
-		return kbFeedbackEntry;
+		return feedbackEntry;
 	}
 
-	public void deleteKBFeedbackEntries(long articleId)
+	public void deleteArticleFeedbackEntries(long articleResourcePrimKey)
 		throws PortalException, SystemException {
 
-		List<KBFeedbackEntry> kbFeedbackEntries =
-			kbFeedbackEntryPersistence.findByArticleId(articleId);
+		// KBFeedback entry
 
-		for (KBFeedbackEntry kbFeedbackEntry : kbFeedbackEntries) {
-			deleteKBFeedbackEntry(kbFeedbackEntry);
+		kbFeedbackEntryPersistence.removeByArticleResourcePrimKey(articleResourcePrimKey);
+
+		// KBFeedback stats
+
+		try {
+			kbFeedbackStatsPersistence.removeByArticleResourcePrimKey(articleResourcePrimKey);
+		}
+		catch (NoSuchFeedbackStatsException nsfse) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(nsfse);
+			}
 		}
 	}
 
-	public void deleteKBFeedbackEntry(long kbFeedbackEntryId)
+	public void deleteFeedbackEntries(long articleResourcePrimKey)
 		throws PortalException, SystemException {
 
-		KBFeedbackEntry kbFeedbackEntry =
-			kbFeedbackEntryPersistence.findByPrimaryKey(kbFeedbackEntryId);
+		List<KBFeedbackEntry> feedbackEntries =
+			kbFeedbackEntryPersistence.findByArticleResourcePrimKey(articleResourcePrimKey);
 
-		deleteKBFeedbackEntry(kbFeedbackEntry);
+		for (KBFeedbackEntry feedbackEntry : feedbackEntries) {
+			deleteFeedbackEntry(feedbackEntry);
+		}
 	}
 
-	public void deleteKBFeedbackEntry(KBFeedbackEntry kbFeedbackEntry)
+	public void deleteFeedbackEntry(long feedbackEntryId)
+		throws PortalException, SystemException {
+
+		KBFeedbackEntry feedbackEntry =
+			kbFeedbackEntryPersistence.findByPrimaryKey(feedbackEntryId);
+
+		deleteFeedbackEntry(feedbackEntry);
+	}
+
+	public void deleteFeedbackEntry(KBFeedbackEntry feedbackEntry)
 		throws SystemException {
 
-		// KBFeedback Entry
+		// KBFeedback entry
 
-		int vote = kbFeedbackEntry.getVote();
-		int oldScore = kbFeedbackEntry.getScore();
-		long articleId = kbFeedbackEntry.getArticleId();
+		int vote = feedbackEntry.getVote();
+		int oldScore = feedbackEntry.getScore();
+		long articleResourcePrimKey = feedbackEntry.getArticleResourcePrimKey();
 
-		kbFeedbackEntryPersistence.remove(kbFeedbackEntry);
+		kbFeedbackEntryPersistence.remove(feedbackEntry);
 
-		// KBFeedback Stats
+		// KBFeedback stats
 
-		KBFeedbackStats kbFeedbackStats =
-			kbFeedbackStatsLocalService.getArticleKBFeedbackStats(articleId);
+		KBFeedbackStats feedbackStats =
+			kbFeedbackStatsLocalService.getArticleFeedbackStats(articleResourcePrimKey);
 
-		int totalScoreEntries = kbFeedbackStats.getTotalScoreEntries();
-		int totalVotes = kbFeedbackStats.getTotalVotes() - 1;
-		int yesVotes = kbFeedbackStats.getYesVotes();
+		int totalScoreEntries = feedbackStats.getTotalScoreEntries();
+		int totalVotes = feedbackStats.getTotalVotes() - 1;
+		int yesVotes = feedbackStats.getYesVotes();
 		double averageScore = 0;
-		double totalScore = kbFeedbackStats.getAverageScore() * totalScoreEntries;
+		double totalScore = feedbackStats.getAverageScore() * totalScoreEntries;
 
 		if (vote == 1) {
 			yesVotes--;
@@ -161,103 +186,103 @@ public class KBFeedbackEntryLocalServiceImpl
 			averageScore = (totalScore - oldScore) / totalScoreEntries;
 		}
 
-		kbFeedbackStats.setAverageScore(averageScore);
-		kbFeedbackStats.setTotalScoreEntries(totalScoreEntries);
-		kbFeedbackStats.setTotalVotes(totalVotes);
-		kbFeedbackStats.setYesVotes(yesVotes);
+		feedbackStats.setAverageScore(averageScore);
+		feedbackStats.setTotalScoreEntries(totalScoreEntries);
+		feedbackStats.setTotalVotes(totalVotes);
+		feedbackStats.setYesVotes(yesVotes);
 
-		kbFeedbackStatsPersistence.update(kbFeedbackStats, false);
+		kbFeedbackStatsPersistence.update(feedbackStats, false);
 	}
 
-	public List<KBFeedbackEntry> getArticleKBFeedbackEntries(
-			long articleId, int start, int end)
+	public List<KBFeedbackEntry> getArticleFeedbackEntries(
+			long articleResourcePrimKey, int start, int end)
 		throws SystemException {
 
-		return kbFeedbackEntryPersistence.findByArticleId(
-			articleId, start, end);
+		return kbFeedbackEntryPersistence.findByArticleResourcePrimKey(
+				articleResourcePrimKey, start, end);
 	}
 
-	public int getArticleKBFeedbackEntriesCount(long articleId)
+	public int getArticleFeedbackEntriesCount(long articleResourcePrimKey)
 		throws SystemException {
 
-		return kbFeedbackEntryPersistence.countByArticleId(articleId);
+		return kbFeedbackEntryPersistence.countByArticleResourcePrimKey(articleResourcePrimKey);
 	}
 
-	public List<KBFeedbackEntry> getKBFeedbackEntriesByArticleScore(
-			long articleId, int score, int start, int end)
+	public List<KBFeedbackEntry> getFeedbackEntriesByArticleScore(
+			long articleResourcePrimKey, int score, int start, int end)
 		throws SystemException {
 
 		return kbFeedbackEntryPersistence.findByA_S(
-			articleId, score, start, end);
+			articleResourcePrimKey, score, start, end);
 	}
 
-	public int getKBFeedbackEntriesByArticleScoreCount(long articleId, int score)
+	public int getFeedbackEntriesByArticleScoreCount(long articleResourcePrimKey, int score)
 		throws SystemException {
 
-		return kbFeedbackEntryPersistence.countByA_S(articleId, score);
+		return kbFeedbackEntryPersistence.countByA_S(articleResourcePrimKey, score);
 	}
 
-	public List<KBFeedbackEntry> getKBFeedbackEntriesByArticleVote(
-			long articleId, int vote, int start, int end)
+	public List<KBFeedbackEntry> getFeedbackEntriesByArticleVote(
+			long articleResourcePrimKey, int vote, int start, int end)
 		throws SystemException {
 
 		return kbFeedbackEntryPersistence.findByA_V(
-			articleId, vote, start, end);
+			articleResourcePrimKey, vote, start, end);
 	}
 
-	public int getKBFeedbackEntriesByArticleVoteCount(long articleId, int vote)
+	public int getFeedbackEntriesByArticleVoteCount(long articleResourcePrimKey, int vote)
 		throws SystemException {
 
-		return kbFeedbackEntryPersistence.countByA_V(articleId, vote);
+		return kbFeedbackEntryPersistence.countByA_V(articleResourcePrimKey, vote);
 	}
 
-	public KBFeedbackEntry getKBFeedbackEntry(long kbFeedbackEntryId)
+	public KBFeedbackEntry getFeedbackEntry(long feedbackEntryId)
 		throws PortalException, SystemException {
 
 		return kbFeedbackEntryPersistence.findByPrimaryKey(
-			kbFeedbackEntryId);
+			feedbackEntryId);
 	}
 
-	public KBFeedbackEntry getKBFeedbackEntry(long articleId, long userId)
+	public KBFeedbackEntry getFeedbackEntry(long articleResourcePrimKey, long userId)
 		throws PortalException, SystemException {
 
-		return kbFeedbackEntryPersistence.findByA_U(articleId, userId);
+		return kbFeedbackEntryPersistence.findByA_U(articleResourcePrimKey, userId);
 	}
 
-	public List<KBFeedbackEntry> getUserKBFeedbackEntries(
+	public List<KBFeedbackEntry> getUserFeedbackEntries(
 			long userId, int start, int end)
 		throws SystemException {
 
 		return kbFeedbackEntryPersistence.findByUserId(userId, start, end);
 	}
 
-	public int getUserKBFeedbackEntriesCount(long userId)
+	public int getUserFeedbackEntriesCount(long userId)
 		throws SystemException {
 
 		return kbFeedbackEntryPersistence.countByUserId(userId);
 	}
 
 	public KBFeedbackEntry updateComments(
-			long articleId, long userId, String comments)
+			long articleResourcePrimKey, long userId, String comments)
 		throws PortalException, SystemException {
 
-		KBFeedbackEntry kbFeedbackEntry =
-			kbFeedbackEntryPersistence.findByA_U(articleId, userId);
+		KBFeedbackEntry feedbackEntry =
+			kbFeedbackEntryPersistence.findByA_U(articleResourcePrimKey, userId);
 
-		kbFeedbackEntry.setModifiedDate(new Date());
-		kbFeedbackEntry.setComments(comments);
+		feedbackEntry.setModifiedDate(new Date());
+		feedbackEntry.setComments(comments);
 
-		kbFeedbackEntryPersistence.update(kbFeedbackEntry, false);
+		kbFeedbackEntryPersistence.update(feedbackEntry, false);
 
-		return kbFeedbackEntry;
+		return feedbackEntry;
 	}
 
-	public KBFeedbackEntry updateKBFeedback(
-			long articleId, long userId, int score, int vote,
+	public KBFeedbackEntry updateFeedback(
+			long articleResourcePrimKey, long userId, int score, int vote,
 			String comments)
 		throws PortalException, SystemException {
 
-		KBFeedbackEntry kbFeedbackEntry = null;
+		KBFeedbackEntry feedbackEntry = null;
 
 		try {
 
@@ -267,29 +292,29 @@ public class KBFeedbackEntryLocalServiceImpl
 			double oldScore = 0;
 			Date now = new Date();
 
-			kbFeedbackEntry = kbFeedbackEntryPersistence.findByA_U(
-				articleId, userId);
+			feedbackEntry = kbFeedbackEntryPersistence.findByA_U(
+				articleResourcePrimKey, userId);
 
-			oldScore = kbFeedbackEntry.getScore();
-			oldVote = kbFeedbackEntry.getVote();
+			oldScore = feedbackEntry.getScore();
+			oldVote = feedbackEntry.getVote();
 
-			kbFeedbackEntry.setComments(comments);
-			kbFeedbackEntry.setModifiedDate(now);
-			kbFeedbackEntry.setScore(score);
-			kbFeedbackEntry.setVote(vote);
+			feedbackEntry.setComments(comments);
+			feedbackEntry.setModifiedDate(now);
+			feedbackEntry.setScore(score);
+			feedbackEntry.setVote(vote);
 
-			kbFeedbackEntryPersistence.update(kbFeedbackEntry, false);
+			kbFeedbackEntryPersistence.update(feedbackEntry, false);
 
 			// KBFeedback stats
 
-			KBFeedbackStats kbFeedbackStats =
-				kbFeedbackStatsLocalService.getArticleKBFeedbackStats(
-					articleId);
+			KBFeedbackStats feedbackStats =
+				kbFeedbackStatsLocalService.getArticleFeedbackStats(
+					articleResourcePrimKey);
 
-			int totalScoreEntries = kbFeedbackStats.getTotalScoreEntries();
-			int totalVotes = kbFeedbackStats.getTotalVotes();
-			int yesVotes = kbFeedbackStats.getYesVotes();
-			double averageScore = kbFeedbackStats.getAverageScore();
+			int totalScoreEntries = feedbackStats.getTotalScoreEntries();
+			int totalVotes = feedbackStats.getTotalVotes();
+			int yesVotes = feedbackStats.getYesVotes();
+			double averageScore = feedbackStats.getAverageScore();
 			double scoreDifference = score - oldScore;
 			double totalScore = averageScore * totalScoreEntries;
 
@@ -310,49 +335,49 @@ public class KBFeedbackEntryLocalServiceImpl
 				totalVotes++;
 			}
 
-			kbFeedbackStats.setAverageScore(averageScore);
-			kbFeedbackStats.setTotalScoreEntries(totalScoreEntries);
-			kbFeedbackStats.setTotalVotes(totalVotes);
-			kbFeedbackStats.setYesVotes(yesVotes);
+			feedbackStats.setAverageScore(averageScore);
+			feedbackStats.setTotalScoreEntries(totalScoreEntries);
+			feedbackStats.setTotalVotes(totalVotes);
+			feedbackStats.setYesVotes(yesVotes);
 
-			kbFeedbackStatsPersistence.update(kbFeedbackStats, false);
+			kbFeedbackStatsPersistence.update(feedbackStats, false);
 		}
 		catch (NoSuchFeedbackEntryException nsfee) {
-			kbFeedbackEntry = addKBFeedbackEntry(
-				articleId, userId, score, vote, comments);
+			feedbackEntry = addFeedbackEntry(
+				articleResourcePrimKey, userId, score, vote, comments);
 		}
 
-		return kbFeedbackEntry;
+		return feedbackEntry;
 	}
 
-	public KBFeedbackEntry updateScore(long articleId, long userId, int score)
+	public KBFeedbackEntry updateScore(long articleResourcePrimKey, long userId, int score)
 		throws PortalException, SystemException {
 
-		KBFeedbackEntry kbFeedbackEntry = null;
+		KBFeedbackEntry feedbackEntry = null;
 
 		try {
 
-			// KBFeedback Entry
+			// KBFeedback entry
 
 			Date now = new Date();
 
-			kbFeedbackEntry =
-				kbFeedbackEntryPersistence.findByA_U(articleId, userId);
+			feedbackEntry =
+				kbFeedbackEntryPersistence.findByA_U(articleResourcePrimKey, userId);
 
-			double oldScore = kbFeedbackEntry.getScore();
+			double oldScore = feedbackEntry.getScore();
 
-			kbFeedbackEntry.setModifiedDate(now);
-			kbFeedbackEntry.setScore(score);
+			feedbackEntry.setModifiedDate(now);
+			feedbackEntry.setScore(score);
 
-			kbFeedbackEntryPersistence.update(kbFeedbackEntry, false);
+			kbFeedbackEntryPersistence.update(feedbackEntry, false);
 
-			// KBFeedback Stats
+			// KBFeedback stats
 
-			KBFeedbackStats kbFeedbackStats =
-				kbFeedbackStatsLocalService.getArticleKBFeedbackStats(articleId);
+			KBFeedbackStats feedbackStats =
+				kbFeedbackStatsLocalService.getArticleFeedbackStats(articleResourcePrimKey);
 
-			int totalScoreEntries = kbFeedbackStats.getTotalScoreEntries();
-			double averageScore = kbFeedbackStats.getAverageScore();
+			int totalScoreEntries = feedbackStats.getTotalScoreEntries();
+			double averageScore = feedbackStats.getAverageScore();
 			double scoreDifference = score - oldScore;
 			double totalScore = averageScore * totalScoreEntries;
 
@@ -364,24 +389,24 @@ public class KBFeedbackEntryLocalServiceImpl
 				averageScore = (totalScore + scoreDifference) / totalScoreEntries;
 			}
 
-			kbFeedbackStats.setAverageScore(averageScore);
-			kbFeedbackStats.setTotalScoreEntries(totalScoreEntries);
+			feedbackStats.setAverageScore(averageScore);
+			feedbackStats.setTotalScoreEntries(totalScoreEntries);
 
-			kbFeedbackStatsPersistence.update(kbFeedbackStats, false);
+			kbFeedbackStatsPersistence.update(feedbackStats, false);
 		}
 		catch (NoSuchFeedbackEntryException nsfee) {
-			kbFeedbackEntry = addKBFeedbackEntry(
-				articleId, userId, score, 0, StringPool.BLANK);
+			feedbackEntry = addFeedbackEntry(
+				articleResourcePrimKey, userId, score, 0, StringPool.BLANK);
 		}
 
-		return kbFeedbackEntry;
+		return feedbackEntry;
 	}
 
 	public KBFeedbackEntry updateVote(
-			long articleId, long userId, int vote)
+			long articleResourcePrimKey, long userId, int vote)
 		throws PortalException, SystemException {
 
-		KBFeedbackEntry kbFeedbackEntry = null;
+		KBFeedbackEntry feedbackEntry = null;
 
 		try {
 
@@ -390,24 +415,24 @@ public class KBFeedbackEntryLocalServiceImpl
 			int oldVote = 0;
 			Date now = new Date();
 
-			kbFeedbackEntry = kbFeedbackEntryPersistence.findByA_U(
-				articleId, userId);
+			feedbackEntry = kbFeedbackEntryPersistence.findByA_U(
+				articleResourcePrimKey, userId);
 
-			oldVote = kbFeedbackEntry.getVote();
+			oldVote = feedbackEntry.getVote();
 
-			kbFeedbackEntry.setModifiedDate(now);
-			kbFeedbackEntry.setVote(vote);
+			feedbackEntry.setModifiedDate(now);
+			feedbackEntry.setVote(vote);
 
-			kbFeedbackEntryPersistence.update(kbFeedbackEntry, false);
+			kbFeedbackEntryPersistence.update(feedbackEntry, false);
 
 			// KBFeedback stats
 
-			KBFeedbackStats kbFeedbackStats =
-				kbFeedbackStatsLocalService.getArticleKBFeedbackStats(
-					articleId);
+			KBFeedbackStats feedbackStats =
+				kbFeedbackStatsLocalService.getArticleFeedbackStats(
+					articleResourcePrimKey);
 
-			int totalVotes = kbFeedbackStats.getTotalVotes();
-			int yesVotes = kbFeedbackStats.getYesVotes();
+			int totalVotes = feedbackStats.getTotalVotes();
+			int yesVotes = feedbackStats.getYesVotes();
 
 			if ((oldVote != 1) && (vote == 1)) {
 				yesVotes++;
@@ -420,17 +445,20 @@ public class KBFeedbackEntryLocalServiceImpl
 				totalVotes++;
 			}
 
-			kbFeedbackStats.setTotalVotes(totalVotes);
-			kbFeedbackStats.setYesVotes(yesVotes);
+			feedbackStats.setTotalVotes(totalVotes);
+			feedbackStats.setYesVotes(yesVotes);
 
-			kbFeedbackStatsPersistence.update(kbFeedbackStats, false);
+			kbFeedbackStatsPersistence.update(feedbackStats, false);
 		}
 		catch (NoSuchFeedbackEntryException nsfee) {
-			kbFeedbackEntry = addKBFeedbackEntry(
-				articleId, userId, 0, vote, StringPool.BLANK);
+			feedbackEntry = addFeedbackEntry(
+				articleResourcePrimKey, userId, 0, vote, StringPool.BLANK);
 		}
 
-		return kbFeedbackEntry;
+		return feedbackEntry;
 	}
+
+	private static Log _log =
+		LogFactory.getLog(KBFeedbackEntryLocalServiceImpl.class);
 
 }

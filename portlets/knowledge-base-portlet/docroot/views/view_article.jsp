@@ -26,9 +26,9 @@
 <%
 KBArticle article = (KBArticle) request.getAttribute(KnowledgeBaseKeys.ARTICLE);
 
-KBFeedbackEntry kbFeedbackEntry = (KBFeedbackEntry) request.getAttribute(KnowledgeBaseKeys.KNOWLEDGE_BASE_FEEDBACK_ENTRY);
+KBFeedbackEntry feedbackEntry = (KBFeedbackEntry) request.getAttribute(KnowledgeBaseKeys.KNOWLEDGE_BASE_FEEDBACK_ENTRY);
 
-KBFeedbackStats kbFeedbackStats = (KBFeedbackStats) request.getAttribute(KnowledgeBaseKeys.KNOWLEDGE_BASE_FEEDBACK_STATS);
+KBFeedbackStats feedbackStats = (KBFeedbackStats) request.getAttribute(KnowledgeBaseKeys.KNOWLEDGE_BASE_FEEDBACK_STATS);
 
 // KBArticle
 
@@ -56,17 +56,15 @@ if (article.isTemplate()) {
 
 // KBFeedback entry
 
-int score = BeanParamUtil.getInteger(kbFeedbackEntry, request, "score");
-int vote = BeanParamUtil.getInteger(kbFeedbackEntry, request, "vote");
+int score = BeanParamUtil.getInteger(feedbackEntry, request, "score");
+int vote = BeanParamUtil.getInteger(feedbackEntry, request, "vote");
 
-long kbFeedbackEntryId = BeanParamUtil.getLong(kbFeedbackEntry, request, "kbFeedbackEntryId");
-
-String comments = BeanParamUtil.getString(kbFeedbackEntry, request, "comments");
+String comments = BeanParamUtil.getString(feedbackEntry, request, "comments");
 
 //KBFeedback stats
 
-int totalVotes = BeanParamUtil.getInteger(kbFeedbackStats, request, "totalVotes");
-int yesVotes = BeanParamUtil.getInteger(kbFeedbackStats, request, "yesVotes");
+int totalVotes = BeanParamUtil.getInteger(feedbackStats, request, "totalVotes");
+int yesVotes = BeanParamUtil.getInteger(feedbackStats, request, "yesVotes");
 
 int noPercentage = 0;
 int yesPercentage = 0;
@@ -137,11 +135,10 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 		<script type="text/javascript">
 			jQuery(function() {
 				Liferay.KnowledgeBase.init({
-					articleId: '<%= article.getArticleId() %>',
-					averageScore: '<%= kbFeedbackStats.getAverageScore() %>',
+					articleResourcePrimKey: '<%= article.getResourcePrimKey() %>',
+					averageScore: '<%= feedbackStats.getAverageScore() %>',
 					namespace: '<portlet:namespace />',
 					feedbackURL: '<%= feedbackURL %>',
-					kbFeedbackEntryId: '<%= kbFeedbackEntryId %>',
 					score: '<%= score %>',
 					userId: '<%= themeDisplay.getUserId() %>',
 					textAverage: '<liferay-ui:message key="average" />',
@@ -229,10 +226,10 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 
 						<td>
 							<div id="<portlet:namespace />totalEntries" style="font-size: xx-small; padding-bottom: 2px;">
-								<liferay-ui:message key="average" /> (<%= kbFeedbackStats.getTotalScoreEntries() %> <%= LanguageUtil.get(pageContext, (kbFeedbackStats.getTotalScoreEntries() == 1) ? "vote" : "votes") %>)
+								<liferay-ui:message key="average" /> (<%= feedbackStats.getTotalScoreEntries() %> <%= LanguageUtil.get(pageContext, (feedbackStats.getTotalScoreEntries() == 1) ? "vote" : "votes") %>)
 							</div>
 
-							<div id="<portlet:namespace />averageRating" onmousemove="Liferay.Portal.ToolTip.show(event, this, '<%= kbFeedbackStats.getAverageScore() %> <liferay-ui:message key="stars" />')">
+							<div id="<portlet:namespace />averageRating" onmousemove="Liferay.Portal.ToolTip.show(event, this, '<%= feedbackStats.getAverageScore() %> <liferay-ui:message key="stars" />')">
 								<img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" />
 							</div>
 						</td>
@@ -290,7 +287,7 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 
 								<div
 									id="<portlet:namespace />feedbackContainer"
-									<c:if test="<%= kbFeedbackEntry != null %>">
+									<c:if test="<%= feedbackEntry != null %>">
 										style="display: none;"
 									</c:if>
 								>
@@ -312,7 +309,7 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 										<div
 											class="ctrl-holder-feedback-comments"
 											id="<portlet:namespace />ctrlHolderFeedbackComments"
-											<c:if test="<%= kbFeedbackEntry == null %>">
+											<c:if test="<%= feedbackEntry == null %>">
 												style="display: none;"
 											</c:if>
 										>
@@ -325,7 +322,7 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 												</c:otherwise>
 											</c:choose>
 
-											<liferay-ui:input-field model="<%= KBFeedbackEntry.class %>" bean="<%= kbFeedbackEntry %>" field="comments" />
+											<liferay-ui:input-field model="<%= KBFeedbackEntry.class %>" bean="<%= feedbackEntry %>" field="comments" />
 
 											<br /><br />
 
@@ -339,7 +336,7 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 								<a
 									href="javascript: Liferay.KnowledgeBase.updateLink();"
 									id="<portlet:namespace />feedbackUpdateLink"
-									<c:if test="<%= kbFeedbackEntry == null %>">
+									<c:if test="<%= feedbackEntry == null %>">
 										style="display: none;"
 									</c:if>
 								>

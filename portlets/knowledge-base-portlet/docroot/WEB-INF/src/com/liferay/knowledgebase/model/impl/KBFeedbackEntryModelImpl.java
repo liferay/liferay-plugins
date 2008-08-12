@@ -50,10 +50,10 @@ import java.util.List;
 public class KBFeedbackEntryModelImpl extends BaseModelImpl {
 	public static final String TABLE_NAME = "KB_KBFeedbackEntry";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "kbFeedbackEntryId", new Integer(Types.BIGINT) },
+			{ "feedbackEntryId", new Integer(Types.BIGINT) },
 			
 
-			{ "articleId", new Integer(Types.BIGINT) },
+			{ "articleResourcePrimKey", new Integer(Types.BIGINT) },
 			
 
 			{ "userId", new Integer(Types.BIGINT) },
@@ -76,7 +76,7 @@ public class KBFeedbackEntryModelImpl extends BaseModelImpl {
 
 			{ "vote", new Integer(Types.INTEGER) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KB_KBFeedbackEntry (kbFeedbackEntryId LONG not null primary key,articleId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,comments STRING null,score INTEGER,vote INTEGER)";
+	public static final String TABLE_SQL_CREATE = "create table KB_KBFeedbackEntry (feedbackEntryId LONG not null primary key,articleResourcePrimKey LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,comments STRING null,score INTEGER,vote INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table KB_KBFeedbackEntry";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -88,8 +88,8 @@ public class KBFeedbackEntryModelImpl extends BaseModelImpl {
 	public static KBFeedbackEntry toModel(KBFeedbackEntrySoap soapModel) {
 		KBFeedbackEntry model = new KBFeedbackEntryImpl();
 
-		model.setKbFeedbackEntryId(soapModel.getKbFeedbackEntryId());
-		model.setArticleId(soapModel.getArticleId());
+		model.setFeedbackEntryId(soapModel.getFeedbackEntryId());
+		model.setArticleResourcePrimKey(soapModel.getArticleResourcePrimKey());
 		model.setUserId(soapModel.getUserId());
 		model.setUserName(soapModel.getUserName());
 		model.setCreateDate(soapModel.getCreateDate());
@@ -119,34 +119,34 @@ public class KBFeedbackEntryModelImpl extends BaseModelImpl {
 	}
 
 	public long getPrimaryKey() {
-		return _kbFeedbackEntryId;
+		return _feedbackEntryId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setKbFeedbackEntryId(pk);
+		setFeedbackEntryId(pk);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_kbFeedbackEntryId);
+		return new Long(_feedbackEntryId);
 	}
 
-	public long getKbFeedbackEntryId() {
-		return _kbFeedbackEntryId;
+	public long getFeedbackEntryId() {
+		return _feedbackEntryId;
 	}
 
-	public void setKbFeedbackEntryId(long kbFeedbackEntryId) {
-		if (kbFeedbackEntryId != _kbFeedbackEntryId) {
-			_kbFeedbackEntryId = kbFeedbackEntryId;
+	public void setFeedbackEntryId(long feedbackEntryId) {
+		if (feedbackEntryId != _feedbackEntryId) {
+			_feedbackEntryId = feedbackEntryId;
 		}
 	}
 
-	public long getArticleId() {
-		return _articleId;
+	public long getArticleResourcePrimKey() {
+		return _articleResourcePrimKey;
 	}
 
-	public void setArticleId(long articleId) {
-		if (articleId != _articleId) {
-			_articleId = articleId;
+	public void setArticleResourcePrimKey(long articleResourcePrimKey) {
+		if (articleResourcePrimKey != _articleResourcePrimKey) {
+			_articleResourcePrimKey = articleResourcePrimKey;
 		}
 	}
 
@@ -241,8 +241,8 @@ public class KBFeedbackEntryModelImpl extends BaseModelImpl {
 
 			model.setEscapedModel(true);
 
-			model.setKbFeedbackEntryId(getKbFeedbackEntryId());
-			model.setArticleId(getArticleId());
+			model.setFeedbackEntryId(getFeedbackEntryId());
+			model.setArticleResourcePrimKey(getArticleResourcePrimKey());
 			model.setUserId(getUserId());
 			model.setUserName(HtmlUtil.escape(getUserName()));
 			model.setCreateDate(getCreateDate());
@@ -262,8 +262,8 @@ public class KBFeedbackEntryModelImpl extends BaseModelImpl {
 	public Object clone() {
 		KBFeedbackEntryImpl clone = new KBFeedbackEntryImpl();
 
-		clone.setKbFeedbackEntryId(getKbFeedbackEntryId());
-		clone.setArticleId(getArticleId());
+		clone.setFeedbackEntryId(getFeedbackEntryId());
+		clone.setArticleResourcePrimKey(getArticleResourcePrimKey());
 		clone.setUserId(getUserId());
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
@@ -324,8 +324,8 @@ public class KBFeedbackEntryModelImpl extends BaseModelImpl {
 		return (int)getPrimaryKey();
 	}
 
-	private long _kbFeedbackEntryId;
-	private long _articleId;
+	private long _feedbackEntryId;
+	private long _articleResourcePrimKey;
 	private long _userId;
 	private String _userName;
 	private Date _createDate;

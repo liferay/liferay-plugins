@@ -29,8 +29,8 @@ create table KB_KBArticleResource (
 );
 
 create table KB_KBFeedbackEntry (
-	kbFeedbackEntryId LONG not null primary key,
-	articleId LONG,
+	feedbackEntryId LONG not null primary key,
+	articleResourcePrimKey LONG,
 	userId LONG,
 	userName VARCHAR(75) null,
 	createDate DATE null,
@@ -41,8 +41,8 @@ create table KB_KBFeedbackEntry (
 );
 
 create table KB_KBFeedbackStats (
-	kbFeedbackStatsId LONG not null primary key,
-	articleId LONG,
+	feedbackStatsId LONG not null primary key,
+	articleResourcePrimKey LONG,
 	averageScore DOUBLE,
 	totalScoreEntries INTEGER,
 	totalVotes INTEGER,

@@ -139,11 +139,11 @@
 
 		<!-- PK fields -->
 
-		<column name="kbFeedbackEntryId" type="long" primary="true" />
+		<column name="feedbackEntryId" type="long" primary="true" />
 
 		<!-- Audit fields -->
 
-		<column name="articleId" type="long" />
+		<column name="articleResourcePrimKey" type="long" />
 		<column name="userId" type="long" />
 		<column name="userName" type="String" />
 		<column name="createDate" type="Date" />
@@ -163,22 +163,22 @@
 
 		<!-- Finder methods -->
 
-		<finder name="ArticleId" return-type="Collection">
-			<finder-column name="articleId" />
+		<finder name="ArticleResourcePrimKey" return-type="Collection">
+			<finder-column name="articleResourcePrimKey" />
 		</finder>
 		<finder name="UserId" return-type="Collection">
 			<finder-column name="userId" />
 		</finder>
 		<finder name="A_S" return-type="Collection">
-			<finder-column name="articleId" />
+			<finder-column name="articleResourcePrimKey" />
 			<finder-column name="score" />
 		</finder>
 		<finder name="A_U" return-type="KBFeedbackEntry">
-			<finder-column name="articleId" />
+			<finder-column name="articleResourcePrimKey" />
 			<finder-column name="userId" />
 		</finder>
 		<finder name="A_V" return-type="Collection">
-			<finder-column name="articleId" />
+			<finder-column name="articleResourcePrimKey" />
 			<finder-column name="vote" />
 		</finder>
 	</entity>
@@ -186,11 +186,11 @@
 
 		<!-- PK fields -->
 
-		<column name="kbFeedbackStatsId" type="long" primary="true" />
+		<column name="feedbackStatsId" type="long" primary="true" />
 
 		<!-- Audit fields -->
 
-		<column name="articleId" type="long" />
+		<column name="articleResourcePrimKey" type="long" />
 
 		<!-- Other fields -->
 
@@ -201,8 +201,8 @@
 
 		<!-- Finder methods -->
 
-		<finder name="ArticleId" return-type="KBFeedbackStats">
-			<finder-column name="articleId" />
+		<finder name="ArticleResourcePrimKey" return-type="KBFeedbackStats">
+			<finder-column name="articleResourcePrimKey" />
 		</finder>
 	</entity>
 	<exceptions>

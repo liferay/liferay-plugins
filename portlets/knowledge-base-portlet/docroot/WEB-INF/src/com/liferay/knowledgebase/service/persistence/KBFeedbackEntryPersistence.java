@@ -30,10 +30,10 @@ package com.liferay.knowledgebase.service.persistence;
  */
 public interface KBFeedbackEntryPersistence {
 	public com.liferay.knowledgebase.model.KBFeedbackEntry create(
-		long kbFeedbackEntryId);
+		long feedbackEntryId);
 
 	public com.liferay.knowledgebase.model.KBFeedbackEntry remove(
-		long kbFeedbackEntryId)
+		long feedbackEntryId)
 		throws com.liferay.knowledgebase.NoSuchFeedbackEntryException,
 			com.liferay.portal.SystemException;
 
@@ -54,37 +54,39 @@ public interface KBFeedbackEntryPersistence {
 		boolean merge) throws com.liferay.portal.SystemException;
 
 	public com.liferay.knowledgebase.model.KBFeedbackEntry findByPrimaryKey(
-		long kbFeedbackEntryId)
+		long feedbackEntryId)
 		throws com.liferay.knowledgebase.NoSuchFeedbackEntryException,
 			com.liferay.portal.SystemException;
 
 	public com.liferay.knowledgebase.model.KBFeedbackEntry fetchByPrimaryKey(
-		long kbFeedbackEntryId) throws com.liferay.portal.SystemException;
+		long feedbackEntryId) throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> findByArticleId(
-		long articleId) throws com.liferay.portal.SystemException;
+	public java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> findByArticleResourcePrimKey(
+		long articleResourcePrimKey) throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> findByArticleId(
-		long articleId, int start, int end)
+	public java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> findByArticleResourcePrimKey(
+		long articleResourcePrimKey, int start, int end)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> findByArticleId(
-		long articleId, int start, int end,
+	public java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> findByArticleResourcePrimKey(
+		long articleResourcePrimKey, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.knowledgebase.model.KBFeedbackEntry findByArticleId_First(
-		long articleId, com.liferay.portal.kernel.util.OrderByComparator obc)
+	public com.liferay.knowledgebase.model.KBFeedbackEntry findByArticleResourcePrimKey_First(
+		long articleResourcePrimKey,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.knowledgebase.NoSuchFeedbackEntryException,
 			com.liferay.portal.SystemException;
 
-	public com.liferay.knowledgebase.model.KBFeedbackEntry findByArticleId_Last(
-		long articleId, com.liferay.portal.kernel.util.OrderByComparator obc)
+	public com.liferay.knowledgebase.model.KBFeedbackEntry findByArticleResourcePrimKey_Last(
+		long articleResourcePrimKey,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.knowledgebase.NoSuchFeedbackEntryException,
 			com.liferay.portal.SystemException;
 
-	public com.liferay.knowledgebase.model.KBFeedbackEntry[] findByArticleId_PrevAndNext(
-		long kbFeedbackEntryId, long articleId,
+	public com.liferay.knowledgebase.model.KBFeedbackEntry[] findByArticleResourcePrimKey_PrevAndNext(
+		long feedbackEntryId, long articleResourcePrimKey,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.knowledgebase.NoSuchFeedbackEntryException,
 			com.liferay.portal.SystemException;
@@ -112,75 +114,78 @@ public interface KBFeedbackEntryPersistence {
 			com.liferay.portal.SystemException;
 
 	public com.liferay.knowledgebase.model.KBFeedbackEntry[] findByUserId_PrevAndNext(
-		long kbFeedbackEntryId, long userId,
+		long feedbackEntryId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.knowledgebase.NoSuchFeedbackEntryException,
 			com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> findByA_S(
-		long articleId, int score) throws com.liferay.portal.SystemException;
-
-	public java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> findByA_S(
-		long articleId, int score, int start, int end)
+		long articleResourcePrimKey, int score)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> findByA_S(
-		long articleId, int score, int start, int end,
+		long articleResourcePrimKey, int score, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> findByA_S(
+		long articleResourcePrimKey, int score, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
 	public com.liferay.knowledgebase.model.KBFeedbackEntry findByA_S_First(
-		long articleId, int score,
+		long articleResourcePrimKey, int score,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.knowledgebase.NoSuchFeedbackEntryException,
 			com.liferay.portal.SystemException;
 
 	public com.liferay.knowledgebase.model.KBFeedbackEntry findByA_S_Last(
-		long articleId, int score,
+		long articleResourcePrimKey, int score,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.knowledgebase.NoSuchFeedbackEntryException,
 			com.liferay.portal.SystemException;
 
 	public com.liferay.knowledgebase.model.KBFeedbackEntry[] findByA_S_PrevAndNext(
-		long kbFeedbackEntryId, long articleId, int score,
+		long feedbackEntryId, long articleResourcePrimKey, int score,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.knowledgebase.NoSuchFeedbackEntryException,
 			com.liferay.portal.SystemException;
 
 	public com.liferay.knowledgebase.model.KBFeedbackEntry findByA_U(
-		long articleId, long userId)
+		long articleResourcePrimKey, long userId)
 		throws com.liferay.knowledgebase.NoSuchFeedbackEntryException,
 			com.liferay.portal.SystemException;
 
 	public com.liferay.knowledgebase.model.KBFeedbackEntry fetchByA_U(
-		long articleId, long userId) throws com.liferay.portal.SystemException;
-
-	public java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> findByA_V(
-		long articleId, int vote) throws com.liferay.portal.SystemException;
-
-	public java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> findByA_V(
-		long articleId, int vote, int start, int end)
+		long articleResourcePrimKey, long userId)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> findByA_V(
-		long articleId, int vote, int start, int end,
+		long articleResourcePrimKey, int vote)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> findByA_V(
+		long articleResourcePrimKey, int vote, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> findByA_V(
+		long articleResourcePrimKey, int vote, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
 	public com.liferay.knowledgebase.model.KBFeedbackEntry findByA_V_First(
-		long articleId, int vote,
+		long articleResourcePrimKey, int vote,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.knowledgebase.NoSuchFeedbackEntryException,
 			com.liferay.portal.SystemException;
 
 	public com.liferay.knowledgebase.model.KBFeedbackEntry findByA_V_Last(
-		long articleId, int vote,
+		long articleResourcePrimKey, int vote,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.knowledgebase.NoSuchFeedbackEntryException,
 			com.liferay.portal.SystemException;
 
 	public com.liferay.knowledgebase.model.KBFeedbackEntry[] findByA_V_PrevAndNext(
-		long kbFeedbackEntryId, long articleId, int vote,
+		long feedbackEntryId, long articleResourcePrimKey, int vote,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.knowledgebase.NoSuchFeedbackEntryException,
 			com.liferay.portal.SystemException;
@@ -203,37 +208,37 @@ public interface KBFeedbackEntryPersistence {
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
-	public void removeByArticleId(long articleId)
+	public void removeByArticleResourcePrimKey(long articleResourcePrimKey)
 		throws com.liferay.portal.SystemException;
 
 	public void removeByUserId(long userId)
 		throws com.liferay.portal.SystemException;
 
-	public void removeByA_S(long articleId, int score)
+	public void removeByA_S(long articleResourcePrimKey, int score)
 		throws com.liferay.portal.SystemException;
 
-	public void removeByA_U(long articleId, long userId)
+	public void removeByA_U(long articleResourcePrimKey, long userId)
 		throws com.liferay.knowledgebase.NoSuchFeedbackEntryException,
 			com.liferay.portal.SystemException;
 
-	public void removeByA_V(long articleId, int vote)
+	public void removeByA_V(long articleResourcePrimKey, int vote)
 		throws com.liferay.portal.SystemException;
 
 	public void removeAll() throws com.liferay.portal.SystemException;
 
-	public int countByArticleId(long articleId)
+	public int countByArticleResourcePrimKey(long articleResourcePrimKey)
 		throws com.liferay.portal.SystemException;
 
 	public int countByUserId(long userId)
 		throws com.liferay.portal.SystemException;
 
-	public int countByA_S(long articleId, int score)
+	public int countByA_S(long articleResourcePrimKey, int score)
 		throws com.liferay.portal.SystemException;
 
-	public int countByA_U(long articleId, long userId)
+	public int countByA_U(long articleResourcePrimKey, long userId)
 		throws com.liferay.portal.SystemException;
 
-	public int countByA_V(long articleId, int vote)
+	public int countByA_V(long articleResourcePrimKey, int vote)
 		throws com.liferay.portal.SystemException;
 
 	public int countAll() throws com.liferay.portal.SystemException;

@@ -45,7 +45,6 @@ import javax.portlet.PortletURL;
  * @author Jorge Ferrer
  */
 public class Indexer {
-
 	public static final String PORTLET_ID = KnowledgeBaseKeys.PORTLET_ID;
 
 	public static void addArticle(

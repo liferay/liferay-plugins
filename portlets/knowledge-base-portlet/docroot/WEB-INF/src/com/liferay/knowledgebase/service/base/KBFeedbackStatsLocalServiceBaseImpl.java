@@ -57,9 +57,9 @@ public abstract class KBFeedbackStatsLocalServiceBaseImpl
 		return kbFeedbackStatsPersistence.update(kbFeedbackStats, false);
 	}
 
-	public void deleteKBFeedbackStats(long kbFeedbackStatsId)
+	public void deleteKBFeedbackStats(long feedbackStatsId)
 		throws PortalException, SystemException {
-		kbFeedbackStatsPersistence.remove(kbFeedbackStatsId);
+		kbFeedbackStatsPersistence.remove(feedbackStatsId);
 	}
 
 	public void deleteKBFeedbackStats(KBFeedbackStats kbFeedbackStats)
@@ -78,9 +78,9 @@ public abstract class KBFeedbackStatsLocalServiceBaseImpl
 			start, end);
 	}
 
-	public KBFeedbackStats getKBFeedbackStats(long kbFeedbackStatsId)
+	public KBFeedbackStats getKBFeedbackStats(long feedbackStatsId)
 		throws PortalException, SystemException {
-		return kbFeedbackStatsPersistence.findByPrimaryKey(kbFeedbackStatsId);
+		return kbFeedbackStatsPersistence.findByPrimaryKey(feedbackStatsId);
 	}
 
 	public List<KBFeedbackStats> getKBFeedbackStatses(int start, int end)

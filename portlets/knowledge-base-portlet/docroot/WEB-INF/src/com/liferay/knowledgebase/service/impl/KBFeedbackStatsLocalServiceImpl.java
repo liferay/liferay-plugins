@@ -41,48 +41,54 @@ import org.apache.commons.logging.LogFactory;
 public class KBFeedbackStatsLocalServiceImpl
 	extends KBFeedbackStatsLocalServiceBaseImpl {
 
-	public void deleteKBFeedbackStats(long articleId)
+	public void deleteFeedbackStats(long articleResourcePrimKey)
 		throws SystemException {
 
+		// KBFeedback stats
+
 		try {
-			kbFeedbackStatsPersistence.removeByArticleId(articleId);
+			kbFeedbackStatsPersistence.removeByArticleResourcePrimKey(articleResourcePrimKey);
 		}
 		catch (NoSuchFeedbackStatsException nsfse) {
-			_log.warn(nsfse);
+			if (_log.isWarnEnabled()) {
+				_log.warn(nsfse);
+			}
 		}
 
-		kbFeedbackEntryPersistence.removeByArticleId(articleId);
+		// KBFeedback entry
+
+		kbFeedbackEntryPersistence.removeByArticleResourcePrimKey(articleResourcePrimKey);
 	}
 
-	public KBFeedbackStats getKBFeedbackStats(long kbFeedbackStatsId)
+	public KBFeedbackStats getFeedbackStats(long feedbackStatsId)
 		throws PortalException, SystemException {
 
-		return kbFeedbackStatsPersistence.findByPrimaryKey(kbFeedbackStatsId);
+		return kbFeedbackStatsPersistence.findByPrimaryKey(feedbackStatsId);
 	}
 
-	public KBFeedbackStats getArticleKBFeedbackStats(long articleId)
+	public KBFeedbackStats getArticleFeedbackStats(long articleResourcePrimKey)
 		throws SystemException {
 
-		KBFeedbackStats kbFeedbackStats = null;
+		KBFeedbackStats feedbackStats = null;
 
 		try {
-			kbFeedbackStats = kbFeedbackStatsPersistence.findByArticleId(articleId);
+			feedbackStats = kbFeedbackStatsPersistence.findByArticleResourcePrimKey(articleResourcePrimKey);
 		}
 		catch (Exception e) {
-			long kbFeedbackStatsId = CounterLocalServiceUtil.increment();
+			long feedbackStatsId = CounterLocalServiceUtil.increment();
 
-			kbFeedbackStats = kbFeedbackStatsPersistence.create(kbFeedbackStatsId);
+			feedbackStats = kbFeedbackStatsPersistence.create(feedbackStatsId);
 
-			kbFeedbackStats.setArticleId(articleId);
-			kbFeedbackStats.setAverageScore(0.0);
-			kbFeedbackStats.setTotalScoreEntries(0);
-			kbFeedbackStats.setTotalVotes(0);
-			kbFeedbackStats.setYesVotes(0);
+			feedbackStats.setArticleResourcePrimKey(articleResourcePrimKey);
+			feedbackStats.setAverageScore(0.0);
+			feedbackStats.setTotalScoreEntries(0);
+			feedbackStats.setTotalVotes(0);
+			feedbackStats.setYesVotes(0);
 
-			kbFeedbackStatsPersistence.update(kbFeedbackStats, false);
+			kbFeedbackStatsPersistence.update(feedbackStats, false);
 		}
 
-		return kbFeedbackStats;
+		return feedbackStats;
 	}
 
 	private static Log _log =

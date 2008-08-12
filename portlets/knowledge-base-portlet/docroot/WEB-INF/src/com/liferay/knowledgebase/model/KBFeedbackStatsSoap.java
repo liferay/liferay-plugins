@@ -37,8 +37,8 @@ public class KBFeedbackStatsSoap implements Serializable {
 	public static KBFeedbackStatsSoap toSoapModel(KBFeedbackStats model) {
 		KBFeedbackStatsSoap soapModel = new KBFeedbackStatsSoap();
 
-		soapModel.setKbFeedbackStatsId(model.getKbFeedbackStatsId());
-		soapModel.setArticleId(model.getArticleId());
+		soapModel.setFeedbackStatsId(model.getFeedbackStatsId());
+		soapModel.setArticleResourcePrimKey(model.getArticleResourcePrimKey());
 		soapModel.setAverageScore(model.getAverageScore());
 		soapModel.setTotalScoreEntries(model.getTotalScoreEntries());
 		soapModel.setTotalVotes(model.getTotalVotes());
@@ -62,27 +62,27 @@ public class KBFeedbackStatsSoap implements Serializable {
 	}
 
 	public long getPrimaryKey() {
-		return _kbFeedbackStatsId;
+		return _feedbackStatsId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setKbFeedbackStatsId(pk);
+		setFeedbackStatsId(pk);
 	}
 
-	public long getKbFeedbackStatsId() {
-		return _kbFeedbackStatsId;
+	public long getFeedbackStatsId() {
+		return _feedbackStatsId;
 	}
 
-	public void setKbFeedbackStatsId(long kbFeedbackStatsId) {
-		_kbFeedbackStatsId = kbFeedbackStatsId;
+	public void setFeedbackStatsId(long feedbackStatsId) {
+		_feedbackStatsId = feedbackStatsId;
 	}
 
-	public long getArticleId() {
-		return _articleId;
+	public long getArticleResourcePrimKey() {
+		return _articleResourcePrimKey;
 	}
 
-	public void setArticleId(long articleId) {
-		_articleId = articleId;
+	public void setArticleResourcePrimKey(long articleResourcePrimKey) {
+		_articleResourcePrimKey = articleResourcePrimKey;
 	}
 
 	public double getAverageScore() {
@@ -117,8 +117,8 @@ public class KBFeedbackStatsSoap implements Serializable {
 		_yesVotes = yesVotes;
 	}
 
-	private long _kbFeedbackStatsId;
-	private long _articleId;
+	private long _feedbackStatsId;
+	private long _articleResourcePrimKey;
 	private double _averageScore;
 	private int _totalScoreEntries;
 	private int _totalVotes;

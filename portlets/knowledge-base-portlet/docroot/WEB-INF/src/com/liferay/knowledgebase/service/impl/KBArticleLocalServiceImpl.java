@@ -321,8 +321,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// KBFeedback
 
-		kbFeedbackEntryLocalService.deleteKBFeedbackEntries(
-			article.getArticleId());
+		kbFeedbackEntryLocalService.deleteArticleFeedbackEntries(
+			article.getResourcePrimKey());
 
 		// Message boards
 

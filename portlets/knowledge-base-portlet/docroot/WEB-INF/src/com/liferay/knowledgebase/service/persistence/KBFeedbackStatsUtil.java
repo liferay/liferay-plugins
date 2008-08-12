@@ -30,15 +30,15 @@ package com.liferay.knowledgebase.service.persistence;
  */
 public class KBFeedbackStatsUtil {
 	public static com.liferay.knowledgebase.model.KBFeedbackStats create(
-		long kbFeedbackStatsId) {
-		return getPersistence().create(kbFeedbackStatsId);
+		long feedbackStatsId) {
+		return getPersistence().create(feedbackStatsId);
 	}
 
 	public static com.liferay.knowledgebase.model.KBFeedbackStats remove(
-		long kbFeedbackStatsId)
+		long feedbackStatsId)
 		throws com.liferay.knowledgebase.NoSuchFeedbackStatsException,
 			com.liferay.portal.SystemException {
-		return getPersistence().remove(kbFeedbackStatsId);
+		return getPersistence().remove(feedbackStatsId);
 	}
 
 	public static com.liferay.knowledgebase.model.KBFeedbackStats remove(
@@ -66,27 +66,29 @@ public class KBFeedbackStatsUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBFeedbackStats findByPrimaryKey(
-		long kbFeedbackStatsId)
+		long feedbackStatsId)
 		throws com.liferay.knowledgebase.NoSuchFeedbackStatsException,
 			com.liferay.portal.SystemException {
-		return getPersistence().findByPrimaryKey(kbFeedbackStatsId);
+		return getPersistence().findByPrimaryKey(feedbackStatsId);
 	}
 
 	public static com.liferay.knowledgebase.model.KBFeedbackStats fetchByPrimaryKey(
-		long kbFeedbackStatsId) throws com.liferay.portal.SystemException {
-		return getPersistence().fetchByPrimaryKey(kbFeedbackStatsId);
+		long feedbackStatsId) throws com.liferay.portal.SystemException {
+		return getPersistence().fetchByPrimaryKey(feedbackStatsId);
 	}
 
-	public static com.liferay.knowledgebase.model.KBFeedbackStats findByArticleId(
-		long articleId)
+	public static com.liferay.knowledgebase.model.KBFeedbackStats findByArticleResourcePrimKey(
+		long articleResourcePrimKey)
 		throws com.liferay.knowledgebase.NoSuchFeedbackStatsException,
 			com.liferay.portal.SystemException {
-		return getPersistence().findByArticleId(articleId);
+		return getPersistence()
+				   .findByArticleResourcePrimKey(articleResourcePrimKey);
 	}
 
-	public static com.liferay.knowledgebase.model.KBFeedbackStats fetchByArticleId(
-		long articleId) throws com.liferay.portal.SystemException {
-		return getPersistence().fetchByArticleId(articleId);
+	public static com.liferay.knowledgebase.model.KBFeedbackStats fetchByArticleResourcePrimKey(
+		long articleResourcePrimKey) throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .fetchByArticleResourcePrimKey(articleResourcePrimKey);
 	}
 
 	public static java.util.List<Object> findWithDynamicQuery(
@@ -117,19 +119,21 @@ public class KBFeedbackStatsUtil {
 		return getPersistence().findAll(start, end, obc);
 	}
 
-	public static void removeByArticleId(long articleId)
+	public static void removeByArticleResourcePrimKey(
+		long articleResourcePrimKey)
 		throws com.liferay.knowledgebase.NoSuchFeedbackStatsException,
 			com.liferay.portal.SystemException {
-		getPersistence().removeByArticleId(articleId);
+		getPersistence().removeByArticleResourcePrimKey(articleResourcePrimKey);
 	}
 
 	public static void removeAll() throws com.liferay.portal.SystemException {
 		getPersistence().removeAll();
 	}
 
-	public static int countByArticleId(long articleId)
+	public static int countByArticleResourcePrimKey(long articleResourcePrimKey)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().countByArticleId(articleId);
+		return getPersistence()
+				   .countByArticleResourcePrimKey(articleResourcePrimKey);
 	}
 
 	public static int countAll() throws com.liferay.portal.SystemException {

@@ -35,10 +35,10 @@ public class KBFeedbackEntryLocalServiceUtil {
 		return _service.addKBFeedbackEntry(kbFeedbackEntry);
 	}
 
-	public static void deleteKBFeedbackEntry(long kbFeedbackEntryId)
+	public static void deleteKBFeedbackEntry(long feedbackEntryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.deleteKBFeedbackEntry(kbFeedbackEntryId);
+		_service.deleteKBFeedbackEntry(feedbackEntryId);
 	}
 
 	public static void deleteKBFeedbackEntry(
@@ -60,10 +60,10 @@ public class KBFeedbackEntryLocalServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBFeedbackEntry getKBFeedbackEntry(
-		long kbFeedbackEntryId)
+		long feedbackEntryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getKBFeedbackEntry(kbFeedbackEntryId);
+		return _service.getKBFeedbackEntry(feedbackEntryId);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> getKBFeedbackEntries(
@@ -82,102 +82,132 @@ public class KBFeedbackEntryLocalServiceUtil {
 		return _service.updateKBFeedbackEntry(kbFeedbackEntry);
 	}
 
-	public static com.liferay.knowledgebase.model.KBFeedbackEntry addKBFeedbackEntry(
-		long articleId, long userId, int vote, int score,
+	public static com.liferay.knowledgebase.model.KBFeedbackEntry addFeedbackEntry(
+		long articleResourcePrimKey, long userId, int score, int vote,
 		java.lang.String comments)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.addKBFeedbackEntry(articleId, userId, vote, score,
-			comments);
+		return _service.addFeedbackEntry(articleResourcePrimKey, userId, score,
+			vote, comments);
 	}
 
-	public static void deleteKBFeedbackEntries(long articleId)
+	public static void deleteArticleFeedbackEntries(long articleResourcePrimKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.deleteKBFeedbackEntries(articleId);
+		_service.deleteArticleFeedbackEntries(articleResourcePrimKey);
 	}
 
-	public static java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> getArticleKBFeedbackEntries(
-		long articleId, int start, int end)
-		throws com.liferay.portal.SystemException {
-		return _service.getArticleKBFeedbackEntries(articleId, start, end);
+	public static void deleteFeedbackEntries(long articleResourcePrimKey)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		_service.deleteFeedbackEntries(articleResourcePrimKey);
 	}
 
-	public static int getArticleKBFeedbackEntriesCount(long articleId)
-		throws com.liferay.portal.SystemException {
-		return _service.getArticleKBFeedbackEntriesCount(articleId);
+	public static void deleteFeedbackEntry(long feedbackEntryId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		_service.deleteFeedbackEntry(feedbackEntryId);
 	}
 
-	public static java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> getKBFeedbackEntriesByArticleScore(
-		long articleId, int score, int start, int end)
+	public static void deleteFeedbackEntry(
+		com.liferay.knowledgebase.model.KBFeedbackEntry feedbackEntry)
 		throws com.liferay.portal.SystemException {
-		return _service.getKBFeedbackEntriesByArticleScore(articleId, score,
+		_service.deleteFeedbackEntry(feedbackEntry);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> getArticleFeedbackEntries(
+		long articleResourcePrimKey, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return _service.getArticleFeedbackEntries(articleResourcePrimKey,
 			start, end);
 	}
 
-	public static int getKBFeedbackEntriesByArticleScoreCount(long articleId,
-		int score) throws com.liferay.portal.SystemException {
-		return _service.getKBFeedbackEntriesByArticleScoreCount(articleId, score);
+	public static int getArticleFeedbackEntriesCount(
+		long articleResourcePrimKey) throws com.liferay.portal.SystemException {
+		return _service.getArticleFeedbackEntriesCount(articleResourcePrimKey);
 	}
 
-	public static java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> getKBFeedbackEntriesByArticleVote(
-		long articleId, int vote, int start, int end)
+	public static java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> getFeedbackEntriesByArticleScore(
+		long articleResourcePrimKey, int score, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return _service.getKBFeedbackEntriesByArticleVote(articleId, vote,
-			start, end);
+		return _service.getFeedbackEntriesByArticleScore(articleResourcePrimKey,
+			score, start, end);
 	}
 
-	public static int getKBFeedbackEntriesByArticleVoteCount(long articleId,
-		int vote) throws com.liferay.portal.SystemException {
-		return _service.getKBFeedbackEntriesByArticleVoteCount(articleId, vote);
+	public static int getFeedbackEntriesByArticleScoreCount(
+		long articleResourcePrimKey, int score)
+		throws com.liferay.portal.SystemException {
+		return _service.getFeedbackEntriesByArticleScoreCount(articleResourcePrimKey,
+			score);
 	}
 
-	public static com.liferay.knowledgebase.model.KBFeedbackEntry getKBFeedbackEntry(
-		long articleId, long userId)
+	public static java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> getFeedbackEntriesByArticleVote(
+		long articleResourcePrimKey, int vote, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return _service.getFeedbackEntriesByArticleVote(articleResourcePrimKey,
+			vote, start, end);
+	}
+
+	public static int getFeedbackEntriesByArticleVoteCount(
+		long articleResourcePrimKey, int vote)
+		throws com.liferay.portal.SystemException {
+		return _service.getFeedbackEntriesByArticleVoteCount(articleResourcePrimKey,
+			vote);
+	}
+
+	public static com.liferay.knowledgebase.model.KBFeedbackEntry getFeedbackEntry(
+		long feedbackEntryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getKBFeedbackEntry(articleId, userId);
+		return _service.getFeedbackEntry(feedbackEntryId);
 	}
 
-	public static java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> getUserKBFeedbackEntries(
+	public static com.liferay.knowledgebase.model.KBFeedbackEntry getFeedbackEntry(
+		long articleResourcePrimKey, long userId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		return _service.getFeedbackEntry(articleResourcePrimKey, userId);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBFeedbackEntry> getUserFeedbackEntries(
 		long userId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return _service.getUserKBFeedbackEntries(userId, start, end);
+		return _service.getUserFeedbackEntries(userId, start, end);
 	}
 
-	public static int getUserKBFeedbackEntriesCount(long userId)
+	public static int getUserFeedbackEntriesCount(long userId)
 		throws com.liferay.portal.SystemException {
-		return _service.getUserKBFeedbackEntriesCount(userId);
+		return _service.getUserFeedbackEntriesCount(userId);
 	}
 
 	public static com.liferay.knowledgebase.model.KBFeedbackEntry updateComments(
-		long articleId, long userId, java.lang.String comments)
+		long articleResourcePrimKey, long userId, java.lang.String comments)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.updateComments(articleId, userId, comments);
+		return _service.updateComments(articleResourcePrimKey, userId, comments);
 	}
 
-	public static com.liferay.knowledgebase.model.KBFeedbackEntry updateKBFeedback(
-		long articleId, long userId, int score, int vote,
+	public static com.liferay.knowledgebase.model.KBFeedbackEntry updateFeedback(
+		long articleResourcePrimKey, long userId, int score, int vote,
 		java.lang.String comments)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.updateKBFeedback(articleId, userId, score, vote,
-			comments);
+		return _service.updateFeedback(articleResourcePrimKey, userId, score,
+			vote, comments);
 	}
 
 	public static com.liferay.knowledgebase.model.KBFeedbackEntry updateScore(
-		long articleId, long userId, int score)
+		long articleResourcePrimKey, long userId, int score)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.updateScore(articleId, userId, score);
+		return _service.updateScore(articleResourcePrimKey, userId, score);
 	}
 
 	public static com.liferay.knowledgebase.model.KBFeedbackEntry updateVote(
-		long articleId, long userId, int vote)
+		long articleResourcePrimKey, long userId, int vote)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.updateVote(articleId, userId, vote);
+		return _service.updateVote(articleResourcePrimKey, userId, vote);
 	}
 
 	public static KBFeedbackEntryLocalService getService() {

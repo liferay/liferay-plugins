@@ -47,10 +47,10 @@ import java.util.List;
 public class KBFeedbackStatsModelImpl extends BaseModelImpl {
 	public static final String TABLE_NAME = "KB_KBFeedbackStats";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "kbFeedbackStatsId", new Integer(Types.BIGINT) },
+			{ "feedbackStatsId", new Integer(Types.BIGINT) },
 			
 
-			{ "articleId", new Integer(Types.BIGINT) },
+			{ "articleResourcePrimKey", new Integer(Types.BIGINT) },
 			
 
 			{ "averageScore", new Integer(Types.DOUBLE) },
@@ -64,7 +64,7 @@ public class KBFeedbackStatsModelImpl extends BaseModelImpl {
 
 			{ "yesVotes", new Integer(Types.INTEGER) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KB_KBFeedbackStats (kbFeedbackStatsId LONG not null primary key,articleId LONG,averageScore DOUBLE,totalScoreEntries INTEGER,totalVotes INTEGER,yesVotes INTEGER)";
+	public static final String TABLE_SQL_CREATE = "create table KB_KBFeedbackStats (feedbackStatsId LONG not null primary key,articleResourcePrimKey LONG,averageScore DOUBLE,totalScoreEntries INTEGER,totalVotes INTEGER,yesVotes INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table KB_KBFeedbackStats";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -76,8 +76,8 @@ public class KBFeedbackStatsModelImpl extends BaseModelImpl {
 	public static KBFeedbackStats toModel(KBFeedbackStatsSoap soapModel) {
 		KBFeedbackStats model = new KBFeedbackStatsImpl();
 
-		model.setKbFeedbackStatsId(soapModel.getKbFeedbackStatsId());
-		model.setArticleId(soapModel.getArticleId());
+		model.setFeedbackStatsId(soapModel.getFeedbackStatsId());
+		model.setArticleResourcePrimKey(soapModel.getArticleResourcePrimKey());
 		model.setAverageScore(soapModel.getAverageScore());
 		model.setTotalScoreEntries(soapModel.getTotalScoreEntries());
 		model.setTotalVotes(soapModel.getTotalVotes());
@@ -104,34 +104,34 @@ public class KBFeedbackStatsModelImpl extends BaseModelImpl {
 	}
 
 	public long getPrimaryKey() {
-		return _kbFeedbackStatsId;
+		return _feedbackStatsId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setKbFeedbackStatsId(pk);
+		setFeedbackStatsId(pk);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_kbFeedbackStatsId);
+		return new Long(_feedbackStatsId);
 	}
 
-	public long getKbFeedbackStatsId() {
-		return _kbFeedbackStatsId;
+	public long getFeedbackStatsId() {
+		return _feedbackStatsId;
 	}
 
-	public void setKbFeedbackStatsId(long kbFeedbackStatsId) {
-		if (kbFeedbackStatsId != _kbFeedbackStatsId) {
-			_kbFeedbackStatsId = kbFeedbackStatsId;
+	public void setFeedbackStatsId(long feedbackStatsId) {
+		if (feedbackStatsId != _feedbackStatsId) {
+			_feedbackStatsId = feedbackStatsId;
 		}
 	}
 
-	public long getArticleId() {
-		return _articleId;
+	public long getArticleResourcePrimKey() {
+		return _articleResourcePrimKey;
 	}
 
-	public void setArticleId(long articleId) {
-		if (articleId != _articleId) {
-			_articleId = articleId;
+	public void setArticleResourcePrimKey(long articleResourcePrimKey) {
+		if (articleResourcePrimKey != _articleResourcePrimKey) {
+			_articleResourcePrimKey = articleResourcePrimKey;
 		}
 	}
 
@@ -184,8 +184,8 @@ public class KBFeedbackStatsModelImpl extends BaseModelImpl {
 
 			model.setEscapedModel(true);
 
-			model.setKbFeedbackStatsId(getKbFeedbackStatsId());
-			model.setArticleId(getArticleId());
+			model.setFeedbackStatsId(getFeedbackStatsId());
+			model.setArticleResourcePrimKey(getArticleResourcePrimKey());
 			model.setAverageScore(getAverageScore());
 			model.setTotalScoreEntries(getTotalScoreEntries());
 			model.setTotalVotes(getTotalVotes());
@@ -202,8 +202,8 @@ public class KBFeedbackStatsModelImpl extends BaseModelImpl {
 	public Object clone() {
 		KBFeedbackStatsImpl clone = new KBFeedbackStatsImpl();
 
-		clone.setKbFeedbackStatsId(getKbFeedbackStatsId());
-		clone.setArticleId(getArticleId());
+		clone.setFeedbackStatsId(getFeedbackStatsId());
+		clone.setArticleResourcePrimKey(getArticleResourcePrimKey());
 		clone.setAverageScore(getAverageScore());
 		clone.setTotalScoreEntries(getTotalScoreEntries());
 		clone.setTotalVotes(getTotalVotes());
@@ -260,8 +260,8 @@ public class KBFeedbackStatsModelImpl extends BaseModelImpl {
 		return (int)getPrimaryKey();
 	}
 
-	private long _kbFeedbackStatsId;
-	private long _articleId;
+	private long _feedbackStatsId;
+	private long _articleResourcePrimKey;
 	private double _averageScore;
 	private int _totalScoreEntries;
 	private int _totalVotes;

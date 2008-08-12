@@ -14,10 +14,10 @@ create index IX_93550C33 on KB_KBArticle (uuid_, groupId);
 
 create index IX_5EFF4389 on KB_KBArticleResource (groupId, title);
 
-create index IX_A9BFF26D on KB_KBFeedbackEntry (articleId);
-create index IX_36761B5 on KB_KBFeedbackEntry (articleId, score);
-create index IX_768E8DA7 on KB_KBFeedbackEntry (articleId, userId);
-create index IX_BB93390B on KB_KBFeedbackEntry (articleId, vote);
+create index IX_377CA97D on KB_KBFeedbackEntry (articleResourcePrimKey);
+create index IX_3F5198A5 on KB_KBFeedbackEntry (articleResourcePrimKey, score);
+create index IX_B7EB34B7 on KB_KBFeedbackEntry (articleResourcePrimKey, userId);
+create index IX_EF0E641B on KB_KBFeedbackEntry (articleResourcePrimKey, vote);
 create index IX_5E196E on KB_KBFeedbackEntry (userId);
 
-create index IX_F8662760 on KB_KBFeedbackStats (articleId);
+create index IX_D911576A on KB_KBFeedbackStats (articleResourcePrimKey);

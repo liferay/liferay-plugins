@@ -59,16 +59,16 @@ import java.util.List;
  */
 public class KBFeedbackStatsPersistenceImpl extends BasePersistenceImpl
 	implements KBFeedbackStatsPersistence, InitializingBean {
-	public KBFeedbackStats create(long kbFeedbackStatsId) {
+	public KBFeedbackStats create(long feedbackStatsId) {
 		KBFeedbackStats kbFeedbackStats = new KBFeedbackStatsImpl();
 
 		kbFeedbackStats.setNew(true);
-		kbFeedbackStats.setPrimaryKey(kbFeedbackStatsId);
+		kbFeedbackStats.setPrimaryKey(feedbackStatsId);
 
 		return kbFeedbackStats;
 	}
 
-	public KBFeedbackStats remove(long kbFeedbackStatsId)
+	public KBFeedbackStats remove(long feedbackStatsId)
 		throws NoSuchFeedbackStatsException, SystemException {
 		Session session = null;
 
@@ -76,17 +76,17 @@ public class KBFeedbackStatsPersistenceImpl extends BasePersistenceImpl
 			session = openSession();
 
 			KBFeedbackStats kbFeedbackStats = (KBFeedbackStats)session.get(KBFeedbackStatsImpl.class,
-					new Long(kbFeedbackStatsId));
+					new Long(feedbackStatsId));
 
 			if (kbFeedbackStats == null) {
 				if (_log.isWarnEnabled()) {
 					_log.warn("No KBFeedbackStats exists with the primary key " +
-						kbFeedbackStatsId);
+						feedbackStatsId);
 				}
 
 				throw new NoSuchFeedbackStatsException(
 					"No KBFeedbackStats exists with the primary key " +
-					kbFeedbackStatsId);
+					feedbackStatsId);
 			}
 
 			return remove(kbFeedbackStats);
@@ -218,25 +218,25 @@ public class KBFeedbackStatsPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public KBFeedbackStats findByPrimaryKey(long kbFeedbackStatsId)
+	public KBFeedbackStats findByPrimaryKey(long feedbackStatsId)
 		throws NoSuchFeedbackStatsException, SystemException {
-		KBFeedbackStats kbFeedbackStats = fetchByPrimaryKey(kbFeedbackStatsId);
+		KBFeedbackStats kbFeedbackStats = fetchByPrimaryKey(feedbackStatsId);
 
 		if (kbFeedbackStats == null) {
 			if (_log.isWarnEnabled()) {
 				_log.warn("No KBFeedbackStats exists with the primary key " +
-					kbFeedbackStatsId);
+					feedbackStatsId);
 			}
 
 			throw new NoSuchFeedbackStatsException(
 				"No KBFeedbackStats exists with the primary key " +
-				kbFeedbackStatsId);
+				feedbackStatsId);
 		}
 
 		return kbFeedbackStats;
 	}
 
-	public KBFeedbackStats fetchByPrimaryKey(long kbFeedbackStatsId)
+	public KBFeedbackStats fetchByPrimaryKey(long feedbackStatsId)
 		throws SystemException {
 		Session session = null;
 
@@ -244,7 +244,7 @@ public class KBFeedbackStatsPersistenceImpl extends BasePersistenceImpl
 			session = openSession();
 
 			return (KBFeedbackStats)session.get(KBFeedbackStatsImpl.class,
-				new Long(kbFeedbackStatsId));
+				new Long(feedbackStatsId));
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -254,16 +254,17 @@ public class KBFeedbackStatsPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public KBFeedbackStats findByArticleId(long articleId)
+	public KBFeedbackStats findByArticleResourcePrimKey(
+		long articleResourcePrimKey)
 		throws NoSuchFeedbackStatsException, SystemException {
-		KBFeedbackStats kbFeedbackStats = fetchByArticleId(articleId);
+		KBFeedbackStats kbFeedbackStats = fetchByArticleResourcePrimKey(articleResourcePrimKey);
 
 		if (kbFeedbackStats == null) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No KBFeedbackStats exists with the key {");
 
-			msg.append("articleId=" + articleId);
+			msg.append("articleResourcePrimKey=" + articleResourcePrimKey);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -277,13 +278,13 @@ public class KBFeedbackStatsPersistenceImpl extends BasePersistenceImpl
 		return kbFeedbackStats;
 	}
 
-	public KBFeedbackStats fetchByArticleId(long articleId)
-		throws SystemException {
+	public KBFeedbackStats fetchByArticleResourcePrimKey(
+		long articleResourcePrimKey) throws SystemException {
 		boolean finderClassNameCacheEnabled = KBFeedbackStatsModelImpl.CACHE_ENABLED;
 		String finderClassName = KBFeedbackStats.class.getName();
-		String finderMethodName = "fetchByArticleId";
+		String finderMethodName = "fetchByArticleResourcePrimKey";
 		String[] finderParams = new String[] { Long.class.getName() };
-		Object[] finderArgs = new Object[] { new Long(articleId) };
+		Object[] finderArgs = new Object[] { new Long(articleResourcePrimKey) };
 
 		Object result = null;
 
@@ -303,7 +304,7 @@ public class KBFeedbackStatsPersistenceImpl extends BasePersistenceImpl
 				query.append(
 					"FROM com.liferay.knowledgebase.model.KBFeedbackStats WHERE ");
 
-				query.append("articleId = ?");
+				query.append("articleResourcePrimKey = ?");
 
 				query.append(" ");
 
@@ -311,7 +312,7 @@ public class KBFeedbackStatsPersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(articleId);
+				qPos.add(articleResourcePrimKey);
 
 				List<KBFeedbackStats> list = q.list();
 
@@ -457,9 +458,9 @@ public class KBFeedbackStatsPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public void removeByArticleId(long articleId)
+	public void removeByArticleResourcePrimKey(long articleResourcePrimKey)
 		throws NoSuchFeedbackStatsException, SystemException {
-		KBFeedbackStats kbFeedbackStats = findByArticleId(articleId);
+		KBFeedbackStats kbFeedbackStats = findByArticleResourcePrimKey(articleResourcePrimKey);
 
 		remove(kbFeedbackStats);
 	}
@@ -470,12 +471,13 @@ public class KBFeedbackStatsPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public int countByArticleId(long articleId) throws SystemException {
+	public int countByArticleResourcePrimKey(long articleResourcePrimKey)
+		throws SystemException {
 		boolean finderClassNameCacheEnabled = KBFeedbackStatsModelImpl.CACHE_ENABLED;
 		String finderClassName = KBFeedbackStats.class.getName();
-		String finderMethodName = "countByArticleId";
+		String finderMethodName = "countByArticleResourcePrimKey";
 		String[] finderParams = new String[] { Long.class.getName() };
-		Object[] finderArgs = new Object[] { new Long(articleId) };
+		Object[] finderArgs = new Object[] { new Long(articleResourcePrimKey) };
 
 		Object result = null;
 
@@ -496,7 +498,7 @@ public class KBFeedbackStatsPersistenceImpl extends BasePersistenceImpl
 				query.append(
 					"FROM com.liferay.knowledgebase.model.KBFeedbackStats WHERE ");
 
-				query.append("articleId = ?");
+				query.append("articleResourcePrimKey = ?");
 
 				query.append(" ");
 
@@ -504,7 +506,7 @@ public class KBFeedbackStatsPersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(articleId);
+				qPos.add(articleResourcePrimKey);
 
 				Long count = null;
 

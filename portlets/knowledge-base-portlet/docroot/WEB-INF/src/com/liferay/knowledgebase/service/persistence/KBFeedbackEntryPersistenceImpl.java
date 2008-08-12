@@ -59,16 +59,16 @@ import java.util.List;
  */
 public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 	implements KBFeedbackEntryPersistence, InitializingBean {
-	public KBFeedbackEntry create(long kbFeedbackEntryId) {
+	public KBFeedbackEntry create(long feedbackEntryId) {
 		KBFeedbackEntry kbFeedbackEntry = new KBFeedbackEntryImpl();
 
 		kbFeedbackEntry.setNew(true);
-		kbFeedbackEntry.setPrimaryKey(kbFeedbackEntryId);
+		kbFeedbackEntry.setPrimaryKey(feedbackEntryId);
 
 		return kbFeedbackEntry;
 	}
 
-	public KBFeedbackEntry remove(long kbFeedbackEntryId)
+	public KBFeedbackEntry remove(long feedbackEntryId)
 		throws NoSuchFeedbackEntryException, SystemException {
 		Session session = null;
 
@@ -76,17 +76,17 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 			session = openSession();
 
 			KBFeedbackEntry kbFeedbackEntry = (KBFeedbackEntry)session.get(KBFeedbackEntryImpl.class,
-					new Long(kbFeedbackEntryId));
+					new Long(feedbackEntryId));
 
 			if (kbFeedbackEntry == null) {
 				if (_log.isWarnEnabled()) {
 					_log.warn("No KBFeedbackEntry exists with the primary key " +
-						kbFeedbackEntryId);
+						feedbackEntryId);
 				}
 
 				throw new NoSuchFeedbackEntryException(
 					"No KBFeedbackEntry exists with the primary key " +
-					kbFeedbackEntryId);
+					feedbackEntryId);
 			}
 
 			return remove(kbFeedbackEntry);
@@ -218,25 +218,25 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public KBFeedbackEntry findByPrimaryKey(long kbFeedbackEntryId)
+	public KBFeedbackEntry findByPrimaryKey(long feedbackEntryId)
 		throws NoSuchFeedbackEntryException, SystemException {
-		KBFeedbackEntry kbFeedbackEntry = fetchByPrimaryKey(kbFeedbackEntryId);
+		KBFeedbackEntry kbFeedbackEntry = fetchByPrimaryKey(feedbackEntryId);
 
 		if (kbFeedbackEntry == null) {
 			if (_log.isWarnEnabled()) {
 				_log.warn("No KBFeedbackEntry exists with the primary key " +
-					kbFeedbackEntryId);
+					feedbackEntryId);
 			}
 
 			throw new NoSuchFeedbackEntryException(
 				"No KBFeedbackEntry exists with the primary key " +
-				kbFeedbackEntryId);
+				feedbackEntryId);
 		}
 
 		return kbFeedbackEntry;
 	}
 
-	public KBFeedbackEntry fetchByPrimaryKey(long kbFeedbackEntryId)
+	public KBFeedbackEntry fetchByPrimaryKey(long feedbackEntryId)
 		throws SystemException {
 		Session session = null;
 
@@ -244,7 +244,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 			session = openSession();
 
 			return (KBFeedbackEntry)session.get(KBFeedbackEntryImpl.class,
-				new Long(kbFeedbackEntryId));
+				new Long(feedbackEntryId));
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -254,13 +254,13 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<KBFeedbackEntry> findByArticleId(long articleId)
-		throws SystemException {
+	public List<KBFeedbackEntry> findByArticleResourcePrimKey(
+		long articleResourcePrimKey) throws SystemException {
 		boolean finderClassNameCacheEnabled = KBFeedbackEntryModelImpl.CACHE_ENABLED;
 		String finderClassName = KBFeedbackEntry.class.getName();
-		String finderMethodName = "findByArticleId";
+		String finderMethodName = "findByArticleResourcePrimKey";
 		String[] finderParams = new String[] { Long.class.getName() };
-		Object[] finderArgs = new Object[] { new Long(articleId) };
+		Object[] finderArgs = new Object[] { new Long(articleResourcePrimKey) };
 
 		Object result = null;
 
@@ -280,7 +280,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 				query.append(
 					"FROM com.liferay.knowledgebase.model.KBFeedbackEntry WHERE ");
 
-				query.append("articleId = ?");
+				query.append("articleResourcePrimKey = ?");
 
 				query.append(" ");
 
@@ -292,7 +292,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(articleId);
+				qPos.add(articleResourcePrimKey);
 
 				List<KBFeedbackEntry> list = q.list();
 
@@ -314,16 +314,19 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<KBFeedbackEntry> findByArticleId(long articleId, int start,
-		int end) throws SystemException {
-		return findByArticleId(articleId, start, end, null);
+	public List<KBFeedbackEntry> findByArticleResourcePrimKey(
+		long articleResourcePrimKey, int start, int end)
+		throws SystemException {
+		return findByArticleResourcePrimKey(articleResourcePrimKey, start, end,
+			null);
 	}
 
-	public List<KBFeedbackEntry> findByArticleId(long articleId, int start,
-		int end, OrderByComparator obc) throws SystemException {
+	public List<KBFeedbackEntry> findByArticleResourcePrimKey(
+		long articleResourcePrimKey, int start, int end, OrderByComparator obc)
+		throws SystemException {
 		boolean finderClassNameCacheEnabled = KBFeedbackEntryModelImpl.CACHE_ENABLED;
 		String finderClassName = KBFeedbackEntry.class.getName();
-		String finderMethodName = "findByArticleId";
+		String finderMethodName = "findByArticleResourcePrimKey";
 		String[] finderParams = new String[] {
 				Long.class.getName(),
 				
@@ -331,7 +334,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 		Object[] finderArgs = new Object[] {
-				new Long(articleId),
+				new Long(articleResourcePrimKey),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
@@ -354,7 +357,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 				query.append(
 					"FROM com.liferay.knowledgebase.model.KBFeedbackEntry WHERE ");
 
-				query.append("articleId = ?");
+				query.append("articleResourcePrimKey = ?");
 
 				query.append(" ");
 
@@ -373,7 +376,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(articleId);
+				qPos.add(articleResourcePrimKey);
 
 				List<KBFeedbackEntry> list = (List<KBFeedbackEntry>)QueryUtil.list(q,
 						getDialect(), start, end);
@@ -396,17 +399,18 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public KBFeedbackEntry findByArticleId_First(long articleId,
-		OrderByComparator obc)
+	public KBFeedbackEntry findByArticleResourcePrimKey_First(
+		long articleResourcePrimKey, OrderByComparator obc)
 		throws NoSuchFeedbackEntryException, SystemException {
-		List<KBFeedbackEntry> list = findByArticleId(articleId, 0, 1, obc);
+		List<KBFeedbackEntry> list = findByArticleResourcePrimKey(articleResourcePrimKey,
+				0, 1, obc);
 
 		if (list.size() == 0) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No KBFeedbackEntry exists with the key {");
 
-			msg.append("articleId=" + articleId);
+			msg.append("articleResourcePrimKey=" + articleResourcePrimKey);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -417,20 +421,20 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public KBFeedbackEntry findByArticleId_Last(long articleId,
-		OrderByComparator obc)
+	public KBFeedbackEntry findByArticleResourcePrimKey_Last(
+		long articleResourcePrimKey, OrderByComparator obc)
 		throws NoSuchFeedbackEntryException, SystemException {
-		int count = countByArticleId(articleId);
+		int count = countByArticleResourcePrimKey(articleResourcePrimKey);
 
-		List<KBFeedbackEntry> list = findByArticleId(articleId, count - 1,
-				count, obc);
+		List<KBFeedbackEntry> list = findByArticleResourcePrimKey(articleResourcePrimKey,
+				count - 1, count, obc);
 
 		if (list.size() == 0) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No KBFeedbackEntry exists with the key {");
 
-			msg.append("articleId=" + articleId);
+			msg.append("articleResourcePrimKey=" + articleResourcePrimKey);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -441,12 +445,12 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public KBFeedbackEntry[] findByArticleId_PrevAndNext(
-		long kbFeedbackEntryId, long articleId, OrderByComparator obc)
+	public KBFeedbackEntry[] findByArticleResourcePrimKey_PrevAndNext(
+		long feedbackEntryId, long articleResourcePrimKey, OrderByComparator obc)
 		throws NoSuchFeedbackEntryException, SystemException {
-		KBFeedbackEntry kbFeedbackEntry = findByPrimaryKey(kbFeedbackEntryId);
+		KBFeedbackEntry kbFeedbackEntry = findByPrimaryKey(feedbackEntryId);
 
-		int count = countByArticleId(articleId);
+		int count = countByArticleResourcePrimKey(articleResourcePrimKey);
 
 		Session session = null;
 
@@ -458,7 +462,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 			query.append(
 				"FROM com.liferay.knowledgebase.model.KBFeedbackEntry WHERE ");
 
-			query.append("articleId = ?");
+			query.append("articleResourcePrimKey = ?");
 
 			query.append(" ");
 
@@ -477,7 +481,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			qPos.add(articleId);
+			qPos.add(articleResourcePrimKey);
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
 					kbFeedbackEntry);
@@ -682,10 +686,10 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public KBFeedbackEntry[] findByUserId_PrevAndNext(long kbFeedbackEntryId,
+	public KBFeedbackEntry[] findByUserId_PrevAndNext(long feedbackEntryId,
 		long userId, OrderByComparator obc)
 		throws NoSuchFeedbackEntryException, SystemException {
-		KBFeedbackEntry kbFeedbackEntry = findByPrimaryKey(kbFeedbackEntryId);
+		KBFeedbackEntry kbFeedbackEntry = findByPrimaryKey(feedbackEntryId);
 
 		int count = countByUserId(userId);
 
@@ -739,8 +743,8 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<KBFeedbackEntry> findByA_S(long articleId, int score)
-		throws SystemException {
+	public List<KBFeedbackEntry> findByA_S(long articleResourcePrimKey,
+		int score) throws SystemException {
 		boolean finderClassNameCacheEnabled = KBFeedbackEntryModelImpl.CACHE_ENABLED;
 		String finderClassName = KBFeedbackEntry.class.getName();
 		String finderMethodName = "findByA_S";
@@ -748,7 +752,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 				Long.class.getName(), Integer.class.getName()
 			};
 		Object[] finderArgs = new Object[] {
-				new Long(articleId), new Integer(score)
+				new Long(articleResourcePrimKey), new Integer(score)
 			};
 
 		Object result = null;
@@ -769,7 +773,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 				query.append(
 					"FROM com.liferay.knowledgebase.model.KBFeedbackEntry WHERE ");
 
-				query.append("articleId = ?");
+				query.append("articleResourcePrimKey = ?");
 
 				query.append(" AND ");
 
@@ -785,7 +789,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(articleId);
+				qPos.add(articleResourcePrimKey);
 
 				qPos.add(score);
 
@@ -809,13 +813,14 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<KBFeedbackEntry> findByA_S(long articleId, int score,
-		int start, int end) throws SystemException {
-		return findByA_S(articleId, score, start, end, null);
+	public List<KBFeedbackEntry> findByA_S(long articleResourcePrimKey,
+		int score, int start, int end) throws SystemException {
+		return findByA_S(articleResourcePrimKey, score, start, end, null);
 	}
 
-	public List<KBFeedbackEntry> findByA_S(long articleId, int score,
-		int start, int end, OrderByComparator obc) throws SystemException {
+	public List<KBFeedbackEntry> findByA_S(long articleResourcePrimKey,
+		int score, int start, int end, OrderByComparator obc)
+		throws SystemException {
 		boolean finderClassNameCacheEnabled = KBFeedbackEntryModelImpl.CACHE_ENABLED;
 		String finderClassName = KBFeedbackEntry.class.getName();
 		String finderMethodName = "findByA_S";
@@ -826,7 +831,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 		Object[] finderArgs = new Object[] {
-				new Long(articleId), new Integer(score),
+				new Long(articleResourcePrimKey), new Integer(score),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
@@ -849,7 +854,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 				query.append(
 					"FROM com.liferay.knowledgebase.model.KBFeedbackEntry WHERE ");
 
-				query.append("articleId = ?");
+				query.append("articleResourcePrimKey = ?");
 
 				query.append(" AND ");
 
@@ -872,7 +877,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(articleId);
+				qPos.add(articleResourcePrimKey);
 
 				qPos.add(score);
 
@@ -897,17 +902,18 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public KBFeedbackEntry findByA_S_First(long articleId, int score,
-		OrderByComparator obc)
+	public KBFeedbackEntry findByA_S_First(long articleResourcePrimKey,
+		int score, OrderByComparator obc)
 		throws NoSuchFeedbackEntryException, SystemException {
-		List<KBFeedbackEntry> list = findByA_S(articleId, score, 0, 1, obc);
+		List<KBFeedbackEntry> list = findByA_S(articleResourcePrimKey, score,
+				0, 1, obc);
 
 		if (list.size() == 0) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No KBFeedbackEntry exists with the key {");
 
-			msg.append("articleId=" + articleId);
+			msg.append("articleResourcePrimKey=" + articleResourcePrimKey);
 
 			msg.append(", ");
 			msg.append("score=" + score);
@@ -921,20 +927,20 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public KBFeedbackEntry findByA_S_Last(long articleId, int score,
-		OrderByComparator obc)
+	public KBFeedbackEntry findByA_S_Last(long articleResourcePrimKey,
+		int score, OrderByComparator obc)
 		throws NoSuchFeedbackEntryException, SystemException {
-		int count = countByA_S(articleId, score);
+		int count = countByA_S(articleResourcePrimKey, score);
 
-		List<KBFeedbackEntry> list = findByA_S(articleId, score, count - 1,
-				count, obc);
+		List<KBFeedbackEntry> list = findByA_S(articleResourcePrimKey, score,
+				count - 1, count, obc);
 
 		if (list.size() == 0) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No KBFeedbackEntry exists with the key {");
 
-			msg.append("articleId=" + articleId);
+			msg.append("articleResourcePrimKey=" + articleResourcePrimKey);
 
 			msg.append(", ");
 			msg.append("score=" + score);
@@ -948,12 +954,12 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public KBFeedbackEntry[] findByA_S_PrevAndNext(long kbFeedbackEntryId,
-		long articleId, int score, OrderByComparator obc)
+	public KBFeedbackEntry[] findByA_S_PrevAndNext(long feedbackEntryId,
+		long articleResourcePrimKey, int score, OrderByComparator obc)
 		throws NoSuchFeedbackEntryException, SystemException {
-		KBFeedbackEntry kbFeedbackEntry = findByPrimaryKey(kbFeedbackEntryId);
+		KBFeedbackEntry kbFeedbackEntry = findByPrimaryKey(feedbackEntryId);
 
-		int count = countByA_S(articleId, score);
+		int count = countByA_S(articleResourcePrimKey, score);
 
 		Session session = null;
 
@@ -965,7 +971,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 			query.append(
 				"FROM com.liferay.knowledgebase.model.KBFeedbackEntry WHERE ");
 
-			query.append("articleId = ?");
+			query.append("articleResourcePrimKey = ?");
 
 			query.append(" AND ");
 
@@ -988,7 +994,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			qPos.add(articleId);
+			qPos.add(articleResourcePrimKey);
 
 			qPos.add(score);
 
@@ -1011,16 +1017,17 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public KBFeedbackEntry findByA_U(long articleId, long userId)
+	public KBFeedbackEntry findByA_U(long articleResourcePrimKey, long userId)
 		throws NoSuchFeedbackEntryException, SystemException {
-		KBFeedbackEntry kbFeedbackEntry = fetchByA_U(articleId, userId);
+		KBFeedbackEntry kbFeedbackEntry = fetchByA_U(articleResourcePrimKey,
+				userId);
 
 		if (kbFeedbackEntry == null) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No KBFeedbackEntry exists with the key {");
 
-			msg.append("articleId=" + articleId);
+			msg.append("articleResourcePrimKey=" + articleResourcePrimKey);
 
 			msg.append(", ");
 			msg.append("userId=" + userId);
@@ -1037,7 +1044,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		return kbFeedbackEntry;
 	}
 
-	public KBFeedbackEntry fetchByA_U(long articleId, long userId)
+	public KBFeedbackEntry fetchByA_U(long articleResourcePrimKey, long userId)
 		throws SystemException {
 		boolean finderClassNameCacheEnabled = KBFeedbackEntryModelImpl.CACHE_ENABLED;
 		String finderClassName = KBFeedbackEntry.class.getName();
@@ -1045,7 +1052,9 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		String[] finderParams = new String[] {
 				Long.class.getName(), Long.class.getName()
 			};
-		Object[] finderArgs = new Object[] { new Long(articleId), new Long(userId) };
+		Object[] finderArgs = new Object[] {
+				new Long(articleResourcePrimKey), new Long(userId)
+			};
 
 		Object result = null;
 
@@ -1065,7 +1074,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 				query.append(
 					"FROM com.liferay.knowledgebase.model.KBFeedbackEntry WHERE ");
 
-				query.append("articleId = ?");
+				query.append("articleResourcePrimKey = ?");
 
 				query.append(" AND ");
 
@@ -1081,7 +1090,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(articleId);
+				qPos.add(articleResourcePrimKey);
 
 				qPos.add(userId);
 
@@ -1117,7 +1126,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<KBFeedbackEntry> findByA_V(long articleId, int vote)
+	public List<KBFeedbackEntry> findByA_V(long articleResourcePrimKey, int vote)
 		throws SystemException {
 		boolean finderClassNameCacheEnabled = KBFeedbackEntryModelImpl.CACHE_ENABLED;
 		String finderClassName = KBFeedbackEntry.class.getName();
@@ -1126,7 +1135,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 				Long.class.getName(), Integer.class.getName()
 			};
 		Object[] finderArgs = new Object[] {
-				new Long(articleId), new Integer(vote)
+				new Long(articleResourcePrimKey), new Integer(vote)
 			};
 
 		Object result = null;
@@ -1147,7 +1156,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 				query.append(
 					"FROM com.liferay.knowledgebase.model.KBFeedbackEntry WHERE ");
 
-				query.append("articleId = ?");
+				query.append("articleResourcePrimKey = ?");
 
 				query.append(" AND ");
 
@@ -1163,7 +1172,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(articleId);
+				qPos.add(articleResourcePrimKey);
 
 				qPos.add(vote);
 
@@ -1187,13 +1196,14 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<KBFeedbackEntry> findByA_V(long articleId, int vote, int start,
-		int end) throws SystemException {
-		return findByA_V(articleId, vote, start, end, null);
+	public List<KBFeedbackEntry> findByA_V(long articleResourcePrimKey,
+		int vote, int start, int end) throws SystemException {
+		return findByA_V(articleResourcePrimKey, vote, start, end, null);
 	}
 
-	public List<KBFeedbackEntry> findByA_V(long articleId, int vote, int start,
-		int end, OrderByComparator obc) throws SystemException {
+	public List<KBFeedbackEntry> findByA_V(long articleResourcePrimKey,
+		int vote, int start, int end, OrderByComparator obc)
+		throws SystemException {
 		boolean finderClassNameCacheEnabled = KBFeedbackEntryModelImpl.CACHE_ENABLED;
 		String finderClassName = KBFeedbackEntry.class.getName();
 		String finderMethodName = "findByA_V";
@@ -1204,7 +1214,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 		Object[] finderArgs = new Object[] {
-				new Long(articleId), new Integer(vote),
+				new Long(articleResourcePrimKey), new Integer(vote),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
@@ -1227,7 +1237,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 				query.append(
 					"FROM com.liferay.knowledgebase.model.KBFeedbackEntry WHERE ");
 
-				query.append("articleId = ?");
+				query.append("articleResourcePrimKey = ?");
 
 				query.append(" AND ");
 
@@ -1250,7 +1260,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(articleId);
+				qPos.add(articleResourcePrimKey);
 
 				qPos.add(vote);
 
@@ -1275,17 +1285,18 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public KBFeedbackEntry findByA_V_First(long articleId, int vote,
-		OrderByComparator obc)
+	public KBFeedbackEntry findByA_V_First(long articleResourcePrimKey,
+		int vote, OrderByComparator obc)
 		throws NoSuchFeedbackEntryException, SystemException {
-		List<KBFeedbackEntry> list = findByA_V(articleId, vote, 0, 1, obc);
+		List<KBFeedbackEntry> list = findByA_V(articleResourcePrimKey, vote, 0,
+				1, obc);
 
 		if (list.size() == 0) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No KBFeedbackEntry exists with the key {");
 
-			msg.append("articleId=" + articleId);
+			msg.append("articleResourcePrimKey=" + articleResourcePrimKey);
 
 			msg.append(", ");
 			msg.append("vote=" + vote);
@@ -1299,20 +1310,20 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public KBFeedbackEntry findByA_V_Last(long articleId, int vote,
-		OrderByComparator obc)
+	public KBFeedbackEntry findByA_V_Last(long articleResourcePrimKey,
+		int vote, OrderByComparator obc)
 		throws NoSuchFeedbackEntryException, SystemException {
-		int count = countByA_V(articleId, vote);
+		int count = countByA_V(articleResourcePrimKey, vote);
 
-		List<KBFeedbackEntry> list = findByA_V(articleId, vote, count - 1,
-				count, obc);
+		List<KBFeedbackEntry> list = findByA_V(articleResourcePrimKey, vote,
+				count - 1, count, obc);
 
 		if (list.size() == 0) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No KBFeedbackEntry exists with the key {");
 
-			msg.append("articleId=" + articleId);
+			msg.append("articleResourcePrimKey=" + articleResourcePrimKey);
 
 			msg.append(", ");
 			msg.append("vote=" + vote);
@@ -1326,12 +1337,12 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public KBFeedbackEntry[] findByA_V_PrevAndNext(long kbFeedbackEntryId,
-		long articleId, int vote, OrderByComparator obc)
+	public KBFeedbackEntry[] findByA_V_PrevAndNext(long feedbackEntryId,
+		long articleResourcePrimKey, int vote, OrderByComparator obc)
 		throws NoSuchFeedbackEntryException, SystemException {
-		KBFeedbackEntry kbFeedbackEntry = findByPrimaryKey(kbFeedbackEntryId);
+		KBFeedbackEntry kbFeedbackEntry = findByPrimaryKey(feedbackEntryId);
 
-		int count = countByA_V(articleId, vote);
+		int count = countByA_V(articleResourcePrimKey, vote);
 
 		Session session = null;
 
@@ -1343,7 +1354,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 			query.append(
 				"FROM com.liferay.knowledgebase.model.KBFeedbackEntry WHERE ");
 
-			query.append("articleId = ?");
+			query.append("articleResourcePrimKey = ?");
 
 			query.append(" AND ");
 
@@ -1366,7 +1377,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			qPos.add(articleId);
+			qPos.add(articleResourcePrimKey);
 
 			qPos.add(vote);
 
@@ -1507,8 +1518,10 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public void removeByArticleId(long articleId) throws SystemException {
-		for (KBFeedbackEntry kbFeedbackEntry : findByArticleId(articleId)) {
+	public void removeByArticleResourcePrimKey(long articleResourcePrimKey)
+		throws SystemException {
+		for (KBFeedbackEntry kbFeedbackEntry : findByArticleResourcePrimKey(
+				articleResourcePrimKey)) {
 			remove(kbFeedbackEntry);
 		}
 	}
@@ -1519,22 +1532,26 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public void removeByA_S(long articleId, int score)
+	public void removeByA_S(long articleResourcePrimKey, int score)
 		throws SystemException {
-		for (KBFeedbackEntry kbFeedbackEntry : findByA_S(articleId, score)) {
+		for (KBFeedbackEntry kbFeedbackEntry : findByA_S(
+				articleResourcePrimKey, score)) {
 			remove(kbFeedbackEntry);
 		}
 	}
 
-	public void removeByA_U(long articleId, long userId)
+	public void removeByA_U(long articleResourcePrimKey, long userId)
 		throws NoSuchFeedbackEntryException, SystemException {
-		KBFeedbackEntry kbFeedbackEntry = findByA_U(articleId, userId);
+		KBFeedbackEntry kbFeedbackEntry = findByA_U(articleResourcePrimKey,
+				userId);
 
 		remove(kbFeedbackEntry);
 	}
 
-	public void removeByA_V(long articleId, int vote) throws SystemException {
-		for (KBFeedbackEntry kbFeedbackEntry : findByA_V(articleId, vote)) {
+	public void removeByA_V(long articleResourcePrimKey, int vote)
+		throws SystemException {
+		for (KBFeedbackEntry kbFeedbackEntry : findByA_V(
+				articleResourcePrimKey, vote)) {
 			remove(kbFeedbackEntry);
 		}
 	}
@@ -1545,12 +1562,13 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public int countByArticleId(long articleId) throws SystemException {
+	public int countByArticleResourcePrimKey(long articleResourcePrimKey)
+		throws SystemException {
 		boolean finderClassNameCacheEnabled = KBFeedbackEntryModelImpl.CACHE_ENABLED;
 		String finderClassName = KBFeedbackEntry.class.getName();
-		String finderMethodName = "countByArticleId";
+		String finderMethodName = "countByArticleResourcePrimKey";
 		String[] finderParams = new String[] { Long.class.getName() };
-		Object[] finderArgs = new Object[] { new Long(articleId) };
+		Object[] finderArgs = new Object[] { new Long(articleResourcePrimKey) };
 
 		Object result = null;
 
@@ -1571,7 +1589,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 				query.append(
 					"FROM com.liferay.knowledgebase.model.KBFeedbackEntry WHERE ");
 
-				query.append("articleId = ?");
+				query.append("articleResourcePrimKey = ?");
 
 				query.append(" ");
 
@@ -1579,7 +1597,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(articleId);
+				qPos.add(articleResourcePrimKey);
 
 				Long count = null;
 
@@ -1677,7 +1695,8 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public int countByA_S(long articleId, int score) throws SystemException {
+	public int countByA_S(long articleResourcePrimKey, int score)
+		throws SystemException {
 		boolean finderClassNameCacheEnabled = KBFeedbackEntryModelImpl.CACHE_ENABLED;
 		String finderClassName = KBFeedbackEntry.class.getName();
 		String finderMethodName = "countByA_S";
@@ -1685,7 +1704,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 				Long.class.getName(), Integer.class.getName()
 			};
 		Object[] finderArgs = new Object[] {
-				new Long(articleId), new Integer(score)
+				new Long(articleResourcePrimKey), new Integer(score)
 			};
 
 		Object result = null;
@@ -1707,7 +1726,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 				query.append(
 					"FROM com.liferay.knowledgebase.model.KBFeedbackEntry WHERE ");
 
-				query.append("articleId = ?");
+				query.append("articleResourcePrimKey = ?");
 
 				query.append(" AND ");
 
@@ -1719,7 +1738,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(articleId);
+				qPos.add(articleResourcePrimKey);
 
 				qPos.add(score);
 
@@ -1753,7 +1772,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public int countByA_U(long articleId, long userId)
+	public int countByA_U(long articleResourcePrimKey, long userId)
 		throws SystemException {
 		boolean finderClassNameCacheEnabled = KBFeedbackEntryModelImpl.CACHE_ENABLED;
 		String finderClassName = KBFeedbackEntry.class.getName();
@@ -1761,7 +1780,9 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		String[] finderParams = new String[] {
 				Long.class.getName(), Long.class.getName()
 			};
-		Object[] finderArgs = new Object[] { new Long(articleId), new Long(userId) };
+		Object[] finderArgs = new Object[] {
+				new Long(articleResourcePrimKey), new Long(userId)
+			};
 
 		Object result = null;
 
@@ -1782,7 +1803,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 				query.append(
 					"FROM com.liferay.knowledgebase.model.KBFeedbackEntry WHERE ");
 
-				query.append("articleId = ?");
+				query.append("articleResourcePrimKey = ?");
 
 				query.append(" AND ");
 
@@ -1794,7 +1815,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(articleId);
+				qPos.add(articleResourcePrimKey);
 
 				qPos.add(userId);
 
@@ -1828,7 +1849,8 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public int countByA_V(long articleId, int vote) throws SystemException {
+	public int countByA_V(long articleResourcePrimKey, int vote)
+		throws SystemException {
 		boolean finderClassNameCacheEnabled = KBFeedbackEntryModelImpl.CACHE_ENABLED;
 		String finderClassName = KBFeedbackEntry.class.getName();
 		String finderMethodName = "countByA_V";
@@ -1836,7 +1858,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 				Long.class.getName(), Integer.class.getName()
 			};
 		Object[] finderArgs = new Object[] {
-				new Long(articleId), new Integer(vote)
+				new Long(articleResourcePrimKey), new Integer(vote)
 			};
 
 		Object result = null;
@@ -1858,7 +1880,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 				query.append(
 					"FROM com.liferay.knowledgebase.model.KBFeedbackEntry WHERE ");
 
-				query.append("articleId = ?");
+				query.append("articleResourcePrimKey = ?");
 
 				query.append(" AND ");
 
@@ -1870,7 +1892,7 @@ public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(articleId);
+				qPos.add(articleResourcePrimKey);
 
 				qPos.add(vote);
 

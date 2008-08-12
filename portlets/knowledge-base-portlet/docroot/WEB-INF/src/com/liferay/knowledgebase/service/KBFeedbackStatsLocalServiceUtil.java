@@ -35,10 +35,10 @@ public class KBFeedbackStatsLocalServiceUtil {
 		return _service.addKBFeedbackStats(kbFeedbackStats);
 	}
 
-	public static void deleteKBFeedbackStats(long kbFeedbackStatsId)
+	public static void deleteKBFeedbackStats(long feedbackStatsId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.deleteKBFeedbackStats(kbFeedbackStatsId);
+		_service.deleteKBFeedbackStats(feedbackStatsId);
 	}
 
 	public static void deleteKBFeedbackStats(
@@ -60,10 +60,10 @@ public class KBFeedbackStatsLocalServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBFeedbackStats getKBFeedbackStats(
-		long kbFeedbackStatsId)
+		long feedbackStatsId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getKBFeedbackStats(kbFeedbackStatsId);
+		return _service.getKBFeedbackStats(feedbackStatsId);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBFeedbackStats> getKBFeedbackStatses(
@@ -82,9 +82,21 @@ public class KBFeedbackStatsLocalServiceUtil {
 		return _service.updateKBFeedbackStats(kbFeedbackStats);
 	}
 
-	public static com.liferay.knowledgebase.model.KBFeedbackStats getArticleKBFeedbackStats(
-		long articleId) throws com.liferay.portal.SystemException {
-		return _service.getArticleKBFeedbackStats(articleId);
+	public static void deleteFeedbackStats(long articleResourcePrimKey)
+		throws com.liferay.portal.SystemException {
+		_service.deleteFeedbackStats(articleResourcePrimKey);
+	}
+
+	public static com.liferay.knowledgebase.model.KBFeedbackStats getFeedbackStats(
+		long feedbackStatsId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		return _service.getFeedbackStats(feedbackStatsId);
+	}
+
+	public static com.liferay.knowledgebase.model.KBFeedbackStats getArticleFeedbackStats(
+		long articleResourcePrimKey) throws com.liferay.portal.SystemException {
+		return _service.getArticleFeedbackStats(articleResourcePrimKey);
 	}
 
 	public static KBFeedbackStatsLocalService getService() {

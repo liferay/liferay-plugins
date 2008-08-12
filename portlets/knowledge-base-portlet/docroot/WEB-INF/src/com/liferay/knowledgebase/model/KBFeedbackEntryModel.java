@@ -37,13 +37,13 @@ public interface KBFeedbackEntryModel extends BaseModel {
 
 	public void setPrimaryKey(long pk);
 
-	public long getKbFeedbackEntryId();
+	public long getFeedbackEntryId();
 
-	public void setKbFeedbackEntryId(long kbFeedbackEntryId);
+	public void setFeedbackEntryId(long feedbackEntryId);
 
-	public long getArticleId();
+	public long getArticleResourcePrimKey();
 
-	public void setArticleId(long articleId);
+	public void setArticleResourcePrimKey(long articleResourcePrimKey);
 
 	public long getUserId();
 

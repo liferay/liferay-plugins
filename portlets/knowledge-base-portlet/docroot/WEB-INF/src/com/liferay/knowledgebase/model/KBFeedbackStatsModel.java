@@ -35,13 +35,13 @@ public interface KBFeedbackStatsModel extends BaseModel {
 
 	public void setPrimaryKey(long pk);
 
-	public long getKbFeedbackStatsId();
+	public long getFeedbackStatsId();
 
-	public void setKbFeedbackStatsId(long kbFeedbackStatsId);
+	public void setFeedbackStatsId(long feedbackStatsId);
 
-	public long getArticleId();
+	public long getArticleResourcePrimKey();
 
-	public void setArticleId(long articleId);
+	public void setArticleResourcePrimKey(long articleResourcePrimKey);
 
 	public double getAverageScore();
 

@@ -81,28 +81,28 @@ public class PortletUtil {
 
 		long userId = themeDisplay.getUserId();
 
-		KBFeedbackEntry kbFeedbackEntry = null;
-		KBFeedbackStats kbFeedbackStats = null;
+		KBFeedbackEntry feedbackEntry = null;
+		KBFeedbackStats feedbackStats = null;
 
 		if (article != null) {
 			try {
-				kbFeedbackEntry =
-					KBFeedbackEntryLocalServiceUtil.getKBFeedbackEntry(
-						article.getArticleId(), userId);
+				feedbackEntry =
+					KBFeedbackEntryLocalServiceUtil.getFeedbackEntry(
+						article.getResourcePrimKey(), userId);
 			}
 			catch (NoSuchFeedbackEntryException nsfee) {
-				kbFeedbackEntry = null;
+				feedbackEntry = null;
 			}
 
-			kbFeedbackStats =
-				KBFeedbackStatsLocalServiceUtil.getArticleKBFeedbackStats(
-					article.getArticleId());
+			feedbackStats =
+				KBFeedbackStatsLocalServiceUtil.getArticleFeedbackStats(
+					article.getResourcePrimKey());
 		}
 
 		renderRequest.setAttribute(
-			KnowledgeBaseKeys.KNOWLEDGE_BASE_FEEDBACK_ENTRY, kbFeedbackEntry);
+			KnowledgeBaseKeys.KNOWLEDGE_BASE_FEEDBACK_ENTRY, feedbackEntry);
 		renderRequest.setAttribute(
-			KnowledgeBaseKeys.KNOWLEDGE_BASE_FEEDBACK_STATS, kbFeedbackStats);
+			KnowledgeBaseKeys.KNOWLEDGE_BASE_FEEDBACK_STATS, feedbackStats);
 	}
 
 	public static void getKBBeans(RenderRequest renderRequest)

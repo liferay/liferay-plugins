@@ -38,8 +38,8 @@ public class KBFeedbackEntrySoap implements Serializable {
 	public static KBFeedbackEntrySoap toSoapModel(KBFeedbackEntry model) {
 		KBFeedbackEntrySoap soapModel = new KBFeedbackEntrySoap();
 
-		soapModel.setKbFeedbackEntryId(model.getKbFeedbackEntryId());
-		soapModel.setArticleId(model.getArticleId());
+		soapModel.setFeedbackEntryId(model.getFeedbackEntryId());
+		soapModel.setArticleResourcePrimKey(model.getArticleResourcePrimKey());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
@@ -66,27 +66,27 @@ public class KBFeedbackEntrySoap implements Serializable {
 	}
 
 	public long getPrimaryKey() {
-		return _kbFeedbackEntryId;
+		return _feedbackEntryId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setKbFeedbackEntryId(pk);
+		setFeedbackEntryId(pk);
 	}
 
-	public long getKbFeedbackEntryId() {
-		return _kbFeedbackEntryId;
+	public long getFeedbackEntryId() {
+		return _feedbackEntryId;
 	}
 
-	public void setKbFeedbackEntryId(long kbFeedbackEntryId) {
-		_kbFeedbackEntryId = kbFeedbackEntryId;
+	public void setFeedbackEntryId(long feedbackEntryId) {
+		_feedbackEntryId = feedbackEntryId;
 	}
 
-	public long getArticleId() {
-		return _articleId;
+	public long getArticleResourcePrimKey() {
+		return _articleResourcePrimKey;
 	}
 
-	public void setArticleId(long articleId) {
-		_articleId = articleId;
+	public void setArticleResourcePrimKey(long articleResourcePrimKey) {
+		_articleResourcePrimKey = articleResourcePrimKey;
 	}
 
 	public long getUserId() {
@@ -145,8 +145,8 @@ public class KBFeedbackEntrySoap implements Serializable {
 		_vote = vote;
 	}
 
-	private long _kbFeedbackEntryId;
-	private long _articleId;
+	private long _feedbackEntryId;
+	private long _articleResourcePrimKey;
 	private long _userId;
 	private String _userName;
 	private Date _createDate;

@@ -516,12 +516,13 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		long articleId = ParamUtil.getLong(resourceRequest, "articleId");
+		long articleResourcePrimKey = ParamUtil.getLong(
+			resourceRequest, "articleResourcePrimKey");
 		long userId = ParamUtil.getLong(resourceRequest, "userId");
 		String comments = ParamUtil.getString(resourceRequest, "comments");
 
 		KBFeedbackEntryLocalServiceUtil.updateComments(
-			articleId, userId, comments);
+			articleResourcePrimKey, userId, comments);
 
 		Map<String, String> parameterMap = new HashMap<String, String>();
 
@@ -532,23 +533,25 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		long articleId = ParamUtil.getLong(resourceRequest, "articleId");
-		long userId = ParamUtil.getLong(resourceRequest, "userId");
 		int score = ParamUtil.getInteger(resourceRequest, "score");
+		long articleResourcePrimKey = ParamUtil.getLong(
+			resourceRequest, "articleResourcePrimKey");
+		long userId = ParamUtil.getLong(resourceRequest, "userId");
 
-		KBFeedbackEntryLocalServiceUtil.updateScore(articleId, userId, score);
+		KBFeedbackEntryLocalServiceUtil.updateScore(
+			articleResourcePrimKey, userId, score);
 
-		KBFeedbackStats kbFeedbackStats =
-			KBFeedbackStatsLocalServiceUtil.getArticleKBFeedbackStats(
-				articleId);
+		KBFeedbackStats feedbackStats =
+			KBFeedbackStatsLocalServiceUtil.getArticleFeedbackStats(
+				articleResourcePrimKey);
 
 		Map<String, String> parameterMap = new HashMap<String, String>();
 
 		parameterMap.put(
-			"averageScore", String.valueOf(kbFeedbackStats.getAverageScore()));
+			"averageScore", String.valueOf(feedbackStats.getAverageScore()));
 		parameterMap.put(
 			"totalScoreEntries",
-			String.valueOf(kbFeedbackStats.getTotalScoreEntries()));
+			String.valueOf(feedbackStats.getTotalScoreEntries()));
 
 		sendJSON(resourceResponse, parameterMap);
 	}
@@ -558,21 +561,23 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		throws Exception {
 
 		int vote = ParamUtil.getInteger(resourceRequest, "vote");
-		long articleId = ParamUtil.getLong(resourceRequest, "articleId");
+		long articleResourcePrimKey = ParamUtil.getLong(
+			resourceRequest, "articleResourcePrimKey");
 		long userId = ParamUtil.getLong(resourceRequest, "userId");
 
-		KBFeedbackEntryLocalServiceUtil.updateVote(articleId, userId, vote);
+		KBFeedbackEntryLocalServiceUtil.updateVote(
+			articleResourcePrimKey, userId, vote);
 
-		KBFeedbackStats kbFeedbackStats =
-			KBFeedbackStatsLocalServiceUtil.getArticleKBFeedbackStats(
-				articleId);
+		KBFeedbackStats feedbackStats =
+			KBFeedbackStatsLocalServiceUtil.getArticleFeedbackStats(
+				articleResourcePrimKey);
 
 		Map<String, String> parameterMap = new HashMap<String, String>();
 
 		parameterMap.put(
-			"totalVotes", String.valueOf(kbFeedbackStats.getTotalVotes()));
+			"totalVotes", String.valueOf(feedbackStats.getTotalVotes()));
 		parameterMap.put(
-			"yesVotes", String.valueOf(kbFeedbackStats.getYesVotes()));
+			"yesVotes", String.valueOf(feedbackStats.getYesVotes()));
 
 		sendJSON(resourceResponse, parameterMap);
 	}

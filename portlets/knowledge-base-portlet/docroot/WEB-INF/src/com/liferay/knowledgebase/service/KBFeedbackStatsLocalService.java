@@ -33,7 +33,7 @@ public interface KBFeedbackStatsLocalService {
 		com.liferay.knowledgebase.model.KBFeedbackStats kbFeedbackStats)
 		throws com.liferay.portal.SystemException;
 
-	public void deleteKBFeedbackStats(long kbFeedbackStatsId)
+	public void deleteKBFeedbackStats(long feedbackStatsId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
@@ -50,7 +50,7 @@ public interface KBFeedbackStatsLocalService {
 		int end) throws com.liferay.portal.SystemException;
 
 	public com.liferay.knowledgebase.model.KBFeedbackStats getKBFeedbackStats(
-		long kbFeedbackStatsId)
+		long feedbackStatsId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
@@ -64,6 +64,14 @@ public interface KBFeedbackStatsLocalService {
 		com.liferay.knowledgebase.model.KBFeedbackStats kbFeedbackStats)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.knowledgebase.model.KBFeedbackStats getArticleKBFeedbackStats(
-		long articleId) throws com.liferay.portal.SystemException;
+	public void deleteFeedbackStats(long articleResourcePrimKey)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.knowledgebase.model.KBFeedbackStats getFeedbackStats(
+		long feedbackStatsId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public com.liferay.knowledgebase.model.KBFeedbackStats getArticleFeedbackStats(
+		long articleResourcePrimKey) throws com.liferay.portal.SystemException;
 }

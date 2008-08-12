@@ -4,11 +4,10 @@ Liferay.KnowledgeBase = {
 
 		// Common variables
 
-		instance.articleId = params.articleId;
+		instance.articleResourcePrimKey = params.articleResourcePrimKey;
 		instance.averageScore = params.averageScore;
 		instance.namespace = params.namespace;
 		instance.feedbackURL = params.feedbackURL;
-		instance.kbFeedbackEntryId = params.kbFeedbackEntryId;
 		instance.score = params.score;
 		instance.userId = params.userId;
 
@@ -52,7 +51,7 @@ Liferay.KnowledgeBase = {
 						url: instance.feedbackURL,
 						data: {
 							actionName: 'feedback_score',
-							articleId: instance.articleId,
+							articleResourcePrimKey: instance.articleResourcePrimKey,
 							score: rating,
 							userId: instance.userId
 						},
@@ -86,7 +85,7 @@ Liferay.KnowledgeBase = {
 			url: instance.feedbackURL,
 			data: {
 				actionName: 'feedback_comments',
-				articleId: instance.articleId,
+				articleResourcePrimKey: instance.articleResourcePrimKey,
 				comments: instance.comments.val(),
 				userId: instance.userId
 			},
@@ -107,7 +106,7 @@ Liferay.KnowledgeBase = {
 			url: instance.feedbackURL,
 			data: {
 				actionName: 'feedback_vote',
-				articleId: instance.articleId,
+				articleResourcePrimKey: instance.articleResourcePrimKey,
 				userId: instance.userId,
 				vote: vote
 			},
