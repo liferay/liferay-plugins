@@ -400,11 +400,11 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long parentResourcePrimKey = ParamUtil.getLong(
-			actionRequest, "parentResourcePrimKey");
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
 
 		KBArticleServiceUtil.deleteArticle(
-			themeDisplay.getPlid(), parentResourcePrimKey);
+			themeDisplay.getPlid(), resourcePrimKey);
 	}
 
 	protected void deleteAttachment(ActionRequest actionRequest)
