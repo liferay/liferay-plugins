@@ -127,6 +127,7 @@ if (Validator.isNotNull(portletResource)) {
 }
 
 String currentURL = PortalUtil.getCurrentURL(request);
+String layoutFriendlyURL = PortalUtil.getLayoutFriendlyURL(layout, themeDisplay);
 
 String atom = "Atom 1.0";
 String rss10 = "RSS 1.0";
