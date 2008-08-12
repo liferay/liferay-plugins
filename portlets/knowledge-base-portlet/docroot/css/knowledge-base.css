@@ -85,6 +85,7 @@
 	font-weight: bold;
 	list-style-image: none;
 	list-style-type: none;
+	padding: 0pt 0pt 4px;
 }
 
 .portlet-knowledge-base .child-articles-message {
@@ -128,7 +129,7 @@
 }
 
 .portlet-knowledge-base .article-actions {
-	margin-top: 1.5em;
+	margin-top: 15px;
 }
 
 .portlet-knowledge-base .article-title .article-actions {

@@ -112,18 +112,12 @@ public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 	public List<KBArticle> getChildArticles() {
 		List<KBArticle> articles = null;
 
-		if (getParentResourcePrimKey() <= 0) {
-			return Collections.EMPTY_LIST;
-		}
-
 		try {
 			articles = KBArticleLocalServiceUtil.getChildren(
-				getParentResourcePrimKey(), true);
+				getResourcePrimKey(), true);
 		}
 		catch (Exception e) {
-			articles = new ArrayList<KBArticle>();
-
-			_log.error(e);
+			articles = Collections.EMPTY_LIST;
 		}
 
 		return articles;
