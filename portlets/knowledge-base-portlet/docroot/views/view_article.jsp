@@ -147,8 +147,8 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 					textAverage: '<liferay-ui:message key="average" />',
 					textNo: '<liferay-ui:message key="please-let-us-know-why-you-found-this-unhelpful" />',
 					textSuccess: '<liferay-ui:message key="your-request-processed-successfully" />',
-					textThanksVote: '<liferay-ui:message key="thank-you-we-appreciate-your-feedback" />',
 					textThanksComment: '<liferay-ui:message key="thanks-your-feedback-will-help-us-to-improve-this-article" />',
+					textThanksVote: '<liferay-ui:message key="thank-you-we-appreciate-your-feedback" />',
 					textUpdateFeedback: '<liferay-ui:message key="update-your-feedback-for-this-article" />',
 					textVote: '<liferay-ui:message key="vote" />',
 					textVotes: '<liferay-ui:message key="votes" />',
@@ -279,12 +279,12 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 						<c:choose>
 							<c:when test="<%= themeDisplay.isSignedIn() %>">
 								<script type="text/javascript">
-									function <portlet:namespace />saveFeedbackVote(vote) {
-										Liferay.KnowledgeBase.saveFeedbackVote(vote);
-									}
-
 									function <portlet:namespace />saveFeedbackComments() {
 										Liferay.KnowledgeBase.saveFeedbackComments();
+									}
+
+									function <portlet:namespace />saveFeedbackVote(vote) {
+										Liferay.KnowledgeBase.saveFeedbackVote(vote);
 									}
 								</script>
 
