@@ -316,7 +316,9 @@
 	<target name="build-service">
 		<mkdir dir="docroot/WEB-INF/classes" />
 		<mkdir dir="docroot/WEB-INF/lib" />
+		<mkdir dir="docroot/WEB-INF/service" />
 		<mkdir dir="docroot/WEB-INF/sql" />
+		<mkdir dir="docroot/WEB-INF/src" />
 
 		<copy todir="docroot/WEB-INF/classes">
 			<fileset dir="docroot/WEB-INF/src" excludes="**/*.java" />
@@ -343,7 +345,7 @@
 			<jvmarg value="-Dservice.spring.file=docroot/WEB-INF/src/META-INF/portlet-spring.xml" />
 			<jvmarg value="-Dservice.spring.data.source.file=docroot/WEB-INF/src/META-INF/data-source-spring.xml" />
 			<jvmarg value="-Dservice.spring.misc.file=docroot/WEB-INF/src/META-INF/misc-spring.xml" />
-			<jvmarg value="-Dservice.api.dir=docroot/WEB-INF/src" />
+			<jvmarg value="-Dservice.api.dir=docroot/WEB-INF/service" />
 			<jvmarg value="-Dservice.impl.dir=docroot/WEB-INF/src" />
 			<!--<jvmarg value="-Dservice.json.file=docroot/js/service_unpacked.js" />-->
 			<jvmarg value="-Dservice.sql.dir=docroot/WEB-INF/sql" />
@@ -362,6 +364,32 @@
 			<param name="js.from.file" value="docroot/js/service_unpacked.js" />
 			<param name="js.to.file" value="docroot/js/service_packed.js" />
 		</antcall>-->
+
+		<mkdir dir="docroot/WEB-INF/service-classes" />
+
+		<delete file="docroot/WEB-INF/lib/${plugin.name}-service.jar" />
+
+		<path id="service.classpath">
+			<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
+			<fileset dir="docroot/WEB-INF/lib" excludes="${plugin.name}-service.jar" includes="*.jar" />
+		</path>
+
+		<javac
+			classpathref="service.classpath"
+			compiler="${javac.compiler}"
+			debug="${javac.debug}"
+			deprecation="${javac.deprecation}"
+			destdir="docroot/WEB-INF/service-classes"
+			nowarn="${javac.nowarn}"
+			srcdir="docroot/WEB-INF/service"
+		/>
+
+		<zip
+			basedir="docroot/WEB-INF/service-classes"
+			destfile="docroot/WEB-INF/lib/${plugin.name}-service.jar"
+		/>
+
+		<delete dir="docroot/WEB-INF/service-classes" />
 	</target>
 
 	<target name="merge" if="original.war.file">
