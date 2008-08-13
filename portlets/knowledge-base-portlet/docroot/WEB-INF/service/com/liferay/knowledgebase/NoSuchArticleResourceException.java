@@ -25,10 +25,9 @@ package com.liferay.knowledgebase;
 import com.liferay.portal.PortalException;
 
 /**
- * <a href="NoSuchArticleResourceException.java.html"><b><i>View Source</i></b>
- * </a>
+ * <a href="NoSuchArticleResourceException.java.html"><b><i>View Source</i></b></a>
  *
- * @author Jorge Ferrer
+ * @author Brian Wing Shun Chan
  *
  */
 public class NoSuchArticleResourceException extends PortalException {

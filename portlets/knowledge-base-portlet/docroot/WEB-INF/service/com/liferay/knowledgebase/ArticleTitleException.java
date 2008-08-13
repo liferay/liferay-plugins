@@ -25,26 +25,26 @@ package com.liferay.knowledgebase;
 import com.liferay.portal.PortalException;
 
 /**
- * <a href="NoSuchArticleException.java.html"><b><i>View Source</i></b></a>
+ * <a href="ArticleTitleException.java.html"><b><i>View Source</i></b></a>
  *
- * @author Jorge Ferrer
+ * @author Brian Wing Shun Chan
  *
  */
-public class NoSuchArticleException extends PortalException {
+public class ArticleTitleException extends PortalException {
 
-	public NoSuchArticleException() {
+	public ArticleTitleException() {
 		super();
 	}
 
-	public NoSuchArticleException(String msg) {
+	public ArticleTitleException(String msg) {
 		super(msg);
 	}
 
-	public NoSuchArticleException(String msg, Throwable cause) {
+	public ArticleTitleException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public NoSuchArticleException(Throwable cause) {
+	public ArticleTitleException(Throwable cause) {
 		super(cause);
 	}
 

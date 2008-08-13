@@ -27,7 +27,7 @@ import com.liferay.portal.PortalException;
 /**
  * <a href="ArticleVersionException.java.html"><b><i>View Source</i></b></a>
  *
- * @author Jorge Ferrer
+ * @author Brian Wing Shun Chan
  *
  */
 public class ArticleVersionException extends PortalException {

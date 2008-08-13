@@ -32,11 +32,6 @@
 			<ref bean="com.liferay.knowledgebase.service.KBArticleLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.knowledgebase.service.KBArticleLocalServiceFactory" class="com.liferay.knowledgebase.service.KBArticleLocalServiceFactory" lazy-init="true">
-		<property name="service">
-			<ref bean="com.liferay.knowledgebase.service.KBArticleLocalService.transaction" />
-		</property>
-	</bean>
 	<bean id="com.liferay.knowledgebase.service.KBArticleLocalServiceUtil" class="com.liferay.knowledgebase.service.KBArticleLocalServiceUtil" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.knowledgebase.service.KBArticleLocalService.transaction" />
@@ -69,11 +64,6 @@
 			</list>
 		</property>
 		<property name="target">
-			<ref bean="com.liferay.knowledgebase.service.KBArticleService.transaction" />
-		</property>
-	</bean>
-	<bean id="com.liferay.knowledgebase.service.KBArticleServiceFactory" class="com.liferay.knowledgebase.service.KBArticleServiceFactory" lazy-init="true">
-		<property name="service">
 			<ref bean="com.liferay.knowledgebase.service.KBArticleService.transaction" />
 		</property>
 	</bean>
@@ -141,11 +131,6 @@
 			<ref bean="com.liferay.knowledgebase.service.KBArticleResourceLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.knowledgebase.service.KBArticleResourceLocalServiceFactory" class="com.liferay.knowledgebase.service.KBArticleResourceLocalServiceFactory" lazy-init="true">
-		<property name="service">
-			<ref bean="com.liferay.knowledgebase.service.KBArticleResourceLocalService.transaction" />
-		</property>
-	</bean>
 	<bean id="com.liferay.knowledgebase.service.KBArticleResourceLocalServiceUtil" class="com.liferay.knowledgebase.service.KBArticleResourceLocalServiceUtil" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.knowledgebase.service.KBArticleResourceLocalService.transaction" />
@@ -210,11 +195,6 @@
 			<ref bean="com.liferay.knowledgebase.service.KBFeedbackEntryLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.knowledgebase.service.KBFeedbackEntryLocalServiceFactory" class="com.liferay.knowledgebase.service.KBFeedbackEntryLocalServiceFactory" lazy-init="true">
-		<property name="service">
-			<ref bean="com.liferay.knowledgebase.service.KBFeedbackEntryLocalService.transaction" />
-		</property>
-	</bean>
 	<bean id="com.liferay.knowledgebase.service.KBFeedbackEntryLocalServiceUtil" class="com.liferay.knowledgebase.service.KBFeedbackEntryLocalServiceUtil" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.knowledgebase.service.KBFeedbackEntryLocalService.transaction" />
@@ -276,11 +256,6 @@
 			</list>
 		</property>
 		<property name="target">
-			<ref bean="com.liferay.knowledgebase.service.KBFeedbackStatsLocalService.transaction" />
-		</property>
-	</bean>
-	<bean id="com.liferay.knowledgebase.service.KBFeedbackStatsLocalServiceFactory" class="com.liferay.knowledgebase.service.KBFeedbackStatsLocalServiceFactory" lazy-init="true">
-		<property name="service">
 			<ref bean="com.liferay.knowledgebase.service.KBFeedbackStatsLocalService.transaction" />
 		</property>
 	</bean>
