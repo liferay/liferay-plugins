@@ -31,7 +31,7 @@ LiferayPortlet.renderUrl = function(res, target, params) {
 		portletUrl = res.createRenderURL();
 
 		if (com.liferay.portal.kernel.util.Validator.isNotNull(target)) {
-			portletUrl.setParameter("javascriptFile", target);
+			portletUrl.setParameter("javaScriptFile", target);
 		}
 		return LiferayPortlet.url(portletUrl, params);
 }

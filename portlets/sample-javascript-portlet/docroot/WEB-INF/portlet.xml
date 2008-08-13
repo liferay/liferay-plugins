@@ -6,7 +6,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Sample Javascript</display-name>
-		<portlet-class>com.liferay.util.bridges.javascript.JavascriptPortlet</portlet-class>
+		<portlet-class>com.liferay.util.bridges.javascript.JavaScriptPortlet</portlet-class>
 		<init-param>
 			<name>view-file</name>
 			<value>/WEB-INF/javascript/view.js</value>
