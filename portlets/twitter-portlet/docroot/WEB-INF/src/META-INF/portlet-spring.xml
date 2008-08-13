@@ -32,11 +32,6 @@
 			<ref bean="com.liferay.twitter.service.FeedLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.twitter.service.FeedLocalServiceFactory" class="com.liferay.twitter.service.FeedLocalServiceFactory" lazy-init="true">
-		<property name="service">
-			<ref bean="com.liferay.twitter.service.FeedLocalService.transaction" />
-		</property>
-	</bean>
 	<bean id="com.liferay.twitter.service.FeedLocalServiceUtil" class="com.liferay.twitter.service.FeedLocalServiceUtil" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.twitter.service.FeedLocalService.transaction" />
