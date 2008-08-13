@@ -32,11 +32,6 @@
 			<ref bean="com.liferay.sampleservicebuilder.service.FooLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.sampleservicebuilder.service.FooLocalServiceFactory" class="com.liferay.sampleservicebuilder.service.FooLocalServiceFactory" lazy-init="true">
-		<property name="service">
-			<ref bean="com.liferay.sampleservicebuilder.service.FooLocalService.transaction" />
-		</property>
-	</bean>
 	<bean id="com.liferay.sampleservicebuilder.service.FooLocalServiceUtil" class="com.liferay.sampleservicebuilder.service.FooLocalServiceUtil" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.sampleservicebuilder.service.FooLocalService.transaction" />
@@ -69,11 +64,6 @@
 			</list>
 		</property>
 		<property name="target">
-			<ref bean="com.liferay.sampleservicebuilder.service.FooService.transaction" />
-		</property>
-	</bean>
-	<bean id="com.liferay.sampleservicebuilder.service.FooServiceFactory" class="com.liferay.sampleservicebuilder.service.FooServiceFactory" lazy-init="true">
-		<property name="service">
 			<ref bean="com.liferay.sampleservicebuilder.service.FooService.transaction" />
 		</property>
 	</bean>
