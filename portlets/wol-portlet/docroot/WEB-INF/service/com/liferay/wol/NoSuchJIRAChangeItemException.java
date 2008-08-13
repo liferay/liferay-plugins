@@ -25,7 +25,8 @@ package com.liferay.wol;
 import com.liferay.portal.PortalException;
 
 /**
- * <a href="NoSuchJIRAChangeItemException.java.html"><b><i>View Source</i></b></a>
+ * <a href="NoSuchJIRAChangeItemException.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
  *

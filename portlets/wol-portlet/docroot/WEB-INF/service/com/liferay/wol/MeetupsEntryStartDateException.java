@@ -25,7 +25,8 @@ package com.liferay.wol;
 import com.liferay.portal.PortalException;
 
 /**
- * <a href="MeetupsEntryStartDateException.java.html"><b><i>View Source</i></b></a>
+ * <a href="MeetupsEntryStartDateException.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
  *
