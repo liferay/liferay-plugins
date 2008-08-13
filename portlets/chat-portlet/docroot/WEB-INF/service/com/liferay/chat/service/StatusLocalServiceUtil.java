@@ -22,54 +22,20 @@
 
 package com.liferay.chat.service;
 
-import com.liferay.util.bean.PortletBeanLocatorUtil;
-
 /**
- * <a href="StatusLocalServiceFactory.java.html"><b><i>View Source</i></b></a>
+ * <a href="StatusLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class StatusLocalServiceFactory {
+public class StatusLocalServiceUtil {
 	public static StatusLocalService getService() {
-		return _getFactory()._service;
-	}
-
-	public static StatusLocalService getImpl() {
-		if (_impl == null) {
-			_impl = (StatusLocalService)PortletBeanLocatorUtil.locate(_IMPL);
-		}
-
-		return _impl;
-	}
-
-	public static StatusLocalService getTxImpl() {
-		if (_txImpl == null) {
-			_txImpl = (StatusLocalService)PortletBeanLocatorUtil.locate(_TX_IMPL);
-		}
-
-		return _txImpl;
+		return _service;
 	}
 
 	public void setService(StatusLocalService service) {
 		_service = service;
 	}
 
-	private static StatusLocalServiceFactory _getFactory() {
-		if (_factory == null) {
-			_factory = (StatusLocalServiceFactory)PortletBeanLocatorUtil.locate(_FACTORY);
-		}
-
-		return _factory;
-	}
-
-	private static final String _FACTORY = StatusLocalServiceFactory.class.getName();
-	private static final String _IMPL = StatusLocalService.class.getName() +
-		".impl";
-	private static final String _TX_IMPL = StatusLocalService.class.getName() +
-		".transaction";
-	private static StatusLocalServiceFactory _factory;
-	private static StatusLocalService _impl;
-	private static StatusLocalService _txImpl;
-	private StatusLocalService _service;
+	private static StatusLocalService _service;
 }

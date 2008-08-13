@@ -32,11 +32,6 @@
 			<ref bean="com.liferay.chat.service.EntryLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.chat.service.EntryLocalServiceFactory" class="com.liferay.chat.service.EntryLocalServiceFactory" lazy-init="true">
-		<property name="service">
-			<ref bean="com.liferay.chat.service.EntryLocalService.transaction" />
-		</property>
-	</bean>
 	<bean id="com.liferay.chat.service.EntryLocalServiceUtil" class="com.liferay.chat.service.EntryLocalServiceUtil" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.chat.service.EntryLocalService.transaction" />
@@ -111,11 +106,6 @@
 			</list>
 		</property>
 		<property name="target">
-			<ref bean="com.liferay.chat.service.StatusLocalService.transaction" />
-		</property>
-	</bean>
-	<bean id="com.liferay.chat.service.StatusLocalServiceFactory" class="com.liferay.chat.service.StatusLocalServiceFactory" lazy-init="true">
-		<property name="service">
 			<ref bean="com.liferay.chat.service.StatusLocalService.transaction" />
 		</property>
 	</bean>
