@@ -29,6 +29,80 @@ package com.liferay.chat.service;
  *
  */
 public class StatusLocalServiceUtil {
+	public static com.liferay.chat.model.Status addStatus(
+		com.liferay.chat.model.Status status)
+		throws com.liferay.portal.SystemException {
+		return _service.addStatus(status);
+	}
+
+	public static void deleteStatus(long statusId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		_service.deleteStatus(statusId);
+	}
+
+	public static void deleteStatus(com.liferay.chat.model.Status status)
+		throws com.liferay.portal.SystemException {
+		_service.deleteStatus(status);
+	}
+
+	public static java.util.List<Object> dynamicQuery(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
+		throws com.liferay.portal.SystemException {
+		return _service.dynamicQuery(dynamicQuery);
+	}
+
+	public static java.util.List<Object> dynamicQuery(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end) throws com.liferay.portal.SystemException {
+		return _service.dynamicQuery(dynamicQuery, start, end);
+	}
+
+	public static com.liferay.chat.model.Status getStatus(long statusId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		return _service.getStatus(statusId);
+	}
+
+	public static java.util.List<com.liferay.chat.model.Status> getStatuses(
+		int start, int end) throws com.liferay.portal.SystemException {
+		return _service.getStatuses(start, end);
+	}
+
+	public static int getStatusesCount()
+		throws com.liferay.portal.SystemException {
+		return _service.getStatusesCount();
+	}
+
+	public static com.liferay.chat.model.Status updateStatus(
+		com.liferay.chat.model.Status status)
+		throws com.liferay.portal.SystemException {
+		return _service.updateStatus(status);
+	}
+
+	public static java.util.List<Object[]> getAllStatuses(long modifiedDate,
+		int start, int end) throws com.liferay.portal.SystemException {
+		return _service.getAllStatuses(modifiedDate, start, end);
+	}
+
+	public static java.util.List<Object[]> getSocialStatuses(long userId,
+		int type, long modifiedDate, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return _service.getSocialStatuses(userId, type, modifiedDate, start, end);
+	}
+
+	public static com.liferay.chat.model.Status getUserStatus(long userId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		return _service.getUserStatus(userId);
+	}
+
+	public static com.liferay.chat.model.Status updateStatus(long userId,
+		java.lang.String activeBrowserKey)
+		throws com.liferay.portal.SystemException {
+		return _service.updateStatus(userId, activeBrowserKey);
+	}
+
 	public static StatusLocalService getService() {
 		return _service;
 	}
