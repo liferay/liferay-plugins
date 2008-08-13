@@ -25,27 +25,26 @@ package com.liferay.wol;
 import com.liferay.portal.PortalException;
 
 /**
- * <a href="NoSuchJIRAChangeGroupException.java.html"><b><i>View Source</i></b>
- * </a>
+ * <a href="NoSuchMeetupsRegistrationException.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class NoSuchJIRAChangeGroupException extends PortalException {
+public class NoSuchMeetupsRegistrationException extends PortalException {
 
-	public NoSuchJIRAChangeGroupException() {
+	public NoSuchMeetupsRegistrationException() {
 		super();
 	}
 
-	public NoSuchJIRAChangeGroupException(String msg) {
+	public NoSuchMeetupsRegistrationException(String msg) {
 		super(msg);
 	}
 
-	public NoSuchJIRAChangeGroupException(String msg, Throwable cause) {
+	public NoSuchMeetupsRegistrationException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public NoSuchJIRAChangeGroupException(Throwable cause) {
+	public NoSuchMeetupsRegistrationException(Throwable cause) {
 		super(cause);
 	}
 

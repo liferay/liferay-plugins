@@ -25,27 +25,26 @@ package com.liferay.wol;
 import com.liferay.portal.PortalException;
 
 /**
- * <a href="NoSuchJIRAChangeItemException.java.html"><b><i>View Source</i></b>
- * </a>
+ * <a href="NoSuchSVNRepositoryException.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class NoSuchJIRAChangeItemException extends PortalException {
+public class NoSuchSVNRepositoryException extends PortalException {
 
-	public NoSuchJIRAChangeItemException() {
+	public NoSuchSVNRepositoryException() {
 		super();
 	}
 
-	public NoSuchJIRAChangeItemException(String msg) {
+	public NoSuchSVNRepositoryException(String msg) {
 		super(msg);
 	}
 
-	public NoSuchJIRAChangeItemException(String msg, Throwable cause) {
+	public NoSuchSVNRepositoryException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public NoSuchJIRAChangeItemException(Throwable cause) {
+	public NoSuchSVNRepositoryException(Throwable cause) {
 		super(cause);
 	}
 

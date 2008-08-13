@@ -25,27 +25,26 @@ package com.liferay.wol;
 import com.liferay.portal.PortalException;
 
 /**
- * <a href="MeetupsEntryStartDateException.java.html"><b><i>View Source</i></b>
- * </a>
+ * <a href="NoSuchJIRAChangeItemException.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class MeetupsEntryStartDateException extends PortalException {
+public class NoSuchJIRAChangeItemException extends PortalException {
 
-	public MeetupsEntryStartDateException() {
+	public NoSuchJIRAChangeItemException() {
 		super();
 	}
 
-	public MeetupsEntryStartDateException(String msg) {
+	public NoSuchJIRAChangeItemException(String msg) {
 		super(msg);
 	}
 
-	public MeetupsEntryStartDateException(String msg, Throwable cause) {
+	public NoSuchJIRAChangeItemException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public MeetupsEntryStartDateException(Throwable cause) {
+	public NoSuchJIRAChangeItemException(Throwable cause) {
 		super(cause);
 	}
 

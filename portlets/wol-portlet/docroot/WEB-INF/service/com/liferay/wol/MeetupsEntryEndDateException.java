@@ -25,27 +25,26 @@ package com.liferay.wol;
 import com.liferay.portal.PortalException;
 
 /**
- * <a href="NoSuchSVNRepositoryException.java.html"><b><i>View Source</i></b>
- * </a>
+ * <a href="MeetupsEntryEndDateException.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class NoSuchSVNRepositoryException extends PortalException {
+public class MeetupsEntryEndDateException extends PortalException {
 
-	public NoSuchSVNRepositoryException() {
+	public MeetupsEntryEndDateException() {
 		super();
 	}
 
-	public NoSuchSVNRepositoryException(String msg) {
+	public MeetupsEntryEndDateException(String msg) {
 		super(msg);
 	}
 
-	public NoSuchSVNRepositoryException(String msg, Throwable cause) {
+	public MeetupsEntryEndDateException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public NoSuchSVNRepositoryException(Throwable cause) {
+	public MeetupsEntryEndDateException(Throwable cause) {
 		super(cause);
 	}
 

@@ -32,11 +32,6 @@
 			<ref bean="com.liferay.wol.service.JIRAActionLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.JIRAActionLocalServiceFactory" class="com.liferay.wol.service.JIRAActionLocalServiceFactory" lazy-init="true">
-		<property name="service">
-			<ref bean="com.liferay.wol.service.JIRAActionLocalService.transaction" />
-		</property>
-	</bean>
 	<bean id="com.liferay.wol.service.JIRAActionLocalServiceUtil" class="com.liferay.wol.service.JIRAActionLocalServiceUtil" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.wol.service.JIRAActionLocalService.transaction" />
@@ -111,11 +106,6 @@
 			</list>
 		</property>
 		<property name="target">
-			<ref bean="com.liferay.wol.service.JIRAChangeGroupLocalService.transaction" />
-		</property>
-	</bean>
-	<bean id="com.liferay.wol.service.JIRAChangeGroupLocalServiceFactory" class="com.liferay.wol.service.JIRAChangeGroupLocalServiceFactory" lazy-init="true">
-		<property name="service">
 			<ref bean="com.liferay.wol.service.JIRAChangeGroupLocalService.transaction" />
 		</property>
 	</bean>
@@ -196,11 +186,6 @@
 			<ref bean="com.liferay.wol.service.JIRAChangeItemLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.JIRAChangeItemLocalServiceFactory" class="com.liferay.wol.service.JIRAChangeItemLocalServiceFactory" lazy-init="true">
-		<property name="service">
-			<ref bean="com.liferay.wol.service.JIRAChangeItemLocalService.transaction" />
-		</property>
-	</bean>
 	<bean id="com.liferay.wol.service.JIRAChangeItemLocalServiceUtil" class="com.liferay.wol.service.JIRAChangeItemLocalServiceUtil" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.wol.service.JIRAChangeItemLocalService.transaction" />
@@ -262,11 +247,6 @@
 			</list>
 		</property>
 		<property name="target">
-			<ref bean="com.liferay.wol.service.JIRAIssueLocalService.transaction" />
-		</property>
-	</bean>
-	<bean id="com.liferay.wol.service.JIRAIssueLocalServiceFactory" class="com.liferay.wol.service.JIRAIssueLocalServiceFactory" lazy-init="true">
-		<property name="service">
 			<ref bean="com.liferay.wol.service.JIRAIssueLocalService.transaction" />
 		</property>
 	</bean>
@@ -347,11 +327,6 @@
 			<ref bean="com.liferay.wol.service.MeetupsEntryLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.MeetupsEntryLocalServiceFactory" class="com.liferay.wol.service.MeetupsEntryLocalServiceFactory" lazy-init="true">
-		<property name="service">
-			<ref bean="com.liferay.wol.service.MeetupsEntryLocalService.transaction" />
-		</property>
-	</bean>
 	<bean id="com.liferay.wol.service.MeetupsEntryLocalServiceUtil" class="com.liferay.wol.service.MeetupsEntryLocalServiceUtil" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.wol.service.MeetupsEntryLocalService.transaction" />
@@ -413,11 +388,6 @@
 			</list>
 		</property>
 		<property name="target">
-			<ref bean="com.liferay.wol.service.MeetupsRegistrationLocalService.transaction" />
-		</property>
-	</bean>
-	<bean id="com.liferay.wol.service.MeetupsRegistrationLocalServiceFactory" class="com.liferay.wol.service.MeetupsRegistrationLocalServiceFactory" lazy-init="true">
-		<property name="service">
 			<ref bean="com.liferay.wol.service.MeetupsRegistrationLocalService.transaction" />
 		</property>
 	</bean>
@@ -485,11 +455,6 @@
 			<ref bean="com.liferay.wol.service.SVNRepositoryLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.SVNRepositoryLocalServiceFactory" class="com.liferay.wol.service.SVNRepositoryLocalServiceFactory" lazy-init="true">
-		<property name="service">
-			<ref bean="com.liferay.wol.service.SVNRepositoryLocalService.transaction" />
-		</property>
-	</bean>
 	<bean id="com.liferay.wol.service.SVNRepositoryLocalServiceUtil" class="com.liferay.wol.service.SVNRepositoryLocalServiceUtil" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.wol.service.SVNRepositoryLocalService.transaction" />
@@ -554,11 +519,6 @@
 			<ref bean="com.liferay.wol.service.SVNRevisionLocalService.transaction" />
 		</property>
 	</bean>
-	<bean id="com.liferay.wol.service.SVNRevisionLocalServiceFactory" class="com.liferay.wol.service.SVNRevisionLocalServiceFactory" lazy-init="true">
-		<property name="service">
-			<ref bean="com.liferay.wol.service.SVNRevisionLocalService.transaction" />
-		</property>
-	</bean>
 	<bean id="com.liferay.wol.service.SVNRevisionLocalServiceUtil" class="com.liferay.wol.service.SVNRevisionLocalServiceUtil" lazy-init="true">
 		<property name="service">
 			<ref bean="com.liferay.wol.service.SVNRevisionLocalService.transaction" />
@@ -620,11 +580,6 @@
 			</list>
 		</property>
 		<property name="target">
-			<ref bean="com.liferay.wol.service.WallEntryLocalService.transaction" />
-		</property>
-	</bean>
-	<bean id="com.liferay.wol.service.WallEntryLocalServiceFactory" class="com.liferay.wol.service.WallEntryLocalServiceFactory" lazy-init="true">
-		<property name="service">
 			<ref bean="com.liferay.wol.service.WallEntryLocalService.transaction" />
 		</property>
 	</bean>
