@@ -21,6 +21,7 @@
  * SOFTWARE.
  */
 %>
+
 <%@ include file="/init.jsp" %>
 
 <%

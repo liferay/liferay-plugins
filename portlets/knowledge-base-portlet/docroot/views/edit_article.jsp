@@ -21,6 +21,7 @@
  * SOFTWARE.
  */
 %>
+
 <%@ include file="/init.jsp" %>
 
 <%
@@ -31,6 +32,8 @@ String redirect = ParamUtil.getString(request, "redirect");
 KBArticle article = (KBArticle)request.getAttribute(KnowledgeBaseKeys.ARTICLE);
 
 String title = BeanParamUtil.getString(article, request, "title");
+
+Boolean draft = BeanParamUtil.getBoolean(article, request, "draft", true);
 
 KBArticle parent = null;
 
@@ -71,8 +74,9 @@ if (article == null) {
 		submitForm(document.<portlet:namespace />fm);
 	}
 
-	function <portlet:namespace />saveArticle() {
+	function <portlet:namespace />saveArticle(draft) {
 		document.<portlet:namespace />fm.<portlet:namespace />actionName.value = "<%= Constants.UPDATE %>";
+		document.<portlet:namespace />fm.<portlet:namespace />draft.value = draft;
 
 		if (window.<portlet:namespace />editor) {
 			document.<portlet:namespace />fm.<portlet:namespace />content.value = window.<portlet:namespace />editor.getHTML();
@@ -83,6 +87,8 @@ if (article == null) {
 
 	function <portlet:namespace />saveAndContinueArticle() {
 		document.<portlet:namespace />fm.<portlet:namespace />saveAndContinueRedirect.value = "<portlet:renderURL><portlet:param name="view" value="edit_article" /></portlet:renderURL>";
+		document.<portlet:namespace />fm.<portlet:namespace />draft.value = "<%= draft %>";
+
 		<portlet:namespace />saveArticle();
 	}
 </script>
@@ -109,8 +115,9 @@ if (article == null) {
 	<br />
 </c:if>
 
-<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveArticle(); return false;">
+<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
 <input name="<portlet:namespace />actionName" type="hidden" value="" />
+<input name="<portlet:namespace />draft" type="hidden" value="" />
 <input name="<portlet:namespace />template" type="hidden" value="<%= template %>" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />resourcePrimKey" type="hidden" value="<%= resourcePrimKey %>" />
@@ -228,20 +235,28 @@ if (article == null) {
 	<td colspan="2">
 		<input name="<portlet:namespace />minorEdit" type="checkbox" />
 
-		<liferay-ui:message key="this-is-a-minor-edit" />
+		<liferay-ui:message key="this-is-a-minor-edit" /><liferay-ui:icon-help message="leave-this-box-unchecked-to-inform-subscribed-users-that-this-article-has-recently-been-updated-email" />
 	</td>
 </tr>
 </table>
 
 <br />
 
-<input type="submit" value="<liferay-ui:message key="save" />" />
+<input type="button" value='<%= draft ? LanguageUtil.get(themeDisplay.getLocale(), "publish") : LanguageUtil.get(themeDisplay.getLocale(), "save") %>' onClick="<portlet:namespace />saveArticle(false);" />
+
+<c:if test="<%= draft %>">
+	<input type="button" value="<liferay-ui:message key="save-draft" />" onClick="<portlet:namespace />saveArticle(true);" />
+</c:if>
 
 <input type="button" value="<liferay-ui:message key="save-and-continue" />" onClick="<portlet:namespace />saveAndContinueArticle();" />
 
 <input type="button" value="<liferay-ui:message key="preview" />" onClick="<portlet:namespace />previewArticle();" />
 
 <input type="button" value="<liferay-ui:message key="cancel" />" onClick="document.location = '<%= HtmlUtil.escape(redirect) %>'" />
+
+<c:if test="<%= draft %>">
+	<liferay-ui:icon-help message="this-article-will-be-viewable-to-other-users-only-after-clicking-the-publish-button" />
+</c:if>
 
 </form>
 

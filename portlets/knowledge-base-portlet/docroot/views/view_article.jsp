@@ -21,6 +21,7 @@
  * SOFTWARE.
  */
 %>
+
 <%@ include file="/init.jsp" %>
 
 <%
@@ -93,7 +94,7 @@ if (article != null) {
 	addArticleURL.setParameter("parentResourcePrimKey", String.valueOf(resourcePrimKey));
 }
 
-List childArticles = article.getChildArticles();
+List childArticles = article.getChildArticles(themeDisplay.getUserId());
 
 PortletURL editArticleURL = renderResponse.createRenderURL();
 
@@ -141,15 +142,15 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 					feedbackURL: '<%= feedbackURL %>',
 					score: '<%= score %>',
 					userId: '<%= themeDisplay.getUserId() %>',
-					textAverage: '<liferay-ui:message key="average" />',
-					textNo: '<liferay-ui:message key="please-let-us-know-why-you-found-this-unhelpful" />',
-					textSuccess: '<liferay-ui:message key="your-request-processed-successfully" />',
-					textThanksComment: '<liferay-ui:message key="thanks-your-feedback-will-help-us-to-improve-this-article" />',
-					textThanksVote: '<liferay-ui:message key="thank-you-we-appreciate-your-feedback" />',
-					textUpdateFeedback: '<liferay-ui:message key="update-your-feedback-for-this-article" />',
-					textVote: '<liferay-ui:message key="vote" />',
-					textVotes: '<liferay-ui:message key="votes" />',
-					textYes: '<liferay-ui:message key="glad-it-helped-what-did-you-find-most-helpful" />'
+					textAverage: '<%= LanguageUtil.get(locale, "average") %>',
+					textNo: '<%= LanguageUtil.get(locale, "please-let-us-know-why-you-found-this-unhelpful") %>',
+					textSuccess: '<%= LanguageUtil.get(locale, "your-request-processed-successfully") %>',
+					textThanksComment: '<%= LanguageUtil.get(locale, "thanks-your-feedback-will-help-us-to-improve-this-article") %>',
+					textThanksVote: '<%= LanguageUtil.get(locale, "thank-you-we-appreciate-your-feedback") %>',
+					textUpdateFeedback: '<%= LanguageUtil.get(locale, "update-your-feedback-for-this-article") %>',
+					textVote: '<%= LanguageUtil.get(locale, "vote") %>',
+					textVotes: '<%= LanguageUtil.get(locale, "votes") %>',
+					textYes: '<%= LanguageUtil.get(locale, "glad-it-helped-what-did-you-find-most-helpful") %>'
 				});
 			});
 
@@ -168,7 +169,7 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 
 		viewParentArticleURL.setParameter("view", "view_article");
 
-		List parentArticles = article.getParentArticles();
+		List parentArticles = article.getParentArticles(themeDisplay.getUserId());
 
 		for (int i = 0; i < parentArticles.size(); i++) {
 			KBArticle curParentArticle = (KBArticle)parentArticles.get(i);

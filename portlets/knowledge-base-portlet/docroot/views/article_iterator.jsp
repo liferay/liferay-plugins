@@ -21,6 +21,7 @@
  * SOFTWARE.
  */
 %>
+
 <%@ include file="/init.jsp" %>
 
 <%
@@ -72,7 +73,7 @@ else if (type.equals("templates")) {
 	emptyResultsMessage = "there-are-no-knowledge-base-templates";
 }
 else if (type.equals("tagged_articles")) {
-	emptyResultsMessage = "there-are-no-articles-with-this-tag";
+	emptyResultsMessage = "there-are-no-knowledge-base-articles-with-this-tag";
 }
 
 SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, emptyResultsMessage);
@@ -85,16 +86,16 @@ int total = 0;
 List<KBArticle> results = null;
 
 if (type.equals("all_articles")) {
-	total = KBArticleLocalServiceUtil.getArticlesCount(portletGroupId, true, false);
-	results = KBArticleLocalServiceUtil.getArticles(portletGroupId, true, false, searchContainer.getStart(), searchContainer.getEnd());
+	total = KBArticleLocalServiceUtil.getArticlesCount(portletGroupId, themeDisplay.getUserId(), true, false, false);
+	results = KBArticleLocalServiceUtil.getArticles(portletGroupId, themeDisplay.getUserId(), true, false, false, searchContainer.getStart(), searchContainer.getEnd());
 }
 else if (type.equals("article_history")) {
 	total = KBArticleLocalServiceUtil.getArticlesCount(article.getResourcePrimKey());
 	results = KBArticleLocalServiceUtil.getArticles(article.getResourcePrimKey(), searchContainer.getStart(), searchContainer.getEnd(), new ArticleVersionComparator());
 }
 else if (type.equals("templates")) {
-	total = KBArticleLocalServiceUtil.getArticlesCount(portletGroupId, true, true);
-	results = KBArticleLocalServiceUtil.getArticles(portletGroupId, true, true, searchContainer.getStart(), searchContainer.getEnd());
+	total = KBArticleLocalServiceUtil.getArticlesCount(portletGroupId, themeDisplay.getUserId(), true, true, false);
+	results = KBArticleLocalServiceUtil.getArticles(portletGroupId, themeDisplay.getUserId(), true, true, false, searchContainer.getStart(), searchContainer.getEnd());
 }
 else if (type.equals("tagged_articles")) {
 	long classNameId = PortalUtil.getClassNameId(KBArticle.class.getName());
@@ -110,7 +111,9 @@ else if (type.equals("tagged_articles")) {
 	for (TagsAsset asset : assets) {
 		KBArticle assetArticle = KBArticleLocalServiceUtil.getArticle(asset.getClassPK());
 
-		results.add(assetArticle);
+		if (!assetArticle.getDraft()) {
+			results.add(assetArticle);
+		}
 	}
 }
 else {
