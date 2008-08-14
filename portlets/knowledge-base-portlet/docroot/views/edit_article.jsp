@@ -235,7 +235,7 @@ if (article == null) {
 	<td colspan="2">
 		<input name="<portlet:namespace />minorEdit" type="checkbox" />
 
-		<liferay-ui:message key="this-is-a-minor-edit" /><liferay-ui:icon-help message="leave-this-box-unchecked-to-inform-subscribed-users-that-this-article-has-recently-been-updated-email" />
+		<liferay-ui:message key="this-is-a-minor-edit" /><liferay-ui:icon-help message="leave-this-box-unchecked-to-email-subscribed-users-that-this-article-has-recently-been-updated" />
 	</td>
 </tr>
 </table>
