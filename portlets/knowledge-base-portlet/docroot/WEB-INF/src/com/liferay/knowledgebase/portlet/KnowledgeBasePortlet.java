@@ -680,7 +680,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			actionRequest, "parentResourcePrimKey");
 
 		List<TagsVocabulary> vocabularies =
-			TagsVocabularyServiceUtil.getVocabularies(
+			TagsVocabularyServiceUtil.getCompanyVocabularies(
 				themeDisplay.getCompanyId(), false);
 
 		String tagsEntriesString = ParamUtil.getString(

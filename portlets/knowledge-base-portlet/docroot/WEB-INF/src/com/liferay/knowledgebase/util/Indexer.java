@@ -25,6 +25,7 @@ package com.liferay.knowledgebase.util;
 import com.liferay.knowledgebase.KnowledgeBaseKeys;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
@@ -43,6 +44,7 @@ import javax.portlet.PortletURL;
  * <a href="Indexer.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
+ *
  */
 public class Indexer {
 	public static final String PORTLET_ID = KnowledgeBaseKeys.PORTLET_ID;
@@ -82,8 +84,8 @@ public class Indexer {
 		booleanQuery.addRequiredTerm(Field.GROUP_ID, groupId);
 
 		Hits hits = SearchEngineUtil.search(
-			companyId, booleanQuery, SearchEngineUtil.ALL_POS,
-			SearchEngineUtil.ALL_POS);
+			companyId, booleanQuery, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS);
 
 		for (int i = 0; i < hits.getLength(); i++) {
 			Document doc = hits.doc(i);
