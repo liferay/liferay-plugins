@@ -29,45 +29,45 @@ package com.liferay.knowledgebase.service.persistence;
  *
  */
 public class KBArticleFinderUtil {
-	public static int countByG_U_H_T_D(long groupId, long userId, boolean head,
+	public static int countByU_G_H_T_D(long userId, long groupId, boolean head,
 		boolean template, boolean draft)
 		throws com.liferay.portal.SystemException {
 		return getFinder()
-				   .countByG_U_H_T_D(groupId, userId, head, template, draft);
+				   .countByU_G_H_T_D(userId, groupId, head, template, draft);
 	}
 
-	public static int countByP_U_H_D(long parentResourcePrimKey, long userId,
+	public static int countByU_P_H_D(long userId, long parentResourcePrimKey,
 		boolean head, boolean draft) throws com.liferay.portal.SystemException {
 		return getFinder()
-				   .countByP_U_H_D(parentResourcePrimKey, userId, head, draft);
+				   .countByU_P_H_D(userId, parentResourcePrimKey, head, draft);
 	}
 
-	public static int countByR_U_H_D(long resourcePrimKey, long userId,
+	public static int countByU_R_H_D(long userId, long resourcePrimKey,
 		boolean head, boolean draft) throws com.liferay.portal.SystemException {
-		return getFinder().countByR_U_H_D(resourcePrimKey, userId, head, draft);
+		return getFinder().countByU_R_H_D(userId, resourcePrimKey, head, draft);
 	}
 
-	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_U_H_T_D(
-		long groupId, long userId, boolean head, boolean template,
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByU_G_H_T_D(
+		long userId, long groupId, boolean head, boolean template,
 		boolean draft, int start, int end)
 		throws com.liferay.portal.SystemException {
 		return getFinder()
-				   .findByG_U_H_T_D(groupId, userId, head, template, draft,
+				   .findByU_G_H_T_D(userId, groupId, head, template, draft,
 			start, end);
 	}
 
-	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByP_U_H_D(
-		long parentResourcePrimKey, long userId, boolean head, boolean draft)
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByU_P_H_D(
+		long userId, long parentResourcePrimKey, boolean head, boolean draft)
 		throws com.liferay.portal.SystemException {
 		return getFinder()
-				   .findByP_U_H_D(parentResourcePrimKey, userId, head, draft);
+				   .findByU_P_H_D(userId, parentResourcePrimKey, head, draft);
 	}
 
-	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByR_U_H_D(
-		long resourcePrimKey, long userId, boolean head, boolean draft,
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByU_R_H_D(
+		long userId, long resourcePrimKey, boolean head, boolean draft,
 		int start, int end) throws com.liferay.portal.SystemException {
 		return getFinder()
-				   .findByR_U_H_D(resourcePrimKey, userId, head, draft, start,
+				   .findByU_R_H_D(userId, resourcePrimKey, head, draft, start,
 			end);
 	}
 

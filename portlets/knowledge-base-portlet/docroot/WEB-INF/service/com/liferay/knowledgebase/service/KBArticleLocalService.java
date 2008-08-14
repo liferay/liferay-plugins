@@ -65,8 +65,8 @@ public interface KBArticleLocalService {
 
 	public com.liferay.knowledgebase.model.KBArticle addArticle(long userId,
 		long groupId, java.lang.String title, java.lang.String content,
-		java.lang.String description, boolean draft, boolean minorEdit,
-		boolean template, long parentResourcePrimKey,
+		java.lang.String description, boolean minorEdit, boolean template,
+		boolean draft, long parentResourcePrimKey,
 		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
@@ -75,8 +75,8 @@ public interface KBArticleLocalService {
 	public com.liferay.knowledgebase.model.KBArticle addArticle(
 		java.lang.String uuid, long userId, long groupId,
 		java.lang.String title, double version, java.lang.String content,
-		java.lang.String description, boolean draft, boolean minorEdit,
-		boolean head, boolean template, long parentResourcePrimKey,
+		java.lang.String description, boolean minorEdit, boolean head,
+		boolean template, boolean draft, long parentResourcePrimKey,
 		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
@@ -137,8 +137,8 @@ public interface KBArticleLocalService {
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public com.liferay.knowledgebase.model.KBArticle getArticle(
-		long resourcePrimKey, long userId, boolean head, boolean draft)
+	public com.liferay.knowledgebase.model.KBArticle getArticle(long userId,
+		long resourcePrimKey, boolean head, boolean draft)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
@@ -197,7 +197,7 @@ public interface KBArticleLocalService {
 		int start, int end) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getArticles(
-		long groupId, long userId, boolean head, boolean template,
+		long userId, long groupId, boolean head, boolean template,
 		boolean draft, int start, int end)
 		throws com.liferay.portal.SystemException;
 
@@ -219,7 +219,7 @@ public interface KBArticleLocalService {
 	public int getArticlesCount(long groupId, java.lang.String title,
 		boolean head, boolean draft) throws com.liferay.portal.SystemException;
 
-	public int getArticlesCount(long groupId, long userId, boolean head,
+	public int getArticlesCount(long userId, long groupId, boolean head,
 		boolean template, boolean draft)
 		throws com.liferay.portal.SystemException;
 
@@ -232,7 +232,7 @@ public interface KBArticleLocalService {
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getChildArticles(
-		long parentResourcePrimKey, long userId, boolean head, boolean draft)
+		long userId, long parentResourcePrimKey, boolean head, boolean draft)
 		throws com.liferay.portal.SystemException;
 
 	public void reIndex(java.lang.String[] ids)
@@ -268,8 +268,8 @@ public interface KBArticleLocalService {
 	public com.liferay.knowledgebase.model.KBArticle updateArticle(
 		long userId, long resourcePrimKey, double version,
 		java.lang.String title, java.lang.String content,
-		java.lang.String description, boolean draft, boolean minorEdit,
-		boolean template, long parentResourcePrimKey,
+		java.lang.String description, boolean minorEdit, boolean template,
+		boolean draft, long parentResourcePrimKey,
 		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,

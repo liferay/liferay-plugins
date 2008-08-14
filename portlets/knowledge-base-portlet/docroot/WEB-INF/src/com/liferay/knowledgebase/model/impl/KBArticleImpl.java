@@ -46,6 +46,7 @@ import org.apache.commons.logging.LogFactory;
  * <a href="KBArticleImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
+ * @author Peter Shin
  *
  */
 public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
@@ -87,7 +88,7 @@ public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 
 		try {
 			article = KBArticleLocalServiceUtil.getArticle(
-				getParentResourcePrimKey(), userId, true, false);
+				userId, getParentResourcePrimKey(), true, false);
 		}
 		catch (Exception e) {
 			_log.error(e);
@@ -116,7 +117,7 @@ public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 			long parentResourcePrimKey = getResourcePrimKey();
 
 			articles = KBArticleLocalServiceUtil.getChildArticles(
-				parentResourcePrimKey, userId, true, false);
+				userId, parentResourcePrimKey, true, false);
 		}
 		catch (Exception e) {
 			articles = Collections.EMPTY_LIST;

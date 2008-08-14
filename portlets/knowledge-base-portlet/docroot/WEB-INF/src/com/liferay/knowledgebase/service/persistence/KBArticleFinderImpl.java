@@ -45,26 +45,26 @@ import java.util.List;
 public class KBArticleFinderImpl
 	extends BasePersistenceImpl implements KBArticleFinder {
 
-	public static String COUNT_BY_G_U_H_T_D =
-		KBArticleFinder.class.getName() + ".countByG_U_H_T_D";
+	public static String COUNT_BY_U_G_H_T_D =
+		KBArticleFinder.class.getName() + ".countByU_G_H_T_D";
 
-	public static String COUNT_BY_P_U_H_D =
-		KBArticleFinder.class.getName() + ".countByP_U_H_D";
+	public static String COUNT_BY_U_P_H_D =
+		KBArticleFinder.class.getName() + ".countByU_P_H_D";
 
-	public static String COUNT_BY_R_U_H_D =
-		KBArticleFinder.class.getName() + ".countByR_U_H_D";
+	public static String COUNT_BY_U_R_H_D =
+		KBArticleFinder.class.getName() + ".countByU_R_H_D";
 
-	public static String FIND_BY_G_U_H_T_D =
-		KBArticleFinder.class.getName() + ".findByG_U_H_T_D";
+	public static String FIND_BY_U_G_H_T_D =
+		KBArticleFinder.class.getName() + ".findByU_G_H_T_D";
 
-	public static String FIND_BY_P_U_H_D =
-		KBArticleFinder.class.getName() + ".findByP_U_H_D";
+	public static String FIND_BY_U_P_H_D =
+		KBArticleFinder.class.getName() + ".findByU_P_H_D";
 
-	public static String FIND_BY_R_U_H_D =
-		KBArticleFinder.class.getName() + ".findByR_U_H_D";
+	public static String FIND_BY_U_R_H_D =
+		KBArticleFinder.class.getName() + ".findByU_R_H_D";
 
-	public int countByG_U_H_T_D(
-			long groupId, long userId, boolean head, boolean template,
+	public int countByU_G_H_T_D(
+			long userId, long groupId, boolean head, boolean template,
 			boolean draft)
 		throws SystemException {
 
@@ -73,7 +73,7 @@ public class KBArticleFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(COUNT_BY_G_U_H_T_D);
+			String sql = CustomSQLUtil.get(COUNT_BY_U_G_H_T_D);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -107,8 +107,8 @@ public class KBArticleFinderImpl
 		}
 	}
 
-	public int countByP_U_H_D(
-			long parentResourcePrimKey, long userId, boolean head,
+	public int countByU_P_H_D(
+			long userId, long parentResourcePrimKey, boolean head,
 			boolean draft)
 		throws SystemException {
 
@@ -117,7 +117,7 @@ public class KBArticleFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(COUNT_BY_P_U_H_D);
+			String sql = CustomSQLUtil.get(COUNT_BY_U_P_H_D);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -150,8 +150,8 @@ public class KBArticleFinderImpl
 		}
 	}
 
-	public int countByR_U_H_D(
-			long resourcePrimKey, long userId, boolean head,
+	public int countByU_R_H_D(
+			long userId, long resourcePrimKey, boolean head,
 			boolean draft)
 		throws SystemException {
 
@@ -160,7 +160,7 @@ public class KBArticleFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(COUNT_BY_R_U_H_D);
+			String sql = CustomSQLUtil.get(COUNT_BY_U_R_H_D);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -193,8 +193,8 @@ public class KBArticleFinderImpl
 		}
 	}
 
-	public List<KBArticle> findByG_U_H_T_D(
-			long groupId, long userId, boolean head, boolean template,
+	public List<KBArticle> findByU_G_H_T_D(
+			long userId, long groupId, boolean head, boolean template,
 			boolean draft, int start, int end)
 		throws SystemException {
 
@@ -203,7 +203,7 @@ public class KBArticleFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(FIND_BY_G_U_H_T_D);
+			String sql = CustomSQLUtil.get(FIND_BY_U_G_H_T_D);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -227,8 +227,8 @@ public class KBArticleFinderImpl
 		}
 	}
 
-	public List<KBArticle> findByP_U_H_D(
-			long parentResourcePrimKey, long userId, boolean head,
+	public List<KBArticle> findByU_P_H_D(
+			long userId, long parentResourcePrimKey, boolean head,
 			boolean draft)
 		throws SystemException {
 
@@ -237,7 +237,7 @@ public class KBArticleFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(FIND_BY_P_U_H_D);
+			String sql = CustomSQLUtil.get(FIND_BY_U_P_H_D);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -260,8 +260,8 @@ public class KBArticleFinderImpl
 		}
 	}
 
-	public List<KBArticle> findByR_U_H_D(
-			long resourcePrimKey, long userId, boolean head, boolean draft,
+	public List<KBArticle> findByU_R_H_D(
+			long userId, long resourcePrimKey, boolean head, boolean draft,
 			int start, int end)
 		throws SystemException {
 
@@ -270,7 +270,7 @@ public class KBArticleFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(FIND_BY_R_U_H_D);
+			String sql = CustomSQLUtil.get(FIND_BY_U_R_H_D);
 
 			SQLQuery q = session.createSQLQuery(sql);
 

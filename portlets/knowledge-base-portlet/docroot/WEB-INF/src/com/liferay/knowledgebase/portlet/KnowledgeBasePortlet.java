@@ -674,9 +674,9 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 		String content = ParamUtil.getString(actionRequest, "content");
 		String description = ParamUtil.getString(actionRequest, "description");
-		boolean draft = ParamUtil.getBoolean(actionRequest, "draft");
 		boolean minorEdit = ParamUtil.getBoolean(actionRequest, "minorEdit");
 		boolean template = ParamUtil.getBoolean(actionRequest, "template");
+		boolean draft = ParamUtil.getBoolean(actionRequest, "draft");
 		long parentResourcePrimKey = ParamUtil.getLong(
 			actionRequest, "parentResourcePrimKey");
 
@@ -707,7 +707,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		if (resourcePrimKey <= 0) {
 			return KBArticleServiceUtil.addArticle(
 				themeDisplay.getPlid(), title, content, description,
-				draft, minorEdit, template, parentResourcePrimKey, tagsEntries,
+				minorEdit, template, draft, parentResourcePrimKey, tagsEntries,
 				prefs, themeDisplay);
 		}
 		else {
@@ -717,13 +717,13 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			if (article.isTemplate() && (template == false)) {
 				return KBArticleServiceUtil.addArticle(
 					themeDisplay.getPortletGroupId(), title, content,
-					description, draft, minorEdit, template,
+					description, minorEdit, template, draft,
 					parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
 			}
 			else {
 				return KBArticleServiceUtil.updateArticle(
 					themeDisplay.getPlid(), resourcePrimKey, version, title,
-					content, description, draft, minorEdit, template,
+					content, description, minorEdit, template, draft,
 					parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
 			}
 		}

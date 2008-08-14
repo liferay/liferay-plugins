@@ -91,8 +91,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	public KBArticle addArticle(
 			long userId, long groupId, String title, String content,
-			String description, boolean draft, boolean minorEdit,
-			boolean template, long parentResourcePrimKey, String[] tagsEntries,
+			String description, boolean minorEdit, boolean template,
+			boolean draft, long parentResourcePrimKey, String[] tagsEntries,
 			PortletPreferences prefs, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
@@ -102,14 +102,14 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		return addArticle(
 			uuid, userId, groupId, title, version, content, description,
-			draft, minorEdit, head, template, parentResourcePrimKey,
+			minorEdit, head, template, draft, parentResourcePrimKey,
 			tagsEntries, prefs, themeDisplay);
 	}
 
 	public KBArticle addArticle(
 			String uuid, long userId, long groupId, String title,
 			double version, String content, String description,
-			boolean draft, boolean minorEdit, boolean head, boolean template,
+			boolean minorEdit, boolean head, boolean template, boolean draft,
 			long parentResourcePrimKey, String[] tagsEntries,
 			PortletPreferences prefs, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
@@ -146,12 +146,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		article.setGroupId(groupId);
 		article.setTitle(title);
 		article.setVersion(version);
-		article.setDraft(draft);
 		article.setMinorEdit(minorEdit);
 		article.setContent(content);
 		article.setDescription(description);
 		article.setHead(head);
 		article.setTemplate(template);
+		article.setDraft(draft);
 		article.setParentResourcePrimKey(parentResourcePrimKey);
 
 		kbArticlePersistence.update(article, false);
@@ -163,7 +163,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		// Subscriptions
 
 		if (!minorEdit && !draft
-			&& NotificationThreadLocal.isNotificationEnabled()) {
+				&& NotificationThreadLocal.isNotificationEnabled()) {
 
 			try {
 				notifySubscribers(article, prefs, themeDisplay, false);
@@ -451,12 +451,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	public KBArticle getArticle(
-			long resourcePrimKey, long userId, boolean head,
+			long userId, long resourcePrimKey, boolean head,
 			boolean draft)
 		throws PortalException, SystemException {
 
-		List<KBArticle> articles = kbArticleFinder.findByR_U_H_D(
-			resourcePrimKey, userId, head, draft, 0, 1);
+		List<KBArticle> articles = kbArticleFinder.findByU_R_H_D(
+			userId, resourcePrimKey, head, draft, 0, 1);
 
 		if (articles.size() > 0) {
 			return articles.get(0);
@@ -600,12 +600,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	public List<KBArticle> getArticles(
-			long groupId, long userId, boolean head, boolean template,
+			long userId, long groupId, boolean head, boolean template,
 			boolean draft, int start, int end)
 		throws SystemException {
 
-		return kbArticleFinder.findByG_U_H_T_D(
-			groupId, userId, head, template, draft, start, end);
+		return kbArticleFinder.findByU_G_H_T_D(
+			userId, groupId, head, template, draft, start, end);
 	}
 
 	public int getArticlesCount(long resourcePrimKey) throws SystemException {
@@ -647,12 +647,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	public int getArticlesCount(
-			long groupId, long userId, boolean head, boolean template,
+			long userId, long groupId, boolean head, boolean template,
 			boolean draft)
 		throws SystemException {
 
-		return kbArticleFinder.countByG_U_H_T_D(
-			groupId, userId, head, template, draft);
+		return kbArticleFinder.countByU_G_H_T_D(
+			userId, groupId, head, template, draft);
 	}
 
 	public List<KBArticle> getChildArticles(
@@ -671,12 +671,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	public List<KBArticle> getChildArticles(
-			long parentResourcePrimKey, long userId, boolean head,
+			long userId, long parentResourcePrimKey, boolean head,
 			boolean draft)
 		throws SystemException {
 
-		return kbArticleFinder.findByP_U_H_D(
-			parentResourcePrimKey, userId, head, draft);
+		return kbArticleFinder.findByU_P_H_D(
+			userId, parentResourcePrimKey, head, draft);
 	}
 
 	public void reIndex(String[] ids) throws SystemException {
@@ -734,7 +734,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return updateArticle(
 			userId, resourcePrimKey, 0, oldArticle.getTitle(),
 			oldArticle.getContent(), oldArticle.getDescription(),
-			article.getDraft(), false, oldArticle.isTemplate(),
+			false, oldArticle.isTemplate(), article.getDraft(),
 			oldArticle.getParentResourcePrimKey(), null, prefs, themeDisplay);
 	}
 
@@ -806,8 +806,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	public KBArticle updateArticle(
 			long userId, long resourcePrimKey, double version,
-			String title, String content, String description, boolean draft,
-			boolean minorEdit, boolean template, long parentResourcePrimKey,
+			String title, String content, String description, boolean minorEdit,
+			boolean template, boolean draft, long parentResourcePrimKey,
 			String[] tagsEntries, PortletPreferences prefs,
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
@@ -846,13 +846,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		article.setGroupId(groupId);
 		article.setTitle(title);
 		article.setVersion(newVersion);
-		article.setDraft(draft);
 		article.setMinorEdit(minorEdit);
 		article.setContent(content);
 		article.setDescription(description);
 		article.setHead(true);
 		article.setTemplate(template);
-
+		article.setDraft(draft);
 		article.setParentResourcePrimKey(parentResourcePrimKey);
 
 		kbArticlePersistence.update(article, false);
@@ -860,7 +859,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		// Subscriptions
 
 		if (!minorEdit && !draft
-			&& NotificationThreadLocal.isNotificationEnabled()) {
+				&& NotificationThreadLocal.isNotificationEnabled()) {
 
 			try {
 				notifySubscribers(article, prefs, themeDisplay, true);
