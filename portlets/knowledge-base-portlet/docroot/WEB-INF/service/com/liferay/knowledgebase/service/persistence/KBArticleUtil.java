@@ -311,6 +311,146 @@ public class KBArticleUtil {
 			resourcePrimKey, obc);
 	}
 
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByC_D(
+		long companyId, boolean draft)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByC_D(companyId, draft);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByC_D(
+		long companyId, boolean draft, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByC_D(companyId, draft, start, end);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByC_D(
+		long companyId, boolean draft, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByC_D(companyId, draft, start, end, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle findByC_D_First(
+		long companyId, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence().findByC_D_First(companyId, draft, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle findByC_D_Last(
+		long companyId, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence().findByC_D_Last(companyId, draft, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle[] findByC_D_PrevAndNext(
+		long articleId, long companyId, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByC_D_PrevAndNext(articleId, companyId, draft, obc);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_H_T(
+		long groupId, boolean head, boolean template)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByG_H_T(groupId, head, template);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_H_T(
+		long groupId, boolean head, boolean template, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByG_H_T(groupId, head, template, start, end);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_H_T(
+		long groupId, boolean head, boolean template, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByG_H_T(groupId, head, template, start, end, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle findByG_H_T_First(
+		long groupId, boolean head, boolean template,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence().findByG_H_T_First(groupId, head, template, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle findByG_H_T_Last(
+		long groupId, boolean head, boolean template,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence().findByG_H_T_Last(groupId, head, template, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle[] findByG_H_T_PrevAndNext(
+		long articleId, long groupId, boolean head, boolean template,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByG_H_T_PrevAndNext(articleId, groupId, head, template,
+			obc);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_H_T_D(
+		long groupId, boolean head, boolean template, boolean draft)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByG_H_T_D(groupId, head, template, draft);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_H_T_D(
+		long groupId, boolean head, boolean template, boolean draft, int start,
+		int end) throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByG_H_T_D(groupId, head, template, draft, start, end);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_H_T_D(
+		long groupId, boolean head, boolean template, boolean draft, int start,
+		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByG_H_T_D(groupId, head, template, draft, start, end,
+			obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle findByG_H_T_D_First(
+		long groupId, boolean head, boolean template, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByG_H_T_D_First(groupId, head, template, draft, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle findByG_H_T_D_Last(
+		long groupId, boolean head, boolean template, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByG_H_T_D_Last(groupId, head, template, draft, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle[] findByG_H_T_D_PrevAndNext(
+		long articleId, long groupId, boolean head, boolean template,
+		boolean draft, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByG_H_T_D_PrevAndNext(articleId, groupId, head,
+			template, draft, obc);
+	}
+
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_T(
 		long groupId, java.lang.String title)
 		throws com.liferay.portal.SystemException {
@@ -368,6 +508,19 @@ public class KBArticleUtil {
 		return getPersistence().fetchByG_T_V(groupId, title, version);
 	}
 
+	public static com.liferay.knowledgebase.model.KBArticle findByG_T_V_D(
+		long groupId, java.lang.String title, double version, boolean draft)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence().findByG_T_V_D(groupId, title, version, draft);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle fetchByG_T_V_D(
+		long groupId, java.lang.String title, double version, boolean draft)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().fetchByG_T_V_D(groupId, title, version, draft);
+	}
+
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_T_H(
 		long groupId, java.lang.String title, boolean head)
 		throws com.liferay.portal.SystemException {
@@ -411,6 +564,103 @@ public class KBArticleUtil {
 			com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findByG_T_H_PrevAndNext(articleId, groupId, title, head, obc);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_T_H_D(
+		long groupId, java.lang.String title, boolean head, boolean draft)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByG_T_H_D(groupId, title, head, draft);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_T_H_D(
+		long groupId, java.lang.String title, boolean head, boolean draft,
+		int start, int end) throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByG_T_H_D(groupId, title, head, draft, start, end);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_T_H_D(
+		long groupId, java.lang.String title, boolean head, boolean draft,
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByG_T_H_D(groupId, title, head, draft, start, end, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle findByG_T_H_D_First(
+		long groupId, java.lang.String title, boolean head, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByG_T_H_D_First(groupId, title, head, draft, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle findByG_T_H_D_Last(
+		long groupId, java.lang.String title, boolean head, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByG_T_H_D_Last(groupId, title, head, draft, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle[] findByG_T_H_D_PrevAndNext(
+		long articleId, long groupId, java.lang.String title, boolean head,
+		boolean draft, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByG_T_H_D_PrevAndNext(articleId, groupId, title, head,
+			draft, obc);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByP_D(
+		long parentResourcePrimKey, boolean draft)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByP_D(parentResourcePrimKey, draft);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByP_D(
+		long parentResourcePrimKey, boolean draft, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByP_D(parentResourcePrimKey, draft, start, end);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByP_D(
+		long parentResourcePrimKey, boolean draft, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByP_D(parentResourcePrimKey, draft, start, end, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle findByP_D_First(
+		long parentResourcePrimKey, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByP_D_First(parentResourcePrimKey, draft, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle findByP_D_Last(
+		long parentResourcePrimKey, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence().findByP_D_Last(parentResourcePrimKey, draft, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle[] findByP_D_PrevAndNext(
+		long articleId, long parentResourcePrimKey, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByP_D_PrevAndNext(articleId, parentResourcePrimKey,
+			draft, obc);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByP_H(
@@ -460,6 +710,101 @@ public class KBArticleUtil {
 			head, obc);
 	}
 
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByP_H_D(
+		long parentResourcePrimKey, boolean head, boolean draft)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByP_H_D(parentResourcePrimKey, head, draft);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByP_H_D(
+		long parentResourcePrimKey, boolean head, boolean draft, int start,
+		int end) throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByP_H_D(parentResourcePrimKey, head, draft, start, end);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByP_H_D(
+		long parentResourcePrimKey, boolean head, boolean draft, int start,
+		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByP_H_D(parentResourcePrimKey, head, draft, start, end,
+			obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle findByP_H_D_First(
+		long parentResourcePrimKey, boolean head, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByP_H_D_First(parentResourcePrimKey, head, draft, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle findByP_H_D_Last(
+		long parentResourcePrimKey, boolean head, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByP_H_D_Last(parentResourcePrimKey, head, draft, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle[] findByP_H_D_PrevAndNext(
+		long articleId, long parentResourcePrimKey, boolean head,
+		boolean draft, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByP_H_D_PrevAndNext(articleId, parentResourcePrimKey,
+			head, draft, obc);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByR_D(
+		long resourcePrimKey, boolean draft)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByR_D(resourcePrimKey, draft);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByR_D(
+		long resourcePrimKey, boolean draft, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByR_D(resourcePrimKey, draft, start, end);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByR_D(
+		long resourcePrimKey, boolean draft, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByR_D(resourcePrimKey, draft, start, end, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle findByR_D_First(
+		long resourcePrimKey, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence().findByR_D_First(resourcePrimKey, draft, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle findByR_D_Last(
+		long resourcePrimKey, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence().findByR_D_Last(resourcePrimKey, draft, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle[] findByR_D_PrevAndNext(
+		long articleId, long resourcePrimKey, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByR_D_PrevAndNext(articleId, resourcePrimKey, draft, obc);
+	}
+
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByR_H(
 		long resourcePrimKey, boolean head)
 		throws com.liferay.portal.SystemException {
@@ -504,6 +849,55 @@ public class KBArticleUtil {
 				   .findByR_H_PrevAndNext(articleId, resourcePrimKey, head, obc);
 	}
 
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByR_H_D(
+		long resourcePrimKey, boolean head, boolean draft)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByR_H_D(resourcePrimKey, head, draft);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByR_H_D(
+		long resourcePrimKey, boolean head, boolean draft, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByR_H_D(resourcePrimKey, head, draft, start, end);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByR_H_D(
+		long resourcePrimKey, boolean head, boolean draft, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByR_H_D(resourcePrimKey, head, draft, start, end, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle findByR_H_D_First(
+		long resourcePrimKey, boolean head, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByR_H_D_First(resourcePrimKey, head, draft, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle findByR_H_D_Last(
+		long resourcePrimKey, boolean head, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByR_H_D_Last(resourcePrimKey, head, draft, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle[] findByR_H_D_PrevAndNext(
+		long articleId, long resourcePrimKey, boolean head, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByR_H_D_PrevAndNext(articleId, resourcePrimKey, head,
+			draft, obc);
+	}
+
 	public static com.liferay.knowledgebase.model.KBArticle findByR_V(
 		long resourcePrimKey, double version)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
@@ -517,50 +911,17 @@ public class KBArticleUtil {
 		return getPersistence().fetchByR_V(resourcePrimKey, version);
 	}
 
-	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_H_T(
-		long groupId, boolean head, boolean template)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findByG_H_T(groupId, head, template);
-	}
-
-	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_H_T(
-		long groupId, boolean head, boolean template, int start, int end)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().findByG_H_T(groupId, head, template, start, end);
-	}
-
-	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_H_T(
-		long groupId, boolean head, boolean template, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.SystemException {
-		return getPersistence()
-				   .findByG_H_T(groupId, head, template, start, end, obc);
-	}
-
-	public static com.liferay.knowledgebase.model.KBArticle findByG_H_T_First(
-		long groupId, boolean head, boolean template,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+	public static com.liferay.knowledgebase.model.KBArticle findByR_V_D(
+		long resourcePrimKey, double version, boolean draft)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException {
-		return getPersistence().findByG_H_T_First(groupId, head, template, obc);
+		return getPersistence().findByR_V_D(resourcePrimKey, version, draft);
 	}
 
-	public static com.liferay.knowledgebase.model.KBArticle findByG_H_T_Last(
-		long groupId, boolean head, boolean template,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.knowledgebase.NoSuchArticleException,
-			com.liferay.portal.SystemException {
-		return getPersistence().findByG_H_T_Last(groupId, head, template, obc);
-	}
-
-	public static com.liferay.knowledgebase.model.KBArticle[] findByG_H_T_PrevAndNext(
-		long articleId, long groupId, boolean head, boolean template,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.knowledgebase.NoSuchArticleException,
-			com.liferay.portal.SystemException {
-		return getPersistence()
-				   .findByG_H_T_PrevAndNext(articleId, groupId, head, template,
-			obc);
+	public static com.liferay.knowledgebase.model.KBArticle fetchByR_V_D(
+		long resourcePrimKey, double version, boolean draft)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().fetchByR_V_D(resourcePrimKey, version, draft);
 	}
 
 	public static java.util.List<Object> findWithDynamicQuery(
@@ -622,6 +983,22 @@ public class KBArticleUtil {
 		getPersistence().removeByResourcePrimKey(resourcePrimKey);
 	}
 
+	public static void removeByC_D(long companyId, boolean draft)
+		throws com.liferay.portal.SystemException {
+		getPersistence().removeByC_D(companyId, draft);
+	}
+
+	public static void removeByG_H_T(long groupId, boolean head,
+		boolean template) throws com.liferay.portal.SystemException {
+		getPersistence().removeByG_H_T(groupId, head, template);
+	}
+
+	public static void removeByG_H_T_D(long groupId, boolean head,
+		boolean template, boolean draft)
+		throws com.liferay.portal.SystemException {
+		getPersistence().removeByG_H_T_D(groupId, head, template, draft);
+	}
+
 	public static void removeByG_T(long groupId, java.lang.String title)
 		throws com.liferay.portal.SystemException {
 		getPersistence().removeByG_T(groupId, title);
@@ -634,9 +1011,26 @@ public class KBArticleUtil {
 		getPersistence().removeByG_T_V(groupId, title, version);
 	}
 
+	public static void removeByG_T_V_D(long groupId, java.lang.String title,
+		double version, boolean draft)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		getPersistence().removeByG_T_V_D(groupId, title, version, draft);
+	}
+
 	public static void removeByG_T_H(long groupId, java.lang.String title,
 		boolean head) throws com.liferay.portal.SystemException {
 		getPersistence().removeByG_T_H(groupId, title, head);
+	}
+
+	public static void removeByG_T_H_D(long groupId, java.lang.String title,
+		boolean head, boolean draft) throws com.liferay.portal.SystemException {
+		getPersistence().removeByG_T_H_D(groupId, title, head, draft);
+	}
+
+	public static void removeByP_D(long parentResourcePrimKey, boolean draft)
+		throws com.liferay.portal.SystemException {
+		getPersistence().removeByP_D(parentResourcePrimKey, draft);
 	}
 
 	public static void removeByP_H(long parentResourcePrimKey, boolean head)
@@ -644,9 +1038,24 @@ public class KBArticleUtil {
 		getPersistence().removeByP_H(parentResourcePrimKey, head);
 	}
 
+	public static void removeByP_H_D(long parentResourcePrimKey, boolean head,
+		boolean draft) throws com.liferay.portal.SystemException {
+		getPersistence().removeByP_H_D(parentResourcePrimKey, head, draft);
+	}
+
+	public static void removeByR_D(long resourcePrimKey, boolean draft)
+		throws com.liferay.portal.SystemException {
+		getPersistence().removeByR_D(resourcePrimKey, draft);
+	}
+
 	public static void removeByR_H(long resourcePrimKey, boolean head)
 		throws com.liferay.portal.SystemException {
 		getPersistence().removeByR_H(resourcePrimKey, head);
+	}
+
+	public static void removeByR_H_D(long resourcePrimKey, boolean head,
+		boolean draft) throws com.liferay.portal.SystemException {
+		getPersistence().removeByR_H_D(resourcePrimKey, head, draft);
 	}
 
 	public static void removeByR_V(long resourcePrimKey, double version)
@@ -655,9 +1064,11 @@ public class KBArticleUtil {
 		getPersistence().removeByR_V(resourcePrimKey, version);
 	}
 
-	public static void removeByG_H_T(long groupId, boolean head,
-		boolean template) throws com.liferay.portal.SystemException {
-		getPersistence().removeByG_H_T(groupId, head, template);
+	public static void removeByR_V_D(long resourcePrimKey, double version,
+		boolean draft)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException {
+		getPersistence().removeByR_V_D(resourcePrimKey, version, draft);
 	}
 
 	public static void removeAll() throws com.liferay.portal.SystemException {
@@ -695,6 +1106,22 @@ public class KBArticleUtil {
 		return getPersistence().countByResourcePrimKey(resourcePrimKey);
 	}
 
+	public static int countByC_D(long companyId, boolean draft)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().countByC_D(companyId, draft);
+	}
+
+	public static int countByG_H_T(long groupId, boolean head, boolean template)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().countByG_H_T(groupId, head, template);
+	}
+
+	public static int countByG_H_T_D(long groupId, boolean head,
+		boolean template, boolean draft)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().countByG_H_T_D(groupId, head, template, draft);
+	}
+
 	public static int countByG_T(long groupId, java.lang.String title)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().countByG_T(groupId, title);
@@ -705,9 +1132,25 @@ public class KBArticleUtil {
 		return getPersistence().countByG_T_V(groupId, title, version);
 	}
 
+	public static int countByG_T_V_D(long groupId, java.lang.String title,
+		double version, boolean draft)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().countByG_T_V_D(groupId, title, version, draft);
+	}
+
 	public static int countByG_T_H(long groupId, java.lang.String title,
 		boolean head) throws com.liferay.portal.SystemException {
 		return getPersistence().countByG_T_H(groupId, title, head);
+	}
+
+	public static int countByG_T_H_D(long groupId, java.lang.String title,
+		boolean head, boolean draft) throws com.liferay.portal.SystemException {
+		return getPersistence().countByG_T_H_D(groupId, title, head, draft);
+	}
+
+	public static int countByP_D(long parentResourcePrimKey, boolean draft)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().countByP_D(parentResourcePrimKey, draft);
 	}
 
 	public static int countByP_H(long parentResourcePrimKey, boolean head)
@@ -715,9 +1158,24 @@ public class KBArticleUtil {
 		return getPersistence().countByP_H(parentResourcePrimKey, head);
 	}
 
+	public static int countByP_H_D(long parentResourcePrimKey, boolean head,
+		boolean draft) throws com.liferay.portal.SystemException {
+		return getPersistence().countByP_H_D(parentResourcePrimKey, head, draft);
+	}
+
+	public static int countByR_D(long resourcePrimKey, boolean draft)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().countByR_D(resourcePrimKey, draft);
+	}
+
 	public static int countByR_H(long resourcePrimKey, boolean head)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().countByR_H(resourcePrimKey, head);
+	}
+
+	public static int countByR_H_D(long resourcePrimKey, boolean head,
+		boolean draft) throws com.liferay.portal.SystemException {
+		return getPersistence().countByR_H_D(resourcePrimKey, head, draft);
 	}
 
 	public static int countByR_V(long resourcePrimKey, double version)
@@ -725,9 +1183,9 @@ public class KBArticleUtil {
 		return getPersistence().countByR_V(resourcePrimKey, version);
 	}
 
-	public static int countByG_H_T(long groupId, boolean head, boolean template)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().countByG_H_T(groupId, head, template);
+	public static int countByR_V_D(long resourcePrimKey, double version,
+		boolean draft) throws com.liferay.portal.SystemException {
+		return getPersistence().countByR_V_D(resourcePrimKey, version, draft);
 	}
 
 	public static int countAll() throws com.liferay.portal.SystemException {

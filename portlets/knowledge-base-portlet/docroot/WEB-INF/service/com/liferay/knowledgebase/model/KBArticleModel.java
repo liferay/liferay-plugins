@@ -91,6 +91,12 @@ public interface KBArticleModel extends BaseModel {
 
 	public void setDescription(String description);
 
+	public boolean getDraft();
+
+	public boolean isDraft();
+
+	public void setDraft(boolean draft);
+
 	public boolean getHead();
 
 	public boolean isHead();

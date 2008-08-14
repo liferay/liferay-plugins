@@ -78,7 +78,7 @@ public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 		return group;
 	}
 
-	public KBArticle getParentArticle() {
+	public KBArticle getParentArticle(long userId) {
 		if (!hasParent()) {
 			return null;
 		}
@@ -87,7 +87,7 @@ public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 
 		try {
 			article = KBArticleLocalServiceUtil.getArticle(
-				getParentResourcePrimKey());
+				getParentResourcePrimKey(), userId, true, false);
 		}
 		catch (Exception e) {
 			_log.error(e);
@@ -96,25 +96,27 @@ public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 		return article;
 	}
 
-	public List<KBArticle> getParentArticles() {
+	public List<KBArticle> getParentArticles(long userId) {
 		List<KBArticle> parentArticles = new ArrayList<KBArticle>();
 
-		KBArticle parentArticle = getParentArticle();
+		KBArticle parentArticle = getParentArticle(userId);
 
 		if (parentArticle != null) {
-			parentArticles.addAll(parentArticle.getParentArticles());
+			parentArticles.addAll(parentArticle.getParentArticles(userId));
 			parentArticles.add(parentArticle);
 		}
 
 		return parentArticles;
 	}
 
-	public List<KBArticle> getChildArticles() {
+	public List<KBArticle> getChildArticles(long userId) {
 		List<KBArticle> articles = null;
 
 		try {
-			articles = KBArticleLocalServiceUtil.getChildren(
-				getResourcePrimKey(), true);
+			long parentResourcePrimKey = getResourcePrimKey();
+
+			articles = KBArticleLocalServiceUtil.getChildArticles(
+				parentResourcePrimKey, userId, true, false);
 		}
 		catch (Exception e) {
 			articles = Collections.EMPTY_LIST;

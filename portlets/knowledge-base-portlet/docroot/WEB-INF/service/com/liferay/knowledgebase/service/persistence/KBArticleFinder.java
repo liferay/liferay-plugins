@@ -20,38 +20,35 @@
  * SOFTWARE.
  */
 
-package com.liferay.knowledgebase.model;
+package com.liferay.knowledgebase.service.persistence;
 
 /**
- * <a href="KBArticle.java.html"><b><i>View Source</i></b></a>
+ * <a href="KBArticleFinder.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
  *
  */
-public interface KBArticle extends KBArticleModel {
-	public java.lang.String getUserUuid()
+public interface KBArticleFinder {
+	public int countByG_U_H_T_D(long groupId, long userId, boolean head,
+		boolean template, boolean draft)
 		throws com.liferay.portal.SystemException;
 
-	public void setUserUuid(java.lang.String userUuid);
+	public int countByP_U_H_D(long parentResourcePrimKey, long userId,
+		boolean head, boolean draft) throws com.liferay.portal.SystemException;
 
-	public com.liferay.portal.model.Group getGroup();
+	public int countByR_U_H_D(long resourcePrimKey, long userId, boolean head,
+		boolean draft) throws com.liferay.portal.SystemException;
 
-	public com.liferay.knowledgebase.model.KBArticle getParentArticle(
-		long userId);
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_U_H_T_D(
+		long groupId, long userId, boolean head, boolean template,
+		boolean draft, int start, int end)
+		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getParentArticles(
-		long userId);
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByP_U_H_D(
+		long parentResourcePrimKey, long userId, boolean head, boolean draft)
+		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getChildArticles(
-		long userId);
-
-	public java.lang.String getAttachmentsDir();
-
-	public void setAttachmentsDir(java.lang.String attachmentsDir);
-
-	public java.lang.String[] getAttachmentsFiles()
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException;
-
-	public boolean hasParent();
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByR_U_H_D(
+		long resourcePrimKey, long userId, boolean head, boolean draft,
+		int start, int end) throws com.liferay.portal.SystemException;
 }

@@ -32,6 +32,7 @@
 		<column name="minorEdit" type="boolean" />
 		<column name="content" type="String" />
 		<column name="description" type="String" />
+		<column name="draft" type="boolean" />
 		<column name="head" type="boolean" />
 		<column name="template" type="boolean" />
 		<column name="parentResourcePrimKey" type="long" />
@@ -57,6 +58,21 @@
 		<finder name="ResourcePrimKey" return-type="Collection">
 			<finder-column name="resourcePrimKey" />
 		</finder>
+		<finder name="C_D" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="draft" />
+		</finder>
+		<finder name="G_H_T" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="head" />
+			<finder-column name="template" />
+		</finder>
+		<finder name="G_H_T_D" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="head" />
+			<finder-column name="template" />
+			<finder-column name="draft" />
+		</finder>
 		<finder name="G_T" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="title" />
@@ -66,27 +82,57 @@
 			<finder-column name="title" />
 			<finder-column name="version" />
 		</finder>
+		<finder name="G_T_V_D" return-type="KBArticle">
+			<finder-column name="groupId" />
+			<finder-column name="title" />
+			<finder-column name="version" />
+			<finder-column name="draft" />
+		</finder>
 		<finder name="G_T_H" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="title" />
 			<finder-column name="head" />
 		</finder>
+		<finder name="G_T_H_D" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="title" />
+			<finder-column name="head" />
+			<finder-column name="draft" />
+		</finder>
+		<finder name="P_D" return-type="Collection">
+			<finder-column name="parentResourcePrimKey" />
+			<finder-column name="draft" />
+		</finder>
 		<finder name="P_H" return-type="Collection">
 			<finder-column name="parentResourcePrimKey" />
 			<finder-column name="head" />
+		</finder>
+		<finder name="P_H_D" return-type="Collection">
+			<finder-column name="parentResourcePrimKey" />
+			<finder-column name="head" />
+			<finder-column name="draft" />
+		</finder>
+		<finder name="R_D" return-type="Collection">
+			<finder-column name="resourcePrimKey" />
+			<finder-column name="draft" />
 		</finder>
 		<finder name="R_H" return-type="Collection">
 			<finder-column name="resourcePrimKey" />
 			<finder-column name="head" />
 		</finder>
+		<finder name="R_H_D" return-type="Collection">
+			<finder-column name="resourcePrimKey" />
+			<finder-column name="head" />
+			<finder-column name="draft" />
+		</finder>
 		<finder name="R_V" return-type="KBArticle">
 			<finder-column name="resourcePrimKey" />
 			<finder-column name="version" />
 		</finder>
-		<finder name="G_H_T" return-type="Collection">
-			<finder-column name="groupId" />
-			<finder-column name="head" />
-			<finder-column name="template" />
+		<finder name="R_V_D" return-type="KBArticle">
+			<finder-column name="resourcePrimKey" />
+			<finder-column name="version" />
+			<finder-column name="draft" />
 		</finder>
 
 		<!-- References -->

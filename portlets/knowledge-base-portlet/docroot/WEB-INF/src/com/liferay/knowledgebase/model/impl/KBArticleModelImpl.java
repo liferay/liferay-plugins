@@ -88,6 +88,9 @@ public class KBArticleModelImpl extends BaseModelImpl {
 			{ "description", new Integer(Types.VARCHAR) },
 			
 
+			{ "draft", new Integer(Types.BOOLEAN) },
+			
+
 			{ "head", new Integer(Types.BOOLEAN) },
 			
 
@@ -96,7 +99,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 
 			{ "parentResourcePrimKey", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KB_KBArticle (uuid_ VARCHAR(75) null,articleId LONG not null primary key,groupId LONG,resourcePrimKey LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,modifiedDate DATE null,title VARCHAR(100) null,version DOUBLE,minorEdit BOOLEAN,content TEXT null,description STRING null,head BOOLEAN,template BOOLEAN,parentResourcePrimKey LONG)";
+	public static final String TABLE_SQL_CREATE = "create table KB_KBArticle (uuid_ VARCHAR(75) null,articleId LONG not null primary key,groupId LONG,resourcePrimKey LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,modifiedDate DATE null,title VARCHAR(100) null,version DOUBLE,minorEdit BOOLEAN,content TEXT null,description STRING null,draft BOOLEAN,head BOOLEAN,template BOOLEAN,parentResourcePrimKey LONG)";
 	public static final String TABLE_SQL_DROP = "drop table KB_KBArticle";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -121,6 +124,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		model.setMinorEdit(soapModel.getMinorEdit());
 		model.setContent(soapModel.getContent());
 		model.setDescription(soapModel.getDescription());
+		model.setDraft(soapModel.getDraft());
 		model.setHead(soapModel.getHead());
 		model.setTemplate(soapModel.getTemplate());
 		model.setParentResourcePrimKey(soapModel.getParentResourcePrimKey());
@@ -304,6 +308,20 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		}
 	}
 
+	public boolean getDraft() {
+		return _draft;
+	}
+
+	public boolean isDraft() {
+		return _draft;
+	}
+
+	public void setDraft(boolean draft) {
+		if (draft != _draft) {
+			_draft = draft;
+		}
+	}
+
 	public boolean getHead() {
 		return _head;
 	}
@@ -364,6 +382,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 			model.setMinorEdit(getMinorEdit());
 			model.setContent(HtmlUtil.escape(getContent()));
 			model.setDescription(HtmlUtil.escape(getDescription()));
+			model.setDraft(getDraft());
 			model.setHead(getHead());
 			model.setTemplate(getTemplate());
 			model.setParentResourcePrimKey(getParentResourcePrimKey());
@@ -392,6 +411,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		clone.setMinorEdit(getMinorEdit());
 		clone.setContent(getContent());
 		clone.setDescription(getDescription());
+		clone.setDraft(getDraft());
 		clone.setHead(getHead());
 		clone.setTemplate(getTemplate());
 		clone.setParentResourcePrimKey(getParentResourcePrimKey());
@@ -473,6 +493,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 	private boolean _minorEdit;
 	private String _content;
 	private String _description;
+	private boolean _draft;
 	private boolean _head;
 	private boolean _template;
 	private long _parentResourcePrimKey;

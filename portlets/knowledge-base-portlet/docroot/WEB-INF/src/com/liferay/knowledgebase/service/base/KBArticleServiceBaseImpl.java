@@ -33,6 +33,7 @@ import com.liferay.knowledgebase.service.KBArticleResourceLocalService;
 import com.liferay.knowledgebase.service.KBArticleService;
 import com.liferay.knowledgebase.service.KBFeedbackEntryLocalService;
 import com.liferay.knowledgebase.service.KBFeedbackStatsLocalService;
+import com.liferay.knowledgebase.service.persistence.KBArticleFinder;
 import com.liferay.knowledgebase.service.persistence.KBArticlePersistence;
 import com.liferay.knowledgebase.service.persistence.KBArticleResourcePersistence;
 import com.liferay.knowledgebase.service.persistence.KBFeedbackEntryPersistence;
@@ -95,6 +96,14 @@ public abstract class KBArticleServiceBaseImpl extends PrincipalBean
 	public void setKBArticlePersistence(
 		KBArticlePersistence kbArticlePersistence) {
 		this.kbArticlePersistence = kbArticlePersistence;
+	}
+
+	public KBArticleFinder getKBArticleFinder() {
+		return kbArticleFinder;
+	}
+
+	public void setKBArticleFinder(KBArticleFinder kbArticleFinder) {
+		this.kbArticleFinder = kbArticleFinder;
 	}
 
 	public KBArticleResourceLocalService getKBArticleResourceLocalService() {
@@ -414,6 +423,11 @@ public abstract class KBArticleServiceBaseImpl extends PrincipalBean
 					".impl");
 		}
 
+		if (kbArticleFinder == null) {
+			kbArticleFinder = (KBArticleFinder)PortletBeanLocatorUtil.locate(KBArticleFinder.class.getName() +
+					".impl");
+		}
+
 		if (kbArticleResourceLocalService == null) {
 			kbArticleResourceLocalService = (KBArticleResourceLocalService)PortletBeanLocatorUtil.locate(KBArticleResourceLocalService.class.getName() +
 					".impl");
@@ -597,6 +611,7 @@ public abstract class KBArticleServiceBaseImpl extends PrincipalBean
 
 	protected KBArticleLocalService kbArticleLocalService;
 	protected KBArticlePersistence kbArticlePersistence;
+	protected KBArticleFinder kbArticleFinder;
 	protected KBArticleResourceLocalService kbArticleResourceLocalService;
 	protected KBArticleResourcePersistence kbArticleResourcePersistence;
 	protected KBFeedbackEntryLocalService kbFeedbackEntryLocalService;

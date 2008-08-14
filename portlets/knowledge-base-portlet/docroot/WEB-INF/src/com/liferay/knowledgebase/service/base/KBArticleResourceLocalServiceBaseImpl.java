@@ -31,6 +31,7 @@ import com.liferay.knowledgebase.service.KBArticleResourceLocalService;
 import com.liferay.knowledgebase.service.KBArticleService;
 import com.liferay.knowledgebase.service.KBFeedbackEntryLocalService;
 import com.liferay.knowledgebase.service.KBFeedbackStatsLocalService;
+import com.liferay.knowledgebase.service.persistence.KBArticleFinder;
 import com.liferay.knowledgebase.service.persistence.KBArticlePersistence;
 import com.liferay.knowledgebase.service.persistence.KBArticleResourcePersistence;
 import com.liferay.knowledgebase.service.persistence.KBFeedbackEntryPersistence;
@@ -129,6 +130,14 @@ public abstract class KBArticleResourceLocalServiceBaseImpl
 		this.kbArticlePersistence = kbArticlePersistence;
 	}
 
+	public KBArticleFinder getKBArticleFinder() {
+		return kbArticleFinder;
+	}
+
+	public void setKBArticleFinder(KBArticleFinder kbArticleFinder) {
+		this.kbArticleFinder = kbArticleFinder;
+	}
+
 	public KBArticleResourcePersistence getKBArticleResourcePersistence() {
 		return kbArticleResourcePersistence;
 	}
@@ -206,6 +215,11 @@ public abstract class KBArticleResourceLocalServiceBaseImpl
 					".impl");
 		}
 
+		if (kbArticleFinder == null) {
+			kbArticleFinder = (KBArticleFinder)PortletBeanLocatorUtil.locate(KBArticleFinder.class.getName() +
+					".impl");
+		}
+
 		if (kbArticleResourcePersistence == null) {
 			kbArticleResourcePersistence = (KBArticleResourcePersistence)PortletBeanLocatorUtil.locate(KBArticleResourcePersistence.class.getName() +
 					".impl");
@@ -245,6 +259,7 @@ public abstract class KBArticleResourceLocalServiceBaseImpl
 	protected KBArticleLocalService kbArticleLocalService;
 	protected KBArticleService kbArticleService;
 	protected KBArticlePersistence kbArticlePersistence;
+	protected KBArticleFinder kbArticleFinder;
 	protected KBArticleResourcePersistence kbArticleResourcePersistence;
 	protected KBFeedbackEntryLocalService kbFeedbackEntryLocalService;
 	protected KBFeedbackEntryPersistence kbFeedbackEntryPersistence;

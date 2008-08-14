@@ -51,6 +51,7 @@ public class KBArticleSoap implements Serializable {
 		soapModel.setMinorEdit(model.getMinorEdit());
 		soapModel.setContent(model.getContent());
 		soapModel.setDescription(model.getDescription());
+		soapModel.setDraft(model.getDraft());
 		soapModel.setHead(model.getHead());
 		soapModel.setTemplate(model.getTemplate());
 		soapModel.setParentResourcePrimKey(model.getParentResourcePrimKey());
@@ -187,6 +188,18 @@ public class KBArticleSoap implements Serializable {
 		_description = description;
 	}
 
+	public boolean getDraft() {
+		return _draft;
+	}
+
+	public boolean isDraft() {
+		return _draft;
+	}
+
+	public void setDraft(boolean draft) {
+		_draft = draft;
+	}
+
 	public boolean getHead() {
 		return _head;
 	}
@@ -232,6 +245,7 @@ public class KBArticleSoap implements Serializable {
 	private boolean _minorEdit;
 	private String _content;
 	private String _description;
+	private boolean _draft;
 	private boolean _head;
 	private boolean _template;
 	private long _parentResourcePrimKey;

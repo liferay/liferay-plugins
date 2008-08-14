@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.liferay.knowledgebase.service.persistence.KBArticleFinder.countByG_U_H_T_D">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				KB_KBArticle
+			WHERE
+				(groupId = ?) AND
+				(head = ?) AND
+				(template = ?) AND
+				(
+					(userId = ?) OR
+					(draft = ?)
+				)
+		]]>
+	</sql>
+	<sql id="com.liferay.knowledgebase.service.persistence.KBArticleFinder.countByP_U_H_D">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				KB_KBArticle
+			WHERE
+				(parentResourcePrimKey = ?) AND
+				(head = ?) AND
+				(
+					(userId = ?) OR
+					(draft = ?)
+				)
+		]]>
+	</sql>
+	<sql id="com.liferay.knowledgebase.service.persistence.KBArticleFinder.countByR_U_H_D">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				KB_KBArticle
+			WHERE
+				(resourcePrimKey = ?) AND
+				(head = ?) AND
+				(
+					(userId = ?) OR
+					(draft = ?)
+				)
+		]]>
+	</sql>
+	<sql id="com.liferay.knowledgebase.service.persistence.KBArticleFinder.findByG_U_H_T_D">
+		<![CDATA[
+			SELECT
+				{KB_KBArticle.*}
+			FROM
+				KB_KBArticle
+			WHERE
+				(groupId = ?) AND
+				(head = ?) AND
+				(template = ?) AND
+				(
+					(userId = ?) OR
+					(draft = ?)
+				)
+			ORDER BY
+				title ASC,
+				version ASC
+		]]>
+	</sql>
+	<sql id="com.liferay.knowledgebase.service.persistence.KBArticleFinder.findByP_U_H_D">
+		<![CDATA[
+			SELECT
+				{KB_KBArticle.*}
+			FROM
+				KB_KBArticle
+			WHERE
+				(parentResourcePrimKey = ?) AND
+				(head = ?) AND
+				(
+					(userId = ?) OR
+					(draft = ?)
+				)
+			ORDER BY
+				title ASC,
+				version ASC
+		]]>
+	</sql>
+	<sql id="com.liferay.knowledgebase.service.persistence.KBArticleFinder.findByR_U_H_D">
+		<![CDATA[
+			SELECT
+				{KB_KBArticle.*}
+			FROM
+				KB_KBArticle
+			WHERE
+				(resourcePrimKey = ?) AND
+				(head = ?) AND
+				(
+					(userId = ?) OR
+					(draft = ?)
+				)
+			ORDER BY
+				title ASC,
+				version ASC
+		]]>
+	</sql>
+</custom-sql>

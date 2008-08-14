@@ -321,7 +321,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			double version = ParamUtil.getDouble(resourceRequest, "version");
 
 			String targetExtension = ParamUtil.getString(
-					resourceRequest, "targetExtension");
+				resourceRequest, "targetExtension");
 
 			String[] extensions = prefs.getValues(
 				"extensions", new String[] {});
@@ -674,6 +674,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 		String content = ParamUtil.getString(actionRequest, "content");
 		String description = ParamUtil.getString(actionRequest, "description");
+		boolean draft = ParamUtil.getBoolean(actionRequest, "draft");
 		boolean minorEdit = ParamUtil.getBoolean(actionRequest, "minorEdit");
 		boolean template = ParamUtil.getBoolean(actionRequest, "template");
 		long parentResourcePrimKey = ParamUtil.getLong(
@@ -706,8 +707,8 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		if (resourcePrimKey <= 0) {
 			return KBArticleServiceUtil.addArticle(
 				themeDisplay.getPlid(), title, content, description,
-				minorEdit, template, parentResourcePrimKey, tagsEntries, prefs,
-				themeDisplay);
+				draft, minorEdit, template, parentResourcePrimKey, tagsEntries,
+				prefs, themeDisplay);
 		}
 		else {
 			KBArticle article = KBArticleServiceUtil.getArticle(
@@ -716,13 +717,13 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			if (article.isTemplate() && (template == false)) {
 				return KBArticleServiceUtil.addArticle(
 					themeDisplay.getPortletGroupId(), title, content,
-					description, minorEdit, template, parentResourcePrimKey,
-					tagsEntries, prefs, themeDisplay);
+					description, draft, minorEdit, template,
+					parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
 			}
 			else {
 				return KBArticleServiceUtil.updateArticle(
 					themeDisplay.getPlid(), resourcePrimKey, version, title,
-					content, description, minorEdit, template,
+					content, description, draft, minorEdit, template,
 					parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
 			}
 		}

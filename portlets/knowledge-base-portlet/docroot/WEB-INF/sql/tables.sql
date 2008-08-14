@@ -13,6 +13,7 @@ create table KB_KBArticle (
 	minorEdit BOOLEAN,
 	content TEXT null,
 	description STRING null,
+	draft BOOLEAN,
 	head BOOLEAN,
 	template BOOLEAN,
 	parentResourcePrimKey LONG
