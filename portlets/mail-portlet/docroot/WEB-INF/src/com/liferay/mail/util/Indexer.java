@@ -23,6 +23,7 @@
 package com.liferay.mail.util;
 
 import com.liferay.mail.model.MailAccount;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
@@ -84,8 +85,7 @@ public class Indexer implements com.liferay.portal.kernel.search.Indexer {
 		booleanQuery.addRequiredTerm(EMAIL_ADDRESS, emailAddress);
 
 		Hits hits = SearchEngineUtil.search(
-			companyId, booleanQuery, SearchEngineUtil.ALL_POS,
-			SearchEngineUtil.ALL_POS);
+			companyId, booleanQuery, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (int i = 0; i < hits.getLength(); i++) {
 			Document doc = hits.doc(i);
