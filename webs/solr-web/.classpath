@@ -10,7 +10,10 @@
 	<classpathentry kind="lib" path="/portal/lib/global/container.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet-container.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/commons-codec.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/commons-httpclient.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/commons-logging.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/dom4j.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/log4j.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/spring.jar" />
 	<classpathentry kind="lib" path="/portal/portal-kernel/portal-kernel.jar" />
@@ -18,8 +21,5 @@
 	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal/util-taglib/util-taglib.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-codec.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-httpclient.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/dom4j.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
