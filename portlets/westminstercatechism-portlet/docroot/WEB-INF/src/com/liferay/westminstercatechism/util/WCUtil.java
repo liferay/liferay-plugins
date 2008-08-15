@@ -24,6 +24,10 @@ package com.liferay.westminstercatechism.util;
 
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.xml.Document;
+import com.liferay.portal.kernel.xml.DocumentException;
+import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.westminstercatechism.model.WCEntry;
 
 import java.net.URL;
@@ -35,11 +39,6 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
 
 /**
  * <a href="WCUtil.java.html"><b><i>View Source</i></b></a>
@@ -73,18 +72,16 @@ public class WCUtil {
 		Document doc = null;
 
 		try {
-			SAXReader reader = new SAXReader();
-
 			ClassLoader classLoader = getClass().getClassLoader();
 
 			URL url = classLoader.getResource(
 				"com/liferay/westminstercatechism/dependencies/" +
 					"westminster_catechmism.xml");
 
-			doc = reader.read(url);
+			doc = SAXReaderUtil.read(url);
 		}
 		catch (DocumentException de) {
-			_log.error(de);
+			_log.error(de, de);
 		}
 
 		_shorter = new ArrayList<WCEntry>();

@@ -26,6 +26,9 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.xml.Document;
+import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.samplehibernate.model.FoodItem;
 import com.liferay.samplehibernate.util.FoodItemUtil;
 import com.liferay.util.xml.BeanToXMLUtil;
@@ -35,10 +38,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-
-import org.dom4j.Document;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Element;
 
 /**
  * <a href="FoodItemComponentImpl.java.html"><b><i>View Source</i></b></a>
@@ -91,7 +90,7 @@ public class FoodItemComponentImpl {
 	}
 
 	public String getXml(List list) {
-		Document doc = DocumentHelper.createDocument();
+		Document doc = SAXReaderUtil.createDocument();
 
 		Element root = doc.addElement("result");
 
