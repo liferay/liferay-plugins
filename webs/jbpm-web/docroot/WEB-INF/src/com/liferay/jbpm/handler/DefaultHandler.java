@@ -28,8 +28,8 @@ import com.liferay.client.portal.service.http.RoleServiceSoap;
 import com.liferay.client.portal.service.http.RoleServiceSoapServiceLocator;
 import com.liferay.client.portal.service.http.UserServiceSoap;
 import com.liferay.client.portal.service.http.UserServiceSoapServiceLocator;
-import com.liferay.jbpm.util.JbpmWebProps;
 import com.liferay.util.Encryptor;
+import com.liferay.util.portlet.PortletProps;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -49,12 +49,12 @@ public class DefaultHandler {
 	protected URL getURL(String serviceName, boolean authenticated)
 		throws MalformedURLException {
 
-		String url = JbpmWebProps.get("soap.url");
+		String url = PortletProps.get("soap.url");
 
 		if (authenticated) {
-			String userId = JbpmWebProps.get("soap.user.id");
+			String userId = PortletProps.get("soap.user.id");
 			String password = Encryptor.digest(
-				JbpmWebProps.get("soap.password"));
+				PortletProps.get("soap.password"));
 
 			int pos = url.indexOf("://");
 
