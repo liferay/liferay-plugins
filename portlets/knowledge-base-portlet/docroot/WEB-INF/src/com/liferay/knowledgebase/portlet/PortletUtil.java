@@ -34,8 +34,11 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 
 import javax.portlet.RenderRequest;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <a href="PortletUtil.java.html"><b><i>View Source</i></b></a>
@@ -48,13 +51,22 @@ public class PortletUtil {
 	public static void getKBArticle(RenderRequest renderRequest)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+			renderRequest);
+
+		getKBArticle(request);
+	}
+
+	public static void getKBArticle(HttpServletRequest request)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		long resourcePrimKey = ParamUtil.getLong(
-			renderRequest, "resourcePrimKey");
-		double version = ParamUtil.getDouble(renderRequest, "version");
-		String title = ParamUtil.getString(renderRequest, "title");
+			request, "resourcePrimKey");
+		double version = ParamUtil.getDouble(request, "version");
+		String title = ParamUtil.getString(request, "title");
 
 		KBArticle article = null;
 
@@ -67,16 +79,25 @@ public class PortletUtil {
 				themeDisplay.getPortletGroupId(), title, version);
 		}
 
-		renderRequest.setAttribute(KnowledgeBaseKeys.ARTICLE, article);
+		request.setAttribute(KnowledgeBaseKeys.ARTICLE, article);
 	}
 
 	public static void getKBFeedback(RenderRequest renderRequest)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+			renderRequest);
+
+		getKBFeedback(request);
+	}
+
+	public static void getKBFeedback(HttpServletRequest request)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		KBArticle article = (KBArticle) renderRequest.getAttribute(
+		KBArticle article = (KBArticle) request.getAttribute(
 			KnowledgeBaseKeys.ARTICLE);
 
 		long userId = themeDisplay.getUserId();
@@ -99,20 +120,16 @@ public class PortletUtil {
 					article.getResourcePrimKey());
 		}
 
-		renderRequest.setAttribute(
+		request.setAttribute(
 			KnowledgeBaseKeys.KNOWLEDGE_BASE_FEEDBACK_ENTRY, feedbackEntry);
-		renderRequest.setAttribute(
+		request.setAttribute(
 			KnowledgeBaseKeys.KNOWLEDGE_BASE_FEEDBACK_STATS, feedbackStats);
 	}
 
 	public static void getKBBeans(RenderRequest renderRequest)
 		throws Exception {
 
-		// Store KB Article in the Request object
-
 		getKBArticle(renderRequest);
-
-		// Store KB Feedback in the Request object
 
 		getKBFeedback(renderRequest);
 	}

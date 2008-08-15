@@ -216,6 +216,10 @@
 	float: none;
 }
 
+.portlet-knowledge-base .subscriptions {
+	padding: 10px 0pt 0pt;
+}
+
 .portlet-knowledge-base .syntax-help {
 	border: 1px dotted gray;
 	padding-left: 10px;

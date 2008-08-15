@@ -28,7 +28,13 @@
 String view = ParamUtil.getString(request, "view", "view_all_articles");
 String tag = ParamUtil.getString(request, "tag");
 
+String isViewableArticle = (String) request.getAttribute("isViewableArticle");
+
 String[] supportedViews = {"compare_versions", "edit_article", "edit_article_attachment", "view_all_articles", "view_article", "view_article_attachments", "view_article_history", "view_tagged_articles", "view_templates", "search", };
+
+if (isViewableArticle.equals("false")) {
+	view = "view_all_articles";
+}
 
 if (!ArrayUtil.contains(supportedViews, view)) {
 	view = supportedViews[0];
@@ -40,6 +46,12 @@ if (Validator.isNotNull(tag)) {
 
 _log.info("Including view: " + "/" + view + ".jsp");
 %>
+
+<c:if test='<%= isViewableArticle.equals("false") %>'>
+	<div class="portlet-msg-info">
+		<liferay-ui:message key="you-do-not-have-permission-to-access-the-requested-resource" />
+	</div>
+</c:if>
 
 <jsp:include page="/top.jsp" />
 

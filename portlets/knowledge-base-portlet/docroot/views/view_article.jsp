@@ -31,7 +31,7 @@ KBFeedbackEntry feedbackEntry = (KBFeedbackEntry) request.getAttribute(Knowledge
 
 KBFeedbackStats feedbackStats = (KBFeedbackStats) request.getAttribute(KnowledgeBaseKeys.KNOWLEDGE_BASE_FEEDBACK_STATS);
 
-// KBArticle
+// Article
 
 long resourcePrimKey = article.getResourcePrimKey();
 
@@ -55,14 +55,14 @@ if (article.isTemplate()) {
 	className += ".template";
 }
 
-// KBFeedback entry
+// Feedback entry
 
 int score = BeanParamUtil.getInteger(feedbackEntry, request, "score");
 int vote = BeanParamUtil.getInteger(feedbackEntry, request, "vote");
 
 String comments = BeanParamUtil.getString(feedbackEntry, request, "comments");
 
-//KBFeedback stats
+// Feedback stats
 
 int totalVotes = BeanParamUtil.getInteger(feedbackStats, request, "totalVotes");
 int yesVotes = BeanParamUtil.getInteger(feedbackStats, request, "yesVotes");
