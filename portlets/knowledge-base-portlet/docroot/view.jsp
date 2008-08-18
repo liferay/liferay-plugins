@@ -48,7 +48,7 @@ _log.info("Including view: " + "/" + view + ".jsp");
 %>
 
 <c:if test='<%= isViewableArticle.equals("false") %>'>
-	<div class="portlet-msg-info">
+	<div class="portlet-msg-error">
 		<liferay-ui:message key="you-do-not-have-permission-to-access-the-requested-resource" />
 	</div>
 </c:if>
