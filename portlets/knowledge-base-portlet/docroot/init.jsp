@@ -59,6 +59,8 @@
 <%@ page import="com.liferay.portal.kernel.util.ArrayUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.DateFormats" %>
+<%@ page import="com.liferay.portal.kernel.util.DiffResult" %>
+<%@ page import="com.liferay.portal.kernel.util.DiffUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.FileUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
@@ -94,8 +96,6 @@
 <%@ page import="com.liferay.portal.kernel.util.PrefsPropsUtil" %>
 <%@ page import="com.liferay.util.TextFormatter" %>
 <%@ page import="com.liferay.util.RSSUtil" %>
-<%@ page import="com.liferay.util.diff.DiffResult" %>
-<%@ page import="com.liferay.util.diff.DiffUtil" %>
 
 <%@ page import="java.io.StringReader" %>
 
