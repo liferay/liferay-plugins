@@ -48,7 +48,7 @@ KBArticle parent = null;
 long resourcePrimKey = 0;
 
 if (article != null) {
-	resourcePrimKey = article.getResourcePrimKey();
+	resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey");
 
 	template = BeanParamUtil.getBoolean(article, request, "template", false);
 }

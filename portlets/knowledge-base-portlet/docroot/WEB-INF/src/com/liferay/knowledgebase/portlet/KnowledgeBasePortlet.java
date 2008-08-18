@@ -43,7 +43,6 @@ import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DocumentConversionUtil;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
@@ -555,7 +554,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 		Map<String, String> parameterMap = new HashMap<String, String>();
 
-		parameterMap.put("content", HtmlUtil.stripHtml(template.getContent()));
+		parameterMap.put("content", template.getContent());
 
 		sendJSON(resourceResponse, parameterMap);
 	}
