@@ -27,15 +27,21 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-// Article
+boolean preview = ParamUtil.getBoolean(request, "preview");
 
 boolean template = ParamUtil.getBoolean(request, "template");
+
+// Article
 
 KBArticle article = (KBArticle)request.getAttribute(KnowledgeBaseKeys.ARTICLE);
 
 String title = BeanParamUtil.getString(article, request, "title");
 
-Boolean draft = BeanParamUtil.getBoolean(article, request, "draft", true);
+String content = BeanParamUtil.getString(article, request, "content");
+
+boolean draft = BeanParamUtil.getBoolean(article, request, "draft", true);
+
+long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentResourcePrimKey");
 
 KBArticle parent = null;
 
@@ -43,21 +49,12 @@ long resourcePrimKey = 0;
 
 if (article != null) {
 	resourcePrimKey = article.getResourcePrimKey();
-}
 
-long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentResourcePrimKey");
+	template = BeanParamUtil.getBoolean(article, request, "template", false);
+}
 
 if (parentResourcePrimKey > 0) {
 	parent = KBArticleLocalServiceUtil.getArticle(parentResourcePrimKey);
-}
-
-boolean preview = ParamUtil.getBoolean(request, "preview");
-
-boolean newArticle = false;
-String content = BeanParamUtil.getString(article, request, "content");
-
-if (article == null) {
-	newArticle = true;
 }
 
 // Templates
@@ -257,76 +254,81 @@ ResourceURL templateURL = renderResponse.createResourceURL();
 <%
 long classPK = 0;
 
-if (!newArticle) {
+if (article != null) {
 	classPK = article.getResourcePrimKey();
 }
 %>
 
-<tr>
-	<td colspan="2">
-		<liferay-ui:tabs names="details" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="categories" />
-	</td>
-	<td>
+<c:if test="<%= !template %>">
+	<tr>
+		<td colspan="2">
+			<liferay-ui:tabs names="details" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<liferay-ui:message key="categories" />
+		</td>
+		<td>
+			<liferay-ui:tags-selector
+				className="<%= KBArticle.class.getName() %>"
+				classPK="<%= classPK %>"
+				hiddenInput="none"
+				folksonomy="false"
+			/>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<br />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<liferay-ui:message key="tags" />
+		</td>
+		<td>
+			<liferay-ui:tags-selector
+				className="<%= KBArticle.class.getName() %>"
+				classPK="<%= classPK %>"
+				hiddenInput="tagsEntries"
+				folksonomy="true"
+			/>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<br />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<liferay-ui:message key="description" />
+		</td>
+		<td>
+			<liferay-ui:input-field model="<%= KBArticle.class %>" bean="<%= article %>" field="description" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<br />
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input name="<portlet:namespace />minorEdit" type="checkbox" />
 
-		<liferay-ui:tags-selector
-			className="<%= KBArticle.class.getName() %>"
-			classPK="<%= classPK %>"
-			hiddenInput="none"
-			folksonomy="false"
-		/>
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="tags" />
-	</td>
-	<td>
-		<liferay-ui:tags-selector
-			className="<%= KBArticle.class.getName() %>"
-			classPK="<%= classPK %>"
-			hiddenInput="tagsEntries"
-			folksonomy="true"
-		/>
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="description" />
-	</td>
-	<td>
-		<liferay-ui:input-field model="<%= KBArticle.class %>" bean="<%= article %>" field="description" />
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<input name="<portlet:namespace />minorEdit" type="checkbox" />
+			<liferay-ui:message key="this-is-a-minor-edit" /><liferay-ui:icon-help message="leave-this-box-unchecked-to-email-subscribed-users-that-this-article-has-recently-been-updated" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<br />
+		</td>
+	</tr>
+</c:if>
 
-		<liferay-ui:message key="this-is-a-minor-edit" /><liferay-ui:icon-help message="leave-this-box-unchecked-to-email-subscribed-users-that-this-article-has-recently-been-updated" />
-	</td>
-</tr>
 </table>
-
-<br />
 
 <input type="button" value='<%= draft && !template ? LanguageUtil.get(pageContext, "publish") : LanguageUtil.get(pageContext, "save") %>' onClick="<portlet:namespace />saveArticle(false);" />
 
