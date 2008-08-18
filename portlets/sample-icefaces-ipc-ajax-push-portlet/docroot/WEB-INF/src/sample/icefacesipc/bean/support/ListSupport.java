@@ -22,26 +22,17 @@
 
 package sample.icefacesipc.bean.support;
 
-import sample.icefacesipc.service.BookingTypeService;
-
-import sample.icefacesipc.transfer.BookingType;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
 
+import sample.icefacesipc.service.BookingTypeService;
+import sample.icefacesipc.transfer.BookingType;
+
 /**
- * <a href="BookingTypeSupport.java.html"><b><i>View Source</i></b></a>
+ * <a href="ListSupport.java.html"><b><i>View Source</i></b></a>
  *
- * <p>
- * This class is a support managed-bean for the bookingList.xhtml view
- * (Bookings Portlet). It provides a convenient way for the view to
- * retrieve lists of JSF SelectItem entries. If the bean is kept in
- * application scope, then it will maintain a cache of list items
- * that will be shared across multiple users.
- * </p>
- * 
  * @author Neil Griffin
  *
  */
@@ -51,18 +42,14 @@ public class ListSupport {
 		return _bookingTypeService;
 	}
 
-	public void setBookingTypeService(BookingTypeService bookingTypeService) {
-		_bookingTypeService = bookingTypeService;
-	}
-
 	public List<SelectItem> getSelectItems() {
-
 		if (_selectItems == null) {
 			_selectItems = new ArrayList<SelectItem>();
 
-			for (
-				BookingType bookingType :
-				getBookingTypeService().getAllBookingTypes()) {
+			List<BookingType> bookingTypes =
+				_bookingTypeService.getAllBookingTypes();
+
+			for (BookingType bookingType : bookingTypes) {
 				_selectItems.add(
 					new SelectItem(
 						bookingType.getBookingTypeId(),
@@ -73,7 +60,11 @@ public class ListSupport {
 		return _selectItems;
 	}
 
-	private BookingTypeService _bookingTypeService;
+	public void setBookingTypeService(BookingTypeService bookingTypeService) {
+		_bookingTypeService = bookingTypeService;
+	}
 
+	private BookingTypeService _bookingTypeService;
 	private List<SelectItem> _selectItems;
+
 }

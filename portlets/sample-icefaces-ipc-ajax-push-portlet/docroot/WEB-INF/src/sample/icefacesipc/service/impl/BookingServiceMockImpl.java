@@ -37,13 +37,13 @@ import sample.icefacesipc.transfer.Booking;
 public class BookingServiceMockImpl implements BookingService {
 
 	public List<Booking> getAllBookings() {
-
 		if (_allBookings == null) {
-
 			_allBookings = new ArrayList<Booking>();
 
 			// Bookings for Brian Green
+
 			long customerId = CustomerServiceMockImpl.ID_BRIAN_GREEN;
+
 			_allBookings.add(
 				new Booking(
 					BookingTypeServiceMockImpl.TYPE_ID_RENTAL_CAR, customerId));
@@ -61,7 +61,9 @@ public class BookingServiceMockImpl implements BookingService {
 					BookingTypeServiceMockImpl.TYPE_ID_PLAY, customerId));
 
 			// Bookings for Elizabeth Kessler
+
 			customerId = CustomerServiceMockImpl.ID_LIZ_KESSLER;
+
 			_allBookings.add(
 				new Booking(
 					BookingTypeServiceMockImpl.TYPE_ID_HOTEL, customerId));
@@ -73,33 +75,35 @@ public class BookingServiceMockImpl implements BookingService {
 					BookingTypeServiceMockImpl.TYPE_ID_THEME_PARK, customerId));
 
 			// Bookings for Rich Shearer
+
 			customerId = CustomerServiceMockImpl.ID_RICH_SHEARER;
+
 			_allBookings.add(
 				new Booking(
 					BookingTypeServiceMockImpl.TYPE_ID_AIRFARE, customerId));
 			_allBookings.add(
-					new Booking(
-						BookingTypeServiceMockImpl.TYPE_ID_RENTAL_CAR, customerId));
+				new Booking(
+				BookingTypeServiceMockImpl.TYPE_ID_RENTAL_CAR, customerId));
 			_allBookings.add(
-					new Booking(
-						BookingTypeServiceMockImpl.TYPE_ID_PLAY, customerId));
+				new Booking(
+					BookingTypeServiceMockImpl.TYPE_ID_PLAY, customerId));
 			_allBookings.add(
-					new Booking(
-						BookingTypeServiceMockImpl.TYPE_ID_HOTEL, customerId));
+				new Booking(
+					BookingTypeServiceMockImpl.TYPE_ID_HOTEL, customerId));
 		}
 
 		return _allBookings;
 	}
 
 	public List<Booking> getBookingsByCustomerId(long customerId) {
+		List<Booking> bookings = new ArrayList<Booking>();
 
-		ArrayList<Booking> bookings = new ArrayList<Booking>();
-
-		for (Booking booking: getAllBookings()) {
+		for (Booking booking : getAllBookings()) {
 			if (booking.getCustomerId() == customerId) {
 				bookings.add(booking);
 			}
 		}
+
 		return bookings;
 	}
 

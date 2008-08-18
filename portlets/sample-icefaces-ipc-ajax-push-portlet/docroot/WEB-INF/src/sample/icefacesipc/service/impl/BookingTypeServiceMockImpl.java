@@ -22,12 +22,11 @@
 
 package sample.icefacesipc.service.impl;
 
-import sample.icefacesipc.service.BookingTypeService;
-
-import sample.icefacesipc.transfer.BookingType;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import sample.icefacesipc.service.BookingTypeService;
+import sample.icefacesipc.transfer.BookingType;
 
 /**
  * <a href="BookingTypeServiceMockImpl.java.html"><b><i>View Source</i></b></a>
@@ -37,38 +36,37 @@ import java.util.List;
  */
 public class BookingTypeServiceMockImpl implements BookingTypeService {
 
-	public List<BookingType> getAllBookingTypes() {
+	public static final long TYPE_ID_AIRFARE = 1;
 
+	public static final long TYPE_ID_CRUISE = 2;
+
+	public static final long TYPE_ID_HOTEL = 3;
+
+	public static final long TYPE_ID_PLAY = 4;
+
+	public static final long TYPE_ID_RENTAL_CAR = 5;
+
+	public static final long TYPE_ID_THEME_PARK = 6;
+
+	public static final long TYPE_ID_TRAIN = 7;
+
+	public List<BookingType> getAllBookingTypes() {
 		if (_allBookingTypes == null) {
 			_allBookingTypes = new ArrayList<BookingType>();
 
-			BookingType bookingType = new BookingType(
-					TYPE_ID_AIRFARE, "Airfare");
-			_allBookingTypes.add(bookingType);
-			bookingType = new BookingType(TYPE_ID_CRUISE, "Cruise");
-			_allBookingTypes.add(bookingType);
-			bookingType = new BookingType(TYPE_ID_HOTEL, "Hotel");
-			_allBookingTypes.add(bookingType);
-			bookingType = new BookingType(TYPE_ID_PLAY, "Play/Theatre");
-			_allBookingTypes.add(bookingType);
-			bookingType = new BookingType(TYPE_ID_RENTAL_CAR, "Rental Car");
-			_allBookingTypes.add(bookingType);
-			bookingType = new BookingType(TYPE_ID_THEME_PARK, "Theme Park");
-			_allBookingTypes.add(bookingType);
-			bookingType = new BookingType(TYPE_ID_TRAIN, "Train");
-			_allBookingTypes.add(bookingType);
+			_allBookingTypes.add(new BookingType(TYPE_ID_AIRFARE, "Airfare"));
+			_allBookingTypes.add(new BookingType(TYPE_ID_CRUISE, "Cruise"));
+			_allBookingTypes.add(new BookingType(TYPE_ID_HOTEL, "Hotel"));
+			_allBookingTypes.add(new BookingType(TYPE_ID_PLAY, "Play/Theatre"));
+			_allBookingTypes.add(
+				new BookingType(TYPE_ID_RENTAL_CAR, "Rental Car"));
+			_allBookingTypes.add(
+				new BookingType(TYPE_ID_THEME_PARK, "Theme Park"));
+			_allBookingTypes.add(new BookingType(TYPE_ID_TRAIN, "Train"));
 		}
 
 		return _allBookingTypes;
 	}
-
-	protected static final long TYPE_ID_AIRFARE = 1;
-	protected static final long TYPE_ID_CRUISE = 2;
-	protected static final long TYPE_ID_HOTEL = 3;
-	protected static final long TYPE_ID_PLAY = 4;
-	protected static final long TYPE_ID_RENTAL_CAR = 5;
-	protected static final long TYPE_ID_THEME_PARK = 6;
-	protected static final long TYPE_ID_TRAIN = 7;
 
 	private List<BookingType> _allBookingTypes;
 

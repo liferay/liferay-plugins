@@ -34,7 +34,8 @@ import java.util.List;
  */
 public interface BookingService {
 
-	List<Booking> getAllBookings();
+	public List<Booking> getAllBookings();
 
-	List<Booking> getBookingsByCustomerId(long customerId);
+	public List<Booking> getBookingsByCustomerId(long customerId);
+
 }

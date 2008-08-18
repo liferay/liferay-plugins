@@ -34,5 +34,6 @@ import sample.icefacesipc.transfer.BookingType;
  */
 public interface BookingTypeService {
 
-	List<BookingType> getAllBookingTypes();
+	public List<BookingType> getAllBookingTypes();
+
 }

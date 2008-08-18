@@ -40,7 +40,6 @@ public class Customer {
 	}
 
 	public List<Booking> getBookings() {
-
 		if (_bookings == null) {
 			_bookings = new ArrayList<Booking>();
 		}
@@ -48,36 +47,36 @@ public class Customer {
 		return _bookings;
 	}
 
-	public void setBookings(List<Booking> bookings) {
-		_bookings = bookings;
-	}
-
 	public long getCustomerId() {
 		return _customerId;
-	}
-
-	public void setCustomerId(long customerId) {
-		_customerId = customerId;
 	}
 
 	public String getFirstName() {
 		return _firstName;
 	}
 
-	public void setFirstName(String firstName) {
-		_firstName = firstName;
-	}
-
 	public String getLastName() {
 		return _lastName;
 	}
 
-	public void setLastName(String lastName) {
-		_lastName = lastName;
-	}
-
 	public boolean isSelected() {
 		return _selected;
+	}
+
+	public void setBookings(List<Booking> bookings) {
+		_bookings = bookings;
+	}
+
+	public void setCustomerId(long customerId) {
+		_customerId = customerId;
+	}
+
+	public void setFirstName(String firstName) {
+		_firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		_lastName = lastName;
 	}
 
 	public void setSelected(boolean selected) {
@@ -89,4 +88,5 @@ public class Customer {
 	private String _firstName;
 	private String _lastName;
 	private boolean _selected;
+
 }

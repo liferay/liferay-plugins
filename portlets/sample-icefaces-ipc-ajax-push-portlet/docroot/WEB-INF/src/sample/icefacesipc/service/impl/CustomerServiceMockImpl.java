@@ -22,13 +22,12 @@
 
 package sample.icefacesipc.service.impl;
 
-import sample.icefacesipc.service.BookingService;
-import sample.icefacesipc.service.CustomerService;
-
-import sample.icefacesipc.transfer.Customer;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import sample.icefacesipc.service.BookingService;
+import sample.icefacesipc.service.CustomerService;
+import sample.icefacesipc.transfer.Customer;
 
 /**
  * <a href="CustomerServiceMockImpl.java.html"><b><i>View Source</i></b></a>
@@ -38,26 +37,37 @@ import java.util.List;
  */
 public class CustomerServiceMockImpl implements CustomerService {
 
+	public static final long ID_BRIAN_GREEN = 1;
+
+	public static final long ID_LIZ_KESSLER = 2;
+
+	public static final long ID_RICH_SHEARER = 3;
+
 	public List<Customer> getAllCustomers() {
-
 		if (_allCustomers == null) {
-
 			_allCustomers = new ArrayList<Customer>();
 
 			BookingService bookingService = getBookingService();
 
-			Customer customer = null;
-			customer = new Customer(ID_BRIAN_GREEN, "Brian", "Green");
+			Customer customer = new Customer(ID_BRIAN_GREEN, "Brian", "Green");
+
 			customer.setBookings(
 				bookingService.getBookingsByCustomerId(ID_BRIAN_GREEN));
+
 			_allCustomers.add(customer);
+
 			customer = new Customer(ID_LIZ_KESSLER, "Liz", "Kessler");
+
 			customer.setBookings(
 				bookingService.getBookingsByCustomerId(ID_LIZ_KESSLER));
+
 			_allCustomers.add(customer);
+
 			customer = new Customer(ID_RICH_SHEARER, "Rich", "Shearer");
+
 			customer.setBookings(
 				bookingService.getBookingsByCustomerId(ID_RICH_SHEARER));
+
 			_allCustomers.add(customer);
 		}
 
@@ -72,10 +82,7 @@ public class CustomerServiceMockImpl implements CustomerService {
 		_bookingService = bookingService;
 	}
 
-	protected static final long ID_BRIAN_GREEN = 1;
-	protected static final long ID_LIZ_KESSLER = 2;
-	protected static final long ID_RICH_SHEARER = 3;
-
 	private ArrayList<Customer> _allCustomers;
 	private BookingService _bookingService;
+
 }

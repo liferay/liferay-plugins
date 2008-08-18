@@ -29,34 +29,41 @@ import javax.portlet.PortletSession;
 /**
  * <a href="PortletSessionUtil.java.html"><b><i>View Source</i></b></a>
  *
+ * <p>
  * This utility class is necessary to simulate JSF "session" scope across
  * multiple portlets. By default, the JSF framework defines session-scoped
  * managed beans in faces-config.xml within PortletSession.PORTLET_SCOPE
  * instead of PortletSession.APPLICATION_SCOPE, which defines a scope that
  * can share attribute values between portlets.
+ * </p>
  *
  * @author Neil Griffin
  *
  */
 public class PortletSessionUtil {
 
+	public static final String CUSTOMER_LIST = "CUSTOMER_LIST";
+
+	public static final String SELECTED_CUSTOMER = "SELECTED_CUSTOMER";
+
 	public static Object getSharedSessionAttribute(String key) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
-		PortletSession portletSession = (PortletSession)facesContext
-			.getExternalContext().getSession(false);
+
+		PortletSession portletSession =
+			(PortletSession)facesContext.getExternalContext().getSession(false);
+
 		return portletSession.getAttribute(
-				key, PortletSession.APPLICATION_SCOPE);
+			key, PortletSession.APPLICATION_SCOPE);
 	}
 
 	public static void setSharedSessionAttribute(String key, Object value) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
-		PortletSession portletSession = (PortletSession)facesContext
-			.getExternalContext().getSession(false);
+
+		PortletSession portletSession =
+			(PortletSession)facesContext.getExternalContext().getSession(false);
+
 		portletSession.setAttribute(
 			key, value, PortletSession.APPLICATION_SCOPE);
 	}
-
-	public static final String ATTR_SELECTED_CUSTOMER = "SELECTED_CUSTOMER";
-	public static final String ATTR_CUSTOMER_LIST = "CUSTOMER_LIST";
 
 }

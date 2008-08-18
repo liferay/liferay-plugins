@@ -24,22 +24,11 @@ package sample.icefacesipc.bean.backing;
 
 import com.icesoft.faces.component.ext.RowSelectorEvent;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import sample.icefacesipc.bean.model.CustomerListModel;
-
 import sample.icefacesipc.transfer.Customer;
 
 /**
  * <a href="CustomerList.java.html"><b><i>View Source</i></b></a>
- *
- * <p>
- * This class is the backing managed-bean behind the customerList.xhtml view.
- * As a backing bean, this class participates in supporting UI actions in the
- * "view" layer of the MVC design pattern, and delegates data operations to
- * the injected CustomerListModel (model bean) object.
- * </p>
  *
  * @author Neil Griffin
  *
@@ -50,28 +39,17 @@ public class CustomerList {
 		return _customerListModel;
 	}
 
+	public void selectionListener(RowSelectorEvent rowSelectorEvent) {
+		Customer customer = _customerListModel.getAllCustomers().get(
+			rowSelectorEvent.getRow());
+
+		_customerListModel.setSelected(customer);
+	}
+
 	public void setCustomerListModel(CustomerListModel customerListModel) {
 		_customerListModel = customerListModel;
 	}
 
-	public void selectionListener(RowSelectorEvent rowSelectorEvent) {
-
-		CustomerListModel customerListModel = getCustomerListModel();
-
-		int rowIndex = rowSelectorEvent.getRow();
-		Customer customer = customerListModel.getAllCustomers().get(rowIndex);
-		customerListModel.setSelected(customer);
-
-		if (_log.isInfoEnabled()) {
-			_log.info(
-				"rowIndex=" + rowSelectorEvent.getRow() + " customerId=" +
-				customer.getCustomerId() + " firstName=" +
-				customer.getFirstName() + " lastName=" +
-				customer.getLastName());
-		}
-	}
-
-	private static final Log _log = LogFactory.getLog(CustomerList.class);
-
 	private CustomerListModel _customerListModel;
+
 }

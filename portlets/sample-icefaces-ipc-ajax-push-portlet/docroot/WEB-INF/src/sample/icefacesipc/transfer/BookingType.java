@@ -39,18 +39,19 @@ public class BookingType {
 		return _bookingTypeName;
 	}
 
-	public void setBookingTypeName(String bookingTypeName) {
-		this._bookingTypeName = bookingTypeName;
-	}
-
 	public long getBookingTypeId() {
 		return _bookingTypeId;
 	}
 
+	public void setBookingTypeName(String bookingTypeName) {
+		_bookingTypeName = bookingTypeName;
+	}
+
 	public void setBookingTypeId(long bookingTypeId) {
-		this._bookingTypeId = bookingTypeId;
+		_bookingTypeId = bookingTypeId;
 	}
 
 	private String _bookingTypeName;
 	private long _bookingTypeId;
+
 }
