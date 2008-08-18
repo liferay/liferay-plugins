@@ -43,6 +43,7 @@ import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DocumentConversionUtil;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
@@ -253,6 +254,9 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			}
 			else if (actionName.equals("feedback_vote")) {
 				saveFeedbackVote(resourceRequest, resourceResponse);
+			}
+			else if (actionName.equals("get_template")) {
+				getTemplate(resourceRequest, resourceResponse);
 			}
 			else if (actionName.equals("rss")) {
 				getRSS(resourceRequest, resourceResponse);
@@ -539,6 +543,23 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			ContentTypes.TEXT_XML_UTF8);
 	}
 
+	protected void getTemplate(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		long templateResourcePrimKey = ParamUtil.getLong(
+			resourceRequest, "templateResourcePrimKey");
+
+		KBArticle template =
+			KBArticleServiceUtil.getArticle(templateResourcePrimKey);
+
+		Map<String, String> parameterMap = new HashMap<String, String>();
+
+		parameterMap.put("content", HtmlUtil.stripHtml(template.getContent()));
+
+		sendJSON(resourceResponse, parameterMap);
+	}
+
 	protected void revertPage(ActionRequest actionRequest) throws Exception {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -708,11 +729,15 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 		PortletPreferences prefs = actionRequest.getPreferences();
 
+		boolean addTemplate = ParamUtil.getBoolean(
+			actionRequest, "addTemplate", false);
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
+		long templateResourcePrimKey = ParamUtil.getLong(
+			actionRequest, "templateResourcePrimKey");
+
 		String title = ParamUtil.getString(actionRequest, "title");
 		double version = ParamUtil.getDouble(actionRequest, "version");
-
 		String content = ParamUtil.getString(actionRequest, "content");
 		String description = ParamUtil.getString(actionRequest, "description");
 		boolean minorEdit = ParamUtil.getBoolean(actionRequest, "minorEdit");
@@ -726,12 +751,12 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 				themeDisplay.getCompanyId(), false);
 
 		String tagsEntriesString = ParamUtil.getString(
-				actionRequest, "tagsEntries");
+			actionRequest, "tagsEntries");
 
 		for (TagsVocabulary vocabulary : vocabularies) {
 			String vocabularyParamName =
-				TagsEntryConstants.VOCABULARY
-					+ Long.toString(vocabulary.getVocabularyId());
+				TagsEntryConstants.VOCABULARY +
+				Long.toString(vocabulary.getVocabularyId());
 
 			long entryId = ParamUtil.getLong(
 				actionRequest, vocabularyParamName);
@@ -744,6 +769,13 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		}
 
 		String[] tagsEntries = StringUtil.split(tagsEntriesString);
+
+		if (addTemplate) {
+			KBArticle selectedTemplate = KBArticleServiceUtil.getArticle(
+				templateResourcePrimKey);
+
+			content = selectedTemplate.getContent() + content;
+		}
 
 		if (resourcePrimKey <= 0) {
 			return KBArticleServiceUtil.addArticle(

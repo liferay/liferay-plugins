@@ -48,6 +48,13 @@ public class KBArticleFinderUtil {
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByU_G_H_T_D(
+		long userId, long groupId, boolean head, boolean template, boolean draft)
+		throws com.liferay.portal.SystemException {
+		return getFinder()
+				   .findByU_G_H_T_D(userId, groupId, head, template, draft);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByU_G_H_T_D(
 		long userId, long groupId, boolean head, boolean template,
 		boolean draft, int start, int end)
 		throws com.liferay.portal.SystemException {

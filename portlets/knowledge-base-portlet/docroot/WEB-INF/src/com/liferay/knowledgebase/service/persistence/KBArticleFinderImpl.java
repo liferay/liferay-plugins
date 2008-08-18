@@ -195,6 +195,40 @@ public class KBArticleFinderImpl
 
 	public List<KBArticle> findByU_G_H_T_D(
 			long userId, long groupId, boolean head, boolean template,
+			boolean draft)
+		throws SystemException {
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_U_G_H_T_D);
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addEntity("KB_KBArticle", KBArticleImpl.class);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(groupId);
+			qPos.add(head);
+			qPos.add(template);
+			qPos.add(userId);
+			qPos.add(draft);
+
+			return (List<KBArticle>)q.list();
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<KBArticle> findByU_G_H_T_D(
+			long userId, long groupId, boolean head, boolean template,
 			boolean draft, int start, int end)
 		throws SystemException {
 

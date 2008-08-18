@@ -184,24 +184,17 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getArticle(
-		long resourcePrimKey, double version, boolean draft)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		return _service.getArticle(resourcePrimKey, version, draft);
-	}
-
-	public static com.liferay.knowledgebase.model.KBArticle getArticle(
-		long userId, long resourcePrimKey, boolean head, boolean draft)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		return _service.getArticle(userId, resourcePrimKey, head, draft);
-	}
-
-	public static com.liferay.knowledgebase.model.KBArticle getArticle(
 		long groupId, java.lang.String title)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		return _service.getArticle(groupId, title);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle getArticle(
+		long resourcePrimKey, double version, boolean draft)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		return _service.getArticle(resourcePrimKey, version, draft);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getArticle(
@@ -219,10 +212,23 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getArticle(
+		long userId, long resourcePrimKey, boolean head, boolean draft)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		return _service.getArticle(userId, resourcePrimKey, head, draft);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle getArticle(
 		long groupId, java.lang.String title, double version, boolean draft)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		return _service.getArticle(groupId, title, version, draft);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getArticles(
+		long userId, long groupId, boolean head, boolean template, boolean draft)
+		throws com.liferay.portal.SystemException {
+		return _service.getArticles(userId, groupId, head, template, draft);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getArticles(

@@ -132,18 +132,13 @@ public interface KBArticleLocalService {
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public com.liferay.knowledgebase.model.KBArticle getArticle(
-		long resourcePrimKey, double version, boolean draft)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException;
-
-	public com.liferay.knowledgebase.model.KBArticle getArticle(long userId,
-		long resourcePrimKey, boolean head, boolean draft)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException;
-
 	public com.liferay.knowledgebase.model.KBArticle getArticle(long groupId,
 		java.lang.String title)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public com.liferay.knowledgebase.model.KBArticle getArticle(
+		long resourcePrimKey, double version, boolean draft)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
@@ -157,10 +152,19 @@ public interface KBArticleLocalService {
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
+	public com.liferay.knowledgebase.model.KBArticle getArticle(long userId,
+		long resourcePrimKey, boolean head, boolean draft)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
 	public com.liferay.knowledgebase.model.KBArticle getArticle(long groupId,
 		java.lang.String title, double version, boolean draft)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getArticles(
+		long userId, long groupId, boolean head, boolean template, boolean draft)
+		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getArticles(
 		long resourcePrimKey, int start, int end)

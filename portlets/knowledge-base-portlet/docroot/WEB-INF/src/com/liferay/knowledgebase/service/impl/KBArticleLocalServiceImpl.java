@@ -433,6 +433,20 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return article;
 	}
 
+	public KBArticle getArticle(long groupId, String title)
+		throws PortalException, SystemException {
+
+		List<KBArticle> articles = kbArticlePersistence.findByG_T_H(
+			groupId, title, true, 0, 1);
+
+		if (articles.size() > 0) {
+			return articles.get(0);
+		}
+		else {
+			throw new NoSuchArticleException();
+		}
+	}
+
 	public KBArticle getArticle(
 			long resourcePrimKey, double version, boolean draft)
 		throws PortalException, SystemException {
@@ -448,36 +462,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		return article;
-	}
-
-	public KBArticle getArticle(
-			long userId, long resourcePrimKey, boolean head,
-			boolean draft)
-		throws PortalException, SystemException {
-
-		List<KBArticle> articles = kbArticleFinder.findByU_R_H_D(
-			userId, resourcePrimKey, head, draft, 0, 1);
-
-		if (articles.size() > 0) {
-			return articles.get(0);
-		}
-		else {
-			throw new NoSuchArticleException();
-		}
-	}
-
-	public KBArticle getArticle(long groupId, String title)
-		throws PortalException, SystemException {
-
-		List<KBArticle> articles = kbArticlePersistence.findByG_T_H(
-			groupId, title, true, 0, 1);
-
-		if (articles.size() > 0) {
-			return articles.get(0);
-		}
-		else {
-			throw new NoSuchArticleException();
-		}
 	}
 
 	public KBArticle getArticle(long groupId, String title, boolean draft)
@@ -510,6 +494,22 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	public KBArticle getArticle(
+			long userId, long resourcePrimKey, boolean head,
+			boolean draft)
+		throws PortalException, SystemException {
+
+		List<KBArticle> articles = kbArticleFinder.findByU_R_H_D(
+			userId, resourcePrimKey, head, draft, 0, 1);
+
+		if (articles.size() > 0) {
+			return articles.get(0);
+		}
+		else {
+			throw new NoSuchArticleException();
+		}
+	}
+
+	public KBArticle getArticle(
 			long groupId, String title, double version, boolean draft)
 		throws PortalException, SystemException {
 
@@ -524,6 +524,15 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		return article;
+	}
+
+	public List<KBArticle> getArticles(
+			long userId, long groupId, boolean head, boolean template,
+			boolean draft)
+		throws SystemException {
+
+		return kbArticleFinder.findByU_G_H_T_D(
+			userId, groupId, head, template, draft);
 	}
 
 	public List<KBArticle> getArticles(long resourcePrimKey, int start, int end)

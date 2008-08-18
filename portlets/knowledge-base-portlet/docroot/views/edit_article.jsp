@@ -25,9 +25,11 @@
 <%@ include file="/init.jsp" %>
 
 <%
-boolean template = ParamUtil.getBoolean(request, "template");
-
 String redirect = ParamUtil.getString(request, "redirect");
+
+// Article
+
+boolean template = ParamUtil.getBoolean(request, "template");
 
 KBArticle article = (KBArticle)request.getAttribute(KnowledgeBaseKeys.ARTICLE);
 
@@ -57,9 +59,46 @@ String content = BeanParamUtil.getString(article, request, "content");
 if (article == null) {
 	newArticle = true;
 }
+
+// Templates
+
+List<KBArticle> templates = KBArticleLocalServiceUtil.getArticles(themeDisplay.getUserId(), portletGroupId, true, true, false);
+
+//Portlet URLs
+
+ResourceURL templateURL = renderResponse.createResourceURL();
 %>
 
 <script type="text/javascript">
+	jQuery(function() {
+		Liferay.KnowledgeBase.initEditArticle({
+			namespace: '<portlet:namespace />',
+			templateURL: '<%= templateURL %>'
+		});
+	});
+
+	function <portlet:namespace />applyTemplate() {
+		document.<portlet:namespace />fm.<portlet:namespace />addTemplate.value = "true";
+
+		<portlet:namespace />saveAndContinueArticle();
+	}
+
+	function <portlet:namespace />getTemplate() {
+		var templateResourcePrimKey = "";
+
+		for (var i = 0; i < document.<portlet:namespace />fm.<portlet:namespace />templates.length; i++) {
+			if (document.<portlet:namespace />fm.<portlet:namespace />templates.options[i].selected) {
+				templateResourcePrimKey = document.<portlet:namespace />fm.<portlet:namespace />templates.options[i].value;
+
+				break;
+			}
+		}
+
+		document.<portlet:namespace />fm.<portlet:namespace />templateResourcePrimKey.value = templateResourcePrimKey;
+
+		Liferay.KnowledgeBase.getTemplate(templateResourcePrimKey);
+	}
+
 	function <portlet:namespace />initEditor() {
 		return "<%= UnicodeFormatter.toString(content) %>";
 	}
@@ -74,6 +113,12 @@ if (article == null) {
 		submitForm(document.<portlet:namespace />fm);
 	}
 
+	function <portlet:namespace />saveAndContinueArticle() {
+		document.<portlet:namespace />fm.<portlet:namespace />saveAndContinueRedirect.value = "<portlet:renderURL><portlet:param name="view" value="edit_article" /></portlet:renderURL>";
+
+		<portlet:namespace />saveArticle('<%= draft %>');
+	}
+
 	function <portlet:namespace />saveArticle(draft) {
 		document.<portlet:namespace />fm.<portlet:namespace />actionName.value = "<%= Constants.UPDATE %>";
 		document.<portlet:namespace />fm.<portlet:namespace />draft.value = draft;
@@ -83,13 +128,6 @@ if (article == null) {
 		}
 
 		submitForm(document.<portlet:namespace />fm);
-	}
-
-	function <portlet:namespace />saveAndContinueArticle() {
-		document.<portlet:namespace />fm.<portlet:namespace />saveAndContinueRedirect.value = "<portlet:renderURL><portlet:param name="view" value="edit_article" /></portlet:renderURL>";
-		document.<portlet:namespace />fm.<portlet:namespace />draft.value = "<%= draft %>";
-
-		<portlet:namespace />saveArticle();
 	}
 </script>
 
@@ -117,7 +155,9 @@ if (article == null) {
 
 <form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
 <input name="<portlet:namespace />actionName" type="hidden" value="" />
+<input name="<portlet:namespace />addTemplate" type="hidden" value="" />
 <input name="<portlet:namespace />draft" type="hidden" value="" />
+<input name="<portlet:namespace />templateResourcePrimKey" type="hidden" value="" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />template" type="hidden" value="<%= template %>" />
 <input name="<portlet:namespace />parentResourcePrimKey" type="hidden" value="<%= parentResourcePrimKey %>" />
@@ -171,17 +211,61 @@ if (article == null) {
 
 <br />
 
-<table class="lfr-table">
+<table class="lfr-table" width="100%">
 
-	<%
-	long classPK = 0;
-
-	if (!newArticle) {
-		classPK = article.getResourcePrimKey();
-	}
-	%>
-
+<c:if test="<%= !templates.isEmpty() && !template %>">
 	<tr>
+		<td colspan="2">
+			<liferay-ui:tabs names="templates" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<liferay-ui:message key="template" />
+		</td>
+		<td>
+			<div class="entry-draft" id="<portlet:namespace />templateContent" style="display: none;"></div>
+
+			<select id="<portlet:namespace />templates" name="<portlet:namespace />templates" onChange="<portlet:namespace />getTemplate();">
+				<option value=""></option>
+
+				<%
+				for (int i = 0; i < templates.size(); i++) {
+					KBArticle currentTemplate = (KBArticle) templates.get(i);
+				%>
+
+					<option value="<%= String.valueOf(currentTemplate.getResourcePrimKey()) %>"><%= currentTemplate.getTitle() %></option>
+
+				<%
+				}
+				%>
+
+			</select>
+
+			<input id="<portlet:namespace />applyTemplateButton" style="display: none;" type="button" value='<liferay-ui:message key="apply" />' onClick="<portlet:namespace />applyTemplate();" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<br />
+		</td>
+	</tr>
+</c:if>
+
+<%
+long classPK = 0;
+
+if (!newArticle) {
+	classPK = article.getResourcePrimKey();
+}
+%>
+
+<tr>
+	<td colspan="2">
+		<liferay-ui:tabs names="details" />
+	</td>
+</tr>
+<tr>
 	<td>
 		<liferay-ui:message key="categories" />
 	</td>
@@ -242,9 +326,9 @@ if (article == null) {
 
 <br />
 
-<input type="button" value='<%= draft ? LanguageUtil.get(themeDisplay.getLocale(), "publish") : LanguageUtil.get(themeDisplay.getLocale(), "save") %>' onClick="<portlet:namespace />saveArticle(false);" />
+<input type="button" value='<%= draft && !template ? LanguageUtil.get(pageContext, "publish") : LanguageUtil.get(pageContext, "save") %>' onClick="<portlet:namespace />saveArticle(false);" />
 
-<c:if test="<%= draft %>">
+<c:if test="<%= draft && !template %>">
 	<input type="button" value="<liferay-ui:message key="save-draft" />" onClick="<portlet:namespace />saveArticle(true);" />
 </c:if>
 
@@ -254,7 +338,7 @@ if (article == null) {
 
 <input type="button" value="<liferay-ui:message key="cancel" />" onClick="document.location = '<%= HtmlUtil.escape(redirect) %>'" />
 
-<c:if test="<%= draft %>">
+<c:if test="<%= draft && !template %>">
 	<liferay-ui:icon-help message="this-article-will-be-viewable-to-other-users-only-after-clicking-the-publish-button" />
 </c:if>
 

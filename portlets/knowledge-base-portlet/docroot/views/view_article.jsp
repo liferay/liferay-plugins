@@ -75,7 +75,7 @@ if (totalVotes > 0) {
 	noPercentage = 100 - yesPercentage;
 }
 
-// PortletURLs
+// Portlet URLs
 
 PortletURL viewAllURL = renderResponse.createRenderURL();
 
@@ -135,22 +135,22 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 	<c:otherwise>
 		<script type="text/javascript">
 			jQuery(function() {
-				Liferay.KnowledgeBase.init({
+				Liferay.KnowledgeBase.initViewArticle({
 					articleResourcePrimKey: '<%= article.getResourcePrimKey() %>',
 					averageScore: '<%= feedbackStats.getAverageScore() %>',
 					namespace: '<portlet:namespace />',
 					feedbackURL: '<%= feedbackURL %>',
 					score: '<%= score %>',
 					userId: '<%= themeDisplay.getUserId() %>',
-					textAverage: '<%= LanguageUtil.get(locale, "average") %>',
-					textNo: '<%= LanguageUtil.get(locale, "please-let-us-know-why-you-found-this-unhelpful") %>',
-					textSuccess: '<%= LanguageUtil.get(locale, "your-request-processed-successfully") %>',
-					textThanksComment: '<%= LanguageUtil.get(locale, "thanks-your-feedback-will-help-us-to-improve-this-article") %>',
-					textThanksVote: '<%= LanguageUtil.get(locale, "thank-you-we-appreciate-your-feedback") %>',
-					textUpdateFeedback: '<%= LanguageUtil.get(locale, "update-your-feedback-for-this-article") %>',
-					textVote: '<%= LanguageUtil.get(locale, "vote") %>',
-					textVotes: '<%= LanguageUtil.get(locale, "votes") %>',
-					textYes: '<%= LanguageUtil.get(locale, "glad-it-helped-what-did-you-find-most-helpful") %>'
+					textAverage: '<%= LanguageUtil.get(pageContext, "average") %>',
+					textNo: '<%= LanguageUtil.get(pageContext, "please-let-us-know-why-you-found-this-unhelpful") %>',
+					textSuccess: '<%= LanguageUtil.get(pageContext, "your-request-processed-successfully") %>',
+					textThanksComment: '<%= LanguageUtil.get(pageContext, "thanks-your-feedback-will-help-us-to-improve-this-article") %>',
+					textThanksVote: '<%= LanguageUtil.get(pageContext, "thank-you-we-appreciate-your-feedback") %>',
+					textUpdateFeedback: '<%= LanguageUtil.get(pageContext, "update-your-feedback-for-this-article") %>',
+					textVote: '<%= LanguageUtil.get(pageContext, "vote") %>',
+					textVotes: '<%= LanguageUtil.get(pageContext, "votes") %>',
+					textYes: '<%= LanguageUtil.get(pageContext, "glad-it-helped-what-did-you-find-most-helpful") %>'
 				});
 			});
 
@@ -327,7 +327,7 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 
 											<br /><br />
 
-											<input type="button" value='<%= (comments == StringPool.BLANK) ? LanguageUtil.get(themeDisplay.getLocale(), "add-comments") : LanguageUtil.get(themeDisplay.getLocale(), "update-comments") %>' onClick="<portlet:namespace />saveFeedbackComments();" />
+											<input type="button" value='<%= (comments == StringPool.BLANK) ? LanguageUtil.get(pageContext, "add-comments") : LanguageUtil.get(pageContext, "update-comments") %>' onClick="<portlet:namespace />saveFeedbackComments();" />
 										</div>
 
 										</form>

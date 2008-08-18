@@ -1,5 +1,20 @@
 Liferay.KnowledgeBase = {
-	init: function(params) {
+	initEditArticle: function(params) {
+		var instance = this;
+
+		// Common variables
+
+		instance.namespace = params.namespace;
+		instance.templateURL = params.templateURL;
+
+		instance.applyTemplateButton = jQuery('#' + instance.namespace + 'applyTemplateButton');
+		instance.templateContent = jQuery('#' + instance.namespace + 'templateContent');
+
+		// Init methods
+		instance.loadBlankTemplate();
+	},
+
+	initViewArticle: function(params) {
 		var instance = this;
 
 		// Common variables
@@ -37,6 +52,39 @@ Liferay.KnowledgeBase = {
 		// Init methods
 
 		instance.loadScore();
+	},
+
+	getTemplate: function(templateResourcePrimKey) {
+		var instance = this;
+
+		if (templateResourcePrimKey == "") {
+			instance.loadBlankTemplate();
+		}
+		else {
+			jQuery.ajax({
+				url: instance.templateURL,
+				data: {
+					actionName: 'get_template',
+					templateResourcePrimKey: templateResourcePrimKey
+				},
+				dataType: 'json',
+				success: function(message) {
+					instance.templateContent.html(message.content);
+
+					instance.templateContent.show();
+					instance.applyTemplateButton.show();
+				}
+			});
+		}
+	},
+
+	loadBlankTemplate: function() {
+		var instance = this;
+
+		document.getElementById(instance.namespace + "templates").selectedIndex = 0;
+
+		instance.templateContent.hide();
+		instance.applyTemplateButton.hide();
 	},
 
 	loadScore: function() {
