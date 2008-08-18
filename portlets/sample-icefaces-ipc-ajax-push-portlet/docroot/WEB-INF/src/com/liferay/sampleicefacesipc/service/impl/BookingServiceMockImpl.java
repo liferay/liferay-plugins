@@ -20,13 +20,13 @@
  * SOFTWARE.
  */
 
-package sample.icefacesipc.service.impl;
+package com.liferay.sampleicefacesipc.service.impl;
+
+import com.liferay.sampleicefacesipc.service.BookingService;
+import com.liferay.sampleicefacesipc.transfer.Booking;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import sample.icefacesipc.service.BookingService;
-import sample.icefacesipc.transfer.Booking;
 
 /**
  * <a href="BookingServiceMockImpl.java.html"><b><i>View Source</i></b></a>

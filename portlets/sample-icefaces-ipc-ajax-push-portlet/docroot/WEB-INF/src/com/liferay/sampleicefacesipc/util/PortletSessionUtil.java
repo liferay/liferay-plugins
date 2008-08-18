@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package sample.icefacesipc.util;
+package com.liferay.sampleicefacesipc.util;
 
 import javax.faces.context.FacesContext;
 

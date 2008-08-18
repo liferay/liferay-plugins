@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package sample.icefacesipc.bean.model;
+package com.liferay.sampleicefacesipc.bean.model;
 
 import java.util.List;
 
@@ -29,9 +29,9 @@ import javax.faces.event.ValueChangeEvent;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import sample.icefacesipc.service.CustomerService;
-import sample.icefacesipc.transfer.Customer;
-import sample.icefacesipc.util.PortletSessionUtil;
+import com.liferay.sampleicefacesipc.service.CustomerService;
+import com.liferay.sampleicefacesipc.transfer.Customer;
+import com.liferay.sampleicefacesipc.util.PortletSessionUtil;
 import com.icesoft.faces.async.render.OnDemandRenderer;
 
 import com.icesoft.faces.async.render.RenderManager;

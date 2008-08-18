@@ -20,36 +20,20 @@
  * SOFTWARE.
  */
 
-package sample.icefacesipc.bean.backing;
+package com.liferay.sampleicefacesipc.service;
 
-import com.icesoft.faces.component.ext.RowSelectorEvent;
+import java.util.List;
 
-import sample.icefacesipc.bean.model.CustomerListModel;
-import sample.icefacesipc.transfer.Customer;
+import com.liferay.sampleicefacesipc.transfer.BookingType;
 
 /**
- * <a href="CustomerList.java.html"><b><i>View Source</i></b></a>
+ * <a href="BookingTypeService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Neil Griffin
  *
  */
-public class CustomerList {
+public interface BookingTypeService {
 
-	public CustomerListModel getCustomerListModel() {
-		return _customerListModel;
-	}
-
-	public void selectionListener(RowSelectorEvent rowSelectorEvent) {
-		Customer customer = _customerListModel.getAllCustomers().get(
-			rowSelectorEvent.getRow());
-
-		_customerListModel.setSelected(customer);
-	}
-
-	public void setCustomerListModel(CustomerListModel customerListModel) {
-		_customerListModel = customerListModel;
-	}
-
-	private CustomerListModel _customerListModel;
+	public List<BookingType> getAllBookingTypes();
 
 }

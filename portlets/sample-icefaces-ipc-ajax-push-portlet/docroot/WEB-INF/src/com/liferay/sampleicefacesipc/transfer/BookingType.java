@@ -20,77 +20,38 @@
  * SOFTWARE.
  */
 
-package sample.icefacesipc.transfer;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+package com.liferay.sampleicefacesipc.transfer;
 
 /**
- * <a href="Booking.java.html"><b><i>View Source</i></b></a>
+ * <a href="BookingType.java.html"><b><i>View Source</i></b></a>
  *
  * @author Neil Griffin
  *
  */
-public class Booking {
+public class BookingType {
 
-	public Booking(long bookingTypeId, long customerId) {
-		Calendar today = GregorianCalendar.getInstance();
-
-		Calendar weekFromToday = (Calendar)today.clone();
-
-		weekFromToday.add(Calendar.DATE, 7);
-
+	public BookingType(long bookingTypeId, String bookingTypeName) {
 		_bookingTypeId = bookingTypeId;
-		_customerId = customerId;
-		_startDate = new Date(today.getTimeInMillis());
-		_finishDate = new Date(weekFromToday.getTimeInMillis());
+		_bookingTypeName = bookingTypeName;
 	}
 
-	public Booking(
-		long bookingTypeId, long customerId, Date startDate, Date finishDate) {
-
-		_bookingTypeId = bookingTypeId;
-		_customerId = customerId;
-		_startDate = startDate;
-		_finishDate = finishDate;
+	public String getBookingTypeName() {
+		return _bookingTypeName;
 	}
 
 	public long getBookingTypeId() {
 		return _bookingTypeId;
 	}
 
-	public long getCustomerId() {
-		return _customerId;
-	}
-
-	public Date getFinishDate() {
-		return _finishDate;
-	}
-
-	public Date getStartDate() {
-		return _startDate;
+	public void setBookingTypeName(String bookingTypeName) {
+		_bookingTypeName = bookingTypeName;
 	}
 
 	public void setBookingTypeId(long bookingTypeId) {
 		_bookingTypeId = bookingTypeId;
 	}
 
-	public void setCustomerId(long customerId) {
-		_customerId = customerId;
-	}
-
-	public void setFinishDate(Date finishDate) {
-		_finishDate = finishDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		_startDate = startDate;
-	}
-
+	private String _bookingTypeName;
 	private long _bookingTypeId;
-	private long _customerId;
-	private Date _startDate;
-	private Date _finishDate;
 
 }

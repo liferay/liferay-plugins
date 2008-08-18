@@ -20,20 +20,22 @@
  * SOFTWARE.
  */
 
-package sample.icefacesipc.service;
+package com.liferay.sampleicefacesipc.service;
+
+import com.liferay.sampleicefacesipc.transfer.Booking;
 
 import java.util.List;
 
-import sample.icefacesipc.transfer.BookingType;
-
 /**
- * <a href="BookingTypeService.java.html"><b><i>View Source</i></b></a>
+ * <a href="BookingService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Neil Griffin
  *
  */
-public interface BookingTypeService {
+public interface BookingService {
 
-	public List<BookingType> getAllBookingTypes();
+	public List<Booking> getAllBookings();
+
+	public List<Booking> getBookingsByCustomerId(long customerId);
 
 }

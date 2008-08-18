@@ -20,73 +20,20 @@
  * SOFTWARE.
  */
 
-package sample.icefacesipc.transfer;
+package com.liferay.sampleicefacesipc.service;
 
-import java.util.ArrayList;
+import com.liferay.sampleicefacesipc.transfer.Customer;
+
 import java.util.List;
 
 /**
- * <a href="Customer.java.html"><b><i>View Source</i></b></a>
+ * <a href="CustomerService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Neil Griffin
  *
  */
-public class Customer {
+public interface CustomerService {
 
-	public Customer(long customerId, String firstName, String lastName) {
-		_customerId = customerId;
-		_firstName = firstName;
-		_lastName = lastName;
-	}
-
-	public List<Booking> getBookings() {
-		if (_bookings == null) {
-			_bookings = new ArrayList<Booking>();
-		}
-
-		return _bookings;
-	}
-
-	public long getCustomerId() {
-		return _customerId;
-	}
-
-	public String getFirstName() {
-		return _firstName;
-	}
-
-	public String getLastName() {
-		return _lastName;
-	}
-
-	public boolean isSelected() {
-		return _selected;
-	}
-
-	public void setBookings(List<Booking> bookings) {
-		_bookings = bookings;
-	}
-
-	public void setCustomerId(long customerId) {
-		_customerId = customerId;
-	}
-
-	public void setFirstName(String firstName) {
-		_firstName = firstName;
-	}
-
-	public void setLastName(String lastName) {
-		_lastName = lastName;
-	}
-
-	public void setSelected(boolean selected) {
-		_selected = selected;
-	}
-
-	private List<Booking> _bookings;
-	private long _customerId;
-	private String _firstName;
-	private String _lastName;
-	private boolean _selected;
+	public List<Customer> getAllCustomers();
 
 }

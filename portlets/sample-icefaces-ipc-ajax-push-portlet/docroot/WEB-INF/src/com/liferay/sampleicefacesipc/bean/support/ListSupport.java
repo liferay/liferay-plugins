@@ -20,20 +20,51 @@
  * SOFTWARE.
  */
 
-package sample.icefacesipc.service;
+package com.liferay.sampleicefacesipc.bean.support;
 
-import sample.icefacesipc.transfer.Customer;
+import com.liferay.sampleicefacesipc.service.BookingTypeService;
+import com.liferay.sampleicefacesipc.transfer.BookingType;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.model.SelectItem;
+
 /**
- * <a href="CustomerService.java.html"><b><i>View Source</i></b></a>
+ * <a href="ListSupport.java.html"><b><i>View Source</i></b></a>
  *
  * @author Neil Griffin
  *
  */
-public interface CustomerService {
+public class ListSupport {
 
-	public List<Customer> getAllCustomers();
+	public BookingTypeService getBookingTypeService() {
+		return _bookingTypeService;
+	}
+
+	public List<SelectItem> getSelectItems() {
+		if (_selectItems == null) {
+			_selectItems = new ArrayList<SelectItem>();
+
+			List<BookingType> bookingTypes =
+				_bookingTypeService.getAllBookingTypes();
+
+			for (BookingType bookingType : bookingTypes) {
+				_selectItems.add(
+					new SelectItem(
+						bookingType.getBookingTypeId(),
+						bookingType.getBookingTypeName()));
+			}
+		}
+
+		return _selectItems;
+	}
+
+	public void setBookingTypeService(BookingTypeService bookingTypeService) {
+		_bookingTypeService = bookingTypeService;
+	}
+
+	private BookingTypeService _bookingTypeService;
+	private List<SelectItem> _selectItems;
 
 }

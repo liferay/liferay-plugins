@@ -20,38 +20,73 @@
  * SOFTWARE.
  */
 
-package sample.icefacesipc.transfer;
+package com.liferay.sampleicefacesipc.transfer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * <a href="BookingType.java.html"><b><i>View Source</i></b></a>
+ * <a href="Customer.java.html"><b><i>View Source</i></b></a>
  *
  * @author Neil Griffin
  *
  */
-public class BookingType {
+public class Customer {
 
-	public BookingType(long bookingTypeId, String bookingTypeName) {
-		_bookingTypeId = bookingTypeId;
-		_bookingTypeName = bookingTypeName;
+	public Customer(long customerId, String firstName, String lastName) {
+		_customerId = customerId;
+		_firstName = firstName;
+		_lastName = lastName;
 	}
 
-	public String getBookingTypeName() {
-		return _bookingTypeName;
+	public List<Booking> getBookings() {
+		if (_bookings == null) {
+			_bookings = new ArrayList<Booking>();
+		}
+
+		return _bookings;
 	}
 
-	public long getBookingTypeId() {
-		return _bookingTypeId;
+	public long getCustomerId() {
+		return _customerId;
 	}
 
-	public void setBookingTypeName(String bookingTypeName) {
-		_bookingTypeName = bookingTypeName;
+	public String getFirstName() {
+		return _firstName;
 	}
 
-	public void setBookingTypeId(long bookingTypeId) {
-		_bookingTypeId = bookingTypeId;
+	public String getLastName() {
+		return _lastName;
 	}
 
-	private String _bookingTypeName;
-	private long _bookingTypeId;
+	public boolean isSelected() {
+		return _selected;
+	}
+
+	public void setBookings(List<Booking> bookings) {
+		_bookings = bookings;
+	}
+
+	public void setCustomerId(long customerId) {
+		_customerId = customerId;
+	}
+
+	public void setFirstName(String firstName) {
+		_firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		_lastName = lastName;
+	}
+
+	public void setSelected(boolean selected) {
+		_selected = selected;
+	}
+
+	private List<Booking> _bookings;
+	private long _customerId;
+	private String _firstName;
+	private String _lastName;
+	private boolean _selected;
 
 }
