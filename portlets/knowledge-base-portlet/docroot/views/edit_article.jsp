@@ -224,7 +224,7 @@ ResourceURL templateURL = renderResponse.createResourceURL();
 			<liferay-ui:message key="template" />
 		</td>
 		<td>
-			<div class="entry-draft" id="<portlet:namespace />templateContent" style="display: none;"></div>
+			<div class="template-preview" id="<portlet:namespace />templateContent" style="display: none;"></div>
 
 			<select id="<portlet:namespace />templates" name="<portlet:namespace />templates" onChange="<portlet:namespace />getTemplate();">
 				<option value=""></option>

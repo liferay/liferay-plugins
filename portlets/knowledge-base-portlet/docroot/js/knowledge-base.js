@@ -11,6 +11,7 @@ Liferay.KnowledgeBase = {
 		instance.templateContent = jQuery('#' + instance.namespace + 'templateContent');
 
 		// Init methods
+
 		instance.loadBlankTemplate();
 	},
 

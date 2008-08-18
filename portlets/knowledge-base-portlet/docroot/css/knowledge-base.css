@@ -182,15 +182,6 @@
 	margin: 10px 0pt;
 }
 
-.portlet-knowledge-base .entry-draft {
-	background: #EEE;
-	border: 1px solid #CCC;
-	color: #555;
-	display: none;
-	margin-bottom: 15px;
-	padding: 5px;
-}
-
 .portlet-knowledge-base .knowledge-base-feedback {
 	margin: 20px 0pt;
 }
@@ -244,6 +235,15 @@
 .portlet-knowledge-base .syntax-help pre {
 	margin-left: 1em;
 	margin-bottom: 1em;
+}
+
+.portlet-knowledge-base .template-preview {
+	background: #EEE;
+	border: 1px solid #CCC;
+	color: #555;
+	display: none;
+	margin-bottom: 15px;
+	padding: 5px;
 }
 
 .portlet-knowledge-base .top-links {
