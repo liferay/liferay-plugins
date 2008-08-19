@@ -135,24 +135,26 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 	</c:when>
 	<c:otherwise>
 		<script type="text/javascript">
-			jQuery(function() {
-				Liferay.KnowledgeBase.initViewArticle({
-					articleResourcePrimKey: '<%= article.getResourcePrimKey() %>',
-					averageScore: '<%= feedbackStats.getAverageScore() %>',
-					namespace: '<portlet:namespace />',
-					feedbackURL: '<%= feedbackURL %>',
-					score: '<%= score %>',
-					userId: '<%= themeDisplay.getUserId() %>',
-					textAverage: '<%= LanguageUtil.get(pageContext, "average") %>',
-					textNo: '<%= LanguageUtil.get(pageContext, "please-let-us-know-why-you-found-this-unhelpful") %>',
-					textSuccess: '<%= LanguageUtil.get(pageContext, "your-request-processed-successfully") %>',
-					textThanksComment: '<%= LanguageUtil.get(pageContext, "thanks-your-feedback-will-help-us-to-improve-this-article") %>',
-					textThanksVote: '<%= LanguageUtil.get(pageContext, "thank-you-we-appreciate-your-feedback") %>',
-					textUpdateFeedback: '<%= LanguageUtil.get(pageContext, "update-your-feedback-for-this-article") %>',
-					textVote: '<%= LanguageUtil.get(pageContext, "vote") %>',
-					textVotes: '<%= LanguageUtil.get(pageContext, "votes") %>',
-					textYes: '<%= LanguageUtil.get(pageContext, "glad-it-helped-what-did-you-find-most-helpful") %>'
-				});
+			jQuery(
+				function() {
+					Liferay.KnowledgeBase.initViewArticle({
+						articleResourcePrimKey: '<%= article.getResourcePrimKey() %>',
+						averageScore: '<%= feedbackStats.getAverageScore() %>',
+						namespace: '<portlet:namespace />',
+						feedbackURL: '<%= feedbackURL %>',
+						score: '<%= score %>',
+						userId: '<%= themeDisplay.getUserId() %>',
+						textAverage: '<%= LanguageUtil.get(pageContext, "average") %>',
+						textNo: '<%= LanguageUtil.get(pageContext, "please-let-us-know-why-you-found-this-unhelpful") %>',
+						textSuccess: '<%= LanguageUtil.get(pageContext, "your-request-processed-successfully") %>',
+						textThanksComment: '<%= LanguageUtil.get(pageContext, "thanks-your-feedback-will-help-us-to-improve-this-article") %>',
+						textThanksVote: '<%= LanguageUtil.get(pageContext, "thank-you-we-appreciate-your-feedback") %>',
+						textUpdateFeedback: '<%= LanguageUtil.get(pageContext, "update-your-feedback-for-this-article") %>',
+						textVote: '<%= LanguageUtil.get(pageContext, "vote") %>',
+						textVotes: '<%= LanguageUtil.get(pageContext, "votes") %>',
+						textYes: '<%= LanguageUtil.get(pageContext, "glad-it-helped-what-did-you-find-most-helpful") %>'
+					}
+				);
 			});
 
 			function <portlet:namespace />printArticle() {

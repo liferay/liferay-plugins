@@ -183,11 +183,13 @@ ResourceURL templateURL = renderResponse.createResourceURL();
 
 <c:if test="<%= !templates.isEmpty() && !template %>">
 	<script type="text/javascript">
-		jQuery(function() {
-			Liferay.KnowledgeBase.initEditArticle({
-				namespace: '<portlet:namespace />',
-				templateURL: '<%= templateURL %>'
-			});
+		jQuery(
+			function() {
+				Liferay.KnowledgeBase.initEditArticle({
+					namespace: '<portlet:namespace />',
+					templateURL: '<%= templateURL %>'
+				}
+			);
 		});
 
 		function <portlet:namespace />applyTemplate() {
