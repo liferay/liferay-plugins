@@ -91,7 +91,7 @@ a {
 }
 .ui-tabs li a, .tabs li span {
 	background:transparent none repeat scroll 0 0;
-	border-right:medium none;
+	border: none;
 	color:#888888;
 }
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
@@ -99,7 +99,7 @@ a {
 }
 .ui-tabs li.current a, .ui-tabs li.current span {
 	background:transparent none repeat scroll 0 0;
-	border:medium none;
+	border:1px solid grey;
 	font-weight:bold;
 }
 .ui-tabs {

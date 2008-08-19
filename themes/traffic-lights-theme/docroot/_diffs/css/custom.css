@@ -9,21 +9,19 @@ body {
 	margin: 10px auto 20px auto;
 }
 #banner {
-	background: #929292 url(../images/custom/header.jpg) top no-repeat;
-	border-top: 20px solid #929292;
-	height: 239px;
-	margin-top: -20px;
-	width: 960px;
-	margin-left:152px;
-	position: relative;
+	background: black url(../images/custom/header.jpg) top no-repeat;
+	border-bottom:12px solid #929292;
+	height:239px;
+	margin:20px auto;
+	position:relative;
+	width:806px;
 }
 #navigation {
-	background:#929292 none repeat scroll 0 0;
+	background:black none repeat scroll 0 0;
 	border:medium none;
 	height:65px;
 	margin-bottom:-29px;
 	margin-top:-1px;
-	width:960px;
 }
 #navigation li {
 	border: none;
@@ -31,6 +29,7 @@ body {
 }
 #navigation li.selected a, #navigation li a:hover {
 	background-color: transparent;
+	color: #D51A1A;
 }
 #navigation li.selected a span {
 	background: transparent;
@@ -43,18 +42,21 @@ body {
 	top:18px;
 }
 #content-wrapper {
-	background: #929292;
+	background: black;
 	margin: 29px auto;
-	width: 960px;
+	width: 100%;
 }
 #wrapper {
 	background: transparent;
 	position: relative;
 	width: 1264px;
+	margin: 0 auto;
+	width:965px;
+	border:2px solid #929292;
 }
 .portlet {
 	background: transparent;
-	border: none;
+	border: 1px solid #929292;
 }
 .portlet-topper {
 	background: transparent;
@@ -67,21 +69,14 @@ a {
 	font-size: 12px;
 }
 #navigation li a {
-	border-right: 2px solid #000000;
-	color: black;
+	border-right: 2px solid white;
+	color: white;
 	font-size: 16px;
 	font-weight: bold;
 	padding: 0px 15px;
 }
-#navigation li a:hover {
-	color: #FFFFFF;
-}
 .js .interactive-mode {
-	right: 11%;
 	top: 35px;
-}
-#banner .logo a {
-	margin-left:65px;
 }
 .ui-dialog.ui-resizable-disabled .ui-dialog-content {
 	color: black;
@@ -93,6 +88,11 @@ a {
 	background: transparent none repeat scroll 0% 0%;
 	border-right: medium none;
 }
+
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
 .ui-tabs li a:hover, .ui-tabs li span:hover {
 	background: transparent none repeat scroll 0% 0%;
 	color: red;
@@ -119,7 +119,7 @@ a {
 	border: none;
 }
 .portlet-calendar .calendar-day .day-number {
-	color:black;
+	border: none;
 }
 .lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
 	color: red;

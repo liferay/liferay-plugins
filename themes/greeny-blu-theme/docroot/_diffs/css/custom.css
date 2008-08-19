@@ -3,6 +3,13 @@
 
 /* ---------- Banner ---------- */
 
+#wrapper {
+	margin: 0 auto;
+	position: relative;
+	width: 1264px;
+	background: url(../images/custom/header2_bg.jpg) repeat-x top;
+}
+
 #banner .logo a {
 	text-decoration: none;
 }
@@ -16,13 +23,16 @@
 }
 
 #banner {
-	background: url(../images/common/header.jpg) no-repeat scroll 100% 100%;
+	background: black url(../images/custom/header_bg.jpg) no-repeat scroll center;
 	height: 10em;
 	position: relative;
+	top:20px;
+	height: 150px;
 }
 
 body {
-	background: #3B2B14 url(../images/common/background.jpg) repeat-x top;
+	background: #002C52;
+	color: white;
 	font: 62.5%/1.6em Tahoma, 'Lucida Sans Unicode', Lucida Grande, 'Lucida', Arial, 'Verdana', sans-serif;
 }
 
@@ -93,14 +103,9 @@ body {
 #content-wrapper {
 	margin-top: -5px;
 	width: 1100px;
-}
+	background:;
 
-#wrapper {
-	margin: 0 auto;
-	width: 1100px;
-	background: transparent;
 }
-
 
 /* ---------- Main navigation ---------- */
 
@@ -115,12 +120,14 @@ body {
 }
 
 .js #add-page {
-	float: left;
-	font-weight: bold;
-	left: 1270px;
-	padding-top: 0;
-	position: absolute;
-	top: 105px;
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+	float:left;
+	font-weight:bold;
+	left:82px;
+	padding-top:0;
+	position:absolute;
+	top:1px;
 }
 
 .js .delete-tab {
@@ -146,7 +153,7 @@ body {
 
 #navigation li a {
 	background: none;
-	color: #E4EAAE;
+	color: white;
 	display: block;
 	font-size: 1.3em;
 	padding: .4em 1.5em 0.5em .15em;
@@ -158,8 +165,8 @@ body {
 }
 
 #navigation li a:hover {
-	background: #E4EAAE;
-	color: #000;
+	background:  #002C52;
+	color: white;
 	padding-bottom: .73em;
 }
 
@@ -180,8 +187,8 @@ body {
 }
 
 #navigation li.selected a {
-	background: #E4EAAE;
-	color: #000;
+	background:  #002C52;
+	color: white;
 	padding-bottom: .65em;
 	padding-top: 0.5em;
 }
@@ -197,9 +204,9 @@ body {
 }
 
 #navigation {
-	background: url(../images/common/link.jpg) repeat-x;
+	background: black;
 	border: none;
-	margin: 0 auto 0;
+	margin:20px auto 0;
 	min-height: 2.2em;
 	overflow: hidden;
 	padding-bottom: 5px;
@@ -212,7 +219,6 @@ body {
 /* ---------- 1 column ---------- */
 
 .columns-1 #column-1, .columns-max #column-1 {
-	background: #E4EAAE;
 	display: table;
 	padding-bottom: 20px;
 	padding-left: 10px;
@@ -225,15 +231,12 @@ body {
 /* ---------- 2 columns ---------- */
 
 .columns-2 #column-1 {
-	background: #E4EAAE;
-	border-right: 1px solid #000;
 	padding-bottom: 20px;
 	padding-left: 10px;
 	padding-top: 20px;
 }
 
 .columns-2 #column-2 {
-	background: #E4EAAE;
 	padding-bottom: 20px;
 	padding-right: 10px;
 	padding-top: 20px;
@@ -243,19 +246,14 @@ body {
 /* ---------- 3 columns ---------- */
 
 .columns-3 #column-1 {
-	background: #E4EAAE;
 	padding-left: 0;
 }
 
 .columns-3 #column-2 {
-	background: #E4EAAE;
-	border-left: 1px solid #000;
-	border-right: 1px solid #000;
 	padding-left: 0;
 }
 
 .columns-3 #column-3 {
-	background: #E4EAAE;
 	padding-right: 0;
 }
 
@@ -263,19 +261,16 @@ body {
 /* ---------- 1/2/1 ---------- */
 
 .columns-1-2-1 #column-1, .columns-1-2-1 #column-4 {
-	background: #E4EAAE;
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-top: 20px;
 }
 
 .columns-1-2-1 #column-2 {
-	background: #E4EAAE;
 	padding-left: 0;
 }
 
 .columns-1-2-1 #column-3 {
-	background: #E4EAAE;
 	padding-right: 0;
 }
 
@@ -301,7 +296,7 @@ body {
 }
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
-	background: #FFF;
+	background: transparent;
 }
 
 .portlet-content {
@@ -310,8 +305,6 @@ body {
 }
 
 .portlet-title {
-	background: url(../images/common/topper.jpg) no-repeat;
-	background-position: bottom left;
 	display: block;
 	font-size: 9pt;
 	font-weight: bold;
@@ -320,28 +313,43 @@ body {
 }
 
 .portlet-topper {
-	background-position: right top;
+	background: url(../images/custom/header2_bg.jpg) repeat-x;
 	margin-right: -8px;
 	padding-right: 40px;
 	position: relative;
+	color: white;
 }
 
 .portlet {
-	margin: 0 0 10px;
+	margin:10px 0;
 	padding-right: 10px;
 	text-align: left;
 }
 
+.portlet-calendar .calendar-day .day-number {
+	border: none;
+}
+
+.taglib-calendar tr th {
+	color: black;
+}
+
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
 .tabs li a, .tabs li span {
 	background: none;
-	color: #E4EAAE;
+	color: white;
 	display: block;
 	float: left;
 	padding: 0 1em;
 	text-decoration: none;
+	border:none;
+	top: 0;
 }
 
-.tabs li {
+.ui-tabs li {
 	background: url(../images/common/tab.jpg) repeat-x 100% 0;
 	display: inline;
 	float: left;
@@ -353,22 +361,35 @@ body {
 	top: 6px;
 }
 
-.tabs li.current a, .tabs li.current span {
-	background: none;
-	color: #E4EAAE;
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:black;
+	color: white;
 	padding: 0 1em;
+	border: none;
 }
 
-.tabs li.current {
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	color: white;
+	text-decoration: none;
+	background:black;
+}
+
+.ui-tabs li.current {
 	background: url(../images/common/tab_selected.jpg) repeat-x 100% 0;
 	font-weight: bold;
 	top: 6px;
 }
 
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #234244;
 	margin: 0 0 1.5em 0;
 	padding: 0 0 2.6em 1em;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:black;
+	color:white;
 }
 
 
@@ -379,7 +400,7 @@ body {
 
 .portlet-section-header th {
 	border-bottom: 1px solid #CCC;
-	color: #E4EAAE;
+	color: black;
 	font-weight: bold;
 	padding: 0.3em 1em;
 }
@@ -394,9 +415,9 @@ body {
 /* ---------- Normal text in a table cell ---------- */
 
 .portlet-section-body td {
-	background: #E4EAAE;
+	background: #002C52;
 	border-top: 1px solid #BFBFBF;
-	color: #000;
+	color: white;
 	padding: 0.3em 1em;
 }
 
@@ -440,3 +461,19 @@ body {
 	background: #EEE;
 }
 
+#footer {
+	background: black;
+	height: 50px;
+}
+
+.uni-form {
+	background: black;
+}
+
+.ui-dialog {
+	background-color:black;
+}
+
+.lfr-portal-login .uni-form legend {
+	color: white;
+}

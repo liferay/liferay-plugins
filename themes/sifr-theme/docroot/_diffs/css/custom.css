@@ -1,7 +1,3 @@
-#banner .logo a {
-	margin-left: 130px;
-}
-
 #banner {
 	background: none;
 	position: relative;
@@ -77,11 +73,6 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	margin: 50pt auto 20px;
 }
 
-.portlet-content {
-	background-position: left bottom;
-	padding: 10px 5px 25px 15px;
-}
-
 .portlet-icons {
 	margin: 3px;
 	position: absolute;
@@ -106,6 +97,7 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	margin-right: -10px;
 	padding-right: 40px;
 	position: relative;
+	border: none;
 }
 
 .portlet {
@@ -120,4 +112,16 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	background: transparent;
 	margin: 0 auto;
 	width: 958px;
+}
+
+#content-wrapper {
+	width: 100%;
+}
+
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
 }

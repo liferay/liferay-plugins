@@ -126,7 +126,6 @@ body {
 	background: url('../images/custom/common/bgfooter.png') repeat-x;
 	height: 4em;
 	margin-top: 1px;
-	width: 639px;
 }
 
 .js #add-page a:hover {
@@ -216,16 +215,17 @@ table {
 	clear: both;
 }
 
-.tabs li a, .tabs li span, .tabs li.current a, .tabs li.current span {
+.ui-tabs li a, .ui-tabs li span, .ui-tabs li.current a, .ui-tabs li.current span {
 	background: transparent none;
 	border: none;
 	color: #FFF;
 	display: block;
 	float: left;
 	text-decoration: none;
+	top:0;
 }
 
-.tabs li, .tabs li.current {
+.ui-tabs li, .ui-tabs li.current {
 	background: #89866F none;
 	border-left: 1px solid #7C7C7C;
 	border-right: 1px solid #7C7C7C;
@@ -239,13 +239,13 @@ table {
 	top: 0;
 }
 
-.tabs li.current a, .tabs li.current span {
+.ui-tabs li.current a, .ui-tabs li.current span {
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 }
 
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #7C7C7C;
 	margin: 0 0 1.5em 0;
 	padding: 0 0 2.6em 1em;
@@ -253,4 +253,10 @@ table {
 
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
 	background: #89866F;
+	color: white;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:#89866F none;
+	color:black;
 }

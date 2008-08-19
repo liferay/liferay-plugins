@@ -41,6 +41,7 @@ body {
 }
 
 #content-wrapper {
+	width: 100%;
 }
 
 #footer {
@@ -188,7 +189,7 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 
 .portlet-icons {
 	right: 0;
-	top: 0;
+	top:-5px;
 }
 
 .portlet-section-header {
@@ -198,14 +199,17 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 .portlet-title {
 	color: #442;
 	font-family: serif, sans-serif;
-	font-size: 2.4em;
 }
 
 .portlet {
 	padding: 20px;
 }
 
-.tabs {
+.portlet-topper {
+	font-size: 18px;
+}
+
+.ui-tabs {
 	border: 0;
 }
 

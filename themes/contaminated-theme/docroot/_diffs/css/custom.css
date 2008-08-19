@@ -40,16 +40,13 @@ a:hover {
 #content-wrapper {
 	border-collapse: collapse;
 	margin-top: 100px;
-	width: 780px;
+	width: 100%;
 }
 
-.ie6 #content-wrapper {
-	margin-top: 20px;
-}
 
 #wrapper {
 	margin: 0 auto;
-	width: 780px;
+	width:870px;
 }
 
 
@@ -267,7 +264,7 @@ a:hover {
 	background: transparent;
 }
 
-.tabs li a, .tabs li span {
+.ui-tabs li a, .ui-tabs li span {
 	background: #000 none;
 	color: #DDD;
 	display: block;
@@ -276,19 +273,37 @@ a:hover {
 	text-decoration: none;
 }
 
-.tabs li a:hover {
+.ui-tabs li a:hover {
 	background: #9A3;
 	color: #000;
 }
 
-.tabs li.current a, .tabs li.current span {
+.ui-tabs li.current a, .ui-tabs li.current span {
 	background: #9A3 none;
 	color: #000;
 	padding: 0.15em 1em;
 }
 
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #000;
 	margin: 0 0 1.5em 0;
 	padding: 0 0 2.6em 1em;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	background:#99AA33 none repeat scroll 0 0;
+	color:#000000;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	border: none;
+}
+
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
 }

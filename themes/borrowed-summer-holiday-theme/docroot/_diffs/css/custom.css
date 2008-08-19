@@ -56,12 +56,19 @@ body {
 /* ---------- Main navigation ---------- */
 
 .js #add-page {
-	bottom: 0;
-	float: left;
-	font-weight: bold;
-	padding-top: 0.3em;
-	position: absolute;
-	right: 6px;
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+	bottom:0;
+	float:left;
+	font-weight:bold;
+	padding-top:0.3em;
+	position:absolute;
+	right:6px;
+	top:-5px;
+}
+
+.js #add-page a span {
+	color: #9E8100;
 }
 
 #navigation li a span {
@@ -131,6 +138,9 @@ body {
 	width: 860px;
 }
 
+#navigation li.selected a, #navigation li a:hover {
+	background-color:transparent;
+}
 
 /* ---------- Portlet wrapper and icons ---------- */
 

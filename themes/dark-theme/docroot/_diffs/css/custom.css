@@ -26,14 +26,6 @@ body {
 	width: 961px;
 }
 
-.ie6 #content-wrapper {
-	margin-top: 160px;
-}
-
-.ie6 #wrapper {
-	background: url('../images/custom/common/visual_bg.jpg') no-repeat 0 165px;
-}
-
 table {
 	clear: both;
 }
@@ -67,10 +59,6 @@ table {
 	height: 7em;
 	position: relative;
 	top: 33px;
-}
-
-.ie6 #banner {
-	top: 40px;
 }
 
 
@@ -204,6 +192,7 @@ table {
 	background: #DCDCDC;
 	border-top: 1px solid #BFBFBF;
 	padding: 0.3em 1em;
+	color: black;
 }
 
 .portlet-section-header th {
@@ -228,7 +217,7 @@ table {
 	font-weight: normal;
 	letter-spacing: 0.05em;
 	min-width: 50%;
-	padding: 8px 0 4px 10px;
+	padding: 8px 0 4px 0px;
 	text-indent: 30px;
 }
 
@@ -257,12 +246,28 @@ table {
 	color: black;
 }
 
-.tabs li a {
+.ui-tabs li a {
 	color: #000;
 }
 
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #7F9BCA;
 	margin: 0 0 1.5em 0;
 	padding: 0 0 2.6em 1em;
+}
+
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
+}
+
+.taglib-calendar tr th {
+	color: #7F9BCA;
+}
+
+.taglib-calendar tr td a {
+	color: black;
 }

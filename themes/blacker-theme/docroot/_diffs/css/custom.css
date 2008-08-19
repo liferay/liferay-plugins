@@ -1,3 +1,7 @@
+html {
+	overflow-y: scroll;
+}
+
 #navigation {
 	background: #FF6600 url(../images/custom/menu_bckg.jpg) repeat scroll 0 0;
 	border: none;

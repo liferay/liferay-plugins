@@ -168,6 +168,7 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 
 .portlet-section-body td {
 	background: #DDD none;
+	color: black;
 }
 
 .portlet-section-header th {
@@ -196,4 +197,12 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 
 #wrapper {
 	background: none;
+}
+
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
+.taglib-calendar tr th {
+	color: black;
 }

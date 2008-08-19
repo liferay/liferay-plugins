@@ -44,7 +44,7 @@ html {
 	top: 0;
 }
 
-.tabs {
+.ui-tabs {
 	border: 0;
 }
 
@@ -120,8 +120,8 @@ body {
 }
 
 .js .lfr-dock.interactive-mode {
-	right: 32px;
-	top: 32px;
+	right: 0px;
+	top: 20px;
 }
 
 .lfr-dock-list li a {
@@ -188,12 +188,23 @@ body {
 	padding: 10px 10px 20px 24px;
 }
 
-.tabs li.current a, .tabs li.current span {
+.ui-tabs li.current a, .ui-tabs li.current span {
 	background: transparent url(../images/common/tabs_bg.png) repeat scroll 100% 0;
 	color: #FF9;
 	margin: 2px;
+	top: 0;
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 	background: transparent url(../images/common/tabs_bg.png) repeat scroll 100% 0;
+}
+
+.ui-tabs li a, .tabs li span {
+	top:0;
+	background: transparent;
+	border: none;
+}
+
+.portlet-calendar .calendar-container {
+	background:transparent url(../images/portlet/portlet_bg.png) repeat scroll 0 0;
 }

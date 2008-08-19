@@ -56,7 +56,12 @@ body {
 }
 
 .js .interactive-mode h2 {
-	background: transparent url(../images/dock/right_bg.png) no-repeat scroll 100% 0;
+	background: transparent;
+}
+
+.js .lfr-dock-list-container {
+	height: 0px;
+	overflow: visible;
 }
 
 .js .interactive-mode {
@@ -108,6 +113,10 @@ body {
 	width: 996px;
 }
 
+#navigation ul {
+	margin:0 0 0 30px;
+}
+
 .portlet-title {
 	color: #FFF;
 	display: block;
@@ -134,4 +143,64 @@ body {
 
 #wrapper {
 	background: none;
+}
+
+.tabs {
+	border-bottom: 1px solid #bfe1ff;
+	margin: 0 0 1.5em 0;
+	padding: 0 0 2.6em 1em;
+}
+
+.tabs li {
+	background: #eaf5ff url(../images/common/tabs_inactive_bg.png) repeat-x 0 100%;
+	border: 1px solid #bfe1ff;
+	border-bottom: 0;
+	display: inline;
+	float: left;
+	line-height: 2.25;
+	margin-right: 0.8em;
+	padding: 0;
+	text-decoration: none;
+}
+
+
+.ui-tabs li a, .ui-tabs li span {
+	display: block;
+	float: left;
+	padding: 0.35em 1em 0;
+	text-decoration: none;
+}
+
+.ui-tabs li.current {
+	background: #bfe1ff url(../images/common/tabs_active_bg.png) repeat-x 0 0;
+	font-weight: bold;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {application.css (line 316)
+	background-color:transparent;
+	background: #bfe1ff url(../images/common/tabs_active_bg.png) repeat-x 0 0;
+	color: black;
+	text-decoration: none;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	color: #333;
+	padding: 0.15em 1em;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: #bfe1ff url(../images/common/tabs_active_bg.png) repeat-x 0 0;
+	border:medium none;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: #bfe1ff url(../images/common/tabs_active_bg.png) repeat-x 0 0;
+	color:white;
+}
+
+.ui-tabs li a, .tabs li span {
+	background:transparent none repeat scroll 0 0;
+	border-right:medium none;
+	color:black;
+	top:0;
 }

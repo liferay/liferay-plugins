@@ -138,7 +138,7 @@ table {
 	float: left;
 	margin: 20px auto -7px;
 	min-height: none;
-	overflow: hidden;
+	overflow: visible;
 	padding-bottom: 1em;
 	padding-right: 1em;
 	width: 144px;
@@ -198,13 +198,6 @@ table {
 .js #add-page a:hover span {
 	color: #003366;
 }
-.ie6.js #add-page {
-	left: -60px;
-	padding-bottom: 2px;
-	position: absolute;
-	top: 5px;
-	width: 10em;
-}
 .js #navigation .enter-page {
 	background: #DEFE92;
 	padding: 0.5em 0em 0.7em 0em;
@@ -240,7 +233,7 @@ table {
 	padding: 0 0 2.6em 1em;
 }
 .tabs li {
-	background: url(../images/custom/tabs_bg.png) 2pt -200px;
+	background: url(../images/custom/tabs_bg.png) 1pt -200px;
 	display: inline;
 	float: left;
 	line-height: 2.25em;
@@ -259,7 +252,6 @@ table {
 .tabs li.current a, .tabs li.current span {
 	background: url(../images/custom/tabs_bg.png) 0 -217px;
 	color: #333;
-	margin-top: -1px;
 	padding: 0.15em 1em;
 }
 .portlet-section-header {
@@ -280,4 +272,24 @@ table {
 .lfr-dock-list-container {
 	height: 1px;
 	overflow: visible;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:transparent;
+}
+
+.ui-tabs li a, .tabs li span {
+	border-right:medium none;
+	color:black;
+	top:0;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	background: transparent url(../images/custom/tabs_bg.png) repeat scroll 0 -217px;
+	text-decoration: none;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	border: none;
 }

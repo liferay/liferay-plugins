@@ -209,3 +209,11 @@ a , a:link , a:visited , a:hover {
 .portlet-calendar .calendar-container {
 	background:black none repeat scroll 0 0;
 }
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
+}
+
+.taglib-calendar tr th {
+	color: black;
+}

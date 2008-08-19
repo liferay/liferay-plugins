@@ -1,7 +1,4 @@
-#banner .logo a {
-	margin-left: 130px;
-	text-decoration: none;
-}
+
 
 #banner .logo {
 	background: none;
@@ -68,10 +65,6 @@ body {
 
 .js #navigation .enter-page {
 	background-color: transparent;
-}
-
-.js .interactive-mode {
-	right: 15%;
 }
 
 .js .lfr-dock.interactive-mode ul {

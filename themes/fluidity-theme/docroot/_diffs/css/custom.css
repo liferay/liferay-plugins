@@ -42,9 +42,7 @@ body {
 
 #content-wrapper {
 	background: #333 none repeat scroll 0 0%;
-	float: left;
 	margin-bottom: 5px;
-	overflow: hidden;
 }
 
 #footer {
@@ -55,21 +53,12 @@ body {
 }
 
 .js #add-page {
-	overflow: hidden;
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+	right:0;
+	top:-1px;
 }
 
-.js #navigation .enter-page a {
-	background: transparent url('../images/theme/tab.gif') no-repeat scroll 0 -25px;
-	font-weight: normal;
-	position: relative;
-	right: 8px;
-	top: -25px;
-}
-
-.js #navigation .enter-page {
-	background: transparent url('../images/theme/tab.gif') no-repeat scroll 0 -25px;
-	padding: 0.5em 0em 0.7em 1.5em;
-}
 
 .js .interactive-mode h2 span {
 	color: #06FF00;
@@ -100,7 +89,6 @@ body {
 	min-width: 150px;
 	position: absolute;
 	right: 4px;
-	top: 130px;
 }
 
 #navigation input[type="text"], select, textarea, .textarea {
@@ -120,7 +108,7 @@ body {
 	padding-left: 0;
 }
 
-#navigation li a, .js #add-page a {
+#navigation li a {
 	background: transparent url('../images/theme/tab.gif') no-repeat scroll 0 -25px;
 	color: #06FF00;
 	display: block;
@@ -131,23 +119,6 @@ body {
 	text-decoration: none;
 	text-transform: lowercase;
 	width: 90px;
-}
-
-#navigation li a:hover span, .js #add-page a:hover span {
-	background: none;
-}
-
-#navigation li a:hover, #navigation li.selected a:hover, .js #add-page a:hover {
-	background: transparent url('../images/theme/tab.gif') no-repeat scroll 0 0px;
-	color: #FFF;
-	font-weight: normal;
-	height: 12px;
-	text-decoration: none;
-}
-
-#navigation li {
-	background: transparent;
-	display: block;
 	font-size: 13px;
 	list-style-image: none;
 	list-style-position: outside;
@@ -158,14 +129,22 @@ body {
 	width: 90px;
 }
 
+
+#navigation li a:hover, #navigation li.selected a:hover, .js #add-page a:hover {
+	background: transparent url('../images/theme/tab.gif') no-repeat scroll 0 0px;
+	color: #FFF;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+#navigation li {
+	border: none;
+}
+
 #navigation li.selected a {
 	background: transparent url('../images/theme/tab.gif') no-repeat scroll 0 0px;
 	font-weight: normal;
 	padding-top: 0;
-}
-
-#navigation li.selected a:hover {
-	padding-bottom: 7px;
 }
 
 #navigation ul {
@@ -198,16 +177,45 @@ body {
 	text-decoration: none;
 }
 
-.portlet-content {
-	float: left;
-	margin-bottom: 5px;
-	overflow: hidden;
-	width: 100%;
-}
-
 ul li, ol ul li {
 	list-style-image: url('../images/theme/bullet.gif');
 }
 
 #wrapper {
+	background: transparent;
+	position: relative;
+	margin: 0 auto;
+	width: 1264px;
+}
+
+.js #navigation .enter-page {
+	background-color:transparent;
+	margin:3px 0 0 74px;
+	width:94px;
+}
+
+.js #add-page a span {
+	background:transparent;
+	margin-left:0;
+}
+
+.js #navigation .enter-page .save-page {
+	margin:-24px -11px;
+	padding-left:0px;
+}
+
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
+}
+
+.taglib-calendar tr th {
+	color: black;
+}
+
+.portlet-section-body td {
+	color: black;
 }

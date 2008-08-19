@@ -12,7 +12,7 @@ a:hover {
 	background: black url('../images/custom/custom_banner.png') no-repeat scroll 0 0pt;
 	border-bottom: 5px solid #D30255;
 	height: 125px;
-	margin-top: -22px;
+	margin-top: -10px;
 }
 
 body {
@@ -43,6 +43,16 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 	padding: 0.25em;
 }
 
+input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus {
+	background: #FAFAFA url('../images/custom/custom_back.png') repeat-x scroll 0;
+	border-color: #CCC rgb(153, 153, 153) rgb(153, 153, 153) rgb(204, 204, 204);
+	border-style: double;
+	border-width: 3px;
+	color: white;
+	font-weight: bold;
+	padding: 0.25em;
+}
+
 .js #add-page {
 	background: transparent none repeat scroll 0 0%;
 	border: medium none;
@@ -53,6 +63,7 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 .js #navigation .enter-page {
 	background: transparent url('../images/custom/custom_back.png') repeat scroll 0 0%;
 	padding: 5.5px;
+	margin-top:13px;
 }
 
 .js .interactive-mode .my-places li h3 {
@@ -67,7 +78,7 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 	min-width: 150px;
 	position: absolute;
 	right: 10px;
-	top: -10px;
+	top: -35px;
 }
 
 .lfr-dock li a {
@@ -96,7 +107,6 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 
 #navigation li.selected a span {
 	background: transparent;
-	padding-left: 0;
 }
 
 #navigation li.selected a, #navigation li a:hover {
@@ -108,18 +118,20 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 	color: white;
 	font-size: 1.3em;
 	font-weight: bold;
-	margin: -15px 0 0;
-	padding-bottom: 3px;
-	padding-top: 3px;
+	margin:-15px 5px 0;
+	padding-bottom: 0px;
+	padding-top: 9px;
 }
 
 #navigation ul {
 	margin: 0 auto 0 0px;
+	float: none;
 }
 
 #navigation {
 	background: transparent;
 	border: none;
+	margin:-15px auto;
 }
 
 .portal-add-content {
@@ -166,16 +178,23 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 	border: 2px solid #350015;
 }
 
-.tabs li a, .tabs li span {
+.ui-tabs li a, .ui-tabs li span {
 	display: block;
 	float: left;
 	padding: 0.35em 1em 0;
 	text-decoration: none;
+	top: 0;
+	background: transparent;
+	border: 1px solid #350015;
 }
 
-.tabs li {
+.ui-tabs li a:hover, .ui-tabs li span:hover {
 	background: #350015 0 100%;
-	border: 1px solid #350015;
+	color:white;
+}
+
+.ui-tabs li {
+	background: #350015 0 100%;
 	border-bottom: 0;
 	display: inline;
 	float: left;
@@ -185,12 +204,17 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 	text-decoration: none;
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 	background: #8A9C9A url('../images/custom/custom_back.png') repeat-x 0 0;
 	font-weight: bold;
 }
 
-.tabs {
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	background: #8A9C9A url('../images/custom/custom_back.png') repeat-x 0 0;
+}
+
+.ui-tabs {
 	border-bottom: 1px solid #350015;
 	margin: 0 0 1.5em 0;
 	padding: 0 0 2.6em 1em;
@@ -198,9 +222,13 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 
 .ui-tabs li.current a, .ui-tabs li.current span {
 	background: transparent;
+	border: 1px solid #350015;
 }
 
 #wrapper {
 	background: none;
 	background-color: #0C0005;
+	position: relative;
+	margin: 0 auto;
+	width: 1264px;
 }

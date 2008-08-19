@@ -155,6 +155,10 @@ body {
 	width: 100%;
 }
 
+.ie #navigation ul {
+	background: transparent url('../images/common/page_bg.jpg') no-repeat 100% right;
+}
+
 #navigation {
 	background-image: url('../images/navigation/bg.png');
 	background-repeat: repeat-x;
@@ -186,11 +190,11 @@ body {
 	margin: 0 20px 20px 20px;
 }
 
-.tabs li {
+.ui-tabs li {
 	font: 10px/2.25em Arial;
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 	top: 0;
 }
 
@@ -198,4 +202,8 @@ body {
 	background: url('../images/common/page_bg.jpg') no-repeat top right;
 	font-size: 1.2em;
 	margin-left: 20px;
+}
+
+.ie #banner .logo {
+	margin-top: 0px;
 }

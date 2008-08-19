@@ -71,10 +71,6 @@ html {
 	font-size: 10pt;
 }
 
-.portlet-icons {
-	padding: 12px 38px 0 0;
-}
-
 .portlet-title {
 	color: #FBE09D;
 	font-family: Georgia,"Times New Roman",Times,serif;
@@ -100,4 +96,19 @@ html {
 	margin: 0 auto;
 	position: relative;
 	width: 903px;
+}
+
+#navigation li.selected a, #navigation li a:hover {
+	background-color:transparent;
+}
+
+.js #add-page {
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+	right:0;
+	top:0;
+}
+
+.js .interactive-mode h2 span {
+	border-right:none;
 }

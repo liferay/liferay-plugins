@@ -162,7 +162,7 @@ html {
 	padding: 20px;
 }
 
-.tabs {
+.ui-tabs {
 	border: 0;
 }
 
@@ -174,4 +174,12 @@ ul.child-menu {
 	background: #FFF url(../images/custom/top.png) no-repeat scroll 0 0;
 	margin: 0 auto;
 	width: 910px;
+}
+
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
 }

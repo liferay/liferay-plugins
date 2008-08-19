@@ -60,6 +60,12 @@ border-bottom: none;
 color: white;
 font-size: 18px;
 }
+.portlet-calendar .calendar-container {
+background: transparent;
+}
+.portlet-calendar .calendar-day .day-number {
+border: none;
+}
 /** UI Tabs**/
 .ui-tabs {
 border-bottom:medium none;

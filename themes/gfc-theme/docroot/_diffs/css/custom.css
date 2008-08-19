@@ -129,6 +129,7 @@ body {
 	padding-bottom: 5px;
 	width: 99.2%;
 	text-align: middle;
+	border: none;
 }
 
 #navigation ul {
@@ -144,6 +145,7 @@ body {
 	margin-right: 0.5em;
 	padding: 0 1.5em 0 0;
 	position: relative;
+	border: none;
 }
 
 #navigation li a {
@@ -318,7 +320,7 @@ body {
 	text-align: left;
 }
 
-.tabs li {
+.ui-tabs li {
 	background: url(../images/common/tab.png) repeat-x 100% 0;
 	display: inline;
 	float: left;
@@ -330,32 +332,35 @@ body {
 	text-decoration: none;
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 	background: url(../images/common/tab_selected.png) repeat-x 100% 0;
 	font-weight: bold;
 	top: 6px;
 }
 
-.ie6 .tabs li.current {
+.ie6 .ui-tabs li.current {
 	top: 6px;
 }
 
-.tabs li a, .tabs li span {
+.ui-tabs li a, .ui-tabs li span {
 	background: none;
 	color: #E4EAAE;
 	display: block;
 	float: left;
 	padding: 0 1em;
 	text-decoration: none;
+	top: 0;
+	border: none;
 }
 
-.tabs li.current a, .tabs li.current span {
+.ui-tabs li.current a, .ui-tabs li.current span {
 	background: none;
 	color: #E4EAAE;
+	border: none;
 	padding: 0 1em;
 }
 
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #234244;
 	margin: 0 0 1.5em 0;
 	padding: 0 0 2.6em 1em;
@@ -424,4 +429,8 @@ body {
 
 .portlet-section-selected {
 	background: #EEE;
+}
+
+.js .interactive-mode {
+	right:84%;
 }

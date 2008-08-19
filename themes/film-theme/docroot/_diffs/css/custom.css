@@ -35,11 +35,6 @@ html {
 	overflow-y: scroll;
 }
 
-.ie6 #banner {
-	position: relative;
-	right: 0;
-	width: 100%;
-}
 
 #wrapper {
 	color: #FFF;
@@ -65,10 +60,6 @@ html {
 
 /* ------------ NAVIGATION ------------- */
 
-.js #navigation {
-	position: absolute;
-}
-
 .js .lfr-dock.expanded .lfr-dock-list-container {
 	z-index: 9;
 }
@@ -93,16 +84,14 @@ html {
 }
 
 #navigation {
-	left: 200px;
-	background: black;
-	margin: 0 auto 0em;
-	padding: 0 1em 0em 10px;
-	position: absolute;
-	right: 300px;
-	top: 180px;
-	width: auto;
-	border: none;
-	z-index: 8;
+	background:black none repeat scroll 0 0;
+	border:medium none;
+	left:52px;
+	margin:0 auto 0;
+	padding:0 1em 0 10px;
+	right:300px;
+	width:80%;
+	z-index:8;
 }
 
 .js #add-page {
@@ -155,31 +144,35 @@ html {
 	margin: 0;
 }
 
+.portlet-topper {
+	border: none;
+}
+
 
 /* ------------ TABS ------------- */
 
-.tabs li a, .tabs li span {
+.ui-tabs li a, .iu-tabs li span {
 	background: none;
 }
 
-.tabs li {
+.ui-tabs li {
 	background: none;
 	background-color: #333;
 	line-height: 15px;
 	margin-right: 0.7em;
 }
 
-.tabs li.current a, .tabs li.current span {
+.iu-tabs li.current a, .iu-tabs li.current span {
 	background: none;
 	background-color: #99F;
 	color: #333;
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 	background: none;
 }
 
-.tabs {
+.iu-tabs {
 	border-bottom: 1px solid #333;
 	padding: 0 0 18px 1em;
 }
@@ -188,7 +181,7 @@ html {
 /* ------------ MIS. CUSTOM ------------- */
 
 #content-wrapper {
-	margin: 30px auto 0.5em;
+	margin: 0px auto 0.5em;
 	min-height: 5em;
 }
 
@@ -203,4 +196,12 @@ html {
 
 .thisisthedock {
 	z-index: 9;
+}
+
+.taglib-calendar tr th {
+	color: black;
+}
+
+.portlet-section-body td {
+	color: black;
 }

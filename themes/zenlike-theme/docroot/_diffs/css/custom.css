@@ -26,7 +26,9 @@
 	border-top: 2px solid white;
 	height: 240px;
 	position: relative;
-	top: 0;
+	top: 35px;
+	width: 960px;
+	margin: 0 auto;
 }
 
 body {
@@ -39,7 +41,8 @@ body {
 #content-wrapper {
 	background: white none repeat scroll 0 0%;
 	border: 7px solid white;
-	width: auto;
+	width: 960px;
+	margin:-35px auto;
 }
 
 #footer {
@@ -49,6 +52,8 @@ body {
 	height: 2em;
 	padding-top: 5em;
 	position: relative;
+	width:974px;
+	margin: 0 auto;
 }
 
 html {
@@ -108,10 +113,10 @@ html {
 	border: 14px solid #FFF;
 	border-bottom: 4px solid white;
 	border-top: 4px solid white;
-	margin: 0;
+	margin: 35px auto;
 	padding: 0em 1em;
 	position: relative;
-	width: auto;
+	width:920px;
 }
 
 .portlet-topper {
@@ -125,7 +130,8 @@ html {
 }
 
 #wrapper {
-	background: transparent none;
-	margin: 0 auto;
-	width: 960px;
+	background:transparent url(../images/custom/bg2.jpg) repeat-x scroll top;
+	margin:-35px auto;
+	width:1264px;
+	position: relative;
 }

@@ -39,9 +39,13 @@ body {
 	background:none;
 	height: 29px;
 	margin: 10px 31px;
-	overflow: hidden;
 	padding: 0pt 0em 0pt 0pt;
 	text-align: left;
+	height: 10px;
+}
+
+.ie #navigation {
+	margin: -25px 31px;
 }
 
 .portlet {
@@ -111,4 +115,63 @@ body {
 .js .lfr-dock.interactive-mode {
 
 	right:38px;
+}
+
+.ui-tabs {
+	border-bottom: 1px solid #bfe1ff;
+	margin: 0 0 1.5em 0;
+	padding: 0 0 2.6em 1em;
+}
+
+.ui-tabs li {
+	background: #eaf5ff url(../images/common/tabs_inactive_bg.png) repeat-x 0 100%;
+	display: inline;
+	float: left;
+	line-height: 2.25;
+	margin-right: 0.8em;
+	padding: 0;
+	text-decoration: none;
+}
+
+.ui-tabs li a, .tabs li span {
+	display: block;
+	border: 1px solid #bfe1ff;
+	float: left;
+	padding: 0.35em 1em 0;
+	text-decoration: none;
+	top: 0;
+}
+
+.ui-tabs li.current {
+	background: #bfe1ff url(../images/common/tabs_active_bg.png) repeat-x 0 0;
+	font-weight: bold;
+	border: 1px solid #bfe1ff;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	color: #333;
+	padding: 0.15em 1em;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:transparent none repeat scroll 0 0;
+}
+
+.ui-tabs li a, .tabs li span {
+	background:transparent none repeat scroll 0 0;
+	color:black;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+}
+
+.portlet-content {
+	padding:10px 5px 25px 12px;
+}
+
+.js .lfr-dock-list-container {
+	height: 0px;
+	overflow: visible;
 }

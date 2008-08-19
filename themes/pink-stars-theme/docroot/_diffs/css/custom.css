@@ -1,5 +1,164 @@
-#banner .logo a {
-	margin-left: 88px;
+#banner .logo {
+	display: block;
+	font-size: 2em;
+	margin: 0 auto;
+	padding: 1.25em 0 87.45px;
+}
+
+#banner {
+	background-image: url(../images/custom/header-bg.gif);
+	background-repeat: no-repeat;
+	border-bottom: 0;
+	clear: right;
+	height: 410px;
+	margin: 0 auto;
+	padding-bottom: 8px;
+	padding-left: 0;
+	width: 906px;
+}
+
+#banner-content {
+	margin: 0 auto;
+	width: 82%;
+}
+
+body {
+	background-color: #ECB7DA;
+	background-image: url(../images/custom/bg.gif);
+	background-repeat: repeat-x;
+	color: #B53CC3;
+	margin: 0;
+	padding: 0;
+}
+
+#content-wrapper {
+	background: #FFF none repeat scroll 0;
+	margin:-145pt auto 0;
+	width: 766px;
+}
+
+#footer {
+	background: #FFF url(../images/custom/footer-bg.gif) no-repeatscroll center bottom;
+	clear: both;
+	color: #BD7AA6;
+	font-size: 11px;
+	margin: 0 auto;
+	padding-bottom: 10px;
+	padding-left: 20px;
+	text-align: left;
+	width: 748px;
+}
+
+.js #add-page {
+	background: transparent;
+	border: none;
+	right: 19%;
+	top: -1px;
+}
+
+.js #navigation .enter-page {
+	background-color: transparent;
+	padding: 0;
+}
+
+.js .interactive-mode {
+	top:-185px;
+}
+
+.js .lfr-dock-list-container {
+	height: 0px;
+	overflow: visible;
+}
+
+#navigation a {
+	color: #369;
+}
+
+#navigation li {
+	background: none;
+	border: none;
+	display: inline;
+	float: left;
+	margin-right: 0.5em;
+	position: relative;
+}
+
+#navigation li.selected a span {
+	background: transparent;
+	padding-left: 0;
+}
+
+#navigation li.selected a, #navigation li a:hover {
+	background-color: transparent;
+	color: #369;
+}
+
+#navigation li.selected {
+	border-top: 0;
+	font-weight: bold;
+}
+
+#navigation {
+	background: transparent;
+	border: none;
+	margin: 0;
+}
+
+.portlet-title {
+	display: block;
+	font-size: 13px;
+	min-width: 50%;
+	padding: 8px 0 4px 10px;
+}
+
+.portlet-topper {
+	background: #EAB3D7 url(../images/custom/portlet_top.png) repeat-xscroll 0 0%;
+	position: relative;
+}
+
+
+.portlet-icons {
+	top:-10px !important;
+}
+
+.portlet {
+	background: #FAFAFA;
+	border: 1px solid #F4F4F4;
+	font-size: 12px;
+	margin-bottom: 1em;
+	text-align: left;
+}
+
+.ui-tabs li {
+	background: #F1CFE6 url(../images/custom/tabs_inactive_bg.png) repeat-xscroll 0 100%;
+	border-color: #F1CFE6;
+	border-style: solid solid none;
+	border-width: 1px 1px 0;
+	display: inline;
+	float: left;
+	line-height: 2.25;
+	margin-right: 0.8em;
+	padding: 0;
+	text-decoration: none;
+}
+
+.ui-tabs li.current {
+	background: #EAB3D7 url(../images/custom/tabs_active_bg.png) repeat-xscroll 0 0%;
+	font-weight: bold;
+}
+
+.ui-tabs {
+	border-bottom: 1px solid #E195C7;
+	margin: 0 0pt 1.5em;
+	padding: 0 0pt 2.6em 1em;
+}
+
+#wrapper {
+	background: none;
+}
+
+#navigation ul {
+	margin:0 0 0 25px;
 }
 
 #banner .logo {
@@ -128,7 +287,7 @@ body {
 	text-align: left;
 }
 
-.tabs li {
+.ui-tabs li {
 	background: #F1CFE6 url(../images/custom/tabs_inactive_bg.png) repeat-xscroll 0 100%;
 	border-color: #F1CFE6;
 	border-style: solid solid none;
@@ -141,12 +300,12 @@ body {
 	text-decoration: none;
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 	background: #EAB3D7 url(../images/custom/tabs_active_bg.png) repeat-xscroll 0 0%;
 	font-weight: bold;
 }
 
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #E195C7;
 	margin: 0 0pt 1.5em;
 	padding: 0 0pt 2.6em 1em;
@@ -154,4 +313,45 @@ body {
 
 #wrapper {
 	background: none;
+}
+
+.ui-tabs {
+	border-bottom: 1px solid #bfe1ff;
+	margin: 0 0 1.5em 0;
+	padding: 0 0 2.6em 1em;
+}
+
+.ui-tabs li {
+	background: #eaf5ff url(../images/common/tabs_inactive_bg.png) repeat-x 0 100%;
+	border: 1px solid #bfe1ff;
+	border-bottom: 0;
+	display: inline;
+	float: left;
+	line-height: 2.25;
+	margin-right: 0.8em;
+	padding: 0;
+	text-decoration: none;
+}
+
+.ui-tabs li a, .ui-tabs li span {
+	display: block;
+	float: left;
+	padding: 0.35em 1em 0;
+	text-decoration: none;
+	top: 0;
+	border: none;
+	background: transparent;
+	color: black;
+}
+
+.ui-tabs li.current {
+	background: #bfe1ff url(../images/common/tabs_active_bg.png) repeat-x 0 0;
+	font-weight: bold;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	color: #333;
+	padding: 0.15em 1em;
+	background: transparent;
+	border: none;
 }

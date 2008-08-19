@@ -226,11 +226,15 @@ body {
 	background: #DEE5FD url('../images/custom/portlet/content_title_bg.png') repeat-y scroll 0 0;
 	color: #192666;
 	font-family: 'georgia', serif;
-	font-size: 180%;
+	font-size: 14px;
 	font-weight: normal;
 	line-height: 100%;
 	margin: 0 -20px;
 	padding: 10px;
+}
+
+.portlet-topper {
+	border: none;
 }
 
 #portlet-wrapper- .portlet-topper .portlet-title {
@@ -251,11 +255,11 @@ body {
 	padding: 20px;
 }
 
-.tabs li {
+.ui-tabs li {
 	font: 10px/2.25em Arial;
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 	top: 0;
 }
 
@@ -268,4 +272,9 @@ ul.child-menu {
 	margin: 0 auto;
 	padding: 50px 0;
 	width: 900px;
+}
+
+.portlet-icons {
+	right:-16px;
+	top:-19px;
 }

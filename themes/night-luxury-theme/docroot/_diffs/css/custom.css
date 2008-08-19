@@ -10,13 +10,13 @@ body {
 	background:black url(../images/custom/bckpage.jpg) no-repeat scroll center center;
 	height:391px;
 	margin:0 auto;
-	width:960px;
 	position: relative;
 }
 #wrapper {
 	background: none;
 	position: relative;
-	width: 1264px;
+	width: 960px;
+	margin: 0 auto;
 }
 #navigation {
 	background:black none repeat scroll 0 0;
@@ -69,9 +69,9 @@ body {
 	top: 0px;
 }
 #content-wrapper {
-	width: 960px;
 	background: black;
 	margin:-20px auto;
+	width: 100%;
 }
 .ui-dialog.ui-resizable-disabled .ui-dialog-content {
 	color: black;
@@ -92,7 +92,7 @@ a {
 }
 .ui-tabs li.current a, .ui-tabs li.current span {
 	background: transparent none repeat scroll 0% 0%;
-	border: medium none;
+	border: 1px dotted #00C4C4;
 	color: #00C4C4;
 }
 .ui-tabs {

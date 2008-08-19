@@ -6,6 +6,9 @@ body {
 	line-height: 20px;
 	margin: 50px 100px;
 }
+.ie.js #navigation .enter-page .save-page {
+	margin-top: -25px;
+}
 #banner {
 	background: url(../images/custom/header_bckg.jpg) no-repeat top right #000;
 	position: relative;

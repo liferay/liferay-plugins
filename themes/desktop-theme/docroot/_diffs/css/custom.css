@@ -23,6 +23,7 @@ body {
 #wrapper {
 	height: 100%;
 	width: 100%;
+	background: transparent;
 }
 
 #content-wrapper {
@@ -547,22 +548,22 @@ body {
 
 /* ---------- Styles in tabs.css ---------- */
 
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #3566b5;
 	position: static;
 }
 
-.tabs li {
+.ui-tabs li {
 	position: static;
 }
 
-.ie6 .tabs li {
+.ie6 .ui-tabs li {
 	position: relative;
 }
 
-.tabs li a,
-.tabs li a:hover,
-.tabs li span {
+.ui-tabs li a,
+.ui-tabs li a:hover,
+.ui-tabs li span {
 	font-size: 11px;
 	font-stretch: semi-condensed;
 	font-weight: 300;
@@ -570,14 +571,14 @@ body {
 	position: static;
 }
 
-.tabs li.current a,
-.tabs li.current a:hover,
-.tabs li.current span {
+.ui-tabs li.current a,
+.ui-tabs li.current a:hover,
+.ui-tabs li.current span {
 	color: #333333;
 	font-weight: bold;
 }
 
-.ie6 .tabs li.current {
+.ie6 .ui-tabs li.current {
 	top: 0;
 }
 

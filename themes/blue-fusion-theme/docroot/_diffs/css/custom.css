@@ -19,7 +19,7 @@ body {
 
 #content-wrapper {
 	min-height: 100px;
-	width: 79%;
+	width: 100%;
 }
 
 #footer {
@@ -74,8 +74,8 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 }
 
 .js .interactive-mode {
-	margin-top: 186px;
-	right: 11%;
+	margin-top:18px;
+	right:3%;
 }
 
 .lfr-add-content.collapsed h2, .lfr-add-content .lfr-add-content.collapsed h2 {
@@ -138,4 +138,16 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	margin: 0 auto;
 	min-height: 245px;
 	width: 1000px;
+}
+
+.portlet-calendar .calendar-container {
+	background: black;
+}
+
+.taglib-calendar tr th {
+	color: black;
+}
+
+.portlet-section-body td {
+	color: black;
 }

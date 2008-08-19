@@ -88,4 +88,14 @@ html, body {
 
 #content-wrapper {
 	width: 100%;
+	min-height: 900px;
+}
+
+.js #navigation .enter-page {
+background:transparent;
+padding:0;
+}
+
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	padding:0 1px;
 }

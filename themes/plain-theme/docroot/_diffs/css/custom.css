@@ -28,7 +28,7 @@ body {
 #content-wrapper, #portlet-wrapper- {
 	background: transparent url('../images/custom/portlet.png') no-repeat scroll top center;
 	margin: 0 auto;
-	width: 900px;
+	width: 950px;
 }
 
 html {
@@ -57,13 +57,18 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	color: white;
 	margin: 0;
 	position: absolute;
-	right: 11px;
-	top: 21px;
+	right:-32px;
+	top:23px;
+}
+
+.ie.js #navigation .enter-page .save-page {
+	top: 15px;
 }
 
 .js #navigation .enter-page a:hover {
 	color: black;
 	padding: 0;
+	background: transparent;
 }
 
 .js #navigation .enter-page {
@@ -71,7 +76,6 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 }
 
 .js .interactive-mode {
-	right: 19%;
 	top: 134px;
 }
 

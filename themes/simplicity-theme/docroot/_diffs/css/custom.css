@@ -223,7 +223,6 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 
 .portlet-title {
 	background-position: top left;
-	border-bottom: 2px dotted #000;
 	color: #FF9600;
 	display: block;
 	font-family: 'Times New Roman', 'Times', serif;
@@ -235,6 +234,7 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 }
 
 .portlet-topper {
+	border-bottom: 2px dotted #000;
 	background-position: right top;
 	margin-right: -10px;
 	padding-right: 40px;
@@ -260,12 +260,12 @@ table a {
 	text-decoration: none;
 }
 
-.tabs li a:hover {
+.ui-tabs li a:hover {
 	background: #FF9600;
 	color: #333;
 }
 
-.tabs li {
+.ui-tabs li {
 	background: none;
 	display: inline;
 	float: left;
@@ -276,7 +276,13 @@ table a {
 	text-decoration: none;
 }
 
-.tabs li.current a, .tabs li.current span {
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	background: #FF9600;
+	text-decoration: none;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
 	background: #FF9600;
 	border-left: 1px solid #666;
 	border-right: 1px solid #666;
@@ -285,13 +291,18 @@ table a {
 	padding: 0.15em 1em;
 }
 
-.tabs li.current {
+.ui-tabs li a, .tabs li span {
+	border: none;
+	top: 0;
+}
+
+.ui-tabs li.current {
 	background: none;
 	font-weight: bold;
 	top: 0em;
 }
 
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #666;
 	margin: 0 0 1.5em 0;
 	padding: 0 0 2.6em 1em;
@@ -301,4 +312,22 @@ table a {
 	background: transparent;
 	margin: 70px auto;
 	width: 900px;
+}
+
+.portlet-icons {
+	right:0;
+	top:-5px;
+}
+
+.js .lfr-dock-list-container {
+	height: 0px;
+	overflow: visible;
+}
+
+.js .interactive-mode li {
+	background:white none repeat scroll 0 0;
+}
+
+.js .lfr-flyout.has-children {
+	background:white url(/simplicity-theme/images/arrows/04_left.png) no-repeat scroll 5px 50%;
 }

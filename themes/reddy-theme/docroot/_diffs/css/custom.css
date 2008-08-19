@@ -4,19 +4,18 @@
 	height: 135px;
 }
 
-.ie .tabs li {
-	line-height: 2.35;
-}
-
-.ie .tabs li.current {
-	top: 0.2em;
-}
-
-.ie6 .tabs li, .ie6 .tabs li.current {
-	background-image: none;
-}
-
 input[type="submit"], input[type="button"], input[type="reset"] {
+	background: #FAFAFA url(../images/forms/button.png) repeat-x scroll 0;
+	border-color: #CCC rgb(153, 153, 153) rgb(153, 153, 153) rgb(204, 204, 204);
+	border-style: double;
+	border-width: 3px;
+	color: #333;
+	font-weight: bold;
+	padding: 0.25em;
+}
+
+
+input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus {
 	background: #FAFAFA url(../images/forms/button.png) repeat-x scroll 0;
 	border-color: #CCC rgb(153, 153, 153) rgb(153, 153, 153) rgb(204, 204, 204);
 	border-style: double;
@@ -35,6 +34,7 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 .js #navigation .enter-page {
 	background-color: white;
 	padding: 6px;
+	margin-top:17px;
 }
 
 #navigation a {
@@ -70,13 +70,14 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 }
 
 #navigation ul {
-	width: 200%;
+	width: auto;
+	margin:-15px 0 0;
 }
 
 #navigation {
 	background: url(../images/custom/menu_bckg.png) repeat-x scroll 0;
 	border: none;
-	margin: -1pt auto;
+	margin: 0 auto;
 	min-height: 2.2em;
 	overflow: hidden;
 	padding-right: 1em;
@@ -90,16 +91,19 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 	border: 2px solid #F7F7F7;
 }
 
-.tabs li a, .tabs li span {
+.ui-tabs li a, .ui-tabs li span {
 	display: block;
 	float: left;
 	padding: 0.35em 1em 0;
 	text-decoration: none;
+	border: 1px solid #EEE;
+	top: 0;
+	background: transparent;
+	color: black;
 }
 
-.tabs li {
+.ui-tabs li {
 	background: #8A9C9A url(../images/custom/back.png) repeat-x 0 0;
-	border: 1px solid #EEE;
 	border-bottom: 0;
 	display: inline;
 	float: left;
@@ -109,18 +113,49 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 	text-decoration: none;
 }
 
-.tabs li.current a, .tabs li.current span {
+.ui-tabs li.current a, .ui-tabs li.current span {
 	color: #333;
 	padding: 0.15em 1em;
+	background: transparent;
+	border: none;
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 	background: #FFF;
 	font-weight: bold;
 }
 
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #EEE;
 	margin: 0 0 1.5em 0;
 	padding: 0 0 2.6em 1em;
+}
+#wrapper {
+	background: transparent;
+	margin: 0 auto;
+	position: relative;
+	width: 1264px;
+}
+
+.ie #wrapper {
+	margin-top: 10px;
+}
+
+.js .lfr-dock-list-container {
+	height: 0px;
+	overflow: visible;
+}
+
+.js .interactive-mode {
+	top:-176px;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	color:white;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	color: black;
+	text-decoration: none;
 }

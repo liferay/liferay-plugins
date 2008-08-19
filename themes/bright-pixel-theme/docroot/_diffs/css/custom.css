@@ -3,24 +3,17 @@
 
 /* ---------- Main content body ---------- */
 
-.ie6 #content-wrapper {
-	width: 860px;
-}
-
-.ie6 #wrapper {
-	border: 4px double #E4E4E4;
-	padding: 0;
-	padding-left: 4px;
-}
-
 #wrapper {
 	background: #FFF;
 	border: 3px double #E4E4E4;
-	margin: 20px auto 600px;
+	margin: 20px auto;
 	padding: 10px;
 	width: 880px;
 }
 
+#content-wrapper {
+	width: 100%;
+}
 
 /* ---------- Banner ---------- */
 
@@ -61,10 +54,6 @@ table {
 
 
 /* ---------- Main navigation ---------- */
-
-.ie6 #navigation {
-	margin-left: 25px;
-}
 
 .js #navigation .enter-page {
 	background: none;
@@ -136,12 +125,12 @@ table {
 	width: 870px;
 }
 
+#navigation li.selected a, #navigation li a:hover {
+	background-color:transparent;
+	color: black;
+}
 
 /* ---------- Dock without Javascript ---------- */
-
-.ie6.lfr-dock h2 {
-	text-align: center;
-}
 
 .lfr-dock h2 {
 	background: url(../images/navigation/welcome_message.png) no-repeat 0 50%;
@@ -155,21 +144,8 @@ table {
 /* ---------- Dock with Javascript ---------- */
 
 #content-wrapper {
-	margin: 32px auto 32px;
+	margin: 32px auto;
 	padding-top: none;
-}
-
-.ie6 #content-wrapper {
-	margin-left: 16px;
-}
-
-.ie6.js .lfr-dock.interactive-mode {
-	position: relative;
-	right: 20px;
-	top: 5px;
-}
-
-.ie6.portlet {
 }
 
 .js #add-page a {
@@ -255,16 +231,17 @@ table {
 	margin-top: -20px;
 }
 
-.tabs li a, .tabs li span {
+.ui-tabs li a, .ui-tabs li span {
 	background: url(../images/common/tabs_bg.png) repeat scroll -2px -150px;
 	color: #323232;
 	display: block;
 	float: left;
 	padding: 0.35em 1em 0;
 	text-decoration: none;
+	border-right:medium none;
 }
 
-.tabs li {
+.ui-tabs li {
 	background: url(../images/common/tabs_bg.png) 100% -25px;
 	border-top: 1px solid #BEBEBE;
 	display: inline;
@@ -276,11 +253,12 @@ table {
 	text-decoration: none;
 }
 
-.tabs li.current a, .tabs li.current span {
+.ui-tabs li.current a, .ui-tabs li.current span {
 	background: transparent url(../images/common/tabs_bg.png) repeat scroll -2px -100px;
+	border:medium none;
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 	background: url(../images/common/tabs_bg.png) repeat scroll 0 -50px;
 	border: 1px solid #BEBEBE;
 	border-bottom: none;
@@ -288,12 +266,20 @@ table {
 	top: 0.15em;
 }
 
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #7C7C7C;
 	margin: 0 0 1.5em 0;
 	padding: 0 0 2.6em 1em;
 }
 
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+background:transparent;
+color:black;
+}
 
 /* ---------- Table or section header ---------- */
 
@@ -330,4 +316,9 @@ table {
 	display: table;
 	padding-left: 0;
 	padding-right: 0;
+}
+
+.js .lfr-dock-list-container {
+	height: 0px;
+	overflow: visible;
 }

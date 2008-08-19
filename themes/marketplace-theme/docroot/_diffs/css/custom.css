@@ -224,6 +224,7 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	margin: 0 30px;
 	padding: 0;
 	width: 850px;
+	height:45px;
 }
 
 .portlet-content {

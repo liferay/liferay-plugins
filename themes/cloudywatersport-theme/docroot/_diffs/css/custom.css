@@ -4,11 +4,7 @@
 html {
  overflow-y : scroll ;
 }
-#wrapper , #banner , #banner .logo , #banner .logo a ,
-#navigation , #navigation ul , #navigation ul li , #navigation li.selected ,
-#navigation ul li a , #navigation li a span , #navigation ul li.selected a , #navigation ul li.selected a span , 
-#navigation ul li a:hover , #navigation li a:hover span , #navigation ul li.selected a:hover , #navigation ul li.selected a:hover span ,
-.js #add-page , .js #add-page a , .js #add-page a span , .js #add-page a:hover , .js #add-page a:hover span ,
+#wrapper , #banner , #banner .logo , #banner .logo a,
 .js #navigation .enter-page , .js #navigation .enter-page a , .js #navigation .enter-page a:hover ,
 #content-wrapper , .portlet , .portlet-topper , .portlet-title , .portlet-content
 {
@@ -77,42 +73,44 @@ body {
 #banner .logo a {
  color : #000 ;
  font-size : 3em ;
- margin : 0 ;
+ margin:108px;
  padding : 0 30px ;
  text-align : left ;
  text-transform : uppercase ;
 }
 
-.js .lfr-dock.interactive-mode h2 span {
- font-size : 10pt ;
- padding : 8px 16px 16px 16px ;
- color : #222 ;
+.js .interactive-mode {
+	right:14%;
 }
 
-.js .lfr-dock.interactive-mode h2 , .js .lfr-dock.interactive-mode h2 span {
- background-image : url('../images/dock/menu_bar.png') ;
+#navigation li.selected a, #navigation li a:hover {
+	background-color:transparent;
 }
 
+#navigation li.selected a span {
+	background:transparent;
+	padding-left:0px;
+}
 
 #navigation {
  background-color : #000 ;
  margin : 0px auto ;
  padding : 5px 0px ;
+ border: none;
+ height:20px;
+ width: 100%;
+ min-height: 0;
 }
 #navigation ul {
- display : block ;
- float : left ;
- text-align:center;
  padding : 0 6px ;
+ width: auto;
 }
-#navigation ul li , #navigation ul li.selected , .js #add-page {
- display : block ;
- float : left ;
+#navigation li {
+	border:none;
 }
+
 #navigation ul li a , #navigation ul li a:hover , #navigation ul li.selected a , #navigation ul li.selected a:hover , .js #add-page a , .js #add-page a:hover {
  display : block ;
- float : left ;
- padding : 0 12px ;
  color : #fff ;
  text-transform : uppercase ;
 }
@@ -120,27 +118,16 @@ body {
  display : block ;
  font-weight : bold ;
 }
-#navigation ul li a span.tab-l, #navigation ul li a:hover span.tab-l ,
-#navigation ul li.selected a span.tab-l, #navigation ul li.selected a:hover span.tab-l {
-}
-#navigation ul li a span.tab-r , #navigation ul li a:hover span.tab-r ,
-#navigation ul li.selected a span.tab-r , #navigation ul li.selected a:hover span.tab-r {
-}
-#navigation ul li a:hover , #navigation ul li.selected a:hover {
-}
-#navigation ul li a:hover span.tab-l , #navigation ul li.selected a:hover span.tab-l {
-}
-#navigation ul li a:hover span.tab-r , #navigation ul li.selected a:hover span.tab-r {
-}
-#navigation ul li.selected a , #navigation ul li.selected a:hover { }
-#navigation ul li.selected a span.tab-l , #navigation ul li.selected a:hover span.tab-l { }
-#navigation ul li.selected a span.tab-r , #navigation ul li.selected a:hover span.tab-r { }
-#navigation ul .sort-helper {
- /* background: transparent url('../images/custom/placeholder_bg.png'); */
-}
-.js #add-page { }
 
-#content-wrapper , #portlet-wrapper- {
+.js #add-page { 
+top: 5px;
+right: 0;
+border: none;
+background: transparent;
+}
+
+#content-wrapper {
+	width: 100%;
 }
 #content-wrapper #layout-grid {
  height : 100% ;
@@ -173,8 +160,8 @@ body {
 
 #column-2 a { color : #ccc ; text-decoration : none ; }
 #column-2 a:hover { color : #dcdcdc ; text-decoration : underline ; }
-#column-2 .tabs li.current , #column-2 .tabs li.current a , #column-2 .tabs li.current span ,
-#column-2 .tabs li , #column-2 .tabs li a , #column-2 .tabs li span {
+#column-2 .ui-tabs li.current , #column-2 .ui-tabs li.current a , #column-2 .ui-tabs li.current span ,
+#column-2 .ui-tabs li , #column-2 .ui-tabs li a , #column-2 .ui-tabs li span {
  background-image : url('../images/common/tabs_bg.png') ;
 }
 #column-2 .tabs li a:hover { text-decoration : none ; }
@@ -183,12 +170,42 @@ body {
 	font: 10px/10px Arial;
 }
 
-.tabs li {
+.ui-tabs li {
 	font: 10px/2.25em Arial;
 }
-.tabs li.current {
+.ui-tabs li.current {
 	top: 0;
 }
 
+.ui-tabs li.current a, .ui-tabs li.current span {
+	color: #336699 !important;
+	border: 1px solid black;
+	background-image : url('../images/common/tabs_bg.png') ;
+}
+
+.ui-tabs li a, .ui-tabs li span {
+	background:transparent none repeat scroll 0 0;
+	color: black !important;
+	border: 1px solid black;
+	top: 0;
+	background-image : url('../images/common/tabs_bg.png') ;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: transparent;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	background-image : url('../images/common/tabs_bg.png') ;
+}
+
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
+}
 /*** THE END ***/
 

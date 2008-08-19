@@ -46,7 +46,7 @@ body {
 	width: 96%;
 }
 #content-wrapper {
-	width: 77%;
+	width: 80%;
 }
 .portlet {
 	border: none;
@@ -75,6 +75,28 @@ a {
 	right: 0;
 	top: 10px;
 }
+
+.js #navigation .enter-page .save-page {
+	background: transparent;
+	padding-left: 10px;
+	border: none;
+	margin: 0;
+	position: absolute;
+	right:0px;
+	top:13px;
+}
+
+.ie.js #navigation .enter-page .save-page {
+	top: 10px;
+}
+
+.js #navigation .enter-page {
+	background-color:transparent;
+	margin-top:10px;
+	padding:0px;
+	margin-right:50px;
+}
+
 #footer {
 	background: url(../images/custom/background.gif) repeat;
 	height: 15px;

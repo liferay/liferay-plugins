@@ -21,17 +21,13 @@ body {
 	background: black no-repeat center url(../images/custom/bckheader.jpg);
 	font-family: Verdana;
 	height: 283px;
-	margin-left: 1px;
 	position:relative;
 	top:0;
-}
-.ie #banner {
-	margin-left: 0px;
 }
 #wrapper {
 	background: transparent;
 	margin:0 auto;
-	width:1000px;
+	width:980px;
 	position:relative;
 }
 #navigation {
@@ -57,9 +53,8 @@ body {
 }
 #content-wrapper {
 	background-color: #0B0B0B;
-	border: 10px solid #0B0B0B;
-	margin: -10px auto;
-	width: 980px;
+	margin: -20px auto;
+	width: 100%;
 }
 a {
 	font-size: 12px;
@@ -107,14 +102,16 @@ a {
 .uni-form fieldset legend {
 	color: orange;
 }
-.js #navigation {
-	margin:0 0 0 1px;
-	width:999px;
-	left: 0;
-	height:40px;
-}
 #navigation ul {
 	float:left;
 	margin:0 auto 0 30px;
 	width:auto;
+}
+
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
 }

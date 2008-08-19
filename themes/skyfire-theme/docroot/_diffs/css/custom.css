@@ -13,17 +13,13 @@ body {
 	background: no-repeat center url(../images/custom/bckheader.jpg);
 	font-family: Verdana;
 	height: 285px;
-	margin-left: 1px;
 	position:relative;
 	top:0;
-}
-.ie #banner {
-	margin-left: 0px;
 }
 #wrapper {
 	background: transparent;
 	margin:0 auto;
-	width:1000px;
+	width: 979px;
 	position:relative;
 }
 #navigation {
@@ -69,9 +65,8 @@ body {
 }
 #content-wrapper {
 	background: black;
-	border: 10px solid black;
-	margin: -15px auto;
-	width: 979px;
+	margin: -5px auto;
+	width: 100%;
 	min-height: 500px;
 }
 .portlet {
@@ -122,10 +117,8 @@ a {
 	font-family: Verdana;
 	font-size: 10px;
 	height: 15px;
-	margin-left: 1px;
 	padding: 5px 0pt;
 	text-align: center;
-	width: 999px;
 }
 .ie #footer {
 	margin-left: 130px;
@@ -138,4 +131,12 @@ a {
 }
 .uni-form fieldset legend {
 	color: white;
+}
+
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
 }

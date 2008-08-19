@@ -109,5 +109,5 @@ background:transparent url(../images/custom/buttons.gif) no-repeat scroll center
 border: none;
 }
 .js .interactive-mode h2 {
-background:transparent;
+background:transparent url(../images/custom/buttons.gif) no-repeat scroll center center;
 }

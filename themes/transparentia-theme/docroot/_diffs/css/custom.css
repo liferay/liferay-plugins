@@ -19,7 +19,6 @@
 	display: block;
 	height: 156px;
 	margin: 0 auto 8px auto;
-	width: 940px;
 }
 
 body {
@@ -31,7 +30,7 @@ body {
 #content-wrapper {
 	margin: 0 0 0 230px;
 	overflow: hidden;
-	width: 728px;
+	width: 80%;
 }
 
 html {
@@ -188,11 +187,11 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 }
 
 #wrapper {
-	background: none;
+	background: white;
 	clear: both;
 	display: block;
 	margin: 0 auto;
 	padding: 8px 18px 6px 18px;
 	position: relative;
-	width: 975px;
+	width: 1180px;
 }

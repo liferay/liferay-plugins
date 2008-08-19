@@ -1,12 +1,11 @@
 #banner {
 	background: black url(../images/custom/header.jpg) no-repeat center;
 	height: 296px;
-	width: 960px;
-	margin-left: 152px;
 	position: relative;
+	border:1px solid white;
 }
 body {
-	background: #757575;
+	background: black;
 	color: #FFFFFF;
 	font-family: arial,verdana;
 	font-size: 12px;
@@ -15,7 +14,8 @@ body {
 #wrapper {
 	background: transparent;
 	position: relative;
-	width: 1264px;
+	width:950px;
+	margin: 0 auto;
 }
 #navigation {
 	background:black none repeat scroll 0 0;
@@ -54,19 +54,22 @@ body {
 	top: -2px;
 }
 #content-wrapper {
-	width:960px;
+	width:100%;
 	background: black;
 	margin:-20px auto;
 }
 .portlet {
 	background: transparent;
-	border: none;
+	border: 1px solid white;
 }
 .portlet-topper {
 	background: transparent;
 	border: none;
 	color: white;
 	font-size: 16px;
+}
+.portlet-calendar .calendar-container {
+	background: transparent;
 }
 a {
 	color: #336699;
@@ -81,7 +84,8 @@ a {
 }
 .ui-tabs li a, .tabs li span {
 	background: transparent none repeat scroll 0% 0%;
-	border-right: medium none;
+	border: 1px dotted white;
+	top: 0;
 }
 .ui-tabs {
 	border-bottom: medium none;
@@ -91,7 +95,7 @@ a {
 }
 .ui-tabs li.current a, .ui-tabs li.current span {
 	background: transparent none repeat scroll 0% 0%;
-	border: medium none;
+	border: 1px solid white;
 	color: #336699;
 }
 .js #navigation .enter-page {

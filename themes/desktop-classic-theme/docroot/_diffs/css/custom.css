@@ -17,6 +17,7 @@ a {
 
 #wrapper {
 	width: 100%;
+	background: transparent;
 }
 
 #content-wrapper {

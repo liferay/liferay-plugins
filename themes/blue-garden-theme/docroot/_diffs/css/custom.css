@@ -16,7 +16,7 @@ body {
 	font-family: Verdana;
 	height: 287px;
 	width:894px;
-	margin-left:190px;
+	margin: 0 auto;
 	position: relative;
 }
 #navigation {
@@ -54,7 +54,7 @@ a {
 #content-wrapper {
 	width:894px;
 	background: black;
-	margin:-8pt auto -4pt 190px;
+	margin:-8pt auto;
 }
 .js #add-page {
 	background: transparent none repeat scroll 0% 0%;
@@ -80,6 +80,9 @@ a {
 .js #navigation .enter-page {
 	background-color: transparent;
 	padding: 0px;
+}
+.ie.js #navigation .enter-page .save-page {
+	margin-top: -10px;
 }
 .ui-tabs li a:hover, .ui-tabs li span:hover {
 	background: transparent url(../images/custom/bckmenulinkhover.gif) repeat-x scroll 0% 0%;
@@ -108,12 +111,12 @@ a {
 .ui-dialog {
 	background-color:black;
 }
-.portlet-calendar .calendar-day .day-number {
-	background:black none repeat scroll 0% 0%;
-}
 .portlet-section-body td {
 	color: black;
 }
 .lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
 	color: #336699;
+}
+.portlet-calendar .calendar-container {
+	background: black;
 }

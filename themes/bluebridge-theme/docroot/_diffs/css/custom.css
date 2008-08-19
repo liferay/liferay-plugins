@@ -65,7 +65,7 @@ body {
 #navigation {
 	background: url(../images/common/nav-bg.png);
 	height: 45px;
-	margin: 310px auto;
+	margin:386px auto;
 	min-height: 2.2em;
 	overflow: hidden;
 	padding-right: 1em;
@@ -99,4 +99,13 @@ body {
 	background-repeat: none;
 	margin: 0 auto;
 	width: 970px;
+}
+
+.js .interactive-mode {
+	top:0px;
+}
+
+#banner .logo a {
+	margin-top:40px;
+	position:absolute;
 }

@@ -28,8 +28,8 @@ a {
 
 #banner h1.logo {
 	height: 113px;
-	margin: 0 0pt 0 -37px;
-	width: 722px;
+	margin: 0 auto;
+	width: 765px;
 }
 
 #banner {
@@ -50,15 +50,14 @@ body {
 	margin-left: -4px;
 	position: relative;
 	top: 100px;
-	width: 725px;
+	width: 100%;
+	margin:20px auto;
 }
 
 #footer {
-	background: url(../images/custom/footerbg.png) no-repeat bottom left;
+	background: url(../images/custom/footerbg.png) repeat bottom left;
 	border-top: 133px solid #222;
 	height: 120px;
-	margin: 0 -10px;
-	width: 740px;
 }
 
 .ie #navigation li a {
@@ -178,7 +177,7 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 }
 
 .js .interactive-mode h2 span {
-	background: transparent url(/street-style-theme/images/dock/menu_bar.png) no-repeat scroll 0 0pt;
+	background: transparent;
 }
 
 .js .lfr-dock.expanded .lfr-dock-list-container {
@@ -373,34 +372,52 @@ table {
 	clear: both;
 }
 
-.tabs li a, .tabs li span {
+.ui-tabs li a, .ui-tabs li span {
 	background: url(../images/custom/tabs_bg.png) 0 -52px;
 	background-color: yellowdisplay: block;
 	color: #FFF;
 	float: left;
 	padding: 0.35em 1em 0;
 	text-decoration: none;
+	top: 0;
 }
 
-.tabs li.current a, .tabs li.current span {
+.ui-tabs li.current a, .ui-tabs li.current span {
 	background: url(../images/custom/tabs_bg.png) -1pt -1px;
 	color: #FFF;
 	font-size: 1em;
 	font-weight: bold;
 	padding: 0.15em 1em;
+	border: none;
 }
 
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #000;
 	margin: 0 0 1.5em 0;
 	padding: 0 0 2.6em 1em;
 }
 
 #wrapper {
-	background: #222;
+	background: black;
 	margin: 0 auto;
 	padding-left: 10px;
 	padding-right: 10px;
 	position: relative;
-	width: 720px;
+	width: 800px;
+}
+
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
+}
+
+.taglib-calendar tr th {
+	color: black;
+}
+
+.portlet-icons {
+	top:-10px;
 }

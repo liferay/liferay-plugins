@@ -12,11 +12,12 @@ body {
 	background: url('../images/custom/body_all_bckg.jpg') repeat scroll center top;
 	font-family: 'Tahoma', ' Arial';
 	font-size: 11px;
+	color: white;
 }
 
 #content-wrapper {
 	margin-top: 61px;
-	width: 780px;
+	width:925px;
 }
 
 #footer {
@@ -153,4 +154,45 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 #wrapper {
 	background: transparent;
 	width: 100%;
+}
+
+.portlet {
+	background: transparent;
+	border: none;
+}
+
+.portlet-topper {
+	background:transparent url(../images/custom/footer_bckg.jpg) no-repeat scroll center center;
+	color: white;
+}
+
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	color: white;
+}
+
+.taglib-calendar tr th {
+	color: black;
+}
+
+.portlet-section-body td {
+	color: black;
+}
+
+.uni-form {
+	background: black;
+}
+.ui-dialog {
+	background-color: black;
+}
+
+.uni-form fieldset legend {
+	color: white;
 }

@@ -72,14 +72,14 @@ a {
 }
 .ui-tabs li a, .tabs li span {
 	background: transparent none repeat scroll 0% 0%;
-	border-right: medium none;
+	border: 1px solid #F5A947;
 }
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
 	background-color: transparent;
 }
 .ui-tabs li.current a, .ui-tabs li.current span {
 	background: transparent none repeat scroll 0% 0%;
-	border: medium none;
+	border: 1px solid #F5A947;
 	color: #F5A947;
 	font-weight: bold;
 }

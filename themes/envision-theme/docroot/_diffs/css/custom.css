@@ -40,7 +40,7 @@ html {
 
 .portlet-icons {
 	right: 0;
-	top: 0;
+	top:-10px;
 }
 
 .tabs {
@@ -262,4 +262,33 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 	margin: 0 auto;
 	text-align: left;
 	width: 920px;
+}
+
+.js #add-page {
+	right:90%;
+	border: none;
+	top:0;
+}
+
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	margin-top:8px;
+	padding:3px 1px;
+}
+
+.js #navigation .enter-page .save-page {
+	background: transparent;
+	color: white;
+	margin: 0;
+	position: absolute;
+	right: 5px;
+	top: 12px;
+}
+
+.js #navigation .enter-page a:hover {
+	padding: 0;
+}
+
+.js #navigation .enter-page {
+	background-color: transparent;
+	margin-right: 45px;
 }

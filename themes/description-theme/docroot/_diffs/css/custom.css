@@ -84,6 +84,13 @@ body {
 	border: none;
 }
 
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
+}
 
 /** UI Tabs**/
 

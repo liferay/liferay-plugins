@@ -266,7 +266,7 @@ html {
 	text-align: left;
 }
 
-.tabs li a, .tabs li span {
+.ui-tabs li a, .ui-tabs li span {
 	background: none;
 	display: block;
 	float: left;
@@ -274,7 +274,7 @@ html {
 	text-decoration: none;
 }
 
-.tabs li {
+.ui-tabs li {
 	background: none;
 	display: inline;
 	float: left;
@@ -285,23 +285,23 @@ html {
 	text-decoration: none;
 }
 
-.tabs li.current a, .tabs li.current span {
+.ui-tabs li.current a, .ui-tabs li.current span {
 	background: none;
 	color: #333;
 	padding: 0.15em 1em;
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 	background: none;
 	font-weight: bold;
 	top: 0.15em;
 }
 
-.tabs ul {
+.ui-tabs ul {
 	list-style-type: disk;
 }
 
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #537D0F;
 	margin: 0 0 1.5em 0;
 	padding: 0 0 2.6em 1em;

@@ -79,6 +79,10 @@
 	float: left;
 	font-weight: bold;
 	padding-top: 8px;
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+	right:0;
+	top:8px;
 }
 
 .js #navigation .enter-page {
@@ -191,38 +195,46 @@
 
 /* ---- TABS ---- */
 
-.ie .tabs li {
+.ie .ui-tabs li {
 	top: 0.2em;
 }
 
-.ie .tabs li.current {
+.ie .ui-tabs li.current {
 	top: 0.2em;
 }
 
-.tabs li a, .tabs li span {
+.ui-tabs li a, .ui-tabs li span {
 	background: url(../images/common/banner_bg.png) 0 50%;
 	color: #FFF;
 	padding: 0.15em 1em 0;
+	border: none;
+	top: 0;
 }
 
-.tabs li {
+.ui-tabs li {
 	background: url(../images/common/banner_bg.png) 0 50%;
 	line-height: 15px;
 	margin-right: 0.3em;
 	top: 0.15em;
 }
 
-.tabs li.current a, .tabs li.current span {
+.ui-tabs li.current a, .ui-tabs li.current span {
 	background: url(../images/common/banner_bg.png);
 	color: #FFF;
 	padding: 0.1em 1em;
+	border: none;
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 	background: url(../images/common/banner_bg.png);
 }
 
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #7BA35A;
 	padding: 0 0 18px 1em;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:transparent;
+	color:white;
 }

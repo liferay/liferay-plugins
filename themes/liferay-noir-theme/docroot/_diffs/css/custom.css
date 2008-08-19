@@ -1,3 +1,9 @@
+#banner .logo a {
+	background:transparent url(/image/company_logo?img_id=0&t=1218751542693) no-repeat scroll 0 0 !important;
+	margin-top:10px;
+	position:absolute;
+	margin-left: 60px;
+}
 html, body {
 	min-height: 100%;
 }
@@ -103,10 +109,6 @@ a:hover {
 #banner .logo {
 	background: none;
 }
-#banner .logo a {
-	margin-left: 103px;
-	margin-top: -14px;
-}
 #banner .search {
 	position: absolute;
 	right: 10px;
@@ -116,6 +118,8 @@ a:hover {
 	padding-right: 49px;
 	padding-top: 2px;
 	position: relative;
+	margin-right:-54px;
+	margin-top:-34px;
 }
 #banner .search input {
 	border: none;
@@ -245,6 +249,7 @@ a:hover {
 	height: 46px;
 	margin: 0;
 	position: relative;
+	border: none;
 }
 .portlet-title {
 	background-position: left -46px;
@@ -325,36 +330,52 @@ a:hover {
 	color: #83B4E1;
 	text-decoration: underline;
 }
-.tabs {
-	background: #0E1118;
-	border-bottom-color: #141B24;
+.ui-tabs li a, .tabs li span {
+	top:0;
+	padding:10px 3px;
+}
+
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
+}
+
+.taglib-calendar tr th {
+	background:#1C2633 none repeat scroll 0 0;
+}
+
+.ui-tabs {
+	border: none;
 	list-style: none;
 	margin: -10px -20px 1.5em;
 	padding-top: 1em;
 }
-.tabs li {
+.ui-tabs li {
 	margin-right: 0;
 	padding-left: 0;
 }
-.tabs li a {
+.ui-tabs li a {
 	color: #000;
 	font-weight: bold;
 	text-transform: uppercase;
 }
-.tabs li.current {
+.ui-tabs li.current {
 	margin-top: 1px;
 	padding-top: 1px;
 	top: 0;
 }
-.ie .tabs li.current {
+.ie .ui-tabs li.current {
 	top: 1px;
 }
-.ie6 .tabs li,
-.ie6 .tabs li a,
-.ie6 .tabs li span,
-.ie6 .tabs li.current,
-.ie6 .tabs li.current a,
-.ie6 .tabs li.current span {
+.ie6 .ui-tabs li,
+.ie6 .ui-tabs li a,
+.ie6 .ui-tabs li span,
+.ie6 .ui-tabs li.current,
+.ie6 .ui-tabs li.current a,
+.ie6 .ui-tabs li.current span {
 	background-image: url(../images/common/tabs_ie6_bg.png);
 }
 .popup .tabs {
@@ -617,4 +638,10 @@ ul.lfr-actions, .lfr-actions ul {
 	display: block;
 	margin: 10px 0;
 	padding: 5px;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus {
+	background:#3D536D url(../images/custom/arrow.png) no-repeat scroll 97% center;
+	border:none;
+	color:#336699;
 }

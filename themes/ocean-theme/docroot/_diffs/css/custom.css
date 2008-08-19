@@ -15,9 +15,7 @@ html {
 	background: transparent;
 	position: relative;
 	width: 1182px;
-}
-.ie #wrapper {
-	width: 1178px;
+	margin: 0 auto;
 }
 #navigation li.selected a, #navigation li a:hover {
 	background-color: transparent;
@@ -58,9 +56,8 @@ body {
 }
 #content-wrapper {
 	background: transparent url(../images/custom/content.gif) repeat scroll 0 0;
-	border: 5px solid white;
 	margin: -9px auto;
-	width: 1172px;
+	width: 100%;
 }
 .portlet {
 	background: transparent;
@@ -110,13 +107,4 @@ a {
 	clear: both;
 	font-family: "Myriad Pro","Trebuchet MS",Arial;
 	height: 55px;
-}
-.ie #footer {
-	width: 1178px;
-}
-.ie #content-wrapper {
-	width: 1168px;
-}
-.ie.js #navigation .enter-page {
-	margin-top: 5px;
 }

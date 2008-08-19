@@ -4,18 +4,6 @@ body {
 	font-family: Arial;
 	font-size: 13px;
 }
-.ie body {
-	background: #7b7b7b;
-}
-.ie #wrapper {
-	width: 100%;
-}
-.ie #banner {
-	margin-left: 155px;
-}
-.ie #content-wrapper {
-	margin-left: 155px;
-}
 #wrapper {
 	background: transparent url(../images/custom/bckbodytop.gif) no-repeat scroll center top;
 	width: 1264px;
@@ -25,9 +13,9 @@ body {
 #banner {
 	background: transparent url(../images/custom/bckpage.jpg) no-repeat center;
 	height: 310px;
-	width: 950px;
 	margin:0 auto;
 	position: relative;
+	top: 0;
 }
 
 #navigation {
@@ -54,7 +42,7 @@ body {
 #content-wrapper {
 	background:black none repeat scroll 0% 0%;
 	margin:-9pt auto;
-	width:950px;
+	width:1200px;
 }
 .js .interactive-mode {
 	right: 3%;
@@ -105,11 +93,11 @@ a {
 	font-size: 11px;
 	font-weight: bold;
 	line-height: 1.5em;
-	margin-left: 157px;
+	margin:0 auto;
 	padding: 40px 0pt 60px;
 	position: relative;
 	text-align: center;
-	width: 950px;
+	width:1200px;
 }
 .ie #footer {
 	margin-left:155px;

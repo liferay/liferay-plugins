@@ -92,6 +92,7 @@ body {
 
 #navigation li {
 	border: none;
+	margin:10px 0 0 -1px;
 }
 
 #navigation li.selected a span {

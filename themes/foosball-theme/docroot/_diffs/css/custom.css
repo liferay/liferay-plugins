@@ -9,7 +9,7 @@
 }
 
 #banner {
-	background: url('../images/custom/banner_bg.png') repeat scroll right;
+	background:transparent url(../images/custom/banner_bg.png) repeat scroll -957px -7px;
 	height: 122px;
 	position: relative;
 	top: 0;
@@ -22,6 +22,7 @@ body {
 #wrapper {
 	margin: 0 auto;
 	width:1240px;
+	background:transparent none repeat scroll 0 0;
 }
 
 #content-wrapper {
@@ -64,11 +65,6 @@ padding-left:0px;
 }
 
 /* ---- PORTLET ---- */
-
-.portlet-icons {
-	margin: -2px 40px auto auto;
-}
-
 .portlet-title {
 	color: #FFF;
 	padding-top: 25px;
@@ -81,14 +77,21 @@ padding-left:0px;
 
 /* ---- TABS ---- */
 
-.tabs li {
+.ui-tabs li {
 	line-height: 1.5;
 }
 
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #960;
 	padding: 0 0 1.8em 1em;
 }
 
 
 /* ---- MIS. CUSTOM ---- */
+
+.js #add-page {
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+	right:0;
+	top:-3px;
+}

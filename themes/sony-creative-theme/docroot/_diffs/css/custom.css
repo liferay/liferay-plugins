@@ -12,7 +12,7 @@
 }
 
 #content-wrapper {
-	width: 60%;
+	width: 80%;
 }
 
 .js #add-page a span {
@@ -65,11 +65,11 @@
 }
 
 #navigation {
-	background: url(../images/custom/bg.png) no-repeat;
+	background: url(../images/custom/bg.png) repeat;
 	border-bottom: 1px solid #CACACA;
 	border-right: 1px solid #CACACA;
 	border-top: none;
-	width: 60%;
+	width: 80%;
 }
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {

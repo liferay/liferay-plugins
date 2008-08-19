@@ -18,6 +18,11 @@
 	height: 101px;
 	margin: 0 auto;
 }
+.js #navigation .enter-page {
+	background-color:transparent;
+	margin-top:35px;
+	padding:0;
+}
 #navigation li {
 	border: none;
 	margin: 0px 0 0 30px;

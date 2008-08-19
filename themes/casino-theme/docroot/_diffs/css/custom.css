@@ -25,7 +25,7 @@
 }
 
 body {
-	background: transparent url(../images/common/background.png) repeat scroll 0;
+	background: transparent url(../images/custom/common/background.png) repeat scroll 0;
 }
 
 #wrapper {
@@ -78,6 +78,10 @@ body {
 	text-decoration: none;
 }
 
+.js #navigation .enter-page {
+	margin-top: -5px;
+}
+
 #navigation li a {
 	background: transparent url(../images/navigation/tab-unselected.png) no-repeat top left;
 	color: #FFF;
@@ -126,6 +130,10 @@ body {
 	top: 135px;
 	width: auto;
 	z-index: 21;
+}
+
+.ie #navigation {
+	width: 75%;
 }
 
 

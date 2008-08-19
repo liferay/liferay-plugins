@@ -22,7 +22,7 @@
 	margin: 0 auto;
 }
 body {
-	background-color: #5A5A5A;
+	background-color: black;
 	color: #FFFFFF;
 	font-family: Verdana,Arial,Helvetica,sans-serif;
 }
@@ -107,12 +107,16 @@ a {
 	text-align:center;
 	width:880px;
 }
-.portlet-calendar .calendar-day .day-number {
-	color:black;
-}
 .lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
 	color: #2A2557;
 }
 .portlet-section-body td {
 	color: black;
+}
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
 }

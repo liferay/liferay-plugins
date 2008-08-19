@@ -32,6 +32,9 @@ body {
 #navigation li.selected a, #navigation li a:hover {
 	background-color: transparent;
 }
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
 #navigation li.selected a span {
 	background: transparent;
 	padding-left: 0px;
@@ -78,7 +81,7 @@ a {
 	font-size: 12px;
 }
 .portlet-calendar .calendar-day .day-number {
-	color: black;
+	border:none;
 }
 .taglib-calendar tr th {
 	color: #66B319;

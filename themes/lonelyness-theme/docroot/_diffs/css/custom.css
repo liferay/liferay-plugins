@@ -82,6 +82,10 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	top: 16px;
 }
 
+.js #navigation .enter-page .save-page {
+	background: transparent;
+}
+
 .js #navigation .enter-page a:hover {
 	padding: 0;
 }
@@ -236,10 +240,23 @@ ul.child-menu {
 }
 
 #wrapper {
-	margin: 0;
-	position: relative;
+	argin:0 auto;
+	position:relative;
+	width:1264px;
 }
 
 #wrapper, #banner {
 	background: none;
+}
+
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
+}
+
+.results-header th, .results-header td {
+	color:black;
 }

@@ -13,7 +13,7 @@ body {
 }
 
 #footer {
-	background: url(../images/common/footer_bg.jpg) no-repeat;
+	background: url(../images/common/footer_bg.jpg) repeat;
 	height: 100px;
 }
 
@@ -87,6 +87,7 @@ body {
 	background: none;
 	margin-right: 1px;
 	overflow: hidden;
+	border: none;
 }
 
 #navigation li.selected a span {
@@ -153,11 +154,11 @@ body {
 
 /* ---- TABS ---- */
 
-.ie .tabs li {
+.ie .ui-tabs li {
 	top: 0.2em;
 }
 
-.ie .tabs li.current {
+.ie .ui-tabs li.current {
 	top: 0.2em;
 }
 
@@ -165,27 +166,27 @@ body {
 	font: 10px/10px Arial;
 }
 
-.tabs li a, .tabs li span {
+.ui-tabs li a, .ui-tabs li span {
 	background: url(../images/navigation/navigation_bg.png);
 	color: #FFF;
 	padding: 0.15em 1em 0;
 }
 
-.tabs li {
+.ui-tabs li {
 	font: 10px/2.25em Arial;
 }
 
-.tabs li.current a, .tabs li.current span {
+.ui-tabs li.current a, .ui-tabs li.current span {
 	background: url(../images/navigation/navigation_bg.png) bottom;
 	color: #FFF;
 	padding: 0.1em 1em;
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 	top: 0;
 }
 
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #222;
 	padding: 0 0 18px 1em;
 }

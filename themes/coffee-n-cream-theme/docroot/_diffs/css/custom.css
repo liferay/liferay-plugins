@@ -14,7 +14,7 @@ a:hover {
 }
 
 #banner h1.logo {
-	left: 18%;
+	left: 2%;
 }
 
 #banner {
@@ -89,10 +89,11 @@ body {
 }
 
 .js #add-page {
-	bottom: auto;
-	right: 1px;
-	top: 0;
-	z-index: 60;
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+	bottom:auto;
+	right:1px;
+	top:8px;
 }
 
 .js #navigation .enter-page .save-page {
@@ -108,7 +109,7 @@ body {
 }
 
 .js .interactive-mode {
-	right: 17%;
+	right:2%;
 }
 
 .loading-animation {
@@ -222,30 +223,42 @@ body {
 	border: 1px solid #654;
 }
 
-.tabs li a, .tabs li span {
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background: #695847 none;
+	color: white;
+	text-decoration: none;
+}
+
+.ui-tabs li a, .tabs li span {
 	background: #E4DBCF none;
 	border-right: none;
 	color: #C60;
 	padding: 0 1em 0;
 }
 
-.tabs li {
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: #E4DBCF none;
+	color: #C60;
+}
+
+.ui-tabs li {
 	background: #E4DBCF none;
 	margin-right: 0;
 }
 
-.tabs li.current a, .tabs li.current span {
+.ui-tabs li.current a, .tabs li.current span {
 	background: #695847 none;
 	color: #FCFAEA;
 	padding: 0 2em;
+	border:medium none;
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 	background: #695847 none;
 	top: 0;
 }
 
-.tabs {
+.ui-tabs {
 	border-bottom: none;
 	padding: 0 0 2.6em 0;
 }
@@ -254,6 +267,6 @@ body {
 	background: #FCFAEA none;
 	border-left: 3px solid #665D4B;
 	border-right: 3px solid #665D4B;
-	margin: auto;
+	margin: 0 auto;
 	width: 975px;
 }

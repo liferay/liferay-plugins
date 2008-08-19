@@ -25,8 +25,8 @@ body {
 
 #content-wrapper {
 	background: url(../images/custom/curve_mid.png) repeat-y left;
-	margin-left: 0;
 	margin-top: 30px;
+	width: 100%;
 }
 
 #footer {
@@ -246,7 +246,6 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 }
 
 .portlet-title {
-	background: url(../images/custom/dots-hr.png) repeat-x;
 	background-position: bottom left;
 	color: #069;
 	display: block;
@@ -259,10 +258,12 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 }
 
 .portlet-topper {
-	background-position: right top;
+	background: url(../images/custom/dots-hr.png) repeat-x;
+	background-position: bottom left;
 	margin-right: -10px;
 	padding-right: 40px;
 	position: relative;
+	border: none;
 }
 
 .portlet {
@@ -289,16 +290,18 @@ table {
 	clear: both;
 }
 
-.tabs li a, .tabs li span {
+.ui-tabs li a, .ui-tabs li span {
 	background: url(../images/custom/tabs_bg.png) 0 -150px;
 	color: #323232;
 	display: block;
 	float: left;
 	padding: 0.35em 1em 0;
 	text-decoration: none;
+	top: 0;
+	border: none;
 }
 
-.tabs li {
+.ui-tabs li {
 	background: url(../images/common/tabs_bg.png) 100% -25px;
 	border-top: 1px solid #BEBEBE;
 	display: inline;
@@ -310,7 +313,7 @@ table {
 	text-decoration: none;
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 	background: url(../images/custom/tabs_bg.png) 0 100px;
 	border: 1px solid #BEBEBE;
 	border-bottom: none;
@@ -318,7 +321,7 @@ table {
 	top: 0.15em;
 }
 
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #7C7C7C;
 	margin: 0 0 1.5em 0;
 	padding: 0 0 2.6em 1em;
@@ -329,4 +332,9 @@ table {
 	margin: 10px auto;
 	position: relative;
 	width: 947px;
+}
+
+.portlet-icons {
+	right:0;
+	top:-10px;
 }

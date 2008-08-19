@@ -4,7 +4,7 @@ html {
 	overflow-y: scroll;
 }
 
-#wrapper, #banner, #banner .logo, #banner .logo a,#navigation, #navigation ul, #navigation ul li, #navigation li.selected,#navigation ul li a, #navigation li a span, #navigation ul li.selected a, #navigation ul li.selected a span,#navigation ul li a:hover, #navigation li a:hover span, #navigation ul li.selected a:hover, #navigation ul li.selected a:hover span,.js #add-page, .js #add-page a, .js #add-page a span, .js #add-page a:hover, .js #add-page a:hover span,.js #navigation .enter-page, .js #navigation .enter-page a, .js #navigation .enter-page a:hover,#content-wrapper, .portlet, .portlet-topper, .portlet-title, .portlet-content {
+#wrapper, #banner, #banner .logo, #banner .logo a,#navigation, #navigation ul, #navigation ul li, #navigation li.selected,#navigation ul li a, #navigation li a span, #navigation ul li.selected a, #navigation ul li.selected a span,#navigation ul li a:hover, #navigation li a:hover span, #navigation ul li.selected a:hover, #navigation ul li.selected a:hover span,.js #add-page, .js #navigation .enter-page, .js #navigation .enter-page a, .js #navigation .enter-page a:hover,#content-wrapper, .portlet, .portlet-topper, .portlet-title, .portlet-content {
 	background: transparent none no-repeat scroll 0 0;
 	color: inherit;
 	float: none;
@@ -85,6 +85,10 @@ ul.child-menu {
 	width: 100%;
 }
 
+.js #add-page a span {
+	background:transparent;
+}
+
 #banner {
 	background: #222 url(../images/common/header.jpg) no-repeat scroll 0 0;
 	height: 160px;
@@ -116,7 +120,8 @@ body {
 .js #add-page {
 	border: 0;
 	bottom: auto;
-	top: 0;
+	top:9px;
+	right: 0;
 }
 
 .js .lfr-dock.interactive-mode h2 span {
@@ -174,11 +179,11 @@ body {
 	padding: 8px 12px;
 }
 
-.tabs li {
+.ui-tabs li {
 	font: 10px/2.25em Arial;
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 	top: 0;
 }
 
@@ -189,4 +194,8 @@ body {
 	margin: 0 auto;
 	padding: 10px;
 	width: 900px;
+}
+
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	margin-top:-8px;
 }

@@ -10,7 +10,6 @@ body {
 	background: no-repeat url(../images/custom/bckheader.jpg) center;
 	border-bottom: #010101 1px solid;
 	height: 400px;
-	margin-left: 1px;
 	position: relative;
 }
 #navigation li {
@@ -27,15 +26,12 @@ body {
 	background:#94A5B4 none repeat scroll 0 0;
 	border: none;
 	height: 60px;
-	width:940px;
-}
-.ie #navigation {
-	margin-left: 163px;
 }
 #wrapper {
 	background: none;
 	position: relative;
-	width: 1264px;
+	margin: 0 auto;
+	width:940px;
 }
 #navigation li.selected a, #navigation li a:hover {
 	background-color: transparent;
@@ -49,12 +45,11 @@ body {
 	color: black;
 	padding: 0px 0px;
 }
-#banner .logo a {
-	margin-left: 220px;
-	margin-top: 115px;
+.portlet-calendar .calendar-container {
+	background: transparent;
 }
-.js .interactive-mode {
-	right: 14%;
+.portlet-calendar .calendar-day .day-number {
+	border: none;
 }
 .portlet {
 	background: transparent;
@@ -74,10 +69,6 @@ a {
 	border: 15px solid #94A5B4;
 	margin: -60px auto;
 	width:910px;
-}
-.ie #content-wrapper {
-	margin-left:163px;
-	margin-top: -60px;
 }
 .js #add-page {
 	background: transparent none repeat scroll 0% 0%;

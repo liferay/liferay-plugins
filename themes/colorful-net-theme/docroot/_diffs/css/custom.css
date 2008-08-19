@@ -9,7 +9,6 @@ body {
 #banner {
 	background: center top no-repeat url(../images/custom/bckheader.jpg);
 	height: 206px;
-	position: relative;
 }
 #wrapper {
 	background: transparent;

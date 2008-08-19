@@ -156,32 +156,32 @@ a:hover {
 	background: #DDDDDD none repeat scroll 0% 50%;
 	color: #444444;
 }
-.tabs {
+.ui-tabs {
 	border-bottom: none;
 	padding: 0 0 2.6em 0;
 }
-.tabs li {
+.ui-tabs li {
 	background: #FFFFFF none;
 	color: #444444;
 	margin-right: 0;
 }
-.tabs li a, .tabs li span {
+.ui-tabs li a, .ui-tabs li span {
 	background: #FFFFFF none;
 	color: #444444;
 	font-size: 11px;
 	padding: 0 1em 0;
 }
-.tabs li.current {
+.ui-tabs li.current {
 	background: #FFFFFF none;
 	color: #444444;
 	top: 0;
 }
-.tabs li.current a, .tabs li.current span {
+.ui-tabs li.current a, .ui-tabs li.current span {
 	background: #FFFFFF none;
 	color: #CC0000;
 	padding: 0 2em;
 }
-.ie .tabs li.current {
+.ie .ui-tabs li.current {
 	top: 0;
 }
 #banner h1.logo {

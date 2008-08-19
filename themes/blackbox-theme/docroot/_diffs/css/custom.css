@@ -190,38 +190,30 @@ body {
 
 /* ---- TABS ---- */
 
-.ie .tabs li {
-	top: 0.2em;
-}
-
-.ie .tabs li.current {
-	top: 0.2em;
-}
-
-.tabs li a, .tabs li span {
+.ui-tabs li a, .ui-tabs li span {
 	background: url(../images/custom/navigation/bg.png);
 	color: #FFF;
 	padding: 0.15em 1em 0;
 }
 
-.tabs li {
+.ui-tabs li {
 	background: url(../images/custom/navigation/bg.png);
 	line-height: 15px;
 	margin-right: 0.3em;
 	top: 0.15em;
 }
 
-.tabs li.current a, .tabs li.current span {
+.ui-tabs li.current a, .ui-tabs li.current span {
 	background: url(../images/custom/navigation/bg.png) bottom;
 	color: #FFF;
 	padding: 0.1em 1em;
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 	background: url(../images/custom/navigation/bg.png) bottom;
 }
 
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #222;
 	padding: 0 0 18px 1em;
 }
@@ -230,8 +222,8 @@ body {
 /* ---- DOCK ---- */
 
 .js .interactive-mode {
-	right: -8px;
-	top: -106px;
+	right: 10px;
+	top: 10px;
 }
 
 

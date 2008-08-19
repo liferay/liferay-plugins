@@ -96,11 +96,15 @@ a {
 	background-color: black;
 }
 .portlet-calendar .calendar-day .day-number {
-	color: black;
+	border: none;
 }
 .taglib-calendar tr th {
 	color: black;
 }
 .portlet-section-body td {
 	color: black;
+}
+
+.portlet-calendar .calendar-container {
+	background: transparent;
 }

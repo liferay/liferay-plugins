@@ -44,21 +44,12 @@ body {
 	font: normal normal normal 62.5% Tahoma,sans-serif;
 }
 
-#column-1 {
-}
-
-#column-2 {
-}
-
 #content-wrapper, #portlet-wrapper- {
 	width: 100%;
 }
 
 #footer {
 	padding: 0 16px;
-}
-
-html {
 }
 
 .js #navigation .enter-page .save-page {
@@ -184,4 +175,8 @@ html {
 	margin: 0 auto;
 	padding: 10px 10px 5px;
 	width: 920px;
+}
+
+.portlet-icons {
+	top:-10px;
 }

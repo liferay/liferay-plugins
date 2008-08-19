@@ -40,24 +40,26 @@ body {
 #wrapper {
 	background: none;
 	position: relative;
-	width: 1264px;
+	width: 1100px;
+	margin: 0 auto;
 }
 #banner .logo a {
-	margin-left: 697px;
+	margin-left:520px;
 	margin-top: 25px;
 }
 .js .interactive-mode {
 	right:18%;
-	background:transparent url(../images/custom/bckmenu.gif) no-repeat center;
+	background:transparent url(../images/custom/bckmenu.gif) no-repeat right;
 	height:34px;
 	top:141px;
 }
 .js #add-page {
-	background:transparent url(../images/custom/bckmenu.gif) no-repeat scroll right center;
+	background:transparent;
 	border:medium none;
 	height:34px;
-	right: 0%;
+	right:-40px;
 	top: 0px;
+	z-index: 61;
 }
 .js #add-page a span {
 	color: black;
@@ -68,7 +70,7 @@ body {
 }
 #content-wrapper {
 	background: #423F3A;
-	width:1000px;
+	width:100%;
 }
 .portlet {
 	background: transparent;
@@ -114,4 +116,12 @@ a {
 	background: transparent;
 	border: none;
 	color: black;
+}
+
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
 }

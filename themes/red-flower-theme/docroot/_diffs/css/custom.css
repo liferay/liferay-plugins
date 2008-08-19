@@ -54,6 +54,15 @@ body {
 	padding: 1px;
 }
 
+.js .lfr-dock-list-container {
+	height: 0px;
+	overflow: visible;
+}
+
+.js .interactive-mode {
+	top:-470px;
+}
+
 #navigation li a {
 	font-size: 15px;
 	font-weight: bold;
@@ -89,7 +98,7 @@ body {
 }
 
 #navigation ul {
-	margin: 0 auto;
+	margin:0 auto 0 25px;
 }
 
 #navigation {
@@ -100,10 +109,15 @@ body {
 	min-height: 2.2em;
 	overflow: hidden;
 	padding-right: 1em;
+	width: 95%;
+}
+
+.ie #navigation {
+	margin-top: -100px;
 }
 
 .portlet-title {
-	color: #FFF;
+	color: #000;
 	font-size: 12px;
 	font-weight: bold;
 	min-width: 50%;
@@ -129,4 +143,53 @@ body {
 	background-repeat: none;
 	margin: 0 auto;
 	width: 970px;
+}
+
+.ui-tabs li {
+	background: #FAAAAA url(../images/custom/tabs_inactive_bg.png) repeat-xscroll 0 100%;
+	border-bottom: 0;
+	display: inline;
+	float: left;
+	line-height: 2.25;
+	margin-right: 0.8em;
+	padding: 0;
+	text-decoration: none;
+}
+
+.ui-tabs {
+	border-bottom: 1px solid #FF2626;
+	margin: 0 0pt 1.5em;
+	padding: 0 0pt 2.6em 1em;
+}
+
+
+.ui-tabs li a, .ui-tabs li span {
+	display: block;
+	float: left;
+	border: 1px solid #FAA;
+	padding: 0.35em 1em 0;
+	text-decoration: none;
+	top: 0;
+	background: transparent;
+	color: black;
+}
+
+.ui-tabs li.current {
+	background: #FAA url(../images/custom/tabs_active_bg.png) repeat-x scroll 0 0%;
+	font-weight: bold;
+}
+
+.tabs li.current a, .tabs li.current span {
+	color: #333;
+	padding: 0.15em 1em;
+	background: transparent;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:transparent;
+	color:black;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
 }

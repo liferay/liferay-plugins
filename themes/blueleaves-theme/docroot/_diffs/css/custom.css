@@ -24,12 +24,11 @@ body {
 	background: transparent url(../images/common/bodybg.png) repeat;
 }
 
-.ie .tabs li.current {
-	top: 0;
-}
-
 .js #add-page {
-	z-index: 60;
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+	right:0%;
+	top:2px;
 }
 
 .js #navigation .enter-page {
@@ -118,31 +117,36 @@ body {
 	background: #FFF none;
 }
 
-.tabs li a, .tabs li span {
+.ui-tabs li a, .tabs li span {
 	background: #858F9E none;
 	border-right: 5pt solid #FFF;
 	color: #DDD;
 	padding: 0 1em 0;
+	top: 0;
 }
 
-.tabs li {
+.ui-tabs li {
 	background: #858F9E none;
 	margin-right: 0;
 }
 
-.tabs li.current a, .tabs li.current span {
+.ui-tabs li.current a, .ui-tabs li.current span {
 	background: #49515C none;
 	color: #C6C4C5;
 	padding: 0 1em;
+	border-top: none;
+	border-left: none;
+	border-bottom: none;
+	border-right:5pt solid #FFFFFF;
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 	background: #49515C none;
 	color: #C6C4C5;
 	top: 0em;
 }
 
-.tabs {
+.ui-tabs {
 	border-bottom: none;
 	padding: 0 0 2.6em 0;
 }
@@ -152,4 +156,8 @@ body {
 	padding: 5pt;
 	width: 975px;
 	margin:0 auto;
+}
+
+#content-wrapper {
+	width: 100%;
 }

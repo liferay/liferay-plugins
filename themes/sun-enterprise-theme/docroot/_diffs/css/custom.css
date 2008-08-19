@@ -221,6 +221,16 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 	padding: 1px;
 }
 
+input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus {
+	background: #33586F url(../images/common/arrow.png) no-repeat 97% center;
+	border: none;
+	color: #FFF;
+	font-weight: bold;
+	margin:2px;
+	padding:1px;
+	text-transform: uppercase;
+}
+
 .js #add-page {
 	background: transparent;
 	border: none;
@@ -296,6 +306,7 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 .js .interactive-mode h2 span {
 	font-size: 1.5em;
 	padding: 10px 20px 10px;
+	background: transparent;
 }
 
 .js .lfr-dock.expanded .lfr-dock-list-container {
@@ -508,7 +519,6 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 }
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
-	background: #141B24;
 	border: none;
 	padding: 0;
 }
@@ -619,7 +629,7 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 }
 
 .portlet-topper, .portlet-title {
-	background: url(../images/custom/portlet_title_bg.png) no-repeat right top;
+	background: #5A89A7 url(../images/custom/banner_bg.jpg) repeat-x scroll 0 -20px;
 }
 
 .portlet-topper {
@@ -628,6 +638,7 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 	height: 46px;
 	margin: 0;
 	position: relative;
+	border: 2px solid #33586F;
 }
 
 #portlet-wrapper-33 code {
@@ -680,6 +691,11 @@ table {
 	margin-top: -2px;
 }
 
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:#33586F;
+	text-decoration: none;
+}
+
 .tabs li.current {
 	background: none;
 	margin-top: 1px;
@@ -719,5 +735,18 @@ ul.message-board-edit-controls {
 #wrapper {
 	background: url(../images/custom/wrapper_bg.png) repeat-y center top;
 	margin: 0 auto;
-	width: 960px;
+	width: 1264px;
+}
+
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
+}
+
+
+.taglib-calendar tr th {
+	color:#212C3A
 }

@@ -12,7 +12,7 @@ body {
 #navigation {
 	background: transparent;
 	border: none;
-	margin: -25pt auto 20px;
+	margin: 5pt auto 20px;
 }
 #navigation li {
 	border: none;
@@ -115,4 +115,13 @@ a {
 }
 .uni-form fieldset legend {
 	color: white;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	color: white;
+	border: none;
+}
+
+.portlet-calendar .calendar-container {
+	background: transparent;
 }

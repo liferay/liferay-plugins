@@ -27,10 +27,8 @@ body {
 #wrapper {
 	background: transparent;
 	position: relative;
-	width: 1264px;
-}
-#banner .logo a {
-	margin-left: 148px;
+	width: 900px;
+	margin: 0 auto;
 }
 #navigation li.selected a, #navigation li a:hover {
 	background: white url(../images/custom/bg-main-menu_active.gif) repeat-x scroll 0 0 !important;
@@ -58,9 +56,8 @@ a {
 }
 #content-wrapper {
 	background: white;
-	border: 5px solid white;
 	margin-top: -20px;
-	width: 890px;
+	width: 100%;
 }
 .portlet {
 	background: transparent;

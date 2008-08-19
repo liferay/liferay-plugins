@@ -4,7 +4,6 @@ a:link {
 }
 
 #banner .logo a {
-	margin-left: 138px;
 	margin-top: -7px;
 }
 
@@ -20,9 +19,7 @@ a:link {
 	border-bottom: 0 none;
 	clear: both;
 	height: 216px;
-	margin: 0 auto;
 	padding-right: 20px;
-	width: 930px;
 }
 
 body {
@@ -40,8 +37,8 @@ body {
 	background: #FFF none repeat scroll 0;
 	clear: both;
 	color: #555;
-	margin: 0 auto;
-	width: 950px;
+	margin: -10px auto;
+	width: 100%;
 }
 
 #footer {
@@ -56,6 +53,11 @@ body {
 	width: 930px;
 }
 
+.js .lfr-dock-list-container {
+	height: 0px;
+	overflow: visible;
+}
+
 .js #add-page {
 	background: transparent;
 	border: none;
@@ -65,11 +67,11 @@ body {
 
 .js #navigation .enter-page {
 	background-color: transparent;
-	margin-top: 13px;
+	margin-top:3px;
 }
 
 .js .interactive-mode {
-	right: 15%;
+	top:-152px;
 }
 
 .js .lfr-dock.interactive-mode li a {
@@ -132,7 +134,6 @@ body {
 #navigation {
 	background: transparent;
 	border: none;
-	margin-top: -74px;
 }
 
 .portlet-title {
@@ -156,7 +157,7 @@ body {
 	text-align: left;
 }
 
-.tabs li {
+.ui-tabs li {
 	background: #FAA url(../images/custom/tabs_inactive_bg.png) repeat-xscroll 0 100%;
 	border-color: #FAA;
 	border-style: solid solid none;
@@ -169,12 +170,7 @@ body {
 	text-decoration: none;
 }
 
-.tabs li.current {
-	background: #FAA url(../images/custom/tabs_active_bg.png) repeat-xscroll 0 0%;
-	font-weight: bold;
-}
-
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #FF2626;
 	margin: 0 0pt 1.5em;
 	padding: 0 0pt 2.6em 1em;
@@ -182,4 +178,50 @@ body {
 
 #wrapper {
 	background: transparent;
+	margin: 0 auto;
+	position: relative;
+	width: 930px;
+}
+
+.ui-tabs li {
+	background: #FAAAAA url(../images/custom/tabs_inactive_bg.png) repeat-xscroll 0 100%;
+	border-bottom: 0;
+	display: inline;
+	float: left;
+	line-height: 2.25;
+	margin-right: 0.8em;
+	padding: 0;
+	text-decoration: none;
+}
+
+
+.ui-tabs li a, .ui-tabs li span {
+	display: block;
+	float: left;
+	border: 1px solid #FAA;
+	padding: 0.35em 1em 0;
+	text-decoration: none;
+	top: 0;
+	background: transparent;
+	color: black;
+}
+
+.ui-tabs li.current {
+	background: #FAA url(../images/custom/tabs_active_bg.png) repeat-x scroll 0 0%;
+	font-weight: bold;
+}
+
+.tabs li.current a, .tabs li.current span {
+	color: #333;
+	padding: 0.15em 1em;
+	background: transparent;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:transparent;
+	color:black;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
 }

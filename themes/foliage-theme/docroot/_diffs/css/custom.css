@@ -1,7 +1,12 @@
 #wrapper {
 	width: 900px;
+	background: transparent;
+	margin: 0 auto;
 }
 
+body {
+	background: black;
+}
 
 /* IE5 Win */
 
@@ -26,7 +31,7 @@ a:link, a:visited {
 	width: 100%;
 }
 
-font-size: 0.76em;color: #333;}#banner {
+#banner {
 	background: url(../images/theme/header.jpg) no-repeat center;
 	border-bottom: 5px solid #000;
 	height: 251px;
@@ -58,9 +63,9 @@ h1, h2, h3, h4, h5, h6, strong {
 }
 
 .js #add-page {
-	position: relative;
 	right: 11px;
-	top: 2px;
+	top: -1px;
+	border:medium none;
 }
 
 .js #navigation .enter-page a {
@@ -73,14 +78,6 @@ h1, h2, h3, h4, h5, h6, strong {
 
 .js .delete-tab {
 	background: transparent url(../images/theme/bullet.gif) no-repeat scroll 42% 50%;
-}
-
-.js .interactive-mode h2 span {
-	background: transparent url(../images/dock/menu_bar.png) no-repeat scroll 0 0pt;
-	display: block;
-	font-size: 11px;
-	margin-bottom: 0;
-	padding: 0.5em 0.5em 0.5em 2em;
 }
 
 #navigation li a span, .js #add-page a span {
@@ -112,6 +109,7 @@ h1, h2, h3, h4, h5, h6, strong {
 	font-size: 11px;
 	padding: 0;
 	padding-bottom: 0;
+	border: none;
 }
 
 #navigation ul {
@@ -125,17 +123,18 @@ h1, h2, h3, h4, h5, h6, strong {
 	padding-right: 0;
 	position: absolute;
 	top: 0;
+	background: transparent;
+	border: none;
 }
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: #FFF;
 	font-weight: normal;
 	margin: 0 auto;
+	border: none;
 }
 
 .portlet-content {
-	float: left;
-	overflow: hidden;
 	width: 100%;
 }
 
@@ -148,4 +147,16 @@ h1, h2, h3, h4, h5, h6, strong {
 
 ul li, ol ul li {
 	list-style-image: url(../images/theme/bullet.gif);
+}
+
+#banner .logo a {
+	margin-left:130px;
+}
+
+.js .interactive-mode {
+	top:45px;
+	right:15%;
+}
+a {
+	font-size: 12px;
 }

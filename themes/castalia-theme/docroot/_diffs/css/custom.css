@@ -156,7 +156,7 @@ body {
 	text-align: left;
 }
 
-.tabs li {
+.ui-tabs li {
 	background: #A8BDB9 url(../images/custom/common/tabs_inactive_bg.png) repeat-x scroll 0 -65%;
 	border-color: #9EB4A8;
 	border-style: solid solid none;
@@ -169,12 +169,12 @@ body {
 	text-decoration: none;
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 	background: #8DA196 url(../images/custom/common/tabs_active_bg.png) repeat-x scroll 0 0%;
 	font-weight: bold;
 }
 
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #9EB4A8;
 	margin: 0 0pt 1.5em;
 	padding: 0 0pt 2.6em 1em;
@@ -182,4 +182,40 @@ body {
 
 #wrapper {
 	background: transparent;
+}
+
+.ui-tabs li a, .ui-tabs li span {
+	display: block;
+	float: left;
+	padding: 0.35em 1em 0;
+	text-decoration: none;
+}
+
+.ui-tabs li.current {
+	background: transparent url(../images/custom/comment/menu-l.jpg) no-repeat scroll 0 50%;
+	font-weight: bold;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	color: #333;
+	padding: 0.15em 1em;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:transparent;
+	color:white;
+}
+
+.ui-tabs li a, .tabs li span {
+	background:transparent none repeat scroll 0 0;
+	border-right:medium none;
 }

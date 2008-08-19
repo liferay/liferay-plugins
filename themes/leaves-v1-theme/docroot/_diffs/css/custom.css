@@ -42,7 +42,7 @@ body {
 	height: 200px;
 	position: absolute;
 	right: 0;
-	top: -32px;
+	top:25px;
 	width: 375px;
 }
 
@@ -65,7 +65,7 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	border: none;
 	bottom: 100%;
 	right: 813px;
-	top: 0;
+	top:10px;
 }
 
 .js #navigation .enter-page {
@@ -95,7 +95,7 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 
 .js .interactive-mode {
 	margin-top: 16px;
-	right: 382px;
+	right:655px;
 }
 
 .js .lfr-dock.interactive-mode ul {
@@ -155,10 +155,8 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 }
 
 #navigation li.sortable-item {
-	background: none;
 	float: right;
 	margin-right: 0;
-	padding: 5px 10px 10px;
 }
 
 #navigation ul {
@@ -218,4 +216,8 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	background: #FFF;
 	margin: 10px auto;
 	width: 900px;
+}
+
+#content-wrapper {
+	width: 100%;
 }

@@ -9,7 +9,7 @@ a:hover {
 }
 
 #banner .logo a {
-	margin-left: 160px;
+	margin-left: 16px;
 }
 
 #banner .logo {
@@ -77,7 +77,7 @@ body {
 
 .js .interactive-mode {
 	position: absolute;
-	right: 16%;
+	right: 6%;
 }
 
 #navigation li a {
@@ -116,7 +116,8 @@ body {
 #navigation {
 	background: transparent;
 	border: none;
-	margin-top: -63px;
+	margin-left:25px;
+	margin-top:20px;
 }
 
 .portlet-title {
@@ -148,4 +149,49 @@ body {
 	margin: 0 auto;
 	text-align: left;
 	width: 900px;
+}
+.ui-tabs {
+	border-bottom: 1px solid #bfe1ff;
+	margin: 0 0 1.5em 0;
+	padding: 0 0 2.6em 1em;
+}
+
+.ui-tabs li {
+	background: #eaf5ff url(../images/common/tabs_inactive_bg.png) repeat-x 0 100%;
+	border-bottom: 0;
+	display: inline;
+	float: left;
+	line-height: 2.25;
+	margin-right: 0.8em;
+	padding: 0;
+	text-decoration: none;
+}
+
+
+.ui-tabs li a, .ui-tabs li span {
+	display: block;
+	float: left;
+	padding: 0.35em 1em 0;
+	text-decoration: none;
+	border: 1px solid #bfe1ff;
+	top: 0;
+	background: transparent;
+	color: black
+}
+
+.ui-tabs li.current {
+	background: #bfe1ff url(../images/common/tabs_active_bg.png) repeat-x 0 0;
+	font-weight: bold;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	color: #333;
+	padding: 0.15em 1em;
+	background: transparent;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	text-decoration: none;
+	background: #bfe1ff url(../images/common/tabs_active_bg.png) repeat-x 0 0;
 }

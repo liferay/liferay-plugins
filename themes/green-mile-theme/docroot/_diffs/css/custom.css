@@ -48,6 +48,9 @@ body {
 	margin: 220px auto;
 	width: 100%;
 }
+.js #navigation .enter-page .save-page {
+	border: none;
+}
 .portlet {
 	background: transparent;
 	border: none;
@@ -66,9 +69,6 @@ a {
 	border: medium none;
 	top: 27px;
 }
-.js .interactive-mode {
-	top: 105px;
-}
 .ui-tabs {
 	border-bottom: medium none;
 }
@@ -77,7 +77,7 @@ a {
 }
 .ui-tabs li.current a, .ui-tabs li.current span {
 	background: transparent;
-	border: none;
+	border: 1px dotted yellow;
 	color: yellow;
 	font-weight: bold;
 }
@@ -95,8 +95,8 @@ a {
 	height: 57px;
 	margin-top: -220px;
 }
-.portlet-calendar .calendar-day .day-number {
-	color: black;
+.portlet-calendar .calendar-day .day-number 
+	border: none;
 }
 .portlet-section-body td {
 	color: black;
@@ -116,4 +116,7 @@ a {
 }
 .uni-form fieldset legend {
 	color: white;
+}
+.portlet-calendar .calendar-container {
+	background: transparent;
 }

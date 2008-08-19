@@ -1,5 +1,5 @@
 body {
-	background: transparent url(../images/common/bg.png);
+	background: transparent url(../images/custom/bg.png);
 }
 #wrapper {
 	background: #FFFFFF none;
@@ -8,8 +8,11 @@ body {
 	position: relative;
 	width: 85%;
 }
+#content-wrapper {
+	width: 100%;
+}
 #banner {
-	background: #9BBE00 url(../images/common/main_img.jpg) no-repeat top right;
+	background: #9BBE00 url(../images/custom/main_img.jpg) no-repeat top right;
 	height: 132px;
 	position: relative;
 }
@@ -114,7 +117,6 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 }
 .js .interactive-mode {
 	right:1.5%;
-	top:84px;
 }
 .js #navigation .enter-page .save-page {
 	background:transparent;

@@ -4,14 +4,19 @@
 
 #all-content-wrapper-left {
 	padding: 0 0 0 22px;
-	width: 490px;
+	width:93%;
 }
 
 #all-content-wrapper-right {
 	position: absolute;
-	right: 20px;
+	right:-249px;
 	top: 0;
 	width: 200px;
+}
+
+.lfr-dock h2 {
+	text-align:left;
+	margin-left: -25px;
 }
 
 #banner h1.logo a {
@@ -171,4 +176,8 @@
 	margin: 0 auto;
 	padding: 0;
 	width: 760px;
+}
+
+body {
+	background: #E7E7E7;
 }

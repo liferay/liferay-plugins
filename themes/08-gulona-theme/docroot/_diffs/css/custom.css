@@ -9,9 +9,10 @@ a:hover {
 }
 
 #banner {
-	background: url('../images/custom/banner_bg.png') repeat-x;
-	margin: 0 1px;
+	background: white url('../images/custom/banner_bg.png') repeat-x;
 	position: relative;
+	border-top:1px solid grey;
+	height:105px;
 }
 
 body {
@@ -19,7 +20,7 @@ body {
 }
 
 #footer {
-	background: url('../images/custom/banner_bg.png') repeat-x;
+	background: white url('../images/custom/banner_bg.png') repeat-x;
 	margin: 0 1px;
 	min-height: 57px;
 	padding: 20px 20px 0;
@@ -31,7 +32,9 @@ html {
 
 .js #add-page {
 	right: 0;
-	top: 0;
+	top: 6px;
+	border: none;
+	background: transparent;
 }
 
 .js #navigation .enter-page {
@@ -69,11 +72,13 @@ html {
 	background: url('../images/custom/navigation_bg.png');
 	border: 0;
 	height: 40px;
-	margin: 0;
+	margin:7px 0 0;
+	width:100%;
 }
 
 #content-wrapper {
 	width:100%;
+	background: white;
 }
 
 .portlet-content {
@@ -99,18 +104,11 @@ html {
 
 #wrapper {
 	background: transparent url('../images/custom/wrapper_bg.png');
-	margin: 0 auto;
-	padding: 0 18px;
-	width: 912px;
+	margin:25px auto;
+	padding: 0 19px;
+	width:911px;
 }
 
-#wrapper-bottom {
-	background: url('../images/custom/wrapper_bg-bottom.png');
-	height: 27px;
-}
-
-#wrapper-top, #wrapper-bottom {
-	background: url('../images/custom/wrapper_bg-top.png');
-	height: 29px;
-	margin: 0 -18px;
+.js .interactive-mode {
+	right:5px;
 }

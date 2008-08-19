@@ -387,3 +387,23 @@ body {
 	padding-left: 2em;
 	text-align: center;
 }
+
+.portlet-calendar .calendar-container {
+	background: transparent;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
+}
+
+.taglib-calendar tr th {
+	color: black;
+}
+
+.taglib-calendar tr td a {
+	color: black;
+}
+
+.portlet-icons {
+	top:-15px;
+}

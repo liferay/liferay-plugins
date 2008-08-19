@@ -15,7 +15,7 @@
 
 /* ---- NAVIGATION ---- */
 .light #navigation {
-	background: url(../../images/navigation/bg.png);
+	background:#FFFFFF url(../../images/custom/header_bg.png) repeat-x scroll center top;
 	border-top: 7px solid #455660;
 }
 
@@ -25,6 +25,7 @@
 
 .light #navigation li.selected {
 	background: #4A5C6A none no-repeat 50% 100%;
+	padding-bottom:9px;
 }
 
 .light .js #add-page a {

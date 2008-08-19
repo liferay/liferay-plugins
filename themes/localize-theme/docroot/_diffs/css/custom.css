@@ -261,31 +261,31 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	margin: 0 10px 0 0;
 }
 
-.tabs li a, .tabs li span {
+.ui-tabs li a, .ui-tabs li span {
 	background-color: #999;
 	background-image: none;
 	color: white;
 }
 
-.tabs li {
+.ui-tabs li {
 	background-color: #999;
 	background-image: none;
 	font-size: 8pt;
 	margin-right: none;
 }
 
-.tabs li.current a, .tabs li.current span {
+.ui-tabs li.current a, .tabs li.current span {
 	background-image: none;
 	color: none;
 }
 
-.tabs li.current {
+.ui-tabs li.current {
 	background-color: #999;
 	background-image: none;
 	top: 0;
 }
 
-.tabs {
+.ui-tabs {
 	background-image: none;
 	border-bottom: none;
 	padding: 0 0 2.6em 0;
@@ -296,4 +296,8 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	border: 1px solid #D3D3D3;
 	margin: 0 auto;
 	width: 850px;
+}
+
+#content-wrapper {
+	width: 100%;
 }
