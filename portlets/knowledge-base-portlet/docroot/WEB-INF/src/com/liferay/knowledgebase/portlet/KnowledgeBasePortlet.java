@@ -198,8 +198,8 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 				actionResponse.setRenderParameters(
 					actionRequest.getParameterMap());
-				actionResponse.setRenderParameter(
-					"view", "edit_article");
+
+				actionResponse.setRenderParameter("view", "edit_article");
 			}
 			else {
 				throw new PortletException(e);
@@ -318,7 +318,6 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 	}
 
 	protected void checkViewable(RenderRequest renderRequest) {
-
 		HttpServletRequest request = PortalUtil.getHttpServletRequest(
 			renderRequest);
 
@@ -349,7 +348,8 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 	}
 
 	protected void convertArticle(
-		ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
+			ResourceRequest resourceRequest, 
+			ResourceResponse resourceResponse) {
 
 		InputStream is = null;
 
@@ -440,7 +440,6 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 	}
 
 	protected void deleteArticle(ActionRequest actionRequest) throws Exception {
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -762,9 +761,13 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 				actionRequest, vocabularyParamName);
 
 			if (Validator.isNotNull(entryId)) {
+				if (Validator.isNotNull(tagsEntriesString)) {
+					tagsEntriesString += ",";
+				}
+
 				TagsEntry entry = TagsEntryServiceUtil.getEntry(entryId);
 
-				tagsEntriesString += "," + entry.getName();
+				tagsEntriesString += entry.getName();
 			}
 		}
 
