@@ -49,17 +49,25 @@ viewHistoryURL.setParameter("resourcePrimKey", String.valueOf(article.getResourc
 
 // Tabs
 
-String tabNames = "edit,attachments,history";
+StringBuffer tabNames = new StringBuffer();
 
-String url0 = editArticleURL.toString();
-String url1 = viewAttachmentsURL.toString();
-String url2 = viewHistoryURL.toString();
+List<String> urls = new ArrayList<String>();
 
-if (!KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE)) {
-	tabNames = "attachments,history";
+if (KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE)) {
+	tabNames.append("edit,");
+	urls.add(editArticleURL.toString());
+}
 
-	url0 = url1;
-	url1 = url2;
+if (!article.isTemplate()) {
+	tabNames.append("attachments,");
+	urls.add(viewAttachmentsURL.toString());
+}
+
+tabNames.append("history");
+urls.add(viewHistoryURL.toString());
+
+for (int i = urls.size(); i < 3; i++) {
+	urls.add(StringPool.BLANK);
 }
 %>
 
@@ -68,9 +76,9 @@ if (!KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE)
 </h1>
 
 <liferay-ui:tabs
-	names="<%= tabNames %>"
+	names="<%= tabNames.toString() %>"
 	param="tabs"
-	url0="<%= url0 %>"
-	url1="<%= url1 %>"
-	url2="<%= url2 %>"
+	url0="<%= urls.get(0) %>"
+	url1="<%= urls.get(1) %>"
+	url2="<%= urls.get(2) %>"
 />

@@ -62,12 +62,35 @@ else {
 			modelResourceDescription="<%= article.getTitle() %>"
 			resourcePrimKey="<%= String.valueOf(article.getResourcePrimKey()) %>"
 			var="permissionsURL"
-			/>
+		/>
 
 		<liferay-ui:icon image="permissions" url="<%= permissionsURL %>" />
 	</c:if>
 
-	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
+	<c:if test="<%= !article.isTemplate() %>">
+
+		<%
+		String[] displayRSSTypes = prefs.getValues("displayRSSTypes", new String[] {rss20});
+
+		rssAtomURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
+		rssRSS10URL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
+		rssRSS20URL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
+		%>
+
+		<c:if test="<%= ArrayUtil.contains(displayRSSTypes, atom) %>">
+			<liferay-ui:icon image="rss" message="<%= atom %>" method="get" url='<%= rssAtomURL.toString() %>' target="_blank" label="<%= true %>" />
+		</c:if>
+
+		<c:if test="<%= ArrayUtil.contains(displayRSSTypes, rss10) %>">
+			<liferay-ui:icon image="rss" message="<%= rss10 %>" method="get" url='<%= rssRSS10URL.toString() %>' target="_blank" label="<%= true %>" />
+		</c:if>
+
+		<c:if test="<%= ArrayUtil.contains(displayRSSTypes, rss20) %>">
+			<liferay-ui:icon image="rss" message="<%= rss20 %>" method="get" url='<%= rssRSS20URL.toString() %>' target="_blank" label="<%= true %>" />
+		</c:if>
+	</c:if>
+
+	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) && !article.isTemplate() %>">
 		<c:choose>
 			<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), article.getResourcePrimKey()) %>">
 				<portlet:actionURL var="unsubscribeURL">
@@ -89,6 +112,15 @@ else {
 			</c:otherwise>
 		</c:choose>
 	</c:if>
+
+	<portlet:renderURL var="viewHistoryURL">
+		<portlet:param name="view" value="view_article_history" />
+		<portlet:param name="tabs" value="history" />
+		<portlet:param name="redirect" value="<%= currentURL %>" />
+		<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+	</portlet:renderURL>
+
+	<liferay-ui:icon image="history" method="get" url="<%= viewHistoryURL.toString() %>" label="<%= true %>" />
 
 	<c:if test="<%= deletePermission %>">
 		<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="deleteURL">
