@@ -226,7 +226,6 @@ for (int i = 0; i < results.size(); i++) {
 						<portlet:actionURL var="unsubscribeURL">
 							<portlet:param name="actionName" value="<%= Constants.UNSUBSCRIBE %>" />
 							<portlet:param name="redirect" value="<%= currentURL %>" />
-							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 						</portlet:actionURL>
 
 						<liferay-ui:icon image="unsubscribe" url="<%= unsubscribeURL %>" />
@@ -235,7 +234,6 @@ for (int i = 0; i < results.size(); i++) {
 						<portlet:actionURL var="subscribeURL">
 							<portlet:param name="actionName" value="<%= Constants.SUBSCRIBE %>" />
 							<portlet:param name="redirect" value="<%= currentURL %>" />
-							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 						</portlet:actionURL>
 
 						<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" />

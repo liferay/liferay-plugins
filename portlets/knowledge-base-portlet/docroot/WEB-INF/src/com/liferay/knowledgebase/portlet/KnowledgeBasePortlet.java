@@ -688,9 +688,9 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long groupId = themeDisplay.getPortletGroupId();
+		long plid = themeDisplay.getPlid();
 
-		KBArticleServiceUtil.subscribe(groupId);
+		KBArticleServiceUtil.subscribe(plid);
 	}
 
 	protected void subscribeArticle(ActionRequest actionRequest)
@@ -708,9 +708,9 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long groupId = themeDisplay.getPortletGroupId();
+		long plid = themeDisplay.getPlid();
 
-		KBArticleServiceUtil.unsubscribe(groupId);
+		KBArticleServiceUtil.unsubscribe(plid);
 	}
 
 	protected void unsubscribeArticle(ActionRequest actionRequest)
