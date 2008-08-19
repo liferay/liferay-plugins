@@ -46,9 +46,7 @@ KBArticle article = (KBArticle)request.getAttribute(KnowledgeBaseKeys.ARTICLE);
 	);
 </script>
 
-<jsp:include page="/views/article_tabs.jsp">
-	<jsp:param name="tabs1" value="attachments" />
-</jsp:include>
+<jsp:include page="/views/article_tabs.jsp" />
 
 <form action="<portlet:actionURL><portlet:param name="actionName" value="addFile" /><portlet:param name="redirect" value="<%= HtmlUtil.escape(redirect) %>" /></portlet:actionURL>" class="uni-form" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm">
 <input name="<portlet:namespace />resourcePrimKey" type="hidden" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />

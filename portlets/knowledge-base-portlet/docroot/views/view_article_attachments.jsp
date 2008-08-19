@@ -32,6 +32,7 @@ String[] attachments = article.getAttachmentsFiles();
 PortletURL portletURL = renderResponse.createActionURL();
 
 portletURL.setParameter("view", "view_article_attachments");
+portletURL.setParameter("tabs", "attachments");
 portletURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
 
 List<String> headerNames = new ArrayList<String>();
@@ -95,13 +96,11 @@ for (int i = 0; i < results.size(); i++) {
 	resultRows.add(row);
 }
 %>
-<jsp:include page="/views/article_tabs.jsp">
-	<jsp:param name="tabs1" value="attachments" />
-</jsp:include>
+<jsp:include page="/views/article_tabs.jsp" />
 
 <c:if test="<%= KBArticlePermission.contains(permissionChecker, article.getResourcePrimKey(), ActionKeys.UPDATE) %>">
 	<div>
-		<input type="button" value="<liferay-ui:message key="add-attachments" />" onClick="location.href = '<portlet:renderURL><portlet:param name="view" value="edit_article_attachment" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" />
+		<input type="button" value="<liferay-ui:message key="add-attachments" />" onClick="location.href = '<portlet:renderURL><portlet:param name="view" value="edit_article_attachment" /><portlet:param name="tabs" value="attachment" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" />
 	</div>
 
 	<br />

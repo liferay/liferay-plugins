@@ -37,11 +37,7 @@ long resourcePrimKey = article.getResourcePrimKey();
 
 String title = article.getTitle();
 
-String[] attachments = new String[0];
-
-if (article != null) {
-	attachments = article.getAttachmentsFiles();
-}
+String[] attachments = article.getAttachmentsFiles();
 
 boolean print = ParamUtil.getBoolean(request, Constants.PRINT);
 
@@ -54,6 +50,8 @@ String className = KBArticle.class.getName();
 if (article.isTemplate()) {
 	className += ".template";
 }
+
+List childArticles = article.getChildArticles(themeDisplay.getUserId());
 
 // Feedback entry
 
@@ -77,28 +75,17 @@ if (totalVotes > 0) {
 
 // Portlet URLs
 
-PortletURL viewAllURL = renderResponse.createRenderURL();
+PortletURL addChildArticleURL = renderResponse.createRenderURL();
 
-PortletURL viewArticleURL = renderResponse.createRenderURL();
-
-viewArticleURL.setParameter("view", "view_article");
-viewArticleURL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
-
-PortletURL addArticleURL = renderResponse.createRenderURL();
-
-addArticleURL.setParameter("view", "edit_article");
-addArticleURL.setParameter("redirect", currentURL);
-addArticleURL.setParameter("editTitle", "1");
-
-if (article != null) {
-	addArticleURL.setParameter("parentResourcePrimKey", String.valueOf(resourcePrimKey));
-}
-
-List childArticles = article.getChildArticles(themeDisplay.getUserId());
+addChildArticleURL.setParameter("view", "edit_article");
+addChildArticleURL.setParameter("redirect", currentURL);
+addChildArticleURL.setParameter("editTitle", "1");
+addChildArticleURL.setParameter("parentResourcePrimKey", String.valueOf(resourcePrimKey));
 
 PortletURL editArticleURL = renderResponse.createRenderURL();
 
 editArticleURL.setParameter("view", "edit_article");
+editArticleURL.setParameter("tabs", "edit");
 editArticleURL.setParameter("redirect", currentURL);
 editArticleURL.setParameter("title", title);
 
@@ -106,18 +93,32 @@ PortletURL printArticleURL = renderResponse.createRenderURL();
 
 printArticleURL.setParameter("view", "view_article");
 printArticleURL.setParameter("title", title);
-printArticleURL.setWindowState(LiferayWindowState.POP_UP);
-
 printArticleURL.setParameter("print", "true");
+printArticleURL.setWindowState(LiferayWindowState.POP_UP);
 
 PortletURL taggedArticlesURL = renderResponse.createRenderURL();
 
 taggedArticlesURL.setParameter("view", "view_tagged_articles");
 
+PortletURL viewAllURL = renderResponse.createRenderURL();
+
+PortletURL viewArticleURL = renderResponse.createRenderURL();
+
+viewArticleURL.setParameter("view", "view_article");
+viewArticleURL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
+
 PortletURL viewAttachmentsURL = renderResponse.createRenderURL();
 
 viewAttachmentsURL.setParameter("view", "view_article_attachments");
+viewAttachmentsURL.setParameter("tabs", "attachments");
 viewAttachmentsURL.setParameter("title", title);
+
+PortletURL viewHistoryURL = renderResponse.createRenderURL();
+
+viewHistoryURL.setParameter("view", "view_article_history");
+viewHistoryURL.setParameter("tabs", "history");
+viewHistoryURL.setParameter("redirect", currentURL);
+viewHistoryURL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
 
 ResourceURL feedbackURL = renderResponse.createResourceURL();
 %>
@@ -266,7 +267,7 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 
 				<c:if test="<%= !print && !article.isTemplate() && KBArticlePermission.contains(permissionChecker, article, KnowledgeBaseKeys.ADD_CHILD_ARTICLE) %>">
 					<div class="article-actions">
-						<liferay-ui:icon image="add_article" message="add-child-article" url="<%= addArticleURL.toString() %>" label="<%= true %>" />
+						<liferay-ui:icon image="add_article" message="add-child-article" url="<%= addChildArticleURL.toString() %>" label="<%= true %>" />
 					</div>
 				</c:if>
 
@@ -490,15 +491,10 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 									</c:if>
 								</c:if>
 
-								<portlet:renderURL var="historyURL">
-									<portlet:param name="view" value="view_article_history" />
-									<portlet:param name="redirect" value="<%= currentURL %>" />
-									<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-								</portlet:renderURL>
-
-								<liferay-ui:icon image="history" method="get" url="<%= historyURL %>" label="<%= true %>" />
+								<liferay-ui:icon image="history" method="get" url="<%= viewHistoryURL.toString() %>" label="<%= true %>" />
 
 								<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) %>">
+
 									<%
 									PortletURL deleteArticleURL = renderResponse.createActionURL();
 

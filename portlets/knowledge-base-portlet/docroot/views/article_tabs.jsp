@@ -27,36 +27,40 @@
 <%
 KBArticle article = (KBArticle) request.getAttribute(KnowledgeBaseKeys.ARTICLE);
 
-String tabNames = "attachments,history";
+// Portlet URLs
 
-if (KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE)) {
-	tabNames = "edit," + tabNames;
-}
+PortletURL editArticleURL = renderResponse.createRenderURL();
 
-PortletURL editURL = renderResponse.createRenderURL();
+editArticleURL.setParameter("view", "edit_article");
+editArticleURL.setParameter("tabs", "edit");
+editArticleURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
 
-editURL.setParameter("view", "edit_article");
-editURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
+PortletURL viewAttachmentsURL = renderResponse.createRenderURL();
 
-PortletURL viewArticleHistoryURL = renderResponse.createRenderURL();
+viewAttachmentsURL.setParameter("view", "view_article_attachments");
+viewAttachmentsURL.setParameter("tabs", "attachments");
+viewAttachmentsURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
 
-viewArticleHistoryURL.setParameter("view", "view_article_history");
-viewArticleHistoryURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
+PortletURL viewHistoryURL = renderResponse.createRenderURL();
 
-PortletURL attachmentsURL = renderResponse.createRenderURL();
+viewHistoryURL.setParameter("view", "view_article_history");
+viewHistoryURL.setParameter("tabs", "history");
+viewHistoryURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
 
-attachmentsURL.setParameter("view", "view_article_attachments");
-attachmentsURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
+// Tabs
 
-String url0 = editURL.toString();
-String url1 = attachmentsURL.toString();
-String url2 = viewArticleHistoryURL.toString();
+String tabNames = "edit,attachments,history";
+
+String url0 = editArticleURL.toString();
+String url1 = viewAttachmentsURL.toString();
+String url2 = viewHistoryURL.toString();
 
 if (!KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE)) {
+	tabNames = "attachments,history";
+
 	url0 = url1;
 	url1 = url2;
 }
-
 %>
 
 <h1 class="article-title">
@@ -65,7 +69,8 @@ if (!KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE)
 
 <liferay-ui:tabs
 	names="<%= tabNames %>"
+	param="tabs"
 	url0="<%= url0 %>"
 	url1="<%= url1 %>"
 	url2="<%= url2 %>"
-	/>
+/>

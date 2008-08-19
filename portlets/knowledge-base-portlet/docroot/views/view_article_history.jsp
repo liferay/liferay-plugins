@@ -97,8 +97,6 @@ request.setAttribute("article_iterator.type", "article_history");
 	);
 </script>
 
-<jsp:include page="/views/article_tabs.jsp">
-	<jsp:param name="tabs1" value="history" />
-</jsp:include>
+<jsp:include page="/views/article_tabs.jsp" />
 
 <jsp:include page="/views/article_iterator.jsp" />

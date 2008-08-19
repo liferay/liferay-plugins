@@ -37,6 +37,7 @@ if (type.equals("all_articles")) {
 }
 else if (type.equals("article_history")) {
 	portletURL.setParameter("view", "view_article_history");
+	portletURL.setParameter("tabs", "history");
 }
 else if (type.equals("templates")) {
 	portletURL.setParameter("view", "view_templates");
