@@ -3,10 +3,10 @@
 
 <layout-templates>
 	<custom>
-		<layout-template id="cdn-home" name="CDN Home">
-			<template-path>/cdn-home.tpl</template-path>
-			<wap-template-path>/cdn-home.wap.tpl</wap-template-path>
-			<thumbnail-path>/cdn-home.png</thumbnail-path>
+		<layout-template id="1_2_1_columns" name="1-2-1 Columns">
+			<template-path>/1_2_1_columns.tpl</template-path>
+			<wap-template-path>/1_2_1_columns.wap.tpl</wap-template-path>
+			<thumbnail-path>/1_2_1_columns.png</thumbnail-path>
 		</layout-template>
 	</custom>
 </layout-templates>
