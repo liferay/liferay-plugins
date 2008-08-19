@@ -491,6 +491,9 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 			PortletResponseUtil.sendFile(response, fileName, is, contentType);
 		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
 		finally {
 			ServletResponseUtil.cleanUp(is);
 		}

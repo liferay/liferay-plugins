@@ -66,8 +66,9 @@ for (int i = 0; i < results.size(); i++) {
 
 	ResourceURL rowURL = renderResponse.createResourceURL();
 
-	rowURL.setParameter("actionName", "getArticleAttachment");
+	rowURL.setParameter("actionName", "get_article_attachment");
 	rowURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
+	rowURL.setParameter("title", article.getTitle());
 	rowURL.setParameter("fileName", shortFileName);
 
 	// File name
