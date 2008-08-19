@@ -78,20 +78,20 @@ public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 			friendlyURLPath = sb.toString();
 		}
 		else if (view.equals("view_tagged_articles")) {
-			String tag = portletURL.getParameter("tag");
+			String entryId = portletURL.getParameter("entryId");
 
 			StringBuilder sb = new StringBuilder();
 
-			if (Validator.isNotNull(tag)) {
+			if (Validator.isNotNull(entryId)) {
 				sb.append(StringPool.SLASH);
 				sb.append(MAPPING);
 				sb.append(StringPool.SLASH);
-				sb.append("tag");
+				sb.append("entryId");
 				sb.append(StringPool.SLASH);
 
-				sb.append(HttpUtil.encodeURL(tag));
+				sb.append(HttpUtil.encodeURL(entryId));
 
-				portletURL.addParameterIncludedInPath("tag");
+				portletURL.addParameterIncludedInPath("entryId");
 			}
 
 			friendlyURLPath = sb.toString();
@@ -129,13 +129,13 @@ public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 		if (urlFragments.length >= 1) {
 			String urlFragment0 = HttpUtil.decodeURL(urlFragments[0]);
 
-			if (urlFragment0.equals("tag")) {
+			if (urlFragment0.equals("entryId")) {
 				if (urlFragments.length >= 2) {
 					addParam(params, "view", "view_tagged_articles");
 
-					String tag = HttpUtil.decodeURL(urlFragments[1]);
+					String entryId = HttpUtil.decodeURL(urlFragments[1]);
 
-					addParam(params, "tag", tag);
+					addParam(params, "entryId", entryId);
 				}
 			}
 			else {

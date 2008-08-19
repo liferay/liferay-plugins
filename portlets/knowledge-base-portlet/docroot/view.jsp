@@ -26,7 +26,7 @@
 
 <%
 String view = ParamUtil.getString(request, "view", "view_all_articles");
-String tag = ParamUtil.getString(request, "tag");
+long entryId = ParamUtil.getLong(request, "entryId");
 
 String isViewableArticle = (String) request.getAttribute("isViewableArticle");
 
@@ -40,7 +40,7 @@ if (!ArrayUtil.contains(supportedViews, view)) {
 	view = supportedViews[0];
 }
 
-if (Validator.isNotNull(tag)) {
+if (Validator.isNotNull(entryId)) {
 	view = "view_tagged_articles";
 }
 

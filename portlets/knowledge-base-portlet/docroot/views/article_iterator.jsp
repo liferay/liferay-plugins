@@ -28,7 +28,7 @@
 KBArticle article = (KBArticle) request.getAttribute(KnowledgeBaseKeys.ARTICLE);
 String type = (String) request.getAttribute("article_iterator.type");
 
-String tag = ParamUtil.getString(request, "tag");
+long entryId = ParamUtil.getLong(request, "entryId");
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
@@ -44,7 +44,7 @@ else if (type.equals("templates")) {
 }
 else if (type.equals("tagged_articles")) {
 	portletURL.setParameter("view", "view_tagged_articles");
-	portletURL.setParameter("tag", tag);
+	portletURL.setParameter("entryId", String.valueOf(entryId));
 }
 
 List headerNames = new ArrayList();
@@ -100,7 +100,7 @@ else if (type.equals("templates")) {
 }
 else if (type.equals("tagged_articles")) {
 	long classNameId = PortalUtil.getClassNameId(KBArticle.class.getName());
-	long[] entryIds = TagsEntryLocalServiceUtil.getEntryIds(company.getCompanyId(), new String[] {tag});
+	long[] entryIds = new long[] {entryId};
 	long[] notEntryIds = new long[0];
 	Date now = new Date();
 
