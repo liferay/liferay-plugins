@@ -32,8 +32,6 @@ public class KnowledgeBaseKeys {
 
 	public static final String PORTLET_ID = "1_WAR_knowledgebaseportlet";
 
-	public static final String ADD_CHILD_ARTICLE = "ADD_CHILD_ARTICLE";
-
 	public static final String ARTICLE = "Article";
 
 	public static final String KNOWLEDGE_BASE_FEEDBACK_ENTRY =

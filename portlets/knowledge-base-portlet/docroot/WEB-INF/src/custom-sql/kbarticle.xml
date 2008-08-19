@@ -17,21 +17,6 @@
 				)
 		]]>
 	</sql>
-	<sql id="com.liferay.knowledgebase.service.persistence.KBArticleFinder.countByU_P_H_D">
-		<![CDATA[
-			SELECT
-				COUNT(*) AS COUNT_VALUE
-			FROM
-				KB_KBArticle
-			WHERE
-				(parentResourcePrimKey = ?) AND
-				(head = ?) AND
-				(
-					(userId = ?) OR
-					(draft = ?)
-				)
-		]]>
-	</sql>
 	<sql id="com.liferay.knowledgebase.service.persistence.KBArticleFinder.countByU_R_H_D">
 		<![CDATA[
 			SELECT
@@ -57,24 +42,6 @@
 				(groupId = ?) AND
 				(head = ?) AND
 				(template = ?) AND
-				(
-					(userId = ?) OR
-					(draft = ?)
-				)
-			ORDER BY
-				title ASC,
-				version ASC
-		]]>
-	</sql>
-	<sql id="com.liferay.knowledgebase.service.persistence.KBArticleFinder.findByU_P_H_D">
-		<![CDATA[
-			SELECT
-				{KB_KBArticle.*}
-			FROM
-				KB_KBArticle
-			WHERE
-				(parentResourcePrimKey = ?) AND
-				(head = ?) AND
 				(
 					(userId = ?) OR
 					(draft = ?)

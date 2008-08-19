@@ -54,7 +54,6 @@ public class KBArticleSoap implements Serializable {
 		soapModel.setHead(model.getHead());
 		soapModel.setTemplate(model.getTemplate());
 		soapModel.setDraft(model.getDraft());
-		soapModel.setParentResourcePrimKey(model.getParentResourcePrimKey());
 
 		return soapModel;
 	}
@@ -224,14 +223,6 @@ public class KBArticleSoap implements Serializable {
 		_draft = draft;
 	}
 
-	public long getParentResourcePrimKey() {
-		return _parentResourcePrimKey;
-	}
-
-	public void setParentResourcePrimKey(long parentResourcePrimKey) {
-		_parentResourcePrimKey = parentResourcePrimKey;
-	}
-
 	private String _uuid;
 	private long _articleId;
 	private long _groupId;
@@ -248,5 +239,4 @@ public class KBArticleSoap implements Serializable {
 	private boolean _head;
 	private boolean _template;
 	private boolean _draft;
-	private long _parentResourcePrimKey;
 }

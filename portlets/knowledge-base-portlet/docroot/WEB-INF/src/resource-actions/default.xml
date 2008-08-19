@@ -25,7 +25,6 @@
 			<portlet-name>1</portlet-name>
 		</portlet-ref>
 		<supports>
-			<action-key>ADD_CHILD_ARTICLE</action-key>
 			<action-key>ADD_DISCUSSION</action-key>
 			<action-key>DELETE</action-key>
 			<action-key>PERMISSIONS</action-key>

@@ -48,17 +48,11 @@ public class KBArticleFinderImpl
 	public static String COUNT_BY_U_G_H_T_D =
 		KBArticleFinder.class.getName() + ".countByU_G_H_T_D";
 
-	public static String COUNT_BY_U_P_H_D =
-		KBArticleFinder.class.getName() + ".countByU_P_H_D";
-
 	public static String COUNT_BY_U_R_H_D =
 		KBArticleFinder.class.getName() + ".countByU_R_H_D";
 
 	public static String FIND_BY_U_G_H_T_D =
 		KBArticleFinder.class.getName() + ".findByU_G_H_T_D";
-
-	public static String FIND_BY_U_P_H_D =
-		KBArticleFinder.class.getName() + ".findByU_P_H_D";
 
 	public static String FIND_BY_U_R_H_D =
 		KBArticleFinder.class.getName() + ".findByU_R_H_D";
@@ -84,49 +78,6 @@ public class KBArticleFinderImpl
 			qPos.add(groupId);
 			qPos.add(head);
 			qPos.add(template);
-			qPos.add(userId);
-			qPos.add(draft);
-
-			Iterator<Long> itr = q.list().iterator();
-
-			if (itr.hasNext()) {
-				Long count = itr.next();
-
-				if (count != null) {
-					return count.intValue();
-				}
-			}
-
-			return 0;
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public int countByU_P_H_D(
-			long userId, long parentResourcePrimKey, boolean head,
-			boolean draft)
-		throws SystemException {
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			String sql = CustomSQLUtil.get(COUNT_BY_U_P_H_D);
-
-			SQLQuery q = session.createSQLQuery(sql);
-
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(parentResourcePrimKey);
-			qPos.add(head);
 			qPos.add(userId);
 			qPos.add(draft);
 
@@ -252,39 +203,6 @@ public class KBArticleFinderImpl
 			qPos.add(draft);
 
 			return (List<KBArticle>)QueryUtil.list(q, getDialect(), start, end);
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public List<KBArticle> findByU_P_H_D(
-			long userId, long parentResourcePrimKey, boolean head,
-			boolean draft)
-		throws SystemException {
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			String sql = CustomSQLUtil.get(FIND_BY_U_P_H_D);
-
-			SQLQuery q = session.createSQLQuery(sql);
-
-			q.addEntity("KB_KBArticle", KBArticleImpl.class);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(parentResourcePrimKey);
-			qPos.add(head);
-			qPos.add(userId);
-			qPos.add(draft);
-
-			return (List<KBArticle>)q.list();
 		}
 		catch (Exception e) {
 			throw new SystemException(e);

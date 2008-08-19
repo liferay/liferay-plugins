@@ -33,9 +33,6 @@ public interface KBArticleFinder {
 		boolean template, boolean draft)
 		throws com.liferay.portal.SystemException;
 
-	public int countByU_P_H_D(long userId, long parentResourcePrimKey,
-		boolean head, boolean draft) throws com.liferay.portal.SystemException;
-
 	public int countByU_R_H_D(long userId, long resourcePrimKey, boolean head,
 		boolean draft) throws com.liferay.portal.SystemException;
 
@@ -46,10 +43,6 @@ public interface KBArticleFinder {
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByU_G_H_T_D(
 		long userId, long groupId, boolean head, boolean template,
 		boolean draft, int start, int end)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByU_P_H_D(
-		long userId, long parentResourcePrimKey, boolean head, boolean draft)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByU_R_H_D(

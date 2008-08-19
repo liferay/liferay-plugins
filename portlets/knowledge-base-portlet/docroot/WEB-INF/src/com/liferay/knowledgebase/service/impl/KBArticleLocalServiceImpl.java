@@ -92,8 +92,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public KBArticle addArticle(
 			long userId, long groupId, String title, String content,
 			String description, boolean minorEdit, boolean template,
-			boolean draft, long parentResourcePrimKey, String[] tagsEntries,
-			PortletPreferences prefs, ThemeDisplay themeDisplay)
+			boolean draft, String[] tagsEntries, PortletPreferences prefs,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		String uuid = null;
@@ -102,16 +102,16 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		return addArticle(
 			uuid, userId, groupId, title, version, content, description,
-			minorEdit, head, template, draft, parentResourcePrimKey,
-			tagsEntries, prefs, themeDisplay);
+			minorEdit, head, template, draft, tagsEntries, prefs,
+			themeDisplay);
 	}
 
 	public KBArticle addArticle(
 			String uuid, long userId, long groupId, String title,
 			double version, String content, String description,
 			boolean minorEdit, boolean head, boolean template, boolean draft,
-			long parentResourcePrimKey, String[] tagsEntries,
-			PortletPreferences prefs, ThemeDisplay themeDisplay)
+			String[] tagsEntries, PortletPreferences prefs,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		// Article
@@ -152,7 +152,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		article.setHead(head);
 		article.setTemplate(template);
 		article.setDraft(draft);
-		article.setParentResourcePrimKey(parentResourcePrimKey);
 
 		kbArticlePersistence.update(article, false);
 
@@ -276,16 +275,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	public void deleteArticle(KBArticle article)
 		throws PortalException, SystemException {
-
-		// Children
-
-		List<KBArticle> children =
-			kbArticlePersistence.findByParentResourcePrimKey(
-				article.getResourcePrimKey());
-
-		for (KBArticle curArticle : children) {
-			deleteArticle(curArticle);
-		}
 
 		// Lucene
 
@@ -664,30 +653,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			userId, groupId, head, template, draft);
 	}
 
-	public List<KBArticle> getChildArticles(
-			long parentResourcePrimKey, boolean head)
-		throws SystemException {
-
-		return kbArticlePersistence.findByP_H(parentResourcePrimKey, head);
-	}
-
-	public List<KBArticle> getChildArticles(
-			long parentResourcePrimKey, boolean head, boolean draft)
-		throws SystemException {
-
-		return kbArticlePersistence.findByP_H_D(
-			parentResourcePrimKey, head, draft);
-	}
-
-	public List<KBArticle> getChildArticles(
-			long userId, long parentResourcePrimKey, boolean head,
-			boolean draft)
-		throws SystemException {
-
-		return kbArticleFinder.findByU_P_H_D(
-			userId, parentResourcePrimKey, head, draft);
-	}
-
 	public void reIndex(String[] ids) throws SystemException {
 		if (SearchEngineUtil.isIndexReadOnly()) {
 			return;
@@ -744,7 +709,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			userId, resourcePrimKey, 0, oldArticle.getTitle(),
 			oldArticle.getContent(), oldArticle.getDescription(),
 			false, oldArticle.isTemplate(), article.getDraft(),
-			oldArticle.getParentResourcePrimKey(), null, prefs, themeDisplay);
+			null, prefs, themeDisplay);
 	}
 
 	public Hits search(
@@ -816,9 +781,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public KBArticle updateArticle(
 			long userId, long resourcePrimKey, double version,
 			String title, String content, String description, boolean minorEdit,
-			boolean template, boolean draft, long parentResourcePrimKey,
-			String[] tagsEntries, PortletPreferences prefs,
-			ThemeDisplay themeDisplay)
+			boolean template, boolean draft, String[] tagsEntries,
+			PortletPreferences prefs, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		// Article
@@ -861,7 +825,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		article.setHead(true);
 		article.setTemplate(template);
 		article.setDraft(draft);
-		article.setParentResourcePrimKey(parentResourcePrimKey);
 
 		kbArticlePersistence.update(article, false);
 

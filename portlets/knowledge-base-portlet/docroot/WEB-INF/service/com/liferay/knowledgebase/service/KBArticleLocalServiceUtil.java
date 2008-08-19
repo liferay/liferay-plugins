@@ -86,28 +86,27 @@ public class KBArticleLocalServiceUtil {
 		long userId, long groupId, java.lang.String title,
 		java.lang.String content, java.lang.String description,
 		boolean minorEdit, boolean template, boolean draft,
-		long parentResourcePrimKey, java.lang.String[] tagsEntries,
-		javax.portlet.PortletPreferences prefs,
+		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		return _service.addArticle(userId, groupId, title, content,
-			description, minorEdit, template, draft, parentResourcePrimKey,
-			tagsEntries, prefs, themeDisplay);
+			description, minorEdit, template, draft, tagsEntries, prefs,
+			themeDisplay);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle addArticle(
 		java.lang.String uuid, long userId, long groupId,
 		java.lang.String title, double version, java.lang.String content,
 		java.lang.String description, boolean minorEdit, boolean head,
-		boolean template, boolean draft, long parentResourcePrimKey,
-		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
+		boolean template, boolean draft, java.lang.String[] tagsEntries,
+		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		return _service.addArticle(uuid, userId, groupId, title, version,
 			content, description, minorEdit, head, template, draft,
-			parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
+			tagsEntries, prefs, themeDisplay);
 	}
 
 	public static void addArticleAttachments(long resourcePrimKey,
@@ -326,25 +325,6 @@ public class KBArticleLocalServiceUtil {
 		return _service.getArticlesCount(userId, groupId, head, template, draft);
 	}
 
-	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getChildArticles(
-		long parentResourcePrimKey, boolean head)
-		throws com.liferay.portal.SystemException {
-		return _service.getChildArticles(parentResourcePrimKey, head);
-	}
-
-	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getChildArticles(
-		long parentResourcePrimKey, boolean head, boolean draft)
-		throws com.liferay.portal.SystemException {
-		return _service.getChildArticles(parentResourcePrimKey, head, draft);
-	}
-
-	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getChildArticles(
-		long userId, long parentResourcePrimKey, boolean head, boolean draft)
-		throws com.liferay.portal.SystemException {
-		return _service.getChildArticles(userId, parentResourcePrimKey, head,
-			draft);
-	}
-
 	public static void reIndex(java.lang.String[] ids)
 		throws com.liferay.portal.SystemException {
 		_service.reIndex(ids);
@@ -394,14 +374,14 @@ public class KBArticleLocalServiceUtil {
 		long userId, long resourcePrimKey, double version,
 		java.lang.String title, java.lang.String content,
 		java.lang.String description, boolean minorEdit, boolean template,
-		boolean draft, long parentResourcePrimKey,
-		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
+		boolean draft, java.lang.String[] tagsEntries,
+		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		return _service.updateArticle(userId, resourcePrimKey, version, title,
-			content, description, minorEdit, template, draft,
-			parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
+			content, description, minorEdit, template, draft, tagsEntries,
+			prefs, themeDisplay);
 	}
 
 	public static void updateTagsAsset(long userId,

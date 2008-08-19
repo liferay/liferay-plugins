@@ -745,8 +745,6 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		boolean minorEdit = ParamUtil.getBoolean(actionRequest, "minorEdit");
 		boolean template = ParamUtil.getBoolean(actionRequest, "template");
 		boolean draft = ParamUtil.getBoolean(actionRequest, "draft");
-		long parentResourcePrimKey = ParamUtil.getLong(
-			actionRequest, "parentResourcePrimKey");
 
 		List<TagsVocabulary> vocabularies =
 			TagsVocabularyServiceUtil.getCompanyVocabularies(
@@ -782,8 +780,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		if (resourcePrimKey <= 0) {
 			return KBArticleServiceUtil.addArticle(
 				themeDisplay.getPlid(), title, content, description,
-				minorEdit, template, draft, parentResourcePrimKey, tagsEntries,
-				prefs, themeDisplay);
+				minorEdit, template, draft, tagsEntries, prefs, themeDisplay);
 		}
 		else {
 			KBArticle article = KBArticleServiceUtil.getArticle(
@@ -792,14 +789,14 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			if (article.isTemplate() && (template == false)) {
 				return KBArticleServiceUtil.addArticle(
 					themeDisplay.getPortletGroupId(), title, content,
-					description, minorEdit, template, draft,
-					parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
+					description, minorEdit, template, draft, tagsEntries, prefs,
+					themeDisplay);
 			}
 			else {
 				return KBArticleServiceUtil.updateArticle(
 					themeDisplay.getPlid(), resourcePrimKey, version, title,
 					content, description, minorEdit, template, draft,
-					parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
+					tagsEntries, prefs, themeDisplay);
 			}
 		}
 	}

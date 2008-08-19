@@ -22,7 +22,6 @@
 		<property name="head" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="template" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="draft" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="parentResourcePrimKey" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="com.liferay.knowledgebase.model.impl.KBArticleResourceImpl" table="KB_KBArticleResource">
 		<cache usage="read-write" />

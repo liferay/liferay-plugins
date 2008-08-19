@@ -76,8 +76,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public KBArticle addArticle(
 			long plid, String title, String content, String description,
 			boolean minorEdit, boolean template, boolean draft,
-			long parentResourcePrimKey, String[] tagsEntries,
-			PortletPreferences prefs, ThemeDisplay themeDisplay)
+			String[] tagsEntries, PortletPreferences prefs,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		if (template) {
@@ -94,8 +94,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		return kbArticleLocalService.addArticle(
 			getUserId(), layout.getGroupId(), title, content, description,
-			minorEdit, template, draft, parentResourcePrimKey, tagsEntries,
-			prefs, themeDisplay);
+			minorEdit, template, draft, tagsEntries, prefs, themeDisplay);
 	}
 
 	public void addArticleAttachments(
@@ -331,9 +330,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public KBArticle updateArticle(
 			long plid, long resourcePrimKey, double version, String title,
 			String content, String description, boolean minorEdit,
-			boolean template, boolean draft, long parentResourcePrimKey,
-			String[] tagsEntries, PortletPreferences prefs,
-			ThemeDisplay themeDisplay)
+			boolean template, boolean draft, String[] tagsEntries,
+			PortletPreferences prefs, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		if (template) {
@@ -348,8 +346,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		return kbArticleLocalService.updateArticle(
 			getUserId(), resourcePrimKey, version, title, content, description,
-			minorEdit, template, draft, parentResourcePrimKey, tagsEntries,
-			prefs, themeDisplay);
+			minorEdit, template, draft, tagsEntries, prefs, themeDisplay);
 	}
 
 	protected String exportToRSS(
@@ -410,7 +407,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 			String entryURL = feedURL + StringPool.SLASH + StringPool.DASH +
 				StringPool.SLASH +  KnowledgeBaseFriendlyURLMapper.MAPPING +
-					StringPool.SLASH + article.getTitle();
+				StringPool.SLASH + article.getTitle();
 
 			syndEntry.setLink(entryURL);
 		}

@@ -32,14 +32,13 @@ public class KBArticleServiceUtil {
 	public static com.liferay.knowledgebase.model.KBArticle addArticle(
 		long plid, java.lang.String title, java.lang.String content,
 		java.lang.String description, boolean minorEdit, boolean template,
-		boolean draft, long parentResourcePrimKey,
-		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
+		boolean draft, java.lang.String[] tagsEntries,
+		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		return _service.addArticle(plid, title, content, description,
-			minorEdit, template, draft, parentResourcePrimKey, tagsEntries,
-			prefs, themeDisplay);
+			minorEdit, template, draft, tagsEntries, prefs, themeDisplay);
 	}
 
 	public static void addArticleAttachments(long resourcePrimKey,
@@ -161,14 +160,14 @@ public class KBArticleServiceUtil {
 		long plid, long resourcePrimKey, double version,
 		java.lang.String title, java.lang.String content,
 		java.lang.String description, boolean minorEdit, boolean template,
-		boolean draft, long parentResourcePrimKey,
-		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
+		boolean draft, java.lang.String[] tagsEntries,
+		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		return _service.updateArticle(plid, resourcePrimKey, version, title,
-			content, description, minorEdit, template, draft,
-			parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
+			content, description, minorEdit, template, draft, tagsEntries,
+			prefs, themeDisplay);
 	}
 
 	public static KBArticleService getService() {

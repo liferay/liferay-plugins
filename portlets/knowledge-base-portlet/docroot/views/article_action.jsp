@@ -96,7 +96,6 @@ else {
 				<portlet:actionURL var="unsubscribeURL">
 					<portlet:param name="actionName" value="unsubscribeArticle" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
-					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 				</portlet:actionURL>
 
 				<liferay-ui:icon image="unsubscribe" url="<%= unsubscribeURL %>" label="<%= true %>" />
@@ -105,7 +104,6 @@ else {
 				<portlet:actionURL var="subscribeURL">
 					<portlet:param name="actionName" value="subscribeArticle" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
-					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 				</portlet:actionURL>
 
 				<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" label="<%= true %>" />

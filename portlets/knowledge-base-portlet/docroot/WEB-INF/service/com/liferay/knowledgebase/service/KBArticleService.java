@@ -32,8 +32,8 @@ public interface KBArticleService {
 	public com.liferay.knowledgebase.model.KBArticle addArticle(long plid,
 		java.lang.String title, java.lang.String content,
 		java.lang.String description, boolean minorEdit, boolean template,
-		boolean draft, long parentResourcePrimKey,
-		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
+		boolean draft, java.lang.String[] tagsEntries,
+		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
@@ -121,8 +121,7 @@ public interface KBArticleService {
 		long resourcePrimKey, double version, java.lang.String title,
 		java.lang.String content, java.lang.String description,
 		boolean minorEdit, boolean template, boolean draft,
-		long parentResourcePrimKey, java.lang.String[] tagsEntries,
-		javax.portlet.PortletPreferences prefs,
+		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
