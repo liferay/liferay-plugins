@@ -343,6 +343,8 @@
 /* ---------- Add/sort/remove page ---------- */
 
 .js #navigation .enter-page {
+	margin-right:40px;
+	margin-top:1px;
 }
 
 .js #navigation .enter-page.editing {
@@ -362,10 +364,26 @@
 	font-weight: bold;
 	margin-left: 1em;
 	padding: 0;
+	margin-bottom: -10px;
+}
+
+.ie.js #navigation .enter-page a {
+	margin-bottom: -20px;
 }
 
 .js #navigation .enter-page a.save-page {
-	display: none;
+	display: inline-block;
+	padding-bottom: 0;
+	padding-top: 0;
+	vertical-align: top;
+	position: absolute;
+	margin-top:-21px;
+	margin-left:163px;
+}
+
+.ie.js #navigation .enter-page a.save-page {
+	margin-top: 0px;
+	margin-left: 5px;
 }
 
 .js .delete-tab {

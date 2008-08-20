@@ -177,6 +177,10 @@ blockquote {
 	text-transform: uppercase;
 }
 
+.ie .top h1 a {
+	margin-left: -100px;
+}
+
 .top h2 {
 	color: #848484;
 	font-size: 14px;
@@ -254,6 +258,30 @@ blockquote {
 	height: 26px;
 	margin-right: 4px;
 	padding: 0 0 0 0;
+	margin-top: 10px;
+	background: transparent;
+}
+
+.js #navigation .enter-page .save-page {
+	background: transparent;
+	padding-left: 10px;
+	border: none;
+	margin: 0;
+	position: absolute;
+	right:0px;
+	top:5px;
+}
+
+.js #navigation .enter-page {
+	margin-right:23px;
+}
+
+.ie.js #navigation .enter-page .save-page {
+	top: 10px;
+}
+
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	padding:1px;
 }
 
 #navigation li.selected a span {
@@ -266,7 +294,7 @@ blockquote {
 	border: 2px solid #915800;
 	color: #ADADAD;
 	height: 26px;
-	margin-top: -11px;
+	margin-top: 0px;
 }
 
 #navigation ul {
@@ -282,11 +310,15 @@ blockquote {
 	border: none;
 	float: center;
 	font-style: "Times New Roman", Times, serif;
-	height: 26px;
-	margin: 0 auto;
-	padding: 0 0px 0 400px;
+	height:55px;
+	margin:-17px auto;
+	padding:4px 0 0 400px;
+	width: 100%;
 }
 
+.ie #navigation {
+	margin-top: -20px;
+}
 .portlet-topper {
 	background: black none repeat scroll 0 0%;
 }

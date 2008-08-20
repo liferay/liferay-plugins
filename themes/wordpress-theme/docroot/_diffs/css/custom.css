@@ -67,6 +67,11 @@
 	width: 107px;
 }
 
+.ie.js #add-page {
+	top: 25px;
+	position: absolute;
+}
+
 .js #navigation .enter-page {
 	background-color: transparent;
 	padding: 0;

@@ -235,8 +235,7 @@ input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hove
 	background: transparent;
 	border: none;
 	position: absolute;
-	right: -130pt;
-	top: -5px;
+	top:120px;
 }
 
 .js .delete-tab {

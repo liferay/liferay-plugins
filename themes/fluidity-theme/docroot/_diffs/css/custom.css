@@ -112,7 +112,6 @@ body {
 	background: transparent url('../images/theme/tab.gif') no-repeat scroll 0 -25px;
 	color: #06FF00;
 	display: block;
-	float: right;
 	height: 25px;
 	line-height: 25px;
 	padding: 0;
@@ -190,8 +189,11 @@ ul li, ol ul li {
 
 .js #navigation .enter-page {
 	background-color:transparent;
-	margin:3px 0 0 74px;
-	width:94px;
+	margin-left:70px;
+}
+
+.ie.js #navigation .enter-page {
+	margin-top: 10px;
 }
 
 .js #add-page a span {
@@ -200,8 +202,14 @@ ul li, ol ul li {
 }
 
 .js #navigation .enter-page .save-page {
-	margin:-24px -11px;
 	padding-left:0px;
+	background: transparent;
+	margin-left:-50px;
+}
+
+.ie.js #navigation .enter-page .save-page {
+	margin-left: -80px;
+	margin-top: -12px;
 }
 
 .portlet-calendar .calendar-container {

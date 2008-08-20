@@ -52,6 +52,9 @@ h3 {
 	width: 100%;
 }
 
+.ie.js #navigation .enter-page {
+	padding:0.3em 2em 0.7em 1.5em;
+}
 
 /* ---------- Updated portlet.css ---------- */
 
@@ -80,6 +83,7 @@ h3 {
 .js .lfr-dock-list-container {
 	height: 0px;
 	overflow: visible;
+	width:231px;
 }
 
 

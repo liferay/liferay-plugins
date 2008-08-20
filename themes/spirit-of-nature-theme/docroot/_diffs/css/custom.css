@@ -1,12 +1,7 @@
 #banner .logo a {
-	background: transparent url(/image/company_logo?img_id=0&t=1213852437750) no-repeat scroll 0;
-	display: block;
-	font-size: 0;
-	height: 49px;
-	margin-left: 160px;
+	position: absolute;
+	margin-left: 16px;
 	margin-top: 35px;
-	text-indent: -9999em;
-	width: 198px;
 }
 
 #banner .logo {
@@ -31,7 +26,7 @@
 
 #content-wrapper {
 	background: #FFF url(../images/custom/content_top.jpg) no-repeat;
-	margin: 25pt auto;
+	margin: 19pt auto;
 	padding: 20pt;
 	width: 100%;
 }
@@ -61,7 +56,7 @@
 
 .js #navigation .enter-page {
 	background-color: transparent;
-	margin-top: 13px;
+	margin-top: 8px;
 }
 
 .js .interactive-mode {
@@ -118,10 +113,15 @@
 #navigation {
 	background: transparent url(../images/custom/menu.jpg) no-repeat scroll center top;
 	height: 57px;
-	margin: -25pt auto;
+	margin:74px auto;
 	padding: 0;
 	text-align: center;
 	width: 876px;
+}
+
+.ie #navigation {
+	margin: 74px auto;
+	position: absolute;
 }
 
 .portlet-topper {

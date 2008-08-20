@@ -111,18 +111,6 @@ a {
 	background-color: transparent;
 	padding: 0px;
 }
-#footer {
-	background: black none repeat scroll 0% 0%;
-	color: #4B4B4B;
-	font-family: Verdana;
-	font-size: 10px;
-	height: 15px;
-	padding: 5px 0pt;
-	text-align: center;
-}
-.ie #footer {
-	margin-left: 130px;
-}
 .js #navigation {
 	left:0;
 	position:absolute;
