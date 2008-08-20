@@ -62,6 +62,7 @@ import com.liferay.portlet.tags.model.TagsEntryConstants;
 import com.liferay.portlet.tags.model.TagsVocabulary;
 import com.liferay.portlet.tags.service.TagsEntryServiceUtil;
 import com.liferay.portlet.tags.service.TagsVocabularyServiceUtil;
+import com.liferay.util.MathUtil;
 import com.liferay.util.RSSUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.util.servlet.PortletResponseUtil;
@@ -348,7 +349,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 	}
 
 	protected void convertArticle(
-			ResourceRequest resourceRequest, 
+			ResourceRequest resourceRequest,
 			ResourceResponse resourceResponse) {
 
 		InputStream is = null;
@@ -608,13 +609,15 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			KBFeedbackStatsLocalServiceUtil.getArticleFeedbackStats(
 				articleResourcePrimKey);
 
+		int totalScoreEntries = feedbackStats.getTotalScoreEntries();
+		double averageScore = MathUtil.format(
+			feedbackStats.getAverageScore() , 1, 1);
+
 		Map<String, String> parameterMap = new HashMap<String, String>();
 
+		parameterMap.put("averageScore", String.valueOf(averageScore));
 		parameterMap.put(
-			"averageScore", String.valueOf(feedbackStats.getAverageScore()));
-		parameterMap.put(
-			"totalScoreEntries",
-			String.valueOf(feedbackStats.getTotalScoreEntries()));
+			"totalScoreEntries", String.valueOf(totalScoreEntries));
 
 		sendJSON(resourceResponse, parameterMap);
 	}

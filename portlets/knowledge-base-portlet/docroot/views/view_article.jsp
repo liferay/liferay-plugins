@@ -195,7 +195,7 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 								<liferay-ui:message key="average" /> (<%= feedbackStats.getTotalScoreEntries() %> <%= LanguageUtil.get(pageContext, (feedbackStats.getTotalScoreEntries() == 1) ? "vote" : "votes") %>)
 							</div>
 
-							<div id="<portlet:namespace />averageRating" onmousemove="Liferay.Portal.ToolTip.show(event, this, '<%= feedbackStats.getAverageScore() %> <liferay-ui:message key="stars" />')">
+							<div id="<portlet:namespace />averageRating" onmousemove="Liferay.Portal.ToolTip.show(event, this, '<%= MathUtil.format(feedbackStats.getAverageScore(), 1, 1) %> <liferay-ui:message key="stars" />')">
 								<img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" /><img src="<%= themeDisplay.getPathThemeImages() %>/ratings/star_off.png" />
 							</div>
 						</td>

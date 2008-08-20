@@ -94,8 +94,9 @@
 <%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.DocumentConversionUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.PrefsPropsUtil" %>
-<%@ page import="com.liferay.util.TextFormatter" %>
+<%@ page import="com.liferay.util.MathUtil" %>
 <%@ page import="com.liferay.util.RSSUtil" %>
+<%@ page import="com.liferay.util.TextFormatter" %>
 
 <%@ page import="java.io.StringReader" %>
 
