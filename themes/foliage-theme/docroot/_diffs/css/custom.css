@@ -26,7 +26,6 @@ a:link, a:visited {
 
 #content-wrapper, #portlet-wrapper-sign-in {
 	background: white;
-	float: left;
 	overflow: hidden;
 	width: 100%;
 }
