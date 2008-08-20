@@ -61,11 +61,11 @@ public class StatusFinderImpl
 
 			SQLQuery q = session.createSQLQuery(sql);
 
-			q.addScalar("User_.userId", Type.LONG);
-			q.addScalar("Contact_.firstName", Type.STRING);
-			q.addScalar("Contact_.middleName", Type.STRING);
-			q.addScalar("Contact_.lastName", Type.STRING);
-			q.addScalar("User_.portraitId", Type.LONG);
+			q.addScalar("userId", Type.LONG);
+			q.addScalar("firstName", Type.STRING);
+			q.addScalar("middleName", Type.STRING);
+			q.addScalar("lastName", Type.STRING);
+			q.addScalar("portraitId", Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -94,11 +94,11 @@ public class StatusFinderImpl
 
 			SQLQuery q = session.createSQLQuery(sql);
 
-			q.addScalar("User_.userId", Type.LONG);
-			q.addScalar("Contact_.firstName", Type.STRING);
-			q.addScalar("Contact_.middleName", Type.STRING);
-			q.addScalar("Contact_.lastName", Type.STRING);
-			q.addScalar("User_.portraitId", Type.LONG);
+			q.addScalar("userId", Type.LONG);
+			q.addScalar("firstName", Type.STRING);
+			q.addScalar("middleName", Type.STRING);
+			q.addScalar("lastName", Type.STRING);
+			q.addScalar("portraitId", Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
