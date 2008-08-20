@@ -2,7 +2,7 @@ html {
 	overflow-y: scroll;
 }
 body {
-	background: #66719d center top repeat-y url(../images/custom/bck.gif);
+	background: #66719d center top no-repeat url(../images/custom/bckwrapper.gif);
 	color: #fff;
 	font-family: Arial;
 	font-size: 13px;
@@ -11,22 +11,22 @@ body {
 }
 #wrapper {
 	background: center top no-repeat url(../images/custom/bckwrapper.gif);
-	width: 1264px;
+	width:894px;
 	position: relative;
+	margin: 0 auto;
 }
 #banner {
 	background: black url(../images/custom/bckheader.jpg) no-repeat scroll center center;
 	font-family: Verdana;
 	height: 308px;
 	margin:0 auto;
-	width:894px;
 	position: relative;
 }
 #navigation {
 	background: none;
 	border: none;
 	margin: -230pt auto 280px;
-	width: 65%;
+	width:92%;
 	z-index: 82;
 }
 #navigation li {
@@ -64,10 +64,9 @@ body {
 }
 #content-wrapper {
 	background:black none repeat scroll 0% 0%;
-	border:4px solid black;
 	margin:-6px auto;
 	min-height:600px;
-	width:886px;
+	width:100%;
 }
 .js .interactive-mode {
 	right: 10%;
@@ -81,7 +80,7 @@ body {
 	background: black;
 	border: none;
 	color: #C49553;
-	font-size: 24px;
+	font-size:18px;
 }
 #banner .logo a {
 	margin-left:480px;
