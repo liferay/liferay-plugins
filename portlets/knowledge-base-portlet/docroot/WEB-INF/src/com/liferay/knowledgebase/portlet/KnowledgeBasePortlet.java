@@ -369,7 +369,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 				resourceRequest, "targetExtension");
 
 			String[] extensions = prefs.getValues(
-				"extensions", new String[] {});
+				"extensions", new String[] {"pdf"});
 
 			boolean convert = false;
 
