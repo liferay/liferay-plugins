@@ -17,6 +17,7 @@ body {
 #wrapper {
 	position: relative;
 	width:1062px;
+	margin: 0 auto;
 }
 #navigation {
 	background: #01B0F0 none repeat scroll 0% 0%;
