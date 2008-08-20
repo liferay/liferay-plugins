@@ -62,20 +62,22 @@ Liferay.KnowledgeBase = {
 			instance.loadBlankTemplate();
 		}
 		else {
-			jQuery.ajax({
-				url: instance.templateURL,
-				data: {
-					actionName: 'get_template',
-					templateResourcePrimKey: templateResourcePrimKey
-				},
-				dataType: 'json',
-				success: function(message) {
-					instance.templateContent.html(message.content);
+			jQuery.ajax(
+				{
+					url: instance.templateURL,
+					data: {
+						actionName: 'get_template',
+						templateResourcePrimKey: templateResourcePrimKey
+					},
+					dataType: 'json',
+					success: function(message) {
+						instance.templateContent.html(message.content);
 
-					instance.templateContent.show();
-					instance.applyTemplateButton.show();
+						instance.templateContent.show();
+						instance.applyTemplateButton.show();
+					}
 				}
-			});
+			);
 		}
 	},
 
@@ -96,24 +98,26 @@ Liferay.KnowledgeBase = {
 			{
 				rating: instance.score,
 				onComplete: function(rating) {
-					jQuery.ajax({
-						url: instance.feedbackURL,
-						data: {
-							actionName: 'feedback_score',
-							articleResourcePrimKey: instance.articleResourcePrimKey,
-							score: rating,
-							userId: instance.userId
-						},
-						dataType: 'json',
-						success: function(message) {
-							var entriesHtml = (message.totalScoreEntries == 1) ? instance.textAverage + ' (' + message.totalScoreEntries + ' ' + instance.textVote + ')' : instance.textAverage + ' (' + message.totalScoreEntries + ' ' + instance.textVotes + ')';
+					jQuery.ajax(
+						{
+							url: instance.feedbackURL,
+							data: {
+								actionName: 'feedback_score',
+								articleResourcePrimKey: instance.articleResourcePrimKey,
+								score: rating,
+								userId: instance.userId
+							},
+							dataType: 'json',
+							success: function(message) {
+								var entriesHtml = (message.totalScoreEntries == 1) ? instance.textAverage + ' (' + message.totalScoreEntries + ' ' + instance.textVote + ')' : instance.textAverage + ' (' + message.totalScoreEntries + ' ' + instance.textVotes + ')';
 
-							instance.totalEntries.html(entriesHtml);
-							instance.averageRating.removeAttr('onmousemove');
+								instance.totalEntries.html(entriesHtml);
+								instance.averageRating.removeAttr('onmousemove');
 
-							knowledgeBaseAverageRatingObj.display(message.averageScore);
+								knowledgeBaseAverageRatingObj.display(message.averageScore);
+							}
 						}
-					});
+					);
 				}
 			}
 		);
@@ -130,69 +134,73 @@ Liferay.KnowledgeBase = {
 	saveFeedbackComments: function() {
 		var instance = this;
 
-		jQuery.ajax({
-			url: instance.feedbackURL,
-			data: {
-				actionName: 'feedback_comments',
-				articleResourcePrimKey: instance.articleResourcePrimKey,
-				comments: instance.comments.val(),
-				userId: instance.userId
-			},
-			dataType: 'json',
-			success: function(message) {
-				instance.feedbackStatus.attr('class', 'portlet-msg-success');
-				instance.feedbackStatus.text(instance.textThanksComment);
+		jQuery.ajax(
+			{
+				url: instance.feedbackURL,
+				data: {
+					actionName: 'feedback_comments',
+					articleResourcePrimKey: instance.articleResourcePrimKey,
+					comments: instance.comments.val(),
+					userId: instance.userId
+				},
+				dataType: 'json',
+				success: function(message) {
+					instance.feedbackStatus.attr('class', 'portlet-msg-success');
+					instance.feedbackStatus.text(instance.textThanksComment);
 
-				instance.feedbackForm.hide();
+					instance.feedbackForm.hide();
+				}
 			}
-		});
+		);
 	},
 
 	saveFeedbackVote: function(vote) {
 		var instance = this;
 
-		jQuery.ajax({
-			url: instance.feedbackURL,
-			data: {
-				actionName: 'feedback_vote',
-				articleResourcePrimKey: instance.articleResourcePrimKey,
-				userId: instance.userId,
-				vote: vote
-			},
-			dataType: 'json',
-			success: function(message) {
-				var totalVotes = (message.totalVotes == 1) ? '(' + message.totalVotes + ' ' + instance.textVote + ')' : '(' + message.totalVotes + ' ' + instance.textVotes + ')';
-				var yesPercentage = parseInt((message.yesVotes / message.totalVotes) * 100);
-				var noPercentage = 100 - yesPercentage;
+		jQuery.ajax(
+			{
+				url: instance.feedbackURL,
+				data: {
+					actionName: 'feedback_vote',
+					articleResourcePrimKey: instance.articleResourcePrimKey,
+					userId: instance.userId,
+					vote: vote
+				},
+				dataType: 'json',
+				success: function(message) {
+					var totalVotes = (message.totalVotes == 1) ? '(' + message.totalVotes + ' ' + instance.textVote + ')' : '(' + message.totalVotes + ' ' + instance.textVotes + ')';
+					var yesPercentage = parseInt((message.yesVotes / message.totalVotes) * 100);
+					var noPercentage = 100 - yesPercentage;
 
-				instance.feedbackStatus.attr('class', 'portlet-msg-success');
-				instance.feedbackStatus.text(instance.textSuccess);
+					instance.feedbackStatus.attr('class', 'portlet-msg-success');
+					instance.feedbackStatus.text(instance.textSuccess);
 
-				instance.yesPercentage.text(yesPercentage + "%");
-				instance.noPercentage.text(noPercentage + "%");
-				instance.totalVotes.text(totalVotes);
+					instance.yesPercentage.text(yesPercentage + "%");
+					instance.noPercentage.text(noPercentage + "%");
+					instance.totalVotes.text(totalVotes);
 
-				if (vote == 1) {
-					instance.commentsMessage.text(instance.textYes);
+					if (vote == 1) {
+						instance.commentsMessage.text(instance.textYes);
+					}
+					else {
+						instance.commentsMessage.text(instance.textNo);
+					}
+
+					instance.feedbackStatus
+						.animate({opacity: 1.0}, 1500)
+						.fadeOut(
+							500,
+							function() {
+								instance.feedbackStatus.css({display: ''});
+								instance.feedbackStatus.attr('class', 'portlet-msg-info');
+								instance.feedbackStatus.text(instance.textThanksVote);
+							}
+						);
+
+					instance.ctrlHolderFeedbackComments.show();
 				}
-				else {
-					instance.commentsMessage.text(instance.textNo);
-				}
-
-				instance.feedbackStatus
-					.animate({opacity: 1.0}, 1500)
-					.fadeOut(
-						500,
-						function() {
-							instance.feedbackStatus.css({display: ''});
-							instance.feedbackStatus.attr('class', 'portlet-msg-info');
-							instance.feedbackStatus.text(instance.textThanksVote);
-						}
-					);
-
-				instance.ctrlHolderFeedbackComments.show();
 			}
-		});
+		);
 	},
 
 	updateLink: function() {
