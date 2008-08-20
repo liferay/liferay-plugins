@@ -21,18 +21,6 @@ body {
 	font: 62.5%/1.6em Tahoma, 'Lucida Sans Unicode', Lucida Grande, 'Lucida', Arial, 'Verdana', sans-serif;
 }
 
-.ie .tabs li {
-	line-height: 2.35;
-}
-
-.ie .tabs li.current {
-	top: 0.2em;
-}
-
-.ie6 .tabs li, .ie6 .tabs li.current {
-	background-image: none;
-}
-
 input[type="submit"], input[type="button"], input[type="reset"] {
 	background: #FAFAFA url('../images/custom/custom_back.png') repeat-x scroll 0;
 	border-color: #CCC rgb(153, 153, 153) rgb(153, 153, 153) rgb(204, 204, 204);
@@ -56,14 +44,27 @@ input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hove
 .js #add-page {
 	background: transparent none repeat scroll 0 0%;
 	border: medium none;
-	right: 15%;
-	top: 6px;
+}
+
+.ie.js #add-page {
+	position: absolute;
+	margin-left:927px;
+	margin-top: -30px;
 }
 
 .js #navigation .enter-page {
 	background: transparent url('../images/custom/custom_back.png') repeat scroll 0 0%;
 	padding: 5.5px;
 	margin-top:13px;
+}
+
+.ie.js #navigation .enter-page {
+	margin-top: 0px;
+}
+
+.ie.js #navigation .enter-page a {
+	margin-top: 5px;
+	position: absolute;
 }
 
 .js .interactive-mode .my-places li h3 {
@@ -132,6 +133,11 @@ input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hove
 	background: transparent;
 	border: none;
 	margin:-15px auto;
+	width: 100%;
+}
+
+.ie #navigation {
+	margin: 0 auto;
 }
 
 .portal-add-content {

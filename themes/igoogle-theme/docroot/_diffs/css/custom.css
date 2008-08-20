@@ -1,0 +1,3 @@
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	padding:1px;
+}
