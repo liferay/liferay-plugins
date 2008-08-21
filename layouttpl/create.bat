@@ -5,6 +5,8 @@ if "" == "%2" goto errorCreate
 
 call ant -Dlayouttpl.name=%1 -Dlayouttpl.display.name=%2 create
 
+cd %1-layouttpl
+
 call ant deploy
 
 cd ..
