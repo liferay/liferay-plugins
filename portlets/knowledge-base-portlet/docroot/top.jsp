@@ -48,13 +48,11 @@ boolean print = ParamUtil.getBoolean(request, Constants.PRINT);
 				<liferay-portlet:renderURLParams varImpl="searchURL" />
 				<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(currentURL) %>" />
 
-				<a href="<%= articlesURL.toString() %>"><liferay-ui:message key="all-articles" /></a>
+				<a href="<%= articlesURL.toString() %>"><liferay-ui:message key="all-articles" /></a>&nbsp;
 
-				&nbsp;
-
-				| <a href="<%= templatesURL.toString() %>"><liferay-ui:message key="templates" /></a>
-
-				&nbsp;
+				<c:if test='<%= themeDisplay.isSignedIn() %>'>
+					| <a href="<%= templatesURL.toString() %>"><liferay-ui:message key="templates" /></a>&nbsp;
+				</c:if>
 
 				<span class="nobr">
 					<input name="<portlet:namespace />keywords" size="30" type="text" value="<%= HtmlUtil.escape(keywords) %>" />
