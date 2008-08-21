@@ -17,7 +17,7 @@ cd ..
 
 cd ..
 
-call ant deploy
+rem call ant deploy
 
 cd ..
 

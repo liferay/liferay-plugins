@@ -29,6 +29,6 @@ cd ..
 
 cd ..
 
-ant deploy
+#ant deploy
 
 exit 0
