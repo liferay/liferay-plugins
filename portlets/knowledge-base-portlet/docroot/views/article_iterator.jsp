@@ -187,7 +187,12 @@ for (int i = 0; i < results.size(); i++) {
 		}
 	}
 	else {
-		row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/views/article_action.jsp", config.getServletContext(), request, response);
+		if (!themeDisplay.isSignedIn()) {
+			row.addText(StringPool.BLANK);
+		}
+		else {
+			row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/views/article_action.jsp", config.getServletContext(), request, response);
+		}
 	}
 
 	// Add result row
