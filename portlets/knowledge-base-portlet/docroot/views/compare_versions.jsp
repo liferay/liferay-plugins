@@ -52,6 +52,11 @@ List<DiffResult>[] diffResults = DiffUtil.diff(
 	new StringReader(sourceContent), new StringReader(targetContent));
 %>
 
+<liferay-ui:tabs
+	names="compare-versions"
+	backURL="<%= backURL %>"
+/>
+
 <liferay-ui:diff
 	sourceName="<%= article.getTitle() + StringPool.SPACE + sourceVersion %>"
 	targetName="<%= article.getTitle() + StringPool.SPACE + targetVersion %>"

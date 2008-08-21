@@ -45,52 +45,41 @@ request.setAttribute("article_iterator.type", "article_history");
 		submitForm(document.<portlet:namespace />fmCompare);
 	}
 
-	function <portlet:namespace />inactivateRowIds(element) {
+	function <portlet:namespace />initRowsChecked() {
 		var rowIds = jQuery('input[@name=<portlet:namespace />rowIds]');
 
 		var found = 0;
-		var totalChecked = jQuery('input[@name=<portlet:namespace />rowIds]:checked').length;
 
 		for (i = 0; i < rowIds.length; i++) {
 			if (rowIds[i].checked && (found < 2)) {
 				found++;
 			}
-			else if (totalChecked == 0) {
-
-				// Enable everything
-
+			else {
 				rowIds[i].checked = false;
-				rowIds[i].disabled = false;
 			}
-			else if ((found == 0) && (totalChecked == 1)) {
+		}
+	}
 
-				// Disable everything up to the first one
+	function <portlet:namespace />updateRowsChecked(element) {
+		var rowsChecked = jQuery('input[@name=<portlet:namespace />rowIds]:checked');
 
-				rowIds[i].checked = false;
-				rowIds[i].disabled = true;
+		if (rowsChecked.length > 2) {
+			if (rowsChecked[2] == element) {
+				rowsChecked[1].checked = false;
 			}
-			else if ((found == 1) && (totalChecked >= 1)) {
-
-				// Unselect everything after the first one
-
-				rowIds[i].checked = false;
-				rowIds[i].disabled = false;
-			}
-			else if ((found == 2) && (totalChecked >= 2)) {
-
-				// Disable elements after the second one
-
-				rowIds[i].checked = false;
-				rowIds[i].disabled = true;
+			else {
+				rowsChecked[2].checked = false;
 			}
 		}
 	}
 
 	jQuery(document).ready(
 		function() {
+			<portlet:namespace />initRowsChecked();
+
 			jQuery('input[@name=<portlet:namespace />rowIds]').click(
 				function() {
-					<portlet:namespace />inactivateRowIds(this);
+					<portlet:namespace />updateRowsChecked(this);
 				}
 			);
 		}
