@@ -50,6 +50,7 @@ else {
 		<portlet:renderURL var="editURL">
 			<portlet:param name="view" value="edit_article" />
 			<portlet:param name="tabs" value="edit" />
+			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 		</portlet:renderURL>
 

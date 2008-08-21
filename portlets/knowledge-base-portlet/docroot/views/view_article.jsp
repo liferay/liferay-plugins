@@ -174,7 +174,7 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 					<%= article.getContent() %>
 				</div>
 
-				<c:if test="<%= !print %>">
+				<c:if test="<%= !print && !article.isTemplate() %>">
 					<table border="0" cellpadding="0" cellspacing="0" class="taglib-ratings stars">
 					<tr>
 						<c:if test="<%= themeDisplay.isSignedIn() %>">
@@ -203,7 +203,7 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 					</table>
 				</c:if>
 
-				<c:if test="<%= !print %>">
+				<c:if test="<%= !print && !article.isTemplate() %>">
 					<div class="knowledge-base-feedback">
 						<liferay-ui:tabs names="feedback" />
 
@@ -440,23 +440,25 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 							</liferay-ui:icon-list>
 						</div>
 					</div>
-					<div class="side-box">
-						<div class="side-box-title"><liferay-ui:message key="user-opinions" /></div>
-						<div class="side-box-content">
-							<ul class="lfr-component">
-								<li>
-									<b><liferay-ui:message key="helpful" /></b>: <span id="<portlet:namespace />yesPercentage"><%= yesPercentage %>%</span>
-								</li>
-								<li>
-									<b><liferay-ui:message key="unhelpful" /></b>: <span id="<portlet:namespace />noPercentage"><%= noPercentage %>%</span>
-								</li>
-							</ul>
+					<c:if test="<%= !article.isTemplate() %>">
+						<div class="side-box">
+							<div class="side-box-title"><liferay-ui:message key="user-opinions" /></div>
+							<div class="side-box-content">
+								<ul class="lfr-component">
+									<li>
+										<b><liferay-ui:message key="helpful" /></b>: <span id="<portlet:namespace />yesPercentage"><%= yesPercentage %>%</span>
+									</li>
+									<li>
+										<b><liferay-ui:message key="unhelpful" /></b>: <span id="<portlet:namespace />noPercentage"><%= noPercentage %>%</span>
+									</li>
+								</ul>
 
-							<div class="total-votes" id="<portlet:namespace />totalVotes">
-								(<%= totalVotes %> <%= LanguageUtil.get(pageContext, totalVotes == 1 ? "vote" : "votes") %>)
+								<div class="total-votes" id="<portlet:namespace />totalVotes">
+									(<%= totalVotes %> <%= LanguageUtil.get(pageContext, totalVotes == 1 ? "vote" : "votes") %>)
+								</div>
 							</div>
 						</div>
-					</div>
+					</c:if>
 				</div>
 			</td>
 		</c:if>

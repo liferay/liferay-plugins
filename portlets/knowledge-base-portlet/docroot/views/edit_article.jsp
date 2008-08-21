@@ -221,7 +221,9 @@ ResourceURL templateURL = renderResponse.createResourceURL();
 
 			</select>
 
-			<input id="<portlet:namespace />applyTemplateButton" style="display: none;" type="button" value='<liferay-ui:message key="apply" />' onClick="<portlet:namespace />applyTemplate();" />
+			<span class="template-button-holder" id="<portlet:namespace />applyTemplateButton" style="display: none;">
+				<input type="button" value='<liferay-ui:message key="apply" />' onClick="<portlet:namespace />applyTemplate();" /><liferay-ui:icon-help message="applying-a-template-will-not-delete-any-previous-work-in-this-article" />
+			</span>
 		</td>
 	</tr>
 	<tr>

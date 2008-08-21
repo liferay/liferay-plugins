@@ -166,7 +166,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 			try {
 				notifySubscribers(article, prefs, themeDisplay, false);
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				throw new SystemException(e);
 			}
 		}
@@ -835,7 +836,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 			try {
 				notifySubscribers(article, prefs, themeDisplay, true);
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				throw new SystemException(e);
 			}
 		}
