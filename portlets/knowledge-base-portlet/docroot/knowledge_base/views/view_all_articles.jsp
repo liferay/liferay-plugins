@@ -28,12 +28,14 @@
 request.setAttribute("article_iterator.type", "all_articles");
 %>
 
+<h1 class="page-title">
+	<liferay-ui:message key="all-articles" />
+</h1>
+
 <c:if test="<%= KBPermission.contains(permissionChecker, plid, ActionKeys.ADD_ARTICLE) %>">
-	<div>
+	<div class="ctrl-holder-add-article">
 		<input type="button" value="<liferay-ui:message key="add-article" />" onClick="location.href = '<portlet:renderURL><portlet:param name="view" value="edit_article" /><portlet:param name="template" value="false" /><portlet:param name="redirect" value="<%= currentURL %>"></portlet:param></portlet:renderURL>'" />
 	</div>
 </c:if>
-
-<br />
 
 <jsp:include page="/knowledge_base/views/article_iterator.jsp" />

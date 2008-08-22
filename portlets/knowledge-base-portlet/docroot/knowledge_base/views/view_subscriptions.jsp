@@ -34,6 +34,10 @@ int subscribedArticleCount = KBArticleLocalServiceUtil.getSubscribedArticlesCoun
 request.setAttribute("article_iterator.type", "subscriptions");
 %>
 
+<h1 class="page-title">
+	<liferay-ui:message key="my-subscriptions" />
+</h1>
+
 <c:if test="<%= isSubscribedPortlet %>">
 
 	<%
@@ -83,9 +87,9 @@ request.setAttribute("article_iterator.type", "subscriptions");
 	%>
 
 	<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" paginate="true" />
-</c:if>
 
-<br />
+	<br />
+</c:if>
 
 <c:if test="<%= (subscribedArticleCount > 0) || !isSubscribedPortlet %>">
 	<jsp:include page="/knowledge_base/views/article_iterator.jsp" />

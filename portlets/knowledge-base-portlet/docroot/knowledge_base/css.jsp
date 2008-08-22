@@ -153,6 +153,10 @@
 	font-weight: bold;
 }
 
+.portlet-knowledge-base .ctrl-holder-add-article, .portlet-knowledge-base .ctrl-holder-add-template {
+	margin: 15px 0pt;
+}
+
 .portlet-knowledge-base .article-actions {
 	margin-top: 15px;
 }
@@ -199,6 +203,12 @@
 
 .portlet-knowledge-base .knowledge-base-feedback {
 	margin: 20px 0pt;
+}
+
+.portlet-knowledge-base .page-title {
+	border-bottom: 1px solid #AAA;
+	margin: 0pt 0pt 15px;
+	padding-bottom: 5px;
 }
 
 .portlet-knowledge-base .popup-print {
