@@ -39,6 +39,9 @@ else if (type.equals("article_history")) {
 	portletURL.setParameter("view", "view_article_history");
 	portletURL.setParameter("tabs", "history");
 }
+else if (type.equals("subscriptions")) {
+	portletURL.setParameter("view", "view_subscriptions");
+}
 else if (type.equals("templates")) {
 	portletURL.setParameter("view", "view_templates");
 }
@@ -58,7 +61,7 @@ if (type.equals("article_history")) {
 
 headerNames.add("author");
 
-if (type.endsWith("_articles")) {
+if (type.endsWith("_articles") || type.equals("subscriptions")) {
 	headerNames.add("views");
 }
 
@@ -69,6 +72,9 @@ String emptyResultsMessage = null;
 
 if (type.equals("all_articles")) {
 	emptyResultsMessage = "there-are-no-knowledge-base-articles";
+}
+else if (type.equals("subscriptions")) {
+	emptyResultsMessage = "you-are-not-subscribed-to-any-knowledge-base-articles";
 }
 else if (type.equals("templates")) {
 	emptyResultsMessage = "there-are-no-knowledge-base-templates";
@@ -93,6 +99,10 @@ if (type.equals("all_articles")) {
 else if (type.equals("article_history")) {
 	total = KBArticleLocalServiceUtil.getArticlesCount(article.getResourcePrimKey());
 	results = KBArticleLocalServiceUtil.getArticles(article.getResourcePrimKey(), searchContainer.getStart(), searchContainer.getEnd(), new ArticleVersionComparator());
+}
+else if (type.equals("subscriptions")) {
+	total = KBArticleLocalServiceUtil.getSubscribedArticlesCount(themeDisplay.getUserId(), portletGroupId);
+	results = KBArticleLocalServiceUtil.getSubscribedArticles(themeDisplay.getUserId(), portletGroupId, searchContainer.getStart(), searchContainer.getEnd());
 }
 else if (type.equals("templates")) {
 	total = KBArticleLocalServiceUtil.getArticlesCount(themeDisplay.getUserId(), portletGroupId, true, true, false);
@@ -166,7 +176,7 @@ for (int i = 0; i < results.size(); i++) {
 
 	// Views
 
-	if (type.endsWith("_articles")) {
+	if (type.endsWith("_articles") || type.equals("subscriptions")) {
 		TagsAsset asset = TagsAssetLocalServiceUtil.getAsset(KBArticle.class.getName(), curArticle.getResourcePrimKey());
 
 		row.addText(String.valueOf(asset.getViewCount()), rowURL);

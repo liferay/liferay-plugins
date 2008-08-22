@@ -227,6 +227,16 @@ public interface KBArticleLocalService {
 		boolean template, boolean draft)
 		throws com.liferay.portal.SystemException;
 
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getSubscribedArticles(
+		long userId, long groupId) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getSubscribedArticles(
+		long userId, long groupId, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public int getSubscribedArticlesCount(long userId, long groupId)
+		throws com.liferay.portal.SystemException;
+
 	public void reIndex(java.lang.String[] ids)
 		throws com.liferay.portal.SystemException;
 

@@ -155,17 +155,6 @@
 	padding: 0.3em 1em;
 }
 
-.portlet-knowledge-base .article-old-version a {
-	color: #ff9933;
-}
-
-.portlet-knowledge-base .article-old-version {
-	color: #FF9933;
-	line-height: 1.2em;
-	margin: -1em 0pt 1.4em 0em;
-	width: auto;
-}
-
 .portlet-knowledge-base .article-redirect {
 	color: #7D7D7D;
 	cursor: pointer;
@@ -192,6 +181,14 @@
 
 .portlet-knowledge-base .ratings-label {
 	padding: 0pt 20px 0pt 0pt;
+}
+
+.portlet-knowledge-base .search-button-holder {
+	margin-left: 5px;
+}
+
+.portlet-knowledge-base .selected-top-link {
+	text-decoration: none;
 }
 
 .portlet-knowledge-base .side-boxes {

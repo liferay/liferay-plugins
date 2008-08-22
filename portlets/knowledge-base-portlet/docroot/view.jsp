@@ -30,7 +30,7 @@ long entryId = ParamUtil.getLong(request, "entryId");
 
 String isViewableArticle = (String) request.getAttribute("isViewableArticle");
 
-String[] supportedViews = {"compare_versions", "edit_article", "edit_article_attachment", "view_all_articles", "view_article", "view_article_attachments", "view_article_history", "view_tagged_articles", "view_templates", "search", };
+String[] supportedViews = {"compare_versions", "edit_article", "edit_article_attachment", "view_all_articles", "view_article", "view_article_attachments", "view_article_history", "view_subscriptions", "view_tagged_articles", "view_templates", "search", };
 
 if (isViewableArticle.equals("false")) {
 	view = "view_all_articles";

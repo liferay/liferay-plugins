@@ -29,12 +29,22 @@ package com.liferay.knowledgebase.service.persistence;
  *
  */
 public interface KBArticleFinder {
+	public int countByS_U_G(long userId, long groupId)
+		throws com.liferay.portal.SystemException;
+
 	public int countByU_G_H_T_D(long userId, long groupId, boolean head,
 		boolean template, boolean draft)
 		throws com.liferay.portal.SystemException;
 
 	public int countByU_R_H_D(long userId, long resourcePrimKey, boolean head,
 		boolean draft) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByS_U_G(
+		long userId, long groupId) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByS_U_G(
+		long userId, long groupId, int start, int end)
+		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByU_G_H_T_D(
 		long userId, long groupId, boolean head, boolean template, boolean draft)

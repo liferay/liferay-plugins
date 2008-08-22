@@ -26,16 +26,25 @@
 
 <%
 boolean print = ParamUtil.getBoolean(request, Constants.PRINT);
+
+String view = ParamUtil.getString(request, "view", "view_all_articles");
 %>
 
 <c:if test="<%= !print %>">
 	<%
 	String keywords = ParamUtil.getString(request, "keywords");
 
+	// Portlet URLs
+
 	PortletURL articlesURL = renderResponse.createRenderURL();
 
 	PortletURL templatesURL = renderResponse.createRenderURL();
+
 	templatesURL.setParameter("view", "view_templates");
+
+	PortletURL subscriptionsURL = renderResponse.createRenderURL();
+
+	subscriptionsURL.setParameter("view", "view_subscriptions");
 	%>
 
 	<div class="top-links">
@@ -48,13 +57,42 @@ boolean print = ParamUtil.getBoolean(request, Constants.PRINT);
 				<liferay-portlet:renderURLParams varImpl="searchURL" />
 				<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(currentURL) %>" />
 
-				<a href="<%= articlesURL.toString() %>"><liferay-ui:message key="all-articles" /></a>&nbsp;
+				<a
+					href="<%= articlesURL.toString() %>"
+					<c:if test='<%= view.equals("view_all_articles") && themeDisplay.isSignedIn() %>'>
+						class="selected-top-link"
+					</c:if>
+				>
+					<liferay-ui:message key="all-articles" />
+				</a>
 
-				<c:if test='<%= themeDisplay.isSignedIn() %>'>
-					| <a href="<%= templatesURL.toString() %>"><liferay-ui:message key="templates" /></a>&nbsp;
+				<c:if test="<%= KBPermission.contains(permissionChecker, plid, KnowledgeBaseKeys.MANAGE_TEMPLATES) %>">
+					&nbsp;|&nbsp;
+
+					<a
+						href="<%= templatesURL.toString() %>"
+						<c:if test='<%= view.equals("view_templates") %>'>
+							class="selected-top-link"
+						</c:if>
+					>
+						<liferay-ui:message key="templates" />
+					</a>
 				</c:if>
 
-				<span class="nobr">
+				<c:if test='<%= themeDisplay.isSignedIn() %>'>
+					&nbsp;|&nbsp;
+
+					<a
+						href="<%= subscriptionsURL.toString() %>"
+						<c:if test='<%= view.equals("view_subscriptions") %>'>
+							class="selected-top-link"
+						</c:if>
+					>
+						<liferay-ui:message key="my-subscriptions" />
+					</a>
+				</c:if>
+
+				<span class="search-button-holder">
 					<input name="<portlet:namespace />keywords" size="30" type="text" value="<%= HtmlUtil.escape(keywords) %>" />
 
 					<input type="submit" value="<liferay-ui:message key="search" />" />

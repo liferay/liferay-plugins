@@ -1,6 +1,22 @@
 <?xml version="1.0"?>
 
 <custom-sql>
+	<sql id="com.liferay.knowledgebase.service.persistence.KBArticleFinder.countByS_U_G">
+		<![CDATA[
+			SELECT
+				COUNT(DISTINCT KB_KBArticle.resourcePrimKey) AS COUNT_VALUE
+			FROM
+				KB_KBArticle
+			INNER JOIN
+				Subscription ON
+					(Subscription.classNameId = ?) AND
+					(Subscription.classPK = KB_KBArticle.resourcePrimKey)
+			WHERE
+				(KB_KBArticle.groupId = ?) AND
+				(KB_KBArticle.head = true) AND
+				(Subscription.userId = ?)
+		]]>
+	</sql>
 	<sql id="com.liferay.knowledgebase.service.persistence.KBArticleFinder.countByU_G_H_T_D">
 		<![CDATA[
 			SELECT
@@ -30,6 +46,25 @@
 					(userId = ?) OR
 					(draft = ?)
 				)
+		]]>
+	</sql>
+	<sql id="com.liferay.knowledgebase.service.persistence.KBArticleFinder.findByS_U_G">
+		<![CDATA[
+			SELECT
+				DISTINCT {KB_KBArticle.*}
+			FROM
+				KB_KBArticle
+			INNER JOIN
+				Subscription ON
+					(Subscription.classNameId = ?) AND
+					(Subscription.classPK = KB_KBArticle.resourcePrimKey)
+			WHERE
+				(KB_KBArticle.groupId = ?) AND
+				(KB_KBArticle.head = true) AND
+				(Subscription.userId = ?)
+			ORDER BY
+				title ASC,
+				version ASC
 		]]>
 	</sql>
 	<sql id="com.liferay.knowledgebase.service.persistence.KBArticleFinder.findByU_G_H_T_D">

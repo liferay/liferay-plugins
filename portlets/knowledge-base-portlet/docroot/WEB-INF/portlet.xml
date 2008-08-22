@@ -33,7 +33,7 @@
 		<supported-public-render-parameter>entryId</supported-public-render-parameter>
 	</portlet>
 	<public-render-parameter>
-   		<identifier>entryId</identifier>
-   		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:entryId</qname>
-   </public-render-parameter>
+		<identifier>entryId</identifier>
+		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:entryId</qname>
+	</public-render-parameter>
 </portlet-app>

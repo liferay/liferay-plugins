@@ -29,6 +29,11 @@ package com.liferay.knowledgebase.service.persistence;
  *
  */
 public class KBArticleFinderUtil {
+	public static int countByS_U_G(long userId, long groupId)
+		throws com.liferay.portal.SystemException {
+		return getFinder().countByS_U_G(userId, groupId);
+	}
+
 	public static int countByU_G_H_T_D(long userId, long groupId, boolean head,
 		boolean template, boolean draft)
 		throws com.liferay.portal.SystemException {
@@ -39,6 +44,17 @@ public class KBArticleFinderUtil {
 	public static int countByU_R_H_D(long userId, long resourcePrimKey,
 		boolean head, boolean draft) throws com.liferay.portal.SystemException {
 		return getFinder().countByU_R_H_D(userId, resourcePrimKey, head, draft);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByS_U_G(
+		long userId, long groupId) throws com.liferay.portal.SystemException {
+		return getFinder().findByS_U_G(userId, groupId);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByS_U_G(
+		long userId, long groupId, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getFinder().findByS_U_G(userId, groupId, start, end);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> findByU_G_H_T_D(

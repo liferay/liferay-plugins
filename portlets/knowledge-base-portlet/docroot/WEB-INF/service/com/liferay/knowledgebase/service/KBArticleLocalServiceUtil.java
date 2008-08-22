@@ -325,6 +325,22 @@ public class KBArticleLocalServiceUtil {
 		return _service.getArticlesCount(userId, groupId, head, template, draft);
 	}
 
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getSubscribedArticles(
+		long userId, long groupId) throws com.liferay.portal.SystemException {
+		return _service.getSubscribedArticles(userId, groupId);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getSubscribedArticles(
+		long userId, long groupId, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return _service.getSubscribedArticles(userId, groupId, start, end);
+	}
+
+	public static int getSubscribedArticlesCount(long userId, long groupId)
+		throws com.liferay.portal.SystemException {
+		return _service.getSubscribedArticlesCount(userId, groupId);
+	}
+
 	public static void reIndex(java.lang.String[] ids)
 		throws com.liferay.portal.SystemException {
 		_service.reIndex(ids);

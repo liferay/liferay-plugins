@@ -160,8 +160,8 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 </h1>
 
 <c:if test="<%= !article.isHead() %>">
-	<div class="article-old-version">
-		(<liferay-ui:message key="you-are-viewing-an-archived-version-of-this-article" /> (<%= article.getVersion() %>), <a href="<%= viewArticleURL %>"><liferay-ui:message key="go-to-the-latest-version" /></a>)
+	<div class="portlet-msg-info">
+		<liferay-ui:message key="you-are-viewing-an-archived-version-of-this-article" />&nbsp;&nbsp;<a href="<%= viewArticleURL %>"><liferay-ui:message key="go-to-the-latest-version" /></a>
 	</div>
 </c:if>
 
@@ -174,7 +174,7 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 					<%= article.getContent() %>
 				</div>
 
-				<c:if test="<%= !print && !article.isTemplate() %>">
+				<c:if test="<%= !print && !article.isDraft() && article.isHead() && !article.isTemplate() %>">
 					<table border="0" cellpadding="0" cellspacing="0" class="taglib-ratings stars">
 					<tr>
 						<c:if test="<%= themeDisplay.isSignedIn() %>">
@@ -201,9 +201,6 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 						</td>
 					</tr>
 					</table>
-				</c:if>
-
-				<c:if test="<%= !print && !article.isTemplate() %>">
 					<div class="knowledge-base-feedback">
 						<liferay-ui:tabs names="feedback" />
 
@@ -337,7 +334,7 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 							</ul>
 						</div>
 					</div>
-					<c:if test="<%= !article.isTemplate() %>">
+					<c:if test="<%= !article.isDraft() && article.isHead() && !article.isTemplate() %>">
 						<div class="side-box">
 							<div class="side-box-title"><liferay-ui:message key="attachments" /></div>
 							<div class="side-box-content">
@@ -349,13 +346,13 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 						<div class="side-box-title"><liferay-ui:message key="actions" /></div>
 						<div class="side-box-content">
 							<liferay-ui:icon-list>
-								<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
+								<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) && article.isHead() %>">
 									<liferay-ui:icon image="edit" label="<%= true %>" url="<%= editArticleURL.toString() %>" />
 								</c:if>
 
 								<liferay-ui:icon image="print" label="<%= true %>" message="print" url='<%= "javascript: " + renderResponse.getNamespace() + "printArticle();" %>' />
 
-								<c:if test="<%= !article.isTemplate() %>">
+								<c:if test="<%= !article.isDraft() && article.isHead() && !article.isTemplate() %>">
 
 									<%
 									String[] displayRSSTypes = prefs.getValues("displayRSSTypes", new String[] {rss20});
@@ -399,7 +396,7 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 									}
 									%>
 
-									<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
+									<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) && !article.isDraft() && article.isHead() && !article.isTemplate() %>">
 										<c:choose>
 											<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), resourcePrimKey) %>">
 												<portlet:actionURL var="unsubscribeURL">
@@ -425,7 +422,7 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 
 								<liferay-ui:icon image="history" method="get" url="<%= viewHistoryURL.toString() %>" label="<%= true %>" />
 
-								<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) %>">
+								<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) && article.isHead() %>">
 
 									<%
 									PortletURL deleteArticleURL = renderResponse.createActionURL();
@@ -440,7 +437,7 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 							</liferay-ui:icon-list>
 						</div>
 					</div>
-					<c:if test="<%= !article.isTemplate() %>">
+					<c:if test="<%= !article.isDraft() && article.isHead() && !article.isTemplate() %>">
 						<div class="side-box">
 							<div class="side-box-title"><liferay-ui:message key="user-opinions" /></div>
 							<div class="side-box-content">

@@ -654,6 +654,25 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			userId, groupId, head, template, draft);
 	}
 
+	public List<KBArticle> getSubscribedArticles(long userId, long groupId)
+		throws SystemException {
+
+		return kbArticleFinder.findByS_U_G(userId, groupId);
+	}
+
+	public List<KBArticle> getSubscribedArticles(
+			long userId, long groupId, int start, int end)
+		throws SystemException {
+
+		return kbArticleFinder.findByS_U_G(userId, groupId, start, end);
+	}
+
+	public int getSubscribedArticlesCount(long userId, long groupId)
+		throws SystemException {
+
+		return kbArticleFinder.countByS_U_G(userId, groupId);
+	}
+
 	public void reIndex(String[] ids) throws SystemException {
 		if (SearchEngineUtil.isIndexReadOnly()) {
 			return;
