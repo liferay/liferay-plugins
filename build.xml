@@ -45,6 +45,7 @@
 			fork="true"
 			newenvironment="true"
 		>
+			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 			<jvmarg value="-Dplugins.dir=${project.dir}" />
 		</java>
 
@@ -54,6 +55,7 @@
 			fork="true"
 			newenvironment="true"
 		>
+			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 			<arg value="${project.dir}/summary.xml" />
 			<arg value="${project.dir}/summary.xsl" />
 			<arg value="${project.dir}/summary.html" />

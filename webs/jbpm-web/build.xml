@@ -11,6 +11,7 @@
 			maxmemory="256m"
 			newenvironment="true"
 		>
+			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 			<arg value="hypersonic" />
 			<arg value="jbpm" />
 			<arg value="docroot/WEB-INF/sql/hsqldb.create.sql" />

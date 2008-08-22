@@ -83,7 +83,9 @@ ECJ was automatically installed. Please rerun your task.
 			classpathref="portal.classpath"
 			fork="true"
 			newenvironment="true"
-		/>
+		>
+			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+		</java>
 
 		<delete file="ServiceBuilder.temp" />
 	</target>
@@ -96,6 +98,7 @@ ECJ was automatically installed. Please rerun your task.
 			maxmemory="256m"
 			newenvironment="true"
 		>
+			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 			<jvmarg value="-Dplugins.env.dir=." />
 			<jvmarg value="-Dplugins.env.svn=${svn.enabled}" />
 			<jvmarg value="-Dplugins.env.eclipse=true" />
@@ -110,6 +113,7 @@ ECJ was automatically installed. Please rerun your task.
 			maxmemory="256m"
 			newenvironment="true"
 		>
+			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 			<jvmarg value="-Dplugins.env.dir=." />
 			<jvmarg value="-Dplugins.env.svn=${svn.enabled}" />
 			<jvmarg value="-Dplugins.env.eclipse=false" />
