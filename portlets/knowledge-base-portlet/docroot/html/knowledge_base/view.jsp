@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ include file="/init.jsp" %>
+<%@ include file="/html/knowledge_base/init.jsp" %>
 
 <%
 String view = ParamUtil.getString(request, "view", "view_all_articles");
@@ -44,7 +44,7 @@ if (Validator.isNotNull(entryId)) {
 	view = "view_tagged_articles";
 }
 
-_log.info("Including view: " + "/" + view + ".jsp");
+_log.info("Including view: " + "/html/knowledge_base/" + view + ".jsp");
 %>
 
 <c:if test='<%= isViewableArticle.equals("false") %>'>
@@ -53,10 +53,10 @@ _log.info("Including view: " + "/" + view + ".jsp");
 	</div>
 </c:if>
 
-<jsp:include page="/top.jsp" />
+<jsp:include page="/html/knowledge_base/top.jsp" />
 
-<jsp:include page='<%= "/views/" + view + ".jsp" %>' flush="true" />
+<jsp:include page='<%= "/html/knowledge_base/views/" + view + ".jsp" %>' flush="true" />
 
 <%!
-private static Log _log = LogFactoryUtil.getLog("knowledge-base-portlet.view.jsp");
+private static Log _log = LogFactoryUtil.getLog("knowledge-base-portlet.docroot.html.knowledge_base.view.jsp");
 %>

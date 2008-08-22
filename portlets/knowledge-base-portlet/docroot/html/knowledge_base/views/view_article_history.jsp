@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ include file="/init.jsp" %>
+<%@ include file="/html/knowledge_base/init.jsp" %>
 
 <%
 request.setAttribute("article_iterator.type", "article_history");
@@ -86,6 +86,6 @@ request.setAttribute("article_iterator.type", "article_history");
 	);
 </script>
 
-<jsp:include page="/views/article_tabs.jsp" />
+<jsp:include page="/html/knowledge_base/views/article_tabs.jsp" />
 
-<jsp:include page="/views/article_iterator.jsp" />
+<jsp:include page="/html/knowledge_base/views/article_iterator.jsp" />

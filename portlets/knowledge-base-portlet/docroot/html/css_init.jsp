@@ -22,9 +22,31 @@
  */
 %>
 
-<%@ include file="/init.jsp" %>
+<%@ page import="com.liferay.portal.kernel.servlet.HttpHeaders" %>
+<%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="com.liferay.portal.model.Theme" %>
+<%@ page import="com.liferay.portal.service.ThemeLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.util.PortalUtil" %>
 
-<liferay-ui:tabs names="error" backURL="javascript: history.go(-1);" />
+<%
+long companyId = PortalUtil.getCompanyId(request);
 
-<liferay-ui:error exception="<%= NoSuchArticleException.class %>" message="the-article-could-not-be-found" />
-<liferay-ui:error exception="<%= PrincipalException.class %>" message="you-do-not-have-the-required-permissions" />
+String themeId = ParamUtil.getString(request, "themeId");
+
+Theme theme = ThemeLocalServiceUtil.getTheme(companyId, themeId, false);
+
+String themeContextPath = PortalUtil.getPathContext();
+
+if (theme.isWARFile()) {
+	themeContextPath = theme.getContextPath();
+}
+
+String cdnHost = PortalUtil.getCDNHost();
+
+String themeImagesPath = cdnHost + themeContextPath + theme.getImagesPath();
+
+response.addHeader(HttpHeaders.CACHE_CONTROL, "max-age=172801, public");
+response.addHeader(HttpHeaders.CONTENT_TYPE, ContentTypes.TEXT_CSS);
+response.addHeader(HttpHeaders.EXPIRES, "172801");
+%>

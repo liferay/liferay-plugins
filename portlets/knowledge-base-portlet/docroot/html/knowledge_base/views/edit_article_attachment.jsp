@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ include file="/init.jsp" %>
+<%@ include file="/html/knowledge_base/init.jsp" %>
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
@@ -46,7 +46,7 @@ KBArticle article = (KBArticle)request.getAttribute(KnowledgeBaseKeys.ARTICLE);
 	);
 </script>
 
-<jsp:include page="/views/article_tabs.jsp" />
+<jsp:include page="/html/knowledge_base/views/article_tabs.jsp" />
 
 <form action="<portlet:actionURL><portlet:param name="actionName" value="addFile" /><portlet:param name="redirect" value="<%= HtmlUtil.escape(redirect) %>" /></portlet:actionURL>" class="uni-form" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm">
 <input name="<portlet:namespace />resourcePrimKey" type="hidden" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />

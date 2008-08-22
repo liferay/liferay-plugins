@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ include file="/init.jsp" %>
+<%@ include file="/html/knowledge_base/init.jsp" %>
 
 <%
 boolean isSubscribedPortlet = SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), portletGroupId);
@@ -75,7 +75,7 @@ request.setAttribute("article_iterator.type", "subscriptions");
 
 	// Action
 
-	row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/views/portlet_action.jsp", config.getServletContext(), request, response);
+	row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/html/knowledge_base/views/portlet_action.jsp", config.getServletContext(), request, response);
 
 	// Add result row
 
@@ -88,5 +88,5 @@ request.setAttribute("article_iterator.type", "subscriptions");
 <br />
 
 <c:if test="<%= (subscribedArticleCount > 0) || !isSubscribedPortlet %>">
-	<jsp:include page="/views/article_iterator.jsp" />
+	<jsp:include page="/html/knowledge_base/views/article_iterator.jsp" />
 </c:if>

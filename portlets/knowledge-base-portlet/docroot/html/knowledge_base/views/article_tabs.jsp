@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ include file="/init.jsp" %>
+<%@ include file="/html/knowledge_base/init.jsp" %>
 
 <%
 KBArticle article = (KBArticle) request.getAttribute(KnowledgeBaseKeys.ARTICLE);

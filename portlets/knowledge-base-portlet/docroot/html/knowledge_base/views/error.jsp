@@ -22,41 +22,9 @@
  */
 %>
 
-<%@ include file="/init.jsp" %>
+<%@ include file="/html/knowledge_base/init.jsp" %>
 
-<%
-long entryId = ParamUtil.getLong(renderRequest, "entryId");
+<liferay-ui:tabs names="error" backURL="javascript: history.go(-1);" />
 
-String name = null;
-String description = null;
-
-try {
-	TagsEntry tagsEntry = TagsEntryLocalServiceUtil.getEntry(entryId);
-
-	name = tagsEntry.getName();
-
-	TagsProperty tagsProperty = TagsPropertyLocalServiceUtil.getProperty(tagsEntry.getEntryId(), "description");
-
-	description = tagsProperty.getValue();
-}
-catch (NoSuchEntryException nsee) {
-}
-catch (NoSuchPropertyException nspe) {
-}
-%>
-
-<h1 class="article-title">
-	<%= LanguageUtil.format(pageContext, "articles-with-tag-x", name) %>
-</h1>
-
-<c:if test="<%= Validator.isNotNull(description) %>">
-	<p class="tag-description">
-		<%= description %>
-	</p>
-</c:if>
-
-<%
-request.setAttribute("article_iterator.type", "tagged_articles");
-%>
-
-<jsp:include page="/views/article_iterator.jsp" />
+<liferay-ui:error exception="<%= NoSuchArticleException.class %>" message="the-article-could-not-be-found" />
+<liferay-ui:error exception="<%= PrincipalException.class %>" message="you-do-not-have-the-required-permissions" />

@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ include file="/init.jsp" %>
+<%@ include file="/html/knowledge_base/init.jsp" %>
 
 <%
 KBArticle article = (KBArticle)request.getAttribute(KnowledgeBaseKeys.ARTICLE);
@@ -90,14 +90,14 @@ for (int i = 0; i < results.size(); i++) {
 
 	// Action
 
-	row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/views/article_attachment_action.jsp", config.getServletContext(), request, response);
+	row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/html/knowledge_base/views/article_attachment_action.jsp", config.getServletContext(), request, response);
 
 	// Add result row
 
 	resultRows.add(row);
 }
 %>
-<jsp:include page="/views/article_tabs.jsp" />
+<jsp:include page="/html/knowledge_base/views/article_tabs.jsp" />
 
 <c:if test="<%= KBArticlePermission.contains(permissionChecker, article.getResourcePrimKey(), ActionKeys.UPDATE) %>">
 	<div>
