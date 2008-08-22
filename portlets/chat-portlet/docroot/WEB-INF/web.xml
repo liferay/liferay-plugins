@@ -13,4 +13,8 @@
 	<listener>
 		<listener-class>com.liferay.portal.kernel.spring.context.PortletContextLoaderListener</listener-class>
 	</listener>
+	<taglib>
+		<taglib-uri>http://java.sun.com/jstl/core_rt</taglib-uri>
+		<taglib-location>/WEB-INF/tld/c-rt.tld</taglib-location>
+	</taglib>
 </web-app>
