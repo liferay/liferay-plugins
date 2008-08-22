@@ -23,30 +23,34 @@
 %>
 
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
+<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.portal.model.Portlet" %>
 <%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
 
 <liferay-theme:defineObjects />
 
-<%
-Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletDisplay.getId());
-%>
+<c:if test="<%= themeDisplay.isSignedIn() %>">
 
-<link href="<%= request.getContextPath() %>/css.jsp?themeId=<%= themeDisplay.getTheme().getThemeId() %>&amp;colorSchemeId=<%= themeDisplay.getColorScheme().getColorSchemeId() %>&amp;t=<%= portlet.getTimestamp() %>" rel="stylesheet" type="text/css" />
+	<%
+	Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletDisplay.getId());
+	%>
 
-<script src="<%= request.getContextPath() %>/javascript.js?t=<%= portlet.getTimestamp() %>" type="text/javascript"></script>
+	<link href="<%= request.getContextPath() %>/css.jsp?themeId=<%= themeDisplay.getTheme().getThemeId() %>&amp;colorSchemeId=<%= themeDisplay.getColorScheme().getColorSchemeId() %>&amp;t=<%= portlet.getTimestamp() %>" rel="stylesheet" type="text/css" />
 
-<ul class="chat-bar">
-	<div class="hidden-sound"></div>
+	<script src="<%= request.getContextPath() %>/javascript.js?t=<%= portlet.getTimestamp() %>" type="text/javascript"></script>
 
-	<li class="item">
-		<a class="item-link" href="javascript: ;">Chat (0)</a>
+	<ul class="chat-bar">
+		<div class="hidden-sound"></div>
 
-		<div class="popup">
-			<div id="buddy-list">
-				<ul class="chat-popup"></ul>
+		<li class="item">
+			<a class="item-link" href="javascript: ;"><liferay-ui:message key="chat" /> (0)</a>
+
+			<div class="popup">
+				<div id="buddy-list">
+					<ul class="chat-popup"></ul>
+				</div>
 			</div>
-		</div>
-	</li>
-</ul>
+		</li>
+	</ul>
+</c:if>
