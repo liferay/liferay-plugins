@@ -16,5 +16,4 @@
 			<param name="lang.file" value="Language" />
 		</antcall>
 	</target>
-
 </project>
