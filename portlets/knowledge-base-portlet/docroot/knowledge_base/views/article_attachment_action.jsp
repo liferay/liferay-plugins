@@ -22,41 +22,26 @@
  */
 %>
 
-<%@ include file="/html/knowledge_base/init.jsp" %>
+<%@ include file="/knowledge_base/init.jsp" %>
 
 <%
-long entryId = ParamUtil.getLong(renderRequest, "entryId");
+ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
-String name = null;
-String description = null;
+Object[] objArray = (Object[])row.getObject();
 
-try {
-	TagsEntry tagsEntry = TagsEntryLocalServiceUtil.getEntry(entryId);
-
-	name = tagsEntry.getName();
-
-	TagsProperty tagsProperty = TagsPropertyLocalServiceUtil.getProperty(tagsEntry.getEntryId(), "description");
-
-	description = tagsProperty.getValue();
-}
-catch (NoSuchEntryException nsee) {
-}
-catch (NoSuchPropertyException nspe) {
-}
+KBArticle article = (KBArticle)objArray[0];
+String fileName = (String)objArray[1];
 %>
 
-<h1 class="article-title">
-	<%= LanguageUtil.format(pageContext, "articles-with-tag-x", name) %>
-</h1>
+<liferay-ui:icon-menu>
+	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) %>">
+		<portlet:actionURL var="deleteURL">
+			<portlet:param name="actionName" value="deleteAttachment" />
+			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+			<portlet:param name="fileName" value="<%= fileName %>" />
+		</portlet:actionURL>
 
-<c:if test="<%= Validator.isNotNull(description) %>">
-	<p class="tag-description">
-		<%= description %>
-	</p>
-</c:if>
-
-<%
-request.setAttribute("article_iterator.type", "tagged_articles");
-%>
-
-<jsp:include page="/html/knowledge_base/views/article_iterator.jsp" />
+		<liferay-ui:icon-delete url="<%= deleteURL %>" />
+	</c:if>
+</liferay-ui:icon-menu>

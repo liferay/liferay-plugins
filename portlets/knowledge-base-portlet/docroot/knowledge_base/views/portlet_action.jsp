@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ include file="/html/knowledge_base/init.jsp" %>
+<%@ include file="/knowledge_base/init.jsp" %>
 
 <liferay-ui:icon-menu>
 

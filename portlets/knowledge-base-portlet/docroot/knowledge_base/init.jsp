@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ include file="/html/init.jsp" %>
+<%@ include file="/init.jsp" %>
 
 <%
 PortletPreferences prefs = renderRequest.getPreferences();

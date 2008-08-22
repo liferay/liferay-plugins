@@ -22,9 +22,23 @@
  */
 %>
 
-<%@ include file="/html/knowledge_base/init.jsp" %>
+<%@ include file="/knowledge_base/init.jsp" %>
 
-<liferay-ui:tabs names="error" backURL="javascript: history.go(-1);" />
+<%
+ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
-<liferay-ui:error exception="<%= NoSuchArticleException.class %>" message="the-article-could-not-be-found" />
-<liferay-ui:error exception="<%= PrincipalException.class %>" message="you-do-not-have-the-required-permissions" />
+KBArticle article = (KBArticle)row.getObject();
+%>
+
+<liferay-ui:icon-menu>
+	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
+		<portlet:actionURL var="revertURL">
+			<portlet:param name="actionName" value="<%= Constants.REVERT %>" />
+			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+			<portlet:param name="version" value="<%= String.valueOf(article.getVersion()) %>" />
+		</portlet:actionURL>
+
+		<liferay-ui:icon image="undo" message="revert" url="<%= revertURL %>" />
+	</c:if>
+</liferay-ui:icon-menu>

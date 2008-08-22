@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ include file="/html/knowledge_base/init.jsp" %>
+<%@ include file="/knowledge_base/init.jsp" %>
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
@@ -92,7 +92,7 @@ ResourceURL templateURL = renderResponse.createResourceURL();
 </script>
 
 <c:if test="<%= article != null %>">
-	<jsp:include page="/html/knowledge_base/views/article_tabs.jsp">
+	<jsp:include page="/knowledge_base/views/article_tabs.jsp">
 		<jsp:param name="tabs1" value="edit" />
 	</jsp:include>
 </c:if>

@@ -22,18 +22,41 @@
  */
 %>
 
-<%@ include file="/html/knowledge_base/init.jsp" %>
+<%@ include file="/knowledge_base/init.jsp" %>
 
 <%
-request.setAttribute("article_iterator.type", "all_articles");
+long entryId = ParamUtil.getLong(renderRequest, "entryId");
+
+String name = null;
+String description = null;
+
+try {
+	TagsEntry tagsEntry = TagsEntryLocalServiceUtil.getEntry(entryId);
+
+	name = tagsEntry.getName();
+
+	TagsProperty tagsProperty = TagsPropertyLocalServiceUtil.getProperty(tagsEntry.getEntryId(), "description");
+
+	description = tagsProperty.getValue();
+}
+catch (NoSuchEntryException nsee) {
+}
+catch (NoSuchPropertyException nspe) {
+}
 %>
 
-<c:if test="<%= KBPermission.contains(permissionChecker, plid, ActionKeys.ADD_ARTICLE) %>">
-	<div>
-		<input type="button" value="<liferay-ui:message key="add-article" />" onClick="location.href = '<portlet:renderURL><portlet:param name="view" value="edit_article" /><portlet:param name="template" value="false" /><portlet:param name="redirect" value="<%= currentURL %>"></portlet:param></portlet:renderURL>'" />
-	</div>
+<h1 class="article-title">
+	<%= LanguageUtil.format(pageContext, "articles-with-tag-x", name) %>
+</h1>
+
+<c:if test="<%= Validator.isNotNull(description) %>">
+	<p class="tag-description">
+		<%= description %>
+	</p>
 </c:if>
 
-<br />
+<%
+request.setAttribute("article_iterator.type", "tagged_articles");
+%>
 
-<jsp:include page="/html/knowledge_base/views/article_iterator.jsp" />
+<jsp:include page="/knowledge_base/views/article_iterator.jsp" />

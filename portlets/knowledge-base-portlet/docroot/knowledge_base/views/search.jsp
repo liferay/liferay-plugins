@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ include file="/html/knowledge_base/init.jsp" %>
+<%@ include file="/knowledge_base/init.jsp" %>
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");

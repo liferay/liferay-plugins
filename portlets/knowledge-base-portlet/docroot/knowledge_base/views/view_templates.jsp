@@ -22,26 +22,18 @@
  */
 %>
 
-<%@ include file="/html/knowledge_base/init.jsp" %>
+<%@ include file="/knowledge_base/init.jsp" %>
 
 <%
-ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
-
-Object[] objArray = (Object[])row.getObject();
-
-KBArticle article = (KBArticle)objArray[0];
-String fileName = (String)objArray[1];
+request.setAttribute("article_iterator.type", "templates");
 %>
 
-<liferay-ui:icon-menu>
-	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) %>">
-		<portlet:actionURL var="deleteURL">
-			<portlet:param name="actionName" value="deleteAttachment" />
-			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-			<portlet:param name="fileName" value="<%= fileName %>" />
-		</portlet:actionURL>
+<c:if test="<%= KBPermission.contains(permissionChecker, plid, KnowledgeBaseKeys.MANAGE_TEMPLATES) %>">
+	<div>
+		<input type="button" value="<liferay-ui:message key="add-template" />" onClick="location.href = '<portlet:renderURL><portlet:param name="view" value="edit_article" /><portlet:param name="template" value="true" /><portlet:param name="redirect" value="<%= currentURL %>"></portlet:param></portlet:renderURL>'" /><liferay-ui:icon-help message="templates-are-generic-documents-that-can-be-used-to-quickly-create-new-articles-once-users-click-the-add-article-button-they-can-then-choose-a-template-to-use-for-their-article" />
+	</div>
+</c:if>
 
-		<liferay-ui:icon-delete url="<%= deleteURL %>" />
-	</c:if>
-</liferay-ui:icon-menu>
+<br />
+
+<jsp:include page="/knowledge_base/views/article_iterator.jsp" />

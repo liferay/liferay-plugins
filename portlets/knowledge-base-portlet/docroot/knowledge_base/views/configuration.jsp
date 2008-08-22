@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ include file="/html/knowledge_base/init.jsp" %>
+<%@ include file="/knowledge_base/init.jsp" %>
 
 <%
 String tabs2 = ParamUtil.getString(request, "tabs2", "export-settings");

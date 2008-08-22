@@ -22,18 +22,9 @@
  */
 %>
 
-<%@ include file="/html/knowledge_base/init.jsp" %>
+<%@ include file="/knowledge_base/init.jsp" %>
 
-<%
-request.setAttribute("article_iterator.type", "templates");
-%>
+<liferay-ui:tabs names="error" backURL="javascript: history.go(-1);" />
 
-<c:if test="<%= KBPermission.contains(permissionChecker, plid, KnowledgeBaseKeys.MANAGE_TEMPLATES) %>">
-	<div>
-		<input type="button" value="<liferay-ui:message key="add-template" />" onClick="location.href = '<portlet:renderURL><portlet:param name="view" value="edit_article" /><portlet:param name="template" value="true" /><portlet:param name="redirect" value="<%= currentURL %>"></portlet:param></portlet:renderURL>'" /><liferay-ui:icon-help message="templates-are-generic-documents-that-can-be-used-to-quickly-create-new-articles-once-users-click-the-add-article-button-they-can-then-choose-a-template-to-use-for-their-article" />
-	</div>
-</c:if>
-
-<br />
-
-<jsp:include page="/html/knowledge_base/views/article_iterator.jsp" />
+<liferay-ui:error exception="<%= NoSuchArticleException.class %>" message="the-article-could-not-be-found" />
+<liferay-ui:error exception="<%= PrincipalException.class %>" message="you-do-not-have-the-required-permissions" />

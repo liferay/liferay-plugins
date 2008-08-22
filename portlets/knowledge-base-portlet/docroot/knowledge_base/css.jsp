@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ include file="/html/css_init.jsp" %>
+<%@ include file="/css_init.jsp" %>
 
 .portlet-knowledge-base .knowledge-base-body pre {
 	background: white;

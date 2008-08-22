@@ -4,12 +4,12 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<icon>/html/knowledge_base/icon.png</icon>
+		<icon>/knowledge_base/icon.png</icon>
 		<configuration-action-class>com.liferay.knowledgebase.action.ConfigurationActionImpl</configuration-action-class>
 		<friendly-url-mapper-class>com.liferay.knowledgebase.portlet.KnowledgeBaseFriendlyURLMapper</friendly-url-mapper-class>
-		<header-portlet-css>/html/knowledge_base/css.jsp</header-portlet-css>
+		<header-portlet-css>/knowledge_base/css.jsp</header-portlet-css>
 		<header-portal-javascript>/html/js/misc/swfupload/swfupload.js</header-portal-javascript>
-		<header-portlet-javascript>/html/knowledge_base/packed.js</header-portlet-javascript>
+		<header-portlet-javascript>/knowledge_base/packed.js</header-portlet-javascript>
 		<css-class-wrapper>portlet-knowledge-base</css-class-wrapper>
 	</portlet>
 	<role-mapper>

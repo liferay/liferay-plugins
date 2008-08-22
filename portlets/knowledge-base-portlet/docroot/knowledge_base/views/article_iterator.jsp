@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ include file="/html/knowledge_base/init.jsp" %>
+<%@ include file="/knowledge_base/init.jsp" %>
 
 <%
 KBArticle article = (KBArticle) request.getAttribute(KnowledgeBaseKeys.ARTICLE);
@@ -193,7 +193,7 @@ for (int i = 0; i < results.size(); i++) {
 			row.addText(StringPool.BLANK);
 		}
 		else {
-			row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/html/knowledge_base/views/article_history_action.jsp", config.getServletContext(), request, response);
+			row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/knowledge_base/views/article_history_action.jsp", config.getServletContext(), request, response);
 		}
 	}
 	else {
@@ -201,7 +201,7 @@ for (int i = 0; i < results.size(); i++) {
 			row.addText(StringPool.BLANK);
 		}
 		else {
-			row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/html/knowledge_base/views/article_action.jsp", config.getServletContext(), request, response);
+			row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/knowledge_base/views/article_action.jsp", config.getServletContext(), request, response);
 		}
 	}
 

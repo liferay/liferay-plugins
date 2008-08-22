@@ -5,8 +5,8 @@
 
 	<target name="build-javascript">
 		<antcall target="build-javascript-cmd">
-			<param name="js.from.file" value="docroot/html/knowledge_base/unpacked.js" />
-			<param name="js.to.file" value="docroot/html/knowledge_base/packed.js" />
+			<param name="js.from.file" value="docroot/knowledge_base/unpacked.js" />
+			<param name="js.to.file" value="docroot/knowledge_base/packed.js" />
 		</antcall>
 	</target>
 

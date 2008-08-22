@@ -22,23 +22,18 @@
  */
 %>
 
-<%@ include file="/html/knowledge_base/init.jsp" %>
+<%@ include file="/knowledge_base/init.jsp" %>
 
 <%
-ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
-
-KBArticle article = (KBArticle)row.getObject();
+request.setAttribute("article_iterator.type", "all_articles");
 %>
 
-<liferay-ui:icon-menu>
-	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
-		<portlet:actionURL var="revertURL">
-			<portlet:param name="actionName" value="<%= Constants.REVERT %>" />
-			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-			<portlet:param name="version" value="<%= String.valueOf(article.getVersion()) %>" />
-		</portlet:actionURL>
+<c:if test="<%= KBPermission.contains(permissionChecker, plid, ActionKeys.ADD_ARTICLE) %>">
+	<div>
+		<input type="button" value="<liferay-ui:message key="add-article" />" onClick="location.href = '<portlet:renderURL><portlet:param name="view" value="edit_article" /><portlet:param name="template" value="false" /><portlet:param name="redirect" value="<%= currentURL %>"></portlet:param></portlet:renderURL>'" />
+	</div>
+</c:if>
 
-		<liferay-ui:icon image="undo" message="revert" url="<%= revertURL %>" />
-	</c:if>
-</liferay-ui:icon-menu>
+<br />
+
+<jsp:include page="/knowledge_base/views/article_iterator.jsp" />
