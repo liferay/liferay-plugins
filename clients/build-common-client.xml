@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+
+<project name="build-common-client">
+	<property name="project.dir" value="../.." />
+
+	<import file="../build-common-plugin.xml" />
+
+	<target name="clean">
+		<delete dir="classes" />
+		<delete file="${plugin.file}" />
+	</target>
+
+	<target name="compile">
+		<mkdir dir="classes" />
+
+		<copy todir="classes">
+			<fileset dir="src" excludes="**/*.java" />
+		</copy>
+
+		<path id="plugin-lib.classpath">
+			<pathelement location="classes" />
+		</path>
+
+		<if>
+			<equals arg1="${javac.compiler}" arg2="modern" />
+			<then>
+				<javac
+					classpathref="plugin.classpath"
+					compiler="${javac.compiler}"
+					debug="${javac.debug}"
+					deprecation="${javac.deprecation}"
+					destdir="classes"
+					fork="${javac.fork}"
+					memoryMaximumSize="${javac.memoryMaximumSize}"
+					nowarn="${javac.nowarn}"
+					srcdir="src"
+				/>
+			</then>
+			<else>
+				<javac
+					classpathref="plugin.classpath"
+					compiler="${javac.compiler}"
+					debug="${javac.debug}"
+					deprecation="${javac.deprecation}"
+					destdir="classes"
+					nowarn="${javac.nowarn}"
+					srcdir="src"
+				/>
+			</else>
+		</if>
+	</target>
+
+	<target name="jar" depends="compile">
+		<jar
+			basedir="classes"
+			jarfile="${plugin.file}"
+		/>
+	</target>
+
+	<target name="war">
+		<antcall target="jar" />
+	</target>
+</project>

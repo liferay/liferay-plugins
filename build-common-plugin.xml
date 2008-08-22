@@ -33,7 +33,15 @@
 		<antelope:substring beginindex="${plugin.name.beginindex}" />
 	</antelope:stringutil>
 
-	<property name="plugin.file" value="${project.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}.war" />
+	<if>
+		<antelope:endswith string="${plugin.name}" with="-client" />
+		<then>
+			<property name="plugin.file" value="${project.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}.jar" />
+		</then>
+		<else>
+			<property name="plugin.file" value="${project.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}.war" />
+		</else>
+	</if>
 
 	<target name="clean" description="clean">
 		<delete dir="docroot/WEB-INF/classes" />

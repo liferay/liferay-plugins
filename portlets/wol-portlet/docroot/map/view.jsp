@@ -94,26 +94,14 @@ else {
 					continue;
 				}
 
-				JSONObject ipGeocoderRequestJSON = JSONFactoryUtil.createJSONObject();
+				IPInfo ipInfo = IPGeocoderUtil.getIPInfo(mapUser.getLastLoginIP());
 
-				ipGeocoderRequestJSON.put("ipAddress", mapUser.getLastLoginIP());
-
-				String ipGeocoderResponse = MessageBusUtil.sendSynchronizedMessage(DestinationNames.IP_GEOCODER, ipGeocoderRequestJSON.toString());
-
-				if (ipGeocoderResponse == null) {
+				if (ipInfo == null) {
 					continue;
 				}
 
-				JSONObject ipGeocoderResponseJSON = JSONFactoryUtil.createJSONObject(ipGeocoderResponse);
-
-				JSONObject ipInfoJSON = ipGeocoderResponseJSON.getJSONObject("ipInfo");
-
-				if (ipInfoJSON == null) {
-					continue;
-				}
-
-				float latitude = GetterUtil.getFloat(ipInfoJSON.getString("latitude"));
-				float longitude = GetterUtil.getFloat(ipInfoJSON.getString("longitude"));
+				float latitude = ipInfo.getLatitude();
+				float longitude = ipInfo.getLongitude();
 
 				if ((latitude == 0) && (longitude == 0)) {
 					continue;

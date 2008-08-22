@@ -23,6 +23,16 @@
 		<ant dir="${module.name}" target="compile" inheritAll="false" />
 	</target>
 
+	<target name="jar">
+		<antcall target="loop-modules">
+			<param name="loop.modules.cmd" value="jar-module" />
+		</antcall>
+	</target>
+
+	<target name="jar-module">
+		<ant dir="${module.name}" target="jar" inheritAll="false" />
+	</target>
+
 	<target name="war">
 		<antcall target="loop-modules">
 			<param name="loop.modules.cmd" value="war-module" />
