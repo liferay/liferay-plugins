@@ -20,7 +20,7 @@
 		</guest-unsupported>
 	</portlet-resource>
 	<model-resource>
-		<model-name>com.liferay.knowledgebase.model.KBArticle</model-name>
+		<model-name>com.liferay.kb.knowledgebase.model.KBArticle</model-name>
 		<portlet-ref>
 			<portlet-name>1</portlet-name>
 		</portlet-ref>

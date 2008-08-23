@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <custom-sql>
-	<sql id="com.liferay.knowledgebase.service.persistence.KBArticleFinder.countByS_U_G">
+	<sql id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.countByS_U_G">
 		<![CDATA[
 			SELECT
 				COUNT(DISTINCT KB_KBArticle.resourcePrimKey) AS COUNT_VALUE
@@ -17,7 +17,7 @@
 				(Subscription.userId = ?)
 		]]>
 	</sql>
-	<sql id="com.liferay.knowledgebase.service.persistence.KBArticleFinder.countByU_G_H_T_D">
+	<sql id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.countByU_G_H_T_D">
 		<![CDATA[
 			SELECT
 				COUNT(*) AS COUNT_VALUE
@@ -33,7 +33,7 @@
 				)
 		]]>
 	</sql>
-	<sql id="com.liferay.knowledgebase.service.persistence.KBArticleFinder.countByU_R_H_D">
+	<sql id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.countByU_R_H_D">
 		<![CDATA[
 			SELECT
 				COUNT(*) AS COUNT_VALUE
@@ -48,7 +48,7 @@
 				)
 		]]>
 	</sql>
-	<sql id="com.liferay.knowledgebase.service.persistence.KBArticleFinder.findByS_U_G">
+	<sql id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.findByS_U_G">
 		<![CDATA[
 			SELECT
 				DISTINCT {KB_KBArticle.*}
@@ -67,7 +67,7 @@
 				version ASC
 		]]>
 	</sql>
-	<sql id="com.liferay.knowledgebase.service.persistence.KBArticleFinder.findByU_G_H_T_D">
+	<sql id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.findByU_G_H_T_D">
 		<![CDATA[
 			SELECT
 				{KB_KBArticle.*}
@@ -86,7 +86,7 @@
 				version ASC
 		]]>
 	</sql>
-	<sql id="com.liferay.knowledgebase.service.persistence.KBArticleFinder.findByU_R_H_D">
+	<sql id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.findByU_R_H_D">
 		<![CDATA[
 			SELECT
 				{KB_KBArticle.*}
