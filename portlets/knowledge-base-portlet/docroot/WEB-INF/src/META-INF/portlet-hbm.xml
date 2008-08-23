@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
-	<class name="com.liferay.knowledgebase.model.impl.KBArticleImpl" table="KB_KBArticle">
+	<class name="com.liferay.kb.knowledgebase.model.impl.KBArticleImpl" table="KB_KBArticle">
 		<cache usage="read-write" />
 		<id name="articleId" type="long">
 			<generator class="assigned" />
@@ -23,7 +23,7 @@
 		<property name="template" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="draft" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
-	<class name="com.liferay.knowledgebase.model.impl.KBArticleResourceImpl" table="KB_KBArticleResource">
+	<class name="com.liferay.kb.knowledgebase.model.impl.KBArticleResourceImpl" table="KB_KBArticleResource">
 		<cache usage="read-write" />
 		<id name="resourcePrimKey" type="long">
 			<generator class="assigned" />
@@ -35,7 +35,7 @@
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="com.liferay.knowledgebase.model.impl.KBFeedbackEntryImpl" table="KB_KBFeedbackEntry">
+	<class name="com.liferay.kb.knowledgebase.model.impl.KBFeedbackEntryImpl" table="KB_KBFeedbackEntry">
 		<cache usage="read-write" />
 		<id name="feedbackEntryId" type="long">
 			<generator class="assigned" />
@@ -49,7 +49,7 @@
 		<property name="score" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="vote" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
-	<class name="com.liferay.knowledgebase.model.impl.KBFeedbackStatsImpl" table="KB_KBFeedbackStats">
+	<class name="com.liferay.kb.knowledgebase.model.impl.KBFeedbackStatsImpl" table="KB_KBFeedbackStats">
 		<cache usage="read-write" />
 		<id name="feedbackStatsId" type="long">
 			<generator class="assigned" />

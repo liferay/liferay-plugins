@@ -26,6 +26,7 @@ import com.liferay.kb.knowledgebase.NoSuchArticleResourceException;
 import com.liferay.kb.knowledgebase.model.KBArticleResource;
 import com.liferay.kb.knowledgebase.model.impl.KBArticleResourceImpl;
 import com.liferay.kb.knowledgebase.model.impl.KBArticleResourceModelImpl;
+
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;

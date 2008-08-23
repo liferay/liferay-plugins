@@ -24,6 +24,7 @@ package com.liferay.kb.knowledgebase.model.impl;
 
 import com.liferay.kb.knowledgebase.model.KBFeedbackEntry;
 import com.liferay.kb.knowledgebase.model.KBFeedbackEntrySoap;
+
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;

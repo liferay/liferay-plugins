@@ -24,6 +24,7 @@ package com.liferay.kb.knowledgebase.service.base;
 
 import com.liferay.counter.service.CounterLocalService;
 import com.liferay.counter.service.CounterService;
+
 import com.liferay.kb.knowledgebase.model.KBArticleResource;
 import com.liferay.kb.knowledgebase.service.KBArticleLocalService;
 import com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService;
@@ -35,11 +36,13 @@ import com.liferay.kb.knowledgebase.service.persistence.KBArticlePersistence;
 import com.liferay.kb.knowledgebase.service.persistence.KBArticleResourcePersistence;
 import com.liferay.kb.knowledgebase.service.persistence.KBFeedbackEntryPersistence;
 import com.liferay.kb.knowledgebase.service.persistence.KBFeedbackStatsPersistence;
+
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+
 import com.liferay.util.bean.PortletBeanLocatorUtil;
 
 import java.util.List;

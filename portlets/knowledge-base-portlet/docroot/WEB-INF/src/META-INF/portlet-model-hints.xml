@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <model-hints>
-	<model name="com.liferay.knowledgebase.model.KBArticle">
+	<model name="com.liferay.kb.knowledgebase.model.KBArticle">
 		<field name="uuid" type="String" />
 		<field name="articleId" type="long" />
 		<field name="groupId" type="long" />
@@ -29,7 +29,7 @@
 		<field name="template" type="boolean" />
 		<field name="draft" type="boolean" />
 	</model>
-	<model name="com.liferay.knowledgebase.model.KBArticleResource">
+	<model name="com.liferay.kb.knowledgebase.model.KBArticleResource">
 		<field name="resourcePrimKey" type="long" />
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
@@ -38,7 +38,7 @@
 		<field name="createDate" type="Date" />
 		<field name="title" type="String" />
 	</model>
-	<model name="com.liferay.knowledgebase.model.KBFeedbackEntry">
+	<model name="com.liferay.kb.knowledgebase.model.KBFeedbackEntry">
 		<field name="feedbackEntryId" type="long" />
 		<field name="articleResourcePrimKey" type="long" />
 		<field name="userId" type="long" />
@@ -52,7 +52,7 @@
 		<field name="score" type="int" />
 		<field name="vote" type="int" />
 	</model>
-	<model name="com.liferay.knowledgebase.model.KBFeedbackStats">
+	<model name="com.liferay.kb.knowledgebase.model.KBFeedbackStats">
 		<field name="feedbackStatsId" type="long" />
 		<field name="articleResourcePrimKey" type="long" />
 		<field name="averageScore" type="double" />

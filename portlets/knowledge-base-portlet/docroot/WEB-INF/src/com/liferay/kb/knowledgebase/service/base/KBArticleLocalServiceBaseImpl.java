@@ -24,8 +24,10 @@ package com.liferay.kb.knowledgebase.service.base;
 
 import com.liferay.counter.service.CounterLocalService;
 import com.liferay.counter.service.CounterService;
+
 import com.liferay.documentlibrary.service.DLLocalService;
 import com.liferay.documentlibrary.service.DLService;
+
 import com.liferay.kb.knowledgebase.model.KBArticle;
 import com.liferay.kb.knowledgebase.service.KBArticleLocalService;
 import com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService;
@@ -36,6 +38,7 @@ import com.liferay.kb.knowledgebase.service.persistence.KBArticlePersistence;
 import com.liferay.kb.knowledgebase.service.persistence.KBArticleResourcePersistence;
 import com.liferay.kb.knowledgebase.service.persistence.KBFeedbackEntryPersistence;
 import com.liferay.kb.knowledgebase.service.persistence.KBFeedbackStatsPersistence;
+
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.InitializingBean;
@@ -58,6 +61,7 @@ import com.liferay.portal.service.persistence.PortletPreferencesPersistence;
 import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.SubscriptionPersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
+
 import com.liferay.portlet.messageboards.service.MBMessageLocalService;
 import com.liferay.portlet.messageboards.service.MBMessageService;
 import com.liferay.portlet.messageboards.service.persistence.MBMessagePersistence;
@@ -67,6 +71,7 @@ import com.liferay.portlet.tags.service.TagsEntryLocalService;
 import com.liferay.portlet.tags.service.TagsEntryService;
 import com.liferay.portlet.tags.service.persistence.TagsAssetPersistence;
 import com.liferay.portlet.tags.service.persistence.TagsEntryPersistence;
+
 import com.liferay.util.bean.PortletBeanLocatorUtil;
 
 import java.util.List;
