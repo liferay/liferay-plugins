@@ -82,7 +82,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 			{ "minorEdit", new Integer(Types.BOOLEAN) },
 			
 
-			{ "content", new Integer(Types.VARCHAR) },
+			{ "content", new Integer(Types.CLOB) },
 			
 
 			{ "description", new Integer(Types.VARCHAR) },
@@ -96,7 +96,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 
 			{ "draft", new Integer(Types.BOOLEAN) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KB_KBArticle (uuid_ VARCHAR(75) null,articleId LONG not null primary key,groupId LONG,resourcePrimKey LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,modifiedDate DATE null,title VARCHAR(75) null,version DOUBLE,minorEdit BOOLEAN,content VARCHAR(75) null,description VARCHAR(75) null,head BOOLEAN,template BOOLEAN,draft BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table KB_KBArticle (uuid_ VARCHAR(75) null,articleId LONG not null primary key,groupId LONG,resourcePrimKey LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,modifiedDate DATE null,title VARCHAR(100) null,version DOUBLE,minorEdit BOOLEAN,content TEXT null,description STRING null,head BOOLEAN,template BOOLEAN,draft BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table KB_KBArticle";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";

@@ -76,7 +76,7 @@ public class KBFeedbackEntryModelImpl extends BaseModelImpl {
 
 			{ "vote", new Integer(Types.INTEGER) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KB_KBFeedbackEntry (feedbackEntryId LONG not null primary key,articleResourcePrimKey LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,comments VARCHAR(75) null,score INTEGER,vote INTEGER)";
+	public static final String TABLE_SQL_CREATE = "create table KB_KBFeedbackEntry (feedbackEntryId LONG not null primary key,articleResourcePrimKey LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,comments STRING null,score INTEGER,vote INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table KB_KBFeedbackEntry";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
