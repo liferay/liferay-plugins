@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Knowledge Base</display-name>
-		<portlet-class>com.liferay.knowledgebase.portlet.KnowledgeBasePortlet</portlet-class>
+		<portlet-class>com.liferay.kb.knowledgebase.portlet.KnowledgeBasePortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/knowledge_base/view.jsp</value>
