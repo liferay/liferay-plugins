@@ -24,7 +24,6 @@ package com.liferay.kb.knowledgebase.service.impl;
 
 import com.liferay.kb.knowledgebase.model.KBArticleResource;
 import com.liferay.kb.knowledgebase.service.base.KBArticleResourceLocalServiceBaseImpl;
-
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 

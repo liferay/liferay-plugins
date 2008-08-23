@@ -29,7 +29,6 @@ import com.liferay.kb.knowledgebase.service.base.KBArticleServiceBaseImpl;
 import com.liferay.kb.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.kb.knowledgebase.service.permission.KBPermission;
 import com.liferay.kb.knowledgebase.util.comparator.ArticleModifiedDateComparator;
-
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -47,7 +46,6 @@ import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-
 import com.liferay.util.RSSUtil;
 
 import com.sun.syndication.feed.synd.SyndContent;

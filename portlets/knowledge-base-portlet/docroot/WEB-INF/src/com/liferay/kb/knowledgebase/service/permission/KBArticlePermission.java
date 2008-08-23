@@ -25,7 +25,6 @@ package com.liferay.kb.knowledgebase.service.permission;
 import com.liferay.kb.knowledgebase.NoSuchArticleException;
 import com.liferay.kb.knowledgebase.model.KBArticle;
 import com.liferay.kb.knowledgebase.service.KBArticleLocalServiceUtil;
-
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.security.auth.PrincipalException;

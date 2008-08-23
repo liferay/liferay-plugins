@@ -23,7 +23,6 @@
 package com.liferay.kb.knowledgebase.portlet;
 
 import com.liferay.kb.knowledgebase.KnowledgeBaseKeys;
-
 import com.liferay.portal.kernel.portlet.BaseFriendlyURLMapper;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.util.GetterUtil;

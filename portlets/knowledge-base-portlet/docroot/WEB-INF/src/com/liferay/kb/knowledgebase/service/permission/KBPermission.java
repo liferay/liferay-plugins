@@ -23,7 +23,6 @@
 package com.liferay.kb.knowledgebase.service.permission;
 
 import com.liferay.kb.knowledgebase.KnowledgeBaseKeys;
-
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.security.auth.PrincipalException;
@@ -34,6 +33,7 @@ import com.liferay.portal.service.permission.PortletPermissionUtil;
  * <a href="KBPermission.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
+ *
  */
 public class KBPermission {
 

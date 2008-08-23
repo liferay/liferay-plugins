@@ -26,7 +26,6 @@ import com.liferay.documentlibrary.DuplicateDirectoryException;
 import com.liferay.documentlibrary.DuplicateFileException;
 import com.liferay.documentlibrary.NoSuchDirectoryException;
 import com.liferay.documentlibrary.NoSuchFileException;
-
 import com.liferay.kb.knowledgebase.ArticleTitleException;
 import com.liferay.kb.knowledgebase.ArticleVersionException;
 import com.liferay.kb.knowledgebase.KnowledgeBaseKeys;
@@ -37,9 +36,7 @@ import com.liferay.kb.knowledgebase.portlet.KnowledgeBaseFriendlyURLMapper;
 import com.liferay.kb.knowledgebase.service.base.KBArticleLocalServiceBaseImpl;
 import com.liferay.kb.knowledgebase.util.Indexer;
 import com.liferay.kb.knowledgebase.util.comparator.ArticleModifiedDateComparator;
-
 import com.liferay.mail.service.MailServiceUtil;
-
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.mail.MailMessage;
@@ -68,7 +65,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
-
 import com.liferay.util.MathUtil;
 
 import java.rmi.RemoteException;

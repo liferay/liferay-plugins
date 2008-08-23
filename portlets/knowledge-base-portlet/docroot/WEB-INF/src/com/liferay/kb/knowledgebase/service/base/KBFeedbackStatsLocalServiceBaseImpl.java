@@ -33,12 +33,10 @@ import com.liferay.kb.knowledgebase.service.persistence.KBArticlePersistence;
 import com.liferay.kb.knowledgebase.service.persistence.KBArticleResourcePersistence;
 import com.liferay.kb.knowledgebase.service.persistence.KBFeedbackEntryPersistence;
 import com.liferay.kb.knowledgebase.service.persistence.KBFeedbackStatsPersistence;
-
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-
 import com.liferay.util.bean.PortletBeanLocatorUtil;
 
 import java.util.List;

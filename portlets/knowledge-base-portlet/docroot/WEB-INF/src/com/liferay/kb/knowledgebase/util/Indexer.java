@@ -25,7 +25,6 @@ package com.liferay.kb.knowledgebase.util;
 import com.liferay.kb.knowledgebase.KnowledgeBaseKeys;
 import com.liferay.kb.knowledgebase.model.KBArticle;
 import com.liferay.kb.knowledgebase.service.KBArticleLocalServiceUtil;
-
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;

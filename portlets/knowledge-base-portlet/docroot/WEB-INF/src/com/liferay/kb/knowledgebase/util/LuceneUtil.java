@@ -23,7 +23,6 @@
 package com.liferay.kb.knowledgebase.util;
 
 import com.liferay.portal.kernel.util.Validator;
-
 import com.liferay.util.lucene.KeywordsUtil;
 
 import org.apache.commons.logging.Log;

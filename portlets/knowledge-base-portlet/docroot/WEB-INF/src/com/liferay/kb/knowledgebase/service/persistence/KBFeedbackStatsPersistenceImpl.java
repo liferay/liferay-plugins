@@ -26,7 +26,6 @@ import com.liferay.kb.knowledgebase.NoSuchFeedbackStatsException;
 import com.liferay.kb.knowledgebase.model.KBFeedbackStats;
 import com.liferay.kb.knowledgebase.model.impl.KBFeedbackStatsImpl;
 import com.liferay.kb.knowledgebase.model.impl.KBFeedbackStatsModelImpl;
-
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;

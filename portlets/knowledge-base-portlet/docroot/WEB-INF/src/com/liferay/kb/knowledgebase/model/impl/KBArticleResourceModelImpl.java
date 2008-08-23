@@ -24,7 +24,6 @@ package com.liferay.kb.knowledgebase.model.impl;
 
 import com.liferay.kb.knowledgebase.model.KBArticleResource;
 import com.liferay.kb.knowledgebase.model.KBArticleResourceSoap;
-
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;

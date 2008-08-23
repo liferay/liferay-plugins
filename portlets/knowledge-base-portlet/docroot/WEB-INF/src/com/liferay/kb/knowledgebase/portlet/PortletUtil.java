@@ -30,7 +30,6 @@ import com.liferay.kb.knowledgebase.model.KBFeedbackStats;
 import com.liferay.kb.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalServiceUtil;
 import com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalServiceUtil;
-
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;

@@ -23,11 +23,9 @@
 package com.liferay.kb.knowledgebase.service.impl;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
-
 import com.liferay.kb.knowledgebase.NoSuchFeedbackStatsException;
 import com.liferay.kb.knowledgebase.model.KBFeedbackStats;
 import com.liferay.kb.knowledgebase.service.base.KBFeedbackStatsLocalServiceBaseImpl;
-
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 

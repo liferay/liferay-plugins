@@ -24,9 +24,7 @@ package com.liferay.kb.knowledgebase.model.impl;
 
 import com.liferay.documentlibrary.NoSuchDirectoryException;
 import com.liferay.documentlibrary.service.DLServiceUtil;
-
 import com.liferay.kb.knowledgebase.model.KBArticle;
-
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.model.CompanyConstants;

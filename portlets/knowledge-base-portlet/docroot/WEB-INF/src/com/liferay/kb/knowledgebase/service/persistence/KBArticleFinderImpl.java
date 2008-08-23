@@ -24,7 +24,6 @@ package com.liferay.kb.knowledgebase.service.persistence;
 
 import com.liferay.kb.knowledgebase.model.KBArticle;
 import com.liferay.kb.knowledgebase.model.impl.KBArticleImpl;
-
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -33,7 +32,6 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.util.PortalUtil;
-
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.Iterator;

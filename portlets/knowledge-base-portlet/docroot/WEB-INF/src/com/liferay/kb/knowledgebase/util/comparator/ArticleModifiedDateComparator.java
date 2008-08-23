@@ -23,7 +23,6 @@
 package com.liferay.kb.knowledgebase.util.comparator;
 
 import com.liferay.kb.knowledgebase.model.KBArticle;
-
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 

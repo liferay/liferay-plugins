@@ -23,7 +23,6 @@
 package com.liferay.kb.knowledgebase.portlet;
 
 import com.liferay.documentlibrary.service.DLLocalServiceUtil;
-
 import com.liferay.kb.knowledgebase.ArticleTitleException;
 import com.liferay.kb.knowledgebase.ArticleVersionException;
 import com.liferay.kb.knowledgebase.KnowledgeBaseKeys;
@@ -33,7 +32,6 @@ import com.liferay.kb.knowledgebase.model.KBFeedbackStats;
 import com.liferay.kb.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalServiceUtil;
 import com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalServiceUtil;
-
 import com.liferay.portal.kernel.bean.BeanParamUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -58,14 +56,12 @@ import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-
 import com.liferay.portlet.tags.EntryNameException;
 import com.liferay.portlet.tags.model.TagsEntry;
 import com.liferay.portlet.tags.model.TagsEntryConstants;
 import com.liferay.portlet.tags.model.TagsVocabulary;
 import com.liferay.portlet.tags.service.TagsEntryServiceUtil;
 import com.liferay.portlet.tags.service.TagsVocabularyServiceUtil;
-
 import com.liferay.util.MathUtil;
 import com.liferay.util.RSSUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
