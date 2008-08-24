@@ -41,12 +41,6 @@ body #content-wrapper {
 	position: relative;
 }
 
-#banner .logo a {
-	background:transparent url(/image/company_logo?img_id=0&t=1218751542693) no-repeat scroll 0 0 !important;
-	margin-top:20px;
-	position:absolute;
-}
-
 #banner h1.logo {
 	background: none;
 	margin: 0;
