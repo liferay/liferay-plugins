@@ -58,7 +58,7 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	margin: 0;
 	position: absolute;
 	right:-32px;
-	top:23px;
+	top:18px;
 }
 
 .ie.js #navigation .enter-page .save-page {
@@ -66,13 +66,14 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 }
 
 .js #navigation .enter-page a:hover {
-	color: black;
+	color: white;
 	padding: 0;
 	background: transparent;
 }
 
 .js #navigation .enter-page {
 	background-color: transparent;
+	margin-top:-4px;
 }
 
 .js .interactive-mode {
@@ -131,7 +132,7 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	list-style-image: url('../images/custom/li.png');
 }
 
-#navigation ul li:hover, #navigation ul li.selected:hover {
+#navigation ul li a:hover, #navigation ul li.selected a:hover {
 	background: #FFF url('../images/custom/a_hover.png');
 }
 
@@ -157,6 +158,11 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 
 .portlet {
 	padding: 32px 16px;
+}
+
+.portlet-topper {
+	background: #94AE62 url(../images/custom/menu.png) repeat scroll 0 0;
+	border: none;
 }
 
 #wrapper {

@@ -68,6 +68,8 @@ body {
 
 .js #navigation .enter-page {
 	border-right: 1px solid #AFBEC7;
+	margin-right:60px;
+	margin-top:4px;
 }
 
 .js .interactive-mode {
