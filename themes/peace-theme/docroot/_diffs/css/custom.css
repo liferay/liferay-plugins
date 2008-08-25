@@ -52,12 +52,24 @@ input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hove
 }
 
 #navigation li {
-	background: transparent url(../images/custom/nav.png) repeat;
-	border: none;
+	background:transparent url(../images/navigation/bg.png) repeat scroll 0 0;	border: none;
 	display: inline;
 	float: left;
 	margin-right: 0.5em;
 	position: relative;
+}
+
+.js #navigation .enter-page {
+	background-color:transparent;
+	padding:1px 10px;
+}
+
+.js #add-page a span {
+	color:white;
+}
+
+#navigation li a span {
+	padding:5px 10px;
 }
 
 #navigation li.selected a span {
@@ -69,6 +81,11 @@ input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hove
 	color: #369;
 }
 
+input.focus, textarea.focus, .ie6 input.focus, .ie6 textarea.focus {
+	background: transparent;
+	border: 1px solid #000000;
+}
+
 #navigation li.selected {
 	border-top: 3px solid #283E57;
 	font-size: 1.3em;
@@ -78,6 +95,7 @@ input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hove
 #navigation {
 	background: transparent;
 	border: none;
+	margin:35px auto;
 }
 
 .portlet-topper {

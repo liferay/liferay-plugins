@@ -22,13 +22,13 @@
 }
 
 .js #add-page {
-	background: #fff;
-	padding: 13px;
+	background:transparent url(../images/navigation/bg.png) repeat scroll 0 0;
+	padding: 5px;
 }
 
 .js #navigation .enter-page {
 	background-color: trasnparent;
-	padding: 6px 2px;
+	padding:1px 10px;
 }
 
 .js .ineractive-mode {
@@ -54,7 +54,7 @@
 }
 
 #navigation li a {
-	padding: 5px 10px;
+	padding: 5px 0px;
 	text-decoration: none;
 }
 
@@ -63,7 +63,7 @@
 }
 
 #navigation li {
-	background: #FFF none repeat scroll 0;
+	background:transparent url(../images/navigation/bg.png) repeat scroll 0 0;
 	border: medium none;
 	display: inline;
 	float: left;
@@ -75,6 +75,15 @@
 	background: transparent;
 	color: #E57700;
 	padding-left: 1.5em;
+}
+
+input.focus, textarea.focus, .ie6 input.focus, .ie6 textarea.focus {
+	background: transparent;
+	border: 1px solid #000000;
+}
+
+input {
+	background:transparent none repeat scroll 0 0;
 }
 
 #navigation li.selected a {
@@ -94,6 +103,10 @@
 	margin: 0;
 	min-height: 2em;
 	width: auto;
+}
+
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	background-image:transparent;
 }
 
 #navigation {

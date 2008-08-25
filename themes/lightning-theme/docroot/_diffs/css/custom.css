@@ -1,8 +1,11 @@
 #banner {
-	background: black url(../images/custom/header.jpg) no-repeat center;
+	background: black url(../images/custom/header.jpg) no-repeat left;
 	height: 230px;
 	top: 0;
 	position: relative;
+}
+.js #navigation .enter-page {
+	background-color:transparent;
 }
 #navigation {
 	background: black;
@@ -18,7 +21,7 @@
 #wrapper {
 	background: transparent;
 	position: relative;
-	width: 1264px;
+	width: 1000px;
 	margin: 0 auto;
 }
 body {

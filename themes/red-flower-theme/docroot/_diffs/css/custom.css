@@ -125,7 +125,7 @@ body {
 }
 
 .portlet-topper {
-	background: #C10003 url(../images/custom/portlet_top.png) repeat-xscroll 10% 0;
+	background:FireBrick none repeat scroll 0 0;
 	position: relative;
 }
 

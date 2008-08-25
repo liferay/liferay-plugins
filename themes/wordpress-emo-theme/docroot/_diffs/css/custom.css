@@ -1,8 +1,7 @@
 #banner {
-	background: black url(../images/custom/header.jpg) no-repeat center;
-	height: 296px;
+	background: black url(../images/custom/header.jpg) repeat left;
+	height: 115px;
 	position: relative;
-	border:1px solid white;
 }
 body {
 	background: black;
@@ -12,7 +11,7 @@ body {
 	line-height: 17px;
 }
 #wrapper {
-	background: transparent;
+	background: black;
 	position: relative;
 	width:950px;
 	margin: 0 auto;
@@ -22,7 +21,7 @@ body {
 	border:medium none;
 	height:55px;
 	margin-top:-1px;
-	width:960px;
+	width:100%;
 }
 #navigation li {
 	border: none;
@@ -44,9 +43,6 @@ body {
 	font-size: 16px;
 	font-weight: bold;
 	padding: 5px 10px;
-}
-#banner .logo a {
-	margin-left: 75px;
 }
 .js #add-page {
 	background: transparent none repeat scroll 0% 0%;
@@ -76,7 +72,7 @@ a {
 	font-size: 12px;
 }
 .js .interactive-mode {
-	right: 12%;
+	right: 0;
 }
 .ui-tabs li a:hover, .ui-tabs li span:hover {
 	background: transparent;

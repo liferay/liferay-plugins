@@ -9,7 +9,7 @@
 
 #all-content-wrapper-right {
 	position: absolute;
-	right:-249px;
+	right:-215px;
 	top: 0;
 	width: 200px;
 }
@@ -17,6 +17,11 @@
 .lfr-dock h2 {
 	text-align:left;
 	margin-left: -25px;
+}
+
+.js #navigation .enter-page .save-page {
+	margin:4px 10px;
+	position:absolute;
 }
 
 #banner h1.logo a {
