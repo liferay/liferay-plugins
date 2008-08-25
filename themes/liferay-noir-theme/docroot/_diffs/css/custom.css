@@ -1,8 +1,7 @@
-#banner .logo a {
-	background:transparent url(/image/company_logo?img_id=0&t=1218751542693) no-repeat scroll 0 0 !important;
-	margin-top:10px;
-	position:absolute;
-	margin-left: 60px;
+#banner {
+	background: url(../images/custom/banner_bg.png);
+	height: 99px;
+	position: relative;
 }
 html, body {
 	min-height: 100%;
