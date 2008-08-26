@@ -2,7 +2,7 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-	<bean id="com.liferay.chat.service.EntryLocalService.impl" class="com.liferay.chat.service.impl.EntryLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.chat.service.EntryLocalService.impl" class="com.liferay.chat.service.impl.EntryLocalServiceImpl" />
 	<bean id="com.liferay.chat.service.EntryLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
@@ -22,64 +22,22 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="com.liferay.chat.service.EntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
-		<property name="interceptorNames">
-			<list>
-				<value>velocityServiceInterceptor</value>
-			</list>
-		</property>
-		<property name="target">
-			<ref bean="com.liferay.chat.service.EntryLocalService.transaction" />
-		</property>
+	<bean id="com.liferay.chat.service.EntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.chat.service.EntryLocalService.transaction" />
 	</bean>
-	<bean id="com.liferay.chat.service.EntryLocalServiceUtil" class="com.liferay.chat.service.EntryLocalServiceUtil" lazy-init="true">
-		<property name="service">
-			<ref bean="com.liferay.chat.service.EntryLocalService.transaction" />
-		</property>
+	<bean id="com.liferay.chat.service.EntryLocalServiceUtil" class="com.liferay.chat.service.EntryLocalServiceUtil">
+		<property name="service" ref="com.liferay.chat.service.EntryLocalService.transaction" />
 	</bean>
-	<bean id="com.liferay.chat.service.persistence.EntryPersistence.impl" class="com.liferay.chat.service.persistence.EntryPersistenceImpl" lazy-init="true">
-		<property name="dataSource">
-			<ref bean="liferayDataSource" />
-		</property>
-		<property name="sessionFactory">
-			<ref bean="liferaySessionFactory" />
-		</property>
+	<bean id="com.liferay.chat.service.persistence.EntryPersistence.impl" class="com.liferay.chat.service.persistence.EntryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.chat.service.persistence.EntryPersistence.transaction" parent="com.liferay.chat.service.persistence.EntryPersistence.impl" />
+	<bean id="com.liferay.chat.service.persistence.EntryUtil" class="com.liferay.chat.service.persistence.EntryUtil">
+		<property name="persistence" ref="com.liferay.chat.service.persistence.EntryPersistence.impl" />
 	</bean>
-	<bean id="com.liferay.chat.service.persistence.EntryPersistence.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<ref bean="com.liferay.chat.service.persistence.EntryPersistence.impl" />
-		</property>
-		<property name="transactionAttributes">
-			<props>
-				<prop key="remove*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
+	<bean id="com.liferay.chat.service.persistence.EntryFinder.impl" class="com.liferay.chat.service.persistence.EntryFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.chat.service.persistence.EntryFinderUtil" class="com.liferay.chat.service.persistence.EntryFinderUtil">
+		<property name="finder" ref="com.liferay.chat.service.persistence.EntryFinder.impl" />
 	</bean>
-	<bean id="com.liferay.chat.service.persistence.EntryUtil" class="com.liferay.chat.service.persistence.EntryUtil" lazy-init="true">
-		<property name="persistence">
-			<ref bean="com.liferay.chat.service.persistence.EntryPersistence.impl" />
-		</property>
-	</bean>
-	<bean id="com.liferay.chat.service.persistence.EntryFinder.impl" class="com.liferay.chat.service.persistence.EntryFinderImpl" lazy-init="true">
-		<property name="dataSource">
-			<ref bean="liferayDataSource" />
-		</property>
-		<property name="sessionFactory">
-			<ref bean="liferaySessionFactory" />
-		</property>
-	</bean>
-	<bean id="com.liferay.chat.service.persistence.EntryFinderUtil" class="com.liferay.chat.service.persistence.EntryFinderUtil" lazy-init="true">
-		<property name="finder">
-			<ref bean="com.liferay.chat.service.persistence.EntryFinder.impl" />
-		</property>
-	</bean>
-	<bean id="com.liferay.chat.service.StatusLocalService.impl" class="com.liferay.chat.service.impl.StatusLocalServiceImpl" lazy-init="true" />
+	<bean id="com.liferay.chat.service.StatusLocalService.impl" class="com.liferay.chat.service.impl.StatusLocalServiceImpl" />
 	<bean id="com.liferay.chat.service.StatusLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
@@ -99,61 +57,19 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="com.liferay.chat.service.StatusLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" lazy-init="true">
-		<property name="interceptorNames">
-			<list>
-				<value>velocityServiceInterceptor</value>
-			</list>
-		</property>
-		<property name="target">
-			<ref bean="com.liferay.chat.service.StatusLocalService.transaction" />
-		</property>
+	<bean id="com.liferay.chat.service.StatusLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.chat.service.StatusLocalService.transaction" />
 	</bean>
-	<bean id="com.liferay.chat.service.StatusLocalServiceUtil" class="com.liferay.chat.service.StatusLocalServiceUtil" lazy-init="true">
-		<property name="service">
-			<ref bean="com.liferay.chat.service.StatusLocalService.transaction" />
-		</property>
+	<bean id="com.liferay.chat.service.StatusLocalServiceUtil" class="com.liferay.chat.service.StatusLocalServiceUtil">
+		<property name="service" ref="com.liferay.chat.service.StatusLocalService.transaction" />
 	</bean>
-	<bean id="com.liferay.chat.service.persistence.StatusPersistence.impl" class="com.liferay.chat.service.persistence.StatusPersistenceImpl" lazy-init="true">
-		<property name="dataSource">
-			<ref bean="liferayDataSource" />
-		</property>
-		<property name="sessionFactory">
-			<ref bean="liferaySessionFactory" />
-		</property>
+	<bean id="com.liferay.chat.service.persistence.StatusPersistence.impl" class="com.liferay.chat.service.persistence.StatusPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.chat.service.persistence.StatusPersistence.transaction" parent="com.liferay.chat.service.persistence.StatusPersistence.impl" />
+	<bean id="com.liferay.chat.service.persistence.StatusUtil" class="com.liferay.chat.service.persistence.StatusUtil">
+		<property name="persistence" ref="com.liferay.chat.service.persistence.StatusPersistence.impl" />
 	</bean>
-	<bean id="com.liferay.chat.service.persistence.StatusPersistence.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<ref bean="com.liferay.chat.service.persistence.StatusPersistence.impl" />
-		</property>
-		<property name="transactionAttributes">
-			<props>
-				<prop key="remove*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
-	</bean>
-	<bean id="com.liferay.chat.service.persistence.StatusUtil" class="com.liferay.chat.service.persistence.StatusUtil" lazy-init="true">
-		<property name="persistence">
-			<ref bean="com.liferay.chat.service.persistence.StatusPersistence.impl" />
-		</property>
-	</bean>
-	<bean id="com.liferay.chat.service.persistence.StatusFinder.impl" class="com.liferay.chat.service.persistence.StatusFinderImpl" lazy-init="true">
-		<property name="dataSource">
-			<ref bean="liferayDataSource" />
-		</property>
-		<property name="sessionFactory">
-			<ref bean="liferaySessionFactory" />
-		</property>
-	</bean>
-	<bean id="com.liferay.chat.service.persistence.StatusFinderUtil" class="com.liferay.chat.service.persistence.StatusFinderUtil" lazy-init="true">
-		<property name="finder">
-			<ref bean="com.liferay.chat.service.persistence.StatusFinder.impl" />
-		</property>
+	<bean id="com.liferay.chat.service.persistence.StatusFinder.impl" class="com.liferay.chat.service.persistence.StatusFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.chat.service.persistence.StatusFinderUtil" class="com.liferay.chat.service.persistence.StatusFinderUtil">
+		<property name="finder" ref="com.liferay.chat.service.persistence.StatusFinder.impl" />
 	</bean>
 </beans>
