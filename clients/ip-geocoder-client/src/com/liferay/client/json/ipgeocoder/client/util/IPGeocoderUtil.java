@@ -20,9 +20,9 @@
  * SOFTWARE.
  */
 
-package com.liferay.ipgeocoder.client.util;
+package com.liferay.client.json.ipgeocoder.util;
 
-import com.liferay.ipgeocoder.client.model.IPInfo;
+import com.liferay.client.json.ipgeocoder.model.IPInfo;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;

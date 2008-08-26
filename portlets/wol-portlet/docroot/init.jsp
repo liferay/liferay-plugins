@@ -30,8 +30,8 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.ipgeocoder.client.model.IPInfo" %>
-<%@ page import="com.liferay.ipgeocoder.client.util.IPGeocoderUtil" %>
+<%@ page import="com.liferay.client.json.ipgeocoder.model.IPInfo" %>
+<%@ page import="com.liferay.client.json.ipgeocoder.util.IPGeocoderUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchEntry" %>
