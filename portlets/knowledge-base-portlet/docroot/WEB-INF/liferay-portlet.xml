@@ -10,7 +10,14 @@
 		<header-portlet-css>/knowledge_base/css.jsp</header-portlet-css>
 		<header-portal-javascript>/html/js/misc/swfupload/swfupload.js</header-portal-javascript>
 		<header-portlet-javascript>/knowledge_base/packed.js</header-portlet-javascript>
-		<css-class-wrapper>portlet-knowledge-base</css-class-wrapper>
+		<css-class-wrapper>kb-portlet-knowledge-base</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>2</portlet-name>
+		<icon>/knowledge_base_aggregator/icon.png</icon>
+		<configuration-action-class>com.liferay.kb.knowledgebaseaggregator.action.ConfigurationActionImpl</configuration-action-class>
+		<header-portlet-css>/knowledge_base_aggregator/css.jsp</header-portlet-css>
+		<css-class-wrapper>kb-portlet-knowledge-base-aggregator</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

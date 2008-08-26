@@ -114,7 +114,7 @@ public interface KBArticleLocalService {
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public void deleteArticles(long groupId, boolean template)
+	public void deleteGroupArticles(long groupId, boolean template)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
@@ -164,10 +164,6 @@ public interface KBArticleLocalService {
 			com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getArticles(
-		long userId, long groupId, boolean head, boolean template, boolean draft)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getArticles(
 		long resourcePrimKey, int start, int end)
 		throws com.liferay.portal.SystemException;
 
@@ -185,46 +181,55 @@ public interface KBArticleLocalService {
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getArticles(
-		long groupId, boolean head, boolean template, int start, int end)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getArticles(
-		long groupId, boolean head, boolean template, boolean draft, int start,
-		int end) throws com.liferay.portal.SystemException;
-
-	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getArticles(
-		long groupId, java.lang.String title, boolean head, int start, int end)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getArticles(
-		long groupId, java.lang.String title, boolean head, boolean draft,
-		int start, int end) throws com.liferay.portal.SystemException;
-
-	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getArticles(
-		long userId, long groupId, boolean head, boolean template,
-		boolean draft, int start, int end)
-		throws com.liferay.portal.SystemException;
-
 	public int getArticlesCount(long resourcePrimKey)
 		throws com.liferay.portal.SystemException;
 
 	public int getArticlesCount(long resourcePrimKey, boolean draft)
 		throws com.liferay.portal.SystemException;
 
-	public int getArticlesCount(long groupId, boolean head, boolean template)
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getCompanyArticles(
+		long companyId, boolean head, boolean template, boolean draft,
+		int start, int end) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
+		long groupId, boolean head, boolean template, int start, int end)
 		throws com.liferay.portal.SystemException;
 
-	public int getArticlesCount(long groupId, boolean head, boolean template,
-		boolean draft) throws com.liferay.portal.SystemException;
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
+		long groupId, boolean head, boolean template, boolean draft, int start,
+		int end) throws com.liferay.portal.SystemException;
 
-	public int getArticlesCount(long groupId, java.lang.String title,
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
+		long groupId, java.lang.String title, boolean head, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
+		long groupId, java.lang.String title, boolean head, boolean draft,
+		int start, int end) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
+		long userId, long groupId, boolean head, boolean template, boolean draft)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
+		long userId, long groupId, boolean head, boolean template,
+		boolean draft, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public int getGroupArticlesCount(long groupId, boolean head,
+		boolean template) throws com.liferay.portal.SystemException;
+
+	public int getGroupArticlesCount(long groupId, boolean head,
+		boolean template, boolean draft)
+		throws com.liferay.portal.SystemException;
+
+	public int getGroupArticlesCount(long groupId, java.lang.String title,
 		boolean head) throws com.liferay.portal.SystemException;
 
-	public int getArticlesCount(long groupId, java.lang.String title,
+	public int getGroupArticlesCount(long groupId, java.lang.String title,
 		boolean head, boolean draft) throws com.liferay.portal.SystemException;
 
-	public int getArticlesCount(long userId, long groupId, boolean head,
+	public int getGroupArticlesCount(long userId, long groupId, boolean head,
 		boolean template, boolean draft)
 		throws com.liferay.portal.SystemException;
 

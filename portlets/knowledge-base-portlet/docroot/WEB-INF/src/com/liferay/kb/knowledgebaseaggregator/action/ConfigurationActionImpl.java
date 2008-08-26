@@ -20,12 +20,10 @@
  * SOFTWARE.
  */
 
-package com.liferay.kb.knowledgebase.action;
+package com.liferay.kb.knowledgebaseaggregator.action;
 
 import com.liferay.portal.kernel.portlet.ConfigurationAction;
-import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
@@ -39,7 +37,7 @@ import javax.portlet.RenderResponse;
 /**
  * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
  *
- * @author Bruno Farache
+ * @author Peter Shin
  *
  */
 public class ConfigurationActionImpl implements ConfigurationAction {
@@ -49,11 +47,7 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			ActionResponse actionResponse)
 		throws Exception {
 
-		String actionName = ParamUtil.getString(actionRequest, "actionName");
-
-		if (!actionName.equals(Constants.UPDATE)) {
-			return;
-		}
+		String tabs2 = ParamUtil.getString(actionRequest, "tabs2");
 
 		String portletResource = ParamUtil.getString(
 			actionRequest, "portletResource");
@@ -62,21 +56,17 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				actionRequest, portletResource);
 
-		String tabs2 = ParamUtil.getString(actionRequest, "tabs2");
-
-		if (tabs2.equals("export-settings")) {
-			updateExportSettings(actionRequest, prefs);
+		if (tabs2.equals("display-settings")) {
+			updateDisplaySettings(actionRequest, prefs);
 		}
 		else if (tabs2.equals("rss")) {
 			updateRSS(actionRequest, prefs);
 		}
 
-		if (SessionErrors.isEmpty(actionRequest)) {
-			prefs.store();
+		prefs.store();
 
-			SessionMessages.add(
-				actionRequest, portletConfig.getPortletName() + ".doConfigure");
-		}
+		SessionMessages.add(
+			actionRequest, portletConfig.getPortletName() + ".doConfigure");
 	}
 
 	public String render(
@@ -84,34 +74,41 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			RenderResponse renderResponse)
 		throws Exception {
 
-		return "/knowledge_base/views/configuration.jsp";
+		return "/knowledge_base_aggregator/configuration.jsp";
 	}
 
-	protected void updateExportSettings(
+	protected void updateDisplaySettings(
 			ActionRequest actionRequest, PortletPreferences prefs)
 		throws Exception {
 
-		String[] extensions = actionRequest.getParameterValues("extensions");
+		String groupId = ParamUtil.getString(actionRequest, "groupId");
+		String companyId = ParamUtil.getString(actionRequest, "companyId");
+		String displayStyle = ParamUtil.getString(
+			actionRequest, "displayStyle");
+		int maxItems = ParamUtil.getInteger(actionRequest, "maxItems");
 
-		prefs.setValues("extensions", extensions);
+		prefs.setValue("company-id", companyId);
+		prefs.setValue("group-id", groupId);
+		prefs.setValue("display-style", displayStyle);
+		prefs.setValue("max-items", String.valueOf(maxItems));
 	}
 
 	protected void updateRSS(
 			ActionRequest actionRequest, PortletPreferences prefs)
 		throws Exception {
 
-		String[] displayRSSTypes = actionRequest.getParameterValues(
-			"displayRSSTypes");
-		int rssDelta = ParamUtil.getInteger(actionRequest, "rssDelta");
+		String[] rssTypes = actionRequest.getParameterValues("rssTypes");
+		int rssMaxItems = ParamUtil.getInteger(actionRequest, "rssMaxItems");
 		String rssDisplayStyle = ParamUtil.getString(
 			actionRequest, "rssDisplayStyle");
-		int abstractLength = ParamUtil.getInteger(
-			actionRequest, "abstractLength");
+		int rssAbstractLength = ParamUtil.getInteger(
+			actionRequest, "rssAbstractLength");
 
-		prefs.setValues("displayRSSTypes", displayRSSTypes);
-		prefs.setValue("rss-delta", String.valueOf(rssDelta));
+		prefs.setValues("rss-types", rssTypes);
+		prefs.setValue("rss-max-items", String.valueOf(rssMaxItems));
 		prefs.setValue("rss-display-style", rssDisplayStyle);
-		prefs.setValue("abstract-length", String.valueOf(abstractLength));
+		prefs.setValue(
+			"rss-abstract-length", String.valueOf(rssAbstractLength));
 	}
 
 }

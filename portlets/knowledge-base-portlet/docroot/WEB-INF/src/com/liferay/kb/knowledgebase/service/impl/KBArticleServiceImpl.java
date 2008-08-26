@@ -35,11 +35,14 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
@@ -135,83 +138,6 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			resourcePrimKey, fileName);
 	}
 
-	public List<KBArticle> getGroupArticles(
-			long groupId, boolean template, int max)
-		throws PortalException, SystemException {
-
-		List<KBArticle> articles = new ArrayList<KBArticle>();
-
-		Iterator<KBArticle> itr = kbArticleLocalService.getArticles(
-			groupId, true, template, false, 0, _MAX_END).iterator();
-
-		while (itr.hasNext() && (articles.size() < max)) {
-			KBArticle article = itr.next();
-
-			if (KBArticlePermission.contains(getPermissionChecker(), article,
-					ActionKeys.VIEW)) {
-
-				articles.add(article);
-			}
-		}
-
-		return articles;
-	}
-
-	public List<KBArticle> getGroupArticles(
-			long userId, long groupId, boolean template, int max)
-		throws PortalException, SystemException {
-
-		List<KBArticle> articles = new ArrayList<KBArticle>();
-
-		Iterator<KBArticle> itr = kbArticleLocalService.getArticles(
-			userId, groupId, true, template, false, 0, _MAX_END).iterator();
-
-		while (itr.hasNext() && (articles.size() < max)) {
-			KBArticle article = itr.next();
-
-			if (KBArticlePermission.contains(getPermissionChecker(), article,
-					ActionKeys.VIEW)) {
-
-				articles.add(article);
-			}
-		}
-
-		return articles;
-	}
-
-	public String getGroupArticlesRSS(
-			long groupId, int max, String type, double version,
-			String displayStyle, int abstractLength, String feedURL)
-		throws PortalException, SystemException {
-
-		boolean template = false;
-
-		List<KBArticle> articles = getGroupArticles(groupId, template, max);
-
-		Group group = GroupLocalServiceUtil.getGroup(groupId);
-
-		String title = group.getName();
-
-		if (group.isUser()) {
-			User user = UserLocalServiceUtil.getUserById(group.getClassPK());
-
-			title = user.getFullName();
-		}
-		else if (group.isOrganization()) {
-			Organization organization =
-				OrganizationLocalServiceUtil.getOrganization(
-					group.getClassPK());
-
-			title = organization.getName();
-		}
-
-		String description = group.getDescription();
-
-		return exportToRSS(
-			title, description, type, version, displayStyle, abstractLength,
-			feedURL, articles);
-	}
-
 	public KBArticle getArticle(long resourcePrimKey)
 		throws PortalException, SystemException {
 
@@ -272,7 +198,152 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		return exportToRSS(
 			title, description, type, version, displayStyle, abstractLength,
-			feedURL, articles);
+			feedURL, null, articles);
+	}
+
+	public List<KBArticle> getCompanyArticles(long companyId, int max)
+		throws PortalException, SystemException {
+
+		List<KBArticle> articles = new ArrayList<KBArticle>();
+
+		Iterator<KBArticle> itr = kbArticleLocalService.getCompanyArticles(
+			companyId, true, false, false, 0, _MAX_END).iterator();
+
+		while (itr.hasNext() && (articles.size() < max)) {
+			KBArticle article = itr.next();
+
+			if (KBArticlePermission.contains(getPermissionChecker(), article,
+					ActionKeys.VIEW)) {
+
+				articles.add(article);
+			}
+		}
+
+		return articles;
+	}
+
+	public String getCompanyArticlesRSS(
+			long companyId, int max, String type, double version,
+			String displayStyle, int abstractLength, String description,
+			String feedURL, ThemeDisplay themeDisplay)
+		throws PortalException, SystemException {
+
+		List<KBArticle> articles = getCompanyArticles(companyId, max);
+
+		Company company = CompanyLocalServiceUtil.getCompany(companyId);
+
+		String title = company.getName();
+
+		List<String> entryURLs = new ArrayList<String>();
+
+		for (KBArticle article : articles) {
+			String entryURL = getEntryURL(article, themeDisplay);
+
+			entryURLs.add(entryURL);
+		}
+
+		return exportToRSS(
+			title, description, type, version, displayStyle, abstractLength,
+			feedURL, entryURLs, articles);
+	}
+
+	public List<KBArticle> getGroupArticles(
+			long userId, long groupId, boolean template, int max)
+		throws PortalException, SystemException {
+
+		List<KBArticle> articles = new ArrayList<KBArticle>();
+
+		Iterator<KBArticle> itr = kbArticleLocalService.getGroupArticles(
+			userId, groupId, true, template, false, 0, _MAX_END).iterator();
+
+		while (itr.hasNext() && (articles.size() < max)) {
+			KBArticle article = itr.next();
+
+			if (KBArticlePermission.contains(getPermissionChecker(), article,
+					ActionKeys.VIEW)) {
+
+				articles.add(article);
+			}
+		}
+
+		return articles;
+	}
+
+	public List<KBArticle> getGroupArticles(long groupId, int max)
+		throws PortalException, SystemException {
+
+		List<KBArticle> articles = new ArrayList<KBArticle>();
+
+		Iterator<KBArticle> itr = kbArticleLocalService.getGroupArticles(
+			groupId, true, false, false, 0, _MAX_END).iterator();
+
+		while (itr.hasNext() && (articles.size() < max)) {
+			KBArticle article = itr.next();
+
+			if (KBArticlePermission.contains(getPermissionChecker(), article,
+					ActionKeys.VIEW)) {
+
+				articles.add(article);
+			}
+		}
+
+		return articles;
+	}
+
+	public String getGroupArticlesRSS(
+			long groupId, int max, String type, double version,
+			String displayStyle, int abstractLength, String feedURL)
+		throws PortalException, SystemException {
+
+		List<KBArticle> articles = getGroupArticles(groupId, max);
+
+		Group group = GroupLocalServiceUtil.getGroup(groupId);
+
+		String title = group.getName();
+
+		if (group.isUser()) {
+			User user = UserLocalServiceUtil.getUserById(group.getClassPK());
+
+			title = user.getFullName();
+		}
+		else if (group.isOrganization()) {
+			Organization organization =
+				OrganizationLocalServiceUtil.getOrganization(
+					group.getClassPK());
+
+			title = organization.getName();
+		}
+
+		String description = group.getDescription();
+
+		return exportToRSS(
+			title, description, type, version, displayStyle, abstractLength,
+			feedURL, null, articles);
+	}
+
+	public String getGroupArticlesRSS(
+			long groupId, int max, String type, double version,
+			String displayStyle, int abstractLength, String description,
+			String feedURL, ThemeDisplay themeDisplay)
+		throws PortalException, SystemException {
+
+		List<KBArticle> articles = getGroupArticles(groupId, max);
+
+		Group group = GroupLocalServiceUtil.getGroup(groupId);
+
+		String title = group.getName();
+
+		List<String> entryURLs = new ArrayList<String>();
+
+		for (KBArticle article : articles) {
+			String entryURL = getEntryURL(article, themeDisplay);
+
+			entryURLs.add(entryURL);
+		}
+
+		return exportToRSS(
+			title, description, type, version, displayStyle, abstractLength,
+			feedURL, entryURLs, articles);
 	}
 
 	public KBArticle revertArticle(
@@ -352,7 +423,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	protected String exportToRSS(
 			String name, String description, String type, double version,
 			String displayStyle, int abstractLength, String feedURL,
-			List<KBArticle> articles)
+			List<String> entryURLs, List<KBArticle> articles)
 		throws SystemException {
 
 		SyndFeed syndFeed = new SyndFeedImpl();
@@ -366,8 +437,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		syndFeed.setEntries(entries);
 
-		for (KBArticle article : articles) {
-			SyndEntry syndEntry = new SyndEntryImpl();
+		for (int i = 0; i < articles.size(); i++) {
+			KBArticle article = articles.get(i);
 
 			String author = PortalUtil.getUserName(
 				article.getUserId(), article.getUserName());
@@ -375,9 +446,15 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			String syndTitle =
 				article.getTitle() + StringPool.SPACE + article.getVersion();
 
-			syndEntry.setAuthor(author);
-			syndEntry.setTitle(syndTitle);
-			syndEntry.setPublishedDate(article.getModifiedDate());
+			String entryURL = feedURL;
+
+			if (entryURLs != null) {
+				entryURL = entryURLs.get(i);
+			}
+
+			entryURL = entryURL + StringPool.SLASH + StringPool.DASH +
+				StringPool.SLASH +  KnowledgeBaseFriendlyURLMapper.MAPPING +
+				StringPool.SLASH + article.getTitle();
 
 			String value = null;
 
@@ -396,20 +473,18 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			SyndContent syndContent = new SyndContentImpl();
 
 			syndContent.setValue(value);
-
 			syndContent.setType(RSSUtil.DEFAULT_ENTRY_TYPE);
-
 			syndContent.setValue(value);
 
+			SyndEntry syndEntry = new SyndEntryImpl();
+
+			syndEntry.setAuthor(author);
+			syndEntry.setTitle(syndTitle);
+			syndEntry.setPublishedDate(article.getModifiedDate());
 			syndEntry.setDescription(syndContent);
+			syndEntry.setLink(entryURL);
 
 			entries.add(syndEntry);
-
-			String entryURL = feedURL + StringPool.SLASH + StringPool.DASH +
-				StringPool.SLASH +  KnowledgeBaseFriendlyURLMapper.MAPPING +
-				StringPool.SLASH + article.getTitle();
-
-			syndEntry.setLink(entryURL);
 		}
 
 		try {
@@ -421,6 +496,36 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		catch (IOException ioe) {
 			throw new SystemException(ioe);
 		}
+	}
+
+	protected String getEntryURL(KBArticle article, ThemeDisplay themeDisplay)
+		throws PortalException, SystemException {
+
+		StringBuilder entryURL = new StringBuilder(PortalUtil.getPortalURL(themeDisplay));
+
+		long publicPlid = PortalUtil.getPlidFromPortletId(
+			article.getGroupId(), false, KnowledgeBaseKeys.PORTLET_ID);
+
+		long privatePlid = PortalUtil.getPlidFromPortletId(
+			article.getGroupId(), true, KnowledgeBaseKeys.PORTLET_ID);
+
+		Layout layout = null;
+
+		if (publicPlid != LayoutConstants.DEFAULT_PLID) {
+			layout = LayoutLocalServiceUtil.getLayout(publicPlid);
+		}
+		else if (privatePlid != LayoutConstants.DEFAULT_PLID) {
+			layout = LayoutLocalServiceUtil.getLayout(privatePlid);
+		}
+
+		if (layout != null) {
+			entryURL.append(PortalUtil.getLayoutFriendlyURL(layout, themeDisplay));
+		}
+		else {
+			entryURL.append(PortalUtil.getLayoutURL(themeDisplay));
+		}
+
+		return entryURL.toString();
 	}
 
 	private static final int _MAX_END = 200;

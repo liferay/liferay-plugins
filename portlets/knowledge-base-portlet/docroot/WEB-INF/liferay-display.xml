@@ -1,8 +1,13 @@
 <?xml version="1.0"?>
-<!DOCTYPE display PUBLIC "-//Liferay//DTD Display 5.0.0//EN" "http://www.liferay.com/dtd/liferay-display_5_0_0.dtd">
+<!DOCTYPE display PUBLIC "-//Liferay//DTD Display 5.1.0//EN" "http://www.liferay.com/dtd/liferay-display_5_1_0.dtd">
 
 <display>
-	<category name="category.sample">
-		<portlet id="knowledge-base" />
+	<category name="category.cms">
+		<portlet id="1" />
+		<portlet id="2" />
+	</category>
+	<category name="category.kb">
+		<portlet id="1" />
+		<portlet id="2" />
 	</category>
 </display>

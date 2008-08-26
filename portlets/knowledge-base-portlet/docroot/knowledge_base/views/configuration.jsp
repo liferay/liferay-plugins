@@ -85,7 +85,7 @@ String[] extensions = prefs.getValues("extensions", new String[] {"pdf"});
 		<table class="lfr-table">
 		<tr>
 			<td>
-				<liferay-ui:message key="display-rss-types" />
+				<liferay-ui:message key="rss" />
 			</td>
 			<td>
 				<table class="lfr-table">

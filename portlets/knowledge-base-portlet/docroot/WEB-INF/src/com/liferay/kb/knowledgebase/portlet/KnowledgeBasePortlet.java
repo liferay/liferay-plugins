@@ -533,7 +533,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		}
 		else if (groupId > 0) {
 			rss = KBArticleServiceUtil.getGroupArticlesRSS(
-				groupId, max, type, version, displayStyle,  abstractLength,
+				groupId, max, type, version, displayStyle, abstractLength,
 				feedURL);
 		}
 

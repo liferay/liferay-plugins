@@ -33,7 +33,6 @@ if (Validator.isNotNull(portletResource)) {
 	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-String currentURL = PortalUtil.getCurrentURL(request);
 String layoutFriendlyURL = PortalUtil.getLayoutFriendlyURL(layout, themeDisplay);
 
 String atom = "Atom 1.0";
@@ -55,8 +54,6 @@ rssRSS10URL.setParameter("version", "1.0");
 ResourceURL rssRSS20URL = _getRSSURL(renderResponse, rssDelta, rssDisplayStyle, abstractLength);
 rssRSS20URL.setParameter("type", RSSUtil.RSS);
 rssRSS20URL.setParameter("version", "2.0");
-
-DateFormat dateFormatDateTime = DateFormats.getDateTime(locale, timeZone);
 %>
 
 <%!

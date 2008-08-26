@@ -42,12 +42,15 @@
 <%@ page import="com.liferay.kb.knowledgebase.model.KBArticleResource" %>
 <%@ page import="com.liferay.kb.knowledgebase.model.KBFeedbackEntry" %>
 <%@ page import="com.liferay.kb.knowledgebase.model.KBFeedbackStats" %>
+<%@ page import="com.liferay.kb.knowledgebase.portlet.KnowledgeBaseFriendlyURLMapper" %>
 <%@ page import="com.liferay.kb.knowledgebase.service.KBArticleLocalServiceUtil" %>
 <%@ page import="com.liferay.kb.knowledgebase.service.KBArticleServiceUtil" %>
 <%@ page import="com.liferay.kb.knowledgebase.service.KBArticleResourceLocalServiceUtil" %>
 <%@ page import="com.liferay.kb.knowledgebase.service.permission.KBArticlePermission" %>
 <%@ page import="com.liferay.kb.knowledgebase.service.permission.KBPermission" %>
 <%@ page import="com.liferay.kb.knowledgebase.util.comparator.ArticleVersionComparator" %>
+<%@ page import="com.liferay.kb.knowledgebaseaggregator.util.KnowledgeBaseAggregatorUtil" %>
+<%@ page import="com.liferay.kb.util.RSSUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.RowChecker" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
@@ -57,6 +60,7 @@
 <%@ page import="com.liferay.portal.kernel.search.Document" %>
 <%@ page import="com.liferay.portal.kernel.search.Field" %>
 <%@ page import="com.liferay.portal.kernel.search.Hits" %>
+<%@ page import="com.liferay.portal.kernel.servlet.ImageServletTokenUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ArrayUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.DateFormats" %>
@@ -76,12 +80,24 @@
 <%@ page import="com.liferay.portal.kernel.log.Log" %>
 <%@ page import="com.liferay.portal.kernel.log.LogFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
+<%@ page import="com.liferay.portal.model.Company" %>
 <%@ page import="com.liferay.portal.model.CompanyConstants" %>
+<%@ page import="com.liferay.portal.model.Group" %>
+<%@ page import="com.liferay.portal.model.Layout" %>
+<%@ page import="com.liferay.portal.model.LayoutConstants" %>
+<%@ page import="com.liferay.portal.model.Organization" %>
+<%@ page import="com.liferay.portal.model.OrganizationConstants" %>
 <%@ page import="com.liferay.portal.model.Portlet" %>
+<%@ page import="com.liferay.portal.model.User" %>
 <%@ page import="com.liferay.portal.security.auth.PrincipalException" %>
 <%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
+<%@ page import="com.liferay.portal.service.CompanyLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.service.GroupLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.service.LayoutLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.service.OrganizationLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.SubscriptionLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portal.util.PortletKeys" %>
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
@@ -98,8 +114,8 @@
 <%@ page import="com.liferay.portal.kernel.util.DocumentConversionUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.PrefsPropsUtil" %>
 <%@ page import="com.liferay.util.MathUtil" %>
-<%@ page import="com.liferay.util.RSSUtil" %>
 <%@ page import="com.liferay.util.TextFormatter" %>
+<%@ page import="com.liferay.util.portlet.PortletProps" %>
 
 <%@ page import="java.io.StringReader" %>
 
@@ -119,4 +135,23 @@
 <%@ page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />
+
 <liferay-theme:defineObjects />
+
+<%
+String currentURL = PortalUtil.getCurrentURL(request);
+
+Group group = GroupLocalServiceUtil.getGroup(themeDisplay.getPortletGroupId());
+
+Organization organization = null;
+User user2 = null;
+
+if (group.isOrganization()) {
+	organization = OrganizationLocalServiceUtil.getOrganization(group.getClassPK());
+}
+else if (group.isUser()) {
+	user2 = UserLocalServiceUtil.getUserById(group.getClassPK());
+}
+
+DateFormat dateFormatDateTime = DateFormats.getDateTime(locale, timeZone);
+%>

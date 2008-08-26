@@ -61,29 +61,6 @@ public class KBArticleServiceUtil {
 		_service.deleteArticleAttachment(resourcePrimKey, fileName);
 	}
 
-	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
-		long groupId, boolean template, int max)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		return _service.getGroupArticles(groupId, template, max);
-	}
-
-	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
-		long userId, long groupId, boolean template, int max)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		return _service.getGroupArticles(userId, groupId, template, max);
-	}
-
-	public static java.lang.String getGroupArticlesRSS(long groupId, int max,
-		java.lang.String type, double version, java.lang.String displayStyle,
-		int abstractLength, java.lang.String feedURL)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		return _service.getGroupArticlesRSS(groupId, max, type, version,
-			displayStyle, abstractLength, feedURL);
-	}
-
 	public static com.liferay.kb.knowledgebase.model.KBArticle getArticle(
 		long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
@@ -120,6 +97,58 @@ public class KBArticleServiceUtil {
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		return _service.getArticlesRSS(resourcePrimKey, max, type, version,
 			displayStyle, abstractLength, feedURL);
+	}
+
+	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getCompanyArticles(
+		long companyId, int max)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
+		return _service.getCompanyArticles(companyId, max);
+	}
+
+	public static java.lang.String getCompanyArticlesRSS(long companyId,
+		int max, java.lang.String type, double version,
+		java.lang.String displayStyle, int abstractLength,
+		java.lang.String description, java.lang.String feedURL,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
+		return _service.getCompanyArticlesRSS(companyId, max, type, version,
+			displayStyle, abstractLength, description, feedURL, themeDisplay);
+	}
+
+	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
+		long userId, long groupId, boolean template, int max)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
+		return _service.getGroupArticles(userId, groupId, template, max);
+	}
+
+	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
+		long groupId, int max)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
+		return _service.getGroupArticles(groupId, max);
+	}
+
+	public static java.lang.String getGroupArticlesRSS(long groupId, int max,
+		java.lang.String type, double version, java.lang.String displayStyle,
+		int abstractLength, java.lang.String feedURL)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
+		return _service.getGroupArticlesRSS(groupId, max, type, version,
+			displayStyle, abstractLength, feedURL);
+	}
+
+	public static java.lang.String getGroupArticlesRSS(long groupId, int max,
+		java.lang.String type, double version, java.lang.String displayStyle,
+		int abstractLength, java.lang.String description,
+		java.lang.String feedURL,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
+		return _service.getGroupArticlesRSS(groupId, max, type, version,
+			displayStyle, abstractLength, description, feedURL, themeDisplay);
 	}
 
 	public static com.liferay.kb.knowledgebase.model.KBArticle revertArticle(

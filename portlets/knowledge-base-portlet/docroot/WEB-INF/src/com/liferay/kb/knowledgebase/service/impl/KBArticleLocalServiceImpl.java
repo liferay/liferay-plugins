@@ -367,7 +367,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 	}
 
-	public void deleteArticles(long groupId, boolean template)
+	public void deleteGroupArticles(long groupId, boolean template)
 		throws PortalException, SystemException {
 
 		Iterator<KBArticle> itr = kbArticlePersistence.findByG_H_T(
@@ -516,15 +516,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return article;
 	}
 
-	public List<KBArticle> getArticles(
-			long userId, long groupId, boolean head, boolean template,
-			boolean draft)
-		throws SystemException {
-
-		return kbArticleFinder.findByU_G_H_T_D(
-			userId, groupId, head, template, draft);
-	}
-
 	public List<KBArticle> getArticles(long resourcePrimKey, int start, int end)
 		throws SystemException {
 
@@ -560,53 +551,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			resourcePrimKey, draft, start, end, obc);
 	}
 
-	public List<KBArticle> getArticles(
-			long groupId, boolean head, boolean template, int start, int end)
-		throws SystemException {
-
-		return kbArticlePersistence.findByG_H_T(
-			groupId, head, template, start, end,
-			new ArticleModifiedDateComparator(false));
-	}
-
-	public List<KBArticle> getArticles(
-			long groupId, boolean head, boolean template, boolean draft,
-			int start, int end)
-		throws SystemException {
-
-		return kbArticlePersistence.findByG_H_T_D(
-			groupId, head, template, draft, start, end,
-			new ArticleModifiedDateComparator(false));
-	}
-
-	public List<KBArticle> getArticles(
-			long groupId, String title, boolean head, int start, int end)
-		throws SystemException {
-
-		return kbArticlePersistence.findByG_T_H(
-			groupId, title, head, start, end,
-			new ArticleModifiedDateComparator(false));
-	}
-
-	public List<KBArticle> getArticles(
-			long groupId, String title, boolean head, boolean draft, int start,
-			int end)
-		throws SystemException {
-
-		return kbArticlePersistence.findByG_T_H_D(
-			groupId, title, head, draft, start, end,
-			new ArticleModifiedDateComparator(false));
-	}
-
-	public List<KBArticle> getArticles(
-			long userId, long groupId, boolean head, boolean template,
-			boolean draft, int start, int end)
-		throws SystemException {
-
-		return kbArticleFinder.findByU_G_H_T_D(
-			userId, groupId, head, template, draft, start, end);
-	}
-
 	public int getArticlesCount(long resourcePrimKey) throws SystemException {
 
 		return kbArticlePersistence.countByResourcePrimKey(resourcePrimKey);
@@ -618,13 +562,79 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return kbArticlePersistence.countByR_D(resourcePrimKey, draft);
 	}
 
-	public int getArticlesCount(long groupId, boolean head, boolean template)
+	public List<KBArticle> getCompanyArticles(
+			long companyId, boolean head, boolean template, boolean draft,
+			int start, int end)
+		throws SystemException {
+
+		return kbArticlePersistence.findByC_H_T_D(
+			companyId, head, template, draft, start, end,
+			new ArticleModifiedDateComparator(false));
+	}
+
+	public List<KBArticle> getGroupArticles(
+			long groupId, boolean head, boolean template, int start, int end)
+		throws SystemException {
+
+		return kbArticlePersistence.findByG_H_T(
+			groupId, head, template, start, end,
+			new ArticleModifiedDateComparator(false));
+	}
+
+	public List<KBArticle> getGroupArticles(
+			long groupId, boolean head, boolean template, boolean draft,
+			int start, int end)
+		throws SystemException {
+
+		return kbArticlePersistence.findByG_H_T_D(
+			groupId, head, template, draft, start, end,
+			new ArticleModifiedDateComparator(false));
+	}
+
+	public List<KBArticle> getGroupArticles(
+			long groupId, String title, boolean head, int start, int end)
+		throws SystemException {
+
+		return kbArticlePersistence.findByG_T_H(
+			groupId, title, head, start, end,
+			new ArticleModifiedDateComparator(false));
+	}
+
+	public List<KBArticle> getGroupArticles(
+			long groupId, String title, boolean head, boolean draft, int start,
+			int end)
+		throws SystemException {
+
+		return kbArticlePersistence.findByG_T_H_D(
+			groupId, title, head, draft, start, end,
+			new ArticleModifiedDateComparator(false));
+	}
+
+	public List<KBArticle> getGroupArticles(
+			long userId, long groupId, boolean head, boolean template,
+			boolean draft)
+		throws SystemException {
+
+		return kbArticleFinder.findByU_G_H_T_D(
+			userId, groupId, head, template, draft);
+	}
+
+	public List<KBArticle> getGroupArticles(
+			long userId, long groupId, boolean head, boolean template,
+			boolean draft, int start, int end)
+		throws SystemException {
+
+		return kbArticleFinder.findByU_G_H_T_D(
+			userId, groupId, head, template, draft, start, end);
+	}
+
+	public int getGroupArticlesCount(long groupId, boolean head, boolean template)
 		throws SystemException {
 
 		return kbArticlePersistence.countByG_H_T(groupId, head, template);
 	}
 
-	public int getArticlesCount(
+	public int getGroupArticlesCount(
 			long groupId, boolean head, boolean template, boolean draft)
 		throws SystemException {
 
@@ -632,20 +642,20 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			groupId, head, template, draft);
 	}
 
-	public int getArticlesCount(long groupId, String title, boolean head)
+	public int getGroupArticlesCount(long groupId, String title, boolean head)
 		throws SystemException {
 
 		return kbArticlePersistence.countByG_T_H(groupId, title, head);
 	}
 
-	public int getArticlesCount(
+	public int getGroupArticlesCount(
 			long groupId, String title, boolean head, boolean draft)
 		throws SystemException {
 
 		return kbArticlePersistence.countByG_T_H_D(groupId, title, head, draft);
 	}
 
-	public int getArticlesCount(
+	public int getGroupArticlesCount(
 			long userId, long groupId, boolean head, boolean template,
 			boolean draft)
 		throws SystemException {
@@ -909,7 +919,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	protected boolean isUsedTitle(long groupId, String title)
 		throws SystemException {
 
-		if (getArticlesCount(groupId, title, true) > 0) {
+		if (getGroupArticlesCount(groupId, title, true) > 0) {
 			return true;
 		}
 		else {

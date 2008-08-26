@@ -1,5 +1,6 @@
 create index IX_9799EB4B on KB_KBArticle (companyId);
 create index IX_B77C0666 on KB_KBArticle (companyId, draft);
+create index IX_75F60464 on KB_KBArticle (companyId, head, template, draft);
 create index IX_50AAC88D on KB_KBArticle (groupId);
 create index IX_BF58A84F on KB_KBArticle (groupId, head, template);
 create index IX_DBA35CE2 on KB_KBArticle (groupId, head, template, draft);

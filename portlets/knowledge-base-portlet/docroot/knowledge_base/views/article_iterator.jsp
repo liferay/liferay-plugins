@@ -93,8 +93,8 @@ int total = 0;
 List<KBArticle> results = null;
 
 if (type.equals("all_articles")) {
-	total = KBArticleLocalServiceUtil.getArticlesCount(themeDisplay.getUserId(), portletGroupId, true, false, false);
-	results = KBArticleLocalServiceUtil.getArticles(themeDisplay.getUserId(), portletGroupId, true, false, false, searchContainer.getStart(), searchContainer.getEnd());
+	total = KBArticleLocalServiceUtil.getGroupArticlesCount(themeDisplay.getUserId(), portletGroupId, true, false, false);
+	results = KBArticleLocalServiceUtil.getGroupArticles(themeDisplay.getUserId(), portletGroupId, true, false, false, searchContainer.getStart(), searchContainer.getEnd());
 }
 else if (type.equals("article_history")) {
 	total = KBArticleLocalServiceUtil.getArticlesCount(article.getResourcePrimKey());
@@ -105,8 +105,8 @@ else if (type.equals("subscriptions")) {
 	results = KBArticleLocalServiceUtil.getSubscribedArticles(themeDisplay.getUserId(), portletGroupId, searchContainer.getStart(), searchContainer.getEnd());
 }
 else if (type.equals("templates")) {
-	total = KBArticleLocalServiceUtil.getArticlesCount(themeDisplay.getUserId(), portletGroupId, true, true, false);
-	results = KBArticleLocalServiceUtil.getArticles(themeDisplay.getUserId(), portletGroupId, true, true, false, searchContainer.getStart(), searchContainer.getEnd());
+	total = KBArticleLocalServiceUtil.getGroupArticlesCount(themeDisplay.getUserId(), portletGroupId, true, true, false);
+	results = KBArticleLocalServiceUtil.getGroupArticles(themeDisplay.getUserId(), portletGroupId, true, true, false, searchContainer.getStart(), searchContainer.getEnd());
 }
 else if (type.equals("tagged_articles")) {
 	long classNameId = PortalUtil.getClassNameId(KBArticle.class.getName());

@@ -51,7 +51,7 @@ if (article != null) {
 
 // Templates
 
-List<KBArticle> templates = KBArticleLocalServiceUtil.getArticles(themeDisplay.getUserId(), portletGroupId, true, true, false);
+List<KBArticle> templates = KBArticleLocalServiceUtil.getGroupArticles(themeDisplay.getUserId(), portletGroupId, true, true, false);
 
 //Portlet URLs
 
@@ -59,6 +59,39 @@ ResourceURL templateURL = renderResponse.createResourceURL();
 %>
 
 <script type="text/javascript">
+	if (<%= !templates.isEmpty() && !template %>) {
+		jQuery(
+			function() {
+				Liferay.KnowledgeBase.initEditArticle({
+					namespace: '<portlet:namespace />',
+					templateURL: '<%= templateURL %>'
+				});
+			}
+		);
+	}
+
+	function <portlet:namespace />applyTemplate() {
+		document.<portlet:namespace />fm.<portlet:namespace />addTemplate.value = "true";
+
+		<portlet:namespace />saveAndContinueArticle();
+	}
+
+	function <portlet:namespace />getTemplate() {
+		var templateResourcePrimKey = "";
+
+		for (var i = 0; i < document.<portlet:namespace />fm.<portlet:namespace />templates.length; i++) {
+			if (document.<portlet:namespace />fm.<portlet:namespace />templates.options[i].selected) {
+				templateResourcePrimKey = document.<portlet:namespace />fm.<portlet:namespace />templates.options[i].value;
+
+				break;
+			}
+		}
+
+		document.<portlet:namespace />fm.<portlet:namespace />templateResourcePrimKey.value = templateResourcePrimKey;
+
+		Liferay.KnowledgeBase.getTemplate(templateResourcePrimKey);
+	}
+
 	function <portlet:namespace />initEditor() {
 		return "<%= UnicodeFormatter.toString(content) %>";
 	}
@@ -148,11 +181,9 @@ ResourceURL templateURL = renderResponse.createResourceURL();
 <br />
 
 <div>
-
 	<liferay-ui:input-editor editorImpl="<%= null %>" width="100%" />
 
 	<input name="<portlet:namespace />content" type="hidden" value="" />
-
 </div>
 
 <br />
@@ -160,39 +191,6 @@ ResourceURL templateURL = renderResponse.createResourceURL();
 <table class="lfr-table" width="100%">
 
 <c:if test="<%= !templates.isEmpty() && !template %>">
-	<script type="text/javascript">
-		jQuery(
-			function() {
-				Liferay.KnowledgeBase.initEditArticle({
-					namespace: '<portlet:namespace />',
-					templateURL: '<%= templateURL %>'
-				}
-			);
-		});
-
-		function <portlet:namespace />applyTemplate() {
-			document.<portlet:namespace />fm.<portlet:namespace />addTemplate.value = "true";
-
-			<portlet:namespace />saveAndContinueArticle();
-		}
-
-		function <portlet:namespace />getTemplate() {
-			var templateResourcePrimKey = "";
-
-			for (var i = 0; i < document.<portlet:namespace />fm.<portlet:namespace />templates.length; i++) {
-				if (document.<portlet:namespace />fm.<portlet:namespace />templates.options[i].selected) {
-					templateResourcePrimKey = document.<portlet:namespace />fm.<portlet:namespace />templates.options[i].value;
-
-					break;
-				}
-			}
-
-			document.<portlet:namespace />fm.<portlet:namespace />templateResourcePrimKey.value = templateResourcePrimKey;
-
-			Liferay.KnowledgeBase.getTemplate(templateResourcePrimKey);
-		}
-	</script>
-
 	<tr>
 		<td colspan="2">
 			<liferay-ui:tabs names="templates" />

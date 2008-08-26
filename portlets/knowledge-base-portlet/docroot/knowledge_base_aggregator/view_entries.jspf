@@ -1,0 +1,101 @@
+<%
+/**
+ * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+%>
+
+<c:choose>
+	<c:when test="<%= results.size() == 0 %>">
+		<liferay-ui:message key="there-are-no-knowledge-base-articles" />
+
+		<br /><br />
+	</c:when>
+	<c:otherwise>
+
+		<%
+		for (int i = 0; i < results.size(); i++) {
+			KBArticle article = (KBArticle)results.get(i);
+		%>
+
+			<%@ include file="/knowledge_base_aggregator/view_entry_content.jspf" %>
+
+			<div class="separator"><!-- --></div>
+
+		<%
+		}
+		%>
+
+	</c:otherwise>
+</c:choose>
+
+<%
+ResourceURL rssURL = renderResponse.createResourceURL();
+
+rssURL.setParameter("actionName", "rss");
+rssURL.setParameter("groupId", String.valueOf(groupId));
+rssURL.setParameter("rssAbstractLength", String.valueOf(rssAbstractLength));
+rssURL.setParameter("rssDisplayStyle", rssDisplayStyle);
+rssURL.setParameter("rssMaxItems", String.valueOf(rssMaxItems));
+%>
+
+<liferay-ui:icon-list>
+	<c:if test="<%= ArrayUtil.contains(rssTypes, RSSUtil.ATOM_1_0) %>">
+
+		<%
+		ResourceURL atom10URL = rssURL;
+
+		atom10URL.setParameter("rssType", RSSUtil.ATOM);
+		atom10URL.setParameter("rssVersion", RSSUtil.VERSION_1_0);
+		%>
+
+		<liferay-ui:icon image="rss" message="<%= RSSUtil.ATOM_1_0 %>" method="get" url='<%= atom10URL.toString() %>' target="_blank" label="<%= true %>" />
+	</c:if>
+
+	<c:if test="<%= ArrayUtil.contains(rssTypes, RSSUtil.RSS_1_0) %>">
+
+		<%
+		ResourceURL rss10URL = rssURL;
+
+		rss10URL.setParameter("rssType", RSSUtil.RSS);
+		rss10URL.setParameter("rssVersion", RSSUtil.VERSION_1_0);
+		%>
+
+		<liferay-ui:icon image="rss" message="<%= RSSUtil.RSS_1_0 %>" method="get" url='<%= rss10URL.toString() %>' target="_blank" label="<%= true %>" />
+	</c:if>
+
+	<c:if test="<%= ArrayUtil.contains(rssTypes, RSSUtil.RSS_2_0) %>">
+
+		<%
+		ResourceURL rss20URL = rssURL;
+
+		rss20URL.setParameter("rssType", RSSUtil.RSS);
+		rss20URL.setParameter("rssVersion", RSSUtil.VERSION_2_0);
+		%>
+
+		<liferay-ui:icon image="rss" message="<%= RSSUtil.RSS_2_0 %>" method="get" url='<%= rss20URL.toString() %>' target="_blank" label="<%= true %>" />
+	</c:if>
+</liferay-ui:icon-list>
+
+<c:if test="<%= results.size() > 0 %>">
+	<div class="search-container">
+		<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
+	</div>
+</c:if>
