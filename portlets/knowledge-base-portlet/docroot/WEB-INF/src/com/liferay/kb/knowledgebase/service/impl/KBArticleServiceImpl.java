@@ -329,11 +329,24 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		List<KBArticle> articles = getGroupArticles(groupId, max);
 
+		List<String> entryURLs = new ArrayList<String>();
+
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
 		String title = group.getName();
 
-		List<String> entryURLs = new ArrayList<String>();
+		if (group.isUser()) {
+			User user = UserLocalServiceUtil.getUserById(group.getClassPK());
+
+			title = user.getFullName();
+		}
+		else if (group.isOrganization()) {
+			Organization organization =
+				OrganizationLocalServiceUtil.getOrganization(
+					group.getClassPK());
+
+			title = organization.getName();
+		}
 
 		for (KBArticle article : articles) {
 			String entryURL = getEntryURL(article, themeDisplay);
