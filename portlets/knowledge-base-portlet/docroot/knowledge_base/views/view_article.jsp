@@ -114,46 +114,11 @@ viewHistoryURL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
 ResourceURL feedbackURL = renderResponse.createResourceURL();
 %>
 
-<c:choose>
-	<c:when test="<%= print %>">
-		<script type="text/javascript">
-			print();
-		</script>
-
-		<div class="popup-print">
-			<liferay-ui:icon image="print" message="print" url="javascript: print();" />
-		</div>
-	</c:when>
-	<c:otherwise>
-		<script type="text/javascript">
-			jQuery(
-				function() {
-					Liferay.KnowledgeBase.initViewArticle({
-						articleResourcePrimKey: '<%= article.getResourcePrimKey() %>',
-						averageScore: '<%= feedbackStats.getAverageScore() %>',
-						namespace: '<portlet:namespace />',
-						feedbackURL: '<%= feedbackURL %>',
-						score: '<%= score %>',
-						userId: '<%= themeDisplay.getUserId() %>',
-						textAverage: '<%= LanguageUtil.get(pageContext, "average") %>',
-						textNo: '<%= LanguageUtil.get(pageContext, "please-let-us-know-why-you-found-this-unhelpful") %>',
-						textSuccess: '<%= LanguageUtil.get(pageContext, "your-request-processed-successfully") %>',
-						textThanksComment: '<%= LanguageUtil.get(pageContext, "thanks-your-feedback-will-help-us-to-improve-this-article") %>',
-						textThanksVote: '<%= LanguageUtil.get(pageContext, "thank-you-we-appreciate-your-feedback") %>',
-						textUpdateFeedback: '<%= LanguageUtil.get(pageContext, "update-your-feedback-for-this-article") %>',
-						textVote: '<%= LanguageUtil.get(pageContext, "vote") %>',
-						textVotes: '<%= LanguageUtil.get(pageContext, "votes") %>',
-						textYes: '<%= LanguageUtil.get(pageContext, "glad-it-helped-what-did-you-find-most-helpful") %>'
-					}
-				);
-			});
-
-			function <portlet:namespace />printArticle() {
-				window.open('<%= printArticleURL %>', '', "directories=0,height=480,left=80,location=1,menubar=1,resizable=1,scrollbars=yes,status=0,toolbar=0,top=180,width=640");
-			}
-		</script>
-	</c:otherwise>
-</c:choose>
+<c:if test="<%= print %>">
+	<div class="popup-print">
+		<liferay-ui:icon image="print" message="print" url="javascript: print();" />
+	</div>
+</c:if>
 
 <h1 class="article-title">
 	<%= title %>
@@ -355,23 +320,21 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 								<c:if test="<%= !article.isDraft() && article.isHead() && !article.isTemplate() %>">
 
 									<%
-									String[] displayRSSTypes = prefs.getValues("displayRSSTypes", new String[] {rss20});
-
-									rssAtomURL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
-									rssRSS10URL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
-									rssRSS20URL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
+									atom10URL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
+									rss10URL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
+									rss20URL.setParameter("resourcePrimKey", String.valueOf(resourcePrimKey));
 									%>
 
-									<c:if test="<%= ArrayUtil.contains(displayRSSTypes, atom) %>">
-										<liferay-ui:icon image="rss" message="<%= atom %>" method="get" url='<%= rssAtomURL.toString() %>' target="_blank" label="<%= true %>" />
+									<c:if test="<%= ArrayUtil.contains(rssTypes, RSSUtil.ATOM_1_0) %>">
+										<liferay-ui:icon image="rss" message="<%= RSSUtil.ATOM_1_0 %>" method="get" url='<%= atom10URL.toString() %>' target="_blank" label="<%= true %>" />
 									</c:if>
 
-									<c:if test="<%= ArrayUtil.contains(displayRSSTypes, rss10) %>">
-										<liferay-ui:icon image="rss" message="<%= rss10 %>" method="get" url='<%= rssRSS10URL.toString() %>' target="_blank" label="<%= true %>" />
+									<c:if test="<%= ArrayUtil.contains(rssTypes, RSSUtil.RSS_1_0) %>">
+										<liferay-ui:icon image="rss" message="<%= RSSUtil.RSS_1_0 %>" method="get" url='<%= rss10URL.toString() %>' target="_blank" label="<%= true %>" />
 									</c:if>
 
-									<c:if test="<%= ArrayUtil.contains(displayRSSTypes, rss20) %>">
-										<liferay-ui:icon image="rss" message="<%= rss20 %>" method="get" url='<%= rssRSS20URL.toString() %>' target="_blank" label="<%= true %>" />
+									<c:if test="<%= ArrayUtil.contains(rssTypes, RSSUtil.RSS_2_0) %>">
+										<liferay-ui:icon image="rss" message="<%= RSSUtil.RSS_2_0 %>" method="get" url='<%= rss20URL.toString() %>' target="_blank" label="<%= true %>" />
 									</c:if>
 
 									<%
@@ -463,3 +426,32 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 	</tr>
 	</table>
 </div>
+
+<script type="text/javascript">
+	if (<%= print %>) {
+		print();
+	}
+	else {
+		function <portlet:namespace />printArticle() {
+			window.open('<%= printArticleURL %>', '', "directories=0,height=480,left=80,location=1,menubar=1,resizable=1,scrollbars=yes,status=0,toolbar=0,top=180,width=640");
+		}
+	}
+
+	Liferay.KnowledgeBase.initViewArticle({
+		articleResourcePrimKey: '<%= article.getResourcePrimKey() %>',
+		averageScore: '<%= feedbackStats.getAverageScore() %>',
+		namespace: '<portlet:namespace />',
+		feedbackURL: '<%= feedbackURL %>',
+		score: '<%= score %>',
+		userId: '<%= themeDisplay.getUserId() %>',
+		textAverage: '<%= LanguageUtil.get(pageContext, "average") %>',
+		textNo: '<%= LanguageUtil.get(pageContext, "please-let-us-know-why-you-found-this-unhelpful") %>',
+		textSuccess: '<%= LanguageUtil.get(pageContext, "your-request-processed-successfully") %>',
+		textThanksComment: '<%= LanguageUtil.get(pageContext, "thanks-your-feedback-will-help-us-to-improve-this-article") %>',
+		textThanksVote: '<%= LanguageUtil.get(pageContext, "thank-you-we-appreciate-your-feedback") %>',
+		textUpdateFeedback: '<%= LanguageUtil.get(pageContext, "update-your-feedback-for-this-article") %>',
+		textVote: '<%= LanguageUtil.get(pageContext, "vote") %>',
+		textVotes: '<%= LanguageUtil.get(pageContext, "votes") %>',
+		textYes: '<%= LanguageUtil.get(pageContext, "glad-it-helped-what-did-you-find-most-helpful") %>'
+	});
+</script>

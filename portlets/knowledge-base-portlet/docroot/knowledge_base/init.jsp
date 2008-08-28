@@ -25,54 +25,50 @@
 <%@ include file="/init.jsp" %>
 
 <%
-PortletPreferences prefs = renderRequest.getPreferences();
-
 String portletResource = ParamUtil.getString(request, "portletResource");
+
+PortletPreferences prefs = renderRequest.getPreferences();
 
 if (Validator.isNotNull(portletResource)) {
 	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-String layoutFriendlyURL = PortalUtil.getLayoutFriendlyURL(layout, themeDisplay);
-
-String atom = "Atom 1.0";
-String rss10 = "RSS 1.0";
-String rss20 = "RSS 2.0";
-
-int rssDelta = GetterUtil.getInteger(prefs.getValue("rss-delta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
+String[] rssTypes = prefs.getValues("rss-types", new String[] {RSSUtil.RSS_2_0});
+double rssVersion = GetterUtil.getDouble(prefs.getValue("rss-version", String.valueOf(RSSUtil.VERSION_1_0)));
+int rssMaxItems = GetterUtil.getInteger(prefs.getValue("rss-max-items", String.valueOf(RSSUtil.MAX_ITEMS_20)));
 String rssDisplayStyle = prefs.getValue("rss-display-style", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
-int abstractLength = GetterUtil.getInteger(prefs.getValue("abstract-length", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
+int rssAbstractLength = GetterUtil.getInteger(prefs.getValue("abstract-length", String.valueOf(RSSUtil.ABSTRACT_LENGTH_200)));
 
-ResourceURL rssAtomURL = _getRSSURL(renderResponse, rssDelta, rssDisplayStyle, abstractLength);
-rssAtomURL.setParameter("type", RSSUtil.ATOM);
-rssAtomURL.setParameter("version", "1.0");
+// Portlet URLs
 
-ResourceURL rssRSS10URL = _getRSSURL(renderResponse, rssDelta, rssDisplayStyle, abstractLength);
-rssRSS10URL.setParameter("type", RSSUtil.RSS);
-rssRSS10URL.setParameter("version", "1.0");
+ResourceURL rssURL = renderResponse.createResourceURL();
 
-ResourceURL rssRSS20URL = _getRSSURL(renderResponse, rssDelta, rssDisplayStyle, abstractLength);
-rssRSS20URL.setParameter("type", RSSUtil.RSS);
-rssRSS20URL.setParameter("version", "2.0");
-%>
+rssURL.setParameter("actionName", "rss");
 
-<%!
-	private ResourceURL _getRSSURL(RenderResponse renderResponse, int rssDelta, String rssDisplayStyle, int abstractLength) {
-		ResourceURL rssURL = renderResponse.createResourceURL();
-		rssURL.setParameter("actionName", "rss");
+if (rssMaxItems != RSSUtil.MAX_ITEMS_20) {
+	rssURL.setParameter("rssMaxItems", String.valueOf(rssMaxItems));
+}
 
-		if (rssDelta != SearchContainer.DEFAULT_DELTA) {
-			rssURL.setParameter("max", String.valueOf(rssDelta));
-		}
+if (!rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT)) {
+	rssURL.setParameter("rssDisplayStyle", rssDisplayStyle);
+}
 
-		if (!rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT)) {
-			rssURL.setParameter("displayStyle", rssDisplayStyle);
-		}
+if (rssAbstractLength != RSSUtil.ABSTRACT_LENGTH_200) {
+	rssURL.setParameter("rssAbstractLength", String.valueOf(rssAbstractLength));
+}
 
-		if (abstractLength != SearchContainer.DEFAULT_DELTA) {
-			rssURL.setParameter("abstractLength", String.valueOf(abstractLength));
-		}
+ResourceURL atom10URL = rssURL;
 
-		return rssURL;
-	}
+atom10URL.setParameter("type", RSSUtil.ATOM);
+atom10URL.setParameter("version", "1.0");
+
+ResourceURL rss10URL = rssURL;
+
+rss10URL.setParameter("type", RSSUtil.RSS);
+rss10URL.setParameter("version", "1.0");
+
+ResourceURL rss20URL = rssURL;
+
+rss20URL.setParameter("type", RSSUtil.RSS);
+rss20URL.setParameter("version", "2.0");
 %>

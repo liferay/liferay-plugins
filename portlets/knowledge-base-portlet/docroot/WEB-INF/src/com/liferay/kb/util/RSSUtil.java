@@ -50,6 +50,10 @@ public class RSSUtil {
 
 	public static final int MAX_ITEMS_100 = 100;
 
+	public static final double VERSION_1_0 = 1.0;
+
+	public static final double VERSION_2_0 = 2.0;
+
 	public static final String ATOM = "atom";
 
 	public static final String ATOM_1_0 = "Atom 1.0";
@@ -65,10 +69,6 @@ public class RSSUtil {
 	public static final String RSS_1_0 = "RSS 1.0";
 
 	public static final String RSS_2_0 = "RSS 2.0";
-
-	public static final String VERSION_1_0 = "1.0";
-
-	public static final String VERSION_2_0 = "2.0";
 
 	public static final String[] RSS_TYPES = new String[] {ATOM_1_0, RSS_1_0, RSS_2_0};
 

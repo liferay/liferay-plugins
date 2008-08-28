@@ -100,18 +100,18 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			ActionRequest actionRequest, PortletPreferences prefs)
 		throws Exception {
 
-		String[] displayRSSTypes = actionRequest.getParameterValues(
-			"displayRSSTypes");
-		int rssDelta = ParamUtil.getInteger(actionRequest, "rssDelta");
+		String[] rssTypes = actionRequest.getParameterValues(
+			"rssTypes");
+		int rssMaxItems = ParamUtil.getInteger(actionRequest, "rssMaxItems");
 		String rssDisplayStyle = ParamUtil.getString(
 			actionRequest, "rssDisplayStyle");
-		int abstractLength = ParamUtil.getInteger(
-			actionRequest, "abstractLength");
+		int rssAbstractLength = ParamUtil.getInteger(
+			actionRequest, "rssAbstractLength");
 
-		prefs.setValues("displayRSSTypes", displayRSSTypes);
-		prefs.setValue("rss-delta", String.valueOf(rssDelta));
+		prefs.setValues("rss-types", rssTypes);
+		prefs.setValue("rss-max-items", String.valueOf(rssMaxItems));
 		prefs.setValue("rss-display-style", rssDisplayStyle);
-		prefs.setValue("abstract-length", String.valueOf(abstractLength));
+		prefs.setValue("rss-abstract-length", String.valueOf(rssAbstractLength));
 	}
 
 }

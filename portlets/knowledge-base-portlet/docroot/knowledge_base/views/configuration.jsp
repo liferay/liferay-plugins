@@ -25,13 +25,9 @@
 <%@ include file="/knowledge_base/init.jsp" %>
 
 <%
-String tabs2 = ParamUtil.getString(request, "tabs2", "export-settings");
-
 String redirect = ParamUtil.getString(request, "redirect");
 
-String[] rssTypes = new String[] {atom, rss10, rss20};
-
-String[] displayRSSTypes = prefs.getValues("displayRSSTypes",  new String[] {rss20});
+String tabs2 = ParamUtil.getString(request, "tabs2", "export-settings");
 
 String[] conversions = DocumentConversionUtil.getConversions("html");
 
@@ -54,127 +50,118 @@ String[] extensions = prefs.getValues("extensions", new String[] {"pdf"});
 	url="<%= portletURL %>"
 />
 
-<liferay-ui:message key="enable-the-openoffice-integration-first-then-select-which-are-the-possible-formats" />
-
-<br /><br />
-
 <c:choose>
 	<c:when test='<%= tabs2.equals("export-settings") %>'>
-		<table class="lfr-table">
-			<tr valign="middle">
+		<fieldset>
+			<legend><liferay-ui:message key="document-conversion" /></legend>
 
-				<%
-				for (String conversion : conversions) {
-				%>
+			<liferay-ui:message key="enabling-openoffice-integration-provides-document-conversion-functionality" />
 
-				<td>
-					<input type="checkbox" <%= ArrayUtil.contains(extensions, conversion) ? "checked":"" %> name="<portlet:namespace />extensions" value="<%= conversion %>" />
-				</td>
-				<td>
-					<%= conversion.toUpperCase() %>
-				</td>
+			<br /><br />
 
-				<%
-				}
-				%>
+			<table class="lfr-table">
+				<tr valign="middle">
 
-			</tr>
-		</table>
+					<%
+					for (String conversion : conversions) {
+					%>
+
+						<td>
+							<input type="checkbox" <%= ArrayUtil.contains(extensions, conversion) ? "checked":"" %> name="<portlet:namespace />extensions" value="<%= conversion %>" />
+						</td>
+						<td>
+							<%= conversion.toUpperCase() %>
+						</td>
+
+					<%
+					}
+					%>
+
+				</tr>
+			</table>
+		</fieldset>
 	</c:when>
 	<c:when test='<%= tabs2.equals("rss") %>'>
-		<table class="lfr-table">
-		<tr>
-			<td>
-				<liferay-ui:message key="rss" />
-			</td>
-			<td>
-				<table class="lfr-table">
-					<tr valign="middle">
+		<fieldset>
+			<legend><liferay-ui:message key="rss" /></legend>
 
-						<%
-						for (String rssType : rssTypes) {
-						%>
+			<table class="lfr-table">
+			<tr>
+				<td>
+					<liferay-ui:message key="rss" />
+				</td>
+				<td>
+					<table class="lfr-table">
+						<tr valign="middle">
 
-						<td>
-							<input type="checkbox" <%= ArrayUtil.contains(displayRSSTypes, rssType) ? "checked":"" %> name="<portlet:namespace />displayRSSTypes" value="<%= rssType %>" />
-						</td>
-						<td>
-							<%= rssType %>
-						</td>
+							<%
+							for (String rssType : RSSUtil.RSS_TYPES) {
+							%>
 
-						<%
-						}
-						%>
+								<td>
+									<input type="checkbox" <%= ArrayUtil.contains(rssTypes, rssType) ? "checked":"" %> name="<portlet:namespace />rssTypes" value="<%= rssType %>" />
+								</td>
+								<td>
+									<%= rssType %>
+								</td>
 
-					</tr>
-				</table>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<liferay-ui:message key="maximum-items-to-display" />
-			</td>
-			<td>
-				<select name="<portlet:namespace />rssDelta">
-					<option <%= (rssDelta == 1) ? "selected" : "" %> value="1">1</option>
-					<option <%= (rssDelta == 2) ? "selected" : "" %> value="2">2</option>
-					<option <%= (rssDelta == 3) ? "selected" : "" %> value="3">3</option>
-					<option <%= (rssDelta == 4) ? "selected" : "" %> value="4">4</option>
-					<option <%= (rssDelta == 5) ? "selected" : "" %> value="5">5</option>
-					<option <%= (rssDelta == 10) ? "selected" : "" %> value="10">10</option>
-					<option <%= (rssDelta == 15) ? "selected" : "" %> value="15">15</option>
-					<option <%= (rssDelta == 20) ? "selected" : "" %> value="20">20</option>
-					<option <%= (rssDelta == 25) ? "selected" : "" %> value="25">25</option>
-					<option <%= (rssDelta == 30) ? "selected" : "" %> value="30">30</option>
-					<option <%= (rssDelta == 40) ? "selected" : "" %> value="40">40</option>
-					<option <%= (rssDelta == 50) ? "selected" : "" %> value="50">50</option>
-					<option <%= (rssDelta == 60) ? "selected" : "" %> value="60">60</option>
-					<option <%= (rssDelta == 70) ? "selected" : "" %> value="70">70</option>
-					<option <%= (rssDelta == 80) ? "selected" : "" %> value="80">80</option>
-					<option <%= (rssDelta == 90) ? "selected" : "" %> value="90">90</option>
-					<option <%= (rssDelta == 100) ? "selected" : "" %> value="100">100</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<liferay-ui:message key="display-style" />
-			</td>
-			<td>
-				<select name="<portlet:namespace />rssDisplayStyle">
-					<option <%= (rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT)) ? "selected" : "" %> value="<%= RSSUtil.DISPLAY_STYLE_FULL_CONTENT %>"><liferay-ui:message key="full-content" /></option>
-					<option <%= (rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT)) ? "selected" : "" %> value="<%= RSSUtil.DISPLAY_STYLE_ABSTRACT %>"><liferay-ui:message key="abstract" /></option>
-					<option <%= (rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE)) ? "selected" : "" %> value="<%= RSSUtil.DISPLAY_STYLE_TITLE %>"><liferay-ui:message key="title" /></option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<liferay-ui:message key="abstract-length" />
-			</td>
-			<td>
-				<select name="<portlet:namespace />abstractLength">
-					<option <%= (abstractLength == 10) ? "selected" : "" %> value="10">10</option>
-					<option <%= (abstractLength == 15) ? "selected" : "" %> value="15">15</option>
-					<option <%= (abstractLength == 20) ? "selected" : "" %> value="20">20</option>
-					<option <%= (abstractLength == 25) ? "selected" : "" %> value="25">25</option>
-					<option <%= (abstractLength == 30) ? "selected" : "" %> value="30">30</option>
-					<option <%= (abstractLength == 40) ? "selected" : "" %> value="40">40</option>
-					<option <%= (abstractLength == 50) ? "selected" : "" %> value="50">50</option>
-					<option <%= (abstractLength == 60) ? "selected" : "" %> value="60">60</option>
-					<option <%= (abstractLength == 70) ? "selected" : "" %> value="70">70</option>
-					<option <%= (abstractLength == 80) ? "selected" : "" %> value="80">80</option>
-					<option <%= (abstractLength == 90) ? "selected" : "" %> value="90">90</option>
-					<option <%= (abstractLength == 100) ? "selected" : "" %> value="100">100</option>
-				</select>
-			</td>
-		</tr>
-		</table>
+							<%
+							}
+							%>
+
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<liferay-ui:message key="maximum-items-to-display" />
+				</td>
+				<td>
+					<select name="<portlet:namespace />rssMaxItems">
+						<option <%= (rssMaxItems == RSSUtil.MAX_ITEMS_10) ? "selected" : "" %> value="<%= RSSUtil.MAX_ITEMS_10 %>"><%= RSSUtil.MAX_ITEMS_10 %></option>
+						<option <%= (rssMaxItems == RSSUtil.MAX_ITEMS_20) ? "selected" : "" %> value="<%= RSSUtil.MAX_ITEMS_20 %>"><%= RSSUtil.MAX_ITEMS_20 %></option>
+						<option <%= (rssMaxItems == RSSUtil.MAX_ITEMS_30) ? "selected" : "" %> value="<%= RSSUtil.MAX_ITEMS_30 %>"><%= RSSUtil.MAX_ITEMS_30 %></option>
+						<option <%= (rssMaxItems == RSSUtil.MAX_ITEMS_50) ? "selected" : "" %> value="<%= RSSUtil.MAX_ITEMS_50 %>"><%= RSSUtil.MAX_ITEMS_50 %></option>
+						<option <%= (rssMaxItems == RSSUtil.MAX_ITEMS_100) ? "selected" : "" %> value="<%= RSSUtil.MAX_ITEMS_100 %>"><%= RSSUtil.MAX_ITEMS_100 %></option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<liferay-ui:message key="display-style" />
+				</td>
+				<td>
+					<select name="<portlet:namespace />rssDisplayStyle">
+						<option <%= (rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT)) ? "selected" : "" %> value="<%= RSSUtil.DISPLAY_STYLE_FULL_CONTENT %>"><liferay-ui:message key="full-content" /></option>
+						<option <%= (rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT)) ? "selected" : "" %> value="<%= RSSUtil.DISPLAY_STYLE_ABSTRACT %>"><liferay-ui:message key="abstract" /></option>
+						<option <%= (rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE)) ? "selected" : "" %> value="<%= RSSUtil.DISPLAY_STYLE_TITLE %>"><liferay-ui:message key="title" /></option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<liferay-ui:message key="abstract-length" />
+				</td>
+				<td>
+					<select name="<portlet:namespace />rssAbstractLength">
+						<option <%= (rssAbstractLength == RSSUtil.ABSTRACT_LENGTH_50) ? "selected" : "" %> value="<%= RSSUtil.ABSTRACT_LENGTH_50 %>"><%= RSSUtil.ABSTRACT_LENGTH_50 %></option>
+						<option <%= (rssAbstractLength == RSSUtil.ABSTRACT_LENGTH_100) ? "selected" : "" %> value="<%= RSSUtil.ABSTRACT_LENGTH_100 %>"><%= RSSUtil.ABSTRACT_LENGTH_100 %></option>
+						<option <%= (rssAbstractLength == RSSUtil.ABSTRACT_LENGTH_200) ? "selected" : "" %> value="<%= RSSUtil.ABSTRACT_LENGTH_200 %>"><%= RSSUtil.ABSTRACT_LENGTH_200 %></option>
+						<option <%= (rssAbstractLength == RSSUtil.ABSTRACT_LENGTH_300) ? "selected" : "" %> value="<%= RSSUtil.ABSTRACT_LENGTH_300 %>"><%= RSSUtil.ABSTRACT_LENGTH_300 %></option>
+						<option <%= (rssAbstractLength == RSSUtil.ABSTRACT_LENGTH_500) ? "selected" : "" %> value="<%= RSSUtil.ABSTRACT_LENGTH_500 %>"><%= RSSUtil.ABSTRACT_LENGTH_500 %></option>
+					</select>
+				</td>
+			</tr>
+			</table>
+		</fieldset>
 	</c:when>
 </c:choose>
 
-<br /><br />
+<br />
 
 <input type="button" value="<liferay-ui:message key="save" />" onClick="submitForm(document.<portlet:namespace />fm);" />
+
+<input type="button" value="<liferay-ui:message key="cancel" />" onClick="document.location = '<%= HtmlUtil.escape(redirect) %>'" />
 
 </form>

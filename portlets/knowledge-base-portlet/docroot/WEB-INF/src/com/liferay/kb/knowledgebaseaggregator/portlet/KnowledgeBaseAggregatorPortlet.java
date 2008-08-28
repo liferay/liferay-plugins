@@ -74,13 +74,14 @@ public class KnowledgeBaseAggregatorPortlet extends JSPPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		long groupId = ParamUtil.getLong(resourceRequest, "groupId");
+
+		String rssType = ParamUtil.getString(resourceRequest, "rssType");
+		double rssVersion = ParamUtil.getDouble(resourceRequest, "rssVersion");
 		int rssMaxItems = ParamUtil.getInteger(resourceRequest, "rssMaxItems");
 		String rssDisplayStyle = ParamUtil.getString(
 			resourceRequest, "rssDisplayStyle");
 		int rssAbstractLength = ParamUtil.getInteger(
 			resourceRequest, "rssAbstractLength");
-		String rssType = ParamUtil.getString(resourceRequest, "rssType");
-		double rssVersion = ParamUtil.getDouble(resourceRequest, "rssVersion");
 
 		String feedURL = PortalUtil.getPortalURL(themeDisplay) +
 			PortalUtil.getLayoutURL(themeDisplay);

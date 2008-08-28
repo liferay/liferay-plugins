@@ -32,8 +32,8 @@ import com.liferay.kb.knowledgebase.model.KBFeedbackStats;
 import com.liferay.kb.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalServiceUtil;
 import com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalServiceUtil;
+import com.liferay.kb.util.RSSUtil;
 import com.liferay.portal.kernel.bean.BeanParamUtil;
-import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.servlet.SessionErrors;
@@ -63,7 +63,6 @@ import com.liferay.portlet.tags.model.TagsVocabulary;
 import com.liferay.portlet.tags.service.TagsEntryServiceUtil;
 import com.liferay.portlet.tags.service.TagsVocabularyServiceUtil;
 import com.liferay.util.MathUtil;
-import com.liferay.util.RSSUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.util.servlet.PortletResponseUtil;
 import com.liferay.util.servlet.ServletResponseUtil;
@@ -509,17 +508,16 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		long groupId = ParamUtil.getLong(resourceRequest, "groupId");
 		long resourcePrimKey = ParamUtil.getLong(
 			resourceRequest, "resourcePrimKey");
-		int max = ParamUtil.getInteger(
-			resourceRequest, "max", SearchContainer.DEFAULT_DELTA);
-		String type = ParamUtil.getString(
-			resourceRequest, "type", RSSUtil.DEFAULT_TYPE);
-		double version = ParamUtil.getDouble(
-			resourceRequest, "version", RSSUtil.DEFAULT_VERSION);
-		String displayStyle = ParamUtil.getString(
-			resourceRequest, "displayStyle",
+
+		String rssType = ParamUtil.getString(resourceRequest, "rssType");
+		double rssVersion = ParamUtil.getDouble(resourceRequest, "rssVersion");
+		int rssMaxItems = ParamUtil.getInteger(
+			resourceRequest, "rssMaxItems", RSSUtil.MAX_ITEMS_20);
+		String rssDisplayStyle = ParamUtil.getString(
+			resourceRequest, "rssDisplayStyle",
 			RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
-		int abstractLength = ParamUtil.getInteger(
-			resourceRequest, "abstractLength", SearchContainer.DEFAULT_DELTA);
+		int rssAbstractLength = ParamUtil.getInteger(
+			resourceRequest, "rssAbstractLength", RSSUtil.ABSTRACT_LENGTH_200);
 
 		String feedURL = PortalUtil.getPortalURL(themeDisplay) +
 			PortalUtil.getLayoutURL(themeDisplay);
@@ -528,13 +526,13 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 		if (resourcePrimKey > 0) {
 			rss = KBArticleServiceUtil.getArticlesRSS(
-				resourcePrimKey, max, type, version, displayStyle,
-				abstractLength, feedURL);
+				resourcePrimKey, rssMaxItems, rssType, rssVersion,
+				rssDisplayStyle, rssAbstractLength, feedURL);
 		}
 		else if (groupId > 0) {
 			rss = KBArticleServiceUtil.getGroupArticlesRSS(
-				groupId, max, type, version, displayStyle, abstractLength,
-				feedURL);
+				groupId, rssMaxItems, rssType, rssVersion, rssDisplayStyle,
+				rssAbstractLength, feedURL);
 		}
 
 		HttpServletResponse response = PortalUtil.getHttpServletResponse(

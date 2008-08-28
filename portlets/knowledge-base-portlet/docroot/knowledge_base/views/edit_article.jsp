@@ -59,17 +59,6 @@ ResourceURL templateURL = renderResponse.createResourceURL();
 %>
 
 <script type="text/javascript">
-	if (<%= !templates.isEmpty() && !template %>) {
-		jQuery(
-			function() {
-				Liferay.KnowledgeBase.initEditArticle({
-					namespace: '<portlet:namespace />',
-					templateURL: '<%= templateURL %>'
-				});
-			}
-		);
-	}
-
 	function <portlet:namespace />applyTemplate() {
 		document.<portlet:namespace />fm.<portlet:namespace />addTemplate.value = "true";
 
@@ -79,13 +68,7 @@ ResourceURL templateURL = renderResponse.createResourceURL();
 	function <portlet:namespace />getTemplate() {
 		var templateResourcePrimKey = "";
 
-		for (var i = 0; i < document.<portlet:namespace />fm.<portlet:namespace />templates.length; i++) {
-			if (document.<portlet:namespace />fm.<portlet:namespace />templates.options[i].selected) {
-				templateResourcePrimKey = document.<portlet:namespace />fm.<portlet:namespace />templates.options[i].value;
-
-				break;
-			}
-		}
+		templateResourcePrimKey = document.<portlet:namespace />fm['<portlet:namespace />templates'].value;
 
 		document.<portlet:namespace />fm.<portlet:namespace />templateResourcePrimKey.value = templateResourcePrimKey;
 
@@ -334,5 +317,12 @@ if (article != null) {
 <script type="text/javascript">
 	if (!window.<portlet:namespace />editor) {
 		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />title);
+	}
+
+	if (<%= !templates.isEmpty() && !template %>) {
+		Liferay.KnowledgeBase.initEditArticle({
+			namespace: '<portlet:namespace />',
+			templateURL: '<%= templateURL %>'
+		});
 	}
 </script>

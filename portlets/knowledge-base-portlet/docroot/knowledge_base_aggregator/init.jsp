@@ -41,4 +41,29 @@ String[] rssTypes = prefs.getValues("rss-types", new String[] {RSSUtil.RSS_2_0})
 int rssMaxItems = GetterUtil.getInteger(prefs.getValue("rss-max-items", String.valueOf(RSSUtil.MAX_ITEMS_20)));
 String rssDisplayStyle = prefs.getValue("rss-display-style", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
 int rssAbstractLength = GetterUtil.getInteger(prefs.getValue("rss-abstract-length", String.valueOf(RSSUtil.ABSTRACT_LENGTH_200)));
+
+// Portlet URLs
+
+ResourceURL rssURL = renderResponse.createResourceURL();
+
+rssURL.setParameter("actionName", "rss");
+rssURL.setParameter("groupId", String.valueOf(groupId));
+rssURL.setParameter("rssAbstractLength", String.valueOf(rssAbstractLength));
+rssURL.setParameter("rssDisplayStyle", rssDisplayStyle);
+rssURL.setParameter("rssMaxItems", String.valueOf(rssMaxItems));
+
+ResourceURL atom10URL = rssURL;
+
+atom10URL.setParameter("rssType", RSSUtil.ATOM);
+atom10URL.setParameter("rssVersion", String.valueOf(RSSUtil.VERSION_1_0));
+
+ResourceURL rss10URL = rssURL;
+
+rss10URL.setParameter("rssType", RSSUtil.RSS);
+rss10URL.setParameter("rssVersion", String.valueOf(RSSUtil.VERSION_1_0));
+
+ResourceURL rss20URL = rssURL;
+
+rss20URL.setParameter("rssType", RSSUtil.RSS);
+rss20URL.setParameter("rssVersion", String.valueOf(RSSUtil.VERSION_2_0));
 %>

@@ -73,23 +73,21 @@ else {
 	<c:if test="<%= !article.isTemplate() %>">
 
 		<%
-		String[] displayRSSTypes = prefs.getValues("displayRSSTypes", new String[] {rss20});
-
-		rssAtomURL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
-		rssRSS10URL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
-		rssRSS20URL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
+		atom10URL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
+		rss10URL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
+		rss20URL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
 		%>
 
-		<c:if test="<%= ArrayUtil.contains(displayRSSTypes, atom) %>">
-			<liferay-ui:icon image="rss" message="<%= atom %>" method="get" url='<%= rssAtomURL.toString() %>' target="_blank" label="<%= true %>" />
+		<c:if test="<%= ArrayUtil.contains(rssTypes, RSSUtil.ATOM_1_0) %>">
+			<liferay-ui:icon image="rss" message="<%= RSSUtil.ATOM_1_0 %>" method="get" url='<%= atom10URL.toString() %>' target="_blank" label="<%= true %>" />
 		</c:if>
 
-		<c:if test="<%= ArrayUtil.contains(displayRSSTypes, rss10) %>">
-			<liferay-ui:icon image="rss" message="<%= rss10 %>" method="get" url='<%= rssRSS10URL.toString() %>' target="_blank" label="<%= true %>" />
+		<c:if test="<%= ArrayUtil.contains(rssTypes, RSSUtil.RSS_1_0) %>">
+			<liferay-ui:icon image="rss" message="<%= RSSUtil.RSS_1_0 %>" method="get" url='<%= rss10URL.toString() %>' target="_blank" label="<%= true %>" />
 		</c:if>
 
-		<c:if test="<%= ArrayUtil.contains(displayRSSTypes, rss20) %>">
-			<liferay-ui:icon image="rss" message="<%= rss20 %>" method="get" url='<%= rssRSS20URL.toString() %>' target="_blank" label="<%= true %>" />
+		<c:if test="<%= ArrayUtil.contains(rssTypes, RSSUtil.RSS_2_0) %>">
+			<liferay-ui:icon image="rss" message="<%= RSSUtil.RSS_2_0 %>" method="get" url='<%= rss20URL.toString() %>' target="_blank" label="<%= true %>" />
 		</c:if>
 	</c:if>
 

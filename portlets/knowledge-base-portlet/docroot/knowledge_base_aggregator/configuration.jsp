@@ -176,12 +176,12 @@ else if (group.isUser() || group.isUserGroup()) {
 							for (String rssType : RSSUtil.RSS_TYPES) {
 							%>
 
-							<td>
-								<input type="checkbox" <%= ArrayUtil.contains(rssTypes, rssType) ? "checked":"" %> name="<portlet:namespace />rssTypes" value="<%= rssType %>" />
-							</td>
-							<td>
-								<%= rssType %>
-							</td>
+								<td>
+									<input type="checkbox" <%= ArrayUtil.contains(rssTypes, rssType) ? "checked":"" %> name="<portlet:namespace />rssTypes" value="<%= rssType %>" />
+								</td>
+								<td>
+									<%= rssType %>
+								</td>
 
 							<%
 							}
