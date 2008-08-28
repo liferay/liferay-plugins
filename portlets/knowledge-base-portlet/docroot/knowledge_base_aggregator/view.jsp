@@ -34,7 +34,7 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 List entries = null;
 
 if (groupId > 0) {
-	entries = KBArticleServiceUtil.getGroupArticles(groupId, maxItems);
+	entries = KBArticleServiceUtil.getGroupArticles(themeDisplay.getDefaultUserId(), groupId, false, maxItems);
 }
 else {
 	entries = KBArticleServiceUtil.getCompanyArticles(themeDisplay.getCompanyId(), maxItems);

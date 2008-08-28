@@ -124,22 +124,6 @@ public class KBArticleServiceUtil {
 		return _service.getGroupArticles(userId, groupId, template, max);
 	}
 
-	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
-		long groupId, int max)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		return _service.getGroupArticles(groupId, max);
-	}
-
-	public static java.lang.String getGroupArticlesRSS(long groupId, int max,
-		java.lang.String type, double version, java.lang.String displayStyle,
-		int abstractLength, java.lang.String feedURL)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		return _service.getGroupArticlesRSS(groupId, max, type, version,
-			displayStyle, abstractLength, feedURL);
-	}
-
 	public static java.lang.String getGroupArticlesRSS(long groupId, int max,
 		java.lang.String type, double version, java.lang.String displayStyle,
 		int abstractLength, java.lang.String description,

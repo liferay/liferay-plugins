@@ -183,8 +183,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			getPermissionChecker(), resourcePrimKey, ActionKeys.VIEW);
 
 		List<KBArticle> articles = kbArticleLocalService.getArticles(
-			resourcePrimKey, false, 0, max,
-			new ArticleModifiedDateComparator(true));
+			resourcePrimKey, 0, max, new ArticleModifiedDateComparator(true));
 
 		String title = StringPool.BLANK;
 		String description = StringPool.BLANK;
@@ -269,65 +268,16 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		return articles;
 	}
 
-	public List<KBArticle> getGroupArticles(long groupId, int max)
-		throws PortalException, SystemException {
-
-		List<KBArticle> articles = new ArrayList<KBArticle>();
-
-		Iterator<KBArticle> itr = kbArticleLocalService.getGroupArticles(
-			groupId, true, false, false, 0, _MAX_END).iterator();
-
-		while (itr.hasNext() && (articles.size() < max)) {
-			KBArticle article = itr.next();
-
-			if (KBArticlePermission.contains(getPermissionChecker(), article,
-					ActionKeys.VIEW)) {
-
-				articles.add(article);
-			}
-		}
-
-		return articles;
-	}
-
-	public String getGroupArticlesRSS(
-			long groupId, int max, String type, double version,
-			String displayStyle, int abstractLength, String feedURL)
-		throws PortalException, SystemException {
-
-		List<KBArticle> articles = getGroupArticles(groupId, max);
-
-		Group group = GroupLocalServiceUtil.getGroup(groupId);
-
-		String title = group.getName();
-
-		if (group.isUser()) {
-			User user = UserLocalServiceUtil.getUserById(group.getClassPK());
-
-			title = user.getFullName();
-		}
-		else if (group.isOrganization()) {
-			Organization organization =
-				OrganizationLocalServiceUtil.getOrganization(
-					group.getClassPK());
-
-			title = organization.getName();
-		}
-
-		String description = group.getDescription();
-
-		return exportToRSS(
-			title, description, type, version, displayStyle, abstractLength,
-			feedURL, null, articles);
-	}
-
 	public String getGroupArticlesRSS(
 			long groupId, int max, String type, double version,
 			String displayStyle, int abstractLength, String description,
 			String feedURL, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
-		List<KBArticle> articles = getGroupArticles(groupId, max);
+		long userId = themeDisplay.getDefaultUserId();
+
+		List<KBArticle> articles = getGroupArticles(
+			userId, groupId, false, max);
 
 		List<String> entryURLs = new ArrayList<String>();
 

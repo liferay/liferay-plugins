@@ -4,5 +4,5 @@
 	<bean id="liferayDataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
 		<property name="targetDataSource" ref="liferayDataSourceTarget" />
 	</bean>
-	<bean id="liferayDataSourceTarget" class="com.liferay.portal.kernel.util.InfrastructureUtil" factory-method="getDataSource" />
+	<bean id="liferayDataSourceTarget" class="com.liferay.portal.kernel.jndi.PortalJNDIUtil" factory-method="getDataSource" />
 </beans>

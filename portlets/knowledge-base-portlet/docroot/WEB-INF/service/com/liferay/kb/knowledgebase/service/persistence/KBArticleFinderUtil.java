@@ -41,11 +41,6 @@ public class KBArticleFinderUtil {
 				   .countByU_G_H_T_D(userId, groupId, head, template, draft);
 	}
 
-	public static int countByU_R_H_D(long userId, long resourcePrimKey,
-		boolean head, boolean draft) throws com.liferay.portal.SystemException {
-		return getFinder().countByU_R_H_D(userId, resourcePrimKey, head, draft);
-	}
-
 	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByS_U_G(
 		long userId, long groupId) throws com.liferay.portal.SystemException {
 		return getFinder().findByS_U_G(userId, groupId);
@@ -71,14 +66,6 @@ public class KBArticleFinderUtil {
 		return getFinder()
 				   .findByU_G_H_T_D(userId, groupId, head, template, draft,
 			start, end);
-	}
-
-	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByU_R_H_D(
-		long userId, long resourcePrimKey, boolean head, boolean draft,
-		int start, int end) throws com.liferay.portal.SystemException {
-		return getFinder()
-				   .findByU_R_H_D(userId, resourcePrimKey, head, draft, start,
-			end);
 	}
 
 	public static KBArticleFinder getFinder() {

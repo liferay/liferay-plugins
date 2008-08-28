@@ -394,20 +394,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 	}
 
-	public KBArticle getArticle(long resourcePrimKey, boolean draft)
-		throws PortalException, SystemException {
-
-		List<KBArticle> articles = kbArticlePersistence.findByR_H_D(
-			resourcePrimKey, true, draft, 0, 1);
-
-		if (articles.size() > 0) {
-			return articles.get(0);
-		}
-		else {
-			throw new NoSuchArticleException();
-		}
-	}
-
 	public KBArticle getArticle(long resourcePrimKey, double version)
 		throws PortalException, SystemException {
 
@@ -437,37 +423,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 	}
 
-	public KBArticle getArticle(
-			long resourcePrimKey, double version, boolean draft)
-		throws PortalException, SystemException {
-
-		KBArticle article = null;
-
-		if (version == 0) {
-			article = getArticle(resourcePrimKey, draft);
-		}
-		else {
-			article = kbArticlePersistence.findByR_V_D(
-				resourcePrimKey, version, draft);
-		}
-
-		return article;
-	}
-
-	public KBArticle getArticle(long groupId, String title, boolean draft)
-		throws PortalException, SystemException {
-
-		List<KBArticle> articles = kbArticlePersistence.findByG_T_H_D(
-			groupId, title, true, draft, 0, 1);
-
-		if (articles.size() > 0) {
-			return articles.get(0);
-		}
-		else {
-			throw new NoSuchArticleException();
-		}
-	}
-
 	public KBArticle getArticle(long groupId, String title, double version)
 		throws PortalException, SystemException {
 
@@ -478,39 +433,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 		else {
 			article = kbArticlePersistence.findByG_T_V(groupId, title, version);
-		}
-
-		return article;
-	}
-
-	public KBArticle getArticle(
-			long userId, long resourcePrimKey, boolean head,
-			boolean draft)
-		throws PortalException, SystemException {
-
-		List<KBArticle> articles = kbArticleFinder.findByU_R_H_D(
-			userId, resourcePrimKey, head, draft, 0, 1);
-
-		if (articles.size() > 0) {
-			return articles.get(0);
-		}
-		else {
-			throw new NoSuchArticleException();
-		}
-	}
-
-	public KBArticle getArticle(
-			long groupId, String title, double version, boolean draft)
-		throws PortalException, SystemException {
-
-		KBArticle article = null;
-
-		if (version == 0) {
-			article = getArticle(groupId, title, draft);
-		}
-		else {
-			article = kbArticlePersistence.findByG_T_V_D(
-				groupId, title, version, draft);
 		}
 
 		return article;
@@ -533,33 +455,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			resourcePrimKey, start, end, obc);
 	}
 
-	public List<KBArticle> getArticles(
-			long resourcePrimKey, boolean draft, int start, int end)
-		throws SystemException {
-
-		return kbArticlePersistence.findByR_D(
-			resourcePrimKey, draft, start, end,
-			new ArticleModifiedDateComparator(false));
-	}
-
-	public List<KBArticle> getArticles(
-			long resourcePrimKey, boolean draft, int start, int end,
-			OrderByComparator obc)
-		throws SystemException {
-
-		return kbArticlePersistence.findByR_D(
-			resourcePrimKey, draft, start, end, obc);
-	}
-
 	public int getArticlesCount(long resourcePrimKey) throws SystemException {
 
 		return kbArticlePersistence.countByResourcePrimKey(resourcePrimKey);
-	}
-
-	public int getArticlesCount(long resourcePrimKey, boolean draft)
-		throws SystemException {
-
-		return kbArticlePersistence.countByR_D(resourcePrimKey, draft);
 	}
 
 	public List<KBArticle> getCompanyArticles(
@@ -582,31 +480,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	public List<KBArticle> getGroupArticles(
-			long groupId, boolean head, boolean template, boolean draft,
-			int start, int end)
-		throws SystemException {
-
-		return kbArticlePersistence.findByG_H_T_D(
-			groupId, head, template, draft, start, end,
-			new ArticleModifiedDateComparator(false));
-	}
-
-	public List<KBArticle> getGroupArticles(
 			long groupId, String title, boolean head, int start, int end)
 		throws SystemException {
 
 		return kbArticlePersistence.findByG_T_H(
 			groupId, title, head, start, end,
-			new ArticleModifiedDateComparator(false));
-	}
-
-	public List<KBArticle> getGroupArticles(
-			long groupId, String title, boolean head, boolean draft, int start,
-			int end)
-		throws SystemException {
-
-		return kbArticlePersistence.findByG_T_H_D(
-			groupId, title, head, draft, start, end,
 			new ArticleModifiedDateComparator(false));
 	}
 
@@ -634,25 +512,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return kbArticlePersistence.countByG_H_T(groupId, head, template);
 	}
 
-	public int getGroupArticlesCount(
-			long groupId, boolean head, boolean template, boolean draft)
-		throws SystemException {
-
-		return kbArticlePersistence.countByG_H_T_D(
-			groupId, head, template, draft);
-	}
-
 	public int getGroupArticlesCount(long groupId, String title, boolean head)
 		throws SystemException {
 
 		return kbArticlePersistence.countByG_T_H(groupId, title, head);
-	}
-
-	public int getGroupArticlesCount(
-			long groupId, String title, boolean head, boolean draft)
-		throws SystemException {
-
-		return kbArticlePersistence.countByG_T_H_D(groupId, title, head, draft);
 	}
 
 	public int getGroupArticlesCount(

@@ -36,6 +36,7 @@ import com.liferay.kb.util.RSSUtil;
 import com.liferay.portal.kernel.bean.BeanParamUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
@@ -521,6 +522,8 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 		String feedURL = PortalUtil.getPortalURL(themeDisplay) +
 			PortalUtil.getLayoutURL(themeDisplay);
+		String description = LanguageUtil.get(
+			themeDisplay.getLocale(), "knowledge-base-articles");
 
 		String rss = StringPool.BLANK;
 
@@ -532,7 +535,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		else if (groupId > 0) {
 			rss = KBArticleServiceUtil.getGroupArticlesRSS(
 				groupId, rssMaxItems, rssType, rssVersion, rssDisplayStyle,
-				rssAbstractLength, feedURL);
+				rssAbstractLength, description, feedURL, themeDisplay);
 		}
 
 		HttpServletResponse response = PortalUtil.getHttpServletResponse(
