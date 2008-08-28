@@ -407,3 +407,29 @@ a.bottom-item {
 #portlet-wrapper-sign-in .portlet-title, #portlet-wrapper-sign-in .tabs {
 	font-size: 1.2em;
 }
+
+/*------ Tabs ------*/
+
+.ui-tabs li a, .tabs li span {
+	background:transparent url(../images/custom/navigation/bg.png) repeat-x scroll 0 0;
+	border-right:1px solid #304049;
+	padding:8px;
+	top:0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:transparent url(../images/custom/navigation/bg.png) repeat-x scroll 0 0;
+	color:white;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent url(../images/custom/navigation/bg.png) repeat-x scroll 0 0;
+	border-color:-moz-use-text-color #304049 -moz-use-text-color -moz-use-text-color;
+	border-style:none solid none none;
+	border-width:medium 1px medium medium;
+	color:white;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	text-decoration: none;
+}

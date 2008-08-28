@@ -278,3 +278,32 @@ ul.child-menu {
 	right:-16px;
 	top:-19px;
 }
+
+/*------- Tabs ----------*/
+
+.ui-tabs li a, .tabs li span {
+	background:transparent url(../images/custom/navigation/tab_link.png) repeat-x scroll 0 0;
+	border-right:1px solid #304049;
+	top:0;
+	padding: 5px;
+	color: #B5C4E3;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent url(../images/custom/navigation/tab_hover.png) repeat-x scroll 0 0;
+	border:medium none;
+	color:#FF9000;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	background:transparent url(../images/custom/navigation/tab_hover.png) repeat-x scroll 0 0;
+	color:#FF9000;
+	text-decoration: none;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:transparent url(../images/custom/navigation/tab_hover.png) repeat-x scroll 0 0;
+	color:white;
+	text-decoration: none;
+}

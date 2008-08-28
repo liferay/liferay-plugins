@@ -159,3 +159,32 @@ ul li, ol ul li {
 a {
 	font-size: 12px;
 }
+
+/*----- Tabs -----*/
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:black none repeat scroll 0 0;
+	border-right:1px solid #304049;
+	border-left: none;
+	border-top: none;
+	border-bottom: none;
+	color:white;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:black;
+	color: white;
+	text-decoration: none;
+}
+
+.ui-tabs li a, .tabs li span {
+	background:black none repeat scroll 0 0;
+	border-right:1px solid #304049;
+	color:#DA1C5C;
+	top:0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+background:black;
+color:white;
+}

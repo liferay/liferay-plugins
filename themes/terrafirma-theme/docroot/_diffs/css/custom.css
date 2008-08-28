@@ -168,7 +168,7 @@ html {
 }
 
 #navigation {
-	background: #46461F url('../images/custom/bg.gif') repeat-x scroll 0 0%;
+	background:#46461F url(../images/custom/bg_1.png) repeat-x scroll 0 0;
 	border: medium none;
 	height: 52px;
 	margin: 6px 24px;
@@ -206,4 +206,24 @@ html {
 	border: 0 solid #CCC;
 	margin: 0 auto;
 	width: 947px;
+}
+
+/*------ Tabs ------*/
+
+.ui-tabs li a, .tabs li span {
+	background:#46461F url(../images/custom/bg_1.png) repeat-x scroll 0 0;
+	border-right:medium none;
+	top:0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:#FFFFFF url(../images/custom/bg_2.png) repeat-x scroll center top;
+	color:black;
+	text-decoration: none;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent url(../images/custom/banner_bg_1.jpg) no-repeat scroll right center;
+	border:medium none;
+	color:black;
 }

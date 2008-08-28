@@ -260,3 +260,36 @@ ul.child-menu {
 .results-header th, .results-header td {
 	color:black;
 }
+
+.portlet-topper {
+	background:transparent none repeat scroll 0 0;
+	border-bottom:1px solid black;
+}
+
+/*----- Tabs -----*/
+
+.ui-tabs li a, .tabs li span {
+	background:transparent url(../images/custom/navigation.png) repeat scroll 0 0;
+	border-right:medium none;
+	color:black;
+	top:0;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:black none repeat scroll 0 0;
+	border:medium none;
+	color:white;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:#FFFFFF;
+	color: white;
+	text-decoration: none;
+	background: black;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:black;
+	color:white;
+	text-decoration: none;
+}

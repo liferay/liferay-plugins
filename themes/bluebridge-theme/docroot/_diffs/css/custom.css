@@ -18,6 +18,31 @@ body {
 	font-size: 10px;
 }
 
+.ui-tabs li a, .tabs li span {
+	background:transparent url(../images/common/nav-bg.png) repeat scroll 0 0;
+	border:medium none;
+	color:#003366;
+	top: 0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:transparent url(../images/common/nav-bg.png) repeat scroll 0 0;
+	text-decoration: none;
+	color:#336699;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	background:transparent url(../images/common/header_bg.jpg) repeat scroll 0 0;
+	text-decoration: none;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent url(../images/common/header_bg.jpg) repeat scroll 0 0;
+	border:medium none;
+	color:black;
+}
+
 #footer {
 	background-image: url(../images/common/footer.png);
 	border-top: 1px solid #016FA0;
@@ -36,6 +61,10 @@ body {
 	bottom: 12px;
 	position: absolute;
 	right: 0;
+}
+
+.js #navigation .enter-page {
+	margin-top:5px;
 }
 
 #navigation li a {

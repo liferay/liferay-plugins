@@ -125,3 +125,30 @@ html {
 .portlet {
 	margin: 18px 6px;
 }
+
+/*----- Tabs ------*/
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:#597F93 url(../images/custom/header.jpg) no-repeat scroll -70px center;
+	border:medium none;
+	color:white;
+}
+
+.ui-tabs li a, .tabs li span {
+	background:#769359 url(../images/custom/bg.jpg) repeat-y scroll left top;
+	border-right:medium none;
+	top:0;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	color: white;
+	text-decoration: none;
+	background:#597F93 url(../images/custom/header.jpg) no-repeat scroll -70px center;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:black;
+	color:white;
+	text-decoration: none;
+}

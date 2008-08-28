@@ -278,3 +278,35 @@ ul.child-menu {
 #wrapper, #banner, #navigation, #content-wrapper, .portlet, .portlet-topper, .portlet-title, .portlet-content {
 	display: block;
 }
+
+.portlet-topper {
+	background:#E4E4E4 url(../images/custom/nav.png) repeat-x scroll 0 0;
+}
+
+/*----- Tabs -----*/
+
+.ui-tabs li a, .tabs li span {
+	background:#E4E4E4 url(../images/custom/nav.png) repeat-x scroll 0 0;
+	border-right:medium none;
+	color:black;
+	top:0;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:#DBDBDB url(../images/custom/nav-current.png) repeat-x scroll 0 0;
+	border:medium none;
+	color:black;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	text-decoration: none;
+	color: black;
+	background:#DBDBDB url(../images/custom/nav-current.png) repeat-x scroll 0 0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:black;
+	color:white;
+	text-decoration: none;
+}

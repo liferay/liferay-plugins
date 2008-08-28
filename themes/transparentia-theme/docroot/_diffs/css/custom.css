@@ -195,3 +195,23 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	position: relative;
 	width: 1180px;
 }
+
+/*------ Tabs ------*/
+
+.ui-tabs li a, .tabs li span {
+	background:transparent url(../images/custom/header.png) repeat-x scroll center center;
+	border-right:medium none;
+	top:0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:black;
+	color:white;
+	text-decoration: none;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent url(../images/custom/header.png) repeat-x scroll center bottom;
+	border:medium none;
+	color:white;
+}

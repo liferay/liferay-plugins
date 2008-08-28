@@ -135,3 +135,29 @@ html {
 	width:1264px;
 	position: relative;
 }
+
+/*----- Tabs ------*/
+
+.ui-tabs li a, .tabs li span {
+	background:#7F8400 url(../images/custom/menubg.png) repeat-x scroll left top;
+	border-right:medium none;
+	top:0;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent url(../images/custom/menuactive.png) repeat-x scroll left top;
+	border:medium none;
+	color:white;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	background:transparent url(../images/custom/menuactive.png) repeat-x scroll left top;
+	color: white;
+	text-decoration: none;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:transparent url(../images/custom/menuactive.png) repeat-x scroll left top;
+	color:white;
+}

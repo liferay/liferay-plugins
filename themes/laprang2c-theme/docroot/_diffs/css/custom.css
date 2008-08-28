@@ -33,9 +33,6 @@ body {
 	background: #404040 url(../images/custom/bg2.jpg) repeat fixed 0;
 }
 
-#content-wrapper a:link {
-	color: #4BACF7;
-}
 
 #content-wrapper {
 	background: #000 none repeat scroll 0;
@@ -194,59 +191,32 @@ input.focus, textarea.focus, .ie6 input.focus, .ie6 textarea.focus {
 	background: transparent;
 }
 
-.ui-tabs {
-	border-bottom: 1px solid #bfe1ff;
-	margin: 0 0 1.5em 0;
-	padding: 0 0 2.6em 1em;
-}
+/*----- Tabs -----*/
 
-.ui-tabs li {
-	background: #eaf5ff url(../images/common/tabs_inactive_bg.png) repeat-x 0 100%;
-	border: 1px solid #bfe1ff;
-	border-bottom: 0;
-	display: inline;
-	float: left;
-	line-height: 2.25;
-	margin-right: 0.8em;
-	padding: 0;
-	text-decoration: none;
-}
-
-
-.ui-tabs li a, .ui-tabs li span {
-	display: block;
-	float: left;
-	padding: 0.35em 1em 0;
-	text-decoration: none;
-}
-
-.ui-tabs li.current {
-	background: #bfe1ff url(../images/common/tabs_active_bg.png) repeat-x 0 0;
-	font-weight: bold;
-}
-
-.ui-tabs li.current a, .ui-tabs li.current span {
-	color: #333;
-	padding: 0.15em 1em;
+.ui-tabs li a, .tabs li span {
+	background:#202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0 0;
+	border-right:5px solid #333333;
+	top:0;
+	color: white;
 }
 
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
 	background-color:transparent;
-	background: #bfe1ff url(../images/common/tabs_active_bg.png) repeat-x 0 0;
 	text-decoration: none;
+	background:#202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0 0;
 }
 
 .ui-tabs li.current a, .ui-tabs li.current span {
-	background:transparent none repeat scroll 0 0;
-	border:medium none;
+	background:#202020 url(../images/custom/h2_btn.jpg) repeat-x scroll 0 0;
+	border-left:medium none;
+	border-top: none;
+	border-bottom:  none;
+	border-right:5px solid #333333;
+	color:white;
 }
 
 .ui-tabs li a:hover, .ui-tabs li span:hover {
-	background: #bfe1ff url(../images/common/tabs_active_bg.png) repeat-x 0 0;
-}
-
-.ui-tabs li a, .tabs li span {
-	background:transparent none repeat scroll 0 0;
-	border-right:medium none;
-	top:0;
+	background:black;
+	color:white;
+	text-decoration: none;
 }

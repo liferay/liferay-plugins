@@ -111,7 +111,7 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 #navigation ul {
 	margin: 0 auto 0 132px;
 	min-height: 2em;
-	width: 50%;
+	width: auto;
 }
 
 #navigation {
@@ -150,4 +150,29 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 
 .portlet-section-body td {
 	color: black;
+}
+
+/** Tabs **/
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent url(../images/theme/bckheader.jpg) no-repeat scroll center center;
+	border:medium none;
+	color:white;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	text-decoration: none;
+	background:transparent url(../images/theme/bckheader.jpg) no-repeat scroll center center;
+}
+
+.ui-tabs li a, .tabs li span {
+	background:transparent none repeat scroll 0 0;
+	border-right:medium none;
+	top:0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:transparent;
+	color:white;
 }

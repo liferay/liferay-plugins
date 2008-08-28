@@ -169,3 +169,30 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	background: none;
 	padding-top: 1px;
 }
+
+/*----- Tabs -----*/
+
+.ui-tabs li a, .tabs li span {
+	background:#94AE62 url(../images/custom/menu.png) repeat scroll 0 0;
+	border-right:medium none;
+	top:0;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:#94AE62 url(../images/custom/menu.png) repeat scroll 0 0;
+	border:medium none;
+	color:black;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	background:#94AE62 url(../images/custom/menu.png) repeat scroll 0 0;
+	color: black;
+	text-decoration: none;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:#FFFFFF url(../images/custom/a_hover.png) repeat scroll 0 0;
+	color:black;
+	text-decoration: none;
+}

@@ -4,6 +4,12 @@ a {
 	color: #6E840B;
 }
 
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent url(../images/custom/navigation_hover.png) repeat scroll 0 0;
+	border:medium none;
+	color:white;
+}
+
 a:hover {
 	color: #6E840B;
 }
@@ -13,6 +19,22 @@ a:hover {
 	position: relative;
 	border-top:1px solid grey;
 	height:105px;
+}
+
+.ui-tabs li a, .tabs li span {
+	background:transparent url(../images/custom/navigation_bg.png) repeat scroll 0 0;
+	border-right:1px solid #777777;
+	top:0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:transparent url(../images/custom/navigation_hover.png) repeat scroll 0 0;
+	color: white;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	text-decoration: none;
 }
 
 body {

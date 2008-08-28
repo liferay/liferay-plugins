@@ -60,7 +60,7 @@ body {
 	background: transparent none repeat scroll 0 0%;
 	border: medium none;
 	right: -1%;
-	top: -3px;
+	top: 1px;
 }
 
 .js #navigation .enter-page {
@@ -164,4 +164,30 @@ body {
 	background: none;
 	margin: 0 auto;
 	width: 900px;
+}
+
+/*----- Tabs ------*/
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:#E0691A url(../images/custom/bar.png) no-repeat scroll center top;
+	border:medium none;
+	color:white;
+}
+
+.ui-tabs li a, .tabs li span {
+	background:#FF9148 none repeat scroll 0 50%;
+	border:medium none;
+	top:0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:black;
+	color:#E0691A;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	text-decoration: none;
+	background:#E0691A url(../images/custom/bar.png) no-repeat scroll center top;
+	color: white;
 }

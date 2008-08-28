@@ -128,3 +128,32 @@
 #wrapper {
 	background: none;
 }
+
+/*----- Tabs -----*/
+
+.ui-tabs li a, .tabs li span {
+	background:transparent url(../images/custom/bg.png) repeat scroll 0 0;
+	border-right:medium none;
+	color:black;
+	padding: 8px;
+	top:0;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent url(../images/custom/bg.png) repeat scroll 0 0;
+	border:medium none;
+	color:black;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	text-decoration: none;
+	color: black;
+	background:transparent url(../images/custom/bg.png) repeat scroll 0 0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:black;
+	color:white;
+	text-decoration: none;
+}

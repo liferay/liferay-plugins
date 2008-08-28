@@ -1,7 +1,7 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
 a {
-	color: #DDD;
+	color: #000;
 }
 
 a:hover {
@@ -88,15 +88,14 @@ html {
 	margin: 0 auto;
 	width: 956px;
 }
-.tabs {
+.ui-tabs {
 	border-bottom: 1px solid #bfe1ff;
 	margin: 0 0 1.5em 0;
 	padding: 0 0 2.6em 1em;
 }
 
-.tabs li {
+.ui-tabs li {
 	background: #eaf5ff url(../images/common/tabs_inactive_bg.png) repeat-x 0 100%;
-	border: 1px solid #bfe1ff;
 	border-bottom: 0;
 	display: inline;
 	float: left;
@@ -106,19 +105,35 @@ html {
 	text-decoration: none;
 }
 
-.ui-tabs li a, .ui-tabs li span {
+.ui-tabs li a, .tabs li span {
 	display: block;
 	float: left;
 	padding: 0.35em 1em 0;
 	text-decoration: none;
+	top: 0;
+	background: transparent;
+	color: black;
+	border:1px solid #000000;
 }
 
-.ui-tabs li.current {
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	color:#FFF;
+}
+
+.tabs li.current {
 	background: #bfe1ff url(../images/common/tabs_active_bg.png) repeat-x 0 0;
 	font-weight: bold;
 }
 
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	background:transparent url(../images/custom/menu.jpg) repeat scroll 0 0;
+	text-decoration: none;
+}
+
 .ui-tabs li.current a, .ui-tabs li.current span {
-	color: #333;
+	background:transparent url(../images/custom/menu.jpg) repeat scroll 0 0;
+	border:1px solid #000000;
+	color:white;
 	padding: 0.15em 1em;
 }

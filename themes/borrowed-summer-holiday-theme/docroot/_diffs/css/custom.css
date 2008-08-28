@@ -175,3 +175,28 @@ body {
 	padding-right: 10px;
 	text-align: left;
 }
+/* ---------- Tabs ----------- */
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:#EACE46 none repeat scroll 0 0;
+	border:medium none;
+	color:white;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:#EACE46;
+	text-decoration: none;
+}
+
+.ui-tabs li a, .tabs li span {
+	background:transparent none repeat scroll 0 0;
+	border-right:medium none;
+	color:black;
+	top:0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:black;
+	color:#FFF;
+	text-decoration: none;
+}

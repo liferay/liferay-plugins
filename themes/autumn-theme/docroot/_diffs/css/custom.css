@@ -20,6 +20,31 @@ html {
 	overflow-y: scroll;
 }
 
+.ui-tabs li a, .tabs li span {
+	background:transparent url(../images/custom/linkbar_bg.png) repeat scroll center center;
+	border-right:medium none;
+	top:10px;
+}
+
+.js #navigation .enter-page {
+	background-color:transparent;
+	padding:3px;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent url(../images/custom/h2.png) no-repeat scroll 0 0;
+	border:medium none;
+	color:white;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	color:white;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	text-decoration: none;
+}
+
 .js .lfr-dock.expanded .lfr-dock-list-container {
 	background-color: transparent;
 }

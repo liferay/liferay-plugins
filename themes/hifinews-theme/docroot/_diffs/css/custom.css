@@ -156,7 +156,7 @@ body {
 }
 
 .ie #navigation ul {
-	background: transparent url('../images/common/page_bg.jpg') no-repeat 100% right;
+	background: transparent url('../images/common/page_bg.jpg') no-repeat 100% -1;
 }
 
 #navigation {
@@ -196,6 +196,27 @@ body {
 
 .ui-tabs li.current {
 	top: 0;
+}
+
+.ui-tabs li a, .tabs li span {
+	background:transparent url(../images/navigation/bg.png) repeat scroll 0 0;
+	top:0;
+	border: none;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent url(../images/navigation/hover.png) repeat-x scroll 0 0;
+	border:medium none;
+	color:white;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:transparent url(../images/navigation/hover.png) repeat-x scroll 0 0;
+	color:white;
+}
+
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+	margin-top:14px;
 }
 
 #wrapper {

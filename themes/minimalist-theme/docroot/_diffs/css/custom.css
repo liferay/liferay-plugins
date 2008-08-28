@@ -204,6 +204,7 @@ html {
 
 .portlet-topper {
 	background-position: 0 0%;
+	border: none;
 }
 
 .portlet {
@@ -214,4 +215,36 @@ html {
 
 #wrapper {
 	width: 100%;
+}
+
+/*----- Tabs -----*/
+
+.ui-tabs {
+	border: none;
+}
+
+.ui-tabs li a, .tabs li span {
+	color:black;
+	background: transparent;
+	top:0;
+	border: none;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:#E7F1F8 none repeat scroll 0 0;
+	border:medium none;
+	color:black;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	background: #E7F1F8;
+	color: black;
+	text-decoration: none;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:black;
+	color:white;
+	text-decoration: none;
 }

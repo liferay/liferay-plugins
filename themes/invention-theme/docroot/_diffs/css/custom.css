@@ -84,12 +84,9 @@ padding:3px 25px;
 	padding:0pt 0pt 0px;
 	margin-top: 0px;
 }
-.tabs li a:hover {
-	color: #000;
-}
 .js #add-page {
 	height: 18px;
-	right: 10%;
+	right: 11%;
 	padding:3px 25px;
 	top: -1px;
 }
@@ -122,4 +119,31 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	background:transparent;
 	height:0px;
 	padding-left:0px;
+}
+
+/*----- Tabs -----*/
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	color: white;
+	text-decoration: none;
+	background:#F4A80A none repeat scroll 0 0;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:#F4A80A none repeat scroll 0 0;
+	border:medium none;
+	color:white;
+}
+
+.ui-tabs li a, .tabs li span {
+	background:#9BBE00 url(../images/custom/main_img.jpg) no-repeat scroll center bottom;
+	border-right:medium none;
+	top:0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:black;
+	color:white;
+	text-decoration: none;
 }

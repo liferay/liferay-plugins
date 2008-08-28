@@ -128,6 +128,7 @@ body {
 
 #navigation ul {
 	display: block;
+	margin:0 65px;
 }
 
 #navigation {
@@ -163,4 +164,31 @@ ul.child-menu {
 	font-size: 1.2em;
 	margin: 0 auto;
 	width: 997px;
+}
+
+/*----- Tabs ------*/
+
+.ui-tabs li a, .tabs li span {
+	background:transparent url(../images/custom/linkbar_bg.jpg) repeat scroll center top;
+	border-right:medium none;
+	top:0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:black;
+	color:white;
+	text-decoration: none;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent url(../images/custom/linkbar_bg.jpg) repeat scroll 0 0;
+	border:medium none;
+	color:black;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	background:transparent url(../images/custom/linkbar_bg.jpg) repeat scroll 0 0;
+	text-decoration:none;
+	color: black;
 }

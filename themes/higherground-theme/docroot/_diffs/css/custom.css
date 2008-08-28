@@ -232,6 +232,25 @@ html {
 	border: 0;
 }
 
+.ui-tabs li a, .tabs li span {
+	background:transparent url(../images/navigation/bg.png) repeat-x scroll center center;
+	border-left:1px solid #A7D101;
+	border-right:1px solid #899D00;
+	padding:7px;
+	top:0;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent url(../images/navigation/nav-current.png) repeat-x scroll 0 0;
+	border:medium none;
+	color:white;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:transparent url(../images/navigation/nav-current.png) repeat-x scroll 0 0;
+	color:white;
+}
+
 #theme_header .logo a {
 	color: #AEAAAA;
 	font-family: 'Trebuchet MS', 'Arial', 'Sans-serif';

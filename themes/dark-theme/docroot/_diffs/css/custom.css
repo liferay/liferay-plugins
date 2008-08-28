@@ -94,7 +94,7 @@ table {
 	border: 0;
 	position: absolute;
 	right: 27px;
-	top: 20px;
+	top: 10px;
 }
 
 #navigation li a span {
@@ -177,6 +177,7 @@ table {
 
 .js #navigation .enter-page {
 	background: none;
+	margin-top:1px;
 	padding: 0.5em 2em 1em 1.5em;
 }
 
@@ -246,10 +247,6 @@ table {
 	color: black;
 }
 
-.ui-tabs li a {
-	color: #000;
-}
-
 .ui-tabs {
 	border-bottom: 1px solid #7F9BCA;
 	margin: 0 0 1.5em 0;
@@ -270,4 +267,32 @@ table {
 
 .taglib-calendar tr td a {
 	color: black;
+}
+
+/*------ Tabs ------*/
+
+.ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	border-right:1px solid #000000;
+	background:#4D4D4D none repeat scroll 0 0;
+	border:medium none;
+	color:white;
+	background-color: #4D4D4D none repeat scroll 0 0;
+	text-decoration: none;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:#1E2529 none repeat scroll 0 0;
+	color:white;
+}
+
+.ui-tabs li a, .tabs li span {
+	background:#222222 none repeat scroll 0 0;
+	border-right:1px solid #000000;
+	top:0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:#4D4D4D none repeat scroll 0 0;
+	color:white;
+	text-decoration: none;
 }

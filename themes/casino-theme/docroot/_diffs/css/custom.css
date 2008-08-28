@@ -167,5 +167,28 @@ body {
 
 /* ---- TABS ---- */
 
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent url(../images/custom/common/banner_bg.png) no-repeat scroll -505px -50px;
+	border:medium none;
+}
+
+.ui-tabs li a, .tabs li span {
+	background:transparent url(../images/custom/common/banner_bg.png) no-repeat scroll center center;
+	border-right:medium none;
+	top:0;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	text-decoration: none;
+	background-color: transparent;
+	color: #336699;
+	background:transparent url(../images/custom/common/banner_bg.png) no-repeat scroll -505px -50px;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:black;
+	color:white;
+	text-decoration: none;
+}
 
 /* ---- MISS. OTHERS ---- */

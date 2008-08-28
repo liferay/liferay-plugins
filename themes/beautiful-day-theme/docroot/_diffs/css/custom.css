@@ -22,6 +22,29 @@
 	width: 564px;
 }
 
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:#B3C2C7 url(../images/custom/header.jpg) no-repeat scroll 0 0;
+	border:medium none;
+	color:#223344;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	text-decoration: none;
+}
+
+.ui-tabs li a, .tabs li span {
+	background:#EAE7DF url(../images/custom/nav.png) repeat-x scroll center top;
+	border-right:medium none;
+	color:#223344;
+	padding:9px;
+	top:0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:transparent url(../images/custom/nav.png) repeat-x scroll left bottom;
+	color:#223344;
+}
+
 #banner h1.logo {
 	display: block;
 	font-size: 2em;

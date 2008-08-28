@@ -899,3 +899,20 @@ body {
 #portlet-wrapper-sign-in .portlet-content {
 	padding: 10px 5px 25px 15px;
 }
+
+/*---- Tabs -----*/
+
+.ui-tabs li a, .tabs li span {
+	background:transparent none repeat scroll 0 0;
+	color:black;
+	top:0;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:white none repeat scroll 0 0;
+	border-color:black black -moz-use-text-color;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	text-decoration: none;
+}

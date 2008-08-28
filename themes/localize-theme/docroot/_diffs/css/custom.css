@@ -265,6 +265,8 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	background-color: #999;
 	background-image: none;
 	color: white;
+	border-right:medium none;
+	top:0;
 }
 
 .ui-tabs li {
@@ -300,4 +302,24 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 
 #content-wrapper {
 	width: 100%;
+}
+
+/*----- Tabs -----*/
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent url(../images/custom/leaf.jpg) repeat scroll right center;
+	border:medium none;
+	color:black;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	text-decoration: none;
+	color: black;
+	background:transparent url(../images/custom/leaf.jpg) repeat scroll right center;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:black;
+	color:white;
+	text-decoration: none;
 }

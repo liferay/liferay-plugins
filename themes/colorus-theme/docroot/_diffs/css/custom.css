@@ -196,3 +196,29 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 .uni-form fieldset legend {
 	color: white;
 }
+
+/*--------- Tabs ----------*/
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:#445D6C none repeat scroll 0 0;
+	border:medium none;
+	color:white;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	color: white;
+	text-decoration: none;
+	background:#445D6C none repeat scroll 0 0;
+}
+
+.ui-tabs li a, .tabs li span {
+	background:transparent none repeat scroll 0 0;
+	border-right:medium none;
+	top:0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:black;
+	color:white;
+}

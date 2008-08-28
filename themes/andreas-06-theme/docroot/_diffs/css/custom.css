@@ -21,6 +21,30 @@ body {
 	width: 852px;
 }
 
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent url(../images/custom/banner_bg.jpg) no-repeat scroll center top;
+	border:medium none;
+	color:black;
+	border-right:1px solid #304049;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	background:transparent url(../images/custom/banner_bg.jpg) no-repeat scroll center top;
+	text-decoration: none;
+	color: black;
+}
+
+.ui-tabs li a, .tabs li span {
+	background:#E0E0E0 url(../images/custom/body_bg.png) repeat-x scroll 0 0;
+	top:0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:#1E2529 none repeat scroll 0 0;
+	color:white;
+}
+
 html {
 	overflow-y: scroll;
 }
@@ -98,7 +122,7 @@ html {
 	background: transparent;
 	border: 0;
 	color: #505050;
-	font-size: 1.5em;
+	font-size:12px;
 	font-weight: 400;
 }
 
