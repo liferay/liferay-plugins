@@ -45,7 +45,9 @@ else {
 }
 %>
 
-<liferay-ui:icon-menu>
+<liferay-ui:icon-menu
+	cssClass=""
+>
 	<c:if test="<%= updatePermission %>">
 		<portlet:renderURL var="editURL">
 			<portlet:param name="view" value="edit_article" />

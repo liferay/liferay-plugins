@@ -30,7 +30,9 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 KBArticle article = (KBArticle)row.getObject();
 %>
 
-<liferay-ui:icon-menu>
+<liferay-ui:icon-menu
+	cssClass=""
+>
 	<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
 		<portlet:actionURL var="revertURL">
 			<portlet:param name="actionName" value="<%= Constants.REVERT %>" />

@@ -24,7 +24,9 @@
 
 <%@ include file="/knowledge_base/init.jsp" %>
 
-<liferay-ui:icon-menu>
+<liferay-ui:icon-menu
+	cssClass=""
+>
 
 	<%
 	String[] displayRSSTypes = prefs.getValues("displayRSSTypes", new String[] {rss20});

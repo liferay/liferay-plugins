@@ -66,7 +66,10 @@ if (type.endsWith("_articles") || type.equals("subscriptions")) {
 }
 
 headerNames.add("date");
-headerNames.add("");
+
+if (type.equals("article_history") || themeDisplay.isSignedIn()) {
+	headerNames.add("");
+}
 
 String emptyResultsMessage = null;
 
@@ -196,13 +199,8 @@ for (int i = 0; i < results.size(); i++) {
 			row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/knowledge_base/views/article_history_action.jsp", config.getServletContext(), request, response);
 		}
 	}
-	else {
-		if (!themeDisplay.isSignedIn()) {
-			row.addText(StringPool.BLANK);
-		}
-		else {
-			row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/knowledge_base/views/article_action.jsp", config.getServletContext(), request, response);
-		}
+	else if (themeDisplay.isSignedIn()) {
+		row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/knowledge_base/views/article_action.jsp", config.getServletContext(), request, response);
 	}
 
 	// Add result row
