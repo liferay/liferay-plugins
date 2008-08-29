@@ -88,7 +88,7 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 
 			root.addAttribute("group-id", String.valueOf(context.getGroupId()));
 
-			List<KBArticle> articles = 
+			List<KBArticle> articles =
 				KBArticleFinderUtil.findByU_G_H_T_D(
 					defaultUserId, context.getGroupId(), true, false, false);
 
@@ -225,15 +225,15 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 				existingArticle = KBArticleLocalServiceUtil.addArticle(
 					article.getUuid(), userId, groupId, article.getTitle(),
 					article.getVersion(), article.getContent(),
-					article.getDescription(), article.isMinorEdit(), 
+					article.getDescription(), article.isMinorEdit(),
 					article.isHead(), article.isTemplate(), article.isDraft(),
 					tagsEntries, null, themeDisplay);
 			}
 			else {
 				existingArticle = KBArticleLocalServiceUtil.updateArticle(
-					userId, existingArticle.getResourcePrimKey(), 
+					userId, existingArticle.getResourcePrimKey(),
 					article.getVersion(), article.getTitle(),
-					article.getContent(), article.getDescription(), 
+					article.getContent(), article.getDescription(),
 					article.isMinorEdit(), article.isTemplate(),
 					article.isDraft(), tagsEntries, null, themeDisplay);
 			}
