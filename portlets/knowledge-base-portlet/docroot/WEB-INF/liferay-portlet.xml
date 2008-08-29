@@ -7,6 +7,7 @@
 		<icon>/knowledge_base/icon.png</icon>
 		<configuration-action-class>com.liferay.kb.knowledgebase.action.ConfigurationActionImpl</configuration-action-class>
 		<friendly-url-mapper-class>com.liferay.kb.knowledgebase.portlet.KnowledgeBaseFriendlyURLMapper</friendly-url-mapper-class>
+		<portlet-data-handler-class>com.liferay.kb.knowledgebase.lar.KBPortletDataHandlerImpl</portlet-data-handler-class>
 		<header-portlet-css>/knowledge_base/css.jsp</header-portlet-css>
 		<header-portal-javascript>/html/js/misc/swfupload/swfupload.js</header-portal-javascript>
 		<header-portlet-javascript>/knowledge_base/packed.js</header-portlet-javascript>
