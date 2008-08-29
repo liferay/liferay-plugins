@@ -28,7 +28,7 @@ package com.liferay.kb.knowledgebaseaggregator.util;
  * @author Peter Shin
  *
  */
-public class KnowledgeBaseAggregatorUtil {
+public class KBAggregatorUtil {
 
 	public static final int MAX_ITEMS_10 = 10;
 
