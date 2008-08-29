@@ -91,6 +91,12 @@
 			<finder-column name="template" />
 			<finder-column name="draft" />
 		</finder>
+		<finder name="G_H_T_D" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="head" />
+			<finder-column name="template" />
+			<finder-column name="draft" />
+		</finder>
 
 		<!-- References -->
 

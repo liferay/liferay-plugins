@@ -388,6 +388,37 @@ public interface KBArticlePersistence {
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_H_T_D(
+		long groupId, boolean head, boolean template, boolean draft)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_H_T_D(
+		long groupId, boolean head, boolean template, boolean draft, int start,
+		int end) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_H_T_D(
+		long groupId, boolean head, boolean template, boolean draft, int start,
+		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.kb.knowledgebase.model.KBArticle findByG_H_T_D_First(
+		long groupId, boolean head, boolean template, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException;
+
+	public com.liferay.kb.knowledgebase.model.KBArticle findByG_H_T_D_Last(
+		long groupId, boolean head, boolean template, boolean draft,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException;
+
+	public com.liferay.kb.knowledgebase.model.KBArticle[] findByG_H_T_D_PrevAndNext(
+		long articleId, long groupId, boolean head, boolean template,
+		boolean draft, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.SystemException;
+
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
@@ -449,6 +480,9 @@ public interface KBArticlePersistence {
 	public void removeByC_H_T_D(long companyId, boolean head, boolean template,
 		boolean draft) throws com.liferay.portal.SystemException;
 
+	public void removeByG_H_T_D(long groupId, boolean head, boolean template,
+		boolean draft) throws com.liferay.portal.SystemException;
+
 	public void removeAll() throws com.liferay.portal.SystemException;
 
 	public int countByUuid(java.lang.String uuid)
@@ -488,6 +522,9 @@ public interface KBArticlePersistence {
 		throws com.liferay.portal.SystemException;
 
 	public int countByC_H_T_D(long companyId, boolean head, boolean template,
+		boolean draft) throws com.liferay.portal.SystemException;
+
+	public int countByG_H_T_D(long groupId, boolean head, boolean template,
 		boolean draft) throws com.liferay.portal.SystemException;
 
 	public int countAll() throws com.liferay.portal.SystemException;

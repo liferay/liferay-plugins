@@ -3406,6 +3406,336 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
+	public List<KBArticle> findByG_H_T_D(long groupId, boolean head,
+		boolean template, boolean draft) throws SystemException {
+		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
+		String finderClassName = KBArticle.class.getName();
+		String finderMethodName = "findByG_H_T_D";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				Boolean.class.getName(), Boolean.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(groupId), Boolean.valueOf(head),
+				Boolean.valueOf(template), Boolean.valueOf(draft)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"FROM com.liferay.kb.knowledgebase.model.KBArticle WHERE ");
+
+				query.append("groupId = ?");
+
+				query.append(" AND ");
+
+				query.append("head = ?");
+
+				query.append(" AND ");
+
+				query.append("template = ?");
+
+				query.append(" AND ");
+
+				query.append("draft = ?");
+
+				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("title ASC, ");
+				query.append("version ASC");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(groupId);
+
+				qPos.add(head);
+
+				qPos.add(template);
+
+				qPos.add(draft);
+
+				List<KBArticle> list = q.list();
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<KBArticle>)result;
+		}
+	}
+
+	public List<KBArticle> findByG_H_T_D(long groupId, boolean head,
+		boolean template, boolean draft, int start, int end)
+		throws SystemException {
+		return findByG_H_T_D(groupId, head, template, draft, start, end, null);
+	}
+
+	public List<KBArticle> findByG_H_T_D(long groupId, boolean head,
+		boolean template, boolean draft, int start, int end,
+		OrderByComparator obc) throws SystemException {
+		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
+		String finderClassName = KBArticle.class.getName();
+		String finderMethodName = "findByG_H_T_D";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				Boolean.class.getName(), Boolean.class.getName(),
+				
+				"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(groupId), Boolean.valueOf(head),
+				Boolean.valueOf(template), Boolean.valueOf(draft),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append(
+					"FROM com.liferay.kb.knowledgebase.model.KBArticle WHERE ");
+
+				query.append("groupId = ?");
+
+				query.append(" AND ");
+
+				query.append("head = ?");
+
+				query.append(" AND ");
+
+				query.append("template = ?");
+
+				query.append(" AND ");
+
+				query.append("draft = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+					query.append(obc.getOrderBy());
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("title ASC, ");
+					query.append("version ASC");
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(groupId);
+
+				qPos.add(head);
+
+				qPos.add(template);
+
+				qPos.add(draft);
+
+				List<KBArticle> list = (List<KBArticle>)QueryUtil.list(q,
+						getDialect(), start, end);
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<KBArticle>)result;
+		}
+	}
+
+	public KBArticle findByG_H_T_D_First(long groupId, boolean head,
+		boolean template, boolean draft, OrderByComparator obc)
+		throws NoSuchArticleException, SystemException {
+		List<KBArticle> list = findByG_H_T_D(groupId, head, template, draft, 0,
+				1, obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No KBArticle exists with the key {");
+
+			msg.append("groupId=" + groupId);
+
+			msg.append(", ");
+			msg.append("head=" + head);
+
+			msg.append(", ");
+			msg.append("template=" + template);
+
+			msg.append(", ");
+			msg.append("draft=" + draft);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public KBArticle findByG_H_T_D_Last(long groupId, boolean head,
+		boolean template, boolean draft, OrderByComparator obc)
+		throws NoSuchArticleException, SystemException {
+		int count = countByG_H_T_D(groupId, head, template, draft);
+
+		List<KBArticle> list = findByG_H_T_D(groupId, head, template, draft,
+				count - 1, count, obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No KBArticle exists with the key {");
+
+			msg.append("groupId=" + groupId);
+
+			msg.append(", ");
+			msg.append("head=" + head);
+
+			msg.append(", ");
+			msg.append("template=" + template);
+
+			msg.append(", ");
+			msg.append("draft=" + draft);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public KBArticle[] findByG_H_T_D_PrevAndNext(long articleId, long groupId,
+		boolean head, boolean template, boolean draft, OrderByComparator obc)
+		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = findByPrimaryKey(articleId);
+
+		int count = countByG_H_T_D(groupId, head, template, draft);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append(
+				"FROM com.liferay.kb.knowledgebase.model.KBArticle WHERE ");
+
+			query.append("groupId = ?");
+
+			query.append(" AND ");
+
+			query.append("head = ?");
+
+			query.append(" AND ");
+
+			query.append("template = ?");
+
+			query.append(" AND ");
+
+			query.append("draft = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+				query.append(obc.getOrderBy());
+			}
+
+			else {
+				query.append("ORDER BY ");
+
+				query.append("title ASC, ");
+				query.append("version ASC");
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(groupId);
+
+			qPos.add(head);
+
+			qPos.add(template);
+
+			qPos.add(draft);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+					kbArticle);
+
+			KBArticle[] array = new KBArticleImpl[3];
+
+			array[0] = (KBArticle)objArray[0];
+			array[1] = (KBArticle)objArray[1];
+			array[2] = (KBArticle)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
 	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		Session session = null;
@@ -3610,6 +3940,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 		boolean draft) throws SystemException {
 		for (KBArticle kbArticle : findByC_H_T_D(companyId, head, template,
 				draft)) {
+			remove(kbArticle);
+		}
+	}
+
+	public void removeByG_H_T_D(long groupId, boolean head, boolean template,
+		boolean draft) throws SystemException {
+		for (KBArticle kbArticle : findByG_H_T_D(groupId, head, template, draft)) {
 			remove(kbArticle);
 		}
 	}
@@ -4611,6 +4948,97 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				qPos.add(companyId);
+
+				qPos.add(head);
+
+				qPos.add(template);
+
+				qPos.add(draft);
+
+				Long count = null;
+
+				Iterator<Long> itr = q.list().iterator();
+
+				if (itr.hasNext()) {
+					count = itr.next();
+				}
+
+				if (count == null) {
+					count = new Long(0);
+				}
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, count);
+
+				return count.intValue();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return ((Long)result).intValue();
+		}
+	}
+
+	public int countByG_H_T_D(long groupId, boolean head, boolean template,
+		boolean draft) throws SystemException {
+		boolean finderClassNameCacheEnabled = KBArticleModelImpl.CACHE_ENABLED;
+		String finderClassName = KBArticle.class.getName();
+		String finderMethodName = "countByG_H_T_D";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				Boolean.class.getName(), Boolean.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(groupId), Boolean.valueOf(head),
+				Boolean.valueOf(template), Boolean.valueOf(draft)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(*) ");
+				query.append(
+					"FROM com.liferay.kb.knowledgebase.model.KBArticle WHERE ");
+
+				query.append("groupId = ?");
+
+				query.append(" AND ");
+
+				query.append("head = ?");
+
+				query.append(" AND ");
+
+				query.append("template = ?");
+
+				query.append(" AND ");
+
+				query.append("draft = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(groupId);
 
 				qPos.add(head);
 

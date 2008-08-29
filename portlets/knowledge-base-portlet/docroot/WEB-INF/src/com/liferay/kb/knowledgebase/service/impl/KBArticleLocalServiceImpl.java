@@ -482,6 +482,16 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	public List<KBArticle> getGroupArticles(
+			long groupId, boolean head, boolean template, boolean draft,
+			int start, int end)
+		throws SystemException {
+
+		return kbArticlePersistence.findByG_H_T_D(
+			groupId, head, template, draft, start, end,
+			new ArticleModifiedDateComparator(false));
+	}
+
+	public List<KBArticle> getGroupArticles(
 			long groupId, String title, boolean head, int start, int end)
 		throws SystemException {
 
@@ -518,6 +528,14 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		throws SystemException {
 
 		return kbArticlePersistence.countByG_T_H(groupId, title, head);
+	}
+
+	public int getGroupArticlesCount(
+			long groupId, boolean head, boolean template, boolean draft)
+		throws SystemException {
+
+		return kbArticlePersistence.countByG_H_T_D(
+			groupId, head, template, draft);
 	}
 
 	public int getGroupArticlesCount(

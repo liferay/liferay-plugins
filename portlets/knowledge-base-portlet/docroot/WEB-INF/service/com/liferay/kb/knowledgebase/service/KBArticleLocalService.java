@@ -159,6 +159,10 @@ public interface KBArticleLocalService {
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
+		long groupId, boolean head, boolean template, boolean draft, int start,
+		int end) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
 		long groupId, java.lang.String title, boolean head, int start, int end)
 		throws com.liferay.portal.SystemException;
 
@@ -176,6 +180,10 @@ public interface KBArticleLocalService {
 
 	public int getGroupArticlesCount(long groupId, java.lang.String title,
 		boolean head) throws com.liferay.portal.SystemException;
+
+	public int getGroupArticlesCount(long groupId, boolean head,
+		boolean template, boolean draft)
+		throws com.liferay.portal.SystemException;
 
 	public int getGroupArticlesCount(long userId, long groupId, boolean head,
 		boolean template, boolean draft)
