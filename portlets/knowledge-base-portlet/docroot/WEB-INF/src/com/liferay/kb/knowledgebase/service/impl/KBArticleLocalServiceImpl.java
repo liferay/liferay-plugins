@@ -36,6 +36,8 @@ import com.liferay.kb.knowledgebase.portlet.KnowledgeBaseFriendlyURLMapper;
 import com.liferay.kb.knowledgebase.service.base.KBArticleLocalServiceBaseImpl;
 import com.liferay.kb.knowledgebase.util.Indexer;
 import com.liferay.kb.knowledgebase.util.comparator.ArticleModifiedDateComparator;
+import com.liferay.kb.util.PortletPrefsPropsUtil;
+import com.liferay.kb.util.PortletPropsKeys;
 import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
@@ -830,48 +832,44 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			PortletKeys.WIKI, user);
 
 		String fromName = PrefsPropsUtil.getString(
-			company.getCompanyId(), "admin.email.from.name");
+			company.getCompanyId(), PortletPropsKeys.ADMIN_EMAIL_FROM_NAME);
 		String fromAddress = PrefsPropsUtil.getString(
-			company.getCompanyId(), "admin.email.from.address");
+			company.getCompanyId(), PortletPropsKeys.ADMIN_EMAIL_FROM_ADDRESS);
 
 		String toName = user.getFullName();
 		String toAddress = user.getEmailAddress();
 
-		String subjectPrefix = null;
-		String body = null;
-		String signature = null;
-
-		String dependenciesPath = "com/liferay/kb/knowledgebase/dependencies/";
-
-		ClassLoader classLoader = getClass().getClassLoader();
+		String subjectPrefix = StringPool.BLANK;
+		String body = StringPool.BLANK;
+		String signature = StringPool.BLANK;
 
 		if (update) {
-			subjectPrefix= StringUtil.read(
-				classLoader,
-				dependenciesPath +
-					"email_article_updated_subject_prefix.tmpl");
-			body = StringUtil.read(
-				classLoader,
-				dependenciesPath +
-					"email_article_updated_body.tmpl");
-			signature = StringUtil.read(
-				classLoader,
-				dependenciesPath +
-					"email_article_updated_signature.tmpl");
+			subjectPrefix = PortletPrefsPropsUtil.getContent(
+				company.getCompanyId(),
+				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_UPDATED_SUBJECT,
+				getClass().getClassLoader());
+			body = PortletPrefsPropsUtil.getContent(
+				company.getCompanyId(),
+				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_UPDATED_BODY,
+				getClass().getClassLoader());
+			signature = PortletPrefsPropsUtil.getContent(
+				company.getCompanyId(),
+				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_UPDATED_SIGNATURE,
+				getClass().getClassLoader());
 		}
 		else {
-			subjectPrefix= StringUtil.read(
-				classLoader,
-				dependenciesPath +
-					"email_article_added_subject_prefix.tmpl");
-			body = StringUtil.read(
-				classLoader,
-				dependenciesPath +
-					"email_article_added_body.tmpl");
-			signature = StringUtil.read(
-				classLoader,
-				dependenciesPath +
-					"email_article_added_signature.tmpl");
+			subjectPrefix = PortletPrefsPropsUtil.getContent(
+				company.getCompanyId(),
+				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_ADDED_SUBJECT,
+				getClass().getClassLoader());
+			body = PortletPrefsPropsUtil.getContent(
+				company.getCompanyId(),
+				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_ADDED_BODY,
+				getClass().getClassLoader());
+			signature = PortletPrefsPropsUtil.getContent(
+				company.getCompanyId(),
+				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_ADDED_SIGNATURE,
+				getClass().getClassLoader());
 		}
 
 		if (Validator.isNotNull(signature)) {
@@ -953,7 +951,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		String subject = article.getTitle();
 
 		if (subject.indexOf(subjectPrefix) == -1) {
-			subject = subjectPrefix + subject;
+			subject = subjectPrefix + StringPool.SPACE + subject;
 		}
 
 		InternetAddress from = new InternetAddress(fromAddress, fromName);

@@ -27,7 +27,8 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-String tabs2 = ParamUtil.getString(request, "tabs2", "export-settings");
+String tabs2 = ParamUtil.getString(request, "tabs2", "email-notifications");
+String tabs3 = ParamUtil.getString(request, "tabs3", "general");
 
 String[] conversions = DocumentConversionUtil.getConversions("html");
 
@@ -36,50 +37,254 @@ String[] extensions = prefs.getValues("extensions", new String[] {"pdf"});
 
 <liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="portletURL" portletConfiguration="true">
 	<portlet:param name="tabs2" value="<%= tabs2 %>" />
+	<portlet:param name="tabs3" value="<%= tabs3 %>" />
 	<portlet:param name="redirect" value="<%= redirect %>" />
 </liferay-portlet:renderURL>
 
 <form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm">
-<input name="<portlet:namespace />actionName" type="hidden" value="<%= Constants.UPDATE %>" />
 <input name="<portlet:namespace />tabs2" type="hidden" value="<%= HtmlUtil.escape(tabs2) %>" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 
 <liferay-ui:tabs
-	names="export-settings,rss"
+	names="email-notifications,rss,export-settings"
 	param="tabs2"
 	url="<%= portletURL %>"
 />
 
 <c:choose>
-	<c:when test='<%= tabs2.equals("export-settings") %>'>
-		<fieldset>
-			<legend><liferay-ui:message key="document-conversion" /></legend>
+	<c:when test='<%= tabs2.equals("email-notifications") %>'>
+		<script type="text/javascript">
 
-			<liferay-ui:message key="enabling-openoffice-integration-provides-document-conversion-functionality" />
+			<%
+			String emailFromName = ParamUtil.getString(request, "emailFromName", PrefsPropsUtil.getString(company.getCompanyId(), PortletPropsKeys.ADMIN_EMAIL_FROM_NAME));
+			String emailFromAddress = ParamUtil.getString(request, "emailFromAddress", PrefsPropsUtil.getString(company.getCompanyId(), PortletPropsKeys.ADMIN_EMAIL_FROM_ADDRESS));
 
-			<br /><br />
+			String emailArticleAddedSubject = ParamUtil.getString(request, "emailArticleAddedSubject", PortletPrefsPropsUtil.getContent(company.getCompanyId(), PortletPropsKeys.ADMIN_EMAIL_ARTICLE_ADDED_SUBJECT, getClass().getClassLoader()));
+			String emailArticleAddedBody = ParamUtil.getString(request, "emailArticleAddedBody", PortletPrefsPropsUtil.getContent(company.getCompanyId(), PortletPropsKeys.ADMIN_EMAIL_ARTICLE_ADDED_BODY, getClass().getClassLoader()));
 
-			<table class="lfr-table">
-				<tr valign="middle">
+			String emailArticleUpdatedSubject = ParamUtil.getString(request, "emailArticleUpdatedSubject", PortletPrefsPropsUtil.getContent(company.getCompanyId(), PortletPropsKeys.ADMIN_EMAIL_ARTICLE_UPDATED_SUBJECT, getClass().getClassLoader()));
+			String emailArticleUpdatedBody = ParamUtil.getString(request, "emailArticleUpdatedBody", PortletPrefsPropsUtil.getContent(company.getCompanyId(), PortletPropsKeys.ADMIN_EMAIL_ARTICLE_UPDATED_BODY, getClass().getClassLoader()));
 
-					<%
-					for (String conversion : conversions) {
-					%>
+			String editorParam = "";
+			String editorContent = "";
 
-						<td>
-							<input type="checkbox" <%= ArrayUtil.contains(extensions, conversion) ? "checked":"" %> name="<portlet:namespace />extensions" value="<%= conversion %>" />
-						</td>
-						<td>
-							<%= conversion.toUpperCase() %>
-						</td>
+			if (tabs3.equals("article-added-notification")) {
+				editorParam = "emailArticleAddedBody";
+				editorContent = emailArticleAddedBody;
+			}
+			else if (tabs3.equals("article-updated-notification")) {
+				editorParam = "emailArticleUpdatedBody";
+				editorContent = emailArticleUpdatedBody;
+			}
+			%>
 
-					<%
-					}
-					%>
+			function <portlet:namespace />initEditor() {
+				return "<%= UnicodeFormatter.toString(editorContent) %>";
+			}
 
+			function <portlet:namespace />saveEmailSettings() {
+				if (<%= tabs3.endsWith("-notification") %>) {
+					document.<portlet:namespace />fm.<portlet:namespace /><%= editorParam %>.value = window.<portlet:namespace />editor.getHTML();
+				}
+
+				submitForm(document.<portlet:namespace />fm);
+			}
+		</script>
+
+		<liferay-ui:tabs
+			names="general,article-added-notification,article-updated-notification"
+			param="tabs3"
+			url="<%= portletURL %>"
+		/>
+
+		<liferay-ui:error key="emailFromAddress" message="please-enter-a-valid-email-address" />
+		<liferay-ui:error key="emailFromName" message="please-enter-a-valid-name" />
+		<liferay-ui:error key="emailArticleAddedBody" message="please-enter-a-valid-body" />
+		<liferay-ui:error key="emailArticleAddedSubject" message="please-enter-a-valid-subject" />
+		<liferay-ui:error key="emailArticleUpdatedBody" message="please-enter-a-valid-body" />
+		<liferay-ui:error key="emailArticleUpdatedSubject" message="please-enter-a-valid-subject" />
+
+		<c:choose>
+			<c:when test='<%= tabs3.endsWith("-notification") %>'>
+				<table class="lfr-table">
+				<tr>
+					<td>
+						<liferay-ui:message key="enabled" />
+					</td>
+					<td>
+						<c:choose>
+							<c:when test='<%= tabs3.equals("article-added-notification") %>'>
+								<liferay-ui:input-checkbox param="emailArticleAddedEnabled" defaultValue="<%= PortletPrefsPropsUtil.getBoolean(company.getCompanyId(), PortletPropsKeys.ADMIN_EMAIL_ARTICLE_ADDED_ENABLED) %>" />
+							</c:when>
+							<c:when test='<%= tabs3.equals("article-updated-notification") %>'>
+								<liferay-ui:input-checkbox param="emailArticleUpdatedEnabled" defaultValue="<%= PortletPrefsPropsUtil.getBoolean(company.getCompanyId(), PortletPropsKeys.ADMIN_EMAIL_ARTICLE_UPDATED_ENABLED) %>" />
+							</c:when>
+						</c:choose>
+					</td>
 				</tr>
-			</table>
-		</fieldset>
+				<tr>
+					<td colspan="2">
+						<br />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<liferay-ui:message key="subject" />
+					</td>
+					<td>
+						<c:choose>
+							<c:when test='<%= tabs3.equals("article-added-notification") %>'>
+								<input class="lfr-input-text" name="<portlet:namespace />emailArticleAddedSubject" type="text" value="<%= emailArticleAddedSubject %>" />
+							</c:when>
+							<c:when test='<%= tabs3.equals("article-updated-notification") %>'>
+								<input class="lfr-input-text" name="<portlet:namespace />emailArticleUpdatedSubject" type="text" value="<%= emailArticleUpdatedSubject %>" />
+							</c:when>
+						</c:choose>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<br />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<liferay-ui:message key="body" />
+					</td>
+					<td>
+						<liferay-ui:input-editor editorImpl="<%= null %>" />
+
+						<input name="<portlet:namespace /><%= editorParam %>" type="hidden" value="" />
+					</td>
+				</tr>
+				</table>
+
+				<br />
+
+				<b><liferay-ui:message key="definition-of-terms" /></b>
+
+				<br /><br />
+
+				<table class="lfr-table">
+				<tr>
+					<td>
+						<b>[$FROM_ADDRESS$]</b>
+					</td>
+					<td>
+						<%= emailFromAddress %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>[$FROM_NAME$]</b>
+					</td>
+					<td>
+						<%= emailFromName %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>[$PORTAL_URL$]</b>
+					</td>
+					<td>
+						<%= company.getVirtualHost() %>
+					</td>
+				</tr>
+
+				<c:if test='<%= tabs3.equals("password-changed-notification") %>'>
+					<tr>
+						<td>
+							<b>[$REMOTE_ADDRESS$]</b>
+						</td>
+						<td>
+							The browser's remote address
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<b>[$REMOTE_HOST$]</b>
+						</td>
+						<td>
+							The browser's remote host
+						</td>
+					</tr>
+				</c:if>
+
+				<tr>
+					<td>
+						<b>[$TO_ADDRESS$]</b>
+					</td>
+					<td>
+						The address of the email recipient
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>[$TO_NAME$]</b>
+					</td>
+					<td>
+						The name of the email recipient
+					</td>
+				</tr>
+
+				<c:if test='<%= tabs3.equals("password-changed-notification") %>'>
+					<tr>
+						<td>
+							<b>[$USER_AGENT$]</b>
+						</td>
+						<td>
+							The browser's user agent
+						</td>
+					</tr>
+				</c:if>
+
+				<tr>
+					<td>
+						<b>[$USER_ID$]</b>
+					</td>
+					<td>
+						The user ID
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>[$USER_PASSWORD$]</b>
+					</td>
+					<td>
+						The user password
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>[$USER_SCREENNAME$]</b>
+					</td>
+					<td>
+						The user screen name
+					</td>
+				</tr>
+				</table>
+			</c:when>
+			<c:otherwise>
+				<table class="lfr-table">
+				<tr>
+					<td>
+						<liferay-ui:message key="name" />
+					</td>
+					<td>
+						<input class="lfr-input-text" name="<portlet:namespace />emailFromName" type="text" value="<%= emailFromName %>" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<liferay-ui:message key="address" />
+					</td>
+					<td>
+						<input class="lfr-input-text" name="<portlet:namespace />emailFromAddress" type="text" value="<%= emailFromAddress %>" />
+					</td>
+				</tr>
+				</table>
+			</c:otherwise>
+		</c:choose>
 	</c:when>
 	<c:when test='<%= tabs2.equals("rss") %>'>
 		<fieldset>
@@ -156,11 +361,41 @@ String[] extensions = prefs.getValues("extensions", new String[] {"pdf"});
 			</table>
 		</fieldset>
 	</c:when>
+	<c:when test='<%= tabs2.equals("export-settings") %>'>
+		<fieldset>
+			<legend><liferay-ui:message key="document-conversion" /></legend>
+
+			<liferay-ui:message key="enabling-openoffice-integration-provides-document-conversion-functionality" />
+
+			<br /><br />
+
+			<table class="lfr-table">
+				<tr valign="middle">
+
+					<%
+					for (String conversion : conversions) {
+					%>
+
+						<td>
+							<input type="checkbox" <%= ArrayUtil.contains(extensions, conversion) ? "checked": "" %> name="<portlet:namespace />extensions" value="<%= conversion %>" />
+						</td>
+						<td>
+							<%= conversion.toUpperCase() %>
+						</td>
+
+					<%
+					}
+					%>
+
+				</tr>
+			</table>
+		</fieldset>
+	</c:when>
 </c:choose>
 
 <br />
 
-<input type="button" value="<liferay-ui:message key="save" />" onClick="submitForm(document.<portlet:namespace />fm);" />
+<input type="button" value="<liferay-ui:message key="save" />" onClick='<%= tabs2.equals("email-notifications") ? "<portlet:namespace />saveEmailSettings();" : "submitForm(document.<portlet:namespace />fm);"  %>' />
 
 <input type="button" value="<liferay-ui:message key="cancel" />" onClick="document.location = '<%= HtmlUtil.escape(redirect) %>'" />
 

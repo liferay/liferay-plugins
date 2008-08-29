@@ -22,11 +22,12 @@
 
 package com.liferay.kb.knowledgebase.action;
 
+import com.liferay.kb.util.PortletPropsKeys;
 import com.liferay.portal.kernel.portlet.ConfigurationAction;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
 import javax.portlet.ActionRequest;
@@ -40,6 +41,7 @@ import javax.portlet.RenderResponse;
  * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Bruno Farache
+ * @author Peter Shin
  *
  */
 public class ConfigurationActionImpl implements ConfigurationAction {
@@ -48,12 +50,6 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			PortletConfig portletConfig, ActionRequest actionRequest,
 			ActionResponse actionResponse)
 		throws Exception {
-
-		String actionName = ParamUtil.getString(actionRequest, "actionName");
-
-		if (!actionName.equals(Constants.UPDATE)) {
-			return;
-		}
 
 		String portletResource = ParamUtil.getString(
 			actionRequest, "portletResource");
@@ -64,7 +60,10 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 
 		String tabs2 = ParamUtil.getString(actionRequest, "tabs2");
 
-		if (tabs2.equals("export-settings")) {
+		if (tabs2.equals("email-notifications")) {
+			updateEmailSettings(actionRequest, prefs);
+		}
+		else if (tabs2.equals("export-settings")) {
 			updateExportSettings(actionRequest, prefs);
 		}
 		else if (tabs2.equals("rss")) {
@@ -85,6 +84,106 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		throws Exception {
 
 		return "/knowledge_base/views/configuration.jsp";
+	}
+
+	protected void updateEmailSettings(
+			ActionRequest actionRequest, PortletPreferences prefs)
+		throws Exception {
+
+		String tabs3 = ParamUtil.getString(actionRequest, "tabs3");
+
+		if (tabs3.equals("general")) {
+			updateEmailGeneral(actionRequest, prefs);
+		}
+		else if (tabs3.equals("article-added-notification")) {
+			updateEmailArticleAdded(actionRequest, prefs);
+		}
+		else if (tabs3.equals("article-updated-notification")) {
+			updateEmailArticleUpdated(actionRequest, prefs);
+		}
+	}
+
+	protected void updateEmailGeneral(
+			ActionRequest actionRequest, PortletPreferences prefs)
+		throws Exception {
+
+		String emailFromName = ParamUtil.getString(
+			actionRequest, "emailFromName");
+		String emailFromAddress = ParamUtil.getString(
+			actionRequest, "emailFromAddress");
+
+		if (Validator.isNull(emailFromName)) {
+			SessionErrors.add(actionRequest, "emailFromName");
+		}
+		else if (!Validator.isEmailAddress(emailFromAddress)) {
+			SessionErrors.add(actionRequest, "emailFromAddress");
+		}
+		else {
+			prefs.setValue(
+				PortletPropsKeys.ADMIN_EMAIL_FROM_NAME, emailFromName);
+			prefs.setValue(
+				PortletPropsKeys.ADMIN_EMAIL_FROM_ADDRESS, emailFromAddress);
+		}
+	}
+
+	protected void updateEmailArticleAdded(
+			ActionRequest actionRequest, PortletPreferences prefs)
+		throws Exception {
+
+		String emailArticleAddedEnabled = ParamUtil.getString(
+			actionRequest, "emailArticleAddedEnabled");
+		String emailArticleAddedSubject = ParamUtil.getString(
+			actionRequest, "emailArticleAddedSubject");
+		String emailArticleAddedBody = ParamUtil.getString(
+			actionRequest, "emailArticleAddedBody");
+
+		if (Validator.isNull(emailArticleAddedSubject)) {
+			SessionErrors.add(actionRequest, "emailArticleAddedSubject");
+		}
+		else if (Validator.isNull(emailArticleAddedBody)) {
+			SessionErrors.add(actionRequest, "emailArticleAddedBody");
+		}
+		else {
+			prefs.setValue(
+				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_ADDED_ENABLED,
+				emailArticleAddedEnabled);
+			prefs.setValue(
+				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_ADDED_SUBJECT,
+				emailArticleAddedSubject);
+			prefs.setValue(
+				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_ADDED_BODY,
+				emailArticleAddedBody);
+		}
+	}
+
+	protected void updateEmailArticleUpdated(
+			ActionRequest actionRequest, PortletPreferences prefs)
+		throws Exception {
+
+		String emailArticleUpdatedEnabled = ParamUtil.getString(
+			actionRequest, "emailArticleUpdatedEnabled");
+		String emailArticleUpdatedSubject = ParamUtil.getString(
+			actionRequest, "emailArticleUpdatedSubject");
+		String emailArticleUpdatedBody = ParamUtil.getString(
+			actionRequest, "emailArticleUpdatedBody");
+
+		if (Validator.isNull(emailArticleUpdatedSubject)) {
+			SessionErrors.add(actionRequest, "emailArticleUpdatedSubject");
+		}
+		else if (Validator.isNull(emailArticleUpdatedBody)) {
+			SessionErrors.add(actionRequest, "emailArticleUpdatedBody");
+		}
+		else {
+			prefs.setValue(
+				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_UPDATED_ENABLED,
+				emailArticleUpdatedEnabled);
+			prefs.setValue(
+				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_UPDATED_SUBJECT,
+				emailArticleUpdatedSubject);
+			prefs.setValue(
+				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_UPDATED_BODY,
+				emailArticleUpdatedBody);
+		}
 	}
 
 	protected void updateExportSettings(
