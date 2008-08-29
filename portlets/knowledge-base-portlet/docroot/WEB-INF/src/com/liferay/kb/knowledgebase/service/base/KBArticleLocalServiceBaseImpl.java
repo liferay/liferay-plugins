@@ -39,6 +39,8 @@ import com.liferay.kb.knowledgebase.service.persistence.KBArticleResourcePersist
 import com.liferay.kb.knowledgebase.service.persistence.KBFeedbackEntryPersistence;
 import com.liferay.kb.knowledgebase.service.persistence.KBFeedbackStatsPersistence;
 
+import com.liferay.mail.service.MailService;
+
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bean.InitializingBean;
@@ -281,6 +283,14 @@ public abstract class KBArticleLocalServiceBaseImpl
 
 	public void setGroupPersistence(GroupPersistence groupPersistence) {
 		this.groupPersistence = groupPersistence;
+	}
+
+	public MailService getMailService() {
+		return mailService;
+	}
+
+	public void setMailService(MailService mailService) {
+		this.mailService = mailService;
 	}
 
 	public PortletPreferencesLocalService getPortletPreferencesLocalService() {
@@ -546,6 +556,11 @@ public abstract class KBArticleLocalServiceBaseImpl
 					".impl");
 		}
 
+		if (mailService == null) {
+			mailService = (MailService)PortalBeanLocatorUtil.locate(MailService.class.getName() +
+					".impl");
+		}
+
 		if (portletPreferencesLocalService == null) {
 			portletPreferencesLocalService = (PortletPreferencesLocalService)PortalBeanLocatorUtil.locate(PortletPreferencesLocalService.class.getName() +
 					".impl");
@@ -665,6 +680,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	protected GroupLocalService groupLocalService;
 	protected GroupService groupService;
 	protected GroupPersistence groupPersistence;
+	protected MailService mailService;
 	protected PortletPreferencesLocalService portletPreferencesLocalService;
 	protected PortletPreferencesService portletPreferencesService;
 	protected PortletPreferencesPersistence portletPreferencesPersistence;
