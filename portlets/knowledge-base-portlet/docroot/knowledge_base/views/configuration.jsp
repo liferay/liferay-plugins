@@ -243,7 +243,7 @@ String[] extensions = prefs.getValues("extensions", new String[] {"pdf"});
 						<b>[$PORTLET_NAME$]</b>
 					</td>
 					<td>
-						<%= LanguageUtil.get(themeDisplay.getLocale(), "knowledge-base") %>
+						<%= LanguageUtil.get(themeDisplay.getLocale(), "category.kb") %>
 					</td>
 				</tr>
 				<tr>

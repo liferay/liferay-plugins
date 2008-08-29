@@ -849,7 +849,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		String portletName =
-			LanguageUtil.get(themeDisplay.getLocale(), "knowledge-base");
+			LanguageUtil.get(themeDisplay.getLocale(), "category.kb");
 
 		String fromName = PrefsPropsUtil.getString(
 			company.getCompanyId(), PortletPropsKeys.ADMIN_EMAIL_FROM_NAME);
