@@ -25,6 +25,7 @@ package com.liferay.kb.knowledgebase.lar;
 import com.liferay.kb.knowledgebase.KnowledgeBaseKeys;
 import com.liferay.kb.knowledgebase.model.KBArticle;
 import com.liferay.kb.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.kb.knowledgebase.service.persistence.KBArticleFinderUtil;
 import com.liferay.kb.knowledgebase.service.persistence.KBArticleUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
@@ -37,6 +38,7 @@ import com.liferay.portal.kernel.lar.PortletDataHandlerKeys;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 
 import java.util.List;
@@ -77,15 +79,18 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 		throws PortletDataException {
 
 		try {
+			long defaultUserId = UserLocalServiceUtil.getDefaultUserId(
+				context.getCompanyId());
+
 			Document doc = SAXReaderUtil.createDocument();
 
 			Element root = doc.addElement("kb-data");
 
 			root.addAttribute("group-id", String.valueOf(context.getGroupId()));
-			
+
 			List<KBArticle> articles = 
-				KBArticleUtil.findByG_H_T_D(
-					context.getGroupId(), true, false, false);
+				KBArticleFinderUtil.findByU_G_H_T_D(
+					defaultUserId, context.getGroupId(), true, false, false);
 
 			for (KBArticle article : articles) {
 				exportArticle(context, root, article);
