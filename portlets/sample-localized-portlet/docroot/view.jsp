@@ -23,6 +23,7 @@
 %>
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.util.ResourceBundle" %>
@@ -37,4 +38,8 @@ ResourceBundle bundle = portletConfig.getResourceBundle(locale);
 
 <p>
 	<%= bundle.getString("welcome") %>
+</p>
+
+<p>
+	<liferay-ui:message key="now-testing-the-message-taglib" />
 </p>
