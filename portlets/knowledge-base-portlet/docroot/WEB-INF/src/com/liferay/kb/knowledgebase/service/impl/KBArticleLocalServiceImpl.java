@@ -41,6 +41,7 @@ import com.liferay.kb.util.PortletPropsKeys;
 import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.BooleanQuery;
@@ -62,8 +63,12 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.OrganizationLocalServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.theme.PortletDisplay;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
@@ -812,9 +817,24 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		Company company = companyPersistence.findByPrimaryKey(
 			article.getCompanyId());
 
+		User user = userPersistence.findByPrimaryKey(article.getUserId());
+
 		Group group = groupPersistence.findByPrimaryKey(article.getGroupId());
 
-		User user = userPersistence.findByPrimaryKey(article.getUserId());
+		String groupName = group.getName();
+
+		if (group.isUser()) {
+			User user2 = UserLocalServiceUtil.getUserById(group.getClassPK());
+
+			groupName = user2.getFullName();
+		}
+		else if (group.isOrganization()) {
+			Organization organization =
+				OrganizationLocalServiceUtil.getOrganization(
+					group.getClassPK());
+
+			groupName = organization.getName();
+		}
 
 		String articleURL = StringPool.BLANK;
 
@@ -824,12 +844,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 			articleURL =
 				portalURL + layoutURL + StringPool.SLASH + StringPool.DASH +
-					StringPool.SLASH +  KnowledgeBaseFriendlyURLMapper.MAPPING +
-						StringPool.SLASH + article.getTitle();
+				StringPool.SLASH +  KnowledgeBaseFriendlyURLMapper.MAPPING +
+				StringPool.SLASH + article.getTitle();
 		}
 
-		String portletName = PortalUtil.getPortletTitle(
-			PortletKeys.WIKI, user);
+		String portletName =
+			LanguageUtil.get(themeDisplay.getLocale(), "knowledge-base");
 
 		String fromName = PrefsPropsUtil.getString(
 			company.getCompanyId(), PortletPropsKeys.ADMIN_EMAIL_FROM_NAME);
@@ -839,12 +859,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		String toName = user.getFullName();
 		String toAddress = user.getEmailAddress();
 
-		String subjectPrefix = StringPool.BLANK;
+		String subject = StringPool.BLANK;
 		String body = StringPool.BLANK;
 		String signature = StringPool.BLANK;
 
 		if (update) {
-			subjectPrefix = PortletPrefsPropsUtil.getContent(
+			subject = PortletPrefsPropsUtil.getContent(
 				company.getCompanyId(),
 				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_UPDATED_SUBJECT,
 				getClass().getClassLoader());
@@ -858,7 +878,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				getClass().getClassLoader());
 		}
 		else {
-			subjectPrefix = PortletPrefsPropsUtil.getContent(
+			subject = PortletPrefsPropsUtil.getContent(
 				company.getCompanyId(),
 				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_ADDED_SUBJECT,
 				getClass().getClassLoader());
@@ -872,87 +892,78 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				getClass().getClassLoader());
 		}
 
-		if (Validator.isNotNull(signature)) {
-			body +=  "\n--\n" + signature;
-		}
-
-		subjectPrefix = StringUtil.replace(
-			subjectPrefix,
+		subject = StringUtil.replace(
+			subject,
 			new String[] {
-				"[$COMPANY_ID$]",
-				"[$COMPANY_MX$]",
-				"[$COMPANY_NAME$]",
-				"[$COMMUNITY_NAME$]",
-				"[$FROM_ADDRESS$]",
-				"[$FROM_NAME$]",
 				"[$ARTICLE_CONTENT$]",
 				"[$ARTICLE_DESCRIPTION$]",
-				"[$ARTICLE_ID$]",
 				"[$ARTICLE_TITLE$]",
-				"[$ARTICLE_USER_ADDRESS$]",
-				"[$ARTICLE_USER_NAME$]",
+				"[$ARTICLE_URL$]",
+				"[$COMMUNITY_NAME$]",
+				"[$COMPANY_NAME$]",
+				"[$FROM_ADDRESS$]",
+				"[$FROM_NAME$]",
 				"[$PORTAL_URL$]",
-				"[$PORTLET_NAME$]"
+				"[$PORTLET_NAME$]",
+				"[$TO_NAME$]",
+				"[$TO_ADDRESS$]"
 			},
 			new String[] {
-				String.valueOf(company.getCompanyId()),
-				company.getMx(),
-				company.getName(),
-				group.getName(),
-				fromAddress,
-				fromName,
 				article.getContent(),
 				article.getDescription(),
-				String.valueOf(article.getArticleId()),
 				article.getTitle(),
-				user.getEmailAddress(),
-				user.getFullName(),
+				articleURL,
+				groupName,
+				company.getName(),
+				fromAddress,
+				fromName,
 				company.getVirtualHost(),
-				portletName
+				portletName,
+				user.getFullName(),
+				user.getEmailAddress()
 			});
 
 		body = StringUtil.replace(
 			body,
 			new String[] {
-				"[$COMPANY_ID$]",
-				"[$COMPANY_MX$]",
-				"[$COMPANY_NAME$]",
-				"[$COMMUNITY_NAME$]",
-				"[$FROM_ADDRESS$]",
-				"[$FROM_NAME$]",
 				"[$ARTICLE_CONTENT$]",
 				"[$ARTICLE_DESCRIPTION$]",
-				"[$ARTICLE_ID$]",
 				"[$ARTICLE_TITLE$]",
 				"[$ARTICLE_URL$]",
-				"[$ARTICLE_USER_ADDRESS$]",
-				"[$ARTICLE_USER_NAME$]",
+				"[$COMMUNITY_NAME$]",
+				"[$COMPANY_NAME$]",
+				"[$FROM_ADDRESS$]",
+				"[$FROM_NAME$]",
 				"[$PORTAL_URL$]",
-				"[$PORTLET_NAME$]"
+				"[$PORTLET_NAME$]",
+				"[$TO_NAME$]",
+				"[$TO_ADDRESS$]"
 			},
 			new String[] {
-				String.valueOf(company.getCompanyId()),
-				company.getMx(),
-				company.getName(),
-				group.getName(),
-				fromAddress,
-				fromName,
 				article.getContent(),
 				article.getDescription(),
-				String.valueOf(article.getArticleId()),
 				article.getTitle(),
 				articleURL,
-				user.getEmailAddress(),
-				user.getFullName(),
+				groupName,
+				company.getName(),
+				fromAddress,
+				fromName,
 				company.getVirtualHost(),
-				portletName
+				portletName,
+				user.getFullName(),
+				user.getEmailAddress()
 			});
 
-		String subject = article.getTitle();
+		signature = StringUtil.replace(
+			signature,
+			new String[] {
+					"[$COMPANY_NAME$]"
+				},
+				new String[] {
+					company.getName()
+				});
 
-		if (subject.indexOf(subjectPrefix) == -1) {
-			subject = subjectPrefix + StringPool.SPACE + subject;
-		}
+		body =  body + signature;
 
 		InternetAddress from = new InternetAddress(fromAddress, fromName);
 

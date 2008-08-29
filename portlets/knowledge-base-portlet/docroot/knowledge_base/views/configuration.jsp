@@ -168,6 +168,54 @@ String[] extensions = prefs.getValues("extensions", new String[] {"pdf"});
 				<table class="lfr-table">
 				<tr>
 					<td>
+						<b>[$ARTICLE_CONTENT$]</b>
+					</td>
+					<td>
+						The article content
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>[$ARTICLE_DESCRIPTION$]</b>
+					</td>
+					<td>
+						The article description
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>[$ARTICLE_TITLE$]</b>
+					</td>
+					<td>
+						The article title
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>[$ARTICLE_URL$]</b>
+					</td>
+					<td>
+						The article URL
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>[$COMMUNITY_NAME$]</b>
+					</td>
+					<td>
+						The community name
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>[$COMPANY_NAME$]</b>
+					</td>
+					<td>
+						<%= company.getName() %>
+					</td>
+				</tr>
+				<tr>
+					<td>
 						<b>[$FROM_ADDRESS$]</b>
 					</td>
 					<td>
@@ -190,26 +238,14 @@ String[] extensions = prefs.getValues("extensions", new String[] {"pdf"});
 						<%= company.getVirtualHost() %>
 					</td>
 				</tr>
-
-				<c:if test='<%= tabs3.equals("password-changed-notification") %>'>
-					<tr>
-						<td>
-							<b>[$REMOTE_ADDRESS$]</b>
-						</td>
-						<td>
-							The browser's remote address
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<b>[$REMOTE_HOST$]</b>
-						</td>
-						<td>
-							The browser's remote host
-						</td>
-					</tr>
-				</c:if>
-
+				<tr>
+					<td>
+						<b>[$PORTLET_NAME$]</b>
+					</td>
+					<td>
+						<%= LanguageUtil.get(themeDisplay.getLocale(), "knowledge-base") %>
+					</td>
+				</tr>
 				<tr>
 					<td>
 						<b>[$TO_ADDRESS$]</b>
@@ -224,42 +260,6 @@ String[] extensions = prefs.getValues("extensions", new String[] {"pdf"});
 					</td>
 					<td>
 						The name of the email recipient
-					</td>
-				</tr>
-
-				<c:if test='<%= tabs3.equals("password-changed-notification") %>'>
-					<tr>
-						<td>
-							<b>[$USER_AGENT$]</b>
-						</td>
-						<td>
-							The browser's user agent
-						</td>
-					</tr>
-				</c:if>
-
-				<tr>
-					<td>
-						<b>[$USER_ID$]</b>
-					</td>
-					<td>
-						The user ID
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<b>[$USER_PASSWORD$]</b>
-					</td>
-					<td>
-						The user password
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<b>[$USER_SCREENNAME$]</b>
-					</td>
-					<td>
-						The user screen name
 					</td>
 				</tr>
 				</table>
