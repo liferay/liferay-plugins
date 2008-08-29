@@ -45,6 +45,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Knowledge Base Aggregator</title>
 			<short-title>Knowledge Base Aggregator</short-title>
