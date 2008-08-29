@@ -60,7 +60,7 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 			if (!context.addPrimaryKey(
 					KBPortletDataHandlerImpl.class, "deleteData")) {
 
-				KBArticleLocalServiceUtil.deleteArticles(
+				KBArticleLocalServiceUtil.deleteGroupArticles(
 					context.getGroupId(), false);
 			}
 
