@@ -100,13 +100,13 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 
 	public PortletDataHandlerControl[] getExportControls() {
 		return new PortletDataHandlerControl[] {
-			_entries, _comments, _ratings, _tags
+			_articles, _comments, _ratings, _tags
 		};
 	}
 
 	public PortletDataHandlerControl[] getImportControls() {
 		return new PortletDataHandlerControl[] {
-			_entries, _comments, _ratings, _tags
+			_articles, _comments, _ratings, _tags
 		};
 	}
 
@@ -254,10 +254,10 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 		}
 	}
 
-	private static final String _NAMESPACE = "blogs";
+	private static final String _NAMESPACE = "kb";
 
-	private static final PortletDataHandlerBoolean _entries =
-		new PortletDataHandlerBoolean(_NAMESPACE, "entries", true, true);
+	private static final PortletDataHandlerBoolean _articles =
+		new PortletDataHandlerBoolean(_NAMESPACE, "articles", true, true);
 
 	private static final PortletDataHandlerBoolean _comments =
 		new PortletDataHandlerBoolean(_NAMESPACE, "comments");
