@@ -134,11 +134,11 @@ else if (group.isUser() || group.isUserGroup()) {
 				</td>
 				<td>
 					<select name="<portlet:namespace />displayStyle">
-						<option <%= (displayStyle.equals(KBAggregatorUtil.DISPLAY_STYLE_ABSTRACT)) ? "selected" : "" %> value="<%= KBAggregatorUtil.DISPLAY_STYLE_ABSTRACT %>"><liferay-ui:message key="abstract" /></option>
-						<option <%= (displayStyle.equals(KBAggregatorUtil.DISPLAY_STYLE_ABSTRACT_AND_IMAGE)) ? "selected" : "" %> value="<%= KBAggregatorUtil.DISPLAY_STYLE_ABSTRACT_AND_IMAGE %>"><liferay-ui:message key="abstract-and-image" /></option>
-						<option <%= (displayStyle.equals(KBAggregatorUtil.DISPLAY_STYLE_BODY)) ? "selected" : "" %> value="<%= KBAggregatorUtil.DISPLAY_STYLE_BODY %>"><liferay-ui:message key="body" /></option>
-						<option <%= (displayStyle.equals(KBAggregatorUtil.DISPLAY_STYLE_BODY_AND_IMAGE)) ? "selected" : "" %> value="<%= KBAggregatorUtil.DISPLAY_STYLE_BODY_AND_IMAGE %>"><liferay-ui:message key="body-and-image" /></option>
-						<option <%= (displayStyle.equals(KBAggregatorUtil.DISPLAY_STYLE_QUOTE)) ? "selected" : "" %> value="<%= KBAggregatorUtil.DISPLAY_STYLE_QUOTE %>"><liferay-ui:message key="quote" /></option>
+						<option <%= (displayStyle.equals(KnowledgeBaseAggregatorUtil.DISPLAY_STYLE_ABSTRACT)) ? "selected" : "" %> value="<%= KnowledgeBaseAggregatorUtil.DISPLAY_STYLE_ABSTRACT %>"><liferay-ui:message key="abstract" /></option>
+						<option <%= (displayStyle.equals(KnowledgeBaseAggregatorUtil.DISPLAY_STYLE_ABSTRACT_AND_IMAGE)) ? "selected" : "" %> value="<%= KnowledgeBaseAggregatorUtil.DISPLAY_STYLE_ABSTRACT_AND_IMAGE %>"><liferay-ui:message key="abstract-and-image" /></option>
+						<option <%= (displayStyle.equals(KnowledgeBaseAggregatorUtil.DISPLAY_STYLE_BODY)) ? "selected" : "" %> value="<%= KnowledgeBaseAggregatorUtil.DISPLAY_STYLE_BODY %>"><liferay-ui:message key="body" /></option>
+						<option <%= (displayStyle.equals(KnowledgeBaseAggregatorUtil.DISPLAY_STYLE_BODY_AND_IMAGE)) ? "selected" : "" %> value="<%= KnowledgeBaseAggregatorUtil.DISPLAY_STYLE_BODY_AND_IMAGE %>"><liferay-ui:message key="body-and-image" /></option>
+						<option <%= (displayStyle.equals(KnowledgeBaseAggregatorUtil.DISPLAY_STYLE_QUOTE)) ? "selected" : "" %> value="<%= KnowledgeBaseAggregatorUtil.DISPLAY_STYLE_QUOTE %>"><liferay-ui:message key="quote" /></option>
 					</select>
 				</td>
 			</tr>
@@ -148,11 +148,11 @@ else if (group.isUser() || group.isUserGroup()) {
 				</td>
 				<td>
 					<select name="<portlet:namespace />maxItems">
-						<option <%= maxItems == KBAggregatorUtil.MAX_ITEMS_10 ? "selected" : "" %> value="<%= KBAggregatorUtil.MAX_ITEMS_10 %>"><%= KBAggregatorUtil.MAX_ITEMS_10 %></option>
-						<option <%= maxItems == KBAggregatorUtil.MAX_ITEMS_20 ? "selected" : "" %> value="<%= KBAggregatorUtil.MAX_ITEMS_20 %>"><%= KBAggregatorUtil.MAX_ITEMS_20 %></option>
-						<option <%= maxItems == KBAggregatorUtil.MAX_ITEMS_30 ? "selected" : "" %> value="<%= KBAggregatorUtil.MAX_ITEMS_30 %>"><%= KBAggregatorUtil.MAX_ITEMS_30 %></option>
-						<option <%= maxItems == KBAggregatorUtil.MAX_ITEMS_50 ? "selected" : "" %> value="<%= KBAggregatorUtil.MAX_ITEMS_50 %>"><%= KBAggregatorUtil.MAX_ITEMS_50 %></option>
-						<option <%= maxItems == KBAggregatorUtil.MAX_ITEMS_100 ? "selected" : "" %> value="<%= KBAggregatorUtil.MAX_ITEMS_100 %>"><%= KBAggregatorUtil.MAX_ITEMS_100 %></option>
+						<option <%= maxItems == KnowledgeBaseAggregatorUtil.MAX_ITEMS_10 ? "selected" : "" %> value="<%= KnowledgeBaseAggregatorUtil.MAX_ITEMS_10 %>"><%= KnowledgeBaseAggregatorUtil.MAX_ITEMS_10 %></option>
+						<option <%= maxItems == KnowledgeBaseAggregatorUtil.MAX_ITEMS_20 ? "selected" : "" %> value="<%= KnowledgeBaseAggregatorUtil.MAX_ITEMS_20 %>"><%= KnowledgeBaseAggregatorUtil.MAX_ITEMS_20 %></option>
+						<option <%= maxItems == KnowledgeBaseAggregatorUtil.MAX_ITEMS_30 ? "selected" : "" %> value="<%= KnowledgeBaseAggregatorUtil.MAX_ITEMS_30 %>"><%= KnowledgeBaseAggregatorUtil.MAX_ITEMS_30 %></option>
+						<option <%= maxItems == KnowledgeBaseAggregatorUtil.MAX_ITEMS_50 ? "selected" : "" %> value="<%= KnowledgeBaseAggregatorUtil.MAX_ITEMS_50 %>"><%= KnowledgeBaseAggregatorUtil.MAX_ITEMS_50 %></option>
+						<option <%= maxItems == KnowledgeBaseAggregatorUtil.MAX_ITEMS_100 ? "selected" : "" %> value="<%= KnowledgeBaseAggregatorUtil.MAX_ITEMS_100 %>"><%= KnowledgeBaseAggregatorUtil.MAX_ITEMS_100 %></option>
 					</select>
 				</td>
 			</tr>

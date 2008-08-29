@@ -34,8 +34,8 @@ if (Validator.isNotNull(portletResource)) {
 }
 
 long groupId = GetterUtil.getLong(prefs.getValue("group-id", "0"));
-String displayStyle = prefs.getValue("display-style", KBAggregatorUtil.DISPLAY_STYLE_ABSTRACT_AND_IMAGE);
-int maxItems = GetterUtil.getInteger(prefs.getValue("max-items", String.valueOf(KBAggregatorUtil.MAX_ITEMS_20)));
+String displayStyle = prefs.getValue("display-style", KnowledgeBaseAggregatorUtil.DISPLAY_STYLE_ABSTRACT_AND_IMAGE);
+int maxItems = GetterUtil.getInteger(prefs.getValue("max-items", String.valueOf(KnowledgeBaseAggregatorUtil.MAX_ITEMS_20)));
 
 String[] rssTypes = prefs.getValues("rss-types", new String[] {RSSUtil.RSS_2_0});
 int rssMaxItems = GetterUtil.getInteger(prefs.getValue("rss-max-items", String.valueOf(RSSUtil.MAX_ITEMS_20)));

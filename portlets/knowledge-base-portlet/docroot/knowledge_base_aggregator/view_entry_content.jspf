@@ -54,7 +54,7 @@ String articleAuthorURL = articleAuthor.getDisplayURL(PortalUtil.getPortalURL(th
 %>
 
 <div class="article">
-	<c:if test='<%= displayStyle.endsWith(KBAggregatorUtil.DISPLAY_STYLE_IMAGE) %>'>
+	<c:if test='<%= displayStyle.endsWith(KnowledgeBaseAggregatorUtil.DISPLAY_STYLE_IMAGE) %>'>
 		<a href="<%= articleAuthorURL %>"><img align="right" border="0" hspace="0" src="<%= themeDisplay.getPathImage() %>/user_<%= articleAuthor.isFemale() ? "female" : "male" %>_portrait?img_id=<%= articleAuthor.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(articleAuthor.getPortraitId()) %>" width="65" /></a>
 	</c:if>
 
@@ -72,14 +72,14 @@ String articleAuthorURL = articleAuthor.getDisplayURL(PortalUtil.getPortalURL(th
 	/>
 
 	<c:choose>
-		<c:when test='<%= displayStyle.startsWith(KBAggregatorUtil.DISPLAY_STYLE_ABSTRACT) %>'>
+		<c:when test='<%= displayStyle.startsWith(KnowledgeBaseAggregatorUtil.DISPLAY_STYLE_ABSTRACT) %>'>
 			<div class="abstract-content">
 				<%= StringUtil.shorten(HtmlUtil.stripHtml(article.getContent()), 200, StringPool.BLANK) %>
 			</div>
 
 			<a href="<%= viewArticleURL %>"><liferay-ui:message key="read-more" /> &raquo;</a>
 		</c:when>
-		<c:when test='<%= displayStyle.startsWith(KBAggregatorUtil.DISPLAY_STYLE_QUOTE) %>'>
+		<c:when test='<%= displayStyle.startsWith(KnowledgeBaseAggregatorUtil.DISPLAY_STYLE_QUOTE) %>'>
 			<div class="quote-content">
 				<a href="<%= viewArticleURL %>">
 					&quot;<%= StringUtil.shorten(StringUtil.trim(HtmlUtil.stripHtml(article.getContent())), 100, StringPool.BLANK) %> ...&quot;
