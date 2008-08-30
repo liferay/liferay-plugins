@@ -24,72 +24,13 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-PortletURL portletURL = renderResponse.createRenderURL();
-
-SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
-
-LinkedHashMap<String, Object> userParams = new LinkedHashMap<String, Object>();
-
-userParams.put("usersOrgs", new Long(organization.getOrganizationId()));
-
-int total = UserLocalServiceUtil.searchCount(company.getCompanyId(), null, Boolean.TRUE, userParams);
-
-searchContainer.setTotal(total);
-
-List<User> results = UserLocalServiceUtil.search(company.getCompanyId(), null, Boolean.TRUE, userParams, searchContainer.getStart(), searchContainer.getEnd(), new UserLoginDateComparator());
-
-searchContainer.setResults(results);
-
-List resultRows = searchContainer.getResultRows();
-
-for (int i = 0; i < results.size(); i++) {
-	User friend = results.get(i);
-
-	ResultRow row = new ResultRow(friend, friend.getUserId(), i);
-
-	// User display
-
-	row.addJSP("/members/user_display.jsp", application, request, response);
-
-	// Add result row
-
-	resultRows.add(row);
-}
-%>
-
-<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" paginate="<%= false %>" />
-
-<c:if test="<%= results.size() > 0 %>">
-	<div class="taglib-search-iterator-page-iterator-bottom" id="<portlet:namespace />searchMembers">
-		<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" type="article" />
-	</div>
-</c:if>
-
-<script type="text/javascript">
-	jQuery(
-		function () {
-			var searchMembers = jQuery('#<portlet:namespace />searchMembers');
-
-			searchMembers.find('a').click(
-				function(event) {
-					var url = this.href.replace(/p_p_state=normal/i, 'p_p_state=exclusive');
-					var parent = searchMembers.parent();
-
-					parent.html('<div class="loading-animation" />');
-
-					jQuery.ajax(
-						{
-							url: url,
-							success: function(response) {
-								parent.html(response);
-							}
-						}
-					);
-
-					return false;
-				}
-			);
-		}
-	);
-</script>
+<c:choose>
+	<c:when test="<%= user2 != null %>">
+		<div class="portlet-msg-error">
+			<liferay-ui:message key="this-application-will-only-function-when-placed-on-a-community-or-organization-page" />
+		</div>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="/members/view_members.jspf" %>
+	</c:otherwise>
+</c:choose>

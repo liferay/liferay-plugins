@@ -24,7 +24,7 @@
 
 <%@ include file="/init.jsp" %>
 
-<c:if test="<%= UserLocalServiceUtil.hasOrganizationUser(WOLConstants.ORGANIZATION_LIFERAY_INC_ID, themeDisplay.getUserId()) %>">
+<c:if test="<%= permissionChecker.isCompanyAdmin(company.getCompanyId()) %>">
 	<liferay-ui:icon-list>
 
 		<%
@@ -131,7 +131,7 @@ for (int i = 0; i < meetupsEntries.size(); i++) {
 
 			<liferay-ui:icon-list>
 
-				<c:if test="<%= UserLocalServiceUtil.hasOrganizationUser(WOLConstants.ORGANIZATION_LIFERAY_INC_ID, themeDisplay.getUserId()) %>">
+				<c:if test="<%= permissionChecker.isCompanyAdmin(company.getCompanyId()) %>">
 
 					<%
 					PortletURL editMeetupsEntryURL = renderResponse.createRenderURL();
@@ -157,7 +157,7 @@ for (int i = 0; i < meetupsEntries.size(); i++) {
 					method="get"
 				/>
 
-				<c:if test="<%= UserLocalServiceUtil.hasOrganizationUser(WOLConstants.ORGANIZATION_LIFERAY_INC_ID, themeDisplay.getUserId()) %>">
+				<c:if test="<%= permissionChecker.isCompanyAdmin(company.getCompanyId()) %>">
 
 					<%
 					PortletURL deleteMeetupsEntryURL = renderResponse.createActionURL();

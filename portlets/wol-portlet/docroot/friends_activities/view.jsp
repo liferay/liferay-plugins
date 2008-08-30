@@ -24,18 +24,13 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-List<SocialActivity> activities = SocialActivityLocalServiceUtil.getRelationActivities(user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, 0, SearchContainer.DEFAULT_DELTA);
-
-PortletURL rssURL = renderResponse.createRenderURL();
-
-rssURL.setParameter("rss", "1");
-%>
-
-<liferay-ui:social-activities
-	activities="<%= activities %>"
-	feedEnabled="<%= true %>"
-	feedTitle='<%= LanguageUtil.format(pageContext, "subscribe-to-these-activities", user2.getFirstName()) %>'
-	feedLink="<%= rssURL.toString() %>"
-	feedLinkMessage='<%= LanguageUtil.format(pageContext, "subscribe-to-these-activities", user2.getFirstName()) %>'
-/>
+<c:choose>
+	<c:when test="<%= user2 == null %>">
+		<div class="portlet-msg-error">
+			<liferay-ui:message key="this-application-will-only-function-when-placed-on-a-user-page" />
+		</div>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="/friends_activities/view_friends_activities.jspf" %>
+	</c:otherwise>
+</c:choose>

@@ -23,11 +23,8 @@
 package com.liferay.wol.summary.portlet;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.Group;
@@ -55,7 +52,6 @@ import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -68,48 +64,10 @@ import org.apache.commons.logging.LogFactory;
  */
 public class SummaryPortlet extends JSPPortlet {
 
-	public void processAction(
+	public void addFriend(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortletException {
+		throws Exception {
 
-		try {
-			String actionName = ParamUtil.getString(
-				actionRequest, ActionRequest.ACTION_NAME);
-
-			if (actionName.equals("addFriend")) {
-				addFriend(actionRequest);
-			}
-			else if (actionName.equals("deleteFriend")) {
-				deleteFriend(actionRequest);
-			}
-			else if (actionName.equals("joinOrganization")) {
-				joinOrganization(actionRequest);
-			}
-			else if (actionName.equals("leaveOrganization")) {
-				leaveOrganization(actionRequest);
-			}
-			else if (actionName.equals("updateSummary")) {
-				updateSummary(actionRequest);
-			}
-
-			if (Validator.isNull(actionName)) {
-				return;
-			}
-
-			if (SessionErrors.isEmpty(actionRequest)) {
-				SessionMessages.add(actionRequest, "request_processed");
-			}
-
-			String redirect = ParamUtil.getString(actionRequest, "redirect");
-
-			actionResponse.sendRedirect(redirect);
-		}
-		catch (Exception e) {
-			throw new PortletException(e);
-		}
-	}
-
-	protected void addFriend(ActionRequest actionRequest) throws Exception {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -124,7 +82,10 @@ public class SummaryPortlet extends JSPPortlet {
 			StringPool.BLANK, user.getUserId());
 	}
 
-	protected void deleteFriend(ActionRequest actionRequest) throws Exception {
+	public void deleteFriend(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -138,7 +99,38 @@ public class SummaryPortlet extends JSPPortlet {
 			SocialRelationConstants.TYPE_BI_FRIEND);
 	}
 
-	protected void joinOrganization(ActionRequest actionRequest)
+	public void joinGroup(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		Role role = RoleLocalServiceUtil.getRole(
+			themeDisplay.getCompanyId(), "Community Administrator");
+
+		LinkedHashMap<String, Object> userParams =
+			new LinkedHashMap<String, Object>();
+
+		userParams.put(
+			"userGroupRole",
+			new Long[] {new Long(themeDisplay.getPortletGroupId()),
+			new Long(role.getRoleId())});
+
+		List<User> users = UserLocalServiceUtil.search(
+			themeDisplay.getCompanyId(), null, Boolean.TRUE, userParams,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+		for (User user : users) {
+			SocialRequestLocalServiceUtil.addRequest(
+				themeDisplay.getUserId(), 0, Group.class.getName(),
+				themeDisplay.getPortletGroupId(), MembersRequestKeys.ADD_MEMBER,
+				StringPool.BLANK, user.getUserId());
+		}
+	}
+
+	public void joinOrganization(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
@@ -151,7 +143,7 @@ public class SummaryPortlet extends JSPPortlet {
 			OrganizationLocalServiceUtil.getOrganization(group.getClassPK());
 
 		Role role = RoleLocalServiceUtil.getRole(
-			themeDisplay.getCompanyId(), "Organization Webmin");
+			themeDisplay.getCompanyId(), "Organization Administrator");
 
 		LinkedHashMap<String, Object> userParams =
 			new LinkedHashMap<String, Object>();
@@ -173,7 +165,20 @@ public class SummaryPortlet extends JSPPortlet {
 		}
 	}
 
-	protected void leaveOrganization(ActionRequest actionRequest)
+	public void leaveGroup(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		UserLocalServiceUtil.unsetGroupUsers(
+			themeDisplay.getPortletGroupId(),
+			new long[] {themeDisplay.getUserId()});
+	}
+
+	public void leaveOrganization(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
@@ -186,7 +191,10 @@ public class SummaryPortlet extends JSPPortlet {
 			group.getClassPK(), new long[] {themeDisplay.getUserId()});
 	}
 
-	protected void updateSummary(ActionRequest actionRequest) throws Exception {
+	public void updateSummary(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 

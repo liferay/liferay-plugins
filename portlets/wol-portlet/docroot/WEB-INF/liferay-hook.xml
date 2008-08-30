@@ -6,17 +6,8 @@
 		<event-class>com.liferay.wol.hook.events.StartupAction</event-class>
 		<event-type>application.startup.events</event-type>
 	</event>
-	<event>
-		<event-class>com.liferay.wol.hook.events.LoginPostAction</event-class>
-		<event-type>login.events.post</event-type>
-	</event>
 	<model-listener>
 		<model-listener-class>com.liferay.wol.hook.listeners.GroupListener</model-listener-class>
 		<model-name>com.liferay.portal.model.Group</model-name>
 	</model-listener>
-	<model-listener>
-		<model-listener-class>com.liferay.wol.hook.listeners.UserListener</model-listener-class>
-		<model-name>com.liferay.portal.model.User</model-name>
-	</model-listener>
-	<portal-properties>portal.properties</portal-properties>
 </hook>

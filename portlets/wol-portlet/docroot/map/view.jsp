@@ -25,30 +25,40 @@
 <%@ include file="/init.jsp" %>
 
 <%
+boolean communityProfileMap = false;
 boolean friendsProfileMap = false;
-boolean membersProfileMap = false;
+boolean organizationProfileMap = false;
 boolean userProfileMap = false;
 
 if ((user2 != null) && layout.getFriendlyURL().equals("/friends")) {
 	friendsProfileMap = true;
 }
 else if (organization != null) {
-	membersProfileMap = true;
+	organizationProfileMap = true;
 }
-else {
+else if (user2 != null) {
 	userProfileMap = true;
 }
-
-if (friendsProfileMap) {
-	renderResponse.setTitle(LanguageUtil.format(pageContext, "where-are-x's-friends", user2.getFirstName()));
+else {
+	communityProfileMap = true;
 }
-else if (membersProfileMap) {
-	renderResponse.setTitle(LanguageUtil.format(pageContext, "where-are-the-x-members", organization.getName()));
+
+if (communityProfileMap || organizationProfileMap) {
+	renderResponse.setTitle(LanguageUtil.format(pageContext, "where-are-the-x-members", group.getDescriptiveName()));
+}
+else if (friendsProfileMap) {
+	renderResponse.setTitle(LanguageUtil.format(pageContext, "where-are-x's-friends", user2.getFirstName()));
 }
 else {
 	renderResponse.setTitle(LanguageUtil.format(pageContext, "where-is-x", user2.getFirstName()));
 }
 %>
+
+<c:if test="<%= !MessageBusUtil.hasMessageListener(DestinationNames.IP_GEOCODER) %>">
+	<div class="portlet-msg-error">
+		Markers will not be shown because ip-geocoder-portlet is not available.
+	</div>
+</c:if>
 
 <script src="http://www.google.com/jsapi?key=<%= PortletProps.get("map.google.maps.api.key") %>" type="text/javascript"></script>
 
@@ -71,17 +81,24 @@ else {
 			<%
 			List<User> users = null;
 
-			if (friendsProfileMap) {
+			if (communityProfileMap) {
+				LinkedHashMap<String, Object> userParams = new LinkedHashMap<String, Object>();
+
+				userParams.put("usersGroups", new Long(group.getGroupId()));
+
+				users = UserLocalServiceUtil.search(company.getCompanyId(), null, Boolean.TRUE, userParams, 0, 50, new UserLoginDateComparator());
+			}
+			else if (friendsProfileMap) {
 				users = UserLocalServiceUtil.getSocialUsers(user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, 0, 50, new UserLoginDateComparator());
 			}
-			else if (membersProfileMap) {
+			else if (organizationProfileMap) {
 				LinkedHashMap<String, Object> userParams = new LinkedHashMap<String, Object>();
 
 				userParams.put("usersOrgs", new Long(organization.getOrganizationId()));
 
 				users = UserLocalServiceUtil.search(company.getCompanyId(), null, Boolean.TRUE, userParams, 0, 50, new UserLoginDateComparator());
 			}
-			else {
+			else if (userProfileMap) {
 				users = new ArrayList();
 
 				users.add(user2);

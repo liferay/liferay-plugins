@@ -26,9 +26,12 @@
 
 <c:choose>
 	<c:when test="<%= organization != null %>">
-		<%@ include file="/summary/view_organization.jsp" %>
+		<%@ include file="/summary/view_organization.jspf" %>
 	</c:when>
 	<c:when test="<%= user2 != null %>">
-		<%@ include file="/summary/view_user.jsp" %>
+		<%@ include file="/summary/view_user.jspf" %>
 	</c:when>
+	<c:otherwise>
+		<%@ include file="/summary/view_community.jspf" %>
+	</c:otherwise>
 </c:choose>

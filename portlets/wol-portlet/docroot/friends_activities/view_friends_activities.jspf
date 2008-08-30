@@ -1,3 +1,4 @@
+<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -19,36 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+%>
 
-package com.liferay.wol.hook.listeners;
+<%
+List<SocialActivity> activities = SocialActivityLocalServiceUtil.getRelationActivities(user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, 0, SearchContainer.DEFAULT_DELTA);
 
-import com.liferay.portal.model.BaseModel;
-import com.liferay.portal.model.ModelListener;
+PortletURL rssURL = renderResponse.createRenderURL();
 
-/**
- * <a href="UserListener.java.html"><b><i>View Source</i></b></a>
- *
- * @author Brian Wing Shun Chan
- *
- */
-public class UserListener implements ModelListener {
+rssURL.setParameter("rss", "1");
+%>
 
-	public void onBeforeCreate(BaseModel model) {
-	}
-
-	public void onAfterCreate(BaseModel model) {
-	}
-
-	public void onBeforeRemove(BaseModel model) {
-	}
-
-	public void onAfterRemove(BaseModel model) {
-	}
-
-	public void onBeforeUpdate(BaseModel model) {
-	}
-
-	public void onAfterUpdate(BaseModel model) {
-	}
-
-}
+<liferay-ui:social-activities
+	activities="<%= activities %>"
+	feedEnabled="<%= true %>"
+	feedTitle='<%= LanguageUtil.format(pageContext, "subscribe-to-these-activities", user2.getFirstName()) %>'
+	feedLink="<%= rssURL.toString() %>"
+	feedLinkMessage='<%= LanguageUtil.format(pageContext, "subscribe-to-these-activities", user2.getFirstName()) %>'
+/>

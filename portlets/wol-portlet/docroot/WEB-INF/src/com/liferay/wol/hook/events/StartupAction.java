@@ -26,18 +26,12 @@ import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portlet.expando.DuplicateColumnNameException;
 import com.liferay.portlet.expando.DuplicateTableNameException;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.portlet.expando.model.ExpandoTable;
 import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
-import com.liferay.portlet.social.model.SocialRelationConstants;
-import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
-import com.liferay.wol.util.WOLConstants;
-
-import java.util.List;
 
 /**
  * <a href="StartupAction.java.html"><b><i>View Source</i></b></a>
@@ -58,7 +52,6 @@ public class StartupAction extends SimpleAction {
 
 	protected void doRun(long companyId) throws Exception {
 		setupExpando();
-		setupLiferayUsers();
 	}
 
 	protected void setupExpando() throws Exception {
@@ -93,21 +86,6 @@ public class StartupAction extends SimpleAction {
 				table.getTableId(), "aboutMe", ExpandoColumnConstants.STRING);
 		}
 		catch (DuplicateColumnNameException dcne) {
-		}
-	}
-
-	protected void setupLiferayUsers() throws Exception {
-		List<User> users = UserLocalServiceUtil.getOrganizationUsers(
-			WOLConstants.ORGANIZATION_LIFERAY_INC_ID);
-
-		for (User user1 : users) {
-			for (User user2 : users) {
-				if (user1.getUserId() != user2.getUserId()) {
-					SocialRelationLocalServiceUtil.addRelation(
-						user1.getUserId(), user2.getUserId(),
-						SocialRelationConstants.TYPE_BI_FRIEND);
-				}
-			}
 		}
 	}
 

@@ -98,7 +98,6 @@
 <%@ page import="com.liferay.wol.service.SVNRevisionLocalServiceUtil" %>
 <%@ page import="com.liferay.wol.service.WallEntryLocalServiceUtil" %>
 <%@ page import="com.liferay.wol.svn.util.SVNConstants" %>
-<%@ page import="com.liferay.wol.util.WOLConstants" %>
 
 <%@ page import="com.sun.syndication.feed.synd.SyndContent" %>
 <%@ page import="com.sun.syndication.feed.synd.SyndContentImpl" %>

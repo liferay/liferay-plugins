@@ -22,20 +22,16 @@
 
 package com.liferay.wol.meetups.portlet;
 
-import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.wol.service.MeetupsEntryLocalServiceUtil;
 import com.liferay.wol.service.MeetupsRegistrationLocalServiceUtil;
-import com.liferay.wol.util.WOLConstants;
 
 import java.io.File;
 
@@ -43,7 +39,6 @@ import java.util.Calendar;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletException;
 
 /**
  * <a href="MeetupsPortlet.java.html"><b><i>View Source</i></b></a>
@@ -53,51 +48,17 @@ import javax.portlet.PortletException;
  */
 public class MeetupsPortlet extends JSPPortlet {
 
-	public void processAction(
+	public void deleteMeetupsEntry(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortletException {
-
-		try {
-			String actionName = ParamUtil.getString(
-				actionRequest, ActionRequest.ACTION_NAME);
-
-			if (actionName.equals("deleteMeetupsEntry")) {
-				deleteMeetupsEntry(actionRequest);
-			}
-			else if (actionName.equals("updateMeetupsEntry")) {
-				updateMeetupsEntry(actionRequest);
-			}
-			else if (actionName.equals("updateMeetupsRegistration")) {
-				updateMeetupsRegistration(actionRequest);
-			}
-
-			if (Validator.isNull(actionName)) {
-				return;
-			}
-
-			if (SessionErrors.isEmpty(actionRequest)) {
-				SessionMessages.add(actionRequest, "request_processed");
-			}
-
-			String redirect = ParamUtil.getString(actionRequest, "redirect");
-
-			actionResponse.sendRedirect(redirect);
-		}
-		catch (Exception e) {
-			throw new PortletException(e);
-		}
-	}
-
-	protected void deleteMeetupsEntry(ActionRequest actionRequest)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		if (!UserLocalServiceUtil.hasOrganizationUser(
-				WOLConstants.ORGANIZATION_LIFERAY_INC_ID,
-				themeDisplay.getUserId())) {
+		PermissionChecker permissionChecker =
+			themeDisplay.getPermissionChecker();
 
+		if (!permissionChecker.isCompanyAdmin(themeDisplay.getCompanyId())) {
 			return;
 		}
 
@@ -107,7 +68,8 @@ public class MeetupsPortlet extends JSPPortlet {
 		MeetupsEntryLocalServiceUtil.deleteMeetupsEntry(meetupsEntryId);
 	}
 
-	protected void updateMeetupsEntry(ActionRequest actionRequest)
+	public void updateMeetupsEntry(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(
@@ -116,10 +78,10 @@ public class MeetupsPortlet extends JSPPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)uploadRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		if (!UserLocalServiceUtil.hasOrganizationUser(
-				WOLConstants.ORGANIZATION_LIFERAY_INC_ID,
-				themeDisplay.getUserId())) {
+		PermissionChecker permissionChecker =
+			themeDisplay.getPermissionChecker();
 
+		if (!permissionChecker.isCompanyAdmin(themeDisplay.getCompanyId())) {
 			return;
 		}
 
@@ -182,7 +144,8 @@ public class MeetupsPortlet extends JSPPortlet {
 		}
 	}
 
-	protected void updateMeetupsRegistration(ActionRequest actionRequest)
+	public void updateMeetupsRegistration(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(

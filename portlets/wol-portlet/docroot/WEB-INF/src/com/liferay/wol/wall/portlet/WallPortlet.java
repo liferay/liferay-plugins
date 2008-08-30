@@ -22,10 +22,7 @@
 
 package com.liferay.wol.wall.portlet;
 
-import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -42,7 +39,6 @@ import com.liferay.wol.service.WallEntryLocalServiceUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletException;
 
 /**
  * <a href="WallPortlet.java.html"><b><i>View Source</i></b></a>
@@ -52,39 +48,10 @@ import javax.portlet.PortletException;
  */
 public class WallPortlet extends JSPPortlet {
 
-	public void processAction(
+	public void addWallEntry(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortletException {
+		throws Exception {
 
-		try {
-			String actionName = ParamUtil.getString(
-				actionRequest, ActionRequest.ACTION_NAME);
-
-			if (actionName.equals("addWallEntry")) {
-				addWallEntry(actionRequest);
-			}
-			else if (actionName.equals("deleteWallEntry")) {
-				deleteWallEntry(actionRequest);
-			}
-
-			if (Validator.isNull(actionName)) {
-				return;
-			}
-
-			if (SessionErrors.isEmpty(actionRequest)) {
-				SessionMessages.add(actionRequest, "request_processed");
-			}
-
-			String redirect = ParamUtil.getString(actionRequest, "redirect");
-
-			actionResponse.sendRedirect(redirect);
-		}
-		catch (Exception e) {
-			throw new PortletException(e);
-		}
-	}
-
-	protected void addWallEntry(ActionRequest actionRequest) throws Exception {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -119,7 +86,8 @@ public class WallPortlet extends JSPPortlet {
 			comments, themeDisplay);
 	}
 
-	protected void deleteWallEntry(ActionRequest actionRequest)
+	public void deleteWallEntry(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(

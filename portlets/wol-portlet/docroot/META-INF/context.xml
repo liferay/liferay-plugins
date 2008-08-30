@@ -1,5 +1,5 @@
 <Context>
-	<Resource
+	<!--<Resource
 		name="jdbc/JIRAPool"
 		auth="Container"
 		type="javax.sql.DataSource"
@@ -8,5 +8,5 @@
 		username=""
 		password=""
 		maxActive="20"
-	/>
+	/>-->
 </Context>

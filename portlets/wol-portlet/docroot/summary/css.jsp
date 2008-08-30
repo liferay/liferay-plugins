@@ -80,12 +80,28 @@
 	background-image: url(<%= themeImagesPath %>/common/time.png);
 }
 
+.wol-portlet-summary .summary-container .join-community {
+	margin: 0.7em auto 1em;
+}
+
+.wol-portlet-summary .summary-container .join-community.pending {
+	background-image: url(<%= themeImagesPath %>/common/time.png);
+}
+
 .wol-portlet-summary .summary-container .join-organization {
 	margin: 0.7em auto 1em;
 }
 
 .wol-portlet-summary .summary-container .join-organization.pending {
 	background-image: url(<%= themeImagesPath %>/common/time.png);
+}
+
+.wol-portlet-summary .summary-container .remove-community {
+	margin: 0.7em auto 1em;
+}
+
+.wol-portlet-summary .summary-container .remove-organization {
+	margin: 0.7em auto 1em;
 }
 
 .wol-portlet-summary .summary-container .remove-friend {
