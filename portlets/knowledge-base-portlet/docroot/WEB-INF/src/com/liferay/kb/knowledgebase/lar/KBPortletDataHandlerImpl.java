@@ -28,6 +28,7 @@ import com.liferay.kb.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.kb.knowledgebase.service.persistence.KBArticleUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.PortletDataException;
 import com.liferay.portal.kernel.lar.PortletDataHandler;
@@ -83,9 +84,10 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 
 			root.addAttribute("group-id", String.valueOf(context.getGroupId()));
 
-			List<KBArticle> articles =
-				KBArticleUtil.findByG_H_T_D(
-					context.getGroupId(), true, false, false);
+			List<KBArticle> articles = 
+				KBArticleLocalServiceUtil.getGroupArticles(
+					context.getGroupId(), true, false, false, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS);
 
 			for (KBArticle article : articles) {
 				exportArticle(context, root, article);
@@ -222,7 +224,7 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 					article.getVersion(), article.getContent(),
 					article.getDescription(), article.isMinorEdit(),
 					article.isHead(), article.isTemplate(), article.isDraft(),
-					tagsEntries, null, themeDisplay);
+					tagsEntries, prefs, themeDisplay);
 			}
 			else {
 				existingArticle = KBArticleLocalServiceUtil.updateArticle(
@@ -230,14 +232,14 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 					article.getVersion(), article.getTitle(),
 					article.getContent(), article.getDescription(),
 					article.isMinorEdit(), article.isTemplate(),
-					article.isDraft(), tagsEntries, null, themeDisplay);
+					article.isDraft(), tagsEntries, prefs, themeDisplay);
 			}
 		}
 		else {
 			existingArticle = KBArticleLocalServiceUtil.addArticle(
 				userId, groupId, article.getTitle(), article.getContent(),
 				article.getDescription(), article.isMinorEdit(),
-				article.isTemplate(), article.isDraft(), tagsEntries, null,
+				article.isTemplate(), article.isDraft(), tagsEntries, prefs,
 				themeDisplay);
 		}
 

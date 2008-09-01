@@ -838,6 +838,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		String articleURL = StringPool.BLANK;
 
+		String portletName = "Knowledge Base Portlet";
+
 		if (themeDisplay != null) {
 			String portalURL = PortalUtil.getPortalURL(themeDisplay);
 			String layoutURL = PortalUtil.getLayoutURL(themeDisplay);
@@ -846,10 +848,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				portalURL + layoutURL + StringPool.SLASH + StringPool.DASH +
 				StringPool.SLASH + KnowledgeBaseFriendlyURLMapper.MAPPING +
 				StringPool.SLASH + article.getTitle();
-		}
 
-		String portletName =
-			LanguageUtil.get(themeDisplay.getLocale(), "category.kb");
+			portletName = 
+				LanguageUtil.get(themeDisplay.getLocale(), "category.kb");
+		}
 
 		String fromName = PrefsPropsUtil.getString(
 			company.getCompanyId(), PortletPropsKeys.ADMIN_EMAIL_FROM_NAME);
