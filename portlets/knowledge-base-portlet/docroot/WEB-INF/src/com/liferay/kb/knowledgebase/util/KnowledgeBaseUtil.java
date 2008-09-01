@@ -56,23 +56,6 @@ public class KnowledgeBaseUtil {
 			companyId, name, classLoader);
 	}
 
-	public static String getEmailSignature(
-			long companyId, ClassLoader classLoader, boolean update)
-		throws Exception {
-
-		String name;
-
-		if (update) {
-			name = PortletPropsKeys.ADMIN_EMAIL_ARTICLE_UPDATED_SIGNATURE;
-		}
-		else {
-			name = PortletPropsKeys.ADMIN_EMAIL_ARTICLE_ADDED_SIGNATURE;
-		}
-
-		return PortletPrefsPropsUtil.getContent(
-			companyId, name, classLoader);
-	}
-
 	public static String getEmailSubject(
 			long companyId, ClassLoader classLoader, boolean update)
 		throws Exception {

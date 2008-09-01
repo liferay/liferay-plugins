@@ -130,8 +130,6 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			ActionRequest actionRequest, PortletPreferences prefs)
 		throws Exception {
 
-		String emailArticleAddedEnabled = ParamUtil.getString(
-			actionRequest, "emailArticleAddedEnabled");
 		String emailArticleAddedSubject = ParamUtil.getString(
 			actionRequest, "emailArticleAddedSubject");
 		String emailArticleAddedBody = ParamUtil.getString(
@@ -145,9 +143,6 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		}
 		else {
 			prefs.setValue(
-				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_ADDED_ENABLED,
-				emailArticleAddedEnabled);
-			prefs.setValue(
 				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_ADDED_SUBJECT,
 				emailArticleAddedSubject);
 			prefs.setValue(
@@ -160,8 +155,6 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			ActionRequest actionRequest, PortletPreferences prefs)
 		throws Exception {
 
-		String emailArticleUpdatedEnabled = ParamUtil.getString(
-			actionRequest, "emailArticleUpdatedEnabled");
 		String emailArticleUpdatedSubject = ParamUtil.getString(
 			actionRequest, "emailArticleUpdatedSubject");
 		String emailArticleUpdatedBody = ParamUtil.getString(
@@ -174,9 +167,6 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			SessionErrors.add(actionRequest, "emailArticleUpdatedBody");
 		}
 		else {
-			prefs.setValue(
-				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_UPDATED_ENABLED,
-				emailArticleUpdatedEnabled);
 			prefs.setValue(
 				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_UPDATED_SUBJECT,
 				emailArticleUpdatedSubject);

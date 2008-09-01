@@ -838,7 +838,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		String articleURL = StringPool.BLANK;
 
-		String portletName = "Knowledge Base Portlet";
+		String portletName = "Knowledge Base";
 
 		if (themeDisplay != null) {
 			String portalURL = PortalUtil.getPortalURL(themeDisplay);
@@ -866,8 +866,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		String subject = KnowledgeBaseUtil.getEmailSubject(
 			company.getCompanyId(), classLoader, update);
 		String body = KnowledgeBaseUtil.getEmailBody(
-			company.getCompanyId(), classLoader, update);
-		String signature = KnowledgeBaseUtil.getEmailSignature(
 			company.getCompanyId(), classLoader, update);
 
 		subject = StringUtil.replace(
@@ -931,17 +929,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				user.getFullName(),
 				user.getEmailAddress()
 			});
-
-		signature = StringUtil.replace(
-			signature,
-			new String[] {
-				"[$COMPANY_NAME$]"
-			},
-			new String[] {
-				company.getName()
-			});
-
-		body = body + signature;
 
 		InternetAddress from = new InternetAddress(fromAddress, fromName);
 

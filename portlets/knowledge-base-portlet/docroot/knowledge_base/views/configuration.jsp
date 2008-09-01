@@ -109,26 +109,6 @@ String[] extensions = prefs.getValues("extensions", new String[] {"pdf"});
 				<table class="lfr-table">
 				<tr>
 					<td>
-						<liferay-ui:message key="enabled" />
-					</td>
-					<td>
-						<c:choose>
-							<c:when test='<%= tabs3.equals("article-added-notification") %>'>
-								<liferay-ui:input-checkbox param="emailArticleAddedEnabled" defaultValue="<%= PortletPrefsPropsUtil.getBoolean(company.getCompanyId(), PortletPropsKeys.ADMIN_EMAIL_ARTICLE_ADDED_ENABLED) %>" />
-							</c:when>
-							<c:when test='<%= tabs3.equals("article-updated-notification") %>'>
-								<liferay-ui:input-checkbox param="emailArticleUpdatedEnabled" defaultValue="<%= PortletPrefsPropsUtil.getBoolean(company.getCompanyId(), PortletPropsKeys.ADMIN_EMAIL_ARTICLE_UPDATED_ENABLED) %>" />
-							</c:when>
-						</c:choose>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<br />
-					</td>
-				</tr>
-				<tr>
-					<td>
 						<liferay-ui:message key="subject" />
 					</td>
 					<td>
@@ -243,7 +223,7 @@ String[] extensions = prefs.getValues("extensions", new String[] {"pdf"});
 						<b>[$PORTLET_NAME$]</b>
 					</td>
 					<td>
-						Knowledge Base Portlet
+						Knowledge Base
 					</td>
 				</tr>
 				<tr>

@@ -32,19 +32,11 @@ public class PortletPropsKeys {
 
 	public static final String ADMIN_EMAIL_ARTICLE_ADDED_BODY = "admin.email.article.added.body";
 
-	public static final String ADMIN_EMAIL_ARTICLE_ADDED_ENABLED = "admin.email.article.added.enabled";
-
 	public static final String ADMIN_EMAIL_ARTICLE_ADDED_SUBJECT = "admin.email.article.added.subject";
-
-	public static final String ADMIN_EMAIL_ARTICLE_ADDED_SIGNATURE = "admin.email.article.added.signature";
 
 	public static final String ADMIN_EMAIL_ARTICLE_UPDATED_BODY = "admin.email.article.updated.body";
 
-	public static final String ADMIN_EMAIL_ARTICLE_UPDATED_ENABLED = "admin.email.article.updated.enabled";
-
 	public static final String ADMIN_EMAIL_ARTICLE_UPDATED_SUBJECT = "admin.email.article.updated.subject";
-
-	public static final String ADMIN_EMAIL_ARTICLE_UPDATED_SIGNATURE = "admin.email.article.updated.signature";
 
 	public static final String ADMIN_EMAIL_FROM_NAME = "admin.email.from.name";
 
