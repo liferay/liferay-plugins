@@ -849,7 +849,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				StringPool.SLASH + KnowledgeBaseFriendlyURLMapper.MAPPING +
 				StringPool.SLASH + article.getTitle();
 
-			portletName = 
+			portletName =
 				LanguageUtil.get(themeDisplay.getLocale(), "category.kb");
 		}
 

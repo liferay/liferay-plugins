@@ -84,7 +84,7 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 
 			root.addAttribute("group-id", String.valueOf(context.getGroupId()));
 
-			List<KBArticle> articles = 
+			List<KBArticle> articles =
 				KBArticleLocalServiceUtil.getGroupArticles(
 					context.getGroupId(), true, false, false, QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS);
