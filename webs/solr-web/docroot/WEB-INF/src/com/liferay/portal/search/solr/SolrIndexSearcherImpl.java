@@ -34,16 +34,13 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.Time;
-
-import java.io.StringReader;
+import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.kernel.xml.SAXReaderUtil;
 
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
 
 /**
  * <a href="SolrIndexSearcherImpl.java.html"><b><i>View Source</i></b></a>
@@ -91,9 +88,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 		Hits subset = new HitsImpl();
 
-		SAXReader reader = new SAXReader();
-
-		org.dom4j.Document xmlDoc = reader.read(new StringReader(xml));
+		com.liferay.portal.kernel.xml.Document xmlDoc = SAXReaderUtil.read(xml);
 
 		Element root = xmlDoc.getRootElement();
 
