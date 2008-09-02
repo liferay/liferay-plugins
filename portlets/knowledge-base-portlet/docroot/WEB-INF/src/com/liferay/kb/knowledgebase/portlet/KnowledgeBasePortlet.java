@@ -208,8 +208,6 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException, IOException {
 
-		// Store beans in the Request object
-
 		try {
 			PortletUtil.getArticle(renderRequest);
 		}
