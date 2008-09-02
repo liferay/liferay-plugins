@@ -33,7 +33,7 @@ rssURL.setParameter("rss", "1");
 <liferay-ui:social-activities
 	activities="<%= activities %>"
 	feedEnabled="<%= true %>"
-	feedTitle='<%= LanguageUtil.format(pageContext, "subscribe-to-these-activities", user2.getFirstName()) %>'
+	feedTitle='<%= LanguageUtil.get(pageContext, "subscribe-to-these-activities") %>'
 	feedLink="<%= rssURL.toString() %>"
-	feedLinkMessage='<%= LanguageUtil.format(pageContext, "subscribe-to-these-activities", user2.getFirstName()) %>'
+	feedLinkMessage='<%= LanguageUtil.get(pageContext, "subscribe-to-these-activities") %>'
 />
