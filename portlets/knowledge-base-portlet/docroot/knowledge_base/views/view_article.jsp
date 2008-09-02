@@ -27,9 +27,9 @@
 <%
 KBArticle article = (KBArticle) request.getAttribute(KnowledgeBaseKeys.ARTICLE);
 
-KBFeedbackEntry feedbackEntry = (KBFeedbackEntry) request.getAttribute(KnowledgeBaseKeys.KNOWLEDGE_BASE_FEEDBACK_ENTRY);
+KBFeedbackEntry feedbackEntry = (KBFeedbackEntry) request.getAttribute(KnowledgeBaseKeys.FEEDBACK_ENTRY);
 
-KBFeedbackStats feedbackStats = (KBFeedbackStats) request.getAttribute(KnowledgeBaseKeys.KNOWLEDGE_BASE_FEEDBACK_STATS);
+KBFeedbackStats feedbackStats = (KBFeedbackStats) request.getAttribute(KnowledgeBaseKeys.FEEDBACK_STATS);
 
 // Article
 

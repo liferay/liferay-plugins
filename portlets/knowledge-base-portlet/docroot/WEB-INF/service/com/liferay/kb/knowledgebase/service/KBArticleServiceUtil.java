@@ -76,6 +76,13 @@ public class KBArticleServiceUtil {
 	}
 
 	public static com.liferay.kb.knowledgebase.model.KBArticle getArticle(
+		long resourcePrimKey, double version, long plid)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
+		return _service.getArticle(resourcePrimKey, version, plid);
+	}
+
+	public static com.liferay.kb.knowledgebase.model.KBArticle getArticle(
 		long groupId, java.lang.String title)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
@@ -87,6 +94,13 @@ public class KBArticleServiceUtil {
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		return _service.getArticle(groupId, title, version);
+	}
+
+	public static com.liferay.kb.knowledgebase.model.KBArticle getArticle(
+		long groupId, java.lang.String title, double version, long plid)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
+		return _service.getArticle(groupId, title, version, plid);
 	}
 
 	public static java.lang.String getArticlesRSS(long resourcePrimKey,

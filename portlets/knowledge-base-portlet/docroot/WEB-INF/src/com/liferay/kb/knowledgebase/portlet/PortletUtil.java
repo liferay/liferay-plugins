@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 
+import javax.portlet.ActionRequest;
 import javax.portlet.RenderRequest;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,59 +49,52 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class PortletUtil {
 
-	public static void getKBArticle(RenderRequest renderRequest)
+	public static void getArticle(ActionRequest actionRequest)
+		throws Exception {
+
+		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+			actionRequest);
+
+		getArticle(request);
+	}
+
+	public static void getArticle(RenderRequest renderRequest)
 		throws Exception {
 
 		HttpServletRequest request = PortalUtil.getHttpServletRequest(
 			renderRequest);
 
-		getKBArticle(request);
+		getArticle(request);
 	}
 
-	public static void getKBArticle(HttpServletRequest request)
+	public static void getArticle(HttpServletRequest request)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
+
+		long plid = themeDisplay.getPlid();
+		long userId = themeDisplay.getUserId();
 
 		long resourcePrimKey = ParamUtil.getLong(
 			request, "resourcePrimKey");
 		double version = ParamUtil.getDouble(request, "version");
 		String title = ParamUtil.getString(request, "title");
 
+		// Article
+
 		KBArticle article = null;
 
 		if (resourcePrimKey > 0) {
 			article = KBArticleServiceUtil.getArticle(
-				resourcePrimKey, version);
+				resourcePrimKey, version, plid);
 		}
 		else if (Validator.isNotNull(title)) {
 			article = KBArticleServiceUtil.getArticle(
-				themeDisplay.getPortletGroupId(), title, version);
+				themeDisplay.getPortletGroupId(), title, version, plid);
 		}
 
-		request.setAttribute(KnowledgeBaseKeys.ARTICLE, article);
-	}
-
-	public static void getKBFeedback(RenderRequest renderRequest)
-		throws Exception {
-
-		HttpServletRequest request = PortalUtil.getHttpServletRequest(
-			renderRequest);
-
-		getKBFeedback(request);
-	}
-
-	public static void getKBFeedback(HttpServletRequest request)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		KBArticle article = (KBArticle) request.getAttribute(
-			KnowledgeBaseKeys.ARTICLE);
-
-		long userId = themeDisplay.getUserId();
+		// Feedback
 
 		KBFeedbackEntry feedbackEntry = null;
 		KBFeedbackStats feedbackStats = null;
@@ -120,18 +114,9 @@ public class PortletUtil {
 					article.getResourcePrimKey());
 		}
 
-		request.setAttribute(
-			KnowledgeBaseKeys.KNOWLEDGE_BASE_FEEDBACK_ENTRY, feedbackEntry);
-		request.setAttribute(
-			KnowledgeBaseKeys.KNOWLEDGE_BASE_FEEDBACK_STATS, feedbackStats);
-	}
-
-	public static void getKBBeans(RenderRequest renderRequest)
-		throws Exception {
-
-		getKBArticle(renderRequest);
-
-		getKBFeedback(renderRequest);
+		request.setAttribute(KnowledgeBaseKeys.ARTICLE, article);
+		request.setAttribute(KnowledgeBaseKeys.FEEDBACK_ENTRY, feedbackEntry);
+		request.setAttribute(KnowledgeBaseKeys.FEEDBACK_STATS, feedbackStats);
 	}
 
 }

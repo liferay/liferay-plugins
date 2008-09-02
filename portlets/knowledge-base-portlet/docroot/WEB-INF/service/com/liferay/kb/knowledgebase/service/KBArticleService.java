@@ -63,12 +63,22 @@ public interface KBArticleService {
 			com.liferay.portal.SystemException;
 
 	public com.liferay.kb.knowledgebase.model.KBArticle getArticle(
+		long resourcePrimKey, double version, long plid)
+		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public com.liferay.kb.knowledgebase.model.KBArticle getArticle(
 		long groupId, java.lang.String title)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
 	public com.liferay.kb.knowledgebase.model.KBArticle getArticle(
 		long groupId, java.lang.String title, double version)
+		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public com.liferay.kb.knowledgebase.model.KBArticle getArticle(
+		long groupId, java.lang.String title, double version, long plid)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 

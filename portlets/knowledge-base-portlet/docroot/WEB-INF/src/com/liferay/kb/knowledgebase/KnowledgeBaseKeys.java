@@ -35,11 +35,9 @@ public class KnowledgeBaseKeys {
 
 	public static final String ARTICLE = "Article";
 
-	public static final String KNOWLEDGE_BASE_FEEDBACK_ENTRY =
-		"KNOWLEDGE_BASE_FEEDBACK_ENTRY";
+	public static final String FEEDBACK_ENTRY = "Feedback_Entry";
 
-	public static final String KNOWLEDGE_BASE_FEEDBACK_STATS =
-		"KNOWLEDGE_BASE_FEEDBACK_STATS";
+	public static final String FEEDBACK_STATS = "Feedback_Stats";
 
 	public static final String MANAGE_TEMPLATES = "MANAGE_TEMPLATES";
 

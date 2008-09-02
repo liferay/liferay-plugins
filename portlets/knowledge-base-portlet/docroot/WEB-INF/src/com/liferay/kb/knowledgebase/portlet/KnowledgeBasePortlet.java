@@ -25,7 +25,6 @@ package com.liferay.kb.knowledgebase.portlet;
 import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.kb.knowledgebase.ArticleTitleException;
 import com.liferay.kb.knowledgebase.ArticleVersionException;
-import com.liferay.kb.knowledgebase.KnowledgeBaseKeys;
 import com.liferay.kb.knowledgebase.NoSuchArticleException;
 import com.liferay.kb.knowledgebase.model.KBArticle;
 import com.liferay.kb.knowledgebase.model.KBFeedbackStats;
@@ -33,7 +32,6 @@ import com.liferay.kb.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalServiceUtil;
 import com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalServiceUtil;
 import com.liferay.kb.util.RSSUtil;
-import com.liferay.portal.kernel.bean.BeanParamUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -54,7 +52,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
-import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.tags.EntryNameException;
@@ -87,7 +84,6 @@ import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
@@ -215,15 +211,20 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		// Store beans in the Request object
 
 		try {
-			PortletUtil.getKBBeans(renderRequest);
+			PortletUtil.getArticle(renderRequest);
 		}
 		catch (Exception e) {
-			throw new PortletException(e);
+			if (e instanceof NoSuchArticleException ||
+				e instanceof PrincipalException) {
+
+				SessionErrors.add(renderRequest, e.getClass().getName());
+
+				renderRequest.setAttribute("hasError", "true");
+			}
+			else {
+				throw new PortletException(e);
+			}
 		}
-
-		// Allow only article authors or OmniAdmins to view unpublished articles
-
-		checkViewable(renderRequest);
 
 		super.render(renderRequest, renderResponse);
 	}
@@ -316,36 +317,6 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		}
 
 		KBArticleServiceUtil.addArticleAttachments(resourcePrimKey, files);
-	}
-
-	protected void checkViewable(RenderRequest renderRequest) {
-		HttpServletRequest request = PortalUtil.getHttpServletRequest(
-			renderRequest);
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
-		KBArticle article = (KBArticle) renderRequest.getAttribute(
-			KnowledgeBaseKeys.ARTICLE);
-
-		boolean draft = BeanParamUtil.getBoolean(
-			article, request, "draft", false);
-		long articleAuthorId = BeanParamUtil.getLong(
-			article, request, "userId", 0);
-		long userId = themeDisplay.getUserId();
-
-		if (permissionChecker.isOmniadmin()) {
-			renderRequest.setAttribute("isViewableArticle", "true");
-		}
-		else if (draft && (articleAuthorId != userId)) {
-			renderRequest.setAttribute("isViewableArticle", "false");
-		}
-		else {
-			renderRequest.setAttribute("isViewableArticle", "true");
-		}
 	}
 
 	protected void convertArticle(

@@ -27,14 +27,9 @@
 <%
 String view = ParamUtil.getString(request, "view", "view_all_articles");
 long entryId = ParamUtil.getLong(request, "entryId");
-
-String isViewableArticle = (String) request.getAttribute("isViewableArticle");
+boolean hasError = GetterUtil.getBoolean((String) request.getAttribute("hasError"));
 
 String[] supportedViews = {"compare_versions", "edit_article", "edit_article_attachment", "view_all_articles", "view_article", "view_article_attachments", "view_article_history", "view_subscriptions", "view_tagged_articles", "view_templates", "search", };
-
-if (isViewableArticle.equals("false")) {
-	view = "view_all_articles";
-}
 
 if (!ArrayUtil.contains(supportedViews, view)) {
 	view = supportedViews[0];
@@ -44,14 +39,14 @@ if (Validator.isNotNull(entryId)) {
 	view = "view_tagged_articles";
 }
 
-_log.info("Including view: " + "/knowledge_base/" + view + ".jsp");
-%>
+if (hasError) {
+	view = "error";
+}
 
-<c:if test='<%= isViewableArticle.equals("false") %>'>
-	<div class="portlet-msg-error">
-		<liferay-ui:message key="you-do-not-have-permission-to-access-the-requested-resource" />
-	</div>
-</c:if>
+if (_log.isInfoEnabled()) {
+	_log.info("Including view: " + "/knowledge_base/" + view + ".jsp");
+}
+%>
 
 <jsp:include page="/knowledge_base/top.jsp" />
 

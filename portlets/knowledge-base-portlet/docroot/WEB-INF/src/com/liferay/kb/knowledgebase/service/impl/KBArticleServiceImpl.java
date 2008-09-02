@@ -156,6 +156,24 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		return kbArticleLocalService.getArticle(resourcePrimKey, version);
 	}
 
+	public KBArticle getArticle(long resourcePrimKey, double version, long plid)
+		throws PortalException, SystemException {
+
+		KBArticle article =
+			kbArticleLocalService.getArticle(resourcePrimKey, version);
+
+		if (article.isDraft()) {
+			KBPermission.check(
+				getPermissionChecker(), plid, ActionKeys.ADD_ARTICLE);
+		}
+		else {
+			KBArticlePermission.check(
+				getPermissionChecker(), resourcePrimKey, ActionKeys.VIEW);
+		}
+
+		return article;
+	}
+
 	public KBArticle getArticle(long groupId, String title)
 		throws PortalException, SystemException {
 
@@ -172,6 +190,25 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			getPermissionChecker(), groupId, title, ActionKeys.VIEW);
 
 		return kbArticleLocalService.getArticle(groupId, title, version);
+	}
+
+	public KBArticle getArticle(
+			long groupId, String title, double version, long plid)
+		throws PortalException, SystemException {
+
+		KBArticle article =
+			kbArticleLocalService.getArticle(groupId, title, version);
+
+		if (article.isDraft()) {
+			KBPermission.check(
+				getPermissionChecker(), plid, ActionKeys.ADD_ARTICLE);
+		}
+		else {
+			KBArticlePermission.check(
+				getPermissionChecker(), groupId, title, ActionKeys.VIEW);
+		}
+
+		return article;
 	}
 
 	public String getArticlesRSS(
