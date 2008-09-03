@@ -3,12 +3,12 @@
 
 <web-app>
 	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/applicationContext.xml</param-value>
-	</context-param>
-	<context-param>
 		<param-name>contextClass</param-name>
 		<param-value>org.apache.xbean.spring.context.XmlWebApplicationContext</param-value>
+	</context-param>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/applicationContext.xml</param-value>
 	</context-param>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -32,7 +32,7 @@
 	<servlet-mapping>
 		<servlet-name>Sample Hibernate Servlet</servlet-name>
 		<url-pattern>/sample_hibernate/*</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>Workflow Inbound Servlet</servlet-name>
 		<url-pattern>/workflow/*</url-pattern>
