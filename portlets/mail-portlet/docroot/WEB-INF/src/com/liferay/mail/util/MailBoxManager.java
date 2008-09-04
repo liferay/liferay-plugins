@@ -403,7 +403,7 @@ public class MailBoxManager {
 		mailRequestJSON.put("userId", _user.getUserId());
 
 		MessageBusUtil.sendMessage(
-			DestinationNames.MAIL_SYNCHRONIZER, mailRequestJSON.toString());
+			DestinationNames.MAIL_SYNCHRONIZER, mailRequestJSON);
 
 		return _successJSON;
 	}

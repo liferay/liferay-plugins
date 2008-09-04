@@ -24,8 +24,8 @@ package com.liferay.mail.messaging;
 
 import com.liferay.mail.util.AccountLock;
 import com.liferay.mail.util.MailBoxManager;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -41,11 +41,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class MailMessageListener implements MessageListener {
 
-	public void receive(Object message) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void receive(String message) {
+	public void receive(Message message) {
 		try {
 			doReceive(message);
 		}
@@ -54,8 +50,8 @@ public class MailMessageListener implements MessageListener {
 		}
 	}
 
-	protected void doReceive(String message) throws Exception {
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject(message);
+	protected void doReceive(Message message) throws Exception {
+		JSONObject jsonObj = (JSONObject)message.getPayload();
 
 		String emailAddress = jsonObj.getString("emailAddress");
 		long userId = jsonObj.getLong("userId");

@@ -25,10 +25,9 @@ package com.liferay.ipgeocoder.messaging;
 import com.liferay.ipgeocoder.model.IPInfo;
 import com.liferay.ipgeocoder.util.IPGeocoderUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
-import com.liferay.portal.kernel.util.Validator;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -41,11 +40,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class IPGeocoderMessageListener implements MessageListener {
 
-	public void receive(Object message) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void receive(String message) {
+	public void receive(Message message) {
 		try {
 			doReceive(message);
 		}
@@ -54,32 +49,16 @@ public class IPGeocoderMessageListener implements MessageListener {
 		}
 	}
 
-	protected void doReceive(String message) throws Exception {
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject(message);
-
-		String responseDestination = jsonObj.getString(
-			"lfrResponseDestination");
-		String responseId = jsonObj.getString("lfrResponseId");
-
-		if (Validator.isNull(responseDestination) ||
-			Validator.isNull(responseId)) {
-
-			return;
-		}
-
-		String ipAddress = jsonObj.getString("ipAddress");
+	protected void doReceive(Message message) throws Exception {
+		String ipAddress = (String)message.getPayload();
 
 		IPInfo ipInfo = IPGeocoderUtil.getIPInfo(ipAddress);
 
-		jsonObj = JSONFactoryUtil.createJSONObject();
-
-		jsonObj.put("lfrResponseId", responseId);
-		jsonObj.put(
-			"ipInfo",
+		message.setPayload(
 			JSONFactoryUtil.createJSONObject(
 				JSONFactoryUtil.serialize(ipInfo)));
 
-		MessageBusUtil.sendMessage(responseDestination, jsonObj.toString());
+		MessageBusUtil.sendMessage(message.getResponseDestination(), message);
 	}
 
 	private static Log _log =
