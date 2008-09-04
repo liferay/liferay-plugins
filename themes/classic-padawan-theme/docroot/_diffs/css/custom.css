@@ -1,0 +1,71 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---------- Base ---------- */
+
+body {
+	background: #B0B8BC;
+}
+
+#wrapper {
+	padding: 0 0 10px 0;
+}
+
+/* ---------- Portlet ---------- */
+
+.portlet-border {
+	border: 1px solid;
+	border-color: #AAA;
+	margin: 0 0 10px;
+}
+
+.portlet {
+	border: 10px solid #D3DADD;
+	margin: 0;
+	padding: 0;
+}
+
+.portlet-topper {
+	background: #333;
+}
+
+.portlet-title {
+	color: #FFF;
+}
+
+.portlet-icons {
+	right: 6px;
+}
+
+.portlet-icon-back, .portlet-icon-back:hover {
+	color: #FFF;
+}
+
+/* ---------- Actions button ---------- */
+
+.lfr-actions.portlet-options {
+	margin: 0 5px 0 0;
+}
+
+.lfr-actions.portlet-options .lfr-trigger strong {
+	padding: 0;
+}
+
+.lfr-actions.portlet-options .lfr-trigger strong span {
+	background-image: none;
+	color: #9EBAC8;
+	height: auto;
+	padding: 0 3px;
+	text-indent: 0;
+	width: auto;
+}
+
+.portlet-options.visible {
+	background: #FFF url(../images/forms/button.png) repeat-x 0 100%;
+	border-color: #DEDEDE;
+	padding: 0 0 1px 0;
+}
+
+.portlet-options.visible .lfr-trigger strong span {
+	background-image: none;
+	color: #06C;
+}
