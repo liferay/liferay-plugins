@@ -22,6 +22,7 @@
 
 package com.liferay.portal.search.solr.messaging;
 
+import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.messaging.SearchRequest;
@@ -38,7 +39,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class SolrWriterMessageListener implements MessageListener {
 
-	public void receive(Object message) {
+	public void receive(Message message) {
 		try {
 			doReceive(message);
 		}
@@ -47,12 +48,8 @@ public class SolrWriterMessageListener implements MessageListener {
 		}
 	}
 
-	public void receive(String message) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void doReceive(Object message) throws Exception {
-		SearchRequest searchRequest = (SearchRequest)message;
+	public void doReceive(Message message) throws Exception {
+		SearchRequest searchRequest = (SearchRequest)message.getPayload();
 
 		String command = searchRequest.getCommand();
 

@@ -27,7 +27,6 @@ import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.messaging.SearchRequest;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.solr.SolrSearchEngineUtil;
 
 import org.apache.commons.logging.Log;
@@ -41,37 +40,24 @@ import org.apache.commons.logging.LogFactory;
  */
 public class SolrReaderMessageListener implements MessageListener {
 
-	public void receive(Object message) {
+	public void receive(Message message) {
 		try {
-			doReceive((Message)message);
+			doReceive(message);
 		}
 		catch (Exception e) {
 			_log.error("Unable to process message " + message, e);
 		}
 	}
 
-	public void receive(String message) {
-		throw new UnsupportedOperationException();
-	}
-
 	public void doReceive(Message message) throws Exception {
-		String responseDestination = message.getResponseDestination();
-		String responseId = message.getResponseId();
-
-		SearchRequest searchRequest = (SearchRequest)message.getRequestValue();
+		SearchRequest searchRequest = (SearchRequest)message.getPayload();
 
 		String command = searchRequest.getCommand();
 
-		if (command.equals(SearchRequest.COMMAND_INDEX_ONLY) &&
-			Validator.isNotNull(responseDestination) &&
-			Validator.isNotNull(responseId)) {
-
+		if (command.equals(SearchRequest.COMMAND_INDEX_ONLY)) {
 			doCommandIndexOnly(message);
 		}
-		else if (command.equals(SearchRequest.COMMAND_SEARCH) &&
-				 Validator.isNotNull(responseDestination) &&
-				 Validator.isNotNull(responseId)) {
-
+		else if (command.equals(SearchRequest.COMMAND_SEARCH)) {
 			doCommandSearch(message, searchRequest);
 		}
 	}
@@ -79,10 +65,11 @@ public class SolrReaderMessageListener implements MessageListener {
 	protected void doCommandIndexOnly(Message message)
 		throws Exception {
 
-		boolean indexOnly = SolrSearchEngineUtil.isIndexReadOnly();
+		Boolean indexReadOnly = Boolean.valueOf(
+			SolrSearchEngineUtil.isIndexReadOnly());
 
-		message.setResponseValue(Boolean.valueOf(indexOnly));
-
+		message.setPayload(indexReadOnly);
+		
 		MessageBusUtil.sendMessage(message.getResponseDestination(), message);
 	}
 
@@ -94,7 +81,7 @@ public class SolrReaderMessageListener implements MessageListener {
 			searchRequest.getSort(), searchRequest.getStart(),
 			searchRequest.getEnd());
 
-		message.setResponseValue(hits);
+		message.setPayload(hits);
 
 		MessageBusUtil.sendMessage(message.getResponseDestination(), message);
 	}
