@@ -50,7 +50,7 @@ User articleAuthor = UserLocalServiceUtil.getUserById(article.getUserId());
 
 String viewArticleURL = articleURL.toString();
 
-String articleAuthorURL = articleAuthor.getDisplayURL(PortalUtil.getPortalURL(themeDisplay));
+String articleAuthorURL = articleAuthor.getDisplayURL(themeDisplay);
 %>
 
 <div class="article">
