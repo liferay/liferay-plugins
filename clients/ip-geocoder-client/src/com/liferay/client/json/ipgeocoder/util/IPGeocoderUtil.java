@@ -24,7 +24,6 @@ package com.liferay.client.json.ipgeocoder.util;
 
 import com.liferay.client.json.ipgeocoder.model.IPInfo;
 import com.liferay.portal.PortalException;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
@@ -39,21 +38,9 @@ import com.liferay.portal.kernel.util.GetterUtil;
 public class IPGeocoderUtil {
 
 	public static IPInfo getIPInfo(String ipAddress) throws PortalException {
-		JSONObject ipGeocoderRequestJSON = JSONFactoryUtil.createJSONObject();
-
-		ipGeocoderRequestJSON.put("ipAddress", ipAddress);
-
-		String ipGeocoderResponse = MessageBusUtil.sendSynchronizedMessage(
-			DestinationNames.IP_GEOCODER, ipGeocoderRequestJSON.toString());
-
-		if (ipGeocoderResponse == null) {
-			return null;
-		}
-
-		JSONObject ipGeocoderResponseJSON = JSONFactoryUtil.createJSONObject(
-			ipGeocoderResponse);
-
-		JSONObject ipInfoJSON = ipGeocoderResponseJSON.getJSONObject("ipInfo");
+		JSONObject ipInfoJSON =
+			(JSONObject)MessageBusUtil.sendSynchronizedMessage(
+				DestinationNames.IP_GEOCODER, ipAddress);
 
 		if (ipInfoJSON == null) {
 			return null;
