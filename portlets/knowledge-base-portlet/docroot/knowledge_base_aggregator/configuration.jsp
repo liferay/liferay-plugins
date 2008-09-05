@@ -33,29 +33,33 @@ String companyName = company.getName();
 
 List<Group> myPlaces = user.getMyPlaces();
 
-Map<Long, String> scopeMap = new LinkedHashMap<Long, String>();
+List<Long> scopeGroupId = new ArrayList<Long>();
 
-scopeMap.put(new Long(0), LanguageUtil.get(pageContext, "company") + " - " + company.getName());
+List<String> scopeName = new ArrayList<String>();
+
+scopeGroupId.add(new Long (0));
+scopeName.add(company.getName());
 
 for (Group myPlace : myPlaces) {
 	myPlace = myPlace.toEscapedModel();
 
 	boolean isOrganizationCommunity = myPlace.isOrganization();
-	boolean isRegularCommunity = myPlace.isCommunity();
 	boolean isUserCommunity = myPlace.isUser();
+
+	scopeGroupId.add(myPlace.getGroupId());
 
 	if (isOrganizationCommunity) {
 		organization = OrganizationLocalServiceUtil.getOrganization(myPlace.getClassPK());
 
-		scopeMap.put(myPlace.getGroupId(), organization.getName());
+		scopeName.add(organization.getName());
 	}
 	else if (isUserCommunity) {
 		user2 = UserLocalServiceUtil.getUserById(myPlace.getClassPK());
 
-		scopeMap.put(myPlace.getGroupId(), user2.getFullName());
+		scopeName.add(user2.getFullName());
 	}
 	else {
-		scopeMap.put(myPlace.getGroupId(), myPlace.getName());
+		scopeName.add(myPlace.getName());
 	}
 }
 %>
@@ -72,10 +76,16 @@ for (Group myPlace : myPlaces) {
 		if (scope == 0) {
 			document.<portlet:namespace />fm.<portlet:namespace />companyId.value = <%= company.getCompanyId() %>;
 			document.<portlet:namespace />fm.<portlet:namespace />groupId.value = 0;
+
+			document.getElementById("<portlet:namespace />company").style.display = "";
+			document.getElementById("<portlet:namespace />community").style.display = "none";
 		}
 		else {
 			document.<portlet:namespace />fm.<portlet:namespace />companyId.value = 0;
 			document.<portlet:namespace />fm.<portlet:namespace />groupId.value = scope;
+
+			document.getElementById("<portlet:namespace />company").style.display = "none";
+			document.getElementById("<portlet:namespace />community").style.display = "";
 		}
 	}
 </script>
@@ -99,6 +109,20 @@ for (Group myPlace : myPlaces) {
 
 			<table class="lfr-table">
 			<tr>
+				<th>
+					&nbsp;
+				</th>
+				<th>
+					<liferay-ui:message key="name" />
+				</th>
+				<th>
+					<liferay-ui:message key="scope" />
+				</th>
+				<th>
+					&nbsp;
+				</th>
+			</tr>
+			<tr>
 				<td>
 					<liferay-ui:message key="current" />
 				</td>
@@ -106,18 +130,20 @@ for (Group myPlace : myPlaces) {
 					<select name="<portlet:namespace />scope" onchange="<portlet:namespace/>toggleScopeName();">
 
 						<%
-						for (Iterator itr = scopeMap.keySet().iterator(); itr.hasNext();) {
-							long key = GetterUtil.getLong(itr.next().toString());
-							String value = scopeMap.get(key);
+						for (int i = 0; i < scopeGroupId.size(); i++) {
 						%>
 
-							<option <%= (groupId == key) ? "selected" : "" %> value="<%= key %>"><%= value %></option>
+							<option <%= (groupId == scopeGroupId.get(i)) ? "selected" : "" %> value="<%= scopeGroupId.get(i) %>"><%= scopeName.get(i) %></option>
 
 						<%
 						}
 						%>
 
 					</select>
+				</td>
+				<td>
+					<span id="<portlet:namespace />company"><%= LanguageUtil.get(pageContext, "company") %></span>
+					<span id="<portlet:namespace />community"><%= LanguageUtil.get(pageContext, "community") %></span>
 				</td>
 				<td>
 					<liferay-ui:icon-help message="select-the-scope-to-search-for-knowledge-base-articles" />
@@ -247,3 +273,14 @@ for (Group myPlace : myPlaces) {
 <input type="button" value="<liferay-ui:message key="cancel" />" onClick="document.location = '<%= HtmlUtil.escape(redirect) %>'" />
 
 </form>
+
+<script type="text/javascript">
+	if (<%= tabs2.equals("display-settings") && (groupId > 0) %>) {
+		document.getElementById("<portlet:namespace />company").style.display = "none";
+		document.getElementById("<portlet:namespace />community").style.display = "";
+	}
+	else if (<%= tabs2.equals("display-settings") %>) {
+		document.getElementById("<portlet:namespace />company").style.display = "";
+		document.getElementById("<portlet:namespace />community").style.display = "none";
+	}
+</script>
