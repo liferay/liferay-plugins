@@ -22,6 +22,9 @@
 
 package com.liferay.chat.service;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.util.ClassLoaderProxy;
+
 /**
  * <a href="EntryLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
@@ -32,78 +35,94 @@ public class EntryLocalServiceUtil {
 	public static com.liferay.chat.model.Entry addEntry(
 		com.liferay.chat.model.Entry entry)
 		throws com.liferay.portal.SystemException {
-		return _service.addEntry(entry);
+		return getService().addEntry(entry);
+	}
+
+	public static com.liferay.chat.model.Entry createEntry(long entryId) {
+		return getService().createEntry(entryId);
 	}
 
 	public static void deleteEntry(long entryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.deleteEntry(entryId);
+		getService().deleteEntry(entryId);
 	}
 
 	public static void deleteEntry(com.liferay.chat.model.Entry entry)
 		throws com.liferay.portal.SystemException {
-		_service.deleteEntry(entry);
+		getService().deleteEntry(entry);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery);
+		return getService().dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery, start, end);
+		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.chat.model.Entry getEntry(long entryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getEntry(entryId);
+		return getService().getEntry(entryId);
 	}
 
 	public static java.util.List<com.liferay.chat.model.Entry> getEntries(
 		int start, int end) throws com.liferay.portal.SystemException {
-		return _service.getEntries(start, end);
+		return getService().getEntries(start, end);
 	}
 
 	public static int getEntriesCount()
 		throws com.liferay.portal.SystemException {
-		return _service.getEntriesCount();
+		return getService().getEntriesCount();
 	}
 
 	public static com.liferay.chat.model.Entry updateEntry(
 		com.liferay.chat.model.Entry entry)
 		throws com.liferay.portal.SystemException {
-		return _service.updateEntry(entry);
+		return getService().updateEntry(entry);
 	}
 
 	public static com.liferay.chat.model.Entry addEntry(long fromUserId,
 		long toUserId, java.lang.String content)
 		throws com.liferay.portal.SystemException {
-		return _service.addEntry(fromUserId, toUserId, content);
+		return getService().addEntry(fromUserId, toUserId, content);
 	}
 
 	public static void deleteEntries(long userId)
 		throws com.liferay.portal.SystemException {
-		_service.deleteEntries(userId);
+		getService().deleteEntries(userId);
 	}
 
 	public static java.util.List<com.liferay.chat.model.Entry> getNewEntries(
 		long userId, long createDate, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return _service.getNewEntries(userId, createDate, start, end);
+		return getService().getNewEntries(userId, createDate, start, end);
 	}
 
 	public static java.util.List<com.liferay.chat.model.Entry> getOldEntries(
 		long createDate, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return _service.getOldEntries(createDate, start, end);
+		return getService().getOldEntries(createDate, start, end);
 	}
 
 	public static EntryLocalService getService() {
+		if (_service == null) {
+			Object obj = PortletBeanLocatorUtil.locate("chat-portlet",
+					EntryLocalServiceUtil.class.getName());
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("chat-portlet",
+					"portletClassLoader");
+
+			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
+					portletClassLoader);
+
+			_service = new EntryLocalServiceClp(classLoaderProxy);
+		}
+
 		return _service;
 	}
 

@@ -53,6 +53,10 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService,
 		return entryPersistence.update(entry, false);
 	}
 
+	public Entry createEntry(long entryId) {
+		return entryPersistence.create(entryId);
+	}
+
 	public void deleteEntry(long entryId)
 		throws PortalException, SystemException {
 		entryPersistence.remove(entryId);

@@ -367,6 +367,7 @@
 			<jvmarg value="-Dservice.auto.namespace.tables=true" />
 			<jvmarg value="-Dservice.bean.locator.util=com.liferay.util.bean.PortletBeanLocatorUtil" />
 			<jvmarg value="-Dservice.props.util=com.liferay.util.service.ServiceProps" />
+			<jvmarg value="-Dservice.plugin.name=${plugin.name}" />
 		</java>
 
 		<delete file="ServiceBuilder.temp" />

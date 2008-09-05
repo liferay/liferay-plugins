@@ -53,6 +53,10 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService,
 		return statusPersistence.update(status, false);
 	}
 
+	public Status createStatus(long statusId) {
+		return statusPersistence.create(statusId);
+	}
+
 	public void deleteStatus(long statusId)
 		throws PortalException, SystemException {
 		statusPersistence.remove(statusId);

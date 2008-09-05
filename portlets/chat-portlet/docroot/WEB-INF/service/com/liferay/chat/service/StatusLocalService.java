@@ -33,6 +33,8 @@ public interface StatusLocalService {
 		com.liferay.chat.model.Status status)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.chat.model.Status createStatus(long statusId);
+
 	public void deleteStatus(long statusId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;

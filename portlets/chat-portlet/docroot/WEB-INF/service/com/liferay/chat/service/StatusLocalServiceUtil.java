@@ -22,6 +22,9 @@
 
 package com.liferay.chat.service;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.util.ClassLoaderProxy;
+
 /**
  * <a href="StatusLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
@@ -32,78 +35,95 @@ public class StatusLocalServiceUtil {
 	public static com.liferay.chat.model.Status addStatus(
 		com.liferay.chat.model.Status status)
 		throws com.liferay.portal.SystemException {
-		return _service.addStatus(status);
+		return getService().addStatus(status);
+	}
+
+	public static com.liferay.chat.model.Status createStatus(long statusId) {
+		return getService().createStatus(statusId);
 	}
 
 	public static void deleteStatus(long statusId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.deleteStatus(statusId);
+		getService().deleteStatus(statusId);
 	}
 
 	public static void deleteStatus(com.liferay.chat.model.Status status)
 		throws com.liferay.portal.SystemException {
-		_service.deleteStatus(status);
+		getService().deleteStatus(status);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery);
+		return getService().dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery, start, end);
+		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.chat.model.Status getStatus(long statusId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getStatus(statusId);
+		return getService().getStatus(statusId);
 	}
 
 	public static java.util.List<com.liferay.chat.model.Status> getStatuses(
 		int start, int end) throws com.liferay.portal.SystemException {
-		return _service.getStatuses(start, end);
+		return getService().getStatuses(start, end);
 	}
 
 	public static int getStatusesCount()
 		throws com.liferay.portal.SystemException {
-		return _service.getStatusesCount();
+		return getService().getStatusesCount();
 	}
 
 	public static com.liferay.chat.model.Status updateStatus(
 		com.liferay.chat.model.Status status)
 		throws com.liferay.portal.SystemException {
-		return _service.updateStatus(status);
+		return getService().updateStatus(status);
 	}
 
 	public static java.util.List<Object[]> getAllStatuses(long modifiedDate,
 		int start, int end) throws com.liferay.portal.SystemException {
-		return _service.getAllStatuses(modifiedDate, start, end);
+		return getService().getAllStatuses(modifiedDate, start, end);
 	}
 
 	public static java.util.List<Object[]> getSocialStatuses(long userId,
 		int type, long modifiedDate, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return _service.getSocialStatuses(userId, type, modifiedDate, start, end);
+		return getService()
+				   .getSocialStatuses(userId, type, modifiedDate, start, end);
 	}
 
 	public static com.liferay.chat.model.Status getUserStatus(long userId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getUserStatus(userId);
+		return getService().getUserStatus(userId);
 	}
 
 	public static com.liferay.chat.model.Status updateStatus(long userId,
 		java.lang.String activeBrowserKey)
 		throws com.liferay.portal.SystemException {
-		return _service.updateStatus(userId, activeBrowserKey);
+		return getService().updateStatus(userId, activeBrowserKey);
 	}
 
 	public static StatusLocalService getService() {
+		if (_service == null) {
+			Object obj = PortletBeanLocatorUtil.locate("chat-portlet",
+					StatusLocalServiceUtil.class.getName());
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("chat-portlet",
+					"portletClassLoader");
+
+			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
+					portletClassLoader);
+
+			_service = new StatusLocalServiceClp(classLoaderProxy);
+		}
+
 		return _service;
 	}
 
