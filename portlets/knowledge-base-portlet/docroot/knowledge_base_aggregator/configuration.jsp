@@ -46,19 +46,14 @@ for (Group myPlace : myPlaces) {
 	boolean isOrganizationCommunity = myPlace.isOrganization();
 	boolean isUserCommunity = myPlace.isUser();
 
-	scopeGroupId.add(myPlace.getGroupId());
-
 	if (isOrganizationCommunity) {
 		organization = OrganizationLocalServiceUtil.getOrganization(myPlace.getClassPK());
 
+		scopeGroupId.add(myPlace.getGroupId());
 		scopeName.add(organization.getName());
 	}
-	else if (isUserCommunity) {
-		user2 = UserLocalServiceUtil.getUserById(myPlace.getClassPK());
-
-		scopeName.add(user2.getFullName());
-	}
-	else {
+	else if (!isUserCommunity) {
+		scopeGroupId.add(myPlace.getGroupId());
 		scopeName.add(myPlace.getName());
 	}
 }
