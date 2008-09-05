@@ -30,16 +30,33 @@ String redirect = ParamUtil.getString(request, "redirect");
 String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 
 String companyName = company.getName();
-String groupName = StringPool.BLANK;
 
-if (group.isCommunity()) {
-	groupName = group.getName();
-}
-else if (group.isOrganization()) {
-	groupName = organization.getName();
-}
-else if (group.isUser() || group.isUserGroup()) {
-	groupName = user2.getFullName();
+List<Group> myPlaces = user.getMyPlaces();
+
+Map<Long, String> scopeMap = new LinkedHashMap<Long, String>();
+
+scopeMap.put(new Long(0), LanguageUtil.get(pageContext, "company") + " - " + company.getName());
+
+for (Group myPlace : myPlaces) {
+	myPlace = myPlace.toEscapedModel();
+
+	boolean isOrganizationCommunity = myPlace.isOrganization();
+	boolean isRegularCommunity = myPlace.isCommunity();
+	boolean isUserCommunity = myPlace.isUser();
+
+	if (isOrganizationCommunity) {
+		organization = OrganizationLocalServiceUtil.getOrganization(myPlace.getClassPK());
+
+		scopeMap.put(myPlace.getGroupId(), organization.getName());
+	}
+	else if (isUserCommunity) {
+		user2 = UserLocalServiceUtil.getUserById(myPlace.getClassPK());
+
+		scopeMap.put(myPlace.getGroupId(), user2.getFullName());
+	}
+	else {
+		scopeMap.put(myPlace.getGroupId(), myPlace.getName());
+	}
 }
 %>
 
@@ -52,19 +69,13 @@ else if (group.isUser() || group.isUserGroup()) {
 	function <portlet:namespace />toggleScopeName() {
 		var scope = document.<portlet:namespace />fm['<portlet:namespace />scope'].value;
 
-		if (scope == "company") {
+		if (scope == 0) {
 			document.<portlet:namespace />fm.<portlet:namespace />companyId.value = <%= company.getCompanyId() %>;
 			document.<portlet:namespace />fm.<portlet:namespace />groupId.value = 0;
-
-			document.getElementById("<portlet:namespace />companyName").style.display = "";
-			document.getElementById("<portlet:namespace />groupName").style.display = "none";
 		}
 		else {
 			document.<portlet:namespace />fm.<portlet:namespace />companyId.value = 0;
-			document.<portlet:namespace />fm.<portlet:namespace />groupId.value = <%= group.getGroupId() %>;
-
-			document.getElementById("<portlet:namespace />companyName").style.display = "none";
-			document.getElementById("<portlet:namespace />groupName").style.display = "";
+			document.<portlet:namespace />fm.<portlet:namespace />groupId.value = scope;
 		}
 	}
 </script>
@@ -88,32 +99,25 @@ else if (group.isUser() || group.isUserGroup()) {
 
 			<table class="lfr-table">
 			<tr>
-				<th>
-					&nbsp;
-				</th>
-				<th>
-					<liferay-ui:message key="scope" />
-				</th>
-				<th>
-					<liferay-ui:message key="name" />
-				</th>
-				<th>
-					&nbsp;
-				</th>
-			</tr>
-			<tr>
 				<td>
 					<liferay-ui:message key="current" />
 				</td>
 				<td>
 					<select name="<portlet:namespace />scope" onchange="<portlet:namespace/>toggleScopeName();">
-						<option <%= (groupId <= 0) ? "selected" : "" %> value="company"><liferay-ui:message key="company" /></option>
-						<option <%= (groupId > 0) ? "selected" : "" %> value="group"><liferay-ui:message key="group" /></option>
+
+						<%
+						for (Iterator itr = scopeMap.keySet().iterator(); itr.hasNext();) {
+							long key = GetterUtil.getLong(itr.next().toString());
+							String value = scopeMap.get(key);
+						%>
+
+							<option <%= (groupId == key) ? "selected" : "" %> value="<%= key %>"><%= value %></option>
+
+						<%
+						}
+						%>
+
 					</select>
-				</td>
-				<td>
-					<span id="<portlet:namespace />companyName"><%= companyName %></span>
-					<span id="<portlet:namespace />groupName"><%= groupName %></span>
 				</td>
 				<td>
 					<liferay-ui:icon-help message="select-the-scope-to-search-for-knowledge-base-articles" />
@@ -243,25 +247,3 @@ else if (group.isUser() || group.isUserGroup()) {
 <input type="button" value="<liferay-ui:message key="cancel" />" onClick="document.location = '<%= HtmlUtil.escape(redirect) %>'" />
 
 </form>
-
-<script type="text/javascript">
-	if (<%= tabs2.equals("display-settings") && (groupId > 0) %>) {
-		document.<portlet:namespace />fm.<portlet:namespace />companyId.value = <%= company.getCompanyId() %>;
-		document.<portlet:namespace />fm.<portlet:namespace />groupId.value = 0;
-
-		document.getElementById("<portlet:namespace />companyName").style.display = "none";
-		document.getElementById("<portlet:namespace />groupName").style.display = "";
-
-		document.<portlet:namespace />fm['<portlet:namespace />scope'].selectedIndex = 1;
-
-	}
-	else if (<%= tabs2.equals("display-settings") %>) {
-		document.<portlet:namespace />fm.<portlet:namespace />companyId.value = 0;
-		document.<portlet:namespace />fm.<portlet:namespace />groupId.value = <%= group.getGroupId() %>;
-
-		document.getElementById("<portlet:namespace />companyName").style.display = "";
-		document.getElementById("<portlet:namespace />groupName").style.display = "none";
-
-		document.<portlet:namespace />fm['<portlet:namespace />scope'].selectedIndex = 0;
-	}
-</script>

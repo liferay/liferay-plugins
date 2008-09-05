@@ -27,25 +27,6 @@
 <liferay-ui:icon-menu
 	cssClass=""
 >
-
-	<%
-	atom10URL.setParameter("groupId", String.valueOf(themeDisplay.getPortletGroupId()));
-	rss10URL.setParameter("groupId", String.valueOf(themeDisplay.getPortletGroupId()));
-	rss20URL.setParameter("groupId", String.valueOf(themeDisplay.getPortletGroupId()));
-	%>
-
-	<c:if test="<%= ArrayUtil.contains(rssTypes, RSSUtil.ATOM_1_0) %>">
-		<liferay-ui:icon image="rss" message="<%= RSSUtil.ATOM_1_0 %>" method="get" url='<%= atom10URL.toString() %>' target="_blank" label="<%= true %>" />
-	</c:if>
-
-	<c:if test="<%= ArrayUtil.contains(rssTypes, RSSUtil.RSS_1_0) %>">
-		<liferay-ui:icon image="rss" message="<%= RSSUtil.RSS_1_0 %>" method="get" url='<%= rss10URL.toString() %>' target="_blank" label="<%= true %>" />
-	</c:if>
-
-	<c:if test="<%= ArrayUtil.contains(rssTypes, RSSUtil.RSS_2_0) %>">
-		<liferay-ui:icon image="rss" message="<%= RSSUtil.RSS_2_0 %>" method="get" url='<%= rss20URL.toString() %>' target="_blank" label="<%= true %>" />
-	</c:if>
-
 	<portlet:actionURL var="unsubscribeURL">
 		<portlet:param name="actionName" value="<%= Constants.UNSUBSCRIBE %>" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />

@@ -25,6 +25,8 @@
 <%@ include file="/knowledge_base/init.jsp" %>
 
 <%
+String type = (String) request.getAttribute("article_iterator.type");
+
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
 KBArticle article = (KBArticle)row.getObject();
@@ -48,7 +50,7 @@ else {
 <liferay-ui:icon-menu
 	cssClass=""
 >
-	<c:if test="<%= updatePermission %>">
+	<c:if test='<%= updatePermission && !type.equals("subscriptions") %>'>
 		<portlet:renderURL var="editURL">
 			<portlet:param name="view" value="edit_article" />
 			<portlet:param name="tabs" value="edit" />
@@ -59,7 +61,7 @@ else {
 		<liferay-ui:icon image="edit" url="<%= editURL.toString() %>" />
 	</c:if>
 
-	<c:if test="<%= managePermissions %>">
+	<c:if test='<%= managePermissions && !type.equals("subscriptions") %>'>
 		<liferay-security:permissionsURL
 			modelResource="<%= KBArticle.class.getName() %>"
 			modelResourceDescription="<%= article.getTitle() %>"
@@ -70,7 +72,7 @@ else {
 		<liferay-ui:icon image="permissions" url="<%= permissionsURL %>" />
 	</c:if>
 
-	<c:if test="<%= !article.isTemplate() %>">
+	<c:if test='<%= !article.isTemplate() && !type.equals("subscriptions") %>'>
 
 		<%
 		atom10URL.setParameter("resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
@@ -114,16 +116,18 @@ else {
 		</c:choose>
 	</c:if>
 
-	<portlet:renderURL var="viewHistoryURL">
-		<portlet:param name="view" value="view_article_history" />
-		<portlet:param name="tabs" value="history" />
-		<portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-	</portlet:renderURL>
+	<c:if test='<%= !type.equals("subscriptions") %>'>
+		<portlet:renderURL var="viewHistoryURL">
+			<portlet:param name="view" value="view_article_history" />
+			<portlet:param name="tabs" value="history" />
+			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+		</portlet:renderURL>
 
-	<liferay-ui:icon image="history" method="get" url="<%= viewHistoryURL.toString() %>" label="<%= true %>" />
+		<liferay-ui:icon image="history" method="get" url="<%= viewHistoryURL.toString() %>" label="<%= true %>" />
+	</c:if>
 
-	<c:if test="<%= deletePermission %>">
+	<c:if test='<%= deletePermission && !type.equals("subscriptions") %>'>
 		<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="deleteURL">
 			<portlet:param name="actionName" value="<%= Constants.DELETE %>" />
 			<portlet:param name="redirect" value="<%= layoutFriendlyURL %>" />
