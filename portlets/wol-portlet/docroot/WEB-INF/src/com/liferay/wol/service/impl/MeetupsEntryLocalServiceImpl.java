@@ -109,7 +109,7 @@ public class MeetupsEntryLocalServiceImpl
 
 		ImageLocalServiceUtil.deleteImage(meetupsEntry.getThumbnailId());
 
-		meetupsEntryPersistence.remove(meetupsEntryId);
+		meetupsEntryPersistence.remove(meetupsEntry);
 	}
 
 	public List<MeetupsEntry> getMeetupsEntries(long companyId)
