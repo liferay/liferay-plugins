@@ -49,6 +49,10 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 		return fooPersistence.update(foo, false);
 	}
 
+	public Foo createFoo(long fooId) {
+		return fooPersistence.create(fooId);
+	}
+
 	public void deleteFoo(long fooId) throws PortalException, SystemException {
 		fooPersistence.remove(fooId);
 	}

@@ -33,6 +33,8 @@ public interface FooLocalService {
 		com.liferay.sampleservicebuilder.model.Foo foo)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.sampleservicebuilder.model.Foo createFoo(long fooId);
+
 	public void deleteFoo(long fooId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;

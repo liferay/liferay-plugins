@@ -22,6 +22,9 @@
 
 package com.liferay.sampleservicebuilder.service;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.util.ClassLoaderProxy;
+
 /**
  * <a href="FooServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
@@ -30,6 +33,18 @@ package com.liferay.sampleservicebuilder.service;
  */
 public class FooServiceUtil {
 	public static FooService getService() {
+		if (_service == null) {
+			Object obj = PortletBeanLocatorUtil.locate("sample-service-builder-portlet",
+					FooServiceUtil.class.getName());
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("chat-portlet",
+					"portletClassLoader");
+
+			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
+					portletClassLoader);
+
+			_service = new FooServiceClp(classLoaderProxy);
+		}
+
 		return _service;
 	}
 
