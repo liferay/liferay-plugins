@@ -23,6 +23,8 @@
 package com.liferay.kb.knowledgebase.model.impl;
 
 import com.liferay.kb.knowledgebase.model.KBFeedbackEntry;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.util.PortalUtil;
 
 /**
  * <a href="KBFeedbackEntryImpl.java.html"><b><i>View Source</i></b></a>
@@ -35,5 +37,15 @@ public class KBFeedbackEntryImpl extends KBFeedbackEntryModelImpl
 
 	public KBFeedbackEntryImpl() {
 	}
+
+	public String getUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
+	}
+
+	public void setUserUuid(String userUuid) {
+		_userUuid = userUuid;
+	}
+
+	private String _userUuid;
 
 }

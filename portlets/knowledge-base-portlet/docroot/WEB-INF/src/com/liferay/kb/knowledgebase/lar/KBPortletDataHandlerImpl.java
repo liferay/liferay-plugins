@@ -24,7 +24,9 @@ package com.liferay.kb.knowledgebase.lar;
 
 import com.liferay.kb.knowledgebase.KnowledgeBaseKeys;
 import com.liferay.kb.knowledgebase.model.KBArticle;
+import com.liferay.kb.knowledgebase.model.KBFeedbackEntry;
 import com.liferay.kb.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalServiceUtil;
 import com.liferay.kb.knowledgebase.service.persistence.KBArticleUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
@@ -39,8 +41,11 @@ import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.util.MapUtil;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.portlet.PortletPreferences;
 
@@ -60,6 +65,16 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 		try {
 			if (!context.addPrimaryKey(
 					KBPortletDataHandlerImpl.class, "deleteData")) {
+
+				List<KBArticle> articles =
+					KBArticleLocalServiceUtil.getGroupArticles(
+						context.getGroupId(), true, false, false,
+						QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+
+				for (KBArticle article : articles) {
+					KBFeedbackEntryLocalServiceUtil.deleteFeedbackEntries(
+						article.getResourcePrimKey());
+				}
 
 				KBArticleLocalServiceUtil.deleteGroupArticles(
 					context.getGroupId(), false);
@@ -89,8 +104,25 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 					context.getGroupId(), true, false, false, QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS);
 
+			List<KBFeedbackEntry> feedbackEntries =
+				new ArrayList<KBFeedbackEntry>();
+
+			if (context.getBooleanParameter(_NAMESPACE, "feedbacks")) {
+				for (KBArticle article : articles) {
+					feedbackEntries.addAll(
+						KBFeedbackEntryLocalServiceUtil.
+							getArticleFeedbackEntries(
+								article.getResourcePrimKey(), QueryUtil.ALL_POS,
+								QueryUtil.ALL_POS));
+				}
+			}
+
 			for (KBArticle article : articles) {
 				exportArticle(context, root, article);
+			}
+
+			for (KBFeedbackEntry entry : feedbackEntries) {
+				exportEntry(context, root, entry);
 			}
 
 			return doc.formattedString();
@@ -101,15 +133,11 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 	}
 
 	public PortletDataHandlerControl[] getExportControls() {
-		return new PortletDataHandlerControl[] {
-			_articles, _comments, _ratings, _tags
-		};
+		return new PortletDataHandlerControl[] {_articles, _feedbacks, _tags};
 	}
 
 	public PortletDataHandlerControl[] getImportControls() {
-		return new PortletDataHandlerControl[] {
-			_articles, _comments, _ratings, _tags
-		};
+		return new PortletDataHandlerControl[] {_articles, _feedbacks, _tags};
 	}
 
 	public PortletPreferences importData(
@@ -122,16 +150,34 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 
 			Element root = doc.getRootElement();
 
-			List<Element> entryEls = root.elements("article");
+			List<Element> articleEls = root.elements("articles");
 
-			for (Element entryEl : entryEls) {
-				String path = entryEl.attributeValue("path");
+			Map<Long, Long> articlePKs = context.getNewPrimaryKeysMap(
+				KBArticle.class);
+
+			for (Element articleEl : articleEls) {
+				String path = articleEl.attributeValue("path");
 
 				if (context.isPathNotProcessed(path)) {
 					KBArticle article = (KBArticle)context.getZipEntryAsObject(
 						path);
 
-					importArticle(context, article, prefs);
+					importArticle(context, articlePKs, article, prefs);
+				}
+			}
+
+			if (context.getBooleanParameter(_NAMESPACE, "feedbacks")) {
+				List<Element> entriesEls = root.elements("entries");
+
+				for (Element entryEl : entriesEls) {
+					String path = entryEl.attributeValue("path");
+
+					if (context.isPathNotProcessed(path)) {
+						KBFeedbackEntry entry =
+							(KBFeedbackEntry)context.getZipEntryAsObject(path);
+
+						importEntry(context, articlePKs, entry);
+					}
 				}
 			}
 
@@ -156,27 +202,40 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 
 		String path = getArticlePath(context, article);
 
-		Element entryEl = root.addElement("article");
+		Element entryEl = root.addElement("articles");
 
 		entryEl.addAttribute("path", path);
 
 		if (context.isPathNotProcessed(path)) {
-			if (context.getBooleanParameter(_NAMESPACE, "comments")) {
-				context.addComments(KBArticle.class, article.getArticleId());
-			}
-
-			if (context.getBooleanParameter(_NAMESPACE, "ratings")) {
-				context.addRatingsEntries(
-					KBArticle.class, article.getArticleId());
-			}
-
-			if (context.getBooleanParameter(_NAMESPACE, "tags")) {
-				context.addTagsEntries(KBArticle.class, article.getArticleId());
-			}
-
 			article.setUserUuid(article.getUserUuid());
 
+			if (context.getBooleanParameter(_NAMESPACE, "tags")) {
+				context.addTagsEntries(
+					KBArticle.class, article.getResourcePrimKey());
+			}
+
 			context.addZipEntry(path, article);
+		}
+	}
+
+	protected void exportEntry(
+			PortletDataContext context, Element root, KBFeedbackEntry entry)
+		throws PortalException, SystemException {
+
+		if (!context.isWithinDateRange(entry.getModifiedDate())) {
+			return;
+		}
+
+		String path = getEntryPath(context, entry);
+
+		Element entryEl = root.addElement("entries");
+
+		entryEl.addAttribute("path", path);
+
+		if (context.isPathNotProcessed(path)) {
+			entry.setUserUuid(entry.getUserUuid());
+
+			context.addZipEntry(path, entry);
 		}
 	}
 
@@ -193,9 +252,22 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 		return sb.toString();
 	}
 
+	protected String getEntryPath(
+		PortletDataContext context, KBFeedbackEntry entry) {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(context.getPortletPath(KnowledgeBaseKeys.PORTLET_ID));
+		sb.append("/entries/");
+		sb.append(entry.getPrimaryKey());
+		sb.append(".xml");
+
+		return sb.toString();
+	}
+
 	protected void importArticle(
-			PortletDataContext context, KBArticle article,
-			PortletPreferences prefs)
+			PortletDataContext context, Map<Long, Long> articlePKs,
+			KBArticle article, PortletPreferences prefs)
 		throws Exception {
 
 		long userId = context.getUserId(article.getUserUuid());
@@ -205,7 +277,7 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 
 		if (context.getBooleanParameter(_NAMESPACE, "tags")) {
 			tagsEntries = context.getTagsEntries(
-				KBArticle.class, article.getArticleId());
+				KBArticle.class, article.getResourcePrimKey());
 		}
 
 		ThemeDisplay themeDisplay = null;
@@ -243,29 +315,33 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 				themeDisplay);
 		}
 
-		if (context.getBooleanParameter(_NAMESPACE, "comments")) {
-			context.importComments(
-				KBArticle.class, article.getArticleId(),
-				existingArticle.getArticleId(), context.getGroupId());
-		}
+		articlePKs.put(
+			article.getResourcePrimKey(), existingArticle.getResourcePrimKey());
+	}
 
-		if (context.getBooleanParameter(_NAMESPACE, "ratings")) {
-			context.importRatingsEntries(
-				KBArticle.class, existingArticle.getArticleId(),
-				existingArticle.getArticleId());
-		}
+	protected void importEntry(
+			PortletDataContext context, Map<Long, Long> articlePKs,
+			KBFeedbackEntry entry)
+		throws Exception {
+
+		long userId = context.getUserId(entry.getUserUuid());
+
+		long articleResourcePrimKey = MapUtil.getLong(
+			articlePKs, entry.getArticleResourcePrimKey(),
+			entry.getArticleResourcePrimKey());
+
+		KBFeedbackEntryLocalServiceUtil.addFeedbackEntry(
+			articleResourcePrimKey, userId, entry.getScore(), entry.getVote(),
+			entry.getComments());
 	}
 
 	private static final String _NAMESPACE = "kb";
 
 	private static final PortletDataHandlerBoolean _articles =
-		new PortletDataHandlerBoolean(_NAMESPACE, "articles", true, true);
+		new PortletDataHandlerBoolean(_NAMESPACE, "articles");
 
-	private static final PortletDataHandlerBoolean _comments =
-		new PortletDataHandlerBoolean(_NAMESPACE, "comments");
-
-	private static final PortletDataHandlerBoolean _ratings =
-		new PortletDataHandlerBoolean(_NAMESPACE, "ratings");
+	private static final PortletDataHandlerBoolean _feedbacks =
+		new PortletDataHandlerBoolean(_NAMESPACE, "feedbacks", false);
 
 	private static final PortletDataHandlerBoolean _tags =
 		new PortletDataHandlerBoolean(_NAMESPACE, "tags");

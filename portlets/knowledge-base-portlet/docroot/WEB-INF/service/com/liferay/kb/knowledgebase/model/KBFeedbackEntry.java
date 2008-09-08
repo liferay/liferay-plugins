@@ -29,4 +29,8 @@ package com.liferay.kb.knowledgebase.model;
  *
  */
 public interface KBFeedbackEntry extends KBFeedbackEntryModel {
+	public java.lang.String getUserUuid()
+		throws com.liferay.portal.SystemException;
+
+	public void setUserUuid(java.lang.String userUuid);
 }
