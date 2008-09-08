@@ -22,6 +22,9 @@
 
 package com.liferay.wol.service;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.util.ClassLoaderProxy;
+
 /**
  * <a href="SVNRevisionLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
@@ -32,54 +35,59 @@ public class SVNRevisionLocalServiceUtil {
 	public static com.liferay.wol.model.SVNRevision addSVNRevision(
 		com.liferay.wol.model.SVNRevision svnRevision)
 		throws com.liferay.portal.SystemException {
-		return _service.addSVNRevision(svnRevision);
+		return getService().addSVNRevision(svnRevision);
+	}
+
+	public static com.liferay.wol.model.SVNRevision createSVNRevision(
+		long svnRevisionId) {
+		return getService().createSVNRevision(svnRevisionId);
 	}
 
 	public static void deleteSVNRevision(long svnRevisionId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.deleteSVNRevision(svnRevisionId);
+		getService().deleteSVNRevision(svnRevisionId);
 	}
 
 	public static void deleteSVNRevision(
 		com.liferay.wol.model.SVNRevision svnRevision)
 		throws com.liferay.portal.SystemException {
-		_service.deleteSVNRevision(svnRevision);
+		getService().deleteSVNRevision(svnRevision);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery);
+		return getService().dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery, start, end);
+		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.wol.model.SVNRevision getSVNRevision(
 		long svnRevisionId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getSVNRevision(svnRevisionId);
+		return getService().getSVNRevision(svnRevisionId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
 		int start, int end) throws com.liferay.portal.SystemException {
-		return _service.getSVNRevisions(start, end);
+		return getService().getSVNRevisions(start, end);
 	}
 
 	public static int getSVNRevisionsCount()
 		throws com.liferay.portal.SystemException {
-		return _service.getSVNRevisionsCount();
+		return getService().getSVNRevisionsCount();
 	}
 
 	public static com.liferay.wol.model.SVNRevision updateSVNRevision(
 		com.liferay.wol.model.SVNRevision svnRevision)
 		throws com.liferay.portal.SystemException {
-		return _service.updateSVNRevision(svnRevision);
+		return getService().updateSVNRevision(svnRevision);
 	}
 
 	public static com.liferay.wol.model.SVNRevision addSVNRevision(
@@ -87,7 +95,8 @@ public class SVNRevisionLocalServiceUtil {
 		long svnRepositoryId, long revisionNumber, java.lang.String comments)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.addSVNRevision(svnUserId, createDate, svnRepositoryId,
+		return getService()
+				   .addSVNRevision(svnUserId, createDate, svnRepositoryId,
 			revisionNumber, comments);
 	}
 
@@ -95,50 +104,63 @@ public class SVNRevisionLocalServiceUtil {
 		java.lang.String svnUserId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getFirstSVNRevision(svnUserId);
+		return getService().getFirstSVNRevision(svnUserId);
 	}
 
 	public static com.liferay.wol.model.SVNRevision getLastSVNRevision(
 		java.lang.String svnUserId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getLastSVNRevision(svnUserId);
+		return getService().getLastSVNRevision(svnUserId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
 		java.lang.String svnUserId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return _service.getSVNRevisions(svnUserId, start, end);
+		return getService().getSVNRevisions(svnUserId, start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
 		long svnRepositoryId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return _service.getSVNRevisions(svnRepositoryId, start, end);
+		return getService().getSVNRevisions(svnRepositoryId, start, end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
 		java.lang.String svnUserId, long svnRepositoryId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return _service.getSVNRevisions(svnUserId, svnRepositoryId, start, end);
+		return getService()
+				   .getSVNRevisions(svnUserId, svnRepositoryId, start, end);
 	}
 
 	public static int getSVNRevisionsCount(java.lang.String svnUserId)
 		throws com.liferay.portal.SystemException {
-		return _service.getSVNRevisionsCount(svnUserId);
+		return getService().getSVNRevisionsCount(svnUserId);
 	}
 
 	public static int getSVNRevisionsCount(long svnRepositoryId)
 		throws com.liferay.portal.SystemException {
-		return _service.getSVNRevisionsCount(svnRepositoryId);
+		return getService().getSVNRevisionsCount(svnRepositoryId);
 	}
 
 	public static int getSVNRevisionsCount(java.lang.String svnUserId,
 		long svnRepositoryId) throws com.liferay.portal.SystemException {
-		return _service.getSVNRevisionsCount(svnUserId, svnRepositoryId);
+		return getService().getSVNRevisionsCount(svnUserId, svnRepositoryId);
 	}
 
 	public static SVNRevisionLocalService getService() {
+		if (_service == null) {
+			Object obj = PortletBeanLocatorUtil.locate("wol-portlet",
+					SVNRevisionLocalServiceUtil.class.getName());
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("chat-portlet",
+					"portletClassLoader");
+
+			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
+					portletClassLoader);
+
+			_service = new SVNRevisionLocalServiceClp(classLoaderProxy);
+		}
+
 		return _service;
 	}
 

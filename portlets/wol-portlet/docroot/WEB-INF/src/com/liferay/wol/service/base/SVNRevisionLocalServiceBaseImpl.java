@@ -70,6 +70,10 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 		return svnRevisionPersistence.update(svnRevision, false);
 	}
 
+	public SVNRevision createSVNRevision(long svnRevisionId) {
+		return svnRevisionPersistence.create(svnRevisionId);
+	}
+
 	public void deleteSVNRevision(long svnRevisionId)
 		throws PortalException, SystemException {
 		svnRevisionPersistence.remove(svnRevisionId);

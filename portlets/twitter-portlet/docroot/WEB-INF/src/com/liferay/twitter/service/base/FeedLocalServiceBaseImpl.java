@@ -49,6 +49,10 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 		return feedPersistence.update(feed, false);
 	}
 
+	public Feed createFeed(long feedId) {
+		return feedPersistence.create(feedId);
+	}
+
 	public void deleteFeed(long feedId) throws PortalException, SystemException {
 		feedPersistence.remove(feedId);
 	}

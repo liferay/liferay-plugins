@@ -22,6 +22,9 @@
 
 package com.liferay.wol.service;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.util.ClassLoaderProxy;
+
 /**
  * <a href="JIRAIssueLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
@@ -32,67 +35,74 @@ public class JIRAIssueLocalServiceUtil {
 	public static com.liferay.wol.model.JIRAIssue addJIRAIssue(
 		com.liferay.wol.model.JIRAIssue jiraIssue)
 		throws com.liferay.portal.SystemException {
-		return _service.addJIRAIssue(jiraIssue);
+		return getService().addJIRAIssue(jiraIssue);
+	}
+
+	public static com.liferay.wol.model.JIRAIssue createJIRAIssue(
+		long jiraIssueId) {
+		return getService().createJIRAIssue(jiraIssueId);
 	}
 
 	public static void deleteJIRAIssue(long jiraIssueId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.deleteJIRAIssue(jiraIssueId);
+		getService().deleteJIRAIssue(jiraIssueId);
 	}
 
 	public static void deleteJIRAIssue(
 		com.liferay.wol.model.JIRAIssue jiraIssue)
 		throws com.liferay.portal.SystemException {
-		_service.deleteJIRAIssue(jiraIssue);
+		getService().deleteJIRAIssue(jiraIssue);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery);
+		return getService().dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery, start, end);
+		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.wol.model.JIRAIssue getJIRAIssue(long jiraIssueId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getJIRAIssue(jiraIssueId);
+		return getService().getJIRAIssue(jiraIssueId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> getJIRAIssues(
 		int start, int end) throws com.liferay.portal.SystemException {
-		return _service.getJIRAIssues(start, end);
+		return getService().getJIRAIssues(start, end);
 	}
 
 	public static int getJIRAIssuesCount()
 		throws com.liferay.portal.SystemException {
-		return _service.getJIRAIssuesCount();
+		return getService().getJIRAIssuesCount();
 	}
 
 	public static com.liferay.wol.model.JIRAIssue updateJIRAIssue(
 		com.liferay.wol.model.JIRAIssue jiraIssue)
 		throws com.liferay.portal.SystemException {
-		return _service.updateJIRAIssue(jiraIssue);
+		return getService().updateJIRAIssue(jiraIssue);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> getAssigneeJIRAIssues(
 		long projectId, java.lang.String assigneeJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return _service.getAssigneeJIRAIssues(projectId, assigneeJiraUserId,
-			start, end);
+		return getService()
+				   .getAssigneeJIRAIssues(projectId, assigneeJiraUserId, start,
+			end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> getAssigneeJIRAIssues(
 		java.util.Date modifiedDate, long projectId,
 		java.lang.String assigneeJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return _service.getAssigneeJIRAIssues(modifiedDate, projectId,
+		return getService()
+				   .getAssigneeJIRAIssues(modifiedDate, projectId,
 			assigneeJiraUserId, start, end);
 	}
 
@@ -100,77 +110,87 @@ public class JIRAIssueLocalServiceUtil {
 		long projectId, java.lang.String assigneeJiraUserId,
 		java.lang.String status, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return _service.getAssigneeJIRAIssues(projectId, assigneeJiraUserId,
+		return getService()
+				   .getAssigneeJIRAIssues(projectId, assigneeJiraUserId,
 			status, start, end);
 	}
 
 	public static int getAssigneeJIRAIssuesCount(long projectId,
 		java.lang.String assigneeJiraUserId)
 		throws com.liferay.portal.SystemException {
-		return _service.getAssigneeJIRAIssuesCount(projectId, assigneeJiraUserId);
+		return getService()
+				   .getAssigneeJIRAIssuesCount(projectId, assigneeJiraUserId);
 	}
 
 	public static int getAssigneeJIRAIssuesCount(java.util.Date modifiedDate,
 		long projectId, java.lang.String assigneeJiraUserId)
 		throws com.liferay.portal.SystemException {
-		return _service.getAssigneeJIRAIssuesCount(modifiedDate, projectId,
+		return getService()
+				   .getAssigneeJIRAIssuesCount(modifiedDate, projectId,
 			assigneeJiraUserId);
 	}
 
 	public static int getAssigneeJIRAIssuesCount(long projectId,
 		java.lang.String assigneeJiraUserId, java.lang.String status)
 		throws com.liferay.portal.SystemException {
-		return _service.getAssigneeJIRAIssuesCount(projectId,
-			assigneeJiraUserId, status);
+		return getService()
+				   .getAssigneeJIRAIssuesCount(projectId, assigneeJiraUserId,
+			status);
 	}
 
 	public static com.liferay.wol.model.JIRAIssue getFirstAssigneeJIRAIssue(
 		long projectId, java.lang.String assigneeJiraUserId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getFirstAssigneeJIRAIssue(projectId, assigneeJiraUserId);
+		return getService()
+				   .getFirstAssigneeJIRAIssue(projectId, assigneeJiraUserId);
 	}
 
 	public static com.liferay.wol.model.JIRAIssue getFirstReporterJIRAIssue(
 		long projectId, java.lang.String reporterJiraUserId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getFirstReporterJIRAIssue(projectId, reporterJiraUserId);
+		return getService()
+				   .getFirstReporterJIRAIssue(projectId, reporterJiraUserId);
 	}
 
 	public static com.liferay.wol.model.JIRAIssue getJIRAIssue(
 		java.lang.String key)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getJIRAIssue(key);
+		return getService().getJIRAIssue(key);
 	}
 
 	public static com.liferay.wol.model.JIRAIssue getLastAssigneeJIRAIssue(
 		long projectId, java.lang.String assigneeJiraUserId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getLastAssigneeJIRAIssue(projectId, assigneeJiraUserId);
+		return getService()
+				   .getLastAssigneeJIRAIssue(projectId, assigneeJiraUserId);
 	}
 
 	public static com.liferay.wol.model.JIRAIssue getLastreporterJIRAIssue(
 		long projectId, java.lang.String reporterJiraUserId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getLastreporterJIRAIssue(projectId, reporterJiraUserId);
+		return getService()
+				   .getLastreporterJIRAIssue(projectId, reporterJiraUserId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> getReporterJIRAIssues(
 		long projectId, java.lang.String reporterJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return _service.getReporterJIRAIssues(projectId, reporterJiraUserId,
-			start, end);
+		return getService()
+				   .getReporterJIRAIssues(projectId, reporterJiraUserId, start,
+			end);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> getReporterJIRAIssues(
 		java.util.Date modifiedDate, long projectId,
 		java.lang.String reporterJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return _service.getReporterJIRAIssues(modifiedDate, projectId,
+		return getService()
+				   .getReporterJIRAIssues(modifiedDate, projectId,
 			reporterJiraUserId, start, end);
 	}
 
@@ -178,37 +198,53 @@ public class JIRAIssueLocalServiceUtil {
 		long projectId, java.lang.String reporterJiraUserId,
 		java.lang.String status, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return _service.getReporterJIRAIssues(projectId, reporterJiraUserId,
+		return getService()
+				   .getReporterJIRAIssues(projectId, reporterJiraUserId,
 			status, start, end);
 	}
 
 	public static int getReporterJIRAIssuesCount(long projectId,
 		java.lang.String reporterJiraUserId)
 		throws com.liferay.portal.SystemException {
-		return _service.getReporterJIRAIssuesCount(projectId, reporterJiraUserId);
+		return getService()
+				   .getReporterJIRAIssuesCount(projectId, reporterJiraUserId);
 	}
 
 	public static int getReporterJIRAIssuesCount(java.util.Date modifiedDate,
 		long projectId, java.lang.String reporterJiraUserId)
 		throws com.liferay.portal.SystemException {
-		return _service.getReporterJIRAIssuesCount(modifiedDate, projectId,
+		return getService()
+				   .getReporterJIRAIssuesCount(modifiedDate, projectId,
 			reporterJiraUserId);
 	}
 
 	public static int getReporterJIRAIssuesCount(long projectId,
 		java.lang.String reporterJiraUserId, java.lang.String status)
 		throws com.liferay.portal.SystemException {
-		return _service.getReporterJIRAIssuesCount(projectId,
-			reporterJiraUserId, status);
+		return getService()
+				   .getReporterJIRAIssuesCount(projectId, reporterJiraUserId,
+			status);
 	}
 
 	public static void updateJIRAIssues(long projectId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.updateJIRAIssues(projectId);
+		getService().updateJIRAIssues(projectId);
 	}
 
 	public static JIRAIssueLocalService getService() {
+		if (_service == null) {
+			Object obj = PortletBeanLocatorUtil.locate("wol-portlet",
+					JIRAIssueLocalServiceUtil.class.getName());
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("chat-portlet",
+					"portletClassLoader");
+
+			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
+					portletClassLoader);
+
+			_service = new JIRAIssueLocalServiceClp(classLoaderProxy);
+		}
+
 		return _service;
 	}
 

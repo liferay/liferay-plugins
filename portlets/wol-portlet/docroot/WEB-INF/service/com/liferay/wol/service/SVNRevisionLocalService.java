@@ -33,6 +33,9 @@ public interface SVNRevisionLocalService {
 		com.liferay.wol.model.SVNRevision svnRevision)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.wol.model.SVNRevision createSVNRevision(
+		long svnRevisionId);
+
 	public void deleteSVNRevision(long svnRevisionId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;

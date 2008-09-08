@@ -58,6 +58,10 @@ public abstract class KBFeedbackStatsLocalServiceBaseImpl
 		return kbFeedbackStatsPersistence.update(kbFeedbackStats, false);
 	}
 
+	public KBFeedbackStats createKBFeedbackStats(long feedbackStatsId) {
+		return kbFeedbackStatsPersistence.create(feedbackStatsId);
+	}
+
 	public void deleteKBFeedbackStats(long feedbackStatsId)
 		throws PortalException, SystemException {
 		kbFeedbackStatsPersistence.remove(feedbackStatsId);

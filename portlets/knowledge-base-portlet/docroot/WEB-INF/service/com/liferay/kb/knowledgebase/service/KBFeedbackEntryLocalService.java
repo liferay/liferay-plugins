@@ -33,6 +33,9 @@ public interface KBFeedbackEntryLocalService {
 		com.liferay.kb.knowledgebase.model.KBFeedbackEntry kbFeedbackEntry)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.kb.knowledgebase.model.KBFeedbackEntry createKBFeedbackEntry(
+		long feedbackEntryId);
+
 	public void deleteKBFeedbackEntry(long feedbackEntryId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;

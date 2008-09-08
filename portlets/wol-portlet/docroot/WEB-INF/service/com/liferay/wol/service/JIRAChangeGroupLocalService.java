@@ -33,6 +33,9 @@ public interface JIRAChangeGroupLocalService {
 		com.liferay.wol.model.JIRAChangeGroup jiraChangeGroup)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.wol.model.JIRAChangeGroup createJIRAChangeGroup(
+		long jiraChangeGroupId);
+
 	public void deleteJIRAChangeGroup(long jiraChangeGroupId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;

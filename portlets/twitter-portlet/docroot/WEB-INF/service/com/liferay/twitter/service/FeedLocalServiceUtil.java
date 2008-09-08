@@ -22,6 +22,9 @@
 
 package com.liferay.twitter.service;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.util.ClassLoaderProxy;
+
 /**
  * <a href="FeedLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
@@ -32,72 +35,88 @@ public class FeedLocalServiceUtil {
 	public static com.liferay.twitter.model.Feed addFeed(
 		com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.SystemException {
-		return _service.addFeed(feed);
+		return getService().addFeed(feed);
+	}
+
+	public static com.liferay.twitter.model.Feed createFeed(long feedId) {
+		return getService().createFeed(feedId);
 	}
 
 	public static void deleteFeed(long feedId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.deleteFeed(feedId);
+		getService().deleteFeed(feedId);
 	}
 
 	public static void deleteFeed(com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.SystemException {
-		_service.deleteFeed(feed);
+		getService().deleteFeed(feed);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery);
+		return getService().dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery, start, end);
+		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.twitter.model.Feed getFeed(long feedId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getFeed(feedId);
+		return getService().getFeed(feedId);
 	}
 
 	public static java.util.List<com.liferay.twitter.model.Feed> getFeeds(
 		int start, int end) throws com.liferay.portal.SystemException {
-		return _service.getFeeds(start, end);
+		return getService().getFeeds(start, end);
 	}
 
 	public static int getFeedsCount() throws com.liferay.portal.SystemException {
-		return _service.getFeedsCount();
+		return getService().getFeedsCount();
 	}
 
 	public static com.liferay.twitter.model.Feed updateFeed(
 		com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.SystemException {
-		return _service.updateFeed(feed);
+		return getService().updateFeed(feed);
 	}
 
 	public static void updateFeed(long userId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.updateFeed(userId);
+		getService().updateFeed(userId);
 	}
 
 	public static void updateFeeds()
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.updateFeeds();
+		getService().updateFeeds();
 	}
 
 	public static void updateFeeds(long companyId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.updateFeeds(companyId);
+		getService().updateFeeds(companyId);
 	}
 
 	public static FeedLocalService getService() {
+		if (_service == null) {
+			Object obj = PortletBeanLocatorUtil.locate("twitter-portlet",
+					FeedLocalServiceUtil.class.getName());
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("chat-portlet",
+					"portletClassLoader");
+
+			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
+					portletClassLoader);
+
+			_service = new FeedLocalServiceClp(classLoaderProxy);
+		}
+
 		return _service;
 	}
 

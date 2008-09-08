@@ -33,6 +33,8 @@ public interface WallEntryLocalService {
 		com.liferay.wol.model.WallEntry wallEntry)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.wol.model.WallEntry createWallEntry(long wallEntryId);
+
 	public void deleteWallEntry(long wallEntryId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;

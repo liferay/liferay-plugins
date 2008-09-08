@@ -33,6 +33,9 @@ public interface KBArticleResourceLocalService {
 		com.liferay.kb.knowledgebase.model.KBArticleResource kbArticleResource)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.kb.knowledgebase.model.KBArticleResource createKBArticleResource(
+		long resourcePrimKey);
+
 	public void deleteKBArticleResource(long resourcePrimKey)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;

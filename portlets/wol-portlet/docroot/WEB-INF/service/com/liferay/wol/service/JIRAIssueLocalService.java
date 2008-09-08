@@ -33,6 +33,8 @@ public interface JIRAIssueLocalService {
 		com.liferay.wol.model.JIRAIssue jiraIssue)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.wol.model.JIRAIssue createJIRAIssue(long jiraIssueId);
+
 	public void deleteJIRAIssue(long jiraIssueId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;

@@ -33,6 +33,9 @@ public interface MeetupsRegistrationLocalService {
 		com.liferay.wol.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.wol.model.MeetupsRegistration createMeetupsRegistration(
+		long meetupsRegistrationId);
+
 	public void deleteMeetupsRegistration(long meetupsRegistrationId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;

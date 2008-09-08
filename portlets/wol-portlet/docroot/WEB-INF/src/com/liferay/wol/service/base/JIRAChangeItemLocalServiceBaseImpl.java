@@ -70,6 +70,10 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 		return jiraChangeItemPersistence.update(jiraChangeItem, false);
 	}
 
+	public JIRAChangeItem createJIRAChangeItem(long jiraChangeItemId) {
+		return jiraChangeItemPersistence.create(jiraChangeItemId);
+	}
+
 	public void deleteJIRAChangeItem(long jiraChangeItemId)
 		throws PortalException, SystemException {
 		jiraChangeItemPersistence.remove(jiraChangeItemId);

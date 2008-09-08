@@ -33,6 +33,9 @@ public interface JIRAChangeItemLocalService {
 		com.liferay.wol.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.wol.model.JIRAChangeItem createJIRAChangeItem(
+		long jiraChangeItemId);
+
 	public void deleteJIRAChangeItem(long jiraChangeItemId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;

@@ -70,6 +70,10 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 		return svnRepositoryPersistence.update(svnRepository, false);
 	}
 
+	public SVNRepository createSVNRepository(long svnRepositoryId) {
+		return svnRepositoryPersistence.create(svnRepositoryId);
+	}
+
 	public void deleteSVNRepository(long svnRepositoryId)
 		throws PortalException, SystemException {
 		svnRepositoryPersistence.remove(svnRepositoryId);

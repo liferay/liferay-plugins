@@ -22,6 +22,9 @@
 
 package com.liferay.wol.service;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.util.ClassLoaderProxy;
+
 /**
  * <a href="JIRAActionLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
@@ -32,57 +35,74 @@ public class JIRAActionLocalServiceUtil {
 	public static com.liferay.wol.model.JIRAAction addJIRAAction(
 		com.liferay.wol.model.JIRAAction jiraAction)
 		throws com.liferay.portal.SystemException {
-		return _service.addJIRAAction(jiraAction);
+		return getService().addJIRAAction(jiraAction);
+	}
+
+	public static com.liferay.wol.model.JIRAAction createJIRAAction(
+		long jiraActionId) {
+		return getService().createJIRAAction(jiraActionId);
 	}
 
 	public static void deleteJIRAAction(long jiraActionId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.deleteJIRAAction(jiraActionId);
+		getService().deleteJIRAAction(jiraActionId);
 	}
 
 	public static void deleteJIRAAction(
 		com.liferay.wol.model.JIRAAction jiraAction)
 		throws com.liferay.portal.SystemException {
-		_service.deleteJIRAAction(jiraAction);
+		getService().deleteJIRAAction(jiraAction);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery);
+		return getService().dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery, start, end);
+		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.wol.model.JIRAAction getJIRAAction(
 		long jiraActionId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getJIRAAction(jiraActionId);
+		return getService().getJIRAAction(jiraActionId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAAction> getJIRAActions(
 		int start, int end) throws com.liferay.portal.SystemException {
-		return _service.getJIRAActions(start, end);
+		return getService().getJIRAActions(start, end);
 	}
 
 	public static int getJIRAActionsCount()
 		throws com.liferay.portal.SystemException {
-		return _service.getJIRAActionsCount();
+		return getService().getJIRAActionsCount();
 	}
 
 	public static com.liferay.wol.model.JIRAAction updateJIRAAction(
 		com.liferay.wol.model.JIRAAction jiraAction)
 		throws com.liferay.portal.SystemException {
-		return _service.updateJIRAAction(jiraAction);
+		return getService().updateJIRAAction(jiraAction);
 	}
 
 	public static JIRAActionLocalService getService() {
+		if (_service == null) {
+			Object obj = PortletBeanLocatorUtil.locate("wol-portlet",
+					JIRAActionLocalServiceUtil.class.getName());
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("chat-portlet",
+					"portletClassLoader");
+
+			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
+					portletClassLoader);
+
+			_service = new JIRAActionLocalServiceClp(classLoaderProxy);
+		}
+
 		return _service;
 	}
 

@@ -33,6 +33,8 @@ public interface JIRAActionLocalService {
 		com.liferay.wol.model.JIRAAction jiraAction)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.wol.model.JIRAAction createJIRAAction(long jiraActionId);
+
 	public void deleteJIRAAction(long jiraActionId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;

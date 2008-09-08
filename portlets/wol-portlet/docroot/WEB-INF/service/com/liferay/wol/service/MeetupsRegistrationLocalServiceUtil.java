@@ -22,6 +22,9 @@
 
 package com.liferay.wol.service;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.util.ClassLoaderProxy;
+
 /**
  * <a href="MeetupsRegistrationLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
@@ -32,84 +35,102 @@ public class MeetupsRegistrationLocalServiceUtil {
 	public static com.liferay.wol.model.MeetupsRegistration addMeetupsRegistration(
 		com.liferay.wol.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.SystemException {
-		return _service.addMeetupsRegistration(meetupsRegistration);
+		return getService().addMeetupsRegistration(meetupsRegistration);
+	}
+
+	public static com.liferay.wol.model.MeetupsRegistration createMeetupsRegistration(
+		long meetupsRegistrationId) {
+		return getService().createMeetupsRegistration(meetupsRegistrationId);
 	}
 
 	public static void deleteMeetupsRegistration(long meetupsRegistrationId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.deleteMeetupsRegistration(meetupsRegistrationId);
+		getService().deleteMeetupsRegistration(meetupsRegistrationId);
 	}
 
 	public static void deleteMeetupsRegistration(
 		com.liferay.wol.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.SystemException {
-		_service.deleteMeetupsRegistration(meetupsRegistration);
+		getService().deleteMeetupsRegistration(meetupsRegistration);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery);
+		return getService().dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery, start, end);
+		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.wol.model.MeetupsRegistration getMeetupsRegistration(
 		long meetupsRegistrationId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getMeetupsRegistration(meetupsRegistrationId);
+		return getService().getMeetupsRegistration(meetupsRegistrationId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.MeetupsRegistration> getMeetupsRegistrations(
 		int start, int end) throws com.liferay.portal.SystemException {
-		return _service.getMeetupsRegistrations(start, end);
+		return getService().getMeetupsRegistrations(start, end);
 	}
 
 	public static int getMeetupsRegistrationsCount()
 		throws com.liferay.portal.SystemException {
-		return _service.getMeetupsRegistrationsCount();
+		return getService().getMeetupsRegistrationsCount();
 	}
 
 	public static com.liferay.wol.model.MeetupsRegistration updateMeetupsRegistration(
 		com.liferay.wol.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.SystemException {
-		return _service.updateMeetupsRegistration(meetupsRegistration);
+		return getService().updateMeetupsRegistration(meetupsRegistration);
 	}
 
 	public static java.util.List<com.liferay.wol.model.MeetupsRegistration> getMeetupsRegistrations(
 		long meetupsEntryId, int status, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return _service.getMeetupsRegistrations(meetupsEntryId, status, start,
-			end);
+		return getService()
+				   .getMeetupsRegistrations(meetupsEntryId, status, start, end);
 	}
 
 	public static com.liferay.wol.model.MeetupsRegistration getMeetupsRegistration(
 		long userId, long meetupsEntryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getMeetupsRegistration(userId, meetupsEntryId);
+		return getService().getMeetupsRegistration(userId, meetupsEntryId);
 	}
 
 	public static int getMeetupsRegistrationsCount(long meetupsEntryId,
 		int status) throws com.liferay.portal.SystemException {
-		return _service.getMeetupsRegistrationsCount(meetupsEntryId, status);
+		return getService().getMeetupsRegistrationsCount(meetupsEntryId, status);
 	}
 
 	public static com.liferay.wol.model.MeetupsRegistration updateMeetupsRegistration(
 		long userId, long meetupsEntryId, int status, java.lang.String comments)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.updateMeetupsRegistration(userId, meetupsEntryId,
-			status, comments);
+		return getService()
+				   .updateMeetupsRegistration(userId, meetupsEntryId, status,
+			comments);
 	}
 
 	public static MeetupsRegistrationLocalService getService() {
+		if (_service == null) {
+			Object obj = PortletBeanLocatorUtil.locate("wol-portlet",
+					MeetupsRegistrationLocalServiceUtil.class.getName());
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("chat-portlet",
+					"portletClassLoader");
+
+			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
+					portletClassLoader);
+
+			_service = new MeetupsRegistrationLocalServiceClp(classLoaderProxy);
+		}
+
 		return _service;
 	}
 

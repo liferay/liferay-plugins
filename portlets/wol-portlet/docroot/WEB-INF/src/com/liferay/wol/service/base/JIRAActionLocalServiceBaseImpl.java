@@ -70,6 +70,10 @@ public abstract class JIRAActionLocalServiceBaseImpl
 		return jiraActionPersistence.update(jiraAction, false);
 	}
 
+	public JIRAAction createJIRAAction(long jiraActionId) {
+		return jiraActionPersistence.create(jiraActionId);
+	}
+
 	public void deleteJIRAAction(long jiraActionId)
 		throws PortalException, SystemException {
 		jiraActionPersistence.remove(jiraActionId);

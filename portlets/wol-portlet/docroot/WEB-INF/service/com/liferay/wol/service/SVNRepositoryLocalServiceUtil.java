@@ -22,6 +22,9 @@
 
 package com.liferay.wol.service;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.util.ClassLoaderProxy;
+
 /**
  * <a href="SVNRepositoryLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
@@ -32,70 +35,87 @@ public class SVNRepositoryLocalServiceUtil {
 	public static com.liferay.wol.model.SVNRepository addSVNRepository(
 		com.liferay.wol.model.SVNRepository svnRepository)
 		throws com.liferay.portal.SystemException {
-		return _service.addSVNRepository(svnRepository);
+		return getService().addSVNRepository(svnRepository);
+	}
+
+	public static com.liferay.wol.model.SVNRepository createSVNRepository(
+		long svnRepositoryId) {
+		return getService().createSVNRepository(svnRepositoryId);
 	}
 
 	public static void deleteSVNRepository(long svnRepositoryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.deleteSVNRepository(svnRepositoryId);
+		getService().deleteSVNRepository(svnRepositoryId);
 	}
 
 	public static void deleteSVNRepository(
 		com.liferay.wol.model.SVNRepository svnRepository)
 		throws com.liferay.portal.SystemException {
-		_service.deleteSVNRepository(svnRepository);
+		getService().deleteSVNRepository(svnRepository);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery);
+		return getService().dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery, start, end);
+		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.wol.model.SVNRepository getSVNRepository(
 		long svnRepositoryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getSVNRepository(svnRepositoryId);
+		return getService().getSVNRepository(svnRepositoryId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.SVNRepository> getSVNRepositories(
 		int start, int end) throws com.liferay.portal.SystemException {
-		return _service.getSVNRepositories(start, end);
+		return getService().getSVNRepositories(start, end);
 	}
 
 	public static int getSVNRepositoriesCount()
 		throws com.liferay.portal.SystemException {
-		return _service.getSVNRepositoriesCount();
+		return getService().getSVNRepositoriesCount();
 	}
 
 	public static com.liferay.wol.model.SVNRepository updateSVNRepository(
 		com.liferay.wol.model.SVNRepository svnRepository)
 		throws com.liferay.portal.SystemException {
-		return _service.updateSVNRepository(svnRepository);
+		return getService().updateSVNRepository(svnRepository);
 	}
 
 	public static com.liferay.wol.model.SVNRepository getSVNRepository(
 		java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getSVNRepository(url);
+		return getService().getSVNRepository(url);
 	}
 
 	public static void updateSVNRepository(java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.updateSVNRepository(url);
+		getService().updateSVNRepository(url);
 	}
 
 	public static SVNRepositoryLocalService getService() {
+		if (_service == null) {
+			Object obj = PortletBeanLocatorUtil.locate("wol-portlet",
+					SVNRepositoryLocalServiceUtil.class.getName());
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("chat-portlet",
+					"portletClassLoader");
+
+			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
+					portletClassLoader);
+
+			_service = new SVNRepositoryLocalServiceClp(classLoaderProxy);
+		}
+
 		return _service;
 	}
 

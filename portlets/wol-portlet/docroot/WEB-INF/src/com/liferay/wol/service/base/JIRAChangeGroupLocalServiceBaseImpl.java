@@ -70,6 +70,10 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 		return jiraChangeGroupPersistence.update(jiraChangeGroup, false);
 	}
 
+	public JIRAChangeGroup createJIRAChangeGroup(long jiraChangeGroupId) {
+		return jiraChangeGroupPersistence.create(jiraChangeGroupId);
+	}
+
 	public void deleteJIRAChangeGroup(long jiraChangeGroupId)
 		throws PortalException, SystemException {
 		jiraChangeGroupPersistence.remove(jiraChangeGroupId);

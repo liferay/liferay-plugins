@@ -22,6 +22,9 @@
 
 package com.liferay.kb.knowledgebase.service;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.util.ClassLoaderProxy;
+
 /**
  * <a href="KBFeedbackStatsLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
@@ -32,74 +35,91 @@ public class KBFeedbackStatsLocalServiceUtil {
 	public static com.liferay.kb.knowledgebase.model.KBFeedbackStats addKBFeedbackStats(
 		com.liferay.kb.knowledgebase.model.KBFeedbackStats kbFeedbackStats)
 		throws com.liferay.portal.SystemException {
-		return _service.addKBFeedbackStats(kbFeedbackStats);
+		return getService().addKBFeedbackStats(kbFeedbackStats);
+	}
+
+	public static com.liferay.kb.knowledgebase.model.KBFeedbackStats createKBFeedbackStats(
+		long feedbackStatsId) {
+		return getService().createKBFeedbackStats(feedbackStatsId);
 	}
 
 	public static void deleteKBFeedbackStats(long feedbackStatsId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.deleteKBFeedbackStats(feedbackStatsId);
+		getService().deleteKBFeedbackStats(feedbackStatsId);
 	}
 
 	public static void deleteKBFeedbackStats(
 		com.liferay.kb.knowledgebase.model.KBFeedbackStats kbFeedbackStats)
 		throws com.liferay.portal.SystemException {
-		_service.deleteKBFeedbackStats(kbFeedbackStats);
+		getService().deleteKBFeedbackStats(kbFeedbackStats);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery);
+		return getService().dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery, start, end);
+		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.kb.knowledgebase.model.KBFeedbackStats getKBFeedbackStats(
 		long feedbackStatsId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getKBFeedbackStats(feedbackStatsId);
+		return getService().getKBFeedbackStats(feedbackStatsId);
 	}
 
 	public static java.util.List<com.liferay.kb.knowledgebase.model.KBFeedbackStats> getKBFeedbackStatses(
 		int start, int end) throws com.liferay.portal.SystemException {
-		return _service.getKBFeedbackStatses(start, end);
+		return getService().getKBFeedbackStatses(start, end);
 	}
 
 	public static int getKBFeedbackStatsesCount()
 		throws com.liferay.portal.SystemException {
-		return _service.getKBFeedbackStatsesCount();
+		return getService().getKBFeedbackStatsesCount();
 	}
 
 	public static com.liferay.kb.knowledgebase.model.KBFeedbackStats updateKBFeedbackStats(
 		com.liferay.kb.knowledgebase.model.KBFeedbackStats kbFeedbackStats)
 		throws com.liferay.portal.SystemException {
-		return _service.updateKBFeedbackStats(kbFeedbackStats);
+		return getService().updateKBFeedbackStats(kbFeedbackStats);
 	}
 
 	public static void deleteFeedbackStats(long articleResourcePrimKey)
 		throws com.liferay.portal.SystemException {
-		_service.deleteFeedbackStats(articleResourcePrimKey);
+		getService().deleteFeedbackStats(articleResourcePrimKey);
 	}
 
 	public static com.liferay.kb.knowledgebase.model.KBFeedbackStats getFeedbackStats(
 		long feedbackStatsId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getFeedbackStats(feedbackStatsId);
+		return getService().getFeedbackStats(feedbackStatsId);
 	}
 
 	public static com.liferay.kb.knowledgebase.model.KBFeedbackStats getArticleFeedbackStats(
 		long articleResourcePrimKey) throws com.liferay.portal.SystemException {
-		return _service.getArticleFeedbackStats(articleResourcePrimKey);
+		return getService().getArticleFeedbackStats(articleResourcePrimKey);
 	}
 
 	public static KBFeedbackStatsLocalService getService() {
+		if (_service == null) {
+			Object obj = PortletBeanLocatorUtil.locate("knowledge-base-portlet",
+					KBFeedbackStatsLocalServiceUtil.class.getName());
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("chat-portlet",
+					"portletClassLoader");
+
+			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
+					portletClassLoader);
+
+			_service = new KBFeedbackStatsLocalServiceClp(classLoaderProxy);
+		}
+
 		return _service;
 	}
 

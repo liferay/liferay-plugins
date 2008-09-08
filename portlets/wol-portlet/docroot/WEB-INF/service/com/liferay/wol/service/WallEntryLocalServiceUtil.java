@@ -22,6 +22,9 @@
 
 package com.liferay.wol.service;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.util.ClassLoaderProxy;
+
 /**
  * <a href="WallEntryLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
@@ -32,53 +35,58 @@ public class WallEntryLocalServiceUtil {
 	public static com.liferay.wol.model.WallEntry addWallEntry(
 		com.liferay.wol.model.WallEntry wallEntry)
 		throws com.liferay.portal.SystemException {
-		return _service.addWallEntry(wallEntry);
+		return getService().addWallEntry(wallEntry);
+	}
+
+	public static com.liferay.wol.model.WallEntry createWallEntry(
+		long wallEntryId) {
+		return getService().createWallEntry(wallEntryId);
 	}
 
 	public static void deleteWallEntry(long wallEntryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.deleteWallEntry(wallEntryId);
+		getService().deleteWallEntry(wallEntryId);
 	}
 
 	public static void deleteWallEntry(
 		com.liferay.wol.model.WallEntry wallEntry)
 		throws com.liferay.portal.SystemException {
-		_service.deleteWallEntry(wallEntry);
+		getService().deleteWallEntry(wallEntry);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery);
+		return getService().dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery, start, end);
+		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.wol.model.WallEntry getWallEntry(long wallEntryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getWallEntry(wallEntryId);
+		return getService().getWallEntry(wallEntryId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.WallEntry> getWallEntries(
 		int start, int end) throws com.liferay.portal.SystemException {
-		return _service.getWallEntries(start, end);
+		return getService().getWallEntries(start, end);
 	}
 
 	public static int getWallEntriesCount()
 		throws com.liferay.portal.SystemException {
-		return _service.getWallEntriesCount();
+		return getService().getWallEntriesCount();
 	}
 
 	public static com.liferay.wol.model.WallEntry updateWallEntry(
 		com.liferay.wol.model.WallEntry wallEntry)
 		throws com.liferay.portal.SystemException {
-		return _service.updateWallEntry(wallEntry);
+		return getService().updateWallEntry(wallEntry);
 	}
 
 	public static com.liferay.wol.model.WallEntry addWallEntry(long groupId,
@@ -86,35 +94,37 @@ public class WallEntryLocalServiceUtil {
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.addWallEntry(groupId, userId, comments, themeDisplay);
+		return getService().addWallEntry(groupId, userId, comments, themeDisplay);
 	}
 
 	public static void deleteWallEntries(long groupId)
 		throws com.liferay.portal.SystemException {
-		_service.deleteWallEntries(groupId);
+		getService().deleteWallEntries(groupId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.WallEntry> getWallEntries(
 		long groupId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return _service.getWallEntries(groupId, start, end);
+		return getService().getWallEntries(groupId, start, end);
 	}
 
 	public static int getWallEntriesCount(long groupId)
 		throws com.liferay.portal.SystemException {
-		return _service.getWallEntriesCount(groupId);
+		return getService().getWallEntriesCount(groupId);
 	}
 
 	public static java.util.List<com.liferay.wol.model.WallEntry> getWallToWallEntries(
 		long groupId1, long groupId2, long userId1, long userId2, int start,
 		int end) throws com.liferay.portal.SystemException {
-		return _service.getWallToWallEntries(groupId1, groupId2, userId1,
-			userId2, start, end);
+		return getService()
+				   .getWallToWallEntries(groupId1, groupId2, userId1, userId2,
+			start, end);
 	}
 
 	public static int getWallToWallEntriesCount(long groupId1, long groupId2,
 		long userId1, long userId2) throws com.liferay.portal.SystemException {
-		return _service.getWallToWallEntriesCount(groupId1, groupId2, userId1,
+		return getService()
+				   .getWallToWallEntriesCount(groupId1, groupId2, userId1,
 			userId2);
 	}
 
@@ -122,10 +132,22 @@ public class WallEntryLocalServiceUtil {
 		long wallEntryId, java.lang.String comments)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.updateWallEntry(wallEntryId, comments);
+		return getService().updateWallEntry(wallEntryId, comments);
 	}
 
 	public static WallEntryLocalService getService() {
+		if (_service == null) {
+			Object obj = PortletBeanLocatorUtil.locate("wol-portlet",
+					WallEntryLocalServiceUtil.class.getName());
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("chat-portlet",
+					"portletClassLoader");
+
+			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
+					portletClassLoader);
+
+			_service = new WallEntryLocalServiceClp(classLoaderProxy);
+		}
+
 		return _service;
 	}
 

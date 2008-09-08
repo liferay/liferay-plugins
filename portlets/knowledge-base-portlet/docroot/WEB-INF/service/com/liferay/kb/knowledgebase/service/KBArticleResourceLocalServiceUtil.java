@@ -22,6 +22,9 @@
 
 package com.liferay.kb.knowledgebase.service;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.util.ClassLoaderProxy;
+
 /**
  * <a href="KBArticleResourceLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
@@ -32,76 +35,93 @@ public class KBArticleResourceLocalServiceUtil {
 	public static com.liferay.kb.knowledgebase.model.KBArticleResource addKBArticleResource(
 		com.liferay.kb.knowledgebase.model.KBArticleResource kbArticleResource)
 		throws com.liferay.portal.SystemException {
-		return _service.addKBArticleResource(kbArticleResource);
+		return getService().addKBArticleResource(kbArticleResource);
+	}
+
+	public static com.liferay.kb.knowledgebase.model.KBArticleResource createKBArticleResource(
+		long resourcePrimKey) {
+		return getService().createKBArticleResource(resourcePrimKey);
 	}
 
 	public static void deleteKBArticleResource(long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.deleteKBArticleResource(resourcePrimKey);
+		getService().deleteKBArticleResource(resourcePrimKey);
 	}
 
 	public static void deleteKBArticleResource(
 		com.liferay.kb.knowledgebase.model.KBArticleResource kbArticleResource)
 		throws com.liferay.portal.SystemException {
-		_service.deleteKBArticleResource(kbArticleResource);
+		getService().deleteKBArticleResource(kbArticleResource);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery);
+		return getService().dynamicQuery(dynamicQuery);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		return _service.dynamicQuery(dynamicQuery, start, end);
+		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
 	public static com.liferay.kb.knowledgebase.model.KBArticleResource getKBArticleResource(
 		long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getKBArticleResource(resourcePrimKey);
+		return getService().getKBArticleResource(resourcePrimKey);
 	}
 
 	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticleResource> getKBArticleResources(
 		int start, int end) throws com.liferay.portal.SystemException {
-		return _service.getKBArticleResources(start, end);
+		return getService().getKBArticleResources(start, end);
 	}
 
 	public static int getKBArticleResourcesCount()
 		throws com.liferay.portal.SystemException {
-		return _service.getKBArticleResourcesCount();
+		return getService().getKBArticleResourcesCount();
 	}
 
 	public static com.liferay.kb.knowledgebase.model.KBArticleResource updateKBArticleResource(
 		com.liferay.kb.knowledgebase.model.KBArticleResource kbArticleResource)
 		throws com.liferay.portal.SystemException {
-		return _service.updateKBArticleResource(kbArticleResource);
+		return getService().updateKBArticleResource(kbArticleResource);
 	}
 
 	public static void deleteArticleResource(long groupId,
 		java.lang.String title)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		_service.deleteArticleResource(groupId, title);
+		getService().deleteArticleResource(groupId, title);
 	}
 
 	public static com.liferay.kb.knowledgebase.model.KBArticleResource getArticleResource(
 		long articleResourcePrimKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return _service.getArticleResource(articleResourcePrimKey);
+		return getService().getArticleResource(articleResourcePrimKey);
 	}
 
 	public static long getArticleResourcePrimKey(long groupId,
 		java.lang.String title) throws com.liferay.portal.SystemException {
-		return _service.getArticleResourcePrimKey(groupId, title);
+		return getService().getArticleResourcePrimKey(groupId, title);
 	}
 
 	public static KBArticleResourceLocalService getService() {
+		if (_service == null) {
+			Object obj = PortletBeanLocatorUtil.locate("knowledge-base-portlet",
+					KBArticleResourceLocalServiceUtil.class.getName());
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("chat-portlet",
+					"portletClassLoader");
+
+			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
+					portletClassLoader);
+
+			_service = new KBArticleResourceLocalServiceClp(classLoaderProxy);
+		}
+
 		return _service;
 	}
 

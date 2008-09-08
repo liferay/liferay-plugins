@@ -70,6 +70,10 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 		return jiraIssuePersistence.update(jiraIssue, false);
 	}
 
+	public JIRAIssue createJIRAIssue(long jiraIssueId) {
+		return jiraIssuePersistence.create(jiraIssueId);
+	}
+
 	public void deleteJIRAIssue(long jiraIssueId)
 		throws PortalException, SystemException {
 		jiraIssuePersistence.remove(jiraIssueId);

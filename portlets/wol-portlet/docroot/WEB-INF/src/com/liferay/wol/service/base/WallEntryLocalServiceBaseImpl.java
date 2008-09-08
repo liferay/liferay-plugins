@@ -70,6 +70,10 @@ public abstract class WallEntryLocalServiceBaseImpl
 		return wallEntryPersistence.update(wallEntry, false);
 	}
 
+	public WallEntry createWallEntry(long wallEntryId) {
+		return wallEntryPersistence.create(wallEntryId);
+	}
+
 	public void deleteWallEntry(long wallEntryId)
 		throws PortalException, SystemException {
 		wallEntryPersistence.remove(wallEntryId);

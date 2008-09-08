@@ -33,6 +33,8 @@ public interface FeedLocalService {
 		com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.twitter.model.Feed createFeed(long feedId);
+
 	public void deleteFeed(long feedId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;

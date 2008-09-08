@@ -93,6 +93,10 @@ public abstract class KBArticleLocalServiceBaseImpl
 		return kbArticlePersistence.update(kbArticle, false);
 	}
 
+	public KBArticle createKBArticle(long articleId) {
+		return kbArticlePersistence.create(articleId);
+	}
+
 	public void deleteKBArticle(long articleId)
 		throws PortalException, SystemException {
 		kbArticlePersistence.remove(articleId);

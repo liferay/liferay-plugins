@@ -33,6 +33,9 @@ public interface SVNRepositoryLocalService {
 		com.liferay.wol.model.SVNRepository svnRepository)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.wol.model.SVNRepository createSVNRepository(
+		long svnRepositoryId);
+
 	public void deleteSVNRepository(long svnRepositoryId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;

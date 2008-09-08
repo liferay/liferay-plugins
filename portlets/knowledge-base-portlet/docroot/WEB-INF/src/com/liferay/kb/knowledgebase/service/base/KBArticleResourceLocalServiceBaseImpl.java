@@ -62,6 +62,10 @@ public abstract class KBArticleResourceLocalServiceBaseImpl
 		return kbArticleResourcePersistence.update(kbArticleResource, false);
 	}
 
+	public KBArticleResource createKBArticleResource(long resourcePrimKey) {
+		return kbArticleResourcePersistence.create(resourcePrimKey);
+	}
+
 	public void deleteKBArticleResource(long resourcePrimKey)
 		throws PortalException, SystemException {
 		kbArticleResourcePersistence.remove(resourcePrimKey);

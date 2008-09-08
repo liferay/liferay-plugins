@@ -70,6 +70,11 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 		return meetupsRegistrationPersistence.update(meetupsRegistration, false);
 	}
 
+	public MeetupsRegistration createMeetupsRegistration(
+		long meetupsRegistrationId) {
+		return meetupsRegistrationPersistence.create(meetupsRegistrationId);
+	}
+
 	public void deleteMeetupsRegistration(long meetupsRegistrationId)
 		throws PortalException, SystemException {
 		meetupsRegistrationPersistence.remove(meetupsRegistrationId);

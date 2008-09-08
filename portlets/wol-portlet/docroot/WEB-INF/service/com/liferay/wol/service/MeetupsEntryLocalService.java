@@ -33,6 +33,9 @@ public interface MeetupsEntryLocalService {
 		com.liferay.wol.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.wol.model.MeetupsEntry createMeetupsEntry(
+		long meetupsEntryId);
+
 	public void deleteMeetupsEntry(long meetupsEntryId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;

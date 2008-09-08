@@ -58,6 +58,10 @@ public abstract class KBFeedbackEntryLocalServiceBaseImpl
 		return kbFeedbackEntryPersistence.update(kbFeedbackEntry, false);
 	}
 
+	public KBFeedbackEntry createKBFeedbackEntry(long feedbackEntryId) {
+		return kbFeedbackEntryPersistence.create(feedbackEntryId);
+	}
+
 	public void deleteKBFeedbackEntry(long feedbackEntryId)
 		throws PortalException, SystemException {
 		kbFeedbackEntryPersistence.remove(feedbackEntryId);
