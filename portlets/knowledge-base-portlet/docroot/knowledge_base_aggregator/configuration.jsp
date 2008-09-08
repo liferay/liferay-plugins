@@ -137,8 +137,7 @@ for (Group myPlace : myPlaces) {
 					</select>
 				</td>
 				<td>
-					<span id="<portlet:namespace />company"><%= LanguageUtil.get(pageContext, "company") %></span>
-					<span id="<portlet:namespace />community"><%= LanguageUtil.get(pageContext, "community") %></span>
+					<span id="<portlet:namespace />company"><%= LanguageUtil.get(pageContext, "company") %></span><span id="<portlet:namespace />community"><%= LanguageUtil.get(pageContext, "community") %></span>
 				</td>
 				<td>
 					<liferay-ui:icon-help message="select-the-scope-to-search-for-knowledge-base-articles" />
