@@ -1,0 +1,11 @@
+<!--
+For specific cache configurations, add this snippet to portal-impl.jar/ehcache/hibernate.xml
+-->
+
+<cache
+	name="com.liferay.kb.knowledgebase.model.impl.KBArticleImpl"
+	maxElementsInMemory="10000"
+	eternal="false"
+    timeToIdleSeconds="600"
+	overflowToDisk="false"
+/>
