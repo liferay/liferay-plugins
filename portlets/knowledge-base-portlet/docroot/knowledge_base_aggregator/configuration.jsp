@@ -33,12 +33,12 @@ String companyName = company.getName();
 
 List<Group> myPlaces = user.getMyPlaces();
 
-List<Long> scopeGroupId = new ArrayList<Long>();
+List<Long> groupIds = new ArrayList<Long>();
 
-List<String> scopeName = new ArrayList<String>();
+List<String> groupNames = new ArrayList<String>();
 
-scopeGroupId.add(new Long (0));
-scopeName.add(company.getName());
+groupIds.add(new Long (0));
+groupNames.add(company.getName());
 
 for (Group myPlace : myPlaces) {
 	myPlace = myPlace.toEscapedModel();
@@ -49,12 +49,12 @@ for (Group myPlace : myPlaces) {
 	if (isOrganizationCommunity) {
 		organization = OrganizationLocalServiceUtil.getOrganization(myPlace.getClassPK());
 
-		scopeGroupId.add(myPlace.getGroupId());
-		scopeName.add(organization.getName());
+		groupIds.add(myPlace.getGroupId());
+		groupNames.add(organization.getName());
 	}
 	else if (!isUserCommunity) {
-		scopeGroupId.add(myPlace.getGroupId());
-		scopeName.add(myPlace.getName());
+		groupIds.add(myPlace.getGroupId());
+		groupNames.add(myPlace.getName());
 	}
 }
 %>
@@ -65,22 +65,20 @@ for (Group myPlace : myPlaces) {
 </liferay-portlet:renderURL>
 
 <script type="text/javascript">
-	function <portlet:namespace />toggleScopeName() {
-		var scope = document.<portlet:namespace />fm['<portlet:namespace />scope'].value;
+	function <portlet:namespace />selectGroup() {
+		var selectedGroupId = document.<portlet:namespace />fm['<portlet:namespace />selectedGroupId'].value;
 
-		if (scope == 0) {
+		if (selectedGroupId == 0) {
 			document.<portlet:namespace />fm.<portlet:namespace />companyId.value = <%= company.getCompanyId() %>;
 			document.<portlet:namespace />fm.<portlet:namespace />groupId.value = 0;
 
-			document.getElementById("<portlet:namespace />company").style.display = "";
-			document.getElementById("<portlet:namespace />community").style.display = "none";
+			document.getElementById("<portlet:namespace />groupType").innerHTML = '<%= LanguageUtil.get(pageContext, "company") %>';
 		}
 		else {
 			document.<portlet:namespace />fm.<portlet:namespace />companyId.value = 0;
-			document.<portlet:namespace />fm.<portlet:namespace />groupId.value = scope;
+			document.<portlet:namespace />fm.<portlet:namespace />groupId.value = selectedGroupId;
 
-			document.getElementById("<portlet:namespace />company").style.display = "none";
-			document.getElementById("<portlet:namespace />community").style.display = "";
+			document.getElementById("<portlet:namespace />groupType").innerHTML = '<%= LanguageUtil.get(pageContext, "community") %>';
 		}
 	}
 </script>
@@ -111,7 +109,7 @@ for (Group myPlace : myPlaces) {
 					<liferay-ui:message key="name" />
 				</th>
 				<th>
-					<liferay-ui:message key="scope" />
+					<liferay-ui:message key="type" />
 				</th>
 				<th>
 					&nbsp;
@@ -122,13 +120,13 @@ for (Group myPlace : myPlaces) {
 					<liferay-ui:message key="current" />
 				</td>
 				<td>
-					<select name="<portlet:namespace />scope" onchange="<portlet:namespace/>toggleScopeName();">
+					<select name="<portlet:namespace />selectedGroupId" onchange="<portlet:namespace/>selectGroup();">
 
 						<%
-						for (int i = 0; i < scopeGroupId.size(); i++) {
+						for (int i = 0; i < groupIds.size(); i++) {
 						%>
 
-							<option <%= (groupId == scopeGroupId.get(i)) ? "selected" : "" %> value="<%= scopeGroupId.get(i) %>"><%= scopeName.get(i) %></option>
+							<option <%= (groupId == groupIds.get(i)) ? "selected" : "" %> value="<%= groupIds.get(i) %>"><%= groupNames.get(i) %></option>
 
 						<%
 						}
@@ -137,7 +135,7 @@ for (Group myPlace : myPlaces) {
 					</select>
 				</td>
 				<td>
-					<span id="<portlet:namespace />company"><%= LanguageUtil.get(pageContext, "company") %></span><span id="<portlet:namespace />community"><%= LanguageUtil.get(pageContext, "community") %></span>
+					<span id="<portlet:namespace />groupType">&nbsp;</span>
 				</td>
 				<td>
 					<liferay-ui:icon-help message="select-the-scope-to-search-for-knowledge-base-articles" />
@@ -270,11 +268,9 @@ for (Group myPlace : myPlaces) {
 
 <script type="text/javascript">
 	if (<%= tabs2.equals("display-settings") && (groupId > 0) %>) {
-		document.getElementById("<portlet:namespace />company").style.display = "none";
-		document.getElementById("<portlet:namespace />community").style.display = "";
+		document.getElementById("<portlet:namespace />groupType").innerHTML = '<%= LanguageUtil.get(pageContext, "community") %>';
 	}
 	else if (<%= tabs2.equals("display-settings") %>) {
-		document.getElementById("<portlet:namespace />company").style.display = "";
-		document.getElementById("<portlet:namespace />community").style.display = "none";
+		document.getElementById("<portlet:namespace />groupType").innerHTML = '<%= LanguageUtil.get(pageContext, "company") %>';
 	}
 </script>
