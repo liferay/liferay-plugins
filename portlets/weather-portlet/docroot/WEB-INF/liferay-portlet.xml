@@ -6,6 +6,7 @@
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
 		<maximize-edit>true</maximize-edit>
+		<css-class-wrapper>weather-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

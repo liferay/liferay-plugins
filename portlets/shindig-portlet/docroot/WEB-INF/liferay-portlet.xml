@@ -12,6 +12,7 @@
 		<header-portlet-javascript>/files/container/gadgets.js</header-portlet-javascript>
 		<header-portlet-javascript>/javascript/expandobaseduserprefstore.js</header-portlet-javascript>
 		<header-portlet-javascript>/javascript/gadget-portlet.js</header-portlet-javascript>
+		<css-class-wrapper>shindig-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

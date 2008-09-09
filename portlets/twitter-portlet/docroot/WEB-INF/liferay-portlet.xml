@@ -7,6 +7,7 @@
 		<icon>/icon.png</icon>
 		<scheduler-class>com.liferay.twitter.job.TwitterScheduler</scheduler-class>
 		<social-activity-interpreter-class>com.liferay.twitter.social.TwitterActivityInterpreter</social-activity-interpreter-class>
+		<css-class-wrapper>twitter-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

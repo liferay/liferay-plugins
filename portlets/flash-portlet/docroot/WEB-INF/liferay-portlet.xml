@@ -7,6 +7,7 @@
 		<icon>/icon.png</icon>
 		<configuration-action-class>com.liferay.flash.action.ConfigurationActionImpl</configuration-action-class>
 		<instanceable>true</instanceable>
+		<css-class-wrapper>flash-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

@@ -9,6 +9,7 @@
 		<instanceable>true</instanceable>
 		<render-weight>1</render-weight>
 		<ajaxable>false</ajaxable>
+		<css-class-wrapper>google-maps-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
