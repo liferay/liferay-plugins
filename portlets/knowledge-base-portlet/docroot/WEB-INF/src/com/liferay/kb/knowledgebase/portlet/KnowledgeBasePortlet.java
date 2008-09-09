@@ -330,7 +330,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 			PortletPreferences prefs = resourceRequest.getPreferences();
 
-			long groupId = themeDisplay.getPortletGroupId();
+			long groupId = themeDisplay.getScopeGroupId();
 			String title = ParamUtil.getString(resourceRequest, "title");
 			double version = ParamUtil.getDouble(resourceRequest, "version");
 
@@ -450,7 +450,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 		try {
 			KBArticle page = KBArticleServiceUtil.getArticle(
-				themeDisplay.getPortletGroupId(), title);
+				themeDisplay.getScopeGroupId(), title);
 
 			is = DLLocalServiceUtil.getFileAsStream(
 				page.getCompanyId(), CompanyConstants.SYSTEM,
@@ -766,7 +766,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 			if (article.isTemplate() && (template == false)) {
 				return KBArticleServiceUtil.addArticle(
-					themeDisplay.getPortletGroupId(), title, content,
+					themeDisplay.getScopeGroupId(), title, content,
 					description, minorEdit, template, draft, tagsEntries, prefs,
 					themeDisplay);
 			}

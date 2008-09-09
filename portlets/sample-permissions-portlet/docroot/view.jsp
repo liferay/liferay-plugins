@@ -34,7 +34,7 @@
 <liferay-theme:defineObjects />
 
 <%
-long groupId = themeDisplay.getPortletGroupId();
+long groupId = scopeGroupId;
 String name = portletDisplay.getRootPortletId();
 String primKey = portletDisplay.getResourcePK();
 String actionId = "VIEW";

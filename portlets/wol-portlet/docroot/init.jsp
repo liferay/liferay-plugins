@@ -128,7 +128,7 @@ WindowState windowState = renderRequest.getWindowState();
 
 String currentURL = PortalUtil.getCurrentURL(request);
 
-Group group = GroupLocalServiceUtil.getGroup(themeDisplay.getPortletGroupId());
+Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
 Organization organization = null;
 User user2 = null;

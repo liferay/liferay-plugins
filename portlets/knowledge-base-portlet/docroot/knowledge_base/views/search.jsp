@@ -53,7 +53,7 @@ headerNames.add("score");
 SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, LanguageUtil.format(pageContext, "no-articles-were-found-that-matched-the-keywords-x", "<b>" + HtmlUtil.escape(keywords) + "</b>"));
 
 try {
-	Hits results = KBArticleLocalServiceUtil.search(company.getCompanyId(), portletGroupId.longValue(), keywords, searchContainer.getStart(), searchContainer.getEnd());
+	Hits results = KBArticleLocalServiceUtil.search(company.getCompanyId(), scopeGroupId, keywords, searchContainer.getStart(), searchContainer.getEnd());
 
 	int total = results.getLength();
 

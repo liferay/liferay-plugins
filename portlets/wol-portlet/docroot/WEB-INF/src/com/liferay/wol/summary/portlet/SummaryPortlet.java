@@ -72,7 +72,7 @@ public class SummaryPortlet extends JSPPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		Group group = GroupLocalServiceUtil.getGroup(
-			themeDisplay.getPortletGroupId());
+			themeDisplay.getScopeGroupId());
 
 		User user = UserLocalServiceUtil.getUserById(group.getClassPK());
 
@@ -90,7 +90,7 @@ public class SummaryPortlet extends JSPPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		Group group = GroupLocalServiceUtil.getGroup(
-			themeDisplay.getPortletGroupId());
+			themeDisplay.getScopeGroupId());
 
 		User user = UserLocalServiceUtil.getUserById(group.getClassPK());
 
@@ -114,7 +114,7 @@ public class SummaryPortlet extends JSPPortlet {
 
 		userParams.put(
 			"userGroupRole",
-			new Long[] {new Long(themeDisplay.getPortletGroupId()),
+			new Long[] {new Long(themeDisplay.getScopeGroupId()),
 			new Long(role.getRoleId())});
 
 		List<User> users = UserLocalServiceUtil.search(
@@ -124,7 +124,7 @@ public class SummaryPortlet extends JSPPortlet {
 		for (User user : users) {
 			SocialRequestLocalServiceUtil.addRequest(
 				themeDisplay.getUserId(), 0, Group.class.getName(),
-				themeDisplay.getPortletGroupId(), MembersRequestKeys.ADD_MEMBER,
+				themeDisplay.getScopeGroupId(), MembersRequestKeys.ADD_MEMBER,
 				StringPool.BLANK, user.getUserId());
 		}
 	}
@@ -137,7 +137,7 @@ public class SummaryPortlet extends JSPPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		Group group = GroupLocalServiceUtil.getGroup(
-			themeDisplay.getPortletGroupId());
+			themeDisplay.getScopeGroupId());
 
 		Organization organization =
 			OrganizationLocalServiceUtil.getOrganization(group.getClassPK());
@@ -173,7 +173,7 @@ public class SummaryPortlet extends JSPPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		UserLocalServiceUtil.unsetGroupUsers(
-			themeDisplay.getPortletGroupId(),
+			themeDisplay.getScopeGroupId(),
 			new long[] {themeDisplay.getUserId()});
 	}
 
@@ -185,7 +185,7 @@ public class SummaryPortlet extends JSPPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		Group group = GroupLocalServiceUtil.getGroup(
-			themeDisplay.getPortletGroupId());
+			themeDisplay.getScopeGroupId());
 
 		UserLocalServiceUtil.unsetOrganizationUsers(
 			group.getClassPK(), new long[] {themeDisplay.getUserId()});
@@ -203,7 +203,7 @@ public class SummaryPortlet extends JSPPortlet {
 		}
 
 		Group group = GroupLocalServiceUtil.getGroup(
-			themeDisplay.getPortletGroupId());
+			themeDisplay.getScopeGroupId());
 
 		User user = null;
 

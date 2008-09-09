@@ -60,7 +60,7 @@ public class WallPortlet extends JSPPortlet {
 		}
 
 		Group group = GroupLocalServiceUtil.getGroup(
-			themeDisplay.getPortletGroupId());
+			themeDisplay.getScopeGroupId());
 
 		User user = null;
 
@@ -82,7 +82,7 @@ public class WallPortlet extends JSPPortlet {
 		String comments = ParamUtil.getString(actionRequest, "comments");
 
 		WallEntryLocalServiceUtil.addWallEntry(
-			themeDisplay.getPortletGroupId(), themeDisplay.getUserId(),
+			themeDisplay.getScopeGroupId(), themeDisplay.getUserId(),
 			comments, themeDisplay);
 	}
 
@@ -108,12 +108,12 @@ public class WallPortlet extends JSPPortlet {
 			return;
 		}
 
-		if (wallEntry.getGroupId() != themeDisplay.getPortletGroupId()) {
+		if (wallEntry.getGroupId() != themeDisplay.getScopeGroupId()) {
 			return;
 		}
 
 		Group group = GroupLocalServiceUtil.getGroup(
-			themeDisplay.getPortletGroupId());
+			themeDisplay.getScopeGroupId());
 
 		User user = null;
 

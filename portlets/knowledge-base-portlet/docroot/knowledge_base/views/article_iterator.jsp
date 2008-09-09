@@ -96,20 +96,20 @@ int total = 0;
 List<KBArticle> results = null;
 
 if (type.equals("all_articles")) {
-	total = KBArticleLocalServiceUtil.getGroupArticlesCount(themeDisplay.getUserId(), portletGroupId, true, false, false);
-	results = KBArticleLocalServiceUtil.getGroupArticles(themeDisplay.getUserId(), portletGroupId, true, false, false, searchContainer.getStart(), searchContainer.getEnd());
+	total = KBArticleLocalServiceUtil.getGroupArticlesCount(themeDisplay.getUserId(), scopeGroupId, true, false, false);
+	results = KBArticleLocalServiceUtil.getGroupArticles(themeDisplay.getUserId(), scopeGroupId, true, false, false, searchContainer.getStart(), searchContainer.getEnd());
 }
 else if (type.equals("article_history")) {
 	total = KBArticleLocalServiceUtil.getArticlesCount(article.getResourcePrimKey());
 	results = KBArticleLocalServiceUtil.getArticles(article.getResourcePrimKey(), searchContainer.getStart(), searchContainer.getEnd(), new ArticleVersionComparator());
 }
 else if (type.equals("subscriptions")) {
-	total = KBArticleLocalServiceUtil.getSubscribedArticlesCount(themeDisplay.getUserId(), portletGroupId);
-	results = KBArticleLocalServiceUtil.getSubscribedArticles(themeDisplay.getUserId(), portletGroupId, searchContainer.getStart(), searchContainer.getEnd());
+	total = KBArticleLocalServiceUtil.getSubscribedArticlesCount(themeDisplay.getUserId(), scopeGroupId);
+	results = KBArticleLocalServiceUtil.getSubscribedArticles(themeDisplay.getUserId(), scopeGroupId, searchContainer.getStart(), searchContainer.getEnd());
 }
 else if (type.equals("templates")) {
-	total = KBArticleLocalServiceUtil.getGroupArticlesCount(themeDisplay.getUserId(), portletGroupId, true, true, false);
-	results = KBArticleLocalServiceUtil.getGroupArticles(themeDisplay.getUserId(), portletGroupId, true, true, false, searchContainer.getStart(), searchContainer.getEnd());
+	total = KBArticleLocalServiceUtil.getGroupArticlesCount(themeDisplay.getUserId(), scopeGroupId, true, true, false);
+	results = KBArticleLocalServiceUtil.getGroupArticles(themeDisplay.getUserId(), scopeGroupId, true, true, false, searchContainer.getStart(), searchContainer.getEnd());
 }
 else if (type.equals("tagged_articles")) {
 	long classNameId = PortalUtil.getClassNameId(KBArticle.class.getName());
@@ -117,8 +117,8 @@ else if (type.equals("tagged_articles")) {
 	long[] notEntryIds = new long[0];
 	Date now = new Date();
 
-	total = TagsAssetLocalServiceUtil.getAssetsCount(portletGroupId.longValue(), new long[] {classNameId}, entryIds, notEntryIds, false, false, now, now);
-	List<TagsAsset> assets = TagsAssetLocalServiceUtil.getAssets(portletGroupId.longValue(), new long[] {classNameId}, entryIds, notEntryIds, false, null, null, null, null, false, now, now, searchContainer.getStart(), searchContainer.getEnd());
+	total = TagsAssetLocalServiceUtil.getAssetsCount(scopeGroupId, new long[] {classNameId}, entryIds, notEntryIds, false, false, now, now);
+	List<TagsAsset> assets = TagsAssetLocalServiceUtil.getAssets(scopeGroupId, new long[] {classNameId}, entryIds, notEntryIds, false, null, null, null, null, false, now, now, searchContainer.getStart(), searchContainer.getEnd());
 
 	results = new ArrayList();
 
@@ -235,7 +235,7 @@ for (int i = 0; i < results.size(); i++) {
 		<liferay-ui:icon-list>
 			<c:if test='<%= KBPermission.contains(permissionChecker, plid, ActionKeys.SUBSCRIBE) %>'>
 				<c:choose>
-					<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), portletGroupId) %>">
+					<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), scopeGroupId) %>">
 						<portlet:actionURL var="unsubscribeURL">
 							<portlet:param name="actionName" value="<%= Constants.UNSUBSCRIBE %>" />
 							<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -255,9 +255,9 @@ for (int i = 0; i < results.size(); i++) {
 			</c:if>
 
 			<%
-			atom10URL.setParameter("groupId", String.valueOf(themeDisplay.getPortletGroupId()));
-			rss10URL.setParameter("groupId", String.valueOf(themeDisplay.getPortletGroupId()));
-			rss20URL.setParameter("groupId", String.valueOf(themeDisplay.getPortletGroupId()));
+			atom10URL.setParameter("groupId", String.valueOf(scopeGroupId));
+			rss10URL.setParameter("groupId", String.valueOf(scopeGroupId));
+			rss20URL.setParameter("groupId", String.valueOf(scopeGroupId));
 			%>
 
 			<c:if test="<%= ArrayUtil.contains(rssTypes, RSSUtil.ATOM_1_0) %>">

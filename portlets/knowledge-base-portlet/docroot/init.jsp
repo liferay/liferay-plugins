@@ -144,7 +144,7 @@
 String currentURL = PortalUtil.getCurrentURL(request);
 String layoutFriendlyURL = PortalUtil.getLayoutFriendlyURL(layout, themeDisplay);
 
-Group group = GroupLocalServiceUtil.getGroup(themeDisplay.getPortletGroupId());
+Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
 Organization organization = null;
 User user2 = null;

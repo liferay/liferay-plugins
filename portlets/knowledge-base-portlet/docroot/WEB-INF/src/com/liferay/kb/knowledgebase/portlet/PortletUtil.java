@@ -91,7 +91,7 @@ public class PortletUtil {
 		}
 		else if (Validator.isNotNull(title)) {
 			article = KBArticleServiceUtil.getArticle(
-				themeDisplay.getPortletGroupId(), title, version, plid);
+				themeDisplay.getScopeGroupId(), title, version, plid);
 		}
 
 		// Feedback

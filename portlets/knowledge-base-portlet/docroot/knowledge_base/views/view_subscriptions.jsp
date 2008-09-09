@@ -25,9 +25,9 @@
 <%@ include file="/knowledge_base/init.jsp" %>
 
 <%
-boolean isSubscribedPortlet = SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), portletGroupId);
+boolean isSubscribedPortlet = SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), scopeGroupId);
 
-int subscribedArticleCount = KBArticleLocalServiceUtil.getSubscribedArticlesCount(themeDisplay.getUserId(), portletGroupId);
+int subscribedArticleCount = KBArticleLocalServiceUtil.getSubscribedArticlesCount(themeDisplay.getUserId(), scopeGroupId);
 
 // Store attribute
 

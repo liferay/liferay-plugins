@@ -51,7 +51,7 @@ if (article != null) {
 
 // Templates
 
-List<KBArticle> templates = KBArticleLocalServiceUtil.getGroupArticles(themeDisplay.getUserId(), portletGroupId, true, true, false);
+List<KBArticle> templates = KBArticleLocalServiceUtil.getGroupArticles(themeDisplay.getUserId(), scopeGroupId, true, true, false);
 
 //Portlet URLs
 
