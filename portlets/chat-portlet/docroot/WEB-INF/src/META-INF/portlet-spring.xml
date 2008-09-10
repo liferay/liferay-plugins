@@ -2,13 +2,12 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-	<bean id="com.liferay.chat.service.EntryLocalService.impl" class="com.liferay.chat.service.impl.EntryLocalServiceImpl" />
-	<bean id="com.liferay.chat.service.EntryLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+	<bean id="com.liferay.chat.service.EntryLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
 		</property>
 		<property name="target">
-			<ref bean="com.liferay.chat.service.EntryLocalService.impl" />
+			<bean class="com.liferay.chat.service.impl.EntryLocalServiceImpl" />
 		</property>
 		<property name="transactionAttributes">
 			<props>
@@ -23,13 +22,12 @@
 		</property>
 	</bean>
 	<bean id="com.liferay.chat.service.EntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.chat.service.EntryLocalService.transaction" />
+		<property name="target" ref="com.liferay.chat.service.EntryLocalService.impl" />
 	</bean>
 	<bean id="com.liferay.chat.service.EntryLocalServiceUtil" class="com.liferay.chat.service.EntryLocalServiceUtil">
-		<property name="service" ref="com.liferay.chat.service.EntryLocalService.transaction" />
+		<property name="service" ref="com.liferay.chat.service.EntryLocalService.impl" />
 	</bean>
 	<bean id="com.liferay.chat.service.persistence.EntryPersistence.impl" class="com.liferay.chat.service.persistence.EntryPersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.chat.service.persistence.EntryPersistence.transaction" parent="com.liferay.chat.service.persistence.EntryPersistence.impl" />
 	<bean id="com.liferay.chat.service.persistence.EntryUtil" class="com.liferay.chat.service.persistence.EntryUtil">
 		<property name="persistence" ref="com.liferay.chat.service.persistence.EntryPersistence.impl" />
 	</bean>
@@ -37,13 +35,12 @@
 	<bean id="com.liferay.chat.service.persistence.EntryFinderUtil" class="com.liferay.chat.service.persistence.EntryFinderUtil">
 		<property name="finder" ref="com.liferay.chat.service.persistence.EntryFinder.impl" />
 	</bean>
-	<bean id="com.liferay.chat.service.StatusLocalService.impl" class="com.liferay.chat.service.impl.StatusLocalServiceImpl" />
-	<bean id="com.liferay.chat.service.StatusLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+	<bean id="com.liferay.chat.service.StatusLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
 		</property>
 		<property name="target">
-			<ref bean="com.liferay.chat.service.StatusLocalService.impl" />
+			<bean class="com.liferay.chat.service.impl.StatusLocalServiceImpl" />
 		</property>
 		<property name="transactionAttributes">
 			<props>
@@ -58,13 +55,12 @@
 		</property>
 	</bean>
 	<bean id="com.liferay.chat.service.StatusLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.chat.service.StatusLocalService.transaction" />
+		<property name="target" ref="com.liferay.chat.service.StatusLocalService.impl" />
 	</bean>
 	<bean id="com.liferay.chat.service.StatusLocalServiceUtil" class="com.liferay.chat.service.StatusLocalServiceUtil">
-		<property name="service" ref="com.liferay.chat.service.StatusLocalService.transaction" />
+		<property name="service" ref="com.liferay.chat.service.StatusLocalService.impl" />
 	</bean>
 	<bean id="com.liferay.chat.service.persistence.StatusPersistence.impl" class="com.liferay.chat.service.persistence.StatusPersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.chat.service.persistence.StatusPersistence.transaction" parent="com.liferay.chat.service.persistence.StatusPersistence.impl" />
 	<bean id="com.liferay.chat.service.persistence.StatusUtil" class="com.liferay.chat.service.persistence.StatusUtil">
 		<property name="persistence" ref="com.liferay.chat.service.persistence.StatusPersistence.impl" />
 	</bean>

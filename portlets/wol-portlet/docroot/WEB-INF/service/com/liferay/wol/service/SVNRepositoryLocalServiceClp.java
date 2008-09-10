@@ -489,7 +489,8 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		if (obj instanceof BaseModel) {
 			return translateInput((BaseModel)obj);
 		}
-		else if (obj instanceof List) {
+
+		if (obj instanceof List) {
 			return translateInput((List)obj);
 		}
 		else {
@@ -564,7 +565,8 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		if (obj instanceof BaseModel) {
 			return translateOutput((BaseModel)obj);
 		}
-		else if (obj instanceof List) {
+
+		if (obj instanceof List) {
 			return translateOutput((List)obj);
 		}
 		else {

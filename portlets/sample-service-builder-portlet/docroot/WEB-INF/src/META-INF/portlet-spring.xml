@@ -2,13 +2,12 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-	<bean id="com.liferay.sampleservicebuilder.service.FooLocalService.impl" class="com.liferay.sampleservicebuilder.service.impl.FooLocalServiceImpl" />
-	<bean id="com.liferay.sampleservicebuilder.service.FooLocalService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+	<bean id="com.liferay.sampleservicebuilder.service.FooLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
 		</property>
 		<property name="target">
-			<ref bean="com.liferay.sampleservicebuilder.service.FooLocalService.impl" />
+			<bean class="com.liferay.sampleservicebuilder.service.impl.FooLocalServiceImpl" />
 		</property>
 		<property name="transactionAttributes">
 			<props>
@@ -23,18 +22,17 @@
 		</property>
 	</bean>
 	<bean id="com.liferay.sampleservicebuilder.service.FooLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.sampleservicebuilder.service.FooLocalService.transaction" />
+		<property name="target" ref="com.liferay.sampleservicebuilder.service.FooLocalService.impl" />
 	</bean>
 	<bean id="com.liferay.sampleservicebuilder.service.FooLocalServiceUtil" class="com.liferay.sampleservicebuilder.service.FooLocalServiceUtil">
-		<property name="service" ref="com.liferay.sampleservicebuilder.service.FooLocalService.transaction" />
+		<property name="service" ref="com.liferay.sampleservicebuilder.service.FooLocalService.impl" />
 	</bean>
-	<bean id="com.liferay.sampleservicebuilder.service.FooService.impl" class="com.liferay.sampleservicebuilder.service.impl.FooServiceImpl" />
-	<bean id="com.liferay.sampleservicebuilder.service.FooService.transaction" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+	<bean id="com.liferay.sampleservicebuilder.service.FooService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 		<property name="transactionManager">
 			<ref bean="liferayTransactionManager" />
 		</property>
 		<property name="target">
-			<ref bean="com.liferay.sampleservicebuilder.service.FooService.impl" />
+			<bean class="com.liferay.sampleservicebuilder.service.impl.FooServiceImpl" />
 		</property>
 		<property name="transactionAttributes">
 			<props>
@@ -49,13 +47,12 @@
 		</property>
 	</bean>
 	<bean id="com.liferay.sampleservicebuilder.service.FooService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.sampleservicebuilder.service.FooService.transaction" />
+		<property name="target" ref="com.liferay.sampleservicebuilder.service.FooService.impl" />
 	</bean>
 	<bean id="com.liferay.sampleservicebuilder.service.FooServiceUtil" class="com.liferay.sampleservicebuilder.service.FooServiceUtil">
-		<property name="service" ref="com.liferay.sampleservicebuilder.service.FooService.transaction" />
+		<property name="service" ref="com.liferay.sampleservicebuilder.service.FooService.impl" />
 	</bean>
 	<bean id="com.liferay.sampleservicebuilder.service.persistence.FooPersistence.impl" class="com.liferay.sampleservicebuilder.service.persistence.FooPersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.sampleservicebuilder.service.persistence.FooPersistence.transaction" parent="com.liferay.sampleservicebuilder.service.persistence.FooPersistence.impl" />
 	<bean id="com.liferay.sampleservicebuilder.service.persistence.FooUtil" class="com.liferay.sampleservicebuilder.service.persistence.FooUtil">
 		<property name="persistence" ref="com.liferay.sampleservicebuilder.service.persistence.FooPersistence.impl" />
 	</bean>
