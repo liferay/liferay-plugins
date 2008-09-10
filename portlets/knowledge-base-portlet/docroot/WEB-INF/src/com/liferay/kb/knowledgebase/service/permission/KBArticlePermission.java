@@ -30,11 +30,16 @@ import com.liferay.portal.SystemException;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portlet.tags.model.TagsEntry;
+import com.liferay.portlet.tags.service.TagsEntryLocalServiceUtil;
+
+import java.util.List;
 
 /**
  * <a href="KBArticlePermission.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
+ * @author Bruno Farache
  *
  */
 public class KBArticlePermission {
@@ -62,7 +67,7 @@ public class KBArticlePermission {
 	public static void check(
 			PermissionChecker permissionChecker, KBArticle article,
 			String actionId)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		if (!contains(permissionChecker, article, actionId)) {
 			throw new PrincipalException();
@@ -98,8 +103,23 @@ public class KBArticlePermission {
 	}
 
 	public static boolean contains(
-		PermissionChecker permissionChecker, KBArticle article,
-		String actionId) {
+			PermissionChecker permissionChecker, KBArticle article,
+			String actionId)
+		throws PortalException, SystemException {
+
+		if (actionId.equals(ActionKeys.VIEW)) {
+			List<TagsEntry> entries = TagsEntryLocalServiceUtil.getEntries(
+				KBArticle.class.getName(), article.getResourcePrimKey());
+
+			for (TagsEntry entry : entries) {
+				if (!permissionChecker.hasPermission(
+						entry.getGroupId(), TagsEntry.class.getName(),
+							entry.getEntryId(), actionId)) {
+
+					return false;
+				}
+			}
+		}
 
 		return permissionChecker.hasPermission(
 			article.getGroupId(), KBArticle.class.getName(),

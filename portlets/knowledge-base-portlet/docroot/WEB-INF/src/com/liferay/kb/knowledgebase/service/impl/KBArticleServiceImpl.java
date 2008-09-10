@@ -42,7 +42,6 @@ import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.User;
-import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
@@ -471,7 +470,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	}
 
 	protected List<KBArticle> checkViewPermission(Iterator<KBArticle> itr, int max)
-		throws PrincipalException {
+		throws PortalException, SystemException {
 
 		List<KBArticle> articles = new ArrayList<KBArticle>();
 

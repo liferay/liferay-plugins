@@ -117,8 +117,8 @@ else if (type.equals("tagged_articles")) {
 	long[] notEntryIds = new long[0];
 	Date now = new Date();
 
-	total = TagsAssetLocalServiceUtil.getAssetsCount(scopeGroupId, new long[] {classNameId}, entryIds, notEntryIds, false, false, now, now);
-	List<TagsAsset> assets = TagsAssetLocalServiceUtil.getAssets(scopeGroupId, new long[] {classNameId}, entryIds, notEntryIds, false, null, null, null, null, false, now, now, searchContainer.getStart(), searchContainer.getEnd());
+	total = TagsAssetServiceUtil.getAssetsCount(scopeGroupId, new long[] {classNameId}, entryIds, notEntryIds, false, false, now, now);
+	List<TagsAsset> assets = TagsAssetServiceUtil.getAssets(scopeGroupId, new long[] {classNameId}, entryIds, notEntryIds, false, null, null, null, null, false, now, now, searchContainer.getStart(), searchContainer.getEnd());
 
 	results = new ArrayList();
 
