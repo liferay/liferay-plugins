@@ -119,7 +119,7 @@ for (Group myPlace : myPlaces) {
 							<input checked disabled type="checkbox" />
 						</td>
 						<td>
-							<%= company.getName() %>
+							<%= company.getWebId() %>
 						</td>
 					</tr>
 					</table>
