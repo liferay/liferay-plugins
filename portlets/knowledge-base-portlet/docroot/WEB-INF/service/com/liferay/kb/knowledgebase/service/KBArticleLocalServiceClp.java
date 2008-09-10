@@ -1115,6 +1115,40 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	}
 
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
+		long groupId, boolean head, boolean template, boolean draft)
+		throws com.liferay.portal.SystemException {
+		Object paramObj0 = new LongWrapper(groupId);
+
+		Object paramObj1 = new BooleanWrapper(head);
+
+		Object paramObj2 = new BooleanWrapper(template);
+
+		Object paramObj3 = new BooleanWrapper(draft);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getGroupArticles",
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.kb.knowledgebase.model.KBArticle>)translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
 		long groupId, boolean head, boolean template, boolean draft, int start,
 		int end) throws com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(groupId);
@@ -1197,23 +1231,55 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (java.util.List<com.liferay.kb.knowledgebase.model.KBArticle>)translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
-		long userId, long groupId, boolean head, boolean template, boolean draft)
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticlesIncludingUserDrafts(
+		long groupId, boolean template, long userId)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = new LongWrapper(userId);
+		Object paramObj0 = new LongWrapper(groupId);
 
-		Object paramObj1 = new LongWrapper(groupId);
+		Object paramObj1 = new BooleanWrapper(template);
 
-		Object paramObj2 = new BooleanWrapper(head);
-
-		Object paramObj3 = new BooleanWrapper(template);
-
-		Object paramObj4 = new BooleanWrapper(draft);
+		Object paramObj2 = new LongWrapper(userId);
 
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("getGroupArticles",
+			returnObj = _classLoaderProxy.invoke("getGroupArticlesIncludingUserDrafts",
+					new Object[] { paramObj0, paramObj1, paramObj2 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.kb.knowledgebase.model.KBArticle>)translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticlesIncludingUserDrafts(
+		long groupId, boolean template, long userId, int start, int end)
+		throws com.liferay.portal.SystemException {
+		Object paramObj0 = new LongWrapper(groupId);
+
+		Object paramObj1 = new BooleanWrapper(template);
+
+		Object paramObj2 = new LongWrapper(userId);
+
+		Object paramObj3 = new IntegerWrapper(start);
+
+		Object paramObj4 = new IntegerWrapper(end);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getGroupArticlesIncludingUserDrafts",
 					new Object[] {
 						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
 					});
@@ -1235,32 +1301,24 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (java.util.List<com.liferay.kb.knowledgebase.model.KBArticle>)translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
-		long userId, long groupId, boolean head, boolean template,
-		boolean draft, int start, int end)
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupsArticles(
+		long[] groupIds, int start, int end)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = new LongWrapper(userId);
+		Object paramObj0 = translateInput(groupIds);
 
-		Object paramObj1 = new LongWrapper(groupId);
+		if (groupIds == null) {
+			paramObj0 = new NullWrapper("[J");
+		}
 
-		Object paramObj2 = new BooleanWrapper(head);
+		Object paramObj1 = new IntegerWrapper(start);
 
-		Object paramObj3 = new BooleanWrapper(template);
-
-		Object paramObj4 = new BooleanWrapper(draft);
-
-		Object paramObj5 = new IntegerWrapper(start);
-
-		Object paramObj6 = new IntegerWrapper(end);
+		Object paramObj2 = new IntegerWrapper(end);
 
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("getGroupArticles",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6
-					});
+			returnObj = _classLoaderProxy.invoke("getGroupsArticles",
+					new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.SystemException) {
@@ -1379,26 +1437,51 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public int getGroupArticlesCount(long userId, long groupId, boolean head,
-		boolean template, boolean draft)
+	public int getGroupArticlesIncludingUserDraftsCount(long groupId,
+		boolean template, long userId)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = new LongWrapper(userId);
+		Object paramObj0 = new LongWrapper(groupId);
 
-		Object paramObj1 = new LongWrapper(groupId);
+		Object paramObj1 = new BooleanWrapper(template);
 
-		Object paramObj2 = new BooleanWrapper(head);
-
-		Object paramObj3 = new BooleanWrapper(template);
-
-		Object paramObj4 = new BooleanWrapper(draft);
+		Object paramObj2 = new LongWrapper(userId);
 
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("getGroupArticlesCount",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
-					});
+			returnObj = _classLoaderProxy.invoke("getGroupArticlesIncludingUserDraftsCount",
+					new Object[] { paramObj0, paramObj1, paramObj2 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	public int getGroupsArticlesCount(long[] groupIds)
+		throws com.liferay.portal.SystemException {
+		Object paramObj0 = translateInput(groupIds);
+
+		if (groupIds == null) {
+			paramObj0 = new NullWrapper("[J");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getGroupsArticlesCount",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.SystemException) {

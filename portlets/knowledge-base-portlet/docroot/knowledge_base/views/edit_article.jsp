@@ -51,7 +51,7 @@ if (article != null) {
 
 // Templates
 
-List<KBArticle> templates = KBArticleLocalServiceUtil.getGroupArticles(themeDisplay.getUserId(), scopeGroupId, true, true, false);
+List<KBArticle> templates = KBArticleLocalServiceUtil.getGroupArticles(scopeGroupId, true, true, false);
 
 //Portlet URLs
 
@@ -147,7 +147,6 @@ ResourceURL templateURL = renderResponse.createResourceURL();
 
 <liferay-ui:error exception="<%= ArticleTitleException.class %>" message="please-enter-a-valid-title" />
 <liferay-ui:error exception="<%= ArticleVersionException.class %>" message="another-user-has-made-changes-since-you-started-editing-please-copy-your-changes-and-try-again" />
-<liferay-ui:error exception="<%= EntryNameException.class %>" message="please-enter-a-valid-tag-name" />
 <liferay-ui:tags-error />
 
 <table class="lfr-table">

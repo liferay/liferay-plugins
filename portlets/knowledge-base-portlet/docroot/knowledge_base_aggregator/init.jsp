@@ -33,7 +33,7 @@ if (Validator.isNotNull(portletResource)) {
 	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-long groupId = GetterUtil.getLong(prefs.getValue("group-id", "0"));
+long[] groupIds = GetterUtil.getLongValues(prefs.getValues("group-ids", new String[] {"0"}));
 String displayStyle = prefs.getValue("display-style", KnowledgeBaseAggregatorUtil.DISPLAY_STYLE_ABSTRACT_AND_IMAGE);
 int maxItems = GetterUtil.getInteger(prefs.getValue("max-items", String.valueOf(KnowledgeBaseAggregatorUtil.MAX_ITEMS_20)));
 
@@ -47,7 +47,7 @@ int rssAbstractLength = GetterUtil.getInteger(prefs.getValue("rss-abstract-lengt
 ResourceURL rssURL = renderResponse.createResourceURL();
 
 rssURL.setParameter("actionName", "rss");
-rssURL.setParameter("groupId", String.valueOf(groupId));
+rssURL.setParameter("groupIds", String.valueOf(groupIds));
 rssURL.setParameter("rssAbstractLength", String.valueOf(rssAbstractLength));
 rssURL.setParameter("rssDisplayStyle", rssDisplayStyle);
 rssURL.setParameter("rssMaxItems", String.valueOf(rssMaxItems));

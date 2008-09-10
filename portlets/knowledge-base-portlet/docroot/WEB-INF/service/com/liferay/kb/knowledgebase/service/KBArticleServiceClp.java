@@ -502,6 +502,47 @@ public class KBArticleServiceClp implements KBArticleService {
 		return (com.liferay.kb.knowledgebase.model.KBArticle)translateOutput(returnObj);
 	}
 
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getArticles(
+		long resourcePrimKey, int start, int end)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
+		Object paramObj0 = new LongWrapper(resourcePrimKey);
+
+		Object paramObj1 = new IntegerWrapper(start);
+
+		Object paramObj2 = new IntegerWrapper(end);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getArticles",
+					new Object[] { paramObj0, paramObj1, paramObj2 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.PortalException) {
+				throw (com.liferay.portal.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.kb.knowledgebase.model.KBArticle>)translateOutput(returnObj);
+	}
+
 	public java.lang.String getArticlesRSS(long resourcePrimKey, int max,
 		java.lang.String type, double version, java.lang.String displayStyle,
 		int abstractLength, java.lang.String feedURL)
@@ -685,22 +726,69 @@ public class KBArticleServiceClp implements KBArticleService {
 		return (java.lang.String)translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
-		long userId, long groupId, boolean template, int max)
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticlesIncludingUserDrafts(
+		long groupId, boolean template, long userId, int start, int end)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
-		Object paramObj0 = new LongWrapper(userId);
+		Object paramObj0 = new LongWrapper(groupId);
 
-		Object paramObj1 = new LongWrapper(groupId);
+		Object paramObj1 = new BooleanWrapper(template);
 
-		Object paramObj2 = new BooleanWrapper(template);
+		Object paramObj2 = new LongWrapper(userId);
+
+		Object paramObj3 = new IntegerWrapper(start);
+
+		Object paramObj4 = new IntegerWrapper(end);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getGroupArticlesIncludingUserDrafts",
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+					});
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.PortalException) {
+				throw (com.liferay.portal.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.kb.knowledgebase.model.KBArticle>)translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticlesIncludingUserDrafts(
+		long groupId, boolean template, long userId, int max)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
+		Object paramObj0 = new LongWrapper(groupId);
+
+		Object paramObj1 = new BooleanWrapper(template);
+
+		Object paramObj2 = new LongWrapper(userId);
 
 		Object paramObj3 = new IntegerWrapper(max);
 
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("getGroupArticles",
+			returnObj = _classLoaderProxy.invoke("getGroupArticlesIncludingUserDrafts",
 					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
@@ -728,10 +816,10 @@ public class KBArticleServiceClp implements KBArticleService {
 		return (java.util.List<com.liferay.kb.knowledgebase.model.KBArticle>)translateOutput(returnObj);
 	}
 
-	public java.lang.String getGroupArticlesRSS(long groupId, int max,
-		java.lang.String type, double version, java.lang.String displayStyle,
-		int abstractLength, java.lang.String description,
-		java.lang.String feedURL,
+	public java.lang.String getGroupArticlesIncludingUserDraftsRSS(
+		long groupId, int max, java.lang.String type, double version,
+		java.lang.String displayStyle, int abstractLength,
+		java.lang.String description, java.lang.String feedURL,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
@@ -776,7 +864,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("getGroupArticlesRSS",
+			returnObj = _classLoaderProxy.invoke("getGroupArticlesIncludingUserDraftsRSS",
 					new Object[] {
 						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
 						paramObj5, paramObj6, paramObj7, paramObj8
@@ -805,6 +893,175 @@ public class KBArticleServiceClp implements KBArticleService {
 		}
 
 		return (java.lang.String)translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupsArticles(
+		long[] groupIds, int max)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
+		Object paramObj0 = translateInput(groupIds);
+
+		if (groupIds == null) {
+			paramObj0 = new NullWrapper("[J");
+		}
+
+		Object paramObj1 = new IntegerWrapper(max);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getGroupsArticles",
+					new Object[] { paramObj0, paramObj1 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.PortalException) {
+				throw (com.liferay.portal.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.kb.knowledgebase.model.KBArticle>)translateOutput(returnObj);
+	}
+
+	public java.lang.String getGroupsArticlesRSS(long[] groupIds, int max,
+		java.lang.String type, double version, java.lang.String displayStyle,
+		int abstractLength, java.lang.String description,
+		java.lang.String feedURL,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
+		Object paramObj0 = translateInput(groupIds);
+
+		if (groupIds == null) {
+			paramObj0 = new NullWrapper("[J");
+		}
+
+		Object paramObj1 = new IntegerWrapper(max);
+
+		Object paramObj2 = translateInput(type);
+
+		if (type == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj3 = new DoubleWrapper(version);
+
+		Object paramObj4 = translateInput(displayStyle);
+
+		if (displayStyle == null) {
+			paramObj4 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj5 = new IntegerWrapper(abstractLength);
+
+		Object paramObj6 = translateInput(description);
+
+		if (description == null) {
+			paramObj6 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj7 = translateInput(feedURL);
+
+		if (feedURL == null) {
+			paramObj7 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj8 = translateInput(themeDisplay);
+
+		if (themeDisplay == null) {
+			paramObj8 = new NullWrapper("com.liferay.portal.theme.ThemeDisplay");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getGroupsArticlesRSS",
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+						paramObj5, paramObj6, paramObj7, paramObj8
+					});
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.PortalException) {
+				throw (com.liferay.portal.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getSubscribedArticles(
+		long userId, long groupId, int start, int end)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
+		Object paramObj0 = new LongWrapper(userId);
+
+		Object paramObj1 = new LongWrapper(groupId);
+
+		Object paramObj2 = new IntegerWrapper(start);
+
+		Object paramObj3 = new IntegerWrapper(end);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getSubscribedArticles",
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.PortalException) {
+				throw (com.liferay.portal.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.kb.knowledgebase.model.KBArticle>)translateOutput(returnObj);
 	}
 
 	public com.liferay.kb.knowledgebase.model.KBArticle revertArticle(

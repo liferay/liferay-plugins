@@ -125,6 +125,11 @@ public class KBFeedbackEntryLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.kb.knowledgebase.model.KBFeedbackEntry> getArticleFeedbackEntries(
+		long articleResourcePrimKey) throws com.liferay.portal.SystemException {
+		return getService().getArticleFeedbackEntries(articleResourcePrimKey);
+	}
+
+	public static java.util.List<com.liferay.kb.knowledgebase.model.KBFeedbackEntry> getArticleFeedbackEntries(
 		long articleResourcePrimKey, int start, int end)
 		throws com.liferay.portal.SystemException {
 		return getService()

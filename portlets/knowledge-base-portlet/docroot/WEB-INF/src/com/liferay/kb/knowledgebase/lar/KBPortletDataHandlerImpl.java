@@ -30,7 +30,6 @@ import com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalServiceUtil;
 import com.liferay.kb.knowledgebase.service.persistence.KBArticleUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.PortletDataException;
 import com.liferay.portal.kernel.lar.PortletDataHandler;
@@ -64,12 +63,11 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 
 		try {
 			if (!context.addPrimaryKey(
-					KBPortletDataHandlerImpl.class, "deleteData")) {
+				KBPortletDataHandlerImpl.class, "deleteData")) {
 
 				List<KBArticle> articles =
 					KBArticleLocalServiceUtil.getGroupArticles(
-						context.getGroupId(), true, false, false,
-						QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+						context.getGroupId(), true, false, false);
 
 				for (KBArticle article : articles) {
 					KBFeedbackEntryLocalServiceUtil.deleteFeedbackEntries(
@@ -101,8 +99,7 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 
 			List<KBArticle> articles =
 				KBArticleLocalServiceUtil.getGroupArticles(
-					context.getGroupId(), true, false, false, QueryUtil.ALL_POS,
-					QueryUtil.ALL_POS);
+					context.getGroupId(), true, false, false);
 
 			List<KBFeedbackEntry> feedbackEntries =
 				new ArrayList<KBFeedbackEntry>();
@@ -112,8 +109,7 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 					feedbackEntries.addAll(
 						KBFeedbackEntryLocalServiceUtil.
 							getArticleFeedbackEntries(
-								article.getResourcePrimKey(), QueryUtil.ALL_POS,
-								QueryUtil.ALL_POS));
+								article.getResourcePrimKey()));
 				}
 			}
 

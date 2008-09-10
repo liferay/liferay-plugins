@@ -29,16 +29,11 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 
-String companyName = company.getName();
-
 List<Group> myPlaces = user.getMyPlaces();
 
-List<Long> groupIds = new ArrayList<Long>();
+List<Long> communityGroupIds = new ArrayList<Long>();
 
-List<String> groupNames = new ArrayList<String>();
-
-groupIds.add(new Long (0));
-groupNames.add(company.getName());
+List<String> communityGroupNames = new ArrayList<String>();
 
 for (Group myPlace : myPlaces) {
 	myPlace = myPlace.toEscapedModel();
@@ -49,12 +44,12 @@ for (Group myPlace : myPlaces) {
 	if (isOrganizationCommunity) {
 		organization = OrganizationLocalServiceUtil.getOrganization(myPlace.getClassPK());
 
-		groupIds.add(myPlace.getGroupId());
-		groupNames.add(organization.getName());
+		communityGroupIds.add(myPlace.getGroupId());
+		communityGroupNames.add(organization.getName());
 	}
 	else if (!isUserCommunity) {
-		groupIds.add(myPlace.getGroupId());
-		groupNames.add(myPlace.getName());
+		communityGroupIds.add(myPlace.getGroupId());
+		communityGroupNames.add(myPlace.getName());
 	}
 }
 %>
@@ -65,20 +60,20 @@ for (Group myPlace : myPlaces) {
 </liferay-portlet:renderURL>
 
 <script type="text/javascript">
-	function <portlet:namespace />selectGroup() {
-		var selectedGroupId = document.<portlet:namespace />fm['<portlet:namespace />selectedGroupId'].value;
+	function <portlet:namespace />selectGroupType() {
+		var selectedGroupType = document.<portlet:namespace />fm['<portlet:namespace />selectedGroupType'].value;
 
-		if (selectedGroupId == 0) {
+		if (selectedGroupType == "company") {
 			document.<portlet:namespace />fm.<portlet:namespace />companyId.value = <%= company.getCompanyId() %>;
-			document.<portlet:namespace />fm.<portlet:namespace />groupId.value = 0;
 
-			document.getElementById("<portlet:namespace />groupType").innerHTML = '<%= LanguageUtil.get(pageContext, "company") %>';
+			document.getElementById("<portlet:namespace />company").style.display = "";
+			document.getElementById("<portlet:namespace />community").style.display = "none";
 		}
 		else {
 			document.<portlet:namespace />fm.<portlet:namespace />companyId.value = 0;
-			document.<portlet:namespace />fm.<portlet:namespace />groupId.value = selectedGroupId;
 
-			document.getElementById("<portlet:namespace />groupType").innerHTML = '<%= LanguageUtil.get(pageContext, "community") %>';
+			document.getElementById("<portlet:namespace />company").style.display = "none";
+			document.getElementById("<portlet:namespace />community").style.display = "";
 		}
 	}
 </script>
@@ -87,7 +82,6 @@ for (Group myPlace : myPlaces) {
 <input name="<portlet:namespace />tabs2" type="hidden" value="<%= HtmlUtil.escape(tabs2) %>" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />companyId" type="hidden" value="" />
-<input name="<portlet:namespace />groupId" type="hidden" value="" />
 
 <liferay-ui:tabs
 	names="display-settings,rss"
@@ -102,43 +96,60 @@ for (Group myPlace : myPlaces) {
 
 			<table class="lfr-table">
 			<tr>
-				<th>
-					&nbsp;
-				</th>
-				<th>
-					<liferay-ui:message key="name" />
-				</th>
-				<th>
-					<liferay-ui:message key="type" />
-				</th>
-				<th>
-					&nbsp;
-				</th>
-			</tr>
-			<tr>
 				<td>
-					<liferay-ui:message key="current" />
+					<liferay-ui:message key="scope" />
 				</td>
 				<td>
-					<select name="<portlet:namespace />selectedGroupId" onchange="<portlet:namespace/>selectGroup();">
+					<select name="<portlet:namespace />selectedGroupType" onchange="<portlet:namespace/>selectGroupType();">
+						<option <%= (groupIds[0] == 0) ? "selected" : "" %> value="company"><%= LanguageUtil.get(pageContext, "company") %></option>
+						<option <%= (groupIds[0] != 0) ? "selected" : "" %> value="community"><%= LanguageUtil.get(pageContext, "community") %></option>
+					</select>
+
+					<liferay-ui:icon-help message="select-the-scope-to-search-for-knowledge-base-articles" />
+				</td>
+			</tr>
+			<tr id="<portlet:namespace />company">
+				<td>
+					&nbsp;
+				</td>
+				<td>
+					<table class="lfr-table" style="margin-top: 8px;">
+					<tr valign="middle">
+						<td>
+							<input checked disabled type="checkbox" />
+						</td>
+						<td>
+							<%= company.getName() %>
+						</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr id="<portlet:namespace />community">
+				<td>
+					&nbsp;
+				</td>
+				<td>
+					<table class="lfr-table" style="margin-top: 8px;">
+					<tr valign="middle">
 
 						<%
-						for (int i = 0; i < groupIds.size(); i++) {
+						for (int i = 0; i < communityGroupIds.size(); i++) {
 						%>
 
-							<option <%= (groupId == groupIds.get(i)) ? "selected" : "" %> value="<%= groupIds.get(i) %>"><%= groupNames.get(i) %></option>
+							<td>
+								<input type="checkbox" <%= ArrayUtil.contains(groupIds, communityGroupIds.get(i)) ? "checked" : "" %> name="<portlet:namespace />groupIds" value="<%= communityGroupIds.get(i) %>" />
+							</td>
+							<td>
+								<%= communityGroupNames.get(i) %>
+							</td>
 
 						<%
 						}
 						%>
 
-					</select>
-				</td>
-				<td>
-					<span id="<portlet:namespace />groupType">&nbsp;</span>
-				</td>
-				<td>
-					<liferay-ui:icon-help message="select-the-scope-to-search-for-knowledge-base-articles" />
+					</tr>
+					</table>
 				</td>
 			</tr>
 			</table>
@@ -267,10 +278,16 @@ for (Group myPlace : myPlaces) {
 </form>
 
 <script type="text/javascript">
-	if (<%= tabs2.equals("display-settings") && (groupId > 0) %>) {
-		document.getElementById("<portlet:namespace />groupType").innerHTML = '<%= LanguageUtil.get(pageContext, "community") %>';
+	if (<%= tabs2.equals("display-settings") && (groupIds[0] != 0) %>) {
+		document.<portlet:namespace />fm.<portlet:namespace />companyId.value = 0;
+
+		document.getElementById("<portlet:namespace />company").style.display = "none";
+		document.getElementById("<portlet:namespace />community").style.display = "";
 	}
 	else if (<%= tabs2.equals("display-settings") %>) {
-		document.getElementById("<portlet:namespace />groupType").innerHTML = '<%= LanguageUtil.get(pageContext, "company") %>';
+		document.<portlet:namespace />fm.<portlet:namespace />companyId.value = <%= company.getCompanyId() %>;
+
+		document.getElementById("<portlet:namespace />company").style.display = "";
+		document.getElementById("<portlet:namespace />community").style.display = "none";
 	}
 </script>

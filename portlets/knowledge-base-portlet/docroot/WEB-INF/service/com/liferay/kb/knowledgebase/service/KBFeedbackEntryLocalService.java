@@ -90,6 +90,9 @@ public interface KBFeedbackEntryLocalService {
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBFeedbackEntry> getArticleFeedbackEntries(
+		long articleResourcePrimKey) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBFeedbackEntry> getArticleFeedbackEntries(
 		long articleResourcePrimKey, int start, int end)
 		throws com.liferay.portal.SystemException;
 

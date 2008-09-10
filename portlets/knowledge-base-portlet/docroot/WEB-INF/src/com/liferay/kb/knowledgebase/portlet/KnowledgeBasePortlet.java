@@ -54,7 +54,6 @@ import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.tags.EntryNameException;
 import com.liferay.portlet.tags.model.TagsEntry;
 import com.liferay.portlet.tags.model.TagsEntryConstants;
 import com.liferay.portlet.tags.model.TagsVocabulary;
@@ -188,7 +187,6 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			}
 			else if (e instanceof ArticleTitleException ||
 				e instanceof ArticleVersionException ||
-				e instanceof EntryNameException ||
 				e instanceof PrincipalException) {
 
 				SessionErrors.add(actionRequest, e.getClass().getName());
@@ -502,7 +500,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 				rssDisplayStyle, rssAbstractLength, feedURL);
 		}
 		else if (groupId > 0) {
-			rss = KBArticleServiceUtil.getGroupArticlesRSS(
+			rss = KBArticleServiceUtil.getGroupArticlesIncludingUserDraftsRSS(
 				groupId, rssMaxItems, rssType, rssVersion, rssDisplayStyle,
 				rssAbstractLength, description, feedURL, themeDisplay);
 		}

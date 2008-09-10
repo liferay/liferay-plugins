@@ -516,6 +516,33 @@ public class KBFeedbackEntryLocalServiceClp
 	}
 
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBFeedbackEntry> getArticleFeedbackEntries(
+		long articleResourcePrimKey) throws com.liferay.portal.SystemException {
+		Object paramObj0 = new LongWrapper(articleResourcePrimKey);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getArticleFeedbackEntries",
+					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.kb.knowledgebase.model.KBFeedbackEntry>)translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBFeedbackEntry> getArticleFeedbackEntries(
 		long articleResourcePrimKey, int start, int end)
 		throws com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(articleResourcePrimKey);

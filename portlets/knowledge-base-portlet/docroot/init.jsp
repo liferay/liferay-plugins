@@ -103,7 +103,6 @@
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portal.util.PortletKeys" %>
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
-<%@ page import="com.liferay.portlet.tags.EntryNameException" %>
 <%@ page import="com.liferay.portlet.tags.NoSuchEntryException" %>
 <%@ page import="com.liferay.portlet.tags.NoSuchPropertyException" %>
 <%@ page import="com.liferay.portlet.tags.model.TagsAsset" %>

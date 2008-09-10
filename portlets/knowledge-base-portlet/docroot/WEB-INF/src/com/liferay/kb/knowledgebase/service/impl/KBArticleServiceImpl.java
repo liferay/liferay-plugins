@@ -29,6 +29,7 @@ import com.liferay.kb.knowledgebase.service.base.KBArticleServiceBaseImpl;
 import com.liferay.kb.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.kb.knowledgebase.service.permission.KBPermission;
 import com.liferay.kb.knowledgebase.util.comparator.ArticleModifiedDateComparator;
+import com.liferay.kb.knowledgebase.util.comparator.ArticleVersionComparator;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -41,6 +42,7 @@ import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.User;
+import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
@@ -211,6 +213,19 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		return article;
 	}
 
+	public List<KBArticle> getArticles(
+			long resourcePrimKey, int start, int end)
+		throws PortalException, SystemException {
+
+		int max = end - start;
+
+		Iterator<KBArticle> itr = kbArticleLocalService.getArticles(
+			resourcePrimKey, start, end, new ArticleVersionComparator())
+				.iterator();
+
+		return checkViewPermission(itr, max);
+	}
+
 	public String getArticlesRSS(
 			long resourcePrimKey, int max, String type, double version,
 			String displayStyle, int abstractLength, String feedURL)
@@ -240,22 +255,10 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public List<KBArticle> getCompanyArticles(long companyId, int max)
 		throws PortalException, SystemException {
 
-		List<KBArticle> articles = new ArrayList<KBArticle>();
-
 		Iterator<KBArticle> itr = kbArticleLocalService.getCompanyArticles(
 			companyId, true, false, false, 0, _MAX_END).iterator();
 
-		while (itr.hasNext() && (articles.size() < max)) {
-			KBArticle article = itr.next();
-
-			if (KBArticlePermission.contains(getPermissionChecker(), article,
-					ActionKeys.VIEW)) {
-
-				articles.add(article);
-			}
-		}
-
-		return articles;
+		return checkViewPermission(itr, max);
 	}
 
 	public String getCompanyArticlesRSS(
@@ -283,29 +286,31 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			feedURL, entryURLs, articles);
 	}
 
-	public List<KBArticle> getGroupArticles(
-			long userId, long groupId, boolean template, int max)
+	public List<KBArticle> getGroupArticlesIncludingUserDrafts(
+			long groupId, boolean template, long userId, int start, int end)
 		throws PortalException, SystemException {
 
-		List<KBArticle> articles = new ArrayList<KBArticle>();
+		int max = end - start;
 
-		Iterator<KBArticle> itr = kbArticleLocalService.getGroupArticles(
-			userId, groupId, true, template, false, 0, _MAX_END).iterator();
+		Iterator<KBArticle> itr =
+			kbArticleLocalService.getGroupArticlesIncludingUserDrafts(
+				groupId, template, userId, start, end).iterator();
 
-		while (itr.hasNext() && (articles.size() < max)) {
-			KBArticle article = itr.next();
-
-			if (KBArticlePermission.contains(getPermissionChecker(), article,
-					ActionKeys.VIEW)) {
-
-				articles.add(article);
-			}
-		}
-
-		return articles;
+		return checkViewPermission(itr, max);
 	}
 
-	public String getGroupArticlesRSS(
+	public List<KBArticle> getGroupArticlesIncludingUserDrafts(
+			long groupId, boolean template, long userId, int max)
+		throws PortalException, SystemException {
+
+		Iterator<KBArticle> itr =
+			kbArticleLocalService.getGroupArticlesIncludingUserDrafts(
+				groupId, template, userId, 0, _MAX_END).iterator();
+
+		return checkViewPermission(itr, max);
+	}
+
+	public String getGroupArticlesIncludingUserDraftsRSS(
 			long groupId, int max, String type, double version,
 			String displayStyle, int abstractLength, String description,
 			String feedURL, ThemeDisplay themeDisplay)
@@ -313,8 +318,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		long userId = themeDisplay.getDefaultUserId();
 
-		List<KBArticle> articles = getGroupArticles(
-			userId, groupId, false, max);
+		List<KBArticle> articles = getGroupArticlesIncludingUserDrafts(
+			groupId, false, userId, max);
 
 		List<String> entryURLs = new ArrayList<String>();
 
@@ -344,6 +349,51 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		return exportToRSS(
 			title, description, type, version, displayStyle, abstractLength,
 			feedURL, entryURLs, articles);
+	}
+
+	public List<KBArticle> getGroupsArticles(long[] groupIds, int max)
+		throws PortalException, SystemException {
+
+		Iterator<KBArticle> itr =
+			kbArticleLocalService.getGroupsArticles(
+				groupIds, 0, _MAX_END).iterator();
+
+		return checkViewPermission(itr, max);
+	}
+
+	public String getGroupsArticlesRSS(
+			long[] groupIds, int max, String type, double version,
+			String displayStyle, int abstractLength, String description,
+			String feedURL, ThemeDisplay themeDisplay)
+		throws PortalException, SystemException {
+
+		List<KBArticle> articles = getGroupsArticles(groupIds, max);
+
+		List<String> entryURLs = new ArrayList<String>();
+
+		String title = "Knowledge Base";
+
+		for (KBArticle article : articles) {
+			String entryURL = getEntryURL(article, themeDisplay);
+
+			entryURLs.add(entryURL);
+		}
+
+		return exportToRSS(
+			title, description, type, version, displayStyle, abstractLength,
+			feedURL, entryURLs, articles);
+	}
+
+	public List<KBArticle> getSubscribedArticles(
+			long userId, long groupId, int start, int end)
+		throws PortalException, SystemException {
+
+		int max = end - start;
+
+		Iterator<KBArticle> itr = kbArticleLocalService.getSubscribedArticles(
+			userId, groupId, start, end).iterator();
+
+		return checkViewPermission(itr, max);
 	}
 
 	public KBArticle revertArticle(
@@ -418,6 +468,24 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		return kbArticleLocalService.updateArticle(
 			getUserId(), resourcePrimKey, version, title, content, description,
 			minorEdit, template, draft, tagsEntries, prefs, themeDisplay);
+	}
+
+	protected List<KBArticle> checkViewPermission(Iterator<KBArticle> itr, int max)
+		throws PrincipalException {
+
+		List<KBArticle> articles = new ArrayList<KBArticle>();
+
+		while (itr.hasNext() && (articles.size() < max)) {
+			KBArticle article = itr.next();
+
+			if (KBArticlePermission.contains(getPermissionChecker(), article,
+					ActionKeys.VIEW)) {
+
+				articles.add(article);
+			}
+		}
+
+		return articles;
 	}
 
 	protected String exportToRSS(

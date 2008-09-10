@@ -233,6 +233,12 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
+		long groupId, boolean head, boolean template, boolean draft)
+		throws com.liferay.portal.SystemException {
+		return getService().getGroupArticles(groupId, head, template, draft);
+	}
+
+	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
 		long groupId, boolean head, boolean template, boolean draft, int start,
 		int end) throws com.liferay.portal.SystemException {
 		return getService()
@@ -245,20 +251,26 @@ public class KBArticleLocalServiceUtil {
 		return getService().getGroupArticles(groupId, title, head, start, end);
 	}
 
-	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
-		long userId, long groupId, boolean head, boolean template, boolean draft)
+	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticlesIncludingUserDrafts(
+		long groupId, boolean template, long userId)
 		throws com.liferay.portal.SystemException {
 		return getService()
-				   .getGroupArticles(userId, groupId, head, template, draft);
+				   .getGroupArticlesIncludingUserDrafts(groupId, template,
+			userId);
 	}
 
-	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
-		long userId, long groupId, boolean head, boolean template,
-		boolean draft, int start, int end)
+	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticlesIncludingUserDrafts(
+		long groupId, boolean template, long userId, int start, int end)
 		throws com.liferay.portal.SystemException {
 		return getService()
-				   .getGroupArticles(userId, groupId, head, template, draft,
-			start, end);
+				   .getGroupArticlesIncludingUserDrafts(groupId, template,
+			userId, start, end);
+	}
+
+	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupsArticles(
+		long[] groupIds, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getService().getGroupsArticles(groupIds, start, end);
 	}
 
 	public static int getGroupArticlesCount(long groupId, boolean head,
@@ -278,11 +290,17 @@ public class KBArticleLocalServiceUtil {
 		return getService().getGroupArticlesCount(groupId, head, template, draft);
 	}
 
-	public static int getGroupArticlesCount(long userId, long groupId,
-		boolean head, boolean template, boolean draft)
+	public static int getGroupArticlesIncludingUserDraftsCount(long groupId,
+		boolean template, long userId)
 		throws com.liferay.portal.SystemException {
 		return getService()
-				   .getGroupArticlesCount(userId, groupId, head, template, draft);
+				   .getGroupArticlesIncludingUserDraftsCount(groupId, template,
+			userId);
+	}
+
+	public static int getGroupsArticlesCount(long[] groupIds)
+		throws com.liferay.portal.SystemException {
+		return getService().getGroupsArticlesCount(groupIds);
 	}
 
 	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getSubscribedArticles(

@@ -1,6 +1,19 @@
 <?xml version="1.0"?>
 
 <custom-sql>
+	<sql id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.countByGroupIds">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				KB_KBArticle
+			WHERE
+				[$GROUP_ID$] AND
+				(head = true) AND
+				(template = false) AND
+				(draft = false)
+		]]>
+	</sql>
 	<sql id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.countByS_U_G">
 		<![CDATA[
 			SELECT
@@ -17,7 +30,7 @@
 				(Subscription.userId = ?)
 		]]>
 	</sql>
-	<sql id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.countByU_G_H_T_D">
+	<sql id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.countByG_T_Or_G_T_U">
 		<![CDATA[
 			SELECT
 				COUNT(*) AS COUNT_VALUE
@@ -25,12 +38,27 @@
 				KB_KBArticle
 			WHERE
 				(groupId = ?) AND
-				(head = ?) AND
 				(template = ?) AND
+				(head = true) AND
 				(
-					(userId = ?) OR
-					(draft = ?)
+					(draft = false) OR
+					(userId = ?)
 				)
+		]]>
+	</sql>
+	<sql id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.findByGroupIds">
+		<![CDATA[
+			SELECT
+				{KB_KBArticle.*}
+			FROM
+				KB_KBArticle
+			WHERE
+				[$GROUP_ID$] AND
+				(head = true) AND
+				(template = false) AND
+				(draft = false)
+			ORDER BY
+				modifiedDate DESC
 		]]>
 	</sql>
 	<sql id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.findByS_U_G">
@@ -52,7 +80,7 @@
 				version ASC
 		]]>
 	</sql>
-	<sql id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.findByU_G_H_T_D">
+	<sql id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.findByG_T_Or_G_T_U">
 		<![CDATA[
 			SELECT
 				{KB_KBArticle.*}
@@ -60,11 +88,11 @@
 				KB_KBArticle
 			WHERE
 				(groupId = ?) AND
-				(head = ?) AND
 				(template = ?) AND
+				(head = true) AND
 				(
-					(userId = ?) OR
-					(draft = ?)
+					(draft = false) OR
+					(userId = ?)
 				)
 			ORDER BY
 				title ASC,

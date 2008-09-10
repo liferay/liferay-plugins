@@ -30,6 +30,7 @@ import com.liferay.kb.knowledgebase.model.KBFeedbackStats;
 import com.liferay.kb.knowledgebase.service.base.KBFeedbackEntryLocalServiceBaseImpl;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -192,6 +193,14 @@ public class KBFeedbackEntryLocalServiceImpl
 		feedbackStats.setYesVotes(yesVotes);
 
 		kbFeedbackStatsPersistence.update(feedbackStats, false);
+	}
+
+	public List<KBFeedbackEntry> getArticleFeedbackEntries(
+			long articleResourcePrimKey)
+		throws SystemException {
+
+		return kbFeedbackEntryPersistence.findByArticleResourcePrimKey(
+				articleResourcePrimKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 	}
 
 	public List<KBFeedbackEntry> getArticleFeedbackEntries(

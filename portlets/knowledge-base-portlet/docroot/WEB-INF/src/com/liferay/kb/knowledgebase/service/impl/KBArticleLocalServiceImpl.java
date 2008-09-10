@@ -40,6 +40,7 @@ import com.liferay.kb.knowledgebase.util.comparator.ArticleModifiedDateComparato
 import com.liferay.kb.util.PortletPropsKeys;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
@@ -482,6 +483,15 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	public List<KBArticle> getGroupArticles(
+			long groupId, boolean head, boolean template, boolean draft)
+		throws SystemException {
+
+		return kbArticlePersistence.findByG_H_T_D(
+			groupId, head, template, draft, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new ArticleModifiedDateComparator(false));
+	}
+
+	public List<KBArticle> getGroupArticles(
 			long groupId, boolean head, boolean template, boolean draft,
 			int start, int end)
 		throws SystemException {
@@ -500,22 +510,29 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			new ArticleModifiedDateComparator(false));
 	}
 
-	public List<KBArticle> getGroupArticles(
-			long userId, long groupId, boolean head, boolean template,
-			boolean draft)
+	public List<KBArticle> getGroupArticlesIncludingUserDrafts(
+			long groupId, boolean template, long userId)
 		throws SystemException {
 
-		return kbArticleFinder.findByU_G_H_T_D(
-			userId, groupId, head, template, draft);
+		return kbArticleFinder.findByG_T_Or_G_T_U(
+			groupId, template, userId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS);
 	}
 
-	public List<KBArticle> getGroupArticles(
-			long userId, long groupId, boolean head, boolean template,
-			boolean draft, int start, int end)
+	public List<KBArticle> getGroupArticlesIncludingUserDrafts(
+			long groupId, boolean template, long userId, int start, int end)
 		throws SystemException {
 
-		return kbArticleFinder.findByU_G_H_T_D(
-			userId, groupId, head, template, draft, start, end);
+		return kbArticleFinder.findByG_T_Or_G_T_U(
+			groupId, template, userId, start, end);
+	}
+
+	public List<KBArticle> getGroupsArticles(
+			long[] groupIds, int start, int end)
+		throws SystemException {
+
+		return kbArticleFinder.findByGroupIds(
+			groupIds, start, end, new ArticleModifiedDateComparator(false));
 	}
 
 	public int getGroupArticlesCount(long groupId, boolean head, boolean template)
@@ -538,19 +555,24 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			groupId, head, template, draft);
 	}
 
-	public int getGroupArticlesCount(
-			long userId, long groupId, boolean head, boolean template,
-			boolean draft)
+	public int getGroupArticlesIncludingUserDraftsCount(
+			long groupId, boolean template, long userId)
 		throws SystemException {
 
-		return kbArticleFinder.countByU_G_H_T_D(
-			userId, groupId, head, template, draft);
+		return kbArticleFinder.countByG_T_Or_G_T_U(groupId, template, userId);
+	}
+
+	public int getGroupsArticlesCount(long[] groupIds)
+		throws SystemException {
+
+		return kbArticleFinder.countByGroupIds(groupIds);
 	}
 
 	public List<KBArticle> getSubscribedArticles(long userId, long groupId)
 		throws SystemException {
 
-		return kbArticleFinder.findByS_U_G(userId, groupId);
+		return kbArticleFinder.findByS_U_G(userId, groupId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS);
 	}
 
 	public List<KBArticle> getSubscribedArticles(

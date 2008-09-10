@@ -162,6 +162,10 @@ public interface KBArticleLocalService {
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
+		long groupId, boolean head, boolean template, boolean draft)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
 		long groupId, boolean head, boolean template, boolean draft, int start,
 		int end) throws com.liferay.portal.SystemException;
 
@@ -169,13 +173,16 @@ public interface KBArticleLocalService {
 		long groupId, java.lang.String title, boolean head, int start, int end)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
-		long userId, long groupId, boolean head, boolean template, boolean draft)
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticlesIncludingUserDrafts(
+		long groupId, boolean template, long userId)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
-		long userId, long groupId, boolean head, boolean template,
-		boolean draft, int start, int end)
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticlesIncludingUserDrafts(
+		long groupId, boolean template, long userId, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupsArticles(
+		long[] groupIds, int start, int end)
 		throws com.liferay.portal.SystemException;
 
 	public int getGroupArticlesCount(long groupId, boolean head,
@@ -188,8 +195,11 @@ public interface KBArticleLocalService {
 		boolean template, boolean draft)
 		throws com.liferay.portal.SystemException;
 
-	public int getGroupArticlesCount(long userId, long groupId, boolean head,
-		boolean template, boolean draft)
+	public int getGroupArticlesIncludingUserDraftsCount(long groupId,
+		boolean template, long userId)
+		throws com.liferay.portal.SystemException;
+
+	public int getGroupsArticlesCount(long[] groupIds)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getSubscribedArticles(

@@ -81,14 +81,18 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			ActionRequest actionRequest, PortletPreferences prefs)
 		throws Exception {
 
-		String groupId = ParamUtil.getString(actionRequest, "groupId");
+		String[] groupIds = actionRequest.getParameterValues("groupIds");
 		String companyId = ParamUtil.getString(actionRequest, "companyId");
 		String displayStyle = ParamUtil.getString(
 			actionRequest, "displayStyle");
 		int maxItems = ParamUtil.getInteger(actionRequest, "maxItems");
 
+		if (!companyId.equals("0")) {
+			groupIds = new String[] {"0"};
+		}
+
+		prefs.setValues("group-ids", groupIds);
 		prefs.setValue("company-id", companyId);
-		prefs.setValue("group-id", groupId);
 		prefs.setValue("display-style", displayStyle);
 		prefs.setValue("max-items", String.valueOf(maxItems));
 	}

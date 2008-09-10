@@ -82,6 +82,11 @@ public interface KBArticleService {
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getArticles(
+		long resourcePrimKey, int start, int end)
+		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
 	public java.lang.String getArticlesRSS(long resourcePrimKey, int max,
 		java.lang.String type, double version, java.lang.String displayStyle,
 		int abstractLength, java.lang.String feedURL)
@@ -101,16 +106,39 @@ public interface KBArticleService {
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticles(
-		long userId, long groupId, boolean template, int max)
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticlesIncludingUserDrafts(
+		long groupId, boolean template, long userId, int start, int end)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public java.lang.String getGroupArticlesRSS(long groupId, int max,
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticlesIncludingUserDrafts(
+		long groupId, boolean template, long userId, int max)
+		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public java.lang.String getGroupArticlesIncludingUserDraftsRSS(
+		long groupId, int max, java.lang.String type, double version,
+		java.lang.String displayStyle, int abstractLength,
+		java.lang.String description, java.lang.String feedURL,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupsArticles(
+		long[] groupIds, int max)
+		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public java.lang.String getGroupsArticlesRSS(long[] groupIds, int max,
 		java.lang.String type, double version, java.lang.String displayStyle,
 		int abstractLength, java.lang.String description,
 		java.lang.String feedURL,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getSubscribedArticles(
+		long userId, long groupId, int start, int end)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 

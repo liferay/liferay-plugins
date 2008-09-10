@@ -73,7 +73,7 @@ public class KnowledgeBaseAggregatorPortlet extends JSPPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long groupId = ParamUtil.getLong(resourceRequest, "groupId");
+		long[] groupIds = ParamUtil.getLongValues(resourceRequest, "groupIds");
 
 		String rssType = ParamUtil.getString(resourceRequest, "rssType");
 		double rssVersion = ParamUtil.getDouble(resourceRequest, "rssVersion");
@@ -90,9 +90,9 @@ public class KnowledgeBaseAggregatorPortlet extends JSPPortlet {
 
 		String rss = StringPool.BLANK;
 
-		if (groupId > 0) {
-			rss = KBArticleServiceUtil.getGroupArticlesRSS(
-				groupId, rssMaxItems, rssType, rssVersion, rssDisplayStyle,
+		if (groupIds[0] != 0) {
+			rss = KBArticleServiceUtil.getGroupsArticlesRSS(
+				groupIds, rssMaxItems, rssType, rssVersion, rssDisplayStyle,
 				rssAbstractLength, description, feedURL, themeDisplay);
 		}
 		else {

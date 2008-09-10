@@ -29,26 +29,25 @@ package com.liferay.kb.knowledgebase.service.persistence;
  *
  */
 public interface KBArticleFinder {
+	public int countByGroupIds(long[] groupIds)
+		throws com.liferay.portal.SystemException;
+
 	public int countByS_U_G(long userId, long groupId)
 		throws com.liferay.portal.SystemException;
 
-	public int countByU_G_H_T_D(long userId, long groupId, boolean head,
-		boolean template, boolean draft)
+	public int countByG_T_Or_G_T_U(long groupId, boolean template, long userId)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByS_U_G(
-		long userId, long groupId) throws com.liferay.portal.SystemException;
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByGroupIds(
+		long[] groupIds, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByS_U_G(
 		long userId, long groupId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByU_G_H_T_D(
-		long userId, long groupId, boolean head, boolean template, boolean draft)
-		throws com.liferay.portal.SystemException;
-
-	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByU_G_H_T_D(
-		long userId, long groupId, boolean head, boolean template,
-		boolean draft, int start, int end)
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_T_Or_G_T_U(
+		long groupId, boolean template, long userId, int start, int end)
 		throws com.liferay.portal.SystemException;
 }
