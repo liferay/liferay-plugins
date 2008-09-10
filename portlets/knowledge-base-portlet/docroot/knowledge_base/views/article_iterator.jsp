@@ -241,7 +241,7 @@ for (int i = 0; i < results.size(); i++) {
 							<portlet:param name="redirect" value="<%= currentURL %>" />
 						</portlet:actionURL>
 
-						<liferay-ui:icon image="unsubscribe" url="<%= unsubscribeURL %>" />
+						<liferay-ui:icon image="unsubscribe" message="unsubscribe-to-all-articles" url="<%= unsubscribeURL %>" />
 					</c:when>
 					<c:otherwise>
 						<portlet:actionURL var="subscribeURL">
@@ -249,7 +249,7 @@ for (int i = 0; i < results.size(); i++) {
 							<portlet:param name="redirect" value="<%= currentURL %>" />
 						</portlet:actionURL>
 
-						<liferay-ui:icon image="subscribe" url="<%= subscribeURL %>" />
+						<liferay-ui:icon image="subscribe" message="subscribe-to-all-articles" url="<%= subscribeURL %>" />
 					</c:otherwise>
 				</c:choose>
 			</c:if>

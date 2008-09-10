@@ -2,7 +2,7 @@
 ## Messages
 ##
 
-abstract-length=
+abstract-length=추상적인 길이
 all-knowledge-base-articles=모든 지식 기준 기사.
 apply=적용하십시오
 applying-a-template-will-not-delete-any-previous-work-in-this-article=템플렛을 적용하는 것은 이 기사에 있는 어떤 사전 작업도 삭제하지 않을 것이다.
@@ -24,6 +24,7 @@ ratings=등급
 rss-type-s=RSS 유형
 select-the-scope-to-search-for-knowledge-base-articles=지식 기준 기사를 찾기 위하여 범위를 선정하십시오.
 sign-in-to-rate-this-article=이 기사를 평가하기 위하여 안으로 서명하십시오.
+subscribe-to-all-articles=모든 기사를 구독하십시오.
 tags=꼬리표
 templates-are-generic-documents-that-can-be-used-to-quickly-create-new-articles-once-users-click-the-add-article-button-they-can-then-choose-a-template-to-use-for-their-article=템플렛은 빨리 새로운 기사를 창조하기 위하여 이용될 수 있는 일반적인 문서이다. 일단 사용자가 추가 기사 단추를 누르면, 그들의 기사를 위해 사용하기 위하여 그 때 템플렛을 선택해서 좋다.
 thank-you-we-appreciate-your-feedback=당신을 감사하십시오! 우리는 당신의 의견을 평가한다.
@@ -33,6 +34,7 @@ there-are-no-knowledge-base-articles-with-this-tag=이 꼬리표를 가진 지�
 there-are-no-knowledge-base-articles=지식 기준 기사가 없다.
 there-are-no-knowledge-base-templates=지식 기준 템플렛이 없다.
 unhelpful=도움이 안되는
+unsubscribe-to-all-articles=모든 기사에 Unubscribe.
 update-comments=갱신은 논평한다
 update-feedback=갱신 의견
 update-your-feedback-for-this-article=이 기사를 위한 당신의 의견을 새롭게 하십시오.
