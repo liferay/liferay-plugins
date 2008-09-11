@@ -19,6 +19,7 @@
 		<property name="dataSource">
 			<ref bean="liferayDataSource" />
 		</property>
+		<property name="globalRollbackOnParticipationFailure" value="false" />
 		<property name="sessionFactory">
 			<ref bean="liferayHibernateSessionFactory" />
 		</property>
