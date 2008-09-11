@@ -22,21 +22,10 @@
 
 package com.liferay.kb.knowledgebase.service;
 
-import com.liferay.kb.knowledgebase.model.KBArticleResourceClp;
-
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.LongWrapper;
 import com.liferay.portal.kernel.util.NullWrapper;
-import com.liferay.portal.model.BaseModel;
-
-import java.lang.reflect.Method;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="KBArticleResourceLocalServiceClp.java.html"><b><i>View Source</i></b></a>
@@ -48,13 +37,12 @@ public class KBArticleResourceLocalServiceClp
 	implements KBArticleResourceLocalService {
 	public KBArticleResourceLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
-		_classLoader = classLoaderProxy.getClassLoader();
 	}
 
 	public com.liferay.kb.knowledgebase.model.KBArticleResource addKBArticleResource(
 		com.liferay.kb.knowledgebase.model.KBArticleResource kbArticleResource)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(kbArticleResource);
+		Object paramObj0 = ClpSerializer.translateInput(kbArticleResource);
 
 		if (kbArticleResource == null) {
 			paramObj0 = new NullWrapper(
@@ -81,7 +69,7 @@ public class KBArticleResourceLocalServiceClp
 			}
 		}
 
-		return (com.liferay.kb.knowledgebase.model.KBArticleResource)translateOutput(returnObj);
+		return (com.liferay.kb.knowledgebase.model.KBArticleResource)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.kb.knowledgebase.model.KBArticleResource createKBArticleResource(
@@ -104,7 +92,7 @@ public class KBArticleResourceLocalServiceClp
 			}
 		}
 
-		return (com.liferay.kb.knowledgebase.model.KBArticleResource)translateOutput(returnObj);
+		return (com.liferay.kb.knowledgebase.model.KBArticleResource)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public void deleteKBArticleResource(long resourcePrimKey)
@@ -138,7 +126,7 @@ public class KBArticleResourceLocalServiceClp
 	public void deleteKBArticleResource(
 		com.liferay.kb.knowledgebase.model.KBArticleResource kbArticleResource)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(kbArticleResource);
+		Object paramObj0 = ClpSerializer.translateInput(kbArticleResource);
 
 		if (kbArticleResource == null) {
 			paramObj0 = new NullWrapper(
@@ -167,7 +155,7 @@ public class KBArticleResourceLocalServiceClp
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(dynamicQuery);
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
 			paramObj0 = new NullWrapper(
@@ -194,13 +182,13 @@ public class KBArticleResourceLocalServiceClp
 			}
 		}
 
-		return (java.util.List<Object>)translateOutput(returnObj);
+		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(dynamicQuery);
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
 			paramObj0 = new NullWrapper(
@@ -231,7 +219,7 @@ public class KBArticleResourceLocalServiceClp
 			}
 		}
 
-		return (java.util.List<Object>)translateOutput(returnObj);
+		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.kb.knowledgebase.model.KBArticleResource getKBArticleResource(
@@ -264,7 +252,7 @@ public class KBArticleResourceLocalServiceClp
 			}
 		}
 
-		return (com.liferay.kb.knowledgebase.model.KBArticleResource)translateOutput(returnObj);
+		return (com.liferay.kb.knowledgebase.model.KBArticleResource)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticleResource> getKBArticleResources(
@@ -293,7 +281,7 @@ public class KBArticleResourceLocalServiceClp
 			}
 		}
 
-		return (java.util.List<com.liferay.kb.knowledgebase.model.KBArticleResource>)translateOutput(returnObj);
+		return (java.util.List<com.liferay.kb.knowledgebase.model.KBArticleResource>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getKBArticleResourcesCount()
@@ -324,7 +312,7 @@ public class KBArticleResourceLocalServiceClp
 	public com.liferay.kb.knowledgebase.model.KBArticleResource updateKBArticleResource(
 		com.liferay.kb.knowledgebase.model.KBArticleResource kbArticleResource)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(kbArticleResource);
+		Object paramObj0 = ClpSerializer.translateInput(kbArticleResource);
 
 		if (kbArticleResource == null) {
 			paramObj0 = new NullWrapper(
@@ -351,7 +339,7 @@ public class KBArticleResourceLocalServiceClp
 			}
 		}
 
-		return (com.liferay.kb.knowledgebase.model.KBArticleResource)translateOutput(returnObj);
+		return (com.liferay.kb.knowledgebase.model.KBArticleResource)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public void deleteArticleResource(long groupId, java.lang.String title)
@@ -359,7 +347,7 @@ public class KBArticleResourceLocalServiceClp
 			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(groupId);
 
-		Object paramObj1 = translateInput(title);
+		Object paramObj1 = ClpSerializer.translateInput(title);
 
 		if (title == null) {
 			paramObj1 = new NullWrapper("java.lang.String");
@@ -418,14 +406,14 @@ public class KBArticleResourceLocalServiceClp
 			}
 		}
 
-		return (com.liferay.kb.knowledgebase.model.KBArticleResource)translateOutput(returnObj);
+		return (com.liferay.kb.knowledgebase.model.KBArticleResource)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public long getArticleResourcePrimKey(long groupId, java.lang.String title)
 		throws com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(groupId);
 
-		Object paramObj1 = translateInput(title);
+		Object paramObj1 = ClpSerializer.translateInput(title);
 
 		if (title == null) {
 			paramObj1 = new NullWrapper("java.lang.String");
@@ -454,215 +442,5 @@ public class KBArticleResourceLocalServiceClp
 		return ((Long)returnObj).longValue();
 	}
 
-	protected Object translateInput(BaseModel oldModel) {
-		Class oldModelClass = oldModel.getClass();
-
-		String oldModelClassName = oldModelClass.getName();
-
-		if (oldModelClassName.equals(KBArticleResourceClp.class.getName())) {
-			KBArticleResourceClp oldCplModel = (KBArticleResourceClp)oldModel;
-
-			ClassLoader contextClassLoader = Thread.currentThread()
-												   .getContextClassLoader();
-
-			try {
-				Thread.currentThread().setContextClassLoader(_classLoader);
-
-				try {
-					Class newModelClass = Class.forName("com.liferay.kb.knowledgebase.model.impl.KBArticleResourceImpl",
-							true, _classLoader);
-
-					Object newModel = newModelClass.newInstance();
-
-					Method method0 = newModelClass.getMethod("setResourcePrimKey",
-							new Class[] { Long.TYPE });
-
-					Long value0 = new Long(oldCplModel.getResourcePrimKey());
-
-					method0.invoke(newModel, value0);
-
-					Method method1 = newModelClass.getMethod("setGroupId",
-							new Class[] { Long.TYPE });
-
-					Long value1 = new Long(oldCplModel.getGroupId());
-
-					method1.invoke(newModel, value1);
-
-					Method method2 = newModelClass.getMethod("setCompanyId",
-							new Class[] { Long.TYPE });
-
-					Long value2 = new Long(oldCplModel.getCompanyId());
-
-					method2.invoke(newModel, value2);
-
-					Method method3 = newModelClass.getMethod("setUserId",
-							new Class[] { Long.TYPE });
-
-					Long value3 = new Long(oldCplModel.getUserId());
-
-					method3.invoke(newModel, value3);
-
-					Method method4 = newModelClass.getMethod("setUserName",
-							new Class[] { String.class });
-
-					String value4 = oldCplModel.getUserName();
-
-					method4.invoke(newModel, value4);
-
-					Method method5 = newModelClass.getMethod("setCreateDate",
-							new Class[] { Date.class });
-
-					Date value5 = oldCplModel.getCreateDate();
-
-					method5.invoke(newModel, value5);
-
-					Method method6 = newModelClass.getMethod("setTitle",
-							new Class[] { String.class });
-
-					String value6 = oldCplModel.getTitle();
-
-					method6.invoke(newModel, value6);
-
-					return newModel;
-				}
-				catch (Exception e) {
-					_log.error(e, e);
-				}
-			}
-			finally {
-				Thread.currentThread().setContextClassLoader(contextClassLoader);
-			}
-		}
-
-		return oldModel;
-	}
-
-	protected Object translateInput(List oldList) {
-		List newList = new ArrayList(oldList.size());
-
-		for (int i = 0; i < oldList.size(); i++) {
-			Object curObj = oldList.get(i);
-
-			newList.add(translateInput(curObj));
-		}
-
-		return newList;
-	}
-
-	protected Object translateInput(Object obj) {
-		if (obj instanceof BaseModel) {
-			return translateInput((BaseModel)obj);
-		}
-
-		if (obj instanceof List) {
-			return translateInput((List)obj);
-		}
-		else {
-			return obj;
-		}
-	}
-
-	protected Object translateOutput(BaseModel oldModel) {
-		Class oldModelClass = oldModel.getClass();
-
-		String oldModelClassName = oldModelClass.getName();
-
-		if (oldModelClassName.equals(
-					"com.liferay.kb.knowledgebase.model.impl.KBArticleResourceImpl")) {
-			ClassLoader contextClassLoader = Thread.currentThread()
-												   .getContextClassLoader();
-
-			try {
-				Thread.currentThread().setContextClassLoader(_classLoader);
-
-				try {
-					KBArticleResourceClp newModel = new KBArticleResourceClp();
-
-					Method method0 = oldModelClass.getMethod(
-							"getResourcePrimKey");
-
-					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
-
-					newModel.setResourcePrimKey(value0.longValue());
-
-					Method method1 = oldModelClass.getMethod("getGroupId");
-
-					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
-
-					newModel.setGroupId(value1.longValue());
-
-					Method method2 = oldModelClass.getMethod("getCompanyId");
-
-					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
-
-					newModel.setCompanyId(value2.longValue());
-
-					Method method3 = oldModelClass.getMethod("getUserId");
-
-					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
-
-					newModel.setUserId(value3.longValue());
-
-					Method method4 = oldModelClass.getMethod("getUserName");
-
-					String value4 = (String)method4.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setUserName(value4);
-
-					Method method5 = oldModelClass.getMethod("getCreateDate");
-
-					Date value5 = (Date)method5.invoke(oldModel, (Object[])null);
-
-					newModel.setCreateDate(value5);
-
-					Method method6 = oldModelClass.getMethod("getTitle");
-
-					String value6 = (String)method6.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setTitle(value6);
-
-					return newModel;
-				}
-				catch (Exception e) {
-					_log.error(e, e);
-				}
-			}
-			finally {
-				Thread.currentThread().setContextClassLoader(contextClassLoader);
-			}
-		}
-
-		return oldModel;
-	}
-
-	protected Object translateOutput(List oldList) {
-		List newList = new ArrayList(oldList.size());
-
-		for (int i = 0; i < oldList.size(); i++) {
-			Object curObj = oldList.get(i);
-
-			newList.add(translateOutput(curObj));
-		}
-
-		return newList;
-	}
-
-	protected Object translateOutput(Object obj) {
-		if (obj instanceof BaseModel) {
-			return translateOutput((BaseModel)obj);
-		}
-
-		if (obj instanceof List) {
-			return translateOutput((List)obj);
-		}
-		else {
-			return obj;
-		}
-	}
-
-	private static Log _log = LogFactoryUtil.getLog(KBArticleResourceLocalServiceClp.class);
 	private ClassLoaderProxy _classLoaderProxy;
-	private ClassLoader _classLoader;
 }

@@ -22,21 +22,10 @@
 
 package com.liferay.twitter.service;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.LongWrapper;
 import com.liferay.portal.kernel.util.NullWrapper;
-import com.liferay.portal.model.BaseModel;
-
-import com.liferay.twitter.model.FeedClp;
-
-import java.lang.reflect.Method;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="FeedLocalServiceClp.java.html"><b><i>View Source</i></b></a>
@@ -47,13 +36,12 @@ import java.util.List;
 public class FeedLocalServiceClp implements FeedLocalService {
 	public FeedLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
-		_classLoader = classLoaderProxy.getClassLoader();
 	}
 
 	public com.liferay.twitter.model.Feed addFeed(
 		com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(feed);
+		Object paramObj0 = ClpSerializer.translateInput(feed);
 
 		if (feed == null) {
 			paramObj0 = new NullWrapper("com.liferay.twitter.model.Feed");
@@ -79,7 +67,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 			}
 		}
 
-		return (com.liferay.twitter.model.Feed)translateOutput(returnObj);
+		return (com.liferay.twitter.model.Feed)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.twitter.model.Feed createFeed(long feedId) {
@@ -101,7 +89,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 			}
 		}
 
-		return (com.liferay.twitter.model.Feed)translateOutput(returnObj);
+		return (com.liferay.twitter.model.Feed)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public void deleteFeed(long feedId)
@@ -133,7 +121,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 
 	public void deleteFeed(com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(feed);
+		Object paramObj0 = ClpSerializer.translateInput(feed);
 
 		if (feed == null) {
 			paramObj0 = new NullWrapper("com.liferay.twitter.model.Feed");
@@ -160,7 +148,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(dynamicQuery);
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
 			paramObj0 = new NullWrapper(
@@ -187,13 +175,13 @@ public class FeedLocalServiceClp implements FeedLocalService {
 			}
 		}
 
-		return (java.util.List<Object>)translateOutput(returnObj);
+		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(dynamicQuery);
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
 			paramObj0 = new NullWrapper(
@@ -224,7 +212,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 			}
 		}
 
-		return (java.util.List<Object>)translateOutput(returnObj);
+		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.twitter.model.Feed getFeed(long feedId)
@@ -256,7 +244,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 			}
 		}
 
-		return (com.liferay.twitter.model.Feed)translateOutput(returnObj);
+		return (com.liferay.twitter.model.Feed)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<com.liferay.twitter.model.Feed> getFeeds(int start,
@@ -285,7 +273,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.twitter.model.Feed>)translateOutput(returnObj);
+		return (java.util.List<com.liferay.twitter.model.Feed>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getFeedsCount() throws com.liferay.portal.SystemException {
@@ -314,7 +302,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 	public com.liferay.twitter.model.Feed updateFeed(
 		com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(feed);
+		Object paramObj0 = ClpSerializer.translateInput(feed);
 
 		if (feed == null) {
 			paramObj0 = new NullWrapper("com.liferay.twitter.model.Feed");
@@ -340,7 +328,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 			}
 		}
 
-		return (com.liferay.twitter.model.Feed)translateOutput(returnObj);
+		return (com.liferay.twitter.model.Feed)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public void updateFeed(long userId)
@@ -422,200 +410,5 @@ public class FeedLocalServiceClp implements FeedLocalService {
 		}
 	}
 
-	protected Object translateInput(BaseModel oldModel) {
-		Class oldModelClass = oldModel.getClass();
-
-		String oldModelClassName = oldModelClass.getName();
-
-		if (oldModelClassName.equals(FeedClp.class.getName())) {
-			FeedClp oldCplModel = (FeedClp)oldModel;
-
-			ClassLoader contextClassLoader = Thread.currentThread()
-												   .getContextClassLoader();
-
-			try {
-				Thread.currentThread().setContextClassLoader(_classLoader);
-
-				try {
-					Class newModelClass = Class.forName("com.liferay.twitter.model.impl.FeedImpl",
-							true, _classLoader);
-
-					Object newModel = newModelClass.newInstance();
-
-					Method method0 = newModelClass.getMethod("setFeedId",
-							new Class[] { Long.TYPE });
-
-					Long value0 = new Long(oldCplModel.getFeedId());
-
-					method0.invoke(newModel, value0);
-
-					Method method1 = newModelClass.getMethod("setTwitterUserId",
-							new Class[] { Long.TYPE });
-
-					Long value1 = new Long(oldCplModel.getTwitterUserId());
-
-					method1.invoke(newModel, value1);
-
-					Method method2 = newModelClass.getMethod("setTwitterScreenName",
-							new Class[] { String.class });
-
-					String value2 = oldCplModel.getTwitterScreenName();
-
-					method2.invoke(newModel, value2);
-
-					Method method3 = newModelClass.getMethod("setCreateDate",
-							new Class[] { Date.class });
-
-					Date value3 = oldCplModel.getCreateDate();
-
-					method3.invoke(newModel, value3);
-
-					Method method4 = newModelClass.getMethod("setModifiedDate",
-							new Class[] { Date.class });
-
-					Date value4 = oldCplModel.getModifiedDate();
-
-					method4.invoke(newModel, value4);
-
-					Method method5 = newModelClass.getMethod("setLastStatusId",
-							new Class[] { Long.TYPE });
-
-					Long value5 = new Long(oldCplModel.getLastStatusId());
-
-					method5.invoke(newModel, value5);
-
-					return newModel;
-				}
-				catch (Exception e) {
-					_log.error(e, e);
-				}
-			}
-			finally {
-				Thread.currentThread().setContextClassLoader(contextClassLoader);
-			}
-		}
-
-		return oldModel;
-	}
-
-	protected Object translateInput(List oldList) {
-		List newList = new ArrayList(oldList.size());
-
-		for (int i = 0; i < oldList.size(); i++) {
-			Object curObj = oldList.get(i);
-
-			newList.add(translateInput(curObj));
-		}
-
-		return newList;
-	}
-
-	protected Object translateInput(Object obj) {
-		if (obj instanceof BaseModel) {
-			return translateInput((BaseModel)obj);
-		}
-
-		if (obj instanceof List) {
-			return translateInput((List)obj);
-		}
-		else {
-			return obj;
-		}
-	}
-
-	protected Object translateOutput(BaseModel oldModel) {
-		Class oldModelClass = oldModel.getClass();
-
-		String oldModelClassName = oldModelClass.getName();
-
-		if (oldModelClassName.equals("com.liferay.twitter.model.impl.FeedImpl")) {
-			ClassLoader contextClassLoader = Thread.currentThread()
-												   .getContextClassLoader();
-
-			try {
-				Thread.currentThread().setContextClassLoader(_classLoader);
-
-				try {
-					FeedClp newModel = new FeedClp();
-
-					Method method0 = oldModelClass.getMethod("getFeedId");
-
-					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
-
-					newModel.setFeedId(value0.longValue());
-
-					Method method1 = oldModelClass.getMethod("getTwitterUserId");
-
-					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
-
-					newModel.setTwitterUserId(value1.longValue());
-
-					Method method2 = oldModelClass.getMethod(
-							"getTwitterScreenName");
-
-					String value2 = (String)method2.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setTwitterScreenName(value2);
-
-					Method method3 = oldModelClass.getMethod("getCreateDate");
-
-					Date value3 = (Date)method3.invoke(oldModel, (Object[])null);
-
-					newModel.setCreateDate(value3);
-
-					Method method4 = oldModelClass.getMethod("getModifiedDate");
-
-					Date value4 = (Date)method4.invoke(oldModel, (Object[])null);
-
-					newModel.setModifiedDate(value4);
-
-					Method method5 = oldModelClass.getMethod("getLastStatusId");
-
-					Long value5 = (Long)method5.invoke(oldModel, (Object[])null);
-
-					newModel.setLastStatusId(value5.longValue());
-
-					return newModel;
-				}
-				catch (Exception e) {
-					_log.error(e, e);
-				}
-			}
-			finally {
-				Thread.currentThread().setContextClassLoader(contextClassLoader);
-			}
-		}
-
-		return oldModel;
-	}
-
-	protected Object translateOutput(List oldList) {
-		List newList = new ArrayList(oldList.size());
-
-		for (int i = 0; i < oldList.size(); i++) {
-			Object curObj = oldList.get(i);
-
-			newList.add(translateOutput(curObj));
-		}
-
-		return newList;
-	}
-
-	protected Object translateOutput(Object obj) {
-		if (obj instanceof BaseModel) {
-			return translateOutput((BaseModel)obj);
-		}
-
-		if (obj instanceof List) {
-			return translateOutput((List)obj);
-		}
-		else {
-			return obj;
-		}
-	}
-
-	private static Log _log = LogFactoryUtil.getLog(FeedLocalServiceClp.class);
 	private ClassLoaderProxy _classLoaderProxy;
-	private ClassLoader _classLoader;
 }

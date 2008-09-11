@@ -22,20 +22,10 @@
 
 package com.liferay.wol.service;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.LongWrapper;
 import com.liferay.portal.kernel.util.NullWrapper;
-import com.liferay.portal.model.BaseModel;
-
-import com.liferay.wol.model.SVNRepositoryClp;
-
-import java.lang.reflect.Method;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <a href="SVNRepositoryLocalServiceClp.java.html"><b><i>View Source</i></b></a>
@@ -46,13 +36,12 @@ import java.util.List;
 public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 	public SVNRepositoryLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
-		_classLoader = classLoaderProxy.getClassLoader();
 	}
 
 	public com.liferay.wol.model.SVNRepository addSVNRepository(
 		com.liferay.wol.model.SVNRepository svnRepository)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(svnRepository);
+		Object paramObj0 = ClpSerializer.translateInput(svnRepository);
 
 		if (svnRepository == null) {
 			paramObj0 = new NullWrapper("com.liferay.wol.model.SVNRepository");
@@ -78,7 +67,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 			}
 		}
 
-		return (com.liferay.wol.model.SVNRepository)translateOutput(returnObj);
+		return (com.liferay.wol.model.SVNRepository)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.wol.model.SVNRepository createSVNRepository(
@@ -101,7 +90,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 			}
 		}
 
-		return (com.liferay.wol.model.SVNRepository)translateOutput(returnObj);
+		return (com.liferay.wol.model.SVNRepository)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public void deleteSVNRepository(long svnRepositoryId)
@@ -135,7 +124,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 	public void deleteSVNRepository(
 		com.liferay.wol.model.SVNRepository svnRepository)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(svnRepository);
+		Object paramObj0 = ClpSerializer.translateInput(svnRepository);
 
 		if (svnRepository == null) {
 			paramObj0 = new NullWrapper("com.liferay.wol.model.SVNRepository");
@@ -163,7 +152,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(dynamicQuery);
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
 			paramObj0 = new NullWrapper(
@@ -190,13 +179,13 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 			}
 		}
 
-		return (java.util.List<Object>)translateOutput(returnObj);
+		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(dynamicQuery);
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
 			paramObj0 = new NullWrapper(
@@ -227,7 +216,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 			}
 		}
 
-		return (java.util.List<Object>)translateOutput(returnObj);
+		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.wol.model.SVNRepository getSVNRepository(
@@ -260,7 +249,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 			}
 		}
 
-		return (com.liferay.wol.model.SVNRepository)translateOutput(returnObj);
+		return (com.liferay.wol.model.SVNRepository)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<com.liferay.wol.model.SVNRepository> getSVNRepositories(
@@ -289,7 +278,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.wol.model.SVNRepository>)translateOutput(returnObj);
+		return (java.util.List<com.liferay.wol.model.SVNRepository>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getSVNRepositoriesCount()
@@ -320,7 +309,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 	public com.liferay.wol.model.SVNRepository updateSVNRepository(
 		com.liferay.wol.model.SVNRepository svnRepository)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(svnRepository);
+		Object paramObj0 = ClpSerializer.translateInput(svnRepository);
 
 		if (svnRepository == null) {
 			paramObj0 = new NullWrapper("com.liferay.wol.model.SVNRepository");
@@ -346,14 +335,14 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 			}
 		}
 
-		return (com.liferay.wol.model.SVNRepository)translateOutput(returnObj);
+		return (com.liferay.wol.model.SVNRepository)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.wol.model.SVNRepository getSVNRepository(
 		java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(url);
+		Object paramObj0 = ClpSerializer.translateInput(url);
 
 		if (url == null) {
 			paramObj0 = new NullWrapper("java.lang.String");
@@ -383,13 +372,13 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 			}
 		}
 
-		return (com.liferay.wol.model.SVNRepository)translateOutput(returnObj);
+		return (com.liferay.wol.model.SVNRepository)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public void updateSVNRepository(java.lang.String url)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(url);
+		Object paramObj0 = ClpSerializer.translateInput(url);
 
 		if (url == null) {
 			paramObj0 = new NullWrapper("java.lang.String");
@@ -418,163 +407,5 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		}
 	}
 
-	protected Object translateInput(BaseModel oldModel) {
-		Class oldModelClass = oldModel.getClass();
-
-		String oldModelClassName = oldModelClass.getName();
-
-		if (oldModelClassName.equals(SVNRepositoryClp.class.getName())) {
-			SVNRepositoryClp oldCplModel = (SVNRepositoryClp)oldModel;
-
-			ClassLoader contextClassLoader = Thread.currentThread()
-												   .getContextClassLoader();
-
-			try {
-				Thread.currentThread().setContextClassLoader(_classLoader);
-
-				try {
-					Class newModelClass = Class.forName("com.liferay.wol.model.impl.SVNRepositoryImpl",
-							true, _classLoader);
-
-					Object newModel = newModelClass.newInstance();
-
-					Method method0 = newModelClass.getMethod("setSvnRepositoryId",
-							new Class[] { Long.TYPE });
-
-					Long value0 = new Long(oldCplModel.getSvnRepositoryId());
-
-					method0.invoke(newModel, value0);
-
-					Method method1 = newModelClass.getMethod("setUrl",
-							new Class[] { String.class });
-
-					String value1 = oldCplModel.getUrl();
-
-					method1.invoke(newModel, value1);
-
-					Method method2 = newModelClass.getMethod("setRevisionNumber",
-							new Class[] { Long.TYPE });
-
-					Long value2 = new Long(oldCplModel.getRevisionNumber());
-
-					method2.invoke(newModel, value2);
-
-					return newModel;
-				}
-				catch (Exception e) {
-					_log.error(e, e);
-				}
-			}
-			finally {
-				Thread.currentThread().setContextClassLoader(contextClassLoader);
-			}
-		}
-
-		return oldModel;
-	}
-
-	protected Object translateInput(List oldList) {
-		List newList = new ArrayList(oldList.size());
-
-		for (int i = 0; i < oldList.size(); i++) {
-			Object curObj = oldList.get(i);
-
-			newList.add(translateInput(curObj));
-		}
-
-		return newList;
-	}
-
-	protected Object translateInput(Object obj) {
-		if (obj instanceof BaseModel) {
-			return translateInput((BaseModel)obj);
-		}
-
-		if (obj instanceof List) {
-			return translateInput((List)obj);
-		}
-		else {
-			return obj;
-		}
-	}
-
-	protected Object translateOutput(BaseModel oldModel) {
-		Class oldModelClass = oldModel.getClass();
-
-		String oldModelClassName = oldModelClass.getName();
-
-		if (oldModelClassName.equals(
-					"com.liferay.wol.model.impl.SVNRepositoryImpl")) {
-			ClassLoader contextClassLoader = Thread.currentThread()
-												   .getContextClassLoader();
-
-			try {
-				Thread.currentThread().setContextClassLoader(_classLoader);
-
-				try {
-					SVNRepositoryClp newModel = new SVNRepositoryClp();
-
-					Method method0 = oldModelClass.getMethod(
-							"getSvnRepositoryId");
-
-					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
-
-					newModel.setSvnRepositoryId(value0.longValue());
-
-					Method method1 = oldModelClass.getMethod("getUrl");
-
-					String value1 = (String)method1.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setUrl(value1);
-
-					Method method2 = oldModelClass.getMethod(
-							"getRevisionNumber");
-
-					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
-
-					newModel.setRevisionNumber(value2.longValue());
-
-					return newModel;
-				}
-				catch (Exception e) {
-					_log.error(e, e);
-				}
-			}
-			finally {
-				Thread.currentThread().setContextClassLoader(contextClassLoader);
-			}
-		}
-
-		return oldModel;
-	}
-
-	protected Object translateOutput(List oldList) {
-		List newList = new ArrayList(oldList.size());
-
-		for (int i = 0; i < oldList.size(); i++) {
-			Object curObj = oldList.get(i);
-
-			newList.add(translateOutput(curObj));
-		}
-
-		return newList;
-	}
-
-	protected Object translateOutput(Object obj) {
-		if (obj instanceof BaseModel) {
-			return translateOutput((BaseModel)obj);
-		}
-
-		if (obj instanceof List) {
-			return translateOutput((List)obj);
-		}
-		else {
-			return obj;
-		}
-	}
-
-	private static Log _log = LogFactoryUtil.getLog(SVNRepositoryLocalServiceClp.class);
 	private ClassLoaderProxy _classLoaderProxy;
-	private ClassLoader _classLoader;
 }

@@ -22,21 +22,10 @@
 
 package com.liferay.wol.service;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.LongWrapper;
 import com.liferay.portal.kernel.util.NullWrapper;
-import com.liferay.portal.model.BaseModel;
-
-import com.liferay.wol.model.SVNRevisionClp;
-
-import java.lang.reflect.Method;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="SVNRevisionLocalServiceClp.java.html"><b><i>View Source</i></b></a>
@@ -47,13 +36,12 @@ import java.util.List;
 public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 	public SVNRevisionLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
-		_classLoader = classLoaderProxy.getClassLoader();
 	}
 
 	public com.liferay.wol.model.SVNRevision addSVNRevision(
 		com.liferay.wol.model.SVNRevision svnRevision)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(svnRevision);
+		Object paramObj0 = ClpSerializer.translateInput(svnRevision);
 
 		if (svnRevision == null) {
 			paramObj0 = new NullWrapper("com.liferay.wol.model.SVNRevision");
@@ -79,7 +67,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 			}
 		}
 
-		return (com.liferay.wol.model.SVNRevision)translateOutput(returnObj);
+		return (com.liferay.wol.model.SVNRevision)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.wol.model.SVNRevision createSVNRevision(
@@ -102,7 +90,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 			}
 		}
 
-		return (com.liferay.wol.model.SVNRevision)translateOutput(returnObj);
+		return (com.liferay.wol.model.SVNRevision)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public void deleteSVNRevision(long svnRevisionId)
@@ -135,7 +123,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 
 	public void deleteSVNRevision(com.liferay.wol.model.SVNRevision svnRevision)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(svnRevision);
+		Object paramObj0 = ClpSerializer.translateInput(svnRevision);
 
 		if (svnRevision == null) {
 			paramObj0 = new NullWrapper("com.liferay.wol.model.SVNRevision");
@@ -163,7 +151,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(dynamicQuery);
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
 			paramObj0 = new NullWrapper(
@@ -190,13 +178,13 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 			}
 		}
 
-		return (java.util.List<Object>)translateOutput(returnObj);
+		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(dynamicQuery);
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
 			paramObj0 = new NullWrapper(
@@ -227,7 +215,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 			}
 		}
 
-		return (java.util.List<Object>)translateOutput(returnObj);
+		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.wol.model.SVNRevision getSVNRevision(long svnRevisionId)
@@ -259,7 +247,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 			}
 		}
 
-		return (com.liferay.wol.model.SVNRevision)translateOutput(returnObj);
+		return (com.liferay.wol.model.SVNRevision)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
@@ -288,7 +276,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.wol.model.SVNRevision>)translateOutput(returnObj);
+		return (java.util.List<com.liferay.wol.model.SVNRevision>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getSVNRevisionsCount() throws com.liferay.portal.SystemException {
@@ -318,7 +306,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 	public com.liferay.wol.model.SVNRevision updateSVNRevision(
 		com.liferay.wol.model.SVNRevision svnRevision)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(svnRevision);
+		Object paramObj0 = ClpSerializer.translateInput(svnRevision);
 
 		if (svnRevision == null) {
 			paramObj0 = new NullWrapper("com.liferay.wol.model.SVNRevision");
@@ -344,7 +332,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 			}
 		}
 
-		return (com.liferay.wol.model.SVNRevision)translateOutput(returnObj);
+		return (com.liferay.wol.model.SVNRevision)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.wol.model.SVNRevision addSVNRevision(
@@ -352,13 +340,13 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 		long svnRepositoryId, long revisionNumber, java.lang.String comments)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(svnUserId);
+		Object paramObj0 = ClpSerializer.translateInput(svnUserId);
 
 		if (svnUserId == null) {
 			paramObj0 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj1 = translateInput(createDate);
+		Object paramObj1 = ClpSerializer.translateInput(createDate);
 
 		if (createDate == null) {
 			paramObj1 = new NullWrapper("java.util.Date");
@@ -368,7 +356,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 
 		Object paramObj3 = new LongWrapper(revisionNumber);
 
-		Object paramObj4 = translateInput(comments);
+		Object paramObj4 = ClpSerializer.translateInput(comments);
 
 		if (comments == null) {
 			paramObj4 = new NullWrapper("java.lang.String");
@@ -400,14 +388,14 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 			}
 		}
 
-		return (com.liferay.wol.model.SVNRevision)translateOutput(returnObj);
+		return (com.liferay.wol.model.SVNRevision)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.wol.model.SVNRevision getFirstSVNRevision(
 		java.lang.String svnUserId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(svnUserId);
+		Object paramObj0 = ClpSerializer.translateInput(svnUserId);
 
 		if (svnUserId == null) {
 			paramObj0 = new NullWrapper("java.lang.String");
@@ -437,14 +425,14 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 			}
 		}
 
-		return (com.liferay.wol.model.SVNRevision)translateOutput(returnObj);
+		return (com.liferay.wol.model.SVNRevision)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.wol.model.SVNRevision getLastSVNRevision(
 		java.lang.String svnUserId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(svnUserId);
+		Object paramObj0 = ClpSerializer.translateInput(svnUserId);
 
 		if (svnUserId == null) {
 			paramObj0 = new NullWrapper("java.lang.String");
@@ -474,13 +462,13 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 			}
 		}
 
-		return (com.liferay.wol.model.SVNRevision)translateOutput(returnObj);
+		return (com.liferay.wol.model.SVNRevision)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
 		java.lang.String svnUserId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(svnUserId);
+		Object paramObj0 = ClpSerializer.translateInput(svnUserId);
 
 		if (svnUserId == null) {
 			paramObj0 = new NullWrapper("java.lang.String");
@@ -510,7 +498,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.wol.model.SVNRevision>)translateOutput(returnObj);
+		return (java.util.List<com.liferay.wol.model.SVNRevision>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
@@ -542,13 +530,13 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.wol.model.SVNRevision>)translateOutput(returnObj);
+		return (java.util.List<com.liferay.wol.model.SVNRevision>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<com.liferay.wol.model.SVNRevision> getSVNRevisions(
 		java.lang.String svnUserId, long svnRepositoryId, int start, int end)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(svnUserId);
+		Object paramObj0 = ClpSerializer.translateInput(svnUserId);
 
 		if (svnUserId == null) {
 			paramObj0 = new NullWrapper("java.lang.String");
@@ -580,12 +568,12 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.wol.model.SVNRevision>)translateOutput(returnObj);
+		return (java.util.List<com.liferay.wol.model.SVNRevision>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getSVNRevisionsCount(java.lang.String svnUserId)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(svnUserId);
+		Object paramObj0 = ClpSerializer.translateInput(svnUserId);
 
 		if (svnUserId == null) {
 			paramObj0 = new NullWrapper("java.lang.String");
@@ -643,7 +631,7 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 
 	public int getSVNRevisionsCount(java.lang.String svnUserId,
 		long svnRepositoryId) throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(svnUserId);
+		Object paramObj0 = ClpSerializer.translateInput(svnUserId);
 
 		if (svnUserId == null) {
 			paramObj0 = new NullWrapper("java.lang.String");
@@ -674,203 +662,5 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	protected Object translateInput(BaseModel oldModel) {
-		Class oldModelClass = oldModel.getClass();
-
-		String oldModelClassName = oldModelClass.getName();
-
-		if (oldModelClassName.equals(SVNRevisionClp.class.getName())) {
-			SVNRevisionClp oldCplModel = (SVNRevisionClp)oldModel;
-
-			ClassLoader contextClassLoader = Thread.currentThread()
-												   .getContextClassLoader();
-
-			try {
-				Thread.currentThread().setContextClassLoader(_classLoader);
-
-				try {
-					Class newModelClass = Class.forName("com.liferay.wol.model.impl.SVNRevisionImpl",
-							true, _classLoader);
-
-					Object newModel = newModelClass.newInstance();
-
-					Method method0 = newModelClass.getMethod("setSvnRevisionId",
-							new Class[] { Long.TYPE });
-
-					Long value0 = new Long(oldCplModel.getSvnRevisionId());
-
-					method0.invoke(newModel, value0);
-
-					Method method1 = newModelClass.getMethod("setSvnUserId",
-							new Class[] { String.class });
-
-					String value1 = oldCplModel.getSvnUserId();
-
-					method1.invoke(newModel, value1);
-
-					Method method2 = newModelClass.getMethod("setCreateDate",
-							new Class[] { Date.class });
-
-					Date value2 = oldCplModel.getCreateDate();
-
-					method2.invoke(newModel, value2);
-
-					Method method3 = newModelClass.getMethod("setSvnRepositoryId",
-							new Class[] { Long.TYPE });
-
-					Long value3 = new Long(oldCplModel.getSvnRepositoryId());
-
-					method3.invoke(newModel, value3);
-
-					Method method4 = newModelClass.getMethod("setRevisionNumber",
-							new Class[] { Long.TYPE });
-
-					Long value4 = new Long(oldCplModel.getRevisionNumber());
-
-					method4.invoke(newModel, value4);
-
-					Method method5 = newModelClass.getMethod("setComments",
-							new Class[] { String.class });
-
-					String value5 = oldCplModel.getComments();
-
-					method5.invoke(newModel, value5);
-
-					return newModel;
-				}
-				catch (Exception e) {
-					_log.error(e, e);
-				}
-			}
-			finally {
-				Thread.currentThread().setContextClassLoader(contextClassLoader);
-			}
-		}
-
-		return oldModel;
-	}
-
-	protected Object translateInput(List oldList) {
-		List newList = new ArrayList(oldList.size());
-
-		for (int i = 0; i < oldList.size(); i++) {
-			Object curObj = oldList.get(i);
-
-			newList.add(translateInput(curObj));
-		}
-
-		return newList;
-	}
-
-	protected Object translateInput(Object obj) {
-		if (obj instanceof BaseModel) {
-			return translateInput((BaseModel)obj);
-		}
-
-		if (obj instanceof List) {
-			return translateInput((List)obj);
-		}
-		else {
-			return obj;
-		}
-	}
-
-	protected Object translateOutput(BaseModel oldModel) {
-		Class oldModelClass = oldModel.getClass();
-
-		String oldModelClassName = oldModelClass.getName();
-
-		if (oldModelClassName.equals(
-					"com.liferay.wol.model.impl.SVNRevisionImpl")) {
-			ClassLoader contextClassLoader = Thread.currentThread()
-												   .getContextClassLoader();
-
-			try {
-				Thread.currentThread().setContextClassLoader(_classLoader);
-
-				try {
-					SVNRevisionClp newModel = new SVNRevisionClp();
-
-					Method method0 = oldModelClass.getMethod("getSvnRevisionId");
-
-					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
-
-					newModel.setSvnRevisionId(value0.longValue());
-
-					Method method1 = oldModelClass.getMethod("getSvnUserId");
-
-					String value1 = (String)method1.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setSvnUserId(value1);
-
-					Method method2 = oldModelClass.getMethod("getCreateDate");
-
-					Date value2 = (Date)method2.invoke(oldModel, (Object[])null);
-
-					newModel.setCreateDate(value2);
-
-					Method method3 = oldModelClass.getMethod(
-							"getSvnRepositoryId");
-
-					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
-
-					newModel.setSvnRepositoryId(value3.longValue());
-
-					Method method4 = oldModelClass.getMethod(
-							"getRevisionNumber");
-
-					Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
-
-					newModel.setRevisionNumber(value4.longValue());
-
-					Method method5 = oldModelClass.getMethod("getComments");
-
-					String value5 = (String)method5.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setComments(value5);
-
-					return newModel;
-				}
-				catch (Exception e) {
-					_log.error(e, e);
-				}
-			}
-			finally {
-				Thread.currentThread().setContextClassLoader(contextClassLoader);
-			}
-		}
-
-		return oldModel;
-	}
-
-	protected Object translateOutput(List oldList) {
-		List newList = new ArrayList(oldList.size());
-
-		for (int i = 0; i < oldList.size(); i++) {
-			Object curObj = oldList.get(i);
-
-			newList.add(translateOutput(curObj));
-		}
-
-		return newList;
-	}
-
-	protected Object translateOutput(Object obj) {
-		if (obj instanceof BaseModel) {
-			return translateOutput((BaseModel)obj);
-		}
-
-		if (obj instanceof List) {
-			return translateOutput((List)obj);
-		}
-		else {
-			return obj;
-		}
-	}
-
-	private static Log _log = LogFactoryUtil.getLog(SVNRevisionLocalServiceClp.class);
 	private ClassLoaderProxy _classLoaderProxy;
-	private ClassLoader _classLoader;
 }

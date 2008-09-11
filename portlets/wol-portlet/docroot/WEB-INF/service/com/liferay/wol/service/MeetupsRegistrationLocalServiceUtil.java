@@ -122,13 +122,15 @@ public class MeetupsRegistrationLocalServiceUtil {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate("wol-portlet",
 					MeetupsRegistrationLocalServiceUtil.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("chat-portlet",
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("wol-portlet",
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
 					portletClassLoader);
 
 			_service = new MeetupsRegistrationLocalServiceClp(classLoaderProxy);
+
+			ClpSerializer.setClassLoader(portletClassLoader);
 		}
 
 		return _service;

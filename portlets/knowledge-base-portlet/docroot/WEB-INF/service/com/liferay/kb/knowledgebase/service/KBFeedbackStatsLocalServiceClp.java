@@ -22,20 +22,10 @@
 
 package com.liferay.kb.knowledgebase.service;
 
-import com.liferay.kb.knowledgebase.model.KBFeedbackStatsClp;
-
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.LongWrapper;
 import com.liferay.portal.kernel.util.NullWrapper;
-import com.liferay.portal.model.BaseModel;
-
-import java.lang.reflect.Method;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <a href="KBFeedbackStatsLocalServiceClp.java.html"><b><i>View Source</i></b></a>
@@ -47,13 +37,12 @@ public class KBFeedbackStatsLocalServiceClp
 	implements KBFeedbackStatsLocalService {
 	public KBFeedbackStatsLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
-		_classLoader = classLoaderProxy.getClassLoader();
 	}
 
 	public com.liferay.kb.knowledgebase.model.KBFeedbackStats addKBFeedbackStats(
 		com.liferay.kb.knowledgebase.model.KBFeedbackStats kbFeedbackStats)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(kbFeedbackStats);
+		Object paramObj0 = ClpSerializer.translateInput(kbFeedbackStats);
 
 		if (kbFeedbackStats == null) {
 			paramObj0 = new NullWrapper(
@@ -80,7 +69,7 @@ public class KBFeedbackStatsLocalServiceClp
 			}
 		}
 
-		return (com.liferay.kb.knowledgebase.model.KBFeedbackStats)translateOutput(returnObj);
+		return (com.liferay.kb.knowledgebase.model.KBFeedbackStats)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.kb.knowledgebase.model.KBFeedbackStats createKBFeedbackStats(
@@ -103,7 +92,7 @@ public class KBFeedbackStatsLocalServiceClp
 			}
 		}
 
-		return (com.liferay.kb.knowledgebase.model.KBFeedbackStats)translateOutput(returnObj);
+		return (com.liferay.kb.knowledgebase.model.KBFeedbackStats)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public void deleteKBFeedbackStats(long feedbackStatsId)
@@ -137,7 +126,7 @@ public class KBFeedbackStatsLocalServiceClp
 	public void deleteKBFeedbackStats(
 		com.liferay.kb.knowledgebase.model.KBFeedbackStats kbFeedbackStats)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(kbFeedbackStats);
+		Object paramObj0 = ClpSerializer.translateInput(kbFeedbackStats);
 
 		if (kbFeedbackStats == null) {
 			paramObj0 = new NullWrapper(
@@ -166,7 +155,7 @@ public class KBFeedbackStatsLocalServiceClp
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(dynamicQuery);
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
 			paramObj0 = new NullWrapper(
@@ -193,13 +182,13 @@ public class KBFeedbackStatsLocalServiceClp
 			}
 		}
 
-		return (java.util.List<Object>)translateOutput(returnObj);
+		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(dynamicQuery);
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
 			paramObj0 = new NullWrapper(
@@ -230,7 +219,7 @@ public class KBFeedbackStatsLocalServiceClp
 			}
 		}
 
-		return (java.util.List<Object>)translateOutput(returnObj);
+		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.kb.knowledgebase.model.KBFeedbackStats getKBFeedbackStats(
@@ -263,7 +252,7 @@ public class KBFeedbackStatsLocalServiceClp
 			}
 		}
 
-		return (com.liferay.kb.knowledgebase.model.KBFeedbackStats)translateOutput(returnObj);
+		return (com.liferay.kb.knowledgebase.model.KBFeedbackStats)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBFeedbackStats> getKBFeedbackStatses(
@@ -292,7 +281,7 @@ public class KBFeedbackStatsLocalServiceClp
 			}
 		}
 
-		return (java.util.List<com.liferay.kb.knowledgebase.model.KBFeedbackStats>)translateOutput(returnObj);
+		return (java.util.List<com.liferay.kb.knowledgebase.model.KBFeedbackStats>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getKBFeedbackStatsesCount()
@@ -323,7 +312,7 @@ public class KBFeedbackStatsLocalServiceClp
 	public com.liferay.kb.knowledgebase.model.KBFeedbackStats updateKBFeedbackStats(
 		com.liferay.kb.knowledgebase.model.KBFeedbackStats kbFeedbackStats)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(kbFeedbackStats);
+		Object paramObj0 = ClpSerializer.translateInput(kbFeedbackStats);
 
 		if (kbFeedbackStats == null) {
 			paramObj0 = new NullWrapper(
@@ -350,7 +339,7 @@ public class KBFeedbackStatsLocalServiceClp
 			}
 		}
 
-		return (com.liferay.kb.knowledgebase.model.KBFeedbackStats)translateOutput(returnObj);
+		return (com.liferay.kb.knowledgebase.model.KBFeedbackStats)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public void deleteFeedbackStats(long articleResourcePrimKey)
@@ -406,7 +395,7 @@ public class KBFeedbackStatsLocalServiceClp
 			}
 		}
 
-		return (com.liferay.kb.knowledgebase.model.KBFeedbackStats)translateOutput(returnObj);
+		return (com.liferay.kb.knowledgebase.model.KBFeedbackStats)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.kb.knowledgebase.model.KBFeedbackStats getArticleFeedbackStats(
@@ -433,209 +422,8 @@ public class KBFeedbackStatsLocalServiceClp
 			}
 		}
 
-		return (com.liferay.kb.knowledgebase.model.KBFeedbackStats)translateOutput(returnObj);
+		return (com.liferay.kb.knowledgebase.model.KBFeedbackStats)ClpSerializer.translateOutput(returnObj);
 	}
 
-	protected Object translateInput(BaseModel oldModel) {
-		Class oldModelClass = oldModel.getClass();
-
-		String oldModelClassName = oldModelClass.getName();
-
-		if (oldModelClassName.equals(KBFeedbackStatsClp.class.getName())) {
-			KBFeedbackStatsClp oldCplModel = (KBFeedbackStatsClp)oldModel;
-
-			ClassLoader contextClassLoader = Thread.currentThread()
-												   .getContextClassLoader();
-
-			try {
-				Thread.currentThread().setContextClassLoader(_classLoader);
-
-				try {
-					Class newModelClass = Class.forName("com.liferay.kb.knowledgebase.model.impl.KBFeedbackStatsImpl",
-							true, _classLoader);
-
-					Object newModel = newModelClass.newInstance();
-
-					Method method0 = newModelClass.getMethod("setFeedbackStatsId",
-							new Class[] { Long.TYPE });
-
-					Long value0 = new Long(oldCplModel.getFeedbackStatsId());
-
-					method0.invoke(newModel, value0);
-
-					Method method1 = newModelClass.getMethod("setArticleResourcePrimKey",
-							new Class[] { Long.TYPE });
-
-					Long value1 = new Long(oldCplModel.getArticleResourcePrimKey());
-
-					method1.invoke(newModel, value1);
-
-					Method method2 = newModelClass.getMethod("setAverageScore",
-							new Class[] { Double.TYPE });
-
-					Double value2 = new Double(oldCplModel.getAverageScore());
-
-					method2.invoke(newModel, value2);
-
-					Method method3 = newModelClass.getMethod("setTotalScoreEntries",
-							new Class[] { Integer.TYPE });
-
-					Integer value3 = new Integer(oldCplModel.getTotalScoreEntries());
-
-					method3.invoke(newModel, value3);
-
-					Method method4 = newModelClass.getMethod("setTotalVotes",
-							new Class[] { Integer.TYPE });
-
-					Integer value4 = new Integer(oldCplModel.getTotalVotes());
-
-					method4.invoke(newModel, value4);
-
-					Method method5 = newModelClass.getMethod("setYesVotes",
-							new Class[] { Integer.TYPE });
-
-					Integer value5 = new Integer(oldCplModel.getYesVotes());
-
-					method5.invoke(newModel, value5);
-
-					return newModel;
-				}
-				catch (Exception e) {
-					_log.error(e, e);
-				}
-			}
-			finally {
-				Thread.currentThread().setContextClassLoader(contextClassLoader);
-			}
-		}
-
-		return oldModel;
-	}
-
-	protected Object translateInput(List oldList) {
-		List newList = new ArrayList(oldList.size());
-
-		for (int i = 0; i < oldList.size(); i++) {
-			Object curObj = oldList.get(i);
-
-			newList.add(translateInput(curObj));
-		}
-
-		return newList;
-	}
-
-	protected Object translateInput(Object obj) {
-		if (obj instanceof BaseModel) {
-			return translateInput((BaseModel)obj);
-		}
-
-		if (obj instanceof List) {
-			return translateInput((List)obj);
-		}
-		else {
-			return obj;
-		}
-	}
-
-	protected Object translateOutput(BaseModel oldModel) {
-		Class oldModelClass = oldModel.getClass();
-
-		String oldModelClassName = oldModelClass.getName();
-
-		if (oldModelClassName.equals(
-					"com.liferay.kb.knowledgebase.model.impl.KBFeedbackStatsImpl")) {
-			ClassLoader contextClassLoader = Thread.currentThread()
-												   .getContextClassLoader();
-
-			try {
-				Thread.currentThread().setContextClassLoader(_classLoader);
-
-				try {
-					KBFeedbackStatsClp newModel = new KBFeedbackStatsClp();
-
-					Method method0 = oldModelClass.getMethod(
-							"getFeedbackStatsId");
-
-					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
-
-					newModel.setFeedbackStatsId(value0.longValue());
-
-					Method method1 = oldModelClass.getMethod(
-							"getArticleResourcePrimKey");
-
-					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
-
-					newModel.setArticleResourcePrimKey(value1.longValue());
-
-					Method method2 = oldModelClass.getMethod("getAverageScore");
-
-					Double value2 = (Double)method2.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setAverageScore(value2.doubleValue());
-
-					Method method3 = oldModelClass.getMethod(
-							"getTotalScoreEntries");
-
-					Integer value3 = (Integer)method3.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setTotalScoreEntries(value3.intValue());
-
-					Method method4 = oldModelClass.getMethod("getTotalVotes");
-
-					Integer value4 = (Integer)method4.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setTotalVotes(value4.intValue());
-
-					Method method5 = oldModelClass.getMethod("getYesVotes");
-
-					Integer value5 = (Integer)method5.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setYesVotes(value5.intValue());
-
-					return newModel;
-				}
-				catch (Exception e) {
-					_log.error(e, e);
-				}
-			}
-			finally {
-				Thread.currentThread().setContextClassLoader(contextClassLoader);
-			}
-		}
-
-		return oldModel;
-	}
-
-	protected Object translateOutput(List oldList) {
-		List newList = new ArrayList(oldList.size());
-
-		for (int i = 0; i < oldList.size(); i++) {
-			Object curObj = oldList.get(i);
-
-			newList.add(translateOutput(curObj));
-		}
-
-		return newList;
-	}
-
-	protected Object translateOutput(Object obj) {
-		if (obj instanceof BaseModel) {
-			return translateOutput((BaseModel)obj);
-		}
-
-		if (obj instanceof List) {
-			return translateOutput((List)obj);
-		}
-		else {
-			return obj;
-		}
-	}
-
-	private static Log _log = LogFactoryUtil.getLog(KBFeedbackStatsLocalServiceClp.class);
 	private ClassLoaderProxy _classLoaderProxy;
-	private ClassLoader _classLoader;
 }

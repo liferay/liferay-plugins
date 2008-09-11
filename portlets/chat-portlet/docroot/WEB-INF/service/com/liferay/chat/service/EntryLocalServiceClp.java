@@ -22,20 +22,10 @@
 
 package com.liferay.chat.service;
 
-import com.liferay.chat.model.EntryClp;
-
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.LongWrapper;
 import com.liferay.portal.kernel.util.NullWrapper;
-import com.liferay.portal.model.BaseModel;
-
-import java.lang.reflect.Method;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <a href="EntryLocalServiceClp.java.html"><b><i>View Source</i></b></a>
@@ -46,13 +36,12 @@ import java.util.List;
 public class EntryLocalServiceClp implements EntryLocalService {
 	public EntryLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
-		_classLoader = classLoaderProxy.getClassLoader();
 	}
 
 	public com.liferay.chat.model.Entry addEntry(
 		com.liferay.chat.model.Entry entry)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(entry);
+		Object paramObj0 = ClpSerializer.translateInput(entry);
 
 		if (entry == null) {
 			paramObj0 = new NullWrapper("com.liferay.chat.model.Entry");
@@ -78,7 +67,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 			}
 		}
 
-		return (com.liferay.chat.model.Entry)translateOutput(returnObj);
+		return (com.liferay.chat.model.Entry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.chat.model.Entry createEntry(long entryId) {
@@ -100,7 +89,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 			}
 		}
 
-		return (com.liferay.chat.model.Entry)translateOutput(returnObj);
+		return (com.liferay.chat.model.Entry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public void deleteEntry(long entryId)
@@ -132,7 +121,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 
 	public void deleteEntry(com.liferay.chat.model.Entry entry)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(entry);
+		Object paramObj0 = ClpSerializer.translateInput(entry);
 
 		if (entry == null) {
 			paramObj0 = new NullWrapper("com.liferay.chat.model.Entry");
@@ -159,7 +148,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(dynamicQuery);
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
 			paramObj0 = new NullWrapper(
@@ -186,13 +175,13 @@ public class EntryLocalServiceClp implements EntryLocalService {
 			}
 		}
 
-		return (java.util.List<Object>)translateOutput(returnObj);
+		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(dynamicQuery);
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
 			paramObj0 = new NullWrapper(
@@ -223,7 +212,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 			}
 		}
 
-		return (java.util.List<Object>)translateOutput(returnObj);
+		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.chat.model.Entry getEntry(long entryId)
@@ -255,7 +244,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 			}
 		}
 
-		return (com.liferay.chat.model.Entry)translateOutput(returnObj);
+		return (com.liferay.chat.model.Entry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<com.liferay.chat.model.Entry> getEntries(int start,
@@ -284,7 +273,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.chat.model.Entry>)translateOutput(returnObj);
+		return (java.util.List<com.liferay.chat.model.Entry>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getEntriesCount() throws com.liferay.portal.SystemException {
@@ -314,7 +303,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 	public com.liferay.chat.model.Entry updateEntry(
 		com.liferay.chat.model.Entry entry)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(entry);
+		Object paramObj0 = ClpSerializer.translateInput(entry);
 
 		if (entry == null) {
 			paramObj0 = new NullWrapper("com.liferay.chat.model.Entry");
@@ -340,7 +329,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 			}
 		}
 
-		return (com.liferay.chat.model.Entry)translateOutput(returnObj);
+		return (com.liferay.chat.model.Entry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.chat.model.Entry addEntry(long fromUserId,
@@ -350,7 +339,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 
 		Object paramObj1 = new LongWrapper(toUserId);
 
-		Object paramObj2 = translateInput(content);
+		Object paramObj2 = ClpSerializer.translateInput(content);
 
 		if (content == null) {
 			paramObj2 = new NullWrapper("java.lang.String");
@@ -376,7 +365,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 			}
 		}
 
-		return (com.liferay.chat.model.Entry)translateOutput(returnObj);
+		return (com.liferay.chat.model.Entry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public void deleteEntries(long userId)
@@ -432,7 +421,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.chat.model.Entry>)translateOutput(returnObj);
+		return (java.util.List<com.liferay.chat.model.Entry>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<com.liferay.chat.model.Entry> getOldEntries(
@@ -464,189 +453,8 @@ public class EntryLocalServiceClp implements EntryLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.chat.model.Entry>)translateOutput(returnObj);
+		return (java.util.List<com.liferay.chat.model.Entry>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	protected Object translateInput(BaseModel oldModel) {
-		Class oldModelClass = oldModel.getClass();
-
-		String oldModelClassName = oldModelClass.getName();
-
-		if (oldModelClassName.equals(EntryClp.class.getName())) {
-			EntryClp oldCplModel = (EntryClp)oldModel;
-
-			ClassLoader contextClassLoader = Thread.currentThread()
-												   .getContextClassLoader();
-
-			try {
-				Thread.currentThread().setContextClassLoader(_classLoader);
-
-				try {
-					Class newModelClass = Class.forName("com.liferay.chat.model.impl.EntryImpl",
-							true, _classLoader);
-
-					Object newModel = newModelClass.newInstance();
-
-					Method method0 = newModelClass.getMethod("setEntryId",
-							new Class[] { Long.TYPE });
-
-					Long value0 = new Long(oldCplModel.getEntryId());
-
-					method0.invoke(newModel, value0);
-
-					Method method1 = newModelClass.getMethod("setCreateDate",
-							new Class[] { Long.TYPE });
-
-					Long value1 = new Long(oldCplModel.getCreateDate());
-
-					method1.invoke(newModel, value1);
-
-					Method method2 = newModelClass.getMethod("setFromUserId",
-							new Class[] { Long.TYPE });
-
-					Long value2 = new Long(oldCplModel.getFromUserId());
-
-					method2.invoke(newModel, value2);
-
-					Method method3 = newModelClass.getMethod("setToUserId",
-							new Class[] { Long.TYPE });
-
-					Long value3 = new Long(oldCplModel.getToUserId());
-
-					method3.invoke(newModel, value3);
-
-					Method method4 = newModelClass.getMethod("setContent",
-							new Class[] { String.class });
-
-					String value4 = oldCplModel.getContent();
-
-					method4.invoke(newModel, value4);
-
-					return newModel;
-				}
-				catch (Exception e) {
-					_log.error(e, e);
-				}
-			}
-			finally {
-				Thread.currentThread().setContextClassLoader(contextClassLoader);
-			}
-		}
-
-		return oldModel;
-	}
-
-	protected Object translateInput(List oldList) {
-		List newList = new ArrayList(oldList.size());
-
-		for (int i = 0; i < oldList.size(); i++) {
-			Object curObj = oldList.get(i);
-
-			newList.add(translateInput(curObj));
-		}
-
-		return newList;
-	}
-
-	protected Object translateInput(Object obj) {
-		if (obj instanceof BaseModel) {
-			return translateInput((BaseModel)obj);
-		}
-
-		if (obj instanceof List) {
-			return translateInput((List)obj);
-		}
-		else {
-			return obj;
-		}
-	}
-
-	protected Object translateOutput(BaseModel oldModel) {
-		Class oldModelClass = oldModel.getClass();
-
-		String oldModelClassName = oldModelClass.getName();
-
-		if (oldModelClassName.equals("com.liferay.chat.model.impl.EntryImpl")) {
-			ClassLoader contextClassLoader = Thread.currentThread()
-												   .getContextClassLoader();
-
-			try {
-				Thread.currentThread().setContextClassLoader(_classLoader);
-
-				try {
-					EntryClp newModel = new EntryClp();
-
-					Method method0 = oldModelClass.getMethod("getEntryId");
-
-					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
-
-					newModel.setEntryId(value0.longValue());
-
-					Method method1 = oldModelClass.getMethod("getCreateDate");
-
-					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
-
-					newModel.setCreateDate(value1.longValue());
-
-					Method method2 = oldModelClass.getMethod("getFromUserId");
-
-					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
-
-					newModel.setFromUserId(value2.longValue());
-
-					Method method3 = oldModelClass.getMethod("getToUserId");
-
-					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
-
-					newModel.setToUserId(value3.longValue());
-
-					Method method4 = oldModelClass.getMethod("getContent");
-
-					String value4 = (String)method4.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setContent(value4);
-
-					return newModel;
-				}
-				catch (Exception e) {
-					_log.error(e, e);
-				}
-			}
-			finally {
-				Thread.currentThread().setContextClassLoader(contextClassLoader);
-			}
-		}
-
-		return oldModel;
-	}
-
-	protected Object translateOutput(List oldList) {
-		List newList = new ArrayList(oldList.size());
-
-		for (int i = 0; i < oldList.size(); i++) {
-			Object curObj = oldList.get(i);
-
-			newList.add(translateOutput(curObj));
-		}
-
-		return newList;
-	}
-
-	protected Object translateOutput(Object obj) {
-		if (obj instanceof BaseModel) {
-			return translateOutput((BaseModel)obj);
-		}
-
-		if (obj instanceof List) {
-			return translateOutput((List)obj);
-		}
-		else {
-			return obj;
-		}
-	}
-
-	private static Log _log = LogFactoryUtil.getLog(EntryLocalServiceClp.class);
 	private ClassLoaderProxy _classLoaderProxy;
-	private ClassLoader _classLoader;
 }

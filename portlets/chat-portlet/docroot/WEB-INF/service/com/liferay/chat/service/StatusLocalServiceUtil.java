@@ -122,6 +122,8 @@ public class StatusLocalServiceUtil {
 					portletClassLoader);
 
 			_service = new StatusLocalServiceClp(classLoaderProxy);
+
+			ClpSerializer.setClassLoader(portletClassLoader);
 		}
 
 		return _service;

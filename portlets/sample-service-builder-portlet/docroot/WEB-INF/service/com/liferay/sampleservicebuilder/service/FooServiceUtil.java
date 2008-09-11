@@ -36,13 +36,15 @@ public class FooServiceUtil {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate("sample-service-builder-portlet",
 					FooServiceUtil.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("chat-portlet",
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("sample-service-builder-portlet",
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
 					portletClassLoader);
 
 			_service = new FooServiceClp(classLoaderProxy);
+
+			ClpSerializer.setClassLoader(portletClassLoader);
 		}
 
 		return _service;

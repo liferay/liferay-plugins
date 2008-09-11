@@ -397,13 +397,15 @@ public class KBArticleLocalServiceUtil {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate("knowledge-base-portlet",
 					KBArticleLocalServiceUtil.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("chat-portlet",
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("knowledge-base-portlet",
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
 					portletClassLoader);
 
 			_service = new KBArticleLocalServiceClp(classLoaderProxy);
+
+			ClpSerializer.setClassLoader(portletClassLoader);
 		}
 
 		return _service;

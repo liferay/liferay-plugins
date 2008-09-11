@@ -235,13 +235,15 @@ public class KBFeedbackEntryLocalServiceUtil {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate("knowledge-base-portlet",
 					KBFeedbackEntryLocalServiceUtil.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("chat-portlet",
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("knowledge-base-portlet",
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
 					portletClassLoader);
 
 			_service = new KBFeedbackEntryLocalServiceClp(classLoaderProxy);
+
+			ClpSerializer.setClassLoader(portletClassLoader);
 		}
 
 		return _service;

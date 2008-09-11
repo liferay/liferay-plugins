@@ -121,6 +121,8 @@ public class EntryLocalServiceUtil {
 					portletClassLoader);
 
 			_service = new EntryLocalServiceClp(classLoaderProxy);
+
+			ClpSerializer.setClassLoader(portletClassLoader);
 		}
 
 		return _service;

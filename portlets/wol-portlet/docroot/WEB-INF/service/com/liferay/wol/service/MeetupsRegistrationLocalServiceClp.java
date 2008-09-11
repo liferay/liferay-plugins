@@ -22,21 +22,10 @@
 
 package com.liferay.wol.service;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.LongWrapper;
 import com.liferay.portal.kernel.util.NullWrapper;
-import com.liferay.portal.model.BaseModel;
-
-import com.liferay.wol.model.MeetupsRegistrationClp;
-
-import java.lang.reflect.Method;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="MeetupsRegistrationLocalServiceClp.java.html"><b><i>View Source</i></b></a>
@@ -48,13 +37,12 @@ public class MeetupsRegistrationLocalServiceClp
 	implements MeetupsRegistrationLocalService {
 	public MeetupsRegistrationLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
-		_classLoader = classLoaderProxy.getClassLoader();
 	}
 
 	public com.liferay.wol.model.MeetupsRegistration addMeetupsRegistration(
 		com.liferay.wol.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(meetupsRegistration);
+		Object paramObj0 = ClpSerializer.translateInput(meetupsRegistration);
 
 		if (meetupsRegistration == null) {
 			paramObj0 = new NullWrapper(
@@ -81,7 +69,7 @@ public class MeetupsRegistrationLocalServiceClp
 			}
 		}
 
-		return (com.liferay.wol.model.MeetupsRegistration)translateOutput(returnObj);
+		return (com.liferay.wol.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.wol.model.MeetupsRegistration createMeetupsRegistration(
@@ -104,7 +92,7 @@ public class MeetupsRegistrationLocalServiceClp
 			}
 		}
 
-		return (com.liferay.wol.model.MeetupsRegistration)translateOutput(returnObj);
+		return (com.liferay.wol.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public void deleteMeetupsRegistration(long meetupsRegistrationId)
@@ -138,7 +126,7 @@ public class MeetupsRegistrationLocalServiceClp
 	public void deleteMeetupsRegistration(
 		com.liferay.wol.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(meetupsRegistration);
+		Object paramObj0 = ClpSerializer.translateInput(meetupsRegistration);
 
 		if (meetupsRegistration == null) {
 			paramObj0 = new NullWrapper(
@@ -167,7 +155,7 @@ public class MeetupsRegistrationLocalServiceClp
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(dynamicQuery);
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
 			paramObj0 = new NullWrapper(
@@ -194,13 +182,13 @@ public class MeetupsRegistrationLocalServiceClp
 			}
 		}
 
-		return (java.util.List<Object>)translateOutput(returnObj);
+		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(dynamicQuery);
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
 			paramObj0 = new NullWrapper(
@@ -231,7 +219,7 @@ public class MeetupsRegistrationLocalServiceClp
 			}
 		}
 
-		return (java.util.List<Object>)translateOutput(returnObj);
+		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.wol.model.MeetupsRegistration getMeetupsRegistration(
@@ -264,7 +252,7 @@ public class MeetupsRegistrationLocalServiceClp
 			}
 		}
 
-		return (com.liferay.wol.model.MeetupsRegistration)translateOutput(returnObj);
+		return (com.liferay.wol.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<com.liferay.wol.model.MeetupsRegistration> getMeetupsRegistrations(
@@ -293,7 +281,7 @@ public class MeetupsRegistrationLocalServiceClp
 			}
 		}
 
-		return (java.util.List<com.liferay.wol.model.MeetupsRegistration>)translateOutput(returnObj);
+		return (java.util.List<com.liferay.wol.model.MeetupsRegistration>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getMeetupsRegistrationsCount()
@@ -324,7 +312,7 @@ public class MeetupsRegistrationLocalServiceClp
 	public com.liferay.wol.model.MeetupsRegistration updateMeetupsRegistration(
 		com.liferay.wol.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(meetupsRegistration);
+		Object paramObj0 = ClpSerializer.translateInput(meetupsRegistration);
 
 		if (meetupsRegistration == null) {
 			paramObj0 = new NullWrapper(
@@ -351,7 +339,7 @@ public class MeetupsRegistrationLocalServiceClp
 			}
 		}
 
-		return (com.liferay.wol.model.MeetupsRegistration)translateOutput(returnObj);
+		return (com.liferay.wol.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<com.liferay.wol.model.MeetupsRegistration> getMeetupsRegistrations(
@@ -385,7 +373,7 @@ public class MeetupsRegistrationLocalServiceClp
 			}
 		}
 
-		return (java.util.List<com.liferay.wol.model.MeetupsRegistration>)translateOutput(returnObj);
+		return (java.util.List<com.liferay.wol.model.MeetupsRegistration>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.wol.model.MeetupsRegistration getMeetupsRegistration(
@@ -420,7 +408,7 @@ public class MeetupsRegistrationLocalServiceClp
 			}
 		}
 
-		return (com.liferay.wol.model.MeetupsRegistration)translateOutput(returnObj);
+		return (com.liferay.wol.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getMeetupsRegistrationsCount(long meetupsEntryId, int status)
@@ -462,7 +450,7 @@ public class MeetupsRegistrationLocalServiceClp
 
 		Object paramObj2 = new IntegerWrapper(status);
 
-		Object paramObj3 = translateInput(comments);
+		Object paramObj3 = ClpSerializer.translateInput(comments);
 
 		if (comments == null) {
 			paramObj3 = new NullWrapper("java.lang.String");
@@ -492,246 +480,8 @@ public class MeetupsRegistrationLocalServiceClp
 			}
 		}
 
-		return (com.liferay.wol.model.MeetupsRegistration)translateOutput(returnObj);
+		return (com.liferay.wol.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
 	}
 
-	protected Object translateInput(BaseModel oldModel) {
-		Class oldModelClass = oldModel.getClass();
-
-		String oldModelClassName = oldModelClass.getName();
-
-		if (oldModelClassName.equals(MeetupsRegistrationClp.class.getName())) {
-			MeetupsRegistrationClp oldCplModel = (MeetupsRegistrationClp)oldModel;
-
-			ClassLoader contextClassLoader = Thread.currentThread()
-												   .getContextClassLoader();
-
-			try {
-				Thread.currentThread().setContextClassLoader(_classLoader);
-
-				try {
-					Class newModelClass = Class.forName("com.liferay.wol.model.impl.MeetupsRegistrationImpl",
-							true, _classLoader);
-
-					Object newModel = newModelClass.newInstance();
-
-					Method method0 = newModelClass.getMethod("setMeetupsRegistrationId",
-							new Class[] { Long.TYPE });
-
-					Long value0 = new Long(oldCplModel.getMeetupsRegistrationId());
-
-					method0.invoke(newModel, value0);
-
-					Method method1 = newModelClass.getMethod("setCompanyId",
-							new Class[] { Long.TYPE });
-
-					Long value1 = new Long(oldCplModel.getCompanyId());
-
-					method1.invoke(newModel, value1);
-
-					Method method2 = newModelClass.getMethod("setUserId",
-							new Class[] { Long.TYPE });
-
-					Long value2 = new Long(oldCplModel.getUserId());
-
-					method2.invoke(newModel, value2);
-
-					Method method3 = newModelClass.getMethod("setUserName",
-							new Class[] { String.class });
-
-					String value3 = oldCplModel.getUserName();
-
-					method3.invoke(newModel, value3);
-
-					Method method4 = newModelClass.getMethod("setCreateDate",
-							new Class[] { Date.class });
-
-					Date value4 = oldCplModel.getCreateDate();
-
-					method4.invoke(newModel, value4);
-
-					Method method5 = newModelClass.getMethod("setModifiedDate",
-							new Class[] { Date.class });
-
-					Date value5 = oldCplModel.getModifiedDate();
-
-					method5.invoke(newModel, value5);
-
-					Method method6 = newModelClass.getMethod("setMeetupsEntryId",
-							new Class[] { Long.TYPE });
-
-					Long value6 = new Long(oldCplModel.getMeetupsEntryId());
-
-					method6.invoke(newModel, value6);
-
-					Method method7 = newModelClass.getMethod("setStatus",
-							new Class[] { Integer.TYPE });
-
-					Integer value7 = new Integer(oldCplModel.getStatus());
-
-					method7.invoke(newModel, value7);
-
-					Method method8 = newModelClass.getMethod("setComments",
-							new Class[] { String.class });
-
-					String value8 = oldCplModel.getComments();
-
-					method8.invoke(newModel, value8);
-
-					return newModel;
-				}
-				catch (Exception e) {
-					_log.error(e, e);
-				}
-			}
-			finally {
-				Thread.currentThread().setContextClassLoader(contextClassLoader);
-			}
-		}
-
-		return oldModel;
-	}
-
-	protected Object translateInput(List oldList) {
-		List newList = new ArrayList(oldList.size());
-
-		for (int i = 0; i < oldList.size(); i++) {
-			Object curObj = oldList.get(i);
-
-			newList.add(translateInput(curObj));
-		}
-
-		return newList;
-	}
-
-	protected Object translateInput(Object obj) {
-		if (obj instanceof BaseModel) {
-			return translateInput((BaseModel)obj);
-		}
-
-		if (obj instanceof List) {
-			return translateInput((List)obj);
-		}
-		else {
-			return obj;
-		}
-	}
-
-	protected Object translateOutput(BaseModel oldModel) {
-		Class oldModelClass = oldModel.getClass();
-
-		String oldModelClassName = oldModelClass.getName();
-
-		if (oldModelClassName.equals(
-					"com.liferay.wol.model.impl.MeetupsRegistrationImpl")) {
-			ClassLoader contextClassLoader = Thread.currentThread()
-												   .getContextClassLoader();
-
-			try {
-				Thread.currentThread().setContextClassLoader(_classLoader);
-
-				try {
-					MeetupsRegistrationClp newModel = new MeetupsRegistrationClp();
-
-					Method method0 = oldModelClass.getMethod(
-							"getMeetupsRegistrationId");
-
-					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
-
-					newModel.setMeetupsRegistrationId(value0.longValue());
-
-					Method method1 = oldModelClass.getMethod("getCompanyId");
-
-					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
-
-					newModel.setCompanyId(value1.longValue());
-
-					Method method2 = oldModelClass.getMethod("getUserId");
-
-					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
-
-					newModel.setUserId(value2.longValue());
-
-					Method method3 = oldModelClass.getMethod("getUserName");
-
-					String value3 = (String)method3.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setUserName(value3);
-
-					Method method4 = oldModelClass.getMethod("getCreateDate");
-
-					Date value4 = (Date)method4.invoke(oldModel, (Object[])null);
-
-					newModel.setCreateDate(value4);
-
-					Method method5 = oldModelClass.getMethod("getModifiedDate");
-
-					Date value5 = (Date)method5.invoke(oldModel, (Object[])null);
-
-					newModel.setModifiedDate(value5);
-
-					Method method6 = oldModelClass.getMethod(
-							"getMeetupsEntryId");
-
-					Long value6 = (Long)method6.invoke(oldModel, (Object[])null);
-
-					newModel.setMeetupsEntryId(value6.longValue());
-
-					Method method7 = oldModelClass.getMethod("getStatus");
-
-					Integer value7 = (Integer)method7.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setStatus(value7.intValue());
-
-					Method method8 = oldModelClass.getMethod("getComments");
-
-					String value8 = (String)method8.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setComments(value8);
-
-					return newModel;
-				}
-				catch (Exception e) {
-					_log.error(e, e);
-				}
-			}
-			finally {
-				Thread.currentThread().setContextClassLoader(contextClassLoader);
-			}
-		}
-
-		return oldModel;
-	}
-
-	protected Object translateOutput(List oldList) {
-		List newList = new ArrayList(oldList.size());
-
-		for (int i = 0; i < oldList.size(); i++) {
-			Object curObj = oldList.get(i);
-
-			newList.add(translateOutput(curObj));
-		}
-
-		return newList;
-	}
-
-	protected Object translateOutput(Object obj) {
-		if (obj instanceof BaseModel) {
-			return translateOutput((BaseModel)obj);
-		}
-
-		if (obj instanceof List) {
-			return translateOutput((List)obj);
-		}
-		else {
-			return obj;
-		}
-	}
-
-	private static Log _log = LogFactoryUtil.getLog(MeetupsRegistrationLocalServiceClp.class);
 	private ClassLoaderProxy _classLoaderProxy;
-	private ClassLoader _classLoader;
 }

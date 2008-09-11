@@ -22,21 +22,10 @@
 
 package com.liferay.wol.service;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.LongWrapper;
 import com.liferay.portal.kernel.util.NullWrapper;
-import com.liferay.portal.model.BaseModel;
-
-import com.liferay.wol.model.WallEntryClp;
-
-import java.lang.reflect.Method;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * <a href="WallEntryLocalServiceClp.java.html"><b><i>View Source</i></b></a>
@@ -47,13 +36,12 @@ import java.util.List;
 public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	public WallEntryLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
-		_classLoader = classLoaderProxy.getClassLoader();
 	}
 
 	public com.liferay.wol.model.WallEntry addWallEntry(
 		com.liferay.wol.model.WallEntry wallEntry)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(wallEntry);
+		Object paramObj0 = ClpSerializer.translateInput(wallEntry);
 
 		if (wallEntry == null) {
 			paramObj0 = new NullWrapper("com.liferay.wol.model.WallEntry");
@@ -79,7 +67,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 			}
 		}
 
-		return (com.liferay.wol.model.WallEntry)translateOutput(returnObj);
+		return (com.liferay.wol.model.WallEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.wol.model.WallEntry createWallEntry(long wallEntryId) {
@@ -101,7 +89,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 			}
 		}
 
-		return (com.liferay.wol.model.WallEntry)translateOutput(returnObj);
+		return (com.liferay.wol.model.WallEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public void deleteWallEntry(long wallEntryId)
@@ -134,7 +122,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 
 	public void deleteWallEntry(com.liferay.wol.model.WallEntry wallEntry)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(wallEntry);
+		Object paramObj0 = ClpSerializer.translateInput(wallEntry);
 
 		if (wallEntry == null) {
 			paramObj0 = new NullWrapper("com.liferay.wol.model.WallEntry");
@@ -162,7 +150,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(dynamicQuery);
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
 			paramObj0 = new NullWrapper(
@@ -189,13 +177,13 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 			}
 		}
 
-		return (java.util.List<Object>)translateOutput(returnObj);
+		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<Object> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(dynamicQuery);
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
 
 		if (dynamicQuery == null) {
 			paramObj0 = new NullWrapper(
@@ -226,7 +214,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 			}
 		}
 
-		return (java.util.List<Object>)translateOutput(returnObj);
+		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.wol.model.WallEntry getWallEntry(long wallEntryId)
@@ -258,7 +246,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 			}
 		}
 
-		return (com.liferay.wol.model.WallEntry)translateOutput(returnObj);
+		return (com.liferay.wol.model.WallEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<com.liferay.wol.model.WallEntry> getWallEntries(
@@ -287,7 +275,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.wol.model.WallEntry>)translateOutput(returnObj);
+		return (java.util.List<com.liferay.wol.model.WallEntry>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getWallEntriesCount() throws com.liferay.portal.SystemException {
@@ -317,7 +305,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	public com.liferay.wol.model.WallEntry updateWallEntry(
 		com.liferay.wol.model.WallEntry wallEntry)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = translateInput(wallEntry);
+		Object paramObj0 = ClpSerializer.translateInput(wallEntry);
 
 		if (wallEntry == null) {
 			paramObj0 = new NullWrapper("com.liferay.wol.model.WallEntry");
@@ -343,7 +331,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 			}
 		}
 
-		return (com.liferay.wol.model.WallEntry)translateOutput(returnObj);
+		return (com.liferay.wol.model.WallEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.wol.model.WallEntry addWallEntry(long groupId,
@@ -355,13 +343,13 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 
 		Object paramObj1 = new LongWrapper(userId);
 
-		Object paramObj2 = translateInput(comments);
+		Object paramObj2 = ClpSerializer.translateInput(comments);
 
 		if (comments == null) {
 			paramObj2 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj3 = translateInput(themeDisplay);
+		Object paramObj3 = ClpSerializer.translateInput(themeDisplay);
 
 		if (themeDisplay == null) {
 			paramObj3 = new NullWrapper("com.liferay.portal.theme.ThemeDisplay");
@@ -391,7 +379,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 			}
 		}
 
-		return (com.liferay.wol.model.WallEntry)translateOutput(returnObj);
+		return (com.liferay.wol.model.WallEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public void deleteWallEntries(long groupId)
@@ -446,7 +434,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.wol.model.WallEntry>)translateOutput(returnObj);
+		return (java.util.List<com.liferay.wol.model.WallEntry>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getWallEntriesCount(long groupId)
@@ -514,7 +502,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.wol.model.WallEntry>)translateOutput(returnObj);
+		return (java.util.List<com.liferay.wol.model.WallEntry>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getWallToWallEntriesCount(long groupId1, long groupId2,
@@ -556,7 +544,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(wallEntryId);
 
-		Object paramObj1 = translateInput(comments);
+		Object paramObj1 = ClpSerializer.translateInput(comments);
 
 		if (comments == null) {
 			paramObj1 = new NullWrapper("java.lang.String");
@@ -586,229 +574,8 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 			}
 		}
 
-		return (com.liferay.wol.model.WallEntry)translateOutput(returnObj);
+		return (com.liferay.wol.model.WallEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	protected Object translateInput(BaseModel oldModel) {
-		Class oldModelClass = oldModel.getClass();
-
-		String oldModelClassName = oldModelClass.getName();
-
-		if (oldModelClassName.equals(WallEntryClp.class.getName())) {
-			WallEntryClp oldCplModel = (WallEntryClp)oldModel;
-
-			ClassLoader contextClassLoader = Thread.currentThread()
-												   .getContextClassLoader();
-
-			try {
-				Thread.currentThread().setContextClassLoader(_classLoader);
-
-				try {
-					Class newModelClass = Class.forName("com.liferay.wol.model.impl.WallEntryImpl",
-							true, _classLoader);
-
-					Object newModel = newModelClass.newInstance();
-
-					Method method0 = newModelClass.getMethod("setWallEntryId",
-							new Class[] { Long.TYPE });
-
-					Long value0 = new Long(oldCplModel.getWallEntryId());
-
-					method0.invoke(newModel, value0);
-
-					Method method1 = newModelClass.getMethod("setGroupId",
-							new Class[] { Long.TYPE });
-
-					Long value1 = new Long(oldCplModel.getGroupId());
-
-					method1.invoke(newModel, value1);
-
-					Method method2 = newModelClass.getMethod("setCompanyId",
-							new Class[] { Long.TYPE });
-
-					Long value2 = new Long(oldCplModel.getCompanyId());
-
-					method2.invoke(newModel, value2);
-
-					Method method3 = newModelClass.getMethod("setUserId",
-							new Class[] { Long.TYPE });
-
-					Long value3 = new Long(oldCplModel.getUserId());
-
-					method3.invoke(newModel, value3);
-
-					Method method4 = newModelClass.getMethod("setUserName",
-							new Class[] { String.class });
-
-					String value4 = oldCplModel.getUserName();
-
-					method4.invoke(newModel, value4);
-
-					Method method5 = newModelClass.getMethod("setCreateDate",
-							new Class[] { Date.class });
-
-					Date value5 = oldCplModel.getCreateDate();
-
-					method5.invoke(newModel, value5);
-
-					Method method6 = newModelClass.getMethod("setModifiedDate",
-							new Class[] { Date.class });
-
-					Date value6 = oldCplModel.getModifiedDate();
-
-					method6.invoke(newModel, value6);
-
-					Method method7 = newModelClass.getMethod("setComments",
-							new Class[] { String.class });
-
-					String value7 = oldCplModel.getComments();
-
-					method7.invoke(newModel, value7);
-
-					return newModel;
-				}
-				catch (Exception e) {
-					_log.error(e, e);
-				}
-			}
-			finally {
-				Thread.currentThread().setContextClassLoader(contextClassLoader);
-			}
-		}
-
-		return oldModel;
-	}
-
-	protected Object translateInput(List oldList) {
-		List newList = new ArrayList(oldList.size());
-
-		for (int i = 0; i < oldList.size(); i++) {
-			Object curObj = oldList.get(i);
-
-			newList.add(translateInput(curObj));
-		}
-
-		return newList;
-	}
-
-	protected Object translateInput(Object obj) {
-		if (obj instanceof BaseModel) {
-			return translateInput((BaseModel)obj);
-		}
-
-		if (obj instanceof List) {
-			return translateInput((List)obj);
-		}
-		else {
-			return obj;
-		}
-	}
-
-	protected Object translateOutput(BaseModel oldModel) {
-		Class oldModelClass = oldModel.getClass();
-
-		String oldModelClassName = oldModelClass.getName();
-
-		if (oldModelClassName.equals("com.liferay.wol.model.impl.WallEntryImpl")) {
-			ClassLoader contextClassLoader = Thread.currentThread()
-												   .getContextClassLoader();
-
-			try {
-				Thread.currentThread().setContextClassLoader(_classLoader);
-
-				try {
-					WallEntryClp newModel = new WallEntryClp();
-
-					Method method0 = oldModelClass.getMethod("getWallEntryId");
-
-					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
-
-					newModel.setWallEntryId(value0.longValue());
-
-					Method method1 = oldModelClass.getMethod("getGroupId");
-
-					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
-
-					newModel.setGroupId(value1.longValue());
-
-					Method method2 = oldModelClass.getMethod("getCompanyId");
-
-					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
-
-					newModel.setCompanyId(value2.longValue());
-
-					Method method3 = oldModelClass.getMethod("getUserId");
-
-					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
-
-					newModel.setUserId(value3.longValue());
-
-					Method method4 = oldModelClass.getMethod("getUserName");
-
-					String value4 = (String)method4.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setUserName(value4);
-
-					Method method5 = oldModelClass.getMethod("getCreateDate");
-
-					Date value5 = (Date)method5.invoke(oldModel, (Object[])null);
-
-					newModel.setCreateDate(value5);
-
-					Method method6 = oldModelClass.getMethod("getModifiedDate");
-
-					Date value6 = (Date)method6.invoke(oldModel, (Object[])null);
-
-					newModel.setModifiedDate(value6);
-
-					Method method7 = oldModelClass.getMethod("getComments");
-
-					String value7 = (String)method7.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setComments(value7);
-
-					return newModel;
-				}
-				catch (Exception e) {
-					_log.error(e, e);
-				}
-			}
-			finally {
-				Thread.currentThread().setContextClassLoader(contextClassLoader);
-			}
-		}
-
-		return oldModel;
-	}
-
-	protected Object translateOutput(List oldList) {
-		List newList = new ArrayList(oldList.size());
-
-		for (int i = 0; i < oldList.size(); i++) {
-			Object curObj = oldList.get(i);
-
-			newList.add(translateOutput(curObj));
-		}
-
-		return newList;
-	}
-
-	protected Object translateOutput(Object obj) {
-		if (obj instanceof BaseModel) {
-			return translateOutput((BaseModel)obj);
-		}
-
-		if (obj instanceof List) {
-			return translateOutput((List)obj);
-		}
-		else {
-			return obj;
-		}
-	}
-
-	private static Log _log = LogFactoryUtil.getLog(WallEntryLocalServiceClp.class);
 	private ClassLoaderProxy _classLoaderProxy;
-	private ClassLoader _classLoader;
 }
