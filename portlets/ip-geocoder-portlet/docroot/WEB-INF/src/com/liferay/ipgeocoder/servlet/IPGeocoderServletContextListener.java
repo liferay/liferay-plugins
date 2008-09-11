@@ -49,6 +49,8 @@ public class IPGeocoderServletContextListener
 
 		MessageBusUtil.removeDestination(
 			_ipGeocoderDestination.getName());
+
+		MessageBusUtil.removeDestination(DestinationNames.IP_GEOCODER_RESPONSE);
 	}
 
 	public void contextInitialized(ServletContextEvent event) {
@@ -64,6 +66,11 @@ public class IPGeocoderServletContextListener
 		_ipGeocoderMessageListener = new IPGeocoderMessageListener();
 
 		_ipGeocoderDestination.register(_ipGeocoderMessageListener);
+
+		Destination ipGeocoderResponseDestination = new ParallelDestination(
+			DestinationNames.IP_GEOCODER_RESPONSE);
+
+		MessageBusUtil.addDestination(ipGeocoderResponseDestination);
 	}
 
 	private Destination _ipGeocoderDestination;

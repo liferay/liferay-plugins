@@ -39,7 +39,7 @@ public class IPGeocoderUtil {
 
 	public static IPInfo getIPInfo(String ipAddress) throws PortalException {
 		JSONObject ipInfoJSON =
-			(JSONObject)MessageBusUtil.sendSynchronizedMessage(
+			(JSONObject)MessageBusUtil.sendSynchronousMessage(
 				DestinationNames.IP_GEOCODER, ipAddress);
 
 		if (ipInfoJSON == null) {
