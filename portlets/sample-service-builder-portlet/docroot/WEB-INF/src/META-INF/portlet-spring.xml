@@ -2,13 +2,17 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
+	<bean id="com.liferay.sampleservicebuilder.service.SSB.base" abstract="true">
+		<property name="fooLocalService" ref="com.liferay.sampleservicebuilder.service.FooLocalService.impl" />
+		<property name="fooService" ref="com.liferay.sampleservicebuilder.service.FooService.impl" />
+		<property name="fooPersistence" ref="com.liferay.sampleservicebuilder.service.persistence.FooPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.sampleservicebuilder.service.FooLocalService.target" class="com.liferay.sampleservicebuilder.service.impl.FooLocalServiceImpl" parent="com.liferay.sampleservicebuilder.service.SSB.base">
+		<property name="fooLocalService" ref="com.liferay.sampleservicebuilder.service.FooLocalService.target" />
+	</bean>
 	<bean id="com.liferay.sampleservicebuilder.service.FooLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<bean class="com.liferay.sampleservicebuilder.service.impl.FooLocalServiceImpl" />
-		</property>
+		<property name="transactionManager" ref="liferayTransactionManager" />
+		<property name="target" ref="com.liferay.sampleservicebuilder.service.FooLocalService.target" />
 		<property name="transactionAttributes">
 			<props>
 				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
@@ -27,13 +31,12 @@
 	<bean id="com.liferay.sampleservicebuilder.service.FooLocalServiceUtil" class="com.liferay.sampleservicebuilder.service.FooLocalServiceUtil">
 		<property name="service" ref="com.liferay.sampleservicebuilder.service.FooLocalService.impl" />
 	</bean>
+	<bean id="com.liferay.sampleservicebuilder.service.FooService.target" class="com.liferay.sampleservicebuilder.service.impl.FooServiceImpl" parent="com.liferay.sampleservicebuilder.service.SSB.base">
+		<property name="fooService" ref="com.liferay.sampleservicebuilder.service.FooService.target" />
+	</bean>
 	<bean id="com.liferay.sampleservicebuilder.service.FooService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<bean class="com.liferay.sampleservicebuilder.service.impl.FooServiceImpl" />
-		</property>
+		<property name="transactionManager" ref="liferayTransactionManager" />
+		<property name="target" ref="com.liferay.sampleservicebuilder.service.FooService.target" />
 		<property name="transactionAttributes">
 			<props>
 				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>

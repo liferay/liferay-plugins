@@ -28,7 +28,6 @@ import com.liferay.kb.knowledgebase.model.impl.KBArticleResourceImpl;
 import com.liferay.kb.knowledgebase.model.impl.KBArticleResourceModelImpl;
 
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -58,7 +57,7 @@ import java.util.List;
  *
  */
 public class KBArticleResourcePersistenceImpl extends BasePersistenceImpl
-	implements KBArticleResourcePersistence, InitializingBean {
+	implements KBArticleResourcePersistence {
 	public KBArticleResource create(long resourcePrimKey) {
 		KBArticleResource kbArticleResource = new KBArticleResourceImpl();
 

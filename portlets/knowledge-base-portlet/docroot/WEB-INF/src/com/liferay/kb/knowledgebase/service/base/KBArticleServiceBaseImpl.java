@@ -31,6 +31,7 @@ import com.liferay.documentlibrary.service.DLService;
 import com.liferay.kb.knowledgebase.service.KBArticleLocalService;
 import com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService;
 import com.liferay.kb.knowledgebase.service.KBArticleService;
+import com.liferay.kb.knowledgebase.service.KBArticleService;
 import com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalService;
 import com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService;
 import com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder;
@@ -41,8 +42,6 @@ import com.liferay.kb.knowledgebase.service.persistence.KBFeedbackStatsPersisten
 
 import com.liferay.mail.service.MailService;
 
-import com.liferay.portal.kernel.bean.InitializingBean;
-import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.service.CompanyLocalService;
 import com.liferay.portal.service.CompanyService;
 import com.liferay.portal.service.GroupLocalService;
@@ -72,8 +71,6 @@ import com.liferay.portlet.tags.service.TagsEntryService;
 import com.liferay.portlet.tags.service.persistence.TagsAssetPersistence;
 import com.liferay.portlet.tags.service.persistence.TagsEntryPersistence;
 
-import com.liferay.util.bean.PortletBeanLocatorUtil;
-
 /**
  * <a href="KBArticleServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
  *
@@ -81,7 +78,7 @@ import com.liferay.util.bean.PortletBeanLocatorUtil;
  *
  */
 public abstract class KBArticleServiceBaseImpl extends PrincipalBean
-	implements KBArticleService, InitializingBean {
+	implements KBArticleService {
 	public KBArticleLocalService getKBArticleLocalService() {
 		return kbArticleLocalService;
 	}
@@ -89,6 +86,14 @@ public abstract class KBArticleServiceBaseImpl extends PrincipalBean
 	public void setKBArticleLocalService(
 		KBArticleLocalService kbArticleLocalService) {
 		this.kbArticleLocalService = kbArticleLocalService;
+	}
+
+	public KBArticleService getKBArticleService() {
+		return kbArticleService;
+	}
+
+	public void setKBArticleService(KBArticleService kbArticleService) {
+		this.kbArticleService = kbArticleService;
 	}
 
 	public KBArticlePersistence getKBArticlePersistence() {
@@ -422,209 +427,8 @@ public abstract class KBArticleServiceBaseImpl extends PrincipalBean
 		this.tagsEntryPersistence = tagsEntryPersistence;
 	}
 
-	public void afterPropertiesSet() {
-		if (kbArticleLocalService == null) {
-			kbArticleLocalService = (KBArticleLocalService)PortletBeanLocatorUtil.locate(KBArticleLocalService.class.getName() +
-					".impl");
-		}
-
-		if (kbArticlePersistence == null) {
-			kbArticlePersistence = (KBArticlePersistence)PortletBeanLocatorUtil.locate(KBArticlePersistence.class.getName() +
-					".impl");
-		}
-
-		if (kbArticleFinder == null) {
-			kbArticleFinder = (KBArticleFinder)PortletBeanLocatorUtil.locate(KBArticleFinder.class.getName() +
-					".impl");
-		}
-
-		if (kbArticleResourceLocalService == null) {
-			kbArticleResourceLocalService = (KBArticleResourceLocalService)PortletBeanLocatorUtil.locate(KBArticleResourceLocalService.class.getName() +
-					".impl");
-		}
-
-		if (kbArticleResourcePersistence == null) {
-			kbArticleResourcePersistence = (KBArticleResourcePersistence)PortletBeanLocatorUtil.locate(KBArticleResourcePersistence.class.getName() +
-					".impl");
-		}
-
-		if (kbFeedbackEntryLocalService == null) {
-			kbFeedbackEntryLocalService = (KBFeedbackEntryLocalService)PortletBeanLocatorUtil.locate(KBFeedbackEntryLocalService.class.getName() +
-					".impl");
-		}
-
-		if (kbFeedbackEntryPersistence == null) {
-			kbFeedbackEntryPersistence = (KBFeedbackEntryPersistence)PortletBeanLocatorUtil.locate(KBFeedbackEntryPersistence.class.getName() +
-					".impl");
-		}
-
-		if (kbFeedbackStatsLocalService == null) {
-			kbFeedbackStatsLocalService = (KBFeedbackStatsLocalService)PortletBeanLocatorUtil.locate(KBFeedbackStatsLocalService.class.getName() +
-					".impl");
-		}
-
-		if (kbFeedbackStatsPersistence == null) {
-			kbFeedbackStatsPersistence = (KBFeedbackStatsPersistence)PortletBeanLocatorUtil.locate(KBFeedbackStatsPersistence.class.getName() +
-					".impl");
-		}
-
-		if (counterLocalService == null) {
-			counterLocalService = (CounterLocalService)PortalBeanLocatorUtil.locate(CounterLocalService.class.getName() +
-					".impl");
-		}
-
-		if (counterService == null) {
-			counterService = (CounterService)PortalBeanLocatorUtil.locate(CounterService.class.getName() +
-					".impl");
-		}
-
-		if (dlLocalService == null) {
-			dlLocalService = (DLLocalService)PortalBeanLocatorUtil.locate(DLLocalService.class.getName() +
-					".impl");
-		}
-
-		if (dlService == null) {
-			dlService = (DLService)PortalBeanLocatorUtil.locate(DLService.class.getName() +
-					".impl");
-		}
-
-		if (companyLocalService == null) {
-			companyLocalService = (CompanyLocalService)PortalBeanLocatorUtil.locate(CompanyLocalService.class.getName() +
-					".impl");
-		}
-
-		if (companyService == null) {
-			companyService = (CompanyService)PortalBeanLocatorUtil.locate(CompanyService.class.getName() +
-					".impl");
-		}
-
-		if (companyPersistence == null) {
-			companyPersistence = (CompanyPersistence)PortalBeanLocatorUtil.locate(CompanyPersistence.class.getName() +
-					".impl");
-		}
-
-		if (groupLocalService == null) {
-			groupLocalService = (GroupLocalService)PortalBeanLocatorUtil.locate(GroupLocalService.class.getName() +
-					".impl");
-		}
-
-		if (groupService == null) {
-			groupService = (GroupService)PortalBeanLocatorUtil.locate(GroupService.class.getName() +
-					".impl");
-		}
-
-		if (groupPersistence == null) {
-			groupPersistence = (GroupPersistence)PortalBeanLocatorUtil.locate(GroupPersistence.class.getName() +
-					".impl");
-		}
-
-		if (mailService == null) {
-			mailService = (MailService)PortalBeanLocatorUtil.locate(MailService.class.getName() +
-					".impl");
-		}
-
-		if (portletPreferencesLocalService == null) {
-			portletPreferencesLocalService = (PortletPreferencesLocalService)PortalBeanLocatorUtil.locate(PortletPreferencesLocalService.class.getName() +
-					".impl");
-		}
-
-		if (portletPreferencesService == null) {
-			portletPreferencesService = (PortletPreferencesService)PortalBeanLocatorUtil.locate(PortletPreferencesService.class.getName() +
-					".impl");
-		}
-
-		if (portletPreferencesPersistence == null) {
-			portletPreferencesPersistence = (PortletPreferencesPersistence)PortalBeanLocatorUtil.locate(PortletPreferencesPersistence.class.getName() +
-					".impl");
-		}
-
-		if (resourceLocalService == null) {
-			resourceLocalService = (ResourceLocalService)PortalBeanLocatorUtil.locate(ResourceLocalService.class.getName() +
-					".impl");
-		}
-
-		if (resourceService == null) {
-			resourceService = (ResourceService)PortalBeanLocatorUtil.locate(ResourceService.class.getName() +
-					".impl");
-		}
-
-		if (resourcePersistence == null) {
-			resourcePersistence = (ResourcePersistence)PortalBeanLocatorUtil.locate(ResourcePersistence.class.getName() +
-					".impl");
-		}
-
-		if (subscriptionLocalService == null) {
-			subscriptionLocalService = (SubscriptionLocalService)PortalBeanLocatorUtil.locate(SubscriptionLocalService.class.getName() +
-					".impl");
-		}
-
-		if (subscriptionPersistence == null) {
-			subscriptionPersistence = (SubscriptionPersistence)PortalBeanLocatorUtil.locate(SubscriptionPersistence.class.getName() +
-					".impl");
-		}
-
-		if (userLocalService == null) {
-			userLocalService = (UserLocalService)PortalBeanLocatorUtil.locate(UserLocalService.class.getName() +
-					".impl");
-		}
-
-		if (userService == null) {
-			userService = (UserService)PortalBeanLocatorUtil.locate(UserService.class.getName() +
-					".impl");
-		}
-
-		if (userPersistence == null) {
-			userPersistence = (UserPersistence)PortalBeanLocatorUtil.locate(UserPersistence.class.getName() +
-					".impl");
-		}
-
-		if (mbMessageLocalService == null) {
-			mbMessageLocalService = (MBMessageLocalService)PortalBeanLocatorUtil.locate(MBMessageLocalService.class.getName() +
-					".impl");
-		}
-
-		if (mbMessageService == null) {
-			mbMessageService = (MBMessageService)PortalBeanLocatorUtil.locate(MBMessageService.class.getName() +
-					".impl");
-		}
-
-		if (mbMessagePersistence == null) {
-			mbMessagePersistence = (MBMessagePersistence)PortalBeanLocatorUtil.locate(MBMessagePersistence.class.getName() +
-					".impl");
-		}
-
-		if (tagsAssetLocalService == null) {
-			tagsAssetLocalService = (TagsAssetLocalService)PortalBeanLocatorUtil.locate(TagsAssetLocalService.class.getName() +
-					".impl");
-		}
-
-		if (tagsAssetService == null) {
-			tagsAssetService = (TagsAssetService)PortalBeanLocatorUtil.locate(TagsAssetService.class.getName() +
-					".impl");
-		}
-
-		if (tagsAssetPersistence == null) {
-			tagsAssetPersistence = (TagsAssetPersistence)PortalBeanLocatorUtil.locate(TagsAssetPersistence.class.getName() +
-					".impl");
-		}
-
-		if (tagsEntryLocalService == null) {
-			tagsEntryLocalService = (TagsEntryLocalService)PortalBeanLocatorUtil.locate(TagsEntryLocalService.class.getName() +
-					".impl");
-		}
-
-		if (tagsEntryService == null) {
-			tagsEntryService = (TagsEntryService)PortalBeanLocatorUtil.locate(TagsEntryService.class.getName() +
-					".impl");
-		}
-
-		if (tagsEntryPersistence == null) {
-			tagsEntryPersistence = (TagsEntryPersistence)PortalBeanLocatorUtil.locate(TagsEntryPersistence.class.getName() +
-					".impl");
-		}
-	}
-
 	protected KBArticleLocalService kbArticleLocalService;
+	protected KBArticleService kbArticleService;
 	protected KBArticlePersistence kbArticlePersistence;
 	protected KBArticleFinder kbArticleFinder;
 	protected KBArticleResourceLocalService kbArticleResourceLocalService;

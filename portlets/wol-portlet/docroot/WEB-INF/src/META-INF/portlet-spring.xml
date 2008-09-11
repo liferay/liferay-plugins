@@ -2,13 +2,36 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
+	<bean id="com.liferay.wol.service.WOL.base" abstract="true">
+		<property name="JIRAActionLocalService" ref="com.liferay.wol.service.JIRAActionLocalService.impl" />
+		<property name="JIRAActionPersistence" ref="com.liferay.wol.service.persistence.JIRAActionPersistence.impl" />
+		<property name="JIRAActionFinder" ref="com.liferay.wol.service.persistence.JIRAActionFinder.impl" />
+		<property name="JIRAChangeGroupLocalService" ref="com.liferay.wol.service.JIRAChangeGroupLocalService.impl" />
+		<property name="JIRAChangeGroupPersistence" ref="com.liferay.wol.service.persistence.JIRAChangeGroupPersistence.impl" />
+		<property name="JIRAChangeGroupFinder" ref="com.liferay.wol.service.persistence.JIRAChangeGroupFinder.impl" />
+		<property name="JIRAChangeItemLocalService" ref="com.liferay.wol.service.JIRAChangeItemLocalService.impl" />
+		<property name="JIRAChangeItemPersistence" ref="com.liferay.wol.service.persistence.JIRAChangeItemPersistence.impl" />
+		<property name="JIRAIssueLocalService" ref="com.liferay.wol.service.JIRAIssueLocalService.impl" />
+		<property name="JIRAIssuePersistence" ref="com.liferay.wol.service.persistence.JIRAIssuePersistence.impl" />
+		<property name="JIRAIssueFinder" ref="com.liferay.wol.service.persistence.JIRAIssueFinder.impl" />
+		<property name="meetupsEntryLocalService" ref="com.liferay.wol.service.MeetupsEntryLocalService.impl" />
+		<property name="meetupsEntryPersistence" ref="com.liferay.wol.service.persistence.MeetupsEntryPersistence.impl" />
+		<property name="meetupsRegistrationLocalService" ref="com.liferay.wol.service.MeetupsRegistrationLocalService.impl" />
+		<property name="meetupsRegistrationPersistence" ref="com.liferay.wol.service.persistence.MeetupsRegistrationPersistence.impl" />
+		<property name="SVNRepositoryLocalService" ref="com.liferay.wol.service.SVNRepositoryLocalService.impl" />
+		<property name="SVNRepositoryPersistence" ref="com.liferay.wol.service.persistence.SVNRepositoryPersistence.impl" />
+		<property name="SVNRevisionLocalService" ref="com.liferay.wol.service.SVNRevisionLocalService.impl" />
+		<property name="SVNRevisionPersistence" ref="com.liferay.wol.service.persistence.SVNRevisionPersistence.impl" />
+		<property name="wallEntryLocalService" ref="com.liferay.wol.service.WallEntryLocalService.impl" />
+		<property name="wallEntryPersistence" ref="com.liferay.wol.service.persistence.WallEntryPersistence.impl" />
+		<property name="wallEntryFinder" ref="com.liferay.wol.service.persistence.WallEntryFinder.impl" />
+	</bean>
+	<bean id="com.liferay.wol.service.JIRAActionLocalService.target" class="com.liferay.wol.service.impl.JIRAActionLocalServiceImpl" parent="com.liferay.wol.service.WOL.base">
+		<property name="JIRAActionLocalService" ref="com.liferay.wol.service.JIRAActionLocalService.target" />
+	</bean>
 	<bean id="com.liferay.wol.service.JIRAActionLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager">
-			<ref bean="jiraTransactionManager" />
-		</property>
-		<property name="target">
-			<bean class="com.liferay.wol.service.impl.JIRAActionLocalServiceImpl" />
-		</property>
+		<property name="transactionManager" ref="jiraTransactionManager" />
+		<property name="target" ref="com.liferay.wol.service.JIRAActionLocalService.target" />
 		<property name="transactionAttributes">
 			<props>
 				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
@@ -41,13 +64,12 @@
 	<bean id="com.liferay.wol.service.persistence.JIRAActionFinderUtil" class="com.liferay.wol.service.persistence.JIRAActionFinderUtil">
 		<property name="finder" ref="com.liferay.wol.service.persistence.JIRAActionFinder.impl" />
 	</bean>
+	<bean id="com.liferay.wol.service.JIRAChangeGroupLocalService.target" class="com.liferay.wol.service.impl.JIRAChangeGroupLocalServiceImpl" parent="com.liferay.wol.service.WOL.base">
+		<property name="JIRAChangeGroupLocalService" ref="com.liferay.wol.service.JIRAChangeGroupLocalService.target" />
+	</bean>
 	<bean id="com.liferay.wol.service.JIRAChangeGroupLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager">
-			<ref bean="jiraTransactionManager" />
-		</property>
-		<property name="target">
-			<bean class="com.liferay.wol.service.impl.JIRAChangeGroupLocalServiceImpl" />
-		</property>
+		<property name="transactionManager" ref="jiraTransactionManager" />
+		<property name="target" ref="com.liferay.wol.service.JIRAChangeGroupLocalService.target" />
 		<property name="transactionAttributes">
 			<props>
 				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
@@ -80,13 +102,12 @@
 	<bean id="com.liferay.wol.service.persistence.JIRAChangeGroupFinderUtil" class="com.liferay.wol.service.persistence.JIRAChangeGroupFinderUtil">
 		<property name="finder" ref="com.liferay.wol.service.persistence.JIRAChangeGroupFinder.impl" />
 	</bean>
+	<bean id="com.liferay.wol.service.JIRAChangeItemLocalService.target" class="com.liferay.wol.service.impl.JIRAChangeItemLocalServiceImpl" parent="com.liferay.wol.service.WOL.base">
+		<property name="JIRAChangeItemLocalService" ref="com.liferay.wol.service.JIRAChangeItemLocalService.target" />
+	</bean>
 	<bean id="com.liferay.wol.service.JIRAChangeItemLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager">
-			<ref bean="jiraTransactionManager" />
-		</property>
-		<property name="target">
-			<bean class="com.liferay.wol.service.impl.JIRAChangeItemLocalServiceImpl" />
-		</property>
+		<property name="transactionManager" ref="jiraTransactionManager" />
+		<property name="target" ref="com.liferay.wol.service.JIRAChangeItemLocalService.target" />
 		<property name="transactionAttributes">
 			<props>
 				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
@@ -112,13 +133,12 @@
 	<bean id="com.liferay.wol.service.persistence.JIRAChangeItemUtil" class="com.liferay.wol.service.persistence.JIRAChangeItemUtil">
 		<property name="persistence" ref="com.liferay.wol.service.persistence.JIRAChangeItemPersistence.impl" />
 	</bean>
+	<bean id="com.liferay.wol.service.JIRAIssueLocalService.target" class="com.liferay.wol.service.impl.JIRAIssueLocalServiceImpl" parent="com.liferay.wol.service.WOL.base">
+		<property name="JIRAIssueLocalService" ref="com.liferay.wol.service.JIRAIssueLocalService.target" />
+	</bean>
 	<bean id="com.liferay.wol.service.JIRAIssueLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager">
-			<ref bean="jiraTransactionManager" />
-		</property>
-		<property name="target">
-			<bean class="com.liferay.wol.service.impl.JIRAIssueLocalServiceImpl" />
-		</property>
+		<property name="transactionManager" ref="jiraTransactionManager" />
+		<property name="target" ref="com.liferay.wol.service.JIRAIssueLocalService.target" />
 		<property name="transactionAttributes">
 			<props>
 				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
@@ -151,13 +171,12 @@
 	<bean id="com.liferay.wol.service.persistence.JIRAIssueFinderUtil" class="com.liferay.wol.service.persistence.JIRAIssueFinderUtil">
 		<property name="finder" ref="com.liferay.wol.service.persistence.JIRAIssueFinder.impl" />
 	</bean>
+	<bean id="com.liferay.wol.service.MeetupsEntryLocalService.target" class="com.liferay.wol.service.impl.MeetupsEntryLocalServiceImpl" parent="com.liferay.wol.service.WOL.base">
+		<property name="meetupsEntryLocalService" ref="com.liferay.wol.service.MeetupsEntryLocalService.target" />
+	</bean>
 	<bean id="com.liferay.wol.service.MeetupsEntryLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<bean class="com.liferay.wol.service.impl.MeetupsEntryLocalServiceImpl" />
-		</property>
+		<property name="transactionManager" ref="liferayTransactionManager" />
+		<property name="target" ref="com.liferay.wol.service.MeetupsEntryLocalService.target" />
 		<property name="transactionAttributes">
 			<props>
 				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
@@ -180,13 +199,12 @@
 	<bean id="com.liferay.wol.service.persistence.MeetupsEntryUtil" class="com.liferay.wol.service.persistence.MeetupsEntryUtil">
 		<property name="persistence" ref="com.liferay.wol.service.persistence.MeetupsEntryPersistence.impl" />
 	</bean>
+	<bean id="com.liferay.wol.service.MeetupsRegistrationLocalService.target" class="com.liferay.wol.service.impl.MeetupsRegistrationLocalServiceImpl" parent="com.liferay.wol.service.WOL.base">
+		<property name="meetupsRegistrationLocalService" ref="com.liferay.wol.service.MeetupsRegistrationLocalService.target" />
+	</bean>
 	<bean id="com.liferay.wol.service.MeetupsRegistrationLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<bean class="com.liferay.wol.service.impl.MeetupsRegistrationLocalServiceImpl" />
-		</property>
+		<property name="transactionManager" ref="liferayTransactionManager" />
+		<property name="target" ref="com.liferay.wol.service.MeetupsRegistrationLocalService.target" />
 		<property name="transactionAttributes">
 			<props>
 				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
@@ -209,13 +227,12 @@
 	<bean id="com.liferay.wol.service.persistence.MeetupsRegistrationUtil" class="com.liferay.wol.service.persistence.MeetupsRegistrationUtil">
 		<property name="persistence" ref="com.liferay.wol.service.persistence.MeetupsRegistrationPersistence.impl" />
 	</bean>
+	<bean id="com.liferay.wol.service.SVNRepositoryLocalService.target" class="com.liferay.wol.service.impl.SVNRepositoryLocalServiceImpl" parent="com.liferay.wol.service.WOL.base">
+		<property name="SVNRepositoryLocalService" ref="com.liferay.wol.service.SVNRepositoryLocalService.target" />
+	</bean>
 	<bean id="com.liferay.wol.service.SVNRepositoryLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<bean class="com.liferay.wol.service.impl.SVNRepositoryLocalServiceImpl" />
-		</property>
+		<property name="transactionManager" ref="liferayTransactionManager" />
+		<property name="target" ref="com.liferay.wol.service.SVNRepositoryLocalService.target" />
 		<property name="transactionAttributes">
 			<props>
 				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
@@ -238,13 +255,12 @@
 	<bean id="com.liferay.wol.service.persistence.SVNRepositoryUtil" class="com.liferay.wol.service.persistence.SVNRepositoryUtil">
 		<property name="persistence" ref="com.liferay.wol.service.persistence.SVNRepositoryPersistence.impl" />
 	</bean>
+	<bean id="com.liferay.wol.service.SVNRevisionLocalService.target" class="com.liferay.wol.service.impl.SVNRevisionLocalServiceImpl" parent="com.liferay.wol.service.WOL.base">
+		<property name="SVNRevisionLocalService" ref="com.liferay.wol.service.SVNRevisionLocalService.target" />
+	</bean>
 	<bean id="com.liferay.wol.service.SVNRevisionLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<bean class="com.liferay.wol.service.impl.SVNRevisionLocalServiceImpl" />
-		</property>
+		<property name="transactionManager" ref="liferayTransactionManager" />
+		<property name="target" ref="com.liferay.wol.service.SVNRevisionLocalService.target" />
 		<property name="transactionAttributes">
 			<props>
 				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
@@ -267,13 +283,12 @@
 	<bean id="com.liferay.wol.service.persistence.SVNRevisionUtil" class="com.liferay.wol.service.persistence.SVNRevisionUtil">
 		<property name="persistence" ref="com.liferay.wol.service.persistence.SVNRevisionPersistence.impl" />
 	</bean>
+	<bean id="com.liferay.wol.service.WallEntryLocalService.target" class="com.liferay.wol.service.impl.WallEntryLocalServiceImpl" parent="com.liferay.wol.service.WOL.base">
+		<property name="wallEntryLocalService" ref="com.liferay.wol.service.WallEntryLocalService.target" />
+	</bean>
 	<bean id="com.liferay.wol.service.WallEntryLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<bean class="com.liferay.wol.service.impl.WallEntryLocalServiceImpl" />
-		</property>
+		<property name="transactionManager" ref="liferayTransactionManager" />
+		<property name="target" ref="com.liferay.wol.service.WallEntryLocalService.target" />
 		<property name="transactionAttributes">
 			<props>
 				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>

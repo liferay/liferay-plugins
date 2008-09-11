@@ -28,7 +28,6 @@ import com.liferay.kb.knowledgebase.model.impl.KBFeedbackEntryImpl;
 import com.liferay.kb.knowledgebase.model.impl.KBFeedbackEntryModelImpl;
 
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -58,7 +57,7 @@ import java.util.List;
  *
  */
 public class KBFeedbackEntryPersistenceImpl extends BasePersistenceImpl
-	implements KBFeedbackEntryPersistence, InitializingBean {
+	implements KBFeedbackEntryPersistence {
 	public KBFeedbackEntry create(long feedbackEntryId) {
 		KBFeedbackEntry kbFeedbackEntry = new KBFeedbackEntryImpl();
 

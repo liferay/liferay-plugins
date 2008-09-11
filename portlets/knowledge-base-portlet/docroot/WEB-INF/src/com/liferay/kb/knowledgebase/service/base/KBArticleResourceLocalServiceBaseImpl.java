@@ -28,6 +28,7 @@ import com.liferay.counter.service.CounterService;
 import com.liferay.kb.knowledgebase.model.KBArticleResource;
 import com.liferay.kb.knowledgebase.service.KBArticleLocalService;
 import com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService;
+import com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService;
 import com.liferay.kb.knowledgebase.service.KBArticleService;
 import com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalService;
 import com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService;
@@ -39,11 +40,7 @@ import com.liferay.kb.knowledgebase.service.persistence.KBFeedbackStatsPersisten
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.bean.InitializingBean;
-import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-
-import com.liferay.util.bean.PortletBeanLocatorUtil;
 
 import java.util.List;
 
@@ -54,7 +51,7 @@ import java.util.List;
  *
  */
 public abstract class KBArticleResourceLocalServiceBaseImpl
-	implements KBArticleResourceLocalService, InitializingBean {
+	implements KBArticleResourceLocalService {
 	public KBArticleResource addKBArticleResource(
 		KBArticleResource kbArticleResource) throws SystemException {
 		kbArticleResource.setNew(true);
@@ -142,6 +139,15 @@ public abstract class KBArticleResourceLocalServiceBaseImpl
 		this.kbArticleFinder = kbArticleFinder;
 	}
 
+	public KBArticleResourceLocalService getKBArticleResourceLocalService() {
+		return kbArticleResourceLocalService;
+	}
+
+	public void setKBArticleResourceLocalService(
+		KBArticleResourceLocalService kbArticleResourceLocalService) {
+		this.kbArticleResourceLocalService = kbArticleResourceLocalService;
+	}
+
 	public KBArticleResourcePersistence getKBArticleResourcePersistence() {
 		return kbArticleResourcePersistence;
 	}
@@ -203,67 +209,11 @@ public abstract class KBArticleResourceLocalServiceBaseImpl
 		this.counterService = counterService;
 	}
 
-	public void afterPropertiesSet() {
-		if (kbArticleLocalService == null) {
-			kbArticleLocalService = (KBArticleLocalService)PortletBeanLocatorUtil.locate(KBArticleLocalService.class.getName() +
-					".impl");
-		}
-
-		if (kbArticleService == null) {
-			kbArticleService = (KBArticleService)PortletBeanLocatorUtil.locate(KBArticleService.class.getName() +
-					".impl");
-		}
-
-		if (kbArticlePersistence == null) {
-			kbArticlePersistence = (KBArticlePersistence)PortletBeanLocatorUtil.locate(KBArticlePersistence.class.getName() +
-					".impl");
-		}
-
-		if (kbArticleFinder == null) {
-			kbArticleFinder = (KBArticleFinder)PortletBeanLocatorUtil.locate(KBArticleFinder.class.getName() +
-					".impl");
-		}
-
-		if (kbArticleResourcePersistence == null) {
-			kbArticleResourcePersistence = (KBArticleResourcePersistence)PortletBeanLocatorUtil.locate(KBArticleResourcePersistence.class.getName() +
-					".impl");
-		}
-
-		if (kbFeedbackEntryLocalService == null) {
-			kbFeedbackEntryLocalService = (KBFeedbackEntryLocalService)PortletBeanLocatorUtil.locate(KBFeedbackEntryLocalService.class.getName() +
-					".impl");
-		}
-
-		if (kbFeedbackEntryPersistence == null) {
-			kbFeedbackEntryPersistence = (KBFeedbackEntryPersistence)PortletBeanLocatorUtil.locate(KBFeedbackEntryPersistence.class.getName() +
-					".impl");
-		}
-
-		if (kbFeedbackStatsLocalService == null) {
-			kbFeedbackStatsLocalService = (KBFeedbackStatsLocalService)PortletBeanLocatorUtil.locate(KBFeedbackStatsLocalService.class.getName() +
-					".impl");
-		}
-
-		if (kbFeedbackStatsPersistence == null) {
-			kbFeedbackStatsPersistence = (KBFeedbackStatsPersistence)PortletBeanLocatorUtil.locate(KBFeedbackStatsPersistence.class.getName() +
-					".impl");
-		}
-
-		if (counterLocalService == null) {
-			counterLocalService = (CounterLocalService)PortalBeanLocatorUtil.locate(CounterLocalService.class.getName() +
-					".impl");
-		}
-
-		if (counterService == null) {
-			counterService = (CounterService)PortalBeanLocatorUtil.locate(CounterService.class.getName() +
-					".impl");
-		}
-	}
-
 	protected KBArticleLocalService kbArticleLocalService;
 	protected KBArticleService kbArticleService;
 	protected KBArticlePersistence kbArticlePersistence;
 	protected KBArticleFinder kbArticleFinder;
+	protected KBArticleResourceLocalService kbArticleResourceLocalService;
 	protected KBArticleResourcePersistence kbArticleResourcePersistence;
 	protected KBFeedbackEntryLocalService kbFeedbackEntryLocalService;
 	protected KBFeedbackEntryPersistence kbFeedbackEntryPersistence;

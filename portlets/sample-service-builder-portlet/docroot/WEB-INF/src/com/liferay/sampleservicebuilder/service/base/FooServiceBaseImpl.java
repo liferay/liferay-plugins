@@ -22,14 +22,12 @@
 
 package com.liferay.sampleservicebuilder.service.base;
 
-import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.service.base.PrincipalBean;
 
 import com.liferay.sampleservicebuilder.service.FooLocalService;
 import com.liferay.sampleservicebuilder.service.FooService;
+import com.liferay.sampleservicebuilder.service.FooService;
 import com.liferay.sampleservicebuilder.service.persistence.FooPersistence;
-
-import com.liferay.util.bean.PortletBeanLocatorUtil;
 
 /**
  * <a href="FooServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
@@ -38,13 +36,21 @@ import com.liferay.util.bean.PortletBeanLocatorUtil;
  *
  */
 public abstract class FooServiceBaseImpl extends PrincipalBean
-	implements FooService, InitializingBean {
+	implements FooService {
 	public FooLocalService getFooLocalService() {
 		return fooLocalService;
 	}
 
 	public void setFooLocalService(FooLocalService fooLocalService) {
 		this.fooLocalService = fooLocalService;
+	}
+
+	public FooService getFooService() {
+		return fooService;
+	}
+
+	public void setFooService(FooService fooService) {
+		this.fooService = fooService;
 	}
 
 	public FooPersistence getFooPersistence() {
@@ -55,18 +61,7 @@ public abstract class FooServiceBaseImpl extends PrincipalBean
 		this.fooPersistence = fooPersistence;
 	}
 
-	public void afterPropertiesSet() {
-		if (fooLocalService == null) {
-			fooLocalService = (FooLocalService)PortletBeanLocatorUtil.locate(FooLocalService.class.getName() +
-					".impl");
-		}
-
-		if (fooPersistence == null) {
-			fooPersistence = (FooPersistence)PortletBeanLocatorUtil.locate(FooPersistence.class.getName() +
-					".impl");
-		}
-	}
-
 	protected FooLocalService fooLocalService;
+	protected FooService fooService;
 	protected FooPersistence fooPersistence;
 }

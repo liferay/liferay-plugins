@@ -24,14 +24,11 @@ package com.liferay.twitter.service.base;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import com.liferay.twitter.model.Feed;
 import com.liferay.twitter.service.FeedLocalService;
 import com.liferay.twitter.service.persistence.FeedPersistence;
-
-import com.liferay.util.bean.PortletBeanLocatorUtil;
 
 import java.util.List;
 
@@ -41,8 +38,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
-	InitializingBean {
+public abstract class FeedLocalServiceBaseImpl implements FeedLocalService {
 	public Feed addFeed(Feed feed) throws SystemException {
 		feed.setNew(true);
 
@@ -89,6 +85,14 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 		return feedPersistence.update(feed, true);
 	}
 
+	public FeedLocalService getFeedLocalService() {
+		return feedLocalService;
+	}
+
+	public void setFeedLocalService(FeedLocalService feedLocalService) {
+		this.feedLocalService = feedLocalService;
+	}
+
 	public FeedPersistence getFeedPersistence() {
 		return feedPersistence;
 	}
@@ -97,12 +101,6 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 		this.feedPersistence = feedPersistence;
 	}
 
-	public void afterPropertiesSet() {
-		if (feedPersistence == null) {
-			feedPersistence = (FeedPersistence)PortletBeanLocatorUtil.locate(FeedPersistence.class.getName() +
-					".impl");
-		}
-	}
-
+	protected FeedLocalService feedLocalService;
 	protected FeedPersistence feedPersistence;
 }

@@ -24,10 +24,7 @@ package com.liferay.wol.service.base;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-
-import com.liferay.util.bean.PortletBeanLocatorUtil;
 
 import com.liferay.wol.model.SVNRevision;
 import com.liferay.wol.service.JIRAActionLocalService;
@@ -37,6 +34,7 @@ import com.liferay.wol.service.JIRAIssueLocalService;
 import com.liferay.wol.service.MeetupsEntryLocalService;
 import com.liferay.wol.service.MeetupsRegistrationLocalService;
 import com.liferay.wol.service.SVNRepositoryLocalService;
+import com.liferay.wol.service.SVNRevisionLocalService;
 import com.liferay.wol.service.SVNRevisionLocalService;
 import com.liferay.wol.service.WallEntryLocalService;
 import com.liferay.wol.service.persistence.JIRAActionFinder;
@@ -62,7 +60,7 @@ import java.util.List;
  *
  */
 public abstract class SVNRevisionLocalServiceBaseImpl
-	implements SVNRevisionLocalService, InitializingBean {
+	implements SVNRevisionLocalService {
 	public SVNRevision addSVNRevision(SVNRevision svnRevision)
 		throws SystemException {
 		svnRevision.setNew(true);
@@ -267,6 +265,15 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 		this.svnRepositoryPersistence = svnRepositoryPersistence;
 	}
 
+	public SVNRevisionLocalService getSVNRevisionLocalService() {
+		return svnRevisionLocalService;
+	}
+
+	public void setSVNRevisionLocalService(
+		SVNRevisionLocalService svnRevisionLocalService) {
+		this.svnRevisionLocalService = svnRevisionLocalService;
+	}
+
 	public SVNRevisionPersistence getSVNRevisionPersistence() {
 		return svnRevisionPersistence;
 	}
@@ -302,113 +309,6 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 		this.wallEntryFinder = wallEntryFinder;
 	}
 
-	public void afterPropertiesSet() {
-		if (jiraActionLocalService == null) {
-			jiraActionLocalService = (JIRAActionLocalService)PortletBeanLocatorUtil.locate(JIRAActionLocalService.class.getName() +
-					".impl");
-		}
-
-		if (jiraActionPersistence == null) {
-			jiraActionPersistence = (JIRAActionPersistence)PortletBeanLocatorUtil.locate(JIRAActionPersistence.class.getName() +
-					".impl");
-		}
-
-		if (jiraActionFinder == null) {
-			jiraActionFinder = (JIRAActionFinder)PortletBeanLocatorUtil.locate(JIRAActionFinder.class.getName() +
-					".impl");
-		}
-
-		if (jiraChangeGroupLocalService == null) {
-			jiraChangeGroupLocalService = (JIRAChangeGroupLocalService)PortletBeanLocatorUtil.locate(JIRAChangeGroupLocalService.class.getName() +
-					".impl");
-		}
-
-		if (jiraChangeGroupPersistence == null) {
-			jiraChangeGroupPersistence = (JIRAChangeGroupPersistence)PortletBeanLocatorUtil.locate(JIRAChangeGroupPersistence.class.getName() +
-					".impl");
-		}
-
-		if (jiraChangeGroupFinder == null) {
-			jiraChangeGroupFinder = (JIRAChangeGroupFinder)PortletBeanLocatorUtil.locate(JIRAChangeGroupFinder.class.getName() +
-					".impl");
-		}
-
-		if (jiraChangeItemLocalService == null) {
-			jiraChangeItemLocalService = (JIRAChangeItemLocalService)PortletBeanLocatorUtil.locate(JIRAChangeItemLocalService.class.getName() +
-					".impl");
-		}
-
-		if (jiraChangeItemPersistence == null) {
-			jiraChangeItemPersistence = (JIRAChangeItemPersistence)PortletBeanLocatorUtil.locate(JIRAChangeItemPersistence.class.getName() +
-					".impl");
-		}
-
-		if (jiraIssueLocalService == null) {
-			jiraIssueLocalService = (JIRAIssueLocalService)PortletBeanLocatorUtil.locate(JIRAIssueLocalService.class.getName() +
-					".impl");
-		}
-
-		if (jiraIssuePersistence == null) {
-			jiraIssuePersistence = (JIRAIssuePersistence)PortletBeanLocatorUtil.locate(JIRAIssuePersistence.class.getName() +
-					".impl");
-		}
-
-		if (jiraIssueFinder == null) {
-			jiraIssueFinder = (JIRAIssueFinder)PortletBeanLocatorUtil.locate(JIRAIssueFinder.class.getName() +
-					".impl");
-		}
-
-		if (meetupsEntryLocalService == null) {
-			meetupsEntryLocalService = (MeetupsEntryLocalService)PortletBeanLocatorUtil.locate(MeetupsEntryLocalService.class.getName() +
-					".impl");
-		}
-
-		if (meetupsEntryPersistence == null) {
-			meetupsEntryPersistence = (MeetupsEntryPersistence)PortletBeanLocatorUtil.locate(MeetupsEntryPersistence.class.getName() +
-					".impl");
-		}
-
-		if (meetupsRegistrationLocalService == null) {
-			meetupsRegistrationLocalService = (MeetupsRegistrationLocalService)PortletBeanLocatorUtil.locate(MeetupsRegistrationLocalService.class.getName() +
-					".impl");
-		}
-
-		if (meetupsRegistrationPersistence == null) {
-			meetupsRegistrationPersistence = (MeetupsRegistrationPersistence)PortletBeanLocatorUtil.locate(MeetupsRegistrationPersistence.class.getName() +
-					".impl");
-		}
-
-		if (svnRepositoryLocalService == null) {
-			svnRepositoryLocalService = (SVNRepositoryLocalService)PortletBeanLocatorUtil.locate(SVNRepositoryLocalService.class.getName() +
-					".impl");
-		}
-
-		if (svnRepositoryPersistence == null) {
-			svnRepositoryPersistence = (SVNRepositoryPersistence)PortletBeanLocatorUtil.locate(SVNRepositoryPersistence.class.getName() +
-					".impl");
-		}
-
-		if (svnRevisionPersistence == null) {
-			svnRevisionPersistence = (SVNRevisionPersistence)PortletBeanLocatorUtil.locate(SVNRevisionPersistence.class.getName() +
-					".impl");
-		}
-
-		if (wallEntryLocalService == null) {
-			wallEntryLocalService = (WallEntryLocalService)PortletBeanLocatorUtil.locate(WallEntryLocalService.class.getName() +
-					".impl");
-		}
-
-		if (wallEntryPersistence == null) {
-			wallEntryPersistence = (WallEntryPersistence)PortletBeanLocatorUtil.locate(WallEntryPersistence.class.getName() +
-					".impl");
-		}
-
-		if (wallEntryFinder == null) {
-			wallEntryFinder = (WallEntryFinder)PortletBeanLocatorUtil.locate(WallEntryFinder.class.getName() +
-					".impl");
-		}
-	}
-
 	protected JIRAActionLocalService jiraActionLocalService;
 	protected JIRAActionPersistence jiraActionPersistence;
 	protected JIRAActionFinder jiraActionFinder;
@@ -426,6 +326,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	protected MeetupsRegistrationPersistence meetupsRegistrationPersistence;
 	protected SVNRepositoryLocalService svnRepositoryLocalService;
 	protected SVNRepositoryPersistence svnRepositoryPersistence;
+	protected SVNRevisionLocalService svnRevisionLocalService;
 	protected SVNRevisionPersistence svnRevisionPersistence;
 	protected WallEntryLocalService wallEntryLocalService;
 	protected WallEntryPersistence wallEntryPersistence;

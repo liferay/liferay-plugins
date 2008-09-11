@@ -2,13 +2,16 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
+	<bean id="com.liferay.twitter.service.Twitter.base" abstract="true">
+		<property name="feedLocalService" ref="com.liferay.twitter.service.FeedLocalService.impl" />
+		<property name="feedPersistence" ref="com.liferay.twitter.service.persistence.FeedPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.twitter.service.FeedLocalService.target" class="com.liferay.twitter.service.impl.FeedLocalServiceImpl" parent="com.liferay.twitter.service.Twitter.base">
+		<property name="feedLocalService" ref="com.liferay.twitter.service.FeedLocalService.target" />
+	</bean>
 	<bean id="com.liferay.twitter.service.FeedLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager">
-			<ref bean="liferayTransactionManager" />
-		</property>
-		<property name="target">
-			<bean class="com.liferay.twitter.service.impl.FeedLocalServiceImpl" />
-		</property>
+		<property name="transactionManager" ref="liferayTransactionManager" />
+		<property name="target" ref="com.liferay.twitter.service.FeedLocalService.target" />
 		<property name="transactionAttributes">
 			<props>
 				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>

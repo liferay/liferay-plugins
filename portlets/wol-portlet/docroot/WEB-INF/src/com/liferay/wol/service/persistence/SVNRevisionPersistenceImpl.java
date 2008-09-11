@@ -23,7 +23,6 @@
 package com.liferay.wol.service.persistence;
 
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -58,7 +57,7 @@ import java.util.List;
  *
  */
 public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
-	implements SVNRevisionPersistence, InitializingBean {
+	implements SVNRevisionPersistence {
 	public SVNRevision create(long svnRevisionId) {
 		SVNRevision svnRevision = new SVNRevisionImpl();
 

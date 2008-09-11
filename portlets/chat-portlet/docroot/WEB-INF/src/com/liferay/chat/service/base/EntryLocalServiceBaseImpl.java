@@ -32,10 +32,7 @@ import com.liferay.chat.service.persistence.StatusPersistence;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-
-import com.liferay.util.bean.PortletBeanLocatorUtil;
 
 import java.util.List;
 
@@ -45,8 +42,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class EntryLocalServiceBaseImpl implements EntryLocalService,
-	InitializingBean {
+public abstract class EntryLocalServiceBaseImpl implements EntryLocalService {
 	public Entry addEntry(Entry entry) throws SystemException {
 		entry.setNew(true);
 
@@ -94,6 +90,14 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService,
 		return entryPersistence.update(entry, true);
 	}
 
+	public EntryLocalService getEntryLocalService() {
+		return entryLocalService;
+	}
+
+	public void setEntryLocalService(EntryLocalService entryLocalService) {
+		this.entryLocalService = entryLocalService;
+	}
+
 	public EntryPersistence getEntryPersistence() {
 		return entryPersistence;
 	}
@@ -134,33 +138,7 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService,
 		this.statusFinder = statusFinder;
 	}
 
-	public void afterPropertiesSet() {
-		if (entryPersistence == null) {
-			entryPersistence = (EntryPersistence)PortletBeanLocatorUtil.locate(EntryPersistence.class.getName() +
-					".impl");
-		}
-
-		if (entryFinder == null) {
-			entryFinder = (EntryFinder)PortletBeanLocatorUtil.locate(EntryFinder.class.getName() +
-					".impl");
-		}
-
-		if (statusLocalService == null) {
-			statusLocalService = (StatusLocalService)PortletBeanLocatorUtil.locate(StatusLocalService.class.getName() +
-					".impl");
-		}
-
-		if (statusPersistence == null) {
-			statusPersistence = (StatusPersistence)PortletBeanLocatorUtil.locate(StatusPersistence.class.getName() +
-					".impl");
-		}
-
-		if (statusFinder == null) {
-			statusFinder = (StatusFinder)PortletBeanLocatorUtil.locate(StatusFinder.class.getName() +
-					".impl");
-		}
-	}
-
+	protected EntryLocalService entryLocalService;
 	protected EntryPersistence entryPersistence;
 	protected EntryFinder entryFinder;
 	protected StatusLocalService statusLocalService;

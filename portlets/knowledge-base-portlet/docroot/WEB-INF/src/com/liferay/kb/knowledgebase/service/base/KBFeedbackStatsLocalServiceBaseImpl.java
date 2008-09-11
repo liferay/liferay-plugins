@@ -28,6 +28,7 @@ import com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService;
 import com.liferay.kb.knowledgebase.service.KBArticleService;
 import com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalService;
 import com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService;
+import com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService;
 import com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder;
 import com.liferay.kb.knowledgebase.service.persistence.KBArticlePersistence;
 import com.liferay.kb.knowledgebase.service.persistence.KBArticleResourcePersistence;
@@ -36,10 +37,7 @@ import com.liferay.kb.knowledgebase.service.persistence.KBFeedbackStatsPersisten
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.bean.InitializingBean;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-
-import com.liferay.util.bean.PortletBeanLocatorUtil;
 
 import java.util.List;
 
@@ -50,7 +48,7 @@ import java.util.List;
  *
  */
 public abstract class KBFeedbackStatsLocalServiceBaseImpl
-	implements KBFeedbackStatsLocalService, InitializingBean {
+	implements KBFeedbackStatsLocalService {
 	public KBFeedbackStats addKBFeedbackStats(KBFeedbackStats kbFeedbackStats)
 		throws SystemException {
 		kbFeedbackStats.setNew(true);
@@ -174,6 +172,15 @@ public abstract class KBFeedbackStatsLocalServiceBaseImpl
 		this.kbFeedbackEntryPersistence = kbFeedbackEntryPersistence;
 	}
 
+	public KBFeedbackStatsLocalService getKBFeedbackStatsLocalService() {
+		return kbFeedbackStatsLocalService;
+	}
+
+	public void setKBFeedbackStatsLocalService(
+		KBFeedbackStatsLocalService kbFeedbackStatsLocalService) {
+		this.kbFeedbackStatsLocalService = kbFeedbackStatsLocalService;
+	}
+
 	public KBFeedbackStatsPersistence getKBFeedbackStatsPersistence() {
 		return kbFeedbackStatsPersistence;
 	}
@@ -181,53 +188,6 @@ public abstract class KBFeedbackStatsLocalServiceBaseImpl
 	public void setKBFeedbackStatsPersistence(
 		KBFeedbackStatsPersistence kbFeedbackStatsPersistence) {
 		this.kbFeedbackStatsPersistence = kbFeedbackStatsPersistence;
-	}
-
-	public void afterPropertiesSet() {
-		if (kbArticleLocalService == null) {
-			kbArticleLocalService = (KBArticleLocalService)PortletBeanLocatorUtil.locate(KBArticleLocalService.class.getName() +
-					".impl");
-		}
-
-		if (kbArticleService == null) {
-			kbArticleService = (KBArticleService)PortletBeanLocatorUtil.locate(KBArticleService.class.getName() +
-					".impl");
-		}
-
-		if (kbArticlePersistence == null) {
-			kbArticlePersistence = (KBArticlePersistence)PortletBeanLocatorUtil.locate(KBArticlePersistence.class.getName() +
-					".impl");
-		}
-
-		if (kbArticleFinder == null) {
-			kbArticleFinder = (KBArticleFinder)PortletBeanLocatorUtil.locate(KBArticleFinder.class.getName() +
-					".impl");
-		}
-
-		if (kbArticleResourceLocalService == null) {
-			kbArticleResourceLocalService = (KBArticleResourceLocalService)PortletBeanLocatorUtil.locate(KBArticleResourceLocalService.class.getName() +
-					".impl");
-		}
-
-		if (kbArticleResourcePersistence == null) {
-			kbArticleResourcePersistence = (KBArticleResourcePersistence)PortletBeanLocatorUtil.locate(KBArticleResourcePersistence.class.getName() +
-					".impl");
-		}
-
-		if (kbFeedbackEntryLocalService == null) {
-			kbFeedbackEntryLocalService = (KBFeedbackEntryLocalService)PortletBeanLocatorUtil.locate(KBFeedbackEntryLocalService.class.getName() +
-					".impl");
-		}
-
-		if (kbFeedbackEntryPersistence == null) {
-			kbFeedbackEntryPersistence = (KBFeedbackEntryPersistence)PortletBeanLocatorUtil.locate(KBFeedbackEntryPersistence.class.getName() +
-					".impl");
-		}
-
-		if (kbFeedbackStatsPersistence == null) {
-			kbFeedbackStatsPersistence = (KBFeedbackStatsPersistence)PortletBeanLocatorUtil.locate(KBFeedbackStatsPersistence.class.getName() +
-					".impl");
-		}
 	}
 
 	protected KBArticleLocalService kbArticleLocalService;
@@ -238,5 +198,6 @@ public abstract class KBFeedbackStatsLocalServiceBaseImpl
 	protected KBArticleResourcePersistence kbArticleResourcePersistence;
 	protected KBFeedbackEntryLocalService kbFeedbackEntryLocalService;
 	protected KBFeedbackEntryPersistence kbFeedbackEntryPersistence;
+	protected KBFeedbackStatsLocalService kbFeedbackStatsLocalService;
 	protected KBFeedbackStatsPersistence kbFeedbackStatsPersistence;
 }
