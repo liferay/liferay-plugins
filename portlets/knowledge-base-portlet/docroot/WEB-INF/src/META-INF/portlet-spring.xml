@@ -14,8 +14,7 @@
 		<property name="KBFeedbackStatsLocalService" ref="com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService.impl" />
 		<property name="KBFeedbackStatsPersistence" ref="com.liferay.kb.knowledgebase.service.persistence.KBFeedbackStatsPersistence.impl" />
 	</bean>
-	<bean id="com.liferay.kb.knowledgebase.service.KBArticleLocalService.target" class="com.liferay.kb.knowledgebase.service.impl.KBArticleLocalServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base">
-		<property name="KBArticleLocalService" ref="com.liferay.kb.knowledgebase.service.KBArticleLocalService.target" />
+	<bean id="com.liferay.kb.knowledgebase.service.KBArticleLocalService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBArticleLocalServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base">
 		<property name="counterLocalService" ref="com.liferay.counter.service.CounterLocalService.impl" />
 		<property name="counterService" ref="com.liferay.counter.service.CounterService.impl" />
 		<property name="DLLocalService" ref="com.liferay.documentlibrary.service.DLLocalService.impl" />
@@ -47,21 +46,6 @@
 		<property name="tagsEntryLocalService" ref="com.liferay.portlet.tags.service.TagsEntryLocalService.impl" />
 		<property name="tagsEntryService" ref="com.liferay.portlet.tags.service.TagsEntryService.impl" />
 		<property name="tagsEntryPersistence" ref="com.liferay.portlet.tags.service.persistence.TagsEntryPersistence.impl" />
-	</bean>
-	<bean id="com.liferay.kb.knowledgebase.service.KBArticleLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager" ref="liferayTransactionManager" />
-		<property name="target" ref="com.liferay.kb.knowledgebase.service.KBArticleLocalService.target" />
-		<property name="transactionAttributes">
-			<props>
-				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="check*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="clear*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="delete*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
 	</bean>
 	<bean id="com.liferay.kb.knowledgebase.service.KBArticleLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.kb.knowledgebase.service.KBArticleLocalService.impl" />
@@ -69,8 +53,7 @@
 	<bean id="com.liferay.kb.knowledgebase.service.KBArticleLocalServiceUtil" class="com.liferay.kb.knowledgebase.service.KBArticleLocalServiceUtil">
 		<property name="service" ref="com.liferay.kb.knowledgebase.service.KBArticleLocalService.impl" />
 	</bean>
-	<bean id="com.liferay.kb.knowledgebase.service.KBArticleService.target" class="com.liferay.kb.knowledgebase.service.impl.KBArticleServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base">
-		<property name="KBArticleService" ref="com.liferay.kb.knowledgebase.service.KBArticleService.target" />
+	<bean id="com.liferay.kb.knowledgebase.service.KBArticleService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBArticleServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base">
 		<property name="counterLocalService" ref="com.liferay.counter.service.CounterLocalService.impl" />
 		<property name="counterService" ref="com.liferay.counter.service.CounterService.impl" />
 		<property name="DLLocalService" ref="com.liferay.documentlibrary.service.DLLocalService.impl" />
@@ -102,21 +85,6 @@
 		<property name="tagsEntryLocalService" ref="com.liferay.portlet.tags.service.TagsEntryLocalService.impl" />
 		<property name="tagsEntryService" ref="com.liferay.portlet.tags.service.TagsEntryService.impl" />
 		<property name="tagsEntryPersistence" ref="com.liferay.portlet.tags.service.persistence.TagsEntryPersistence.impl" />
-	</bean>
-	<bean id="com.liferay.kb.knowledgebase.service.KBArticleService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager" ref="liferayTransactionManager" />
-		<property name="target" ref="com.liferay.kb.knowledgebase.service.KBArticleService.target" />
-		<property name="transactionAttributes">
-			<props>
-				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="check*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="clear*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="delete*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
 	</bean>
 	<bean id="com.liferay.kb.knowledgebase.service.KBArticleService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.kb.knowledgebase.service.KBArticleService.impl" />
@@ -132,25 +100,9 @@
 	<bean id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinderUtil" class="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinderUtil">
 		<property name="finder" ref="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.impl" />
 	</bean>
-	<bean id="com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService.target" class="com.liferay.kb.knowledgebase.service.impl.KBArticleResourceLocalServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base">
-		<property name="KBArticleResourceLocalService" ref="com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService.target" />
+	<bean id="com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBArticleResourceLocalServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base">
 		<property name="counterLocalService" ref="com.liferay.counter.service.CounterLocalService.impl" />
 		<property name="counterService" ref="com.liferay.counter.service.CounterService.impl" />
-	</bean>
-	<bean id="com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager" ref="liferayTransactionManager" />
-		<property name="target" ref="com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService.target" />
-		<property name="transactionAttributes">
-			<props>
-				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="check*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="clear*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="delete*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
 	</bean>
 	<bean id="com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService.impl" />
@@ -162,24 +114,7 @@
 	<bean id="com.liferay.kb.knowledgebase.service.persistence.KBArticleResourceUtil" class="com.liferay.kb.knowledgebase.service.persistence.KBArticleResourceUtil">
 		<property name="persistence" ref="com.liferay.kb.knowledgebase.service.persistence.KBArticleResourcePersistence.impl" />
 	</bean>
-	<bean id="com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalService.target" class="com.liferay.kb.knowledgebase.service.impl.KBFeedbackEntryLocalServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base">
-		<property name="KBFeedbackEntryLocalService" ref="com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalService.target" />
-	</bean>
-	<bean id="com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager" ref="liferayTransactionManager" />
-		<property name="target" ref="com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalService.target" />
-		<property name="transactionAttributes">
-			<props>
-				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="check*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="clear*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="delete*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
-	</bean>
+	<bean id="com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBFeedbackEntryLocalServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base"></bean>
 	<bean id="com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalService.impl" />
 	</bean>
@@ -190,24 +125,7 @@
 	<bean id="com.liferay.kb.knowledgebase.service.persistence.KBFeedbackEntryUtil" class="com.liferay.kb.knowledgebase.service.persistence.KBFeedbackEntryUtil">
 		<property name="persistence" ref="com.liferay.kb.knowledgebase.service.persistence.KBFeedbackEntryPersistence.impl" />
 	</bean>
-	<bean id="com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService.target" class="com.liferay.kb.knowledgebase.service.impl.KBFeedbackStatsLocalServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base">
-		<property name="KBFeedbackStatsLocalService" ref="com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService.target" />
-	</bean>
-	<bean id="com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager" ref="liferayTransactionManager" />
-		<property name="target" ref="com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService.target" />
-		<property name="transactionAttributes">
-			<props>
-				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="check*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="clear*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="delete*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
-	</bean>
+	<bean id="com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBFeedbackStatsLocalServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base"></bean>
 	<bean id="com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService.impl" />
 	</bean>

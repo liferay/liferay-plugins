@@ -7,48 +7,14 @@
 		<property name="fooService" ref="com.liferay.sampleservicebuilder.service.FooService.impl" />
 		<property name="fooPersistence" ref="com.liferay.sampleservicebuilder.service.persistence.FooPersistence.impl" />
 	</bean>
-	<bean id="com.liferay.sampleservicebuilder.service.FooLocalService.target" class="com.liferay.sampleservicebuilder.service.impl.FooLocalServiceImpl" parent="com.liferay.sampleservicebuilder.service.SSB.base">
-		<property name="fooLocalService" ref="com.liferay.sampleservicebuilder.service.FooLocalService.target" />
-	</bean>
-	<bean id="com.liferay.sampleservicebuilder.service.FooLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager" ref="liferayTransactionManager" />
-		<property name="target" ref="com.liferay.sampleservicebuilder.service.FooLocalService.target" />
-		<property name="transactionAttributes">
-			<props>
-				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="check*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="clear*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="delete*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
-	</bean>
+	<bean id="com.liferay.sampleservicebuilder.service.FooLocalService.impl" class="com.liferay.sampleservicebuilder.service.impl.FooLocalServiceImpl" parent="com.liferay.sampleservicebuilder.service.SSB.base"></bean>
 	<bean id="com.liferay.sampleservicebuilder.service.FooLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.sampleservicebuilder.service.FooLocalService.impl" />
 	</bean>
 	<bean id="com.liferay.sampleservicebuilder.service.FooLocalServiceUtil" class="com.liferay.sampleservicebuilder.service.FooLocalServiceUtil">
 		<property name="service" ref="com.liferay.sampleservicebuilder.service.FooLocalService.impl" />
 	</bean>
-	<bean id="com.liferay.sampleservicebuilder.service.FooService.target" class="com.liferay.sampleservicebuilder.service.impl.FooServiceImpl" parent="com.liferay.sampleservicebuilder.service.SSB.base">
-		<property name="fooService" ref="com.liferay.sampleservicebuilder.service.FooService.target" />
-	</bean>
-	<bean id="com.liferay.sampleservicebuilder.service.FooService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager" ref="liferayTransactionManager" />
-		<property name="target" ref="com.liferay.sampleservicebuilder.service.FooService.target" />
-		<property name="transactionAttributes">
-			<props>
-				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="check*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="clear*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="delete*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
-	</bean>
+	<bean id="com.liferay.sampleservicebuilder.service.FooService.impl" class="com.liferay.sampleservicebuilder.service.impl.FooServiceImpl" parent="com.liferay.sampleservicebuilder.service.SSB.base"></bean>
 	<bean id="com.liferay.sampleservicebuilder.service.FooService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.sampleservicebuilder.service.FooService.impl" />
 	</bean>

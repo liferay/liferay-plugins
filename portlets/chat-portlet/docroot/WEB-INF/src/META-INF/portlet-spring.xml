@@ -10,24 +10,7 @@
 		<property name="statusPersistence" ref="com.liferay.chat.service.persistence.StatusPersistence.impl" />
 		<property name="statusFinder" ref="com.liferay.chat.service.persistence.StatusFinder.impl" />
 	</bean>
-	<bean id="com.liferay.chat.service.EntryLocalService.target" class="com.liferay.chat.service.impl.EntryLocalServiceImpl" parent="com.liferay.chat.service.Chat.base">
-		<property name="entryLocalService" ref="com.liferay.chat.service.EntryLocalService.target" />
-	</bean>
-	<bean id="com.liferay.chat.service.EntryLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager" ref="liferayTransactionManager" />
-		<property name="target" ref="com.liferay.chat.service.EntryLocalService.target" />
-		<property name="transactionAttributes">
-			<props>
-				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="check*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="clear*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="delete*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
-	</bean>
+	<bean id="com.liferay.chat.service.EntryLocalService.impl" class="com.liferay.chat.service.impl.EntryLocalServiceImpl" parent="com.liferay.chat.service.Chat.base"></bean>
 	<bean id="com.liferay.chat.service.EntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.chat.service.EntryLocalService.impl" />
 	</bean>
@@ -42,24 +25,7 @@
 	<bean id="com.liferay.chat.service.persistence.EntryFinderUtil" class="com.liferay.chat.service.persistence.EntryFinderUtil">
 		<property name="finder" ref="com.liferay.chat.service.persistence.EntryFinder.impl" />
 	</bean>
-	<bean id="com.liferay.chat.service.StatusLocalService.target" class="com.liferay.chat.service.impl.StatusLocalServiceImpl" parent="com.liferay.chat.service.Chat.base">
-		<property name="statusLocalService" ref="com.liferay.chat.service.StatusLocalService.target" />
-	</bean>
-	<bean id="com.liferay.chat.service.StatusLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager" ref="liferayTransactionManager" />
-		<property name="target" ref="com.liferay.chat.service.StatusLocalService.target" />
-		<property name="transactionAttributes">
-			<props>
-				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="check*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="clear*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="delete*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
-	</bean>
+	<bean id="com.liferay.chat.service.StatusLocalService.impl" class="com.liferay.chat.service.impl.StatusLocalServiceImpl" parent="com.liferay.chat.service.Chat.base"></bean>
 	<bean id="com.liferay.chat.service.StatusLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.chat.service.StatusLocalService.impl" />
 	</bean>

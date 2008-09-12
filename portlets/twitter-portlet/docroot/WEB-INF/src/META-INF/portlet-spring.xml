@@ -6,24 +6,7 @@
 		<property name="feedLocalService" ref="com.liferay.twitter.service.FeedLocalService.impl" />
 		<property name="feedPersistence" ref="com.liferay.twitter.service.persistence.FeedPersistence.impl" />
 	</bean>
-	<bean id="com.liferay.twitter.service.FeedLocalService.target" class="com.liferay.twitter.service.impl.FeedLocalServiceImpl" parent="com.liferay.twitter.service.Twitter.base">
-		<property name="feedLocalService" ref="com.liferay.twitter.service.FeedLocalService.target" />
-	</bean>
-	<bean id="com.liferay.twitter.service.FeedLocalService.impl" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager" ref="liferayTransactionManager" />
-		<property name="target" ref="com.liferay.twitter.service.FeedLocalService.target" />
-		<property name="transactionAttributes">
-			<props>
-				<prop key="add*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="check*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="clear*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="delete*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="set*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-com.liferay.portal.PortalException,-com.liferay.portal.SystemException</prop>
-				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
-			</props>
-		</property>
-	</bean>
+	<bean id="com.liferay.twitter.service.FeedLocalService.impl" class="com.liferay.twitter.service.impl.FeedLocalServiceImpl" parent="com.liferay.twitter.service.Twitter.base"></bean>
 	<bean id="com.liferay.twitter.service.FeedLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.twitter.service.FeedLocalService.impl" />
 	</bean>
