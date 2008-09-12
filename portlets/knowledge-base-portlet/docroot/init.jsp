@@ -23,7 +23,8 @@
 %>
 
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
+
+<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
 <%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
 <%@ taglib uri="http://liferay.com/tld/security" prefix="liferay-security" %>
@@ -36,16 +37,16 @@
 <%@ page import="com.liferay.documentlibrary.service.DLServiceUtil" %>
 <%@ page import="com.liferay.kb.knowledgebase.ArticleTitleException" %>
 <%@ page import="com.liferay.kb.knowledgebase.ArticleVersionException" %>
-<%@ page import="com.liferay.kb.knowledgebase.NoSuchArticleException" %>
 <%@ page import="com.liferay.kb.knowledgebase.KnowledgeBaseKeys" %>
+<%@ page import="com.liferay.kb.knowledgebase.NoSuchArticleException" %>
 <%@ page import="com.liferay.kb.knowledgebase.model.KBArticle" %>
 <%@ page import="com.liferay.kb.knowledgebase.model.KBArticleResource" %>
 <%@ page import="com.liferay.kb.knowledgebase.model.KBFeedbackEntry" %>
 <%@ page import="com.liferay.kb.knowledgebase.model.KBFeedbackStats" %>
 <%@ page import="com.liferay.kb.knowledgebase.portlet.KnowledgeBaseFriendlyURLMapper" %>
 <%@ page import="com.liferay.kb.knowledgebase.service.KBArticleLocalServiceUtil" %>
-<%@ page import="com.liferay.kb.knowledgebase.service.KBArticleServiceUtil" %>
 <%@ page import="com.liferay.kb.knowledgebase.service.KBArticleResourceLocalServiceUtil" %>
+<%@ page import="com.liferay.kb.knowledgebase.service.KBArticleServiceUtil" %>
 <%@ page import="com.liferay.kb.knowledgebase.service.permission.KBArticlePermission" %>
 <%@ page import="com.liferay.kb.knowledgebase.service.permission.KBPermission" %>
 <%@ page import="com.liferay.kb.knowledgebase.util.comparator.ArticleVersionComparator" %>
@@ -53,6 +54,7 @@
 <%@ page import="com.liferay.kb.util.PortletPrefsPropsUtil" %>
 <%@ page import="com.liferay.kb.util.PortletPropsKeys" %>
 <%@ page import="com.liferay.kb.util.RSSUtil" %>
+<%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.RowChecker" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
@@ -64,19 +66,20 @@
 <%@ page import="com.liferay.portal.kernel.search.Hits" %>
 <%@ page import="com.liferay.portal.kernel.servlet.ImageServletTokenUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ArrayUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.DateFormats" %>
 <%@ page import="com.liferay.portal.kernel.util.DiffResult" %>
 <%@ page import="com.liferay.portal.kernel.util.DiffUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.DocumentConversionUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.FileUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HttpUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ListUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.PrefsPropsUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.PropsUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.StringUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.PropsUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.UnicodeFormatter" %>
 <%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
 <%@ page import="com.liferay.portal.kernel.log.Log" %>
@@ -112,22 +115,11 @@
 <%@ page import="com.liferay.portlet.tags.service.TagsAssetLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.tags.service.TagsEntryLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.tags.service.TagsPropertyLocalServiceUtil" %>
-<%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.DocumentConversionUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.PrefsPropsUtil" %>
 <%@ page import="com.liferay.util.MathUtil" %>
 <%@ page import="com.liferay.util.TextFormatter" %>
 <%@ page import="com.liferay.util.portlet.PortletProps" %>
 
 <%@ page import="java.io.StringReader" %>
-
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Collections" %>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.util.HashSet" %>
-<%@ page import="java.util.List" %>
-
-<%@ page import="java.text.DateFormat" %>
 
 <%@ page import="javax.portlet.ActionRequest" %>
 <%@ page import="javax.portlet.PortletPreferences" %>
@@ -135,6 +127,14 @@
 <%@ page import="javax.portlet.RenderResponse" %>
 <%@ page import="javax.portlet.ResourceURL" %>
 <%@ page import="javax.portlet.WindowState" %>
+
+<%@ page import="java.text.DateFormat" %>
+
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.util.HashSet" %>
+<%@ page import="java.util.List" %>
 
 <portlet:defineObjects />
 
