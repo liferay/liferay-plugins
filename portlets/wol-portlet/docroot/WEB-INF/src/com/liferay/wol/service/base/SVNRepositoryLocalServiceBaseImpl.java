@@ -34,7 +34,6 @@ import com.liferay.wol.service.JIRAIssueLocalService;
 import com.liferay.wol.service.MeetupsEntryLocalService;
 import com.liferay.wol.service.MeetupsRegistrationLocalService;
 import com.liferay.wol.service.SVNRepositoryLocalService;
-import com.liferay.wol.service.SVNRepositoryLocalService;
 import com.liferay.wol.service.SVNRevisionLocalService;
 import com.liferay.wol.service.WallEntryLocalService;
 import com.liferay.wol.service.persistence.JIRAActionFinder;
@@ -309,26 +308,48 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 		this.wallEntryFinder = wallEntryFinder;
 	}
 
+	@javax.annotation.Resource(name = "com.liferay.wol.service.JIRAActionLocalService.impl")
 	protected JIRAActionLocalService jiraActionLocalService;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.persistence.JIRAActionPersistence.impl")
 	protected JIRAActionPersistence jiraActionPersistence;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.persistence.JIRAActionFinder.impl")
 	protected JIRAActionFinder jiraActionFinder;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.JIRAChangeGroupLocalService.impl")
 	protected JIRAChangeGroupLocalService jiraChangeGroupLocalService;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.persistence.JIRAChangeGroupPersistence.impl")
 	protected JIRAChangeGroupPersistence jiraChangeGroupPersistence;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.persistence.JIRAChangeGroupFinder.impl")
 	protected JIRAChangeGroupFinder jiraChangeGroupFinder;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.JIRAChangeItemLocalService.impl")
 	protected JIRAChangeItemLocalService jiraChangeItemLocalService;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.persistence.JIRAChangeItemPersistence.impl")
 	protected JIRAChangeItemPersistence jiraChangeItemPersistence;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.JIRAIssueLocalService.impl")
 	protected JIRAIssueLocalService jiraIssueLocalService;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.persistence.JIRAIssuePersistence.impl")
 	protected JIRAIssuePersistence jiraIssuePersistence;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.persistence.JIRAIssueFinder.impl")
 	protected JIRAIssueFinder jiraIssueFinder;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.MeetupsEntryLocalService.impl")
 	protected MeetupsEntryLocalService meetupsEntryLocalService;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.persistence.MeetupsEntryPersistence.impl")
 	protected MeetupsEntryPersistence meetupsEntryPersistence;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.MeetupsRegistrationLocalService.impl")
 	protected MeetupsRegistrationLocalService meetupsRegistrationLocalService;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.persistence.MeetupsRegistrationPersistence.impl")
 	protected MeetupsRegistrationPersistence meetupsRegistrationPersistence;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.SVNRepositoryLocalService.impl")
 	protected SVNRepositoryLocalService svnRepositoryLocalService;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.persistence.SVNRepositoryPersistence.impl")
 	protected SVNRepositoryPersistence svnRepositoryPersistence;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.SVNRevisionLocalService.impl")
 	protected SVNRevisionLocalService svnRevisionLocalService;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.persistence.SVNRevisionPersistence.impl")
 	protected SVNRevisionPersistence svnRevisionPersistence;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.WallEntryLocalService.impl")
 	protected WallEntryLocalService wallEntryLocalService;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.persistence.WallEntryPersistence.impl")
 	protected WallEntryPersistence wallEntryPersistence;
+	@javax.annotation.Resource(name = "com.liferay.wol.service.persistence.WallEntryFinder.impl")
 	protected WallEntryFinder wallEntryFinder;
 }

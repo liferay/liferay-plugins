@@ -116,7 +116,7 @@ public class SVNRevisionClp extends BaseModelImpl implements SVNRevision {
 
 	public SVNRevision toEscapedModel() {
 		if (isEscapedModel()) {
-			return (SVNRevision)this;
+			return this;
 		}
 		else {
 			SVNRevision model = new SVNRevisionClp();

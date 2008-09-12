@@ -2,15 +2,7 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-	<bean id="com.liferay.chat.service.Chat.base" abstract="true">
-		<property name="entryLocalService" ref="com.liferay.chat.service.EntryLocalService.impl" />
-		<property name="entryPersistence" ref="com.liferay.chat.service.persistence.EntryPersistence.impl" />
-		<property name="entryFinder" ref="com.liferay.chat.service.persistence.EntryFinder.impl" />
-		<property name="statusLocalService" ref="com.liferay.chat.service.StatusLocalService.impl" />
-		<property name="statusPersistence" ref="com.liferay.chat.service.persistence.StatusPersistence.impl" />
-		<property name="statusFinder" ref="com.liferay.chat.service.persistence.StatusFinder.impl" />
-	</bean>
-	<bean id="com.liferay.chat.service.EntryLocalService.impl" class="com.liferay.chat.service.impl.EntryLocalServiceImpl" parent="com.liferay.chat.service.Chat.base"></bean>
+	<bean id="com.liferay.chat.service.EntryLocalService.impl" class="com.liferay.chat.service.impl.EntryLocalServiceImpl" />
 	<bean id="com.liferay.chat.service.EntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.chat.service.EntryLocalService.impl" />
 	</bean>
@@ -25,7 +17,7 @@
 	<bean id="com.liferay.chat.service.persistence.EntryFinderUtil" class="com.liferay.chat.service.persistence.EntryFinderUtil">
 		<property name="finder" ref="com.liferay.chat.service.persistence.EntryFinder.impl" />
 	</bean>
-	<bean id="com.liferay.chat.service.StatusLocalService.impl" class="com.liferay.chat.service.impl.StatusLocalServiceImpl" parent="com.liferay.chat.service.Chat.base"></bean>
+	<bean id="com.liferay.chat.service.StatusLocalService.impl" class="com.liferay.chat.service.impl.StatusLocalServiceImpl" />
 	<bean id="com.liferay.chat.service.StatusLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.chat.service.StatusLocalService.impl" />
 	</bean>

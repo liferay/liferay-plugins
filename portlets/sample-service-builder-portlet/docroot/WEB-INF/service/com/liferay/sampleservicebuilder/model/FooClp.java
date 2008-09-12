@@ -108,7 +108,7 @@ public class FooClp extends BaseModelImpl implements Foo {
 
 	public Foo toEscapedModel() {
 		if (isEscapedModel()) {
-			return (Foo)this;
+			return this;
 		}
 		else {
 			Foo model = new FooClp();

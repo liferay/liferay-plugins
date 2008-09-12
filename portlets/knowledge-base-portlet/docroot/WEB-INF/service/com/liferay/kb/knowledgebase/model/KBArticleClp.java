@@ -198,8 +198,7 @@ public class KBArticleClp extends BaseModelImpl implements KBArticle {
 		_draft = draft;
 	}
 
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.SystemException {
+	public java.lang.String getUserUuid() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -219,15 +218,13 @@ public class KBArticleClp extends BaseModelImpl implements KBArticle {
 		throw new UnsupportedOperationException();
 	}
 
-	public java.lang.String[] getAttachmentsFiles()
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+	public java.lang.String[] getAttachmentsFiles() {
 		throw new UnsupportedOperationException();
 	}
 
 	public KBArticle toEscapedModel() {
 		if (isEscapedModel()) {
-			return (KBArticle)this;
+			return this;
 		}
 		else {
 			KBArticle model = new KBArticleClp();

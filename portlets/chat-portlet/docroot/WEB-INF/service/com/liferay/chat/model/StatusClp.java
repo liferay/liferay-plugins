@@ -86,7 +86,7 @@ public class StatusClp extends BaseModelImpl implements Status {
 
 	public Status toEscapedModel() {
 		if (isEscapedModel()) {
-			return (Status)this;
+			return this;
 		}
 		else {
 			Status model = new StatusClp();

@@ -72,8 +72,12 @@ public abstract class WorkflowComponentServiceBaseImpl extends PrincipalBean
 		this.workflowTaskService = workflowTaskService;
 	}
 
+	@javax.annotation.Resource(name = "com.liferay.workflow.service.WorkflowComponentService.impl")
 	protected WorkflowComponentService workflowComponentService;
+	@javax.annotation.Resource(name = "com.liferay.workflow.service.WorkflowDefinitionService.impl")
 	protected WorkflowDefinitionService workflowDefinitionService;
+	@javax.annotation.Resource(name = "com.liferay.workflow.service.WorkflowInstanceService.impl")
 	protected WorkflowInstanceService workflowInstanceService;
+	@javax.annotation.Resource(name = "com.liferay.workflow.service.WorkflowTaskService.impl")
 	protected WorkflowTaskService workflowTaskService;
 }

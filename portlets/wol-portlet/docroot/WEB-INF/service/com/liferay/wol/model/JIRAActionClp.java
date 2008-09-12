@@ -121,7 +121,7 @@ public class JIRAActionClp extends BaseModelImpl implements JIRAAction {
 
 	public JIRAAction toEscapedModel() {
 		if (isEscapedModel()) {
-			return (JIRAAction)this;
+			return this;
 		}
 		else {
 			JIRAAction model = new JIRAActionClp();

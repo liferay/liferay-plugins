@@ -101,7 +101,7 @@ public class KBFeedbackStatsClp extends BaseModelImpl implements KBFeedbackStats
 
 	public KBFeedbackStats toEscapedModel() {
 		if (isEscapedModel()) {
-			return (KBFeedbackStats)this;
+			return this;
 		}
 		else {
 			KBFeedbackStats model = new KBFeedbackStatsClp();

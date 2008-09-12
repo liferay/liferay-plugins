@@ -89,7 +89,7 @@ public class JIRAChangeGroupClp extends BaseModelImpl implements JIRAChangeGroup
 
 	public JIRAChangeGroup toEscapedModel() {
 		if (isEscapedModel()) {
-			return (JIRAChangeGroup)this;
+			return this;
 		}
 		else {
 			JIRAChangeGroup model = new JIRAChangeGroupClp();

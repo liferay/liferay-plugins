@@ -169,7 +169,7 @@ public class MeetupsEntryClp extends BaseModelImpl implements MeetupsEntry {
 
 	public MeetupsEntry toEscapedModel() {
 		if (isEscapedModel()) {
-			return (MeetupsEntry)this;
+			return this;
 		}
 		else {
 			MeetupsEntry model = new MeetupsEntryClp();

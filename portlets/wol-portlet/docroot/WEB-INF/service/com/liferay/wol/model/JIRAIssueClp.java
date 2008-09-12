@@ -145,7 +145,7 @@ public class JIRAIssueClp extends BaseModelImpl implements JIRAIssue {
 
 	public JIRAIssue toEscapedModel() {
 		if (isEscapedModel()) {
-			return (JIRAIssue)this;
+			return this;
 		}
 		else {
 			JIRAIssue model = new JIRAIssueClp();

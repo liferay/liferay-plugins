@@ -2,31 +2,7 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-	<bean id="com.liferay.wol.service.WOL.base" abstract="true">
-		<property name="JIRAActionLocalService" ref="com.liferay.wol.service.JIRAActionLocalService.impl" />
-		<property name="JIRAActionPersistence" ref="com.liferay.wol.service.persistence.JIRAActionPersistence.impl" />
-		<property name="JIRAActionFinder" ref="com.liferay.wol.service.persistence.JIRAActionFinder.impl" />
-		<property name="JIRAChangeGroupLocalService" ref="com.liferay.wol.service.JIRAChangeGroupLocalService.impl" />
-		<property name="JIRAChangeGroupPersistence" ref="com.liferay.wol.service.persistence.JIRAChangeGroupPersistence.impl" />
-		<property name="JIRAChangeGroupFinder" ref="com.liferay.wol.service.persistence.JIRAChangeGroupFinder.impl" />
-		<property name="JIRAChangeItemLocalService" ref="com.liferay.wol.service.JIRAChangeItemLocalService.impl" />
-		<property name="JIRAChangeItemPersistence" ref="com.liferay.wol.service.persistence.JIRAChangeItemPersistence.impl" />
-		<property name="JIRAIssueLocalService" ref="com.liferay.wol.service.JIRAIssueLocalService.impl" />
-		<property name="JIRAIssuePersistence" ref="com.liferay.wol.service.persistence.JIRAIssuePersistence.impl" />
-		<property name="JIRAIssueFinder" ref="com.liferay.wol.service.persistence.JIRAIssueFinder.impl" />
-		<property name="meetupsEntryLocalService" ref="com.liferay.wol.service.MeetupsEntryLocalService.impl" />
-		<property name="meetupsEntryPersistence" ref="com.liferay.wol.service.persistence.MeetupsEntryPersistence.impl" />
-		<property name="meetupsRegistrationLocalService" ref="com.liferay.wol.service.MeetupsRegistrationLocalService.impl" />
-		<property name="meetupsRegistrationPersistence" ref="com.liferay.wol.service.persistence.MeetupsRegistrationPersistence.impl" />
-		<property name="SVNRepositoryLocalService" ref="com.liferay.wol.service.SVNRepositoryLocalService.impl" />
-		<property name="SVNRepositoryPersistence" ref="com.liferay.wol.service.persistence.SVNRepositoryPersistence.impl" />
-		<property name="SVNRevisionLocalService" ref="com.liferay.wol.service.SVNRevisionLocalService.impl" />
-		<property name="SVNRevisionPersistence" ref="com.liferay.wol.service.persistence.SVNRevisionPersistence.impl" />
-		<property name="wallEntryLocalService" ref="com.liferay.wol.service.WallEntryLocalService.impl" />
-		<property name="wallEntryPersistence" ref="com.liferay.wol.service.persistence.WallEntryPersistence.impl" />
-		<property name="wallEntryFinder" ref="com.liferay.wol.service.persistence.WallEntryFinder.impl" />
-	</bean>
-	<bean id="com.liferay.wol.service.JIRAActionLocalService.impl" class="com.liferay.wol.service.impl.JIRAActionLocalServiceImpl" parent="com.liferay.wol.service.WOL.base"></bean>
+	<bean id="com.liferay.wol.service.JIRAActionLocalService.impl" class="com.liferay.wol.service.impl.JIRAActionLocalServiceImpl" />
 	<bean id="com.liferay.wol.service.JIRAActionLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.wol.service.JIRAActionLocalService.impl" />
 	</bean>
@@ -47,7 +23,7 @@
 	<bean id="com.liferay.wol.service.persistence.JIRAActionFinderUtil" class="com.liferay.wol.service.persistence.JIRAActionFinderUtil">
 		<property name="finder" ref="com.liferay.wol.service.persistence.JIRAActionFinder.impl" />
 	</bean>
-	<bean id="com.liferay.wol.service.JIRAChangeGroupLocalService.impl" class="com.liferay.wol.service.impl.JIRAChangeGroupLocalServiceImpl" parent="com.liferay.wol.service.WOL.base"></bean>
+	<bean id="com.liferay.wol.service.JIRAChangeGroupLocalService.impl" class="com.liferay.wol.service.impl.JIRAChangeGroupLocalServiceImpl" />
 	<bean id="com.liferay.wol.service.JIRAChangeGroupLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.wol.service.JIRAChangeGroupLocalService.impl" />
 	</bean>
@@ -68,7 +44,7 @@
 	<bean id="com.liferay.wol.service.persistence.JIRAChangeGroupFinderUtil" class="com.liferay.wol.service.persistence.JIRAChangeGroupFinderUtil">
 		<property name="finder" ref="com.liferay.wol.service.persistence.JIRAChangeGroupFinder.impl" />
 	</bean>
-	<bean id="com.liferay.wol.service.JIRAChangeItemLocalService.impl" class="com.liferay.wol.service.impl.JIRAChangeItemLocalServiceImpl" parent="com.liferay.wol.service.WOL.base"></bean>
+	<bean id="com.liferay.wol.service.JIRAChangeItemLocalService.impl" class="com.liferay.wol.service.impl.JIRAChangeItemLocalServiceImpl" />
 	<bean id="com.liferay.wol.service.JIRAChangeItemLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.wol.service.JIRAChangeItemLocalService.impl" />
 	</bean>
@@ -82,7 +58,7 @@
 	<bean id="com.liferay.wol.service.persistence.JIRAChangeItemUtil" class="com.liferay.wol.service.persistence.JIRAChangeItemUtil">
 		<property name="persistence" ref="com.liferay.wol.service.persistence.JIRAChangeItemPersistence.impl" />
 	</bean>
-	<bean id="com.liferay.wol.service.JIRAIssueLocalService.impl" class="com.liferay.wol.service.impl.JIRAIssueLocalServiceImpl" parent="com.liferay.wol.service.WOL.base"></bean>
+	<bean id="com.liferay.wol.service.JIRAIssueLocalService.impl" class="com.liferay.wol.service.impl.JIRAIssueLocalServiceImpl" />
 	<bean id="com.liferay.wol.service.JIRAIssueLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.wol.service.JIRAIssueLocalService.impl" />
 	</bean>
@@ -103,7 +79,7 @@
 	<bean id="com.liferay.wol.service.persistence.JIRAIssueFinderUtil" class="com.liferay.wol.service.persistence.JIRAIssueFinderUtil">
 		<property name="finder" ref="com.liferay.wol.service.persistence.JIRAIssueFinder.impl" />
 	</bean>
-	<bean id="com.liferay.wol.service.MeetupsEntryLocalService.impl" class="com.liferay.wol.service.impl.MeetupsEntryLocalServiceImpl" parent="com.liferay.wol.service.WOL.base"></bean>
+	<bean id="com.liferay.wol.service.MeetupsEntryLocalService.impl" class="com.liferay.wol.service.impl.MeetupsEntryLocalServiceImpl" />
 	<bean id="com.liferay.wol.service.MeetupsEntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.wol.service.MeetupsEntryLocalService.impl" />
 	</bean>
@@ -114,7 +90,7 @@
 	<bean id="com.liferay.wol.service.persistence.MeetupsEntryUtil" class="com.liferay.wol.service.persistence.MeetupsEntryUtil">
 		<property name="persistence" ref="com.liferay.wol.service.persistence.MeetupsEntryPersistence.impl" />
 	</bean>
-	<bean id="com.liferay.wol.service.MeetupsRegistrationLocalService.impl" class="com.liferay.wol.service.impl.MeetupsRegistrationLocalServiceImpl" parent="com.liferay.wol.service.WOL.base"></bean>
+	<bean id="com.liferay.wol.service.MeetupsRegistrationLocalService.impl" class="com.liferay.wol.service.impl.MeetupsRegistrationLocalServiceImpl" />
 	<bean id="com.liferay.wol.service.MeetupsRegistrationLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.wol.service.MeetupsRegistrationLocalService.impl" />
 	</bean>
@@ -125,7 +101,7 @@
 	<bean id="com.liferay.wol.service.persistence.MeetupsRegistrationUtil" class="com.liferay.wol.service.persistence.MeetupsRegistrationUtil">
 		<property name="persistence" ref="com.liferay.wol.service.persistence.MeetupsRegistrationPersistence.impl" />
 	</bean>
-	<bean id="com.liferay.wol.service.SVNRepositoryLocalService.impl" class="com.liferay.wol.service.impl.SVNRepositoryLocalServiceImpl" parent="com.liferay.wol.service.WOL.base"></bean>
+	<bean id="com.liferay.wol.service.SVNRepositoryLocalService.impl" class="com.liferay.wol.service.impl.SVNRepositoryLocalServiceImpl" />
 	<bean id="com.liferay.wol.service.SVNRepositoryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.wol.service.SVNRepositoryLocalService.impl" />
 	</bean>
@@ -136,7 +112,7 @@
 	<bean id="com.liferay.wol.service.persistence.SVNRepositoryUtil" class="com.liferay.wol.service.persistence.SVNRepositoryUtil">
 		<property name="persistence" ref="com.liferay.wol.service.persistence.SVNRepositoryPersistence.impl" />
 	</bean>
-	<bean id="com.liferay.wol.service.SVNRevisionLocalService.impl" class="com.liferay.wol.service.impl.SVNRevisionLocalServiceImpl" parent="com.liferay.wol.service.WOL.base"></bean>
+	<bean id="com.liferay.wol.service.SVNRevisionLocalService.impl" class="com.liferay.wol.service.impl.SVNRevisionLocalServiceImpl" />
 	<bean id="com.liferay.wol.service.SVNRevisionLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.wol.service.SVNRevisionLocalService.impl" />
 	</bean>
@@ -147,7 +123,7 @@
 	<bean id="com.liferay.wol.service.persistence.SVNRevisionUtil" class="com.liferay.wol.service.persistence.SVNRevisionUtil">
 		<property name="persistence" ref="com.liferay.wol.service.persistence.SVNRevisionPersistence.impl" />
 	</bean>
-	<bean id="com.liferay.wol.service.WallEntryLocalService.impl" class="com.liferay.wol.service.impl.WallEntryLocalServiceImpl" parent="com.liferay.wol.service.WOL.base"></bean>
+	<bean id="com.liferay.wol.service.WallEntryLocalService.impl" class="com.liferay.wol.service.impl.WallEntryLocalServiceImpl" />
 	<bean id="com.liferay.wol.service.WallEntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.wol.service.WallEntryLocalService.impl" />
 	</bean>

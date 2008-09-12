@@ -110,7 +110,7 @@ public class JIRAChangeItemClp extends BaseModelImpl implements JIRAChangeItem {
 
 	public JIRAChangeItem toEscapedModel() {
 		if (isEscapedModel()) {
-			return (JIRAChangeItem)this;
+			return this;
 		}
 		else {
 			JIRAChangeItem model = new JIRAChangeItemClp();

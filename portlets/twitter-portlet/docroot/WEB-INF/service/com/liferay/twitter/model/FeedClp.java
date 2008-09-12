@@ -104,7 +104,7 @@ public class FeedClp extends BaseModelImpl implements Feed {
 
 	public Feed toEscapedModel() {
 		if (isEscapedModel()) {
-			return (Feed)this;
+			return this;
 		}
 		else {
 			Feed model = new FeedClp();

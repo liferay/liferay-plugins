@@ -8,6 +8,7 @@
 	<classpathentry kind="lib" path="/portal/lib/development/activation.jar" />
 	<classpathentry kind="lib" path="/portal/lib/development/mail.jar" />
 	<classpathentry kind="lib" path="/portal/lib/development/servlet.jar" />
+	<classpathentry kind="lib" path="/portal/lib/global/annotations.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/container.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet-container.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet.jar" />
@@ -20,8 +21,5 @@
 	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal/util-taglib/util-taglib.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/antlr.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jsonrpc.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/trove.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>

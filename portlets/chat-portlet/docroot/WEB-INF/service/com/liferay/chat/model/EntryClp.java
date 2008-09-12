@@ -94,7 +94,7 @@ public class EntryClp extends BaseModelImpl implements Entry {
 
 	public Entry toEscapedModel() {
 		if (isEscapedModel()) {
-			return (Entry)this;
+			return this;
 		}
 		else {
 			Entry model = new EntryClp();

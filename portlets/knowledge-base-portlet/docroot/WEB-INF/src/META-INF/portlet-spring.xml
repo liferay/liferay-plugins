@@ -2,26 +2,14 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-	<bean id="com.liferay.kb.knowledgebase.service.KB.base" abstract="true">
-		<property name="KBArticleLocalService" ref="com.liferay.kb.knowledgebase.service.KBArticleLocalService.impl" />
-		<property name="KBArticleService" ref="com.liferay.kb.knowledgebase.service.KBArticleService.impl" />
-		<property name="KBArticlePersistence" ref="com.liferay.kb.knowledgebase.service.persistence.KBArticlePersistence.impl" />
-		<property name="KBArticleFinder" ref="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.impl" />
-		<property name="KBArticleResourceLocalService" ref="com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService.impl" />
-		<property name="KBArticleResourcePersistence" ref="com.liferay.kb.knowledgebase.service.persistence.KBArticleResourcePersistence.impl" />
-		<property name="KBFeedbackEntryLocalService" ref="com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalService.impl" />
-		<property name="KBFeedbackEntryPersistence" ref="com.liferay.kb.knowledgebase.service.persistence.KBFeedbackEntryPersistence.impl" />
-		<property name="KBFeedbackStatsLocalService" ref="com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService.impl" />
-		<property name="KBFeedbackStatsPersistence" ref="com.liferay.kb.knowledgebase.service.persistence.KBFeedbackStatsPersistence.impl" />
-	</bean>
-	<bean id="com.liferay.kb.knowledgebase.service.KBArticleLocalService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBArticleLocalServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base"></bean>
+	<bean id="com.liferay.kb.knowledgebase.service.KBArticleLocalService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBArticleLocalServiceImpl" />
 	<bean id="com.liferay.kb.knowledgebase.service.KBArticleLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.kb.knowledgebase.service.KBArticleLocalService.impl" />
 	</bean>
 	<bean id="com.liferay.kb.knowledgebase.service.KBArticleLocalServiceUtil" class="com.liferay.kb.knowledgebase.service.KBArticleLocalServiceUtil">
 		<property name="service" ref="com.liferay.kb.knowledgebase.service.KBArticleLocalService.impl" />
 	</bean>
-	<bean id="com.liferay.kb.knowledgebase.service.KBArticleService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBArticleServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base"></bean>
+	<bean id="com.liferay.kb.knowledgebase.service.KBArticleService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBArticleServiceImpl" />
 	<bean id="com.liferay.kb.knowledgebase.service.KBArticleService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.kb.knowledgebase.service.KBArticleService.impl" />
 	</bean>
@@ -36,7 +24,7 @@
 	<bean id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinderUtil" class="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinderUtil">
 		<property name="finder" ref="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.impl" />
 	</bean>
-	<bean id="com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBArticleResourceLocalServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base"></bean>
+	<bean id="com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBArticleResourceLocalServiceImpl" />
 	<bean id="com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService.impl" />
 	</bean>
@@ -47,7 +35,7 @@
 	<bean id="com.liferay.kb.knowledgebase.service.persistence.KBArticleResourceUtil" class="com.liferay.kb.knowledgebase.service.persistence.KBArticleResourceUtil">
 		<property name="persistence" ref="com.liferay.kb.knowledgebase.service.persistence.KBArticleResourcePersistence.impl" />
 	</bean>
-	<bean id="com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBFeedbackEntryLocalServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base"></bean>
+	<bean id="com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBFeedbackEntryLocalServiceImpl" />
 	<bean id="com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalService.impl" />
 	</bean>
@@ -58,7 +46,7 @@
 	<bean id="com.liferay.kb.knowledgebase.service.persistence.KBFeedbackEntryUtil" class="com.liferay.kb.knowledgebase.service.persistence.KBFeedbackEntryUtil">
 		<property name="persistence" ref="com.liferay.kb.knowledgebase.service.persistence.KBFeedbackEntryPersistence.impl" />
 	</bean>
-	<bean id="com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBFeedbackStatsLocalServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base"></bean>
+	<bean id="com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBFeedbackStatsLocalServiceImpl" />
 	<bean id="com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService.impl" />
 	</bean>

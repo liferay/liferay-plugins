@@ -2,19 +2,14 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-	<bean id="com.liferay.sampleservicebuilder.service.SSB.base" abstract="true">
-		<property name="fooLocalService" ref="com.liferay.sampleservicebuilder.service.FooLocalService.impl" />
-		<property name="fooService" ref="com.liferay.sampleservicebuilder.service.FooService.impl" />
-		<property name="fooPersistence" ref="com.liferay.sampleservicebuilder.service.persistence.FooPersistence.impl" />
-	</bean>
-	<bean id="com.liferay.sampleservicebuilder.service.FooLocalService.impl" class="com.liferay.sampleservicebuilder.service.impl.FooLocalServiceImpl" parent="com.liferay.sampleservicebuilder.service.SSB.base"></bean>
+	<bean id="com.liferay.sampleservicebuilder.service.FooLocalService.impl" class="com.liferay.sampleservicebuilder.service.impl.FooLocalServiceImpl" />
 	<bean id="com.liferay.sampleservicebuilder.service.FooLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.sampleservicebuilder.service.FooLocalService.impl" />
 	</bean>
 	<bean id="com.liferay.sampleservicebuilder.service.FooLocalServiceUtil" class="com.liferay.sampleservicebuilder.service.FooLocalServiceUtil">
 		<property name="service" ref="com.liferay.sampleservicebuilder.service.FooLocalService.impl" />
 	</bean>
-	<bean id="com.liferay.sampleservicebuilder.service.FooService.impl" class="com.liferay.sampleservicebuilder.service.impl.FooServiceImpl" parent="com.liferay.sampleservicebuilder.service.SSB.base"></bean>
+	<bean id="com.liferay.sampleservicebuilder.service.FooService.impl" class="com.liferay.sampleservicebuilder.service.impl.FooServiceImpl" />
 	<bean id="com.liferay.sampleservicebuilder.service.FooService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.sampleservicebuilder.service.FooService.impl" />
 	</bean>

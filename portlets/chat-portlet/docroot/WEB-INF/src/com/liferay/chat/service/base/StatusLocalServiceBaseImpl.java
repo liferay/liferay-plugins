@@ -25,7 +25,6 @@ package com.liferay.chat.service.base;
 import com.liferay.chat.model.Status;
 import com.liferay.chat.service.EntryLocalService;
 import com.liferay.chat.service.StatusLocalService;
-import com.liferay.chat.service.StatusLocalService;
 import com.liferay.chat.service.persistence.EntryFinder;
 import com.liferay.chat.service.persistence.EntryPersistence;
 import com.liferay.chat.service.persistence.StatusFinder;
@@ -141,10 +140,16 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService {
 		this.statusFinder = statusFinder;
 	}
 
+	@javax.annotation.Resource(name = "com.liferay.chat.service.EntryLocalService.impl")
 	protected EntryLocalService entryLocalService;
+	@javax.annotation.Resource(name = "com.liferay.chat.service.persistence.EntryPersistence.impl")
 	protected EntryPersistence entryPersistence;
+	@javax.annotation.Resource(name = "com.liferay.chat.service.persistence.EntryFinder.impl")
 	protected EntryFinder entryFinder;
+	@javax.annotation.Resource(name = "com.liferay.chat.service.StatusLocalService.impl")
 	protected StatusLocalService statusLocalService;
+	@javax.annotation.Resource(name = "com.liferay.chat.service.persistence.StatusPersistence.impl")
 	protected StatusPersistence statusPersistence;
+	@javax.annotation.Resource(name = "com.liferay.chat.service.persistence.StatusFinder.impl")
 	protected StatusFinder statusFinder;
 }

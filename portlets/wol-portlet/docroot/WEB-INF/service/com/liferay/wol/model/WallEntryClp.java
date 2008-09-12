@@ -121,7 +121,7 @@ public class WallEntryClp extends BaseModelImpl implements WallEntry {
 
 	public WallEntry toEscapedModel() {
 		if (isEscapedModel()) {
-			return (WallEntry)this;
+			return this;
 		}
 		else {
 			WallEntry model = new WallEntryClp();

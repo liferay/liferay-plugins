@@ -101,6 +101,8 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService {
 		this.feedPersistence = feedPersistence;
 	}
 
+	@javax.annotation.Resource(name = "com.liferay.twitter.service.FeedLocalService.impl")
 	protected FeedLocalService feedLocalService;
+	@javax.annotation.Resource(name = "com.liferay.twitter.service.persistence.FeedPersistence.impl")
 	protected FeedPersistence feedPersistence;
 }

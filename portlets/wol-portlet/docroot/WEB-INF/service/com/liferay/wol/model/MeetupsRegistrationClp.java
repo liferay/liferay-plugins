@@ -130,7 +130,7 @@ public class MeetupsRegistrationClp extends BaseModelImpl
 
 	public MeetupsRegistration toEscapedModel() {
 		if (isEscapedModel()) {
-			return (MeetupsRegistration)this;
+			return this;
 		}
 		else {
 			MeetupsRegistration model = new MeetupsRegistrationClp();

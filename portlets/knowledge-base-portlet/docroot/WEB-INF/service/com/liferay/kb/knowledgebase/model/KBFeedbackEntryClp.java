@@ -127,8 +127,7 @@ public class KBFeedbackEntryClp extends BaseModelImpl implements KBFeedbackEntry
 		_vote = vote;
 	}
 
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.SystemException {
+	public java.lang.String getUserUuid() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -138,7 +137,7 @@ public class KBFeedbackEntryClp extends BaseModelImpl implements KBFeedbackEntry
 
 	public KBFeedbackEntry toEscapedModel() {
 		if (isEscapedModel()) {
-			return (KBFeedbackEntry)this;
+			return this;
 		}
 		else {
 			KBFeedbackEntry model = new KBFeedbackEntryClp();

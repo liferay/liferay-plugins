@@ -110,7 +110,10 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService {
 		this.fooPersistence = fooPersistence;
 	}
 
+	@javax.annotation.Resource(name = "com.liferay.sampleservicebuilder.service.FooLocalService.impl")
 	protected FooLocalService fooLocalService;
+	@javax.annotation.Resource(name = "com.liferay.sampleservicebuilder.service.FooService.impl")
 	protected FooService fooService;
+	@javax.annotation.Resource(name = "com.liferay.sampleservicebuilder.service.persistence.FooPersistence.impl")
 	protected FooPersistence fooPersistence;
 }

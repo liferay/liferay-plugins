@@ -2,11 +2,7 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-	<bean id="com.liferay.twitter.service.Twitter.base" abstract="true">
-		<property name="feedLocalService" ref="com.liferay.twitter.service.FeedLocalService.impl" />
-		<property name="feedPersistence" ref="com.liferay.twitter.service.persistence.FeedPersistence.impl" />
-	</bean>
-	<bean id="com.liferay.twitter.service.FeedLocalService.impl" class="com.liferay.twitter.service.impl.FeedLocalServiceImpl" parent="com.liferay.twitter.service.Twitter.base"></bean>
+	<bean id="com.liferay.twitter.service.FeedLocalService.impl" class="com.liferay.twitter.service.impl.FeedLocalServiceImpl" />
 	<bean id="com.liferay.twitter.service.FeedLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.twitter.service.FeedLocalService.impl" />
 	</bean>

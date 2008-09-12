@@ -113,7 +113,7 @@ public class KBArticleResourceClp extends BaseModelImpl
 
 	public KBArticleResource toEscapedModel() {
 		if (isEscapedModel()) {
-			return (KBArticleResource)this;
+			return this;
 		}
 		else {
 			KBArticleResource model = new KBArticleResourceClp();

@@ -82,7 +82,7 @@ public class SVNRepositoryClp extends BaseModelImpl implements SVNRepository {
 
 	public SVNRepository toEscapedModel() {
 		if (isEscapedModel()) {
-			return (SVNRepository)this;
+			return this;
 		}
 		else {
 			SVNRepository model = new SVNRepositoryClp();

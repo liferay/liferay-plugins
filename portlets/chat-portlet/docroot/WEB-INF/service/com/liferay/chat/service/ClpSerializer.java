@@ -46,7 +46,7 @@ public class ClpSerializer {
 	}
 
 	public static Object translateInput(BaseModel oldModel) {
-		Class oldModelClass = oldModel.getClass();
+		Class<?> oldModelClass = oldModel.getClass();
 
 		String oldModelClassName = oldModelClass.getName();
 
@@ -60,7 +60,7 @@ public class ClpSerializer {
 				Thread.currentThread().setContextClassLoader(_classLoader);
 
 				try {
-					Class newModelClass = Class.forName("com.liferay.chat.model.impl.EntryImpl",
+					Class<?> newModelClass = Class.forName("com.liferay.chat.model.impl.EntryImpl",
 							true, _classLoader);
 
 					Object newModel = newModelClass.newInstance();
@@ -121,7 +121,7 @@ public class ClpSerializer {
 				Thread.currentThread().setContextClassLoader(_classLoader);
 
 				try {
-					Class newModelClass = Class.forName("com.liferay.chat.model.impl.StatusImpl",
+					Class<?> newModelClass = Class.forName("com.liferay.chat.model.impl.StatusImpl",
 							true, _classLoader);
 
 					Object newModel = newModelClass.newInstance();
@@ -168,8 +168,8 @@ public class ClpSerializer {
 		return oldModel;
 	}
 
-	public static Object translateInput(List oldList) {
-		List newList = new ArrayList(oldList.size());
+	public static Object translateInput(List<Object> oldList) {
+		List<Object> newList = new ArrayList<Object>(oldList.size());
 
 		for (int i = 0; i < oldList.size(); i++) {
 			Object curObj = oldList.get(i);
@@ -185,7 +185,7 @@ public class ClpSerializer {
 			return translateInput((BaseModel)obj);
 		}
 		else if (obj instanceof List) {
-			return translateInput((List)obj);
+			return translateInput((List<Object>)obj);
 		}
 		else {
 			return obj;
@@ -193,7 +193,7 @@ public class ClpSerializer {
 	}
 
 	public static Object translateOutput(BaseModel oldModel) {
-		Class oldModelClass = oldModel.getClass();
+		Class<?> oldModelClass = oldModel.getClass();
 
 		String oldModelClassName = oldModelClass.getName();
 
@@ -299,8 +299,8 @@ public class ClpSerializer {
 		return oldModel;
 	}
 
-	public static Object translateOutput(List oldList) {
-		List newList = new ArrayList(oldList.size());
+	public static Object translateOutput(List<Object> oldList) {
+		List<Object> newList = new ArrayList<Object>(oldList.size());
 
 		for (int i = 0; i < oldList.size(); i++) {
 			Object curObj = oldList.get(i);
@@ -316,7 +316,7 @@ public class ClpSerializer {
 			return translateOutput((BaseModel)obj);
 		}
 		else if (obj instanceof List) {
-			return translateOutput((List)obj);
+			return translateOutput((List<Object>)obj);
 		}
 		else {
 			return obj;

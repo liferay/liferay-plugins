@@ -27,7 +27,6 @@ import com.liferay.portal.service.base.PrincipalBean;
 import com.liferay.workflow.service.WorkflowComponentService;
 import com.liferay.workflow.service.WorkflowDefinitionService;
 import com.liferay.workflow.service.WorkflowInstanceService;
-import com.liferay.workflow.service.WorkflowInstanceService;
 import com.liferay.workflow.service.WorkflowTaskService;
 
 /**
@@ -73,8 +72,12 @@ public abstract class WorkflowInstanceServiceBaseImpl extends PrincipalBean
 		this.workflowTaskService = workflowTaskService;
 	}
 
+	@javax.annotation.Resource(name = "com.liferay.workflow.service.WorkflowComponentService.impl")
 	protected WorkflowComponentService workflowComponentService;
+	@javax.annotation.Resource(name = "com.liferay.workflow.service.WorkflowDefinitionService.impl")
 	protected WorkflowDefinitionService workflowDefinitionService;
+	@javax.annotation.Resource(name = "com.liferay.workflow.service.WorkflowInstanceService.impl")
 	protected WorkflowInstanceService workflowInstanceService;
+	@javax.annotation.Resource(name = "com.liferay.workflow.service.WorkflowTaskService.impl")
 	protected WorkflowTaskService workflowTaskService;
 }
