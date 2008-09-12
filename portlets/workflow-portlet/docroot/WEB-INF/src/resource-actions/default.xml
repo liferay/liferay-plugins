@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+
+<resource-action-mapping>
+	<portlet-resource>
+		<portlet-name>1</portlet-name>
+		<supports>
+			<action-key>ADD_DEFINITION</action-key>
+			<action-key>CONFIGURATION</action-key>
+			<action-key>VIEW</action-key>
+		</supports>
+		<community-defaults>
+			<action-key>VIEW</action-key>
+		</community-defaults>
+		<guest-defaults>
+			<action-key>VIEW</action-key>
+		</guest-defaults>
+		<guest-unsupported>
+			<action-key>ADD_DEFINITION</action-key>
+		</guest-unsupported>
+	</portlet-resource>
+	<model-resource>
+		<model-name>com.liferay.workflow.model.WorkflowDefinition</model-name>
+		<portlet-ref>
+			<portlet-name>1</portlet-name>
+		</portlet-ref>
+		<supports>
+			<action-key>ADD_INSTANCE</action-key>
+			<action-key>PERMISSIONS</action-key>
+			<action-key>UPDATE</action-key>
+			<action-key>VIEW</action-key>
+		</supports>
+		<community-defaults>
+			<action-key>ADD_INSTANCE</action-key>
+			<action-key>VIEW</action-key>
+		</community-defaults>
+		<guest-defaults>
+			<action-key>VIEW</action-key>
+		</guest-defaults>
+		<guest-unsupported>
+			<action-key>ADD_INSTANCE</action-key>
+			<action-key>UPDATE</action-key>
+		</guest-unsupported>
+	</model-resource>
+	<model-resource>
+		<model-name>com.liferay.workflow.model.WorkflowInstance</model-name>
+		<portlet-ref>
+			<portlet-name>1</portlet-name>
+		</portlet-ref>
+		<supports>
+			<action-key>MANAGE</action-key>
+			<action-key>PERMISSIONS</action-key>
+			<action-key>SIGNAL</action-key>
+		</supports>
+		<community-defaults />
+		<guest-defaults />
+		<guest-unsupported>
+			<action-key>MANAGE</action-key>
+			<action-key>SIGNAL</action-key>
+		</guest-unsupported>
+	</model-resource>
+	<model-resource>
+		<model-name>com.liferay.workflow.model.WorkflowTask</model-name>
+		<portlet-ref>
+			<portlet-name>1</portlet-name>
+		</portlet-ref>
+		<supports>
+			<action-key>MANAGE</action-key>
+			<action-key>PERMISSIONS</action-key>
+		</supports>
+		<community-defaults />
+		<guest-defaults />
+		<guest-unsupported>
+			<action-key>MANAGE</action-key>
+		</guest-unsupported>
+	</model-resource>
+</resource-action-mapping>

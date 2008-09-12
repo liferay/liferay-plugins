@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.liferay.workflow">
+	<namespace>Workflow</namespace>
+	<entity name="WorkflowComponent" local-service="false" remote-service="true" />
+	<entity name="WorkflowDefinition" local-service="false" remote-service="true" />
+	<entity name="WorkflowInstance" local-service="false" remote-service="true" />
+	<entity name="WorkflowTask" local-service="false" remote-service="true" />
+</service-builder>
