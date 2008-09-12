@@ -469,7 +469,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			minorEdit, template, draft, tagsEntries, prefs, themeDisplay);
 	}
 
-	protected List<KBArticle> checkViewPermission(Iterator<KBArticle> itr, int max)
+	protected List<KBArticle> checkViewPermission(
+			Iterator<KBArticle> itr, int max)
 		throws PortalException, SystemException {
 
 		List<KBArticle> articles = new ArrayList<KBArticle>();
@@ -568,7 +569,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	protected String getEntryURL(KBArticle article, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
-		StringBuilder entryURL = new StringBuilder(PortalUtil.getPortalURL(themeDisplay));
+		StringBuilder entryURL =
+			new StringBuilder(PortalUtil.getPortalURL(themeDisplay));
 
 		long publicPlid = PortalUtil.getPlidFromPortletId(
 			article.getGroupId(), false, KnowledgeBaseKeys.PORTLET_ID);
@@ -586,7 +588,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		}
 
 		if (layout != null) {
-			entryURL.append(PortalUtil.getLayoutFriendlyURL(layout, themeDisplay));
+			entryURL.append(
+				PortalUtil.getLayoutFriendlyURL(layout, themeDisplay));
 		}
 		else {
 			entryURL.append(PortalUtil.getLayoutURL(themeDisplay));
