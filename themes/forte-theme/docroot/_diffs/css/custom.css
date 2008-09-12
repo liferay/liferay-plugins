@@ -1,0 +1,121 @@
+@import url(color_schemes/yellow.css);
+@import url(color_schemes/green.css);
+@import url(color_schemes/red.css);
+@import url(color_schemes/blue.css);
+
+a {
+	font-size: 12px;
+}
+.ui-dialog {
+	background-color:;
+}
+.uni-form {
+	background:;
+}
+.lfr-portal-login .uni-form legend {
+	color:;
+}
+/** Wrapper **/
+#wrapper {
+	background: transparent;
+	position: relative;
+	margin: 0 auto;
+	width: 1255px;
+}
+
+#content-wrapper {
+}
+
+/** Banner Body Navigation**/
+#banner {
+	top: 0;
+	margin-left:470px;
+	top:90px;
+	position: relative;
+	height: 164px;
+}
+#banner h1.logo {
+	left:-50%;
+	margin:0 0 0;
+}
+body {
+	font-family:arial;
+}
+#navigation {
+	background: transparent;
+	border: none;
+	margin:-141px 0 280px;
+	width: 80%;
+}
+#navigation li {
+	border: none;
+}
+#navigation li a {
+	margin-left: 5px;
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color:transparent;
+	color:#FFFFFF;
+}
+#navigation li.selected a span {
+	background:transparent;
+	padding-left:0px;
+}
+/** Portlets **/
+.portlet {
+	background: transparent;
+	border: none;
+}
+.portlet-topper {
+	border: none;
+	font-size: 18px;
+	background: transparent;
+}
+/** UI Tabs**/
+.ui-tabs {
+	border-bottom:medium none;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	color: #336699;
+	text-decoration: none;
+}
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent none repeat scroll 0 0;
+	border-left:medium none;
+	border-top: none;
+	border-bottom: none;
+	color:#336699;
+	border-right:5px solid white;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:transparent;
+	color:#000;
+	text-decoration: none;
+}
+.ui-tabs li a, .tabs li span {
+	background:transparent none repeat scroll 0 0;
+	border-right:5px solid white;
+	color:#000;
+	top:0;
+}
+/** Javascript **/
+.js #navigation .enter-page {
+	background-color:transparent;
+	padding:0px;
+	margin-left:5px;
+	margin-top:1px;
+}
+.js #add-page {
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+	right:0;
+	top:0;
+}
+.js .interactive-mode {
+	top:-80px;
+}
+/** Footer **/
+#footer {
+	height:25px;
+}

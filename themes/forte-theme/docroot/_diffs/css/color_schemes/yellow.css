@@ -1,0 +1,27 @@
+.yellow {
+	background:transparent url(../../images/custom/yimages/head.png) repeat-x scroll 0 0;
+}
+.yellow #banner {
+	background:transparent url(../../images/custom/yimages/list.jpg) no-repeat scroll left top;
+}
+.yellow #navigation li a {
+	background: #A3A411;
+}
+.yellow #navigation li.selected a, .yellow #navigation li a:hover {
+	background: #A3A411;
+}
+.yellow .ui-tabs li.current, .yellow .ui-tabs li.current a {
+	background: #FEF852;
+}
+.yellow .ui-tabs li a, .yellow .ui-tabs li span {
+	background: #FEF852;
+}
+.yellow .ui-tabs li.current:hover, .yellow .ui-tabs li.current a:hover {
+	background: #FEF852;
+}
+.yellow .ui-tabs li a:hover, .yellow .ui-tabs li span:hover {
+	background: #FEF852;
+}
+.yellow #footer {
+	background:transparent url(../../images/custom/yimages/footer.gif) repeat-x scroll 0 0;
+}
