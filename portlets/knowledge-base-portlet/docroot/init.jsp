@@ -66,6 +66,7 @@
 <%@ page import="com.liferay.portal.kernel.search.Hits" %>
 <%@ page import="com.liferay.portal.kernel.servlet.ImageServletTokenUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ArrayUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.DateFormats" %>
 <%@ page import="com.liferay.portal.kernel.util.DiffResult" %>
 <%@ page import="com.liferay.portal.kernel.util.DiffUtil" %>

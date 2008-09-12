@@ -14,78 +14,14 @@
 		<property name="KBFeedbackStatsLocalService" ref="com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService.impl" />
 		<property name="KBFeedbackStatsPersistence" ref="com.liferay.kb.knowledgebase.service.persistence.KBFeedbackStatsPersistence.impl" />
 	</bean>
-	<bean id="com.liferay.kb.knowledgebase.service.KBArticleLocalService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBArticleLocalServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base">
-		<property name="counterLocalService" ref="com.liferay.counter.service.CounterLocalService.impl" />
-		<property name="counterService" ref="com.liferay.counter.service.CounterService.impl" />
-		<property name="DLLocalService" ref="com.liferay.documentlibrary.service.DLLocalService.impl" />
-		<property name="DLService" ref="com.liferay.documentlibrary.service.DLService.impl" />
-		<property name="companyLocalService" ref="com.liferay.portal.service.CompanyLocalService.impl" />
-		<property name="companyService" ref="com.liferay.portal.service.CompanyService.impl" />
-		<property name="companyPersistence" ref="com.liferay.portal.service.persistence.CompanyPersistence.impl" />
-		<property name="groupLocalService" ref="com.liferay.portal.service.GroupLocalService.impl" />
-		<property name="groupService" ref="com.liferay.portal.service.GroupService.impl" />
-		<property name="groupPersistence" ref="com.liferay.portal.service.persistence.GroupPersistence.impl" />
-		<property name="mailService" ref="com.liferay.mail.service.MailService.impl" />
-		<property name="portletPreferencesLocalService" ref="com.liferay.portal.service.PortletPreferencesLocalService.impl" />
-		<property name="portletPreferencesService" ref="com.liferay.portal.service.PortletPreferencesService.impl" />
-		<property name="portletPreferencesPersistence" ref="com.liferay.portal.service.persistence.PortletPreferencesPersistence.impl" />
-		<property name="resourceLocalService" ref="com.liferay.portal.service.ResourceLocalService.impl" />
-		<property name="resourceService" ref="com.liferay.portal.service.ResourceService.impl" />
-		<property name="resourcePersistence" ref="com.liferay.portal.service.persistence.ResourcePersistence.impl" />
-		<property name="subscriptionLocalService" ref="com.liferay.portal.service.SubscriptionLocalService.impl" />
-		<property name="subscriptionPersistence" ref="com.liferay.portal.service.persistence.SubscriptionPersistence.impl" />
-		<property name="userLocalService" ref="com.liferay.portal.service.UserLocalService.impl" />
-		<property name="userService" ref="com.liferay.portal.service.UserService.impl" />
-		<property name="userPersistence" ref="com.liferay.portal.service.persistence.UserPersistence.impl" />
-		<property name="MBMessageLocalService" ref="com.liferay.portlet.messageboards.service.MBMessageLocalService.impl" />
-		<property name="MBMessageService" ref="com.liferay.portlet.messageboards.service.MBMessageService.impl" />
-		<property name="MBMessagePersistence" ref="com.liferay.portlet.messageboards.service.persistence.MBMessagePersistence.impl" />
-		<property name="tagsAssetLocalService" ref="com.liferay.portlet.tags.service.TagsAssetLocalService.impl" />
-		<property name="tagsAssetService" ref="com.liferay.portlet.tags.service.TagsAssetService.impl" />
-		<property name="tagsAssetPersistence" ref="com.liferay.portlet.tags.service.persistence.TagsAssetPersistence.impl" />
-		<property name="tagsEntryLocalService" ref="com.liferay.portlet.tags.service.TagsEntryLocalService.impl" />
-		<property name="tagsEntryService" ref="com.liferay.portlet.tags.service.TagsEntryService.impl" />
-		<property name="tagsEntryPersistence" ref="com.liferay.portlet.tags.service.persistence.TagsEntryPersistence.impl" />
-	</bean>
+	<bean id="com.liferay.kb.knowledgebase.service.KBArticleLocalService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBArticleLocalServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base"></bean>
 	<bean id="com.liferay.kb.knowledgebase.service.KBArticleLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.kb.knowledgebase.service.KBArticleLocalService.impl" />
 	</bean>
 	<bean id="com.liferay.kb.knowledgebase.service.KBArticleLocalServiceUtil" class="com.liferay.kb.knowledgebase.service.KBArticleLocalServiceUtil">
 		<property name="service" ref="com.liferay.kb.knowledgebase.service.KBArticleLocalService.impl" />
 	</bean>
-	<bean id="com.liferay.kb.knowledgebase.service.KBArticleService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBArticleServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base">
-		<property name="counterLocalService" ref="com.liferay.counter.service.CounterLocalService.impl" />
-		<property name="counterService" ref="com.liferay.counter.service.CounterService.impl" />
-		<property name="DLLocalService" ref="com.liferay.documentlibrary.service.DLLocalService.impl" />
-		<property name="DLService" ref="com.liferay.documentlibrary.service.DLService.impl" />
-		<property name="companyLocalService" ref="com.liferay.portal.service.CompanyLocalService.impl" />
-		<property name="companyService" ref="com.liferay.portal.service.CompanyService.impl" />
-		<property name="companyPersistence" ref="com.liferay.portal.service.persistence.CompanyPersistence.impl" />
-		<property name="groupLocalService" ref="com.liferay.portal.service.GroupLocalService.impl" />
-		<property name="groupService" ref="com.liferay.portal.service.GroupService.impl" />
-		<property name="groupPersistence" ref="com.liferay.portal.service.persistence.GroupPersistence.impl" />
-		<property name="mailService" ref="com.liferay.mail.service.MailService.impl" />
-		<property name="portletPreferencesLocalService" ref="com.liferay.portal.service.PortletPreferencesLocalService.impl" />
-		<property name="portletPreferencesService" ref="com.liferay.portal.service.PortletPreferencesService.impl" />
-		<property name="portletPreferencesPersistence" ref="com.liferay.portal.service.persistence.PortletPreferencesPersistence.impl" />
-		<property name="resourceLocalService" ref="com.liferay.portal.service.ResourceLocalService.impl" />
-		<property name="resourceService" ref="com.liferay.portal.service.ResourceService.impl" />
-		<property name="resourcePersistence" ref="com.liferay.portal.service.persistence.ResourcePersistence.impl" />
-		<property name="subscriptionLocalService" ref="com.liferay.portal.service.SubscriptionLocalService.impl" />
-		<property name="subscriptionPersistence" ref="com.liferay.portal.service.persistence.SubscriptionPersistence.impl" />
-		<property name="userLocalService" ref="com.liferay.portal.service.UserLocalService.impl" />
-		<property name="userService" ref="com.liferay.portal.service.UserService.impl" />
-		<property name="userPersistence" ref="com.liferay.portal.service.persistence.UserPersistence.impl" />
-		<property name="MBMessageLocalService" ref="com.liferay.portlet.messageboards.service.MBMessageLocalService.impl" />
-		<property name="MBMessageService" ref="com.liferay.portlet.messageboards.service.MBMessageService.impl" />
-		<property name="MBMessagePersistence" ref="com.liferay.portlet.messageboards.service.persistence.MBMessagePersistence.impl" />
-		<property name="tagsAssetLocalService" ref="com.liferay.portlet.tags.service.TagsAssetLocalService.impl" />
-		<property name="tagsAssetService" ref="com.liferay.portlet.tags.service.TagsAssetService.impl" />
-		<property name="tagsAssetPersistence" ref="com.liferay.portlet.tags.service.persistence.TagsAssetPersistence.impl" />
-		<property name="tagsEntryLocalService" ref="com.liferay.portlet.tags.service.TagsEntryLocalService.impl" />
-		<property name="tagsEntryService" ref="com.liferay.portlet.tags.service.TagsEntryService.impl" />
-		<property name="tagsEntryPersistence" ref="com.liferay.portlet.tags.service.persistence.TagsEntryPersistence.impl" />
-	</bean>
+	<bean id="com.liferay.kb.knowledgebase.service.KBArticleService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBArticleServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base"></bean>
 	<bean id="com.liferay.kb.knowledgebase.service.KBArticleService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.kb.knowledgebase.service.KBArticleService.impl" />
 	</bean>
@@ -100,10 +36,7 @@
 	<bean id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinderUtil" class="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinderUtil">
 		<property name="finder" ref="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.impl" />
 	</bean>
-	<bean id="com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBArticleResourceLocalServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base">
-		<property name="counterLocalService" ref="com.liferay.counter.service.CounterLocalService.impl" />
-		<property name="counterService" ref="com.liferay.counter.service.CounterService.impl" />
-	</bean>
+	<bean id="com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService.impl" class="com.liferay.kb.knowledgebase.service.impl.KBArticleResourceLocalServiceImpl" parent="com.liferay.kb.knowledgebase.service.KB.base"></bean>
 	<bean id="com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService.impl" />
 	</bean>

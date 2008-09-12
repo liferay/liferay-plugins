@@ -22,9 +22,6 @@
 
 package com.liferay.kb.knowledgebase.service.base;
 
-import com.liferay.counter.service.CounterLocalService;
-import com.liferay.counter.service.CounterService;
-
 import com.liferay.kb.knowledgebase.model.KBArticleResource;
 import com.liferay.kb.knowledgebase.service.KBArticleLocalService;
 import com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService;
@@ -193,22 +190,6 @@ public abstract class KBArticleResourceLocalServiceBaseImpl
 		this.kbFeedbackStatsPersistence = kbFeedbackStatsPersistence;
 	}
 
-	public CounterLocalService getCounterLocalService() {
-		return counterLocalService;
-	}
-
-	public void setCounterLocalService(CounterLocalService counterLocalService) {
-		this.counterLocalService = counterLocalService;
-	}
-
-	public CounterService getCounterService() {
-		return counterService;
-	}
-
-	public void setCounterService(CounterService counterService) {
-		this.counterService = counterService;
-	}
-
 	protected KBArticleLocalService kbArticleLocalService;
 	protected KBArticleService kbArticleService;
 	protected KBArticlePersistence kbArticlePersistence;
@@ -219,6 +200,4 @@ public abstract class KBArticleResourceLocalServiceBaseImpl
 	protected KBFeedbackEntryPersistence kbFeedbackEntryPersistence;
 	protected KBFeedbackStatsLocalService kbFeedbackStatsLocalService;
 	protected KBFeedbackStatsPersistence kbFeedbackStatsPersistence;
-	protected CounterLocalService counterLocalService;
-	protected CounterService counterService;
 }

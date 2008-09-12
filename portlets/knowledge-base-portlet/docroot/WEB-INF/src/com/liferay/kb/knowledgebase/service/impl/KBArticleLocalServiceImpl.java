@@ -22,10 +22,12 @@
 
 package com.liferay.kb.knowledgebase.service.impl;
 
+import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.documentlibrary.DuplicateDirectoryException;
 import com.liferay.documentlibrary.DuplicateFileException;
 import com.liferay.documentlibrary.NoSuchDirectoryException;
 import com.liferay.documentlibrary.NoSuchFileException;
+import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.kb.knowledgebase.ArticleTitleException;
 import com.liferay.kb.knowledgebase.ArticleVersionException;
 import com.liferay.kb.knowledgebase.KnowledgeBaseKeys;
@@ -38,6 +40,7 @@ import com.liferay.kb.knowledgebase.util.Indexer;
 import com.liferay.kb.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.kb.knowledgebase.util.comparator.ArticleModifiedDateComparator;
 import com.liferay.kb.util.PortletPropsKeys;
+import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -65,9 +68,18 @@ import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
+import com.liferay.portal.service.ResourceLocalServiceUtil;
+import com.liferay.portal.service.SubscriptionLocalServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
+import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
+import com.liferay.portlet.tags.service.TagsAssetLocalServiceUtil;
+import com.liferay.portlet.tags.service.TagsEntryLocalServiceUtil;
 import com.liferay.util.MathUtil;
 
 import java.rmi.RemoteException;
@@ -119,7 +131,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// Article
 
-		User user = userPersistence.findByPrimaryKey(userId);
+		User user = UserLocalServiceUtil.getUser(userId);
 
 		Date now = new Date();
 
@@ -132,7 +144,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				"The title " + title + " is already being used");
 		}
 
-		long articleId = counterLocalService.increment();
+		long articleId = CounterLocalServiceUtil.increment();
 
 		long resourcePrimKey =
 			kbArticleResourceLocalService.getArticleResourcePrimKey(
@@ -212,7 +224,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		try {
 			try {
-				dlService.addDirectory(companyId, repositoryId, dirName);
+				DLServiceUtil.addDirectory(companyId, repositoryId, dirName);
 			}
 			catch (DuplicateDirectoryException dde) {
 			}
@@ -228,7 +240,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				}
 
 				try {
-					dlService.addFile(
+					DLServiceUtil.addFile(
 						companyId, portletId, article.getGroupId(),
 						repositoryId, dirName + "/" + fileName,
 						StringPool.BLANK, new String[0], bytes);
@@ -247,7 +259,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			boolean addGuestPermissions)
 		throws PortalException, SystemException {
 
-		resourceLocalService.addResources(
+		ResourceLocalServiceUtil.addResources(
 			article.getCompanyId(), groupId, article.getUserId(),
 			KBArticle.class.getName(), article.getResourcePrimKey(), false,
 			addCommunityPermissions, addGuestPermissions);
@@ -258,7 +270,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			String[] guestPermissions)
 		throws PortalException, SystemException {
 
-		resourceLocalService.addModelResources(
+		ResourceLocalServiceUtil.addModelResources(
 			article.getCompanyId(), groupId, article.getUserId(),
 			KBArticle.class.getName(), article.getResourcePrimKey(),
 			communityPermissions, guestPermissions);
@@ -298,7 +310,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		String dirName = article.getAttachmentsDir();
 
 		try {
-			dlService.deleteDirectory(
+			DLServiceUtil.deleteDirectory(
 				companyId, portletId, repositoryId, dirName);
 		}
 		catch (NoSuchDirectoryException nsde) {
@@ -309,12 +321,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// Tags
 
-		tagsAssetLocalService.deleteAsset(
+		TagsAssetLocalServiceUtil.deleteAsset(
 			KBArticle.class.getName(), article.getResourcePrimKey());
 
 		// Subscriptions
 
-		subscriptionLocalService.deleteSubscriptions(
+		SubscriptionLocalServiceUtil.deleteSubscriptions(
 			article.getCompanyId(), KBArticle.class.getName(),
 			article.getArticleId());
 
@@ -325,12 +337,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// Message boards
 
-		mbMessageLocalService.deleteDiscussionMessages(
+		MBMessageLocalServiceUtil.deleteDiscussionMessages(
 			KBArticle.class.getName(), article.getResourcePrimKey());
 
 		// Resources
 
-		resourceLocalService.deleteResource(
+		ResourceLocalServiceUtil.deleteResource(
 			article.getCompanyId(), KBArticle.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL, article.getResourcePrimKey());
 
@@ -361,7 +373,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		long repositoryId = CompanyConstants.SYSTEM;
 
 		try {
-			dlService.deleteFile(companyId, portletId, repositoryId, fileName);
+			DLServiceUtil.deleteFile(companyId, portletId, repositoryId, fileName);
 		}
 		catch (NoSuchFileException nsfe) {
 		}
@@ -609,7 +621,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				String content = article.getContent();
 				String description = article.getDescription();
 
-				String[] tagsEntries = tagsEntryLocalService.getEntryNames(
+				String[] tagsEntries = TagsEntryLocalServiceUtil.getEntryNames(
 					KBArticle.class.getName(), article.getResourcePrimKey());
 
 				try {
@@ -688,28 +700,28 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public void subscribe(long userId, long groupId)
 		throws PortalException, SystemException {
 
-		subscriptionLocalService.addSubscription(
+		SubscriptionLocalServiceUtil.addSubscription(
 			userId, KBArticle.class.getName(), groupId);
 	}
 
 	public void subscribeArticle(long userId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
-		subscriptionLocalService.addSubscription(
+		SubscriptionLocalServiceUtil.addSubscription(
 			userId, KBArticle.class.getName(), resourcePrimKey);
 	}
 
 	public void unsubscribe(long userId, long groupId)
 		throws PortalException, SystemException {
 
-		subscriptionLocalService.deleteSubscription(
+		SubscriptionLocalServiceUtil.deleteSubscription(
 			userId, KBArticle.class.getName(), groupId);
 	}
 
 	public void unsubscribeArticle(long userId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
-		subscriptionLocalService.deleteSubscription(
+		SubscriptionLocalServiceUtil.deleteSubscription(
 			userId, KBArticle.class.getName(), resourcePrimKey);
 	}
 
@@ -722,7 +734,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// Article
 
-		User user = userPersistence.findByPrimaryKey(userId);
+		User user = UserLocalServiceUtil.getUser(userId);
+
 		Date now = new Date();
 
 		KBArticle article = getArticle(resourcePrimKey);
@@ -742,7 +755,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		double newVersion = MathUtil.format(oldVersion + 0.1, 1, 1);
 
-		long articleId = counterLocalService.increment();
+		long articleId = CounterLocalServiceUtil.increment();
 
 		article = kbArticlePersistence.create(articleId);
 
@@ -807,7 +820,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			className += ".template";
 		}
 
-		tagsAssetLocalService.updateAsset(
+		TagsAssetLocalServiceUtil.updateAsset(
 			userId, article.getGroupId(), className,
 			article.getResourcePrimKey(), tagsEntries, null, null, null, null,
 			ContentTypes.TEXT_HTML, article.getTitle(), null, null, null, 0, 0,
@@ -844,17 +857,17 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			String portletId = KnowledgeBaseKeys.PORTLET_ID;
 			String defaultPreferences = null;
 
-			prefs = portletPreferencesLocalService.getPreferences(
+			prefs = PortletPreferencesLocalServiceUtil.getPreferences(
 				article.getCompanyId(), ownerId, ownerType, plid, portletId,
 				defaultPreferences);
 		}
 
-		Company company = companyPersistence.findByPrimaryKey(
+		Company company = CompanyLocalServiceUtil.getCompany(
 			article.getCompanyId());
 
-		Group group = groupPersistence.findByPrimaryKey(article.getGroupId());
+		Group group = GroupLocalServiceUtil.getGroup(article.getGroupId());
 
-		User user = userPersistence.findByPrimaryKey(article.getUserId());
+		User user = UserLocalServiceUtil.getUser(article.getUserId());
 
 		String groupName = KnowledgeBaseUtil.getGroupName(group);
 
@@ -959,7 +972,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		MailMessage mailMessage = new MailMessage(
 			from, to, subject, body, true);
 
-		mailService.sendEmail(mailMessage);
+		MailServiceUtil.sendEmail(mailMessage);
 	}
 
 	protected void validate(String title) throws PortalException {

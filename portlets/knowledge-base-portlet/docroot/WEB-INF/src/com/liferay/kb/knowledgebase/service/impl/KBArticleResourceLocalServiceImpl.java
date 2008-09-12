@@ -22,6 +22,7 @@
 
 package com.liferay.kb.knowledgebase.service.impl;
 
+import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.kb.knowledgebase.model.KBArticleResource;
 import com.liferay.kb.knowledgebase.service.base.KBArticleResourceLocalServiceBaseImpl;
 import com.liferay.portal.PortalException;
@@ -57,7 +58,7 @@ public class KBArticleResourceLocalServiceImpl
 			kbArticleResourcePersistence.fetchByG_T(groupId, title);
 
 		if (articleResource == null) {
-			long articleResourcePrimKey = counterLocalService.increment();
+			long articleResourcePrimKey = CounterLocalServiceUtil.increment();
 
 			articleResource = kbArticleResourcePersistence.create(
 				articleResourcePrimKey);

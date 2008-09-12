@@ -97,21 +97,6 @@
 			<finder-column name="template" />
 			<finder-column name="draft" />
 		</finder>
-
-		<!-- References -->
-
-		<reference package-path="com.liferay.counter" entity="Counter" />
-		<reference package-path="com.liferay.documentlibrary" entity="DL" />
-		<reference package-path="com.liferay.portal" entity="Company" />
-		<reference package-path="com.liferay.portal" entity="Group" />
-		<reference package-path="com.liferay.mail" entity="Mail" />
-		<reference package-path="com.liferay.portal" entity="PortletPreferences" />
-		<reference package-path="com.liferay.portal" entity="Resource" />
-		<reference package-path="com.liferay.portal" entity="Subscription" />
-		<reference package-path="com.liferay.portal" entity="User" />
-		<reference package-path="com.liferay.portlet.messageboards" entity="MBMessage" />
-		<reference package-path="com.liferay.portlet.tags" entity="TagsAsset" />
-		<reference package-path="com.liferay.portlet.tags" entity="TagsEntry" />
 	</entity>
 	<entity name="KBArticleResource" local-service="true" remote-service="false">
 
@@ -140,10 +125,6 @@
 			<finder-column name="groupId" />
 			<finder-column name="title" />
 		</finder>
-
-		<!-- References -->
-
-		<reference package-path="com.liferay.counter" entity="Counter" />
 	</entity>
 	<entity name="KBFeedbackEntry" local-service="true" remote-service="false">
 
