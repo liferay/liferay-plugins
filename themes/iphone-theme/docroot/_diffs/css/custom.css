@@ -1,0 +1,127 @@
+a {
+	font-size: 12px;
+}
+.ui-dialog {
+	background-color:;
+}
+.uni-form {
+	background:;
+}
+.lfr-portal-login .uni-form legend {
+	color:;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus {
+	background:white none repeat scroll 0 0;
+	border:1px solid #A7CEDF;
+	color:black;
+}
+
+/** Wrapper **/
+#wrapper {
+	background: black url(../images/custom/page_bg.jpg) repeat-y scroll center;
+	position: relative;
+	margin: 0 auto;
+	width:812px;
+}
+
+#content-wrapper {
+	background: black;
+	margin:-20px auto;
+}
+/** Banner Body Navigation**/
+#banner {
+	background: black url(../images/custom/header_bg.jpg) no-repeat scroll center;
+	position: relative;
+	top: 0;
+}
+
+#banner .logo a {
+	margin-left:50px;
+	margin-top:15px;
+}
+body {
+	background: black;
+}
+#navigation {
+	background: black url(../images/custom/nav_bg.png) repeat scroll center;
+	border: none;
+	height:50px;
+	width:732px;
+}
+#navigation li {
+	border: none;
+	margin:10px 0 0 -1px;
+}
+#navigation li a {
+}
+#navigation li.selected a, #navigation li a:hover {
+	background-color:transparent;
+	color:#FFFFFF;
+}
+#navigation li.selected a span {
+	background:transparent;
+	padding-left:0px;
+}
+/** Portlets **/
+.portlet {
+	background: transparent;
+	border: none;
+}
+.portlet-topper {
+	border: none;
+	font-size: 13px;
+	background: transparent;
+	color: white;
+	padding-right: 0;
+}
+
+.portlet-icons {
+	right:18px;
+	top:20px;
+}
+/** UI Tabs**/
+.ui-tabs {
+	border-bottom:medium none;
+}
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color:transparent;
+	color: #336699;
+	text-decoration: none;
+}
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+	color:#336699;
+}
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background:transparent;
+	color:#9EBAC8;
+}
+.ui-tabs li a, .tabs li span {
+	background:transparent none repeat scroll 0 0;
+	border-right:medium none;
+	color:#FFFFFF;
+	top:0;
+}
+/** Javascript **/
+.js #navigation .enter-page {
+	background-color:transparent;
+	padding:0px;
+}
+.js #add-page {
+	background:transparent none repeat scroll 0 0;
+	border:medium none;
+	right:0;
+	top:10px;
+}
+
+.js .interactive-mode {
+	margin-top:40px;
+	right:8%;
+}
+/** Footer **/
+#footer {
+	background: black url(../images/custom/footer_bg.jpg) no-repeat scroll center;
+	height: 100px;
+}
