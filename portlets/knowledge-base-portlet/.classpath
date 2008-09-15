@@ -19,7 +19,6 @@
 	<classpathentry kind="lib" path="/portal/lib/portal/jstl-impl.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/jstl.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/log4j.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/lucene.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/rome.jar" />
 	<classpathentry kind="lib" path="/portal/portal-kernel/portal-kernel.jar" />
 	<classpathentry kind="lib" path="/portal/portal-service/portal-service.jar" />
