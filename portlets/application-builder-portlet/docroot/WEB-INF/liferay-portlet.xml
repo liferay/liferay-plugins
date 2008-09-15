@@ -5,6 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<configuration-action-class>com.liferay.applicationbuilder.portlet.ConfigurationActionImpl</configuration-action-class>
+		<instanceable>true</instanceable>
 		<css-class-wrapper>application-builder-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
