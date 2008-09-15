@@ -1,0 +1,16 @@
+##
+## Messages
+##
+
+an-error-has-occurred.-please-contact-administrator-or-configure-portlet=Ha ocurrido un error. Por favor, pongase en contacto con el administrador o configure el portlet.
+enter-code-that-renders-the-html-output=Introduzca el código que genera el HTML a mostrar:
+links-and-forms-have-been-deactivated-to-avoid-odd-behaviour=Los enlaces y los formularios se han desactivado para evitar comportamientos extraños.
+script=Script
+scripting-language=Lenguaje de script
+the-current-portlet-configuration-object=el objeto actual de la configuración del portlet.
+the-current-portlet-context-object=El objeto actual del contexto del portlet.
+the-current-portlet-preferences-object=El objeto actual de las preferencias del portlet.
+the-current-request-object=El objeto actual de la request.
+the-current-response-object=El objeto actual de la response.
+the-current-user-info-object=El objeto actual de los datos del usuario.                                 
+the-following-implicit-variables-are-available=Las siguientes variables implícitas están disponibles:

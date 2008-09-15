@@ -1,0 +1,16 @@
+##
+## Messages
+##
+
+an-error-has-occurred.-please-contact-administrator-or-configure-portlet=Eine Störung ist aufgetreten. Treten Sie bitte mit Verwalter in Verbindung oder bauen Sie das portlet zusammen.
+enter-code-that-renders-the-html-output=Geben Sie Code ein, der das HTML ausgegeben macht:
+links-and-forms-have-been-deactivated-to-avoid-odd-behaviour=Verbindungen und Formen deactivaded, um ungerades Verhalten zu vermeiden.
+script=Index
+scripting-language=Scripting Sprache
+the-current-portlet-configuration-object=der gegenwärtige portlet Konfigurationsgegenstand.
+the-current-portlet-context-object=Der gegenwärtige portlet Zusammenhanggegenstand.
+the-current-portlet-preferences-object=Der gegenwärtige portlet Präferenzgegenstand.
+the-current-request-object=Der gegenwärtige Antraggegenstand.
+the-current-response-object=Der gegenwärtige Wartegegenstand.
+the-current-user-info-object=Der gegenwärtige Benutzerinfo-Gegenstand.
+the-following-implicit-variables-are-available=Die folgenden impliziten Variablen sind vorhanden:

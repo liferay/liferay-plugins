@@ -2,4 +2,18 @@
 
 <project name="portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
+
+	<target name="build-javascript">
+		<antcall target="build-javascript-cmd">
+			<param name="js.from.file" value="docroot/knowledge_base/unpacked.js" />
+			<param name="js.to.file" value="docroot/knowledge_base/packed.js" />
+		</antcall>
+	</target>
+
+	<target name="build-lang">
+		<antcall target="build-lang-cmd">
+			<param name="lang.dir" value="docroot/WEB-INF/src/content" />
+			<param name="lang.file" value="Language" />
+		</antcall>
+	</target>
 </project>
