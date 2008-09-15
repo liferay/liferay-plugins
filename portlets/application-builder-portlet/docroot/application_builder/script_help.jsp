@@ -22,25 +22,33 @@
  */
 %>
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ include file="/application_builder/init.jsp" %>
 
-<%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
-<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
-<%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.applicationbuilder.portlet.ConfigurationActionImpl" %>
-<%@ page import="com.liferay.portal.kernel.util.Constants" %>
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.PrefsParamUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
-<%@ page import="com.liferay.portal.kernel.util.StringUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.Validator" %>
-<%@ page import="com.liferay.portal.util.PortalUtil" %>
-<%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
+<p>
+	<liferay-ui:message key="enter-code-that-renders-the-html-output"></liferay-ui:message>
+</p>
+<p>
+	<liferay-ui:message key="the-following-implicit-variables-are-available"></liferay-ui:message>
+</p>
+<ul>
+	<li>
+		<b>portletConfig</b>: <liferay-ui:message key="the-current-portlet-configuration-object" />
+	</li>
+	<li>
+		<b>portletContext</b>: <liferay-ui:message key="the-current-portlet-context-object" />
+	</li>
+	<li>
+		<b>portletRequest</b>: <liferay-ui:message key="the-current-request-object" />
+	</li>
+	<li>
+		<b>portletResponse</b>: <liferay-ui:message key="the-current-response-object" />
+	</li>
+	<li>
+		<b>preferences</b>: <liferay-ui:message key="the-current-portlet-preferences-object" />
+	</li>
+	<li>
+		<b>userInfo</b>: <liferay-ui:message key="the-current-user-info-object" />
+	</li>
+</ul>
 
-<%@ page import="javax.portlet.PortletPreferences" %>
-
-<portlet:defineObjects />
-
-<liferay-theme:defineObjects />

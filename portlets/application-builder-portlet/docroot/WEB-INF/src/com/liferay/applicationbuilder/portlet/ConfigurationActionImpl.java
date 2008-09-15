@@ -27,6 +27,9 @@ import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
@@ -38,10 +41,12 @@ import javax.portlet.RenderResponse;
  * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
+ * @autror Alberto Montero
  *
  */
 public class ConfigurationActionImpl implements ConfigurationAction {
 
+	public static final String DEFAULT_LANGUAGE = "ruby";
 	public static final String DEFAULT_SCRIPT =
 		"out = $portletResponse.getPortletOutputStream\n" +
 			"out.println '<h2>Built by Application Builder in Ruby</h2>'\n" +
@@ -52,6 +57,30 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			"\tout.println '<li>' + it + '</li>'\n" +
 			"}\n" +
 			"out.println '</ul>'";
+
+	protected static Map<String, ScriptingLanguageInfo> _supportedLanguagesInfo;
+
+	static {
+		_supportedLanguagesInfo = new HashMap<String, ScriptingLanguageInfo>();
+
+		_supportedLanguagesInfo.put(
+			"ruby",
+			new ScriptingLanguageInfo(
+				"org.jruby.javasupport.bsf.JRubyEngine", "rb", "ruby"));
+		_supportedLanguagesInfo.put(
+			"groovy",
+			new ScriptingLanguageInfo(
+				"org.codehaus.groovy.bsf.GroovyEngine", "groovy", "groovy"));
+		_supportedLanguagesInfo.put(
+			"python",
+			new ScriptingLanguageInfo(
+				"org.apache.bsf.engines.jython.JythonEngine", "py", "python"));
+		_supportedLanguagesInfo.put(
+			"javascript",
+			new ScriptingLanguageInfo(
+				"", "js",
+				"javascript"));
+	}
 
 	public void processAction(
 			PortletConfig portletConfig, ActionRequest actionRequest,
@@ -65,8 +94,10 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				actionRequest, portletResource);
 
+		String language = ParamUtil.getString(actionRequest, "language");
 		String script = ParamUtil.getString(actionRequest, "script");
 
+		prefs.setValue("language", language);
 		prefs.setValue("script", script);
 
 		prefs.store();
@@ -81,6 +112,10 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		throws Exception {
 
 		return "/application_builder/configuration.jsp";
+	}
+
+	public static Map getSupportedLanguagesInfo() {
+		return _supportedLanguagesInfo;
 	}
 
 }

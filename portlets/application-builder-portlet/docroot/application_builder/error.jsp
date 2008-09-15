@@ -22,25 +22,6 @@
  */
 %>
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ include file="/application_builder/init.jsp" %>
 
-<%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
-<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
-<%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
-
-<%@ page import="com.liferay.applicationbuilder.portlet.ConfigurationActionImpl" %>
-<%@ page import="com.liferay.portal.kernel.util.Constants" %>
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.PrefsParamUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
-<%@ page import="com.liferay.portal.kernel.util.StringUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.Validator" %>
-<%@ page import="com.liferay.portal.util.PortalUtil" %>
-<%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
-
-<%@ page import="javax.portlet.PortletPreferences" %>
-
-<portlet:defineObjects />
-
-<liferay-theme:defineObjects />
+<liferay-ui:error key="script-execution-error" message="an-error-has-occurred.-please-contact-administrator-or-configure-portlet" />

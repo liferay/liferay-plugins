@@ -24,10 +24,10 @@ package com.liferay.applicationbuilder.portlet;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.permission.ActionKeys;
@@ -36,9 +36,6 @@ import com.liferay.portal.theme.ThemeDisplay;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintStream;
-
-import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -47,13 +44,13 @@ import javax.portlet.MimeResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletContext;
 import javax.portlet.PortletException;
-import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
+import javax.portlet.PortletRequestDispatcher;
 
 import org.apache.bsf.BSFException;
 import org.apache.bsf.BSFManager;
@@ -62,6 +59,9 @@ import org.apache.commons.logging.LogFactory;
 
 import org.jruby.RubyException;
 import org.jruby.exceptions.RaiseException;
+
+import org.mozilla.javascript.Context;
+import org.mozilla.javascript.Scriptable;
 
 /**
  * <a href="ApplicationBuilderPortlet.java.html"><b><i>View Source</i></b></a>
@@ -72,24 +72,22 @@ import org.jruby.exceptions.RaiseException;
 public class ApplicationBuilderPortlet extends GenericPortlet {
 
 	public void init() {
-		BSFManager.registerScriptingEngine(
-			_SCRIPTING_ENGINE_LANGUAGE, _SCRIPTING_ENGINE_CLASS_NAME,
-			new String[] {_SCRIPTING_ENGINE_EXTENSION});
-
 		bsfManager = new BSFManager();
 	}
 
 	public void doView(
 			RenderRequest renderRequest, RenderResponse renderResponse)
-		throws IOException {
+		throws IOException, PortletException {
 
+		String language = renderRequest.getPreferences().getValue(
+			"language", ConfigurationActionImpl.DEFAULT_LANGUAGE);
 		String script = renderRequest.getPreferences().getValue(
 			"script", ConfigurationActionImpl.DEFAULT_SCRIPT);
 
 		renderResponse.setContentType(ContentTypes.TEXT_HTML);
 
 		if (Validator.isNotNull(script)) {
-			include(script, renderRequest, renderResponse);
+			include(script, language, renderRequest, renderResponse);
 		}
 	}
 
@@ -114,9 +112,10 @@ public class ApplicationBuilderPortlet extends GenericPortlet {
 
 				res.setContentType(ContentTypes.TEXT_HTML);
 
+				String language = ParamUtil.getString(req, "language");
 				String script = ParamUtil.getString(req, "script");
 
-				includeScript(script, req, res);
+				includeScript(script, language, req, res);
 			}
 			catch(SystemException se){
 				_log.warn("Error checking permissions", se);
@@ -131,81 +130,76 @@ public class ApplicationBuilderPortlet extends GenericPortlet {
 	}
 
 	protected void declareBeans(
-			String script, PortletRequest portletRequest,
+			String script, String language, PortletRequest portletRequest,
 			PortletResponse portletResponse)
-		throws BSFException, IOException {
+		throws Exception {
 
 		PortletConfig portletConfig = getPortletConfig();
 		PortletContext portletContext = getPortletContext();
-		PortletPreferences preferences = portletRequest.getPreferences();
-		Map<String, String> userInfo =
-			(Map<String, String>)portletRequest.getAttribute(
-				PortletRequest.USER_INFO);
 
-		bsfManager.declareBean(
-			"portletConfig", portletConfig, PortletConfig.class);
-		bsfManager.declareBean(
-			"portletContext", portletContext, PortletContext.class);
-		bsfManager.declareBean(
-			"preferences", preferences, PortletPreferences.class);
-		bsfManager.declareBean("userInfo", userInfo, Map.class);
+		if (language.equals("javascript")) {
+			try {
+				Context context = Context.enter();
+				Scriptable scope = context.initStandardObjects();
 
-		bsfManager.declareBean(
-			"portletRequest", portletRequest, PortletRequest.class);
+				BeanDeclarator.declareRhinoBeans(
+					scope, portletConfig, portletContext, portletRequest,
+					portletResponse);
 
-		if (portletRequest instanceof ActionRequest) {
-			bsfManager.declareBean(
-				"actionRequest", portletRequest, ActionRequest.class);
+				context.evaluateString(
+					scope, script, "javascript script", 1, null);
+			}
+			finally {
+				Context.exit();
+			}
 		}
-		else if (portletRequest instanceof RenderRequest) {
-			bsfManager.declareBean(
-				"renderRequest", portletRequest, RenderRequest.class);
-		}
-		else if (portletRequest instanceof ResourceRequest) {
-			bsfManager.declareBean(
-				"resourceRequest", portletRequest, ResourceRequest.class);
-		}
+		else {
+			BeanDeclarator.declareBSFBeans(
+				bsfManager, portletConfig, portletContext, portletRequest,
+				portletResponse);
 
-		bsfManager.declareBean(
-			"portletResponse", portletResponse, PortletResponse.class);
+			ScriptingLanguageInfo selectedLanguageInfo =
+				(ScriptingLanguageInfo)ConfigurationActionImpl.
+					getSupportedLanguagesInfo().get(language);
 
-		if (portletResponse instanceof ActionResponse) {
-			bsfManager.declareBean(
-				"actionResponse", portletResponse, ActionResponse.class);
-		}
-		else if (portletResponse instanceof RenderResponse) {
-			bsfManager.declareBean(
-				"renderResponse", portletResponse, RenderResponse.class);
-		}
-		else if (portletResponse instanceof ResourceResponse) {
-			bsfManager.declareBean(
-				"resourceResponse", portletResponse, ResourceResponse.class);
-		}
+			BSFManager.registerScriptingEngine(
+				language, selectedLanguageInfo.getScriptingEngineClassName(),
+				new String[] {
+					selectedLanguageInfo.getScriptingEngineExtension()});
 
-		bsfManager.exec(_SCRIPTING_ENGINE_LANGUAGE, "(Ruby)", 0, 0, script);
+			bsfManager.exec(language, language + " script", 0, 0, script);
+		}
 	}
 
 	protected void include(
-			String script, PortletRequest portletRequest,
+			String script, String language, PortletRequest portletRequest,
 			PortletResponse portletResponse)
-		throws IOException {
+		throws IOException, PortletException {
 
 		try {
-			declareBeans(script, portletRequest, portletResponse);
+			declareBeans(script, language, portletRequest, portletResponse);
 		}
-		catch (BSFException bsfe) {
-			logBSFException(bsfe);
+		catch (Exception ex) {
+			SessionErrors.add(portletRequest, "script-execution-error");
+			_log.error("\n@ERROR@\n" + ex.getMessage() + "\n" + script + "\n");
+
+			PortletRequestDispatcher prd =
+				getPortletContext().
+					getRequestDispatcher("/application_builder/error.jsp");
+
+			prd.include(portletRequest, portletResponse);
 		}
 	}
 
 	protected void includeScript(
-			String consoleInput, PortletRequest req, PortletResponse res)
+			String consoleInput, String language, PortletRequest req,
+			PortletResponse res)
 		throws IOException {
 
 		try {
-			declareBeans(consoleInput, req, res);
+			declareBeans(consoleInput, language, req, res);
 		}
-		catch (BSFException bsfe) {
+		catch (Exception ex) {
 			if (res instanceof MimeResponse) {
 				MimeResponse mimeRes = (MimeResponse)res;
 
@@ -213,16 +207,12 @@ public class ApplicationBuilderPortlet extends GenericPortlet {
 
 				OutputStream out = mimeRes.getPortletOutputStream();
 
-				Throwable te = bsfe.getTargetException();
-
-				out.write("\n@ERROR@\n".getBytes());
-
-				te.printStackTrace(new PrintStream(out, true, StringPool.UTF8));
+				out.write(("\n@ERROR@\n" + ex.getMessage() + "\n").getBytes());
 
 				out.close();
 			}
 			else {
-				logBSFException(bsfe);
+				_log.error("\n@ERROR@\n" + ex.getMessage() + "\n");
 			}
 		}
 	}
@@ -248,21 +238,9 @@ public class ApplicationBuilderPortlet extends GenericPortlet {
 		}
 	}
 
-	private static final String _SCRIPTING_ENGINE_CLASS_NAME =
-		"org.jruby.javasupport.bsf.JRubyEngine";
+	private static Log _log =
+			LogFactory.getLog(ApplicationBuilderPortlet.class);
 
-	private static final String _SCRIPTING_ENGINE_EXTENSION = "rb";
-
-	private static final String _SCRIPTING_ENGINE_LANGUAGE = "ruby";
-
-	private static Log _log = LogFactory.getLog(ApplicationBuilderPortlet.class);
-
-	protected String editFile;
-	protected String helpFile;
-	protected String viewFile;
-	protected String actionFile;
-	protected String resourceFile;
-	protected String[] globalFiles;
 	protected BSFManager bsfManager;
 
 }
