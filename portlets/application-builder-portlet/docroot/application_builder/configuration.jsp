@@ -150,7 +150,7 @@ String portletResourceNamespace = PortalUtil.getPortletNamespace(portletResource
 
 	<div id="<portlet:namespace/>scriptOutputContainer" style="display: none">
 		<div class="<portlet:namespace/>scriptOutputTest">
-			<liferay-ui:message key="links-and-forms-have-been-deactivated-to-avoid-odd-behaviour." />
+			<liferay-ui:message key="links-and-forms-have-been-deactivated-to-avoid-odd-behaviour" />
 			<div class="scriptOutput"><!--//--></div>
 		</div>
 		<pre class="scriptError"><!--//--></pre>
