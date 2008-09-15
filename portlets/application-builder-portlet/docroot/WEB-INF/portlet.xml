@@ -14,6 +14,7 @@
 			<short-title>Application Builder</short-title>
 			<keywords>Application Builder</keywords>
 		</portlet-info>
+		<resource-bundle>content.Language</resource-bundle>
 		<security-role-ref>
 			<role-name>administrator</role-name>
 		</security-role-ref>
