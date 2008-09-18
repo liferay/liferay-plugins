@@ -22,7 +22,7 @@
 
 package com.liferay.mail.model;
 
-import com.liferay.mail.util.MessageCache;
+import com.liferay.mail.util.MailDiskManager;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -39,9 +39,7 @@ public class MailAccount {
 	public MailAccount(User user, String emailAddress) {
 		_user = user;
 
-		MessageCache mdManager = new MessageCache(user);
-
-		JSONObject jsonObj = mdManager.getJSONAccount(emailAddress);
+		JSONObject jsonObj = MailDiskManager.getJSONAccount(user, emailAddress);
 
 		if (Validator.isNotNull(jsonObj)) {
 			_emailAddress = jsonObj.getString("emailAddress");

@@ -215,9 +215,7 @@ public class MailBoxManager {
 	}
 
 	public JSONObject deleteAccount() {
-		MessageCache mdManager = new MessageCache(_user);
-
-		mdManager.deleteAccount(_mailAccount.getEmailAddress());
+		MailDiskManager.deleteAccount(_user, _mailAccount.getEmailAddress());
 
 		return _successJSON;
 	}
@@ -243,10 +241,9 @@ public class MailBoxManager {
 
 		// Delete from local disk
 
-		MessageCache mdManager = new MessageCache(_user);
-
-		mdManager.deleteMessage(
-			_mailAccount.getEmailAddress(), folder.getFullName(), messageUid);
+		MailDiskManager.deleteMessage(
+			_user, _mailAccount.getEmailAddress(), folder.getFullName(),
+			messageUid);
 	}
 
 	public JSONObject deleteMessagesByUids(
@@ -412,9 +409,7 @@ public class MailBoxManager {
 	}
 
 	public JSONObject storeAccount() {
-		MessageCache mdManager = new MessageCache(_user);
-
-		return mdManager.createAccount(_mailAccount);
+		return MailDiskManager.createAccount(_user, _mailAccount);
 	}
 
 	public JSONObject synchronizeAccount() throws MessagingException {
@@ -446,9 +441,7 @@ public class MailBoxManager {
 
 			_mailAccount.setInitialized(true);
 
-			MessageCache mdManager = new MessageCache(_user);
-
-			mdManager.createAccount(_mailAccount);
+			MailDiskManager.createAccount(_user, _mailAccount);
 
 			return _successJSON;
 		}
@@ -466,10 +459,8 @@ public class MailBoxManager {
 
 		// Check if folder has been initialized
 
-		MessageCache mdManager = new MessageCache(_user);
-
-		JSONObject jsonObj = mdManager.getJSONFolder(
-			_mailAccount.getEmailAddress(), folder.getFullName());
+		JSONObject jsonObj = MailDiskManager.getJSONFolder(
+			_user, _mailAccount.getEmailAddress(), folder.getFullName());
 
 		boolean initialized = false;
 
@@ -720,10 +711,8 @@ public class MailBoxManager {
 	protected Folder getDraftsFolder() throws MessagingException {
 		Folder draftsFolder = null;
 
-		MessageCache mdManager = new MessageCache(_user);
-
-		JSONObject jsonDraftFolder = mdManager.getJSONDraftsFolder(
-			_mailAccount.getEmailAddress());
+		JSONObject jsonDraftFolder = MailDiskManager.getJSONDraftsFolder(
+			_user, _mailAccount.getEmailAddress());
 
 		if (Validator.isNull(jsonDraftFolder)) {
 			List<Folder> folders = getFolders();
@@ -927,10 +916,8 @@ public class MailBoxManager {
 	protected Message getNewestOrOldestStoredMessage(
 		Folder folder, boolean newest) {
 
-		MessageCache mdManager = new MessageCache(_user);
-
-		long[] messageUids = mdManager.getMessageUidsByFolder(
-			_mailAccount.getEmailAddress(), folder.getFullName());
+		long[] messageUids = MailDiskManager.getMessageUidsByFolder(
+			_user, _mailAccount.getEmailAddress(), folder.getFullName());
 
 		if (Validator.isNull(folder)) {
 			return null;
@@ -1118,9 +1105,7 @@ public class MailBoxManager {
 	protected boolean isAccountExists() {
 		String emailAddress = _mailAccount.getEmailAddress();
 
-		MessageCache mdManager = new MessageCache(_user);
-
-		return mdManager.isAccountExists(emailAddress);
+		return MailDiskManager.isAccountExists(_user, emailAddress);
 	}
 
 	protected Folder openFolder(String folderName) throws MessagingException {
@@ -1153,9 +1138,8 @@ public class MailBoxManager {
 	protected void storeFolder(Folder folder) throws MessagingException {
 		JSONObject jsonFolder = getJSONFolder(folder);
 
-		MessageCache mdManager = new MessageCache(_user);
-
-		mdManager.updateFolder(_mailAccount.getEmailAddress(), jsonFolder);
+		MailDiskManager.updateFolder(
+			_user, _mailAccount.getEmailAddress(), jsonFolder);
 	}
 
 	protected void storeMessages(Message[] messages) {
@@ -1183,10 +1167,9 @@ public class MailBoxManager {
 		long messageUid = folder.getUID(message);
 		JSONObject jsonMessage = getJSONMessage(message);
 
-		MessageCache mdManager = new MessageCache(_user);
-
-		mdManager.createMessage(
-			mailAccount.getEmailAddress(), folderName, messageUid, jsonMessage);
+		MailDiskManager.createMessage(
+			user, mailAccount.getEmailAddress(), folderName, messageUid,
+			jsonMessage);
 	}
 
 	protected String stripHtml(String html) {
@@ -1221,10 +1204,9 @@ public class MailBoxManager {
 		User user, MailAccount mailAccount, String folderName, long messageUid,
 		String flag, boolean value) {
 
-		MessageCache mdManager = new MessageCache(_user);
-
-		mdManager.updateMessage(
-			mailAccount.getEmailAddress(), folderName, messageUid, flag, value);
+		MailDiskManager.updateMessage(
+			user, mailAccount.getEmailAddress(), folderName, messageUid, flag,
+			value);
 	}
 
 	private static final int _MESSAGES_TO_PREFETCH = GetterUtil.getInteger(

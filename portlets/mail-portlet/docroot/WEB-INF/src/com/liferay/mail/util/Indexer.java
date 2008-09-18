@@ -143,7 +143,7 @@ public class Indexer implements com.liferay.portal.kernel.search.Indexer {
 
 	public void reIndex(String[] ids) throws SearchException {
 		try {
-			MessageIndexer.reIndex(ids);
+			MailDiskManager.reIndex(ids);
 		}
 		catch (Exception e) {
 			throw new SearchException(e);
