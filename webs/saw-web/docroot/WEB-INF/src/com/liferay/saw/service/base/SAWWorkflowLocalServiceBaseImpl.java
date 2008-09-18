@@ -41,5 +41,6 @@ public abstract class SAWWorkflowLocalServiceBaseImpl
 		this.sawWorkflowLocalService = sawWorkflowLocalService;
 	}
 
+	@javax.annotation.Resource(name = "com.liferay.saw.service.SAWWorkflowLocalService.impl")
 	protected SAWWorkflowLocalService sawWorkflowLocalService;
 }

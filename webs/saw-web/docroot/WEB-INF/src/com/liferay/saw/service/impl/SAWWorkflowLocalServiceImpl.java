@@ -89,7 +89,7 @@ import org.dom4j.Element;
  * SAW (Simple API for Workflow)
  *
  * @author Ganesh Ram
- *
+ * @author Vihang Pathak
  */
 public class SAWWorkflowLocalServiceImpl
 	extends SAWWorkflowLocalServiceBaseImpl {
@@ -223,8 +223,8 @@ public class SAWWorkflowLocalServiceImpl
 
 			Map resultsMap =
 				_invokeMethod(
-					tmpClass,
-					"findProcessDefinitionsByName",userId,timeZoneId,
+					tmpClass,"findProcessDefinitionsByName",
+					userId,timeZoneId,
 					new Class[] {String.class, int.class, int.class},
 					new Object[] {name, begin, end}, workflow);
 
@@ -571,8 +571,9 @@ public class SAWWorkflowLocalServiceImpl
 		String timeZoneId = _getTimeZoneIdForUser(userId);
 
 		Map resultsMap = _invokeMethod(
-					tmpClass, userId,timeZoneId,
-					"countTaskInstancesBySearchTerms", paramTypeArray,
+					tmpClass,"countTaskInstancesBySearchTerms",
+					userId,timeZoneId,
+					paramTypeArray,
 					paramValueArray, workflow);
 
 		Integer tmpCount = (Integer) resultsMap.get("invokeMethodResult");
@@ -1100,8 +1101,8 @@ public class SAWWorkflowLocalServiceImpl
 			String timeZoneId = _getTimeZoneIdForUser(userId);
 
 			Map resultsMap = _invokeMethod(
-							tmpClass,
-							"findTaskInstancesBySearchTerms",userId,timeZoneId,
+							tmpClass,"findTaskInstancesBySearchTerms",
+							userId,timeZoneId,
 							paramTypeArray,paramValueArray, workflow);
 
 			taskVOList =
@@ -1149,7 +1150,6 @@ public class SAWWorkflowLocalServiceImpl
 
 		Workflow workflow = null;
 		WorkflowFactory workflowFactory = WorkflowFactory.getInstance();
-
 		workflow = workflowFactory.getWorkflowInstance();
 
 		return workflow;
@@ -1168,7 +1168,8 @@ public class SAWWorkflowLocalServiceImpl
 		return false;
 	}
 
-	private Map _invokeMethod( Class className, String methodName,
+	private Map _invokeMethod( 
+			Class className, String methodName,
 			String userId,String timeZoneId, Class[] paramTypeArray,
 			Object[] paramValueArray, Workflow workflow)
 		throws WorkflowComponentException {

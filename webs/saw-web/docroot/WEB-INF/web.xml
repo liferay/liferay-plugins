@@ -47,7 +47,7 @@
 	</context-param>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>WEB-INF/classes/META-INF/data-source-spring.xml,WEB-INF/classes/META-INF/portlet-spring.xml</param-value>
+		<param-value>WEB-INF/classes/META-INF/custom-spring.xml,WEB-INF/classes/META-INF/portlet-spring.xml</param-value>
 	</context-param>
 	<listener>
 		<listener-class>com.liferay.portal.kernel.spring.context.PortletContextLoaderListener</listener-class>
