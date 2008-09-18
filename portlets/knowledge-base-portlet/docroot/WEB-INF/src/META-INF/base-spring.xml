@@ -42,6 +42,7 @@
 		</property>
 	</bean>
 	<bean id="velocityServiceInterceptor" class="com.liferay.portal.spring.aop.BeanInterceptor">
+		<property name="classLoader" ref="portletClassLoader" />
 		<property name="exceptionSafe" value="true" />
 	</bean>
 	<bean id="baseVelocityService" abstract="true">
