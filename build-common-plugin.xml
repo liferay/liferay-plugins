@@ -182,11 +182,24 @@
 		<delete file="${plugin.file}" />
 
 		<antcall target="clean-portal-dependencies" />
-
-		<zip
-			basedir="${docroot.dir}"
-			destfile="${plugin.file}"
-		/>
+		
+		<basename property="app.server.type" file="${app.server.dir}" />
+		<if>
+			<contains string="${app.server.dir}" substring="glassfish" />
+			<then>
+				<zip
+				basedir="${docroot.dir}"
+				destfile="${plugin.file}"
+				excludes="**/META-INF/context.xml"
+				/>
+			</then>
+		<else>
+				<zip
+				basedir="${docroot.dir}"
+				destfile="${plugin.file}"
+				/>
+			</else>
+		</if>
 	</target>
 
 	<target name="deploy" depends="war">
