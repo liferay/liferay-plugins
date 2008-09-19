@@ -21,7 +21,7 @@
 			}
 
 			#banner .logo a {
-				background: url($images_folder/common/logo.png) no-repeat;
+				background: url($images_folder/custom/logo.png) no-repeat;
 				display: block;
 				font-size: 0;
 				height: 94px;

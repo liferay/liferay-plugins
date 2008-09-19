@@ -75,9 +75,9 @@ a:hover {
 }
 #wrapper {
 	background: url(../images/custom/wrapper_bg.png) repeat-y center top;
-	margin-bottom: 0;
-	padding: 3em 63px;
-	width: 1137px;
+	width: 960px;
+	margin: 0 auto;
+	padding: 22px 0;
 }
 .ie6 #wrapper {
 	background: none;
@@ -105,8 +105,16 @@ a:hover {
 	top: 0;
 	position: relative;
 }
+
 #banner .logo {
-	background: none;
+	margin: 0;
+	padding: 0;
+}
+
+#banner .logo a {
+	left: 20px;
+	position: relative;
+	top: 7px;
 }
 #banner .search {
 	position: absolute;
@@ -117,15 +125,13 @@ a:hover {
 	padding-right: 49px;
 	padding-top: 2px;
 	position: relative;
-	margin-right:-54px;
 	margin-top:-34px;
 }
 #banner .search input {
 	border: none;
 	font-size: 1.5em;
 	height: 18px;
-	margin-right: 145px;
-	margin-top: 33px;
+	margin: 33px 0 0;
 	padding: 6px 3px;
 	width: 163px;
 }
@@ -137,13 +143,13 @@ a:hover {
 	display: block;
 	height: 35px;
 	position: absolute;
-	right: 108pt;
+	right: 0;
 	top: 25pt;
 	width: 51px;
 }
 .js .interactive-mode {
 	margin-top: 12px;
-	right: 102px;
+	right: 10px;
 }
 .js .interactive-mode h2 span {
 	background: transparent url(/liferay-noir-theme/images/custom/menu_bar.png) no-repeat scroll 0pt 0pt;
@@ -158,7 +164,6 @@ a:hover {
 #navigation {
 	background: transparent;
 	border: none;
-	bottom: -115px;
 	font-family: Verdana,Arial,Helvetica,sans-serif;
 	font-weight: bold;
 	left: 15px;
@@ -169,6 +174,7 @@ a:hover {
 }
 #navigation ul {
 	width: 100%;
+	margin: -10px auto 0;
 }
 #navigation li, #navigation li a, #navigation li a span, #navigation li.selected a, #navigation li.selected a:hover, #navigation li a:hover span, #navigation li.selected a span, #navigation li a:hover, .js #navigation .enter-page {
 	background: none;
@@ -200,11 +206,16 @@ a:hover {
 	color: #fff;
 }
 .js #add-page {
-	background: none;
+	background: transparent url(../images/common/add.png) left 50% no-repeat;
 	border: none;
-	margin-bottom: 35px;
+	bottom: 50px;
 	position: absolute;
 	right: 230px;
+}
+.js #add-page a {
+	color: #ccc;
+	padding: 7px 20px;
+	text-decoration: none;
 }
 .tabs li.current a, .tabs li.current span {
 	background-position: 0pt -101px;
@@ -296,7 +307,6 @@ a:hover {
 	background: url(../images/custom/footer_bg.jpg) no-repeat;
 	color: #739ABE;
 	height: 106px;
-	margin-left: 89px;
 	position: relative;
 	width: 962px;
 }
