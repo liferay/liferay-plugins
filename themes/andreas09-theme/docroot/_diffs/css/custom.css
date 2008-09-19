@@ -13,7 +13,6 @@
 #wrapper {
 	background: transparent;
 	position: relative;
-	width: 1264px;
 	margin: 0 auto;
 }
 body {
@@ -21,10 +20,15 @@ body {
 	font-family:Verdana,Tahoma,Arial,sans-serif;
 	font-size:12px;
 }
+
+.logo {
+	margin: 0;
+	padding: 0;
+}
 #navigation {
 	background:transparent;
 	border: none;
-	margin:2px auto 20px;
+	margin: 20px auto 20px;
 }
 #footer {
 	background:#8B8B8B url(../images/custom/footerbg.jpg) repeat-x scroll left top;
@@ -42,11 +46,13 @@ body {
 #navigation li a {
 	color:#606060;
 	font-size:1em;
+	display: inline;
 	text-transform:uppercase;
 	border-right:1px solid #B0B0B0;
 	font-weight: bold;
-	padding:8px 11px;
+	padding: 10px 11px;
 	margin-left:1px;
+	text-decoration: none;
 }
 #navigation ul {
 	width:100%;
@@ -74,14 +80,25 @@ a {
 	padding-left:0px;
 }
 #content-wrapper {
+	margin: 0 auto;
 	min-height: 500px;
+	width: 90%;
 }
 .js #add-page {
-	background:transparent none repeat scroll 0 0;
+	background: transparent url(../images/common/add.png) left 50% no-repeat;
 	border:medium none;
-	right:0;
-	top:2px;
+	float: right;
+	margin: -20px;
+	position: relative;
+	right:5%;
+	top:0;
 }
+.js #add-page a {
+	color: #ccc;
+	padding: 7px 20px;
+	text-decoration: none;
+}
+
 .js #add-page a span {
 	background:transparent;
 	color:#505050;
@@ -102,9 +119,7 @@ a {
 	border-bottom:none;
 }
 .js #navigation .enter-page {
-	background-color:transparent;
-	padding:4px;
+	margin: -3px 0 0;
 }
 .js #navigation .enter-page .save-page {
-	border:medium none;
 }
