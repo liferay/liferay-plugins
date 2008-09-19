@@ -1,6 +1,15 @@
 #banner .logo a {
 	color: #FFF;
 	font: bold italic 56px 'Georgia', 'Times New Roman', 'Times', serif;
+	left: 30px;
+	position: relative;
+	text-decoration: none;
+	top: 20px;
+}
+
+.logo {
+	margin: 0;
+	padding: ;
 }
 
 #banner {
@@ -61,6 +70,7 @@ html {
 
 #navigation li a {
 	padding: 8px 16px 5px;
+	text-decoration: none;
 }
 
 #navigation li {
@@ -75,6 +85,7 @@ html {
 }
 
 #navigation ul {
+	padding: 7px 0 0 0;
 	width: auto;
 }
 
@@ -128,10 +139,16 @@ html {
 }
 
 .js #add-page {
-	background:transparent none repeat scroll 0 0;
-	border:medium none;
-	right:0;
-	top:0;
+	background: transparent url(../images/common/add.png) left 50% no-repeat;
+	border: none;
+	bottom: 50px;
+	float: right;
+	margin: -7px 0 0;
+}
+.js #add-page a {
+	color: #ccc;
+	padding: 7px 20px;
+	text-decoration: none;
 }
 
 .js .interactive-mode h2 span {
