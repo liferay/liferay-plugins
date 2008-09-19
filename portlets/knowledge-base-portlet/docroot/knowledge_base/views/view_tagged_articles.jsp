@@ -25,15 +25,12 @@
 <%@ include file="/knowledge_base/init.jsp" %>
 
 <%
-long entryId = ParamUtil.getLong(renderRequest, "entryId");
+String tag = ParamUtil.getString(renderRequest, "tag");
 
-String name = null;
 String description = null;
 
 try {
-	TagsEntry tagsEntry = TagsEntryLocalServiceUtil.getEntry(entryId);
-
-	name = tagsEntry.getName();
+	TagsEntry tagsEntry = TagsEntryLocalServiceUtil.getEntry(scopeGroupId, tag);
 
 	TagsProperty tagsProperty = TagsPropertyLocalServiceUtil.getProperty(tagsEntry.getEntryId(), "description");
 
@@ -46,7 +43,7 @@ catch (NoSuchPropertyException nspe) {
 %>
 
 <h1 class="article-title">
-	<%= LanguageUtil.format(pageContext, "articles-with-tag-x", name) %>
+	<%= LanguageUtil.format(pageContext, "articles-with-tag-x", tag) %>
 </h1>
 
 <c:if test="<%= Validator.isNotNull(description) %>">

@@ -26,7 +26,7 @@
 
 <%
 String view = ParamUtil.getString(request, "view", "view_all_articles");
-long entryId = ParamUtil.getLong(request, "entryId");
+String tag = ParamUtil.getString(request, "tag");
 boolean hasError = GetterUtil.getBoolean((String) request.getAttribute("hasError"));
 
 String[] supportedViews = {"compare_versions", "edit_article", "edit_article_attachment", "view_all_articles", "view_article", "view_article_attachments", "view_article_history", "view_subscriptions", "view_tagged_articles", "view_templates", "search", };
@@ -35,7 +35,7 @@ if (!ArrayUtil.contains(supportedViews, view)) {
 	view = supportedViews[0];
 }
 
-if (Validator.isNotNull(entryId)) {
+if (Validator.isNotNull(tag)) {
 	view = "view_tagged_articles";
 }
 

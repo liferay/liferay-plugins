@@ -31,7 +31,7 @@
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
-		<supported-public-render-parameter>entryId</supported-public-render-parameter>
+		<supported-public-render-parameter>tag</supported-public-render-parameter>
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
@@ -62,7 +62,7 @@
 		</security-role-ref>
 	</portlet>
 	<public-render-parameter>
-		<identifier>entryId</identifier>
-		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:entryId</qname>
+		<identifier>tag</identifier>
+   		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:tag</qname>
 	</public-render-parameter>
 </portlet-app>
