@@ -80,6 +80,7 @@ body #content-wrapper {
 	background: none;
 	border: none;
 	border-right: 1px solid #1F242A;
+	height: 11px;
 	margin: 0;
 	padding: 7px 25px;
 }
@@ -87,6 +88,11 @@ body #content-wrapper {
 #navigation li:hover {
 	background: #D8DDE0;
 	border-bottom: #ABAFB2;
+}
+.js #navigation .enter-page .save-page {
+	background:transparent url(../images/dock/my_place_current.png) no-repeat scroll 0 50%;
+	margin: 2px 0 0 10px;
+	padding-left: 20px;
 }
 
 .js #navigation .enter-page .save-page:hover {
@@ -96,6 +102,9 @@ body #content-wrapper {
 .js #navigation .enter-page:hover {
 	background: none;
 	color: white;
+}
+.js #navigation .enter-page input {
+	margin: 0;
 }
 
 #navigation li:hover a {
@@ -108,6 +117,7 @@ body #content-wrapper {
 	font-size: 11px;
 	font-weight: bold;
 	padding: 0;
+	text-decoration: none;
 }
 
 #navigation li a span {
@@ -164,11 +174,10 @@ body #content-wrapper {
 
 .js #navigation .enter-page {
 	background:transparent none repeat scroll 0% 0%;
+	margin-left: -25px;
 	margin-top:-7px;
 	padding:0pt;
-	position:absolute;
-	width:195px;
-	margin-left: -25px;
+	width: auto;
 }
 
 .js #add-page a {
@@ -179,8 +188,7 @@ body #content-wrapper {
 	float: right;
 	font-weight: bold;
 	border: none;
-	margin-right: 15px;
-	margin-top: 3px;
+	margin: 3px 15px 0 0;
 	padding-top: 0px;
 	position: static;
 	background: transparent;
@@ -443,7 +451,9 @@ body.portal-popup {
 
 #navigation .child-menu li a {
 	color: #000;
+	display: block;
 	padding: 0 10px;
+	width: auto;
 }
 
 #navigation .child-menu a:hover {
