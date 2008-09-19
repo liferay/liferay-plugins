@@ -1,10 +1,16 @@
 #backy {
 	background: #FFF url('../images/custom/wrapper_bg-outer.png') repeat-y;
+	clear: both;
 }
 
 #banner {
 	background: transparent url('../images/custom/banner_bg.jpg') no-repeat scroll center top;
 	height: 80px;
+}
+
+.logo {
+	margin: 0;
+	padding: 0;
 }
 
 body {
@@ -56,7 +62,9 @@ html {
 .js #add-page {
 	border: 0;
 	bottom: 0;
+	float: right;
 	font-weight: normal;
+	width: 105px;
 }
 
 .js #navigation .enter-page {
@@ -103,7 +111,8 @@ html {
 }
 
 #navigation ul {
-	width: auto;
+	width: 80%;
+	float: left;
 }
 
 #navigation {
