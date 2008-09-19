@@ -11,12 +11,19 @@ body {
 #navigation {
 	background: none;
 	border: none;
-	margin:-72pt auto 120px 110px;
+	margin:-72pt auto 120px 5px;
 	width:70%;
+	position: relative;
 	z-index: 21 !important;
 }
 #navigation li {
 	border: none;
+}
+
+#navigation li a {
+	color: #d3dadd;
+	padding: 7px 25px;
+	text-decoration: none;
 }
 #navigation li.selected a, #navigation li a:hover {
 	background-color: transparent;
@@ -27,35 +34,46 @@ body {
 }
 #wrapper {
 	background: transparent url(../images/custom/body_bckg.jpg) repeat-y center;
-	margin:0 auto;
-	width:1264px;
-	position:relative;
+	margin: -28px auto 0;
+	width: 980px;
 }
 #banner {
 	background: none;
-	top:0;
 }
 #content-wrapper {
-	width: 75%;
 	min-height: 780px;
+	padding: 0 30px;
 }
 .portlet {
 	background: transparent;
 	border: none;
 }
+#banner .logo {
+	position: relative;
+	top: 55px;
+}
 #banner .logo a {
-	margin-left: 105px;
-	margin-top:30px;
+	margin-left: 35px;
+	margin-top: 30px;
 }
 .portlet-topper {
 	background: none;
 	border: none;
 }
 .js #add-page {
-	background: transparent none repeat scroll 0% 0%;
+	background: transparent url(../images/common/add.png) left 50% no-repeat;
 	border: medium none;
-	right: 10%;
-	top: -1px;
+	float: right;
+	position: relative;
+	right: -60px;
+	top: -25px;
+	width: 100px;
+}
+.js #add-page a {
+	color: #d3dadd;
+	font-weight: bold;
+	padding: 7px 20px;
+	text-decoration: none;
 }
 .js #navigation .enter-page {
 	background-color: transparent;
@@ -82,7 +100,7 @@ body {
 	color: grey;
 }
 .js .interactive-mode {
-	right: 12%;
+	right: 20px;
 	top:0;
 }
 #navigation li.selected a span {
