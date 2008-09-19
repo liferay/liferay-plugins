@@ -1,7 +1,11 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
+/* Wrapper */
+
+
 #banner {
 	background: #D9EBFD;
+	border: none;
 	height:157px;
 }
 
@@ -44,7 +48,7 @@
 #navigation {
 	background: #D9EBFD;
 	border: 0;
-	margin:-13px auto;
+	margin: -27px auto;
 }
 
 .portlet-topper {
