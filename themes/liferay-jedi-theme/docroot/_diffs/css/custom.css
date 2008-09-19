@@ -1,7 +1,4 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
-/* --- BASE --- */
-
+/* Base */
 body {
 	background: #828F95 url(../images/custom/background.png) repeat-x;
 }
@@ -56,8 +53,7 @@ body #content-wrapper {
 	width: 950px;
 }
 
-/* ---- NAVIGATION ---- */
-
+/* Navigation */
 #navigation {
 	background: url(../images/custom/bg.png) no-repeat;
 	border: none;
@@ -203,8 +199,7 @@ body #content-wrapper {
 	padding: 0;
 }
 
-/* --- DOCK --- */
-
+/* Dock */
 .js .lfr-dock.interactive-mode {
 	right: 13px;
 	top: 0px;
@@ -222,8 +217,7 @@ body #content-wrapper {
 	text-align: left;
 }
 
-/* --- SEARCH --- */
-
+/* Search */
 #banner .search {
 	position: absolute;
 	right: 13px;
@@ -280,8 +274,7 @@ body #content-wrapper {
 	top: 3px;
 }
 
-/* ---------- Language ---------- */
-
+/* Language */
 #banner .lfr-dock .lang {
 	position: absolute;
 	right: 110%;
@@ -290,8 +283,7 @@ body #content-wrapper {
 	width: 350px;
 }
 
-/* --- PORTLET --- */
-
+/* Portlet */
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: #FFF none;
 	border: none;
@@ -324,19 +316,16 @@ body #content-wrapper {
 	padding-right: 10px;
 }
 
-/* --- LAYOUT SPECIFIC --- */
-
+/* Layout Specific */
 #portlet-wrapper- {
-	/* -- liferay old -- */
-
+	/* Liferay Old */
 	background: transparent;
 	margin: 0;
 	padding: 14px;
 }
 
 #portlet-wrapper-sign-in {
-	/* -- liferay new -- */
-
+	/* Liferay New */
 	background: transparent;
 	margin: 0;
 	padding: 14px;
@@ -393,7 +382,7 @@ body #content-wrapper {
 }
 
 .portal-popup .columns-max #column-1 {
-	background: #fff;
+	background: #FFF;
 	margin: 0;
 	padding: 0;
 	width: 100%;
@@ -408,8 +397,7 @@ body.portal-popup {
 	padding: 2px;
 }
 
-/* --- DROP DOWN MENU --- */
-
+/* Drop Down Menu */
 #navigation .child-menu {
 	background: url(../images/custom/menu_drop.png) scroll no-repeat left bottom;
 	height: auto;
@@ -435,11 +423,14 @@ body.portal-popup {
 	padding-bottom: 2px;
 }
 
-#navigation .child-menu ul , #navigation .child-menu li , #navigation .child-menu a {
+#navigation .child-menu ul,
+#navigation .child-menu li,
+#navigation .child-menu a {
 	background: transparent none;
 }
 
-#navigation .child-menu ul , #navigation .child-menu li {
+#navigation .child-menu ul,
+#navigation .child-menu li {
 	float: none;
 }
 
@@ -458,12 +449,12 @@ body.portal-popup {
 
 #navigation .child-menu a:hover {
 	background: #000;
-	color: #fff;
+	color: #FFF;
 }
 
-/* --- BOTTOM NAV --- */
-
-#footer .copyright-notice, #footer ul {
+/* Bottom Navigation */
+#footer .copyright-notice,
+#footer ul {
 	bottom: -45px;
 	padding-bottom: 10px;
 	position: absolute;
@@ -506,8 +497,7 @@ body.portal-popup {
 	position: absolute;
 }
 
-/* --- BLOGS --- */
-
+/* Blogs */
 .portlet-blogs .entry-body {
 	font-size: 12px;
 	line-height: 1.3;
@@ -523,8 +513,7 @@ body.portal-popup {
 	margin-bottom: 3px;
 }
 
-/* --- MESSAGE BOARDS --- */
-
+/* Message Boards */
 .portlet-section-body .message-board-thread-top {
 	border-bottom-color: #3A4E66;
 }
@@ -571,15 +560,14 @@ body.portal-popup {
 }
 
 .lfr-highlighted, .lfr-highlighted a {
-	color: #ffc;
+	color: #FFC;
 }
 
 ul.message-board-edit-controls {
 	list-style: none;
 }
 
-/* --- WORLD OF LIFERAY -- */
-
+/* World of Liferay */
 #top-menu {
 	bottom: 6px;
 	font: bold 10px Arial,Verdana,sans-serif;
@@ -613,7 +601,7 @@ ul.message-board-edit-controls {
 }
 
 #navigation.profile .group .group-indicator {
-	background: url('../images/custom/group_indicator.png') no-repeat;
+	background: url(../images/custom/group_indicator.png) no-repeat;
 	height: 10px;
 	position: absolute;
 	right: -7px;
@@ -628,8 +616,9 @@ ul.message-board-edit-controls {
 	background-image: none;
 }
 
-#navigation.profile ul li.selected a, #navigation.profile ul li.selected:hover a {
-	color: #fff;
+#navigation.profile ul li.selected a,
+#navigation.profile ul li.selected:hover a {
+	color: #FFF;
 }
 
 #navigation.profile ul li:hover {
@@ -637,7 +626,7 @@ ul.message-board-edit-controls {
 }
 
 #navigation.profile ul li.group {
-	background: #deedf4;
+	background: #DEEDF4;
 	border-bottom: #ABAFB2;
 	font-size: 11px;
 }
@@ -655,7 +644,8 @@ ul.message-board-edit-controls {
 	text-decoration: underline;
 }
 
-.portlet-activities .day-separator, .portlet-activities .first-day-separator {
+.portlet-activities .day-separator,
+.portlet-activities .first-day-separator {
 	font-size: 12px;
 	font-weight: bold;
 }
@@ -679,18 +669,24 @@ ul.message-board-edit-controls {
 	line-height: 1.3;
 }
 
-.taglib-search-iterator .portlet-section-body td, .taglib-search-iterator .portlet-section-alternate td, .taglib-search-iterator .portlet-section-body-hover td, .taglib-search-iterator .portlet-section-alternate-hover td {
+.taglib-search-iterator .portlet-section-body td,
+.taglib-search-iterator .portlet-section-alternate td,
+.taglib-search-iterator .portlet-section-body-hover td,
+.taglib-search-iterator .portlet-section-alternate-hover td {
 	border: none;
 	padding: 5px 10px;
 }
 
-.taglib-search-iterator .portlet-section-body td td, .taglib-search-iterator .portlet-section-alternate td td, .taglib-search-iterator .portlet-section-body-hover td td, .taglib-search-iterator .portlet-section-alternate-hover td td {
+.taglib-search-iterator .portlet-section-body td td,
+.taglib-search-iterator .portlet-section-alternate td td,
+.taglib-search-iterator .portlet-section-body-hover td td,
+.taglib-search-iterator .portlet-section-alternate-hover td td {
 	padding: 0;
 	padding-right: 5px;
 }
 
 .taglib-search-iterator .portlet-section-body td {
-	background: #eef0f2;
+	background: #EEF0F2;
 }
 
 .taglib-search-iterator a {
@@ -706,8 +702,7 @@ ul.message-board-edit-controls {
 	margin-right: 0.5em;
 }
 
-/* ---------- Facebook API key page ---------- */
-	
+/* Facebook API Key Page */
 .portlet-configuration .facebook-api .api-input {
 	padding-right: 15px;
 }
@@ -716,8 +711,7 @@ ul.message-board-edit-controls {
 	padding-right: 20px;
 }
 
-/* ---------- Tabs ---------- */
-
+/* Tabs */
 .ie body #content-wrapper .tabs li {
 	line-height: 1;
 }
