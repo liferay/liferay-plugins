@@ -16,11 +16,18 @@ body {
 #navigation {
 	background: none;
 	border: none;
+	height: 30px;
 	margin:4pt auto 30px;
+}
+#navigation ul {
+	height: 30px;
 	width: 60%;
+	float: left;
+	margin: 0 0 0 20%;
 }
 #navigation li {
 	border: none;
+	margin: 5px 0 0;
 }
 #navigation li a {
 	border-right: 1px solid #FFFFFF;
@@ -44,10 +51,15 @@ body {
 	padding-left: 0px;
 }
 .js #add-page {
-	background: transparent none repeat scroll 0% 0%;
-	border: medium none;
-	right: 4%;
-	top: -6px;
+	background: transparent url(../images/common/add.png) left 50% no-repeat;
+	border: none;
+	float: right;
+	margin: 5px 0 0;
+}
+.js #add-page a {
+	color: #ccc;
+	padding: 7px 20px;
+	text-decoration: none;
 }
 #content-wrapper {
 	margin: -23pt auto;
@@ -67,6 +79,7 @@ body {
 	text-decoration: underline;
 }
 a {
+	color: #fff;
 	font-size: 12px;
 	text-decoration: none;
 }
@@ -87,7 +100,12 @@ a {
 	border-bottom: medium none;
 }
 #banner .logo a {
-	margin-left: 75px;
+	left: 120px;
+	position: relative;
+	top: 15px;
+}
+.logo {
+	margin: 0;
 }
 .js .interactive-mode {
 	right: 11%;
