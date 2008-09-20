@@ -1,4 +1,7 @@
 /* Theme */
+a {
+	text-decoration: none;
+}
 
 #banner .logo a {
 	color: #FFF;
