@@ -1,5 +1,4 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
+/* Global */
 a {
 	color:black;
 }
@@ -8,32 +7,38 @@ a:hover {
 	color: #FFF;
 }
 
-#banner .logo {
-	height: 187px;
-}
-
-#banner {
-	background: transparent url('../images/custom/banner_bg.jpg');
-	border: 0;
-	height: 293px;
-	margin: 0;
-}
-
-#banner-content {
-	width: auto;
-}
-
 body {
 	background: #000;
 	color: #BEC4C4;
 	padding: 10px 0;
 }
 
+#banner .logo {
+	height: 187px;
+}
+
+#banner {
+	background: transparent url(../images/custom/banner_bg.jpg);
+	border: 0;
+	height: 293px;
+	margin: 0;
+}
+
+#wrapper {
+	margin: 0 auto;
+	width: 875px;
+}
+
+#banner-content {
+	width: auto;
+}
+
 #content-wrapper .tabs a {
 	color: #333;
 }
 
-#content-wrapper a, #content-wrapper .tabs a:hover {
+#content-wrapper a,
+#content-wrapper .tabs a:hover {
 	color: #F00;
 }
 
@@ -49,27 +54,20 @@ body {
 }
 
 #footer {
-	background: url('../images/custom/footer_bg.jpg') no-repeat scroll left top;
+	background: url(../images/custom/footer_bg.jpg) no-repeat scroll left top;
 	height: 36px;
 }
 
-.js #add-page a span, .js #add-page a:hover span {
-	background: none;
-	display: block;
-}
-
-.js #add-page {
-	padding: 0;
-}
-
-.js #navigation .enter-page {
-	padding: 14px;
-}
-
+/* Dock */
 .js .interactive-mode {
 	position: absolute;
 }
 
+.js .interactive-mode li a:hover {
+	color: #000;
+}
+
+/* Navigation */
 #navigation li a span, .js #add-page a span {
 	color: #C1C5C8;
 	font-size: 13px;
@@ -87,7 +85,7 @@ body {
 }
 
 #navigation {
-	background: transparent url('../images/custom/navigation_bg.jpg') no-repeat scroll 0;
+	background: transparent url(../images/custom/navigation_bg.jpg) no-repeat scroll 0;
 	height: 52px;
 	margin: 0 auto;
 	min-height: 2.2em;
@@ -96,6 +94,21 @@ body {
 	width:956px;
 }
 
+.js #navigation .enter-page {
+	padding: 14px;
+}
+
+.js #add-page a span,
+.js #add-page a:hover span {
+	background: none;
+	display: block;
+}
+
+.js #add-page {
+	padding: 0;
+}
+
+/* Portlet */
 .portlet-title {
 	border-bottom: 2px solid #CCC;
 	color: #FFF;
@@ -110,8 +123,13 @@ body {
 	border: 1px solid #BEC4C4;
 }
 
+.portlet-options {
+	color: #000;
+}
+
+/* Tabs */
 .ui-tabs li {
-	background: #eaf5ff url(../images/custom/tabs_inactive_bg.png) repeat-x 0 100%;
+	background: #EAF5FF url(../images/custom/tabs_inactive_bg.png) repeat-x 0 100%;
 	border-bottom: 0;
 	display: inline;
 	float: left;
@@ -122,43 +140,40 @@ body {
 }
 
 .ui-tabs li.current {
-	background-image: url('../images/custom/tabs_active_bg.png');
+	background-image: url(../images/custom/tabs_active_bg.png);
 }
 
-.ui-tabs li a, .tabs li span {
+.ui-tabs li a,
+.tabs li span {
 	display: block;
 	float: left;
 	top: 0;
 	padding: 0.35em 1em 0;
 	text-decoration: none;
-	border: 1px solid #bfe1ff;
+	border: 1px solid #BFE1FF;
 	background: transparent;
 }
 
 .tabs li.current {
-	background: #bfe1ff url(../images/custom/tabs_active_bg.png) repeat-x 0 0;
+	background: #BFE1FF url(../images/custom/tabs_active_bg.png) repeat-x 0 0;
 	font-weight: bold;
 }
 
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background-color:transparent;
-	background: #bfe1ff url(../images/custom/tabs_active_bg.png) repeat-x 0 0;
+.ui-tabs li.current:hover,
+.ui-tabs li.current a:hover {
+	background-color: transparent;
+	background: #BFE1FF url(../images/custom/tabs_active_bg.png) repeat-x 0 0;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span {
+.ui-tabs li.current a,
+.ui-tabs li.current span {
 	color: #333;
 	padding: 0.15em 1em;
 	background: transparent;
-	border: 1px solid #bfe1ff;
+	border: 1px solid #BFE1FF;
 }
 
 .ui-tabs {
-	border-bottom: 1px solid #bfe1ff;
+	border-bottom: 1px solid #BFE1FF;
 	margin: 0 0 1.5em 0;
-	padding: 0 0 2.6em 1em;
-}
-
-#wrapper {
-	margin: 0 auto;
-	width:875px;
 }
