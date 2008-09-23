@@ -1,7 +1,10 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+/* Body */
+html {
+	overflow-y: scroll;
+}
 
 a {
-	color: #000;
+	color: #AAA;
 }
 
 a:hover {
@@ -14,15 +17,15 @@ a:hover {
 }
 
 #banner {
-	background: #4F0101 url('../images/custom/header_bg.jpg');
+	background: #4F0101 url(../images/custom/header_bg.jpg);
 	border: 0;
 	margin: 0;
 }
 
 #banner .logo a {
-	margin-left:43px;
-	margin-top:31px;
-	position:absolute;
+	margin-left: 43px;
+	margin-top: 31px;
+	position: absolute;
 }
 
 #banner-content {
@@ -30,19 +33,27 @@ a:hover {
 }
 
 body {
-	background: #DA7C2B url('../images/custom/body_bg.jpg') repeat-y scroll center top;
+	background: #DA7C2B url(../images/custom/body_bg.jpg) repeat-y scroll center top;
 	color: #C6C6C6;
-	font: 65.5%/12px 'Verdana', 'Arial', 'Georgia', sans-serif;
+	font: 65.5%/12px Verdana, Arial, Georgia, sans-serif;
 }
 
 #content-wrapper {
 	width: 954px;
 }
 
-html {
-	overflow-y: scroll;
+#wrapper {
+	margin: 0 auto;
+	width: 956px;
 }
 
+/* Dock */
+.lfr-dock-list-container a,
+.lfr-dock-list-container a:hover {
+	color: #777;
+}
+
+/* Navigation */
 .js #add-page a {
 	font-weight: normal;
 }
@@ -53,7 +64,7 @@ html {
 
 .js .interactive-mode {
 	position: absolute;
-	right:10px;
+	right: 10px;
 }
 
 #navigation li a, .js #add-page a {
@@ -69,12 +80,17 @@ html {
 }
 
 #navigation {
-	background: transparent url('../images/custom/menu.jpg');
+	background: transparent url(../images/custom/menu.jpg);
 	height: 45px;
 }
 
+/* Portlet */
 .portlet-topper {
-	background: #4E0000 url('../images/custom/portlet-topper_bg.png') repeat-x;
+	background: #4E0000 url(../images/custom/portlet-topper_bg.png) repeat-x;
+}
+
+.portlet-icons {
+	color: #000;
 }
 
 .portlet {
@@ -84,23 +100,19 @@ html {
 	text-align: left;
 }
 
-#wrapper {
-	margin: 0 auto;
-	width: 956px;
-}
+/* Liferay UI */
 .ui-tabs {
-	border-bottom: 1px solid #bfe1ff;
+	border-bottom: none;
 	margin: 0 0 1.5em 0;
-	padding: 0 0 2.6em 1em;
+	padding: 0 0  0 1em;
 }
 
 .ui-tabs li {
-	background: #eaf5ff url(../images/common/tabs_inactive_bg.png) repeat-x 0 100%;
+	background: #EAF5FF url(../images/common/tabs_inactive_bg.png) repeat-x 0 100%;
 	border-bottom: 0;
 	display: inline;
 	float: left;
 	line-height: 2.25;
-	margin-right: 0.8em;
 	padding: 0;
 	text-decoration: none;
 }
@@ -113,27 +125,26 @@ html {
 	top: 0;
 	background: transparent;
 	color: black;
-	border:1px solid #000000;
+	border: 1px solid #000;
 }
 
 .ui-tabs li a:hover, .ui-tabs li span:hover {
-	color:#FFF;
+	color: #FFF;
 }
 
 .tabs li.current {
-	background: #bfe1ff url(../images/common/tabs_active_bg.png) repeat-x 0 0;
+	background: #BFE1FF url(../images/common/tabs_active_bg.png) repeat-x;
 	font-weight: bold;
 }
 
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background-color:transparent;
-	background:transparent url(../images/custom/menu.jpg) repeat scroll 0 0;
+	background: transparent url(../images/custom/menu.jpg) repeat scroll;
 	text-decoration: none;
 }
 
 .ui-tabs li.current a, .ui-tabs li.current span {
-	background:transparent url(../images/custom/menu.jpg) repeat scroll 0 0;
-	border:1px solid #000000;
-	color:white;
+	background: transparent url(../images/custom/menu.jpg) repeat scroll;
+	border: 1px solid #000;
+	color: #FFF;
 	padding: 0.15em 1em;
 }
