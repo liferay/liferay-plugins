@@ -1,6 +1,12 @@
-/* Theme */
+/* Global */
 a {
 	text-decoration: none;
+}
+
+body {
+	background: #CCD8E0 url(../images/custom/bg.jpg) repeat-x fixed bottom center;
+	color: #444;
+	font: normal normal normal 62.5% Tahoma,sans-serif;
 }
 
 #banner .logo a {
@@ -25,29 +31,6 @@ a {
 	width: 564px;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span {
-	background:#B3C2C7 url(../images/custom/header.jpg) no-repeat scroll 0 0;
-	border:medium none;
-	color:#223344;
-}
-
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	text-decoration: none;
-}
-
-.ui-tabs li a, .tabs li span {
-	background:#EAE7DF url(../images/custom/nav.png) repeat-x scroll center top;
-	border-right:medium none;
-	color:#223344;
-	padding:9px;
-	top:0;
-}
-
-.ui-tabs li a:hover, .ui-tabs li span:hover {
-	background:transparent url(../images/custom/nav.png) repeat-x scroll left bottom;
-	color:#223344;
-}
-
 #banner h1.logo {
 	display: block;
 	font-size: 2em;
@@ -64,10 +47,17 @@ a {
 	width: 100%;
 }
 
-body {
-	background: #CCD8E0 url(../images/custom/bg.jpg) repeat-x fixed bottom center;
-	color: #444;
-	font: normal normal normal 62.5% Tahoma,sans-serif;
+#wrapper {
+	background: #FFF none repeat scroll 0 0;
+	font-size: 1.2em;
+	margin: 0 auto;
+	padding: 10px 10px 5px;
+	width: 920px;
+}
+
+#outter {
+	background: transparent url(../images/custom/clouds.png) repeat-x scroll 0 0;
+	padding: 50px 10px 0;
 }
 
 #content-wrapper, #portlet-wrapper- {
@@ -78,6 +68,18 @@ body {
 	padding: 0 16px;
 }
 
+/* Dock */
+.js .interactive-mode {
+	right: 12px;
+	top: 12px;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	font-size: 10pt;
+	line-height: 12.2pt;
+}
+
+/* Navigation */
 .js #navigation .enter-page .save-page {
 	background: transparent none repeat scroll 0 0%;
 	color: #456;
@@ -94,22 +96,8 @@ body {
 
 .js #navigation .enter-page {
 	border-right: 1px solid #AFBEC7;
-	margin-right:60px;
-	margin-top:4px;
-}
-
-.js .interactive-mode {
-	right: 12px;
-	top: 12px;
-}
-
-.js .lfr-dock.interactive-mode h2 span {
-	font-size: 10pt;
-	line-height: 12.2pt;
-}
-
-.liferay-table {
-	font: 10px/10px Arial;
+	margin-right: 60px;
+	margin-top: 4px;
 }
 
 #navigation li a {
@@ -120,13 +108,18 @@ body {
 	border: none;
 }
 
-#navigation ul li.selected a span, #navigation ul li a span, #navigation ul li.selected a:hover span, #navigation ul li a:hover span, .js #add-page a span, .js #add-page a:hover span {
+#navigation ul li.selected a span,
+#navigation ul li a span,
+#navigation ul li.selected a:hover span,
+#navigation ul li a:hover span,
+.js #add-page a span,
+.js #add-page a:hover span {
 	background: transparent none repeat scroll 0 0%;
 	border-right: 1px solid #AFBEC7;
 	color: #456;
 	display: block;
 	float: left;
-	font: bold normal normal 1em/41px Tahoma,sans-serif;
+	font: bold normal normal 1em/41px Tahoma, sans-serif;
 	height: 41px;
 	line-height: 41px;
 	padding: 0 20px;
@@ -134,7 +127,12 @@ body {
 	text-decoration: none;
 }
 
-#navigation ul li.selected a, #navigation ul li a, #navigation ul li.selected a:hover, #navigation ul li a:hover, .js #add-page a span, .js #add-page a:hover span {
+#navigation ul li.selected a,
+#navigation ul li a,
+#navigation ul li.selected a:hover,
+#navigation ul li a:hover,
+.js #add-page a span,
+.js #add-page a:hover span {
 	background-color: transparent;
 	display: block;
 	margin-left: 0;
@@ -161,13 +159,9 @@ body {
 	height: 41px;
 }
 
-#outter {
-	background: transparent url(../images/custom/clouds.png) repeat-x scroll 0 0;
-	padding: 50px 10px 0;
-}
-
+/* Portlet */
 .portlet-content {
-	font-family: "Lucida Sans Unicode",sans-serif;
+	font-family: "Lucida Sans Unicode", sans-serif;
 	font-size: 9pt;
 	padding: 2px 0 20px 0;
 }
@@ -184,6 +178,34 @@ body {
 	border-bottom: none;
 }
 
+.portlet-icons {
+	top: -10px;
+}
+
+/* Liferay UI */
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: #B3C2C7 url(../images/custom/header.jpg) no-repeat scroll 0 0;
+	border: none;
+	color: #223344;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	text-decoration: none;
+}
+
+.ui-tabs li a, .tabs li span {
+	background: #EAE7DF url(../images/custom/nav.png) repeat-x scroll center top;
+	border-right: none;
+	color: #223344;
+	padding:9px;
+	top:0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: transparent url(../images/custom/nav.png) repeat-x scroll left bottom;
+	color: #223344;
+}
+
 .portlet {
 	border: none;
 	padding: 20px;
@@ -197,14 +219,6 @@ body {
 	top: 0;
 }
 
-#wrapper {
-	background: #FFF none repeat scroll 0 0;
-	font-size: 1.2em;
-	margin: 0 auto;
-	padding: 10px 10px 5px;
-	width: 920px;
-}
-
-.portlet-icons {
-	top:-10px;
+.liferay-table {
+	font: 10px/10px Arial;
 }
