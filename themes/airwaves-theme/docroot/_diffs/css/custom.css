@@ -1,129 +1,162 @@
-/*Web design released by Flash Gallery
-© Copyright 2008 Your Website*/ 
+/* Web design released by Flash Gallery */ 
+
+/* Global */
 body {
-	background: url(../images/custom/body.jpg) repeat-x #8d8d8d;
-	color: #cccccc;
+	background: url(../images/custom/body.jpg) repeat-x #8D8D8D;
+	color: #CCC;
 	font-family: Arial, Tahoma, Helvetica, sans-serif;
 	font-size: 12px;
 	line-height: 16px;
 	margin: 0;
 }
-#navigation {
-	background: none;
-	border: none;
-	margin:-72pt auto 120px 5px;
-	width:70%;
-	position: relative;
-	z-index: 21 !important;
+
+#banner {
+	height: 150px;
 }
+
+#banner	.logo {
+	margin: 0;
+}
+
+#banner .logo a {
+	position: absolute;
+	top: 35px;
+	left: 25px;
+}
+
+#wrapper {
+	background: url(../images/custom/body_bckg.jpg) repeat-y center;
+	margin: 0 auto;
+	position: relative;
+	width: 980px;
+}
+
+#content-wrapper {
+	min-height: 780px;
+	padding: 0 30px;
+}
+
+
+
+/* Dock */
+.js .interactive-mode {
+	right: 20px;
+	top: 0px;
+}
+
+/* Navigation */
+#navigation {
+	position: absolute;
+	left: 0;
+	top: 5px;
+	width: 70%;
+	z-index: 21;
+}
+
 #navigation li {
 	border: none;
 }
 
 #navigation li a {
-	color: #d3dadd;
+	color: #D3DADD;
 	padding: 7px 25px;
 	text-decoration: none;
 }
-#navigation li.selected a, #navigation li a:hover {
-	background-color: transparent;
-}
-#navigation li.selected a span {
-	background: transparent;
+
+#navigation li.selected a span {s
 	padding-left: 0px;
 }
-#wrapper {
-	background: transparent url(../images/custom/body_bckg.jpg) repeat-y center;
-	margin: -28px auto 0;
-	width: 980px;
+
+#navigation li.selected a span {
+	color: #777;
+	font-weight:bold;
+	text-decoration: underline;
 }
-#banner {
-	background: none;
-}
-#content-wrapper {
-	min-height: 780px;
-	padding: 0 30px;
-}
-.portlet {
-	background: transparent;
-	border: none;
-}
-#banner .logo {
-	position: relative;
-	top: 55px;
-}
-#banner .logo a {
-	margin-left: 35px;
-	margin-top: 30px;
-}
-.portlet-topper {
-	background: none;
-	border: none;
-}
+
 .js #add-page {
-	background: transparent url(../images/common/add.png) left 50% no-repeat;
-	border: medium none;
-	float: right;
-	position: relative;
-	right: -60px;
-	top: -25px;
+	border: none;
+	position: absolute;
+	right: 0;
+	top: 0;
 	width: 100px;
 }
+
 .js #add-page a {
-	color: #d3dadd;
+	color: #D3DADD;
 	font-weight: bold;
 	padding: 7px 20px;
 	text-decoration: none;
 }
+
 .js #navigation .enter-page {
-	background-color: transparent;
 	padding: 0px;
 }
-.ui-tabs li a, .tabs li span {
-	background: transparent none repeat scroll 0% 0%;
-	border-right: medium none;
+
+/* Portlet */
+.portlet {
+	border: none;
+	margin-bottom: 30px;
 }
-.ui-tabs {
-	border-bottom: medium none;
-}
-.ui-tabs li.current a, .ui-tabs li.current span {
-	background: transparent none repeat scroll 0% 0%;
-	border: medium none;
-	color: grey;
-	text-decoration: none;
-}
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background-color: black;
-}
-.ui-tabs li a:hover, .ui-tabs li span:hover {
-	background: transparent;
-	color: grey;
-}
-.js .interactive-mode {
-	right: 20px;
-	top:0;
-}
-#navigation li.selected a span {
-	color:grey;
-	font-weight:bold;
-	text-decoration: underline;
-}
-.ui-dialog {
-	background-color:black;
-}
-.uni-form {
-	background:black none repeat scroll 0% 0%;
-}
-.portlet-calendar .calendar-day .day-number {
-	color:grey;
+
+.portlet-topper {
+	background: none;
 	border: none;
 }
-.lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
-	color: grey;
+
+/* Liferay UI */
+.ui-tabs li a,
+.tabs li span {
+	background: none;
+	border-right: none;
 }
+
+.ui-tabs {
+	border-bottom: none;
+}
+
+.ui-tabs li.current a,
+.ui-tabs li.current span {
+	background: none;
+	border: none;
+	color: #777;
+	text-decoration: none;
+}
+
+.ui-tabs li.current:hover,
+.ui-tabs li.current a:hover {
+	background-color: #000;
+}
+
+.ui-tabs li a:hover,
+.ui-tabs li span:hover {
+	color: #777;
+}
+
+.ui-dialog {
+	background-color: #000;
+}
+
+.uni-form {
+	background: #000;
+}
+
+/* Portlet Specific */
+.portlet-calendar .calendar-day .day-number {
+	color: #777;
+	border: none;
+}
+
+.lfr-table tr td:last-child,
+.lfr-table tr td.last-child,
+.lfr-table tr th:last-child,
+.lfr-table tr th.last-child {
+	color: #777;
+}
+
 .portlet-section-body td {
-	color: black;
+	color: #000;
 }
+
 .portlet-calendar .calendar-container {
-	background:black none repeat scroll 0 0;
+	background: #000;
 }
