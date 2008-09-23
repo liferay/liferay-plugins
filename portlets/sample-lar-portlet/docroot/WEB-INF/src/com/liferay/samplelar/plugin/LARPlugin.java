@@ -22,15 +22,15 @@
 
 package com.liferay.samplelar.plugin;
 
-import com.liferay.portal.kernel.lar.PortletDataContext;
-import com.liferay.portal.kernel.lar.PortletDataException;
-import com.liferay.portal.kernel.lar.PortletDataHandler;
-import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
-import com.liferay.portal.kernel.lar.PortletDataHandlerChoice;
-import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.kernel.zip.ZipWriter;
+import com.liferay.portal.lar.PortletDataContext;
+import com.liferay.portal.lar.PortletDataException;
+import com.liferay.portal.lar.PortletDataHandler;
+import com.liferay.portal.lar.PortletDataHandlerBoolean;
+import com.liferay.portal.lar.PortletDataHandlerChoice;
+import com.liferay.portal.lar.PortletDataHandlerControl;
 import com.liferay.util.MapUtil;
 
 import java.util.Date;
@@ -44,7 +44,7 @@ import org.apache.commons.logging.LogFactory;
 /**
  * <a href="LARPlugin.java.html"><b><i>View Source</i></b></a>
  *
- * @author Raymond Augé
+ * @author Raymond Augï¿½
  *
  */
 public class LARPlugin implements PortletDataHandler {
