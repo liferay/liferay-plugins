@@ -21,11 +21,20 @@ a {
 	width: 1000px;
 }
 
+#content-wrapper {
+	margin: 0 50px;
+}
 
 /** Banner Body Navigation**/
 
+#banner .logo {
+	margin: 0;
+}
+
 #banner .logo a {
-	margin-top: 50px;
+	left: 55px;
+	position: relative;
+	top: 75px;
 }
 
 #banner {
@@ -47,7 +56,9 @@ body {
 	color: white;
 	font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
 	font-size: 16px;
-	margin-right: 3px;
+	padding: 4px 23px;
+	margin-right: 2px;
+	text-decoration: none;
 	text-transform: lowercase;
 }
 
@@ -72,7 +83,11 @@ body {
 #navigation {
 	background: transparent;
 	border: none;
-	margin: 15px auto 20px;
+	margin: 0 0 20px;
+}
+
+#navigation ul {
+	margin: 20px 50px 0;
 }
 
 
@@ -89,7 +104,9 @@ body {
 	border: none;
 }
 
-
+.portlet-title {
+	padding: 5px;
+}
 /** UI Tabs**/
 
 .ui-tabs li a, .tabs li span {
@@ -123,15 +140,30 @@ body {
 /** Javascript **/
 
 .js #add-page {
-	background: transparent none repeat scroll 0 0;
+	background: transparent url(../images/common/add.png) 5px 50% no-repeat;
 	border: medium none;
+	float: right;
+	position: relative;
+	margin: -25px 0 0;
 	right: 0;
 	top: 0;
+}
+
+.js #add-page a {
+	color: #FFF;
+	font-weight: bold;
+	padding: 7px 25px;
+	text-decoration: none;
 }
 
 .js #navigation .enter-page {
 	background-color: transparent;
 	padding: 1px;
+}
+
+.portlet-icons {
+	margin-top: -3px;
+	display: inline;
 }
 
 
