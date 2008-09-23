@@ -277,6 +277,10 @@ body {
 	text-align: center;
 }
 
+.portlet {
+	margin-bottom: 30px;
+}
+
 .portlet-icon-back {
 	line-height: 18px;
 	margin: 0 6px;
