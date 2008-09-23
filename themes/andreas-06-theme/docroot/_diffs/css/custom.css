@@ -1,10 +1,21 @@
+/* Global */
+html {
+	overflow-y: scroll;
+}
+
+body {
+	background: #E0E0E0 url(../images/custom/body_bg.png) repeat-x;
+	color: #505050;
+	font: 76% Georgia, Verdana, Tahoma, Arial, sans-serif;
+}
+
 #backy {
-	background: #FFF url('../images/custom/wrapper_bg-outer.png') repeat-y;
+	background: #FFF url(../images/custom/wrapper_bg-outer.png) repeat-y;
 	clear: both;
 }
 
 #banner {
-	background: transparent url('../images/custom/banner_bg.jpg') no-repeat scroll center top;
+	background: url(../images/custom/banner_bg.jpg) no-repeat scroll center top;
 	height: 80px;
 }
 
@@ -13,48 +24,22 @@
 	padding: 0;
 }
 
-body {
-	background: #E0E0E0 url('../images/custom/body_bg.png') repeat-x;
-	color: #505050;
-	font: 76% 'Georgia', 'Verdana', 'Tahoma', 'Arial', sans-serif;
-}
-
 #content-wrapper {
-	background: transparent url('../images/custom/wrapper_bg-inner.jpg') no-repeat;
+	background: transparent url(../images/custom/wrapper_bg-inner.jpg) no-repeat;
 	border: 1px solid #808080;
 	border-top: 0;
 	padding: 56px 24px;
 	width: 852px;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span {
-	background:transparent url(../images/custom/banner_bg.jpg) no-repeat scroll center top;
-	border:medium none;
-	color:black;
-	border-right:1px solid #304049;
+#wrapper {
+	background: transparent none;
+	margin: 0 auto;
+	position: relative;
+	width: 900px;
 }
 
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background-color:transparent;
-	background:transparent url(../images/custom/banner_bg.jpg) no-repeat scroll center top;
-	text-decoration: none;
-	color: black;
-}
-
-.ui-tabs li a, .tabs li span {
-	background:#E0E0E0 url(../images/custom/body_bg.png) repeat-x scroll 0 0;
-	top:0;
-}
-
-.ui-tabs li a:hover, .ui-tabs li span:hover {
-	background:#1E2529 none repeat scroll 0 0;
-	color:white;
-}
-
-html {
-	overflow-y: scroll;
-}
-
+/* Navigation */
 .js #add-page a span {
 	margin: 0;
 }
@@ -76,12 +61,15 @@ html {
 	border: 0;
 }
 
-.js .interactive-mode, .js .interactive-mode h2, .js .interactive-mode h2 span {
+.js .interactive-mode,
+.js .interactive-mode h2,
+.js .interactive-mode h2 span {
 	background: transparent none;
 }
 
-#navigation li a, .js #add-page a {
-	background: url('../images/navigation/tabs.png');
+#navigation li a,
+.js #add-page a {
+	background: url(../images/navigation/tabs.png);
 	color: #333;
 	display: block;
 	line-height: 1.8;
@@ -99,7 +87,7 @@ html {
 }
 
 #navigation li, .js #add-page {
-	background: url('../images/navigation/tabs.png') scroll right top;
+	background: url(../images/navigation/tabs.png) scroll right top;
 	margin: 0 2px 0 0;
 	padding: 0 10px;
 }
@@ -123,6 +111,7 @@ html {
 	width: auto;
 }
 
+/* Portlet */
 .portlet-content {
 	margin: 8px 0 0 10px;
 }
@@ -131,7 +120,7 @@ html {
 	background: transparent;
 	border: 0;
 	color: #505050;
-	font-size:12px;
+	font-size: 12px;
 	font-weight: 400;
 }
 
@@ -140,9 +129,25 @@ html {
 	border: 0;
 }
 
-#wrapper {
-	background: transparent none;
-	margin: 0 auto;
-	position: relative;
-	width: 900px;
+/* Liferay UI */
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: transparent url(../images/custom/banner_bg.jpg) no-repeat scroll center top;
+	border: none;
+	color: #000;
+	border-right:1px solid #304049;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background: transparent url(../images/custom/banner_bg.jpg) no-repeat scroll center top;
+	text-decoration: none;
+	color: #000;
+}
+
+.ui-tabs li a, .tabs li span {
+	background: #E0E0E0 url(../images/custom/body_bg.png) repeat-x scroll 0 0;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: #1E2529 none;
+	color: #FFF;
 }
