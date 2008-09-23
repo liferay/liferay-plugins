@@ -30,15 +30,15 @@ import com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalServiceUtil;
 import com.liferay.kb.knowledgebase.service.persistence.KBArticleUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.lar.PortletDataContext;
-import com.liferay.portal.kernel.lar.PortletDataException;
-import com.liferay.portal.kernel.lar.PortletDataHandler;
-import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
-import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
-import com.liferay.portal.kernel.lar.PortletDataHandlerKeys;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
+import com.liferay.portal.lar.PortletDataContext;
+import com.liferay.portal.lar.PortletDataException;
+import com.liferay.portal.lar.PortletDataHandler;
+import com.liferay.portal.lar.PortletDataHandlerBoolean;
+import com.liferay.portal.lar.PortletDataHandlerControl;
+import com.liferay.portal.lar.PortletDataHandlerKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.MapUtil;
 
@@ -148,8 +148,8 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 
 			List<Element> articleEls = root.elements("articles");
 
-			Map<Long, Long> articlePKs = context.getNewPrimaryKeysMap(
-				KBArticle.class);
+			Map<Long, Long> articlePKs =
+				(Map<Long, Long>)context.getNewPrimaryKeysMap(KBArticle.class);
 
 			for (Element articleEl : articleEls) {
 				String path = articleEl.attributeValue("path");
