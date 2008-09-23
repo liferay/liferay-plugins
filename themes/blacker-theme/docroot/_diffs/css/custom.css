@@ -5,25 +5,41 @@ html {
 #navigation {
 	background: #FF6600 url(../images/custom/menu_bckg.jpg) repeat scroll 0 0;
 	border: none;
+	display: block;
+	height: 33px;
 }
 #navigation li {
 	border: none;
 }
 #wrapper {
 	background: transparent;
+	border: 1px solid #666666;
+	margin: 20px auto;
 	position: relative;
 	width: 1162px;
 }
 #banner {
 	background: #C23B01 url(../images/custom/header_bckg.jpg) no-repeat scroll left center;
+	height: 100px;
 	position: relative;
+	width: 100%;
 }
+
+.logo {
+	margin: 0;
+}
+
+.logo a {
+	left: 50px;
+	position: relative;
+	top: 26px;
+}
+
 #navigation li.selected a, #navigation li a:hover {
 	background-color: transparent;
 }
 #navigation li a:hover {
 	background: #C23B01 url(../images/custom/menu_bckg_over.jpg) repeat scroll 0 0;
-	height: 20px;
 	margin-top: 1px;
 	padding-top: 4px;
 }
@@ -33,7 +49,6 @@ html {
 }
 body {
 	background: #000000 url(../images/custom/bckg.gif) repeat scroll 0 0;
-	border: 1px solid #666666;
 	font-family: "Myriad Pro","Trebuchet MS",Arial;
 	font-size: 0.9em;
 	line-height: 20px;
@@ -43,13 +58,15 @@ body {
 	color: white;
 	font-size: 14px;
 	font-style: italic;
-	font-weight: bold;
+	font-weight: bold;;
+	padding: 12px 25px;
+	position: relative;
+	text-decoration: none;
+	top: 2px;
 }
 #content-wrapper {
 	background: white none repeat scroll 0 0;
 	border: 5px solid white;
-	margin: -20px auto;
-	width: 1152px;
 }
 .js .interactive-mode {
 	top:13px;
@@ -58,6 +75,7 @@ body {
 .portlet {
 	background: transparent;
 	border: none;
+	margin-bottom: 10px;
 }
 .portlet-topper {
 	background: transparent;
@@ -69,6 +87,15 @@ a {
 }
 .js #navigation .enter-page {
 	background-color: transparent;
+}
+.js #navigation .enter-page a {
+	display: inline;
+	height: 33px;
+	margin: 4px 15px;
+	padding: 0;
+	position: relative;
+	top: -5px;
+	width: 50px;
 }
 .ui-tabs li a, .tabs li span {
 	background: transparent none repeat scroll 0 0;
@@ -96,14 +123,20 @@ a {
 	height: 102px;
 }
 .js #add-page {
-	background:transparent none repeat scroll 0 0;
+	background:transparent url(../images/common/add.png) 5px 55% no-repeat;;
 	border:medium none;
-	right:0;
-	top:0;
+	float: right;
+	position: relative;
+	top: -12px;
 }
-.js #add-page a span {
-	color:white;
+.ie #add-page {
+	top: 8px;
+}
+.js #add-page a {
+	color: #FFF;
+	padding: 7px 25px;
+	text-decoration: none;
 }
 .ie #content-wrapper {
-	width: 1148px;
+	width: 1152px;
 }
