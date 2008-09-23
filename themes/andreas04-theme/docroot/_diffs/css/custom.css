@@ -1,135 +1,151 @@
-#wrapper {
-	position: relative;
-	width:1203px;
-	margin: 0 auto;
-	background:#F0F0F0 url(../images/custom/contentbg.png) repeat-x scroll 0 0;
-	border-left:1px solid #EEEEFF;
-	border-right:1px solid #EEEEFF;
-}
-#banner {
-	position: relative;
-	height: 100px;
-	top: 0;
-	background:transparent url(../images/custom/globe.gif) no-repeat scroll 0 0;
-	border-bottom:1px solid #EEEEFF;
-}
+/* Global */
 body {
-	background:#E6E6E6 url(../images/custom/bodybg.png) repeat-x scroll 0 0;
+	background: #E6E6E6 url(../images/custom/bodybg.png) repeat-x scroll;
+}
+
+a {
+	font-size: 12px;
+}
+
+#wrapper {
+	background: #F0F0F0 url(../images/custom/contentbg.png) repeat-x scroll;
+	border-left: 1px solid #EEF;
+	border-right: 1px solid #EEF;
+	margin: 0 auto;
+	position: relative;
+	width: 1203px;
+}
+
+#banner {
+	background: transparent url(../images/custom/globe.gif) no-repeat scroll;
+	border-bottom: 1px solid #EEF;
+	height: 100px;
+	position: relative;
+	top: 0;
 }
 
 .logo {
-	padding: 0;
 	left: 60px;
-	position: relative;
 	margin: 0;
+	padding: 0;
+	position: relative;
 	top: 23px;
 }
 
 #content-wrapper {
-	margin:15px auto;
-	width:97%;
+	margin: 15px auto;
+	width: 97%;
 }
+
+#footer {
+	background: transparent url(../images/custom/globebottom.gif) no-repeat scroll;
+	height: 78px;
+}
+
+/* Navigation */
 #navigation {
-	background:#F0F0F0 url(../images/custom/contentbg.png) repeat-x scroll 0 0;
-	border: none;
-	margin:auto;
-	width: auto;
-	border-bottom:1px solid #EEEEFF;
-	height:36px;
+	background: #F0F0F0 url(../images/custom/contentbg.png) repeat-x scroll;
+	border-bottom: 1px solid #EEF;
+	height: 36px;
 }
+
 #navigation ul {
 	margin: 3px 0 0 45px;
 }
+
 #navigation li {
 	border: none;
-	margin:4px 0 0 -1px;
+	margin: 4px 0 0 -1px;
 }
+
 #navigation li a {
-	font-weight: bold;
+	color: #888;
+	font-size: 1.6em;
 	padding: 7px 25px;
-	text-decoration: none;
 }
-#navigation li.selected a, #navigation li a:hover {
-	background-color:transparent;
+
+#navigation li.selected a,#navigation li a:hover {
+	background: transparent;
 }
+
 #navigation li.selected a {
-	color: #888888;
+	color: #888;
 }
-#navigation li a:hover {
-}
+
 #navigation li.selected a span {
-	background:transparent;
-	padding-left:0px;
+	background: transparent;
+	padding-left: 0;
 }
-#navigation li a {
-	font-size:1.6em;
-	color: #888888;
-	padding: 7px 25px;
-}
+
 #navigation li a:hover {
-	background:#FFFFFF url(../images/custom/menuhover.png) repeat-x scroll 0 0;
-	color:#226699;
+	background: #FFF url(../images/custom/menuhover.png) repeat-x scroll;
+	color: #269;
 }
-.ui-tabs li a:hover, .ui-tabs li span:hover {
-	background:transparent;
-	color:#226699;
-}
+
 .js .interactive-mode {
-	right:1%;
+	right: 1%;
 }
+
 .js #add-page {
 	background: transparent url(../images/common/add.png) left 50% no-repeat;
-	border:medium none;
+	border: none;
 	float: right;
 	margin: -20px;
 	position: relative;
-	right:5%;
-	top:0;
+	right: 5%;
+	top: 0;
 }
+
 .js #add-page a {
-	color: #ccc;
+	color: #CCC;
 	padding: 7px 20px;
 	text-decoration: none;
 }
 
 .js #add-page a span {
-	color: #888888;
+	color: #888;
 }
+
 .js #navigation .enter-page {
-	background-color:transparent;
+	background-color: transparent;
 	padding: 0;
 }
+
+/* Portlet */
 .portlet {
-	background: #EEEEEE url(../images/custom/entrybg.png) repeat-x scroll 0 0;
-	border: none;
+	background: #EEE url(../images/custom/entrybg.png) repeat-x scroll;
+	margin-bottom: 15px;
 }
+
 .portlet-topper {
 	background: transparent;
 	border: none;
-	color:#555555;
+	border-bottom: 2px solid #ABB;
+	color: #555;
 	font-size: 18px;
-	border-bottom:2px solid #AABBBB;
 }
-a {
-	font-size: 12px;
-}
-#footer {
-	background:transparent url(../images/custom/globebottom.gif) no-repeat scroll 0 0;
-	height:78px;
-}
+
+/* Liferay UI */
 .ui-tabs li a, .tabs li span {
-	background:transparent none repeat scroll 0 0;
+	background: transparent none repeat scroll 0 0;
 	border: none;
-	color:#888888;
+	color: #888;
 }
+
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background-color:transparent;
+	background-color: transparent;
 }
+
 .ui-tabs li.current a, .ui-tabs li.current span {
-	background:transparent none repeat scroll 0 0;
-	border:1px solid grey;
-	font-weight:bold;
+	background: transparent none repeat scroll;
+	border: 1px solid #777;
+	font-weight: bold;
 }
+
 .ui-tabs {
-	border-bottom:medium none;
+	border-bottom: none;
+}
+
+.ui-tabs li a:hover,.ui-tabs li span:hover {
+	color: #269;
 }
