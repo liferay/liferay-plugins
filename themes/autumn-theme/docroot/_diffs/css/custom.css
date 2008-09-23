@@ -1,6 +1,7 @@
+/* Global */
 #banner .logo a {
 	color: #FFF;
-	font: bold italic 56px 'Georgia', 'Times New Roman', 'Times', serif;
+	font: bold italic 56px Georgia, Times New Roman, Times, serif;
 	left: 30px;
 	position: relative;
 	text-decoration: none;
@@ -13,12 +14,12 @@
 }
 
 #banner {
-	background: transparent url('../images/custom/header.jpg');
+	background: transparent url(../images/custom/header.jpg);
 	height: 113px;
 }
 
 body {
-	background: #E4D9BE url('../images/custom/body_bg.png') repeat-y top center;
+	background: #E4D9BE url(../images/custom/body_bg.png) repeat-y top center;
 }
 
 #content-wrapper {
@@ -29,52 +30,48 @@ html {
 	overflow-y: scroll;
 }
 
-.ui-tabs li a, .tabs li span {
-	background:transparent url(../images/custom/linkbar_bg.png) repeat scroll center center;
-	border-right:medium none;
-	top:10px;
+#wrapper {
+	background: #F6EACF;
+	font-size: 0.9em;
+	margin: 0 auto;
+	position: relative;
+	width: 903px;
 }
 
-.js #navigation .enter-page {
-	background-color:transparent;
-	padding:3px;
-}
-
-.ui-tabs li.current a, .ui-tabs li.current span {
-	background:transparent url(../images/custom/h2.png) no-repeat scroll 0 0;
-	border:medium none;
-	color:white;
-}
-
-.ui-tabs li a:hover, .ui-tabs li span:hover {
-	color:white;
-}
-
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	text-decoration: none;
-}
-
+/* Dock */
 .js .lfr-dock.expanded .lfr-dock-list-container {
 	background-color: transparent;
 }
 
 .js .lfr-dock.interactive-mode h2, .js .lfr-dock.interactive-mode h2 span {
-	background-image: url('../images/custom/menu_bar.png');
+	background-image: url(../images/custom/menu_bar.png);
 }
 
 .js .lfr-dock.interactive-mode ul {
 	background-color: transparent;
-	background-image: url('../images/custom/menu_bg.png');
+	background-image: url(../images/custom/menu_bg.png);
 	border: 0;
 }
 
+.js .interactive-mode h2 span {
+	border-right:none;
+}
+
+/* Navigation */
+.js #navigation .enter-page {
+	background-color: transparent;
+	padding: 3px;
+}
+
 #navigation li a {
+	color: #000;
+	font-size: 12px;
 	padding: 8px 16px 5px;
 	text-decoration: none;
 }
 
 #navigation li {
-	background: transparent none no-repeat scroll 0 0%;
+	background: none;
 	border: 0;
 	margin: 0;
 }
@@ -90,14 +87,32 @@ html {
 }
 
 #navigation {
-	background: transparent url('../images/custom/linkbar_bg.png');
+	background: transparent url(../images/custom/linkbar_bg.png);
 	border: 0;
 	height: 31px;
 	margin: 0;
 }
 
+#navigation li.selected a, #navigation li a:hover {
+	background-color:transparent;
+}
+
+.js #add-page {
+	background: transparent url(../images/common/add.png) left 50% no-repeat;
+	border: none;
+	bottom: 50px;
+	float: right;
+	margin: -7px 0 0;
+}
+.js #add-page a {
+	color: #CCC;
+	padding: 7px 20px;
+	text-decoration: none;
+}
+
+/* Portlet */
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
-	background: transparent none no-repeat scroll 0 0%;
+	background: transparent none no-repeat scroll;
 	margin: 0;
 	padding: 0;
 }
@@ -116,7 +131,7 @@ html {
 }
 
 .portlet-topper {
-	background: url('../images/custom/h2.png') no-repeat;
+	background: url(../images/custom/h2.png) no-repeat;
 	height: 39px;
 }
 
@@ -126,31 +141,26 @@ html {
 	padding: 2px 0 14px 0;
 }
 
-#wrapper {
-	background: #F6EACF;
-	font-size: 0.9em;
-	margin: 0 auto;
-	position: relative;
-	width: 903px;
-}
-
-#navigation li.selected a, #navigation li a:hover {
-	background-color:transparent;
-}
-
-.js #add-page {
-	background: transparent url(../images/common/add.png) left 50% no-repeat;
+/* Liferay UI */
+.ui-tabs {
 	border: none;
-	bottom: 50px;
-	float: right;
-	margin: -7px 0 0;
 }
-.js #add-page a {
-	color: #ccc;
-	padding: 7px 20px;
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: url(../images/custom/h2.png) no-repeat scroll;
+	border: none;
+	color: #FFF;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	color: #FFF;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
 	text-decoration: none;
 }
 
-.js .interactive-mode h2 span {
-	border-right:none;
+.ui-tabs li a, .tabs li span {
+	background: url(../images/custom/linkbar_bg.png) repeat scroll center center;
+	top: 10px;
 }
