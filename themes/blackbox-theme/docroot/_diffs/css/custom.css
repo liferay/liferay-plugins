@@ -1,5 +1,4 @@
-/* ---- GLOBAL ---- */
-
+/* Global */
 a {
 	color: #666;
 }
@@ -23,9 +22,7 @@ body {
 	width: 975px;
 }
 
-
-/* ---- BANNER ---- */
-
+/* Banner */
 #banner .logo {
 	background: transparent none;
 	margin: 0;
@@ -42,16 +39,12 @@ body {
 	position: relative;
 }
 
-
-/* ---- LAYOUT ---- */
-
+/* Layout */
 #layout-grid .lfr-column {
 	padding: 0;
 }
 
-
-/* ---- NAVIGATION ---- */
-
+/* Navigation */
 .js #add-page a {
 	color: #FFF;
 	font-size: 11px;
@@ -148,9 +141,7 @@ body {
 	width: auto;
 }
 
-
-/* ---- PORTLET ---- */
-
+/* Portlet */
 .loading-animation {
 	background: url(../images/custom/progress_bar/loading_animationbar.gif) no-repeat top center;
 }
@@ -200,8 +191,7 @@ body {
 }
 
 
-/* ---- TABS ---- */
-
+/* Tabs */
 .ui-tabs li a, .ui-tabs li span {
 	background: url(../images/custom/navigation/bg.png);
 	color: #FFF;
@@ -229,17 +219,13 @@ body {
 	border-bottom: 1px solid #222;
 }
 
-
-/* ---- DOCK ---- */
-
+/* Dock */
 .js .interactive-mode {
 	right: 10px;
 	top: 10px;
 }
 
-
-/* ---- TAB BORDER ----*/
-
+/* Tab Border */
 .ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li a, .tabs li span {
 	border: none;
 }
