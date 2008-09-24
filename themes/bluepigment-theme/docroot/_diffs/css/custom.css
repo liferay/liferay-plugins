@@ -1,5 +1,4 @@
-/* Reset */
-
+f/* Reset */
 html {
 	overflow-y: scroll;
 }
@@ -28,9 +27,12 @@ html {
 }
 
 /* Defaults */
-
 #banner, #navigation, #navigation ul, .portlet {
 	background-color: transparent;
+}
+
+.portlet-content {
+	padding-top: 1.5em;
 }
 
 #layout-grid .lfr-column {
@@ -53,7 +55,6 @@ html {
 
 
 /* Theme */
-
 a, a:link, a:visited, a:hover {
 	color: #FFF;
 	text-decoration: none;
