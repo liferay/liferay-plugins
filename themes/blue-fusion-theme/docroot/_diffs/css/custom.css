@@ -1,3 +1,4 @@
+/* Global */
 #banner .logo {
 	margin: 0;
 }
@@ -35,6 +36,22 @@ body {
 	text-align: center;
 }
 
+#wrapper {
+	background: transparent;
+	margin: 0 auto;
+	min-height: 245px;
+	width: 1000px;
+}
+
+.lfr-add-content.collapsed h2, .lfr-add-content .lfr-add-content.collapsed h2 {
+	color: black;
+}
+
+.lfr-content-category.visible {
+	color: black;
+}
+
+/* Forms */
 input.focus, textare.focus, ie6 input.focus, ie6 textarea.focus {
 	background: white;
 	border: white;
@@ -44,6 +61,13 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	padding: 2px 1px;
 }
 
+/* Dock */
+.js .interactive-mode {
+	margin-top:18px;
+	right:3%;
+}
+
+/* Navigation */
 .js #add-page a span {
 	background: transparent;
 	display: block;
@@ -77,19 +101,6 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 
 .js #navigation .enter-page {
 	background-color: transparent;
-}
-
-.js .interactive-mode {
-	margin-top:18px;
-	right:3%;
-}
-
-.lfr-add-content.collapsed h2, .lfr-add-content .lfr-add-content.collapsed h2 {
-	color: black;
-}
-
-.lfr-content-category.visible {
-	color: black;
 }
 
 #navigation li a {
@@ -132,6 +143,7 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	float: left;
 }
 
+/* Portlet */
 .portlet-topper {
 	background: black;
 	border-bottom: 1px solid #FFF;
@@ -146,30 +158,14 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	text-align: left;
 }
 
-.ui-dialog {
-	background-color: black;
-}
-
-#wrapper {
-	background: transparent;
-	margin: 0 auto;
-	min-height: 245px;
-	width: 1000px;
-}
-
-.portlet-calendar .calendar-container {
-	background: black;
-}
-
-.taglib-calendar tr th {
-	color: black;
-}
-
 .portlet-section-body td {
 	color: black;
 }
 
-/** Tabs **/
+/* Liferay UI */
+.ui-dialog {
+	background-color: black;
+}
 
 .ui-tabs li.current a, .ui-tabs li.current span {
 	background:transparent url(../images/theme/bckheader.jpg) no-repeat scroll center center;
@@ -192,4 +188,13 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 .ui-tabs li a:hover, .ui-tabs li span:hover {
 	background:transparent;
 	color:white;
+}
+
+/* Portlet Specific */
+.taglib-calendar tr th {
+	color: black;
+}
+
+.portlet-calendar .calendar-container {
+	background: black;
 }
