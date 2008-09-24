@@ -1,5 +1,4 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
+/* Global */
 a {
 	color: #369;
 	text-decoration: none;
@@ -32,6 +31,22 @@ body {
 	font-size: 8pt;
 }
 
+.loading-animation {
+	background: url(../images/progress_bar/loading_animationbar.gif) no-repeat top center;
+}
+
+#wrapper {
+	background: #FFF none;
+	padding: 5pt;
+	width: 975px;
+	margin:0 auto;
+}
+
+#content-wrapper {
+	width: 100%;
+}
+
+/* Navigation */
 .js #add-page {
 	background:transparent url(../images/common/add.png) 5px 50% no-repeat;
 	float: right;
@@ -48,9 +63,6 @@ body {
 	background: #858F9E none;
 }
 
-.loading-animation {
-	background: url(../images/progress_bar/loading_animationbar.gif) no-repeat top center;
-}
 
 #navigation li a span {
 	background: none;
@@ -98,12 +110,12 @@ body {
 
 #navigation ul {
 	float: left;
-	margin: 4px 0 20px 50px;
-	text-transform: capitalize;
+	margin: 4px 0 20px;
 }
 
+/* Portlets */
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
-	background: #FFF none;
+	background: #FFF;
 }
 
 .portlet-section-header th {
@@ -132,11 +144,12 @@ body {
 	padding: 2px;
 }
 
+/* Liferay UI */
 .ui-tabs li a, .tabs li span {
 	background: #858F9E none;
 	border-right: 5pt solid #FFF;
 	color: #DDD;
-	padding: 0 1em 0;
+	padding: .5em 1em;
 	top: 0;
 }
 
@@ -148,7 +161,6 @@ body {
 .ui-tabs li.current a, .ui-tabs li.current span {
 	background: #49515C none;
 	color: #C6C4C5;
-	padding: 0 1em;
 	border-top: none;
 	border-left: none;
 	border-bottom: none;
@@ -164,15 +176,4 @@ body {
 .ui-tabs {
 	border-bottom: none;
 	padding: 0 0 2.6em 0;
-}
-
-#wrapper {
-	background: #FFF none;
-	padding: 5pt;
-	width: 975px;
-	margin:0 auto;
-}
-
-#content-wrapper {
-	width: 100%;
 }
