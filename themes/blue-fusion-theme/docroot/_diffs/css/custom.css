@@ -1,9 +1,15 @@
+#banner .logo {
+	margin: 0;
+}
+
 #banner .logo a {
-	margin: 59px 124px;
+	left: 175px;
+	position: relative;
+	top: 59px;
 }
 
 #banner {
-	background: transparent url(../images/theme/bckheader.jpg) no-repeat scroll 0 -26px;
+	background: transparent url(../images/theme/bckheader.jpg) no-repeat scroll 0 -27px;
 	height: 245px;
 	position: relative;
 }
@@ -48,9 +54,9 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 }
 
 .js #add-page a {
-	margin-left: -151px;
-	margin-top: -2px;
-	position: absolute;
+	color: #FFF;
+	float: left;
+	text-decoration: none;
 }
 
 .js #add-page a:hover {
@@ -87,7 +93,10 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 }
 
 #navigation li a {
+	color: #FFF;
 	padding: 1px 15.5px 1px;
+	text-decoration: none;
+	text-transform: capitalize;
 }
 
 #navigation li a:hover {
@@ -111,20 +120,28 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 #navigation ul {
 	margin: 0 auto 0 132px;
 	min-height: 2em;
-	width: auto;
+	width: 75%;
 }
 
 #navigation {
 	border: 0;
+	margin: 0 0 40px 0;
+}
+
+#navigation ul {
+	float: left;
 }
 
 .portlet-topper {
 	background: black;
+	border-bottom: 1px solid #FFF;
+	padding: 5px;
 }
 
 .portlet {
 	background: black none repeat scroll 0 0%;
-	border: 1px solid whote;
+	border: 1px solid #FFF;
+	margin: auto auto 10px;
 	padding: 3px;
 	text-align: left;
 }
