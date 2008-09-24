@@ -11,6 +11,13 @@ a:hover {
 
 #banner .logo {
 	background: transparent none;
+	margin: 0;
+}
+
+#banner .logo a {
+	left: 45px;
+	position: relative;
+	top: 25px;
 }
 
 #banner {
@@ -22,13 +29,19 @@ a:hover {
 
 body {
 	background: transparent url(../images/common/bodybg.png) repeat;
+	font-size: 8pt;
 }
 
 .js #add-page {
-	background:transparent none repeat scroll 0 0;
-	border:medium none;
-	right:0%;
-	top:2px;
+	background:transparent url(../images/common/add.png) 5px 50% no-repeat;
+	float: right;
+}
+
+.js #add-page a {
+	color: #CCC;
+	font-weight: bold;
+	display: block;
+	padding: 7px 25px;
 }
 
 .js #navigation .enter-page {
@@ -70,14 +83,12 @@ body {
 
 #navigation li.selected a span {
 	background: #49515C none;
-	font-size: 8pt;
 	font-weight: normal;
 }
 
 #navigation li.selected a {
 	background: #49515C none repeat scroll 0;
 	color: #C6C4C5;
-	font-size: 8pt;
 	padding-bottom: 5px;
 }
 
@@ -85,10 +96,10 @@ body {
 	padding-bottom: 5px;
 }
 
-#navigation {
-	background: #FFF none;
-	padding-right: 0;
-	width: 975px;
+#navigation ul {
+	float: left;
+	margin: 4px 0 20px 50px;
+	text-transform: capitalize;
 }
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
@@ -111,10 +122,14 @@ body {
 
 .portlet-topper {
 	background: #F0F1F3 none;
+	padding: 5px;
 }
 
 .portlet {
+	border: 2px solid #858F9E;
 	background: #FFF none;
+	margin: 0 auto 10px;
+	padding: 2px;
 }
 
 .ui-tabs li a, .tabs li span {
