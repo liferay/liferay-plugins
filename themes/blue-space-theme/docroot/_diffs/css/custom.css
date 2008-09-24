@@ -1,29 +1,42 @@
 body {
 	background: url(../images/custom/bckg.gif) #000;
-	border: 1px solid #666;
 	font-family: "Trebuchet MS", Arial;
 	font-size: 0.8em;
 	line-height: 20px;
-	margin: 50px 100px;
+	margin: 50px;
 }
 .ie.js #navigation .enter-page .save-page {
 	margin-top: -25px;
 }
 #banner {
 	background: url(../images/custom/header_bckg.jpg) no-repeat top right #000;
+	height: 104px;
 	position: relative;
 	margin-top: 1px;
 }
-#wrapper {
+#banner .logo {
+	margin: 0;
+}
+#banner .logo a {
+	left: 50px;
 	position: relative;
-	width:1062px;
+	top: 25px;
+}
+#wrapper {
+	border: 1px solid #666;
+	position: relative;
+	width: 1062px;
 	margin: 0 auto;
 }
 #navigation {
 	background: #01B0F0 none repeat scroll 0% 0%;
-	border-bottom: 1px solid #000000;
+	border-bottom: 3px solid #000000;
 	border-top: 1px solid #E8E8E8;
-	height: 30px;
+	height: 34px;
+}
+#navigation ul {
+	float: left;
+	width: 970px;
 }
 #navigation li {
 	border: none;
@@ -31,10 +44,11 @@ body {
 #navigation li a {
 	border-right: 1px solid #59D2FE;
 	color: #FFFFFF;
-	display: block;
+	display: inline;
 	float: left;
 	font-size: 14px;
 	font-weight: bold;
+	padding: 7px 15px;
 	text-decoration: none;
 	text-transform: uppercase;
 }
@@ -45,15 +59,10 @@ body {
 	background: transparent;
 	padding-left: 0px;
 }
-#navigation ul {
-	width: 100%;
-}
 #content-wrapper {
 	background: white;
 	border: 8px solid white;
-	margin: -14pt auto;
 	min-height: 500px;
-	width: 98.5%;
 }
 .portlet {
 	border: none;
@@ -63,6 +72,7 @@ body {
 	border: none;
 	color: #000000;
 	font-size: 18px;
+	padding: 5px;
 	text-transform: uppercase;
 }
 a {
@@ -72,10 +82,15 @@ a {
 	margin-left: 0;
 }
 .js #add-page {
-	background: transparent none repeat scroll 0% 0%;
-	border: medium none;
-	right: 0%;
-	top: 0px;
+	background: transparent url(../images/common/add.png) 5px 50% no-repeat;
+	float: right;
+	margin: 10px 0 0;
+}
+.js #add-page a {
+	color: #FFF;
+	font-weight: bold;
+	padding: 7px 20px;
+	text-decoration: none;
 }
 .js .interactive-mode {
 	right:2%;
@@ -100,15 +115,22 @@ a {
 	padding: 0px;
 	width: 215px;
 }
+#navigation .enter-page .cancel-page {
+	display: none;
+}
 input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
 	padding: 1px;
 }
-.js #navigation .enter-page .save-page {
+.js #navigation .save-page {
 	border: medium none;
-	margin: -14pt 160px;
+	margin: -26px 160px;
 }
 #footer {
 	background: #424E4F url(../images/custom/footer_bckg.jpg) repeat scroll 0% 0%;
 	clear: both;
 	height: 102px;
+}
+.portlet-icons nobr {
+	position: relative;
+	top: -5px;
 }
