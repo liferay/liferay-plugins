@@ -177,7 +177,7 @@ body {
 .ui-tabs {
 	border-bottom: 1px solid #9EB4A8;
 	margin: 0 0pt 1.5em;
-	padding: 0 0pt 2.6em 1em;
+	padding: 0 0pt 0 1em;
 }
 
 #wrapper {
