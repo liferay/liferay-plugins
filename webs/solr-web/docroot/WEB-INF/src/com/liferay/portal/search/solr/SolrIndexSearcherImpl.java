@@ -62,7 +62,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 	}
 
 	public Hits search(
-			long companyId, Query query, Sort[] sort, int start, int end)
+			long companyId, Query query, Sort[] sorts, int start, int end)
 		throws SearchException {
 
 		try {
@@ -71,11 +71,11 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 			url = HttpUtil.addParameter(url, "fl", "score");
 
-			if (sort != null && sort.length > 0) {
+			if ((sorts != null) && (sorts.length > 0)) {
 				StringBuilder sb = new StringBuilder();
 
-				for (int i = 0; i < sort.length; i++) {
-					Sort sortField = sort[i];
+				for (int i = 0; i < sorts.length; i++) {
+					Sort sortField = sorts[i];
 
 					if (i > 0) {
 						sb.append(StringPool.COMMA);

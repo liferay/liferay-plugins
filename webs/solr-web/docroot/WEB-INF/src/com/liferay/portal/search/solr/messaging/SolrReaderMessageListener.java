@@ -78,7 +78,7 @@ public class SolrReaderMessageListener implements MessageListener {
 
 		Hits hits = SolrSearchEngineUtil.search(
 			searchRequest.getCompanyId(), searchRequest.getQuery(),
-			searchRequest.getSort(), searchRequest.getStart(),
+			searchRequest.getSorts(), searchRequest.getStart(),
 			searchRequest.getEnd());
 
 		message.setPayload(hits);
