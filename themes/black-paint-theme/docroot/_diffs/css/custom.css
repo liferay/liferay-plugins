@@ -1,18 +1,7 @@
+/* Global */
 a {
 	font-size: 12px;
 }
-
-.ui-dialog {
-	background: #35393D none repeat scroll 0 0;
-	background-color: transparent;
-}
-
-.uni-form {
-	background: #35393D none repeat scroll 0 0;
-}
-
-
-/** Wrapper **/
 
 #wrapper {
 	background: transparent;
@@ -24,8 +13,6 @@ a {
 #content-wrapper {
 	margin: 0 50px;
 }
-
-/** Banner Body Navigation**/
 
 #banner .logo {
 	margin: 0;
@@ -50,6 +37,13 @@ body {
 	font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
 	font-size: 13px;
 }
+
+#footer {
+	background: #000 none repeat scroll 0 0;
+	height: 25px;
+}
+
+/* Navigation */
 
 #navigation li a {
 	background: black;
@@ -90,9 +84,29 @@ body {
 	margin: 20px 50px 0;
 }
 
+.js #add-page {
+	background: transparent url(../images/common/add.png) 5px 50% no-repeat;
+	border: medium none;
+	float: right;
+	position: relative;
+	margin: -25px 0 0;
+	right: 0;
+	top: 0;
+}
 
-/** Portlets **/
+.js #add-page a {
+	color: #FFF;
+	font-weight: bold;
+	padding: 7px 25px;
+	text-decoration: none;
+}
 
+.js #navigation .enter-page {
+	background-color: transparent;
+	padding: 1px;
+}
+
+/* Portlets */
 .portlet-topper {
 	background: #0D0D0D none repeat scroll 0 0;
 	border: none;
@@ -107,7 +121,16 @@ body {
 .portlet-title {
 	padding: 5px;
 }
-/** UI Tabs**/
+
+/* Liferay UI */
+.ui-dialog {
+	background: #35393D none repeat scroll 0 0;
+	background-color: transparent;
+}
+
+.uni-form {
+	background: #35393D none repeat scroll 0 0;
+}
 
 .ui-tabs li a, .tabs li span {
 	background: transparent none repeat scroll 0 0;
@@ -136,40 +159,8 @@ body {
 	border-bottom: medium none;
 }
 
-
-/** Javascript **/
-
-.js #add-page {
-	background: transparent url(../images/common/add.png) 5px 50% no-repeat;
-	border: medium none;
-	float: right;
-	position: relative;
-	margin: -25px 0 0;
-	right: 0;
-	top: 0;
-}
-
-.js #add-page a {
-	color: #FFF;
-	font-weight: bold;
-	padding: 7px 25px;
-	text-decoration: none;
-}
-
-.js #navigation .enter-page {
-	background-color: transparent;
-	padding: 1px;
-}
-
+/* Portlets */
 .portlet-icons {
 	margin-top: -3px;
 	display: inline;
-}
-
-
-/** Footer **/
-
-#footer {
-	background: #000 none repeat scroll 0 0;
-	height: 25px;
 }
