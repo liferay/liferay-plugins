@@ -27,7 +27,6 @@ html {
 	width: auto;
 }
 
-
 /* Defaults */
 
 #banner, #navigation, #navigation ul, .portlet {
@@ -60,6 +59,10 @@ a, a:link, a:visited, a:hover {
 	text-decoration: none;
 }
 
+.portlet-content td a, th, td {
+	color: #333;
+}
+
 a:hover {
 	color: #FEE;
 	text-decoration: underline;
@@ -70,10 +73,10 @@ a:hover {
 	font-family: 'Trebuchet MS',Tahoma,Arial,Sans-serif;
 	font-size: 58px;
 	font-weight: bold;
-	left: 10px;
+	left: 7%;
 	letter-spacing: -1px;
 	position: absolute;
-	top: 30px;
+	top: 55px;
 }
 
 #banner {
@@ -111,6 +114,8 @@ body {
 
 .js #add-page {
 	border: 0;
+	float: right;
+	margin: auto 3% 0;
 	top: 0;
 	z-index: 60;
 }
@@ -154,13 +159,14 @@ body {
 
 #navigation ul {
 	display: block;
+	float: left;
 	height: 50px;
 	list-style-image: none;
 	list-style-position: outside;
 	list-style-type: none;
-	margin: 0 auto;
+	margin: 0 auto 0 3%;
 	text-transform: uppercase;
-	width: 93%;
+	width: 85%;
 }
 
 #navigation {
@@ -175,6 +181,7 @@ body {
 
 .portlet-title {
 	color: #B1E100;
+	border-bottom: 1px solid #FFF;
 	font-family: 'Trebuchet MS',Arial,Sans-serif;
 	font-size: 2.8em;
 	font-weight: bold;
