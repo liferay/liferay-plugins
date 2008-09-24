@@ -69,7 +69,7 @@ public class SolrReaderMessageListener implements MessageListener {
 			SolrSearchEngineUtil.isIndexReadOnly());
 
 		message.setPayload(indexReadOnly);
-		
+
 		MessageBusUtil.sendMessage(message.getResponseDestination(), message);
 	}
 

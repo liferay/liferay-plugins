@@ -33,7 +33,9 @@ import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Time;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 
@@ -61,7 +63,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 	}
 
 	public Hits search(
-			long companyId, Query query, Sort sort, int start, int end)
+			long companyId, Query query, Sort[] sort, int start, int end)
 		throws SearchException {
 
 		try {
@@ -69,6 +71,33 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 				_serverURL, "q", query.toString());
 
 			url = HttpUtil.addParameter(url, "fl", "score");
+
+			StringBuilder sb = new StringBuilder();
+
+			for (int i = 0; i < sort.length; i++) {
+				Sort sortField = sort[i];
+
+				if (i > 0) {
+					sb.append(StringPool.COMMA);
+				}
+
+				sb.append(sortField.getFieldName());
+				sb.append(StringPool.SPACE);
+
+				String order = "asc";
+
+				if (sortField.isReverse()) {
+					order = "desc";
+				}
+
+				sb.append(order);
+			}
+
+			String sortString = sb.toString();
+
+			if (Validator.isNotNull(sortString)) {
+				url = HttpUtil.addParameter(url, "sort", sortString);
+			}
 
 			return subset(HttpUtil.URLtoString(url), start, end);
 		}
