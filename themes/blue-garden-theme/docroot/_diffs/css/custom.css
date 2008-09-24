@@ -1,3 +1,4 @@
+/* Global */
 body {
 	background: #336699 center top no-repeat url(../images/custom/bckbody.jpg);
 	color: #fff;
@@ -6,12 +7,14 @@ body {
 	margin: 0;
 	padding: 0;
 }
+
 #wrapper {
 	background: #000;
 	margin: 0 auto;
 	position: relative;
 	width:894px;
 }
+
 #banner {
 	background: #000 center no-repeat url(../images/custom/bckheader.jpg);
 	font-family: Verdana;
@@ -30,6 +33,26 @@ body {
 	top: 40px;
 }
 
+a {
+	font-size: 12px;
+}
+
+#content-wrapper {
+	width:894px;
+	background: black;
+}
+
+.ie #content-wrapper {
+	margin: -21px 0 0;
+}
+
+/* Dock */
+.js .interactive-mode {
+	right: 10%;
+	top: 50px;
+}
+
+/* Navigation */
 #navigation {
 	background: none;
 	border: none;
@@ -39,20 +62,25 @@ body {
 	width: 741px;
 	z-index: 111;
 }
+
 #navigation ul {
 	float: right;
 	margin: 0;
 	width: 600px;
 }
+
 #navigation li {
 	border: none;
 	float: right;
 	margin: 9px 0 0;
 }
-#navigation li.selected a, #navigation li a:hover {
+
+#navigation li.selected a,
+#navigation li a:hover {
 	background: transparent url(../images/custom/bckmenulinkhover.gif) repeat-x scroll 0% 0%;
 	color: #00BAFF;
 }
+
 #navigation li a {
 	color: #FFF;
 	display: inline;
@@ -61,31 +89,12 @@ body {
 	padding: 10px 10px;
 	text-decoration: none;
 }
+
 #navigation li.selected a span {
 	background: transparent;
 	padding-left: 0px;
 }
-.portlet {
-	background: transparent;
-	border: none;
-	margin: 0 5px 10px;
-}
-.portlet-topper {
-	background: none;
-	border: none;
-	color: #336699;
-	font-size: 18px;
-}
-a {
-	font-size: 12px;
-}
-#content-wrapper {
-	width:894px;
-	background: black;
-}
-.ie #content-wrapper {
-	margin: -21px 0 0;
-}
+
 .js #add-page {
 	background: transparent url(../images/common/add.png) 5px center no-repeat;
 	border: medium none;
@@ -93,57 +102,81 @@ a {
 	position: relative;
 	top: 10px;
 }
+
 .js #add-page a {
 	color: #FFF;
 	font-weight: bold;
 	padding: 7px 25px;
 	text-decoration: none;
 }
-.js .interactive-mode {
-	right: 10%;
-	top: 50px;
-}
+
 .js #navigation .enter-page {
 	background-color: transparent;
 	padding: 0;
 	margin: -5px 0 0;
 }
+
 .ie.js #navigation .enter-page .save-page {
 	margin-top: -10px;
 }
+
+/* Portlet */
+.portlet {
+	background: transparent;
+	border: none;
+	margin: 0 5px 30px;
+}
+
+.portlet-topper {
+	background: none;
+	border: none;
+	color: #336699;
+	font-size: 18px;
+}
+
+/* Liferay UI */
 .ui-tabs li a:hover, .ui-tabs li span:hover {
 	background: transparent url(../images/custom/bckmenulinkhover.gif) repeat-x scroll 0% 0%;
 	color: #00BAFF;
 }
+
 .ui-tabs li a, .tabs li span {
 	background: transparent none repeat scroll 0% 0%;
 	border-right: medium none;
 }
+
 .ui-tabs {
 	border-bottom: medium none;
 }
+
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
 	background-color: transparent;
 	text-decoration: none;
 }
+
 .ui-tabs li.current a, .ui-tabs li.current span {
 	background: transparent url(../images/custom/bckmenulinkhover.gif) repeat-x scroll 0% 0%;
 	border: medium none;
 	color: #00BAFF;
 	font-weight: bold;
 }
+
 .ui-dialog.ui-resizable-disabled .ui-dialog-content {
 	color: black;
 }
+
 .ui-dialog {
 	background-color:black;
 }
+
 .portlet-section-body td {
 	color: black;
 }
+
 .lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
 	color: #336699;
 }
+
 .portlet-calendar .calendar-container {
 	background: black;
 }
