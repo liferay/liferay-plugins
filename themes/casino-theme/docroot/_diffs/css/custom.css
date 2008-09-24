@@ -4,24 +4,25 @@
 /* ---- BASE ---- */
 
 #banner .logo a {
-	margin-left: -20000px;
+	margin: 0 0 0 -20000px;/* -20000px;*/
 }
 
 #banner h1.logo {
 	background: transparent url(../images/custom/common/banner_bg.png) no-repeat scroll right bottom;
+	float: right;
 	height: 145px;
-	left: 81.4%;
+	left: 12%;
 	margin: 25px 0 0pt;
-	position: absolute;
-	top: -12px;
-	width: 14%;
+	position: relative;
+	top: -31px;
+	width: 12%;
 }
 
 #banner {
 	background: transparent url(../images/custom/common/banner_bg.png) no-repeat scroll 0 0pt;
 	height: 160px;
-	margin: 0 71px;
-	width: 86%;
+	position: relative;
+	width: 90%;
 }
 
 body {
@@ -30,9 +31,14 @@ body {
 
 #wrapper {
 	background: none;
+	margin: 0 71px;
 }
 
-
+#content-wrapper {
+	font-size: 110%;
+	position: relative;
+	top: -25px;
+}
 /* ---- NAVIGATION ---- */
 
 .js #add-page a span {
@@ -43,14 +49,17 @@ body {
 
 .js #add-page a {
 	background: url(../images/custom/navigation/tab-unselected.png) no-repeat left top;
+	color: #FFF;
 	height: 20px;
 	margin: 0 0 0 -12px;
-	padding: 0 0 0 12px;
+	padding: 2px 0 4px 18px;
+	text-decoration: none;
 }
 
 .js #add-page {
 	background: url(../images/custom/navigation/tab-unselected.png) no-repeat right top;
 	border: none;
+	float: left;
 	height: 20px;
 	padding: 0 12px 0 0;
 	right: -94px;
@@ -87,6 +96,8 @@ body {
 	color: #FFF;
 	font-weight: bold;
 	padding: 0 0 .5em 1em;
+	text-decoration: none;
+	text-transform: capitalize;
 }
 
 #navigation li a:hover {
@@ -120,6 +131,7 @@ body {
 }
 
 #navigation ul {
+	float: left;
 	width: auto;
 }
 
