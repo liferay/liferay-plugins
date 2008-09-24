@@ -1,58 +1,88 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+/* Global */
 #wrapper {
-	background: #FEFEFE url(../images/comment/bg.jpg) repeat-x scroll left
-		top;
-	padding: 0pt;
+	background: #FEFEFE url(../images/comment/bg.jpg) repeat-x;
+	padding: 0;
 	width: 970px;
-	margin: 0px auto;
+	margin: 0 auto;
 }
 
 body {
-	background: #FEFEFE url(../images/comment/bg.jpg) repeat-x scroll left
-		top;
-	color: #000000;
+	background: #FEFEFE url(../images/comment/bg.jpg) repeat-x;
+	color: #000;
 	font-family: Tahoma, Arial, sans-serif;
 	font-size: 12px;
 	line-height: 1.3em;
-	margin: 0pt;
-	padding: 0pt;
+	margin: 0;
+	padding: 0;
 }
 
 #banner {
-	background: transparent url(../images/comment/header.jpg) no-repeat
-		scroll center top;
+	background: transparent url(../images/comment/header.jpg) no-repeat scroll center top;
 	height: 219px;
-	margin: 0pt auto;
+	margin: 0 auto 2em;
 	width: 970px;
 	border-bottom: none;
 }
 
 #banner .logo {
-	display:block;
-	font-size:2em;
-	margin:17pt auto;
-	padding:2.25em 0pt 1.45em;
+	display: block;
+	font-size: 2em;
+	padding: 2.25em 0 1.45em;
 }
 
+#footer {
+	background: url(../images/comment/content_bottom.jpg) repeat-x left top;
+	color: #FFF;
+	float: none;
+	font-size: 11px;
+	height: 74px;
+	line-height: 18px;
+	margin: 0 auto;
+	padding-top: 0;
+	text-align: center;
+	width: 920px;
+}
 
+/* Dock */
+.js .interactive-mode {
+	float: right;
+	min-width: 150px;
+	position: relative;
+	right: 30pt;
+	top: -130pt;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	
+	display: block;
+	font-size: 1.2em;
+	margin-bottom: -3pt;
+	min-height: 16px;
+	min-width: 90px;
+	padding: 0.5em 0.5em 0.5em 2em;
+}
+
+.js .lfr-dock.interactive-mode {
+
+	right: 38px;
+}
+
+.js .lfr-dock-list-container {
+	height: 0;
+	overflow: visible;
+}
+
+/* Navigation */
 #navigation {
 	background: none;
 	height: 29px;
 	margin: 10px 31px;
-	padding: 0pt 0em 0pt 0pt;
+	padding: 0;
 	text-align: left;
-	text-transform: capitalize;
 }
 
 .ie #navigation {
 	margin: -25px 31px;
-}
-
-.portlet {
-	border: 2px solid #D8F0FA;
-	margin-bottom: 5px;
-	text-align: left;
-	margin-top:0px;
 }
 
 #navigation li {
@@ -73,58 +103,32 @@ body {
 	padding: 5px;
 }
 
+/* Portlet */
+.portlet {
+	border: 2px solid #D8F0FA;
+	margin-bottom: 5px;
+	text-align: left;
+	margin-top:0px;
+}
+
 .portlet-topper {
-	background: #D8F0FA url(../images/comment/portlet_top.png) repeat-x
-		scroll 0% 0%;
+	background: #D8F0FA url(../images/comment/portlet_top.png) repeat-x;
 	position: relative;
 }
 
-#footer {
-	background-image: url(../images/comment/content_bottom.jpg);
-	background-position: left top;
-	background-repeat: repeat-x;
-	color: #FFFFFF;
-	float: none;
-	font-size: 11px;
-	height: 74px;
-	line-height: 18px;
-	margin: 0px auto;
-	padding-top: 0px;
-	text-align: center;
-	width: 920px;
+.portlet-content {
+	padding: 10px 5px 25px 12px;
 }
 
-.js .interactive-mode {
-	float: right;
-	min-width: 150px;
-	position: relative;
-	right: 30pt;
-	top:-130pt;
-}
-
-.js .lfr-dock.interactive-mode h2 span {
-	
-	display:block;
-	font-size:1.2em;
-	margin-bottom:-3pt;
-	min-height:16px;
-	min-width:90px;
-	padding:0.5em 0.5em 0.5em 2em;
-}
-
-.js .lfr-dock.interactive-mode {
-
-	right:38px;
-}
-
+/* Liferay UI */
 .ui-tabs {
-	border-bottom: 1px solid #bfe1ff;
+	border-bottom: 1px solid #BFE1FF;
 	margin: 0 0 1.5em 0;
 	padding: 0 0 0 1em;
 }
 
 .ui-tabs li {
-	background: #eaf5ff url(../images/common/tabs_inactive_bg.png) repeat-x 0 100%;
+	background: #EAF5FF url(../images/common/tabs_inactive_bg.png) repeat-x 0 100%;
 	display: inline;
 	float: left;
 	line-height: 2.25;
@@ -135,7 +139,7 @@ body {
 
 .ui-tabs li a, .tabs li span {
 	display: block;
-	border: 1px solid #bfe1ff;
+	border: 1px solid #BFE1FF;
 	float: left;
 	padding: 0.35em 1em 0;
 	text-decoration: none;
@@ -143,9 +147,9 @@ body {
 }
 
 .ui-tabs li.current {
-	background: #bfe1ff url(../images/common/tabs_active_bg.png) repeat-x 0 0;
+	background: #BFE1FF url(../images/common/tabs_active_bg.png) repeat-x 0 0;
 	font-weight: bold;
-	border: 1px solid #bfe1ff;
+	border: 1px solid #BFE1FF;
 }
 
 .ui-tabs li.current a, .ui-tabs li.current span {
@@ -154,24 +158,15 @@ body {
 }
 
 .ui-tabs li a:hover, .ui-tabs li span:hover {
-	background:transparent none repeat scroll 0 0;
+	background: none;
 }
 
 .ui-tabs li a, .tabs li span {
-	background:transparent none repeat scroll 0 0;
-	color:black;
+	background: none;
+	color: #000;
 }
 
 .ui-tabs li.current a, .ui-tabs li.current span {
-	background:transparent none repeat scroll 0 0;
-	border:medium none;
-}
-
-.portlet-content {
-	padding:10px 5px 25px 12px;
-}
-
-.js .lfr-dock-list-container {
-	height: 0px;
-	overflow: visible;
+	background: none;
+	border: none;
 }
