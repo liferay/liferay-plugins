@@ -1,5 +1,4 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
+/* Global */
 a {
 	color: #000;
 }
@@ -11,9 +10,7 @@ body {
 	font-size: 63.8%;
 }
 
-
-/* ---------- Main content body ---------- */
-
+/* Main Content Body */
 #content-wrapper {
 	margin-left: 14px;
 	margin-top: 22px;
@@ -27,9 +24,7 @@ body {
 	width: 900px;
 }
 
-
-/* ---------- Banner ---------- */
-
+/* Banner */
 #banner .logo a {
 	text-decoration: none;
 }
@@ -39,6 +34,7 @@ body {
 	display: block;
 	float: left;
 	font-size: 2em;
+	margin: 1em;
 }
 
 #banner {
@@ -51,19 +47,17 @@ body {
 	width: 870px;
 }
 
-
-/* ---------- Main navigation ---------- */
-
+/* Navigation */
 .js #add-page {
-	background:transparent url(../images/common/add.png) 5px 50% no-repeat;
-	border:medium none;
-	bottom:0;
-	float:left;
-	font-weight:bold;
-	padding-top:0.3em;
-	position:absolute;
-	right:6px;
-	top:-5px;
+	background: url(../images/common/add.png) 5px 50% no-repeat;
+	border: none;
+	bottom: 0;
+	float: left;
+	font-weight: bold;
+	padding-top: 0.3em;
+	position: absolute;
+	right: 6px;
+	top: -5px;
 }
 
 .js #add-page a {
@@ -146,7 +140,6 @@ body {
 	overflow: hidden;
 	padding-right: 1em;
 	position: relative;
-	text-transform: capitalize;
 	top: 14px;
 }
 
@@ -154,8 +147,7 @@ body {
 	background-color:transparent;
 }
 
-/* ---------- Portlet wrapper and icons ---------- */
-
+/* Portlet */
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: none;
 }
@@ -188,28 +180,28 @@ body {
 	padding-right: 10px;
 	text-align: left;
 }
-/* ---------- Tabs ----------- */
 
+/* Tabs */
 .ui-tabs li.current a, .ui-tabs li.current span {
-	background:#EACE46 none repeat scroll 0 0;
-	border:medium none;
-	color:white;
+	background: #EACE46;
+	border: none;
+	color: #FFF;
 }
 
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background-color:#EACE46;
+	background-color: #EACE46;
 	text-decoration: none;
 }
 
 .ui-tabs li a, .tabs li span {
-	background:transparent none repeat scroll 0 0;
-	border-right:medium none;
-	color:black;
-	top:0;
+	background: transparent none;
+	border-right: none;
+	color: #000;
+	top: 0;
 }
 
 .ui-tabs li a:hover, .ui-tabs li span:hover {
-	background:black;
-	color:#FFF;
+	background: #000;
+	color: #FFF;
 	text-decoration: none;
 }
