@@ -1,8 +1,4 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
-
-/* ---------- Main content body ---------- */
-
+/* Main */
 #wrapper {
 	background: #FFF;
 	border: 3px double #E4E4E4;
@@ -12,17 +8,17 @@
 }
 
 #content-wrapper {
-	width: 100%;
+	margin: 25px 0.5em;
+	padding-top: none;
+	width: 870px;
 }
 
-/* ---------- Banner ---------- */
-
+/* Banner */
 #banner .logo {
 	background: none;
 	display: block;
 	float: left;
 	font-size: 2em;
-	/*padding: 1.25em 0.6em 1.45em;*/
 }
 
 #banner .logo a {
@@ -59,9 +55,7 @@ table {
 	clear: both;
 }
 
-
-/* ---------- Main navigation ---------- */
-
+/* Navigation */
 .js #navigation .enter-page {
 	background: none;
 	padding: 0.5em 2em 0.7em 1.5em;
@@ -126,14 +120,12 @@ table {
 #navigation ul {
 	float: left;
 	min-height: 2em;
-	padding: 3px;
 	width: auto;
 }
 
 #navigation {
 	background: #EEE none;
 	border-top: 1px solid #666;
-	height: 42px;
 	margin: 0 0.5em;
 	min-height: 2.2em;
 	overflow: hidden;
@@ -148,8 +140,7 @@ table {
 	color: black;
 }
 
-/* ---------- Dock without Javascript ---------- */
-
+/* Dock without Javascript */
 .lfr-dock h2 {
 	background: url(../images/navigation/welcome_message.png) no-repeat 0 50%;
 	font-size: 1.2em;
@@ -158,15 +149,7 @@ table {
 	text-align: center;
 }
 
-
-/* ---------- Dock with Javascript ---------- */
-
-#content-wrapper {
-	margin: 25px 0.5em;
-	padding-top: none;
-	width: 870px;
-}
-
+/* Dock with Javascript */
 .js #add-page a {
 	color: #000;
 	padding: 8px 20px;
@@ -224,9 +207,20 @@ table {
 	top: 5px;
 }
 
+.js .lfr-dock-list-container {
+	height: 0px;
+	overflow: visible;
+}
+
+/* Portlet */
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: #FCFCFC;
 	padding: 10px;
+}
+
+.portlet {
+	padding: 0;
+	margin-bottom: 30px;
 }
 
 .portlet-title {
@@ -242,16 +236,11 @@ table {
 	background: #FCFCFC url(../images/common/bgitem.png) repeat-x scroll 0;
 	background-position: right top;
 	border-bottom: 1px solid #727C81;
-	margin-right: -10px;
-	padding-right: 40px;
+	padding: 0;
 	position: relative;
 }
 
-.portlet {
-	border: 2px solid #727C81;
-	margin: 0 auto 10px;
-}
-
+/* Liferay UI */
 .ui-tabs li a, .ui-tabs li span {
 	background: url(../images/common/tabs_bg.png) repeat scroll -2px -150px;
 	color: #323232;
@@ -302,8 +291,7 @@ background:transparent;
 color:black;
 }
 
-/* ---------- Table or section header ---------- */
-
+/* Tables */
 .portlet-section-header th {
 	border-bottom: 1px solid #CCC;
 	color: #333;
@@ -316,9 +304,6 @@ color:black;
 	padding: 1px 0 0;
 }
 
-
-/* ---------- Normal text in a table cell ---------- */
-
 .portlet-section-body td {
 	background: #E9E9E9;
 	border-top: 1px solid #BFBFBF;
@@ -330,16 +315,9 @@ color:black;
 	color: #000;
 }
 
-
-/* ---------- 1 column ---------- */
-
+/* 1 column */
 .columns-1 #column-1, .columns-max #column-1 {
 	display: table;
 	padding-left: 0;
 	padding-right: 0;
-}
-
-.js .lfr-dock-list-container {
-	height: 0px;
-	overflow: visible;
 }
