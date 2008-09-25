@@ -1,28 +1,27 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
-
-/* ---- BASE ---- */
+/* Base */
 
 #banner .logo a {
-	margin: 0 0 0 -20000px;/* -20000px;*/
+	display: none;
 }
 
 #banner h1.logo {
-	background: transparent url(../images/custom/common/banner_bg.png) no-repeat scroll right bottom;
-	float: right;
-	height: 145px;
-	left: 12%;
-	margin: 25px 0 0pt;
-	position: relative;
-	top: -31px;
-	width: 12%;
+	display: none;
 }
 
 #banner {
-	background: transparent url(../images/custom/common/banner_bg.png) no-repeat scroll 0 0pt;
+	background: url(../images/custom/common/banner_bg.png) no-repeat;
 	height: 160px;
+	margin: 0 25px 15px 0;
 	position: relative;
-	width: 90%;
+}
+
+#banner .banner-right{
+	background: url(../images/custom/common/banner_bg.png) no-repeat top right;
+	position: absolute;
+	height: 160px;
+	right: -25px;
+	top: 0;
+	width: 30px;
 }
 
 body {
@@ -35,11 +34,16 @@ body {
 }
 
 #content-wrapper {
-	font-size: 110%;
-	position: relative;
-	top: -25px;
+	font-size: 12px;
 }
-/* ---- NAVIGATION ---- */
+
+/* Dock */
+.js .lfr-dock.interactive-mode {
+	right: 10px;
+	top: 40px;
+}
+
+/* Navigation */
 
 .js #add-page a span {
 	background: transparent;
@@ -74,11 +78,6 @@ body {
 
 .js #navigation {
 	position: absolute;
-}
-
-.js .lfr-dock.interactive-mode {
-	right: 100px;
-	top: 40px;
 }
 
 #navigation li a span {
@@ -148,37 +147,30 @@ body {
 	width: 75%;
 }
 
-
-/* ---- PORTLET ---- */
-
+/* Portlet */
 .portlet-content {
-	background: transparent url(../images/custom/portlet/portlet_bg.png) repeat scroll right bottom;
-	margin: 0 -3px 20px 8px;
-	padding-bottom: 21px;
-	padding-top: 19px;
-}
-
-.portlet-title {
-	color: #FFF;
-	margin-right: 30px;
-	padding: 30px 0 15px 15px;
+	background: url(../images/custom/portlet/portlet_bg.png) no-repeat right bottom;
+	padding: 15px 15px 30px 0;
+	margin-left: 15px;
 }
 
 .portlet-topper {
-	background: transparent url(../images/custom/portlet/portlet_bg.png) repeat scroll right 0;
-	border: medium none;
-	margin: -3px -3px 0 9px;
+	background: url(../images/custom/portlet/portlet_bg.png) no-repeat right top;
+}
+
+.portlet-title {
+	background: url(../images/custom/portlet/portlet_bg.png) no-repeat left top;
+	padding: 30px 15px 15px;
+	color: #FFF;
+	margin-right: 60px;
 }
 
 .portlet {
-	background: url(../images/custom/portlet/portlet_bg.png);
-	border: none;
-	padding: 0;
+	background: url(../images/custom/portlet/portlet_bg.png) no-repeat bottom left;
+	margin-bottom: 15px;
 }
 
-
-/* ---- TABS ---- */
-
+/* Tabs */
 .ui-tabs li.current a, .ui-tabs li.current span {
 	background:transparent url(../images/custom/common/banner_bg.png) no-repeat scroll -505px -50px;
 	border:medium none;
@@ -202,5 +194,3 @@ body {
 	color:white;
 	text-decoration: none;
 }
-
-/* ---- MISS. OTHERS ---- */
