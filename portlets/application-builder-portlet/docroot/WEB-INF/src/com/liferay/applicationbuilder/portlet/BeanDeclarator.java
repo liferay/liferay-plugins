@@ -38,6 +38,7 @@ import org.mozilla.javascript.ScriptableObject;
  * </a>
  *
  * @author Alberto Montero
+ * @author Raymond Augé
  *
  */
 public class BeanDeclarator {
@@ -59,8 +60,42 @@ public class BeanDeclarator {
 			"portletContext", portletContext, PortletContext.class);
 		bsfManager.declareBean(
 			"portletRequest", portletRequest, PortletRequest.class);
+
+		if (portletRequest instanceof ActionRequest) {
+			bsfManager.declareBean(
+				"actionRequest", (ActionRequest)portletRequest,
+				ActionRequest.class);
+		}
+		else if (portletRequest instanceof ResourceRequest) {
+			bsfManager.declareBean(
+				"resourceRequest", (ResourceRequest)portletRequest,
+				ResourceRequest.class);
+		}
+		else {
+			bsfManager.declareBean(
+				"renderRequest", (RenderRequest)portletRequest,
+				RenderRequest.class);
+		}
+
 		bsfManager.declareBean(
 			"portletResponse", portletResponse, PortletResponse.class);
+
+		if (portletResponse instanceof ActionResponse) {
+			bsfManager.declareBean(
+				"actionResponse", (ActionResponse)portletResponse,
+				ActionResponse.class);
+		}
+		else if (portletResponse instanceof ResourceResponse) {
+			bsfManager.declareBean(
+				"resourceResponse", (ResourceResponse)portletResponse,
+				ResourceResponse.class);
+		}
+		else {
+			bsfManager.declareBean(
+				"renderResponse", (RenderResponse)portletResponse,
+				RenderResponse.class);
+		}
+
 		bsfManager.declareBean(
 			"preferences", preferences, PortletPreferences.class);
 		bsfManager.declareBean("userInfo", userInfo, Map.class);
@@ -87,8 +122,42 @@ public class BeanDeclarator {
 			Context.javaToJS(portletContext, scope));
 		ScriptableObject.putProperty(
 			scope, "portletRequest", Context.javaToJS(portletRequest, scope));
+
+		if (portletRequest instanceof ActionRequest) {
+			ScriptableObject.putProperty(
+				scope, "actionRequest",
+				Context.javaToJS((ActionRequest)portletRequest, scope));
+		}
+		else if (portletRequest instanceof ResourceRequest) {
+			ScriptableObject.putProperty(
+				scope, "resourceRequest",
+				Context.javaToJS((ResourceRequest)portletRequest, scope));
+		}
+		else {
+			ScriptableObject.putProperty(
+				scope, "renderRequest",
+				Context.javaToJS((RenderRequest)portletRequest, scope));
+		}
+
 		ScriptableObject.putProperty(
 			scope, "portletResponse", Context.javaToJS(portletResponse, scope));
+
+		if (portletResponse instanceof ActionResponse) {
+			ScriptableObject.putProperty(
+				scope, "actionResponse",
+				Context.javaToJS((ActionResponse)portletResponse, scope));
+		}
+		else if (portletResponse instanceof ResourceResponse) {
+			ScriptableObject.putProperty(
+				scope, "resourceResponse",
+				Context.javaToJS((ResourceResponse)portletResponse, scope));
+		}
+		else {
+			ScriptableObject.putProperty(
+				scope, "renderResponse",
+				Context.javaToJS((RenderResponse)portletResponse, scope));
+		}
+
 		ScriptableObject.putProperty(
 			scope, "preferences", Context.javaToJS(preferences, scope));
 		ScriptableObject.putProperty(
