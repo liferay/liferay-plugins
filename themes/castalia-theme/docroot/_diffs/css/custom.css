@@ -1,5 +1,4 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
-
+/* Global */
 #banner .logo a {
 	background: transparent url(/image/company_logo?img_id=0&t=1213776897250) no-repeat scroll 0;
 	display: block;
@@ -73,17 +72,23 @@ body {
 	width: 946px;
 }
 
-.js #navigation .enter-page {
+#wrapper {
 	background: transparent;
-	padding: 0 10px;
 }
 
+/* Dock */
 .js .interactive-mode {
 	float: right;
 	min-width: 150px;
 	position: absolute;
 	right: 30pt;
 	top: 10pt;
+}
+
+/* Navigation */
+.js #navigation .enter-page {
+	background: transparent;
+	padding: 0 10px;
 }
 
 #navigation li a span {
@@ -144,6 +149,7 @@ body {
 	width: 928px;
 }
 
+/* Portlet */
 .portlet-topper {
 	background: #76877D url(../images/custom/portlet/portlet_top.png) repeat-x scroll 0 0px;
 	color: #FFF;
@@ -156,6 +162,7 @@ body {
 	text-align: left;
 }
 
+/* Liferay UI */
 .ui-tabs li {
 	background: #A8BDB9 url(../images/custom/common/tabs_inactive_bg.png) repeat-x scroll 0 -65%;
 	border-color: #9EB4A8;
@@ -178,10 +185,6 @@ body {
 	border-bottom: 1px solid #9EB4A8;
 	margin: 0 0pt 1.5em;
 	padding: 0 0pt 0 1em;
-}
-
-#wrapper {
-	background: transparent;
 }
 
 .ui-tabs li a, .ui-tabs li span {
