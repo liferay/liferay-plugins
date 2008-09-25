@@ -1,3 +1,4 @@
+/* Global */
 #banner {
 	background: #D9EBFD url(../images/common/top.jpg) repeat-x scroll 0;
 	border-bottom: 1px solid #89C8FF;
@@ -6,15 +7,18 @@
 	position: relative;
 }
 
-.js #add-page a {
-	color: #FFF;
-}
-
+/* Dock */
 .js .interactive-mode {
 	position: absolute;
 	top: 12px;
 }
 
+/* Navigation */
+.js #add-page a {
+	color: #FFF;
+}
+
+/* Portlet */
 .portlet-title {
 	color: white;
 	display: block;
@@ -31,6 +35,7 @@
 	border: 2px solid #64ACDF;
 }
 
+/* Liferay UI */
 .ui-tabs {
 	border-bottom: 1px solid #bfe1ff;
 	margin: 0 0 1.5em 0;
