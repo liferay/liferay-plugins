@@ -1,3 +1,4 @@
+/* Global */
 #all-content-wrapper {
 	position: relative;
 }
@@ -12,16 +13,6 @@
 	right:-215px;
 	top: 0;
 	width: 200px;
-}
-
-.lfr-dock h2 {
-	text-align:left;
-	margin-left: -25px;
-}
-
-.js #navigation .enter-page .save-page {
-	margin:4px 10px;
-	position:absolute;
 }
 
 #banner h1.logo a {
@@ -60,8 +51,38 @@
 	width: 760px;
 }
 
-.ie .portlet-title {
-	padding-bottom: 5px;
+#wrapper {
+	background: #E7E7E7 url('../images/custom/content_bg.png') repeat-y scroll;
+	margin: 0 auto;
+	padding: 0;
+	width: 760px;
+}
+
+body {
+	background: #E7E7E7;
+}
+
+/* Dock */
+.lfr-dock h2 {
+	text-align:left;
+	margin-left: -25px;
+}
+
+.js .interactive-mode {
+	right: 22%;
+	top: 46px;
+}
+
+.lfr-dock {
+	margin: 0 0 1em;
+	position: relative;
+	z-index: 60;
+}
+
+/* Navigation */
+.js #navigation .enter-page .save-page {
+	margin:4px 10px;
+	position:absolute;
 }
 
 .js #add-page {
@@ -80,17 +101,6 @@
 .js #navigation .enter-page {
 	background-color: transparent;
 	padding: 0;
-}
-
-.js .interactive-mode {
-	right: 22%;
-	top: 46px;
-}
-
-.lfr-dock {
-	margin: 0 0 1em;
-	position: relative;
-	z-index: 60;
 }
 
 #navigation h2, .lfr-dock h2 {
@@ -140,6 +150,11 @@
 	border: none;
 }
 
+/* Portlet */
+.ie .portlet-title {
+	padding-bottom: 5px;
+}
+
 .portlet-content {
 	background-position: left bottom;
 	color: #333;
@@ -179,15 +194,4 @@
 	margin: 10px 0;
 	padding: 0;
 	text-align: left;
-}
-
-#wrapper {
-	background: #E7E7E7 url('../images/custom/content_bg.png') repeat-y scroll;
-	margin: 0 auto;
-	padding: 0;
-	width: 760px;
-}
-
-body {
-	background: #E7E7E7;
 }
