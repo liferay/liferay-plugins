@@ -1,49 +1,49 @@
+/* Global */
+html {
+	overflow-y: scroll;
+}
+
+body {
+	background: #F9F9F7 url(../images/custom/page_bg_1.png) repeat-x center top;
+	color: #8C8C73;
+	font-family: trebuchet ms,  helvetica,  sans-serif;
+	font-size: 11px;
+	height: auto;
+	line-height: 18px;
+}
+
 #banner .logo a {
 	color: #FFF;
 	font-size: 23px;
 	font-weight: normal;
 	left: 20px;
-	letter-spacing: -1px;
 	position: absolute;
+	text-decoration: none;
 	top: 36px;
 }
 
-html {
-	overflow-y: scroll;
-}
-
 #banner .logo {
-	background: #FF7800 url('../images/custom/banner_bg_2.png') repeat-x scroll 0 0pt;
+	background: #FF7800 url(../images/custom/banner_bg_2.png) repeat-x;
 	color: #FFF;
 	display: block;
 	height: 92px;
+	margin: 0;
+	position: absolute;
 	top: 13px;
+	left: 25px;
 	width: 432px;
 }
 
-#banner h1.logo {
-	left: 24px;
-	margin: 0;
-}
-
 #banner {
-	background: transparent url('../images/custom/banner_bg_1.jpg') no-repeat scroll 464px 13px;
+	background: transparent url(../images/custom/banner_bg_1.jpg) no-repeat 464px 13px;
 	border: 0 none;
 	height: 105px;
 	position: relative;
 	top: 0;
 }
 
-body {
-	background: transparent url('../images/custom/page_bg_2.png') repeat-y scroll top center;
-	color: #8C8C73;
-	font-family: 'trebuchet ms', ' helvetica', ' sans-serif';
-	font-size: 11px;
-	height: auto;
-	line-height: 18px;
-}
-
 #content-wrapper {
+	margin: 0 auto;
 	width: 905px;
 }
 
@@ -52,26 +52,55 @@ body {
 }
 
 #footer {
-	background: transparent none;
+	background: none;
 	color: #A8A88D;
 	display: block;
 	font-size: 11px;
 	height: 66px;
 	margin: 0 30px;
-	padding: 26px 0 0 0;
+	padding: 26px 0 0;
 	text-align: center;
 }
 
-html {
-	background: #F9F9F7 url('../images/custom/page_bg_1.png') repeat-x scroll top center;
-	overflow-y: scroll;
+#wrapper {
+	background: url(../images/custom/wrapper_bg.png) no-repeat top center;
+	border: 0 solid #CCC;
+	margin: 0 auto;
+	width: 947px;
 }
 
+/* Dock */
+.js .interactive-mode h2 span {
+	border: none;
+}
+
+.js .interactive-mode h2 {
+	background: url(/terrafirma-theme/images/custom/menu_bar.png) no-repeat 100% -30px;
+	font-size: 1.2em;
+	margin-bottom: 0;
+	padding: 0 29px 0 0pt;
+	position: relative;
+	z-index: 82;
+}
+
+.js .lfr-dock.interactive-mode h2, .js .lfr-dock.interactive-mode h2 span {
+	background: url(../images/custom/menu_bar.png);
+}
+
+.js .lfr-dock.interactive-mode ul {
+	background: url(../images/custom/menu_bg.png);
+	border: 0;
+}
+
+.js .lfr-dock.interactive-mode {
+	top: 27px;
+}
+
+/* Navigation */
 .js #add-page {
-	background: transparent none repeat scroll 0 0%;
-	border: medium none;
+	border: none;
+	position: absolute;
 	right: 0;
-	top: -4px;
 }
 
 .js #navigation .enter-page .save-page {
@@ -85,44 +114,13 @@ html {
 }
 
 .js #navigation .enter-page:hover {
-	background: #FFF url('../images/custom/bg_2.png') repeat-x scroll center top;
+	background: #FFF url(../images/custom/bg_2.png) repeat-x center top;
 }
 
 .js .delete-tab {
-	background: transparent url('../images/custom/remove.png') no-repeat scroll 42% 50%;
+	background: transparent url(../images/custom/remove.png) no-repeat 42% 50%;
 	right: 6px;
 	top: 12px;
-}
-
-.js .interactive-mode h2 span {
-	border: none;
-}
-
-.js .interactive-mode h2 {
-	background: transparent url('/terrafirma-theme/images/custom/menu_bar.png') no-repeat scroll 100% -30px;
-	font-size: 1.2em;
-	margin-bottom: 0;
-	padding: 0 29px 0 0pt;
-	position: relative;
-	z-index: 82;
-}
-
-.js .lfr-dock.expanded .lfr-dock-list-container {
-	background-color: transparent;
-}
-
-.js .lfr-dock.interactive-mode h2, .js .lfr-dock.interactive-mode h2 span {
-	background-image: url('../images/custom/menu_bar.png');
-}
-
-.js .lfr-dock.interactive-mode ul {
-	background-color: transparent;
-	background-image: url('../images/custom/menu_bg.png');
-	border: 0;
-}
-
-.js .lfr-dock.interactive-mode {
-	top: 27px;
 }
 
 #navigation li {
@@ -130,12 +128,7 @@ html {
 }
 
 #navigation li.selected a span {
-	background: transparent;
 	padding-left: 0;
-}
-
-#navigation li.selected a, #navigation li a:hover {
-	background-color: transparent;
 }
 
 #navigation ul li a span, #navigation ul li.selected a span, #navigation ul li a:hover span, #navigation ul li.selected a:hover span, #add-page a span {
@@ -154,7 +147,7 @@ html {
 }
 
 #navigation ul li a:hover, #navigation ul li.selected a:hover {
-	background: #FFF url('../images/custom/bg_2.png') repeat-x scroll center top;
+	background: #FFF url(../images/custom/bg_2.png) repeat-x center top;
 	color: #4A4A24;
 	text-decoration: none;
 }
@@ -168,15 +161,17 @@ html {
 }
 
 #navigation {
-	background:#46461F url(../images/custom/bg_1.png) repeat-x scroll 0 0;
-	border: medium none;
+	background: #46461F url(../images/custom/bg_1.png) repeat-x;
+	border: none;
 	height: 52px;
 	margin: 6px 24px;
+	position: relative;
 	width: auto;
 }
 
+/* Portlet */
 .portlet-topper {
-	background: transparent url('../images/custom/portlet_title_bg.png') repeat-x scroll center bottom;
+	background: url(../images/custom/portlet_title_bg.png) repeat-x scroll center bottom;
 	border: none;
 }
 
@@ -196,34 +191,26 @@ html {
 }
 
 .portlet {
-	background: transparent url('../images/custom/portlet_bg.png') repeat-x scroll center bottom;
+	background: #FFF url(../images/custom/portlet_bg.png) repeat-x scroll center bottom;
 	border: 0;
 	margin: 18px 0;
 }
 
-#wrapper {
-	background: transparent url('../images/custom/wrapper_bg.png') no-repeat scroll top center;
-	border: 0 solid #CCC;
-	margin: 0 auto;
-	width: 947px;
-}
-
-/*------ Tabs ------*/
-
+/* Liferay UI */
 .ui-tabs li a, .tabs li span {
-	background:#46461F url(../images/custom/bg_1.png) repeat-x scroll 0 0;
-	border-right:medium none;
+	background:#46461F url(../images/custom/bg_1.png) repeat-x;
+	border-right: none;
 	top:0;
 }
 
 .ui-tabs li a:hover, .ui-tabs li span:hover {
-	background:#FFFFFF url(../images/custom/bg_2.png) repeat-x scroll center top;
-	color:black;
+	background:#FFFFFF url(../images/custom/bg_2.png) repeat-x center top;
+	color: #000;
 	text-decoration: none;
 }
 
 .ui-tabs li.current a, .ui-tabs li.current span {
-	background:transparent url(../images/custom/banner_bg_1.jpg) no-repeat scroll right center;
-	border:medium none;
-	color:black;
+	background: url(../images/custom/banner_bg_1.jpg) no-repeat right center;
+	border: none;
+	color: #000;
 }
