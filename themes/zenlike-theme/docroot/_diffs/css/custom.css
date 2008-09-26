@@ -1,3 +1,4 @@
+/* Global */
 #banner .logo a {
 	margin-left: 16px;
 	margin-top: 32px;
@@ -10,49 +11,44 @@
 }
 
 #banner h1.logo {
-	background: #2B2B2B url('../images/custom/topbg.png') repeat-x scroll 0 0%;
+	background: #2B2B2B url('../images/custom/topbg.png') repeat-x;
 	border: 7px solid white;
 	border-bottom: none;
-	height: 120px;
-	left: auto;
 	margin: 0;
-	position: relative;
 }
 
 #banner {
-	background: #FFF url('../images/custom/hdrpic.jpg') no-repeat scroll 7px bottom;
+	background: #FFF url('../images/custom/hdrpic.jpg') no-repeat 7px bottom;
 	border: 7px solid white;
 	border-bottom: none;
 	border-top: 2px solid white;
 	height: 240px;
-	position: relative;
-	top: 35px;
 	width: 960px;
 	margin: 0 auto;
 }
 
 body {
-	background: #000 url('../images/custom/bg1.jpg') repeat scroll 0 0%;
+	background: #000 url('../images/custom/bg1.jpg');
 	font-family: 'georgia', 'times new roman', serif;
-	font-size: 10pt;
-	padding: 35px 0;
+	font-size: 12px;
+	padding: 0 0 35px;
 }
 
 #content-wrapper {
 	background: white none repeat scroll 0 0%;
-	border: 7px solid white;
-	width: 960px;
-	margin:-35px auto;
+	border: 14px solid white;
+	width: 946px;
+	margin: 0 auto;
 }
 
 #footer {
-	background: #FFF url('../images/custom/border2.png') repeat-x scroll 0em 2.5em;
+	background: #FFF url('../images/custom/border2.png') repeat-x 0em 2.5em;
 	clear: both;
 	font-size: 0.8em;
 	height: 2em;
 	padding-top: 5em;
 	position: relative;
-	width:974px;
+	width: 974px;
 	margin: 0 auto;
 }
 
@@ -60,16 +56,28 @@ html {
 	overflow-y: scroll;
 }
 
+#wrapper {
+	background: transparent url(../images/custom/bg2.jpg) repeat-x;
+	margin: 0 auto;
+	padding-top: 30px;
+}
+
+/* Dock */
+.js .interactive-mode {
+	right: 18px;
+	top: 18px;
+}
+
+/* Navigation */
 .js #add-page {
-	background: transparent none repeat scroll 0 0%;
-	border: medium none;
-	font-weight: normal;
-	right: -1%;
-	top: 6px;
+	background: none;
+	position: absolute;
+	right: 0;
+	top: 0;
 }
 
 .js #navigation .enter-page .save-page {
-	background: transparent url('../images/custom/menuactive.png') repeat-x scroll left top;
+	background: transparent url('../images/custom/menuactive.png') repeat-x;
 	padding: 8px 20px 20px;
 }
 
@@ -77,87 +85,69 @@ html {
 	background-color: transparent;
 }
 
-.js .interactive-mode {
-	right: 18px;
-	top: 18px;
+#navigation a {
+	color: #FFF;
+	padding: 13px 22px;
 }
 
-#navigation a {
-	color: white;
+#navigation li {
+	
 }
 
 #navigation li a:hover {
 	text-decoration: underline;
 }
 
-#navigation li {
-	border: none;
-}
-
-#navigation li.selected a span {
-	background: transparent;
-	padding-left: 0;
-}
-
 #navigation li.selected a, #navigation li a:hover {
-	background: #7F8400 url('../images/custom/menuactive.png') repeat-x scroll left top;
+	background: #7F8400 url('../images/custom/menuactive.png') repeat-x;
 	background-color: transparent;
 }
 
 #navigation ul {
-	margin: 6pt auto 6pt -6px;
+	margin: 11px auto;
 }
 
 #navigation {
-	background: #7F8400 url('../images/custom/menubg.png') repeat-x scroll left top;
+	background: #7F8400 url('../images/custom/menubg.png') repeat-x;
 	border: 14px solid #FFF;
-	border-bottom: 4px solid white;
-	border-top: 4px solid white;
-	margin: 35px auto;
+	border-bottom: 4px solid #FFF;
+	border-top: 4px solid #FFF;
+	margin: 0 auto;
 	padding: 0em 1em;
 	position: relative;
-	width:920px;
+	width: 922px;
 }
 
+/* Portlet */
 .portlet-topper {
-	background: #FFF url('../images/custom/border1.png') repeat-x scroll 0 0%;
+	background: #FFF url('../images/custom/border1.png') repeat-x;
 	height: 30px;
 	width: auto;
 }
 
 .portlet {
-	border: none;
+	margin-bottom: 15px;
 }
 
-#wrapper {
-	background:transparent url(../images/custom/bg2.jpg) repeat-x scroll top;
-	margin:-35px auto;
-	width:1264px;
-	position: relative;
-}
-
-/*----- Tabs ------*/
-
+/* Tabs */
 .ui-tabs li a, .tabs li span {
-	background:#7F8400 url(../images/custom/menubg.png) repeat-x scroll left top;
-	border-right:medium none;
-	top:0;
+	background: #7F8400 url(../images/custom/menubg.png) repeat-x;
+	border-right: none;
 }
 
 .ui-tabs li.current a, .ui-tabs li.current span {
-	background:transparent url(../images/custom/menuactive.png) repeat-x scroll left top;
-	border:medium none;
-	color:white;
+	background: transparent url(../images/custom/menuactive.png) repeat-x;
+	border: none;
+	color: #FFF;
 }
 
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background-color:transparent;
-	background:transparent url(../images/custom/menuactive.png) repeat-x scroll left top;
-	color: white;
+	background: transparent url(../images/custom/menuactive.png) repeat-x;
+	color: #FFF;
 	text-decoration: none;
 }
 
 .ui-tabs li a:hover, .ui-tabs li span:hover {
-	background:transparent url(../images/custom/menuactive.png) repeat-x scroll left top;
-	color:white;
+	background: transparent url(../images/custom/menuactive.png) repeat-x;
+	color: #FFF;
 }
