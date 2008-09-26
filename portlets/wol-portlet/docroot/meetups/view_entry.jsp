@@ -37,7 +37,21 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 long meetupsEntryId = ParamUtil.getLong(request, "meetupsEntryId");
 
-MeetupsEntry meetupsEntry = MeetupsEntryLocalServiceUtil.getMeetupsEntry(meetupsEntryId);
+MeetupsEntry meetupsEntry = null;
+
+try {
+	meetupsEntry = MeetupsEntryLocalServiceUtil.getMeetupsEntry(meetupsEntryId);
+}
+catch (NoSuchMeetupsEntryException nsmee) {
+%>
+
+	<span class="portlet-msg-error">
+		The meetup could not be found.
+	</span>
+
+<%
+	return;
+}
 
 MeetupsRegistration meetupsRegistration = null;
 
