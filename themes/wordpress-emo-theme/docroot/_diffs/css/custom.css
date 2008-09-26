@@ -1,8 +1,10 @@
+/* Global */
 #banner {
 	background: black url(../images/custom/header.jpg) repeat left;
 	height: 115px;
 	position: relative;
 }
+
 body {
 	background: black;
 	color: #FFFFFF;
@@ -10,111 +12,145 @@ body {
 	font-size: 12px;
 	line-height: 17px;
 }
+
 #wrapper {
 	background: black;
 	position: relative;
 	width:950px;
 	margin: 0 auto;
 }
-#navigation {
-	background:black none repeat scroll 0 0;
-	border:medium none;
-	height:55px;
-	margin-top:-1px;
+
+#content-wrapper {
 	width:100%;
+	background: black;
+	margin: 0 auto;
 }
+
+#banner .logo {
+	margin: 0;
+	position: absolute;
+	left: 15px;
+	top: 15px;
+}
+
+a {
+	color: #336699;
+	font-size: 12px;
+}
+
+/* Dock */
+.js .interactive-mode {
+	right: 0;
+}
+
+/* Navigation */
+#navigation {
+	background: #000;
+	height: 55px;
+	position: relative;
+}
+
 #navigation li {
 	border: none;
-	margin:15px 0 0 -1px;
+	margin: 15px 0 0 -1px;
 }
+
 #navigation li.selected a, #navigation li a:hover {
+	color: #336699;
 	background-color: transparent;
 }
+
 #navigation li a:hover {
-	color: black;
+	color: #555;
 	text-decoration: underline;
 }
+
 #navigation li.selected a span {
 	background: transparent;
 	padding-left: 0px;
 }
+
 #navigation li a {
 	color: white;
 	font-size: 16px;
 	font-weight: bold;
 	padding: 5px 10px;
 }
+
 .js #add-page {
-	background: transparent none repeat scroll 0% 0%;
-	border: medium none;
-	top: -2px;
+	position: absolute;
+	right: 0;
+	top: 0;
 }
-#content-wrapper {
-	width:100%;
-	background: black;
-	margin:-20px auto;
+
+.js #navigation .enter-page {
+	background-color: transparent;
 }
+
+/* Portlet */
 .portlet {
 	background: transparent;
 	border: 1px solid white;
+	margin-bottom: 10px;
 }
+
 .portlet-topper {
 	background: transparent;
 	border: none;
 	color: white;
 	font-size: 16px;
 }
+
 .portlet-calendar .calendar-container {
 	background: transparent;
 }
-a {
-	color: #336699;
-	font-size: 12px;
+
+.portlet-calendar .calendar-day .day-number {
+	background:black none repeat scroll 0% 0%;
 }
-.js .interactive-mode {
-	right: 0;
+
+.portlet-section-body td {
+	color: black;
 }
+
+/* Liferay UI */
 .ui-tabs li a:hover, .ui-tabs li span:hover {
 	background: transparent;
 	color: #336699;
 }
+
 .ui-tabs li a, .tabs li span {
 	background: transparent none repeat scroll 0% 0%;
 	border: 1px dotted white;
 	top: 0;
 }
+
 .ui-tabs {
 	border-bottom: medium none;
 }
+
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
 	background-color: transparent;
 }
+
 .ui-tabs li.current a, .ui-tabs li.current span {
 	background: transparent none repeat scroll 0% 0%;
 	border: 1px solid white;
 	color: #336699;
 }
-.js #navigation .enter-page {
-	background-color: transparent;
-}
+
 .ui-dialog.ui-resizable-disabled .ui-dialog-content {
 	color: black;
 }
+
 .ui-dialog {
 	background-color: black;
 }
-.portlet-calendar .calendar-day .day-number {
-	background:black none repeat scroll 0% 0%;
-}
-.portlet-section-body td {
-	color: black;
-}
+
 .lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
 	color: #336699;
 }
+
 .uni-form fieldset legend {
 	color: white;
-}
-#navigation ul {
-	width:765px;
 }
