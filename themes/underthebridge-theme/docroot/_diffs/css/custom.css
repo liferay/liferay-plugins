@@ -1,3 +1,4 @@
+/* Global */
 #banner .logo a {
 	color: #FFF;
 	display: block;
@@ -5,14 +6,13 @@
 	font-style: italic;
 	font-weight: bold;
 	margin-left: 804px;
-	margin-top: -50px;
 	padding-right: 90px;
 	padding-top: 200px;
 	text-align: right;
 }
 
 #banner h1.logo {
-	left: auto;
+	margin: 0;
 }
 
 #banner {
@@ -28,26 +28,18 @@ body {
 	font-size: 62.5%;
 }
 
-#column-1 .portlet {
-	margin-right: 3px;
-}
-
-#column-2 .portlet {
-	margin-left: 3px;
-}
-
 #content-wrapper {
-	margin: -15pt auto;
+	margin: 0 auto;
 	width: 92%;
 }
 
 #content-wrapper, #portlet-wrapper- {
-	background: transparent url('../images/custom/content_tile.png') scroll repeat-y 0 0;
+	background: transparent url('../images/custom/content_tile.png') repeat-y;
 	padding: 0 40px;
 }
 
 #footer {
-	background: transparent url('../images/custom/footer.jpg') scroll no-repeat center top;
+	background: transparent url('../images/custom/footer.jpg') no-repeat center top;
 	font-size: 0.9em;
 	height: 63px;
 	padding-left: 80px;
@@ -60,12 +52,26 @@ body {
 	padding-bottom: 60px;
 }
 
-.js #add-page a span, .js #add-page a:hover span {
-	margin-top: 14px;
+#wrapper {
+	background-image: url('../images/custom/header.jpg');
+	color: #797D88;
+	font-size: 1.2em;
+	margin: 0 auto;
+	width: 997px;
 }
 
-.js #add-page a span {
-	background: transparent;
+/* Layout */
+#column-1 .portlet {
+	margin-right: 3px;
+}
+
+#column-2 .portlet {
+	margin-left: 3px;
+}
+
+/* Navigation */
+.js #add-page a span, .js #add-page a:hover span {
+	margin-top: 14px;
 }
 
 .js #add-page {
@@ -83,11 +89,6 @@ body {
 
 .js #navigation .enter-page {
 	background-color: transparent;
-}
-
-.js .lfr-dock.interactive-mode {
-	right: 170px;
-	top: 12px;
 }
 
 #navigation li {
@@ -109,12 +110,26 @@ body {
 	border-bottom: 0;
 }
 
-#navigation ul li a span, #navigation ul li.selected a span,#navigation ul li a:hover span, #navigation ul li.selected a:hover span,.js #add-page a span, .js #add-page a:hover span {
+#navigation ul li a span,
+#navigation ul li a:hover span,
+#add-page a span,
+#add-page a:hover span {
 	color: #FFF;
 	display: block;
 	float: left;
 	padding: 0.2em 1em;
 	text-decoration: none;
+}
+
+#add-page a span,
+#add-page a:hover span {
+	color: #555;
+}
+
+#navigation ul li.selected a span,
+#navigation ul li.selected a:hover span {
+	color: #555;
+	padding: 0.2em 1em;
 }
 
 #navigation ul li a:hover span, #navigation ul li.selected a:hover span, .js #add-page a:hover span {
@@ -128,7 +143,7 @@ body {
 
 #navigation ul {
 	display: block;
-	margin:0 65px;
+	margin: 0 30px 0 90px;
 }
 
 #navigation {
@@ -137,6 +152,13 @@ body {
 	height: 79px;
 }
 
+/* Dock */
+.js .lfr-dock.interactive-mode {
+	right: 40px;
+	top: 10px;
+}
+
+/* Portlet */
 .portlet-title {
 	color: #787C87;
 	font-size: 1.4em;
@@ -147,9 +169,10 @@ body {
 }
 
 .portlet {
-	border: none;
+	margin-bottom: 15px;
 }
 
+/* Liferay UI */
 .tabs li {
 	font: 12px/2.25em Arial;
 }
@@ -158,37 +181,26 @@ ul.child-menu {
 	display: none;
 }
 
-#wrapper {
-	background-image: url('../images/custom/header.jpg');
-	color: #797D88;
-	font-size: 1.2em;
-	margin: 0 auto;
-	width: 997px;
-}
-
-/*----- Tabs ------*/
-
 .ui-tabs li a, .tabs li span {
-	background:transparent url(../images/custom/linkbar_bg.jpg) repeat scroll center top;
-	border-right:medium none;
-	top:0;
+	background: url(../images/custom/linkbar_bg.jpg) center top;
+	border-right: none;
+	padding: 8px 13px;
 }
 
 .ui-tabs li a:hover, .ui-tabs li span:hover {
-	background:black;
-	color:white;
+	background: #000;
+	color: #FFF;
 	text-decoration: none;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span {
-	background:transparent url(../images/custom/linkbar_bg.jpg) repeat scroll 0 0;
-	border:medium none;
-	color:black;
+.ui-tabs li.current a,
+.ui-tabs li.current span {
+	background: url(../images/custom/linkbar_bg.jpg);
+	border: none;
+	color: #000;
 }
 
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background-color:transparent;
-	background:transparent url(../images/custom/linkbar_bg.jpg) repeat scroll 0 0;
-	text-decoration:none;
-	color: black;
+	background: url(../images/custom/linkbar_bg.jpg);
+	color: #000;
 }
