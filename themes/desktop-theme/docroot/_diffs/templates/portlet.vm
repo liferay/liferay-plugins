@@ -1,4 +1,35 @@
-#parse ("$full_templates_path/init_portlet.vm")
+## --- Common --- ##
+
+#set ($userLocalService = $serviceLocator.findService("com.liferay.portal.service.UserLocalService"))
+#set ($organizationLocalService = $serviceLocator.findService("com.liferay.portal.service.OrganizationLocalService"))
+
+#set ($portlet_display = $portletDisplay)
+
+## --- Group name --- ##
+
+#set ($group_name = "")
+
+#if ($layout.getGroup().isUser())
+	#set ($user2 = $userLocalService.getUserById($layout.getGroup().getClassPK()))
+	#set ($group_name = $user2.getFullName())
+#elseif ($layout.getGroup().isOrganization())
+	#set ($organization = $organizationLocalService.getOrganization($layout.getGroup().getClassPK()))
+	#set ($group_name = $organization.getName())
+#else
+	#set ($group_name = $layout.getGroup().getName())
+#end
+
+## --- Portlet --- ##
+
+#set ($portlet_id = $portlet_display.getId())
+#set ($portlet_title = $portlet_display.getTitle())
+#set ($portlet_content = $portlet_display.getContent())
+#set ($portlet_back_url = $portlet_display.getURLBack())
+#set ($portlet_column_pos = $portlet_display.getColumnPos())
+
+#set ($is_maximized = $portletDisplay.isStateMax())
+#set ($images_folder = "$themeDisplay.getPathThemeImages()/portlet")
+#set ($portlet_address = "$group_name - $layout.getHTMLTitle($locale) - $portlet_title")
 
 <table class="portlet" id="portlet-wrapper-$portlet_id">
 <tr>
@@ -13,9 +44,9 @@
 				#if ($portlet_display.isShowBackIcon())
 					<a href="$portlet_back_url" class="portlet-icon-back">#language ("return-to-full-page")</a>
 				#elseif ($portlet_display.isShowCloseIcon())
-					<span class="icon-min"><a href="javascript: Desktop.portletMinimize('$portletDisplay.getId()');"></a></span>
-					<span class="icon-max"><a href="javascript: submitForm(document.hrefFm,'$portletDisplay.getURLMax()')"></a></span>
-					<span class="icon-close"><a href="javascript: Desktop.portletRemove('$portletDisplay.getId()','$portlet_column_pos');"></a></span>
+					<span class="icon-min"><a href="javascript: Desktop.portletMinimize('$portlet_display.getId()');"></a></span>
+					<span class="icon-max"><a href="javascript: submitForm(document.hrefFm,'$portlet_display.getURLMax()')"></a></span>
+					<span class="icon-close"><a href="javascript: Desktop.portletRemove('$portlet_display.getId()','$portlet_column_pos');"></a></span>
 				#end
 			</span>
 		</div>
