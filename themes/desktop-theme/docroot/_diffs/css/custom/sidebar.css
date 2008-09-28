@@ -1,0 +1,135 @@
+/* ---------- Sidebar container ---------- */
+
+#sidebar-container {
+	background: transparent url(../../images/sidebar/sidebar_bg.png) repeat-y scroll 25px 0;
+	color: #FFF;
+	height: 100%;
+	padding-right: 6px;
+	position: absolute;
+	right:0;
+	top: 0;
+	width: 20px;
+	z-index: 100;
+}
+
+#sidebar {
+	display: none;
+	filter: alpha(opacity=0);
+	float: right;
+	left: 30px;
+	opacity: 0;
+	width: 235px;
+}
+
+/* ---------- Sidebar link ---------- */
+
+#sidebar-link {
+	float: left;
+	height: 100%;
+	width: 20px;
+}
+
+#sidebar-link a {
+	background: transparent url(../../images/arrows/sidebar_left.png) no-repeat scroll 50% 45%;
+	display: block;
+	height: 100%;
+	outline: none;
+}
+
+#sidebar-link a:hover {
+	background: transparent url(../../images/arrows/sidebar_left_hover.png) no-repeat scroll 50% 45%;
+}
+
+#sidebar-link a.expanded {
+	background: transparent url(../../images/arrows/sidebar_right.png) no-repeat scroll 50% 45%;
+}
+
+#sidebar-link a.expanded:hover {
+	background: transparent url(../../images/arrows/sidebar_right_hover.png) no-repeat scroll 50% 45%;
+}
+
+/* ---------- Sidebar time and date ---------- */
+
+#sidebar-top {
+	height: 100px;
+	margin: 45px 0 0 0;
+	overflow: hidden;
+}
+
+#sidebar-top .clock {
+	display: none;
+	float: left;
+	margin: 0 0 0 10px;
+}
+
+#sidebar-top .calendar {
+	background: transparent url(../../images/sidebar/calendar_bg.png) no-repeat scroll 100% 0;
+	height: 100px;
+	filter: alpha(opacity=0);
+	float: right;
+	margin: 0 10px 0 0;
+	opacity: 0;
+	width: 100px;
+}
+
+#sidebar-top .month {
+	color: #222;
+	display: block;
+	font-family: 'Arial', 'Tahoma','Lucida Sans Unicode';
+	font-size: 17px;
+	font-weight: bold;
+	line-height: 25px;
+	margin:10px 0 5px;
+	text-align: center;
+}
+
+#sidebar-top .day {
+	color: #000;
+	display: block;
+	font-size: 40px;
+	font-weight: bold;
+	line-height: 40px;
+	text-align: center;
+}
+
+/* ---------- Sidebar portlets ---------- */
+
+#sidebar .portal-add-content {
+	background: transparent;
+}
+
+#sidebar .portal-add-content-search {
+	margin:10px 0 20px;
+}
+
+#sidebar .lfr-add-content h2 span {
+	font-weight: normal;
+}
+
+#sidebar .lfr-content-category.visible {
+	border-bottom: none;
+}
+
+#sidebar .lfr-portlet-item {
+	border: none;
+}
+
+#sidebar .lfr-portlet-item:hover, #sidebar .lfr-portlet-item.over {
+	background-color: #336ECA;
+}
+
+#sidebar .lfr-portlet-item p a, #sidebar .lfr-portlet-item p a:hover {
+	color: #FFF;
+	font-weight: normal;
+}
+
+#sidebar .lfr-portlet-used {
+	color: #222;
+}
+
+#sidebar .portlet-msg-info{
+	background: transparent url(../../images/messages/info.png) no-repeat scroll 0.5em 50%;
+	color: #FFF;
+	font-weight: normal;
+	margin: 20px 0 0 0;
+}

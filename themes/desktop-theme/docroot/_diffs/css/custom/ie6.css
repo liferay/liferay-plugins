@@ -1,0 +1,32 @@
+/* ---------- Alerts and popups ---------- */
+
+.ie6 .popup-alert-notice, .ie6 .popup-alert-warning {
+	left: 37%;
+	position: absolute;
+	top: 72%;
+}
+
+/* ---------- Taskbar portlet links ---------- */
+
+.ie6 #taskbar-portlets .taskbar-link a {
+	padding: 3px 7px;
+}
+
+/* ---------- Portlet resize handle ---------- */
+
+.ie6 .portlet-resize-handle {
+	bottom: 1px;
+}
+
+/* ---------- Add content portlet ---------- */
+
+.ie6 .lfr-add-content.expanded {
+	background-image: none;
+}
+
+/* ---------- Tagged content portlet ---------- */
+
+.ie6 #content-wrapper .portlet-boundary.portlet-tagged-content {
+	filter: alpha(opacity=100);
+	opacity: 1;
+}

@@ -1,0 +1,31 @@
+/* ---------- Layout ---------- */
+
+#layout-grid .lfr-column {
+	padding: 0;
+}
+
+/* ---------- Add content portlet ---------- */
+
+.lfr-has-sidebar {
+	padding-left: 0;
+}
+
+.lfr-has-sidebar #main-container {
+	padding-left: 270px;
+}
+
+/* ---------- Sign in portlet / Terms of use portlet ---------- */
+
+#portlet-wrapper-sign-in .portlet-content, #portlet-wrapper-terms-of-use .portlet-content {
+	padding: 10px;
+}
+
+#portlet-wrapper-sign-in legend {
+	font-size: 100%;
+}
+
+/* ---------- Tagged content portlet ---------- */
+
+#content-wrapper .portlet-boundary.portlet-tagged-content {
+	opacity: 1;
+}

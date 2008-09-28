@@ -1,7 +1,19 @@
 <?xml version="1.0"?>
 
 <project name="theme" basedir="." default="deploy">
+	<property name="theme.parent" value="_styled" />
+
 	<import file="../build-common-theme.xml" />
 
-	<property name="theme.parent" value="_styled" />
+	<target name="build-javascript">
+		<antcall target="build-javascript-cmd">
+			<param name="js.from.file" value="docroot/_diffs/javascript/desktop_unpacked.js" />
+			<param name="js.to.file" value="docroot/_diffs/javascript/desktop_packed.js" />
+		</antcall>
+
+		<antcall target="build-javascript-cmd">
+			<param name="js.from.file" value="docroot/_diffs/javascript/sidebar_unpacked.js" />
+			<param name="js.to.file" value="docroot/_diffs/javascript/sidebar_packed.js" />
+		</antcall>
+	</target>
 </project>

@@ -1,7 +1,40 @@
-#*
-This file allows you to override and define new velocity variables.
-*#
+## --- Common --- ##
 
-## --- Common variables --- ##
+#set ($groupLocalService = $serviceLocator.findService("com.liferay.portal.service.GroupLocalService"))
+#set ($journalTemplateLocalService = $serviceLocator.findService("com.liferay.portlet.journal.service.JournalTemplateLocalService"))
 
+#set ($desktop_packed_js = "$themeDisplay.getPathThemeRoot()/javascript/desktop_packed.js")
+#set ($sidebar_packed_js = "$themeDisplay.getPathThemeRoot()/javascript/sidebar_packed.js")
+
+#set ($guest_group = $groupLocalService.getGroup($company_id, "Guest"))
+#set ($is_ie6 = false)
+#set ($journal_template_id = $theme_settings.getProperty("css-template-id"))
 #set ($theme_flash_folder = "$themeDisplay.getPathThemeRoot()/flash")
+
+#if ($is_maximized)
+	#set ($css_class = "$css_class maximized")
+#elseif (!$is_freeform)
+	#set ($css_class = "$css_class nonfreeform")
+#end
+
+#if ($request.getHeader("User-Agent").indexOf("MSIE 6.0") != -1)
+	#set ($is_ie6 = true)
+#end
+
+## --- Flags --- ##
+
+#set ($has_dock = !$is_maximized)
+#set ($has_journal_template = $journalTemplateLocalService.hasTemplate($group_id, $journal_template_id))
+#set ($has_sidebar = ($show_add_content && $is_freeform && !$is_ie6))
+
+## --- Dock --- ##
+
+#set ($home_text = "My $home_text")  ## Should set this in Language.properties ##
+
+## --- Sidebar --- ##
+
+#if ($has_sidebar)
+	#set ($add_content_url = "Sidebar.animate();")
+#else
+	#set ($add_content_url = "Sidebar.toggle('87', true);")
+#end

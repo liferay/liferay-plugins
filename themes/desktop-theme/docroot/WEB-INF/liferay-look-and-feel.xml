@@ -5,19 +5,9 @@
 	<compatibility>
 		<version>5.1.0+</version>
 	</compatibility>
-	<theme id="desktop" name="Desktop (Freeform Layout)">
-		<color-scheme id="01" name="Liferay OS">
-			<default-cs>true</default-cs>
-			<css-class></css-class>
-			<color-scheme-images-path>${images-path}</color-scheme-images-path>
-		</color-scheme>
-		<color-scheme id="02" name="Mac OS X">
-			<css-class>osx</css-class>
-			<color-scheme-images-path>${images-path}/color_schemes/osx</color-scheme-images-path>
-		</color-scheme>
-		<color-scheme id="03" name="Windows OS">
-			<css-class>vista</css-class>
-			<color-scheme-images-path>${images-path}/color_schemes/vista</color-scheme-images-path>
-		</color-scheme>
+	<theme id="desktop" name="Desktop">
+		<settings>
+			<setting key="css-template-id" value="CSS-TEMPLATE" />
+		</settings>
 	</theme>
 </look-and-feel>

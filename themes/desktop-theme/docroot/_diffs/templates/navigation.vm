@@ -1,13 +1,4 @@
 <ul class="taglib-home navigation-menu">
-
-	#if ($show_my_places && ($css_class.contains("vista")))
-		<li class="my-places">
-			<a href="javascript: ;">$my_places_text</a>
-
-			$theme.myPlaces()
-		</li>
-	#end
-
 	#foreach ($nav_item in $nav_items)
 		#if ($nav_item.isSelected())
 			#set ($nav_item_class = "selected")
@@ -20,6 +11,7 @@
 
 			#if ($nav_item.hasChildren())
 				<ul class="child-menu">
+
 					#foreach ($nav_child in $nav_item.getChildren())
 						#if ($nav_child.isSelected())
 							#set ($nav_child_class = "selected")

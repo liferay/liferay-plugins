@@ -1,5 +1,5 @@
-<div id="sidebar-wrapper">
-	<div id="sidebar" plid="$plid" ppid="87" doasuserid="$themeDisplay.getDoAsUserId()">
+<div id="sidebar-container">
+	<div id="sidebar">
 		<div id="sidebar-top">
 			<span class="clock">
 				<embed allowscriptaccess="sameDomain"

@@ -2,7 +2,7 @@
 
 #parse ($init)
 
-<html dir="#language ("lang.dir")" xmlns="http://www.w3.org/1999/xhtml">
+<html class="nojs" dir="#language ("lang.dir")" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 	<title>$company_name - $the_title</title>
@@ -13,12 +13,29 @@
 	#js ($js_main_file)
 
 	<script type="text/javascript">
-		$page_javascript_1
-		$page_javascript_2
-		$page_javascript_3
+		// <![CDATA
+			$page_javascript_1
+			$page_javascript_2
+			$page_javascript_3
+		// ]]>
 	</script>
 
-	<script src="$themeDisplay.getPathThemeRoot()/javascript/desktop_add_content.js" type="text/javascript"></script>
+	<script src="$sidebar_packed_js" type="text/javascript"></script>
+	<script src="$desktop_packed_js" type="text/javascript"></script>
+
+	#if ($has_journal_template)
+		#set ($journal_template = $journalTemplateLocalService.getTemplate($group_id, $journal_template_id))
+
+		<style type="text/css">
+			#set ($css_template = $journal_template.getXsl())
+			#set ($css_template = $stringUtil.replace($css_template, "@root_path@", $themeDisplay.getPathContext()))
+			#set ($css_template = $stringUtil.replace($css_template, "@image_path@", $themeDisplay.getPathThemeImages()))
+			#set ($css_template = $stringUtil.replace($css_template, "@portal_url@", $themeDisplay.getURLHome()))
+			#set ($css_template = $stringUtil.stripBetween($css_template, "/*", "*/"))
+
+			$css_template
+		</style>
+	#end
 </head>
 
 <body class="$css_class">
@@ -26,33 +43,31 @@
 $theme.include($top_messages_include)
 
 <div id="wrapper">
-	#parse ("$full_templates_path/dock.vm")
+	#if ($has_dock)
+		#parse ("$full_templates_path/taskbar.vm")
+	#end
 
 	<div id="main-container">
-		<div id="main-content">
-			#if ($update_available_url)
-				<div class="popup-alert-notice">
-					<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>
-				</div>
-			#end
+		#if ($update_available_url)
+			<div class="popup-alert-notice">
+				<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>
+			</div>
+		#end
 
-			#if ($selectable)
-				$theme.include($content_include)
-			#else
-				$portletDisplay.recycle()
+		#if ($selectable)
+			$theme.include($content_include)
+		#else
+			$portletDisplay.recycle()
 
-				$portletDisplay.setTitle($the_title)
+			$portletDisplay.setTitle($the_title)
 
-				$theme.wrapPortlet("portlet.vm", $content_include)
-			#end
-
-			<div id="footer"></div>
-		</div>
-
-		#if ($show_add_content)
-			#parse ("$full_templates_path/sidebar.vm")
+			$theme.wrapPortlet("portlet.vm", $content_include)
 		#end
 	</div>
+
+	#if ($has_sidebar)
+		#parse ("$full_templates_path/sidebar.vm")
+	#end
 </div>
 
 $theme.include($bottom_ext_include)

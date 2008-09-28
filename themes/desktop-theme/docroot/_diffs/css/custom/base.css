@@ -1,0 +1,48 @@
+/* ---------- Browser normalization ---------- */
+
+html {
+	height: 100%;
+	overflow: hidden;
+}
+
+body {
+	background: #347510 url(../../images/desktop/desktop_bg.png) no-repeat fixed 50% 50%;
+	height: 100%;
+	font-size: 12px;
+}
+
+/* ---------- Main content body ---------- */
+
+#wrapper {
+	height: 100%;
+	width: 100%;
+}
+
+#content-wrapper {
+	position: relative;
+	width: 100%;
+}
+
+/* ---------- Alerts and popups ---------- */
+
+.popup-alert-notice, .popup-alert-warning {
+	background-color: #E4E1DC;
+	border-color: white;
+	border-style: solid;
+	border-width: 10px 1px 1px;
+	color: #000000;
+	filter: alpha(opacity=87);
+	font-size: 12px;
+	margin: 0 auto;
+	opacity: 0.87;
+	padding: 8px 10px 10px 35px;
+	position: relative;
+	top: -28%;
+	width: 300px;
+}
+
+/* ---------- Loading animation ---------- */
+
+.loading-animation {
+	background: url(../../images/progress_bar/loading_animation.gif) no-repeat center center;
+}

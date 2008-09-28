@@ -1,89 +1,56 @@
-#set ($portlet_display = $portletDisplay)
-#set ($images_folder = $themeDisplay.getPathThemeImages())
-#set ($color = "linux")
+#parse ("$full_templates_path/init_portlet.vm")
 
-#set ($portlet_id = $portlet_display.getId())
-#set ($portlet_title = $portlet_display.getTitle())
-#set ($portlet_content = $portlet_display.getContent())
-#set ($portlet_back_url = $portlet_display.getURLBack())
-
-#if ($themeDisplay.getColorScheme().getCssClass() != "")
-	#set ($color = $themeDisplay.getColorScheme().getCssClass())
-#end
-
-<div class="portlet" id="portlet-wrapper-$portlet_id">
-	<div class="t"></div>
-	<div class="content">
+<table class="portlet" id="portlet-wrapper-$portlet_id">
+<tr>
+	<td class="top-left"><img width="15" src="$images_folder/top_left.png" /></td>
+	<td class="top-center">
 		<div class="portlet-topper">
-			<span class="portlet-title not-editable"">
+			<span class="portlet-title not-editable">
 				$theme.iconPortlet() $portlet_title
 			</span>
 
-			<div class="portlet-address">
-				<span id="portlet-group-name"></span> <img class="portlet-group-name" src="$images_folder/arrows/portlet_address.png" alt="" />
-				$layout.getHTMLTitle($locale) <img src="$images_folder/arrows/portlet_address.png" alt="" />
-				$portlet_title
-			</div>
-
-			#if ($portlet_display.isShowBackIcon())
-				<div class="portlet-icons" id="portlet-small-icon-bar_$portlet_id">
+			<span class="portlet-icons" id="portlet-small-icon-bar_$portlet_id">
+				#if ($portlet_display.isShowBackIcon())
 					<a href="$portlet_back_url" class="portlet-icon-back">#language ("return-to-full-page")</a>
-				</div>
-			#else
-				<span class="portlet-modes">
-					#if ($portlet_display.isShowRefreshIcon())
-						<span class="portlet-mode-icons">$theme.iconRefresh()</span>
-					#end
-
-					#if ($portlet_display.isShowPortletCssIcon())
-						<span class="portlet-mode-icons">$theme.iconPortletCss()</span>
-					#end
-
-					#if ($portlet_display.isShowConfigurationIcon())
-						<span class="portlet-mode-icons">$theme.iconConfiguration()</span>
-					#end
-
-					#if ($portlet_display.isShowEditIcon())
-						<span class="portlet-mode-icons">$theme.iconEdit()</span>
-					#end
-
-					#if ($portlet_display.isShowEditDefaultsIcon())
-						<span class="portlet-mode-icons">$theme.iconEditDefaults()</span>
-					#end
-
-					#if ($portlet_display.isShowEditGuestIcon())
-						<span class="portlet-mode-icons">$theme.iconEditGuest()</span>
-					#end
-
-					#if ($portlet_display.isShowHelpIcon())
-						<span class="portlet-mode-icons">$theme.iconHelp()</span>
-					#end
-
-					#if ($portlet_display.isShowPrintIcon())
-						<span class="portlet-mode-icons">$theme.iconPrint()</span>
-					#end
-				</span>
-
-				#if ($portlet_display.isShowCloseIcon())
-					<span class="portlet-states">
-						<span class="portlet-min">
-							<a href="javascript: LiferayDesktop.minimizePortlet('$plid','$portletDisplay.getId()','$themeDisplay.getDoAsUserId()','$themeDisplay.getPathMain()');" class="min"></a>
-						</span>
-
-						<span class="portlet-max">
-							<a href="javascript: submitForm(document.hrefFm, '$portletDisplay.getURLMax()')" class="max"></a>
-						</span>
-
-						<span class="portlet-close">
-							<a href="javascript: LiferayDesktop.removePortlet('$plid', '$portletDisplay.getId()', '$themeDisplay.getDoAsUserId()');" class="close"></a>
-						</span>
-					</span>
+				#elseif ($portlet_display.isShowCloseIcon())
+					<span class="icon-min"><a href="javascript: Desktop.portletMinimize('$portletDisplay.getId()');"></a></span>
+					<span class="icon-max"><a href="javascript: submitForm(document.hrefFm,'$portletDisplay.getURLMax()')"></a></span>
+					<span class="icon-close"><a href="javascript: Desktop.portletRemove('$portletDisplay.getId()','$portlet_column_pos');"></a></span>
 				#end
+			</span>
+		</div>
+	</td>
+	<td class="top-right"><img width="16" src="$images_folder/top_right.png" /></td>
+</tr>
+<tr>
+	<td class="header-left"><img width="15" src="$images_folder/header_left.png" /></td>
+	<td class="header-center">
+		<div class="portlet-address">
+			$portlet_address
+
+			#if (!$portlet_display.isShowBackIcon())
+				<span class="portlet-icons icon-options">$theme.iconOptions()</span>
 			#end
 		</div>
+	</td>
+	<td class="header-right"><img width="16" src="$images_folder/header_right.png" /></td>
+</tr>
+<tr>
+	<td class="middle-left"></td>
+	<td class="middle-center" valign="top">
 		<div class="portlet-content">
 			$portlet_content
 		</div>
-	</div>
-	<div class="b"><div class="b-content"></div></div>
-</div>
+	</td>
+	<td class="middle-right"></td>
+</tr>
+<tr>
+	<td class="bottom-left"><img width="15" src="$images_folder/bottom_left.png" /></td>
+	<td class="bottom-center"></td>
+	<td class="bottom-right"><img width="16" src="$images_folder/bottom_right.png" /></td>
+</tr>
+</table>
+
+<script type="text/javascript">
+	($is_maximized) ? Desktop.portletMaximize('$portlet_id') : Desktop.tbAddLink('$portlet_id');
+</script>

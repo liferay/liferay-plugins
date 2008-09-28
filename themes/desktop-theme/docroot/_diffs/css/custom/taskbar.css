@@ -1,0 +1,148 @@
+/* ---------- Taskbar container ---------- */
+
+#taskbar-container {
+	height: 28px;
+	position: relative;
+	z-index: 101;
+}
+
+#taskbar {
+	background: transparent url(../../images/taskbar/taskbar_bg.png) repeat-x scroll 100% 0;
+	height: 28px;
+	left: 0;
+	top: 0;
+	width: 100%;
+}
+
+/* ---------- Taskbar portlets ---------- */
+
+#taskbar-portlets-wrapper {
+	height:24px;
+	left:0;
+	overflow:hidden;
+	position:absolute;
+	top:2px;
+	width: 100%;
+}
+
+#taskbar-portlets {
+	margin: 0;
+	padding: 0 10px 0 52px;
+}
+
+/* ---------- Taskbar portlet links ---------- */
+
+#taskbar-portlets .taskbar-link {
+	float: left;
+	list-style-type: none;
+	max-width: 200px;
+	min-width: 39px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+#taskbar-portlets img {
+	padding: 0 3px 0 0;
+	vertical-align: middle;
+}
+
+.taskbar-link-title {
+	display: block;
+	overflow: hidden;
+}
+
+#taskbar-portlets .taskbar-link a {
+	color: #EEE;
+	background: transparent url(../../images/taskbar/taskbar_link_bg.png) no-repeat scroll 100% 0;
+	border-color: #808080 #202020 #202020 #808080;
+	border-style: solid;
+	border-width: 1px;
+	display:block;
+	font-size: 12px;
+	line-height: 22px;
+	padding: 0 7px;
+	text-decoration: none;
+}
+
+#taskbar-portlets .taskbar-link a:hover {
+	background: transparent url(../../images/taskbar/taskbar_link_hover_bg.png) no-repeat scroll 0 0;
+	border-color: #202020 #808080 #808080 #202020;
+}
+
+#taskbar-portlets .taskbar-link.selected a {
+	background: transparent url(../../images/taskbar/taskbar_link_selected_bg.png) no-repeat scroll 0 0;
+	border-color: #202020 #808080 #808080 #202020;
+	color: #ffffff;
+}
+
+/* ---------- Dock icon ---------- */
+
+.js .interactive-mode {
+	background: transparent url(../../images/dock/menu_bar.png) no-repeat scroll 0 0;
+	float: none;
+	height: 34px;
+	left: 4px;
+	min-width: 43px;
+	right: auto;
+	top: -6px;
+	width: 43px;
+}
+
+.js .lfr-dock.expanded {
+	background: transparent url(../../images/dock/menu_bar_hover.png) no-repeat scroll 0 0;
+}
+
+.js .lfr-dock.expanded .lfr-dock-list-container {
+	position: relative;
+	top: 34px;
+	width: 180px;
+}
+
+/* ---------- Dock menu ---------- */
+
+.js .interactive-mode ul {
+	opacity: .92;
+}
+
+.js .interactive-mode .lfr-flyout.has-children ul {
+	opacity: 1;
+}
+
+.js .interactive-mode ul a {
+	color: #000;
+}
+
+.js .interactive-mode li {
+	border-top: none;
+}
+
+.js .interactive-mode li.control-panel, .js .interactive-mode li.sign-out {
+	border-top: 1px solid #DEDEDE;
+}
+
+.js .lfr-flyout.has-children {
+	background: transparent url(/desktop-theme/images/arrows/04_right.png) no-repeat scroll 96% 50%;
+	padding-left: 2px;
+	padding-right: 20px;
+}
+
+.js .lfr-flyout.has-children ul {
+	left: 100%;
+	right: auto;
+}
+
+.js .interactive-mode .taglib-home a, .js .interactive-mode .taglib-home a:hover {
+	background-image: url(../../images/trees/page.png);
+}
+
+.js .interactive-mode .my-places li {
+	background-position: 96% 50%;
+}
+
+.js .interactive-mode .home li.selected, .js .interactive-mode .my-places li.current {
+	background-color: #D3DADD;
+}
+
+.js .interactive-mode .home li.selected:hover, .js .interactive-mode .my-places li.current:hover {
+	background-color: #828F95;
+}
