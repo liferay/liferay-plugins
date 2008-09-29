@@ -206,6 +206,8 @@ var Desktop = function () {
 				portlet.css({display:''});
 			}
 
+			portlet.find('span.portlet-icons a').removeClass('selected');
+
 			var currId = 'tb_' + portletId;
 			var taskbarId = $('.taskbar-link.selected').attr('id');
 
