@@ -43,7 +43,7 @@
 $theme.include($top_messages_include)
 
 <div id="wrapper">
-	#if ($has_dock)
+	#if ($has_taskbar)
 		#parse ("$full_templates_path/taskbar.vm")
 	#end
 
