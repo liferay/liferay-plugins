@@ -57,6 +57,10 @@ body {
 	padding: 0 60px;
 }
 
+#navigation ul, #add-page {
+	float: left;
+}
+
 #navigation a {
 	background: url('../images/custom/navigation_bg.png');
 	color: #0072B9;
