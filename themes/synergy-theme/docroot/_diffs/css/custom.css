@@ -41,6 +41,14 @@ body {
 	margin-right: -4px;
 }
 
+.ie.js .interactive-mode h2 {
+	min-height: 1px;
+}
+
+.ie6.js .interactive-mode h2 {
+	height: 1px;
+}
+
 .js .interactive-mode h2 span {
 	background-image: none;
 	border-right: 0;
@@ -111,7 +119,6 @@ body {
 .ui-tabs {
 	border-bottom: 1px solid #BFE1FF;
 	margin: 0 0 1.5em 0;
-	padding: 0 0 2.6em 1em;
 }
 
 .ui-tabs li {
@@ -126,8 +133,8 @@ body {
 }
 
 .ui-tabs li a, .ui-tabs li span {
-	background: transparent;
 	border: 1px solid #BFE1FF;
+	border-bottom: none;
 	color: #000;
 	display: block;
 	float: left;
@@ -142,14 +149,12 @@ body {
 }
 
 .ui-tabs li.current a, .ui-tabs li.current span {
-	background: transparent;
 	border: 1px solid #BFE1FF;
 	color: #333;
 	padding: 0.15em 1em;
 }
 
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background: #BFE1FF url(../images/common/tabs_active_bg.png) repeat-x 0 0;
-	background-color: transparent;
+	background: transparent url(../images/common/tabs_active_bg.png) repeat-x 0 0;
 	text-decoration: none;
 }
