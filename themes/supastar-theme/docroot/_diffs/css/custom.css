@@ -1,240 +1,145 @@
-a, .tabs li.current a {
-	color: white;
-	text-decoration: underline;
-}
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-a:hover {
-	color: yellow;
-	text-decoration: none;
-}
 
-#banner {
-	background: black url('../images/custom/custom_banner.png') no-repeat scroll 0 0pt;
-	border-bottom: 5px solid #D30255;
-	height: 125px;
-	margin-top: -10px;
-}
+/* ---------- Browser normalization ---------- */
 
 body {
 	background: #0C0005;
-	color: white;
-	font: 62.5%/1.6em Tahoma, 'Lucida Sans Unicode', Lucida Grande, 'Lucida', Arial, 'Verdana', sans-serif;
+	color: #FFF;
+	padding: 25px 0 0;
 }
 
-input[type="submit"], input[type="button"], input[type="reset"] {
-	background: #FAFAFA url('../images/custom/custom_back.png') repeat-x scroll 0;
-	border-color: #CCC rgb(153, 153, 153) rgb(153, 153, 153) rgb(204, 204, 204);
-	border-style: double;
-	border-width: 3px;
-	color: white;
-	font-weight: bold;
-	padding: 0.25em;
+
+/* ---------- Main content body ---------- */
+
+#wrapper {
+	margin: 0 auto;
+	width: 1280px;
 }
 
-input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus {
-	background: #FAFAFA url('../images/custom/custom_back.png') repeat-x scroll 0;
-	border-color: #CCC rgb(153, 153, 153) rgb(153, 153, 153) rgb(204, 204, 204);
-	border-style: double;
-	border-width: 3px;
-	color: white;
-	font-weight: bold;
-	padding: 0.25em;
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: url('../images/custom/banner_bg.png');
+	height: 220px;
+	padding: 50px 0 0 50px;
 }
 
-.js #add-page {
-	background: transparent none repeat scroll 0 0%;
-	border: medium none;
-}
-
-.ie.js #add-page {
-	position: absolute;
-	margin-left:927px;
-	margin-top: -30px;
-}
-
-.js #navigation .enter-page {
-	background: transparent url('../images/custom/custom_back.png') repeat scroll 0 0%;
-	padding: 5.5px;
-	margin-top:13px;
-}
-
-.ie.js #navigation .enter-page {
-	margin-top: 0px;
-}
-
-.ie.js #navigation .enter-page a {
-	margin-top: 5px;
-	position: absolute;
-}
-
-.js .interactive-mode .my-places li h3 {
-	color: gray;
-	font-size: 1em;
-	font-weight: normal;
+#banner h1.logo {
 	margin: 0;
 }
 
-.js .lfr-dock.interactive-mode {
-	float: right;
-	min-width: 150px;
-	position: absolute;
-	right: 10px;
-	top: -35px;
+
+/* ---------- Dock with JavaScript ---------- */
+
+.js .interactive-mode {
+	right: 25px;
+	top: 25px;
 }
 
-.lfr-dock li a {
-	background: url('') no-repeat 0 50%;
-	color: gray;
-	padding: 2px 0 2px 20px;
-}
 
-.lfr-dock-list-container {
-	height: 1px;
-	overflow: visible;
-}
-
-#navigation li a {
-	padding: 10px 15px;
-}
-
-#navigation li {
-	background: transparent url('../images/custom/custom_back.png') repeat;
-	border: none;
-	display: inline;
-	float: left;
-	margin-right: 0.5em;
-	position: relative;
-}
-
-#navigation li.selected a span {
-	background: transparent;
-}
-
-#navigation li.selected a, #navigation li a:hover {
-	background-color: transparent;
-}
-
-#navigation li.selected {
-	border-top: 3px solid #283E57;
-	color: white;
-	font-size: 1.3em;
-	font-weight: bold;
-	margin:-15px 5px 0;
-	padding-bottom: 0px;
-	padding-top: 9px;
-}
-
-#navigation ul {
-	margin: 0 auto 0 0px;
-	float: none;
-}
+/* ---------- Main navigation ---------- */
 
 #navigation {
-	background: transparent;
-	border: none;
-	margin:-15px auto;
-	width: 100%;
+	position: absolute;
+	top: 0;
+	z-index: 21;
 }
 
-.ie #navigation {
-	margin: 0 auto;
+#navigation ul, #add-page {
+	float: left;
 }
 
-.portal-add-content {
-	background: brown none repeat scroll 0;
-	color: black;
-	padding: 8px 4px 0;
-	text-align: left;
-	z-index: 20;
+#navigation a {
+	background: #350000;
+	color: #FFF;
+	display: block;
+	font: 10px Tahoma, Geneva, sans-serif;
+	margin: 2.5px;
+	padding: 11px 16px;
+	text-align: center;
+	text-decoration: none;
 }
 
-.portlet-section-alternate-hover td a, .portlet-section-body-hover td a {
-	color: black;
+#navigation .selected a {
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 20px;
 }
 
-.portlet-section-alternate-hover td, .portlet-section-body-hover td {
-	background: #FFF5BA;
-	border-bottom: 1px solid #E0D79F;
-	border-top: 1px solid #E0D79F;
-	padding: 0.3em 1em;
+#navigation a:hover {
+	background: #4F0000;
 }
 
-.portlet-section-body td {
-	background: brown none repeat scroll 0 50%;
-	border-bottom: 1px solid brown;
-	border-top: 1px solid #BFBFBF;
-	padding: 0.3em 1em;
-}
 
-.portlet-section-header a {
-	background: #D9E1EC;
-	color: black;
-	padding: 1px 0 0;
+/* ---------- Portlet wrapper and icons ---------- */
+
+.portlet {
+	border: 2px solid #350015;
+	margin: 0 0 10px;
 }
 
 .portlet-topper {
-	background-color: #0C0005;
+	background: #0C0005 url(../images/custom/portlet_topper_bg.png) repeat-x;
 	color: #B0002B;
-	font-family: 'Verdana', 'Times New Roman', 'Times';
-	font-size: 12px;
+	font: 12px Verdana, Geneva, sans-serif;
+	padding: 8px;
 }
 
-.portlet {
-	background: transparent none repeat scroll 0 0%;
-	border: 2px solid #350015;
-}
 
-.ui-tabs li a, .ui-tabs li span {
-	display: block;
-	float: left;
-	padding: 0.35em 1em 0;
-	text-decoration: none;
-	top: 0;
-	background: transparent;
-	border: 1px solid #350015;
-}
-
-.ui-tabs li a:hover, .ui-tabs li span:hover {
-	background: #350015 0 100%;
-	color:white;
-}
-
-.ui-tabs li {
-	background: #350015 0 100%;
-	border-bottom: 0;
-	display: inline;
-	float: left;
-	line-height: 2.25;
-	margin-right: 0.8em;
-	padding: 0;
-	text-decoration: none;
-}
-
-.ui-tabs li.current {
-	background: #8A9C9A url('../images/custom/custom_back.png') repeat-x 0 0;
-	font-weight: bold;
-}
-
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background-color:transparent;
-	background: #8A9C9A url('../images/custom/custom_back.png') repeat-x 0 0;
-}
+/* ---------- Tabs ---------- */
 
 .ui-tabs {
-	border-bottom: 1px solid #350015;
-	margin: 0 0 1.5em 0;
-	padding: 0 0 2.6em 1em;
+	border-bottom-color: #350015;
+	padding: 0;
+}
+
+.ui-tabs li a {
+	margin: 0 8px 0 0;
+}
+
+.ui-tabs li a, .ui-tabs li span, .ui-tabs li.current a, .ui-tabs li.current span {
+	background: #350000;
+	border: 0;
+	color: #FFF;
 }
 
 .ui-tabs li.current a, .ui-tabs li.current span {
-	background: transparent;
-	border: 1px solid #350015;
+	text-decoration: underline;
 }
 
-#wrapper {
-	background: none;
-	background-color: #0C0005;
-	position: relative;
-	margin: 0 auto;
-	width: 1264px;
+.ui-tabs li.current:hover {
+	background-color: transparent;
+}
+
+.ui-tabs li a:hover, .ui-tabs li.current a:hover {
+	background-color: #4F0000;
+	color: #FFF;
+}
+
+
+/* ---------- Forms ---------- */
+
+input[type="submit"], input[type="button"], input[type="reset"] {
+	background: #3F0000;
+	border: 1px solid #4F0000;
+	color: #FFF;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus {
+	background: #4F0000;
+	border: 1px solid #4F0000;
+	color: #FFF;
+}
+
+
+/* ---------- Calendar taglib ---------- */
+
+.portlet-calendar .calendar-panel, .portlet-calendar .results-grid, .portlet-calendar .calendar-day .day-number {
+	color: #000;
+}
+
+.portlet-calendar .calendar-day {
+	background: #FFF;
 }
