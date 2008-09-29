@@ -25,7 +25,7 @@
 
 #set ($has_taskbar = !$is_maximized)
 #set ($has_journal_template = $journalTemplateLocalService.hasTemplate($group_id, $journal_template_id))
-#set ($has_sidebar = ($show_add_content && $is_freeform && !$is_ie6))
+#set ($has_sidebar = ($show_add_content && !$is_ie6))
 
 ## --- Dock --- ##
 

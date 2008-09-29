@@ -57,26 +57,30 @@ var Desktop = function () {
 					href= "#";
 				}
 
-				var tbLinkStr = '';
-				tbLinkStr += '<li id="tb_' + portletId + '" class="taskbar-link">';
-				tbLinkStr += '	<a href="' + href +'">';
-				tbLinkStr += '		<span class="taskbar-link-title">';
-				tbLinkStr += 			$.trim(portlet.find('span.portlet-title').text());
-				tbLinkStr += '		</span>';
-				tbLinkStr += '	</a>';
-				tbLinkStr += '</li>';
+				var title = $.trim(portlet.find('span.portlet-title').text());
 
-				$('#taskbar-portlets').append(tbLinkStr);
+				if (title != '') {
+					var tbLinkStr = '';
+					tbLinkStr += '<li id="tb_' + portletId + '" class="taskbar-link">';
+					tbLinkStr += '	<a href="' + href +'">';
+					tbLinkStr += '		<span class="taskbar-link-title">';
+					tbLinkStr += 			title;
+					tbLinkStr += '		</span>';
+					tbLinkStr += '	</a>';
+					tbLinkStr += '</li>';
 
-				var tbLinks = $('#taskbar-portlets .taskbar-link');
-				var totalWidth = $('#taskbar-portlets-wrapper').width()-52-10;
-				var count = tbLinks.size();
+					$('#taskbar-portlets').append(tbLinkStr);
 
-				if (count*200 < totalWidth) {
-					tbLinks.css({width:'200px'});
-				}
-				else {
-					tbLinks.css({width:100/count + '%'});
+					var tbLinks = $('#taskbar-portlets .taskbar-link');
+					var totalWidth = $('#taskbar-portlets-wrapper').width()-52-10;
+					var count = tbLinks.size();
+
+					if (count*200 < totalWidth) {
+						tbLinks.css({width:'200px'});
+					}
+					else {
+						tbLinks.css({width:100/count + '%'});
+					}
 				}
 
 				if ($('#content-wrapper').is('.freeform')) {
