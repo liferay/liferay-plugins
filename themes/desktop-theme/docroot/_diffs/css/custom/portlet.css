@@ -77,30 +77,30 @@ div.portlet .portlet-title {
 	text-decoration: none;
 }
 
-.icon-min a, .icon-min a:active {
+.icon-min a {
 	background: transparent url(../../images/portlet/minimize.png) no-repeat scroll 0 0;
 	width: 22px;
 }
 
-.icon-min a:hover {
+.icon-min a.selected {
 	background: transparent url(../../images/portlet/minimize_hover.png) no-repeat scroll 0 0;
 }
 
-.icon-max a, .icon-max a:active {
+.icon-max a {
 	background: transparent url(../../images/portlet/maximize.png) no-repeat scroll 0 0;
 	width: 22px;
 }
 
-.icon-max a:hover {
+.icon-max a.selected {
 	background: transparent url(../../images/portlet/maximize_hover.png) no-repeat scroll 0 0;
 }
 
-.icon-close a, .icon-close a:active {
+.icon-close a {
 	background: transparent url(../../images/portlet/close.png) no-repeat scroll 0 0;
 	width: 38px;
 }
 
-.icon-close a:hover {
+.icon-close a.selected {
 	background: transparent url(../../images/portlet/close_hover.png) no-repeat scroll 0 0;
 }
 

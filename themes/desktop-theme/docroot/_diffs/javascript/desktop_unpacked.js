@@ -5,34 +5,23 @@ var Desktop = function () {
 		initHtml: function() {
 			var instance = this;
 
-			if (!$('#content-wrapper').hasClass('freeform')) {
-				jQuery("html").css({overflow:"auto"});
+			if ($('#content-wrapper').hasClass('freeform')) {
+				instance._handleBodyClicks();
+			}
+			else {
+				instance._handleAddScrollbar();
 			}
 		},
 
 		initPage: function() {
 			var instance = this;
 
-			var sbContainer = $('#sidebar-container');
-			var sbLink = $('#sidebar-link');
-
-			if ((sbContainer.size() > 0) && (sbLink.size() == 0)) {
-				var htmlStr = '';
-				htmlStr += '<div id="sidebar-link">';
-				htmlStr += '	<a href="javascript: Sidebar.animate();"></a>';
-				htmlStr += '</div>'
-
-				sbContainer.prepend(htmlStr).css({display:''});
-
-				Sidebar.toggle('87',false);
-			}
+			instance._handleAddSidebar();
+			instance._handlePortletIcons();
 
 			if ($('#content-wrapper').is('.freeform')) {
-				$('body').click(
-					function(event) {
-						instance.tbDeselect(event);
-					}
-				);
+				instance._handlePortletSelect();
+				instance._handlePortletClicks();
 			}
 		},
 
@@ -60,16 +49,17 @@ var Desktop = function () {
 				var title = $.trim(portlet.find('span.portlet-title').text());
 
 				if (title != '') {
-					var tbLinkStr = '';
-					tbLinkStr += '<li id="tb_' + portletId + '" class="taskbar-link">';
-					tbLinkStr += '	<a href="' + href +'">';
-					tbLinkStr += '		<span class="taskbar-link-title">';
-					tbLinkStr += 			title;
-					tbLinkStr += '		</span>';
-					tbLinkStr += '	</a>';
-					tbLinkStr += '</li>';
+					var htmlStr = '';
 
-					$('#taskbar-portlets').append(tbLinkStr);
+					htmlStr += '<li id="tb_' + portletId + '" class="taskbar-link">';
+					htmlStr += '	<a href="' + href +'">';
+					htmlStr += '		<span class="taskbar-link-title">';
+					htmlStr += 			title;
+					htmlStr += '		</span>';
+					htmlStr += '	</a>';
+					htmlStr += '</li>';
+
+					$('#taskbar-portlets').append(htmlStr);
 
 					var tbLinks = $('#taskbar-portlets .taskbar-link');
 					var count = tbLinks.size();
@@ -78,33 +68,20 @@ var Desktop = function () {
 				}
 
 				if ($('#content-wrapper').is('.freeform')) {
-					portlet.click(
-						function() {
-							instance.portletRestore(portletId);
-						}
-					);
+					instance.portletRestore(portletId);
 				}
-			}
-		},
-
-		tbDeselect: function(event) {
-			var instance = this;
-
-			var $target = $(event.target);
-
-			if ($target.is('#wrapper')) {
-				$('.taskbar-link.selected').removeClass('selected');
 			}
 		},
 
 		tbSelectLink: function(portletId) {
 			var instance = this;
 
-			var tbCurrLink = $('.taskbar-link.selected');
 			var tbLink =  $('#tb_' + portletId);
 
-			tbCurrLink.removeClass('selected');
-			tbLink.addClass('selected');
+			if (tbLink.size() > 0) {
+				$('.taskbar-link.selected').removeClass('selected');
+				tbLink.addClass('selected');
+			}
 		},
 
 		portletMaximize: function(portletId) {
@@ -165,14 +142,15 @@ var Desktop = function () {
 		portletMinimize: function(portletId) {
 			var instance = this;
 
-			var tbLinkStr = $('#tb_' + portletId + ' a').attr('href');
+			var htmlStr = $('#tb_' + portletId + ' a').attr('href');
 
-			tbLinkStr = tbLinkStr.replace('portletMinimize','portletRestore');
-			$('#tb_' + portletId + ' a').attr('href',tbLinkStr);
+			htmlStr = htmlStr.replace('portletMinimize','portletRestore');
+
+			$('#tb_' + portletId + ' a').attr('href',htmlStr);
 
 			$('#p_p_id_' + portletId + '_').css({display:'none'});
 
-			jQuery.ajax(
+			$.ajax(
 				{
 					url: themeDisplay.getPathMain() + '/portal/update_layout',
 					data: {
@@ -199,26 +177,23 @@ var Desktop = function () {
 
 			$('#taskbar-portlets .taskbar-link').css({width:100/count + '%'});
 
-			jQuery(
-				function () {
-					var portlet = jQuery('#p_p_id_' + portletId + '_');
+			var portlet = $('#p_p_id_' + portletId + '_');
 
-					portlet.portletProcessed = true;
-					portlet.portletId = portletId;
-					portlet.columnPos = columnPos;
+			portlet.portletProcessed = true;
+			portlet.portletId = portletId;
+			portlet.columnPos = columnPos;
 
-					Liferay.Portlet.close(portlet, true);
-				}
-			);
+			Liferay.Portlet.close(portlet, true);
 		},
 
 		portletRestore: function(portletId) {
 			var instance = this;
 
-			var tbLinkStr = $('#tb_' + portletId + ' a').attr("href");
+			var htmlStr = $('#tb_' + portletId + ' a').attr("href");
 
-			tbLinkStr = tbLinkStr.replace('portletRestore','portletMinimize');
-			$('#tb_' + portletId + ' a').attr("href",tbLinkStr);
+			htmlStr = htmlStr.replace('portletRestore','portletMinimize');
+
+			$('#tb_' + portletId + ' a').attr("href",htmlStr);
 
 			var portlet = $('#p_p_id_' + portletId + '_');
 			var columnId = portlet.parent().attr('id');
@@ -238,7 +213,7 @@ var Desktop = function () {
 				instance.tbSelectLink(portletId);
 			}
 
-			jQuery.ajax(
+			$.ajax(
 				{
 					url: themeDisplay.getPathMain() + '/portal/update_layout',
 					data: {
@@ -250,6 +225,98 @@ var Desktop = function () {
 					}
 				}
 			);
+		},
+
+		_handleAddScrollbar: function() {
+			var instance = this;
+
+			$('html').css({overflow:'auto'});
+			$('#wrapper').css({'min-width':'964px'});
+		},
+
+		_handleAddSidebar: function() {
+			var instance = this;
+
+			var sbContainer = $('#sidebar-container');
+			var sbLink = $('#sidebar-link');
+
+			if ((sbContainer.size() > 0) && (sbLink.size() == 0)) {
+				var htmlStr = '';
+
+				htmlStr += '<div id="sidebar-link">';
+				htmlStr += '	<a href="javascript: Sidebar.animate();"></a>';
+				htmlStr += '</div>'
+
+				sbContainer.prepend(htmlStr).css({display:''});
+
+				Sidebar.toggle('87',false);
+			}
+		},
+
+		_handleBodyClicks: function() {
+			var instance = this;
+
+			$('body').click(
+				function(event) {
+					var $target = $(event.target);
+
+					if ($target.is('#wrapper')) {
+						$('.taskbar-link.selected').removeClass('selected');
+					}
+				}
+			);
+		},
+
+		_handlePortletClicks: function() {
+			var instance = this;
+
+			var portlets = $('div.portlet-boundary');
+
+			portlets.click(
+				function(event) {
+					var index = portlets.index(this);
+					var portletId = '';
+
+					portletId = portlets.eq(index).attr('id');
+					portletId = portletId.substring(0,portletId.length-1);
+					portletId = portletId.replace('p_p_id_','');
+
+					instance.tbSelectLink(portletId);
+				}
+			);
+		},
+
+		_handlePortletIcons: function() {
+			var instance = this;
+
+			$('div.portlet-boundary').find('span.portlet-icons a').hoverIntent(
+				{
+					sensitivity: 4,
+					interval: 50,
+					timeout: 0,
+					over: function() {
+						$(this).addClass('selected');
+					},
+					out: function() {
+						$(this).removeClass('selected');
+					}
+				}
+			);
+		},
+
+		_handlePortletSelect: function() {
+			var instance = this;
+
+			var portlet = $('#content-wrapper').find("div.portlet-boundary:last");
+			var portletId = '';
+
+			if (portlet.size() > 0) {
+				portletId = portlet.attr('id');
+				portletId = portletId.substring(0,portletId.length-1);
+				portletId = portletId.replace('p_p_id_','');
+
+				instance.tbSelectLink(portletId);
+			}
 		}
 
 	};
