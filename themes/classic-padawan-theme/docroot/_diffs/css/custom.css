@@ -3,11 +3,112 @@
 /* ---------- Base ---------- */
 
 body {
-	background: #B0B8BC;
+	background: #B0B8BC url(../images/common/body_bg.png) top center repeat-x;
+	font-size: 8pt;
 }
 
 #wrapper {
+		background: transparent url(../images/common/banner_bg.jpg) top center no-repeat;
 	padding: 0 0 10px 0;
+}
+
+#content-wrapper {
+	margin: 20px auto 0;
+	width: 90%;
+}
+
+/* ---------- Banner ---------- */
+
+#banner {
+	height: 100px;
+}
+#banner .logo {
+	margin: 0 0 0 5%;
+	position: relative;
+	width: 50%;
+	top: 26px;
+}
+
+/* --------- Navigation -------- */
+
+#navigation {
+	background: #000;
+	border-top: 1px solid #304049;
+	margin: 0 auto;
+	position: relative;
+}
+#navigation ul {
+	margin: 0 auto;
+	width: 90%;
+}
+#navigation ul li {
+	float: left;
+}
+#navigation ul li a {
+	color: #FFF;
+	display: block;
+	padding: 5px 20px;
+	text-decoration: none;
+	text-transform: capitalize;
+}
+#navigation .selected {
+	background: #1E2529;
+	border-bottom: 1px solid #304049;
+	border-left: 1px solid #304049;
+	border-right: 1px solid #304049;
+}
+#navigation .selected a span {
+	background: transparent url(../images/arrows/04_right.png) left 50% no-repeat;
+	padding: 0 0 0 12px;
+}
+.js #navigation .enter-page a {
+	display: inline;
+	font-weight: bold;
+}
+.ie7 #navigation .enter-page a {
+	top: -5px;
+	position: relative;
+}
+.js #navigation .enter-page a.cancel-page{
+	display: none;
+}
+.js #navigation .enter-page a.save-page {
+	background: transparent url(../images/dock/my_place_current.png) 5px 0 no-repeat;
+	padding: 0 20px 0 25px;
+	margin: 0;
+}
+.js #add-page {
+	background: #020509 none repeat scroll 0 0;
+	border: 1px solid #304049;
+	border-bottom: 0;
+	bottom: 100%;
+	float: right;
+	font-weight:bold;
+	position: absolute;
+	right: 5%;
+}
+.js #add-page a {
+	color: #FFF;
+	display: block;
+	padding: 4px 20px;
+	text-decoration: none;
+}
+.js #add-page a span {
+	background: transparent url(../images/common/add.png) left top no-repeat;
+	padding: 0 0 2px 20px;
+}
+
+/* ----------- Dock ------------ */
+
+.js .interactive-mode {
+	right: 5%;
+	position: absolute;
+	top: 10px;
+	z-index: 20;
+}
+.js .interactive-mode ul {
+	position: relative;
+	z-index: 10;
 }
 
 /* ---------- Portlet ---------- */
@@ -19,6 +120,7 @@ body {
 }
 
 .portlet {
+	background: #FFF;
 	border: 10px solid #D3DADD;
 	margin: 0;
 	padding: 0;
@@ -30,6 +132,7 @@ body {
 
 .portlet-title {
 	color: #FFF;
+	padding: 5px;
 }
 
 .portlet-icons {
