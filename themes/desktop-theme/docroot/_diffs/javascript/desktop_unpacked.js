@@ -72,15 +72,9 @@ var Desktop = function () {
 					$('#taskbar-portlets').append(tbLinkStr);
 
 					var tbLinks = $('#taskbar-portlets .taskbar-link');
-					var totalWidth = $('#taskbar-portlets-wrapper').width()-52-10;
 					var count = tbLinks.size();
 
-					if (count*200 < totalWidth) {
-						tbLinks.css({width:'200px'});
-					}
-					else {
-						tbLinks.css({width:100/count + '%'});
-					}
+					tbLinks.css({width:100/count + '%'});
 				}
 
 				if ($('#content-wrapper').is('.freeform')) {
@@ -134,7 +128,7 @@ var Desktop = function () {
 				}
 			);
 
-			// Improve browser performance for IE
+			// Improve performance in IE
 
 			if ($('html').is('.ie')) {
 				var resizeTimer = null;
@@ -203,15 +197,7 @@ var Desktop = function () {
 				count = 1;
 			}
 
-			var taskbarLinks = $('#taskbar-portlets .taskbar-link');
-			var totalWidth = $('#taskbar-portlets-wrapper').width()-52-10;
-
-			if (count*200 < totalWidth) {
-				taskbarLinks.css({width:'200px'});
-			}
-			else {
-				taskbarLinks.css({width:100/count + '%'});
-			}
+			$('#taskbar-portlets .taskbar-link').css({width:100/count + '%'});
 
 			jQuery(
 				function () {
