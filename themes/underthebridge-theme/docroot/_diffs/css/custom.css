@@ -75,15 +75,15 @@ body {
 }
 
 .js #add-page {
-	background: transparent none repeat scroll 0 0%;
-	border: medium none;
+	background: transparent;
+	border: none;
 	right: 3%;
 	top: 0;
 }
 
 .js #navigation .enter-page .save-page {
 	background: transparent;
-	color: white;
+	color: #FFF;
 	padding-left: 0;
 }
 
@@ -175,10 +175,6 @@ body {
 /* Liferay UI */
 .tabs li {
 	font: 12px/2.25em Arial;
-}
-
-ul.child-menu {
-	display: none;
 }
 
 .ui-tabs li a, .tabs li span {

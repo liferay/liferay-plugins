@@ -14,7 +14,7 @@ body {
 #banner {
 	background: #000 url(../images/custom/header.jpg) top no-repeat;
 	border-bottom: 12px solid #929292;
-	height: 239px;
+	height: 175px;
 	margin: 20px auto;
 	position: relative;
 	width: 806px;
@@ -79,14 +79,9 @@ a {
 }
 
 .js #navigation .enter-page {
-	background-color: transparent;
 	margin-left: 4px;
 	margin-top: -6px;
-	padding: 0px;
-}
-
-.js #navigation .enter-page .save-page {
-	border: none;
+	padding: 0;
 }
 
 /* Portlets */
@@ -100,8 +95,6 @@ a {
 }
 
 .portlet-topper {
-	background: transparent;
-	border: none;
 	color: #D51A1A;
 	font-size:16px;
 	font-weight: bold;
@@ -134,12 +127,11 @@ a {
 }
 
 .ui-tabs li a, .tabs li span {
-	background: transparent;
+	background: none;
 	border-right: none;
 }
 
 .ui-tabs li a:hover, .ui-tabs li span:hover {
-	background: transparent;
 	color: red;
 }
 
@@ -158,8 +150,12 @@ a {
 	color: red;
 }
 
-.lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
+.taglib-calendar tr.portlet-section-header th {
 	color: #F00;
+}
+
+.portlet-calendar .calendar-container .taglib-calendar {
+	color: #000;
 }
 
 .uni-form fieldset legend {

@@ -43,7 +43,11 @@ body {
 }
 
 #content-wrapper {
+	background: #FFF;
+	border: 1px solid #DDD;
+	border-top: none;
 	margin: 0 auto;
+	padding: 5px;
 	width: 905px;
 }
 

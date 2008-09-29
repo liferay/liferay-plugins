@@ -37,10 +37,6 @@ html {
 	overflow-y: scroll;
 }
 
-.ie #content-wrapper {
-	width: 528px;
-}
-
 #wrapper {
 	background: white;
 	clear: both;

@@ -5,7 +5,7 @@
 
 #all-content-wrapper-left {
 	padding: 0 0 0 22px;
-	width:93%;
+	width: 93%;
 }
 
 #all-content-wrapper-right {
@@ -31,7 +31,7 @@
 }
 
 #banner {
-	background: #E7E7E7 url('../images/custom/banner_bg.jpg') no-repeat scroll center bottom;
+	background: #E7E7E7 url('../images/custom/banner_bg.jpg') no-repeat center bottom;
 	height: 200px;
 	margin: 0 auto;
 	padding: 20px 0 0;
@@ -44,7 +44,7 @@
 }
 
 #footer {
-	background: #E7E7E7 url('../images/custom/footer_bg.jpg') no-repeat scroll;
+	background: #E7E7E7 url('../images/custom/footer_bg.jpg') no-repeat;
 	clear: both;
 	height: 63px;
 	padding: 0 0 20px;
@@ -52,7 +52,7 @@
 }
 
 #wrapper {
-	background: #E7E7E7 url('../images/custom/content_bg.png') repeat-y scroll;
+	background: #E7E7E7 url('../images/custom/content_bg.png') repeat-y;
 	margin: 0 auto;
 	padding: 0;
 	width: 760px;
@@ -81,20 +81,7 @@ body {
 
 /* Navigation */
 .js #navigation .enter-page .save-page {
-	margin:4px 10px;
-	position:absolute;
-}
-
-.js #add-page {
-	background: transparent none repeat scroll 0 0%;
-	border: medium none;
-	right: auto;
-	top: auto;
-	width: 107px;
-}
-
-.ie.js #add-page {
-	top: 25px;
+	margin: 4px 10px;
 	position: absolute;
 }
 
@@ -127,7 +114,7 @@ body {
 	text-decoration: none;
 }
 
-#navigation ul li, .lfr-dock li, .js #add-page {
+#navigation ul li, .lfr-dock li {
 	color: #777;
 	display: block;
 	float: none;
@@ -175,7 +162,6 @@ body {
 }
 
 .portlet-title {
-	background-position: top left;
 	color: #333;
 	display: block;
 	font: bold 1.9em 'Trebuchet MS', 'Lucida Grande', 'Verdana', 'Arial', sans-serif;
@@ -183,7 +169,6 @@ body {
 }
 
 .portlet-topper {
-	background-position: right top;
 	margin-right: -10px;
 	padding-right: 40px;
 	position: relative;
