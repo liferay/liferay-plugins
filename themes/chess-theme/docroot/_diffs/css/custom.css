@@ -1,57 +1,39 @@
-#navigation li.selected a, #navigation li a:hover {
-	background-color: transparent;
-	color: #256C8E;
-}
-#navigation li.selected a span {
-	background: transparent;
-	padding-left: 0px;
-}
-#navigation {
-	background: black;
-	border: none;
-	width:894px;
-	margin:-1px auto 20px;
-}
-#navigation ul {
-	margin: 0 0 0 20px;
-	float: left;
-	width: 80%;
-}
-#navigation li {
-	border: none;
-}
-#navigation .enter-page {
-	padding: 0;
-	position: relative;
-	margin: 0;
-	top: -3px;
-}
-#add-page a {
-	background: transparent url(../images/common/add.png) 5px 50% no-repeat;
-	color: #FFF;
-	float: left;
-	font-weight: bold;
-	padding: 7px 25px;
-	text-decoration: none;
-	bottom: 3px;
-}
+/* ---------- Browser normalization ---------- */
+
 body {
-	background: #898989 url(../images/custom/bg.png) scroll center;
-	color: #FFFFFF;
+	background: #898989 url(../images/custom/bg.png) center;
+	color: #FFF;
 	font-family: arial,verdana;
 	font-size: 12px;
 }
-#banner {
-	background:black url(../images/custom/header.jpg) no-repeat scroll right center;
-	height:353px;
-	position: relative;
+
+a {
+	font-size: 12px;
 }
+
+/* ---------- Wrappers ---------- */
+
 #wrapper {
-	background: none;
 	width: 894px;
 	position: relative;
 	margin: 0 auto;
 }
+
+#content-wrapper {
+	background: #000;
+	margin: 0 auto;
+	min-height: 600px;
+}
+
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: #000 url(../images/custom/header.jpg) no-repeat right center;
+	height: 353px;
+	position: relative;
+}
+
 #banner .logo {
 	margin: 0;
 }
@@ -61,86 +43,143 @@ body {
 	position: relative;
 	top: 85px;
 }
+
+
+/* ---------- Dock with JavaScript ---------- */
+
 .js .interactive-mode {
 	right: 2%;
 }
+
+
+/* ---------- Main navigation ---------- */
+
+#navigation {
+	background: #000;
+	border: none;
+	width: 894px;
+	margin: 0 auto;
+}
+
+#navigation ul {
+	float: left;
+}
+
+#navigation li {
+	border: none;
+}
+
 #navigation li a {
 	color: #FFF;
 	font-size: 16px;
 	font-weight: bold;
 	padding: 7px 25px;
 	text-decoration: none;
-	text-transform: capitalize;
 }
-#content-wrapper {
-	width:100%;
-	background: black;
-	margin:-20px auto;
-	min-height: 600px;
+
+#navigation li.selected a, #navigation li a:hover {
+	color: #256C8E;
 }
+
+#navigation li.selected a span {
+	padding-left: 0px;
+}
+
+#navigation .enter-page {
+	padding: 0;
+	position: relative;
+	margin: 0;
+	top: -3px;
+}
+
 .js #add-page {
-	background: transparent none repeat scroll 0% 0%;
-	border: medium none;
+	border: none;
 	float: right;
 	top: -3px;
 }
+
+#add-page a {
+	background: transparent url(../images/common/add.png) 5px 50% no-repeat;
+	color: #FFF;
+	float: left;
+	font-weight: bold;
+	padding: 7px 25px;
+	text-decoration: none;
+	bottom: 3px;
+}
+
+
+/* ---------- Portlet wrapper and icons ---------- */
+
 .portlet {
-	background: transparent;
-	border: none;
 	margin: 0 5px 10px;
 }
+
 .portlet-topper {
-	background: transparent;
-	border: none;
 	color: #256C8E;
 	font-size: 16px;
 }
+
 .portlet-icons nobr {
 	position: relative;
 	top: -3px;
 }
-a {
-	font-size: 12px;
+
+/* ---------- Tabs ---------- */
+
+.ui-tabs {
+	border-bottom: none;
 }
+
 .ui-tabs li a:hover, .ui-tabs li span:hover {
 	background-color: transparent;
 	color: #256C8E;
 }
+
 .ui-tabs li a, .tabs li span {
-	background: transparent none repeat scroll 0% 0%;
-	border-right: medium none;
+	background: transparent;
+	border-right: none;
 }
+
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
 	background-color: transparent;
 }
+
 .ui-tabs li.current a, .ui-tabs li.current span {
-	background: transparent none repeat scroll 0% 0%;
-	border: 1px dotted #336699;
+	background: transparent;
+	border: 1px dotted #369;
 	color: #256C8E;
 }
-.ui-tabs {
-	border-bottom: medium none;
-}
-.ui-dialog.ui-resizable-disabled .ui-dialog-content {
-	background: black none repeat scroll 0% 0%;
-	color: black;
-}
+
+
+/* ---------- Dialog ---------- */
+
 .ui-dialog {
-	background-color: black;
+	background-color: #000;
 }
+
+.ui-dialog.ui-resizable-disabled .ui-dialog-content {
+	background: #000;
+	color: #000;
+}
+
+/* ---------- Others ---------- */
 .lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
-	color: #336699;
+	color: #369;
 }
+
 .portlet-section-body td {
-	color: black;
+	color: #000;
 }
+
 .uni-form fieldset legend {
-	color: white;
+	color: #FFF;
 }
 
 .portlet-calendar .calendar-container {
-	background: black;
+	background: #000;
 }
+
 .portlet-calendar .calendar-day .day-number {
 	border: none;
 }
