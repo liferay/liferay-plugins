@@ -1,136 +1,117 @@
-#banner .logo a {
-	background: url('../images/common/logo.png') no-repeat;
-	display: block;
-	font-size: 0;
-	height: 94px;
-	text-indent: -9999em;
-	width: 433px;
-}
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-#banner .logo {
-	padding: 18px 15px 0;
-}
-
-#banner {
-	background: transparent;
-	height: 100px;
-	top: -1px;
-}
+/* ---------- Browser normalization ---------- */
 
 body {
-	background: url('../images/common/body_bg.png') repeat-x left top;
-	font-family: 'Arial', 'Helvetica', sans-serif;
-	height: auto;
+	background: #95CDFF url('../images/custom/body_bg.png') repeat-x left top;
 }
 
-#content-wrapper {
-	margin: 0 auto;
-	width: 99%;
+
+/* ---------- Banner ---------- */
+
+#banner {
+	height: 116px;
 }
 
-.js #add-page {
-	background: transparent none repeat scroll 0 0%;
-	border: none;
-	color: #FFF;
-	padding-bottom: 6px;
+#banner h1.logo {
+	margin: 0;
 }
 
-.js #navigation .enter-page .save-page {
-	color: #000;
+#banner h1.logo a {
+	background: url('../images/custom/logo.png') no-repeat;
+	float: left;
+	height: 66px;
+	left: 74px;
+	position: absolute;
+	top: 27px;
+	width: 423px;
 }
 
-.js #navigation .enter-page {
-	background-color: transparent;
-	padding: 4px;
-}
 
-.js .interactive-mode h2 span {
-	background: transparent url('../images/synergy/dock.png');
-	border-right: none;
+/* ---------- Dock with JavaScript ---------- */
+
+.js .interactive-mode {
+	background: transparent url(../images/custom/dock_bg.png) no-repeat;
+	margin-right: 4px;
+	padding: 0 0 0 4px;
 }
 
 .js .interactive-mode h2 {
-	background: transparent url('../images/synergy/dock.png');
-	padding: 0 37px 0 4pt;
+	background: transparent url(../images/custom/dock_bg.png) no-repeat scroll right top;
+	margin-right: -4px;
 }
 
-.js .interactive-mode {
-	background: transparent;
-}
-
-.js .save-page {
-	background: transparent;
-	margin: 0 10px;
-	padding-left: 20px;
-}
-
-#navigation a {
-	color: #0072B9;
-}
-
-#navigation li a {
-	background: transparent url('../images/synergy/tab-unselected.png') no-repeat;
-	height: 75px;
-	padding: 5px 0;
-	width: 150px;
-}
-
-#navigation li a:hover {
-	background: transparent url('../images/synergy/tab-selected-hover.png') no-repeat;
-	border: none;
-}
-
-#navigation li {
-	border: none;
-	font-weight: bold;
-	margin-right: 8px;
-	margin-top: 0;
-	text-align: center;
-}
-
-#navigation li.selected a {
-	background: transparent url('../images/synergy/tab-selected.png') no-repeat;
-	border: none;
-	color: #FFF;
-}
-
-#navigation {
-	background: transparent;
-	border-top: 2px solid #0072B9;
-	margin: 12pt auto 20px;
-}
-
-.portlet-topper {
-	background: transparent none repeat scroll 0 0%;
-	border-bottom: 2px solid #0072B9;
-	padding-right: 40px;
-	position: relative;
-}
-
-.portlet {
-	background: #FFF;
-	border-bottom: 0;
-	border-left: 0;
+.js .interactive-mode h2 span {
+	background-image: none;
 	border-right: 0;
-	border-top: 0;
-	margin: 0 0pt 10px;
-	padding: 3px;
+	font: bold 10px Tahoma, Geneva, sans-serif;
 	text-align: left;
 }
 
-#wrapper {
-	background: transparent;
-	width: 100%;
+
+/* ---------- Main navigation ---------- */
+
+#navigation {
+	border-top: 2px solid #0072B9;
+	height: 105px;
+	padding: 0 60px;
 }
 
+#navigation a {
+	background: url('../images/custom/navigation_bg.png');
+	color: #0072B9;
+	display: block;
+	float: left;
+	font: bold 11px Arial, Helvetica, sans-serif;
+	height: 31px;
+	margin: 0 4px;
+	padding: 7px 0 0;
+	text-align: center;
+	text-decoration: none;
+	width: 150px;
+}
+
+#navigation .selected a, #navigation a:hover {
+	background: url('../images/custom/navigation_selected_bg.png');
+	color: #FFF;
+}
+
+#navigation .selected a:hover {
+	background: url('../images/custom/navigation_selected_hover_bg.png');
+}
+
+
+/* ---------- Main content body ---------- */
+
+#content-wrapper {
+	padding: 0 7px;
+}
+
+
+/* ---------- Portlet wrapper and icons ---------- */
+
+.portlet {
+	background: #FFF;
+	margin: 0 0 10px;
+	padding: 3px;
+}
+
+.portlet-topper {
+	border-bottom: 2px solid #0072B9;
+	padding: 5px;
+}
+
+
+/* ---------- Tabs ---------- */
+
 .ui-tabs {
-	border-bottom: 1px solid #bfe1ff;
+	border-bottom: 1px solid #BFE1FF;
 	margin: 0 0 1.5em 0;
 	padding: 0 0 2.6em 1em;
 }
 
 .ui-tabs li {
-	background: #eaf5ff url(../images/common/tabs_inactive_bg.png) repeat-x 0 100%;
+	background: #EAF5FF url(../images/common/tabs_inactive_bg.png) repeat-x 0 100%;
 	border-bottom: 0;
 	display: inline;
 	float: left;
@@ -140,32 +121,31 @@ body {
 	text-decoration: none;
 }
 
-
 .ui-tabs li a, .ui-tabs li span {
+	background: transparent;
+	border: 1px solid #BFE1FF;
+	color: #000;
 	display: block;
 	float: left;
 	padding: 0.35em 1em 0;
 	text-decoration: none;
-	border: 1px solid #bfe1ff;
 	top: 0;
-	background: transparent;
-	color: black
 }
 
 .ui-tabs li.current {
-	background: #bfe1ff url(../images/common/tabs_active_bg.png) repeat-x 0 0;
+	background: #BFE1FF url(../images/common/tabs_active_bg.png) repeat-x 0 0;
 	font-weight: bold;
 }
 
 .ui-tabs li.current a, .ui-tabs li.current span {
+	background: transparent;
+	border: 1px solid #BFE1FF;
 	color: #333;
 	padding: 0.15em 1em;
-	background: transparent;
-	border: 1px solid #bfe1ff;
 }
 
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background-color:transparent;
+	background: #BFE1FF url(../images/common/tabs_active_bg.png) repeat-x 0 0;
+	background-color: transparent;
 	text-decoration: none;
-	background: #bfe1ff url(../images/common/tabs_active_bg.png) repeat-x 0 0;
 }
