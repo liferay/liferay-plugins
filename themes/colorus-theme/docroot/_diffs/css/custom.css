@@ -1,24 +1,31 @@
 /*--------- Body ---------*/
 body {
-	background: #171C20 url(../images/custom/body_all_bckg.jpg) center top repeat-y;
+	background: #171C20 url(../images/custom/body_all_bckg.jpg) repeat-y center top;
 	color: #FFF;
 	font-family: Trebuche MS, 'Arial', 'Helvetica', sans-serif;
 	font-size: 11px;
 }
 
+#wrapper {
+	background: url(../images/custom/body_top_bckg.jpg) no-repeat center top;
+}
 
-/*-------- Wrapper -------*/
-#wrapper {}
+#content-wrapper {
+	margin: 0 auto;
+	position: relative;
+	width: 770px;
+}
 
 
 /*-------- Banner --------*/
 
 #banner {
-	background: transparent url(../images/custom/body_top_bckg.jpg) center top no-repeat;
 	display: block;
-	height: 390px;
+	height: 305px;
 	margin: 0 auto;
-	width: 1000px;
+	position: relative;
+	top: -1px;
+	width: 770px;
 }
 
 #banner .logo {
@@ -34,16 +41,16 @@ body {
 
 /*-------- Dock ----------*/
 .js .interactive-mode {
-	right: 1%;
+	right: 10px;
+	top: 60px;
 }
 
 
 /*----- Navigation -------*/
 #navigation {
-	position: relative;
+	margin: 0 auto 30px;
 	text-align: center;
-	bottom: 85px;
-	z-index: 21;
+	width: 770px;
 }
 
 #navigation ul li {
@@ -61,7 +68,6 @@ body {
 	margin-left: 4px;
 	padding: 7px 25px;
 	text-decoration: none;
-	text-transform: capitalize;
 }
 
 #navigation li a:hover {
@@ -76,10 +82,8 @@ body {
 .js #add-page {
 	float: right;
 	position: absolute;
-	bottom: 100%;
-	right: 1px;
-	top: 2px;
-	z-index: 24;
+	right: 0;
+	top: -50px;
 }
 
 .js #add-page a {
@@ -104,17 +108,6 @@ body {
 
 .js #navigation .enter-page .save-page:hover {
 	background: #F26513;
-}
-
-
-/*----- Content Wrapper -----*/
-
-#content-wrapper {
-	bottom: 68px;
-	margin: 0 auto;
-	position: relative;
-	width: 770px;
-	z-index: 22;
 }
 
 
