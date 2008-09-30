@@ -64,6 +64,10 @@ body {
 	color: #000;
 }
 
+#navigation .enter-page a {
+	display: inline;
+}
+
 
 /* ---------- Dock with JavaScript ---------- */
 
@@ -92,6 +96,7 @@ body {
 }
 
 .portlet-icons {
+	line-height: 0;
 	top: 12px;
 }
 
