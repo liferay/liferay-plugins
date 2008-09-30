@@ -64,6 +64,17 @@
 				</then>
 			</elseif>
 			<elseif>
+				<equals arg1="${theme.parent}" arg2="classic" />
+				<then>
+					<copy todir="docroot" overwrite="yes">
+						<fileset
+							dir="${app.server.portal.dir}/html/themes/classic"
+							excludes="_diffs/**"
+						/>
+					</copy>
+				</then>
+			</elseif>
+			<elseif>
 				<not>
 					<equals arg1="${theme.parent}" arg2="$${theme.parent}" />
 				</not>
