@@ -24,7 +24,7 @@ body {
 /* ---------- Banner ---------- */
 
 #banner {
-	background: url(../images/custom/banner_bg.png) no-repeat scroll right top;
+	background: url(../images/custom/banner_bg.png) no-repeat right top;
 	height: 288px;
 	position: relative;
 }
@@ -38,7 +38,7 @@ body {
 /* ---------- Footer ---------- */
 
 #footer {
-	background: url(../images/custom/footer_bg.png) repeat bottom left;
+	background: url(../images/custom/footer_bg.png) bottom left;
 	height: 120px;
 }
 
@@ -56,6 +56,12 @@ body {
 
 .js .interactive-mode h2 {
 	background-position: right -30px;
+}
+
+.js #add-page {
+	bottom: 8px;
+	position: absolute;
+	right: -100px;
 }
 
 
@@ -87,8 +93,15 @@ body {
 	text-decoration: none;
 }
 
+
+/* ---------- Portlet ---------- */
+
+.portlet {
+	margin-bottom: 15px;
+}
+
 .portlet-topper {
-	background: #000 none repeat scroll 0 0;
+	background: #000;
 	border-bottom: 1px solid #999;
 	padding: 6px 8px;
 }
@@ -115,4 +128,11 @@ body {
 	border: 1px solid #999;
 	color: #000;
 	margin: 0 2px 0 0;
+}
+
+
+/* ---------- Liferay UI ---------- */
+
+.calendar-container, .results-row {
+	color: #000;	
 }
