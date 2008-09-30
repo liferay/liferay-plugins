@@ -293,8 +293,7 @@ var Desktop = function () {
 
 			$('div.portlet-boundary').find('span.portlet-icons a').hoverIntent(
 				{
-					sensitivity: 4,
-					interval: 50,
+					interval: 0,
 					timeout: 0,
 					over: function() {
 						$(this).addClass('selected');
