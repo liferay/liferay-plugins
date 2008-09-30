@@ -1,127 +1,153 @@
-@import url(color_schemes/light.css);
-@import url(color_schemes/dark.css);
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+
+/* ---------- Browser normalization ---------- */
+
+body.lite {
+	background: #587E95 url(../images/custom/lite/body_bg.png) repeat-y center top;
+}
+
+body.dark {
+	background: #949494 url(../images/custom/dark/body_bg.png) repeat-y center top;
+}
+
+
+/* ---------- Main content body ---------- */
+
 #wrapper {
-	padding-top: 56px;
-	position: relative;
 	margin: 0 auto;
-	width:776px;
+	width: 960px;
 }
+
 #content-wrapper {
-	font-size: 1em;
-	width: 100%;
+	padding: 16px;
 }
-html {
-	overflow-y: scroll;
-}
+
+
+/* ---------- Banner ---------- */
+
 #banner {
-	height: 143px;
+	padding: 0 0 61px;
+	position: relative;
 }
+
+.lite #banner {
+	background: url(../images/custom/lite/banner_bg.png) repeat-x;
+}
+
+.dark #banner {
+	background: url(../images/custom/dark/banner_bg.png) repeat-x;
+}
+
 #banner .logo {
-	background: transparent none;
+	border-top: 2px solid #48525B;
+	height: 93px;
+	margin: 0;
+	position: relative;
+	top: 61px;
 }
-#banner .logo a {
-	margin-top: -21px;
+
+.lite #banner .logo {
+	background: url(../images/custom/lite/header_image.png) no-repeat center top;
+	padding: 25px;
 }
+
+.dark #banner .logo {
+	background: url(../images/custom/dark/header_image.png) no-repeat center top;
+	padding: 25px 25px 25px 125px;
+}
+
+
+/* ---------- Main navigation ---------- */
+
 #navigation {
-	border: none;
-	height: 35px;
-	margin: 0;
-	padding: 0;
-	width: 100%;
+	border-top: 7px solid #455660;
+	height: 61px;
 }
-#navigation li {
-	background: transparent;
-	border: none;
-	margin: 0;
-	overflow: hidden;
-	padding: 8px 15px;
+
+.lite #navigation {
+	background: url(../images/custom/lite/navigation_bg.gif);
 }
-#navigation li a {
-	background: transparent;
-	font-size: 11px;
-	padding: 0;
+
+.dark #navigation {
+	background: url(../images/custom/dark/navigation_bg.gif);
 }
-#navigation li a span {
-	background: none;
-	padding: 0;
+
+#navigation ul, #add-page {
+	float: left;
 }
-#navigation li a:hover {
-	background: transparent;
-	padding-bottom: 0;
+
+#navigation a {
+	color: #FFF;
+	display: block;
+	font: 14px/56px Arial, Helvetica, sans-serif;
+	height: 61px;
+	padding: 0 24px;
+	text-decoration: none;
 }
-#navigation li a:hover span {
-	background: none;
+
+#navigation a:hover {
+	color: #FEC;
 }
-#navigation li.selected {
-	padding-bottom: 1px;
+
+.lite #navigation .selected a {
+	background: #4A5C6A;
 }
-#navigation li.selected a {
-	padding: 0;
+
+.dark #navigation .selected a {
+	background: #6B6B6B;
 }
-#navigation li.selected a span {
-	background: transparent;
-	font-size: 1em;
-	padding: 0;
-}
-#navigation li.selected a:hover {
-	padding-bottom: 0;
-}
-.js #navigation .enter-page {
-	background: none;
-	padding: 0;
-	margin-top: 1px;
-}
-.js #add-page {
-	float: right;
-	font-weight: bold;
-	padding-top: 8px;
-}
-.portlet, .portlet-topper, .portlet-content, .portlet-title {
-	background: none;
-}
+
+
+/* ---------- Portlet wrapper and icons ---------- */
+
 .portlet {
-	padding-right: 0;
+	margin: 0 0 24px;
 }
+
+.portlet-topper {
+	border-bottom: 12px solid #DDD;
+	padding: 4px 0;
+}
+
+.lite .portlet-topper {
+	color: #536C71;
+}
+
+.dark .portlet-topper {
+	color: #353E47;
+}
+
 .portlet-title {
-	font-size: 14px;
+	font: normal 18px arial, sans-serif;
 }
-.portlet-title img {
-	display: none;
-}
+
+
+/* ---------- Tabs ---------- */
+
 .ui-tabs {
-	padding: 0 0 18px 1em;
-}
-.ui-tabs li {
-	line-height: 15px;
-	margin-right: 0.3em;
-	top: 0.15em;
-}
-.ui-tabs li a, .ui-tabs li span {
-	padding: 0.1em 1em 0;
-	top:0;
-}
-.ui-tabs li.current a, .ui-tabs li.current span {
-	padding: 0.1em 1em;
-	border:none;
+	border-bottom: 1px solid #B3C6C4;
+	padding: 0;
 }
 
-.liferay-table {
-	font: 9px/9px Arial;
-}
-#navigation li.selected a, #navigation li a:hover {
-	background-color: transparent;
-}
-.js #add-page {
-	background: none;
-	border: none;
-	right: 0%;
-	top: -7px;
-}
-input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
-	padding:1px;
+.ui-tabs li a, .ui-tabs li a:hover, .ui-tabs li span, .ui-tabs li span:hover {
+	border: 1px solid #B3C6C4;
+	color: #586B7A;
+	margin: 0 3px 0 0;
 }
 
-.portlet-icons {
-	right:0;
-	top:-5px;
+.lite .ui-tabs li a, .lite .ui-tabs li a:hover, .lite .ui-tabs li span, .lite .ui-tabs li span:hover {
+	background: #EAF2F5;
+}
+
+.dark .ui-tabs li a, .dark .ui-tabs li a:hover, .dark .ui-tabs li span, .dark .ui-tabs li span:hover {
+	background: #B3C6C4;
+}
+
+.ui-tabs li.current:hover {
+	background: transparent;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: #B3C6C4;
 }
