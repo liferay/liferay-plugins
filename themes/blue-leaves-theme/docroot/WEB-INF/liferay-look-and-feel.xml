@@ -5,5 +5,5 @@
 	<compatibility>
 		<version>5.1.0+</version>
 	</compatibility>
-	<theme id="blueleaves" name="Blue Leaves" />
+	<theme id="blue-leaves" name="Blue Leaves" />
 </look-and-feel>
