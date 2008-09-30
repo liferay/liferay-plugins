@@ -5,5 +5,5 @@
 	<compatibility>
 		<version>5.1.0+</version>
 	</compatibility>
-	<theme id="bittersweet" name="Bitter Sweet" />
+	<theme id="bitter-sweet" name="Bitter Sweet" />
 </look-and-feel>
