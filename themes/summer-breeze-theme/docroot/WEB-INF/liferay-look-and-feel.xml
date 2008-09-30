@@ -5,5 +5,5 @@
 	<compatibility>
 		<version>5.1.0+</version>
 	</compatibility>
-	<theme id="summerbreeze" name="Summer Breeze" />
+	<theme id="summer-breeze" name="Summer Breeze" />
 </look-and-feel>

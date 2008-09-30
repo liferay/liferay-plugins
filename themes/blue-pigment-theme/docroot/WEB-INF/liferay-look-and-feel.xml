@@ -5,5 +5,5 @@
 	<compatibility>
 		<version>5.1.0+</version>
 	</compatibility>
-	<theme id="bluepigment" name="Blue Pigment" />
+	<theme id="blue-pigment" name="Blue Pigment" />
 </look-and-feel>

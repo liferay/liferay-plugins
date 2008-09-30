@@ -5,5 +5,5 @@
 	<compatibility>
 		<version>5.1.0+</version>
 	</compatibility>
-	<theme id="underthebridge" name="Under the Bridge" />
+	<theme id="under-the-bridge" name="Under the Bridge" />
 </look-and-feel>

@@ -5,7 +5,7 @@
 	<compatibility>
 		<version>5.1.0+</version>
 	</compatibility>
-	<theme id="nautica05" name="Nautica">
+	<theme id="nautica-05" name="Nautica">
 		<root-path>/</root-path>
 		<templates-path>${root-path}/templates</templates-path>
 		<images-path>${root-path}/images</images-path>
