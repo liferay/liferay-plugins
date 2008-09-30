@@ -1,38 +1,124 @@
-#banner .logo a {
-	margin-left: 458px;
-	margin-top: 101px;
+/*--------- Body ---------*/
+body {
+	background: #171C20 url(../images/custom/body_all_bckg.jpg) center top repeat-y;
+	color: #FFF;
+	font-family: Trebuche MS, 'Arial', 'Helvetica', sans-serif;
+	font-size: 11px;
 }
+
+
+/*-------- Wrapper -------*/
+#wrapper {}
+
+
+/*-------- Banner --------*/
 
 #banner {
-	background: url('../images/custom/body_top_bckg.jpg') no-repeat center top #171C20;
-	height: 377px;
+	background: transparent url(../images/custom/body_top_bckg.jpg) center top no-repeat;
+	display: block;
+	height: 390px;
+	margin: 0 auto;
+	width: 1000px;
 }
 
-body {
-	background: url('../images/custom/body_all_bckg.jpg') repeat scroll center top;
-	font-family: 'Tahoma', ' Arial';
-	font-size: 11px;
-	color: white;
+#banner .logo {
+	margin: 0;
 }
+
+#banner .logo a {
+	margin: 0 auto;
+	position: relative;
+	top: 121px;	
+}
+
+
+/*-------- Dock ----------*/
+.js .interactive-mode {
+	right: 1%;
+}
+
+
+/*----- Navigation -------*/
+#navigation {
+	position: relative;
+	text-align: center;
+	bottom: 85px;
+	z-index: 21;
+}
+
+#navigation ul li {
+	display: inline;
+	float: none;
+	margin: 0 auto;
+}
+
+#navigation li a {
+	color: #111;
+	display: inline;
+	float: none;
+	font-size: 14px;
+	font-weight: bold;
+	margin-left: 4px;
+	padding: 7px 25px;
+	text-decoration: none;
+	text-transform: capitalize;
+}
+
+#navigation li a:hover {
+	background-color: #F26513;
+}
+
+#navigation li.selected a {
+	background-color: #445D6C;
+	color: #FFF;
+}
+
+.js #add-page {
+	float: right;
+	position: absolute;
+	bottom: 100%;
+	right: 1px;
+	top: 2px;
+	z-index: 24;
+}
+
+.js #add-page a {
+	background: transparent url(../images/common/add.png) 5px 50% no-repeat;
+	color: #FFF;
+	font-weight: bold;
+	padding: 7px 25px;
+	text-decoration: none;
+}
+
+.js #navigation .enter-page {
+	display: inline;
+}
+
+.js #navigation .enter-page .save-page {
+	background: #445D6C;
+}
+
+.js #navigation .enter-page .cancel-page {
+	display: none;
+}
+
+.js #navigation .enter-page .save-page:hover {
+	background: #F26513;
+}
+
+
+/*----- Content Wrapper -----*/
 
 #content-wrapper {
-	margin-top: 61px;
-	width:925px;
-}
-
-#footer {
-	background: url('../images/custom/footer_bckg.jpg') no-repeat top center;
-	clear: both;
-	height: 102px;
+	bottom: 68px;
 	margin: 0 auto;
-	width: 780px;
+	position: relative;
+	width: 770px;
+	z-index: 22;
 }
 
-html {
-	overflow-x: auto;
-	overflow-y: scroll;
-}
 
+/*----- Forms --------*/
 input.focus, textare.focus, ie6 input.focus, ie6 textarea.focus {
 	background: white;
 	border: white;
@@ -42,136 +128,36 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	padding: 2px 1px;
 }
 
-.js #add-page a span {
-	background: transparent;
-	background-color: #445D6C;
-	color: white;
-	font-size: 14px;
-	font-weight: bold;
-	margin-left: -432px;
-	margin-top: -1px;
-	padding: 0 10px 1px;
-	position: absolute;
-	text-transform: lowercase;
-}
 
-.js #add-page a:hover span {
-	background-color: #F26513;
-}
-
-.js #navigation .enter-page .save-page {
-	background: #445D6C;
-	margin: 0 0px;
-	padding-bottom: 2px;
-	padding-left: 11px;
-	padding-right: 8px;
-}
-
-.js #navigation .enter-page .save-page:hover {
-	background: #F26513;
-}
-
-.js #navigation .enter-page {
-	background-color: transparent;
-	margin-top: -2px;
-}
-
-.js .interactive-mode {
-	right: 1%;
-}
-
-#left_footer a {
-	color: #FFF;
-}
-
-#left_footer a:hover {
-	text-decoration: none;
-}
-
-#left_footer {
-	color: #FFF;
-	float: left;
-	font-size: 12px;
-	padding: 60px 0 0 30px;
-}
-
-#navigation li a {
-	background-color: #445D6C;
-	color: #FFF;
-	font-size: 14px;
-	font-weight: bold;
-	margin-left: 4px;
-	padding: 0 10px 1px;
-	text-decoration: none;
-	text-transform: lowercase;
-}
-
-#navigation li a:hover {
-	background-color: #F26513;
-}
-
-#navigation li {
-	border: none;
-}
-
-#navigation li.selected a span {
-	background: transparent;
-	padding-left: 0;
-}
-
-#navigation li.selected a {
-	background-color: #445D6C;
-}
-
-#navigation ul {
-	margin: 0 auto 0 340pt;
-	width: 55%;
-}
-
-#navigation {
-	background: transparent;
-	border-top: none;
-	margin-left: -9px;
-	margin-top: -85px;
-}
-
-#right_footer a {
-	color: #FFF;
-}
-
-#right_footer a:hover {
-	text-decoration: none;
-}
-
-#right_footer {
-	color: #FFF;
-	float: right;
-	font-size: 12px;
-	padding: 60px 30px 0 0;
-	text-align: right;
-}
-
-#wrapper {
-	background: transparent;
-	width: 100%;
-}
-
+/*------ Portlet ------*/
 .portlet {
 	background: transparent;
 	border: none;
+	margin: 0 0 30px;
+}
+
+.portlet-title {
+	padding: 5px;
 }
 
 .portlet-topper {
-	background:transparent url(../images/custom/footer_bckg.jpg) no-repeat scroll center center;
 	color: white;
 }
 
 .portlet-calendar .calendar-container {
-	background: transparent;
+	background: #222;
+	border: 1px solid #333;
+}
+
+.portlet-calendar .calendar-day .day-text {
+	background: #333;	
 }
 
 .portlet-calendar .calendar-day .day-number {
+	background: #222;
 	border: none;
+	color: #CCC;
+	font-weight: bold;
 }
 
 .portlet-calendar .calendar-day .day-number {
@@ -179,7 +165,9 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 }
 
 .taglib-calendar tr th {
-	color: black;
+	background: #222;
+	border: none;
+	color: #CCC;
 }
 
 .portlet-section-body td {
@@ -197,28 +185,66 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	color: white;
 }
 
+
 /*--------- Tabs ----------*/
+.ui-tabs {
+	border-bottom: solid 1px #222;
+}
 
 .ui-tabs li.current a, .ui-tabs li.current span {
-	background:#445D6C none repeat scroll 0 0;
-	border:medium none;
-	color:white;
+	background: #445D6C;
+	border: none;
+	color: #FFF;
+	padding: 10px 25px;
 }
 
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background-color:transparent;
-	color: white;
+	background: #EEB122;
+	color: #FFF;
 	text-decoration: none;
-	background:#445D6C none repeat scroll 0 0;
 }
 
 .ui-tabs li a, .tabs li span {
-	background:transparent none repeat scroll 0 0;
-	border-right:medium none;
-	top:0;
+	background: #333;
+	border-bottom: solid 1px #445D6C;
+	border: none;	
 }
 
 .ui-tabs li a:hover, .ui-tabs li span:hover {
-	background:black;
-	color:white;
+	background: #222;
+	color: #FFF;
+}
+
+
+/*------ Footer -------*/
+#footer {
+	background: url(../images/custom/footer_bckg.jpg) no-repeat top center;
+	clear: both;
+	height: 102px;
+	margin: 0 auto;
+	width: 780px;
+}
+
+#footer a {
+	color: #FFF;
+}
+
+#left_footer a:hover {
+	text-decoration: none;
+}
+
+#left_footer {
+	float: left;
+	padding: 60px 0 0 30px;
+}
+
+#right_footer a:hover {
+	text-decoration: none;
+}
+
+#right_footer {
+	color: #FFF;
+	float: right;
+	padding: 60px 30px 0 0;
+	text-align: right;
 }
