@@ -9,5 +9,14 @@
 		<settings>
 			<setting key="css-template-id" value="CSS-TEMPLATE" />
 		</settings>
+		<layout-templates>
+			<custom>
+				<layout-template id="freeform" name="Desktop">
+					<template-path>/layouttpl/custom/freeform.tpl</template-path>
+					<wap-template-path>/layouttpl/custom/freeform.wap.tpl</wap-template-path>
+					<thumbnail-path>/layouttpl/custom/freeform.png</thumbnail-path>
+				</layout-template>
+			</custom>
+		</layout-templates>
 	</theme>
 </look-and-feel>
