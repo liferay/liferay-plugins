@@ -1,0 +1,23 @@
+/* ---------- Banner ---------- */
+
+.ie6 #banner .logo {
+	zoom: 1;
+}
+
+#banner {
+	position:relative;
+	top:-15px;
+	z-index:20;
+}
+
+#banner .logo a {
+background:transparent url(/image/company_logo?img_id=0&t=1222669136593) no-repeat scroll 0 0;
+display:block;
+font-size:0;
+height:76px;
+text-indent:-9999em;
+width:209px;
+}
+#banner .logo a {
+text-decoration:none;
+}
