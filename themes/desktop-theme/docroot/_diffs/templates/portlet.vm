@@ -83,5 +83,5 @@
 </table>
 
 <script type="text/javascript">
-	($is_maximized) ? Desktop.portletMaximize('$portlet_id') : Desktop.tbAddLink('$portlet_id');
+	($is_maximized) ? Desktop.portletMaximize('$portlet_id') : Desktop.taskbarAddPortlet('$portlet_id');
 </script>

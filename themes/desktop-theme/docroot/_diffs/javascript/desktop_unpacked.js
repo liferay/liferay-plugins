@@ -1,11 +1,12 @@
 var Desktop = function () {
 	var $ = jQuery;
+	var isFreeformLayout = themeDisplay.isFreeformLayout();
 
 	return {
 		initHtml: function() {
 			var instance = this;
 
-			if ($('#content-wrapper').hasClass('freeform')) {
+			if (isFreeformLayout) {
 				instance._handleBodyClicks();
 			}
 			else {
@@ -19,13 +20,13 @@ var Desktop = function () {
 			instance._handleAddSidebar();
 			instance._handlePortletIcons();
 
-			if ($('#content-wrapper').is('.freeform')) {
-				instance._handlePortletSelect();
+			if (isFreeformLayout) {
+				instance._handleTaskbarInit();
 				instance._handlePortletClicks();
 			}
 		},
 
-		tbAddLink: function(portletId) {
+		taskbarAddPortlet: function(portletId) {
 			var instance = this;
 
 			if ($('#tb_' + portletId).size() == 0) {
@@ -67,13 +68,13 @@ var Desktop = function () {
 					tbLinks.css({width:100/count + '%'});
 				}
 
-				if ($('#content-wrapper').is('.freeform')) {
+				if (isFreeformLayout) {
 					instance.portletRestore(portletId);
 				}
 			}
 		},
 
-		tbSelectLink: function(portletId) {
+		taskbarSelectedPortlet: function(portletId) {
 			var instance = this;
 
 			var tbLink =  $('#tb_' + portletId);
@@ -198,7 +199,7 @@ var Desktop = function () {
 			var portlet = $('#p_p_id_' + portletId + '_');
 			var columnId = portlet.parent().attr('id');
 
-			if ($('#content-wrapper').is('.freeform')) {
+			if (isFreeformLayout) {
 				portlet.appendTo('#' + columnId);
 				portlet.css({display:''});
 			}
@@ -211,8 +212,8 @@ var Desktop = function () {
 			var currId = 'tb_' + portletId;
 			var taskbarId = $('.taskbar-link.selected').attr('id');
 
-			if ((currId != taskbarId) && $('#content-wrapper').is('.freeform')) {
-				instance.tbSelectLink(portletId);
+			if ((currId != taskbarId) && isFreeformLayout) {
+				instance.taskbarSelectedPortlet(portletId);
 			}
 
 			$.ajax(
@@ -283,7 +284,7 @@ var Desktop = function () {
 					portletId = portletId.substring(0,portletId.length-1);
 					portletId = portletId.replace('p_p_id_','');
 
-					instance.tbSelectLink(portletId);
+					instance.taskbarSelectedPortlet(portletId);
 				}
 			);
 		},
@@ -305,7 +306,7 @@ var Desktop = function () {
 			);
 		},
 
-		_handlePortletSelect: function() {
+		_handleTaskbarInit: function() {
 			var instance = this;
 
 			var portlet = $('#content-wrapper').find("div.portlet-boundary:last");
@@ -316,7 +317,7 @@ var Desktop = function () {
 				portletId = portletId.substring(0,portletId.length-1);
 				portletId = portletId.replace('p_p_id_','');
 
-				instance.tbSelectLink(portletId);
+				instance.taskbarSelectedPortlet(portletId);
 			}
 		}
 
