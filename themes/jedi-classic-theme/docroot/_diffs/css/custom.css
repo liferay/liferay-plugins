@@ -1,7 +1,0 @@
-/* Import */
-@import url(head.css);
-
-.js .lfr-dock-list-container {
-	height: 1px;
-	overflow: visible;
-}
