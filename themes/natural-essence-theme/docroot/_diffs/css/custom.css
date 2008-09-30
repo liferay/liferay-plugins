@@ -50,6 +50,10 @@ body {
 	height: 41px;
 }
 
+#navigation ul, #add-pages {
+	float: left;
+}
+
 #navigation a {
 	border-right: 1px solid #C9C6B3;
 	color: #553;
