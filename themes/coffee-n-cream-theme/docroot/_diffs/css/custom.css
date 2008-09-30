@@ -1,4 +1,13 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+/* Body and Links */
+
+body {
+	background: #FFF url(../images/custom/common/bg.png) repeat;
+	font-size: 9pt;
+}
+
+body.html-editor {
+	background: #FFF;
+}
 
 a {
 	color: #987E57;
@@ -9,178 +18,164 @@ a:hover {
 	text-decoration: underline;
 }
 
-#banner .logo {
-	background: transparent none;
+#wrapper {
+	background: #FCFAEA none;
+	border: 3px solid #665D4B;
+	margin: 20px auto;
+	width: 975px;
 }
 
-#banner h1.logo {
-	left: 2%;
-}
+/* Banner and Navigation */
 
 #banner {
-	background: transparent url('../images/custom/common/banner_bg.png') repeat scroll 100% 100%;
+	background: transparent url(../images/custom/common/banner_bg.png) repeat scroll 100% 100%;
 	border-bottom: 1px solid #FFF7EC;
 	height: 120px;
 	position: relative;
 	top: 0;
 }
 
-body {
-	background: transparent url('../images/custom/common/bg.png') repeat;
+#banner .logo {
+	margin: 0;
 }
 
-.columns-1 #column-1 {
-	padding-left: 5px;
-	padding-right: 5px;
+#banner .logo a {
+	left: 20px;
+	position: relative;
+	top: 20px;
 }
 
-.columns-1-2-1 #column-1, .columns-1-2-1 #column-4 {
-	padding-left: 5px;
-	padding-right: 5px;
+#navigation {
+	background: transparent url(../images/custom/navigation/navigation_bg.png) 0 0 repeat-x;
+	position: relative;
 }
 
-.columns-1-2-1 #column-2 {
-	padding-left: 5px;
+#navigation li {
+	border-right: 1px solid #9A8266;
+	height: 44px;
+	overflow: hidden;
 }
 
-.columns-1-2-1 #column-3 {
-	padding-right: 5px;
+#navigation li a {
+	border-left: 1px solid #D1D1D1;
+	color: #665544;
+	display: block;
+	font-weight: Bold;
+	padding: 12px 25px;
+	text-decoration: none;
+	text-transform: capitalize;
 }
 
-.columns-2 #column-1 {
-	padding-left: 5px;
+#navigation li a:hover {
+	background: #ADA08C;
+	color: #FCFAEA;
 }
 
-.columns-2 #column-2 {
-	padding-right: 5px;
+#navigation li.selected a {	
+	background: #FCFAEA;
+	border-bottom: 1px solid #FCFAEA;
+	font-style: italic;
 }
 
-.columns-2-2 #column-1, .columns-2-2 #column-2 {
-	padding-left: 5px;
+#navigation li.selected a:hover {
+	color: #665544;
 }
 
-.columns-2-2 #column-4 {
-	padding-right: 5px;
-}
-
-.columns-3 #column-1 {
-	padding-left: 5px;
-}
-
-.columns-3 #column-3 {
-	padding-right: 5px;
-}
-
-#content-wrapper {
-	width: 100%;
-}
-
-.ie .tabs li.current {
-	top: 0;
-}
-
-.ie6 #navigation, .ie6 #navigation ul {
-	width: 975px;
+#navigation li.selected, .js #navigation li .enter-page {
+	height: 44px;
+	overflow: hidden;
 }
 
 .ie6.js #navigation .enter-page {
-	background: transparent url('../images/custom/navigation/navigation_bg.png') repeat-x 0 100%;
+	background: transparent url(../images/custom/navigation/navigation_bg.png) repeat-x 0 100%;
 	padding: 0.5em 2em 10px 1.5em;
 }
 
 .js #add-page {
-	background:transparent none repeat scroll 0 0;
-	border:medium none;
-	bottom:auto;
+	bottom: 100%;
+	position: absolute;
 	right:1px;
-	top:8px;
+	top: 10px;
 }
 
-.js #navigation .enter-page .save-page {
-	background: transparent;
-	font-weight: normal;
-	padding-left: 0;
+.js #add-page a {
+	background: transparent url(../images/common/add.png) 5px 50% no-repeat;
+	font-weight: bold;
+	text-decoration: none;
+	padding: 7px 25px;
 }
 
 .js #navigation .enter-page {
-	background: transparent url('../images/custom/navigation/navigation_bg.png') repeat-x scroll 0pt100%;
-	margin: -3px -2px 0;
-	padding: 0 0px 7px 27px;
+	padding: 7px 7px 0;
 }
 
+.js #navigation .enter-page .save-page {
+	display: inline;
+	font-weight: normal;
+	padding: 7px 20px;
+}
+
+.js #navigation .enter-page .cancel-page {
+	display: none;
+}
+
+
+/* Dock */
+
 .js .interactive-mode {
-	right:2%;
+	background: transparent url(../images/custom/dock/menu_barbrown.png) 5px top no-repeat;
+	right: 2%;
+}
+
+.js .interactive-mode h2 span{
+	background: transparent url(../images/custom/dock/menu_barbrown.png) left top no-repeat;
+	border: none;
+}
+
+.js .interactive-mode h2 {
+	background: transparent url(../images/custom/dock/menu_barbrown.png) right bottom no-repeat;
+	position: relative;
+	right: -5px;
+}
+
+.js .lfr-dock.expanded .lfr-dock-list-container {
+	left: 10px;
+	position: relative;
+	top: 0;
 }
 
 .loading-animation {
-	background: url('../images/custom/progress_bar/loading_animationbar.gif') no-repeat top center;
+	background: url(../images/custom/progress_bar/loading_animationbar.gif) no-repeat top center;
 }
 
-#navigation li a span {
-	background: transparent none;
+/* Content Wrapper */
+#content-wrapper {
+	margin: 5px 5px 0;
 }
 
-#navigation li a {
-	background: transparent url('../images/custom/navigation/navigation_bg.png') repeat-x 0 100%;
-	color: #654;
-	font-size: 9pt;
-	padding: 7pt 5pt 1em 1.5em;
+
+/* Columns */
+.columns-1 #column-1, .columns-1-2-1 #column-1, .columns-1-2-1 #column-4 {
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
-#navigation li a:hover span {
-	background: transparent none;
+.columns-1-2-1 #column-3, .columns-2 #column-2, .columns-3 #column-3,
+.columns-2-2 #column-4  {
+	padding-right: 5px;
 }
 
-#navigation li a:hover {
-	color: #FCFAEA;
+.columns-2 #column-1, .columns-2-2 #column-1, .columns-2-2 #column-2,
+.columns-3 #column-1, .columns-1-2-1 #column-2 {
+	padding-left: 5px;
 }
 
-#navigation li {
-	background: transparent url('../images/custom/navigation/navigation_bg.png') repeat-x 100% 100%;
-	border: 0;
-	margin-right: 0;
-	padding: 5px 25px 0 0;
-}
 
-#navigation li.selected a span {
-	background: transparent none;
-	color: #654;
-	font-size: 9pt;
-	text-decoration: underline;
-}
+/* Portlet */
 
-#navigation li.selected a {
-	padding-top: 0;
-}
-
-#navigation li.selected a, #navigation li a:hover {
-	color: #654;
-}
-
-#navigation li.selected a:hover {
-	color: #FCFAEA;
-	padding-bottom: 1em;
-}
-
-#navigation li.selected {
-	padding: 14px 25px 0 0;
-}
-
-#navigation ul {
-	background: transparent url('../images/custom/navigation/navigation_bg.png') repeat-x 100% 100%;
-	width: 975px;
-}
-
-#navigation {
-	margin: 0 0pt 0.5em;
-	min-height: 2.2em;
-	overflow: hidden;
-	padding-right: 0;
-	width: 975px;
-}
-
-.portlet, .portlet-topper, .portlet-content, .portlet-title {
-	background: transparent none;
+.portlet {
+	margin: 0 0 10px;
+	border: 1px solid #654;
 }
 
 .portlet-section-body td {
@@ -206,26 +201,23 @@ body {
 }
 
 .portlet-title {
-	background: transparent url('../images/custom/navigation/navigation_bg.png') repeat-x left top;
+	background: transparent url(../images/custom/navigation/navigation_bg.png) repeat-x left top;
 	display: block;
 	font-size: 14px;
 	font-weight: bold;
 	min-width: 50%;
-	padding: 8px 0 15px 10px;
+	padding: 8px 0 8px 10px;
 }
 
 .portlet-topper {
-	background: transparent url('../images/custom/navigation/navigation_bg.png') repeat-x right top;
+	background: transparent url(../images/custom/navigation/navigation_bg.png) repeat-x right top;
 	border-bottom: 1px solid #654;
 }
 
-.portlet {
-	border: 1px solid #654;
-}
 
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
 	background: #695847 none;
-	color: white;
+	color: #FFF;
 	text-decoration: none;
 }
 
@@ -233,7 +225,7 @@ body {
 	background: #E4DBCF none;
 	border-right: none;
 	color: #C60;
-	padding: 0 1em 0;
+	padding: .5em 1em;
 }
 
 .ui-tabs li a:hover, .ui-tabs li span:hover {
@@ -243,30 +235,20 @@ body {
 
 .ui-tabs li {
 	background: #E4DBCF none;
-	margin-right: 0;
+	border-bottom: 1px solid #695847;
 }
 
 .ui-tabs li.current a, .tabs li.current span {
 	background: #695847 none;
 	color: #FCFAEA;
-	padding: 0 2em;
 	border:medium none;
 }
 
 .ui-tabs li.current {
 	background: #695847 none;
-	top: 0;
 }
 
 .ui-tabs {
-	border-bottom: none;
-	padding: 0 0 2.6em 0;
-}
-
-#wrapper {
-	background: #FCFAEA none;
-	border-left: 3px solid #665D4B;
-	border-right: 3px solid #665D4B;
-	margin: 0 auto;
-	width: 975px;
+	border-bottom: 1px solid #695847;
+	padding: 0 0 0 1em;
 }
