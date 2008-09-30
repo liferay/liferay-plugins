@@ -1,8 +1,9 @@
-/* Body and Links */
+
+/* ---------- Base ---------- */
 
 body {
-	background: #FFF url(../images/custom/common/bg.png) repeat;
-	font-size: 9pt;
+	background: #FFF url(../images/custom/common/bg.png);
+	font-size: 12px;
 }
 
 body.html-editor {
@@ -25,10 +26,15 @@ a:hover {
 	width: 975px;
 }
 
-/* Banner and Navigation */
+#content-wrapper {
+	margin: 5px 5px 0;
+}
+
+
+/* ---------- Banner ---------- */
 
 #banner {
-	background: transparent url(../images/custom/common/banner_bg.png) repeat scroll 100% 100%;
+	background: transparent url(../images/custom/common/banner_bg.png) repeat 100% 100%;
 	border-bottom: 1px solid #FFF7EC;
 	height: 120px;
 	position: relative;
@@ -45,6 +51,9 @@ a:hover {
 	top: 20px;
 }
 
+
+/* ---------- Navigation ---------- */
+
 #navigation {
 	background: transparent url(../images/custom/navigation/navigation_bg.png) 0 0 repeat-x;
 	position: relative;
@@ -58,12 +67,11 @@ a:hover {
 
 #navigation li a {
 	border-left: 1px solid #D1D1D1;
-	color: #665544;
+	color: #654;
 	display: block;
 	font-weight: Bold;
 	padding: 12px 25px;
 	text-decoration: none;
-	text-transform: capitalize;
 }
 
 #navigation li a:hover {
@@ -78,7 +86,7 @@ a:hover {
 }
 
 #navigation li.selected a:hover {
-	color: #665544;
+	color: #654;
 }
 
 #navigation li.selected, .js #navigation li .enter-page {
@@ -120,7 +128,7 @@ a:hover {
 }
 
 
-/* Dock */
+/* ---------- Dock ---------- */
 
 .js .interactive-mode {
 	background: transparent url(../images/custom/dock/menu_barbrown.png) 5px top no-repeat;
@@ -144,17 +152,9 @@ a:hover {
 	top: 0;
 }
 
-.loading-animation {
-	background: url(../images/custom/progress_bar/loading_animationbar.gif) no-repeat top center;
-}
 
-/* Content Wrapper */
-#content-wrapper {
-	margin: 5px 5px 0;
-}
+/* ---------- Layout Columns ---------- */
 
-
-/* Columns */
 .columns-1 #column-1, .columns-1-2-1 #column-1, .columns-1-2-1 #column-4 {
 	padding-left: 5px;
 	padding-right: 5px;
@@ -171,7 +171,7 @@ a:hover {
 }
 
 
-/* Portlet */
+/* ---------- Portlets ---------- */
 
 .portlet {
 	margin: 0 0 10px;
@@ -214,6 +214,12 @@ a:hover {
 	border-bottom: 1px solid #654;
 }
 
+.loading-animation {
+	background: url(../images/custom/progress_bar/loading_animationbar.gif) no-repeat top center;
+}
+
+
+/* ---------- Liferay UI ---------- */
 
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
 	background: #695847 none;
@@ -241,7 +247,7 @@ a:hover {
 .ui-tabs li.current a, .tabs li.current span {
 	background: #695847 none;
 	color: #FCFAEA;
-	border:medium none;
+	border: none;
 }
 
 .ui-tabs li.current {
