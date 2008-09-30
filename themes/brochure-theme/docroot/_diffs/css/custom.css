@@ -1,0 +1,376 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+body {
+	font-family: 'Lucida Sans Unicode','Lucida Grande','Lucida Sans','Tahoma',Arial,Verdana,sans-serif;
+}
+
+#wrapper {
+	margin: 0 auto;
+	width: 825px;
+}
+
+#content-wrapper {
+	background: #fff url(../images/custom/content_bg.png) repeat-y 100% 0;
+	border-left: 1px solid #D7D7D7;
+	border-right: 1px solid #D7D7D7;
+	font-size: 1.1em;
+	line-height: 1.35;
+	margin: 0 3px;
+	margin-top: -5px;
+	padding: 15px 5px 5px;
+	width: auto;
+}
+
+#content-wrapper.login {
+	padding-top: 10px;
+}
+
+font {
+	font-size: 1em !important;
+}
+
+#column-1 {
+	border-right: 1px solid #D7D7D7;
+}
+
+#layout-grid .lfr-column {
+}
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: transparent url(../images/common/banner_bg.png) no-repeat 100% 100%;
+	height: auto;
+	margin-bottom: 0;
+	padding-right: 5px;
+	position: relative;
+}
+
+#banner-inner {
+	background: transparent url(../images/common/banner_bg.png) no-repeat 0 100%;
+	min-height: 7em;
+	padding: 1em 0.6em 0.5em;
+}
+
+#banner .logo {
+	background: transparent url(../images/common/logo_bg.png) no-repeat 0 0;
+	display: block;
+	float: none;
+	font-size: 0;
+	padding: 0;
+}
+
+#banner h1.logo {
+	left: auto;
+	margin-bottom: 0;
+	margin-left: 0.5em;
+	margin-top: 0;
+	position: relative;
+}
+
+#banner .logo a {
+	background: url(../images/common/logo_bg.png) no-repeat;
+	display: block;
+	text-decoration: none;
+	text-indent: -9999em;
+}
+
+.js.ie #banner {
+	z-index: 1;
+}
+
+.ie6 #banner .logo {
+	zoom: 1;
+}
+
+/* ---------- Main navigation ---------- */
+
+#navigation {
+	background: url(../images/navigation/bg.png) no-repeat 0 0;
+	border-top: none;
+	bottom: 0.5em;
+	height: 25px;
+	left: 5px;
+	margin: 0 auto 0.5em;
+	padding: 0;
+	position: relative;
+	width: 99%;
+}
+
+#navigation ul {
+	background: url(../images/navigation/bg.png) no-repeat 100% 100%;
+	float: left;
+	height: 25px;
+	left: 0;
+	padding: 0;
+	position: static;
+	top: 0;
+	width: 100%;
+}
+
+.ie6 #navigation, .ie6 #navigation ul {
+	height: 25px;
+}
+
+#navigation li {
+	background: none;
+	border: none;
+	display: inline;
+	float: left;
+	margin: 0 0.89em;
+	padding: 0;
+}
+
+#navigation li a {
+	background: none no-repeat 0 50%;
+	color: #fff;
+	display: block;
+	float: left;
+	font-size: 1.1em;
+	height: 15px;
+	padding: 5px 10px;
+	text-decoration: none;
+}
+
+#navigation li a span {
+	background: none;
+	padding: 0;
+}
+
+#navigation li a:hover span {
+	background: none;
+}
+
+#navigation li a:hover {
+	background: url(../images/navigation/bg_hover.png) repeat-x;
+	border-left: 1px solid #1D4A81;
+	border-right: 1px solid #1D4A81;
+	padding-left: 9px;
+	padding-right: 9px;
+}
+
+#navigation li.selected a {
+	background: url(../images/navigation/bg_selected.png) repeat-x;
+	border-left: 1px solid #1D4A81;
+	border-right: 1px solid #1D4A81;
+}
+
+#navigation li.selected a span {
+	background: none;
+	font-size: 1em;
+}
+
+#navigation li.selected a:hover {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.ie #navigation li a {
+	padding-bottom: 3px;
+	padding-top: 5px;
+}
+
+/* ---------- Application styles ---------- */
+
+.ui-wrapper, .ui-dialog, #ui-datepicker-div, .ui-datepicker-inline, #content-wrapper #layout-grid.dragging .lfr-column, .ui-resizable-proxy {
+	border-color: #12558E;
+}
+
+.results-header, .navigation-sort-helper, .ui-datepicker-links, .ui-datepicker-header select, .ui-datepicker-days-cell a:hover {
+	background-color: #356792;
+}
+
+.ui-datepicker .ui-datepicker-days-row {
+	color: #356792;
+}
+
+.ui-datepicker-current-day a, .ui-colorpicker-current {
+	border-color: #356792;
+}
+
+.lfr-actions .lfr-trigger li a:hover {
+	background-color: #12558E;
+}
+
+/* ---------- Portlet ---------- */
+
+.portlet {
+	background: transparent;
+	border: none;
+	margin: 0 0 10px;
+	padding: 0;
+}
+
+.portlet.ui-proxy {
+	border: 1px dotted #12558E;
+}
+
+.portlet .portlet-topper {
+	background: none;
+	border-bottom: 2px solid #12558E;
+	color: #12558E;
+	margin: 0;
+	padding: 0;
+}
+
+.portlet .portlet-title, .portlet .portlet-icons {
+	background: none;
+}
+
+.portlet .portlet-title {
+	color: #12558E;
+	font-size: 1.2em;
+	font-weight: normal;
+	padding: 5px 3px;
+}
+
+.portlet .portlet-content {
+	background: none;
+	border: none;
+	padding: 10px;
+}
+
+.portlet-icons {
+	margin: 1px;
+	position: absolute;
+	right: 3px;
+	text-align: right;
+	top: 0;
+}
+
+.ie6 .portlet .portlet-topper {
+	position: static;
+	z-index: 0;
+}
+
+.ie6 .portlet .portlet-title {
+	float: left;
+}
+
+.ie6 .portlet .portlet-icons {
+	float: right;
+	margin-top: 1px;
+	position: static;
+}
+
+/* ---------- Page search ---------- */
+
+#page-search {
+	position: absolute;
+	right: 10px;
+	top: 45px;
+}
+
+/* ---------- Tabs ---------- */
+
+.ui-tabs {
+	border-bottom: 1px solid #2B5A79;
+}
+
+.ui-tabs li {
+	background: url(../images/common/tabs_bg.png) no-repeat 0 -100px;
+	display: inline;
+	float: left;
+	line-height: 2.25;
+	margin-right: 0.8em;
+	padding: 0;
+	position: relative;
+	text-decoration: none;
+}
+
+.ui-tabs li a, .ui-tabs li span, .ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: url(../images/common/tabs_bg.png) no-repeat 100% -300px;
+	border: none;
+	color: #fff;
+	display: block;
+	float: left;
+	padding: 0.35em 1em 0;
+	text-decoration: none;
+	top: 0;
+}
+
+.ui-tabs li.current {
+	background: url(../images/common/tabs_bg.png) no-repeat 0 0;
+	border-right: 1px solid #5E90BB;
+	font-weight: bold;
+	top: 0.05em;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: url(../images/custom/tab_marker.gif) no-repeat 50% bottom;
+	border: none;
+	border-right: 1px solid #C3E3FF;
+	color: #fff;
+	margin-top: 1px;
+	padding: 0.15em 1em;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover, .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color: transparent;
+	color: #ABCBE7;
+}
+
+.ie .ui-tabs li {
+	line-height: 2.2;
+}
+
+.ie .ui-tabs li.current a, .ie .ui-tabs li.current span {
+	padding: 0.05em 1em;
+}
+
+.safari .ui-tabs li {
+	line-height: 2.35;
+}
+
+.safari .ui-tabs li a, .safari .ui-tabs li span {
+	padding: 0.25em 1em 0;
+}
+
+/* ---------- Dock with Javascript ---------- */
+
+.js .lfr-dock.interactive-mode {
+	right: 10px;
+}
+
+.js .lfr-dock.interactive-mode h2 {
+	font-size: 1.1em;
+}
+
+.js .lfr-dock.interactive-mode h2 span {
+	font-size: 1.1em;
+	padding: 0.4em 0.5em 0.35em 2.5em;
+	text-align: left;
+}
+
+.js .interactive-mode li:hover, .js .interactive-mode .my-places li:hover {
+	background-color: #12558E;
+}
+
+.js .interactive-mode li:hover a:hover, .js .interactive-mode li:hover > a, .js .interactive-mode li:hover > h3 > a {
+	background-color: #12558E;
+}
+
+.ie6 .js .interactive-mode li a:hover {
+	background-color: #12558E;
+}
+
+.ie.js .lfr-dock.interactive-mode h2 {
+	height: 25px;
+}
+
+/* ---------- Footer ---------- */
+
+#footer {
+	background: #002F62 url(../images/common/footer.png) no-repeat 0 -50px;
+	padding-left: 3px;
+}
+
+#footer .language {
+	background: #002F62 url(../images/common/footer.png) no-repeat 100% 0;
+	padding: 0.8em 0.5em 0.25em;
+	text-align: right;
+}
+
+#footer .language a {
+	margin-right: 5px;
+}
