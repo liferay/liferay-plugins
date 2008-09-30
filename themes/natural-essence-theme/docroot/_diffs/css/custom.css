@@ -1,257 +1,83 @@
-#banner .logo a {
-	color: #642;
-	display: block;
-	font: normal normal normal 2.2em/54px Georgia, 'Trebuchet MS', sans-serif;
-	margin-left: 9px;
-	margin-top: 0;
-	padding: 0 18px;
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+
+/* ---------- Browser normalization ---------- */
+
+body {
+	background: #7C6F5C url(../images/custom/body_bg.jpg);
+	color: #222;
+	padding: 33px 0;
+}
+
+
+/* ---------- Main content body ---------- */
+
+#wrapper {
+	background: #FFF url(../images/custom/wrapper_bg.gif);
+	border: 6px solid #332;
+	border-top: 6px solid #332;
+	margin: 0 auto;
+	width: 960px;
+}
+
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: #DAD7C5 url(../images/custom/banner_bg.jpg) no-repeat scroll left bottom;
+	padding: 0 0 220px;
+	position: relative;
 }
 
 #banner .logo {
-	background: #E2DED5 url(../images/custom/header-h1.jpg) repeat-x scroll 0 0;
-	border-bottom: 2px solid #663;
-	border-top: 1px solid #996;
-	display: block;
 	margin: 0;
-	padding: 0;
-}
-
-#banner h1.logo {
-	margin: 0 0 0 -45px;
-	width: 900px;
-}
-
-#banner {
-	background: #DAD7C5 url(../images/custom/header.jpg) no-repeat scroll left bottom;
-	height: 277px;
-	margin: 0;
-	padding: 0;
-	position: relative;
-	top: 0;
-}
-
-#banner, #navigation, #navigation ul, .portlet {
-	background-color: transparent;
-}
-
-body {
-	background: #7C6F5C url(../images/custom/bg.jpg) repeat scroll 0 0;
-	color: #222;
-	font: normal normal normal 62.5% sans-serif;
-}
-
-#content-wrapper {
-	width: 100%;
-}
-
-#footer {
-	background: #332 none repeat scroll 0;
-	color: #EED;
 	padding: 10px;
 }
 
-html {
-	overflow-y: scroll;
-}
 
-input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
-	margin-top: 8px;
-}
-
-.js #add-page a span {
-	background: transparent;
-}
-
-.js #add-page {
-	right: -1px;
-	top: -1px;
-}
-
-.js #navigation .enter-page .save-page {
-	background: transparent;
-	border: none;
-	color: #222;
-	margin: 0;
-	position: absolute;
-	right: 14px;
-	top: 13px;
-}
-
-.js #navigation .enter-page a:hover {
-	padding: 0;
-}
-
-.js #navigation .enter-page {
-	background-color: transparent;
-	margin-left: 10px;
-	margin-right: 55px;
-	padding: 0;
-}
-
-.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
-	font-size: 8pt;
-	padding-right: 0;
-}
-
-.js .interactive-mode h2 span {
-	background: transparent url(/natural-essence-theme/images/custom/menu_bar.png) no-repeat scroll 0 0pt;
-	border: none;
-}
-
-.js .interactive-mode h2 {
-	background: transparent url(/natural-essence-theme/images/custom/menu_bar.png) no-repeat scroll 100% -30px;
-	font-size: 1.2em;
-	margin-bottom: 0;
-	padding: 0 29px 0 0pt;
-}
+/* ---------- Dock with JavaScript ---------- */
 
 .js .interactive-mode {
 	right: 10px;
 	top: 10px;
 }
 
-.js .lfr-dock.interactive-mode h2 span {
-	font-size: 10pt;
-}
 
-#layout-grid .lfr-column {
-	margin: 0;
-	padding: 0;
-}
-
-.liferay-table {
-	font: 10px/10px Arial;
-}
-
-#navigation li a {
-	padding: 0;
-}
-
-#navigation li {
-	border: none;
-}
-
-#navigation li.selected a span {
-	background: transparent;
-	padding-left: 0;
-}
-
-#navigation li.selected a, #navigation li a:hover {
-	background-color: transparent;
-}
-
-#navigation ul li.selected a span, #navigation ul li a span, #navigation ul li.selected a:hover span, #navigation ul li a:hover span, .js #add-page a span, .js #add-page a:hover span {
-	border-right: 1px solid #C9C6B3;
-	color: #553;
-	display: block;
-	float: left;
-	font: bold normal normal 1em/41px Tahoma, sans-serif;
-	padding: 0 14px;
-	text-align: center;
-	text-decoration: none;
-}
-
-#navigation ul li.selected a, #navigation ul li a, #navigation ul li.selected a:hover, #navigation ul li a:hover, .js #add-page a span, .js #add-page a:hover span {
-	display: block;
-	float: left;
-}
-
-#navigation ul li.selected a:hover span, #navigation ul li a:hover span, .js #add-page a:hover span {
-	background: url(../images/custom/nav.png) repeat-x scroll left bottom;
-	color: #221;
-}
-
-#navigation ul {
-	margin: 1px auto;
-}
-
-#navigation ul, #navigation ul li, #navigation ul li.selected, .js #add-page {
-	float: left;
-}
+/* ---------- Main navigation ---------- */
 
 #navigation {
-	background: #EAE7DF url(../images/custom/nav.png) repeat-x scroll 0 0;
-	border: none;
+	background: #EAE7DF url(../images/custom/navigation_bg.gif);
 	height: 41px;
 }
 
-#outter {
-	background: #332;
-	margin: 38px auto;
-	width: 912px;
+#navigation a {
+	border-right: 1px solid #C9C6B3;
+	color: #553;
+	display: block;
+	font: bold 13px/41px Tahoma, sans-serif;
+	padding: 0 14px;
+	text-decoration: none;
 }
 
-.portlet-content {
-	border-bottom: 1px dashed #AAAA9A;
-	font-size: 9pt;
-	padding: 2px 0 20px 0;
+#navigation a:hover {
+	background: url(../images/custom/navigation_bg.gif) left bottom;
+	color: #221;
 }
 
-.portlet-section-header {
-	background: transparent none;
-}
 
-.portlet-title {
-	color: #442;
-	font-family: serif, sans-serif;
-}
+/* ---------- Portlet wrapper and icons ---------- */
 
 .portlet {
-	border:medium none;
-	padding:5px;
+	border-bottom: 1px dashed #AAAA9A;
+	margin: 0 0 12px;
 }
 
 .portlet-topper {
-	font-size: 18px;
-	background:#EAE7DF url(../images/custom/nav.png) repeat-x scroll 0 0;
-	border-bottom:1px solid black;
+	color: #642;
+	height: 31px;
+	padding: 4px;
 }
 
-.ui-tabs {
-	border: 0;
-}
-
-ul.child-menu {
-	display: none;
-}
-
-#wrapper {
-	background: #FBF9F4 none repeat scroll 0;
-	border-top: 6px solid #332;
-	font-size: 1.3em;
-	line-height: 1.3em;
-	margin: 0 auto;
-	width: 900px;
-}
-
-#wrapper, #banner, #navigation, #content-wrapper,.portlet, .portlet-topper, .portlet-title, .portlet-content {
-	display: block;
-}
-
-/*----- Tabs -----*/
-
-.ui-tabs li a, .tabs li span {
-	background:#EAE7DF url(../images/custom/nav.png) repeat-x scroll 0 0;
-	border-right:medium none;
-	color:black;
-	top:0;
-}
-
-.ui-tabs li.current a, .ui-tabs li.current span {
-	background:#DAD7C5 url(../images/custom/header.jpg) no-repeat scroll right bottom;
-	border:medium none;
-	color:black;
-}
-
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background-color:transparent;
-	background:#DAD7C5 url(../images/custom/header.jpg) no-repeat scroll right bottom;
-	color: black;
-	text-decoration: none;
-}
-
-.ui-tabs li a:hover, .ui-tabs li span:hover {
-	background:black;
-	color:white;
-	text-decoration: none;
+.portlet-title {
+	font: normal 31px/1 serif,sans-serif;
 }
