@@ -1,4 +1,5 @@
 /*--------- Body ---------*/
+
 body {
 	background: #171C20 url(../images/custom/body_all_bckg.jpg) repeat-y center top;
 	color: #FFF;
@@ -49,6 +50,7 @@ body {
 /*----- Navigation -------*/
 #navigation {
 	margin: 0 auto 30px;
+	position: relative;
 	text-align: center;
 	width: 770px;
 }
@@ -82,13 +84,13 @@ body {
 .js #add-page {
 	float: right;
 	position: absolute;
-	right: 0;
-	top: -50px;
+	right: -30px;
+	top: 0;
 }
 
 .js #add-page a {
-	background: transparent url(../images/common/add.png) 5px 50% no-repeat;
-	color: #FFF;
+	background: none;
+	color: #777;
 	font-weight: bold;
 	padding: 7px 25px;
 	text-decoration: none;
@@ -178,6 +180,9 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	color: white;
 }
 
+.portlet-msg-error {
+	color: #000;
+}
 
 /*--------- Tabs ----------*/
 .ui-tabs {
