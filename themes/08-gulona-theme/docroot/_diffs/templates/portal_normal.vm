@@ -2,7 +2,7 @@
 
 #parse ($init)
 
-<html dir="#language ("lang.dir")" xmlns="http://www.w3.org/1999/xhtml">
+<html class="nojs" dir="#language ("lang.dir")" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 	<title>$company_name - $the_title</title>
@@ -12,20 +12,28 @@
 	#css ($css_main_file)
 	#js ($js_main_file)
 
+	<script type="text/javascript">
+		// <![CDATA
+			$page_javascript_1
+			$page_javascript_2
+			$page_javascript_3
+		// ]]>
+	</script>
+
 	#if ($company_logo != "")
 		<style type="text/css">
-			#banner .logo {
-				padding: 0.52em 0.6em 0.53em;
-			}
+			/* <![CDATA[ */
+				#banner .logo a {
+					background: url($company_logo) no-repeat;
+					display: block;
+					font-size: 0;
+					height: ${company_logo_height}px;
+					text-indent: -9999em;
+					width: ${company_logo_width}px;
+				}
 
-			#banner .logo a {
-				background: url($company_logo) no-repeat;
-				display: block;
-				font-size: 0;
-				height: ${company_logo_height}px;
-				text-indent: -9999em;
-				width: ${company_logo_width}px;
-			}
+				#ie6_png_fix()
+			/* ]]> */
 		</style>
 	#end
 </head>
@@ -35,12 +43,10 @@
 $theme.include($top_messages_include)
 
 <div id="wrapper">
-	<div id="wrapper-top">
-		<!-- -->
-	</div>
+	<div id="wrapper-top"></div>
 	<div id="banner">
 		<h1 class="logo">
-			<a href="$company_url">$company_name</a>
+			<a class="png" href="$company_url">$company_name</a>
 		</h1>
 
 		#parse ("$full_templates_path/dock.vm")
@@ -66,12 +72,7 @@ $theme.include($top_messages_include)
 		$theme.wrapPortlet("portlet.vm", $content_include)
 	#end
 
-	<div id="footer">
-		Copyright &copy; 2007 $company_name, All rights reserved.
-	</div>
-	<div id="wrapper-bottom">
-		<!-- -->
-	</div>
+	<div id="footer"></div>
 </div>
 
 $theme.include($bottom_ext_include)

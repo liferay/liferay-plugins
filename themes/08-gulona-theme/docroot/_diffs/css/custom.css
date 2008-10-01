@@ -1,136 +1,137 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
+/* Global */
+body {
+	color: #565655;
+	background: #5f7110;
+	font: 12px/1.4em Arial, Helvetica, sans-serif;
+	letter-spacing:0px;
+}
+
 a {
-	color: #6E840B;
+	color:#6e840b;
+	font: 12px/1.4em Arial, Helvetica, sans-serif;
+	text-decoration:underline;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span {
-	background:transparent url(../images/custom/navigation_hover.png) repeat scroll 0 0;
-	border:medium none;
-	color:white;
+.clear {
+	clear:both;
+	overflow:hidden;
+	margin:0;
+	padding:0;
+	height:1px;
 }
-
+ 
 a:hover {
-	color: #6E840B;
+	text-decoration:none;
+}
+
+h1, h2, h3, h4 {
+	color:#95a938;
+	font: bold 13px Arial, Helvetica, sans-serif;
+}
+
+h2 {
+	margin: 15px 5px 5px 0;
+}
+
+h3 {
+	margin: 0 0 3px 0;
+}
+
+/* Wrapper */
+#wrapper{
+	width: 1000px;
+	margin: 0 auto;
+	background: transparent url(../images/custom/08_gulona_l_bg.gif) repeat-y center;
+}
+
+#wrapper-top{
+	background: url(../images/custom/08_gulona_top_bg.png) no-repeat center;
+	height: 29px;
+	margin:0;
+	padding:0
 }
 
 #banner {
-	background: white url('../images/custom/banner_bg.png') repeat-x;
-	position: relative;
-	border-top:1px solid grey;
-	height:105px;
+	background: url(../images/custom/08_gulona_shade_bg.gif) top center repeat-x;
+	height: 99px;
+	margin:0 21px;
+}
+.logo {
+	margin: 0 20px;	
 }
 
-.ui-tabs li a, .tabs li span {
-	background:transparent url(../images/custom/navigation_bg.png) repeat scroll 0 0;
-	border-right:1px solid #777777;
-	top:0;
-}
-
-.ui-tabs li a:hover, .ui-tabs li span:hover {
-	background:transparent url(../images/custom/navigation_hover.png) repeat scroll 0 0;
-	color: white;
-}
-
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background-color:transparent;
-	text-decoration: none;
-}
-
-body {
-	background: #5F7110;
-}
-
-#footer {
-	background: white url('../images/custom/banner_bg.png') repeat-x;
-	margin: 0 1px;
-	min-height: 57px;
-	padding: 20px 20px 0;
-}
-
-html {
-	overflow-y: scroll;
-}
-
-.js #add-page {
-	right: 0;
-	top: 6px;
-	border: none;
-	background: transparent;
-}
-
-.js #navigation .enter-page {
-	padding: 7px 16px;
-}
-
-#navigation li a span {
-	background: none;
-	border-right: 1px solid #777;
-	color: #FFF;
-	display: block;
-	font-weight: bold;
-	padding: 11px 15px;
-}
-
-#navigation li a {
-	padding: 0;
-}
-
-#navigation li {
-	border: 0;
-	margin: 0;
-}
-
-#navigation li.selected a span, #navigation li a:hover span {
-	background: url('../images/custom/navigation_hover.png');
-	padding: 11px 15px;
+/* Navigation */
+#navigation {
+	background: transparent url(../images/custom/08_gulona_nav_bg.gif) top center repeat-x;
+	height: 40px;
+	margin: 0 18px;
 }
 
 #navigation ul {
-	width: auto;
+	width: 90%;
+	float: left;
 }
 
-#navigation {
-	background: url('../images/custom/navigation_bg.png');
-	border: 0;
+#navigation li, .js #add-page {
 	height: 40px;
-	margin:7px 0 0;
-	width:100%;
+	display: inline;
+	padding: 11px 0 0;
 }
 
+#navigation li a, .js #add-page a {
+	border-right: 1px solid #95a938;
+	color: #FAFCF8;
+	font: bold 12px Arial, Helvetica, sans-serif;
+	padding: 12px 15px 13px 15px;
+	text-decoration: none;
+}
+
+#navigation li a:hover, #navigation li.selected, .ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: transparent url(../images/custom/08_gulona_nav_hover_bg.gif) top center repeat-x;	
+	color: #fff;
+	text-decoration: none;
+}
+
+.ui-tabs li a, .tabs li span {
+	background: transparent url(../images/custom/08_gulona_nav_bg.gif) top center repeat-x;
+}
+
+.enter-page {
+	margin: -5px 5px 0;
+}
+.save-page {
+	left: 5px;
+	position: relative;
+}
+
+.js #add-page {
+	background: transparent url(../images/common/add.png) left 11px no-repeat;
+	float: right;
+}
+
+/* Content */
 #content-wrapper {
-	width:100%;
-	background: white;
+	margin: 5px 18px;
+	background: transparent url(../images/custom/08_gulona_footer_bg.gif) left bottom no-repeat;
 }
 
-.portlet-content {
+#content-wrapper p {
+	margin: 0 0 10px 0;
+}
+.portlet {
 	padding: 10px;
 }
-
-.portlet-title {
-	color: #95A938;
-	font-size: 16px;
-	padding: 8px 0 0 10px;
+.portlet-content ul {
+	list-style: square url(../images/custom/08_gulona_bullet_bg.gif);
+	margin:15px 0;
 }
 
-.portlet-topper {
-	background: transparent none;
-	padding-bottom: 16px;
+/******** Footer *******/
+#footer {
+	background: url(../images/custom/08_gulona_bottom_bg.png) bottom center repeat-x;
+	height: 100px;
 }
-
-.portlet {
-	background: #F7F7F7;
-	border: 1px solid #E5E5E5;
-	padding: 7px;
-}
-
-#wrapper {
-	background: transparent url('../images/custom/wrapper_bg.png');
-	margin:25px auto;
-	padding: 0 19px;
-	width:911px;
-}
-
-.js .interactive-mode {
-	right:5px;
-}
+.crd a { color:#565655;text-decoration:none;}
+#bottom{background: url(images/bottom.png) no-repeat center;height: 27px;}
