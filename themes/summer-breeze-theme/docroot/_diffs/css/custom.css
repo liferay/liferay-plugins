@@ -66,6 +66,15 @@ body {
 	background-position: 0 31px;
 }
 
+#navigation .save-page {
+	display: inline;
+	float: none;
+}
+
+#navigation .cancel-page {
+	display: none;
+}
+
 
 /* ---------- Main content body ---------- */
 
