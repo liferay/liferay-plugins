@@ -1,4 +1,4 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+#/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
 
 /* ---------- Base ---------- */
@@ -83,6 +83,16 @@ body {
 
 #navigation .selected a {
 	color: #D6D6A1;
+}
+
+#navigation .enter-page a {
+	background: none;
+	display: inline;
+	float: none;
+}
+
+#navigation .enter-page a.cancel-page {
+	display: none;
 }
 
 
