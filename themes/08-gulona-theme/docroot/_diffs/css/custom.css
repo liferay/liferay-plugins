@@ -1,6 +1,8 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-/* Global */
+
+/* ---------- Base ---------- */
+
 body {
 	color: #565655;
 	background: #5f7110;
@@ -39,99 +41,108 @@ h3 {
 	margin: 0 0 3px 0;
 }
 
-/* Wrapper */
 #wrapper{
 	width: 1000px;
 	margin: 0 auto;
-	background: transparent url(../images/custom/08_gulona_l_bg.gif) repeat-y center;
+	background: transparent url(../images/custom/l_bg.gif) repeat-y center;
 }
 
 #wrapper-top{
-	background: url(../images/custom/08_gulona_top_bg.png) no-repeat center;
+	background: url(../images/custom/top_bg.png) no-repeat center;
 	height: 29px;
 	margin:0;
 	padding:0
 }
 
 #banner {
-	background: url(../images/custom/08_gulona_shade_bg.gif) top center repeat-x;
+	background: url(../images/custom/shade_bg.gif) top center repeat-x;
 	height: 99px;
 	margin:0 21px;
+	position: relative;
 }
 .logo {
 	margin: 0 20px;	
 }
 
-/* Navigation */
+
+/* ---------- Navigation ---------- */
+
 #navigation {
-	background: transparent url(../images/custom/08_gulona_nav_bg.gif) top center repeat-x;
-	height: 40px;
+	background: url(../images/custom/nav_bg.gif) repeat-x;
 	margin: 0 18px;
+	height: 40px;
 }
 
-#navigation ul {
-	width: 90%;
+#navigation a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+#navigation ul, #add-page {
 	float: left;
 }
 
-#navigation li, .js #add-page {
-	height: 40px;
+#navigation li a,
+#add-page a {
+	border-right: 1px solid #95A938;
+	color: #FFF;
+	display: block;
+	font-weight: bold;
+	padding: 11px 11px 12px;
+}
+
+#navigation li.selected a,
+#navigation li a:hover {
+	background: url(../images/custom/nav_hover_bg.gif);
+}
+
+#navigation .enter-page {
+	padding: 7px;
+}
+
+#navigation .enter-page a {
+	border: none;
 	display: inline;
-	padding: 11px 0 0;
 }
 
-#navigation li a, .js #add-page a {
-	border-right: 1px solid #95a938;
-	color: #FAFCF8;
-	font: bold 12px Arial, Helvetica, sans-serif;
-	padding: 12px 15px 13px 15px;
-	text-decoration: none;
+#navigation .enter-page a.cancel-page {
+	display: none;
 }
 
-#navigation li a:hover, #navigation li.selected, .ui-tabs li a:hover, .ui-tabs li span:hover {
-	background: transparent url(../images/custom/08_gulona_nav_hover_bg.gif) top center repeat-x;	
-	color: #fff;
-	text-decoration: none;
-}
+/* ---------- Content ---------- */
 
-.ui-tabs li a, .tabs li span {
-	background: transparent url(../images/custom/08_gulona_nav_bg.gif) top center repeat-x;
-}
-
-.enter-page {
-	margin: -5px 5px 0;
-}
-.save-page {
-	left: 5px;
-	position: relative;
-}
-
-.js #add-page {
-	background: transparent url(../images/common/add.png) left 11px no-repeat;
-	float: right;
-}
-
-/* Content */
 #content-wrapper {
 	margin: 5px 18px;
-	background: transparent url(../images/custom/08_gulona_footer_bg.gif) left bottom no-repeat;
+	background: \url(../images/custom/footer_bg.gif) no-repeat left bottom;
 }
 
 #content-wrapper p {
 	margin: 0 0 10px 0;
 }
+
 .portlet {
 	padding: 10px;
 }
+
 .portlet-content ul {
-	list-style: square url(../images/custom/08_gulona_bullet_bg.gif);
+	list-style: square url(../images/custom/bullet_bg.gif);
 	margin:15px 0;
 }
 
-/******** Footer *******/
+
+/* ---------- Footer ---------- */
+
 #footer {
-	background: url(../images/custom/08_gulona_bottom_bg.png) bottom center repeat-x;
+	background: url(../images/custom/bottom_bg.png) bottom center repeat-x;
 	height: 100px;
 }
-.crd a { color:#565655;text-decoration:none;}
-#bottom{background: url(images/bottom.png) no-repeat center;height: 27px;}
+
+.crd a {
+	color:#565655;
+	text-decoration:none;
+}
+
+#bottom{
+	background: url(images/bottom.png) no-repeat center;
+	height: 27px;
+}
