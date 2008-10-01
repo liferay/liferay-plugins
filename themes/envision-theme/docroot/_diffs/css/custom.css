@@ -53,6 +53,7 @@ body {
 	background: url(../images/custom/navigation_bg.png);
 	height: 37px;
 	margin: 0 25px;
+	position: relative;
 }
 
 #navigation a {
@@ -69,6 +70,29 @@ body {
 
 #navigation .selected a {
 	color: #FFF;
+}
+
+#navigation #add-page {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+#navigation .enter-page {
+	margin-top: 6px;
+}
+
+#navigation .save-page {
+	display: inline;
+	float: none;
+}
+
+#navigation .save-page:hover {
+	background: none;
+}
+
+#navigation .cancel-page {
+	display: none;
 }
 
 
