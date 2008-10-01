@@ -1,4 +1,6 @@
-/*------- Body -------*/
+
+/* ---------- Body ---------- */
+
 body {
 	background: #AFD2FF url(../images/custom/page_bg.png) center top repeat-x;
 	font: 12px Arial, Helvetica, sans-serif;
@@ -9,16 +11,18 @@ body.html-editor.portlet.portlet-blogs {
 }
 
 
-/*------ Wrapper ------*/
+/* ---------- Wrapper ---------- */
+
 #wrapper {
 	margin: 30px auto;
 	width: 960px;
 }
 
 
-/*--- Banner and Navigation ---*/
+/* ---------- Banner and Navigation ---------- */
+
 #banner {
-	background: transparent url(../images/custom/banner_bg.png) 0 center no-repeat;
+	background: transparent url(../images/custom/banner_bg.png) no-repeat 0 center;
 	height: 100px;
 	position: relative;
 	width: 960px;
@@ -35,7 +39,7 @@ body.html-editor.portlet.portlet-blogs {
 }
 
 #navigation {
-	background: transparent url(../images/custom/tab_link.png) 0 0 repeat-x;
+	background: transparent url(../images/custom/tab_link.png) repeat-x;
 	height: 33px;
 	position: relative;
 }
@@ -45,9 +49,6 @@ body.html-editor.portlet.portlet-blogs {
 	height: 33px;
 	margin: 0 10px 0;
 	position: relative;
-}
-
-#navigation li {
 }
 
 #navigation li a {
@@ -74,7 +75,7 @@ body.html-editor.portlet.portlet-blogs {
 }
 
 #add-page a {
-	background: #849FD6 url(../images/common/add.png) 5px 50% no-repeat;
+	background: #849FD6 url(../images/common/add.png) no-repeat 5px 50%;
 	color: #FFF;
 	display: block;
 	padding: 7px 20px 7px 25px;
@@ -95,26 +96,28 @@ body.html-editor.portlet.portlet-blogs {
 }
 
 
-/*--- Content Wrapper ---*/
+/* ---------- Content Wrapper ---------- */
+
 #content-wrapper {
-	background: #FFF url(../images/custom/content_wrapper_bg.gif) 0 0 repeat-x;
+	background: #FFF url(../images/custom/content_wrapper_bg.gif) repeat-x;
 	border: 10px solid #192666;
 	border-top: 0;
 	padding: 10px 10px;
 }
 
 
-/*----- Portlets -----*/
+/* ---------- Portlets ---------- */
+
 .portlet {
 	margin: 10px 0 10px 10px;
 }
 
 .portlet-topper {
-	background: transparent url(../images/custom/content_article_bg.jpg) 0 0 no-repeat;
+	background: transparent url(../images/custom/content_article_bg.jpg) no-repeat;
 	padding: 15px 0 0;
 }
 
 .portlet-title {
-	background: transparent url(../images/custom/content_title_bg.png) 0 0 repeat-y;
+	background: transparent url(../images/custom/content_title_bg.png) repeat-y;
 	padding: 8px;
 }
