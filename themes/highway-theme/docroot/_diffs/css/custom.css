@@ -82,6 +82,16 @@ body {
 	background: url(../images/custom/navigation_hover_bg.gif);
 }
 
+#navigation .enter-page a {
+	background: none;
+	display: inline;
+	float: none;
+}
+
+#navigation .enter-page a.cancel-page {
+	display: none;
+}
+
 
 /* ---------- Portlet ---------- */
 
