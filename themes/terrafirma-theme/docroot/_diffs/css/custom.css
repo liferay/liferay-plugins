@@ -1,4 +1,6 @@
-/* Global */
+
+/* ---------- Base ---------- */
+
 html {
 	overflow-y: scroll;
 }
@@ -73,7 +75,9 @@ body {
 	width: 947px;
 }
 
-/* Dock */
+
+/* ---------- Dock ---------- */
+
 .js .interactive-mode h2 span {
 	border: none;
 }
@@ -100,7 +104,9 @@ body {
 	top: 27px;
 }
 
-/* Navigation */
+
+/* ---------- Navigation ---------- */
+
 .js #add-page {
 	border: none;
 	position: absolute;
@@ -173,7 +179,9 @@ body {
 	width: auto;
 }
 
-/* Portlet */
+
+/* ---------- Portlet ---------- */
+
 .portlet-topper {
 	background: url(../images/custom/portlet_title_bg.png) repeat-x scroll center bottom;
 	border: none;
@@ -200,7 +208,14 @@ body {
 	margin: 18px 0;
 }
 
-/* Liferay UI */
+.portlet-icons {
+	font-size: 10px;
+	line-height: 1.6em;
+}
+
+
+/* ---------- Liferay UI ---------- */
+
 .ui-tabs li a, .tabs li span {
 	background:#46461F url(../images/custom/bg_1.png) repeat-x;
 	border-right: none;

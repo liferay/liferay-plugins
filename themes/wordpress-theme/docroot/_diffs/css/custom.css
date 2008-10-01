@@ -1,4 +1,6 @@
-/* Global */
+
+/* ---------- Base ---------- */
+
 #all-content-wrapper {
 	position: relative;
 }
@@ -62,7 +64,9 @@ body {
 	background: #E7E7E7;
 }
 
-/* Dock */
+
+/* ---------- Dock ---------- */
+
 .lfr-dock h2 {
 	text-align:left;
 	margin-left: -25px;
@@ -79,7 +83,9 @@ body {
 	z-index: 60;
 }
 
-/* Navigation */
+
+/* ---------- Navigation ---------- */
+
 .js #navigation .enter-page .save-page {
 	margin: 4px 10px;
 	position: absolute;
@@ -137,7 +143,9 @@ body {
 	border: none;
 }
 
-/* Portlet */
+
+/* ---------- Portlet ---------- */
+
 .ie .portlet-title {
 	padding-bottom: 5px;
 }
@@ -150,6 +158,8 @@ body {
 }
 
 .portlet-icons {
+	font-size: 10px;
+	line-height: 1.6em;
 	margin: 3px;
 	position: absolute;
 	right: 7px;

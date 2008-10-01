@@ -1,4 +1,6 @@
-/* Global */
+
+/* ---------- Base ---------- */
+
 #banner .logo a {
 	margin-left: 16px;
 	margin-top: 32px;
@@ -62,13 +64,17 @@ html {
 	padding-top: 30px;
 }
 
-/* Dock */
+
+/* ---------- Dock ---------- */
+
 .js .interactive-mode {
 	right: 18px;
 	top: 18px;
 }
 
-/* Navigation */
+
+/* ---------- Navigation ---------- */
+
 .js #add-page {
 	background: none;
 	position: absolute;
@@ -114,18 +120,27 @@ html {
 	width: 922px;
 }
 
-/* Portlet */
+
+/* ---------- Portlet ---------- */
+
+.portlet {
+	margin-bottom: 15px;
+}
+
 .portlet-topper {
 	background: #FFF url('../images/custom/border1.png') repeat-x;
 	height: 30px;
 	width: auto;
 }
 
-.portlet {
-	margin-bottom: 15px;
+.portlet-icons {
+	font-size: 10px;
+	line-height: 1.6em;
 }
 
-/* Tabs */
+
+/* ---------- Tabs ---------- */
+
 .ui-tabs li a, .tabs li span {
 	background: #7F8400 url(../images/custom/menubg.png) repeat-x;
 	border-right: none;

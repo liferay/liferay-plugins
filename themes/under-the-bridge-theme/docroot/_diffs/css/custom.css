@@ -1,4 +1,7 @@
-/* Global */
+
+
+/* ---------- Base ---------- */
+
 #banner .logo a {
 	color: #FFF;
 	display: block;
@@ -60,7 +63,8 @@ body {
 	width: 997px;
 }
 
-/* Layout */
+
+/* ---------- Layout ---------- */
 #column-1 .portlet {
 	margin-right: 3px;
 }
@@ -69,7 +73,9 @@ body {
 	margin-left: 3px;
 }
 
-/* Navigation */
+
+/* ---------- Navigation ---------- */
+
 .js #add-page a span, .js #add-page a:hover span {
 	margin-top: 14px;
 }
@@ -152,13 +158,21 @@ body {
 	height: 79px;
 }
 
-/* Dock */
+
+/* ---------- Dock ---------- */
+
 .js .lfr-dock.interactive-mode {
 	right: 40px;
 	top: 10px;
 }
 
-/* Portlet */
+
+/* ---------- Portlet ---------- */
+
+.portlet {
+	margin-bottom: 15px;
+}
+
 .portlet-title {
 	color: #787C87;
 	font-size: 1.4em;
@@ -168,11 +182,14 @@ body {
 	padding-top: 7px;
 }
 
-.portlet {
-	margin-bottom: 15px;
+.portlet-icon {
+	font-size: 10px;
+	line-height: 1.6em;
 }
 
-/* Liferay UI */
+
+/* ---------- Liferay UI ---------- */
+
 .tabs li {
 	font: 12px/2.25em Arial;
 }

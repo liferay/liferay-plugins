@@ -87,6 +87,11 @@ body {
 	padding: 8px;
 }
 
+.portlet-icons {
+	font-size: 10px;
+	line-height: 1.6em;
+}
+
 
 /* ---------- Tabs ---------- */
 

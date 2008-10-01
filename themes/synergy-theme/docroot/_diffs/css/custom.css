@@ -1,6 +1,6 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-/* ---------- Browser normalization ---------- */
+/* ---------- Base ---------- */
 
 body {
 	background: #95CDFF url('../images/custom/body_bg.png') repeat-x left top;
@@ -100,7 +100,7 @@ body {
 }
 
 
-/* ---------- Portlet wrapper and icons ---------- */
+/* ---------- Portlet ---------- */
 
 .portlet {
 	background: #FFF;
@@ -111,6 +111,11 @@ body {
 .portlet-topper {
 	border-bottom: 2px solid #0072B9;
 	padding: 5px;
+}
+
+.portlet-icons {
+	font-size: 10px;
+	line-height: 1.6em;
 }
 
 
