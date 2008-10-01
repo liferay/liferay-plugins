@@ -1,232 +1,105 @@
-#banner .logo a {
-	background-position: 0 24px !important;
-	margin-left: 42px;
-	padding-bottom: 24px;
-}
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-#banner .logo {
-	display: block;
-	font-size: 2em;
-	height: 335px;
-	padding: 0;
-}
 
-#banner {
-	background-image: url(../images/custom/header.png);
-	background-position: left top;
-	background-repeat: no-repeat;
-	border-bottom: 0 solid #89C8FF;
-	height: 390px;
-	margin: 0 auto;
-	margin-bottom: 0em;
-	padding: 0;
-	text-align: left;
-	width: 946px;
-}
-
-#banner-content {
-	margin: 0 auto;
-	width: 100%;
-}
+/* ---------- Base ---------- */
 
 body {
-	background-color: #9DB4A8;
-	background-image: url(../images/custom/body-bg.jpg);
-	background-position: center top;
-	background-repeat: no-repeat;
-	color: #000;
-	font-family: 'Verdana', ' Arial', ' Georgia';
-	font-weight: normal;
-	line-height: 12px;
-	margin: 0;
-	padding: 0;
-	text-align: justify;
+	background: #9DB4A8 url(../images/custom/body_bg.jpg) no-repeat center 32px;
+	padding: 32px;
+}
+
+
+/* ---------- Main content body ---------- */
+
+#wrapper {
+	background: #FFF;
+	border: 6px solid #F6F0F1;
+	margin: 0 auto;
+	width: 940px;
 }
 
 #content-wrapper {
-	background: #FFF none repeat scroll 0;
-	margin: 0 auto;
-	padding: 10px;
-	width: 100%;
+	margin: 0 0 -10px;
+	padding: 0 5px;
 }
 
 #footer {
-	background: transparent url(../images/custom/footer-bg.jpg) repeat-xscroll left bottom;
-	color: #627069;
-	font-size: 11px;
-	height: 74px;
-	line-height: 18px;
+	background: url(../images/custom/footer_bg.jpg);
+	height: 104px;
+}
+
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: url(../images/custom/banner_bg.png) -3px -3px;
+	height: 195px;
+	padding: 130px 0 0;
+	position: relative;
+}
+
+#banner .logo {
+	margin: 0;
+}
+
+#banner .logo a {
 	margin: 0 auto;
-	margin-top: 0;
-	padding-top: 18px;
-	text-align: center;
-	width: 946px;
 }
 
-.js #add-page {
-	background: transparent;
-	border: medium none;
-	right: 0;
-	top: 13px;
-}
 
-.js #navigation .enter-page {
-	background-color: transparent;
-}
+/* ---------- Dock with JavaScript ---------- */
 
 .js .interactive-mode {
-	float: right;
-	min-width: 150px;
-	position: absolute;
-	right: 30pt;
-	top: 10pt;
+	right: 10px;
+	top: 10px;
 }
 
-#navigation li a span {
-	display: block;
-	padding: 0;
-}
 
-#navigation li.selected a span {
-	background: transparent;
-	padding-left: 0;
-}
-
-#navigation li.selected a {
-	color: #FFF;
-	padding-top: 0em;
-}
-
-#navigation li.selected a, #navigation li a:hover {
-	background-color: transparent;
-}
-
-#navigation li.selected {
-	border-top: 0;
-	font-weight: bold;
-}
-
-#navigation ul li a {
-	background: transparent url(../images/custom/menu-r.jpg) no-repeatscroll right top;
-	color: #000;
-	display: block;
-	padding: 0 20px 0 20px;
-	text-decoration: none;
-}
-
-#navigation ul li a:hover {
-	color: #FFF;
-	text-decoration: none;
-}
-
-#navigation ul li {
-	background: transparent url(../images/custom/menu-l.jpg) no-repeatscroll 0;
-	color: #000;
-	float: left;
-	font-family: 'Times New Roman', ' Verdana';
-	font-size: 12px;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: bold;
-	height: 46px;
-	line-height: 46px;
-	margin-right: 8px;
-	margin-top: 3px;
-	text-transform: uppercase;
-}
+/* ---------- Main navigation ---------- */
 
 #navigation {
-	background-image: url(../images/custom/menu-bg.jpg);
-	height: 52px;
-	margin: 0 3px;
-	padding: 0 8px;
+	background: url(../images/custom/navigation_bg.jpg);
+	height: 62px;
+}
+
+#navigation ul, #add-page {
+	float: left;
+}
+
+#navigation a {
+	color: #DEE;
+	display: block;
+	font: 16px Lucida Sans Unicode, Lucida Grande, sans-serif;
+	line-height: 62px;
+	padding: 0 24px;
+	text-decoration: none;
+}
+
+#navigation .selected a, #navigation a:hover {
+	color: #FFF;
+}
+
+
+/* ---------- Portlet ---------- */
+
+.portlet {
+	border: 3px solid #B9BDBA;
+	margin: 0 0 10px;
 }
 
 .portlet-topper {
-	background: #76877D url(../images/portlet/portlet_top.png) repeat-xscroll 0 0px;
-	color: #FFF;
-	position: relative;
+	background: #D2D7D4;
+	border-bottom: 1px solid #B9BDBA;
+	padding: 5px;
 }
 
-.portlet {
-	border: 1px solid #98ACA1;
-	margin-bottom: 1em;
-	text-align: left;
-}
-
-.tabs li {
-	background: #A8BDB9 url(../images/common/tabs_inactive_bg.png) repeat-xscroll 0 -65%;
-	border-color: #9EB4A8;
-	border-style: solid solid none;
-	border-width: 1px 1px 0;
-	display: inline;
-	float: left;
-	line-height: 2.25;
-	margin-right: 0.8em;
-	padding: 0;
-	text-decoration: none;
-}
-
-.tabs li.current {
-	background: #8DA196 url(../images/common/tabs_active_bg.png) repeat-xscroll 0 0%;
-	font-weight: bold;
-}
-
-.tabs {
-	border-bottom: 1px solid #9EB4A8;
-	margin: 0 0pt 1.5em;
-	padding: 0 0pt 2.6em 1em;
-}
-
-#wrapper {
-	background: transparent;
-	position: relative;
-	margin: 0 auto;
-	width: 926px;
-}
-
-.ui-tabs {
-	border-bottom: 1px solid #bfe1ff;
-	margin: 0 0 1.5em 0;
-	padding: 0 0 2.6em 1em;
-}
-
-.ui-tabs li {
-	background: #eaf5ff url(../images/common/tabs_inactive_bg.png) repeat-x 0 100%;
-	border-bottom: 0;
-	display: inline;
-	float: left;
-	line-height: 2.25;
-	margin-right: 0.8em;
-	padding: 0;
-	text-decoration: none;
-}
-
-
-.ui-tabs li a, .ui-tabs li span {
-	display: block;
-	float: left;
-	padding: 0.35em 1em 0;
-	text-decoration: none;
-	border: 1px solid #bfe1ff;
-	top: 0;
-	background: transparent;
-	color: black
-}
-
-.ui-tabs li.current {
-	background: #bfe1ff url(../images/common/tabs_active_bg.png) repeat-x 0 0;
-	font-weight: bold;
-}
-
-.ui-tabs li.current a, .ui-tabs li.current span {
+.portlet-title {
 	color: #333;
-	padding: 0.15em 1em;
-	background: transparent;
+	font: bold 13px Arial Black, Arial Black, Gadget, sans-serif;
+	letter-spacing: .1em;
 }
 
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background-color:transparent;
-	text-decoration: none;
-	background: #bfe1ff url(../images/common/tabs_active_bg.png) repeat-x 0 0;
+.portlet-content {
+	border: 1px solid #D2D7D4;
+	padding: 10px;
 }
