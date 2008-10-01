@@ -81,6 +81,10 @@ body {
 	width: 290px;
 }
 
+.ie #navigation ul {
+	height: auto;
+}
+
 #navigation li {
 	float: none;
 }
@@ -137,6 +141,10 @@ body {
 
 
 /* ---------- Liferay UI ---------- */
+
+.portlet-msg-error {
+	color: #000;
+}
 
 .calendar-container, .results-row {
 	color: #000;	
