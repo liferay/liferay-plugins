@@ -60,6 +60,19 @@ body {
 	padding: 16px 0 0;
 }
 
+#navigation .save-page {
+	display: inline;
+	float: none;
+}
+
+#navigation .save-page:hover {
+	background: none;
+}
+
+#navigation .cancel-page {
+	display: none;
+}
+
 
 /* ---------- Main content body ---------- */
 
