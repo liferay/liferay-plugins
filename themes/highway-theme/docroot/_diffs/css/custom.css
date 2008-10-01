@@ -1,94 +1,96 @@
-#wrapper {
-	background: transparent;
-	border-left: 5px solid #000000;
-	border-right: 5px solid #000000;
-	margin: 0 auto;
-	position: relative;
-	width: 1020px;
-}
-#banner {
-	background: transparent url(../images/custom/header.jpg) no-repeat scroll center top;
-	height: 323px;
-	position: relative;
-	top: 0;
-}
-#navigation {
-	background: transparent url(../images/custom/menu.jpg) no-repeat scroll center;
-	border: none;
-	height: 101px;
-	margin: 0 auto;
-}
-.js #navigation .enter-page {
-	background-color:transparent;
-	margin-top:35px;
-	padding:0;
-}
-#navigation li {
-	border: none;
-	margin: 0px 0 0 30px;
-}
-#navigation li a {
-	color: white;
-	font-size: 1.1em;
-	font-weight: bold;
-	padding: 41px 20px;
-}
-#navigation li a:hover {
-	background: transparent url(../images/custom/button_r.gif) repeat-x scroll 0 0;
-}
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+
+/* ---------- Base ---------- */
+
 body {
-	background: #CD9F46 none repeat scroll 0 0;
+	background: #CD9F46;
+	padding: 24px;
 }
-#content-wrapper {
-	background: #FFFFFF url(../images/custom/page_back.gif) repeat-x scroll center top;
-	min-height: 400px;
+
+
+/* ---------- Main content body ---------- */
+
+#wrapper {
+	background: #FFF;
+	border: 5px solid #000;
+	margin: 0 auto;
 	width: 1020px;
 }
-.portlet {
-	background: transparent;
-	border: none;
+
+#content-wrapper {
+	background: url(../images/custom/content-wrapper_bg.gif) repeat-x;
+	padding: 24px;
+	zoom: 1;
 }
-.portlet-topper {
-	background: transparent;
-	border: none;
-	color: #CD9F46;
-	font-size: 18px;
+
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: transparent url(../images/custom/banner_bg.jpg);
+	height: 223px;
+	padding: 50px;
+	position: relative;
 }
-a {
-	font-size: 12px;
+
+#banner .logo {
+	margin: 0;
 }
+
 #footer {
-	background: transparent url(../images/custom/footer.gif) repeat-x scroll 0 0;
+	background: url(../images/custom/footer_bg.gif);
 	height: 73px;
 }
-#navigation li.selected a, #navigation li a:hover {
-	background-color: transparent;
-	color: #FFFFFF;
+
+
+/* ---------- Dock with JavaScript ---------- */
+
+.js .interactive-mode {
+	right: 10px;
+	top: 10px;
 }
-#navigation li.selected a span {
-	background: transparent none repeat scroll 0 0;
-	padding-left: 0;
+
+
+/* ---------- Main navigation ---------- */
+
+#navigation {
+	background: transparent url(../images/custom/navigation_bg.jpg);
+	height: 101px;
+	padding: 0 64px;
 }
-.js #add-page {
-	background: transparent none repeat scroll 0 0;
-	border: medium none;
-	right: 6%;
-	top: 37px;
+
+#navigation ul, #add-page {
+	float: left;
 }
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background-color: transparent;
+
+#navigation li {
+	width: auto;
 }
-.ui-tabs li.current a, .ui-tabs li.current span {
-	background: transparent url(../images/custom/menu.jpg) no-repeat scroll center bottom;
-	border: medium none;
-	color: white;
+
+#navigation a {
+	color: #FF3;
+	display: block;
+	float: left;
+	font: 18px/101px Arial, Helvetica, sans-serif;
+	height: 101px;
+	padding: 0 36px;
+	text-decoration: none;
 }
-.ui-tabs li a:hover, .ui-tabs li span:hover {
-	background: transparent url(../images/custom/button_r.gif) repeat-x scroll center bottom;
-	color: white;
+
+#navigation a:hover {
+	background: url(../images/custom/navigation_hover_bg.gif);
 }
-.ui-tabs li a, .tabs li span {
-	background: transparent none repeat scroll 0 0;
-	border-right: medium none;
-	color: black;
+
+
+/* ---------- Portlet ---------- */
+
+.portlet {
+	margin: 0 0 24px;
+}
+
+.portlet-topper {
+	border-bottom: 2px solid #CCC;
+	font: 16px Arial, Helvetica, sans-serif;
+	padding: 0 0 9px;
 }
