@@ -4,11 +4,11 @@
 /* ---------- Base ---------- */
 
 html {
-	background: #E7E7E2 url(../images/custom/body_bg.jpg) no-repeat scroll center top;
+	background: #E7E7E2 url(../images/custom/body_bg.jpg) no-repeat center top;
 }
 
 body {
-	background: url(../images/custom/footer_bg.jpg) no-repeat scroll center bottom;
+	background: url(../images/custom/footer_bg.jpg) no-repeat center bottom;
 	padding: 64px 0;
 }
 
