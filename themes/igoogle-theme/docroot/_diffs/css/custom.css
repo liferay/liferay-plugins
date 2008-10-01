@@ -1,29 +1,114 @@
-input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
-	padding:1px;
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+
+/* ---------- Main content body ---------- */
+
+#content-wrapper {
+	padding: 15px 27px;
 }
 
-/*----- Tabs -----*/
+/* ---------- Banner ---------- */
 
-.ui-tabs li a, .tabs li span {
-	background:#E5ECF9 none repeat scroll 0 0;
-	border:1px solid #7AA5D6;
-	color:black;
-	top:0;
+#banner {
+	padding: 32px 0 25px;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span {
-	border:1px solid #7AA5D6;
-	color:#3366CC;
+#banner .logo {
+	margin: 0;
 }
 
-.ui-tabs li a:hover, .ui-tabs li span:hover {
-	background:#E5ECF9 none repeat scroll 0 0;
-	color:black;
+#banner .logo a {
+	margin: 0 auto;
+}
+
+
+/* ---------- Dock with JavaScript ---------- */
+
+.js .interactive-mode {
+	right: 27px;
+	top: 27px;
+}
+
+
+/* ---------- Main navigation ---------- */
+
+#navigation {
+	border-bottom: 1px solid #7AA5D6;
+	height: 23px;
+	padding: 0 18px;
+}
+
+#navigation ul, #add-page {
+	float: left;
+}
+
+#navigation a {
+	background: #E5ECF9;
+	color: #262626;
+	border: 1px solid #7aa5d6;
+	display: block;
+	font: 12px Arial, Helvetica, sans-serif;
+	margin: 0 4px 0 0;
+	padding: 3px 10px 4px;
 	text-decoration: none;
 }
 
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background-color:transparent;
+#navigation .selected a {
+	background: #FFF;
+	border-bottom: 1px solid #FFF;
+	color: #36C;
+	font-weight: bold;
+}
+
+/* ---------- Portlet ---------- */
+
+.portlet {
+	border: 1px solid #BDCAD8;
+	margin: 0 0 12px;
+}
+
+.portlet-topper {
+	background: #d4e6fc;
+	padding: 4px 8px 5px;
+	border-bottom: 1px solid #BDCAD8;
+}
+
+.portlet-title {
+	font: bold 12px Arial, Helvetica, sans-serif;
+	color: #249;
+}
+
+.portlet-title img {
+	display: none;
+}
+
+.portlet-content {
+	font: 12px Arial, Helvetica, sans-serif;
+	padding: 9px 5px;
+}
+
+/* ---------- Tabs ---------- */
+
+.ui-tabs {
+	border-bottom: 1px solid #676767;
+}
+
+
+.ui-tabs li a, .tabs li span, .ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: #ddd;
+	border: 1px solid #aaa;
+	border-bottom: 1px solid #676767;
+	color: #000;
+	font: 11px Arial, Helvetica, sans-serif;
+	padding: 2px 16px;
+	margin: 0 3px 0 0;
 	text-decoration: none;
-	color:#3366CC;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
+	background: #FFF;
+	color: #36C;
+	border: 1px solid #676767;
+	border-bottom: 1px solid #FFF;
+	font: bold 11px Arial, Helvetica, sans-serif;
 }
