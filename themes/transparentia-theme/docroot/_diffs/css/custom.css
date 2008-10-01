@@ -64,12 +64,6 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	top: 145px;
 }
 
-.js #navigation .enter-page .save-page {
-	color: #777;
-	margin-top: -16px;
-	padding-left: 108px;
-}
-
 .js #navigation .enter-page {
 	padding: 1.5px;
 }
@@ -152,6 +146,15 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	right: 5pt;
 	top: 5px;
 	min-width: 0;
+}
+
+#navigation .save-page, #navigation .save-page:hover {
+	display: inline;
+	float: none;
+}
+
+#navigation .cancel-page {
+	display: none;
 }
 
 
