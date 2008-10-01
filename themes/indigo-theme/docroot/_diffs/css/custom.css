@@ -99,6 +99,15 @@ body {
 	background: #4A91C3;
 }
 
+#navigation .save-page {
+	display: inline;
+	float: none;
+}
+
+#navigation .cancel-page {
+	display: none;
+}
+
 
 /* ---------- Portlet wrapper and icons ---------- */
 
