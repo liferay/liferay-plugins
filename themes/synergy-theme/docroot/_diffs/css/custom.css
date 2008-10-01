@@ -138,6 +138,7 @@ body {
 }
 
 .ui-tabs li a, .ui-tabs li span {
+	background: none;
 	border: 1px solid #BFE1FF;
 	border-bottom: none;
 	color: #000;
@@ -155,6 +156,7 @@ body {
 
 .ui-tabs li.current a, .ui-tabs li.current span {
 	border: 1px solid #BFE1FF;
+	border-bottom: none;
 	color: #333;
 	padding: 0.15em 1em;
 }
