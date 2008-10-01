@@ -1,201 +1,104 @@
-/* Reset Styles */
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+
+/* ---------- Base ---------- */
 
 html {
-	overflow-y: scroll;
-}
-
-#wrapper, #banner, #banner .logo, #banner .logo a,#navigation, #navigation ul, #navigation ul li, #navigation li.selected,#navigation ul li a, #navigation li a span, #navigation ul li.selected a, #navigation ul li.selected a span,#navigation ul li a:hover, #navigation li a:hover span, #navigation ul li.selected a:hover, #navigation ul li.selected a:hover span,.js #add-page, .js #navigation .enter-page, .js #navigation .enter-page a, .js #navigation .enter-page a:hover,#content-wrapper, .portlet, .portlet-topper, .portlet-title, .portlet-content {
-	background: transparent none no-repeat scroll 0 0;
-	color: inherit;
-	float: none;
-	font-size: 100%;
-	font-size-adjust: none;
-	font-stretch: normal;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: normal;
-	height: auto;
-	line-height: normal;
-	margin: auto;
-	min-height: 0;
-	min-width: 0;
-	padding: 0;
-	text-decoration: none;
-	text-indent: 0;
-	width: auto;
-}
-
-
-/* Handy Defaults */
-
-#banner, #navigation, #navigation ul, .portlet {
-	background-color: transparent;
-}
-
-html {
-	overflow-y: scroll;
-}
-
-.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
-	font-size: 8pt;
-	padding-right: 0;
-}
-
-#layout-grid .lfr-column {
-	margin: 0;
-	padding: 0;
-}
-
-.portlet-icons {
-	right: 0;
-	top: 0;
-}
-
-.portlet-section-header {
-	background: transparent none;
-}
-
-.tabs {
-	border: 0;
-}
-
-ul.child-menu {
-	display: none;
-}
-
-#wrapper, #banner, #navigation, #content-wrapper,.portlet, .portlet-topper, .portlet-title, .portlet-content {
-	display: block;
-}
-
-
-/* Theme */
-
-#banner .logo a {
-	color: #FFF;
-	font-size: 26pt;
-	padding-bottom: 2px;
-}
-
-#banner .logo {
-	display: block;
-	left: 0;
-	position: absolute;
-	text-align: center;
-	top: 50px;
-	width: 100%;
-}
-
-.js #add-page a span {
-	background:transparent;
-}
-
-#banner {
-	background: #222 url(../images/common/header.jpg) no-repeat scroll 0 0;
-	height: 160px;
-	margin-bottom: 5px;
-	position: relative;
-	text-align: center;
+	background: #E7E7E2 url(../images/custom/body_bg.jpg) no-repeat scroll center top;
 }
 
 body {
-	background: #E7E7E2 url(../images/common/body.jpg) no-repeat scroll center top;
-	color: #444;
-	font: normal normal normal 62.5% Tahoma, sans-serif;
-	padding-top: 64px;
+	background: url(../images/custom/footer_bg.jpg) no-repeat scroll center bottom;
+	padding: 64px 0;
 }
 
-#column-1 {
-	background: #F7F7F7;
-}
 
-#column-2 {
-	background: #FAFAFA;
-}
-
-#content-wrappper {
-	border-top: 4px solid #FFF;
-	padding: 8px 12px 0 0pt;
-}
-
-.js #add-page {
-	border: 0;
-	bottom: auto;
-	top:9px;
-	right: 0;
-}
-
-.js .lfr-dock.interactive-mode h2 span {
-	font-size: 10pt;
-}
-
-.liferay-table {
-	font: 10px/10px Arial;
-}
-
-#navigation ul li {
-	border: 0;
-}
-
-#navigation ul li.selected a, #navigation ul li a, #navigation ul li.selected a:hover, #navigation ul li a:hover, .js #add-page a span, .js #add-page a:hover span {
-	color: #FAFAFA;
-	display: block;
-	float: left;
-	padding: 0 16px 0 0;
-}
-
-#navigation ul li.selected a:hover, #navigation ul li a:hover {
-	text-decoration: underline;
-}
-
-#navigation ul, #navigation ul li, #navigation ul li.selected {
-	float: left;
-}
-
-#navigation {
-	background: #949490 none repeat scroll 0;
-	color: #FFF;
-	font: normal normal normal 1.1em Verdana, sans-serif;
-	height: 16px;
-	padding: 8px 12px;
-}
-
-#outter {
-	background: transparent url(../images/common/container.jpg) no-repeat scroll center bottom;
-	padding-bottom: 64px;
-}
-
-.portlet-content {
-	font-family: 'Lucida Sans Unicode', sans-serif;
-}
-
-.portlet-title {
-	color: #553;
-	font-size: 14pt;
-	margin-bottom: 4px;
-	padding-top: 6px;
-}
-
-.portlet {
-	padding: 8px 12px;
-}
-
-.ui-tabs li {
-	font: 10px/2.25em Arial;
-}
-
-.ui-tabs li.current {
-	top: 0;
-}
+/* ---------- Main content body ---------- */
 
 #wrapper {
-	background: #FFF none repeat scroll 0 0;
+	background: #FFF;
 	border: 2px solid #D7D7D2;
-	font-size: 1.2em;
 	margin: 0 auto;
 	padding: 10px;
 	width: 900px;
 }
 
-input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
-	margin-top:-8px;
+#content-wrapper {
+	border: 2px solid #21262A;
+	padding: 10px;
+}
+
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: url(../images/custom/banner_bg.jpg);
+	height: 160px;
+	margin: 0 0 2.5px;
+	position: relative;
+	width: 900px;
+}
+
+#banner .logo {
+	margin: 0;
+	padding: 45px 0 0;
+}
+
+#banner .logo a {
+	margin: 0 auto;
+}
+
+
+/* ---------- Dock with JavaScript ---------- */
+
+.js .interactive-mode {
+	right: 10px;
+	top: 10px;
+}
+
+
+/* ---------- Main navigation ---------- */
+
+#navigation {
+	background: #21262a;
+	height: 40px;
+}
+
+#navigation ul, #add-page {
+	float: left;
+}
+
+#navigation a {
+	color: #D7D7D2;
+	display: block;
+	float: left;
+	font: 16px Lucida Sans Unicode, Lucida Grande, sans-serif;
+	padding: 10px 16px;
+	text-decoration: none;
+}
+
+#navigation a:hover, #navigation .selected a:hover {
+	color: #D7D700;
+}
+
+#navigation .selected a {
+	color: #D6D6A1;
+}
+
+
+/* ---------- Portlet ---------- */
+
+.portlet {
+	border-bottom: 2px solid #D7D7D2;
+	margin: 0 0 20px;
+}
+
+.portlet-topper {
+	border-bottom: 1px solid #E9E9E9;
+	padding: 4px;
+}
+
+.portlet-title {
+	color: #111;
+	font: bold 14px Arial, Helvetica, sans-serif;
 }
