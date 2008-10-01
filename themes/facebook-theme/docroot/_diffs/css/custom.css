@@ -1,0 +1,196 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+
+/* ---------- Base ---------- */
+
+body {
+	padding: 0 0 29px;
+}
+
+
+/* ---------- Main content body ---------- */
+
+#wrapper {
+	margin: 0 auto;
+	width: 964px;
+}
+
+#footer {
+	border: 1px solid #A6A6A6;
+	height: 24px;
+}
+
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: url(../images/custom/banner_bg.png) left bottom;
+	margin-bottom: -28px;
+	padding: 6px 11px;
+	position: relative;
+	z-index: 1;
+}
+
+#banner .logo {
+	margin: 0;
+}
+
+#content-wrapper {
+	padding: 22px 0 18px;
+}
+
+
+/* ---------- Dock with JavaScript ---------- */
+
+.js .interactive-mode, .js .interactive-mode h2, .js .interactive-mode h2 span {
+	background: transparent;
+	border: 0;
+	color: #FFF;
+}
+
+.js .interactive-mode {
+	bottom: 0;
+	min-width: 0;
+	right: 5px;
+	top: auto;
+	width: 120px;
+}
+
+.js .interactive-mode h2 {
+	padding: 0;
+}
+
+.js .interactive-mode h2 span {
+	font: 11px Lucida Grande, Tahoma, Verdana, Arial, sans-serif;
+	min-height: 0;
+	min-width: 0;
+	padding: 7px 9px 6px;
+	text-align: left;
+}
+
+.js .interactive-mode.expanded h2 span {
+	background: #5C75AA;
+}
+
+.js .lfr-dock.expanded .lfr-dock-list-container {
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 24px;
+}
+
+
+/* ---------- Main navigation ---------- */
+
+#navigation {
+	height: 27px;
+	padding: 0 120px 0 0;
+	position: relative;
+	z-index: 2;
+}
+
+#navigation ul {
+	float: right;
+}
+
+#navigation a, #navigation .enter-page {
+	color: #FFF;
+	display: block;
+	float: left;
+	font: 11px Lucida Grande, Tahoma, Verdana, Arial, sans-serif;
+	padding: 7px 9px;
+	position: relative;
+	text-decoration: none;
+	z-index: 22;
+}
+
+#navigation a:hover {
+	background: #5C75AA;
+}
+
+#add-page {
+	float: right;
+	position: relative;
+	z-index: 22;
+}
+
+#navigation .enter-page {
+	top: -6px;
+}
+
+#navigation .enter-page input {
+	height: 14px;
+}
+
+#navigation .save-page {
+	display: inline;
+	float: none;
+}
+
+#navigation .cancel-page {
+	display: none;
+}
+
+
+/* ---------- Portlet ---------- */
+
+.portlet {
+	margin: 0 0 10px;
+}
+
+.portlet-content, .portlet-title {
+	font: 11px Lucida Grande, Tahoma, Verdana, Arial, sans-serif;
+}
+
+.portlet-title {
+	color: #000;
+	font-weight: bold;
+	line-height: 11px;
+}
+
+.portlet-title img {
+	vertical-align: middle;
+}
+
+.portlet-icons {
+	top: 0;
+}
+
+.portlet-content {
+	border-bottom: 1px solid #D8DFEA;
+	color: #333;
+	margin: 0 0 0 20px;
+	padding: 9px 0 10px;
+}
+
+
+/* ---------- Tabs ---------- */
+
+.ui-tabs {
+	border-bottom: 1px solid #D8DFEA;
+}
+
+.ui-tabs li a, .ui-tabs li span {
+	background: #D8DFEA;
+	border: 0;
+	color: #3B5998;
+	font-size: 11px;
+	font-weight: bold;
+	height: 13px;
+	margin: 4px 1px 0;
+	padding: 6px 9px 3px;
+	top: 3px;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: #3B5998;
+	color: #FFF;
+	text-decoration: none;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
+	color: #000;
+	font-size: 13px;
+	padding: 5px 9px 6px;
+	top: 1px;
+}
