@@ -111,6 +111,7 @@ body {
 	border: none;
 	position: absolute;
 	right: 0;
+	top: 0;
 }
 
 .js #navigation .enter-page .save-page {
@@ -177,6 +178,16 @@ body {
 	margin: 6px 24px;
 	position: relative;
 	width: auto;
+}
+
+#navigation .save-page, #navigation .save-page:hover {
+	color: #FFF;
+	display: inline;
+	float: none;
+}
+
+#navigation .cancel-page {
+	display: none;
 }
 
 
