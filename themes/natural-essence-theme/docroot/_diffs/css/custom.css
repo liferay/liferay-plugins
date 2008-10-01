@@ -68,6 +68,19 @@ body {
 	color: #221;
 }
 
+#navigation .save-page {
+	display: inline;
+	float: none;
+}
+
+#navigation .save-page:hover {
+	background: none;
+}
+
+#navigation .cancel-page {
+	display: none;
+}
+
 
 /* ---------- Portlet wrapper and icons ---------- */
 
