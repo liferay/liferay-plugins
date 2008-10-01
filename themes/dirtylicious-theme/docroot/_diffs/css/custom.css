@@ -1,4 +1,4 @@
-#/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
 
 /* ---------- Base ---------- */
@@ -92,6 +92,15 @@ body {
 }
 
 #navigation .enter-page a.cancel-page {
+	display: none;
+}
+
+#navigation .save-page {
+	display: inline;
+	float: none;
+}
+
+#navigation .cancel-page {
 	display: none;
 }
 
