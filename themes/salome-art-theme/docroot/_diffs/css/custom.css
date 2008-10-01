@@ -79,6 +79,15 @@ body {
 	color: #FFF;
 }
 
+#navigation .save-page {
+	display: inline;
+	float: none;
+}
+
+#navigation .cancel-page {
+	display: none;
+}
+
 
 /* ---------- Portlet ---------- */
 
