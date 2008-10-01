@@ -7,6 +7,7 @@
 	padding: 15px 27px;
 }
 
+
 /* ---------- Banner ---------- */
 
 #banner {
@@ -44,8 +45,8 @@
 
 #navigation a {
 	background: #E5ECF9;
+	border: 1px solid #7AA5D6;
 	color: #262626;
-	border: 1px solid #7aa5d6;
 	display: block;
 	font: 12px Arial, Helvetica, sans-serif;
 	margin: 0 4px 0 0;
@@ -60,6 +61,15 @@
 	font-weight: bold;
 }
 
+#navigation .cancel-page {
+	display: none;
+}
+
+#navigation .save-page {
+	display: inline;
+}
+
+
 /* ---------- Portlet ---------- */
 
 .portlet {
@@ -68,14 +78,14 @@
 }
 
 .portlet-topper {
-	background: #d4e6fc;
-	padding: 4px 8px 5px;
+	background: #D4E6FC;
 	border-bottom: 1px solid #BDCAD8;
+	padding: 4px 8px 5px;
 }
 
 .portlet-title {
-	font: bold 12px Arial, Helvetica, sans-serif;
 	color: #249;
+	font: bold 12px Arial, Helvetica, sans-serif;
 }
 
 .portlet-title img {
@@ -87,28 +97,28 @@
 	padding: 9px 5px;
 }
 
+
 /* ---------- Tabs ---------- */
 
 .ui-tabs {
 	border-bottom: 1px solid #676767;
 }
 
-
 .ui-tabs li a, .tabs li span, .ui-tabs li a:hover, .ui-tabs li span:hover {
-	background: #ddd;
-	border: 1px solid #aaa;
+	background: #DDD;
+	border: 1px solid #AAA;
 	border-bottom: 1px solid #676767;
 	color: #000;
 	font: 11px Arial, Helvetica, sans-serif;
-	padding: 2px 16px;
 	margin: 0 3px 0 0;
+	padding: 2px 16px;
 	text-decoration: none;
 }
 
 .ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
 	background: #FFF;
-	color: #36C;
 	border: 1px solid #676767;
 	border-bottom: 1px solid #FFF;
+	color: #36C;
 	font: bold 11px Arial, Helvetica, sans-serif;
 }
