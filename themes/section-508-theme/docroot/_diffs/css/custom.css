@@ -197,6 +197,8 @@ a {
 	vertical-align: inherit;
 }
 
+/* ---------- Add Application ---------- */
+
 body.lfr-has-sidebar {
 	padding-left: 0;
 }
