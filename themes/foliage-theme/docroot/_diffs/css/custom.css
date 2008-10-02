@@ -1,12 +1,13 @@
 #wrapper {
-	width: 900px;
 	background: transparent;
 	margin: 0 auto;
+	width: 900px;
 }
 
 body {
 	background: black;
 }
+
 
 /* IE5 Win */
 
@@ -21,7 +22,8 @@ a:link, a:visited {
 }
 
 #banner .logo {
-	background: none;
+	margin: 0;
+	padding: 10px;
 }
 
 #content-wrapper, #portlet-wrapper-sign-in {
@@ -36,6 +38,7 @@ a:link, a:visited {
 	height: 251px;
 	margin: 0 auto 0;
 	margin-top: 30px;
+	position: relative;
 }
 
 #footer {
@@ -49,88 +52,52 @@ a:link, a:visited {
 	width: 880px;
 }
 
-h1, h2, h3, h4, h5, h6, strong {
-	font-weight: normal;
-}
-
-#header, #main, #sidebar, #footer, .textwidget {
-	overflow: hidden;
-}
-
-.js #add-page a {
-	padding: 10px;
-}
-
-.js #add-page {
-	right: 11px;
-	top: -1px;
-	border:medium none;
-}
-
-.js #navigation .enter-page a {
-	font-weight: 0;
-}
-
 .js #navigation .enter-page {
 	background: transparent;
 }
 
-.js .delete-tab {
-	background: transparent url(../images/theme/bullet.gif) no-repeat scroll 42% 50%;
+#navigation ul, #add-page {
+	float: left;
 }
 
-#navigation li a span, .js #add-page a span {
-	background: none;
-	padding: 0;
-	padding-left: 0;
-}
-
-#navigation li a, #navigation li.selected a, .js #add-page a {
+#navigation a {
 	background: #000;
 	border: 0;
 	color: #DA1C5C;
+	display: block;
 	font-size: 11px;
 	font-weight: normal;
 	padding: 6px 16px;
 	text-decoration: none;
 }
 
-#navigation li a:hover span, #navigation li.selected a span, .js #add-page a:hover span {
-	background: none;
-	color: white;
-	font-size: 11px;
-	font-weight: normal;
-}
-
-#navigation li {
-	background: #000;
-	display: inline;
-	font-size: 11px;
-	padding: 0;
-	padding-bottom: 0;
-	border: none;
-}
-
-#navigation ul {
-	list-style: none;
-	margin: 0 10px;
-	padding: 0;
+#navigation .selected a {
+	color: #FFF;
 }
 
 #navigation {
+	background: transparent;
+	border: none;
 	margin: 0;
 	padding-right: 0;
 	position: absolute;
 	top: 0;
-	background: transparent;
-	border: none;
+}
+
+#navigation .add-page {
+	display: inline;
+	float: none;
+}
+
+#navigation .cancel-page {
+	display: none;
 }
 
 .portlet, .portlet-topper, .portlet-content, .portlet-title {
 	background: #FFF;
+	border: none;
 	font-weight: normal;
 	margin: 0 auto;
-	border: none;
 }
 
 .portlet-content {
@@ -144,47 +111,41 @@ h1, h2, h3, h4, h5, h6, strong {
 	padding: 4px;
 }
 
-ul li, ol ul li {
-	list-style-image: url(../images/theme/bullet.gif);
-}
-
-#banner .logo a {
-	margin-left:130px;
-}
-
 .js .interactive-mode {
-	top:45px;
-	right:15%;
+	right: 10px;
+	top: 10px;
 }
+
 a {
 	font-size: 12px;
 }
 
+
 /*----- Tabs -----*/
 
 .ui-tabs li.current a, .ui-tabs li.current span {
-	background:black none repeat scroll 0 0;
-	border-right:1px solid #304049;
-	border-left: none;
-	border-top: none;
+	background: black none repeat scroll 0 0;
 	border-bottom: none;
-	color:white;
+	border-left: none;
+	border-right: 1px solid #304049;
+	border-top: none;
+	color: white;
 }
 
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background-color:black;
+	background-color: black;
 	color: white;
 	text-decoration: none;
 }
 
 .ui-tabs li a, .tabs li span {
-	background:black none repeat scroll 0 0;
-	border-right:1px solid #304049;
-	color:#DA1C5C;
-	top:0;
+	background: black none repeat scroll 0 0;
+	border-right: 1px solid #304049;
+	color: #DA1C5C;
+	top: 0;
 }
 
 .ui-tabs li a:hover, .ui-tabs li span:hover {
-background:black;
-color:white;
+	background: black;
+	color: white;
 }
