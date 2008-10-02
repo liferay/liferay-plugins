@@ -102,7 +102,7 @@ body {
 }
 
 
-/* ---------- Tabs ---------- */
+/* ---------- Liferay UI ---------- */
 
 .ui-tabs {
 	border-bottom: 1px solid #FF8B00;
@@ -121,13 +121,14 @@ body {
 	color: #FFF;
 }
 
-
-/* ---------- Calendar taglib ---------- */
-
 .portlet-calendar .calendar-day {
 	background: #FFF;
 }
 
 .portlet-calendar .day-number, .portlet-calendar .portlet-section-body td, .calendar-panel {
+	color: #000;
+}
+
+.portlet-msg-error {
 	color: #000;
 }
