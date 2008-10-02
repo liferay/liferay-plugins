@@ -129,10 +129,9 @@ body {
 
 .ui-tabs li a, .ui-tabs li span, .ui-tabs li a:hover, .ui-tabs li span:hover {
 	background: #95A938;
-	border-bottom: 1px solid #445205;
-	border-right: 1px solid #445205;
-	border-top: 1px solid #445205;
+	border: 1px solid #445205;
 	color: #FEC;
+	margin-left: -1px;
 }
 
 .ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
