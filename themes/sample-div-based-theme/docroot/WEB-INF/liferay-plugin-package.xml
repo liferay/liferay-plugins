@@ -2,7 +2,7 @@
 <!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 5.1.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_5_1_0.dtd">
 
 <plugin-package>
-	<name>Sample Div Based Theme</name>
+	<name>Sample Div Based</name>
 	<module-id>liferay/sample-div-based-theme/5.1.2.1/war</module-id>
 	<types>
 		<type>theme</type>
