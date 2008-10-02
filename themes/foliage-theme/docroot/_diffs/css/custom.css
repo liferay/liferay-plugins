@@ -14,7 +14,7 @@ body {
 
 /* easy scaling */
 
-a:link, a:visited {
+a, a:link, a:visited {
 	border-bottom: #C96 1px;
 	color: #000;
 	font-weight: bold;
@@ -98,6 +98,11 @@ a:link, a:visited {
 	border: none;
 	font-weight: normal;
 	margin: 0 auto;
+}
+
+.portlet-icons {
+	font-size: 10px;
+	line-height: 1.6em;
 }
 
 .portlet-content {
