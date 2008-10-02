@@ -1,224 +1,133 @@
-/* Global */
-a {
-	text-decoration: none;
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+
+/* ---------- Base ---------- */
+
+html {
+	background: #CCD8E0 url(../images/custom/html_bg.jpg) repeat-x left bottom;
+	min-height: 100%;
 }
 
 body {
-	background: #CCD8E0 url(../images/custom/bg.jpg) repeat-x fixed bottom center;
-	color: #444;
-	font: normal normal normal 62.5% Tahoma,sans-serif;
+	background: url(../images/custom/body_bg.gif) repeat-x left top;
+	padding: 50px 0;
 }
 
-#banner .logo a {
-	color: #FFF;
-	font-family: "Trebuchet MS",sans-serif;
-	font-size: 1.8em;
-	line-height: 150px;
-	text-transform: lowercase;
-}
 
-#banner .logo {
-	background: #B3C2C7 url(../images/custom/header.jpg) no-repeat scroll 0 0;
-	border-right: 4px solid #FFF;
-	font-size-adjust: none;
-	font-stretch: normal;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: normal;
-	height: 150px;
-	margin: 0;
-	text-align: center;
-	width: 564px;
-}
-
-#banner h1.logo {
-	display: block;
-	font-size: 2em;
-	left: 0;
-	margin: 0;
-	padding: 0;
-	position: absolute;
-}
-
-#banner {
-	background: #A4A4A0 none repeat scroll 0 0%;
-	height: 150px;
-	position: relative;
-	width: 100%;
-}
+/* ---------- Wrapper ---------- */
 
 #wrapper {
-	background: #FFF none repeat scroll 0 0;
-	font-size: 1.2em;
+	background: #FFF;
+	border: 10px solid #FFF;
 	margin: 0 auto;
-	padding: 10px 10px 5px;
-	width: 920px;
+	width: 960px;
 }
 
-#outter {
-	background: transparent url(../images/custom/clouds.png) repeat-x scroll 0 0;
-	padding: 50px 10px 0;
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: #C3D0D6 url(../images/custom/banner_bg.png) no-repeat left bottom;
+	margin: 0 0 5px;
+	min-height: 80px;
+	padding: 35px 150px;
 }
 
-#content-wrapper, #portlet-wrapper- {
-	width: 100%;
-}
 
-#footer {
-	padding: 0 16px;
-}
+/* ---------- Logo ---------- */
 
-/* Dock */
-.js .interactive-mode {
-	right: 12px;
-	top: 12px;
-}
-
-.js .lfr-dock.interactive-mode h2 span {
-	font-size: 10pt;
-	line-height: 12.2pt;
-}
-
-/* Navigation */
-.js #navigation .enter-page .save-page {
-	background: transparent none repeat scroll 0 0%;
-	color: #456;
+#banner .logo {
 	margin: 0;
-	padding-left: 15px;
-	position: absolute;
+}
+
+
+/* ---------- Dock ---------- */
+
+.js .interactive-mode {
 	right: 15px;
-	top: 14px;
+	top: 15px;
 }
 
-.js #navigation .enter-page a:hover {
-	padding: 0;
+
+/* ---------- Navigation ---------- */
+
+#navigation {
+	background: url(../images/custom/navigation_bg.gif);
+	border: 1px solid #CFDEE7;
+	border-color: #DFEEF7 #CFDEE7;
+	height: 41px;
 }
 
-.js #navigation .enter-page {
-	border-right: 1px solid #AFBEC7;
-	margin-right: 60px;
-	margin-top: 4px;
+#navigation ul, #add-page {
+	float: left;
 }
 
-#navigation li a {
-	padding: 0;
-}
-
-#navigation li {
-	border: none;
-}
-
-#navigation ul li.selected a span,
-#navigation ul li a span,
-#navigation ul li.selected a:hover span,
-#navigation ul li a:hover span,
-.js #add-page a span,
-.js #add-page a:hover span {
-	background: transparent none repeat scroll 0 0%;
+#navigation a, #navigation .enter-page {
 	border-right: 1px solid #AFBEC7;
 	color: #456;
 	display: block;
 	float: left;
-	font: bold normal normal 1em/41px Tahoma, sans-serif;
+	font: bold 12px Arial, Helvetica, sans-serif;
 	height: 41px;
 	line-height: 41px;
 	padding: 0 20px;
-	text-align: center;
 	text-decoration: none;
 }
 
-#navigation ul li.selected a,
-#navigation ul li a,
-#navigation ul li.selected a:hover,
-#navigation ul li a:hover,
-.js #add-page a span,
-.js #add-page a:hover span {
-	background-color: transparent;
-	display: block;
-	margin-left: 0;
+#navigation a:hover {
+	background: url(../images/custom/navigation_bg.gif) left bottom;
 }
 
-#navigation ul li.selected a:hover span, #navigation ul li a:hover span, .js #add-page a:hover span {
-	background: url(../images/custom/nav.png) repeat-x scroll left bottom;
-	color: #234;
+#navigation .enter-page {
 }
 
-#navigation ul, #navigation ul li, #navigation ul li.selected, .js #add-page {
-	background: transparent none repeat scroll 0 0%;
-	border: medium none;
-	bottom: 0;
-	float: left;
-	position: relative;
-	right: 0;
-	width: auto;
+#navigation .save-page, #navigation .save-page:hover {
+	background: none;
+	border-right: 0;
+	display: inline;
+	float: none;
 }
 
-#navigation {
-	background: #EAE7DF url(../images/custom/nav.png) repeat-x scroll 0 0;
-	border-top: 4px solid #FFF;
-	height: 41px;
+#navigation .cancel-page {
+	display: none;
 }
 
-/* Portlet */
-.portlet-content {
-	font-family: "Lucida Sans Unicode", sans-serif;
-	font-size: 9pt;
-	padding: 2px 0 20px 0;
+
+/* ---------- Content Wrapper ---------- */
+
+#content-wrapper {
+	padding: 16px 0;
+}
+
+
+/* ---------- Portlet ---------- */
+
+.portlet {
+	margin: 0 0 8px;
+}
+
+.portlet-topper {
+	padding: 6px 0 4px;
 }
 
 .portlet-title {
 	color: #963;
-	font-size: 1.8em;
-	font-weight: normal;
-	margin-bottom: 4px;
+	font: normal 22px Tahoma, sans-serif;
 }
 
-.portlet-topper {
-	background: transparent;
-	border-bottom: none;
+.portlet-title img {
+	display: none;
 }
 
-.portlet-icons {
-	top: -10px;
+.portlet-content {
+	font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+	padding: 0;
 }
 
-/* Liferay UI */
-.ui-tabs li.current a, .ui-tabs li.current span {
-	background: #B3C2C7 url(../images/custom/header.jpg) no-repeat scroll 0 0;
-	border: none;
-	color: #223344;
-}
 
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	text-decoration: none;
-}
+/* ---------- Footer ---------- */
 
-.ui-tabs li a, .tabs li span {
-	background: #EAE7DF url(../images/custom/nav.png) repeat-x scroll center top;
-	border-right: none;
-	color: #223344;
-	padding:9px;
-	top:0;
-}
-
-.ui-tabs li a:hover, .ui-tabs li span:hover {
-	background: transparent url(../images/custom/nav.png) repeat-x scroll left bottom;
-	color: #223344;
-}
-
-.portlet {
-	border: none;
-	padding: 20px;
-}
-
-.tabs li {
-	font: 10px/2.25em Arial;
-}
-
-.tabs li.current {
-	top: 0;
-}
-
-.liferay-table {
-	font: 10px/10px Arial;
+#footer {
+	background: #ADBFCB url(../images/custom/footer_bg.gif) repeat-x;
+	min-height: 39px;
 }
