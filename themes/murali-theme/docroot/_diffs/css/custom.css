@@ -1,7 +1,190 @@
-/* Import */
-@import url(head.css);
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-.js .lfr-dock-list-container {
-	height: 1px;
-	overflow: visible;
+
+/* ---------- Base ---------- */
+
+html {
+	background: #2B861F url(../images/custom/html_bg.jpg) repeat-x scroll center bottom;
+	min-height: 100%;
+}
+
+body {
+	background: url(../images/custom/body_bg.jpg) repeat-x scroll center top;
+	padding: 50px 0;
+}
+
+
+/* ---------- Wrapper ---------- */
+
+#wrapper {
+	margin: 0 50px;
+}
+
+
+/* ---------- Banner ---------- */
+
+#banner {
+	min-height: 150px;
+	position: relative;
+}
+
+
+/* ---------- Logo ---------- */
+
+#banner .logo {
+	margin: 0;
+}
+
+#banner .logo a {
+	margin: 0 auto;
+}
+
+
+/* ---------- Dock ---------- */
+
+.js .interactive-mode {
+	right: 0;
+	top: 10px;
+}
+
+
+/* ---------- Navigation ---------- */
+
+#navigation {
+	height: 20px;
+}
+
+#navigation ul, #add-page {
+	float: left;
+}
+
+#navigation a, #navigation .enter-page {
+	color: #EEE;
+	display: block;
+	float: left;
+	font: bold 12px Arial, Helvetica, sans-serif;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 20px;
+	text-decoration: none;
+}
+
+#navigation a:hover {
+	color: #FFF;
+}
+
+#navigation .selected a {
+	border-bottom: 2px solid #97DB8C;
+	color: #FFF;
+}
+
+#navigation .save-page, #navigation .save-page:hover {
+	background: none;
+	border-right: 0;
+	display: inline;
+	float: none;
+}
+
+#navigation .cancel-page {
+	display: none;
+}
+
+
+/* ---------- Content Wrapper ---------- */
+
+#content-wrapper {
+	padding: 24px 0 0;
+}
+
+
+/* ---------- Portlet ---------- */
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: transparent url(../images/custom/portlet_bg.png) no-repeat bottom right;
+}
+
+.portlet {
+	margin: 0 0 10px;
+	padding-right: 10px;
+	text-align: left;
+}
+
+.portlet-topper {
+	background-position: right top;
+	margin-right: -10px;
+	padding-right: 10px;
+	position: relative;
+}
+
+.portlet-title {
+	background-position: top left;
+	color: #FEC;
+	display: block;
+	font: normal 18px/40px Tahoma, sans-serif;
+	height: 35px;
+	letter-spacing: 0.1em;
+	min-width: 50%;
+	padding: 0 15px;
+}
+
+.portlet-title img {
+	display: none;
+}
+
+.portlet-content {
+	background-position: left bottom;
+	color: #FFF;
+	font: 12px/1.5 Lucida Sans Unicode, Lucida Grande, sans-serif;
+	padding: 15px 25px;
+}
+
+
+/* ---------- Tabs ---------- */
+
+.ui-tabs {
+	border-bottom: 1px solid #1F5C16;
+}
+
+.ui-tabs li.current:hover {
+	background: none;
+}
+
+.ui-tabs li a, .ui-tabs li span, .ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: #297620 url(../images/custom/tabs_bg.png) repeat-x;
+	border: 1px solid #1F5C16;
+	color: #FFF;
+	font: 11px;
+	line-height: 12px;
+	margin: 0 12px 0 0;
+	padding: 8px 12px;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	font-size: 13px;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	color: #FF3;
+	text-decoration: none;
+}
+
+
+/* ---------- Input ---------- */
+
+input[type="submit"], input[type="button"], input[type="reset"] {
+	background: #297620 url(../images/custom/tabs_bg.png) repeat-x;
+	border: 1px solid #1F5C16;
+	color: #FEC;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover {
+	background: #297620 url(../images/custom/tabs_bg.png) repeat-x;
+	color: #FEC;
+}
+
+
+/* ---------- Calendar ---------- */
+
+.portlet-calendar .portlet-content {
+	color: #000;
 }
