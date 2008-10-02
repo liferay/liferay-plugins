@@ -1,0 +1,113 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+
+/* ---------- Base ---------- */
+
+body {
+	background: #E7E7E7;
+	padding: 16px;
+}
+
+
+/* ---------- Wrapper ---------- */
+
+#wrapper {
+	margin: 0 auto;
+	position: relative;
+	width: 967px;
+}
+
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: url(../images/custom/banner_bg.png);
+	height: 54px;
+	padding: 70px 0;
+	position: relative;
+}
+
+#banner .logo {
+	margin: 0;
+}
+
+#banner .logo a {
+	margin: 0 auto;
+}
+
+
+/* ---------- Logo ---------- */
+
+.js .interactive-mode {
+	right: 20px;
+	top: 20px;
+}
+
+
+/* ---------- Dock ---------- */
+
+
+/* ---------- Navigation ---------- */
+
+#navigation {
+	padding: 16px 0 0;
+	position: absolute;
+	right: 5px;
+	width: 182px;
+}
+
+#navigation li {
+	float: none;
+}
+
+#navigation a, #navigation .enter-page {
+	color: #27A;
+	font: 10px/1.5 Verdana, Arial, Sans-Serif;
+	text-decoration: none;
+}
+
+#navigation a:hover {
+	text-decoration: underline;
+}
+
+
+/* ---------- Content Wrapper ---------- */
+
+#content-wrapper {
+	background: url(../images/custom/content-wrapper_bg.png);
+	padding: 20px 202px 0 22px;
+}
+
+
+/* ---------- Portlet ---------- */
+
+.portlet {
+	margin: 0 0 20px;
+}
+
+.portlet-topper {
+	margin: 0 0 8px;
+}
+
+.portlet-title {
+	font: 24px Trebuchet MS, Verdana, sans-serif;
+	letter-spacing: -1px;
+}
+
+.portlet-title img {
+	display: none;
+}
+
+.portlet-content {
+	color: #444;
+	font: 12px/1.8 Lucida Grande, Verdana, Arial, sans-serif;
+	padding: 0;
+}
+
+
+/* ---------- Footer ---------- */
+
+#footer {
+	background: url(../images/custom/footer_bg.png);
+	height: 54px;
+}
