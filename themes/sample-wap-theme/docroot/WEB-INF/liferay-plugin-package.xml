@@ -3,7 +3,7 @@
 
 <plugin-package>
 	<name>Sample WAP Theme</name>
-	<module-id>liferay/sample-wap-theme/5.1.1.1/war</module-id>
+	<module-id>liferay/sample-wap-theme/5.1.2.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>
