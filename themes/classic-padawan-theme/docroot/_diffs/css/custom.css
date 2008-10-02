@@ -2,37 +2,53 @@
 
 /* ---------- Base ---------- */
 
-body {
-	background: #B0B8BC url(../images/common/body_bg.png) top center repeat-x;
-	font-size: 8pt;
+html {
+	height: 100%;
 }
 
+body {
+	background: #B0B8BC;
+	font-size: 11px;
+}
+
+/* ---------- Main content body ---------- */
+
 #wrapper {
+	background: transparent url(../images/common/body_bg.png) repeat-x 0 0;
 	padding: 0 0 10px 0;
 }
 
 #content-wrapper {
-	margin: 20px auto 0;
+	margin: 0 auto;
 	width: 90%;
 }
-
 
 /* ---------- Banner ---------- */
 
 #banner {
-	background: transparent url(../images/common/banner_bg.jpg) top center no-repeat;
+	background: transparent url(../images/common/banner_bg.jpg) no-repeat 20% 0;
 	height: 100px;
 	top: -1px;
 }
 
-#banner .logo {
-	margin: 0 0 0 5%;
-	position: relative;
-	width: 50%;
-	top: 26px;
+#banner h1.logo {
+	display: block;
+	font-size: 2em;
+	left: 5%;
+	margin: 25px 0 0;
+	padding: 0;
+	position: absolute;
 }
 
-/* --------- Navigation -------- */
+#banner .logo a {
+	text-decoration: none;
+}
+
+.ie6 #banner .logo {
+	zoom: 1;
+}
+
+/* ---------- Main navigation ---------- */
 
 #navigation {
 	background: #020509;
@@ -78,6 +94,8 @@ body {
 	padding-left: 10px;
 }
 
+/* ---------- Add/remove page ---------- */
+
 .js #navigation .enter-page {
 	background-color: #1E2529;
 	padding: 2px;
@@ -122,9 +140,8 @@ body {
 
 .js #add-page {
 	background: #020509;
-	border-color: #304049;
-	border-style: solid solid none;
-	border-width: 1px 1px 0;
+	border: 1px solid #304049;
+	border-bottom: none;
 	bottom: 100%;
 	font-weight: bold;
 	position: absolute;
@@ -137,12 +154,11 @@ body {
 }
 
 .js #add-page a span {
-	background:transparent url(../images/common/add.png) no-repeat 0 50%;
+	background: url(../images/common/add.png) no-repeat 0 50%;
 	display: block;
 	margin-left: 15px;
 	padding: 5px 20px 2px;
 }
-
 
 /* ---------- Portlet ---------- */
 
@@ -161,11 +177,17 @@ body {
 
 .portlet-topper {
 	background: #333;
+	border-bottom: 1px solid #AEB8BC;
+	padding-right: 40px;
 }
 
 .portlet-title {
 	color: #FFF;
 	padding: 5px;
+}
+
+.ie .portlet-title {
+	padding-bottom: 5px;
 }
 
 .portlet-icons {
@@ -176,6 +198,16 @@ body {
 	color: #FFF;
 }
 
+/* ---------- Add Application ---------- */
+
+body.lfr-has-sidebar {
+	padding-left: 0;
+}
+
+.lfr-has-sidebar #content-wrapper {
+	padding-left: 270px;
+	width: auto;
+}
 
 /* ---------- Actions button ---------- */
 
