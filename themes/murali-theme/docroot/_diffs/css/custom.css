@@ -133,9 +133,12 @@ body {
 
 .portlet-content {
 	background-position: left bottom;
-	color: #FFF;
 	font: 12px/1.5 Lucida Sans Unicode, Lucida Grande, sans-serif;
 	padding: 15px 25px;
+}
+
+.portlet-content, .portlet-content a {
+	color: #FFF;
 }
 
 
@@ -185,6 +188,10 @@ input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hove
 
 /* ---------- Calendar ---------- */
 
-.portlet-calendar .portlet-content {
+.portlet-calendar .portlet-content, .portlet-calendar .portlet-content a {
 	color: #000;
+}
+
+.portlet-calendar .ui-tabs a {
+	color: #FFF;
 }
