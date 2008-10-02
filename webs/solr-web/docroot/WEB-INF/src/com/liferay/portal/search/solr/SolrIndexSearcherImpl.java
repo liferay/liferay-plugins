@@ -22,6 +22,7 @@
 
 package com.liferay.portal.search.solr;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
@@ -121,6 +122,11 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		Element resultEl = root.element("result");
 
 		int length = GetterUtil.getInteger(resultEl.attributeValue("numFound"));
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS)) {
+			start = 0;
+			end = length;
+		}
 
 		float maxScore = GetterUtil.getFloat(
 			resultEl.attributeValue("maxScore"));
