@@ -112,19 +112,9 @@ public class SolrIndexWriterImpl implements IndexWriter {
 	public void updateDocument(long companyId, String uid, Document doc)
 		throws SearchException {
 
-		com.liferay.portal.kernel.xml.Document xmlDoc =
-			SAXReaderUtil.createDocument();
+		deleteDocument(companyId, uid);
 
-		Element updateEl = xmlDoc.addElement("update");
-
-		addFieldEls(updateEl, doc);
-
-		try {
-			write(xmlDoc);
-		}
-		catch (Exception e) {
-			throw new SearchException(e);
-		}
+		addDocument(companyId, doc);
 	}
 
 	protected void addFieldEls(Element el, Document doc) {
