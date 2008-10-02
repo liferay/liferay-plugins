@@ -84,7 +84,7 @@ body {
 
 #navigation {
 	height: 27px;
-	padding: 0 120px 0 0;
+	margin: 0 120px 0 0;
 	position: relative;
 	z-index: 2;
 }
