@@ -1,218 +1,133 @@
-f/* Reset */
-html {
-	overflow-y: scroll;
-}
-
-#wrapper, #banner, #banner .logo, #banner .logo a,#navigation, #navigation ul, #navigation ul li, #navigation li.selected,#navigation ul li a, #navigation li a span, #navigation ul li.selected a, #navigation ul li.selected a span,#navigation ul li a:hover, #navigation li a:hover span, #navigation ul li.selected a:hover, #navigation ul li.selected a:hover span,.js #add-page, .js #add-page a, .js #add-page a span, .js #add-page a:hover, .js #add-page a:hover span,.js #navigation .enter-page, .js #navigation .enter-page a, .js #navigation .enter-page a:hover,#content-wrapper, .portlet, .portlet-topper, .portlet-title, .portlet-content {
-	background: transparent none no-repeat scroll 0 0%;
-	color: inherit;
-	display: inline;
-	float: none;
-	font-size: 100%;
-	font-size-adjust: none;
-	font-stretch: normal;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: normal;
-	height: auto;
-	line-height: normal;
-	margin: 0;
-	min-height: 0;
-	min-width: 0;
-	padding: 0;
-	padding-left: 0;
-	text-decoration: none;
-	text-indent: 0;
-	width: auto;
-}
-
-/* Defaults */
-#banner, #navigation, #navigation ul, .portlet {
-	background-color: transparent;
-}
-
-.portlet-content {
-	padding-top: 1.5em;
-}
-
-#layout-grid .lfr-column {
-	margin: 0;
-	padding: 0;
-}
-
-.portlet-icons {
-	right: 0;
-	top: 0;
-}
-
-.ui-tabs {
-	border: 0;
-}
-
-#wrapper, #banner, #navigation, #content-wrapper,.portlet, .portlet-topper, .portlet-title, .portlet-content {
-	display: block;
-}
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
 
-/* Theme */
-a, a:link, a:visited, a:hover {
-	color: #FFF;
-	text-decoration: none;
-}
-
-.portlet-content td a, th, td {
-	color: #333;
-}
-
-a:hover {
-	color: #FEE;
-	text-decoration: underline;
-}
-
-#banner .logo a {
-	color: #FFF;
-	font-family: 'Trebuchet MS',Tahoma,Arial,Sans-serif;
-	font-size: 58px;
-	font-weight: bold;
-	left: 7%;
-	letter-spacing: -1px;
-	position: absolute;
-	top: 55px;
-}
-
-#banner {
-	height: 178px;
-	margin: 0 auto;
-	position: relative;
-	text-align: left;
-	width: 93%;
-}
+/* ---------- Base ---------- */
 
 body {
-	background: #001342 url('../images/common/page_bg.png') repeat-x scroll 0 0;
-	color: #F2F9FF;
-	font-family: verdana,tahoma,sans-serif;
-	font-size: 12px;
-	font-size-adjust: none;
-	font-stretch: normal;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: normal;
-	line-height: 1.7em;
+	background: #001342;
+}
+
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: url(../images/custom/banner_bg.png);
+	height: 102px;
+	padding: 40px 50px;
+	position: relative;
+}
+
+
+/* ---------- Logo ---------- */
+
+#banner .logo {
 	margin: 0;
-	padding: 0;
-	text-align: center;
 }
 
-.columns-1 #layout-grid #column-1,.columns-2 #layout-grid #column-1, .columns-2 #layout-grid #column-2,.columns-3 #layout-grid #column-1, .columns-3 #layout-grid #column-2, .columns-3 #layout-grid #column-3 {
-	padding: 0 6px;
+
+/* ---------- Dock ---------- */
+
+.js .interactive-mode {
+	right: 50px;
+	top: 40px;
+	z-index: 30;
 }
 
-#content-wrapper {
-	background: #1183DA none repeat scroll 0 0;
-	padding: 0 3.5%;
+
+/* ---------- Navigation ---------- */
+
+#navigation {
+	background: url(../images/custom/banner_bg.png) left bottom;
+	height: 64px;
+	padding: 0 40px;
 }
 
-.js #add-page {
-	border: 0;
-	float: right;
-	margin: auto 3% 0;
-	top: 0;
-	z-index: 60;
-}
-
-.js .lfr-dock.interactive-mode h2 span {
-	font-size: 10pt;
-}
-
-.js .lfr-dock.interactive-mode {
-	right: 0px;
-	top: 20px;
-}
-
-.lfr-dock-list li a {
-	color: #000;
-}
-
-#navigation ul li a span, #navigation ul li.selected a span,#navigation ul li a:hover span, #navigation ul li.selected a:hover span {
-	color: #FFF;
-	font-family: "Century Gothic","Trebuchet MS",Helvetica,Arial,Geneva,sans-serif;
-	font-size: 15px;
-	font-weight: bold;
-	letter-spacing: 1px;
-	padding: 0 15px;
-}
-
-#navigation ul li, #navigation ul li.selected {
-	border: 0;
-	display: block;
+#navigation ul, #add-page {
 	float: left;
+}
+
+#navigation li {
 	height: 64px;
 }
 
-#navigation ul li.selected a span, #navigation ul li.selected a:hover span, #navigation ul li a:hover span {
+#navigation li.selected {
+	background: url(../images/custom/navigation_current_bg.jpg) no-repeat center bottom;
+}
+
+#navigation a, #navigation .enter-page {
+	color: #FFF;
+	display: block;
+	float: left;
+	font: bold 15px Century Gothic, Trebuchet MS, Helvetica, Arial, Geneva, sans-serif;
+	height: 21px;
+	letter-spacing: 1px;
+	padding: 0 15px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+#navigation .enter-page {
+	position: relative;
+	top: -7px;
+}
+
+#navigation .selected a, #navigation a:hover {
 	color: #333;
 }
 
-#navigation ul li.selected {
-	background: transparent url('../images/navigation/nav-current.png') no-repeat scroll center bottom;
+#navigation .save-page, #navigation .save-page:hover {
+	background: none;
+	border-right: 0;
+	display: inline;
+	float: none;
 }
 
-#navigation ul {
-	display: block;
-	float: left;
-	height: 50px;
-	list-style-image: none;
-	list-style-position: outside;
-	list-style-type: none;
-	margin: 0 auto 0 3%;
-	text-transform: uppercase;
-	width: 85%;
+#navigation .cancel-page {
+	display: none;
 }
 
-#navigation {
-	background: transparent url('../images/navigation/bg.png') repeat-x scroll left bottom;
-	border: 0;
-	height: 64px;
+
+/* ---------- Content Wrapper ---------- */
+
+#content-wrapper {
+	background: #1183DA;
+	border-bottom: 5px solid #86CC15;
+	padding: 10px 40px;
+	zoom: 1;
 }
 
-.portlet-msg-success, #portal_add_content_title, .portal-add-content td, .portal-add-content a, .font-small {
-	color: #000;
+
+/* ---------- Portlet ---------- */
+
+.portlet {
+	background: url(../images/custom/portlet_bg.jpg);
+	border: 5px solid #1F8ADE;
+	margin: 0 0 20px;
+	padding: 10px 10px 20px;
+}
+
+.portlet-topper {
+	margin: 0 0 10px;
 }
 
 .portlet-title {
 	color: #B1E100;
-	border-bottom: 1px solid #FFF;
-	font-family: 'Trebuchet MS',Arial,Sans-serif;
-	font-size: 2.8em;
-	font-weight: bold;
+	font: bold 34px Trebuchet MS, Arial, sans-serif;
 	letter-spacing: -2px;
 }
 
-.portlet {
-	background: transparent url('../images/portlet/portlet_bg.png') repeat scroll 0 0;
-	border: 5px solid #1F8ADE;
-	margin: 10px 0;
-	padding: 10px 10px 20px 24px;
+.portlet-title img {
+	display: none;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span {
-	background: transparent url(../images/common/tabs_bg.png) repeat scroll 100% 0;
-	color: #FF9;
-	margin: 2px;
-	top: 0;
+.portlet-content {
+	color: #F2F9FF;
+	font: 12px/1.7 Verdana, Tahoma, sans-serif;
 }
 
-.ui-tabs li.current {
-	background: transparent url(../images/common/tabs_bg.png) repeat scroll 100% 0;
-}
 
-.ui-tabs li a, .tabs li span {
-	top:0;
-	background: transparent;
-	border: none;
-}
+/* ---------- Footer ---------- */
 
-.portlet-calendar .calendar-container {
-	background:transparent url(../images/portlet/portlet_bg.png) repeat scroll 0 0;
+#footer {
+	padding: 30px 0;
 }
