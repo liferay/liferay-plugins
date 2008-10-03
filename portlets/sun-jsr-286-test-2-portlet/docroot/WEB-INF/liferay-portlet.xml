@@ -6,19 +6,19 @@
 		<portlet-name>EventAlias2</portlet-name>
 	</portlet>
 	<portlet>
-		<portlet-name>WildCardReceive2</portlet-name>
+		<portlet-name>NoNameSpace1</portlet-name>
 	</portlet>
 	<portlet>
-		<portlet-name>SimpleEvent2</portlet-name>
+		<portlet-name>NoNameSpace2</portlet-name>
 	</portlet>
 	<portlet>
 		<portlet-name>RenderAlias2</portlet-name>
 	</portlet>
 	<portlet>
-		<portlet-name>NoNameSpace1</portlet-name>
+		<portlet-name>SimpleEvent2</portlet-name>
 	</portlet>
 	<portlet>
-		<portlet-name>NoNameSpace2</portlet-name>
+		<portlet-name>WildCardReceive2</portlet-name>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
