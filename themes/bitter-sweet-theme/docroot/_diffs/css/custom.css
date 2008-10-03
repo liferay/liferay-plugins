@@ -1,310 +1,149 @@
-html {
-	overflow-y: scroll;
-}
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-#wrapper, #banner, #banner .logo, #banner .logo a,#navigation, #navigation ul, #navigation ul li, #navigation li.selected,#navigation ul li a, #navigation li a span, #navigation ul li.selected a, #navigation ul li.selected a span,#navigation ul li a:hover, #navigation li a:hover span, #navigation ul li.selected a:hover, #navigation ul li.selected a:hover span,.js #add-page, .js #add-page a, .js #add-page a span, .js #add-page a:hover, .js #add-page a:hover span,#content-wrapper, .portlet, .portlet-topper, .portlet-title, .portlet-content {
-	background: transparent none no-repeat scroll 0 0;
-	bottom: 0;
-	color: inherit;
-	float: none;
-	font-size: 100%;
-	font-size-adjust: none;
-	font-stretch: normal;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: normal;
-	height: auto;
-	line-height: normal;
-	margin: auto;
-	min-height: 0;
-	min-width: 0;
-	padding: 0;
-	text-decoration: none;
-	text-indent: 0;
-	width: auto;
-}
 
-.ui-tabs li.current a, .ui-tabs li.current span {
-	background:#5F8000 url(../images/custom/common/page_bg.png) repeat-y scroll left top;
-	border-right: 1px solid black;
-	border-left: none;
-	border-top: none;
-	border-bottom: none;
-	color:white;
-}
+/* ---------- Base ---------- */
 
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	text-decoration: none;
-}
-
-.ui-tabs li a:hover, .ui-tabs li span:hover {
-	color:white;
-	text-decoration: none;
-}
-
-.ui-tabs li a, .tabs li span {
-	background:#567300 none repeat scroll 0 0;
-	border-right:1px solid black;
-	color:#FFFFFF;
-	top:0;
-	padding: 7px;
+body {
+	background: #698e00 url(../images/custom/body_bg.png) center top;
+	color: #333;
+	margin: 0 auto;
+	padding: 0 20px;
+	width: 960px;
 }
 
 
-/* Defaults */
+/* ---------- Wrapper ---------- */
 
-#banner, #navigation, #navigation ul, .portlet {
-	background-color: transparent;
-}
 
-.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
-	font-size: 8pt;
-	padding-right: 0;
-}
+/* ---------- Banner ---------- */
 
-#layout-grid .lfr-column {
-	margin: 0;
-	padding: 0;
-}
-
-.portlet-icons {
-	right: 0;
-	top: 0;
-}
-
-.portlet-section-header {
-	background: transparent none;
-}
-
-.tabs {
-	border: 0;
-}
-
-ul.child-menu {
-	display: none;
-}
-
-#wrapper, #banner, #navigation, #content-wrapper,.portlet, .portlet-topper, .portlet-title, .portlet-content {
-	border: none;
-	display: block;
+#banner {
+	background: #688B00 url(../images/custom/banner_bg.jpg) no-repeat center bottom;
+	padding: 0 0 180px;
+	position: relative;
 }
 
 
-/* Theme */
-
-a.portlet-icon-back:hover {
-	color: #000;
-	text-decoration: underline;
-}
-
-#banner .logo a {
-	color: #FFF;
-	display: block;
-	font-size: 2.4em;
-	line-height: 60px;
-	text-decoration: none;
-	width: 100%;
-}
+/* ---------- Logo ---------- */
 
 #banner .logo {
 	margin: 0;
-	padding-left: 24px;
+	padding: 18px 24px;
 }
 
-#banner h1.logo {
-	top: -30px;
+
+/* ---------- Dock ---------- */
+
+.js .interactive-mode {
+	top: 20px;
+	right: 18px;
 }
 
-#banner {
-	background: #567300 url('../images/custom/common/banner_bg.jpg') no-repeat scroll 0 60px;
-	font-family: Verdana,sans-serif;
-	height: 240px;
-	margin: 0 auto;
-	position: relative;
-	width: 902px;
-}
 
-body {
-	background: #5F8000 url('../images/custom/common/page_bg.png') repeat-y scroll center top;
-	color: #333;
-	font: normal normal normal 0.6em "Lucida Sans Unicode",sans-serif;
-}
-
-#column-1 .portlet {
-	background: transparent url('../images/custom/portlet/left_portlet_bg.png') no-repeat scroll 0 0;
-	color: #FDD;
-}
-
-#column-1 .portlet-content {
-	color: #000;
-	font-size: 1.2em;
-	margin-left: 37px;
-	overflow: hidden;
-	padding: 12px 18px;
-}
-
-#column-1 .portlet-title {
-	background: #567300 none;
-	color: #FFF;
-	font-size: 11pt;
-	font-weight: bold;
-	height: 30px;
-	margin: 0 0 0 36px;
-	padding: 9px 0 1px 0;
-}
-
-#column-1 {
-}
-
-#column-2 .portlet {
-}
-
-#column-2 .portlet-content {
-	color: #000;
-	font-size: 1.2em;
-	overflow: hidden;
-	padding: 8px;
-}
-
-#column-2 .portlet-title img {
-	padding-left: 12px;
-}
-
-#column-2 .portlet-title {
-	background: #81AC00 none;
-	color: #FFF;
-	font-size: 11pt;
-	font-weight: bold;
-	height: 30px;
-	padding: 9px 0 1px 0;
-}
-
-#column-2 {
-	border-left: 1px solid #C5CEB2;
-}
-
-#content-wrapper #layout-grid {
-}
-
-#content-wrapper {
-	margin: 0 36px 0 0;
-	width: 938px;
-}
-
-.js #navigation .enter-page .save-page {
-	background: transparent none repeat scroll 0 0%;
-	font-size: 1.2em;
-	font-weight: normal;
-	margin: 0;
-	padding: 4px 12px;
-	position: absolute;
-	right: -3px;
-	top: 0;
-}
-
-.js #navigation .enter-page {
-	background-color: transparent;
-	padding: 0 50px 0 0px;
-	width: auto;
-}
-
-.js .lfr-dock.interactive-mode h2 span {
-	color: white;
-	font-size: 10pt;
-	padding:8px 13px;
-}
-
-.js .lfr-dock.interactive-mode h2, .js .lfr-dock.interactive-mode h2 span {
-	background-image: none;
-}
-
-.js .lfr-dock.interactive-mode {
-	right:10pt;
-	top:10px;
-}
-
-.liferay-table {
-	font: 10px/10px Arial;
-}
+/* ---------- Navigation ---------- */
 
 #navigation {
-	background: #567300 none repeat scroll 0 0pt;
-	border-bottom: 1px solid #C5CEB2;
-	border-top: 1px solid #C5CEB2;
-	color: #FFF;
-	height: 25px;
-	line-height: 40px;
-	margin: 0 36px;
-	padding-left: 16px;
-}
-
-#navigation li {
-	border: none;
-}
-
-#navigation ul li a span, #navigation ul li a:hover span, #navigation ul li.selected a span, #navigation ul li.selected a:hover span, .js #add-page a span, .js #add-page a:hover span {
-	display: block;
-	float: left;
-	font-size: 1.2em;
-}
-
-#navigation ul li a, #navigation ul li a:hover, #navigation ul li.selected a, #navigation ul li.selected a:hover, .js #add-page a, .js #add-page a:hover {
-	color: #EEE;
-	display: block;
-	float: left;
-	padding: 4px 12px;
-}
-
-#navigation ul li a:hover, #navigation ul li.selected a:hover {
-	color: #FFF;
-}
-
-.js #add-page {
-	border-left: 1px solid #333;
-	display: block;
-	float: right;
-}
-
-#navigation ul li, #navigation ul li.selected {
-	display: block;
-	float: left;
+	background: url(../images/custom/navigation_bg.png);
+	border-bottom: 2px solid #97DB8C;
+	height: 38px;
 }
 
 #navigation ul {
+	float: right;
+}
+
+#add-page {
+	float: left;
+}
+
+#navigation a, #navigation .enter-page {
+	color: #553;
 	display: block;
 	float: left;
-	padding: 0 6px;
-	text-align: center;
+	font: bold 12px Arial, Helvetica, sans-serif;
+	height: 14px;
+	padding: 12px 20px;
+	text-decoration: none;
 }
 
-.portlet {
-	margin-bottom: 30px;
+#navigation .enter-page {
+	padding: 6px 20px;
 }
 
-.portlet-icon-back {
-	line-height: 18px;
-	margin: 0 6px;
+#navigation a:hover {
+	background: #E8F6BF;
+	color: #553;
 }
 
-#portlet-wrapper- {
-	margin: 0 36px 0 0;
-	width: 665px;
+#navigation .selected a {
+	border-bottom: 4px solid #97DB8C;
+	padding-bottom: 10px;
 }
 
-.portlet {
-	border: none;
+#navigation .save-page, #navigation .save-page:hover {
+	background: none;
+	border-right: 0;
+	display: inline;
+	float: none;
 }
 
-.tabs li {
-	font: 10px/2.25em Arial;
+#navigation .cancel-page {
+	display: none;
 }
 
-.tabs li.current {
-	top: 0;
+
+/* ---------- Content Wrapper ---------- */
+
+#content-wrapper {
+	padding: 0 0 24px;
 }
 
-#wrapper {
-	background: transparent url(../images/custom/common/wrapper_bg.png) repeat-y scroll 0 0;
-	margin: 0 auto;
-	width: 974px;
+
+/* ---------- Portlet ---------- */
+
+.portlet-topper {
+	background: url(../images/custom/portlet-topper_bg.gif) no-repeat;
+	height: 40px;
+	margin: 0 0 0 -36px;
+	padding: 0 0 0 36px;
+}
+
+.portlet-title {
+	background: #567300;
+	color: #FFF;
+	display: block;
+	font: 14px/40px Lucida Sans Unicode, sans-serif;
+	height: 40px;
+	padding: 0 16px;
+}
+
+.portlet-title img {
+	display: none;
+}
+
+.portlet-icons a {
+	color: #FFF;
+}
+
+.portlet-content {
+	font: 12px Lucida Sans Unicode, sans-serif;
+	padding: 12px 18px;
+}
+
+/* ---------- Input ------------ */
+
+input[type="submit"], input[type="button"], input[type="reset"] {
+	background: #E8F6BF;
+	border: 1px solid #97DB8C;
+}
+
+
+/* ---------- Tabs ---------- */
+
+
+/* ---------- Footer ---------- */
+
+#footer {
+	background: url(../images/custom/footer_bg.gif);
+	height: 39px;
 }
