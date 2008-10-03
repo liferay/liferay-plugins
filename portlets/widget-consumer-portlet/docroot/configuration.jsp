@@ -24,23 +24,23 @@
 
 <%@ include file="/init.jsp" %>
 
-<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
+<form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
-<% 
-/**liferay-ui:message key="widget-consumer-edit" />
-**/
-%>
-Paste your widget code block in the text area and click Save
+Paste in widget code.
 
-<br />
-<br />
+<br /><br />
 
-<textarea class="lfr-textarea" name="javascriptBlock" wrap="soft"><%= javascriptCode %></textarea>
+<textarea class="lfr-textarea" name="<portlet:namespace />widgetCode" wrap="soft"><%= widgetCode %></textarea>
 
-<br />
+<br /><br />
 
 <input type="button" value="<liferay-ui:message key="save" />" onClick="submitForm(document.<portlet:namespace />fm);" />
 
 </form>
 
+<c:if test="<%= renderRequest.getWindowState().equals(WindowState.MAXIMIZED) %>">
+	<script type="text/javascript">
+		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />widgetCode);
+	</script>
+</c:if>

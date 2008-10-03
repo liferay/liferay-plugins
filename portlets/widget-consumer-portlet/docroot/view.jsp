@@ -24,28 +24,11 @@
 
 <%@ include file="/init.jsp" %>
 
-<portlet:defineObjects />
-
-<%
-if (javascriptBlockPresent) {
-%>
-
-<html>
-<body>
-<%= javascriptCode %>
-
-<% 
-} else {
-%>
-<%
-/**liferay-ui:message key="widget-consumer-initial-msg" />
-**/
-%>
-
-Please click on Edit Preferences of this portlet and add code block of the widget that you want to display
-</body>
-</html>
-<%
-}
-%>
-
+<c:choose>
+	<c:when test="<%= Validator.isNotNull(widgetCode) %>">
+		<%= widgetCode %>
+	</c:when>
+	<c:otherwise>
+		<liferay-ui:message key="please-contact-the-administrator-to-setup-this-portlet" />
+	</c:otherwise>
+</c:choose>

@@ -3,11 +3,11 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>widget-consumer</portlet-name>
+		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
+		<configuration-action-class>com.liferay.widgetconsumer.action.ConfigurationActionImpl</configuration-action-class>
 		<instanceable>true</instanceable>
-		<header-portlet-css>/css/test.css</header-portlet-css>
-		<header-portlet-javascript>/js/test.js</header-portlet-javascript>
+		<css-class-wrapper>widget-consumer-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

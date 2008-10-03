@@ -3,6 +3,6 @@
 
 <display>
 	<category name="category.sample">
-		<portlet id="widget-consumer" />
+		<portlet id="1" />
 	</category>
 </display>
