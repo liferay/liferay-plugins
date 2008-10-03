@@ -59,7 +59,7 @@ WindowState windowState = renderRequest.getWindowState();
 	<c:otherwise>
 
 		<%
-		Pattern pattern = Pattern.compile("(\\d+[.]\\d+)");
+		Pattern pattern = Pattern.compile("<p[^>]{0,}>\\s{0,}</p>|<p[^>]{0,}>\\s{0,}&nbsp;\\s{0,}</p>");
 
 		List<JournalArticle> allArticles = JournalArticleLocalServiceUtil.getArticles(themeDisplay.getScopeGroupId());
 
@@ -85,7 +85,7 @@ WindowState windowState = renderRequest.getWindowState();
 			for (JournalArticle article : badArticles) {
 			%>
 
-				<%= article.getId() %><br />
+				<%= article.getId() %> - <%= article.getTitle() %><br />
 
 			<%
 			}
