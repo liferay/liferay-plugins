@@ -72,6 +72,18 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 			url = HttpUtil.addParameter(url, "fl", "score");
 
+			boolean allResults = false;
+
+			if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS)) {
+				url = HttpUtil.addParameter(url, "rows", 0);
+
+				allResults = true;
+			}
+			else {
+				url = HttpUtil.addParameter(url, "start", start);
+				url = HttpUtil.addParameter(url, "rows", end - start);
+			}
+
 			if ((sorts != null) && (sorts.length > 0)) {
 				StringBuilder sb = new StringBuilder();
 
@@ -97,7 +109,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 				url = HttpUtil.addParameter(url, "sort", sb.toString());
 			}
 
-			return subset(HttpUtil.URLtoString(url), start, end);
+			return subset(url, HttpUtil.URLtoString(url), allResults);
 		}
 		catch (Exception e) {
 			_log.error("Error while sending request to Solr", e);
@@ -110,7 +122,9 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		_serverURL = serverURL;
 	}
 
-	protected Hits subset(String xml, int start, int end) throws Exception {
+	protected Hits subset(String url, String xml, boolean allResults)
+		throws Exception {
+
 		long startTime = System.currentTimeMillis();
 
 		Hits subset = new HitsImpl();
@@ -123,59 +137,56 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 		int length = GetterUtil.getInteger(resultEl.attributeValue("numFound"));
 
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS)) {
-			start = 0;
-			end = length;
+		if (allResults && length > 0) {
+			url = HttpUtil.removeParameter(url, "rows");
+			url = HttpUtil.addParameter(url, "rows", length);
+
+			xml = HttpUtil.URLtoString(url);
+
+			return subset(url, xml, false);
 		}
 
 		float maxScore = GetterUtil.getFloat(
 			resultEl.attributeValue("maxScore"));
 
-		if ((start > - 1) && (start <= end)) {
-			if (end > length) {
-				end = length;
+		List<Element> docsEl = resultEl.elements();
+
+		int subsetTotal = docsEl.size();
+
+		Document[] subsetDocs = new DocumentImpl[subsetTotal];
+		float[] subsetScores = new float[subsetTotal];
+
+		int j = 0;
+
+		for (Element docEl : docsEl) {
+			Document doc = new DocumentImpl();
+
+			List<Element> fieldEls = docEl.elements();
+
+			for (Element fieldEl : fieldEls) {
+				Field field = new Field(
+					fieldEl.attributeValue("name"), fieldEl.getText(), false);
+
+				doc.add(field);
 			}
 
-			int subsetTotal = end - start;
+			float score = GetterUtil.getFloat(doc.get("score"));
 
-			Document[] subsetDocs = new DocumentImpl[subsetTotal];
-			float[] subsetScores = new float[subsetTotal];
+			subsetDocs[j] = doc;
+			subsetScores[j] = score / maxScore;
 
-			List<Element> docsEl = resultEl.elements();
-
-			int j = 0;
-
-			for (int i = start; i < end; i++, j++) {
-				Element docEl = docsEl.get(i);
-
-				Document doc = new DocumentImpl();
-
-				List<Element> fieldEls = docEl.elements();
-
-				for (Element fieldEl : fieldEls) {
-					Field field = new Field(
-						fieldEl.attributeValue("name"), fieldEl.getText(),
-						false);
-
-					doc.add(field);
-				}
-
-				float score = GetterUtil.getFloat(doc.get("score"));
-
-				subsetDocs[j] = doc;
-				subsetScores[j] = score / maxScore;
-			}
-
-			subset.setLength(length);
-			subset.setDocs(subsetDocs);
-			subset.setScores(subsetScores);
-			subset.setStart(startTime);
-
-			float searchTime =
-				(float)(System.currentTimeMillis() - startTime) / Time.SECOND;
-
-			subset.setSearchTime(searchTime);
+			j++;
 		}
+
+		subset.setLength(length);
+		subset.setDocs(subsetDocs);
+		subset.setScores(subsetScores);
+		subset.setStart(startTime);
+
+		float searchTime =
+			(float)(System.currentTimeMillis() - startTime) / Time.SECOND;
+
+		subset.setSearchTime(searchTime);
 
 		return subset;
 	}
