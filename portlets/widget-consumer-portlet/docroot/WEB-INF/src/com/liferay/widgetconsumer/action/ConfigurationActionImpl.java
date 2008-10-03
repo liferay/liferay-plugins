@@ -60,13 +60,13 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		String portletResource = ParamUtil.getString(
 			actionRequest, "portletResource");
 
-		PortletPreferences prefs =
+		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				actionRequest, portletResource);
 
-		prefs.setValue("widget-code", widgetCode);
+		preferences.setValue("widget-code", widgetCode);
 
-		prefs.store();
+		preferences.store();
 
 		PortletSession ses = actionRequest.getPortletSession();
 
