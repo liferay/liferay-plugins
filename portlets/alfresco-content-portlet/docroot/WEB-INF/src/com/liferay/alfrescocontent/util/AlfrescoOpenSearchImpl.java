@@ -74,7 +74,7 @@ public class AlfrescoOpenSearchImpl implements OpenSearch {
 		return ENABLED;
 	}
 
-	public String search(HttpServletRequest req, String url)
+	public String search(HttpServletRequest request, String url)
 		throws SearchException {
 
 		String xml = StringPool.BLANK;
@@ -103,7 +103,7 @@ public class AlfrescoOpenSearchImpl implements OpenSearch {
 	}
 
 	public String search(
-			HttpServletRequest req, String keywords, int startPage,
+			HttpServletRequest request, String keywords, int startPage,
 			int itemsPerPage)
 		throws SearchException {
 
@@ -112,7 +112,7 @@ public class AlfrescoOpenSearchImpl implements OpenSearch {
 				HttpUtil.encodeURL(keywords) + "&p=" + startPage + "&c=" +
 					itemsPerPage + "&guest=&format=atom";
 
-		return search(req, url);
+		return search(request, url);
 	}
 
 	private static Log _log = LogFactory.getLog(AlfrescoOpenSearchImpl.class);

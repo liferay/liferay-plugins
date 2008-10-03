@@ -42,20 +42,20 @@
 <portlet:defineObjects />
 
 <%
-PortletPreferences prefs = renderRequest.getPreferences();
+PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
 if (Validator.isNotNull(portletResource)) {
-	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
+	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-String license = prefs.getValue("license", StringPool.BLANK);
-String mapAddress = prefs.getValue("map-address", StringPool.BLANK);
-boolean mapInputEnabled = GetterUtil.getBoolean(prefs.getValue("map-input-enabled", StringPool.BLANK));
-String directionsAddress = prefs.getValue("directions-address", StringPool.BLANK);
-boolean directionsInputEnabled = GetterUtil.getBoolean(prefs.getValue("directions-input-enabled", StringPool.BLANK));
-int height = GetterUtil.getInteger(prefs.getValue("height", StringPool.BLANK), 300);
+String license = preferences.getValue("license", StringPool.BLANK);
+String mapAddress = preferences.getValue("map-address", StringPool.BLANK);
+boolean mapInputEnabled = GetterUtil.getBoolean(preferences.getValue("map-input-enabled", StringPool.BLANK));
+String directionsAddress = preferences.getValue("directions-address", StringPool.BLANK);
+boolean directionsInputEnabled = GetterUtil.getBoolean(preferences.getValue("directions-input-enabled", StringPool.BLANK));
+int height = GetterUtil.getInteger(preferences.getValue("height", StringPool.BLANK), 300);
 
 String sesMapAddress = (String)session.getAttribute(renderResponse.getNamespace() + "mapAddress");
 

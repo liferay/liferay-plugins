@@ -25,16 +25,16 @@
 <%@ include file="/application_builder/init.jsp" %>
 
 <%
-PortletPreferences prefs = renderRequest.getPreferences();
+PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
 if (Validator.isNotNull(portletResource)) {
-	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
+	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-String script = PrefsParamUtil.getString(prefs, request, "script", ConfigurationActionImpl.DEFAULT_SCRIPT);
-String language = PrefsParamUtil.getString(prefs, request, "language", ConfigurationActionImpl.DEFAULT_LANGUAGE);
+String script = PrefsParamUtil.getString(preferences, request, "script", ConfigurationActionImpl.DEFAULT_SCRIPT);
+String language = PrefsParamUtil.getString(preferences, request, "language", ConfigurationActionImpl.DEFAULT_LANGUAGE);
 
 String portletResourceNamespace = PortalUtil.getPortletNamespace(portletResource);
 %>

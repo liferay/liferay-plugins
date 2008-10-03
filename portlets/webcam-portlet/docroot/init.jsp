@@ -42,16 +42,16 @@
 <portlet:defineObjects />
 
 <%
-PortletPreferences prefs = renderRequest.getPreferences();
+PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
 if (Validator.isNotNull(portletResource)) {
-	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
+	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-String url = prefs.getValue("url", "http://iacm-wcam1.viewnetcam.com/nphMotionJpeg?Resolution=320x240&Quality=Standard");
-int height = GetterUtil.getInteger(prefs.getValue("height", StringPool.BLANK), 240);
-int width = GetterUtil.getInteger(prefs.getValue("width", StringPool.BLANK), 320);
-String message = prefs.getValue("message", StringPool.BLANK);
+String url = preferences.getValue("url", "http://iacm-wcam1.viewnetcam.com/nphMotionJpeg?Resolution=320x240&Quality=Standard");
+int height = GetterUtil.getInteger(preferences.getValue("height", StringPool.BLANK), 240);
+int width = GetterUtil.getInteger(preferences.getValue("width", StringPool.BLANK), 320);
+String message = preferences.getValue("message", StringPool.BLANK);
 %>

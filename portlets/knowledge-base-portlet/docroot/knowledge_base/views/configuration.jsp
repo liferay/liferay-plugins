@@ -32,7 +32,7 @@ String tabs3 = ParamUtil.getString(request, "tabs3", "general");
 
 String[] conversions = DocumentConversionUtil.getConversions("html");
 
-String[] extensions = prefs.getValues("extensions", new String[] {"pdf"});
+String[] extensions = preferences.getValues("extensions", new String[] {"pdf"});
 %>
 
 <liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="portletURL" portletConfiguration="true">

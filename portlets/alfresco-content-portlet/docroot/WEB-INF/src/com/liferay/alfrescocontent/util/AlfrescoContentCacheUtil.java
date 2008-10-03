@@ -49,7 +49,7 @@ public class AlfrescoContentCacheUtil {
 
 	public static String getContent(
 			String userId, String password, String uuid, String path,
-			boolean maximizeLinks, RenderResponse res)
+			boolean maximizeLinks, RenderResponse renderResponse)
 		throws Exception {
 
 		if (Validator.isNull(uuid)) {
@@ -63,7 +63,8 @@ public class AlfrescoContentCacheUtil {
 		if (content == null) {
 			try {
 				content = AlfrescoContentUtil.getContent(
-					userId, password, uuid, path, maximizeLinks, res);
+					userId, password, uuid, path, maximizeLinks,
+					renderResponse);
 			}
 			catch (Exception e) {
 				if (_log.isWarnEnabled()) {

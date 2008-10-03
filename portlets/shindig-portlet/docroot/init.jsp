@@ -47,14 +47,14 @@
 <%
 themeDisplay.setIncludeServiceJs(true);
 
-PortletPreferences prefs = renderRequest.getPreferences();
+PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
 if (Validator.isNotNull(portletResource)) {
-	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
+	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-String gadgetUrl = prefs.getValue("gadget-url", StringPool.BLANK);
-int gadgetHeight = GetterUtil.getInteger(prefs.getValue("gadget-height", StringPool.BLANK));
+String gadgetUrl = preferences.getValue("gadget-url", StringPool.BLANK);
+int gadgetHeight = GetterUtil.getInteger(preferences.getValue("gadget-height", StringPool.BLANK));
 %>

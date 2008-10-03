@@ -246,7 +246,7 @@ public class AlfrescoContentUtil {
 	}
 
 	public static String formatContent(
-		String content, boolean maximizeLinks, RenderResponse res) {
+		String content, boolean maximizeLinks, RenderResponse renderResponse) {
 
 		if (content == null) {
 			return null;
@@ -260,7 +260,7 @@ public class AlfrescoContentUtil {
 			while (m.find()) {
 				String uuid = m.group(1);
 
-				PortletURL portletURL = res.createRenderURL();
+				PortletURL portletURL = renderResponse.createRenderURL();
 
 				portletURL.setParameter("uuid", uuid);
 

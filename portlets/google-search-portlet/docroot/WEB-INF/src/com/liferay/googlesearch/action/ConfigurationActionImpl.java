@@ -48,26 +48,27 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			ActionResponse actionResponse)
 		throws Exception {
 
-		String cmd = ParamUtil.getString(req, Constants.CMD);
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 		if (!cmd.equals(Constants.UPDATE)) {
 			return;
 		}
 
-		String license = ParamUtil.getString(req, "license");
+		String license = ParamUtil.getString(actionRequest, "license");
 
-		String portletResource = ParamUtil.getString(req, "portletResource");
+		String portletResource = ParamUtil.getString(
+			actionRequest, "portletResource");
 
 		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
-				req, portletResource);
+				actionRequest, portletResource);
 
 		preferences.setValue("license", license);
 
 		preferences.store();
 
 		SessionMessages.add(
-			req, portletConfig.getPortletName() + ".doConfigure");
+			actionRequest, portletConfig.getPortletName() + ".doConfigure");
 	}
 
 	public String render(

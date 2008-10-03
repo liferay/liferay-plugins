@@ -338,7 +338,7 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 									</c:if>
 
 									<%
-									String[] extensions = prefs.getValues("extensions", new String[] {"pdf"});
+									String[] extensions = preferences.getValues("extensions", new String[] {"pdf"});
 
 									for (String extension : extensions) {
 										ResourceURL convertURL = renderResponse.createResourceURL();

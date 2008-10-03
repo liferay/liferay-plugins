@@ -52,15 +52,15 @@
 <%
 WindowState windowState = renderRequest.getWindowState();
 
-PortletPreferences prefs = renderRequest.getPreferences();
+PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
 if (Validator.isNotNull(portletResource)) {
-	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
+	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-String movie = prefs.getValue("movie", StringPool.BLANK);
-String flashAttributes = prefs.getValue("flash-attributes", StringPool.BLANK);
-String flashVariables = prefs.getValue("flash-variables", StringPool.BLANK);
+String movie = preferences.getValue("movie", StringPool.BLANK);
+String flashAttributes = preferences.getValue("flash-attributes", StringPool.BLANK);
+String flashVariables = preferences.getValue("flash-variables", StringPool.BLANK);
 %>

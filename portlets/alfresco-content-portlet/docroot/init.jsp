@@ -63,17 +63,17 @@
 <liferay-theme:defineObjects />
 
 <%
-PortletPreferences prefs = renderRequest.getPreferences();
+PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
 if (Validator.isNotNull(portletResource)) {
-	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
+	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-String userId = prefs.getValue("user-id", StringPool.BLANK);
-String password = prefs.getValue("password", StringPool.BLANK);
-String uuid = prefs.getValue("uuid", StringPool.BLANK);
-boolean showEditIcon = GetterUtil.getBoolean(prefs.getValue("show-edit-icon", StringPool.BLANK));
-boolean maximizeLinks = GetterUtil.getBoolean(prefs.getValue("maximize-links", StringPool.BLANK));
+String userId = preferences.getValue("user-id", StringPool.BLANK);
+String password = preferences.getValue("password", StringPool.BLANK);
+String uuid = preferences.getValue("uuid", StringPool.BLANK);
+boolean showEditIcon = GetterUtil.getBoolean(preferences.getValue("show-edit-icon", StringPool.BLANK));
+boolean maximizeLinks = GetterUtil.getBoolean(preferences.getValue("maximize-links", StringPool.BLANK));
 %>

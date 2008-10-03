@@ -47,13 +47,13 @@
 <portlet:defineObjects />
 
 <%
-PortletPreferences prefs = renderRequest.getPreferences();
+PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
 if (Validator.isNotNull(portletResource)) {
-	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
+	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-String gadgetId = prefs.getValue("gadget-id", "http://www.google.com/ig/modules/youtube_videos.xml");
+String gadgetId = preferences.getValue("gadget-id", "http://www.google.com/ig/modules/youtube_videos.xml");
 %>

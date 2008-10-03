@@ -27,20 +27,20 @@
 <%
 String portletResource = ParamUtil.getString(request, "portletResource");
 
-PortletPreferences prefs = renderRequest.getPreferences();
+PortletPreferences preferences = renderRequest.getPreferences();
 
 if (Validator.isNotNull(portletResource)) {
-	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
+	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-long[] groupIds = GetterUtil.getLongValues(prefs.getValues("group-ids", new String[] {"0"}));
-String displayStyle = prefs.getValue("display-style", KnowledgeBaseAggregatorUtil.DISPLAY_STYLE_ABSTRACT_AND_IMAGE);
-int maxItems = GetterUtil.getInteger(prefs.getValue("max-items", String.valueOf(KnowledgeBaseAggregatorUtil.MAX_ITEMS_20)));
+long[] groupIds = GetterUtil.getLongValues(preferences.getValues("group-ids", new String[] {"0"}));
+String displayStyle = preferences.getValue("display-style", KnowledgeBaseAggregatorUtil.DISPLAY_STYLE_ABSTRACT_AND_IMAGE);
+int maxItems = GetterUtil.getInteger(preferences.getValue("max-items", String.valueOf(KnowledgeBaseAggregatorUtil.MAX_ITEMS_20)));
 
-String[] rssTypes = prefs.getValues("rss-types", new String[] {RSSUtil.RSS_2_0});
-int rssMaxItems = GetterUtil.getInteger(prefs.getValue("rss-max-items", String.valueOf(RSSUtil.MAX_ITEMS_20)));
-String rssDisplayStyle = prefs.getValue("rss-display-style", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
-int rssAbstractLength = GetterUtil.getInteger(prefs.getValue("rss-abstract-length", String.valueOf(RSSUtil.ABSTRACT_LENGTH_200)));
+String[] rssTypes = preferences.getValues("rss-types", new String[] {RSSUtil.RSS_2_0});
+int rssMaxItems = GetterUtil.getInteger(preferences.getValue("rss-max-items", String.valueOf(RSSUtil.MAX_ITEMS_20)));
+String rssDisplayStyle = preferences.getValue("rss-display-style", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
+int rssAbstractLength = GetterUtil.getInteger(preferences.getValue("rss-abstract-length", String.valueOf(RSSUtil.ABSTRACT_LENGTH_200)));
 
 // Portlet URLs
 

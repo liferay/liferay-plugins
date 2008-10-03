@@ -43,24 +43,24 @@
 <portlet:defineObjects />
 
 <%
-PortletPreferences prefs = renderRequest.getPreferences();
+PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
 if (Validator.isNotNull(portletResource)) {
-	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
+	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-String adClient = prefs.getValue("ad-client", StringPool.BLANK);
-String adChannel = prefs.getValue("ad-channel", StringPool.BLANK);
-int adFormat = GetterUtil.getInteger(prefs.getValue("ad-format", StringPool.BLANK));
-int adType = GetterUtil.getInteger(prefs.getValue("ad-type", StringPool.BLANK));
+String adClient = preferences.getValue("ad-client", StringPool.BLANK);
+String adChannel = preferences.getValue("ad-channel", StringPool.BLANK);
+int adFormat = GetterUtil.getInteger(preferences.getValue("ad-format", StringPool.BLANK));
+int adType = GetterUtil.getInteger(preferences.getValue("ad-type", StringPool.BLANK));
 
-String colorBorder = prefs.getValue("color-border", StringPool.BLANK);
-String colorBg = prefs.getValue("color-bg", StringPool.BLANK);
-String colorLink = prefs.getValue("color-link", StringPool.BLANK);
-String colorText = prefs.getValue("color-text", StringPool.BLANK);
-String colorUrl = prefs.getValue("color-url", StringPool.BLANK);
+String colorBorder = preferences.getValue("color-border", StringPool.BLANK);
+String colorBg = preferences.getValue("color-bg", StringPool.BLANK);
+String colorLink = preferences.getValue("color-link", StringPool.BLANK);
+String colorText = preferences.getValue("color-text", StringPool.BLANK);
+String colorUrl = preferences.getValue("color-url", StringPool.BLANK);
 
 String[][] adFormats = {
 	{"0", "0", "0", "(0 x 0) - " + LanguageUtil.get(pageContext, "no-banner")},

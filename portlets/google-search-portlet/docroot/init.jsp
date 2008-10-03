@@ -58,15 +58,15 @@
 <liferay-theme:defineObjects />
 
 <%
-PortletPreferences prefs = renderRequest.getPreferences();
+PortletPreferences preferences = renderRequest.getPreferences();
 
-boolean safeSearch = GetterUtil.getBoolean(prefs.getValue("safe-search", StringPool.BLANK));
+boolean safeSearch = GetterUtil.getBoolean(preferences.getValue("safe-search", StringPool.BLANK));
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
 if (Validator.isNotNull(portletResource)) {
-	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
+	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-String license = prefs.getValue("license", StringPool.BLANK);
+String license = preferences.getValue("license", StringPool.BLANK);
 %>
