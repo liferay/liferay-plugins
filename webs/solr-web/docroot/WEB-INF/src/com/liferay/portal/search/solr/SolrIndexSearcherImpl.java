@@ -137,7 +137,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 		int length = GetterUtil.getInteger(resultEl.attributeValue("numFound"));
 
-		if (allResults && length > 0) {
+		if (allResults && (length > 0)) {
 			url = HttpUtil.removeParameter(url, "rows");
 			url = HttpUtil.addParameter(url, "rows", length);
 
@@ -149,16 +149,16 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		float maxScore = GetterUtil.getFloat(
 			resultEl.attributeValue("maxScore"));
 
-		List<Element> docsEl = resultEl.elements();
+		List<Element> docEls = resultEl.elements();
 
-		int subsetTotal = docsEl.size();
+		int subsetTotal = docEls.size();
 
 		Document[] subsetDocs = new DocumentImpl[subsetTotal];
 		float[] subsetScores = new float[subsetTotal];
 
 		int j = 0;
 
-		for (Element docEl : docsEl) {
+		for (Element docEl : docEls) {
 			Document doc = new DocumentImpl();
 
 			List<Element> fieldEls = docEl.elements();
