@@ -5,7 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
-		<css-class-wrapper>westminstercatechism-portlet</css-class-wrapper>
+		<css-class-wrapper>westminster-catechism-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
