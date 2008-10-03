@@ -39,12 +39,14 @@ import javax.portlet.RenderResponse;
 public class ConfigurationActionImpl implements ConfigurationAction {
 
 	public void processAction(
-			PortletConfig config, ActionRequest req, ActionResponse res)
+			PortletConfig portletConfig, ActionRequest actionRequest,
+			ActionResponse actionResponse)
 		throws Exception {
 	}
 
 	public String render(
-			PortletConfig config, RenderRequest req, RenderResponse res)
+			PortletConfig portletConfig, RenderRequest renderRequest,
+			RenderResponse renderResponse)
 		throws Exception {
 
 		return "/configuration.jsp";

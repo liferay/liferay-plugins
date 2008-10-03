@@ -46,41 +46,45 @@ import javax.portlet.RenderResponse;
 public class ConfigurationActionImpl implements ConfigurationAction {
 
 	public void processAction(
-			PortletConfig config, ActionRequest req, ActionResponse res)
+			PortletConfig portletConfig, ActionRequest actionRequest,
+			ActionResponse actionResponse)
 		throws Exception {
 
-		String cmd = ParamUtil.getString(req, Constants.CMD);
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 		if (!cmd.equals(Constants.UPDATE)) {
 			return;
 		}
 
-		String license = ParamUtil.getString(req, "license");
-		String mapAddress = ParamUtil.getString(req, "mapAddress");
-		boolean mapInputEnabled = ParamUtil.getBoolean(req, "mapInputEnabled");
+		String license = ParamUtil.getString(actionRequest, "license");
+		String mapAddress = ParamUtil.getString(actionRequest, "mapAddress");
+		boolean mapInputEnabled = ParamUtil.getBoolean(
+			actionRequest, "mapInputEnabled");
 		String directionsAddress = ParamUtil.getString(
-			req, "directionsAddress");
+			actionRequest, "directionsAddress");
 		boolean directionsInputEnabled = ParamUtil.getBoolean(
-			req, "directionsInputEnabled");
-		String height = ParamUtil.getString(req, "height");
+			actionRequest, "directionsInputEnabled");
+		String height = ParamUtil.getString(actionRequest, "height");
 
-		String portletResource = ParamUtil.getString(req, "portletResource");
+		String portletResource = ParamUtil.getString(
+			actionRequest, "portletResource");
 
-		PortletPreferences prefs =
+		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
-				req, portletResource);
+				actionRequest, portletResource);
 
-		prefs.setValue("license", license);
-		prefs.setValue("map-address", mapAddress);
-		prefs.setValue("map-input-enabled", String.valueOf(mapInputEnabled));
-		prefs.setValue("directions-address", directionsAddress);
-		prefs.setValue(
+		preferences.setValue("license", license);
+		preferences.setValue("map-address", mapAddress);
+		preferences.setValue(
+			"map-input-enabled", String.valueOf(mapInputEnabled));
+		preferences.setValue("directions-address", directionsAddress);
+		preferences.setValue(
 			"directions-input-enabled", String.valueOf(directionsInputEnabled));
-		prefs.setValue("height", height);
+		preferences.setValue("height", height);
 
-		prefs.store();
+		preferences.store();
 
-		PortletSession ses = req.getPortletSession();
+		PortletSession ses = actionRequest.getPortletSession();
 
 		ses.removeAttribute(
 			PortalUtil.getPortletNamespace(portletResource) + "mapAddress",
@@ -91,11 +95,13 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 				"directionsAddress",
 			PortletSession.APPLICATION_SCOPE);
 
-		SessionMessages.add(req, config.getPortletName() + ".doConfigure");
+		SessionMessages.add(
+			actionRequest, portletConfig.getPortletName() + ".doConfigure");
 	}
 
 	public String render(
-			PortletConfig config, RenderRequest req, RenderResponse res)
+			PortletConfig portletConfig, RenderRequest renderRequest,
+			RenderResponse renderResponse)
 		throws Exception {
 
 		return "/configuration.jsp";

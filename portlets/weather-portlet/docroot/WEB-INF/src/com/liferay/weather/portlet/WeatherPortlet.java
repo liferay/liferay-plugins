@@ -47,44 +47,49 @@ import javax.portlet.ValidatorException;
  */
 public class WeatherPortlet extends JSPPortlet {
 
-	public void processAction(ActionRequest req, ActionResponse res)
+	public void processAction(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
-		if (req.getPortletMode().equals(PortletMode.EDIT)) {
-			updatePreferences(req, res);
+		if (actionRequest.getPortletMode().equals(PortletMode.EDIT)) {
+			updatePreferences(actionRequest, actionResponse);
 		}
 	}
 
-	protected void updatePreferences(ActionRequest req, ActionResponse res)
+	protected void updatePreferences(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
-		String cmd = ParamUtil.getString(req, Constants.CMD);
+
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 		if (!cmd.equals(Constants.UPDATE)) {
 			return;
 		}
 
-		PortletPreferences prefs = req.getPreferences();
+		PortletPreferences preferences = actionRequest.getPreferences();
 
 		String[] zips = StringUtil.split(
-			ParamUtil.getString(req, "zips"), "\n");
+			ParamUtil.getString(actionRequest, "zips"), "\n");
 
-		boolean fahrenheit = ParamUtil.get(req, "fahrenheit", true);
+		boolean fahrenheit = ParamUtil.get(actionRequest, "fahrenheit", true);
 
-		prefs.setValues("zips", zips);
-		prefs.setValue("fahrenheit", String.valueOf(fahrenheit));
+		preferences.setValues("zips", zips);
+		preferences.setValue("fahrenheit", String.valueOf(fahrenheit));
 
 		try {
-			prefs.store();
+			preferences.store();
 		}
 		catch (ValidatorException ve) {
-			SessionErrors.add(req, ValidatorException.class.getName(), ve);
+			SessionErrors.add(
+				actionRequest, ValidatorException.class.getName(), ve);
 
 			return;
 		}
 
-		PortletConfig config = getPortletConfig();
+		PortletConfig portletConfig = getPortletConfig();
 
-		SessionMessages.add(req, config.getPortletName() + ".doEdit");
+		SessionMessages.add(
+			actionRequest, portletConfig.getPortletName() + ".doEdit");
 	}
 
 }

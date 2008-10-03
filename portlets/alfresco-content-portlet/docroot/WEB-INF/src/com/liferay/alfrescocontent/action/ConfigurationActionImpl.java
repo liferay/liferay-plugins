@@ -46,42 +46,49 @@ import javax.portlet.RenderResponse;
 public class ConfigurationActionImpl implements ConfigurationAction {
 
 	public void processAction(
-			PortletConfig config, ActionRequest req, ActionResponse res)
+			PortletConfig portletConfig, ActionRequest actionRequest,
+			ActionResponse actionResponse)
 		throws Exception {
 
-		String cmd = ParamUtil.getString(req, Constants.CMD);
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 		if (cmd.equals(Constants.UPDATE)) {
-			String userId = ParamUtil.getString(req, "userId");
-			String password = ParamUtil.getString(req, "password");
-			String uuid = ParamUtil.getString(req, "uuid");
-			boolean showEditIcon = ParamUtil.getBoolean(req, "showEditIcon");
-			boolean maximizeLinks = ParamUtil.getBoolean(req, "maximizeLinks");
+			String userId = ParamUtil.getString(actionRequest, "userId");
+			String password = ParamUtil.getString(actionRequest, "password");
+			String uuid = ParamUtil.getString(actionRequest, "uuid");
+			boolean showEditIcon = ParamUtil.getBoolean(
+				actionRequest, "showEditIcon");
+			boolean maximizeLinks = ParamUtil.getBoolean(
+				actionRequest, "maximizeLinks");
 
 			String portletResource = ParamUtil.getString(
-				req, "portletResource");
+				actionRequest, "portletResource");
 
-			PortletPreferences prefs =
+			PortletPreferences preferences =
 				PortletPreferencesFactoryUtil.getPortletSetup(
-					req, portletResource);
+					actionRequest, portletResource);
 
-			prefs.setValue("user-id", userId);
-			prefs.setValue("password", password);
-			prefs.setValue("uuid", uuid);
-			prefs.setValue("show-edit-icon", String.valueOf(showEditIcon));
-			prefs.setValue("maximize-links", String.valueOf(maximizeLinks));
+			preferences.setValue("user-id", userId);
+			preferences.setValue("password", password);
+			preferences.setValue("uuid", uuid);
+			preferences.setValue(
+				"show-edit-icon", String.valueOf(showEditIcon));
+			preferences.setValue(
+				"maximize-links", String.valueOf(maximizeLinks));
 
-			prefs.store();
+			preferences.store();
 		}
 		else if (cmd.equals("clearCache")) {
 			AlfrescoContentCacheUtil.clearCache();
 		}
 
-		SessionMessages.add(req, config.getPortletName() + ".doConfigure");
+		SessionMessages.add(
+			actionRequest, portletConfig.getPortletName() + ".doConfigure");
 	}
 
 	public String render(
-			PortletConfig config, RenderRequest req, RenderResponse res)
+			PortletConfig portletConfig, RenderRequest renderRequest,
+			RenderResponse renderResponse)
 		throws Exception {
 
 		return "/configuration.jsp";

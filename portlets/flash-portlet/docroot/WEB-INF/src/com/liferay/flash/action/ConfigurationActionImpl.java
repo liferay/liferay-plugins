@@ -44,38 +44,42 @@ import javax.portlet.RenderResponse;
 public class ConfigurationActionImpl implements ConfigurationAction {
 
 	public void processAction(
-			PortletConfig config, ActionRequest req, ActionResponse res)
+			PortletConfig portletConfig, ActionRequest actionRequest,
+			ActionResponse actionResponse)
 		throws Exception {
 
-		String cmd = ParamUtil.getString(req, Constants.CMD);
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 		if (!cmd.equals(Constants.UPDATE)) {
 			return;
 		}
 
-		String movie = ParamUtil.getString(req, "movie");
+		String movie = ParamUtil.getString(actionRequest, "movie");
 		String flashAttributes = ParamUtil.getString(
-			req, "flashAttributes");
+			actionRequest, "flashAttributes");
 		String flashVariables = ParamUtil.getString(
-			req, "flashVariables");
+			actionRequest, "flashVariables");
 
 		String portletResource = ParamUtil.getString(
-			req, "portletResource");
+			actionRequest, "portletResource");
 
-		PortletPreferences prefs =
-			PortletPreferencesFactoryUtil.getPortletSetup(req, portletResource);
+		PortletPreferences preferences =
+			PortletPreferencesFactoryUtil.getPortletSetup(
+				actionRequest, portletResource);
 
-		prefs.setValue("movie", movie);
-		prefs.setValue("flash-attributes", flashAttributes);
-		prefs.setValue("flash-variables", flashVariables);
+		preferences.setValue("movie", movie);
+		preferences.setValue("flash-attributes", flashAttributes);
+		preferences.setValue("flash-variables", flashVariables);
 
-		prefs.store();
+		preferences.store();
 
-		SessionMessages.add(req, config.getPortletName() + ".doConfigure");
+		SessionMessages.add(
+			actionRequest, portletConfig.getPortletName() + ".doConfigure");
 	}
 
 	public String render(
-			PortletConfig config, RenderRequest req, RenderResponse res)
+			PortletConfig portletConfig, RenderRequest renderRequest,
+			RenderResponse renderResponse)
 		throws Exception {
 
 		return "/configuration.jsp";

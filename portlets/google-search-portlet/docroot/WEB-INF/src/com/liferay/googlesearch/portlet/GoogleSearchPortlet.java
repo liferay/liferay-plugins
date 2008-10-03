@@ -44,33 +44,37 @@ import javax.portlet.PortletPreferences;
  */
 public class GoogleSearchPortlet extends JSPPortlet {
 
-	public void processAction(ActionRequest req, ActionResponse res)
+	public void processAction(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
-		if (req.getPortletMode().equals(PortletMode.EDIT)) {
-			updatePreferences(req, res);
+		if (actionRequest.getPortletMode().equals(PortletMode.EDIT)) {
+			updatePreferences(actionRequest, actionResponse);
 		}
 	}
 
-	protected void updatePreferences(ActionRequest req, ActionResponse res)
+	protected void updatePreferences(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
-		String cmd = ParamUtil.getString(req, Constants.CMD);
+
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 		if (!cmd.equals(Constants.UPDATE)) {
 			return;
 		}
 
-		PortletPreferences prefs = req.getPreferences();
+		PortletPreferences preferences = actionRequest.getPreferences();
 
-		boolean safeSearch = ParamUtil.getBoolean(req, "safeSearch");
+		boolean safeSearch = ParamUtil.getBoolean(actionRequest, "safeSearch");
 
-		prefs.setValue("safe-search", String.valueOf(safeSearch));
+		preferences.setValue("safe-search", String.valueOf(safeSearch));
 
-		prefs.store();
+		preferences.store();
 
-		PortletConfig config = getPortletConfig();
+		PortletConfig portletConfig = getPortletConfig();
 
-		SessionMessages.add(req, config.getPortletName() + ".doEdit");
+		SessionMessages.add(
+			actionRequest, portletConfig.getPortletName() + ".doEdit");
 	}
 
 }

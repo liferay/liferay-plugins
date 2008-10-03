@@ -44,51 +44,54 @@ import javax.portlet.RenderResponse;
 public class ConfigurationActionImpl implements ConfigurationAction {
 
 	public void processAction(
-			PortletConfig config, ActionRequest req, ActionResponse res)
+			PortletConfig portletConfig, ActionRequest actionRequest,
+			ActionResponse actionResponse)
 		throws Exception {
 
-		String cmd = ParamUtil.getString(req, Constants.CMD);
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 		if (!cmd.equals(Constants.UPDATE)) {
 			return;
 		}
 
-		int adFormat = ParamUtil.getInteger(req, "adFormat");
-		int adType = ParamUtil.getInteger(req, "adType");
-		String adClient = ParamUtil.getString(req, "adClient");
-		String adChannel = ParamUtil.getString(req, "adChannel");
+		int adFormat = ParamUtil.getInteger(actionRequest, "adFormat");
+		int adType = ParamUtil.getInteger(actionRequest, "adType");
+		String adClient = ParamUtil.getString(actionRequest, "adClient");
+		String adChannel = ParamUtil.getString(actionRequest, "adChannel");
 
-		String colorBorder = ParamUtil.getString(req, "colorBorder");
-		String colorBg = ParamUtil.getString(req, "colorBg");
-		String colorLink = ParamUtil.getString(req, "colorLink");
-		String colorText = ParamUtil.getString(req, "colorText");
-		String colorUrl = ParamUtil.getString(req, "colorUrl");
+		String colorBorder = ParamUtil.getString(actionRequest, "colorBorder");
+		String colorBg = ParamUtil.getString(actionRequest, "colorBg");
+		String colorLink = ParamUtil.getString(actionRequest, "colorLink");
+		String colorText = ParamUtil.getString(actionRequest, "colorText");
+		String colorUrl = ParamUtil.getString(actionRequest, "colorUrl");
 
 		String portletResource = ParamUtil.getString(
-			req, "portletResource");
+			actionRequest, "portletResource");
 
-		PortletPreferences prefs =
+		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
-				req, portletResource);
+				actionRequest, portletResource);
 
-		prefs.setValue("ad-format", String.valueOf(adFormat));
-		prefs.setValue("ad-type", String.valueOf(adType));
-		prefs.setValue("ad-client", adClient);
-		prefs.setValue("ad-channel", adChannel);
+		preferences.setValue("ad-format", String.valueOf(adFormat));
+		preferences.setValue("ad-type", String.valueOf(adType));
+		preferences.setValue("ad-client", adClient);
+		preferences.setValue("ad-channel", adChannel);
 
-		prefs.setValue("color-border", colorBorder);
-		prefs.setValue("color-bg", colorBg);
-		prefs.setValue("color-link", colorLink);
-		prefs.setValue("color-text", colorText);
-		prefs.setValue("color-url", colorUrl);
+		preferences.setValue("color-border", colorBorder);
+		preferences.setValue("color-bg", colorBg);
+		preferences.setValue("color-link", colorLink);
+		preferences.setValue("color-text", colorText);
+		preferences.setValue("color-url", colorUrl);
 
-		prefs.store();
+		preferences.store();
 
-		SessionMessages.add(req, config.getPortletName() + ".doConfigure");
+		SessionMessages.add(
+			actionRequest, portletConfig.getPortletName() + ".doConfigure");
 	}
 
 	public String render(
-			PortletConfig config, RenderRequest req, RenderResponse res)
+			PortletConfig portletConfig, RenderRequest renderRequest,
+			RenderResponse renderResponse)
 		throws Exception {
 
 		return "/configuration.jsp";

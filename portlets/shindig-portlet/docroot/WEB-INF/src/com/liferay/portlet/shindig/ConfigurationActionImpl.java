@@ -44,35 +44,37 @@ import javax.portlet.RenderResponse;
 public class ConfigurationActionImpl implements ConfigurationAction {
 
 	public void processAction(
-			PortletConfig config, ActionRequest req, ActionResponse res)
+			PortletConfig portletConfig, ActionRequest actionRequest,
+			ActionResponse actionResponse)
 		throws Exception {
 
-		String cmd = ParamUtil.getString(req, Constants.CMD);
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 		if (cmd.equals(Constants.UPDATE)) {
-			String gadgetUrl = (String)req.getParameter("gadgetUrl");
-			String gadgetHeight = (String)req.getParameter("gadgetHeight");
+			String gadgetUrl = actionRequest.getParameter("gadgetUrl");
+			String gadgetHeight = actionRequest.getParameter("gadgetHeight");
 
 			if (Validator.isNotNull(gadgetUrl)) {
 				String portletResource = ParamUtil.getString(
-					req, "portletResource");
+					actionRequest, "portletResource");
 
-				PortletPreferences prefs =
+				PortletPreferences preferences =
 					PortletPreferencesFactoryUtil.getPortletSetup(
-						req, portletResource);
+						actionRequest, portletResource);
 
-				prefs.setValue("gadget-url", gadgetUrl);
-				prefs.setValue("gadget-height", gadgetHeight);
+				preferences.setValue("gadget-url", gadgetUrl);
+				preferences.setValue("gadget-height", gadgetHeight);
 
-				prefs.store();
+				preferences.store();
 			}
 		}
 
-		res.sendRedirect(ParamUtil.getString(req, "redirect"));
+		res.sendRedirect(ParamUtil.getString(actionRequest, "redirect"));
 	}
 
 	public String render(
-			PortletConfig config, RenderRequest req, RenderResponse res)
+			PortletConfig portletConfig, RenderRequest renderRequest,
+			RenderResponse renderResponse)
 		throws Exception {
 
 		return "/configuration.jsp";

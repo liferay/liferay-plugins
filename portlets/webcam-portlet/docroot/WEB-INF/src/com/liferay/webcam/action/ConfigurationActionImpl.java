@@ -44,36 +44,39 @@ import javax.portlet.RenderResponse;
 public class ConfigurationActionImpl implements ConfigurationAction {
 
 	public void processAction(
-			PortletConfig config, ActionRequest req, ActionResponse res)
+			PortletConfig portletConfig, ActionRequest actionRequest,
+			ActionResponse actionResponse)
 		throws Exception {
 
-		String cmd = ParamUtil.getString(req, Constants.CMD);
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 		if (!cmd.equals(Constants.UPDATE)) {
 			return;
 		}
 
-		String url = ParamUtil.getString(req, "url");
-		String height = ParamUtil.getString(req, "height");
-		String width = ParamUtil.getString(req, "width");
-		String message = ParamUtil.getString(req, "message");
+		String url = ParamUtil.getString(actionRequest, "url");
+		String height = ParamUtil.getString(actionRequest, "height");
+		String width = ParamUtil.getString(actionRequest, "width");
+		String message = ParamUtil.getString(actionRequest, "message");
 
-		String portletResource = ParamUtil.getString(req, "portletResource");
+		String portletResource = ParamUtil.getString(
+			actionRequest, "portletResource");
 
-		PortletPreferences prefs =
+		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
-				req, portletResource);
+				actionRequest, portletResource);
 
-		prefs.setValue("url", url);
-		prefs.setValue("height", height);
-		prefs.setValue("width", width);
-		prefs.setValue("message", message);
+		preferences.setValue("url", url);
+		preferences.setValue("height", height);
+		preferences.setValue("width", width);
+		preferences.setValue("message", message);
 
-		prefs.store();
+		preferences.store();
 	}
 
 	public String render(
-			PortletConfig config, RenderRequest req, RenderResponse res)
+			PortletConfig portletConfig, RenderRequest renderRequest,
+			RenderResponse renderResponse)
 		throws Exception {
 
 		return "/configuration.jsp";
