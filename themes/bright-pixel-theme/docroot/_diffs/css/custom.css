@@ -1,323 +1,117 @@
-/* Main */
-#wrapper {
-	background: #FFF;
-	border: 3px double #E4E4E4;
-	margin: 20px auto;
-	padding: 10px;
-	width: 880px;
-}
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-#content-wrapper {
-	margin: 25px 0.5em;
-	padding-top: none;
-	width: 870px;
-}
-
-/* Banner */
-#banner .logo {
-	background: none;
-	display: block;
-	float: left;
-	font-size: 2em;
-}
-
-#banner .logo a {
-	left: 45px;
-	position: relative;
-	top: 15px;
-}
-
-#banner {
-	background: url(../images/common/bright_pixel.png) no-repeat scroll 11px 0;
-	height: 25em;
-	margin-bottom: -5px;
-	position: relative;
-	width: 870px;
-}
+/* ---------- Base ---------- */
 
 body {
-	background: #CCC url(../images/common/bg.png) repeat-y fixed center bottom;
-	color: #666;
-	font: 62.5%/1.6em 'Tahoma','Lucida Sans Unicode','Lucida Grande','Lucida',Arial,Verdana,sans-serif;
+	background: #CCC url(../images/custom/body_bg.gif) repeat-y center top;
+	color: #333;
+	padding: 20px 0 4px;
 }
 
-.ie6 #banner .logo {
-	left: 15px;
+/* ---------- Wrapper ---------- */
+
+#wrapper {
+	background: #FFF;
+	border: 3px double #EEE;
+	border-color: #E4E4E4 #CFCFCF #CCC #CFCFCF;
+	margin: 0 auto;
+	padding: 10px;
+	width: 940px;
+}
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: #F5F5F5 url(../images/custom/banner_bg.png);
+	height: 120px;
+	padding: 60px;
 	position: relative;
 }
 
-.ie6 #banner {
-	margin-bottom: -3px;
-	width: 647px;
+/* ---------- Logo ---------- */
+
+#banner .logo a {
+	margin: 0 auto;
 }
 
-table {
-	clear: both;
+/* ---------- Dock ---------- */
+
+.js .interactive-mode {
+	right: 10px;
 }
 
-/* Navigation */
-.js #navigation .enter-page {
-	background: none;
-	padding: 0.5em 2em 0.7em 1.5em;
-}
-.js #navigation .enter-page .save-page {
-	display: inline;
-	padding: 5px;
-	width: auto;
-}
-
-.js #navigation .enter-page .cancel-page {
-	display: none;
-}
-
-#navigation li a span {
-	background: none;
-}
-
-#navigation li a {
-	background: #EEE none repeat scroll 0;
-	border-right: 1px solid #CECECE;
-	border-top: 1px solid #E5E5E5;
-	color: #888;
-	display: block;
-	margin-left: 0;
-	padding: 9px 0;
-	text-decoration: none;
-	width: 126px;
-}
-
-#navigation li a:hover span {
-	background: none;
-}
-
-#navigation li a:hover {
-	background: #EEE url(../images/common/bgmenu.png) repeat-x scroll top;
-	color: #555;
-	padding-bottom: 20px;
-}
-
-#navigation li {
-	background: none;
-	border: 0;
-	display: inline;
-	float: left;
-	margin-right: 0;
-	padding: 0;
-	position: relative;
-	text-align: center;
-}
-
-#navigation li.selected a span {
-	background: none;
-	font-size: 7pt;
-	font-weight: bold;
-}
-
-#navigation li.selected a {
-	width: 138px;
-}
-
-#navigation ul {
-	float: left;
-	min-height: 2em;
-	width: auto;
-}
+/* ---------- Navigation ---------- */
 
 #navigation {
-	background: #EEE none;
-	border-top: 1px solid #666;
-	margin: 0 0.5em;
-	min-height: 2.2em;
-	overflow: hidden;
-	padding: none;
-	padding-right: 0;
-	text-transform: capitalize;
-	width: 870px;
+	background: #EEE;
+	border: 1px solid #E5E5E5;
+	border-top-color: #CECECE;
+	height: 44px;
 }
 
-#navigation li.selected a, #navigation li a:hover {
-	background-color:transparent;
-	color: black;
+#navigation ul, #add-page {
+	float: left;
 }
 
-/* Dock without Javascript */
-.lfr-dock h2 {
-	background: url(../images/navigation/welcome_message.png) no-repeat 0 50%;
-	font-size: 1.2em;
-	margin-bottom: 0.5em;
-	padding-left: 2em;
-	text-align: center;
-}
-
-/* Dock with Javascript */
-.js #add-page a {
-	color: #000;
-	padding: 8px 20px;
+#navigation a, #navigation .enter-page {
+	border-right: 1px solid #CECECE;
+	color: #888;
+	display: block;
+	float: left;
+	height: 36px;
+	padding: 4px 60px 4px 10px;
 	text-decoration: none;
 }
 
-.js #add-page {
-	background: transparent url(../images/common/add.png) 5px 50% no-repeat;
-	border: 0;
-	float: right;
-	font-weight: bold;
-	position: relative;
-	top: 15px;
+#navigation a:hover {
+	background: url(../images/custom/navigation_hover_bg.gif) repeat-x;
+	color: #555;
 }
 
-.js .lfr-dock.expanded .lfr-dock-list-container {
-	background: #60738C;
-	border: 1px solid #B5B9BB;
-	border-top: none;
-	top: -2px;
+#navigation .selected a {
+	background: #E3E3E3;
 }
 
-.js .lfr-dock.interactive-mode h2 span {
+#navigation .save-page, #navigation .save-page:hover {
 	background: none;
-	color: #666;
-	display: block;
-	font-size: 1.2em;
-	margin-bottom: 0;
-	padding: 0.5em 0.5em 0.5em 2em;
-}
-
-.js .lfr-dock.interactive-mode h2 {
-	background: #CCC url(../images/common/menubg.png) repeat-x;
-	border: 3px double #E4E4E4;
-	font-size: 1.2em;
-	margin-bottom: 0;
-	padding: 0 29px 0 0;
-	position: relative;
-	z-index: 82;
-}
-
-.js .lfr-dock.interactive-mode ul {
-	background: url(../images/dock/menu_bg.png) no-repeat 0 0;
-	border-left: 20px solid #CCC;
-	display: none;
+	border-right: 0;
+	display: inline;
 	float: none;
+	padding: 5px 8px;
 }
 
-.js .lfr-dock.interactive-mode {
-	background: none;
-	float: right;
-	min-width: 150px;
-	position: relative;
-	right: 17px;
-	top: 5px;
+#navigation .cancel-page {
+	display: none;
 }
 
-.js .lfr-dock-list-container {
-	height: 0px;
-	overflow: visible;
+/* ---------- Content Wrapper ---------- */
+
+.lfr-grid .lfr-column {
+	padding: 0;
 }
 
-/* Portlet */
-.portlet, .portlet-topper, .portlet-content, .portlet-title {
-	background: #FCFCFC;
-	padding: 10px;
-}
+/* ---------- Portlet ---------- */
 
 .portlet {
-	padding: 0;
-	margin-bottom: 30px;
-}
-
-.portlet-title {
-	background: none;
-	background-position: top left;
-	display: block;
-	font-weight: bold;
-	min-width: 50%;
-	padding: 8px 0 4px 10px;
+	background: #FCFCFC url(../images/custom/portlet_bg.gif) repeat-x;
+	border-bottom: 25px solid #F5F5F5;
+	padding: 10px;
 }
 
 .portlet-topper {
-	background: #FCFCFC url(../images/common/bgitem.png) repeat-x scroll 0;
-	background-position: right top;
-	border-bottom: 1px solid #727C81;
-	padding: 0;
-	position: relative;
+	padding: 0 0 12px;
 }
 
-/* Liferay UI */
-.ui-tabs li a, .ui-tabs li span {
-	background: url(../images/common/tabs_bg.png) repeat scroll -2px -150px;
-	color: #323232;
-	display: block;
-	float: left;
-	padding: 0.35em 1em 0;
-	text-decoration: none;
-	border-right:medium none;
+.portlet-title {
+	font: bold 12px Arial,Helvetica,sans-serif;
 }
 
-.ui-tabs li {
-	background: url(../images/common/tabs_bg.png) 100% -25px;
-	border-top: 1px solid #BEBEBE;
-	display: inline;
-	float: left;
-	line-height: 2.25;
-	margin-right: 0.8em;
-	padding: 0;
-	position: relative;
-	text-decoration: none;
+.portlet-title img {
+	display: none;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span {
-	background: transparent url(../images/common/tabs_bg.png) repeat scroll -2px -100px;
-	border:medium none;
-}
-
-.ui-tabs li.current {
-	background: url(../images/common/tabs_bg.png) repeat scroll 0 -50px;
-	border: 1px solid #BEBEBE;
-	border-bottom: none;
-	font-weight: bold;
-	top: 0.15em;
-}
-
-.ui-tabs {
-	border-bottom: 1px solid #7C7C7C;
-	margin: 0 0 1.5em 0;
-	padding: 0 0 0 1em;
-}
-
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background-color:transparent;
-}
-
-.ui-tabs li a:hover, .ui-tabs li span:hover {
-background:transparent;
-color:black;
-}
-
-/* Tables */
-.portlet-section-header th {
-	border-bottom: 1px solid #CCC;
-	color: #333;
-	font-weight: bold;
-	padding: 0.3em 1em;
-}
-
-.portlet-section-header {
-	background: #CCC;
-	padding: 1px 0 0;
-}
-
-.portlet-section-body td {
-	background: #E9E9E9;
-	border-top: 1px solid #BFBFBF;
-	padding: 0.3em 1em;
-}
-
-.portlet-section-body {
-	background: #E9E9E9;
-	color: #000;
-}
-
-/* 1 column */
-.columns-1 #column-1, .columns-max #column-1 {
-	display: table;
-	padding-left: 0;
-	padding-right: 0;
+.portlet-content {
+	color: #666;
+	font: 11px Arial,Helvetica,sans-serif;
+	padding: 3px 0 6px;
 }
