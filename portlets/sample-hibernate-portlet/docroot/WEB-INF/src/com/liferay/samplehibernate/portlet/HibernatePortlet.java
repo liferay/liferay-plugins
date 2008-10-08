@@ -99,27 +99,30 @@ public class HibernatePortlet extends GenericPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		PortletContext ctx = getPortletContext();
+		PortletContext portletContext = getPortletContext();
 
-		PortletRequestDispatcher prd = ctx.getRequestDispatcher("/view.jsp");
+		PortletRequestDispatcher portletRequestDispatcher =
+			portletContext.getRequestDispatcher("/view.jsp");
 
-		if (prd == null) {
+		if (portletRequestDispatcher == null) {
 			_log.error("/view.jsp is not a valid include");
 		}
 		else {
 			try {
-				prd.include(renderRequest, renderResponse);
+				portletRequestDispatcher.include(renderRequest, renderResponse);
 			}
 			catch (Exception e) {
 				_log.error(e, e);
 
-				prd = ctx.getRequestDispatcher("/error.jsp");
+				portletRequestDispatcher = portletContext.getRequestDispatcher(
+					"/error.jsp");
 
-				if (prd == null) {
+				if (portletRequestDispatcher == null) {
 					_log.error("/error.jsp is not a valid include");
 				}
 				else {
-					prd.include(renderRequest, renderResponse);
+					portletRequestDispatcher.include(
+						renderRequest, renderResponse);
 				}
 			}
 		}
