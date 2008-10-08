@@ -48,40 +48,42 @@ import org.apache.commons.logging.LogFactory;
  */
 public class SignInPortlet extends JSPPortlet {
 
-	public void processAction(ActionRequest req, ActionResponse res)
+	public void processAction(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
 		String className = "com.liferay.portlet.login.action.ViewAction";
-		PortletConfig config = getPortletConfig();
-		NoRedirectActionResponse noRedirectRes =
-			new NoRedirectActionResponse(res);
+		PortletConfig portletConfig = getPortletConfig();
+		NoRedirectActionResponse noRedirectActionResponse =
+			new NoRedirectActionResponse(actionResponse);
 
 		try {
 			PortletActionInvoker.processAction(
-				className, config, req, noRedirectRes);
+				className, portletConfig, actionRequest,
+				noRedirectActionResponse);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
 		}
 
-		String login = ParamUtil.getString(req, "login");
-		String password = ParamUtil.getString(req, "password");
-		String rememberMe = ParamUtil.getString(req, "rememberMe");
+		String login = ParamUtil.getString(actionRequest, "login");
+		String password = ParamUtil.getString(actionRequest, "password");
+		String rememberMe = ParamUtil.getString(actionRequest, "rememberMe");
 
-		if (Validator.isNull(noRedirectRes.getRedirectLocation())) {
-			res.setRenderParameter("login", login);
-			res.setRenderParameter("rememberMe", rememberMe);
+		if (Validator.isNull(noRedirectActionResponse.getRedirectLocation())) {
+			actionResponse.setRenderParameter("login", login);
+			actionResponse.setRenderParameter("rememberMe", rememberMe);
 		}
 		else {
 			ThemeDisplay themeDisplay =
-				(ThemeDisplay)req.getAttribute(WebKeys.THEME_DISPLAY);
+				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
 			String redirect =
 				themeDisplay.getPathMain() +
 					"/portal/login?cmd=already-registered&login=" + login +
 						"&password=" + password;
 
-			res.sendRedirect(redirect);
+			actionResponse.sendRedirect(redirect);
 		}
 	}
 

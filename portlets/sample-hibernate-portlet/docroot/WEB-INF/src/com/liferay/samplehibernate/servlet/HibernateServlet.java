@@ -45,10 +45,11 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class HibernateServlet extends HttpServlet {
 
-	public void service(HttpServletRequest req, HttpServletResponse res)
+	public void service(
+			HttpServletRequest request, HttpServletResponse response)
 		throws IOException, ServletException {
 
-		String contentType = req.getHeader(HttpHeaders.CONTENT_TYPE);
+		String contentType = request.getHeader(HttpHeaders.CONTENT_TYPE);
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Content type " + contentType);
@@ -57,18 +58,18 @@ public class HibernateServlet extends HttpServlet {
 		if ((contentType != null) &&
 			(contentType.startsWith(ContentTypes.MULTIPART_FORM_DATA))) {
 
-			req = PortalUtil.getUploadServletRequest(req);
+			request = PortalUtil.getUploadServletRequest(request);
 		}
 
 		FoodItemComponentImpl foodItemComponentImpl =
 			new FoodItemComponentImpl();
 
-		String result = foodItemComponentImpl.process(req);
+		String result = foodItemComponentImpl.process(request);
 
-		res.setContentType("text/xml");
+		response.setContentType("text/xml");
 
 		try {
-			ServletResponseUtil.write(res, result);
+			ServletResponseUtil.write(response, result);
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {

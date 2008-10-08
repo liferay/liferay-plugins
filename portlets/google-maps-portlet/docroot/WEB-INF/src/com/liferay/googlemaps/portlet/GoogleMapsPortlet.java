@@ -41,23 +41,25 @@ import javax.portlet.PortletSession;
  */
 public class GoogleMapsPortlet extends JSPPortlet {
 
-	public void processAction(ActionRequest req, ActionResponse res)
+	public void processAction(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
-		PortletSession ses = req.getPortletSession();
+		PortletSession portletSession = actionRequest.getPortletSession();
 
-		String cmd = ParamUtil.getString(req, Constants.CMD);
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 		if (cmd.equals("saveDirectionsAddress")) {
 			String directionsAddress = ParamUtil.getString(
-				req, "directionsAddress");
+				actionRequest, "directionsAddress");
 
-			ses.setAttribute("directionsAddress", directionsAddress);
+			portletSession.setAttribute("directionsAddress", directionsAddress);
 		}
 		else if (cmd.equals("saveMapAddress")) {
-			String mapAddress = ParamUtil.getString(req, "mapAddress");
+			String mapAddress = ParamUtil.getString(
+				actionRequest, "mapAddress");
 
-			ses.setAttribute("mapAddress", mapAddress);
+			portletSession.setAttribute("mapAddress", mapAddress);
 		}
 	}
 

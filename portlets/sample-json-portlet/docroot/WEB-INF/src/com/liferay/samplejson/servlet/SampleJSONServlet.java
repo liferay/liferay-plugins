@@ -44,45 +44,47 @@ import org.json.JSONObject;
  */
 public class SampleJSONServlet extends HttpServlet {
 
-	public void service(HttpServletRequest req, HttpServletResponse res)
+	public void service(
+			HttpServletRequest request, HttpServletResponse response)
 		throws IOException, ServletException {
 
 		String content = null;
 
 		try {
-			content = getContent(req, res);
+			content = getContent(request, response);
 		}
 		catch (Exception e) {
-			res.sendError(
+			response.sendError(
 				HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
 
 			return;
 		}
 
-		res.setContentType("text/javascript");
-		res.setHeader("Cache-Control", "no-cache");
+		response.setContentType("text/javascript");
+		response.setHeader("Cache-Control", "no-cache");
 
-		PrintWriter pw = res.getWriter();
+		PrintWriter pw = response.getWriter();
 
 		pw.write(content);
 
 		pw.close();
 	}
 
-	protected String getContent(HttpServletRequest req, HttpServletResponse res)
+	protected String getContent(
+			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
-		String id = ParamUtil.getString(req, "id");
-		String callback = ParamUtil.getString(req, "callback");
+		String id = ParamUtil.getString(request, "id");
+		String callback = ParamUtil.getString(request, "callback");
 
 		JSONObject jsonObj = new JSONObject();
 
 		jsonObj.put("id", id);
 
-		ServletContext ctx = getServletContext();
+		ServletContext servletContext = getServletContext();
 
 		String script = StringUtil.read(
-			ctx.getResourceAsStream("/click_image.js"));
+			servletContext.getResourceAsStream("/click_image.js"));
 
 		String jsonObjString = jsonObj.toString();
 

@@ -50,23 +50,24 @@ import org.apache.commons.logging.LogFactory;
  */
 public class HibernatePortlet extends GenericPortlet {
 
-	public void init(PortletConfig config) throws PortletException {
-		super.init(config);
+	public void init(PortletConfig portletConfig) throws PortletException {
+		super.init(portletConfig);
 
 		if (_log.isInfoEnabled()) {
 			_log.info("Initializing portlet");
 		}
 	}
 
-	public void processAction(ActionRequest req, ActionResponse res)
+	public void processAction(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
-		String cmd = ParamUtil.getString(req, Constants.CMD);
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
-		long foodItemId = ParamUtil.getLong(req, "foodItemId");
+		long foodItemId = ParamUtil.getLong(actionRequest, "foodItemId");
 
-		String name = req.getParameter("name");
-		int points = ParamUtil.getInteger(req, "points");
+		String name = actionRequest.getParameter("name");
+		int points = ParamUtil.getInteger(actionRequest, "points");
 
 		try {
 			if (cmd.equals(Constants.ADD)) {
@@ -94,7 +95,8 @@ public class HibernatePortlet extends GenericPortlet {
 		}
 	}
 
-	public void doView(RenderRequest req, RenderResponse res)
+	public void doView(
+			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
 		PortletContext ctx = getPortletContext();
@@ -106,7 +108,7 @@ public class HibernatePortlet extends GenericPortlet {
 		}
 		else {
 			try {
-				prd.include(req, res);
+				prd.include(renderRequest, renderResponse);
 			}
 			catch (Exception e) {
 				_log.error(e, e);
@@ -117,7 +119,7 @@ public class HibernatePortlet extends GenericPortlet {
 					_log.error("/error.jsp is not a valid include");
 				}
 				else {
-					prd.include(req, res);
+					prd.include(renderRequest, renderResponse);
 				}
 			}
 		}

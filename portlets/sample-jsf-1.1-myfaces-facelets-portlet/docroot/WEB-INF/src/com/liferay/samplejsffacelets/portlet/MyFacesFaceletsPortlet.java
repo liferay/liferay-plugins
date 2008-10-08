@@ -40,35 +40,37 @@ import javax.portlet.UnavailableException;
 public class MyFacesFaceletsPortlet
 	extends org.apache.myfaces.portlet.MyFacesGenericPortlet {
 
-	public void init() throws UnavailableException, PortletException {
-		_editPage = (String) this.getInitParameter("EditPage");
-		_helpPage = (String) this.getInitParameter("HelpPage");
-		_viewPage = (String) this.getInitParameter("ViewPage");
+	public void init() throws PortletException, UnavailableException {
+		_editPage = getInitParameter("EditPage");
+		_helpPage = getInitParameter("HelpPage");
+		_viewPage = getInitParameter("ViewPage");
 
 		super.init();
 	}
 
-	public void render(RenderRequest req, RenderResponse res)
+	public void render(
+			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		PortletSession ses = req.getPortletSession();
+		PortletSession portletSession = renderRequest.getPortletSession();
 
-		PortletMode mode = (PortletMode)ses.getAttribute("CurrentPortletMode");
+		PortletMode mode = (PortletMode)portletSession.getAttribute(
+			"CurrentPortletMode");
 
 		if (mode == null) {
-			mode = req.getPortletMode();
+			mode = renderRequest.getPortletMode();
 		}
 
-		if (mode != req.getPortletMode()) {
-			req.setAttribute("isPortletModeChanged", Boolean.TRUE);
+		if (mode != renderRequest.getPortletMode()) {
+			renderRequest.setAttribute("isPortletModeChanged", Boolean.TRUE);
 		}
 		else {
-			req.setAttribute("isPortletModeChanged", Boolean.FALSE);
+			renderRequest.setAttribute("isPortletModeChanged", Boolean.FALSE);
 		}
 
-		ses.setAttribute("CurrentPortletMode", mode);
+		portletSession.setAttribute("CurrentPortletMode", mode);
 
-		super.render(req, res);
+		super.render(renderRequest, renderResponse);
 	}
 
 	protected void setDefaultView() throws UnavailableException {
@@ -84,36 +86,38 @@ public class MyFacesFaceletsPortlet
 		}
 	}
 
-	protected void doEdit(RenderRequest req, RenderResponse res)
+	protected void doEdit(
+			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
 		Boolean isPortletModeChanged =
-			(Boolean)req.getAttribute("isPortletModeChanged");
+			(Boolean)renderRequest.getAttribute("isPortletModeChanged");
 
 		if (isPortletModeChanged.booleanValue()) {
-			setPortletRequestFlag(req);
-			nonFacesRequest(req, res, _editPage);
+			setPortletRequestFlag(renderRequest);
+			nonFacesRequest(renderRequest, renderResponse, _editPage);
 
 			return;
 		}
 
-		facesRender(req, res);
+		facesRender(renderRequest, renderResponse);
 	}
 
-	protected void doHelp(RenderRequest req, RenderResponse res)
+	protected void doHelp(
+			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
 		Boolean isPortletModeChanged =
-			(Boolean)req.getAttribute("isPortletModeChanged");
+			(Boolean)renderRequest.getAttribute("isPortletModeChanged");
 
 		if (isPortletModeChanged.booleanValue()) {
-			setPortletRequestFlag(req);
-			nonFacesRequest(req, res, _helpPage);
+			setPortletRequestFlag(renderRequest);
+			nonFacesRequest(renderRequest, renderResponse, _helpPage);
 
 			return;
 		}
 
-		facesRender(req, res);
+		facesRender(renderRequest, renderResponse);
 	}
 
 	private String _editPage = null;
