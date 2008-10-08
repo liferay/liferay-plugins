@@ -39,8 +39,8 @@ import org.apache.struts.action.ActionMapping;
 public class UnsubscribeAction extends Action {
 
 	public ActionForward execute(
-			ActionMapping mapping, ActionForm form, HttpServletRequest req,
-			HttpServletResponse res)
+			ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response)
 		throws Exception {
 
 		return mapping.findForward(

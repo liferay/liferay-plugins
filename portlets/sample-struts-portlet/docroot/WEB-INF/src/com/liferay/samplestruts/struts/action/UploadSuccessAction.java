@@ -40,8 +40,10 @@ import org.apache.struts.action.ActionMapping;
  */
 public class UploadSuccessAction extends Action {
 
-	public ActionForward execute(ActionMapping mapping, ActionForm form,
-			HttpServletRequest req, HttpServletResponse res) throws Exception {
+	public ActionForward execute(
+			ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response)
+		throws Exception {
 
 		if (_log.isInfoEnabled()) {
 			_log.info("processAction");

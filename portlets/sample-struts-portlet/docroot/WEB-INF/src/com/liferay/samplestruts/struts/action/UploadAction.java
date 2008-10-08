@@ -48,15 +48,15 @@ import org.apache.struts.action.ActionMapping;
 public class UploadAction extends Action {
 
 	public ActionForward execute(
-			ActionMapping mapping, ActionForm form, HttpServletRequest req,
-			HttpServletResponse res)
+			ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response)
 		throws Exception {
 
 		FileItemFactory factory = new DiskFileItemFactory();
 
 		ServletFileUpload upload = new ServletFileUpload(factory);
 
-		List items = upload.parseRequest(req);
+		List items = upload.parseRequest(request);
 
 		Iterator iter = items.iterator();
 
@@ -81,7 +81,7 @@ public class UploadAction extends Action {
 			}
 		}
 
-		req.setAttribute("file_name", itemName);
+		request.setAttribute("file_name", itemName);
 
 		return mapping.findForward("/sample_struts_portlet/upload_success");
 	}

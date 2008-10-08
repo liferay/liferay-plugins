@@ -58,8 +58,8 @@ import org.jfree.data.general.PieDataset;
 public class ViewChartAction extends Action {
 
 	public ActionForward execute(
-			ActionMapping mapping, ActionForm form, HttpServletRequest req,
-			HttpServletResponse res)
+			ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response)
 		throws Exception {
 
 		try {
@@ -74,15 +74,15 @@ public class ViewChartAction extends Action {
 			// servlet directly. Portlet scoped session attributes can be
 			// fetched from Sun's PortletSessionUtil.
 
-			HttpSession ses = req.getSession();
+			HttpSession session = request.getSession();
 
 			String chartName =
-				(String)ses.getAttribute(attrName);
-				//(String)_getAttribute(req, attrName);
+				(String)session.getAttribute(attrName);
+				//(String)_getAttribute(request, attrName);
 
 			// Chart
 
-			String chartType = req.getParameter("chart_type");
+			String chartType = request.getParameter("chart_type");
 
 			CategoryDataset dataset = _getDataset();
 
@@ -119,28 +119,29 @@ public class ViewChartAction extends Action {
 					chartName, pieData, true, false, false);
 			}
 
-			res.setContentType("image/jpeg");
+			response.setContentType("image/jpeg");
 
-			OutputStream out = res.getOutputStream();
+			OutputStream out = response.getOutputStream();
+
 			ChartUtilities.writeChartAsJPEG(out, chart, 400, 400);
 
 			return mapping.findForward("/common/null.jsp");
 		}
 		catch (Exception e) {
-			req.setAttribute(PageContext.EXCEPTION, e);
+			request.setAttribute(PageContext.EXCEPTION, e);
 
 			return mapping.findForward("/common/error.jsp");
 		}
 	}
 
-	private Object _getAttribute(HttpServletRequest req, String attrName) {
+	private Object _getAttribute(HttpServletRequest request, String attrName) {
 
 		// Go through all the session attributes and use Sun's
 		// PortletSessionUtil to match the correct attribute name
 
-		HttpSession ses = req.getSession();
+		HttpSession session = request.getSession();
 
-		Enumeration enu = ses.getAttributeNames();
+		Enumeration enu = session.getAttributeNames();
 
 		while (enu.hasMoreElements()) {
 			String encodedAttrName = (String)enu.nextElement();
@@ -149,7 +150,7 @@ public class ViewChartAction extends Action {
 				PortletSessionUtil.decodeAttributeName(encodedAttrName);
 
 			if (decodedAttrName.equals(attrName)) {
-				return ses.getAttribute(encodedAttrName);
+				return session.getAttribute(encodedAttrName);
 			}
 		}
 

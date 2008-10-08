@@ -41,10 +41,11 @@ import org.apache.struts.tiles.TilesRequestProcessor;
 public class SampleRequestProcessor extends TilesRequestProcessor {
 
 	protected void doForward(
-			String uri, HttpServletRequest req, HttpServletResponse res)
+			String uri, HttpServletRequest request,
+			HttpServletResponse response)
 		throws IOException, ServletException {
 
-		StrutsUtil.forward(uri, getServletContext(), req, res);
+		StrutsUtil.forward(uri, getServletContext(), request, response);
 	}
 
 }

@@ -43,17 +43,17 @@ import org.apache.struts.action.ActionMapping;
 public class XAction extends Action {
 
 	public ActionForward execute(
-			ActionMapping mapping, ActionForm form, HttpServletRequest req,
-			HttpServletResponse res)
+			ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response)
 		throws Exception {
 
 		if (_log.isInfoEnabled()) {
 			_log.info("processAction");
 		}
 
-		req.setAttribute("x_param", "x_value");
+		request.setAttribute("x_param", "x_value");
 
-		String exception = req.getParameter("action_exception");
+		String exception = request.getParameter("action_exception");
 
 		if ((exception != null) && (exception.equals("true"))) {
 			throw new SampleException();

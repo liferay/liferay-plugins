@@ -50,28 +50,28 @@ import org.apache.struts.action.ActionMapping;
 public class UploadAction extends PortletAction {
 
 	public void processAction(
-			ActionMapping mapping, ActionForm form, PortletConfig config,
-			ActionRequest req, ActionResponse res)
+			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		UploadPortletRequest uploadReq = PortalUtil.getUploadPortletRequest(
-			req);
+		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(
+			actionRequest);
 
-		File file = uploadReq.getFile("file_location");
+		File file = uploadRequest.getFile("file_location");
 
 		if (_log.isInfoEnabled()) {
 			_log.info(file);
 		}
 
 		setForward(
-			req,
+			actionRequest,
 			"/sample_struts_liferay_portlet/upload_success?actionURL=true" +
 				"&file_name=" + HttpUtil.encodeURL(file.getName()));
 	}
 
 	public ActionForward render(
-			ActionMapping mapping, ActionForm form, PortletConfig config,
-			RenderRequest req, RenderResponse res)
+			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
+			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws Exception {
 
 		return mapping.findForward(

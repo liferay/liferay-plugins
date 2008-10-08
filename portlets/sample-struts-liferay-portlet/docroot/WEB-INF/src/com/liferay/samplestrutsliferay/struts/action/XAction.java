@@ -46,42 +46,42 @@ import org.apache.struts.action.ActionMapping;
 public class XAction extends PortletAction {
 
 	public void processAction(
-			ActionMapping mapping, ActionForm form, PortletConfig config,
-			ActionRequest req, ActionResponse res)
+			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		if (_log.isInfoEnabled()) {
 			_log.info("processAction");
 		}
 
-		res.setRenderParameter("x_param", "x_value");
+		actionResponse.setRenderParameter("x_param", "x_value");
 
-		String exception = req.getParameter("action_exception");
+		String exception = actionRequest.getParameter("action_exception");
 
 		if ((exception != null) && (exception.equals("true"))) {
 			throw new SampleException();
 		}
 
-		setForward(req, "portlet.sample_struts_liferay_portlet.x");
+		setForward(actionRequest, "portlet.sample_struts_liferay_portlet.x");
 	}
 
 	public ActionForward render(
-			ActionMapping mapping, ActionForm form, PortletConfig config,
-			RenderRequest req, RenderResponse res)
+			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
+			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws Exception {
 
 		if (_log.isInfoEnabled()) {
-			_log.info("render " + req.getParameter("x_param"));
+			_log.info("render " + renderRequest.getParameter("x_param"));
 		}
 
-		String exception = req.getParameter("render_exception");
+		String exception = renderRequest.getParameter("render_exception");
 
 		if ((exception != null) && (exception.equals("true"))) {
 			throw new SampleException();
 		}
 
-		return mapping.findForward(
-			getForward(req, "portlet.sample_struts_liferay_portlet.x"));
+		return mapping.findForward(getForward(
+			renderRequest, "portlet.sample_struts_liferay_portlet.x"));
 	}
 
 	private static Log _log = LogFactory.getLog(XAction.class);

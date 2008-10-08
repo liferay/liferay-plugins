@@ -45,8 +45,8 @@ import org.apache.struts.action.ActionMapping;
 public class UploadSuccessAction extends PortletAction {
 
 	public void processAction(
-			ActionMapping mapping, ActionForm form, PortletConfig config,
-			ActionRequest req, ActionResponse res)
+			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		if (_log.isInfoEnabled()) {
@@ -55,12 +55,12 @@ public class UploadSuccessAction extends PortletAction {
 	}
 
 	public ActionForward render(
-			ActionMapping mapping, ActionForm form, PortletConfig config,
-			RenderRequest req, RenderResponse res)
+			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
+			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws Exception {
 
 		if (_log.isInfoEnabled()) {
-			_log.info("render " + req.getParameter("file_name"));
+			_log.info("render " + renderRequest.getParameter("file_name"));
 		}
 
 		return mapping.findForward(

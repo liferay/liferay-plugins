@@ -39,15 +39,16 @@ import javax.portlet.RenderResponse;
  */
 public class SampleStrutsLiferayPortlet extends StrutsPortlet {
 
-	public void doView(RenderRequest req, RenderResponse res)
+	public void doView(
+			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		PortletSession ses = req.getPortletSession();
+		PortletSession portletSession = renderRequest.getPortletSession();
 
-		ses.setAttribute(
+		portletSession.setAttribute(
 			"chart_name", "Soda Survey", PortletSession.APPLICATION_SCOPE);
 
-		super.doView(req, res);
+		super.doView(renderRequest, renderResponse);
 	}
 
 }

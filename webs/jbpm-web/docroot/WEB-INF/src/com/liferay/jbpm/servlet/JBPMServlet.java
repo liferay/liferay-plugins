@@ -45,11 +45,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class JBPMServlet extends HttpServlet {
 
-	public void service(HttpServletRequest req, HttpServletResponse res)
+	public void service(
+			HttpServletRequest request, HttpServletResponse response)
 		throws IOException, ServletException {
 
 		try {
-			String contentType = req.getHeader(HttpHeaders.CONTENT_TYPE);
+			String contentType = request.getHeader(HttpHeaders.CONTENT_TYPE);
 
 			if (_log.isDebugEnabled()) {
 				_log.debug("Content type " + contentType);
@@ -58,22 +59,22 @@ public class JBPMServlet extends HttpServlet {
 			if ((contentType != null) &&
 				(contentType.startsWith(ContentTypes.MULTIPART_FORM_DATA))) {
 
-				req = PortalUtil.getUploadServletRequest(req);
+				request = PortalUtil.getUploadServletRequest(request);
 			}
 
 			WorkflowComponentImpl workflowComponentImpl =
 				new WorkflowComponentImpl();
 
-			String result = workflowComponentImpl.process(req);
+			String result = workflowComponentImpl.process(request);
 
-			res.setContentType("text/xml");
+			response.setContentType("text/xml");
 
-			ServletResponseUtil.write(res, result);
+			ServletResponseUtil.write(response, result);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
 
-			res.sendError(
+			response.sendError(
 				HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
 		}
 	}

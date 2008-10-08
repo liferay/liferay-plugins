@@ -45,10 +45,11 @@ import javax.servlet.http.HttpServletResponse;
 public class SpringBindingServlet
 	extends org.apache.servicemix.components.http.SpringBindingServlet {
 
-	protected void doPost(HttpServletRequest req, HttpServletResponse res)
+	protected void doPost(
+			HttpServletRequest request, HttpServletResponse response)
 		throws IOException, ServletException {
 
-		String contentType = req.getHeader(HttpHeaders.CONTENT_TYPE);
+		String contentType = request.getHeader(HttpHeaders.CONTENT_TYPE);
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Content type " + contentType);
@@ -57,11 +58,11 @@ public class SpringBindingServlet
 		if ((contentType != null) &&
 			(contentType.startsWith(ContentTypes.MULTIPART_FORM_DATA))) {
 
-			req = PortalUtil.getUploadServletRequest(req);
+			request = PortalUtil.getUploadServletRequest(request);
 		}
 
 		try {
-			getBinding().process(req, res);
+			getBinding().process(request, response);
 		}
 		catch (JBIException e) {
 			throw new ServletException(e);

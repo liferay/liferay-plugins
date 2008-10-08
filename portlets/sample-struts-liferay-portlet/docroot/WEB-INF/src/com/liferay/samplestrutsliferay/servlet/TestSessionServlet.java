@@ -40,35 +40,36 @@ import javax.servlet.http.HttpSession;
  */
 public class TestSessionServlet extends HttpServlet {
 
-	public void service(HttpServletRequest req, HttpServletResponse res)
+	public void service(
+			HttpServletRequest request, HttpServletResponse response)
 		throws IOException, ServletException {
 
-		HttpSession ses = req.getSession();
+		HttpSession session = request.getSession();
 
 		StringBuilder sb = new StringBuilder();
 
 		// Remote User
 
 		sb.append("<b>Remote User:</b><br /><br />");
-		sb.append(req.getRemoteUser());
+		sb.append(request.getRemoteUser());
 		sb.append("<br /><br />");
 
 		// Session ID
 
 		sb.append("<b>Session ID:</b><br /><br />");
-		sb.append(req.getRequestedSessionId());
+		sb.append(request.getRequestedSessionId());
 		sb.append("<br /><br />");
 
 		// Servlet Session Attributes
 
 		sb.append("<b>Servlet Session Attributes:</b><br /><br />");
 
-		Enumeration enu = ses.getAttributeNames();
+		Enumeration enu = session.getAttributeNames();
 
 		while (enu.hasMoreElements()) {
 			String attrName = (String)enu.nextElement();
 
-			Object attrValue = ses.getAttribute(attrName);
+			Object attrValue = session.getAttribute(attrName);
 
 			sb.append(attrName);
 			sb.append("=");
@@ -76,10 +77,10 @@ public class TestSessionServlet extends HttpServlet {
 			sb.append("<br />");
 		}
 
-		res.setContentType("text/html");
+		response.setContentType("text/html");
 
-		res.getOutputStream().print(sb.toString());
-		res.getOutputStream().flush();
+		response.getOutputStream().print(sb.toString());
+		response.getOutputStream().flush();
 	}
 
 }

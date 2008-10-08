@@ -43,8 +43,8 @@ import org.apache.struts.action.ActionMapping;
 public class YAction extends PortletAction {
 
 	public ActionForward render(
-			ActionMapping mapping, ActionForm form, PortletConfig config,
-			RenderRequest req, RenderResponse res)
+			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
+			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws Exception {
 
 		if (_log.isInfoEnabled()) {

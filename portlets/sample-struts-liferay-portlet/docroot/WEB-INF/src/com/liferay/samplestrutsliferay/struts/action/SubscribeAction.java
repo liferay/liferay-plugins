@@ -46,16 +46,17 @@ import org.apache.struts.action.ActionMapping;
 public class SubscribeAction extends PortletAction {
 
 	public void processAction(
-			ActionMapping mapping, ActionForm form, PortletConfig config,
-			ActionRequest req, ActionResponse res)
+			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		setForward(req, "/sample_struts_liferay_portlet/subscribe_success");
+		setForward(
+			actionRequest, "/sample_struts_liferay_portlet/subscribe_success");
 	}
 
 	public ActionForward render(
-			ActionMapping mapping, ActionForm form, PortletConfig config,
-			RenderRequest req, RenderResponse res)
+			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
+			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws Exception {
 
 		SubscribeForm subscribeForm = (SubscribeForm)form;

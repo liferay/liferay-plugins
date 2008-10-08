@@ -46,7 +46,8 @@ import javax.xml.transform.TransformerException;
 public class HttpInOutBinding
 	extends org.apache.servicemix.components.http.HttpInOutBinding {
 
-	public void processInOut(HttpServletRequest req, HttpServletResponse res)
+	public void processInOut(
+			HttpServletRequest request, HttpServletResponse response)
 		throws IOException, JBIException, ServletException {
 
 		InOut exchange = getExchangeFactory().createInOutExchange();
@@ -54,15 +55,15 @@ public class HttpInOutBinding
 		NormalizedMessage in = exchange.createMessage();
 
 		try {
-			getMarshaler().toNMS(exchange, in, req);
+			getMarshaler().toNMS(exchange, in, request);
 
-			Enumeration enu = req.getParameterNames();
+			Enumeration enu = request.getParameterNames();
 
 			while (enu.hasMoreElements()) {
 				try {
 					String name = (String)enu.nextElement();
 
-					String value = req.getParameter(name);
+					String value = request.getParameter(name);
 
 					in.setProperty(name, value);
 				}
@@ -85,20 +86,20 @@ public class HttpInOutBinding
 				}
 
 				getMarshaler().toResponse(
-					exchange, exchange.getOutMessage(), res);
+					exchange, exchange.getOutMessage(), response);
 			}
 
 			done(exchange);
 
-			res.setStatus(HttpServletResponse.SC_OK);
+			response.setStatus(HttpServletResponse.SC_OK);
 		}
 		catch (IOException ioe) {
 			fail(exchange, ioe);
-			outputException(res, ioe);
+			outputException(response, ioe);
 		}
 		catch (TransformerException te) {
 			fail(exchange, te);
-			outputException(res, te);
+			outputException(response, te);
 		}
 	}
 

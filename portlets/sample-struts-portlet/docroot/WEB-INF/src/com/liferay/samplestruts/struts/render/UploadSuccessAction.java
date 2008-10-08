@@ -41,12 +41,12 @@ import org.apache.struts.action.ActionMapping;
 public class UploadSuccessAction extends Action {
 
 	public ActionForward execute(
-			ActionMapping mapping, ActionForm form, HttpServletRequest req,
-			HttpServletResponse res)
+			ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response)
 		throws Exception {
 
 		if (_log.isInfoEnabled()) {
-			_log.info("render " + req.getParameter("file_name"));
+			_log.info("render " + request.getParameter("file_name"));
 		}
 
 		return mapping.findForward(

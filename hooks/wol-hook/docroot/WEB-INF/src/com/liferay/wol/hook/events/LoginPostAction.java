@@ -235,21 +235,22 @@ public class LoginPostAction extends Action {
 			false);
 	}
 
-	public void run(HttpServletRequest req, HttpServletResponse res)
+	public void run(HttpServletRequest request, HttpServletResponse response)
 		throws ActionException {
 
 		try {
-			doRun(req, res);
+			doRun(request, response);
 		}
 		catch (Exception e) {
 			throw new ActionException(e);
 		}
 	}
 
-	protected void doRun(HttpServletRequest req, HttpServletResponse res)
+	protected void doRun(
+			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
-		User user = PortalUtil.getUser(req);
+		User user = PortalUtil.getUser(request);
 
 		List<Organization> organizations = user.getOrganizations();
 
