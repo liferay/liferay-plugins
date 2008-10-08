@@ -31,10 +31,6 @@ body {
 	z-index: 1;
 }
 
-#banner .logo {
-	margin: 0;
-}
-
 #content-wrapper {
 	padding: 22px 0 18px;
 }
@@ -163,6 +159,20 @@ body {
 	padding: 9px 0 10px;
 }
 
+/* ---------- Calendar ---------- */
+
+.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+	background: #3b5998;
+}
+
+input[type="submit"], input[type="button"], input[type="reset"], input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover {
+	background: #5c74a3 url(../images/custom/button_bg.png);
+	border: 1px solid #26446e;
+	color: #FFF;
+	border-color: #26446e #152f5f #0c2253;
+	padding: 2px 6px 4px 8px;
+	font: bold 11px Lucida Grande,Tahoma,Verdana,Arial,sans-serif;
+}
 
 /* ---------- Tabs ---------- */
 

@@ -1,164 +1,155 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
 /* ---------- Base ---------- */
 
-#banner .logo a {
-	margin-left: 16px;
-	margin-top: 32px;
-}
-
-#banner .search {
-	position: absolute;
-	right: 10px;
-	top: 58px;
-}
-
-#banner h1.logo {
-	background: #2B2B2B url('../images/custom/topbg.png') repeat-x;
-	border: 7px solid white;
-	border-bottom: none;
-	margin: 0;
-}
-
-#banner {
-	background: #FFF url('../images/custom/hdrpic.jpg') no-repeat 7px bottom;
-	border: 7px solid white;
-	border-bottom: none;
-	border-top: 2px solid white;
-	height: 240px;
-	width: 960px;
-	margin: 0 auto;
+html {
+	background: #FFF url(../images/custom/html_bg.jpg);
 }
 
 body {
-	background: #000 url('../images/custom/bg1.jpg');
-	font-family: 'georgia', 'times new roman', serif;
-	font-size: 12px;
-	padding: 0 0 35px;
+	background: transparent url(../images/custom/body_bg.jpg) repeat-x;
+	padding: 35px 0;
 }
 
-#content-wrapper {
-	background: white none repeat scroll 0 0%;
-	border: 14px solid white;
-	width: 946px;
-	margin: 0 auto;
-}
-
-#footer {
-	background: #FFF url('../images/custom/border2.png') repeat-x 0em 2.5em;
-	clear: both;
-	font-size: 0.8em;
-	height: 2em;
-	padding-top: 5em;
-	position: relative;
-	width: 974px;
-	margin: 0 auto;
-}
-
-html {
-	overflow-y: scroll;
-}
+/* ---------- Wrapper ---------- */
 
 #wrapper {
-	background: transparent url(../images/custom/bg2.jpg) repeat-x;
+	background: #FFF;
+	border: 9px solid #FFF;
+	border-left-width: 14px;
+	border-right-width: 14px;
 	margin: 0 auto;
-	padding-top: 30px;
+	width: 960px;
 }
 
+/* ---------- Banner ---------- */
+
+#banner {
+	background: url(../images/custom/banner_bg.jpg) no-repeat left bottom;
+	margin: 0 0 4px;
+	padding: 0 0 113px;
+	position: relative;
+}
+
+/* ---------- Logo ---------- */
+
+#banner .logo {
+	background: #2B2B2B url(../images/custom/banner_bg.png) repeat-x;
+	padding: 32px;
+}
 
 /* ---------- Dock ---------- */
 
 .js .interactive-mode {
-	right: 18px;
-	top: 18px;
+	right: 16px;
+	top: 16px;
 }
-
 
 /* ---------- Navigation ---------- */
 
-.js #add-page {
-	background: none;
-	position: absolute;
-	right: 0;
-	top: 0;
-}
-
-.js #navigation .enter-page .save-page {
-	background: transparent url('../images/custom/menuactive.png') repeat-x;
-	padding: 8px 20px 20px;
-}
-
-.js #navigation .enter-page {
-	background-color: transparent;
-}
-
-#navigation a {
-	color: #FFF;
-	padding: 13px 22px;
-}
-
-#navigation li a:hover {
-	text-decoration: underline;
-}
-
-#navigation li.selected a, #navigation li a:hover {
-	background: #7F8400 url('../images/custom/menuactive.png') repeat-x;
-	background-color: transparent;
-}
-
-#navigation ul {
-	margin: 11px auto;
-}
-
 #navigation {
-	background: #7F8400 url('../images/custom/menubg.png') repeat-x;
-	border: 14px solid #FFF;
-	border-bottom: 4px solid #FFF;
-	border-top: 4px solid #FFF;
-	margin: 0 auto;
-	padding: 0em 1em;
-	position: relative;
-	width: 922px;
+	background: url(../images/custom/navigation_bg.png);
+	height: 36px;
+	margin-bottom: 4px;
 }
 
+#navigation ul, #add-page {
+	float: left;
+}
+
+#navigation a, #navigation .enter-page {
+	color: #FFF;
+	display: block;
+	float: left;
+	font: 12px/36px Lucida Sans Unicode,Lucida Grande,sans-serif;
+	height: 36px;
+	padding: 0 20px;
+	text-decoration: none;
+}
+
+#navigation a:hover {
+	background: url(../images/custom/navigation_hover_bg.png);
+}
+
+#navigation .selected a {
+}
+
+#navigation .save-page, #navigation .save-page:hover {
+	background: none;
+	border-right: 0;
+	display: inline;
+	float: none;
+}
+
+#navigation .cancel-page {
+	display: none;
+}
+
+/* ---------- Content Wrapper ---------- */
+
+.lfr-grid .lfr-column {
+	padding: 0 4px;
+}
 
 /* ---------- Portlet ---------- */
 
 .portlet {
-	margin-bottom: 15px;
+	margin: 0 0 10px;
 }
 
 .portlet-topper {
-	background: #FFF url('../images/custom/border1.png') repeat-x;
-	height: 30px;
-	width: auto;
+	background: url(../images/custom/portlet_bg.png) repeat-x;
+	padding: 6px;
 }
 
-.portlet-icons {
-	font-size: 10px;
-	line-height: 1.6em;
+.portlet-title {
+	font: 18px/18px Palatino Linotype,Book Antiqua,Palatino,serif;
+	letter-spacing: .05em;
 }
 
+.portlet-title img {
+	margin-top: -4px;
+}
+
+.portlet-content {
+	padding: 0;
+}
+
+.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+	background: #9FA621;
+}
 
 /* ---------- Tabs ---------- */
 
-.ui-tabs li a, .tabs li span {
-	background: #7F8400 url(../images/custom/menubg.png) repeat-x;
-	border-right: none;
+.ui-tabs {
+	border-bottom: 1px solid #555900;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span {
-	background: transparent url(../images/custom/menuactive.png) repeat-x;
-	border: none;
+.ui-tabs li a, .ui-tabs li a:hover, .ui-tabs li span, .ui-tabs li span:hover {
+	background: #858B00;
+	border: 1px solid #555900;
 	color: #FFF;
-}
-
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background: transparent url(../images/custom/menuactive.png) repeat-x;
-	color: #FFF;
+	margin: 0 -1px;
 	text-decoration: none;
 }
 
 .ui-tabs li a:hover, .ui-tabs li span:hover {
-	background: transparent url(../images/custom/menuactive.png) repeat-x;
+	background: #6D7300;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current a:hover, .ui-tabs li.current span, .ui-tabs li.current span:hover {
+	background: #555900;
+	border: 1px solid #555900;
 	color: #FFF;
+}
+
+.ui-tabs li.current:hover {
+	background: transparent;
+}
+
+/* ---------- Footer ---------- */
+
+#footer {
+	background: #EEE;
+	height: 48px;
 }

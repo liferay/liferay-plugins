@@ -1,9 +1,9 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 5.1.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_5_1_0.dtd">
 
 <look-and-feel>
 	<compatibility>
 		<version>5.1.0+</version>
 	</compatibility>
-	<theme id="blue-pigment" name="Blue Pigment" />
+	<theme id="blue-pigment" name="Blue Pigment"></theme>
 </look-and-feel>

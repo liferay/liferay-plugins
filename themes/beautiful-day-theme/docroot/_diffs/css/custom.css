@@ -31,13 +31,7 @@ body {
 	margin: 0 0 5px;
 	min-height: 80px;
 	padding: 35px 150px;
-}
-
-
-/* ---------- Logo ---------- */
-
-#banner .logo {
-	margin: 0;
+	position: relative;
 }
 
 
@@ -122,6 +116,34 @@ body {
 .portlet-content {
 	font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
 	padding: 0;
+}
+
+/* ---------- Tabs ---------- */
+
+.ui-tabs {
+	border-bottom: 1px solid #c5d6e0;
+}
+
+.ui-tabs li a, .tabs li span, .ui-tabs li.current a, .tabs li.current span {
+	background: #e7ecef;
+	border: 1px solid #c5d6e0;
+	color: #000;
+	height: 7px;
+	margin: 0 -1px 0 0;
+	font-weight: normal;
+}
+
+.ui-tabs li a:hover, .tabs li span:hover, .ui-tabs li.current a:hover, .tabs li.current span:hover {
+	background: #a1a9ad;
+	color: #FFF;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: #f2f7fa;
+}
+
+.ui-tabs li.current:hover {
+	background: transparent;
 }
 
 

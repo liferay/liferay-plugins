@@ -1,6 +1,5 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-
 /* ---------- Base ---------- */
 
 html {
@@ -12,8 +11,7 @@ body {
 	padding: 64px 0;
 }
 
-
-/* ---------- Main content body ---------- */
+/* ---------- Wrapper ---------- */
 
 #wrapper {
 	background: #FFF;
@@ -22,12 +20,6 @@ body {
 	padding: 10px;
 	width: 900px;
 }
-
-#content-wrapper {
-	border: 2px solid #21262A;
-	padding: 10px;
-}
-
 
 /* ---------- Banner ---------- */
 
@@ -39,8 +31,9 @@ body {
 	width: 900px;
 }
 
+/* ---------- Logo ---------- */
+
 #banner .logo {
-	margin: 0;
 	padding: 45px 0 0;
 }
 
@@ -48,19 +41,17 @@ body {
 	margin: 0 auto;
 }
 
-
-/* ---------- Dock with JavaScript ---------- */
+/* ---------- Dock ---------- */
 
 .js .interactive-mode {
 	right: 10px;
 	top: 10px;
 }
 
-
-/* ---------- Main navigation ---------- */
+/* ---------- Navigation ---------- */
 
 #navigation {
-	background: #21262a;
+	background: #21262A;
 	height: 40px;
 }
 
@@ -72,7 +63,7 @@ body {
 	color: #D7D7D2;
 	display: block;
 	float: left;
-	font: 16px Lucida Sans Unicode, Lucida Grande, sans-serif;
+	font: 16px Lucida Sans Unicode,Lucida Grande,sans-serif;
 	padding: 10px 16px;
 	text-decoration: none;
 }
@@ -104,6 +95,12 @@ body {
 	display: none;
 }
 
+/* ---------- Content Wrapper ---------- */
+
+#content-wrapper {
+	border: 2px solid #21262A;
+	padding: 10px;
+}
 
 /* ---------- Portlet ---------- */
 
@@ -119,5 +116,47 @@ body {
 
 .portlet-title {
 	color: #111;
-	font: bold 14px Arial, Helvetica, sans-serif;
+	font: bold 14px Arial,Helvetica,sans-serif;
+}
+
+/* ---------- Calendar ---------- */
+
+.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+	background-color: #21262A;
+}
+
+/* ---------- Tabs ---------- */
+
+.ui-tabs {
+	border-bottom: 1px solid #000;
+}
+
+.ui-tabs li a, .ui-tabs li.current a, .ui-tabs li a:hover, .ui-tabs li span, .ui-tabs li.current span, .ui-tabs li span:hover {
+	border: 1px solid #000;
+	background: #21262A;
+	color: #ddd;
+	margin: 0 0 0 -1px;
+	padding: 8px 12px;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: #21262A;
+	color: #FF0;
+	text-decoration: none;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: #343c42;
+	color: #FFF;
+	font-weight: normal;
+}
+
+.ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
+	background: #343c42;
+	color: #FFF;
+	font-weight: normal;
+}
+
+.ui-tabs li.current:hover {
+	background: transparent;
 }

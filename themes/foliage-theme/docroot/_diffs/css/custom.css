@@ -1,73 +1,52 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---------- Base ---------- */
+
+body {
+	background: #000;
+	padding: 32px 0;
+}
+
+/* ---------- Wrapper ---------- */
+
 #wrapper {
-	background: transparent;
 	margin: 0 auto;
 	width: 900px;
 }
 
-body {
-	background: black;
-}
-
-
-/* IE5 Win */
-
-
-/* easy scaling */
-
-a, a:link, a:visited {
-	border-bottom: #C96 1px;
-	color: #000;
-	font-weight: bold;
-	text-decoration: none;
-}
-
-#banner .logo {
-	margin: 0;
-	padding: 10px;
-}
-
-#content-wrapper, #portlet-wrapper-sign-in {
-	background: white;
-	overflow: hidden;
-	width: 100%;
-}
+/* ---------- Banner ---------- */
 
 #banner {
-	background: url(../images/theme/header.jpg) no-repeat center;
-	border-bottom: 5px solid #000;
-	height: 251px;
-	margin: 0 auto 0;
-	margin-top: 30px;
+	background: url(../images/custom/banner_bg.jpg) left -10px;
+	height: 228px;
+	margin: 0 0 5px;
+	padding: 10px;
 	position: relative;
 }
 
-#footer {
-	background: #000 url(../images/theme/footer.jpg);
-	border-top: 5px solid #000;
-	color: #FFF;
-	height: 162px;
-	margin: 0 auto 0;
-	padding-left: 10px;
-	padding-right: 10px;
-	width: 880px;
+/* ---------- Dock ---------- */
+
+.js .interactive-mode {
 }
 
-.js #navigation .enter-page {
-	background: transparent;
+/* ---------- Navigation ---------- */
+
+#navigation {
+	position: absolute;
+	top: 0;
 }
 
 #navigation ul, #add-page {
 	float: left;
 }
 
-#navigation a {
-	background: #000;
-	border: 0;
+#navigation a, #navigation .enter-page {
 	color: #DA1C5C;
 	display: block;
+	float: left;
 	font-size: 11px;
-	font-weight: normal;
-	padding: 6px 16px;
+	line-height: 32px;
+	padding: 0 16px;
 	text-decoration: none;
 }
 
@@ -75,16 +54,9 @@ a, a:link, a:visited {
 	color: #FFF;
 }
 
-#navigation {
-	background: transparent;
-	border: none;
-	margin: 0;
-	padding-right: 0;
-	position: absolute;
-	top: 0;
-}
-
-#navigation .add-page {
+#navigation .save-page, #navigation .save-page:hover {
+	background: none;
+	border-right: 0;
 	display: inline;
 	float: none;
 }
@@ -93,64 +65,40 @@ a, a:link, a:visited {
 	display: none;
 }
 
-.portlet, .portlet-topper, .portlet-content, .portlet-title {
+/* ---------- Content Wrapper ---------- */
+
+#content-wrapper {
 	background: #FFF;
-	border: none;
-	font-weight: normal;
-	margin: 0 auto;
+	margin: 0 0 5px;
 }
 
-.portlet-icons {
-	font-size: 10px;
-	line-height: 1.6em;
-}
-
-.portlet-content {
-	width: 100%;
-}
+/* ---------- Portlet ---------- */
 
 .portlet-topper {
 	border-bottom: #DDD 1px solid;
-	font-size: 1.6em;
-	line-height: 1.4em;
 	padding: 4px;
 }
 
-.js .interactive-mode {
-	right: 10px;
-	top: 10px;
+.portlet-title {
+	font-size: 1.6em;
+	line-height: 1.4em;
 }
 
-a {
-	font-size: 12px;
+/* ---------- Calendar ---------- */
+
+.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+	background: #58383b;
 }
 
+/* ---------- Tabs ---------- */
 
-/*----- Tabs -----*/
-
-.ui-tabs li.current a, .ui-tabs li.current span {
-	background: black none repeat scroll 0 0;
-	border-bottom: none;
-	border-left: none;
-	border-right: 1px solid #304049;
-	border-top: none;
-	color: white;
+.ui-tabs li a, .ui-tabs li span {
+	background: #58383b;
 }
 
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background-color: black;
-	color: white;
-	text-decoration: none;
-}
+/* ---------- Footer ---------- */
 
-.ui-tabs li a, .tabs li span {
-	background: black none repeat scroll 0 0;
-	border-right: 1px solid #304049;
-	color: #DA1C5C;
-	top: 0;
-}
-
-.ui-tabs li a:hover, .ui-tabs li span:hover {
-	background: black;
-	color: white;
+#footer {
+	background: #231F20 url(../images/custom/footer_bg.jpg) repeat-x;
+	height: 162px;
 }

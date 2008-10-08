@@ -2,7 +2,7 @@
 
 #parse ($init)
 
-<html dir="#language ("lang.dir")" xmlns="http://www.w3.org/1999/xhtml">
+<html class="nojs" dir="#language ("lang.dir")" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 	<title>$company_name - $the_title</title>
@@ -12,15 +12,28 @@
 	#css ($css_main_file)
 	#js ($js_main_file)
 
+	<script type="text/javascript">
+		// <![CDATA
+			$page_javascript_1
+			$page_javascript_2
+			$page_javascript_3
+		// ]]>
+	</script>
+
 	#if ($company_logo != "")
 		<style type="text/css">
-			#banner .logo a {
-				background: url($company_logo) no-repeat;
-				height: ${company_logo_height}px;
-				width: ${company_logo_width}px;
-			}
+			/* <![CDATA[ */
+				#banner .logo a {
+					background: url($company_logo) no-repeat;
+					display: block;
+					font-size: 0;
+					height: ${company_logo_height}px;
+					text-indent: -9999em;
+					width: ${company_logo_width}px;
+				}
 
-			#ie6_png_fix()
+				#ie6_png_fix()
+			/* ]]> */
 		</style>
 	#end
 </head>
@@ -31,43 +44,39 @@ $theme.include($top_messages_include)
 
 <div id="wrapper">
 	<div id="banner">
-		<div id="banner-inner">
-			<h1 class="logo">
-				<a class="png" href="$company_url">$company_name</a>
-			</h1>
+		<h1 class="logo">
+			<a class="png" href="$company_url">$company_name</a>
+		</h1>
 
-			<div id="page-search">
-				$theme.journalContentSearch()
-			</div>
+		#parse ("$full_templates_path/dock.vm")
 
-			#parse ("$full_templates_path/dock.vm")
-
-			#if ($update_available_url)
-				<div class="popup-alert-notice">
-					<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>
-				</div>
-			#end
-
-			#if ($has_navigation)
-				#parse ("$full_templates_path/navigation.vm")
-			#end
+		<div id="page-search">
+			$theme.journalContentSearch()
 		</div>
+
+		#if ($update_available_url)
+			<div class="popup-alert-notice">
+				<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>
+			</div>
+		#end
 	</div>
+
+	#if ($has_navigation)
+		#parse ("$full_templates_path/navigation.vm")
+	#end
 
 	#if ($selectable)
 		$theme.include($content_include)
 	#else
-		<div id="content-wrapper" class="login">
-			$portletDisplay.recycle()
+		$portletDisplay.recycle()
 
-			$portletDisplay.setTitle($the_title)
+		$portletDisplay.setTitle($the_title)
 
-			$theme.wrapPortlet("portlet.vm", $content_include)
-		</div>
+		$theme.wrapPortlet("portlet.vm", $content_include)
 	#end
 
 	<div id="footer">
-		<p class="language">$theme.language()</p>
+		<div class="language">$theme.language()</div>
 	</div>
 </div>
 

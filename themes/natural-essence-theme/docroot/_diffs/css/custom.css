@@ -1,7 +1,6 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-
-/* ---------- Browser normalization ---------- */
+/* ---------- Base ---------- */
 
 body {
 	background: #7C6F5C url(../images/custom/body_bg.jpg);
@@ -9,8 +8,7 @@ body {
 	padding: 33px 0;
 }
 
-
-/* ---------- Main content body ---------- */
+/* ---------- Wrapper ---------- */
 
 #wrapper {
 	background: #FFF url(../images/custom/wrapper_bg.gif);
@@ -20,7 +18,6 @@ body {
 	width: 960px;
 }
 
-
 /* ---------- Banner ---------- */
 
 #banner {
@@ -29,21 +26,20 @@ body {
 	position: relative;
 }
 
+/* ---------- Logo ---------- */
+
 #banner .logo {
-	margin: 0;
 	padding: 10px;
 }
 
-
-/* ---------- Dock with JavaScript ---------- */
+/* ---------- Dock ---------- */
 
 .js .interactive-mode {
 	right: 10px;
 	top: 10px;
 }
 
-
-/* ---------- Main navigation ---------- */
+/* ---------- Navigation ---------- */
 
 #navigation {
 	background: #EAE7DF url(../images/custom/navigation_bg.gif);
@@ -58,7 +54,7 @@ body {
 	border-right: 1px solid #C9C6B3;
 	color: #553;
 	display: block;
-	font: bold 13px/41px Tahoma, sans-serif;
+	font: bold 13px/41px Tahoma,sans-serif;
 	padding: 0 14px;
 	text-decoration: none;
 }
@@ -68,21 +64,26 @@ body {
 	color: #221;
 }
 
-#navigation .save-page {
+#navigation .enter-page a {
+	background: none;
 	display: inline;
 	float: none;
 }
 
-#navigation .save-page:hover {
-	background: none;
+#navigation .enter-page a.cancel-page {
+	display: none;
+}
+
+#navigation .save-page {
+	display: inline;
+	float: none;
 }
 
 #navigation .cancel-page {
 	display: none;
 }
 
-
-/* ---------- Portlet wrapper and icons ---------- */
+/* ---------- Portlet ---------- */
 
 .portlet {
 	border-bottom: 1px dashed #AAAA9A;
@@ -97,4 +98,48 @@ body {
 
 .portlet-title {
 	font: normal 31px/1 serif,sans-serif;
+}
+
+/* ---------- Calendar ---------- */
+
+.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+	background: #e8e5dd;
+}
+
+.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header th, .portlet-calendar .results-header td {
+	color: #111;
+}
+
+/* ---------- Tabs ---------- */
+
+.ui-tabs {
+	border-bottom: 1px solid #e8e5dd;
+}
+
+.ui-tabs li a, .ui-tabs li.current a, .ui-tabs li a:hover, .ui-tabs li span, .ui-tabs li.current span, .ui-tabs li span:hover {
+	border: 1px solid #e8e5dd;
+	background: #cfccc4;
+	color: #333;
+	margin: 0 0 0 -1px;
+	padding: 8px 12px;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: #e8e5dc;
+	color: #000;
+	text-decoration: none;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: url(../images/custom/navigation_hover_bg.gif) -56px -34px;
+	color: #000;
+	font-weight: normal;
+}
+
+.ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
+	font-weight: normal;
+}
+
+.ui-tabs li.current:hover {
+	background: transparent;
 }

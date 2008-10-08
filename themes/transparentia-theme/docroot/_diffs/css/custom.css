@@ -1,154 +1,68 @@
-
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
 /* ---------- Base ---------- */
 
-#banner .logo a {
-	color: #FFF;
-	font: normal 2em Verdana, sans-serif;
-	text-decoration: none;
-}
-
-#banner .logo {
-	display: block;
-	height: auto;
-	margin: 0;
-	padding-top: 19px;
-	text-align: center;
-}
-
-#banner {
-	background: url(../images/custom/header.png) repeat-x;
-	display: block;
-	height: 156px;
-	margin: 0 auto 8px auto;
-}
-
 body {
-	background: url(../images/custom/bgcontainer.png) repeat-y top center;
-	color: #444;
-	font: normal 62.5% Lucida Sans Unicode, sans-serif;
+	background: url(../images/custom/body_bg.png) center top;
 }
 
-#content-wrapper {
-	margin: 0 0 0 230px;
-	width: 950px;
-}
-
-html {
-	background: #EEE url(../images/custom/bg.png);
-	height: auto;
-	overflow-y: scroll;
-}
+/* ---------- Wrapper ---------- */
 
 #wrapper {
-	background: white;
-	clear: both;
-	display: block;
 	margin: 0 auto;
-	padding: 8px 18px 6px 18px;
+	width: 940px;
+	padding: 10px;
 	position: relative;
-	width: 1180px;
 }
 
+/* ---------- Banner ---------- */
 
-/* ---------- Forms ---------- */
+#banner {
+	background: #317296 url(../images/custom/banner_bg.gif) repeat-x;
+	position: relative;
+	padding: 45px;
+	margin: 0 0 10px;
+}
 
-input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
-	padding: 1px 1px;
+/* ---------- Logo ---------- */
+
+#banner .logo a {
+	margin: 0 auto;
+}
+
+/* ---------- Dock ---------- */
+
+.js .interactive-mode {
 }
 
 /* ---------- Navigation ---------- */
-.js #add-page {
-	background: #E5E5E5;
-	right: 0;
-	top: 145px;
-}
-
-.js #navigation .enter-page {
-	padding: 1.5px;
-}
-
-.js #navigation {
-	position: absolute;
-}
-
-#navigation li a {
-	display: block;
-	padding: 0 20px;
-	text-decoration: none;
-}
-
-#navigation li.selected a span {
-	padding-left: 0;
-}
-
-#navigation ul .sort-helper {
-}
-
-#navigation ul li a span,
-#navigation ul li a:hover span,
-#navigation ul li.selected a span,
-#navigation ul li.selected a:hover span,
-.js #add-page a span,
-.js #add-page a:hover span {
-	color: #777;
-	display: block;
-	float: left;
-	font-size: 0.9em;
-	padding: 3px 6px 3px 0;
-	text-decoration: none;
-	width: 200px;
-}
-
-#navigation ul li a,
-#navigation ul li a:hover,
-#navigation ul li.selected a,
-#navigation ul li.selected a:hover,
-.js #add-page a,
-.js #add-page a:hover {
-	display: block;
-	float: left;
-	width: 200px;
-}
-
-#navigation ul li a:hover,
-#navigation ul li.selected a:hover {
-	color: #111;
-	display: block;
-}
-
-#navigation ul li, #navigation ul li.selected, .js #add-page {
-	border: 1px solid #FAFAFA;
-	display: block;
-	float: left;
-	margin: 0;
-	width: 198px;
-}
-
-#navigation ul {
-	background: url(../images/custom/bgul.png) repeat-x;
-	border-top: 1px solid #FAFAFA;
-	display: block;
-	float: left;
-	width: 200px;
-}
 
 #navigation {
-	background: #EEE;
-	border: 1px solid #E5E5E5;
-	left: 18px;
 	position: absolute;
-	top: 172px;
+	left: 10px;
+	background: #eee url(../images/custom/navigation_a_bg.gif) repeat-x;
+	border: 1px solid #E5E5E5;
 	width: 200px;
 }
 
-.js .lfr-dock.interactive-mode {
-	right: 5pt;
-	top: 5px;
-	min-width: 0;
+#navigation a, #navigation .enter-page {
+	border: 1px solid #FAFAFA;
+	color: #777;
+	display: block;
+	width: 172px;
+	text-decoration: none;
+	padding: 3px 14px;
+}
+
+#navigation a:hover {
+}
+
+#navigation .selected a {
 }
 
 #navigation .save-page, #navigation .save-page:hover {
+	background: none;
+	border-right: 0;
 	display: inline;
 	float: none;
 }
@@ -157,55 +71,59 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 	display: none;
 }
 
+/* ---------- Content Wrapper ---------- */
+
+#content-wrapper {
+	margin: 0 0 0 215px;
+	padding: 0 0 10px;
+}
+
+.lfr-grid .lfr-column {
+}
 
 /* ---------- Portlet ---------- */
 
 .portlet {
-	background: #FFF;
 	border: 1px solid #EEE;
-	margin-bottom: 8px;
 	padding: 6px 12px;
+	margin: 0 0 8px;
+}
+
+.portlet-topper {
 }
 
 .portlet-title {
 	color: #367EA6;
-	padding-top: 6px;
+	font: 14px Lucida Sans Unicode, Lucida Grande, sans-serif;
 }
 
-.portlet-icons {
-	font-size: 10px;
-	line-height: 1.6em;
+.portlet-title img {
+	display: none;
 }
 
 .portlet-content {
-	font-size: 1.2em;
-	padding-bottom: 1.2em;
+	font: 12px Lucida Sans Unicode, Lucida Grande, sans-serif;
+	padding: 8px 0;
 }
 
-#portlet-wrapper- {
-	width: 728px;
+/* ---------- Tabs ---------- */
+
+.ui-tabs {
 }
 
-
-/* ---------- Liferay UI ---------- */
-
-.tabs, .liferay-table, .portlet-section-body td {
-	font-size: 10px;
-}
-
-.ui-tabs li a, .tabs li span {
-	background: url(../images/custom/header.png) repeat-x center center;
-	border-right: none;
+.ui-tabs li a, .ui-tabs li a:hover, .ui-tabs li span, .ui-tabs li span:hover {
 }
 
 .ui-tabs li a:hover, .ui-tabs li span:hover {
-	background: #000;
-	color: #FFF;
-	text-decoration: none;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span {
-	background: url(../images/custom/header.png) repeat-x center bottom;
-	border: none;
-	color: #FFF;
+.ui-tabs li.current:hover {
+	background: transparent;
+}
+
+/* ---------- Footer ---------- */
+
+#footer {
+	border: 1px solid #eee;
+	min-height: 28px;
 }

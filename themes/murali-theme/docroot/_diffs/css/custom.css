@@ -1,6 +1,5 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-
 /* ---------- Base ---------- */
 
 html {
@@ -13,13 +12,11 @@ body {
 	padding: 50px 0;
 }
 
-
 /* ---------- Wrapper ---------- */
 
 #wrapper {
 	margin: 0 50px;
 }
-
 
 /* ---------- Banner ---------- */
 
@@ -28,17 +25,11 @@ body {
 	position: relative;
 }
 
-
 /* ---------- Logo ---------- */
-
-#banner .logo {
-	margin: 0;
-}
 
 #banner .logo a {
 	margin: 0 auto;
 }
-
 
 /* ---------- Dock ---------- */
 
@@ -46,7 +37,6 @@ body {
 	right: 0;
 	top: 10px;
 }
-
 
 /* ---------- Navigation ---------- */
 
@@ -62,7 +52,7 @@ body {
 	color: #EEE;
 	display: block;
 	float: left;
-	font: bold 12px Arial, Helvetica, sans-serif;
+	font: bold 12px Arial,Helvetica,sans-serif;
 	height: 30px;
 	line-height: 30px;
 	padding: 0 20px;
@@ -89,13 +79,11 @@ body {
 	display: none;
 }
 
-
 /* ---------- Content Wrapper ---------- */
 
 #content-wrapper {
 	padding: 24px 0 0;
 }
-
 
 /* ---------- Portlet ---------- */
 
@@ -120,7 +108,7 @@ body {
 	background-position: top left;
 	color: #FEC;
 	display: block;
-	font: normal 18px/40px Tahoma, sans-serif;
+	font: normal 18px/40px Tahoma,sans-serif;
 	height: 35px;
 	letter-spacing: 0.1em;
 	min-width: 50%;
@@ -131,9 +119,13 @@ body {
 	display: none;
 }
 
+.portlet-icons a {
+	color: #FFF;
+}
+
 .portlet-content {
 	background-position: left bottom;
-	font: 12px/1.5 Lucida Sans Unicode, Lucida Grande, sans-serif;
+	font: 12px/1.5 Lucida Sans Unicode,Lucida Grande,sans-serif;
 	padding: 15px 25px;
 }
 
@@ -141,6 +133,15 @@ body {
 	color: #FFF;
 }
 
+/* ---------- Calendar ---------- */
+
+.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+	background: #529562;
+}
+
+.portlet-calendar .day-number, .portlet-calendar .portlet-section-body td, .calendar-panel {
+	color: #000;
+}
 
 /* ---------- Tabs ---------- */
 
@@ -171,7 +172,6 @@ body {
 	text-decoration: none;
 }
 
-
 /* ---------- Input ---------- */
 
 input[type="submit"], input[type="button"], input[type="reset"] {
@@ -184,7 +184,6 @@ input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hove
 	background: #297620 url(../images/custom/tabs_bg.png) repeat-x;
 	color: #FEC;
 }
-
 
 /* ---------- Calendar ---------- */
 

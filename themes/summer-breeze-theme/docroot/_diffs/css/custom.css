@@ -1,58 +1,54 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-
-/* ---------- Browser normalization ---------- */
+/* ---------- Base ---------- */
 
 body {
-	background: #769359 url(../images/custom/body_bg.jpg) repeat-y scroll center top;
+	background: #769359 url(../images/custom/body_bg.png) repeat-y scroll center top;
 	color: #443;
 }
-
 
 /* ---------- Banner ---------- */
 
 #banner {
-	background: #597F93 url(../images/custom/banner_bg.jpg) no-repeat scroll center top;
+	background: #597F93 url(../images/custom/banner_logo_bg.png) no-repeat center top;
 	border-bottom: 1px solid #CCC;
 	height: 180px;
 }
 
-#bannerInner {
+/* ---------- Logo ---------- */
+
+#banner .logo {
+	padding: 50px 50px 10px;
+}
+
+#banner .logo a {
 	margin: 0 auto;
-	padding: 25px;
-	position: relative;
-	width: 850px;
 }
 
-#banner h1.logo {
-	margin: 0;
-}
-
-
-/* ---------- Dock with JavaScript ---------- */
+/* ---------- Dock ---------- */
 
 .js .interactive-mode {
-	right: 15px;
-	top: 10px;
+	right: 50%;
+	margin-right: -460px;
 }
 
-
-/* ---------- Main navigation ---------- */
+/* ---------- Navigation ---------- */
 
 #navigation {
 	height: 31px;
 	margin: 0 auto;
-	width: 900px;
+	width: 960px;
 }
 
 #navigation ul, #add-page {
 	float: left;
 }
 
-#navigation a {
+#navigation a, #navigation .enter-page {
 	background: url('../images/custom/navigation_bg.png');
-	color: #FFF;
+	color: #FEC;
 	display: block;
+	float: left;
 	font-size: 14px;
 	font-weight: bold;
 	height: 31px;
@@ -62,72 +58,40 @@ body {
 	width: 120px;
 }
 
-#navigation .selected a, #navigation a:hover {
-	background-position: 0 31px;
+#navigation a:hover {
+	background-position: left -31px;
 }
 
-#navigation .save-page {
+#navigation .selected a {
+	color: #FFF;
+}
+
+#navigation .enter-page {
+	width: auto;
+}
+
+#navigation .save-page, #navigation .save-page:hover {
+	background: none;
+	border-right: 0;
 	display: inline;
 	float: none;
+	padding: 0 5px;
 }
 
 #navigation .cancel-page {
 	display: none;
 }
 
-
-/* ---------- Main content body ---------- */
+/* ---------- Content Wrapper ---------- */
 
 #content-wrapper {
 	margin: 0 auto;
-	padding: 15px;
-	width: 870px;
+	width: 960px;
 }
 
-
-/* ---------- Portlet wrapper and icons ---------- */
+/* ---------- Portlet ---------- */
 
 .portlet {
-	background: #FFF;
-	border: 2px solid #769359;
+	padding: 10px;
 	margin: 0 0 10px;
-	padding: 3px;
-}
-
-.portlet-topper {
-	background: #769359;
-	border-bottom: 1px solid #AEB8BC;
-	color: #FFF;
-	font-size: 12px;
-	padding: 8px;
-}
-
-.portlet-topper a {
-	color: #FFF;
-	font-size: 10px;
-	line-height: 2em;
-}
-
-.portlet-icons {
-	font-size: 10px;
-	line-height: 1.6em;
-}
-
-
-/* ---------- Tabs ---------- */
-
-.ui-tabs {
-	border-bottom: 2px solid #587C94;
-}
-
-.ui-tabs li a, .tabs li span {
-	background: #769359 url(../images/custom/body_bg.jpg) repeat-y scroll left top;
-	border: 0;
-	top: 0;
-}
-
-.ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li a:hover, .ui-tabs li.current a:hover {
-	background: #597F93 url(../images/custom/banner_bg.jpg) repeat-y scroll left top;
-	border: 0;
-	color: #FFF;
 }

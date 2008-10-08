@@ -1,6 +1,5 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-
 /* ---------- Base ---------- */
 
 body {
@@ -8,8 +7,7 @@ body {
 	padding: 32px;
 }
 
-
-/* ---------- Main content body ---------- */
+/* ---------- Wrapper ---------- */
 
 #wrapper {
 	background: #FFF;
@@ -17,17 +15,6 @@ body {
 	margin: 0 auto;
 	width: 940px;
 }
-
-#content-wrapper {
-	margin: 0 0 -10px;
-	padding: 0 5px;
-}
-
-#footer {
-	background: url(../images/custom/footer_bg.jpg);
-	height: 104px;
-}
-
 
 /* ---------- Banner ---------- */
 
@@ -38,24 +25,20 @@ body {
 	position: relative;
 }
 
-#banner .logo {
-	margin: 0;
-}
+/* ---------- Logo ---------- */
 
 #banner .logo a {
 	margin: 0 auto;
 }
 
-
-/* ---------- Dock with JavaScript ---------- */
+/* ---------- Dock ---------- */
 
 .js .interactive-mode {
 	right: 10px;
 	top: 10px;
 }
 
-
-/* ---------- Main navigation ---------- */
+/* ---------- Navigation ---------- */
 
 #navigation {
 	background: url(../images/custom/navigation_bg.jpg);
@@ -69,7 +52,7 @@ body {
 #navigation a {
 	color: #DEE;
 	display: block;
-	font: 16px Lucida Sans Unicode, Lucida Grande, sans-serif;
+	font: 16px Lucida Sans Unicode,Lucida Grande,sans-serif;
 	line-height: 62px;
 	padding: 0 24px;
 	text-decoration: none;
@@ -88,6 +71,16 @@ body {
 	display: none;
 }
 
+/* ---------- Content Wrapper ---------- */
+
+#content-wrapper {
+	margin: 0 0 -10px;
+	padding: 5px;
+}
+
+.lfr-grid .lfr-column {
+	padding: 0 2.5px;
+}
 
 /* ---------- Portlet ---------- */
 
@@ -104,11 +97,18 @@ body {
 
 .portlet-title {
 	color: #333;
-	font: bold 13px Arial Black, Arial Black, Gadget, sans-serif;
+	font: bold 13px Arial Black,Arial Black,Gadget,sans-serif;
 	letter-spacing: .1em;
 }
 
 .portlet-content {
 	border: 1px solid #D2D7D4;
 	padding: 10px;
+}
+
+/* ---------- Footer ---------- */
+
+#footer {
+	background: url(../images/custom/footer_bg.jpg);
+	height: 104px;
 }

@@ -1,7 +1,6 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-
-/* ---------- Browser normalization ---------- */
+/* ---------- Base ---------- */
 
 body.lite {
 	background: #587E95 url(../images/custom/lite/body_bg.png) repeat-y center top;
@@ -11,18 +10,12 @@ body.dark {
 	background: #949494 url(../images/custom/dark/body_bg.png) repeat-y center top;
 }
 
-
-/* ---------- Main content body ---------- */
+/* ---------- Wrapper ---------- */
 
 #wrapper {
 	margin: 0 auto;
 	width: 960px;
 }
-
-#content-wrapper {
-	padding: 16px;
-}
-
 
 /* ---------- Banner ---------- */
 
@@ -39,10 +32,11 @@ body.dark {
 	background: url(../images/custom/dark/banner_bg.png) repeat-x;
 }
 
+/* ---------- Logo ---------- */
+
 #banner .logo {
 	border-top: 2px solid #48525B;
 	height: 93px;
-	margin: 0;
 	position: relative;
 	top: 61px;
 }
@@ -57,8 +51,7 @@ body.dark {
 	padding: 25px 25px 25px 125px;
 }
 
-
-/* ---------- Main navigation ---------- */
+/* ---------- Navigation ---------- */
 
 #navigation {
 	border-top: 7px solid #455660;
@@ -80,7 +73,7 @@ body.dark {
 #navigation a {
 	color: #FFF;
 	display: block;
-	font: 14px/56px Arial, Helvetica, sans-serif;
+	font: 14px/56px Arial,Helvetica,sans-serif;
 	height: 61px;
 	padding: 0 24px;
 	text-decoration: none;
@@ -98,8 +91,32 @@ body.dark {
 	background: #6B6B6B;
 }
 
+#navigation .enter-page a {
+	background: none;
+	display: inline;
+	float: none;
+}
 
-/* ---------- Portlet wrapper and icons ---------- */
+#navigation .enter-page a.cancel-page {
+	display: none;
+}
+
+#navigation .save-page {
+	display: inline;
+	float: none;
+}
+
+#navigation .cancel-page {
+	display: none;
+}
+
+/* ---------- Content Wrapper ---------- */
+
+#content-wrapper {
+	padding: 16px;
+}
+
+/* ---------- Portlet ---------- */
 
 .portlet {
 	margin: 0 0 24px;
@@ -119,9 +136,16 @@ body.dark {
 }
 
 .portlet-title {
-	font: normal 18px arial, sans-serif;
+	font: normal 18px arial,sans-serif;
 }
 
+.lite .portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+	background: #3a5d77;
+}
+
+.dark .portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+	background: #455660;
+}
 
 /* ---------- Tabs ---------- */
 

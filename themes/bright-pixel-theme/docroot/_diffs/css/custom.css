@@ -16,6 +16,7 @@ body {
 	border-color: #E4E4E4 #CFCFCF #CCC #CFCFCF;
 	margin: 0 auto;
 	padding: 10px;
+	position: relative;
 	width: 940px;
 }
 
@@ -114,4 +115,17 @@ body {
 	color: #666;
 	font: 11px Arial,Helvetica,sans-serif;
 	padding: 3px 0 6px;
+}
+
+/* ---------- Tabs ---------- */
+
+.ui-tabs {
+	border-bottom: 1px solid #a0a9ad;
+}
+
+.ui-tabs li a, .tabs li span {
+	background: #cedae0;
+	border: 1px solid #a0a9ad;
+	margin: 0 -1px 0 0;
+	color: #000;
 }

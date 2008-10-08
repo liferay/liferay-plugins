@@ -1,7 +1,6 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-
-/* ---------- Browser normalization ---------- */
+/* ---------- Base ---------- */
 
 body {
 	background: #0C0005;
@@ -9,14 +8,12 @@ body {
 	padding: 25px 0 0;
 }
 
-
-/* ---------- Main content body ---------- */
+/* ---------- Wrapper ---------- */
 
 #wrapper {
 	margin: 0 auto;
-	width: 1280px;
+	width: 960px;
 }
-
 
 /* ---------- Banner ---------- */
 
@@ -26,20 +23,14 @@ body {
 	padding: 50px 0 0 50px;
 }
 
-#banner h1.logo {
-	margin: 0;
-}
-
-
-/* ---------- Dock with JavaScript ---------- */
+/* ---------- Dock ---------- */
 
 .js .interactive-mode {
 	right: 25px;
 	top: 25px;
 }
 
-
-/* ---------- Main navigation ---------- */
+/* ---------- Navigation ---------- */
 
 #navigation {
 	position: absolute;
@@ -55,7 +46,7 @@ body {
 	background: #350000;
 	color: #FFF;
 	display: block;
-	font: 10px Tahoma, Geneva, sans-serif;
+	font: 10px Tahoma,Geneva,sans-serif;
 	margin: 2.5px;
 	padding: 11px 16px;
 	text-align: center;
@@ -81,8 +72,7 @@ body {
 	display: none;
 }
 
-
-/* ---------- Portlet wrapper and icons ---------- */
+/* ---------- Portlet ---------- */
 
 .portlet {
 	border: 2px solid #350015;
@@ -92,7 +82,7 @@ body {
 .portlet-topper {
 	background: #0C0005 url(../images/custom/portlet_topper_bg.png) repeat-x;
 	color: #B0002B;
-	font: 12px Verdana, Geneva, sans-serif;
+	font: 12px Verdana,Geneva,sans-serif;
 	padding: 8px;
 }
 
@@ -101,6 +91,41 @@ body {
 	line-height: 1.6em;
 }
 
+.portlet a {
+	color: #FFF;
+}
+
+/* ---------- Forms ---------- */
+
+input[type="submit"], input[type="button"], input[type="reset"] {
+	background: #3F0000;
+	border: 1px solid #4F0000;
+	color: #FFF;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus {
+	background: #4F0000;
+	border: 1px solid #4F0000;
+	color: #FFF;
+}
+
+/* ---------- Calendar ---------- */
+
+.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+	background: #350000;
+}
+
+.portlet-calendar .calendar-panel, .portlet-calendar .results-grid, .portlet-calendar .calendar-day .day-number {
+	color: #000;
+}
+
+.portlet-calendar .calendar-container {
+	background-color: #FFF;
+}
+
+.portlet-calendar a {
+	color: #000;
+}
 
 /* ---------- Tabs ---------- */
 
@@ -130,30 +155,4 @@ body {
 .ui-tabs li a:hover, .ui-tabs li.current a:hover {
 	background-color: #4F0000;
 	color: #FFF;
-}
-
-
-/* ---------- Forms ---------- */
-
-input[type="submit"], input[type="button"], input[type="reset"] {
-	background: #3F0000;
-	border: 1px solid #4F0000;
-	color: #FFF;
-}
-
-input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus {
-	background: #4F0000;
-	border: 1px solid #4F0000;
-	color: #FFF;
-}
-
-
-/* ---------- Calendar taglib ---------- */
-
-.portlet-calendar .calendar-panel, .portlet-calendar .results-grid, .portlet-calendar .calendar-day .day-number {
-	color: #000;
-}
-
-.portlet-calendar .calendar-day {
-	background: #FFF;
 }

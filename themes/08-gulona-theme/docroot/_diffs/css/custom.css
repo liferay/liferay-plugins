@@ -1,13 +1,11 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-
 /* ---------- Base ---------- */
 
 body {
 	background: #5F7110;
 	color: #565655;
 }
-
 
 /* ---------- Wrapper ---------- */
 
@@ -17,7 +15,6 @@ body {
 	width: 996px;
 }
 
-
 /* ---------- Banner ---------- */
 
 #banner {
@@ -26,21 +23,12 @@ body {
 	position: relative;
 }
 
-
-/* ---------- Logo ---------- */
-
-#banner .logo {
-	margin: 0;
-}
-
-
 /* ---------- Dock ---------- */
 
 .js .interactive-mode {
 	right: 36px;
 	top: 36px;
 }
-
 
 /* ---------- Navigation ---------- */
 
@@ -59,7 +47,7 @@ body {
 	color: #FAFCF8;
 	display: block;
 	float: left;
-	font: bold 12px Arial, Helvetica, sans-serif;
+	font: bold 12px Arial,Helvetica,sans-serif;
 	height: 15px;
 	overflow: hidden;
 	padding: 12px 15px 13px;
@@ -87,14 +75,12 @@ body {
 	display: none;
 }
 
-
 /* ---------- Content Wrapper ---------- */
 
 #content-wrapper {
 	background: url(../images/custom/content-wrapper_bg.png) no-repeat left top;
 	padding: 18px 36px;
 }
-
 
 /* ---------- Portlet ---------- */
 
@@ -105,7 +91,7 @@ body {
 
 .portlet-title {
 	color: #95A938;
-	font: bold 13px Arial, Helvetica, sans-serif;
+	font: bold 13px Arial,Helvetica,sans-serif;
 	margin: 15px 5px 5px 0;
 }
 
@@ -115,11 +101,20 @@ body {
 
 .portlet-content {
 	color: #565655;
-	font: 12px/1.4em Arial, Helvetica, sans-serif;
+	font: 12px/1.4em Arial,Helvetica,sans-serif;
 	letter-spacing: 0;
 	padding: 0 0 10px;
 }
 
+/* ---------- Portler Calendar ---------- */
+
+.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+	background: #95A938;
+}
+
+.portlet-calendar .day-number, .portlet-calendar .portlet-section-body td, .calendar-panel {
+	color: #000;
+}
 
 /* ---------- Tabs ---------- */
 
@@ -139,7 +134,6 @@ body {
 	border: 1px solid #445205;
 	color: #FFF;
 }
-
 
 /* ---------- Footer ---------- */
 

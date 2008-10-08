@@ -1,25 +1,10 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-
-/* ---------- Browser normalization ---------- */
+/* ---------- Base ---------- */
 
 body {
 	background: #0094D6;
 }
-
-
-/* ---------- Main content body ---------- */
-
-#content-wrapper {
-	background: #FFF url(../images/custom/content-wrapper_side_bg.png) no-repeat;
-	padding: 42px 12px 12px 48px;
-}
-
-#footer {
-	background: url(../images/custom/footer_bg.png);
-	height: 39px;
-}
-
 
 /* ---------- Banner ---------- */
 
@@ -27,14 +12,14 @@ body {
 	background: #0068AF url(../images/custom/banner_bg.png) repeat-x left top;
 }
 
+/* ---------- Logo ---------- */
+
 #banner .logo {
 	background: url(../images/custom/banner_side_bg.png) no-repeat;
-	margin: 0;
 	padding: 36px 76px 24px;
 }
 
-
-/* ---------- Dock with JavaScript ---------- */
+/* ---------- Dock ---------- */
 
 .js .interactive-mode, .js .interactive-mode h2, .js .interactive-mode h2 span {
 	background: #4A91C3 none;
@@ -57,8 +42,7 @@ body {
 	top: 30px;
 }
 
-
-/* ---------- Main navigation ---------- */
+/* ---------- Navigation ---------- */
 
 #navigation {
 	background: url(../images/custom/navigation_side_bg.png) no-repeat left bottom;
@@ -99,6 +83,10 @@ body {
 	background: #4A91C3;
 }
 
+#navigation .enter-page a.cancel-page {
+	display: none;
+}
+
 #navigation .save-page {
 	display: inline;
 	float: none;
@@ -108,8 +96,14 @@ body {
 	display: none;
 }
 
+/* ---------- Content Wrapper ---------- */
 
-/* ---------- Portlet wrapper and icons ---------- */
+#content-wrapper {
+	background: #FFF url(../images/custom/content-wrapper_side_bg.png) no-repeat;
+	padding: 42px 12px 12px 48px;
+}
+
+/* ---------- Portlet ---------- */
 
 .portlet {
 	margin: 0 0 12px;
@@ -118,6 +112,25 @@ body {
 .portlet-title {
 	border-bottom: 4px solid #DDD;
 	color: #567;
-	font: bold 24px Tahoma, Geneva, sans-serif;
+	font: bold 24px Tahoma,Geneva,sans-serif;
 	padding: 0 6px 6px;
+}
+
+/* ---------- Calendar ---------- */
+
+.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+	background: #4A91C3;
+}
+
+/* ---------- Tabs ---------- */
+
+.ui-tabs li a {
+	background: #4A91C3;
+}
+
+/* ---------- Footer ---------- */
+
+#footer {
+	background: url(../images/custom/footer_bg.png);
+	height: 39px;
 }

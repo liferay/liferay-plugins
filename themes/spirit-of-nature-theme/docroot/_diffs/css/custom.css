@@ -1,17 +1,17 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-
-/* ---------- Browser normalization ---------- */
+/* ---------- Base ---------- */
 
 body {
 	background: #454545;
 }
 
+/* ---------- Wrapper ---------- */
+
 #wrapper {
 	margin: 0 auto;
 	width: 876px;
 }
-
 
 /* ---------- Banner ---------- */
 
@@ -22,21 +22,20 @@ body {
 	position: relative;
 }
 
+/* ---------- Logo ---------- */
+
 #banner .logo {
 	float: left;
-	margin: 0;
 }
 
-
-/* ---------- Dock with JavaScript ---------- */
+/* ---------- Dock ---------- */
 
 .js .interactive-mode {
 	right: 0;
-	top: 5px;
+	top: 0;
 }
 
-
-/* ---------- Main navigation ---------- */
+/* ---------- Navigation ---------- */
 
 #navigation {
 	background: url(../images/custom/navigation_bg.jpg);
@@ -50,7 +49,7 @@ body {
 #navigation a {
 	color: #FFF;
 	display: block;
-	font: 13px Lucida Sans Unicode, Lucida Grande, sans-serif;
+	font: 13px Lucida Sans Unicode,Lucida Grande,sans-serif;
 	padding: 20px;
 	text-decoration: none;
 }
@@ -73,14 +72,16 @@ body {
 	display: none;
 }
 
-
-/* ---------- Main content body ---------- */
+/* ---------- Content Wrapper ---------- */
 
 #content-wrapper {
 	background: #FFF url(../images/custom/content-wrapper_bg.jpg) no-repeat;
 	padding: 20px 25px;
 }
 
+.ie #content-wrapper {
+	zoom: 1;
+}
 
 /* ---------- Portlet ---------- */
 
@@ -109,6 +110,11 @@ body {
 	padding: 12px 10px 10px;
 }
 
+/* ---------- Calendar ---------- */
+
+.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+	background: #6c7a2d;
+}
 
 /* ---------- Tabs ---------- */
 

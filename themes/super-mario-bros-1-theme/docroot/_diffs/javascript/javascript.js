@@ -6,49 +6,53 @@ jQuery(document).ready(
 	*/
 
 	function() {
-		var soundPlay = function (sound, reset) {
-			if (reset) {
-				soundFX.html('');
-			}
-			soundFX.append('<embed wmode="transparent" width="1" height="1" src="' + themeDisplay.getPathThemeRoot() + 'javascript/' + sound + '.swf" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />');
-		};
+		var dock = jQuery('#banner .lfr-dock').addClass('collapsed').unbind();
+		var dockButton = dock.find('.user-greeting span');
+		var dockPopupContainer = dock.find('.lfr-dock-list-container');
+		var dockPopup = dock.find('.lfr-dock-list');
+		var transistion = false;
 
-		var soundFX = jQuery('<div style="position: absolute; top: 0; left: 0; "></div>').appendTo('#banner');
+		jQuery('#navigation a').each(function () {
+			var instance = jQuery(this);
+			instance.width(Math.ceil(instance.width() / 32) * 32);
+		});
 
-		jQuery('#navigation li').hover(function () {
-			soundPlay('coin');
-		}, function () {});
+		var contentWrapper = jQuery('#content-wrapper');
+		var contentOffset = (jQuery('#layout-grid').length > 0) ? 24 : 28;
+		contentWrapper.css('height', 'auto').css('height', (Math.ceil(contentWrapper.height() / 32) * 32) + contentOffset);
+		if (Liferay.Layout) {
+			Liferay.Layout.Columns.sortColumns.bind('sortupdate.sortable', function () {
+				contentWrapper.css('height', 'auto').css('height', (Math.ceil(contentWrapper.height() / 32) * 32) + 24);
+			});
+		}
 
-		jQuery('.lfr-dock h2').click(function () {
-			var mario = jQuery(this);
-			var dock = jQuery('.lfr-dock ul');
-
-			if (dock.css('display') === 'block') {
-				soundPlay('pipe', true);
-				dock.animate({
-					display: 'none',
-					opacity: 0,
-					top: -28
-				}, {
-					duration: 600,
-					complete: function () {
-						dock.hide();
-						mario.removeClass('hit');
-					}
-				});
-			}
-			else {
-				soundPlay('grow', true);
-				mario.addClass('hit');
-				dock.css({
+		dockButton.click(function () {
+			if (dock.hasClass('collapsed') && !transistion) {
+				transistion = true;
+				dockPopupContainer.css('overflow', 'hidden');
+				dockPopup.css({
 					display: 'block',
-					opacity: 1,
+					position: 'relative',
+					top: 32
+				}).animate({
 					top: 0
+				}, 400, function () {
+					dock.removeClass('collapsed').addClass('expanded');
+					dockPopupContainer.css({overflow: 'visible', zoom: 1});
+					transistion = false;
 				});
-				dock.animate({
-					top: -58
-				}, {
-					duration: 500
+			}
+			else if (dock.hasClass('expanded') && !transistion) {
+				transistion = true;
+				dockPopupContainer.css('overflow', 'hidden');
+				dockPopup.css({
+					position: 'relative',
+					top: 0
+				}).animate({
+					top: 32
+				}, 400, function () {
+					dock.removeClass('expanded').addClass('collapsed');
+					transistion = false;
 				});
 			}
 		});

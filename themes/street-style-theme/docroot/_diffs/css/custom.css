@@ -1,12 +1,13 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-
-/* ---------- Browser normalization ---------- */
+/* ---------- Base ---------- */
 
 body {
 	background: url(../images/custom/body_bg.png);
 	color: #FFF;
 }
+
+/* ---------- Wrapper ---------- */
 
 #wrapper {
 	background: #000;
@@ -14,12 +15,6 @@ body {
 	padding: 8px;
 	width: 800px;
 }
-
-#content-wrapper {
-	background: #222;
-	padding: 0 8px;
-}
-
 
 /* ---------- Banner ---------- */
 
@@ -29,21 +24,13 @@ body {
 	position: relative;
 }
 
+/* ---------- Logo ---------- */
+
 #banner h1.logo {
 	float: left;
-	margin: 0;
 }
 
-
-/* ---------- Footer ---------- */
-
-#footer {
-	background: url(../images/custom/footer_bg.png) bottom left;
-	height: 120px;
-}
-
-
-/* ---------- Dock with JavaScript ---------- */
+/* ---------- Dock ---------- */
 
 .js .interactive-mode {
 	right: 0;
@@ -63,7 +50,6 @@ body {
 	position: absolute;
 	right: -100px;
 }
-
 
 /* ---------- Main navigation ---------- */
 
@@ -92,11 +78,28 @@ body {
 #navigation a {
 	color: #FFF;
 	display: block;
-	font: bold 14px Arial, sans-serif;
+	font: bold 14px Arial,sans-serif;
 	padding: 8px 12px;
 	text-decoration: none;
 }
 
+#navigation .save-page, #navigation .save-page:hover {
+	background: none;
+	border-right: 0;
+	display: inline;
+	float: none;
+}
+
+#navigation .cancel-page {
+	display: none;
+}
+
+/* ---------- Content Wrapper ---------- */
+
+#content-wrapper {
+	background: #222;
+	padding: 0 8px;
+}
 
 /* ---------- Portlet ---------- */
 
@@ -115,6 +118,24 @@ body {
 	line-height: 1.6em;
 }
 
+.portlet-content a {
+	color: #FFF;
+}
+
+/* ---------- Calendar ---------- */
+
+.portlet-calendar a {
+	color: #009;
+}
+
+.portlet-calendar .calendar-container {
+	background: #FFF;
+	color: #000;
+}
+
+.portlet-calendar .portlet-section-body {
+	color: #000;
+}
 
 /* ---------- Tabs ---------- */
 
@@ -139,13 +160,9 @@ body {
 	margin: 0 2px 0 0;
 }
 
+/* ---------- Footer ---------- */
 
-/* ---------- Liferay UI ---------- */
-
-.portlet-msg-error {
-	color: #000;
-}
-
-.calendar-container, .results-row {
-	color: #000;	
+#footer {
+	background: url(../images/custom/footer_bg.png) bottom left;
+	height: 120px;
 }

@@ -6,65 +6,60 @@ jQuery(document).ready(
 	*/
 
 	function() {
-		var soundPlay = function (sound, reset) {
-			if (reset) {
-				soundFX.html('');
-			}
-			soundFX.append('<embed wmode="transparent" width="1" height="1" src="' + themeDisplay.getPathThemeRoot() + 'javascript/' + sound + '.swf" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />');
-		};
+		var dock = jQuery('#banner .lfr-dock').addClass('collapsed').unbind();
+		var dockButton = dock.find('.user-greeting span');
+		var dockPopupContainer = dock.find('.lfr-dock-list-container');
+		var dockPopup = dock.find('.lfr-dock-list');
+		var transistion = false;
 
-		var soundFX = jQuery('<div style="position: absolute; top: 0; left: 0; "></div>').appendTo('#banner');
-
-		jQuery('.lfr-dock h2').hover(function () {
-			if (jQuery('.lfr-dock ul').css('display') !== 'block') {
-				soundPlay('pick');
-				jQuery(this).addClass('hover');
-			}
-		}, function () {
-			jQuery(this).removeClass('hover');
+		jQuery('#navigation a').each(function () {
+			var instance = jQuery(this);
+			instance.width(Math.ceil(instance.width() / 32) * 32);
 		});
 
-		jQuery('.lfr-dock h2').click(function () {
-			var mario = jQuery(this);
-			var dock = jQuery('.lfr-dock ul');
+		var contentWrapper = jQuery('#content-wrapper');
+		var contentOffset = (jQuery('#layout-grid').length > 0) ? 34 : 34;
+		contentWrapper.css('height', 'auto').css('height', (Math.ceil(contentWrapper.height() / 32) * 32) + contentOffset);
+		if (Liferay.Layout) {
+			Liferay.Layout.Columns.sortColumns.bind('sortupdate.sortable', function () {
+				contentWrapper.css('height', 'auto').css('height', (Math.ceil(contentWrapper.height() / 32) * 32) + 24);
+			});
+		}
 
-			if (dock.css('display') === 'block') {
-				soundPlay('toss', true);
-
-				mario.removeClass('lifted');
-				mario.addClass('throwing');
-
-				dock.animate({
-					left: -600,
-					top: 10,
-					opacity: 0
-				}, {
-					duration: 750,
-					complete: function () {
-						dock.hide();
-						dock.css({
-							left: 'auto',
-							top: 'auto',
-							opacity: 1
-						});
-						mario.removeClass('throwing');
-					}
-				});
-			}
-			else {
-				mario.removeClass('hover');
-				mario.addClass('lifting');
-
-				soundPlay('pull');
-
+		dockButton.click(function () {
+			if (dock.hasClass('collapsed') && !transistion) {
+				transistion = true;
+				dock.addClass('expanding');
+				dockPopupContainer.css('overflow', 'hidden');
 				setTimeout(function () {
-					soundPlay('door', true);
-
-					mario.removeClass('lifting');
-					mario.addClass('lifted');
-
-					dock.show();
-				}, 1000);
+					dockPopup.css({
+						display: 'block',
+						position: 'relative',
+						top: 32
+					}).animate({
+						top: 0
+					}, 100, function () {
+						dock.removeClass('expanding collapsed').addClass('expanded');
+						dockPopupContainer.css({overflow: 'visible', zoom: 1});
+						transistion = false;
+					});
+				}, 400);
+			}
+			else if (dock.hasClass('expanded') && !transistion) {
+				transistion = true;
+				dock.addClass('collapsing');
+				dockPopup.css({
+					position: 'relative',
+					right: 0
+				}).animate({
+					opacity: 0,
+					right: 512,
+					top: 170
+				}, 600, function () {
+					dockPopup.attr('style', '');
+					dock.removeClass('collapsing expanded').addClass('collapsed');
+					transistion = false;
+				});
 			}
 		});
 	}

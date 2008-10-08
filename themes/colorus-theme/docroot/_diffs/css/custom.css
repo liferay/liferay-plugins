@@ -1,248 +1,133 @@
-/*--------- Body ---------*/
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---------- Base ---------- */
 
 body {
-	background: #171C20 url(../images/custom/body_all_bckg.jpg) repeat-y center top;
-	color: #FFF;
-	font-family: Trebuche MS, 'Arial', 'Helvetica', sans-serif;
-	font-size: 11px;
+	background: #171C20 url(../images/custom/body_bg.jpg) repeat-y center top;
+	color: #BED7E6;
 }
+
+/* ---------- Wrapper ---------- */
 
 #wrapper {
-	background: url(../images/custom/body_top_bckg.jpg) no-repeat center top;
-}
-
-#content-wrapper {
 	margin: 0 auto;
-	position: relative;
-	width: 770px;
+	width: 1000px;
 }
 
-
-/*-------- Banner --------*/
+/* ---------- Banner ---------- */
 
 #banner {
-	display: block;
-	height: 305px;
-	margin: 0 auto;
+	background: url(../images/custom/banner_bg.jpg) no-repeat;
+	height: 257px;
+	padding: 120px 0 0;
 	position: relative;
-	top: -1px;
-	width: 770px;
 }
 
-#banner .logo {
-	margin: 0;
-}
+/* ---------- Logo ---------- */
 
 #banner .logo a {
 	margin: 0 auto;
-	position: relative;
-	top: 121px;	
 }
 
+/* ---------- Dock ---------- */
 
-/*-------- Dock ----------*/
 .js .interactive-mode {
-	right: 10px;
-	top: 60px;
+	right: 112px;
+	top: 44px;
 }
 
+/* ---------- Navigation ---------- */
 
-/*----- Navigation -------*/
 #navigation {
-	margin: 0 auto 30px;
+	margin: -86px 0 70px;
 	position: relative;
 	text-align: center;
-	width: 770px;
+	z-index: 22;
 }
 
-#navigation ul li {
+#navigation ul, #navigation li, #add-page, #navigation .enter-page {
 	display: inline;
 	float: none;
-	margin: 0 auto;
 }
 
-#navigation li a {
-	color: #111;
-	display: inline;
-	float: none;
-	font-size: 14px;
-	font-weight: bold;
-	margin-left: 4px;
-	padding: 7px 25px;
+#navigation a, #navigation .enter-page {
+	background: #003;
+	color: #FFF;
+	font: bold 14px/14px Tahoma,Arial,sans-serif;
+	letter-spacing: 0.05em;
+	margin: 0 1px;
+	padding: 0 10px 2px;
 	text-decoration: none;
 }
 
-#navigation li a:hover {
-	background-color: #F26513;
+#navigation a:hover {
+	background: #228;
 }
 
-#navigation li.selected a {
-	background-color: #445D6C;
+#navigation input[type="text"] {
+	padding: 0;
+}
+
+/* ---------- Content Wrapper ---------- */
+
+#content-wrapper {
+	margin: 0 auto;
+	width: 880px;
+}
+
+.portlet a {
 	color: #FFF;
 }
 
-.js #add-page {
-	float: right;
-	position: absolute;
-	right: -30px;
-	top: 0;
+.lfr-grid .lfr-column {
 }
 
-.js #add-page a {
-	background: none;
-	color: #777;
-	font-weight: bold;
-	padding: 7px 25px;
-	text-decoration: none;
-}
+/* ---------- Portlet ---------- */
 
-.js #navigation .enter-page {
-	display: inline;
-}
-
-.js #navigation .enter-page .save-page {
-	background: #445D6C;
-}
-
-.js #navigation .enter-page .cancel-page {
-	display: none;
-}
-
-.js #navigation .enter-page .save-page:hover {
-	background: #F26513;
-}
-
-
-/*----- Forms --------*/
-input.focus, textare.focus, ie6 input.focus, ie6 textarea.focus {
-	background: white;
-	border: white;
-}
-
-input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
-	padding: 2px 1px;
-}
-
-
-/*------ Portlet ------*/
 .portlet {
-	background: transparent;
-	border: none;
-	margin: 0 0 30px;
-}
-
-.portlet-title {
-	padding: 5px;
+	margin: 0 0 10px;
 }
 
 .portlet-topper {
-	color: white;
+	margin: 0 0 10px;
 }
 
-.portlet-calendar .calendar-container {
-	background: #222;
-	border: 1px solid #333;
+.portlet-title {
+	color: #FFF;
 }
 
-.portlet-calendar .calendar-day .day-text {
-	background: #333;	
+.portlet-content {
+	font: 11px/16px Tahoma,Arial,sans-serif;
+	padding: 0;
 }
 
-.portlet-calendar .calendar-day .day-number {
-	background: #222;
-	border: none;
-	color: #CCC;
-	font-weight: bold;
-}
+/* ---------- Calendar ---------- */
 
-.portlet-calendar .calendar-day .day-number {
-	color: white;
-}
-
-.taglib-calendar tr th {
-	background: #222;
-	border: none;
-	color: #CCC;
-}
-
-.portlet-section-body td {
-	color: black;
-}
-
-.uni-form {
-	background: black;
-}
-.ui-dialog {
-	background-color: black;
-}
-
-.uni-form fieldset legend {
-	color: white;
-}
-
-.portlet-msg-error {
+.portlet-calendar .calendar-container .taglib-calendar table, .portlet-calendar .portlet-section-body.results-row, .portlet-calendar .calendar-day .day-number, .taglib-calendar a {
 	color: #000;
 }
 
-/*--------- Tabs ----------*/
+/* ---------- Tabs ---------- */
+
 .ui-tabs {
-	border-bottom: solid 1px #222;
+	border-bottom: 1px solid #228;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span {
-	background: #445D6C;
-	border: none;
-	color: #FFF;
-	padding: 10px 25px;
-}
-
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
-	background: #EEB122;
-	color: #FFF;
-	text-decoration: none;
-}
-
-.ui-tabs li a, .tabs li span {
-	background: #333;
-	border-bottom: solid 1px #445D6C;
-	border: none;	
+.ui-tabs li a, .ui-tabs li a:hover, .ui-tabs li span, .ui-tabs li span:hover {
+	background: #003;
+	border: 1px solid #228;
 }
 
 .ui-tabs li a:hover, .ui-tabs li span:hover {
-	background: #222;
-	color: #FFF;
 }
 
+.ui-tabs li.current:hover {
+	background: transparent;
+}
 
-/*------ Footer -------*/
+/* ---------- Footer ---------- */
+
 #footer {
-	background: url(../images/custom/footer_bckg.jpg) no-repeat top center;
-	clear: both;
-	height: 102px;
-	margin: 0 auto;
-	width: 780px;
-}
-
-#footer a {
-	color: #FFF;
-}
-
-#left_footer a:hover {
-	text-decoration: none;
-}
-
-#left_footer {
-	float: left;
-	padding: 60px 0 0 30px;
-}
-
-#right_footer a:hover {
-	text-decoration: none;
-}
-
-#right_footer {
-	color: #FFF;
-	float: right;
-	padding: 60px 30px 0 0;
-	text-align: right;
+	background: url(../images/custom/footer_bg.jpg) no-repeat center top;
+	padding: 59px 0 0;
 }

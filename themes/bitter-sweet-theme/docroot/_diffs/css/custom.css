@@ -1,19 +1,14 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-
 /* ---------- Base ---------- */
 
 body {
-	background: #698e00 url(../images/custom/body_bg.png) center top;
+	background: #698E00 url(../images/custom/body_bg.png) center top;
 	color: #333;
 	margin: 0 auto;
 	padding: 0 20px;
 	width: 960px;
 }
-
-
-/* ---------- Wrapper ---------- */
-
 
 /* ---------- Banner ---------- */
 
@@ -23,22 +18,18 @@ body {
 	position: relative;
 }
 
-
 /* ---------- Logo ---------- */
 
 #banner .logo {
-	margin: 0;
 	padding: 18px 24px;
 }
-
 
 /* ---------- Dock ---------- */
 
 .js .interactive-mode {
-	top: 20px;
 	right: 18px;
+	top: 20px;
 }
-
 
 /* ---------- Navigation ---------- */
 
@@ -60,7 +51,7 @@ body {
 	color: #553;
 	display: block;
 	float: left;
-	font: bold 12px Arial, Helvetica, sans-serif;
+	font: bold 12px Arial,Helvetica,sans-serif;
 	height: 14px;
 	padding: 12px 20px;
 	text-decoration: none;
@@ -91,13 +82,11 @@ body {
 	display: none;
 }
 
-
 /* ---------- Content Wrapper ---------- */
 
 #content-wrapper {
 	padding: 0 0 24px;
 }
-
 
 /* ---------- Portlet ---------- */
 
@@ -112,7 +101,7 @@ body {
 	background: #567300;
 	color: #FFF;
 	display: block;
-	font: 14px/40px Lucida Sans Unicode, sans-serif;
+	font: 14px/40px Lucida Sans Unicode,sans-serif;
 	height: 40px;
 	padding: 0 16px;
 }
@@ -126,8 +115,38 @@ body {
 }
 
 .portlet-content {
-	font: 12px Lucida Sans Unicode, sans-serif;
+	font: 12px Lucida Sans Unicode,sans-serif;
 	padding: 12px 18px;
+}
+
+/* ---------- Portler Calendar ---------- */
+
+.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+	background: #e2f4ae;
+}
+
+.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header th, .portlet-calendar .results-header td {
+	color: #333;
+}
+
+/* ---------- Tabs ---------- */
+
+.ui-tabs {
+	border-bottom: 1px solid #445205;
+}
+
+.ui-tabs li a, .ui-tabs li span, .ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: #e2f4ae;
+	border: 1px solid #445205;
+	color: #333;
+	margin-left: -1px;
+	padding: 6px 8px;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
+	background: #95A938;
+	border: 1px solid #445205;
+	color: #FFF;
 }
 
 /* ---------- Input ------------ */
@@ -136,10 +155,6 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 	background: #E8F6BF;
 	border: 1px solid #97DB8C;
 }
-
-
-/* ---------- Tabs ---------- */
-
 
 /* ---------- Footer ---------- */
 
