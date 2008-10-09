@@ -41,12 +41,20 @@ String content = BeanParamUtil.getString(article, request, "content");
 
 boolean draft = BeanParamUtil.getBoolean(article, request, "draft", true);
 
+long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentResourcePrimKey");
+
+KBArticle parent = null;
+
 long resourcePrimKey = 0;
 
 if (article != null) {
 	resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey");
 
 	template = BeanParamUtil.getBoolean(article, request, "template", false);
+}
+
+if (parentResourcePrimKey > 0) {
+	parent = KBArticleLocalServiceUtil.getArticle(parentResourcePrimKey);
 }
 
 // Templates
@@ -136,6 +144,7 @@ ResourceURL templateURL = renderResponse.createResourceURL();
 <input name="<portlet:namespace />templateResourcePrimKey" type="hidden" value="" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />template" type="hidden" value="<%= template %>" />
+<input name="<portlet:namespace />parentResourcePrimKey" type="hidden" value="<%= parentResourcePrimKey %>" />
 <input name="<portlet:namespace />resourcePrimKey" type="hidden" value="<%= resourcePrimKey %>" />
 
 <c:if test="<%= article != null %>">
@@ -158,6 +167,16 @@ ResourceURL templateURL = renderResponse.createResourceURL();
 		<input name="<portlet:namespace />title" size="80" type="text" value="<%= title %>" />
 	</td>
 </tr>
+<c:if test="<%= parent != null %>">
+	<tr>
+		<td>
+			<liferay-ui:message key="parent" />
+		</td>
+		<td>
+			<%= parent.getTitle() %>
+		</td>
+	</tr>
+</c:if>
 </table>
 
 <br />

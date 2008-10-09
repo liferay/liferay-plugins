@@ -63,6 +63,7 @@ import com.liferay.util.MathUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.util.servlet.PortletResponseUtil;
 import com.liferay.util.servlet.ServletResponseUtil;
+import com.liferay.util.servlet.UploadException;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -124,17 +125,20 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			else if (actionName.equals(Constants.REVERT)) {
 				revertPage(actionRequest);
 			}
-			else if (actionName.equals("subscribeArticle")) {
-				subscribeArticle(actionRequest);
-			}
-			else if (actionName.equals("unsubscribeArticle")) {
-				unsubscribeArticle(actionRequest);
-			}
 			else if (actionName.equals("addFile")) {
 				addAttachment(actionRequest);
 			}
 			else if (actionName.equals("deleteAttachment")) {
 				deleteAttachment(actionRequest);
+			}
+			else if (actionName.equals("importArticle")) {
+				importArticle(actionRequest);
+			}
+			else if (actionName.equals("subscribeArticle")) {
+				subscribeArticle(actionRequest);
+			}
+			else if (actionName.equals("unsubscribeArticle")) {
+				unsubscribeArticle(actionRequest);
 			}
 
 			boolean preview = ParamUtil.getBoolean(actionRequest, "preview");
@@ -177,7 +181,8 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchArticleException ||
-				e instanceof PrincipalException) {
+				e instanceof PrincipalException ||
+				e instanceof UploadException) {
 
 				SessionErrors.add(actionRequest, e.getClass().getName());
 
@@ -211,7 +216,8 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchArticleException ||
-				e instanceof PrincipalException) {
+				e instanceof PrincipalException ||
+				e instanceof UploadException) {
 
 				SessionErrors.add(renderRequest, e.getClass().getName());
 
@@ -427,6 +433,27 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 
 		KBArticleServiceUtil.deleteArticleAttachment(
 			resourcePrimKey, attachment);
+	}
+
+	protected void importArticle(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		PortletPreferences prefs = actionRequest.getPreferences();
+
+		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(
+			actionRequest);
+
+		File file = uploadRequest.getFile("file");
+
+		if (!file.exists()) {
+			throw new UploadException();
+		}
+
+		KBArticleServiceUtil.importDocbook(
+			themeDisplay.getScopeGroupId(), file, prefs, themeDisplay);
 	}
 
 	protected void getFile(
@@ -715,6 +742,8 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		boolean minorEdit = ParamUtil.getBoolean(actionRequest, "minorEdit");
 		boolean template = ParamUtil.getBoolean(actionRequest, "template");
 		boolean draft = ParamUtil.getBoolean(actionRequest, "draft");
+		long parentResourcePrimKey = ParamUtil.getLong(
+			actionRequest, "parentResourcePrimKey");
 
 		List<TagsVocabulary> vocabularies =
 			TagsVocabularyServiceUtil.getCompanyVocabularies(
@@ -756,7 +785,8 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		if (resourcePrimKey <= 0) {
 			return KBArticleServiceUtil.addArticle(
 				themeDisplay.getPlid(), title, content, description,
-				minorEdit, template, draft, tagsEntries, prefs, themeDisplay);
+				minorEdit, template, draft, parentResourcePrimKey, tagsEntries,
+				prefs, themeDisplay);
 		}
 		else {
 			KBArticle article = KBArticleServiceUtil.getArticle(
@@ -765,14 +795,14 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			if (article.isTemplate() && (template == false)) {
 				return KBArticleServiceUtil.addArticle(
 					themeDisplay.getScopeGroupId(), title, content,
-					description, minorEdit, template, draft, tagsEntries, prefs,
-					themeDisplay);
+					description, minorEdit, template, draft,
+					parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
 			}
 			else {
 				return KBArticleServiceUtil.updateArticle(
 					themeDisplay.getPlid(), resourcePrimKey, version, title,
 					content, description, minorEdit, template, draft,
-					tagsEntries, prefs, themeDisplay);
+					parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
 			}
 		}
 	}

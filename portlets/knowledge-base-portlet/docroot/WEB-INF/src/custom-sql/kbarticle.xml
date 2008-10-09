@@ -38,6 +38,7 @@
 				KB_KBArticle
 			WHERE
 				(groupId = ?) AND
+				(parentResourcePrimKey = ?) AND
 				(template = ?) AND
 				(head = true) AND
 				(
@@ -80,7 +81,7 @@
 				version ASC
 		]]>
 	</sql>
-	<sql id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.findByG_T_Or_G_T_U">
+	<sql id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.findByG_P_T_Or_G_P_T_U">
 		<![CDATA[
 			SELECT
 				{KB_KBArticle.*}
@@ -88,6 +89,7 @@
 				KB_KBArticle
 			WHERE
 				(groupId = ?) AND
+				(parentResourcePrimKey = ?) AND
 				(template = ?) AND
 				(head = true) AND
 				(

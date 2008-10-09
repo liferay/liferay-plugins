@@ -180,6 +180,13 @@ public class ClpSerializer {
 
 					method15.invoke(newModel, value15);
 
+					Method method16 = newModelClass.getMethod("setParentResourcePrimKey",
+							new Class[] { Long.TYPE });
+
+					Long value16 = new Long(oldCplModel.getParentResourcePrimKey());
+
+					method16.invoke(newModel, value16);
+
 					return newModel;
 				}
 				catch (Exception e) {
@@ -572,6 +579,14 @@ public class ClpSerializer {
 							(Object[])null);
 
 					newModel.setDraft(value15.booleanValue());
+
+					Method method16 = oldModelClass.getMethod(
+							"getParentResourcePrimKey");
+
+					Long value16 = (Long)method16.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setParentResourcePrimKey(value16.longValue());
 
 					return newModel;
 				}

@@ -29,10 +29,10 @@ String view = ParamUtil.getString(request, "view", "view_all_articles");
 String tag = ParamUtil.getString(request, "tag");
 boolean hasError = GetterUtil.getBoolean((String) request.getAttribute("hasError"));
 
-String[] supportedViews = {"compare_versions", "edit_article", "edit_article_attachment", "view_all_articles", "view_article", "view_article_attachments", "view_article_history", "view_subscriptions", "view_tagged_articles", "view_templates", "search", };
+String[] supportedViews = {"compare_versions", "edit_article", "edit_article_attachment", "import_article", "view_all_articles", "view_article", "view_article_attachments", "view_article_history", "view_subscriptions", "view_tagged_articles", "view_templates", "search", "error"};
 
 if (!ArrayUtil.contains(supportedViews, view)) {
-	view = supportedViews[0];
+	view = "view_all_articles";
 }
 
 if (Validator.isNotNull(tag)) {

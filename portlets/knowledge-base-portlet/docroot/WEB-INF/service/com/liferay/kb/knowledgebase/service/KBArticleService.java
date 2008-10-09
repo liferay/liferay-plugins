@@ -32,8 +32,8 @@ public interface KBArticleService {
 	public com.liferay.kb.knowledgebase.model.KBArticle addArticle(long plid,
 		java.lang.String title, java.lang.String content,
 		java.lang.String description, boolean minorEdit, boolean template,
-		boolean draft, java.lang.String[] tagsEntries,
-		javax.portlet.PortletPreferences prefs,
+		boolean draft, long parentResourcePrimKey,
+		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
@@ -142,6 +142,11 @@ public interface KBArticleService {
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
+	public void importDocbook(long groupId, java.io.File file,
+		javax.portlet.PortletPreferences prefs,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws java.rmi.RemoteException, java.lang.Exception;
+
 	public com.liferay.kb.knowledgebase.model.KBArticle revertArticle(
 		long resourcePrimKey, double version,
 		javax.portlet.PortletPreferences prefs,
@@ -169,8 +174,8 @@ public interface KBArticleService {
 		long plid, long resourcePrimKey, double version,
 		java.lang.String title, java.lang.String content,
 		java.lang.String description, boolean minorEdit, boolean template,
-		boolean draft, java.lang.String[] tagsEntries,
-		javax.portlet.PortletPreferences prefs,
+		boolean draft, long parentResourcePrimKey,
+		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws java.rmi.RemoteException, com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;

@@ -28,3 +28,4 @@
 
 <liferay-ui:error exception="<%= NoSuchArticleException.class %>" message="the-article-could-not-be-found" />
 <liferay-ui:error exception="<%= PrincipalException.class %>" message="you-do-not-have-the-required-permissions" />
+<liferay-ui:error exception="<%= UploadException.class %>" message="no-file-was-uploaded" />

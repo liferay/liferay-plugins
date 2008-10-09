@@ -35,6 +35,7 @@
 		<column name="head" type="boolean" />
 		<column name="template" type="boolean" />
 		<column name="draft" type="boolean" />
+		<column name="parentResourcePrimKey" type="long" />
 
 		<!-- Order -->
 
@@ -50,6 +51,9 @@
 		</finder>
 		<finder name="GroupId" return-type="Collection">
 			<finder-column name="groupId" />
+		</finder>
+		<finder name="ParentResourcePrimKey" return-type="Collection">
+			<finder-column name="parentResourcePrimKey" />
 		</finder>
 		<finder name="ResourcePrimKey" return-type="Collection">
 			<finder-column name="resourcePrimKey" />
@@ -84,6 +88,12 @@
 			<finder-column name="groupId" />
 			<finder-column name="title" />
 			<finder-column name="version" />
+		</finder>
+		<finder name="P_H_T_D" return-type="Collection">
+			<finder-column name="parentResourcePrimKey" />
+			<finder-column name="head" />
+			<finder-column name="template" />
+			<finder-column name="draft" />
 		</finder>
 		<finder name="C_H_T_D" return-type="Collection">
 			<finder-column name="companyId" />

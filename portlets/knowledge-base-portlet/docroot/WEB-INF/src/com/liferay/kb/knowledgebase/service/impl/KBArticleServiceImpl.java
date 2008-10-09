@@ -60,6 +60,8 @@ import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.feed.synd.SyndFeedImpl;
 import com.sun.syndication.io.FeedException;
 
+import java.io.File;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -78,8 +80,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public KBArticle addArticle(
 			long plid, String title, String content, String description,
 			boolean minorEdit, boolean template, boolean draft,
-			String[] tagsEntries, PortletPreferences prefs,
-			ThemeDisplay themeDisplay)
+			long parentResourcePrimKey, String[] tagsEntries,
+			PortletPreferences prefs, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		if (template) {
@@ -96,7 +98,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		return kbArticleLocalService.addArticle(
 			getUserId(), layout.getGroupId(), title, content, description,
-			minorEdit, template, draft, tagsEntries, prefs, themeDisplay);
+			minorEdit, template, draft, parentResourcePrimKey, tagsEntries,
+			prefs, themeDisplay);
 	}
 
 	public void addArticleAttachments(
@@ -393,6 +396,15 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		return checkViewPermission(itr, max);
 	}
 
+	public void importDocbook(
+			long groupId, File file, PortletPreferences prefs,
+			ThemeDisplay themeDisplay)
+		throws Exception {
+
+		kbArticleLocalService.importDocbook(
+			getUserId(), groupId , file, prefs, themeDisplay);
+	}
+
 	public KBArticle revertArticle(
 			long resourcePrimKey, double version, PortletPreferences prefs,
 			ThemeDisplay themeDisplay)
@@ -448,8 +460,9 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public KBArticle updateArticle(
 			long plid, long resourcePrimKey, double version, String title,
 			String content, String description, boolean minorEdit,
-			boolean template, boolean draft, String[] tagsEntries,
-			PortletPreferences prefs, ThemeDisplay themeDisplay)
+			boolean template, boolean draft, long parentResourcePrimKey,
+			String[] tagsEntries, PortletPreferences prefs,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		if (template) {
@@ -464,7 +477,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		return kbArticleLocalService.updateArticle(
 			getUserId(), resourcePrimKey, version, title, content, description,
-			minorEdit, template, draft, tagsEntries, prefs, themeDisplay);
+			minorEdit, template, draft, parentResourcePrimKey, tagsEntries,
+			prefs, themeDisplay);
 	}
 
 	protected List<KBArticle> checkViewPermission(

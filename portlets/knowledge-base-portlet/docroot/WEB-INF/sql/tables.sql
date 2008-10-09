@@ -15,7 +15,8 @@ create table KB_KBArticle (
 	description STRING null,
 	head BOOLEAN,
 	template BOOLEAN,
-	draft BOOLEAN
+	draft BOOLEAN,
+	parentResourcePrimKey LONG
 );
 
 create table KB_KBArticleResource (

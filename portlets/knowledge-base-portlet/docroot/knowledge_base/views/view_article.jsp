@@ -51,6 +51,8 @@ if (article.isTemplate()) {
 	className += ".template";
 }
 
+List childArticles = article.getChildArticles();
+
 // Feedback entry
 
 int score = BeanParamUtil.getInteger(feedbackEntry, request, "score");
@@ -72,6 +74,13 @@ if (totalVotes > 0) {
 }
 
 // Portlet URLs
+
+PortletURL addChildArticleURL = renderResponse.createRenderURL();
+
+addChildArticleURL.setParameter("view", "edit_article");
+addChildArticleURL.setParameter("redirect", currentURL);
+addChildArticleURL.setParameter("editTitle", "1");
+addChildArticleURL.setParameter("parentResourcePrimKey", String.valueOf(resourcePrimKey));
 
 PortletURL editArticleURL = renderResponse.createRenderURL();
 
@@ -120,6 +129,35 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 	</div>
 </c:if>
 
+<c:if test="<%= article.hasParent() %>">
+	<div class="breadcrumbs">
+
+		<%
+		PortletURL viewParentArticleURL = renderResponse.createRenderURL();
+
+		viewParentArticleURL.setParameter("view", "view_article");
+
+		List parentArticles = article.getParentArticles(themeDisplay.getUserId());
+
+		for (int i = 0; i < parentArticles.size(); i++) {
+			KBArticle curParentArticle = (KBArticle)parentArticles.get(i);
+
+			viewParentArticleURL.setParameter("title", curParentArticle.getTitle());
+		%>
+
+			<a href="<%= viewParentArticleURL %>"><%= curParentArticle.getTitle() %></a>
+
+			<c:if test="<%= i < parentArticles.size() %>">
+				&raquo;
+			</c:if>
+
+		<%
+		}
+		%>
+
+	</div>
+</c:if>
+
 <h1 class="article-title">
 	<%= title %>
 </h1>
@@ -138,6 +176,32 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 				<div class="knowledge-base-body">
 					<%= article.getContent() %>
 				</div>
+
+				<c:if test="<%= (childArticles.size() > 0) %>">
+					<p class="child-articles-message"><liferay-ui:message key="children" /></p>
+
+					<ul class="child-articles">
+
+						<%
+						PortletURL curArticleURL = renderResponse.createRenderURL();
+						curArticleURL.setParameter("view", "view_article");
+
+						for (int i = 0; i < childArticles.size(); i++) {
+							KBArticle curArticle = (KBArticle)childArticles.get(i);
+
+							curArticleURL.setParameter("title", curArticle.getTitle());
+						%>
+
+							<li>
+								<a href="<%= curArticleURL %>"><%= curArticle.getTitle() %></a>
+							</li>
+
+						<%
+						}
+						%>
+
+					</ul>
+				</c:if>
 
 				<c:if test="<%= !print && !article.isDraft() && article.isHead() && !article.isTemplate() %>">
 					<table border="0" cellpadding="0" cellspacing="0" class="taglib-ratings stars">
@@ -313,6 +377,10 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 							<liferay-ui:icon-list>
 								<c:if test="<%= KBArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) && article.isHead() %>">
 									<liferay-ui:icon image="edit" label="<%= true %>" url="<%= editArticleURL.toString() %>" />
+								</c:if>
+
+								<c:if test="<%= !article.isTemplate() && KBArticlePermission.contains(permissionChecker, article, KnowledgeBaseKeys.ADD_CHILD_ARTICLE) %>">
+									<liferay-ui:icon image="add_article" message="add-child-article" url="<%= addChildArticleURL.toString() %>" label="<%= true %>" />
 								</c:if>
 
 								<liferay-ui:icon image="print" label="<%= true %>" message="print" url='<%= "javascript: " + renderResponse.getNamespace() + "printArticle();" %>' />

@@ -39,7 +39,9 @@ import com.liferay.kb.knowledgebase.service.base.KBArticleLocalServiceBaseImpl;
 import com.liferay.kb.knowledgebase.util.Indexer;
 import com.liferay.kb.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.kb.knowledgebase.util.comparator.ArticleModifiedDateComparator;
+import com.liferay.kb.util.DocBookEntityResolver;
 import com.liferay.kb.util.PortletPropsKeys;
+import com.liferay.kb.util.Section;
 import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
@@ -54,7 +56,9 @@ import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.util.ByteArrayMaker;
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.NotificationThreadLocal;
 import com.liferay.portal.kernel.util.ObjectValuePair;
@@ -63,6 +67,7 @@ import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Group;
@@ -82,18 +87,34 @@ import com.liferay.portlet.tags.service.TagsAssetLocalServiceUtil;
 import com.liferay.portlet.tags.service.TagsEntryLocalServiceUtil;
 import com.liferay.util.MathUtil;
 
+import java.io.File;
+import java.io.Reader;
+import java.io.StringReader;
+
 import java.rmi.RemoteException;
 
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.Map;
+import java.util.Set;
 
 import javax.mail.internet.InternetAddress;
 
 import javax.portlet.PortletPreferences;
 
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 
 /**
  * <a href="KBArticleLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -107,8 +128,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public KBArticle addArticle(
 			long userId, long groupId, String title, String content,
 			String description, boolean minorEdit, boolean template,
-			boolean draft, String[] tagsEntries, PortletPreferences prefs,
-			ThemeDisplay themeDisplay)
+			boolean draft, long parentResourcePrimKey, String[] tagsEntries,
+			PortletPreferences prefs, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		String uuid = null;
@@ -117,16 +138,16 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		return addArticle(
 			uuid, userId, groupId, title, version, content, description,
-			minorEdit, head, template, draft, tagsEntries, prefs,
-			themeDisplay);
+			minorEdit, head, template, draft, parentResourcePrimKey,
+			tagsEntries, prefs, themeDisplay);
 	}
 
 	public KBArticle addArticle(
 			String uuid, long userId, long groupId, String title,
 			double version, String content, String description,
 			boolean minorEdit, boolean head, boolean template, boolean draft,
-			String[] tagsEntries, PortletPreferences prefs,
-			ThemeDisplay themeDisplay)
+			long parentResourcePrimKey, String[] tagsEntries,
+			PortletPreferences prefs, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		// Article
@@ -167,6 +188,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		article.setHead(head);
 		article.setTemplate(template);
 		article.setDraft(draft);
+		article.setParentResourcePrimKey(parentResourcePrimKey);
 
 		kbArticlePersistence.update(article, false);
 
@@ -278,6 +300,15 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	public void deleteArticle(long resourcePrimKey)
 		throws PortalException, SystemException {
+
+		// Children
+
+		List<KBArticle> children =
+			kbArticlePersistence.findByParentResourcePrimKey(resourcePrimKey);
+
+		for (KBArticle curArticle : children) {
+			deleteArticle(curArticle.getResourcePrimKey());
+		}
 
 		List<KBArticle> articles = kbArticlePersistence.findByR_H(
 			resourcePrimKey, true, 0, 1);
@@ -485,6 +516,13 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			new ArticleModifiedDateComparator(false));
 	}
 
+	public List<KBArticle> getChildArticles(long parentResourcePrimKey)
+		throws SystemException {
+
+		return kbArticlePersistence.findByP_H_T_D(
+			parentResourcePrimKey, true, false, false);
+	}
+
 	public List<KBArticle> getGroupArticles(
 			long groupId, boolean head, boolean template, int start, int end)
 		throws SystemException {
@@ -526,7 +564,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long groupId, boolean template, long userId)
 		throws SystemException {
 
-		return kbArticleFinder.findByG_T_Or_G_T_U(
+		return getGroupArticlesIncludingUserDrafts(
 			groupId, template, userId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS);
 	}
@@ -535,8 +573,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long groupId, boolean template, long userId, int start, int end)
 		throws SystemException {
 
-		return kbArticleFinder.findByG_T_Or_G_T_U(
-			groupId, template, userId, start, end);
+		long parentResourcePrimKey = KBArticleImpl.DEFAULT_PARENT;
+
+		return kbArticleFinder.findByG_P_T_Or_G_P_T_U(
+			groupId, parentResourcePrimKey, template, userId, start, end);
 	}
 
 	public List<KBArticle> getGroupsArticles(
@@ -571,7 +611,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long groupId, boolean template, long userId)
 		throws SystemException {
 
-		return kbArticleFinder.countByG_T_Or_G_T_U(groupId, template, userId);
+		return kbArticleFinder.countByG_P_T_Or_G_P_T_U(groupId, template, userId);
 	}
 
 	public int getGroupsArticlesCount(long[] groupIds)
@@ -598,6 +638,95 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		throws SystemException {
 
 		return kbArticleFinder.countByS_U_G(userId, groupId);
+	}
+
+	public void importDocbook(
+			long userId, long groupId, File file, PortletPreferences prefs,
+			ThemeDisplay themeDisplay)
+		throws Exception {
+
+		ZipReader zipReader = new ZipReader(file);
+
+		Map folderEntries  = zipReader.getFolderEntries();
+		Set<Entry<String, byte[]>> entries  = zipReader.getEntries().entrySet();
+
+		String indexPath = getIndexPath(folderEntries, entries);
+
+		if (indexPath == null) {
+			_log.debug("No index file found.");
+
+			return;
+		}
+
+		// Liferay's SaxReader abstraction couldn't be used because it doesn't
+		// support setEntityResolver method
+
+		SAXReader reader = new SAXReader(false);
+
+		String rootPath = new File(indexPath).getParent();
+
+		reader.setEntityResolver(
+			new DocBookEntityResolver(rootPath, zipReader));
+
+		String indexContents = zipReader.getEntryAsString(indexPath);
+
+		org.dom4j.Document doc = reader.read(new StringReader(indexContents));
+
+		Element bookEl = doc.getRootElement();
+
+		String title = bookEl.element("bookinfo").elementText("title");
+
+		KBArticle bookArticle = addArticle(
+			userId, groupId, title, StringPool.BLANK, StringPool.BLANK, false,
+			false, false, KBArticleImpl.DEFAULT_PARENT, null, prefs,
+			themeDisplay);
+
+		List<Element> glossaries = bookEl.elements("glossary");
+
+		for (Element glossaryEl : glossaries) {
+			Section section = getSection(glossaryEl, true);
+
+			addArticle(
+				userId, groupId, section.getTitle(), section.getContent(),
+				section.getSubTitle(), false, false, false,
+				bookArticle.getResourcePrimKey(), null, prefs, themeDisplay);
+		}
+
+		List<Element> chaptersEl = bookEl.elements("chapter");
+
+		for (Element chapterEl : chaptersEl) {
+			Section section = getSection(chapterEl, false);
+
+			KBArticle chapterArticle = addArticle(
+				userId, groupId, section.getTitle(), section.getContent(),
+				section.getDescription(), false, false, false,
+				bookArticle.getResourcePrimKey(), null, prefs, themeDisplay);
+
+			List<Element> sections = chapterEl.elements("section");
+
+			for (Element sectionEl : sections) {
+				section = getSection(sectionEl, false);
+
+				KBArticle sectionArticle = addArticle(
+					userId, groupId, section.getTitle(), section.getContent(),
+					StringPool.BLANK, false, false, false,
+					chapterArticle.getResourcePrimKey(), null, prefs,
+					themeDisplay);
+
+				List<Element> subSections = sectionEl.elements("section");
+
+				for (Element subSectionEl : subSections) {
+					section = getSection(subSectionEl, true);
+
+					addArticle(
+						userId, groupId, section.getTitle(),
+						section.getContent(), section.getDescription(), false,
+						false,  false, sectionArticle.getResourcePrimKey(),
+						null, prefs, themeDisplay);
+				}
+			}
+		}
+
 	}
 
 	public void reIndex(String[] ids) throws SystemException {
@@ -656,7 +785,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			userId, resourcePrimKey, 0, oldArticle.getTitle(),
 			oldArticle.getContent(), oldArticle.getDescription(),
 			false, oldArticle.isTemplate(), article.getDraft(),
-			null, prefs, themeDisplay);
+			oldArticle.getParentResourcePrimKey(), null, prefs, themeDisplay);
 	}
 
 	public Hits search(
@@ -728,8 +857,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	public KBArticle updateArticle(
 			long userId, long resourcePrimKey, double version,
 			String title, String content, String description, boolean minorEdit,
-			boolean template, boolean draft, String[] tagsEntries,
-			PortletPreferences prefs, ThemeDisplay themeDisplay)
+			boolean template, boolean draft, long parentResourcePrimKey,
+			String[] tagsEntries, PortletPreferences prefs,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		// Article
@@ -773,6 +903,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		article.setHead(true);
 		article.setTemplate(template);
 		article.setDraft(draft);
+		article.setParentResourcePrimKey(parentResourcePrimKey);
 
 		kbArticlePersistence.update(article, false);
 
@@ -832,6 +963,51 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 			throw new ArticleTitleException(title + " is reserved");
 		}
+	}
+
+	protected String getIndexPath(
+			Map folderEntries, Set<Entry<String, byte[]>> entries) {
+
+		for (Entry<String, byte[]> entry : entries) {
+			String indexPath = entry.getKey();
+
+			if (!folderEntries.containsKey(indexPath)) {
+				if (!indexPath.endsWith(".xml")) {
+					if (_log.isDebugEnabled()) {
+						_log.debug("Not a docbook: " + indexPath);
+					}
+
+					continue;
+				}
+
+				File parent = new File(indexPath).getParentFile();
+
+				if ((parent != null) && (parent.getParent() == null)) {
+					return indexPath;
+				}
+			}
+
+		}
+
+		return null;
+	}
+
+	protected Section getSection(Element el, boolean htmlContent) {
+		String title = el.elementText("title");
+		String subTitle = el.elementText("subtitle");
+		String description = el.elementText("para");
+		String content = StringPool.BLANK;
+
+		if (htmlContent) {
+			try {
+				content = transform(new StringReader(el.asXML()));
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
+
+		return new Section(title, subTitle, description, content);
 	}
 
 	protected boolean isUsedTitle(long groupId, String title)
@@ -975,6 +1151,16 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		MailServiceUtil.sendEmail(mailMessage);
 	}
 
+	protected String transform(Reader reader) throws Exception {
+		StreamSource xmlSource = new StreamSource(reader);
+
+		ByteArrayMaker bam = new ByteArrayMaker();
+
+		getTransformer().transform(xmlSource, new StreamResult(bam));
+
+		return bam.toString();
+	}
+
 	protected void validate(String title) throws PortalException {
 
 		if (Validator.isNull(title)) {
@@ -984,7 +1170,26 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		validateTitle(title);
 	}
 
+	protected Transformer getTransformer() throws Exception {
+		if (_transformer == null) {
+			TransformerFactory factory = TransformerFactory.newInstance();
+
+			String xsl = "/home/bruno/projects/bundles/tomcat-5.5.26/webapps/knowledge-base-portlet/WEB-INF/classes/com/liferay/kb/knowledgebase/dependencies/xsl/html" +
+				"/docbook.xsl";
+
+			String xslContent = FileUtil.read(xsl);
+
+			Source source = new StreamSource(xslContent);
+			source.setSystemId(xsl);
+			_transformer = factory.newTransformer(source);
+		}
+
+		return _transformer;
+	}
+
 	private static Log _log = LogFactory.getLog(
 		KBArticleLocalServiceImpl.class);
+
+	private Transformer _transformer;
 
 }

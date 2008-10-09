@@ -35,8 +35,8 @@ public interface KBArticleFinder {
 	public int countByS_U_G(long userId, long groupId)
 		throws com.liferay.portal.SystemException;
 
-	public int countByG_T_Or_G_T_U(long groupId, boolean template, long userId)
-		throws com.liferay.portal.SystemException;
+	public int countByG_P_T_Or_G_P_T_U(long groupId, boolean template,
+		long userId) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByGroupIds(
 		long[] groupIds, int start, int end,
@@ -47,7 +47,8 @@ public interface KBArticleFinder {
 		long userId, long groupId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_T_Or_G_T_U(
-		long groupId, boolean template, long userId, int start, int end)
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_P_T_Or_G_P_T_U(
+		long groupId, long parentResourcePrimKey, boolean template,
+		long userId, int start, int end)
 		throws com.liferay.portal.SystemException;
 }

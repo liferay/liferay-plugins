@@ -29,6 +29,9 @@ import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.model.ExpandoBridgeImpl;
+
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
@@ -182,6 +185,7 @@ public class KBFeedbackStatsModelImpl extends BaseModelImpl {
 		else {
 			KBFeedbackStats model = new KBFeedbackStatsImpl();
 
+			model.setNew(isNew());
 			model.setEscapedModel(true);
 
 			model.setFeedbackStatsId(getFeedbackStatsId());
@@ -197,6 +201,15 @@ public class KBFeedbackStatsModelImpl extends BaseModelImpl {
 
 			return model;
 		}
+	}
+
+	public ExpandoBridge getExpandoBridge() {
+		if (_expandoBridge == null) {
+			_expandoBridge = new ExpandoBridgeImpl(KBFeedbackStats.class.getName(),
+					getPrimaryKey());
+		}
+
+		return _expandoBridge;
 	}
 
 	public Object clone() {
@@ -266,4 +279,5 @@ public class KBFeedbackStatsModelImpl extends BaseModelImpl {
 	private int _totalScoreEntries;
 	private int _totalVotes;
 	private int _yesVotes;
+	private ExpandoBridge _expandoBridge;
 }

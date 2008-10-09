@@ -25,6 +25,7 @@ package com.liferay.kb.knowledgebase.model.impl;
 import com.liferay.documentlibrary.NoSuchDirectoryException;
 import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.kb.knowledgebase.model.KBArticle;
+import com.liferay.kb.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.model.CompanyConstants;
@@ -33,6 +34,10 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 
 import java.rmi.RemoteException;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -47,6 +52,8 @@ import org.apache.commons.logging.LogFactory;
 public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 
 	public static final double DEFAULT_VERSION = 1.0;
+
+	public static final long DEFAULT_PARENT = 0;
 
 	public KBArticleImpl() {
 	}
@@ -100,6 +107,62 @@ public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 		}
 
 		return fileNames;
+	}
+
+	public KBArticle getParentArticle(long userId) {
+		if (!hasParent()) {
+			return null;
+		}
+
+		KBArticle article = null;
+
+		try {
+			article = KBArticleLocalServiceUtil.getArticle(
+				getParentResourcePrimKey());
+		}
+		catch (Exception e) {
+			_log.error(e);
+		}
+
+		return article;
+	}
+
+	public List<KBArticle> getParentArticles(long userId) {
+		List<KBArticle> parentArticles = new ArrayList<KBArticle>();
+
+		KBArticle parentArticle = getParentArticle(userId);
+
+		if (parentArticle != null) {
+			parentArticles.addAll(parentArticle.getParentArticles(userId));
+			parentArticles.add(parentArticle);
+		}
+
+		return parentArticles;
+	}
+
+	public List<KBArticle> getChildArticles() {
+		List<KBArticle> articles = null;
+
+		try {
+			long parentResourcePrimKey = getResourcePrimKey();
+
+			articles = KBArticleLocalServiceUtil.getChildArticles(
+				parentResourcePrimKey);
+		}
+		catch (Exception e) {
+			articles = Collections.EMPTY_LIST;
+		}
+
+		return articles;
+	}
+
+	public boolean hasParent() {
+		if (getParentResourcePrimKey() > 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	private String _userUuid;

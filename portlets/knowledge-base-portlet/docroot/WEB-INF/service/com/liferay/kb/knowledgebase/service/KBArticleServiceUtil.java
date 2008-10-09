@@ -35,14 +35,15 @@ public class KBArticleServiceUtil {
 	public static com.liferay.kb.knowledgebase.model.KBArticle addArticle(
 		long plid, java.lang.String title, java.lang.String content,
 		java.lang.String description, boolean minorEdit, boolean template,
-		boolean draft, java.lang.String[] tagsEntries,
-		javax.portlet.PortletPreferences prefs,
+		boolean draft, long parentResourcePrimKey,
+		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		return getService()
 				   .addArticle(plid, title, content, description, minorEdit,
-			template, draft, tagsEntries, prefs, themeDisplay);
+			template, draft, parentResourcePrimKey, tagsEntries, prefs,
+			themeDisplay);
 	}
 
 	public static void addArticleAttachments(long resourcePrimKey,
@@ -201,6 +202,13 @@ public class KBArticleServiceUtil {
 		return getService().getSubscribedArticles(userId, groupId, start, end);
 	}
 
+	public static void importDocbook(long groupId, java.io.File file,
+		javax.portlet.PortletPreferences prefs,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws java.lang.Exception, java.rmi.RemoteException {
+		getService().importDocbook(groupId, file, prefs, themeDisplay);
+	}
+
 	public static com.liferay.kb.knowledgebase.model.KBArticle revertArticle(
 		long resourcePrimKey, double version,
 		javax.portlet.PortletPreferences prefs,
@@ -239,15 +247,15 @@ public class KBArticleServiceUtil {
 		long plid, long resourcePrimKey, double version,
 		java.lang.String title, java.lang.String content,
 		java.lang.String description, boolean minorEdit, boolean template,
-		boolean draft, java.lang.String[] tagsEntries,
-		javax.portlet.PortletPreferences prefs,
+		boolean draft, long parentResourcePrimKey,
+		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		return getService()
 				   .updateArticle(plid, resourcePrimKey, version, title,
-			content, description, minorEdit, template, draft, tagsEntries,
-			prefs, themeDisplay);
+			content, description, minorEdit, template, draft,
+			parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
 	}
 
 	public static KBArticleService getService() {

@@ -198,6 +198,14 @@ public class KBArticleClp extends BaseModelImpl implements KBArticle {
 		_draft = draft;
 	}
 
+	public long getParentResourcePrimKey() {
+		return _parentResourcePrimKey;
+	}
+
+	public void setParentResourcePrimKey(long parentResourcePrimKey) {
+		_parentResourcePrimKey = parentResourcePrimKey;
+	}
+
 	public java.lang.String getUserUuid() {
 		throw new UnsupportedOperationException();
 	}
@@ -219,6 +227,24 @@ public class KBArticleClp extends BaseModelImpl implements KBArticle {
 	}
 
 	public java.lang.String[] getAttachmentsFiles() {
+		throw new UnsupportedOperationException();
+	}
+
+	public com.liferay.kb.knowledgebase.model.KBArticle getParentArticle(
+		long userId) {
+		throw new UnsupportedOperationException();
+	}
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getParentArticles(
+		long userId) {
+		throw new UnsupportedOperationException();
+	}
+
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getChildArticles() {
+		throw new UnsupportedOperationException();
+	}
+
+	public boolean hasParent() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -247,6 +273,7 @@ public class KBArticleClp extends BaseModelImpl implements KBArticle {
 			model.setHead(getHead());
 			model.setTemplate(getTemplate());
 			model.setDraft(getDraft());
+			model.setParentResourcePrimKey(getParentResourcePrimKey());
 
 			model = (KBArticle)Proxy.newProxyInstance(KBArticle.class.getClassLoader(),
 					new Class[] { KBArticle.class },
@@ -275,6 +302,7 @@ public class KBArticleClp extends BaseModelImpl implements KBArticle {
 		clone.setHead(getHead());
 		clone.setTemplate(getTemplate());
 		clone.setDraft(getDraft());
+		clone.setParentResourcePrimKey(getParentResourcePrimKey());
 
 		return clone;
 	}
@@ -356,4 +384,5 @@ public class KBArticleClp extends BaseModelImpl implements KBArticle {
 	private boolean _head;
 	private boolean _template;
 	private boolean _draft;
+	private long _parentResourcePrimKey;
 }

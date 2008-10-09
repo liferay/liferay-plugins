@@ -30,6 +30,9 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.model.ExpandoBridgeImpl;
+
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
@@ -94,9 +97,12 @@ public class KBArticleModelImpl extends BaseModelImpl {
 			{ "template", new Integer(Types.BOOLEAN) },
 			
 
-			{ "draft", new Integer(Types.BOOLEAN) }
+			{ "draft", new Integer(Types.BOOLEAN) },
+			
+
+			{ "parentResourcePrimKey", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KB_KBArticle (uuid_ VARCHAR(75) null,articleId LONG not null primary key,groupId LONG,resourcePrimKey LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,modifiedDate DATE null,title VARCHAR(100) null,version DOUBLE,minorEdit BOOLEAN,content TEXT null,description STRING null,head BOOLEAN,template BOOLEAN,draft BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table KB_KBArticle (uuid_ VARCHAR(75) null,articleId LONG not null primary key,groupId LONG,resourcePrimKey LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,modifiedDate DATE null,title VARCHAR(100) null,version DOUBLE,minorEdit BOOLEAN,content TEXT null,description STRING null,head BOOLEAN,template BOOLEAN,draft BOOLEAN,parentResourcePrimKey LONG)";
 	public static final String TABLE_SQL_DROP = "drop table KB_KBArticle";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -124,6 +130,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		model.setHead(soapModel.getHead());
 		model.setTemplate(soapModel.getTemplate());
 		model.setDraft(soapModel.getDraft());
+		model.setParentResourcePrimKey(soapModel.getParentResourcePrimKey());
 
 		return model;
 	}
@@ -346,6 +353,16 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		}
 	}
 
+	public long getParentResourcePrimKey() {
+		return _parentResourcePrimKey;
+	}
+
+	public void setParentResourcePrimKey(long parentResourcePrimKey) {
+		if (parentResourcePrimKey != _parentResourcePrimKey) {
+			_parentResourcePrimKey = parentResourcePrimKey;
+		}
+	}
+
 	public KBArticle toEscapedModel() {
 		if (isEscapedModel()) {
 			return (KBArticle)this;
@@ -353,6 +370,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		else {
 			KBArticle model = new KBArticleImpl();
 
+			model.setNew(isNew());
 			model.setEscapedModel(true);
 
 			model.setUuid(HtmlUtil.escape(getUuid()));
@@ -371,6 +389,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 			model.setHead(getHead());
 			model.setTemplate(getTemplate());
 			model.setDraft(getDraft());
+			model.setParentResourcePrimKey(getParentResourcePrimKey());
 
 			model = (KBArticle)Proxy.newProxyInstance(KBArticle.class.getClassLoader(),
 					new Class[] { KBArticle.class },
@@ -378,6 +397,15 @@ public class KBArticleModelImpl extends BaseModelImpl {
 
 			return model;
 		}
+	}
+
+	public ExpandoBridge getExpandoBridge() {
+		if (_expandoBridge == null) {
+			_expandoBridge = new ExpandoBridgeImpl(KBArticle.class.getName(),
+					getPrimaryKey());
+		}
+
+		return _expandoBridge;
 	}
 
 	public Object clone() {
@@ -399,6 +427,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		clone.setHead(getHead());
 		clone.setTemplate(getTemplate());
 		clone.setDraft(getDraft());
+		clone.setParentResourcePrimKey(getParentResourcePrimKey());
 
 		return clone;
 	}
@@ -480,4 +509,6 @@ public class KBArticleModelImpl extends BaseModelImpl {
 	private boolean _head;
 	private boolean _template;
 	private boolean _draft;
+	private long _parentResourcePrimKey;
+	private ExpandoBridge _expandoBridge;
 }

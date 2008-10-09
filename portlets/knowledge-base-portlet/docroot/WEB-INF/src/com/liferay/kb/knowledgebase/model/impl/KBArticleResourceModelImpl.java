@@ -30,6 +30,9 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.model.ExpandoBridgeImpl;
+
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
@@ -206,6 +209,7 @@ public class KBArticleResourceModelImpl extends BaseModelImpl {
 		else {
 			KBArticleResource model = new KBArticleResourceImpl();
 
+			model.setNew(isNew());
 			model.setEscapedModel(true);
 
 			model.setResourcePrimKey(getResourcePrimKey());
@@ -222,6 +226,15 @@ public class KBArticleResourceModelImpl extends BaseModelImpl {
 
 			return model;
 		}
+	}
+
+	public ExpandoBridge getExpandoBridge() {
+		if (_expandoBridge == null) {
+			_expandoBridge = new ExpandoBridgeImpl(KBArticleResource.class.getName(),
+					getPrimaryKey());
+		}
+
+		return _expandoBridge;
 	}
 
 	public Object clone() {
@@ -293,4 +306,5 @@ public class KBArticleResourceModelImpl extends BaseModelImpl {
 	private String _userName;
 	private Date _createDate;
 	private String _title;
+	private ExpandoBridge _expandoBridge;
 }

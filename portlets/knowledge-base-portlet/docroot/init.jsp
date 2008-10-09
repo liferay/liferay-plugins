@@ -119,6 +119,7 @@
 <%@ page import="com.liferay.util.MathUtil" %>
 <%@ page import="com.liferay.util.TextFormatter" %>
 <%@ page import="com.liferay.util.portlet.PortletProps" %>
+<%@ page import="com.liferay.util.servlet.UploadException" %>
 
 <%@ page import="java.io.StringReader" %>
 

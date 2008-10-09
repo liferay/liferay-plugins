@@ -54,8 +54,8 @@ public class KBArticleFinderImpl
 	public static String COUNT_BY_S_U_G =
 		KBArticleFinder.class.getName() + ".countByS_U_G";
 
-	public static String COUNT_BY_G_T_OR_G_T_U =
-		KBArticleFinder.class.getName() + ".countByG_T_Or_G_T_U";
+	public static String COUNT_BY_G_P_T_OR_G_P_T_U =
+		KBArticleFinder.class.getName() + ".countByG_P_T_Or_G_P_T_U";
 
 	public static String FIND_BY_GROUP_IDS =
 		KBArticleFinder.class.getName() + ".findByGroupIds";
@@ -63,8 +63,8 @@ public class KBArticleFinderImpl
 	public static String FIND_BY_S_U_G =
 		KBArticleFinder.class.getName() + ".findByS_U_G";
 
-	public static String FIND_BY_G_T_OR_G_T_U =
-		KBArticleFinder.class.getName() + ".findByG_T_Or_G_T_U";
+	public static String FIND_BY_G_P_T_OR_G_P_T_U =
+		KBArticleFinder.class.getName() + ".findByG_P_T_Or_G_P_T_U";
 
 	public int countByGroupIds(long[] groupIds) throws SystemException {
 		Session session = null;
@@ -149,7 +149,7 @@ public class KBArticleFinderImpl
 		}
 	}
 
-	public int countByG_T_Or_G_T_U(
+	public int countByG_P_T_Or_G_P_T_U(
 			long groupId, boolean template, long userId)
 		throws SystemException {
 
@@ -158,7 +158,7 @@ public class KBArticleFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(COUNT_BY_G_T_OR_G_T_U);
+			String sql = CustomSQLUtil.get(COUNT_BY_G_P_T_OR_G_P_T_U);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -258,8 +258,9 @@ public class KBArticleFinderImpl
 		}
 	}
 
-	public List<KBArticle> findByG_T_Or_G_T_U(
-			long groupId, boolean template, long userId, int start, int end)
+	public List<KBArticle> findByG_P_T_Or_G_P_T_U(
+			long groupId, long parentResourcePrimKey, boolean template,
+			long userId, int start, int end)
 		throws SystemException {
 
 		Session session = null;
@@ -267,7 +268,7 @@ public class KBArticleFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(FIND_BY_G_T_OR_G_T_U);
+			String sql = CustomSQLUtil.get(FIND_BY_G_P_T_OR_G_P_T_U);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -276,6 +277,7 @@ public class KBArticleFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(groupId);
+			qPos.add(parentResourcePrimKey);
 			qPos.add(template);
 			qPos.add(userId);
 

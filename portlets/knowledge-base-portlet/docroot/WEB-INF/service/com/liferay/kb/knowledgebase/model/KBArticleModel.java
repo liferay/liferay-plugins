@@ -109,5 +109,9 @@ public interface KBArticleModel extends BaseModel {
 
 	public void setDraft(boolean draft);
 
+	public long getParentResourcePrimKey();
+
+	public void setParentResourcePrimKey(long parentResourcePrimKey);
+
 	public KBArticle toEscapedModel();
 }

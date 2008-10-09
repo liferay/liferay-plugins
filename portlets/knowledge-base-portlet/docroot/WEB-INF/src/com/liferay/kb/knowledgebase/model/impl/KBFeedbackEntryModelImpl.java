@@ -31,6 +31,9 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.model.ExpandoBridgeImpl;
+
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
@@ -239,6 +242,7 @@ public class KBFeedbackEntryModelImpl extends BaseModelImpl {
 		else {
 			KBFeedbackEntry model = new KBFeedbackEntryImpl();
 
+			model.setNew(isNew());
 			model.setEscapedModel(true);
 
 			model.setFeedbackEntryId(getFeedbackEntryId());
@@ -257,6 +261,15 @@ public class KBFeedbackEntryModelImpl extends BaseModelImpl {
 
 			return model;
 		}
+	}
+
+	public ExpandoBridge getExpandoBridge() {
+		if (_expandoBridge == null) {
+			_expandoBridge = new ExpandoBridgeImpl(KBFeedbackEntry.class.getName(),
+					getPrimaryKey());
+		}
+
+		return _expandoBridge;
 	}
 
 	public Object clone() {
@@ -333,4 +346,5 @@ public class KBFeedbackEntryModelImpl extends BaseModelImpl {
 	private String _comments;
 	private int _score;
 	private int _vote;
+	private ExpandoBridge _expandoBridge;
 }

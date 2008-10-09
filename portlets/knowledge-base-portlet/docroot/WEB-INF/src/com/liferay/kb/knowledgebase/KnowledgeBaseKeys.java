@@ -31,7 +31,7 @@ package com.liferay.kb.knowledgebase;
  */
 public class KnowledgeBaseKeys {
 
-	public static final String PORTLET_ID = "1_WAR_knowledgebaseportlet";
+	public static final String ADD_CHILD_ARTICLE = "ADD_CHILD_ARTICLE";
 
 	public static final String ARTICLE = "Article";
 
@@ -40,5 +40,7 @@ public class KnowledgeBaseKeys {
 	public static final String FEEDBACK_STATS = "Feedback_Stats";
 
 	public static final String MANAGE_TEMPLATES = "MANAGE_TEMPLATES";
+
+	public static final String PORTLET_ID = "1_WAR_knowledgebaseportlet";
 
 }

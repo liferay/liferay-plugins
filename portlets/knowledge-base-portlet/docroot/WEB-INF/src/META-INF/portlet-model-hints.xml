@@ -28,6 +28,7 @@
 		<field name="head" type="boolean" />
 		<field name="template" type="boolean" />
 		<field name="draft" type="boolean" />
+		<field name="parentResourcePrimKey" type="long" />
 	</model>
 	<model name="com.liferay.kb.knowledgebase.model.KBArticleResource">
 		<field name="resourcePrimKey" type="long" />

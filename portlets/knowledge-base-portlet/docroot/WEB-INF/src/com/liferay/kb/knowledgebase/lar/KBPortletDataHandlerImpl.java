@@ -292,7 +292,8 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 					article.getVersion(), article.getContent(),
 					article.getDescription(), article.isMinorEdit(),
 					article.isHead(), article.isTemplate(), article.isDraft(),
-					tagsEntries, prefs, themeDisplay);
+					article.getParentResourcePrimKey(), tagsEntries, prefs,
+					themeDisplay);
 			}
 			else {
 				existingArticle = KBArticleLocalServiceUtil.updateArticle(
@@ -300,14 +301,16 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 					article.getVersion(), article.getTitle(),
 					article.getContent(), article.getDescription(),
 					article.isMinorEdit(), article.isTemplate(),
-					article.isDraft(), tagsEntries, prefs, themeDisplay);
+					article.isDraft(), article.getParentResourcePrimKey(),
+					tagsEntries, prefs, themeDisplay);
 			}
 		}
 		else {
 			existingArticle = KBArticleLocalServiceUtil.addArticle(
 				userId, groupId, article.getTitle(), article.getContent(),
 				article.getDescription(), article.isMinorEdit(),
-				article.isTemplate(), article.isDraft(), tagsEntries, prefs,
+				article.isTemplate(), article.isDraft(),
+				article.getParentResourcePrimKey(), tagsEntries, prefs,
 				themeDisplay);
 		}
 

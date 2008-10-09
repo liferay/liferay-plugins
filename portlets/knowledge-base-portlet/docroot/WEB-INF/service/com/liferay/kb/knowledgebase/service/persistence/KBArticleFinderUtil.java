@@ -39,9 +39,9 @@ public class KBArticleFinderUtil {
 		return getFinder().countByS_U_G(userId, groupId);
 	}
 
-	public static int countByG_T_Or_G_T_U(long groupId, boolean template,
+	public static int countByG_P_T_Or_G_P_T_U(long groupId, boolean template,
 		long userId) throws com.liferay.portal.SystemException {
-		return getFinder().countByG_T_Or_G_T_U(groupId, template, userId);
+		return getFinder().countByG_P_T_Or_G_P_T_U(groupId, template, userId);
 	}
 
 	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByGroupIds(
@@ -57,11 +57,13 @@ public class KBArticleFinderUtil {
 		return getFinder().findByS_U_G(userId, groupId, start, end);
 	}
 
-	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_T_Or_G_T_U(
-		long groupId, boolean template, long userId, int start, int end)
+	public static java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_P_T_Or_G_P_T_U(
+		long groupId, long parentResourcePrimKey, boolean template,
+		long userId, int start, int end)
 		throws com.liferay.portal.SystemException {
 		return getFinder()
-				   .findByG_T_Or_G_T_U(groupId, template, userId, start, end);
+				   .findByG_P_T_Or_G_P_T_U(groupId, parentResourcePrimKey,
+			template, userId, start, end);
 	}
 
 	public static KBArticleFinder getFinder() {
