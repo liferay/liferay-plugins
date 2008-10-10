@@ -155,25 +155,25 @@ public class SAWServletContextListener
 		throws IOException, NamingException, SQLException{
 
 		if(dialect.equals("mysql")){
-			DatabaseUtil.runSQLTemplate("mysql.create.sql");
+			DatabaseUtil.runSQLTemplate("sql/mysql.create.sql");
 		}
 		else if (dialect.equals("derby")){
-			DatabaseUtil.runSQLTemplate("derby.create.sql");
+			DatabaseUtil.runSQLTemplate("sql/derby.create.sql");
 		}
 		else if (dialect.equals("firebird")){
-			DatabaseUtil.runSQLTemplate("firebird.create.sql");
+			DatabaseUtil.runSQLTemplate("sql/firebird.create.sql");
 		}
 		else if (dialect.equals("hypersonic")){
-			DatabaseUtil.runSQLTemplate("hsqldb.create.sql");
+			DatabaseUtil.runSQLTemplate("sql/hsqldb.create.sql");
 		}
 		else if (dialect.equals("oracle")){
-			DatabaseUtil.runSQLTemplate("oracle.create.sql");
+			DatabaseUtil.runSQLTemplate("sql/oracle.create.sql");
 		}
 		else if (dialect.equals("postgresql")){
-			DatabaseUtil.runSQLTemplate("postgresql.create.sql");
+			DatabaseUtil.runSQLTemplate("sql/postgresql.create.sql");
 		}
 		else if (dialect.equals("sybase")){
-			DatabaseUtil.runSQLTemplate("sybase.create.sql");
+			DatabaseUtil.runSQLTemplate("sql/sybase.create.sql");
 		}
 
 	}
