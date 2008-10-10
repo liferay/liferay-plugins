@@ -32,6 +32,18 @@ import com.liferay.portal.kernel.util.ClassLoaderProxy;
  *
  */
 public class SAWWorkflowLocalServiceUtil {
+	public static com.sun.saw.vo.OutputVO checkoutTasks(
+		com.sun.saw.vo.CheckoutTaskVO checkoutTaskVO)
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
+		return getService().checkoutTasks(checkoutTaskVO);
+	}
+
+	public static com.sun.saw.vo.OutputVO completeTasks(
+		com.sun.saw.vo.CompleteTaskVO completeTaskVO)
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
+		return getService().completeTasks(completeTaskVO);
+	}
+
 	public static java.lang.String deploy(java.lang.String xml)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		return getService().deploy(xml);
@@ -96,6 +108,12 @@ public class SAWWorkflowLocalServiceUtil {
 		return getService().getTaskFormElementsXml(taskId);
 	}
 
+	public static com.sun.saw.vo.OutputVO getTasks(
+		com.sun.saw.vo.FilterTaskVO filterTaskVO)
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
+		return getService().getTasks(filterTaskVO);
+	}
+
 	public static java.lang.String getTaskTransitionsXml(long taskId)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		return getService().getTaskTransitionsXml(taskId);
@@ -134,6 +152,12 @@ public class SAWWorkflowLocalServiceUtil {
 			assignedTo, createDateGT, createDateLT, startDateGT, startDateLT,
 			endDateGT, endDateLT, userId, hideEndedTasks, andOperator, begin,
 			end);
+	}
+
+	public static com.sun.saw.vo.OutputVO saveTasks(
+		com.sun.saw.vo.SaveTaskVO saveTaskVO)
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
+		return getService().saveTasks(saveTaskVO);
 	}
 
 	public static void signalInstance(long instanceId)

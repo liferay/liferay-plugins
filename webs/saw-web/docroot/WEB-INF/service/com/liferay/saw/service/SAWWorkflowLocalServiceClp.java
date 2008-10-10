@@ -39,6 +39,70 @@ public class SAWWorkflowLocalServiceClp implements SAWWorkflowLocalService {
 		_classLoaderProxy = classLoaderProxy;
 	}
 
+	public com.sun.saw.vo.OutputVO checkoutTasks(
+		com.sun.saw.vo.CheckoutTaskVO checkoutTaskVO)
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
+		Object paramObj0 = ClpSerializer.translateInput(checkoutTaskVO);
+
+		if (checkoutTaskVO == null) {
+			paramObj0 = new NullWrapper("com.sun.saw.vo.CheckoutTaskVO");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("checkoutTasks",
+					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.jbi.WorkflowComponentException) {
+				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.sun.saw.vo.OutputVO)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.sun.saw.vo.OutputVO completeTasks(
+		com.sun.saw.vo.CompleteTaskVO completeTaskVO)
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
+		Object paramObj0 = ClpSerializer.translateInput(completeTaskVO);
+
+		if (completeTaskVO == null) {
+			paramObj0 = new NullWrapper("com.sun.saw.vo.CompleteTaskVO");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("completeTasks",
+					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.jbi.WorkflowComponentException) {
+				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.sun.saw.vo.OutputVO)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.lang.String deploy(java.lang.String xml)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = ClpSerializer.translateInput(xml);
@@ -423,6 +487,38 @@ public class SAWWorkflowLocalServiceClp implements SAWWorkflowLocalService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.sun.saw.vo.OutputVO getTasks(
+		com.sun.saw.vo.FilterTaskVO filterTaskVO)
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
+		Object paramObj0 = ClpSerializer.translateInput(filterTaskVO);
+
+		if (filterTaskVO == null) {
+			paramObj0 = new NullWrapper("com.sun.saw.vo.FilterTaskVO");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getTasks",
+					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.jbi.WorkflowComponentException) {
+				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.sun.saw.vo.OutputVO)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.lang.String getTaskTransitionsXml(long taskId)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(taskId);
@@ -688,6 +784,38 @@ public class SAWWorkflowLocalServiceClp implements SAWWorkflowLocalService {
 		}
 
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.sun.saw.vo.OutputVO saveTasks(
+		com.sun.saw.vo.SaveTaskVO saveTaskVO)
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
+		Object paramObj0 = ClpSerializer.translateInput(saveTaskVO);
+
+		if (saveTaskVO == null) {
+			paramObj0 = new NullWrapper("com.sun.saw.vo.SaveTaskVO");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("saveTasks",
+					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.jbi.WorkflowComponentException) {
+				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.sun.saw.vo.OutputVO)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public void signalInstance(long instanceId)

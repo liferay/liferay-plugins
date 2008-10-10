@@ -33,15 +33,9 @@
 	</tx:advice>
 	<bean id="portletBeanFactoryPostProcessor" class="com.liferay.portal.spring.context.PortletBeanFactoryPostProcessor" />
 	<bean id="portletClassLoader" class="com.liferay.portal.kernel.portlet.PortletClassLoaderUtil" factory-method="getClassLoader" />
-	<bean id="logInterceptor" class="com.liferay.portal.spring.aop.LogInterceptor" />
-	<bean id="baseLogService" abstract="true">
-		<property name="interceptorNames">
-			<list>
-				<value>logInterceptor</value>
-			</list>
-		</property>
-	</bean>
+	<bean id="logAspect" class="com.liferay.portal.spring.aop.LogAspect" />
 	<bean id="velocityServiceInterceptor" class="com.liferay.portal.spring.aop.BeanInterceptor">
+		<property name="classLoader" ref="portletClassLoader" />
 		<property name="exceptionSafe" value="true" />
 	</bean>
 	<bean id="baseVelocityService" abstract="true">

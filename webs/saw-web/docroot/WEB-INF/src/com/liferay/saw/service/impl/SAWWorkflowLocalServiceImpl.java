@@ -59,10 +59,13 @@ import com.sun.saw.WorkflowException;
 import com.sun.saw.WorkflowFactory;
 import com.sun.saw.vo.BusinessProcessInstanceVO;
 import com.sun.saw.vo.BusinessProcessVO;
+import com.sun.saw.vo.CheckoutTaskVO;
+import com.sun.saw.vo.CompleteTaskVO;
 import com.sun.saw.vo.FilterTaskVO;
 import com.sun.saw.vo.InvokeMethodVO;
 import com.sun.saw.vo.NavigationVO;
 import com.sun.saw.vo.OutputVO;
+import com.sun.saw.vo.SaveTaskVO;
 import com.sun.saw.vo.TaskVO;
 import com.sun.saw.vo.TokenVO;
 import com.sun.saw.vo.XFormVO;
@@ -94,6 +97,44 @@ import org.dom4j.Element;
 public class SAWWorkflowLocalServiceImpl
 	extends SAWWorkflowLocalServiceBaseImpl {
 
+	public OutputVO checkoutTasks(CheckoutTaskVO checkoutTaskVO)
+		throws WorkflowComponentException{
+		
+		OutputVO outputVO = null;
+		ClassLoader contextClassLoader =_getCurrentClassLoader();
+		_setAggregateClassLoader(contextClassLoader);
+		
+		try {
+			Workflow workflow = _getWorkflowImpl();
+			outputVO = workflow.checkoutTasks(checkoutTaskVO);
+			_restoreClassLoader(contextClassLoader);
+			return outputVO;
+		}
+		catch (WorkflowException e) {
+			throw new WorkflowComponentException(e);
+		}
+	}
+	
+	public OutputVO completeTasks(CompleteTaskVO completeTaskVO)
+		throws WorkflowComponentException{
+
+		OutputVO outputVO = null;
+		ClassLoader contextClassLoader =_getCurrentClassLoader();
+		_setAggregateClassLoader(contextClassLoader);
+
+		try {
+			Workflow workflow = _getWorkflowImpl();
+			outputVO = workflow.completeTasks(completeTaskVO);
+			_restoreClassLoader(contextClassLoader);
+			return outputVO;
+		}
+		catch (WorkflowException e) {
+			throw new WorkflowComponentException(e);
+		}
+	}
+	
+	
+	
 	public String deploy(String xml) throws WorkflowComponentException {
 		BusinessProcessVO businessProcessVO = new BusinessProcessVO();
 		Map<String, String> paramMap = new HashMap<String, String>();
@@ -492,6 +533,24 @@ public class SAWWorkflowLocalServiceImpl
 		return doc.asXML();
 
 	}
+	
+	public OutputVO getTasks(FilterTaskVO filterTaskVO)
+		throws WorkflowComponentException{
+
+	OutputVO outputVO = null;
+	ClassLoader contextClassLoader =_getCurrentClassLoader();
+	_setAggregateClassLoader(contextClassLoader);
+
+	try {
+		Workflow workflow = _getWorkflowImpl();
+		outputVO = workflow.getTasks(filterTaskVO);
+		_restoreClassLoader(contextClassLoader);
+		return outputVO;
+	}
+	catch (WorkflowException e) {
+		throw new WorkflowComponentException(e);
+	}
+}
 
 	public String getTaskTransitionsXml(long taskId)
 		throws WorkflowComponentException {
@@ -623,6 +682,26 @@ public class SAWWorkflowLocalServiceImpl
 		return doc.asXML();
 
 	}
+	
+	public OutputVO saveTasks(SaveTaskVO saveTaskVO)
+		throws WorkflowComponentException{
+	
+	OutputVO outputVO = null;
+	ClassLoader contextClassLoader =_getCurrentClassLoader();
+	_setAggregateClassLoader(contextClassLoader);
+	
+	try {
+		Workflow workflow = _getWorkflowImpl();
+		outputVO = workflow.saveTasks(saveTaskVO);
+		_restoreClassLoader(contextClassLoader);
+		return outputVO;
+	}
+	catch (WorkflowException e) {
+		throw new WorkflowComponentException(e);
+	}
+}
+	
+	
 
 	public void signalInstance(long instanceId)
 		throws WorkflowComponentException {

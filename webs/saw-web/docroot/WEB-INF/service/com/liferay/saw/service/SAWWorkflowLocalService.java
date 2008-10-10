@@ -29,6 +29,14 @@ package com.liferay.saw.service;
  *
  */
 public interface SAWWorkflowLocalService {
+	public com.sun.saw.vo.OutputVO checkoutTasks(
+		com.sun.saw.vo.CheckoutTaskVO checkoutTaskVO)
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
+
+	public com.sun.saw.vo.OutputVO completeTasks(
+		com.sun.saw.vo.CompleteTaskVO completeTaskVO)
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
+
 	public java.lang.String deploy(java.lang.String xml)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
 
@@ -67,6 +75,10 @@ public interface SAWWorkflowLocalService {
 	public java.lang.String getTaskFormElementsXml(long taskId)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
 
+	public com.sun.saw.vo.OutputVO getTasks(
+		com.sun.saw.vo.FilterTaskVO filterTaskVO)
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
+
 	public java.lang.String getTaskTransitionsXml(long taskId)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
 
@@ -89,6 +101,10 @@ public interface SAWWorkflowLocalService {
 		java.lang.String startDateLT, java.lang.String endDateGT,
 		java.lang.String endDateLT, java.lang.String userId,
 		boolean hideEndedTasks, boolean andOperator, int begin, int end)
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
+
+	public com.sun.saw.vo.OutputVO saveTasks(
+		com.sun.saw.vo.SaveTaskVO saveTaskVO)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
 
 	public void signalInstance(long instanceId)
