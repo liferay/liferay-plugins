@@ -43,3 +43,7 @@ ResourceBundle bundle = portletConfig.getResourceBundle(locale);
 <p>
 	<liferay-ui:message key="now-testing-the-message-taglib" />
 </p>
+
+<p>
+	<liferay-ui:message key="now-testing-deployable-language-properties-defined-in-liferay-hook-xml" />
+</p>
