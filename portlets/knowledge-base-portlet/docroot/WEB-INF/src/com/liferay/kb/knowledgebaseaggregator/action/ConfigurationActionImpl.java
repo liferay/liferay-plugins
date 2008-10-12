@@ -52,18 +52,18 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		String portletResource = ParamUtil.getString(
 			actionRequest, "portletResource");
 
-		PortletPreferences prefs =
+		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				actionRequest, portletResource);
 
 		if (tabs2.equals("display-settings")) {
-			updateDisplaySettings(actionRequest, prefs);
+			updateDisplaySettings(actionRequest, preferences);
 		}
 		else if (tabs2.equals("rss")) {
-			updateRSS(actionRequest, prefs);
+			updateRSS(actionRequest, preferences);
 		}
 
-		prefs.store();
+		preferences.store();
 
 		SessionMessages.add(
 			actionRequest, portletConfig.getPortletName() + ".doConfigure");
@@ -78,7 +78,7 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 	}
 
 	protected void updateDisplaySettings(
-			ActionRequest actionRequest, PortletPreferences prefs)
+			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
 		String[] groupIds = actionRequest.getParameterValues("groupIds");
@@ -91,14 +91,14 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			groupIds = new String[] {"0"};
 		}
 
-		prefs.setValues("group-ids", groupIds);
-		prefs.setValue("company-id", companyId);
-		prefs.setValue("display-style", displayStyle);
-		prefs.setValue("max-items", String.valueOf(maxItems));
+		preferences.setValues("group-ids", groupIds);
+		preferences.setValue("company-id", companyId);
+		preferences.setValue("display-style", displayStyle);
+		preferences.setValue("max-items", String.valueOf(maxItems));
 	}
 
 	protected void updateRSS(
-			ActionRequest actionRequest, PortletPreferences prefs)
+			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
 		String[] rssTypes = actionRequest.getParameterValues("rssTypes");
@@ -108,10 +108,10 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		int rssAbstractLength = ParamUtil.getInteger(
 			actionRequest, "rssAbstractLength");
 
-		prefs.setValues("rss-types", rssTypes);
-		prefs.setValue("rss-max-items", String.valueOf(rssMaxItems));
-		prefs.setValue("rss-display-style", rssDisplayStyle);
-		prefs.setValue(
+		preferences.setValues("rss-types", rssTypes);
+		preferences.setValue("rss-max-items", String.valueOf(rssMaxItems));
+		preferences.setValue("rss-display-style", rssDisplayStyle);
+		preferences.setValue(
 			"rss-abstract-length", String.valueOf(rssAbstractLength));
 	}
 

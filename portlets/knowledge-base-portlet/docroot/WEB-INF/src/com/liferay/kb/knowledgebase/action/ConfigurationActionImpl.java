@@ -54,24 +54,24 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		String portletResource = ParamUtil.getString(
 			actionRequest, "portletResource");
 
-		PortletPreferences prefs =
+		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				actionRequest, portletResource);
 
 		String tabs2 = ParamUtil.getString(actionRequest, "tabs2");
 
 		if (tabs2.equals("email-notifications")) {
-			updateEmailSettings(actionRequest, prefs);
+			updateEmailSettings(actionRequest, preferences);
 		}
 		else if (tabs2.equals("export-settings")) {
-			updateExportSettings(actionRequest, prefs);
+			updateExportSettings(actionRequest, preferences);
 		}
 		else if (tabs2.equals("rss")) {
-			updateRSS(actionRequest, prefs);
+			updateRSS(actionRequest, preferences);
 		}
 
 		if (SessionErrors.isEmpty(actionRequest)) {
-			prefs.store();
+			preferences.store();
 
 			SessionMessages.add(
 				actionRequest, portletConfig.getPortletName() + ".doConfigure");
@@ -87,24 +87,24 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 	}
 
 	protected void updateEmailSettings(
-			ActionRequest actionRequest, PortletPreferences prefs)
+			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
 		String tabs3 = ParamUtil.getString(actionRequest, "tabs3");
 
 		if (tabs3.equals("general")) {
-			updateEmailGeneral(actionRequest, prefs);
+			updateEmailGeneral(actionRequest, preferences);
 		}
 		else if (tabs3.equals("article-added-notification")) {
-			updateEmailArticleAdded(actionRequest, prefs);
+			updateEmailArticleAdded(actionRequest, preferences);
 		}
 		else if (tabs3.equals("article-updated-notification")) {
-			updateEmailArticleUpdated(actionRequest, prefs);
+			updateEmailArticleUpdated(actionRequest, preferences);
 		}
 	}
 
 	protected void updateEmailGeneral(
-			ActionRequest actionRequest, PortletPreferences prefs)
+			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
 		String emailFromName = ParamUtil.getString(
@@ -119,15 +119,15 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			SessionErrors.add(actionRequest, "emailFromAddress");
 		}
 		else {
-			prefs.setValue(
+			preferences.setValue(
 				PortletPropsKeys.ADMIN_EMAIL_FROM_NAME, emailFromName);
-			prefs.setValue(
+			preferences.setValue(
 				PortletPropsKeys.ADMIN_EMAIL_FROM_ADDRESS, emailFromAddress);
 		}
 	}
 
 	protected void updateEmailArticleAdded(
-			ActionRequest actionRequest, PortletPreferences prefs)
+			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
 		String emailArticleAddedSubject = ParamUtil.getString(
@@ -142,17 +142,17 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			SessionErrors.add(actionRequest, "emailArticleAddedBody");
 		}
 		else {
-			prefs.setValue(
+			preferences.setValue(
 				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_ADDED_SUBJECT,
 				emailArticleAddedSubject);
-			prefs.setValue(
+			preferences.setValue(
 				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_ADDED_BODY,
 				emailArticleAddedBody);
 		}
 	}
 
 	protected void updateEmailArticleUpdated(
-			ActionRequest actionRequest, PortletPreferences prefs)
+			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
 		String emailArticleUpdatedSubject = ParamUtil.getString(
@@ -167,26 +167,26 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			SessionErrors.add(actionRequest, "emailArticleUpdatedBody");
 		}
 		else {
-			prefs.setValue(
+			preferences.setValue(
 				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_UPDATED_SUBJECT,
 				emailArticleUpdatedSubject);
-			prefs.setValue(
+			preferences.setValue(
 				PortletPropsKeys.ADMIN_EMAIL_ARTICLE_UPDATED_BODY,
 				emailArticleUpdatedBody);
 		}
 	}
 
 	protected void updateExportSettings(
-			ActionRequest actionRequest, PortletPreferences prefs)
+			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
 		String[] extensions = actionRequest.getParameterValues("extensions");
 
-		prefs.setValues("extensions", extensions);
+		preferences.setValues("extensions", extensions);
 	}
 
 	protected void updateRSS(
-			ActionRequest actionRequest, PortletPreferences prefs)
+			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
 		String[] rssTypes = actionRequest.getParameterValues(
@@ -197,10 +197,11 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		int rssAbstractLength = ParamUtil.getInteger(
 			actionRequest, "rssAbstractLength");
 
-		prefs.setValues("rss-types", rssTypes);
-		prefs.setValue("rss-max-items", String.valueOf(rssMaxItems));
-		prefs.setValue("rss-display-style", rssDisplayStyle);
-		prefs.setValue("rss-abstract-length", String.valueOf(rssAbstractLength));
+		preferences.setValues("rss-types", rssTypes);
+		preferences.setValue("rss-max-items", String.valueOf(rssMaxItems));
+		preferences.setValue("rss-display-style", rssDisplayStyle);
+		preferences.setValue(
+			"rss-abstract-length", String.valueOf(rssAbstractLength));
 	}
 
 }
