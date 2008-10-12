@@ -73,6 +73,15 @@ ResourceURL templateURL = renderResponse.createResourceURL();
 		<portlet:namespace />saveAndContinueArticle();
 	}
 
+	function <portlet:namespace />getSuggestionsContent() {
+		var content = '';
+
+		content += document.<portlet:namespace />fm.<portlet:namespace/>title.value + ' ';
+		content += window.<portlet:namespace />editor.getHTML();
+
+		return content;
+	}
+
 	function <portlet:namespace />getTemplate() {
 		var templateResourcePrimKey = "";
 
@@ -254,7 +263,7 @@ if (article != null) {
 			<liferay-ui:tags-selector
 				className="<%= KBArticle.class.getName() %>"
 				classPK="<%= classPK %>"
-				hiddenInput="none"
+				hiddenInput="categoriesEntries"
 				folksonomy="false"
 			/>
 		</td>
@@ -273,6 +282,7 @@ if (article != null) {
 				className="<%= KBArticle.class.getName() %>"
 				classPK="<%= classPK %>"
 				hiddenInput="tagsEntries"
+				contentCallback='<%= renderResponse.getNamespace() + "getSuggestionsContent" %>'
 				folksonomy="true"
 			/>
 		</td>

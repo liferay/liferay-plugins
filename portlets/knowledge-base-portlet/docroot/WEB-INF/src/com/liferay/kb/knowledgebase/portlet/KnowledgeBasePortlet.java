@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DocumentConversionUtil;
@@ -54,11 +55,6 @@ import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.tags.model.TagsEntry;
-import com.liferay.portlet.tags.model.TagsEntryConstants;
-import com.liferay.portlet.tags.model.TagsVocabulary;
-import com.liferay.portlet.tags.service.TagsEntryServiceUtil;
-import com.liferay.portlet.tags.service.TagsVocabularyServiceUtil;
 import com.liferay.util.MathUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.util.servlet.PortletResponseUtil;
@@ -745,33 +741,12 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		long parentResourcePrimKey = ParamUtil.getLong(
 			actionRequest, "parentResourcePrimKey");
 
-		List<TagsVocabulary> vocabularies =
-			TagsVocabularyServiceUtil.getCompanyVocabularies(
-				themeDisplay.getCompanyId(), false);
+		String[] categoriesEntries = StringUtil.split(
+			ParamUtil.getString(actionRequest, "categoriesEntries"));
+		String[] tagsEntries = StringUtil.split(
+			ParamUtil.getString(actionRequest, "tagsEntries"));
 
-		String tagsEntriesString = ParamUtil.getString(
-			actionRequest, "tagsEntries");
-
-		for (TagsVocabulary vocabulary : vocabularies) {
-			String vocabularyParamName =
-				TagsEntryConstants.VOCABULARY +
-				Long.toString(vocabulary.getVocabularyId());
-
-			long entryId = ParamUtil.getLong(
-				actionRequest, vocabularyParamName);
-
-			if (Validator.isNotNull(entryId)) {
-				if (Validator.isNotNull(tagsEntriesString)) {
-					tagsEntriesString += ",";
-				}
-
-				TagsEntry entry = TagsEntryServiceUtil.getEntry(entryId);
-
-				tagsEntriesString += entry.getName();
-			}
-		}
-
-		String[] tagsEntries = StringUtil.split(tagsEntriesString);
+		tagsEntries = ArrayUtil.append(tagsEntries, categoriesEntries);
 
 		if (addTemplate) {
 			minorEdit = true;
