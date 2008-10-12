@@ -35,7 +35,6 @@ request.setAttribute("article_iterator.type", "all_articles");
 <c:if test="<%= KBPermission.contains(permissionChecker, plid, ActionKeys.ADD_ARTICLE) %>">
 	<div class="ctrl-holder-add-article">
 		<input type="button" value="<liferay-ui:message key="add-article" />" onClick="location.href = '<portlet:renderURL><portlet:param name="view" value="edit_article" /><portlet:param name="template" value="false" /><portlet:param name="redirect" value="<%= currentURL %>"></portlet:param></portlet:renderURL>'" />
-		&nbsp;&nbsp;
 		<input type="button" value="<liferay-ui:message key="import-article" />" onClick="location.href = '<portlet:renderURL><portlet:param name="view" value="import_article" /><portlet:param name="redirect" value="<%= currentURL %>"></portlet:param></portlet:renderURL>'" />
 	</div>
 </c:if>
