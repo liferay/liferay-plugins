@@ -264,7 +264,7 @@ if (article != null) {
 				className="<%= KBArticle.class.getName() %>"
 				classPK="<%= classPK %>"
 				folksonomy="<%= false %>"
-				hiddenInput="tagsCategoriesEntries"
+				hiddenInput="tagsCategories"
 			/>
 		</td>
 	</tr>
