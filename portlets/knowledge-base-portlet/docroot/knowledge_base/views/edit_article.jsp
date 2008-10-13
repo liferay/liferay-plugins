@@ -263,8 +263,8 @@ if (article != null) {
 			<liferay-ui:tags-selector
 				className="<%= KBArticle.class.getName() %>"
 				classPK="<%= classPK %>"
+				folksonomy="<%= false %>"
 				hiddenInput="tagsCategoriesEntries"
-				folksonomy="false"
 			/>
 		</td>
 	</tr>
@@ -281,9 +281,9 @@ if (article != null) {
 			<liferay-ui:tags-selector
 				className="<%= KBArticle.class.getName() %>"
 				classPK="<%= classPK %>"
-				hiddenInput="tagsEntries"
 				contentCallback='<%= renderResponse.getNamespace() + "getSuggestionsContent" %>'
-				folksonomy="true"
+				folksonomy="<%= true %>"
+				hiddenInput="tagsEntries"
 			/>
 		</td>
 	</tr>
