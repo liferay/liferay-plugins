@@ -741,12 +741,12 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		long parentResourcePrimKey = ParamUtil.getLong(
 			actionRequest, "parentResourcePrimKey");
 
-		String[] categoriesEntries = StringUtil.split(
-			ParamUtil.getString(actionRequest, "categoriesEntries"));
+		String[] tagsCategoriesEntries = StringUtil.split(
+			ParamUtil.getString(actionRequest, "tagsCategoriesEntries"));
 		String[] tagsEntries = StringUtil.split(
 			ParamUtil.getString(actionRequest, "tagsEntries"));
 
-		tagsEntries = ArrayUtil.append(tagsEntries, categoriesEntries);
+		tagsEntries = ArrayUtil.append(tagsEntries, tagsCategoriesEntries);
 
 		if (addTemplate) {
 			minorEdit = true;

@@ -263,7 +263,7 @@ if (article != null) {
 			<liferay-ui:tags-selector
 				className="<%= KBArticle.class.getName() %>"
 				classPK="<%= classPK %>"
-				hiddenInput="categoriesEntries"
+				hiddenInput="tagsCategoriesEntries"
 				folksonomy="false"
 			/>
 		</td>
