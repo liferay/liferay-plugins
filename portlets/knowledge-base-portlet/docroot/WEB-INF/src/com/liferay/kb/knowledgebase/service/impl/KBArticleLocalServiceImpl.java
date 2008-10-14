@@ -99,6 +99,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import javax.mail.internet.InternetAddress;
 
@@ -676,8 +677,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		String title = bookEl.element("bookinfo").elementText("title");
 
+		title = validateTitle(groupId, title);
+
 		KBArticle bookArticle = addArticle(
-			userId, groupId, title, StringPool.BLANK, StringPool.BLANK, false,
+			userId, groupId, title, StringPool.BLANK, StringPool.BLANK, true,
 			false, false, KBArticleImpl.DEFAULT_PARENT, null, prefs,
 			themeDisplay);
 
@@ -686,9 +689,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		for (Element glossaryEl : glossaries) {
 			Section section = getSection(glossaryEl, true);
 
+			title = validateTitle(groupId, section.getTitle());
+
 			addArticle(
-				userId, groupId, section.getTitle(), section.getContent(),
-				section.getSubTitle(), false, false, false,
+				userId, groupId, title, section.getContent(),
+				section.getSubTitle(), true, false, false,
 				bookArticle.getResourcePrimKey(), null, prefs, themeDisplay);
 		}
 
@@ -697,9 +702,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		for (Element chapterEl : chaptersEl) {
 			Section section = getSection(chapterEl, false);
 
+			title = validateTitle(groupId, section.getTitle());
+
 			KBArticle chapterArticle = addArticle(
-				userId, groupId, section.getTitle(), section.getContent(),
-				section.getDescription(), false, false, false,
+				userId, groupId, title, section.getContent(),
+				section.getDescription(), true, false, false,
 				bookArticle.getResourcePrimKey(), null, prefs, themeDisplay);
 
 			List<Element> sections = chapterEl.elements("section");
@@ -707,9 +714,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			for (Element sectionEl : sections) {
 				section = getSection(sectionEl, false);
 
+				title = validateTitle(groupId, section.getTitle());
+
 				KBArticle sectionArticle = addArticle(
-					userId, groupId, section.getTitle(), section.getContent(),
-					StringPool.BLANK, false, false, false,
+					userId, groupId, title, section.getContent(),
+					StringPool.BLANK, true, false, false,
 					chapterArticle.getResourcePrimKey(), null, prefs,
 					themeDisplay);
 
@@ -718,11 +727,13 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				for (Element subSectionEl : subSections) {
 					section = getSection(subSectionEl, true);
 
+					title = validateTitle(groupId, section.getTitle());
+
 					addArticle(
-						userId, groupId, section.getTitle(),
-						section.getContent(), section.getDescription(), false,
-						false,  false, sectionArticle.getResourcePrimKey(),
-						null, prefs, themeDisplay);
+						userId, groupId, title, section.getContent(),
+						section.getDescription(), true, false,  false,
+						sectionArticle.getResourcePrimKey(), null, prefs,
+						themeDisplay);
 				}
 			}
 		}
@@ -1168,6 +1179,40 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		validateTitle(title);
+	}
+
+	protected String validateTitle(long groupId, String title)
+		throws SystemException {
+
+		return validateTitle(groupId, title, 1);
+	}
+
+	protected String validateTitle(long groupId, String title, int suffix)
+		throws SystemException {
+
+		int count = kbArticlePersistence.countByG_T(groupId, title);
+
+		if (count == 0) {
+			return title;
+		}
+
+		if (Pattern.matches(".* \\(\\d+\\)", title)) {
+			int pos = title.lastIndexOf(" (");
+
+			title = title.substring(0, pos);
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(title);
+		sb.append(StringPool.SPACE);
+		sb.append(StringPool.OPEN_PARENTHESIS);
+		sb.append(suffix);
+		sb.append(StringPool.CLOSE_PARENTHESIS);
+
+		title = sb.toString();
+
+		return validateTitle(groupId, title, ++suffix);
 	}
 
 	protected Transformer getTransformer() throws Exception {

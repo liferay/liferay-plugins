@@ -448,8 +448,13 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			throw new UploadException();
 		}
 
-		KBArticleServiceUtil.importDocbook(
-			themeDisplay.getScopeGroupId(), file, prefs, themeDisplay);
+		try {
+			KBArticleServiceUtil.importDocbook(
+				themeDisplay.getScopeGroupId(), file, prefs, themeDisplay);
+		}
+		catch (Exception e) {
+			new UploadException(e);
+		}
 	}
 
 	protected void getFile(
