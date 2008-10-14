@@ -1194,11 +1194,11 @@ the ID is not unique.</para>
     <xsl:variable name="target" select="$targets[1]"/>
 
     <xsl:if test="count($targets)=0">
-      <xsl:message>
+      <!--  <xsl:message>
         <xsl:text>Error: no ID for constraint linkend: </xsl:text>
         <xsl:value-of select="$linkend"/>
         <xsl:text>.</xsl:text>
-      </xsl:message>
+      </xsl:message> -->
       <!--
       <xsl:message>
         <xsl:text>If the ID exists in your document, did your </xsl:text>

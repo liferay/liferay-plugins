@@ -47,6 +47,7 @@ public class KBArticleSoap implements Serializable {
 		soapModel.setUserName(model.getUserName());
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setTitle(model.getTitle());
+		soapModel.setHtmlTitle(model.getHtmlTitle());
 		soapModel.setVersion(model.getVersion());
 		soapModel.setMinorEdit(model.getMinorEdit());
 		soapModel.setContent(model.getContent());
@@ -152,6 +153,14 @@ public class KBArticleSoap implements Serializable {
 		_title = title;
 	}
 
+	public String getHtmlTitle() {
+		return _htmlTitle;
+	}
+
+	public void setHtmlTitle(String htmlTitle) {
+		_htmlTitle = htmlTitle;
+	}
+
 	public double getVersion() {
 		return _version;
 	}
@@ -241,6 +250,7 @@ public class KBArticleSoap implements Serializable {
 	private String _userName;
 	private Date _modifiedDate;
 	private String _title;
+	private String _htmlTitle;
 	private double _version;
 	private boolean _minorEdit;
 	private String _content;

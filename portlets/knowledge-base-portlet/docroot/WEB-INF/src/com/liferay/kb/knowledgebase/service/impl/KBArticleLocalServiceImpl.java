@@ -58,7 +58,6 @@ import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.ByteArrayMaker;
 import com.liferay.portal.kernel.util.ContentTypes;
-import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.NotificationThreadLocal;
 import com.liferay.portal.kernel.util.ObjectValuePair;
@@ -90,6 +89,8 @@ import com.liferay.util.MathUtil;
 import java.io.File;
 import java.io.Reader;
 import java.io.StringReader;
+
+import java.net.URL;
 
 import java.rmi.RemoteException;
 
@@ -134,21 +135,41 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		String uuid = null;
+		String htmlTitle = null;
 		double version = KBArticleImpl.DEFAULT_VERSION;
 		boolean head = true;
 
 		return addArticle(
-			uuid, userId, groupId, title, version, content, description,
-			minorEdit, head, template, draft, parentResourcePrimKey,
-			tagsEntries, prefs, themeDisplay);
+			uuid, userId, groupId, title, htmlTitle, version, content,
+			description, minorEdit, head, template, draft,
+			parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
+	}
+
+	public KBArticle addArticle(
+			long userId, long groupId, String title, String htmlTitle,
+			String content, String description, boolean minorEdit,
+			boolean template, boolean draft, long parentResourcePrimKey,
+			String[] tagsEntries, PortletPreferences prefs,
+			ThemeDisplay themeDisplay)
+		throws PortalException, SystemException {
+
+		String uuid = null;
+		double version = KBArticleImpl.DEFAULT_VERSION;
+		boolean head = true;
+
+		return addArticle(
+			uuid, userId, groupId, title, htmlTitle, version, content,
+			description, minorEdit, head, template, draft,
+			parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
 	}
 
 	public KBArticle addArticle(
 			String uuid, long userId, long groupId, String title,
-			double version, String content, String description,
-			boolean minorEdit, boolean head, boolean template, boolean draft,
-			long parentResourcePrimKey, String[] tagsEntries,
-			PortletPreferences prefs, ThemeDisplay themeDisplay)
+			String htmlTitle, double version, String content,
+			String description, boolean minorEdit, boolean head,
+			boolean template, boolean draft, long parentResourcePrimKey,
+			String[] tagsEntries, PortletPreferences prefs,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		// Article
@@ -164,6 +185,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		if (count > 0) {
 			throw new ArticleTitleException(
 				"The title " + title + " is already being used");
+		}
+
+		if (htmlTitle == null) {
+			htmlTitle = title;
 		}
 
 		long articleId = CounterLocalServiceUtil.increment();
@@ -182,6 +207,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		article.setModifiedDate(now);
 		article.setGroupId(groupId);
 		article.setTitle(title);
+		article.setHtmlTitle(htmlTitle);
 		article.setVersion(version);
 		article.setMinorEdit(minorEdit);
 		article.setContent(content);
@@ -675,24 +701,25 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		Element bookEl = doc.getRootElement();
 
-		String title = bookEl.element("bookinfo").elementText("title");
+		String htmlTitle = bookEl.element("bookinfo").elementText("title");
 
-		title = validateTitle(groupId, title);
+		String title = bookEl.attributeValue("id");
 
 		KBArticle bookArticle = addArticle(
-			userId, groupId, title, StringPool.BLANK, StringPool.BLANK, true,
-			false, false, KBArticleImpl.DEFAULT_PARENT, null, prefs,
-			themeDisplay);
+			userId, groupId, title, htmlTitle, StringPool.BLANK,
+			StringPool.BLANK, true, false, false, KBArticleImpl.DEFAULT_PARENT,
+			null, prefs, themeDisplay);
 
 		List<Element> glossaries = bookEl.elements("glossary");
 
 		for (Element glossaryEl : glossaries) {
 			Section section = getSection(glossaryEl, true);
 
-			title = validateTitle(groupId, section.getTitle());
+			title = validateTitle(groupId, section.getId());
+			htmlTitle = section.getTitle();
 
 			addArticle(
-				userId, groupId, title, section.getContent(),
+				userId, groupId, title, htmlTitle, section.getContent(),
 				section.getSubTitle(), true, false, false,
 				bookArticle.getResourcePrimKey(), null, prefs, themeDisplay);
 		}
@@ -702,10 +729,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		for (Element chapterEl : chaptersEl) {
 			Section section = getSection(chapterEl, false);
 
-			title = validateTitle(groupId, section.getTitle());
+			title = validateTitle(groupId, section.getId());
+			htmlTitle = section.getTitle();
 
 			KBArticle chapterArticle = addArticle(
-				userId, groupId, title, section.getContent(),
+				userId, groupId, title, htmlTitle, section.getContent(),
 				section.getDescription(), true, false, false,
 				bookArticle.getResourcePrimKey(), null, prefs, themeDisplay);
 
@@ -714,10 +742,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			for (Element sectionEl : sections) {
 				section = getSection(sectionEl, false);
 
-				title = validateTitle(groupId, section.getTitle());
+				title = validateTitle(groupId, section.getId());
+				htmlTitle = section.getTitle();
 
 				KBArticle sectionArticle = addArticle(
-					userId, groupId, title, section.getContent(),
+					userId, groupId, title, htmlTitle, section.getContent(),
 					StringPool.BLANK, true, false, false,
 					chapterArticle.getResourcePrimKey(), null, prefs,
 					themeDisplay);
@@ -727,10 +756,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				for (Element subSectionEl : subSections) {
 					section = getSection(subSectionEl, true);
 
-					title = validateTitle(groupId, section.getTitle());
+					title = validateTitle(groupId, section.getId());
+					htmlTitle = section.getTitle();
 
 					addArticle(
-						userId, groupId, title, section.getContent(),
+						userId, groupId, title, htmlTitle, section.getContent(),
 						section.getDescription(), true, false,  false,
 						sectionArticle.getResourcePrimKey(), null, prefs,
 						themeDisplay);
@@ -873,6 +903,22 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
+		String htmlTitle = null;
+
+		return updateArticle(
+			userId, resourcePrimKey, version, title, htmlTitle, content,
+			description, minorEdit, template, draft, parentResourcePrimKey,
+			tagsEntries, prefs, themeDisplay);
+	}
+
+	public KBArticle updateArticle(
+			long userId, long resourcePrimKey, double version,
+			String title, String htmlTitle, String content, String description,
+			boolean minorEdit, boolean template, boolean draft,
+			long parentResourcePrimKey, String[] tagsEntries,
+			PortletPreferences prefs, ThemeDisplay themeDisplay)
+		throws PortalException, SystemException {
+
 		// Article
 
 		User user = UserLocalServiceUtil.getUser(userId);
@@ -887,6 +933,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		if ((version > 0) && (version != oldVersion)) {
 			throw new ArticleVersionException();
+		}
+
+		if (htmlTitle == null) {
+			htmlTitle = title;
 		}
 
 		article.setHead(false);
@@ -907,6 +957,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		article.setModifiedDate(now);
 		article.setGroupId(groupId);
 		article.setTitle(title);
+		article.setHtmlTitle(htmlTitle);
 		article.setVersion(newVersion);
 		article.setMinorEdit(minorEdit);
 		article.setContent(content);
@@ -1004,6 +1055,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	protected Section getSection(Element el, boolean htmlContent) {
+		String id = el.attributeValue("id");
 		String title = el.elementText("title");
 		String subTitle = el.elementText("subtitle");
 		String description = el.elementText("para");
@@ -1018,7 +1070,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			}
 		}
 
-		return new Section(title, subTitle, description, content);
+		return new Section(id, title, subTitle, description, content);
 	}
 
 	protected boolean isUsedTitle(long groupId, String title)
@@ -1219,13 +1271,15 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		if (_transformer == null) {
 			TransformerFactory factory = TransformerFactory.newInstance();
 
-			String xsl = "/home/bruno/projects/bundles/tomcat-5.5.26/webapps/knowledge-base-portlet/WEB-INF/classes/com/liferay/kb/knowledgebase/dependencies/xsl/html" +
-				"/docbook.xsl";
+			String xslPath = "../../dependencies/xsl/html/docbook.xsl";
 
-			String xslContent = FileUtil.read(xsl);
+			URL url = getClass().getResource(xslPath);
+
+			String xslContent = StringUtil.read(
+				getClass().getResourceAsStream(xslPath));
 
 			Source source = new StreamSource(xslContent);
-			source.setSystemId(xsl);
+			source.setSystemId(url.getFile());
 			_transformer = factory.newTransformer(source);
 		}
 

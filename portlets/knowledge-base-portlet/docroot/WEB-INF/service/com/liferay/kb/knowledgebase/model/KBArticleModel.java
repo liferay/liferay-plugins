@@ -73,6 +73,10 @@ public interface KBArticleModel extends BaseModel {
 
 	public void setTitle(String title);
 
+	public String getHtmlTitle();
+
+	public void setHtmlTitle(String htmlTitle);
+
 	public double getVersion();
 
 	public void setVersion(double version);

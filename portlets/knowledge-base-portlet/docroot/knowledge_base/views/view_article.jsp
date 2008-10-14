@@ -36,6 +36,7 @@ KBFeedbackStats feedbackStats = (KBFeedbackStats) request.getAttribute(Knowledge
 long resourcePrimKey = article.getResourcePrimKey();
 
 String title = article.getTitle();
+String htmlTitle = article.getHtmlTitle();
 
 String[] attachments = article.getAttachmentsFiles();
 
@@ -145,7 +146,7 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 			viewParentArticleURL.setParameter("title", curParentArticle.getTitle());
 		%>
 
-			<a href="<%= viewParentArticleURL %>"><%= curParentArticle.getTitle() %></a>
+			<a href="<%= viewParentArticleURL %>"><%= curParentArticle.getHtmlTitle() %></a>
 
 			<c:if test="<%= i < parentArticles.size() %>">
 				&raquo;
@@ -159,7 +160,7 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 </c:if>
 
 <h1 class="article-title">
-	<%= title %>
+	<%= htmlTitle %>
 </h1>
 
 <c:if test="<%= !article.isHead() %>">
@@ -193,7 +194,7 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 						%>
 
 							<li>
-								<a href="<%= curArticleURL %>"><%= curArticle.getTitle() %></a>
+								<a href="<%= curArticleURL %>"><%= curArticle.getHtmlTitle() %></a>
 							</li>
 
 						<%

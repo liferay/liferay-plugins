@@ -28,6 +28,7 @@
 		<!-- Other fields -->
 
 		<column name="title" type="String" />
+		<column name="htmlTitle" type="String" />
 		<column name="version" type="double" />
 		<column name="minorEdit" type="boolean" />
 		<column name="content" type="String" />

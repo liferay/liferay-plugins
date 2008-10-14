@@ -9,6 +9,7 @@ create table KB_KBArticle (
 	userName VARCHAR(75) null,
 	modifiedDate DATE null,
 	title VARCHAR(100) null,
+	htmlTitle VARCHAR(75) null,
 	version DOUBLE,
 	minorEdit BOOLEAN,
 	content TEXT null,

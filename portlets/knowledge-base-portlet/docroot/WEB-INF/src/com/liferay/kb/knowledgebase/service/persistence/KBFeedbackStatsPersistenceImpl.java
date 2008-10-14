@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
+import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import org.apache.commons.logging.Log;
@@ -127,6 +128,15 @@ public class KBFeedbackStatsPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
+			if (BatchSessionUtil.isEnabled()) {
+				Object staleObject = session.get(KBFeedbackStatsImpl.class,
+						kbFeedbackStats.getPrimaryKeyObj());
+
+				if (staleObject != null) {
+					session.evict(staleObject);
+				}
+			}
+
 			session.delete(kbFeedbackStats);
 
 			session.flush();
@@ -192,16 +202,7 @@ public class KBFeedbackStatsPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
-			if (merge) {
-				session.merge(kbFeedbackStats);
-			}
-			else {
-				if (kbFeedbackStats.isNew()) {
-					session.save(kbFeedbackStats);
-				}
-			}
-
-			session.flush();
+			BatchSessionUtil.update(session, kbFeedbackStats, merge);
 
 			kbFeedbackStats.setNew(false);
 

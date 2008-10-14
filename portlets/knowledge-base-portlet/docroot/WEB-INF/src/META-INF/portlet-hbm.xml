@@ -15,6 +15,7 @@
 		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="htmlTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="version" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 		<property name="minorEdit" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />

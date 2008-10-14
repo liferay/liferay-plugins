@@ -151,7 +151,7 @@
         <a>
           <xsl:apply-templates select="." mode="class.attribute"/>
           <xsl:attribute name="href">
-            <xsl:text>__SECTION_URL_PREFIX__</xsl:text>
+            <!-- <xsl:text>__SECTION_URL_PREFIX__</xsl:text> -->
             <xsl:value-of select="$linkend"/>
             <!--<xsl:call-template name="href.target">
               <xsl:with-param name="object" select="$linked"/>

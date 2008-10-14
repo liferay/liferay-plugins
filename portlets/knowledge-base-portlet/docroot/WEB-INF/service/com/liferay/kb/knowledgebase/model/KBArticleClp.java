@@ -126,6 +126,14 @@ public class KBArticleClp extends BaseModelImpl implements KBArticle {
 		_title = title;
 	}
 
+	public String getHtmlTitle() {
+		return _htmlTitle;
+	}
+
+	public void setHtmlTitle(String htmlTitle) {
+		_htmlTitle = htmlTitle;
+	}
+
 	public double getVersion() {
 		return _version;
 	}
@@ -266,6 +274,7 @@ public class KBArticleClp extends BaseModelImpl implements KBArticle {
 			model.setUserName(HtmlUtil.escape(getUserName()));
 			model.setModifiedDate(getModifiedDate());
 			model.setTitle(HtmlUtil.escape(getTitle()));
+			model.setHtmlTitle(HtmlUtil.escape(getHtmlTitle()));
 			model.setVersion(getVersion());
 			model.setMinorEdit(getMinorEdit());
 			model.setContent(HtmlUtil.escape(getContent()));
@@ -295,6 +304,7 @@ public class KBArticleClp extends BaseModelImpl implements KBArticle {
 		clone.setUserName(getUserName());
 		clone.setModifiedDate(getModifiedDate());
 		clone.setTitle(getTitle());
+		clone.setHtmlTitle(getHtmlTitle());
 		clone.setVersion(getVersion());
 		clone.setMinorEdit(getMinorEdit());
 		clone.setContent(getContent());
@@ -377,6 +387,7 @@ public class KBArticleClp extends BaseModelImpl implements KBArticle {
 	private String _userName;
 	private Date _modifiedDate;
 	private String _title;
+	private String _htmlTitle;
 	private double _version;
 	private boolean _minorEdit;
 	private String _content;

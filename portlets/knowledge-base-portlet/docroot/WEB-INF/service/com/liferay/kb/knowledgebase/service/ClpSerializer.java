@@ -131,61 +131,68 @@ public class ClpSerializer {
 
 					method8.invoke(newModel, value8);
 
-					Method method9 = newModelClass.getMethod("setVersion",
-							new Class[] { Double.TYPE });
+					Method method9 = newModelClass.getMethod("setHtmlTitle",
+							new Class[] { String.class });
 
-					Double value9 = new Double(oldCplModel.getVersion());
+					String value9 = oldCplModel.getHtmlTitle();
 
 					method9.invoke(newModel, value9);
 
-					Method method10 = newModelClass.getMethod("setMinorEdit",
-							new Class[] { Boolean.TYPE });
+					Method method10 = newModelClass.getMethod("setVersion",
+							new Class[] { Double.TYPE });
 
-					Boolean value10 = new Boolean(oldCplModel.getMinorEdit());
+					Double value10 = new Double(oldCplModel.getVersion());
 
 					method10.invoke(newModel, value10);
 
-					Method method11 = newModelClass.getMethod("setContent",
-							new Class[] { String.class });
+					Method method11 = newModelClass.getMethod("setMinorEdit",
+							new Class[] { Boolean.TYPE });
 
-					String value11 = oldCplModel.getContent();
+					Boolean value11 = new Boolean(oldCplModel.getMinorEdit());
 
 					method11.invoke(newModel, value11);
 
-					Method method12 = newModelClass.getMethod("setDescription",
+					Method method12 = newModelClass.getMethod("setContent",
 							new Class[] { String.class });
 
-					String value12 = oldCplModel.getDescription();
+					String value12 = oldCplModel.getContent();
 
 					method12.invoke(newModel, value12);
 
-					Method method13 = newModelClass.getMethod("setHead",
-							new Class[] { Boolean.TYPE });
+					Method method13 = newModelClass.getMethod("setDescription",
+							new Class[] { String.class });
 
-					Boolean value13 = new Boolean(oldCplModel.getHead());
+					String value13 = oldCplModel.getDescription();
 
 					method13.invoke(newModel, value13);
 
-					Method method14 = newModelClass.getMethod("setTemplate",
+					Method method14 = newModelClass.getMethod("setHead",
 							new Class[] { Boolean.TYPE });
 
-					Boolean value14 = new Boolean(oldCplModel.getTemplate());
+					Boolean value14 = new Boolean(oldCplModel.getHead());
 
 					method14.invoke(newModel, value14);
 
-					Method method15 = newModelClass.getMethod("setDraft",
+					Method method15 = newModelClass.getMethod("setTemplate",
 							new Class[] { Boolean.TYPE });
 
-					Boolean value15 = new Boolean(oldCplModel.getDraft());
+					Boolean value15 = new Boolean(oldCplModel.getTemplate());
 
 					method15.invoke(newModel, value15);
 
-					Method method16 = newModelClass.getMethod("setParentResourcePrimKey",
-							new Class[] { Long.TYPE });
+					Method method16 = newModelClass.getMethod("setDraft",
+							new Class[] { Boolean.TYPE });
 
-					Long value16 = new Long(oldCplModel.getParentResourcePrimKey());
+					Boolean value16 = new Boolean(oldCplModel.getDraft());
 
 					method16.invoke(newModel, value16);
+
+					Method method17 = newModelClass.getMethod("setParentResourcePrimKey",
+							new Class[] { Long.TYPE });
+
+					Long value17 = new Long(oldCplModel.getParentResourcePrimKey());
+
+					method17.invoke(newModel, value17);
 
 					return newModel;
 				}
@@ -531,62 +538,69 @@ public class ClpSerializer {
 
 					newModel.setTitle(value8);
 
-					Method method9 = oldModelClass.getMethod("getVersion");
+					Method method9 = oldModelClass.getMethod("getHtmlTitle");
 
-					Double value9 = (Double)method9.invoke(oldModel,
+					String value9 = (String)method9.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setVersion(value9.doubleValue());
+					newModel.setHtmlTitle(value9);
 
-					Method method10 = oldModelClass.getMethod("getMinorEdit");
+					Method method10 = oldModelClass.getMethod("getVersion");
 
-					Boolean value10 = (Boolean)method10.invoke(oldModel,
+					Double value10 = (Double)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setMinorEdit(value10.booleanValue());
+					newModel.setVersion(value10.doubleValue());
 
-					Method method11 = oldModelClass.getMethod("getContent");
+					Method method11 = oldModelClass.getMethod("getMinorEdit");
 
-					String value11 = (String)method11.invoke(oldModel,
+					Boolean value11 = (Boolean)method11.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setContent(value11);
+					newModel.setMinorEdit(value11.booleanValue());
 
-					Method method12 = oldModelClass.getMethod("getDescription");
+					Method method12 = oldModelClass.getMethod("getContent");
 
 					String value12 = (String)method12.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setDescription(value12);
+					newModel.setContent(value12);
 
-					Method method13 = oldModelClass.getMethod("getHead");
+					Method method13 = oldModelClass.getMethod("getDescription");
 
-					Boolean value13 = (Boolean)method13.invoke(oldModel,
+					String value13 = (String)method13.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setHead(value13.booleanValue());
+					newModel.setDescription(value13);
 
-					Method method14 = oldModelClass.getMethod("getTemplate");
+					Method method14 = oldModelClass.getMethod("getHead");
 
 					Boolean value14 = (Boolean)method14.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setTemplate(value14.booleanValue());
+					newModel.setHead(value14.booleanValue());
 
-					Method method15 = oldModelClass.getMethod("getDraft");
+					Method method15 = oldModelClass.getMethod("getTemplate");
 
 					Boolean value15 = (Boolean)method15.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setDraft(value15.booleanValue());
+					newModel.setTemplate(value15.booleanValue());
 
-					Method method16 = oldModelClass.getMethod(
-							"getParentResourcePrimKey");
+					Method method16 = oldModelClass.getMethod("getDraft");
 
-					Long value16 = (Long)method16.invoke(oldModel,
+					Boolean value16 = (Boolean)method16.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setParentResourcePrimKey(value16.longValue());
+					newModel.setDraft(value16.booleanValue());
+
+					Method method17 = oldModelClass.getMethod(
+							"getParentResourcePrimKey");
+
+					Long value17 = (Long)method17.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setParentResourcePrimKey(value17.longValue());
 
 					return newModel;
 				}

@@ -77,11 +77,22 @@ public interface KBArticleLocalService {
 			com.liferay.portal.SystemException;
 
 	public com.liferay.kb.knowledgebase.model.KBArticle addArticle(
-		java.lang.String uuid, long userId, long groupId,
-		java.lang.String title, double version, java.lang.String content,
-		java.lang.String description, boolean minorEdit, boolean head,
-		boolean template, boolean draft, long parentResourcePrimKey,
+		long userId, long groupId, java.lang.String title,
+		java.lang.String htmlTitle, java.lang.String content,
+		java.lang.String description, boolean minorEdit, boolean template,
+		boolean draft, long parentResourcePrimKey,
 		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public com.liferay.kb.knowledgebase.model.KBArticle addArticle(
+		java.lang.String uuid, long userId, long groupId,
+		java.lang.String title, java.lang.String htmlTitle, double version,
+		java.lang.String content, java.lang.String description,
+		boolean minorEdit, boolean head, boolean template, boolean draft,
+		long parentResourcePrimKey, java.lang.String[] tagsEntries,
+		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
@@ -257,6 +268,17 @@ public interface KBArticleLocalService {
 		java.lang.String description, boolean minorEdit, boolean template,
 		boolean draft, long parentResourcePrimKey,
 		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public com.liferay.kb.knowledgebase.model.KBArticle updateArticle(
+		long userId, long resourcePrimKey, double version,
+		java.lang.String title, java.lang.String htmlTitle,
+		java.lang.String content, java.lang.String description,
+		boolean minorEdit, boolean template, boolean draft,
+		long parentResourcePrimKey, java.lang.String[] tagsEntries,
+		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;

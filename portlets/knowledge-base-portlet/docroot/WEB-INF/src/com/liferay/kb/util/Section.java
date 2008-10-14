@@ -31,12 +31,22 @@ package com.liferay.kb.util;
 public class Section {
 
 	public Section(
-			String title, String subTitle, String description, String content) {
+			String id, String title, String subTitle, String description,
+			String content) {
 
+		_id = id;
 		_title = title;
 		_subTitle = subTitle;
 		_description = description;
 		_content = content;
+	}
+
+	public String getId() {
+		return _id;
+	}
+
+	public void setId(String id) {
+		_id = id;
 	}
 
 	public String getContent() {
@@ -73,6 +83,7 @@ public class Section {
 
 	private String _content;
 	private String _description;
+	private String _id;
 	private String _subTitle;
 	private String _title;
 

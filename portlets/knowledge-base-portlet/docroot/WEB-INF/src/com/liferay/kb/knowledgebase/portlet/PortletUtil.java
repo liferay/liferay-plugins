@@ -23,6 +23,7 @@
 package com.liferay.kb.knowledgebase.portlet;
 
 import com.liferay.kb.knowledgebase.KnowledgeBaseKeys;
+import com.liferay.kb.knowledgebase.NoSuchArticleException;
 import com.liferay.kb.knowledgebase.NoSuchFeedbackEntryException;
 import com.liferay.kb.knowledgebase.model.KBArticle;
 import com.liferay.kb.knowledgebase.model.KBFeedbackEntry;
@@ -31,6 +32,7 @@ import com.liferay.kb.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalServiceUtil;
 import com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalServiceUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -90,8 +92,23 @@ public class PortletUtil {
 				resourcePrimKey, version, plid);
 		}
 		else if (Validator.isNotNull(title)) {
-			article = KBArticleServiceUtil.getArticle(
-				themeDisplay.getScopeGroupId(), title, version, plid);
+			try {
+				article = KBArticleServiceUtil.getArticle(
+					themeDisplay.getScopeGroupId(), title, version, plid);
+			}
+			catch (NoSuchArticleException nsae) {
+				int pos = title.lastIndexOf(StringPool.PERIOD);
+
+				if (pos == -1) {
+					throw nsae;
+				}
+
+				title = title.substring(0, pos);
+
+				article = KBArticleServiceUtil.getArticle(
+					themeDisplay.getScopeGroupId(), title, version,
+					plid);
+			}
 		}
 
 		// Feedback

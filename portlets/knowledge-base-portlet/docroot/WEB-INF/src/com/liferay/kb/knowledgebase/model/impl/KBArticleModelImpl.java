@@ -79,6 +79,9 @@ public class KBArticleModelImpl extends BaseModelImpl {
 			{ "title", new Integer(Types.VARCHAR) },
 			
 
+			{ "htmlTitle", new Integer(Types.VARCHAR) },
+			
+
 			{ "version", new Integer(Types.DOUBLE) },
 			
 
@@ -102,7 +105,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 
 			{ "parentResourcePrimKey", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KB_KBArticle (uuid_ VARCHAR(75) null,articleId LONG not null primary key,groupId LONG,resourcePrimKey LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,modifiedDate DATE null,title VARCHAR(100) null,version DOUBLE,minorEdit BOOLEAN,content TEXT null,description STRING null,head BOOLEAN,template BOOLEAN,draft BOOLEAN,parentResourcePrimKey LONG)";
+	public static final String TABLE_SQL_CREATE = "create table KB_KBArticle (uuid_ VARCHAR(75) null,articleId LONG not null primary key,groupId LONG,resourcePrimKey LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,modifiedDate DATE null,title VARCHAR(100) null,htmlTitle VARCHAR(75) null,version DOUBLE,minorEdit BOOLEAN,content TEXT null,description STRING null,head BOOLEAN,template BOOLEAN,draft BOOLEAN,parentResourcePrimKey LONG)";
 	public static final String TABLE_SQL_DROP = "drop table KB_KBArticle";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -123,6 +126,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		model.setUserName(soapModel.getUserName());
 		model.setModifiedDate(soapModel.getModifiedDate());
 		model.setTitle(soapModel.getTitle());
+		model.setHtmlTitle(soapModel.getHtmlTitle());
 		model.setVersion(soapModel.getVersion());
 		model.setMinorEdit(soapModel.getMinorEdit());
 		model.setContent(soapModel.getContent());
@@ -261,6 +265,19 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		}
 	}
 
+	public String getHtmlTitle() {
+		return GetterUtil.getString(_htmlTitle);
+	}
+
+	public void setHtmlTitle(String htmlTitle) {
+		if (((htmlTitle == null) && (_htmlTitle != null)) ||
+				((htmlTitle != null) && (_htmlTitle == null)) ||
+				((htmlTitle != null) && (_htmlTitle != null) &&
+				!htmlTitle.equals(_htmlTitle))) {
+			_htmlTitle = htmlTitle;
+		}
+	}
+
 	public double getVersion() {
 		return _version;
 	}
@@ -382,6 +399,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 			model.setUserName(HtmlUtil.escape(getUserName()));
 			model.setModifiedDate(getModifiedDate());
 			model.setTitle(HtmlUtil.escape(getTitle()));
+			model.setHtmlTitle(HtmlUtil.escape(getHtmlTitle()));
 			model.setVersion(getVersion());
 			model.setMinorEdit(getMinorEdit());
 			model.setContent(HtmlUtil.escape(getContent()));
@@ -420,6 +438,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 		clone.setUserName(getUserName());
 		clone.setModifiedDate(getModifiedDate());
 		clone.setTitle(getTitle());
+		clone.setHtmlTitle(getHtmlTitle());
 		clone.setVersion(getVersion());
 		clone.setMinorEdit(getMinorEdit());
 		clone.setContent(getContent());
@@ -502,6 +521,7 @@ public class KBArticleModelImpl extends BaseModelImpl {
 	private String _userName;
 	private Date _modifiedDate;
 	private String _title;
+	private String _htmlTitle;
 	private double _version;
 	private boolean _minorEdit;
 	private String _content;

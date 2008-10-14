@@ -159,7 +159,7 @@ for (int i = 0; i < results.size(); i++) {
 
 	// Title
 
-	row.addText(curArticle.getTitle(), rowURL);
+	row.addText(curArticle.getHtmlTitle(), rowURL);
 
 	// Revision
 

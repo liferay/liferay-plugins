@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
+import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import org.apache.commons.logging.Log;
@@ -128,6 +129,15 @@ public class KBArticleResourcePersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
+			if (BatchSessionUtil.isEnabled()) {
+				Object staleObject = session.get(KBArticleResourceImpl.class,
+						kbArticleResource.getPrimaryKeyObj());
+
+				if (staleObject != null) {
+					session.evict(staleObject);
+				}
+			}
+
 			session.delete(kbArticleResource);
 
 			session.flush();
@@ -193,16 +203,7 @@ public class KBArticleResourcePersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
-			if (merge) {
-				session.merge(kbArticleResource);
-			}
-			else {
-				if (kbArticleResource.isNew()) {
-					session.save(kbArticleResource);
-				}
-			}
-
-			session.flush();
+			BatchSessionUtil.update(session, kbArticleResource, merge);
 
 			kbArticleResource.setNew(false);
 
