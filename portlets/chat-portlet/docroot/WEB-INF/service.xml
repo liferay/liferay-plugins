@@ -50,6 +50,8 @@
 
 		<!-- Other fields -->
 
+		<column name="online" type="boolean" />
+		<column name="awake" type="boolean" />
 		<column name="activeBrowserKey" type="String" />
 
 		<!-- Finder methods -->

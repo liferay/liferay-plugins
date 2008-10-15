@@ -147,12 +147,26 @@ public class ClpSerializer {
 
 					method2.invoke(newModel, value2);
 
-					Method method3 = newModelClass.getMethod("setActiveBrowserKey",
-							new Class[] { String.class });
+					Method method3 = newModelClass.getMethod("setOnline",
+							new Class[] { Boolean.TYPE });
 
-					String value3 = oldCplModel.getActiveBrowserKey();
+					Boolean value3 = new Boolean(oldCplModel.getOnline());
 
 					method3.invoke(newModel, value3);
+
+					Method method4 = newModelClass.getMethod("setAwake",
+							new Class[] { Boolean.TYPE });
+
+					Boolean value4 = new Boolean(oldCplModel.getAwake());
+
+					method4.invoke(newModel, value4);
+
+					Method method5 = newModelClass.getMethod("setActiveBrowserKey",
+							new Class[] { String.class });
+
+					String value5 = oldCplModel.getActiveBrowserKey();
+
+					method5.invoke(newModel, value5);
 
 					return newModel;
 				}
@@ -277,13 +291,27 @@ public class ClpSerializer {
 
 					newModel.setModifiedDate(value2.longValue());
 
-					Method method3 = oldModelClass.getMethod(
-							"getActiveBrowserKey");
+					Method method3 = oldModelClass.getMethod("getOnline");
 
-					String value3 = (String)method3.invoke(oldModel,
+					Boolean value3 = (Boolean)method3.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setActiveBrowserKey(value3);
+					newModel.setOnline(value3.booleanValue());
+
+					Method method4 = oldModelClass.getMethod("getAwake");
+
+					Boolean value4 = (Boolean)method4.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setAwake(value4.booleanValue());
+
+					Method method5 = oldModelClass.getMethod(
+							"getActiveBrowserKey");
+
+					String value5 = (String)method5.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setActiveBrowserKey(value5);
 
 					return newModel;
 				}

@@ -66,6 +66,7 @@ public class StatusFinderImpl
 			q.addScalar("middleName", Type.STRING);
 			q.addScalar("lastName", Type.STRING);
 			q.addScalar("portraitId", Type.LONG);
+			q.addScalar("awake", Type.BOOLEAN);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -99,6 +100,7 @@ public class StatusFinderImpl
 			q.addScalar("middleName", Type.STRING);
 			q.addScalar("lastName", Type.STRING);
 			q.addScalar("portraitId", Type.LONG);
+			q.addScalar("awake", Type.BOOLEAN);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 

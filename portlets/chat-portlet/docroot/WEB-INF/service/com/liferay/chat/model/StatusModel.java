@@ -47,6 +47,18 @@ public interface StatusModel extends BaseModel {
 
 	public void setModifiedDate(long modifiedDate);
 
+	public boolean getOnline();
+
+	public boolean isOnline();
+
+	public void setOnline(boolean online);
+
+	public boolean getAwake();
+
+	public boolean isAwake();
+
+	public void setAwake(boolean awake);
+
 	public String getActiveBrowserKey();
 
 	public void setActiveBrowserKey(String activeBrowserKey);

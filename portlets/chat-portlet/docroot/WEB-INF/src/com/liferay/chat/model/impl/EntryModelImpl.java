@@ -171,6 +171,7 @@ public class EntryModelImpl extends BaseModelImpl {
 		else {
 			Entry model = new EntryImpl();
 
+			model.setNew(isNew());
 			model.setEscapedModel(true);
 
 			model.setEntryId(getEntryId());

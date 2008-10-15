@@ -81,6 +81,7 @@ for (Object[] buddy : buddies) {
 	String middleName = (String)buddy[2];
 	String lastName = (String)buddy[3];
 	long portraitId = (Long)buddy[4];
+	boolean awake = (Boolean)buddy[5];
 
 	String fullName = ContactConstants.getFullName(firstName, middleName, lastName);
 
@@ -93,6 +94,7 @@ for (Object[] buddy : buddies) {
 	curUserJSON.put("userId", userId);
 	curUserJSON.put("fullName", fullName);
 	curUserJSON.put("portraitId", portraitId);
+	curUserJSON.put("awake", awake);
 
 	buddiesJSON.put(curUserJSON);
 }
@@ -137,7 +139,10 @@ for (Entry entry : entries) {
 
 // Status
 
-StatusLocalServiceUtil.updateStatus(themeDisplay.getUserId(), activeBrowserKey);
+boolean online = ParamUtil.getBoolean(request, "online", true);
+boolean awake = ParamUtil.getBoolean(request, "awake", true);
+
+StatusLocalServiceUtil.updateStatus(themeDisplay.getUserId(), online, awake, activeBrowserKey);
 
 // JSON
 

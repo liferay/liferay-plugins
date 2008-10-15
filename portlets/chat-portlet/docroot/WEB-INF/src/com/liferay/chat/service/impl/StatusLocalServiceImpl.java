@@ -58,7 +58,8 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 		return statusPersistence.findByUserId(userId);
 	}
 
-	public Status updateStatus(long userId, String activeBrowserKey)
+	public Status updateStatus(
+			long userId, boolean online, boolean awake, String activeBrowserKey)
 		throws SystemException {
 
 		Status status = statusPersistence.fetchByUserId(userId);
@@ -72,6 +73,8 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 		}
 
 		status.setModifiedDate(System.currentTimeMillis());
+		status.setOnline(online);
+		status.setAwake(awake);
 		status.setActiveBrowserKey(activeBrowserKey);
 
 		statusPersistence.update(status, false);

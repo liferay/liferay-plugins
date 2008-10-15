@@ -76,6 +76,30 @@ public class StatusClp extends BaseModelImpl implements Status {
 		_modifiedDate = modifiedDate;
 	}
 
+	public boolean getOnline() {
+		return _online;
+	}
+
+	public boolean isOnline() {
+		return _online;
+	}
+
+	public void setOnline(boolean online) {
+		_online = online;
+	}
+
+	public boolean getAwake() {
+		return _awake;
+	}
+
+	public boolean isAwake() {
+		return _awake;
+	}
+
+	public void setAwake(boolean awake) {
+		_awake = awake;
+	}
+
 	public String getActiveBrowserKey() {
 		return _activeBrowserKey;
 	}
@@ -96,6 +120,8 @@ public class StatusClp extends BaseModelImpl implements Status {
 			model.setStatusId(getStatusId());
 			model.setUserId(getUserId());
 			model.setModifiedDate(getModifiedDate());
+			model.setOnline(getOnline());
+			model.setAwake(getAwake());
 			model.setActiveBrowserKey(HtmlUtil.escape(getActiveBrowserKey()));
 
 			model = (Status)Proxy.newProxyInstance(Status.class.getClassLoader(),
@@ -111,6 +137,8 @@ public class StatusClp extends BaseModelImpl implements Status {
 		clone.setStatusId(getStatusId());
 		clone.setUserId(getUserId());
 		clone.setModifiedDate(getModifiedDate());
+		clone.setOnline(getOnline());
+		clone.setAwake(getAwake());
 		clone.setActiveBrowserKey(getActiveBrowserKey());
 
 		return clone;
@@ -167,5 +195,7 @@ public class StatusClp extends BaseModelImpl implements Status {
 	private long _statusId;
 	private long _userId;
 	private long _modifiedDate;
+	private boolean _online;
+	private boolean _awake;
 	private String _activeBrowserKey;
 }

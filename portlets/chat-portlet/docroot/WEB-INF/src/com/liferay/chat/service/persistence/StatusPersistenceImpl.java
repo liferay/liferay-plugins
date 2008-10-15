@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
+import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import org.apache.commons.logging.Log;
@@ -124,6 +125,15 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
+			if (BatchSessionUtil.isEnabled()) {
+				Object staleObject = session.get(StatusImpl.class,
+						status.getPrimaryKeyObj());
+
+				if (staleObject != null) {
+					session.evict(staleObject);
+				}
+			}
+
 			session.delete(status);
 
 			session.flush();
@@ -187,16 +197,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
-			if (merge) {
-				session.merge(status);
-			}
-			else {
-				if (status.isNew()) {
-					session.save(status);
-				}
-			}
-
-			session.flush();
+			BatchSessionUtil.update(session, status, merge);
 
 			status.setNew(false);
 

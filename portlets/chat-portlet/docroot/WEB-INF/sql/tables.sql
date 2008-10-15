@@ -11,5 +11,7 @@ create table Chat_Status (
 	statusId LONG not null primary key,
 	userId LONG,
 	modifiedDate LONG,
+	online BOOLEAN,
+	awake BOOLEAN,
 	activeBrowserKey VARCHAR(75) null
 );

@@ -57,9 +57,15 @@ public class StatusModelImpl extends BaseModelImpl {
 			{ "modifiedDate", new Integer(Types.BIGINT) },
 			
 
+			{ "online", new Integer(Types.BOOLEAN) },
+			
+
+			{ "awake", new Integer(Types.BOOLEAN) },
+			
+
 			{ "activeBrowserKey", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Chat_Status (statusId LONG not null primary key,userId LONG,modifiedDate LONG,activeBrowserKey VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Chat_Status (statusId LONG not null primary key,userId LONG,modifiedDate LONG,online BOOLEAN,awake BOOLEAN,activeBrowserKey VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Chat_Status";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -74,6 +80,8 @@ public class StatusModelImpl extends BaseModelImpl {
 		model.setStatusId(soapModel.getStatusId());
 		model.setUserId(soapModel.getUserId());
 		model.setModifiedDate(soapModel.getModifiedDate());
+		model.setOnline(soapModel.getOnline());
+		model.setAwake(soapModel.getAwake());
 		model.setActiveBrowserKey(soapModel.getActiveBrowserKey());
 
 		return model;
@@ -137,6 +145,34 @@ public class StatusModelImpl extends BaseModelImpl {
 		}
 	}
 
+	public boolean getOnline() {
+		return _online;
+	}
+
+	public boolean isOnline() {
+		return _online;
+	}
+
+	public void setOnline(boolean online) {
+		if (online != _online) {
+			_online = online;
+		}
+	}
+
+	public boolean getAwake() {
+		return _awake;
+	}
+
+	public boolean isAwake() {
+		return _awake;
+	}
+
+	public void setAwake(boolean awake) {
+		if (awake != _awake) {
+			_awake = awake;
+		}
+	}
+
 	public String getActiveBrowserKey() {
 		return GetterUtil.getString(_activeBrowserKey);
 	}
@@ -157,11 +193,14 @@ public class StatusModelImpl extends BaseModelImpl {
 		else {
 			Status model = new StatusImpl();
 
+			model.setNew(isNew());
 			model.setEscapedModel(true);
 
 			model.setStatusId(getStatusId());
 			model.setUserId(getUserId());
 			model.setModifiedDate(getModifiedDate());
+			model.setOnline(getOnline());
+			model.setAwake(getAwake());
 			model.setActiveBrowserKey(HtmlUtil.escape(getActiveBrowserKey()));
 
 			model = (Status)Proxy.newProxyInstance(Status.class.getClassLoader(),
@@ -177,6 +216,8 @@ public class StatusModelImpl extends BaseModelImpl {
 		clone.setStatusId(getStatusId());
 		clone.setUserId(getUserId());
 		clone.setModifiedDate(getModifiedDate());
+		clone.setOnline(getOnline());
+		clone.setAwake(getAwake());
 		clone.setActiveBrowserKey(getActiveBrowserKey());
 
 		return clone;
@@ -233,5 +274,7 @@ public class StatusModelImpl extends BaseModelImpl {
 	private long _statusId;
 	private long _userId;
 	private long _modifiedDate;
+	private boolean _online;
+	private boolean _awake;
 	private String _activeBrowserKey;
 }

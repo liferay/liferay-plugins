@@ -106,9 +106,9 @@ public class StatusLocalServiceUtil {
 	}
 
 	public static com.liferay.chat.model.Status updateStatus(long userId,
-		java.lang.String activeBrowserKey)
+		boolean online, boolean awake, java.lang.String activeBrowserKey)
 		throws com.liferay.portal.SystemException {
-		return getService().updateStatus(userId, activeBrowserKey);
+		return getService().updateStatus(userId, online, awake, activeBrowserKey);
 	}
 
 	public static StatusLocalService getService() {

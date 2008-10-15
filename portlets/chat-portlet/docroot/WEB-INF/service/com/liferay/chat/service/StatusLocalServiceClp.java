@@ -22,6 +22,7 @@
 
 package com.liferay.chat.service;
 
+import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.LongWrapper;
@@ -434,21 +435,25 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	}
 
 	public com.liferay.chat.model.Status updateStatus(long userId,
-		java.lang.String activeBrowserKey)
+		boolean online, boolean awake, java.lang.String activeBrowserKey)
 		throws com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(userId);
 
-		Object paramObj1 = ClpSerializer.translateInput(activeBrowserKey);
+		Object paramObj1 = new BooleanWrapper(online);
+
+		Object paramObj2 = new BooleanWrapper(awake);
+
+		Object paramObj3 = ClpSerializer.translateInput(activeBrowserKey);
 
 		if (activeBrowserKey == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
+			paramObj3 = new NullWrapper("java.lang.String");
 		}
 
 		Object returnObj = null;
 
 		try {
 			returnObj = _classLoaderProxy.invoke("updateStatus",
-					new Object[] { paramObj0, paramObj1 });
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.SystemException) {
