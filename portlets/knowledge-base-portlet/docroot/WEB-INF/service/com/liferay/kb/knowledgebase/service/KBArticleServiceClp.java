@@ -47,7 +47,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(plid);
 
 		Object paramObj1 = ClpSerializer.translateInput(title);
@@ -114,10 +114,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -133,7 +129,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	public void addArticleAttachments(long resourcePrimKey,
 		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<String, byte[]>> files)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(resourcePrimKey);
 
 		Object paramObj1 = ClpSerializer.translateInput(files);
@@ -155,10 +151,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -171,7 +163,7 @@ public class KBArticleServiceClp implements KBArticleService {
 
 	public void deleteArticle(long plid, long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(plid);
 
 		Object paramObj1 = new LongWrapper(resourcePrimKey);
@@ -189,10 +181,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -206,7 +194,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	public void deleteArticleAttachment(long resourcePrimKey,
 		java.lang.String fileName)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(resourcePrimKey);
 
 		Object paramObj1 = ClpSerializer.translateInput(fileName);
@@ -228,10 +216,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -245,7 +229,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	public com.liferay.kb.knowledgebase.model.KBArticle getArticle(
 		long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(resourcePrimKey);
 
 		Object returnObj = null;
@@ -263,10 +247,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -282,7 +262,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	public com.liferay.kb.knowledgebase.model.KBArticle getArticle(
 		long resourcePrimKey, double version)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(resourcePrimKey);
 
 		Object paramObj1 = new DoubleWrapper(version);
@@ -302,10 +282,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -321,7 +297,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	public com.liferay.kb.knowledgebase.model.KBArticle getArticle(
 		long resourcePrimKey, double version, long plid)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(resourcePrimKey);
 
 		Object paramObj1 = new DoubleWrapper(version);
@@ -343,10 +319,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -362,7 +334,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	public com.liferay.kb.knowledgebase.model.KBArticle getArticle(
 		long groupId, java.lang.String title)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(groupId);
 
 		Object paramObj1 = ClpSerializer.translateInput(title);
@@ -386,10 +358,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -405,7 +373,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	public com.liferay.kb.knowledgebase.model.KBArticle getArticle(
 		long groupId, java.lang.String title, double version)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(groupId);
 
 		Object paramObj1 = ClpSerializer.translateInput(title);
@@ -431,10 +399,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -450,7 +414,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	public com.liferay.kb.knowledgebase.model.KBArticle getArticle(
 		long groupId, java.lang.String title, double version, long plid)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(groupId);
 
 		Object paramObj1 = ClpSerializer.translateInput(title);
@@ -478,10 +442,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -497,7 +457,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getArticles(
 		long resourcePrimKey, int start, int end)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(resourcePrimKey);
 
 		Object paramObj1 = new IntegerWrapper(start);
@@ -519,10 +479,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -539,7 +495,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		java.lang.String type, double version, java.lang.String displayStyle,
 		int abstractLength, java.lang.String feedURL)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(resourcePrimKey);
 
 		Object paramObj1 = new IntegerWrapper(max);
@@ -584,10 +540,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -603,7 +555,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getCompanyArticles(
 		long companyId, int max)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(companyId);
 
 		Object paramObj1 = new IntegerWrapper(max);
@@ -621,10 +573,6 @@ public class KBArticleServiceClp implements KBArticleService {
 
 			if (t instanceof com.liferay.portal.SystemException) {
 				throw (com.liferay.portal.SystemException)t;
-			}
-
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -645,7 +593,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		java.lang.String feedURL,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(companyId);
 
 		Object paramObj1 = new IntegerWrapper(max);
@@ -702,10 +650,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -721,7 +665,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticlesIncludingUserDrafts(
 		long groupId, boolean template, long userId, int start, int end)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(groupId);
 
 		Object paramObj1 = new BooleanWrapper(template);
@@ -749,10 +693,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -768,7 +708,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupArticlesIncludingUserDrafts(
 		long groupId, boolean template, long userId, int max)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(groupId);
 
 		Object paramObj1 = new BooleanWrapper(template);
@@ -792,10 +732,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -814,7 +750,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		java.lang.String description, java.lang.String feedURL,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(groupId);
 
 		Object paramObj1 = new IntegerWrapper(max);
@@ -871,10 +807,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -890,7 +822,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getGroupsArticles(
 		long[] groupIds, int max)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(groupIds);
 
 		if (groupIds == null) {
@@ -914,10 +846,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -936,7 +864,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		java.lang.String feedURL,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = ClpSerializer.translateInput(groupIds);
 
 		if (groupIds == null) {
@@ -997,10 +925,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1016,7 +940,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getSubscribedArticles(
 		long userId, long groupId, int start, int end)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(userId);
 
 		Object paramObj1 = new LongWrapper(groupId);
@@ -1040,10 +964,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1059,7 +979,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	public void importDocbook(long groupId, java.io.File file,
 		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws java.lang.Exception, java.rmi.RemoteException {
+		throws java.lang.Exception {
 		Object paramObj0 = new LongWrapper(groupId);
 
 		Object paramObj1 = ClpSerializer.translateInput(file);
@@ -1089,10 +1009,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (java.lang.Exception)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1108,7 +1024,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(resourcePrimKey);
 
 		Object paramObj1 = new DoubleWrapper(version);
@@ -1140,10 +1056,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1158,7 +1070,7 @@ public class KBArticleServiceClp implements KBArticleService {
 
 	public void subscribe(long plid)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(plid);
 
 		try {
@@ -1173,10 +1085,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1189,7 +1097,7 @@ public class KBArticleServiceClp implements KBArticleService {
 
 	public void subscribeArticle(long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(resourcePrimKey);
 
 		try {
@@ -1205,10 +1113,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1221,7 +1125,7 @@ public class KBArticleServiceClp implements KBArticleService {
 
 	public void unsubscribe(long plid)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(plid);
 
 		try {
@@ -1236,10 +1140,6 @@ public class KBArticleServiceClp implements KBArticleService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1252,7 +1152,7 @@ public class KBArticleServiceClp implements KBArticleService {
 
 	public void unsubscribeArticle(long resourcePrimKey)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(resourcePrimKey);
 
 		try {
@@ -1266,10 +1166,6 @@ public class KBArticleServiceClp implements KBArticleService {
 
 			if (t instanceof com.liferay.portal.SystemException) {
 				throw (com.liferay.portal.SystemException)t;
-			}
-
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1290,7 +1186,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(plid);
 
 		Object paramObj1 = new LongWrapper(resourcePrimKey);
@@ -1359,10 +1255,6 @@ public class KBArticleServiceClp implements KBArticleService {
 
 			if (t instanceof com.liferay.portal.SystemException) {
 				throw (com.liferay.portal.SystemException)t;
-			}
-
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
 			}
 
 			if (t instanceof RuntimeException) {

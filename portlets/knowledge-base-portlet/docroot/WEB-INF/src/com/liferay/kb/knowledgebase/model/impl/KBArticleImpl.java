@@ -33,8 +33,6 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 
-import java.rmi.RemoteException;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -102,14 +100,11 @@ public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 		}
 		catch (NoSuchDirectoryException nsde) {
 		}
-		catch (RemoteException re) {
-			_log.error(re);
-		}
 
 		return fileNames;
 	}
 
-	public KBArticle getParentArticle(long userId) {
+	public KBArticle getParentArticle() {
 		if (!hasParent()) {
 			return null;
 		}
@@ -127,13 +122,13 @@ public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 		return article;
 	}
 
-	public List<KBArticle> getParentArticles(long userId) {
+	public List<KBArticle> getParentArticles() {
 		List<KBArticle> parentArticles = new ArrayList<KBArticle>();
 
-		KBArticle parentArticle = getParentArticle(userId);
+		KBArticle parentArticle = getParentArticle();
 
 		if (parentArticle != null) {
-			parentArticles.addAll(parentArticle.getParentArticles(userId));
+			parentArticles.addAll(parentArticle.getParentArticles());
 			parentArticles.add(parentArticle);
 		}
 

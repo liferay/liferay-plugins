@@ -52,7 +52,16 @@ if (article.isTemplate()) {
 	className += ".template";
 }
 
-List childArticles = article.getChildArticles();
+List<KBArticle> childArticles = new ArrayList<KBArticle>();
+
+List<KBArticle> parentArticles = article.getParentArticles();
+
+if (parentArticles.size() > 0) {
+	childArticles = parentArticles.get(0).getChildArticles();
+}
+else {
+	childArticles = article.getChildArticles();
+}
 
 // Feedback entry
 
@@ -138,8 +147,6 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 
 		viewParentArticleURL.setParameter("view", "view_article");
 
-		List parentArticles = article.getParentArticles(themeDisplay.getUserId());
-
 		for (int i = 0; i < parentArticles.size(); i++) {
 			KBArticle curParentArticle = (KBArticle)parentArticles.get(i);
 
@@ -172,38 +179,26 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 <div class="knowledge-base-content-container">
 	<table class="lfr-table" width="100%">
 	<tr>
+		<c:if test="<%= (childArticles.size() > 0) %>">
+			<td valign="top" width="180px">
+				<ul id="child-articles">
+
+					<%
+					StringBuilder sb = new StringBuilder();
+
+					_buildTree(childArticles, renderResponse, sb);
+					%>
+
+					<%= sb.toString() %>
+
+				</ul>
+			</td>
+		</c:if>
 		<td valign="top">
 			<div class="knowledge-base-content">
 				<div class="knowledge-base-body">
 					<%= article.getContent() %>
 				</div>
-
-				<c:if test="<%= (childArticles.size() > 0) %>">
-					<p class="child-articles-message"><liferay-ui:message key="children" /></p>
-
-					<ul class="child-articles">
-
-						<%
-						PortletURL curArticleURL = renderResponse.createRenderURL();
-						curArticleURL.setParameter("view", "view_article");
-
-						for (int i = 0; i < childArticles.size(); i++) {
-							KBArticle curArticle = (KBArticle)childArticles.get(i);
-
-							curArticleURL.setParameter("title", curArticle.getTitle());
-						%>
-
-							<li>
-								<a href="<%= curArticleURL %>"><%= curArticle.getHtmlTitle() %></a>
-							</li>
-
-						<%
-						}
-						%>
-
-					</ul>
-				</c:if>
-
 				<c:if test="<%= !print && !article.isDraft() && article.isHead() && !article.isTemplate() %>">
 					<table border="0" cellpadding="0" cellspacing="0" class="taglib-ratings stars">
 					<tr>
@@ -497,6 +492,8 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 </div>
 
 <script type="text/javascript">
+	jQuery('#child-articles').treeview();
+
 	if (<%= print %>) {
 		print();
 	}
@@ -524,3 +521,35 @@ ResourceURL feedbackURL = renderResponse.createResourceURL();
 		textYes: '<%= LanguageUtil.get(pageContext, "glad-it-helped-what-did-you-find-most-helpful") %>'
 	});
 </script>
+
+<%!
+private void _buildTree(List<KBArticle> children, RenderResponse renderResponse, StringBuilder sb) throws Exception {
+	PortletURL articleURL = renderResponse.createRenderURL();
+	articleURL.setParameter("view", "view_article");
+
+	for(KBArticle article : children) {
+		articleURL.setParameter("title", article.getTitle());
+
+		sb.append("<li>");
+		sb.append("<span>");
+
+		sb.append("<a href=\"");
+		sb.append(articleURL.toString());
+		sb.append("\">");
+		sb.append(article.getHtmlTitle());
+		sb.append("</a>");
+
+		sb.append("</span>");
+
+		List<KBArticle> grandchildren = article.getChildArticles();
+
+		if (grandchildren.size() > 0) {
+			sb.append("<ul>");
+			_buildTree(grandchildren, renderResponse, sb);
+			sb.append("</ul>");
+		}
+
+		sb.append("</li>");
+	}
+}
+%>

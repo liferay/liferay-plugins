@@ -238,13 +238,11 @@ public class KBArticleClp extends BaseModelImpl implements KBArticle {
 		throw new UnsupportedOperationException();
 	}
 
-	public com.liferay.kb.knowledgebase.model.KBArticle getParentArticle(
-		long userId) {
+	public com.liferay.kb.knowledgebase.model.KBArticle getParentArticle() {
 		throw new UnsupportedOperationException();
 	}
 
-	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getParentArticles(
-		long userId) {
+	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> getParentArticles() {
 		throw new UnsupportedOperationException();
 	}
 

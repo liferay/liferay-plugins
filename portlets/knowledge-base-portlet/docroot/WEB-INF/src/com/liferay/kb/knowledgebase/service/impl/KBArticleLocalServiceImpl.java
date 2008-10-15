@@ -92,8 +92,6 @@ import java.io.StringReader;
 
 import java.net.URL;
 
-import java.rmi.RemoteException;
-
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -272,34 +270,29 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		String dirName = article.getAttachmentsDir();
 
 		try {
-			try {
-				DLServiceUtil.addDirectory(companyId, repositoryId, dirName);
-			}
-			catch (DuplicateDirectoryException dde) {
-			}
-
-			for (int i = 0; i < files.size(); i++) {
-				ObjectValuePair<String, byte[]> ovp = files.get(i);
-
-				String fileName = ovp.getKey();
-				byte[] bytes = ovp.getValue();
-
-				if (Validator.isNull(fileName)) {
-					continue;
-				}
-
-				try {
-					DLServiceUtil.addFile(
-						companyId, portletId, article.getGroupId(),
-						repositoryId, dirName + "/" + fileName,
-						StringPool.BLANK, new String[0], bytes);
-				}
-				catch (DuplicateFileException dfe) {
-				}
-			}
+			DLServiceUtil.addDirectory(companyId, repositoryId, dirName);
 		}
-		catch (RemoteException re) {
-			throw new SystemException(re);
+		catch (DuplicateDirectoryException dde) {
+		}
+
+		for (int i = 0; i < files.size(); i++) {
+			ObjectValuePair<String, byte[]> ovp = files.get(i);
+
+			String fileName = ovp.getKey();
+			byte[] bytes = ovp.getValue();
+
+			if (Validator.isNull(fileName)) {
+				continue;
+			}
+
+			try {
+				DLServiceUtil.addFile(
+					companyId, portletId, article.getGroupId(),
+					repositoryId, dirName + "/" + fileName,
+					StringPool.BLANK, new String[0], bytes);
+			}
+			catch (DuplicateFileException dfe) {
+			}
 		}
 	}
 
@@ -373,9 +366,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 		catch (NoSuchDirectoryException nsde) {
 		}
-		catch (RemoteException re) {
-			throw new SystemException(re);
-		}
 
 		// Tags
 
@@ -434,9 +424,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			DLServiceUtil.deleteFile(companyId, portletId, repositoryId, fileName);
 		}
 		catch (NoSuchFileException nsfe) {
-		}
-		catch (RemoteException re) {
-			throw new SystemException(re);
 		}
 	}
 
