@@ -68,6 +68,21 @@
 		<delete file="dist/liferay-plugins-sdk-${lp.version}.zip" />
 
 		<zip
+			basedir="tools/layouttpl_tmpl"
+			destfile="layouttpl/layouttpl.zip"
+		/>
+
+		<zip
+			basedir="tools/portlet_tmpl"
+			destfile="portlets/portlet.zip"
+		/>
+
+		<zip
+			basedir="tools/theme_tmpl"
+			destfile="themes/theme.zip"
+		/>
+
+		<zip
 			basedir="."
 			destfile="dist/liferay-plugins-sdk-${lp.version}.zip"
 			excludes="build.*.properties,dist/**,clients/*-client/**,hooks/*-hook/**,layouttpl/*-layouttpl/**,portlets/*-portlet/**,portlets/alfresco/**,summary.*,themes/*-theme/**,webs/*-web/**"
