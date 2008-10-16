@@ -66,6 +66,9 @@
 		<mkdir dir="dist" />
 
 		<delete file="dist/liferay-plugins-sdk-${lp.version}.zip" />
+		<delete file="layouttpl/layouttpl.zip" />
+		<delete file="portlets/portlet.zip" />
+		<delete file="themes/theme.zip" />
 
 		<zip
 			basedir="tools/layouttpl_tmpl"
