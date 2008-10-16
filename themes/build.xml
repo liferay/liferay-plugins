@@ -20,6 +20,17 @@
 					<else>
 						<mkdir dir="${theme.name}-theme/docroot/_diffs" />
 
+						<if>
+							<equals arg1="${theme.base}" arg2="classic" />
+							<then>
+								<copy todir="${theme.name}-theme/docroot/_diffs" overwrite="yes">
+									<fileset
+										dir="${app.server.portal.dir}/html/themes/classic/_diffs"
+									/>
+								</copy>
+							</then>
+						</if>
+
 						<unzip src="theme.zip" dest="${theme.name}-theme" />
 
 						<replace dir="${theme.name}-theme">

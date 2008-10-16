@@ -15,7 +15,7 @@ if [ -z "$1" ]; then
 	exit 127
 fi
 
-ant -Dtheme.name=$1 -Dtheme.display.name=\"$2\" create
+ant -Dtheme.name=$1 -Dtheme.display.name=\"$2\" -Dtheme.base=\"$3\" create
 
 svn add $1-theme
 
