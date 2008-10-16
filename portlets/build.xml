@@ -25,9 +25,9 @@
 							<replacefilter token="@portlet.display.name@" value="${portlet.display.name}" />
 						</replace>
 
-						<mkdir dir="${portlet.name}-portlet/WEB-INF/tld" />
+						<mkdir dir="${portlet.name}-portlet/docroot/WEB-INF/tld" />
 
-						<copy todir="${portlet.name}-portlet/WEB-INF/tld">
+						<copy todir="${portlet.name}-portlet/docroot/WEB-INF/tld">
 						    <fileset dir="${app.server.portal.dir}/WEB-INF/tld">
 								<include name="liferay-portlet.tld" />
 								<include name="liferay-portlet-ext.tld" />
