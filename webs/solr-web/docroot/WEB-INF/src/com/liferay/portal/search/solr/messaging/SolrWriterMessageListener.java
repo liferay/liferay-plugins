@@ -66,6 +66,9 @@ public class SolrWriterMessageListener implements MessageListener {
 		else if (command.equals(SearchRequest.COMMAND_DELETE_PORTLET_DOCS)) {
 			SolrSearchEngineUtil.deletePortletDocuments(companyId, id);
 		}
+		else if (command.equals(SearchRequest.COMMAND_UNREGISTER)) {
+			SolrSearchEngineUtil.unregister(id);
+		}
 		else if (command.equals(SearchRequest.COMMAND_UPDATE)) {
 			SolrSearchEngineUtil.updateDocument(companyId, id, doc);
 		}
