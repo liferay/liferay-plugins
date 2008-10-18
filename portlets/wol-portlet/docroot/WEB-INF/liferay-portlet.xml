@@ -66,6 +66,11 @@
 		<css-class-wrapper>wol-portlet-meetups</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
 	</portlet>
+	<portlet>
+		<portlet-name>10</portlet-name>
+		<friendly-url-mapper-class>com.liferay.wol.groupusersactivities.portlet.GroupUsersActivitiesFriendlyURLMapper</friendly-url-mapper-class>
+		<css-class-wrapper>wol-portlet-group-users-activities</css-class-wrapper>
+	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>
