@@ -5,15 +5,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
 >
-	<!-- Solr search engine plugin -->
-	
 	<bean id="indexSearcher.solr" class="com.liferay.portal.search.solr.SolrIndexSearcherImpl">
 		<property name="serverURL" value="http://localhost:8080/solr/select" />
 	</bean>
 	<bean id="indexWriter.solr" class="com.liferay.portal.search.solr.SolrIndexWriterImpl">
 		<property name="serverURL" value="http://localhost:8080/solr/update" />
 	</bean>
-
 	<bean id="searchEngineUtil" class="com.liferay.portal.search.solr.SolrSearchEngineUtil">
 		<property name="searchEngine">
 			<bean class="com.liferay.portal.search.solr.SolrSearchEngineImpl" init-method="init">
@@ -26,13 +23,9 @@
 			</bean>
 		</property>
 	</bean>
-	
-	<!-- Configurator -->
-
 	<bean id="messageListener.solr_reader" class="com.liferay.portal.search.solr.messaging.SolrReaderMessageListener" />
 	<bean id="messageListener.solr_writer" class="com.liferay.portal.search.solr.messaging.SolrWriterMessageListener" />
-	
-	<bean id="messagingConfigurator" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator" init-method="init" destroy-method="destroy" depends-on="searchEngineUtil">
+	<bean id="messagingConfigurator" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator" depends-on="searchEngineUtil" init-method="init" destroy-method="destroy">
 		<property name="messageListeners">
 			<map key-type="java.lang.String" value-type="java.util.List">
 				<entry key="liferay/search_reader">

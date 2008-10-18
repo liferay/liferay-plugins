@@ -38,32 +38,20 @@ import com.liferay.portal.kernel.search.SearchEngineUtil;
  */
 public class SolrSearchEngineImpl implements SearchEngine {
 
-	public void init() {
-		SearchEngineUtil.unregister(_name);
-	}
-
 	public String getName() {
 		return _name;
 	}
 
-	public void setName(String name) {
-		_name = name;
+	public void init() {
+		SearchEngineUtil.unregister(_name);
 	}
 
 	public IndexSearcher getSearcher() {
 		return _searcher;
 	}
 
-	public void setSearcher(IndexSearcher searcher) {
-		_searcher = searcher;
-	}
-
 	public IndexWriter getWriter() {
 		return _writer;
-	}
-
-	public void setWriter(IndexWriter writer) {
-		_writer = writer;
 	}
 
 	public boolean isIndexReadOnly() {
@@ -72,6 +60,14 @@ public class SolrSearchEngineImpl implements SearchEngine {
 
 	public void setIndexReadOnly(boolean indexReadOnly) {
 		_indexReadOnly = indexReadOnly;
+	}
+
+	public void setName(String name) {
+		_name = name;
+	}
+
+	public void setSearcher(IndexSearcher searcher) {
+		_searcher = searcher;
 	}
 
 	public void setSearchReaderMessageListener(
@@ -84,6 +80,10 @@ public class SolrSearchEngineImpl implements SearchEngine {
 			MessageListener searchWriterMessageListener) {
 
 		_searchWriterMessageListener = searchWriterMessageListener;
+	}
+
+	public void setWriter(IndexWriter writer) {
+		_writer = writer;
 	}
 
 	public void unregister(String id) {
