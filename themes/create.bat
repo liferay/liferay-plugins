@@ -3,7 +3,7 @@
 if "" == "%1" goto errorCreate
 if "" == "%2" goto errorCreate
 
-call ant -Dtheme.name=%1 -Dtheme.display.name=%2 -Dtheme.base=%3 create
+call ant -Dtheme.name=%1 -Dtheme.display.name=%2 create
 
 svn add %1-theme
 
