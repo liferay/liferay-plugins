@@ -18,8 +18,6 @@
 				<property name="searcher" ref="indexSearcher.solr" />
 				<property name="writer" ref="indexWriter.solr" />
 				<property name="indexReadOnly" value="false" />
-				<property name="searchReaderMessageListener" ref="messageListener.solr_reader" />
-				<property name="searchWriterMessageListener" ref="messageListener.solr_writer" />
 			</bean>
 		</property>
 	</bean>

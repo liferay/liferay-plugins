@@ -64,6 +64,10 @@ public class SolrSearchEngineUtil {
 		return getSearchEngine().isIndexReadOnly();
 	}
 
+	public static boolean isRegistered() {
+		return getSearchEngine().isRegistered();
+	}
+
 	public static Hits search(long companyId, Query query, int start, int end)
 		throws SearchException {
 
