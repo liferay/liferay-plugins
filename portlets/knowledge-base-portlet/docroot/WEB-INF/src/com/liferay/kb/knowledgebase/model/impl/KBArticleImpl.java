@@ -33,7 +33,6 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -100,9 +99,6 @@ public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 				getCompanyId(), CompanyConstants.SYSTEM, getAttachmentsDir());
 		}
 		catch (NoSuchDirectoryException nsde) {
-		}
-		catch (RemoteException re) {
-			_log.error(re);
 		}
 
 		return fileNames;

@@ -92,7 +92,6 @@ import java.io.StringReader;
 
 import java.net.URL;
 
-import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -275,9 +274,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 		catch (DuplicateDirectoryException dde) {
 		}
-		catch (RemoteException re) {
-			throw new SystemException(re);
-		}
 
 		for (int i = 0; i < files.size(); i++) {
 			ObjectValuePair<String, byte[]> ovp = files.get(i);
@@ -296,9 +292,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 					StringPool.BLANK, new String[0], bytes);
 			}
 			catch (DuplicateFileException dfe) {
-			}
-			catch (RemoteException re) {
-				throw new SystemException(re);
 			}
 		}
 	}
@@ -373,9 +366,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 		catch (NoSuchDirectoryException nsde) {
 		}
-		catch (RemoteException re) {
-			throw new SystemException(re);
-		}
 
 		// Tags
 
@@ -434,9 +424,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			DLServiceUtil.deleteFile(companyId, portletId, repositoryId, fileName);
 		}
 		catch (NoSuchFileException nsfe) {
-		}
-		catch (RemoteException re) {
-			throw new SystemException(re);
 		}
 	}
 
