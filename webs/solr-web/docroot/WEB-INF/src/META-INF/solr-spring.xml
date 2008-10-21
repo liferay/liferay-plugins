@@ -13,7 +13,7 @@
 	</bean>
 	<bean id="searchEngineUtil" class="com.liferay.portal.search.solr.SolrSearchEngineUtil">
 		<property name="searchEngine">
-			<bean class="com.liferay.portal.search.solr.SolrSearchEngineImpl" init-method="init" destroy-method="destroy" >
+			<bean class="com.liferay.portal.search.solr.SolrSearchEngineImpl" init-method="init" destroy-method="destroy">
 				<property name="name" value="Solr" />
 				<property name="searcher" ref="indexSearcher.solr" />
 				<property name="writer" ref="indexWriter.solr" />
