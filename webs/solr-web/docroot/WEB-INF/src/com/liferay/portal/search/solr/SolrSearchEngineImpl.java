@@ -43,6 +43,10 @@ public class SolrSearchEngineImpl implements SearchEngine {
 		SearchEngineUtil.unregister(_name);
 	}
 
+	public void destroy() {
+		SearchEngineUtil.registerDefaultSearchEngine();
+	}
+
 	public IndexSearcher getSearcher() {
 		return _searcher;
 	}
@@ -57,6 +61,12 @@ public class SolrSearchEngineImpl implements SearchEngine {
 
 	public boolean isRegistered() {
 		return _registered;
+	}
+
+	public void register(String name) {
+		if (_name.equals(name)) {
+			_registered = true;
+		}
 	}
 
 	public void setIndexReadOnly(boolean indexReadOnly) {
@@ -75,8 +85,8 @@ public class SolrSearchEngineImpl implements SearchEngine {
 		_writer = writer;
 	}
 
-	public void unregister(String id) {
-		if (!_name.equals(id)) {
+	public void unregister(String name) {
+		if (!_name.equals(name)) {
 			_registered = false;
 		}
 	}

@@ -68,6 +68,10 @@ public class SolrSearchEngineUtil {
 		return getSearchEngine().isRegistered();
 	}
 
+	public static void register(String name) {
+		getSearchEngine().register(name);
+	}
+
 	public static Hits search(long companyId, Query query, int start, int end)
 		throws SearchException {
 
