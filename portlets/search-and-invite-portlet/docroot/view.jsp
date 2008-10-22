@@ -51,47 +51,26 @@ portletURL.setWindowState(WindowState.MAXIMIZED);
 pageContext.setAttribute("portletURL", portletURL);
 
 String portletURLString = portletURL.toString();
-UserSearch searchContainer1 = new UserSearch(renderRequest, portletURL);
-UserSearchTerms searchTerms = (UserSearchTerms)searchContainer1.getSearchTerms(); 
+SearchContainer searchContainer1 = new SearchContainer(renderRequest, new SearchDisplayTerms(renderRequest), new UserSearchTerms(renderRequest), SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
+SearchDisplayTerms displayTerms = (SearchDisplayTerms)searchContainer1.getDisplayTerms();
 LinkedHashMap userParams = new LinkedHashMap();
 %>
 
 <form action="<%= portletURLString %>" method="POST" name="<portlet:namespace />fm" >
 
-<input type="hidden" name="doSearch" value="true" />
+	<input type="hidden" name="doSearch" value="true" />
 
-<liferay-ui:search-container
+	<liferay-ui:search-container
 		searchContainer="<%= searchContainer1 %>"
 		>
 
-	<liferay-ui:search-form
-		page="/html/portlet/directory/user_search.jsp"
-	/>
+		<%@ include file="/user_search.jsp" %>
 
-	<%
-		if (doSearch != null) {  
-	%>
+		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
 
 			<liferay-ui:search-container-results>
 
-				<%
-				if (searchTerms.isAdvancedSearch()) {
-					results = UserLocalServiceUtil.search(company.getCompanyId(), searchTerms.getFirstName(), searchTerms.getMiddleName(), searchTerms.getLastName(), searchTerms.getScreenName(), searchTerms.getEmailAddress(), searchTerms.getActiveObj(), userParams, searchTerms.isAndOperator(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-				}
-				else {
-					results = UserLocalServiceUtil.search(company.getCompanyId(), searchTerms.getKeywords(), searchTerms.getActiveObj(), userParams, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-				}
-
-				if (searchTerms.isAdvancedSearch()) {
-					total = UserLocalServiceUtil.searchCount(company.getCompanyId(), searchTerms.getFirstName(), searchTerms.getMiddleName(), searchTerms.getLastName(), searchTerms.getScreenName(), searchTerms.getEmailAddress(), searchTerms.getActiveObj(), userParams, searchTerms.isAndOperator());
-				}
-				else {
-					total = UserLocalServiceUtil.searchCount(company.getCompanyId(), searchTerms.getKeywords(), searchTerms.getActiveObj(), userParams);
-				}
-
-				pageContext.setAttribute("results", results);
-				pageContext.setAttribute("total", total);
-				%>
+				<%@ include file="/user_search_results.jspf" %>
 
 			</liferay-ui:search-container-results>
 
@@ -99,59 +78,57 @@ LinkedHashMap userParams = new LinkedHashMap();
 				className="com.liferay.portal.model.User"
 				keyProperty="userId"
 				modelVar="user2"
-			>
+				>
 
-			<portlet:resourceURL var="addFriendUrl">
-				<portlet:param name="jspPage" value="/addFriend.jsp"/>  
-				<portlet:param name="friendId" value="<%=Long.toString(user2.getUserId())%>"/>  
-			</portlet:resourceURL>
+					<portlet:resourceURL var="addFriendUrl">
+						<portlet:param name="jspPage" value="/addFriend.jsp"/>
+						<portlet:param name="friendId" value="<%=Long.toString(user2.getUserId())%>"/>
+					</portlet:resourceURL>
 
-					<liferay-ui:search-container-column-text	
+					<liferay-ui:search-container-column-text
 						name="first-name"
 						property="firstName"
-					/>
+						/>
 
 					<liferay-ui:search-container-column-text
 						name="last-name"
 						property="lastName"
-					/>
+						/>
 
 					<liferay-ui:search-container-column-text
 						name="screen-name"
 						property="screenName"
-					/>
+						/>
 
 					<liferay-ui:search-container-column-text
 						name="job-title"
 						value="<%= user2.getContact().getJobTitle() %>"
-					/>
+						/>
 
 					<liferay-ui:search-container-column-text
 						name="">
 
-					<c:choose>	
-						<c:when test="<%= !SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) && !(themeDisplay.getUserId() == user2.getUserId()) %>">
-							   
-							<liferay-ui:icon
-								image="join"
-								message="add-as-friend"
-								url='<%= "javascript: addFriend('" + addFriendUrl + "')"%>'  label="<%= true %>"
-							/>
- 
-						</c:when>
-					</c:choose>
+						<c:choose>
+							<c:when test="<%= !SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) && !(themeDisplay.getUserId() == user2.getUserId()) %>">
 
-				</liferay-ui:search-container-column-text>
+								<liferay-ui:icon
+									image="join"
+									message="add-as-friend"
+									url='<%= "javascript: addFriend('" + addFriendUrl + "')"%>'  label="<%= true %>"
+									/>
+
+							</c:when>
+						</c:choose>
+
+					</liferay-ui:search-container-column-text>
 
 			</liferay-ui:search-container-row>
 
-	<liferay-ui:search-iterator searchContainer="<%= searchContainer1 %>" />
+		<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
 
-	<%
-		}
-	%>
+		</c:if>
 
-</liferay-ui:search-container>
+	</liferay-ui:search-container>
 
 </form>
 
@@ -160,18 +137,18 @@ LinkedHashMap userParams = new LinkedHashMap();
 
 		var popup = Liferay.Popup(
 				{
-						width: 550,
-						modal: true,
-						title: Liferay.Language.get('add-as-friend')
+					width: 550,
+					modal: true,
+					title: Liferay.Language.get('add-as-friend')
 				}
 		);
 
 		jQuery.ajax(
 				{
-						url: addFriendUrl,
-						success: function(message) {
+					url: addFriendUrl,
+					success: function(message) {
 							popup.html(message);
-						}
+					}
 				}
 		);
 	}
