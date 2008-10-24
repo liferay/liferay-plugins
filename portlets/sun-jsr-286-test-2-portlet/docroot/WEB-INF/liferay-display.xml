@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE display PUBLIC "-//Liferay//DTD Display 4.0.0//EN" "http://www.liferay.com/dtd/liferay-display_4_0_0.dtd">
+<display>
+  <category name="category.sun">
+    <portlet id="EventAlias2">EventAlias2</portlet>
+    <portlet id="WildCardReceive2">WildCardReceive2</portlet>
+    <portlet id="SimpleEvent2">SimpleEvent2</portlet>
+    <portlet id="RenderAlias2">RenderAlias2</portlet>
+    <portlet id="NoNameSpace1">NoNameSpace1</portlet>
+    <portlet id="NoNameSpace2">NoNameSpace2</portlet>
+  </category>
+</display>
