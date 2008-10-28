@@ -12,7 +12,6 @@
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
-            <portlet-mode>view</portlet-mode>
 		</supports>
 		<portlet-info>
 			<title>@portlet.display.name@</title>
