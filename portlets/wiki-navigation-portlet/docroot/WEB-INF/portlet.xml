@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd">
+	<portlet>
+		<portlet-name>wiki-navigation</portlet-name>
+		<display-name>Wiki Navigation</display-name>
+		<portlet-class>com.liferay.portlet.wikinavigation.WikiNavigationPortlet</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<resource-bundle>content.Language</resource-bundle>
+		<portlet-info>
+			<title>Wiki Navigation</title>
+			<short-title>Wiki Navigation</short-title>
+			<keywords>Wiki Navigation</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+		<supported-public-render-parameter>nodeId</supported-public-render-parameter>
+		<supported-public-render-parameter>title</supported-public-render-parameter>
+	</portlet>
+	<public-render-parameter>
+		<identifier>nodeId</identifier>
+		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:nodeId</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>title</identifier>
+		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:title</qname>
+	</public-render-parameter>
+	<container-runtime-option>
+		<name>javax.portlet.escapeXml</name>
+		<value>false</value>
+	</container-runtime-option>
+</portlet-app>
