@@ -33,11 +33,11 @@
 	</portlet>
 	<public-render-parameter>
 		<identifier>nodeId</identifier>
-		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:nodeId</qname>
+		<qname xmlns:w="http://www.liferay.com/public-render-parameters/wiki">w:nodeId</qname>
 	</public-render-parameter>
 	<public-render-parameter>
 		<identifier>title</identifier>
-		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:title</qname>
+		<qname xmlns:w="http://www.liferay.com/public-render-parameters/wiki">w:title</qname>
 	</public-render-parameter>
 	<container-runtime-option>
 		<name>javax.portlet.escapeXml</name>
