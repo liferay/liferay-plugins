@@ -28,17 +28,17 @@
 
 		if (entries.isEmpty()) {
 	%>
-		<liferay-ui:message key="no-entries-found"/>
+		<liferay-ui:message key="no-entries-found" />
 	<%
 		}
 		else {
 			StringBuilder sb = new StringBuilder();
-			
+
 			String ulClass = "treeview";
 			String liClass = "wiki-title";
-		
+
 			_buildNavigationTree(entries , sb, ulClass, liClass);
-			
+
 			out.print(sb.toString());
 		}
 	%>

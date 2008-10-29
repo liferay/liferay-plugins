@@ -22,7 +22,6 @@
 
 package com.liferay.portlet.wikinavigation;
 
-
 /**
  * <a href="WebKeys.java.html"><b><i>View Source</i></b></a>
  *

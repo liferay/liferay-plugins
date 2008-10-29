@@ -25,17 +25,17 @@
 <div class="portlet-wiki-navigation-menu">
 	<%
 		List<EntryDisplay> entries = (List<EntryDisplay>)renderRequest.getAttribute(WebKeys.ENTRIES);
-	
+
 		if (entries.isEmpty()) {
 	%>
-		<liferay-ui:message key="no-entries-found"/>
+		<liferay-ui:message key="no-entries-found" />
 	<%
 		}
 		else {
 			StringBuilder sb = new StringBuilder();
-	
+
 			_buildNavigationMenu(entries, sb);
-			
+
 			out.print(sb.toString());
 		}
 	%>

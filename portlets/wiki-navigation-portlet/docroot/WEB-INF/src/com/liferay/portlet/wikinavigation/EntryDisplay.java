@@ -27,9 +27,9 @@ import java.util.List;
 
 /**
  * <a href="EntryDisplay.java.html"><b><i>View Source</i></b></a>
- * 
+ *
  * @author Thiago Moreira
- * 
+ *
  */
 public class EntryDisplay {
 
