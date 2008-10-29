@@ -64,7 +64,7 @@ LinkedHashMap userParams = new LinkedHashMap();
 		searchContainer="<%= searchContainer1 %>"
 		>
 
-		<%@ include file="/user_search.jsp" %>
+		<%@ include file="/user_search.jspf" %>
 
 		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
 
