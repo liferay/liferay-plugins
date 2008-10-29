@@ -39,6 +39,7 @@ import com.liferay.portlet.wiki.service.WikiPageServiceUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 
 import java.io.IOException;
+
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -139,8 +140,7 @@ public class WikiNavigationPortlet extends JSPPortlet {
 			WikiPage page, PortletURL portletURL)
 		throws Exception {
 
-		String regex = "((==\\s(((\\w)+\\s?)*)\\s==)*" +
-			"(\\Q[\\E\\Q[\\E((.)*)\\Q|\\E(((\\w)+\\s?)*)\\Q]\\E\\Q]\\E)*)*";
+		String regex = "((==\\s((.)*)\\s==)*(\\Q[[\\E((.)*)\\Q]]\\E)*)*";
 
 		Pattern pattern = Pattern.compile(regex);
 
@@ -154,21 +154,39 @@ public class WikiNavigationPortlet extends JSPPortlet {
 				parent.setLabel(title);
 				entries.add(parent);
 			}
-			String url = matcher.group(7);
-			if (url != null) {
+			String temp = matcher.group(6);
+			if (temp != null) {
 				EntryDisplay child = new EntryDisplay();
-				if (!url.startsWith("http")) {
-					portletURL.setParameter("title", url);
-					url = portletURL.toString();
+
+				int index = temp.indexOf("|");
+				if (index != -1) {
+					String url = temp.substring(0, index);
+					String label = temp.substring(index+1, temp.length());
+
+					if (!url.startsWith("http")) {
+						portletURL.setParameter("title", url);
+						portletURL.setParameter(
+							"nodeId", String.valueOf(page.getNodeId()));
+						url = portletURL.toString();
+					}
+					else {
+						child.setExternalURL(true);
+					}
+					child.setLabel(label);
+					child.setUrl(url);
 				}
 				else {
-					child.setExternalURL(true);
+					child.setLabel(temp);
+					String url = temp;
+					if (!url.startsWith("http")) {
+						portletURL.setParameter("title", url);
+						portletURL.setParameter(
+							"nodeId", String.valueOf(page.getNodeId()));
+						url = portletURL.toString();
+					}
+					child.setUrl(url);
 				}
-				String label = matcher.group(9);
-				child.setLabel(label);
-				//http://localhost:8080/web/guest/home/-/wiki/Main/chunda
 
-				child.setUrl(url);
 				parent.addChild(child);
 			}
 		}
@@ -203,12 +221,12 @@ public class WikiNavigationPortlet extends JSPPortlet {
 			parent.setUrl(portletURL.toString());
 
 			if ((displayDepth == -1) || (actualDepth < displayDepth)) {
-				
+
 				parent.addChildren(_buildNavigationTree(
 					wikiPage.getChildPages(), permissionChecker, titleSelected,
 					portletURL, displayDepth, (actualDepth+1)));
 			}
-			
+
 			entries.add(parent);
 		}
 
