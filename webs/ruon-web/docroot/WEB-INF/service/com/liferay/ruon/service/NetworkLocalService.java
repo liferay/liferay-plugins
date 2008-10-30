@@ -23,23 +23,23 @@
 package com.liferay.ruon.service;
 
 /**
- * <a href="PresenceLocalService.java.html"><b><i>View Source</i></b></a>
+ * <a href="NetworkLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface PresenceLocalService {
-	public com.liferay.ruon.model.Presence addPresence(
-		com.liferay.ruon.model.Presence presence)
+public interface NetworkLocalService {
+	public com.liferay.ruon.model.Network addNetwork(
+		com.liferay.ruon.model.Network network)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.ruon.model.Presence createPresence(long presenceId);
+	public com.liferay.ruon.model.Network createNetwork(long networkId);
 
-	public void deletePresence(long presenceId)
+	public void deleteNetwork(long networkId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
-	public void deletePresence(com.liferay.ruon.model.Presence presence)
+	public void deleteNetwork(com.liferay.ruon.model.Network network)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<Object> dynamicQuery(
@@ -50,31 +50,27 @@ public interface PresenceLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
-	public com.liferay.ruon.model.Presence getPresence(long presenceId)
+	public com.liferay.ruon.model.Network getNetwork(long networkId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
-	public java.util.List<com.liferay.ruon.model.Presence> getPresences(
+	public java.util.List<com.liferay.ruon.model.Network> getNetworks(
 		int start, int end) throws com.liferay.portal.SystemException;
 
-	public int getPresencesCount() throws com.liferay.portal.SystemException;
+	public int getNetworksCount() throws com.liferay.portal.SystemException;
 
-	public com.liferay.ruon.model.Presence updatePresence(
-		com.liferay.ruon.model.Presence presence)
+	public com.liferay.ruon.model.Network updateNetwork(
+		com.liferay.ruon.model.Network network)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.ruon.model.Presence getPresence(long userId,
-		java.lang.String networkName)
+	public com.liferay.ruon.model.Network getNetwork(java.lang.String name)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.ruon.model.Presence> getPresences(
-		long userId, boolean online)
+	public long getNetworkId(java.lang.String name)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public com.liferay.ruon.model.Presence updatePresence(long userId,
-		java.lang.String networkName, boolean online)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException;
+	public com.liferay.ruon.model.Network updateNetwork(java.lang.String name,
+		long ttl) throws com.liferay.portal.SystemException;
 }

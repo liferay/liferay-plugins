@@ -22,10 +22,14 @@
 
 package com.liferay.ruon.service.impl;
 
+import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.ruon.model.Network;
 import com.liferay.ruon.model.Presence;
 import com.liferay.ruon.service.base.PresenceLocalServiceBaseImpl;
+
+import java.util.List;
 
 /**
  * <a href="PresenceLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -35,10 +39,87 @@ import com.liferay.ruon.service.base.PresenceLocalServiceBaseImpl;
  */
 public class PresenceLocalServiceImpl extends PresenceLocalServiceBaseImpl {
 
-	public Presence updatePresence(long userId, int statusId)
+	public Presence getPresence(long userId, String networkName)
 		throws PortalException, SystemException {
 
-		return null;
+		long networkId = networkLocalService.getNetworkId(networkName);
+
+		Presence presence = presencePersistence.fetchByU_N(userId, networkId);
+
+		if (presence != null) {
+			checkPresence(presence);
+
+			return presence;
+		}
+
+		long presenceId = CounterLocalServiceUtil.increment();
+
+		presence = presencePersistence.create(presenceId);
+
+		presence.setUserId(userId);
+		presence.setModifiedDate(System.currentTimeMillis());
+		presence.setNetworkId(networkId);
+		presence.setOnline(false);
+
+		presencePersistence.update(presence, false);
+
+		return presence;
+	}
+
+	public List<Presence> getPresences(long userId, boolean online)
+		throws PortalException, SystemException {
+
+		List<Presence> presences = presencePersistence.findByU_O(
+			userId, online);
+
+		for (Presence presence : presences) {
+			checkPresence(presence);
+		}
+
+		return presences;
+	}
+
+	public Presence updatePresence(
+			long userId, String networkName, boolean online)
+		throws PortalException, SystemException {
+
+		long networkId = networkLocalService.getNetworkId(networkName);
+
+		Presence presence = presencePersistence.fetchByU_N(userId, networkId);
+
+		if (presence == null) {
+			long presenceId = CounterLocalServiceUtil.increment();
+
+			presence = presencePersistence.create(presenceId);
+
+			presence.setUserId(userId);
+			presence.setNetworkId(networkId);
+		}
+
+		presence.setModifiedDate(System.currentTimeMillis());
+		presence.setOnline(online);
+
+		presencePersistence.update(presence, false);
+
+		return presence;
+	}
+
+	protected void checkPresence(Presence presence)
+		throws PortalException, SystemException {
+
+		if (presence.isOnline()) {
+			Network network = networkLocalService.getNetwork(
+				presence.getNetworkId());
+
+			long ttl = network.getTtl();
+			long now = System.currentTimeMillis();
+
+			if ((presence.getModifiedDate() + ttl) < now) {
+				presence.setOnline(false);
+
+				presencePersistence.update(presence, false);
+			}
+		}
 	}
 
 }

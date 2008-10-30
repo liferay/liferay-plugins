@@ -23,6 +23,7 @@
 package com.liferay.ruon.model;
 
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import java.io.Serializable;
@@ -30,49 +31,25 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 /**
- * <a href="PresenceClp.java.html"><b><i>View Source</i></b></a>
+ * <a href="NetworkClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class PresenceClp extends BaseModelImpl implements Presence {
-	public PresenceClp() {
+public class NetworkClp extends BaseModelImpl implements Network {
+	public NetworkClp() {
 	}
 
 	public long getPrimaryKey() {
-		return _presenceId;
+		return _networkId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setPresenceId(pk);
+		setNetworkId(pk);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_presenceId);
-	}
-
-	public long getPresenceId() {
-		return _presenceId;
-	}
-
-	public void setPresenceId(long presenceId) {
-		_presenceId = presenceId;
-	}
-
-	public long getUserId() {
-		return _userId;
-	}
-
-	public void setUserId(long userId) {
-		_userId = userId;
-	}
-
-	public long getModifiedDate() {
-		return _modifiedDate;
-	}
-
-	public void setModifiedDate(long modifiedDate) {
-		_modifiedDate = modifiedDate;
+		return new Long(_networkId);
 	}
 
 	public long getNetworkId() {
@@ -83,35 +60,37 @@ public class PresenceClp extends BaseModelImpl implements Presence {
 		_networkId = networkId;
 	}
 
-	public boolean getOnline() {
-		return _online;
+	public String getName() {
+		return _name;
 	}
 
-	public boolean isOnline() {
-		return _online;
+	public void setName(String name) {
+		_name = name;
 	}
 
-	public void setOnline(boolean online) {
-		_online = online;
+	public long getTtl() {
+		return _ttl;
 	}
 
-	public Presence toEscapedModel() {
+	public void setTtl(long ttl) {
+		_ttl = ttl;
+	}
+
+	public Network toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
 		}
 		else {
-			Presence model = new PresenceClp();
+			Network model = new NetworkClp();
 
 			model.setEscapedModel(true);
 
-			model.setPresenceId(getPresenceId());
-			model.setUserId(getUserId());
-			model.setModifiedDate(getModifiedDate());
 			model.setNetworkId(getNetworkId());
-			model.setOnline(getOnline());
+			model.setName(HtmlUtil.escape(getName()));
+			model.setTtl(getTtl());
 
-			model = (Presence)Proxy.newProxyInstance(Presence.class.getClassLoader(),
-					new Class[] { Presence.class },
+			model = (Network)Proxy.newProxyInstance(Network.class.getClassLoader(),
+					new Class[] { Network.class },
 					new ReadOnlyBeanHandler(model));
 
 			return model;
@@ -119,13 +98,11 @@ public class PresenceClp extends BaseModelImpl implements Presence {
 	}
 
 	public Object clone() {
-		PresenceClp clone = new PresenceClp();
+		NetworkClp clone = new NetworkClp();
 
-		clone.setPresenceId(getPresenceId());
-		clone.setUserId(getUserId());
-		clone.setModifiedDate(getModifiedDate());
 		clone.setNetworkId(getNetworkId());
-		clone.setOnline(getOnline());
+		clone.setName(getName());
+		clone.setTtl(getTtl());
 
 		return clone;
 	}
@@ -135,9 +112,9 @@ public class PresenceClp extends BaseModelImpl implements Presence {
 			return -1;
 		}
 
-		PresenceClp presence = (PresenceClp)obj;
+		NetworkClp network = (NetworkClp)obj;
 
-		long pk = presence.getPrimaryKey();
+		long pk = network.getPrimaryKey();
 
 		if (getPrimaryKey() < pk) {
 			return -1;
@@ -155,16 +132,16 @@ public class PresenceClp extends BaseModelImpl implements Presence {
 			return false;
 		}
 
-		PresenceClp presence = null;
+		NetworkClp network = null;
 
 		try {
-			presence = (PresenceClp)obj;
+			network = (NetworkClp)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;
 		}
 
-		long pk = presence.getPrimaryKey();
+		long pk = network.getPrimaryKey();
 
 		if (getPrimaryKey() == pk) {
 			return true;
@@ -178,9 +155,7 @@ public class PresenceClp extends BaseModelImpl implements Presence {
 		return (int)getPrimaryKey();
 	}
 
-	private long _presenceId;
-	private long _userId;
-	private long _modifiedDate;
 	private long _networkId;
-	private boolean _online;
+	private String _name;
+	private long _ttl;
 }

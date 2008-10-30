@@ -28,67 +28,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <a href="PresenceSoap.java.html"><b><i>View Source</i></b></a>
+ * <a href="NetworkSoap.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class PresenceSoap implements Serializable {
-	public static PresenceSoap toSoapModel(Presence model) {
-		PresenceSoap soapModel = new PresenceSoap();
+public class NetworkSoap implements Serializable {
+	public static NetworkSoap toSoapModel(Network model) {
+		NetworkSoap soapModel = new NetworkSoap();
 
-		soapModel.setPresenceId(model.getPresenceId());
-		soapModel.setUserId(model.getUserId());
-		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setNetworkId(model.getNetworkId());
-		soapModel.setOnline(model.getOnline());
+		soapModel.setName(model.getName());
+		soapModel.setTtl(model.getTtl());
 
 		return soapModel;
 	}
 
-	public static PresenceSoap[] toSoapModels(List<Presence> models) {
-		List<PresenceSoap> soapModels = new ArrayList<PresenceSoap>(models.size());
+	public static NetworkSoap[] toSoapModels(List<Network> models) {
+		List<NetworkSoap> soapModels = new ArrayList<NetworkSoap>(models.size());
 
-		for (Presence model : models) {
+		for (Network model : models) {
 			soapModels.add(toSoapModel(model));
 		}
 
-		return soapModels.toArray(new PresenceSoap[soapModels.size()]);
+		return soapModels.toArray(new NetworkSoap[soapModels.size()]);
 	}
 
-	public PresenceSoap() {
+	public NetworkSoap() {
 	}
 
 	public long getPrimaryKey() {
-		return _presenceId;
+		return _networkId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setPresenceId(pk);
-	}
-
-	public long getPresenceId() {
-		return _presenceId;
-	}
-
-	public void setPresenceId(long presenceId) {
-		_presenceId = presenceId;
-	}
-
-	public long getUserId() {
-		return _userId;
-	}
-
-	public void setUserId(long userId) {
-		_userId = userId;
-	}
-
-	public long getModifiedDate() {
-		return _modifiedDate;
-	}
-
-	public void setModifiedDate(long modifiedDate) {
-		_modifiedDate = modifiedDate;
+		setNetworkId(pk);
 	}
 
 	public long getNetworkId() {
@@ -99,21 +73,23 @@ public class PresenceSoap implements Serializable {
 		_networkId = networkId;
 	}
 
-	public boolean getOnline() {
-		return _online;
+	public String getName() {
+		return _name;
 	}
 
-	public boolean isOnline() {
-		return _online;
+	public void setName(String name) {
+		_name = name;
 	}
 
-	public void setOnline(boolean online) {
-		_online = online;
+	public long getTtl() {
+		return _ttl;
 	}
 
-	private long _presenceId;
-	private long _userId;
-	private long _modifiedDate;
+	public void setTtl(long ttl) {
+		_ttl = ttl;
+	}
+
 	private long _networkId;
-	private boolean _online;
+	private String _name;
+	private long _ttl;
 }

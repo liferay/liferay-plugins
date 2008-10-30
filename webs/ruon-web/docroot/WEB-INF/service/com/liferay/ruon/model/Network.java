@@ -22,40 +22,11 @@
 
 package com.liferay.ruon.model;
 
-import com.liferay.portal.model.BaseModel;
-
 /**
- * <a href="PresenceModel.java.html"><b><i>View Source</i></b></a>
+ * <a href="Network.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface PresenceModel extends BaseModel {
-	public long getPrimaryKey();
-
-	public void setPrimaryKey(long pk);
-
-	public long getPresenceId();
-
-	public void setPresenceId(long presenceId);
-
-	public long getUserId();
-
-	public void setUserId(long userId);
-
-	public long getModifiedDate();
-
-	public void setModifiedDate(long modifiedDate);
-
-	public long getNetworkId();
-
-	public void setNetworkId(long networkId);
-
-	public boolean getOnline();
-
-	public boolean isOnline();
-
-	public void setOnline(boolean online);
-
-	public Presence toEscapedModel();
+public interface Network extends NetworkModel {
 }

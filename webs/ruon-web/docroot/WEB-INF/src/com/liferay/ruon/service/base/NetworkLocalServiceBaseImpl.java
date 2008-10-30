@@ -26,7 +26,7 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
-import com.liferay.ruon.model.Presence;
+import com.liferay.ruon.model.Network;
 import com.liferay.ruon.service.NetworkLocalService;
 import com.liferay.ruon.service.PresenceLocalService;
 import com.liferay.ruon.service.persistence.NetworkPersistence;
@@ -35,60 +35,59 @@ import com.liferay.ruon.service.persistence.PresencePersistence;
 import java.util.List;
 
 /**
- * <a href="PresenceLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="NetworkLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class PresenceLocalServiceBaseImpl
-	implements PresenceLocalService {
-	public Presence addPresence(Presence presence) throws SystemException {
-		presence.setNew(true);
+public abstract class NetworkLocalServiceBaseImpl implements NetworkLocalService {
+	public Network addNetwork(Network network) throws SystemException {
+		network.setNew(true);
 
-		return presencePersistence.update(presence, false);
+		return networkPersistence.update(network, false);
 	}
 
-	public Presence createPresence(long presenceId) {
-		return presencePersistence.create(presenceId);
+	public Network createNetwork(long networkId) {
+		return networkPersistence.create(networkId);
 	}
 
-	public void deletePresence(long presenceId)
+	public void deleteNetwork(long networkId)
 		throws PortalException, SystemException {
-		presencePersistence.remove(presenceId);
+		networkPersistence.remove(networkId);
 	}
 
-	public void deletePresence(Presence presence) throws SystemException {
-		presencePersistence.remove(presence);
+	public void deleteNetwork(Network network) throws SystemException {
+		networkPersistence.remove(network);
 	}
 
 	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
-		return presencePersistence.findWithDynamicQuery(dynamicQuery);
+		return networkPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
 	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end) throws SystemException {
-		return presencePersistence.findWithDynamicQuery(dynamicQuery, start, end);
+		return networkPersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
-	public Presence getPresence(long presenceId)
+	public Network getNetwork(long networkId)
 		throws PortalException, SystemException {
-		return presencePersistence.findByPrimaryKey(presenceId);
+		return networkPersistence.findByPrimaryKey(networkId);
 	}
 
-	public List<Presence> getPresences(int start, int end)
+	public List<Network> getNetworks(int start, int end)
 		throws SystemException {
-		return presencePersistence.findAll(start, end);
+		return networkPersistence.findAll(start, end);
 	}
 
-	public int getPresencesCount() throws SystemException {
-		return presencePersistence.countAll();
+	public int getNetworksCount() throws SystemException {
+		return networkPersistence.countAll();
 	}
 
-	public Presence updatePresence(Presence presence) throws SystemException {
-		presence.setNew(false);
+	public Network updateNetwork(Network network) throws SystemException {
+		network.setNew(false);
 
-		return presencePersistence.update(presence, true);
+		return networkPersistence.update(network, true);
 	}
 
 	public NetworkLocalService getNetworkLocalService() {

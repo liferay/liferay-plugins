@@ -22,36 +22,35 @@
 
 package com.liferay.ruon.service;
 
-import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.LongWrapper;
 import com.liferay.portal.kernel.util.NullWrapper;
 
 /**
- * <a href="PresenceLocalServiceClp.java.html"><b><i>View Source</i></b></a>
+ * <a href="NetworkLocalServiceClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class PresenceLocalServiceClp implements PresenceLocalService {
-	public PresenceLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
+public class NetworkLocalServiceClp implements NetworkLocalService {
+	public NetworkLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
 	}
 
-	public com.liferay.ruon.model.Presence addPresence(
-		com.liferay.ruon.model.Presence presence)
+	public com.liferay.ruon.model.Network addNetwork(
+		com.liferay.ruon.model.Network network)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(presence);
+		Object paramObj0 = ClpSerializer.translateInput(network);
 
-		if (presence == null) {
-			paramObj0 = new NullWrapper("com.liferay.ruon.model.Presence");
+		if (network == null) {
+			paramObj0 = new NullWrapper("com.liferay.ruon.model.Network");
 		}
 
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("addPresence",
+			returnObj = _classLoaderProxy.invoke("addNetwork",
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
@@ -68,16 +67,16 @@ public class PresenceLocalServiceClp implements PresenceLocalService {
 			}
 		}
 
-		return (com.liferay.ruon.model.Presence)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.ruon.model.Network)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.ruon.model.Presence createPresence(long presenceId) {
-		Object paramObj0 = new LongWrapper(presenceId);
+	public com.liferay.ruon.model.Network createNetwork(long networkId) {
+		Object paramObj0 = new LongWrapper(networkId);
 
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("createPresence",
+			returnObj = _classLoaderProxy.invoke("createNetwork",
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
@@ -90,17 +89,16 @@ public class PresenceLocalServiceClp implements PresenceLocalService {
 			}
 		}
 
-		return (com.liferay.ruon.model.Presence)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.ruon.model.Network)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deletePresence(long presenceId)
+	public void deleteNetwork(long networkId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		Object paramObj0 = new LongWrapper(presenceId);
+		Object paramObj0 = new LongWrapper(networkId);
 
 		try {
-			_classLoaderProxy.invoke("deletePresence",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke("deleteNetwork", new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.PortalException) {
@@ -121,17 +119,16 @@ public class PresenceLocalServiceClp implements PresenceLocalService {
 		}
 	}
 
-	public void deletePresence(com.liferay.ruon.model.Presence presence)
+	public void deleteNetwork(com.liferay.ruon.model.Network network)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(presence);
+		Object paramObj0 = ClpSerializer.translateInput(network);
 
-		if (presence == null) {
-			paramObj0 = new NullWrapper("com.liferay.ruon.model.Presence");
+		if (network == null) {
+			paramObj0 = new NullWrapper("com.liferay.ruon.model.Network");
 		}
 
 		try {
-			_classLoaderProxy.invoke("deletePresence",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke("deleteNetwork", new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.SystemException) {
@@ -218,15 +215,15 @@ public class PresenceLocalServiceClp implements PresenceLocalService {
 		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.ruon.model.Presence getPresence(long presenceId)
+	public com.liferay.ruon.model.Network getNetwork(long networkId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		Object paramObj0 = new LongWrapper(presenceId);
+		Object paramObj0 = new LongWrapper(networkId);
 
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("getPresence",
+			returnObj = _classLoaderProxy.invoke("getNetwork",
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
@@ -247,10 +244,10 @@ public class PresenceLocalServiceClp implements PresenceLocalService {
 			}
 		}
 
-		return (com.liferay.ruon.model.Presence)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.ruon.model.Network)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.ruon.model.Presence> getPresences(
+	public java.util.List<com.liferay.ruon.model.Network> getNetworks(
 		int start, int end) throws com.liferay.portal.SystemException {
 		Object paramObj0 = new IntegerWrapper(start);
 
@@ -259,7 +256,7 @@ public class PresenceLocalServiceClp implements PresenceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("getPresences",
+			returnObj = _classLoaderProxy.invoke("getNetworks",
 					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
@@ -276,14 +273,14 @@ public class PresenceLocalServiceClp implements PresenceLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.ruon.model.Presence>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<com.liferay.ruon.model.Network>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int getPresencesCount() throws com.liferay.portal.SystemException {
+	public int getNetworksCount() throws com.liferay.portal.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("getPresencesCount",
+			returnObj = _classLoaderProxy.invoke("getNetworksCount",
 					new Object[0]);
 		}
 		catch (Throwable t) {
@@ -303,19 +300,19 @@ public class PresenceLocalServiceClp implements PresenceLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public com.liferay.ruon.model.Presence updatePresence(
-		com.liferay.ruon.model.Presence presence)
+	public com.liferay.ruon.model.Network updateNetwork(
+		com.liferay.ruon.model.Network network)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(presence);
+		Object paramObj0 = ClpSerializer.translateInput(network);
 
-		if (presence == null) {
-			paramObj0 = new NullWrapper("com.liferay.ruon.model.Presence");
+		if (network == null) {
+			paramObj0 = new NullWrapper("com.liferay.ruon.model.Network");
 		}
 
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("updatePresence",
+			returnObj = _classLoaderProxy.invoke("updateNetwork",
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
@@ -332,32 +329,98 @@ public class PresenceLocalServiceClp implements PresenceLocalService {
 			}
 		}
 
-		return (com.liferay.ruon.model.Presence)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.ruon.model.Network)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.ruon.model.Presence getPresence(long userId,
-		java.lang.String networkName)
+	public com.liferay.ruon.model.Network getNetwork(java.lang.String name)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		Object paramObj0 = new LongWrapper(userId);
+		Object paramObj0 = ClpSerializer.translateInput(name);
 
-		Object paramObj1 = ClpSerializer.translateInput(networkName);
-
-		if (networkName == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
+		if (name == null) {
+			paramObj0 = new NullWrapper("java.lang.String");
 		}
 
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("getPresence",
+			returnObj = _classLoaderProxy.invoke("getNetwork",
+					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.PortalException) {
+				throw (com.liferay.portal.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.ruon.model.Network)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public long getNetworkId(java.lang.String name)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(name);
+
+		if (name == null) {
+			paramObj0 = new NullWrapper("java.lang.String");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getNetworkId",
+					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.PortalException) {
+				throw (com.liferay.portal.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Long)returnObj).longValue();
+	}
+
+	public com.liferay.ruon.model.Network updateNetwork(java.lang.String name,
+		long ttl) throws com.liferay.portal.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(name);
+
+		if (name == null) {
+			paramObj0 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj1 = new LongWrapper(ttl);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("updateNetwork",
 					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.PortalException) {
-				throw (com.liferay.portal.PortalException)t;
-			}
-
 			if (t instanceof com.liferay.portal.SystemException) {
 				throw (com.liferay.portal.SystemException)t;
 			}
@@ -371,83 +434,7 @@ public class PresenceLocalServiceClp implements PresenceLocalService {
 			}
 		}
 
-		return (com.liferay.ruon.model.Presence)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public java.util.List<com.liferay.ruon.model.Presence> getPresences(
-		long userId, boolean online)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		Object paramObj0 = new LongWrapper(userId);
-
-		Object paramObj1 = new BooleanWrapper(online);
-
-		Object returnObj = null;
-
-		try {
-			returnObj = _classLoaderProxy.invoke("getPresences",
-					new Object[] { paramObj0, paramObj1 });
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.PortalException) {
-				throw (com.liferay.portal.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.liferay.ruon.model.Presence>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public com.liferay.ruon.model.Presence updatePresence(long userId,
-		java.lang.String networkName, boolean online)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		Object paramObj0 = new LongWrapper(userId);
-
-		Object paramObj1 = ClpSerializer.translateInput(networkName);
-
-		if (networkName == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj2 = new BooleanWrapper(online);
-
-		Object returnObj = null;
-
-		try {
-			returnObj = _classLoaderProxy.invoke("updatePresence",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.PortalException) {
-				throw (com.liferay.portal.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.SystemException) {
-				throw (com.liferay.portal.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.ruon.model.Presence)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.ruon.model.Network)ClpSerializer.translateOutput(returnObj);
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;

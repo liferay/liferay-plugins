@@ -75,6 +75,99 @@ public class PresenceUtil {
 		return getPersistence().fetchByPrimaryKey(presenceId);
 	}
 
+	public static java.util.List<com.liferay.ruon.model.Presence> findByUserId(
+		long userId) throws com.liferay.portal.SystemException {
+		return getPersistence().findByUserId(userId);
+	}
+
+	public static java.util.List<com.liferay.ruon.model.Presence> findByUserId(
+		long userId, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByUserId(userId, start, end);
+	}
+
+	public static java.util.List<com.liferay.ruon.model.Presence> findByUserId(
+		long userId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByUserId(userId, start, end, obc);
+	}
+
+	public static com.liferay.ruon.model.Presence findByUserId_First(
+		long userId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.ruon.NoSuchPresenceException {
+		return getPersistence().findByUserId_First(userId, obc);
+	}
+
+	public static com.liferay.ruon.model.Presence findByUserId_Last(
+		long userId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.ruon.NoSuchPresenceException {
+		return getPersistence().findByUserId_Last(userId, obc);
+	}
+
+	public static com.liferay.ruon.model.Presence[] findByUserId_PrevAndNext(
+		long presenceId, long userId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.ruon.NoSuchPresenceException {
+		return getPersistence().findByUserId_PrevAndNext(presenceId, userId, obc);
+	}
+
+	public static com.liferay.ruon.model.Presence findByU_N(long userId,
+		long networkId)
+		throws com.liferay.portal.SystemException,
+			com.liferay.ruon.NoSuchPresenceException {
+		return getPersistence().findByU_N(userId, networkId);
+	}
+
+	public static com.liferay.ruon.model.Presence fetchByU_N(long userId,
+		long networkId) throws com.liferay.portal.SystemException {
+		return getPersistence().fetchByU_N(userId, networkId);
+	}
+
+	public static java.util.List<com.liferay.ruon.model.Presence> findByU_O(
+		long userId, boolean online) throws com.liferay.portal.SystemException {
+		return getPersistence().findByU_O(userId, online);
+	}
+
+	public static java.util.List<com.liferay.ruon.model.Presence> findByU_O(
+		long userId, boolean online, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByU_O(userId, online, start, end);
+	}
+
+	public static java.util.List<com.liferay.ruon.model.Presence> findByU_O(
+		long userId, boolean online, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByU_O(userId, online, start, end, obc);
+	}
+
+	public static com.liferay.ruon.model.Presence findByU_O_First(long userId,
+		boolean online, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.ruon.NoSuchPresenceException {
+		return getPersistence().findByU_O_First(userId, online, obc);
+	}
+
+	public static com.liferay.ruon.model.Presence findByU_O_Last(long userId,
+		boolean online, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.ruon.NoSuchPresenceException {
+		return getPersistence().findByU_O_Last(userId, online, obc);
+	}
+
+	public static com.liferay.ruon.model.Presence[] findByU_O_PrevAndNext(
+		long presenceId, long userId, boolean online,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException,
+			com.liferay.ruon.NoSuchPresenceException {
+		return getPersistence()
+				   .findByU_O_PrevAndNext(presenceId, userId, online, obc);
+	}
+
 	public static java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
@@ -103,8 +196,39 @@ public class PresenceUtil {
 		return getPersistence().findAll(start, end, obc);
 	}
 
+	public static void removeByUserId(long userId)
+		throws com.liferay.portal.SystemException {
+		getPersistence().removeByUserId(userId);
+	}
+
+	public static void removeByU_N(long userId, long networkId)
+		throws com.liferay.portal.SystemException,
+			com.liferay.ruon.NoSuchPresenceException {
+		getPersistence().removeByU_N(userId, networkId);
+	}
+
+	public static void removeByU_O(long userId, boolean online)
+		throws com.liferay.portal.SystemException {
+		getPersistence().removeByU_O(userId, online);
+	}
+
 	public static void removeAll() throws com.liferay.portal.SystemException {
 		getPersistence().removeAll();
+	}
+
+	public static int countByUserId(long userId)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().countByUserId(userId);
+	}
+
+	public static int countByU_N(long userId, long networkId)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().countByU_N(userId, networkId);
+	}
+
+	public static int countByU_O(long userId, boolean online)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().countByU_O(userId, online);
 	}
 
 	public static int countAll() throws com.liferay.portal.SystemException {

@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.BaseModel;
 
+import com.liferay.ruon.model.NetworkClp;
 import com.liferay.ruon.model.PresenceClp;
 
 import java.lang.reflect.Method;
@@ -48,6 +49,53 @@ public class ClpSerializer {
 		Class<?> oldModelClass = oldModel.getClass();
 
 		String oldModelClassName = oldModelClass.getName();
+
+		if (oldModelClassName.equals(NetworkClp.class.getName())) {
+			NetworkClp oldCplModel = (NetworkClp)oldModel;
+
+			ClassLoader contextClassLoader = Thread.currentThread()
+												   .getContextClassLoader();
+
+			try {
+				Thread.currentThread().setContextClassLoader(_classLoader);
+
+				try {
+					Class<?> newModelClass = Class.forName("com.liferay.ruon.model.impl.NetworkImpl",
+							true, _classLoader);
+
+					Object newModel = newModelClass.newInstance();
+
+					Method method0 = newModelClass.getMethod("setNetworkId",
+							new Class[] { Long.TYPE });
+
+					Long value0 = new Long(oldCplModel.getNetworkId());
+
+					method0.invoke(newModel, value0);
+
+					Method method1 = newModelClass.getMethod("setName",
+							new Class[] { String.class });
+
+					String value1 = oldCplModel.getName();
+
+					method1.invoke(newModel, value1);
+
+					Method method2 = newModelClass.getMethod("setTtl",
+							new Class[] { Long.TYPE });
+
+					Long value2 = new Long(oldCplModel.getTtl());
+
+					method2.invoke(newModel, value2);
+
+					return newModel;
+				}
+				catch (Exception e) {
+					_log.error(e, e);
+				}
+			}
+			finally {
+				Thread.currentThread().setContextClassLoader(contextClassLoader);
+			}
+		}
 
 		if (oldModelClassName.equals(PresenceClp.class.getName())) {
 			PresenceClp oldCplModel = (PresenceClp)oldModel;
@@ -78,12 +126,26 @@ public class ClpSerializer {
 
 					method1.invoke(newModel, value1);
 
-					Method method2 = newModelClass.getMethod("setStatusId",
-							new Class[] { Integer.TYPE });
+					Method method2 = newModelClass.getMethod("setModifiedDate",
+							new Class[] { Long.TYPE });
 
-					Integer value2 = new Integer(oldCplModel.getStatusId());
+					Long value2 = new Long(oldCplModel.getModifiedDate());
 
 					method2.invoke(newModel, value2);
+
+					Method method3 = newModelClass.getMethod("setNetworkId",
+							new Class[] { Long.TYPE });
+
+					Long value3 = new Long(oldCplModel.getNetworkId());
+
+					method3.invoke(newModel, value3);
+
+					Method method4 = newModelClass.getMethod("setOnline",
+							new Class[] { Boolean.TYPE });
+
+					Boolean value4 = new Boolean(oldCplModel.getOnline());
+
+					method4.invoke(newModel, value4);
 
 					return newModel;
 				}
@@ -128,6 +190,46 @@ public class ClpSerializer {
 
 		String oldModelClassName = oldModelClass.getName();
 
+		if (oldModelClassName.equals("com.liferay.ruon.model.impl.NetworkImpl")) {
+			ClassLoader contextClassLoader = Thread.currentThread()
+												   .getContextClassLoader();
+
+			try {
+				Thread.currentThread().setContextClassLoader(_classLoader);
+
+				try {
+					NetworkClp newModel = new NetworkClp();
+
+					Method method0 = oldModelClass.getMethod("getNetworkId");
+
+					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
+
+					newModel.setNetworkId(value0.longValue());
+
+					Method method1 = oldModelClass.getMethod("getName");
+
+					String value1 = (String)method1.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setName(value1);
+
+					Method method2 = oldModelClass.getMethod("getTtl");
+
+					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
+
+					newModel.setTtl(value2.longValue());
+
+					return newModel;
+				}
+				catch (Exception e) {
+					_log.error(e, e);
+				}
+			}
+			finally {
+				Thread.currentThread().setContextClassLoader(contextClassLoader);
+			}
+		}
+
 		if (oldModelClassName.equals("com.liferay.ruon.model.impl.PresenceImpl")) {
 			ClassLoader contextClassLoader = Thread.currentThread()
 												   .getContextClassLoader();
@@ -150,12 +252,24 @@ public class ClpSerializer {
 
 					newModel.setUserId(value1.longValue());
 
-					Method method2 = oldModelClass.getMethod("getStatusId");
+					Method method2 = oldModelClass.getMethod("getModifiedDate");
 
-					Integer value2 = (Integer)method2.invoke(oldModel,
+					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
+
+					newModel.setModifiedDate(value2.longValue());
+
+					Method method3 = oldModelClass.getMethod("getNetworkId");
+
+					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
+
+					newModel.setNetworkId(value3.longValue());
+
+					Method method4 = oldModelClass.getMethod("getOnline");
+
+					Boolean value4 = (Boolean)method4.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setStatusId(value2.intValue());
+					newModel.setOnline(value4.booleanValue());
 
 					return newModel;
 				}

@@ -3,15 +3,51 @@
 
 <service-builder package-path="com.liferay.ruon">
 	<namespace>Ruon</namespace>
+	<entity name="Network" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="networkId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="ttl" type="long" />
+
+		<!-- Finder methods -->
+
+		<finder name="Name" return-type="Network">
+			<finder-column name="name" />
+		</finder>
+	</entity>
 	<entity name="Presence" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="presenceId" type="long" primary="true" />
 
-		<!-- Other fields -->
+		<!-- Audit fields -->
 
 		<column name="userId" type="long" />
-		<column name="statusId" type="int" />
+		<column name="modifiedDate" type="long" />
+
+		<!-- Other fields -->
+
+		<column name="networkId" type="long" />
+		<column name="online" type="boolean" />
+
+		<!-- Finder methods -->
+
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
+		<finder name="U_N" return-type="Presence">
+			<finder-column name="userId" />
+			<finder-column name="networkId" />
+		</finder>
+		<finder name="U_O" return-type="Collection">
+			<finder-column name="userId" />
+			<finder-column name="online" />
+		</finder>
 	</entity>
 </service-builder>

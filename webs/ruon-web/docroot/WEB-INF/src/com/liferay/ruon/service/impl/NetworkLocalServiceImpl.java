@@ -20,42 +20,51 @@
  * SOFTWARE.
  */
 
-package com.liferay.ruon.model;
+package com.liferay.ruon.service.impl;
 
-import com.liferay.portal.model.BaseModel;
+import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.ruon.model.Network;
+import com.liferay.ruon.service.base.NetworkLocalServiceBaseImpl;
 
 /**
- * <a href="PresenceModel.java.html"><b><i>View Source</i></b></a>
+ * <a href="NetworkLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface PresenceModel extends BaseModel {
-	public long getPrimaryKey();
+public class NetworkLocalServiceImpl extends NetworkLocalServiceBaseImpl {
 
-	public void setPrimaryKey(long pk);
+	public Network getNetwork(String name)
+		throws PortalException, SystemException {
 
-	public long getPresenceId();
+		return networkPersistence.findByName(name);
+	}
 
-	public void setPresenceId(long presenceId);
+	public long getNetworkId(String name)
+		throws PortalException, SystemException {
 
-	public long getUserId();
+		Network network = networkPersistence.findByName(name);
 
-	public void setUserId(long userId);
+		return network.getNetworkId();
+	}
 
-	public long getModifiedDate();
+	public Network updateNetwork(String name, long ttl) throws SystemException {
+		Network network = networkPersistence.fetchByName(name);
 
-	public void setModifiedDate(long modifiedDate);
+		if (network == null) {
+			long networkId = CounterLocalServiceUtil.increment();
 
-	public long getNetworkId();
+			network = networkPersistence.create(networkId);
 
-	public void setNetworkId(long networkId);
+			network.setName(name);
+			network.setTtl(ttl);
 
-	public boolean getOnline();
+			networkPersistence.update(network, false);
+		}
 
-	public boolean isOnline();
+		return network;
+	}
 
-	public void setOnline(boolean online);
-
-	public Presence toEscapedModel();
 }

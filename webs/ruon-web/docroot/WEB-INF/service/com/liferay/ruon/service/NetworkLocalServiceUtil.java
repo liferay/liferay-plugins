@@ -26,32 +26,31 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 
 /**
- * <a href="PresenceLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="NetworkLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class PresenceLocalServiceUtil {
-	public static com.liferay.ruon.model.Presence addPresence(
-		com.liferay.ruon.model.Presence presence)
+public class NetworkLocalServiceUtil {
+	public static com.liferay.ruon.model.Network addNetwork(
+		com.liferay.ruon.model.Network network)
 		throws com.liferay.portal.SystemException {
-		return getService().addPresence(presence);
+		return getService().addNetwork(network);
 	}
 
-	public static com.liferay.ruon.model.Presence createPresence(
-		long presenceId) {
-		return getService().createPresence(presenceId);
+	public static com.liferay.ruon.model.Network createNetwork(long networkId) {
+		return getService().createNetwork(networkId);
 	}
 
-	public static void deletePresence(long presenceId)
+	public static void deleteNetwork(long networkId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		getService().deletePresence(presenceId);
+		getService().deleteNetwork(networkId);
 	}
 
-	public static void deletePresence(com.liferay.ruon.model.Presence presence)
+	public static void deleteNetwork(com.liferay.ruon.model.Network network)
 		throws com.liferay.portal.SystemException {
-		getService().deletePresence(presence);
+		getService().deleteNetwork(network);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
@@ -66,60 +65,58 @@ public class PresenceLocalServiceUtil {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
-	public static com.liferay.ruon.model.Presence getPresence(long presenceId)
+	public static com.liferay.ruon.model.Network getNetwork(long networkId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return getService().getPresence(presenceId);
+		return getService().getNetwork(networkId);
 	}
 
-	public static java.util.List<com.liferay.ruon.model.Presence> getPresences(
+	public static java.util.List<com.liferay.ruon.model.Network> getNetworks(
 		int start, int end) throws com.liferay.portal.SystemException {
-		return getService().getPresences(start, end);
+		return getService().getNetworks(start, end);
 	}
 
-	public static int getPresencesCount()
+	public static int getNetworksCount()
 		throws com.liferay.portal.SystemException {
-		return getService().getPresencesCount();
+		return getService().getNetworksCount();
 	}
 
-	public static com.liferay.ruon.model.Presence updatePresence(
-		com.liferay.ruon.model.Presence presence)
+	public static com.liferay.ruon.model.Network updateNetwork(
+		com.liferay.ruon.model.Network network)
 		throws com.liferay.portal.SystemException {
-		return getService().updatePresence(presence);
+		return getService().updateNetwork(network);
 	}
 
-	public static com.liferay.ruon.model.Presence getPresence(long userId,
-		java.lang.String networkName)
+	public static com.liferay.ruon.model.Network getNetwork(
+		java.lang.String name)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return getService().getPresence(userId, networkName);
+		return getService().getNetwork(name);
 	}
 
-	public static java.util.List<com.liferay.ruon.model.Presence> getPresences(
-		long userId, boolean online)
+	public static long getNetworkId(java.lang.String name)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return getService().getPresences(userId, online);
+		return getService().getNetworkId(name);
 	}
 
-	public static com.liferay.ruon.model.Presence updatePresence(long userId,
-		java.lang.String networkName, boolean online)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		return getService().updatePresence(userId, networkName, online);
+	public static com.liferay.ruon.model.Network updateNetwork(
+		java.lang.String name, long ttl)
+		throws com.liferay.portal.SystemException {
+		return getService().updateNetwork(name, ttl);
 	}
 
-	public static PresenceLocalService getService() {
+	public static NetworkLocalService getService() {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate("ruon-web",
-					PresenceLocalServiceUtil.class.getName());
+					NetworkLocalServiceUtil.class.getName());
 			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("ruon-web",
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
 					portletClassLoader);
 
-			_service = new PresenceLocalServiceClp(classLoaderProxy);
+			_service = new NetworkLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
 		}
@@ -127,9 +124,9 @@ public class PresenceLocalServiceUtil {
 		return _service;
 	}
 
-	public void setService(PresenceLocalService service) {
+	public void setService(NetworkLocalService service) {
 		_service = service;
 	}
 
-	private static PresenceLocalService _service;
+	private static NetworkLocalService _service;
 }

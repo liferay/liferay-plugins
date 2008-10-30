@@ -20,42 +20,32 @@
  * SOFTWARE.
  */
 
-package com.liferay.ruon.model;
+package com.liferay.ruon;
 
-import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.PortalException;
 
 /**
- * <a href="PresenceModel.java.html"><b><i>View Source</i></b></a>
+ * <a href="NoSuchNetworkException.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface PresenceModel extends BaseModel {
-	public long getPrimaryKey();
+public class NoSuchNetworkException extends PortalException {
 
-	public void setPrimaryKey(long pk);
+	public NoSuchNetworkException() {
+		super();
+	}
 
-	public long getPresenceId();
+	public NoSuchNetworkException(String msg) {
+		super(msg);
+	}
 
-	public void setPresenceId(long presenceId);
+	public NoSuchNetworkException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
 
-	public long getUserId();
+	public NoSuchNetworkException(Throwable cause) {
+		super(cause);
+	}
 
-	public void setUserId(long userId);
-
-	public long getModifiedDate();
-
-	public void setModifiedDate(long modifiedDate);
-
-	public long getNetworkId();
-
-	public void setNetworkId(long networkId);
-
-	public boolean getOnline();
-
-	public boolean isOnline();
-
-	public void setOnline(boolean online);
-
-	public Presence toEscapedModel();
 }

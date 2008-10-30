@@ -20,42 +20,19 @@
  * SOFTWARE.
  */
 
-package com.liferay.ruon.model;
+package com.liferay.ruon.model.impl;
 
-import com.liferay.portal.model.BaseModel;
+import com.liferay.ruon.model.Network;
 
 /**
- * <a href="PresenceModel.java.html"><b><i>View Source</i></b></a>
+ * <a href="NetworkImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface PresenceModel extends BaseModel {
-	public long getPrimaryKey();
+public class NetworkImpl extends NetworkModelImpl implements Network {
 
-	public void setPrimaryKey(long pk);
+	public NetworkImpl() {
+	}
 
-	public long getPresenceId();
-
-	public void setPresenceId(long presenceId);
-
-	public long getUserId();
-
-	public void setUserId(long userId);
-
-	public long getModifiedDate();
-
-	public void setModifiedDate(long modifiedDate);
-
-	public long getNetworkId();
-
-	public void setNetworkId(long networkId);
-
-	public boolean getOnline();
-
-	public boolean isOnline();
-
-	public void setOnline(boolean online);
-
-	public Presence toEscapedModel();
 }

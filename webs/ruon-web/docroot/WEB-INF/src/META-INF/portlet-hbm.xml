@@ -2,12 +2,22 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
+	<class name="com.liferay.ruon.model.impl.NetworkImpl" table="Ruon_Network">
+		<cache usage="read-write" />
+		<id name="networkId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="ttl" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
 	<class name="com.liferay.ruon.model.impl.PresenceImpl" table="Ruon_Presence">
 		<cache usage="read-write" />
 		<id name="presenceId" type="long">
 			<generator class="assigned" />
 		</id>
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="statusId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="modifiedDate" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="networkId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="online" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
 </hibernate-mapping>
