@@ -54,9 +54,10 @@ public class IPGeocoderMessageListener implements MessageListener {
 
 		IPInfo ipInfo = IPGeocoderUtil.getIPInfo(ipAddress);
 
-		message.setPayload(
-			JSONFactoryUtil.createJSONObject(
-				JSONFactoryUtil.serialize(ipInfo)));
+		Object payload = JSONFactoryUtil.createJSONObject(
+			JSONFactoryUtil.serialize(ipInfo));
+
+		message.setPayload(payload);
 
 		MessageBusUtil.sendMessage(message.getResponseDestination(), message);
 	}
