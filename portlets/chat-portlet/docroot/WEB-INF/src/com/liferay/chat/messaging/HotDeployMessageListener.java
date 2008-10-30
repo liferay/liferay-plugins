@@ -20,46 +20,41 @@
  * SOFTWARE.
  */
 
-package com.liferay.chat.servlet;
+package com.liferay.chat.messaging;
 
-import com.liferay.chat.messaging.HotDeployMessageListener;
 import com.liferay.chat.util.ChatRUONUtil;
-import com.liferay.portal.kernel.messaging.DestinationNames;
-import com.liferay.portal.kernel.messaging.MessageBusUtil;
+import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageListener;
-import com.liferay.portal.kernel.util.PortalInitable;
-import com.liferay.portal.kernel.util.PortalInitableUtil;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
- * <a href="ChatServletContextListener.java.html"><b><i>View Source</i></b></a>
+ * <a href="HotDeployMessageListener.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class ChatServletContextListener
-	implements PortalInitable, ServletContextListener {
+public class HotDeployMessageListener implements MessageListener {
 
-	public void contextDestroyed(ServletContextEvent event) {
-		MessageBusUtil.unregisterMessageListener(
-			DestinationNames.HOT_DEPLOY, _hotDeployMessageListener);
+	public void receive(Message message) {
+		try {
+			doReceive(message);
+		}
+		catch (Exception e) {
+			_log.error("Unable to process message " + message, e);
+		}
 	}
 
-	public void contextInitialized(ServletContextEvent event) {
-		PortalInitableUtil.init(this);
+	protected void doReceive(Message message) throws Exception {
+		String command = message.getString("command");
+		String servletContextName = message.getString("servletContextName");
+
+		if (command.equals("deploy") && servletContextName.equals("ruon-web")) {
+			ChatRUONUtil.updateNetwork();
+		}
 	}
 
-	public void portalInit() {
-		_hotDeployMessageListener = new HotDeployMessageListener();
-
-		MessageBusUtil.registerMessageListener(
-			DestinationNames.HOT_DEPLOY, _hotDeployMessageListener);
-
-		ChatRUONUtil.updateNetwork();
-	}
-
-	private MessageListener _hotDeployMessageListener;
+	private static Log _log = LogFactory.getLog(HotDeployMessageListener.class);
 
 }
