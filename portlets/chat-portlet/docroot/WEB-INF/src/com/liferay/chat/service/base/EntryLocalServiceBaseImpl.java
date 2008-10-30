@@ -138,16 +138,16 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService {
 		this.statusFinder = statusFinder;
 	}
 
-	@javax.annotation.Resource(name = "com.liferay.chat.service.EntryLocalService.impl")
+	@com.liferay.portal.kernel.annotation.BeanReference(name = "com.liferay.chat.service.EntryLocalService.impl")
 	protected EntryLocalService entryLocalService;
-	@javax.annotation.Resource(name = "com.liferay.chat.service.persistence.EntryPersistence.impl")
+	@com.liferay.portal.kernel.annotation.BeanReference(name = "com.liferay.chat.service.persistence.EntryPersistence.impl")
 	protected EntryPersistence entryPersistence;
-	@javax.annotation.Resource(name = "com.liferay.chat.service.persistence.EntryFinder.impl")
+	@com.liferay.portal.kernel.annotation.BeanReference(name = "com.liferay.chat.service.persistence.EntryFinder.impl")
 	protected EntryFinder entryFinder;
-	@javax.annotation.Resource(name = "com.liferay.chat.service.StatusLocalService.impl")
+	@com.liferay.portal.kernel.annotation.BeanReference(name = "com.liferay.chat.service.StatusLocalService.impl")
 	protected StatusLocalService statusLocalService;
-	@javax.annotation.Resource(name = "com.liferay.chat.service.persistence.StatusPersistence.impl")
+	@com.liferay.portal.kernel.annotation.BeanReference(name = "com.liferay.chat.service.persistence.StatusPersistence.impl")
 	protected StatusPersistence statusPersistence;
-	@javax.annotation.Resource(name = "com.liferay.chat.service.persistence.StatusFinder.impl")
+	@com.liferay.portal.kernel.annotation.BeanReference(name = "com.liferay.chat.service.persistence.StatusFinder.impl")
 	protected StatusFinder statusFinder;
 }

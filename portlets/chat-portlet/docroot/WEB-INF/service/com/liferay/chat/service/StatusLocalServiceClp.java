@@ -436,7 +436,8 @@ public class StatusLocalServiceClp implements StatusLocalService {
 
 	public com.liferay.chat.model.Status updateStatus(long userId,
 		boolean online, boolean awake, java.lang.String activeBrowserKey)
-		throws com.liferay.portal.SystemException {
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(userId);
 
 		Object paramObj1 = new BooleanWrapper(online);
@@ -456,6 +457,10 @@ public class StatusLocalServiceClp implements StatusLocalService {
 					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.PortalException) {
+				throw (com.liferay.portal.PortalException)t;
+			}
+
 			if (t instanceof com.liferay.portal.SystemException) {
 				throw (com.liferay.portal.SystemException)t;
 			}
