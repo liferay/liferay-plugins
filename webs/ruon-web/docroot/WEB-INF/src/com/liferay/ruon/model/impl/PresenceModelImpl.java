@@ -26,6 +26,9 @@ import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
+
 import com.liferay.ruon.model.Presence;
 import com.liferay.ruon.model.PresenceSoap;
 
@@ -154,6 +157,15 @@ public class PresenceModelImpl extends BaseModelImpl {
 		}
 	}
 
+	public ExpandoBridge getExpandoBridge() {
+		if (_expandoBridge == null) {
+			_expandoBridge = new ExpandoBridgeImpl(Presence.class.getName(),
+					getPrimaryKey());
+		}
+
+		return _expandoBridge;
+	}
+
 	public Object clone() {
 		PresenceImpl clone = new PresenceImpl();
 
@@ -215,4 +227,5 @@ public class PresenceModelImpl extends BaseModelImpl {
 	private long _presenceId;
 	private long _userId;
 	private int _statusId;
+	private ExpandoBridge _expandoBridge;
 }
