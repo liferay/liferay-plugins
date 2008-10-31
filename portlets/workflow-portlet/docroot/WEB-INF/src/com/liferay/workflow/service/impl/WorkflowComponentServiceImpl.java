@@ -773,14 +773,22 @@ public class WorkflowComponentServiceImpl extends
 
 	private String _getLoggedInUserId() throws WorkflowComponentException {
 		User user = null;
+		String userId = null;
 		try {
 			user = getUser();
 		} catch (PortalException e1) {
-			throw new WorkflowComponentException(e1);
+			// Even if the user has not logged in, he should be able to see the 
+			// list of definitions, instances, and tasks.
+			user = null;
 		} catch (SystemException e1) {
 			throw new WorkflowComponentException(e1);
 		}
-		String userId = String.valueOf(user.getUserId());
+		
+		if(user != null){
+			userId = String.valueOf(user.getUserId());;
+		}else{
+			userId = "%";
+		}
 		return userId;
 	}
 
