@@ -22,12 +22,16 @@
 
 package com.liferay.chat.service;
 
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="StatusLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
+@Transactional
 public interface StatusLocalService {
 	public com.liferay.chat.model.Status addStatus(
 		com.liferay.chat.model.Status status)
@@ -50,26 +54,32 @@ public interface StatusLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.chat.model.Status getStatus(long statusId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Status> getStatuses(
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getStatusesCount() throws com.liferay.portal.SystemException;
 
 	public com.liferay.chat.model.Status updateStatus(
 		com.liferay.chat.model.Status status)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object[]> getAllStatuses(long modifiedDate,
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object[]> getSocialStatuses(long userId, int type,
 		long modifiedDate, int start, int end)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.chat.model.Status getUserStatus(long userId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;

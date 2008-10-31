@@ -32,6 +32,7 @@ import com.liferay.chat.service.persistence.StatusPersistence;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import java.util.List;
@@ -138,16 +139,16 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService {
 		this.statusFinder = statusFinder;
 	}
 
-	@com.liferay.portal.kernel.annotation.BeanReference(name = "com.liferay.chat.service.EntryLocalService.impl")
+	@BeanReference(name = "com.liferay.chat.service.EntryLocalService.impl")
 	protected EntryLocalService entryLocalService;
-	@com.liferay.portal.kernel.annotation.BeanReference(name = "com.liferay.chat.service.persistence.EntryPersistence.impl")
+	@BeanReference(name = "com.liferay.chat.service.persistence.EntryPersistence.impl")
 	protected EntryPersistence entryPersistence;
-	@com.liferay.portal.kernel.annotation.BeanReference(name = "com.liferay.chat.service.persistence.EntryFinder.impl")
+	@BeanReference(name = "com.liferay.chat.service.persistence.EntryFinder.impl")
 	protected EntryFinder entryFinder;
-	@com.liferay.portal.kernel.annotation.BeanReference(name = "com.liferay.chat.service.StatusLocalService.impl")
+	@BeanReference(name = "com.liferay.chat.service.StatusLocalService.impl")
 	protected StatusLocalService statusLocalService;
-	@com.liferay.portal.kernel.annotation.BeanReference(name = "com.liferay.chat.service.persistence.StatusPersistence.impl")
+	@BeanReference(name = "com.liferay.chat.service.persistence.StatusPersistence.impl")
 	protected StatusPersistence statusPersistence;
-	@com.liferay.portal.kernel.annotation.BeanReference(name = "com.liferay.chat.service.persistence.StatusFinder.impl")
+	@BeanReference(name = "com.liferay.chat.service.persistence.StatusFinder.impl")
 	protected StatusFinder statusFinder;
 }

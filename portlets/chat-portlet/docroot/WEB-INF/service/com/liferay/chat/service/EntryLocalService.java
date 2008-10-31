@@ -22,12 +22,16 @@
 
 package com.liferay.chat.service;
 
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="EntryLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
+@Transactional
 public interface EntryLocalService {
 	public com.liferay.chat.model.Entry addEntry(
 		com.liferay.chat.model.Entry entry)
@@ -50,13 +54,16 @@ public interface EntryLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.chat.model.Entry getEntry(long entryId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Entry> getEntries(int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getEntriesCount() throws com.liferay.portal.SystemException;
 
 	public com.liferay.chat.model.Entry updateEntry(
@@ -70,10 +77,12 @@ public interface EntryLocalService {
 	public void deleteEntries(long userId)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Entry> getNewEntries(
 		long userId, long createDate, int start, int end)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Entry> getOldEntries(
 		long createDate, int start, int end)
 		throws com.liferay.portal.SystemException;

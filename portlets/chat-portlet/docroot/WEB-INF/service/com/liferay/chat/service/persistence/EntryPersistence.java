@@ -22,12 +22,16 @@
 
 package com.liferay.chat.service.persistence;
 
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="EntryPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
+@Transactional
 public interface EntryPersistence {
 	public com.liferay.chat.model.Entry create(long entryId);
 
@@ -51,6 +55,7 @@ public interface EntryPersistence {
 		com.liferay.chat.model.Entry entry, boolean merge)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.chat.model.Entry findByPrimaryKey(long entryId)
 		throws com.liferay.chat.NoSuchEntryException,
 			com.liferay.portal.SystemException;
@@ -58,104 +63,127 @@ public interface EntryPersistence {
 	public com.liferay.chat.model.Entry fetchByPrimaryKey(long entryId)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Entry> findByCreateDate(
 		long createDate) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Entry> findByCreateDate(
 		long createDate, int start, int end)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Entry> findByCreateDate(
 		long createDate, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.chat.model.Entry findByCreateDate_First(
 		long createDate, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.chat.NoSuchEntryException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.chat.model.Entry findByCreateDate_Last(long createDate,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.chat.NoSuchEntryException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.chat.model.Entry[] findByCreateDate_PrevAndNext(
 		long entryId, long createDate,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.chat.NoSuchEntryException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Entry> findByFromUserId(
 		long fromUserId) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Entry> findByFromUserId(
 		long fromUserId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Entry> findByFromUserId(
 		long fromUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.chat.model.Entry findByFromUserId_First(
 		long fromUserId, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.chat.NoSuchEntryException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.chat.model.Entry findByFromUserId_Last(long fromUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.chat.NoSuchEntryException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.chat.model.Entry[] findByFromUserId_PrevAndNext(
 		long entryId, long fromUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.chat.NoSuchEntryException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Entry> findByToUserId(
 		long toUserId) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Entry> findByToUserId(
 		long toUserId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Entry> findByToUserId(
 		long toUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.chat.model.Entry findByToUserId_First(long toUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.chat.NoSuchEntryException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.chat.model.Entry findByToUserId_Last(long toUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.chat.NoSuchEntryException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.chat.model.Entry[] findByToUserId_PrevAndNext(
 		long entryId, long toUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.chat.NoSuchEntryException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Entry> findAll()
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Entry> findAll(int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.chat.model.Entry> findAll(int start,
 		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
@@ -171,15 +199,19 @@ public interface EntryPersistence {
 
 	public void removeAll() throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByCreateDate(long createDate)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByFromUserId(long fromUserId)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByToUserId(long toUserId)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countAll() throws com.liferay.portal.SystemException;
 
 	public void registerListener(

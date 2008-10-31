@@ -10,27 +10,19 @@
 >
 	<bean id="beanReferenceAnnotationBeanPostProcessor" class="com.liferay.portal.spring.annotation.BeanReferenceAnnotationBeanPostProcessor" />
 	<aop:config>
-		<aop:pointcut id="serviceOperation" expression="bean(*Service.impl)" />
-		<aop:pointcut id="persistenceOperation" expression="bean(*Persistence.impl)" />
-		<aop:advisor advice-ref="serviceTransactionAdvice" pointcut-ref="serviceOperation" />
-		<aop:advisor advice-ref="persistenceTransactionAdvice" pointcut-ref="persistenceOperation" />
+		<aop:pointcut id="transactionOperation" expression="bean(*Service.impl) or bean(*Persistence.impl)" />
+		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="transactionOperation" />
 	</aop:config>
-	<tx:advice id="serviceTransactionAdvice" transaction-manager="liferayTransactionManager">
-		<tx:attributes>
-			<tx:method name="get*" propagation="SUPPORTS" read-only="true" />
-			<tx:method name="search*" propagation="SUPPORTS" read-only="true" />
-			<tx:method name="*" propagation="REQUIRED" rollback-for="com.liferay.portal.PortalException,com.liferay.portal.SystemException" />
-  		</tx:attributes>
-	</tx:advice>
-	<tx:advice id="persistenceTransactionAdvice" transaction-manager="liferayTransactionManager">
-		<tx:attributes>
-			<tx:method name="contains*" propagation="SUPPORTS" read-only="true" />
-			<tx:method name="count*" propagation="SUPPORTS" read-only="true" />
-			<tx:method name="find*" propagation="SUPPORTS" read-only="true" />
-			<tx:method name="get*" propagation="SUPPORTS" read-only="true" />
-			<tx:method name="*" propagation="REQUIRED" rollback-for="com.liferay.portal.PortalException,com.liferay.portal.SystemException" />
-  		</tx:attributes>
-	</tx:advice>
+	<bean id="transactionAdvice" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager" ref="liferayTransactionManager" />
+		<property name="transactionAttributeSource">
+			<bean class="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource">
+		        <constructor-arg>
+		            <bean class="com.liferay.portal.spring.annotation.PortalTransactionAnnotationParser" />
+		        </constructor-arg>
+			</bean>
+		</property>
+	</bean>
 	<bean id="portletBeanFactoryPostProcessor" class="com.liferay.portal.spring.context.PortletBeanFactoryPostProcessor" />
 	<bean id="portletClassLoader" class="com.liferay.portal.kernel.portlet.PortletClassLoaderUtil" factory-method="getClassLoader" />
 	<bean id="logAdvice" class="com.liferay.portal.spring.aop.LogAdvice" />
