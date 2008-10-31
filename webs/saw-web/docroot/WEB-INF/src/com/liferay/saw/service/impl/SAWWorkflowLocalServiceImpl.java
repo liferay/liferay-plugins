@@ -231,7 +231,7 @@ public class SAWWorkflowLocalServiceImpl
 			long definitionId, String name,
 			String userId, int begin, int end)
 		throws WorkflowComponentException {
-
+		
 		Workflow workflow = null;
 		ClassLoader contextClassLoader = null;
 		contextClassLoader =_getCurrentClassLoader();
@@ -1117,8 +1117,17 @@ public class SAWWorkflowLocalServiceImpl
 
 	private String _getTimeZoneIdForUser(String userId)
 		throws WorkflowComponentException{
-
+		
 		User user = null;
+		String timeZoneId = null; 
+		
+		if(Validator.isNull(userId)){
+			return null;
+		} 
+		else if ("%".equals(userId)){
+			return null;
+		}
+
 		try {
 			user = UserLocalServiceUtil.getUserById(
 					(new Long(userId)).longValue());
@@ -1132,7 +1141,7 @@ public class SAWWorkflowLocalServiceImpl
 		catch (SystemException e) {
 			throw new WorkflowComponentException(e);
 		}
-		String timeZoneId = user.getTimeZoneId();
+		timeZoneId = user.getTimeZoneId();
 		return timeZoneId;
 	}
 
