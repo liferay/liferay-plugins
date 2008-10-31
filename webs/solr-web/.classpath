@@ -11,13 +11,11 @@
 	<classpathentry kind="lib" path="/portal/lib/global/container.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet-container.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/annotations.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/log4j.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/spring.jar" />
-	<classpathentry kind="lib" path="/portal/portal-kernel/portal-kernel.jar" />
-	<classpathentry kind="lib" path="/portal/portal-service/portal-service.jar" />
-	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
-	<classpathentry kind="lib" path="/portal/util-java/util-java.jar" />
-	<classpathentry kind="lib" path="/portal/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/apache-solr-common-1.3.0.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/apache-solr-solrj-1.3.0.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>

@@ -32,17 +32,18 @@ import com.liferay.portal.kernel.search.IndexSearcher;
 import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Time;
-import com.liferay.portal.kernel.xml.Element;
-import com.liferay.portal.kernel.xml.SAXReaderUtil;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.solr.client.solrj.SolrQuery.ORDER;
+import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.SolrServer;
+import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.common.SolrDocument;
+import org.apache.solr.common.SolrDocumentList;
 
 /**
  * <a href="SolrIndexSearcherImpl.java.html"><b><i>View Source</i></b></a>
@@ -51,10 +52,6 @@ import org.apache.commons.logging.LogFactory;
  *
  */
 public class SolrIndexSearcherImpl implements IndexSearcher {
-
-	public String getServerURL() {
-		return _serverURL;
-	}
 
 	public Hits search(long companyId, Query query, int start, int end)
 		throws SearchException {
@@ -67,49 +64,40 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		throws SearchException {
 
 		try {
-			String url = HttpUtil.addParameter(
-				_serverURL, "q", query.toString());
+			SolrQuery solrQuery = new SolrQuery();
 
-			url = HttpUtil.addParameter(url, "fl", "score");
+			solrQuery.setQuery(query.toString());
+			solrQuery.setIncludeScore(true);
 
 			boolean allResults = false;
 
 			if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS)) {
-				url = HttpUtil.addParameter(url, "rows", 0);
+				solrQuery.setRows(0);
 
 				allResults = true;
 			}
 			else {
-				url = HttpUtil.addParameter(url, "start", start);
-				url = HttpUtil.addParameter(url, "rows", end - start);
+				solrQuery.setStart(start);
+				solrQuery.setRows(end - start);
 			}
 
 			if ((sorts != null) && (sorts.length > 0)) {
-				StringBuilder sb = new StringBuilder();
-
 				for (int i = 0; i < sorts.length; i++) {
 					Sort sortField = sorts[i];
 
-					if (i > 0) {
-						sb.append(StringPool.COMMA);
-					}
-
-					sb.append(sortField.getFieldName());
-					sb.append(StringPool.SPACE);
-
-					String order = "asc";
+					ORDER order = ORDER.asc;
 
 					if (sortField.isReverse()) {
-						order = "desc";
+						order = ORDER.desc;
 					}
 
-					sb.append(order);
+					solrQuery.addSortField(sortField.getFieldName(), order);
 				}
-
-				url = HttpUtil.addParameter(url, "sort", sb.toString());
 			}
 
-			return subset(url, HttpUtil.URLtoString(url), allResults);
+			QueryResponse response = _solrServer.query(solrQuery);
+
+			return subset(solrQuery, response.getResults(), allResults);
 		}
 		catch (Exception e) {
 			_log.error("Error while sending request to Solr", e);
@@ -118,59 +106,51 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		}
 	}
 
-	public void setServerURL(String serverURL) {
-		_serverURL = serverURL;
+	public void setSolrServer(SolrServer solrServer) {
+		_solrServer = solrServer;
 	}
 
-	protected Hits subset(String url, String xml, boolean allResults)
+	protected Hits subset(
+			SolrQuery solrQuery, SolrDocumentList results, boolean allResults)
 		throws Exception {
 
 		long startTime = System.currentTimeMillis();
 
 		Hits subset = new HitsImpl();
 
-		com.liferay.portal.kernel.xml.Document xmlDoc = SAXReaderUtil.read(xml);
-
-		Element root = xmlDoc.getRootElement();
-
-		Element resultEl = root.element("result");
-
-		int length = GetterUtil.getInteger(resultEl.attributeValue("numFound"));
+		long length = results.getNumFound();
 
 		if (allResults && (length > 0)) {
-			url = HttpUtil.removeParameter(url, "rows");
-			url = HttpUtil.addParameter(url, "rows", length);
+			solrQuery.setRows((int)length);
 
-			xml = HttpUtil.URLtoString(url);
+			results = _solrServer.query(solrQuery).getResults();
 
-			return subset(url, xml, false);
+			return subset(solrQuery, results, false);
 		}
 
-		float maxScore = GetterUtil.getFloat(
-			resultEl.attributeValue("maxScore"));
+		float maxScore = results.getMaxScore();
 
-		List<Element> docEls = resultEl.elements();
-
-		int subsetTotal = docEls.size();
+		int subsetTotal = results.size();
 
 		Document[] subsetDocs = new DocumentImpl[subsetTotal];
 		float[] subsetScores = new float[subsetTotal];
 
 		int j = 0;
 
-		for (Element docEl : docEls) {
+		for (SolrDocument solrDocument : results) {
 			Document doc = new DocumentImpl();
 
-			List<Element> fieldEls = docEl.elements();
+			Collection<String> names = solrDocument.getFieldNames();
 
-			for (Element fieldEl : fieldEls) {
+			for (String name : names) {
 				Field field = new Field(
-					fieldEl.attributeValue("name"), fieldEl.getText(), false);
+					name, solrDocument.getFieldValue(name).toString(), false);
 
 				doc.add(field);
 			}
 
-			float score = GetterUtil.getFloat(doc.get("score"));
+			float score = Float.valueOf(
+				solrDocument.getFieldValue("score").toString());
 
 			subsetDocs[j] = doc;
 			subsetScores[j] = score / maxScore;
@@ -178,7 +158,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			j++;
 		}
 
-		subset.setLength(length);
+		subset.setLength((int)length);
 		subset.setDocs(subsetDocs);
 		subset.setScores(subsetScores);
 		subset.setStart(startTime);
@@ -193,6 +173,6 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 	private static Log _log = LogFactory.getLog(SolrIndexSearcherImpl.class);
 
-	private String _serverURL;
+	private SolrServer _solrServer;
 
 }

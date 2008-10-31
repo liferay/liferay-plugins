@@ -72,5 +72,6 @@
 		<dynamicField name="*"  type="string" indexed="true" stored="true" />
 	</fields>
 	<uniqueKey>uid</uniqueKey>
+	<defaultSearchField>content</defaultSearchField>
 	<solrQueryParser defaultOperator="OR" />
 </schema>

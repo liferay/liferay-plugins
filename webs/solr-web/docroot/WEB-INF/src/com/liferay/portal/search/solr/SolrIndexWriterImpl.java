@@ -26,14 +26,12 @@ import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.IndexWriter;
 import com.liferay.portal.kernel.search.SearchException;
-import com.liferay.portal.kernel.util.ContentTypes;
-import com.liferay.portal.kernel.util.Http;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.xml.Element;
-import com.liferay.portal.kernel.xml.SAXReaderUtil;
 
 import java.util.Collection;
+
+import org.apache.solr.client.solrj.SolrServer;
+import org.apache.solr.common.SolrInputDocument;
 
 /**
  * <a href="SolrIndexWriterImpl.java.html"><b><i>View Source</i></b></a>
@@ -46,15 +44,10 @@ public class SolrIndexWriterImpl implements IndexWriter {
 	public void addDocument(long companyId, Document doc)
 		throws SearchException {
 
-		com.liferay.portal.kernel.xml.Document xmlDoc =
-			SAXReaderUtil.createDocument();
-
-		Element addEl = xmlDoc.addElement("add");
-
-		addFieldEls(addEl, doc);
-
 		try {
-			write(xmlDoc);
+			_solrServer.add(getSolrDocument(doc));
+
+			_solrServer.commit();
 		}
 		catch (Exception e) {
 			throw new SearchException(e);
@@ -64,17 +57,10 @@ public class SolrIndexWriterImpl implements IndexWriter {
 	public void deleteDocument(long companyId, String uid)
 		throws SearchException {
 
-		com.liferay.portal.kernel.xml.Document xmlDoc =
-			SAXReaderUtil.createDocument();
-
-		Element deleteEl = xmlDoc.addElement("delete");
-
-		Element idEl = deleteEl.addElement("id");
-
-		idEl.setText(uid);
-
 		try {
-			write(xmlDoc);
+			_solrServer.deleteById(uid);
+
+			_solrServer.commit();
 		}
 		catch (Exception e) {
 			throw new SearchException(e);
@@ -84,29 +70,19 @@ public class SolrIndexWriterImpl implements IndexWriter {
 	public void deletePortletDocuments(long companyId, String portletId)
 		throws SearchException {
 
-		com.liferay.portal.kernel.xml.Document xmlDoc =
-			SAXReaderUtil.createDocument();
-
-		Element deleteEl = xmlDoc.addElement("delete");
-
-		Element queryEl = deleteEl.addElement("query");
-
-		queryEl.setText(Field.PORTLET_ID + StringPool.COLON + portletId);
-
 		try {
-			write(xmlDoc);
+			_solrServer.deleteByQuery(
+				Field.PORTLET_ID + StringPool.COLON + portletId);
+
+			_solrServer.commit();
 		}
 		catch (Exception e) {
 			throw new SearchException(e);
 		}
 	}
 
-	public String getServerURL() {
-		return _serverURL;
-	}
-
-	public void setServerURL(String serverURL) {
-		_serverURL = serverURL;
+	public void setSolrServer(SolrServer solrServer) {
+		_solrServer = solrServer;
 	}
 
 	public void updateDocument(long companyId, String uid, Document doc)
@@ -117,8 +93,8 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		addDocument(companyId, doc);
 	}
 
-	protected void addFieldEls(Element el, Document doc) {
-		Element docEl = el.addElement("doc");
+	protected SolrInputDocument getSolrDocument(Document doc) {
+		SolrInputDocument solrDoc = new SolrInputDocument();
 
 		Collection<Field> fields = doc.getFields().values();
 
@@ -127,30 +103,13 @@ public class SolrIndexWriterImpl implements IndexWriter {
 			String value = field.getValue();
 
 			if (value != null) {
-				Element fieldEl = docEl.addElement("field");
-
-				fieldEl.addAttribute("name", name);
-				fieldEl.addText(value);
+				solrDoc.addField(name, value);
 			}
 		}
+
+		return solrDoc;
 	}
 
-	protected void submitRequest(String xml) throws Exception {
-		Http.Body httpBody = new Http.Body(
-			xml, ContentTypes.TEXT_XML, StringPool.UTF8);
-
-		HttpUtil.submit(_serverURL, null, httpBody, true);
-	}
-
-	protected void write(com.liferay.portal.kernel.xml.Document xmlDoc)
-		throws Exception {
-
-		submitRequest(xmlDoc.asXML());
-		submitRequest(_COMMIT_XML);
-	}
-
-	private static final String _COMMIT_XML = "<commit />";
-
-	private String _serverURL;
+	private SolrServer _solrServer;
 
 }
