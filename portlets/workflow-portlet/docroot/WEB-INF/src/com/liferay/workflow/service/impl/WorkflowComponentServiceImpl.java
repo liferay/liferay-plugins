@@ -786,7 +786,8 @@ public class WorkflowComponentServiceImpl extends
 		
 		if(user != null){
 			userId = String.valueOf(user.getUserId());;
-		}else{
+		}
+		else{
 			userId = "%";
 		}
 		return userId;
