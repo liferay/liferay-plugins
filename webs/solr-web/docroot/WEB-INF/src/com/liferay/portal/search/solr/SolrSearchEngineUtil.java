@@ -95,8 +95,8 @@ public class SolrSearchEngineUtil {
 			companyId, query, sorts, start, end);
 	}
 
-	public static void unregister(String name) {
-		getSearchEngine().unregister(name);
+	public static void unregister(String fromName) {
+		getSearchEngine().unregister(fromName);
 	}
 
 	public static void updateDocument(long companyId, String uid, Document doc)
