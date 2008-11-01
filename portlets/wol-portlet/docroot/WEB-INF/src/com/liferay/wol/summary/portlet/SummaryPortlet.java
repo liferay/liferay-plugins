@@ -23,6 +23,7 @@
 package com.liferay.wol.summary.portlet;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -119,7 +120,7 @@ public class SummaryPortlet extends JSPPortlet {
 
 		List<User> users = UserLocalServiceUtil.search(
 			themeDisplay.getCompanyId(), null, Boolean.TRUE, userParams,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator) null);
 
 		for (User user : users) {
 			SocialRequestLocalServiceUtil.addRequest(
@@ -155,7 +156,7 @@ public class SummaryPortlet extends JSPPortlet {
 
 		List<User> users = UserLocalServiceUtil.search(
 			themeDisplay.getCompanyId(), null, Boolean.TRUE, userParams,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator) null);
 
 		for (User user : users) {
 			SocialRequestLocalServiceUtil.addRequest(
