@@ -19,7 +19,7 @@
 		</id>
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="modifiedDate" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="online" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="online" column="online_" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="awake" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="activeBrowserKey" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>

@@ -60,7 +60,7 @@ public class StatusModelImpl extends BaseModelImpl {
 			{ "modifiedDate", new Integer(Types.BIGINT) },
 			
 
-			{ "online", new Integer(Types.BOOLEAN) },
+			{ "online_", new Integer(Types.BOOLEAN) },
 			
 
 			{ "awake", new Integer(Types.BOOLEAN) },
@@ -68,7 +68,7 @@ public class StatusModelImpl extends BaseModelImpl {
 
 			{ "activeBrowserKey", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Chat_Status (statusId LONG not null primary key,userId LONG,modifiedDate LONG,online BOOLEAN,awake BOOLEAN,activeBrowserKey VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Chat_Status (statusId LONG not null primary key,userId LONG,modifiedDate LONG,online_ BOOLEAN,awake BOOLEAN,activeBrowserKey VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Chat_Status";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
