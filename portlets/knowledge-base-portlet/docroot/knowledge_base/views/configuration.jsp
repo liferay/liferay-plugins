@@ -375,7 +375,7 @@ String[] extensions = preferences.getValues("extensions", new String[] {"pdf"});
 
 <br />
 
-<input type="button" value="<liferay-ui:message key="save" />" onClick='<%= tabs2.equals("email-notifications") ? "<portlet:namespace />saveEmailSettings();" : "submitForm(document.<portlet:namespace />fm);"  %>' />
+<input type="button" value="<liferay-ui:message key="save" />" onClick='<%= tabs2.equals("email-notifications") ? renderResponse.getNamespace() + "saveEmailSettings();" : "submitForm(document." + renderResponse.getNamespace() + "fm);"  %>' />
 
 <input type="button" value="<liferay-ui:message key="cancel" />" onClick="document.location = '<%= HtmlUtil.escape(redirect) %>'" />
 
