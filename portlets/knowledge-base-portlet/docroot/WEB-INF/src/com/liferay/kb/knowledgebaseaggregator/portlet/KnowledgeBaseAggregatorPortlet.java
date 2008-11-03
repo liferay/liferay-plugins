@@ -41,6 +41,9 @@ import javax.portlet.ResourceResponse;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * <a href="KnowledgeBaseAggregatorPortlet.java.html"><b><i>View Source</i></b>
  * </a>
@@ -70,44 +73,59 @@ public class KnowledgeBaseAggregatorPortlet extends JSPPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
+		try {
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)resourceRequest.getAttribute(
+					WebKeys.THEME_DISPLAY);
 
-		long[] groupIds = ParamUtil.getLongValues(resourceRequest, "groupIds");
+			long[] groupIds = ParamUtil.getLongValues(
+				resourceRequest, "groupIds");
 
-		String rssType = ParamUtil.getString(resourceRequest, "rssType");
-		double rssVersion = ParamUtil.getDouble(resourceRequest, "rssVersion");
-		int rssMaxItems = ParamUtil.getInteger(resourceRequest, "rssMaxItems");
-		String rssDisplayStyle = ParamUtil.getString(
-			resourceRequest, "rssDisplayStyle");
-		int rssAbstractLength = ParamUtil.getInteger(
-			resourceRequest, "rssAbstractLength");
+			String rssType = ParamUtil.getString(resourceRequest, "rssType");
 
-		String feedURL = PortalUtil.getPortalURL(themeDisplay) +
-			PortalUtil.getLayoutURL(themeDisplay);
-		String description = LanguageUtil.get(
-			themeDisplay.getLocale(), "knowledge-base-articles");
+			double rssVersion = ParamUtil.getDouble(
+				resourceRequest, "rssVersion");
 
-		String rss = StringPool.BLANK;
+			int rssMaxItems = ParamUtil.getInteger(
+				resourceRequest, "rssMaxItems");
 
-		if (groupIds[0] != 0) {
-			rss = KBArticleServiceUtil.getGroupsArticlesRSS(
-				groupIds, rssMaxItems, rssType, rssVersion, rssDisplayStyle,
-				rssAbstractLength, description, feedURL, themeDisplay);
+			String rssDisplayStyle = ParamUtil.getString(
+				resourceRequest, "rssDisplayStyle");
+			int rssAbstractLength = ParamUtil.getInteger(
+				resourceRequest, "rssAbstractLength");
+
+			String feedURL = PortalUtil.getPortalURL(themeDisplay) +
+				PortalUtil.getLayoutURL(themeDisplay);
+			String description = LanguageUtil.get(
+				themeDisplay.getLocale(), "knowledge-base-articles");
+
+			String rss = StringPool.BLANK;
+
+			if (groupIds[0] != 0) {
+				rss = KBArticleServiceUtil.getGroupsArticlesRSS(
+					groupIds, rssMaxItems, rssType, rssVersion, rssDisplayStyle,
+					rssAbstractLength, description, feedURL, themeDisplay);
+			}
+			else {
+				rss = KBArticleServiceUtil.getCompanyArticlesRSS(
+					themeDisplay.getCompanyId(), rssMaxItems, rssType,
+					rssVersion, rssDisplayStyle, rssAbstractLength, description,
+					feedURL, themeDisplay);
+			}
+
+			HttpServletResponse response = PortalUtil.getHttpServletResponse(
+				resourceResponse);
+
+			ServletResponseUtil.sendFile(
+				response, null, rss.getBytes(StringPool.UTF8),
+				ContentTypes.TEXT_XML_UTF8);
 		}
-		else {
-			rss = KBArticleServiceUtil.getCompanyArticlesRSS(
-				themeDisplay.getCompanyId(), rssMaxItems, rssType, rssVersion,
-				rssDisplayStyle, rssAbstractLength, description, feedURL,
-				themeDisplay);
+		catch(Exception e) {
+			_log.error(e, e);
 		}
-
-		HttpServletResponse response = PortalUtil.getHttpServletResponse(
-			resourceResponse);
-
-		ServletResponseUtil.sendFile(
-			response, null, rss.getBytes(StringPool.UTF8),
-			ContentTypes.TEXT_XML_UTF8);
 	}
+
+	private static Log _log =
+		LogFactory.getLog(KnowledgeBaseAggregatorPortlet.class);
 
 }

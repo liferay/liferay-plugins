@@ -44,25 +44,35 @@ int rssAbstractLength = GetterUtil.getInteger(preferences.getValue("rss-abstract
 
 // Portlet URLs
 
-ResourceURL rssURL = renderResponse.createResourceURL();
+ResourceURL atom10URL = renderResponse.createResourceURL();
+ResourceURL rss10URL = renderResponse.createResourceURL();
+ResourceURL rss20URL = renderResponse.createResourceURL();
 
-rssURL.setParameter("actionName", "rss");
-rssURL.setParameter("groupIds", String.valueOf(groupIds));
-rssURL.setParameter("rssAbstractLength", String.valueOf(rssAbstractLength));
-rssURL.setParameter("rssDisplayStyle", rssDisplayStyle);
-rssURL.setParameter("rssMaxItems", String.valueOf(rssMaxItems));
+atom10URL.setParameter("actionName", "rss");
+rss10URL.setParameter("actionName", "rss");
+rss20URL.setParameter("actionName", "rss");
 
-ResourceURL atom10URL = rssURL;
+atom10URL.setParameter("groupIds", String.valueOf(groupIds));
+rss10URL.setParameter("groupIds", String.valueOf(groupIds));
+rss20URL.setParameter("groupIds", String.valueOf(groupIds));
+
+atom10URL.setParameter("rssAbstractLength", String.valueOf(rssAbstractLength));
+rss10URL.setParameter("rssAbstractLength", String.valueOf(rssAbstractLength));
+rss20URL.setParameter("rssAbstractLength", String.valueOf(rssAbstractLength));
+
+atom10URL.setParameter("rssDisplayStyle", rssDisplayStyle);
+rss10URL.setParameter("rssDisplayStyle", rssDisplayStyle);
+rss20URL.setParameter("rssDisplayStyle", rssDisplayStyle);
+
+atom10URL.setParameter("rssMaxItems", String.valueOf(rssMaxItems));
+rss10URL.setParameter("rssMaxItems", String.valueOf(rssMaxItems));
+rss20URL.setParameter("rssMaxItems", String.valueOf(rssMaxItems));
 
 atom10URL.setParameter("rssType", RSSUtil.ATOM);
 atom10URL.setParameter("rssVersion", String.valueOf(RSSUtil.VERSION_1_0));
 
-ResourceURL rss10URL = rssURL;
-
 rss10URL.setParameter("rssType", RSSUtil.RSS);
 rss10URL.setParameter("rssVersion", String.valueOf(RSSUtil.VERSION_1_0));
-
-ResourceURL rss20URL = rssURL;
 
 rss20URL.setParameter("rssType", RSSUtil.RSS);
 rss20URL.setParameter("rssVersion", String.valueOf(RSSUtil.VERSION_2_0));

@@ -41,34 +41,38 @@ int rssAbstractLength = GetterUtil.getInteger(preferences.getValue("abstract-len
 
 // Portlet URLs
 
-ResourceURL rssURL = renderResponse.createResourceURL();
+ResourceURL atom10URL = renderResponse.createResourceURL();
+ResourceURL rss10URL = renderResponse.createResourceURL();
+ResourceURL rss20URL = renderResponse.createResourceURL();
 
-rssURL.setParameter("actionName", "rss");
+atom10URL.setParameter("actionName", "rss");
+rss10URL.setParameter("actionName", "rss");
+rss20URL.setParameter("actionName", "rss");
 
 if (rssMaxItems != RSSUtil.MAX_ITEMS_20) {
-	rssURL.setParameter("rssMaxItems", String.valueOf(rssMaxItems));
+	atom10URL.setParameter("rssMaxItems", String.valueOf(rssMaxItems));
+	rss10URL.setParameter("rssMaxItems", String.valueOf(rssMaxItems));
+	rss20URL.setParameter("rssMaxItems", String.valueOf(rssMaxItems));
 }
 
 if (!rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT)) {
-	rssURL.setParameter("rssDisplayStyle", rssDisplayStyle);
+	atom10URL.setParameter("rssDisplayStyle", rssDisplayStyle);
+	rss10URL.setParameter("rssDisplayStyle", rssDisplayStyle);
+	rss20URL.setParameter("rssDisplayStyle", rssDisplayStyle);
 }
 
 if (rssAbstractLength != RSSUtil.ABSTRACT_LENGTH_200) {
-	rssURL.setParameter("rssAbstractLength", String.valueOf(rssAbstractLength));
+	atom10URL.setParameter("rssDisplayStyle", rssDisplayStyle);
+	rss10URL.setParameter("rssDisplayStyle", rssDisplayStyle);
+	rss20URL.setParameter("rssDisplayStyle", rssDisplayStyle);
 }
 
-ResourceURL atom10URL = rssURL;
+atom10URL.setParameter("rssType", RSSUtil.ATOM);
+atom10URL.setParameter("rssVersion", String.valueOf(RSSUtil.VERSION_1_0));
 
-atom10URL.setParameter("type", RSSUtil.ATOM);
-atom10URL.setParameter("version", "1.0");
+rss10URL.setParameter("rssType", RSSUtil.RSS);
+rss10URL.setParameter("rssVersion", String.valueOf(RSSUtil.VERSION_1_0));
 
-ResourceURL rss10URL = rssURL;
-
-rss10URL.setParameter("type", RSSUtil.RSS);
-rss10URL.setParameter("version", "1.0");
-
-ResourceURL rss20URL = rssURL;
-
-rss20URL.setParameter("type", RSSUtil.RSS);
-rss20URL.setParameter("version", "2.0");
+rss20URL.setParameter("rssType", RSSUtil.RSS);
+rss20URL.setParameter("rssVersion", "2.0");
 %>
