@@ -42,7 +42,7 @@
 					(Contact_.contactId = User_.contactId)
 			WHERE
 				(Chat_Status.modifiedDate > ?) AND
-				(Chat_Status.online_ = TRUE)
+				(Chat_Status.online_ = [$TRUE$])
 			ORDER BY
 				Chat_Status.awake ASC,
 				Contact_.firstName ASC,
@@ -69,7 +69,7 @@
 				(SocialRelation.userId1 = ?) AND
 				(SocialRelation.type_ = ?) AND
 				(Chat_Status.modifiedDate > ?) AND
-				(Chat_Status.online_ = TRUE)
+				(Chat_Status.online_ = [$TRUE$])
 			ORDER BY
 				Chat_Status.awake ASC,
 				Contact_.firstName ASC,
