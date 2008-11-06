@@ -63,6 +63,7 @@ import com.sun.syndication.io.FeedException;
 import java.io.File;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -254,9 +255,12 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 	public List<KBArticle> getCompanyArticles(long companyId, int max)
 		throws PortalException, SystemException {
-
-		Iterator<KBArticle> itr = kbArticleLocalService.getCompanyArticles(
-			companyId, true, false, false, 0, _MAX_END).iterator();
+		List<KBArticle> articles = kbArticleLocalService.getCompanyArticles(
+			companyId, true, false, false, 0, _MAX_END);
+		if (articles == null) {
+			return Collections.EMPTY_LIST;
+		}
+		Iterator<KBArticle> itr = articles.iterator();
 
 		return checkViewPermission(itr, max);
 	}
