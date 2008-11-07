@@ -57,62 +57,22 @@ if (!activeBrowser && (status != null) && !status.getActiveBrowserKey().equals(a
 	return;
 }
 
-// Buddies
-
-long buddiesModifiedDate = System.currentTimeMillis() - Time.MINUTE;
-
-List<Object[]> buddies = null;
-
-if (_BUDDY_LIST_STRATEGY.equals("all")) {
-	buddies = StatusLocalServiceUtil.getAllStatuses(buddiesModifiedDate, 0, SearchContainer.DEFAULT_DELTA);
-}
-else if (_BUDDY_LIST_STRATEGY.equals("friends")) {
-	buddies = StatusLocalServiceUtil.getSocialStatuses(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, buddiesModifiedDate, 0, SearchContainer.DEFAULT_DELTA);
-}
-else {
-	buddies = new ArrayList<Object[]>();
-}
-
-JSONArray buddiesJSON = JSONFactoryUtil.createJSONArray();
-
-for (Object[] buddy : buddies) {
-	long userId = (Long)buddy[0];
-	String firstName = (String)buddy[1];
-	String middleName = (String)buddy[2];
-	String lastName = (String)buddy[3];
-	long portraitId = (Long)buddy[4];
-	boolean awake = (Boolean)buddy[5];
-
-	String fullName = ContactConstants.getFullName(firstName, middleName, lastName);
-
-	if (userId == themeDisplay.getUserId()) {
-		continue;
-	}
-
-	JSONObject curUserJSON = JSONFactoryUtil.createJSONObject();
-
-	curUserJSON.put("userId", userId);
-	curUserJSON.put("fullName", fullName);
-	curUserJSON.put("portraitId", portraitId);
-	curUserJSON.put("awake", awake);
-
-	buddiesJSON.put(curUserJSON);
-}
-
 // Entries
 
-long entriesCreateDate = ParamUtil.getLong(request, "createDate");
+Map<Long, Long> latestCreateDates = new HashMap<Long, Long>();
 
-if (entriesCreateDate == 0) {
+long createDate = ParamUtil.getLong(request, "createDate");
+
+if ((createDate == 0) || (createDate == 1)) {
 	if (status != null) {
-		entriesCreateDate = status.getModifiedDate();
+		createDate = status.getModifiedDate();
 	}
 	else {
-		entriesCreateDate = System.currentTimeMillis() - Time.MINUTE;
+		createDate = System.currentTimeMillis() - Time.MINUTE;
 	}
 }
 
-List<Entry> entries = EntryLocalServiceUtil.getNewEntries(themeDisplay.getUserId(), entriesCreateDate, 0, SearchContainer.DEFAULT_DELTA);
+List<Entry> entries = EntryLocalServiceUtil.getNewEntries(themeDisplay.getUserId(), createDate, 0, SearchContainer.DEFAULT_DELTA);
 
 Collections.reverse(entries);
 
@@ -135,14 +95,69 @@ for (Entry entry : entries) {
 	entryJSON.put("content", entry.getContent());
 
 	entriesJSON.put(entryJSON);
+
+	if (Validator.isNotNull(entry.getContent())) {
+		latestCreateDates.put(entry.getToUserId(), entry.getCreateDate());
+	}
+}
+
+// Buddies
+
+%>
+
+<%@ include file="/buddies.jsp" %>
+
+<%
+JSONArray buddiesJSON = JSONFactoryUtil.createJSONArray();
+
+for (Object[] buddy : buddies) {
+	long userId = (Long)buddy[0];
+	String firstName = (String)buddy[1];
+	String middleName = (String)buddy[2];
+	String lastName = (String)buddy[3];
+	long portraitId = (Long)buddy[4];
+	boolean awake = (Boolean)buddy[5];
+
+	String fullName = ContactConstants.getFullName(firstName, middleName, lastName);
+
+	if (userId == themeDisplay.getUserId()) {
+		continue;
+	}
+
+	String statusMessage = null;
+
+	try {
+		Status buddyStatus = StatusLocalServiceUtil.getUserStatus(userId);
+
+		awake = buddyStatus.getAwake();
+		statusMessage = buddyStatus.getMessage();
+	}
+	catch (NoSuchStatusException nsse) {
+	}
+
+	Long latestCreateDate = latestCreateDates.get(userId);
+
+	JSONObject curUserJSON = JSONFactoryUtil.createJSONObject();
+
+	curUserJSON.put("userId", userId);
+	curUserJSON.put("fullName", fullName);
+	curUserJSON.put("portraitId", portraitId);
+	curUserJSON.put("awake", awake);
+	curUserJSON.put("statusMessage", statusMessage);
+	curUserJSON.put("latestCreateDate", (latestCreateDate != null) ? latestCreateDate.longValue() : 0);
+
+	buddiesJSON.put(curUserJSON);
 }
 
 // Status
 
 boolean online = ParamUtil.getBoolean(request, "online", true);
 boolean awake = ParamUtil.getBoolean(request, "awake", true);
+String activePanelId = ParamUtil.getString(request, "activePanelId");
+String statusMessage = ParamUtil.getString(request, "statusMessage");
+boolean playSound = ParamUtil.getBoolean(request, "playSound", true);
 
-StatusLocalServiceUtil.updateStatus(themeDisplay.getUserId(), online, awake, activeBrowserKey);
+StatusLocalServiceUtil.updateStatus(themeDisplay.getUserId(), online, awake, activeBrowserKey, activePanelId, statusMessage, playSound);
 
 // JSON
 
@@ -154,7 +169,3 @@ jsonObj.put("entries", entriesJSON);
 %>
 
 <%= jsonObj %>
-
-<%!
-private static final String _BUDDY_LIST_STRATEGY = GetterUtil.getString(PortletProps.get("buddy.list.strategy"));
-%>

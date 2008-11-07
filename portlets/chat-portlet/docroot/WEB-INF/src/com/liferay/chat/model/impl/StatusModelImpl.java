@@ -66,9 +66,18 @@ public class StatusModelImpl extends BaseModelImpl {
 			{ "awake", new Integer(Types.BOOLEAN) },
 			
 
-			{ "activeBrowserKey", new Integer(Types.VARCHAR) }
+			{ "activeBrowserKey", new Integer(Types.VARCHAR) },
+			
+
+			{ "activePanelId", new Integer(Types.VARCHAR) },
+			
+
+			{ "message", new Integer(Types.VARCHAR) },
+			
+
+			{ "playSound", new Integer(Types.BOOLEAN) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Chat_Status (statusId LONG not null primary key,userId LONG,modifiedDate LONG,online_ BOOLEAN,awake BOOLEAN,activeBrowserKey VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Chat_Status (statusId LONG not null primary key,userId LONG,modifiedDate LONG,online_ BOOLEAN,awake BOOLEAN,activeBrowserKey VARCHAR(75) null,activePanelId VARCHAR(75) null,message STRING null,playSound BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table Chat_Status";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -86,6 +95,9 @@ public class StatusModelImpl extends BaseModelImpl {
 		model.setOnline(soapModel.getOnline());
 		model.setAwake(soapModel.getAwake());
 		model.setActiveBrowserKey(soapModel.getActiveBrowserKey());
+		model.setActivePanelId(soapModel.getActivePanelId());
+		model.setMessage(soapModel.getMessage());
+		model.setPlaySound(soapModel.getPlaySound());
 
 		return model;
 	}
@@ -189,6 +201,46 @@ public class StatusModelImpl extends BaseModelImpl {
 		}
 	}
 
+	public String getActivePanelId() {
+		return GetterUtil.getString(_activePanelId);
+	}
+
+	public void setActivePanelId(String activePanelId) {
+		if (((activePanelId == null) && (_activePanelId != null)) ||
+				((activePanelId != null) && (_activePanelId == null)) ||
+				((activePanelId != null) && (_activePanelId != null) &&
+				!activePanelId.equals(_activePanelId))) {
+			_activePanelId = activePanelId;
+		}
+	}
+
+	public String getMessage() {
+		return GetterUtil.getString(_message);
+	}
+
+	public void setMessage(String message) {
+		if (((message == null) && (_message != null)) ||
+				((message != null) && (_message == null)) ||
+				((message != null) && (_message != null) &&
+				!message.equals(_message))) {
+			_message = message;
+		}
+	}
+
+	public boolean getPlaySound() {
+		return _playSound;
+	}
+
+	public boolean isPlaySound() {
+		return _playSound;
+	}
+
+	public void setPlaySound(boolean playSound) {
+		if (playSound != _playSound) {
+			_playSound = playSound;
+		}
+	}
+
 	public Status toEscapedModel() {
 		if (isEscapedModel()) {
 			return (Status)this;
@@ -205,6 +257,9 @@ public class StatusModelImpl extends BaseModelImpl {
 			model.setOnline(getOnline());
 			model.setAwake(getAwake());
 			model.setActiveBrowserKey(HtmlUtil.escape(getActiveBrowserKey()));
+			model.setActivePanelId(HtmlUtil.escape(getActivePanelId()));
+			model.setMessage(HtmlUtil.escape(getMessage()));
+			model.setPlaySound(getPlaySound());
 
 			model = (Status)Proxy.newProxyInstance(Status.class.getClassLoader(),
 					new Class[] { Status.class }, new ReadOnlyBeanHandler(model));
@@ -231,6 +286,9 @@ public class StatusModelImpl extends BaseModelImpl {
 		clone.setOnline(getOnline());
 		clone.setAwake(getAwake());
 		clone.setActiveBrowserKey(getActiveBrowserKey());
+		clone.setActivePanelId(getActivePanelId());
+		clone.setMessage(getMessage());
+		clone.setPlaySound(getPlaySound());
 
 		return clone;
 	}
@@ -289,5 +347,8 @@ public class StatusModelImpl extends BaseModelImpl {
 	private boolean _online;
 	private boolean _awake;
 	private String _activeBrowserKey;
+	private String _activePanelId;
+	private String _message;
+	private boolean _playSound;
 	private ExpandoBridge _expandoBridge;
 }

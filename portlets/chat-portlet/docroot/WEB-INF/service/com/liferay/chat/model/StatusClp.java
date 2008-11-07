@@ -108,6 +108,34 @@ public class StatusClp extends BaseModelImpl implements Status {
 		_activeBrowserKey = activeBrowserKey;
 	}
 
+	public String getActivePanelId() {
+		return _activePanelId;
+	}
+
+	public void setActivePanelId(String activePanelId) {
+		_activePanelId = activePanelId;
+	}
+
+	public String getMessage() {
+		return _message;
+	}
+
+	public void setMessage(String message) {
+		_message = message;
+	}
+
+	public boolean getPlaySound() {
+		return _playSound;
+	}
+
+	public boolean isPlaySound() {
+		return _playSound;
+	}
+
+	public void setPlaySound(boolean playSound) {
+		_playSound = playSound;
+	}
+
 	public Status toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -123,6 +151,9 @@ public class StatusClp extends BaseModelImpl implements Status {
 			model.setOnline(getOnline());
 			model.setAwake(getAwake());
 			model.setActiveBrowserKey(HtmlUtil.escape(getActiveBrowserKey()));
+			model.setActivePanelId(HtmlUtil.escape(getActivePanelId()));
+			model.setMessage(HtmlUtil.escape(getMessage()));
+			model.setPlaySound(getPlaySound());
 
 			model = (Status)Proxy.newProxyInstance(Status.class.getClassLoader(),
 					new Class[] { Status.class }, new ReadOnlyBeanHandler(model));
@@ -140,6 +171,9 @@ public class StatusClp extends BaseModelImpl implements Status {
 		clone.setOnline(getOnline());
 		clone.setAwake(getAwake());
 		clone.setActiveBrowserKey(getActiveBrowserKey());
+		clone.setActivePanelId(getActivePanelId());
+		clone.setMessage(getMessage());
+		clone.setPlaySound(getPlaySound());
 
 		return clone;
 	}
@@ -198,4 +232,7 @@ public class StatusClp extends BaseModelImpl implements Status {
 	private boolean _online;
 	private boolean _awake;
 	private String _activeBrowserKey;
+	private String _activePanelId;
+	private String _message;
+	private boolean _playSound;
 }

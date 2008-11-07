@@ -368,6 +368,44 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		return (com.liferay.chat.model.Entry)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.chat.model.Entry addEntry(long createDate,
+		long fromUserId, long toUserId, java.lang.String content)
+		throws com.liferay.portal.SystemException {
+		Object paramObj0 = new LongWrapper(createDate);
+
+		Object paramObj1 = new LongWrapper(fromUserId);
+
+		Object paramObj2 = new LongWrapper(toUserId);
+
+		Object paramObj3 = ClpSerializer.translateInput(content);
+
+		if (content == null) {
+			paramObj3 = new NullWrapper("java.lang.String");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("addEntry",
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.chat.model.Entry)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public void deleteEntries(long userId)
 		throws com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(userId);

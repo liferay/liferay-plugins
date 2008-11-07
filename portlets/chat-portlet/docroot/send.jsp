@@ -29,6 +29,7 @@ if (!themeDisplay.isSignedIn()) {
 	return;
 }
 
+long createDate = ParamUtil.getLong(request, "createDate");
 long toUserId = ParamUtil.getLong(request, "toUserId");
 String content = ParamUtil.getString(request, "content");
 
@@ -36,5 +37,10 @@ if (toUserId == 0) {
 	return;
 }
 
-EntryLocalServiceUtil.addEntry(themeDisplay.getUserId(), toUserId, content);
+if ((createDate == 0) || (createDate == 1)) {
+	EntryLocalServiceUtil.addEntry(themeDisplay.getUserId(), toUserId, content);
+}
+else {
+	EntryLocalServiceUtil.addEntry(createDate, themeDisplay.getUserId(), toUserId, content);
+}
 %>

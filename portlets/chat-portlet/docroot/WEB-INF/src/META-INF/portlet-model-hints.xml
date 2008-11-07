@@ -17,5 +17,10 @@
 		<field name="online" type="boolean" />
 		<field name="awake" type="boolean" />
 		<field name="activeBrowserKey" type="String" />
+		<field name="activePanelId" type="String" />
+		<field name="message" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
+		<field name="playSound" type="boolean" />
 	</model>
 </model-hints>

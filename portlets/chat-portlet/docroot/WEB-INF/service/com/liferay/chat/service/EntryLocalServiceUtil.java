@@ -93,6 +93,12 @@ public class EntryLocalServiceUtil {
 		return getService().addEntry(fromUserId, toUserId, content);
 	}
 
+	public static com.liferay.chat.model.Entry addEntry(long createDate,
+		long fromUserId, long toUserId, java.lang.String content)
+		throws com.liferay.portal.SystemException {
+		return getService().addEntry(createDate, fromUserId, toUserId, content);
+	}
+
 	public static void deleteEntries(long userId)
 		throws com.liferay.portal.SystemException {
 		getService().deleteEntries(userId);

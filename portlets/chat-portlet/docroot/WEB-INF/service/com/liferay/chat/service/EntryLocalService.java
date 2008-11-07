@@ -74,6 +74,10 @@ public interface EntryLocalService {
 		long toUserId, java.lang.String content)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.chat.model.Entry addEntry(long createDate,
+		long fromUserId, long toUserId, java.lang.String content)
+		throws com.liferay.portal.SystemException;
+
 	public void deleteEntries(long userId)
 		throws com.liferay.portal.SystemException;
 

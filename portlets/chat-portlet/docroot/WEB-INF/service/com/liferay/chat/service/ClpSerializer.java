@@ -168,6 +168,27 @@ public class ClpSerializer {
 
 					method5.invoke(newModel, value5);
 
+					Method method6 = newModelClass.getMethod("setActivePanelId",
+							new Class[] { String.class });
+
+					String value6 = oldCplModel.getActivePanelId();
+
+					method6.invoke(newModel, value6);
+
+					Method method7 = newModelClass.getMethod("setMessage",
+							new Class[] { String.class });
+
+					String value7 = oldCplModel.getMessage();
+
+					method7.invoke(newModel, value7);
+
+					Method method8 = newModelClass.getMethod("setPlaySound",
+							new Class[] { Boolean.TYPE });
+
+					Boolean value8 = new Boolean(oldCplModel.getPlaySound());
+
+					method8.invoke(newModel, value8);
+
 					return newModel;
 				}
 				catch (Exception e) {
@@ -312,6 +333,27 @@ public class ClpSerializer {
 							(Object[])null);
 
 					newModel.setActiveBrowserKey(value5);
+
+					Method method6 = oldModelClass.getMethod("getActivePanelId");
+
+					String value6 = (String)method6.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setActivePanelId(value6);
+
+					Method method7 = oldModelClass.getMethod("getMessage");
+
+					String value7 = (String)method7.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setMessage(value7);
+
+					Method method8 = oldModelClass.getMethod("getPlaySound");
+
+					Boolean value8 = (Boolean)method8.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setPlaySound(value8.booleanValue());
 
 					return newModel;
 				}

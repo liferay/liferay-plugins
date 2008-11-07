@@ -60,7 +60,8 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 	}
 
 	public Status updateStatus(
-			long userId, boolean online, boolean awake, String activeBrowserKey)
+			long userId, boolean online, boolean awake, String activeBrowserKey,
+			String activePanelId, String message, boolean playSound)
 		throws PortalException, SystemException {
 
 		Status status = statusPersistence.fetchByUserId(userId);
@@ -77,6 +78,9 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 		status.setOnline(online);
 		status.setAwake(awake);
 		status.setActiveBrowserKey(activeBrowserKey);
+		status.setActivePanelId(activePanelId);
+		status.setMessage(message);
+		status.setPlaySound(playSound);
 
 		statusPersistence.update(status, false);
 

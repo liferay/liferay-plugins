@@ -40,11 +40,20 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 	public Entry addEntry(long fromUserId, long toUserId, String content)
 		throws SystemException {
 
+		long createDate = System.currentTimeMillis();
+
+		return addEntry(createDate, fromUserId, toUserId, content);
+	}
+
+	public Entry addEntry(
+			long createDate, long fromUserId, long toUserId, String content)
+		throws SystemException {
+
 		long entryId = CounterLocalServiceUtil.increment();
 
 		Entry entry = entryPersistence.create(entryId);
 
-		entry.setCreateDate(System.currentTimeMillis());
+		entry.setCreateDate(createDate);
 		entry.setFromUserId(fromUserId);
 		entry.setToUserId(toUserId);
 		entry.setContent(content);

@@ -435,7 +435,9 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	}
 
 	public com.liferay.chat.model.Status updateStatus(long userId,
-		boolean online, boolean awake, java.lang.String activeBrowserKey)
+		boolean online, boolean awake, java.lang.String activeBrowserKey,
+		java.lang.String activePanelId, java.lang.String message,
+		boolean playSound)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(userId);
@@ -450,11 +452,28 @@ public class StatusLocalServiceClp implements StatusLocalService {
 			paramObj3 = new NullWrapper("java.lang.String");
 		}
 
+		Object paramObj4 = ClpSerializer.translateInput(activePanelId);
+
+		if (activePanelId == null) {
+			paramObj4 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj5 = ClpSerializer.translateInput(message);
+
+		if (message == null) {
+			paramObj5 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj6 = new BooleanWrapper(playSound);
+
 		Object returnObj = null;
 
 		try {
 			returnObj = _classLoaderProxy.invoke("updateStatus",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+						paramObj5, paramObj6
+					});
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.PortalException) {

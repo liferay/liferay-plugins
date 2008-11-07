@@ -1,3 +1,4 @@
+<%
 /**
  * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
@@ -19,63 +20,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+%>
 
-package com.liferay.chat.model;
+<%
+long buddiesModifiedDate = System.currentTimeMillis() - Time.MINUTE;
 
-import com.liferay.portal.model.BaseModel;
+List<Object[]> buddies = null;
 
-/**
- * <a href="StatusModel.java.html"><b><i>View Source</i></b></a>
- *
- * @author Brian Wing Shun Chan
- *
- */
-public interface StatusModel extends BaseModel {
-	public long getPrimaryKey();
-
-	public void setPrimaryKey(long pk);
-
-	public long getStatusId();
-
-	public void setStatusId(long statusId);
-
-	public long getUserId();
-
-	public void setUserId(long userId);
-
-	public long getModifiedDate();
-
-	public void setModifiedDate(long modifiedDate);
-
-	public boolean getOnline();
-
-	public boolean isOnline();
-
-	public void setOnline(boolean online);
-
-	public boolean getAwake();
-
-	public boolean isAwake();
-
-	public void setAwake(boolean awake);
-
-	public String getActiveBrowserKey();
-
-	public void setActiveBrowserKey(String activeBrowserKey);
-
-	public String getActivePanelId();
-
-	public void setActivePanelId(String activePanelId);
-
-	public String getMessage();
-
-	public void setMessage(String message);
-
-	public boolean getPlaySound();
-
-	public boolean isPlaySound();
-
-	public void setPlaySound(boolean playSound);
-
-	public Status toEscapedModel();
+if (_BUDDY_LIST_STRATEGY.equals("all")) {
+	buddies = StatusLocalServiceUtil.getAllStatuses(buddiesModifiedDate, 0, SearchContainer.DEFAULT_DELTA);
 }
+else if (_BUDDY_LIST_STRATEGY.equals("friends")) {
+	buddies = StatusLocalServiceUtil.getSocialStatuses(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, buddiesModifiedDate, 0, SearchContainer.DEFAULT_DELTA);
+}
+else {
+	buddies = new ArrayList<Object[]>();
+}
+%>
+
+<%!
+private static final String _BUDDY_LIST_STRATEGY = GetterUtil.getString(PortletProps.get("buddy.list.strategy"));
+%>

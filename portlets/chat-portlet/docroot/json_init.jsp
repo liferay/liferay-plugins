@@ -22,38 +22,7 @@
  */
 %>
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
-
-<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
-
-<%@ page import="com.liferay.chat.NoSuchStatusException" %>
-<%@ page import="com.liferay.chat.model.Entry" %>
-<%@ page import="com.liferay.chat.model.Status" %>
-<%@ page import="com.liferay.chat.service.EntryLocalServiceUtil" %>
-<%@ page import="com.liferay.chat.service.StatusLocalServiceUtil" %>
-<%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
-<%@ page import="com.liferay.portal.kernel.json.JSONArray" %>
-<%@ page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %>
-<%@ page import="com.liferay.portal.kernel.json.JSONObject" %>
-<%@ page import="com.liferay.portal.kernel.servlet.HttpHeaders" %>
-<%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
-<%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.Time" %>
-<%@ page import="com.liferay.portal.model.ContactConstants" %>
-<%@ page import="com.liferay.portal.model.User" %>
-<%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
-<%@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
-<%@ page import="com.liferay.util.portlet.PortletProps" %>
-
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Collections" %>
-<%@ page import="java.util.List" %>
-
-<portlet:defineObjects />
-
-<liferay-theme:defineObjects />
+<%@ include file="/init.jsp" %>
 
 <%
 response.setContentType(ContentTypes.TEXT_JAVASCRIPT);

@@ -43,6 +43,9 @@ public class StatusSoap implements Serializable {
 		soapModel.setOnline(model.getOnline());
 		soapModel.setAwake(model.getAwake());
 		soapModel.setActiveBrowserKey(model.getActiveBrowserKey());
+		soapModel.setActivePanelId(model.getActivePanelId());
+		soapModel.setMessage(model.getMessage());
+		soapModel.setPlaySound(model.getPlaySound());
 
 		return soapModel;
 	}
@@ -124,10 +127,41 @@ public class StatusSoap implements Serializable {
 		_activeBrowserKey = activeBrowserKey;
 	}
 
+	public String getActivePanelId() {
+		return _activePanelId;
+	}
+
+	public void setActivePanelId(String activePanelId) {
+		_activePanelId = activePanelId;
+	}
+
+	public String getMessage() {
+		return _message;
+	}
+
+	public void setMessage(String message) {
+		_message = message;
+	}
+
+	public boolean getPlaySound() {
+		return _playSound;
+	}
+
+	public boolean isPlaySound() {
+		return _playSound;
+	}
+
+	public void setPlaySound(boolean playSound) {
+		_playSound = playSound;
+	}
+
 	private long _statusId;
 	private long _userId;
 	private long _modifiedDate;
 	private boolean _online;
 	private boolean _awake;
 	private String _activeBrowserKey;
+	private String _activePanelId;
+	private String _message;
+	private boolean _playSound;
 }
