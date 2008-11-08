@@ -1,6 +1,20 @@
 <?xml version="1.0"?>
 
 <custom-sql>
+	<sql id="com.liferay.chat.service.persistence.EntryFinder.findByEmptyContent">
+		<![CDATA[
+			SELECT
+				{Chat_Entry.*}
+			FROM
+				Chat_Entry
+			WHERE
+				(fromUserId = ?) AND
+				(toUserId = ?) AND
+				(content = '')
+			ORDER BY
+				createDate DESC
+		]]>
+	</sql>
 	<sql id="com.liferay.chat.service.persistence.EntryFinder.findByNew">
 		<![CDATA[
 			SELECT

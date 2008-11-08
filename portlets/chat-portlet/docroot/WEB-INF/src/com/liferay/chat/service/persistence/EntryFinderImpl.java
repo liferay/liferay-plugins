@@ -43,11 +43,44 @@ import java.util.List;
 public class EntryFinderImpl
 	extends BasePersistenceImpl implements EntryFinder {
 
+	public static String FIND_BY_EMPTY_CONTENT =
+		EntryFinder.class.getName() + ".findByEmptyContent";
+
 	public static String FIND_BY_NEW =
 		EntryFinder.class.getName() + ".findByNew";
 
 	public static String FIND_BY_OLD =
 		EntryFinder.class.getName() + ".findByOld";
+
+	public List<Entry> findByEmptyContent(
+			long fromUserId, long toUserId, int start, int end)
+		throws SystemException {
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_EMPTY_CONTENT);
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addEntity("Chat_Entry", EntryImpl.class);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(fromUserId);
+			qPos.add(toUserId);
+
+			return (List<Entry>)QueryUtil.list(q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
 
 	public List<Entry> findByNew(
 			long userId, long createDate, int start, int end)

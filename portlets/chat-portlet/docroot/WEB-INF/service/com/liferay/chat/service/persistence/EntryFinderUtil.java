@@ -29,6 +29,12 @@ package com.liferay.chat.service.persistence;
  *
  */
 public class EntryFinderUtil {
+	public static java.util.List<com.liferay.chat.model.Entry> findByEmptyContent(
+		long fromUserId, long toUserId, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getFinder().findByEmptyContent(fromUserId, toUserId, start, end);
+	}
+
 	public static java.util.List<com.liferay.chat.model.Entry> findByNew(
 		long userId, long createDate, int start, int end)
 		throws com.liferay.portal.SystemException {
