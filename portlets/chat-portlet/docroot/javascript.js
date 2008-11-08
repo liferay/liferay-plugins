@@ -1,11 +1,11 @@
-(function ($) {
-$.fn.disableSelection = function() {
+jQuery.fn.disableSelection = function() {
 	return this.attr('unselectable', 'on').css('MozUserSelect', 'none').bind('selectstart.ui', function() {
-		return false;
-	});
+			return false;
+		}
+	);
 };
 
-$.fn.enableSelection = function() {
+jQuery.fn.enableSelection = function() {
 	return this.attr('unselectable', 'off').css('MozUserSelect', '').unbind('selectstart.ui');
 };
 
@@ -61,13 +61,14 @@ Liferay.Chat.Panel = new Class({
 		var instance = this;
 
 		if (!options.container) {
-			instance._container = Liferay.Chat.Manager.getContainer()
+			instance._tabsContainer = Liferay.Chat.Manager.getContainer()
 		}
 		else {
-			instance._container = jQuery(options.container);
+			instance._tabsContainer = jQuery(options.container);
 		}
 
 		instance._chatProperties = {};
+		instance._eventsSuspended = false;
 
 		instance._eventObj = jQuery(instance);
 
@@ -137,6 +138,12 @@ Liferay.Chat.Panel = new Class({
 		instance.trigger('hide', instance);
 	},
 
+	resumeEvents: function(){
+		var instance = this;
+
+		instance._eventsSuspended = false;
+	},
+
 	set: function(key, value) {
 		var instance = this;
 
@@ -162,6 +169,12 @@ Liferay.Chat.Panel = new Class({
 
 	},
 
+	suspendEvents: function(){
+		var instance = this;
+
+		instance._eventsSuspended = true;
+	},
+
 	toggle: function() {
 		var instance = this;
 		if (instance.get('selected')) {
@@ -170,18 +183,6 @@ Liferay.Chat.Panel = new Class({
 		else {
 			instance.show();
 		}
-	},
-
-	resumeEvents: function(){
-		var instance = this;
-
-		instance._eventsSuspended = false;
-	},
-
-	suspendEvents: function(){
-		var instance = this;
-
-		instance._eventsSuspended = true;
 	},
 
 	trigger: function(event, data){
@@ -210,10 +211,10 @@ Liferay.Chat.Panel = new Class({
 
 		panel = jQuery(panelHTML);
 
-		instance._popup = panel.find('.popup');
-		instance._popupTitle = panel.find('.popup-title');
+		instance._popup = panel.find('.chat-panel');
+		instance._popupTitle = panel.find('.panel-title');
 		instance._textBox = panel.find('textarea');
-		instance._popupTrigger = panel.find('.link');
+		instance._popupTrigger = panel.find('.panel-trigger');
 
 		instance._popupTrigger.click(
 			function(event) {
@@ -221,7 +222,7 @@ Liferay.Chat.Panel = new Class({
 			}
 		);
 
-		panel.find('.popup-button').bind(
+		panel.find('.panel-button').bind(
 			'click',
 			function (event) {
 				var target = jQuery(event.target);
@@ -237,7 +238,7 @@ Liferay.Chat.Panel = new Class({
 
 		instance._panel = panel;
 
-		instance._container.append(panel);
+		instance._tabsContainer.append(panel);
 	},
 
 	_setPanelHTML: function(html) {
@@ -245,21 +246,19 @@ Liferay.Chat.Panel = new Class({
 
 		if (!html) {
 			html = '<li class="panel">' +
-				'<div class="link"><span class="trigger-name"></span></div>' +
-				'<div class="popup">' +
-					'<div class="popup-window">' +
-						'<div class="popup-button minimize"></div>' +
-						'<div class="popup-title"></div>' +
-						'<div class="popup-content"></div>' +
+				'<div class="panel-trigger"><span class="trigger-name"></span></div>' +
+				'<div class="chat-panel">' +
+					'<div class="panel-window">' +
+						'<div class="panel-button minimize"></div>' +
+						'<div class="panel-title"></div>' +
+						'<div class="panel-content"></div>' +
 					'</div>' +
 				'</div>' +
 			'</li>';
 		}
 
 		return html;
-	},
-
-	_eventsSuspended: false
+	}
 });
 
 Liferay.Chat.Conversation = Liferay.Chat.Panel.extend({
@@ -268,9 +267,9 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend({
 
 		instance.parent(options);
 
-		instance._chatInput = instance._panel.find('.popup-input textarea');
-		instance._chatOutput = instance._panel.find('.popup-output');
-		instance._statusMessage = instance._panel.find('.popup-profile');
+		instance._chatInput = instance._panel.find('.panel-input textarea');
+		instance._chatOutput = instance._panel.find('.panel-output');
+		instance._statusMessage = instance._panel.find('.panel-profile');
 
 		instance._created = Liferay.Chat.Util.getCurrentTimestamp();
 		instance._lastMessageTime = 0;
@@ -324,6 +323,19 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend({
 		document.title = instance._originalPageTitle;
 	},
 
+	send: function(options) {
+		var instance = this;
+
+		Liferay.Chat.Manager.send(options);
+	},
+
+	show: function() {
+		var instance = this;
+
+		instance.parent();
+		instance.setAsRead();
+	},
+
 	setAsUnread: function() {
 		var instance = this;
 
@@ -343,19 +355,6 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend({
 
 			document.title = instance._originalPageTitle + ' - Unread messages (' + instance._unreadMessages + ')';
 		}
-	},
-
-	send: function(options) {
-		var instance = this;
-
-		Liferay.Chat.Manager.send(options);
-	},
-
-	show: function() {
-		var instance = this;
-
-		instance.parent();
-		instance.setAsRead();
 	},
 
 	update: function(options) {
@@ -413,7 +412,9 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend({
 			instance.set('typedTo', userId);
 		}
 
-		if (event.keyCode == 13) {
+		var content = el.value.replace(/\n|\r/gim, '');
+
+		if (event.keyCode == 13 && content.length) {
 			var now = Liferay.Chat.Util.getCurrentTimestamp();
 
 			instance.send(
@@ -436,7 +437,7 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend({
 			el.value = '';
 		}
 
-		// this.style.height = '0px';
+		el.style.height = '0px';
 
 		current = {
 			clientHeight: el.clientHeight,
@@ -461,27 +462,27 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend({
 
 		var userImagePath = Liferay.Chat.Util.getUserImagePath(instance._panelIcon);
 
-		var html = '<li class="user user_' + instance._panelId + '" userId="' + instance._panelId + '">' +
-						'<div class="link" userId="' + instance._panelId + '">' +
+		var html = '<li class="user user_' + instance._panelId + '" panelId="' + instance._panelId + '">' +
+						'<div class="panel-trigger">' +
 							'<span class="trigger-name"></span>' +
 							'<div class="typing-status"></div>' +
 						'</div>' +
-						'<div class="popup">' +
-							'<div class="popup-window">' +
-								'<div class="popup-button minimize"></div>' +
-								'<div class="popup-button close"></div>' +
-								'<img class="popup-icon" src="' + userImagePath + '" />' +
-								'<div class="popup-title">' + instance._panelTitle + '</div>' +
-								'<div class="popup-profile">...</div>' +
-								'<div class="popup-output"></div>' +
-								'<div class="popup-input">' +
+						'<div class="chat-panel">' +
+							'<div class="panel-window">' +
+								'<div class="panel-button minimize"></div>' +
+								'<div class="panel-button close"></div>' +
+								'<img class="panel-icon" src="' + userImagePath + '" />' +
+								'<div class="panel-title">' + instance._panelTitle + '</div>' +
+								'<div class="panel-profile">...</div>' +
+								'<div class="panel-output"></div>' +
+								'<div class="panel-input">' +
 									'<textarea></textarea>' +
 								'</div>' +
 							'</div>' +
 						'</div>' +
 					'</li>';
 
-			return html;
+		return html;
 	},
 
 	_updateMessageWindow: function(options) {
@@ -518,6 +519,9 @@ Liferay.Chat.Manager = {
 	init: function() {
 		var instance = this;
 
+		instance._chatContainer = jQuery('.portlet-chat');
+		instance._tabsContainer = instance._chatContainer.find('.chat-tabs');
+
 		instance._activeBrowser = true;
 		instance._activeBrowserKey = Liferay.Util.randomInt();
 		instance._activePanelId = jQuery('#activePanelId').val() || '';
@@ -527,26 +531,24 @@ Liferay.Chat.Manager = {
 		instance._created = Liferay.Chat.Util.getCurrentTimestamp();
 		instance._entriesFrom = instance._created - Liferay.Chat.Util.TIMESTAMP_24;
 
-		instance._myStatus = jQuery('#chatMyStatus');
+		instance._myStatus = instance._chatContainer.find('.status-message');
 
 		instance._latestUrl = instance._baseUrl + 'latest';
 		instance._sendUrl = instance._baseUrl + 'send';
 
-		instance._container = jQuery('#chat-tabs');
-
 		instance._sound = new SWFObject("/chat-portlet/alert.swf", "alertsound", "0", "0", "8");
-		instance._soundContainer = jQuery('#btm-dock-sound');
+		instance._soundContainer = instance._chatContainer.find('.chat-sound');
 
 		var buddyList = new Liferay.Chat.Panel(
 			{
-				fromMarkup: '#chat-tabs > .buddylist',
+				fromMarkup: '.chat-tabs > .buddy-list',
 				panelId: 'buddylist'
 			}
 		);
 
 		var settings = new Liferay.Chat.Panel(
 			{
-				fromMarkup: '#chat-tabs > .settings',
+				fromMarkup: '.chat-tabs > .chat-settings',
 				panelId: 'settings'
 			}
 		);
@@ -616,7 +618,7 @@ Liferay.Chat.Manager = {
 	getContainer: function() {
 		var instance = this;
 
-		return instance._container;
+		return instance._tabsContainer;
 	},
 
 	getCurrentUser: function() {
@@ -674,17 +676,6 @@ Liferay.Chat.Manager = {
 		var instance = this;
 
 		clearInterval(instance._requestTimer);
-	},
-
-	_createRequestTimer: function() {
-		var instance = this;
-
-		instance._requestTimer = setInterval(
-			function() {
-				instance._getRequest();
-			},
-			instance._requestInterval
-		);
 	},
 
 	_createChatFromUser: function(user) {
@@ -748,6 +739,17 @@ Liferay.Chat.Manager = {
 		return chat;
 	},
 
+	_createRequestTimer: function() {
+		var instance = this;
+
+		instance._requestTimer = setInterval(
+			function() {
+				instance._getRequest();
+			},
+			instance._requestInterval
+		);
+	},
+
 	_getChat: function(chatName) {
 		var instance = this;
 
@@ -758,40 +760,6 @@ Liferay.Chat.Manager = {
 		var instance = this;
 
 		return instance._panels[panelName];
-	},
-
-	_hideChats: function() {
-		var instance = this;
-
-		for (var i in instance._chatSessions) {
-			instance._chatSessions[i].hide();
-		}
-	},
-
-	_onPanelShow: function(event, panel) {
-		var instance = this;
-
-		for (var i in instance._panels) {
-			if (instance._panels[i] != panel) {
-				instance._panels[i].hide();
-			}
-		}
-
-		instance._activePanelId = panel._panelId;
-		instance._getRequest();
-	},
-
-	_onPanelClose: function(event, panel) {
-		var instance = this;
-
-		delete instance._panels[panel._panelId];
-
-		if (panel instanceof Liferay.Chat.Conversation) {
-			delete instance._chatSessions[panel._panelId];
-		}
-
-		instance._activePanelId = '';
-		instance._getRequest();
 	},
 
 	_getRequest: function() {
@@ -841,6 +809,40 @@ Liferay.Chat.Manager = {
 			playSound: instance._playSound,
 			createDate: instance._entriesFrom
 		};
+	},
+
+	_hideChats: function() {
+		var instance = this;
+
+		for (var i in instance._chatSessions) {
+			instance._chatSessions[i].hide();
+		}
+	},
+
+	_onPanelShow: function(event, panel) {
+		var instance = this;
+
+		for (var i in instance._panels) {
+			if (instance._panels[i] != panel) {
+				instance._panels[i].hide();
+			}
+		}
+
+		instance._activePanelId = panel._panelId;
+		instance._getRequest();
+	},
+
+	_onPanelClose: function(event, panel) {
+		var instance = this;
+
+		delete instance._panels[panel._panelId];
+
+		if (panel instanceof Liferay.Chat.Conversation) {
+			delete instance._chatSessions[panel._panelId];
+		}
+
+		instance._activePanelId = '';
+		instance._getRequest();
 	},
 
 	_sendRequest: function(options, callback) {
@@ -984,7 +986,8 @@ Liferay.Chat.Manager = {
 	_settings: {}
 };
 
-$(function () {
-	Liferay.Chat.Manager.init();
-});
-}(jQuery));
+jQuery(
+	function () {
+		Liferay.Chat.Manager.init();
+	}
+);

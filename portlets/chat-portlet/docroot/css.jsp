@@ -31,7 +31,7 @@ body {
 
 /* ---------- Bottom Dock ---------- */
 
-#btm-dock {
+.chat-bar {
 	background: url(<%= request.getContextPath() %>/images/btm-dock_bg.png);
 	border: 1px solid #b5b5b5;
 	border-bottom: none;
@@ -43,21 +43,21 @@ body {
 	z-index: 10;
 }
 
-#btm-dock-sound {
+.chat-sound-container {
 	position: absolute;
 }
 
-#btm-dock-left {
+.chat-status {
 	float: left;
 }
 
-#btm-dock-right {
+.chat-tabs-container {
 	float: right;
 }
 
 /* ---------- Bottom Dock Tabs ---------- */
 
-#btm-dock > div > ul, #btm-dock > div > ul > li {
+.chat-bar div ul, .chat-bar div ul li {
 	float: left;
 	list-style-type: none;
 	margin: 0;
@@ -65,11 +65,11 @@ body {
 	position: relative;
 }
 
-#btm-dock #chat-tabs > li {
+.chat-bar .chat-tabs li {
 	float: right;
 }
 
-#btm-dock > div > ul > li > .link {
+.chat-bar div ul li .panel-trigger {
 	cursor: pointer;
 	float: left;
 	border-left: 1px solid #b5b5b5;
@@ -80,11 +80,11 @@ body {
 	padding: 0 6px;
 }
 
-#btm-dock > div > ul > li > .link:hover {
+.chat-bar div ul li .panel-trigger:hover {
 	background: #fff;
 }
 
-#btm-dock > div > ul > li.selected > .link {
+.chat-bar div ul li.selected .panel-trigger {
 	background: #fff;
 	border: 1px solid #262626;
 	border-top: none;
@@ -98,18 +98,18 @@ body {
 	z-index: 30;
 	margin: -2px 0 -1px;
 }
-
-#btm-dock > div > ul > li.buddy-list > .link {
+/*
+.chat-bar div ul li.buddy-list .panel-trigger {
 	border-right: 0;
-}
+}*/
 
 /* ---------- Unread Messages ---------- */
 
-#btm-dock > div > ul > li.waiting > .link {
+.chat-bar div ul li.waiting .panel-trigger {
 	background-image: url(<%= request.getContextPath() %>/images/message_waiting_indicator.gif);
 }
 
-#btm-dock > div > ul > li > .link > .unread {
+.chat-bar div ul li .panel-trigger .unread {
 	background: url(<%= request.getContextPath() %>/images/unread-messages.png);
 	color: #fff;
 	display: none;
@@ -123,7 +123,7 @@ body {
 	z-index: 30;
 }
 
-#btm-dock > div > ul > li.selected > .link > .unread {
+.chat-bar div ul li.selected .panel-trigger .unread {
 	right: -5px;
 	top: -4px;
 }
@@ -149,13 +149,13 @@ body {
 	display: block;
 }
 
-#btm-dock > div > ul > li.typing > .link {
+.chat-bar div ul li.typing .panel-trigger {
 	padding-left: 24px;
 }
 
 /* ---------- Bottom Dock Popups ---------- */
 
-#btm-dock .popup {
+.chat-bar .chat-panel {
 	bottom: 24px;
 	display: none;
 	position: absolute;
@@ -163,19 +163,19 @@ body {
 	z-index: 20;
 }
 
-#btm-dock .selected .popup {
+.chat-bar .selected .chat-panel {
 	display: block;
 }
 
 /* ---------- Online Users ---------- */
 
-.buddylist .popup-content {
+.buddy-list .panel-content {
 	list-style-type: none;
 	margin: 0;
 	padding: 2px 0;
 }
 
-.buddylist .popup-content .online-users li {
+.buddy-list .panel-content .online-users li {
 	float: left;
 	margin: 0 2px;
 	padding: 2px;
@@ -186,25 +186,25 @@ body {
 	width: 212px;
 }
 
-.buddylist .popup-content li.idle {
+.buddy-list .panel-content li.idle {
 	height: 14px;
 }
 
-.buddylist .popup-content li:hover {
+.buddy-list .panel-content li:hover {
 	background: #f3f3f3;
 	border-color: #ddd;
 }
 
-.buddylist .popup-content div {
+.buddy-list .panel-content div {
 	float: left;
 	font: 12px/24px Arial, Helvetica, sans-serif;
 }
 
-.buddylist .popup-content .idle div {
+.buddy-list .panel-content .idle div {
 	line-height: 14px;
 }
 
-.buddylist .popup-content img {
+.buddy-list .panel-content img {
 	background: #333;
 	display: block;
 	float: left;
@@ -213,42 +213,49 @@ body {
 	width: 24px;
 }
 
-.buddylist .popup-content .idle img {
+.buddy-list .panel-content .idle img {
 	display: none;
 }
 
 /* ---------- Popup Window ---------- */
 
-.settings li {
-	padding: 10px;
-	border-bottom: 1px solid #999;
+.chat-portlet .chat-settings .settings {
+	float: none;
 }
 
-.settings label {
+.chat-portlet .chat-settings li {
+	border-bottom: 1px solid #999;
+	clear: both;
+	float: none;
+	padding: 10px;
+	position: static;
+}
+
+.chat-settings label {
 	font-weight: bold;
 }
 
-.settings input {
+.chat-settings input {
 	vertical-align: middle;
 }
 
-.settings .ctrl-holder {
+.chat-settings .ctrl-holder {
 	padding: 10px;
 }
 
-.settings.saved .link .trigger-name {
+.chat-settings.saved .panel-trigger .trigger-name {
 	background: url(<%= themeImagesPath %>/messages/success.png) no-repeat 0 0;
 	padding-left: 20px;
 	padding-bottom: 2px;
 	padding-top: 2px;
 }
 
-#chatMyStatus {
+.chat-status .status-message {
 	margin: 5px;
 	padding-left: 10px;
 }
 
-.popup-window {
+.panel-window {
 	-moz-border-radius: 4px;
 	-moz-border-radius-bottomright: 0;
 	-webkit-border-radius: 4px;
@@ -261,7 +268,7 @@ body {
 	height: 274px;
 }
 
-.popup-icon {
+.panel-icon {
 	background: #333;
 	border: 1px solid #000;
 	height: 48px;
@@ -272,7 +279,7 @@ body {
 	width: 48px;
 }
 
-.popup-title {
+.panel-title {
 	background: #20272b;
 	color: #f2f2f2;
 	font-weight: bold;
@@ -281,43 +288,43 @@ body {
 	text-indent: 60px;
 }
 
-.buddylist .popup-title, .settings .popup-title {
+.buddy-list .panel-title, .chat-settings .panel-title {
 	text-indent: 6px;
 }
 
-.popup-button {
+.panel-button {
 	cursor: pointer;
 	height: 12px;
 	width: 12px;
 }
 
-.popup-button.close {
+.panel-button.close {
 	background: url(<%= request.getContextPath() %>/images/chat-close_button.png) left bottom;
 	position: absolute;
 	right: 4px;
 	top: 6px;
 }
 
-.popup-button.close:hover {
+.panel-button.close:hover {
 	background-position: left top;
 }
 
-.popup-button.minimize {
+.panel-button.minimize {
 	background: url(<%= request.getContextPath() %>/images/chat-minimize_button.png) left bottom;
 	position: absolute;
 	right: 20px;
 	top: 6px;
 }
 
-.buddylist .popup-button.minimize, .settings .popup-button.minimize {
+.buddy-list .panel-button.minimize, .chat-settings .panel-button.minimize {
 	right: 4px;
 }
 
-.popup-button.minimize:hover {
+.panel-button.minimize:hover {
 	background-position: left top;
 }
 
-.popup-profile {
+.panel-profile {
 	background: #eee;
 	border-bottom: 1px solid #ccc;
 	height: 27px;
@@ -325,23 +332,23 @@ body {
 	text-indent: 60px;
 }
 
-.popup-output {
+.panel-output {
 	border-bottom: 1px solid #000;
 	height: 192px;
 	overflow-y: scroll;
 	padding: 2px;
 }
 
-.ie .popup-output {
+.ie .panel-output {
 	position: relative;
 }
 
-.popup-output .blurb {
+.panel-output .blurb {
 	margin: 0;
 	position: relative;
 }
 
-.popup-output .name {
+.panel-output .name {
 	background: #828F95;
 	color: #fff;
 	display: block;
@@ -349,12 +356,12 @@ body {
 	padding: 2px 4px 3px;
 }
 
-.popup-output .incoming .name {
+.panel-output .incoming .name {
 	background: #D3DADD;
 	color: #555;
 }
 
-.popup-output .date {
+.panel-output .date {
 	color: #eee;
 	font-size: 10px;
 	font-style: normal;
@@ -363,23 +370,23 @@ body {
 	top: 2px;
 }
 
-.popup-output .incoming .date {
+.panel-output .incoming .date {
 	color: #555;
 }
 
-.popup-output .text {
+.panel-output .text {
 	display: block;
 	line-height: 14px;
 	padding: 4px 8px 8px;
 }
 
-.popup-input {
+.panel-input {
 	border-top: 1px solid #369;
 	position: relative;
 	height: 19px;
 }
 
-.popup-input textarea {
+.panel-input textarea {
 	background: none;
 	border: 0;
 	bottom: 0;
