@@ -22,12 +22,16 @@
 
 package com.liferay.kb.knowledgebase.service;
 
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="KBArticleResourceLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
  *
  */
+@Transactional
 public interface KBArticleResourceLocalService {
 	public com.liferay.kb.knowledgebase.model.KBArticleResource addKBArticleResource(
 		com.liferay.kb.knowledgebase.model.KBArticleResource kbArticleResource)
@@ -52,14 +56,17 @@ public interface KBArticleResourceLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticleResource getKBArticleResource(
 		long resourcePrimKey)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticleResource> getKBArticleResources(
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getKBArticleResourcesCount()
 		throws com.liferay.portal.SystemException;
 
@@ -71,11 +78,13 @@ public interface KBArticleResourceLocalService {
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticleResource getArticleResource(
 		long articleResourcePrimKey)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getArticleResourcePrimKey(long groupId, java.lang.String title)
 		throws com.liferay.portal.SystemException;
 }

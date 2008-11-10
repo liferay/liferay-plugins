@@ -36,6 +36,7 @@ import com.liferay.kb.knowledgebase.service.persistence.KBFeedbackStatsPersisten
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import java.util.List;
@@ -189,24 +190,24 @@ public abstract class KBFeedbackEntryLocalServiceBaseImpl
 		this.kbFeedbackStatsPersistence = kbFeedbackStatsPersistence;
 	}
 
-	@javax.annotation.Resource(name = "com.liferay.kb.knowledgebase.service.KBArticleLocalService.impl")
+	@BeanReference(name = "com.liferay.kb.knowledgebase.service.KBArticleLocalService.impl")
 	protected KBArticleLocalService kbArticleLocalService;
-	@javax.annotation.Resource(name = "com.liferay.kb.knowledgebase.service.KBArticleService.impl")
+	@BeanReference(name = "com.liferay.kb.knowledgebase.service.KBArticleService.impl")
 	protected KBArticleService kbArticleService;
-	@javax.annotation.Resource(name = "com.liferay.kb.knowledgebase.service.persistence.KBArticlePersistence.impl")
+	@BeanReference(name = "com.liferay.kb.knowledgebase.service.persistence.KBArticlePersistence.impl")
 	protected KBArticlePersistence kbArticlePersistence;
-	@javax.annotation.Resource(name = "com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.impl")
+	@BeanReference(name = "com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.impl")
 	protected KBArticleFinder kbArticleFinder;
-	@javax.annotation.Resource(name = "com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService.impl")
+	@BeanReference(name = "com.liferay.kb.knowledgebase.service.KBArticleResourceLocalService.impl")
 	protected KBArticleResourceLocalService kbArticleResourceLocalService;
-	@javax.annotation.Resource(name = "com.liferay.kb.knowledgebase.service.persistence.KBArticleResourcePersistence.impl")
+	@BeanReference(name = "com.liferay.kb.knowledgebase.service.persistence.KBArticleResourcePersistence.impl")
 	protected KBArticleResourcePersistence kbArticleResourcePersistence;
-	@javax.annotation.Resource(name = "com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalService.impl")
+	@BeanReference(name = "com.liferay.kb.knowledgebase.service.KBFeedbackEntryLocalService.impl")
 	protected KBFeedbackEntryLocalService kbFeedbackEntryLocalService;
-	@javax.annotation.Resource(name = "com.liferay.kb.knowledgebase.service.persistence.KBFeedbackEntryPersistence.impl")
+	@BeanReference(name = "com.liferay.kb.knowledgebase.service.persistence.KBFeedbackEntryPersistence.impl")
 	protected KBFeedbackEntryPersistence kbFeedbackEntryPersistence;
-	@javax.annotation.Resource(name = "com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService.impl")
+	@BeanReference(name = "com.liferay.kb.knowledgebase.service.KBFeedbackStatsLocalService.impl")
 	protected KBFeedbackStatsLocalService kbFeedbackStatsLocalService;
-	@javax.annotation.Resource(name = "com.liferay.kb.knowledgebase.service.persistence.KBFeedbackStatsPersistence.impl")
+	@BeanReference(name = "com.liferay.kb.knowledgebase.service.persistence.KBFeedbackStatsPersistence.impl")
 	protected KBFeedbackStatsPersistence kbFeedbackStatsPersistence;
 }

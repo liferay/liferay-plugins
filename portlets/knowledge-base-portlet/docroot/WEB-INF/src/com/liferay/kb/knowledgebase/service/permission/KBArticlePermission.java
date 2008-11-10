@@ -109,7 +109,7 @@ public class KBArticlePermission {
 
 		if (actionId.equals(ActionKeys.VIEW)) {
 			List<TagsEntry> entries = TagsEntryLocalServiceUtil.getEntries(
-				KBArticle.class.getName(), article.getResourcePrimKey());
+				KBArticle.class.getName(), article.getResourcePrimKey(), false);
 
 			for (TagsEntry entry : entries) {
 				if (!permissionChecker.hasPermission(

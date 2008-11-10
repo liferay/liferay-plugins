@@ -30,7 +30,7 @@ String tag = ParamUtil.getString(renderRequest, "tag");
 String description = null;
 
 try {
-	TagsEntry tagsEntry = TagsEntryLocalServiceUtil.getEntry(scopeGroupId, tag);
+	TagsEntry tagsEntry = TagsEntryLocalServiceUtil.getEntry(scopeGroupId, tag, false);
 
 	TagsProperty tagsProperty = TagsPropertyLocalServiceUtil.getProperty(tagsEntry.getEntryId(), "description");
 

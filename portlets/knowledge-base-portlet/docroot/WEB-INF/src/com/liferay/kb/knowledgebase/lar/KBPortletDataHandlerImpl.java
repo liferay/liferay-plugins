@@ -275,6 +275,8 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 			tagsEntries = context.getTagsEntries(
 				KBArticle.class, article.getResourcePrimKey());
 		}
+		
+		String[] categoriesEntries = null;
 
 		ThemeDisplay themeDisplay = null;
 
@@ -293,8 +295,8 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 					article.getContent(), article.getDescription(),
 					article.isMinorEdit(), article.isHead(),
 					article.isTemplate(), article.isDraft(),
-					article.getParentResourcePrimKey(), tagsEntries, prefs,
-					themeDisplay);
+					article.getParentResourcePrimKey(), tagsEntries,
+					categoriesEntries, prefs, themeDisplay);
 			}
 			else {
 				existingArticle = KBArticleLocalServiceUtil.updateArticle(
@@ -303,8 +305,8 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 					article.getHtmlTitle(), article.getContent(),
 					article.getDescription(), article.isMinorEdit(),
 					article.isTemplate(), article.isDraft(),
-					article.getParentResourcePrimKey(), tagsEntries, prefs,
-					themeDisplay);
+					article.getParentResourcePrimKey(), tagsEntries, 
+					categoriesEntries, prefs, themeDisplay);
 			}
 		}
 		else {
@@ -312,8 +314,8 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 				userId, groupId, article.getTitle(), article.getContent(),
 				article.getDescription(), article.isMinorEdit(),
 				article.isTemplate(), article.isDraft(),
-				article.getParentResourcePrimKey(), tagsEntries, prefs,
-				themeDisplay);
+				article.getParentResourcePrimKey(), tagsEntries,
+				categoriesEntries, prefs, themeDisplay);
 		}
 
 		articlePKs.put(

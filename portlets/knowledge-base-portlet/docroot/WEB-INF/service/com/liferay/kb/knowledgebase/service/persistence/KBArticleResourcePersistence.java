@@ -22,12 +22,16 @@
 
 package com.liferay.kb.knowledgebase.service.persistence;
 
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="KBArticleResourcePersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
  *
  */
+@Transactional
 public interface KBArticleResourcePersistence {
 	public com.liferay.kb.knowledgebase.model.KBArticleResource create(
 		long resourcePrimKey);
@@ -53,6 +57,7 @@ public interface KBArticleResourcePersistence {
 		com.liferay.kb.knowledgebase.model.KBArticleResource kbArticleResource,
 		boolean merge) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticleResource findByPrimaryKey(
 		long resourcePrimKey)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleResourceException,
@@ -61,6 +66,7 @@ public interface KBArticleResourcePersistence {
 	public com.liferay.kb.knowledgebase.model.KBArticleResource fetchByPrimaryKey(
 		long resourcePrimKey) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticleResource findByG_T(
 		long groupId, java.lang.String title)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleResourceException,
@@ -70,20 +76,25 @@ public interface KBArticleResourcePersistence {
 		long groupId, java.lang.String title)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticleResource> findAll()
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticleResource> findAll(
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticleResource> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
@@ -94,9 +105,11 @@ public interface KBArticleResourcePersistence {
 
 	public void removeAll() throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByG_T(long groupId, java.lang.String title)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countAll() throws com.liferay.portal.SystemException;
 
 	public void registerListener(

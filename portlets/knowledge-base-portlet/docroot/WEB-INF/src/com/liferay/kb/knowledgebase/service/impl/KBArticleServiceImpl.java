@@ -80,8 +80,9 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public KBArticle addArticle(
 			long plid, String title, String content, String description,
 			boolean minorEdit, boolean template, boolean draft,
-			long parentResourcePrimKey, String[] tagsEntries,
-			PortletPreferences prefs, ThemeDisplay themeDisplay)
+			long parentResourcePrimKey, String[] tagsEntries, 
+			String[] categoriesEntries, PortletPreferences prefs,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		if (template) {
@@ -99,7 +100,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		return kbArticleLocalService.addArticle(
 			getUserId(), layout.getGroupId(), title, content, description,
 			minorEdit, template, draft, parentResourcePrimKey, tagsEntries,
-			prefs, themeDisplay);
+			categoriesEntries, prefs, themeDisplay);
 	}
 
 	public void addArticleAttachments(
@@ -461,8 +462,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			long plid, long resourcePrimKey, double version, String title,
 			String content, String description, boolean minorEdit,
 			boolean template, boolean draft, long parentResourcePrimKey,
-			String[] tagsEntries, PortletPreferences prefs,
-			ThemeDisplay themeDisplay)
+			String[] tagsEntries, String[] categoriesEntries,
+			PortletPreferences prefs, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		if (template) {
@@ -478,7 +479,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		return kbArticleLocalService.updateArticle(
 			getUserId(), resourcePrimKey, version, title, content, description,
 			minorEdit, template, draft, parentResourcePrimKey, tagsEntries,
-			prefs, themeDisplay);
+			categoriesEntries, prefs, themeDisplay);
 	}
 
 	protected List<KBArticle> checkViewPermission(

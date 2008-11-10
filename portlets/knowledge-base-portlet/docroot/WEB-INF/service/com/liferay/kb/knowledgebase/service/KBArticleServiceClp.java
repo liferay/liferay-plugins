@@ -44,7 +44,8 @@ public class KBArticleServiceClp implements KBArticleService {
 		java.lang.String title, java.lang.String content,
 		java.lang.String description, boolean minorEdit, boolean template,
 		boolean draft, long parentResourcePrimKey,
-		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
+		java.lang.String[] tagsEntries, java.lang.String[] categoriesEntries,
+		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
@@ -82,16 +83,22 @@ public class KBArticleServiceClp implements KBArticleService {
 			paramObj8 = new NullWrapper("[Ljava.lang.String;");
 		}
 
-		Object paramObj9 = ClpSerializer.translateInput(prefs);
+		Object paramObj9 = ClpSerializer.translateInput(categoriesEntries);
 
-		if (prefs == null) {
-			paramObj9 = new NullWrapper("javax.portlet.PortletPreferences");
+		if (categoriesEntries == null) {
+			paramObj9 = new NullWrapper("[Ljava.lang.String;");
 		}
 
-		Object paramObj10 = ClpSerializer.translateInput(themeDisplay);
+		Object paramObj10 = ClpSerializer.translateInput(prefs);
+
+		if (prefs == null) {
+			paramObj10 = new NullWrapper("javax.portlet.PortletPreferences");
+		}
+
+		Object paramObj11 = ClpSerializer.translateInput(themeDisplay);
 
 		if (themeDisplay == null) {
-			paramObj10 = new NullWrapper(
+			paramObj11 = new NullWrapper(
 					"com.liferay.portal.theme.ThemeDisplay");
 		}
 
@@ -102,7 +109,7 @@ public class KBArticleServiceClp implements KBArticleService {
 					new Object[] {
 						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
 						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
-						paramObj10
+						paramObj10, paramObj11
 					});
 		}
 		catch (Throwable t) {
@@ -1183,7 +1190,8 @@ public class KBArticleServiceClp implements KBArticleService {
 		java.lang.String title, java.lang.String content,
 		java.lang.String description, boolean minorEdit, boolean template,
 		boolean draft, long parentResourcePrimKey,
-		java.lang.String[] tagsEntries, javax.portlet.PortletPreferences prefs,
+		java.lang.String[] tagsEntries, java.lang.String[] categoriesEntries,
+		javax.portlet.PortletPreferences prefs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
@@ -1225,16 +1233,22 @@ public class KBArticleServiceClp implements KBArticleService {
 			paramObj10 = new NullWrapper("[Ljava.lang.String;");
 		}
 
-		Object paramObj11 = ClpSerializer.translateInput(prefs);
+		Object paramObj11 = ClpSerializer.translateInput(categoriesEntries);
 
-		if (prefs == null) {
-			paramObj11 = new NullWrapper("javax.portlet.PortletPreferences");
+		if (categoriesEntries == null) {
+			paramObj11 = new NullWrapper("[Ljava.lang.String;");
 		}
 
-		Object paramObj12 = ClpSerializer.translateInput(themeDisplay);
+		Object paramObj12 = ClpSerializer.translateInput(prefs);
+
+		if (prefs == null) {
+			paramObj12 = new NullWrapper("javax.portlet.PortletPreferences");
+		}
+
+		Object paramObj13 = ClpSerializer.translateInput(themeDisplay);
 
 		if (themeDisplay == null) {
-			paramObj12 = new NullWrapper(
+			paramObj13 = new NullWrapper(
 					"com.liferay.portal.theme.ThemeDisplay");
 		}
 
@@ -1245,7 +1259,7 @@ public class KBArticleServiceClp implements KBArticleService {
 					new Object[] {
 						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
 						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
-						paramObj10, paramObj11, paramObj12
+						paramObj10, paramObj11, paramObj12, paramObj13
 					});
 		}
 		catch (Throwable t) {

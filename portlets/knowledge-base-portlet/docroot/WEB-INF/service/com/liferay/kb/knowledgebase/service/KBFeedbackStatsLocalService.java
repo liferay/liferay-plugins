@@ -22,12 +22,16 @@
 
 package com.liferay.kb.knowledgebase.service;
 
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="KBFeedbackStatsLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
  *
  */
+@Transactional
 public interface KBFeedbackStatsLocalService {
 	public com.liferay.kb.knowledgebase.model.KBFeedbackStats addKBFeedbackStats(
 		com.liferay.kb.knowledgebase.model.KBFeedbackStats kbFeedbackStats)
@@ -52,14 +56,17 @@ public interface KBFeedbackStatsLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBFeedbackStats getKBFeedbackStats(
 		long feedbackStatsId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBFeedbackStats> getKBFeedbackStatses(
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getKBFeedbackStatsesCount()
 		throws com.liferay.portal.SystemException;
 
@@ -70,11 +77,13 @@ public interface KBFeedbackStatsLocalService {
 	public void deleteFeedbackStats(long articleResourcePrimKey)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBFeedbackStats getFeedbackStats(
 		long feedbackStatsId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBFeedbackStats getArticleFeedbackStats(
 		long articleResourcePrimKey) throws com.liferay.portal.SystemException;
 }

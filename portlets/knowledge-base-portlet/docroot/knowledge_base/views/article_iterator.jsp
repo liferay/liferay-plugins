@@ -113,7 +113,7 @@ else if (type.equals("templates")) {
 }
 else if (type.equals("tagged_articles")) {
 	long classNameId = PortalUtil.getClassNameId(KBArticle.class.getName());
-	long[] entryIds = TagsEntryLocalServiceUtil.getEntryIds(scopeGroupId, new String[] {tag});
+	long[] entryIds = TagsEntryLocalServiceUtil.getEntryIds(scopeGroupId, new String[] {tag}, false);
 	long[] notEntryIds = new long[0];
 	Date now = new Date();
 

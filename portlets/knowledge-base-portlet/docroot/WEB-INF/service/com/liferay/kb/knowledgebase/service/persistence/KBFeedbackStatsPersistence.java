@@ -22,12 +22,16 @@
 
 package com.liferay.kb.knowledgebase.service.persistence;
 
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="KBFeedbackStatsPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
  *
  */
+@Transactional
 public interface KBFeedbackStatsPersistence {
 	public com.liferay.kb.knowledgebase.model.KBFeedbackStats create(
 		long feedbackStatsId);
@@ -53,6 +57,7 @@ public interface KBFeedbackStatsPersistence {
 		com.liferay.kb.knowledgebase.model.KBFeedbackStats kbFeedbackStats,
 		boolean merge) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBFeedbackStats findByPrimaryKey(
 		long feedbackStatsId)
 		throws com.liferay.kb.knowledgebase.NoSuchFeedbackStatsException,
@@ -61,6 +66,7 @@ public interface KBFeedbackStatsPersistence {
 	public com.liferay.kb.knowledgebase.model.KBFeedbackStats fetchByPrimaryKey(
 		long feedbackStatsId) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBFeedbackStats findByArticleResourcePrimKey(
 		long articleResourcePrimKey)
 		throws com.liferay.kb.knowledgebase.NoSuchFeedbackStatsException,
@@ -69,20 +75,25 @@ public interface KBFeedbackStatsPersistence {
 	public com.liferay.kb.knowledgebase.model.KBFeedbackStats fetchByArticleResourcePrimKey(
 		long articleResourcePrimKey) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBFeedbackStats> findAll()
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBFeedbackStats> findAll(
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBFeedbackStats> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
@@ -93,9 +104,11 @@ public interface KBFeedbackStatsPersistence {
 
 	public void removeAll() throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByArticleResourcePrimKey(long articleResourcePrimKey)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countAll() throws com.liferay.portal.SystemException;
 
 	public void registerListener(

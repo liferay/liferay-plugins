@@ -22,12 +22,16 @@
 
 package com.liferay.kb.knowledgebase.service.persistence;
 
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="KBArticlePersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Jorge Ferrer
  *
  */
+@Transactional
 public interface KBArticlePersistence {
 	public com.liferay.kb.knowledgebase.model.KBArticle create(long articleId);
 
@@ -51,6 +55,7 @@ public interface KBArticlePersistence {
 		com.liferay.kb.knowledgebase.model.KBArticle kbArticle, boolean merge)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByPrimaryKey(
 		long articleId)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
@@ -59,36 +64,43 @@ public interface KBArticlePersistence {
 	public com.liferay.kb.knowledgebase.model.KBArticle fetchByPrimaryKey(
 		long articleId) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByUuid(
 		java.lang.String uuid) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByUuid(
 		java.lang.String uuid, int start, int end)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByUuid(
 		java.lang.String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByUuid_First(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByUuid_Last(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle[] findByUuid_PrevAndNext(
 		long articleId, java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByUUID_G(
 		java.lang.String uuid, long groupId)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
@@ -98,215 +110,258 @@ public interface KBArticlePersistence {
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByCompanyId(
 		long companyId) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByCompanyId(
 		long companyId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByCompanyId_First(
 		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByCompanyId_Last(
 		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle[] findByCompanyId_PrevAndNext(
 		long articleId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByGroupId(
 		long groupId) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByGroupId(
 		long groupId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByGroupId(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByGroupId_First(
 		long groupId, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByGroupId_Last(
 		long groupId, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle[] findByGroupId_PrevAndNext(
 		long articleId, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByParentResourcePrimKey(
 		long parentResourcePrimKey) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByParentResourcePrimKey(
 		long parentResourcePrimKey, int start, int end)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByParentResourcePrimKey(
 		long parentResourcePrimKey, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByParentResourcePrimKey_First(
 		long parentResourcePrimKey,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByParentResourcePrimKey_Last(
 		long parentResourcePrimKey,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle[] findByParentResourcePrimKey_PrevAndNext(
 		long articleId, long parentResourcePrimKey,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByResourcePrimKey(
 		long resourcePrimKey) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByResourcePrimKey(
 		long resourcePrimKey, int start, int end)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByResourcePrimKey(
 		long resourcePrimKey, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByResourcePrimKey_First(
 		long resourcePrimKey,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByResourcePrimKey_Last(
 		long resourcePrimKey,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle[] findByResourcePrimKey_PrevAndNext(
 		long articleId, long resourcePrimKey,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByC_D(
 		long companyId, boolean draft)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByC_D(
 		long companyId, boolean draft, int start, int end)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByC_D(
 		long companyId, boolean draft, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByC_D_First(
 		long companyId, boolean draft,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByC_D_Last(
 		long companyId, boolean draft,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle[] findByC_D_PrevAndNext(
 		long articleId, long companyId, boolean draft,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_T(
 		long groupId, java.lang.String title)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_T(
 		long groupId, java.lang.String title, int start, int end)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_T(
 		long groupId, java.lang.String title, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByG_T_First(
 		long groupId, java.lang.String title,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByG_T_Last(
 		long groupId, java.lang.String title,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle[] findByG_T_PrevAndNext(
 		long articleId, long groupId, java.lang.String title,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByR_H(
 		long resourcePrimKey, boolean head)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByR_H(
 		long resourcePrimKey, boolean head, int start, int end)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByR_H(
 		long resourcePrimKey, boolean head, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByR_H_First(
 		long resourcePrimKey, boolean head,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByR_H_Last(
 		long resourcePrimKey, boolean head,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle[] findByR_H_PrevAndNext(
 		long articleId, long resourcePrimKey, boolean head,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByR_V(
 		long resourcePrimKey, double version)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
@@ -316,68 +371,81 @@ public interface KBArticlePersistence {
 		long resourcePrimKey, double version)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_H_T(
 		long groupId, boolean head, boolean template)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_H_T(
 		long groupId, boolean head, boolean template, int start, int end)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_H_T(
 		long groupId, boolean head, boolean template, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByG_H_T_First(
 		long groupId, boolean head, boolean template,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByG_H_T_Last(
 		long groupId, boolean head, boolean template,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle[] findByG_H_T_PrevAndNext(
 		long articleId, long groupId, boolean head, boolean template,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_T_H(
 		long groupId, java.lang.String title, boolean head)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_T_H(
 		long groupId, java.lang.String title, boolean head, int start, int end)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_T_H(
 		long groupId, java.lang.String title, boolean head, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByG_T_H_First(
 		long groupId, java.lang.String title, boolean head,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByG_T_H_Last(
 		long groupId, java.lang.String title, boolean head,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle[] findByG_T_H_PrevAndNext(
 		long articleId, long groupId, java.lang.String title, boolean head,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByG_T_V(
 		long groupId, java.lang.String title, double version)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
@@ -387,33 +455,39 @@ public interface KBArticlePersistence {
 		long groupId, java.lang.String title, double version)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByP_H_T_D(
 		long parentResourcePrimKey, boolean head, boolean template,
 		boolean draft) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByP_H_T_D(
 		long parentResourcePrimKey, boolean head, boolean template,
 		boolean draft, int start, int end)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByP_H_T_D(
 		long parentResourcePrimKey, boolean head, boolean template,
 		boolean draft, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByP_H_T_D_First(
 		long parentResourcePrimKey, boolean head, boolean template,
 		boolean draft, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByP_H_T_D_Last(
 		long parentResourcePrimKey, boolean head, boolean template,
 		boolean draft, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle[] findByP_H_T_D_PrevAndNext(
 		long articleId, long parentResourcePrimKey, boolean head,
 		boolean template, boolean draft,
@@ -421,82 +495,99 @@ public interface KBArticlePersistence {
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByC_H_T_D(
 		long companyId, boolean head, boolean template, boolean draft)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByC_H_T_D(
 		long companyId, boolean head, boolean template, boolean draft,
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByC_H_T_D(
 		long companyId, boolean head, boolean template, boolean draft,
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByC_H_T_D_First(
 		long companyId, boolean head, boolean template, boolean draft,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByC_H_T_D_Last(
 		long companyId, boolean head, boolean template, boolean draft,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle[] findByC_H_T_D_PrevAndNext(
 		long articleId, long companyId, boolean head, boolean template,
 		boolean draft, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_H_T_D(
 		long groupId, boolean head, boolean template, boolean draft)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_H_T_D(
 		long groupId, boolean head, boolean template, boolean draft, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findByG_H_T_D(
 		long groupId, boolean head, boolean template, boolean draft, int start,
 		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByG_H_T_D_First(
 		long groupId, boolean head, boolean template, boolean draft,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle findByG_H_T_D_Last(
 		long groupId, boolean head, boolean template, boolean draft,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.kb.knowledgebase.model.KBArticle[] findByG_H_T_D_PrevAndNext(
 		long articleId, long groupId, boolean head, boolean template,
 		boolean draft, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.kb.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findAll()
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findAll(
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.kb.knowledgebase.model.KBArticle> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
@@ -556,55 +647,72 @@ public interface KBArticlePersistence {
 
 	public void removeAll() throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByUuid(java.lang.String uuid)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByUUID_G(java.lang.String uuid, long groupId)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByCompanyId(long companyId)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByGroupId(long groupId)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByParentResourcePrimKey(long parentResourcePrimKey)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByResourcePrimKey(long resourcePrimKey)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByC_D(long companyId, boolean draft)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByG_T(long groupId, java.lang.String title)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByR_H(long resourcePrimKey, boolean head)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByR_V(long resourcePrimKey, double version)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByG_H_T(long groupId, boolean head, boolean template)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByG_T_H(long groupId, java.lang.String title, boolean head)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByG_T_V(long groupId, java.lang.String title, double version)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByP_H_T_D(long parentResourcePrimKey, boolean head,
 		boolean template, boolean draft)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByC_H_T_D(long companyId, boolean head, boolean template,
 		boolean draft) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByG_H_T_D(long groupId, boolean head, boolean template,
 		boolean draft) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countAll() throws com.liferay.portal.SystemException;
 
 	public void registerListener(

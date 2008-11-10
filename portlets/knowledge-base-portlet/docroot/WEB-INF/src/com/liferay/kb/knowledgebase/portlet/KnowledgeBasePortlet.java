@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DocumentConversionUtil;
@@ -765,8 +764,6 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		String[] tagsEntries = StringUtil.split(
 			ParamUtil.getString(actionRequest, "tagsEntries"));
 
-		tagsEntries = ArrayUtil.append(tagsEntries, tagsCategories);
-
 		if (addTemplate) {
 			minorEdit = true;
 
@@ -780,7 +777,7 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 			return KBArticleServiceUtil.addArticle(
 				themeDisplay.getPlid(), title, content, description,
 				minorEdit, template, draft, parentResourcePrimKey, tagsEntries,
-				prefs, themeDisplay);
+				tagsCategories, prefs, themeDisplay);
 		}
 		else {
 			KBArticle article = KBArticleServiceUtil.getArticle(
@@ -790,13 +787,15 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 				return KBArticleServiceUtil.addArticle(
 					themeDisplay.getScopeGroupId(), title, content,
 					description, minorEdit, template, draft,
-					parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
+					parentResourcePrimKey, tagsEntries, tagsCategories, prefs,
+					themeDisplay);
 			}
 			else {
 				return KBArticleServiceUtil.updateArticle(
 					themeDisplay.getPlid(), resourcePrimKey, version, title,
 					content, description, minorEdit, template, draft,
-					parentResourcePrimKey, tagsEntries, prefs, themeDisplay);
+					parentResourcePrimKey, tagsEntries, tagsCategories, prefs,
+					themeDisplay);
 			}
 		}
 	}
