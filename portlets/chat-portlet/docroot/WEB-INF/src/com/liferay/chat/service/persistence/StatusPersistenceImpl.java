@@ -334,6 +334,697 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
+	public List<Status> findByModifiedDate(long modifiedDate)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
+		String finderClassName = Status.class.getName();
+		String finderMethodName = "findByModifiedDate";
+		String[] finderParams = new String[] { Long.class.getName() };
+		Object[] finderArgs = new Object[] { new Long(modifiedDate) };
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("FROM com.liferay.chat.model.Status WHERE ");
+
+				query.append("modifiedDate = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(modifiedDate);
+
+				List<Status> list = q.list();
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<Status>)result;
+		}
+	}
+
+	public List<Status> findByModifiedDate(long modifiedDate, int start, int end)
+		throws SystemException {
+		return findByModifiedDate(modifiedDate, start, end, null);
+	}
+
+	public List<Status> findByModifiedDate(long modifiedDate, int start,
+		int end, OrderByComparator obc) throws SystemException {
+		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
+		String finderClassName = Status.class.getName();
+		String finderMethodName = "findByModifiedDate";
+		String[] finderParams = new String[] {
+				Long.class.getName(),
+				
+				"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(modifiedDate),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("FROM com.liferay.chat.model.Status WHERE ");
+
+				query.append("modifiedDate = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+					query.append(obc.getOrderBy());
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(modifiedDate);
+
+				List<Status> list = (List<Status>)QueryUtil.list(q,
+						getDialect(), start, end);
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<Status>)result;
+		}
+	}
+
+	public Status findByModifiedDate_First(long modifiedDate,
+		OrderByComparator obc) throws NoSuchStatusException, SystemException {
+		List<Status> list = findByModifiedDate(modifiedDate, 0, 1, obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No Status exists with the key {");
+
+			msg.append("modifiedDate=" + modifiedDate);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchStatusException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Status findByModifiedDate_Last(long modifiedDate,
+		OrderByComparator obc) throws NoSuchStatusException, SystemException {
+		int count = countByModifiedDate(modifiedDate);
+
+		List<Status> list = findByModifiedDate(modifiedDate, count - 1, count,
+				obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No Status exists with the key {");
+
+			msg.append("modifiedDate=" + modifiedDate);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchStatusException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Status[] findByModifiedDate_PrevAndNext(long statusId,
+		long modifiedDate, OrderByComparator obc)
+		throws NoSuchStatusException, SystemException {
+		Status status = findByPrimaryKey(statusId);
+
+		int count = countByModifiedDate(modifiedDate);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append("FROM com.liferay.chat.model.Status WHERE ");
+
+			query.append("modifiedDate = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+				query.append(obc.getOrderBy());
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(modifiedDate);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, status);
+
+			Status[] array = new StatusImpl[3];
+
+			array[0] = (Status)objArray[0];
+			array[1] = (Status)objArray[1];
+			array[2] = (Status)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<Status> findByOnline(boolean online) throws SystemException {
+		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
+		String finderClassName = Status.class.getName();
+		String finderMethodName = "findByOnline";
+		String[] finderParams = new String[] { Boolean.class.getName() };
+		Object[] finderArgs = new Object[] { Boolean.valueOf(online) };
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("FROM com.liferay.chat.model.Status WHERE ");
+
+				query.append("online_ = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(online);
+
+				List<Status> list = q.list();
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<Status>)result;
+		}
+	}
+
+	public List<Status> findByOnline(boolean online, int start, int end)
+		throws SystemException {
+		return findByOnline(online, start, end, null);
+	}
+
+	public List<Status> findByOnline(boolean online, int start, int end,
+		OrderByComparator obc) throws SystemException {
+		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
+		String finderClassName = Status.class.getName();
+		String finderMethodName = "findByOnline";
+		String[] finderParams = new String[] {
+				Boolean.class.getName(),
+				
+				"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+		Object[] finderArgs = new Object[] {
+				Boolean.valueOf(online),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("FROM com.liferay.chat.model.Status WHERE ");
+
+				query.append("online_ = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+					query.append(obc.getOrderBy());
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(online);
+
+				List<Status> list = (List<Status>)QueryUtil.list(q,
+						getDialect(), start, end);
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<Status>)result;
+		}
+	}
+
+	public Status findByOnline_First(boolean online, OrderByComparator obc)
+		throws NoSuchStatusException, SystemException {
+		List<Status> list = findByOnline(online, 0, 1, obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No Status exists with the key {");
+
+			msg.append("online=" + online);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchStatusException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Status findByOnline_Last(boolean online, OrderByComparator obc)
+		throws NoSuchStatusException, SystemException {
+		int count = countByOnline(online);
+
+		List<Status> list = findByOnline(online, count - 1, count, obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No Status exists with the key {");
+
+			msg.append("online=" + online);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchStatusException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Status[] findByOnline_PrevAndNext(long statusId, boolean online,
+		OrderByComparator obc) throws NoSuchStatusException, SystemException {
+		Status status = findByPrimaryKey(statusId);
+
+		int count = countByOnline(online);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append("FROM com.liferay.chat.model.Status WHERE ");
+
+			query.append("online_ = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+				query.append(obc.getOrderBy());
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(online);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, status);
+
+			Status[] array = new StatusImpl[3];
+
+			array[0] = (Status)objArray[0];
+			array[1] = (Status)objArray[1];
+			array[2] = (Status)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<Status> findByM_O(long modifiedDate, boolean online)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
+		String finderClassName = Status.class.getName();
+		String finderMethodName = "findByM_O";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Boolean.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(modifiedDate), Boolean.valueOf(online)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("FROM com.liferay.chat.model.Status WHERE ");
+
+				query.append("modifiedDate = ?");
+
+				query.append(" AND ");
+
+				query.append("online_ = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(modifiedDate);
+
+				qPos.add(online);
+
+				List<Status> list = q.list();
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<Status>)result;
+		}
+	}
+
+	public List<Status> findByM_O(long modifiedDate, boolean online, int start,
+		int end) throws SystemException {
+		return findByM_O(modifiedDate, online, start, end, null);
+	}
+
+	public List<Status> findByM_O(long modifiedDate, boolean online, int start,
+		int end, OrderByComparator obc) throws SystemException {
+		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
+		String finderClassName = Status.class.getName();
+		String finderMethodName = "findByM_O";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				
+				"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(modifiedDate), Boolean.valueOf(online),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("FROM com.liferay.chat.model.Status WHERE ");
+
+				query.append("modifiedDate = ?");
+
+				query.append(" AND ");
+
+				query.append("online_ = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+					query.append(obc.getOrderBy());
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(modifiedDate);
+
+				qPos.add(online);
+
+				List<Status> list = (List<Status>)QueryUtil.list(q,
+						getDialect(), start, end);
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<Status>)result;
+		}
+	}
+
+	public Status findByM_O_First(long modifiedDate, boolean online,
+		OrderByComparator obc) throws NoSuchStatusException, SystemException {
+		List<Status> list = findByM_O(modifiedDate, online, 0, 1, obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No Status exists with the key {");
+
+			msg.append("modifiedDate=" + modifiedDate);
+
+			msg.append(", ");
+			msg.append("online=" + online);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchStatusException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Status findByM_O_Last(long modifiedDate, boolean online,
+		OrderByComparator obc) throws NoSuchStatusException, SystemException {
+		int count = countByM_O(modifiedDate, online);
+
+		List<Status> list = findByM_O(modifiedDate, online, count - 1, count,
+				obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No Status exists with the key {");
+
+			msg.append("modifiedDate=" + modifiedDate);
+
+			msg.append(", ");
+			msg.append("online=" + online);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchStatusException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Status[] findByM_O_PrevAndNext(long statusId, long modifiedDate,
+		boolean online, OrderByComparator obc)
+		throws NoSuchStatusException, SystemException {
+		Status status = findByPrimaryKey(statusId);
+
+		int count = countByM_O(modifiedDate, online);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append("FROM com.liferay.chat.model.Status WHERE ");
+
+			query.append("modifiedDate = ?");
+
+			query.append(" AND ");
+
+			query.append("online_ = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+				query.append(obc.getOrderBy());
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(modifiedDate);
+
+			qPos.add(online);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, status);
+
+			Status[] array = new StatusImpl[3];
+
+			array[0] = (Status)objArray[0];
+			array[1] = (Status)objArray[1];
+			array[2] = (Status)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
 	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		Session session = null;
@@ -451,6 +1142,26 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 		remove(status);
 	}
 
+	public void removeByModifiedDate(long modifiedDate)
+		throws SystemException {
+		for (Status status : findByModifiedDate(modifiedDate)) {
+			remove(status);
+		}
+	}
+
+	public void removeByOnline(boolean online) throws SystemException {
+		for (Status status : findByOnline(online)) {
+			remove(status);
+		}
+	}
+
+	public void removeByM_O(long modifiedDate, boolean online)
+		throws SystemException {
+		for (Status status : findByM_O(modifiedDate, online)) {
+			remove(status);
+		}
+	}
+
 	public void removeAll() throws SystemException {
 		for (Status status : findAll()) {
 			remove(status);
@@ -491,6 +1202,212 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				qPos.add(userId);
+
+				Long count = null;
+
+				Iterator<Long> itr = q.list().iterator();
+
+				if (itr.hasNext()) {
+					count = itr.next();
+				}
+
+				if (count == null) {
+					count = new Long(0);
+				}
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, count);
+
+				return count.intValue();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return ((Long)result).intValue();
+		}
+	}
+
+	public int countByModifiedDate(long modifiedDate) throws SystemException {
+		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
+		String finderClassName = Status.class.getName();
+		String finderMethodName = "countByModifiedDate";
+		String[] finderParams = new String[] { Long.class.getName() };
+		Object[] finderArgs = new Object[] { new Long(modifiedDate) };
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(*) ");
+				query.append("FROM com.liferay.chat.model.Status WHERE ");
+
+				query.append("modifiedDate = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(modifiedDate);
+
+				Long count = null;
+
+				Iterator<Long> itr = q.list().iterator();
+
+				if (itr.hasNext()) {
+					count = itr.next();
+				}
+
+				if (count == null) {
+					count = new Long(0);
+				}
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, count);
+
+				return count.intValue();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return ((Long)result).intValue();
+		}
+	}
+
+	public int countByOnline(boolean online) throws SystemException {
+		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
+		String finderClassName = Status.class.getName();
+		String finderMethodName = "countByOnline";
+		String[] finderParams = new String[] { Boolean.class.getName() };
+		Object[] finderArgs = new Object[] { Boolean.valueOf(online) };
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(*) ");
+				query.append("FROM com.liferay.chat.model.Status WHERE ");
+
+				query.append("online_ = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(online);
+
+				Long count = null;
+
+				Iterator<Long> itr = q.list().iterator();
+
+				if (itr.hasNext()) {
+					count = itr.next();
+				}
+
+				if (count == null) {
+					count = new Long(0);
+				}
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, count);
+
+				return count.intValue();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return ((Long)result).intValue();
+		}
+	}
+
+	public int countByM_O(long modifiedDate, boolean online)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
+		String finderClassName = Status.class.getName();
+		String finderMethodName = "countByM_O";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Boolean.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(modifiedDate), Boolean.valueOf(online)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(*) ");
+				query.append("FROM com.liferay.chat.model.Status WHERE ");
+
+				query.append("modifiedDate = ?");
+
+				query.append(" AND ");
+
+				query.append("online_ = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(modifiedDate);
+
+				qPos.add(online);
 
 				Long count = null;
 

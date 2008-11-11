@@ -950,6 +950,1151 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
+	public List<Entry> findByC_F(long createDate, long fromUserId)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = EntryModelImpl.CACHE_ENABLED;
+		String finderClassName = Entry.class.getName();
+		String finderMethodName = "findByC_F";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Long.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(createDate), new Long(fromUserId)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+
+				query.append("createDate = ?");
+
+				query.append(" AND ");
+
+				query.append("fromUserId = ?");
+
+				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("createDate DESC");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(createDate);
+
+				qPos.add(fromUserId);
+
+				List<Entry> list = q.list();
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<Entry>)result;
+		}
+	}
+
+	public List<Entry> findByC_F(long createDate, long fromUserId, int start,
+		int end) throws SystemException {
+		return findByC_F(createDate, fromUserId, start, end, null);
+	}
+
+	public List<Entry> findByC_F(long createDate, long fromUserId, int start,
+		int end, OrderByComparator obc) throws SystemException {
+		boolean finderClassNameCacheEnabled = EntryModelImpl.CACHE_ENABLED;
+		String finderClassName = Entry.class.getName();
+		String finderMethodName = "findByC_F";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Long.class.getName(),
+				
+				"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(createDate), new Long(fromUserId),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+
+				query.append("createDate = ?");
+
+				query.append(" AND ");
+
+				query.append("fromUserId = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+					query.append(obc.getOrderBy());
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("createDate DESC");
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(createDate);
+
+				qPos.add(fromUserId);
+
+				List<Entry> list = (List<Entry>)QueryUtil.list(q, getDialect(),
+						start, end);
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<Entry>)result;
+		}
+	}
+
+	public Entry findByC_F_First(long createDate, long fromUserId,
+		OrderByComparator obc) throws NoSuchEntryException, SystemException {
+		List<Entry> list = findByC_F(createDate, fromUserId, 0, 1, obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No Entry exists with the key {");
+
+			msg.append("createDate=" + createDate);
+
+			msg.append(", ");
+			msg.append("fromUserId=" + fromUserId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchEntryException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Entry findByC_F_Last(long createDate, long fromUserId,
+		OrderByComparator obc) throws NoSuchEntryException, SystemException {
+		int count = countByC_F(createDate, fromUserId);
+
+		List<Entry> list = findByC_F(createDate, fromUserId, count - 1, count,
+				obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No Entry exists with the key {");
+
+			msg.append("createDate=" + createDate);
+
+			msg.append(", ");
+			msg.append("fromUserId=" + fromUserId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchEntryException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Entry[] findByC_F_PrevAndNext(long entryId, long createDate,
+		long fromUserId, OrderByComparator obc)
+		throws NoSuchEntryException, SystemException {
+		Entry entry = findByPrimaryKey(entryId);
+
+		int count = countByC_F(createDate, fromUserId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append("FROM com.liferay.chat.model.Entry WHERE ");
+
+			query.append("createDate = ?");
+
+			query.append(" AND ");
+
+			query.append("fromUserId = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+				query.append(obc.getOrderBy());
+			}
+
+			else {
+				query.append("ORDER BY ");
+
+				query.append("createDate DESC");
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(createDate);
+
+			qPos.add(fromUserId);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, entry);
+
+			Entry[] array = new EntryImpl[3];
+
+			array[0] = (Entry)objArray[0];
+			array[1] = (Entry)objArray[1];
+			array[2] = (Entry)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<Entry> findByC_T(long createDate, long toUserId)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = EntryModelImpl.CACHE_ENABLED;
+		String finderClassName = Entry.class.getName();
+		String finderMethodName = "findByC_T";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Long.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(createDate), new Long(toUserId)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+
+				query.append("createDate = ?");
+
+				query.append(" AND ");
+
+				query.append("toUserId = ?");
+
+				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("createDate DESC");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(createDate);
+
+				qPos.add(toUserId);
+
+				List<Entry> list = q.list();
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<Entry>)result;
+		}
+	}
+
+	public List<Entry> findByC_T(long createDate, long toUserId, int start,
+		int end) throws SystemException {
+		return findByC_T(createDate, toUserId, start, end, null);
+	}
+
+	public List<Entry> findByC_T(long createDate, long toUserId, int start,
+		int end, OrderByComparator obc) throws SystemException {
+		boolean finderClassNameCacheEnabled = EntryModelImpl.CACHE_ENABLED;
+		String finderClassName = Entry.class.getName();
+		String finderMethodName = "findByC_T";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Long.class.getName(),
+				
+				"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(createDate), new Long(toUserId),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+
+				query.append("createDate = ?");
+
+				query.append(" AND ");
+
+				query.append("toUserId = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+					query.append(obc.getOrderBy());
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("createDate DESC");
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(createDate);
+
+				qPos.add(toUserId);
+
+				List<Entry> list = (List<Entry>)QueryUtil.list(q, getDialect(),
+						start, end);
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<Entry>)result;
+		}
+	}
+
+	public Entry findByC_T_First(long createDate, long toUserId,
+		OrderByComparator obc) throws NoSuchEntryException, SystemException {
+		List<Entry> list = findByC_T(createDate, toUserId, 0, 1, obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No Entry exists with the key {");
+
+			msg.append("createDate=" + createDate);
+
+			msg.append(", ");
+			msg.append("toUserId=" + toUserId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchEntryException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Entry findByC_T_Last(long createDate, long toUserId,
+		OrderByComparator obc) throws NoSuchEntryException, SystemException {
+		int count = countByC_T(createDate, toUserId);
+
+		List<Entry> list = findByC_T(createDate, toUserId, count - 1, count, obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No Entry exists with the key {");
+
+			msg.append("createDate=" + createDate);
+
+			msg.append(", ");
+			msg.append("toUserId=" + toUserId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchEntryException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Entry[] findByC_T_PrevAndNext(long entryId, long createDate,
+		long toUserId, OrderByComparator obc)
+		throws NoSuchEntryException, SystemException {
+		Entry entry = findByPrimaryKey(entryId);
+
+		int count = countByC_T(createDate, toUserId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append("FROM com.liferay.chat.model.Entry WHERE ");
+
+			query.append("createDate = ?");
+
+			query.append(" AND ");
+
+			query.append("toUserId = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+				query.append(obc.getOrderBy());
+			}
+
+			else {
+				query.append("ORDER BY ");
+
+				query.append("createDate DESC");
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(createDate);
+
+			qPos.add(toUserId);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, entry);
+
+			Entry[] array = new EntryImpl[3];
+
+			array[0] = (Entry)objArray[0];
+			array[1] = (Entry)objArray[1];
+			array[2] = (Entry)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<Entry> findByC_F_T(long createDate, long fromUserId,
+		long toUserId) throws SystemException {
+		boolean finderClassNameCacheEnabled = EntryModelImpl.CACHE_ENABLED;
+		String finderClassName = Entry.class.getName();
+		String finderMethodName = "findByC_F_T";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(createDate), new Long(fromUserId), new Long(toUserId)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+
+				query.append("createDate = ?");
+
+				query.append(" AND ");
+
+				query.append("fromUserId = ?");
+
+				query.append(" AND ");
+
+				query.append("toUserId = ?");
+
+				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("createDate DESC");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(createDate);
+
+				qPos.add(fromUserId);
+
+				qPos.add(toUserId);
+
+				List<Entry> list = q.list();
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<Entry>)result;
+		}
+	}
+
+	public List<Entry> findByC_F_T(long createDate, long fromUserId,
+		long toUserId, int start, int end) throws SystemException {
+		return findByC_F_T(createDate, fromUserId, toUserId, start, end, null);
+	}
+
+	public List<Entry> findByC_F_T(long createDate, long fromUserId,
+		long toUserId, int start, int end, OrderByComparator obc)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = EntryModelImpl.CACHE_ENABLED;
+		String finderClassName = Entry.class.getName();
+		String finderMethodName = "findByC_F_T";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName(),
+				
+				"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(createDate), new Long(fromUserId), new Long(toUserId),
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+
+				query.append("createDate = ?");
+
+				query.append(" AND ");
+
+				query.append("fromUserId = ?");
+
+				query.append(" AND ");
+
+				query.append("toUserId = ?");
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+					query.append(obc.getOrderBy());
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("createDate DESC");
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(createDate);
+
+				qPos.add(fromUserId);
+
+				qPos.add(toUserId);
+
+				List<Entry> list = (List<Entry>)QueryUtil.list(q, getDialect(),
+						start, end);
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<Entry>)result;
+		}
+	}
+
+	public Entry findByC_F_T_First(long createDate, long fromUserId,
+		long toUserId, OrderByComparator obc)
+		throws NoSuchEntryException, SystemException {
+		List<Entry> list = findByC_F_T(createDate, fromUserId, toUserId, 0, 1,
+				obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No Entry exists with the key {");
+
+			msg.append("createDate=" + createDate);
+
+			msg.append(", ");
+			msg.append("fromUserId=" + fromUserId);
+
+			msg.append(", ");
+			msg.append("toUserId=" + toUserId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchEntryException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Entry findByC_F_T_Last(long createDate, long fromUserId,
+		long toUserId, OrderByComparator obc)
+		throws NoSuchEntryException, SystemException {
+		int count = countByC_F_T(createDate, fromUserId, toUserId);
+
+		List<Entry> list = findByC_F_T(createDate, fromUserId, toUserId,
+				count - 1, count, obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No Entry exists with the key {");
+
+			msg.append("createDate=" + createDate);
+
+			msg.append(", ");
+			msg.append("fromUserId=" + fromUserId);
+
+			msg.append(", ");
+			msg.append("toUserId=" + toUserId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchEntryException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Entry[] findByC_F_T_PrevAndNext(long entryId, long createDate,
+		long fromUserId, long toUserId, OrderByComparator obc)
+		throws NoSuchEntryException, SystemException {
+		Entry entry = findByPrimaryKey(entryId);
+
+		int count = countByC_F_T(createDate, fromUserId, toUserId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append("FROM com.liferay.chat.model.Entry WHERE ");
+
+			query.append("createDate = ?");
+
+			query.append(" AND ");
+
+			query.append("fromUserId = ?");
+
+			query.append(" AND ");
+
+			query.append("toUserId = ?");
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+				query.append(obc.getOrderBy());
+			}
+
+			else {
+				query.append("ORDER BY ");
+
+				query.append("createDate DESC");
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(createDate);
+
+			qPos.add(fromUserId);
+
+			qPos.add(toUserId);
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, entry);
+
+			Entry[] array = new EntryImpl[3];
+
+			array[0] = (Entry)objArray[0];
+			array[1] = (Entry)objArray[1];
+			array[2] = (Entry)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<Entry> findByF_T_C(long fromUserId, long toUserId,
+		String content) throws SystemException {
+		boolean finderClassNameCacheEnabled = EntryModelImpl.CACHE_ENABLED;
+		String finderClassName = Entry.class.getName();
+		String finderMethodName = "findByF_T_C";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(fromUserId), new Long(toUserId),
+				
+				content
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+
+				query.append("fromUserId = ?");
+
+				query.append(" AND ");
+
+				query.append("toUserId = ?");
+
+				query.append(" AND ");
+
+				if (content == null) {
+					query.append("content IS NULL");
+				}
+				else {
+					query.append("content = ?");
+				}
+
+				query.append(" ");
+
+				query.append("ORDER BY ");
+
+				query.append("createDate DESC");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(fromUserId);
+
+				qPos.add(toUserId);
+
+				if (content != null) {
+					qPos.add(content);
+				}
+
+				List<Entry> list = q.list();
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<Entry>)result;
+		}
+	}
+
+	public List<Entry> findByF_T_C(long fromUserId, long toUserId,
+		String content, int start, int end) throws SystemException {
+		return findByF_T_C(fromUserId, toUserId, content, start, end, null);
+	}
+
+	public List<Entry> findByF_T_C(long fromUserId, long toUserId,
+		String content, int start, int end, OrderByComparator obc)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = EntryModelImpl.CACHE_ENABLED;
+		String finderClassName = Entry.class.getName();
+		String finderMethodName = "findByF_T_C";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName(),
+				
+				"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(fromUserId), new Long(toUserId),
+				
+				content,
+				
+				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+
+				query.append("fromUserId = ?");
+
+				query.append(" AND ");
+
+				query.append("toUserId = ?");
+
+				query.append(" AND ");
+
+				if (content == null) {
+					query.append("content IS NULL");
+				}
+				else {
+					query.append("content = ?");
+				}
+
+				query.append(" ");
+
+				if (obc != null) {
+					query.append("ORDER BY ");
+					query.append(obc.getOrderBy());
+				}
+
+				else {
+					query.append("ORDER BY ");
+
+					query.append("createDate DESC");
+				}
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(fromUserId);
+
+				qPos.add(toUserId);
+
+				if (content != null) {
+					qPos.add(content);
+				}
+
+				List<Entry> list = (List<Entry>)QueryUtil.list(q, getDialect(),
+						start, end);
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, list);
+
+				return list;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return (List<Entry>)result;
+		}
+	}
+
+	public Entry findByF_T_C_First(long fromUserId, long toUserId,
+		String content, OrderByComparator obc)
+		throws NoSuchEntryException, SystemException {
+		List<Entry> list = findByF_T_C(fromUserId, toUserId, content, 0, 1, obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No Entry exists with the key {");
+
+			msg.append("fromUserId=" + fromUserId);
+
+			msg.append(", ");
+			msg.append("toUserId=" + toUserId);
+
+			msg.append(", ");
+			msg.append("content=" + content);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchEntryException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Entry findByF_T_C_Last(long fromUserId, long toUserId,
+		String content, OrderByComparator obc)
+		throws NoSuchEntryException, SystemException {
+		int count = countByF_T_C(fromUserId, toUserId, content);
+
+		List<Entry> list = findByF_T_C(fromUserId, toUserId, content,
+				count - 1, count, obc);
+
+		if (list.size() == 0) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No Entry exists with the key {");
+
+			msg.append("fromUserId=" + fromUserId);
+
+			msg.append(", ");
+			msg.append("toUserId=" + toUserId);
+
+			msg.append(", ");
+			msg.append("content=" + content);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchEntryException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	public Entry[] findByF_T_C_PrevAndNext(long entryId, long fromUserId,
+		long toUserId, String content, OrderByComparator obc)
+		throws NoSuchEntryException, SystemException {
+		Entry entry = findByPrimaryKey(entryId);
+
+		int count = countByF_T_C(fromUserId, toUserId, content);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			StringBuilder query = new StringBuilder();
+
+			query.append("FROM com.liferay.chat.model.Entry WHERE ");
+
+			query.append("fromUserId = ?");
+
+			query.append(" AND ");
+
+			query.append("toUserId = ?");
+
+			query.append(" AND ");
+
+			if (content == null) {
+				query.append("content IS NULL");
+			}
+			else {
+				query.append("content = ?");
+			}
+
+			query.append(" ");
+
+			if (obc != null) {
+				query.append("ORDER BY ");
+				query.append(obc.getOrderBy());
+			}
+
+			else {
+				query.append("ORDER BY ");
+
+				query.append("createDate DESC");
+			}
+
+			Query q = session.createQuery(query.toString());
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(fromUserId);
+
+			qPos.add(toUserId);
+
+			if (content != null) {
+				qPos.add(content);
+			}
+
+			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, entry);
+
+			Entry[] array = new EntryImpl[3];
+
+			array[0] = (Entry)objArray[0];
+			array[1] = (Entry)objArray[1];
+			array[2] = (Entry)objArray[2];
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
 	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		Session session = null;
@@ -1080,6 +2225,34 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 
 	public void removeByToUserId(long toUserId) throws SystemException {
 		for (Entry entry : findByToUserId(toUserId)) {
+			remove(entry);
+		}
+	}
+
+	public void removeByC_F(long createDate, long fromUserId)
+		throws SystemException {
+		for (Entry entry : findByC_F(createDate, fromUserId)) {
+			remove(entry);
+		}
+	}
+
+	public void removeByC_T(long createDate, long toUserId)
+		throws SystemException {
+		for (Entry entry : findByC_T(createDate, toUserId)) {
+			remove(entry);
+		}
+	}
+
+	public void removeByC_F_T(long createDate, long fromUserId, long toUserId)
+		throws SystemException {
+		for (Entry entry : findByC_F_T(createDate, fromUserId, toUserId)) {
+			remove(entry);
+		}
+	}
+
+	public void removeByF_T_C(long fromUserId, long toUserId, String content)
+		throws SystemException {
+		for (Entry entry : findByF_T_C(fromUserId, toUserId, content)) {
 			remove(entry);
 		}
 	}
@@ -1254,6 +2427,332 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				qPos.add(toUserId);
+
+				Long count = null;
+
+				Iterator<Long> itr = q.list().iterator();
+
+				if (itr.hasNext()) {
+					count = itr.next();
+				}
+
+				if (count == null) {
+					count = new Long(0);
+				}
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, count);
+
+				return count.intValue();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return ((Long)result).intValue();
+		}
+	}
+
+	public int countByC_F(long createDate, long fromUserId)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = EntryModelImpl.CACHE_ENABLED;
+		String finderClassName = Entry.class.getName();
+		String finderMethodName = "countByC_F";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Long.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(createDate), new Long(fromUserId)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(*) ");
+				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+
+				query.append("createDate = ?");
+
+				query.append(" AND ");
+
+				query.append("fromUserId = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(createDate);
+
+				qPos.add(fromUserId);
+
+				Long count = null;
+
+				Iterator<Long> itr = q.list().iterator();
+
+				if (itr.hasNext()) {
+					count = itr.next();
+				}
+
+				if (count == null) {
+					count = new Long(0);
+				}
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, count);
+
+				return count.intValue();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return ((Long)result).intValue();
+		}
+	}
+
+	public int countByC_T(long createDate, long toUserId)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = EntryModelImpl.CACHE_ENABLED;
+		String finderClassName = Entry.class.getName();
+		String finderMethodName = "countByC_T";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Long.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(createDate), new Long(toUserId)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(*) ");
+				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+
+				query.append("createDate = ?");
+
+				query.append(" AND ");
+
+				query.append("toUserId = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(createDate);
+
+				qPos.add(toUserId);
+
+				Long count = null;
+
+				Iterator<Long> itr = q.list().iterator();
+
+				if (itr.hasNext()) {
+					count = itr.next();
+				}
+
+				if (count == null) {
+					count = new Long(0);
+				}
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, count);
+
+				return count.intValue();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return ((Long)result).intValue();
+		}
+	}
+
+	public int countByC_F_T(long createDate, long fromUserId, long toUserId)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = EntryModelImpl.CACHE_ENABLED;
+		String finderClassName = Entry.class.getName();
+		String finderMethodName = "countByC_F_T";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(createDate), new Long(fromUserId), new Long(toUserId)
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(*) ");
+				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+
+				query.append("createDate = ?");
+
+				query.append(" AND ");
+
+				query.append("fromUserId = ?");
+
+				query.append(" AND ");
+
+				query.append("toUserId = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(createDate);
+
+				qPos.add(fromUserId);
+
+				qPos.add(toUserId);
+
+				Long count = null;
+
+				Iterator<Long> itr = q.list().iterator();
+
+				if (itr.hasNext()) {
+					count = itr.next();
+				}
+
+				if (count == null) {
+					count = new Long(0);
+				}
+
+				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+					finderClassName, finderMethodName, finderParams,
+					finderArgs, count);
+
+				return count.intValue();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+		else {
+			return ((Long)result).intValue();
+		}
+	}
+
+	public int countByF_T_C(long fromUserId, long toUserId, String content)
+		throws SystemException {
+		boolean finderClassNameCacheEnabled = EntryModelImpl.CACHE_ENABLED;
+		String finderClassName = Entry.class.getName();
+		String finderMethodName = "countByF_T_C";
+		String[] finderParams = new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName()
+			};
+		Object[] finderArgs = new Object[] {
+				new Long(fromUserId), new Long(toUserId),
+				
+				content
+			};
+
+		Object result = null;
+
+		if (finderClassNameCacheEnabled) {
+			result = FinderCacheUtil.getResult(finderClassName,
+					finderMethodName, finderParams, finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(*) ");
+				query.append("FROM com.liferay.chat.model.Entry WHERE ");
+
+				query.append("fromUserId = ?");
+
+				query.append(" AND ");
+
+				query.append("toUserId = ?");
+
+				query.append(" AND ");
+
+				if (content == null) {
+					query.append("content IS NULL");
+				}
+				else {
+					query.append("content = ?");
+				}
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(fromUserId);
+
+				qPos.add(toUserId);
+
+				if (content != null) {
+					qPos.add(content);
+				}
 
 				Long count = null;
 

@@ -85,6 +85,131 @@ public class StatusUtil {
 		return getPersistence().fetchByUserId(userId);
 	}
 
+	public static java.util.List<com.liferay.chat.model.Status> findByModifiedDate(
+		long modifiedDate) throws com.liferay.portal.SystemException {
+		return getPersistence().findByModifiedDate(modifiedDate);
+	}
+
+	public static java.util.List<com.liferay.chat.model.Status> findByModifiedDate(
+		long modifiedDate, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByModifiedDate(modifiedDate, start, end);
+	}
+
+	public static java.util.List<com.liferay.chat.model.Status> findByModifiedDate(
+		long modifiedDate, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByModifiedDate(modifiedDate, start, end, obc);
+	}
+
+	public static com.liferay.chat.model.Status findByModifiedDate_First(
+		long modifiedDate, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.SystemException {
+		return getPersistence().findByModifiedDate_First(modifiedDate, obc);
+	}
+
+	public static com.liferay.chat.model.Status findByModifiedDate_Last(
+		long modifiedDate, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.SystemException {
+		return getPersistence().findByModifiedDate_Last(modifiedDate, obc);
+	}
+
+	public static com.liferay.chat.model.Status[] findByModifiedDate_PrevAndNext(
+		long statusId, long modifiedDate,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByModifiedDate_PrevAndNext(statusId, modifiedDate, obc);
+	}
+
+	public static java.util.List<com.liferay.chat.model.Status> findByOnline(
+		boolean online) throws com.liferay.portal.SystemException {
+		return getPersistence().findByOnline(online);
+	}
+
+	public static java.util.List<com.liferay.chat.model.Status> findByOnline(
+		boolean online, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByOnline(online, start, end);
+	}
+
+	public static java.util.List<com.liferay.chat.model.Status> findByOnline(
+		boolean online, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByOnline(online, start, end, obc);
+	}
+
+	public static com.liferay.chat.model.Status findByOnline_First(
+		boolean online, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.SystemException {
+		return getPersistence().findByOnline_First(online, obc);
+	}
+
+	public static com.liferay.chat.model.Status findByOnline_Last(
+		boolean online, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.SystemException {
+		return getPersistence().findByOnline_Last(online, obc);
+	}
+
+	public static com.liferay.chat.model.Status[] findByOnline_PrevAndNext(
+		long statusId, boolean online,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.SystemException {
+		return getPersistence().findByOnline_PrevAndNext(statusId, online, obc);
+	}
+
+	public static java.util.List<com.liferay.chat.model.Status> findByM_O(
+		long modifiedDate, boolean online)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByM_O(modifiedDate, online);
+	}
+
+	public static java.util.List<com.liferay.chat.model.Status> findByM_O(
+		long modifiedDate, boolean online, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByM_O(modifiedDate, online, start, end);
+	}
+
+	public static java.util.List<com.liferay.chat.model.Status> findByM_O(
+		long modifiedDate, boolean online, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByM_O(modifiedDate, online, start, end, obc);
+	}
+
+	public static com.liferay.chat.model.Status findByM_O_First(
+		long modifiedDate, boolean online,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.SystemException {
+		return getPersistence().findByM_O_First(modifiedDate, online, obc);
+	}
+
+	public static com.liferay.chat.model.Status findByM_O_Last(
+		long modifiedDate, boolean online,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.SystemException {
+		return getPersistence().findByM_O_Last(modifiedDate, online, obc);
+	}
+
+	public static com.liferay.chat.model.Status[] findByM_O_PrevAndNext(
+		long statusId, long modifiedDate, boolean online,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.SystemException {
+		return getPersistence()
+				   .findByM_O_PrevAndNext(statusId, modifiedDate, online, obc);
+	}
+
 	public static java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
@@ -119,6 +244,21 @@ public class StatusUtil {
 		getPersistence().removeByUserId(userId);
 	}
 
+	public static void removeByModifiedDate(long modifiedDate)
+		throws com.liferay.portal.SystemException {
+		getPersistence().removeByModifiedDate(modifiedDate);
+	}
+
+	public static void removeByOnline(boolean online)
+		throws com.liferay.portal.SystemException {
+		getPersistence().removeByOnline(online);
+	}
+
+	public static void removeByM_O(long modifiedDate, boolean online)
+		throws com.liferay.portal.SystemException {
+		getPersistence().removeByM_O(modifiedDate, online);
+	}
+
 	public static void removeAll() throws com.liferay.portal.SystemException {
 		getPersistence().removeAll();
 	}
@@ -126,6 +266,21 @@ public class StatusUtil {
 	public static int countByUserId(long userId)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().countByUserId(userId);
+	}
+
+	public static int countByModifiedDate(long modifiedDate)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().countByModifiedDate(modifiedDate);
+	}
+
+	public static int countByOnline(boolean online)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().countByOnline(online);
+	}
+
+	public static int countByM_O(long modifiedDate, boolean online)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().countByM_O(modifiedDate, online);
 	}
 
 	public static int countAll() throws com.liferay.portal.SystemException {

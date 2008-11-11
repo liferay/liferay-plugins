@@ -75,6 +75,109 @@ public interface StatusPersistence {
 		throws com.liferay.portal.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.chat.model.Status> findByModifiedDate(
+		long modifiedDate) throws com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.chat.model.Status> findByModifiedDate(
+		long modifiedDate, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.chat.model.Status> findByModifiedDate(
+		long modifiedDate, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.chat.model.Status findByModifiedDate_First(
+		long modifiedDate, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.chat.model.Status findByModifiedDate_Last(
+		long modifiedDate, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.chat.model.Status[] findByModifiedDate_PrevAndNext(
+		long statusId, long modifiedDate,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.chat.model.Status> findByOnline(
+		boolean online) throws com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.chat.model.Status> findByOnline(
+		boolean online, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.chat.model.Status> findByOnline(
+		boolean online, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.chat.model.Status findByOnline_First(boolean online,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.chat.model.Status findByOnline_Last(boolean online,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.chat.model.Status[] findByOnline_PrevAndNext(
+		long statusId, boolean online,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.chat.model.Status> findByM_O(
+		long modifiedDate, boolean online)
+		throws com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.chat.model.Status> findByM_O(
+		long modifiedDate, boolean online, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.chat.model.Status> findByM_O(
+		long modifiedDate, boolean online, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.chat.model.Status findByM_O_First(long modifiedDate,
+		boolean online, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.chat.model.Status findByM_O_Last(long modifiedDate,
+		boolean online, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.chat.model.Status[] findByM_O_PrevAndNext(
+		long statusId, long modifiedDate, boolean online,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
@@ -101,10 +204,31 @@ public interface StatusPersistence {
 		throws com.liferay.chat.NoSuchStatusException,
 			com.liferay.portal.SystemException;
 
+	public void removeByModifiedDate(long modifiedDate)
+		throws com.liferay.portal.SystemException;
+
+	public void removeByOnline(boolean online)
+		throws com.liferay.portal.SystemException;
+
+	public void removeByM_O(long modifiedDate, boolean online)
+		throws com.liferay.portal.SystemException;
+
 	public void removeAll() throws com.liferay.portal.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByUserId(long userId)
+		throws com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int countByModifiedDate(long modifiedDate)
+		throws com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int countByOnline(boolean online)
+		throws com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int countByM_O(long modifiedDate, boolean online)
 		throws com.liferay.portal.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

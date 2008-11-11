@@ -36,6 +36,24 @@
 		<finder name="ToUserId" return-type="Collection">
 			<finder-column name="toUserId" />
 		</finder>
+		<finder name="C_F" return-type="Collection">
+			<finder-column name="createDate" />
+			<finder-column name="fromUserId" />
+		</finder>
+		<finder name="C_T" return-type="Collection">
+			<finder-column name="createDate" />
+			<finder-column name="toUserId" />
+		</finder>
+		<finder name="C_F_T" return-type="Collection">
+			<finder-column name="createDate" />
+			<finder-column name="fromUserId" />
+			<finder-column name="toUserId" />
+		</finder>
+		<finder name="F_T_C" return-type="Collection">
+			<finder-column name="fromUserId" />
+			<finder-column name="toUserId" />
+			<finder-column name="content" />
+		</finder>
 	</entity>
 	<entity name="Status" local-service="true" remote-service="false">
 
@@ -61,6 +79,16 @@
 
 		<finder name="UserId" return-type="Status">
 			<finder-column name="userId" />
+		</finder>
+		<finder name="ModifiedDate" return-type="Collection">
+			<finder-column name="modifiedDate" />
+		</finder>
+		<finder name="Online" return-type="Collection">
+			<finder-column name="online" />
+		</finder>
+		<finder name="M_O" return-type="Collection">
+			<finder-column name="modifiedDate" />
+			<finder-column name="online" />
 		</finder>
 	</entity>
 </service-builder>
