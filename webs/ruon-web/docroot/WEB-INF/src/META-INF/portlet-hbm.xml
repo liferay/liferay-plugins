@@ -18,6 +18,6 @@
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="modifiedDate" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="networkId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="online" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="online" column="online_" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
 </hibernate-mapping>

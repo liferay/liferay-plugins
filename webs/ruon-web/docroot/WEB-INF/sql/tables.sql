@@ -10,5 +10,5 @@ create table Ruon_Presence (
 	userId LONG,
 	modifiedDate LONG,
 	networkId LONG,
-	online BOOLEAN
+	online_ BOOLEAN
 );

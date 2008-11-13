@@ -601,7 +601,7 @@ public class PresencePersistenceImpl extends BasePersistenceImpl
 
 				query.append(" AND ");
 
-				query.append("online = ?");
+				query.append("online_ = ?");
 
 				query.append(" ");
 
@@ -676,7 +676,7 @@ public class PresencePersistenceImpl extends BasePersistenceImpl
 
 				query.append(" AND ");
 
-				query.append("online = ?");
+				query.append("online_ = ?");
 
 				query.append(" ");
 
@@ -782,7 +782,7 @@ public class PresencePersistenceImpl extends BasePersistenceImpl
 
 			query.append(" AND ");
 
-			query.append("online = ?");
+			query.append("online_ = ?");
 
 			query.append(" ");
 
@@ -1126,7 +1126,7 @@ public class PresencePersistenceImpl extends BasePersistenceImpl
 
 				query.append(" AND ");
 
-				query.append("online = ?");
+				query.append("online_ = ?");
 
 				query.append(" ");
 

@@ -62,9 +62,9 @@ public class PresenceModelImpl extends BaseModelImpl {
 			{ "networkId", new Integer(Types.BIGINT) },
 			
 
-			{ "online", new Integer(Types.BOOLEAN) }
+			{ "online_", new Integer(Types.BOOLEAN) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Ruon_Presence (presenceId LONG not null primary key,userId LONG,modifiedDate LONG,networkId LONG,online BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table Ruon_Presence (presenceId LONG not null primary key,userId LONG,modifiedDate LONG,networkId LONG,online_ BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table Ruon_Presence";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
