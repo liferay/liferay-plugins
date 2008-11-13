@@ -22,6 +22,8 @@
 
 package com.liferay.kb.knowledgebase.service.persistence;
 
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.Propagation;
 import com.liferay.portal.kernel.annotation.Transactional;
 
@@ -31,7 +33,8 @@ import com.liferay.portal.kernel.annotation.Transactional;
  * @author Jorge Ferrer
  *
  */
-@Transactional
+@Transactional(rollbackFor =  {
+	PortalException.class, SystemException.class})
 public interface KBArticlePersistence {
 	public com.liferay.kb.knowledgebase.model.KBArticle create(long articleId);
 

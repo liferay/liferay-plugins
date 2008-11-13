@@ -22,6 +22,8 @@
 
 package com.liferay.kb.knowledgebase.service;
 
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.Propagation;
 import com.liferay.portal.kernel.annotation.Transactional;
 
@@ -31,7 +33,8 @@ import com.liferay.portal.kernel.annotation.Transactional;
  * @author Jorge Ferrer
  *
  */
-@Transactional
+@Transactional(rollbackFor =  {
+	PortalException.class, SystemException.class})
 public interface KBArticleResourceLocalService {
 	public com.liferay.kb.knowledgebase.model.KBArticleResource addKBArticleResource(
 		com.liferay.kb.knowledgebase.model.KBArticleResource kbArticleResource)
