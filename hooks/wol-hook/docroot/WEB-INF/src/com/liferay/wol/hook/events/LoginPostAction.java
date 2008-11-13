@@ -231,8 +231,7 @@ public class LoginPostAction extends Action {
 
 	public static void updateLookAndFeel(long groupId) throws Exception {
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
-			groupId, false, "liferayjedi_WAR_liferayjeditheme", "01", "",
-			false);
+			groupId, false, "inc_WAR_osbtheme", "01", "", false);
 	}
 
 	public void run(HttpServletRequest request, HttpServletResponse response)
