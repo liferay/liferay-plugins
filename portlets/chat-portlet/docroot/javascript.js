@@ -601,7 +601,6 @@ Liferay.Chat.Manager = {
 				instance._getRequest();
 				settings.hide();
 				settingsPanel.addClass('saved');
-				instance._activePanelId = '';
 
 				if (instance._statusMessage) {
 					instance._myStatus.html('You are <strong>' + instance._statusMessage + '</strong>');
@@ -668,8 +667,9 @@ Liferay.Chat.Manager = {
 
 		instance._panels[panelName] = panel;
 
-		panel.bind('show', instance._onPanelShow, instance);
+		panel.bind('hide', instance._onPanelHide, instance);
 		panel.bind('close', instance._onPanelClose, instance);
+		panel.bind('show', instance._onPanelShow, instance);
 	},
 
 	_cancelRequestTimer: function() {
@@ -819,19 +819,6 @@ Liferay.Chat.Manager = {
 		}
 	},
 
-	_onPanelShow: function(event, panel) {
-		var instance = this;
-
-		for (var i in instance._panels) {
-			if (instance._panels[i] != panel) {
-				instance._panels[i].hide();
-			}
-		}
-
-		instance._activePanelId = panel._panelId;
-		instance._getRequest();
-	},
-
 	_onPanelClose: function(event, panel) {
 		var instance = this;
 
@@ -842,6 +829,26 @@ Liferay.Chat.Manager = {
 		}
 
 		instance._activePanelId = '';
+		instance._getRequest();
+	},
+
+	_onPanelHide: function(event, panel) {
+		var instance = this;
+
+		instance._activePanelId = '';
+		instance._getRequest();
+	},
+
+	_onPanelShow: function(event, panel) {
+		var instance = this;
+
+		for (var i in instance._panels) {
+			if (instance._panels[i] != panel) {
+				instance._panels[i].hide();
+			}
+		}
+		instance._activePanelId = panel._panelId;
+
 		instance._getRequest();
 	},
 
