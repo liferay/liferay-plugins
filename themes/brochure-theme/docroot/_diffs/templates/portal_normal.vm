@@ -13,7 +13,7 @@
 	#js ($js_main_file)
 
 	<script type="text/javascript">
-		// <![CDATA
+		// <![CDATA[
 			$page_javascript_1
 			$page_javascript_2
 			$page_javascript_3
