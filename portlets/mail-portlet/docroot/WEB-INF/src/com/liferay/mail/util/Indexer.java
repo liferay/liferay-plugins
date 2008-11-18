@@ -135,14 +135,14 @@ public class Indexer implements com.liferay.portal.kernel.search.Indexer {
 		return doc.get(Field.UID);
 	}
 
+	public String[] getClassNames() {
+		return _CLASS_NAMES;
+	}
+
 	public DocumentSummary getDocumentSummary(
 		Document doc, PortletURL portletURL) {
 
 		return null;
-	}
-
-	public String[] getClassNames() {
-		return _CLASS_NAMES;
 	}
 
 	public void reIndex(String[] ids) throws SearchException {
@@ -160,4 +160,5 @@ public class Indexer implements com.liferay.portal.kernel.search.Indexer {
 	private static final String[] _CLASS_NAMES = new String[] {
 		MailAccount.class.getName()
 	};
+
 }
