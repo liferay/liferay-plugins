@@ -157,8 +157,6 @@ public class Indexer implements com.liferay.portal.kernel.search.Indexer {
 	public void reIndex(String className, long classPK) throws SearchException {
 	}
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		MailAccount.class.getName()
-	};
+	private static final String[] _CLASS_NAMES = new String[0];
 
 }
