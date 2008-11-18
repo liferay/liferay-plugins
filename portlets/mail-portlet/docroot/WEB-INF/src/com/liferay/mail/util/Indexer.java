@@ -145,6 +145,9 @@ public class Indexer implements com.liferay.portal.kernel.search.Indexer {
 		return null;
 	}
 
+	public void reIndex(String className, long classPK) throws SearchException {
+	}
+
 	public void reIndex(String[] ids) throws SearchException {
 		try {
 			MailDiskManager.reIndex(ids);
@@ -152,9 +155,6 @@ public class Indexer implements com.liferay.portal.kernel.search.Indexer {
 		catch (Exception e) {
 			throw new SearchException(e);
 		}
-	}
-
-	public void reIndex(String className, long classPK) throws SearchException {
 	}
 
 	private static final String[] _CLASS_NAMES = new String[0];
