@@ -9,10 +9,10 @@
 		<taglib-uri>http://java.sun.com/jstl/core_rt</taglib-uri>
 		<taglib-location>/WEB-INF/tld/c-rt.tld</taglib-location>
 	</taglib>
-	<resource-ref>
+	<!--<resource-ref>
 		<res-ref-name>jdbc/JIRAPool</res-ref-name>
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>
 		<res-sharing-scope>Shareable</res-sharing-scope>
-	</resource-ref>
+	</resource-ref>-->
 </web-app>

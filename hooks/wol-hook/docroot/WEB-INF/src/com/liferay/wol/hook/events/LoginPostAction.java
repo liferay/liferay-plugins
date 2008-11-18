@@ -23,6 +23,7 @@
 package com.liferay.wol.hook.events;
 
 import com.liferay.portal.NoSuchLayoutException;
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.events.ActionException;
@@ -45,6 +46,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import javax.sql.DataSource;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="LoginPostAction.java.html"><b><i>View Source</i></b></a>
@@ -72,7 +78,16 @@ public class LoginPostAction extends Action {
 		ResultSet rs = null;
 
 		try {
-			con = DataAccess.getConnection();
+			DataSource dataSource = (DataSource)PortletBeanLocatorUtil.locate(
+				"wol-portlet", "jiraDataSource");
+
+			if (dataSource == null) {
+				_log.error("JIRA data source is null");
+
+				return;
+			}
+
+			con = dataSource.getConnection();
 
 			ps = con.prepareStatement(_GET_JIRA_USER_ID);
 
@@ -266,10 +281,11 @@ public class LoginPostAction extends Action {
 	}
 
 	private static final String _GET_JIRA_USER_ID =
-		"select jira.userbase.username from jira.userbase inner join " +
-			"jira.propertyentry on jira.propertyentry.entity_id = " +
-				"jira.userbase.id inner join jira.propertystring on " +
-					"jira.propertystring.id = jira.propertyentry.id where " +
-						"lower(jira.propertystring.propertyvalue) = ?";
+		"select userbase.username from userbase inner join propertyentry on " +
+			"propertyentry.entity_id = userbase.id inner join propertystring " +
+				"on propertystring.id = propertyentry.id where " +
+					"lower(propertystring.propertyvalue) = ?";
+
+	private static Log _log = LogFactory.getLog(LoginPostAction.class);
 
 }
