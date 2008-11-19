@@ -4,7 +4,7 @@
 	<import file="../build-common-portlet.xml" />
 
 	<!--
-	Download sun-jsr-286-test-1-portlet from
+	Download JSR 286 Test 1 Portlets from
 	https://portlet-repository.dev.java.net/public/Download.html.
 	-->
 
