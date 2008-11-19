@@ -437,23 +437,39 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend({
 			el.value = '';
 		}
 
-		el.style.height = '0px';
-
 		current = {
 			clientHeight: el.clientHeight,
 			scrollHeight: el.scrollHeight,
 			scrollTop: el.scrollTop
 		};
 
+		el.style.height = '0px';
+
 		current.scrollHeight = (current.scrollHeight > 64) ? 64 : current.scrollHeight;
 		el.style.overflowY = (current.scrollHeight == 64) ? 'scroll' : 'hidden';
 
 		reScroll = (output.scrollTop == output.scrollHeight - output.clientHeight);
 
-		el.style.height = current.scrollHeight + 'px';
+		var curScrollHeight = current.scrollHeight;
+		var delta = 0;
 
-		el.parentNode.style.height = (current.scrollHeight + 5) + 'px';
-		output.style.height = (206 - current.scrollHeight) + 'px';
+		if (instance._lastScrollHeight) {
+			delta = (curScrollHeight - instance._lastScrollHeight);
+
+			if (curScrollHeight > instance._lastScrollHeight && delta <= 2) {
+				curScrollHeight -= delta;
+			}
+		}
+
+		if (delta > 2) {
+			output.style.height = (206 - curScrollHeight) + 'px';
+		}
+
+		instance._lastScrollHeight = current.scrollHeight;
+
+		el.style.height = curScrollHeight + 'px';
+
+		el.parentNode.style.height = (curScrollHeight + 5) + 'px';
 		output.scrollTop = (reScroll) ? output.scrollHeight - output.clientHeight : output.scrollTop;
 	},
 
@@ -601,6 +617,7 @@ Liferay.Chat.Manager = {
 				instance._getRequest();
 				settings.hide();
 				settingsPanel.addClass('saved');
+				instance._activePanelId = '';
 
 				if (instance._statusMessage) {
 					instance._myStatus.html('You are <strong>' + instance._statusMessage + '</strong>');
@@ -667,9 +684,8 @@ Liferay.Chat.Manager = {
 
 		instance._panels[panelName] = panel;
 
-		panel.bind('hide', instance._onPanelHide, instance);
-		panel.bind('close', instance._onPanelClose, instance);
 		panel.bind('show', instance._onPanelShow, instance);
+		panel.bind('close', instance._onPanelClose, instance);
 	},
 
 	_cancelRequestTimer: function() {
@@ -699,6 +715,11 @@ Liferay.Chat.Manager = {
 			var userName = buddy.find('.name').text();
 
 			var chat = instance._chatSessions[userId];
+			var portraitId = userIcon.match(/img_id=(\d+)$/);
+
+			if (portraitId && portraitId[1]) {
+				userIcon = portraitId[1];
+			}
 
 			if (!chat) {
 				instance._createChatSession(
@@ -819,6 +840,23 @@ Liferay.Chat.Manager = {
 		}
 	},
 
+	_onPanelShow: function(event, panel) {
+		var instance = this;
+
+		for (var i in instance._panels) {
+			if (instance._panels[i] != panel) {
+				instance._panels[i].hide();
+			}
+		}
+
+		if (panel instanceof Liferay.Chat.Conversation) {
+			panel._chatInput.trigger('focus');
+		}
+
+		instance._activePanelId = panel._panelId;
+		instance._getRequest();
+	},
+
 	_onPanelClose: function(event, panel) {
 		var instance = this;
 
@@ -829,26 +867,6 @@ Liferay.Chat.Manager = {
 		}
 
 		instance._activePanelId = '';
-		instance._getRequest();
-	},
-
-	_onPanelHide: function(event, panel) {
-		var instance = this;
-
-		instance._activePanelId = '';
-		instance._getRequest();
-	},
-
-	_onPanelShow: function(event, panel) {
-		var instance = this;
-
-		for (var i in instance._panels) {
-			if (instance._panels[i] != panel) {
-				instance._panels[i].hide();
-			}
-		}
-		instance._activePanelId = panel._panelId;
-
 		instance._getRequest();
 	},
 
@@ -905,7 +923,7 @@ Liferay.Chat.Manager = {
 					cssClass = 'idle';
 				}
 
-				var userImagePath = Liferay.Chat.Util.getUserImagePath(buddy.userIcon);
+				var userImagePath = Liferay.Chat.Util.getUserImagePath(buddy.portraitId);
 
 				buffer.push('<li class="' + cssClass + '" userId="' + buddy.userId + '">' +
 								'<img src="' + userImagePath + '" />' +
@@ -962,7 +980,7 @@ Liferay.Chat.Manager = {
 				if (!chat && entry.content != '' && entry.createDate > instance._created) {
 					chat = instance._createChatSession(
 						{
-							userIcon: buddy.userIcon,
+							userIcon: buddy.portraitId,
 							userId: buddy.userId,
 							userName: buddy.userName,
 							statusMessage: buddy.statusMessage
