@@ -71,30 +71,7 @@ public class RUONMessageListener implements MessageListener {
 		}
 		else if (command.equals("updatePresence")) {
 			updatePresence(message);
-		}else if (command.equalsIgnoreCase("delegateToNetwork")){
-			delegateToNetwork(message);
 		}
-	}
-
-	protected void delegateToNetwork(Message message) throws Exception{
-		String name = message.getString("name");
-		Network network = NetworkLocalServiceUtil.getNetwork(name);
-		Converter converter = _converters.get(network.getNetworkId());
-
-		Map<String, Object> input = new HashMap<String, Object>();
-		input.put("command","delegateToNetwork");
-		input.put("message",message);
-
-		Object output = converter.convert(input);
-		JSONObject payLoadJSON = JSONFactoryUtil.createJSONObject();
-		if(output != null && ((String)output).equalsIgnoreCase("success")){
-			payLoadJSON.put("output","success");
-		}
-		else{
-			payLoadJSON.put("output","failure");
-		}
-		message.setPayload(payLoadJSON);
-		MessageBusUtil.sendMessage(message.getResponseDestination(), message);
 	}
 
 	protected void getPresences(Message message) throws Exception {
@@ -119,7 +96,7 @@ public class RUONMessageListener implements MessageListener {
 			}
 
 			Map<String, Object> input = new HashMap<String, Object>();
-			input.put("command","presenceOutput");
+
 			input.put("userId", userId);
 			input.put("online", online);
 			input.put("locale", locale);
