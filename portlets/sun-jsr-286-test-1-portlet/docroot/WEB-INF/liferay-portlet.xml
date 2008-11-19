@@ -18,21 +18,6 @@
 		<portlet-name>ActionScopeMap</portlet-name>
 	</portlet>
 	<portlet>
-		<portlet-name>DefaultNamespace1</portlet-name>
-	</portlet>
-	<portlet>
-		<portlet-name>DefaultNamespace2</portlet-name>
-	</portlet>
-	<portlet>
-		<portlet-name>EventAlias1</portlet-name>
-	</portlet>
-	<portlet>
-		<portlet-name>EventCore1</portlet-name>
-	</portlet>
-	<portlet>
-		<portlet-name>EventCore2</portlet-name>
-	</portlet>
-	<portlet>
 		<portlet-name>Cyclic1</portlet-name>
 	</portlet>
 	<portlet>
@@ -45,19 +30,55 @@
 		<portlet-name>Cyclic4</portlet-name>
 	</portlet>
 	<portlet>
+		<portlet-name>DefaultNamespace1</portlet-name>
+	</portlet>
+	<portlet>
+		<portlet-name>DefaultNamespace2</portlet-name>
+	</portlet>
+	<portlet>
+		<portlet-name>EscapeXML</portlet-name>
+	</portlet>
+	<portlet>
+		<portlet-name>EventAlias1</portlet-name>
+	</portlet>
+	<portlet>
+		<portlet-name>EventCore1</portlet-name>
+	</portlet>
+	<portlet>
+		<portlet-name>EventCore2</portlet-name>
+	</portlet>
+	<portlet>
+		<portlet-name>FilterPortlet</portlet-name>
+	</portlet>
+	<portlet>
+		<portlet-name>MarkupCachePortlet</portlet-name>
+	</portlet>
+	<portlet>
+		<portlet-name>Misc</portlet-name>
+	</portlet>  
+	<portlet>
 		<portlet-name>QNameURINull1</portlet-name>
 	</portlet>
 	<portlet>
 		<portlet-name>QNameURINull2</portlet-name>
 	</portlet>
 	<portlet>
+		<portlet-name>ReceiveEvent</portlet-name>
+	</portlet>
+	<portlet>
 		<portlet-name>RenderAlias1</portlet-name>
+	</portlet>
+	<portlet>
+		<portlet-name>RenderCore1</portlet-name>
 	</portlet>
 	<portlet>
 		<portlet-name>RenderPE1</portlet-name>
 	</portlet>
 	<portlet>
 		<portlet-name>RenderPE2</portlet-name>
+	</portlet>
+	<portlet>
+		<portlet-name>SetGeteTag</portlet-name>
 	</portlet>
 	<portlet>
 		<portlet-name>SimpleEvent1</portlet-name>
