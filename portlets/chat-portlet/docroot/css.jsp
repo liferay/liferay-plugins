@@ -48,8 +48,9 @@ body {
 }
 
 .ie6 .lfr-shim {
-	position: absolute;
+	bottom: 0;
 	border: 0;
+	position: absolute;
 }
 
 .chat-sound-container {
