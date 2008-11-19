@@ -43,6 +43,15 @@ body {
 	z-index: 10;
 }
 
+.ie6 .chat-bar {
+	position: absolute;
+}
+
+.ie6 .lfr-shim {
+	position: absolute;
+	border: 0;
+}
+
 .chat-sound-container {
 	position: absolute;
 }

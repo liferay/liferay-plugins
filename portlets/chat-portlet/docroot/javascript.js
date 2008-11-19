@@ -993,8 +993,43 @@ Liferay.Chat.Manager = {
 	_settings: {}
 };
 
+Liferay.Chat.FixBadBrowsers = function() {
+	var chatBar = jQuery('.chat-bar');
+	var position = chatBar.css('position');
+
+	if (!position || position.indexOf('fixed') < 0) {
+		var win = jQuery(window);
+		var body = jQuery(document.body);
+
+		var chatBarHeight = chatBar.outerHeight();
+		var chatBarWidth = chatBar.outerWidth();
+		var frame = Liferay.Util.viewport.frame();
+
+		var iframe = jQuery('<iframe class="lfr-shim" frameborder="0" src="javascript: ;" />');
+
+		iframe.width(chatBarWidth);
+		iframe.height(chatBarHeight);
+
+		win.bind('scroll resize',
+			function(event) {
+				if (event.type == 'resize') {
+					frame = Liferay.Util.viewport.frame();
+				}
+
+				var scrollTop = win.scrollTop();
+
+				chatBar.css('top', (scrollTop + frame.y) - chatBarHeight);
+				iframe.css('top', (scrollTop + frame.y) - chatBarHeight);
+			}
+		);
+
+		body.append(iframe);
+	}
+};
+
 jQuery(
 	function () {
 		Liferay.Chat.Manager.init();
+		Liferay.Chat.FixBadBrowsers();
 	}
 );
