@@ -24,8 +24,8 @@ package com.liferay.wol.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.model.ModelListener;
 import com.liferay.wol.service.WallEntryLocalServiceUtil;
 
 /**
@@ -34,13 +34,7 @@ import com.liferay.wol.service.WallEntryLocalServiceUtil;
  * @author Brian Wing Shun Chan
  *
  */
-public class GroupListener implements ModelListener {
-
-	public void onBeforeCreate(BaseModel model) {
-	}
-
-	public void onAfterCreate(BaseModel model) {
-	}
+public class GroupListener extends BaseModelListener {
 
 	public void onBeforeRemove(BaseModel model) throws ModelListenerException {
 		try {
@@ -53,15 +47,6 @@ public class GroupListener implements ModelListener {
 		catch (Exception e) {
 			throw new ModelListenerException(e);
 		}
-	}
-
-	public void onAfterRemove(BaseModel model) {
-	}
-
-	public void onBeforeUpdate(BaseModel model) {
-	}
-
-	public void onAfterUpdate(BaseModel model) {
 	}
 
 }
