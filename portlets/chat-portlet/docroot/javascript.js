@@ -643,6 +643,17 @@ Liferay.Chat.Manager = {
 		return instance._currentUser;
 	},
 
+	openPanel: function(userId) {
+		var instance = this;
+
+		if (!instance._panels[userId] && !/buddylist|settings/.test(userId)) {
+			instance._createChatFromUser(userId);
+		}
+		else {
+			instance._getPanel(userId).show();
+		}
+	},
+
 	send: function(options) {
 		var instance = this;
 
@@ -684,8 +695,9 @@ Liferay.Chat.Manager = {
 
 		instance._panels[panelName] = panel;
 
-		panel.bind('show', instance._onPanelShow, instance);
 		panel.bind('close', instance._onPanelClose, instance);
+		panel.bind('hide', instance._onPanelHide, instance);
+		panel.bind('show', instance._onPanelShow, instance);
 	},
 
 	_cancelRequestTimer: function() {
@@ -838,6 +850,13 @@ Liferay.Chat.Manager = {
 		for (var i in instance._chatSessions) {
 			instance._chatSessions[i].hide();
 		}
+	},
+
+	_onPanelHide: function(event, panel) {
+		var instance = this;
+
+		instance._activePanelId = '';
+		instance._getRequest();
 	},
 
 	_onPanelShow: function(event, panel) {
