@@ -5,7 +5,10 @@ var Desktop = function () {
 		initHtml: function() {
 			var instance = this;
 
-			if (instance._isFreeformLayout && !instance._isStateMaximized) {
+			var specialPortlets = $('#portlet-wrapper-password-reminder').size() +
+					$('#portlet-wrapper-terms-of-use').size();
+
+			if (instance._isFreeformLayout && !instance._isStateMaximized && (specialPortlets == 0)) {
 				instance._handleBodyClicks();
 			}
 			else {
@@ -16,10 +19,13 @@ var Desktop = function () {
 		initPage: function() {
 			var instance = this;
 
+			var specialPortlets = $('#portlet-wrapper-password-reminder').size() +
+					$('#portlet-wrapper-terms-of-use').size();
+
 			instance._handleAddSidebar();
 			instance._handlePortletIcons();
 
-			if (instance._isFreeformLayout && !instance._isStateMaximized) {
+			if (instance._isFreeformLayout && !instance._isStateMaximized && (specialPortlets == 0)) {
 				instance._handleTaskbarInit();
 				instance._handlePortletClicks();
 			}
@@ -81,61 +87,6 @@ var Desktop = function () {
 			if (tbLink.size() > 0) {
 				$('.taskbar-link.selected').removeClass('selected');
 				tbLink.addClass('selected');
-			}
-		},
-
-		portletMaximize: function(portletId) {
-			var instance = this;
-
-			var windowHeight = 0;
-
-			$(window).load(
-				function() {
-					if ($('html').is('.ie6')) {
-						windowHeight = document.documentElement.offsetHeight-4;
-					}
-					else if ($('html').is('.ie')) {
-						windowHeight = document.body.offsetHeight;
-					}
-					else {
-						windowHeight = window.innerHeight;
-					}
-
-					$('#portlet-wrapper-' + portletId + ' .middle-center').css({height:windowHeight-68 + "px"});
-				}
-			);
-
-			// Improve performance when user resizes browser in IE
-
-			if ($('html').is('.ie')) {
-				var resizeTimer = null;
-
-				$(window).resize(
-					function() {
-						if (resizeTimer) clearTimeout(resizeTimer);
-
-						resizeTimer = setTimeout(
-							function() {
-								if ($('html').is('.ie6')) {
-									windowHeight = document.documentElement.offsetHeight-4;
-								}
-								else {
-									windowHeight = document.body.offsetHeight;
-								}
-
-								$('#portlet-wrapper-' + portletId + ' .middle-center').css({height:windowHeight-68 + "px"});
-							},
-							100
-						);
-					}
-				);
-			}
-			else {
-				$(window).resize(
-					function() {
-						$('#portlet-wrapper-' + portletId + ' .middle-center').css({height:window.innerHeight-68 + 'px'});
-					}
-				);
 			}
 		},
 

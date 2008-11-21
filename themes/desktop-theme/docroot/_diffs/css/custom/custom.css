@@ -14,14 +14,10 @@
 	padding-left: 270px;
 }
 
-/* ---------- Sign in portlet / Terms of use portlet ---------- */
+/* ---------- Password Reminder portlet / Terms of Use portlet ---------- */
 
-#portlet-wrapper-sign-in .portlet-content, #portlet-wrapper-terms-of-use .portlet-content {
+#portlet-wrapper-password-reminder .portlet-content, #portlet-wrapper-terms-of-use .portlet-content {
 	padding: 10px;
-}
-
-#portlet-wrapper-sign-in legend {
-	font-size: 100%;
 }
 
 /* ---------- Tagged content portlet ---------- */

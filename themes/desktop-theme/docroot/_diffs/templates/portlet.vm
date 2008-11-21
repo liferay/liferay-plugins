@@ -12,10 +12,18 @@
 			<span class="portlet-icons" id="portlet-small-icon-bar_$portlet_id">
 				#if ($portlet_display.isShowBackIcon())
 					<a href="$portlet_back_url" class="portlet-icon-back">#language ("return-to-full-page")</a>
-				#elseif ($portlet_display.isShowCloseIcon())
-					<span class="icon-min"><a href="javascript: Desktop.portletMinimize('$portlet_display.getId()');"></a></span>
-					<span class="icon-max"><a href="javascript: submitForm(document.hrefFm,'$portlet_display.getURLMax()')"></a></span>
-					<span class="icon-close"><a href="javascript: Desktop.portletRemove('$portlet_display.getId()','$portlet_column_pos');"></a></span>
+				#else
+					#if ($portlet_display.isShowMinIcon())
+						<span class="icon-min"><a href="javascript: Desktop.portletMinimize('$portlet_display.getId()');"></a></span>
+					#end
+
+					#if ($portlet_display.isShowMaxIcon())
+						<span class="icon-max"><a href="javascript: submitForm(document.hrefFm,'$portlet_display.getURLMax()')"></a></span>
+					#end
+
+					#if ($portlet_display.isShowCloseIcon())
+						<span class="icon-close"><a href="javascript: Desktop.portletRemove('$portlet_display.getId()','$portlet_column_pos');"></a></span>
+					#end
 				#end
 			</span>
 		</div>
@@ -52,5 +60,7 @@
 </table>
 
 <script type="text/javascript">
-	($is_maximized) ? Desktop.portletMaximize('$portlet_id') : Desktop.taskbarAddPortlet('$portlet_id');
+	if (!$portlet_display.isShowBackIcon() && $portlet_display.isShowMinIcon()) {
+		Desktop.taskbarAddPortlet('$portlet_id');
+	}
 </script>
