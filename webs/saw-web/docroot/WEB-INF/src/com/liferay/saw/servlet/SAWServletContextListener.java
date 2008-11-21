@@ -55,6 +55,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
+import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.util.AggregateClassLoader;
 import com.liferay.portal.kernel.util.DatabaseUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
@@ -138,7 +139,8 @@ public class SAWServletContextListener
 	}
 	
 	private ClassLoader _getCurrentClassLoader(){
-		return Thread.currentThread().getContextClassLoader();
+		//return Thread.currentThread().getContextClassLoader();
+		return PortletClassLoaderUtil.getClassLoader();
 	}
 	
 	private String _getDialect(){
