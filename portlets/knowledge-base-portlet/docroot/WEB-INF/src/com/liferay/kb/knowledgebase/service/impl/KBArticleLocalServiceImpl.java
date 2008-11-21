@@ -292,7 +292,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				DLServiceUtil.addFile(
 					companyId, portletId, article.getGroupId(),
 					repositoryId, dirName + "/" + fileName,
-					StringPool.BLANK, new String[0], bytes);
+					0, StringPool.BLANK, new String[0], bytes);
 			}
 			catch (DuplicateFileException dfe) {
 			}
@@ -908,7 +908,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long userId, long resourcePrimKey, double version,
 			String title, String htmlTitle, String content, String description,
 			boolean minorEdit, boolean template, boolean draft,
-			long parentResourcePrimKey, String[] tagsEntries, 
+			long parentResourcePrimKey, String[] tagsEntries,
 			String[] categoriesEntries, PortletPreferences prefs,
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
