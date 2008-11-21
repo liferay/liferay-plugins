@@ -1,12 +1,11 @@
 var Desktop = function () {
 	var $ = jQuery;
-	var isFreeformLayout = themeDisplay.isFreeformLayout();
 
 	return {
 		initHtml: function() {
 			var instance = this;
 
-			if (isFreeformLayout) {
+			if (instance._isFreeformLayout && !instance._isStateMaximized) {
 				instance._handleBodyClicks();
 			}
 			else {
@@ -20,7 +19,7 @@ var Desktop = function () {
 			instance._handleAddSidebar();
 			instance._handlePortletIcons();
 
-			if (isFreeformLayout) {
+			if (instance._isFreeformLayout && !instance._isStateMaximized) {
 				instance._handleTaskbarInit();
 				instance._handlePortletClicks();
 			}
@@ -65,10 +64,10 @@ var Desktop = function () {
 					var tbLinks = $('#taskbar-portlets .taskbar-link');
 					var count = tbLinks.size();
 
-					tbLinks.css({width:100/count + '%'});
+					instance._updateTaskbarLinks(count);
 				}
 
-				if (isFreeformLayout) {
+				if (instance._isFreeformLayout) {
 					instance.portletRestore(portletId);
 				}
 			}
@@ -106,7 +105,7 @@ var Desktop = function () {
 				}
 			);
 
-			// Improve performance in IE
+			// Improve performance when user resizes browser in IE
 
 			if ($('html').is('.ie')) {
 				var resizeTimer = null;
@@ -176,7 +175,7 @@ var Desktop = function () {
 				count = 1;
 			}
 
-			$('#taskbar-portlets .taskbar-link').css({width:100/count + '%'});
+			instance._updateTaskbarLinks(count);
 
 			var portlet = $('#p_p_id_' + portletId + '_');
 
@@ -199,7 +198,7 @@ var Desktop = function () {
 			var portlet = $('#p_p_id_' + portletId + '_');
 			var columnId = portlet.parent().attr('id');
 
-			if (isFreeformLayout) {
+			if (instance._isFreeformLayout) {
 				portlet.appendTo('#' + columnId);
 				portlet.css({display:''});
 			}
@@ -212,7 +211,7 @@ var Desktop = function () {
 			var currId = 'tb_' + portletId;
 			var taskbarId = $('.taskbar-link.selected').attr('id');
 
-			if ((currId != taskbarId) && isFreeformLayout) {
+			if ((currId != taskbarId) && instance._isFreeformLayout) {
 				instance.taskbarSelectedPortlet(portletId);
 			}
 
@@ -234,7 +233,7 @@ var Desktop = function () {
 			var instance = this;
 
 			$('html').css({overflow:'auto'});
-			$('#wrapper').css({'min-width':'964px'});
+			$('#wrapper').css({'min-width':instance._minWidth + 'px'});
 		},
 
 		_handleAddSidebar: function() {
@@ -319,7 +318,36 @@ var Desktop = function () {
 
 				instance.taskbarSelectedPortlet(portletId);
 			}
-		}
+		},
+
+		_updateTaskbarLinks: function(count) {
+			var instance = this;
+
+			var tbLinks = $('#taskbar-portlets .taskbar-link');
+
+			// IE6 does not support css min-width
+
+			if ($('html').is('.ie6')) {
+				var tbWidth = $('#taskbar-portlets-wrapper').width()-$('.lfr-dock.interactive-mode').width();
+				var width = tbWidth/count;
+
+				if (width > 200) {
+					width = 200;
+				}
+				else if (width < 40) {
+					width = 40;
+				}
+
+				tbLinks.css({width:width + 'px'});
+			}
+			else {
+				tbLinks.css({width:100/count + '%'});
+			}
+		},
+
+		_isFreeformLayout: themeDisplay.isFreeformLayout(),
+		_isStateMaximized: themeDisplay.isStateMaximized(),
+		_minWidth: 964
 
 	};
 }();

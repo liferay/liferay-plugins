@@ -141,7 +141,7 @@ div.portlet .portlet-title {
 
 .portlet .middle-right {
 	background: transparent url(../../images/portlet/middle_right.png) repeat-y scroll 0% 0%;
-	width: 16px;
+	width: 15px;
 }
 
 .portlet .bottom-center {
@@ -151,17 +151,8 @@ div.portlet .portlet-title {
 
 /* ---------- Portlet resize handle ---------- */
 
-.portlet-resize-handle {
-	bottom: 5px;
-	right: 7px;
-}
-
-.portlet-decorate-resize-container {
-	min-width: 100px;
-}
-
 .freeform .portlet-boundary .ui-resizable-handle {
-	margin: 4px 7px 7px;
+	margin: 4px 6px 7px;
 }
 
 /* ---------- Portlet maximized ---------- */

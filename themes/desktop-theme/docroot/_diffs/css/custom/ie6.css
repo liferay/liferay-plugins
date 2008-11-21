@@ -6,21 +6,34 @@
 	top: 72%;
 }
 
-/* ---------- Taskbar portlet links ---------- */
+/* ---------- Portlet wrapper and icons ---------- */
 
-.ie6 #taskbar-portlets .taskbar-link a {
-	padding: 3px 7px;
+.ie6 .portlet-icons a.selected {
+	filter: alpha(opacity=100);
+	opacity: 1;
 }
 
-/* ---------- Portlet resize handle ---------- */
+.ie6 .icon-min a {
+	background: transparent url(../../images/portlet/minimize_hover.png) no-repeat scroll 0 0;
+	filter: alpha(opacity=50);
+	opacity: .5;
+}
 
-.ie6 .portlet-resize-handle {
-	bottom: 1px;
+.ie6 .icon-max a {
+	background: transparent url(../../images/portlet/maximize_hover.png) no-repeat scroll 0 0;
+	filter: alpha(opacity=50);
+	opacity: .5;
+}
+
+.ie6 .icon-close a {
+	background: transparent url(../../images/portlet/close_hover.png) no-repeat scroll 0 0;
+	filter: alpha(opacity=50);
+	opacity: .5;
 }
 
 /* ---------- Add content portlet ---------- */
 
-.ie6 .lfr-add-content.expanded {
+.ie6 #portal_add_content .expanded {
 	background-image: none;
 }
 
