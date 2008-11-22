@@ -7,11 +7,9 @@ div.portlet {
 
 div.portlet .portlet-topper {
 	background-color: #555;
+	border-bottom: 1px solid #000;
 	height: 20px;
-}
-
-div.portlet .portlet-title {
-	display: none;
+	padding: 1px 10px 5px;
 }
 
 /* ---------- Portlet wrapper and icons ---------- */
@@ -20,18 +18,11 @@ div.portlet .portlet-title {
 	background: none;
 }
 
-.portlet {
-	border: 0;
-	margin: 0;
-	width: 100%;
-}
-
 .portlet-topper {
 	height: 24px;
 	margin-right: 0;
 	padding-right: 0;
 	padding-top: 6px;
-	overflow: hidden;
 	white-space: nowrap;
 }
 
@@ -116,37 +107,87 @@ div.portlet .portlet-title {
 
 /* ---------- Portlet container ---------- */
 
-.nonfreeform .portlet {
-	position: relative;
-}
-
-.portlet .top-center {
-	background: transparent url(../../images/portlet/top_center.png) repeat-x scroll 0% 0%;
+.portlet-top {
 	height: 30px;
 }
 
-.portlet .header-center {
-	background: transparent url(../../images/portlet/header_center.png) repeat-x scroll 0% 0%;
+.portlet-top .top-left {
+	background: transparent url(../../images/portlet/top_left.png) no-repeat scroll 0% 0%;
+	height: 30px;
+}
+
+.portlet-top .top-center {
+	background: transparent url(../../images/portlet/top_center.png) repeat-x scroll 0% 0%;
+	height: 30px;
+	margin-right: 15px;
+}
+
+.portlet-top .top-right {
+	background: transparent url(../../images/portlet/top_right.png) no-repeat scroll 100% 0%;
+	height: 30px;
+	margin-left: 15px;
+}
+
+.portlet-header {
 	height: 23px;
 }
 
-.portlet .middle-left {
+.portlet-header .header-left {
+	background: transparent url(../../images/portlet/header_left.png) no-repeat scroll 0% 0%;
+	height: 23px;
+}
+
+.portlet-header .header-center {
+	background: transparent url(../../images/portlet/header_center.png) repeat-x scroll 0% 0%;
+	height: 23px;
+	margin-right: 15px;
+}
+
+.portlet-header .header-right {
+	background: transparent url(../../images/portlet/header_right.png) no-repeat scroll 100% 0%;
+	height: 23px;
+	margin-left: 15px;
+}
+
+.portlet-middle .middle-left {
 	background: transparent url(../../images/portlet/middle_left.png) repeat-y scroll 0% 0%;
-	width: 15px;
 }
 
-.portlet .middle-center {
+.portlet-middle .middle-center {
 	background: #FFF;
+	margin-right: 15px;
 }
 
-.portlet .middle-right {
-	background: transparent url(../../images/portlet/middle_right.png) repeat-y scroll 0% 0%;
-	width: 15px;
+.portlet-middle .middle-right {
+	background: transparent url(../../images/portlet/middle_right.png) repeat-y scroll 100% 0%;
+	margin-left: 15px;
 }
 
-.portlet .bottom-center {
+.portlet-clear {
+	clear: both;
+	height: 0;
+	overflow: hidden;
+}
+
+.portlet-bottom {
+	height: 15px;
+}
+
+.portlet-bottom .bottom-left {
+	background: transparent url(../../images/portlet/bottom_left.png) no-repeat scroll 0% 0%;
+	height: 15px;
+}
+
+.portlet-bottom .bottom-center {
 	background: transparent url(../../images/portlet/bottom_center.png) repeat-x scroll 0% 0%;
 	height: 15px;
+	margin-right: 15px;
+}
+
+.portlet-bottom .bottom-right {
+	background: transparent url(../../images/portlet/bottom_right.png) no-repeat scroll 100% 0%;
+	height: 15px;
+	margin-left: 15px;
 }
 
 /* ---------- Portlet resize handle ---------- */

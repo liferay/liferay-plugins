@@ -6,6 +6,12 @@
 	top: 72%;
 }
 
+/* ---------- Portlet template ---------- */
+
+.ie6 div.portlet .portlet-topper {
+	padding: 1px 10px;
+}
+
 /* ---------- Portlet wrapper and icons ---------- */
 
 .ie6 .portlet-icons a.selected {
