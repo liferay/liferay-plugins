@@ -1,4 +1,4 @@
-## --- Common --- ##
+## ---------- Common ---------- ##
 
 #set ($groupLocalService = $serviceLocator.findService("com.liferay.portal.service.GroupLocalService"))
 #set ($journalTemplateLocalService = $serviceLocator.findService("com.liferay.portlet.journal.service.JournalTemplateLocalService"))
@@ -11,27 +11,41 @@
 #set ($journal_template_id = $theme_settings.getProperty("css-template-id"))
 #set ($theme_flash_folder = "$themeDisplay.getPathThemeRoot()/flash")
 
-#if ($is_maximized)
-	#set ($css_class = "$css_class maximized")
-#elseif (!$is_freeform)
-	#set ($css_class = "$css_class nonfreeform")
+#if ($is_portlet_page && $is_maximized)
+	#if ($paramUtil.getString($request, "p_p_id").equals("58"))
+		#set ($is_login = true)
+	#end
+#elseif ($themeDisplay.getTilesTitle().equals("email-address") ||
+		$themeDisplay.getTilesTitle().equals("new-password") ||
+		$themeDisplay.getTilesTitle().equals("password-reminder") ||
+		$themeDisplay.getTilesTitle().equals("terms-of-use"))
+
+	#set ($is_login = true)
+#end
+
+#if ($is_login)
+	#set ($css_class = "$css_class desktop-login")
+#elseif ($is_maximized)
+	#set ($css_class = "$css_class desktop-maximized")
+#else
+	#set ($css_class = "$css_class desktop-normal")
 #end
 
 #if ($request.getHeader("User-Agent").indexOf("MSIE 6.0") != -1)
 	#set ($is_ie6 = true)
 #end
 
-## --- Flags --- ##
+## ---------- Flags ---------- ##
 
-#set ($has_taskbar = !$is_maximized)
 #set ($has_journal_template = $journalTemplateLocalService.hasTemplate($group_id, $journal_template_id))
 #set ($has_sidebar = ($show_add_content && !$is_ie6))
+#set ($has_taskbar = !$is_maximized && !$is_login)
 
-## --- Dock --- ##
+## ---------- Dock ---------- ##
 
-#set ($home_text = "My $home_text")  ## Should set this in Language.properties ##
+#set ($home_text = $languageUtil.get($company_id, $locale, "my-home"))
 
-## --- Sidebar --- ##
+## ---------- Sidebar ---------- ##
 
 #if ($has_sidebar)
 	#set ($add_content_url = "Sidebar.animate();")

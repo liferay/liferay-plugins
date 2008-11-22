@@ -1,13 +1,11 @@
-## --- Common --- ##
+## ---------- Common ---------- ##
 
 #set ($portlet_display = $portletDisplay)
 
 #set ($userLocalService = $serviceLocator.findService("com.liferay.portal.service.UserLocalService"))
 #set ($organizationLocalService = $serviceLocator.findService("com.liferay.portal.service.OrganizationLocalService"))
 
-## --- Group name --- ##
-
-#set ($group_name = "")
+## ---------- Group name ---------- ##
 
 #if ($layout.getGroup().isUser())
 	#set ($user2 = $userLocalService.getUserById($layout.getGroup().getClassPK()))
@@ -19,7 +17,7 @@
 	#set ($group_name = $layout.getGroup().getName())
 #end
 
-## --- Portlet --- ##
+## ---------- Portlet ---------- ##
 
 #set ($portlet_id = $portlet_display.getId())
 #set ($portlet_title = $portlet_display.getTitle())
@@ -27,6 +25,4 @@
 #set ($portlet_back_url = $portlet_display.getURLBack())
 #set ($portlet_column_pos = $portlet_display.getColumnPos())
 
-#set ($is_maximized = $portletDisplay.isStateMax())
-#set ($images_folder = "$themeDisplay.getPathThemeImages()/portlet")
 #set ($portlet_address = "$group_name - $layout.getHTMLTitle($locale) - $portlet_title")

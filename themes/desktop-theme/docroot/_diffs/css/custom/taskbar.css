@@ -116,10 +116,6 @@
 	border-top: none;
 }
 
-.js .interactive-mode li.control-panel {
-	border-bottom: 1px solid #DEDEDE;
-}
-
 .js .interactive-mode li.sign-out {
 	border-top: 1px solid #DEDEDE;
 }

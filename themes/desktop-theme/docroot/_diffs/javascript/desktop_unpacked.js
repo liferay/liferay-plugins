@@ -5,10 +5,7 @@ var Desktop = function () {
 		initHtml: function() {
 			var instance = this;
 
-			var specialPortlets = $('#portlet-wrapper-password-reminder').size() +
-					$('#portlet-wrapper-terms-of-use').size();
-
-			if (instance._isFreeformLayout && !instance._isStateMaximized && (specialPortlets == 0)) {
+			if (instance._isFreeformLayout && !instance._isStateMaximized && !instance._isLogin) {
 				instance._handleBodyClicks();
 			}
 			else {
@@ -19,13 +16,10 @@ var Desktop = function () {
 		initPage: function() {
 			var instance = this;
 
-			var specialPortlets = $('#portlet-wrapper-password-reminder').size() +
-					$('#portlet-wrapper-terms-of-use').size();
-
 			instance._handleAddSidebar();
 			instance._handlePortletIcons();
 
-			if (instance._isFreeformLayout && !instance._isStateMaximized && (specialPortlets == 0)) {
+			if (instance._isFreeformLayout && !instance._isStateMaximized && !instance._isLogin) {
 				instance._handleTaskbarInit();
 				instance._handlePortletClicks();
 			}
@@ -296,6 +290,7 @@ var Desktop = function () {
 			}
 		},
 
+		_isLogin: $('body').hasClass('desktop-login'),
 		_isFreeformLayout: themeDisplay.isFreeformLayout(),
 		_isStateMaximized: themeDisplay.isStateMaximized(),
 		_minWidth: 964
