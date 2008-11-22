@@ -1,10 +1,12 @@
 @import url(custom/base.css);
 
+@import url(custom/taskbar.css);
+
+@import url(custom/navigation.css);
+
 @import url(custom/portlet.css);
 
 @import url(custom/sidebar.css);
-
-@import url(custom/taskbar.css);
 
 @import url(custom/custom.css);
 

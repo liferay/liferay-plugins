@@ -37,13 +37,13 @@
 	opacity: .5;
 }
 
-/* ---------- Add content portlet ---------- */
+/* ---------- Add Content portlet ---------- */
 
 .ie6 #portal_add_content .expanded {
 	background-image: none;
 }
 
-/* ---------- Tagged content portlet ---------- */
+/* ---------- Tagged Content portlet ---------- */
 
 .ie6 #content-wrapper .portlet-boundary.portlet-tagged-content {
 	filter: alpha(opacity=100);

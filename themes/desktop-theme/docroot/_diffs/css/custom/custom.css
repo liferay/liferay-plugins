@@ -1,24 +1,4 @@
-/* ---------- Main background ---------- */
-
-body.desktop-login {
-	background: #347510 url(../../images/desktop/desktop_normal_bg.png) no-repeat fixed 50% 50%;
-}
-
-body.desktop-maximized {
-	background: #347510 url(../../images/desktop/desktop_normal_bg.png) no-repeat fixed 50% 50%;
-}
-
-body.desktop-normal {
-	background: #347510 url(../../images/desktop/desktop_normal_bg.png) no-repeat fixed 50% 50%;
-}
-
-/* ---------- Layout ---------- */
-
-#layout-grid .lfr-column {
-	padding: 0;
-}
-
-/* ---------- Add content portlet ---------- */
+/* ---------- Add Content portlet ---------- */
 
 .lfr-has-sidebar {
 	padding-left: 0;
@@ -34,7 +14,7 @@ body.desktop-normal {
 	padding: 10px;
 }
 
-/* ---------- Tagged content portlet ---------- */
+/* ---------- Tagged Content portlet ---------- */
 
 #content-wrapper .portlet-boundary.portlet-tagged-content {
 	opacity: 1;
