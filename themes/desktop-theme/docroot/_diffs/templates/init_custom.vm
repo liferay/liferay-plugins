@@ -11,16 +11,16 @@
 #set ($journal_template_id = $theme_settings.getProperty("css-template-id"))
 #set ($theme_flash_folder = "$themeDisplay.getPathThemeRoot()/flash")
 
-#if ($is_portlet_page && $is_maximized)
-	#if ($paramUtil.getString($request, "p_p_id").equals("58"))
-		#set ($is_login_page = true)
-	#end
-#elseif ($themeDisplay.getTilesTitle().equals("email-address") ||
+#if ($themeDisplay.getTilesTitle().equals("email-address") ||
 		$themeDisplay.getTilesTitle().equals("new-password") ||
 		$themeDisplay.getTilesTitle().equals("password-reminder") ||
 		$themeDisplay.getTilesTitle().equals("terms-of-use"))
 
 	#set ($is_login_page = true)
+#elseif ($is_portlet_page && $is_maximized && !$is_signed_in)
+	#if ($paramUtil.getString($request, "p_p_id").equals("58"))
+		#set ($is_login_page = true)
+	#end
 #end
 
 #if ($is_login_page)
