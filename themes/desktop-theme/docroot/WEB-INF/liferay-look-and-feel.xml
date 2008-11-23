@@ -6,9 +6,18 @@
 		<version>5.2.0+</version>
 	</compatibility>
 	<theme id="desktop" name="Desktop">
+		<root-path>/</root-path>
+		<templates-path>${root-path}/templates</templates-path>
+		<images-path>${root-path}/images</images-path>
+		<template-extension>vm</template-extension>
 		<settings>
 			<setting key="css-template-id" value="CSS-TEMPLATE" />
 		</settings>
+		<color-scheme id="01" name="Liferay">
+			<default-cs>true</default-cs>
+			<css-class></css-class>
+			<color-scheme-images-path>${images-path}</color-scheme-images-path>
+		</color-scheme>
 		<layout-templates>
 			<custom>
 				<layout-template id="freeform" name="Desktop">

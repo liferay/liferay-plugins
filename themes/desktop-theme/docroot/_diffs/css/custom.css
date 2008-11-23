@@ -1,13 +1,15 @@
-@import url(custom/base.css);
+/* ---------- Import Default CSS ---------- */
 
-@import url(custom/taskbar.css);
+@import url(default/base.css);
 
-@import url(custom/navigation.css);
+@import url(default/taskbar.css);
 
-@import url(custom/portlet.css);
+@import url(default/navigation.css);
 
-@import url(custom/sidebar.css);
+@import url(default/portlet.css);
 
-@import url(custom/custom.css);
+@import url(default/sidebar.css);
 
-@import url(custom/ie6.css);
+@import url(default/custom_portlets.css);
+
+@import url(default/ie6.css);
