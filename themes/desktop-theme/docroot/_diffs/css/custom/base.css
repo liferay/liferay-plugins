@@ -13,15 +13,15 @@ body {
 /* ---------- Main background ---------- */
 
 body.desktop-login {
-	background: #347510 url(../../images/desktop/desktop_normal_bg.png) no-repeat fixed 50% 50%;
+	background: #5C9515 url(../../images/desktop/desktop_login_bg.png) no-repeat fixed bottom left;
 }
 
 body.desktop-maximized {
-	background: #347510 url(../../images/desktop/desktop_normal_bg.png) no-repeat fixed 50% 50%;
+	background: #222 url(../../images/desktop/desktop_maximized_bg.png) no-repeat fixed bottom left;
 }
 
 body.desktop-normal {
-	background: #347510 url(../../images/desktop/desktop_normal_bg.png) no-repeat fixed 50% 50%;
+	background: #5C9515 url(../../images/desktop/desktop_normal_bg.png) no-repeat fixed 50% 50%;
 }
 
 /* ---------- Main content body ---------- */

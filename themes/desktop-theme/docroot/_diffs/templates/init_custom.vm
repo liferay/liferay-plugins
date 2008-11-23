@@ -13,17 +13,17 @@
 
 #if ($is_portlet_page && $is_maximized)
 	#if ($paramUtil.getString($request, "p_p_id").equals("58"))
-		#set ($is_login = true)
+		#set ($is_login_page = true)
 	#end
 #elseif ($themeDisplay.getTilesTitle().equals("email-address") ||
 		$themeDisplay.getTilesTitle().equals("new-password") ||
 		$themeDisplay.getTilesTitle().equals("password-reminder") ||
 		$themeDisplay.getTilesTitle().equals("terms-of-use"))
 
-	#set ($is_login = true)
+	#set ($is_login_page = true)
 #end
 
-#if ($is_login)
+#if ($is_login_page || $show_sign_in)
 	#set ($css_class = "$css_class desktop-login")
 #elseif ($is_maximized)
 	#set ($css_class = "$css_class desktop-maximized")
@@ -39,7 +39,7 @@
 
 #set ($has_journal_template = $journalTemplateLocalService.hasTemplate($group_id, $journal_template_id))
 #set ($has_sidebar = ($show_add_content && !$is_ie6))
-#set ($has_taskbar = !$is_maximized && !$is_login)
+#set ($has_taskbar = !$is_maximized && !$is_login_page)
 
 ## ---------- Dock ---------- ##
 

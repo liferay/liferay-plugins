@@ -5,7 +5,7 @@ var Desktop = function () {
 		initHtml: function() {
 			var instance = this;
 
-			if (instance._isFreeformLayout && !instance._isStateMaximized && !instance._isLogin) {
+			if (instance._isFreeformLayout && !instance._isStateMaximized && !instance._isLoginPage) {
 				instance._handleBodyClicks();
 			}
 			else {
@@ -19,7 +19,7 @@ var Desktop = function () {
 			instance._handleAddSidebar();
 			instance._handlePortletIcons();
 
-			if (instance._isFreeformLayout && !instance._isStateMaximized && !instance._isLogin) {
+			if (instance._isFreeformLayout && !instance._isStateMaximized && !instance._isLoginPage) {
 				instance._handleTaskbarInit();
 				instance._handlePortletClicks();
 			}
@@ -290,7 +290,7 @@ var Desktop = function () {
 			}
 		},
 
-		_isLogin: $('body').hasClass('desktop-login'),
+		_isLoginPage: $('body').hasClass('desktop-login'),
 		_isFreeformLayout: themeDisplay.isFreeformLayout(),
 		_isStateMaximized: themeDisplay.isStateMaximized(),
 		_minWidth: 964
