@@ -270,6 +270,10 @@ var Desktop = function () {
 
 			var tbLinks = $('#taskbar-portlets .taskbar-link');
 
+			if ($('body').hasClass('osx')) {
+				return;
+			}
+
 			// IE6 does not support css min-width
 
 			if ($('html').is('.ie6')) {
@@ -290,7 +294,7 @@ var Desktop = function () {
 			}
 		},
 
-		_isLoginPage: $('body').hasClass('desktop-login'),
+		_isLoginPage: ($('#desktop-login').length == 1) ? true : false,
 		_isFreeformLayout: themeDisplay.isFreeformLayout(),
 		_isStateMaximized: themeDisplay.isStateMaximized(),
 		_minWidth: 964

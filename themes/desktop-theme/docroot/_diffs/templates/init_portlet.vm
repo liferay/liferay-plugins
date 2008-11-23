@@ -1,9 +1,9 @@
 ## ---------- Common ---------- ##
 
-#set ($portlet_display = $portletDisplay)
-
 #set ($userLocalService = $serviceLocator.findService("com.liferay.portal.service.UserLocalService"))
 #set ($organizationLocalService = $serviceLocator.findService("com.liferay.portal.service.OrganizationLocalService"))
+
+#set ($color_scheme = $themeDisplay.getColorScheme().getCssClass())
 
 ## ---------- Group name ---------- ##
 
@@ -18,6 +18,8 @@
 #end
 
 ## ---------- Portlet ---------- ##
+
+#set ($portlet_display = $portletDisplay)
 
 #set ($portlet_id = $portlet_display.getId())
 #set ($portlet_title = $portlet_display.getTitle())

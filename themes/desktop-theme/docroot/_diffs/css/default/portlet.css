@@ -56,16 +56,14 @@ div.portlet .portlet-topper {
 	padding: 10px;
 }
 
-.portlet-icons {
+.portlet-modes {
 	right: 0;
 	top: 6px;
 }
 
-.portlet-icons a {
-	display: block;
+.portlet-modes a {
 	float: left;
 	height: 15px;
-	text-decoration: none;
 }
 
 .icon-min a {
@@ -95,9 +93,13 @@ div.portlet .portlet-topper {
 	background: transparent url(../../images/portlet/close_hover.png) no-repeat scroll 0 0;
 }
 
+.icon-back {
+	top: 8px;
+}
+
 .portlet-icon-back {
 	color: #FFF;
-	padding: 3px 0pt 6px 18px;
+	text-decoration: none;
 }
 
 .portlet-icon-back:hover {

@@ -10,7 +10,14 @@
 							$theme.iconPortlet() $portlet_title
 						</span>
 
-						<span class="portlet-icons" id="portlet-small-icon-bar_$portlet_id">
+						<span
+							#if ($portlet_display.isShowBackIcon())
+								class="portlet-icons icon-back"
+							#else
+								class="portlet-icons portlet-modes"
+							#end
+							id="portlet-small-icon-bar_$portlet_id"
+						>
 							#if ($portlet_display.isShowBackIcon())
 								<a href="$portlet_back_url" class="portlet-icon-back">#language ("return-to-full-page")</a>
 							#else
@@ -27,6 +34,10 @@
 								#end
 							#end
 						</span>
+
+						#if (!$portlet_display.isShowBackIcon() && $color_scheme.equals("osx"))
+							<span class="portlet-icons icon-options">$theme.iconOptions()</span>
+						#end
 					</div>
 				</div>
 			</div>

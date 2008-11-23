@@ -18,6 +18,10 @@
 			<css-class></css-class>
 			<color-scheme-images-path>${images-path}</color-scheme-images-path>
 		</color-scheme>
+		<color-scheme id="02" name="Mac">
+			<css-class>osx</css-class>
+			<color-scheme-images-path>${images-path}/color_schemes/osx</color-scheme-images-path>
+		</color-scheme>
 		<layout-templates>
 			<custom>
 				<layout-template id="freeform" name="Desktop">

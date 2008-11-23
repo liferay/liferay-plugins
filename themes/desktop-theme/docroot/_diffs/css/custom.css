@@ -13,3 +13,7 @@
 @import url(default/custom_portlets.css);
 
 @import url(default/ie6.css);
+
+/* ---------- Import Color Schemes ---------- */
+
+@import url(color_schemes/osx.css);
