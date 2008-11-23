@@ -38,7 +38,7 @@
 	#end
 </head>
 
-<body class="$css_class">
+<body class="$css_class" id="$css_id">
 
 $theme.include($top_messages_include)
 

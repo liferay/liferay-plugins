@@ -14,11 +14,6 @@
 
 /* ---------- Portlet wrapper and icons ---------- */
 
-.ie6 .portlet-icons a.selected {
-	filter: alpha(opacity=100);
-	opacity: 1;
-}
-
 .ie6 .icon-min a {
 	background: transparent url(../../images/portlet/minimize_hover.png) no-repeat scroll 0 0;
 	filter: alpha(opacity=50);
@@ -37,15 +32,13 @@
 	opacity: .5;
 }
 
+.ie6 .icon-min a.selected, .ie6 .icon-max a.selected, .ie6 .icon-close a.selected {
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+
 /* ---------- Add Content portlet ---------- */
 
 .ie6 #portal_add_content .expanded {
 	background-image: none;
-}
-
-/* ---------- Tagged Content portlet ---------- */
-
-.ie6 #content-wrapper .portlet-boundary.portlet-tagged-content {
-	filter: alpha(opacity=100);
-	opacity: 1;
 }

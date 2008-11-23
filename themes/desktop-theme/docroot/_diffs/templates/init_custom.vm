@@ -23,12 +23,14 @@
 	#set ($is_login_page = true)
 #end
 
-#if ($is_login_page || $show_sign_in)
-	#set ($css_class = "$css_class desktop-login")
+#if ($is_login_page)
+	#set ($css_id = "desktop-login")
+#elseif ($show_sign_in)
+	#set ($css_id = "desktop-locked")
 #elseif ($is_maximized)
-	#set ($css_class = "$css_class desktop-maximized")
+	#set ($css_id = "desktop-maximized")
 #else
-	#set ($css_class = "$css_class desktop-normal")
+	#set ($css_id = "desktop-user")
 #end
 
 #if ($request.getHeader("User-Agent").indexOf("MSIE 6.0") != -1)

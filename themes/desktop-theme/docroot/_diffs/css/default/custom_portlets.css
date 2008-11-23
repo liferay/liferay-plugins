@@ -16,6 +16,6 @@
 
 /* ---------- Tagged Content portlet ---------- */
 
-#content-wrapper .portlet-boundary.portlet-tagged-content {
-	opacity: 1;
+#main-container .portlet-tagged-content {
+	display: block;
 }

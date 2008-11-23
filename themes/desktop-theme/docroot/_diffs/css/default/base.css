@@ -12,16 +12,16 @@ body {
 
 /* ---------- Main background ---------- */
 
-body.desktop-login {
-	background: #5C9515 url(../../images/desktop/desktop_login_bg.png) no-repeat fixed bottom left;
+#desktop-locked, #desktop-login {
+	background: #5C9515 url(../../images/desktop/desktop_locked_bg.png) no-repeat fixed bottom left;
 }
 
-body.desktop-maximized {
+#desktop-maximized {
 	background: #222 url(../../images/desktop/desktop_maximized_bg.png) no-repeat fixed bottom left;
 }
 
-body.desktop-normal {
-	background: #5C9515 url(../../images/desktop/desktop_normal_bg.png) no-repeat fixed 50% 50%;
+#desktop-user {
+	background: #5C9515 url(../../images/desktop/desktop_user_bg.jpg) no-repeat fixed 50% 50%;
 }
 
 /* ---------- Main content body ---------- */

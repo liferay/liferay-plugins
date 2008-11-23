@@ -23,14 +23,6 @@
 
 /* ---------- Dock menu ---------- */
 
-.js .interactive-mode ul {
-	opacity: .92;
-}
-
-.js .interactive-mode .lfr-flyout.has-children ul {
-	opacity: 1;
-}
-
 .js .interactive-mode ul a {
 	color: #000;
 }
