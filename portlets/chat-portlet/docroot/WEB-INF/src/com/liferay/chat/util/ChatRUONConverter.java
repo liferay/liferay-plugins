@@ -50,7 +50,7 @@ public class ChatRUONConverter implements Converter {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("<a class=\"chat-user\" href=\"javascript: ;\" ");
-		sb.append("onClick=\"Liferay.Chat.openChatWindow('");
+		sb.append("onClick=\"Liferay.Chat.Manager.openPanel('");
 		sb.append(userId);
 		sb.append("');\">");
 		sb.append(LanguageUtil.get(locale, "chat"));
