@@ -1,3 +1,94 @@
+/**
+ * Ajax Queue Plugin
+ * 
+ * Homepage: http://jquery.com/plugins/project/ajaxqueue
+ * Documentation: http://docs.jquery.com/AjaxQueue
+ */
+
+/*
+ * Queued Ajax requests.
+ * A new Ajax request won't be started until the previous queued 
+ * request has finished.
+ */
+
+/*
+ * Synced Ajax requests.
+ * The Ajax request will happen as soon as you call this method, but
+ * the callbacks (success/error/complete) won't fire until all previous
+ * synced requests have been completed.
+ */
+
+;(function($) {
+
+	var ajax = $.ajax;
+
+	var pendingRequests = {};
+
+	var synced = [];
+	var syncedData = [];
+
+	$.ajax = function(settings) {
+		// create settings for compatibility with ajaxSetup
+		settings = jQuery.extend(settings, jQuery.extend({}, jQuery.ajaxSettings, settings));
+
+		var port = settings.port;
+
+		switch(settings.mode) {
+		case "abort":
+			if ( pendingRequests[port] ) {
+				pendingRequests[port].abort();
+			}
+			return pendingRequests[port] = ajax.apply(this, arguments);
+		case "queue":
+			var _old = settings.complete;
+			settings.complete = function(){
+				if ( _old )
+					_old.apply( this, arguments );
+				jQuery([ajax]).dequeue("ajax" + port );;
+			};
+
+			jQuery([ ajax ]).queue("ajax" + port, function(){
+				ajax( settings );
+			});
+			return undefined;
+		case "sync":
+			var pos = synced.length;
+
+			synced[ pos ] = {
+				error: settings.error,
+				success: settings.success,
+				complete: settings.complete,
+				done: false
+			};
+
+			syncedData[ pos ] = {
+				error: [],
+				success: [],
+				complete: []
+			};
+
+			settings.error = function(){ syncedData[ pos ].error = arguments; };
+			settings.success = function(){ syncedData[ pos ].success = arguments; };
+			settings.complete = function(){
+				syncedData[ pos ].complete = arguments;
+				synced[ pos ].done = true;
+
+				if ( pos == 0 || !synced[ pos-1 ] )
+					for ( var i = pos; i < synced.length && synced[i].done; i++ ) {
+						if ( synced[i].error ) synced[i].error.apply( jQuery, syncedData[i].error );
+						if ( synced[i].success ) synced[i].success.apply( jQuery, syncedData[i].success );
+						if ( synced[i].complete ) synced[i].complete.apply( jQuery, syncedData[i].complete );
+
+						synced[i] = null;
+						syncedData[i] = null;
+					}
+			};
+		}
+		return ajax.apply(this, arguments);
+	};
+
+})(jQuery);
+
 jQuery.fn.disableSelection = function() {
 	return this.attr('unselectable', 'on').css('MozUserSelect', 'none').bind('selectstart.ui', function() {
 			return false;
@@ -795,39 +886,32 @@ Liferay.Chat.Manager = {
 		return instance._panels[panelName];
 	},
 
-	_getRequest: function() {
+	_getRequest: function(force) {
 		var instance = this;
 
-		if (!instance._requestFiring) {
-			var params = instance._getSettings();
+		var params = instance._getSettings();
+		var mode = !force ? 'queue' : 'abort';
 
-			jQuery.ajax(
-				{
-					beforeSend: function (connection) {
-						instance._requestFiring = true;
+		jQuery.ajax(
+			{
+				beforeSend: function (connection) {
+					connection.setRequestHeader('Connection', 'Keep-Alive');
+				},
+				cache: false,
+				type: 'POST',
+				url: instance._latestUrl,
+				data: params,
+				mode: mode,
+				port: 'chat',
+				dataType: 'json',
+				success: function (response) {
+					instance._activeBrowser = response.activeBrowser;
 
-						connection.setRequestHeader('Connection', 'Keep-Alive');
-					},
-
-					cache: false,
-					type: 'POST',
-					url: instance._latestUrl,
-					data: params,
-					dataType: 'json',
-
-					complete: function(xHR) {
-						instance._requestFiring = false;
-					},
-
-					success: function (response) {
-						instance._activeBrowser = response.activeBrowser;
-
-						instance._updateBuddies(response.buddies);
-						instance._updateConversations(response.entries);
-					}
+					instance._updateBuddies(response.buddies);
+					instance._updateConversations(response.entries);
 				}
-			);
-		}
+			}
+		);
 	},
 
 	_getSettings: function() {
@@ -840,7 +924,7 @@ Liferay.Chat.Manager = {
 			online: instance._online,
 			statusMessage: instance._statusMessage,
 			playSound: instance._playSound,
-			createDate: instance._entriesFrom
+			createDate: instance._entriesFrom,
 		};
 	},
 
@@ -856,7 +940,7 @@ Liferay.Chat.Manager = {
 		var instance = this;
 
 		instance._activePanelId = '';
-		instance._getRequest();
+		instance._getRequest(true);
 	},
 
 	_onPanelShow: function(event, panel) {
@@ -873,7 +957,7 @@ Liferay.Chat.Manager = {
 		}
 
 		instance._activePanelId = panel._panelId;
-		instance._getRequest();
+		instance._getRequest(true);
 	},
 
 	_onPanelClose: function(event, panel) {
@@ -886,7 +970,7 @@ Liferay.Chat.Manager = {
 		}
 
 		instance._activePanelId = '';
-		instance._getRequest();
+		instance._getRequest(true);
 	},
 
 	_sendRequest: function(options, callback) {
@@ -897,6 +981,8 @@ Liferay.Chat.Manager = {
 				cache: false,
 				type: 'POST',
 				url: instance._sendUrl,
+				mode: 'abort',
+				port: 'chat',
 				data: options,
 				success: function () {
 					if (callback) {
@@ -993,7 +1079,7 @@ Liferay.Chat.Manager = {
 
 			var buddy = instance._buddies[userId];
 
-			if (buddy) {
+			if (buddy && buddy.isActive) {
 				var chat = instance._chatSessions[userId];
 
 				if (!chat && entry.content != '' && entry.createDate > instance._created) {
