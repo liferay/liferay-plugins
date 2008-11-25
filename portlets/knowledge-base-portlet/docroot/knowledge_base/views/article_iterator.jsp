@@ -83,7 +83,7 @@ else if (type.equals("templates")) {
 	emptyResultsMessage = "there-are-no-knowledge-base-templates";
 }
 else if (type.equals("tagged_articles")) {
-	emptyResultsMessage = "there-are-no-knowledge-base-articles-with-this-tag";
+	emptyResultsMessage = "there-are-no-knowledge-base-articles-with-this-category";
 }
 
 SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, emptyResultsMessage);

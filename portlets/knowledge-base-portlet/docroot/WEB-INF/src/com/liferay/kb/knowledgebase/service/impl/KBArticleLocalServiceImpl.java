@@ -1010,7 +1010,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		TagsAssetLocalServiceUtil.updateAsset(
 			userId, article.getGroupId(), className,
-			article.getResourcePrimKey(), tagsEntries, categoriesEntries, null,
+			article.getResourcePrimKey(), categoriesEntries, tagsEntries, null,
 			null, null, null, ContentTypes.TEXT_HTML, article.getTitle(), null,
 			null, null, 0, 0, null, false);
 	}

@@ -43,7 +43,7 @@ catch (NoSuchPropertyException nspe) {
 %>
 
 <h1 class="article-title">
-	<%= LanguageUtil.format(pageContext, "articles-with-tag-x", tag) %>
+	<%= LanguageUtil.format(pageContext, "articles-with-category-x", tag) %>
 </h1>
 
 <c:if test="<%= Validator.isNotNull(description) %>">
