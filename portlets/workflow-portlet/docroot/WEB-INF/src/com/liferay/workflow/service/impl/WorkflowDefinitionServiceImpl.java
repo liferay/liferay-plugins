@@ -100,7 +100,8 @@ public class WorkflowDefinitionServiceImpl
 
 			DLServiceUtil.addFile(
 				companyId, portletId, groupId, repositoryId, fileName,
-				StringPool.BLANK, new String[0], xml.getBytes());
+				System.currentTimeMillis(),StringPool.BLANK, new String[0], 
+				xml.getBytes());
 
 			// Resources
 
