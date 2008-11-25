@@ -20,7 +20,6 @@
 
 ;(function($) {
 	if (Liferay.Browser.isIe() && Liferay.Browser.getMajorVersion() > 6) {
-
 		var ajax = $.ajax;
 
 		var pendingRequests = {};
