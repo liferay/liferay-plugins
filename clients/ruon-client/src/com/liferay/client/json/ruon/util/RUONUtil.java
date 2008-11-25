@@ -51,10 +51,12 @@ public class RUONUtil {
 		message.put("command", "getPresences");
 		message.put("userId", userId);
 		message.put("locale", locale);
-
+		
+		long timeout=1000000;
+		
 		JSONObject responseJSON =
 			(JSONObject)MessageBusUtil.sendSynchronousMessage(
-				DestinationNames.RUON, message);
+				DestinationNames.RUON, message,timeout);
 
 		if (responseJSON == null) {
 			return null;
