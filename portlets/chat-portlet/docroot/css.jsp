@@ -40,7 +40,7 @@ body {
 	left: 15px;
 	position: fixed;
 	right: 15px;
-	z-index: 10;
+	z-index: 1000;
 }
 
 .ie6 .chat-bar {
@@ -51,6 +51,7 @@ body {
 	bottom: 0;
 	border: 0;
 	position: absolute;
+	z-index: 100;
 }
 
 .chat-sound-container {
