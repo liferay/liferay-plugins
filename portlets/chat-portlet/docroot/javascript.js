@@ -316,7 +316,7 @@ Liferay.Chat.Panel = new Class({
 
 		panel.find('.panel-button').bind(
 			'click',
-			function (event) {
+			function(event) {
 				var target = jQuery(event.target);
 
 				if (target.hasClass('minimize')) {
@@ -380,7 +380,7 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend({
 		}
 
 		instance._chatInput.bind('keyup focus',
-			function (event) {
+			function(event) {
 				instance._keystroke(event, this);
 			}
 		);
@@ -617,7 +617,7 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend({
 		instance._lastMessageTime = options.time;
 
 		setTimeout(
-			function () {
+			function() {
 				output[0].scrollTop = output[0].scrollHeight - output[0].clientHeight;
 		}, 1);
 	}
@@ -719,6 +719,16 @@ Liferay.Chat.Manager = {
 					function() {
 						settingsPanel.removeClass('saved');
 					}, 1500);
+			}
+		);
+
+		jQuery(document).bind(
+			'focus focusin',
+			function(event) {
+				instance._activeBrowser = true;
+
+				instance._cancelRequestTimer();
+				instance._createRequestTimer();
 			}
 		);
 	},
@@ -895,7 +905,7 @@ Liferay.Chat.Manager = {
 
 		jQuery.ajax(
 			{
-				beforeSend: function (connection) {
+				beforeSend: function(connection) {
 					connection.setRequestHeader('Connection', 'Keep-Alive');
 				},
 				cache: false,
@@ -905,11 +915,16 @@ Liferay.Chat.Manager = {
 				mode: mode,
 				port: 'chat',
 				dataType: 'json',
-				success: function (response) {
-					instance._activeBrowser = response.activeBrowser;
-
+				success: function(response) {
 					instance._updateBuddies(response.buddies);
 					instance._updateConversations(response.entries);
+
+					if (!response.activeBrowser) {
+						instance._cancelRequestTimer();
+					}
+					else {
+						instance._activeBrowser = null;
+					}
 				}
 			}
 		);
@@ -985,7 +1000,7 @@ Liferay.Chat.Manager = {
 				mode: 'abort',
 				port: 'chat',
 				data: options,
-				success: function () {
+				success: function() {
 					if (callback) {
 						callback.apply(this, arguments);
 					}
@@ -1056,7 +1071,11 @@ Liferay.Chat.Manager = {
 	_updateConversations: function(entries) {
 		var instance = this;
 
-		var numEntries = entries.length || 0;
+		var numEntries = 0;
+
+		if (entries) {
+			numEntries = entries.length;
+		}
 
 		var currentUser = instance._currentUser;
 		var currentUserId = currentUser.userId;
@@ -1152,7 +1171,7 @@ Liferay.Chat.FixBadBrowsers = function() {
 };
 
 jQuery(
-	function () {
+	function() {
 		Liferay.Chat.Manager.init();
 		Liferay.Chat.FixBadBrowsers();
 	}
