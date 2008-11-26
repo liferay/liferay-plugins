@@ -59,11 +59,14 @@ public class MailPasswordUtil {
 
 	public static String decrypt(String encryptedPassword) {
 		String password = null;
+
 		try {
 			byte[] passwordBytes = Base64.decode(encryptedPassword);
+
 			password = new String(passwordBytes, StringPool.UTF8);
-		} catch (UnsupportedEncodingException ex) {
-			_log.warn("Error while decrypting the password", ex);
+		}
+		catch (UnsupportedEncodingException uee) {
+			_log.warn("Error while decrypting the password", uee);
 		}
 
 		return password;
@@ -71,11 +74,14 @@ public class MailPasswordUtil {
 
 	public static String encrypt(String password) {
 		String encryptedPassword = null;
+
 		try {
 			byte[] passwordBytes = password.getBytes(StringPool.UTF8);
+
 			encryptedPassword = Base64.encode(passwordBytes);
-		} catch (UnsupportedEncodingException ex) {
-			_log.warn("Error while encrypting the password", ex);
+		}
+		catch (UnsupportedEncodingException uee) {
+			_log.warn("Error while encrypting the password", uee);
 		}
 
 		return encryptedPassword;

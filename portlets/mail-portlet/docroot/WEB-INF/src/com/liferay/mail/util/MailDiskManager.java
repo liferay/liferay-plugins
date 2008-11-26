@@ -84,7 +84,8 @@ public class MailDiskManager {
 			jsonObj.put("mailOutHostName", mailAccount.getMailOutHostName());
 			jsonObj.put("mailOutPort", mailAccount.getMailOutPort());
 			jsonObj.put("mailOutSecure", mailAccount.isMailOutSecure());
-			jsonObj.put("password", 
+			jsonObj.put(
+				"password",
 				MailPasswordUtil.encrypt(mailAccount.getPassword()));
 			jsonObj.put("username", mailAccount.getUsername());
 
