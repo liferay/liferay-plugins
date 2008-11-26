@@ -66,7 +66,7 @@ public class MailPasswordUtil {
 			password = new String(passwordBytes, StringPool.UTF8);
 		}
 		catch (UnsupportedEncodingException uee) {
-			_log.warn("Error while decrypting the password", uee);
+			_log.error("Unable to decrypt the password", uee);
 		}
 
 		return password;
@@ -81,7 +81,7 @@ public class MailPasswordUtil {
 			encryptedPassword = Base64.encode(passwordBytes);
 		}
 		catch (UnsupportedEncodingException uee) {
-			_log.warn("Error while encrypting the password", uee);
+			_log.error("Unable to encrypt the password", uee);
 		}
 
 		return encryptedPassword;
