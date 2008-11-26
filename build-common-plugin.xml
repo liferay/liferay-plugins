@@ -43,6 +43,11 @@
 		</else>
 	</if>
 
+	<target name="all">
+		<antcall target="clean" />
+		<antcall target="deploy" />
+	</target>
+
 	<target name="clean" description="clean">
 		<delete dir="docroot/WEB-INF/classes" />
 		<delete dir="tmp" />
