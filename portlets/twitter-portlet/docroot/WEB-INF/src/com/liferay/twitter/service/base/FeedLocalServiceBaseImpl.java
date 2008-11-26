@@ -24,6 +24,7 @@ package com.liferay.twitter.service.base;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import com.liferay.twitter.model.Feed;
@@ -101,8 +102,8 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService {
 		this.feedPersistence = feedPersistence;
 	}
 
-	@javax.annotation.Resource(name = "com.liferay.twitter.service.FeedLocalService.impl")
+	@BeanReference(name = "com.liferay.twitter.service.FeedLocalService.impl")
 	protected FeedLocalService feedLocalService;
-	@javax.annotation.Resource(name = "com.liferay.twitter.service.persistence.FeedPersistence.impl")
+	@BeanReference(name = "com.liferay.twitter.service.persistence.FeedPersistence.impl")
 	protected FeedPersistence feedPersistence;
 }

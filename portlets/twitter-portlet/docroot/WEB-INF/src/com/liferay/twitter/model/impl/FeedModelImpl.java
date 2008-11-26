@@ -27,6 +27,9 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
+
 import com.liferay.twitter.model.Feed;
 import com.liferay.twitter.model.FeedSoap;
 
@@ -192,6 +195,7 @@ public class FeedModelImpl extends BaseModelImpl {
 		else {
 			Feed model = new FeedImpl();
 
+			model.setNew(isNew());
 			model.setEscapedModel(true);
 
 			model.setFeedId(getFeedId());
@@ -206,6 +210,15 @@ public class FeedModelImpl extends BaseModelImpl {
 
 			return model;
 		}
+	}
+
+	public ExpandoBridge getExpandoBridge() {
+		if (_expandoBridge == null) {
+			_expandoBridge = new ExpandoBridgeImpl(Feed.class.getName(),
+					getPrimaryKey());
+		}
+
+		return _expandoBridge;
 	}
 
 	public Object clone() {
@@ -275,4 +288,5 @@ public class FeedModelImpl extends BaseModelImpl {
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _lastStatusId;
+	private ExpandoBridge _expandoBridge;
 }

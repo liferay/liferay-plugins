@@ -22,12 +22,16 @@
 
 package com.liferay.twitter.service.persistence;
 
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="FeedPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
+@Transactional
 public interface FeedPersistence {
 	public com.liferay.twitter.model.Feed create(long feedId);
 
@@ -51,6 +55,7 @@ public interface FeedPersistence {
 		com.liferay.twitter.model.Feed feed, boolean merge)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.twitter.model.Feed findByPrimaryKey(long feedId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.twitter.NoSuchFeedException;
@@ -58,6 +63,7 @@ public interface FeedPersistence {
 	public com.liferay.twitter.model.Feed fetchByPrimaryKey(long feedId)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.twitter.model.Feed findByTwitterUserId(
 		long twitterUserId)
 		throws com.liferay.portal.SystemException,
@@ -66,6 +72,7 @@ public interface FeedPersistence {
 	public com.liferay.twitter.model.Feed fetchByTwitterUserId(
 		long twitterUserId) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.twitter.model.Feed findByTwitterScreenName(
 		java.lang.String twitterScreenName)
 		throws com.liferay.portal.SystemException,
@@ -75,20 +82,25 @@ public interface FeedPersistence {
 		java.lang.String twitterScreenName)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.twitter.model.Feed> findAll()
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.twitter.model.Feed> findAll(int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.twitter.model.Feed> findAll(int start,
 		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
@@ -103,12 +115,15 @@ public interface FeedPersistence {
 
 	public void removeAll() throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByTwitterUserId(long twitterUserId)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByTwitterScreenName(java.lang.String twitterScreenName)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countAll() throws com.liferay.portal.SystemException;
 
 	public void registerListener(

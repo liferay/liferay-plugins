@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -81,7 +82,7 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 
 		List<User> users = UserLocalServiceUtil.search(
 			companyId, null, null, userParams, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+			QueryUtil.ALL_POS, (OrderByComparator)null);
 
 		for (User user : users) {
 			try {

@@ -22,12 +22,16 @@
 
 package com.liferay.twitter.service;
 
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="FeedLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
+@Transactional
 public interface FeedLocalService {
 	public com.liferay.twitter.model.Feed addFeed(
 		com.liferay.twitter.model.Feed feed)
@@ -50,13 +54,16 @@ public interface FeedLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.twitter.model.Feed getFeed(long feedId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.twitter.model.Feed> getFeeds(int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getFeedsCount() throws com.liferay.portal.SystemException;
 
 	public com.liferay.twitter.model.Feed updateFeed(

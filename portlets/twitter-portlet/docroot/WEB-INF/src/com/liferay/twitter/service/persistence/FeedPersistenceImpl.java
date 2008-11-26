@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
+import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.twitter.NoSuchFeedException;
@@ -121,6 +122,15 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
+			if (BatchSessionUtil.isEnabled()) {
+				Object staleObject = session.get(FeedImpl.class,
+						feed.getPrimaryKeyObj());
+
+				if (staleObject != null) {
+					session.evict(staleObject);
+				}
+			}
+
 			session.delete(feed);
 
 			session.flush();
@@ -183,16 +193,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
-			if (merge) {
-				session.merge(feed);
-			}
-			else {
-				if (feed.isNew()) {
-					session.save(feed);
-				}
-			}
-
-			session.flush();
+			BatchSessionUtil.update(session, feed, merge);
 
 			feed.setNew(false);
 
