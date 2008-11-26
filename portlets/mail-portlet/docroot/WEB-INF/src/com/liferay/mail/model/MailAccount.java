@@ -23,6 +23,7 @@
 package com.liferay.mail.model;
 
 import com.liferay.mail.util.MailDiskManager;
+import com.liferay.mail.util.MailPasswordUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -50,7 +51,8 @@ public class MailAccount {
 			_mailOutHostName = jsonObj.getString("mailOutHostName");
 			_mailOutPort = jsonObj.getInt("mailOutPort");
 			_mailOutSecure = jsonObj.getBoolean("mailOutSecure");
-			_password = jsonObj.getString("password");
+			_password = MailPasswordUtil.decrypt(
+				jsonObj.getString("password"));
 			_username = jsonObj.getString("username");
 		}
 	}

@@ -84,7 +84,8 @@ public class MailDiskManager {
 			jsonObj.put("mailOutHostName", mailAccount.getMailOutHostName());
 			jsonObj.put("mailOutPort", mailAccount.getMailOutPort());
 			jsonObj.put("mailOutSecure", mailAccount.isMailOutSecure());
-			jsonObj.put("password", mailAccount.getPassword());
+			jsonObj.put("password", 
+				MailPasswordUtil.encrypt(mailAccount.getPassword()));
 			jsonObj.put("username", mailAccount.getUsername());
 
 			FileUtil.write(filePath, jsonObj.toString());
