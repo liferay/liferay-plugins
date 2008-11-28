@@ -1,9 +1,16 @@
 <?xml version="1.0"?>
 
-<project name="theme" basedir="." default="deploy">
+<project name="theme" basedir="." default="build-desktop-theme">
 	<property name="theme.parent" value="_styled" />
 
 	<import file="../build-common-theme.xml" />
+
+	<target name="build-desktop-theme">
+		<antcall target="clean" />
+		<antcall target="format-source" />
+		<antcall target="build-javascript" />
+		<antcall target="deploy" />
+	</target>
 
 	<target name="build-javascript">
 		<antcall target="build-javascript-cmd">
