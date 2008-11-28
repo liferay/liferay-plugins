@@ -1,7 +1,7 @@
 /* ---------- Main background ---------- */
 
 #desktop-locked.osx, #desktop-login.osx {
-	background: #006A9A url(../../images/desktop/desktop_locked_bg.png) no-repeat fixed bottom left;
+	background: #FFF url(../../images/color_schemes/osx/desktop/desktop_locked_bg.jpg) no-repeat fixed 50% 50%;
 }
 
 #desktop-maximized.osx {
@@ -9,10 +9,14 @@
 }
 
 #desktop-user.osx {
-	background: #006A9A url(../../images/color_schemes/osx/desktop/desktop_user_bg.jpg) no-repeat fixed 50% 50%;
+	background: #FFF url(../../images/color_schemes/osx/desktop/desktop_user_bg.jpg) no-repeat fixed 50% 50%;
 }
 
 /* ---------- Taskbar container ---------- */
+
+.osx #taskbar-container {
+	background: none;
+}
 
 .osx #taskbar {
 	background: transparent url(../../images/color_schemes/osx/taskbar/taskbar_bg.png) repeat-x scroll 100% 0;
@@ -34,7 +38,7 @@
 	border-style: none;
 	color: #000;
 	font-weight: bold;
-	line-height: 23px;
+	padding: 3px 7px 4px;
 }
 
 .osx #taskbar-portlets .taskbar-link a:hover {
@@ -62,22 +66,40 @@
 }
 
 .js .osx .lfr-dock.expanded .lfr-dock-list-container {
-	top: 23px;
+	top: 24px;
+}
+
+/* ---------- Dock menu ---------- */
+
+.js .osx .interactive-mode ul.lfr-dock-list {
+	background: #FFF;
+	border-width: 1px;
 }
 
 /* ---------- Portlet template ---------- */
 
 .osx div.portlet .portlet-topper {
 	background-color: #BBB;
+	height: 24px;
 }
 
 /* ---------- Portlet wrapper and icons ---------- */
 
+.osx .portlet-topper {
+	height: 24px;
+	padding: 6px 0 0;
+}
+
 .osx .portlet-title {
-	color: #444;
+	color: #222;
 	font-size: 13px;
 	font-weight: bold;
+	padding: 2px 0;
 	text-align: center;
+}
+
+.osx .portlet-address {
+	display: none;
 }
 
 .osx .portlet-modes {
@@ -131,53 +153,72 @@
 	background: transparent url(../../images/color_schemes/osx/portlet/close_hover.png) no-repeat scroll 0 0;
 }
 
+.osx .icon-back {
+	top: 8px;
+}
+
 .osx .portlet-icon-back, .osx .portlet-icon-back:hover {
 	color: #444;
 }
 
 /* ---------- Portlet container ---------- */
 
+.osx .portlet-top {
+	height: 30px;
+}
+
 .osx .portlet-top .top-left {
 	background: transparent url(../../images/color_schemes/osx/portlet/top_left.png) no-repeat scroll 0% 0%;
+	height: 30px;
 }
 
 .osx .portlet-top .top-center {
 	background: transparent url(../../images/color_schemes/osx/portlet/top_center.png) repeat-x scroll 0% 0%;
+	height: 30px;
+	margin-right: 15px;
 }
 
 .osx .portlet-top .top-right {
 	background: transparent url(../../images/color_schemes/osx/portlet/top_right.png) no-repeat scroll 100% 0%;
-}
-
-.osx .portlet-header {
-	display: none;
+	height: 30px;
+	margin-left: 15px;
 }
 
 .osx .portlet-middle .middle-left {
 	background: transparent url(../../images/color_schemes/osx/portlet/middle_left.png) repeat-y scroll 0% 0%;
 }
 
+.osx .portlet-middle .middle-center {
+	margin-right: 15px;
+}
+
 .osx .portlet-middle .middle-right {
 	background: transparent url(../../images/color_schemes/osx/portlet/middle_right.png) repeat-y scroll 100% 0%;
+	margin-left: 15px;
+}
+
+.osx .portlet-bottom {
+	height: 15px;
 }
 
 .osx .portlet-bottom .bottom-left {
 	background: transparent url(../../images/color_schemes/osx/portlet/bottom_left.png) no-repeat scroll 0% 0%;
+	height: 15px;
 }
 
 .osx .portlet-bottom .bottom-center {
 	background: transparent url(../../images/color_schemes/osx/portlet/bottom_center.png) repeat-x scroll 0% 0%;
+	height: 15px;
+	margin-right: 15px;
 }
 
 .osx .portlet-bottom .bottom-right {
 	background: transparent url(../../images/color_schemes/osx/portlet/bottom_right.png) no-repeat scroll 100% 0%;
+	height: 15px;
+	margin-left: 15px;
 }
 
 /* ---------- Portlet options ---------- */
-
-.osx .portlet-icons.icon-options {
-	top: 9px;
-}
 
 .osx .lfr-actions.portlet-options .lfr-trigger strong span {
 	color: #777;
@@ -185,6 +226,25 @@
 
 .osx .portlet-options.visible .lfr-trigger strong span {
 	color: #06C;
+}
+
+/* ---------- Portlet options container ---------- */
+
+.osx .icon-options, .ie .osx icon-options, .osx .icon-options-min, .osx .icon-options-max, .osx .icon-options-close, .osx .icon-options-min-max, .osx .icon-options-min-close, .osx .icon-options-max-close, .osx .icon-options-min-max-close {
+	right: 0;
+	top: 9px;
+}
+
+/* ---------- Login portlet ---------- */
+
+.osx .portlet-login .portlet-title img {
+	display: none;
+}
+
+/* ---------- IE6 Taskbar portlet links ---------- */
+
+.ie6 .osx #taskbar-portlets .taskbar-link a {
+	width: 1%;
 }
 
 /* ---------- IE6 Portlet wrapper and icons ---------- */
