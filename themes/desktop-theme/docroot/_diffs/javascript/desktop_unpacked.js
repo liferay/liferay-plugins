@@ -25,51 +25,53 @@ var Desktop = function () {
 			}
 		},
 
-		taskbarAddPortlet: function(portletId) {
+		taskbarAddPortlet: function(portletId,hasMinIcon) {
 			var instance = this;
 
-			if ($('#tb_' + portletId).size() == 0) {
-				var portlet = $('#p_p_id_' + portletId + '_');
-				var iconClose = portlet.find('span.icon-close');
+			if ($('#tb_' + portletId).size() > 0) {
+				return;
+			}
 
-				var href = '';
+			var portlet = $('#p_p_id_' + portletId + '_');
+			var iconClose = portlet.find('span.icon-close');
 
-				if (portlet.hasClass('portlet-minimized')) {
-					portlet.css({display:'none'}).removeClass('portlet-minimized');
-					href = "javascript: Desktop.portletRestore('" + portletId + "');";
-				}
-				else {
-					href = "javascript: Desktop.portletMinimize('" + portletId + "');";
-				}
+			var href = '';
 
-				if (iconClose.size() == 0) {
-					href= "#";
-				}
+			if (portlet.hasClass('portlet-minimized')) {
+				portlet.css({display:'none'}).removeClass('portlet-minimized');
+				href = 'javascript: Desktop.portletRestore(\'' + portletId + '\');';
+			}
+			else {
+				href = 'javascript: Desktop.portletMinimize(\'' + portletId + '\');';
+			}
 
-				var title = $.trim(portlet.find('span.portlet-title').text());
+			if (!hasMinIcon) {
+				href = 'javascript: void(0);';
+			}
 
-				if (title != '') {
-					var htmlStr = '';
+			var title = $.trim(portlet.find('span.portlet-title').text());
 
-					htmlStr += '<li id="tb_' + portletId + '" class="taskbar-link">';
-					htmlStr += '	<a href="' + href +'">';
-					htmlStr += '		<span class="taskbar-link-title">';
-					htmlStr += 			title;
-					htmlStr += '		</span>';
-					htmlStr += '	</a>';
-					htmlStr += '</li>';
+			if (title != '') {
+				var buffer = [];
 
-					$('#taskbar-portlets').append(htmlStr);
+				buffer.push('<li id="tb_' + portletId + '" class="taskbar-link">');
+				buffer.push('	<a href="' + href +'">');
+				buffer.push('		<span class="taskbar-link-title">');
+				buffer.push( 			title);
+				buffer.push('		</span>');
+				buffer.push('	</a>');
+				buffer.push('</li>');
 
-					var tbLinks = $('#taskbar-portlets .taskbar-link');
-					var count = tbLinks.size();
+				$('#taskbar-portlets').append(buffer.join(''));
 
-					instance._updateTaskbarLinks(count);
-				}
+				var tbLinks = $('#taskbar-portlets .taskbar-link');
+				var count = tbLinks.size();
 
-				if (instance._isFreeformLayout) {
-					instance.portletRestore(portletId);
-				}
+				instance._updateTaskbarLinks(count);
+			}
+
+			if (instance._isFreeformLayout) {
+				instance.portletRestore(portletId);
 			}
 		},
 
@@ -188,13 +190,13 @@ var Desktop = function () {
 			var sbLink = $('#sidebar-link');
 
 			if ((sbContainer.size() > 0) && (sbLink.size() == 0)) {
-				var htmlStr = '';
+				var buffer = [];
 
-				htmlStr += '<div id="sidebar-link">';
-				htmlStr += '	<a href="javascript: Sidebar.animate();"></a>';
-				htmlStr += '</div>'
+				buffer.push('<div id="sidebar-link">');
+				buffer.push('	<a href="javascript: Sidebar.animate();"></a>');
+				buffer.push('</div>');
 
-				sbContainer.prepend(htmlStr).css({display:''});
+				sbContainer.prepend(buffer.join('')).css({display:''});
 
 				Sidebar.toggle('87',false);
 			}

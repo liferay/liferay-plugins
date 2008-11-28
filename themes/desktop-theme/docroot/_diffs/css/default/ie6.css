@@ -6,13 +6,19 @@
 	top: 72%;
 }
 
-/* ---------- Portlet template ---------- */
+/* ---------- Portlet wrapper and icons ---------- */
 
-.ie6 div.portlet .portlet-topper {
-	padding: 1px 10px;
+.ie6 #taskbar-portlets .taskbar-link a {
+	background: #2A5C7E;
 }
 
-/* ---------- Portlet wrapper and icons ---------- */
+.ie6 #taskbar-portlets .taskbar-link a:hover {
+	background: #477097;
+}
+
+.ie6 #taskbar-portlets .taskbar-link.selected a {
+	background: #5A93C4;
+}
 
 .ie6 .icon-min a {
 	background: transparent url(../../images/portlet/minimize_hover.png) no-repeat scroll 0 0;

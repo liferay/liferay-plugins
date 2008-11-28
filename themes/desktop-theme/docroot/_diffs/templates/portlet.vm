@@ -35,23 +35,8 @@
 							#end
 						</span>
 
-						#if (!$portlet_display.isShowBackIcon() && $color_scheme.equals("osx"))
-							<span class="portlet-icons icon-options">$theme.iconOptions()</span>
-						#end
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="portlet-header">
-		<div class="header-left">
-			<div class="header-right">
-				<div class="header-center">
-					<div class="portlet-address">
-						$portlet_address
-
 						#if (!$portlet_display.isShowBackIcon())
-							<span class="portlet-icons icon-options">$theme.iconOptions()</span>
+							<span class="portlet-icons $icon_options_class">$theme.iconOptions()</span>
 						#end
 					</div>
 				</div>
@@ -64,6 +49,9 @@
 				<div class="middle-center">
 					<div class="portlet-content">
 						$portlet_content
+					</div>
+					<div class="portlet-address">
+						$portlet_address
 					</div>
 				</div>
 			</div>
@@ -80,7 +68,7 @@
 </div>
 
 <script type="text/javascript">
-	if (!$portlet_display.isShowBackIcon() && $portlet_display.isShowMinIcon()) {
-		Desktop.taskbarAddPortlet('$portlet_id');
+	if (!$portlet_display.isShowBackIcon()) {
+		Desktop.taskbarAddPortlet('$portlet_id',$portlet_display.isShowMinIcon());
 	}
 </script>

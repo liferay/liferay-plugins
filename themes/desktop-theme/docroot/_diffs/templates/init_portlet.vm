@@ -3,8 +3,6 @@
 #set ($userLocalService = $serviceLocator.findService("com.liferay.portal.service.UserLocalService"))
 #set ($organizationLocalService = $serviceLocator.findService("com.liferay.portal.service.OrganizationLocalService"))
 
-#set ($color_scheme = $themeDisplay.getColorScheme().getCssClass())
-
 ## ---------- Group name ---------- ##
 
 #if ($layout.getGroup().isUser())
@@ -28,3 +26,17 @@
 #set ($portlet_column_pos = $portlet_display.getColumnPos())
 
 #set ($portlet_address = "$group_name - $layout.getHTMLTitle($locale) - $portlet_title")
+
+#set ($icon_options_class = "icon-options")
+
+#if ($portlet_display.isShowMinIcon())
+	#set ($icon_options_class = $icon_options_class + "-min")
+#end
+
+#if ($portlet_display.isShowMaxIcon())
+	#set ($icon_options_class = $icon_options_class + "-max")
+#end
+
+#if ($portlet_display.isShowCloseIcon())
+	#set ($icon_options_class = $icon_options_class + "-close")
+#end

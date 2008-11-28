@@ -3,12 +3,12 @@
 .js .interactive-mode {
 	background: transparent url(../../images/dock/menu_bar.png) no-repeat scroll 0 0;
 	float: none;
-	height: 34px;
+	height: 35px;
 	left: 4px;
-	min-width: 43px;
+	min-width: 42px;
 	right: auto;
-	top: -6px;
-	width: 43px;
+	top: -1px;
+	width: 42px;
 }
 
 .js .lfr-dock.expanded {
@@ -17,11 +17,16 @@
 
 .js .lfr-dock.expanded .lfr-dock-list-container {
 	position: relative;
-	top: 34px;
+	top: 32px;
 	width: 180px;
 }
 
 /* ---------- Dock menu ---------- */
+
+.js .interactive-mode ul.lfr-dock-list {
+	background: #FFF url(../../images/dock/dock_bg.png) no-repeat scroll 0 0;
+	border-width: 0 1px 1px;
+}
 
 .js .interactive-mode ul a {
 	color: #000;

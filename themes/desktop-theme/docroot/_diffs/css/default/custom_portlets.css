@@ -8,6 +8,13 @@
 	padding-left: 270px;
 }
 
+/* ---------- Login portlet ---------- */
+
+.portlet-login .portlet-title img {
+	display: inline;
+	vertical-align: text-bottom;
+}
+
 /* ---------- Password Reminder portlet / Terms of Use portlet ---------- */
 
 #portlet-wrapper-password-reminder .portlet-content, #portlet-wrapper-terms-of-use .portlet-content {
