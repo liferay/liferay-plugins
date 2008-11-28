@@ -267,7 +267,7 @@
 	opacity: .3;
 }
 
-.ie6 .osx .icon-min a.selected, .ie6 .icon-max a.selected, .ie6 .icon-close a.selected {
+.ie6 .osx .icon-min a.selected, .ie6 .osx .icon-max a.selected, .ie6 .osx .icon-close a.selected {
 	filter: alpha(opacity=100);
 	opacity: 1;
 }
