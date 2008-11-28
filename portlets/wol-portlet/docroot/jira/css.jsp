@@ -24,10 +24,8 @@
 
 <%@ include file="/css_init.jsp" %>
 
-.wol-portlet-jira .jira-summary .issue-count {
-	padding-right: 4px;
-	text-align: right;
-	width: 5%;
+.wol-portlet-jira .project-title {
+	margin-bottom: 0.5em;
 }
 
 .wol-portlet-jira .jira-summary .activity-details {

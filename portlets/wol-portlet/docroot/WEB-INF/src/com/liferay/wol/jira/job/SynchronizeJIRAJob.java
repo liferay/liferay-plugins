@@ -48,6 +48,12 @@ public class SynchronizeJIRAJob implements IntervalJob {
 		try {
 			JIRAIssueLocalServiceUtil.updateJIRAIssues(
 				JIRAConstants.PROJECT_LEP);
+
+			JIRAIssueLocalServiceUtil.updateJIRAIssues(
+				JIRAConstants.PROJECT_LPE);
+
+			JIRAIssueLocalServiceUtil.updateJIRAIssues(
+				JIRAConstants.PROJECT_LPS);
 		}
 		catch (Exception e) {
 			_log.error(e.getMessage());

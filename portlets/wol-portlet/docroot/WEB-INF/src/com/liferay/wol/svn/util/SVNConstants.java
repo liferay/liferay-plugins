@@ -22,6 +22,8 @@
 
 package com.liferay.wol.svn.util;
 
+import com.liferay.util.portlet.PortletProps;
+
 /**
  * <a href="SVNConstants.java.html"><b><i>View Source</i></b></a>
  *
@@ -30,14 +32,20 @@ package com.liferay.wol.svn.util;
  */
 public interface SVNConstants {
 
+	public static final String SVN_AUTH_PASSWORD = PortletProps.get(
+		"svn.auth.password");
+
+	public static final String SVN_AUTH_USERNAME = PortletProps.get(
+		"svn.auth.username");
+
 	public static final String SVN_PLUGINS_TRUNK_URL =
-		"http://lportal.svn.sourceforge.net/svnroot/lportal/plugins/trunk";
+		"svn://svn.liferay.com/repos/public/plugins/trunk";
 
 	public static final String SVN_PORTAL_TRUNK_URL =
-		"http://lportal.svn.sourceforge.net/svnroot/lportal/portal/trunk";
+		"svn://svn.liferay.com/repos/public/portal/trunk";
 
 	public static final String WEB_REVISION_NUMBER_URL =
-		"http://lportal.svn.sourceforge.net/viewvc/lportal?view=rev&revision=";
+		"http://svn.liferay.com/changelog/{0}/?cs={1}";
 
 	public static final String[] SVN_URLS = new String[] {
 		SVN_PORTAL_TRUNK_URL, SVN_PLUGINS_TRUNK_URL

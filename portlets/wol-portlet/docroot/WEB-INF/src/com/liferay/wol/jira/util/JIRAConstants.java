@@ -32,6 +32,14 @@ public interface JIRAConstants {
 
 	public static final int PROJECT_LEP = 10014;
 
+	public static final int PROJECT_LPE = 10953;
+
+	public static final int PROJECT_LPS = 10952;
+
+	public static final int PROJECT_SOE = 10955;
+
+	public static final int PROJECT_SOS = 10954;
+
 	public static final String STATUS_CLOSED = "6";
 
 	public static final String STATUS_COMMITTED = "10000";

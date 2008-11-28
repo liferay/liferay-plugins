@@ -23,6 +23,7 @@
 package com.liferay.wol.model.impl;
 
 import com.liferay.wol.model.SVNRepository;
+import com.liferay.wol.svn.util.SVNConstants;
 
 /**
  * <a href="SVNRepositoryImpl.java.html"><b><i>View Source</i></b></a>
@@ -36,10 +37,20 @@ public class SVNRepositoryImpl
 	public SVNRepositoryImpl() {
 	}
 
+	public String getName() {
+		String name = "portal";
+
+		if (getUrl().equals(SVNConstants.SVN_PLUGINS_TRUNK_URL)) {
+			name = "plugins";
+		}
+
+		return name;
+	}
+
 	public String getShortURL() {
 		String url = getUrl();
 
-		return url.substring(url.indexOf("/lportal/") + 8);
+		return url.substring(url.indexOf("/public/") + 7);
 	}
 
 }

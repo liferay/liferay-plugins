@@ -27,6 +27,7 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.wol.model.SVNRepository;
 import com.liferay.wol.service.base.SVNRepositoryLocalServiceBaseImpl;
+import com.liferay.wol.svn.util.SVNConstants;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -38,7 +39,7 @@ import org.tmatesoft.svn.core.SVNException;
 import org.tmatesoft.svn.core.SVNLogEntry;
 import org.tmatesoft.svn.core.SVNURL;
 import org.tmatesoft.svn.core.auth.ISVNAuthenticationManager;
-import org.tmatesoft.svn.core.internal.io.dav.DAVRepositoryFactory;
+import org.tmatesoft.svn.core.internal.io.svn.SVNRepositoryFactoryImpl;
 import org.tmatesoft.svn.core.io.SVNRepositoryFactory;
 import org.tmatesoft.svn.core.wc.SVNWCUtil;
 
@@ -82,13 +83,15 @@ public class SVNRepositoryLocalServiceImpl
 		org.tmatesoft.svn.core.io.SVNRepository repository = null;
 
 		try {
-			DAVRepositoryFactory.setup();
+			SVNRepositoryFactoryImpl.setup();
 
 			repository = SVNRepositoryFactory.create(
 				SVNURL.parseURIEncoded(url));
 
 			ISVNAuthenticationManager authenticationManager =
-				SVNWCUtil.createDefaultAuthenticationManager();
+				SVNWCUtil.createDefaultAuthenticationManager(
+					SVNConstants.SVN_AUTH_USERNAME,
+					SVNConstants.SVN_AUTH_PASSWORD);
 
 			repository.setAuthenticationManager(authenticationManager);
 

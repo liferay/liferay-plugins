@@ -23,13 +23,13 @@
 package com.liferay.wol.service.impl;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
-import com.liferay.portlet.expando.model.ExpandoValue;
-import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
-import com.liferay.portlet.social.model.SocialActivity;
+import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.wol.NoSuchSVNRevisionException;
 import com.liferay.wol.model.SVNRevision;
@@ -69,16 +69,13 @@ public class SVNRevisionLocalServiceImpl
 
 		// Social
 
-		List<ExpandoValue> expandoValues =
-			ExpandoValueLocalServiceUtil.getColumnValues(
-				User.class.getName(), "WOL", "sfUserId", svnUserId, 0, 1);
+		try {
+			User user = UserLocalServiceUtil.getUserByScreenName(
+				PortalUtil.getDefaultCompanyId(), svnUserId);
 
-		if (expandoValues.size() > 0) {
-			ExpandoValue expandoValue = expandoValues.get(0);
+			long userId = user.getUserId();
 
-			long userId = expandoValue.getClassPK();
-
-			List<SocialActivity> socialActivities =
+			/*List<SocialActivity> socialActivities =
 				SocialActivityLocalServiceUtil.getActivities(
 					SVNRevision.class.getName(), 0, 1);
 
@@ -89,12 +86,14 @@ public class SVNRevisionLocalServiceImpl
 					SocialActivityLocalServiceUtil.deleteActivity(
 						socialActivity.getActivityId());
 				}
-			}
+			}*/
 
 			SocialActivityLocalServiceUtil.addActivity(
 				userId, 0, createDate, SVNRevision.class.getName(),
 				svnRevisionId, SVNActivityKeys.ADD_REVISION, StringPool.BLANK,
 				0);
+		}
+		catch (NoSuchUserException nsue) {
 		}
 
 		return svnRevision;

@@ -76,6 +76,10 @@ public class SVNRepositoryClp extends BaseModelImpl implements SVNRepository {
 		_revisionNumber = revisionNumber;
 	}
 
+	public java.lang.String getName() {
+		throw new UnsupportedOperationException();
+	}
+
 	public java.lang.String getShortURL() {
 		throw new UnsupportedOperationException();
 	}

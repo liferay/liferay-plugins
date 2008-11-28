@@ -29,7 +29,7 @@
 		String url = ParamUtil.getString(request, "url");
 		boolean all = ParamUtil.getBoolean(request, "all");
 
-		String svnURL = "http://lportal.svn.sourceforge.net/svnroot/lportal" + url;
+		String svnURL = "svn://svn.liferay.com/repos/public" + url;
 
 		SVNRepository svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(svnURL);
 
@@ -39,7 +39,7 @@
 			svnRevisions = SVNRevisionLocalServiceUtil.getSVNRevisions(svnRepository.getSvnRepositoryId(), 0, 100);
 		}
 		else {
-			String svnUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "sfUserId", user2.getUserId(), StringPool.BLANK);
+			String svnUserId = user2.getScreenName();
 
 			svnRevisions = SVNRevisionLocalServiceUtil.getSVNRevisions(svnUserId, svnRepository.getSvnRepositoryId(), 0, 100);
 		}
@@ -65,7 +65,7 @@
 		syndFeed.setEntries(entries);
 
 		for (SVNRevision svnRevision : svnRevisions) {
-			String link = "http://lportal.svn.sourceforge.net/viewvc/lportal?view=rev&revision=" + svnRevision.getRevisionNumber();
+			String link = svnRevision.getWebRevisionNumberURL();
 
 			SyndEntry syndEntry = new SyndEntryImpl();
 
@@ -97,7 +97,7 @@
 				sb.append(request.getContextPath());
 				sb.append("/svn/icon.png\" />SVN</a><br />");
 
-				sb.append("<a href=\"http://support.liferay.com/browse/");
+				sb.append("<a href=\"http://issues.liferay.com/browse/");
 				sb.append(jiraIssue.getKey());
 				sb.append("\"><img border=\"0\" src=\"");
 				sb.append(request.getContextPath());
@@ -151,16 +151,16 @@
 		%>
 
 		<%
-		String svnUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "sfUserId", user2.getUserId(), StringPool.BLANK);
+		String svnUserId = user2.getScreenName();
 		%>
 
 		<c:choose>
-			<c:when test="<%= Validator.isNotNull(svnUserId) %>">
+			<c:when test="<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId) > 0 %>">
 				<c:choose>
 					<c:when test="<%= windowState.equals(WindowState.NORMAL) %>">
-						<h4 class="project-title">
-							<a href="http://lportal.svn.sourceforge.net/svnroot/lportal" target="_blank">Liferay Portal</a>
-						</h4>
+						<!--<h4 class="project-title">
+							<a href="http://svn.liferay.com" target="_blank">Liferay Portal</a>
+						</h4>-->
 
 						<%
 						for (String url : SVNConstants.SVN_URLS) {
@@ -280,7 +280,7 @@
 						for (int i = 0; i < results.size(); i++) {
 							SVNRevision svnRevision = results.get(i);
 
-							String rowHREF = "http://lportal.svn.sourceforge.net/viewvc/lportal?view=rev&revision=" + svnRevision.getRevisionNumber();
+							String rowHREF = svnRevision.getWebRevisionNumberURL();
 
 							Object[] jiraIssueAndComments = svnRevision.getJIRAIssueAndComments();
 
@@ -334,10 +334,20 @@
 						<h4>
 							<c:choose>
 								<c:when test="<%= all %>">
-									<%= LanguageUtil.format(pageContext, "all-commits-on-x", "<a href=\"" + url + "\" target=\"_blank\">" + url + "</a>") %>
+
+									<%
+									String fishEyeURL = "http://svn.liferay.com/browse/" + svnRepository.getName();
+									%>
+
+									<%= LanguageUtil.format(pageContext, "all-commits-on-x", "<a href=\"" + fishEyeURL + "\" target=\"_blank\">" + fishEyeURL + "</a>") %>
 								</c:when>
 								<c:otherwise>
-									<%= LanguageUtil.format(pageContext, "x's-commits-on-x", new Object[] {user2.getFirstName(), "<a href=\"" + url + "\" target=\"_blank\">" + url + "</a>"}) %>
+
+									<%
+									String fishEyeURL = "http://svn.liferay.com/browse/~author=" + svnUserId + "/" + svnRepository.getName();
+									%>
+
+									<%= LanguageUtil.format(pageContext, "x's-commits-on-x", new Object[] {user2.getFirstName(), "<a href=\"" + fishEyeURL + "\" target=\"_blank\">" + url + "</a>"}) %>
 								</c:otherwise>
 							</c:choose>
 						</h4>
@@ -349,14 +359,7 @@
 				</c:choose>
 			</c:when>
 			<c:otherwise>
-				<c:choose>
-					<c:when test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
-						<a href="<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" portletName="1_WAR_wolportlet" />">Set your SourceForge login.</a>
-					</c:when>
-					<c:otherwise>
-						<%= LanguageUtil.format(pageContext, (user2.isMale() ? "x-has-not-configured-his-sourceforge-login" : "x-has-not-configured-her-sourceforge-login"), user2.getFullName()) %>
-					</c:otherwise>
-				</c:choose>
+				<%= LanguageUtil.format(pageContext, "x-does-not-have-any-commits-to-the-svn-repository", user2.getFullName()) %>
 			</c:otherwise>
 		</c:choose>
 	</c:otherwise>

@@ -155,7 +155,6 @@
 
 		<%
 		String jiraUserId = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "jiraUserId", user2.getUserId(), StringPool.BLANK));
-		String sfUserId = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "sfUserId", user2.getUserId(), StringPool.BLANK));
 		String aboutMe = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "aboutMe", user2.getUserId(), StringPool.BLANK));
 		%>
 
@@ -175,16 +174,6 @@
 				<input class="lfr-input-text" name="<portlet:namespace />jiraUserId" style="width: 150px;" type="text" value="<%= jiraUserId %>" />
 
 				<liferay-ui:icon-help message="Set your login for http://support.liferay.com to track your JIRA activity." />
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<liferay-ui:message key="sourceforge-login" />
-			</td>
-			<td>
-				<input class="lfr-input-text" name="<portlet:namespace />sfUserId" style="width: 150px;" type="text" value="<%= sfUserId %>" />
-
-				<liferay-ui:icon-help message="Set your SourceForge login if you are a committer. It will enable the SVN portlet to track your commit activity." />
 			</td>
 		</tr>
 		<tr>

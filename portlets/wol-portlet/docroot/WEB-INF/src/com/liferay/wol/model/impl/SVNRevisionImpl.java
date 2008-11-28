@@ -32,6 +32,8 @@ import com.liferay.wol.service.JIRAIssueLocalServiceUtil;
 import com.liferay.wol.service.SVNRepositoryLocalServiceUtil;
 import com.liferay.wol.svn.util.SVNConstants;
 
+import java.text.MessageFormat;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -64,15 +66,38 @@ public class SVNRevisionImpl
 	}
 
 	public String getWebRevisionNumberURL() {
-		return SVNConstants.WEB_REVISION_NUMBER_URL + getRevisionNumber();
+		SVNRepository svnRepository = getSVNRepository();
+
+		return MessageFormat.format(
+			SVNConstants.WEB_REVISION_NUMBER_URL,
+			new Object[] {
+				svnRepository.getName(), String.valueOf(getRevisionNumber())
+			});
 	}
 
 	public Object[] getJIRAIssueAndComments() {
 		JIRAIssue jiraIssue = null;
 		String comments = getComments();
 
-		if (comments.startsWith(_LEP_PREFIX_1) ||
-			comments.startsWith(_LEP_PREFIX_2)) {
+		if (
+
+			// LEP
+
+			comments.startsWith(_LEP_PREFIX_1) ||
+			comments.startsWith(_LEP_PREFIX_2) ||
+			comments.startsWith(_LEP_PREFIX_3) ||
+
+			// LPE
+
+			comments.startsWith(_LPE_PREFIX_1) ||
+			comments.startsWith(_LPE_PREFIX_2) ||
+			comments.startsWith(_LPE_PREFIX_3) ||
+
+			// LPS
+
+			comments.startsWith(_LPS_PREFIX_1) ||
+			comments.startsWith(_LPS_PREFIX_2) ||
+			comments.startsWith(_LPS_PREFIX_3)) {
 
 			comments = StringUtil.replace(
 				comments, StringPool.NEW_LINE, StringPool.SPACE);
@@ -83,21 +108,60 @@ public class SVNRevisionImpl
 				pos = comments.length();
 			}
 
-			String key = null;
+			String keyPrefix = null;
+			String keyId = null;
 
-			if (comments.startsWith("LEP-")) {
-				key = comments.substring(_LEP_PREFIX_1.length(), pos);
+			// LPE
+
+			if (comments.startsWith(_LEP_PREFIX_1)) {
+				keyPrefix = "LEP";
+				keyId = comments.substring(_LEP_PREFIX_1.length(), pos);
 			}
-			else {
-				key = comments.substring(_LEP_PREFIX_2.length(), pos);
+			else if (comments.startsWith(_LEP_PREFIX_2)) {
+				keyPrefix = "LEP";
+				keyId = comments.substring(_LEP_PREFIX_2.length(), pos);
+			}
+			else if (comments.startsWith(_LEP_PREFIX_3)) {
+				keyPrefix = "LEP";
+				keyId = comments.substring(_LEP_PREFIX_3.length(), pos);
+			}
+
+			// LPE
+
+			if (comments.startsWith(_LPE_PREFIX_1)) {
+				keyPrefix = "LPE";
+				keyId = comments.substring(_LPE_PREFIX_1.length(), pos);
+			}
+			else if (comments.startsWith(_LPE_PREFIX_2)) {
+				keyPrefix = "LPE";
+				keyId = comments.substring(_LPE_PREFIX_2.length(), pos);
+			}
+			else if (comments.startsWith(_LPE_PREFIX_3)) {
+				keyPrefix = "LPE";
+				keyId = comments.substring(_LPE_PREFIX_3.length(), pos);
+			}
+
+			// LPS
+
+			if (comments.startsWith(_LPS_PREFIX_1)) {
+				keyPrefix = "LPS";
+				keyId = comments.substring(_LPS_PREFIX_1.length(), pos);
+			}
+			else if (comments.startsWith(_LPS_PREFIX_2)) {
+				keyPrefix = "LPS";
+				keyId = comments.substring(_LPS_PREFIX_2.length(), pos);
+			}
+			else if (comments.startsWith(_LPS_PREFIX_3)) {
+				keyPrefix = "LPS";
+				keyId = comments.substring(_LPS_PREFIX_3.length(), pos);
 			}
 
 			comments = comments.substring(pos).trim();
 
-			if (Validator.isNumber(key)) {
+			if (Validator.isNumber(keyId)) {
 				try {
 					jiraIssue = JIRAIssueLocalServiceUtil.getJIRAIssue(
-						"LEP-" + key);
+						keyPrefix + "-" + keyId);
 				}
 				catch (Exception e) {
 				}
@@ -111,10 +175,35 @@ public class SVNRevisionImpl
 		return null;
 	}
 
+	// LEP
+
 	private static final String _LEP_PREFIX_1 = "LEP-";
 
 	private static final String _LEP_PREFIX_2 =
+		"http://issues.liferay.com/browse/LEP-";
+
+	private static final String _LEP_PREFIX_3 =
 		"http://support.liferay.com/browse/LEP-";
+
+	// LPE
+
+	private static final String _LPE_PREFIX_1 = "LPE-";
+
+	private static final String _LPE_PREFIX_2 =
+		"http://issues.liferay.com/browse/LPE-";
+
+	private static final String _LPE_PREFIX_3 =
+		"http://support.liferay.com/browse/LPE-";
+
+	// LPS
+
+	private static final String _LPS_PREFIX_1 = "LPS-";
+
+	private static final String _LPS_PREFIX_2 =
+		"http://issues.liferay.com/browse/LPS-";
+
+	private static final String _LPS_PREFIX_3 =
+		"http://support.liferay.com/browse/LPS-";
 
 	private static Log _log = LogFactory.getLog(SVNRevisionImpl.class);
 

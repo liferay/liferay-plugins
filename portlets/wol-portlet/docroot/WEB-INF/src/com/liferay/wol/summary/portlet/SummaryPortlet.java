@@ -223,7 +223,6 @@ public class SummaryPortlet extends JSPPortlet {
 		}
 
 		String jiraUserId = ParamUtil.getString(actionRequest, "jiraUserId");
-		String sfUserId = ParamUtil.getString(actionRequest, "sfUserId");
 		String jobTitle = ParamUtil.getString(actionRequest, "jobTitle");
 		String aboutMe = ParamUtil.getString(actionRequest, "aboutMe");
 
@@ -231,9 +230,6 @@ public class SummaryPortlet extends JSPPortlet {
 			ExpandoValueLocalServiceUtil.addValue(
 				User.class.getName(), "WOL", "jiraUserId", user.getUserId(),
 				jiraUserId);
-			ExpandoValueLocalServiceUtil.addValue(
-				User.class.getName(), "WOL", "sfUserId", user.getUserId(),
-				sfUserId);
 			ExpandoValueLocalServiceUtil.addValue(
 				User.class.getName(), "WOL", "aboutMe", user.getUserId(),
 				aboutMe);

@@ -30,125 +30,29 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "
 	<c:when test="<%= Validator.isNotNull(jiraUserId) %>">
 
 		<%
-		String jiraURL = "http://support.liferay.com/secure/IssueNavigator.jspa?reset=true&pid=" + JIRAConstants.PROJECT_LEP;
-
-		Date lastWeek = JIRAUtil.getJIRADate(-1);
-
-		int assignedIssuesTotalCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId);
-		int assignedIssuesClosedCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId, JIRAConstants.STATUS_CLOSED);
-		int assignedIssuesLastWeekCount = JIRAIssueLocalServiceUtil.getAssigneeJIRAIssuesCount(lastWeek, JIRAConstants.PROJECT_LEP, jiraUserId);
-		int assignedIssuesOpenCount = assignedIssuesTotalCount - assignedIssuesClosedCount;
-
-		int reporterIssuesTotalCount = JIRAIssueLocalServiceUtil.getReporterJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId);
-		int reporterIssuesClosedCount = JIRAIssueLocalServiceUtil.getReporterJIRAIssuesCount(JIRAConstants.PROJECT_LEP, jiraUserId, JIRAConstants.STATUS_CLOSED);
-		int reporterIssuesLastWeekCount = JIRAIssueLocalServiceUtil.getReporterJIRAIssuesCount(lastWeek, JIRAConstants.PROJECT_LEP, jiraUserId);
-		int reporterIssuesOpenCount = reporterIssuesTotalCount - reporterIssuesClosedCount;
-
-		Object[][] jiraValuesArray = new Object[][] {
-			new Object[] {
-				"assigned-issues",
-				jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId
-			},
-			new Object[] {
-				"open", request.getContextPath() + "/jira/images/status_open.png",
-				jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&resolution=-1",
-				new Integer(assignedIssuesOpenCount), new Integer(assignedIssuesTotalCount)
-			},
-			new Object[] {
-				"closed", request.getContextPath() + "/jira/images/status_closed.png",
-				jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&status=" + JIRAConstants.STATUS_CLOSED,
-				new Integer(assignedIssuesClosedCount), new Integer(assignedIssuesTotalCount)
-			},
-			new Object[] {
-				"last-week", request.getContextPath() + "/jira/images/calendar.png",
-				jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&updated:previous=-1w",
-				new Integer(assignedIssuesLastWeekCount), new Integer(assignedIssuesTotalCount)
-			},
-			new Object[] {
-				"reported-issues",
-				jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId
-			},
-			new Object[] {
-				"open", request.getContextPath() + "/jira/images/status_open.png",
-				jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&resolution=-1",
-				new Integer(reporterIssuesOpenCount), new Integer(reporterIssuesTotalCount)
-			},
-			new Object[] {
-				"closed", request.getContextPath() + "/jira/images/status_closed.png",
-				jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&status=" + JIRAConstants.STATUS_CLOSED,
-				new Integer(reporterIssuesClosedCount), new Integer(reporterIssuesTotalCount)
-			},
-			new Object[] {
-				"last-week", request.getContextPath() + "/jira/images/calendar.png",
-				jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&updated:previous=-1w",
-				new Integer(reporterIssuesLastWeekCount), new Integer(reporterIssuesTotalCount)
-			}
+		Object[][] jiraProjects = new Object[][] {
+			new Object[] {JIRAConstants.PROJECT_LPS, "LPS", "Liferay Portal Standard Edition"},
+			new Object[] {JIRAConstants.PROJECT_LPE, "LPE", "Liferay Portal Enterprise Edition"}
 		};
+
+		for (int i = 0; i < jiraProjects.length; i++) {
+			Object[] jiraProject = jiraProjects[i];
+
+			int projectId = (Integer)jiraProject[0];
+			String projectKey = (String)jiraProject[1];
+			String projectName = (String)jiraProject[2];
 		%>
 
-		<table class="jira-summary lfr-table">
+			<c:if test="<%= i != 0 %>">
+				<div class="separator"><!-- --></div>
+			</c:if>
+
+			<%@ include file="/jira/view_jira_project.jspf" %>
 
 		<%
-		for (int i = 0; i < jiraValuesArray.length; i++) {
-			Object[] jiraValues = jiraValuesArray[i];
-
-			if (jiraValues.length == 2) {
-				String message = (String)jiraValues[0];
-				String url = (String)jiraValues[1];
-		%>
-
-				<tr>
-					<td colspan="3">
-						<c:if test="<%= i != 0 %>">
-							<br />
-						</c:if>
-
-						<a href="<%= url %>" target="_blank"><b><liferay-ui:message key="<%= message %>" /></b></a>
-					</td>
-				</tr>
-
-		<%
-			}
-			else {
-				String message = (String)jiraValues[0];
-				String icon = (String)jiraValues[1];
-				String url = "javascript: location.href = '" + (String)jiraValues[2] + "';";
-				int curCount = ((Integer)jiraValues[3]).intValue();
-				int totalCount = ((Integer)jiraValues[4]).intValue();
-
-				double ratio = (double)curCount / (double)totalCount;
-
-				if (totalCount == 0) {
-					ratio = 0;
-				}
-		%>
-
-				<tr>
-					<td>
-						<liferay-ui:icon
-							message="<%= message %>"
-							src="<%= icon %>"
-							url="<%= url %>"
-							target="_blank"
-							label="<%= true %>"
-						/>
-					</td>
-					<td>
-						<%= numberFormat.format(curCount) %>
-					</td>
-					<td class="activity-details">
-						<div class="progress-bar" style="width: <%= percentFormat.format(ratio) %>;">
-							<span class="progress-text"><%= percentFormat.format(ratio) %></span>
-						</div>
-					</td>
-				</tr>
-
-		<%
-			}
 		}
 		%>
 
-		</table>
 	</c:when>
 	<c:otherwise>
 		<c:choose>
