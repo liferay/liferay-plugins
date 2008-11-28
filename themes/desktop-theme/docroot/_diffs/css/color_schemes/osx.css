@@ -5,7 +5,7 @@
 }
 
 #desktop-maximized.osx {
-	background: #555 url(../../images/desktop/desktop_maximized_bg.png) no-repeat fixed bottom left;
+	background: #555 url(../../images/desktop/maximized.png) no-repeat fixed bottom left;
 }
 
 #desktop-user.osx {
