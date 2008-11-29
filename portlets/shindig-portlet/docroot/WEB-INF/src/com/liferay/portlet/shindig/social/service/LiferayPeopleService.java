@@ -22,6 +22,7 @@
 
 package com.liferay.portlet.shindig.social.service;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.User;
@@ -30,7 +31,6 @@ import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portlet.shindig.util.ShindigUtil;
 import com.liferay.portlet.social.model.SocialRelationConstants;
-import com.liferay.util.dao.hibernate.QueryUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;

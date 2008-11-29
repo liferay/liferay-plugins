@@ -154,8 +154,8 @@ public class LiferayActivitiesService implements ActivitiesService {
 
 			SocialActivityLocalServiceUtil.addActivity(
 				Long.parseLong(userId), 0L, Activity.class.getName(),
-				activity.getPostedTime().longValue(), activity.getAppId(),
-				extraData.toString(), 0L);
+				activity.getPostedTime().longValue(),
+				activity.getAppId().hashCode(), extraData.toString(), 0L);
 		}
 		catch (Exception e){
 	    	_log.error(e, e);

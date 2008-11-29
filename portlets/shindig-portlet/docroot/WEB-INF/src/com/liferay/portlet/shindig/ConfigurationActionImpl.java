@@ -69,7 +69,8 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			}
 		}
 
-		res.sendRedirect(ParamUtil.getString(actionRequest, "redirect"));
+		actionResponse.sendRedirect(
+			ParamUtil.getString(actionRequest, "redirect"));
 	}
 
 	public String render(
