@@ -27,7 +27,7 @@
 <form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
-Paste in widget code.
+<liferay-ui:message key="paste-in-widget-code" />
 
 <br /><br />
 
