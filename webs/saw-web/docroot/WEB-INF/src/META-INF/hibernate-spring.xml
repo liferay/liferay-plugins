@@ -6,22 +6,14 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
 >
 	<bean id="liferayHibernateSessionFactory" class="com.liferay.portal.spring.hibernate.PortletHibernateConfiguration">
-		<property name="dataSource">
-			<ref bean="liferayDataSource" />
-		</property>
+		<property name="dataSource" ref="liferayDataSource" />
 	</bean>
 	<bean id="liferaySessionFactory" class="com.liferay.portal.dao.orm.hibernate.SessionFactoryImpl">
-		<property name="sessionFactoryImplementor">
-			<ref bean="liferayHibernateSessionFactory" />
-		</property>
+		<property name="sessionFactoryImplementor" ref="liferayHibernateSessionFactory" />
 	</bean>
 	<bean id="liferayTransactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-		<property name="dataSource">
-			<ref bean="liferayDataSource" />
-		</property>
+		<property name="dataSource" ref="liferayDataSource" />
 		<property name="globalRollbackOnParticipationFailure" value="false" />
-		<property name="sessionFactory">
-			<ref bean="liferayHibernateSessionFactory" />
-		</property>
+		<property name="sessionFactory" ref="liferayHibernateSessionFactory" />
 	</bean>
 </beans>

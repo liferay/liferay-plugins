@@ -8,32 +8,24 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
 >
-	<context:annotation-config/>
+	<bean id="beanReferenceAnnotationBeanPostProcessor" class="com.liferay.portal.spring.annotation.BeanReferenceAnnotationBeanPostProcessor" />
 	<aop:config>
-		<aop:pointcut id="serviceOperation" expression="bean(*Service.impl)" />
-		<aop:pointcut id="persistenceOperation" expression="bean(*Persistence.impl)" />
-		<aop:advisor advice-ref="serviceTransactionAdvice" pointcut-ref="serviceOperation" />
-		<aop:advisor advice-ref="persistenceTransactionAdvice" pointcut-ref="persistenceOperation" />
+		<aop:pointcut id="transactionOperation" expression="bean(*Service.impl) or bean(*Persistence.impl)" />
+		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="transactionOperation" />
 	</aop:config>
-	<tx:advice id="serviceTransactionAdvice" transaction-manager="liferayTransactionManager">
-		<tx:attributes>
-			<tx:method name="get*" propagation="SUPPORTS" read-only="true" />
-			<tx:method name="search*" propagation="SUPPORTS" read-only="true" />
-			<tx:method name="*" propagation="REQUIRED" rollback-for="com.liferay.portal.PortalException,com.liferay.portal.SystemException" />
-  		</tx:attributes>
-	</tx:advice>
-	<tx:advice id="persistenceTransactionAdvice" transaction-manager="liferayTransactionManager">
-		<tx:attributes>
-			<tx:method name="contains*" propagation="SUPPORTS" read-only="true" />
-			<tx:method name="count*" propagation="SUPPORTS" read-only="true" />
-			<tx:method name="find*" propagation="SUPPORTS" read-only="true" />
-			<tx:method name="get*" propagation="SUPPORTS" read-only="true" />
-			<tx:method name="*" propagation="REQUIRED" rollback-for="com.liferay.portal.PortalException,com.liferay.portal.SystemException" />
-  		</tx:attributes>
-	</tx:advice>
+	<bean id="transactionAdvice" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager" ref="liferayTransactionManager" />
+		<property name="transactionAttributeSource">
+			<bean class="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource">
+		        <constructor-arg>
+		            <bean class="com.liferay.portal.spring.annotation.PortalTransactionAnnotationParser" />
+		        </constructor-arg>
+			</bean>
+		</property>
+	</bean>
 	<bean id="portletBeanFactoryPostProcessor" class="com.liferay.portal.spring.context.PortletBeanFactoryPostProcessor" />
 	<bean id="portletClassLoader" class="com.liferay.portal.kernel.portlet.PortletClassLoaderUtil" factory-method="getClassLoader" />
-	<bean id="logAspect" class="com.liferay.portal.spring.aop.LogAspect" />
+	<bean id="logAdvice" class="com.liferay.portal.spring.aop.LogAdvice" />
 	<bean id="velocityServiceInterceptor" class="com.liferay.portal.spring.aop.BeanInterceptor">
 		<property name="classLoader" ref="portletClassLoader" />
 		<property name="exceptionSafe" value="true" />

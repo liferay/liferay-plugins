@@ -22,12 +22,19 @@
 
 package com.liferay.saw.service;
 
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="SAWWorkflowLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
+@Transactional(rollbackFor =  {
+	PortalException.class, SystemException.class})
 public interface SAWWorkflowLocalService {
 	public com.sun.saw.vo.OutputVO checkoutTasks(
 		com.sun.saw.vo.CheckoutTaskVO checkoutTaskVO)
@@ -40,21 +47,26 @@ public interface SAWWorkflowLocalService {
 	public java.lang.String deploy(java.lang.String xml)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getCurrentTasksXml(long instanceId, long tokenId,
 		java.lang.String userId)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getDefinitionsCountXml(long definitionId,
 		java.lang.String name, java.lang.String userId)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getDefinitionsXml(long definitionId,
 		java.lang.String name, java.lang.String userId, int begin, int end)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getDefinitionXml(long definitionId)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getInstancesCountXml(long definitionId,
 		long instanceId, java.lang.String definitionName,
 		java.lang.String definitionVersion, java.lang.String startDateGT,
@@ -64,6 +76,7 @@ public interface SAWWorkflowLocalService {
 		boolean andOperator)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getInstancesXml(long definitionId, long instanceId,
 		java.lang.String definitionName, java.lang.String definitionVersion,
 		java.lang.String startDateGT, java.lang.String startDateLT,
@@ -72,19 +85,24 @@ public interface SAWWorkflowLocalService {
 		boolean retrieveUserInstances, boolean andOperator, int start, int end)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getTaskFormElementsXml(long taskId)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.sun.saw.vo.OutputVO getTasks(
 		com.sun.saw.vo.FilterTaskVO filterTaskVO)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getTaskTransitionsXml(long taskId)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getTaskXml(long taskId, java.lang.String userId)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getUserTasksCountXml(long instanceId,
 		java.lang.String taskName, java.lang.String definitionName,
 		java.lang.String assignedTo, java.lang.String userId,
@@ -94,6 +112,7 @@ public interface SAWWorkflowLocalService {
 		boolean hideEndedTasks, boolean andOperator)
 		throws com.liferay.portal.kernel.jbi.WorkflowComponentException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getUserTasksXml(long instanceId,
 		java.lang.String taskName, java.lang.String definitionName,
 		java.lang.String assignedTo, java.lang.String createDateGT,

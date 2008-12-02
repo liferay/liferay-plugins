@@ -6,7 +6,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
 >
 	<bean id="liferayDataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
-		<property name="targetDataSource" ref="liferayDataSourceTarget" />
+		<property name="targetDataSource">
+			<bean class="com.liferay.portal.kernel.util.InfrastructureUtil" factory-method="getDataSource" />
+		</property>
 	</bean>
-	<bean id="liferayDataSourceTarget" class="com.liferay.portal.kernel.util.InfrastructureUtil" factory-method="getDataSource" />
 </beans>

@@ -22,6 +22,8 @@
 
 package com.liferay.saw.service.base;
 
+import com.liferay.portal.kernel.annotation.BeanReference;
+
 import com.liferay.saw.service.SAWWorkflowLocalService;
 
 /**
@@ -41,6 +43,6 @@ public abstract class SAWWorkflowLocalServiceBaseImpl
 		this.sawWorkflowLocalService = sawWorkflowLocalService;
 	}
 
-	@javax.annotation.Resource(name = "com.liferay.saw.service.SAWWorkflowLocalService.impl")
+	@BeanReference(name = "com.liferay.saw.service.SAWWorkflowLocalService.impl")
 	protected SAWWorkflowLocalService sawWorkflowLocalService;
 }
