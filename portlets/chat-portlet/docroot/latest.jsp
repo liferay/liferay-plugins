@@ -92,7 +92,7 @@ for (Entry entry : entries) {
 	}
 
 	entryJSON.put("toUserId", entry.getToUserId());
-	entryJSON.put("content", entry.getContent());
+	entryJSON.put("content", HtmlUtil.escape(entry.getContent()));
 
 	entriesJSON.put(entryJSON);
 

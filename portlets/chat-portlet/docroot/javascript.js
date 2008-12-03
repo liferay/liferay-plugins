@@ -104,6 +104,14 @@ jQuery.fn.enableSelection = function() {
 Liferay.Chat = {};
 
 Liferay.Chat.Util = {
+	escapeHTML: function(str) {
+		str = str.replace(/&/g, '&amp;');
+		str = str.replace(/</g, '&lt;');
+		str = str.replace(/>/g, '&gt;');
+
+		return str;
+	},
+
 	formatTime: function(time) {
 		var instance = this;
 
@@ -509,6 +517,7 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend({
 		if (event.keyCode == 13 && content.length) {
 			var now = Liferay.Chat.Util.getCurrentTimestamp();
 
+			var escapedHTML = Liferay.Chat.Util.escapeHTML(el.value);
 			instance.send(
 				{
 					toUserId: userId,
@@ -519,7 +528,7 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend({
 
 			instance._updateMessageWindow(
 				{
-					text: el.value,
+					text: escapedHTML,
 					time: now
 				}
 			);
@@ -712,7 +721,7 @@ Liferay.Chat.Manager = {
 				instance._activePanelId = '';
 
 				if (instance._statusMessage) {
-					instance._myStatus.html('You are <strong>' + instance._statusMessage + '</strong>');
+					instance._myStatus.html('You are <strong>' + Liferay.Chat.Util.escapeHTML(instance._statusMessage) + '</strong>');
 				}
 
 				setTimeout(
