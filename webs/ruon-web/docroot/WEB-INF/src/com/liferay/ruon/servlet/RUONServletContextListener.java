@@ -38,7 +38,7 @@ import javax.servlet.ServletContextListener;
  * <a href="RUONServletContextListener.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- *
+ * @author Vihang Pathak
  */
 public class RUONServletContextListener
 	implements PortalInitable, ServletContextListener {
@@ -52,6 +52,8 @@ public class RUONServletContextListener
 	}
 
 	public void contextInitialized(ServletContextEvent event) {
+		_setContextClassLoader();
+
 		PortalInitableUtil.init(this);
 	}
 
@@ -62,14 +64,36 @@ public class RUONServletContextListener
 
 		_ruonMessageListener = new RUONMessageListener();
 
+		ClassLoader currentClassLoader =
+			Thread.currentThread().getContextClassLoader();
+
+		if (!(currentClassLoader.equals(_contextClassLoader))) {
+
+			Thread.currentThread().setContextClassLoader(_contextClassLoader);
+		}
+
 		_ruonDestination.register(_ruonMessageListener);
 
 		Destination ruonResponseDestination = new ParallelDestination(
 			DestinationNames.RUON_RESPONSE);
 
+		_restoreCurrentClassLoader(currentClassLoader);
+
 		MessageBusUtil.addDestination(ruonResponseDestination);
+
 	}
 
+	private void _restoreCurrentClassLoader(ClassLoader currentClassLoader) {
+		Thread.currentThread().setContextClassLoader(currentClassLoader);
+		
+	}
+
+	private void _setContextClassLoader() {
+		_contextClassLoader = Thread.currentThread().getContextClassLoader();
+		
+	}
+
+	private ClassLoader	_contextClassLoader;
 	private Destination _ruonDestination;
 	private MessageListener _ruonMessageListener;
 
