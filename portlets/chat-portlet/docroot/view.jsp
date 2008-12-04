@@ -39,10 +39,8 @@
 
 		online = status.getOnline();
 		activePanelId = status.getActivePanelId();
-		statusMessage = status.getMessage();
+		statusMessage = HtmlUtil.escape(status.getMessage());
 		playSound = status.getPlaySound();
-
-		statusMessage = HtmlUtil.escape(statusMessage);
 	}
 	catch (NoSuchStatusException nsse) {
 	}

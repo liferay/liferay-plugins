@@ -28,7 +28,6 @@
 		var syncedData = [];
 
 		$.ajax = function(settings) {
-			// create settings for compatibility with ajaxSetup
 			settings = jQuery.extend(settings, jQuery.extend({}, jQuery.ajaxSettings, settings));
 
 			var port = settings.port;
@@ -518,6 +517,7 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend({
 			var now = Liferay.Chat.Util.getCurrentTimestamp();
 
 			var escapedHTML = Liferay.Chat.Util.escapeHTML(el.value);
+
 			instance.send(
 				{
 					toUserId: userId,
