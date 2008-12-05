@@ -9,9 +9,9 @@
 				KB_KBArticle
 			WHERE
 				[$GROUP_ID$] AND
-				(head = true) AND
-				(template = false) AND
-				(draft = false)
+				(head = [$TRUE$]) AND
+				(template = [$FALSE$]) AND
+				(draft = [$FALSE$])
 		]]>
 	</sql>
 	<sql id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.countByS_U_G">
@@ -26,7 +26,7 @@
 					(Subscription.classPK = KB_KBArticle.resourcePrimKey)
 			WHERE
 				(KB_KBArticle.groupId = ?) AND
-				(KB_KBArticle.head = true) AND
+				(KB_KBArticle.head = [$TRUE$]) AND
 				(Subscription.userId = ?)
 		]]>
 	</sql>
@@ -40,9 +40,9 @@
 				(groupId = ?) AND
 				(parentResourcePrimKey = ?) AND
 				(template = ?) AND
-				(head = true) AND
+				(head = [$TRUE$]) AND
 				(
-					(draft = false) OR
+					(draft = [$FALSE$]) OR
 					(userId = ?)
 				)
 		]]>
@@ -55,9 +55,9 @@
 				KB_KBArticle
 			WHERE
 				[$GROUP_ID$] AND
-				(head = true) AND
-				(template = false) AND
-				(draft = false)
+				(head = [$TRUE$]) AND
+				(template = [$FALSE$]) AND
+				(draft = [$FALSE$])
 			ORDER BY
 				modifiedDate DESC
 		]]>
@@ -74,7 +74,7 @@
 					(Subscription.classPK = KB_KBArticle.resourcePrimKey)
 			WHERE
 				(KB_KBArticle.groupId = ?) AND
-				(KB_KBArticle.head = true) AND
+				(KB_KBArticle.head = [$TRUE$]) AND
 				(Subscription.userId = ?)
 			ORDER BY
 				title ASC,
@@ -91,9 +91,9 @@
 				(groupId = ?) AND
 				(parentResourcePrimKey = ?) AND
 				(template = ?) AND
-				(head = true) AND
+				(head = [$TRUE$]) AND
 				(
-					(draft = false) OR
+					(draft = [$FALSE$]) OR
 					(userId = ?)
 				)
 			ORDER BY
