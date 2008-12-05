@@ -89,6 +89,8 @@ for (Group myPlace : myPlaces) {
 	url="<%= portletURL %>"
 />
 
+<liferay-ui:error key="groupId" message="please-select-at-least-one-community" />
+
 <c:choose>
 	<c:when test='<%= tabs2.equals("display-settings") %>'>
 		<fieldset>
@@ -134,11 +136,17 @@ for (Group myPlace : myPlaces) {
 					<tr valign="middle">
 
 						<%
+						long[] groupIdsArray = groupIds;
+
+						if (groupIds[0] == 0) {
+							groupIdsArray = new long[] {scopeGroupId};
+						}
+
 						for (int i = 0; i < communityGroupIds.size(); i++) {
 						%>
 
 							<td>
-								<input type="checkbox" <%= ArrayUtil.contains(groupIds, communityGroupIds.get(i)) ? "checked" : "" %> name="<portlet:namespace />groupIds" value="<%= communityGroupIds.get(i) %>" />
+								<input type="checkbox" <%= ArrayUtil.contains(groupIdsArray, communityGroupIds.get(i)) ? "checked" : "" %> name="<portlet:namespace />groupIds" value="<%= communityGroupIds.get(i) %>" />
 							</td>
 							<td>
 								<%= communityGroupNames.get(i) %>

@@ -80,7 +80,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public KBArticle addArticle(
 			long plid, String title, String content, String description,
 			boolean minorEdit, boolean template, boolean draft,
-			long parentResourcePrimKey, String[] tagsEntries, 
+			long parentResourcePrimKey, String[] tagsEntries,
 			String[] categoriesEntries, PortletPreferences prefs,
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {

@@ -275,7 +275,7 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 			tagsEntries = context.getTagsEntries(
 				KBArticle.class, article.getResourcePrimKey());
 		}
-		
+
 		String[] categoriesEntries = null;
 
 		ThemeDisplay themeDisplay = null;
@@ -305,7 +305,7 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 					article.getHtmlTitle(), article.getContent(),
 					article.getDescription(), article.isMinorEdit(),
 					article.isTemplate(), article.isDraft(),
-					article.getParentResourcePrimKey(), tagsEntries, 
+					article.getParentResourcePrimKey(), tagsEntries,
 					categoriesEntries, prefs, themeDisplay);
 			}
 		}

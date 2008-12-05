@@ -23,6 +23,7 @@
 package com.liferay.kb.knowledgebaseaggregator.action;
 
 import com.liferay.portal.kernel.portlet.ConfigurationAction;
+import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
@@ -63,10 +64,12 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			updateRSS(actionRequest, preferences);
 		}
 
-		preferences.store();
+		if (SessionErrors.isEmpty(actionRequest)) {
+			preferences.store();
 
-		SessionMessages.add(
-			actionRequest, portletConfig.getPortletName() + ".doConfigure");
+			SessionMessages.add(
+				actionRequest, portletConfig.getPortletName() + ".doConfigure");
+		}
 	}
 
 	public String render(
@@ -89,6 +92,9 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 
 		if (!companyId.equals("0")) {
 			groupIds = new String[] {"0"};
+		}
+		else if (groupIds == null) {
+			SessionErrors.add(actionRequest, "groupId");
 		}
 
 		preferences.setValues("group-ids", groupIds);

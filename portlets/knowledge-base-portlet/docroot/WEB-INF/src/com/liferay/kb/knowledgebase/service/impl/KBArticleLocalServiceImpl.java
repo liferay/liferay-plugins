@@ -149,7 +149,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long userId, long groupId, String title, String htmlTitle,
 			String content, String description, boolean minorEdit,
 			boolean template, boolean draft, long parentResourcePrimKey,
-			String[] tagsEntries, String[] categoriesEntries, 
+			String[] tagsEntries, String[] categoriesEntries,
 			PortletPreferences prefs, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
