@@ -94,8 +94,9 @@ public class SAWServletContextListener
 						"JBPM Tables does not exist. So have to create them.");
 			}
 			String dialect = _getDialect();
-			ClassLoader contextClassLoader =_getCurrentClassLoader();
-			_setAggregateClassLoader(contextClassLoader);
+			ClassLoader currentClassLoader =_getCurrentClassLoader();
+			ClassLoader portletClassLoader =_getPortletClassLoader();
+			_setAggregateClassLoader(portletClassLoader);
 			try{
 			_runSQLQuery(dialect);
 			}
@@ -108,7 +109,7 @@ public class SAWServletContextListener
 			catch (SQLException e) {
 				_log.error(e, e);
 			}
-			_restoreClassLoader(contextClassLoader);
+			_restoreClassLoader(currentClassLoader);
 		}
 	
 	}
@@ -139,14 +140,18 @@ public class SAWServletContextListener
 	}
 	
 	private ClassLoader _getCurrentClassLoader(){
-		//return Thread.currentThread().getContextClassLoader();
-		return PortletClassLoaderUtil.getClassLoader();
+		return Thread.currentThread().getContextClassLoader();
+		
 	}
 	
 	private String _getDialect(){
 		
 		String dialect = DatabaseUtil.getType();
 		return dialect;
+	}
+	
+	private ClassLoader _getPortletClassLoader(){
+		return PortletClassLoaderUtil.getClassLoader();
 	}
 	
 	private void _restoreClassLoader(ClassLoader cl){
