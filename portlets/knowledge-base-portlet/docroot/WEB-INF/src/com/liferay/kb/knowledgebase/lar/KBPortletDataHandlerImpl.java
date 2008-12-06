@@ -129,11 +129,15 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 	}
 
 	public PortletDataHandlerControl[] getExportControls() {
-		return new PortletDataHandlerControl[] {_articles, _feedbacks, _tags};
+		return new PortletDataHandlerControl[] {
+			_articles, _categories, _feedbacks, _tags
+		};
 	}
 
 	public PortletDataHandlerControl[] getImportControls() {
-		return new PortletDataHandlerControl[] {_articles, _feedbacks, _tags};
+		return new PortletDataHandlerControl[] {
+			_articles, _categories, _feedbacks, _tags
+		};
 	}
 
 	public PortletPreferences importData(
@@ -205,6 +209,10 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 		if (context.isPathNotProcessed(path)) {
 			article.setUserUuid(article.getUserUuid());
 
+			if (context.getBooleanParameter(_NAMESPACE, "categories")) {
+				context.addTagsCategories(
+					KBArticle.class, article.getResourcePrimKey());
+			}
 			if (context.getBooleanParameter(_NAMESPACE, "tags")) {
 				context.addTagsEntries(
 					KBArticle.class, article.getResourcePrimKey());
@@ -269,14 +277,18 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 		long userId = context.getUserId(article.getUserUuid());
 		long groupId = context.getGroupId();
 
+		String[] tagsCategories = null;
 		String[] tagsEntries = null;
 
+		if (context.getBooleanParameter(_NAMESPACE, "categories")) {
+			tagsCategories = context.getTagsCategories(
+				KBArticle.class, article.getResourcePrimKey());
+		}
+		
 		if (context.getBooleanParameter(_NAMESPACE, "tags")) {
 			tagsEntries = context.getTagsEntries(
 				KBArticle.class, article.getResourcePrimKey());
 		}
-
-		String[] categoriesEntries = null;
 
 		ThemeDisplay themeDisplay = null;
 
@@ -296,7 +308,7 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 					article.isMinorEdit(), article.isHead(),
 					article.isTemplate(), article.isDraft(),
 					article.getParentResourcePrimKey(), tagsEntries,
-					categoriesEntries, prefs, themeDisplay);
+					tagsCategories, prefs, themeDisplay);
 			}
 			else {
 				existingArticle = KBArticleLocalServiceUtil.updateArticle(
@@ -306,7 +318,7 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 					article.getDescription(), article.isMinorEdit(),
 					article.isTemplate(), article.isDraft(),
 					article.getParentResourcePrimKey(), tagsEntries,
-					categoriesEntries, prefs, themeDisplay);
+					tagsCategories, prefs, themeDisplay);
 			}
 		}
 		else {
@@ -315,7 +327,7 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 				article.getDescription(), article.isMinorEdit(),
 				article.isTemplate(), article.isDraft(),
 				article.getParentResourcePrimKey(), tagsEntries,
-				categoriesEntries, prefs, themeDisplay);
+				tagsCategories, prefs, themeDisplay);
 		}
 
 		articlePKs.put(
@@ -342,6 +354,9 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 
 	private static final PortletDataHandlerBoolean _articles =
 		new PortletDataHandlerBoolean(_NAMESPACE, "articles");
+
+	private static final PortletDataHandlerBoolean _categories =
+		new PortletDataHandlerBoolean(_NAMESPACE, "categories");
 
 	private static final PortletDataHandlerBoolean _feedbacks =
 		new PortletDataHandlerBoolean(_NAMESPACE, "feedbacks", false);
