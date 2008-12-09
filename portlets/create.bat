@@ -5,21 +5,7 @@ if "" == "%2" goto errorCreate
 
 call ant -Dportlet.name=%1 -Dportlet.display.name=%2 create
 
-svn add %1-portlet
-
-cd %1-portlet\docroot\WEB-INF
-
-svn ps svn:ignore -F .cvsignore .
-
-svn remove --force .cvsignore
-
-cd ..
-
-cd ..
-
 rem call ant deploy
-
-cd ..
 
 goto end
 
