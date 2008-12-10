@@ -9,12 +9,12 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Application Builder</title>
 			<short-title>Application Builder</short-title>
 			<keywords>Application Builder</keywords>
 		</portlet-info>
-		<resource-bundle>content.Language</resource-bundle>
 		<security-role-ref>
 			<role-name>administrator</role-name>
 		</security-role-ref>
