@@ -284,7 +284,7 @@ public class KBPortletDataHandlerImpl implements PortletDataHandler {
 			tagsCategories = context.getTagsCategories(
 				KBArticle.class, article.getResourcePrimKey());
 		}
-		
+
 		if (context.getBooleanParameter(_NAMESPACE, "tags")) {
 			tagsEntries = context.getTagsEntries(
 				KBArticle.class, article.getResourcePrimKey());

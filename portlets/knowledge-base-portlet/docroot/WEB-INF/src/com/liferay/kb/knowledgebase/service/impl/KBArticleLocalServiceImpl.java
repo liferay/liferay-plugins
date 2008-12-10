@@ -1010,9 +1010,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		TagsAssetLocalServiceUtil.updateAsset(
 			userId, article.getGroupId(), className,
-			article.getResourcePrimKey(), categoriesEntries, tagsEntries, null,
-			null, null, null, ContentTypes.TEXT_HTML, article.getTitle(), null,
-			null, null, 0, 0, null, false);
+			article.getResourcePrimKey(), categoriesEntries, tagsEntries, true,
+			null, null, null, null, ContentTypes.TEXT_HTML, article.getTitle(),
+			null, null, null, 0, 0, null, false);
 	}
 
 	public void validateTitle(String title) throws PortalException {
