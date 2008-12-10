@@ -28,6 +28,9 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
+
 import com.liferay.wol.model.JIRAChangeGroup;
 import com.liferay.wol.model.JIRAChangeGroupSoap;
 
@@ -163,6 +166,7 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl {
 		else {
 			JIRAChangeGroup model = new JIRAChangeGroupImpl();
 
+			model.setNew(isNew());
 			model.setEscapedModel(true);
 
 			model.setJiraChangeGroupId(getJiraChangeGroupId());
@@ -176,6 +180,15 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl {
 
 			return model;
 		}
+	}
+
+	public ExpandoBridge getExpandoBridge() {
+		if (_expandoBridge == null) {
+			_expandoBridge = new ExpandoBridgeImpl(JIRAChangeGroup.class.getName(),
+					getPrimaryKey());
+		}
+
+		return _expandoBridge;
 	}
 
 	public Object clone() {
@@ -242,4 +255,5 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl {
 	private String _jiraUserId;
 	private Date _createDate;
 	private long _jiraIssueId;
+	private transient ExpandoBridge _expandoBridge;
 }

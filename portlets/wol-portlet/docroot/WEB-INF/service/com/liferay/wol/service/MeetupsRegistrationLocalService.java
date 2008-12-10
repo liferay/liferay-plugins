@@ -22,12 +22,19 @@
 
 package com.liferay.wol.service;
 
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="MeetupsRegistrationLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
+@Transactional(rollbackFor =  {
+	PortalException.class, SystemException.class})
 public interface MeetupsRegistrationLocalService {
 	public com.liferay.wol.model.MeetupsRegistration addMeetupsRegistration(
 		com.liferay.wol.model.MeetupsRegistration meetupsRegistration)
@@ -52,14 +59,17 @@ public interface MeetupsRegistrationLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.MeetupsRegistration getMeetupsRegistration(
 		long meetupsRegistrationId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsRegistration> getMeetupsRegistrations(
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getMeetupsRegistrationsCount()
 		throws com.liferay.portal.SystemException;
 
@@ -67,15 +77,18 @@ public interface MeetupsRegistrationLocalService {
 		com.liferay.wol.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsRegistration> getMeetupsRegistrations(
 		long meetupsEntryId, int status, int start, int end)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.MeetupsRegistration getMeetupsRegistration(
 		long userId, long meetupsEntryId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getMeetupsRegistrationsCount(long meetupsEntryId, int status)
 		throws com.liferay.portal.SystemException;
 

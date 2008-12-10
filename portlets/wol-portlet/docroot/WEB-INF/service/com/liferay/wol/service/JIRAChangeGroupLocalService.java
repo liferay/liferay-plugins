@@ -22,12 +22,19 @@
 
 package com.liferay.wol.service;
 
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="JIRAChangeGroupLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
+@Transactional(rollbackFor =  {
+	PortalException.class, SystemException.class})
 public interface JIRAChangeGroupLocalService {
 	public com.liferay.wol.model.JIRAChangeGroup addJIRAChangeGroup(
 		com.liferay.wol.model.JIRAChangeGroup jiraChangeGroup)
@@ -52,14 +59,17 @@ public interface JIRAChangeGroupLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.JIRAChangeGroup getJIRAChangeGroup(
 		long jiraChangeGroupId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.JIRAChangeGroup> getJIRAChangeGroups(
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getJIRAChangeGroupsCount()
 		throws com.liferay.portal.SystemException;
 

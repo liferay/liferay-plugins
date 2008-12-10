@@ -27,6 +27,9 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
+
 import com.liferay.wol.model.SVNRepository;
 import com.liferay.wol.model.SVNRepositorySoap;
 
@@ -142,6 +145,7 @@ public class SVNRepositoryModelImpl extends BaseModelImpl {
 		else {
 			SVNRepository model = new SVNRepositoryImpl();
 
+			model.setNew(isNew());
 			model.setEscapedModel(true);
 
 			model.setSvnRepositoryId(getSvnRepositoryId());
@@ -154,6 +158,15 @@ public class SVNRepositoryModelImpl extends BaseModelImpl {
 
 			return model;
 		}
+	}
+
+	public ExpandoBridge getExpandoBridge() {
+		if (_expandoBridge == null) {
+			_expandoBridge = new ExpandoBridgeImpl(SVNRepository.class.getName(),
+					getPrimaryKey());
+		}
+
+		return _expandoBridge;
 	}
 
 	public Object clone() {
@@ -215,4 +228,5 @@ public class SVNRepositoryModelImpl extends BaseModelImpl {
 	private long _svnRepositoryId;
 	private String _url;
 	private long _revisionNumber;
+	private transient ExpandoBridge _expandoBridge;
 }

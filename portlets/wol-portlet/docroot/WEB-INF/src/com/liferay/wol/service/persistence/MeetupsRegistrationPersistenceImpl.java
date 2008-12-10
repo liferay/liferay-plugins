@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
+import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.wol.NoSuchMeetupsRegistrationException;
@@ -128,6 +129,15 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
+			if (BatchSessionUtil.isEnabled()) {
+				Object staleObject = session.get(MeetupsRegistrationImpl.class,
+						meetupsRegistration.getPrimaryKeyObj());
+
+				if (staleObject != null) {
+					session.evict(staleObject);
+				}
+			}
+
 			session.delete(meetupsRegistration);
 
 			session.flush();
@@ -193,16 +203,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
-			if (merge) {
-				session.merge(meetupsRegistration);
-			}
-			else {
-				if (meetupsRegistration.isNew()) {
-					session.save(meetupsRegistration);
-				}
-			}
-
-			session.flush();
+			BatchSessionUtil.update(session, meetupsRegistration, merge);
 
 			meetupsRegistration.setNew(false);
 

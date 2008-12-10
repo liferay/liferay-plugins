@@ -22,12 +22,19 @@
 
 package com.liferay.wol.service;
 
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="WallEntryLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
+@Transactional(rollbackFor =  {
+	PortalException.class, SystemException.class})
 public interface WallEntryLocalService {
 	public com.liferay.wol.model.WallEntry addWallEntry(
 		com.liferay.wol.model.WallEntry wallEntry)
@@ -50,13 +57,16 @@ public interface WallEntryLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.WallEntry getWallEntry(long wallEntryId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.WallEntry> getWallEntries(
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getWallEntriesCount() throws com.liferay.portal.SystemException;
 
 	public com.liferay.wol.model.WallEntry updateWallEntry(
@@ -72,17 +82,21 @@ public interface WallEntryLocalService {
 	public void deleteWallEntries(long groupId)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.WallEntry> getWallEntries(
 		long groupId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getWallEntriesCount(long groupId)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.WallEntry> getWallToWallEntries(
 		long groupId1, long groupId2, long userId1, long userId2, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getWallToWallEntriesCount(long groupId1, long groupId2,
 		long userId1, long userId2) throws com.liferay.portal.SystemException;
 

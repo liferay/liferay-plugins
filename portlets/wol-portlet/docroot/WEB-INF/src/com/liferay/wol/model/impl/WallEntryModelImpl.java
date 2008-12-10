@@ -28,6 +28,9 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
+
 import com.liferay.wol.model.WallEntry;
 import com.liferay.wol.model.WallEntrySoap;
 
@@ -224,6 +227,7 @@ public class WallEntryModelImpl extends BaseModelImpl {
 		else {
 			WallEntry model = new WallEntryImpl();
 
+			model.setNew(isNew());
 			model.setEscapedModel(true);
 
 			model.setWallEntryId(getWallEntryId());
@@ -241,6 +245,15 @@ public class WallEntryModelImpl extends BaseModelImpl {
 
 			return model;
 		}
+	}
+
+	public ExpandoBridge getExpandoBridge() {
+		if (_expandoBridge == null) {
+			_expandoBridge = new ExpandoBridgeImpl(WallEntry.class.getName(),
+					getPrimaryKey());
+		}
+
+		return _expandoBridge;
 	}
 
 	public Object clone() {
@@ -314,4 +327,5 @@ public class WallEntryModelImpl extends BaseModelImpl {
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _comments;
+	private transient ExpandoBridge _expandoBridge;
 }

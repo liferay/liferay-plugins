@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
+import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.wol.NoSuchWallEntryException;
@@ -125,6 +126,15 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
+			if (BatchSessionUtil.isEnabled()) {
+				Object staleObject = session.get(WallEntryImpl.class,
+						wallEntry.getPrimaryKeyObj());
+
+				if (staleObject != null) {
+					session.evict(staleObject);
+				}
+			}
+
 			session.delete(wallEntry);
 
 			session.flush();
@@ -188,16 +198,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
-			if (merge) {
-				session.merge(wallEntry);
-			}
-			else {
-				if (wallEntry.isNew()) {
-					session.save(wallEntry);
-				}
-			}
-
-			session.flush();
+			BatchSessionUtil.update(session, wallEntry, merge);
 
 			wallEntry.setNew(false);
 

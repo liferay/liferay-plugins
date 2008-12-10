@@ -22,12 +22,19 @@
 
 package com.liferay.wol.service;
 
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="MeetupsEntryLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
+@Transactional(rollbackFor =  {
+	PortalException.class, SystemException.class})
 public interface MeetupsEntryLocalService {
 	public com.liferay.wol.model.MeetupsEntry addMeetupsEntry(
 		com.liferay.wol.model.MeetupsEntry meetupsEntry)
@@ -52,14 +59,17 @@ public interface MeetupsEntryLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.MeetupsEntry getMeetupsEntry(
 		long meetupsEntryId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsEntry> getMeetupsEntries(
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getMeetupsEntriesCount()
 		throws com.liferay.portal.SystemException;
 
@@ -76,6 +86,7 @@ public interface MeetupsEntryLocalService {
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsEntry> getMeetupsEntries(
 		long companyId) throws com.liferay.portal.SystemException;
 

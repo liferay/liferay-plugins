@@ -28,6 +28,9 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
+
 import com.liferay.wol.model.JIRAAction;
 import com.liferay.wol.model.JIRAActionSoap;
 
@@ -228,6 +231,7 @@ public class JIRAActionModelImpl extends BaseModelImpl {
 		else {
 			JIRAAction model = new JIRAActionImpl();
 
+			model.setNew(isNew());
 			model.setEscapedModel(true);
 
 			model.setJiraActionId(getJiraActionId());
@@ -245,6 +249,15 @@ public class JIRAActionModelImpl extends BaseModelImpl {
 
 			return model;
 		}
+	}
+
+	public ExpandoBridge getExpandoBridge() {
+		if (_expandoBridge == null) {
+			_expandoBridge = new ExpandoBridgeImpl(JIRAAction.class.getName(),
+					getPrimaryKey());
+		}
+
+		return _expandoBridge;
 	}
 
 	public Object clone() {
@@ -319,4 +332,5 @@ public class JIRAActionModelImpl extends BaseModelImpl {
 	private String _type;
 	private String _body;
 	private String _jiraGroupName;
+	private transient ExpandoBridge _expandoBridge;
 }

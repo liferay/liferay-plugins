@@ -28,6 +28,9 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
+
 import com.liferay.wol.model.MeetupsRegistration;
 import com.liferay.wol.model.MeetupsRegistrationSoap;
 
@@ -239,6 +242,7 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl {
 		else {
 			MeetupsRegistration model = new MeetupsRegistrationImpl();
 
+			model.setNew(isNew());
 			model.setEscapedModel(true);
 
 			model.setMeetupsRegistrationId(getMeetupsRegistrationId());
@@ -257,6 +261,15 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl {
 
 			return model;
 		}
+	}
+
+	public ExpandoBridge getExpandoBridge() {
+		if (_expandoBridge == null) {
+			_expandoBridge = new ExpandoBridgeImpl(MeetupsRegistration.class.getName(),
+					getPrimaryKey());
+		}
+
+		return _expandoBridge;
 	}
 
 	public Object clone() {
@@ -333,4 +346,5 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl {
 	private long _meetupsEntryId;
 	private int _status;
 	private String _comments;
+	private transient ExpandoBridge _expandoBridge;
 }

@@ -22,12 +22,19 @@
 
 package com.liferay.wol.service;
 
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="JIRAActionLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
+@Transactional(rollbackFor =  {
+	PortalException.class, SystemException.class})
 public interface JIRAActionLocalService {
 	public com.liferay.wol.model.JIRAAction addJIRAAction(
 		com.liferay.wol.model.JIRAAction jiraAction)
@@ -50,13 +57,16 @@ public interface JIRAActionLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.JIRAAction getJIRAAction(long jiraActionId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.JIRAAction> getJIRAActions(
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getJIRAActionsCount() throws com.liferay.portal.SystemException;
 
 	public com.liferay.wol.model.JIRAAction updateJIRAAction(

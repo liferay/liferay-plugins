@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
+import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.wol.NoSuchJIRAChangeGroupException;
@@ -127,6 +128,15 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
+			if (BatchSessionUtil.isEnabled()) {
+				Object staleObject = session.get(JIRAChangeGroupImpl.class,
+						jiraChangeGroup.getPrimaryKeyObj());
+
+				if (staleObject != null) {
+					session.evict(staleObject);
+				}
+			}
+
 			session.delete(jiraChangeGroup);
 
 			session.flush();
@@ -192,16 +202,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
-			if (merge) {
-				session.merge(jiraChangeGroup);
-			}
-			else {
-				if (jiraChangeGroup.isNew()) {
-					session.save(jiraChangeGroup);
-				}
-			}
-
-			session.flush();
+			BatchSessionUtil.update(session, jiraChangeGroup, merge);
 
 			jiraChangeGroup.setNew(false);
 

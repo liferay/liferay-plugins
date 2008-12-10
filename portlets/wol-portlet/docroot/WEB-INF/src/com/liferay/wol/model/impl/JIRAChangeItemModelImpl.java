@@ -27,6 +27,9 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
+
 import com.liferay.wol.model.JIRAChangeItem;
 import com.liferay.wol.model.JIRAChangeItemSoap;
 
@@ -210,6 +213,7 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl {
 		else {
 			JIRAChangeItem model = new JIRAChangeItemImpl();
 
+			model.setNew(isNew());
 			model.setEscapedModel(true);
 
 			model.setJiraChangeItemId(getJiraChangeItemId());
@@ -226,6 +230,15 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl {
 
 			return model;
 		}
+	}
+
+	public ExpandoBridge getExpandoBridge() {
+		if (_expandoBridge == null) {
+			_expandoBridge = new ExpandoBridgeImpl(JIRAChangeItem.class.getName(),
+					getPrimaryKey());
+		}
+
+		return _expandoBridge;
 	}
 
 	public Object clone() {
@@ -297,4 +310,5 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl {
 	private String _oldString;
 	private String _newValue;
 	private String _newString;
+	private transient ExpandoBridge _expandoBridge;
 }

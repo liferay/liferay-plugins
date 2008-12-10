@@ -22,12 +22,19 @@
 
 package com.liferay.wol.service;
 
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="JIRAChangeItemLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
+@Transactional(rollbackFor =  {
+	PortalException.class, SystemException.class})
 public interface JIRAChangeItemLocalService {
 	public com.liferay.wol.model.JIRAChangeItem addJIRAChangeItem(
 		com.liferay.wol.model.JIRAChangeItem jiraChangeItem)
@@ -52,14 +59,17 @@ public interface JIRAChangeItemLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.JIRAChangeItem getJIRAChangeItem(
 		long jiraChangeItemId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.JIRAChangeItem> getJIRAChangeItems(
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getJIRAChangeItemsCount()
 		throws com.liferay.portal.SystemException;
 
@@ -67,6 +77,7 @@ public interface JIRAChangeItemLocalService {
 		com.liferay.wol.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.JIRAChangeItem> getJIRAChangeItems(
 		long jiraChangeGroupId) throws com.liferay.portal.SystemException;
 }

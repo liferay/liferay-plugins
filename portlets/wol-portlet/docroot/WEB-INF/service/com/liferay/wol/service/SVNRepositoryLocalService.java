@@ -22,12 +22,19 @@
 
 package com.liferay.wol.service;
 
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="SVNRepositoryLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
+@Transactional(rollbackFor =  {
+	PortalException.class, SystemException.class})
 public interface SVNRepositoryLocalService {
 	public com.liferay.wol.model.SVNRepository addSVNRepository(
 		com.liferay.wol.model.SVNRepository svnRepository)
@@ -52,14 +59,17 @@ public interface SVNRepositoryLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.SVNRepository getSVNRepository(
 		long svnRepositoryId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.SVNRepository> getSVNRepositories(
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getSVNRepositoriesCount()
 		throws com.liferay.portal.SystemException;
 
@@ -67,6 +77,7 @@ public interface SVNRepositoryLocalService {
 		com.liferay.wol.model.SVNRepository svnRepository)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.SVNRepository getSVNRepository(
 		java.lang.String url)
 		throws com.liferay.portal.PortalException,
