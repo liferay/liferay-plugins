@@ -281,7 +281,7 @@
 	</portlet>
 	<portlet>
 		<portlet-name>10</portlet-name>
-		<display-name>Group Users Activities</display-name>
+		<display-name>Members' Activities</display-name>
 		<portlet-class>com.liferay.util.bridges.jsp.JSPPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
@@ -292,8 +292,8 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Activities</title>
-			<short-title>Activities</short-title>
+			<title>Members' Activities</title>
+			<short-title>Members' Activities</short-title>
 			<keywords>Activities</keywords>
 		</portlet-info>
 		<security-role-ref>
