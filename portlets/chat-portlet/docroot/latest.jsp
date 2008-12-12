@@ -72,7 +72,8 @@ if ((createDate == 0) || (createDate == 1)) {
 	}
 }
 
-List<Entry> entries = EntryLocalServiceUtil.getNewEntries(themeDisplay.getUserId(), createDate, 0, SearchContainer.DEFAULT_DELTA);
+List<Entry> entries = new ArrayList<Entry>();
+entries.addAll(EntryLocalServiceUtil.getNewEntries(themeDisplay.getUserId(), createDate, 0, SearchContainer.DEFAULT_DELTA));
 
 Collections.reverse(entries);
 
