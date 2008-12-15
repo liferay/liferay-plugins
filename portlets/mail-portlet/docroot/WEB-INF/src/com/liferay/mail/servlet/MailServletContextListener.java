@@ -28,6 +28,8 @@ import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.messaging.ParallelDestination;
+import com.liferay.portal.kernel.util.PortalInitable;
+import com.liferay.portal.kernel.util.PortalInitableUtil;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -36,12 +38,23 @@ import javax.servlet.ServletContextListener;
  * <a href="MailServletContextListener.java.html"><b><i>View Source</i></b></a>
  *
  * @author Scott Lee
+ * @author Deepak Gothe
  *
  */
 public class MailServletContextListener
-	implements ServletContextListener {
+	implements ServletContextListener, PortalInitable {
 
 	public void contextInitialized(ServletContextEvent event) {
+		PortalInitableUtil.init(this);
+	}
+
+	public void contextDestroyed(ServletContextEvent event) {
+		_mailDestination.unregister(_mailMessageListener);
+
+		MessageBusUtil.removeDestination(_mailDestination.getName());
+	}
+
+	public void portalInit() {
 		_mailDestination = new ParallelDestination(
 			DestinationNames.MAIL_SYNCHRONIZER);
 
@@ -50,12 +63,6 @@ public class MailServletContextListener
 		_mailMessageListener = new MailMessageListener();
 
 		_mailDestination.register(_mailMessageListener);
-	}
-
-	public void contextDestroyed(ServletContextEvent event) {
-		_mailDestination.unregister(_mailMessageListener);
-
-		MessageBusUtil.removeDestination(_mailDestination.getName());
 	}
 
 	private Destination _mailDestination;
