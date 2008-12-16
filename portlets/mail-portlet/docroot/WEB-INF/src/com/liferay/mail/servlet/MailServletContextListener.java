@@ -44,14 +44,14 @@ import javax.servlet.ServletContextListener;
 public class MailServletContextListener
 	implements PortalInitable, ServletContextListener {
 
-	public void contextInitialized(ServletContextEvent event) {
-		PortalInitableUtil.init(this);
-	}
-
 	public void contextDestroyed(ServletContextEvent event) {
 		_mailDestination.unregister(_mailMessageListener);
 
 		MessageBusUtil.removeDestination(_mailDestination.getName());
+	}
+
+	public void contextInitialized(ServletContextEvent event) {
+		PortalInitableUtil.init(this);
 	}
 
 	public void portalInit() {
