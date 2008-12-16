@@ -285,7 +285,7 @@
 		<portlet-class>com.liferay.util.bridges.jsp.JSPPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
-			<value>/group_users_activities/view.jsp</value>
+			<value>/members_activities/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -294,7 +294,7 @@
 		<portlet-info>
 			<title>Members' Activities</title>
 			<short-title>Members' Activities</short-title>
-			<keywords>Activities</keywords>
+			<keywords>Members' Activities</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>
