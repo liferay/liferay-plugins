@@ -42,7 +42,7 @@ import javax.servlet.ServletContextListener;
  *
  */
 public class MailServletContextListener
-	implements ServletContextListener, PortalInitable {
+	implements PortalInitable, ServletContextListener {
 
 	public void contextInitialized(ServletContextEvent event) {
 		PortalInitableUtil.init(this);
