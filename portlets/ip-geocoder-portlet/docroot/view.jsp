@@ -22,45 +22,16 @@
  */
 %>
 
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
-
 <%@ page import="com.liferay.ipgeocoder.model.IPInfo" %>
 <%@ page import="com.liferay.ipgeocoder.util.IPGeocoderUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 
 <%
-boolean init = ParamUtil.getBoolean(request, "init");
+HttpServletRequest originalRequest = PortalUtil.getOriginalServletRequest(request);
 
-if (init) {
-	IPGeocoderUtil.init();
-}
+IPInfo ipInfo = IPGeocoderUtil.getIPInfo(originalRequest.getRemoteAddr());
 %>
 
-<c:choose>
-	<c:when test="<%= !IPGeocoderUtil.isInitialized() %>">
-		<div class="portlet-msg-info">
-			<a href="http://www.maxmind.com/app/geolitecity"><liferay-ui:message key="install-and-configure-maxmind-geopip-city-or-geolite-city-in-order-to-use-this-portlet" /></a>
-		</div>
-
-		<form action="<portlet:renderURL><portlet:param name='init' value='true' /></portlet:renderURL>" method="post">
-			<input type="submit" value="<liferay-ui:message key="refresh" />" />
-		</form>
-	</c:when>
-	<c:otherwise>
-
-		<%
-		HttpServletRequest originalRequest = PortalUtil.getOriginalServletRequest(request);
-
-		IPInfo ipInfo = IPGeocoderUtil.getIPInfo(originalRequest.getRemoteAddr());
-		%>
-
-		IP: <%= ipInfo.getIpAddress() %><br />
-		Latitude: <%= ipInfo.getLatitude() %><br />
-		Longitude: <%= ipInfo.getLongitude() %>
-	</c:otherwise>
-</c:choose>
-
-
+IP: <%= ipInfo.getIpAddress() %><br />
+Latitude: <%= ipInfo.getLatitude() %><br />
+Longitude: <%= ipInfo.getLongitude() %>

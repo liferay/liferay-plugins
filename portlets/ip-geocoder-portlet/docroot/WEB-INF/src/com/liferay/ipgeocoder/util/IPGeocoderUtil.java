@@ -45,43 +45,21 @@ public class IPGeocoderUtil {
 		return _instance._getIPInfo(ipAddress);
 	}
 
-	public static void init() {
-		_instance._init();
-	}
-
-	public static boolean isInitialized() {
-		if (_instance._lookupService == null) {
-			return false;
-		}
-		else {
-			return true;
-		}
-	}
-
 	private IPGeocoderUtil() {
-		_init();
-	}
-
-	private IPInfo _getIPInfo(String ipAddress) {
-		if (_lookupService == null) {
-			throw new RuntimeException(
-				"MaxMind GeoIP City is not properly installed");
-		}
-
-		Location location = _lookupService.getLocation(ipAddress);
-
-		return new IPInfo(ipAddress, location);
-	}
-
-	private void _init() {
 		try {
 			_lookupService = new LookupService(
 				PortletProps.get("maxmind.database.file"),
 				LookupService.GEOIP_MEMORY_CACHE);
 		}
 		catch (IOException ioe) {
-			_log.error("MaxMind GeoIP City is not properly installed", ioe);
+			_log.error(ioe, ioe);
 		}
+	}
+
+	private IPInfo _getIPInfo(String ipAddress) {
+		Location location = _lookupService.getLocation(ipAddress);
+
+		return new IPInfo(ipAddress, location);
 	}
 
 	private static Log _log = LogFactory.getLog(IPGeocoderUtil.class);
