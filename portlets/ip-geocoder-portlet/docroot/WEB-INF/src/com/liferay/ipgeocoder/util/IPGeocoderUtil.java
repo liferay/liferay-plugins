@@ -46,20 +46,33 @@ public class IPGeocoderUtil {
 	}
 
 	private IPGeocoderUtil() {
+		_init();
+	}
+
+	private void _init() {
 		try {
-			_lookupService = new LookupService(
-				PortletProps.get("maxmind.database.file"),
-				LookupService.GEOIP_MEMORY_CACHE);
+			if (_lookupService == null) {
+				_lookupService = new LookupService(
+					PortletProps.get("maxmind.database.file"),
+					LookupService.GEOIP_MEMORY_CACHE);
+			}
 		}
 		catch (IOException ioe) {
-			_log.error(ioe, ioe);
+			_log.error(ioe.getMessage());
 		}
 	}
 
 	private IPInfo _getIPInfo(String ipAddress) {
-		Location location = _lookupService.getLocation(ipAddress);
+		_init();
 
-		return new IPInfo(ipAddress, location);
+		if (_lookupService != null) {
+			Location location = _lookupService.getLocation(ipAddress);
+
+			return new IPInfo(ipAddress, location);
+		}
+		else {
+			return null;
+		}
 	}
 
 	private static Log _log = LogFactory.getLog(IPGeocoderUtil.class);

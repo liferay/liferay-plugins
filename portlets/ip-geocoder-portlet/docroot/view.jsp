@@ -22,6 +22,8 @@
  */
 %>
 
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+
 <%@ page import="com.liferay.ipgeocoder.model.IPInfo" %>
 <%@ page import="com.liferay.ipgeocoder.util.IPGeocoderUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
@@ -32,6 +34,15 @@ HttpServletRequest originalRequest = PortalUtil.getOriginalServletRequest(reques
 IPInfo ipInfo = IPGeocoderUtil.getIPInfo(originalRequest.getRemoteAddr());
 %>
 
-IP: <%= ipInfo.getIpAddress() %><br />
-Latitude: <%= ipInfo.getLatitude() %><br />
-Longitude: <%= ipInfo.getLongitude() %>
+<c:choose>
+	<c:when test="<%= ipInfo != null %>">
+		IP: <%= ipInfo.getIpAddress() %><br />
+		Latitude: <%= ipInfo.getLatitude() %><br />
+		Longitude: <%= ipInfo.getLongitude() %>
+	</c:when>
+	<c:otherwise>
+		<div class="portlet-msg-error">
+			<a href="http://www.maxmind.com/app/geolitecity" target="_blank">Install Maxmind GeoIP City or GeoLite City and configure this portlet to enable IP geocoding.</a>
+		</div>
+	</c:otherwise>
+</c:choose>
