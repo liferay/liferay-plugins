@@ -1,0 +1,134 @@
+/* ---------- Body ---------- */
+
+body {
+	background: #F2F2EB;
+	font: 12px Helvetica Neue,Arial,sans-serif;
+}
+
+body.html-editor.portlet.portlet-blogs {
+	background: #FFF;
+}
+
+/* ---------- Wrapper ---------- */
+
+#wrapper {
+	margin: 0 auto;
+	width: 960px;
+}
+
+/* ---------- Banner and Navigation ---------- */
+
+#banner {
+	background: transparent url(../images/custom/banner_bg.png) no-repeat 0 center;
+	height: 100px;
+	position: relative;
+	width: 960px;
+}
+
+#banner .logo {
+	margin: 0;
+}
+
+#banner .logo a {
+	left: 30px;
+	position: absolute;
+	top: 20px;
+}
+
+#navigation {
+	background: transparent url(../images/custom/tab_link.png) repeat-x;
+	height: 33px;
+	position: relative;
+}
+
+#navigation ul {
+	display: block;
+	height: 33px;
+	margin: 0 10px 0;
+	position: relative;
+}
+
+#navigation li a {
+	color: gray;
+	display: block;
+	font-size: 13px;
+	font-weight: bold;
+	padding: 9.5px 20px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+#navigation li a:hover {
+	color: white;
+}
+
+#navigation li.selected a {
+	color: white;
+}
+
+#add-page {
+	bottom: 100%;
+	position: absolute;
+	right: 10px;
+	top: 4px;
+}
+
+#add-page a {
+	background: url(../images/common/add.png) no-repeat 5px 50%;
+	color: #FFF;
+	display: block;
+	padding: 7px 20px 7px 25px;
+	text-decoration: none;
+}
+
+#navigation .enter-page {
+	background: #849FD6;
+	padding: 3px 0 3px 5px;
+}
+
+#navigation .enter-page a.cancel-page {
+	display: none;
+}
+
+#navigation .enter-page a.save-page {
+	display: inline;
+}
+
+.js .interactive-mode {
+	background: none;
+	right: 10px;
+	top: 0;
+}
+
+.js .interactive-mode h2 span {
+	background: none;
+	border-right: none;
+}
+
+.js .interactive-mode h2 {
+	background: url(../images/custom/right_bg.png) no-repeat scroll 100% 0;
+}
+
+/* ---------- Content Wrapper ---------- */
+
+#content-wrapper {
+	background: #FFF url(../images/custom/content_wrapper_bg.gif) repeat-x;
+	border: 5px solid #0E1744;
+	border-color: #141424;
+	border-top: 0;
+	padding: 0 10px 10px;
+}
+
+/* ---------- Portlets ---------- */
+
+.portlet {
+	margin: 10px 0 10px 10px;
+}
+
+.portlet-title {
+	background: none;
+	border-bottom: 1px dotted gray;
+	color: #000;
+	padding: 8px 0 5px 2px;
+	text-transform: uppercase;
+}
