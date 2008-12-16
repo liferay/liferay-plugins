@@ -63,13 +63,11 @@ body {
 }
 
 .chat-tabs-container {
-	float: right;
 }
 
 /* ---------- Bottom Dock Tabs ---------- */
 
 .chat-bar div ul, .chat-bar div ul li {
-	float: left;
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
