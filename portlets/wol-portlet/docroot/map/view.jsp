@@ -54,149 +54,136 @@ else {
 }
 %>
 
+<%
+boolean ipGeocoderInstalled = MessageBusUtil.hasMessageListener(DestinationNames.IP_GEOCODER);
+boolean ipGeocoderConfigured = ipGeocoderInstalled && (IPGeocoderUtil.getIPInfo(request.getRemoteAddr()) != null);
+%>
+
 <c:choose>
-	<c:when test="<%= !MessageBusUtil.hasMessageListener(DestinationNames.IP_GEOCODER) %>">
+	<c:when test="<%= !ipGeocoderInstalled %>">
 		<div class="portlet-msg-error">
-			<liferay-ui:message key="this-application-will-only-function-when-ipgeocoder-portlet-is-installed" />
+			<liferay-ui:message key="install-and-configure-the-ip-geocoder-portlet-to-enable-this-portlet" />
+		</div>
+	</c:when>
+	<c:when test="<%= !ipGeocoderConfigured %>">
+		<div class="portlet-msg-error">
+			<a href="http://www.maxmind.com/app/geolitecity" target="_blank"><liferay-ui:message key="install-and-configure-maxmind-geoip-city-or-geolite-city-to-enable-this-portlet" /></a>
 		</div>
 	</c:when>
 	<c:otherwise>
+		<script src="http://www.google.com/jsapi?key=<%= PortletProps.get("map.google.maps.api.key") %>" type="text/javascript"></script>
 
-		<%
-		boolean initialized = false;
-		try {
-			IPInfo ipInfo = IPGeocoderUtil.getIPInfo(request.getRemoteAddr());
-			initialized = true;
-		}
-		catch (MessageBusException mbe) {
-		}
-		%>
+		<script type="text/javascript">
+			google.load("maps", "2.x", {"language" : "ja_JP"});
 
-		<c:choose>
-			<c:when test="<%= initialized %>">
-				<script src="http://www.google.com/jsapi?key=<%= PortletProps.get("map.google.maps.api.key") %>" type="text/javascript"></script>
+			function <portlet:namespace />initMap() {
+				if (GBrowserIsCompatible()) {
+					var maximized = <%= windowState.equals(WindowState.MAXIMIZED) ? true : false %>;
 
-				<script type="text/javascript">
-					google.load("maps", "2.x", {"language" : "ja_JP"});
+					var map = new GMap2(document.getElementById("<portlet:namespace />map"));
 
-					function <portlet:namespace />initMap() {
-						if (GBrowserIsCompatible()) {
-							var maximized = <%= windowState.equals(WindowState.MAXIMIZED) ? true : false %>;
+					map.setCenter(new GLatLng(0.0, 0.0), <%= windowState.equals(WindowState.MAXIMIZED) ? 2 : 0 %>);
+					map.setMapType(G_NORMAL_MAP);
 
-							var map = new GMap2(document.getElementById("<portlet:namespace />map"));
+					<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+						map.addControl(new GLargeMapControl());
+					</c:if>
 
-							map.setCenter(new GLatLng(0.0, 0.0), <%= windowState.equals(WindowState.MAXIMIZED) ? 2 : 0 %>);
-							map.setMapType(G_NORMAL_MAP);
+					<%
+					List<User> users = null;
 
-							<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
-								map.addControl(new GLargeMapControl());
-							</c:if>
+					if (communityProfileMap) {
+						LinkedHashMap<String, Object> userParams = new LinkedHashMap<String, Object>();
 
-							<%
-							List<User> users = null;
+						userParams.put("usersGroups", new Long(group.getGroupId()));
 
-							if (communityProfileMap) {
-								LinkedHashMap<String, Object> userParams = new LinkedHashMap<String, Object>();
+						users = UserLocalServiceUtil.search(company.getCompanyId(), null, Boolean.TRUE, userParams, 0, 50, new UserLoginDateComparator());
+					}
+					else if (friendsProfileMap) {
+						users = UserLocalServiceUtil.getSocialUsers(user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, 0, 50, new UserLoginDateComparator());
+					}
+					else if (organizationProfileMap) {
+						LinkedHashMap<String, Object> userParams = new LinkedHashMap<String, Object>();
 
-								userParams.put("usersGroups", new Long(group.getGroupId()));
+						userParams.put("usersOrgs", new Long(organization.getOrganizationId()));
 
-								users = UserLocalServiceUtil.search(company.getCompanyId(), null, Boolean.TRUE, userParams, 0, 50, new UserLoginDateComparator());
-							}
-							else if (friendsProfileMap) {
-								users = UserLocalServiceUtil.getSocialUsers(user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, 0, 50, new UserLoginDateComparator());
-							}
-							else if (organizationProfileMap) {
-								LinkedHashMap<String, Object> userParams = new LinkedHashMap<String, Object>();
+						users = UserLocalServiceUtil.search(company.getCompanyId(), null, Boolean.TRUE, userParams, 0, 50, new UserLoginDateComparator());
+					}
+					else if (userProfileMap) {
+						users = new ArrayList();
 
-								userParams.put("usersOrgs", new Long(organization.getOrganizationId()));
-
-								users = UserLocalServiceUtil.search(company.getCompanyId(), null, Boolean.TRUE, userParams, 0, 50, new UserLoginDateComparator());
-							}
-							else if (userProfileMap) {
-								users = new ArrayList();
-
-								users.add(user2);
-							}
-
-							for (int i = 0; i < users.size(); i++) {
-								User mapUser = users.get(i);
-
-								if (Validator.isNull(mapUser.getLastLoginIP())) {
-									continue;
-								}
-
-								IPInfo ipInfo = IPGeocoderUtil.getIPInfo(mapUser.getLastLoginIP());
-
-								if (ipInfo == null) {
-									continue;
-								}
-
-								float latitude = ipInfo.getLatitude();
-								float longitude = ipInfo.getLongitude();
-
-								if ((latitude == 0) && (longitude == 0)) {
-									continue;
-								}
-							%>
-
-								<c:if test="<%= userProfileMap %>">
-									map.setCenter(new GLatLng(<%= latitude %>, <%= longitude %>), <%= windowState.equals(WindowState.MAXIMIZED) ? 5 : 0 %>);
-								</c:if>
-
-								var marker<%= i %> = new GMarker(
-									new GLatLng(<%= latitude %>, <%= longitude %>),
-									{title: '<%= mapUser.getFullName() %>'}
-								);
-
-								GEvent.addListener(
-									marker<%= i %>,
-									"click",
-									function() {
-										<c:choose>
-											<c:when test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
-												var html = '<center><img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= mapUser.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(mapUser.getPortraitId()) %>" width="65" /><br /><%= mapUser.getFullName() %></center>';
-
-												marker<%= i %>.openInfoWindowHtml(html);
-											</c:when>
-											<c:otherwise>
-												location.href = '<%= themeDisplay.getPathContext() %>/web/<%= mapUser.getScreenName() %>/profile/-/map';
-											</c:otherwise>
-										</c:choose>
-									}
-								);
-
-								map.addOverlay(marker<%= i %>);
-
-							<%
-							}
-							%>
-						}
+						users.add(user2);
 					}
 
-					google.setOnLoadCallback(<portlet:namespace />initMap);
-				</script>
+					for (int i = 0; i < users.size(); i++) {
+						User mapUser = users.get(i);
 
-				<c:choose>
-					<c:when test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
-						<div id="<portlet:namespace />map" style="height: 600px; width: 900px;"></div>
-					</c:when>
-					<c:otherwise>
-						<div id="<portlet:namespace />map" style="height: 190px; width: 190px;"></div>
+						if (Validator.isNull(mapUser.getLastLoginIP())) {
+							continue;
+						}
 
-						<div style="padding-top: 5px;">
-							<a href="<%= PortalUtil.getLayoutURL(layout, themeDisplay) %>/-/map"><liferay-ui:message key="view-larger-map" /> &raquo;</a>
-						</div>
-					</c:otherwise>
-				</c:choose>
+						IPInfo ipInfo = IPGeocoderUtil.getIPInfo(mapUser.getLastLoginIP());
 
+						if (ipInfo == null) {
+							continue;
+						}
+
+						float latitude = ipInfo.getLatitude();
+						float longitude = ipInfo.getLongitude();
+
+						if ((latitude == 0) && (longitude == 0)) {
+							continue;
+						}
+					%>
+
+						<c:if test="<%= userProfileMap %>">
+							map.setCenter(new GLatLng(<%= latitude %>, <%= longitude %>), <%= windowState.equals(WindowState.MAXIMIZED) ? 5 : 0 %>);
+						</c:if>
+
+						var marker<%= i %> = new GMarker(
+							new GLatLng(<%= latitude %>, <%= longitude %>),
+							{title: '<%= mapUser.getFullName() %>'}
+						);
+
+						GEvent.addListener(
+							marker<%= i %>,
+							"click",
+							function() {
+								<c:choose>
+									<c:when test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+										var html = '<center><img src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= mapUser.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(mapUser.getPortraitId()) %>" width="65" /><br /><%= mapUser.getFullName() %></center>';
+
+										marker<%= i %>.openInfoWindowHtml(html);
+									</c:when>
+									<c:otherwise>
+										location.href = '<%= themeDisplay.getPathContext() %>/web/<%= mapUser.getScreenName() %>/profile/-/map';
+									</c:otherwise>
+								</c:choose>
+							}
+						);
+
+						map.addOverlay(marker<%= i %>);
+
+					<%
+					}
+					%>
+				}
+			}
+
+			google.setOnLoadCallback(<portlet:namespace />initMap);
+		</script>
+
+		<c:choose>
+			<c:when test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+				<div id="<portlet:namespace />map" style="height: 600px; width: 900px;"></div>
 			</c:when>
 			<c:otherwise>
-				<div class="portlet-msg-error">
-					<a href="http://www.maxmind.com/app/geolitecity"><liferay-ui:message key="install-and-configure-maxmind-geopip-city-or-geolite-city-in-order-to-use-this-portlet" /></a>
+				<div id="<portlet:namespace />map" style="height: 190px; width: 190px;"></div>
+
+				<div style="padding-top: 5px;">
+					<a href="<%= PortalUtil.getLayoutURL(layout, themeDisplay) %>/-/map"><liferay-ui:message key="view-larger-map" /> &raquo;</a>
 				</div>
 			</c:otherwise>
 		</c:choose>
 	</c:otherwise>
 </c:choose>
-
-

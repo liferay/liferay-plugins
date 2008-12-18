@@ -24,6 +24,8 @@
 
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 
+<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
+
 <%@ page import="com.liferay.ipgeocoder.model.IPInfo" %>
 <%@ page import="com.liferay.ipgeocoder.util.IPGeocoderUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
@@ -42,7 +44,7 @@ IPInfo ipInfo = IPGeocoderUtil.getIPInfo(originalRequest.getRemoteAddr());
 	</c:when>
 	<c:otherwise>
 		<div class="portlet-msg-error">
-			<a href="http://www.maxmind.com/app/geolitecity" target="_blank">Install Maxmind GeoIP City or GeoLite City and configure this portlet to enable IP geocoding.</a>
+			<a href="http://www.maxmind.com/app/geolitecity" target="_blank"><liferay-ui:message key="install-and-configure-maxmind-geoip-city-or-geolite-city-to-enable-this-portlet" /></a>
 		</div>
 	</c:otherwise>
 </c:choose>

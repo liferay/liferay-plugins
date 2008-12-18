@@ -40,7 +40,6 @@
 <%@ page import="com.liferay.portal.kernel.log.Log" %>
 <%@ page import="com.liferay.portal.kernel.log.LogFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.messaging.DestinationNames" %>
-<%@ page import="com.liferay.portal.kernel.messaging.MessageBusException" %>
 <%@ page import="com.liferay.portal.kernel.messaging.MessageBusUtil" %>
 <%@ page import="com.liferay.portal.kernel.servlet.ImageServletTokenUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.CalendarFactoryUtil" %>

@@ -38,9 +38,14 @@ import com.liferay.portal.kernel.util.GetterUtil;
 public class IPGeocoderUtil {
 
 	public static IPInfo getIPInfo(String ipAddress) throws PortalException {
-		JSONObject ipInfoJSON =
-			(JSONObject)MessageBusUtil.sendSynchronousMessage(
-				DestinationNames.IP_GEOCODER, ipAddress);
+		Object response = MessageBusUtil.sendSynchronousMessage(
+			DestinationNames.IP_GEOCODER, ipAddress);
+
+		if (!(response instanceof JSONObject)) {
+			return null;
+		}
+
+		JSONObject ipInfoJSON = (JSONObject)response;
 
 		if (ipInfoJSON == null) {
 			return null;

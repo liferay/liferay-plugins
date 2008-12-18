@@ -25,6 +25,7 @@ package com.liferay.ipgeocoder.messaging;
 import com.liferay.ipgeocoder.model.IPInfo;
 import com.liferay.ipgeocoder.util.IPGeocoderUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
@@ -54,8 +55,12 @@ public class IPGeocoderMessageListener implements MessageListener {
 
 		IPInfo ipInfo = IPGeocoderUtil.getIPInfo(ipAddress);
 
-		Object payload = JSONFactoryUtil.createJSONObject(
-			JSONFactoryUtil.serialize(ipInfo));
+		Object payload = StringPool.BLANK;
+
+		if (ipInfo != null) {
+			payload = JSONFactoryUtil.createJSONObject(
+				JSONFactoryUtil.serialize(ipInfo));
+		}
 
 		message.setPayload(payload);
 
