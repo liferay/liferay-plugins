@@ -38,8 +38,16 @@ public class StocksUtil {
 	public static Stocks getStocks(String symbol) {
 		WebCacheItem wci = new StocksWebCacheItem(symbol);
 
-		return (Stocks)WebCachePoolUtil.get(
-			StocksUtil.class.getName() + StringPool.PERIOD + symbol, wci);
+		String key = StocksUtil.class.getName() + StringPool.PERIOD + symbol;
+
+		try {
+			return (Stocks)WebCachePoolUtil.get(key, wci);
+		}
+		catch (ClassCastException cce) {
+			WebCachePoolUtil.remove(key);
+
+			return (Stocks)WebCachePoolUtil.get(key, wci);
+		}
 	}
 
 }

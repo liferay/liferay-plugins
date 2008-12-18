@@ -159,8 +159,8 @@ public class Stocks implements Serializable {
 	}
 
 	public boolean isValid() {
-		if (!_changeAvailable && !_openAvailable && !_dayHighAvailable &&
-			!_dayLowAvailable && !_volumeAvailable) {
+		if ((_change == 0) && (_open == 0) && (_dayHigh == 0) &&
+			(_dayLow == 0) && (_volume == 0)) {
 
 			return false;
 		}
