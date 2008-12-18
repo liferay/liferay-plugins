@@ -36,19 +36,29 @@ JIRAIssue jiraIssue = (JIRAIssue)objArray[2];
 
 <div class="revision-actions">
 	<liferay-ui:icon-list>
+
+		<%
+		String taglibSVNURL = "javascript: location.href = '" + rowHREF + "';";
+		%>
+
 		<liferay-ui:icon
 			message="SVN"
 			src='<%= request.getContextPath() + "/svn/icon.png" %>'
-			url='<%= "javascript: location.href = '" + rowHREF + "';" %>'
+			url="<%= taglibSVNURL %>"
 			target="_blank"
 			label="<%= true %>"
 		/>
 
 		<c:if test="<%= jiraIssue != null %>">
+
+			<%
+			String taglibJIRAURL = "javascript: location.href = 'http://support.liferay.com/browse/" + jiraIssue.getKey() + "';";
+			%>
+
 			<liferay-ui:icon
 				message="JIRA"
 				src='<%= request.getContextPath() + "/jira/icon.png" %>'
-				url='<%= "javascript: location.href = 'http://support.liferay.com/browse/" + jiraIssue.getKey() + "';" %>'
+				url="<%= taglibJIRAURL %>"
 				target="_blank"
 				label="<%= true %>"
 			/>

@@ -38,12 +38,15 @@ else if (group.isOrganization()) {
 PortletURL rssURL = renderResponse.createRenderURL();
 
 rssURL.setParameter("rss", "1");
+
+String taglibFeedTitle = LanguageUtil.format(pageContext, "subscribe-to-x's-activities", group.getDescriptiveName());
+String taglibFeedLinkMessage = LanguageUtil.format(pageContext, "subscribe-to-x's-activities", group.getDescriptiveName());
 %>
 
 <liferay-ui:social-activities
 	activities="<%= activities %>"
 	feedEnabled="<%= true %>"
-	feedTitle='<%= LanguageUtil.format(pageContext, "subscribe-to-x's-activities", group.getDescriptiveName()) %>'
+	feedTitle="<%= taglibFeedTitle %>"
 	feedLink="<%= rssURL.toString() %>"
-	feedLinkMessage='<%= LanguageUtil.format(pageContext, "subscribe-to-x's-activities", group.getDescriptiveName()) %>'
+	feedLinkMessage="<%= taglibFeedLinkMessage %>"
 />
