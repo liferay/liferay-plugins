@@ -40,10 +40,12 @@ import javax.portlet.ValidatorException;
  */
 public class WeatherPreferencesValidator implements PreferencesValidator {
 
-	public void validate(PortletPreferences prefs) throws ValidatorException {
+	public void validate(PortletPreferences preferences)
+		throws ValidatorException {
+
 		List<String> badZips = new ArrayList<String>();
 
-		String[] zips = prefs.getValues("zips", new String[0]);
+		String[] zips = preferences.getValues("zips", new String[0]);
 
 		for (String zip : zips) {
 			Weather weather = WeatherUtil.getWeather(zip);

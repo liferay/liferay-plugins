@@ -43,9 +43,10 @@ public class Weather implements Serializable {
 		this(zip, iconURL, null, currentTemp, (float)0.0, (float)0.0, null);
 	}
 
-	public Weather(String zip, String iconURL, String conditions,
-				   float currentTemp, float humidity, float barometer,
-				   String barometerDirection) {
+	public Weather(
+		String zip, String iconURL, String conditions, float currentTemp,
+		float humidity, float barometer, String barometerDirection) {
+
 		_zip = zip;
 		_iconURL = iconURL;
 		_conditions = conditions;

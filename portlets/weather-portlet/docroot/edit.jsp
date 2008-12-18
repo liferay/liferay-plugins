@@ -32,7 +32,7 @@ zips = StringUtil.split(ParamUtil.getString(request, "zips", zipsString), String
 zipsString = StringUtil.merge(zips, StringPool.NEW_LINE);
 %>
 
-<form action="<portlet:actionURL><portlet:param name="struts_action" value="/weather/edit" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm">
+<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
 <liferay-ui:error exception="<%= ValidatorException.class %>">
