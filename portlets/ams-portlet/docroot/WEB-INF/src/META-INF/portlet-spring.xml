@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<bean id="com.liferay.ams.service.AssetCheckoutLocalService.impl" class="com.liferay.ams.service.impl.AssetCheckoutLocalServiceImpl" />
+	<bean id="com.liferay.ams.service.AssetCheckoutLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.ams.service.AssetCheckoutLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.ams.service.AssetCheckoutLocalServiceUtil" class="com.liferay.ams.service.AssetCheckoutLocalServiceUtil">
+		<property name="service" ref="com.liferay.ams.service.AssetCheckoutLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.ams.service.persistence.AssetCheckoutPersistence.impl" class="com.liferay.ams.service.persistence.AssetCheckoutPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.ams.service.persistence.AssetCheckoutUtil" class="com.liferay.ams.service.persistence.AssetCheckoutUtil">
+		<property name="persistence" ref="com.liferay.ams.service.persistence.AssetCheckoutPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.ams.service.AssetDefinitionLocalService.impl" class="com.liferay.ams.service.impl.AssetDefinitionLocalServiceImpl" />
+	<bean id="com.liferay.ams.service.AssetDefinitionLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.ams.service.AssetDefinitionLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.ams.service.AssetDefinitionLocalServiceUtil" class="com.liferay.ams.service.AssetDefinitionLocalServiceUtil">
+		<property name="service" ref="com.liferay.ams.service.AssetDefinitionLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.ams.service.persistence.AssetDefinitionPersistence.impl" class="com.liferay.ams.service.persistence.AssetDefinitionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.ams.service.persistence.AssetDefinitionUtil" class="com.liferay.ams.service.persistence.AssetDefinitionUtil">
+		<property name="persistence" ref="com.liferay.ams.service.persistence.AssetDefinitionPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.ams.service.AssetEntryLocalService.impl" class="com.liferay.ams.service.impl.AssetEntryLocalServiceImpl" />
+	<bean id="com.liferay.ams.service.AssetEntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.ams.service.AssetEntryLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.ams.service.AssetEntryLocalServiceUtil" class="com.liferay.ams.service.AssetEntryLocalServiceUtil">
+		<property name="service" ref="com.liferay.ams.service.AssetEntryLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.ams.service.persistence.AssetEntryPersistence.impl" class="com.liferay.ams.service.persistence.AssetEntryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.ams.service.persistence.AssetEntryUtil" class="com.liferay.ams.service.persistence.AssetEntryUtil">
+		<property name="persistence" ref="com.liferay.ams.service.persistence.AssetEntryPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.ams.service.AssetTypeLocalService.impl" class="com.liferay.ams.service.impl.AssetTypeLocalServiceImpl" />
+	<bean id="com.liferay.ams.service.AssetTypeLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.ams.service.AssetTypeLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.ams.service.AssetTypeLocalServiceUtil" class="com.liferay.ams.service.AssetTypeLocalServiceUtil">
+		<property name="service" ref="com.liferay.ams.service.AssetTypeLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.ams.service.persistence.AssetTypePersistence.impl" class="com.liferay.ams.service.persistence.AssetTypePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.ams.service.persistence.AssetTypeUtil" class="com.liferay.ams.service.persistence.AssetTypeUtil">
+		<property name="persistence" ref="com.liferay.ams.service.persistence.AssetTypePersistence.impl" />
+	</bean>
+</beans>
