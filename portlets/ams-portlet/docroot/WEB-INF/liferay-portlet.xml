@@ -4,9 +4,6 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<friendly-url-mapper-class>com.liferay.chat.portlet.ChatFriendlyURLMapper</friendly-url-mapper-class>
-		<use-default-template>false</use-default-template>
-		<css-class-wrapper>chat-portlet</css-class-wrapper>
-		<system>true</system>
+		<css-class-wrapper>ams-portlet</css-class-wrapper>
 	</portlet>
 </liferay-portlet-app>
