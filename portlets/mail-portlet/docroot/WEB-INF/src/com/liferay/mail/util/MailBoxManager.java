@@ -168,7 +168,7 @@ public class MailBoxManager {
 
 		BodyPart messageBodyPart = new MimeBodyPart();
 
-		messageBodyPart.setContent(body, ContentTypes.TEXT_HTML);
+		messageBodyPart.setContent(body, ContentTypes.TEXT_HTML_UTF8);
 
 		multipart.addBodyPart(messageBodyPart);
 
