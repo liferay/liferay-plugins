@@ -32,7 +32,6 @@
 	boolean online = true;
 	String activePanelId = StringPool.BLANK;
 	String statusMessage = StringPool.BLANK;
-    String displayMessage = StringPool.BLANK;
 	boolean playSound = true;
 
 	try {
@@ -41,7 +40,6 @@
 		online = status.getOnline();
 		activePanelId = status.getActivePanelId();
 		statusMessage = HtmlUtil.escape(status.getMessage());
-        displayMessage = Validator.isNotNull(statusMessage) ? LanguageUtil.format(pageContext, "you-are-x","<strong>" + statusMessage + "</strong>",false) : "...";
 		playSound = status.getPlaySound();
 	}
 	catch (NoSuchStatusException nsse) {
@@ -67,21 +65,25 @@
 			<div class="chat-sound"></div>
 
 			<div class="chat-status">
-				<div class="status-message"><%= displayMessage %></div>
+				<div class="status-message">
+					<c:if test="<%= Validator.isNotNull(statusMessage) %>">
+						<%= LanguageUtil.format(pageContext, "you-are-x", "<strong>" + statusMessage + "</strong>", false) %>
+					</c:if>
+				</div>
 			</div>
 
 			<div class="chat-tabs-container">
 				<ul class="chat-tabs">
 					<li class="buddy-list <%= activePanelId.equals("buddylist") ? "selected" : "" %>">
 						<div class="panel-trigger" panelId="buddylist">
-							<span class="trigger-name"><%= LanguageUtil.format(pageContext, "online-friends-x","(" + buddiesCount + ")",false) %></span>
+							<span class="trigger-name"><%= LanguageUtil.format(pageContext, "online-friends-x", "(" + buddiesCount + ")", false) %></span>
 						</div>
 
 						<div class="chat-panel">
 							<div class="panel-window">
 								<div class="panel-button minimize"></div>
 
-								<div class="panel-title"><%= LanguageUtil.format(pageContext, "online-friends-x","(" + buddiesCount + ")",false) %></div>
+								<div class="panel-title"><%= LanguageUtil.format(pageContext, "online-friends-x", "(" + buddiesCount + ")", false) %></div>
 
 								<div class="panel-content">
 									<ul class="lfr-component online-users">
@@ -122,26 +124,26 @@
 					</li>
 					<li class="chat-settings <%= activePanelId.equals("settings") ? "selected" : "" %>">
 						<div class="panel-trigger" panelId="settings">
-							<span class="trigger-name"><liferay-ui:message key="settings"/></span>
+							<span class="trigger-name"><liferay-ui:message key="settings" /></span>
 						</div>
 
 						<div class="chat-panel">
 							<div class="panel-window">
 								<div class="panel-button minimize"></div>
 
-								<div class="panel-title"><liferay-ui:message key="settings"/></div>
+								<div class="panel-title"><liferay-ui:message key="settings" /></div>
 
 								<ul class="lfr-component settings">
 									<li>
-										<label for="statusMessage"><%= LanguageUtil.format(pageContext,"x-is",user.getFullName(),false) %></label>
+										<label for="statusMessage"><%= LanguageUtil.format(pageContext, "x-is", user.getFullName(), false) %></label>
 
 										<input id="statusMessage" type="text" value="<%= statusMessage %>" />
 									</li>
 									<li>
-										<label for="onlineStatus"><input <%= online ? "checked=\"checked\"" : "" %> id="onlineStatus" type="checkbox" /> <liferay-ui:message key="show-me-as-online"/></label>
+										<label for="onlineStatus"><input <%= online ? "checked=\"checked\"" : "" %> id="onlineStatus" type="checkbox" /> <liferay-ui:message key="show-me-as-online" /></label>
 									</li>
 									<li>
-										<label for="playSound"><input <%= playSound ? "checked=\"checked\"" : "" %> id="playSound" type="checkbox" /> <liferay-ui:message key="play-a-sound-when-i-reciev-a-new-message-in-a-hidden-window"/> </label>
+										<label for="playSound"><input <%= playSound ? "checked=\"checked\"" : "" %> id="playSound" type="checkbox" /> <liferay-ui:message key="play-a-sound-when-i-receive-a-new-message-in-a-hidden-window" /> </label>
 									</li>
 								</ul>
 
