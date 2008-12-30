@@ -31,6 +31,6 @@
 		</div>
 	</c:when>
 	<c:otherwise>
-		<%@ include file="/group_users_activities/view_members_activities.jspf" %>
+		<%@ include file="view_members_activities.jspf" %>
 	</c:otherwise>
 </c:choose>
