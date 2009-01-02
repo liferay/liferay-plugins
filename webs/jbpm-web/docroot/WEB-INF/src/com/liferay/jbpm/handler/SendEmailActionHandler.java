@@ -22,7 +22,7 @@
 
 package com.liferay.jbpm.handler;
 
-import com.liferay.client.portal.model.UserSoap;
+import com.liferay.client.soap.portal.model.UserSoap;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;

@@ -22,9 +22,9 @@
 
 package com.liferay.jbpm.handler;
 
-import com.liferay.client.portal.model.GroupSoap;
-import com.liferay.client.portal.model.RoleSoap;
-import com.liferay.client.portal.model.UserSoap;
+import com.liferay.client.soap.portal.model.GroupSoap;
+import com.liferay.client.soap.portal.model.RoleSoap;
+import com.liferay.client.soap.portal.model.UserSoap;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -64,13 +64,13 @@ public class IdentityAssignmentHandler
 					id = String.valueOf(group.getGroupId());
 				}
 
-				UserSoap[] users = getUserService().getGroupUsers(
+				long[] userIds = getUserService().getGroupUserIds(
 					GetterUtil.getLong(id));
 
-				String[] actorIds = new String[users.length];
+				String[] actorIds = new String[userIds.length];
 
-				for (int i = 0; i < users.length; i++) {
-					actorIds[i] = String.valueOf(users[i].getUserId());
+				for (int i = 0; i < userIds.length; i++) {
+					actorIds[i] = String.valueOf(userIds[i]);
 				}
 
 				assignable.setPooledActors(actorIds);
@@ -83,13 +83,13 @@ public class IdentityAssignmentHandler
 					id = String.valueOf(role.getRoleId());
 				}
 
-				UserSoap[] users = getUserService().getRoleUsers(
+				long[] userIds = getUserService().getRoleUserIds(
 					GetterUtil.getLong(id));
 
-				String[] actorIds = new String[users.length];
+				String[] actorIds = new String[userIds.length];
 
-				for (int i = 0; i < users.length; i++) {
-					actorIds[i] = String.valueOf(users[i].getUserId());
+				for (int i = 0; i < userIds.length; i++) {
+					actorIds[i] = String.valueOf(userIds[i]);
 				}
 
 				assignable.setPooledActors(actorIds);

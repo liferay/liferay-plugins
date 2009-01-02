@@ -22,12 +22,12 @@
 
 package com.liferay.jbpm.handler;
 
-import com.liferay.client.portal.service.http.GroupServiceSoap;
-import com.liferay.client.portal.service.http.GroupServiceSoapServiceLocator;
-import com.liferay.client.portal.service.http.RoleServiceSoap;
-import com.liferay.client.portal.service.http.RoleServiceSoapServiceLocator;
-import com.liferay.client.portal.service.http.UserServiceSoap;
-import com.liferay.client.portal.service.http.UserServiceSoapServiceLocator;
+import com.liferay.client.soap.portal.service.http.GroupServiceSoap;
+import com.liferay.client.soap.portal.service.http.GroupServiceSoapServiceLocator;
+import com.liferay.client.soap.portal.service.http.RoleServiceSoap;
+import com.liferay.client.soap.portal.service.http.RoleServiceSoapServiceLocator;
+import com.liferay.client.soap.portal.service.http.UserServiceSoap;
+import com.liferay.client.soap.portal.service.http.UserServiceSoapServiceLocator;
 import com.liferay.util.Encryptor;
 import com.liferay.util.portlet.PortletProps;
 
