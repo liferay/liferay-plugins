@@ -5,7 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
-		<header-portlet-javascript>/js/service_packed.js</header-portlet-javascript>
+		<footer-portlet-javascript>/js/service_packed.js</footer-portlet-javascript>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

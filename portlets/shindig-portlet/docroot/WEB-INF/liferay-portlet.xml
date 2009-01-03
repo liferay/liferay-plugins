@@ -7,11 +7,11 @@
 		<configuration-action-class>com.liferay.portlet.shindig.ConfigurationActionImpl</configuration-action-class>
 		<instanceable>true</instanceable>
 		<header-portlet-css>/css/gadgets.css</header-portlet-css>
-		<header-portlet-javascript>/js/rpc.js?c=1</header-portlet-javascript>
-		<header-portlet-javascript>/files/container/util.js</header-portlet-javascript>
-		<header-portlet-javascript>/files/container/gadgets.js</header-portlet-javascript>
-		<header-portlet-javascript>/javascript/expandobaseduserprefstore.js</header-portlet-javascript>
-		<header-portlet-javascript>/javascript/gadget-portlet.js</header-portlet-javascript>
+		<footer-portlet-javascript>/js/rpc.js?c=1</footer-portlet-javascript>
+		<footer-portlet-javascript>/files/container/util.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/files/container/gadgets.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/javascript/expandobaseduserprefstore.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/javascript/gadget-portlet.js</footer-portlet-javascript>
 		<css-class-wrapper>shindig-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>

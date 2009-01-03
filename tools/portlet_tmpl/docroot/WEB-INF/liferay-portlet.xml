@@ -7,7 +7,7 @@
 		<icon>/icon.png</icon>
 		<instanceable>true</instanceable>
 		<header-portlet-css>/css/test.css</header-portlet-css>
-		<header-portlet-javascript>/js/test.js</header-portlet-javascript>
+		<footer-portlet-javascript>/js/test.js</footer-portlet-javascript>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
