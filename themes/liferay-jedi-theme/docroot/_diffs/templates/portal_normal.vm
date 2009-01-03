@@ -13,6 +13,14 @@
 
 	#css ($css_main_file)
 
+	<script type="text/javascript">
+		// <![CDATA[
+			$page_javascript_1
+			$page_javascript_2
+			$page_javascript_3
+		// ]]>
+	</script>
+
 	#if ($company_logo != "")
 		<style type="text/css">
 			#banner .logo {
