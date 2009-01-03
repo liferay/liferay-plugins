@@ -125,6 +125,20 @@
 				</java>
 			</then>
 		</if>
+
+		<java
+			classname="com.liferay.portal.tools.SpriteBuilder"
+			classpathref="project.classpath"
+			fork="true"
+			newenvironment="true"
+		>
+			<jvmarg value="-Dcom.sun.media.jai.disableMediaLib=true" />
+			<jvmarg value="-Dsprite.input.dir=docroot/images" />
+			<jvmarg value="-Dsprite.output.file=packed.png" />
+			<jvmarg value="-Dsprite.properties.file=packed.sprite" />
+			<jvmarg value="-Dsprite.max.height=16" />
+			<jvmarg value="-Dsprite.max.width=16" />
+		</java>
 	</target>
 
 	<target name="war" depends="compile">
