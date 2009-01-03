@@ -10,7 +10,6 @@
 	$theme.include($top_head_include)
 
 	#css ($css_main_file)
-	#js ($js_main_file)
 
 	<script type="text/javascript">
 		// <![CDATA[
@@ -70,10 +69,10 @@ $theme.include($top_messages_include)
 	#end
 </div>
 
-$theme.include($bottom_ext_include)
-$theme.include($session_timeout_include)
-$theme.include($sound_alerts_include)
-
 </body>
+
+#js ($js_main_file)
+
+$theme.include($bottom_include)
 
 </html>
