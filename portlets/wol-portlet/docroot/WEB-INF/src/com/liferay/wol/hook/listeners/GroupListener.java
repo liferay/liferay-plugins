@@ -23,9 +23,6 @@
 package com.liferay.wol.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
-import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
-import com.liferay.portal.kernel.util.AggregateClassLoader;
-import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
@@ -35,22 +32,13 @@ import com.liferay.wol.service.WallEntryLocalServiceUtil;
  * <a href="GroupListener.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
- * @author Ganesh Ram
  *
  */
 public class GroupListener extends BaseModelListener {
 
 	public void onBeforeRemove(BaseModel model) throws ModelListenerException {
-		ClassLoader currentCL = null;
 		try {
 			Group group = (Group)model;
-			
-			// LPS-803 - setting the ClassLoader to WOL-Portlet's CL and 
-			//restoring the original CL in the finally block
-			
-			currentCL = _getCurrentClassLoader();
-			ClassLoader wolCL = _getWOLPortletClassLoader();
-			_setClassLoader(wolCL);
 
 			if (group.isUser()) {
 				WallEntryLocalServiceUtil.deleteWallEntries(group.getGroupId());
@@ -58,21 +46,7 @@ public class GroupListener extends BaseModelListener {
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
-		}finally{
-			_setClassLoader(currentCL);
 		}
 	}
-	
-	private ClassLoader _getCurrentClassLoader(){
-		return Thread.currentThread().getContextClassLoader();
-		
-	}
-	private ClassLoader _getWOLPortletClassLoader(){
-		return GroupListener.class.getClassLoader();
-	}
-	private void _setClassLoader(ClassLoader cl){
-		Thread.currentThread().setContextClassLoader(cl);
-	}
-	
 
 }
