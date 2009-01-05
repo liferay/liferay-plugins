@@ -24,9 +24,9 @@
 <%@ page import="com.liferay.portal.kernel.util.ContentTypes"%>
 
 <%
-response.addHeader(HttpHeaders.CACHE_CONTROL, "max-age=172801, public");
+response.addHeader(HttpHeaders.CACHE_CONTROL, "max-age=315360000, public");
 response.addHeader(HttpHeaders.CONTENT_TYPE, ContentTypes.TEXT_CSS);
-response.addHeader(HttpHeaders.EXPIRES, "172801");
+response.addHeader(HttpHeaders.EXPIRES, "315360000");
 %>
 
 .portlet-wiki-navigation-menu h1 {
