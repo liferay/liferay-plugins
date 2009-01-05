@@ -128,7 +128,7 @@
 
 		<java
 			classname="com.liferay.portal.tools.SpriteBuilder"
-			classpathref="project.classpath"
+			classpathref="portal.classpath"
 			fork="true"
 			newenvironment="true"
 		>
