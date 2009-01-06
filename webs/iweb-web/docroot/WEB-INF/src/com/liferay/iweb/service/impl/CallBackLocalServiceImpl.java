@@ -36,7 +36,7 @@
  * enclosed by brackets [] replaced by your own identifying information:
  * "Portions Copyrighted [year] [name of copyright owner]"
  *
- * Copyright 2008 Sun Microsystems Inc. All rights reserved.
+ * Copyright 2009 Sun Microsystems Inc. All rights reserved.
  */
 
 package com.liferay.iweb.service.impl;
