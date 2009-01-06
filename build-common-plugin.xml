@@ -371,6 +371,7 @@
 			<jvmarg value="-Dservice.model.hints.file=docroot/WEB-INF/src/META-INF/portlet-model-hints.xml" />
 			<jvmarg value="-Dservice.spring.file=docroot/WEB-INF/src/META-INF/portlet-spring.xml" />
 			<jvmarg value="-Dservice.spring.base.file=docroot/WEB-INF/src/META-INF/base-spring.xml" />
+			<jvmarg value="-Dservice.spring.dynamic.data.source.file=docroot/WEB-INF/src/META-INF/dynamic-data-source-spring.xml" />
 			<jvmarg value="-Dservice.spring.hibernate.file=docroot/WEB-INF/src/META-INF/hibernate-spring.xml" />
 			<jvmarg value="-Dservice.spring.infrastructure.file=docroot/WEB-INF/src/META-INF/infrastructure-spring.xml" />
 			<jvmarg value="-Dservice.api.dir=docroot/WEB-INF/service" />
