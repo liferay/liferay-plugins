@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,9 @@ import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
+
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
 
 import com.liferay.sampleservicebuilder.model.Foo;
 import com.liferay.sampleservicebuilder.model.FooSoap;
@@ -196,6 +199,7 @@ public class FooModelImpl extends BaseModelImpl {
 		else {
 			Foo model = new FooImpl();
 
+			model.setNew(isNew());
 			model.setEscapedModel(true);
 
 			model.setFooId(getFooId());
@@ -210,6 +214,15 @@ public class FooModelImpl extends BaseModelImpl {
 
 			return model;
 		}
+	}
+
+	public ExpandoBridge getExpandoBridge() {
+		if (_expandoBridge == null) {
+			_expandoBridge = new ExpandoBridgeImpl(Foo.class.getName(),
+					getPrimaryKey());
+		}
+
+		return _expandoBridge;
 	}
 
 	public Object clone() {
@@ -277,4 +290,5 @@ public class FooModelImpl extends BaseModelImpl {
 	private int _field3;
 	private Date _field4;
 	private String _field5;
+	private transient ExpandoBridge _expandoBridge;
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -160,16 +160,6 @@ public class MeetupsEntryUtil {
 
 	public static int countAll() throws com.liferay.portal.SystemException {
 		return getPersistence().countAll();
-	}
-
-	public static void registerListener(
-		com.liferay.portal.model.ModelListener listener) {
-		getPersistence().registerListener(listener);
-	}
-
-	public static void unregisterListener(
-		com.liferay.portal.model.ModelListener listener) {
-		getPersistence().unregisterListener(listener);
 	}
 
 	public static MeetupsEntryPersistence getPersistence() {

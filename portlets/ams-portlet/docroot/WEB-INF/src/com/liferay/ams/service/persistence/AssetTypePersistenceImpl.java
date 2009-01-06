@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,13 +28,13 @@ import com.liferay.ams.model.impl.AssetTypeImpl;
 import com.liferay.ams.model.impl.AssetTypeModelImpl;
 
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
@@ -100,18 +100,14 @@ public class AssetTypePersistenceImpl extends BasePersistenceImpl
 	}
 
 	public AssetType remove(AssetType assetType) throws SystemException {
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				listener.onBeforeRemove(assetType);
-			}
+		for (ModelListener listener : listeners) {
+			listener.onBeforeRemove(assetType);
 		}
 
 		assetType = removeImpl(assetType);
 
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				listener.onAfterRemove(assetType);
-			}
+		for (ModelListener listener : listeners) {
+			listener.onAfterRemove(assetType);
 		}
 
 		return assetType;
@@ -162,27 +158,23 @@ public class AssetTypePersistenceImpl extends BasePersistenceImpl
 		throws SystemException {
 		boolean isNew = assetType.isNew();
 
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				if (isNew) {
-					listener.onBeforeCreate(assetType);
-				}
-				else {
-					listener.onBeforeUpdate(assetType);
-				}
+		for (ModelListener listener : listeners) {
+			if (isNew) {
+				listener.onBeforeCreate(assetType);
+			}
+			else {
+				listener.onBeforeUpdate(assetType);
 			}
 		}
 
 		assetType = updateImpl(assetType, merge);
 
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				if (isNew) {
-					listener.onAfterCreate(assetType);
-				}
-				else {
-					listener.onAfterUpdate(assetType);
-				}
+		for (ModelListener listener : listeners) {
+			if (isNew) {
+				listener.onAfterCreate(assetType);
+			}
+			else {
+				listener.onAfterUpdate(assetType);
 			}
 		}
 
@@ -429,22 +421,6 @@ public class AssetTypePersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public void registerListener(ModelListener listener) {
-		List<ModelListener> listeners = ListUtil.fromArray(_listeners);
-
-		listeners.add(listener);
-
-		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
-	}
-
-	public void unregisterListener(ModelListener listener) {
-		List<ModelListener> listeners = ListUtil.fromArray(_listeners);
-
-		listeners.remove(listener);
-
-		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
-	}
-
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
@@ -452,14 +428,14 @@ public class AssetTypePersistenceImpl extends BasePersistenceImpl
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener> listeners = new ArrayList<ModelListener>();
+				List<ModelListener> listenersList = new ArrayList<ModelListener>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listeners.add((ModelListener)Class.forName(
+					listenersList.add((ModelListener)Class.forName(
 							listenerClassName).newInstance());
 				}
 
-				_listeners = listeners.toArray(new ModelListener[listeners.size()]);
+				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);
 			}
 			catch (Exception e) {
 				_log.error(e);
@@ -467,6 +443,13 @@ public class AssetTypePersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
+	@BeanReference(name = "com.liferay.ams.service.persistence.AssetCheckoutPersistence.impl")
+	protected com.liferay.ams.service.persistence.AssetCheckoutPersistence assetCheckoutPersistence;
+	@BeanReference(name = "com.liferay.ams.service.persistence.AssetDefinitionPersistence.impl")
+	protected com.liferay.ams.service.persistence.AssetDefinitionPersistence assetDefinitionPersistence;
+	@BeanReference(name = "com.liferay.ams.service.persistence.AssetEntryPersistence.impl")
+	protected com.liferay.ams.service.persistence.AssetEntryPersistence assetEntryPersistence;
+	@BeanReference(name = "com.liferay.ams.service.persistence.AssetTypePersistence.impl")
+	protected com.liferay.ams.service.persistence.AssetTypePersistence assetTypePersistence;
 	private static Log _log = LogFactory.getLog(AssetTypePersistenceImpl.class);
-	private ModelListener[] _listeners = new ModelListener[0];
 }

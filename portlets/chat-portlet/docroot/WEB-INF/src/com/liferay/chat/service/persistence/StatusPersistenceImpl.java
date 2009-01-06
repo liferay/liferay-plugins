@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,6 +28,7 @@ import com.liferay.chat.model.impl.StatusImpl;
 import com.liferay.chat.model.impl.StatusModelImpl;
 
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -35,7 +36,6 @@ import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -102,18 +102,14 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public Status remove(Status status) throws SystemException {
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				listener.onBeforeRemove(status);
-			}
+		for (ModelListener listener : listeners) {
+			listener.onBeforeRemove(status);
 		}
 
 		status = removeImpl(status);
 
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				listener.onAfterRemove(status);
-			}
+		for (ModelListener listener : listeners) {
+			listener.onAfterRemove(status);
 		}
 
 		return status;
@@ -163,27 +159,23 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 		throws SystemException {
 		boolean isNew = status.isNew();
 
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				if (isNew) {
-					listener.onBeforeCreate(status);
-				}
-				else {
-					listener.onBeforeUpdate(status);
-				}
+		for (ModelListener listener : listeners) {
+			if (isNew) {
+				listener.onBeforeCreate(status);
+			}
+			else {
+				listener.onBeforeUpdate(status);
 			}
 		}
 
 		status = updateImpl(status, merge);
 
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				if (isNew) {
-					listener.onAfterCreate(status);
-				}
-				else {
-					listener.onAfterUpdate(status);
-				}
+		for (ModelListener listener : listeners) {
+			if (isNew) {
+				listener.onAfterCreate(status);
+			}
+			else {
+				listener.onAfterUpdate(status);
 			}
 		}
 
@@ -1110,11 +1102,17 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				Query q = session.createQuery(query.toString());
 
-				List<Status> list = (List<Status>)QueryUtil.list(q,
-						getDialect(), start, end);
+				List<Status> list = null;
 
 				if (obc == null) {
+					list = (List<Status>)QueryUtil.list(q, getDialect(), start,
+							end, false);
+
 					Collections.sort(list);
+				}
+				else {
+					list = (List<Status>)QueryUtil.list(q, getDialect(), start,
+							end);
 				}
 
 				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
@@ -1492,22 +1490,6 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public void registerListener(ModelListener listener) {
-		List<ModelListener> listeners = ListUtil.fromArray(_listeners);
-
-		listeners.add(listener);
-
-		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
-	}
-
-	public void unregisterListener(ModelListener listener) {
-		List<ModelListener> listeners = ListUtil.fromArray(_listeners);
-
-		listeners.remove(listener);
-
-		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
-	}
-
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
@@ -1515,14 +1497,14 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener> listeners = new ArrayList<ModelListener>();
+				List<ModelListener> listenersList = new ArrayList<ModelListener>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listeners.add((ModelListener)Class.forName(
+					listenersList.add((ModelListener)Class.forName(
 							listenerClassName).newInstance());
 				}
 
-				_listeners = listeners.toArray(new ModelListener[listeners.size()]);
+				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);
 			}
 			catch (Exception e) {
 				_log.error(e);
@@ -1530,6 +1512,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
+	@BeanReference(name = "com.liferay.chat.service.persistence.EntryPersistence.impl")
+	protected com.liferay.chat.service.persistence.EntryPersistence entryPersistence;
+	@BeanReference(name = "com.liferay.chat.service.persistence.StatusPersistence.impl")
+	protected com.liferay.chat.service.persistence.StatusPersistence statusPersistence;
 	private static Log _log = LogFactory.getLog(StatusPersistenceImpl.class);
-	private ModelListener[] _listeners = new ModelListener[0];
 }

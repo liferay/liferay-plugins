@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,6 +24,7 @@ package com.liferay.sampleservicebuilder.service.base;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import com.liferay.sampleservicebuilder.model.Foo;
@@ -110,10 +111,10 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService {
 		this.fooPersistence = fooPersistence;
 	}
 
-	@javax.annotation.Resource(name = "com.liferay.sampleservicebuilder.service.FooLocalService.impl")
+	@BeanReference(name = "com.liferay.sampleservicebuilder.service.FooLocalService.impl")
 	protected FooLocalService fooLocalService;
-	@javax.annotation.Resource(name = "com.liferay.sampleservicebuilder.service.FooService.impl")
+	@BeanReference(name = "com.liferay.sampleservicebuilder.service.FooService.impl")
 	protected FooService fooService;
-	@javax.annotation.Resource(name = "com.liferay.sampleservicebuilder.service.persistence.FooPersistence.impl")
+	@BeanReference(name = "com.liferay.sampleservicebuilder.service.persistence.FooPersistence.impl")
 	protected FooPersistence fooPersistence;
 }

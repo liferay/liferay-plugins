@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,7 @@
 package com.liferay.sampleservicebuilder.service.persistence;
 
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -30,11 +31,11 @@ import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
+import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.sampleservicebuilder.NoSuchFooException;
@@ -98,18 +99,14 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public Foo remove(Foo foo) throws SystemException {
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				listener.onBeforeRemove(foo);
-			}
+		for (ModelListener listener : listeners) {
+			listener.onBeforeRemove(foo);
 		}
 
 		foo = removeImpl(foo);
 
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				listener.onAfterRemove(foo);
-			}
+		for (ModelListener listener : listeners) {
+			listener.onAfterRemove(foo);
 		}
 
 		return foo;
@@ -120,6 +117,15 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 
 		try {
 			session = openSession();
+
+			if (BatchSessionUtil.isEnabled()) {
+				Object staleObject = session.get(FooImpl.class,
+						foo.getPrimaryKeyObj());
+
+				if (staleObject != null) {
+					session.evict(staleObject);
+				}
+			}
 
 			session.delete(foo);
 
@@ -149,27 +155,23 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 	public Foo update(Foo foo, boolean merge) throws SystemException {
 		boolean isNew = foo.isNew();
 
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				if (isNew) {
-					listener.onBeforeCreate(foo);
-				}
-				else {
-					listener.onBeforeUpdate(foo);
-				}
+		for (ModelListener listener : listeners) {
+			if (isNew) {
+				listener.onBeforeCreate(foo);
+			}
+			else {
+				listener.onBeforeUpdate(foo);
 			}
 		}
 
 		foo = updateImpl(foo, merge);
 
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				if (isNew) {
-					listener.onAfterCreate(foo);
-				}
-				else {
-					listener.onAfterUpdate(foo);
-				}
+		for (ModelListener listener : listeners) {
+			if (isNew) {
+				listener.onAfterCreate(foo);
+			}
+			else {
+				listener.onAfterUpdate(foo);
 			}
 		}
 
@@ -183,16 +185,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
-			if (merge) {
-				session.merge(foo);
-			}
-			else {
-				if (foo.isNew()) {
-					session.save(foo);
-				}
-			}
-
-			session.flush();
+			BatchSessionUtil.update(session, foo, merge);
 
 			foo.setNew(false);
 
@@ -569,11 +562,16 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 
 				Query q = session.createQuery(query.toString());
 
-				List<Foo> list = (List<Foo>)QueryUtil.list(q, getDialect(),
-						start, end);
+				List<Foo> list = null;
 
 				if (obc == null) {
+					list = (List<Foo>)QueryUtil.list(q, getDialect(), start,
+							end, false);
+
 					Collections.sort(list);
+				}
+				else {
+					list = (List<Foo>)QueryUtil.list(q, getDialect(), start, end);
 				}
 
 				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
@@ -725,22 +723,6 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public void registerListener(ModelListener listener) {
-		List<ModelListener> listeners = ListUtil.fromArray(_listeners);
-
-		listeners.add(listener);
-
-		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
-	}
-
-	public void unregisterListener(ModelListener listener) {
-		List<ModelListener> listeners = ListUtil.fromArray(_listeners);
-
-		listeners.remove(listener);
-
-		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
-	}
-
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
@@ -748,14 +730,14 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener> listeners = new ArrayList<ModelListener>();
+				List<ModelListener> listenersList = new ArrayList<ModelListener>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listeners.add((ModelListener)Class.forName(
+					listenersList.add((ModelListener)Class.forName(
 							listenerClassName).newInstance());
 				}
 
-				_listeners = listeners.toArray(new ModelListener[listeners.size()]);
+				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);
 			}
 			catch (Exception e) {
 				_log.error(e);
@@ -763,6 +745,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
+	@BeanReference(name = "com.liferay.sampleservicebuilder.service.persistence.FooPersistence.impl")
+	protected com.liferay.sampleservicebuilder.service.persistence.FooPersistence fooPersistence;
 	private static Log _log = LogFactory.getLog(FooPersistenceImpl.class);
-	private ModelListener[] _listeners = new ModelListener[0];
 }

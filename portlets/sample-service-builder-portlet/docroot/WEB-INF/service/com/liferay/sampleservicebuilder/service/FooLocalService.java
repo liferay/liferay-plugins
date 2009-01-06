@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +22,19 @@
 
 package com.liferay.sampleservicebuilder.service;
 
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="FooLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
+@Transactional(rollbackFor =  {
+	PortalException.class, SystemException.class})
 public interface FooLocalService {
 	public com.liferay.sampleservicebuilder.model.Foo addFoo(
 		com.liferay.sampleservicebuilder.model.Foo foo)
@@ -50,13 +57,16 @@ public interface FooLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.sampleservicebuilder.model.Foo getFoo(long fooId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getFoosCount() throws com.liferay.portal.SystemException;
 
 	public com.liferay.sampleservicebuilder.model.Foo updateFoo(
@@ -68,10 +78,12 @@ public interface FooLocalService {
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,7 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.Propagation;
 import com.liferay.portal.kernel.annotation.Transactional;
+import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
  * <a href="SVNRepositoryPersistence.java.html"><b><i>View Source</i></b></a>
@@ -35,7 +36,7 @@ import com.liferay.portal.kernel.annotation.Transactional;
  */
 @Transactional(rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface SVNRepositoryPersistence {
+public interface SVNRepositoryPersistence extends BasePersistence {
 	public com.liferay.wol.model.SVNRepository create(long svnRepositoryId);
 
 	public com.liferay.wol.model.SVNRepository remove(long svnRepositoryId)
@@ -110,10 +111,4 @@ public interface SVNRepositoryPersistence {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countAll() throws com.liferay.portal.SystemException;
-
-	public void registerListener(
-		com.liferay.portal.model.ModelListener listener);
-
-	public void unregisterListener(
-		com.liferay.portal.model.ModelListener listener);
 }

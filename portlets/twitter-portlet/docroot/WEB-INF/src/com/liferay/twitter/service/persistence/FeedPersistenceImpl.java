@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,7 @@
 package com.liferay.twitter.service.persistence;
 
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -30,7 +31,6 @@ import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -99,18 +99,14 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public Feed remove(Feed feed) throws SystemException {
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				listener.onBeforeRemove(feed);
-			}
+		for (ModelListener listener : listeners) {
+			listener.onBeforeRemove(feed);
 		}
 
 		feed = removeImpl(feed);
 
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				listener.onAfterRemove(feed);
-			}
+		for (ModelListener listener : listeners) {
+			listener.onAfterRemove(feed);
 		}
 
 		return feed;
@@ -159,27 +155,23 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 	public Feed update(Feed feed, boolean merge) throws SystemException {
 		boolean isNew = feed.isNew();
 
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				if (isNew) {
-					listener.onBeforeCreate(feed);
-				}
-				else {
-					listener.onBeforeUpdate(feed);
-				}
+		for (ModelListener listener : listeners) {
+			if (isNew) {
+				listener.onBeforeCreate(feed);
+			}
+			else {
+				listener.onBeforeUpdate(feed);
 			}
 		}
 
 		feed = updateImpl(feed, merge);
 
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				if (isNew) {
-					listener.onAfterCreate(feed);
-				}
-				else {
-					listener.onAfterUpdate(feed);
-				}
+		for (ModelListener listener : listeners) {
+			if (isNew) {
+				listener.onAfterCreate(feed);
+			}
+			else {
+				listener.onAfterUpdate(feed);
 			}
 		}
 
@@ -513,11 +505,17 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 				Query q = session.createQuery(query.toString());
 
-				List<Feed> list = (List<Feed>)QueryUtil.list(q, getDialect(),
-						start, end);
+				List<Feed> list = null;
 
 				if (obc == null) {
+					list = (List<Feed>)QueryUtil.list(q, getDialect(), start,
+							end, false);
+
 					Collections.sort(list);
+				}
+				else {
+					list = (List<Feed>)QueryUtil.list(q, getDialect(), start,
+							end);
 				}
 
 				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
@@ -750,22 +748,6 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public void registerListener(ModelListener listener) {
-		List<ModelListener> listeners = ListUtil.fromArray(_listeners);
-
-		listeners.add(listener);
-
-		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
-	}
-
-	public void unregisterListener(ModelListener listener) {
-		List<ModelListener> listeners = ListUtil.fromArray(_listeners);
-
-		listeners.remove(listener);
-
-		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
-	}
-
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
@@ -773,14 +755,14 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener> listeners = new ArrayList<ModelListener>();
+				List<ModelListener> listenersList = new ArrayList<ModelListener>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listeners.add((ModelListener)Class.forName(
+					listenersList.add((ModelListener)Class.forName(
 							listenerClassName).newInstance());
 				}
 
-				_listeners = listeners.toArray(new ModelListener[listeners.size()]);
+				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);
 			}
 			catch (Exception e) {
 				_log.error(e);
@@ -788,6 +770,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
+	@BeanReference(name = "com.liferay.twitter.service.persistence.FeedPersistence.impl")
+	protected com.liferay.twitter.service.persistence.FeedPersistence feedPersistence;
 	private static Log _log = LogFactory.getLog(FeedPersistenceImpl.class);
-	private ModelListener[] _listeners = new ModelListener[0];
 }

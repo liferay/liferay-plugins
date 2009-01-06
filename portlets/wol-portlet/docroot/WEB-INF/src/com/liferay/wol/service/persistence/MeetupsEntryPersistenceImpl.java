@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,7 @@
 package com.liferay.wol.service.persistence;
 
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -30,7 +31,6 @@ import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -104,18 +104,14 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 
 	public MeetupsEntry remove(MeetupsEntry meetupsEntry)
 		throws SystemException {
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				listener.onBeforeRemove(meetupsEntry);
-			}
+		for (ModelListener listener : listeners) {
+			listener.onBeforeRemove(meetupsEntry);
 		}
 
 		meetupsEntry = removeImpl(meetupsEntry);
 
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				listener.onAfterRemove(meetupsEntry);
-			}
+		for (ModelListener listener : listeners) {
+			listener.onAfterRemove(meetupsEntry);
 		}
 
 		return meetupsEntry;
@@ -167,27 +163,23 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 		throws SystemException {
 		boolean isNew = meetupsEntry.isNew();
 
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				if (isNew) {
-					listener.onBeforeCreate(meetupsEntry);
-				}
-				else {
-					listener.onBeforeUpdate(meetupsEntry);
-				}
+		for (ModelListener listener : listeners) {
+			if (isNew) {
+				listener.onBeforeCreate(meetupsEntry);
+			}
+			else {
+				listener.onBeforeUpdate(meetupsEntry);
 			}
 		}
 
 		meetupsEntry = updateImpl(meetupsEntry, merge);
 
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				if (isNew) {
-					listener.onAfterCreate(meetupsEntry);
-				}
-				else {
-					listener.onAfterUpdate(meetupsEntry);
-				}
+		for (ModelListener listener : listeners) {
+			if (isNew) {
+				listener.onAfterCreate(meetupsEntry);
+			}
+			else {
+				listener.onAfterUpdate(meetupsEntry);
 			}
 		}
 
@@ -587,11 +579,17 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 
 				Query q = session.createQuery(query.toString());
 
-				List<MeetupsEntry> list = (List<MeetupsEntry>)QueryUtil.list(q,
-						getDialect(), start, end);
+				List<MeetupsEntry> list = null;
 
 				if (obc == null) {
+					list = (List<MeetupsEntry>)QueryUtil.list(q, getDialect(),
+							start, end, false);
+
 					Collections.sort(list);
+				}
+				else {
+					list = (List<MeetupsEntry>)QueryUtil.list(q, getDialect(),
+							start, end);
 				}
 
 				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
@@ -742,22 +740,6 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public void registerListener(ModelListener listener) {
-		List<ModelListener> listeners = ListUtil.fromArray(_listeners);
-
-		listeners.add(listener);
-
-		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
-	}
-
-	public void unregisterListener(ModelListener listener) {
-		List<ModelListener> listeners = ListUtil.fromArray(_listeners);
-
-		listeners.remove(listener);
-
-		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
-	}
-
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
@@ -765,14 +747,14 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener> listeners = new ArrayList<ModelListener>();
+				List<ModelListener> listenersList = new ArrayList<ModelListener>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listeners.add((ModelListener)Class.forName(
+					listenersList.add((ModelListener)Class.forName(
 							listenerClassName).newInstance());
 				}
 
-				_listeners = listeners.toArray(new ModelListener[listeners.size()]);
+				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);
 			}
 			catch (Exception e) {
 				_log.error(e);
@@ -780,6 +762,23 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
+	@BeanReference(name = "com.liferay.wol.service.persistence.JIRAActionPersistence.impl")
+	protected com.liferay.wol.service.persistence.JIRAActionPersistence jiraActionPersistence;
+	@BeanReference(name = "com.liferay.wol.service.persistence.JIRAChangeGroupPersistence.impl")
+	protected com.liferay.wol.service.persistence.JIRAChangeGroupPersistence jiraChangeGroupPersistence;
+	@BeanReference(name = "com.liferay.wol.service.persistence.JIRAChangeItemPersistence.impl")
+	protected com.liferay.wol.service.persistence.JIRAChangeItemPersistence jiraChangeItemPersistence;
+	@BeanReference(name = "com.liferay.wol.service.persistence.JIRAIssuePersistence.impl")
+	protected com.liferay.wol.service.persistence.JIRAIssuePersistence jiraIssuePersistence;
+	@BeanReference(name = "com.liferay.wol.service.persistence.MeetupsEntryPersistence.impl")
+	protected com.liferay.wol.service.persistence.MeetupsEntryPersistence meetupsEntryPersistence;
+	@BeanReference(name = "com.liferay.wol.service.persistence.MeetupsRegistrationPersistence.impl")
+	protected com.liferay.wol.service.persistence.MeetupsRegistrationPersistence meetupsRegistrationPersistence;
+	@BeanReference(name = "com.liferay.wol.service.persistence.SVNRepositoryPersistence.impl")
+	protected com.liferay.wol.service.persistence.SVNRepositoryPersistence svnRepositoryPersistence;
+	@BeanReference(name = "com.liferay.wol.service.persistence.SVNRevisionPersistence.impl")
+	protected com.liferay.wol.service.persistence.SVNRevisionPersistence svnRevisionPersistence;
+	@BeanReference(name = "com.liferay.wol.service.persistence.WallEntryPersistence.impl")
+	protected com.liferay.wol.service.persistence.WallEntryPersistence wallEntryPersistence;
 	private static Log _log = LogFactory.getLog(MeetupsEntryPersistenceImpl.class);
-	private ModelListener[] _listeners = new ModelListener[0];
 }

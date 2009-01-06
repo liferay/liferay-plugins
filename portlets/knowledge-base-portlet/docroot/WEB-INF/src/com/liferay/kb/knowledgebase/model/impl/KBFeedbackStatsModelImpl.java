@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -279,5 +279,5 @@ public class KBFeedbackStatsModelImpl extends BaseModelImpl {
 	private int _totalScoreEntries;
 	private int _totalVotes;
 	private int _yesVotes;
-	private ExpandoBridge _expandoBridge;
+	private transient ExpandoBridge _expandoBridge;
 }

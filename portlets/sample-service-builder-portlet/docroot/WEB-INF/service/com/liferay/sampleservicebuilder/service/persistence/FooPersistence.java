@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,13 +22,21 @@
 
 package com.liferay.sampleservicebuilder.service.persistence;
 
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+import com.liferay.portal.service.persistence.BasePersistence;
+
 /**
  * <a href="FooPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface FooPersistence {
+@Transactional(rollbackFor =  {
+	PortalException.class, SystemException.class})
+public interface FooPersistence extends BasePersistence {
 	public com.liferay.sampleservicebuilder.model.Foo create(long fooId);
 
 	public com.liferay.sampleservicebuilder.model.Foo remove(long fooId)
@@ -51,6 +59,7 @@ public interface FooPersistence {
 		com.liferay.sampleservicebuilder.model.Foo foo, boolean merge)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.sampleservicebuilder.model.Foo findByPrimaryKey(
 		long fooId)
 		throws com.liferay.portal.SystemException,
@@ -59,48 +68,59 @@ public interface FooPersistence {
 	public com.liferay.sampleservicebuilder.model.Foo fetchByPrimaryKey(
 		long fooId) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> findByField2(
 		boolean field2) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> findByField2(
 		boolean field2, int start, int end)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> findByField2(
 		boolean field2, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.sampleservicebuilder.model.Foo findByField2_First(
 		boolean field2, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.sampleservicebuilder.model.Foo findByField2_Last(
 		boolean field2, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.sampleservicebuilder.model.Foo[] findByField2_PrevAndNext(
 		long fooId, boolean field2,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> findAll()
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> findAll(
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
@@ -110,14 +130,10 @@ public interface FooPersistence {
 
 	public void removeAll() throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByField2(boolean field2)
 		throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countAll() throws com.liferay.portal.SystemException;
-
-	public void registerListener(
-		com.liferay.portal.model.ModelListener listener);
-
-	public void unregisterListener(
-		com.liferay.portal.model.ModelListener listener);
 }
