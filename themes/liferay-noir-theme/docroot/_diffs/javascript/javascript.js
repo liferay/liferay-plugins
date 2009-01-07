@@ -27,7 +27,7 @@ var LiferayNoir = function () {
 		handleSearchForm: function() {
 			var searchForm = $('#banner .search');	
 			
-			var searchInput = searchForm.find('input[@type=image]');
+			var searchInput = searchForm.find('input[type=image]');
 			var searchLink = $('<a class="search-input-link" href="javascript:;"></a>');
 			
 			searchLink.click(
