@@ -211,7 +211,7 @@ boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCapt
 
 						<c:choose>
 							<c:when test='<%= fieldType.equals("radio") %>'>
-								fieldsMap[key] = jQuery("input[@name='<portlet:namespace />field<%= fieldIndex %>']:checked").val();
+								fieldsMap[key] = jQuery("input[name='<portlet:namespace />field<%= fieldIndex %>']:checked").val();
 
 								if (!fieldsMap[key]) {
 									fieldsMap[key] = '';
