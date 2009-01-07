@@ -48,6 +48,9 @@ public class StatusFinderImpl
 	public static String FIND_BY_SOCIAL_RELATION_TYPE =
 		StatusFinder.class.getName() + ".findBySocialRelationType";
 
+	public static String FIND_BY_USERS_GROUPS =
+		StatusFinder.class.getName() + ".findByUsersGroups";
+
 	public List<Object[]> findByModifiedDate(
 			long modifiedDate, int start, int end)
 		throws SystemException {
@@ -106,6 +109,41 @@ public class StatusFinderImpl
 
 			qPos.add(userId);
 			qPos.add(type);
+			qPos.add(modifiedDate);
+
+			return (List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<Object[]> findByUsersGroups(
+			long userId, long modifiedDate, int start, int end)
+		throws SystemException {
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_USERS_GROUPS);
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar("userId", Type.LONG);
+			q.addScalar("firstName", Type.STRING);
+			q.addScalar("middleName", Type.STRING);
+			q.addScalar("lastName", Type.STRING);
+			q.addScalar("portraitId", Type.LONG);
+			q.addScalar("awake", Type.BOOLEAN);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(userId);
 			qPos.add(modifiedDate);
 
 			return (List<Object[]>)QueryUtil.list(q, getDialect(), start, end);

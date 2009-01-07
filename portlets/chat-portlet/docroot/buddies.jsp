@@ -30,6 +30,9 @@ List<Object[]> buddies = null;
 if (_BUDDY_LIST_STRATEGY.equals("all")) {
 	buddies = StatusLocalServiceUtil.getAllStatuses(buddiesModifiedDate, 0, SearchContainer.DEFAULT_DELTA);
 }
+else if (_BUDDY_LIST_STRATEGY.equals("communities")) {
+	buddies = StatusLocalServiceUtil.getGroupStatuses(themeDisplay.getUserId(), buddiesModifiedDate, 0, SearchContainer.DEFAULT_DELTA);
+}
 else if (_BUDDY_LIST_STRATEGY.equals("friends")) {
 	buddies = StatusLocalServiceUtil.getSocialStatuses(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, buddiesModifiedDate, 0, SearchContainer.DEFAULT_DELTA);
 }

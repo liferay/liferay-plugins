@@ -45,6 +45,13 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 		return statusFinder.findByModifiedDate(modifiedDate, start, end);
 	}
 
+	public List<Object[]> getGroupStatuses(
+			long userId, long modifiedDate, int start, int end)
+		throws SystemException {
+
+		return statusFinder.findByUsersGroups(userId, modifiedDate, start, end);
+	}
+
 	public List<Object[]> getSocialStatuses(
 			long userId, int type, long modifiedDate, int start, int end)
 		throws SystemException {

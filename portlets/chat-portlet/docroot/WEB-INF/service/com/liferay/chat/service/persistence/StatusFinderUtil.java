@@ -43,6 +43,12 @@ public class StatusFinderUtil {
 			end);
 	}
 
+	public static java.util.List<Object[]> findByUsersGroups(long userId,
+		long modifiedDate, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getFinder().findByUsersGroups(userId, modifiedDate, start, end);
+	}
+
 	public static StatusFinder getFinder() {
 		return _finder;
 	}

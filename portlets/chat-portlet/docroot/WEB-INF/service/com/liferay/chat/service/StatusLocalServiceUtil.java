@@ -92,6 +92,12 @@ public class StatusLocalServiceUtil {
 		return getService().getAllStatuses(modifiedDate, start, end);
 	}
 
+	public static java.util.List<Object[]> getGroupStatuses(long userId,
+		long modifiedDate, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getService().getGroupStatuses(userId, modifiedDate, start, end);
+	}
+
 	public static java.util.List<Object[]> getSocialStatuses(long userId,
 		int type, long modifiedDate, int start, int end)
 		throws com.liferay.portal.SystemException {

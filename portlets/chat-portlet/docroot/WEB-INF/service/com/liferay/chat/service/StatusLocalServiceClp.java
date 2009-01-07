@@ -364,6 +364,40 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		return (java.util.List<Object[]>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.util.List<Object[]> getGroupStatuses(long userId,
+		long modifiedDate, int start, int end)
+		throws com.liferay.portal.SystemException {
+		Object paramObj0 = new LongWrapper(userId);
+
+		Object paramObj1 = new LongWrapper(modifiedDate);
+
+		Object paramObj2 = new IntegerWrapper(start);
+
+		Object paramObj3 = new IntegerWrapper(end);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("getGroupStatuses",
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<Object[]>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<Object[]> getSocialStatuses(long userId, int type,
 		long modifiedDate, int start, int end)
 		throws com.liferay.portal.SystemException {
