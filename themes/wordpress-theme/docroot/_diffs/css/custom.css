@@ -78,6 +78,9 @@ body {
 	padding: 20px 202px 0 22px;
 }
 
+.ie #content-wrapper {
+	zoom: 1;
+}
 
 /* ---------- Portlet ---------- */
 
