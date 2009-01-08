@@ -214,6 +214,14 @@ div.portlet .portlet-topper {
 	width: 1%;
 }
 
+.lfr-menu-list li {
+	padding: 0;
+}
+
+.lfr-menu-list li a {
+	padding: 3px 10px 3px 0;
+}
+
 .portlet-options.visible {
 	background: #FFF url(../../images/forms/button.png) repeat-x 0 100%;
 	border-color: #DEDEDE;
