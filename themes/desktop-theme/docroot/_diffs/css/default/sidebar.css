@@ -110,6 +110,10 @@
 	border-bottom: none;
 }
 
+#sidebar .lfr-install-more a, #sidebar .lfr-install-more a:hover {
+	color: #FFF;
+}
+
 #sidebar .lfr-portlet-item {
 	border: none;
 }
