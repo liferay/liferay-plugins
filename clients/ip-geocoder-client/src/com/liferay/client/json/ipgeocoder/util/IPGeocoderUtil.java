@@ -55,10 +55,6 @@ public class IPGeocoderUtil {
 		float longitude = GetterUtil.getFloat(
 			ipInfoJSON.getString("longitude"));
 
-		if ((latitude == 0) && (longitude == 0)) {
-			return null;
-		}
-
 		return new IPInfo(ipAddress, latitude, longitude);
 	}
 
