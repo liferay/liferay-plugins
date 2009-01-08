@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 5.1.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_5_1_0.dtd">
-
-<look-and-feel>
-	<compatibility>
-		<version>5.1.0+</version>
-	</compatibility>
-	<theme id="super-mario-bros-2" name="Super Mario Bros 2"></theme>
-</look-and-feel>

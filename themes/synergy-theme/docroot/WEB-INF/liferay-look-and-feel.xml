@@ -3,7 +3,7 @@
 
 <look-and-feel>
 	<compatibility>
-		<version>5.1.0+</version>
+		<version>5.2.0+</version>
 	</compatibility>
 	<theme id="synergy-theme" name="WebSynergy">
 		<settings>
