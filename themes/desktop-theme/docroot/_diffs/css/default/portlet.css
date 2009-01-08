@@ -1,0 +1,269 @@
+/* ---------- Portlet template ---------- */
+
+div.portlet {
+	background: #FFF;
+	border: 1px solid #000;
+}
+
+div.portlet .portlet-topper {
+	background-color: #111;
+	border-bottom: 1px solid #000;
+	height: 31px;
+	padding: 0 8px;
+}
+
+/* ---------- Portlet wrapper and icons ---------- */
+
+.portlet, .portlet-topper, .portlet-content, .portlet-title {
+	background: none;
+}
+
+.portlet-topper {
+	height: 31px;
+	padding: 6px 0 0 3px;
+	white-space: nowrap;
+}
+
+.portlet-title {
+	color: #FFF;
+	font-size: 15px;
+	font-stretch: semi-condensed;
+	font-weight: 300;
+	line-height: 20px;
+	padding: 5px 0;
+}
+
+.portlet-title img {
+	display: none;
+}
+
+.portlet-address {
+	background: #F4F4F4;
+	border-top: 1px solid #DFDFDF;
+	color: #B1B1B1;
+	line-height: 1em;
+	overflow: hidden;
+	padding: 5px 10px 2px;
+	white-space: nowrap;
+}
+
+.portlet-content {
+	padding: 0;
+}
+
+.portlet-content-container {
+	padding: 10px;
+}
+
+.portlet-modes {
+	right: -1px;
+	top: 6px;
+}
+
+.portlet-modes a {
+	float: left;
+	height: 15px;
+}
+
+.icon-min a {
+	background: transparent url(../../images/portlet/minimize.png) no-repeat scroll 0 0;
+	width: 22px;
+}
+
+.icon-min a.selected {
+	background: transparent url(../../images/portlet/minimize_hover.png) no-repeat scroll 0 0;
+}
+
+.icon-max a {
+	background: transparent url(../../images/portlet/maximize.png) no-repeat scroll 0 0;
+	width: 22px;
+}
+
+.icon-max a.selected {
+	background: transparent url(../../images/portlet/maximize_hover.png) no-repeat scroll 0 0;
+}
+
+.icon-close a {
+	background: transparent url(../../images/portlet/close.png) no-repeat scroll 0 0;
+	width: 38px;
+}
+
+.icon-close a.selected {
+	background: transparent url(../../images/portlet/close_hover.png) no-repeat scroll 0 0;
+}
+
+.icon-back {
+	top: 11px;
+}
+
+.portlet-icon-back {
+	color: #FFF;
+	text-decoration: none;
+}
+
+.portlet-icon-back:hover {
+	color: #FFF;
+	text-decoration: underline;
+}
+
+/* ---------- Portlet container ---------- */
+
+.portlet-top {
+	height: 38px;
+}
+
+.portlet-top .top-left {
+	background: transparent url(../../images/portlet/top_left.png) no-repeat scroll 0% 0%;
+	height: 38px;
+}
+
+.portlet-top .top-center {
+	background: transparent url(../../images/portlet/top_center.png) repeat-x scroll 0% 0%;
+	height: 38px;
+	margin-right: 13px;
+}
+
+.portlet-top .top-right {
+	background: transparent url(../../images/portlet/top_right.png) no-repeat scroll 100% 0%;
+	height: 38px;
+	margin-left: 13px;
+}
+
+.portlet-middle .middle-left {
+	background: transparent url(../../images/portlet/middle_left.png) repeat-y scroll 0% 0%;
+}
+
+.portlet-middle .middle-center {
+	background: #FFF;
+	margin-right: 8px;
+}
+
+.portlet-middle .middle-right {
+	background: transparent url(../../images/portlet/middle_right.png) repeat-y scroll 100% 0%;
+	margin-left: 8px;
+}
+
+.portlet-clear {
+	clear: both;
+	font-size: 0;
+	height: 0;
+	line-height: 0;
+	overflow: hidden;
+}
+
+.portlet-bottom {
+	height: 13px;
+}
+
+.portlet-bottom .bottom-left {
+	background: transparent url(../../images/portlet/bottom_left.png) no-repeat scroll 0% 0%;
+	height: 13px;
+}
+
+.portlet-bottom .bottom-center {
+	background: transparent url(../../images/portlet/bottom_center.png) repeat-x scroll 0% 0%;
+	height: 13px;
+	margin-right: 13px;
+}
+
+.portlet-bottom .bottom-right {
+	background: transparent url(../../images/portlet/bottom_right.png) no-repeat scroll 100% 0%;
+	height: 13px;
+	margin-left: 13px;
+}
+
+/* ---------- Portlet resize handle ---------- */
+
+.freeform .portlet-boundary .ui-resizable-handle {
+	margin: 4px 6px 7px;
+}
+
+/* ---------- Portlet minimized ---------- */
+
+.portlet-boundary.portlet-minimized {
+	display: none;
+}
+
+/* ---------- Portlet borderless ---------- */
+
+.portlet-borderless-container {
+	color: #FFF;
+}
+
+/* ---------- Portlet options ---------- */
+
+.lfr-menu-list {
+	z-index: 100;
+}
+
+.lfr-actions.portlet-options {
+	font-size: 12px;
+	height: 15px;
+	line-height: 15px;
+	padding: 1px 3px 0;
+}
+
+.lfr-actions.portlet-options .lfr-trigger strong {
+	padding: 0;
+}
+
+.lfr-actions.portlet-options .lfr-trigger strong span {
+	background-image: none;
+	color: #8F96A7;
+	text-indent: 0;
+	width: 1%;
+}
+
+.lfr-menu-list li {
+	padding: 0;
+}
+
+.lfr-menu-list li a {
+	padding: 3px 10px 3px 0;
+}
+
+.portlet-options.visible {
+	background: #FFF url(../../images/forms/button.png) repeat-x 0 100%;
+	border-color: #DEDEDE;
+}
+
+.portlet-options.visible .lfr-trigger strong span {
+	background-image: none;
+	color: #06C;
+}
+
+/* ---------- Portlet options container ---------- */
+
+.icon-options {
+	right: 0;
+	top: 13px;
+}
+
+.ie icon-options {
+	top: 12px;
+}
+
+.icon-options-min, .icon-options-max {
+	right: 22px;
+	top: 6px;
+}
+
+.icon-options-close {
+	right: 38px;
+	top: 6px;
+}
+
+.icon-options-min-max {
+	right: 44px;
+	top: 6px;
+}
+
+.icon-options-min-close, .icon-options-max-close {
+	right: 60px;
+	top: 6px;
+}
+
+.icon-options-min-max-close {
+	right: 82px;
+	top: 6px;
+}

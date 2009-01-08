@@ -1,0 +1,42 @@
+## ---------- Common ---------- ##
+
+#set ($userLocalService = $serviceLocator.findService("com.liferay.portal.service.UserLocalService"))
+#set ($organizationLocalService = $serviceLocator.findService("com.liferay.portal.service.OrganizationLocalService"))
+
+## ---------- Group name ---------- ##
+
+#if ($layout.getGroup().isUser())
+	#set ($user2 = $userLocalService.getUserById($layout.getGroup().getClassPK()))
+	#set ($group_name = $user2.getFullName())
+#elseif ($layout.getGroup().isOrganization())
+	#set ($organization = $organizationLocalService.getOrganization($layout.getGroup().getClassPK()))
+	#set ($group_name = $organization.getName())
+#else
+	#set ($group_name = $layout.getGroup().getName())
+#end
+
+## ---------- Portlet ---------- ##
+
+#set ($portlet_display = $portletDisplay)
+
+#set ($portlet_id = $portlet_display.getId())
+#set ($portlet_title = $portlet_display.getTitle())
+#set ($portlet_content = $portlet_display.getContent())
+#set ($portlet_back_url = $portlet_display.getURLBack())
+#set ($portlet_column_pos = $portlet_display.getColumnPos())
+
+#set ($portlet_address = "$group_name - $layout.getHTMLTitle($locale) - $portlet_title")
+
+#set ($icon_options_class = "icon-options")
+
+#if ($portlet_display.isShowMinIcon())
+	#set ($icon_options_class = $icon_options_class + "-min")
+#end
+
+#if ($portlet_display.isShowMaxIcon())
+	#set ($icon_options_class = $icon_options_class + "-max")
+#end
+
+#if ($portlet_display.isShowCloseIcon())
+	#set ($icon_options_class = $icon_options_class + "-close")
+#end

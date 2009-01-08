@@ -1,0 +1,19 @@
+/* ---------- Import Default CSS ---------- */
+
+@import url(default/base.css);
+
+@import url(default/taskbar.css);
+
+@import url(default/navigation.css);
+
+@import url(default/portlet.css);
+
+@import url(default/sidebar.css);
+
+@import url(default/custom_portlets.css);
+
+@import url(default/ie6.css);
+
+/* ---------- Import Color Schemes ---------- */
+
+@import url(color_schemes/osx.css);
