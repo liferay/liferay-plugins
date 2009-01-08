@@ -3,8 +3,8 @@
 #set ($groupLocalService = $serviceLocator.findService("com.liferay.portal.service.GroupLocalService"))
 #set ($journalTemplateLocalService = $serviceLocator.findService("com.liferay.portlet.journal.service.JournalTemplateLocalService"))
 
-#set ($desktop_packed_js = "$themeDisplay.getPathThemeRoot()/javascript/desktop_packed.js")
-#set ($sidebar_packed_js = "$themeDisplay.getPathThemeRoot()/javascript/sidebar_packed.js")
+#set ($desktop_js = "$themeDisplay.getPathThemeRoot()/javascript/desktop.js")
+#set ($sidebar_js = "$themeDisplay.getPathThemeRoot()/javascript/sidebar.js")
 
 #set ($guest_group = $groupLocalService.getGroup($company_id, "Guest"))
 #set ($is_ie6 = false)
@@ -33,7 +33,7 @@
 	#set ($css_id = "desktop-user")
 #end
 
-#if ($request.getHeader("User-Agent").indexOf("MSIE 6.0") != -1)
+#if ($browserSniffer.isIe($request) && $browserSniffer.getMajorVersion($request) < 7)
 	#set ($is_ie6 = true)
 #end
 

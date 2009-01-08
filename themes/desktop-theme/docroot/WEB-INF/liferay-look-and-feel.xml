@@ -3,6 +3,7 @@
 
 <look-and-feel>
 	<compatibility>
+		<version>5.1.0+</version>
 		<version>5.2.0+</version>
 	</compatibility>
 	<theme id="desktop" name="Desktop">
@@ -22,14 +23,5 @@
 			<css-class>osx</css-class>
 			<color-scheme-images-path>${images-path}/color_schemes/osx</color-scheme-images-path>
 		</color-scheme>
-		<layout-templates>
-			<custom>
-				<layout-template id="freeform" name="Desktop">
-					<template-path>/layouttpl/custom/freeform.tpl</template-path>
-					<wap-template-path>/layouttpl/custom/freeform.wap.tpl</wap-template-path>
-					<thumbnail-path>/layouttpl/custom/freeform.png</thumbnail-path>
-				</layout-template>
-			</custom>
-		</layout-templates>
 	</theme>
 </look-and-feel>
