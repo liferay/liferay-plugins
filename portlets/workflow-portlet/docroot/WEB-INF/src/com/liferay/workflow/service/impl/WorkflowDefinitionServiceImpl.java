@@ -72,56 +72,53 @@ public class WorkflowDefinitionServiceImpl
 			String xml, Boolean addCommunityPermissions,
 			Boolean addGuestPermissions, String[] communityPermissions,
 			String[] guestPermissions)
-		throws PortalException, SystemException {
+	throws PortalException, SystemException {
+
+
+
+		// Deploy xml
+
+		User user = getUser();
+
+		long definitionId = GetterUtil.getLong(
+			workflowComponentService.deploy(xml));
+
+		// File
+
+		long companyId = user.getCompanyId();
+		String portletId = CompanyConstants.SYSTEM_STRING;
+		long groupId = GroupConstants.DEFAULT_PARENT_GROUP_ID;
+		long repositoryId = CompanyConstants.SYSTEM;
+		String dirName = "workflow/definitions";
+		String fileName = dirName  + "/" + definitionId + ".xml";
 
 		try {
-
-			// Deploy xml
-
-			User user = getUser();
-
-			long definitionId = GetterUtil.getLong(
-				workflowComponentService.deploy(xml));
-
-			// File
-
-			long companyId = user.getCompanyId();
-			String portletId = CompanyConstants.SYSTEM_STRING;
-			long groupId = GroupConstants.DEFAULT_PARENT_GROUP_ID;
-			long repositoryId = CompanyConstants.SYSTEM;
-			String dirName = "workflow/definitions";
-			String fileName = dirName  + "/" + definitionId + ".xml";
-
-			try {
-				DLServiceUtil.addDirectory(companyId, repositoryId, dirName);
-			}
-			catch (DuplicateDirectoryException dde) {
-			}
-
-			DLServiceUtil.addFile(
-				companyId, portletId, groupId, repositoryId, fileName,
-				System.currentTimeMillis(),StringPool.BLANK, new String[0], 
-				xml.getBytes());
-
-			// Resources
-
-			if ((addCommunityPermissions != null) &&
-				(addGuestPermissions != null)) {
-
-				addDefinitionResources(
-					user, definitionId, addCommunityPermissions.booleanValue(),
-					addGuestPermissions.booleanValue());
-			}
-			else {
-				addDefinitionResources(
-					user, definitionId, communityPermissions, guestPermissions);
-			}
-
-			return getDefinition(definitionId);
+			DLServiceUtil.addDirectory(companyId, repositoryId, dirName);
 		}
-		catch (RemoteException re) {
-			throw new SystemException(re);
+		catch (DuplicateDirectoryException dde) {
 		}
+
+		DLServiceUtil.addFile(
+			companyId, portletId, groupId, repositoryId, fileName,
+			System.currentTimeMillis(),StringPool.BLANK, new String[0], 
+			xml.getBytes());
+
+		// Resources
+
+		if ((addCommunityPermissions != null) &&
+						(addGuestPermissions != null)) {
+
+			addDefinitionResources(
+				user, definitionId, addCommunityPermissions.booleanValue(),
+				addGuestPermissions.booleanValue());
+		}
+		else {
+			addDefinitionResources(
+				user, definitionId, communityPermissions, guestPermissions);
+		}
+
+		return getDefinition(definitionId);
+
 	}
 
 	public void addDefinitionResources(
@@ -169,9 +166,7 @@ public class WorkflowDefinitionServiceImpl
 		catch (NoSuchFileException nsfe) {
 			throw new NoSuchDefinitionException();
 		}
-		catch (RemoteException re) {
-			throw new SystemException(re);
-		}
+
 	}
 
 }

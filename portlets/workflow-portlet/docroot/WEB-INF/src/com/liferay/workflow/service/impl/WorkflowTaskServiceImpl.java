@@ -41,13 +41,10 @@ public class WorkflowTaskServiceImpl extends WorkflowTaskServiceBaseImpl {
 	public Map updateTask(long taskId, String transition, Map parameterMap)
 		throws PortalException, SystemException {
 
-		try {
-			return workflowComponentService.updateTask(
-				taskId, transition, parameterMap);
-		}
-		catch (RemoteException re) {
-			throw new SystemException(re);
-		}
+
+		return workflowComponentService.updateTask(
+			taskId, transition, parameterMap);
+
 	}
 
 }

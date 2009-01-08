@@ -54,9 +54,6 @@ public class WorkflowInstanceServiceImpl
 		catch (DocumentException de) {
 			throw new SystemException(de);
 		}
-		catch (RemoteException re) {
-			throw new SystemException(re);
-		}
 		catch (ParseException pe) {
 			throw new SystemException(pe);
 		}
@@ -65,23 +62,17 @@ public class WorkflowInstanceServiceImpl
 	public void signalInstance(long instanceId)
 		throws PortalException, SystemException {
 
-		try {
-			workflowComponentService.signalInstance(instanceId);
-		}
-		catch (RemoteException re) {
-			throw new SystemException(re);
-		}
+
+		workflowComponentService.signalInstance(instanceId);
+
 	}
 
 	public void signalToken(long instanceId, long tokenId)
 		throws PortalException, SystemException {
 
-		try {
-			workflowComponentService.signalToken(instanceId, tokenId);
-		}
-		catch (RemoteException re) {
-			throw new SystemException(re);
-		}
+
+		workflowComponentService.signalToken(instanceId, tokenId);
+
 	}
 
 }
