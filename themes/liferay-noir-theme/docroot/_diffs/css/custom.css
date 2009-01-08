@@ -232,6 +232,26 @@ a:hover {
 	top: 7px;
 }
 
+
+/* ---------- Dock ---------- */
+
+.js .interactive-mode {
+	margin-top: 12px;
+	right: 10px;
+}
+
+.js .interactive-mode h2 span {
+	background: transparent url(/liferay-noir-theme/images/custom/menu_bar.png) no-repeat scroll 0pt 0pt;
+	margin-right: -3px;
+}
+
+.js .interactive-mode h2 {
+	background: transparent url(/liferay-noir-theme/images/custom/menu_bar.png) no-repeat scroll 100% -30px;
+}
+
+
+/* ---------- Search ---------- */
+
 #banner .search {
 	position: absolute;
 	right: 10px;
@@ -265,32 +285,12 @@ a:hover {
 	height: 35px;
 	position: absolute;
 	right: 0;
-	top: 25pt;
+	top: 33px;
 	width: 51px;
 }
 
-
-/* ---------- Dock ---------- */
-
-.js .interactive-mode {
-	margin-top: 12px;
-	right: 10px;
-}
-
-.js .interactive-mode h2 span {
-	background: transparent url(/liferay-noir-theme/images/custom/menu_bar.png) no-repeat scroll 0pt 0pt;
-	margin-right: -3px;
-}
-
-.js .interactive-mode h2 {
-	background: transparent url(/liferay-noir-theme/images/custom/menu_bar.png) no-repeat scroll 100% -30px;
-}
-
-
-/* ---------- Search ---------- */
-
 .ie #banner .search .search-input-link {
-	top: 1px;
+	top: 34px;
 }
 
 /* ---------- Navigation ---------- */
