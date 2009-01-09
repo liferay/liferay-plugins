@@ -47,10 +47,6 @@
 
 #set ($home_text = $languageUtil.get($company_id, $locale, "my-home"))
 
-#if ($home_text.equals("my-home"))
-	#set ($home_text = "My Home")
-#end
-
 ## ---------- Sidebar ---------- ##
 
 #if ($has_sidebar)
