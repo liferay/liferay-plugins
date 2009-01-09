@@ -1,8 +1,7 @@
 /* ---------- Base ---------- */
-body{
+body {
 	background: #FFF;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 11px;
+	font: 11px Arial, sans-serif;
 }
 
 a:hover {
@@ -14,12 +13,6 @@ a:hover {
 #wrapper {
 	margin: 0 auto;
 }
-
-#content-wrapper {
-	margin: 0 auto;
-	width: 1024px;
-}
-
 
 /* ---------- Banner ---------- */
 
@@ -53,7 +46,7 @@ a:hover {
 	background: none;
 	border: 0;
 	color: #69C;
-	padding: 10px 0 0 0;
+	padding: 10px 0 0;
 	text-align: center;
 }
 
@@ -66,7 +59,6 @@ a:hover {
 .lfr-dock .user-greeting span {
 	line-height: 1.5em;
 }
-
 
 /* ---------- Navigation ---------- */
 
@@ -111,8 +103,8 @@ a:hover {
 	padding: 0;
 	position: absolute;
 	right: 0;
-	width: 110px;
 	text-align: center;
+	width: 110px;
 	z-index: 18;
 }
 
@@ -124,17 +116,16 @@ a:hover {
 	display: none;
 }
 
-
 /* ---------- Content Wrapper ---------- */
 
-#content-wrapper a:hover {
-	text-decoration: none;
+#content-wrapper {
+	margin: 0 auto;
+	width: 1024px;
 }
 
 #column-center {
 	padding: 0px;
 }
-
 
 /* ---------- Portlet ---------- */
 
@@ -145,14 +136,13 @@ a:hover {
 }
 
 .portlet-topper {
-	background: url(../images/custom/portlet-topper-right-bg.png) 100% 0 no-repeat;
-	background-color: #88715A;
+	background: #88715A url(../images/custom/portlet-topper-right-bg.png) 100% 0 no-repeat;
 	height: 26px;
 }
 
 .portlet-title {
 	background: url(../images/custom/portlet-topper-left-bg.png) no-repeat;
-	color:#222;
+	color: #222;
 	font-size: 1.2em;
 	padding: 6px 0 0 10px;
 }
@@ -160,6 +150,10 @@ a:hover {
 .portlet-content {
 	border: 1px solid #CCC;
 	border-top:none;
+}
+
+#content-wrapper a:hover {
+	text-decoration: none;
 }
 
 .portlet-communities .lfr-theme-list h3 {
@@ -176,8 +170,8 @@ a:hover {
 }
 
 .taglib-calendar tr td a:hover {
-	color: #369;
 	background: #F0F5F7;
+	color: #369;
 	text-decoration: none;
 }
 
@@ -185,7 +179,6 @@ a:hover {
 	position: relative;
 	right: 2px;
 }
-
 
 /* ---------- Tabs ---------- */
 
