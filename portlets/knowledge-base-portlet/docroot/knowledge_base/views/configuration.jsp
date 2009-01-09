@@ -151,7 +151,7 @@ String[] extensions = preferences.getValues("extensions", new String[] {"pdf"});
 						<b>[$ARTICLE_CONTENT$]</b>
 					</td>
 					<td>
-						<liferay-ui:message key="the-article-content" />
+						The article content
 					</td>
 				</tr>
 				<tr>
@@ -159,7 +159,7 @@ String[] extensions = preferences.getValues("extensions", new String[] {"pdf"});
 						<b>[$ARTICLE_DESCRIPTION$]</b>
 					</td>
 					<td>
-						<liferay-ui:message key="the-article-description" />
+						The article description
 					</td>
 				</tr>
 				<tr>
@@ -167,7 +167,7 @@ String[] extensions = preferences.getValues("extensions", new String[] {"pdf"});
 						<b>[$ARTICLE_TITLE$]</b>
 					</td>
 					<td>
-						<liferay-ui:message key="the-article-title" />
+						The article title
 					</td>
 				</tr>
 				<tr>
@@ -175,7 +175,7 @@ String[] extensions = preferences.getValues("extensions", new String[] {"pdf"});
 						<b>[$ARTICLE_URL$]</b>
 					</td>
 					<td>
-						<liferay-ui:message key="the-article-url" />
+						The article URL
 					</td>
 				</tr>
 				<tr>
@@ -183,7 +183,7 @@ String[] extensions = preferences.getValues("extensions", new String[] {"pdf"});
 						<b>[$COMMUNITY_NAME$]</b>
 					</td>
 					<td>
-						<liferay-ui:message key="the-community-name" />
+						The community name
 					</td>
 				</tr>
 				<tr>
@@ -223,7 +223,7 @@ String[] extensions = preferences.getValues("extensions", new String[] {"pdf"});
 						<b>[$PORTLET_NAME$]</b>
 					</td>
 					<td>
-						<liferay-ui:message key="knowledge-base" />
+						Knowledge Base
 					</td>
 				</tr>
 				<tr>
@@ -231,7 +231,7 @@ String[] extensions = preferences.getValues("extensions", new String[] {"pdf"});
 						<b>[$TO_ADDRESS$]</b>
 					</td>
 					<td>
-						<liferay-ui:message key="the-address-of-the-email-recipient" />
+						The address of the email recipient
 					</td>
 				</tr>
 				<tr>
@@ -239,7 +239,7 @@ String[] extensions = preferences.getValues("extensions", new String[] {"pdf"});
 						<b>[$TO_NAME$]</b>
 					</td>
 					<td>
-						<liferay-ui:message key="the-name-of-the-email-recipient" />
+						The name of the email recipient
 					</td>
 				</tr>
 				</table>
