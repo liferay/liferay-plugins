@@ -18,7 +18,6 @@
 .js .lfr-dock.expanded .lfr-dock-list-container {
 	position: relative;
 	top: 32px;
-	width: 180px;
 }
 
 /* ---------- Dock menu ---------- */
@@ -26,6 +25,8 @@
 .js .interactive-mode ul.lfr-dock-list {
 	background: #FFF url(../../images/dock/dock_bg.png) no-repeat scroll 0 0;
 	border-width: 0 1px 1px;
+	position: absolute;
+	width: 180px;
 }
 
 .js .interactive-mode ul a {

@@ -1,0 +1,59 @@
+/* ---------- Portal pages ---------- */
+
+#portlet-wrapper-email-address .portlet-content {
+	padding: 10px;
+}
+
+#portlet-wrapper-error .portlet-content {
+	padding: 10px;
+}
+
+#portlet-wrapper-new-password .portlet-content {
+	padding: 10px;
+}
+
+#portlet-wrapper-password-reminder .portlet-content {
+	padding: 10px;
+}
+
+#portlet-wrapper-status .portlet-content {
+	padding: 10px;
+}
+
+#portlet-wrapper-terms-of-use .portlet-content {
+	padding: 10px;
+}
+
+#portlet-wrapper-test .portlet-content {
+	padding: 10px;
+}
+
+/* ---------- Add Content portlet ---------- */
+
+.lfr-has-sidebar {
+	padding-left: 0;
+}
+
+.lfr-has-sidebar #main-container {
+	padding-left: 270px;
+}
+
+/* ---------- Blogs portlet ---------- */
+
+.portlet-blogs .portlet-content {
+	width: 100%;
+}
+
+/* ---------- Login portlet ---------- */
+
+.portlet-login .portlet-title img {
+	display: inline;
+	vertical-align: text-bottom;
+}
+
+/* ---------- Tagged Content portlet ---------- */
+
+#main-container .portlet-tagged-content {
+	filter: none;
+	opacity: 1.0;
+}

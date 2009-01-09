@@ -6,6 +6,16 @@
 	top: 72%;
 }
 
+/* ---------- Dock menu ---------- */
+
+.ie6.js .lfr-flyout.has-children ul {
+	left: 184px;
+}
+
+.ie6.js .lfr-flyout.has-children ul ul {
+	left: 100%;
+}
+
 /* ---------- Portlet wrapper and icons ---------- */
 
 .ie6 #taskbar-portlets .taskbar-link a {
@@ -41,6 +51,12 @@
 .ie6 .icon-min a.selected, .ie6 .icon-max a.selected, .ie6 .icon-close a.selected {
 	filter: alpha(opacity=100);
 	opacity: 1;
+}
+
+/* ---------- Portlet container ---------- */
+
+.ie6 .portlet-middle {
+	height: 1%;
 }
 
 /* ---------- Add Content portlet ---------- */

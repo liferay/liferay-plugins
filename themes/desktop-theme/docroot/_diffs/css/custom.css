@@ -10,9 +10,11 @@
 
 @import url(default/sidebar.css);
 
-@import url(default/custom_portlets.css);
+@import url(default/custom.css);
 
 @import url(default/ie6.css);
+
+@import url(default/legacy.css);
 
 /* ---------- Import Color Schemes ---------- */
 

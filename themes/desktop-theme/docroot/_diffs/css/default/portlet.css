@@ -49,6 +49,7 @@ div.portlet .portlet-topper {
 
 .portlet-content {
 	padding: 0;
+	width: auto;
 }
 
 .portlet-content-container {
@@ -219,7 +220,7 @@ div.portlet .portlet-topper {
 }
 
 .lfr-menu-list li a {
-	padding: 3px 5px 3px 0;
+	padding: 3px 7px 3px 0;
 }
 
 .portlet-options.visible {

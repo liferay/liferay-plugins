@@ -1,7 +1,6 @@
 <div id="taskbar-container">
 	<div id="taskbar">
 		<div class="lfr-dock interactive-mode">
-
 			<ul class="lfr-dock-list">
 				#if ($show_home)
 					<li class="home">
@@ -73,7 +72,6 @@
 				#end
 			</ul>
 		</div>
-
 		<div id="taskbar-portlets-wrapper">
 			<ul id="taskbar-portlets"></ul>
 		</div>
