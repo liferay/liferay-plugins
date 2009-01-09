@@ -1,0 +1,207 @@
+/* ---------- Base ---------- */
+body{
+	background: #FFF;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 11px;
+}
+
+a:hover {
+	color: #369;
+}
+
+/* ---------- Wrapper ---------- */
+
+#wrapper {
+	margin: 0 auto;
+}
+
+#content-wrapper {
+	margin: 0 auto;
+	width: 1024px;
+}
+
+
+/* ---------- Banner ---------- */
+
+#banner {
+	background: url(../images/custom/logo-bg.png) repeat-x;
+}
+
+/* ---------- Logo ---------- */
+
+#banner .logo {
+	height: 115px;
+	margin: 0 auto;
+	width: 1024px;
+}
+
+#banner .logo a {
+	position: relative;
+	top: 15%;
+}
+
+/* ---------- Dock ---------- */
+
+.js .interactive-mode {
+	background: none;
+	right: 0;
+	top: 85px;
+	width: 160px;
+}
+
+.js .interactive-mode h2 span {
+	background: none;
+	border: 0;
+	color: #69C;
+	padding: 10px 0 0 0;
+	text-align: center;
+}
+
+.js .interactive-mode h2 {
+	background: url(../images/custom/interactive-mode-bg.png) 0 100% transparent;
+	height: 30px;
+	padding: 0 5px;
+}
+
+.lfr-dock .user-greeting span {
+	line-height: 1.5em;
+}
+
+
+/* ---------- Navigation ---------- */
+
+#navigation {
+	background: #4E3318;
+}
+
+#navigation a {
+	color: #FFF;
+	height: 30px;
+	padding: 8px 20px;
+	text-decoration: none;
+}
+	
+#navigation li {
+	line-height: 30px;
+}
+
+#navigation li a:hover {
+	background: url(../images/custom/sortable-item-a-hover-bg.png) no-repeat 50% 100%;
+}	
+
+#navigation .selected a,
+#navigation .selected a:hover {
+	background: url(../images/custom/selected-sortable-item-bg.png) no-repeat 50% 100%;
+}
+
+#navigation  ul {
+	color: #FFF;
+	font-weight: bold;
+	font-size: 1.1em;
+	min-height: 2em;
+	position: relative;
+	text-transform: uppercase;
+	width: 1024px;
+}
+
+#add-page a{
+	background: url(../images/custom/add-page-bg.png) no-repeat;
+	font-weight: bold;
+	height: 24px;
+	padding: 0;
+	position: absolute;
+	right: 0;
+	width: 110px;
+	text-align: center;
+	z-index: 18;
+}
+
+#add-page a:hover {
+	background: url(../images/custom/add-page-hover-bg.png) no-repeat;
+}
+
+.enter-page .cancel-page {
+	display: none;
+}
+
+
+/* ---------- Content Wrapper ---------- */
+
+#content-wrapper a:hover {
+	text-decoration: none;
+}
+
+#column-center {
+	padding: 0px;
+}
+
+
+/* ---------- Portlet ---------- */
+
+.portlet {
+	border: none;
+	margin: 10px;
+	padding: 0;
+}
+
+.portlet-topper {
+	background: url(../images/custom/portlet-topper-right-bg.png) 100% 0 no-repeat;
+	background-color: #88715A;
+	height: 26px;
+}
+
+.portlet-title {
+	background: url(../images/custom/portlet-topper-left-bg.png) no-repeat;
+	color:#222;
+	font-size: 1.2em;
+	padding: 6px 0 0 10px;
+}
+
+.portlet-content {
+	border: 1px solid #CCC;
+	border-top:none;
+}
+
+.portlet-communities .lfr-theme-list h3 {
+	background-color: #88715A;
+}
+
+.portlet-communities .lfr-current-theme {
+	background-color: #FFFDD3;
+}
+
+.portlet-calendar .calendar-day .day-text,
+.portlet-calendar .results-header {
+	background-color: #7AD;
+}
+
+.taglib-calendar tr td a:hover {
+	color: #369;
+	background: #F0F5F7;
+	text-decoration: none;
+}
+
+.lfr-actions.portlet-options .lfr-trigger {
+	position: relative;
+	right: 2px;
+}
+
+
+/* ---------- Tabs ---------- */
+
+.ui-tabs li a,
+.tabs li span {
+	background: #FFF none;
+	border: 0;
+	color: #222;
+}
+
+.ui-tabs li.current a:hover {
+	color: #369;
+}
+
+.ui-tabs li a:hover,
+.ui-tabs li span:hover {
+	background: url(../images/custom/ui-tabs-li-a-hover-bg.png) no-repeat 50% 100%;
+	color: #222;
+}
