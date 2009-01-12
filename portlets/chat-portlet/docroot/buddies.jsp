@@ -28,7 +28,7 @@ long buddiesModifiedDate = System.currentTimeMillis() - Time.MINUTE;
 List<Object[]> buddies = null;
 
 if (_BUDDY_LIST_STRATEGY.equals("all")) {
-	buddies = StatusLocalServiceUtil.getAllStatuses(buddiesModifiedDate, 0, SearchContainer.DEFAULT_DELTA);
+	buddies = StatusLocalServiceUtil.getAllStatuses(themeDisplay.getUserId(), buddiesModifiedDate, 0, SearchContainer.DEFAULT_DELTA);
 }
 else if (_BUDDY_LIST_STRATEGY.equals("communities")) {
 	buddies = StatusLocalServiceUtil.getGroupStatuses(themeDisplay.getUserId(), buddiesModifiedDate, 0, SearchContainer.DEFAULT_DELTA);

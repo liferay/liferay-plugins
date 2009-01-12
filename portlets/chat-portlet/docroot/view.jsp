@@ -60,10 +60,6 @@
 
 	<%
 	int buddiesCount = buddies.size();
-
-	if (buddiesCount > 0) {
-		buddiesCount -= 1;
-	}
 	%>
 
 	<div class="portlet-chat">
@@ -104,11 +100,6 @@
 											boolean awake = (Boolean)buddy[5];
 
 											String fullName = ContactConstants.getFullName(firstName, middleName, lastName);
-
-											if (userId == themeDisplay.getUserId()) {
-												continue;
-											}
-
 										%>
 
 											<li class="<%= awake ? "active" : "idle" %>" userId="<%= userId %>">

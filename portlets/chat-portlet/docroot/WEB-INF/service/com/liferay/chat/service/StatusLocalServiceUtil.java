@@ -87,9 +87,10 @@ public class StatusLocalServiceUtil {
 		return getService().updateStatus(status);
 	}
 
-	public static java.util.List<Object[]> getAllStatuses(long modifiedDate,
-		int start, int end) throws com.liferay.portal.SystemException {
-		return getService().getAllStatuses(modifiedDate, start, end);
+	public static java.util.List<Object[]> getAllStatuses(long userId,
+		long modifiedDate, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getService().getAllStatuses(userId, modifiedDate, start, end);
 	}
 
 	public static java.util.List<Object[]> getGroupStatuses(long userId,

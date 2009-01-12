@@ -74,8 +74,9 @@ public interface StatusLocalService {
 		throws com.liferay.portal.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<Object[]> getAllStatuses(long modifiedDate,
-		int start, int end) throws com.liferay.portal.SystemException;
+	public java.util.List<Object[]> getAllStatuses(long userId,
+		long modifiedDate, int start, int end)
+		throws com.liferay.portal.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object[]> getGroupStatuses(long userId,

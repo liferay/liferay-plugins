@@ -29,10 +29,10 @@ package com.liferay.chat.service.persistence;
  *
  */
 public class StatusFinderUtil {
-	public static java.util.List<Object[]> findByModifiedDate(
+	public static java.util.List<Object[]> findByModifiedDate(long userId,
 		long modifiedDate, int start, int end)
 		throws com.liferay.portal.SystemException {
-		return getFinder().findByModifiedDate(modifiedDate, start, end);
+		return getFinder().findByModifiedDate(userId, modifiedDate, start, end);
 	}
 
 	public static java.util.List<Object[]> findBySocialRelationType(

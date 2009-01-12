@@ -39,10 +39,12 @@ import java.util.List;
  */
 public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 
-	public List<Object[]> getAllStatuses(long modifiedDate, int start, int end)
+	public List<Object[]> getAllStatuses(
+			long userId, long modifiedDate, int start, int end)
 		throws SystemException {
 
-		return statusFinder.findByModifiedDate(modifiedDate, start, end);
+		return statusFinder.findByModifiedDate(
+			userId, modifiedDate, start, end);
 	}
 
 	public List<Object[]> getGroupStatuses(

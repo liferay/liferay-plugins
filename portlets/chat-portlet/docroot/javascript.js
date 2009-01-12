@@ -1033,32 +1033,32 @@ Liferay.Chat.Manager = {
 		instance._onlineBuddiesCount = numBuddies;
 		var buffer = [];
 
-		for (var i=0; i < numBuddies; i++) {
+		for (var i = 0; i < numBuddies; i++) {
 			var buddy = buddyList[i];
 
-				currentBuddies[buddy.userId] = {
-					userId: buddy.userId,
-					userName: buddy.fullName,
-					userIcon: buddy.portraitId,
-					isActive: buddy.awake,
-					lastMessageTime: buddy.lastMessageTime,
-					statusMessage: buddy.statusMessage,
-					unreadCount: (buddy.unreadCount || 0),
-					isTyping: false
-				};
+			currentBuddies[buddy.userId] = {
+				userId: buddy.userId,
+				userName: buddy.fullName,
+				userIcon: buddy.portraitId,
+				isActive: buddy.awake,
+				lastMessageTime: buddy.lastMessageTime,
+				statusMessage: buddy.statusMessage,
+				unreadCount: (buddy.unreadCount || 0),
+				isTyping: false
+			};
 
-				var cssClass = 'active';
+			var cssClass = 'active';
 
-				if (!buddy.awake) {
-					cssClass = 'idle';
-				}
+			if (!buddy.awake) {
+				cssClass = 'idle';
+			}
 
-				var userImagePath = Liferay.Chat.Util.getUserImagePath(buddy.portraitId);
+			var userImagePath = Liferay.Chat.Util.getUserImagePath(buddy.portraitId);
 
-				buffer.push('<li class="' + cssClass + '" userId="' + buddy.userId + '">' +
-								'<img src="' + userImagePath + '" />' +
-								'<div class="name">' + buddy.fullName + '</div>' +
-							'</li>');
+			buffer.push('<li class="' + cssClass + '" userId="' + buddy.userId + '">' +
+							'<img src="' + userImagePath + '" />' +
+							'<div class="name">' + buddy.fullName + '</div>' +
+						'</li>');
 		}
 
 		instance._onlineBuddies.html(buffer.join(''));

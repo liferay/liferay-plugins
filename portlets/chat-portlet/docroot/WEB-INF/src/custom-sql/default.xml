@@ -55,6 +55,7 @@
 				Contact_ ON
 					(Contact_.contactId = User_.contactId)
 			WHERE
+				(User_.userId != ?) AND
 				(Chat_Status.modifiedDate > ?) AND
 				(Chat_Status.online_ = [$TRUE$])
 			ORDER BY
