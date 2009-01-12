@@ -33,6 +33,7 @@
 <%@ page import="com.liferay.chat.model.Status" %>
 <%@ page import="com.liferay.chat.service.EntryLocalServiceUtil" %>
 <%@ page import="com.liferay.chat.service.StatusLocalServiceUtil" %>
+<%@ page import="com.liferay.chat.util.comparator.BuddyComparator" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.json.JSONArray" %>
 <%@ page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %>

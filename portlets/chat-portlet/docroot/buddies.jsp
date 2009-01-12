@@ -36,6 +36,24 @@ else if (_BUDDY_LIST_STRATEGY.equals("communities")) {
 else if (_BUDDY_LIST_STRATEGY.equals("friends")) {
 	buddies = StatusLocalServiceUtil.getSocialStatuses(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, buddiesModifiedDate, 0, SearchContainer.DEFAULT_DELTA);
 }
+else if (_BUDDY_LIST_STRATEGY.equals("communities,friends")) {
+	List<Object[]> groupBuddies = StatusLocalServiceUtil.getGroupStatuses(themeDisplay.getUserId(), buddiesModifiedDate, 0, SearchContainer.DEFAULT_DELTA);
+	List<Object[]> socialBuddies = StatusLocalServiceUtil.getSocialStatuses(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, buddiesModifiedDate, 0, SearchContainer.DEFAULT_DELTA);
+
+	buddies = new ArrayList<Object[]>(groupBuddies.size() + socialBuddies.size());
+
+	buddies.addAll(groupBuddies);
+
+	BuddyComparator buddyComparator = new BuddyComparator(true);
+
+	for (Object[] socialBuddy : socialBuddies) {
+		if (Collections.binarySearch(groupBuddies, socialBuddy, buddyComparator) < 0) {
+			buddies.add(socialBuddy);
+		}
+	}
+
+	Collections.sort(buddies, buddyComparator);
+}
 else {
 	buddies = new ArrayList<Object[]>();
 }
