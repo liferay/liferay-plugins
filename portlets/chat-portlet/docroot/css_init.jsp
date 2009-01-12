@@ -46,7 +46,5 @@ String cdnHost = PortalUtil.getCDNHost();
 
 String themeImagesPath = cdnHost + themeContextPath + theme.getImagesPath();
 
-response.addHeader(HttpHeaders.CACHE_CONTROL, HttpHeaders.CACHE_CONTROL_DEFAULT_VALUE);
 response.addHeader(HttpHeaders.CONTENT_TYPE, ContentTypes.TEXT_CSS);
-response.addHeader(HttpHeaders.EXPIRES, HttpHeaders.EXPIRES_DEFAULT_VALUE);
 %>
