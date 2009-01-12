@@ -290,9 +290,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 			try {
 				DLServiceUtil.addFile(
-					companyId, portletId, article.getGroupId(),
-					repositoryId, dirName + "/" + fileName,
-					0, StringPool.BLANK, new String[0], bytes);
+					companyId, portletId, article.getGroupId(),	repositoryId,
+					dirName + StringPool.SLASH + fileName, 0, StringPool.BLANK,
+					new Date(), new String[0], bytes);
 			}
 			catch (DuplicateFileException dfe) {
 			}
