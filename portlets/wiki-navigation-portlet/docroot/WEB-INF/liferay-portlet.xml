@@ -13,7 +13,7 @@
 		<private-request-attributes>false</private-request-attributes>
 		<private-session-attributes>false</private-session-attributes>
 		<render-weight>1</render-weight>
-		<header-portlet-css>/css.jsp</header-portlet-css>
+		<header-portlet-css>/portlet.css</header-portlet-css>
 		<css-class-wrapper>portlet-wiki-navigation</css-class-wrapper>
 	</portlet>
 	<role-mapper>
