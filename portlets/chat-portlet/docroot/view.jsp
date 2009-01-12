@@ -28,7 +28,17 @@
 
 	<%
 	Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletDisplay.getId());
+	%>
 
+	<liferay-util:html-top>
+		<link href="<%= request.getContextPath() %>/css.jsp?themeId=<%= theme.getThemeId() %>&amp;colorSchemeId=<%= colorScheme.getColorSchemeId() %>&amp;t=<%= portlet.getTimestamp() %>" rel="stylesheet" type="text/css" />
+	</liferay-util:html-top>
+
+	<liferay-util:html-bottom>
+		<script src="<%= request.getContextPath() %>/javascript.js?t=<%= portlet.getTimestamp() %>" type="text/javascript"></script>
+	</liferay-util:html-bottom>
+
+	<%
 	boolean online = true;
 	String activePanelId = StringPool.BLANK;
 	String statusMessage = StringPool.BLANK;
@@ -55,10 +65,6 @@
 		buddiesCount -= 1;
 	}
 	%>
-
-	<link href="<%= request.getContextPath() %>/css.jsp?themeId=<%= themeDisplay.getTheme().getThemeId() %>&amp;colorSchemeId=<%= themeDisplay.getColorScheme().getColorSchemeId() %>&amp;t=<%= portlet.getTimestamp() %>" rel="stylesheet" type="text/css" />
-
-	<script src="<%= request.getContextPath() %>/javascript.js?t=<%= portlet.getTimestamp() %>" type="text/javascript"></script>
 
 	<div class="portlet-chat">
 		<div class="chat-bar">
