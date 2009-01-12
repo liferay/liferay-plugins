@@ -101,30 +101,6 @@
 				</copy>
 			</then>
 		</if>
-
-		<java
-			classname="com.liferay.portal.tools.CSSBuilder"
-			classpathref="portal.classpath"
-			fork="true"
-			newenvironment="true"
-		>
-			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-			<arg line="docroot/css docroot/css/everything_unpacked.css" />
-		</java>
-
-		<if>
-			<available file="docroot/css/everything_unpacked.css" />
-			<then>
-				<java
-					classname="com.yahoo.platform.yui.compressor.YUICompressor"
-					classpathref="lib.classpath"
-					fork="true"
-					newenvironment="true"
-				>
-					<arg line="--type css -o docroot/css/everything_packed.css docroot/css/everything_unpacked.css" />
-				</java>
-			</then>
-		</if>
 	</target>
 
 	<target name="war" depends="compile">
