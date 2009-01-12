@@ -73,14 +73,6 @@ public class SolrSearchEngineUtil {
 	}
 
 	public static Hits search(
-			long companyId, Query query, Sort sort, int start, int end)
-		throws SearchException {
-
-		return getSearchEngine().getSearcher().search(
-			companyId, query, new Sort[] {sort}, start, end);
-	}
-
-	public static Hits search(
 			long companyId, Query query, Sort[] sorts, int start, int end)
 		throws SearchException {
 
