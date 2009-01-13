@@ -53,6 +53,7 @@
 <%@ page import="com.liferay.portal.model.User" %>
 <%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
 <%@ page import="com.liferay.util.portlet.PortletProps" %>
 

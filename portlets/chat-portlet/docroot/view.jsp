@@ -31,11 +31,11 @@
 	%>
 
 	<liferay-util:html-top>
-		<link href="<%= request.getContextPath() %>/css.jsp?themeId=<%= theme.getThemeId() %>&amp;colorSchemeId=<%= colorScheme.getColorSchemeId() %>&amp;t=<%= portlet.getTimestamp() %>" rel="stylesheet" type="text/css" />
+		<link href="<%= PortalUtil.getStaticResourceURL(request, request.getContextPath() + "/css.jsp", portlet.getTimestamp()) %>" rel="stylesheet" type="text/css" />
 	</liferay-util:html-top>
 
 	<liferay-util:html-bottom>
-		<script src="<%= request.getContextPath() %>/javascript.js?t=<%= portlet.getTimestamp() %>" type="text/javascript"></script>
+		<script src="<%= PortalUtil.getStaticResourceURL(request, request.getContextPath() + "/javascript.js", portlet.getTimestamp()) %>" type="text/javascript"></script>
 	</liferay-util:html-bottom>
 
 	<%
