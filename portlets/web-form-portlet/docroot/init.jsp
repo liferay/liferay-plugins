@@ -32,6 +32,7 @@
 
 <%@ page import="com.liferay.portal.kernel.captcha.CaptchaTextException" %>
 <%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %>
+<%@ page import="com.liferay.portal.kernel.servlet.SessionErrors" %>
 <%@ page import="com.liferay.portal.kernel.util.ArrayUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
@@ -41,10 +42,13 @@
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.StringUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
+<%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
+<%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
 <%@ page import="com.liferay.portlet.expando.service.ExpandoRowLocalServiceUtil" %>
 <%@ page import="com.liferay.webform.util.WebFormUtil" %>
 
+<%@ page import="javax.portlet.ActionRequest" %>
 <%@ page import="javax.portlet.PortletPreferences" %>
 
 <portlet:defineObjects />
@@ -52,6 +56,8 @@
 <liferay-theme:defineObjects />
 
 <%
+String currentURL = PortalUtil.getCurrentURL(request);
+
 PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");

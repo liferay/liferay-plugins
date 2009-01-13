@@ -30,7 +30,8 @@ String description = preferences.getValue("description", StringPool.BLANK);
 boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCaptcha", StringPool.BLANK));
 %>
 
-<form action="<portlet:actionURL><portlet:param name="struts_action" value="/web_form/view" /></portlet:actionURL>" class="uni-form" id="<portlet:namespace />fm" method="post" name="<portlet:namespace />fm">
+<form action="<portlet:actionURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="saveData" /></portlet:actionURL>" class="uni-form" id="<portlet:namespace />fm" method="post" name="<portlet:namespace />fm">
+<input type="hidden" name="<portlet:namespace/>redirect" value="<%= currentURL %>" />
 
 <fieldset class="block-labels">
 	<legend><%= HtmlUtil.escape(title) %></legend>
@@ -41,6 +42,10 @@ boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCapt
 
 	<liferay-ui:error exception="<%= CaptchaTextException.class %>" message="text-verification-failed" />
 	<liferay-ui:error key="error" message="an-error-occurred-while-sending-the-form-information" />
+
+	<c:if test='<%= WebFormUtil.VALIDATION_SCRIPT_ENABLED && SessionErrors.contains(renderRequest, "validation-script-error") %>'>
+		<jsp:include page="/script_error.jsp" />
+	</c:if>
 
 	<%
 	int i = 1;
@@ -151,9 +156,9 @@ boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCapt
 	%>
 
 	<c:if test="<%= requireCaptcha %>">
-		<portlet:actionURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="captchaURL">
-			<portlet:param name="struts_action" value="/web_form/captcha" />
-		</portlet:actionURL>
+		<portlet:resourceURL var="captchaURL">
+			<portlet:param name="<%= Constants.CMD %>" value="captcha" />
+		</portlet:resourceURL>
 
 		<liferay-ui:captcha url="<%= captchaURL %>" />
 	</c:if>

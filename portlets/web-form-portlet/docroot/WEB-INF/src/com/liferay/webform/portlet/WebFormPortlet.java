@@ -30,9 +30,11 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -152,8 +154,9 @@ public class WebFormPortlet extends JSPPortlet {
 			validationErrors = validate(fieldsMap, preferences);
 		}
 		catch (Exception e) {
-			actionRequest.setAttribute(
-				"validationScriptError", e.getMessage().trim());
+			SessionErrors.add(
+				actionRequest, "validation-script-error",
+				e.getMessage().trim());
 
 			return;
 		}
@@ -210,8 +213,15 @@ public class WebFormPortlet extends JSPPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException, PortletException {
 
+		String cmd = ParamUtil.getString(resourceRequest, Constants.CMD);
+
 		try {
-			exportData(resourceRequest, resourceResponse);
+			if (cmd.equals("export")){
+				exportData(resourceRequest, resourceResponse);
+			}
+			else if (cmd.equals("captcha")) {
+				serveCaptcha(resourceRequest, resourceResponse);
+			}
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -280,6 +290,13 @@ public class WebFormPortlet extends JSPPortlet {
 
 		PortletResponseUtil.sendFile(
 			resourceResponse, fileName, bytes, contentType);
+	}
+
+	protected void serveCaptcha(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception{
+
+		CaptchaUtil.serveImage(resourceRequest, resourceResponse);
 	}
 
 	protected String getMailBody(Map<String,String> fieldsMap) {
