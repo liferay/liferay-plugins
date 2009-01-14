@@ -53,6 +53,12 @@
 		<delete dir="tmp" />
 		<delete file="${plugin.file}" />
 
+		<delete>
+			<fileset dir="docroot" includes="**/.sprite.png" />
+			<fileset dir="docroot" includes="**/.sprite.properties" />
+			<fileset dir="docroot" includes="**/Thumbs.db" />
+		</delete>
+
 		<antcall target="clean-portal-dependencies" />
 	</target>
 
