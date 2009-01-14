@@ -40,7 +40,8 @@ body {
 	padding: 0 64px;
 }
 
-#navigation ul, #add-page {
+#navigation ul,
+#add-page {
 	float: left;
 }
 
@@ -77,6 +78,11 @@ body {
 	float: none;
 }
 
+.ie7 .save-page {
+	position: relative;
+	top: -2px;
+}
+
 #navigation .cancel-page {
 	display: none;
 }
@@ -106,37 +112,46 @@ body {
 
 /* ---------- Calendar ---------- */
 
-.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+.portlet-calendar .calendar-day .day-text,
+.portlet-calendar .results-header {
 	background: url(../images/custom/navigation_hover_bg.gif) -56px -24px;
 }
 
 /* ---------- Tabs ---------- */
 
 .ui-tabs {
-	border-bottom: 1px solid #c6a146;
+	border-bottom: 1px solid #C6A146;
 }
 
-.ui-tabs li a, .ui-tabs li.current a, .ui-tabs li a:hover, .ui-tabs li span, .ui-tabs li.current span, .ui-tabs li span:hover {
-	border: 1px solid #c6a146;
+.ui-tabs li a,
+.ui-tabs li.current a,
+.ui-tabs li a:hover,
+.ui-tabs li span,
+.ui-tabs li.current span,
+.ui-tabs li span:hover {
+	border: 1px solid #C6A146;
 	background: url(../images/custom/navigation_bg.jpg) -56px -14px;
 	color: #FF3;
 	margin: 0 0 0 -1px;
 	padding: 8px 12px;
 }
 
-.ui-tabs li a:hover, .ui-tabs li span:hover {
+.ui-tabs li a:hover,
+.ui-tabs li span:hover {
 	background: url(../images/custom/navigation_hover_bg.gif) -56px -24px;
 	color: #FF0;
 	text-decoration: none;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span {
+.ui-tabs li.current a,
+.ui-tabs li.current span {
 	background: url(../images/custom/navigation_hover_bg.gif) -56px -34px;
 	color: #FFF;
 	font-weight: normal;
 }
 
-.ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
+.ui-tabs li.current a:hover,
+.ui-tabs li.current span:hover {
 	background: url(../images/custom/navigation_hover_bg.gif) -56px -34px;
 	color: #FFF;
 	font-weight: normal;

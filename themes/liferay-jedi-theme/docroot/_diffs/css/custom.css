@@ -54,6 +54,7 @@ body #content-wrapper {
 }
 
 /* Navigation */
+
 #navigation {
 	background: url(../images/custom/bg.png) no-repeat;
 	border: none;
@@ -171,8 +172,8 @@ body #content-wrapper {
 .js #navigation .enter-page {
 	background:transparent none repeat scroll 0% 0%;
 	margin-left: -25px;
-	margin-top:-7px;
-	padding:0pt;
+	margin-top: -7px;
+	padding: 0;
 	width: auto;
 }
 
@@ -181,13 +182,14 @@ body #content-wrapper {
 }
 
 .js #add-page {
-	float: right;
-	font-weight: bold;
+	background: transparent;
 	border: none;
 	margin: 3px 15px 0 0;
+	float: right;
+	font-weight: bold;
+	line-height: 1.5em;
 	padding-top: 0px;
 	position: static;
-	background: transparent;
 }
 
 .js #add-page a:hover span {
@@ -199,7 +201,18 @@ body #content-wrapper {
 	padding: 0;
 }
 
+.ie7 .enter-page {
+	position: relative;
+	top: -1px;
+}
+
+.ie7 .save-page {
+	position: relative;
+	top: -6px;
+}
+
 /* Dock */
+
 .js .lfr-dock.interactive-mode {
 	right: 13px;
 	top: 0px;
@@ -218,6 +231,7 @@ body #content-wrapper {
 }
 
 /* Search */
+
 #banner .search {
 	position: absolute;
 	right: 13px;
@@ -275,6 +289,7 @@ body #content-wrapper {
 }
 
 /* Language */
+
 #banner .lfr-dock .lang {
 	position: absolute;
 	right: 110%;
@@ -284,7 +299,11 @@ body #content-wrapper {
 }
 
 /* Portlet */
-.portlet, .portlet-topper, .portlet-content, .portlet-title {
+
+.portlet,
+.portlet-topper,
+.portlet-content,
+.portlet-title {
 	background: #FFF none;
 	border: none;
 	margin: 0;
@@ -317,6 +336,7 @@ body #content-wrapper {
 }
 
 /* Layout Specific */
+
 #portlet-wrapper- {
 	/* Liferay Old */
 	background: transparent;
@@ -398,6 +418,7 @@ body.portal-popup {
 }
 
 /* Drop Down Menu */
+
 #navigation .child-menu {
 	background: url(../images/custom/menu_drop.png) scroll no-repeat left bottom;
 	height: auto;
@@ -453,6 +474,7 @@ body.portal-popup {
 }
 
 /* Bottom Navigation */
+
 #footer .copyright-notice,
 #footer ul {
 	bottom: -45px;
@@ -498,6 +520,7 @@ body.portal-popup {
 }
 
 /* Blogs */
+
 .portlet-blogs .entry-body {
 	font-size: 12px;
 	line-height: 1.3;
@@ -514,6 +537,7 @@ body.portal-popup {
 }
 
 /* Message Boards */
+
 .portlet-section-body .message-board-thread-top {
 	border-bottom-color: #3A4E66;
 }
@@ -568,6 +592,7 @@ ul.message-board-edit-controls {
 }
 
 /* World of Liferay */
+
 #top-menu {
 	bottom: 6px;
 	font: bold 10px Arial,Verdana,sans-serif;
@@ -703,6 +728,7 @@ ul.message-board-edit-controls {
 }
 
 /* Facebook API Key Page */
+
 .portlet-configuration .facebook-api .api-input {
 	padding-right: 15px;
 }
@@ -712,6 +738,7 @@ ul.message-board-edit-controls {
 }
 
 /* Tabs */
+
 .ie body #content-wrapper .tabs li {
 	line-height: 1;
 }

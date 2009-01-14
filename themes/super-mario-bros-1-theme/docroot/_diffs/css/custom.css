@@ -221,14 +221,20 @@ body {
 	background-color: #8C1000;
 }
 
-input[type="submit"], input[type="button"], input[type="reset"], input[type="text"], input[type="password"] {
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+input[type="text"],
+input[type="password"] {
 	background: #FFA542;
 	border: 4px solid #F0D0B0;
 	color: #000;
 	margin: 2.5px;
 }
 
-input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover {
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover {
 	background: #8C1000;
 	border: 4px solid #FFA542;
 	color: #FFF;
@@ -245,7 +251,14 @@ input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hove
 	background: transparent;
 }
 
-.ui-tabs li a, .ui-tabs li span, .ui-tabs li a:hover, .ui-tabs li span:hover, .ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
+.ui-tabs li a,
+.ui-tabs li span,
+.ui-tabs li a:hover,
+.ui-tabs li span:hover,
+.ui-tabs li.current a,
+.ui-tabs li.current span,
+.ui-tabs li.current a:hover,
+.ui-tabs li.current span:hover {
 	background: #E75F13;
 	border: none;
 	border-bottom: 0;
@@ -255,14 +268,20 @@ input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hove
 	top: auto;
 }
 
-.ui-tabs li a:hover, .ui-tabs li span:hover, .ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
+.ui-tabs li a:hover,
+.ui-tabs li span:hover,
+.ui-tabs li.current a:hover,
+.ui-tabs li.current span:hover {
 	background: #FFA542;
 	color: #000;
 	text-decoration: none;
 	z-index: 1;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
+.ui-tabs li.current a,
+.ui-tabs li.current span,
+.ui-tabs li.current a:hover,
+.ui-tabs li.current span:hover {
 	background: #FFA542;
 	color: #000;
 	text-decoration: underline;

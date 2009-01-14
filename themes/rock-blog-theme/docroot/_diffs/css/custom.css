@@ -38,7 +38,8 @@ body {
 	height: 34px;
 }
 
-#navigation ul, #add-page {
+#navigation ul,
+#add-page {
 	float: left;
 }
 
@@ -66,6 +67,10 @@ body {
 	float: none;
 }
 
+.enter-page input {
+	padding: 3px;
+}
+
 #navigation .enter-page a.cancel-page {
 	display: none;
 }
@@ -75,13 +80,20 @@ body {
 	float: none;
 }
 
+.ie7 .save-page {
+	position: relative;
+	top: -2px;
+}
+
 #navigation .cancel-page {
 	display: none;
 }
 
 /* ---------- Dock ---------- */
 
-.js .interactive-mode, .js .interactive-mode h2, .js .interactive-mode h2 span {
+.js .interactive-mode,
+.js .interactive-mode h2,
+.js .interactive-mode h2 span {
 	background: transparent none;
 	border: none;
 }
@@ -114,10 +126,29 @@ body {
 	color: #fff;
 }
 
+.ui-autocomplete-odd,
+.results-row.alt td {
+	background-color: #FFBE40;
+}
+
+.ui-autocomplete-even,
+.results-row td {
+	background-color: #FF9E20;
+}
+
+.results-row.hover td {
+	background-color: #DF7E00;
+}
+
+.results-header {
+	background: transparent;
+}
+
 /* ---------- Calendar ---------- */
 
-.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
-	background: #f4800f;
+.portlet-calendar .calendar-day .day-text,
+.portlet-calendar .results-header {
+	background: #F4800F;
 }
 
 .portlet-calendar a {
@@ -130,15 +161,19 @@ body {
 	border-bottom: 1px solid #FF8B00;
 }
 
-.ui-tabs li a, .tabs li span {
+.ui-tabs li a,
+.tabs li span {
 	background: transparent;
 	border: 0;
 	color: #FFF;
 	height: 7px;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li a:hover, .ui-tabs li span:hover {
-	background: #f4800f url(../images/custom/tab_current_bg.gif);
+.ui-tabs li.current a,
+.ui-tabs li.current span,
+.ui-tabs li a:hover,
+.ui-tabs li span:hover {
+	background: #F4800F url(../images/custom/tab_current_bg.gif);
 	border: medium none;
 	color: #FFF;
 }
@@ -153,7 +188,9 @@ body {
 	background: #FFF;
 }
 
-.portlet-calendar .day-number, .portlet-calendar .portlet-section-body td, .calendar-panel {
+.portlet-calendar .day-number,
+.portlet-calendar .portlet-section-body td,
+.calendar-panel {
 	color: #000;
 }
 

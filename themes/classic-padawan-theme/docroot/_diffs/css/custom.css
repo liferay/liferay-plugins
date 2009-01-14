@@ -84,7 +84,8 @@ body {
 	text-decoration: none;
 }
 
-#navigation li.selected a, #navigation li a:hover {
+#navigation li.selected a,
+#navigation li a:hover {
 	background-color: #1E2529;
 	color: #FFF;
 }
@@ -194,7 +195,8 @@ body {
 	right: 6px;
 }
 
-.portlet-icon-back, .portlet-icon-back:hover {
+.portlet-icon-back,
+.portlet-icon-back:hover {
 	color: #FFF;
 }
 

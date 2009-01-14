@@ -109,7 +109,9 @@ body {
 	color: #FF0;
 }
 
-#banner .lfr-dock-list > li:hover, #banner .lfr-dock-list > li > a:hover, #banner .lfr-dock-list> li:hover > a {
+#banner .lfr-dock-list > li:hover,
+#banner .lfr-dock-list > li > a:hover,
+#banner .lfr-dock-list> li:hover > a {
 	background-color: transparent;
 }
 
@@ -127,11 +129,13 @@ body {
 	margin-right: -3px;
 }
 
-#navigation ul, #add-page {
+#navigation ul,
+#add-page {
 	float: right;
 }
 
-#navigation a, #navigation .enter-page {
+#navigation a,
+#navigation .enter-page {
 	background: url(../images/custom/navigation_a.gif) no-repeat left bottom;
 	color: #FFF;
 	display: block;
@@ -150,7 +154,8 @@ body {
 	text-decoration: underline;
 }
 
-#navigation .save-page, #navigation .save-page:hover {
+#navigation .save-page,
+#navigation .save-page:hover {
 	background: none;
 	border-right: 0;
 	display: inline;
@@ -228,20 +233,27 @@ body {
 	border: 2px solid #050505;
 }
 
-.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+.portlet-calendar .calendar-day .day-text,
+.portlet-calendar .results-header {
 	background-color: #00ab00;
 }
 
 /* ---------- Input ---------- */
 
-input[type="submit"], input[type="button"], input[type="reset"], input[type="text"], input[type="password"] {
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+input[type="text"],
+input[type="password"] {
 	background: #00ab00;
 	border: 2px solid #050505;
 	color: #FFF;
 	margin: 2.5px;
 }
 
-input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover {
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover {
 	background: #8C1000;
 	border: 2px solid #FFA542;
 	color: #FFF;
@@ -258,7 +270,14 @@ input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hove
 	background: transparent;
 }
 
-.ui-tabs li a, .ui-tabs li span, .ui-tabs li a:hover, .ui-tabs li span:hover, .ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
+.ui-tabs li a,
+.ui-tabs li span,
+.ui-tabs li a:hover,
+.ui-tabs li span:hover,
+.ui-tabs li.current a,
+.ui-tabs li.current span,
+.ui-tabs li.current a:hover,
+.ui-tabs li.current span:hover {
 	background: #00ab00;
 	border: none;
 	border-bottom: 0;
@@ -268,13 +287,19 @@ input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hove
 	top: auto;
 }
 
-.ui-tabs li a:hover, .ui-tabs li span:hover, .ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
+.ui-tabs li a:hover,
+.ui-tabs li span:hover,
+.ui-tabs li.current a:hover,
+.ui-tabs li.current span:hover {
 	background: #008900;
 	text-decoration: none;
 	z-index: 1;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
+.ui-tabs li.current a,
+.ui-tabs li.current span,
+.ui-tabs li.current a:hover,
+.ui-tabs li.current span:hover {
 	background: #030;
 	color: #FFF;
 	text-decoration: underline;

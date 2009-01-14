@@ -38,6 +38,7 @@ body.html-editor.portlet.portlet-blogs {
 #navigation {
 	background: transparent url(../images/custom/tab_link.png) repeat-x;
 	height: 33px;
+	padding-right: 108px;
 	position: relative;
 }
 
@@ -86,12 +87,28 @@ body.html-editor.portlet.portlet-blogs {
 	padding: 3px 0 3px 5px;
 }
 
-#navigation .enter-page a.cancel-page {
+.ie7 #navigation .enter-page {
+	padding-bottom: 1px;
+}
+
+#navigation .cancel-page {
 	display: none;
 }
 
-#navigation .enter-page a.save-page {
+#navigation .save-page {
 	display: inline;
+	position: relative;
+	top: 1px;
+}
+
+.ie7 #navigation .save-page {
+	position: relative;
+	top: -5px;
+}
+
+.ie7 #navigation input {
+	position: relative;
+	top: -1px;
 }
 
 .js .interactive-mode {

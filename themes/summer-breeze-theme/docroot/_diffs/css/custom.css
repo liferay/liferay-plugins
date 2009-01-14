@@ -40,11 +40,13 @@ body {
 	width: 960px;
 }
 
-#navigation ul, #add-page {
+#navigation ul,
+#add-page {
 	float: left;
 }
 
-#navigation a, #navigation .enter-page {
+#navigation a,
+#navigation .enter-page {
 	background: url('../images/custom/navigation_bg.png');
 	color: #FEC;
 	display: block;
@@ -70,12 +72,18 @@ body {
 	width: auto;
 }
 
-#navigation .save-page, #navigation .save-page:hover {
+#navigation .save-page,
+#navigation .save-page:hover {
 	background: none;
 	border-right: 0;
 	display: inline;
 	float: none;
 	padding: 0 5px;
+}
+
+.ie7 .save-page {
+	position: relative;
+	top: -5px;
 }
 
 #navigation .cancel-page {

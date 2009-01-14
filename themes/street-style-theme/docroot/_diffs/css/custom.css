@@ -37,7 +37,9 @@ body {
 	top: 0;
 }
 
-.js .interactive-mode, .js .interactive-mode h2, .js .interactive-mode h2 span {
+.js .interactive-mode,
+.js .interactive-mode h2,
+.js .interactive-mode h2 span {
 	background-image: url(../images/custom/dock_bg.png);
 }
 
@@ -83,11 +85,17 @@ body {
 	text-decoration: none;
 }
 
-#navigation .save-page, #navigation .save-page:hover {
+#navigation .save-page,
+#navigation .save-page:hover {
 	background: none;
 	border-right: 0;
 	display: inline;
 	float: none;
+}
+
+.ie7 .save-page {
+	position: relative;
+	top: -4px;
 }
 
 #navigation .cancel-page {
@@ -122,6 +130,24 @@ body {
 	color: #FFF;
 }
 
+.ui-autocomplete-odd,
+.results-row.alt td {
+	background-color: #333;
+}
+
+.ui-autocomplete-even,
+.results-row td {
+	background-color: #555;
+}
+
+.results-row.hover td {
+	background-color: #A6860E;
+}
+
+.results-header {
+	background: transparent;
+}
+
 /* ---------- Calendar ---------- */
 
 .portlet-calendar a {
@@ -143,17 +169,22 @@ body {
 	border-bottom: 1px solid #999;
 }
 
-.ui-tabs li.current, .ui-tabs li.current:hover {
+.ui-tabs li.current,
+.ui-tabs li.current:hover {
 	background: transparent;
 }
 
-.ui-tabs li a, .tabs li span, .ui-tabs li a:hover, .tabs li span:hover {
+.ui-tabs li a,
+.tabs li span,
+.ui-tabs li a:hover,
+.tabs li span:hover {
 	background: #000 url(../images/custom/tabs_bg.png);
 	border: 0;
 	margin: 0 1px 0 0;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current a:hover {
+.ui-tabs li.current a,
+.ui-tabs li.current a:hover {
 	background: #999;
 	border: 1px solid #999;
 	color: #000;

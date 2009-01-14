@@ -6,6 +6,15 @@ body {
 	background: #001342;
 }
 
+a {
+	color: #006;
+}
+
+a:hover {
+	color: #006;
+	text-decoration: none;
+}
+
 /* ---------- Banner ---------- */
 
 #banner {
@@ -31,7 +40,8 @@ body {
 	padding: 0 40px;
 }
 
-#navigation ul, #add-page {
+#navigation ul,
+#add-page {
 	float: left;
 }
 
@@ -43,7 +53,8 @@ body {
 	background: url(../images/custom/navigation_current_bg.jpg) no-repeat center bottom;
 }
 
-#navigation a, #navigation .enter-page {
+#navigation a,
+#navigation .enter-page {
 	color: #FFF;
 	display: block;
 	float: left;
@@ -55,16 +66,17 @@ body {
 	text-transform: uppercase;
 }
 
-#navigation .enter-page {
-	position: relative;
-	top: -7px;
+#navigation .enter-page input {
+	padding: 1px;
 }
 
-#navigation .selected a, #navigation a:hover {
+#navigation .selected a,
+#navigation a:hover {
 	color: #333;
 }
 
-#navigation .save-page, #navigation .save-page:hover {
+#navigation .save-page,
+#navigation .save-page:hover {
 	background: none;
 	border-right: 0;
 	display: inline;
@@ -108,41 +120,52 @@ body {
 }
 
 .portlet-content {
-	color: #F2F9FF;
+	color: #FFF;
 	font: 12px/1.7 Verdana,Tahoma,sans-serif;
 }
 
 /* ---------- Calendar ---------- */
 
-.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
-	background: #114b78;
+.portlet-calendar .calendar-day .day-text,
+.portlet-calendar .results-header {
+	background: #114B78;
 }
 
-.portlet-calendar .day-number, .portlet-calendar .portlet-section-body td, .calendar-panel {
-	color: #fff;
+.portlet-calendar .day-number,
+.portlet-calendar .portlet-section-body td,
+.calendar-panel {
+	color: #FFF;
 }
 
-.portlet-calendar .day-number, .portlet-calendar .portlet-section-body td, .calendar-panel {
+.portlet-calendar .day-number,
+.portlet-calendar .portlet-section-body td,
+.calendar-panel {
 	color: #000;
 }
 
 /* ---------- Tabs ---------- */
 
 .ui-tabs {
-	border-bottom: 2px solid #186bab;
+	border-bottom: 2px solid #186BAB;
 }
 
-.ui-tabs li a, .ui-tabs li span, .ui-tabs li.current a, .ui-tabs li.current span {
-	background: #114b78;
-	border: 2px solid #186bab;
+.ui-tabs li a,
+.ui-tabs li span,
+.ui-tabs li.current a,
+.ui-tabs li.current span {
+	background: #114B78;
+	border: 2px solid #186BAB;
 	margin: 0 0 -2px 0;
 	color: #DDD;
 	top: auto;
 }
 
 
-.ui-tabs li a:hover, .ui-tabs li span:hover, .ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
-	background: #0a2b45;
+.ui-tabs li a:hover,
+.ui-tabs li span:hover,
+.ui-tabs li.current a:hover,
+.ui-tabs li.current span:hover {
+	background: #0A2B45;
 	color: #FFF;
 	text-decoration: none;
 }

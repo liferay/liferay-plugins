@@ -1,5 +1,5 @@
-
 /* ---------- Base ---------- */
+
 #banner {
 	background: url(../images/custom/banner_bg.png);
 	height: 99px;
@@ -46,7 +46,6 @@ a:hover {
 	opacity: .20;
 }
 
-
 .ie .drop-area {
 	filter: alpha(opacity=20);
 }
@@ -58,11 +57,13 @@ a:hover {
 	padding: 0 0 10px 10px;
 }
 
-.popup-header, .popup-title {
+.popup-header,
+.popup-title {
 	background: url(../images/custom/portlet_title_bg.png) no-repeat right top;
 }
 
-.ie6 .popup-header, .ie6 .popup-title {
+.ie6 .popup-header,
+.ie6 .popup-title {
 	background-image: url(../images/custom/portlet_title_ie6_bg.png);
 }
 
@@ -114,12 +115,10 @@ a:hover {
 	width: 950px;
 }
 
-
 .portal-popup #content-wrapper {
 	background: none;
 	font-size: 1.2em;
 }
-
 
 /* ---------- Portlet wrapper and icons ---------- */
 
@@ -128,12 +127,14 @@ a:hover {
 	margin-bottom: 10px;
 }
 
-
 .portlet-topper {
 	border-bottom: none;
 }
 
-.portlet, .portlet-topper, .portlet-content, .portlet-title {
+.portlet,
+.portlet-topper,
+.portlet-content,
+.portlet-title {
 	background: #141B24;
 	padding: 0;
 }
@@ -151,7 +152,8 @@ a:hover {
 	zoom: 1;
 }
 
-.portlet, .portlet-content {
+.portlet,
+.portlet-content {
 	background: url(../images/custom/portlet_bg.png) no-repeat left bottom;
 }
 
@@ -160,11 +162,13 @@ a:hover {
 	padding-right: 20px;
 }
 
-.portlet-topper, .portlet-title {
+.portlet-topper,
+.portlet-title {
 	background: url(../images/custom/portlet_title_bg.png) no-repeat right top;
 }
 
-.ie6 .portlet-topper, .ie6 .portlet-title {
+.ie6 .portlet-topper,
+.ie6 .portlet-title {
 	background-image: url(../images/custom/portlet_title_ie6_bg.png);
 }
 
@@ -201,14 +205,12 @@ a:hover {
 }
 
 .portlet-content ul {
-	height: 48px;
 	list-style: inside disc;
 }
 
 .portlet-content ol {
 	list-style: inside decimal;
 }
-
 
 /* ---------- Banner ---------- */
 
@@ -219,12 +221,10 @@ a:hover {
 	position: relative;
 }
 
-
 #banner .logo {
 	margin: 0;
 	padding: 0;
 }
-
 
 #banner .logo a {
 	left: 20px;
@@ -232,13 +232,7 @@ a:hover {
 	top: 7px;
 }
 
-
 /* ---------- Dock ---------- */
-
-.js .interactive-mode {
-	margin-top: 12px;
-	right: 10px;
-}
 
 .js .interactive-mode h2 span {
 	background: transparent url(/liferay-noir-theme/images/custom/menu_bar.png) no-repeat scroll 0pt 0pt;
@@ -249,7 +243,6 @@ a:hover {
 	background: transparent url(/liferay-noir-theme/images/custom/menu_bar.png) no-repeat scroll 100% -30px;
 }
 
-
 /* ---------- Search ---------- */
 
 #banner .search {
@@ -257,7 +250,6 @@ a:hover {
 	right: 10px;
 	top: 50px;
 }
-
 
 #banner .search form {
 	padding-right: 49px;
@@ -289,6 +281,38 @@ a:hover {
 	width: 51px;
 }
 
+.ie7 #wrapper #banner .search .search-input-link {
+	top: 34px;
+}
+
+/* ---------- Dock ---------- */
+
+.js .interactive-mode {
+	background: none;
+	right: 10px;
+}
+
+.js .interactive-mode h2 span {
+	background: transparent url(/liferay-noir-theme/images/custom/menu_bar.png) no-repeat scroll 0pt 0pt;
+	margin-right: -3px;
+}
+
+.js .interactive-mode h2 {
+	background: transparent url(/liferay-noir-theme/images/custom/menu_bar.png) no-repeat scroll 100% -31px;
+	padding: 0 46px 0 0;
+}
+
+.js .interactive-mode ul {
+	background: #0E1118;
+	border: none;
+}
+
+.js .interactive-mode li {
+	border-top: 1px #222D3A solid;
+}
+
+/* ---------- Search ---------- */
+
 .ie #banner .search .search-input-link {
 	top: 34px;
 }
@@ -312,7 +336,15 @@ a:hover {
 	margin: -10px auto 0;
 }
 
-#navigation li, #navigation li a, #navigation li a span, #navigation li.selected a, #navigation li.selected a:hover, #navigation li a:hover span, #navigation li.selected a span, #navigation li a:hover, .js #navigation .enter-page {
+#navigation li,
+#navigation li a,
+#navigation li a span,
+#navigation li.selected a,
+#navigation li.selected a:hover,
+#navigation li a:hover span,
+#navigation li.selected a span,
+#navigation li a:hover,
+.js #navigation .enter-page {
 	background: none;
 	border: none;
 	color: #96C0E6;
@@ -323,22 +355,29 @@ a:hover {
 	text-transform: uppercase;
 }
 
+.js #navigation .enter-page input{
+	margin-right: 10px;
+}
+
 #navigation li {
 	font-size: 1.1em;
 	margin: 0 20px 0 22px;
 }
 
-#navigation li.selected a, #navigation li.selected a:hover {
+#navigation li.selected a,
+#navigation li.selected a:hover {
 	background: url(../images/custom/selected_bg.png) no-repeat;
 	color: #fff;
 	padding-left: 15px;
 }
 
-.ie #navigation li.selected a, .ie #navigation li.selected a:hover {
+.ie #navigation li.selected a,
+.ie #navigation li.selected a:hover {
 	height: 1%;
 }
 
-.ie6 #navigation li.selected a, .ie6 #navigation li.selected a:hover {
+.ie6 #navigation li.selected a,
+.ie6 #navigation li.selected a:hover {
 	white-space: nowrap;
 	width: 20px;
 }
@@ -348,11 +387,11 @@ a:hover {
 }
 
 .js #add-page {
-	background: transparent url(../images/common/add.png) left 50% no-repeat;
+	background: transparent url(../images/common/add.png) left no-repeat;
 	border: none;
-	bottom: 50px;
 	position: absolute;
 	right: 230px;
+	top: -53px;
 }
 
 .js #add-page a {
@@ -361,10 +400,20 @@ a:hover {
 	text-decoration: none;
 }
 
+#navigation .save-page {
+	position: relative;
+	top: -5px;
+	background: transparent;
+}
+
+.ie7 #navigation .save-page {
+	top: -10px;
+}
 
 /* ---------- Liferay UI ---------- */
 
-.tabs li.current a, .tabs li.current span {
+.tabs li.current a,
+.tabs li.current span {
 	background-position: 0pt -101px;
 	color: black;
 	margin-top: -2px;
@@ -375,7 +424,9 @@ a:hover {
 	padding: 0.1em 0.5em;
 }
 
-.toggle-expand, .root-container, .root-container ul li {
+.toggle-expand,
+.root-container,
+.root-container ul li {
 	list-style: none;
 	padding-left: 0;
 }
@@ -401,11 +452,13 @@ a:hover {
 	color: #739ABE;
 	height: 106px;
 	position: relative;
+	right: 1px;
 	width: 962px;
 }
 
-#footer .copyright-notice, #footer ul {
-	bottom: -25px;
+#footer .copyright-notice,
+#footer ul {
+	bottom: -29px;
 	position: absolute;
 }
 
@@ -425,7 +478,8 @@ a:hover {
 	padding-right: 8px;
 }
 
-#footer li.last-child, #footer li:last-child {
+#footer li.last-child,
+#footer li:last-child {
 	border: none;
 	padding: 0;
 }
@@ -440,26 +494,23 @@ a:hover {
 	text-decoration: underline;
 }
 
-.ui-tabs li a, .tabs li span {
+.ui-tabs li a,
+.tabs li span {
 	top:0;
 	padding:10px 3px;
 }
-
 
 .portlet-calendar .calendar-container {
 	background: transparent;
 }
 
-
 .portlet-calendar .calendar-day .day-number {
 	border: none;
 }
 
-
 .taglib-calendar tr th {
 	background:#1C2633 none repeat scroll 0 0;
 }
-
 
 .ui-tabs {
 	border: none;
@@ -502,141 +553,12 @@ a:hover {
 	margin: -5px -5px -16px -15px;
 }
 
-.js .interactive-mode {
-	top: 0;
-}
+/*--------------------- Dock --------------------------*/
 
-.js .lfr-dock.interactive-mode h2 {
-	background-position: right -31px;
-	padding-right: 46px;
-}
-
-.js .lfr-dock.expanded .lfr-dock-list-container {
-	background: #0E1118;
-	border: 1px solid #0B0F15;
-	border-top: none;
-}
-
-.js .lfr-dock.interactive-mode ul {
-	background: #0E1118;
-	border-left: none;
-	padding: 0 15px;
-}
-
-.js .lfr-flyout.has-children {
-	background-image: url(../images/custom/my_places.png);
-	background-position: 0 50%;
-}
-
-.js .interactive-mode .lfr-flyout.has-children ul {
-	background: #0E1118;
-	border-color: #212C3A;
-	padding: 0px;
-}
-
-.js .lfr-dock.interactive-mode li {
-	border-color: #222D3A;
-}
-
-.js .lfr-dock.interactive-mode li a {
-	background-position: left center;
-	border-top: 1px solid #222D3A;
-	padding-left: 25px;
-}
-
-.js .lfr-dock.interactive-mode li a:hover {
-	background-color: #222D3A;
-	background-position: 0 50%;
-	border-top: 1px solid #222D3A;
-	padding-left: 2.5em;
-}
-
-.lfr-dock li.home a, .lfr-dock li.my-account a, .lfr-dock li.sign-in a, .lfr-dock li.sign-out a, .lfr-dock li.add-content a, .lfr-dock li.layout a, .lfr-dock li.page-settings a {
-	background-image: url(../images/custom/dock_items.png);
-}
-
-.js .lfr-dock.interactive-mode li.my-places {
-	background: none;
-	margin-left: 0;
-	padding-left: 0;
-}
-
-.ie.js .lfr-dock.interactive-mode li.my-places {
-	padding-right: 2.5em;
-}
-
-.js .lfr-dock.interactive-mode li.my-places a {
-	padding-left: 2.5em;
-}
-
-.js .interactive-mode .my-places .show-my-places {
-	background: #0E1118;
-	border: 1px solid #0B0F15;
-}
-
-.js .lfr-dock.interactive-mode li.my-places h3 a {
-	background-position: 5px 50%;
-}
-
-.js .interactive-mode .my-places .show-my-places li .my-places-toggle, .js .interactive-mode .my-places .show-my-places ul li.public a, .js .my-places .show-my-places ul li.public a:hover, .js .interactive-mode .my-places .show-my-places li.private a, .js .my-places .show-my-places li.private a:hover {
-	background-image: url(../images/custom/dock_items.png);
-	padding-left: 25px;
-}
-
-.js .my-places .show-my-places ul li a:hover {
-	background-color: #1B2431;
-}
-
-.js .interactive-mode .my-places .show-my-places li .my-places-toggle {
-	border-bottom: 1px solid #212C3A;
-	color: #96C0E6;
-	margin-left: 10px;
-	padding-left: 28px;
-}
-
-.js .interactive-mode .my-places .show-my-places li .my-places-toggle h3 {
-	font-size: 1em;
-	font-weight: normal;
-}
-
-.js .interactive-mode .my-places .show-my-places ul li a.add-page {
-	padding: 0;
-}
-
-.js .interactive-mode .my-places .show-my-places li ul li.public {
-	border-bottom: 1px solid #151C25;
-}
-
-.js .interactive-mode .my-places .show-my-places li ul {
-	background: #212C3A;
-	margin-left: 0;
-	margin-top: -1px;
-	padding: 0 10px;
-}
-
-.js .lfr-dock.interactive-mode li.my-places li ul li.current a, .js .lfr-dock.interactive-mode li.my-places li ul li.current a:hover {
-	background-color: transparent;
-	background-position: 1px center;
-}
-
-.js .interactive-mode .my-places .show-my-places li ul li a {
-	border-bottom-color: #151C25;
-	color: #445B78;
-}
-
-.js .interactive-mode .my-places .show-my-places li ul li a .page-count {
-	color: #96C0E6;
-}
-
-.js .interactive-mode .my-places li.current-community {
-	background-color: #0E1118;
-}
-
-.js .interactive-mode .my-places li.current-community a {
-	background-colsor: #212C3A;
-}
-
-.portlet-msg-success, .portlet-msg-error, .portlet-msg-alert, .portlet-msg-info {
+.portlet-msg-success,
+.portlet-msg-error,
+.portlet-msg-alert,
+.portlet-msg-info {
 	color: #000;
 	font-style: normal;
 	margin: 0.15em auto 2.2em;
@@ -678,7 +600,8 @@ a:hover {
 	padding: 0.3em 1em;
 }
 
-.portlet-section-alternate-hover td, .portlet-section-body-hover td {
+.portlet-section-alternate-hover td,
+.portlet-section-body-hover td {
 	background: #141B23;
 	border-bottom: 1px solid #151C25;
 	border-top: 1px solid #151C25;
@@ -693,7 +616,9 @@ a:hover {
 	background: url(../images/custom/drag_arrows_down.png) scroll no-repeat center bottom;
 }
 
-input[type="submit"], input[type="button"], input[type="reset"] {
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
 	background: #3D536D url(../images/custom/arrow.png) no-repeat 97% center;
 	border: none;
 	color: #fff;
@@ -704,7 +629,8 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 	text-transform: uppercase;
 }
 
-.ie6 input.submit, .ie6 input.button {
+.ie6 input.submit,
+.ie6 input.button {
 	background: #3D536D none url(../images/custom/arrow.png) no-repeat 90% center;
 	border: none;
 	color: #fff;
@@ -719,11 +645,21 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 	border-color: #101318;
 }
 
-input[type="text"], input[type="password"], input[type="file"],input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea {
+input[type="text"],
+input[type="password"],
+input[type="file"],input[type="submit"],
+input[type="button"], input[type="reset"],
+select,
+textarea,
+.textarea {
 	border-color: #fff;
 }
 
-.ie6 input.text, input.password, .ie6 input.submit, .ie6 input.file, .ie6 input.button {
+.ie6 input.text,
+input.password,
+.ie6 input.submit,
+.ie6 input.file,
+.ie6 input.button {
 	border-color: #fff;
 }
 
@@ -762,11 +698,13 @@ input[type="text"], input[type="password"], input[type="file"],input[type="submi
 	color: #e7eef6;
 }
 
-.message-board-code, .message-board-quote {
+.message-board-code,
+.message-board-quote {
 	color: #212C3A;
 }
 
-.lfr-highlighted, .lfr-highlighted a {
+.lfr-highlighted,
+.lfr-highlighted a {
 	color: #ffc;
 }
 
@@ -782,7 +720,8 @@ ul.message-board-edit-controls {
 	color: #000;
 }
 
-ul.lfr-actions, .lfr-actions ul {
+ul.lfr-actions,
+.lfr-actions ul {
 	list-style: none outside;
 }
 
@@ -800,7 +739,8 @@ ul.lfr-actions, .lfr-actions ul {
 	border: 3px double #465E7B;
 }
 
-.lfr-actions li, .lfr-actions li li {
+.lfr-actions li,
+.lfr-actions li li {
 	list-style: none;
 	padding-left: 0;
 }
@@ -823,7 +763,12 @@ ul.lfr-actions, .lfr-actions ul {
 	padding: 5px;
 }
 
-input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus {
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus {
 	background:#3D536D url(../images/custom/arrow.png) no-repeat scroll 97% center;
 	border:none;
 	color:#336699;

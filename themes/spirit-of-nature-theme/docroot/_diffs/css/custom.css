@@ -42,7 +42,8 @@ body {
 	height: 57px;
 }
 
-#navigation ul, #add-page {
+#navigation ul,
+#add-page {
 	float: left;
 }
 
@@ -62,6 +63,11 @@ body {
 #navigation .save-page {
 	display: inline;
 	float: none;
+}
+
+.ie7 .save-page {
+	position: relative;
+	top: -5px;
 }
 
 #navigation .save-page:hover {
@@ -112,8 +118,9 @@ body {
 
 /* ---------- Calendar ---------- */
 
-.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
-	background: #6c7a2d;
+.portlet-calendar .calendar-day .day-text,
+.portlet-calendar .results-header {
+	background: #6C7A2D;
 }
 
 /* ---------- Tabs ---------- */
@@ -122,7 +129,8 @@ body {
 	border-bottom: 1px solid #C6CC9B;
 }
 
-.ui-tabs li a, .tabs li span {
+.ui-tabs li a,
+.tabs li span {
 	background: #DFE6AE;
 	border: 1px solid #C6CC9B;
 	color: #000;
@@ -130,7 +138,8 @@ body {
 	padding: 1em 1.25em;
 }
 
-.ui-tabs li a:hover, .ui-tabs li span:hover {
+.ui-tabs li a:hover,
+.ui-tabs li span:hover {
 	background: #C6CC9B;
 	color: #000;
 }

@@ -67,6 +67,11 @@ body {
 	float: none;
 }
 
+.ie7 .save-page {
+	position: relative;
+	top: -2px;
+}
+
 #navigation .cancel-page {
 	display: none;
 }

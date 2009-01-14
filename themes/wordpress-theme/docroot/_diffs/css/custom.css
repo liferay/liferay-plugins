@@ -1,13 +1,11 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-
 /* ---------- Base ---------- */
 
 body {
 	background: #E7E7E7;
 	padding: 16px;
 }
-
 
 /* ---------- Wrapper ---------- */
 
@@ -16,7 +14,6 @@ body {
 	position: relative;
 	width: 967px;
 }
-
 
 /* ---------- Banner ---------- */
 
@@ -35,14 +32,12 @@ body {
 	margin: 0 auto;
 }
 
-
 /* ---------- Logo ---------- */
 
 .js .interactive-mode {
 	right: 20px;
 	top: 20px;
 }
-
 
 /* ---------- Dock ---------- */
 
@@ -60,7 +55,8 @@ body {
 	float: none;
 }
 
-#navigation a, #navigation .enter-page {
+#navigation a,
+#navigation .enter-page {
 	color: #27A;
 	font: 10px/1.5 Verdana, Arial, Sans-Serif;
 	text-decoration: none;

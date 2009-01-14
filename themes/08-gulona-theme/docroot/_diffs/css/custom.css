@@ -38,11 +38,13 @@ body {
 	padding: 0 18px;
 }
 
-#navigation ul, #add-page {
+#navigation ul,
+#add-page {
 	float: left;
 }
 
-#navigation a, #navigation .enter-page {
+#navigation a,
+#navigation .enter-page {
 	border-right: 1px solid #95A938;
 	color: #FAFCF8;
 	display: block;
@@ -54,7 +56,8 @@ body {
 	text-decoration: none;
 }
 
-#navigation .selected a, #navigation a:hover {
+#navigation .selected a,
+#navigation a:hover {
 	background: url(../images/custom/navigation_hover_bg.png);
 }
 
@@ -63,12 +66,18 @@ body {
 	padding: 7px 15px;
 }
 
-#navigation .save-page, #navigation .save-page:hover {
+#navigation .save-page,
+#navigation .save-page:hover {
 	background: none;
 	border-right: 0;
 	display: inline;
 	float: none;
 	padding: 5px 9px;
+}
+
+.ie7 #navigation .save-page {
+	position: relative;
+	top: -7px;
 }
 
 #navigation .cancel-page {
@@ -80,6 +89,10 @@ body {
 #content-wrapper {
 	background: url(../images/custom/content-wrapper_bg.png) no-repeat left top;
 	padding: 18px 36px;
+}
+
+.ie7 #content-wrapper {
+	zoom: 1;
 }
 
 /* ---------- Portlet ---------- */
@@ -99,6 +112,10 @@ body {
 	display: none;
 }
 
+.portlet-icons {
+	top: 0;
+}
+
 .portlet-content {
 	color: #565655;
 	font: 12px/1.4em Arial,Helvetica,sans-serif;
@@ -106,13 +123,16 @@ body {
 	padding: 0 0 10px;
 }
 
-/* ---------- Portler Calendar ---------- */
+/* ---------- Portlet Calendar ---------- */
 
-.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+.portlet-calendar .calendar-day .day-text,
+.portlet-calendar .results-header {
 	background: #95A938;
 }
 
-.portlet-calendar .day-number, .portlet-calendar .portlet-section-body td, .calendar-panel {
+.portlet-calendar .day-number,
+.portlet-calendar .portlet-section-body td,
+.calendar-panel {
 	color: #000;
 }
 
@@ -122,14 +142,20 @@ body {
 	border-bottom: 1px solid #445205;
 }
 
-.ui-tabs li a, .ui-tabs li span, .ui-tabs li a:hover, .ui-tabs li span:hover {
+.ui-tabs li a,
+.ui-tabs li span,
+.ui-tabs li a:hover,
+.ui-tabs li span:hover {
 	background: #95A938;
 	border: 1px solid #445205;
 	color: #FEC;
 	margin-left: -1px;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
+.ui-tabs li.current a,
+.ui-tabs li.current span,
+.ui-tabs li.current a:hover,
+.ui-tabs li.current span:hover {
 	background: #95A938;
 	border: 1px solid #445205;
 	color: #FFF;

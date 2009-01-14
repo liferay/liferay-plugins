@@ -27,6 +27,7 @@ body {
 /* ---------- Dock ---------- */
 
 .js .interactive-mode {
+	right: 9px;
 }
 
 /* ---------- Navigation ---------- */
@@ -36,11 +37,13 @@ body {
 	top: 0;
 }
 
-#navigation ul, #add-page {
+#navigation ul,
+#add-page {
 	float: left;
 }
 
-#navigation a, #navigation .enter-page {
+#navigation a,
+#navigation .enter-page {
 	color: #DA1C5C;
 	display: block;
 	float: left;
@@ -54,11 +57,17 @@ body {
 	color: #FFF;
 }
 
-#navigation .save-page, #navigation .save-page:hover {
+#navigation .save-page,
+#navigation .save-page:hover {
 	background: none;
 	border-right: 0;
 	display: inline;
 	float: none;
+}
+
+.ie7 .save-page {
+	position: relative;
+	top: -5px;
 }
 
 #navigation .cancel-page {
@@ -86,14 +95,16 @@ body {
 
 /* ---------- Calendar ---------- */
 
-.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
-	background: #58383b;
+.portlet-calendar .calendar-day .day-text,
+.portlet-calendar .results-header {
+	background: #58383B;
 }
 
 /* ---------- Tabs ---------- */
 
-.ui-tabs li a, .ui-tabs li span {
-	background: #58383b;
+.ui-tabs li a,
+.ui-tabs li span {
+	background: #58383B;
 }
 
 /* ---------- Footer ---------- */

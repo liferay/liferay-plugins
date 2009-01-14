@@ -1,12 +1,10 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-
 /* ---------- Base ---------- */
 
 body {
 	padding: 0 0 29px;
 }
-
 
 /* ---------- Main content body ---------- */
 
@@ -19,7 +17,6 @@ body {
 	border: 1px solid #A6A6A6;
 	height: 24px;
 }
-
 
 /* ---------- Banner ---------- */
 
@@ -35,10 +32,11 @@ body {
 	padding: 22px 0 18px;
 }
 
-
 /* ---------- Dock with JavaScript ---------- */
 
-.js .interactive-mode, .js .interactive-mode h2, .js .interactive-mode h2 span {
+.js .interactive-mode,
+.js .interactive-mode h2,
+.js .interactive-mode h2 span {
 	background: transparent;
 	border: 0;
 	color: #FFF;
@@ -75,7 +73,6 @@ body {
 	top: 24px;
 }
 
-
 /* ---------- Main navigation ---------- */
 
 #navigation {
@@ -89,7 +86,8 @@ body {
 	float: right;
 }
 
-#navigation a, #navigation .enter-page {
+#navigation a,
+#navigation .enter-page {
 	color: #FFF;
 	display: block;
 	float: left;
@@ -123,10 +121,14 @@ body {
 	float: none;
 }
 
+.ie7 #navigation .save-page {
+	position: relative;
+	top: -6px;
+}
+
 #navigation .cancel-page {
 	display: none;
 }
-
 
 /* ---------- Portlet ---------- */
 
@@ -134,7 +136,8 @@ body {
 	margin: 0 0 10px;
 }
 
-.portlet-content, .portlet-title {
+.portlet-content,
+.portlet-title {
 	font: 11px Lucida Grande, Tahoma, Verdana, Arial, sans-serif;
 }
 
@@ -161,17 +164,23 @@ body {
 
 /* ---------- Calendar ---------- */
 
-.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
-	background: #3b5998;
+.portlet-calendar .calendar-day .day-text,
+.portlet-calendar .results-header {
+	background: #3B5998;
 }
 
-input[type="submit"], input[type="button"], input[type="reset"], input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover {
-	background: #5c74a3 url(../images/custom/button_bg.png);
-	border: 1px solid #26446e;
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover {
+	background: #5C74A3 url(../images/custom/button_bg.png);
+	border: 1px solid #26446E;
+	border-color: #26446E #152F5F #0C2253;
 	color: #FFF;
-	border-color: #26446e #152f5f #0c2253;
-	padding: 2px 6px 4px 8px;
 	font: bold 11px Lucida Grande,Tahoma,Verdana,Arial,sans-serif;
+	padding: 2px 6px 4px 8px;
 }
 
 /* ---------- Tabs ---------- */

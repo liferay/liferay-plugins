@@ -47,11 +47,13 @@ body {
 	padding: 10px 15px 0;
 }
 
-#navigation ul, #add-page {
+#navigation ul,
+#add-page {
 	float: left;
 }
 
-#navigation a, #navigation .enter-page {
+#navigation a,
+#navigation .enter-page {
 	background: url(../images/custom/navigation_a_bg.gif);
 	color: #B5C4E3;
 	display: block;
@@ -72,11 +74,17 @@ body {
 	color: #FF9000;
 }
 
-#navigation .save-page, #navigation .save-page:hover {
+#navigation .save-page,
+#navigation .save-page:hover {
 	background: none;
 	border-right: 0;
 	display: inline;
 	float: none;
+}
+
+.ie7 #navigation .save-page {
+	position: relative;
+	top: -5px;
 }
 
 #navigation .cancel-page {
@@ -87,7 +95,16 @@ body {
 
 #content-wrapper {
 	background: url(../images/custom/content-wrapper_bg.png) no-repeat;
+	min-height: 100px;
 	padding: 15px 20px;
+}
+
+.ie6 #content-wrapper {
+	height: 100px;
+}
+
+.ie7 #content-wrapper {
+	zoom: 1;
 }
 
 /* ---------- Portlet ---------- */

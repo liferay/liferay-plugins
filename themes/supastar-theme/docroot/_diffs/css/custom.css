@@ -38,7 +38,8 @@ body {
 	z-index: 21;
 }
 
-#navigation ul, #add-page {
+#navigation ul,
+#add-page {
 	float: left;
 }
 
@@ -61,6 +62,15 @@ body {
 
 #navigation a:hover {
 	background: #4F0000;
+}
+
+.enter-page {
+	margin-top: 8px;
+}
+
+.ie7 .enter-page {
+	margin-top: 1px;
+	padding-bottom: 8px;
 }
 
 #navigation .save-page {
@@ -95,15 +105,40 @@ body {
 	color: #FFF;
 }
 
+.ui-autocomplete-odd,
+.results-row.alt td {
+	background-color: #350000;
+}
+
+.ui-autocomplete-even,
+.results-row td {
+	background-color: #552020;
+}
+
+.results-row.hover td {
+	background-color: #754040;
+}
+
+.results-header {
+	background: transparent;
+}
+
 /* ---------- Forms ---------- */
 
-input[type="submit"], input[type="button"], input[type="reset"] {
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
 	background: #3F0000;
 	border: 1px solid #4F0000;
 	color: #FFF;
 }
 
-input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus {
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus {
 	background: #4F0000;
 	border: 1px solid #4F0000;
 	color: #FFF;
@@ -111,11 +146,14 @@ input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hove
 
 /* ---------- Calendar ---------- */
 
-.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+.portlet-calendar .calendar-day .day-text,
+.portlet-calendar .results-header {
 	background: #350000;
 }
 
-.portlet-calendar .calendar-panel, .portlet-calendar .results-grid, .portlet-calendar .calendar-day .day-number {
+.portlet-calendar .calendar-panel,
+.portlet-calendar .results-grid,
+.portlet-calendar .calendar-day .day-number {
 	color: #000;
 }
 
@@ -138,13 +176,17 @@ input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hove
 	margin: 0 8px 0 0;
 }
 
-.ui-tabs li a, .ui-tabs li span, .ui-tabs li.current a, .ui-tabs li.current span {
+.ui-tabs li a,
+.ui-tabs li span,
+.ui-tabs li.current a,
+.ui-tabs li.current span {
 	background: #350000;
 	border: 0;
 	color: #FFF;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span {
+.ui-tabs li.current a,
+.ui-tabs li.current span {
 	text-decoration: underline;
 }
 
@@ -152,7 +194,8 @@ input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hove
 	background-color: transparent;
 }
 
-.ui-tabs li a:hover, .ui-tabs li.current a:hover {
+.ui-tabs li a:hover,
+.ui-tabs li.current a:hover {
 	background-color: #4F0000;
 	color: #FFF;
 }

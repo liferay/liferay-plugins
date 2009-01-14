@@ -21,7 +21,9 @@ body {
 
 /* ---------- Dock ---------- */
 
-.js .interactive-mode, .js .interactive-mode h2, .js .interactive-mode h2 span {
+.js .interactive-mode,
+.js .interactive-mode h2,
+.js .interactive-mode h2 span {
 	background: #4A91C3 none;
 	border: 0;
 	display: block;
@@ -90,10 +92,15 @@ body {
 #navigation .save-page {
 	display: inline;
 	float: none;
+	margin-left: 3px;
 }
 
 #navigation .cancel-page {
 	display: none;
+}
+
+.enter-page input {
+	padding: 0;
 }
 
 /* ---------- Content Wrapper ---------- */
@@ -118,7 +125,8 @@ body {
 
 /* ---------- Calendar ---------- */
 
-.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+.portlet-calendar .calendar-day .day-text,
+.portlet-calendar .results-header {
 	background: #4A91C3;
 }
 

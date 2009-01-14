@@ -65,7 +65,8 @@ body {
 	top: 2px;
 }
 
-#navigation a, #navigation .enter-page {
+#navigation a,
+#navigation .enter-page {
 	color: #FFF;
 	display: block;
 	float: left;
@@ -83,11 +84,17 @@ body {
 	color: #FF0;
 }
 
-#navigation .save-page, #navigation .save-page:hover {
+#navigation .save-page,
+#navigation .save-page:hover {
 	background: none;
 	border-right: 0;
 	display: inline;
 	float: none;
+}
+
+.ie7 #navigation .save-page {
+	position: relative;
+	top: -6px;
 }
 
 #navigation .cancel-page {
@@ -96,7 +103,10 @@ body {
 
 /* ---------- Portlet ---------- */
 
-.portlet, .portlet-topper, .portlet-content, .portlet-title {
+.portlet,
+.portlet-topper,
+.portlet-content,
+.portlet-title {
 	background: transparent url(../images/custom/portlet_bg.png) no-repeat bottom right;
 }
 
@@ -108,7 +118,7 @@ body {
 .portlet-topper {
 	background-position: right top;
 	margin-right: -10px;
-	padding-right: 40px;
+	padding-right: 60px;
 	position: relative;
 }
 
@@ -122,7 +132,7 @@ body {
 
 .portlet-icons {
 	line-height: 20px;
-	right: 46px;
+	right: 60px;
 	top: 28px;
 }
 
@@ -137,7 +147,8 @@ body {
 
 /* ---------- Calendar ---------- */
 
-.portlet-calendar .calendar-day .day-text, .results-header {
+.portlet-calendar .calendar-day .day-text,
+.results-header {
 	background-color: #297D29;
 }
 
@@ -147,12 +158,20 @@ body {
 	border-bottom: 1px solid #081808;
 }
 
-.ui-tabs li a, .ui-tabs li a:hover, .ui-tabs li span, .ui-tabs li span:hover {
+.ui-tabs li a,
+.ui-tabs li a:hover,
+.ui-tabs li span,
+.ui-tabs li span:hover {
 	background: url(../images/custom/tab_bg.png);
 	border: 1px solid #081808;
 }
 
-.ui-tabs li a:hover, .ui-tabs li span:hover, .ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
+.ui-tabs li a:hover,
+.ui-tabs li span:hover,
+.ui-tabs li.current a,
+.ui-tabs li.current span,
+.ui-tabs li.current a:hover,
+.ui-tabs li.current span:hover {
 	background: url(../images/custom/tab_hover_bg.png);
 	border: 1px solid #184A18;
 	color: #FF0;
@@ -163,7 +182,10 @@ body {
 	background: transparent;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
+.ui-tabs li.current a,
+.ui-tabs li.current span,
+.ui-tabs li.current a:hover,
+.ui-tabs li.current span:hover {
 	background: url(../images/custom/tab_current_bg.png);
 	border: 1px solid #184A18;
 }

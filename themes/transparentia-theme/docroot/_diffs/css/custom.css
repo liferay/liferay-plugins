@@ -33,6 +33,7 @@ body {
 /* ---------- Dock ---------- */
 
 .js .interactive-mode {
+	right: 9px;
 }
 
 /* ---------- Navigation ---------- */
@@ -45,7 +46,8 @@ body {
 	width: 200px;
 }
 
-#navigation a, #navigation .enter-page {
+#navigation a,
+#navigation .enter-page {
 	border: 1px solid #FAFAFA;
 	color: #777;
 	display: block;
@@ -60,11 +62,17 @@ body {
 #navigation .selected a {
 }
 
-#navigation .save-page, #navigation .save-page:hover {
+#navigation .save-page,
+#navigation .save-page:hover {
 	background: none;
 	border-right: 0;
 	display: inline;
 	float: none;
+}
+
+.ie7 #navigation .save-page {
+	position: relative;
+	top: -5px;
 }
 
 #navigation .cancel-page {
@@ -111,10 +119,14 @@ body {
 .ui-tabs {
 }
 
-.ui-tabs li a, .ui-tabs li a:hover, .ui-tabs li span, .ui-tabs li span:hover {
+.ui-tabs li a,
+.ui-tabs li a:hover,
+.ui-tabs li span,
+.ui-tabs li span:hover {
 }
 
-.ui-tabs li a:hover, .ui-tabs li span:hover {
+.ui-tabs li a:hover,
+.ui-tabs li span:hover {
 }
 
 .ui-tabs li.current:hover {

@@ -44,11 +44,13 @@ body {
 	height: 20px;
 }
 
-#navigation ul, #add-page {
+#navigation ul,
+#add-page {
 	float: left;
 }
 
-#navigation a, #navigation .enter-page {
+#navigation a,
+#navigation .enter-page {
 	color: #EEE;
 	display: block;
 	float: left;
@@ -68,11 +70,17 @@ body {
 	color: #FFF;
 }
 
-#navigation .save-page, #navigation .save-page:hover {
+#navigation .save-page,
+#navigation .save-page:hover {
 	background: none;
 	border-right: 0;
 	display: inline;
 	float: none;
+}
+
+.ie7 .save-page {
+	position: relative;
+	top: -5px;
 }
 
 #navigation .cancel-page {
@@ -87,7 +95,10 @@ body {
 
 /* ---------- Portlet ---------- */
 
-.portlet, .portlet-topper, .portlet-content, .portlet-title {
+.portlet,
+.portlet-topper,
+.portlet-content,
+.portlet-title {
 	background: transparent url(../images/custom/portlet_bg.png) no-repeat bottom right;
 }
 
@@ -129,17 +140,35 @@ body {
 	padding: 15px 25px;
 }
 
-.portlet-content, .portlet-content a {
+.portlet-content,
+.portlet-content a {
 	color: #FFF;
+}
+
+.ui-autocomplete-odd,
+.results-row.alt td {
+	background-color: #529562;
+}
+
+.ui-autocomplete-even,
+.results-row td {
+	background-color: #62A572;
+}
+
+.results-header {
+	background: transparent;
 }
 
 /* ---------- Calendar ---------- */
 
-.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+.portlet-calendar .calendar-day .day-text,
+.portlet-calendar .results-header {
 	background: #529562;
 }
 
-.portlet-calendar .day-number, .portlet-calendar .portlet-section-body td, .calendar-panel {
+.portlet-calendar .day-number,
+.portlet-calendar .portlet-section-body td,
+.calendar-panel {
 	color: #000;
 }
 
@@ -153,7 +182,12 @@ body {
 	background: none;
 }
 
-.ui-tabs li a, .ui-tabs li span, .ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li a:hover, .ui-tabs li span:hover {
+.ui-tabs li a,
+.ui-tabs li span,
+.ui-tabs li.current a,
+.ui-tabs li.current span,
+.ui-tabs li a:hover,
+.ui-tabs li span:hover {
 	background: #297620 url(../images/custom/tabs_bg.png) repeat-x;
 	border: 1px solid #1F5C16;
 	color: #FFF;
@@ -163,31 +197,38 @@ body {
 	padding: 8px 12px;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span {
+.ui-tabs li.current a,
+.ui-tabs li.current span {
 	font-size: 13px;
 }
 
-.ui-tabs li a:hover, .ui-tabs li span:hover {
+.ui-tabs li a:hover,
+.ui-tabs li span:hover {
 	color: #FF3;
 	text-decoration: none;
 }
 
 /* ---------- Input ---------- */
 
-input[type="submit"], input[type="button"], input[type="reset"] {
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
 	background: #297620 url(../images/custom/tabs_bg.png) repeat-x;
 	border: 1px solid #1F5C16;
 	color: #FEC;
 }
 
-input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover {
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover {
 	background: #297620 url(../images/custom/tabs_bg.png) repeat-x;
 	color: #FEC;
 }
 
 /* ---------- Calendar ---------- */
 
-.portlet-calendar .portlet-content, .portlet-calendar .portlet-content a {
+.portlet-calendar .portlet-content,
+.portlet-calendar .portlet-content a {
 	color: #000;
 }
 

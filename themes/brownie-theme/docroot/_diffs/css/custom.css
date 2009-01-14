@@ -1,4 +1,5 @@
 /* ---------- Base ---------- */
+
 body {
 	background: #FFF;
 	font: 11px Arial, sans-serif;
@@ -110,6 +111,11 @@ a:hover {
 
 #add-page a:hover {
 	background: url(../images/custom/add-page-hover-bg.png) no-repeat;
+}
+
+.ie7 .save-page {
+	position: relative;
+	top: -5px;
 }
 
 .enter-page .cancel-page {

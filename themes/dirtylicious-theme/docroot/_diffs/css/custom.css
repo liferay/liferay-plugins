@@ -55,7 +55,8 @@ body {
 	height: 40px;
 }
 
-#navigation ul, #add-page {
+#navigation ul,
+#add-page {
 	float: left;
 }
 
@@ -68,12 +69,17 @@ body {
 	text-decoration: none;
 }
 
-#navigation a:hover, #navigation .selected a:hover {
+#navigation a:hover,
+#navigation .selected a:hover {
 	color: #D7D700;
 }
 
 #navigation .selected a {
 	color: #D6D6A1;
+}
+
+#navigation .enter-page {
+	padding-top: 10px;
 }
 
 #navigation .enter-page a {
@@ -89,6 +95,11 @@ body {
 #navigation .save-page {
 	display: inline;
 	float: none;
+}
+
+.ie7 #navigation .save-page {
+	position: relative;
+	top: -5px;
 }
 
 #navigation .cancel-page {
@@ -121,7 +132,8 @@ body {
 
 /* ---------- Calendar ---------- */
 
-.portlet-calendar .calendar-day .day-text, .portlet-calendar .results-header {
+.portlet-calendar .calendar-day .day-text,
+.portlet-calendar .results-header {
 	background-color: #21262A;
 }
 
@@ -131,28 +143,36 @@ body {
 	border-bottom: 1px solid #000;
 }
 
-.ui-tabs li a, .ui-tabs li.current a, .ui-tabs li a:hover, .ui-tabs li span, .ui-tabs li.current span, .ui-tabs li span:hover {
-	border: 1px solid #000;
+.ui-tabs li a,
+.ui-tabs li.current a,
+.ui-tabs li a:hover,
+.ui-tabs li span,
+.ui-tabs li.current span,
+.ui-tabs li span:hover {
 	background: #21262A;
-	color: #ddd;
+	border: 1px solid #000;
+	color: #DDD;
 	margin: 0 0 0 -1px;
 	padding: 8px 12px;
 }
 
-.ui-tabs li a:hover, .ui-tabs li span:hover {
+.ui-tabs li a:hover,
+.ui-tabs li span:hover {
 	background: #21262A;
 	color: #FF0;
 	text-decoration: none;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span {
-	background: #343c42;
+.ui-tabs li.current a,
+.ui-tabs li.current span {
+	background: #343C42;
 	color: #FFF;
 	font-weight: normal;
 }
 
-.ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
-	background: #343c42;
+.ui-tabs li.current a:hover,
+.ui-tabs li.current span:hover {
+	background: #343C42;
 	color: #FFF;
 	font-weight: normal;
 }
