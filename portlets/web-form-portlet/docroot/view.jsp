@@ -31,7 +31,7 @@ boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCapt
 %>
 
 <form action="<portlet:actionURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="saveData" /></portlet:actionURL>" class="uni-form" id="<portlet:namespace />fm" method="post" name="<portlet:namespace />fm">
-<input type="hidden" name="<portlet:namespace/>redirect" value="<%= currentURL %>" />
+<input name="<portlet:namespace/>redirect" type="hidden" value="<%= currentURL %>" />
 
 <fieldset class="block-labels">
 	<legend><%= HtmlUtil.escape(title) %></legend>
@@ -44,7 +44,7 @@ boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCapt
 	<liferay-ui:error key="error" message="an-error-occurred-while-sending-the-form-information" />
 
 	<c:if test='<%= WebFormUtil.VALIDATION_SCRIPT_ENABLED && SessionErrors.contains(renderRequest, "validation-script-error") %>'>
-		<jsp:include page="/script_error.jsp" />
+		<liferay-util:include page="/script_error.jsp" />
 	</c:if>
 
 	<%

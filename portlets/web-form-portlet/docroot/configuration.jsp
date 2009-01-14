@@ -280,7 +280,6 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 						</c:choose>
 					</div>
 
-
 					<c:choose>
 						<c:when test="<%= !fieldsEditingDisabled %>">
 							<div class="ctrl-holder">
@@ -291,153 +290,149 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 						</c:when>
 						<c:otherwise>
 							<table class="editing-disabled">
-								<tr>
-									<td>
-										<label><liferay-ui:message key="name" /></label>
-									</td>
-									<td>
-										<%= fieldLabel %>
-									</td>
-								</tr>
+							<tr>
+								<td>
+									<label><liferay-ui:message key="name" /></label>
+								</td>
+								<td>
+									<%= fieldLabel %>
+								</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 
-							</c:otherwise>
-						</c:choose>
+					<c:choose>
+						<c:when test="<%= !fieldsEditingDisabled %>">
+							<div class="ctrl-holder">
+								<label for="<portlet:namespace/>fieldType<%= formFieldsIndex %>"><liferay-ui:message key="type" /></label>
 
-						<c:choose>
-							<c:when test="<%= !fieldsEditingDisabled %>">
-								<div class="ctrl-holder">
-									<label for="<portlet:namespace/>fieldType<%= formFieldsIndex %>"><liferay-ui:message key="type" /></label>
+								<select id="<portlet:namespace/>fieldType<%= formFieldsIndex %>" name="<portlet:namespace/>fieldType<%= formFieldsIndex %>">
+									<option <%= (fieldType.equals("text")) ? "selected" : "" %> value="text"><liferay-ui:message key="text" /></option>
+									<option <%= (fieldType.equals("textarea")) ? "selected" : "" %> value="textarea"><liferay-ui:message key="text-box" /></option>
+									<option <%= (fieldType.equals("options")) ? "selected" : "" %> value="options"><liferay-ui:message key="options" /></option>
+									<option <%= (fieldType.equals("radio")) ? "selected" : "" %> value="radio"><liferay-ui:message key="radiobuttons" /></option>
+									<option <%= (fieldType.equals("paragraph")) ? "selected" : "" %> value="paragraph"><liferay-ui:message key="paragraph" /></option>
+									<option <%= (fieldType.equals("checkbox")) ? "selected" : "" %> value="checkbox"><liferay-ui:message key="checkbox" /></option>
+								</select>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td>
+									<label><liferay-ui:message key="type" /></label>
+								</td>
+								<td>
+									<liferay-ui:message key="<%= fieldType %>" />
+								</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 
-									<select id="<portlet:namespace/>fieldType<%= formFieldsIndex %>" name="<portlet:namespace/>fieldType<%= formFieldsIndex %>">
-										<option <%= (fieldType.equals("text")) ? "selected" : "" %> value="text"><liferay-ui:message key="text" /></option>
-										<option <%= (fieldType.equals("textarea")) ? "selected" : "" %> value="textarea"><liferay-ui:message key="text-box" /></option>
-										<option <%= (fieldType.equals("options")) ? "selected" : "" %> value="options"><liferay-ui:message key="options" /></option>
-										<option <%= (fieldType.equals("radio")) ? "selected" : "" %> value="radio"><liferay-ui:message key="radiobuttons" /></option>
-										<option <%= (fieldType.equals("paragraph")) ? "selected" : "" %> value="paragraph"><liferay-ui:message key="paragraph" /></option>
-										<option <%= (fieldType.equals("checkbox")) ? "selected" : "" %> value="checkbox"><liferay-ui:message key="checkbox" /></option>
-									</select>
-								</div>
-							</c:when>
-							<c:otherwise>
-								<tr>
-									<td>
-										<label><liferay-ui:message key="type" /></label>
-									</td>
-									<td>
-										<liferay-ui:message key="<%= fieldType %>" />
-									</td>
-								</tr>
+					<c:choose>
+						<c:when test="<%= !fieldsEditingDisabled %>">
+							<div class="ctrl-holder optional-control">
+								<label><liferay-ui:message key="optional" /> <input <c:if test="<%= fieldOptional %>">checked</c:if> id="<portlet:namespace/>fieldOptional<%= formFieldsIndex %>" name="<portlet:namespace/>fieldOptional<%= formFieldsIndex %>" type="checkbox" /></label>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td>
+									<label><liferay-ui:message key="optional" /></label>
+								</td>
+								<td>
+									<liferay-ui:message key='<%= fieldOptional ? "yes" : "no" %>' />
+								</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 
-							</c:otherwise>
-						</c:choose>
+					<c:choose>
+						<c:when test="<%= !fieldsEditingDisabled %>">
+							<div class="ctrl-holder options" id="<portlet:namespace/>optionsGroup<%= formFieldsIndex %>">
+								<label for="<portlet:namespace/>fieldOptions<%= formFieldsIndex %>"><liferay-ui:message key="options" /></label>
 
+								<span>(<liferay-ui:message key="add-options-separated-by-commas" />)</span><br />
 
-						<c:choose>
-							<c:when test="<%= !fieldsEditingDisabled %>">
-								<div class="ctrl-holder optional-control">
-									<label><liferay-ui:message key="optional" /> <input <c:if test="<%= fieldOptional %>">checked</c:if> id="<portlet:namespace/>fieldOptional<%= formFieldsIndex %>" name="<portlet:namespace/>fieldOptional<%= formFieldsIndex %>" type="checkbox" /></label>
-								</div>
-							</c:when>
-							<c:otherwise>
-								<tr>
-									<td>
-										<label><liferay-ui:message key="optional" /></label>
-									</td>
-									<td>
-										<liferay-ui:message key='<%= fieldOptional ? "yes" : "no" %>' />
-									</td>
-								</tr>
-							</c:otherwise>
-						</c:choose>
-
-
-						<c:choose>
-							<c:when test="<%= !fieldsEditingDisabled %>">
-								<div class="ctrl-holder options" id="<portlet:namespace/>optionsGroup<%= formFieldsIndex %>">
-									<label for="<portlet:namespace/>fieldOptions<%= formFieldsIndex %>"><liferay-ui:message key="options" /></label>
-									<span>(<liferay-ui:message key="add-options-separated-by-commas" />)</span><br />
-
-									<input class="lfr-input-text" id="<portlet:namespace/>fieldOptions<%= formFieldsIndex %>" name="<portlet:namespace/>fieldOptions<%= formFieldsIndex %>" type="text" value="<%= fieldOptions %>" />
-								</div>
-							</c:when>
-							<c:when test="<%= Validator.isNotNull(fieldOptions) %>">
-								<tr>
-									<td>
-										<label><liferay-ui:message key="options" /></label>
-									</td>
-									<td>
-										<%= fieldOptions %>
-									</td>
-								</tr>
-							</c:when>
-						</c:choose>
-
+								<input class="lfr-input-text" id="<portlet:namespace/>fieldOptions<%= formFieldsIndex %>" name="<portlet:namespace/>fieldOptions<%= formFieldsIndex %>" type="text" value="<%= fieldOptions %>" />
+							</div>
+						</c:when>
+						<c:when test="<%= Validator.isNotNull(fieldOptions) %>">
+							<tr>
+								<td>
+									<label><liferay-ui:message key="options" /></label>
+								</td>
+								<td>
+									<%= fieldOptions %>
+								</td>
+							</tr>
+						</c:when>
+					</c:choose>
 
 					<c:if test="<%= WebFormUtil.VALIDATION_SCRIPT_ENABLED %>">
+						<c:choose>
+							<c:when test="<%= !fieldsEditingDisabled %>">
+								<div class="validation">
+									<liferay-ui:error key='<%= "invalidValidationDefinition" + formFieldsIndex %>' message="please-enter-both-the-validation-code-and-the-error-message" />
 
-							<c:choose>
-								<c:when test="<%= !fieldsEditingDisabled %>">
-									<div class="validation">
-										<liferay-ui:error key='<%= "invalidValidationDefinition" + formFieldsIndex %>' message="please-enter-both-the-validation-code-and-the-error-message" />
+									<div class="ctrl-holder">
+										<a class="validation-link" href="javascript: ;"><liferay-ui:message key="validation" /> &raquo;</a>
+									</div>
+
+									<div class="validation-input" style='<%= Validator.isNull(fieldValidationScript) ? "display:none" : "" %>'>
+										<div class="ctrl-holder">
+											<table>
+											<tr>
+												<td>
+													<label for="<portlet:namespace/>fieldValidationScript<%= formFieldsIndex %>"><liferay-ui:message key="validation-script" /></label>
+
+													<textarea class="lfr-textarea validation-script" cols="80" id="<portlet:namespace />fieldValidationScript<%= formFieldsIndex %>" name="<portlet:namespace />fieldValidationScript<%= formFieldsIndex %>" style="width: 95%" wrap="off"><%= fieldValidationScript %></textarea>
+												</td>
+												<td>
+													<div class="syntax-help">
+														<jsp:include page="/script_help.jsp" />
+													</div>
+												</td>
+											</tr>
+											</table>
+										</div>
 
 										<div class="ctrl-holder">
-											<a class="validation-link" href="javascript:;"><liferay-ui:message key="validation" /> &raquo;</a>
-										</div>
-
-										<div class="validation-input" style='<%= Validator.isNull(fieldValidationScript) ? "display:none" : "" %>'>
-											<div class="ctrl-holder">
-												<table>
-													<tr>
-														<td>
-															<label for="<portlet:namespace/>fieldValidationScript<%= formFieldsIndex %>"><liferay-ui:message key="validation-script" /></label>
-
-															<textarea class="lfr-textarea validation-script" cols="80" id="<portlet:namespace />fieldValidationScript<%= formFieldsIndex %>" name="<portlet:namespace />fieldValidationScript<%= formFieldsIndex %>" style="width: 95%" wrap="off"><%= fieldValidationScript %></textarea>
-														</td>
-														<td>
-															<div class="syntax-help">
-																<jsp:include page="/script_help.jsp" />
-															</div>
-														</td>
-													</tr>
-												</table>
-											</div>
-											<div class="ctrl-holder">
 											<label for="<portlet:namespace/>fieldValidationErrorMessage<%= formFieldsIndex %>"><liferay-ui:message key="validation-error-message" /></label>
 
-												<input class="lfr-input-text" id="<portlet:namespace />fieldValidationErrorMessage<%= formFieldsIndex %>" name="<portlet:namespace />fieldValidationErrorMessage<%= formFieldsIndex %>" size="80" type="text" value="<%= fieldValidationErrorMessage %>" />
-											</div>
+											<input class="lfr-input-text" id="<portlet:namespace />fieldValidationErrorMessage<%= formFieldsIndex %>" name="<portlet:namespace />fieldValidationErrorMessage<%= formFieldsIndex %>" size="80" type="text" value="<%= fieldValidationErrorMessage %>" />
 										</div>
 									</div>
-								</c:when>
-								<c:when test="<%= Validator.isNotNull(fieldValidationScript) %>">
-									<tr>
-										<td>
-											<label class="optional"><liferay-ui:message key="validation" /></label>
-										</td>
-										<td>
-											<pre><%= fieldValidationScript %></pre>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="optional"><liferay-ui:message key="validation-error-message" /></label>
-										</td>
-										<td>
-											<%= fieldValidationErrorMessage %>
-										</td>
-									</tr>
-								</c:when>
-								<c:otherwise>
-									<tr>
-										<td>
-											<label class="optional"><liferay-ui:message key="validation" /></label>
-										</td>
-										<td>
-											<liferay-ui:message key="this-field-does-not-have-any-specific-validation" />
-										</td>
-									</tr>
-								</c:otherwise>
-							</c:choose>
+								</div>
+							</c:when>
+							<c:when test="<%= Validator.isNotNull(fieldValidationScript) %>">
+								<tr>
+									<td>
+										<label class="optional"><liferay-ui:message key="validation" /></label>
+									</td>
+									<td>
+										<pre><%= fieldValidationScript %></pre>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label class="optional"><liferay-ui:message key="validation-error-message" /></label>
+									</td>
+									<td>
+										<%= fieldValidationErrorMessage %>
+									</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td>
+										<label class="optional"><liferay-ui:message key="validation" /></label>
+									</td>
+									<td>
+										<liferay-ui:message key="this-field-does-not-have-any-specific-validation" />
+									</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
 					</c:if>
 
 					<c:if test="<%= fieldsEditingDisabled %>">

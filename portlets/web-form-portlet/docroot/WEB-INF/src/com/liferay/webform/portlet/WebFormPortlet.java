@@ -216,11 +216,11 @@ public class WebFormPortlet extends JSPPortlet {
 		String cmd = ParamUtil.getString(resourceRequest, Constants.CMD);
 
 		try {
-			if (cmd.equals("export")){
-				exportData(resourceRequest, resourceResponse);
-			}
-			else if (cmd.equals("captcha")) {
+			if (cmd.equals("captcha")) {
 				serveCaptcha(resourceRequest, resourceResponse);
+			}
+			else if (cmd.equals("export")) {
+				exportData(resourceRequest, resourceResponse);
 			}
 		}
 		catch (Exception e) {
@@ -290,13 +290,6 @@ public class WebFormPortlet extends JSPPortlet {
 
 		PortletResponseUtil.sendFile(
 			resourceResponse, fileName, bytes, contentType);
-	}
-
-	protected void serveCaptcha(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws Exception{
-
-		CaptchaUtil.serveImage(resourceRequest, resourceResponse);
 	}
 
 	protected String getMailBody(Map<String,String> fieldsMap) {
@@ -406,6 +399,13 @@ public class WebFormPortlet extends JSPPortlet {
 
 			return false;
 		}
+	}
+
+	protected void serveCaptcha(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		CaptchaUtil.serveImage(resourceRequest, resourceResponse);
 	}
 
 	protected Set<String> validate(
