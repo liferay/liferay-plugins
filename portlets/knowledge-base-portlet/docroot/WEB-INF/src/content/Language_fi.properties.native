@@ -1,7 +1,42 @@
-##
-## Messages
-##
-
-articles-with-category-x=Articles with category {0}
-articles-with-tag-x=Articles with tag {0}
-no-articles-were-found-that-matched-the-keywords-x=No articles were found that matched the keywords {0}
+add-article=Lisää artikkeli
+add-child-article=Lisää aliartikkeli
+all-articles=Kaikki artikkelit
+all-knowledge-base-articles=Kaikki knowledge base artikkelit.
+applying-a-template-will-not-delete-any-previous-work-in-this-article=Pohjan käyttäminen ei poista aiempia muutoksia tähän artikkeliin.
+article-added-notification=Artikkeli lisätty ilmoitus
+article-description=Artikkelin kuvaus
+article-updated-notification=Artikkeli päivitetty ilmoitus
+articles-with-category-x=Artikkeleita kategoriassa {0}
+articles-with-tag-x=Artikkeleita tagilla {0}
+articles=Artikkelit
+did-you-find-this-helpful=Oliko tämä hyödyllinen?
+glad-it-helped-what-did-you-find-most-helpful=Mukava, että siitä oli apua. Mikä oli mielestäsi kaikista hyödyllisintä?
+import-article=Tuo artikkeli
+knowledge-base-articles=Knowledge Base artikkelit
+knowledge-base=Knowledge Base
+leave-this-box-unchecked-to-email-subscribed-users-that-this-article-has-recently-been-updated=Jätä valitsematta tämä jos haluat, että tilanneet käyttäjät saavat sähköpostin kun tämä artikkeli on päivitetty.
+let-us-know-what-you-thought=Kerro meille mitä ajattelit tästä.
+no-articles-were-found-that-matched-the-keywords-x=Artikkeleita ei löytynyt hakusanoilla {0}
+please-let-us-know-why-you-found-this-unhelpful=Kerro meille miksi tämä ei ollut hyödyllinen.
+select-the-scope-to-search-for-knowledge-base-articles=Valitse laajuus millä artikkeleita haetaan.
+sign-in-to-rate-this-article=Kirjaudu sisään arvostellaksesi tämän artikkelin.
+subscribe-to-all-articles=Tilaa kaikki artikkelit.
+templates-are-generic-documents-that-can-be-used-to-quickly-create-new-articles-once-users-click-the-add-article-button-they-can-then-choose-a-template-to-use-for-their-article=Pohjat on geneerisiä dokumentteja, joita voidaan käyttää uuden artikkelin nopeaa luontiin. Kun käyttäjä painaa <i>Lisää artikkeli</i> nappulaa voi hän valita pohjan, jota käytetään artikkelin luontiin.
+thank-you-we-appreciate-your-feedback=Kiitos! Arvostamme palautettasi.
+thanks-your-feedback-will-help-us-to-improve-this-article=Kiitos! Palautteesi auttaa meitä parantamaan tätä artikkelia.
+the-article-content=Artikkelin sisältö
+the-article-could-not-be-found=Artikkelia ei löytynyt.
+the-article-description=Artikkelin kuvaus
+the-article-title=Artikkelin otsikko
+the-article-url=Artikkelin url
+the-community-name=Yhteisön nimi
+there-are-no-file-attachments-for-this-article=Ei tiedosto liitteitä tälle artikkelille.
+there-are-no-knowledge-base-articles-with-this-tag=Ei artikkeleita tällä tagilla.
+there-are-no-knowledge-base-articles=Ei artikkeleita.
+there-are-no-knowledge-base-templates=Ei pohjia.
+this-article-will-be-viewable-to-other-users-only-after-clicking-the-publish-button=Tämä artikkeli näkyy muille vasta sen jälkeen kun se on julkaistu.
+unsubscribe-to-all-articles=Lopeta kaikkien artikkeleiden tilaus.
+update-your-feedback-for-this-article=Päivitä palautteesi tälle artikkelille.
+user-opinions=Käyttäjän valinnat
+you-are-not-subscribed-to-any-knowledge-base-articles=Et ole tilannut yhtään knowledge base artikkelia.
+you-are-viewing-an-archived-version-of-this-article=Katselet arkistoitua versiota tästä artikkelista.
