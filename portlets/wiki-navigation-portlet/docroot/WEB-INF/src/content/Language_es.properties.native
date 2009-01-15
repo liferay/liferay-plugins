@@ -1,8 +1,9 @@
 depth=Profundidad
 menu=Menú
-no-entries-found=Ningunas entradas encontradas. Compruebe la configuración.
+navigation-page-help=Seleccione por favor una página del wiki. Todos los acoplamientos de esa página serán utilizados para construir un menú. Usted puede agrupar acoplamientos usando jefes del wiki.
 node-based=El nodo basó
 page-based=Página basada
+please-select-a-wiki-page-that-will-act-as-a-navigation-menu=Seleccione por favor una página del wiki que actúe como menú de la navegación
 the-wiki-could-not-be-found=El wiki no podía ser encontrado.
 tree=Árbol
 visualization=Visualización

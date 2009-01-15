@@ -1,8 +1,9 @@
 depth=深度
 menu=菜單
-no-entries-found=詞條沒有發現。 檢查配置。
+navigation-page-help=請選擇wiki頁。 那頁所有鏈接將被用于建立菜單。 通過使用wiki倒栽跳水，您能編組鏈接。
 node-based=基於的結
 page-based=頁根據
+please-select-a-wiki-page-that-will-act-as-a-navigation-menu=請選擇作为航海菜單的wiki頁
 the-wiki-could-not-be-found=不能找到wiki。
 tree=樹
 visualization=形象化

@@ -1,8 +1,9 @@
 depth=Diepte
 menu=Menu
-no-entries-found=Geen gevonden ingangen. Controleer de configuratie.
+navigation-page-help=Gelieve te selecteren een wikipagina. Alle verbindingen van die pagina zullen worden gebruikt om een menu te bouwen. U kunt verbindingen groeperen door wikikopballen te gebruiken.
 node-based=Gebaseerde knoop
 page-based=Gebaseerde pagina
+please-select-a-wiki-page-that-will-act-as-a-navigation-menu=Gelieve te selecteren een wikipagina die als navigatiemenu dienst zal doen
 the-wiki-could-not-be-found=Wiki kon niet worden gevonden.
 tree=Boom
 visualization=Visualisatie
