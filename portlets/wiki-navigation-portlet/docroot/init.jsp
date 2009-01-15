@@ -23,6 +23,7 @@
 %>
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 
 <%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
 <%@ taglib uri="http://liferay.com/tld/security" prefix="liferay-security" %>
@@ -33,6 +34,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
+<%@ page import="com.liferay.portal.kernel.log.Log" %>
+<%@ page import="com.liferay.portal.kernel.log.LogFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %>
 <%@ page import="com.liferay.portal.kernel.search.Document" %>
 <%@ page import="com.liferay.portal.kernel.search.Field" %>
@@ -51,8 +54,6 @@
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.StringUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.UnicodeFormatter" %>
-<%@ page import="com.liferay.portal.kernel.log.Log" %>
-<%@ page import="com.liferay.portal.kernel.log.LogFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%@ page import="com.liferay.portal.model.Company" %>
 <%@ page import="com.liferay.portal.model.CompanyConstants" %>
@@ -72,43 +73,39 @@
 <%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.SubscriptionLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.service.permission.PortletPermissionUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portal.util.PortletKeys" %>
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
+<%@ page import="com.liferay.portlet.wiki.NoSuchNodeException" %>
+<%@ page import="com.liferay.portlet.wiki.NoSuchPageException" %>
+<%@ page import="com.liferay.portlet.wiki.model.WikiNode" %>
+<%@ page import="com.liferay.portlet.wiki.model.WikiPage" %>
+<%@ page import="com.liferay.portlet.wiki.service.WikiNodeLocalServiceUtil" %>
+<%@ page import="com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil" %>
+<%@ page import="com.liferay.portlet.wiki.service.WikiPageServiceUtil" %>
+<%@ page import="com.liferay.wikinavigation.service.permissions.WikiPagePermission" %>
+<%@ page import="com.liferay.wikinavigation.util.EntryDisplay" %>
+<%@ page import="com.liferay.wikinavigation.WebKeys" %>
+<%@ page import="com.liferay.wikinavigation.WikiNavigationConstants" %>
 <%@ page import="com.liferay.util.MathUtil" %>
 <%@ page import="com.liferay.util.TextFormatter" %>
 <%@ page import="com.liferay.util.portlet.PortletProps" %>
 <%@ page import="com.liferay.util.servlet.UploadException" %>
 
 <%@ page import="java.io.StringReader" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Set" %>
 
 <%@ page import="javax.portlet.ActionRequest" %>
 <%@ page import="javax.portlet.PortletPreferences" %>
 <%@ page import="javax.portlet.PortletURL" %>
 <%@ page import="javax.portlet.RenderResponse" %>
-
-<%@ page import="java.util.Set" %>
-<%@ page import="java.util.List" %>
+<%@ page import="com.liferay.portal.kernel.util.PrefsParamUtil" %>
 
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />
-
-<%@ page import="com.liferay.portal.kernel.util.Constants"%>
-<%@ page import="com.liferay.portlet.wiki.NoSuchNodeException" %>
-<%@ page import="com.liferay.portlet.wiki.model.WikiNode" %>
-<%@ page import="com.liferay.portlet.wiki.model.WikiPage" %>
-<%@ page import="com.liferay.portlet.wiki.service.WikiNodeLocalServiceUtil" %>
-<%@ page import="com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil" %>
-<%@ page import="com.liferay.portlet.wiki.service.WikiPageServiceUtil"%>
-<%@ page import="com.liferay.portal.security.auth.PrincipalException"%>
-<%@ page import="com.liferay.portal.kernel.log.LogFactoryUtil"%>
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil"%>
-<%@ page import="com.liferay.portal.kernel.util.GetterUtil"%>
-<%@ page import="com.liferay.portal.kernel.util.Validator"%>
-<%@ page import="com.liferay.portlet.wikinavigation.EntryDisplay"%>
-<%@ page import="com.liferay.portlet.wikinavigation.WebKeys"%>
-
 
 <%
 PortletPreferences prefs = renderRequest.getPreferences();
@@ -119,14 +116,7 @@ if (Validator.isNotNull(portletResource)) {
 	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-long nodeId = GetterUtil.getLong(prefs.getValue("node-id", StringPool.BLANK));
-String title = ParamUtil.getString(renderRequest, "title", prefs.getValue("title", "FRONT_PAGE"));
-
-String type = ParamUtil.getString(renderRequest, "type", prefs.getValue("type", "tree"));
-int displayDepth = GetterUtil.getInteger(prefs.getValue("displayDepth", "-1"));
-
-int total = WikiPageLocalServiceUtil.getPagesCount(nodeId, true);
-
-List<WikiPage> wikiPages = WikiPageLocalServiceUtil.getPages(nodeId, true, 0, total);
-
+long nodeId = PrefsParamUtil.getLong(prefs, request, "node-id");
+String title = PrefsParamUtil.getString(prefs, request, "title", PropsUtil.get("wiki.front.page.name"));
+int depth = PrefsParamUtil.getInteger(prefs, request, "depth", WikiNavigationConstants.DEPTH_ALL);
 %>

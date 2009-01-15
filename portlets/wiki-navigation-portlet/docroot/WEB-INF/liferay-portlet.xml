@@ -1,11 +1,25 @@
 <?xml version="1.0"?>
-<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 5.1.0//EN" "http://www.liferay.com/dtd/liferay-portlet-app_5_1_0.dtd">
+<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 5.2.0//EN" "http://www.liferay.com/dtd/liferay-portlet-app_5_2_0.dtd">
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>wiki-navigation</portlet-name>
-		<icon>/icon.png</icon>
-		<configuration-action-class>com.liferay.portlet.wikinavigation.ConfigurationActionImpl</configuration-action-class>
+		<portlet-name>1</portlet-name>
+		<icon>/icons/wiki_navigation.png</icon>
+		<configuration-action-class>com.liferay.wikinavigation.navigationpage.action.ConfigurationActionImpl</configuration-action-class>
+		<use-default-template>true</use-default-template>
+		<restore-current-view>false</restore-current-view>
+		<layout-cacheable>true</layout-cacheable>
+		<instanceable>true</instanceable>
+		<private-request-attributes>false</private-request-attributes>
+		<private-session-attributes>false</private-session-attributes>
+		<render-weight>1</render-weight>
+		<header-portlet-css>/portlet.css</header-portlet-css>
+		<css-class-wrapper>portlet-wiki-navigation</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>2</portlet-name>
+		<icon>/icons/wiki_navigation.png</icon>
+		<configuration-action-class>com.liferay.wikinavigation.pagehierarchy.action.ConfigurationActionImpl</configuration-action-class>
 		<use-default-template>true</use-default-template>
 		<restore-current-view>false</restore-current-view>
 		<layout-cacheable>true</layout-cacheable>

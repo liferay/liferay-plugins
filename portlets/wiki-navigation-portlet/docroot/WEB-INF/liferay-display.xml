@@ -3,6 +3,7 @@
 
 <display>
 	<category name="category.wiki">
-		<portlet id="wiki-navigation" />
+		<portlet id="1" />
+		<portlet id="2" />
 	</category>
 </display>
