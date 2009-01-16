@@ -321,6 +321,10 @@
 		</antcall>
 
 		<antcall target="build-lang-native2ascii">
+			<param name="lang.code" value="pl" />
+		</antcall>
+
+		<antcall target="build-lang-native2ascii">
 			<param name="lang.code" value="pt" />
 		</antcall>
 
