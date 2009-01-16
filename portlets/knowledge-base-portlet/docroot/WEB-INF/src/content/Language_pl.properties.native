@@ -1,0 +1,46 @@
+##
+## Messages
+##
+
+add-article=Dodaj artykuł
+add-child-article=Dodaj artykuł podrzędny
+all-articles=Wszystkie artykuły
+all-knowledge-base-articles=Wszystkie artykuły bazy wiedzy.
+applying-a-template-will-not-delete-any-previous-work-in-this-article=Zastosowanie szablonu nie usunie żadnej wcześniejszej pracy związanej z tym artykułem.
+article-added-notification=Powiadomienie o dodaniu artykułu
+article-description=Opis artykułu
+article-updated-notification=Powiadomienie o aktualizacji artykułu
+articles-with-category-x=Artykuły z kategorią {0}
+articles-with-tag-x=Artykuły z etykietą {0}
+articles=Artykuły
+did-you-find-this-helpful=Czy te informacje były dla Ciebie pomocne??
+glad-it-helped-what-did-you-find-most-helpful=Miło, że pomogło. Co było dla Ciebie najbardziej pomocne?
+import-article=Importuj artykuł
+knowledge-base-articles=Artykuły bazy wiedzy
+knowledge-base=Baza wiedzy
+leave-this-box-unchecked-to-email-subscribed-users-that-this-article-has-recently-been-updated=Pozostaw tą opcję niezaznaczoną aby wysłać email do subskrybentów, że ten artykuł został zaktualizowany.
+let-us-know-what-you-thought=Daj nam znać co o tym myślisz
+no-articles-were-found-that-matched-the-keywords-x=Brak artykułów pasujących do słów kluczowych {0}
+please-let-us-know-why-you-found-this-unhelpful=Prosimy o informację dlaczego uznałeś to za nieprzydatne.
+select-the-scope-to-search-for-knowledge-base-articles=Wybierz zakres wyszukiwania dla artykułów bazy wiedzy.
+sign-in-to-rate-this-article=Zaloguj się aby ocenić ten artykuł.
+subscribe-to-all-articles=Zasubskrybuj wszystkie artykuły.
+templates-are-generic-documents-that-can-be-used-to-quickly-create-new-articles-once-users-click-the-add-article-button-they-can-then-choose-a-template-to-use-for-their-article=Szablony są ogólnymi dokumentami, które mogą być użyte do szybkiego tworzenia artykułów. Po kliknięciu przez użytkownika przycisku <i>Dodaj artykuł</i>, może on wybrać szablon dla swojego artykułu.
+thank-you-we-appreciate-your-feedback=Dzięki! Doceniamy Twoją opinię.
+thanks-your-feedback-will-help-us-to-improve-this-article=Dzięki! Twoja opinia pomoże nam udoskonalić ten artykuł.
+the-article-content=Zawartość tego artykułu
+the-article-could-not-be-found=Artykuł nie został odnaleziony.
+the-article-description=Opis artykułu
+the-article-title=Tytuł artykułu
+the-article-url=URL artykułu
+the-community-name=Nazwa społeczności
+there-are-no-file-attachments-for-this-article=Brak załączników dla tego artykułu.
+there-are-no-knowledge-base-articles-with-this-tag=Brak artykułów bazy wiedzy z podaną etykietą.
+there-are-no-knowledge-base-articles=Brak artykułów bazy wiedzy.
+there-are-no-knowledge-base-templates=Brak szablonów bazy wiedzy.
+this-article-will-be-viewable-to-other-users-only-after-clicking-the-publish-button=Ten artykuł będzie możliwy do obejrzenia wyłącznie po kliknięciu przycisku publikuj.
+unsubscribe-to-all-articles=Usuń subskrypcje wszystkich artykułów.
+update-your-feedback-for-this-article=Uaktualnij swoją opinię na temat tego artykułu.
+user-opinions=Opinie użytkownika
+you-are-not-subscribed-to-any-knowledge-base-articles=Nie subskrybujesz żadnego artykułu z bazy danych.
+you-are-viewing-an-archived-version-of-this-article=Oglądasz archiwalną wersję tego artykułu.
