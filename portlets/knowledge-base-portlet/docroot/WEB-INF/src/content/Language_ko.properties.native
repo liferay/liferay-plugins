@@ -2,9 +2,13 @@
 ## Messages
 ##
 
+add-article=기사를 추가하십시오
+add-child-article=아이 기사를 추가하십시오
+all-articles=모든 기사
 all-knowledge-base-articles=모든 지식 기준 기사.
 applying-a-template-will-not-delete-any-previous-work-in-this-article=템플렛을 적용하는 것은 이 기사에 있는 어떤 사전 작업도 삭제하지 않을 것이다.
 article-added-notification=기사는 통보를 추가했다
+article-description=기사 묘사
 article-updated-notification=기사는 통보를 새롭게 했다
 articles-with-category-x=Articles with category {0}
 articles-with-tag-x=Articles with tag {0}
@@ -25,6 +29,7 @@ templates-are-generic-documents-that-can-be-used-to-quickly-create-new-articles-
 thank-you-we-appreciate-your-feedback=당신을 감사하십시오! 우리는 당신의 의견을 평가한다.
 thanks-your-feedback-will-help-us-to-improve-this-article=감사합니다! 당신의 의견은 저희가 이 기사를 개량할 것을 도울 것이다.
 the-article-content=기사 내용
+the-article-could-not-be-found=기사는 찾아낼 수 없었다.
 the-article-description=기사 묘사
 the-article-title=기사 제목
 the-article-url=기사 URL
@@ -33,6 +38,7 @@ there-are-no-file-attachments-for-this-article=이 기사를 위한 파일 부�
 there-are-no-knowledge-base-articles-with-this-tag=이 꼬리표를 가진 지식 기준 기사가 없다.
 there-are-no-knowledge-base-articles=지식 기준 기사가 없다.
 there-are-no-knowledge-base-templates=지식 기준 템플렛이 없다.
+this-article-will-be-viewable-to-other-users-only-after-clicking-the-publish-button=이 기사는 간행 단추를 누르기 직후에 다른 사용자에게 볼 수 있을 것이다.
 unsubscribe-to-all-articles=모든 기사를 구독 취소하십시오.
 update-your-feedback-for-this-article=이 기사를 위한 당신의 의견을 새롭게 하십시오.
 user-opinions=사용자 의견

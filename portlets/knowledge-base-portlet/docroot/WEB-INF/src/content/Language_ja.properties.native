@@ -2,9 +2,13 @@
 ## Messages
 ##
 
+add-article=記事を加えなさい
+add-child-article=子供の記事を加えなさい
+all-articles=すべての記事
 all-knowledge-base-articles=すべての知識ベースの記事。
 applying-a-template-will-not-delete-any-previous-work-in-this-article=型板を加えることはこの記事の前の仕事を削除しない。
 article-added-notification=記事は通告を加えた
+article-description=記事の記述
 article-updated-notification=記事は通告を更新した
 articles-with-category-x=Articles with category {0}
 articles-with-tag-x=Articles with tag {0}
@@ -25,6 +29,7 @@ templates-are-generic-documents-that-can-be-used-to-quickly-create-new-articles-
 thank-you-we-appreciate-your-feedback=ありがとう! 私達はあなたのフィードバックを認める。
 thanks-your-feedback-will-help-us-to-improve-this-article=ありがとう! あなたのフィードバックは私達がこの記事を改良するのを助ける。
 the-article-content=記事の内容
+the-article-could-not-be-found=記事は見つけることができなかった。
 the-article-description=記事の記述
 the-article-title=記事のタイトル
 the-article-url=記事URL
@@ -33,6 +38,7 @@ there-are-no-file-attachments-for-this-article=この記事のためのファイ
 there-are-no-knowledge-base-articles-with-this-tag=この札が付いている知識ベースの記事がない。
 there-are-no-knowledge-base-articles=知識ベースの記事がない。
 there-are-no-knowledge-base-templates=知識ベースの型板がない。
+this-article-will-be-viewable-to-other-users-only-after-clicking-the-publish-button=この記事は出版ボタンをかちりと鳴らすことの後やっと他のユーザーに見ることができる。
 unsubscribe-to-all-articles=すべての記事を予約講読を解除しなさい。
 update-your-feedback-for-this-article=この記事のためのあなたのフィードバックを更新しなさい。
 user-opinions=ユーザーの意見

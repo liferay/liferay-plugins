@@ -2,9 +2,13 @@
 ## Messages
 ##
 
+add-article=Ajoutez l'article
+add-child-article=Ajoutez l'article d'enfant
+all-articles=Tous les articles
 all-knowledge-base-articles=Tous les articles de base de connaissance.
 applying-a-template-will-not-delete-any-previous-work-in-this-article=L'application d'un calibre ne supprimera aucun travail précédent en cet article.
 article-added-notification=Avis supplémentaire par article
+article-description=Description d'article
 article-updated-notification=Avis mis à jour d'article
 articles-with-category-x=Articles with category {0}
 articles-with-tag-x=Articles with tag {0}
@@ -25,6 +29,7 @@ templates-are-generic-documents-that-can-be-used-to-quickly-create-new-articles-
 thank-you-we-appreciate-your-feedback=Merci ! Nous apprécions votre rétroaction.
 thanks-your-feedback-will-help-us-to-improve-this-article=Merci ! Votre rétroaction nous aidera à améliorer cet article.
 the-article-content=Le contenu d'article
+the-article-could-not-be-found=L'article n'a pas pu être trouvé.
 the-article-description=La description d'article
 the-article-title=Le titre d'article
 the-article-url=L'URL d'article
@@ -33,6 +38,7 @@ there-are-no-file-attachments-for-this-article=Il n'y a aucun attachement de dos
 there-are-no-knowledge-base-articles-with-this-tag=Il n'y a aucun article de base de connaissance avec cette étiquette.
 there-are-no-knowledge-base-articles=Il n'y a aucun article de base de connaissance.
 there-are-no-knowledge-base-templates=Il n'y a aucun calibre de base de connaissance.
+this-article-will-be-viewable-to-other-users-only-after-clicking-the-publish-button=Cet article sera visualisable à d'autres utilisateurs seulement après cliquer sur le bouton d'édition.
 unsubscribe-to-all-articles=Se désinscrire à tous les articles.
 update-your-feedback-for-this-article=Mettez à jour votre rétroaction pour cet article.
 user-opinions=Avis d'utilisateur

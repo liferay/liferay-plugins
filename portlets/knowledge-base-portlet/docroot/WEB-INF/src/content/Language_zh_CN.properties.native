@@ -2,9 +2,13 @@
 ## Messages
 ##
 
+add-article=增加文章
+add-child-article=增加儿童文章
+all-articles=所有文章
 all-knowledge-base-articles=所有知识库文章。
 applying-a-template-will-not-delete-any-previous-work-in-this-article=运用模板在这篇文章上不会删除任何以前的工作。
 article-added-notification=文章增加的通知
+article-description=文章描述
 article-updated-notification=文章更新通知
 articles-with-category-x=Articles with category {0}
 articles-with-tag-x=Articles with tag {0}
@@ -25,6 +29,7 @@ templates-are-generic-documents-that-can-be-used-to-quickly-create-new-articles-
 thank-you-we-appreciate-your-feedback=谢谢! 我们赞赏您的反馈。
 thanks-your-feedback-will-help-us-to-improve-this-article=谢谢! 您的反馈将帮助我们改进这篇文章。
 the-article-content=文章内容
+the-article-could-not-be-found=不能找到文章。
 the-article-description=文章描述
 the-article-title=文章标题
 the-article-url=文章URL
@@ -33,6 +38,7 @@ there-are-no-file-attachments-for-this-article=没有这篇文章的文件附件
 there-are-no-knowledge-base-articles-with-this-tag=没有与这个标记的知识库文章。
 there-are-no-knowledge-base-articles=没有知识库文章。
 there-are-no-knowledge-base-templates=没有知识库模板。
+this-article-will-be-viewable-to-other-users-only-after-clicking-the-publish-button=这篇文章将是看得见的对其他用户在点击出版按钮之后。
 unsubscribe-to-all-articles=取消预订对所有文章。
 update-your-feedback-for-this-article=更新您的这篇文章的反馈。
 user-opinions=用户观点

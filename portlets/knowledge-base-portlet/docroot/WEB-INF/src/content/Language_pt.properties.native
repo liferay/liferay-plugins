@@ -2,9 +2,13 @@
 ## Messages
 ##
 
+add-article=Adicione o artigo
+add-child-article=Adicione o artigo da criança
+all-articles=Todos os artigos
 all-knowledge-base-articles=Todos os artigos da base de conhecimento.
 applying-a-template-will-not-delete-any-previous-work-in-this-article=Aplicar um molde não suprimirá de nenhuns trabalhos anteriores neste artigo.
 article-added-notification=Notificação adicionada artigo
+article-description=Descrição do artigo
 article-updated-notification=Notificação actualizado do artigo
 articles-with-category-x=Articles with category {0}
 articles-with-tag-x=Articles with tag {0}
@@ -25,6 +29,7 @@ templates-are-generic-documents-that-can-be-used-to-quickly-create-new-articles-
 thank-you-we-appreciate-your-feedback=Obrigado! Nós apreciamos seu gabarito.
 thanks-your-feedback-will-help-us-to-improve-this-article=Obrigado! Seu gabarito ajudar-nos-á a melhorar este artigo.
 the-article-content=O índice do artigo
+the-article-could-not-be-found=O artigo não podia ser encontrado.
 the-article-description=A descrição do artigo
 the-article-title=O título do artigo
 the-article-url=O URL do artigo
@@ -33,6 +38,7 @@ there-are-no-file-attachments-for-this-article=Não há nenhum acessório da lim
 there-are-no-knowledge-base-articles-with-this-tag=Não há nenhum artigo da base de conhecimento com este Tag.
 there-are-no-knowledge-base-articles=Não há nenhum artigo da base de conhecimento.
 there-are-no-knowledge-base-templates=Não há nenhum molde da base de conhecimento.
+this-article-will-be-viewable-to-other-users-only-after-clicking-the-publish-button=Este artigo será viewable a outros usuários somente depois o clique da tecla da publicação.
 unsubscribe-to-all-articles=Unsubscribe a todos os artigos.
 update-your-feedback-for-this-article=Actualize seu gabarito para este artigo.
 user-opinions=Opiniões do usuário

@@ -2,9 +2,13 @@
 ## Messages
 ##
 
+add-article=Voeg Artikel toe
+add-child-article=Voeg het Artikel van het Kind toe
+all-articles=Alle Artikelen
 all-knowledge-base-articles=Alle kennisbankartikelen.
 applying-a-template-will-not-delete-any-previous-work-in-this-article=Het toepassen van een malplaatje zal geen voorafgaand werk in dit artikel schrappen.
 article-added-notification=Artikel Toegevoegd Bericht
+article-description=De beschrijving van het artikel
 article-updated-notification=Artikel Bijgewerkt Bericht
 articles-with-category-x=Articles with category {0}
 articles-with-tag-x=Articles with tag {0}
@@ -25,6 +29,7 @@ templates-are-generic-documents-that-can-be-used-to-quickly-create-new-articles-
 thank-you-we-appreciate-your-feedback=Dank u! Wij waarderen uw terugkoppel.
 thanks-your-feedback-will-help-us-to-improve-this-article=Dank! Uw koppel zal helpen ons terug om dit artikel te verbeteren.
 the-article-content=De artikelinhoud
+the-article-could-not-be-found=Het artikel kon niet worden gevonden.
 the-article-description=De artikelbeschrijving
 the-article-title=De artikeltitel
 the-article-url=Het artikel url
@@ -33,6 +38,7 @@ there-are-no-file-attachments-for-this-article=Er is geen dossiergehechtheid voo
 there-are-no-knowledge-base-articles-with-this-tag=Er zijn geen kennisbankartikelen met deze markering.
 there-are-no-knowledge-base-articles=Er zijn geen kennisbankartikelen.
 there-are-no-knowledge-base-templates=Er zijn geen kennisbankmalplaatjes.
+this-article-will-be-viewable-to-other-users-only-after-clicking-the-publish-button=Dit artikel zal aan andere gebruikers slechts na klikken publiceert knoop viewable zijn.
 unsubscribe-to-all-articles=Meld aan alle artikelen af.
 update-your-feedback-for-this-article=Werk uw bij terugkoppelen voor dit artikel.
 user-opinions=De Adviezen van de gebruiker
