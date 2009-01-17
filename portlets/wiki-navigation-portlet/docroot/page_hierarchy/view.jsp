@@ -25,7 +25,7 @@
 
 <div class="portlet-wiki-navigation-tree">
 	<%
-	List<EntryDisplay> entries = (List<EntryDisplay>)renderRequest.getAttribute(WebKeys.HIERARCHY_ENTRIES );
+	List<EntryDisplay> entries = (List<EntryDisplay>)renderRequest.getAttribute(WebKeys.HIERARCHY_ENTRIES);
 
 	if (entries.isEmpty()) {
 	%>

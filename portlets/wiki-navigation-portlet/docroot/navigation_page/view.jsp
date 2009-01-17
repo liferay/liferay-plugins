@@ -31,10 +31,11 @@ WikiPage wikiPage = (WikiPage)renderRequest.getAttribute(WebKeys.WIKI_PAGE);
 
 	<%
 	if (entries == null) {
+		renderRequest.setAttribute(WebKeys.PORTLET_CONFIGURATOR_VISIBILITY, Boolean.TRUE);
 	%>
 
 		<div class="portlet-msg-info">
-			<liferay-ui:message key="please-select-a-wiki-page-that-will-act-as-a-navigation-menu" />
+			<a href="<%= portletDisplay.getURLConfiguration() %>"><liferay-ui:message key="please-select-a-wiki-page-that-will-act-as-a-navigation-menu" /></a>
 		</div>
 
 	<%
@@ -48,7 +49,7 @@ WikiPage wikiPage = (WikiPage)renderRequest.getAttribute(WebKeys.WIKI_PAGE);
 	}
 	%>
 
-	<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, plid, portletDisplay.getId(), ActionKeys.CONFIGURATION) && WikiPagePermission.contains(permissionChecker, wikiPage, ActionKeys.UPDATE) %>">
+	<c:if test="<%= (wikiPage != null) && PortletPermissionUtil.contains(permissionChecker, plid, portletDisplay.getId(), ActionKeys.CONFIGURATION) && WikiPagePermission.contains(permissionChecker, wikiPage, ActionKeys.UPDATE) %>">
 		<br />
 
 		<liferay-portlet:renderURL var="editURL" portletName="<%= PortletKeys.WIKI %>">

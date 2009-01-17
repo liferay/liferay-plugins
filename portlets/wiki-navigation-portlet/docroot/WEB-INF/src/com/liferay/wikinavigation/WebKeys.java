@@ -35,6 +35,9 @@ public interface WebKeys {
 
 	public static final String NAVIGATION_ENTRIES = "NAVIGATION_ENTRIES";
 
+	public static final String PORTLET_CONFIGURATOR_VISIBILITY =
+		"PORTLET_CONFIGURATOR_VISIBILITY";
+
 	public static final String PORTLET_DECORATE = "PORTLET_DECORATE";
 
 	public static final String WIKI_PAGE = "WIKI_PAGE";
