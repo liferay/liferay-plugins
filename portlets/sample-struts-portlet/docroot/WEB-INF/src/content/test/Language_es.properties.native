@@ -2,31 +2,31 @@
 ## Validator
 ##
 
-errors.byte={0} must be a byte.
-errors.creditcard={0} is not a valid credit card number.
-errors.date={0} is not a date.
-errors.double={0} must be a double.
-errors.email={0} is an invalid e-mail address.
-errors.float={0} must be a float.
-errors.integer={0} must be a integer.
-errors.invalid={0} is invalid.
-errors.long={0} must be a long.
-errors.maxlength={0} can not be greater than {1} characters.
-errors.minlength={0} can not be less than {1} characters.
-errors.range={0} is not in the range {1} through {2}.
-errors.required={0} is required.
-errors.short={0} must be a short.
+errors.byte={0} debe ser un byte.
+errors.creditcard={0} no es un número de tarjeta de cŕeido válido.
+errors.date={0} no es una fecha.
+errors.double={0} debe ser un double.
+errors.email={0} no es una dirección de email válida.
+errors.float={0} debe ser un float.
+errors.integer={0} debe ser un entero.
+errors.invalid={0} no es válido.
+errors.long={0} debe ser un long.
+errors.maxlength={0} no puede tener más de {1} caracteres.
+errors.minlength={0} no puede tener menos de {1} caracteres.
+errors.range={0} no está en el rango de {1} a {2}.
+errors.required=Se requiere {0}.
+errors.short={0} debe ser un short.
 
 ##
 ## Custom errors
 ##
 
-error.emailAddress.required=Incorpore por favor un email address válido.
-error.lastName.required=Incorpore por favor un nombre pasado válido.
-error.sample.exception=Esto es una excepción de la muestra.
+error.emailAddress.required=Por favor, introduzca una dirección de email válida.
+error.lastName.required=Por favor, introduzca un apellido válido.
+error.sample.exception=Esto es una excepción de ejemplo.
 
 ##
 ## Messages
 ##
 
-hello-there=Hola Allí
+hello-there=Hola, ¿qué tal?

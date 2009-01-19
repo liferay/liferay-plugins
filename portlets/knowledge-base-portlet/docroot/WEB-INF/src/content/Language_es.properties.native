@@ -2,8 +2,8 @@
 ## Messages
 ##
 
-add-article=Agregue el artículo
-add-child-article=Agregue el artículo del niño
+add-article=Añadir artículo
+add-child-article=Añadir subartículo
 all-articles=Todos los artículos
 all-knowledge-base-articles=Todos los artículos de la base de conocimiento.
 applying-a-template-will-not-delete-any-previous-work-in-this-article=La aplicación de una plantilla no suprimirá ningún trabajo previo en este artículo.
@@ -29,7 +29,7 @@ templates-are-generic-documents-that-can-be-used-to-quickly-create-new-articles-
 thank-you-we-appreciate-your-feedback=¡Gracias! Apreciamos sus sugerencias.
 thanks-your-feedback-will-help-us-to-improve-this-article=¡Gracias! Sus sugerencias nos ayudarán a mejorar este artículo.
 the-article-content=El contenido del artículo
-the-article-could-not-be-found=El artículo no podía ser encontrado.
+the-article-could-not-be-found=No se ha encontrado el artículo.
 the-article-description=La descripción del artículo
 the-article-title=El título del artículo
 the-article-url=La URL del artículo
@@ -38,7 +38,7 @@ there-are-no-file-attachments-for-this-article=No hay archivos adjuntos para est
 there-are-no-knowledge-base-articles-with-this-tag=No hay artículos de la base de conocimiento con esta etiqueta.
 there-are-no-knowledge-base-articles=No hay artículos de la base de conocimiento.
 there-are-no-knowledge-base-templates=No hay plantillas de la base de conocimiento.
-this-article-will-be-viewable-to-other-users-only-after-clicking-the-publish-button=Este artículo será visible a otros usuarios solamente después de chascar el botón de la publicación.
+this-article-will-be-viewable-to-other-users-only-after-clicking-the-publish-button=Este artículo será visible a otros usuarios una vez que se haga click sobre el botón de Publicar.
 unsubscribe-to-all-articles=Darse de baja de todos los artículos.
 update-your-feedback-for-this-article=Actualizar su sugerencia para este artículo.
 user-opinions=Opiniones de usuarios

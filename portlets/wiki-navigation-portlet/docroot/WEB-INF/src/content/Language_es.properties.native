@@ -1,9 +1,9 @@
 depth=Profundidad
 menu=Menú
-navigation-page-help=Seleccione por favor una página del wiki. Todos los acoplamientos de esa página serán utilizados para construir un menú. Usted puede agrupar acoplamientos usando jefes del wiki.
-node-based=El nodo basó
-page-based=Página basada
-please-select-a-wiki-page-that-will-act-as-a-navigation-menu=Seleccione por favor una página del wiki que actúe como menú de la navegación
-the-wiki-could-not-be-found=El wiki no podía ser encontrado.
+navigation-page-help=Por favor, seleccione una página del wiki. Todos los enlaces de esa página serán utilizados para construír un menú. Se pueden agrupar enlaces utilizando cabeceras wiki.
+node-based=Basado en nodos
+page-based=Basado en páginas
+please-select-a-wiki-page-that-will-act-as-a-navigation-menu=Por favor, seleccione una página del wiki que actuará como menú de navegación
+the-wiki-could-not-be-found=No se ha encontrado el wiki.
 tree=Árbol
 visualization=Visualización
