@@ -827,7 +827,7 @@ Liferay.Chat.Manager = {
 			buddy = jQuery('li[userId=' + user + ']', instance._onlineBuddies[0]);
 			userId = user;
 		}
-		else if(user.tagName || user.jquery) {
+		else if (user.tagName || user.jquery) {
 			buddy = jQuery(user);
 			userId = buddy.attr('userId');
 		}
@@ -853,7 +853,8 @@ Liferay.Chat.Manager = {
 						open: true
 					}
 				);
-			} else {
+			}
+			else {
 				chat.show();
 			}
 		}
@@ -1055,10 +1056,11 @@ Liferay.Chat.Manager = {
 
 			var userImagePath = Liferay.Chat.Util.getUserImagePath(buddy.portraitId);
 
-			buffer.push('<li class="' + cssClass + '" userId="' + buddy.userId + '">' +
-							'<img src="' + userImagePath + '" />' +
-							'<div class="name">' + buddy.fullName + '</div>' +
-						'</li>');
+			buffer.push(
+				'<li class="' + cssClass + '" userId="' + buddy.userId + '">' +
+					'<img src="' + userImagePath + '" />' +
+					'<div class="name">' + buddy.fullName + '</div>' +
+				'</li>');
 		}
 
 		instance._onlineBuddies.html(buffer.join(''));
@@ -1072,6 +1074,7 @@ Liferay.Chat.Manager = {
 		var buddyList = instance._getPanel('buddylist');
 
 		var title = buddyList.getTitle();
+
 		title = title.replace(/\(\d+\)/, '(' + instance._onlineBuddiesCount + ')');
 
 		buddyList.setTitle(title);
