@@ -30,6 +30,8 @@ import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
@@ -42,9 +44,6 @@ import com.liferay.twitter.NoSuchFeedException;
 import com.liferay.twitter.model.Feed;
 import com.liferay.twitter.model.impl.FeedImpl;
 import com.liferay.twitter.model.impl.FeedModelImpl;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -772,5 +771,5 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 	@BeanReference(name = "com.liferay.twitter.service.persistence.FeedPersistence.impl")
 	protected com.liferay.twitter.service.persistence.FeedPersistence feedPersistence;
-	private static Log _log = LogFactory.getLog(FeedPersistenceImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(FeedPersistenceImpl.class);
 }

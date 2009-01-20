@@ -30,6 +30,8 @@ import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
@@ -42,9 +44,6 @@ import com.liferay.wsrp.NoSuchConfiguredProducerException;
 import com.liferay.wsrp.model.WSRPConfiguredProducer;
 import com.liferay.wsrp.model.impl.WSRPConfiguredProducerImpl;
 import com.liferay.wsrp.model.impl.WSRPConfiguredProducerModelImpl;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -857,5 +856,5 @@ public class WSRPConfiguredProducerPersistenceImpl extends BasePersistenceImpl
 	protected com.liferay.wsrp.service.persistence.WSRPPortletPersistence wsrpPortletPersistence;
 	@BeanReference(name = "com.liferay.wsrp.service.persistence.WSRPProducerPersistence.impl")
 	protected com.liferay.wsrp.service.persistence.WSRPProducerPersistence wsrpProducerPersistence;
-	private static Log _log = LogFactory.getLog(WSRPConfiguredProducerPersistenceImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(WSRPConfiguredProducerPersistenceImpl.class);
 }

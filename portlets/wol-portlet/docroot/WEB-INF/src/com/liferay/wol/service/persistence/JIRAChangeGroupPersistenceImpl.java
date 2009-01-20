@@ -30,6 +30,8 @@ import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
@@ -42,9 +44,6 @@ import com.liferay.wol.NoSuchJIRAChangeGroupException;
 import com.liferay.wol.model.JIRAChangeGroup;
 import com.liferay.wol.model.impl.JIRAChangeGroupImpl;
 import com.liferay.wol.model.impl.JIRAChangeGroupModelImpl;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -1126,5 +1125,5 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 	protected com.liferay.wol.service.persistence.SVNRevisionPersistence svnRevisionPersistence;
 	@BeanReference(name = "com.liferay.wol.service.persistence.WallEntryPersistence.impl")
 	protected com.liferay.wol.service.persistence.WallEntryPersistence wallEntryPersistence;
-	private static Log _log = LogFactory.getLog(JIRAChangeGroupPersistenceImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(JIRAChangeGroupPersistenceImpl.class);
 }

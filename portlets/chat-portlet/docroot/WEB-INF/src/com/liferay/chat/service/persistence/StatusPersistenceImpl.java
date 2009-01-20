@@ -35,6 +35,8 @@ import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
@@ -42,9 +44,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -1516,5 +1515,5 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 	protected com.liferay.chat.service.persistence.EntryPersistence entryPersistence;
 	@BeanReference(name = "com.liferay.chat.service.persistence.StatusPersistence.impl")
 	protected com.liferay.chat.service.persistence.StatusPersistence statusPersistence;
-	private static Log _log = LogFactory.getLog(StatusPersistenceImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(StatusPersistenceImpl.class);
 }
