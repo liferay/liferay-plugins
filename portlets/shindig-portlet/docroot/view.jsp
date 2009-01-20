@@ -42,8 +42,8 @@ if (layout.getGroup().isUser()) {
 String baseSecurityToken = ShindigUtil.createBaseSecurityToken(ownerId, themeDisplay.getUserId(), "appId" , PortalUtil.getPortalURL(themeDisplay), gadgetUrl);
 %>
 
-<%@ page import="com.liferay.portal.util.PortalUtil"%>
-<%@ page import="com.liferay.portlet.shindig.util.ShindigUtil"%>
+<%@ page import="com.liferay.portal.util.PortalUtil" %>
+<%@ page import="com.liferay.portlet.shindig.util.ShindigUtil" %>
 
 <div id="<portlet:namespace />gadget-chrome" class="gadgets-gadget-chrome"></div>
 

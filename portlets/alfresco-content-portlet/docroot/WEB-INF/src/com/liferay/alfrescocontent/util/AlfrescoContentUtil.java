@@ -22,6 +22,8 @@
 
 package com.liferay.alfrescocontent.util;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.util.portlet.PortletProps;
@@ -51,9 +53,6 @@ import org.alfresco.webservice.types.Store;
 import org.alfresco.webservice.util.AuthenticationUtils;
 import org.alfresco.webservice.util.Constants;
 import org.alfresco.webservice.util.WebServiceFactory;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="AlfrescoContentUtil.java.html"><b><i>View Source</i></b></a>
@@ -362,6 +361,6 @@ public class AlfrescoContentUtil {
 	private static final Store _SPACES_STORE =
 		new Store(Constants.WORKSPACE_STORE, "SpacesStore");
 
-	private static Log _log = LogFactory.getLog(AlfrescoContentUtil.class);
+	private static Log _log = LogFactoryUtil.getLog(AlfrescoContentUtil.class);
 
 }

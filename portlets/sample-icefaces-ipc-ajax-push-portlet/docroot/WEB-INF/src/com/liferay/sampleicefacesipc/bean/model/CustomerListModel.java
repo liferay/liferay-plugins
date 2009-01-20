@@ -26,8 +26,8 @@ import java.util.List;
 
 import javax.faces.event.ValueChangeEvent;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import com.liferay.sampleicefacesipc.service.CustomerService;
 import com.liferay.sampleicefacesipc.transfer.Customer;
@@ -131,7 +131,7 @@ public class CustomerListModel implements DisposableBean, Renderable {
 
 	private static final String CUSTOMER_RENDER_GROUP = "CUSTOMER_RENDER_GROUP";
 
-	private static final Log _log = LogFactory.getLog(CustomerListModel.class);
+	private static final Log _log = LogFactoryUtil.getLog(CustomerListModel.class);
 
 	private CustomerService _customerService;
 	private PersistentFacesState _persistentFacesState;

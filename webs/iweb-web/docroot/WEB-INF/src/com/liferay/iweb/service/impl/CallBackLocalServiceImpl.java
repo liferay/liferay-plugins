@@ -41,8 +41,6 @@
 
 package com.liferay.iweb.service.impl;
 
-import java.util.Set;
-
 import com.liferay.iweb.IWebException;
 import com.liferay.iweb.model.InterestGroup;
 import com.liferay.iweb.model.PostEntry;
@@ -55,6 +53,8 @@ import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceUtil;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil;
+
+import java.util.Set;
 
 /**
  * <a href="CallBackLocalServiceImpl.java.html"><b><i>View Source</i></b></a>

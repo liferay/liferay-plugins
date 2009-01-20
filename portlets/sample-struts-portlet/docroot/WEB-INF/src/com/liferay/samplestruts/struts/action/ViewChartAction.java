@@ -22,6 +22,9 @@
 
 package com.liferay.samplestruts.struts.action;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.io.OutputStream;
 
 import java.util.Enumeration;
@@ -33,8 +36,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.PageContext;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -168,6 +169,6 @@ public class ViewChartAction extends Action {
 		return dataset;
 	}
 
-	private static Log _log = LogFactory.getLog(ViewChartAction.class);
+	private static Log _log = LogFactoryUtil.getLog(ViewChartAction.class);
 
 }

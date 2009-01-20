@@ -42,6 +42,8 @@
 package com.liferay.wsrp.consumer.producermanager;
 
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.util.portlet.PortletProps;
@@ -75,9 +77,6 @@ import java.util.Set;
 
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="ProducerEntityManagerImpl.java.html"><b><i>View Source</i></b></a>
@@ -450,7 +449,7 @@ public class ProducerEntityManagerImpl
 	private static final String _DEFAULT_CONSUMER_NAME =
 		"Liferay WSRP Consumer";
 
-	private static Log _log = LogFactory.getLog(
+	private static Log _log = LogFactoryUtil.getLog(
 		ProducerEntityManagerImpl.class);
 
 	private String _portalId;

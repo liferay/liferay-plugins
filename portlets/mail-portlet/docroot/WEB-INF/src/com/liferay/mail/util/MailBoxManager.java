@@ -26,6 +26,8 @@ import com.liferay.mail.model.MailAccount;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -78,9 +80,6 @@ import javax.mail.search.OrTerm;
 import javax.mail.search.RecipientStringTerm;
 import javax.mail.search.SearchTerm;
 import javax.mail.search.SubjectTerm;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="MailBoxManager.java.html"><b><i>View Source</i></b></a>
@@ -1214,7 +1213,7 @@ public class MailBoxManager {
 
 	private static final String _SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 
-	private static final Log _log = LogFactory.getLog(MailBoxManager.class);
+	private static final Log _log = LogFactoryUtil.getLog(MailBoxManager.class);
 
 	private static ConcurrentHashMap<String, Store> _allStores =
 		new ConcurrentHashMap<String, Store>();

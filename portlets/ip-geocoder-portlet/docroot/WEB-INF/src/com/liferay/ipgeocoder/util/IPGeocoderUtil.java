@@ -23,15 +23,14 @@
 package com.liferay.ipgeocoder.util;
 
 import com.liferay.ipgeocoder.model.IPInfo;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.util.portlet.PortletProps;
 
 import com.maxmind.geoip.Location;
 import com.maxmind.geoip.LookupService;
 
 import java.io.IOException;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="IPGeocoderUtil.java.html"><b><i>View Source</i></b></a>
@@ -75,7 +74,7 @@ public class IPGeocoderUtil {
 		}
 	}
 
-	private static Log _log = LogFactory.getLog(IPGeocoderUtil.class);
+	private static Log _log = LogFactoryUtil.getLog(IPGeocoderUtil.class);
 
 	private static IPGeocoderUtil _instance = new IPGeocoderUtil();
 

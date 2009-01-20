@@ -35,6 +35,8 @@ import com.liferay.kb.util.RSSUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
@@ -80,9 +82,6 @@ import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="KnowledgeBasePortlet.java.html"><b><i>View Source</i></b></a>
@@ -800,6 +799,6 @@ public class KnowledgeBasePortlet extends JSPPortlet {
 		}
 	}
 
-	private static Log _log = LogFactory.getLog(KnowledgeBasePortlet.class);
+	private static Log _log = LogFactoryUtil.getLog(KnowledgeBasePortlet.class);
 
 }

@@ -43,8 +43,8 @@ import com.liferay.ruon.model.Network;
 import com.liferay.ruon.model.impl.NetworkImpl;
 import com.liferay.ruon.model.impl.NetworkModelImpl;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -628,6 +628,6 @@ public class NetworkPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	private static Log _log = LogFactory.getLog(NetworkPersistenceImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(NetworkPersistenceImpl.class);
 	private ModelListener[] _listeners = new ModelListener[0];
 }

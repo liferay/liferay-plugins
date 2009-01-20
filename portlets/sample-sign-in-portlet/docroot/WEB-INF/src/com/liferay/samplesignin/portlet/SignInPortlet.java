@@ -22,6 +22,8 @@
 
 package com.liferay.samplesignin.portlet;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.NoRedirectActionResponse;
 import com.liferay.portal.kernel.struts.PortletActionInvoker;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -36,9 +38,6 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="SignInPortlet.java.html"><b><i>View Source</i></b></a>
@@ -87,6 +86,6 @@ public class SignInPortlet extends JSPPortlet {
 		}
 	}
 
-	private static Log _log = LogFactory.getLog(SignInPortlet.class);
+	private static Log _log = LogFactoryUtil.getLog(SignInPortlet.class);
 
 }

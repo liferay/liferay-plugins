@@ -132,7 +132,7 @@ public class InterestGroupPersistenceTest extends BasePersistenceTestCase {
 		return community;
 	}
 
-	private static final String _TX_IMPL = 
+	private static final String _TX_IMPL =
 		InterestGroupPersistence.class.getName() + ".transaction";
 	private InterestGroupPersistence _persistence;
 

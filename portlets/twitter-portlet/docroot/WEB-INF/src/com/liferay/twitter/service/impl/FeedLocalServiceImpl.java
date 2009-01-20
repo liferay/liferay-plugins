@@ -29,6 +29,8 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
@@ -47,9 +49,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="FeedLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -204,6 +203,6 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 	private static final String _URL =
 		"http://twitter.com/statuses/user_timeline/";
 
-	private static Log _log = LogFactory.getLog(FeedLocalServiceImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(FeedLocalServiceImpl.class);
 
 }

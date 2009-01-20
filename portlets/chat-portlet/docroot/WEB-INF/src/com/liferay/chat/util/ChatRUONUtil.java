@@ -23,11 +23,10 @@
 package com.liferay.chat.util;
 
 import com.liferay.client.json.ruon.util.RUONUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Converter;
 import com.liferay.portal.kernel.util.Time;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="ChatRUONUtil.java.html"><b><i>View Source</i></b></a>
@@ -50,6 +49,6 @@ public class ChatRUONUtil {
 		}
 	}
 
-	private static Log _log = LogFactory.getLog(ChatRUONUtil.class);
+	private static Log _log = LogFactoryUtil.getLog(ChatRUONUtil.class);
 
 }

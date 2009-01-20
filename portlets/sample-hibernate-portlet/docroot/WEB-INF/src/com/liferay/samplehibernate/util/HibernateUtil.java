@@ -22,8 +22,8 @@
 
 package com.liferay.samplehibernate.util;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -82,7 +82,7 @@ public class HibernateUtil {
 		}
 	}
 
-	private static Log _log = LogFactory.getLog(HibernateUtil.class);
+	private static Log _log = LogFactoryUtil.getLog(HibernateUtil.class);
 
 	private static HibernateUtil _instance = new HibernateUtil();
 

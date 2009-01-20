@@ -42,6 +42,8 @@
 package com.liferay.wsrp.consumer.admin;
 
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletInfo;
@@ -66,9 +68,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="WSRPChannelManagerImpl.java.html"><b><i>View Source</i></b></a>
@@ -310,6 +309,7 @@ public class WSRPChannelManagerImpl implements WSRPChannelManagerMBean {
 
 	private static final String _WSRP_VIEW = "wsrp:view";
 
-	private static Log _log = LogFactory.getLog(WSRPChannelManagerImpl.class);
+	private static Log _log =
+		 LogFactoryUtil.getLog(WSRPChannelManagerImpl.class);
 
 }

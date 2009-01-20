@@ -22,6 +22,8 @@
 
 package com.liferay.wol.friends.social;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -32,9 +34,6 @@ import com.liferay.portlet.social.model.SocialRequest;
 import com.liferay.portlet.social.model.SocialRequestFeedEntry;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="FriendsRequestInterpreter.java.html"><b><i>View Source</i></b></a>
@@ -115,6 +114,6 @@ public class FriendsRequestInterpreter extends BaseSocialRequestInterpreter {
 	};
 
 	private static Log _log =
-		LogFactory.getLog(FriendsRequestInterpreter.class);
+		LogFactoryUtil.getLog(FriendsRequestInterpreter.class);
 
 }

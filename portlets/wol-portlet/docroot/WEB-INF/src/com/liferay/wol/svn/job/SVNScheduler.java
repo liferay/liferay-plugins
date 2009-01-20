@@ -24,9 +24,8 @@ package com.liferay.wol.svn.job;
 
 import com.liferay.portal.kernel.job.JobSchedulerUtil;
 import com.liferay.portal.kernel.job.Scheduler;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 /**
  * <a href="SVNScheduler.java.html"><b><i>View Source</i></b></a>
@@ -52,7 +51,7 @@ public class SVNScheduler implements Scheduler {
 		JobSchedulerUtil.unschedule(_synchronizeSVNJob);
 	}
 
-	private static Log _log = LogFactory.getLog(SVNScheduler.class);
+	private static Log _log = LogFactoryUtil.getLog(SVNScheduler.class);
 
 	private SynchronizeSVNJob _synchronizeSVNJob = new SynchronizeSVNJob();
 

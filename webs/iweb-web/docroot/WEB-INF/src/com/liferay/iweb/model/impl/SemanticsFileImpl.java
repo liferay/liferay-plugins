@@ -41,10 +41,10 @@
 
 package com.liferay.iweb.model.impl;
 
-import java.util.Set;
-
 import com.liferay.iweb.model.SemanticsElement;
 import com.liferay.iweb.model.SemanticsFile;
+
+import java.util.Set;
 
 /**
  * <a href="SemanticsFileImpl.java.html"><b><i>View Source</i></b></a>
@@ -57,7 +57,7 @@ public class SemanticsFileImpl extends SemanticsFileModelImpl
 	implements SemanticsFile {
 	public SemanticsFileImpl() {
 	}
-	
+
     public Set<SemanticsElement> getSemanticselements() {
         return _semanticselements;
     }

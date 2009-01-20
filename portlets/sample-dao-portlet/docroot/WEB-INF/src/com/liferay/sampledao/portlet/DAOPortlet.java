@@ -22,6 +22,8 @@
 
 package com.liferay.sampledao.portlet;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.sampledao.model.FoodItem;
@@ -41,9 +43,6 @@ import javax.portlet.PortletException;
 import javax.portlet.PortletRequestDispatcher;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="DAOPortlet.java.html"><b><i>View Source</i></b></a>
@@ -144,6 +143,6 @@ public class DAOPortlet extends GenericPortlet {
 		}
 	}
 
-	private static Log _log = LogFactory.getLog(DAOPortlet.class);
+	private static Log _log = LogFactoryUtil.getLog(DAOPortlet.class);
 
 }

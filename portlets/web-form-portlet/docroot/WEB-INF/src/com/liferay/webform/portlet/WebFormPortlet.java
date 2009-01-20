@@ -27,6 +27,8 @@ import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.kernel.captcha.CaptchaTextException;
 import com.liferay.portal.kernel.captcha.CaptchaUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
@@ -65,9 +67,6 @@ import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="WebFormPortlet.java.html"><b><i>View Source</i></b></a>
@@ -448,6 +447,6 @@ public class WebFormPortlet extends JSPPortlet {
 		return validationErrors;
 	}
 
-	private static Log _log = LogFactory.getLog(WebFormPortlet.class);
+	private static Log _log = LogFactoryUtil.getLog(WebFormPortlet.class);
 
 }

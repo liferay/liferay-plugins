@@ -22,13 +22,12 @@
 
 package com.liferay.kb.util;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.zip.ZipReader;
 
 import java.io.File;
 import java.io.StringReader;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
@@ -92,7 +91,8 @@ public class DocBookEntityResolver  implements EntityResolver {
 		}
 	}
 
-	private static Log _log = LogFactory.getLog(DocBookEntityResolver.class);
+	private static Log _log =
+		 LogFactoryUtil.getLog(DocBookEntityResolver.class);
 
 	private ZipReader _zipReader;
 

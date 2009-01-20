@@ -23,6 +23,8 @@
 package com.liferay.portal.search.solr;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
@@ -36,8 +38,6 @@ import com.liferay.portal.kernel.util.Time;
 
 import java.util.Collection;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.solr.client.solrj.SolrQuery.ORDER;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServer;
@@ -165,7 +165,8 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		return subset;
 	}
 
-	private static Log _log = LogFactory.getLog(SolrIndexSearcherImpl.class);
+	private static Log _log =
+		 LogFactoryUtil.getLog(SolrIndexSearcherImpl.class);
 
 	private SolrServer _solrServer;
 

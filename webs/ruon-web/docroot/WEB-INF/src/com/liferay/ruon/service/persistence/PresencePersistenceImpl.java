@@ -43,8 +43,8 @@ import com.liferay.ruon.model.Presence;
 import com.liferay.ruon.model.impl.PresenceImpl;
 import com.liferay.ruon.model.impl.PresenceModelImpl;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -1259,6 +1259,6 @@ public class PresencePersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	private static Log _log = LogFactory.getLog(PresencePersistenceImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(PresencePersistenceImpl.class);
 	private ModelListener[] _listeners = new ModelListener[0];
 }

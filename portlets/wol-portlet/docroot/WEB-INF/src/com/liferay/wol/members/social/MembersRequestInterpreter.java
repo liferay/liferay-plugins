@@ -22,6 +22,8 @@
 
 package com.liferay.wol.members.social;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
@@ -33,9 +35,6 @@ import com.liferay.portlet.social.model.BaseSocialRequestInterpreter;
 import com.liferay.portlet.social.model.SocialRequest;
 import com.liferay.portlet.social.model.SocialRequestFeedEntry;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="MembersRequestInterpreter.java.html"><b><i>View Source</i></b></a>
@@ -132,6 +131,6 @@ public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
 	};
 
 	private static Log _log =
-		LogFactory.getLog(MembersRequestInterpreter.class);
+		LogFactoryUtil.getLog(MembersRequestInterpreter.class);
 
 }

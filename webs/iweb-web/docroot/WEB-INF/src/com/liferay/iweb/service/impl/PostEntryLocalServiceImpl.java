@@ -41,12 +41,6 @@
 
 package com.liferay.iweb.service.impl;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
-
 import com.liferay.iweb.IWebException;
 import com.liferay.iweb.model.PostEntry;
 import com.liferay.iweb.model.SemanticsElement;
@@ -54,6 +48,12 @@ import com.liferay.iweb.model.impl.PostEntryImpl;
 import com.liferay.iweb.service.SemanticsFileLocalServiceUtil;
 import com.liferay.iweb.service.base.PostEntryLocalServiceBaseImpl;
 import com.liferay.portal.SystemException;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * <a href="PostEntryLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -64,7 +64,7 @@ import com.liferay.portal.SystemException;
  */
 public class PostEntryLocalServiceImpl extends PostEntryLocalServiceBaseImpl {
 
-	/*
+	/**
 	 * This method takes a map with each key-value pair representing
 	 * the postEntryId and postEntryType and returns a map with key-value pairs
 	 * representing the postEntryId and the associated SemanticsElements.
@@ -87,7 +87,7 @@ public class PostEntryLocalServiceImpl extends PostEntryLocalServiceBaseImpl {
 		return postEntrySemantics;
 	}
 
-	/*
+	/**
 	 * This method takes the postEntryId and postEntryType and returns the
 	 * semantics elements associated with that postEntry.
 	 */
@@ -111,14 +111,14 @@ public class PostEntryLocalServiceImpl extends PostEntryLocalServiceBaseImpl {
 		}
 	}
 
-	/*
+	/**
 	 * This method gets the related postEntries for a given given postEntry
 	 * identified by the postEntryId and postEntryType.
 	 * The reason parameter specifies whether the reasoner has to be invoked to
 	 * get the related postEntries.
 	 * The requiredTypes and interestGroupIds set are for filtering the related
 	 * postEntrytEntries obtained. For example if only the related postEntries
-	 * of type "blog" are to be obtained then the requiredTypes will have only 
+	 * of type "blog" are to be obtained then the requiredTypes will have only
 	 * "blog".
 	 * Similarly if related postEntries belonging to a particular interestGroup
 	 * or a set of communities are be obtained then the interestGroupIds set is
@@ -184,7 +184,7 @@ public class PostEntryLocalServiceImpl extends PostEntryLocalServiceBaseImpl {
 		}
 	}
 
-	/*
+	/**
 	 * This method updates a postEntry identified by the postEntryId and type
 	 * with the semantics elements specified in the semanticsElementSet.
 	 */
@@ -235,7 +235,7 @@ public class PostEntryLocalServiceImpl extends PostEntryLocalServiceBaseImpl {
 				postEntryPersistence.clearSemanticsElements(uid);
 				postEntryPersistence.removeById_Type(postEntryId, type);
 				for (SemanticsElement semElement : semElements) {
-					List postsbysem = 
+					List postsbysem =
 						semanticsElementPersistence.getPostEntries(
 							semElement.getElementURI());
 

@@ -22,6 +22,9 @@
 
 package com.liferay.searchcontainer.portlet;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.io.IOException;
 
 import javax.portlet.ActionRequest;
@@ -31,9 +34,6 @@ import javax.portlet.PortletException;
 import javax.portlet.PortletRequestDispatcher;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="JSPPortlet.java.html"><b><i>View Source</i></b></a>
@@ -107,6 +107,6 @@ public class JSPPortlet extends GenericPortlet {
 	protected String helpJSP;
 	protected String viewJSP;
 
-	private static Log _log = LogFactory.getLog(JSPPortlet.class);
+	private static Log _log = LogFactoryUtil.getLog(JSPPortlet.class);
 
 }

@@ -51,4 +51,3 @@
 		<b>userInfo</b>: <liferay-ui:message key="the-current-user-info-object" />
 	</li>
 </ul>
-

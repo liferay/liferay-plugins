@@ -22,6 +22,8 @@
 
 package com.liferay.portlet.shindig.util;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.ImageServletTokenUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -51,8 +53,6 @@ import java.util.Map.Entry;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.shindig.gadgets.GadgetToken;
 import org.apache.shindig.social.opensocial.model.Activity;
 import org.apache.shindig.social.opensocial.model.Email;
@@ -591,6 +591,6 @@ public class ShindigUtil {
 		return true;
 	}
 
-	private static final Log _log = LogFactory.getLog(ShindigUtil.class);
+	private static final Log _log = LogFactoryUtil.getLog(ShindigUtil.class);
 
 }

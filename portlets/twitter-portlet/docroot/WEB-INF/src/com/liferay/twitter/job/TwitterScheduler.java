@@ -24,9 +24,8 @@ package com.liferay.twitter.job;
 
 import com.liferay.portal.kernel.job.JobSchedulerUtil;
 import com.liferay.portal.kernel.job.Scheduler;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 /**
  * <a href="TwitterScheduler.java.html"><b><i>View Source</i></b></a>
@@ -52,7 +51,7 @@ public class TwitterScheduler implements Scheduler {
 		JobSchedulerUtil.unschedule(_synchronizeTwitterJob);
 	}
 
-	private static Log _log = LogFactory.getLog(TwitterScheduler.class);
+	private static Log _log = LogFactoryUtil.getLog(TwitterScheduler.class);
 
 	private SynchronizeTwitterJob _synchronizeTwitterJob =
 		new SynchronizeTwitterJob();

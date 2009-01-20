@@ -26,8 +26,6 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.workflow.service.base.WorkflowTaskServiceBaseImpl;
 
-import java.rmi.RemoteException;
-
 import java.util.Map;
 
 /**
@@ -40,7 +38,6 @@ public class WorkflowTaskServiceImpl extends WorkflowTaskServiceBaseImpl {
 
 	public Map updateTask(long taskId, String transition, Map parameterMap)
 		throws PortalException, SystemException {
-
 
 		return workflowComponentService.updateTask(
 			taskId, transition, parameterMap);

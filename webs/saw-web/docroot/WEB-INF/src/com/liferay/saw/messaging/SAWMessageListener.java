@@ -42,6 +42,8 @@
 package com.liferay.saw.messaging;
 
 import com.liferay.portal.kernel.jbi.WorkflowComponentException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
@@ -49,9 +51,6 @@ import com.liferay.saw.service.SAWWorkflowLocalServiceUtil;
 
 import java.util.Map;
 import java.util.Set;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="SAWMessageListener.java.html"><b><i>View Source</i></b></a>
@@ -431,6 +430,6 @@ public class SAWMessageListener implements MessageListener{
 	}
 
 	private static Log _log =
-		LogFactory.getLog(SAWMessageListener.class);
+		LogFactoryUtil.getLog(SAWMessageListener.class);
 
 }

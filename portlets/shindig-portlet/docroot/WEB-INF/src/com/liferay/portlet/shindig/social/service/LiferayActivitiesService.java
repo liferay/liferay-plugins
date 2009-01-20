@@ -37,8 +37,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import org.apache.shindig.gadgets.GadgetToken;
 import org.apache.shindig.social.ResponseItem;
 import org.apache.shindig.social.opensocial.ActivitiesService;
@@ -164,6 +164,6 @@ public class LiferayActivitiesService implements ActivitiesService {
 		return new ResponseItem<JSONObject>(new JSONObject());
 	}
 
-	private static final Log _log = LogFactory.getLog(LiferayActivitiesService.class);
+	private static final Log _log = LogFactoryUtil.getLog(LiferayActivitiesService.class);
 
 }

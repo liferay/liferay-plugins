@@ -29,8 +29,6 @@ import com.liferay.workflow.jbi.WorkflowXMLUtil;
 import com.liferay.workflow.model.WorkflowInstance;
 import com.liferay.workflow.service.base.WorkflowInstanceServiceBaseImpl;
 
-import java.rmi.RemoteException;
-
 import java.text.ParseException;
 
 /**
@@ -62,14 +60,12 @@ public class WorkflowInstanceServiceImpl
 	public void signalInstance(long instanceId)
 		throws PortalException, SystemException {
 
-
 		workflowComponentService.signalInstance(instanceId);
 
 	}
 
 	public void signalToken(long instanceId, long tokenId)
 		throws PortalException, SystemException {
-
 
 		workflowComponentService.signalToken(instanceId, tokenId);
 

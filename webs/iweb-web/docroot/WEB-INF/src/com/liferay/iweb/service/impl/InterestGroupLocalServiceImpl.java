@@ -41,12 +41,6 @@
 
 package com.liferay.iweb.service.impl;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
-
 import com.liferay.iweb.IWebException;
 import com.liferay.iweb.NoSuchInterestGroupException;
 import com.liferay.iweb.model.InterestGroup;
@@ -55,6 +49,12 @@ import com.liferay.iweb.service.CallBackLocalServiceUtil;
 import com.liferay.iweb.service.SemanticsFileLocalServiceUtil;
 import com.liferay.iweb.service.base.InterestGroupLocalServiceBaseImpl;
 import com.liferay.portal.SystemException;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * <a href="InterestGroupLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -66,7 +66,7 @@ import com.liferay.portal.SystemException;
 public class InterestGroupLocalServiceImpl
 	extends InterestGroupLocalServiceBaseImpl {
 
-	/*
+	/**
 	 * Returns all the interestGroups available.
 	 */
 
@@ -88,7 +88,7 @@ public class InterestGroupLocalServiceImpl
 		}
 	}
 
-	/*
+	/**
 	 * For the given set of interestGroupId, this method returns the associated
 	 * semantics for the InterestGroup identified by the interestGroupId.
 	 */
@@ -102,7 +102,7 @@ public class InterestGroupLocalServiceImpl
 		return getAppliedSemanticsFiles(interestGroupIds);
 	}
 
-	/*
+	/**
 	 * For the given set of interestGroupIds, this method returns the associated
 	 * semantics for each InterestGroup identified by the interestGroupId.
 	 */
@@ -127,7 +127,7 @@ public class InterestGroupLocalServiceImpl
 		return interestGroupSemantics;
 	}
 
-	/*
+	/**
 	 * For a given interestGroupid, this method gets the related InterestGroups
 	 * based on the applied semantics.
 	 */
@@ -162,7 +162,7 @@ public class InterestGroupLocalServiceImpl
 		}
 	}
 
-	/*
+	/**
 	 * Takes a interestGroup id and a set of semanticsElement URIs and persists
 	 * in the mapping table.
 	 *
@@ -219,7 +219,7 @@ public class InterestGroupLocalServiceImpl
 		}
 	}
 
-	/*
+	/**
 	 * Takes a map where each entry in the map has the interestGroup id as the
 	 * key and a set of semanticsElement URIs as the value and persists in the
 	 * mapping table.
@@ -236,5 +236,5 @@ public class InterestGroupLocalServiceImpl
 			updateInterestGroupWithSemantics(entry.getKey(), entry.getValue());
 		}
 	}
-	
+
 }

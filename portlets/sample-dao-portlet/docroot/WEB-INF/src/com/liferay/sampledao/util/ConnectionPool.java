@@ -22,6 +22,9 @@
 
 package com.liferay.sampledao.util;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.mchange.v2.c3p0.DataSources;
 
@@ -31,9 +34,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import java.util.Properties;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="ConnectionPool.java.html"><b><i>View Source</i></b></a>
@@ -176,7 +176,7 @@ public class ConnectionPool {
 		return _cpds.getConnection();
 	}
 
-	private static Log _log = LogFactory.getLog(ConnectionPool.class);
+	private static Log _log = LogFactoryUtil.getLog(ConnectionPool.class);
 
 	private static ConnectionPool _instance = new ConnectionPool();
 

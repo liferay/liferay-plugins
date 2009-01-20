@@ -43,7 +43,7 @@ import java.util.Map;
 /**
  * <a href="WorkflowComponentServiceImpl.java.html"><b><i>View Source</i></b>
  * </a>
- * 
+ *
  * @author Brian Wing Shun Chan
  * @author Ganesh Ram
  * @author Vihang Pathak
@@ -117,27 +117,27 @@ public class WorkflowComponentServiceImpl extends
 		try {
 			String xml = getDefinitionXml(definitionId);
 			return WorkflowXMLUtil.parseDefinition(xml);
-			
+
 		} catch (Exception e) {
 			throw new WorkflowComponentException(e);
 		}
 	}
 
 	public List getDefinitions(
-			long definitionId, String name, int start,int end) 
+			long definitionId, String name, int start,int end)
 		throws WorkflowComponentException {
 
 		try {
 			String xml = getDefinitionsXml(definitionId, name, start, end);
 			return WorkflowXMLUtil.parseList(xml, "definitions");
-			
+
 		} catch (Exception e) {
 			throw new WorkflowComponentException(e);
 		}
 	}
 
 	public String getDefinitionsXml(
-			long definitionId, String name, int start,int end) 
+			long definitionId, String name, int start,int end)
 		throws WorkflowComponentException {
 
 		if (!_useSAW) {
@@ -167,7 +167,7 @@ public class WorkflowComponentServiceImpl extends
 		try {
 			String xml = getDefinitionsCountXml(definitionId, name);
 			return WorkflowXMLUtil.parseInt(xml, "count");
-			
+
 		} catch (Exception e) {
 			throw new WorkflowComponentException(e);
 		}
@@ -221,7 +221,7 @@ public class WorkflowComponentServiceImpl extends
 			String startDateGT, String startDateLT, String endDateGT,
 			String endDateLT, boolean hideEndedTasks,
 			boolean retrieveUserInstances, boolean andOperator, int start,
-			int end) 
+			int end)
 		throws WorkflowComponentException {
 
 		try {
@@ -326,8 +326,8 @@ public class WorkflowComponentServiceImpl extends
 			String definitionName, String definitionVersion,
 			String startDateGT, String startDateLT, String endDateGT,
 			String endDateLT, boolean hideEndedTasks,
-			boolean retrieveUserInstances, boolean andOperator, 
-			int start,int end) 
+			boolean retrieveUserInstances, boolean andOperator,
+			int start,int end)
 		throws WorkflowComponentException {
 
 		if (!_useSAW) {
@@ -379,19 +379,19 @@ public class WorkflowComponentServiceImpl extends
 				userId = "";
 			}
 			return SAWWorkflowLocalServiceUtil.getInstancesXml(
-					definitionId,instanceId, definitionName, definitionVersion, 
-					startDateGT,startDateLT, endDateGT, endDateLT, 
+					definitionId,instanceId, definitionName, definitionVersion,
+					startDateGT,startDateLT, endDateGT, endDateLT,
 					userId, hideEndedTasks,
 					retrieveUserInstances, andOperator, start, end);
 		}
 	}
 
-	public WorkflowTask getTask(long taskId) 
+	public WorkflowTask getTask(long taskId)
 		throws WorkflowComponentException {
 		try {
 			String xml = getTaskXml(taskId);
 			return WorkflowXMLUtil.parseTask(xml);
-			
+
 		} catch (Exception e) {
 			throw new WorkflowComponentException(e);
 		}
@@ -504,13 +504,13 @@ public class WorkflowComponentServiceImpl extends
 			String definitionName, String assignedTo, String createDateGT,
 			String createDateLT, String startDateGT, String startDateLT,
 			String endDateGT, String endDateLT, boolean hideEndedTasks,
-			boolean andOperator) 
+			boolean andOperator)
 		throws WorkflowComponentException {
 
 		try {
 			String xml = getUserTasksCountXml(
-					instanceId, taskName,definitionName, assignedTo, 
-					createDateGT, createDateLT,startDateGT, startDateLT, 
+					instanceId, taskName,definitionName, assignedTo,
+					createDateGT, createDateLT,startDateGT, startDateLT,
 					endDateGT, endDateLT,hideEndedTasks, andOperator);
 
 			return WorkflowXMLUtil.parseInt(xml, "count");
@@ -524,7 +524,7 @@ public class WorkflowComponentServiceImpl extends
 			String definitionName, String assignedTo, String createDateGT,
 			String createDateLT, String startDateGT, String startDateLT,
 			String endDateGT, String endDateLT, boolean hideEndedTasks,
-			boolean andOperator) 
+			boolean andOperator)
 		throws WorkflowComponentException {
 
 		if (!_useSAW) {
@@ -580,10 +580,10 @@ public class WorkflowComponentServiceImpl extends
 				createDateGT = "";
 			}
 			return SAWWorkflowLocalServiceUtil.getUserTasksCountXml(
-					instanceId,taskName, definitionName, assignedTo, 
-					userId, createDateGT,createDateLT, 
-					startDateGT, startDateLT, 
-					endDateGT,endDateLT, 
+					instanceId,taskName, definitionName, assignedTo,
+					userId, createDateGT,createDateLT,
+					startDateGT, startDateLT,
+					endDateGT,endDateLT,
 					hideEndedTasks, andOperator);
 		}
 	}
@@ -650,9 +650,9 @@ public class WorkflowComponentServiceImpl extends
 				createDateGT = "";
 			}
 			return SAWWorkflowLocalServiceUtil.getUserTasksXml(
-					instanceId,taskName, definitionName, assignedTo, 
-					createDateGT,createDateLT, startDateGT, startDateLT, 
-					endDateGT,endDateLT, userId, hideEndedTasks, andOperator, 
+					instanceId,taskName, definitionName, assignedTo,
+					createDateGT,createDateLT, startDateGT, startDateLT,
+					endDateGT,endDateLT, userId, hideEndedTasks, andOperator,
 					start, end);
 		}
 	}
@@ -777,14 +777,14 @@ public class WorkflowComponentServiceImpl extends
 		try {
 			user = getUser();
 		} catch (PortalException e1) {
-			// Even if the user has not logged in, he should be able to see the 
+			// Even if the user has not logged in, he should be able to see the
 			// list of definitions, instances, and tasks.
 			user = null;
 		} catch (SystemException e1) {
 			throw new WorkflowComponentException(e1);
 		}
-		
-		if(user != null){
+
+		if (user != null){
 			userId = String.valueOf(user.getUserId());;
 		}
 		else{

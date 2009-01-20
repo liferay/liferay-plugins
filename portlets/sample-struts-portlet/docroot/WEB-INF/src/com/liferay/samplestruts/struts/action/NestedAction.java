@@ -22,6 +22,8 @@
 
 package com.liferay.samplestruts.struts.action;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.samplestruts.model.Book;
 import com.liferay.samplestruts.struts.form.NestedForm;
 
@@ -30,8 +32,6 @@ import java.util.Iterator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -67,6 +67,6 @@ public class NestedAction extends Action {
 		return mapping.findForward("/sample_struts_portlet/nested_success");
 	}
 
-	private static Log _log = LogFactory.getLog(NestedAction.class);
+	private static Log _log = LogFactoryUtil.getLog(NestedAction.class);
 
 }

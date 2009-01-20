@@ -22,12 +22,11 @@
 
 package com.liferay.mail.util;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Time;
 
 import java.util.concurrent.ConcurrentHashMap;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="AccountLock.java.html"><b><i>View Source</i></b></a>
@@ -73,7 +72,7 @@ public class AccountLock {
 
 	private static final long _EXPIRY_TIME = Time.MINUTE * 5;
 
-	private static Log _log = LogFactory.getLog(AccountLock.class);
+	private static Log _log = LogFactoryUtil.getLog(AccountLock.class);
 
 	private static ConcurrentHashMap<String, Long> _lockMaps =
 		new ConcurrentHashMap<String, Long>();

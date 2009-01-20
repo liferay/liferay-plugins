@@ -22,6 +22,9 @@
 
 package com.liferay.samplestruts.struts.action;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -32,8 +35,6 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -86,6 +87,6 @@ public class UploadAction extends Action {
 		return mapping.findForward("/sample_struts_portlet/upload_success");
 	}
 
-	private static Log _log = LogFactory.getLog(UploadAction.class);
+	private static Log _log = LogFactoryUtil.getLog(UploadAction.class);
 
 }

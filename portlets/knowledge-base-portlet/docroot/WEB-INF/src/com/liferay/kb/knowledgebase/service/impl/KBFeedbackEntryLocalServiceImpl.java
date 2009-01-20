@@ -31,15 +31,14 @@ import com.liferay.kb.knowledgebase.service.base.KBFeedbackEntryLocalServiceBase
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.util.Date;
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="KBFeedbackEntryLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -468,6 +467,6 @@ public class KBFeedbackEntryLocalServiceImpl
 	}
 
 	private static Log _log =
-		LogFactory.getLog(KBFeedbackEntryLocalServiceImpl.class);
+		LogFactoryUtil.getLog(KBFeedbackEntryLocalServiceImpl.class);
 
 }

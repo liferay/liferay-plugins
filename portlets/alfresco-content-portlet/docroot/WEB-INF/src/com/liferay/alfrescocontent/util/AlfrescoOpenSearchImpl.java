@@ -22,6 +22,8 @@
 
 package com.liferay.alfrescocontent.util;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.OpenSearch;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -32,9 +34,6 @@ import com.liferay.util.portlet.PortletProps;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="AlfrescoOpenSearchImpl.java.html"><b><i>View Source</i></b></a>
@@ -115,6 +114,7 @@ public class AlfrescoOpenSearchImpl implements OpenSearch {
 		return search(request, url);
 	}
 
-	private static Log _log = LogFactory.getLog(AlfrescoOpenSearchImpl.class);
+	private static Log _log =
+		 LogFactoryUtil.getLog(AlfrescoOpenSearchImpl.class);
 
 }

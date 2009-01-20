@@ -41,9 +41,9 @@
 
 package com.liferay.iweb.model.impl;
 
-import java.util.Date;
-
 import com.liferay.iweb.model.PostEntry;
+
+import java.util.Date;
 
 /**
  * <a href="PostEntryImpl.java.html"><b><i>View Source</i></b></a>
@@ -55,7 +55,7 @@ import com.liferay.iweb.model.PostEntry;
 public class PostEntryImpl extends PostEntryModelImpl implements PostEntry {
 	public PostEntryImpl() {
 	}
-	
+
 	public String getAuthor() {
 		return _author;
 	}

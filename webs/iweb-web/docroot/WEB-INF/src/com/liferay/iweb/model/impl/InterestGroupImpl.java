@@ -41,10 +41,10 @@
 
 package com.liferay.iweb.model.impl;
 
-import java.util.Set;
-
 import com.liferay.iweb.model.InterestGroup;
 import com.liferay.iweb.model.SemanticsFile;
+
+import java.util.Set;
 
 /**
  * <a href="InterestGroupImpl.java.html"><b><i>View Source</i></b></a>
@@ -58,7 +58,7 @@ public class InterestGroupImpl extends InterestGroupModelImpl
 
 	public InterestGroupImpl() {
 	}
-	
+
 	public String getName() {
 		return _name;
 	}

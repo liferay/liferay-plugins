@@ -23,6 +23,8 @@
 package com.liferay.wol.summary.portlet;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -53,9 +55,6 @@ import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="SummaryPortlet.java.html"><b><i>View Source</i></b></a>
@@ -245,6 +244,6 @@ public class SummaryPortlet extends JSPPortlet {
 		}
 	}
 
-	private static Log _log = LogFactory.getLog(SummaryPortlet.class);
+	private static Log _log = LogFactoryUtil.getLog(SummaryPortlet.class);
 
 }

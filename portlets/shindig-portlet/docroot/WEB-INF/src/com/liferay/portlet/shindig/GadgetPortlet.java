@@ -22,6 +22,8 @@
 
 package com.liferay.portlet.shindig;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portlet.shindig.util.ShindigUtil;
 
 import java.io.IOException;
@@ -33,9 +35,6 @@ import javax.portlet.PortletException;
 import javax.portlet.PortletRequestDispatcher;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="GadgetPortlet.java.html"><b><i>View Source</i></b></a>
@@ -106,6 +105,6 @@ public class GadgetPortlet extends GenericPortlet {
 
 	protected String viewJSP;
 
-	private static Log _log = LogFactory.getLog(GadgetPortlet.class);
+	private static Log _log = LogFactoryUtil.getLog(GadgetPortlet.class);
 
 }

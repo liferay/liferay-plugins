@@ -30,14 +30,14 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.portal.kernel.dao.search.ResultRow"%>
+<%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.util.CalendarFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
 <%@ page import="com.liferay.portal.kernel.util.DateFormats" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.ListUtil"%>
+<%@ page import="com.liferay.portal.kernel.util.ListUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.StringUtil" %>
@@ -46,7 +46,7 @@
 
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 
-<%@ page import="com.liferay.util.PwdGenerator"%>
+<%@ page import="com.liferay.util.PwdGenerator" %>
 
 <%@ page import="com.liferay.searchcontainer.bean.Book" %>
 
@@ -59,9 +59,9 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.LinkedHashMap" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.Random"%>
+<%@ page import="java.util.Random" %>
 
-<%@ page import="javax.portlet.PortletMode"%>
+<%@ page import="javax.portlet.PortletMode" %>
 <%@ page import="javax.portlet.PortletURL" %>
 <%@ page import="javax.portlet.WindowState" %>
 

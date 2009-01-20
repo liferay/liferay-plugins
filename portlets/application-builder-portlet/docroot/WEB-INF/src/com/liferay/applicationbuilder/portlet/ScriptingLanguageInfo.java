@@ -26,7 +26,7 @@ package com.liferay.applicationbuilder.portlet;/**
  * <a href="ScriptingLanguageInfo.java.html"><b><i>View Source</i></b></a>
  *
  * @author Alberto Montero
- * 
+ *
  */
 public class ScriptingLanguageInfo {
 

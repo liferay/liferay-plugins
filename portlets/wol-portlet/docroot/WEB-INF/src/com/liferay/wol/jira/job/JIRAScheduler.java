@@ -24,9 +24,8 @@ package com.liferay.wol.jira.job;
 
 import com.liferay.portal.kernel.job.JobSchedulerUtil;
 import com.liferay.portal.kernel.job.Scheduler;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 /**
  * <a href="JIRAScheduler.java.html"><b><i>View Source</i></b></a>
@@ -52,7 +51,7 @@ public class JIRAScheduler implements Scheduler {
 		JobSchedulerUtil.unschedule(_synchronizeJIRAJob);
 	}
 
-	private static Log _log = LogFactory.getLog(JIRAScheduler.class);
+	private static Log _log = LogFactoryUtil.getLog(JIRAScheduler.class);
 
 	private SynchronizeJIRAJob _synchronizeJIRAJob = new SynchronizeJIRAJob();
 

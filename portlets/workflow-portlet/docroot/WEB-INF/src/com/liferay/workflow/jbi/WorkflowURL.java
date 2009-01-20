@@ -23,11 +23,10 @@
 package com.liferay.workflow.jbi;
 
 import com.liferay.portal.jbi.JBIRequestURL;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.model.User;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="WorkflowURL.java.html"><b><i>View Source</i></b></a>
@@ -56,6 +55,6 @@ public class WorkflowURL extends JBIRequestURL {
 		}
 	}
 
-	private static Log _log = LogFactory.getLog(WorkflowURL.class);
+	private static Log _log = LogFactoryUtil.getLog(WorkflowURL.class);
 
 }

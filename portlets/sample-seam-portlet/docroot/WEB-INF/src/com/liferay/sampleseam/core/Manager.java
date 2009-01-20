@@ -30,13 +30,14 @@ import javax.faces.context.FacesContext;
 
 import javax.portlet.PortletRequest;
 
-import static org.jboss.seam.annotations.Install.DEPLOYMENT;
-import static org.jboss.seam.InterceptionType.NEVER;
+import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Install;
 import org.jboss.seam.annotations.Intercept;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
-import org.jboss.seam.ScopeType;
+
+import static org.jboss.seam.InterceptionType.NEVER;
+import static org.jboss.seam.annotations.Install.DEPLOYMENT;
 
 /**
  * <a href="Manager.java.html"><b><i>View Source</i></b></a>

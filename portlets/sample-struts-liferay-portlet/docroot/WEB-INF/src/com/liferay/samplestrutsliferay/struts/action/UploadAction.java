@@ -22,6 +22,8 @@
 
 package com.liferay.samplestrutsliferay.struts.action;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.struts.PortletAction;
@@ -35,8 +37,6 @@ import javax.portlet.PortletConfig;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -78,6 +78,6 @@ public class UploadAction extends PortletAction {
 			"portlet.sample_struts_liferay_portlet.upload");
 	}
 
-	private static Log _log = LogFactory.getLog(UploadAction.class);
+	private static Log _log = LogFactoryUtil.getLog(UploadAction.class);
 
 }

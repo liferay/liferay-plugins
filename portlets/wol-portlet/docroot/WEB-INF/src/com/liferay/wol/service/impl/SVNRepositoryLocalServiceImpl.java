@@ -25,15 +25,14 @@ package com.liferay.wol.service.impl;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.wol.model.SVNRepository;
 import com.liferay.wol.service.base.SVNRepositoryLocalServiceBaseImpl;
 import com.liferay.wol.svn.util.SVNConstants;
 
 import java.util.Collection;
 import java.util.Iterator;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import org.tmatesoft.svn.core.SVNException;
 import org.tmatesoft.svn.core.SVNLogEntry;
@@ -133,6 +132,6 @@ public class SVNRepositoryLocalServiceImpl
 	}
 
 	private static Log _log =
-		LogFactory.getLog(SVNRepositoryLocalServiceImpl.class);
+		LogFactoryUtil.getLog(SVNRepositoryLocalServiceImpl.class);
 
 }

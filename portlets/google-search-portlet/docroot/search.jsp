@@ -126,7 +126,7 @@
 					<liferay-ui:message key="category" />: <a href="http://directory.google.com/<%= categoryName %>" target="_blank"><%= StringUtil.replace(categoryName.substring(4, categoryName.length()), "/", " &gt; ") %></a><br />
 				</c:if>
 
-				<%= resultElement.getURL() %> - <%= resultElement.getCachedSize() %> - <a href="<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/cached.jsp" /><portlet:param name="args" value="<%= StringUtil.replace(resultElement.getURL(), "http://", StringPool.BLANK) %>" /></portlet:renderURL>" target="_blank"><liferay-ui:message key="cached" /></a>
+				<%= resultElement.getURL() %> - <%= resultElement.getCachedSize() %> - <a href="<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/cached.jsp" /><portlet:param name="args" value='<%= StringUtil.replace(resultElement.getURL(), "http://", StringPool.BLANK) %>' /></portlet:renderURL>" target="_blank"><liferay-ui:message key="cached" /></a>
 
 				<c:if test="<%= resultElement.getRelatedInformationPresent() %>">
 
@@ -166,7 +166,7 @@
 		}
 		%>
 
-		<liferay-ui:page-iterator curParam='<%= renderResponse.getNamespace() + "start" %>' curValue="<%= ParamUtil.getInteger(request, \"start\", 1) %>" delta="<%= 10 %>" maxPages="<%= 25 %>" total="<%= totalResultsCount %>" url="<%= HttpUtil.decodeURL(portletURL.toString()) %>" />
+		<liferay-ui:page-iterator curParam='<%= renderResponse.getNamespace() + "start" %>' curValue='<%= ParamUtil.getInteger(request, \"start\", 1) %>' delta="<%= 10 %>" maxPages="<%= 25 %>" total="<%= totalResultsCount %>" url="<%= HttpUtil.decodeURL(portletURL.toString()) %>" />
 	</c:when>
 	<c:otherwise>
 		<liferay-ui:message key="please-contact-the-administrator-to-setup-this-portlet" />

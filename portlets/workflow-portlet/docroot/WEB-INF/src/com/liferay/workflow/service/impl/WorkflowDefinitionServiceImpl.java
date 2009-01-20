@@ -37,8 +37,6 @@ import com.liferay.workflow.NoSuchDefinitionException;
 import com.liferay.workflow.model.WorkflowDefinition;
 import com.liferay.workflow.service.base.WorkflowDefinitionServiceBaseImpl;
 
-import java.rmi.RemoteException;
-
 /**
  * <a href="WorkflowDefinitionServiceImpl.java.html"><b><i>View Source</i></b>
  * </a>
@@ -73,8 +71,6 @@ public class WorkflowDefinitionServiceImpl
 			Boolean addGuestPermissions, String[] communityPermissions,
 			String[] guestPermissions)
 	throws PortalException, SystemException {
-
-
 
 		// Deploy xml
 

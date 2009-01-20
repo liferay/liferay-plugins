@@ -41,14 +41,26 @@
 
 package com.liferay.iweb.service.impl;
 
+import com.liferay.iweb.IWebException;
+import com.liferay.iweb.model.InterestGroup;
+import com.liferay.iweb.model.SemanticsElement;
+import com.liferay.iweb.model.SemanticsFile;
+import com.liferay.iweb.model.impl.SemanticsElementImpl;
+import com.liferay.iweb.service.CallBackLocalServiceUtil;
+import com.liferay.iweb.service.base.SemanticsFileLocalServiceBaseImpl;
+import com.liferay.portal.SystemException;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
 import java.net.URI;
+
 import java.util.Set;
 import java.util.TreeSet;
 
 import org.mindswap.pellet.owlapi.Reasoner;
+
 import org.semanticweb.owl.apibinding.OWLManager;
 import org.semanticweb.owl.io.StringInputSource;
 import org.semanticweb.owl.model.OWLClass;
@@ -56,15 +68,6 @@ import org.semanticweb.owl.model.OWLDescription;
 import org.semanticweb.owl.model.OWLOntology;
 import org.semanticweb.owl.model.OWLOntologyCreationException;
 import org.semanticweb.owl.model.OWLOntologyManager;
-
-import com.liferay.iweb.IWebException;
-import com.liferay.iweb.model.InterestGroup;
-import com.liferay.iweb.model.SemanticsFile;
-import com.liferay.iweb.model.SemanticsElement;
-import com.liferay.iweb.model.impl.SemanticsElementImpl;
-import com.liferay.iweb.service.CallBackLocalServiceUtil;
-import com.liferay.iweb.service.base.SemanticsFileLocalServiceBaseImpl;
-import com.liferay.portal.SystemException;
 
 /**
  * <a href="SemanticsFileLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -85,7 +88,7 @@ public class SemanticsFileLocalServiceImpl
 	}
 
 	public Set<SemanticsFile> getAllSemanticElements(
-			Set<SemanticsFile> semanticsFile) 
+			Set<SemanticsFile> semanticsFile)
 		throws IWebException {
 
 		Set<SemanticsFile> updatedSemanticsFile = new TreeSet();
@@ -126,11 +129,11 @@ public class SemanticsFileLocalServiceImpl
 
 			Set<SemanticsFile> privateSemantics = new TreeSet();
 			for (SemanticsFile semanticsFile : semanticsSet) {
-				long interestGroupId = 
+				long interestGroupId =
 					semanticsFile.getCreatedInInterestGroup();
 
 				int createdInInterestGroupType = 0;
-				InterestGroup interestGroup = 
+				InterestGroup interestGroup =
 					interestGroupPersistence.fetchByPrimaryKey(interestGroupId);
 
 				if (interestGroup != null) {
@@ -242,7 +245,7 @@ public class SemanticsFileLocalServiceImpl
 		}
 	}
 
-	/*
+	/**
 	 * For updating an existing semanticsFile, we need to load the file first.
 	 *
 	 */
@@ -295,7 +298,7 @@ public class SemanticsFileLocalServiceImpl
 		}
 	}
 
-	/*
+	/**
 	 * This method is used to load an ontology file given a input stream
 	 * for the ontology.
 	 */

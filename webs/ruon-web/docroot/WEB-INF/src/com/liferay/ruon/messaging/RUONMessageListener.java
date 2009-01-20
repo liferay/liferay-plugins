@@ -25,6 +25,8 @@ package com.liferay.ruon.messaging;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
@@ -39,9 +41,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="RUONMessageListener.java.html"><b><i>View Source</i></b></a>
@@ -135,7 +134,7 @@ public class RUONMessageListener implements MessageListener {
 		PresenceLocalServiceUtil.updatePresence(userId, networkName, online);
 	}
 
-	private static Log _log = LogFactory.getLog(RUONMessageListener.class);
+	private static Log _log = LogFactoryUtil.getLog(RUONMessageListener.class);
 
 	private static Map<Long, Converter> _converters =
 		new ConcurrentHashMap<Long, Converter>();

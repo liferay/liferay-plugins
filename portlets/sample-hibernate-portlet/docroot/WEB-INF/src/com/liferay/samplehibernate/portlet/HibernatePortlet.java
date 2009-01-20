@@ -22,6 +22,8 @@
 
 package com.liferay.samplehibernate.portlet;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.samplehibernate.model.FoodItem;
@@ -38,9 +40,6 @@ import javax.portlet.PortletException;
 import javax.portlet.PortletRequestDispatcher;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="HibernatePortlet.java.html"><b><i>View Source</i></b></a>
@@ -134,6 +133,6 @@ public class HibernatePortlet extends GenericPortlet {
 		}
 	}
 
-	private static Log _log = LogFactory.getLog(HibernatePortlet.class);
+	private static Log _log = LogFactoryUtil.getLog(HibernatePortlet.class);
 
 }

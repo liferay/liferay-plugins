@@ -25,13 +25,12 @@ package com.liferay.ipgeocoder.messaging;
 import com.liferay.ipgeocoder.model.IPInfo;
 import com.liferay.ipgeocoder.util.IPGeocoderUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.liferay.portal.kernel.util.StringPool;
 
 /**
  * <a href="IPGeocoderMessageListener.java.html"><b><i>View Source</i></b></a>
@@ -68,6 +67,6 @@ public class IPGeocoderMessageListener implements MessageListener {
 	}
 
 	private static Log _log =
-		LogFactory.getLog(IPGeocoderMessageListener.class);
+		LogFactoryUtil.getLog(IPGeocoderMessageListener.class);
 
 }

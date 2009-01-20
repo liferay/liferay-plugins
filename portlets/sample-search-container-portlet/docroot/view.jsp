@@ -52,7 +52,7 @@ tags.
 />
 
 <c:choose>
-	<c:when test="<%= tabs.equals("Test_1") %>">
+	<c:when test='<%= tabs.equals("Test_1") %>'>
 
 		This is a generic test showing property based data access, pagination, custom
 		value using the "value" attribute, and alignments.
@@ -64,7 +64,7 @@ tags.
 				total="<%= books.size() %>"
 				results="<%= ListUtil.subList(books, searchContainer.getStart(), searchContainer.getEnd()) %>"
 			/>
-			<liferay-ui:search-container-row keyProperty="bookId" modelVar="book" className="com.liferay.searchcontainer.bean.Book" >
+			<liferay-ui:search-container-row keyProperty="bookId" modelVar="book" className="com.liferay.searchcontainer.bean.Book">
 				<liferay-ui:search-container-column-text name="Book (Left Align)" property="bookId" align="left" />
 				<liferay-ui:search-container-column-text name="Title (Right Align)" property="title" align="right" />
 				<liferay-ui:search-container-column-text name="Author (Center Align)" property="author" align="center" />
@@ -76,7 +76,7 @@ tags.
 		</liferay-ui:search-container>
 
 	</c:when>
-	<c:when test="<%= tabs.equals("Test_2") %>">
+	<c:when test='<%= tabs.equals("Test_2") %>'>
 
 		This section tests three things; attaching row urls, JSP column tag (output of a
 		JSP page as the column data), and whether the pagination behaves properly when
@@ -89,7 +89,7 @@ tags.
 				total="<%= books.size() %>"
 				results="<%= ListUtil.subList(books, searchContainer.getStart(), searchContainer.getEnd()) %>"
 			/>
-			<liferay-ui:search-container-row keyProperty="bookId" modelVar="book" className="com.liferay.searchcontainer.bean.Book" >
+			<liferay-ui:search-container-row keyProperty="bookId" modelVar="book" className="com.liferay.searchcontainer.bean.Book">
 				<liferay-ui:search-container-column-text name="Book (Left Align)" property="bookId" align="left" />
 				<liferay-ui:search-container-column-text name="Title (Right Align)" property="title" align="right" />
 				<liferay-ui:search-container-column-text name="Author (Center Align)" property="author" align="center" />
@@ -102,13 +102,13 @@ tags.
 
 		<br /><br />
 
-		<liferay-ui:search-container delta="5" curParam="cur2" iteratorURL="<%= portletURL %>" >
+		<liferay-ui:search-container delta="5" curParam="cur2" iteratorURL="<%= portletURL %>">
 			<liferay-ui:search-container-results
 				total="<%= books.size() %>"
 				results="<%= ListUtil.subList(books, searchContainer.getStart(), searchContainer.getEnd()) %>"
 			/>
-			<liferay-ui:search-container-row keyProperty="bookId" modelVar="book" className="com.liferay.searchcontainer.bean.Book" >
-				<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="rowURL" >
+			<liferay-ui:search-container-row keyProperty="bookId" modelVar="book" className="com.liferay.searchcontainer.bean.Book">
+				<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="rowURL">
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 				</portlet:renderURL>
 				<liferay-ui:search-container-column-text name="Book" property="bookId" href="<%= rowURL %>" />
@@ -123,18 +123,18 @@ tags.
 		</liferay-ui:search-container>
 
 	</c:when>
-	<c:when test="<%= tabs.equals("Test_3") %>">
+	<c:when test='<%= tabs.equals("Test_3") %>'>
 
 		Here we will do some valign tests.
 
 		<br /><br />
 
-		<liferay-ui:search-container delta="5" curParam="cur3" iteratorURL="<%= portletURL %>" >
+		<liferay-ui:search-container delta="5" curParam="cur3" iteratorURL="<%= portletURL %>">
 			<liferay-ui:search-container-results
 				total="<%= books.size() %>"
 				results="<%= ListUtil.subList(books, searchContainer.getStart(), searchContainer.getEnd()) %>"
 			/>
-			<liferay-ui:search-container-row keyProperty="bookId" modelVar="book" className="com.liferay.searchcontainer.bean.Book" >
+			<liferay-ui:search-container-row keyProperty="bookId" modelVar="book" className="com.liferay.searchcontainer.bean.Book">
 				<liferay-ui:search-container-column-text name="Book (VAlign Top)" property="bookId" valign="top" />
 				<liferay-ui:search-container-column-text name="Title (VAlign Middle)" property="title" valign="middle" />
 				<liferay-ui:search-container-column-text name="Author (VAlign Bottom)" property="author" valign="bottom" />
@@ -147,7 +147,7 @@ tags.
 		</liferay-ui:search-container>
 
 	</c:when>
-	<c:when test="<%= tabs.equals("Test_4") %>">
+	<c:when test='<%= tabs.equals("Test_4") %>'>
 
 		Various methods of adding column data:
 		<ul>
@@ -159,20 +159,20 @@ tags.
 
 		<br /><br />
 
-		<liferay-ui:search-container delta="5" curParam="cur3" iteratorURL="<%= portletURL %>" >
+		<liferay-ui:search-container delta="5" curParam="cur3" iteratorURL="<%= portletURL %>">
 			<liferay-ui:search-container-results
 				total="<%= books.size() %>"
 				results="<%= ListUtil.subList(books, searchContainer.getStart(), searchContainer.getEnd()) %>"
 			/>
-			<liferay-ui:search-container-row keyProperty="bookId" modelVar="book" className="com.liferay.searchcontainer.bean.Book" >
-				<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="rowURL" >
+			<liferay-ui:search-container-row keyProperty="bookId" modelVar="book" className="com.liferay.searchcontainer.bean.Book">
+				<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="rowURL">
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 				</portlet:renderURL>
 				<c:if test="<%= index%2 == 1 %>">
 					<liferay-ui:param name="restricted" value="true" />
 				</c:if>
 				<liferay-ui:search-container-column-text name="Book" property="bookId" />
-				<liferay-ui:search-container-column-text name="Title (Buffer)" buffer="sb" >
+				<liferay-ui:search-container-column-text name="Title (Buffer)" buffer="sb">
 					<%
 					sb.append("<a href=\"");
 					sb.append(rowURL);
@@ -181,7 +181,7 @@ tags.
 					sb.append("</b></a>");
 					%>
 				</liferay-ui:search-container-column-text>
-				<liferay-ui:search-container-column-text name="Author (Tag Body)" >
+				<liferay-ui:search-container-column-text name="Author (Tag Body)">
 					<a href="<%= rowURL %>">
 						<b><%= book.getAuthor() %></b>
 					</a>

@@ -23,6 +23,8 @@
 package com.liferay.sampleicefaces.managedbean;
 
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.util.bridges.jsf.common.ActionOutcomes;
 import com.liferay.util.bridges.jsf.common.FacesMessageUtil;
 import com.liferay.util.bridges.jsf.common.JSFPortletUtil;
@@ -42,9 +44,6 @@ import javax.faces.model.SelectItem;
 import javax.mail.internet.InternetAddress;
 
 import javax.portlet.PortletPreferences;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="JobApplication.java.html"><b><i>View Source</i></b></a>
@@ -245,7 +244,7 @@ public class JobApplication {
 		_phoneNumberType = null;
 	}
 
-	private static Log _log = LogFactory.getLog(JobApplication.class);
+	private static Log _log = LogFactoryUtil.getLog(JobApplication.class);
 
 	private String _comments;
 	private Date _dateOfBirth;

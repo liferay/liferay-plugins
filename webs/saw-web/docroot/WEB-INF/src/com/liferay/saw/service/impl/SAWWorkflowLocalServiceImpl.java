@@ -99,11 +99,11 @@ public class SAWWorkflowLocalServiceImpl
 
 	public OutputVO checkoutTasks(CheckoutTaskVO checkoutTaskVO)
 		throws WorkflowComponentException{
-		
+
 		OutputVO outputVO = null;
 		ClassLoader contextClassLoader =_getCurrentClassLoader();
 		_setAggregateClassLoader(contextClassLoader);
-		
+
 		try {
 			Workflow workflow = _getWorkflowImpl();
 			outputVO = workflow.checkoutTasks(checkoutTaskVO);
@@ -114,7 +114,7 @@ public class SAWWorkflowLocalServiceImpl
 			throw new WorkflowComponentException(e);
 		}
 	}
-	
+
 	public OutputVO completeTasks(CompleteTaskVO completeTaskVO)
 		throws WorkflowComponentException{
 
@@ -132,9 +132,8 @@ public class SAWWorkflowLocalServiceImpl
 			throw new WorkflowComponentException(e);
 		}
 	}
-	
-	
-	
+
+
 	public String deploy(String xml) throws WorkflowComponentException {
 		BusinessProcessVO businessProcessVO = new BusinessProcessVO();
 		Map<String, String> paramMap = new HashMap<String, String>();
@@ -231,7 +230,7 @@ public class SAWWorkflowLocalServiceImpl
 			long definitionId, String name,
 			String userId, int begin, int end)
 		throws WorkflowComponentException {
-		
+
 		Workflow workflow = null;
 		ClassLoader contextClassLoader = null;
 		contextClassLoader =_getCurrentClassLoader();
@@ -533,7 +532,7 @@ public class SAWWorkflowLocalServiceImpl
 		return doc.asXML();
 
 	}
-	
+
 	public OutputVO getTasks(FilterTaskVO filterTaskVO)
 		throws WorkflowComponentException{
 
@@ -682,14 +681,14 @@ public class SAWWorkflowLocalServiceImpl
 		return doc.asXML();
 
 	}
-	
+
 	public OutputVO saveTasks(SaveTaskVO saveTaskVO)
 		throws WorkflowComponentException{
-	
+
 	OutputVO outputVO = null;
 	ClassLoader contextClassLoader =_getCurrentClassLoader();
 	_setAggregateClassLoader(contextClassLoader);
-	
+
 	try {
 		Workflow workflow = _getWorkflowImpl();
 		outputVO = workflow.saveTasks(saveTaskVO);
@@ -700,8 +699,7 @@ public class SAWWorkflowLocalServiceImpl
 		throw new WorkflowComponentException(e);
 	}
 }
-	
-	
+
 
 	public void signalInstance(long instanceId)
 		throws WorkflowComponentException {
@@ -1117,13 +1115,13 @@ public class SAWWorkflowLocalServiceImpl
 
 	private String _getTimeZoneIdForUser(String userId)
 		throws WorkflowComponentException{
-		
+
 		User user = null;
-		String timeZoneId = null; 
-		
-		if(Validator.isNull(userId)){
+		String timeZoneId = null;
+
+		if (Validator.isNull(userId)){
 			return null;
-		} 
+		}
 		else if ("%".equals(userId)){
 			return null;
 		}
@@ -1256,7 +1254,7 @@ public class SAWWorkflowLocalServiceImpl
 		return false;
 	}
 
-	private Map _invokeMethod( 
+	private Map _invokeMethod(
 			Class className, String methodName,
 			String userId,String timeZoneId, Class[] paramTypeArray,
 			Object[] paramValueArray, Workflow workflow)

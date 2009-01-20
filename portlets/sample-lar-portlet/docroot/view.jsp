@@ -24,9 +24,9 @@
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
-<%@page import="java.util.Date"%>
+<%@ page import="java.util.Date" %>
 
-<%@page import="javax.portlet.PortletPreferences"%>
+<%@ page import="javax.portlet.PortletPreferences" %>
 
 <portlet:defineObjects />
 

@@ -29,6 +29,8 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;
@@ -57,9 +59,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.mail.MessagingException;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="MailDiskManager.java.html"><b><i>View Source</i></b></a>
@@ -806,6 +805,6 @@ public class MailDiskManager {
 		SearchEngineUtil.addDocument(companyId, doc);
 	}
 
-	private static Log _log = LogFactory.getLog(MailDiskManager.class);
+	private static Log _log = LogFactoryUtil.getLog(MailDiskManager.class);
 
 }

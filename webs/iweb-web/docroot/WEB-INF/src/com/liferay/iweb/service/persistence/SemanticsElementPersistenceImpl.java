@@ -49,8 +49,8 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.sql.Types;
 
@@ -925,6 +925,6 @@ public class SemanticsElementPersistenceImpl extends BasePersistenceImpl
 	private static final String _SQL_GETPOSTENTRIES = "SELECT {IWEB_PostEntry.*} FROM IWEB_PostEntry INNER JOIN PostEntries_SemanticsElements ON (PostEntries_SemanticsElements.uid = IWEB_PostEntry.uid) WHERE (PostEntries_SemanticsElements.elementURI = ?)";
 	private static final String _SQL_GETPOSTENTRIESSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM PostEntries_SemanticsElements WHERE elementURI = ?";
 	private static final String _SQL_CONTAINSPOSTENTRY = "SELECT COUNT(*) AS COUNT_VALUE FROM PostEntries_SemanticsElements WHERE elementURI = ? AND uid = ?";
-	private static Log _log = LogFactory.getLog(SemanticsElementPersistenceImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(SemanticsElementPersistenceImpl.class);
 	private ModelListener[] _listeners = new ModelListener[0];
 }

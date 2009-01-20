@@ -41,26 +41,27 @@
 
 package com.liferay.saw.servlet;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import javax.naming.NamingException;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.util.AggregateClassLoader;
 import com.liferay.portal.kernel.util.DatabaseUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.PortalInitable;
 import com.liferay.portal.kernel.util.PortalInitableUtil;
+
+import java.io.IOException;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.naming.NamingException;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
 /**
  * <a href="SAWServletContextListener.java.html"><b><i>View Source</i></b></a>
@@ -73,7 +74,7 @@ public class SAWServletContextListener
 	implements PortalInitable, ServletContextListener{
 
 	public void contextDestroyed(ServletContextEvent event){
-		
+
 	}
 
 	public void contextInitialized(ServletContextEvent event){
@@ -83,7 +84,7 @@ public class SAWServletContextListener
 	public void portalInit(){
 
 		boolean tableAlreadyExists = _checkIfTablesExist();
-		if(tableAlreadyExists){
+		if (tableAlreadyExists){
 			if (_log.isInfoEnabled()) {
 				_log.info("JBPM Tables already exists.");
 			}
@@ -111,11 +112,11 @@ public class SAWServletContextListener
 			}
 			_restoreClassLoader(currentClassLoader);
 		}
-	
+
 	}
-	
+
 	private boolean _checkIfTablesExist(){
-		
+
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -138,30 +139,30 @@ public class SAWServletContextListener
 		}
 		return tableExists;
 	}
-	
+
 	private ClassLoader _getCurrentClassLoader(){
 		return Thread.currentThread().getContextClassLoader();
-		
+
 	}
-	
+
 	private String _getDialect(){
-		
+
 		String dialect = DatabaseUtil.getType();
 		return dialect;
 	}
-	
+
 	private ClassLoader _getPortletClassLoader(){
 		return PortletClassLoaderUtil.getClassLoader();
 	}
-	
+
 	private void _restoreClassLoader(ClassLoader cl){
 		Thread.currentThread().setContextClassLoader(cl);
 	}
-	
-	private void _runSQLQuery(String dialect) 
+
+	private void _runSQLQuery(String dialect)
 		throws IOException, NamingException, SQLException{
 
-		if(dialect.equals("mysql")){
+		if (dialect.equals("mysql")){
 			DatabaseUtil.runSQLTemplate("sql/mysql.create.sql");
 		}
 		else if (dialect.equals("derby")){
@@ -191,10 +192,10 @@ public class SAWServletContextListener
 				portletClassLoader, PortalClassLoaderUtil.getClassLoader());
 
 		Thread.currentThread().setContextClassLoader(cl);
-		
+
 	}
 
-	private static Log _log = LogFactory.getLog(
+	private static Log _log = LogFactoryUtil.getLog(
 		SAWServletContextListener.class);
 
 }

@@ -41,14 +41,14 @@
 
 package com.liferay.iweb.service;
 
-import java.util.Map;
-import java.util.Set;
-
 import com.liferay.iweb.IWebException;
 import com.liferay.iweb.model.SemanticsFile;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.service.BaseServiceTestCase;
 import com.liferay.portal.service.GroupServiceUtil;
+
+import java.util.Map;
+import java.util.Set;
 
 /**
  * <a href="BaseInterestGroupServiceTest.java.html"><b><i>View Source</i></b></a>
@@ -61,7 +61,7 @@ public class BaseInterestGroupServiceTest extends BaseServiceTestCase {
 	Group group1 = null;
 	Group group2 = null;
 	Group group3 = null;
-	String ontologyURI1 = 
+	String ontologyURI1 =
 		"http://www.co-ode.org/ontologies/pizza/2005/10/18/pizza.owl";
 	String ontologyURI2 = "http://purl.org/obo/owl/cell";
 	String ontologyURI3 = "http://ccdb.ucsd.edu/SAO/1.2";
@@ -114,7 +114,7 @@ public class BaseInterestGroupServiceTest extends BaseServiceTestCase {
 		try {
 			InterestGroupLocalServiceUtil.updateInterestGroupWithSemantics(
 				communitySemanticsMap);
-			
+
 		} catch (IWebException e) {
 			e.printStackTrace();
 		}

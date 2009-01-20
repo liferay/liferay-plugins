@@ -25,13 +25,12 @@ package com.liferay.twitter.job;
 import com.liferay.portal.kernel.job.IntervalJob;
 import com.liferay.portal.kernel.job.JobExecutionContext;
 import com.liferay.portal.kernel.job.JobExecutionException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.twitter.service.FeedLocalServiceUtil;
 import com.liferay.util.portlet.PortletProps;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="SynchronizeTwitterJob.java.html"><b><i>View Source</i></b></a>
@@ -59,6 +58,7 @@ public class SynchronizeTwitterJob implements IntervalJob {
 		return INTERVAL;
 	}
 
-	private static Log _log = LogFactory.getLog(SynchronizeTwitterJob.class);
+	private static Log _log =
+		 LogFactoryUtil.getLog(SynchronizeTwitterJob.class);
 
 }

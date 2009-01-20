@@ -22,6 +22,9 @@
 
 package com.liferay.sampletest.portlet;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.io.IOException;
 
 import javax.portlet.PortletException;
@@ -30,9 +33,6 @@ import javax.portlet.RenderResponse;
 import javax.portlet.filter.FilterChain;
 import javax.portlet.filter.FilterConfig;
 import javax.portlet.filter.RenderFilter;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="TestRenderFilter.java.html"><b><i>View Source</i></b></a>
@@ -62,6 +62,6 @@ public class TestRenderFilter implements RenderFilter {
 		_log.info("Destroy");
 	}
 
-	private static Log _log = LogFactory.getLog(TestRenderFilter.class);
+	private static Log _log = LogFactoryUtil.getLog(TestRenderFilter.class);
 
 }

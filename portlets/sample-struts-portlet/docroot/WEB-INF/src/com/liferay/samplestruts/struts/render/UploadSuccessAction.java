@@ -22,11 +22,12 @@
 
 package com.liferay.samplestruts.struts.render;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -53,6 +54,6 @@ public class UploadSuccessAction extends Action {
 			"portlet.sample_struts_portlet.upload_success");
 	}
 
-	private static Log _log = LogFactory.getLog(UploadAction.class);
+	private static Log _log = LogFactoryUtil.getLog(UploadAction.class);
 
 }

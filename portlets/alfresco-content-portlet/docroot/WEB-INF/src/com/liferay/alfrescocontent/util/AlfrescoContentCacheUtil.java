@@ -24,13 +24,12 @@ package com.liferay.alfrescocontent.util;
 
 import com.liferay.portal.kernel.cache.MultiVMPoolUtil;
 import com.liferay.portal.kernel.cache.PortalCache;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
 import javax.portlet.RenderResponse;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="AlfrescoContentCacheUtil.java.html"><b><i>View Source</i></b></a>
@@ -90,7 +89,8 @@ public class AlfrescoContentCacheUtil {
 		return sb.toString();
 	}
 
-	private static Log _log = LogFactory.getLog(AlfrescoContentCacheUtil.class);
+	private static Log _log =
+		 LogFactoryUtil.getLog(AlfrescoContentCacheUtil.class);
 
 	private static PortalCache _cache = MultiVMPoolUtil.getCache(CACHE_NAME);
 

@@ -22,14 +22,13 @@
 
 package com.liferay.portal.search.solr.messaging;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.messaging.SearchRequest;
 import com.liferay.portal.search.solr.SolrSearchEngineUtil;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="SolrWriterMessageListener.java.html"><b><i>View Source</i></b></a>
@@ -90,6 +89,6 @@ public class SolrWriterMessageListener implements MessageListener {
 	}
 
 	private static Log _log =
-		LogFactory.getLog(SolrWriterMessageListener.class);
+		LogFactoryUtil.getLog(SolrWriterMessageListener.class);
 
 }

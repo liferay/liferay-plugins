@@ -28,6 +28,8 @@ import com.liferay.kb.knowledgebase.model.KBArticle;
 import com.liferay.kb.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.service.GroupLocalServiceUtil;
@@ -36,9 +38,6 @@ import com.liferay.portal.util.PortalUtil;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="KBArticleImpl.java.html"><b><i>View Source</i></b></a>
@@ -163,6 +162,6 @@ public class KBArticleImpl extends KBArticleModelImpl implements KBArticle {
 	private String _userUuid;
 	private String _attachmentDirs;
 
-	private static Log _log = LogFactory.getLog(KBArticleImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(KBArticleImpl.class);
 
 }

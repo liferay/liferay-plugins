@@ -24,6 +24,8 @@ package com.liferay.wsrp.servlet;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.PortalInitable;
 import com.liferay.portal.kernel.util.PortalInitableUtil;
 import com.liferay.portal.model.Portlet;
@@ -44,9 +46,6 @@ import java.util.Properties;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="WSRPServletContextListener.java.html"><b><i>View Source</i></b></a>
@@ -151,6 +150,6 @@ public class WSRPServletContextListener
 	}
 
 	private static Log _log =
-		LogFactory.getLog(WSRPServletContextListener.class);
+		LogFactoryUtil.getLog(WSRPServletContextListener.class);
 
 }

@@ -49,8 +49,8 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.sql.Types;
 
@@ -925,6 +925,6 @@ public class InterestGroupPersistenceImpl extends BasePersistenceImpl
 	private static final String _SQL_GETSEMANTICSFILES = "SELECT {IWEB_SemanticsFile.*} FROM IWEB_SemanticsFile INNER JOIN InterestGroups_SemanticsFiles ON (InterestGroups_SemanticsFiles.semanticsURI = IWEB_SemanticsFile.semanticsURI) WHERE (InterestGroups_SemanticsFiles.cid = ?)";
 	private static final String _SQL_GETSEMANTICSFILESSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM InterestGroups_SemanticsFiles WHERE cid = ?";
 	private static final String _SQL_CONTAINSSEMANTICSFILE = "SELECT COUNT(*) AS COUNT_VALUE FROM InterestGroups_SemanticsFiles WHERE cid = ? AND semanticsURI = ?";
-	private static Log _log = LogFactory.getLog(InterestGroupPersistenceImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(InterestGroupPersistenceImpl.class);
 	private ModelListener[] _listeners = new ModelListener[0];
 }

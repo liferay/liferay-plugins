@@ -25,6 +25,8 @@ package com.liferay.webform.util;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -45,9 +47,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.portlet.PortletPreferences;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Scriptable;
@@ -254,6 +253,6 @@ public class WebFormUtil {
 		return validationResult;
 	}
 
-	private static Log _log = LogFactory.getLog(WebFormUtil.class);
+	private static Log _log = LogFactoryUtil.getLog(WebFormUtil.class);
 
 }

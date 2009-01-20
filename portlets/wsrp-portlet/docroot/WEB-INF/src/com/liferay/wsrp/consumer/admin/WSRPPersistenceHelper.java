@@ -42,6 +42,8 @@
 package com.liferay.wsrp.consumer.admin;
 
 import com.liferay.counter.service.CounterServiceUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletInfo;
@@ -67,9 +69,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="WSRPPersistenceHelper.java.html"><b><i>View Source</i></b></a>
@@ -309,7 +308,8 @@ public class WSRPPersistenceHelper {
 		}
 	}
 
-	private static Log _log = LogFactory.getLog(WSRPPersistenceHelper.class);
+	private static Log _log =
+		 LogFactoryUtil.getLog(WSRPPersistenceHelper.class);
 
 	private static WSRPPersistenceHelper _instance =
 		new WSRPPersistenceHelper();

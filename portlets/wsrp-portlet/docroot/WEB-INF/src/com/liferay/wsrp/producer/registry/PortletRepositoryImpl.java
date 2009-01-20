@@ -42,6 +42,8 @@
 package com.liferay.wsrp.producer.registry;
 
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletApp;
@@ -81,9 +83,6 @@ import java.util.Set;
 import javax.portlet.PortletPreferences;
 
 import javax.xml.namespace.QName;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="PortletRepositoryImpl.java.html"><b><i>View Source</i></b></a>
@@ -550,7 +549,8 @@ public class PortletRepositoryImpl implements PortletRegistry, ResourceName {
 		Arrays.asList(
 			new String[] {"wsrp:maximized", "wsrp:minimized", "wsrp:normal"});
 
-	private static Log _log = LogFactory.getLog(PortletRepositoryImpl.class);
+	private static Log _log =
+		 LogFactoryUtil.getLog(PortletRepositoryImpl.class);
 
 	private List<Portlet> _portlets = null;
 	private PortletDescriptorHolder _portletDescriptionHolder = null;

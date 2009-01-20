@@ -25,10 +25,9 @@ package com.liferay.sampletest.job;
 import com.liferay.portal.kernel.job.IntervalJob;
 import com.liferay.portal.kernel.job.JobExecutionContext;
 import com.liferay.portal.kernel.job.JobExecutionException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Time;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="TestIntervalJob.java.html"><b><i>View Source</i></b></a>
@@ -50,6 +49,6 @@ public class TestIntervalJob implements IntervalJob {
 		return Time.HOUR;
 	}
 
-	private static Log _log = LogFactory.getLog(TestIntervalJob.class);
+	private static Log _log = LogFactoryUtil.getLog(TestIntervalJob.class);
 
 }

@@ -22,12 +22,12 @@
 
 package com.liferay.sampletest.servlet;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="TestPortletSessionListener.java.html"><b><i>View Source</i></b></a>
@@ -56,6 +56,6 @@ public class TestPortletSessionListener implements HttpSessionListener {
 	}
 
 	private static Log _log =
-		LogFactory.getLog(TestPortletSessionListener.class);
+		LogFactoryUtil.getLog(TestPortletSessionListener.class);
 
 }

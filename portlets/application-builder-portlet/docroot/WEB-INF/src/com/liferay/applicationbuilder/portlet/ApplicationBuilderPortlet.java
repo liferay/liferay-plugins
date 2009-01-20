@@ -24,6 +24,8 @@ package com.liferay.applicationbuilder.portlet;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -45,17 +47,15 @@ import javax.portlet.PortletConfig;
 import javax.portlet.PortletContext;
 import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
+import javax.portlet.PortletRequestDispatcher;
 import javax.portlet.PortletResponse;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
-import javax.portlet.PortletRequestDispatcher;
 
 import org.apache.bsf.BSFException;
 import org.apache.bsf.BSFManager;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import org.jruby.RubyException;
 import org.jruby.exceptions.RaiseException;
@@ -239,7 +239,7 @@ public class ApplicationBuilderPortlet extends GenericPortlet {
 	}
 
 	private static Log _log =
-			LogFactory.getLog(ApplicationBuilderPortlet.class);
+			LogFactoryUtil.getLog(ApplicationBuilderPortlet.class);
 
 	protected BSFManager bsfManager;
 

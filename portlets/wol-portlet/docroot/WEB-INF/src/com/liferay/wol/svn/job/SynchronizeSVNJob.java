@@ -24,14 +24,13 @@ package com.liferay.wol.svn.job;
 
 import com.liferay.portal.kernel.job.IntervalJob;
 import com.liferay.portal.kernel.job.JobExecutionContext;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.util.portlet.PortletProps;
 import com.liferay.wol.service.SVNRepositoryLocalServiceUtil;
 import com.liferay.wol.svn.util.SVNConstants;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="SynchronizeSVNJob.java.html"><b><i>View Source</i></b></a>
@@ -59,6 +58,6 @@ public class SynchronizeSVNJob implements IntervalJob {
 		return INTERVAL;
 	}
 
-	private static Log _log = LogFactory.getLog(SynchronizeSVNJob.class);
+	private static Log _log = LogFactoryUtil.getLog(SynchronizeSVNJob.class);
 
 }

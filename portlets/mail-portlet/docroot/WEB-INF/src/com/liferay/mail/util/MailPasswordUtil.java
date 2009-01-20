@@ -41,13 +41,12 @@
 
 package com.liferay.mail.util;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.StringPool;
 
 import java.io.UnsupportedEncodingException;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="MailPasswordUtil.java.html"><b><i>View Source</i></b></a>
@@ -87,6 +86,6 @@ public class MailPasswordUtil {
 		return encryptedPassword;
 	}
 
-	private static Log _log = LogFactory.getLog(MailPasswordUtil.class);
+	private static Log _log = LogFactoryUtil.getLog(MailPasswordUtil.class);
 
 }

@@ -26,12 +26,12 @@
 <%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 
-<%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil"%>
-<%@ page import="com.liferay.portal.kernel.util.Constants"%>
-<%@ page import="com.liferay.portal.kernel.util.GetterUtil"%>
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil"%>
-<%@ page import="com.liferay.portal.kernel.util.StringPool"%>
-<%@ page import="com.liferay.portal.kernel.util.Validator"%>
+<%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.Constants" %>
+<%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
+<%@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%@ page import="com.liferay.portal.model.Layout" %>
 <%@ page import="com.liferay.portal.theme.ThemeDisplay" %>
 
@@ -39,7 +39,7 @@
 <%@ page import="javax.portlet.PortletRequest" %>
 <%@ page import="javax.portlet.PortletSession" %>
 <%@ page import="javax.portlet.RenderRequest" %>
-<%@ page import="javax.portlet.WindowState"%>
+<%@ page import="javax.portlet.WindowState" %>
 
 <liferay-theme:defineObjects />
 <portlet:defineObjects />

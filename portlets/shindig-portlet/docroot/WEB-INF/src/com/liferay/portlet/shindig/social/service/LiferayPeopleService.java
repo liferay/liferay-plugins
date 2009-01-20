@@ -38,8 +38,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import org.apache.shindig.gadgets.GadgetToken;
 import org.apache.shindig.social.ResponseItem;
 import org.apache.shindig.social.opensocial.PeopleService;
@@ -187,6 +187,6 @@ public class LiferayPeopleService implements PeopleService {
 		return ids;
 	}
 
-	private static final Log _log = LogFactory.getLog(LiferayPeopleService.class);
+	private static final Log _log = LogFactoryUtil.getLog(LiferayPeopleService.class);
 
 }

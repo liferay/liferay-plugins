@@ -22,6 +22,8 @@
 
 package com.liferay.samplelar.plugin;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.kernel.zip.ZipWriter;
@@ -37,9 +39,6 @@ import java.util.Date;
 import java.util.Map;
 
 import javax.portlet.PortletPreferences;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="LARPlugin.java.html"><b><i>View Source</i></b></a>
@@ -236,6 +235,6 @@ public class LARPlugin implements PortletDataHandler {
 		new PortletDataHandlerBoolean(
 			_NAMESPACE, "import-sample-lar-portlet-data", true, true);
 
-	private static Log _log = LogFactory.getLog(LARPlugin.class);
+	private static Log _log = LogFactoryUtil.getLog(LARPlugin.class);
 
 }

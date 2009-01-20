@@ -22,6 +22,8 @@
 
 package com.liferay.workflow.jbi;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -44,9 +46,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="WorkflowXMLUtil.java.html"><b><i>View Source</i></b></a>
@@ -411,6 +410,6 @@ public class WorkflowXMLUtil {
 		return tokens;
 	}
 
-	private static Log _log = LogFactory.getLog(WorkflowXMLUtil.class);
+	private static Log _log = LogFactoryUtil.getLog(WorkflowXMLUtil.class);
 
 }

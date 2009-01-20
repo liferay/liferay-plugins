@@ -32,10 +32,10 @@ Book book = (Book)row.getObject();
 
 This book was written by <%= book.getAuthor() %>, <%= dateFormatDate.format(book.getPublicationDate()) %>.
 
-<br/>
+<br />
 
-<br/>
+<br />
 
-<br/>
+<br />
 
 The book was published by <%= book.getPublisher() %>.

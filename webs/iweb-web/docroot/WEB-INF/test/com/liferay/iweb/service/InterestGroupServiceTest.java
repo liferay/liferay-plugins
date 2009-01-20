@@ -41,13 +41,13 @@
 
 package com.liferay.iweb.service;
 
+import com.liferay.iweb.model.InterestGroup;
+import com.liferay.iweb.model.SemanticsFile;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-
-import com.liferay.iweb.model.InterestGroup;
-import com.liferay.iweb.model.SemanticsFile;
 
 /**
  * <a href="InterestGroupServiceTest.java.html"><b><i>View Source</i></b></a>
@@ -56,8 +56,7 @@ import com.liferay.iweb.model.SemanticsFile;
  *
  */
 public class InterestGroupServiceTest extends BaseInterestGroupServiceTest {
-	
-	
+
 	/*This test case does the following:
 	 * 1. Update a community with semantics.
 	 * 2. Get the semantics applied for each community.
@@ -73,11 +72,11 @@ public class InterestGroupServiceTest extends BaseInterestGroupServiceTest {
 		Set<String> semanticsset = new TreeSet();
 		semanticsset.add(ontologyURI1);
 		updateInterestGroupWithSemantics(group1.getPrimaryKey(),semanticsset);
-		Map<Long,Set<SemanticsFile>> commSemanticsFile = 
+		Map<Long,Set<SemanticsFile>> commSemanticsFile =
 			InterestGroupLocalServiceUtil.getAppliedSemanticsFiles(
 					group1.getPrimaryKey());
 
-		Set<Map.Entry<Long, Set<SemanticsFile>>> entries = 
+		Set<Map.Entry<Long, Set<SemanticsFile>>> entries =
 			commSemanticsFile.entrySet();
 
 		for(Map.Entry<Long, Set<SemanticsFile>> entry: entries){
@@ -85,10 +84,10 @@ public class InterestGroupServiceTest extends BaseInterestGroupServiceTest {
 			Set<SemanticsFile> appliedSemanticsFile = entry.getValue();
 			assertEquals(false,appliedSemanticsFile.isEmpty());
 		}
-		
+
 		updateInterestGroupWithSemantics(group1.getGroupId(),null);
 	}
-	
+
 	/*This test case does the following:
 	 * 1. Update 3 communities with semantics.
 	 * 2. Get the semantics applied for each community.
@@ -113,14 +112,14 @@ public class InterestGroupServiceTest extends BaseInterestGroupServiceTest {
 		semanticsset3.add(ontologyURI2);
 		semanticsmap.put(group3.getPrimaryKey(),semanticsset3);
 		updateInterestGroupWithSemantics(semanticsmap);
-		
+
 		Set<Long> communityIds = new TreeSet();
 		communityIds.add(group1.getPrimaryKey());
 		communityIds.add(group2.getPrimaryKey());
 		communityIds.add(group3.getPrimaryKey());
-		Map<Long,Set<SemanticsFile>> commSemanticsFile = 
+		Map<Long,Set<SemanticsFile>> commSemanticsFile =
 			InterestGroupLocalServiceUtil.getAppliedSemanticsFiles(communityIds);
-		Set<Map.Entry<Long, Set<SemanticsFile>>> entries = 
+		Set<Map.Entry<Long, Set<SemanticsFile>>> entries =
 			commSemanticsFile.entrySet();
 		for(Map.Entry<Long, Set<SemanticsFile>> entry: entries){
 			long id = entry.getKey();
@@ -149,5 +148,5 @@ public class InterestGroupServiceTest extends BaseInterestGroupServiceTest {
 		Set<InterestGroup> comm = InterestGroupLocalServiceUtil.getAllCommunities();
 		assertEquals(true,comm.isEmpty());
 	}
-	
+
 }

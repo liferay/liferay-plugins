@@ -22,6 +22,8 @@
 
 package com.liferay.wol.model.impl;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -33,9 +35,6 @@ import com.liferay.wol.service.SVNRepositoryLocalServiceUtil;
 import com.liferay.wol.svn.util.SVNConstants;
 
 import java.text.MessageFormat;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="SVNRevisionImpl.java.html"><b><i>View Source</i></b></a>
@@ -205,6 +204,6 @@ public class SVNRevisionImpl
 	private static final String _LPS_PREFIX_3 =
 		"http://support.liferay.com/browse/LPS-";
 
-	private static Log _log = LogFactory.getLog(SVNRevisionImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(SVNRevisionImpl.class);
 
 }

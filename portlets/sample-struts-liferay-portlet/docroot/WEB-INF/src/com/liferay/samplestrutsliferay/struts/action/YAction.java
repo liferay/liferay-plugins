@@ -22,14 +22,14 @@
 
 package com.liferay.samplestrutsliferay.struts.action;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.struts.PortletAction;
 
 import javax.portlet.PortletConfig;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -54,6 +54,6 @@ public class YAction extends PortletAction {
 		return mapping.findForward("portlet.sample_struts_liferay_portlet.y");
 	}
 
-	private static Log _log = LogFactory.getLog(YAction.class);
+	private static Log _log = LogFactoryUtil.getLog(YAction.class);
 
 }

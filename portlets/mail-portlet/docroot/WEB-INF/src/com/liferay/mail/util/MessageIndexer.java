@@ -25,6 +25,8 @@ package com.liferay.mail.util;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -32,9 +34,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.util.portlet.PortletProps;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="MessageIndexer.java.html"><b><i>View Source</i></b></a>
@@ -154,6 +153,6 @@ public class MessageIndexer {
 		SearchEngineUtil.addDocument(companyId, doc);
 	}
 
-	private static Log _log = LogFactory.getLog(MessageIndexer.class);
+	private static Log _log = LogFactoryUtil.getLog(MessageIndexer.class);
 
 }

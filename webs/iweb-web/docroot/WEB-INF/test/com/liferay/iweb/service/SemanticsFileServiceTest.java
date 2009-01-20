@@ -41,13 +41,13 @@
 
 package com.liferay.iweb.service;
 
-import java.util.Set;
-import java.util.TreeSet;
-
 import com.liferay.iweb.model.SemanticsElement;
 import com.liferay.iweb.model.SemanticsFile;
 import com.liferay.iweb.model.impl.SemanticsElementImpl;
 import com.liferay.iweb.model.impl.SemanticsFileImpl;
+
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * <a href="SemanticsFileServiceTest.java.html"><b><i>View Source</i></b></a>
@@ -65,7 +65,7 @@ public class SemanticsFileServiceTest extends BaseInterestGroupServiceTest {
 		SemanticsFile sem1 = new SemanticsFileImpl();
 		sem1.setSemanticsURI(ontologyURI2);
 		semantics.add(sem1);
-		Set<SemanticsFile> updatedsemantics = 
+		Set<SemanticsFile> updatedsemantics =
 			SemanticsFileLocalServiceUtil.getAllSemanticElements(semantics);
 
 		for (SemanticsFile s : updatedsemantics) {
@@ -75,7 +75,7 @@ public class SemanticsFileServiceTest extends BaseInterestGroupServiceTest {
 	}
 
 	public void testGetAvailablePublicCommunities() throws Exception {
-		Set<SemanticsFile> semset = 
+		Set<SemanticsFile> semset =
 			SemanticsFileLocalServiceUtil.getAvailablePublicSemanticsFiles();
 
 		for (SemanticsFile sem : semset) {
@@ -90,7 +90,7 @@ public class SemanticsFileServiceTest extends BaseInterestGroupServiceTest {
 		element.setElementURI(ontologyURI1 + "#VegetarianTopping");
 		Set<SemanticsElement> elemset = new TreeSet();
 		elemset.add(element);
-		Set<SemanticsElement> elements = 
+		Set<SemanticsElement> elements =
 			SemanticsFileLocalServiceUtil.getRelatedSemanticsElements(
 				elemset, true);
 

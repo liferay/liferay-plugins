@@ -41,12 +41,12 @@
 
 package com.liferay.iweb.service;
 
-import java.util.Set;
-import java.util.TreeSet;
-
 import com.liferay.iweb.model.PostEntry;
 import com.liferay.iweb.model.SemanticsElement;
 import com.liferay.portal.service.BaseServiceTestCase;
+
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * <a href="PostEntryServiceTest.java.html"><b><i>View Source</i></b></a>
@@ -59,15 +59,15 @@ public class PostEntryServiceTest extends BaseServiceTestCase {
 	private long postid1 = 10168;
 	private long postid2 = 10171;
 	private long postid3 = 10174;
-	String semanticselemuri1 = 
+	String semanticselemuri1 =
 		"http://www.co-ode.org/ontologies/pizza/2005/10/18/pizza.owl" +
 		"#VegetarianTopping";
 
-	String semanticselemuri2 = 
+	String semanticselemuri2 =
 		"http://www.co-ode.org/ontologies/pizza/2005/10/18/pizza.owl" +
 		"#CheeseTopping";
 
-	String semanticselemuri3 = 
+	String semanticselemuri3 =
 		"http://www.co-ode.org/ontologies/pizza/2005/10/18/pizza.owl" +
 		"#FruitTopping";
 
@@ -76,7 +76,7 @@ public class PostEntryServiceTest extends BaseServiceTestCase {
 		semelements.add(semanticselemuri1);
 		PostEntryLocalServiceUtil.updatePostEntriesWithSemanticsElements(
 			postid1, "blog",semelements);
-		
+
 		semelements.remove(semanticselemuri1);
 		semelements.add(semanticselemuri2);
 		PostEntryLocalServiceUtil.updatePostEntriesWithSemanticsElements(
@@ -90,17 +90,17 @@ public class PostEntryServiceTest extends BaseServiceTestCase {
 	}
 
 	public void getAppliedSemanticsElements() throws Exception {
-		Set<SemanticsElement> semset = 
+		Set<SemanticsElement> semset =
 			PostEntryLocalServiceUtil.getAppliedSemanticsElements(
 				postid1, "blog");
 
 		for(SemanticsElement semelement: semset){
-			if(semanticselemuri1.equals(semelement.getElementURI())){
+			if (semanticselemuri1.equals(semelement.getElementURI())){
 				assertEquals(semanticselemuri1, semelement.getElementURI());
 			}
 		}
 	}
-	
+
 	public void testRelatedPostEntries() throws Exception {
 		Set<PostEntry> posts = PostEntryLocalServiceUtil
 			.getRelatedPostEntriesByAppliedSemanticsElements(
