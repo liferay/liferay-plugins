@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+xjc -verbose -p "com.liferay.wsrp.consumer.admin" WSRPPortlets.xsd
+-->
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.sun.com/portal/wsrp/consumer" xmlns:types="http://www.sun.com/portal/wsrp/consumer" xmlns:tns="http://www.sun.com/portal/wsrp/consumer" elementFormDefault="qualified">
+	<complexType name="MimeType">
+		<sequence>
+			<element name="mime" type="xsd:string" />
+			<element name="modes" type="xsd:string" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	<complexType name="MimeTypes">
+		<sequence>
+			<element name="MimeType" type="types:MimeType" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	<element name="MimeTypes" type="types:MimeTypes" />
+</schema>

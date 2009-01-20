@@ -1,0 +1,125 @@
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_2_0.dtd">
+
+<service-builder package-path="com.liferay.wsrp">
+	<namespace>WSRP</namespace>
+	<entity name="WSRPConfiguredProducer" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="configuredProducerId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="portalId" type="String" />
+		<column name="namespace" type="String" />
+		<column name="producerURL" type="String" />
+		<column name="producerVersion" type="String" />
+		<column name="producerMarkupURL" type="String" />
+		<column name="status" type="int" />
+		<column name="registrationData" type="String" />
+		<column name="registrationContext" type="String" />
+		<column name="serviceDescription" type="String" />
+		<column name="userCategoryMapping" type="String" />
+		<column name="customUserProfile" type="String" />
+		<column name="identityPropagationType" type="String" />
+		<column name="lifetimeTerminationTime" type="String" />
+		<column name="sdLastModified" type="long" />
+		<column name="entityVersion" type="int" />
+
+		<!-- Finder methods -->
+
+		<finder name="P_N" return-type="Collection">
+			<finder-column name="portalId" />
+			<finder-column name="namespace" />
+		</finder>
+	</entity>
+	<entity name="WSRPConsumerRegistration" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="consumerRegistrationId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="consumerName" type="String" />
+		<column name="status" type="boolean" />
+		<column name="registrationHandle" type="String" />
+		<column name="registrationData" type="String" />
+		<column name="lifetimeTerminationTime" type="String" />
+		<column name="producerKey" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="ProducerKey" return-type="Collection">
+			<finder-column name="producerKey" />
+		</finder>
+		<finder name="R_P" return-type="WSRPConsumerRegistration">
+			<finder-column name="registrationHandle" />
+			<finder-column name="producerKey" />
+		</finder>
+	</entity>
+	<entity name="WSRPPortlet" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="portletId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="channelName" type="String" />
+		<column name="title" type="String" />
+		<column name="shortTitle" type="String" />
+		<column name="displayName" type="String" />
+		<column name="keywords" type="String" />
+		<column name="status" type="int" />
+		<column name="producerEntityId" type="String" />
+		<column name="consumerId" type="String" />
+		<column name="portletHandle" type="String"/>
+		<column name="mimeTypes" type="String"/>
+
+		<!-- Finder methods -->
+
+		<finder name="PortletName" return-type="WSRPPortlet">
+			<finder-column name="name" />
+		</finder>
+		<finder name="ProducerEntityId" return-type="Collection">
+			<finder-column name="producerEntityId" />
+		</finder>
+		<finder name="P_P" return-type="Collection">
+			<finder-column name="producerEntityId" />
+			<finder-column name="portletHandle" />
+		</finder>
+	</entity>
+	<entity name="WSRPProducer" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="producerId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="portalId" type="String" />
+		<column name="status" type="boolean" />
+		<column name="namespace" type="String" />
+		<column name="instanceName" type="String" />
+		<column name="requiresRegistration" type="boolean" />
+		<column name="supportsInbandRegistration" type="boolean" />
+		<column name="version" type="String" />
+		<column name="offeredPortlets" type="String" />
+		<column name="producerProfileMap" type="String" />
+		<column name="registrationProperties" type="String" />
+		<column name="registrationValidatorClass" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="InstanceName" return-type="WSRPProducer">
+			<finder-column name="instanceName" />
+		</finder>
+		<finder name="P_N" return-type="Collection">
+			<finder-column name="portalId" />
+			<finder-column name="namespace" />
+		</finder>
+	</entity>
+</service-builder>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model-hints>
+	<model name="com.liferay.wsrp.model.WSRPConfiguredProducer">
+		<field name="configuredProducerId" type="long" />
+		<field name="name" type="String" />
+		<field name="portalId" type="String" />
+		<field name="namespace" type="String" />
+		<field name="producerURL" type="String">
+			<hint name="max-length">256</hint>
+		</field>
+		<field name="producerVersion" type="String" />
+		<field name="producerMarkupURL" type="String">
+			<hint name="max-length">256</hint>
+		</field>
+		<field name="status" type="int" />
+		<field name="registrationData" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+		<field name="registrationContext" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+		<field name="serviceDescription" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+		<field name="userCategoryMapping" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+		<field name="customUserProfile" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+		<field name="identityPropagationType" type="String" />
+		<field name="lifetimeTerminationTime" type="String" />
+		<field name="sdLastModified" type="long" />
+		<field name="entityVersion" type="int" />
+	</model>
+	<model name="com.liferay.wsrp.model.WSRPConsumerRegistration">
+		<field name="consumerRegistrationId" type="long" />
+		<field name="consumerName" type="String">
+			<hint name="max-length">100</hint>
+		</field>
+		<field name="status" type="boolean" />
+		<field name="registrationHandle" type="String" />
+		<field name="registrationData" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+		<field name="lifetimeTerminationTime" type="String" />
+		<field name="producerKey" type="String" />
+	</model>
+	<model name="com.liferay.wsrp.model.WSRPPortlet">
+		<field name="portletId" type="long" />
+		<field name="name" type="String" />
+		<field name="channelName" type="String" />
+		<field name="title" type="String" />
+		<field name="shortTitle" type="String" />
+		<field name="displayName" type="String" />
+		<field name="keywords" type="String" />
+		<field name="status" type="int" />
+		<field name="producerEntityId" type="String" />
+		<field name="consumerId" type="String" />
+		<field name="portletHandle" type="String" />
+		<field name="mimeTypes" type="String">
+			<hint-collection name="URL" />
+		</field>
+	</model>
+	<model name="com.liferay.wsrp.model.WSRPProducer">
+		<field name="producerId" type="long" />
+		<field name="portalId" type="String" />
+		<field name="status" type="boolean" />
+		<field name="namespace" type="String" />
+		<field name="instanceName" type="String" />
+		<field name="requiresRegistration" type="boolean" />
+		<field name="supportsInbandRegistration" type="boolean" />
+		<field name="version" type="String" />
+		<field name="offeredPortlets" type="String">
+			<hint name="max-length">4000</hint>
+		</field>
+		<field name="producerProfileMap" type="String" />
+		<field name="registrationProperties" type="String">
+			<hint name="max-length">4000</hint>
+		</field>
+		<field name="registrationValidatorClass" type="String">
+			<hint name="max-length">200</hint>
+		</field>
+	</model>
+</model-hints>

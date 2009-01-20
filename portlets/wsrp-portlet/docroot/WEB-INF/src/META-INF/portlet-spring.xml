@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<bean id="com.liferay.wsrp.service.WSRPConfiguredProducerLocalService.impl" class="com.liferay.wsrp.service.impl.WSRPConfiguredProducerLocalServiceImpl" />
+	<bean id="com.liferay.wsrp.service.WSRPConfiguredProducerLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.wsrp.service.WSRPConfiguredProducerLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.wsrp.service.WSRPConfiguredProducerLocalServiceUtil" class="com.liferay.wsrp.service.WSRPConfiguredProducerLocalServiceUtil">
+		<property name="service" ref="com.liferay.wsrp.service.WSRPConfiguredProducerLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.wsrp.service.persistence.WSRPConfiguredProducerPersistence.impl" class="com.liferay.wsrp.service.persistence.WSRPConfiguredProducerPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.wsrp.service.persistence.WSRPConfiguredProducerUtil" class="com.liferay.wsrp.service.persistence.WSRPConfiguredProducerUtil">
+		<property name="persistence" ref="com.liferay.wsrp.service.persistence.WSRPConfiguredProducerPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.wsrp.service.WSRPConsumerRegistrationLocalService.impl" class="com.liferay.wsrp.service.impl.WSRPConsumerRegistrationLocalServiceImpl" />
+	<bean id="com.liferay.wsrp.service.WSRPConsumerRegistrationLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.wsrp.service.WSRPConsumerRegistrationLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.wsrp.service.WSRPConsumerRegistrationLocalServiceUtil" class="com.liferay.wsrp.service.WSRPConsumerRegistrationLocalServiceUtil">
+		<property name="service" ref="com.liferay.wsrp.service.WSRPConsumerRegistrationLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.wsrp.service.persistence.WSRPConsumerRegistrationPersistence.impl" class="com.liferay.wsrp.service.persistence.WSRPConsumerRegistrationPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.wsrp.service.persistence.WSRPConsumerRegistrationUtil" class="com.liferay.wsrp.service.persistence.WSRPConsumerRegistrationUtil">
+		<property name="persistence" ref="com.liferay.wsrp.service.persistence.WSRPConsumerRegistrationPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.wsrp.service.WSRPPortletLocalService.impl" class="com.liferay.wsrp.service.impl.WSRPPortletLocalServiceImpl" />
+	<bean id="com.liferay.wsrp.service.WSRPPortletLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.wsrp.service.WSRPPortletLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.wsrp.service.WSRPPortletLocalServiceUtil" class="com.liferay.wsrp.service.WSRPPortletLocalServiceUtil">
+		<property name="service" ref="com.liferay.wsrp.service.WSRPPortletLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.wsrp.service.persistence.WSRPPortletPersistence.impl" class="com.liferay.wsrp.service.persistence.WSRPPortletPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.wsrp.service.persistence.WSRPPortletUtil" class="com.liferay.wsrp.service.persistence.WSRPPortletUtil">
+		<property name="persistence" ref="com.liferay.wsrp.service.persistence.WSRPPortletPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.wsrp.service.WSRPProducerLocalService.impl" class="com.liferay.wsrp.service.impl.WSRPProducerLocalServiceImpl" />
+	<bean id="com.liferay.wsrp.service.WSRPProducerLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.wsrp.service.WSRPProducerLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.wsrp.service.WSRPProducerLocalServiceUtil" class="com.liferay.wsrp.service.WSRPProducerLocalServiceUtil">
+		<property name="service" ref="com.liferay.wsrp.service.WSRPProducerLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.wsrp.service.persistence.WSRPProducerPersistence.impl" class="com.liferay.wsrp.service.persistence.WSRPProducerPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.wsrp.service.persistence.WSRPProducerUtil" class="com.liferay.wsrp.service.persistence.WSRPProducerUtil">
+		<property name="persistence" ref="com.liferay.wsrp.service.persistence.WSRPProducerPersistence.impl" />
+	</bean>
+</beans>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+	<filter>
+		<filter-name>WSRP Producer Filter</filter-name>
+		<filter-class>com.sun.portal.wsrp.producer.filter.ProducerFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>WSRP Producer Filter</filter-name>
+		<url-pattern>/wsrp/*</url-pattern>
+	</filter-mapping>
+	<listener>
+		<listener-class>com.liferay.portal.kernel.spring.context.PortletContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.liferay.wsrp.servlet.WSRPServletContextListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>WSRP Consumer Proxy Servlet</servlet-name>
+		<servlet-class>com.sun.portal.wsrp.consumer.resourceproxy.ResourceProxyServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>WSRP Producer Router Servlet</servlet-name>
+		<servlet-class>com.sun.portal.wsrp.producer.router.RouterServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>WSRP Producer WSDL Servlet</servlet-name>
+		<servlet-class>com.sun.portal.wsrp.producer.wsdl.WSDLServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>WS Servlet - WSRP 1.0 Markup</servlet-name>
+		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>WS Servlet - WSRP 1.0 Portlet Management</servlet-name>
+		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>WS Servlet - WSRP 1.0 Registration</servlet-name>
+		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>WS Servlet - WSRP 1.0 Service Description</servlet-name>
+		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>WS Servlet - WSRP 2.0 Markup</servlet-name>
+		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>WS Servlet - WSRP 2.0 Portlet Management</servlet-name>
+		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>WS Servlet - WSRP 2.0 Registration</servlet-name>
+		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>WS Servlet - WSRP 2.0 Service Description</servlet-name>
+		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WSRP Consumer Proxy Servlet</servlet-name>
+		<url-pattern>/wsrpconsumer/resourceproxy/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>WSRP Producer Router Servlet</servlet-name>
+		<url-pattern>/wsrp/router/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>WSRP Producer WSDL Servlet</servlet-name>
+		<url-pattern>/wsrp/wsdl/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>WS Servlet - WSRP 1.0 Markup</servlet-name>
+		<url-pattern>/wsrp/service/v1/markup/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>WS Servlet - WSRP 1.0 Portlet Management</servlet-name>
+		<url-pattern>/wsrp/service/v1/portletmanagement/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>WS Servlet - WSRP 1.0 Registration</servlet-name>
+		<url-pattern>/wsrp/service/v1/registration/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>WS Servlet - WSRP 1.0 Service Description</servlet-name>
+		<url-pattern>/wsrp/service/v1/servicedescription/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>WS Servlet - WSRP 2.0 Markup</servlet-name>
+		<url-pattern>/wsrp/service/v2/markup/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>WS Servlet - WSRP 2.0 Portlet Management</servlet-name>
+		<url-pattern>/wsrp/service/v2/portletmanagement/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>WS Servlet - WSRP 2.0 Registration</servlet-name>
+		<url-pattern>/wsrp/service/v2/registration/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>WS Servlet - WSRP 2.0 Service Description</servlet-name>
+		<url-pattern>/wsrp/service/v2/servicedescription/*</url-pattern>
+	</servlet-mapping>
+	<taglib>
+		<taglib-uri>http://java.sun.com/jstl/core_rt</taglib-uri>
+		<taglib-location>/WEB-INF/tld/c-rt.tld</taglib-location>
+	</taglib>
+</web-app>
