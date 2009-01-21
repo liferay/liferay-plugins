@@ -111,7 +111,7 @@
 
 					// Action
 
-					row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/producer/producer_action.jsp");
+					row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/producer/producer_action.jsp", application, request, response);
 
 					// Add result row
 
@@ -498,7 +498,7 @@
 
 					// Action
 
-					row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/producer/consumer_registration_action.jsp");
+					row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/producer/consumer_registration_action.jsp", application, request, response);
 
 					// Add result row
 
@@ -813,7 +813,7 @@
 
 					// Action
 
-					row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/producer/registration_property_action.jsp");
+					row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/producer/registration_property_action.jsp", application, request, response);
 
 					// Add result row
 

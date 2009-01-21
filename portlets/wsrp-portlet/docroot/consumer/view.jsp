@@ -717,7 +717,7 @@
 
 					// Action
 
-					row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/consumer/channel_action.jsp");
+					row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/consumer/channel_action.jsp", application, request, response);
 
 					// Add result row
 
@@ -770,7 +770,7 @@
 
 					// Action
 
-					row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/consumer/consumer_action.jsp");
+					row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/consumer/consumer_action.jsp", application, request, response);
 
 					// Add result row
 
