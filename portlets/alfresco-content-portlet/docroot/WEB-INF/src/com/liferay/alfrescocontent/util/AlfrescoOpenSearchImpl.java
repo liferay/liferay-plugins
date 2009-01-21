@@ -103,13 +103,13 @@ public class AlfrescoOpenSearchImpl implements OpenSearch {
 
 	public String search(
 			HttpServletRequest request, String keywords, int startPage,
-			int itemsPerPage)
+			int itemsPerPage, String format)
 		throws SearchException {
 
 		String url =
 			PROTOCOL + "://" + SEARCH_URL + "?q=" +
 				HttpUtil.encodeURL(keywords) + "&p=" + startPage + "&c=" +
-					itemsPerPage + "&guest=&format=atom";
+					itemsPerPage + "&guest=&format=" + format;
 
 		return search(request, url);
 	}

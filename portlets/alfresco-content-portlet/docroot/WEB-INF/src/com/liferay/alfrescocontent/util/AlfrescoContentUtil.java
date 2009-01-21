@@ -356,7 +356,8 @@ public class AlfrescoContentUtil {
 		"\"workspace://SpacesStore/([\\w\\-]*)\"");
 
 	private static final Pattern _RESOURCE_URL_PATTERN = Pattern.compile(
-		"\"(?:\\.\\.)?(?:/\\.\\.)*(/download/direct/workspace/SpacesStore/[\\w\\-/\\.]*)\"");
+		"\"(?:\\.\\.)?(?:/\\.\\.)*" +
+			"(/download/direct/workspace/SpacesStore/[\\w\\-/\\.]*)\"");
 
 	private static final Store _SPACES_STORE =
 		new Store(Constants.WORKSPACE_STORE, "SpacesStore");
