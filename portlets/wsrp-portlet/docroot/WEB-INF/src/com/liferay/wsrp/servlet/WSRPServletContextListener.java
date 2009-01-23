@@ -97,8 +97,9 @@ public class WSRPServletContextListener
 			PortletLocalServiceUtil.destroyPortlet(portlet);
 		}
 
-		ServiceManager.getServiceManager().removeService(
-			Service.DEPLOYMENT_SERVICE_REMOTE);
+		ServiceManager serviceManager = ServiceManager.getServiceManager();
+
+		serviceManager.removeService(Service.DEPLOYMENT_SERVICE_REMOTE);
 	}
 
 	protected void doPortalInit() throws Exception {
@@ -110,7 +111,9 @@ public class WSRPServletContextListener
 
 		Properties properties = PortletProps.getProperties();
 
-		ServiceManager.getServiceManager().addService(
+		ServiceManager serviceManager = ServiceManager.getServiceManager();
+
+		serviceManager.addService(
 			Service.DEPLOYMENT_SERVICE_REMOTE,
 			new DeploymentServiceRemoteImpl());
 

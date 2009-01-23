@@ -22,6 +22,7 @@
 
 package com.liferay.wsrp;
 
+import com.liferay.portal.kernel.bean.ContextClassLoaderBeanHandler;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.wsrp.ProfileMapManager;
 import com.liferay.portal.wsrp.WSRPFactory;
@@ -36,7 +37,8 @@ import com.sun.portal.container.Container;
 import com.sun.portal.container.WindowRequestReader;
 import com.sun.portal.wsrp.consumer.markup.WSRPContainerFactory;
 
-import com.sun.portal.wsrp.producer.filter.ProducerThreadLocalizer;
+import java.lang.reflect.Proxy;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -47,35 +49,47 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class WSRPFactoryImpl implements WSRPFactory {
 
+	public WSRPFactoryImpl() {
+		_container = WSRPContainerFactory.getInstance();
+		_container = (Container)newProxyInstance(_container);
+	}
+
 	public Container getContainer() {
-		_setContextClassLoader();
 		return _container;
 	}
 
 	public ProfileMapManager getProfileMapManager() {
-		_setContextClassLoader();
-		return new LiferayProfileMapManagerImpl();
+		ProfileMapManager profileMapManager =
+			new LiferayProfileMapManagerImpl();
+
+		return (ProfileMapManager)newProxyInstance(profileMapManager);
 	}
 
 	public ChannelURLFactory getWindowChannelURLFactory(
 		HttpServletRequest request, Portlet portlet, ChannelState windowState,
 		ChannelMode portletMode, long plid) {
 
-		_setContextClassLoader();
-		return new WSRPWindowChannelURLFactory(
-			request, portlet, windowState, portletMode, plid);
+		ChannelURLFactory windowChannelURLFactory =
+			new WSRPWindowChannelURLFactory(
+				request, portlet, windowState, portletMode, plid);
+
+		return (ChannelURLFactory)newProxyInstance(windowChannelURLFactory);
 	}
 
 	public WindowRequestReader getWindowRequestReader() {
-		_setContextClassLoader();
-		return new WSRPWindowRequestReader();
+		WindowRequestReader windowRequestReader = new WSRPWindowRequestReader();
+
+		return (WSRPWindowRequestReader)newProxyInstance(windowRequestReader);
 	}
 
-	private void _setContextClassLoader() {
-		Thread.currentThread().setContextClassLoader(
-			ProducerThreadLocalizer.class.getClassLoader());
+	protected Object newProxyInstance(Object object) {
+		ClassLoader classLoader = WSRPFactoryImpl.class.getClassLoader();
+
+		return Proxy.newProxyInstance(
+			classLoader, new Class[] {object.getClass()},
+			new ContextClassLoaderBeanHandler(object, classLoader));
 	}
 
-	private static Container _container = WSRPContainerFactory.getInstance();
+	private Container _container;
 
 }
