@@ -271,6 +271,10 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 				<div class="lfr-form-row" id="<portlet:namespace/>fieldset<%= formFieldsIndex %>">
 					<div class="field-title">
 						<c:choose>
+							<c:when test="<%= fieldType.equals("paragraph") %>">
+								<span class="field-label"><liferay-ui:message key="paragraph" /></span>
+							</c:when>
+
 							<c:when test="<%= Validator.isNotNull(fieldLabel) %>">
 								<span class="field-label"><%= fieldLabel %></span>
 							</c:when>
@@ -483,14 +487,22 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 					div.hide();
 				}
 
-				var optional = select.parent().prev();
+				var optional = select.parent().next();
+				var divName = select.parent().prev();
 
 				if (value == 'paragraph') {
-					optional.hide();
+					var inputName = divName.children("input");
+					inputName.val('<liferay-ui:message key="paragraph" />');
+					inputName.trigger('change');
+
+					divName.hide();
+                    optional.hide();
+
 					optional.children("input[type='checkbox']").attr('checked', 'true');
 				}
 				else {
 					optional.show();
+					divName.show();
 				}
 			};
 

@@ -414,6 +414,13 @@ public class WebFormPortlet extends JSPPortlet {
 		Set<String> validationErrors = new HashSet<String>();
 
 		for (int i = 0; i < fieldsMap.size(); i++) {
+
+			String fieldType = preferences.getValue(
+				"fieldType" + (i + 1), StringPool.BLANK);
+			if (Validator.equals(fieldType, "paragraph")){
+				continue;
+			}
+
 			String fieldLabel = preferences.getValue(
 				"fieldLabel" + (i + 1), StringPool.BLANK);
 			String fieldValue = fieldsMap.get(fieldLabel);
