@@ -424,7 +424,7 @@ public class WebFormPortlet extends JSPPortlet {
 				preferences.getValue(
 					"fieldOptional" + (i + 1), StringPool.BLANK));
 
-			if (Validator.equals(fieldType, "paragraph")){
+			if (Validator.equals(fieldType, "paragraph")) {
 				continue;
 			}
 
