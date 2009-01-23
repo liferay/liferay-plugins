@@ -582,7 +582,7 @@
 
 				<input type="submit" value="<liferay-ui:message key="save" />" />
 
-				<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
+				<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= renderResponse.createRenderURL() %>';" />
 
 				</form>
 			</c:when>
@@ -678,7 +678,7 @@
 
 				<input type="submit" value="<liferay-ui:message key="save" />" />
 
-				<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
+				<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= renderResponse.createRenderURL() %>';" />
 
 				</form>
 			</c:when>

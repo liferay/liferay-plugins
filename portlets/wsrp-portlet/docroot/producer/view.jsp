@@ -138,7 +138,7 @@
 
 				Set<Map.Entry<String, String>> versions = supportedVersions.entrySet();
 
-				String wsdl = "http://" + renderRequest.getServerName() + ":" + renderRequest.getServerPort() + producerBean.getWsdlURL();
+				String wsdl = renderRequest.getScheme() +"://" + renderRequest.getServerName() + ":" + renderRequest.getServerPort() + renderRequest.getContextPath() + producerBean.getWsdlURL();
 				%>
 
 				<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
@@ -359,7 +359,7 @@
 
 				<input type="button" value="<liferay-ui:message key="save" />" onClick="document.<portlet:namespace />fm.<portlet:namespace />publishedPortletString.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />publishedPortlets, '$'); submitForm(document.<portlet:namespace />fm);" />
 
-				<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
+				<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= renderResponse.createRenderURL() %>';" />
 
 				</form>
 			</c:when>

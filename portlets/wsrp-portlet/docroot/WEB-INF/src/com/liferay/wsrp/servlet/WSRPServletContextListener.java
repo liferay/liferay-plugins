@@ -35,7 +35,10 @@ import com.liferay.util.portlet.PortletProps;
 import com.liferay.wsrp.WSRPFactoryImpl;
 import com.liferay.wsrp.consumer.admin.WSRPPersistenceHelper;
 
+import com.sun.portal.container.service.Service;
+import com.sun.portal.container.service.ServiceManager;
 import com.sun.portal.wsrp.common.WSRPConfig;
+import com.sun.portal.wsrp.consumer.common.DeploymentServiceRemoteImpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -93,6 +96,9 @@ public class WSRPServletContextListener
 		for (Portlet portlet : portlets) {
 			PortletLocalServiceUtil.destroyPortlet(portlet);
 		}
+
+		ServiceManager.getServiceManager().removeService(
+			Service.DEPLOYMENT_SERVICE_REMOTE);
 	}
 
 	protected void doPortalInit() throws Exception {
@@ -103,6 +109,10 @@ public class WSRPServletContextListener
 		wsrpFactoryUtil.setWSRPFactory(new WSRPFactoryImpl());
 
 		Properties properties = PortletProps.getProperties();
+
+		ServiceManager.getServiceManager().addService(
+			Service.DEPLOYMENT_SERVICE_REMOTE,
+			new DeploymentServiceRemoteImpl());
 
 		WSRPConfig.init(properties, "portal1");
 

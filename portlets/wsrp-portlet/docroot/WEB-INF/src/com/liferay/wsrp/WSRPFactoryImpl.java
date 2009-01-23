@@ -36,6 +36,7 @@ import com.sun.portal.container.Container;
 import com.sun.portal.container.WindowRequestReader;
 import com.sun.portal.wsrp.consumer.markup.WSRPContainerFactory;
 
+import com.sun.portal.wsrp.producer.filter.ProducerThreadLocalizer;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -47,10 +48,12 @@ import javax.servlet.http.HttpServletRequest;
 public class WSRPFactoryImpl implements WSRPFactory {
 
 	public Container getContainer() {
+		_setContextClassLoader();
 		return _container;
 	}
 
 	public ProfileMapManager getProfileMapManager() {
+		_setContextClassLoader();
 		return new LiferayProfileMapManagerImpl();
 	}
 
@@ -58,12 +61,19 @@ public class WSRPFactoryImpl implements WSRPFactory {
 		HttpServletRequest request, Portlet portlet, ChannelState windowState,
 		ChannelMode portletMode, long plid) {
 
+		_setContextClassLoader();
 		return new WSRPWindowChannelURLFactory(
 			request, portlet, windowState, portletMode, plid);
 	}
 
 	public WindowRequestReader getWindowRequestReader() {
+		_setContextClassLoader();
 		return new WSRPWindowRequestReader();
+	}
+
+	private void _setContextClassLoader() {
+		Thread.currentThread().setContextClassLoader(
+			ProducerThreadLocalizer.class.getClassLoader());
 	}
 
 	private static Container _container = WSRPContainerFactory.getInstance();
