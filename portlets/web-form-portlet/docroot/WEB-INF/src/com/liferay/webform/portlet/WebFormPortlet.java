@@ -417,10 +417,6 @@ public class WebFormPortlet extends JSPPortlet {
 
 			String fieldType = preferences.getValue(
 				"fieldType" + (i + 1), StringPool.BLANK);
-			if (Validator.equals(fieldType, "paragraph")){
-				continue;
-			}
-
 			String fieldLabel = preferences.getValue(
 				"fieldLabel" + (i + 1), StringPool.BLANK);
 			String fieldValue = fieldsMap.get(fieldLabel);
@@ -428,6 +424,10 @@ public class WebFormPortlet extends JSPPortlet {
 			boolean fieldOptional = GetterUtil.getBoolean(
 				preferences.getValue(
 					"fieldOptional" + (i + 1), StringPool.BLANK));
+
+			if (Validator.equals(fieldType, "paragraph")){
+				continue;
+			}
 
 			if (!fieldOptional && Validator.isNotNull(fieldLabel) &&
 				Validator.isNull(fieldValue)) {

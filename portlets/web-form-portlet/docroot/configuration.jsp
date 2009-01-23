@@ -207,7 +207,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 	</liferay-ui:section>
 
 	<liferay-ui:section>
-		<fieldset class="block-labels  rows-container" id="<portlet:namespace/>webFields">
+		<fieldset class="block-labels rows-container" id="<portlet:namespace/>webFields">
 
 			<c:if test="<%= fieldsEditingDisabled %>">
 				<div class="portlet-msg-alert">
@@ -496,7 +496,7 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 					inputName.trigger('change');
 
 					divName.hide();
-                    optional.hide();
+					optional.hide();
 
 					optional.children("input[type='checkbox']").attr('checked', 'true');
 				}
