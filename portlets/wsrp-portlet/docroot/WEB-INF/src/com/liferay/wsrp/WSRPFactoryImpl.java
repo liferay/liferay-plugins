@@ -45,13 +45,14 @@ import javax.servlet.http.HttpServletRequest;
  * <a href="WSRPFactoryImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
+ * @author Manish Gupta
  *
  */
 public class WSRPFactoryImpl implements WSRPFactory {
 
 	public WSRPFactoryImpl() {
 		_container = WSRPContainerFactory.getInstance();
-		_container = (Container)newProxyInstance(_container);
+		_container = (Container)newProxyInstance(_container, Container.class);
 	}
 
 	public Container getContainer() {
@@ -62,7 +63,8 @@ public class WSRPFactoryImpl implements WSRPFactory {
 		ProfileMapManager profileMapManager =
 			new LiferayProfileMapManagerImpl();
 
-		return (ProfileMapManager)newProxyInstance(profileMapManager);
+		return (ProfileMapManager)newProxyInstance(
+			profileMapManager, ProfileMapManager.class);
 	}
 
 	public ChannelURLFactory getWindowChannelURLFactory(
@@ -73,20 +75,22 @@ public class WSRPFactoryImpl implements WSRPFactory {
 			new WSRPWindowChannelURLFactory(
 				request, portlet, windowState, portletMode, plid);
 
-		return (ChannelURLFactory)newProxyInstance(windowChannelURLFactory);
+		return (ChannelURLFactory)newProxyInstance(
+			windowChannelURLFactory, ChannelURLFactory.class);
 	}
 
 	public WindowRequestReader getWindowRequestReader() {
 		WindowRequestReader windowRequestReader = new WSRPWindowRequestReader();
 
-		return (WSRPWindowRequestReader)newProxyInstance(windowRequestReader);
+		return (WSRPWindowRequestReader)newProxyInstance(
+			windowRequestReader, WindowRequestReader.class);
 	}
-
-	protected Object newProxyInstance(Object object) {
+	
+	protected Object newProxyInstance(Object object, Class clazz) {
 		ClassLoader classLoader = WSRPFactoryImpl.class.getClassLoader();
-
+		
 		return Proxy.newProxyInstance(
-			classLoader, new Class[] {object.getClass()},
+			classLoader, new Class[] {clazz},
 			new ContextClassLoaderBeanHandler(object, classLoader));
 	}
 
