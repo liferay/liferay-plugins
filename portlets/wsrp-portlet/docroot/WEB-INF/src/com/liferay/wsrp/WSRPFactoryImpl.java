@@ -52,7 +52,7 @@ public class WSRPFactoryImpl implements WSRPFactory {
 
 	public WSRPFactoryImpl() {
 		_container = WSRPContainerFactory.getInstance();
-		_container = (Container)newProxyInstance(_container, Container.class);
+		_container = (Container)newProxyInstance(Container.class, _container);
 	}
 
 	public Container getContainer() {
@@ -64,7 +64,7 @@ public class WSRPFactoryImpl implements WSRPFactory {
 			new LiferayProfileMapManagerImpl();
 
 		return (ProfileMapManager)newProxyInstance(
-			profileMapManager, ProfileMapManager.class);
+			ProfileMapManager.class, profileMapManager);
 	}
 
 	public ChannelURLFactory getWindowChannelURLFactory(
@@ -76,19 +76,19 @@ public class WSRPFactoryImpl implements WSRPFactory {
 				request, portlet, windowState, portletMode, plid);
 
 		return (ChannelURLFactory)newProxyInstance(
-			windowChannelURLFactory, ChannelURLFactory.class);
+			ChannelURLFactory.class, windowChannelURLFactory);
 	}
 
 	public WindowRequestReader getWindowRequestReader() {
 		WindowRequestReader windowRequestReader = new WSRPWindowRequestReader();
 
 		return (WSRPWindowRequestReader)newProxyInstance(
-			windowRequestReader, WindowRequestReader.class);
+			WindowRequestReader.class, windowRequestReader);
 	}
-	
-	protected Object newProxyInstance(Object object, Class clazz) {
+
+	protected Object newProxyInstance(Class clazz, Object object) {
 		ClassLoader classLoader = WSRPFactoryImpl.class.getClassLoader();
-		
+
 		return Proxy.newProxyInstance(
 			classLoader, new Class[] {clazz},
 			new ContextClassLoaderBeanHandler(object, classLoader));
