@@ -53,6 +53,10 @@ public class ConsumerPortlet extends WSRPConsumerAdminPortlet {
 
 		int action = ParamUtil.getInteger(actionRequest, "action");
 
+		if (action == AdminPortletAction.LIST_CHANNELS) {
+			actionResponse.setRenderParameter("tabs1", "portlets");
+		}
+
 		if ((action == AdminPortletAction.CREATE) ||
 			(action == AdminPortletAction.CREATE_CHANNEL) ||
 			(action == AdminPortletAction.DELETE) ||

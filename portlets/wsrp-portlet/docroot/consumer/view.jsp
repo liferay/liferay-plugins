@@ -96,7 +96,7 @@
 
 				<input type="submit" value="<liferay-ui:message key="next" />" />
 
-				<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
+				<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= renderResponse.createRenderURL() %>';" />
 
 				</form>
 			</c:when>
@@ -156,7 +156,7 @@
 
 				<input type="submit" value="<liferay-ui:message key="next" />" />
 
-				<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
+				<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= renderResponse.createRenderURL() %>';" />
 
 				</form>
 			</c:when>
@@ -170,7 +170,6 @@
 
 				<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
 				<input name="<portlet:namespace /><%= Constants.ACTION %>" type="hidden" value="<%= AdminPortletAction.CREATE %>" />
-				<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 				<input name="<portlet:namespace />wsdl" type="hidden" value="<%= HtmlUtil.escape(wsdl) %>" />
 				<input name="<portlet:namespace />version" type="hidden" value="<%= HtmlUtil.escape(version) %>" />
 
@@ -403,7 +402,7 @@
 
 				<input type="submit" value="<liferay-ui:message key="save" />" />
 
-				<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
+				<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= renderResponse.createRenderURL() %>';" />
 
 				</form>
 			</c:when>
@@ -595,7 +594,6 @@
 
 				<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
 				<input name="<portlet:namespace /><%= Constants.ACTION %>" type="hidden" value="<%= AdminPortletAction.CREATE_CHANNEL %>" />
-				<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 				<input name="<portlet:namespace />configuredProducerName" type="hidden" value="<%= HtmlUtil.escape(name) %>" />
 				<input name="<portlet:namespace />configuredProducerId" type="hidden" value="<%= HtmlUtil.escape(id) %>" />
 
@@ -683,9 +681,21 @@
 				</form>
 			</c:when>
 			<c:when test="<%= action == AdminPortletAction.LIST_CHANNELS %>">
-				<liferay-util:include page="/consumer/tabs1.jsp">
-					<liferay-util:param name="tabs1" value="portlets" />
-				</liferay-util:include>
+				<portlet:renderURL var="tabs1URL0">
+					<portlet:param name="<%= Constants.ACTION %>" value="<%= String.valueOf(AdminPortletAction.LIST) %>" />
+					<portlet:param name="tabs1" value="producers" />
+				</portlet:renderURL>
+
+				<portlet:actionURL var="tabs1URL1">
+					<portlet:param name="<%= Constants.ACTION %>" value="<%= String.valueOf(AdminPortletAction.LIST_CHANNELS) %>" />
+					<portlet:param name="tabs1" value="portlets" />
+				</portlet:actionURL>
+
+				<liferay-ui:tabs
+					names="producers,portlets"
+					url0="<%= tabs1URL0 %>"
+					url1="<%= tabs1URL1 %>"
+				/>
 
 				<%
 				SearchContainer searchContainer = new SearchContainer();
@@ -728,8 +738,21 @@
 				<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" paginate="<%= false %>" />
 			</c:when>
 			<c:when test='<%= tabs1.equals("producers") %>'>
-				<liferay-util:include page="/consumer/tabs1.jsp" />
+				<portlet:renderURL var="tabs1URL0">
+					<portlet:param name="<%= Constants.ACTION %>" value="<%= String.valueOf(AdminPortletAction.LIST) %>" />
+					<portlet:param name="tabs1" value="producers" />
+				</portlet:renderURL>
 
+				<portlet:actionURL var="tabs1URL1">
+					<portlet:param name="<%= Constants.ACTION %>" value="<%= String.valueOf(AdminPortletAction.LIST_CHANNELS) %>" />
+					<portlet:param name="tabs1" value="portlets" />
+				</portlet:actionURL>
+
+				<liferay-ui:tabs
+					names="producers,portlets"
+					url0="<%= tabs1URL0 %>"
+					url1="<%= tabs1URL1 %>"
+				/>
 				<%
 				SearchContainer searchContainer = new SearchContainer();
 

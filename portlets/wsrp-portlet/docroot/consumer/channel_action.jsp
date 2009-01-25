@@ -54,7 +54,6 @@ String channelName = (String)row.getObject();
 <liferay-ui:icon-menu>
 	<portlet:actionURL var="deleteURL">
 		<portlet:param name="<%= Constants.ACTION %>" value="<%= String.valueOf(AdminPortletAction.DELETE_CHANNELS) %>" />
-		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="channelNames" value="<%= channelName %>" />
 	</portlet:actionURL>
 

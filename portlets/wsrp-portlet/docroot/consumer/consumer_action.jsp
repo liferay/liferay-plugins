@@ -81,7 +81,6 @@ ConfiguredProducerElementBean configuredProducerBean = (ConfiguredProducerElemen
 
 	<portlet:actionURL var="deleteURL">
 		<portlet:param name="<%= Constants.ACTION %>" value="<%= String.valueOf(AdminPortletAction.DELETE) %>" />
-		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="selectedConfiguredProducers" value="<%= configuredProducerBean.getId() %>" />
 	</portlet:actionURL>
 
