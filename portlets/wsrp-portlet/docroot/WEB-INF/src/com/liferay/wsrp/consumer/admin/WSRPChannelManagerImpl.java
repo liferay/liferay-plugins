@@ -50,7 +50,6 @@ import com.liferay.portal.model.PortletInfo;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletInstanceFactoryUtil;
-
 import com.liferay.wsrp.model.WSRPPortlet;
 import com.liferay.wsrp.service.WSRPPortletLocalServiceUtil;
 
@@ -119,20 +118,17 @@ public class WSRPChannelManagerImpl implements WSRPChannelManagerMBean {
 	public List<String> listWSRPChannels() {
 		List<String> remotePortlets = new ArrayList<String>();
 
-		/*
-		This code is returning cached remote portlets after deletion of a
-		remote portlet instance. Written an alternate code as workaround.
-
-		List<Portlet> portlets = PortletLocalServiceUtil.getPortlets();
+		/*List<Portlet> portlets = PortletLocalServiceUtil.getPortlets();
 
 		for (Portlet portlet : portlets) {
 			if (portlet.isRemote()) {
 				remotePortlets.add(portlet.getPortletId());
 			}
-		}
-		*/
+		}*/
 
-		//Following code will be removed one above cache issue is resolved.
+		// Following code will be removed once the above code no longer caches
+		// improperly
+
 		try {
 			List<WSRPPortlet> wsrpPortlets =
 				WSRPPortletLocalServiceUtil.getPortlets();
@@ -144,6 +140,7 @@ public class WSRPChannelManagerImpl implements WSRPChannelManagerMBean {
 		catch (Exception e) {
 			_log.error(e);
 		}
+
 		return remotePortlets;
 	}
 

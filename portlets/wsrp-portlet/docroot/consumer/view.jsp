@@ -753,6 +753,7 @@
 					url0="<%= tabs1URL0 %>"
 					url1="<%= tabs1URL1 %>"
 				/>
+
 				<%
 				SearchContainer searchContainer = new SearchContainer();
 
