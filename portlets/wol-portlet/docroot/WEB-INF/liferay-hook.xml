@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hook PUBLIC "-//Liferay//DTD Hook 5.1.0//EN" "http://www.liferay.com/dtd/liferay-hook_5_1_0.dtd">
+<!DOCTYPE hook PUBLIC "-//Liferay//DTD Hook 5.2.0//EN" "http://www.liferay.com/dtd/liferay-hook_5_2_0.dtd">
 
 <hook>
-	<event>
-		<event-class>com.liferay.wol.hook.events.StartupAction</event-class>
-		<event-type>application.startup.events</event-type>
-	</event>
-	<model-listener>
-		<model-listener-class>com.liferay.wol.hook.listeners.GroupListener</model-listener-class>
-		<model-name>com.liferay.portal.model.Group</model-name>
-	</model-listener>
+	<portal-properties>portal.properties</portal-properties>
 </hook>
