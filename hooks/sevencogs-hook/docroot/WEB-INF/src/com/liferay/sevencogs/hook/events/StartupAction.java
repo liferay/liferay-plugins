@@ -1119,6 +1119,19 @@ public class StartupAction extends SimpleAction {
 
 		addPortletId(layout, PortletKeys.WIKI, "column-1");
 
+		// Wiki
+
+		WikiNode wikiNode = WikiNodeLocalServiceUtil.addNode(
+			defaultUserId, "Main", StringPool.BLANK, serviceContext);
+
+		addWikiPage(
+			defaultUserId, wikiNode.getNodeId(), "FrontPage",
+			"FrontPage.xml", serviceContext);
+
+		addWikiPage(
+			defaultUserId, wikiNode.getNodeId(), "Vix-998",
+			"Vix-998.xml", serviceContext);
+
 		// Forums layout
 
 		layout = addLayout(group, "Forums", false, "/forums", "1_column");
@@ -1408,21 +1421,6 @@ public class StartupAction extends SimpleAction {
 
 		addSocialRequest(johnUser, brunoUser, false);
 		addSocialRequest(johnUser, richardUser, false);
-
-		// Wiki
-
-		serviceContext.setScopeGroupId(johnUser.getGroup().getGroupId());
-
-		WikiNode wikiNode = WikiNodeLocalServiceUtil.addNode(
-			johnUser.getUserId(), "Main", StringPool.BLANK, serviceContext);
-
-		addWikiPage(
-			johnUser.getUserId(), wikiNode.getNodeId(), "FrontPage",
-			"FrontPage.xml", serviceContext);
-
-		addWikiPage(
-			johnUser.getUserId(), wikiNode.getNodeId(), "Vix-998",
-			"Vix-998.xml", serviceContext);
 	}
 
 	protected void updateLayout(Layout layout) throws Exception {
