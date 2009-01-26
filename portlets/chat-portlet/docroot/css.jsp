@@ -24,7 +24,7 @@
 
 <%@ include file="/css_init.jsp" %>
 
-body {
+html body {
 	height: auto;
 	padding-bottom: 24px;
 }
@@ -193,6 +193,10 @@ body {
 	cursor: pointer;
 	border: 1px solid #fff;
 	width: 212px;
+}
+
+.buddy-list .panel-content .online-users li {
+	margin: 0;
 }
 
 .buddy-list .panel-content li.idle {

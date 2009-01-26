@@ -18,73 +18,105 @@
  * synced requests have been completed.
  */
 
-;(function($) {
-	if (Liferay.Browser.isIe() && Liferay.Browser.getMajorVersion() > 6) {
-		var ajax = $.ajax;
+(function($) {
+	if (!Liferay.Browser.isIe() || (Liferay.Browser.isIe() && Liferay.Browser.getMajorVersion() > 6)) {
+		var ajax = jQuery.ajax;
 
 		var pendingRequests = {};
 
 		var synced = [];
 		var syncedData = [];
 
-		$.ajax = function(settings) {
-			settings = jQuery.extend(settings, jQuery.extend({}, jQuery.ajaxSettings, settings));
+		jQuery.ajax = function(settings) {
+			var instance = this;
+
+			var ajaxSettings = jQuery.extend({}, jQuery.ajaxSettings, settings);
+
+			settings = jQuery.extend(settings, ajaxSettings);
 
 			var port = settings.port;
 
-			switch(settings.mode) {
-			case "abort":
-				if ( pendingRequests[port] ) {
+			var mode = settings.mode || '';
+
+			if (mode == 'abort') {
+				if (pendingRequests[port]) {
 					pendingRequests[port].abort();
 				}
-				return pendingRequests[port] = ajax.apply(this, arguments);
-			case "queue":
-				var _old = settings.complete;
-				settings.complete = function(){
-					if ( _old )
-						_old.apply( this, arguments );
-					jQuery([ajax]).dequeue("ajax" + port );;
+
+				return ajax.apply(instance, arguments);
+			}
+			else if (mode == 'queue') {
+				var oldComplete = settings.complete;
+
+				settings.complete = function() {
+					if (oldComplete) {
+						oldComplete.apply(this, arguments);
+					}
+
+					jQuery([ajax]).dequeue('ajax' + port);
 				};
 
-				jQuery([ ajax ]).queue("ajax" + port, function(){
-					ajax( settings );
-				});
+				jQuery([ajax]).queue('ajax' + port,
+					function() {
+						ajax(settings);
+					}
+				);
+
 				return undefined;
-			case "sync":
+			}
+			else if (mode == 'sync') {
 				var pos = synced.length;
 
-				synced[ pos ] = {
-					error: settings.error,
-					success: settings.success,
+				synced[pos] = {
+					done: false,
 					complete: settings.complete,
-					done: false
+					error: settings.error,
+					success: settings.success
 				};
 
-				syncedData[ pos ] = {
+				syncedData[pos] = {
+					complete: [],
 					error: [],
-					success: [],
-					complete: []
+					success: []
 				};
 
-				settings.error = function(){ syncedData[ pos ].error = arguments; };
-				settings.success = function(){ syncedData[ pos ].success = arguments; };
-				settings.complete = function(){
-					syncedData[ pos ].complete = arguments;
-					synced[ pos ].done = true;
+				settings.complete = function() {
+					syncedData[pos].complete = arguments;
+					synced[pos].done = true;
 
-					if ( pos == 0 || !synced[ pos-1 ] )
-						for ( var i = pos; i < synced.length && synced[i].done; i++ ) {
-							if ( synced[i].error ) synced[i].error.apply( jQuery, syncedData[i].error );
-							if ( synced[i].success ) synced[i].success.apply( jQuery, syncedData[i].success );
-							if ( synced[i].complete ) synced[i].complete.apply( jQuery, syncedData[i].complete );
+					if (pos == 0 || !synced[pos - 1]) {
+						for (var i = pos; i < synced.length && synced[i].done; i++) {
+							var syncedItem = synced[i];
+							var syncedItemData = syncedData[i];
+
+							if (syncedItem.error) {
+								syncedItem.error.apply(jQuery, syncedItemData.error);
+							}
+
+							if (syncedItem.success) {
+								syncedItem.success.apply(jQuery, syncedItemData.success);
+							}
+
+							if (syncedItem.complete) {
+								syncedItemData.complete.apply(jQuery, syncedItemData.complete);
+							}
 
 							synced[i] = null;
-							syncedData[i] = null;
+							syncedData = null;
 						}
+					}
+				};
+
+				settings.error = function() {
+					syncedData[pos].error = arguments;
+				};
+
+				settings.success = function() {
+					syncedData[pos].success = arguments;
 				};
 			}
 
-			return ajax.apply(this, arguments);
+			return ajax.apply(instance, arguments);
 		};
 	}
 })(jQuery);
@@ -463,7 +495,6 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend({
 
 		if (options.time > instance._lastMessageTime) {
 			if (options.isIncoming) {
-
 				if (options.text.length) {
 					if (!instance.get('selected')) {
 						var lastRead = instance.get('lastReadTime') || 0;
@@ -479,9 +510,13 @@ Liferay.Chat.Conversation = Liferay.Chat.Panel.extend({
 					instance.setTyping(true);
 				}
 			}
+
 			if (options.text.length) {
 				instance._updateMessageWindow(options);
+				instance.setTyping(false);
 			}
+
+			instance._lastMessageTime = options.time;
 		}
 
 		if (options.statusMessage) {
@@ -643,6 +678,8 @@ Liferay.Chat.Manager = {
 		instance._activeBrowserKey = Liferay.Util.randomInt();
 		instance._activePanelId = jQuery('#activePanelId').val() || '';
 
+		instance._closedChats = {};
+
 		instance._baseUrl = themeDisplay.getLayoutURL() + '/-/chat/';
 		instance._baseImagePath = themeDisplay.getPathImage() + '/user_portrait';
 		instance._created = Liferay.Chat.Util.getCurrentTimestamp();
@@ -692,8 +729,8 @@ Liferay.Chat.Manager = {
 		instance._playSound = settingsPanel.find('#playSound').is(':checked') || true;
 
 		if (instance._activePanelId.length &&
-			!/buddylist|settings/.test(instance._activePanelId) &&
-			!isNaN(parseInt(instance._activePanelId))) {
+			!((/buddylist|settings/).test(instance._activePanelId)) &&
+			!isNaN(parseInt(instance._activePanelId, 10))) {
 
 			instance._createChatFromUser(instance._activePanelId);
 		}
@@ -736,7 +773,6 @@ Liferay.Chat.Manager = {
 			function(event) {
 				instance._activeBrowser = true;
 
-				instance._cancelRequestTimer();
 				instance._createRequestTimer();
 			}
 		);
@@ -757,7 +793,7 @@ Liferay.Chat.Manager = {
 	openPanel: function(userId) {
 		var instance = this;
 
-		if (!instance._panels[userId] && !/buddylist|settings/.test(userId)) {
+		if (!instance._panels[userId] && !((/buddylist|settings/).test(userId))) {
 			instance._createChatFromUser(userId);
 		}
 		else {
@@ -767,8 +803,6 @@ Liferay.Chat.Manager = {
 
 	send: function(options) {
 		var instance = this;
-
-		instance._cancelRequestTimer();
 
 		instance._sendRequest(options,
 			function(message) {
@@ -887,6 +921,10 @@ Liferay.Chat.Manager = {
 	_createRequestTimer: function() {
 		var instance = this;
 
+		if (instance._requestTimer) {
+			instance._cancelRequestTimer();
+		}
+
 		instance._requestTimer = setInterval(
 			function() {
 				instance._getRequest();
@@ -912,6 +950,14 @@ Liferay.Chat.Manager = {
 
 		var params = instance._getSettings();
 		var mode = !force ? 'queue' : 'abort';
+
+		if (!instance._lastTime) {
+			instance._lastTime = Liferay.Chat.Util.getCurrentTimestamp();
+		}
+
+		var lastTime = Liferay.Chat.Util.getCurrentTimestamp();
+
+		instance._lastTime = lastTime;
 
 		jQuery.ajax(
 			{
@@ -989,11 +1035,15 @@ Liferay.Chat.Manager = {
 	_onPanelClose: function(event, panel) {
 		var instance = this;
 
-		delete instance._panels[panel._panelId];
+		var userId = panel._panelId;
+
+		delete instance._panels[userId];
 
 		if (panel instanceof Liferay.Chat.Conversation) {
-			delete instance._chatSessions[panel._panelId];
+			delete instance._chatSessions[userId];
 		}
+
+		instance._closedChats[userId] = Liferay.Chat.Util.getCurrentTimestamp();
 
 		instance._activePanelId = '';
 		instance._getRequest(true);
@@ -1114,7 +1164,7 @@ Liferay.Chat.Manager = {
 			if (buddy && buddy.isActive) {
 				var chat = instance._chatSessions[userId];
 
-				if (!chat && entry.content != '' && entry.createDate > instance._created) {
+				if (!chat && entry.content != '' && entry.createDate > instance._created && entry.createDate > (instance._closedChats[buddy.userId] || 0)) {
 					chat = instance._createChatSession(
 						{
 							userIcon: buddy.portraitId,
@@ -1135,6 +1185,8 @@ Liferay.Chat.Manager = {
 						}
 					);
 				}
+
+				buddy._lastChatEntry = entry.createDate;
 			}
 		}
 	},
@@ -1159,11 +1211,17 @@ Liferay.Chat.FixBadBrowsers = function() {
 		var chatBarHeight = chatBar.outerHeight();
 		var chatBarWidth = chatBar.outerWidth();
 		var frame = Liferay.Util.viewport.frame();
+		var maxPageScroll = (Liferay.Util.viewport.page().y - frame.y) + chatBarHeight;
+
+		var zIndex = chatBar.css('zIndex');
 
 		var iframe = jQuery('<iframe class="lfr-shim" frameborder="0" src="javascript: ;" />');
 
 		iframe.width(chatBarWidth);
 		iframe.height(chatBarHeight);
+		iframe.css('zIndex', zIndex);
+
+		chatBar.css('zIndex', zIndex + 100);
 
 		win.bind('scroll resize',
 			function(event) {
@@ -1173,8 +1231,10 @@ Liferay.Chat.FixBadBrowsers = function() {
 
 				var scrollTop = win.scrollTop();
 
-				chatBar.css('top', (scrollTop + frame.y) - chatBarHeight);
-				iframe.css('top', (scrollTop + frame.y) - chatBarHeight);
+				if (event.type == 'resize' || (event.type == 'scroll' && scrollTop < maxPageScroll)) {
+					chatBar.css('top', (scrollTop + frame.y) - chatBarHeight);
+					iframe.css('top', ((scrollTop + frame.y) - chatBarHeight));
+				}
 			}
 		);
 
