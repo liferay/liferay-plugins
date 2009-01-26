@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8'?><root available-locales="en_US," default-locale="en_US"><static-content language-id="en_US"><![CDATA[<style type="text/css"> 
+.welcome-header {
+	background: #e4ebed;
+	padding: 10px;
+	margin: 0 0 10px;
+}
+
+.welcome-intro {
+	font-size: 1.3em;
+	margin-bottom: 0.5em;
+}
+
+.welcome-grid tr.header td {
+	background: #1e2529;
+	color: #fff;
+	font-weight: bold;
+	font-size: 1.2em;
+	padding: 10px;
+}
+.welcome-grid {
+	background-color: #f1f6f7;
+	border: none;
+	border-collapse: separate;
+	border-spacing: 5px;
+	color: #1e2529;
+}
+.welcome-grid td {
+	background: #f1f6f7 url(/image/image_gallery?uuid=[$CELL_BG_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]) repeat-x 0 100%;
+}
+
+.welcome-grid td img.content-description {
+	margin-left: 10px;
+}
+
+.welcome-grid td .shared-workspaces {
+	margin-left: 0;
+}
+
+.welcome-grid ul {
+	margin-top: 0;
+}
+
+.welcome-grid li {
+	margin-bottom: 0.5em;
+}
+
+.welcome-grid .footnote {
+	clear: both;
+	margin: 10px;
+}
+
+.welcome-grid h3 {
+	font-size: 1.1em;
+	margin: 0 5px 15px;
+}
+
+.welcome-grid .content-grid td {
+	background: none;
+}
+
+.welcome-grid .shared-workspaces .content-description {
+	margin-top: -60px;
+}
+</style>
+<h2 class="welcome-header">Welcome to Liferay</h2>
+<p class="welcome-intro">Liferay is a complete all-in-one open source enterprise portal solution that is used in more than 100,000 deployments worldwide. Liferay customers and users include Benetton, BMW, Lufthansa Flight Training, World Vision, and more. These organizations and many others like it use Liferay every day to create web-based solutions for enterprise needs, including:</p>
+<table class="welcome-grid">
+    <tbody>
+        <tr class="header">
+            <td width="50%">INSTANT WEBSITES</td>
+            <td width="50%">SOCIAL NETWORKS</td>
+        </tr>
+        <tr>
+            <td class="web-publishing" valign="top">
+            <h3>Use Liferay Web Content Manager to create websites quickly with minimal effort and cost.</h3>
+
+				<table class="content-grid">
+					<tr>
+						<td valign="top">
+							<img class="content-description" src="/image/image_gallery?uuid=[$WEB_PUBLISHING_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]">
+						</td>
+						<td valign="top">
+				            <ul>
+				                <li>Creating content, layouts, and custom branding is easy&nbsp;</li>
+				                <li>Workflow, dynamic navigation, and live edits help you update efficiently&nbsp;</li>
+				                <li>Liferay Portal is optimized for search engine rankings&nbsp;</li>
+				                <li>Liferay is used by <a href="http://www.benetton.com">Benetton</a>, <a href="http://www.hansemerkur.de">HanseMerkur</a>, <a href="http://www.lufthansa-flight-training.com">Lufthansa Flight Training</a>, and <a href="http://www.google.com/search?q=inurl%3Ap_l_id">more</a></li>
+				            </ul>
+						</td>
+					</tr>
+				</table>
+            </td>
+            <td class="social-networks" valign="top">
+            <h3>Unlock the latent value in your enterprise&rsquo;s community using Liferay's Social Networking capabilities.</h3>
+
+			<table class="content-grid">
+				<tr>
+					<td valign="top">
+						<img class="content-description" src="/image/image_gallery?uuid=[$SOCIAL_NETWORKING_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]">
+					</td>
+					<td valign="top">
+						<ul>
+			                <li>Everyone gets a customizable personal page&nbsp;</li>
+			                <li>Expand networks by project group or department&nbsp;</li>
+			                <li>Access an easy-to-use system for tagging, rating, and comments</li>
+			                <li>Add friends, track activities, and chat in context</li>
+			                <li>Liferay is used as a social network by <a href="http://www.thecradle.com">The Cradle</a>, <a href="http://www.pjoon.com/">PJOON</a>, and <a href="http://www.liferay.com/web/guest/community">Liferay.com</a>.</li>
+			            </ul>
+					</td>
+				</tr>
+			</table>
+            </td>
+        </tr>
+        <tr class="header">
+            <td>SHARED WORKSPACES</td>
+            <td>SOA, ENTERPRISE INTEGRATION, AND MASHUPS</td>
+        </tr>
+        <tr>
+            <td class="shared-workspaces" valign="top">
+            <h3>Help your people stay productive in the office and on the go. Liferay is a great solution for intranets, team workspaces, and collaboration sites.</h3>
+
+			<table class="content-grid">
+				<tr>
+					<td valign="top">
+						<img class="content-description" src="/image/image_gallery?uuid=[$SHARED_WORKSPACES_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]">
+					</td>
+					<td valign="top">
+						<ul>
+			                <li>Provide one central meeting place for all your people, no matter where they are&nbsp;</li>
+			                <li>Leverage built-in blogs, wikis, message boards, mail, and shared calendars&nbsp;</li>
+			                <li>Share information with dynamic tagging</li>
+			            </ul>
+					</td>
+				</tr>
+			</table>
+			
+            
+            <p class="footnote">Need an end-user solution?&nbsp;Try <a href="http://www.liferay.com/web/guest/products/social_office">Liferay Social Office</a>&nbsp;and avoid getting locked in to Microsoft<sup>&reg;</sup> Sharepoint.&nbsp;</p>
+            <p>&nbsp;</p>
+            </td>
+            <td class="portal-mashup" valign="top">
+            <h3>Don't spend $125,000 / CPU on an Oracle<sup>&reg;</sup> closed source solution! Get the real benefits of SOA&nbsp;with Liferay Portal, the open source leader, with no license costs.</h3>
+
+			<table class="content-grid">
+				<tr>
+					<td valign="top">
+						<img class="content-description" src="/image/image_gallery?uuid=[$PORTAL_MASHUPS_IG_IMAGE_UUID$]&groupId=[$GROUP_ID$]">
+					</td>
+					<td valign="top">
+						<ul>
+			                <li>Speed up development with built-in developer tools, LDAP, web services, and Spring-based architecture&nbsp;</li>
+			                <li>Liferay is standards-compliant to reduce risk and increase re-usability&nbsp;</li>
+			                <li>Liferay's Message Bus makes it easy to re-use common services like user management, mail, and messaging</li>
+			                <li>Liferay supports mashup development with support for widgets, Facebook<sup>&reg;</sup> integration, iGoogle<sup>&reg;</sup>&nbsp;support, and GoogleMaps<sup>&reg;</sup>&nbsp;</li>
+			                <li>Liferay Portal is used by Novell<sup>&reg;</sup>, Discovery<sup>&reg;</sup> Education, and Borland<sup>&reg;</sup> Software</li>
+			            </ul>
+					</td>
+				</tr>
+			</table>
+			
+            
+            </td>
+        </tr>
+    </tbody>
+</table>]]></static-content></root>

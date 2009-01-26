@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?><root available-locales="en_US," default-locale="en_US"><static-content language-id="en_US"><![CDATA[
+
+<div class="lfc-single-image">
+
+		<a href="/web/7cogs/home">
+
+		<img src="/image/image_gallery?uuid=[$SEVEN_COGS_IG_IMAGE_UUID$]&amp;groupId=[$GROUP_ID$]" alt=""/>
+
+		</a>
+
+</div>
+
+
+]]></static-content></root>	

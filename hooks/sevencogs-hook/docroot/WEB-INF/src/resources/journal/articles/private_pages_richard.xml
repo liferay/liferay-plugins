@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?><root available-locales="en_US," default-locale=""><static-content language-id="en_US"><![CDATA[<p><img alt="" src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" /> These are my private pages. Only I can see them, edit them and create new ones.</p>
+<ul>
+    <li>Social Space - Shows my friends and their activities.</li>
+    <li>Work Space - Has my calendar, documents, images...</li>
+    <li>Email - I can configure this page to view my emails.</li>
+</ul>
+<p>To add more applications just go to the dock menu and select Add Application.</p>
+<p>You can also add widgets from any other website. I have already added a widget for linkedIn which was very easy, by following these steps:</p>
+<ol>
+    <li>Add Application --&gt; iframe portlet</li>
+    <li>Go to Configuration of the portlet and set the Url to <a href="http://m.linkedin.com">http://m.linkedin.com</a></li>
+</ol>
+<p>Any widget for the iphone will work perfectly in your instance of Liferay Portal using this method.</p>
+<p>&nbsp;</p>]]></static-content></root>
