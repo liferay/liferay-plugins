@@ -10,7 +10,7 @@ body {
 /* ---------- Banner ---------- */
 
 #banner {
-	background: #597F93 url(../images/custom/banner_logo_bg.png) no-repeat center top;
+	background: #597F93 url(../images/custom/banner_bg.png) no-repeat center top;
 	border-bottom: 1px solid #CCC;
 	height: 180px;
 }

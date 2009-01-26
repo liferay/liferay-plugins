@@ -78,14 +78,14 @@
 }
 
 #navigation a:hover {
-	background: #32AFEE url(../images/custom/navigation_hover_bg.png);
+	background: #32AFEE url(../images/custom/navigation_item_hover.png);
 	border: 1px solid #1C4980;
 	border-color: #1D4A81 #1d4a81 #20487b #0d376e;
 	padding: 0 11px;
 }
 
 #navigation .selected a {
-	background: #32AFEE url(../images/custom/navigation_selected_bg.png);
+	background: #32AFEE url(../images/custom/navigation_item_selected.png);
 	border: 1px solid #1C4980;
 	border-color: #1C4980 #1D4A81 #1F477A #0D376E;
 	padding: 0 11px;
@@ -111,7 +111,7 @@
 /* ---------- Content Wrapper ---------- */
 
 #content-wrapper {
-	background: url(../images/custom/content-wrapper_bg.png) repeat-y center top;
+	background: url(../images/custom/content_wrapper_bg.png) repeat-y center top;
 	padding: 10px;
 }
 
@@ -177,7 +177,7 @@
 }
 
 .ui-tabs li {
-	background: url(../images/custom/tabs_bg.png) no-repeat left -100px;
+	background: url(../images/custom/tabs.png) no-repeat left -100px;
 	margin: 0 9px 0 0;
 }
 
@@ -185,7 +185,7 @@
 .ui-tabs li a:hover,
 .ui-tabs li span,
 .ui-tabs li span:hover {
-	background: url(../images/custom/tabs_bg.png) no-repeat right -300px;
+	background: url(../images/custom/tabs.png) no-repeat right -300px;
 	border: 0;
 	height: 10px;
 	padding: 8px 12px;
@@ -200,14 +200,14 @@
 
 .ui-tabs li.current,
 .ui-tabs li.current:hover {
-	background: url(../images/custom/tabs_bg.png) no-repeat left top;
+	background: url(../images/custom/tabs.png) no-repeat left top;
 }
 
 .ui-tabs li.current a,
 .ui-tabs li.current a:hover,
 .ui-tabs li.current span,
 .ui-tabs li.current span:hover {
-	background: url(../images/custom/tabs_bg.png) no-repeat right -200px;
+	background: url(../images/custom/tabs.png) no-repeat right -200px;
 	border: 0;
 	color: #FFF;
 }

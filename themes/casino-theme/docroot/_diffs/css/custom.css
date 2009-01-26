@@ -162,7 +162,7 @@ body {
 .ui-tabs li a:hover,
 .ui-tabs li span,
 .ui-tabs li span:hover {
-	background: url(../images/custom/tab_bg.png);
+	background: url(../images/custom/tabs.png);
 	border: 1px solid #081808;
 }
 
@@ -172,7 +172,7 @@ body {
 .ui-tabs li.current span,
 .ui-tabs li.current a:hover,
 .ui-tabs li.current span:hover {
-	background: url(../images/custom/tab_hover_bg.png);
+	background: url(../images/custom/tabs_hover.png);
 	border: 1px solid #184A18;
 	color: #FF0;
 	text-decoration: none;
@@ -186,6 +186,6 @@ body {
 .ui-tabs li.current span,
 .ui-tabs li.current a:hover,
 .ui-tabs li.current span:hover {
-	background: url(../images/custom/tab_current_bg.png);
+	background: url(../images/custom/tabs_current.png);
 	border: 1px solid #184A18;
 }

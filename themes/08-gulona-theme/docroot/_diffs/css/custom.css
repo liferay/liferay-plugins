@@ -58,7 +58,7 @@ body {
 
 #navigation .selected a,
 #navigation a:hover {
-	background: url(../images/custom/navigation_hover_bg.png);
+	background: url(../images/custom/navigation_item_hover.png);
 }
 
 #navigation .enter-page {
@@ -87,7 +87,7 @@ body {
 /* ---------- Content Wrapper ---------- */
 
 #content-wrapper {
-	background: url(../images/custom/content-wrapper_bg.png) no-repeat left top;
+	background: url(../images/custom/content_wrapper_bg.png) no-repeat left top;
 	padding: 18px 36px;
 }
 

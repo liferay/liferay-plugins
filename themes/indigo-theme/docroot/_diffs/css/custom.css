@@ -47,7 +47,7 @@ body {
 /* ---------- Navigation ---------- */
 
 #navigation {
-	background: url(../images/custom/navigation_side_bg.png) no-repeat left bottom;
+	background: url(../images/custom/navigation_left_bg.png) no-repeat left bottom;
 	margin: 0 0 -24px;
 	position: relative;
 	top: -24px;
@@ -106,7 +106,7 @@ body {
 /* ---------- Content Wrapper ---------- */
 
 #content-wrapper {
-	background: #FFF url(../images/custom/content-wrapper_side_bg.png) no-repeat;
+	background: #FFF url(../images/custom/content_wrapper_left_bg.png) no-repeat;
 	padding: 42px 12px 12px 48px;
 }
 

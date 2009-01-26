@@ -136,7 +136,7 @@ body {
 
 #navigation a,
 #navigation .enter-page {
-	background: url(../images/custom/navigation_a.gif) no-repeat left bottom;
+	background: url(../images/custom/navigation_item.gif) no-repeat left bottom;
 	color: #FFF;
 	display: block;
 	float: left;
@@ -146,7 +146,7 @@ body {
 }
 
 #navigation a:hover {
-	background-image: url(../images/custom/navigation_a_hover.gif);
+	background-image: url(../images/custom/navigation_item_hover.gif);
 	color: #FF0;
 }
 
@@ -169,7 +169,7 @@ body {
 /* ---------- Content Wrapper ---------- */
 
 #content-wrapper {
-	background: transparent url('../images/custom/content-wrapper_bg.png') no-repeat scroll 0 bottom;
+	background: transparent url('../images/custom/content_wrapper_bg.png') no-repeat scroll 0 bottom;
 	margin: -32px 0 292px;
 	padding: 64px 32px 16px 208px;
 }

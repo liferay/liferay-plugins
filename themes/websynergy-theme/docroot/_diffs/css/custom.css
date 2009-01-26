@@ -70,7 +70,7 @@ body {
 }
 
 #navigation a {
-	background: url('../images/custom/navigation_bg.png');
+	background: url('../images/custom/navigation_item.png');
 	color: #0072B9;
 	display: block;
 	float: left;
@@ -84,12 +84,12 @@ body {
 }
 
 #navigation .selected a, #navigation a:hover {
-	background: url('../images/custom/navigation_selected_bg.png');
+	background: url('../images/custom/navigation_item_selected.png');
 	color: #FFF;
 }
 
 #navigation .selected a:hover {
-	background: url('../images/custom/navigation_selected_hover_bg.png');
+	background: url('../images/custom/navigation_item_hover.png');
 }
 
 #navigation .save-page {

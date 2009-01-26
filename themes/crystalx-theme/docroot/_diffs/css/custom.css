@@ -54,7 +54,7 @@ body {
 
 #navigation a,
 #navigation .enter-page {
-	background: url(../images/custom/navigation_a_bg.gif);
+	background: url(../images/custom/navigation_item.gif);
 	color: #B5C4E3;
 	display: block;
 	float: left;
@@ -65,7 +65,7 @@ body {
 }
 
 #navigation a:hover {
-	background: url(../images/custom/navigation_a_hover_bg.gif);
+	background: url(../images/custom/navigation_item_hover.gif);
 	color: #FFF;
 }
 
@@ -94,7 +94,7 @@ body {
 /* ---------- Content Wrapper ---------- */
 
 #content-wrapper {
-	background: url(../images/custom/content-wrapper_bg.png) no-repeat;
+	background: url(../images/custom/content_wrapper_bg.png) no-repeat;
 	min-height: 100px;
 	padding: 15px 20px;
 }

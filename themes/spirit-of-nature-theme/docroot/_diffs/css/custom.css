@@ -81,7 +81,7 @@ body {
 /* ---------- Content Wrapper ---------- */
 
 #content-wrapper {
-	background: #FFF url(../images/custom/content-wrapper_bg.jpg) no-repeat;
+	background: #FFF url(../images/custom/content_wrapper_bg.jpg) no-repeat;
 	padding: 20px 25px;
 }
 
@@ -97,7 +97,7 @@ body {
 }
 
 .portlet-topper {
-	background: #6C7A2D url(../images/custom/portlet-topper_bg.png) repeat-x;
+	background: #6C7A2D url(../images/custom/portlet_topper_bg.png) repeat-x;
 	color: #FFF;
 	padding: 1em;
 }

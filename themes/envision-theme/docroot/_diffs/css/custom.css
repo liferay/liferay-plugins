@@ -9,7 +9,7 @@ body {
 /* ---------- Wrapper ---------- */
 
 #wrapper {
-	background: #FFF url(../images/custom/content-wrapper_bg.png);
+	background: #FFF url(../images/custom/content_wrapper_bg.png);
 	margin: 0 auto;
 	width: 1000px;
 }

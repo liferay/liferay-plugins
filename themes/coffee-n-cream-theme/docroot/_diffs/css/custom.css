@@ -54,7 +54,7 @@ body {
 }
 
 #navigation a:hover {
-	background: #CEBDA1 url(../images/custom/navigation_hover_bg.png);
+	background: #CEBDA1 url(../images/custom/navigation_item_hover.png);
 	color: #000;
 }
 

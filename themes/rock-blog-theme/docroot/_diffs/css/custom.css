@@ -57,7 +57,7 @@ body {
 }
 
 #navigation .selected a {
-	background: #FF8B00 url(../images/custom/navigation_selected_bg.png);
+	background: #FF8B00 url(../images/custom/navigation_item_selected.png);
 	color: #000;
 }
 
@@ -173,7 +173,7 @@ body {
 .ui-tabs li.current span,
 .ui-tabs li a:hover,
 .ui-tabs li span:hover {
-	background: #F4800F url(../images/custom/tab_current_bg.gif);
+	background: #F4800F url(../images/custom/tabs_current.gif);
 	border: medium none;
 	color: #FFF;
 }

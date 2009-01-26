@@ -50,7 +50,7 @@ a:hover {
 }
 
 #navigation li.selected {
-	background: url(../images/custom/navigation_current_bg.jpg) no-repeat center bottom;
+	background: url(../images/custom/navigation_item_current.jpg) no-repeat center bottom;
 }
 
 #navigation a,

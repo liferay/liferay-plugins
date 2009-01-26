@@ -41,7 +41,7 @@ body {
 #navigation {
 	position: absolute;
 	left: 10px;
-	background: #eee url(../images/custom/navigation_a_bg.gif) repeat-x;
+	background: #eee url(../images/custom/navigation_item.gif) repeat-x;
 	border: 1px solid #E5E5E5;
 	width: 200px;
 }

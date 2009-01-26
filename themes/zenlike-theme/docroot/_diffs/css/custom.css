@@ -34,7 +34,7 @@ body {
 /* ---------- Logo ---------- */
 
 #banner .logo {
-	background: #2B2B2B url(../images/custom/banner_bg.png) repeat-x;
+	background: #2B2B2B;
 	padding: 32px;
 }
 
@@ -70,7 +70,7 @@ body {
 }
 
 #navigation a:hover {
-	background: url(../images/custom/navigation_hover_bg.png);
+	background: url(../images/custom/navigation_item_hover.png);
 }
 
 #navigation .selected a {
@@ -106,7 +106,7 @@ body {
 }
 
 .portlet-topper {
-	background: url(../images/custom/portlet_bg.png) repeat-x;
+	background: url(../images/custom/portlet_topper_bg.png) repeat-x;
 	padding: 6px;
 }
 

@@ -18,7 +18,7 @@ a:hover {
 /* ---------- Banner ---------- */
 
 #banner {
-	background: url(../images/custom/logo-bg.png) repeat-x;
+	background: url(../images/custom/banner_bg.png) repeat-x;
 }
 
 /* ---------- Logo ---------- */
@@ -52,7 +52,7 @@ a:hover {
 }
 
 .js .interactive-mode h2 {
-	background: url(../images/custom/interactive-mode-bg.png) 0 100% transparent;
+	background: url(../images/custom/dock_bg.png) 0 100% transparent;
 	height: 30px;
 	padding: 0 5px;
 }
@@ -79,12 +79,12 @@ a:hover {
 }
 
 #navigation li a:hover {
-	background: url(../images/custom/sortable-item-a-hover-bg.png) no-repeat 50% 100%;
+	background: url(../images/custom/navigation_item_hover.png) no-repeat 50% 100%;
 }	
 
 #navigation .selected a,
 #navigation .selected a:hover {
-	background: url(../images/custom/selected-sortable-item-bg.png) no-repeat 50% 100%;
+	background: url(../images/custom/navigation_item_selected.png) no-repeat 50% 100%;
 }
 
 #navigation  ul {
@@ -98,7 +98,7 @@ a:hover {
 }
 
 #add-page a{
-	background: url(../images/custom/add-page-bg.png) no-repeat;
+	background: url(../images/custom/add_page_bg.png) no-repeat;
 	font-weight: bold;
 	height: 24px;
 	padding: 0;
@@ -110,7 +110,7 @@ a:hover {
 }
 
 #add-page a:hover {
-	background: url(../images/custom/add-page-hover-bg.png) no-repeat;
+	background: url(../images/custom/add_page_hover_bg.png) no-repeat;
 }
 
 .ie7 .save-page {
@@ -142,12 +142,12 @@ a:hover {
 }
 
 .portlet-topper {
-	background: #88715A url(../images/custom/portlet-topper-right-bg.png) 100% 0 no-repeat;
+	background: #88715A url(../images/custom/portlet_topper_right_bg.png) 100% 0 no-repeat;
 	height: 26px;
 }
 
 .portlet-title {
-	background: url(../images/custom/portlet-topper-left-bg.png) no-repeat;
+	background: url(../images/custom/portlet_topper_left_bg.png) no-repeat;
 	color: #222;
 	font-size: 1.2em;
 	padding: 6px 0 0 10px;
@@ -201,6 +201,6 @@ a:hover {
 
 .ui-tabs li a:hover,
 .ui-tabs li span:hover {
-	background: url(../images/custom/ui-tabs-li-a-hover-bg.png) no-repeat 50% 100%;
+	background: url(../images/custom/tabs_hover.png) no-repeat 50% 100%;
 	color: #222;
 }

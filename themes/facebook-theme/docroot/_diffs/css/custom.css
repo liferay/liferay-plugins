@@ -175,7 +175,7 @@ input[type="reset"],
 input[type="submit"]:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover {
-	background: #5C74A3 url(../images/custom/button_bg.png);
+	background: #5C74A3 url(../images/custom/button.png);
 	border: 1px solid #26446E;
 	border-color: #26446E #152F5F #0C2253;
 	color: #FFF;
