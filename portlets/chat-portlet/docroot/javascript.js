@@ -1204,7 +1204,7 @@ Liferay.Chat.FixBadBrowsers = function() {
 	var chatBar = jQuery('.chat-bar');
 	var position = chatBar.css('position');
 
-	if (!position || position.indexOf('fixed') < 0) {
+	if (position == 'absolute') {
 		var win = jQuery(window);
 		var body = jQuery(document.body);
 
