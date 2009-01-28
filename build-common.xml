@@ -83,9 +83,7 @@ ECJ was automatically installed. Please rerun your task.
 			classpathref="portal.classpath"
 			fork="true"
 			newenvironment="true"
-		>
-			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-		</java>
+		/>
 
 		<delete file="ServiceBuilder.temp" />
 	</target>
