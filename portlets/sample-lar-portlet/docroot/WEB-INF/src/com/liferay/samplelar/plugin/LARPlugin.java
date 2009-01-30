@@ -24,6 +24,7 @@ package com.liferay.samplelar.plugin;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.kernel.zip.ZipWriter;
@@ -33,7 +34,6 @@ import com.liferay.portal.lar.PortletDataHandler;
 import com.liferay.portal.lar.PortletDataHandlerBoolean;
 import com.liferay.portal.lar.PortletDataHandlerChoice;
 import com.liferay.portal.lar.PortletDataHandlerControl;
-import com.liferay.util.MapUtil;
 
 import java.util.Date;
 import java.util.Map;

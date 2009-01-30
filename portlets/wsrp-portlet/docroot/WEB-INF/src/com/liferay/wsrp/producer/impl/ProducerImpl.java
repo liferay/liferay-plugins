@@ -41,9 +41,9 @@
 
 package com.liferay.wsrp.producer.impl;
 
+import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.util.SetUtil;
 import com.liferay.wsrp.model.WSRPConsumerRegistration;
 import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.service.WSRPConsumerRegistrationLocalServiceUtil;
