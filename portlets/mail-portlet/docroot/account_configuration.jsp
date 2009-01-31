@@ -62,7 +62,8 @@ String username = ParamUtil.getString(request, "username");
 
 			<c:choose>
 				<c:when test="<%= emailAddressSameAsUsername %>">
-					<input class="email-address" type="hidden" value="<%= emailAddress %>" />
+					<input class="email-address" type="hidden" value="<%= HtmlUtil.escape(emailAddress) %>" />
+
 					<input class="email-address-same-as-username" type="hidden" value="<%= emailAddressSameAsUsername %>" />
 				</c:when>
 				<c:otherwise>
@@ -71,7 +72,8 @@ String username = ParamUtil.getString(request, "username");
 							<liferay-ui:message key="email-address" />
 						</td>
 						<td>
-							<input class="email-address" type="text" value="<%= emailAddress %>" />
+							<input class="email-address" type="text" value="<%= HtmlUtil.escape(emailAddress) %>" />
+
 							<input class="email-address-same-as-username" type="hidden" value="<%= emailAddressSameAsUsername %>" />
 						</td>
 					</tr>
@@ -97,15 +99,15 @@ String username = ParamUtil.getString(request, "username");
 
 			<c:choose>
 				<c:when test="<%= preconfigured %>">
-					<input class="in-hostname" type="hidden" value="<%= mailInHostName %>" />
+					<input class="in-hostname" type="hidden" value="<%= HtmlUtil.escape(mailInHostName) %>" />
 
-					<input class="in-port" type="hidden" value="<%= mailInPort %>" />
+					<input class="in-port" type="hidden" value="<%= HtmlUtil.escape(mailInPort) %>" />
 
 					<input class="in-secure" type="hidden" value="<%= mailInSecure %>" />
 
-					<input class="out-hostname" type="hidden" value="<%= mailOutHostName %>" />
+					<input class="out-hostname" type="hidden" value="<%= HtmlUtil.escape(mailOutHostName) %>" />
 
-					<input class="out-port" type="hidden" value="<%= mailOutPort %>" />
+					<input class="out-port" type="hidden" value="<%= HtmlUtil.escape(mailOutPort) %>" />
 
 					<input class="out-secure" type="hidden" value="<%= mailOutSecure %>" />
 				</c:when>
@@ -186,10 +188,10 @@ String username = ParamUtil.getString(request, "username");
 		</c:when>
 		<c:otherwise>
 			<div class="title">
-				<%= emailAddress %>
+				<%= HtmlUtil.escape(emailAddress) %>
 			</div>
 
-			<input class="email-address" type="hidden" value="<%= emailAddress %>" />
+			<input class="email-address" type="hidden" value="<%= HtmlUtil.escape(emailAddress) %>" />
 
 			<table class="details">
 			<tr>

@@ -32,7 +32,6 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletPreferences;
-import javax.portlet.PortletSession;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -67,8 +66,6 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		preferences.setValue("widget-code", widgetCode);
 
 		preferences.store();
-
-		PortletSession ses = actionRequest.getPortletSession();
 
 		SessionMessages.add(
 			actionRequest, portletConfig.getPortletName() + ".doConfigure");

@@ -84,13 +84,13 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 
 		preferences.store();
 
-		PortletSession ses = actionRequest.getPortletSession();
+		PortletSession portletSession = actionRequest.getPortletSession();
 
-		ses.removeAttribute(
+		portletSession.removeAttribute(
 			PortalUtil.getPortletNamespace(portletResource) + "mapAddress",
 			PortletSession.APPLICATION_SCOPE);
 
-		ses.removeAttribute(
+		portletSession.removeAttribute(
 			PortalUtil.getPortletNamespace(portletResource) +
 				"directionsAddress",
 			PortletSession.APPLICATION_SCOPE);
