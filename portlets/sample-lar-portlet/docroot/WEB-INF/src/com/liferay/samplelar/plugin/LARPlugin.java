@@ -28,9 +28,9 @@ import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.kernel.zip.ZipWriter;
+import com.liferay.portal.lar.BasePortletDataHandler;
 import com.liferay.portal.lar.PortletDataContext;
 import com.liferay.portal.lar.PortletDataException;
-import com.liferay.portal.lar.PortletDataHandler;
 import com.liferay.portal.lar.PortletDataHandlerBoolean;
 import com.liferay.portal.lar.PortletDataHandlerChoice;
 import com.liferay.portal.lar.PortletDataHandlerControl;
@@ -46,7 +46,7 @@ import javax.portlet.PortletPreferences;
  * @author Raymond Aug�
  *
  */
-public class LARPlugin implements PortletDataHandler {
+public class LARPlugin extends BasePortletDataHandler {
 
 	public PortletPreferences deleteData(
 			PortletDataContext context, String portletId,
@@ -214,8 +214,10 @@ public class LARPlugin implements PortletDataHandler {
 	}
 
 	public boolean isPublishToLiveByDefault() {
-		return true;
+		return _PUBLISH_TO_LIVE_BY_DEFAULT;
 	}
+
+	private static final boolean _PUBLISH_TO_LIVE_BY_DEFAULT = true;
 
 	private static final String _NAMESPACE = "lar-plugin";
 

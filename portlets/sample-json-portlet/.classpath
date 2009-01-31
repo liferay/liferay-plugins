@@ -11,6 +11,7 @@
 	<classpathentry kind="lib" path="/portal/lib/global/container.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet-container.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/annotations.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/dom4j.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/jabsorb.jar" />
