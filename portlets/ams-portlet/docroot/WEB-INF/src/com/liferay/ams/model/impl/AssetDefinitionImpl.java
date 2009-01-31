@@ -30,8 +30,10 @@ import com.liferay.ams.model.AssetDefinition;
  * @author Brian Wing Shun Chan
  *
  */
-public class AssetDefinitionImpl extends AssetDefinitionModelImpl
-	implements AssetDefinition {
+public class AssetDefinitionImpl
+	extends AssetDefinitionModelImpl implements AssetDefinition {
+
 	public AssetDefinitionImpl() {
 	}
+
 }

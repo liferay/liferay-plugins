@@ -31,6 +31,8 @@ import com.liferay.ams.model.AssetEntry;
  *
  */
 public class AssetEntryImpl extends AssetEntryModelImpl implements AssetEntry {
+
 	public AssetEntryImpl() {
 	}
+
 }

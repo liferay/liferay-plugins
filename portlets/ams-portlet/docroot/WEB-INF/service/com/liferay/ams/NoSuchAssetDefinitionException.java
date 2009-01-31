@@ -25,7 +25,8 @@ package com.liferay.ams;
 import com.liferay.portal.PortalException;
 
 /**
- * <a href="NoSuchAssetDefinitionException.java.html"><b><i>View Source</i></b></a>
+ * <a href="NoSuchAssetDefinitionException.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
  *

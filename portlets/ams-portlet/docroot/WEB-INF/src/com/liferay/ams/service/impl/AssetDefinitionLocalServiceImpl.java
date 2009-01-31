@@ -25,7 +25,8 @@ package com.liferay.ams.service.impl;
 import com.liferay.ams.service.base.AssetDefinitionLocalServiceBaseImpl;
 
 /**
- * <a href="AssetDefinitionLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="AssetDefinitionLocalServiceImpl.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
  *

@@ -25,7 +25,8 @@ package com.liferay.ams.service.impl;
 import com.liferay.ams.service.base.AssetCheckoutLocalServiceBaseImpl;
 
 /**
- * <a href="AssetCheckoutLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="AssetCheckoutLocalServiceImpl.java.html"><b><i>View Source</i></b>
+ * </a>
  *
  * @author Brian Wing Shun Chan
  *

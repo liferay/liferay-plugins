@@ -30,8 +30,10 @@ import com.liferay.ams.model.AssetCheckout;
  * @author Brian Wing Shun Chan
  *
  */
-public class AssetCheckoutImpl extends AssetCheckoutModelImpl
-	implements AssetCheckout {
+public class AssetCheckoutImpl
+	extends AssetCheckoutModelImpl implements AssetCheckout {
+
 	public AssetCheckoutImpl() {
 	}
+
 }
