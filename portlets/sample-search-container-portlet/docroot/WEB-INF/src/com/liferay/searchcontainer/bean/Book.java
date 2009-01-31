@@ -36,8 +36,8 @@ public class Book {
 	}
 
 	public Book(
-			long bookId, String title, String author, String publisher,
-			Date publicationDate) {
+		long bookId, String title, String author, String publisher,
+		Date publicationDate) {
 
 		_bookId = bookId;
 		_title = title;
@@ -46,45 +46,45 @@ public class Book {
 		_publicationDate = publicationDate;
 	}
 
-    public String getAuthor() {
-    	return _author;
-    }
+	public String getAuthor() {
+		return _author;
+	}
 
-    public void setAuthor(String author) {
-    	_author = author;
-    }
+	public void setAuthor(String author) {
+		_author = author;
+	}
 
-    public long getBookId() {
-    	return _bookId;
-    }
+	public long getBookId() {
+		return _bookId;
+	}
 
-    public void setBookId(long bookId) {
-    	_bookId = bookId;
-    }
+	public void setBookId(long bookId) {
+		_bookId = bookId;
+	}
 
 	public String getPublisher() {
-    	return _publisher;
-    }
+		return _publisher;
+	}
 
-    public void setPublisher(String publisher) {
-    	_publisher = publisher;
-    }
+	public void setPublisher(String publisher) {
+		_publisher = publisher;
+	}
 
-    public Date getPublicationDate() {
-    	return _publicationDate;
-    }
+	public Date getPublicationDate() {
+		return _publicationDate;
+	}
 
-    public void setPublicationDate(Date publicationDate) {
-    	_publicationDate = publicationDate;
-    }
+	public void setPublicationDate(Date publicationDate) {
+		_publicationDate = publicationDate;
+	}
 
-    public String getTitle() {
-    	return _title;
-    }
+	public String getTitle() {
+		return _title;
+	}
 
-    public void setTitle(String title) {
-    	_title = title;
-    }
+	public void setTitle(String title) {
+		_title = title;
+	}
 
 	private String _author;
 	private long _bookId;
