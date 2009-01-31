@@ -1,0 +1,993 @@
+/* ---------- Main ---------- */
+
+.ui-wrapper {
+	border: 2px solid #828F95;
+}
+
+.ui-wrapper input, .ui-wrapper textarea {
+	border: 0;
+}
+
+.ui-dialog-overlay {
+	background: #000;
+	opacity: 0.8;
+	z-index: 400;
+}
+
+.ie .ui-dialog-overlay {
+	filter: alpha(opacity=80);
+}
+
+.results-grid {
+	border: 1px solid #DEDEDE;
+	border-left: none;
+	border-right: none;
+	padding: 5px 0;
+}
+
+.results-header {
+	background: #727C81;
+}
+
+.results-header th, .results-header td {
+	color: #FFF;
+	padding: 5px 10px;
+}
+
+.results-header th a, .results-header td a {
+	color: #FFF;
+}
+
+.results-header .sort-column .result-column-name {
+	background: url(../images/arrows/06_up.png) no-repeat 100% 50%;
+	font-style: italic;
+	padding-right: 15px;
+}
+
+.results-header .sort-desc .result-column-name {
+	background-image: url(../images/arrows/06_down.png);
+}
+
+.ui-autocomplete-even, .results-row td {
+	background: #F0F5F7;
+	padding: 5px 10px;
+}
+
+.ui-autocomplete-odd, .results-row.alt td {
+	background: #D3DADD;
+}
+
+.ui-autocomplete-over, .results-row.hover td {
+	background: #A8D6ED;
+}
+
+/* ---------- Breadcrumbs ---------- */
+
+.breadcrumbs {
+	margin-bottom: 1.5em;
+}
+
+.breadcrumbs .last {
+	display: block;
+	font-size: 1.6em;
+	font-weight: bold;
+	margin-top: 0.2em;
+}
+
+/* ---------- Dragging/sorting indicators ---------- */
+
+.lfr-grid.dragging {
+	border-collapse: separate;
+}
+
+.lfr-grid.dragging .lfr-column {
+	border: 3px double #828F95;
+}
+
+.drop-area {
+	background-color: #D3DADD;
+}
+
+.active-area {
+	background: #FFC;
+}
+
+.ui-proxy {
+	cursor: move;
+	opacity: 0.65;
+	position: relative;
+}
+
+.ie .ui-proxy {
+	filter: alpha(opacity=65);
+}
+
+.ui-proxy.generic-portlet {
+	height: 200px;
+	width: 300px;
+}
+
+.ui-proxy.generic-portlet .portlet-title {
+	padding: 10px;
+}
+
+.ui-proxy.not-intersecting .forbidden-action {
+	background: url(../images/application/forbidden_action.png) no-repeat;
+	display: block;
+	height: 32px;
+	position: absolute;
+	right: -15px;
+	top: -15px;
+	width: 32px;
+}
+
+.ie .ui-proxy.not-intersecting .forbidden-action {
+	right: 2px;
+	top: 2px;
+}
+
+.ui-resizable-proxy {
+	border: 1px dashed #828F95;
+}
+
+.navigation-sort-helper {
+	background: #727C81;
+	margin-top: 1px;
+}
+
+.portlet-sort-helper {
+}
+
+/* ---------- Resizables ---------- */
+
+.ui-resizable {
+	position: relative;
+}
+
+.ui-resizable-handle {
+	background: transparent url() no-repeat 50% 50%;
+	display: none;
+	font-size: 0.1px;
+	position: absolute;
+}
+
+.ui-resizable .ui-resizable-handle {
+	display: block;
+}
+
+.js .ui-resizable-disabled .ui-resizable-handle {
+	display: none;
+}
+
+.js .ui-resizable-autohide .ui-resizable-handle {
+	display: none;
+}
+
+.ui-resizable-n, .ui-resizable-s {
+	background-image: url(../images/application/handle_horizontal.png);
+	height: 14px;
+	left: 0;
+	right: 0;
+}
+
+.ui-resizable-n {
+	cursor: n-resize;
+	top: 0;
+}
+
+.ui-resizable-s {
+	bottom: 0;
+	cursor: s-resize;
+}
+
+.ui-resizable-e, .ui-resizable-w {
+	background-image: url(../images/application/handle_vertical.png);
+	background-position: center center;
+	bottom: 0;
+	top: 0;
+	width: 14px;
+}
+
+.ui-resizable-e {
+	cursor: e-resize;
+	right: 0;
+}
+
+.ui-resizable-w {
+	cursor: w-resize;
+	left: 0;
+}
+
+.ui-resizable-ne, .ui-resizable-nw {
+	height: 14px;
+	top: 0;
+	width: 14px;
+}
+
+.ui-resizable-ne {
+	background-image: url(../images/application/handle_ne.png);
+	cursor: ne-resize;
+	right: 0;
+}
+
+.ui-resizable-nw {
+	background-image: url(../images/application/handle_nw.png);
+	cursor: nw-resize;
+	left: 0;
+}
+
+.ui-resizable-se, .ui-resizable-sw {
+	bottom: 0;
+	height: 14px;
+	width: 14px;
+}
+
+.ui-resizable-se {
+	background-image: url(../images/application/handle_se.png);
+	cursor: se-resize;
+	right: 0;
+}
+
+.ui-resizable-sw {
+	background-image: url(../images/application/handle_sw.png);
+	cursor: sw-resize;
+	left: 0;
+}
+
+.freeform .portlet-boundary .ui-resizable-handle {
+	margin: 3px;
+}
+
+/* ---------- Slider ---------- */
+
+.ui-slider {
+	position: relative;
+}
+
+.ui-slider-handle {
+	position: absolute;
+}
+
+.ui-slider-disabled .ui-slider-handle {
+	opacity: 0.5;
+}
+
+.ie .ui-slider-disabled .ui-slider-handle {
+	filter: alpha(opacity=50);
+}
+
+.ui-slider-range {
+	background: #1E2529;
+	height: 100%;
+	opacity: 0.3;
+	position: absolute;
+	width: 100%;
+}
+
+.ie .ui-slider-range {
+	filter: alpha(opacity=30);
+}
+
+/* ---------- Tabs ---------- */
+
+.ui-tabs {
+	border-bottom: 1px solid #DEDEDE;
+	margin: 0 0 18px 0;
+	padding: 0 0 0 10px;
+}
+
+.ui-tabs:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+.ie .ui-tabs {
+	overflow: hidden;
+}
+
+.ie6 .ui-tabs {
+	height: 1%;
+}
+
+.ui-tabs li {
+	display: inline;
+	float: left;
+	line-height: 1;
+	padding: 0;
+	text-decoration: none;
+}
+
+.ui-tabs li.last {
+	border-right: none;
+}
+
+.ui-tabs li a, .tabs li span {
+	background: #878F93 url(../images/application/tabs_bg.png) repeat-x 0 100%;
+	border-right: 1px solid #304049;
+	color: #FFF;
+	display: block;
+	float: left;
+	padding: 10px;
+	position: relative;
+	text-decoration: none;
+	top: 1px;
+}
+
+.ie6 .ui-tabs li a, .ie6 .tabs li span {
+	background-image: none;
+}
+
+.ui-tabs li a:hover {
+	text-decoration: underline;
+}
+
+.ui-tabs li a:hover, .ui-tabs li span:hover {
+	background: #1E2529;
+	color: #9EBAC8;
+}
+
+.ui-tabs li.current {
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	background: #FFF;
+	border: 1px solid #DEDEDE;
+	border-bottom: none;
+	color: #369;
+	font-weight: bold;
+}
+
+.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+	background-color: #FFF;
+}
+
+.ui-tabs .ui-tabs-disabled a {
+	cursor: text;
+}
+
+.ui-tabs-disabled {
+	opacity: 0.4;
+}
+
+.ie .ui-tabs-disabled {
+	filter: alpha(opacity=40);
+}
+
+.ui-tabs .ui-tabs-disabled a:link, .ui-tabs .ui-tabs-disabled a:visited {
+	color: #000;
+}
+
+.ui-tabs-hide {
+	display: none;
+}
+
+.ui-tabs .last.toggle {
+	float: right;
+}
+
+/* ---------- Dialog ---------- */
+
+.ui-dialog {
+	background-color: #FFF;
+	border: 2px solid #828F95;
+	padding: 4px;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+	background: #1E2529;
+	color: #FFF;
+	font-size: 14px;
+	font-weight: bold;
+	min-height: 28px;
+	padding: 0;
+	position: relative;
+	z-index: 1;
+}
+
+.ie .ui-dialog .ui-dialog-container {
+	z-index: 1;
+}
+
+.ie6 .ui-dialog .ui-dialog-titlebar {
+	height: 29px;
+}
+
+.ui-dialog.ui-draggable .ui-dialog-titlebar {
+	cursor: move;
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+	background: url(../images/application/close.png) no-repeat;
+	height: 16px;
+	position: absolute;
+	right: 5px;
+	top: 6px;
+	width: 16px;
+}
+
+.ui-dialog .ui-dialog-titlebar-close span {
+	display: none;
+}
+
+.ui-dialog.has-title .ui-dialog-title {
+	background: url(../images/arrows/04_right.png) no-repeat 7px 50%;
+	display: block;
+	font-weight: bold;
+	padding: 5px;
+	padding-left: 20px;
+}
+
+.ui-dialog.ui-resizable .ui-dialog-content {
+	padding: 14px;
+}
+
+.ui-dialog.ui-resizable-disabled .ui-dialog-content {
+	padding: 7px;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+	bottom: 8px;
+	position: absolute;
+	right: 12px;
+	text-align: right;
+	width: 100%;
+}
+
+.ui-dialog .ui-dialog-buttonpane button {
+	margin: 6px;
+}
+
+.ui-dialog.generic-dialog .ui-resizable-handle {
+}
+
+/* ---------- Date picker ---------- */
+
+#ui-datepicker-div, .ui-datepicker-inline {
+	background: #FFF;
+	border: 2px solid #828F95;
+	padding: 3px;
+	width: 185px;
+}
+
+#ui-datepicker-div {
+	display: none;
+}
+
+.ui-datepicker-inline {
+	border: 0;
+	display: block;
+	float: left;
+}
+
+.ui-datepicker-dialog {
+	padding: 5px !important;
+}
+
+img.ui-datepicker-trigger {
+	margin: 2px;
+	vertical-align: middle;
+}
+
+.ui-datepicker-prompt {
+	color: #000;
+	float: left;
+	padding: 2px;
+}
+
+.ie6 .ui-datepicker-prompt {
+	width: 185px;
+}
+
+.ui-datepicker-control, .ui-datepicker-links, .ui-datepicker-header, .ui-datepicker {
+	clear: both;
+	float: left;
+	width: 100%;
+}
+
+.ui-datepicker-control {
+	background: #D3DADD;
+	border-bottom: 1px solid #AEB8BC;
+	margin-bottom: 2px;
+}
+
+.ui-datepicker-links {
+	background: #727C81;
+	margin-bottom: 1px;
+	padding: 5px 0;
+}
+
+.ui-datepicker-links a {
+	color: #FFF;
+	display: block;
+	margin: 0 5px;
+}
+
+.ui-datepicker-control, .ui-datepicker-links {
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+.ui-datepicker-links label {
+	padding: 2px 5px;
+}
+
+.ui-datepicker-clear, .ui-datepicker-prev {
+	float: left;
+	width: 34%;
+}
+
+.ui-datepicker-prev a, .ui-datepicker-next a {
+	background: url() no-repeat;
+	font-size: 0;
+	height: 16px;
+	line-height: 0;
+	text-indent: -9999em;
+	width: 16px;
+}
+
+.ui-datepicker-prev a {
+	background-image: url(../images/application/datepicker_previous.png);
+}
+
+.ui-datepicker-next a {
+	background-image: url(../images/application/datepicker_next.png);
+}
+
+.ui-datepicker-current {
+	float: left;
+	line-height: 1.3;
+	text-align: center;
+	width: 30%;
+}
+
+.ui-datepicker-close a {
+	background: url(../images/application/close.png) no-repeat;
+	display: block;
+	float: right;
+	height: 16px;
+	margin: 5px 5px 5px 0;
+	text-indent: -9999em;
+	width: 16px;
+}
+
+.ui-datepicker-next {
+	float: right;
+	text-align: right;
+}
+
+.ui-datepicker-header {
+	border-bottom: 1px solid #DEDEDE;
+	font-weight: bold;
+	padding: 5px 0 6px;
+	text-align: center;
+}
+
+.ui-datepicker-header select {
+	background: #727C81;
+	border: 0;
+	color: #FFF;
+	font-weight: bold;
+}
+
+.ui-datepicker-header .ui-datepicker-new-month {
+	float: left;
+	margin-left: 5px;
+}
+
+.ui-datepicker-header .ui-datepicker-new-year {
+	float: right;
+	margin-right: 5px;
+}
+
+.ui-datepicker {
+	text-align: center;
+	width: auto;
+}
+
+.ui-datepicker a {
+	display: block;
+	width: 23px;
+}
+
+.ui-datepicker .ui-datepicker-title-row a {
+	color: #1E2529;
+	text-decoration: none;
+}
+
+.ui-datepicker .ui-datepicker-days-row {
+	background: #FFF;
+	color: #727C81;
+}
+
+.ui-datepicker-week-col {
+	color: #B5BFC4;
+}
+
+.ui-datepicker-days-cell a {
+	background: #F0F5F7;
+	border: 1px solid #FFF;
+}
+
+.ui-datepicker-days-cell a:hover {
+	background-color: #727C81;
+	color: #FFF;
+}
+
+.ui-datepicker-current-day a {
+	background-color: #FFF;
+	border: 1px solid #727C81;
+	color: #369;
+}
+
+.ui-datepicker-current-day a:hover {
+	background-color: #DFF4FF;
+	border-color: #AEB8BC;
+	color: #06C;
+}
+
+.ui-datepicker .ui-datepicker-unselectable {
+	color: #B5BFC4;
+}
+
+#ui-datepicker-div a, .ui-datepicker-inline a {
+	cursor: pointer;
+}
+
+.ui-datepicker-one-month:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+.ie .ui-datepicker-one-month {
+	height: 1%;
+}
+
+.ui-datepicker-new-row {
+	clear: left;
+}
+
+.ie6 .ui-datepicker-cover {
+	display: block;
+	filter: mask();
+	height: 200px;
+	left: -4px;
+	position: absolute;
+	top: -4px;
+	width: 193px;
+	z-index: -1;
+}
+
+/* ---------- Color picker ---------- */
+
+.ui-colorpicker {
+	background-image: url(../images/color_picker/picker_container_bg.png);
+	font: 11px Arial,Helvetica,sans-serif;
+	height: 192px;
+	position: relative;
+	width: 305px;
+}
+
+.ui-colorpicker-color {
+	background-color: #F00;
+	background-image: url(../images/color_picker/picker_bg.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 184px;
+	left: 8px;
+	position: absolute;
+	top: 5px;
+	width: 184px;
+}
+
+.ui-colorpicker-color-handle {
+	background-image: url(../images/color_picker/select.png);
+	height: 11px;
+	position: absolute;
+	width: 11px;
+}
+
+.ui-colorpicker-hue {
+	background-image: url(../images/color_picker/hue.png);
+	height: 186px;
+	left: 200px;
+	position: absolute;
+	top: 3px;
+	width: 18px;
+}
+
+.ui-colorpicker-hue-handle {
+	background-image: url(../images/color_picker/color_indic.png);
+	height: 7px;
+	position: absolute;
+	width: 18px;
+}
+
+.ui-colorpicker-current {
+	background: #FFF;
+	border: 2px solid #727C81;
+	height: 60px;
+	position: absolute;
+	right: 10px;
+	top: 31px;
+	width: 60px;
+}
+
+.ui-colorpicker-values {
+	left: 230px;
+	position: absolute;
+	top: 100px;
+	width: 60px;
+}
+
+.ui-colorpicker-values table {
+	width: 100%;
+}
+
+.ui-colorpicker-values table input {
+	margin-bottom: 1px;
+	padding: 3px 1px;
+	width: 100%;
+}
+
+.ui-colorpicker-rgbR, .ui-colorpicker-rgbG, .ui-colorpicker-rgbB {
+	width: 20px;
+}
+
+.ui-colorpicker-hex {
+	width: 40px;
+}
+
+.ui-colorpicker-close {
+	background: url(../images/color_picker/close.png) no-repeat 0 0;
+	cursor: pointer;
+	height: 23px;
+	position: absolute;
+	right: 3px;
+	text-indent: -9999em;
+	top: 3px;
+	width: 23px;
+}
+
+/* ---------- Autocomplete ---------- */
+
+.ui-autocomplete-results {
+	border: 1px solid;
+	border-color: #BFBFBF #DEDEDE #DEDEDE #BFBFBF;
+	overflow: hidden;
+	padding: 0;
+	z-index: 300;
+}
+
+.ui-autocomplete-results ul {
+	list-style: none;
+	list-style-position: outside;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.ui-autocomplete-results li {
+	cursor: default;
+	display: block;
+	line-height: 16px;
+	margin: 0;
+	overflow: hidden;
+	padding: 2px 5px;
+}
+
+.ui-autocomplete-loading, .ui-autocomplete-loading.focus {
+	background-image: url(../images/application/loading_indicator.gif);
+	background-position: right center;
+	background-repeat: no-repeat;
+}
+
+.ui-autocomplete-results li strong {
+	color: #06c;
+	font-weight: bold;
+}
+
+/* ---------- Tags ---------- */
+
+.ui-tags {
+	display: block;
+	padding: 5px 0 2px;
+}
+
+.ui-tags:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+.ie .ui-tags {
+	height: 1%;
+}
+
+.ui-tags.empty {
+	display: none;
+}
+
+.ui-tags .ui-tag {
+	background: #DFF4FF;
+	border: 1px solid #A7CEDF;
+	float: left;
+	margin-bottom: 3px;
+	margin-right: 3px;
+	padding: 3px 20px 3px 6px;
+	padding-right: 20px;
+	position: relative;
+}
+
+.ui-tags .ui-tag:hover {
+	border-color: #AEB8BC;
+}
+
+.ui-tags .ui-tag-delete {
+	display: block;
+	padding: 6px;
+	position: absolute;
+	right: 0;
+	top: 3px;
+}
+
+.ui-tags .ui-tag-delete span {
+	background: url(../images/application/close_small.png) no-repeat 0 0;
+	cursor: pointer;
+	display: block;
+	font-size: 0;
+	height: 7px;
+	text-indent: -9999em;
+	width: 7px;
+}
+
+.ui-tags .ui-tag-delete:hover span {
+	background-position: 0 100%;
+}
+
+.ui-tags-input {
+	width: 200px;
+}
+
+.tags-vocabulary-name span {
+	font-weight: bold;
+	padding-bottom: 3px;
+}
+
+/* ---------- Tag cloud ---------- */
+
+.tag-cloud {
+	list-style: none;
+	margin: 0 1em 0 0;
+	padding: 0 1em 0.5em 1em;
+	white-space: normal;
+}
+
+.tag-cloud li {
+	display: inline;
+	float: left;
+	list-style: none;
+	margin: 0 1em 0 0;
+}
+
+.tag-cloud a {
+	white-space: nowrap;
+}
+
+/* ---------- Treeview ---------- */
+
+.treeview {
+	cursor: pointer;
+}
+
+.treeview, .treeview ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.treeview ul {
+	background-color: #FFF;
+	margin-top: 4px;
+}
+
+.treeview .hitarea {
+	background: url(../images/trees/treeview_bg.png) -64px -25px no-repeat;
+	cursor: pointer;
+	float: left;
+	height: 16px;
+	margin-left: -16px;
+	margin-top: 3px;
+	width: 16px;
+}
+
+.ie6 .hitarea {
+	display: inline;
+}
+
+.treeview li {
+	background: url(../images/trees/treeview_line.png) 0 0 no-repeat;
+	list-style-type: none;
+	margin: 0;
+	padding: 0 0 3px 16px;
+}
+
+.treeview a.selected {
+	background-color: #EEE;
+}
+
+.treeview-control {
+	display: none;
+	margin: 1em 0;
+}
+
+.treeview .hover {
+	cursor: pointer;
+}
+
+.treeview li.collapsable, .treeview li.expandable {
+	background-position: 0 -176px;
+}
+
+.treeview .expandable-hitarea {
+	background-position: -80px -3px;
+}
+
+.treeview li.last {
+	background-position: 0 -1766px;
+}
+
+.treeview li.lastCollapsable, .treeview li.lastExpandable {
+	background-image: url(../images/trees/treeview_bg.png);
+}
+
+.treeview li.lastCollapsable {
+	background-position: 0 -111px;
+}
+
+.treeview li.lastExpandable {
+	background-position: -32px -67px;
+}
+
+.treeview div.lastCollapsable-hitarea, .treeview div.lastExpandable-hitarea {
+	background-position: 0;
+}
+
+.treeview .placeholder {
+	background: url(../images/application/loading_indicator.gif) 0 0 no-repeat;
+	display: block;
+	height: 16px;
+	width: 16px;
+}
+
+.treeview span {
+	padding-left: 3px;
+}
+
+.filetree li {
+	padding: 3px 0 2px 16px;
+}
+
+.filetree span.folder, .filetree span.file {
+	display: block;
+	padding: 1px 0 1px 16px;
+}
+
+.filetree span.folder {
+	background: url(../images/trees/minus.png) 0 0 no-repeat;
+}
+
+.filetree li.expandable span.folder {
+	background: url(../images/trees/plus.png) 0 0 no-repeat;
+}
+
+.filetree span.file {
+	background: url(../images/trees/page.png) 0 0 no-repeat;
+}
