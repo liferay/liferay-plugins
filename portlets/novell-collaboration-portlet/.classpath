@@ -19,7 +19,5 @@
 	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal/util-taglib/util-taglib.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/c3p0.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/mysql.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
