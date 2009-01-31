@@ -25,6 +25,7 @@
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
+<%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HttpUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.samplehibernate.model.FoodItem" %>
@@ -56,7 +57,7 @@ if (cmd.equals(Constants.ADD) || cmd.equals(Constants.EDIT)) {
 	}
 %>
 
-	<input name="<%= Constants.CMD %>" type="hidden" value="<%= cmd %>" />
+	<input name="<%= Constants.CMD %>" type="hidden" value="<%= HtmlUtil.escape(cmd) %>" />
 	<input name="foodItemId" type="hidden" value="<%= foodItemId %>" />
 
 	<table class="lfr-table">
