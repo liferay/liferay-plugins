@@ -68,9 +68,7 @@
 
 	<target name="clean" description="clean">
 		<delete dir="docroot/WEB-INF/classes" />
-		<delete dir="docroot/WEB-INF/test-classes" />
 		<delete dir="tmp" />
-		<delete dir="reports" />
 		<delete file="${plugin.file}" />
 
 		<delete>
@@ -78,7 +76,7 @@
 			<fileset dir="docroot" includes="**/.sprite.properties" />
 			<fileset dir="docroot" includes="**/Thumbs.db" />
 		</delete>
-		
+
 		<antcall target="clean-portal-dependencies" />
 	</target>
 
@@ -89,7 +87,6 @@
 				<delete>
 					<fileset dir="docroot/WEB-INF/lib" includes="${required.portal.jars}" />
 					<fileset dir="docroot/WEB-INF/lib" includes="${plugin.jars}" />
-					<fileset dir="docroot/WEB-INF/lib" includes="junit.jar,easymock.jar" />
 				</delete>
 			</then>
 		</if>
@@ -197,73 +194,6 @@
 
 		<antcall target="merge" />
 	</target>
-	
-	<target name="test" depends="compile">
-		<if>
-			<available file="docroot/WEB-INF/test" />
-			<then>
-				<mkdir dir="docroot/WEB-INF/test-classes" />
-				<mkdir dir="reports/junit" />
-				
-				<copy todir="docroot/WEB-INF/lib">
-					<fileset dir="${project.dir}/lib" includes="junit.jar,easymock.jar" />
-				</copy>
-				
-				<path id="plugin-test.classpath">
-					<pathelement location="docroot/WEB-INF/test-classes" />
-					<path refid="plugin.classpath" />
-				</path>
-				
-				<if>
-					<equals arg1="${javac.compiler}" arg2="modern" />
-					<then>
-						<javac
-							classpathref="plugin-test.classpath"
-							compiler="${javac.compiler}"
-							debug="${javac.debug}"
-							deprecation="${javac.deprecation}"
-							destdir="docroot/WEB-INF/test-classes"
-							fork="${javac.fork}"
-							memoryMaximumSize="${javac.memoryMaximumSize}"
-							nowarn="${javac.nowarn}"
-							srcdir="docroot/WEB-INF/test"
-						/>
-					</then>
-					<else>
-						<javac
-							classpathref="plugin-test.classpath"
-							compiler="${javac.compiler}"
-							debug="${javac.debug}"
-							deprecation="${javac.deprecation}"
-							destdir="docroot/WEB-INF/test-classes"
-							nowarn="${javac.nowarn}"
-							srcdir="docroot/WEB-INF/test"
-						/>
-					</else>
-				</if>
-				
-				<copy todir="docroot/WEB-INF/test-classes">
-					<fileset dir="docroot/WEB-INF/test" excludes="**/*.java" />
-				</copy>
-							
-			    <junit fork="yes" haltonfailure="yes">
-					<batchtest todir="reports">
-						<fileset dir="docroot/WEB-INF/test" includes="**/*.java"/>
-					</batchtest>    
-					<formatter type="plain" usefile="false" />
-					<formatter type="xml" usefile="true" />
-					<classpath refid="plugin-test.classpath" />
-				</junit>
-				
-				<junitreport todir="reports">
-					<fileset dir="reports">
-						<include name="TEST-*.xml"/>
-					</fileset>
-					<report format="frames" todir="reports/junit"/>
-				</junitreport>
-			</then>
-		</if>
-	</target>	
 
 	<target name="war" depends="compile">
 		<mkdir dir="${project.dir}/dist" />
