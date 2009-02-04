@@ -1,0 +1,280 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---------- Color Scheme ---------- */
+
+@import url(color_schemes/monochrome.css);
+
+/* ---------- Base ---------- */
+
+body {
+	background: #224 url(../images/custom/body_bg.png) repeat-x;
+	color: #333;
+}
+
+a {
+	color: #047;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #047;
+	text-decoration: underline;
+}
+
+/* ---------- Wrapper ---------- */
+
+#wrapper {
+	margin: 0 auto 30px;
+	width: 908px;
+}
+
+/* ---------- Banner ---------- */
+
+#banner {
+	padding: 50px 12px 0;
+	position: relative;
+}
+
+/* ---------- Dock ---------- */
+
+.js .interactive-mode {
+	background: none;
+	font-size: 12px;
+	right: 8px;
+	top: 0;
+}
+
+.js #banner .interactive-mode h2 {
+	background: none;
+	padding: 0;
+	text-align: center;
+}
+
+.js #banner .interactive-mode h2 span {
+	background: #446;
+	border: none;
+	color: #FDA10E;
+	height: 26px;
+	line-height: 2em;
+	min-width: 130px;
+	padding: 8px;
+}
+
+/* ---------- Navigation ---------- */
+
+#navigation {
+	font-size: 12px;
+	position: absolute;
+	top: 0;
+	z-index: 20;
+}
+
+#navigation ul,
+#add-page {
+	float: left;
+}
+
+#navigation li {
+	background: #446;
+	padding: 16px 10px 8px;
+	margin-right: 3px;
+}
+
+#navigation li:hover,
+#navigation li.selected {
+	background: #557;
+}
+
+#navigation a {
+	color: #FDA10E;
+}
+
+#navigation a:hover,
+#navigation .selected a {
+	text-decoration: none;
+}
+
+#navigation .selected a {
+	color: #FFF;
+}
+
+.ie6 #navigation a:hover {
+	color: #FFF;
+}
+
+.enter-page input {
+	margin-right: 5px;
+	padding: 0;
+}
+
+.cancel-page {
+	display: none;
+}
+
+#navigation a.save-page {
+	background: none;
+}
+
+#add-page {
+	padding: 16px 10px 8px;
+}
+
+#add-page a:hover {
+	color: #FFF;
+}
+
+.ie .save-page {
+	position: relative;
+	top: -1px;
+}
+
+/* ---------- Content Wrapper ---------- */
+
+#content-wrapper {
+	background: url(../images/custom/content_wrapper_bg.png) repeat-y;
+	font-size: 12px;
+	height: 100%;
+	padding: 0 8px 0 0;
+}
+
+.lfr-grid .lfr-column {
+	padding: 0;
+}
+
+#layout-grid,
+.lfr-column {
+	border-bottom: 1px solid #000;
+	border-top: 1px solid #000;
+}
+
+/* ---------- Portlet ---------- */
+
+.portlet {
+	margin-bottom: 10px;
+}
+
+.portlet-title {
+	background: url(../images/custom/portlet_topper_bg.png) repeat-y 100% 0;
+	border-bottom: 1px solid #000;
+	color: #FFF;
+	font-size: 12px;
+	height: 100%;
+	letter-spacing: 1px;
+	line-height: 24px;
+	padding: 0 8px;
+}
+
+.portlet-title input {
+	padding: 4px;
+}
+
+.portlet-title .icon {
+	display: none;
+}
+
+.portlet-content {
+	background: #FFF;
+	padding: 14px;
+}
+
+.ui-autocomplete-even,
+.results-row td {
+	background: #DFDFFA;
+}
+
+.ui-autocomplete-odd,
+.results-row.alt td {
+	background: #F3F3FD;
+}
+
+.results-row.hover td {
+	background: #FEE39D;
+}
+
+.results-header th,
+.results-header td,
+.portlet-calendar .calendar-day .day-text,
+.taglib-calendar tr td a:hover {
+	background: #FED38D;
+}
+
+.taglib-calendar tr td a,
+.taglib-calendar tr td a:hover,
+.results-header th,
+.results-header td,
+.portlet-calendar .calendar-day .day-text {
+	color: #333;
+}
+
+body.portal-iframe,
+.portal-iframe #content-wrapper {
+	background: #FFF;
+}
+
+.portal-iframe .lfr-column {
+	border: none;
+}
+
+.taglib-calendar tr td a,
+.portlet-calendar .calendar-container .taglib-calendar {
+	background: transparent;
+}
+
+/* ---------- Tabs ---------- */
+
+.ui-tabs {
+	border-bottom: none;
+	font-size: 11px;
+	height: 21px;
+}
+
+.ui-tabs li a,
+.tabs li span {
+	background: #7C7CAA;
+	color: #FFF;
+	font-weight: normal;
+	padding: 6px 10px;
+	top: 0;
+}
+
+.ui-tabs li a,
+.tabs li span,
+.ui-tabs li.current a,
+.ui-tabs li.current span {
+	border: 1px solid #6C6C9A;
+	border-left: none;
+}
+
+.ui-tabs li a:hover,
+.ui-tabs li span:hover,
+.ui-tabs li.current:hover,
+.ui-tabs li.current a:hover,
+.ui-tabs li.current a,
+.ui-tabs li.current span {
+	background: #8F8FBD;
+	color: #FFF;
+	text-decoration: none;
+}
+
+.ui-tabs li.first a,
+.ui-tabs li.first span {
+	border-left: 1px solid #6C6C9A;
+}
+
+.ui-tabs li.current {
+	padding-top: 0;
+}
+
+.ie6 .ui-tabs li a,
+.ie6 .tabs li span {
+	border-bottom: none;
+	padding-bottom: 10px;
+}
+
+/* ---------- Footer ---------- */
+
+#footer {
+	background: url(../images/custom/footer_bg.png) 0 100%;
+	height: 60px;
+}

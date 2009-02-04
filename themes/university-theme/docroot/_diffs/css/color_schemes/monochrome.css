@@ -1,0 +1,142 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---------- Base ---------- */
+
+body.monochrome {
+	background: #333 url(../../images/color_schemes/monochrome/body_bg.png) repeat-x;
+}
+
+.monochrome a {
+	color: #333;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.monochrome a:hover {
+	color: #333;
+	text-decoration: none;
+}
+
+/* ---------- Dock ---------- */
+
+.js .monochrome #banner .interactive-mode h2 span {
+	background: #6A6A6A;
+	color: #FFF;
+}
+
+/* ---------- Navigation ---------- */
+
+.monochrome #navigation li {
+	background: #6A6A6A;
+}
+
+.monochrome #navigation li:hover {
+	background: #7A7A7A;
+}
+
+.monochrome #navigation li.selected {
+	background: #999;
+}
+
+.monochrome #navigation a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+.monochrome #navigation a:hover,
+.monochrome #navigation .selected a {
+	text-decoration: none;
+}
+
+.monochrome #add-page a:hover {
+	color: #000;
+}
+
+/* ---------- Content Wrapper ---------- */
+
+.monochrome #content-wrapper {
+	background: url(../../images/color_schemes/monochrome/content_wrapper_bg.png) repeat-y;
+}
+
+/* ---------- Portlet ---------- */
+
+.monochrome .portlet-title {
+	background: url(../../images/color_schemes/monochrome/portlet_topper_bg.png) no-repeat;
+	border-bottom: 1px solid #777;
+}
+
+.monochrome .ui-autocomplete-even,
+.monochrome .results-row td {
+	background: #EEE;
+}
+
+.monochrome .ui-autocomplete-odd,
+.monochrome .results-row.alt td {
+	background: #FFF;
+}
+
+.monochrome .results-row.hover td {
+	background: #CCC;
+}
+
+.monochrome .results-header th,
+.monochrome .results-header td,
+.monochrome .portlet-calendar .calendar-day .day-text,
+.monochrome .taglib-calendar tr td a:hover {
+	background: #BBB;
+}
+
+.taglib-calendar .calendar-current-day a,
+.monochrome .portlet-calendar .taglib-calendar tr td.calendar-current-day a:hover,
+.monochrome .taglib-calendar tr td.calendar-current-day a:focus {
+	background: none;
+	color: #333;
+}
+
+/* ---------- Tabs ---------- */
+
+.monochrome .ui-tabs li a,
+.monochrome .tabs li span {
+	background: #CCC;
+	color: #333;
+}
+
+.monochrome .ui-tabs li a,
+.monochrome .tabs li span,
+.monochrome .ui-tabs li.current a,
+.monochrome .ui-tabs li.current span {
+	border: 1px solid #BBB;
+	border-left: none;
+}
+
+.monochrome .ui-tabs li.first a,
+.monochrome .ui-tabs li.first span {
+	border-left: 1px solid #BBB;
+}
+
+.monochrome .ui-tabs li a:hover,
+.monochrome .ui-tabs li span:hover,
+.monochrome .ui-tabs li.current:hover,
+.monochrome .ui-tabs li.current a:hover,
+.monochrome .ui-tabs li.current a,
+.monochrome .ui-tabs li.current span {
+	background: #EAEAEA;
+	color: #333;
+}
+
+.monochrome .ui-tabs li a:hover,
+.monochrome .ui-tabs li span:hover {
+	text-decoration: none;
+}
+
+.ie6 .monochrome .ui-tabs li a,
+.ie6 .monochrome .tabs li span {
+	border-bottom: 0;
+	padding-bottom: 10px;
+}
+
+/* ---------- Footer ---------- */
+
+.monochrome #footer {
+	background: url(../../images/color_schemes/monochrome/footer_bg.png) 0 100%;
+}
