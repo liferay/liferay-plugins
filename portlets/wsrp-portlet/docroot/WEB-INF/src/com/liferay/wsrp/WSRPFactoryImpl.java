@@ -82,7 +82,7 @@ public class WSRPFactoryImpl implements WSRPFactory {
 	public WindowRequestReader getWindowRequestReader() {
 		WindowRequestReader windowRequestReader = new WSRPWindowRequestReader();
 
-		return (WSRPWindowRequestReader)newProxyInstance(
+		return (WindowRequestReader)newProxyInstance(
 			WindowRequestReader.class, windowRequestReader);
 	}
 
