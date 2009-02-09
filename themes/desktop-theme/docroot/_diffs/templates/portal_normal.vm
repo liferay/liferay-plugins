@@ -5,7 +5,7 @@
 <html dir="#language ("lang.dir")" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-	<title>$company_name - $the_title</title>
+	<title>$the_title - $company_name</title>
 
 	$theme.include($top_head_include)
 

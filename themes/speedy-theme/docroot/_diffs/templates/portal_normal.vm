@@ -4,7 +4,7 @@
 
 <html>
 <head>
-	<title>$company_name - $the_title</title>
+	<title>$the_title - $company_name</title>
 
 	<script type="text/javascript">
 		efn = function() {
