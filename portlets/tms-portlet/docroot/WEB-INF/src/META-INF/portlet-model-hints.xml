@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model-hints>
+	<model name="com.liferay.tms.model.ProjectEntry">
+		<field name="projectEntryId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="title" type="String" />
+		<field name="description" type="String" />
+		<field name="finishDate" type="Date" />
+	</model>
+	<model name="com.liferay.tms.model.ProjectMilestone">
+		<field name="projectMilestoneId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="title" type="String" />
+		<field name="description" type="String" />
+		<field name="projectEntryId" type="long" />
+		<field name="dueDate" type="Date" />
+		<field name="finishDate" type="Date" />
+	</model>
+	<model name="com.liferay.tms.model.TaskEntry">
+		<field name="taskEntryId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="projectEntryId" type="long" />
+		<field name="projectMilestoneId" type="long" />
+		<field name="title" type="String" />
+		<field name="description" type="String" />
+		<field name="assigneeUserId" type="long" />
+		<field name="resolverUserId" type="long" />
+		<field name="dueDate" type="Date" />
+		<field name="finishDate" type="Date" />
+		<field name="status" type="int" />
+	</model>
+	<model name="com.liferay.tms.model.TaskView">
+		<field name="taskViewId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="String" />
+		<field name="userId" type="String" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="title" type="String" />
+		<field name="tags" type="String" />
+		<field name="notTags" type="String" />
+		<field name="assigneeUserId" type="long" />
+		<field name="reporterUserId" type="long" />
+		<field name="includeProjectTasks" type="int" />
+		<field name="isPrivate" type="boolean" />
+	</model>
+</model-hints>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<class name="com.liferay.tms.model.impl.ProjectEntryImpl" table="TMS_ProjectEntry">
+		<cache usage="read-write" />
+		<id name="projectEntryId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="finishDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.liferay.tms.model.impl.ProjectMilestoneImpl" table="TMS_ProjectMilestone">
+		<cache usage="read-write" />
+		<id name="projectMilestoneId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="projectEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="dueDate" type="org.hibernate.type.TimestampType" />
+		<property name="finishDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.liferay.tms.model.impl.TaskEntryImpl" table="TMS_TaskEntry">
+		<cache usage="read-write" />
+		<id name="taskEntryId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="projectEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="projectMilestoneId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="assigneeUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="resolverUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="dueDate" type="org.hibernate.type.TimestampType" />
+		<property name="finishDate" type="org.hibernate.type.TimestampType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
+	<class name="com.liferay.tms.model.impl.TaskViewImpl" table="TMS_TaskView">
+		<cache usage="read-write" />
+		<id name="taskViewId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="tags" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="notTags" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="assigneeUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="reporterUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="includeProjectTasks" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="isPrivate" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+</hibernate-mapping>

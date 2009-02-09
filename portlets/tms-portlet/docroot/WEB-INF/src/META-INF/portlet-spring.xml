@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<bean id="com.liferay.tms.service.ProjectEntryLocalService.impl" class="com.liferay.tms.service.impl.ProjectEntryLocalServiceImpl" />
+	<bean id="com.liferay.tms.service.ProjectEntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.tms.service.ProjectEntryLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.tms.service.ProjectEntryLocalServiceUtil" class="com.liferay.tms.service.ProjectEntryLocalServiceUtil">
+		<property name="service" ref="com.liferay.tms.service.ProjectEntryLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.tms.service.persistence.ProjectEntryPersistence.impl" class="com.liferay.tms.service.persistence.ProjectEntryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.tms.service.persistence.ProjectEntryUtil" class="com.liferay.tms.service.persistence.ProjectEntryUtil">
+		<property name="persistence" ref="com.liferay.tms.service.persistence.ProjectEntryPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.tms.service.ProjectMilestoneLocalService.impl" class="com.liferay.tms.service.impl.ProjectMilestoneLocalServiceImpl" />
+	<bean id="com.liferay.tms.service.ProjectMilestoneLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.tms.service.ProjectMilestoneLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.tms.service.ProjectMilestoneLocalServiceUtil" class="com.liferay.tms.service.ProjectMilestoneLocalServiceUtil">
+		<property name="service" ref="com.liferay.tms.service.ProjectMilestoneLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.tms.service.persistence.ProjectMilestonePersistence.impl" class="com.liferay.tms.service.persistence.ProjectMilestonePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.tms.service.persistence.ProjectMilestoneUtil" class="com.liferay.tms.service.persistence.ProjectMilestoneUtil">
+		<property name="persistence" ref="com.liferay.tms.service.persistence.ProjectMilestonePersistence.impl" />
+	</bean>
+	<bean id="com.liferay.tms.service.TaskEntryLocalService.impl" class="com.liferay.tms.service.impl.TaskEntryLocalServiceImpl" />
+	<bean id="com.liferay.tms.service.TaskEntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.tms.service.TaskEntryLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.tms.service.TaskEntryLocalServiceUtil" class="com.liferay.tms.service.TaskEntryLocalServiceUtil">
+		<property name="service" ref="com.liferay.tms.service.TaskEntryLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.tms.service.persistence.TaskEntryPersistence.impl" class="com.liferay.tms.service.persistence.TaskEntryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.tms.service.persistence.TaskEntryUtil" class="com.liferay.tms.service.persistence.TaskEntryUtil">
+		<property name="persistence" ref="com.liferay.tms.service.persistence.TaskEntryPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.tms.service.TaskViewLocalService.impl" class="com.liferay.tms.service.impl.TaskViewLocalServiceImpl" />
+	<bean id="com.liferay.tms.service.TaskViewLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.tms.service.TaskViewLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.tms.service.TaskViewLocalServiceUtil" class="com.liferay.tms.service.TaskViewLocalServiceUtil">
+		<property name="service" ref="com.liferay.tms.service.TaskViewLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.tms.service.persistence.TaskViewPersistence.impl" class="com.liferay.tms.service.persistence.TaskViewPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.tms.service.persistence.TaskViewUtil" class="com.liferay.tms.service.persistence.TaskViewUtil">
+		<property name="persistence" ref="com.liferay.tms.service.persistence.TaskViewPersistence.impl" />
+	</bean>
+</beans>
