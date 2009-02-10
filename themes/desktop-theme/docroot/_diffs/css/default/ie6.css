@@ -31,19 +31,19 @@
 }
 
 .ie6 .icon-min a {
-	background: transparent url(../../images/portlet/minimize_hover.png) no-repeat scroll 0 0;
+	background: transparent url(../../images/portlet/minimize_hover.png) no-repeat scroll 50% 0;
 	filter: alpha(opacity=50);
 	opacity: .5;
 }
 
 .ie6 .icon-max a {
-	background: transparent url(../../images/portlet/maximize_hover.png) no-repeat scroll 0 0;
+	background: transparent url(../../images/portlet/maximize_hover.png) no-repeat scroll 50% 0;
 	filter: alpha(opacity=50);
 	opacity: .5;
 }
 
 .ie6 .icon-close a {
-	background: transparent url(../../images/portlet/close_hover.png) no-repeat scroll 0 0;
+	background: transparent url(../../images/portlet/close_hover.png) no-repeat scroll 50% 0;
 	filter: alpha(opacity=50);
 	opacity: .5;
 }
@@ -56,6 +56,12 @@
 /* ---------- Portlet container ---------- */
 
 .ie6 .portlet-middle {
+	height: 1%;
+}
+
+/* ---------- Page Iterator taglib ---------- */
+
+.ie6 .taglib-page-iterator {
 	height: 1%;
 }
 
