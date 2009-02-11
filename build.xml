@@ -13,12 +13,14 @@
 	<target name="clean">
 		<ant dir="layouttpl" target="clean" inheritAll="false" />
 		<ant dir="portlets" target="clean" inheritAll="false" />
+		<ant dir="hooks" target="clean" inheritAll="false" />
 		<ant dir="themes" target="clean" inheritAll="false" />
 		<ant dir="webs" target="clean" inheritAll="false" />
 	</target>
 
 	<target name="compile">
 		<ant dir="layouttpl" target="compile" inheritAll="false" />
+		<ant dir="hooks" target="compile" inheritAll="false" />
 		<ant dir="portlets" target="compile" inheritAll="false" />
 		<ant dir="themes" target="compile" inheritAll="false" />
 		<ant dir="webs" target="compile" inheritAll="false" />
@@ -26,6 +28,7 @@
 
 	<target name="war">
 		<ant dir="layouttpl" target="war" inheritAll="false" />
+		<ant dir="hooks" target="war" inheritAll="false" />
 		<ant dir="portlets" target="war" inheritAll="false" />
 		<ant dir="themes" target="war" inheritAll="false" />
 		<ant dir="webs" target="war" inheritAll="false" />
@@ -33,6 +36,7 @@
 
 	<target name="deploy">
 		<ant dir="layouttpl" target="deploy" inheritAll="false" />
+		<ant dir="hooks" target="deploy" inheritAll="false" />
 		<ant dir="portlets" target="deploy" inheritAll="false" />
 		<ant dir="themes" target="deploy" inheritAll="false" />
 		<ant dir="webs" target="deploy" inheritAll="false" />
