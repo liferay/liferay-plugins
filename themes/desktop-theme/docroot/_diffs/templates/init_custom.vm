@@ -12,9 +12,9 @@
 #set ($theme_flash_folder = "$themeDisplay.getPathThemeRoot()/flash")
 
 #if ($themeDisplay.getTilesTitle().equals("email-address") ||
-		$themeDisplay.getTilesTitle().equals("new-password") ||
-		$themeDisplay.getTilesTitle().equals("password-reminder") ||
-		$themeDisplay.getTilesTitle().equals("terms-of-use"))
+	$themeDisplay.getTilesTitle().equals("new-password") ||
+	$themeDisplay.getTilesTitle().equals("password-reminder") ||
+	$themeDisplay.getTilesTitle().equals("terms-of-use"))
 
 	#set ($is_login_page = true)
 #elseif ($is_portlet_page && $is_maximized && !$is_signed_in)
