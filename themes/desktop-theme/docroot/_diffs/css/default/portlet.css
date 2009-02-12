@@ -201,7 +201,7 @@ div.portlet .portlet-topper {
 	font-size: 12px;
 	height: 15px;
 	line-height: 15px;
-	padding: 1px 3px;
+	padding: 0 3px 1px;
 }
 
 .lfr-actions.portlet-options .lfr-trigger strong {
@@ -246,25 +246,25 @@ div.portlet .portlet-topper {
 
 .icon-options-min, .icon-options-max {
 	right: 23px;
-	top: 6px;
+	top: 7px;
 }
 
 .icon-options-close {
 	right: 41px;
-	top: 6px;
+	top: 7px;
 }
 
 .icon-options-min-max {
 	right: 46px;
-	top: 6px;
+	top: 7px;
 }
 
 .icon-options-min-close, .icon-options-max-close {
 	right: 64px;
-	top: 6px;
+	top: 7px;
 }
 
 .icon-options-min-max-close {
 	right: 87px;
-	top: 6px;
+	top: 7px;
 }

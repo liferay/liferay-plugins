@@ -6,9 +6,7 @@
 			<div class="top-right">
 				<div class="top-center">
 					<div class="portlet-topper">
-						<span class="portlet-title not-editable">
-							$theme.iconPortlet() $portlet_title
-						</span>
+						<span class="portlet-title not-editable">$theme.iconPortlet() $portlet_title</span>
 
 						<span
 							#if ($portlet_display.isShowBackIcon())
