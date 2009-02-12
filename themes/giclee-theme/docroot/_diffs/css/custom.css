@@ -1,0 +1,333 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---------- Base ---------- */
+
+body {
+	background: #262F40 url(../images/custom/body_bg.gif) no-repeat 50% 0;
+	font-size: 11px;
+}
+
+a {
+	color: #994C33;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #994C33;
+	text-decoration: underline;
+}
+
+/* ---------- Wrapper ---------- */
+
+#wrapper {
+	margin: 0 auto;
+	padding-top: 30px;
+	position: relative;
+	width: 1015px;
+}
+
+/* ---------- Banner ---------- */
+
+#banner {
+	float: left;
+	width: 150px;
+}
+
+/* ---------- Logo ---------- */
+
+#wrapper #banner .logo a {
+	margin: 80px 20px 60px auto;
+	width: 55px;
+}
+
+/* ---------- Dock ---------- */
+
+.js .interactive-mode {
+	background: none;
+	right: 10px;
+	top: 0;
+}
+
+.js .interactive-mode h2 {
+	background: none;
+	padding: 0;
+}
+
+.js .interactive-mode h2 span {
+	background: none;
+	border-right: none;
+	color: #D9D1B6;
+	font-family: "Times New Roman",Times,serif;
+	font-size: 12px;
+	font-weight: bold;
+	min-width: 130px;
+	text-align: right;
+	text-transform: uppercase;
+	width: 220px;
+}
+
+.js .interactive-mode li {
+	background: none;
+	border: none;
+}
+
+.lfr-dock-list-container,
+.lfr-dock-list {
+	margin-left: 83px;
+	width: 170px;
+}
+
+.js .interactive-mode ul {
+	background: #FFF url(../images/custom/dock_bg.png) no-repeat 100% 0;
+	border-color: #994C33;
+}
+
+/* ---------- Navigation ---------- */
+
+#navigation {
+	clear: left;
+	float: left;
+	font-family: "Times New Roman",Times,serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: right;
+	width: 150px;
+}
+
+#navigation a {
+	color: #D9D1B6;
+	display: block;
+	height: 22px;
+	line-height: 22px;
+	padding-right: 20px;
+	text-transform: uppercase;
+}
+
+#navigation li a:hover {
+	background: url(../images/custom/navigation_item.png) no-repeat 0 100%;
+	color: #F9F1D6;
+	text-decoration: none;
+}
+
+#navigation li.selected a {
+	background: url(../images/custom/navigation_item.png) no-repeat;
+}
+
+#layout-grid,
+.columns-1 #column-1,
+.columns-max #column-1 {
+	clear: none;
+}
+
+#navigation li {
+	float: none;
+	padding-bottom: 1px;
+}
+
+#navigation .enter-page .cancel-page {
+	display: none;
+}
+
+.enter-page input {
+	padding: 0;
+}
+
+#navigation a.save-page {
+	display: inline;
+	margin-left: 5px;
+}
+
+#navigation li a.save-page:hover {
+	background: none;
+}
+
+.js .delete-tab {
+	text-align: left;
+}
+
+#add-page a:hover {
+	color: #F9F1D6;
+	text-decoration: none;
+}
+
+/* ---------- Content Wrapper ---------- */
+
+#content-wrapper {
+	background: #636D7D url(../images/custom/content_wrapper_bg.png) no-repeat 100% 0;
+	color: #69563E;
+	margin-left: 150px;
+	padding: 0 10px;
+	width: 840px;
+}
+
+.ie6 #content-wrapper {
+	padding: 0 10px 0 0;
+}
+
+/* ---------- Portlet ---------- */
+
+.portlet {
+	background: #E7D9AD;
+	border:2px solid #994C33;
+	margin: 10px 10px 0 0;
+	padding: 10px 10px 0 10px;
+}
+
+.portlet-content-container {
+	height: 100%;
+}
+
+.ie6 .portlet {
+	margin: 10px;
+}
+
+.lfr-grid .lfr-column {
+	padding: 0;
+}
+
+.portlet-icons {
+	top: 2px;
+}
+
+.ie6 .portlet-icons {
+	right: 25px;
+}
+
+.portlet-title {
+	background: #DBC49B;
+	color: #3E2813;
+	font-family: "Times New Roman",Times,serif;
+	font-size: 12px;
+	font-weight: normal;
+	height: 22px;
+	line-height: 22px;
+	padding: 0 5px;
+	text-transform: uppercase;
+}
+
+.portlet-title img.icon {
+	display: none;
+}
+
+.ui-autocomplete-even,
+.results-row td,
+.ui-autocomplete-odd,
+.results-row.alt td {
+	background: none;
+	border-bottom: 1px solid #BB9273;
+}
+
+.results-row.hover td {
+	background: #DBC49B;
+}
+
+.results-header,
+.results-header th,
+.results-header td,
+.portlet-calendar .calendar-day .day-text {
+	background: #753F2F;
+	color: #FFF;
+}
+
+.taglib-calendar tr td a,
+.portlet-calendar .taglib-calendar tr td.calendar-current-day a:hover,
+.taglib-calendar tr td.calendar-current-day a:focus,
+.taglib-calendar .calendar-current-day a,
+.taglib-calendar tr td a:hover {
+	background: #FFF;
+	color: #994C33;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
+	font-size: 90px;
+	padding-bottom: 0;
+}
+
+.portlet-calendar .taglib-calendar ,
+.taglib-calendar,
+.taglib-calendar table,
+.portlet-calendar .calendar-container,
+.results-grid {
+	border-color: #E7D9AD;
+}
+
+.portlet-calendar .calendar td,
+.portlet-calendar .calendar-container .taglib-calendar {
+	border-color: #BB9273;
+}
+
+.ie6 .portlet-calendar .calendar-container {
+	background: #FFF;
+}
+
+body.portal-iframe,
+.portal-iframe #content-wrapper {
+	background: #E7D9AD;
+}
+
+/* ---------- Tabs ---------- */
+
+.ui-tabs {
+	border-bottom: none;
+	font-size: 11px;
+	height: 21px;
+}
+
+.ui-tabs li a,
+.tabs li span {
+	background: #753F2F;
+	color: #E7D9AD;
+	font-weight: normal;
+	padding: 6px 10px;
+	top: 0;
+}
+
+.ui-tabs li a,
+.tabs li span,
+.ui-tabs li.current a,
+.ui-tabs li.current span {
+	border: none;
+}
+
+.ui-tabs li a:hover,
+.ui-tabs li span:hover,
+.ui-tabs li.current:hover,
+.ui-tabs li.current a:hover,
+.ui-tabs li.current a,
+.ui-tabs li.current span {
+	background: #551F0F;
+	color: #E7D9AD;
+	text-decoration: none;
+}
+
+.ui-tabs li.first a,
+.ui-tabs li.first span {
+	border-left: 0;
+}
+
+.ui-tabs li.current {
+	padding-top: 0;
+}
+
+.ie6 .ui-tabs li.current a,
+.ie6 .ui-tabs li.current span,
+.ie6 .ui-tabs li a,
+.ie6 .tabs li span {
+	border-bottom: none;
+	padding-bottom: 5px;
+}
+
+/* ---------- Footer ---------- */
+
+#footer {
+	background: #636D7D url(../images/custom/footer_bg.png) no-repeat 100% 100%;
+	height: 10px;
+	margin-left: 150px;
+	padding-right: 10px;
+	width: 850px;
+}
+
+.ie6 #footer {
+	display: none;
+}
