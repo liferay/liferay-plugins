@@ -63,12 +63,12 @@ div.portlet .portlet-topper {
 
 .portlet-modes a {
 	float: left;
-	height: 15px;
+	height: 16px;
 }
 
 .icon-min a {
 	background: transparent url(../../images/portlet/minimize.png) no-repeat scroll 0 0;
-	width: 22px;
+	width: 23px;
 }
 
 .icon-min a.selected {
@@ -77,7 +77,7 @@ div.portlet .portlet-topper {
 
 .icon-max a {
 	background: transparent url(../../images/portlet/maximize.png) no-repeat scroll 0 0;
-	width: 22px;
+	width: 23px;
 }
 
 .icon-max a.selected {
@@ -86,7 +86,7 @@ div.portlet .portlet-topper {
 
 .icon-close a {
 	background: transparent url(../../images/portlet/close.png) no-repeat scroll 0 0;
-	width: 38px;
+	width: 41px;
 }
 
 .icon-close a.selected {
@@ -201,7 +201,7 @@ div.portlet .portlet-topper {
 	font-size: 12px;
 	height: 15px;
 	line-height: 15px;
-	padding: 1px 3px 0;
+	padding: 1px 3px;
 }
 
 .lfr-actions.portlet-options .lfr-trigger strong {
@@ -245,26 +245,26 @@ div.portlet .portlet-topper {
 }
 
 .icon-options-min, .icon-options-max {
-	right: 22px;
+	right: 23px;
 	top: 6px;
 }
 
 .icon-options-close {
-	right: 38px;
+	right: 41px;
 	top: 6px;
 }
 
 .icon-options-min-max {
-	right: 44px;
+	right: 46px;
 	top: 6px;
 }
 
 .icon-options-min-close, .icon-options-max-close {
-	right: 60px;
+	right: 64px;
 	top: 6px;
 }
 
 .icon-options-min-max-close {
-	right: 82px;
+	right: 87px;
 	top: 6px;
 }
