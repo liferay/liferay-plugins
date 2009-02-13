@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_0_0.dtd">
-
-<service-builder package-path="com.liferay.saw">
-	<namespace>saw</namespace>
-	<entity name="SAWWorkflow" local-service="true" remote-service="false" />
-</service-builder>
