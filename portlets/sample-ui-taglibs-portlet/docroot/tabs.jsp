@@ -29,18 +29,18 @@ Code:
 <br /><br />
 
 <pre>&lt;liferay-ui:tabs
-    names="One,Two,Three"
-    refresh="&lt;%= false %&gt;"
+&nbsp;&nbsp;&nbsp;&nbsp;names="One,Two,Three"
+&nbsp;&nbsp;&nbsp;&nbsp;refresh="&lt;%= false %&gt;"
 &gt;
-    &lt;liferay-ui:section&gt;
-        One body
-    &lt;/liferay-ui:section&gt;
-    &lt;liferay-ui:section&gt;
-        Two body
-    &lt;/liferay-ui:section&gt;
-    &lt;liferay-ui:section&gt;
-        Three body
-    &lt;/liferay-ui:section&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;liferay-ui:section&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;One body
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/liferay-ui:section&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;liferay-ui:section&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Two body
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/liferay-ui:section&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;liferay-ui:section&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Three body
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/liferay-ui:section&gt;
 &lt;/liferay-ui:tabs&gt;</pre>
 
 <div class="separator"></div>

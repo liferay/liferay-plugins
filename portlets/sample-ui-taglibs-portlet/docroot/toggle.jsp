@@ -29,10 +29,10 @@ Code:
 <br /><br />
 
 <pre>&lt;liferay-ui:toggle
-    id="toggle_id_sample_ui_taglibs_test"
-    showImage='&lt;%= themeDisplay.getPathThemeImages() + "/arrows/01_down.png" %&gt;'
-    hideImage='&lt;%= themeDisplay.getPathThemeImages() + "/arrows/01_right.png" %&gt;'
-    defaultShowContent="true"
+&nbsp;&nbsp;&nbsp;&nbsp;id="toggle_id_sample_ui_taglibs_test"
+&nbsp;&nbsp;&nbsp;&nbsp;showImage='&lt;%= themeDisplay.getPathThemeImages() + "/arrows/01_down.png" %&gt;'
+&nbsp;&nbsp;&nbsp;&nbsp;hideImage='&lt;%= themeDisplay.getPathThemeImages() + "/arrows/01_right.png" %&gt;'
+&nbsp;&nbsp;&nbsp;&nbsp;defaultShowContent="true"
 /&gt;</pre>
 
 <div class="separator"></div>

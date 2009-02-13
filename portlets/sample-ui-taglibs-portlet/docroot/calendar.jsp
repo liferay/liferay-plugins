@@ -29,10 +29,10 @@ Code:
 <br /><br />
 
 <pre>&lt;liferay-ui:calendar
-    month="&lt;%= Calendar.FEBRUARY %&gt;"
-    day="&lt;%= 14 %&gt;"
-    year="&lt;%= 2007 %&gt;"
-    headerPattern="MMMM"
+&nbsp;&nbsp;&nbsp;&nbsp;month="&lt;%= Calendar.FEBRUARY %&gt;"
+&nbsp;&nbsp;&nbsp;&nbsp;day="&lt;%= 14 %&gt;"
+&nbsp;&nbsp;&nbsp;&nbsp;year="&lt;%= 2007 %&gt;"
+&nbsp;&nbsp;&nbsp;&nbsp;headerPattern="MMMM"
 /&gt;</pre>
 
 <div class="separator"></div>
