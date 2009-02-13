@@ -24,6 +24,7 @@ package com.liferay.samplestruts.struts.action;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringPool;
 
 import java.util.Iterator;
 import java.util.List;
@@ -57,14 +58,14 @@ public class UploadAction extends Action {
 
 		ServletFileUpload upload = new ServletFileUpload(factory);
 
-		List items = upload.parseRequest(request);
+		List<FileItem> items = upload.parseRequest(request);
 
-		Iterator iter = items.iterator();
+		Iterator<FileItem> itr = items.iterator();
 
-		String itemName = "";
+		String itemName = StringPool.BLANK;
 
-		while (iter.hasNext()) {
-			FileItem item = (FileItem) iter.next();
+		while (itr.hasNext()) {
+			FileItem item = itr.next();
 
 			if (!item.isFormField()) {
 				if (_log.isInfoEnabled()) {

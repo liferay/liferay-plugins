@@ -67,8 +67,8 @@
 		<action path="/sample_struts_portlet/view" forward="portlet.sample_struts_portlet.view" />
 
 		<action path="/sample_struts_portlet/view_chart" type="com.liferay.samplestruts.struts.action.ViewChartAction">
-			<forward name="/common/error.jsp" path="/common/error.jsp" />
-			<forward name="/common/null.jsp" path="/common/null.jsp" />
+			<forward name="/common/error.jsp" path="/html/common/error.jsp" />
+			<forward name="/common/null.jsp" path="/html/common/null.jsp" />
 		</action>
 
 		<action path="/sample_struts_portlet/x/action" type="com.liferay.samplestruts.struts.action.XAction">

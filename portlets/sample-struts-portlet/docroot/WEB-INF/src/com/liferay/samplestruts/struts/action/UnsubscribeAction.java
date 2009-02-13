@@ -22,6 +22,10 @@
 
 package com.liferay.samplestruts.struts.action;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.samplestruts.struts.form.UnsubscribeForm;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -43,8 +47,16 @@ public class UnsubscribeAction extends Action {
 			HttpServletResponse response)
 		throws Exception {
 
+		UnsubscribeForm unsubscribeForm = (UnsubscribeForm)form;
+
+		if (_log.isInfoEnabled()) {
+			_log.info(unsubscribeForm.toString());
+		}
+
 		return mapping.findForward(
 			"/sample_struts_portlet/unsubscribe_success");
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(UnsubscribeAction.class);
 
 }
