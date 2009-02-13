@@ -24,14 +24,20 @@ package com.liferay.sampletest.portlet;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.portlet.LiferayPortlet;
+import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.util.portlet.PortletRequestUtil;
 import com.liferay.util.servlet.PortletResponseUtil;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-import javax.portlet.GenericPortlet;
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.PortletRequestDispatcher;
 import javax.portlet.RenderRequest;
@@ -45,7 +51,7 @@ import javax.portlet.ResourceResponse;
  * @author Brian Wing Shun Chan
  *
  */
-public class TestPortlet extends GenericPortlet {
+public class TestPortlet extends LiferayPortlet {
 
 	public void doDispatch(
 			RenderRequest renderRequest, RenderResponse renderResponse)
@@ -71,6 +77,39 @@ public class TestPortlet extends GenericPortlet {
 		String contentType = MimeTypesUtil.getContentType(fileName);
 
 		PortletResponseUtil.sendFile(renderResponse, fileName, is, contentType);
+	}
+
+	public void uploadForm1(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(
+			actionRequest);
+
+		String actionRequestTitle = ParamUtil.getString(actionRequest, "title");
+		String uploadRequestTitle = ParamUtil.getString(uploadRequest, "title");
+
+		File file = uploadRequest.getFile("fileName");
+
+		if (_log.isInfoEnabled()) {
+			_log.info("actionRequestTitle " + actionRequestTitle);
+			_log.info("uploadRequestTitle " + uploadRequestTitle);
+			_log.info("File " + file + " " + file.length());
+		}
+	}
+
+	public void uploadForm2(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		PortletRequestUtil.testMultipartWithCommonsFileUpload(actionRequest);
+	}
+
+	public void uploadForm3(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		PortletRequestUtil.testMultipartWithPortletInputStream(actionRequest);
 	}
 
 	protected void include(

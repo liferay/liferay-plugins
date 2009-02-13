@@ -22,13 +22,35 @@
  */
 %>
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ include file="/init.jsp" %>
 
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
+<%
+String actionName = ParamUtil.getString(renderRequest, ActionRequest.ACTION_NAME);
+%>
 
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<form action="<portlet:actionURL name="<%= actionName %>" />" enctype="multipart/form-data" method="post">
 
-<%@ page import="javax.portlet.ActionRequest" %>
-<%@ page import="javax.portlet.PortletSession" %>
+<table class="lfr-table">
+<tr>
+	<td>
+		<liferay-ui:message key="title" />
+	</td>
+	<td>
+		<input class="lfr-input-text" name="<portlet:namespace />title" type="text" />
+	</td>
+</tr>
+<tr>
+	<td>
+		<liferay-ui:message key="file" />
+	</td>
+	<td>
+		<input name="<portlet:namespace />fileName" size="50" type="file" />
+	</td>
+</tr>
+</table>
 
-<portlet:defineObjects />
+<br />
+
+<input type="submit" value="<liferay-ui:message key="save" />" />
+
+</form>

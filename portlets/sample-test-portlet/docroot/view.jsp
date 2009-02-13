@@ -41,3 +41,7 @@ This is the <b>Sample Test Portlet</b>. This was made to test some portlet featu
 <br /><br />
 
 <b>Servlet Request:</b> <a href="<%= request.getContextPath() %>/servlet_request/remote_user.jsp">Remote User</a>
+
+<br /><br />
+
+<b>Upload:</b> <a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm1" /><portlet:param name="jspPage" value="/upload/form.jsp" /></portlet:renderURL>">Form 1</a> | <a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm2" /><portlet:param name="jspPage" value="/upload/form.jsp" /></portlet:renderURL>">Form 2</a> | <a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm3" /><portlet:param name="jspPage" value="/upload/form.jsp" /></portlet:renderURL>">Form 3</a>

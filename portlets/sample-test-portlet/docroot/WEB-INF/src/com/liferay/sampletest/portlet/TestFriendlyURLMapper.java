@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.util.Validator;
 import java.util.Map;
 
 import javax.portlet.PortletMode;
+import javax.portlet.PortletRequest;
 import javax.portlet.WindowState;
 
 /**
@@ -42,6 +43,10 @@ import javax.portlet.WindowState;
 public class TestFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 	public String buildPath(LiferayPortletURL portletURL) {
+		if (portletURL.getLifecycle().equals(PortletRequest.ACTION_PHASE)) {
+			return null;
+		}
+
 		String resourceID = portletURL.getResourceID();
 
 		if (Validator.isNotNull(resourceID)) {
