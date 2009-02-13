@@ -53,7 +53,7 @@
 		<ant dir="${module.name}" target="deploy" inheritAll="false" />
 	</target>
 
-	<target name="build-services">
+	<target name="build-service">
 		<for param="service.file">
 			<path>
 				<fileset
@@ -73,6 +73,16 @@
 				<ant dir="${portlet.dir}" target="build-service" inheritAll="false" />
 			</sequential>
 		</for>
+	</target>
+
+	<target name="setup-eclipse">
+		<antcall target="loop-modules">
+			<param name="loop.modules.cmd" value="setup-eclipse-module" />
+		</antcall>
+	</target>
+
+	<target name="setup-eclipse-module">
+		<ant dir="${module.name}" target="setup-eclipse" inheritAll="false" />
 	</target>
 
 	<target name="loop-modules">
