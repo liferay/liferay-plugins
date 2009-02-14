@@ -95,4 +95,18 @@
 			excludes="build.*.properties,dist/**,clients/*-client/**,hooks/*-hook/**,layouttpl/*-layouttpl/**,portlets/*-portlet/**,portlets/alfresco/**,summary.*,themes/*-theme/**,webs/*-web/**"
 		/>
 	</target>
+
+	<target name="setup-eclipse">
+		<ant dir="hooks" target="clean" inheritAll="false" />
+		<ant dir="portlets" target="clean" inheritAll="false" />
+		<ant dir="webs" target="clean" inheritAll="false" />
+
+		<ant dir="hooks" target="compile" inheritAll="false" />
+		<ant dir="portlets" target="compile" inheritAll="false" />
+		<ant dir="webs" target="compile" inheritAll="false" />
+
+		<ant dir="hooks" target="setup-eclipse" inheritAll="false" />
+		<ant dir="portlets" target="setup-eclipse" inheritAll="false" />
+		<ant dir="webs" target="setup-eclipse" inheritAll="false" />
+	</target>
 </project>
