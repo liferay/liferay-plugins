@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@ import com.liferay.workflow.NoSuchDefinitionException;
 import com.liferay.workflow.model.WorkflowDefinition;
 import com.liferay.workflow.service.base.WorkflowDefinitionServiceBaseImpl;
 
-import java.rmi.RemoteException;
+import java.util.Date;
 
 /**
  * <a href="WorkflowDefinitionServiceImpl.java.html"><b><i>View Source</i></b>
@@ -74,53 +74,52 @@ public class WorkflowDefinitionServiceImpl
 			String[] guestPermissions)
 		throws PortalException, SystemException {
 
+		// Deploy xml
+
+		User user = getUser();
+
+		long definitionId = GetterUtil.getLong(
+			workflowComponentService.deploy(xml));
+
+		// File
+
+		long companyId = user.getCompanyId();
+		String portletId = CompanyConstants.SYSTEM_STRING;
+		long groupId = GroupConstants.DEFAULT_PARENT_GROUP_ID;
+		long repositoryId = CompanyConstants.SYSTEM;
+		String dirName = "workflow/definitions";
+		String fileName = dirName  + "/" + definitionId + ".xml";
+		long fileEntryId = 0;
+		String properties = StringPool.BLANK;
+		Date modifiedDate = new Date();
+		String[] tagsEntries = new String[0];
+		byte[] bytes = xml.getBytes();
+
 		try {
-
-			// Deploy xml
-
-			User user = getUser();
-
-			long definitionId = GetterUtil.getLong(
-				workflowComponentService.deploy(xml));
-
-			// File
-
-			long companyId = user.getCompanyId();
-			String portletId = CompanyConstants.SYSTEM_STRING;
-			long groupId = GroupConstants.DEFAULT_PARENT_GROUP_ID;
-			long repositoryId = CompanyConstants.SYSTEM;
-			String dirName = "workflow/definitions";
-			String fileName = dirName  + "/" + definitionId + ".xml";
-
-			try {
-				DLServiceUtil.addDirectory(companyId, repositoryId, dirName);
-			}
-			catch (DuplicateDirectoryException dde) {
-			}
-
-			DLServiceUtil.addFile(
-				companyId, portletId, groupId, repositoryId, fileName,
-				StringPool.BLANK, new String[0], xml.getBytes());
-
-			// Resources
-
-			if ((addCommunityPermissions != null) &&
-				(addGuestPermissions != null)) {
-
-				addDefinitionResources(
-					user, definitionId, addCommunityPermissions.booleanValue(),
-					addGuestPermissions.booleanValue());
-			}
-			else {
-				addDefinitionResources(
-					user, definitionId, communityPermissions, guestPermissions);
-			}
-
-			return getDefinition(definitionId);
+			DLServiceUtil.addDirectory(companyId, repositoryId, dirName);
 		}
-		catch (RemoteException re) {
-			throw new SystemException(re);
+		catch (DuplicateDirectoryException dde) {
 		}
+
+		DLServiceUtil.addFile(
+			companyId, portletId, groupId, repositoryId, fileName, fileEntryId,
+			properties, modifiedDate, tagsEntries, bytes);
+
+		// Resources
+
+		if ((addCommunityPermissions != null) &&
+			(addGuestPermissions != null)) {
+
+			addDefinitionResources(
+				user, definitionId, addCommunityPermissions.booleanValue(),
+				addGuestPermissions.booleanValue());
+		}
+		else {
+			addDefinitionResources(
+				user, definitionId, communityPermissions, guestPermissions);
+		}
+
+		return getDefinition(definitionId);
 	}
 
 	public void addDefinitionResources(
@@ -167,9 +166,6 @@ public class WorkflowDefinitionServiceImpl
 		}
 		catch (NoSuchFileException nsfe) {
 			throw new NoSuchDefinitionException();
-		}
-		catch (RemoteException re) {
-			throw new SystemException(re);
 		}
 	}
 

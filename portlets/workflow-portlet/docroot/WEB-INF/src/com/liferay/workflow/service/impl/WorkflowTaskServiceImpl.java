@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,8 +26,6 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.workflow.service.base.WorkflowTaskServiceBaseImpl;
 
-import java.rmi.RemoteException;
-
 import java.util.Map;
 
 /**
@@ -41,13 +39,8 @@ public class WorkflowTaskServiceImpl extends WorkflowTaskServiceBaseImpl {
 	public Map updateTask(long taskId, String transition, Map parameterMap)
 		throws PortalException, SystemException {
 
-		try {
-			return workflowComponentService.updateTask(
-				taskId, transition, parameterMap);
-		}
-		catch (RemoteException re) {
-			throw new SystemException(re);
-		}
+		return workflowComponentService.updateTask(
+			taskId, transition, parameterMap);
 	}
 
 }

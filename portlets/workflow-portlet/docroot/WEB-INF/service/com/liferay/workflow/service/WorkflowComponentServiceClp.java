@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,8 +40,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 	}
 
 	public java.util.List getCurrentTasks(long instanceId, long tokenId)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(instanceId);
 
 		Object paramObj1 = new LongWrapper(tokenId);
@@ -57,10 +56,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -74,8 +69,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 	}
 
 	public java.lang.String getCurrentTasksXml(long instanceId, long tokenId)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(instanceId);
 
 		Object paramObj1 = new LongWrapper(tokenId);
@@ -91,10 +85,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -108,8 +98,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 	}
 
 	public java.lang.String deploy(java.lang.String xml)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = ClpSerializer.translateInput(xml);
 
 		if (xml == null) {
@@ -127,10 +116,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -144,8 +129,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 	}
 
 	public java.lang.Object getDefinition(long definitionId)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(definitionId);
 
 		Object returnObj = null;
@@ -157,10 +141,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.jbi.WorkflowComponentException) {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
-			}
-
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -177,8 +157,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 
 	public java.util.List getDefinitions(long definitionId,
 		java.lang.String name, int start, int end)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(definitionId);
 
 		Object paramObj1 = ClpSerializer.translateInput(name);
@@ -202,10 +181,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -220,8 +195,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 
 	public java.lang.String getDefinitionsXml(long definitionId,
 		java.lang.String name, int start, int end)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(definitionId);
 
 		Object paramObj1 = ClpSerializer.translateInput(name);
@@ -245,10 +219,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -262,8 +232,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 	}
 
 	public int getDefinitionsCount(long definitionId, java.lang.String name)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(definitionId);
 
 		Object paramObj1 = ClpSerializer.translateInput(name);
@@ -283,10 +252,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -301,8 +266,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 
 	public java.lang.String getDefinitionsCountXml(long definitionId,
 		java.lang.String name)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(definitionId);
 
 		Object paramObj1 = ClpSerializer.translateInput(name);
@@ -322,10 +286,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -339,8 +299,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 	}
 
 	public java.lang.String getDefinitionXml(long definitionId)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(definitionId);
 
 		Object returnObj = null;
@@ -352,10 +311,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.jbi.WorkflowComponentException) {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
-			}
-
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -376,8 +331,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 		java.lang.String endDateGT, java.lang.String endDateLT,
 		boolean hideEndedTasks, boolean retrieveUserInstances,
 		boolean andOperator, int start, int end)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(definitionId);
 
 		Object paramObj1 = new LongWrapper(instanceId);
@@ -443,10 +397,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -465,8 +415,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 		java.lang.String endDateGT, java.lang.String endDateLT,
 		boolean hideEndedTasks, boolean retrieveUserInstances,
 		boolean andOperator)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(definitionId);
 
 		Object paramObj1 = new LongWrapper(instanceId);
@@ -528,10 +477,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -550,8 +495,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 		java.lang.String startDateLT, java.lang.String endDateGT,
 		java.lang.String endDateLT, boolean hideEndedTasks,
 		boolean retrieveUserInstances, boolean andOperator)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(definitionId);
 
 		Object paramObj1 = new LongWrapper(instanceId);
@@ -613,10 +557,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -635,8 +575,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 		java.lang.String endDateGT, java.lang.String endDateLT,
 		boolean hideEndedTasks, boolean retrieveUserInstances,
 		boolean andOperator, int start, int end)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(definitionId);
 
 		Object paramObj1 = new LongWrapper(instanceId);
@@ -702,10 +641,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -719,8 +654,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 	}
 
 	public com.liferay.workflow.model.WorkflowTask getTask(long taskId)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(taskId);
 
 		Object returnObj = null;
@@ -732,10 +666,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.jbi.WorkflowComponentException) {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
-			}
-
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -751,8 +681,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 	}
 
 	public java.lang.String getTaskXml(long taskId)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(taskId);
 
 		Object returnObj = null;
@@ -764,10 +693,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.jbi.WorkflowComponentException) {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
-			}
-
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -783,8 +708,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 	}
 
 	public java.util.List getTaskFormElements(long taskId)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(taskId);
 
 		Object returnObj = null;
@@ -796,10 +720,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.jbi.WorkflowComponentException) {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
-			}
-
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -815,8 +735,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 	}
 
 	public java.lang.String getTaskFormElementsXml(long taskId)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(taskId);
 
 		Object returnObj = null;
@@ -828,10 +747,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.jbi.WorkflowComponentException) {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
-			}
-
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -847,8 +762,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 	}
 
 	public java.util.List getTaskTransitions(long taskId)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(taskId);
 
 		Object returnObj = null;
@@ -860,10 +774,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.jbi.WorkflowComponentException) {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
-			}
-
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -879,8 +789,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 	}
 
 	public java.lang.String getTaskTransitionsXml(long taskId)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(taskId);
 
 		Object returnObj = null;
@@ -892,10 +801,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.jbi.WorkflowComponentException) {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
-			}
-
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -917,8 +822,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 		java.lang.String startDateLT, java.lang.String endDateGT,
 		java.lang.String endDateLT, boolean hideEndedTasks,
 		boolean andOperator, int start, int end)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(instanceId);
 
 		Object paramObj1 = ClpSerializer.translateInput(taskName);
@@ -998,10 +902,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1020,8 +920,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 		java.lang.String startDateGT, java.lang.String startDateLT,
 		java.lang.String endDateGT, java.lang.String endDateLT,
 		boolean hideEndedTasks, boolean andOperator)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(instanceId);
 
 		Object paramObj1 = ClpSerializer.translateInput(taskName);
@@ -1097,10 +996,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1119,8 +1014,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 		java.lang.String createDateLT, java.lang.String startDateGT,
 		java.lang.String startDateLT, java.lang.String endDateGT,
 		java.lang.String endDateLT, boolean hideEndedTasks, boolean andOperator)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(instanceId);
 
 		Object paramObj1 = ClpSerializer.translateInput(taskName);
@@ -1196,10 +1090,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1219,8 +1109,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 		java.lang.String startDateLT, java.lang.String endDateGT,
 		java.lang.String endDateLT, boolean hideEndedTasks,
 		boolean andOperator, int start, int end)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(instanceId);
 
 		Object paramObj1 = ClpSerializer.translateInput(taskName);
@@ -1300,10 +1189,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1317,8 +1202,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 	}
 
 	public void signalInstance(long instanceId)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(instanceId);
 
 		try {
@@ -1328,10 +1212,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.jbi.WorkflowComponentException) {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
-			}
-
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1345,8 +1225,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 	}
 
 	public void signalToken(long instanceId, long tokenId)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(instanceId);
 
 		Object paramObj1 = new LongWrapper(tokenId);
@@ -1360,10 +1239,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1375,8 +1250,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 	}
 
 	public java.lang.String startWorkflow(long definitionId)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(definitionId);
 
 		Object returnObj = null;
@@ -1388,10 +1262,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.jbi.WorkflowComponentException) {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
-			}
-
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1408,8 +1278,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 
 	public java.util.Map updateTask(long taskId, java.lang.String transition,
 		java.util.Map parameterMap)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(taskId);
 
 		Object paramObj1 = ClpSerializer.translateInput(transition);
@@ -1435,10 +1304,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1453,8 +1318,7 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 
 	public java.lang.String updateTaskXml(long taskId,
 		java.lang.String transition, java.util.Map parameterMap)
-		throws com.liferay.portal.kernel.jbi.WorkflowComponentException,
-			java.rmi.RemoteException {
+		throws com.liferay.portal.kernel.jbi.WorkflowComponentException {
 		Object paramObj0 = new LongWrapper(taskId);
 
 		Object paramObj1 = ClpSerializer.translateInput(transition);
@@ -1478,10 +1342,6 @@ public class WorkflowComponentServiceClp implements WorkflowComponentService {
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.jbi.WorkflowComponentException) {
 				throw (com.liferay.portal.kernel.jbi.WorkflowComponentException)t;
-			}
-
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
 			}
 
 			if (t instanceof RuntimeException) {

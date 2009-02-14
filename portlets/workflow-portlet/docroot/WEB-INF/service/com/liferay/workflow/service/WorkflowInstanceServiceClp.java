@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,7 +39,7 @@ public class WorkflowInstanceServiceClp implements WorkflowInstanceService {
 	public com.liferay.workflow.model.WorkflowInstance addInstance(
 		long definitionId)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(definitionId);
 
 		Object returnObj = null;
@@ -57,10 +57,6 @@ public class WorkflowInstanceServiceClp implements WorkflowInstanceService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -75,7 +71,7 @@ public class WorkflowInstanceServiceClp implements WorkflowInstanceService {
 
 	public void signalInstance(long instanceId)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(instanceId);
 
 		try {
@@ -91,10 +87,6 @@ public class WorkflowInstanceServiceClp implements WorkflowInstanceService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -107,7 +99,7 @@ public class WorkflowInstanceServiceClp implements WorkflowInstanceService {
 
 	public void signalToken(long instanceId, long tokenId)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException, java.rmi.RemoteException {
+			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(instanceId);
 
 		Object paramObj1 = new LongWrapper(tokenId);
@@ -123,10 +115,6 @@ public class WorkflowInstanceServiceClp implements WorkflowInstanceService {
 
 			if (t instanceof com.liferay.portal.SystemException) {
 				throw (com.liferay.portal.SystemException)t;
-			}
-
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
 			}
 
 			if (t instanceof RuntimeException) {

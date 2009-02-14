@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,7 @@
 
 package com.liferay.workflow.service.base;
 
+import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.service.base.PrincipalBean;
 
 import com.liferay.workflow.service.WorkflowComponentService;
@@ -72,12 +73,12 @@ public abstract class WorkflowComponentServiceBaseImpl extends PrincipalBean
 		this.workflowTaskService = workflowTaskService;
 	}
 
-	@javax.annotation.Resource(name = "com.liferay.workflow.service.WorkflowComponentService.impl")
+	@BeanReference(name = "com.liferay.workflow.service.WorkflowComponentService.impl")
 	protected WorkflowComponentService workflowComponentService;
-	@javax.annotation.Resource(name = "com.liferay.workflow.service.WorkflowDefinitionService.impl")
+	@BeanReference(name = "com.liferay.workflow.service.WorkflowDefinitionService.impl")
 	protected WorkflowDefinitionService workflowDefinitionService;
-	@javax.annotation.Resource(name = "com.liferay.workflow.service.WorkflowInstanceService.impl")
+	@BeanReference(name = "com.liferay.workflow.service.WorkflowInstanceService.impl")
 	protected WorkflowInstanceService workflowInstanceService;
-	@javax.annotation.Resource(name = "com.liferay.workflow.service.WorkflowTaskService.impl")
+	@BeanReference(name = "com.liferay.workflow.service.WorkflowTaskService.impl")
 	protected WorkflowTaskService workflowTaskService;
 }
