@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<portlet-app-extension xmlns="https://portlet-container.dev.java.net/xml/sun-portlet.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sunportal="https://portlet-container.dev.java.net/xml/sun-portlet.xsd" xsi:noNamespaceSchemaLocation="https://portlet-container.dev.java.net/xml/sun-portlet.xsd" version="2.0">
-	<portlet>
-		<portlet-name>1</portlet-name>
-		<render-url-parameter-cache-disabled>true</render-url-parameter-cache-disabled>
-	</portlet>
-</portlet-app-extension>

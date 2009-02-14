@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,7 @@ public class WorkflowTaskServiceUtil {
 	public static java.util.Map updateTask(long taskId,
 		java.lang.String transition, java.util.Map parameterMap)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		return getService().updateTask(taskId, transition, parameterMap);
 	}
 

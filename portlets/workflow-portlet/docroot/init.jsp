@@ -1,6 +1,6 @@
 <%
 /**
- * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,7 +44,6 @@
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
-<%@ page import="com.liferay.portal.security.auth.PrincipalException" %>
 <%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
 <%@ page import="com.liferay.portal.service.permission.PortletPermissionUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
@@ -97,16 +96,16 @@ WindowState windowState = renderRequest.getWindowState();
 
 String currentURL = PortalUtil.getCurrentURL(request);
 
-PortletPreferences preferences = renderRequest.getPreferences();
+PortletPreferences prefs = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
 if (Validator.isNotNull(portletResource)) {
-	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
+	prefs = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-String viewType = preferences.getValue("viewType", "administrator");
-String definitionName = preferences.getValue("definitionName", StringPool.BLANK);
+String viewType = prefs.getValue("viewType", "administrator");
+String definitionName = prefs.getValue("definitionName", StringPool.BLANK);
 
 DateFormat dateFormatDateTime = DateFormats.getDateTime(locale, timeZone);
 %>

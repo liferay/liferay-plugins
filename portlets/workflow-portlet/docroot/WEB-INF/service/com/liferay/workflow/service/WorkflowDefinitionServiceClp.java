@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -42,7 +42,7 @@ public class WorkflowDefinitionServiceClp implements WorkflowDefinitionService {
 		java.lang.String xml, boolean addCommunityPermissions,
 		boolean addGuestPermissions)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		Object paramObj0 = ClpSerializer.translateInput(xml);
 
 		if (xml == null) {
@@ -68,6 +68,10 @@ public class WorkflowDefinitionServiceClp implements WorkflowDefinitionService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
+			}
+
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -84,7 +88,7 @@ public class WorkflowDefinitionServiceClp implements WorkflowDefinitionService {
 		java.lang.String xml, java.lang.String[] communityPermissions,
 		java.lang.String[] guestPermissions)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		Object paramObj0 = ClpSerializer.translateInput(xml);
 
 		if (xml == null) {
@@ -118,6 +122,10 @@ public class WorkflowDefinitionServiceClp implements WorkflowDefinitionService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
+			}
+
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -136,7 +144,7 @@ public class WorkflowDefinitionServiceClp implements WorkflowDefinitionService {
 		java.lang.String[] communityPermissions,
 		java.lang.String[] guestPermissions)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		Object paramObj0 = ClpSerializer.translateInput(xml);
 
 		if (xml == null) {
@@ -184,6 +192,10 @@ public class WorkflowDefinitionServiceClp implements WorkflowDefinitionService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
+			}
+
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -200,7 +212,7 @@ public class WorkflowDefinitionServiceClp implements WorkflowDefinitionService {
 		long definitionId, boolean addCommunityPermissions,
 		boolean addGuestPermissions)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		Object paramObj0 = ClpSerializer.translateInput(user);
 
 		if (user == null) {
@@ -226,6 +238,10 @@ public class WorkflowDefinitionServiceClp implements WorkflowDefinitionService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
+			}
+
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -240,7 +256,7 @@ public class WorkflowDefinitionServiceClp implements WorkflowDefinitionService {
 		long definitionId, java.lang.String[] communityPermissions,
 		java.lang.String[] guestPermissions)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		Object paramObj0 = ClpSerializer.translateInput(user);
 
 		if (user == null) {
@@ -274,6 +290,10 @@ public class WorkflowDefinitionServiceClp implements WorkflowDefinitionService {
 				throw (com.liferay.portal.SystemException)t;
 			}
 
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
+			}
+
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -287,7 +307,7 @@ public class WorkflowDefinitionServiceClp implements WorkflowDefinitionService {
 	public com.liferay.workflow.model.WorkflowDefinition getDefinition(
 		long definitionId)
 		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
+			com.liferay.portal.SystemException, java.rmi.RemoteException {
 		Object paramObj0 = new LongWrapper(definitionId);
 
 		Object returnObj = null;
@@ -303,6 +323,10 @@ public class WorkflowDefinitionServiceClp implements WorkflowDefinitionService {
 
 			if (t instanceof com.liferay.portal.SystemException) {
 				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
 			}
 
 			if (t instanceof RuntimeException) {

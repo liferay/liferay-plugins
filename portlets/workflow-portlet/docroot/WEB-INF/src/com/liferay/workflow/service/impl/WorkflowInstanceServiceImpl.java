@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,6 +29,8 @@ import com.liferay.workflow.jbi.WorkflowXMLUtil;
 import com.liferay.workflow.model.WorkflowInstance;
 import com.liferay.workflow.service.base.WorkflowInstanceServiceBaseImpl;
 
+import java.rmi.RemoteException;
+
 import java.text.ParseException;
 
 /**
@@ -52,6 +54,9 @@ public class WorkflowInstanceServiceImpl
 		catch (DocumentException de) {
 			throw new SystemException(de);
 		}
+		catch (RemoteException re) {
+			throw new SystemException(re);
+		}
 		catch (ParseException pe) {
 			throw new SystemException(pe);
 		}
@@ -60,15 +65,23 @@ public class WorkflowInstanceServiceImpl
 	public void signalInstance(long instanceId)
 		throws PortalException, SystemException {
 
-		workflowComponentService.signalInstance(instanceId);
-
+		try {
+			workflowComponentService.signalInstance(instanceId);
+		}
+		catch (RemoteException re) {
+			throw new SystemException(re);
+		}
 	}
 
 	public void signalToken(long instanceId, long tokenId)
 		throws PortalException, SystemException {
 
-		workflowComponentService.signalToken(instanceId, tokenId);
-
+		try {
+			workflowComponentService.signalToken(instanceId, tokenId);
+		}
+		catch (RemoteException re) {
+			throw new SystemException(re);
+		}
 	}
 
 }
