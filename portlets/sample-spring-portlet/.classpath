@@ -11,6 +11,7 @@
 	<classpathentry kind="lib" path="/portal/lib/global/container.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet-container.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/annotations.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/log4j.jar" />
 	<classpathentry kind="lib" path="/portal/portal-kernel/portal-kernel.jar" />
@@ -18,5 +19,14 @@
 	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-fileupload.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-io.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jstl.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/log4j-1.2.15.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/petportal.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/spring-webmvc-portlet.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/spring-webmvc.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/spring.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/standard.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>

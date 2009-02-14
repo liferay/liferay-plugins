@@ -1,2 +1,0 @@
-Do NOT rename this folder to /js because there is a shindig servlet mapped to
-that path. The portlet will break.

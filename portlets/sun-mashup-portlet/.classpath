@@ -12,25 +12,14 @@
 	<classpathentry kind="lib" path="/portal/lib/global/portlet-container.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/annotations.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/antlr.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/commons-beanutils.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/commons-collections.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/commons-digester.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/commons-fileupload.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/commons-io.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/commons-lang.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/commons-logging.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/commons-validator.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/jcommon.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/jfreechart.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/log4j.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/oro.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/portals-bridges.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/struts.jar" />
 	<classpathentry kind="lib" path="/portal/portal-kernel/portal-kernel.jar" />
 	<classpathentry kind="lib" path="/portal/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jstl-1.0.6.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/standard-1.0.6.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>

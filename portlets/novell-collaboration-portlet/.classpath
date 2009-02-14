@@ -19,5 +19,35 @@
 	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/FastInfoset.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/activation.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-beanutils.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-codec.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-collections.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-digester.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-fileupload.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-httpclient.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-io.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-lang.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-validator.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/dom4j.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jakarta-regex.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jaxp-api.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jaxrpc-api.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jaxrpc-impl.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jaxrpc-spi.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jsr173_api.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jstl.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/oro.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/relaxngDatatype.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/saaj-api.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/saaj-impl.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/standard.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/struts.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/taglibs-i18n.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/xalan.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/xercesImpl.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/xml-apis.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/xsdlib.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
