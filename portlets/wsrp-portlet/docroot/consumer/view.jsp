@@ -53,8 +53,6 @@
 
 		String tabs1 = ParamUtil.getString(request, "tabs1", "producers");
 
-		String redirect = ParamUtil.getString(request, "redirect");
-
 		ConfiguredProducerElementBean[] configuredProducerBeans = (ConfiguredProducerElementBean[])renderRequest.getAttribute("listConfiguredProducerBeans");
 
 		if (configuredProducerBeans == null) {
@@ -71,7 +69,6 @@
 
 				<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
 				<input name="<portlet:namespace /><%= Constants.ACTION %>" type="hidden" value="<%= action %>" />
-				<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 
 				<liferay-ui:tabs names="producer" />
 
@@ -110,7 +107,6 @@
 
 				<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
 				<input name="<portlet:namespace /><%= Constants.ACTION %>" type="hidden" value="<%= action %>" />
-				<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 				<input name="<portlet:namespace />wsdl" type="hidden" value="<%= HtmlUtil.escape(wsdl) %>" />
 
 				<liferay-ui:tabs names="producer" />
@@ -414,7 +410,6 @@
 
 				<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
 				<input name="<portlet:namespace /><%= Constants.ACTION %>" type="hidden" value="<%= AdminPortletAction.UPDATE %>" />
-				<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 				<input name="<portlet:namespace />configuredProducerName" type="hidden" value="<%= HtmlUtil.escape(configuredProducerBean.getName()) %>" />
 				<input name="<portlet:namespace />configuredProducerId" type="hidden" value="<%= HtmlUtil.escape(configuredProducerBean.getConfiguredProducerId()) %>" />
 
@@ -779,7 +774,6 @@
 					PortletURL portletURL = renderResponse.createActionURL();
 
 					portletURL.setParameter(Constants.ACTION, String.valueOf(AdminPortletAction.GET_DETAILS));
-					portletURL.setParameter("redirect", currentURL);
 					portletURL.setParameter("configuredProducerId", configuredProducerBean.getId());
 
 					row.addText(configuredProducerBean.getName(), portletURL);
@@ -803,7 +797,7 @@
 				%>
 
 				<div>
-					<input type="button" value="<liferay-ui:message key="connect-to-producer" />" onClick="location.href = '<portlet:renderURL><portlet:param name="<%= Constants.ACTION %>" value="<%= String.valueOf(AdminPortletAction.GET_VERSION_INFO) %>" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" />
+					<input type="button" value="<liferay-ui:message key="connect-to-producer" />" onClick="location.href = '<portlet:renderURL><portlet:param name="<%= Constants.ACTION %>" value="<%= String.valueOf(AdminPortletAction.GET_VERSION_INFO) %>" /></portlet:renderURL>';" />
 				</div>
 
 				<br />

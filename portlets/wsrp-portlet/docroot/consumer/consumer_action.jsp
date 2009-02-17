@@ -54,7 +54,6 @@ ConfiguredProducerElementBean configuredProducerBean = (ConfiguredProducerElemen
 <liferay-ui:icon-menu>
 	<portlet:actionURL var="editURL">
 		<portlet:param name="<%= Constants.ACTION %>" value="<%= String.valueOf(AdminPortletAction.GET_DETAILS) %>" />
-		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="configuredProducerName" value="<%= configuredProducerBean.getName() %>" />
 		<portlet:param name="configuredProducerId" value="<%= configuredProducerBean.getId() %>" />
 	</portlet:actionURL>
@@ -63,7 +62,6 @@ ConfiguredProducerElementBean configuredProducerBean = (ConfiguredProducerElemen
 
 	<portlet:actionURL var="installPortletURL">
 		<portlet:param name="<%= Constants.ACTION %>" value="<%= String.valueOf(AdminPortletAction.GET_INFO_FOR_CHANNEL) %>" />
-		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="configuredProducerName" value="<%= configuredProducerBean.getName() %>" />
 		<portlet:param name="configuredProducerId" value="<%= configuredProducerBean.getId() %>" />
 	</portlet:actionURL>
@@ -72,7 +70,6 @@ ConfiguredProducerElementBean configuredProducerBean = (ConfiguredProducerElemen
 
 	<portlet:actionURL var="updateServiceDescriptionURL">
 		<portlet:param name="<%= Constants.ACTION %>" value="<%= String.valueOf(AdminPortletAction.UPDATE_SD) %>" />
-		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="configuredProducerName" value="<%= configuredProducerBean.getName() %>" />
 		<portlet:param name="configuredProducerId" value="<%= configuredProducerBean.getId() %>" />
 	</portlet:actionURL>
