@@ -317,7 +317,7 @@ div.portlet .portlet-topper {
 
 /* ---------- Portlet resize handle ---------- */
 
-.freeform .portlet-boundary .ui-resizable-handle {
+.freeform .portlet-boundary .exp-resizable-handle {
 	margin: 4px 6px 7px;
 }
 
