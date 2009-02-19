@@ -10,11 +10,6 @@
 	#set ($is_ie6 = true)
 #end
 
-## ---------- Flags ---------- ##
-
-#set ($has_sidebar = ($show_add_content && !$is_ie6))
-#set ($has_taskbar = !$is_maximized && !$is_login_page)
-
 ## ---------- Body ID ---------- ##
 
 #if ($themeDisplay.getTilesTitle().equals("email-address") ||
@@ -39,11 +34,12 @@
 	#set ($css_id = "desktop-user")
 #end
 
-## ---------- Dock ---------- ##
+## ---------- Desktop ---------- ##
 
 #set ($home_text = $languageUtil.get($company_id, $locale, "my-home"))
 
-## ---------- Sidebar ---------- ##
+#set ($has_sidebar = ($show_add_content && !$is_ie6))
+#set ($has_taskbar = !$is_maximized && !$is_login_page)
 
 #if ($has_sidebar)
 	#set ($add_content_url = "Sidebar.animate();")
