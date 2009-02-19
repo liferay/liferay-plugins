@@ -10,6 +10,7 @@
 	$theme.include($top_head_include)
 
 	#css ($css_main_file)
+	#js ($js_main_file)
 
 	<script type="text/javascript">
 		// <![CDATA[
@@ -53,8 +54,6 @@ $theme.include($top_messages_include)
 </div>
 
 </body>
-
-#js ($js_main_file)
 
 $theme.include($bottom_include)
 
