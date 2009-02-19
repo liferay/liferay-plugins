@@ -15,14 +15,15 @@
 					swliveconnect="false"
 					type="application/x-shockwave-flash"
 					width="100"
-					wmode="transparent" />
+					wmode="transparent"
+				/>
 			</span>
 			<span class="calendar">
 				<span class="month">
 					$dateUtil.getCurrentDate("EEE", $locale)
 				</span>
 				<span class="day">
-					$dateUtil.getCurrentDate('dd',$locale)
+					$dateUtil.getCurrentDate('dd', $locale)
 				</span>
 			</span>
 		</div>

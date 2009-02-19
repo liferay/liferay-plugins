@@ -12,45 +12,6 @@
 	background: #FFF url(../../images/color_schemes/osx/desktop/desktop_user_bg.jpg) no-repeat fixed 50% 50%;
 }
 
-/* ---------- Taskbar container ---------- */
-
-.osx #taskbar-container {
-	background: none;
-}
-
-.osx #taskbar {
-	background: transparent url(../../images/color_schemes/osx/taskbar/taskbar_bg.png) repeat-x scroll 100% 0;
-}
-
-/* ---------- Taskbar portlet links ---------- */
-
-.osx #taskbar-portlets-wrapper {
-	height: 23px;
-	top: 0;
-}
-
-.osx #taskbar-portlets {
-	padding: 0 10px 0 40px;
-}
-
-.osx #taskbar-portlets .taskbar-link a {
-	background: none;
-	border-style: none;
-	color: #000;
-	font-weight: bold;
-	padding: 3px 7px 4px;
-}
-
-.osx #taskbar-portlets .taskbar-link a:hover {
-	background: #336ECA;
-	color: #FFF;
-}
-
-.osx #taskbar-portlets .taskbar-link.selected a, .osx #taskbar-portlets .taskbar-link.selected a:hover {
-	background: #3CA5D5;
-	color: #FFF;
-}
-
 /* ---------- Dock icon ---------- */
 
 .js .osx .interactive-mode {
@@ -218,7 +179,7 @@
 	margin-left: 15px;
 }
 
-/* ---------- Portlet options ---------- */
+/* ---------- Portlet options link ---------- */
 
 .osx .lfr-actions.portlet-options .lfr-trigger strong span {
 	color: #777;
@@ -235,19 +196,54 @@
 	top: 11px;
 }
 
-/* ---------- Login portlet ---------- */
+/* ---------- Taskbar ---------- */
+
+.osx #taskbar-container {
+	background: none;
+}
+
+.osx #taskbar {
+	background: transparent url(../../images/color_schemes/osx/taskbar/taskbar_bg.png) repeat-x scroll 100% 0;
+}
+
+.osx #taskbar-portlets-wrapper {
+	height: 23px;
+	top: 0;
+}
+
+.osx #taskbar-portlets {
+	padding: 0 10px 0 40px;
+}
+
+.osx #taskbar-portlets .taskbar-link a {
+	background: none;
+	border-style: none;
+	color: #000;
+	font-weight: bold;
+	padding: 3px 7px 4px;
+}
+
+.osx #taskbar-portlets .taskbar-link a:hover {
+	background: #336ECA;
+	color: #FFF;
+}
+
+.osx #taskbar-portlets .taskbar-link.selected a, .osx #taskbar-portlets .taskbar-link.selected a:hover {
+	background: #3CA5D5;
+	color: #FFF;
+}
+
+/* ---------- Portal pages ---------- */
 
 .osx .portlet-login .portlet-title img {
 	display: none;
 }
 
-/* ---------- IE6 Taskbar portlet links ---------- */
+/* ---------- IE6 ---------- */
 
 .ie6 .osx #taskbar-portlets .taskbar-link a {
 	width: 1%;
 }
-
-/* ---------- IE6 Portlet wrapper and icons ---------- */
 
 .ie6 .osx .icon-min a {
 	background: transparent url(../../images/color_schemes/osx/portlet/minimize_hover.png) no-repeat scroll 50% 0;

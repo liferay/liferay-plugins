@@ -1,15 +1,21 @@
 ## ---------- Common ---------- ##
 
-#set ($groupLocalService = $serviceLocator.findService("com.liferay.portal.service.GroupLocalService"))
-#set ($journalTemplateLocalService = $serviceLocator.findService("com.liferay.portlet.journal.service.JournalTemplateLocalService"))
-
-#set ($desktop_js = "$themeDisplay.getPathThemeRoot()/javascript/desktop.js")
-#set ($sidebar_js = "$themeDisplay.getPathThemeRoot()/javascript/sidebar.js")
-
-#set ($guest_group = $groupLocalService.getGroup($company_id, "Guest"))
-#set ($is_ie6 = false)
-#set ($journal_template_id = $theme_settings.getProperty("css-template-id"))
 #set ($theme_flash_folder = "$themeDisplay.getPathThemeRoot()/flash")
+
+## ---------- Browsers ---------- ##
+
+#set ($is_ie6 = false)
+
+#if ($browserSniffer.isIe($request) && $browserSniffer.getMajorVersion($request) < 7)
+	#set ($is_ie6 = true)
+#end
+
+## ---------- Flags ---------- ##
+
+#set ($has_sidebar = ($show_add_content && !$is_ie6))
+#set ($has_taskbar = !$is_maximized && !$is_login_page)
+
+## ---------- Body ID ---------- ##
 
 #if ($themeDisplay.getTilesTitle().equals("email-address") ||
 	$themeDisplay.getTilesTitle().equals("new-password") ||
@@ -32,16 +38,6 @@
 #else
 	#set ($css_id = "desktop-user")
 #end
-
-#if ($browserSniffer.isIe($request) && $browserSniffer.getMajorVersion($request) < 7)
-	#set ($is_ie6 = true)
-#end
-
-## ---------- Flags ---------- ##
-
-#set ($has_journal_template = $journalTemplateLocalService.hasTemplate($group_id, $journal_template_id))
-#set ($has_sidebar = ($show_add_content && !$is_ie6))
-#set ($has_taskbar = !$is_maximized && !$is_login_page)
 
 ## ---------- Dock ---------- ##
 
