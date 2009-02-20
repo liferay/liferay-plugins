@@ -8,10 +8,10 @@
 	<classpathentry kind="lib" path="/portal/lib/development/jsp-api.jar" />
 	<classpathentry kind="lib" path="/portal/lib/development/mail.jar" />
 	<classpathentry kind="lib" path="/portal/lib/development/servlet-api.jar" />
+	<classpathentry kind="lib" path="/portal/lib/global/annotations.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/container.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet-container.jar" />
 	<classpathentry kind="lib" path="/portal/lib/global/portlet.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/annotations.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/axis.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/backport-concurrent.jar" />
 	<classpathentry kind="lib" path="/portal/lib/portal/commons-discovery.jar" />
