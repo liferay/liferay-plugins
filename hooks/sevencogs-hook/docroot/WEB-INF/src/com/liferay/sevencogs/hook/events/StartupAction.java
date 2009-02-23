@@ -469,6 +469,10 @@ public class StartupAction extends SimpleAction {
 			(OrderByComparator)null);
 
 		for (User user : users) {
+			if (user.getScreenName().equals("test")) {
+				continue;
+			}
+
 			UserLocalServiceUtil.deleteUser(user.getUserId());
 		}
 
