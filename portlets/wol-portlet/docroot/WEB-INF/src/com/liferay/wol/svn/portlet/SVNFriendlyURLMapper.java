@@ -51,7 +51,8 @@ public class SVNFriendlyURLMapper extends BaseFriendlyURLMapper {
 	}
 
 	public void populateParams(
-		String friendlyURLPath, Map<String, String[]> params) {
+		String friendlyURLPath, Map<String, String[]> params,
+		Map<String, String> prpIdentifiers) {
 
 		int x = friendlyURLPath.indexOf("/", 1);
 
@@ -95,13 +96,15 @@ public class SVNFriendlyURLMapper extends BaseFriendlyURLMapper {
 			return;
 		}
 
-		addParam(params, "p_p_id", _PORTLET_ID);
-		addParam(params, "p_p_lifecycle", "0");
-		addParam(params, "p_p_state", LiferayWindowState.EXCLUSIVE);
-		addParam(params, "p_p_mode", PortletMode.VIEW);
+		addParam(params, prpIdentifiers, "p_p_id", _PORTLET_ID);
+		addParam(params, prpIdentifiers, "p_p_lifecycle", "0");
+		addParam(
+			params, prpIdentifiers, "p_p_state",
+			LiferayWindowState.EXCLUSIVE);
+		addParam(params, prpIdentifiers, "p_p_mode", PortletMode.VIEW);
 
-		addParam(params, "url", url);
-		addParam(params, "all", type.equals("all"));
+		addParam(params, prpIdentifiers, "url", url);
+		addParam(params, prpIdentifiers, "all", type.equals("all"));
 	}
 
 	private static final String _MAPPING = "svn";

@@ -97,10 +97,13 @@ public class TestFriendlyURLMapper extends BaseFriendlyURLMapper {
 		return _PORTLET_ID;
 	}
 
-	public void populateParams(String friendlyURLPath, Map params) {
-		addParam(params, "p_p_id", _PORTLET_ID);
-		addParam(params, "p_p_lifecycle", "0");
-		addParam(params, "p_p_mode", PortletMode.VIEW);
+	public void populateParams(
+		String friendlyURLPath, Map<String, String[]> params,
+		Map<String, String> prpIdentifiers) {
+
+		addParam(params, prpIdentifiers, "p_p_id", _PORTLET_ID);
+		addParam(params, prpIdentifiers, "p_p_lifecycle", "0");
+		addParam(params, prpIdentifiers, "p_p_mode", PortletMode.VIEW);
 
 		int x = friendlyURLPath.indexOf("/", 1);
 
@@ -111,15 +114,17 @@ public class TestFriendlyURLMapper extends BaseFriendlyURLMapper {
 		String resourceID = friendlyURLPath.substring(x);
 
 		if (resourceID.equals("/logo.png")) {
-			addParam(params, "p_p_lifecycle", "2");
-			addParam(params, "p_p_resource_id", resourceID.substring(1));
+			addParam(params, prpIdentifiers, "p_p_lifecycle", "2");
+			addParam(
+				params, prpIdentifiers, "p_p_resource_id",
+				resourceID.substring(1));
 
 			return;
 		}
 
 		String jspPage = resourceID;
 
-		addParam(params, "jspPage", jspPage);
+		addParam(params, prpIdentifiers, "jspPage", jspPage);
 	}
 
 	private static final String _MAPPING = "sample_test";

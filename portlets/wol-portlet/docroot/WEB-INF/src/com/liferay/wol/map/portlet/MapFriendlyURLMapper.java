@@ -51,12 +51,14 @@ public class MapFriendlyURLMapper extends BaseFriendlyURLMapper {
 	}
 
 	public void populateParams(
-		String friendlyURLPath, Map<String, String[]> params) {
+		String friendlyURLPath, Map<String, String[]> params,
+		Map<String, String> prpIdentifiers) {
 
-		addParam(params, "p_p_id", _PORTLET_ID);
-		addParam(params, "p_p_lifecycle", "0");
-		addParam(params, "p_p_state", WindowState.MAXIMIZED);
-		addParam(params, "p_p_mode", PortletMode.VIEW);
+		addParam(params, prpIdentifiers, "p_p_id", _PORTLET_ID);
+		addParam(params, prpIdentifiers, "p_p_lifecycle", "0");
+		addParam(
+			params, prpIdentifiers, "p_p_state", WindowState.MAXIMIZED);
+		addParam(params, prpIdentifiers, "p_p_mode", PortletMode.VIEW);
 	}
 
 	private static final String _MAPPING = "map";

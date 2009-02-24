@@ -115,11 +115,12 @@ public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 	}
 
 	public void populateParams(
-		String friendlyURLPath, Map<String, String[]> params) {
+		String friendlyURLPath, Map<String, String[]> params,
+		Map<String, String> prpIdentifiers) {
 
-		addParam(params, "p_p_id", _PORTLET_ID);
-		addParam(params, "p_p_lifecycle", "0");
-		addParam(params, "p_p_mode", PortletMode.VIEW);
+		addParam(params, prpIdentifiers, "p_p_id", _PORTLET_ID);
+		addParam(params, prpIdentifiers, "p_p_lifecycle", "0");
+		addParam(params, prpIdentifiers, "p_p_mode", PortletMode.VIEW);
 
 		int x = friendlyURLPath.indexOf(StringPool.SLASH, 1);
 
@@ -130,26 +131,30 @@ public class KnowledgeBaseFriendlyURLMapper extends BaseFriendlyURLMapper {
 			String urlFragment0 = HttpUtil.decodeURL(urlFragments[0]);
 
 			if (urlFragment0.equals("tag") && (urlFragments.length >= 2)) {
-				addParam(params, "view", "view_tagged_articles");
+				addParam(
+					params, prpIdentifiers, "view",
+					"view_tagged_articles");
 
 				String tag = HttpUtil.decodeURL(urlFragments[1]);
 
-				addParam(params, "tag", tag);
+				addParam(params, prpIdentifiers, "tag", tag);
 			}
 			else {
-				addParam(params, "view", "view_article");
+				addParam(params, prpIdentifiers, "view", "view_article");
 
-				addParam(params, "title", urlFragment0);
+				addParam(params, prpIdentifiers, "title", urlFragment0);
 
 				if (urlFragments.length >= 2) {
 					String windowState = urlFragments[1];
 
-					addParam(params, "p_p_state", windowState);
+					addParam(
+						params, prpIdentifiers, "p_p_state",
+						windowState);
 				}
 			}
 		}
 		else {
-			addParam(params, "view", "view_all_articles");
+			addParam(params, prpIdentifiers, "view", "view_all_articles");
 		}
 	}
 
