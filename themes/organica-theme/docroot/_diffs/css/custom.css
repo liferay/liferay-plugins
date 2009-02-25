@@ -1,0 +1,410 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---------- Base ---------- */
+
+body {
+	background: #FCF8DE url(../images/custom/body_bg.png) repeat-x;
+}
+
+a {
+	color: #57391B;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #D21034;
+}
+
+table {
+	border-color: #F6E39A;
+}
+
+/* ---------- Wrapper ---------- */
+
+#wrapper {
+	margin: 0 auto;
+	width: 940px;
+}
+
+/* ---------- Banner ---------- */
+
+#banner {
+	height: 96px;
+	position: relative;
+	z-index: 2000;
+}
+
+/* ---------- Logo ---------- */
+
+.logo {
+	padding: 12px 0 0 12px;
+}
+
+/* ---------- Dock ---------- */
+
+.js .interactive-mode {
+	background: none;
+	min-width: 120px;
+	right: 0;
+	top: 12px;
+}
+
+.js .interactive-mode h2 {
+	background: none;
+	padding: 0;
+}
+
+.js .interactive-mode h2 span {
+	background: transparent url(../images/custom/dock_bg.png) no-repeat 100% 50%;
+	border: none;
+	color: #D21034;
+	font-size: 11px;
+	font-weight: normal;
+	padding: 4px 10px 0px;
+}
+
+.js .interactive-mode ul {
+	background: #FCFAE4;
+	border-bottom: 1px solid #90723B;
+	border-left: 1px solid #FEE58C;
+	border-right: 1px solid #90723B;
+	border-top: none;
+}
+
+.js .interactive-mode li {
+	background: none;
+	border: none;
+}
+
+.js .interactive-mode li a {
+	color: #D21034;
+}
+
+/* ---------- Navigation ---------- */
+
+#navigation ul,
+#add-page {
+	float: left;
+}
+
+#navigation {
+	background: url(../images/custom/navigation_bg.png) repeat-x;
+	font-family: Times New Roman;
+	font-size: 18px;
+	height: 32px;
+	position: relative;
+	z-index: 1000;
+}
+
+#navigation a {
+	font-weight: normal;
+	line-height: 32px;
+	padding: 4px 14px;
+}
+
+#navigation ul li.selected a,
+#navigation a:hover {
+	color: #D21034;
+	background: #FCFAE4;
+}
+
+#navigation .child-menu {
+	background: #FCFAE4;
+	border-bottom: 1px solid #90723B;
+	border-left: 1px solid #FEE58C;
+	border-right: 1px solid #90723B;
+	font-family: Arial;
+	left: 0;
+	line-height: 16px;
+	position: absolute;
+	padding: 5px 15px 8px 6px;
+	width: 180px;
+	text-transform: none;
+	top: 31px;
+}
+
+#navigation ul.child-menu {
+	height: auto;
+}
+
+#navigation .child-menu li {
+	background: none;
+	float: none;
+}
+
+#navigation .child-menu li a {
+	background: transparent;
+	font-size: 11px;
+	line-height: 18px;
+	padding: 0 0 0 9px;
+}
+
+#navigation .selected .child-menu li a {
+	color: #57391B;
+}
+
+#navigation .child-menu li a:hover {
+	background: transparent url(../images/custom/child_navigation_item.png) no-repeat 0 50%;
+}
+
+.enter-page input {
+	padding: 0;
+}
+
+.enter-page .cancel-page {
+	display: none;
+}
+
+.ie7 .enter-page .save-page {
+	position: relative;
+	top: -2px;
+}
+
+.ie6 .enter-page {
+	padding: 6px 4px 4px;
+}
+
+/* ---------- Content Wrapper ---------- */
+
+#content-wrapper {
+	background: #FFF;
+	color: #57391B;
+	font-size: 12px;
+	z-index: 1;
+}
+
+.lfr-grid .lfr-column {
+	padding: 0 0 0 1px;
+}
+
+/* ---------- Portlet ---------- */
+
+.portlet {
+	background: #FDF5C0 url(../images/custom/portlet_bg.png) repeat-x;
+	margin-bottom: 1px;
+}
+
+.portlet-title {
+	color: #993300;
+	font-family: Times New Roman;
+	font-size: 18px;
+	font-weight: normal;
+	padding: 15px 0 5px 15px;
+}
+
+.portlet-title img {
+	display: none;
+}
+
+.portlet-content {
+	padding: 5px 16px 15px;
+}
+
+#column-2 .portlet {
+	background: none;
+}
+
+#column-2 .portlet-content-container {
+	padding-bottom: 20px;
+}
+
+#column-2 .portlet-topper {
+	background: url(../images/custom/portlet_topper_bg_column_2.png) repeat-x;
+}
+
+#column-2 .portlet-title {
+	padding-top: 5px;
+}
+
+.taglib-calendar tr th,
+.portlet-calendar .calendar-container {
+	border-color: #F6E39A;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	color: #57391B;
+	font-size: 80px;
+}
+
+.ie6 .portlet-calendar .calendar-container {
+	background: #FFF;
+}
+
+#wrapper .portlet-calendar .taglib-calendar,
+#wrapper .portlet-calendar .taglib-calendar table {
+	background: #FFF;
+	border: none;
+}
+
+.portlet-calendar .calendar-day {
+	width: 211px;
+}
+
+.portlet-calendar .calendar-day h2 {
+	line-height: 24px;
+	padding: 0;
+}
+
+.ie .portlet-calendar .calendar-day h2 {
+	line-height: 25px;
+}
+
+#content-wrapper .taglib-calendar tr td a {
+	background: #FFF;
+}
+
+#content-wrapper .taglib-calendar tr td a:hover {
+	color: #D21034;
+}
+
+.taglib-calendar .calendar-current-day a {
+	border: none;
+	color: #D21034;
+}
+
+.results-header,
+.results-header th,
+.results-header td,
+.portlet-calendar .calendar-day .day-text {
+	background: #FFFDCA;
+	border-bottom: 1px solid #F6E39A;
+	color: #57391B;
+}
+
+.portlet-calendar .calendar-day .day-text {
+	font-size: 16px;
+}
+
+.results-header th a,
+.results-header td a {
+	color: #57391B;
+}
+
+.results-header th a:hover,
+.results-header td a:hover {
+	color: #D21034;
+}
+
+.ui-autocomplete-odd,
+.results-row.alt td,
+.ui-autocomplete-even,
+.results-row td {
+	background: #FFF;
+	border-bottom: 1px solid #F6E39A;
+}
+
+.results-row.hover td,
+tr.calendar-header {
+	background: #FFF;
+}
+
+.results-grid {
+	border: none;
+}
+
+body.portal-iframe,
+.portal-iframe #content-wrapper {
+	background: #FDF5C0;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus {
+	background: url(../images/custom/button.png) repeat-x 0 -9px;
+	border-color: #EFDA92;
+	color: #57391B;
+}
+
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+	background: url(../images/custom/button.png) repeat-x 0 -9px;
+	border-color: #EFDA92;
+	color: #D21034;
+	padding: 3px 3px 3px 8px;
+}
+
+.ie7 input[type="submit"],
+.ie7 input[type="button"],
+.ie7 input[type="reset"] {
+	background: url(../images/custom/button.png) repeat-x 0 -10px;
+	padding-left: 4px;
+}
+
+/* ---------- Tabs ---------- */
+
+.ui-tabs {
+	border-bottom: none;
+	font-size: 11px;
+	height: 20px;
+	margin-bottom: 5px;
+}
+
+.ui-tabs li {
+	height: 20px;
+}
+
+#wrapper .ui-tabs li a,
+#wrapper .tabs li span {
+	background: #FFFDCA;
+	color: #E4CD7D;
+	font-size: 10px;
+	font-weight: normal;
+	margin-right: 1px;
+	padding: 3px 8px;
+	top: 0;
+}
+
+.ie6 .portlet .ui-tabs li a,
+.ie6 .portlet .tabs li span {
+	height: 10px;
+}
+
+#wrapper .ui-tabs li a,
+.tabs li span,
+.ui-tabs li.current a,
+.ui-tabs li.current span {
+	border: 1px solid #E4CD7D;
+}
+
+#wrapper .ui-tabs li a:hover,
+#wrapper .ui-tabs li span:hover {
+	background: #D21034;
+	border: 1px solid #E4CD7D;
+	color: #FFF;
+	text-decoration: none;
+}
+
+#wrapper .ui-tabs li.current a,
+#wrapper .ui-tabs li.current span {
+	color: #57391B;
+}
+
+#wrapper .ui-tabs li.current a:hover {
+	color: #FFF;
+	text-decoration: none;
+}
+
+.ui-tabs li.current {
+	padding-top: 0;
+}
+
+.ie6 .ui-tabs li.current a,
+.ie6 .ui-tabs li.current span,
+.ie6 .ui-tabs li a,
+.ie6 .tabs li span {
+	border-bottom: none;
+	padding-bottom: 5px;
+}
+
+/* ---------- Footer ---------- */
+
+#footer {
+	background: url(../images/custom/footer_bg.png) no-repeat;
+	height: 84px;
+	margin-bottom: 30px;
+}
