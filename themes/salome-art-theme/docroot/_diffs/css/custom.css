@@ -45,20 +45,22 @@ body {
 	height: 62px;
 }
 
-#navigation ul, #add-page {
+#navigation ul,
+#add-page {
 	float: left;
 }
 
 #navigation a {
 	color: #DEE;
 	display: block;
-	font: 16px Lucida Sans Unicode,Lucida Grande,sans-serif;
+	font: 16px Lucida Sans Unicode, Lucida Grande, sans-serif;
 	line-height: 62px;
 	padding: 0 24px;
 	text-decoration: none;
 }
 
-#navigation .selected a, #navigation a:hover {
+#navigation .selected a,
+#navigation a:hover {
 	color: #FFF;
 }
 
@@ -102,7 +104,7 @@ body {
 
 .portlet-title {
 	color: #333;
-	font: bold 13px Arial Black,Arial Black,Gadget,sans-serif;
+	font: bold 13px Arial Black, Arial Black, Gadget, sans-serif;
 	letter-spacing: .1em;
 }
 

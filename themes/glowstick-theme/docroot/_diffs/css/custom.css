@@ -101,10 +101,6 @@ a:hover {
 	float: left;
 }
 
-#navigation li a {
-	color: #000;
-}
-
 #navigation a:hover {
 	color: #FFF;
 }
@@ -117,6 +113,7 @@ a:hover {
 }
 
 #navigation li a {
+	color: #000;
 	padding: 11px 0;
 }
 

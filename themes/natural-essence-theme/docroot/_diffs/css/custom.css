@@ -55,7 +55,7 @@ body {
 	border-right: 1px solid #C9C6B3;
 	color: #553;
 	display: block;
-	font: bold 13px/41px Tahoma,sans-serif;
+	font: bold 13px/41px Tahoma, sans-serif;
 	padding: 0 14px;
 	text-decoration: none;
 }
@@ -103,7 +103,7 @@ body {
 }
 
 .portlet-title {
-	font: normal 31px/1 serif,sans-serif;
+	font: normal 31px/1 serif, sans-serif;
 }
 
 /* ---------- Calendar ---------- */
@@ -131,8 +131,8 @@ body {
 .ui-tabs li span,
 .ui-tabs li.current span,
 .ui-tabs li span:hover {
-	border: 1px solid #E8E5DD;
 	background: #CFCCC4;
+	border: 1px solid #E8E5DD;
 	color: #333;
 	margin: 0 0 0 -1px;
 	padding: 8px 12px;

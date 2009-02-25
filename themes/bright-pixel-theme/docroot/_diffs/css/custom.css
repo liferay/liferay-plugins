@@ -13,7 +13,7 @@ body {
 #wrapper {
 	background: #FFF;
 	border: 3px double #EEE;
-	border-color: #E4E4E4 #CFCFCF #CCC #CFCFCF;
+	border-color: #E4E4E4 #CFCFCF #CCC;
 	margin: 0 auto;
 	padding: 10px;
 	position: relative;
@@ -112,7 +112,7 @@ body {
 }
 
 .portlet-title {
-	font: bold 12px Arial,Helvetica,sans-serif;
+	font: bold 12px Arial, Helvetica, sans-serif;
 }
 
 .portlet-title img {
@@ -121,7 +121,7 @@ body {
 
 .portlet-content {
 	color: #666;
-	font: 11px Arial,Helvetica,sans-serif;
+	font: 11px Arial, Helvetica, sans-serif;
 	padding: 3px 0 6px;
 }
 
@@ -135,6 +135,6 @@ body {
 .tabs li span {
 	background: #CEDAE0;
 	border: 1px solid #A0A9AD;
-	margin: 0 -1px 0 0;
 	color: #000;
+	margin: 0 -1px 0 0;
 }

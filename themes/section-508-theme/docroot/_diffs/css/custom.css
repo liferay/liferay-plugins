@@ -14,7 +14,7 @@ body {
 /* ---------- Links ---------- */
 
 a {
-	color: #003399;
+	color: #039;
 }
 
 /* ---------- Main content body ---------- */
@@ -195,7 +195,8 @@ a {
 	color: #FFF;
 }
 
-.lfr-component li img, img.icon {
+.lfr-component li img,
+img.icon {
 	vertical-align: inherit;
 }
 

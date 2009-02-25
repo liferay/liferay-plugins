@@ -58,7 +58,7 @@ a:hover {
 	color: #FFF;
 	display: block;
 	float: left;
-	font: bold 15px Century Gothic,Trebuchet MS,Helvetica,Arial,Geneva,sans-serif;
+	font: bold 15px Century Gothic, Trebuchet MS, Helvetica, Arial, Geneva, sans-serif;
 	height: 21px;
 	letter-spacing: 1px;
 	padding: 0 15px;
@@ -111,7 +111,7 @@ a:hover {
 
 .portlet-title {
 	color: #B1E100;
-	font: bold 34px Trebuchet MS,Arial,sans-serif;
+	font: bold 34px Trebuchet MS, Arial, sans-serif;
 	letter-spacing: -2px;
 }
 
@@ -121,7 +121,7 @@ a:hover {
 
 .portlet-content {
 	color: #FFF;
-	font: 12px/1.7 Verdana,Tahoma,sans-serif;
+	font: 12px/1.7 Verdana, Tahoma, sans-serif;
 }
 
 /* ---------- Calendar ---------- */
@@ -129,12 +129,6 @@ a:hover {
 .portlet-calendar .calendar-day .day-text,
 .portlet-calendar .results-header {
 	background: #114B78;
-}
-
-.portlet-calendar .day-number,
-.portlet-calendar .portlet-section-body td,
-.calendar-panel {
-	color: #FFF;
 }
 
 .portlet-calendar .day-number,
@@ -155,11 +149,10 @@ a:hover {
 .ui-tabs li.current span {
 	background: #114B78;
 	border: 2px solid #186BAB;
-	margin: 0 0 -2px 0;
 	color: #DDD;
+	margin: 0 0 -2px 0;
 	top: auto;
 }
-
 
 .ui-tabs li a:hover,
 .ui-tabs li span:hover,

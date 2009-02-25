@@ -15,7 +15,7 @@ body {
 
 #wrapper {
 	background: transparent url(../images/common/body_bg.png) repeat-x 0 0;
-	padding: 0 0 10px 0;
+	padding: 0 0 10px;
 }
 
 #content-wrapper {
@@ -233,7 +233,7 @@ body.lfr-has-sidebar {
 .portlet-options.visible {
 	background: #FFF url(../images/forms/button.png) repeat-x 0 100%;
 	border-color: #DEDEDE;
-	padding: 0 0 1px 0;
+	padding: 0 0 1px;
 }
 
 .portlet-options.visible .lfr-trigger strong span {

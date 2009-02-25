@@ -1,6 +1,5 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-
 /* ---------- Base ---------- */
 
 html {
@@ -48,11 +47,13 @@ body {
 	height: 41px;
 }
 
-#navigation ul, #add-page {
+#navigation ul,
+#add-page {
 	float: left;
 }
 
-#navigation a, #navigation .enter-page {
+#navigation a,
+#navigation .enter-page {
 	border-right: 1px solid #AFBEC7;
 	color: #456;
 	display: block;
@@ -68,7 +69,7 @@ body {
 	background: url(../images/custom/navigation_bg.gif) left bottom;
 }
 
-#navigation .save-page, 
+#navigation .save-page,
 #navigation .save-page:hover {
 	background: none;
 	border-right: 0;
@@ -121,9 +122,9 @@ body {
 	border-bottom: 1px solid #C5D6E0;
 }
 
-.ui-tabs li a, 
-.tabs li span, 
-.ui-tabs li.current a, 
+.ui-tabs li a,
+.tabs li span,
+.ui-tabs li.current a,
 .tabs li.current span {
 	background: #E7ECEF;
 	border: 1px solid #C5D6E0;
@@ -133,15 +134,15 @@ body {
 	margin: 0 -1px 0 0;
 }
 
-.ui-tabs li a:hover, 
-.tabs li span:hover, 
-.ui-tabs li.current a:hover, 
+.ui-tabs li a:hover,
+.tabs li span:hover,
+.ui-tabs li.current a:hover,
 .tabs li.current span:hover {
 	background: #A1A9AD;
 	color: #FFF;
 }
 
-.ui-tabs li.current a, 
+.ui-tabs li.current a,
 .ui-tabs li.current span {
 	background: #F2F7FA;
 }

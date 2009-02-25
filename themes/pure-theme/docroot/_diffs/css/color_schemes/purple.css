@@ -1,21 +1,5 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-
-/* ---------- Base ---------- */
-
-
-/* ---------- Wrapper ---------- */
-
-
-/* ---------- Banner ---------- */
-
-
-/* ---------- Logo ---------- */
-
-
-/* ---------- Dock ---------- */
-
-
 /* ---------- Navigation ---------- */
 
 .purple #navigation {
@@ -26,16 +10,13 @@
 	width: 890px;
 }
 
-.purple #navigation li.selected a span{
+.purple #navigation li.selected a span {
 	background: url(../../images/color_schemes/purple/navigation_item_selected.png) no-repeat 100% 0;
 }
 
 .purple #navigation li.selected a {
 	background: url(../../images/color_schemes/purple/navigation_item_selected.png) no-repeat 0 100%;
 }
-
-/* ---------- Content Wrapper ---------- */
-
 
 /* ---------- Portlet ---------- */
 
@@ -73,6 +54,3 @@
 .purple .portlet .ui-tabs li.last a {
 	background: url(../../images/color_schemes/purple/tabs.png) 100% 0;
 }
-
-
-/* ---------- Footer ---------- */

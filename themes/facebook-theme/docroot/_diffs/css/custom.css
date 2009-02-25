@@ -179,7 +179,7 @@ input[type="reset"]:hover {
 	border: 1px solid #26446E;
 	border-color: #26446E #152F5F #0C2253;
 	color: #FFF;
-	font: bold 11px Lucida Grande,Tahoma,Verdana,Arial,sans-serif;
+	font: bold 11px Lucida Grande, Tahoma, Verdana, Arial, sans-serif;
 	padding: 2px 6px 4px 8px;
 }
 
@@ -189,7 +189,8 @@ input[type="reset"]:hover {
 	border-bottom: 1px solid #D8DFEA;
 }
 
-.ui-tabs li a, .ui-tabs li span {
+.ui-tabs li a,
+.ui-tabs li span {
 	background: #D8DFEA;
 	border: 0;
 	color: #3B5998;
@@ -201,13 +202,17 @@ input[type="reset"]:hover {
 	top: 3px;
 }
 
-.ui-tabs li a:hover, .ui-tabs li span:hover {
+.ui-tabs li a:hover,
+.ui-tabs li span:hover {
 	background: #3B5998;
 	color: #FFF;
 	text-decoration: none;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span, .ui-tabs li.current a:hover, .ui-tabs li.current span:hover {
+.ui-tabs li.current a,
+.ui-tabs li.current span,
+.ui-tabs li.current a:hover,
+.ui-tabs li.current span:hover {
 	color: #000;
 	font-size: 13px;
 	padding: 5px 9px 6px;

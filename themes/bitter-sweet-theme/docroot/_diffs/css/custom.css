@@ -34,9 +34,9 @@ body {
 /* ---------- Navigation ---------- */
 
 #navigation {
-	height: 38px;
 	background: url(../images/custom/navigation_bg.png) 0 100%;
 	border-bottom: 2px solid #97DB8C;
+	height: 38px;
 }
 
 #navigation ul {
@@ -47,11 +47,12 @@ body {
 	float: left;
 }
 
-#navigation a, #navigation .enter-page {
+#navigation a,
+#navigation .enter-page {
 	color: #553;
 	display: inline;
 	float: left;
-	font: bold 12px Arial,Helvetica,sans-serif;
+	font: bold 12px Arial, Helvetica, sans-serif;
 	height: 14px;
 	padding: 12px 20px;
 	text-decoration: none;
@@ -71,7 +72,8 @@ body {
 	padding-bottom: 10px;
 }
 
-#navigation .save-page, #navigation .save-page:hover {
+#navigation .save-page,
+#navigation .save-page:hover {
 	background: none;
 	border-right: 0;
 	display: inline;
@@ -106,7 +108,7 @@ body {
 	background: #567300;
 	color: #FFF;
 	display: block;
-	font: 14px/40px Lucida Sans Unicode,sans-serif;
+	font: 14px/40px Lucida Sans Unicode, sans-serif;
 	height: 40px;
 	padding: 0 16px;
 }
@@ -120,7 +122,7 @@ body {
 }
 
 .portlet-content {
-	font: 12px Lucida Sans Unicode,sans-serif;
+	font: 12px Lucida Sans Unicode, sans-serif;
 	padding: 12px 18px;
 }
 
@@ -165,7 +167,9 @@ body {
 
 /* ---------- Input ------------ */
 
-input[type="submit"], input[type="button"], input[type="reset"] {
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
 	background: #E8F6BF;
 	border: 1px solid #97DB8C;
 }

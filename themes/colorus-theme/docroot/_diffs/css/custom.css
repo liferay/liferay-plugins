@@ -57,7 +57,7 @@ body {
 #navigation .enter-page {
 	background: #003;
 	color: #FFF;
-	font: bold 14px/14px Tahoma,Arial,sans-serif;
+	font: bold 14px/14px Tahoma, Arial, sans-serif;
 	letter-spacing: 0.05em;
 	margin: 0 1px;
 	padding: 0 10px 2px;
@@ -124,7 +124,7 @@ body {
 }
 
 .portlet-content {
-	font: 11px/16px Tahoma,Arial,sans-serif;
+	font: 11px/16px Tahoma, Arial, sans-serif;
 	padding: 0;
 }
 

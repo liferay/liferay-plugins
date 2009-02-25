@@ -1,4 +1,7 @@
-/* Base */
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---------- Base ---------- */
+
 body {
 	background: #828F95 url(../images/custom/background.png) repeat-x;
 }
@@ -53,7 +56,7 @@ body #content-wrapper {
 	width: 950px;
 }
 
-/* Navigation */
+/* ---------- Navigation ---------- */
 
 #navigation {
 	background: url(../images/custom/bg.png) no-repeat;
@@ -86,8 +89,9 @@ body #content-wrapper {
 	background: #D8DDE0;
 	border-bottom: #ABAFB2;
 }
+
 .js #navigation .enter-page .save-page {
-	background:transparent url(../images/dock/my_place_current.png) no-repeat scroll 0 50%;
+	background: transparent url(../images/dock/my_place_current.png) no-repeat scroll 0 50%;
 	margin: 2px 0 0 10px;
 	padding-left: 20px;
 }
@@ -100,6 +104,7 @@ body #content-wrapper {
 	background: none;
 	color: white;
 }
+
 .js #navigation .enter-page input {
 	margin: 0;
 }
@@ -170,7 +175,7 @@ body #content-wrapper {
 }
 
 .js #navigation .enter-page {
-	background:transparent none repeat scroll 0% 0%;
+	background: transparent none repeat scroll 0 0;
 	margin-left: -25px;
 	margin-top: -7px;
 	padding: 0;
@@ -184,11 +189,11 @@ body #content-wrapper {
 .js #add-page {
 	background: transparent;
 	border: none;
-	margin: 3px 15px 0 0;
 	float: right;
 	font-weight: bold;
 	line-height: 1.5em;
-	padding-top: 0px;
+	margin: 3px 15px 0 0;
+	padding-top: 0;
 	position: static;
 }
 
@@ -211,15 +216,15 @@ body #content-wrapper {
 	top: -6px;
 }
 
-/* Dock */
+/* ---------- Dock ---------- */
 
 .js .lfr-dock.interactive-mode {
 	right: 13px;
-	top: 0px;
+	top: 0;
 }
 
 .js .lfr-dock.interactive-mode h2 {
-	margin: 0px;
+	margin: 0;
 	padding: 0 41px 0 0;
 }
 
@@ -230,7 +235,7 @@ body #content-wrapper {
 	text-align: left;
 }
 
-/* Search */
+/* ---------- Search ---------- */
 
 #banner .search {
 	position: absolute;
@@ -250,7 +255,7 @@ body #content-wrapper {
 	color: #211C19;
 	font-size: 16px;
 	font-weight: normal;
-	margin: 0px -10px 0px 0px;
+	margin: 0 -10px 0 0;
 	padding: 3px;
 	width: 150px;
 }
@@ -261,7 +266,7 @@ body #content-wrapper {
 	color: #211C19;
 	font-size: 16px;
 	font-weight: normal;
-	margin: 0px -10px 0px 0px;
+	margin: 0 -10px 0 0;
 	padding: 3px;
 	width: 150px;
 }
@@ -288,7 +293,7 @@ body #content-wrapper {
 	top: 3px;
 }
 
-/* Language */
+/* ---------- Language ---------- */
 
 #banner .lfr-dock .lang {
 	position: absolute;
@@ -298,7 +303,7 @@ body #content-wrapper {
 	width: 350px;
 }
 
-/* Portlet */
+/* ---------- Portlet ---------- */
 
 .portlet,
 .portlet-topper,
@@ -335,17 +340,15 @@ body #content-wrapper {
 	padding-right: 10px;
 }
 
-/* Layout Specific */
+/* ---------- Layout Specific ---------- */
 
 #portlet-wrapper- {
-	/* Liferay Old */
 	background: transparent;
 	margin: 0;
 	padding: 14px;
 }
 
 #portlet-wrapper-sign-in {
-	/* Liferay New */
 	background: transparent;
 	margin: 0;
 	padding: 14px;
@@ -417,7 +420,7 @@ body.portal-popup {
 	padding: 2px;
 }
 
-/* Drop Down Menu */
+/* ---------- Drop Down Menu ---------- */
 
 #navigation .child-menu {
 	background: url(../images/custom/menu_drop.png) scroll no-repeat left bottom;
@@ -473,7 +476,7 @@ body.portal-popup {
 	color: #FFF;
 }
 
-/* Bottom Navigation */
+/* ---------- Bottom Navigation ---------- */
 
 #footer .copyright-notice,
 #footer ul {
@@ -519,7 +522,7 @@ body.portal-popup {
 	position: absolute;
 }
 
-/* Blogs */
+/* ---------- Blogs ---------- */
 
 .portlet-blogs .entry-body {
 	font-size: 12px;
@@ -536,7 +539,7 @@ body.portal-popup {
 	margin-bottom: 3px;
 }
 
-/* Message Boards */
+/* ---------- Message Boards---------- */
 
 .portlet-section-body .message-board-thread-top {
 	border-bottom-color: #3A4E66;
@@ -577,13 +580,15 @@ body.portal-popup {
 	table-layout: auto;
 }
 
-.message-board-code, .message-board-quote {
+.message-board-code,
+.message-board-quote {
 	background: #EEE;
 	border: 1px solid #CCC;
 	padding: 5px;
 }
 
-.lfr-highlighted, .lfr-highlighted a {
+.lfr-highlighted,
+.lfr-highlighted a {
 	color: #FFC;
 }
 
@@ -591,11 +596,11 @@ ul.message-board-edit-controls {
 	list-style: none;
 }
 
-/* World of Liferay */
+/* ---------- World of Liferay ---------- */
 
 #top-menu {
 	bottom: 6px;
-	font: bold 10px Arial,Verdana,sans-serif;
+	font: bold 10px Arial, Verdana, sans-serif;
 	position: absolute;
 	right: 12px;
 }
@@ -633,6 +638,7 @@ ul.message-board-edit-controls {
 	top: 8px;
 	width: 8px;
 }
+
 #navigation.profile ul li a {
 	color: #B4C1C9;
 }
@@ -727,7 +733,7 @@ ul.message-board-edit-controls {
 	margin-right: 0.5em;
 }
 
-/* Facebook API Key Page */
+/* ---------- Facebook API Key Page ---------- */
 
 .portlet-configuration .facebook-api .api-input {
 	padding-right: 15px;
@@ -737,7 +743,7 @@ ul.message-board-edit-controls {
 	padding-right: 20px;
 }
 
-/* Tabs */
+/* ---------- Tabs ---------- */
 
 .ie body #content-wrapper .tabs li {
 	line-height: 1;

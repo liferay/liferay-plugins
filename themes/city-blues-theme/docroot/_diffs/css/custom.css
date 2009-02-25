@@ -288,8 +288,8 @@ body.portal-iframe,
 
 /* ---------- Tabs ---------- */
 
-.ui-tabs, 
-.ui-tabs li a, 
+.ui-tabs,
+.ui-tabs li a,
 .tabs li span {
 	border: none;
 	color: #5780A6;
@@ -332,9 +332,9 @@ body.portal-iframe,
 
 .ui-tabs li.current a,
 .ui-tabs li.current span {
-	color: #000;
 	border: none;
 	border-right: 1px solid #EEE;
+	color: #000;
 	font-weight: normal;
 	text-decoration: none;
 }

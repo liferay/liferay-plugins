@@ -1,12 +1,9 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
 /* ---------- Base ---------- */
 
-#banner {
-	background: url(../images/custom/banner_bg.png);
-	height: 99px;
-	position: relative;
-}
-
-html, body {
+html,
+body {
 	min-height: 100%;
 }
 
@@ -16,7 +13,7 @@ html {
 
 body {
 	background: url(../images/custom/body_bg.png) repeat-x left top;
-	font-family: Arial,Helvetica,sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	height: auto;
 }
 
@@ -39,7 +36,7 @@ a:hover {
 }
 
 .lfr-column.dragging {
-	background: #576f85;
+	background: #576F85;
 }
 
 .drop-area {
@@ -53,7 +50,7 @@ a:hover {
 .popup {
 	background: #1C2633;
 	border: 1px solid #131922;
-	color: #e0eaf4;
+	color: #E0EAF4;
 	padding: 0 0 10px 10px;
 }
 
@@ -78,7 +75,7 @@ a:hover {
 
 .popup-title {
 	background-position: 0 -46px;
-	color: #fff;
+	color: #FFF;
 	display: block;
 	height: 25px;
 	padding: 15px 0 6px 10px;
@@ -93,14 +90,14 @@ a:hover {
 }
 
 .uni-form fieldset legend {
-	color: #e0eaf4;
+	color: #E0EAF4;
 }
 
 #wrapper {
 	background: url(../images/custom/wrapper_bg.png) repeat-y center top;
-	width: 960px;
 	margin: 0 auto;
 	padding: 22px 0;
+	width: 960px;
 }
 
 .ie6 #wrapper {
@@ -110,7 +107,7 @@ a:hover {
 
 #content-wrapper {
 	background: #1C2633 url(../images/custom/content_wrapper_bg.png) repeat;
-	color: #e0eaf4;
+	color: #E0EAF4;
 	padding: 0 5px;
 	width: 950px;
 }
@@ -122,15 +119,6 @@ a:hover {
 
 /* ---------- Portlet wrapper and icons ---------- */
 
-.portlet {
-	border: none;
-	margin-bottom: 10px;
-}
-
-.portlet-topper {
-	border-bottom: none;
-}
-
 .portlet,
 .portlet-topper,
 .portlet-content,
@@ -140,11 +128,13 @@ a:hover {
 }
 
 .portlet {
+	border: none;
+	margin-bottom: 10px;
 	margin-top: 0;
 }
 
 .portlet.html-editor {
-	color: #e0eaf4;
+	color: #E0EAF4;
 }
 
 .ie6 .portlet {
@@ -173,12 +163,13 @@ a:hover {
 }
 
 .portlet-topper {
-	color: #fff;
-	font: 1.5em Arial,Verdana,Helvetica,sans-serif;
+	border: none;
+	border-bottom: none;
+	color: #FFF;
+	font: 1.5em Arial, Verdana, Helvetica, sans-serif;
 	height: 46px;
 	margin: 0;
 	position: relative;
-	border: none;
 }
 
 .portlet-title {
@@ -190,7 +181,7 @@ a:hover {
 .portlet-content {
 	background-color: #1C2633;
 	background-position: right bottom;
-	color: #e0eaf4;
+	color: #E0EAF4;
 	font-size: 1.2em;
 	margin-left: 10px;
 	padding: 10px 20px 20px 10px;
@@ -217,8 +208,8 @@ a:hover {
 #banner {
 	background: url(../images/custom/banner_bg.jpg) no-repeat center;
 	height: 135px;
-	top: 0;
 	position: relative;
+	top: 0;
 }
 
 #banner .logo {
@@ -232,17 +223,6 @@ a:hover {
 	top: 7px;
 }
 
-/* ---------- Dock ---------- */
-
-.js .interactive-mode h2 span {
-	background: transparent url(/liferay-noir-theme/images/custom/menu_bar.png) no-repeat scroll 0pt 0pt;
-	margin-right: -3px;
-}
-
-.js .interactive-mode h2 {
-	background: transparent url(/liferay-noir-theme/images/custom/menu_bar.png) no-repeat scroll 100% -30px;
-}
-
 /* ---------- Search ---------- */
 
 #banner .search {
@@ -252,10 +232,10 @@ a:hover {
 }
 
 #banner .search form {
+	margin-top: -34px;
 	padding-right: 49px;
 	padding-top: 2px;
 	position: relative;
-	margin-top:-34px;
 }
 
 #banner .search input {
@@ -293,7 +273,7 @@ a:hover {
 }
 
 .js .interactive-mode h2 span {
-	background: transparent url(/liferay-noir-theme/images/custom/menu_bar.png) no-repeat scroll 0pt 0pt;
+	background: transparent url(/liferay-noir-theme/images/custom/menu_bar.png) no-repeat scroll 0 0;
 	margin-right: -3px;
 }
 
@@ -322,7 +302,7 @@ a:hover {
 #navigation {
 	background: transparent;
 	border: none;
-	font-family: Verdana,Arial,Helvetica,sans-serif;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	left: 15px;
 	overflow: visible;
@@ -332,8 +312,8 @@ a:hover {
 }
 
 #navigation ul {
-	width: 100%;
 	margin: -10px auto 0;
+	width: 100%;
 }
 
 #navigation li,
@@ -355,7 +335,7 @@ a:hover {
 	text-transform: uppercase;
 }
 
-.js #navigation .enter-page input{
+.js #navigation .enter-page input {
 	margin-right: 10px;
 }
 
@@ -367,7 +347,7 @@ a:hover {
 #navigation li.selected a,
 #navigation li.selected a:hover {
 	background: url(../images/custom/selected_bg.png) no-repeat;
-	color: #fff;
+	color: #FFF;
 	padding-left: 15px;
 }
 
@@ -383,7 +363,7 @@ a:hover {
 }
 
 #navigation li.selected a span {
-	color: #fff;
+	color: #FFF;
 }
 
 .js #add-page {
@@ -395,15 +375,15 @@ a:hover {
 }
 
 .js #add-page a {
-	color: #ccc;
+	color: #CCC;
 	padding: 7px 20px;
 	text-decoration: none;
 }
 
 #navigation .save-page {
+	background: transparent;
 	position: relative;
 	top: -5px;
-	background: transparent;
 }
 
 .ie7 #navigation .save-page {
@@ -414,7 +394,7 @@ a:hover {
 
 .tabs li.current a,
 .tabs li.current span {
-	background-position: 0pt -101px;
+	background-position: 0 -101px;
 	color: black;
 	margin-top: -2px;
 	padding-bottom: 9px;
@@ -440,7 +420,7 @@ a:hover {
 }
 
 .portlet-placeholder {
-	border: 1px dashed #e0eaf4;
+	border: 1px dashed #E0EAF4;
 }
 
 .js .delete-tab {
@@ -496,8 +476,8 @@ a:hover {
 
 .ui-tabs li a,
 .tabs li span {
-	top:0;
-	padding:10px 3px;
+	padding: 10px 3px;
+	top: 0;
 }
 
 .portlet-calendar .calendar-container {
@@ -509,7 +489,7 @@ a:hover {
 }
 
 .taglib-calendar tr th {
-	background:#1C2633 none repeat scroll 0 0;
+	background: #1C2633 none repeat scroll 0 0;
 }
 
 .ui-tabs {
@@ -553,7 +533,7 @@ a:hover {
 	margin: -5px -5px -16px -15px;
 }
 
-/*--------------------- Dock --------------------------*/
+/* ---------- Dock ---------- */
 
 .portlet-msg-success,
 .portlet-msg-error,
@@ -571,14 +551,14 @@ a:hover {
 
 .portlet-section-header th {
 	border-bottom: 1px solid #151C25;
-	color: #fff;
+	color: #FFF;
 	font-weight: bold;
 	padding: 0.3em 1em;
 }
 
 .portlet-section-body {
 	background: #4A6483;
-	color: #e0eaf4;
+	color: #E0EAF4;
 }
 
 .portlet-section-body td {
@@ -621,7 +601,7 @@ input[type="button"],
 input[type="reset"] {
 	background: #3D536D url(../images/custom/arrow.png) no-repeat 97% center;
 	border: none;
-	color: #fff;
+	color: #FFF;
 	font-weight: bold;
 	margin: 1px;
 	padding: 0.5em;
@@ -633,7 +613,7 @@ input[type="reset"] {
 .ie6 input.button {
 	background: #3D536D none url(../images/custom/arrow.png) no-repeat 90% center;
 	border: none;
-	color: #fff;
+	color: #FFF;
 	font-weight: bold;
 	margin: 1px;
 	padding: 0.5em;
@@ -647,12 +627,14 @@ input[type="reset"] {
 
 input[type="text"],
 input[type="password"],
-input[type="file"],input[type="submit"],
-input[type="button"], input[type="reset"],
+input[type="file"],
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
 select,
 textarea,
 .textarea {
-	border-color: #fff;
+	border-color: #FFF;
 }
 
 .ie6 input.text,
@@ -660,7 +642,7 @@ input.password,
 .ie6 input.submit,
 .ie6 input.file,
 .ie6 input.button {
-	border-color: #fff;
+	border-color: #FFF;
 }
 
 .portlet-section-body .message-board-thread-top {
@@ -695,7 +677,7 @@ input.password,
 }
 
 .message-board-message-container table {
-	color: #e7eef6;
+	color: #E7EEF6;
 }
 
 .message-board-code,
@@ -705,7 +687,7 @@ input.password,
 
 .lfr-highlighted,
 .lfr-highlighted a {
-	color: #ffc;
+	color: #FFC;
 }
 
 ul.message-board-edit-controls {
@@ -755,7 +737,7 @@ ul.lfr-actions,
 }
 
 #portlet-wrapper-33 code {
-	background-color: #deedff;
+	background-color: #DEEDFF;
 	border: 1px dotted #3D536D;
 	color: #141B23;
 	display: block;
@@ -769,7 +751,7 @@ input[type="reset"]:hover,
 input[type="submit"]:focus,
 input[type="button"]:focus,
 input[type="reset"]:focus {
-	background:#3D536D url(../images/custom/arrow.png) no-repeat scroll 97% center;
-	border:none;
-	color:#336699;
+	background: #3D536D url(../images/custom/arrow.png) no-repeat scroll 97% center;
+	border: none;
+	color: #369;
 }

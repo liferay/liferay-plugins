@@ -1,21 +1,5 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-
-/* ---------- Base ---------- */
-
-
-/* ---------- Wrapper ---------- */
-
-
-/* ---------- Banner ---------- */
-
-
-/* ---------- Logo ---------- */
-
-
-/* ---------- Dock ---------- */
-
-
 /* ---------- Navigation ---------- */
 
 .orange #navigation {
@@ -31,16 +15,13 @@
 	color: #444;
 }
 
-.orange #navigation li.selected a span{
+.orange #navigation li.selected a span {
 	background: url(../../images/color_schemes/orange/navigation_item_selected.png) no-repeat 100% 0;
 }
 
 .orange #navigation li.selected a {
 	background: url(../../images/color_schemes/orange/navigation_item_selected.png) no-repeat 0 100%;
 }
-
-/* ---------- Content Wrapper ---------- */
-
 
 /* ---------- Portlet ---------- */
 
@@ -79,6 +60,3 @@
 .orange .portlet .ui-tabs li.last a {
 	background: url(../../images/color_schemes/orange/tabs.png) 100% 0;
 }
-
-
-/* ---------- Footer ---------- */

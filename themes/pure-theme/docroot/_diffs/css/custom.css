@@ -53,8 +53,8 @@ a {
 
 .js .interactive-mode {
 	background: none;
-	right: -898px;
 	position: absolute;
+	right: -898px;
 	top: 68px;
 }
 
@@ -134,7 +134,7 @@ a {
 
 #navigation li a {
 	color: #CCC;
-	padding: 10px 0 10px 0;
+	padding: 10px 0;
 }
 
 .ie #navigation li a {
@@ -150,7 +150,7 @@ a {
 	color: #FFF;
 }
 
-#navigation li.selected a span{
+#navigation li.selected a span {
 	background: url(../images/custom/navigation_item_selected.png) no-repeat 100% 0;
 }
 
@@ -249,7 +249,8 @@ a {
 	padding-top: 4px;
 }
 
-.portlet-content, .portlet-minimized .portlet-content-container {
+.portlet-content,
+.portlet-minimized .portlet-content-container {
 	padding: 0;
 }
 

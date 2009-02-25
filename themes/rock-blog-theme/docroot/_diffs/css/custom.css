@@ -47,10 +47,11 @@ body {
 	padding: 0 6px;
 }
 
-#navigation a, .js .interactive-mode h2 span {
+#navigation a,
+.js .interactive-mode h2 span {
 	color: #000;
 	display: block;
-	font: 12px/32px Arial,Helvetica,sans-serif;
+	font: 12px/32px Arial, Helvetica, sans-serif;
 	height: 34px;
 	padding: 0 14px;
 	text-decoration: none;
@@ -123,7 +124,7 @@ body {
 }
 
 .portlet-content a {
-	color: #fff;
+	color: #FFF;
 }
 
 .ui-autocomplete-odd,

@@ -1,8 +1,10 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
 /* ---------- Body ---------- */
 
 body {
 	background: #F2F2EB;
-	font: 12px Helvetica Neue,Arial,sans-serif;
+	font: 12px Helvetica Neue, Arial, sans-serif;
 }
 
 body.html-editor.portlet.portlet-blogs {

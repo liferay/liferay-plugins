@@ -64,7 +64,7 @@ body {
 	color: #D7D7D2;
 	display: block;
 	float: left;
-	font: 16px Lucida Sans Unicode,Lucida Grande,sans-serif;
+	font: 16px Lucida Sans Unicode, Lucida Grande, sans-serif;
 	padding: 10px 16px;
 	text-decoration: none;
 }
@@ -127,7 +127,7 @@ body {
 
 .portlet-title {
 	color: #111;
-	font: bold 14px Arial,Helvetica,sans-serif;
+	font: bold 14px Arial, Helvetica, sans-serif;
 }
 
 /* ---------- Calendar ---------- */

@@ -63,7 +63,7 @@ body {
 	color: #FFF;
 	display: block;
 	float: left;
-	font: 12px/36px Lucida Sans Unicode,Lucida Grande,sans-serif;
+	font: 12px/36px Lucida Sans Unicode, Lucida Grande, sans-serif;
 	height: 36px;
 	padding: 0 20px;
 	text-decoration: none;
@@ -111,7 +111,7 @@ body {
 }
 
 .portlet-title {
-	font: 18px/18px Palatino Linotype,Book Antiqua,Palatino,serif;
+	font: 18px/18px Palatino Linotype, Book Antiqua, Palatino, serif;
 	letter-spacing: .05em;
 }
 

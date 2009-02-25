@@ -17,8 +17,8 @@ body {
 
 #banner {
 	background: #685B45 url(../images/custom/banner_bg.gif) repeat-x;
-	position: relative;
 	padding: 32px;
+	position: relative;
 }
 
 /* ---------- Logo ---------- */
@@ -85,7 +85,7 @@ body {
 }
 
 .lfr-grid .lfr-column {
-	padding: 0 6px
+	padding: 0 6px;
 }
 
 /* ---------- Portlet ---------- */
@@ -125,7 +125,8 @@ body {
 	border-bottom: 1px solid #A98;
 }
 
-.ui-tabs li a, .ui-tabs li.current a,
+.ui-tabs li a,
+.ui-tabs li.current a,
 .ui-tabs li a:hover,
 .ui-tabs li span,
 .ui-tabs li.current span,

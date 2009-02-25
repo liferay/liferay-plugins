@@ -18,7 +18,7 @@ body {
 /* ---------- Banner ---------- */
 
 #banner {
-	background: url('../images/custom/banner_bg.png');
+	background: url(../images/custom/banner_bg.png);
 	height: 220px;
 	padding: 50px 0 0 50px;
 }
@@ -47,7 +47,7 @@ body {
 	background: #350000;
 	color: #FFF;
 	display: block;
-	font: 10px Tahoma,Geneva,sans-serif;
+	font: 10px Tahoma, Geneva, sans-serif;
 	margin: 2.5px;
 	padding: 11px 16px;
 	text-align: center;
@@ -92,7 +92,7 @@ body {
 .portlet-topper {
 	background: #0C0005 url(../images/custom/portlet_topper_bg.png) repeat-x;
 	color: #B0002B;
-	font: 12px Verdana,Geneva,sans-serif;
+	font: 12px Verdana, Geneva, sans-serif;
 	padding: 8px;
 }
 

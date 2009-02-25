@@ -4,7 +4,8 @@
 	border: 2px solid #828F95;
 }
 
-.ui-wrapper input, .ui-wrapper textarea {
+.ui-wrapper input,
+.ui-wrapper textarea {
 	border: 0;
 }
 
@@ -29,12 +30,14 @@
 	background: #727C81;
 }
 
-.results-header th, .results-header td {
+.results-header th,
+.results-header td {
 	color: #FFF;
 	padding: 5px 10px;
 }
 
-.results-header th a, .results-header td a {
+.results-header th a,
+.results-header td a {
 	color: #FFF;
 }
 
@@ -48,16 +51,19 @@
 	background-image: url(../images/arrows/06_down.png);
 }
 
-.ui-autocomplete-even, .results-row td {
+.ui-autocomplete-even,
+.results-row td {
 	background: #F0F5F7;
 	padding: 5px 10px;
 }
 
-.ui-autocomplete-odd, .results-row.alt td {
+.ui-autocomplete-odd,
+.results-row.alt td {
 	background: #D3DADD;
 }
 
-.ui-autocomplete-over, .results-row.hover td {
+.ui-autocomplete-over,
+.results-row.hover td {
 	background: #A8D6ED;
 }
 
@@ -163,7 +169,8 @@
 	display: none;
 }
 
-.ui-resizable-n, .ui-resizable-s {
+.ui-resizable-n,
+.ui-resizable-s {
 	background-image: url(../images/application/handle_horizontal.png);
 	height: 14px;
 	left: 0;
@@ -180,7 +187,8 @@
 	cursor: s-resize;
 }
 
-.ui-resizable-e, .ui-resizable-w {
+.ui-resizable-e,
+.ui-resizable-w {
 	background-image: url(../images/application/handle_vertical.png);
 	background-position: center center;
 	bottom: 0;
@@ -198,7 +206,8 @@
 	left: 0;
 }
 
-.ui-resizable-ne, .ui-resizable-nw {
+.ui-resizable-ne,
+.ui-resizable-nw {
 	height: 14px;
 	top: 0;
 	width: 14px;
@@ -216,7 +225,8 @@
 	left: 0;
 }
 
-.ui-resizable-se, .ui-resizable-sw {
+.ui-resizable-se,
+.ui-resizable-sw {
 	bottom: 0;
 	height: 14px;
 	width: 14px;
@@ -272,7 +282,7 @@
 
 .ui-tabs {
 	border-bottom: 1px solid #DEDEDE;
-	margin: 0 0 18px 0;
+	margin: 0 0 18px;
 	padding: 0 0 0 10px;
 }
 
@@ -304,7 +314,8 @@
 	border-right: none;
 }
 
-.ui-tabs li a, .tabs li span {
+.ui-tabs li a,
+.tabs li span {
 	background: #878F93 url(../images/application/tabs_bg.png) repeat-x 0 100%;
 	border-right: 1px solid #304049;
 	color: #FFF;
@@ -316,7 +327,8 @@
 	top: 1px;
 }
 
-.ie6 .ui-tabs li a, .ie6 .tabs li span {
+.ie6 .ui-tabs li a,
+.ie6 .tabs li span {
 	background-image: none;
 }
 
@@ -324,7 +336,8 @@
 	text-decoration: underline;
 }
 
-.ui-tabs li a:hover, .ui-tabs li span:hover {
+.ui-tabs li a:hover,
+.ui-tabs li span:hover {
 	background: #1E2529;
 	color: #9EBAC8;
 }
@@ -332,7 +345,8 @@
 .ui-tabs li.current {
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span {
+.ui-tabs li.current a,
+.ui-tabs li.current span {
 	background: #FFF;
 	border: 1px solid #DEDEDE;
 	border-bottom: none;
@@ -340,7 +354,8 @@
 	font-weight: bold;
 }
 
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+.ui-tabs li.current:hover,
+.ui-tabs li.current a:hover {
 	background-color: #FFF;
 }
 
@@ -356,7 +371,8 @@
 	filter: alpha(opacity=40);
 }
 
-.ui-tabs .ui-tabs-disabled a:link, .ui-tabs .ui-tabs-disabled a:visited {
+.ui-tabs .ui-tabs-disabled a:link,
+.ui-tabs .ui-tabs-disabled a:visited {
 	color: #000;
 }
 
@@ -445,7 +461,8 @@
 
 /* ---------- Date picker ---------- */
 
-#ui-datepicker-div, .ui-datepicker-inline {
+#ui-datepicker-div,
+.ui-datepicker-inline {
 	background: #FFF;
 	border: 2px solid #828F95;
 	padding: 3px;
@@ -481,7 +498,10 @@ img.ui-datepicker-trigger {
 	width: 185px;
 }
 
-.ui-datepicker-control, .ui-datepicker-links, .ui-datepicker-header, .ui-datepicker {
+.ui-datepicker-control,
+.ui-datepicker-links,
+.ui-datepicker-header,
+.ui-datepicker {
 	clear: both;
 	float: left;
 	width: 100%;
@@ -505,7 +525,8 @@ img.ui-datepicker-trigger {
 	margin: 0 5px;
 }
 
-.ui-datepicker-control, .ui-datepicker-links {
+.ui-datepicker-control,
+.ui-datepicker-links {
 	font-weight: bold;
 	letter-spacing: 1px;
 }
@@ -514,12 +535,14 @@ img.ui-datepicker-trigger {
 	padding: 2px 5px;
 }
 
-.ui-datepicker-clear, .ui-datepicker-prev {
+.ui-datepicker-clear,
+.ui-datepicker-prev {
 	float: left;
 	width: 34%;
 }
 
-.ui-datepicker-prev a, .ui-datepicker-next a {
+.ui-datepicker-prev a,
+.ui-datepicker-next a {
 	background: url() no-repeat;
 	font-size: 0;
 	height: 16px;
@@ -632,7 +655,8 @@ img.ui-datepicker-trigger {
 	color: #B5BFC4;
 }
 
-#ui-datepicker-div a, .ui-datepicker-inline a {
+#ui-datepicker-div a,
+.ui-datepicker-inline a {
 	cursor: pointer;
 }
 
@@ -667,7 +691,7 @@ img.ui-datepicker-trigger {
 
 .ui-colorpicker {
 	background-image: url(../images/color_picker/picker_container_bg.png);
-	font: 11px Arial,Helvetica,sans-serif;
+	font: 11px Arial, Helvetica, sans-serif;
 	height: 192px;
 	position: relative;
 	width: 305px;
@@ -735,7 +759,9 @@ img.ui-datepicker-trigger {
 	width: 100%;
 }
 
-.ui-colorpicker-rgbR, .ui-colorpicker-rgbG, .ui-colorpicker-rgbB {
+.ui-colorpicker-rgbR,
+.ui-colorpicker-rgbG,
+.ui-colorpicker-rgbB {
 	width: 20px;
 }
 
@@ -781,14 +807,15 @@ img.ui-datepicker-trigger {
 	padding: 2px 5px;
 }
 
-.ui-autocomplete-loading, .ui-autocomplete-loading.focus {
+.ui-autocomplete-loading,
+.ui-autocomplete-loading.focus {
 	background-image: url(../images/application/loading_indicator.gif);
 	background-position: right center;
 	background-repeat: no-repeat;
 }
 
 .ui-autocomplete-results li strong {
-	color: #06c;
+	color: #06C;
 	font-weight: bold;
 }
 
@@ -887,7 +914,8 @@ img.ui-datepicker-trigger {
 	cursor: pointer;
 }
 
-.treeview, .treeview ul {
+.treeview,
+.treeview ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -932,7 +960,8 @@ img.ui-datepicker-trigger {
 	cursor: pointer;
 }
 
-.treeview li.collapsable, .treeview li.expandable {
+.treeview li.collapsable,
+.treeview li.expandable {
 	background-position: 0 -176px;
 }
 
@@ -944,7 +973,8 @@ img.ui-datepicker-trigger {
 	background-position: 0 -1766px;
 }
 
-.treeview li.lastCollapsable, .treeview li.lastExpandable {
+.treeview li.lastCollapsable,
+.treeview li.lastExpandable {
 	background-image: url(../images/trees/treeview_bg.png);
 }
 
@@ -956,7 +986,8 @@ img.ui-datepicker-trigger {
 	background-position: -32px -67px;
 }
 
-.treeview div.lastCollapsable-hitarea, .treeview div.lastExpandable-hitarea {
+.treeview div.lastCollapsable-hitarea,
+.treeview div.lastExpandable-hitarea {
 	background-position: 0;
 }
 
@@ -975,7 +1006,8 @@ img.ui-datepicker-trigger {
 	padding: 3px 0 2px 16px;
 }
 
-.filetree span.folder, .filetree span.file {
+.filetree span.folder,
+.filetree span.file {
 	display: block;
 	padding: 1px 0 1px 16px;
 }

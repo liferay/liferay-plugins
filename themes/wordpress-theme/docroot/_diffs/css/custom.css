@@ -39,9 +39,6 @@ body {
 	top: 20px;
 }
 
-/* ---------- Dock ---------- */
-
-
 /* ---------- Navigation ---------- */
 
 #navigation {
@@ -65,7 +62,6 @@ body {
 #navigation a:hover {
 	text-decoration: underline;
 }
-
 
 /* ---------- Content Wrapper ---------- */
 
@@ -102,7 +98,6 @@ body {
 	font: 12px/1.8 Lucida Grande, Verdana, Arial, sans-serif;
 	padding: 0;
 }
-
 
 /* ---------- Footer ---------- */
 

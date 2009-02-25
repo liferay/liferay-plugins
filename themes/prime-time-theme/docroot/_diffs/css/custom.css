@@ -23,8 +23,8 @@ a {
 
 #banner {
 	background: #FFF url(../images/custom/banner_bg.png) no-repeat;
-	height: 84px;
 	float: left;
+	height: 84px;
 	margin: 2px 0 0 2px;
 	width: 217px;
 	z-index: 2000;
@@ -59,7 +59,7 @@ a {
 	border: none;
 	color: #444;
 	min-width: 120px;
-	padding: 4px 10px 0px;
+	padding: 4px 10px 0;
 }
 
 .js .interactive-mode ul {
@@ -140,9 +140,9 @@ a {
 	left: 0;
 	line-height: 16px;
 	position: absolute;
-	width: 200px;
 	text-transform: none;
 	top: 28px;
+	width: 200px;
 }
 
 #navigation ul.child-menu {
@@ -265,8 +265,8 @@ a {
 
 #column-2 .portlet-content-container {
 	background: #000 url(../images/custom/portlet_content_container_bg_column_2.png) repeat-x;
-	margin-right: 5px;
 	margin-left: 0;
+	margin-right: 5px;
 	min-height: 30px;
 	padding-bottom: 3px;
 	padding-left: 10px;
@@ -288,8 +288,8 @@ a {
 }
 
 .portlet-msg-error {
-	margin-top: 0;
 	color: #333;
+	margin-top: 0;
 }
 
 body.portal-iframe,
@@ -394,7 +394,7 @@ body.portal-iframe,
 .tabs li span,
 .ui-tabs li.current a,
 .ui-tabs li.current span {
-	border: none
+	border: none;
 }
 
 #wrapper .ui-tabs li a:hover,

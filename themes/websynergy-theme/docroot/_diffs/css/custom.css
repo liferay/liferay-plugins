@@ -3,9 +3,8 @@
 /* ---------- Base ---------- */
 
 body {
-	background: #95CDFF url('../images/custom/body_bg.png') repeat-x left top;
+	background: #95CDFF url(../images/custom/body_bg.png) repeat-x left top;
 }
-
 
 /* ---------- Banner ---------- */
 
@@ -18,7 +17,7 @@ body {
 }
 
 #banner h1.logo a {
-	background: url('../images/custom/logo.png') no-repeat;
+	background: url(../images/custom/logo.png) no-repeat;
 	float: left;
 	height: 66px;
 	left: 74px;
@@ -26,7 +25,6 @@ body {
 	top: 27px;
 	width: 423px;
 }
-
 
 /* ---------- Dock with JavaScript ---------- */
 
@@ -56,7 +54,6 @@ body {
 	text-align: left;
 }
 
-
 /* ---------- Main navigation ---------- */
 
 #navigation {
@@ -65,12 +62,13 @@ body {
 	padding: 0 60px;
 }
 
-#navigation ul, #add-page {
+#navigation ul,
+#add-page {
 	float: left;
 }
 
 #navigation a {
-	background: url('../images/custom/navigation_item.png');
+	background: url(../images/custom/navigation_item.png);
 	color: #0072B9;
 	display: block;
 	float: left;
@@ -83,13 +81,14 @@ body {
 	width: 150px;
 }
 
-#navigation .selected a, #navigation a:hover {
-	background: url('../images/custom/navigation_item_selected.png');
+#navigation .selected a,
+#navigation a:hover {
+	background: url(../images/custom/navigation_item_selected.png);
 	color: #FFF;
 }
 
 #navigation .selected a:hover {
-	background: url('../images/custom/navigation_item_hover.png');
+	background: url(../images/custom/navigation_item_hover.png);
 }
 
 #navigation .save-page {
@@ -102,13 +101,11 @@ body {
 	display: none;
 }
 
-
 /* ---------- Main content body ---------- */
 
 #content-wrapper {
 	padding: 0 7px;
 }
-
 
 /* ---------- Portlet ---------- */
 
@@ -128,7 +125,6 @@ body {
 	line-height: 1.6em;
 }
 
-
 /* ---------- Tabs ---------- */
 
 .ui-tabs {
@@ -147,7 +143,8 @@ body {
 	text-decoration: none;
 }
 
-.ui-tabs li a, .ui-tabs li span {
+.ui-tabs li a,
+.ui-tabs li span {
 	background: none;
 	border: 1px solid #BFE1FF;
 	border-bottom: none;
@@ -164,14 +161,16 @@ body {
 	font-weight: bold;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span {
+.ui-tabs li.current a,
+.ui-tabs li.current span {
 	border: 1px solid #BFE1FF;
 	border-bottom: none;
 	color: #333;
 	padding: 0.15em 1em;
 }
 
-.ui-tabs li.current:hover, .ui-tabs li.current a:hover {
+.ui-tabs li.current:hover,
+.ui-tabs li.current a:hover {
 	background: transparent url(../images/common/tabs_active_bg.png) repeat-x 0 0;
 	text-decoration: none;
 }

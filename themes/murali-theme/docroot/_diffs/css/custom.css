@@ -54,7 +54,7 @@ body {
 	color: #EEE;
 	display: block;
 	float: left;
-	font: bold 12px Arial,Helvetica,sans-serif;
+	font: bold 12px Arial, Helvetica, sans-serif;
 	height: 30px;
 	line-height: 30px;
 	padding: 0 20px;
@@ -119,7 +119,7 @@ body {
 	background-position: top left;
 	color: #FEC;
 	display: block;
-	font: normal 18px/40px Tahoma,sans-serif;
+	font: normal 18px/40px Tahoma, sans-serif;
 	height: 35px;
 	letter-spacing: 0.1em;
 	min-width: 50%;
@@ -136,7 +136,7 @@ body {
 
 .portlet-content {
 	background-position: left bottom;
-	font: 12px/1.5 Lucida Sans Unicode,Lucida Grande,sans-serif;
+	font: 12px/1.5 Lucida Sans Unicode, Lucida Grande, sans-serif;
 	padding: 15px 25px;
 }
 

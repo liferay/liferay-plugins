@@ -57,7 +57,7 @@ a:hover {
 	background: none;
 	border-right: none;
 	color: #D9D1B6;
-	font-family: "Times New Roman",Times,serif;
+	font-family: Times New Roman, Times, serif;
 	font-size: 12px;
 	font-weight: bold;
 	min-width: 130px;
@@ -87,7 +87,7 @@ a:hover {
 #navigation {
 	clear: left;
 	float: left;
-	font-family: "Times New Roman",Times,serif;
+	font-family: Times New Roman, Times, serif;
 	font-size: 12px;
 	font-weight: bold;
 	text-align: right;
@@ -168,9 +168,9 @@ a:hover {
 
 .portlet {
 	background: #E7D9AD;
-	border:2px solid #994C33;
+	border: 2px solid #994C33;
 	margin: 10px 10px 0 0;
-	padding: 10px 10px 0 10px;
+	padding: 10px 10px 0;
 }
 
 .portlet-content-container {
@@ -196,7 +196,7 @@ a:hover {
 .portlet-title {
 	background: #DBC49B;
 	color: #3E2813;
-	font-family: "Times New Roman",Times,serif;
+	font-family: Times New Roman, Times, serif;
 	font-size: 12px;
 	font-weight: normal;
 	height: 22px;

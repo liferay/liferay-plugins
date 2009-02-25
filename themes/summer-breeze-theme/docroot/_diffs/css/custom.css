@@ -28,8 +28,8 @@ body {
 /* ---------- Dock ---------- */
 
 .js .interactive-mode {
-	right: 50%;
 	margin-right: -460px;
+	right: 50%;
 }
 
 /* ---------- Navigation ---------- */
@@ -47,7 +47,7 @@ body {
 
 #navigation a,
 #navigation .enter-page {
-	background: url('../images/custom/navigation_bg.png');
+	background: url(../images/custom/navigation_bg.png);
 	color: #FEC;
 	display: block;
 	float: left;
@@ -100,6 +100,6 @@ body {
 /* ---------- Portlet ---------- */
 
 .portlet {
-	padding: 10px;
 	margin: 0 0 10px;
+	padding: 10px;
 }

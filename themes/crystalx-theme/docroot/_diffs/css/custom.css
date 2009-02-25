@@ -58,7 +58,7 @@ body {
 	color: #B5C4E3;
 	display: block;
 	float: left;
-	font: bold 11px/32px Verdana,sans-serif;
+	font: bold 11px/32px Verdana, sans-serif;
 	margin: 0 5px 0 0;
 	padding: 0 15px;
 	text-decoration: none;
@@ -118,7 +118,7 @@ body {
 }
 
 .portlet-content {
-	font: 11px Verdana,sans-serif;
+	font: 11px Verdana, sans-serif;
 	padding: 0;
 }
 

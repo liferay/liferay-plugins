@@ -1,21 +1,5 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-
-/* ---------- Base ---------- */
-
-
-/* ---------- Wrapper ---------- */
-
-
-/* ---------- Banner ---------- */
-
-
-/* ---------- Logo ---------- */
-
-
-/* ---------- Dock ---------- */
-
-
 /* ---------- Navigation ---------- */
 
 .pink #navigation {
@@ -26,7 +10,7 @@
 	width: 890px;
 }
 
-.pink #navigation li.selected a span{
+.pink #navigation li.selected a span {
 	background: url(../../images/color_schemes/pink/navigation_item_selected.png) no-repeat 100% 0;
 }
 
@@ -43,9 +27,6 @@
 .pink #add-page a:hover {
 	color: #000;
 }
-
-/* ---------- Content Wrapper ---------- */
-
 
 /* ---------- Portlet ---------- */
 
@@ -84,6 +65,3 @@
 .pink .portlet .ui-tabs li.last a {
 	background: url(../../images/color_schemes/pink/tabs.png) 100% 0;
 }
-
-
-/* ---------- Footer ---------- */

@@ -7,7 +7,7 @@ html {
 }
 
 body {
-	background: #fff;
+	background: #FFF;
 	font-size: 11px;
 }
 
@@ -47,7 +47,6 @@ body {
 	zoom: 1;
 }
 
-
 /* ---------- Main navigation ---------- */
 
 #navigation {
@@ -84,16 +83,16 @@ body {
 	text-decoration: none;
 }
 
-#navigation li.selected a, #navigation li a:hover {
+#navigation li.selected a,
+#navigation li a:hover {
 	background-color: #1E2529;
-	color: #fff;
+	color: #FFF;
 }
 
 #navigation li.selected a span {
 	background: url(../images/navigation/bullet_selected.png) no-repeat 0 50%;
 	padding-left: 10px;
 }
-
 
 /* ---------- Add/remove page ---------- */
 
@@ -164,7 +163,7 @@ body {
 .js #add-page a:hover span {
 }
 
-/*------ Navigation portlet ------*/
+/* ------ Navigation portlet ------ */
 
 .nav-menu-style-1 {
 }
@@ -175,7 +174,7 @@ body {
 /* ---------- Portlet wrapper and icons ---------- */
 
 .portlet {
-	background: #fff;
+	background: #FFF;
 	border: 2px solid #828F95;
 	margin: 0 0 10px;
 	padding: 3px;

@@ -18,7 +18,7 @@
 	color: #000;
 }
 
-.white #navigation li.selected a span{
+.white #navigation li.selected a span {
 	background: url(../../images/color_schemes/white/navigation_item_selected.png) no-repeat 100% 0;
 }
 

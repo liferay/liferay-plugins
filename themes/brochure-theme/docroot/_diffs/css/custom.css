@@ -63,7 +63,8 @@
 	padding: 9px 24px;
 }
 
-#navigation ul, #add-page {
+#navigation ul,
+#add-page {
 	float: left;
 }
 
@@ -72,7 +73,7 @@
 	color: #FFF;
 	display: block;
 	float: left;
-	font: 11px/23px Lucida Sans Unicode,Lucida Grande,sans-serif;
+	font: 11px/23px Lucida Sans Unicode, Lucida Grande, sans-serif;
 	padding: 1px 12px;
 	text-decoration: none;
 }
@@ -80,7 +81,7 @@
 #navigation a:hover {
 	background: #32AFEE url(../images/custom/navigation_item_hover.png);
 	border: 1px solid #1C4980;
-	border-color: #1D4A81 #1d4a81 #20487b #0d376e;
+	border-color: #1D4A81 #1D4A81 #20487B #0D376E;
 	padding: 0 11px;
 }
 
@@ -137,11 +138,12 @@
 .portlet-title {
 	color: #12558E;
 	display: block;
-	font: 14px/25px Lucida Sans Unicode,Lucida Grande,sans-serif;
+	font: 14px/25px Lucida Sans Unicode, Lucida Grande, sans-serif;
 	height: 25px;
 }
 
-.firefox .portlet-title img, .safari .portlet-title img {
+.firefox .portlet-title img,
+.safari .portlet-title img {
 	margin-top: -2px;
 }
 

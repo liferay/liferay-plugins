@@ -74,7 +74,7 @@ body.dark {
 #navigation a {
 	color: #FFF;
 	display: block;
-	font: 14px/56px Arial,Helvetica,sans-serif;
+	font: 14px/56px Arial, Helvetica, sans-serif;
 	height: 61px;
 	padding: 0 24px;
 	text-decoration: none;
@@ -142,7 +142,7 @@ body.dark {
 }
 
 .portlet-title {
-	font: normal 18px arial,sans-serif;
+	font: normal 18px arial, sans-serif;
 }
 
 .lite .portlet-calendar .calendar-day .day-text,

@@ -53,7 +53,7 @@ body {
 	color: #FF3;
 	display: block;
 	float: left;
-	font: 18px/101px Arial,Helvetica,sans-serif;
+	font: 18px/101px Arial, Helvetica, sans-serif;
 	height: 101px;
 	padding: 0 36px;
 	text-decoration: none;
@@ -106,7 +106,7 @@ body {
 
 .portlet-topper {
 	border-bottom: 2px solid #CCC;
-	font: 16px Arial,Helvetica,sans-serif;
+	font: 16px Arial, Helvetica, sans-serif;
 	padding: 0 0 9px;
 }
 
@@ -129,8 +129,8 @@ body {
 .ui-tabs li span,
 .ui-tabs li.current span,
 .ui-tabs li span:hover {
-	border: 1px solid #C6A146;
 	background: url(../images/custom/navigation_bg.jpg) -56px -14px;
+	border: 1px solid #C6A146;
 	color: #FF3;
 	margin: 0 0 0 -1px;
 	padding: 8px 12px;

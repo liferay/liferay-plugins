@@ -10,18 +10,18 @@ body {
 
 #wrapper {
 	margin: 0 auto;
-	width: 940px;
 	padding: 10px;
 	position: relative;
+	width: 940px;
 }
 
 /* ---------- Banner ---------- */
 
 #banner {
 	background: #317296 url(../images/custom/banner_bg.gif) repeat-x;
-	position: relative;
-	padding: 45px;
 	margin: 0 0 10px;
+	padding: 45px;
+	position: relative;
 }
 
 /* ---------- Logo ---------- */
@@ -39,10 +39,10 @@ body {
 /* ---------- Navigation ---------- */
 
 #navigation {
-	position: absolute;
-	left: 10px;
-	background: #eee url(../images/custom/navigation_item.gif) repeat-x;
+	background: #EEE url(../images/custom/navigation_item.gif) repeat-x;
 	border: 1px solid #E5E5E5;
+	left: 10px;
+	position: absolute;
 	width: 200px;
 }
 
@@ -51,9 +51,9 @@ body {
 	border: 1px solid #FAFAFA;
 	color: #777;
 	display: block;
-	width: 172px;
-	text-decoration: none;
 	padding: 3px 14px;
+	text-decoration: none;
+	width: 172px;
 }
 
 #navigation a:hover {
@@ -93,8 +93,8 @@ body {
 
 .portlet {
 	border: 1px solid #EEE;
-	padding: 6px 12px;
 	margin: 0 0 8px;
+	padding: 6px 12px;
 }
 
 .portlet-topper {
@@ -136,6 +136,6 @@ body {
 /* ---------- Footer ---------- */
 
 #footer {
-	border: 1px solid #eee;
+	border: 1px solid #EEE;
 	min-height: 28px;
 }
