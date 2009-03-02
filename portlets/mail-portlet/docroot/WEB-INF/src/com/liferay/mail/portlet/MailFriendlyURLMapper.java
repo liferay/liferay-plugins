@@ -52,8 +52,7 @@ public class MailFriendlyURLMapper extends BaseFriendlyURLMapper {
 	}
 
 	public void populateParams(
-		String friendlyURLPath, Map<String, String[]> params,
-		Map<String, String> prpIdentifiers) {
+		String friendlyURLPath, Map<String, String[]> params) {
 
 		int x = friendlyURLPath.indexOf("/", 1);
 
@@ -69,12 +68,12 @@ public class MailFriendlyURLMapper extends BaseFriendlyURLMapper {
 			return;
 		}
 
-		addParam(params, prpIdentifiers, "p_p_id", _PORTLET_ID);
-		addParam(params, prpIdentifiers, "p_p_lifecycle", "2");
-		addParam(params, prpIdentifiers, "p_p_state", WindowState.NORMAL);
-		addParam(params, prpIdentifiers, "p_p_mode", PortletMode.VIEW);
+		addParam(params, "p_p_id", _PORTLET_ID);
+		addParam(params, "p_p_lifecycle", "2");
+		addParam(params, "p_p_state", WindowState.NORMAL);
+		addParam(params, "p_p_mode", PortletMode.VIEW);
 
-		addParam(params, prpIdentifiers, "jspPage", "/" + jspPage + ".jsp");
+		addParam(params, "jspPage", "/" + jspPage + ".jsp");
 	}
 
 	private static final String _MAPPING = "mail";
