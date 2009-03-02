@@ -22,6 +22,7 @@
 
 package com.liferay.wol.members.social;
 
+import com.liferay.portal.NoSuchOrganizationException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -30,6 +31,7 @@ import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialRequestInterpreter;
 import com.liferay.portlet.social.model.SocialRequest;
@@ -40,6 +42,7 @@ import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
  * <a href="MembersRequestInterpreter.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
+ * @author M Murali Krishna Reddy
  *
  */
 public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
@@ -60,13 +63,23 @@ public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
 
 		int requestType = request.getType();
 
+		Group group = null;
+		String groupName = StringPool.BLANK;
+
+		try {
+			Organization organization =
+				OrganizationLocalServiceUtil.getOrganization(
+					request.getClassPK());
+
+			group = organization.getGroup();
+			groupName = organization.getName();
+		}
+		catch (NoSuchOrganizationException noOrganizationException) {
+			group = GroupLocalServiceUtil.getGroup(request.getClassPK());
+			groupName = group.getName();
+		}
+
 		// Title
-
-		Organization organization =
-			OrganizationLocalServiceUtil.getOrganization(request.getClassPK());
-
-		Group group = organization.getGroup();
-
 		String title = StringPool.BLANK;
 
 		if (requestType == MembersRequestKeys.ADD_MEMBER) {
@@ -90,7 +103,7 @@ public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
 			sb.append(themeDisplay.getPathFriendlyURLPublic());
 			sb.append(group.getFriendlyURL());
 			sb.append("/profile\">");
-			sb.append(organization.getName());
+			sb.append(groupName);
 			sb.append("</a>");
 
 			String organizationNameURL = sb.toString();
@@ -109,15 +122,25 @@ public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
 
 	protected boolean doProcessConfirmation(
 		SocialRequest request, ThemeDisplay themeDisplay) {
-
 		try {
-			UserLocalServiceUtil.addOrganizationUsers(
-				request.getClassPK(), new long[] {request.getUserId()});
+			try {
+				UserLocalServiceUtil.addOrganizationUsers(
+					request.getClassPK(), new long[] {request.getUserId()});
 
-			SocialActivityLocalServiceUtil.addActivity(
-				request.getUserId(), 0, Organization.class.getName(),
-				request.getClassPK(), MembersActivityKeys.ADD_MEMBER,
-				StringPool.BLANK, 0);
+				SocialActivityLocalServiceUtil.addActivity(
+					request.getUserId(), 0, Organization.class.getName(),
+					request.getClassPK(), MembersActivityKeys.ADD_MEMBER,
+					StringPool.BLANK, 0);
+			}
+			catch (NoSuchOrganizationException noOrganizationException) {
+				UserLocalServiceUtil.addGroupUsers(
+					request.getClassPK(), new long[] {request.getUserId()});
+
+				SocialActivityLocalServiceUtil.addActivity(
+					request.getUserId(), 0, Group.class.getName(),
+					request.getClassPK(), MembersActivityKeys.ADD_MEMBER,
+					StringPool.BLANK, 0);
+			}
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -127,7 +150,7 @@ public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {
-		Organization.class.getName()
+		Organization.class.getName(), Group.class.getName()
 	};
 
 	private static Log _log =
