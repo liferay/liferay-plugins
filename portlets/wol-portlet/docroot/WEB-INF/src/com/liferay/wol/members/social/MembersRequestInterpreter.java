@@ -29,9 +29,9 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialRequestInterpreter;
 import com.liferay.portlet.social.model.SocialRequest;
@@ -64,22 +64,22 @@ public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
 		int requestType = request.getType();
 
 		Group group = null;
-		String groupName = StringPool.BLANK;
 
-		try {
+		String className = request.getClassName();
+
+		if (className.equals(Group.class.getName())) {
+			group = GroupLocalServiceUtil.getGroup(request.getClassPK());
+		}
+		else {
 			Organization organization =
 				OrganizationLocalServiceUtil.getOrganization(
 					request.getClassPK());
 
 			group = organization.getGroup();
-			groupName = organization.getName();
-		}
-		catch (NoSuchOrganizationException noOrganizationException) {
-			group = GroupLocalServiceUtil.getGroup(request.getClassPK());
-			groupName = group.getName();
 		}
 
 		// Title
+
 		String title = StringPool.BLANK;
 
 		if (requestType == MembersRequestKeys.ADD_MEMBER) {
@@ -103,7 +103,7 @@ public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
 			sb.append(themeDisplay.getPathFriendlyURLPublic());
 			sb.append(group.getFriendlyURL());
 			sb.append("/profile\">");
-			sb.append(groupName);
+			sb.append(group.getName());
 			sb.append("</a>");
 
 			String organizationNameURL = sb.toString();
@@ -150,7 +150,7 @@ public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {
-		Organization.class.getName(), Group.class.getName()
+		Group.class.getName(), Organization.class.getName()
 	};
 
 	private static Log _log =
