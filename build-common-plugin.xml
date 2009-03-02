@@ -367,6 +367,10 @@
 		</antcall>
 
 		<antcall target="build-lang-native2ascii">
+			<param name="lang.code" value="sk" />
+		</antcall>
+
+		<antcall target="build-lang-native2ascii">
 			<param name="lang.code" value="es" />
 		</antcall>
 
