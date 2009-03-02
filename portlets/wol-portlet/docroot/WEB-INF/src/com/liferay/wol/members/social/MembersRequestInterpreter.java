@@ -22,7 +22,6 @@
 
 package com.liferay.wol.members.social;
 
-import com.liferay.portal.NoSuchOrganizationException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -103,7 +102,7 @@ public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
 			sb.append(themeDisplay.getPathFriendlyURLPublic());
 			sb.append(group.getFriendlyURL());
 			sb.append("/profile\">");
-			sb.append(group.getName());
+			sb.append(group.getDescriptiveName());
 			sb.append("</a>");
 
 			String organizationNameURL = sb.toString();
@@ -122,25 +121,22 @@ public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
 
 	protected boolean doProcessConfirmation(
 		SocialRequest request, ThemeDisplay themeDisplay) {
-		try {
-			try {
-				UserLocalServiceUtil.addOrganizationUsers(
-					request.getClassPK(), new long[] {request.getUserId()});
 
-				SocialActivityLocalServiceUtil.addActivity(
-					request.getUserId(), 0, Organization.class.getName(),
-					request.getClassPK(), MembersActivityKeys.ADD_MEMBER,
-					StringPool.BLANK, 0);
-			}
-			catch (NoSuchOrganizationException noOrganizationException) {
+		try {
+			String className = request.getClassName();
+
+			if (className.equals(Group.class.getName())) {
 				UserLocalServiceUtil.addGroupUsers(
 					request.getClassPK(), new long[] {request.getUserId()});
-
-				SocialActivityLocalServiceUtil.addActivity(
-					request.getUserId(), 0, Group.class.getName(),
-					request.getClassPK(), MembersActivityKeys.ADD_MEMBER,
-					StringPool.BLANK, 0);
 			}
+			else {
+				UserLocalServiceUtil.addOrganizationUsers(
+					request.getClassPK(), new long[] {request.getUserId()});
+			}
+
+			SocialActivityLocalServiceUtil.addActivity(
+				request.getUserId(), 0, className, request.getClassPK(),
+				MembersActivityKeys.ADD_MEMBER, StringPool.BLANK, 0);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
