@@ -187,7 +187,7 @@ Liferay.Chat.Util = {
 	TIMESTAMP_24: (24 * 60 * 60 * 1000)
 };
 
-Liferay.Chat.Panel = new Class({
+Liferay.Chat.Panel = new Expanse.Class({
 	initialize: function(options) {
 		var instance = this;
 
