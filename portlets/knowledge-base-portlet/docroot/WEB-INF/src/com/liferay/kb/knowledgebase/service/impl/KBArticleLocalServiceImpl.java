@@ -423,7 +423,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		long repositoryId = CompanyConstants.SYSTEM;
 
 		try {
-			DLServiceUtil.deleteFile(companyId, portletId, repositoryId, fileName);
+			DLServiceUtil.deleteFile(
+				companyId, portletId, repositoryId, fileName);
 		}
 		catch (NoSuchFileException nsfe) {
 		}
@@ -553,8 +554,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		throws SystemException {
 
 		return kbArticlePersistence.findByG_H_T_D(
-			groupId, head, template, draft, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new ArticleModifiedDateComparator(false));
+			groupId, head, template, draft, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, new ArticleModifiedDateComparator(false));
 	}
 
 	public List<KBArticle> getGroupArticles(
@@ -603,7 +604,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			groupIds, start, end, new ArticleModifiedDateComparator(false));
 	}
 
-	public int getGroupArticlesCount(long groupId, boolean head, boolean template)
+	public int getGroupArticlesCount(
+			long groupId, boolean head, boolean template)
 		throws SystemException {
 
 		return kbArticlePersistence.countByG_H_T(groupId, head, template);
@@ -627,7 +629,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long groupId, boolean template, long userId)
 		throws SystemException {
 
-		return kbArticleFinder.countByG_P_T_Or_G_P_T_U(groupId, template, userId);
+		long parentResourcePrimKey = KBArticleImpl.DEFAULT_PARENT;
+
+		return kbArticleFinder.countByG_P_T_Or_G_P_T_U(
+				groupId, parentResourcePrimKey, template, userId);
 	}
 
 	public int getGroupsArticlesCount(long[] groupIds)

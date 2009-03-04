@@ -150,7 +150,8 @@ public class KBArticleFinderImpl
 	}
 
 	public int countByG_P_T_Or_G_P_T_U(
-			long groupId, boolean template, long userId)
+			long groupId, long parentResourcePrimKey, boolean template,
+			long userId)
 		throws SystemException {
 
 		Session session = null;
@@ -167,6 +168,7 @@ public class KBArticleFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(groupId);
+			qPos.add(parentResourcePrimKey);
 			qPos.add(template);
 			qPos.add(userId);
 

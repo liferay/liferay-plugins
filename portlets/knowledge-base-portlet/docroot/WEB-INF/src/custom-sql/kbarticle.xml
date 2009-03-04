@@ -30,6 +30,23 @@
 				(Subscription.userId = ?)
 		]]>
 	</sql>
+	<sql id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.countByG_P_T_Or_G_P_T_U">
+		<![CDATA[
+			SELECT
+				COUNT(DISTINCT KB_KBArticle.resourcePrimKey) AS COUNT_VALUE
+			FROM
+				KB_KBArticle
+			WHERE
+				(groupId = ?) AND
+				(parentResourcePrimKey = ?) AND
+				(template = ?) AND
+				(head = [$TRUE$]) AND
+				(
+					(draft = [$FALSE$]) OR
+					(userId = ?)
+				)
+		]]>
+	</sql>
 	<sql id="com.liferay.kb.knowledgebase.service.persistence.KBArticleFinder.countByG_T_Or_G_T_U">
 		<![CDATA[
 			SELECT

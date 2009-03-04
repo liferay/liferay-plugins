@@ -96,20 +96,24 @@ int total = 0;
 List<KBArticle> results = null;
 
 if (type.equals("all_articles")) {
+	total = KBArticleLocalServiceUtil.getGroupArticlesIncludingUserDraftsCount(scopeGroupId, false, themeDisplay.getUserId());
+
 	results = KBArticleServiceUtil.getGroupArticlesIncludingUserDrafts(scopeGroupId, false, themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-	total = results.size();
 }
 else if (type.equals("article_history")) {
+	total = KBArticleLocalServiceUtil.getArticlesCount(article.getResourcePrimKey());
+
 	results = KBArticleServiceUtil.getArticles(article.getResourcePrimKey(), searchContainer.getStart(), searchContainer.getEnd());
-	total = results.size();
 }
 else if (type.equals("subscriptions")) {
+	total = KBArticleLocalServiceUtil.getSubscribedArticlesCount(themeDisplay.getUserId(), scopeGroupId);
+
 	results = KBArticleServiceUtil.getSubscribedArticles(themeDisplay.getUserId(), scopeGroupId, searchContainer.getStart(), searchContainer.getEnd());
-	total = results.size();
 }
 else if (type.equals("templates")) {
+	total = KBArticleLocalServiceUtil.getGroupArticlesIncludingUserDraftsCount(scopeGroupId, true, themeDisplay.getUserId());
+
 	results = KBArticleServiceUtil.getGroupArticlesIncludingUserDrafts(scopeGroupId, true, themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-	total = results.size();
 }
 else if (type.equals("tagged_articles")) {
 	long classNameId = PortalUtil.getClassNameId(KBArticle.class.getName());
