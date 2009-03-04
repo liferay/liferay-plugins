@@ -2,8 +2,6 @@
 
 #parse ($init)
 
-#set ($company_url = $company_url + "/web/guest/home")
-
 <html dir="#language ("lang.dir")" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
