@@ -1,0 +1,21 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---------- Wrapper ---------- */
+
+.dirty #wrapper {
+	background: url(../../images/color_schemes/dirty/wrapper_bg.png) no-repeat;
+}
+
+/* ---------- Logo ---------- */
+
+.dirty #banner .logo a {
+	left: 94px;
+	top: 15px;
+}
+
+/* ---------- Content Wrapper ---------- */
+
+.dirty #content-wrapper {
+	min-height: 300px;
+	padding-top: 95px;
+}

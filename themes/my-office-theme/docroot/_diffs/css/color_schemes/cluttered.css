@@ -1,0 +1,21 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---------- Wrapper ---------- */
+
+.cluttered #wrapper {
+	background: url(../../images/color_schemes/cluttered/wrapper_bg.png) no-repeat;
+}
+
+/* ---------- Logo ---------- */
+
+.cluttered #banner .logo a {
+	left: 94px;
+	top: 15px;
+}
+
+/* ---------- Content Wrapper ---------- */
+
+.cluttered #content-wrapper {
+	min-height: 300px;
+	padding-top: 95px;
+}
