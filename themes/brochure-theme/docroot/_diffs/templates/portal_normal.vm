@@ -11,30 +11,6 @@
 
 	#css ($css_main_file)
 
-	<script type="text/javascript">
-		// <![CDATA[
-			$page_javascript_1
-			$page_javascript_2
-			$page_javascript_3
-		// ]]>
-	</script>
-
-	#if ($company_logo != "")
-		<style type="text/css">
-			/* <![CDATA[ */
-				#banner .logo a {
-					background: url($company_logo) no-repeat;
-					display: block;
-					font-size: 0;
-					height: ${company_logo_height}px;
-					text-indent: -9999em;
-					width: ${company_logo_width}px;
-				}
-
-				#ie6_png_fix()
-			/* ]]> */
-		</style>
-	#end
 </head>
 
 <body class="$css_class">
@@ -80,8 +56,6 @@ $theme.include($top_messages_include)
 </div>
 
 </body>
-
-#js ($js_main_file)
 
 $theme.include($bottom_include)
 

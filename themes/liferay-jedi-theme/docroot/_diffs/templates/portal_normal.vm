@@ -9,35 +9,6 @@
 
 	$theme.include($top_head_include)
 
-	#css ($css_main_file)
-
-	<script type="text/javascript">
-		// <![CDATA[
-			$page_javascript_1
-			$page_javascript_2
-			$page_javascript_3
-		// ]]>
-	</script>
-
-	#if ($company_logo != "")
-		<style type="text/css">
-			#banner .logo {
-				padding: 0;
-			}
-
-			#banner .logo a {
-				background: url($images_folder/custom/logo.png) no-repeat;
-				display: block;
-				font-size: 0;
-				height: 88px;
-				text-indent: -9999em;
-				width: 290px;
-			}
-
-			#ie6_png_fix ()
-		</style>
-	#end
-
 	#set ($groupLocalService = $serviceLocator.findService("com.liferay.portal.service.GroupLocalService"))
 
 	#set ($guestGroup = $groupLocalService.getGroup($company_id, "Guest"))
@@ -141,8 +112,6 @@ $theme.include($top_messages_include)
 </div>
 
 </body>
-
-#js ($js_main_file)
 
 $theme.include($bottom_include)
 
