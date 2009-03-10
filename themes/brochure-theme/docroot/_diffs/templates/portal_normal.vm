@@ -8,9 +8,6 @@
 	<title>$the_title - $company_name</title>
 
 	$theme.include($top_head_include)
-
-	#css ($css_main_file)
-
 </head>
 
 <body class="$css_class">
