@@ -133,14 +133,7 @@ String username = ParamUtil.getString(request, "username");
 							<liferay-ui:message key="use-secure-incoming-connection" />
 						</td>
 						<td>
-							<c:choose>
-								<c:when test="<%= mailInSecure %>">
-									<input class="in-secure" type="checkbox" checked="checked" />
-								</c:when>
-								<c:otherwise>
-									<input class="in-secure" type="checkbox" />
-								</c:otherwise>
-							</c:choose>
+							<input <%= mailInSecure ? "checked" : "" %> class="in-secure" type="checkbox" />
 						</td>
 					</tr>
 					<tr>
@@ -164,14 +157,7 @@ String username = ParamUtil.getString(request, "username");
 							<liferay-ui:message key="use-secure-outgoing-connection" />
 						</td>
 						<td>
-							<c:choose>
-								<c:when test="<%= mailOutSecure %>">
-									<input class="out-secure" type="checkbox" checked="checked" />
-								</c:when>
-								<c:otherwise>
-									<input class="out-secure" type="checkbox" />
-								</c:otherwise>
-							</c:choose>
+							<input <%= mailOutSecure ? "checked" : "" %> class="out-secure" type="checkbox" />
 						</td>
 					</tr>
 				</c:otherwise>
@@ -231,14 +217,7 @@ String username = ParamUtil.getString(request, "username");
 					<liferay-ui:message key="use-secure-incoming-connection" />
 				</td>
 				<td>
-					<c:choose>
-						<c:when test="<%= mailInSecure  %>">
-							<input class="in-secure" type="checkbox" checked="checked" />
-						</c:when>
-						<c:otherwise>
-							<input class="in-secure" type="checkbox" />
-						</c:otherwise>
-					</c:choose>
+					<input <%= mailInSecure ? "checked" : "" %> class="in-secure" type="checkbox" />
 				</td>
 			</tr>
 			<tr>
@@ -262,14 +241,7 @@ String username = ParamUtil.getString(request, "username");
 					<liferay-ui:message key="use-secure-outgoing-connection" />
 				</td>
 				<td>
-					<c:choose>
-						<c:when test="<%= mailOutSecure %>">
-							<input class="out-secure" type="checkbox" checked="checked" />
-						</c:when>
-						<c:otherwise>
-							<input class="out-secure" type="checkbox" />
-						</c:otherwise>
-					</c:choose>
+					<input <%= mailOutSecure ? "checked" : "" %> class="out-secure" type="checkbox" />
 				</td>
 			</tr>
 			<tr>
