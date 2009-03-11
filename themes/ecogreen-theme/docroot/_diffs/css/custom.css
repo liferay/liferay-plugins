@@ -111,8 +111,8 @@ body {
 	left: 6px;
 	padding: 0 0 10px;
 	position: absolute;
-	width: 200px;
 	top: 22px;
+	width: 200px;
 }
 
 #navigation ul.child-menu {
@@ -145,7 +145,7 @@ body {
 /* ---------- Content Wrapper ---------- */
 
 #content-wrapper a {
-	color: #E86216
+	color: #E86216;
 }
 
 #content-wrapper a:hover {
@@ -246,7 +246,7 @@ body.portal-iframe,
 	color: #FFF;
 	font-size: 10px;
 	font-weight: normal;
-	padding: 6px 0 4px 0;
+	padding: 6px 0 4px;
 	top: 0;
 }
 
@@ -264,7 +264,7 @@ body.portal-iframe,
 
 #wrapper .ui-tabs li span {
 	font-size: 10px;
-	padding: 5px 10px 5px 10px;
+	padding: 5px 10px;
 	top: 0;
 }
 
@@ -279,7 +279,7 @@ body.portal-iframe,
 .tabs li span,
 .ui-tabs li.current a,
 .ui-tabs li.current span {
-	border: none
+	border: none;
 }
 
 #wrapper .ui-tabs li.current a:hover,

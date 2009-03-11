@@ -325,7 +325,7 @@ body.portal-iframe,
 .tabs li span,
 .ui-tabs li.current a,
 .ui-tabs li.current span {
-	border: none
+	border: none;
 }
 
 #wrapper .ui-tabs li.current a:hover,
@@ -334,7 +334,7 @@ body.portal-iframe,
 #wrapper .ui-tabs li a:hover,
 #wrapper .ui-tabs li span:hover {
 	border: none;
-	color: #222222;
+	color: #222;
 	text-decoration: none;
 }
 

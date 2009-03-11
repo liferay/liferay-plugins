@@ -61,7 +61,7 @@ table {
 	color: #D21034;
 	font-size: 11px;
 	font-weight: normal;
-	padding: 4px 10px 0px;
+	padding: 4px 10px 0;
 }
 
 .js .interactive-mode ul {
@@ -105,8 +105,8 @@ table {
 
 #navigation ul li.selected a,
 #navigation a:hover {
-	color: #D21034;
 	background: #FCFAE4;
+	color: #D21034;
 }
 
 #navigation .child-menu {
@@ -117,11 +117,11 @@ table {
 	font-family: Arial;
 	left: 0;
 	line-height: 16px;
-	position: absolute;
 	padding: 5px 15px 8px 6px;
-	width: 180px;
+	position: absolute;
 	text-transform: none;
 	top: 31px;
+	width: 180px;
 }
 
 #navigation ul.child-menu {
@@ -186,7 +186,7 @@ table {
 }
 
 .portlet-title {
-	color: #993300;
+	color: #930;
 	font-family: Times New Roman;
 	font-size: 18px;
 	font-weight: normal;
