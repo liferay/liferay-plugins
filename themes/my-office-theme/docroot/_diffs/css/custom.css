@@ -1,11 +1,5 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-/* ---------- Color Scheme ---------- */
-
-@import url(color_schemes/cluttered.css);
-
-@import url(color_schemes/dirty.css);
-
 /* ---------- Base ---------- */
 
 body {
@@ -25,12 +19,26 @@ a {
 	width: 964px;
 }
 
+.cluttered #wrapper {
+	background: url(../images/color_schemes/cluttered/wrapper_bg.png) no-repeat;
+}
+
+.dirty #wrapper {
+	background: url(../images/color_schemes/dirty/wrapper_bg.png) no-repeat;
+}
+
 /* ---------- Logo ---------- */
 
 #banner .logo a {
 	left: 60px;
 	position: relative;
 	top: 20px;
+}
+
+.cluttered #banner .logo a,
+.dirty #banner .logo a {
+	left: 94px;
+	top: 15px;
 }
 
 /* ---------- Dock ---------- */
@@ -152,6 +160,12 @@ a.cancel-page {
 	background: none;
 	min-height: 300px;
 	padding: 50px 10px 0 60px;
+}
+
+.cluttered #content-wrapper,
+.dirty #content-wrapper {
+	min-height: 300px;
+	padding-top: 95px;
 }
 
 .ie6 #content-wrapper {
