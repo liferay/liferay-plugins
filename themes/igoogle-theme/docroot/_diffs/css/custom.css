@@ -84,6 +84,8 @@
 /* ---------- Portlet ---------- */
 
 .portlet {
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
 	border: 1px solid #BDCAD8;
 	margin: 0 0 12px;
 }
@@ -124,7 +126,7 @@
 	color: #000;
 	font: 11px Arial, Helvetica, sans-serif;
 	margin: 0 3px 0 0;
-	padding: 2px 16px;
+	padding: 3px 16px;
 	text-decoration: none;
 }
 
