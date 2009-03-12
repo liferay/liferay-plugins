@@ -511,7 +511,7 @@ a:hover {
 }
 
 .ui-tabs li.current {
-	margin-top: 1px;
+	margin-top: -2px;
 	padding-top: 1px;
 	top: 0;
 }
