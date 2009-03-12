@@ -20,7 +20,7 @@ jQuery(document).ready(
 		var contentWrapper = jQuery('#content-wrapper');
 		var contentOffset = (jQuery('#layout-grid').length > 0) ? 24 : 28;
 		contentWrapper.css('height', 'auto').css('height', (Math.ceil(contentWrapper.height() / 32) * 32) + contentOffset);
-		if (Liferay.Layout) {
+		if (Liferay.Layout && Liferay.Layout.Columns.sortColumns) {
 			Liferay.Layout.Columns.sortColumns.bind('sortupdate.sortable', function () {
 				contentWrapper.css('height', 'auto').css('height', (Math.ceil(contentWrapper.height() / 32) * 32) + 24);
 			});
