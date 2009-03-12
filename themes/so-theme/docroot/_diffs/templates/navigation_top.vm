@@ -1,0 +1,49 @@
+<div id="navigation-top">
+	<div class="left-side"></div>
+	<div>
+		<ul>
+			#set ($my_places_url = $portletURLFactory.create($request, "49", $page.getPlid(), "ACTION_PHASE"))
+
+			$my_places_url.setWindowState("normal")
+			$my_places_url.setPortletMode("view")
+
+			$my_places_url.setParameter("struts_action", "/my_places/view")
+
+			#if ($show_sign_out)
+				<li class="my-home">
+					<a class="heading" href="$themeDisplay.getPathFriendlyURLPublic()/$user.getScreenName()/home">#language ("my-home")</a>
+				</li>
+				<li class="my-profile">
+					<a class="heading" href="$my_account_url">#language ("my-profile")</a>
+				</li>
+				<li class="my-sites">
+					<a class="heading" href="javascript:;">#language ("my-sites")</a>
+
+					<ul class="child-menu">
+						#foreach ($place in $user.getMyPlaces())
+							$my_places_url.setParameter("privateLayout", "false")
+							$my_places_url.setParameter("groupId", $place.getGroupId().toString())
+
+							#set($public_community_url = $my_places_url.toString())
+
+							#if ($place.isCommunity())
+								<li>
+									<a href="$my_places_url.toString()">$place.getName()</a>
+								</li>
+							#end
+						#end
+					</ul>
+				</li>
+				<li class="sign-out">
+					<a class="heading" href="$sign_out_url">$sign_out_text</a>
+				</li>
+			#else
+				<li class="sign-in">
+					<a class="heading" href="$company_url/login">$sign_in_text</a>
+				</li>
+			#end
+
+		</ul>
+	</div>
+	<div class="right-side"></div>
+</div>

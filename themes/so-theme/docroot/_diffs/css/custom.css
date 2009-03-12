@@ -1,0 +1,790 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* ---------- Base ---------- */
+
+a {
+	text-decoration: none;
+}
+
+#wrapper {
+	margin: 0 auto;
+	width: 95%;
+}
+
+#content-wrapper {
+	font-size: 1.2em;
+	margin-bottom: 4em;
+}
+
+
+/* ---------- Banner ---------- */
+
+#banner {
+	border-bottom: 3px solid #3E3639;
+}
+
+body #banner h1.logo {
+	margin: 15px 0 0 15px;
+}
+
+body #banner h1.logo a {
+	background: url(../images/custom/logo.png) no-repeat bottom center;
+	display: block;
+	height: 59px;
+	overflow: hidden;
+	text-indent: -100em;
+	width: 272px;
+}
+
+#banner .group {
+	color: #7F80A4;
+	font-size: 18px;
+	line-height: 1.3em;
+	position: absolute;
+	right: 3%;
+	top: 41px;
+}
+
+/* ---------- Top Navigation ---------- */
+
+#navigation-top {
+	position: absolute;
+	right: 2.5%;
+	top: 0;
+}
+
+#navigation-top div {
+	background: url(../images/custom/navigation_top.png);
+	float: left;
+	height: 31px;
+}
+
+#navigation-top .left-side {
+	background-position: left 31px;
+	width: 3px;
+}
+
+#navigation-top .right-side {
+	background-position: right 31px;
+	width: 3px;
+}
+
+#navigation-top ul {
+	margin: 0;
+}
+
+#navigation-top li {
+	display: inline;
+	float: left;
+}
+
+#navigation-top li a {
+	display: block;
+	padding: 7px;
+}
+
+#navigation-top .child-menu {
+	background: #FFF;
+	border: 1px solid #B0BAFF;
+	border-top: none;
+	display: none;
+	left: 0px;
+	position: absolute;
+	top: 28px;
+	z-index: 20;
+}
+
+#navigation-top .child-menu li a {
+	border-top: 1px solid #B0BAFF;
+	width: 224px;
+}
+
+#navigation-top .my-profile {
+	border-left: 1px solid #B0BAFF;
+}
+
+#navigation-top .my-sites {
+	border-left: 1px solid #B0BAFF;
+}
+
+#navigation-top .sign-out {
+	border-left: 1px solid #B0BAFF;
+}
+
+#navigation-top .sign-out a {
+	color: #955;
+}
+
+#navigation-top .open .heading {
+	background: #FFF;
+	position: relative;
+	z-index: 21;
+}
+
+/* ---------- Navigation ---------- */
+
+#navigation {
+	height: 23px;
+	margin-bottom: 2em;
+}
+
+#navigation ul {
+	float: right;
+}
+
+#navigation a {
+	border-top: 3px solid #FFF;
+	color: #8D1E31;
+	display: block;
+	padding: 2px 15px;
+	font: bold 14px Arial, Helvetica, sans-serif;
+}
+
+#navigation li {
+	position: static;
+}
+
+#navigation li.selected a,
+#navigation li a:hover {
+	border-top: 3px solid #7F80A4;
+	color: #3E3639;
+}
+
+
+/* ---------- Portlets ---------- */
+
+.portlet-borderless-bar {
+	display: none;
+}
+
+.portlet-title {
+	border-bottom: 4px solid #7F80A4;
+	color: #8F0920;
+	font-size: 18px;
+	padding-bottom: 5px;
+}
+
+.portlet-icons {
+	display: none;
+}
+
+
+/* ---------- Layout ---------- */
+
+.lfr-grid .lfr-column {
+	padding: 15px;
+}
+
+.columns-2 #column-1 {
+	border-right: 1px solid #CCC;
+}
+
+#column-1.seventy {
+	width: 75%;
+}
+
+#column-2.thirty {
+	width: 25%;
+}
+
+.columns-1 #column-1,
+.columns-max #column-1 {
+	padding-top: 15px;
+}
+
+
+/* ---------- Application ---------- */
+
+/* Messages */
+
+.portlet-msg-info {
+	margin-top: 0;
+}
+
+/* Headings */
+
+.portlet-boundary h1 {
+	border-bottom: 4px solid #7F80A4;
+	color: #8F0920;
+	font-size: 18px;
+	font-weight: bold;
+	margin: 0 0 1em;
+	padding-bottom: 5px;
+}
+
+.portlet-boundary h3 {
+	color: #3E3639;
+	font-size: 1.1em;
+	border-bottom: 1px solid #DEDEDE;
+}
+
+.portlet-boundary h6 {
+	color: #8F0920;
+	font-size: 2.5em;
+	font-weight: bold;
+	line-height: 1em;
+	margin-bottom: .5em;
+	text-decoration: none;
+}
+
+/* Sidebar */
+
+.portlet-blogs .portlet-borderless-container,
+.portlet-document-library .portlet-borderless-container,
+.portlet-message-boards .portlet-borderless-container,
+.portlet-wiki .portlet-borderless-container {
+	position: relative;
+	margin-left: 250px;
+}
+
+.sidebar {
+	background: #F0F5F7;
+	border: 1px solid #B0BAFF;
+	clear: none;
+	left: -250px;
+	margin: 0;
+	padding: 12px;
+	position: absolute;
+	width: 210px;
+	top: 0;
+}
+
+.sidebar .search-input {
+	width: 145px;
+}
+
+.sidebar .search-button {
+	width: 58px;
+}
+
+.sidebar h2 {
+	font-size: 12px;
+}
+
+.sidebar ul {
+	margin-left: .5em;
+}
+
+.sidebar ul li {
+	list-style-type: none;
+}
+
+.sidebar ul a {
+	text-decoration: none;
+}
+
+.sidebar ul a img {
+	margin-right: .5em;
+}
+
+.sidebar .disc {
+	margin-left: 1.5em;
+}
+
+.sidebar .disc li {
+	list-style-type: disc;
+	padding-left: .3em;
+}
+
+/* Breadcrumbs */
+
+.breadcrumbs .last {
+	display: block;
+	font-size: 2.5em;
+	font-weight: bold;
+	line-height: 1em;
+}
+
+.breadcrumbs .last,
+.breadcrumbs .last a {
+	color: #8F0920;
+	text-decoration: none;
+}
+
+/* List */
+
+.results-header {
+	background: #7F80A4;
+}
+
+.results-row td {
+	background: #FFF;
+}
+
+.results-row.alt td {
+	background: #EEE;
+}
+
+.results-grid {
+	border: 1px solid #CCC;
+	padding: 0;
+}
+
+/* Liferay Forms */
+
+.lfr-label {
+	color: #999;
+	font-size: 11px;
+	font-weight: bold;
+	text-align: right;
+	vertical-align: top;
+}
+
+.ie input[type="submit"], .ie input[type="button"], .ie input[type="reset"] {
+	padding: 4px 5px 3px;
+}
+
+.ie6 input.submit, .ie6 input.button {
+	padding: 4px 0px 3px;
+}
+
+/* Liferay Tabs */
+
+.ui-tabs {
+	background: #E8EFF4;
+	border: none;
+	padding: 0 0 0 10px;
+}
+
+.ui-tabs li a, .tabs li span {
+	background: transparent;
+	border: none;
+	border-left: 2px solid #E8EFF4;
+	border-right: 2px solid #E8EFF4;
+	color: #369;
+	padding: 5px 15px;
+	top: 0;
+}
+
+.ui-tabs li.current a, .ui-tabs li.current span {
+	border: none;
+	border-left: 2px solid #B0BAFF;
+	border-right: 2px solid #B0BAFF;
+	color: #000;
+	font-weight: normal;
+}
+
+.ui-tabs li a:hover, .tabs li span:hover {
+	color: #369;
+	background: none;
+}
+
+.ie6 .ui-tabs li.current a, .ie6 .ui-tabs li.current span {
+	padding-bottom: 5px;
+}
+
+.ie6 .ui-tabs li a, .ie6 .tabs li span {
+	border-bottom: none;
+	padding-bottom: 5px;
+}
+
+
+/* ---------- Portlet ---------- */
+
+/* Blogs */
+
+.portlet-blogs .entry-footer {
+	background: #DFF4FF;
+	padding: 15px;
+}
+
+.portlet-blogs .entry-title {
+	color: #369;
+	font-size: 2.1em;
+	line-height: 1.1em;
+	margin-top: .5em;
+}
+
+.portlet-blogs .entry-date,
+.portlet-blogs .entry-author {
+	color: #555;
+	font-size: 1.1em;
+}
+
+.portlet-blogs .taglib-tags-summary {
+	margin-bottom: 1em;
+}
+
+.portlet-blogs .entry-body {
+	color: #555;
+	font-family: "Times New Roman",Times,serif;
+	font-size: 1.3em;
+}
+
+.portlet-blogs .edit-actions {
+	float: right;
+	margin: 0;
+	padding: 0.5em;
+}
+
+.portlet-blogs .portlet-toolbar {
+	float: right;
+}
+
+.portlet-blogs .sidebar .recent-entries-list span {
+	display: block;
+}
+
+.portlet-blogs .taglib-social-bookmarks {
+	margin: 0;
+}
+
+/* Calendar */
+
+.portlet-calendar .portlet-borderless-container {
+	margin-left: 225px;
+	position: relative;
+}
+
+.portlet-calendar h1.title {
+	border-bottom: none;
+	font-size: 2.5em;
+	line-height: 1em;
+	margin: 0;
+}
+
+.portlet-calendar .calendar-tabs .month {
+	border-right: 2px solid #8F0920;
+	padding-right: 7px;
+}
+
+.portlet-calendar .calendar-tabs .week {
+	border-right: 2px solid #8F0920;
+	padding: 0 7px 0 5px;
+}
+
+.portlet-calendar .calendar-tabs .day {
+	padding-left: 5px;
+}
+
+.portlet-calendar .mini-calendar {
+	left: -225px;
+	position: absolute;
+}
+
+.portlet-calendar .calendar-container {
+	color: #777;
+	text-align: center;
+	width: 209px;
+}
+
+.portlet-calendar .calendar-day {
+	float: none;
+}
+
+.portlet-calendar .taglib-calendar {
+	margin: 1px;
+	width: 210px;
+}
+
+.portlet-calendar .date-selector {
+	color: #777;
+	clear: none;
+	font-size: 2em;
+	font-weight: bold;
+	line-height: 1em;
+	margin: 0 auto;
+}
+
+.portlet-calendar .date-selector td {
+	padding: 0 5px;
+}
+
+.portlet-calendar .calendar {
+	width: 100%;
+}
+
+.portlet-calendar .calendar thead {
+	border-top: 2px solid #6F686B;
+}
+
+.portlet-calendar .calendar thead td {
+	background: #D0E5F7;
+	color: #20559E;
+	font-weight: bold;
+}
+
+.portlet-calendar .calendar thead td a {
+	color: #20559E;
+}
+
+.portlet-calendar .calendar tbody td {
+	border: 1px solid #EEE;
+}
+
+.portlet-calendar .calendar tbody td td {
+	border: none;
+}
+
+.portlet-calendar .calendar .current-day {
+	background: #DDD;
+}
+
+.portlet-calendar .calendar .selected-day {
+	background: #F0F5F7;
+}
+
+.portlet-calendar .calendar .results-header td {
+	padding: 0;
+}
+
+.portlet-calendar .event-selector {
+	float: right;
+}
+
+.portlet-calendar .day-grid {
+	border-top: 2px solid #CCC;
+	margin-left: 50px;
+}
+
+.portlet-calendar .day-grid .business-hours {
+	background: #FEFEFE;
+}
+
+.portlet-calendar .day-grid .night-hours {
+	background: #EFEFEF;
+}
+
+.portlet-calendar .day-grid .hour.all-day {
+	border: none;
+	height: auto;
+	min-height: 24px;
+}
+
+.portlet-calendar .day-grid .hour {
+	height: 24px;
+	border-bottom: 1px solid #CCC;
+	position: relative;
+}
+
+.portlet-calendar .day-grid .hour span {
+	color: #777;
+	display: block;
+	font-size: .8em;
+	font-weight: bold;
+	left: -50px;
+	position: absolute;
+	text-align: right;
+	top: 0;
+	width: 45px;
+}
+
+.portlet-calendar .day-grid .event-box-wrapper .event-box span {
+	position: static;
+}
+
+.portlet-calendar .day-grid .half {
+	height: 23px;
+	border-bottom: 2px solid #CCC;
+}
+
+.portlet-calendar .day-grid .event-box {
+	background: #F0F5F7;
+	border: 2px solid #AAF;
+	padding: 5px;
+}
+
+.portlet-calendar .day-grid .event-time {
+	color: #555;
+	font-size: .8em;
+	line-height: 1em;
+}
+
+.portlet-calendar .day-grid .event-description {
+	border-top: 1px solid #AAF;
+	padding-top: .5em;
+}
+
+.portlet-calendar .sidebar {
+	left: -225px;
+	width: 180px;
+}
+
+.portlet-calendar .results-row td {
+	padding: 0;
+}
+
+.taglib-calendar th a:hover,
+.taglib-calendar th a:focus {
+	background: transparent;
+}
+
+.portlet-calendar .export-import-calendar {
+	background: #D0E5F7;
+	border-bottom: 2px solid #6F686B;
+	font-size: 10px;
+	padding: 2px;
+	height: 16px;
+}
+
+.portlet-calendar .export-import-calendar a {
+	margin-right: 3px;
+}
+
+.portlet-calendar .export-import-calendar .export-events {
+	border-left: 1px solid #6F686B;
+	padding-left: 5px;
+}
+
+.portlet-calendar .export-import-calendar.day-view {
+	margin-left: 50px;
+}
+
+/* Communities */
+
+.portlet-communities .site-list .col-2 a {
+	font-size: 10px;
+	margin-left: 5px;
+}
+
+.portlet-communities .taglib-page-iterator .search-results {
+	display: none;
+}
+
+.portlet-communities .control-wrapper {
+	margin-top: 1em;
+	position: relative;
+}
+
+.portlet-communities .add-site {
+	background: transparent url(../images/arrows/01_plus.png) no-repeat 0 50%;
+	display: block;
+	font-size: 11px;
+	padding: 0 0 0 16px;
+	position: absolute;
+	right: 5px;
+	top: 3px;
+}
+
+/* Document Library */
+
+.portlet-document-library .webdav-url {
+	margin-top: 1em;
+}
+
+/* Log In */
+
+.portlet-login {
+	margin: 0 auto;
+	padding: 15px;
+	width: 300px;
+}
+
+.page-maximized .portlet-login {
+	width: 520px;
+}
+
+.portlet-login .portlet-topper {
+	padding: 10px 0;
+}
+
+.portlet-login .portlet-title img {
+	display: none;
+}
+
+.portlet-login .portlet-icons {
+	display: none;
+}
+
+.portlet-login .portlet-content {
+	background: #F0F5F7;
+	border: 1px solid #B0BAFF;
+}
+
+.portlet-login .lfr-input-text {
+	width: 220px;
+}
+
+.portlet-login .navigation {
+	margin-top: 12px;
+}
+
+/* Message Boards */
+
+.portlet-message-boards .category-current {
+	font-weight: bold;
+}
+
+.portlet-message-boards .title {
+	display: none;
+}
+
+/* SO: Members */
+
+.so-portlet-members .invite-members a {
+	background: #EEE;
+	border: 1px solid #CCC;
+	display: block;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin: 12px 0;
+	padding: 8px 5px;
+}
+
+/* SO: Profiles */
+
+.so-portlet-profiles td {
+	padding: 0 2em 0 0;
+}
+
+.so-portlet-profiles .profile-wrapper td {
+	padding: 0 1em 0 0;
+}
+
+.so-portlet-profiles .user-detail {
+	margin-bottom: 1em;
+}
+
+.so-portlet-profiles .user-name {
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.so-portlet-profiles .user-title {
+	font-size: 1.3em;
+	line-height: 1.6em;
+}
+
+.so-portlet-profiles .user-tags {
+	margin-top: 1em;
+}
+
+.so-portlet-profiles .profile-area h3 {
+	position: relative;
+}
+
+.so-portlet-profiles .profile-area h3 span {
+	position: absolute;
+	right: 5px;
+}
+
+.so-portlet-profiles .user-address {
+	float: left;
+	margin: 0 2em 1em 0;
+}
+
+.so-portlet-profiles .user-address .line-1 {
+	color: #555;
+	font-weight: bold;
+}
+
+.so-portlet-profiles .user-site {
+	margin-bottom: 1em;
+}
+
+.so-portlet-profiles .site-name {
+	color: #555;
+	font-weight: bold;
+}
+
+.so-portlet-profiles .site-description {
+	margin-left: 1.5em;
+}
+
+/* Wikis */
+
+.portlet-wiki h1.page-title {
+	border-bottom: none;
+	font-size: 2.5em;
+	line-height: 1em;
+}

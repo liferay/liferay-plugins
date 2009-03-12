@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+#parse ($init)
+
+<html dir="#language ("lang.dir")" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>$the_title - $company_name</title>
+
+	$theme.include($top_head_include)
+</head>
+
+<body class="$css_class">
+
+$theme.include($top_messages_include)
+
+<div id="wrapper">
+	<div id="banner">
+		<h1 class="logo">
+			#if ($is_signed_in)
+				<a class="png" href="$themeDisplay.getPathFriendlyURLPublic()/$user.getScreenName()">
+			#else 
+				<a class="png" href="$company_url">
+			#end
+				<span>$company_name</span>
+			</a>
+		</h1>
+
+		#set ($groupLocalService = $serviceLocator.findService("com.liferay.portal.service.GroupLocalService"))
+		#set ($guestGroup = $groupLocalService.getGroup($company_id, "Guest"))
+
+		#if (($community_name != "") && ($group_id != $guestGroup.getGroupId()))
+			<div class="group">
+				<span>$community_name</span>
+			</div>
+		#end
+
+		#if ($has_navigation)
+			#parse ("$full_templates_path/navigation_top.vm")
+		#end
+
+		#if ($update_available_url)
+			<div class="popup-alert-notice">
+				<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>
+			</div>
+		#end
+	</div>
+
+	#if ($has_navigation)
+		#parse ("$full_templates_path/navigation.vm")
+	#end
+
+	#if ($selectable)
+		$theme.include($content_include)
+	#else
+		$portletDisplay.recycle()
+
+		$portletDisplay.setTitle($the_title)
+
+		$theme.wrapPortlet("portlet.vm", $content_include)
+	#end
+
+	<div id="footer"></div>
+</div>
+
+</body>
+
+$theme.include($bottom_include)
+
+</html>
