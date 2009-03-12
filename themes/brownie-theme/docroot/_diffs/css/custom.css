@@ -206,3 +206,24 @@ a:hover {
 	background: url(../images/custom/tabs_hover.png) no-repeat 50% 100%;
 	color: #222;
 }
+
+/* ---------- Portlet Calendar ---------- */
+
+.portlet-calendar .calendar-day .day-text,
+.portlet-calendar .results-header {
+	background: #88715A;
+}
+
+.portlet-calendar .calendar-day .day-text,
+.portlet-calendar .results-header th,
+.portlet-calendar .results-header td {
+	color: #222;
+}
+
+.taglib-calendar tr td a {
+	background: #f5e9dc;
+}
+
+.taglib-calendar tr td a:hover {
+	background: #f7f1eb;
+}
