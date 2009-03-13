@@ -16,7 +16,6 @@ a {
 	margin-bottom: 4em;
 }
 
-
 /* ---------- Banner ---------- */
 
 #banner {
@@ -88,7 +87,7 @@ body #banner h1.logo a {
 	border: 1px solid #B0BAFF;
 	border-top: none;
 	display: none;
-	left: 0px;
+	left: 0;
 	position: absolute;
 	top: 28px;
 	z-index: 20;
@@ -136,8 +135,8 @@ body #banner h1.logo a {
 	border-top: 3px solid #FFF;
 	color: #8D1E31;
 	display: block;
-	padding: 2px 15px;
 	font: bold 14px Arial, Helvetica, sans-serif;
+	padding: 2px 15px;
 }
 
 #navigation li {
@@ -149,7 +148,6 @@ body #banner h1.logo a {
 	border-top: 3px solid #7F80A4;
 	color: #3E3639;
 }
-
 
 /* ---------- Portlets ---------- */
 
@@ -167,7 +165,6 @@ body #banner h1.logo a {
 .portlet-icons {
 	display: none;
 }
-
 
 /* ---------- Layout ---------- */
 
@@ -192,7 +189,6 @@ body #banner h1.logo a {
 	padding-top: 15px;
 }
 
-
 /* ---------- Application ---------- */
 
 /* Messages */
@@ -213,9 +209,9 @@ body #banner h1.logo a {
 }
 
 .portlet-boundary h3 {
+	border-bottom: 1px solid #DEDEDE;
 	color: #3E3639;
 	font-size: 1.1em;
-	border-bottom: 1px solid #DEDEDE;
 }
 
 .portlet-boundary h6 {
@@ -233,8 +229,8 @@ body #banner h1.logo a {
 .portlet-document-library .portlet-borderless-container,
 .portlet-message-boards .portlet-borderless-container,
 .portlet-wiki .portlet-borderless-container {
-	position: relative;
 	margin-left: 250px;
+	position: relative;
 }
 
 .sidebar {
@@ -245,8 +241,8 @@ body #banner h1.logo a {
 	margin: 0;
 	padding: 12px;
 	position: absolute;
-	width: 210px;
 	top: 0;
+	width: 210px;
 }
 
 .sidebar .search-input {
@@ -330,12 +326,15 @@ body #banner h1.logo a {
 	vertical-align: top;
 }
 
-.ie input[type="submit"], .ie input[type="button"], .ie input[type="reset"] {
+.ie input[type="submit"],
+.ie input[type="button"],
+.ie input[type="reset"] {
 	padding: 4px 5px 3px;
 }
 
-.ie6 input.submit, .ie6 input.button {
-	padding: 4px 0px 3px;
+.ie6 input.submit,
+.ie6 input.button {
+	padding: 4px 0 3px;
 }
 
 /* Liferay Tabs */
@@ -346,7 +345,8 @@ body #banner h1.logo a {
 	padding: 0 0 0 10px;
 }
 
-.ui-tabs li a, .tabs li span {
+.ui-tabs li a,
+.tabs li span {
 	background: transparent;
 	border: none;
 	border-left: 2px solid #E8EFF4;
@@ -356,7 +356,8 @@ body #banner h1.logo a {
 	top: 0;
 }
 
-.ui-tabs li.current a, .ui-tabs li.current span {
+.ui-tabs li.current a,
+.ui-tabs li.current span {
 	border: none;
 	border-left: 2px solid #B0BAFF;
 	border-right: 2px solid #B0BAFF;
@@ -364,20 +365,22 @@ body #banner h1.logo a {
 	font-weight: normal;
 }
 
-.ui-tabs li a:hover, .tabs li span:hover {
-	color: #369;
+.ui-tabs li a:hover,
+.tabs li span:hover {
 	background: none;
+	color: #369;
 }
 
-.ie6 .ui-tabs li.current a, .ie6 .ui-tabs li.current span {
+.ie6 .ui-tabs li.current a,
+.ie6 .ui-tabs li.current span {
 	padding-bottom: 5px;
 }
 
-.ie6 .ui-tabs li a, .ie6 .tabs li span {
+.ie6 .ui-tabs li a,
+.ie6 .tabs li span {
 	border-bottom: none;
 	padding-bottom: 5px;
 }
-
 
 /* ---------- Portlet ---------- */
 
@@ -407,7 +410,7 @@ body #banner h1.logo a {
 
 .portlet-blogs .entry-body {
 	color: #555;
-	font-family: "Times New Roman",Times,serif;
+	font-family: "Times New Roman", Times, serif;
 	font-size: 1.3em;
 }
 
@@ -478,8 +481,8 @@ body #banner h1.logo a {
 }
 
 .portlet-calendar .date-selector {
-	color: #777;
 	clear: none;
+	color: #777;
 	font-size: 2em;
 	font-weight: bold;
 	line-height: 1em;
@@ -552,8 +555,8 @@ body #banner h1.logo a {
 }
 
 .portlet-calendar .day-grid .hour {
-	height: 24px;
 	border-bottom: 1px solid #CCC;
+	height: 24px;
 	position: relative;
 }
 
@@ -574,8 +577,8 @@ body #banner h1.logo a {
 }
 
 .portlet-calendar .day-grid .half {
-	height: 23px;
 	border-bottom: 2px solid #CCC;
+	height: 23px;
 }
 
 .portlet-calendar .day-grid .event-box {
@@ -613,8 +616,8 @@ body #banner h1.logo a {
 	background: #D0E5F7;
 	border-bottom: 2px solid #6F686B;
 	font-size: 10px;
-	padding: 2px;
 	height: 16px;
+	padding: 2px;
 }
 
 .portlet-calendar .export-import-calendar a {
