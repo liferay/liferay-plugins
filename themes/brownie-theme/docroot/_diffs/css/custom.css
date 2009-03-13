@@ -172,17 +172,6 @@ a:hover {
 	background-color: #FFFDD3;
 }
 
-.portlet-calendar .calendar-day .day-text,
-.portlet-calendar .results-header {
-	background-color: #7AD;
-}
-
-.taglib-calendar tr td a:hover {
-	background: #F0F5F7;
-	color: #369;
-	text-decoration: none;
-}
-
 .lfr-actions.portlet-options .lfr-trigger {
 	position: relative;
 	right: 2px;
@@ -221,9 +210,11 @@ a:hover {
 }
 
 .taglib-calendar tr td a {
-	background: #f5e9dc;
+	background: #F5E9DC;
 }
 
 .taglib-calendar tr td a:hover {
-	background: #f7f1eb;
+	background: #F7F1EB;
+	color: #369;
+	text-decoration: none;
 }
