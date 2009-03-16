@@ -278,7 +278,6 @@ html body {
 	font: 11px Tahoma, Geneva, sans-serif;
 	position: relative;
 	width: 226px;
-	height: 274px;
 }
 
 .panel-icon {
