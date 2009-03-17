@@ -63,7 +63,7 @@
 }
 </style>
 <h2 class="welcome-header">Welcome to Liferay</h2>
-<p class="welcome-intro">Liferay is a complete all-in-one open source enterprise portal solution that is used in more than 100,000 deployments worldwide. Liferay customers and users include Benetton, BMW, Lufthansa Flight Training, World Vision, and more. These organizations and many others like it use Liferay every day to create web-based solutions for enterprise needs, including:</p>
+<p class="welcome-intro">Liferay is a complete all-in-one open source enterprise portal solution that is used in more than 100,000 deployments worldwide. Liferay customers and users include Benetton, Lufthansa Flight Training, World Vision, and more. These organizations and many others like it use Liferay every day to create web-based solutions for enterprise needs, including:</p>
 <table class="welcome-grid">
     <tbody>
         <tr class="header">
