@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2008-2009 Liferay, Inc. All rights reserved.
  *
@@ -15,10 +14,3 @@
  * You should have received a copy of the GNU General Public License along with
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
-%>
-
-<%@ include file="/html/portlet/blogs/init.jsp" %>
-
-<liferay-util:include page="/html/portlet/blogs/sidebar_with_form.jsp" />
-
-<liferay-util:include page="/html/portlet/blogs/edit_entry.portal.jsp" />
