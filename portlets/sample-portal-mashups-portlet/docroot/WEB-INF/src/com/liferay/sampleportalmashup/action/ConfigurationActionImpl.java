@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.liferay.sampleportalmashup.action;
 
 import com.liferay.portal.kernel.portlet.ConfigurationAction;
@@ -34,7 +35,6 @@ import javax.portlet.PortletConfig;
 import javax.portlet.PortletPreferences;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-
 
 /**
  * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
@@ -79,4 +79,5 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 
 		return "/configuration.jsp";
 	}
+
 }

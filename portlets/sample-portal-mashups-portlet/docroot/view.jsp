@@ -1,6 +1,6 @@
 <%
 /**
- * Copyright (c) 2000-2008 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -78,7 +78,7 @@ String dlDisplayPath = preferences.getValue("dlDisplayPath", StringPool.BLANK);
 			};
 
 			function <portlet:namespace/>imageViewerCode(name, url) {
-				return "<img src='" + url + "'/>\n<br/>\n<div>Displaying file: " + name + "</div>";
+				return "<img src='" + url + "'/>\n<br />\n<div>Displaying file: " + name + "</div>";
 			}
 
 			function <portlet:namespace/>multimediaViewerCode(name, url) {
@@ -98,7 +98,7 @@ String dlDisplayPath = preferences.getValue("dlDisplayPath", StringPool.BLANK);
 				output += "<param name='showstatusbar' value='1'>\n";
 				output += "<embed src ='" + url + "' type='" + objTypeTag + "' autoplay='true' autostart='1' width='280' height='69' controller='1' showstatusbar='1' bgcolor='#ffffff'></embed>\n";
 				output += "</object>\n";
-				output += "<br/><div>Playing file name: " + name + "</div>\n";
+				output += "<br /><div>Playing file name: " + name + "</div>\n";
 
 				return output;
 			}
