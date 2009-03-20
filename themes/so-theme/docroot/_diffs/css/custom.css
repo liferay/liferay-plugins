@@ -98,8 +98,16 @@ body #banner h1.logo a {
 	width: 224px;
 }
 
+#navigation-top .my-home {
+	border-left: 1px solid #B0BAFF;
+}
+
 #navigation-top .my-profile {
 	border-left: 1px solid #B0BAFF;
+}
+
+#navigation-top .my-search {
+	padding-top: 2px;
 }
 
 #navigation-top .my-sites {
