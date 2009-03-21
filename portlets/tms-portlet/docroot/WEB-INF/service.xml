@@ -3,11 +3,11 @@
 
 <service-builder package-path="com.liferay.tms">
 	<namespace>TMS</namespace>
-	<entity name="ProjectEntry" local-service="true" remote-service="false">
+	<entity name="TasksEntry" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="projectEntryId" type="long" primary="true" />
+		<column name="tasksEntryId" type="long" primary="true" />
 
 		<!-- Group instance -->
 
@@ -24,97 +24,45 @@
 		<!-- Other fields -->
 
 		<column name="title" type="String" />
-		<column name="description" type="String" /> 
-		<column name="finishDate" type="Date" />
-
-		<!-- References -->
-
-		<reference package-path="com.liferay.portlet.tags" entity="TagsAsset" />
-		<reference package-path="com.liferay.portlet.tags" entity="TagsEntry" />
-	</entity>
-	<entity name="ProjectMilestone" local-service="true" remote-service="false">
-
-		<!-- PK fields -->
-
-		<column name="projectMilestoneId" type="long" primary="true" />
-
-		<!-- Audit fields -->
-
-		<column name="companyId" type="long" />
-		<column name="userId" type="long" />
-		<column name="userName" type="String" />
-		<column name="createDate" type="Date" />
-		<column name="modifiedDate" type="Date" />
-
-		<!-- Other fields -->
-
-		<column name="title" type="String" />
-		<column name="description" type="String" />
-		<column name="projectEntryId" type="long" />
-		<column name="dueDate" type="Date" />
-		<column name="finishDate" type="Date" />
-	</entity>
-	<entity name="TaskEntry" local-service="true" remote-service="false">
-
-		<!-- PK fields -->
-
-		<column name="taskEntryId" type="long" primary="true" />
-
-		<!-- Group instance -->
-
-		<column name="groupId" type="long" />
-
-		<!-- Audit fields -->
-
-		<column name="companyId" type="long" />
-		<column name="userId" type="long" />
-		<column name="userName" type="String" />
-		<column name="createDate" type="Date" />
-		<column name="modifiedDate" type="Date" />
-
-		<!-- Other fields -->
-
-		<column name="projectEntryId" type="long" />
-		<column name="projectMilestoneId" type="long" />
-		<column name="title" type="String" />
-		<column name="description" type="String" />
+		<column name="priority" type="int" />
 		<column name="assigneeUserId" type="long" />
 		<column name="resolverUserId" type="long" />
 		<column name="dueDate" type="Date" />
 		<column name="finishDate" type="Date" />
 		<column name="status" type="int" />
 
-		<!-- References -->
+		<!-- Order -->
 
-		<reference package-path="com.liferay.portlet.tags" entity="TagsAsset" />
-		<reference package-path="com.liferay.portlet.tags" entity="TagsEntry" />
-	</entity>
-	<entity name="TaskView" local-service="true" remote-service="false">
+		<order by="desc">
+			<order-column name="priority" />
+			<order-column name="createDate" />
+		</order>
 
-		<!-- PK fields -->
+		<!-- Finder methods -->
 
-		<column name="taskViewId" type="long" primary="true" />
-
-		<!-- Group instance -->
-
-		<column name="groupId" type="long" />
-
-		<!-- Audit fields -->
-
-		<column name="companyId" type="String" />
-		<column name="userId" type="String" />
-		<column name="userName" type="String" />
-		<column name="createDate" type="Date" />
-		<column name="modifiedDate" type="Date" />
-
-		<!-- Other fields -->
-
-		<column name="title" type="String" />
-		<column name="tags" type="String" />
-		<column name="notTags" type="String" />
-		<column name="assigneeUserId" type="long" />
-		<column name="reporterUserId" type="long" />
-		<column name="includeProjectTasks" type="int" />
-		<column name="isPrivate" type="boolean" />
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
+		<finder name="AssigneeUserId" return-type="Collection">
+			<finder-column name="assigneeUserId" />
+		</finder>
+		<finder name="ResolverUserId" return-type="Collection">
+			<finder-column name="resolverUserId" />
+		</finder>
+		<finder name="G_U" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="userId" />
+		</finder>
+		<finder name="G_A" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="assigneeUserId" />
+		</finder>
+		<finder name="G_R" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="resolverUserId" />
+		</finder>
 	</entity>
 </service-builder>
