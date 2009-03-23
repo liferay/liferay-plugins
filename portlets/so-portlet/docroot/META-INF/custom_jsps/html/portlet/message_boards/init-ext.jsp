@@ -18,6 +18,7 @@
 %>
 
 <%
-showSearch = false;
+showSearch = true;
 childrenMessagesTaggable = false;
+includeFormTag = true;
 %>

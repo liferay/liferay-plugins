@@ -33,8 +33,6 @@ PortletURL tabs1URL = renderResponse.createRenderURL();
 	<form action="<%= searchURL %>" method="get" name="<portlet:namespace />sidebarFm" onSubmit="submitForm(this); return false;">
 	<liferay-portlet:renderURLParams varImpl="searchURL" />
 	<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
-	<input name="<portlet:namespace />breadcrumbsCategoryId" type="hidden" value="<%= categoryId %>" />
-	<input name="<portlet:namespace />searchCategoryIds" type="hidden" value="<%= categoryId %>" />
 
 	<div class="search">
 		<input class="search-input" id="<portlet:namespace />keywords1" name="<portlet:namespace />keywords" type="text" />
