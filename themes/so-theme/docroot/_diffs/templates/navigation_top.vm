@@ -9,10 +9,6 @@
 
 			$my_places_url.setParameter("struts_action", "/my_places/view")
 
-			<li class="my-search">
-				$theme.search()
-			</li>
-
 			#if ($show_sign_out)
 				<li class="my-home">
 					<a class="heading" href="$themeDisplay.getPathFriendlyURLPublic()/$user.getScreenName()/home">#language ("my-home")</a>
