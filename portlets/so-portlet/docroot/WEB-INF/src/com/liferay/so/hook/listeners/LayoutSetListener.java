@@ -19,7 +19,6 @@ package com.liferay.so.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
@@ -50,12 +49,12 @@ import javax.portlet.PortletPreferences;
  * @author Brian Wing Shun Chan
  *
  */
-public class LayoutSetListener extends BaseModelListener {
+public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
-	public void onAfterCreate(BaseModel model) throws ModelListenerException {
+	public void onAfterCreate(LayoutSet layoutSet)
+		throws ModelListenerException {
+
 		try {
-			LayoutSet layoutSet = (LayoutSet)model;
-
 			if (layoutSet.isPrivateLayout()) {
 				return;
 			}

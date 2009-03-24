@@ -23,7 +23,6 @@
 package com.liferay.wol.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
-import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.wol.service.WallEntryLocalServiceUtil;
@@ -34,12 +33,10 @@ import com.liferay.wol.service.WallEntryLocalServiceUtil;
  * @author Brian Wing Shun Chan
  *
  */
-public class GroupListener extends BaseModelListener {
+public class GroupListener extends BaseModelListener<Group> {
 
-	public void onBeforeRemove(BaseModel model) throws ModelListenerException {
+	public void onBeforeRemove(Group group) throws ModelListenerException {
 		try {
-			Group group = (Group)model;
-
 			if (group.isUser()) {
 				WallEntryLocalServiceUtil.deleteWallEntries(group.getGroupId());
 			}
