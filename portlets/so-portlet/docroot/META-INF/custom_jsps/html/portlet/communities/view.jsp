@@ -80,16 +80,13 @@ pageContext.setAttribute("portletURL", portletURL);
 			List<Group> openGroups = new ArrayList<Group>(allGroups.size());
 
 			for (Group group : allGroups) {
-				boolean displayPrivateGroup = false;
+				boolean displayGroup = true;
 
-				if ((GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.UPDATE)) ||
-					(GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.DELETE)) ||
-					(group.getType() == GroupConstants.TYPE_COMMUNITY_OPEN)) {
-
-					displayPrivateGroup = true;
+				if ((group.getType() == GroupConstants.TYPE_COMMUNITY_PRIVATE)) {
+					displayGroup = false;
 				}
 
-				if (!myGroups.contains(group) && displayPrivateGroup && !group.getName().equals(GroupConstants.GUEST)) {
+				if (!myGroups.contains(group) && displayGroup && !group.getName().equals(GroupConstants.GUEST)) {
 					 openGroups.add(group);
 				}
 			}
