@@ -82,7 +82,7 @@ pageContext.setAttribute("portletURL", portletURL);
 			for (Group group : allGroups) {
 				boolean displayGroup = true;
 
-				if ((group.getType() == GroupConstants.TYPE_COMMUNITY_PRIVATE)) {
+				if (group.getType() == GroupConstants.TYPE_COMMUNITY_PRIVATE) {
 					displayGroup = false;
 				}
 
