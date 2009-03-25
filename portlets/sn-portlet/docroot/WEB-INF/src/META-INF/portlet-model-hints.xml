@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <model-hints>
-	<model name="com.liferay.wol.model.JIRAAction">
+	<model name="com.liferay.sn.model.JIRAAction">
 		<field name="jiraActionId" type="long" />
 		<field name="jiraUserId" type="String" />
 		<field name="createDate" type="Date" />
@@ -11,13 +11,13 @@
 		<field name="body" type="String" />
 		<field name="jiraGroupName" type="String" />
 	</model>
-	<model name="com.liferay.wol.model.JIRAChangeGroup">
+	<model name="com.liferay.sn.model.JIRAChangeGroup">
 		<field name="jiraChangeGroupId" type="long" />
 		<field name="jiraUserId" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="jiraIssueId" type="long" />
 	</model>
-	<model name="com.liferay.wol.model.JIRAChangeItem">
+	<model name="com.liferay.sn.model.JIRAChangeItem">
 		<field name="jiraChangeItemId" type="long" />
 		<field name="jiraChangeGroupId" type="long" />
 		<field name="field" type="String" />
@@ -26,7 +26,7 @@
 		<field name="newValue" type="String" />
 		<field name="newString" type="String" />
 	</model>
-	<model name="com.liferay.wol.model.JIRAIssue">
+	<model name="com.liferay.sn.model.JIRAIssue">
 		<field name="jiraIssueId" type="long" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
@@ -39,7 +39,7 @@
 		<field name="resolution" type="String" />
 		<field name="status" type="String" />
 	</model>
-	<model name="com.liferay.wol.model.MeetupsEntry">
+	<model name="com.liferay.sn.model.MeetupsEntry">
 		<field name="meetupsEntryId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
@@ -57,7 +57,7 @@
 		<field name="price" type="double" />
 		<field name="thumbnailId" type="long" />
 	</model>
-	<model name="com.liferay.wol.model.MeetupsRegistration">
+	<model name="com.liferay.sn.model.MeetupsRegistration">
 		<field name="meetupsRegistrationId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
@@ -70,14 +70,14 @@
 			<hint-collection name="TEXTAREA" />
 		</field>
 	</model>
-	<model name="com.liferay.wol.model.SVNRepository">
+	<model name="com.liferay.sn.model.SVNRepository">
 		<field name="svnRepositoryId" type="long" />
 		<field name="url" type="String">
 			<hint name="max-length">200</hint>
 		</field>
 		<field name="revisionNumber" type="long" />
 	</model>
-	<model name="com.liferay.wol.model.SVNRevision">
+	<model name="com.liferay.sn.model.SVNRevision">
 		<field name="svnRevisionId" type="long" />
 		<field name="svnUserId" type="String" />
 		<field name="createDate" type="Date" />
@@ -87,7 +87,7 @@
 			<hint-collection name="TEXTAREA" />
 		</field>
 	</model>
-	<model name="com.liferay.wol.model.WallEntry">
+	<model name="com.liferay.sn.model.WallEntry">
 		<field name="wallEntryId" type="long" />
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />

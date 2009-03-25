@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
-	<class name="com.liferay.wol.model.impl.JIRAActionImpl" table="jiraaction">
+	<class name="com.liferay.sn.model.impl.JIRAActionImpl" table="jiraaction">
 		<cache usage="read-write" />
 		<id name="jiraActionId" column="id" type="long">
 			<generator class="assigned" />
@@ -15,7 +15,7 @@
 		<property name="body" column="actionbody" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="jiraGroupName" column="actionlevel" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="com.liferay.wol.model.impl.JIRAChangeGroupImpl" table="changegroup">
+	<class name="com.liferay.sn.model.impl.JIRAChangeGroupImpl" table="changegroup">
 		<cache usage="read-write" />
 		<id name="jiraChangeGroupId" column="id" type="long">
 			<generator class="assigned" />
@@ -24,7 +24,7 @@
 		<property name="createDate" column="created" type="org.hibernate.type.TimestampType" />
 		<property name="jiraIssueId" column="issueid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
-	<class name="com.liferay.wol.model.impl.JIRAChangeItemImpl" table="changeitem">
+	<class name="com.liferay.sn.model.impl.JIRAChangeItemImpl" table="changeitem">
 		<cache usage="read-write" />
 		<id name="jiraChangeItemId" column="id" type="long">
 			<generator class="assigned" />
@@ -36,7 +36,7 @@
 		<property name="newValue" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="newString" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="com.liferay.wol.model.impl.JIRAIssueImpl" table="jiraissue">
+	<class name="com.liferay.sn.model.impl.JIRAIssueImpl" table="jiraissue">
 		<id name="jiraIssueId" column="id" type="long">
 			<generator class="assigned" />
 		</id>
@@ -51,7 +51,7 @@
 		<property name="resolution" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="status" column="issuestatus" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="com.liferay.wol.model.impl.MeetupsEntryImpl" table="WOL_MeetupsEntry">
+	<class name="com.liferay.sn.model.impl.MeetupsEntryImpl" table="WOL_MeetupsEntry">
 		<cache usage="read-write" />
 		<id name="meetupsEntryId" type="long">
 			<generator class="assigned" />
@@ -70,7 +70,7 @@
 		<property name="price" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 		<property name="thumbnailId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
-	<class name="com.liferay.wol.model.impl.MeetupsRegistrationImpl" table="WOL_MeetupsRegistration">
+	<class name="com.liferay.sn.model.impl.MeetupsRegistrationImpl" table="WOL_MeetupsRegistration">
 		<cache usage="read-write" />
 		<id name="meetupsRegistrationId" type="long">
 			<generator class="assigned" />
@@ -84,7 +84,7 @@
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="comments" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="com.liferay.wol.model.impl.SVNRepositoryImpl" table="WOL_SVNRepository">
+	<class name="com.liferay.sn.model.impl.SVNRepositoryImpl" table="WOL_SVNRepository">
 		<cache usage="read-write" />
 		<id name="svnRepositoryId" type="long">
 			<generator class="assigned" />
@@ -92,7 +92,7 @@
 		<property name="url" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="revisionNumber" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
-	<class name="com.liferay.wol.model.impl.SVNRevisionImpl" table="WOL_SVNRevision">
+	<class name="com.liferay.sn.model.impl.SVNRevisionImpl" table="WOL_SVNRevision">
 		<cache usage="read-write" />
 		<id name="svnRevisionId" type="long">
 			<generator class="assigned" />
@@ -103,7 +103,7 @@
 		<property name="revisionNumber" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="comments" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="com.liferay.wol.model.impl.WallEntryImpl" table="WOL_WallEntry">
+	<class name="com.liferay.sn.model.impl.WallEntryImpl" table="WOL_WallEntry">
 		<cache usage="read-write" />
 		<id name="wallEntryId" type="long">
 			<generator class="assigned" />

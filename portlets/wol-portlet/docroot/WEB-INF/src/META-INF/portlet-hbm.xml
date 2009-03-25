@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
-	<class name="com.liferay.wol.model.impl.JIRAActionImpl" table="jiraaction">
+	<class name="com.liferay.sn.model.impl.JIRAActionImpl" table="jiraaction">
 		<cache usage="read-write" />
 		<id name="jiraActionId" column="id" type="long">
 			<generator class="assigned" />
