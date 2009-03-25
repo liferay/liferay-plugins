@@ -103,13 +103,13 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl
 
 	public JIRAChangeItem remove(JIRAChangeItem jiraChangeItem)
 		throws SystemException {
-		for (ModelListener listener : listeners) {
+		for (ModelListener<JIRAChangeItem> listener : listeners) {
 			listener.onBeforeRemove(jiraChangeItem);
 		}
 
 		jiraChangeItem = removeImpl(jiraChangeItem);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<JIRAChangeItem> listener : listeners) {
 			listener.onAfterRemove(jiraChangeItem);
 		}
 
@@ -162,7 +162,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl
 		throws SystemException {
 		boolean isNew = jiraChangeItem.isNew();
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<JIRAChangeItem> listener : listeners) {
 			if (isNew) {
 				listener.onBeforeCreate(jiraChangeItem);
 			}
@@ -173,7 +173,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl
 
 		jiraChangeItem = updateImpl(jiraChangeItem, merge);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<JIRAChangeItem> listener : listeners) {
 			if (isNew) {
 				listener.onAfterCreate(jiraChangeItem);
 			}
@@ -382,7 +382,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl
 		List<JIRAChangeItem> list = findByJiraChangeGroupId(jiraChangeGroupId,
 				0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAChangeItem exists with the key {");
@@ -406,7 +406,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl
 		List<JIRAChangeItem> list = findByJiraChangeGroupId(jiraChangeGroupId,
 				count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAChangeItem exists with the key {");
@@ -729,10 +729,10 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener> listenersList = new ArrayList<ModelListener>();
+				List<ModelListener<JIRAChangeItem>> listenersList = new ArrayList<ModelListener<JIRAChangeItem>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener)Class.forName(
+					listenersList.add((ModelListener<JIRAChangeItem>)Class.forName(
 							listenerClassName).newInstance());
 				}
 

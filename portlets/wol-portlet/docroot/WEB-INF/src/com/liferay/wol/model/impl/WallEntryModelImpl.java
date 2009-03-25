@@ -50,7 +50,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public class WallEntryModelImpl extends BaseModelImpl {
+public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
 	public static final String TABLE_NAME = "WOL_WallEntry";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "wallEntryId", new Integer(Types.BIGINT) },
@@ -271,13 +271,7 @@ public class WallEntryModelImpl extends BaseModelImpl {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		WallEntryImpl wallEntry = (WallEntryImpl)obj;
-
+	public int compareTo(WallEntry wallEntry) {
 		int value = 0;
 
 		value = DateUtil.compareTo(getCreateDate(), wallEntry.getCreateDate());
@@ -296,10 +290,10 @@ public class WallEntryModelImpl extends BaseModelImpl {
 			return false;
 		}
 
-		WallEntryImpl wallEntry = null;
+		WallEntry wallEntry = null;
 
 		try {
-			wallEntry = (WallEntryImpl)obj;
+			wallEntry = (WallEntry)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;

@@ -89,6 +89,12 @@ public class JIRAIssueLocalServiceUtil {
 		return getService().updateJIRAIssue(jiraIssue);
 	}
 
+	public static com.liferay.wol.model.JIRAIssue updateJIRAIssue(
+		com.liferay.wol.model.JIRAIssue jiraIssue, boolean merge)
+		throws com.liferay.portal.SystemException {
+		return getService().updateJIRAIssue(jiraIssue, merge);
+	}
+
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> getAssigneeJIRAIssues(
 		long projectId, java.lang.String assigneeJiraUserId, int start, int end)
 		throws com.liferay.portal.SystemException {

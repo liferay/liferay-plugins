@@ -90,6 +90,12 @@ public class MeetupsEntryLocalServiceUtil {
 		return getService().updateMeetupsEntry(meetupsEntry);
 	}
 
+	public static com.liferay.wol.model.MeetupsEntry updateMeetupsEntry(
+		com.liferay.wol.model.MeetupsEntry meetupsEntry, boolean merge)
+		throws com.liferay.portal.SystemException {
+		return getService().updateMeetupsEntry(meetupsEntry, merge);
+	}
+
 	public static com.liferay.wol.model.MeetupsEntry addMeetupsEntry(
 		long userId, java.lang.String title, java.lang.String description,
 		int startDateMonth, int startDateDay, int startDateYear,

@@ -114,6 +114,13 @@ public abstract class JIRAActionLocalServiceBaseImpl
 		return jiraActionPersistence.update(jiraAction, true);
 	}
 
+	public JIRAAction updateJIRAAction(JIRAAction jiraAction, boolean merge)
+		throws SystemException {
+		jiraAction.setNew(false);
+
+		return jiraActionPersistence.update(jiraAction, merge);
+	}
+
 	public JIRAActionLocalService getJIRAActionLocalService() {
 		return jiraActionLocalService;
 	}

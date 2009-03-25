@@ -22,10 +22,6 @@
 
 package com.liferay.wol.service.persistence;
 
-import com.liferay.portal.PortalException;
-import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.annotation.Propagation;
-import com.liferay.portal.kernel.annotation.Transactional;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -34,8 +30,6 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * @author Brian Wing Shun Chan
  *
  */
-@Transactional(rollbackFor =  {
-	PortalException.class, SystemException.class})
 public interface MeetupsRegistrationPersistence extends BasePersistence {
 	public com.liferay.wol.model.MeetupsRegistration create(
 		long meetupsRegistrationId);
@@ -61,7 +55,6 @@ public interface MeetupsRegistrationPersistence extends BasePersistence {
 		com.liferay.wol.model.MeetupsRegistration meetupsRegistration,
 		boolean merge) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.MeetupsRegistration findByPrimaryKey(
 		long meetupsRegistrationId)
 		throws com.liferay.portal.SystemException,
@@ -70,43 +63,36 @@ public interface MeetupsRegistrationPersistence extends BasePersistence {
 	public com.liferay.wol.model.MeetupsRegistration fetchByPrimaryKey(
 		long meetupsRegistrationId) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsRegistration> findByMeetupsEntryId(
 		long meetupsEntryId) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsRegistration> findByMeetupsEntryId(
 		long meetupsEntryId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsRegistration> findByMeetupsEntryId(
 		long meetupsEntryId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.MeetupsRegistration findByMeetupsEntryId_First(
 		long meetupsEntryId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchMeetupsRegistrationException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.MeetupsRegistration findByMeetupsEntryId_Last(
 		long meetupsEntryId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchMeetupsRegistrationException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.MeetupsRegistration[] findByMeetupsEntryId_PrevAndNext(
 		long meetupsRegistrationId, long meetupsEntryId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchMeetupsRegistrationException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.MeetupsRegistration findByU_ME(long userId,
 		long meetupsEntryId)
 		throws com.liferay.portal.SystemException,
@@ -115,62 +101,51 @@ public interface MeetupsRegistrationPersistence extends BasePersistence {
 	public com.liferay.wol.model.MeetupsRegistration fetchByU_ME(long userId,
 		long meetupsEntryId) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsRegistration> findByME_S(
 		long meetupsEntryId, int status)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsRegistration> findByME_S(
 		long meetupsEntryId, int status, int start, int end)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsRegistration> findByME_S(
 		long meetupsEntryId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.MeetupsRegistration findByME_S_First(
 		long meetupsEntryId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchMeetupsRegistrationException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.MeetupsRegistration findByME_S_Last(
 		long meetupsEntryId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchMeetupsRegistrationException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.MeetupsRegistration[] findByME_S_PrevAndNext(
 		long meetupsRegistrationId, long meetupsEntryId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchMeetupsRegistrationException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsRegistration> findAll()
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsRegistration> findAll(
 		int start, int end) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsRegistration> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
@@ -187,18 +162,14 @@ public interface MeetupsRegistrationPersistence extends BasePersistence {
 
 	public void removeAll() throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByMeetupsEntryId(long meetupsEntryId)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByU_ME(long userId, long meetupsEntryId)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByME_S(long meetupsEntryId, int status)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countAll() throws com.liferay.portal.SystemException;
 }

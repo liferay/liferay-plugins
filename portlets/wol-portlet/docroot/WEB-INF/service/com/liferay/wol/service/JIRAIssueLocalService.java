@@ -73,6 +73,10 @@ public interface JIRAIssueLocalService {
 		com.liferay.wol.model.JIRAIssue jiraIssue)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.wol.model.JIRAIssue updateJIRAIssue(
+		com.liferay.wol.model.JIRAIssue jiraIssue, boolean merge)
+		throws com.liferay.portal.SystemException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.JIRAIssue> getAssigneeJIRAIssues(
 		long projectId, java.lang.String assigneeJiraUserId, int start, int end)

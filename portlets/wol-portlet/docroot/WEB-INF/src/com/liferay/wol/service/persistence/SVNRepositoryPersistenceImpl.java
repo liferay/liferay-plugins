@@ -103,13 +103,13 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 
 	public SVNRepository remove(SVNRepository svnRepository)
 		throws SystemException {
-		for (ModelListener listener : listeners) {
+		for (ModelListener<SVNRepository> listener : listeners) {
 			listener.onBeforeRemove(svnRepository);
 		}
 
 		svnRepository = removeImpl(svnRepository);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<SVNRepository> listener : listeners) {
 			listener.onAfterRemove(svnRepository);
 		}
 
@@ -162,7 +162,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 		throws SystemException {
 		boolean isNew = svnRepository.isNew();
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<SVNRepository> listener : listeners) {
 			if (isNew) {
 				listener.onBeforeCreate(svnRepository);
 			}
@@ -173,7 +173,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 
 		svnRepository = updateImpl(svnRepository, merge);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<SVNRepository> listener : listeners) {
 			if (isNew) {
 				listener.onAfterCreate(svnRepository);
 			}
@@ -315,16 +315,15 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 
 				List<SVNRepository> list = q.list();
 
+				if (list.isEmpty()) {
+					return null;
+				}
+
 				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
 					finderArgs, list);
 
-				if (list.size() == 0) {
-					return null;
-				}
-				else {
-					return list.get(0);
-				}
+				return list.get(0);
 			}
 			catch (Exception e) {
 				throw processException(e);
@@ -336,7 +335,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 		else {
 			List<SVNRepository> list = (List<SVNRepository>)result;
 
-			if (list.size() == 0) {
+			if (list.isEmpty()) {
 				return null;
 			}
 			else {
@@ -613,10 +612,10 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener> listenersList = new ArrayList<ModelListener>();
+				List<ModelListener<SVNRepository>> listenersList = new ArrayList<ModelListener<SVNRepository>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener)Class.forName(
+					listenersList.add((ModelListener<SVNRepository>)Class.forName(
 							listenerClassName).newInstance());
 				}
 

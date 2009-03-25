@@ -102,13 +102,13 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public JIRAAction remove(JIRAAction jiraAction) throws SystemException {
-		for (ModelListener listener : listeners) {
+		for (ModelListener<JIRAAction> listener : listeners) {
 			listener.onBeforeRemove(jiraAction);
 		}
 
 		jiraAction = removeImpl(jiraAction);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<JIRAAction> listener : listeners) {
 			listener.onAfterRemove(jiraAction);
 		}
 
@@ -160,7 +160,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 		throws SystemException {
 		boolean isNew = jiraAction.isNew();
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<JIRAAction> listener : listeners) {
 			if (isNew) {
 				listener.onBeforeCreate(jiraAction);
 			}
@@ -171,7 +171,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 
 		jiraAction = updateImpl(jiraAction, merge);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<JIRAAction> listener : listeners) {
 			if (isNew) {
 				listener.onAfterCreate(jiraAction);
 			}
@@ -400,7 +400,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 		throws NoSuchJIRAActionException, SystemException {
 		List<JIRAAction> list = findByJiraUserId(jiraUserId, 0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAAction exists with the key {");
@@ -424,7 +424,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 		List<JIRAAction> list = findByJiraUserId(jiraUserId, count - 1, count,
 				obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAAction exists with the key {");
@@ -648,7 +648,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 		throws NoSuchJIRAActionException, SystemException {
 		List<JIRAAction> list = findByJiraIssueId(jiraIssueId, 0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAAction exists with the key {");
@@ -672,7 +672,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 		List<JIRAAction> list = findByJiraIssueId(jiraIssueId, count - 1,
 				count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAAction exists with the key {");
@@ -901,7 +901,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 		throws NoSuchJIRAActionException, SystemException {
 		List<JIRAAction> list = findByType(type, 0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAAction exists with the key {");
@@ -923,7 +923,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 
 		List<JIRAAction> list = findByType(type, count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAAction exists with the key {");
@@ -1418,10 +1418,10 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener> listenersList = new ArrayList<ModelListener>();
+				List<ModelListener<JIRAAction>> listenersList = new ArrayList<ModelListener<JIRAAction>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener)Class.forName(
+					listenersList.add((ModelListener<JIRAAction>)Class.forName(
 							listenerClassName).newInstance());
 				}
 

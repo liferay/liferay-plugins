@@ -36,7 +36,8 @@ import java.lang.reflect.Proxy;
  * @author Brian Wing Shun Chan
  *
  */
-public class JIRAChangeItemClp extends BaseModelImpl implements JIRAChangeItem {
+public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
+	implements JIRAChangeItem {
 	public JIRAChangeItemClp() {
 	}
 
@@ -147,13 +148,7 @@ public class JIRAChangeItemClp extends BaseModelImpl implements JIRAChangeItem {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		JIRAChangeItemClp jiraChangeItem = (JIRAChangeItemClp)obj;
-
+	public int compareTo(JIRAChangeItem jiraChangeItem) {
 		long pk = jiraChangeItem.getPrimaryKey();
 
 		if (getPrimaryKey() < pk) {

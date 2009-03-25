@@ -32,7 +32,7 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  *
  */
-public interface JIRAIssueModel extends BaseModel {
+public interface JIRAIssueModel extends BaseModel<JIRAIssue> {
 	public long getPrimaryKey();
 
 	public void setPrimaryKey(long pk);

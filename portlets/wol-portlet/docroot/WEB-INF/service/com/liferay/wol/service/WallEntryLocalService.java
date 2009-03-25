@@ -73,6 +73,10 @@ public interface WallEntryLocalService {
 		com.liferay.wol.model.WallEntry wallEntry)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.wol.model.WallEntry updateWallEntry(
+		com.liferay.wol.model.WallEntry wallEntry, boolean merge)
+		throws com.liferay.portal.SystemException;
+
 	public com.liferay.wol.model.WallEntry addWallEntry(long groupId,
 		long userId, java.lang.String comments,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)

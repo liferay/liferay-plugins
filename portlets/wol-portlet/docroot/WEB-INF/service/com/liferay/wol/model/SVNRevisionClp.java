@@ -38,7 +38,8 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  *
  */
-public class SVNRevisionClp extends BaseModelImpl implements SVNRevision {
+public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
+	implements SVNRevision {
 	public SVNRevisionClp() {
 	}
 
@@ -151,13 +152,7 @@ public class SVNRevisionClp extends BaseModelImpl implements SVNRevision {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		SVNRevisionClp svnRevision = (SVNRevisionClp)obj;
-
+	public int compareTo(SVNRevision svnRevision) {
 		int value = 0;
 
 		if (getRevisionNumber() < svnRevision.getRevisionNumber()) {

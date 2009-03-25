@@ -48,7 +48,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public class JIRAChangeItemModelImpl extends BaseModelImpl {
+public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
 	public static final String TABLE_NAME = "changeitem";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "id", new Integer(Types.BIGINT) },
@@ -255,13 +255,7 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		JIRAChangeItemImpl jiraChangeItem = (JIRAChangeItemImpl)obj;
-
+	public int compareTo(JIRAChangeItem jiraChangeItem) {
 		long pk = jiraChangeItem.getPrimaryKey();
 
 		if (getPrimaryKey() < pk) {
@@ -280,10 +274,10 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl {
 			return false;
 		}
 
-		JIRAChangeItemImpl jiraChangeItem = null;
+		JIRAChangeItem jiraChangeItem = null;
 
 		try {
-			jiraChangeItem = (JIRAChangeItemImpl)obj;
+			jiraChangeItem = (JIRAChangeItem)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;

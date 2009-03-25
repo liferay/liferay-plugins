@@ -77,6 +77,10 @@ public interface MeetupsRegistrationLocalService {
 		com.liferay.wol.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.wol.model.MeetupsRegistration updateMeetupsRegistration(
+		com.liferay.wol.model.MeetupsRegistration meetupsRegistration,
+		boolean merge) throws com.liferay.portal.SystemException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsRegistration> getMeetupsRegistrations(
 		long meetupsEntryId, int status, int start, int end)

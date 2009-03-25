@@ -90,6 +90,12 @@ public class MeetupsRegistrationLocalServiceUtil {
 		return getService().updateMeetupsRegistration(meetupsRegistration);
 	}
 
+	public static com.liferay.wol.model.MeetupsRegistration updateMeetupsRegistration(
+		com.liferay.wol.model.MeetupsRegistration meetupsRegistration,
+		boolean merge) throws com.liferay.portal.SystemException {
+		return getService().updateMeetupsRegistration(meetupsRegistration, merge);
+	}
+
 	public static java.util.List<com.liferay.wol.model.MeetupsRegistration> getMeetupsRegistrations(
 		long meetupsEntryId, int status, int start, int end)
 		throws com.liferay.portal.SystemException {

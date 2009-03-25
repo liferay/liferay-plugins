@@ -103,13 +103,13 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 
 	public JIRAChangeGroup remove(JIRAChangeGroup jiraChangeGroup)
 		throws SystemException {
-		for (ModelListener listener : listeners) {
+		for (ModelListener<JIRAChangeGroup> listener : listeners) {
 			listener.onBeforeRemove(jiraChangeGroup);
 		}
 
 		jiraChangeGroup = removeImpl(jiraChangeGroup);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<JIRAChangeGroup> listener : listeners) {
 			listener.onAfterRemove(jiraChangeGroup);
 		}
 
@@ -162,7 +162,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 		throws SystemException {
 		boolean isNew = jiraChangeGroup.isNew();
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<JIRAChangeGroup> listener : listeners) {
 			if (isNew) {
 				listener.onBeforeCreate(jiraChangeGroup);
 			}
@@ -173,7 +173,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 
 		jiraChangeGroup = updateImpl(jiraChangeGroup, merge);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<JIRAChangeGroup> listener : listeners) {
 			if (isNew) {
 				listener.onAfterCreate(jiraChangeGroup);
 			}
@@ -406,7 +406,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 		throws NoSuchJIRAChangeGroupException, SystemException {
 		List<JIRAChangeGroup> list = findByJiraUserId(jiraUserId, 0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAChangeGroup exists with the key {");
@@ -430,7 +430,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 		List<JIRAChangeGroup> list = findByJiraUserId(jiraUserId, count - 1,
 				count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAChangeGroup exists with the key {");
@@ -656,7 +656,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 		throws NoSuchJIRAChangeGroupException, SystemException {
 		List<JIRAChangeGroup> list = findByJiraIssueId(jiraIssueId, 0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAChangeGroup exists with the key {");
@@ -680,7 +680,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 		List<JIRAChangeGroup> list = findByJiraIssueId(jiraIssueId, count - 1,
 				count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAChangeGroup exists with the key {");
@@ -1092,10 +1092,10 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener> listenersList = new ArrayList<ModelListener>();
+				List<ModelListener<JIRAChangeGroup>> listenersList = new ArrayList<ModelListener<JIRAChangeGroup>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener)Class.forName(
+					listenersList.add((ModelListener<JIRAChangeGroup>)Class.forName(
 							listenerClassName).newInstance());
 				}
 

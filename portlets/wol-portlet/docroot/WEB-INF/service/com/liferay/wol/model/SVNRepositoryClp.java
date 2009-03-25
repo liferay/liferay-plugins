@@ -36,7 +36,8 @@ import java.lang.reflect.Proxy;
  * @author Brian Wing Shun Chan
  *
  */
-public class SVNRepositoryClp extends BaseModelImpl implements SVNRepository {
+public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
+	implements SVNRepository {
 	public SVNRepositoryClp() {
 	}
 
@@ -115,13 +116,7 @@ public class SVNRepositoryClp extends BaseModelImpl implements SVNRepository {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		SVNRepositoryClp svnRepository = (SVNRepositoryClp)obj;
-
+	public int compareTo(SVNRepository svnRepository) {
 		int value = 0;
 
 		value = getUrl().compareTo(svnRepository.getUrl());

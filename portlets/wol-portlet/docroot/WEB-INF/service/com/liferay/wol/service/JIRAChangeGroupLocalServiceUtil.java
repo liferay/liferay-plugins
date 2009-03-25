@@ -90,6 +90,12 @@ public class JIRAChangeGroupLocalServiceUtil {
 		return getService().updateJIRAChangeGroup(jiraChangeGroup);
 	}
 
+	public static com.liferay.wol.model.JIRAChangeGroup updateJIRAChangeGroup(
+		com.liferay.wol.model.JIRAChangeGroup jiraChangeGroup, boolean merge)
+		throws com.liferay.portal.SystemException {
+		return getService().updateJIRAChangeGroup(jiraChangeGroup, merge);
+	}
+
 	public static JIRAChangeGroupLocalService getService() {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate("wol-portlet",

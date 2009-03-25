@@ -115,6 +115,14 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 		return meetupsRegistrationPersistence.update(meetupsRegistration, true);
 	}
 
+	public MeetupsRegistration updateMeetupsRegistration(
+		MeetupsRegistration meetupsRegistration, boolean merge)
+		throws SystemException {
+		meetupsRegistration.setNew(false);
+
+		return meetupsRegistrationPersistence.update(meetupsRegistration, merge);
+	}
+
 	public JIRAActionLocalService getJIRAActionLocalService() {
 		return jiraActionLocalService;
 	}

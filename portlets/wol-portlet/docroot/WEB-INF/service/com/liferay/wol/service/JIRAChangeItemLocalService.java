@@ -77,6 +77,10 @@ public interface JIRAChangeItemLocalService {
 		com.liferay.wol.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.wol.model.JIRAChangeItem updateJIRAChangeItem(
+		com.liferay.wol.model.JIRAChangeItem jiraChangeItem, boolean merge)
+		throws com.liferay.portal.SystemException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.JIRAChangeItem> getJIRAChangeItems(
 		long jiraChangeGroupId) throws com.liferay.portal.SystemException;

@@ -22,10 +22,6 @@
 
 package com.liferay.wol.service.persistence;
 
-import com.liferay.portal.PortalException;
-import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.annotation.Propagation;
-import com.liferay.portal.kernel.annotation.Transactional;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -34,8 +30,6 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * @author Brian Wing Shun Chan
  *
  */
-@Transactional(rollbackFor =  {
-	PortalException.class, SystemException.class})
 public interface SVNRevisionPersistence extends BasePersistence {
 	public com.liferay.wol.model.SVNRevision create(long svnRevisionId);
 
@@ -59,7 +53,6 @@ public interface SVNRevisionPersistence extends BasePersistence {
 		com.liferay.wol.model.SVNRevision svnRevision, boolean merge)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.SVNRevision findByPrimaryKey(
 		long svnRevisionId)
 		throws com.liferay.portal.SystemException,
@@ -68,134 +61,111 @@ public interface SVNRevisionPersistence extends BasePersistence {
 	public com.liferay.wol.model.SVNRevision fetchByPrimaryKey(
 		long svnRevisionId) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.SVNRevision> findBySVNUserId(
 		java.lang.String svnUserId) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.SVNRevision> findBySVNUserId(
 		java.lang.String svnUserId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.SVNRevision> findBySVNUserId(
 		java.lang.String svnUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.SVNRevision findBySVNUserId_First(
 		java.lang.String svnUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchSVNRevisionException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.SVNRevision findBySVNUserId_Last(
 		java.lang.String svnUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchSVNRevisionException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.SVNRevision[] findBySVNUserId_PrevAndNext(
 		long svnRevisionId, java.lang.String svnUserId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchSVNRevisionException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.SVNRevision> findBySVNRepositoryId(
 		long svnRepositoryId) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.SVNRevision> findBySVNRepositoryId(
 		long svnRepositoryId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.SVNRevision> findBySVNRepositoryId(
 		long svnRepositoryId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.SVNRevision findBySVNRepositoryId_First(
 		long svnRepositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchSVNRevisionException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.SVNRevision findBySVNRepositoryId_Last(
 		long svnRepositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchSVNRevisionException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.SVNRevision[] findBySVNRepositoryId_PrevAndNext(
 		long svnRevisionId, long svnRepositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchSVNRevisionException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.SVNRevision> findBySVNU_SVNR(
 		java.lang.String svnUserId, long svnRepositoryId)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.SVNRevision> findBySVNU_SVNR(
 		java.lang.String svnUserId, long svnRepositoryId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.SVNRevision> findBySVNU_SVNR(
 		java.lang.String svnUserId, long svnRepositoryId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.SVNRevision findBySVNU_SVNR_First(
 		java.lang.String svnUserId, long svnRepositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchSVNRevisionException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.SVNRevision findBySVNU_SVNR_Last(
 		java.lang.String svnUserId, long svnRepositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchSVNRevisionException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.SVNRevision[] findBySVNU_SVNR_PrevAndNext(
 		long svnRevisionId, java.lang.String svnUserId, long svnRepositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchSVNRevisionException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.SVNRevision> findAll()
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.SVNRevision> findAll(
 		int start, int end) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.SVNRevision> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
@@ -211,18 +181,14 @@ public interface SVNRevisionPersistence extends BasePersistence {
 
 	public void removeAll() throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countBySVNUserId(java.lang.String svnUserId)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countBySVNRepositoryId(long svnRepositoryId)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countBySVNU_SVNR(java.lang.String svnUserId, long svnRepositoryId)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countAll() throws com.liferay.portal.SystemException;
 }

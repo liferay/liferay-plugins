@@ -77,6 +77,10 @@ public interface MeetupsEntryLocalService {
 		com.liferay.wol.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.wol.model.MeetupsEntry updateMeetupsEntry(
+		com.liferay.wol.model.MeetupsEntry meetupsEntry, boolean merge)
+		throws com.liferay.portal.SystemException;
+
 	public com.liferay.wol.model.MeetupsEntry addMeetupsEntry(long userId,
 		java.lang.String title, java.lang.String description,
 		int startDateMonth, int startDateDay, int startDateYear,

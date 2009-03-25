@@ -50,7 +50,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public class JIRAActionModelImpl extends BaseModelImpl {
+public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 	public static final String TABLE_NAME = "jiraaction";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "id", new Integer(Types.BIGINT) },
@@ -275,13 +275,7 @@ public class JIRAActionModelImpl extends BaseModelImpl {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		JIRAActionImpl jiraAction = (JIRAActionImpl)obj;
-
+	public int compareTo(JIRAAction jiraAction) {
 		int value = 0;
 
 		value = DateUtil.compareTo(getModifiedDate(),
@@ -301,10 +295,10 @@ public class JIRAActionModelImpl extends BaseModelImpl {
 			return false;
 		}
 
-		JIRAActionImpl jiraAction = null;
+		JIRAAction jiraAction = null;
 
 		try {
-			jiraAction = (JIRAActionImpl)obj;
+			jiraAction = (JIRAAction)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;

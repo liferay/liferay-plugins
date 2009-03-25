@@ -30,7 +30,7 @@ import com.liferay.portal.model.BaseModel;
  * @author Brian Wing Shun Chan
  *
  */
-public interface SVNRepositoryModel extends BaseModel {
+public interface SVNRepositoryModel extends BaseModel<SVNRepository> {
 	public long getPrimaryKey();
 
 	public void setPrimaryKey(long pk);

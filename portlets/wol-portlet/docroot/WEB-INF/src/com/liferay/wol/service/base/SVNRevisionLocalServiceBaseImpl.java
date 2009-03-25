@@ -114,6 +114,13 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 		return svnRevisionPersistence.update(svnRevision, true);
 	}
 
+	public SVNRevision updateSVNRevision(SVNRevision svnRevision, boolean merge)
+		throws SystemException {
+		svnRevision.setNew(false);
+
+		return svnRevisionPersistence.update(svnRevision, merge);
+	}
+
 	public JIRAActionLocalService getJIRAActionLocalService() {
 		return jiraActionLocalService;
 	}

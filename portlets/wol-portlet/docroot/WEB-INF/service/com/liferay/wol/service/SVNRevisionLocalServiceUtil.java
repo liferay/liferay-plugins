@@ -90,6 +90,12 @@ public class SVNRevisionLocalServiceUtil {
 		return getService().updateSVNRevision(svnRevision);
 	}
 
+	public static com.liferay.wol.model.SVNRevision updateSVNRevision(
+		com.liferay.wol.model.SVNRevision svnRevision, boolean merge)
+		throws com.liferay.portal.SystemException {
+		return getService().updateSVNRevision(svnRevision, merge);
+	}
+
 	public static com.liferay.wol.model.SVNRevision addSVNRevision(
 		java.lang.String svnUserId, java.util.Date createDate,
 		long svnRepositoryId, long revisionNumber, java.lang.String comments)

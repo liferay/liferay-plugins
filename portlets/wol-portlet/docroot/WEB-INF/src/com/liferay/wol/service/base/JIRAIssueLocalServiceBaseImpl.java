@@ -113,6 +113,13 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 		return jiraIssuePersistence.update(jiraIssue, true);
 	}
 
+	public JIRAIssue updateJIRAIssue(JIRAIssue jiraIssue, boolean merge)
+		throws SystemException {
+		jiraIssue.setNew(false);
+
+		return jiraIssuePersistence.update(jiraIssue, merge);
+	}
+
 	public JIRAActionLocalService getJIRAActionLocalService() {
 		return jiraActionLocalService;
 	}

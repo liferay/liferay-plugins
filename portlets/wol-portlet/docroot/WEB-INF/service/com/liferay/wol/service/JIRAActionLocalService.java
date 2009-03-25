@@ -72,4 +72,8 @@ public interface JIRAActionLocalService {
 	public com.liferay.wol.model.JIRAAction updateJIRAAction(
 		com.liferay.wol.model.JIRAAction jiraAction)
 		throws com.liferay.portal.SystemException;
+
+	public com.liferay.wol.model.JIRAAction updateJIRAAction(
+		com.liferay.wol.model.JIRAAction jiraAction, boolean merge)
+		throws com.liferay.portal.SystemException;
 }

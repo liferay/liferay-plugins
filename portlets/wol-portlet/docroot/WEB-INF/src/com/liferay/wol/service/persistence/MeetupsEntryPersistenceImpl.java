@@ -103,13 +103,13 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 
 	public MeetupsEntry remove(MeetupsEntry meetupsEntry)
 		throws SystemException {
-		for (ModelListener listener : listeners) {
+		for (ModelListener<MeetupsEntry> listener : listeners) {
 			listener.onBeforeRemove(meetupsEntry);
 		}
 
 		meetupsEntry = removeImpl(meetupsEntry);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<MeetupsEntry> listener : listeners) {
 			listener.onAfterRemove(meetupsEntry);
 		}
 
@@ -162,7 +162,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 		throws SystemException {
 		boolean isNew = meetupsEntry.isNew();
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<MeetupsEntry> listener : listeners) {
 			if (isNew) {
 				listener.onBeforeCreate(meetupsEntry);
 			}
@@ -173,7 +173,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 
 		meetupsEntry = updateImpl(meetupsEntry, merge);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<MeetupsEntry> listener : listeners) {
 			if (isNew) {
 				listener.onAfterCreate(meetupsEntry);
 			}
@@ -390,7 +390,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 		throws NoSuchMeetupsEntryException, SystemException {
 		List<MeetupsEntry> list = findByCompanyId(companyId, 0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No MeetupsEntry exists with the key {");
@@ -414,7 +414,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 		List<MeetupsEntry> list = findByCompanyId(companyId, count - 1, count,
 				obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No MeetupsEntry exists with the key {");
@@ -746,10 +746,10 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener> listenersList = new ArrayList<ModelListener>();
+				List<ModelListener<MeetupsEntry>> listenersList = new ArrayList<ModelListener<MeetupsEntry>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener)Class.forName(
+					listenersList.add((ModelListener<MeetupsEntry>)Class.forName(
 							listenerClassName).newInstance());
 				}
 

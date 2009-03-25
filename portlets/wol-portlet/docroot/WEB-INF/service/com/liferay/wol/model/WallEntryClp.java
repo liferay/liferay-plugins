@@ -39,7 +39,7 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  *
  */
-public class WallEntryClp extends BaseModelImpl implements WallEntry {
+public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry {
 	public WallEntryClp() {
 	}
 
@@ -160,13 +160,7 @@ public class WallEntryClp extends BaseModelImpl implements WallEntry {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		WallEntryClp wallEntry = (WallEntryClp)obj;
-
+	public int compareTo(WallEntry wallEntry) {
 		int value = 0;
 
 		value = DateUtil.compareTo(getCreateDate(), wallEntry.getCreateDate());

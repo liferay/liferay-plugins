@@ -90,6 +90,12 @@ public class JIRAChangeItemLocalServiceUtil {
 		return getService().updateJIRAChangeItem(jiraChangeItem);
 	}
 
+	public static com.liferay.wol.model.JIRAChangeItem updateJIRAChangeItem(
+		com.liferay.wol.model.JIRAChangeItem jiraChangeItem, boolean merge)
+		throws com.liferay.portal.SystemException {
+		return getService().updateJIRAChangeItem(jiraChangeItem, merge);
+	}
+
 	public static java.util.List<com.liferay.wol.model.JIRAChangeItem> getJIRAChangeItems(
 		long jiraChangeGroupId) throws com.liferay.portal.SystemException {
 		return getService().getJIRAChangeItems(jiraChangeGroupId);

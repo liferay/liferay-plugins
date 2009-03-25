@@ -50,7 +50,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public class JIRAChangeGroupModelImpl extends BaseModelImpl {
+public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup> {
 	public static final String TABLE_NAME = "changegroup";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "id", new Integer(Types.BIGINT) },
@@ -202,13 +202,7 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		JIRAChangeGroupImpl jiraChangeGroup = (JIRAChangeGroupImpl)obj;
-
+	public int compareTo(JIRAChangeGroup jiraChangeGroup) {
 		int value = 0;
 
 		value = DateUtil.compareTo(getCreateDate(),
@@ -228,10 +222,10 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl {
 			return false;
 		}
 
-		JIRAChangeGroupImpl jiraChangeGroup = null;
+		JIRAChangeGroup jiraChangeGroup = null;
 
 		try {
-			jiraChangeGroup = (JIRAChangeGroupImpl)obj;
+			jiraChangeGroup = (JIRAChangeGroup)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;

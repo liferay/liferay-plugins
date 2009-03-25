@@ -32,7 +32,7 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  *
  */
-public interface MeetupsRegistrationModel extends BaseModel {
+public interface MeetupsRegistrationModel extends BaseModel<MeetupsRegistration> {
 	public long getPrimaryKey();
 
 	public void setPrimaryKey(long pk);

@@ -90,6 +90,12 @@ public class JIRAActionLocalServiceUtil {
 		return getService().updateJIRAAction(jiraAction);
 	}
 
+	public static com.liferay.wol.model.JIRAAction updateJIRAAction(
+		com.liferay.wol.model.JIRAAction jiraAction, boolean merge)
+		throws com.liferay.portal.SystemException {
+		return getService().updateJIRAAction(jiraAction, merge);
+	}
+
 	public static JIRAActionLocalService getService() {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate("wol-portlet",

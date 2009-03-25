@@ -101,13 +101,13 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public WallEntry remove(WallEntry wallEntry) throws SystemException {
-		for (ModelListener listener : listeners) {
+		for (ModelListener<WallEntry> listener : listeners) {
 			listener.onBeforeRemove(wallEntry);
 		}
 
 		wallEntry = removeImpl(wallEntry);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<WallEntry> listener : listeners) {
 			listener.onAfterRemove(wallEntry);
 		}
 
@@ -159,7 +159,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 		throws SystemException {
 		boolean isNew = wallEntry.isNew();
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<WallEntry> listener : listeners) {
 			if (isNew) {
 				listener.onBeforeCreate(wallEntry);
 			}
@@ -170,7 +170,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 		wallEntry = updateImpl(wallEntry, merge);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<WallEntry> listener : listeners) {
 			if (isNew) {
 				listener.onAfterCreate(wallEntry);
 			}
@@ -384,7 +384,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 		throws NoSuchWallEntryException, SystemException {
 		List<WallEntry> list = findByGroupId(groupId, 0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WallEntry exists with the key {");
@@ -406,7 +406,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 		List<WallEntry> list = findByGroupId(groupId, count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WallEntry exists with the key {");
@@ -621,7 +621,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 		throws NoSuchWallEntryException, SystemException {
 		List<WallEntry> list = findByUserId(userId, 0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WallEntry exists with the key {");
@@ -643,7 +643,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 		List<WallEntry> list = findByUserId(userId, count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WallEntry exists with the key {");
@@ -872,7 +872,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 		OrderByComparator obc) throws NoSuchWallEntryException, SystemException {
 		List<WallEntry> list = findByG_U(groupId, userId, 0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WallEntry exists with the key {");
@@ -897,7 +897,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 		List<WallEntry> list = findByG_U(groupId, userId, count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WallEntry exists with the key {");
@@ -1389,10 +1389,10 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener> listenersList = new ArrayList<ModelListener>();
+				List<ModelListener<WallEntry>> listenersList = new ArrayList<ModelListener<WallEntry>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener)Class.forName(
+					listenersList.add((ModelListener<WallEntry>)Class.forName(
 							listenerClassName).newInstance());
 				}
 

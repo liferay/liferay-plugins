@@ -103,13 +103,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 	}
 
 	public JIRAIssue remove(JIRAIssue jiraIssue) throws SystemException {
-		for (ModelListener listener : listeners) {
+		for (ModelListener<JIRAIssue> listener : listeners) {
 			listener.onBeforeRemove(jiraIssue);
 		}
 
 		jiraIssue = removeImpl(jiraIssue);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<JIRAIssue> listener : listeners) {
 			listener.onAfterRemove(jiraIssue);
 		}
 
@@ -161,7 +161,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		throws SystemException {
 		boolean isNew = jiraIssue.isNew();
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<JIRAIssue> listener : listeners) {
 			if (isNew) {
 				listener.onBeforeCreate(jiraIssue);
 			}
@@ -172,7 +172,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 		jiraIssue = updateImpl(jiraIssue, merge);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<JIRAIssue> listener : listeners) {
 			if (isNew) {
 				listener.onAfterCreate(jiraIssue);
 			}
@@ -386,7 +386,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		throws NoSuchJIRAIssueException, SystemException {
 		List<JIRAIssue> list = findByProjectId(projectId, 0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -408,7 +408,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 		List<JIRAIssue> list = findByProjectId(projectId, count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -550,16 +550,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 				List<JIRAIssue> list = q.list();
 
+				if (list.isEmpty()) {
+					return null;
+				}
+
 				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
 					finderArgs, list);
 
-				if (list.size() == 0) {
-					return null;
-				}
-				else {
-					return list.get(0);
-				}
+				return list.get(0);
 			}
 			catch (Exception e) {
 				throw processException(e);
@@ -571,7 +570,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		else {
 			List<JIRAIssue> list = (List<JIRAIssue>)result;
 
-			if (list.size() == 0) {
+			if (list.isEmpty()) {
 				return null;
 			}
 			else {
@@ -739,7 +738,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		List<JIRAIssue> list = findByReporterJiraUserId(reporterJiraUserId, 0,
 				1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -762,7 +761,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		List<JIRAIssue> list = findByReporterJiraUserId(reporterJiraUserId,
 				count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -1000,7 +999,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		List<JIRAIssue> list = findByAssigneeJiraUserId(assigneeJiraUserId, 0,
 				1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -1023,7 +1022,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		List<JIRAIssue> list = findByAssigneeJiraUserId(assigneeJiraUserId,
 				count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -1274,7 +1273,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		OrderByComparator obc) throws NoSuchJIRAIssueException, SystemException {
 		List<JIRAIssue> list = findByMD_P(modifiedDate, projectId, 0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -1300,7 +1299,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		List<JIRAIssue> list = findByMD_P(modifiedDate, projectId, count - 1,
 				count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -1570,7 +1569,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		List<JIRAIssue> list = findByP_RJUI(projectId, reporterJiraUserId, 0,
 				1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -1597,7 +1596,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		List<JIRAIssue> list = findByP_RJUI(projectId, reporterJiraUserId,
 				count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -1867,7 +1866,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		List<JIRAIssue> list = findByP_AJUI(projectId, assigneeJiraUserId, 0,
 				1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -1894,7 +1893,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		List<JIRAIssue> list = findByP_AJUI(projectId, assigneeJiraUserId,
 				count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -2193,7 +2192,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		List<JIRAIssue> list = findByMD_P_RJUI(modifiedDate, projectId,
 				reporterJiraUserId, 0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -2223,7 +2222,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		List<JIRAIssue> list = findByMD_P_RJUI(modifiedDate, projectId,
 				reporterJiraUserId, count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -2538,7 +2537,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		List<JIRAIssue> list = findByMD_P_AJUI(modifiedDate, projectId,
 				assigneeJiraUserId, 0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -2568,7 +2567,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		List<JIRAIssue> list = findByMD_P_AJUI(modifiedDate, projectId,
 				assigneeJiraUserId, count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -2887,7 +2886,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		List<JIRAIssue> list = findByP_RJUI_S(projectId, reporterJiraUserId,
 				status, 0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -2917,7 +2916,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		List<JIRAIssue> list = findByP_RJUI_S(projectId, reporterJiraUserId,
 				status, count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -3236,7 +3235,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		List<JIRAIssue> list = findByP_AJUI_S(projectId, assigneeJiraUserId,
 				status, 0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -3266,7 +3265,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		List<JIRAIssue> list = findByP_AJUI_S(projectId, assigneeJiraUserId,
 				status, count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No JIRAIssue exists with the key {");
@@ -4573,10 +4572,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener> listenersList = new ArrayList<ModelListener>();
+				List<ModelListener<JIRAIssue>> listenersList = new ArrayList<ModelListener<JIRAIssue>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener)Class.forName(
+					listenersList.add((ModelListener<JIRAIssue>)Class.forName(
 							listenerClassName).newInstance());
 				}
 

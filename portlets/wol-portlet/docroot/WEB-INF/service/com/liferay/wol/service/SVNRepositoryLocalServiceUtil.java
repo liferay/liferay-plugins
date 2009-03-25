@@ -90,6 +90,12 @@ public class SVNRepositoryLocalServiceUtil {
 		return getService().updateSVNRepository(svnRepository);
 	}
 
+	public static com.liferay.wol.model.SVNRepository updateSVNRepository(
+		com.liferay.wol.model.SVNRepository svnRepository, boolean merge)
+		throws com.liferay.portal.SystemException {
+		return getService().updateSVNRepository(svnRepository, merge);
+	}
+
 	public static com.liferay.wol.model.SVNRepository getSVNRepository(
 		java.lang.String url)
 		throws com.liferay.portal.PortalException,

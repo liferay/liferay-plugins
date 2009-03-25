@@ -22,10 +22,6 @@
 
 package com.liferay.wol.service.persistence;
 
-import com.liferay.portal.PortalException;
-import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.annotation.Propagation;
-import com.liferay.portal.kernel.annotation.Transactional;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -34,8 +30,6 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * @author Brian Wing Shun Chan
  *
  */
-@Transactional(rollbackFor =  {
-	PortalException.class, SystemException.class})
 public interface MeetupsEntryPersistence extends BasePersistence {
 	public com.liferay.wol.model.MeetupsEntry create(long meetupsEntryId);
 
@@ -59,7 +53,6 @@ public interface MeetupsEntryPersistence extends BasePersistence {
 		com.liferay.wol.model.MeetupsEntry meetupsEntry, boolean merge)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.MeetupsEntry findByPrimaryKey(
 		long meetupsEntryId)
 		throws com.liferay.portal.SystemException,
@@ -68,59 +61,48 @@ public interface MeetupsEntryPersistence extends BasePersistence {
 	public com.liferay.wol.model.MeetupsEntry fetchByPrimaryKey(
 		long meetupsEntryId) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsEntry> findByCompanyId(
 		long companyId) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsEntry> findByCompanyId(
 		long companyId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsEntry> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.MeetupsEntry findByCompanyId_First(
 		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchMeetupsEntryException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.MeetupsEntry findByCompanyId_Last(
 		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchMeetupsEntryException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.MeetupsEntry[] findByCompanyId_PrevAndNext(
 		long meetupsEntryId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchMeetupsEntryException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsEntry> findAll()
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsEntry> findAll(
 		int start, int end) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.MeetupsEntry> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
@@ -130,10 +112,8 @@ public interface MeetupsEntryPersistence extends BasePersistence {
 
 	public void removeAll() throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByCompanyId(long companyId)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countAll() throws com.liferay.portal.SystemException;
 }

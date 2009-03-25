@@ -104,13 +104,13 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 	public MeetupsRegistration remove(MeetupsRegistration meetupsRegistration)
 		throws SystemException {
-		for (ModelListener listener : listeners) {
+		for (ModelListener<MeetupsRegistration> listener : listeners) {
 			listener.onBeforeRemove(meetupsRegistration);
 		}
 
 		meetupsRegistration = removeImpl(meetupsRegistration);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<MeetupsRegistration> listener : listeners) {
 			listener.onAfterRemove(meetupsRegistration);
 		}
 
@@ -163,7 +163,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 		boolean merge) throws SystemException {
 		boolean isNew = meetupsRegistration.isNew();
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<MeetupsRegistration> listener : listeners) {
 			if (isNew) {
 				listener.onBeforeCreate(meetupsRegistration);
 			}
@@ -174,7 +174,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 		meetupsRegistration = updateImpl(meetupsRegistration, merge);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<MeetupsRegistration> listener : listeners) {
 			if (isNew) {
 				listener.onAfterCreate(meetupsRegistration);
 			}
@@ -394,7 +394,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 		List<MeetupsRegistration> list = findByMeetupsEntryId(meetupsEntryId,
 				0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No MeetupsRegistration exists with the key {");
@@ -418,7 +418,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 		List<MeetupsRegistration> list = findByMeetupsEntryId(meetupsEntryId,
 				count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No MeetupsRegistration exists with the key {");
@@ -570,16 +570,15 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 				List<MeetupsRegistration> list = q.list();
 
+				if (list.isEmpty()) {
+					return null;
+				}
+
 				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
 					finderClassName, finderMethodName, finderParams,
 					finderArgs, list);
 
-				if (list.size() == 0) {
-					return null;
-				}
-				else {
-					return list.get(0);
-				}
+				return list.get(0);
 			}
 			catch (Exception e) {
 				throw processException(e);
@@ -591,7 +590,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 		else {
 			List<MeetupsRegistration> list = (List<MeetupsRegistration>)result;
 
-			if (list.size() == 0) {
+			if (list.isEmpty()) {
 				return null;
 			}
 			else {
@@ -765,7 +764,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 		List<MeetupsRegistration> list = findByME_S(meetupsEntryId, status, 0,
 				1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No MeetupsRegistration exists with the key {");
@@ -792,7 +791,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 		List<MeetupsRegistration> list = findByME_S(meetupsEntryId, status,
 				count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No MeetupsRegistration exists with the key {");
@@ -1309,10 +1308,10 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener> listenersList = new ArrayList<ModelListener>();
+				List<ModelListener<MeetupsRegistration>> listenersList = new ArrayList<ModelListener<MeetupsRegistration>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener)Class.forName(
+					listenersList.add((ModelListener<MeetupsRegistration>)Class.forName(
 							listenerClassName).newInstance());
 				}
 

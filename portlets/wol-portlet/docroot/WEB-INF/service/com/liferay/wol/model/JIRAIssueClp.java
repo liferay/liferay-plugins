@@ -39,7 +39,7 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  *
  */
-public class JIRAIssueClp extends BaseModelImpl implements JIRAIssue {
+public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue {
 	public JIRAIssueClp() {
 	}
 
@@ -190,13 +190,7 @@ public class JIRAIssueClp extends BaseModelImpl implements JIRAIssue {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		JIRAIssueClp jiraIssue = (JIRAIssueClp)obj;
-
+	public int compareTo(JIRAIssue jiraIssue) {
 		int value = 0;
 
 		value = DateUtil.compareTo(getModifiedDate(),

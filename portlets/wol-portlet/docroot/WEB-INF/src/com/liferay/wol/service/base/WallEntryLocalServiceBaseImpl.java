@@ -113,6 +113,13 @@ public abstract class WallEntryLocalServiceBaseImpl
 		return wallEntryPersistence.update(wallEntry, true);
 	}
 
+	public WallEntry updateWallEntry(WallEntry wallEntry, boolean merge)
+		throws SystemException {
+		wallEntry.setNew(false);
+
+		return wallEntryPersistence.update(wallEntry, merge);
+	}
+
 	public JIRAActionLocalService getJIRAActionLocalService() {
 		return jiraActionLocalService;
 	}

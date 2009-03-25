@@ -48,7 +48,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public class SVNRepositoryModelImpl extends BaseModelImpl {
+public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository> {
 	public static final String TABLE_NAME = "WOL_SVNRepository";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "svnRepositoryId", new Integer(Types.BIGINT) },
@@ -179,13 +179,7 @@ public class SVNRepositoryModelImpl extends BaseModelImpl {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		SVNRepositoryImpl svnRepository = (SVNRepositoryImpl)obj;
-
+	public int compareTo(SVNRepository svnRepository) {
 		int value = 0;
 
 		value = getUrl().compareTo(svnRepository.getUrl());
@@ -202,10 +196,10 @@ public class SVNRepositoryModelImpl extends BaseModelImpl {
 			return false;
 		}
 
-		SVNRepositoryImpl svnRepository = null;
+		SVNRepository svnRepository = null;
 
 		try {
-			svnRepository = (SVNRepositoryImpl)obj;
+			svnRepository = (SVNRepository)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;

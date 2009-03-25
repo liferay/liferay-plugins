@@ -32,7 +32,7 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  *
  */
-public interface JIRAChangeGroupModel extends BaseModel {
+public interface JIRAChangeGroupModel extends BaseModel<JIRAChangeGroup> {
 	public long getPrimaryKey();
 
 	public void setPrimaryKey(long pk);

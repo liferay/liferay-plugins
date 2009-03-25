@@ -22,10 +22,6 @@
 
 package com.liferay.wol.service.persistence;
 
-import com.liferay.portal.PortalException;
-import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.annotation.Propagation;
-import com.liferay.portal.kernel.annotation.Transactional;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -34,8 +30,6 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * @author Brian Wing Shun Chan
  *
  */
-@Transactional(rollbackFor =  {
-	PortalException.class, SystemException.class})
 public interface SVNRepositoryPersistence extends BasePersistence {
 	public com.liferay.wol.model.SVNRepository create(long svnRepositoryId);
 
@@ -59,7 +53,6 @@ public interface SVNRepositoryPersistence extends BasePersistence {
 		com.liferay.wol.model.SVNRepository svnRepository, boolean merge)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.SVNRepository findByPrimaryKey(
 		long svnRepositoryId)
 		throws com.liferay.portal.SystemException,
@@ -68,7 +61,6 @@ public interface SVNRepositoryPersistence extends BasePersistence {
 	public com.liferay.wol.model.SVNRepository fetchByPrimaryKey(
 		long svnRepositoryId) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.SVNRepository findByUrl(java.lang.String url)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchSVNRepositoryException;
@@ -76,25 +68,20 @@ public interface SVNRepositoryPersistence extends BasePersistence {
 	public com.liferay.wol.model.SVNRepository fetchByUrl(java.lang.String url)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.SVNRepository> findAll()
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.SVNRepository> findAll(
 		int start, int end) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.SVNRepository> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
@@ -105,10 +92,8 @@ public interface SVNRepositoryPersistence extends BasePersistence {
 
 	public void removeAll() throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByUrl(java.lang.String url)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countAll() throws com.liferay.portal.SystemException;
 }

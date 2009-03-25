@@ -22,6 +22,7 @@
 
 package com.liferay.wol.service;
 
+import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.LongWrapper;
@@ -321,6 +322,40 @@ public class JIRAChangeGroupLocalServiceClp
 		try {
 			returnObj = _classLoaderProxy.invoke("updateJIRAChangeGroup",
 					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.wol.model.JIRAChangeGroup)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.liferay.wol.model.JIRAChangeGroup updateJIRAChangeGroup(
+		com.liferay.wol.model.JIRAChangeGroup jiraChangeGroup, boolean merge)
+		throws com.liferay.portal.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(jiraChangeGroup);
+
+		if (jiraChangeGroup == null) {
+			paramObj0 = new NullWrapper("com.liferay.wol.model.JIRAChangeGroup");
+		}
+
+		Object paramObj1 = new BooleanWrapper(merge);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("updateJIRAChangeGroup",
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.SystemException) {

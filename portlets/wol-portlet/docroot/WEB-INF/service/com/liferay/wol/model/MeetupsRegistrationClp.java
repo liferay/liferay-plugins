@@ -39,7 +39,7 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  *
  */
-public class MeetupsRegistrationClp extends BaseModelImpl
+public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 	implements MeetupsRegistration {
 	public MeetupsRegistrationClp() {
 	}
@@ -171,13 +171,7 @@ public class MeetupsRegistrationClp extends BaseModelImpl
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		MeetupsRegistrationClp meetupsRegistration = (MeetupsRegistrationClp)obj;
-
+	public int compareTo(MeetupsRegistration meetupsRegistration) {
 		int value = 0;
 
 		value = DateUtil.compareTo(getModifiedDate(),

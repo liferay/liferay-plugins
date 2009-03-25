@@ -32,7 +32,7 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  *
  */
-public interface WallEntryModel extends BaseModel {
+public interface WallEntryModel extends BaseModel<WallEntry> {
 	public long getPrimaryKey();
 
 	public void setPrimaryKey(long pk);

@@ -114,6 +114,14 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 		return jiraChangeGroupPersistence.update(jiraChangeGroup, true);
 	}
 
+	public JIRAChangeGroup updateJIRAChangeGroup(
+		JIRAChangeGroup jiraChangeGroup, boolean merge)
+		throws SystemException {
+		jiraChangeGroup.setNew(false);
+
+		return jiraChangeGroupPersistence.update(jiraChangeGroup, merge);
+	}
+
 	public JIRAActionLocalService getJIRAActionLocalService() {
 		return jiraActionLocalService;
 	}

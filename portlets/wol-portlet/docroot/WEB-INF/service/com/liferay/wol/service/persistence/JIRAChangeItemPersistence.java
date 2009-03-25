@@ -22,10 +22,6 @@
 
 package com.liferay.wol.service.persistence;
 
-import com.liferay.portal.PortalException;
-import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.annotation.Propagation;
-import com.liferay.portal.kernel.annotation.Transactional;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -34,8 +30,6 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * @author Brian Wing Shun Chan
  *
  */
-@Transactional(rollbackFor =  {
-	PortalException.class, SystemException.class})
 public interface JIRAChangeItemPersistence extends BasePersistence {
 	public com.liferay.wol.model.JIRAChangeItem create(long jiraChangeItemId);
 
@@ -59,7 +53,6 @@ public interface JIRAChangeItemPersistence extends BasePersistence {
 		com.liferay.wol.model.JIRAChangeItem jiraChangeItem, boolean merge)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.JIRAChangeItem findByPrimaryKey(
 		long jiraChangeItemId)
 		throws com.liferay.portal.SystemException,
@@ -68,61 +61,50 @@ public interface JIRAChangeItemPersistence extends BasePersistence {
 	public com.liferay.wol.model.JIRAChangeItem fetchByPrimaryKey(
 		long jiraChangeItemId) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.JIRAChangeItem> findByJiraChangeGroupId(
 		long jiraChangeGroupId) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.JIRAChangeItem> findByJiraChangeGroupId(
 		long jiraChangeGroupId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.JIRAChangeItem> findByJiraChangeGroupId(
 		long jiraChangeGroupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.JIRAChangeItem findByJiraChangeGroupId_First(
 		long jiraChangeGroupId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchJIRAChangeItemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.JIRAChangeItem findByJiraChangeGroupId_Last(
 		long jiraChangeGroupId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchJIRAChangeItemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.JIRAChangeItem[] findByJiraChangeGroupId_PrevAndNext(
 		long jiraChangeItemId, long jiraChangeGroupId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wol.NoSuchJIRAChangeItemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.JIRAChangeItem> findAll()
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.JIRAChangeItem> findAll(
 		int start, int end) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wol.model.JIRAChangeItem> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
@@ -132,10 +114,8 @@ public interface JIRAChangeItemPersistence extends BasePersistence {
 
 	public void removeAll() throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByJiraChangeGroupId(long jiraChangeGroupId)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countAll() throws com.liferay.portal.SystemException;
 }

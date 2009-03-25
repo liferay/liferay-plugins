@@ -49,7 +49,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public class SVNRevisionModelImpl extends BaseModelImpl {
+public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
 	public static final String TABLE_NAME = "WOL_SVNRevision";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "svnRevisionId", new Integer(Types.BIGINT) },
@@ -235,13 +235,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		SVNRevisionImpl svnRevision = (SVNRevisionImpl)obj;
-
+	public int compareTo(SVNRevision svnRevision) {
 		int value = 0;
 
 		if (getRevisionNumber() < svnRevision.getRevisionNumber()) {
@@ -268,10 +262,10 @@ public class SVNRevisionModelImpl extends BaseModelImpl {
 			return false;
 		}
 
-		SVNRevisionImpl svnRevision = null;
+		SVNRevision svnRevision = null;
 
 		try {
-			svnRevision = (SVNRevisionImpl)obj;
+			svnRevision = (SVNRevision)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;

@@ -76,4 +76,8 @@ public interface JIRAChangeGroupLocalService {
 	public com.liferay.wol.model.JIRAChangeGroup updateJIRAChangeGroup(
 		com.liferay.wol.model.JIRAChangeGroup jiraChangeGroup)
 		throws com.liferay.portal.SystemException;
+
+	public com.liferay.wol.model.JIRAChangeGroup updateJIRAChangeGroup(
+		com.liferay.wol.model.JIRAChangeGroup jiraChangeGroup, boolean merge)
+		throws com.liferay.portal.SystemException;
 }

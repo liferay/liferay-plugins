@@ -103,13 +103,13 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 	public SVNRevision remove(SVNRevision svnRevision)
 		throws SystemException {
-		for (ModelListener listener : listeners) {
+		for (ModelListener<SVNRevision> listener : listeners) {
 			listener.onBeforeRemove(svnRevision);
 		}
 
 		svnRevision = removeImpl(svnRevision);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<SVNRevision> listener : listeners) {
 			listener.onAfterRemove(svnRevision);
 		}
 
@@ -162,7 +162,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 		throws SystemException {
 		boolean isNew = svnRevision.isNew();
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<SVNRevision> listener : listeners) {
 			if (isNew) {
 				listener.onBeforeCreate(svnRevision);
 			}
@@ -173,7 +173,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 		svnRevision = updateImpl(svnRevision, merge);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<SVNRevision> listener : listeners) {
 			if (isNew) {
 				listener.onAfterCreate(svnRevision);
 			}
@@ -403,7 +403,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 		throws NoSuchSVNRevisionException, SystemException {
 		List<SVNRevision> list = findBySVNUserId(svnUserId, 0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No SVNRevision exists with the key {");
@@ -427,7 +427,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 		List<SVNRevision> list = findBySVNUserId(svnUserId, count - 1, count,
 				obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No SVNRevision exists with the key {");
@@ -652,7 +652,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 		List<SVNRevision> list = findBySVNRepositoryId(svnRepositoryId, 0, 1,
 				obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No SVNRevision exists with the key {");
@@ -676,7 +676,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 		List<SVNRevision> list = findBySVNRepositoryId(svnRepositoryId,
 				count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No SVNRevision exists with the key {");
@@ -923,7 +923,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 		List<SVNRevision> list = findBySVNU_SVNR(svnUserId, svnRepositoryId, 0,
 				1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No SVNRevision exists with the key {");
@@ -950,7 +950,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 		List<SVNRevision> list = findBySVNU_SVNR(svnUserId, svnRepositoryId,
 				count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No SVNRevision exists with the key {");
@@ -1467,10 +1467,10 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener> listenersList = new ArrayList<ModelListener>();
+				List<ModelListener<SVNRevision>> listenersList = new ArrayList<ModelListener<SVNRevision>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener)Class.forName(
+					listenersList.add((ModelListener<SVNRevision>)Class.forName(
 							listenerClassName).newInstance());
 				}
 

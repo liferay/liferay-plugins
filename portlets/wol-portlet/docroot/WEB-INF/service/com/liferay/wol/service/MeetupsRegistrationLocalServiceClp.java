@@ -22,6 +22,7 @@
 
 package com.liferay.wol.service;
 
+import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.LongWrapper;
@@ -324,6 +325,41 @@ public class MeetupsRegistrationLocalServiceClp
 		try {
 			returnObj = _classLoaderProxy.invoke("updateMeetupsRegistration",
 					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.wol.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.liferay.wol.model.MeetupsRegistration updateMeetupsRegistration(
+		com.liferay.wol.model.MeetupsRegistration meetupsRegistration,
+		boolean merge) throws com.liferay.portal.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(meetupsRegistration);
+
+		if (meetupsRegistration == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.wol.model.MeetupsRegistration");
+		}
+
+		Object paramObj1 = new BooleanWrapper(merge);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("updateMeetupsRegistration",
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.SystemException) {

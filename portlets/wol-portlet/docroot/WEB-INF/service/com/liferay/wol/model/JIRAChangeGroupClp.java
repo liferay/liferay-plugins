@@ -39,7 +39,8 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  *
  */
-public class JIRAChangeGroupClp extends BaseModelImpl implements JIRAChangeGroup {
+public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
+	implements JIRAChangeGroup {
 	public JIRAChangeGroupClp() {
 	}
 
@@ -120,13 +121,7 @@ public class JIRAChangeGroupClp extends BaseModelImpl implements JIRAChangeGroup
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		JIRAChangeGroupClp jiraChangeGroup = (JIRAChangeGroupClp)obj;
-
+	public int compareTo(JIRAChangeGroup jiraChangeGroup) {
 		int value = 0;
 
 		value = DateUtil.compareTo(getCreateDate(),

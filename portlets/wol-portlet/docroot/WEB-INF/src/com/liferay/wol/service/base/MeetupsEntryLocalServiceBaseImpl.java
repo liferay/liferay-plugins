@@ -114,6 +114,13 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 		return meetupsEntryPersistence.update(meetupsEntry, true);
 	}
 
+	public MeetupsEntry updateMeetupsEntry(MeetupsEntry meetupsEntry,
+		boolean merge) throws SystemException {
+		meetupsEntry.setNew(false);
+
+		return meetupsEntryPersistence.update(meetupsEntry, merge);
+	}
+
 	public JIRAActionLocalService getJIRAActionLocalService() {
 		return jiraActionLocalService;
 	}

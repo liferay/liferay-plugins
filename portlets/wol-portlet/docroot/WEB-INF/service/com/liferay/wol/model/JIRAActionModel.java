@@ -32,7 +32,7 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  *
  */
-public interface JIRAActionModel extends BaseModel {
+public interface JIRAActionModel extends BaseModel<JIRAAction> {
 	public long getPrimaryKey();
 
 	public void setPrimaryKey(long pk);

@@ -89,6 +89,12 @@ public class WallEntryLocalServiceUtil {
 		return getService().updateWallEntry(wallEntry);
 	}
 
+	public static com.liferay.wol.model.WallEntry updateWallEntry(
+		com.liferay.wol.model.WallEntry wallEntry, boolean merge)
+		throws com.liferay.portal.SystemException {
+		return getService().updateWallEntry(wallEntry, merge);
+	}
+
 	public static com.liferay.wol.model.WallEntry addWallEntry(long groupId,
 		long userId, java.lang.String comments,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)

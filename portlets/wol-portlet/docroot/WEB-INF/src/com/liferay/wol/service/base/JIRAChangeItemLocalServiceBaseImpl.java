@@ -114,6 +114,13 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 		return jiraChangeItemPersistence.update(jiraChangeItem, true);
 	}
 
+	public JIRAChangeItem updateJIRAChangeItem(JIRAChangeItem jiraChangeItem,
+		boolean merge) throws SystemException {
+		jiraChangeItem.setNew(false);
+
+		return jiraChangeItemPersistence.update(jiraChangeItem, merge);
+	}
+
 	public JIRAActionLocalService getJIRAActionLocalService() {
 		return jiraActionLocalService;
 	}

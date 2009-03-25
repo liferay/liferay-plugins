@@ -39,7 +39,8 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  *
  */
-public class JIRAActionClp extends BaseModelImpl implements JIRAAction {
+public class JIRAActionClp extends BaseModelImpl<JIRAAction>
+	implements JIRAAction {
 	public JIRAActionClp() {
 	}
 
@@ -160,13 +161,7 @@ public class JIRAActionClp extends BaseModelImpl implements JIRAAction {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		JIRAActionClp jiraAction = (JIRAActionClp)obj;
-
+	public int compareTo(JIRAAction jiraAction) {
 		int value = 0;
 
 		value = DateUtil.compareTo(getModifiedDate(),

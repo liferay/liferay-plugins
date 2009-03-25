@@ -50,7 +50,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public class MeetupsRegistrationModelImpl extends BaseModelImpl {
+public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistration> {
 	public static final String TABLE_NAME = "WOL_MeetupsRegistration";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "meetupsRegistrationId", new Integer(Types.BIGINT) },
@@ -288,13 +288,7 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		MeetupsRegistrationImpl meetupsRegistration = (MeetupsRegistrationImpl)obj;
-
+	public int compareTo(MeetupsRegistration meetupsRegistration) {
 		int value = 0;
 
 		value = DateUtil.compareTo(getModifiedDate(),
@@ -314,10 +308,10 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl {
 			return false;
 		}
 
-		MeetupsRegistrationImpl meetupsRegistration = null;
+		MeetupsRegistration meetupsRegistration = null;
 
 		try {
-			meetupsRegistration = (MeetupsRegistrationImpl)obj;
+			meetupsRegistration = (MeetupsRegistration)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;

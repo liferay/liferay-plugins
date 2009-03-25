@@ -30,7 +30,7 @@ import com.liferay.portal.model.BaseModel;
  * @author Brian Wing Shun Chan
  *
  */
-public interface JIRAChangeItemModel extends BaseModel {
+public interface JIRAChangeItemModel extends BaseModel<JIRAChangeItem> {
 	public long getPrimaryKey();
 
 	public void setPrimaryKey(long pk);

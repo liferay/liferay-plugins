@@ -77,6 +77,10 @@ public interface SVNRepositoryLocalService {
 		com.liferay.wol.model.SVNRepository svnRepository)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.wol.model.SVNRepository updateSVNRepository(
+		com.liferay.wol.model.SVNRepository svnRepository, boolean merge)
+		throws com.liferay.portal.SystemException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wol.model.SVNRepository getSVNRepository(
 		java.lang.String url)
