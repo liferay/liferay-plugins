@@ -20,7 +20,7 @@
 		<portlet-name>3</portlet-name>
 		<icon>/icons/jira.png</icon>
 		<scheduler-class>com.liferay.wol.jira.job.JIRAScheduler</scheduler-class>
-		<social-activity-interpreter-class>com.liferay.sn.jira.social.JIRAActivityInterpreter</social-activity-interpreter-class>
+		<social-activity-interpreter-class>com.liferay.wol.jira.social.JIRAActivityInterpreter</social-activity-interpreter-class>
 		<header-portlet-css>/jira/css.jsp</header-portlet-css>
 		<css-class-wrapper>wol-portlet-jira</css-class-wrapper>
 	</portlet>
@@ -35,7 +35,7 @@
 	<portlet>
 		<portlet-name>5</portlet-name>
 		<icon>/icons/wall.png</icon>
-		<friendly-url-mapper-class>com.liferay.sn.wall.portlet.WallFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapper-class>com.liferay.wol.wall.portlet.WallFriendlyURLMapper</friendly-url-mapper-class>
 		<social-activity-interpreter-class>com.liferay.wol.wall.social.WallActivityInterpreter</social-activity-interpreter-class>
 		<restore-current-view>false</restore-current-view>
 		<css-class-wrapper>wol-portlet-wall</css-class-wrapper>

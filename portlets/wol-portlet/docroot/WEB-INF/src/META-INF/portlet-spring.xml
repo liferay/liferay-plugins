@@ -131,7 +131,7 @@
 		<property name="service" ref="com.liferay.wol.service.WallEntryLocalService.impl" />
 	</bean>
 	<bean id="com.liferay.wol.service.persistence.WallEntryPersistence.impl" class="com.liferay.wol.service.persistence.WallEntryPersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.wol.service.persistence.WallEntryUtil" class="com.liferay.sn.service.persistence.WallEntryUtil">
+	<bean id="com.liferay.wol.service.persistence.WallEntryUtil" class="com.liferay.wol.service.persistence.WallEntryUtil">
 		<property name="persistence" ref="com.liferay.wol.service.persistence.WallEntryPersistence.impl" />
 	</bean>
 	<bean id="com.liferay.wol.service.persistence.WallEntryFinder.impl" class="com.liferay.wol.service.persistence.WallEntryFinderImpl" parent="basePersistence" />
