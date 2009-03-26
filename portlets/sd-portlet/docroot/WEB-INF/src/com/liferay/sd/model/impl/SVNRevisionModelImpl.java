@@ -50,7 +50,7 @@ import java.util.List;
  *
  */
 public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
-	public static final String TABLE_NAME = "WOL_SVNRevision";
+	public static final String TABLE_NAME = "sd_SVNRevision";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "svnRevisionId", new Integer(Types.BIGINT) },
 			
@@ -69,8 +69,8 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
 
 			{ "comments", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WOL_SVNRevision (svnRevisionId LONG not null primary key,svnUserId VARCHAR(75) null,createDate DATE null,svnRepositoryId LONG,revisionNumber LONG,comments STRING null)";
-	public static final String TABLE_SQL_DROP = "drop table WOL_SVNRevision";
+	public static final String TABLE_SQL_CREATE = "create table sd_SVNRevision (svnRevisionId LONG not null primary key,svnUserId VARCHAR(75) null,createDate DATE null,svnRepositoryId LONG,revisionNumber LONG,comments VARCHAR(75) null)";
+	public static final String TABLE_SQL_DROP = "drop table sd_SVNRevision";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";

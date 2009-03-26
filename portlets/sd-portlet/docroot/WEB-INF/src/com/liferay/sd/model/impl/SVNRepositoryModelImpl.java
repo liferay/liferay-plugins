@@ -49,7 +49,7 @@ import java.util.List;
  *
  */
 public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository> {
-	public static final String TABLE_NAME = "WOL_SVNRepository";
+	public static final String TABLE_NAME = "sd_SVNRepository";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "svnRepositoryId", new Integer(Types.BIGINT) },
 			
@@ -59,8 +59,8 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository> {
 
 			{ "revisionNumber", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WOL_SVNRepository (svnRepositoryId LONG not null primary key,url VARCHAR(200) null,revisionNumber LONG)";
-	public static final String TABLE_SQL_DROP = "drop table WOL_SVNRepository";
+	public static final String TABLE_SQL_CREATE = "create table sd_SVNRepository (svnRepositoryId LONG not null primary key,url VARCHAR(75) null,revisionNumber LONG)";
+	public static final String TABLE_SQL_DROP = "drop table sd_SVNRepository";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";

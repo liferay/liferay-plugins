@@ -96,17 +96,17 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		if (activityType == JIRAActivityKeys.ADD_CHANGE) {
 			title = themeDisplay.translate(
-				"activity-wol-jira-add-change",
+				"activity-sd-jira-add-change",
 				new Object[] {creatorUserName, jiraIssue.getKey()});
 		}
 		else if (activityType == JIRAActivityKeys.ADD_COMMENT) {
 			title = themeDisplay.translate(
-				"activity-wol-jira-add-comment",
+				"activity-sd-jira-add-comment",
 				new Object[] {creatorUserName, jiraIssue.getKey()});
 		}
 		else if (activityType == JIRAActivityKeys.ADD_ISSUE) {
 			title = themeDisplay.translate(
-				"activity-wol-jira-add-issue",
+				"activity-sd-jira-add-issue",
 				new Object[] {creatorUserName, jiraIssue.getKey()});
 		}
 
@@ -157,7 +157,7 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 		if (field.equals("description") || field.equals("summary")) {
 			sb.append(
 				themeDisplay.translate(
-					"activity-wol-jira-add-change-" + field));
+					"activity-sd-jira-add-change-" + field));
 			sb.append("<br />");
 		}
 		else if (field.equals("assignee") || field.equals("attachment") ||
@@ -167,14 +167,14 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 
 			sb.append(
 				themeDisplay.translate(
-					"activity-wol-jira-add-change-" + field,
+					"activity-sd-jira-add-change-" + field,
 					new Object[] {newString}));
 			sb.append("<br />");
 		}
 		else if (field.equals("link") && newValue.startsWith("LEP-")) {
 			sb.append(
 				themeDisplay.translate(
-					"activity-wol-jira-add-change-" + field,
+					"activity-sd-jira-add-change-" + field,
 					new Object[] {newValue}));
 			sb.append("<br />");
 		}
@@ -199,7 +199,7 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		if (sb.length() == 0) {
 			sb.append(
-				themeDisplay.translate("activity-wol-jira-add-change-default"));
+				themeDisplay.translate("activity-sd-jira-add-change-default"));
 		}
 
 		return sb.toString();

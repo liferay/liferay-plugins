@@ -28,9 +28,9 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Time;
-import com.liferay.util.portlet.PortletProps;
 import com.liferay.sd.service.SVNRepositoryLocalServiceUtil;
 import com.liferay.sd.svn.util.SVNConstants;
+import com.liferay.util.portlet.PortletProps;
 
 /**
  * <a href="SynchronizeSVNJob.java.html"><b><i>View Source</i></b></a>

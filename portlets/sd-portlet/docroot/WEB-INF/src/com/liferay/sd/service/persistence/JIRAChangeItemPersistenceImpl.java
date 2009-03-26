@@ -752,15 +752,9 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl
 	protected com.liferay.sd.service.persistence.JIRAChangeItemPersistence jiraChangeItemPersistence;
 	@BeanReference(name = "com.liferay.sd.service.persistence.JIRAIssuePersistence.impl")
 	protected com.liferay.sd.service.persistence.JIRAIssuePersistence jiraIssuePersistence;
-	@BeanReference(name = "com.liferay.sd.service.persistence.MeetupsEntryPersistence.impl")
-	protected com.liferay.sd.service.persistence.MeetupsEntryPersistence meetupsEntryPersistence;
-	@BeanReference(name = "com.liferay.sd.service.persistence.MeetupsRegistrationPersistence.impl")
-	protected com.liferay.sd.service.persistence.MeetupsRegistrationPersistence meetupsRegistrationPersistence;
 	@BeanReference(name = "com.liferay.sd.service.persistence.SVNRepositoryPersistence.impl")
 	protected com.liferay.sd.service.persistence.SVNRepositoryPersistence svnRepositoryPersistence;
 	@BeanReference(name = "com.liferay.sd.service.persistence.SVNRevisionPersistence.impl")
 	protected com.liferay.sd.service.persistence.SVNRevisionPersistence svnRevisionPersistence;
-	@BeanReference(name = "com.liferay.sd.service.persistence.WallEntryPersistence.impl")
-	protected com.liferay.sd.service.persistence.WallEntryPersistence wallEntryPersistence;
 	private static Log _log = LogFactoryUtil.getLog(JIRAChangeItemPersistenceImpl.class);
 }

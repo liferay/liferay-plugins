@@ -79,28 +79,6 @@
 	<bean id="com.liferay.sd.service.persistence.JIRAIssueFinderUtil" class="com.liferay.sd.service.persistence.JIRAIssueFinderUtil">
 		<property name="finder" ref="com.liferay.sd.service.persistence.JIRAIssueFinder.impl" />
 	</bean>
-	<bean id="com.liferay.sd.service.MeetupsEntryLocalService.impl" class="com.liferay.sd.service.impl.MeetupsEntryLocalServiceImpl" />
-	<bean id="com.liferay.sd.service.MeetupsEntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.sd.service.MeetupsEntryLocalService.impl" />
-	</bean>
-	<bean id="com.liferay.sd.service.MeetupsEntryLocalServiceUtil" class="com.liferay.sd.service.MeetupsEntryLocalServiceUtil">
-		<property name="service" ref="com.liferay.sd.service.MeetupsEntryLocalService.impl" />
-	</bean>
-	<bean id="com.liferay.sd.service.persistence.MeetupsEntryPersistence.impl" class="com.liferay.sd.service.persistence.MeetupsEntryPersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.sd.service.persistence.MeetupsEntryUtil" class="com.liferay.sd.service.persistence.MeetupsEntryUtil">
-		<property name="persistence" ref="com.liferay.sd.service.persistence.MeetupsEntryPersistence.impl" />
-	</bean>
-	<bean id="com.liferay.sd.service.MeetupsRegistrationLocalService.impl" class="com.liferay.sd.service.impl.MeetupsRegistrationLocalServiceImpl" />
-	<bean id="com.liferay.sd.service.MeetupsRegistrationLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.sd.service.MeetupsRegistrationLocalService.impl" />
-	</bean>
-	<bean id="com.liferay.sd.service.MeetupsRegistrationLocalServiceUtil" class="com.liferay.sd.service.MeetupsRegistrationLocalServiceUtil">
-		<property name="service" ref="com.liferay.sd.service.MeetupsRegistrationLocalService.impl" />
-	</bean>
-	<bean id="com.liferay.sd.service.persistence.MeetupsRegistrationPersistence.impl" class="com.liferay.sd.service.persistence.MeetupsRegistrationPersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.sd.service.persistence.MeetupsRegistrationUtil" class="com.liferay.sd.service.persistence.MeetupsRegistrationUtil">
-		<property name="persistence" ref="com.liferay.sd.service.persistence.MeetupsRegistrationPersistence.impl" />
-	</bean>
 	<bean id="com.liferay.sd.service.SVNRepositoryLocalService.impl" class="com.liferay.sd.service.impl.SVNRepositoryLocalServiceImpl" />
 	<bean id="com.liferay.sd.service.SVNRepositoryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.liferay.sd.service.SVNRepositoryLocalService.impl" />
@@ -122,20 +100,5 @@
 	<bean id="com.liferay.sd.service.persistence.SVNRevisionPersistence.impl" class="com.liferay.sd.service.persistence.SVNRevisionPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.sd.service.persistence.SVNRevisionUtil" class="com.liferay.sd.service.persistence.SVNRevisionUtil">
 		<property name="persistence" ref="com.liferay.sd.service.persistence.SVNRevisionPersistence.impl" />
-	</bean>
-	<bean id="com.liferay.sd.service.WallEntryLocalService.impl" class="com.liferay.sd.service.impl.WallEntryLocalServiceImpl" />
-	<bean id="com.liferay.sd.service.WallEntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
-		<property name="target" ref="com.liferay.sd.service.WallEntryLocalService.impl" />
-	</bean>
-	<bean id="com.liferay.sd.service.WallEntryLocalServiceUtil" class="com.liferay.sd.service.WallEntryLocalServiceUtil">
-		<property name="service" ref="com.liferay.sd.service.WallEntryLocalService.impl" />
-	</bean>
-	<bean id="com.liferay.sd.service.persistence.WallEntryPersistence.impl" class="com.liferay.sd.service.persistence.WallEntryPersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.sd.service.persistence.WallEntryUtil" class="com.liferay.sd.service.persistence.WallEntryUtil">
-		<property name="persistence" ref="com.liferay.sd.service.persistence.WallEntryPersistence.impl" />
-	</bean>
-	<bean id="com.liferay.sd.service.persistence.WallEntryFinder.impl" class="com.liferay.sd.service.persistence.WallEntryFinderImpl" parent="basePersistence" />
-	<bean id="com.liferay.sd.service.persistence.WallEntryFinderUtil" class="com.liferay.sd.service.persistence.WallEntryFinderUtil">
-		<property name="finder" ref="com.liferay.sd.service.persistence.WallEntryFinder.impl" />
 	</bean>
 </beans>

@@ -30,9 +30,9 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.util.CalendarUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
-import com.liferay.util.dao.orm.CustomSQLUtil;
 import com.liferay.sd.model.JIRAChangeGroup;
 import com.liferay.sd.model.impl.JIRAChangeGroupImpl;
+import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.sql.Timestamp;
 

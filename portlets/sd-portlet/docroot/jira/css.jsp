@@ -24,22 +24,22 @@
 
 <%@ include file="/css_init.jsp" %>
 
-.wol-portlet-jira .project-title {
+.sd-portlet-jira .project-title {
 	margin-bottom: 0.5em;
 }
 
-.wol-portlet-jira .jira-summary .activity-details {
+.sd-portlet-jira .jira-summary .activity-details {
 	width: 65%;
 	padding-bottom: 5px;
 }
 
-.wol-portlet-jira .jira-summary .activity-details .progress-bar {
+.sd-portlet-jira .jira-summary .activity-details .progress-bar {
 	background: #c2c8cb;
 	height: 15px;
 	margin-bottom: 2px;
 }
 
-.wol-portlet-jira .jira-summary .activity-details .progress-text {
+.sd-portlet-jira .jira-summary .activity-details .progress-text {
 	padding-left: 4px;
 	font-weight: bold;
 }

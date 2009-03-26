@@ -23,45 +23,71 @@
 %>
 
 <%
-String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "jiraUserId", user2.getUserId(), StringPool.BLANK);
+String jiraUserId = ExpandoValueLocalServiceUtil.getData(User.class.getName(), "sd", "jiraUserId", user2.getUserId(), StringPool.BLANK);
+String cmd = ParamUtil.getString (request, "cmd");
 %>
 
-<c:choose>
-	<c:when test="<%= Validator.isNotNull(jiraUserId) %>">
+<c:if test="<%= Validator.isNotNull(jiraUserId) %>">
 
-		<%
-		Object[][] jiraProjects = new Object[][] {
-			new Object[] {JIRAConstants.PROJECT_LPS, "LPS", "Liferay Portal Standard Edition"},
-			new Object[] {JIRAConstants.PROJECT_LPE, "LPE", "Liferay Portal Enterprise Edition"}
-		};
+	<%
+	Object[][] jiraProjects = new Object[][] {
+		new Object[] {JIRAConstants.PROJECT_LPS, "LPS", "Liferay Portal Standard Edition"},
+		new Object[] {JIRAConstants.PROJECT_LPE, "LPE", "Liferay Portal Enterprise Edition"}
+	};
 
-		for (int i = 0; i < jiraProjects.length; i++) {
-			Object[] jiraProject = jiraProjects[i];
+	for (int i = 0; i < jiraProjects.length; i++) {
+		Object[] jiraProject = jiraProjects[i];
 
-			int projectId = (Integer)jiraProject[0];
-			String projectKey = (String)jiraProject[1];
-			String projectName = (String)jiraProject[2];
-		%>
+		int projectId = (Integer)jiraProject[0];
+		String projectKey = (String)jiraProject[1];
+		String projectName = (String)jiraProject[2];
+	%>
 
-			<c:if test="<%= i != 0 %>">
-				<div class="separator"><!-- --></div>
-			</c:if>
+		<%@ include file="/jira/view_jira_project.jspf" %>
 
-			<%@ include file="/jira/view_jira_project.jspf" %>
+		<c:if test="<%= (i != jiraProjects.length -1) || (Validator.isNotNull(jiraUserId) && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE)) %>">
+			<div class="separator"><!-- --></div>
+		</c:if>
 
-		<%
-		}
-		%>
+	<%
+	}
+	%>
 
+</c:if>
+
+ <c:choose>
+	<c:when test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
+		<a href="javascript: ;" id="<portlet:namespace />setJiraLogin">
+			<liferay-ui:icon image="edit" message="edit-your-jira-login" label="<%= true %>" />
+		</a>
+
+		<form action='<portlet:actionURL name="updateJIRALogin" />' class="uni-form" id="<portlet:namespace />jiraUserIdForm" method="post" name="<portlet:namespace />fm" style="display:none;">
+			<fieldset class="block-labels">
+				<div class="ctrl-holder">
+					<label for="<portlet:namespace />jiraUserId">
+						<liferay-ui:message key="jira-login" />
+					</label>
+					<input class="lfr-input-text" name="<portlet:namespace />jiraUserId" style="width: 150px;" type="text" value="<%= jiraUserId %>" />
+
+					<liferay-ui:icon-help message="Set your login for http://support.liferay.com to track your JIRA activity." />
+				</div>
+
+				<div class="button-holder">
+					<input type="submit" value='<liferay-ui:message key="save" />' />
+				</div>
+			</fieldset>
+		</form>
 	</c:when>
 	<c:otherwise>
-		<c:choose>
-			<c:when test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
-				<a href="<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" portletName="1_WAR_wolportlet" />">Set your JIRA login.</a>
-			</c:when>
-			<c:otherwise>
-				<%= LanguageUtil.format(pageContext, (user2.isMale() ? "x-has-not-configured-his-jira-login" : "x-has-not-configured-her-jira-login"), user2.getFullName()) %>
-			</c:otherwise>
-		</c:choose>
+		<c:if test="<%= Validator.isNull(jiraUserId) %>">
+			<%= LanguageUtil.format(pageContext, (user2.isMale() ? "x-has-not-configured-his-jira-login" : "x-has-not-configured-her-jira-login"), user2.getFullName()) %>
+		</c:if>
 	</c:otherwise>
 </c:choose>
+
+<script type="text/javascript">
+	jQuery(
+		function() {
+			Liferay.Util.toggleBoxes('<portlet:namespace />setJiraLogin', '<portlet:namespace />jiraUserIdForm');
+		});
+</script>

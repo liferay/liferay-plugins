@@ -67,7 +67,7 @@ public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		if (activityType == SVNActivityKeys.ADD_REVISION) {
 			title = themeDisplay.translate(
-				"activity-wol-svn-add-revision",
+				"activity-sd-svn-add-revision",
 				new Object[] {
 					creatorUserName,
 					String.valueOf(svnRevision.getRevisionNumber()),

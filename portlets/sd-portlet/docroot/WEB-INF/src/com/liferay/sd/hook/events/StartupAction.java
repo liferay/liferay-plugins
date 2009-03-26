@@ -59,11 +59,11 @@ public class StartupAction extends SimpleAction {
 
 		try {
 			table = ExpandoTableLocalServiceUtil.addTable(
-				User.class.getName(), "WOL");
+				User.class.getName(), "sd");
 		}
 		catch (DuplicateTableNameException dtne) {
 			table = ExpandoTableLocalServiceUtil.getTable(
-				User.class.getName(), "WOL");
+				User.class.getName(), "sd");
 		}
 
 		try {
@@ -74,12 +74,7 @@ public class StartupAction extends SimpleAction {
 		catch (DuplicateColumnNameException dcne) {
 		}
 
-		try {
-			ExpandoColumnLocalServiceUtil.addColumn(
-				table.getTableId(), "aboutMe", ExpandoColumnConstants.STRING);
-		}
-		catch (DuplicateColumnNameException dcne) {
-		}
+		
 	}
 
 }

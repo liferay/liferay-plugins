@@ -20,8 +20,10 @@
  * SOFTWARE.
  */
 
-package com.liferay.sd.wall.portlet;
+package com.liferay.sd.jira.portlet;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Group;
@@ -31,24 +33,21 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.permission.UserPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.social.model.SocialRelationConstants;
-import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
+import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
-import com.liferay.sd.model.WallEntry;
-import com.liferay.sd.service.WallEntryLocalServiceUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 
 /**
- * <a href="WallPortlet.java.html"><b><i>View Source</i></b></a>
+ * <a href="JIRAPortlet.java.html"><b><i>View Source</i></b></a>
  *
- * @author Brian Wing Shun Chan
+ * @author Julio Camarero
  *
  */
-public class WallPortlet extends JSPPortlet {
+public class JIRAPortlet extends JSPPortlet {
 
-	public void addWallEntry(
+	public void updateJIRALogin(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -56,59 +55,6 @@ public class WallPortlet extends JSPPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		if (!themeDisplay.isSignedIn()) {
-			return;
-		}
-
-		Group group = GroupLocalServiceUtil.getGroup(
-			themeDisplay.getScopeGroupId());
-
-		User user = null;
-
-		if (group.isUser()) {
-			user = UserLocalServiceUtil.getUserById(group.getClassPK());
-		}
-		else {
-			return;
-		}
-
-		if ((themeDisplay.getUserId() != user.getUserId()) &&
-			(!SocialRelationLocalServiceUtil.hasRelation(
-				themeDisplay.getUserId(), user.getUserId(),
-				SocialRelationConstants.TYPE_BI_FRIEND))) {
-
-			return;
-		}
-
-		String comments = ParamUtil.getString(actionRequest, "comments");
-
-		WallEntryLocalServiceUtil.addWallEntry(
-			themeDisplay.getScopeGroupId(), themeDisplay.getUserId(),
-			comments, themeDisplay);
-	}
-
-	public void deleteWallEntry(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		if (!themeDisplay.isSignedIn()) {
-			return;
-		}
-
-		long wallEntryId = ParamUtil.getLong(actionRequest, "wallEntryId");
-
-		WallEntry wallEntry = null;
-
-		try {
-			wallEntry = WallEntryLocalServiceUtil.getWallEntry(wallEntryId);
-		}
-		catch (Exception e) {
-			return;
-		}
-
-		if (wallEntry.getGroupId() != themeDisplay.getScopeGroupId()) {
 			return;
 		}
 
@@ -131,11 +77,19 @@ public class WallPortlet extends JSPPortlet {
 			return;
 		}
 
+		String jiraUserId = ParamUtil.getString(actionRequest, "jiraUserId");
+
 		try {
-			WallEntryLocalServiceUtil.deleteWallEntry(wallEntryId);
+			ExpandoValueLocalServiceUtil.addValue(
+				User.class.getName(), "sd", "jiraUserId", user.getUserId(),
+				jiraUserId);
+
 		}
 		catch (Exception e) {
+			_log.error(e, e);
 		}
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(JIRAPortlet.class);
 
 }

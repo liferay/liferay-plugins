@@ -28,9 +28,9 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Time;
-import com.liferay.util.portlet.PortletProps;
 import com.liferay.sd.jira.util.JIRAConstants;
 import com.liferay.sd.service.JIRAIssueLocalServiceUtil;
+import com.liferay.util.portlet.PortletProps;
 
 /**
  * <a href="SynchronizeJIRAJob.java.html"><b><i>View Source</i></b></a>

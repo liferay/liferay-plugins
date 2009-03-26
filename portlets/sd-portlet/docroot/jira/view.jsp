@@ -24,6 +24,8 @@
 
 <%@ include file="/init.jsp" %>
 
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+
 <c:choose>
 	<c:when test="<%= user2 == null %>">
 		<div class="portlet-msg-error">

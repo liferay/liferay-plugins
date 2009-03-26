@@ -30,8 +30,6 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.client.json.ipgeocoder.model.IPInfo" %>
-<%@ page import="com.liferay.client.json.ipgeocoder.util.IPGeocoderUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchEntry" %>
@@ -76,26 +74,15 @@
 <%@ page import="com.liferay.portlet.social.service.SocialRequestLocalServiceUtil" %>
 <%@ page import="com.liferay.util.RSSUtil" %>
 <%@ page import="com.liferay.util.portlet.PortletProps" %>
-<%@ page import="com.liferay.sd.NoSuchMeetupsEntryException" %>
-<%@ page import="com.liferay.sd.NoSuchMeetupsRegistrationException" %>
 <%@ page import="com.liferay.sd.NoSuchSVNRepositoryException" %>
-<%@ page import="com.liferay.sd.friends.social.FriendsRequestKeys" %>
 <%@ page import="com.liferay.sd.jira.util.JIRAConstants" %>
 <%@ page import="com.liferay.sd.jira.util.JIRAUtil" %>
-<%@ page import="com.liferay.sd.members.social.MembersRequestKeys" %>
-<%@ page import="com.liferay.sd.meetups.util.MeetupsConstants" %>
 <%@ page import="com.liferay.sd.model.JIRAIssue" %>
-<%@ page import="com.liferay.sd.model.MeetupsEntry" %>
-<%@ page import="com.liferay.sd.model.MeetupsRegistration" %>
 <%@ page import="com.liferay.sd.model.SVNRepository" %>
 <%@ page import="com.liferay.sd.model.SVNRevision" %>
-<%@ page import="com.liferay.sd.model.WallEntry" %>
 <%@ page import="com.liferay.sd.service.JIRAIssueLocalServiceUtil" %>
-<%@ page import="com.liferay.sd.service.MeetupsEntryLocalServiceUtil" %>
-<%@ page import="com.liferay.sd.service.MeetupsRegistrationLocalServiceUtil" %>
 <%@ page import="com.liferay.sd.service.SVNRepositoryLocalServiceUtil" %>
 <%@ page import="com.liferay.sd.service.SVNRevisionLocalServiceUtil" %>
-<%@ page import="com.liferay.sd.service.WallEntryLocalServiceUtil" %>
 <%@ page import="com.liferay.sd.svn.util.SVNConstants" %>
 
 <%@ page import="com.sun.syndication.feed.synd.SyndContent" %>
