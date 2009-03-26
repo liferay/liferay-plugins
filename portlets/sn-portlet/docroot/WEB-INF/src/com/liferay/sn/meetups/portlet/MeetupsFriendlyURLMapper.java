@@ -116,6 +116,6 @@ public class MeetupsFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 	private static final String _MAPPING = "meetups";
 
-	private static final String _PORTLET_ID = "9_WAR_wolportlet";
+	private static final String _PORTLET_ID = "7_WAR_snportlet";
 
 }

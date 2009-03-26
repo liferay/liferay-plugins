@@ -51,7 +51,7 @@ import java.util.List;
  *
  */
 public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
-	public static final String TABLE_NAME = "WOL_MeetupsEntry";
+	public static final String TABLE_NAME = "sn_MeetupsEntry";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "meetupsEntryId", new Integer(Types.BIGINT) },
 			
@@ -94,8 +94,8 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 
 			{ "thumbnailId", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WOL_MeetupsEntry (meetupsEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(75) null,description STRING null,startDate DATE null,endDate DATE null,totalAttendees INTEGER,maxAttendees INTEGER,price DOUBLE,thumbnailId LONG)";
-	public static final String TABLE_SQL_DROP = "drop table WOL_MeetupsEntry";
+	public static final String TABLE_SQL_CREATE = "create table sn_MeetupsEntry (meetupsEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(75) null,description VARCHAR(75) null,startDate DATE null,endDate DATE null,totalAttendees INTEGER,maxAttendees INTEGER,price DOUBLE,thumbnailId LONG)";
+	public static final String TABLE_SQL_DROP = "drop table sn_MeetupsEntry";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";

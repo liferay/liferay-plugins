@@ -28,26 +28,11 @@ import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import com.liferay.sn.model.MeetupsRegistration;
-import com.liferay.sn.service.JIRAActionLocalService;
-import com.liferay.sn.service.JIRAChangeGroupLocalService;
-import com.liferay.sn.service.JIRAChangeItemLocalService;
-import com.liferay.sn.service.JIRAIssueLocalService;
 import com.liferay.sn.service.MeetupsEntryLocalService;
 import com.liferay.sn.service.MeetupsRegistrationLocalService;
-import com.liferay.sn.service.SVNRepositoryLocalService;
-import com.liferay.sn.service.SVNRevisionLocalService;
 import com.liferay.sn.service.WallEntryLocalService;
-import com.liferay.sn.service.persistence.JIRAActionFinder;
-import com.liferay.sn.service.persistence.JIRAActionPersistence;
-import com.liferay.sn.service.persistence.JIRAChangeGroupFinder;
-import com.liferay.sn.service.persistence.JIRAChangeGroupPersistence;
-import com.liferay.sn.service.persistence.JIRAChangeItemPersistence;
-import com.liferay.sn.service.persistence.JIRAIssueFinder;
-import com.liferay.sn.service.persistence.JIRAIssuePersistence;
 import com.liferay.sn.service.persistence.MeetupsEntryPersistence;
 import com.liferay.sn.service.persistence.MeetupsRegistrationPersistence;
-import com.liferay.sn.service.persistence.SVNRepositoryPersistence;
-import com.liferay.sn.service.persistence.SVNRevisionPersistence;
 import com.liferay.sn.service.persistence.WallEntryFinder;
 import com.liferay.sn.service.persistence.WallEntryPersistence;
 
@@ -123,103 +108,6 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 		return meetupsRegistrationPersistence.update(meetupsRegistration, merge);
 	}
 
-	public JIRAActionLocalService getJIRAActionLocalService() {
-		return jiraActionLocalService;
-	}
-
-	public void setJIRAActionLocalService(
-		JIRAActionLocalService jiraActionLocalService) {
-		this.jiraActionLocalService = jiraActionLocalService;
-	}
-
-	public JIRAActionPersistence getJIRAActionPersistence() {
-		return jiraActionPersistence;
-	}
-
-	public void setJIRAActionPersistence(
-		JIRAActionPersistence jiraActionPersistence) {
-		this.jiraActionPersistence = jiraActionPersistence;
-	}
-
-	public JIRAActionFinder getJIRAActionFinder() {
-		return jiraActionFinder;
-	}
-
-	public void setJIRAActionFinder(JIRAActionFinder jiraActionFinder) {
-		this.jiraActionFinder = jiraActionFinder;
-	}
-
-	public JIRAChangeGroupLocalService getJIRAChangeGroupLocalService() {
-		return jiraChangeGroupLocalService;
-	}
-
-	public void setJIRAChangeGroupLocalService(
-		JIRAChangeGroupLocalService jiraChangeGroupLocalService) {
-		this.jiraChangeGroupLocalService = jiraChangeGroupLocalService;
-	}
-
-	public JIRAChangeGroupPersistence getJIRAChangeGroupPersistence() {
-		return jiraChangeGroupPersistence;
-	}
-
-	public void setJIRAChangeGroupPersistence(
-		JIRAChangeGroupPersistence jiraChangeGroupPersistence) {
-		this.jiraChangeGroupPersistence = jiraChangeGroupPersistence;
-	}
-
-	public JIRAChangeGroupFinder getJIRAChangeGroupFinder() {
-		return jiraChangeGroupFinder;
-	}
-
-	public void setJIRAChangeGroupFinder(
-		JIRAChangeGroupFinder jiraChangeGroupFinder) {
-		this.jiraChangeGroupFinder = jiraChangeGroupFinder;
-	}
-
-	public JIRAChangeItemLocalService getJIRAChangeItemLocalService() {
-		return jiraChangeItemLocalService;
-	}
-
-	public void setJIRAChangeItemLocalService(
-		JIRAChangeItemLocalService jiraChangeItemLocalService) {
-		this.jiraChangeItemLocalService = jiraChangeItemLocalService;
-	}
-
-	public JIRAChangeItemPersistence getJIRAChangeItemPersistence() {
-		return jiraChangeItemPersistence;
-	}
-
-	public void setJIRAChangeItemPersistence(
-		JIRAChangeItemPersistence jiraChangeItemPersistence) {
-		this.jiraChangeItemPersistence = jiraChangeItemPersistence;
-	}
-
-	public JIRAIssueLocalService getJIRAIssueLocalService() {
-		return jiraIssueLocalService;
-	}
-
-	public void setJIRAIssueLocalService(
-		JIRAIssueLocalService jiraIssueLocalService) {
-		this.jiraIssueLocalService = jiraIssueLocalService;
-	}
-
-	public JIRAIssuePersistence getJIRAIssuePersistence() {
-		return jiraIssuePersistence;
-	}
-
-	public void setJIRAIssuePersistence(
-		JIRAIssuePersistence jiraIssuePersistence) {
-		this.jiraIssuePersistence = jiraIssuePersistence;
-	}
-
-	public JIRAIssueFinder getJIRAIssueFinder() {
-		return jiraIssueFinder;
-	}
-
-	public void setJIRAIssueFinder(JIRAIssueFinder jiraIssueFinder) {
-		this.jiraIssueFinder = jiraIssueFinder;
-	}
-
 	public MeetupsEntryLocalService getMeetupsEntryLocalService() {
 		return meetupsEntryLocalService;
 	}
@@ -256,42 +144,6 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 		this.meetupsRegistrationPersistence = meetupsRegistrationPersistence;
 	}
 
-	public SVNRepositoryLocalService getSVNRepositoryLocalService() {
-		return svnRepositoryLocalService;
-	}
-
-	public void setSVNRepositoryLocalService(
-		SVNRepositoryLocalService svnRepositoryLocalService) {
-		this.svnRepositoryLocalService = svnRepositoryLocalService;
-	}
-
-	public SVNRepositoryPersistence getSVNRepositoryPersistence() {
-		return svnRepositoryPersistence;
-	}
-
-	public void setSVNRepositoryPersistence(
-		SVNRepositoryPersistence svnRepositoryPersistence) {
-		this.svnRepositoryPersistence = svnRepositoryPersistence;
-	}
-
-	public SVNRevisionLocalService getSVNRevisionLocalService() {
-		return svnRevisionLocalService;
-	}
-
-	public void setSVNRevisionLocalService(
-		SVNRevisionLocalService svnRevisionLocalService) {
-		this.svnRevisionLocalService = svnRevisionLocalService;
-	}
-
-	public SVNRevisionPersistence getSVNRevisionPersistence() {
-		return svnRevisionPersistence;
-	}
-
-	public void setSVNRevisionPersistence(
-		SVNRevisionPersistence svnRevisionPersistence) {
-		this.svnRevisionPersistence = svnRevisionPersistence;
-	}
-
 	public WallEntryLocalService getWallEntryLocalService() {
 		return wallEntryLocalService;
 	}
@@ -318,28 +170,6 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 		this.wallEntryFinder = wallEntryFinder;
 	}
 
-	@BeanReference(name = "com.liferay.sn.service.JIRAActionLocalService.impl")
-	protected JIRAActionLocalService jiraActionLocalService;
-	@BeanReference(name = "com.liferay.sn.service.persistence.JIRAActionPersistence.impl")
-	protected JIRAActionPersistence jiraActionPersistence;
-	@BeanReference(name = "com.liferay.sn.service.persistence.JIRAActionFinder.impl")
-	protected JIRAActionFinder jiraActionFinder;
-	@BeanReference(name = "com.liferay.sn.service.JIRAChangeGroupLocalService.impl")
-	protected JIRAChangeGroupLocalService jiraChangeGroupLocalService;
-	@BeanReference(name = "com.liferay.sn.service.persistence.JIRAChangeGroupPersistence.impl")
-	protected JIRAChangeGroupPersistence jiraChangeGroupPersistence;
-	@BeanReference(name = "com.liferay.sn.service.persistence.JIRAChangeGroupFinder.impl")
-	protected JIRAChangeGroupFinder jiraChangeGroupFinder;
-	@BeanReference(name = "com.liferay.sn.service.JIRAChangeItemLocalService.impl")
-	protected JIRAChangeItemLocalService jiraChangeItemLocalService;
-	@BeanReference(name = "com.liferay.sn.service.persistence.JIRAChangeItemPersistence.impl")
-	protected JIRAChangeItemPersistence jiraChangeItemPersistence;
-	@BeanReference(name = "com.liferay.sn.service.JIRAIssueLocalService.impl")
-	protected JIRAIssueLocalService jiraIssueLocalService;
-	@BeanReference(name = "com.liferay.sn.service.persistence.JIRAIssuePersistence.impl")
-	protected JIRAIssuePersistence jiraIssuePersistence;
-	@BeanReference(name = "com.liferay.sn.service.persistence.JIRAIssueFinder.impl")
-	protected JIRAIssueFinder jiraIssueFinder;
 	@BeanReference(name = "com.liferay.sn.service.MeetupsEntryLocalService.impl")
 	protected MeetupsEntryLocalService meetupsEntryLocalService;
 	@BeanReference(name = "com.liferay.sn.service.persistence.MeetupsEntryPersistence.impl")
@@ -348,14 +178,6 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	protected MeetupsRegistrationLocalService meetupsRegistrationLocalService;
 	@BeanReference(name = "com.liferay.sn.service.persistence.MeetupsRegistrationPersistence.impl")
 	protected MeetupsRegistrationPersistence meetupsRegistrationPersistence;
-	@BeanReference(name = "com.liferay.sn.service.SVNRepositoryLocalService.impl")
-	protected SVNRepositoryLocalService svnRepositoryLocalService;
-	@BeanReference(name = "com.liferay.sn.service.persistence.SVNRepositoryPersistence.impl")
-	protected SVNRepositoryPersistence svnRepositoryPersistence;
-	@BeanReference(name = "com.liferay.sn.service.SVNRevisionLocalService.impl")
-	protected SVNRevisionLocalService svnRevisionLocalService;
-	@BeanReference(name = "com.liferay.sn.service.persistence.SVNRevisionPersistence.impl")
-	protected SVNRevisionPersistence svnRevisionPersistence;
 	@BeanReference(name = "com.liferay.sn.service.WallEntryLocalService.impl")
 	protected WallEntryLocalService wallEntryLocalService;
 	@BeanReference(name = "com.liferay.sn.service.persistence.WallEntryPersistence.impl")

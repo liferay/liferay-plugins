@@ -29,9 +29,9 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.sn.service.MeetupsEntryLocalServiceUtil;
 import com.liferay.sn.service.MeetupsRegistrationLocalServiceUtil;
+import com.liferay.util.bridges.jsp.JSPPortlet;
 
 import java.io.File;
 

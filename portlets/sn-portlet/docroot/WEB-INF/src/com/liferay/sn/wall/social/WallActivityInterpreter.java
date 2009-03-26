@@ -75,7 +75,7 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		if (activityType == WallActivityKeys.ADD_ENTRY) {
 			title = themeDisplay.translate(
-				"activity-wol-wall-add-entry",
+				"activity-sn-wall-add-entry",
 				new Object[] {creatorUserName, receiverUserName});
 		}
 

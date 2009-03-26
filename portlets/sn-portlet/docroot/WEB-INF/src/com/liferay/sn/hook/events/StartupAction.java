@@ -59,19 +59,11 @@ public class StartupAction extends SimpleAction {
 
 		try {
 			table = ExpandoTableLocalServiceUtil.addTable(
-				User.class.getName(), "WOL");
+				User.class.getName(), "sn");
 		}
 		catch (DuplicateTableNameException dtne) {
 			table = ExpandoTableLocalServiceUtil.getTable(
-				User.class.getName(), "WOL");
-		}
-
-		try {
-			ExpandoColumnLocalServiceUtil.addColumn(
-				table.getTableId(), "jiraUserId",
-				ExpandoColumnConstants.STRING);
-		}
-		catch (DuplicateColumnNameException dcne) {
+				User.class.getName(), "sn");
 		}
 
 		try {

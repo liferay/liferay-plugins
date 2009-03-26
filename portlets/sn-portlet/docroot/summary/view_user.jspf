@@ -22,6 +22,13 @@
  */
 %>
 
+<%
+PortalUtil.addPageSubtitle(user2.getFullName(), request);
+
+String jobTitle = user2.getContact().getJobTitle();
+String aboutMe = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class.getName(), "sn", "aboutMe", user2.getUserId(), StringPool.BLANK));
+%>
+
 <c:choose>
 	<c:when test="<%= windowState.equals(WindowState.NORMAL) || !UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
 		<div class="summary-container">
@@ -77,15 +84,13 @@
 				</c:when>
 			</c:choose>
 
-			<p>
-				<span class="user-job-title"><liferay-ui:message key="job-title" /></span>
+			<c:if test="<%= Validator.isNotNull(jobTitle) %>">
+				<p>
+					<span class="user-job-title"><liferay-ui:message key="job-title" /></span>
 
-				<%= user2.getContact().getJobTitle() %>
-			</p>
-
-			<%
-			String aboutMe = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "aboutMe", user2.getUserId(), StringPool.BLANK));
-			%>
+					<%= jobTitle %>
+				</p>
+			</c:if>
 
 			<c:if test="<%= Validator.isNotNull(aboutMe) %>">
 				<p>
@@ -153,29 +158,18 @@
 	</c:when>
 	<c:otherwise>
 
-		<%
-		String jiraUserId = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "jiraUserId", user2.getUserId(), StringPool.BLANK));
-		String aboutMe = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class.getName(), "WOL", "aboutMe", user2.getUserId(), StringPool.BLANK));
-		%>
-
 		<form action="<portlet:actionURL name="updateSummary" />" method="post" name="<portlet:namespace />fm">
 		<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
 
 		<div class="portlet-msg-info">
-			This form will allow you to change settings used to track your participation in the Liferay Community. Use <a href="<%= themeDisplay.getURLMyAccount() %>">My Account</a> to change regular account settings like profile picture or password.
+			<%
+				String linkToMyAccount = "<a href=\"" + themeDisplay.getURLMyAccount() + "\">" + LanguageUtil.get(pageContext, "my-account") + "</a>";
+			%>
+
+			<%= LanguageUtil.format(pageContext, "use-x-to-change-regular-account-settings-like-profile-picture-or-password", linkToMyAccount) %>
 		</div>
 
 		<table class="lfr-table">
-		<tr>
-			<td>
-				<liferay-ui:message key="jira-login" />
-			</td>
-			<td>
-				<input class="lfr-input-text" name="<portlet:namespace />jiraUserId" style="width: 150px;" type="text" value="<%= jiraUserId %>" />
-
-				<liferay-ui:icon-help message="Set your login for http://support.liferay.com to track your JIRA activity." />
-			</td>
-		</tr>
 		<tr>
 			<td colspan="2">
 				<br />

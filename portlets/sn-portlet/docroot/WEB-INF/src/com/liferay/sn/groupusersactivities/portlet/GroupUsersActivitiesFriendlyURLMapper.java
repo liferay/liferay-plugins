@@ -44,6 +44,6 @@ public class GroupUsersActivitiesFriendlyURLMapper
 
 	private static final String _MAPPING = "group_users_activities";
 
-	private static final String _PORTLET_ID = "10_WAR_wolportlet";
+	private static final String _PORTLET_ID = "8_WAR_snportlet";
 
 }

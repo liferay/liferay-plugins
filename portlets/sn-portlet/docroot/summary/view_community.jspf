@@ -22,6 +22,10 @@
  */
 %>
 
+<%
+PortalUtil.addPageSubtitle(group.getName(), request);
+%>
+
 <div class="summary-container">
 	<h2>
 		<%= group.getName() %>

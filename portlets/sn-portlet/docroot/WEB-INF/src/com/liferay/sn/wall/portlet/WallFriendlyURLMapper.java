@@ -76,6 +76,6 @@ public class WallFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 	private static final String _MAPPING = "wall";
 
-	private static final String _PORTLET_ID = "5_WAR_wolportlet";
+	private static final String _PORTLET_ID = "3_WAR_snportlet";
 
 }

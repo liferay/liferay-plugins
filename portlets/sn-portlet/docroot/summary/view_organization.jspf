@@ -22,6 +22,10 @@
  */
 %>
 
+<%
+PortalUtil.addPageSubtitle(organization.getName(), request);
+%>
+
 <div class="summary-container">
 	<h2>
 		<%= organization.getName() %>

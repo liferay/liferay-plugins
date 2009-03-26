@@ -43,6 +43,6 @@ public class FriendsActivitiesFriendlyURLMapper extends RSSFriendlyURLMapper {
 
 	private static final String _MAPPING = "friends_activities";
 
-	private static final String _PORTLET_ID = "6_WAR_wolportlet";
+	private static final String _PORTLET_ID = "4_WAR_snportlet";
 
 }

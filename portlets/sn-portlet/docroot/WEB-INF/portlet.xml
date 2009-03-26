@@ -33,66 +33,6 @@
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
-		<display-name>SVN</display-name>
-		<portlet-class>com.liferay.util.bridges.jsp.JSPPortlet</portlet-class>
-		<init-param>
-			<name>view-jsp</name>
-			<value>/svn/view.jsp</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-		</supports>
-		<portlet-info>
-			<title>SVN</title>
-			<short-title>SVN</short-title>
-			<keywords>SVN</keywords>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>administrator</role-name>
-		</security-role-ref>
-		<security-role-ref>
-			<role-name>guest</role-name>
-		</security-role-ref>
-		<security-role-ref>
-			<role-name>power-user</role-name>
-		</security-role-ref>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
-	<portlet>
-		<portlet-name>3</portlet-name>
-		<display-name>JIRA</display-name>
-		<portlet-class>com.liferay.util.bridges.jsp.JSPPortlet</portlet-class>
-		<init-param>
-			<name>view-jsp</name>
-			<value>/jira/view.jsp</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-		</supports>
-		<portlet-info>
-			<title>JIRA</title>
-			<short-title>JIRA</short-title>
-			<keywords>JIRA</keywords>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>administrator</role-name>
-		</security-role-ref>
-		<security-role-ref>
-			<role-name>guest</role-name>
-		</security-role-ref>
-		<security-role-ref>
-			<role-name>power-user</role-name>
-		</security-role-ref>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
-	<portlet>
-		<portlet-name>4</portlet-name>
 		<display-name>Friends</display-name>
 		<portlet-class>com.liferay.util.bridges.jsp.JSPPortlet</portlet-class>
 		<init-param>
@@ -122,7 +62,7 @@
 		</security-role-ref>
 	</portlet>
 	<portlet>
-		<portlet-name>5</portlet-name>
+		<portlet-name>3</portlet-name>
 		<display-name>Wall</display-name>
 		<portlet-class>com.liferay.sn.wall.portlet.WallPortlet</portlet-class>
 		<init-param>
@@ -156,7 +96,7 @@
 		</security-role-ref>
 	</portlet>
 	<portlet>
-		<portlet-name>6</portlet-name>
+		<portlet-name>4</portlet-name>
 		<display-name>Friends' Activities</display-name>
 		<portlet-class>com.liferay.util.bridges.jsp.JSPPortlet</portlet-class>
 		<init-param>
@@ -186,7 +126,7 @@
 		</security-role-ref>
 	</portlet>
 	<portlet>
-		<portlet-name>7</portlet-name>
+		<portlet-name>5</portlet-name>
 		<display-name>Members</display-name>
 		<portlet-class>com.liferay.util.bridges.jsp.JSPPortlet</portlet-class>
 		<init-param>
@@ -216,7 +156,7 @@
 		</security-role-ref>
 	</portlet>
 	<portlet>
-		<portlet-name>8</portlet-name>
+		<portlet-name>6</portlet-name>
 		<display-name>Map</display-name>
 		<portlet-class>com.liferay.util.bridges.jsp.JSPPortlet</portlet-class>
 		<init-param>
@@ -246,7 +186,7 @@
 		</security-role-ref>
 	</portlet>
 	<portlet>
-		<portlet-name>9</portlet-name>
+		<portlet-name>7</portlet-name>
 		<display-name>Meetups</display-name>
 		<portlet-class>com.liferay.sn.meetups.portlet.MeetupsPortlet</portlet-class>
 		<init-param>
@@ -280,7 +220,7 @@
 		</security-role-ref>
 	</portlet>
 	<portlet>
-		<portlet-name>10</portlet-name>
+		<portlet-name>8</portlet-name>
 		<display-name>Members' Activities</display-name>
 		<portlet-class>com.liferay.util.bridges.jsp.JSPPortlet</portlet-class>
 		<init-param>

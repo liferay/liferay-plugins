@@ -1,5 +1,5 @@
 
-create table WOL_MeetupsEntry (
+create table sn_MeetupsEntry (
 	meetupsEntryId LONG not null primary key,
 	companyId LONG,
 	userId LONG,
@@ -16,7 +16,7 @@ create table WOL_MeetupsEntry (
 	thumbnailId LONG
 );
 
-create table WOL_MeetupsRegistration (
+create table sn_MeetupsRegistration (
 	meetupsRegistrationId LONG not null primary key,
 	companyId LONG,
 	userId LONG,
@@ -28,22 +28,7 @@ create table WOL_MeetupsRegistration (
 	comments STRING null
 );
 
-create table WOL_SVNRepository (
-	svnRepositoryId LONG not null primary key,
-	url VARCHAR(200) null,
-	revisionNumber LONG
-);
-
-create table WOL_SVNRevision (
-	svnRevisionId LONG not null primary key,
-	svnUserId VARCHAR(75) null,
-	createDate DATE null,
-	svnRepositoryId LONG,
-	revisionNumber LONG,
-	comments STRING null
-);
-
-create table WOL_WallEntry (
+create table sn_WallEntry (
 	wallEntryId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,

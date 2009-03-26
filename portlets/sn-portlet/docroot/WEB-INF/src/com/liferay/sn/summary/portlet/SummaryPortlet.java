@@ -46,9 +46,9 @@ import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
-import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.sn.friends.social.FriendsRequestKeys;
 import com.liferay.sn.members.social.MembersRequestKeys;
+import com.liferay.util.bridges.jsp.JSPPortlet;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -221,16 +221,12 @@ public class SummaryPortlet extends JSPPortlet {
 			return;
 		}
 
-		String jiraUserId = ParamUtil.getString(actionRequest, "jiraUserId");
 		String jobTitle = ParamUtil.getString(actionRequest, "jobTitle");
 		String aboutMe = ParamUtil.getString(actionRequest, "aboutMe");
 
 		try {
 			ExpandoValueLocalServiceUtil.addValue(
-				User.class.getName(), "WOL", "jiraUserId", user.getUserId(),
-				jiraUserId);
-			ExpandoValueLocalServiceUtil.addValue(
-				User.class.getName(), "WOL", "aboutMe", user.getUserId(),
+				User.class.getName(), "sn", "aboutMe", user.getUserId(),
 				aboutMe);
 
 			Contact contact = user.getContact();

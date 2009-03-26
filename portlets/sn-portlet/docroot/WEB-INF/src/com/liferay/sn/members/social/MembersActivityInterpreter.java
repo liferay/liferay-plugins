@@ -106,7 +106,7 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 			String organizationNameURL = sb.toString();
 
 			title = themeDisplay.translate(
-				"activity-wol-summary-join-organization",
+				"activity-sn-summary-join-organization",
 				new Object[] {creatorUserNameURL, organizationNameURL});
 		}
 

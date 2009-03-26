@@ -24,13 +24,13 @@
 
 <%@ include file="/css_init.jsp" %>
 
-.wol-portlet-meetups .response {
+.sn-portlet-meetups .response {
 	float: left;
 	margin-right: 15px;
 	position: relative;
 }
 
-.wol-portlet-meetups .response .comments {
+.sn-portlet-meetups .response .comments {
 	background: #E2E6E8;
 	border: 1px solid #6B767B;
 	bottom: 110%;
@@ -41,11 +41,11 @@
 	width: 200px;
 }
 
-.wol-portlet-meetups .response.hovering .comments {
+.sn-portlet-meetups .response.hovering .comments {
 	display: block;
 }
 
-.wol-portlet-meetups .response .comments .indicator {
+.sn-portlet-meetups .response .comments .indicator {
 	background: url(<%= request.getContextPath() %>/meetups/images/indicator.png) no-repeat;
 	bottom: -15px;
 	height: 15px;

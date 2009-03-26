@@ -51,7 +51,7 @@ import java.util.List;
  *
  */
 public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
-	public static final String TABLE_NAME = "WOL_WallEntry";
+	public static final String TABLE_NAME = "sn_WallEntry";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "wallEntryId", new Integer(Types.BIGINT) },
 			
@@ -76,8 +76,8 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
 
 			{ "comments", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WOL_WallEntry (wallEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,comments STRING null)";
-	public static final String TABLE_SQL_DROP = "drop table WOL_WallEntry";
+	public static final String TABLE_SQL_CREATE = "create table sn_WallEntry (wallEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,comments VARCHAR(75) null)";
+	public static final String TABLE_SQL_DROP = "drop table sn_WallEntry";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";

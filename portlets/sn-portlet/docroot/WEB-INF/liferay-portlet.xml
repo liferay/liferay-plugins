@@ -5,71 +5,54 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<header-portlet-css>/summary/css.jsp</header-portlet-css>
-		<css-class-wrapper>wol-portlet-summary</css-class-wrapper>
+		<css-class-wrapper>sn-portlet-summary</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
-		<icon>/icons/svn.png</icon>
-		<scheduler-class>com.liferay.sn.svn.job.SVNScheduler</scheduler-class>
-		<friendly-url-mapper-class>com.liferay.sn.svn.portlet.SVNFriendlyURLMapper</friendly-url-mapper-class>
-		<social-activity-interpreter-class>com.liferay.sn.svn.social.SVNActivityInterpreter</social-activity-interpreter-class>
-		<header-portlet-css>/svn/css.jsp</header-portlet-css>
-		<css-class-wrapper>wol-portlet-svn</css-class-wrapper>
-	</portlet>
-	<portlet>
-		<portlet-name>3</portlet-name>
-		<icon>/icons/jira.png</icon>
-		<scheduler-class>com.liferay.sn.jira.job.JIRAScheduler</scheduler-class>
-		<social-activity-interpreter-class>com.liferay.sn.jira.social.JIRAActivityInterpreter</social-activity-interpreter-class>
-		<header-portlet-css>/jira/css.jsp</header-portlet-css>
-		<css-class-wrapper>wol-portlet-jira</css-class-wrapper>
-	</portlet>
-	<portlet>
-		<portlet-name>4</portlet-name>
 		<icon>/icons/friends.png</icon>
 		<social-activity-interpreter-class>com.liferay.sn.friends.social.FriendsActivityInterpreter</social-activity-interpreter-class>
 		<social-request-interpreter-class>com.liferay.sn.friends.social.FriendsRequestInterpreter</social-request-interpreter-class>
 		<header-portlet-css>/friends/css.jsp</header-portlet-css>
-		<css-class-wrapper>wol-portlet-friends</css-class-wrapper>
+		<css-class-wrapper>sn-portlet-friends</css-class-wrapper>
 	</portlet>
 	<portlet>
-		<portlet-name>5</portlet-name>
+		<portlet-name>3</portlet-name>
 		<icon>/icons/wall.png</icon>
 		<friendly-url-mapper-class>com.liferay.sn.wall.portlet.WallFriendlyURLMapper</friendly-url-mapper-class>
 		<social-activity-interpreter-class>com.liferay.sn.wall.social.WallActivityInterpreter</social-activity-interpreter-class>
 		<restore-current-view>false</restore-current-view>
-		<css-class-wrapper>wol-portlet-wall</css-class-wrapper>
+		<css-class-wrapper>sn-portlet-wall</css-class-wrapper>
 	</portlet>
 	<portlet>
-		<portlet-name>6</portlet-name>
+		<portlet-name>4</portlet-name>
 		<friendly-url-mapper-class>com.liferay.sn.friendsactivities.portlet.FriendsActivitiesFriendlyURLMapper</friendly-url-mapper-class>
-		<css-class-wrapper>wol-portlet-friends-activities</css-class-wrapper>
+		<css-class-wrapper>sn-portlet-friends-activities</css-class-wrapper>
 	</portlet>
 	<portlet>
-		<portlet-name>7</portlet-name>
+		<portlet-name>5</portlet-name>
 		<icon>/icons/members.png</icon>
 		<social-activity-interpreter-class>com.liferay.sn.members.social.MembersActivityInterpreter</social-activity-interpreter-class>
 		<social-request-interpreter-class>com.liferay.sn.members.social.MembersRequestInterpreter</social-request-interpreter-class>
 		<header-portlet-css>/members/css.jsp</header-portlet-css>
-		<css-class-wrapper>wol-portlet-members</css-class-wrapper>
+		<css-class-wrapper>sn-portlet-members</css-class-wrapper>
 	</portlet>
 	<portlet>
-		<portlet-name>8</portlet-name>
+		<portlet-name>6</portlet-name>
 		<friendly-url-mapper-class>com.liferay.sn.map.portlet.MapFriendlyURLMapper</friendly-url-mapper-class>
 		<ajaxable>false</ajaxable>
-		<css-class-wrapper>wol-portlet-map</css-class-wrapper>
+		<css-class-wrapper>sn-portlet-map</css-class-wrapper>
 	</portlet>
 	<portlet>
-		<portlet-name>9</portlet-name>
+		<portlet-name>7</portlet-name>
 		<friendly-url-mapper-class>com.liferay.sn.meetups.portlet.MeetupsFriendlyURLMapper</friendly-url-mapper-class>
 		<restore-current-view>false</restore-current-view>
-		<css-class-wrapper>wol-portlet-meetups</css-class-wrapper>
+		<css-class-wrapper>sn-portlet-meetups</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
 	</portlet>
 	<portlet>
-		<portlet-name>10</portlet-name>
+		<portlet-name>8</portlet-name>
 		<friendly-url-mapper-class>com.liferay.sn.groupusersactivities.portlet.GroupUsersActivitiesFriendlyURLMapper</friendly-url-mapper-class>
-		<css-class-wrapper>wol-portlet-group-users-activities</css-class-wrapper>
+		<css-class-wrapper>sn-portlet-group-users-activities</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

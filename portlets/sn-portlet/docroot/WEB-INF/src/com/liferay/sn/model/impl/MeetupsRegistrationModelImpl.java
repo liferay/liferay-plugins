@@ -51,7 +51,7 @@ import java.util.List;
  *
  */
 public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistration> {
-	public static final String TABLE_NAME = "WOL_MeetupsRegistration";
+	public static final String TABLE_NAME = "sn_MeetupsRegistration";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "meetupsRegistrationId", new Integer(Types.BIGINT) },
 			
@@ -79,8 +79,8 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 
 			{ "comments", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WOL_MeetupsRegistration (meetupsRegistrationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,meetupsEntryId LONG,status INTEGER,comments STRING null)";
-	public static final String TABLE_SQL_DROP = "drop table WOL_MeetupsRegistration";
+	public static final String TABLE_SQL_CREATE = "create table sn_MeetupsRegistration (meetupsRegistrationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,meetupsEntryId LONG,status INTEGER,comments VARCHAR(75) null)";
+	public static final String TABLE_SQL_DROP = "drop table sn_MeetupsRegistration";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";

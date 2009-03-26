@@ -24,23 +24,23 @@
 
 <%@ include file="/css_init.jsp" %>
 
-.wol-portlet-members .taglib-search-iterator-page-iterator-bottom .taglib-page-iterator {
+.sn-portlet-members .taglib-search-iterator-page-iterator-bottom .taglib-page-iterator {
 	padding-top: 5px;
 }
 
-.wol-portlet-members .taglib-search-iterator-page-iterator-bottom .search-results {
+.sn-portlet-members .taglib-search-iterator-page-iterator-bottom .search-results {
 	display: none;
 }
 
-.wol-portlet-members .taglib-search-iterator-page-iterator-bottom .search-pages {
+.sn-portlet-members .taglib-search-iterator-page-iterator-bottom .search-pages {
 	float: none;
 }
 
-.wol-portlet-members .taglib-search-iterator-page-iterator-bottom .search-pages .page-links {
+.sn-portlet-members .taglib-search-iterator-page-iterator-bottom .search-pages .page-links {
 	float: none;
 	text-align: left;
 }
 
-.wol-portlet-members .taglib-search-iterator-page-iterator-bottom .search-pages .page-links .previous {
+.sn-portlet-members .taglib-search-iterator-page-iterator-bottom .search-pages .page-links .previous {
 	border: none;
 }

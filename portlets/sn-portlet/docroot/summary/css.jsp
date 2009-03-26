@@ -24,11 +24,11 @@
 
 <%@ include file="/css_init.jsp" %>
 
-.ie .wol-portlet-summary .summary-container {
+.ie .sn-portlet-summary .summary-container {
 	height: 1%;
 }
 
-.wol-portlet-summary .summary-container:after {
+.sn-portlet-summary .summary-container:after {
 	clear: both;
 	content: ".";
 	display: block;
@@ -36,27 +36,27 @@
 	visibility: hidden;
 }
 
-.wol-portlet-summary .summary-container h2 {
+.sn-portlet-summary .summary-container h2 {
 	color: #3D536C;
 	font-size: 16px;
 	margin-bottom: 10px;
 	margin-top: 0;
 }
 
-.wol-portlet-summary .summary-container img {
+.sn-portlet-summary .summary-container img {
 	margin: 5px 0;
 	max-width: 120px;
 }
 
-.ie6 .wol-portlet-summary .summary-container img {
+.ie6 .sn-portlet-summary .summary-container img {
 	width: 120px;
 }
 
-.wol-portlet-summary .summary-container p {
+.sn-portlet-summary .summary-container p {
 	margin-bottom: 10px;
 }
 
-.wol-portlet-summary .summary-container span {
+.sn-portlet-summary .summary-container span {
 	color: #3D536C;
 	display: block;
 	font-size: 10px;
@@ -64,46 +64,46 @@
 	text-transform: uppercase;
 }
 
-.wol-portlet-summary .summary-container .user-profile-image {
+.sn-portlet-summary .summary-container .user-profile-image {
 	max-width: 180px;
 }
 
-.ie6 .wol-portlet-summary .summary-container .user-profile-image {
+.ie6 .sn-portlet-summary .summary-container .user-profile-image {
 	width: expression(this.width > 180 : '180px' : 'auto');
 }
 
-.wol-portlet-summary .summary-container .add-as-friend {
+.sn-portlet-summary .summary-container .add-as-friend {
 	margin: 0.7em auto 1em;
 }
 
-.wol-portlet-summary .summary-container .add-as-friend.pending {
+.sn-portlet-summary .summary-container .add-as-friend.pending {
 	background-image: url(<%= themeImagesPath %>/common/time.png);
 }
 
-.wol-portlet-summary .summary-container .join-community {
+.sn-portlet-summary .summary-container .join-community {
 	margin: 0.7em auto 1em;
 }
 
-.wol-portlet-summary .summary-container .join-community.pending {
+.sn-portlet-summary .summary-container .join-community.pending {
 	background-image: url(<%= themeImagesPath %>/common/time.png);
 }
 
-.wol-portlet-summary .summary-container .join-organization {
+.sn-portlet-summary .summary-container .join-organization {
 	margin: 0.7em auto 1em;
 }
 
-.wol-portlet-summary .summary-container .join-organization.pending {
+.sn-portlet-summary .summary-container .join-organization.pending {
 	background-image: url(<%= themeImagesPath %>/common/time.png);
 }
 
-.wol-portlet-summary .summary-container .remove-community {
+.sn-portlet-summary .summary-container .remove-community {
 	margin: 0.7em auto 1em;
 }
 
-.wol-portlet-summary .summary-container .remove-organization {
+.sn-portlet-summary .summary-container .remove-organization {
 	margin: 0.7em auto 1em;
 }
 
-.wol-portlet-summary .summary-container .remove-friend {
+.sn-portlet-summary .summary-container .remove-friend {
 	margin: 0.7em auto 1em;
 }

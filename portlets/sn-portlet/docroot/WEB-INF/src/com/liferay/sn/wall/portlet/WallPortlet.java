@@ -33,9 +33,9 @@ import com.liferay.portal.service.permission.UserPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
-import com.liferay.util.bridges.jsp.JSPPortlet;
 import com.liferay.sn.model.WallEntry;
 import com.liferay.sn.service.WallEntryLocalServiceUtil;
+import com.liferay.util.bridges.jsp.JSPPortlet;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;

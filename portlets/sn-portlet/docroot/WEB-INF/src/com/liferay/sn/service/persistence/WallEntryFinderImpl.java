@@ -29,9 +29,9 @@ import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
-import com.liferay.util.dao.orm.CustomSQLUtil;
 import com.liferay.sn.model.WallEntry;
 import com.liferay.sn.model.impl.WallEntryImpl;
+import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.Iterator;
 import java.util.List;
@@ -107,7 +107,7 @@ public class WallEntryFinderImpl
 
 			SQLQuery q = session.createSQLQuery(sql);
 
-			q.addEntity("WOL_WallEntry", WallEntryImpl.class);
+			q.addEntity("sn_WallEntry", WallEntryImpl.class);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
