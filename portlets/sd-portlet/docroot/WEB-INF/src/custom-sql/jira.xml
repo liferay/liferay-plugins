@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <custom-sql>
-	<sql id="com.liferay.wol.service.persistence.JIRAActionFinder.countByCD_P">
+	<sql id="com.liferay.sd.service.persistence.JIRAActionFinder.countByCD_P">
 		<![CDATA[
 			SELECT
 				COUNT(*) AS COUNT_VALUE
@@ -15,7 +15,7 @@
 				(jiraaction.created > ?)
 		]]>
 	</sql>
-	<sql id="com.liferay.wol.service.persistence.JIRAActionFinder.findByCD_P">
+	<sql id="com.liferay.sd.service.persistence.JIRAActionFinder.findByCD_P">
 		<![CDATA[
 			SELECT
 				{jiraaction.*}
@@ -29,7 +29,7 @@
 				(jiraaction.created > ?)
 		]]>
 	</sql>
-	<sql id="com.liferay.wol.service.persistence.JIRAChangeGroupFinder.countByCD_P">
+	<sql id="com.liferay.sd.service.persistence.JIRAChangeGroupFinder.countByCD_P">
 		<![CDATA[
 			SELECT
 				COUNT(*) AS COUNT_VALUE
@@ -43,7 +43,7 @@
 				(changegroup.created > ?)
 		]]>
 	</sql>
-	<sql id="com.liferay.wol.service.persistence.JIRAChangeGroupFinder.findByCD_P">
+	<sql id="com.liferay.sd.service.persistence.JIRAChangeGroupFinder.findByCD_P">
 		<![CDATA[
 			SELECT
 				{changegroup.*}
@@ -57,7 +57,7 @@
 				(changegroup.created > ?)
 		]]>
 	</sql>
-	<sql id="com.liferay.wol.service.persistence.JIRAIssueFinder.countByCD_P">
+	<sql id="com.liferay.sd.service.persistence.JIRAIssueFinder.countByCD_P">
 		<![CDATA[
 			SELECT
 				COUNT(*) AS COUNT_VALUE
@@ -69,7 +69,7 @@
 				(created > ?)
 		]]>
 	</sql>
-	<sql id="com.liferay.wol.service.persistence.JIRAIssueFinder.findByCD_P">
+	<sql id="com.liferay.sd.service.persistence.JIRAIssueFinder.findByCD_P">
 		<![CDATA[
 			SELECT
 				{jiraissue.*}

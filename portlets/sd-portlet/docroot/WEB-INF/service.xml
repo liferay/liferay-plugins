@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_2_0.dtd">
 
-<service-builder package-path="com.liferay.wol">
+<service-builder package-path="com.liferay.sd">
 	<namespace>WOL</namespace>
 	<entity name="JIRAAction" table="jiraaction" local-service="true" remote-service="false" data-source="jiraDataSource" session-factory="jiraSessionFactory" tx-manager="jiraTransactionManager">
 

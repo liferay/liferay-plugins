@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Summary</display-name>
-		<portlet-class>com.liferay.wol.summary.portlet.SummaryPortlet</portlet-class>
+		<portlet-class>com.liferay.sd.summary.portlet.SummaryPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/summary/view.jsp</value>
@@ -124,7 +124,7 @@
 	<portlet>
 		<portlet-name>5</portlet-name>
 		<display-name>Wall</display-name>
-		<portlet-class>com.liferay.wol.wall.portlet.WallPortlet</portlet-class>
+		<portlet-class>com.liferay.sd.wall.portlet.WallPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/wall/view.jsp</value>
@@ -248,7 +248,7 @@
 	<portlet>
 		<portlet-name>9</portlet-name>
 		<display-name>Meetups</display-name>
-		<portlet-class>com.liferay.wol.meetups.portlet.MeetupsPortlet</portlet-class>
+		<portlet-class>com.liferay.sd.meetups.portlet.MeetupsPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/meetups/view.jsp</value>
