@@ -106,6 +106,15 @@ public class AlfrescoOpenSearchImpl implements OpenSearch {
 			int startPage, int itemsPerPage, String format)
 		throws SearchException {
 
+		return search(
+			request, 0, userId, keywords, startPage, itemsPerPage, format);
+	}
+
+	public String search(
+			HttpServletRequest request, long groupId, long userId,
+			String keywords, int startPage, int itemsPerPage, String format)
+		throws SearchException {
+
 		String url =
 			PROTOCOL + "://" + SEARCH_URL + "?q=" +
 				HttpUtil.encodeURL(keywords) + "&p=" + startPage + "&c=" +
