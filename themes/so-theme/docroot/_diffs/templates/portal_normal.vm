@@ -19,7 +19,7 @@ $theme.include($top_messages_include)
 		<h1 class="logo">
 			#if ($is_signed_in)
 				<a class="png" href="$themeDisplay.getPathFriendlyURLPublic()/$user.getScreenName()">
-			#else 
+			#else
 				<a class="png" href="$company_url">
 			#end
 				<span>$company_name</span>
