@@ -159,6 +159,10 @@ body #banner h1.logo a {
 
 /* ---------- Portlets ---------- */
 
+.portlet {
+	margin-bottom: 2em;
+}
+
 .portlet-borderless-bar {
 	display: none;
 }
