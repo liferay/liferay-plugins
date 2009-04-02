@@ -19,6 +19,7 @@ a:hover {
 /* ---------- Wrapper ---------- */
 
 #wrapper {
+	position: relative;
 	width: 1200px;
 }
 
@@ -201,11 +202,6 @@ a:hover {
 	top: 3px;
 }
 
-.portlet table td,
-.portlet table {
-	border: #2F2F2F;
-}
-
 .lfr-menu-list {
 	z-index: 100;
 }
@@ -250,97 +246,9 @@ a:hover {
 	margin-left: 10px;
 }
 
-.ui-autocomplete-even,
-.results-row td {
-	background: #1B1B1B;
-}
-
-.ui-autocomplete-odd,
-.results-row.alt td {
-	background: #252525;
-}
-
-.results-row.hover td {
-	background: #333;
-}
-
-.results-header,
-.results-header th,
-.results-header td,
-.portlet-calendar .calendar-day .day-text,
-#wrapper .results-header th a:hover,
-#wrapper .results-header td a:hover,
-#wrapper .taglib-calendar tr td a:hover {
-	background: #101010;
-	border-color: #2F2F2F;
-	color: #AAA;
-}
-
-#wrapper .results-header th a,
-#wrapper .results-header td a {
-	border-color: #2F2F2F;
-	color: #DDD;
-}
-
-body.portal-iframe,
-.portal-iframe #content-wrapper {
-	background: #101010;
-}
-
-.portlet-calendar .calendar-container .taglib-calendar,
-.exp-tabs,
-.results-grid,
-.taglib-calendar tr td a,
-.portlet-calendar .calendar td,
-.portlet-calendar .day-grid,
-.portlet-calendar .day-grid .half-hour,
-.portlet-calendar .day-grid .hour,
-.portlet-calendar .calendar-container,
-.taglib-calendar tr th,
-#wrapper .taglib-calendar table,
-#wrapper .portlet-calendar {
-	border-color: #2F2F2F;
-}
-
-.portlet-journal .lfr-panel-titlebar .lfr-panel-title,
-.taglib-calendar tr td a {
-	border: none;
-}
-
-.taglib-calendar .calendar-current-day a {
-	color: #DDD;
-}
-
-.portlet-journal .lfr-panel-titlebar .lfr-panel-title span,
-.portlet-journal .lfr-panel-content,
-.lfr-panel-container,
-.lfr-floating-container,
-.taglib-calendar .calendar-current-day,
-.taglib-calendar .calendar-current-day a,
-.portlet-calendar .calendar-container .taglib-calendar,
-.taglib-calendar tr td a,
-.portlet-calendar .day-grid .business-hour,
-.portlet-calendar .day-grid .night-hour,
-.portlet-calendar .calendar-container {
-	background: none;
-}
-
-.taglib-calendar tr td.calendar-inactive {
-	background: #2F2F2F;
-}
-
-.portlet-calendar .calendar-day .day-number {
-	border: none;
-	font-size: 100px;
-}
-
-.portlet-calendar .taglib-calendar td.calendar-current-day a span {
-	background: none;
-}
-
-.portlet-login .navigation {
-	background: none;
-	border-color: #2F2F2F;
+.portlet table td,
+.portlet table {
+	border: #2F2F2F;
 }
 
 /* ---------- Tabs ---------- */
@@ -449,4 +357,99 @@ button:focus {
 
 input {
 	background: none;
+}
+
+/* ---------- More ---------- */
+
+.ui-autocomplete-even,
+.results-row td {
+	background: #1B1B1B;
+}
+
+.ui-autocomplete-odd,
+.results-row.alt td {
+	background: #252525;
+}
+
+.results-row.hover td {
+	background: #333;
+}
+
+.results-header,
+.results-header th,
+.results-header td,
+.portlet-calendar .calendar-day .day-text,
+#wrapper .results-header th a:hover,
+#wrapper .results-header td a:hover,
+#wrapper .taglib-calendar tr td a:hover {
+	background: #101010;
+	border-color: #2F2F2F;
+	color: #AAA;
+}
+
+#wrapper .results-header th a,
+#wrapper .results-header td a {
+	border-color: #2F2F2F;
+	color: #DDD;
+}
+
+body.portal-iframe,
+.portal-iframe #content-wrapper {
+	background: #101010;
+}
+
+.portlet-calendar .calendar-container .taglib-calendar,
+.exp-tabs,
+.results-grid,
+.taglib-calendar tr td a,
+.portlet-calendar .calendar td,
+.portlet-calendar .day-grid,
+.portlet-calendar .day-grid .half-hour,
+.portlet-calendar .day-grid .hour,
+.portlet-calendar .calendar-container,
+.taglib-calendar tr th,
+#wrapper .taglib-calendar table,
+#wrapper .portlet-calendar {
+	border-color: #2F2F2F;
+}
+
+.portlet-journal .lfr-panel-titlebar .lfr-panel-title,
+.taglib-calendar tr td a {
+	border: none;
+}
+
+.taglib-calendar .calendar-current-day a {
+	color: #DDD;
+}
+
+.portlet-journal .lfr-panel-titlebar .lfr-panel-title span,
+.portlet-journal .lfr-panel-content,
+.lfr-panel-container,
+.lfr-floating-container,
+.taglib-calendar .calendar-current-day,
+.taglib-calendar .calendar-current-day a,
+.portlet-calendar .calendar-container .taglib-calendar,
+.taglib-calendar tr td a,
+.portlet-calendar .day-grid .business-hour,
+.portlet-calendar .day-grid .night-hour,
+.portlet-calendar .calendar-container {
+	background: none;
+}
+
+.taglib-calendar tr td.calendar-inactive {
+	background: #2F2F2F;
+}
+
+.portlet-calendar .calendar-day .day-number {
+	border: none;
+	font-size: 100px;
+}
+
+.portlet-calendar .taglib-calendar td.calendar-current-day a span {
+	background: none;
+}
+
+.portlet-login .navigation {
+	background: none;
+	border-color: #2F2F2F;
 }
