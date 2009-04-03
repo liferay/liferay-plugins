@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2008-2009 Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
@@ -17,16 +17,15 @@
 
 package com.liferay.so.hook.events;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.events.ActionException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.WebKeys;
-
-import com.liferay.portal.model.Layout;
-import com.liferay.portal.model.User;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
+import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,31 +45,36 @@ public class ServicePreAction extends Action {
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		if (!themeDisplay.isSignedIn()) {
+			return;
+		}
+
 		Layout layout = themeDisplay.getLayout();
+
+		if (layout.getLayoutId() != 1) {
+			return;
+		}
 
 		Group group = layout.getGroup();
 
-		if (themeDisplay.isSignedIn() &&
-			layout.getLayoutId() == 1 &&
-			group.getName().equals(GroupConstants.GUEST)) {
-
-			try {
-				User user = themeDisplay.getUser();
-
-				String redirect = "/web/" + user.getScreenName() + "/home";
-
-				response.sendRedirect(redirect);
-			}
-			catch (Exception e) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(e, e);
-				}
-			}
+		if (!group.getName().equals(GroupConstants.GUEST)) {
+			return;
 		}
 
+		try {
+			User user = themeDisplay.getUser();
+
+			String redirect = "/web/" + user.getScreenName() + "/home";
+
+			response.sendRedirect(redirect);
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(e, e);
+			}
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(ServicePreAction.class);
 
 }
-
