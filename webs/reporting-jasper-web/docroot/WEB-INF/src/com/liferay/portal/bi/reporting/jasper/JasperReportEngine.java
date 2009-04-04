@@ -22,18 +22,14 @@
 
 package com.liferay.portal.bi.reporting.jasper;
 
+import com.liferay.portal.bi.reporting.jasper.compiler.ReportCompiler;
 import com.liferay.portal.kernel.bi.reporting.ReportEngine;
+import com.liferay.portal.kernel.bi.reporting.ReportFormatExporter;
 import com.liferay.portal.kernel.bi.reporting.ReportFormatExporterRegistry;
 import com.liferay.portal.kernel.bi.reporting.ReportGenerationException;
 import com.liferay.portal.kernel.bi.reporting.ReportRequest;
 import com.liferay.portal.kernel.bi.reporting.ReportResultContainer;
-import com.liferay.portal.kernel.bi.reporting.ReportFormatExporter;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.bi.reporting.jasper.compiler.ReportCompiler;
-
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.JasperPrint;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -43,8 +39,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.servlet.ServletContext;
 import javax.sql.DataSource;
 
-import org.apache.commons.logging.LogFactory;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+
 import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="JasperReportEngine.java.html"><b><i>View Source</i></b></a>

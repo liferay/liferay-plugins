@@ -22,11 +22,11 @@
 
 package com.liferay.portal.bi.reporting.jdbc;
 
-import com.liferay.portal.kernel.dao.jdbc.DataSourceFactory;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.dao.jdbc.DataSourceFactory;
 
-import java.util.Properties;
 import java.util.Enumeration;
+import java.util.Properties;
 
 import javax.sql.DataSource;
 

@@ -24,8 +24,8 @@ package com.liferay.portal.bi.reporting.jasper.compiler;
 
 import com.liferay.portal.kernel.bi.reporting.ReportDesignRetriever;
 
-import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperReport;
 
 /**
  * <a href="ReportCompiler.java.html"><b><i>View Source</i></b></a>

@@ -24,8 +24,8 @@ package com.liferay.portal.bi.reporting.jasper.exporter;
 
 import com.liferay.portal.kernel.bi.reporting.ReportExportException;
 import com.liferay.portal.kernel.bi.reporting.ReportFormatExporter;
-import com.liferay.portal.kernel.bi.reporting.ReportResultContainer;
 import com.liferay.portal.kernel.bi.reporting.ReportRequest;
+import com.liferay.portal.kernel.bi.reporting.ReportResultContainer;
 
 import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.export.JRHtmlExporter;
