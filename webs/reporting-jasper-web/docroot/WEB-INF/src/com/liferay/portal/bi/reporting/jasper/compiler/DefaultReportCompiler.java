@@ -22,13 +22,13 @@
 
 package com.liferay.portal.bi.reporting.jasper.compiler;
 
-import com.liferay.portlet.bi.reporting.ReportDesignRetriever;
+import com.liferay.portal.kernel.bi.reporting.ReportDesignRetriever;
+
+import java.io.InputStream;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperReport;
-
-import java.io.InputStream;
 
 /**
  * <a href="DefaultReportCompiler.java.html"><b><i>View Source</i></b></a>

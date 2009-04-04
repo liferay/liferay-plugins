@@ -22,12 +22,12 @@
 
 package com.liferay.portal.bi.reporting.jasper;
 
-import com.liferay.portlet.bi.reporting.ReportEngine;
-import com.liferay.portlet.bi.reporting.ReportFormatExporterRegistry;
-import com.liferay.portlet.bi.reporting.ReportGenerationException;
-import com.liferay.portlet.bi.reporting.ReportRequest;
-import com.liferay.portlet.bi.reporting.ReportResultContainer;
-import com.liferay.portlet.bi.reporting.ReportFormatExporter;
+import com.liferay.portal.kernel.bi.reporting.ReportEngine;
+import com.liferay.portal.kernel.bi.reporting.ReportFormatExporterRegistry;
+import com.liferay.portal.kernel.bi.reporting.ReportGenerationException;
+import com.liferay.portal.kernel.bi.reporting.ReportRequest;
+import com.liferay.portal.kernel.bi.reporting.ReportResultContainer;
+import com.liferay.portal.kernel.bi.reporting.ReportFormatExporter;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.bi.reporting.jasper.compiler.ReportCompiler;
 
@@ -72,7 +72,7 @@ public class JasperReportEngine implements ReportEngine {
 			JasperReport report =
 				_reportCompiler.compile(request.getRetriever());
 
-			String datasourceName = request.getAlternateDatasource();
+			String datasourceName = request.getAlternateDataSource();
 			if (Validator.isNull(datasourceName)) {
 				conn = _defaultDataSource.getConnection();
 			}

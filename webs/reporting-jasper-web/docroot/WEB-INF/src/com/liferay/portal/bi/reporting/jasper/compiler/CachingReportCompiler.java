@@ -22,15 +22,15 @@
 
 package com.liferay.portal.bi.reporting.jasper.compiler;
 
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.JRException;
+import com.liferay.portal.kernel.bi.reporting.ReportDesignRetriever;
 
-import java.util.Map;
 import java.util.Collections;
+import java.util.Map;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperReport;
 
 import org.apache.commons.collections.map.LRUMap;
-
-import com.liferay.portlet.bi.reporting.ReportDesignRetriever;
 
 /**
  * <a href="CachingReportCompiler.java.html"><b><i>View Source</i></b></a>

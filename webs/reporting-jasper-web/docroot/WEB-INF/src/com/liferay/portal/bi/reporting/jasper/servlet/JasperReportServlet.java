@@ -22,12 +22,12 @@
 
 package com.liferay.portal.bi.reporting.jasper.servlet;
 
-import com.liferay.portlet.bi.reporting.ReportDesignRetriever;
-import com.liferay.portlet.bi.reporting.ReportEngine;
-import com.liferay.portlet.bi.reporting.ReportGenerationException;
-import com.liferay.portlet.bi.reporting.ReportRequest;
-import com.liferay.portlet.bi.reporting.ReportResultContainer;
-import com.liferay.portlet.bi.reporting.servlet.ServletContextReportDesignRetriever;
+import com.liferay.portal.kernel.bi.reporting.ReportDesignRetriever;
+import com.liferay.portal.kernel.bi.reporting.ReportEngine;
+import com.liferay.portal.kernel.bi.reporting.ReportGenerationException;
+import com.liferay.portal.kernel.bi.reporting.ReportRequest;
+import com.liferay.portal.kernel.bi.reporting.ReportResultContainer;
+import com.liferay.portal.kernel.bi.reporting.servlet.ServletContextReportDesignRetriever;
 import com.liferay.util.bean.PortletBeanLocatorUtil;
 
 import java.io.IOException;
