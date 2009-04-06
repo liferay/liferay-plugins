@@ -188,6 +188,23 @@ pageContext.setAttribute("portletURL", portletURL);
 				}
 
 			);
+
+			var minusImage = '01_minus.png';
+			var plusImage = '01_plus.png';
+			jQuery(".description-toggle").click(
+				function() {
+					if (this.src.indexOf('minus.png') > -1) {
+						jQuery(".description", this.parentNode).slideUp();
+
+						this.src = this.src.replace(minusImage, plusImage);// themeDisplay.getPathThemeImages() + "/arrows/01_plus.png";
+					}
+					else {
+						jQuery(".description", this.parentNode).slideDown();
+
+						this.src = this.src = this.src.replace(plusImage, minusImage); //themeDisplay.getPathThemeImages() + "/arrows/01_minus.png";
+					}
+				}
+			);
 		}
 	)
 </script>

@@ -671,6 +671,15 @@ body #banner h1.logo a {
 	top: 3px;
 }
 
+.portlet-communities .actions {
+	width: 80px;
+}
+
+.portlet-communities .description-toggle {
+	position: relative;
+	top: 3px;
+}
+
 /* Document Library */
 
 .portlet-document-library .webdav-url {
