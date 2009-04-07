@@ -20,6 +20,12 @@
 			</li>
 		#end
 
+		#if ($show_control_panel)
+			<li class="control-panel">
+				<a href="$control_panel_url">$control_panel_text</a>
+			</li>
+		#end
+
 		#if ($show_my_account)
 			<li class="my-account">
 				<a href="$my_account_url">$my_account_text</a>
