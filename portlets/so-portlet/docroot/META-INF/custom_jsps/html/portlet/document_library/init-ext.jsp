@@ -27,7 +27,8 @@ if (rootFolderId <= 0) {
 		dynamicRootFolder = folders.get(0);
 	}
 	else {
-		dynamicRootFolder = DLFolderLocalServiceUtil.addFolder(themeDisplay.getUserId(), scopeGroupId, DLFolderImpl.DEFAULT_PARENT_FOLDER_ID, "Documents Home", "", true, true);
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(DLFolder.class.getName(), renderRequest);
+		dynamicRootFolder = DLFolderLocalServiceUtil.addFolder(themeDisplay.getUserId(), scopeGroupId, DLFolderImpl.DEFAULT_PARENT_FOLDER_ID, "Documents Home", "", serviceContext);
 	}
 
 	rootFolderId = dynamicRootFolder.getFolderId();
