@@ -44,6 +44,12 @@ body #banner h1.logo a {
 	top: 41px;
 }
 
+/* ---------- Portal tool tips ---------- */
+
+.portal-tool-tip {
+	font-size: 1.2em;
+}
+
 /* ---------- Top Navigation ---------- */
 
 #navigation-top {
@@ -395,6 +401,24 @@ body #banner h1.logo a {
 }
 
 /* ---------- Portlet ---------- */
+
+/* Contacts */
+
+.contacts-portlet .portlet-title img {
+	display: none;
+}
+
+.contacts-portlet .portlet-content, .contacts-portlet .portlet-minimized .portlet-content-container {
+	padding: 12px 0 10px;
+}
+
+.contacts-portlet .ui-dialog-content {
+	font-size: 1.2em;
+}
+
+#siteSelectorPanel {
+	font-size: 1.2em;
+}
 
 /* Blogs */
 
