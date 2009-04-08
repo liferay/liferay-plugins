@@ -59,12 +59,12 @@ ReportDefintionDisplayTerms displayTerms = (ReportDefintionDisplayTerms)searchCo
 	<c:if test="<%= showAddButton %>">
 		<input type="button" value="<liferay-ui:message key="add-definition" />" onClick="<portlet:namespace />addDefinition();" />
 	</c:if>
-</div
+</div>
 
 <script type="text/javascript">
 	function <portlet:namespace />addDefinition() {
 		document.<portlet:namespace />fm.method = 'post';
-		submitForm(document.<portlet:namespace />fm, '<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="jspPage" value="/definition/edit_definition.jspf" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>');
+		submitForm(document.<portlet:namespace />fm, '<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="jspPage" value="/definition/edit_definition.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>');
 	}
 
 	<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">

@@ -26,7 +26,7 @@ ReportDefinitionSearch searchContainer = new ReportDefinitionSearch(renderReques
 %>
 
 <liferay-ui:search-form
-	page="/definition/search_definition.jspf"
+	page="/definition/search_definition.jsp"
 	searchContainer="<%= searchContainer %>"
 	servletContext="<%= application %>"
 	showAddButton="true"
@@ -54,7 +54,7 @@ ReportDefinitionSearch searchContainer = new ReportDefinitionSearch(renderReques
 
 			rowURL.setWindowState(WindowState.MAXIMIZED);
 
-			rowURL.setParameter("jspPage", "/definition/edit_definition.jspf");
+			rowURL.setParameter("jspPage", "/definition/edit_definition.jsp");
 			rowURL.setParameter("redirect", currentURL);
 			rowURL.setParameter("entryId", entryId);
 
