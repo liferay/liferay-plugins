@@ -22,30 +22,22 @@
 
 package com.liferay.portal.atompub.blogs;
 
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceUtil;
-import com.liferay.portal.SystemException;
-import com.liferay.portal.PortalException;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.HttpUtil;
 
-import org.apache.abdera.protocol.server.impl.AbstractEntityCollectionAdapter;
-import org.apache.abdera.protocol.server.RequestContext;
-import org.apache.abdera.protocol.server.context.ResponseContextException;
-import org.apache.abdera.i18n.iri.IRI;
-import org.apache.abdera.model.Person;
-import org.apache.abdera.model.Content;
-import org.apache.abdera.model.Text;
-import org.apache.abdera.parser.stax.FOMContent;
-
-import javax.xml.namespace.QName;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Arrays;
+
+import org.apache.abdera.i18n.iri.IRI;
+import org.apache.abdera.model.Content;
+import org.apache.abdera.model.Person;
+import org.apache.abdera.protocol.server.RequestContext;
+import org.apache.abdera.protocol.server.context.ResponseContextException;
+import org.apache.abdera.protocol.server.impl.AbstractEntityCollectionAdapter;
 
 /**
  * <a href="BlogsEntryCollectionAdapter.java.html"><b><i>View Source</i></b></a>
@@ -91,7 +83,7 @@ public class BlogsEntryCollectionAdapter
 
 		content.setText(blogsEntry.getContent());
 
-		return content; 
+		return content;
 	}
 
 	public Iterable<BlogsEntry> getEntries(RequestContext requestContext)
@@ -149,7 +141,7 @@ public class BlogsEntryCollectionAdapter
 	public String getName(BlogsEntry blogsEntry)
 		throws ResponseContextException {
 
-		return blogsEntry.getTitle();
+		return String.valueOf(blogsEntry.getEntryId());
 	}
 
 	public String getTitle(BlogsEntry blogsEntry)
@@ -159,7 +151,7 @@ public class BlogsEntryCollectionAdapter
 	}
 
 	public String getTitle(RequestContext requestContext) {
-		return null;
+		return "Blogs";
 	}
 
 	public Date getUpdated(BlogsEntry blogsEntry)
@@ -208,7 +200,7 @@ public class BlogsEntryCollectionAdapter
 		try {
 			BlogsEntryLocalServiceUtil.updateEntry(
 				oldBlogsEntry.getUserId(), oldBlogsEntry.getEntryId(), title,
-		        content.getText(), oldBlogsEntry.getDisplayDate().getMonth(),
+				content.getText(), oldBlogsEntry.getDisplayDate().getMonth(),
 				oldBlogsEntry.getDisplayDate().getDay(),
 				oldBlogsEntry.getDisplayDate().getYear(),
 				oldBlogsEntry.getDisplayDate().getHours(),
