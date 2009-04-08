@@ -23,54 +23,38 @@
 package com.liferay.bi.report.portlet.action;
 
 import com.liferay.util.bridges.simplemvc.Action;
-import com.liferay.bi.report.search.ReportDefinitionSearch;
-import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
-import com.liferay.bi.report.model.ReportDefinition;
-import com.liferay.bi.report.model.impl.ReportDefinitionModelImpl;
-import com.liferay.bi.report.model.impl.ReportDefinitionImpl;
-import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.portal.SystemException;
-
-import java.util.List;
-import java.util.ArrayList;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.bi.report.model.ReportDefinition;
+import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
-import javax.servlet.http.HttpServletRequest;
 
 /**
- * <a href="SearchDefinitionAction.java.html"><b><i>View Source</i></b></a>
+ * <a href="DeleteDefinitionAction.java.html"><b><i>View Source</i></b></a>
  *
  * @author Michael C. Han
  */
-public class SearchDefinitionAction implements Action {
+public class DeleteDefinitionAction implements Action {
 	public boolean processAction(
 		ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortletException {
-		HttpServletRequest request = PortalUtil.getHttpServletRequest(
-			actionRequest);
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-		long companyId = themeDisplay.getCompanyId();
-		long groupId = themeDisplay.getScopeGroupId();
+		long definitionId = ParamUtil.getLong(actionRequest, "definitionId");
+		if (definitionId == -1) {
+			//this should NEVER be -1...
+			// TBD Need to do some processing here...to add error message?
+			return false;
+		}
 
-		//TBD Need to implement search features and functionality...
 		try {
-			List<ReportDefinition> definitions =
-				ReportDefinitionLocalServiceUtil.getReportDefintions(companyId, groupId);
-
-			actionRequest.setAttribute("searchResults", definitions);
+			ReportDefinitionLocalServiceUtil.deleteReportDefinition(definitionId);
+			return true;
 		}
-		catch (SystemException e) {
-			throw new PortletException(
-				"Unable to retrieve report definitions", e);
+		catch (Exception e) {
+			throw new PortletException("Unable to delete new definition", e);
 		}
-
-
-		return false;
 	}
 }

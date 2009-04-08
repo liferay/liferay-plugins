@@ -73,6 +73,15 @@
 		document.<portlet:namespace />fm.<portlet:namespace /><%= ActionRequest.ACTION_NAME %>.value = "updateDefinition";
 	}
 
+	function <portlet:namespace />deleteDefinition() {
+		document.<portlet:namespace />fm.<portlet:namespace /><%= ActionRequest.ACTION_NAME %>.value = "deleteDefinition";
+		document.<portlet:namespace />fm.<portlet:namespace />jspPage.value = "/view.jsp";
+		document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<%= currentURL %>";
+		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"></portlet:actionURL>');
+		document.<portlet:namespace />fm.<portlet:namespace /><%= ActionRequest.ACTION_NAME %>.value = "updateDefinition";
+	}
+
+
 	function <portlet:namespace />getParameter() {
 		var param = '<%=parameter%>';
 		document.<portlet:namespace />fm.<portlet:namespace />parameter.value = param;
@@ -144,6 +153,14 @@
 		</td>
 	</tr>
 	<tr>
+		<td>
+			<liferay-ui:message key="datasource-name" />:
+		</td>
+		<td>
+			<liferay-ui:input-field model="<%= ReportDefinition.class %>" bean="<%= definition %>" field="dataSourceName" />			
+		</td>
+	</tr>
+	<tr>
 		<%
 			boolean htmlSelected = false;
 			boolean defaulted = true;
@@ -154,14 +171,6 @@
 		%>
 		<td>
 			<liferay-ui:message key="report-format" />:
-		</td>
-		<td>
-			<liferay-ui:input-field model="<%= ReportDefinition.class %>" bean="<%= definition %>" field="datasourceName" />			
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<liferay-ui:message key="datasource-name" />:
 		</td>
 		<td>
 			<select id="<portlet:namespace />format" name="<portlet:namespace />format">
@@ -197,21 +206,17 @@
 </portlet:actionURL>
 
 <c:if test="<%= definition == null %>">
-<input type="button" value="<liferay-ui:message key="save" />" onClick="<portlet:namespace />saveDefinition();" />
+	<input type="button" value="<liferay-ui:message key="save" />" onClick="<portlet:namespace />saveDefinition();" />
 </c:if>
+
 <c:if test="<%= definition != null %>">
-<input type="button" value="<liferay-ui:message key="update" />" onClick="<portlet:namespace />updateDefinition();" />
+	<input type="button" value="<liferay-ui:message key="update" />" onClick="<portlet:namespace />updateDefinition();" />
 
-<input type="button" value="<liferay-ui:message key="generate-immdiately" />" />
+	<input type="button" value="<liferay-ui:message key="generate-immdiately" />" />
 
-<input type="button" value="<liferay-ui:message key="add-schedule" />" />
+	<input type="button" value="<liferay-ui:message key="add-schedule" />" />
 
-	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" name="deleteTemplate"  var="deleteURL">
-		<portlet:param name="redirect" value="<%= viewURL %>" />
-		<portlet:param name="definitionId" value="<%= String.valueOf(definitionId) %>" />
-	</portlet:actionURL>
-
-<input type="button" value="<liferay-ui:message key="delete" />" onClick="location.href = '<%= deleteURL %>';" />
+	<input type="button" value="<liferay-ui:message key="delete" />" onClick="<portlet:namespace />deleteDefinition();" />
 </c:if>
 
 

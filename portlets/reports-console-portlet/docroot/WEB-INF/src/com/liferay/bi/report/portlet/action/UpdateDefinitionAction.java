@@ -23,6 +23,13 @@
 package com.liferay.bi.report.portlet.action;
 
 import com.liferay.util.bridges.simplemvc.Action;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.SystemException;
+import com.liferay.bi.report.model.ReportDefinition;
+import com.liferay.bi.report.model.impl.ReportDefinitionImpl;
+import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -37,6 +44,38 @@ public class UpdateDefinitionAction implements Action {
 	public boolean processAction(
 		ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortletException {
-		return false;  //To change body of implemented methods use File | Settings | File Templates.
+		long definitionId = ParamUtil.getLong(actionRequest, "definitionId");
+		if (definitionId == -1) {
+			//this should NEVER be -1...
+			// TBD Need to do some processing here...to add error message?
+			return false;
+		}
+		String name = ParamUtil.getString(actionRequest, "name");
+		// TBD Need to set some validation...for instance name, format cannot be nul...
+		String description = ParamUtil.getString(actionRequest, "description");
+		String datasourceName = ParamUtil.getString(actionRequest, "dataSourceName");
+		String format = ParamUtil.getString(actionRequest, "format");
+
+		try {
+			ReportDefinition definition =
+				ReportDefinitionLocalServiceUtil.getReportDefinition(definitionId);
+			definition.setName(name);
+			definition.setDescription(description);
+			definition.setDataSourceName(datasourceName);
+			definition.setReportFormat(format);
+
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+			definition.setModifiedBy(themeDisplay.getUserId());
+
+			definition =
+				ReportDefinitionLocalServiceUtil.updateReportDefinition(definition);
+			actionRequest.setAttribute("currentDefinition", definition);
+			return true;
+		}
+		catch (Exception e) {
+			throw new PortletException(
+				"Unable to update definition: " + name, e);
+		}
 	}
 }

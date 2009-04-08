@@ -8,6 +8,7 @@
 		<field name="groupId" type="long" />
 		<field name="userId" type="long" />
 		<field name="createDate" type="Date" />
+		<field name="modifiedBy" type="long" />
 		<field name="modifiedDate" type="Date" />
 		<field name="name" type="String" />
 		<field name="description" type="String" />

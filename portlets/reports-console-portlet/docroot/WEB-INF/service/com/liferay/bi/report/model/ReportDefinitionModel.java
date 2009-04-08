@@ -61,6 +61,10 @@ public interface ReportDefinitionModel extends BaseModel<ReportDefinition> {
 
 	public void setCreateDate(Date createDate);
 
+	public long getModifiedBy();
+
+	public void setModifiedBy(long modifiedBy);
+
 	public Date getModifiedDate();
 
 	public void setModifiedDate(Date modifiedDate);

@@ -25,6 +25,13 @@ package com.liferay.bi.report.portlet.action;
 import com.liferay.util.bridges.simplemvc.Action;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.SystemException;
+import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
+import com.liferay.bi.report.model.ReportDefinition;
+import com.liferay.bi.report.model.impl.ReportDefinitionModelImpl;
+import com.liferay.bi.report.model.impl.ReportDefinitionImpl;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -40,9 +47,32 @@ public class AddDefinitionAction implements Action {
 		ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortletException {
 		String name = ParamUtil.getString(actionRequest, "name");
+		// TBD Need to set some validation...for instance name, format cannot be nul...
+		String description = ParamUtil.getString(actionRequest, "description");
+		String datasourceName = ParamUtil.getString(actionRequest, "dataSourceName");
+		String format = ParamUtil.getString(actionRequest, "format");
 
+		ReportDefinition definition = new ReportDefinitionImpl();
+		definition.setName(name);
+		definition.setDescription(description);
+		definition.setDataSourceName(datasourceName);
+		definition.setReportFormat(format);
 
-		System.out.println("Executing Action");
-		return true;
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		definition.setCompanyId(themeDisplay.getCompanyId());
+		definition.setGroupId(themeDisplay.getScopeGroupId());
+		definition.setUserId(themeDisplay.getUserId());
+
+		try {
+			definition =
+				ReportDefinitionLocalServiceUtil.addReportDefinition(definition);
+			actionRequest.setAttribute("currentDefinition", definition);
+			return true;
+		}
+		catch (SystemException e) {
+			throw new PortletException(
+				"Unable to create new definition: " + name, e);
+		}
 	}
 }

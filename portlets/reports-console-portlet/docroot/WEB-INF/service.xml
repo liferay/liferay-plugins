@@ -16,6 +16,7 @@
 		<column name="groupId" type="long" />
 		<column name="userId" type="long" />
 		<column name="createDate" type="Date" />
+		<column name="modifiedBy" type="long" />
 		<column name="modifiedDate" type="Date" />
 
 		<!-- Other fields -->

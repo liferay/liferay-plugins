@@ -6,6 +6,7 @@ create table Report_ReportDefinition (
 	groupId LONG,
 	userId LONG,
 	createDate DATE null,
+	modifiedBy LONG,
 	modifiedDate DATE null,
 	name VARCHAR(75) null,
 	description VARCHAR(75) null,

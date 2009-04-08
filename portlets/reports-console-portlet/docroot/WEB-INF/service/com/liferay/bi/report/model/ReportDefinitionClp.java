@@ -104,6 +104,14 @@ public class ReportDefinitionClp extends BaseModelImpl<ReportDefinition>
 		_createDate = createDate;
 	}
 
+	public long getModifiedBy() {
+		return _modifiedBy;
+	}
+
+	public void setModifiedBy(long modifiedBy) {
+		_modifiedBy = modifiedBy;
+	}
+
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
@@ -167,6 +175,7 @@ public class ReportDefinitionClp extends BaseModelImpl<ReportDefinition>
 			model.setGroupId(getGroupId());
 			model.setUserId(getUserId());
 			model.setCreateDate(getCreateDate());
+			model.setModifiedBy(getModifiedBy());
 			model.setModifiedDate(getModifiedDate());
 			model.setName(HtmlUtil.escape(getName()));
 			model.setDescription(HtmlUtil.escape(getDescription()));
@@ -191,6 +200,7 @@ public class ReportDefinitionClp extends BaseModelImpl<ReportDefinition>
 		clone.setGroupId(getGroupId());
 		clone.setUserId(getUserId());
 		clone.setCreateDate(getCreateDate());
+		clone.setModifiedBy(getModifiedBy());
 		clone.setModifiedDate(getModifiedDate());
 		clone.setName(getName());
 		clone.setDescription(getDescription());
@@ -248,6 +258,7 @@ public class ReportDefinitionClp extends BaseModelImpl<ReportDefinition>
 	private long _groupId;
 	private long _userId;
 	private Date _createDate;
+	private long _modifiedBy;
 	private Date _modifiedDate;
 	private String _name;
 	private String _description;
