@@ -70,7 +70,6 @@
 		document.<portlet:namespace />fm.<portlet:namespace />jspPage.value = "/definition/edit_definition.jsp";
 		document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<%= currentURL %>";
 		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"></portlet:actionURL>');
-		document.<portlet:namespace />fm.<portlet:namespace /><%= ActionRequest.ACTION_NAME %>.value = "updateDefinition";
 	}
 
 	function <portlet:namespace />deleteDefinition() {
@@ -78,7 +77,6 @@
 		document.<portlet:namespace />fm.<portlet:namespace />jspPage.value = "/view.jsp";
 		document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<%= currentURL %>";
 		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"></portlet:actionURL>');
-		document.<portlet:namespace />fm.<portlet:namespace /><%= ActionRequest.ACTION_NAME %>.value = "updateDefinition";
 	}
 
 
