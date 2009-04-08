@@ -185,10 +185,10 @@
 			<liferay-ui:message key="template" />:
 		</td>
 		<td>
-			<c:if test="<%= reportTemplate == null %>">
+			<c:if test="<%= definition == null %>">
 				<input id="<portlet:namespace />msgFile" name="<portlet:namespace />msgFile" size="70" type="file" />
 			</c:if>
-			<c:if test="<%= reportTemplate != null %>">
+			<c:if test="<%= definition != null %>">
 			<% 
 			String[] existingAttachments = new String[0];
 			
