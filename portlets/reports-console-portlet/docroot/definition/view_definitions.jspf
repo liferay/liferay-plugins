@@ -1,0 +1,87 @@
+<%@ taglib prefix="liferay-ui" uri="http://liferay.com/tld/ui" %>
+<%--
+  ~ Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in
+  ~ all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  --%>
+
+<%
+ReportDefinitionSearch searchContainer = new ReportDefinitionSearch(renderRequest, portletURL);
+%>
+
+<liferay-ui:search-form
+	page="/definition/search_definition.jspf"
+	searchContainer="<%= searchContainer %>"
+	servletContext="<%= application %>"
+	showAddButton="true"
+	/>
+
+
+<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+	<div class="separator"><!-- --></div>
+	<%
+
+		List<ReportDefinition> searchResults =
+			(List<ReportDefinition>)renderRequest.getAttribute("searchResults");
+		int size = 0;
+		if (searchResults != null) {
+			size = searchResults.size();
+			searchContainer.setResults(searchResults);
+		}
+		List resultRows = searchContainer.getResultRows();
+		for (int i = 0; i < size; i++) {
+			ReportDefinition reportsEntry = searchResults.get(i);
+			String entryId = String.valueOf(reportsEntry.getDefinitionId());
+			ResultRow row = new ResultRow(reportsEntry, entryId, i);
+
+			PortletURL rowURL = renderResponse.createRenderURL();
+
+			rowURL.setWindowState(WindowState.MAXIMIZED);
+
+			rowURL.setParameter("jspPage", "/definition/edit_definition.jspf");
+			rowURL.setParameter("redirect", currentURL);
+			rowURL.setParameter("entryId", entryId);
+
+			row.setParameter("rowHREF", rowURL.toString());
+			// reporting id
+
+			row.addText(entryId, rowURL);
+
+			// reporting name
+
+			row.addText(
+				LanguageUtil.get(pageContext, reportsEntry.getName()), rowURL);
+
+			row.addText(
+				LanguageUtil.get(pageContext, reportsEntry.getDescription()), rowURL);
+			// Action
+
+			row.addJSP(
+				"right", SearchEntry.DEFAULT_VALIGN, "/definition/definition_actions.jspf",
+				application, request, response);
+
+			// Add result row
+
+			resultRows.add(row);
+
+		}
+	%>
+	<liferay-ui:search-iterator searchContainer="<%= searchContainer %>"/>
+</c:if>
+
