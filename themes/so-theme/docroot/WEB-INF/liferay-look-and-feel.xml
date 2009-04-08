@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 5.0.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_5_0_0.dtd">
+
+<look-and-feel>
+	<compatibility>
+		<version>5.2.0+</version>
+	</compatibility>
+	<theme id="so" name="Social Office">
+		<root-path>/</root-path>
+		<templates-path>${root-path}/templates</templates-path>
+		<images-path>${root-path}/images</images-path>
+		<layout-templates>
+			<custom>
+				<layout-template id="user_home" name="User Home">
+					<template-path>/layouttpl/user_home.tpl</template-path>
+					<wap-template-path>/layouttpl/user_home.wap.tpl</wap-template-path>
+					<thumbnail-path>/layouttpl/user_home.png</thumbnail-path>
+				</layout-template>
+			</custom>
+		</layout-templates>
+	</theme>
+</look-and-feel>

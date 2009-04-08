@@ -142,7 +142,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		// Home
 
-		Layout layout = addLayout(group, "Home", "/home", "2_columns_ii");
+		Layout layout = addLayout(group, "Home", "/home", "user_home");
 
 		removePortletBorder(layout, "29");
 
