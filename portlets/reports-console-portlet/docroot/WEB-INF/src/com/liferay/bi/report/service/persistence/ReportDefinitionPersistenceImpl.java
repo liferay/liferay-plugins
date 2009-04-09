@@ -157,22 +157,22 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countByUserId",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_NAME = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_DEFINITIONNAME = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByName",
+			FINDER_CLASS_NAME_LIST, "findByDefinitionName",
 			new String[] { String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_NAME = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_DEFINITIONNAME = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByName",
+			FINDER_CLASS_NAME_LIST, "findByDefinitionName",
 			new String[] {
 				String.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_NAME = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_DEFINITIONNAME = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countByName",
+			FINDER_CLASS_NAME_LIST, "countByDefinitionName",
 			new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
@@ -1754,11 +1754,11 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<ReportDefinition> findByName(String name)
+	public List<ReportDefinition> findByDefinitionName(String definitionName)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { name };
+		Object[] finderArgs = new Object[] { definitionName };
 
-		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_NAME,
+		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_DEFINITIONNAME,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1772,11 +1772,11 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				query.append(
 					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
 
-				if (name == null) {
-					query.append("name IS NULL");
+				if (definitionName == null) {
+					query.append("definitionName IS NULL");
 				}
 				else {
-					query.append("name = ?");
+					query.append("definitionName = ?");
 				}
 
 				query.append(" ");
@@ -1789,8 +1789,8 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (name != null) {
-					qPos.add(name);
+				if (definitionName != null) {
+					qPos.add(definitionName);
 				}
 
 				list = q.list();
@@ -1805,8 +1805,8 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_NAME, finderArgs,
-					list);
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_DEFINITIONNAME,
+					finderArgs, list);
 
 				closeSession(session);
 			}
@@ -1815,20 +1815,20 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		return list;
 	}
 
-	public List<ReportDefinition> findByName(String name, int start, int end)
-		throws SystemException {
-		return findByName(name, start, end, null);
+	public List<ReportDefinition> findByDefinitionName(String definitionName,
+		int start, int end) throws SystemException {
+		return findByDefinitionName(definitionName, start, end, null);
 	}
 
-	public List<ReportDefinition> findByName(String name, int start, int end,
-		OrderByComparator obc) throws SystemException {
+	public List<ReportDefinition> findByDefinitionName(String definitionName,
+		int start, int end, OrderByComparator obc) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				name,
+				definitionName,
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_NAME,
+		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_DEFINITIONNAME,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1842,11 +1842,11 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				query.append(
 					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
 
-				if (name == null) {
-					query.append("name IS NULL");
+				if (definitionName == null) {
+					query.append("definitionName IS NULL");
 				}
 				else {
-					query.append("name = ?");
+					query.append("definitionName = ?");
 				}
 
 				query.append(" ");
@@ -1866,8 +1866,8 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (name != null) {
-					qPos.add(name);
+				if (definitionName != null) {
+					qPos.add(definitionName);
 				}
 
 				list = (List<ReportDefinition>)QueryUtil.list(q, getDialect(),
@@ -1883,7 +1883,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_NAME,
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_DEFINITIONNAME,
 					finderArgs, list);
 
 				closeSession(session);
@@ -1893,16 +1893,18 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		return list;
 	}
 
-	public ReportDefinition findByName_First(String name, OrderByComparator obc)
+	public ReportDefinition findByDefinitionName_First(String definitionName,
+		OrderByComparator obc)
 		throws NoSuchDefinitionException, SystemException {
-		List<ReportDefinition> list = findByName(name, 0, 1, obc);
+		List<ReportDefinition> list = findByDefinitionName(definitionName, 0,
+				1, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No ReportDefinition exists with the key {");
 
-			msg.append("name=" + name);
+			msg.append("definitionName=" + definitionName);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1913,18 +1915,20 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public ReportDefinition findByName_Last(String name, OrderByComparator obc)
+	public ReportDefinition findByDefinitionName_Last(String definitionName,
+		OrderByComparator obc)
 		throws NoSuchDefinitionException, SystemException {
-		int count = countByName(name);
+		int count = countByDefinitionName(definitionName);
 
-		List<ReportDefinition> list = findByName(name, count - 1, count, obc);
+		List<ReportDefinition> list = findByDefinitionName(definitionName,
+				count - 1, count, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No ReportDefinition exists with the key {");
 
-			msg.append("name=" + name);
+			msg.append("definitionName=" + definitionName);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1935,12 +1939,12 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public ReportDefinition[] findByName_PrevAndNext(long definitionId,
-		String name, OrderByComparator obc)
+	public ReportDefinition[] findByDefinitionName_PrevAndNext(
+		long definitionId, String definitionName, OrderByComparator obc)
 		throws NoSuchDefinitionException, SystemException {
 		ReportDefinition reportDefinition = findByPrimaryKey(definitionId);
 
-		int count = countByName(name);
+		int count = countByDefinitionName(definitionName);
 
 		Session session = null;
 
@@ -1952,11 +1956,11 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			query.append(
 				"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
 
-			if (name == null) {
-				query.append("name IS NULL");
+			if (definitionName == null) {
+				query.append("definitionName IS NULL");
 			}
 			else {
-				query.append("name = ?");
+				query.append("definitionName = ?");
 			}
 
 			query.append(" ");
@@ -1976,8 +1980,8 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			if (name != null) {
-				qPos.add(name);
+			if (definitionName != null) {
+				qPos.add(definitionName);
 			}
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
@@ -2150,8 +2154,10 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public void removeByName(String name) throws SystemException {
-		for (ReportDefinition reportDefinition : findByName(name)) {
+	public void removeByDefinitionName(String definitionName)
+		throws SystemException {
+		for (ReportDefinition reportDefinition : findByDefinitionName(
+				definitionName)) {
 			remove(reportDefinition);
 		}
 	}
@@ -2480,10 +2486,11 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		return count.intValue();
 	}
 
-	public int countByName(String name) throws SystemException {
-		Object[] finderArgs = new Object[] { name };
+	public int countByDefinitionName(String definitionName)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { definitionName };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_NAME,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_DEFINITIONNAME,
 				finderArgs, this);
 
 		if (count == null) {
@@ -2498,11 +2505,11 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				query.append(
 					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
 
-				if (name == null) {
-					query.append("name IS NULL");
+				if (definitionName == null) {
+					query.append("definitionName IS NULL");
 				}
 				else {
-					query.append("name = ?");
+					query.append("definitionName = ?");
 				}
 
 				query.append(" ");
@@ -2511,8 +2518,8 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (name != null) {
-					qPos.add(name);
+				if (definitionName != null) {
+					qPos.add(definitionName);
 				}
 
 				count = (Long)q.uniqueResult();
@@ -2525,7 +2532,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_NAME,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_DEFINITIONNAME,
 					finderArgs, count);
 
 				closeSession(session);

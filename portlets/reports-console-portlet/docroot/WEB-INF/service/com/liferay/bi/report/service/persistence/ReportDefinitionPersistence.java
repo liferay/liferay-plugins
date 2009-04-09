@@ -226,32 +226,33 @@ public interface ReportDefinitionPersistence extends BasePersistence {
 		throws com.liferay.bi.report.NoSuchDefinitionException,
 			com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.bi.report.model.ReportDefinition> findByName(
-		java.lang.String name) throws com.liferay.portal.SystemException;
-
-	public java.util.List<com.liferay.bi.report.model.ReportDefinition> findByName(
-		java.lang.String name, int start, int end)
+	public java.util.List<com.liferay.bi.report.model.ReportDefinition> findByDefinitionName(
+		java.lang.String definitionName)
 		throws com.liferay.portal.SystemException;
 
-	public java.util.List<com.liferay.bi.report.model.ReportDefinition> findByName(
-		java.lang.String name, int start, int end,
+	public java.util.List<com.liferay.bi.report.model.ReportDefinition> findByDefinitionName(
+		java.lang.String definitionName, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.bi.report.model.ReportDefinition> findByDefinitionName(
+		java.lang.String definitionName, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.bi.report.model.ReportDefinition findByName_First(
-		java.lang.String name,
+	public com.liferay.bi.report.model.ReportDefinition findByDefinitionName_First(
+		java.lang.String definitionName,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.bi.report.NoSuchDefinitionException,
 			com.liferay.portal.SystemException;
 
-	public com.liferay.bi.report.model.ReportDefinition findByName_Last(
-		java.lang.String name,
+	public com.liferay.bi.report.model.ReportDefinition findByDefinitionName_Last(
+		java.lang.String definitionName,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.bi.report.NoSuchDefinitionException,
 			com.liferay.portal.SystemException;
 
-	public com.liferay.bi.report.model.ReportDefinition[] findByName_PrevAndNext(
-		long definitionId, java.lang.String name,
+	public com.liferay.bi.report.model.ReportDefinition[] findByDefinitionName_PrevAndNext(
+		long definitionId, java.lang.String definitionName,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.bi.report.NoSuchDefinitionException,
 			com.liferay.portal.SystemException;
@@ -293,7 +294,7 @@ public interface ReportDefinitionPersistence extends BasePersistence {
 	public void removeByUserId(long userId)
 		throws com.liferay.portal.SystemException;
 
-	public void removeByName(java.lang.String name)
+	public void removeByDefinitionName(java.lang.String definitionName)
 		throws com.liferay.portal.SystemException;
 
 	public void removeAll() throws com.liferay.portal.SystemException;
@@ -316,7 +317,7 @@ public interface ReportDefinitionPersistence extends BasePersistence {
 	public int countByUserId(long userId)
 		throws com.liferay.portal.SystemException;
 
-	public int countByName(java.lang.String name)
+	public int countByDefinitionName(java.lang.String definitionName)
 		throws com.liferay.portal.SystemException;
 
 	public int countAll() throws com.liferay.portal.SystemException;

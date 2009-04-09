@@ -46,7 +46,7 @@ public class ReportDefinitionSoap implements Serializable {
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedBy(model.getModifiedBy());
 		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setName(model.getName());
+		soapModel.setDefinitionName(model.getDefinitionName());
 		soapModel.setDescription(model.getDescription());
 		soapModel.setReportParameters(model.getReportParameters());
 		soapModel.setReportFormat(model.getReportFormat());
@@ -141,12 +141,12 @@ public class ReportDefinitionSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
-	public String getName() {
-		return _name;
+	public String getDefinitionName() {
+		return _definitionName;
 	}
 
-	public void setName(String name) {
-		_name = name;
+	public void setDefinitionName(String definitionName) {
+		_definitionName = definitionName;
 	}
 
 	public String getDescription() {
@@ -189,7 +189,7 @@ public class ReportDefinitionSoap implements Serializable {
 	private Date _createDate;
 	private long _modifiedBy;
 	private Date _modifiedDate;
-	private String _name;
+	private String _definitionName;
 	private String _description;
 	private String _reportParameters;
 	private String _reportFormat;

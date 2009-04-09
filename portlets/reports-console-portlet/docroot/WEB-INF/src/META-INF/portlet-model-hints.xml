@@ -10,7 +10,7 @@
 		<field name="createDate" type="Date" />
 		<field name="modifiedBy" type="long" />
 		<field name="modifiedDate" type="Date" />
-		<field name="name" type="String" />
+		<field name="definitionName" type="String" />
 		<field name="description" type="String" />
 		<field name="reportParameters" type="String" />
 		<field name="reportFormat" type="String" />

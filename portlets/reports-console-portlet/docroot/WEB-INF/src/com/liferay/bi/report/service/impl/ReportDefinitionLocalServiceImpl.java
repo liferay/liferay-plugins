@@ -22,14 +22,16 @@
 
 package com.liferay.bi.report.service.impl;
 
-import com.liferay.bi.report.service.base.ReportDefinitionLocalServiceBaseImpl;
 import com.liferay.bi.report.model.ReportDefinition;
-import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.bi.report.model.impl.ReportDefinitionImpl;
+import com.liferay.bi.report.service.base.ReportDefinitionLocalServiceBaseImpl;
+import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bi.reporting.ReportFormat;
+import com.liferay.portal.kernel.util.OrderByComparator;
 
-import java.util.List;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * <a href="ReportDefinitionLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -40,6 +42,34 @@ import java.util.LinkedHashMap;
 public class ReportDefinitionLocalServiceImpl
 	extends ReportDefinitionLocalServiceBaseImpl {
 
+	public ReportDefinition addReportDefinition(
+		long companyId, long groupId, long userId, String definitionName,
+		String description, String datasourceName, ReportFormat format)
+	throws PortalException, SystemException {
+		ReportDefinition definition = new ReportDefinitionImpl();
+		// TBD Need to validate that name and report format are not null...
+		definition.setDefinitionName(definitionName);
+		definition.setDescription(description);
+		definition.setDataSourceName(datasourceName);
+		definition.setReportFormat(format.toString());
+
+		definition.setCompanyId(companyId);
+		definition.setGroupId(groupId);
+		definition.setUserId(userId);
+		return addReportDefinition(definition);
+	}
+
+	public ReportDefinition updateReportDefinition(
+		long definitionId, String description, String datasourceName,
+		ReportFormat format)
+	throws PortalException, SystemException {
+		ReportDefinition definition = getReportDefinition(definitionId);
+		definition.setDescription(description);
+		definition.setDataSourceName(datasourceName);
+		definition.setReportFormat(format.toString());
+
+		return updateReportDefinition(definition);
+	}
 
 	public List<ReportDefinition> getReportDefintions(
 		long companyId, long groupId)

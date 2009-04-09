@@ -1,5 +1,4 @@
-<%--
-/**
+/*
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,9 +19,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
---%>
-<%@ include file="/init.jsp" %>
 
-<form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"></portlet:actionURL>" method="post" name="<portlet:namespace />fm">
-<%@ include file="/tabs.jspf" %>
-</form>
+package com.liferay.util.bridges.simplemvc;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
+import javax.portlet.PortletException;
+
+/**
+ * <a href="TetsMeAction.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Michael C. Han
+ */
+public class TestMeAction implements Action {
+	public boolean processAction(
+		ActionRequest actionRequest, ActionResponse actionResponse)
+		throws PortletException {
+		return false;
+	}
+}

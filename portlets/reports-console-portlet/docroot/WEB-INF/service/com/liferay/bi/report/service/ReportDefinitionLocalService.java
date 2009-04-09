@@ -82,6 +82,21 @@ public interface ReportDefinitionLocalService {
 		com.liferay.bi.report.model.ReportDefinition reportDefinition,
 		boolean merge) throws com.liferay.portal.SystemException;
 
+	public com.liferay.bi.report.model.ReportDefinition addReportDefinition(
+		long companyId, long groupId, long userId,
+		java.lang.String definitionName, java.lang.String description,
+		java.lang.String datasourceName,
+		com.liferay.portal.kernel.bi.reporting.ReportFormat format)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public com.liferay.bi.report.model.ReportDefinition updateReportDefinition(
+		long definitionId, java.lang.String description,
+		java.lang.String datasourceName,
+		com.liferay.portal.kernel.bi.reporting.ReportFormat format)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.bi.report.model.ReportDefinition> getReportDefintions(
 		long companyId, long groupId) throws com.liferay.portal.SystemException;

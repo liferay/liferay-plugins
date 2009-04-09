@@ -1,34 +1,33 @@
-<%
-/**
- * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-%>
+<%--
+  ~ Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in
+  ~ all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  --%>
 
 <%@ include file="/init.jsp" %>
 
 <%
 	ReportDefinition definition = (ReportDefinition)renderRequest.getAttribute("currentDefinition");
+	boolean isNew = (definition == null);
 	long definitionId = -1;
 	String parameter = StringPool.BLANK;
-	if (definition != null) {
+	if (!isNew) {
 		definitionId = definition.getDefinitionId();
 		parameter = definition.getReportParameters();
 	}
@@ -73,7 +72,7 @@
 	function <portlet:namespace />deleteDefinition() {
 		document.<portlet:namespace />fm.<portlet:namespace />jspPage.value = "/view.jsp";
 		document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<%= currentURL %>";
-		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="deleteDefinition" /></portlet:actionURL>');
+		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="deleteDefinition,searchDefinition" /></portlet:actionURL>');
 	}
 
 
@@ -134,10 +133,18 @@
 <table class="lfr-table">
 	<tr>
 		<td>
-			<liferay-ui:message key="name" />:
+			<liferay-ui:message key="definition-name" />:
 		</td>
 		<td>
-			<liferay-ui:input-field model="<%= ReportDefinition.class %>" bean="<%= definition %>" field="name" />
+		<c:choose>
+			<c:when test="<%= isNew %>">
+				<liferay-ui:input-field model="<%= ReportDefinition.class %>" bean="<%= definition %>" field="definitionName" />		
+			</c:when>
+			<c:otherwise>
+				<input name="<portlet:namespace />definitionName" type="hidden" value="<%= definition.getDefinitionName() %>" />
+				<%= definition.getDefinitionName() %>
+			</c:otherwise>
+		</c:choose>
 		</td>
 	</tr>
 	<tr>
@@ -160,7 +167,7 @@
 		<%
 			boolean htmlSelected = false;
 			boolean defaulted = true;
-			if (definition != null) {
+			if (!isNew) {
 				defaulted = false;
 				htmlSelected = (ReportFormat.parse(definition.getReportFormat()) == ReportFormat.HTML);
 			}
@@ -170,13 +177,16 @@
 		</td>
 		<td>
 			<select id="<portlet:namespace />format" name="<portlet:namespace />format">
-				<% if (defaulted || htmlSelected) { %>
-					<option selected="true" value="<%=ReportFormat.HTML.toString()%>">HTML</option>
-					<option value="<%=ReportFormat.PDF.toString()%>">PDF</option>
-				<% } else {%>
-					<option value="<%=ReportFormat.HTML.toString()%>">HTML</option>
-					<option selected="true" value="<%=ReportFormat.PDF.toString()%>">PDF</option>
-				<% } %>
+				<c:choose>
+					<c:when test="<%= defaulted || htmlSelected %>">
+						<option selected="true" value="<%=ReportFormat.HTML.toString()%>">HTML</option>
+						<option value="<%=ReportFormat.PDF.toString()%>">PDF</option>
+					</c:when>
+					<c:otherwise>
+						<option value="<%=ReportFormat.HTML.toString()%>">HTML</option>
+						<option selected="true" value="<%=ReportFormat.PDF.toString()%>">PDF</option>
+					</c:otherwise>
+				</c:choose>
 			</select>
 		</td>
 	</tr>

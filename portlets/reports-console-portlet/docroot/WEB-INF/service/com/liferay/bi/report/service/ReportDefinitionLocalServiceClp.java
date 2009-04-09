@@ -378,6 +378,128 @@ public class ReportDefinitionLocalServiceClp
 		return (com.liferay.bi.report.model.ReportDefinition)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.bi.report.model.ReportDefinition addReportDefinition(
+		long companyId, long groupId, long userId,
+		java.lang.String definitionName, java.lang.String description,
+		java.lang.String datasourceName,
+		com.liferay.portal.kernel.bi.reporting.ReportFormat format)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		Object paramObj0 = new LongWrapper(companyId);
+
+		Object paramObj1 = new LongWrapper(groupId);
+
+		Object paramObj2 = new LongWrapper(userId);
+
+		Object paramObj3 = ClpSerializer.translateInput(definitionName);
+
+		if (definitionName == null) {
+			paramObj3 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj4 = ClpSerializer.translateInput(description);
+
+		if (description == null) {
+			paramObj4 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj5 = ClpSerializer.translateInput(datasourceName);
+
+		if (datasourceName == null) {
+			paramObj5 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj6 = ClpSerializer.translateInput(format);
+
+		if (format == null) {
+			paramObj6 = new NullWrapper(
+					"com.liferay.portal.kernel.bi.reporting.ReportFormat");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("addReportDefinition",
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+						paramObj5, paramObj6
+					});
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.PortalException) {
+				throw (com.liferay.portal.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.bi.report.model.ReportDefinition)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.liferay.bi.report.model.ReportDefinition updateReportDefinition(
+		long definitionId, java.lang.String description,
+		java.lang.String datasourceName,
+		com.liferay.portal.kernel.bi.reporting.ReportFormat format)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		Object paramObj0 = new LongWrapper(definitionId);
+
+		Object paramObj1 = ClpSerializer.translateInput(description);
+
+		if (description == null) {
+			paramObj1 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj2 = ClpSerializer.translateInput(datasourceName);
+
+		if (datasourceName == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj3 = ClpSerializer.translateInput(format);
+
+		if (format == null) {
+			paramObj3 = new NullWrapper(
+					"com.liferay.portal.kernel.bi.reporting.ReportFormat");
+		}
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("updateReportDefinition",
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.PortalException) {
+				throw (com.liferay.portal.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.bi.report.model.ReportDefinition)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.bi.report.model.ReportDefinition> getReportDefintions(
 		long companyId, long groupId) throws com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(companyId);

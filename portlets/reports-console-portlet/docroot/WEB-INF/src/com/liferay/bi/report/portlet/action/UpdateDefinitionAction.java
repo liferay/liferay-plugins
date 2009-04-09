@@ -22,14 +22,14 @@
 
 package com.liferay.bi.report.portlet.action;
 
-import com.liferay.util.bridges.simplemvc.Action;
-import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.SystemException;
 import com.liferay.bi.report.model.ReportDefinition;
-import com.liferay.bi.report.model.impl.ReportDefinitionImpl;
 import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bi.reporting.ReportFormat;
+import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.util.bridges.simplemvc.Action;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -50,32 +50,28 @@ public class UpdateDefinitionAction implements Action {
 			// TBD Need to do some processing here...to add error message?
 			return false;
 		}
-		String name = ParamUtil.getString(actionRequest, "name");
-		// TBD Need to set some validation...for instance name, format cannot be nul...
+
+		String definitionName = ParamUtil.getString(actionRequest, "definitionName");
 		String description = ParamUtil.getString(actionRequest, "description");
-		String datasourceName = ParamUtil.getString(actionRequest, "dataSourceName");
+		String datasourceName = ParamUtil.getString(
+			actionRequest, "dataSourceName");
 		String format = ParamUtil.getString(actionRequest, "format");
 
 		try {
 			ReportDefinition definition =
-				ReportDefinitionLocalServiceUtil.getReportDefinition(definitionId);
-			definition.setName(name);
-			definition.setDescription(description);
-			definition.setDataSourceName(datasourceName);
-			definition.setReportFormat(format);
-
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
-			definition.setModifiedBy(themeDisplay.getUserId());
-
-			definition =
-				ReportDefinitionLocalServiceUtil.updateReportDefinition(definition);
+				ReportDefinitionLocalServiceUtil.updateReportDefinition(
+					definitionId, description, datasourceName,
+					ReportFormat.parse(format));
 			actionRequest.setAttribute("currentDefinition", definition);
 			return true;
 		}
-		catch (Exception e) {
+		catch (PortalException e) {
+			SessionErrors.add(actionRequest, e.getClass().getName());
+			return false;
+		}
+		catch (SystemException e) {
 			throw new PortletException(
-				"Unable to update definition: " + name, e);
+				"Unable to update definition: " + definitionName, e);
 		}
 	}
 }

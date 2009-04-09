@@ -319,46 +319,50 @@ public class ReportDefinitionUtil {
 				   .findByUserId_PrevAndNext(definitionId, userId, obc);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportDefinition> findByName(
-		java.lang.String name) throws com.liferay.portal.SystemException {
-		return getPersistence().findByName(name);
-	}
-
-	public static java.util.List<com.liferay.bi.report.model.ReportDefinition> findByName(
-		java.lang.String name, int start, int end)
+	public static java.util.List<com.liferay.bi.report.model.ReportDefinition> findByDefinitionName(
+		java.lang.String definitionName)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().findByName(name, start, end);
+		return getPersistence().findByDefinitionName(definitionName);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportDefinition> findByName(
-		java.lang.String name, int start, int end,
+	public static java.util.List<com.liferay.bi.report.model.ReportDefinition> findByDefinitionName(
+		java.lang.String definitionName, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByDefinitionName(definitionName, start, end);
+	}
+
+	public static java.util.List<com.liferay.bi.report.model.ReportDefinition> findByDefinitionName(
+		java.lang.String definitionName, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().findByName(name, start, end, obc);
+		return getPersistence()
+				   .findByDefinitionName(definitionName, start, end, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportDefinition findByName_First(
-		java.lang.String name,
+	public static com.liferay.bi.report.model.ReportDefinition findByDefinitionName_First(
+		java.lang.String definitionName,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.bi.report.NoSuchDefinitionException,
 			com.liferay.portal.SystemException {
-		return getPersistence().findByName_First(name, obc);
+		return getPersistence().findByDefinitionName_First(definitionName, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportDefinition findByName_Last(
-		java.lang.String name,
+	public static com.liferay.bi.report.model.ReportDefinition findByDefinitionName_Last(
+		java.lang.String definitionName,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.bi.report.NoSuchDefinitionException,
 			com.liferay.portal.SystemException {
-		return getPersistence().findByName_Last(name, obc);
+		return getPersistence().findByDefinitionName_Last(definitionName, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportDefinition[] findByName_PrevAndNext(
-		long definitionId, java.lang.String name,
+	public static com.liferay.bi.report.model.ReportDefinition[] findByDefinitionName_PrevAndNext(
+		long definitionId, java.lang.String definitionName,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.bi.report.NoSuchDefinitionException,
 			com.liferay.portal.SystemException {
-		return getPersistence().findByName_PrevAndNext(definitionId, name, obc);
+		return getPersistence()
+				   .findByDefinitionName_PrevAndNext(definitionId,
+			definitionName, obc);
 	}
 
 	public static java.util.List<Object> findWithDynamicQuery(
@@ -420,9 +424,9 @@ public class ReportDefinitionUtil {
 		getPersistence().removeByUserId(userId);
 	}
 
-	public static void removeByName(java.lang.String name)
+	public static void removeByDefinitionName(java.lang.String definitionName)
 		throws com.liferay.portal.SystemException {
-		getPersistence().removeByName(name);
+		getPersistence().removeByDefinitionName(definitionName);
 	}
 
 	public static void removeAll() throws com.liferay.portal.SystemException {
@@ -459,9 +463,9 @@ public class ReportDefinitionUtil {
 		return getPersistence().countByUserId(userId);
 	}
 
-	public static int countByName(java.lang.String name)
+	public static int countByDefinitionName(java.lang.String definitionName)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().countByName(name);
+		return getPersistence().countByDefinitionName(definitionName);
 	}
 
 	public static int countAll() throws com.liferay.portal.SystemException {

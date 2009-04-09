@@ -69,9 +69,9 @@ public interface ReportDefinitionModel extends BaseModel<ReportDefinition> {
 
 	public void setModifiedDate(Date modifiedDate);
 
-	public String getName();
+	public String getDefinitionName();
 
-	public void setName(String name);
+	public void setDefinitionName(String definitionName);
 
 	public String getDescription();
 

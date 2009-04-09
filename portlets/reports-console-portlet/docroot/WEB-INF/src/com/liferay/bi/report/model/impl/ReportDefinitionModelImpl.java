@@ -77,7 +77,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
 			
 
-			{ "name", new Integer(Types.VARCHAR) },
+			{ "definitionName", new Integer(Types.VARCHAR) },
 			
 
 			{ "description", new Integer(Types.VARCHAR) },
@@ -91,7 +91,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 
 			{ "dataSourceName", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Report_ReportDefinition (uuid_ VARCHAR(75) null,definitionId LONG not null primary key,companyId LONG,groupId LONG,userId LONG,createDate DATE null,modifiedBy LONG,modifiedDate DATE null,name VARCHAR(75) null,description VARCHAR(75) null,reportParameters VARCHAR(75) null,reportFormat VARCHAR(75) null,dataSourceName VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Report_ReportDefinition (uuid_ VARCHAR(75) null,definitionId LONG not null primary key,companyId LONG,groupId LONG,userId LONG,createDate DATE null,modifiedBy LONG,modifiedDate DATE null,definitionName VARCHAR(75) null,description VARCHAR(75) null,reportParameters VARCHAR(75) null,reportFormat VARCHAR(75) null,dataSourceName VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Report_ReportDefinition";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -114,7 +114,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 		model.setCreateDate(soapModel.getCreateDate());
 		model.setModifiedBy(soapModel.getModifiedBy());
 		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setName(soapModel.getName());
+		model.setDefinitionName(soapModel.getDefinitionName());
 		model.setDescription(soapModel.getDescription());
 		model.setReportParameters(soapModel.getReportParameters());
 		model.setReportFormat(soapModel.getReportFormat());
@@ -256,15 +256,16 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 		}
 	}
 
-	public String getName() {
-		return GetterUtil.getString(_name);
+	public String getDefinitionName() {
+		return GetterUtil.getString(_definitionName);
 	}
 
-	public void setName(String name) {
-		if (((name == null) && (_name != null)) ||
-				((name != null) && (_name == null)) ||
-				((name != null) && (_name != null) && !name.equals(_name))) {
-			_name = name;
+	public void setDefinitionName(String definitionName) {
+		if (((definitionName == null) && (_definitionName != null)) ||
+				((definitionName != null) && (_definitionName == null)) ||
+				((definitionName != null) && (_definitionName != null) &&
+				!definitionName.equals(_definitionName))) {
+			_definitionName = definitionName;
 		}
 	}
 
@@ -338,7 +339,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 			model.setCreateDate(getCreateDate());
 			model.setModifiedBy(getModifiedBy());
 			model.setModifiedDate(getModifiedDate());
-			model.setName(HtmlUtil.escape(getName()));
+			model.setDefinitionName(HtmlUtil.escape(getDefinitionName()));
 			model.setDescription(HtmlUtil.escape(getDescription()));
 			model.setReportParameters(HtmlUtil.escape(getReportParameters()));
 			model.setReportFormat(HtmlUtil.escape(getReportFormat()));
@@ -372,7 +373,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedBy(getModifiedBy());
 		clone.setModifiedDate(getModifiedDate());
-		clone.setName(getName());
+		clone.setDefinitionName(getDefinitionName());
 		clone.setDescription(getDescription());
 		clone.setReportParameters(getReportParameters());
 		clone.setReportFormat(getReportFormat());
@@ -433,7 +434,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 	private Date _createDate;
 	private long _modifiedBy;
 	private Date _modifiedDate;
-	private String _name;
+	private String _definitionName;
 	private String _description;
 	private String _reportParameters;
 	private String _reportFormat;

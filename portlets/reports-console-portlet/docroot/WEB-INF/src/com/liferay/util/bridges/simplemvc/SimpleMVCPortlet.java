@@ -27,16 +27,12 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="SimplMVCPortlet.java.html"><b><i>View Source</i></b></a>
@@ -54,13 +50,11 @@ public class SimpleMVCPortlet extends JSPPortlet {
 	@Override
 	public void init(PortletConfig portletConfig) throws PortletException {
 		super.init(portletConfig);
-		_packagePrefix =
-			portletConfig.getInitParameter(_ACTION_PACKAGE_NAME);
-		if (Validator.isNotNull(_packagePrefix)) {
+		String packagePrefix =
+			portletConfig.getInitParameter(ActionCache.ACTION_PACKAGE_NAME);
+		if (Validator.isNotNull(packagePrefix)) {
 			_checkActionClass = true;
-			if (!_packagePrefix.endsWith(StringPool.PERIOD)) {
-				_packagePrefix = _packagePrefix + StringPool.PERIOD;
-			}
+			_cache = new ActionCache(packagePrefix);
 		}
 	}
 
@@ -76,58 +70,30 @@ public class SimpleMVCPortlet extends JSPPortlet {
 		}
 
 		if (_checkActionClass) {
-			Action action = getAction(actionName);
-			if (action != _EMPTY_ACTION) {
-				return action.processAction(actionRequest, actionResponse);
+			if (actionName.indexOf(',') == -1) {
+				Action action = _cache.getAction(actionName);
+				if (action != ActionCache.EMPTY_ACTION) {
+					return action.processAction(actionRequest, actionResponse);
+				}
+			}
+			else {
+				//find multiple actions and process..
+				List<Action> actions = _cache.getActionChain(actionName);
+				int size = actions.size();
+				if (size != 0) {
+					boolean finalResult = false;
+					for (int i = 0; i < size; i++) {
+						finalResult =
+							actions.get(i).processAction(
+								actionRequest, actionResponse);
+					}
+					return finalResult;
+				}
 			}
 		}
 		return super.callActionMethod(actionRequest, actionResponse);
 	}
 
-	private Action getAction(String actionName)
-		throws PortletException {
-		String className = null;
-		try {
-			//TBD Need to strip out so that we use the last path...
-			//e.g. /reporting/addAction should be addAction
-			Action action = _actionCache.get(actionName);
-			if (action == null) {
-				className =
-					_packagePrefix +
-					Character.toUpperCase(actionName.charAt(0)) +
-					actionName.substring(1, actionName.length()) +
-					_ACTION_POSTFIX;
-				action =
-					(Action) Class.forName(className).newInstance();
-				_actionCache.put(actionName, action);
-			}
-
-			return action;
-		}
-		catch (Exception e) {
-
-			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to find an action class: " + className);
-			}
-			_actionCache.put(actionName, _EMPTY_ACTION);
-			return _EMPTY_ACTION;
-		}
-
-	}
-
-	private static final Action _EMPTY_ACTION = new Action() {
-		public boolean processAction(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-			throws PortletException {
-			return false;
-		}
-	};
-	private static final Log _log = LogFactory.getLog(SimpleMVCPortlet.class);
-	private static final String _ACTION_POSTFIX = "Action";
-	private static final String _ACTION_PACKAGE_NAME = "action.package.prefix";
-
-	private Map<String, Action> _actionCache =
-		new ConcurrentHashMap<String, Action>();
-	private String _packagePrefix;
 	private boolean _checkActionClass;
+	private ActionCache _cache;
 }

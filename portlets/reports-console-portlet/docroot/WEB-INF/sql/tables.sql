@@ -8,7 +8,7 @@ create table Report_ReportDefinition (
 	createDate DATE null,
 	modifiedBy LONG,
 	modifiedDate DATE null,
-	name VARCHAR(75) null,
+	definitionName VARCHAR(75) null,
 	description VARCHAR(75) null,
 	reportParameters VARCHAR(75) null,
 	reportFormat VARCHAR(75) null,

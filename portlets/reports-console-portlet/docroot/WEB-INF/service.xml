@@ -21,7 +21,7 @@
 
 		<!-- Other fields -->
 
-		<column name="name" type="String" />
+		<column name="definitionName" type="String" />
 		<column name="description" type="String" />
 		<column name="reportParameters" type="String" /> <!-- name=value,name=value -->
 		<column name="reportFormat" type="String"/>
@@ -48,8 +48,8 @@
 		<finder name="UserId" return-type="Collection">
 			<finder-column name="userId" />
 		</finder>
-		<finder name="Name" return-type="Collection">
-			<finder-column name="name" />
+		<finder name="DefinitionName" return-type="Collection">
+			<finder-column name="definitionName" />
 		</finder>
 	</entity>
 </service-builder>
