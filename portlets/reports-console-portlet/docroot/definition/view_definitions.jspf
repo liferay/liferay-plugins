@@ -34,7 +34,6 @@ ReportDefinitionSearch searchContainer = new ReportDefinitionSearch(renderReques
 
 
 <c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
-	<div class="separator"><!-- --></div>
 	<%
 
 		List<ReportDefinition> searchResults =

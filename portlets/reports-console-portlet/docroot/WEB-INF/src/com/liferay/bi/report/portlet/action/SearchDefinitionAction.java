@@ -22,25 +22,25 @@
 
 package com.liferay.bi.report.portlet.action;
 
-import com.liferay.util.bridges.simplemvc.Action;
-import com.liferay.bi.report.search.ReportDefinitionSearch;
-import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
-import com.liferay.bi.report.model.ReportDefinition;
-import com.liferay.bi.report.model.impl.ReportDefinitionModelImpl;
-import com.liferay.bi.report.model.impl.ReportDefinitionImpl;
-import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.portal.SystemException;
-
 import java.util.List;
-import java.util.ArrayList;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.portlet.PortletURL;
 import javax.servlet.http.HttpServletRequest;
+
+import com.liferay.bi.report.model.ReportDefinition;
+import com.liferay.bi.report.search.ReportDefinitionSearch;
+import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.util.bridges.simplemvc.Action;
 
 /**
  * <a href="SearchDefinitionAction.java.html"><b><i>View Source</i></b></a>
@@ -56,14 +56,32 @@ public class SearchDefinitionAction implements Action {
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 		long companyId = themeDisplay.getCompanyId();
-		long groupId = themeDisplay.getScopeGroupId();
-
+		long groupId = themeDisplay.getScopeGroupId();		
+		
 		//TBD Need to implement search features and functionality...
+		int start = ParamUtil.getInteger(actionRequest, "start");
+		int end = ParamUtil.getInteger(actionRequest, "end");
+		
+		int count = 0;
+		List<ReportDefinition> definitions = null;
+		
 		try {
-			List<ReportDefinition> definitions =
+		    if(ParamUtil.getBoolean(actionRequest, "advancedSearch")){
+			definitions =
 				ReportDefinitionLocalServiceUtil.getReportDefintions(companyId, groupId);
+		    }else{			
+			String keywords = ParamUtil.getString(request, "keywords");
 
-			actionRequest.setAttribute("searchResults", definitions);
+			count = ReportDefinitionLocalServiceUtil
+				.searchCount(companyId, groupId, keywords, true, null);
+			
+			definitions = ReportDefinitionLocalServiceUtil
+				.search(companyId, groupId, keywords, null, start, end, null);
+		    }
+		    
+		actionRequest.setAttribute("searchResults", definitions);
+		    
+
 		}
 		catch (SystemException e) {
 			throw new PortletException(

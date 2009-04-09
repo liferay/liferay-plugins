@@ -27,6 +27,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import com.liferay.bi.report.model.ReportDefinition;
+import com.liferay.bi.report.model.impl.ReportDefinitionImpl;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -38,7 +39,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
-import com.liferay.portlet.journal.service.persistence.JournalArticleFinder;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 /**
@@ -50,11 +50,11 @@ public class ReportDefinitionFinderImpl
 	extends BasePersistenceImpl implements ReportDefinitionFinder {
 
 	public static String COUNT_BY_C_G_D_D =
-		JournalArticleFinder.class.getName() +
+	    	ReportDefinitionFinder.class.getName() +
 			".countByC_G_D_D";
     
 	public static String FIND_BY_C_G_D_D =
-		JournalArticleFinder.class.getName() +
+	    	ReportDefinitionFinder.class.getName() +
 			".findByC_G_D_D";
 
 	public int countByC_G_N_D (long companyId, 
@@ -66,7 +66,7 @@ public class ReportDefinitionFinderImpl
 		Session session = null;
 
 		try {
-			session = openSession();
+			session = openSession();	
 
 			String sql = CustomSQLUtil.get(COUNT_BY_C_G_D_D);
 			
@@ -162,10 +162,10 @@ public class ReportDefinitionFinderImpl
 			
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
-			
+
 			SQLQuery q = session.createSQLQuery(sql);
 
-			q.addEntity("ReportDefinition",ReportDefinition.class);
+			q.addEntity("Report_ReportDefinition",ReportDefinitionImpl.class);
 			
 			QueryPos qPos = QueryPos.getInstance(q);
 			
