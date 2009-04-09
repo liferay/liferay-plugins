@@ -25,6 +25,7 @@ package com.liferay.bi.report.service.impl;
 import com.liferay.bi.report.model.ReportDefinition;
 import com.liferay.bi.report.model.impl.ReportDefinitionImpl;
 import com.liferay.bi.report.service.base.ReportDefinitionLocalServiceBaseImpl;
+import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bi.reporting.ReportFormat;
@@ -46,7 +47,11 @@ public class ReportDefinitionLocalServiceImpl
 		long companyId, long groupId, long userId, String definitionName,
 		String description, String datasourceName, ReportFormat format)
 	throws PortalException, SystemException {
-		ReportDefinition definition = new ReportDefinitionImpl();
+	    
+		long definitionId = CounterLocalServiceUtil.increment();
+		ReportDefinition definition = reportDefinitionPersistence
+			.create(definitionId);
+
 		// TBD Need to validate that name and report format are not null...
 		definition.setDefinitionName(definitionName);
 		definition.setDescription(description);
@@ -90,13 +95,14 @@ public class ReportDefinitionLocalServiceImpl
 		LinkedHashMap<String, Object> params, boolean andSearch, int start,
 		int end, OrderByComparator obc) throws SystemException {
 
-		return null;  //To change body of implemented methods use File | Settings | File Templates.
+	    return reportDefinitionFinder.findByC_G_N_D(companyId, groupId, new String[]{name},
+		    new String[]{description}, andSearch, start, end, obc);
 	}
 
 	public int searchCount(
 		long companyId, long groupId, String keywords, Boolean active,
 		LinkedHashMap<String, Object> params) throws SystemException {
-		return 0;  //To change body of implemented methods use File | Settings | File Templates.
+	    return reportDefinitionFinder.countByKeywords(companyId, groupId, keywords, params);
 	}
 
 	public int searchCount(
@@ -104,6 +110,7 @@ public class ReportDefinitionLocalServiceImpl
 		String description, Boolean active,
 		LinkedHashMap<String, Object> params, boolean andSearch)
 		throws SystemException {
-		return 0;  //To change body of implemented methods use File | Settings | File Templates.
+	    return reportDefinitionFinder.countByC_G_N_D(companyId, groupId, new String[]{name}, 
+		    new String[]{description}, andSearch);
 	}
 }

@@ -160,6 +160,14 @@ public class ReportDefinitionClp extends BaseModelImpl<ReportDefinition>
 		_dataSourceName = dataSourceName;
 	}
 
+	public java.lang.String getAttachmentsDir() {
+		throw new UnsupportedOperationException();
+	}
+
+	public void setAttachmentsDir(java.lang.String attachmentsDir) {
+		throw new UnsupportedOperationException();
+	}
+
 	public ReportDefinition toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;

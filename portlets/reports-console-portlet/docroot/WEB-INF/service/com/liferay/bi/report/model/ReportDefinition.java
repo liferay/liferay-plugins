@@ -29,4 +29,7 @@ package com.liferay.bi.report.model;
  *
  */
 public interface ReportDefinition extends ReportDefinitionModel {
+	public java.lang.String getAttachmentsDir();
+
+	public void setAttachmentsDir(java.lang.String attachmentsDir);
 }

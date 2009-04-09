@@ -23,6 +23,7 @@
 package com.liferay.bi.report.portlet.action;
 
 import com.liferay.util.bridges.simplemvc.Action;
+import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -31,6 +32,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.bi.reporting.ReportFormat;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.PortalException;
 import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
@@ -51,15 +53,19 @@ public class AddDefinitionAction implements Action {
 	public boolean processAction(
 		ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortletException {
-		String name = ParamUtil.getString(actionRequest, "definitionName");
-		String format = ParamUtil.getString(actionRequest, "format");
-
+	    
+		UploadPortletRequest uploadRequest = PortalUtil
+			.getUploadPortletRequest(actionRequest);
+	    
+		String name = ParamUtil.getString(uploadRequest, "definitionName");
+		String format = ParamUtil.getString(uploadRequest, "format");
+		
 		// TBD Need to set some validation...for instance name, format cannot be nul...
-		String description = ParamUtil.getString(actionRequest, "description");
-		String datasourceName = ParamUtil.getString(actionRequest, "dataSourceName");
+		String description = ParamUtil.getString(uploadRequest, "description");
+		String datasourceName = ParamUtil.getString(uploadRequest, "dataSourceName");
 
 		ThemeDisplay themeDisplay =
-			(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+			(ThemeDisplay)uploadRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
 		try {
 			ReportDefinition definition =
@@ -67,11 +73,11 @@ public class AddDefinitionAction implements Action {
 					themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
 					themeDisplay.getUserId(), name, description, datasourceName,
 					ReportFormat.parse(format));
-			actionRequest.setAttribute("currentDefinition", definition);
+			uploadRequest.setAttribute("currentDefinition", definition);
 			return true;
 		}
 		catch (PortalException e) {
-			SessionErrors.add(actionRequest, e.getClass().getName());
+			SessionErrors.add(uploadRequest, e.getClass().getName());
 			return false;
 		}
 		catch (SystemException e) {

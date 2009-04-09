@@ -29,13 +29,12 @@ package com.liferay.bi.report.service.persistence;
  *
  */
 public class ReportDefinitionFinderUtil {
-	public static java.util.List<com.liferay.bi.report.model.ReportDefinition> findByKeywords(
-		long companyId, long groupId, java.lang.String keywords,
-		java.util.LinkedHashMap<String, Object> params, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc) {
+	public static int countByC_G_N_D(long companyId, long groupId,
+		java.lang.String[] definitionNames, java.lang.String[] descriptions,
+		boolean andOperator) throws com.liferay.portal.SystemException {
 		return getFinder()
-				   .findByKeywords(companyId, groupId, keywords, params, start,
-			end, obc);
+				   .countByC_G_N_D(companyId, groupId, definitionNames,
+			descriptions, andOperator);
 	}
 
 	public static int countByKeywords(long companyId, long groupId,
@@ -43,6 +42,26 @@ public class ReportDefinitionFinderUtil {
 		java.util.LinkedHashMap<String, Object> params)
 		throws com.liferay.portal.SystemException {
 		return getFinder().countByKeywords(companyId, groupId, keywords, params);
+	}
+
+	public static java.util.List<com.liferay.bi.report.model.ReportDefinition> findByC_G_N_D(
+		long companyId, long groupId, java.lang.String[] definitionNames,
+		java.lang.String[] descriptions, boolean andOperator, int start,
+		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getFinder()
+				   .findByC_G_N_D(companyId, groupId, definitionNames,
+			descriptions, andOperator, start, end, obc);
+	}
+
+	public static java.util.List<com.liferay.bi.report.model.ReportDefinition> findByKeywords(
+		long companyId, long groupId, java.lang.String keywords,
+		java.util.LinkedHashMap<String, Object> params, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException {
+		return getFinder()
+				   .findByKeywords(companyId, groupId, keywords, params, start,
+			end, obc);
 	}
 
 	public static ReportDefinitionFinder getFinder() {

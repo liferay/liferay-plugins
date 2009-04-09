@@ -73,7 +73,7 @@ ReportDefinitionSearch searchContainer = new ReportDefinitionSearch(renderReques
 			// Action
 
 			row.addJSP(
-				"right", SearchEntry.DEFAULT_VALIGN, "/definition/definition_actions.jspf",
+				"right", SearchEntry.DEFAULT_VALIGN, "/definition/definition_actions.jsp",
 				application, request, response);
 
 			// Add result row

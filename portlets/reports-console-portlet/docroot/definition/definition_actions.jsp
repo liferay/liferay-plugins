@@ -29,7 +29,7 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 
 ReportDefinition definition = (ReportDefinition)row.getObject();
 
-String entryId = String.valueOf(definition.getDefinitionId());
+String definitionId = String.valueOf(definition.getDefinitionId());
 %>
 <liferay-ui:icon-menu
 	cssClass=""
@@ -38,7 +38,7 @@ String entryId = String.valueOf(definition.getDefinitionId());
 	<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
 		<portlet:param name="jspPage" value="/edit_template.jsp" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="entryId" value="<%= entryId %>" />
+		<portlet:param name="definitionId" value="<%= definitionId %>" />
 	</portlet:renderURL>
 
 	<liferay-ui:icon image="edit" url="<%= editURL %>" />
@@ -48,7 +48,7 @@ String entryId = String.valueOf(definition.getDefinitionId());
 	<liferay-security:permissionsURL
 		modelResource="<%= ReportDefinition.class.getName() %>"
 		modelResourceDescription='<%= definition.getDefinitionName() %>'
-		resourcePrimKey="<%= entryId %>"
+		resourcePrimKey="<%= definitionId %>"
 		var="permissionsURL"
 	/>
 
@@ -57,7 +57,7 @@ String entryId = String.valueOf(definition.getDefinitionId());
 
 	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="generateImmdiatelyURL" name="generateImmdiately">
 		<portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="entryId" value="<%= entryId %>" />
+		<portlet:param name="definitionId" value="<%= definitionId %>" />
 	</portlet:actionURL>
 
 	<liferay-ui:icon image="submit" message="generate-immdiately" url="<%= generateImmdiatelyURL %>" />
@@ -66,7 +66,7 @@ String entryId = String.valueOf(definition.getDefinitionId());
 	<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="addScheduleURL">
 		<portlet:param name="jspPage" value="/edit_event.jsp" />
         <portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="entryId" value="<%= entryId %>" />
+		<portlet:param name="definitionId" value="<%= definitionId %>" />
 	</portlet:renderURL>
 
 	<liferay-ui:icon image="time" message="add-schedule" url="<%= addScheduleURL %>" />
@@ -75,14 +75,14 @@ String entryId = String.valueOf(definition.getDefinitionId());
     <portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="viewTemplateScheduleURL">
 		<portlet:param name="jspPage" value="/view_template_events.jsp" />
         <portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="entryId" value="<%= entryId %>" />
+		<portlet:param name="definitionId" value="<%= definitionId %>" />
 	</portlet:renderURL>
 
 	<liferay-ui:icon image="manage_task" message="view-schedule" url="<%= viewTemplateScheduleURL %>" />
 
-	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" name="deleteTemplate"  var="deleteURL">
+	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" name="deleteDefinition,searchDefinition"  var="deleteURL">
 		<portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="entryId" value="<%= entryId %>" />
+		<portlet:param name="definitionId" value="<%= definitionId %>" />
 	</portlet:actionURL>
 
 	<liferay-ui:icon image="delete" message="delete-template" url="<%= deleteURL %>" />

@@ -29,13 +29,24 @@ package com.liferay.bi.report.service.persistence;
  *
  */
 public interface ReportDefinitionFinder {
-	public java.util.List<com.liferay.bi.report.model.ReportDefinition> findByKeywords(
-		long companyId, long groupId, java.lang.String keywords,
-		java.util.LinkedHashMap<String, Object> params, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc);
+	public int countByC_G_N_D(long companyId, long groupId,
+		java.lang.String[] definitionNames, java.lang.String[] descriptions,
+		boolean andOperator) throws com.liferay.portal.SystemException;
 
 	public int countByKeywords(long companyId, long groupId,
 		java.lang.String keywords,
 		java.util.LinkedHashMap<String, Object> params)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.bi.report.model.ReportDefinition> findByC_G_N_D(
+		long companyId, long groupId, java.lang.String[] definitionNames,
+		java.lang.String[] descriptions, boolean andOperator, int start,
+		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.bi.report.model.ReportDefinition> findByKeywords(
+		long companyId, long groupId, java.lang.String keywords,
+		java.util.LinkedHashMap<String, Object> params, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 }

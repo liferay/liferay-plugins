@@ -34,4 +34,16 @@ public class ReportDefinitionImpl extends ReportDefinitionModelImpl
 	implements ReportDefinition {
 	public ReportDefinitionImpl() {
 	}
+	public String getAttachmentsDir() {
+		if (_attachmentDirs == null) {
+			_attachmentDirs = "report_templates/" + getDefinitionId();
+		}
+
+		return _attachmentDirs;
+	}
+
+	public void setAttachmentsDir(String attachmentsDir) {
+		_attachmentDirs = attachmentsDir;
+	}
+	private String _attachmentDirs;
 }

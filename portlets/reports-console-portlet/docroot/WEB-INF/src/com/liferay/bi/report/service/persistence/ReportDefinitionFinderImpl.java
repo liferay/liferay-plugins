@@ -22,12 +22,24 @@
 
 package com.liferay.bi.report.service.persistence;
 
-import com.liferay.bi.report.model.ReportDefinition;
-import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
-
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+
+import com.liferay.bi.report.model.ReportDefinition;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.SQLQuery;
+import com.liferay.portal.kernel.dao.orm.Session;
+import com.liferay.portal.kernel.dao.orm.Type;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
+import com.liferay.portlet.journal.service.persistence.JournalArticleFinder;
+import com.liferay.util.dao.orm.CustomSQLUtil;
 
 /**
  * <a href="ReportDefinitionFinderImpl.java.html"><b><i>View Source</i></b></a>
@@ -36,18 +48,166 @@ import java.util.List;
  */
 public class ReportDefinitionFinderImpl
 	extends BasePersistenceImpl implements ReportDefinitionFinder {
-	public List<ReportDefinition> findByKeywords(
-		long companyId, long groupId, String keywords,
-		LinkedHashMap<String, Object> params, int start, int end,
-		OrderByComparator obc) {
-		return null;  //To change body of implemented methods use File | Settings | File Templates.
-	}
 
+	public static String COUNT_BY_C_G_D_D =
+		JournalArticleFinder.class.getName() +
+			".countByC_G_D_D";
+    
+	public static String FIND_BY_C_G_D_D =
+		JournalArticleFinder.class.getName() +
+			".findByC_G_D_D";
+
+	public int countByC_G_N_D (long companyId, 
+		long groupId,String[] definitionNames,String[] descriptions,
+		boolean andOperator) throws SystemException{
+	    	definitionNames = CustomSQLUtil.keywords(definitionNames);
+	    	descriptions = CustomSQLUtil.keywords(descriptions);
+	    
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(COUNT_BY_C_G_D_D);
+			
+			if (groupId <= 0) {
+				sql = StringUtil.replace(sql, "(groupId = ?) AND", "");
+			}
+			
+			sql = CustomSQLUtil.replaceKeywords(
+				sql, "definitionName", StringPool.LIKE, false, definitionNames);
+			sql = CustomSQLUtil.replaceKeywords(
+				sql, "description", StringPool.LIKE, false, descriptions);
+			
+			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
+			
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			
+			QueryPos qPos = QueryPos.getInstance(q);
+			
+			qPos.add(companyId);
+			
+			if (groupId > 0) {
+				qPos.add(groupId);
+			}
+			
+			qPos.add(definitionNames, 2);
+			qPos.add(descriptions, 2);
+			
+			Iterator<Long> itr = q.list().iterator();
+
+			if (itr.hasNext()) {
+				Long count = itr.next();
+
+				if (count != null) {
+					return count.intValue();
+				}
+			}
+
+			return 0;
+
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+	
 	public int countByKeywords(
 		long companyId, long groupId, java.lang.String keywords,
 		LinkedHashMap<String, Object> params)
 		throws com.liferay.portal.SystemException {
-		return 1;
+		String[] definitionNames = null;
+		String[] descriptions = null;
+		boolean andOperator = false;
+		
+		if (Validator.isNotNull(keywords)) {
+		    definitionNames = CustomSQLUtil.keywords(keywords);
+		    descriptions = CustomSQLUtil.keywords(keywords);
+		}else{
+		    andOperator = true;
+		}
+		
+		return countByC_G_N_D(companyId, groupId, definitionNames, 
+			descriptions, andOperator);
+	}
+	
+	public List<ReportDefinition> findByC_G_N_D (long companyId, 
+		long groupId,String[] definitionNames,String[] descriptions,
+		boolean andOperator, int start, int end,OrderByComparator obc)
+		throws com.liferay.portal.SystemException{
+	    
+	    	definitionNames = CustomSQLUtil.keywords(definitionNames);
+	    	descriptions = CustomSQLUtil.keywords(descriptions);
+	    
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_C_G_D_D);
+			
+			if (groupId <= 0) {
+				sql = StringUtil.replace(sql, "(groupId = ?) AND", "");
+			}
+			
+			sql = CustomSQLUtil.replaceKeywords(
+				sql, "definitionName", StringPool.LIKE, false, definitionNames);
+			sql = CustomSQLUtil.replaceKeywords(
+				sql, "description", StringPool.LIKE, false, descriptions);
+			
+			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addEntity("ReportDefinition",ReportDefinition.class);
+			
+			QueryPos qPos = QueryPos.getInstance(q);
+			
+			qPos.add(companyId);
+			
+			if (groupId > 0) {
+				qPos.add(groupId);
+			}
+			
+			qPos.add(definitionNames, 2);
+			qPos.add(descriptions, 2);
+			
+			return (List<ReportDefinition>)QueryUtil.list(
+				q, getDialect(), start, end);
+
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+	
+	public List<ReportDefinition> findByKeywords(
+		long companyId, long groupId, String keywords,
+		LinkedHashMap<String, Object> params, int start, int end,
+		OrderByComparator obc) 
+		throws com.liferay.portal.SystemException{
+		String[] definitionNames = null;
+		String[] descriptions = null;
+		boolean andOperator = false;
+		
+		if (Validator.isNotNull(keywords)) {
+		    definitionNames = CustomSQLUtil.keywords(keywords);
+		    descriptions = CustomSQLUtil.keywords(keywords);
+		}else{
+		    andOperator = true;
+		}
+		
+		return findByC_G_N_D(companyId, groupId, definitionNames,
+			descriptions, andOperator, start, end, obc);
 	}
 
 }

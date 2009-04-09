@@ -60,7 +60,7 @@
 	function <portlet:namespace />saveDefinition() {
 		document.<portlet:namespace />fm.<portlet:namespace />jspPage.value = "/definition/edit_definition.jsp";
 		document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<%= currentURL %>";
-		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="addDefinition" /></portlet:actionURL>');
+		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="addDefinition,searchDefinition" /></portlet:actionURL>');
 	}
 
 	function <portlet:namespace />updateDefinition() {
