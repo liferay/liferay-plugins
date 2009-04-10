@@ -325,11 +325,11 @@ body.portal-iframe,
 
 .portlet-calendar .calendar-day .day-number {
 	color: #333;
-	font-size: 80px;
+	font-size: 100px;
 }
 
-.ie6 .portlet-calendar .calendar-container {
-	background: #FFF;
+#wrapper .portlet-calendar .calendar-container {
+	background-color: #FFF;
 }
 
 .portlet-login .navigation {
