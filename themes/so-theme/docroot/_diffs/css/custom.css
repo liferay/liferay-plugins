@@ -184,6 +184,10 @@ body #banner h1.logo a {
 	display: none;
 }
 
+.portlet-icons {
+	display: none;
+}
+
 /* ---------- Layout ---------- */
 
 .lfr-grid .lfr-column {

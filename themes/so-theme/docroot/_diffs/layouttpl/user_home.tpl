@@ -4,7 +4,7 @@
 		<td class="lfr-column thirty" id="column-1" valign="top">
 			$processor.processColumn("column-1")
 		</td>
-		<td class="lfr-column seventy" valign="top">
+		<td class="seventy" valign="top">
 			<table class="lfr-grid" id="layout-grid">
 			<tr id="row-2">
 				<td class="lfr-column" id="column-2" valign="top" colspan="2">
