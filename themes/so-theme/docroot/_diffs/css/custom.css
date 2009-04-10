@@ -93,9 +93,10 @@ body #banner h1.logo a {
 	border: 1px solid #B0BAFF;
 	border-top: none;
 	display: none;
-	left: 0;
 	position: absolute;
+	right: 0;
 	top: 28px;
+	width: 237px;
 	z-index: 20;
 }
 
