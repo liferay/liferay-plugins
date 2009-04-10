@@ -209,7 +209,9 @@ public class ProfilesAction extends JSPPortlet {
 		UserLocalServiceUtil.updateUser(user, false);
 	}
 
-	protected void updateFacebook(User user, String value) throws SystemException {
+	protected void updateFacebook(User user, String value)
+		throws SystemException {
+
 		Contact contact = user.getContact();
 
 		contact.setFacebookSn(value);
@@ -217,7 +219,9 @@ public class ProfilesAction extends JSPPortlet {
 		ContactLocalServiceUtil.updateContact(contact, false);
 	}
 
-	protected void updateFirstName(User user, String value) throws SystemException {
+	protected void updateFirstName(User user, String value)
+		throws SystemException {
+
 		Contact contact = user.getContact();
 
 		contact.setFirstName(value);
@@ -233,7 +237,9 @@ public class ProfilesAction extends JSPPortlet {
 		ContactLocalServiceUtil.updateContact(contact, false);
 	}
 
-	protected void updateJabber(User user, String value) throws SystemException {
+	protected void updateJabber(User user, String value)
+		throws SystemException {
+
 		Contact contact = user.getContact();
 
 		contact.setJabberSn(value);
@@ -241,7 +247,9 @@ public class ProfilesAction extends JSPPortlet {
 		ContactLocalServiceUtil.updateContact(contact, false);
 	}
 
-	protected void updateLastName(User user, String value) throws SystemException {
+	protected void updateLastName(User user, String value)
+		throws SystemException {
+
 		Contact contact = user.getContact();
 
 		contact.setLastName(value);
@@ -257,7 +265,9 @@ public class ProfilesAction extends JSPPortlet {
 		ContactLocalServiceUtil.updateContact(contact, false);
 	}
 
-	protected void updateMyspace(User user, String value) throws SystemException {
+	protected void updateMyspace(User user, String value)
+		throws SystemException {
+
 		Contact contact = user.getContact();
 
 		contact.setMySpaceSn(value);
@@ -338,7 +348,9 @@ public class ProfilesAction extends JSPPortlet {
 		ContactLocalServiceUtil.updateContact(contact, false);
 	}
 
-	protected void updateTwitter(User user, String value) throws SystemException {
+	protected void updateTwitter(User user, String value)
+		throws SystemException {
+
 		Contact contact = user.getContact();
 
 		contact.setTwitterSn(value);

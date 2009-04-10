@@ -79,6 +79,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 							<a class="change-avatar" href="javascript: _<%= PortletKeys.MY_ACCOUNT %>_openEditUserPortraitWindow('<%= editUserPortraitURL %>');"><img alt="<liferay-ui:message key="avatar" />" class="avatar" id="<portlet:namespace />avatar" src='<%= themeDisplay.getPathImage() %>/user_<%= user.isFemale() ? "female" : "male" %>_portrait?img_id=<%= user.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user.getPortraitId()) %>' /></a>
 
 							<br />
+
 							<a class="edit-avatar" href="javascript: _<%= PortletKeys.MY_ACCOUNT %>_openEditUserPortraitWindow('<%= editUserPortraitURL %>');"><img src="<%= themeDisplay.getPathThemeImage() %>/common/edit.png" /></a>
 
 						</c:when>
@@ -104,16 +105,22 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 					<c:choose>
 						<c:when test="<%= isEditable %>">
 							<div class="user-tags">
+
 								<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />tagsForm">
 								<input name="<portlet:namespace />id" type="hidden" value="updateTags" />
+
 								<liferay-ui:tags-selector
 									className="<%= User.class.getName() %>"
 									classPK="<%= curUser.getUserId() %>"
 									hiddenInput="tagsEntries"
 								/>
+
 								<br />
+
 								<input type="submit" value="<liferay-ui:message key="save" />" />
+
 								</form>
+
 							</div>
 						</c:when>
 						<c:otherwise>
@@ -148,9 +155,11 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 								<liferay-ui:message key="add-address" />
 							</td>
 							<td>
+
 								<form action="<liferay-portlet:actionURL />" method="post" name="<portlet:namespace />fm1">
 								<input id="<portlet:namespace />addressId" name="<portlet:namespace />addressId" type="hidden" value="" />
 								<input id="<portlet:namespace />addressCmd" name="<portlet:namespace />id" type="hidden" value="addAddress" />
+
 								<table>
 								<tr>
 									<td class="lfr-label">
@@ -225,11 +234,14 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 								<tr>
 									<td colspan="2">
 										<input name="submit" type="submit" value="<liferay-ui:message key="submit" />" />
+
 										<input class="cancel-address-button" name="cancel" type="button" value="<liferay-ui:message key="cancel" />" />
 									</td>
 								</tr>
 								</table>
+
 								</form>
+
 							</td>
 						</tr>
 						<tr>
@@ -278,8 +290,10 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 										<div class="line-4">
 											<span class="city"><%= address.getCity() %></span>, <span class="region"><%= region %></span> <span class="zip"><%= address.getZip() %></span>
 										</div>
+
 										<div class="user-address-controls" id="<portlet:namespace />address<%=address.getAddressId() %>">
 											<a class="edit-address" href="javascript: ;"><img src="<%= themeDisplay.getPathThemeImage() %>/common/edit.png" /></a>
+
 											<a class="delete-address" href="javascript: ;"><img src="<%= themeDisplay.getPathThemeImage() %>/common/delete.png" /></a>
 										</div>
 									</div>
@@ -306,9 +320,11 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 								<liferay-ui:message key="add-phone-number" />
 							</td>
 							<td>
+
 								<form action="<liferay-portlet:actionURL />" method="post" name="<portlet:namespace />fm2">
 								<input id="<portlet:namespace />phoneCmd" name="<portlet:namespace />id" type="hidden" value="addPhoneNumber" />
 								<input id="<portlet:namespace />phoneId" name="<portlet:namespace />phoneId" type="hidden" />
+
 								<table>
 								<tr>
 									<td class="lfr-label">
@@ -351,11 +367,14 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 								<tr>
 									<td colspan="2">
 										<input name="Submit" type="Submit" value="<liferay-ui:message key="submit" />" />
+
 										<input class="cancel-phone-number-button" name="cancel" type="button" value="<liferay-ui:message key="cancel" />" />
 									</td>
 								</tr>
 								</table>
+
 								</form>
+
 							</td>
 						</tr>
 						<tr>
@@ -376,27 +395,29 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 							String extension = phone.getExtension();
 						%>
 
-						<tr>
-							<td class="lfr-label">
-								<%= phone.getType().getName() %> <liferay-ui:message key="number" />
-							</td>
-							<td>
-								<div class="phone-number">
-									<%= phone.getNumber() %>
+							<tr>
+								<td class="lfr-label">
+									<%= phone.getType().getName() %> <liferay-ui:message key="number" />
+								</td>
+								<td>
+									<div class="phone-number">
+										<%= phone.getNumber() %>
 
-									<span class="lfr-label">
-										<%= Validator.isNotNull(phone.getExtension()) ? "x" : "" %>
-									</span>
+										<span class="lfr-label">
+											<%= Validator.isNotNull(phone.getExtension()) ? "x" : "" %>
+										</span>
 
-									<%= extension %>
+										<%= extension %>
 
-									<div class="phone-number-controls" id="<portlet:namespace />phonenumber<%= phone.getPhoneId() %>">
-										<a class="edit-phone-number" href="javascript: ;"><img src="<%= themeDisplay.getPathThemeImage() %>/common/edit.png" /></a>
-										<a class="delete-phone-number" href="javascript: ;"><img src="<%= themeDisplay.getPathThemeImage() %>/common/delete.png" /></a>
+										<div class="phone-number-controls" id="<portlet:namespace />phonenumber<%= phone.getPhoneId() %>">
+											<a class="edit-phone-number" href="javascript: ;"><img src="<%= themeDisplay.getPathThemeImage() %>/common/edit.png" /></a>
+
+											<a class="delete-phone-number" href="javascript: ;"><img src="<%= themeDisplay.getPathThemeImage() %>/common/delete.png" /></a>
+										</div>
 									</div>
-								</div>
-							</td>
-						</tr>
+								</td>
+							</tr>
+
 						<%
 						}
 						%>
@@ -422,9 +443,11 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 								<liferay-ui:message key="add-website" />
 							</td>
 							<td>
+
 								<form action="<liferay-portlet:actionURL />" method="post" name="<portlet:namespace />fm3">
 								<input id="<portlet:namespace />websiteCmd" name="<portlet:namespace />id" type="hidden" value="addWebsite" />
 								<input id="<portlet:namespace />websiteId" name="<portlet:namespace />websiteId" type="hidden" />
+
 								<table>
 								<tr>
 									<td class="lfr-label">
@@ -459,11 +482,14 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 								<tr>
 									<td colspan="2">
 										<input name="Submit" type="Submit" value="<liferay-ui:message key="submit" />" />
+
 										<input class="cancel-website-button" name="cancel" type="button" value="<liferay-ui:message key="cancel" />" />
 									</td>
 								</tr>
 								</table>
+
 								</form>
+
 							</td>
 						</tr>
 						<tr>
@@ -497,8 +523,10 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 
 									<div class="website">
 										<a href="<%= website.getUrl() %>"><%= website.getUrl() %></a>
+
 										<div class="website-controls" id="<portlet:namespace />website<%= website.getWebsiteId() %>">
 											<a class="edit-website" href="javascript: ;"><img src="<%= themeDisplay.getPathThemeImage() %>/common/edit.png" /></a>
+
 											<a class="delete-website" href="javascript: ;"><img src="<%= themeDisplay.getPathThemeImage() %>/common/delete.png" /></a>
 										</div>
 									</div>
@@ -528,6 +556,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 								</td>
 								<td>
 									<span class="<%= isEditable ? "editable" : "" %>" id="aim"><%= curContact.getAimSn() %></span>
+
 									<a class="delete" href="javascript: ;"><img src="<%= themeDisplay.getPathThemeImage() %>/common/delete.png" /></a>
 								</td>
 							</tr>
@@ -535,6 +564,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 							<%
 							showBreak = true;
 							%>
+
 						</c:when>
 						<c:otherwise>
 							<c:if test="<%= isEditable %>">
@@ -558,6 +588,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 								</td>
 								<td>
 									<span class="<%= isEditable ? "editable" : "" %>" id="icq"><%= curContact.getIcqSn() %></span>
+
 									<a class="delete" href="javascript: ;"><img src="<%= themeDisplay.getPathThemeImage() %>/common/delete.png" /></a>
 								</td>
 							</tr>
@@ -565,6 +596,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 							<%
 							showBreak = true;
 							%>
+
 						</c:when>
 						<c:otherwise>
 							<c:if test="<%= isEditable %>">
@@ -588,6 +620,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 								</td>
 								<td>
 									<span class="<%= isEditable ? "editable" : "" %>" id="jabber"><%= curContact.getJabberSn() %></span>
+
 									<a class="delete" href="javascript: ;"><img src="<%= themeDisplay.getPathThemeImage() %>/common/delete.png" /></a>
 								</td>
 							</tr>
@@ -595,6 +628,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 							<%
 							showBreak = true;
 							%>
+
 						</c:when>
 						<c:otherwise>
 							<c:if test="<%= isEditable %>">
@@ -618,6 +652,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 								</td>
 								<td>
 									<span class="<%= isEditable ? "editable" : "" %>" id="msn"><%= curContact.getMsnSn() %></span>
+
 									<a class="delete" href="javascript: ;"><img src="<%= themeDisplay.getPathThemeImage() %>/common/delete.png" /></a>
 								</td>
 							</tr>
@@ -625,6 +660,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 							<%
 							showBreak = true;
 							%>
+
 						</c:when>
 						<c:otherwise>
 							<c:if test="<%= isEditable %>">
@@ -648,6 +684,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 								</td>
 								<td>
 									<span class="<%= isEditable ? "editable" : "" %>" id="skype"><%= curContact.getSkypeSn() %></span>
+
 									<a class="delete" href="javascript: ;"><img src="<%= themeDisplay.getPathThemeImage() %>/common/delete.png" /></a>
 								</td>
 							</tr>
@@ -655,6 +692,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 							<%
 							showBreak = true;
 							%>
+
 						</c:when>
 						<c:otherwise>
 							<c:if test="<%= isEditable %>">
@@ -678,6 +716,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 								</td>
 								<td>
 									<span class="<%= isEditable ? "editable" : "" %>" id="ym"><%= curContact.getYmSn() %></span>
+
 									<a class="delete" href="javascript: ;"><img src="<%= themeDisplay.getPathThemeImage() %>/common/delete.png" /></a>
 								</td>
 							</tr>
@@ -685,6 +724,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 							<%
 							showBreak = true;
 							%>
+
 						</c:when>
 						<c:otherwise>
 							<c:if test="<%= isEditable %>">
@@ -710,6 +750,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 						<%
 						showBreak = false;
 						%>
+
 					</c:if>
 
 					<c:choose>
@@ -720,6 +761,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 								</td>
 								<td>
 									<span class="<%= isEditable ? "editable" : "" %>" id="facebook"><%= curContact.getFacebookSn() %></span>
+
 									<a class="delete" href="javascript: ;"><img src="<%= themeDisplay.getPathThemeImage() %>/common/delete.png" /></a>
 								</td>
 							</tr>
@@ -727,6 +769,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 							<%
 							showBreak = true;
 							%>
+
 						</c:when>
 						<c:otherwise>
 							<c:if test="<%= isEditable %>">
@@ -750,6 +793,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 								</td>
 								<td>
 									<span class="<%= isEditable ? "editable" : "" %>" id="myspace"><%= curContact.getMySpaceSn() %></span>
+
 									<a class="delete" href="javascript: ;"><img src="<%= themeDisplay.getPathThemeImage() %>/common/delete.png" /></a>
 								</td>
 							</tr>
@@ -757,6 +801,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 							<%
 							showBreak = true;
 							%>
+
 						</c:when>
 						<c:otherwise>
 							<c:if test="<%= isEditable %>">
@@ -780,6 +825,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 								</td>
 								<td>
 									<span class="<%= isEditable ? "editable" : "" %>" id="twitter"><%= curContact.getTwitterSn() %></span>
+
 									<a class="delete" href="javascript: ;"><img src="<%= themeDisplay.getPathThemeImage() %>/common/delete.png" /></a>
 								</td>
 							</tr>
@@ -787,6 +833,7 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 							<%
 							showBreak = true;
 							%>
+
 						</c:when>
 						<c:otherwise>
 							<c:if test="<%= isEditable %>">
