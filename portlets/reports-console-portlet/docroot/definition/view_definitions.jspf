@@ -32,22 +32,32 @@ ReportDefinitionSearch searchContainer = new ReportDefinitionSearch(renderReques
 	showAddButton="true"
 	/>
 
-
 <c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
 	<%
+	ReportDefinitionSearchTerms searchTerms = (ReportDefinitionSearchTerms)searchContainer.getSearchTerms();
+	List results = null;
+	int total = 0;
+	
+	if (searchTerms.isAdvancedSearch()) {
 
-		List<ReportDefinition> searchResults =
-			(List<ReportDefinition>)renderRequest.getAttribute("searchResults");
-		int size = 0;
-		if (searchResults != null) {
-			size = searchResults.size();
-			searchContainer.setResults(searchResults);
-		}
-		List resultRows = searchContainer.getResultRows();
-		for (int i = 0; i < size; i++) {
-			ReportDefinition reportsEntry = searchResults.get(i);
-			String entryId = String.valueOf(reportsEntry.getDefinitionId());
-			ResultRow row = new ResultRow(reportsEntry, entryId, i);
+	}
+	else {
+		results = ReportDefinitionLocalServiceUtil.search(themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(), searchTerms.getKeywords(), null, searchContainer.getStart(), searchContainer.getEnd(), null);
+	}
+
+	if (searchTerms.isAdvancedSearch()) {
+
+	}
+	else {
+	    total = ReportDefinitionLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(), searchTerms.getKeywords(), true, null);
+	}
+	searchContainer.setTotal(total);
+	searchContainer.setResults(results);
+	List resultRows = searchContainer.getResultRows();
+	for (int i = 0; i < results.size(); i++) {
+			ReportDefinition reportsEntry = (ReportDefinition)results.get(i);
+			String definitionId = String.valueOf(reportsEntry.getDefinitionId());
+			ResultRow row = new ResultRow(reportsEntry, definitionId, i);
 
 			PortletURL rowURL = renderResponse.createRenderURL();
 
@@ -55,12 +65,12 @@ ReportDefinitionSearch searchContainer = new ReportDefinitionSearch(renderReques
 
 			rowURL.setParameter("jspPage", "/definition/edit_definition.jsp");
 			rowURL.setParameter("redirect", currentURL);
-			rowURL.setParameter("entryId", entryId);
+			rowURL.setParameter("definitionId", definitionId);
 
 			row.setParameter("rowHREF", rowURL.toString());
 			// reporting id
 
-			row.addText(entryId, rowURL);
+			row.addText(definitionId, rowURL);
 
 			// reporting name
 
@@ -79,7 +89,7 @@ ReportDefinitionSearch searchContainer = new ReportDefinitionSearch(renderReques
 
 			resultRows.add(row);
 
-		}
+	}
 	%>
 	<liferay-ui:search-iterator searchContainer="<%= searchContainer %>"/>
 </c:if>

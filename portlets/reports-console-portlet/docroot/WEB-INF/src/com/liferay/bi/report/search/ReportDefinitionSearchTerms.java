@@ -34,7 +34,7 @@ import javax.portlet.PortletRequest;
  *
  * @author Michael C. Han
  */
-public class ReportDefinitionSearchTerms extends ReportDefintionDisplayTerms {
+public class ReportDefinitionSearchTerms extends ReportDefinitionDisplayTerms {
 
 	public ReportDefinitionSearchTerms(PortletRequest request) {
 		super(request);

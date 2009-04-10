@@ -36,7 +36,7 @@ String definitionId = String.valueOf(definition.getDefinitionId());
 >
 <c:if test="<%= ReportDefinitionPermission.contains(permissionChecker, definition, ActionKeys.UPDATE) %>">
 	<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
-		<portlet:param name="jspPage" value="/edit_template.jsp" />
+		<portlet:param name="jspPage" value="/definition/edit_definition.jsp" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="definitionId" value="<%= definitionId %>" />
 	</portlet:renderURL>
@@ -64,7 +64,7 @@ String definitionId = String.valueOf(definition.getDefinitionId());
 
 <c:if test="<%= ReportDefinitionPermission.contains(permissionChecker, definition, ActionKeys.ADD_INSTANCE) %>">
 	<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="addScheduleURL">
-		<portlet:param name="jspPage" value="/edit_event.jsp" />
+		<portlet:param name="jspPage" value="/definition/edit_definition.jsp" />
         <portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="definitionId" value="<%= definitionId %>" />
 	</portlet:renderURL>

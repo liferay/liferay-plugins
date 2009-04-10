@@ -25,7 +25,7 @@
 <%
 ReportDefinitionSearch searchContainer = (ReportDefinitionSearch)request.getAttribute("liferay-ui:search:searchContainer");
 boolean showAddButton = GetterUtil.getBoolean((String)request.getAttribute("liferay-ui:search:showAddButton"));
-ReportDefintionDisplayTerms displayTerms = (ReportDefintionDisplayTerms)searchContainer.getDisplayTerms();
+ReportDefinitionDisplayTerms displayTerms = (ReportDefinitionDisplayTerms)searchContainer.getDisplayTerms();
 %>
 
 <liferay-ui:search-toggle
@@ -53,9 +53,9 @@ ReportDefintionDisplayTerms displayTerms = (ReportDefintionDisplayTerms)searchCo
 	</tr>
 	</table>
 </liferay-ui:search-toggle>
-<br>
-<input name="<portlet:namespace /><%= ActionRequest.ACTION_NAME %>" type="hidden" value="searchDefinition" />
-
+<br />
+<input name="<portlet:namespace /><%= "jspPage" %>" type="hidden" value="/view.jsp" />
+<br />
 <%-- TBD Need to add permissions checks --%>
 <div>
 	<c:if test="<%= showAddButton %>">

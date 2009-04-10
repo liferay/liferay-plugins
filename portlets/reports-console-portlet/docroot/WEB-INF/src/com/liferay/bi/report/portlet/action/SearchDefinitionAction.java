@@ -27,15 +27,12 @@ import java.util.List;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
-import javax.portlet.PortletURL;
 import javax.servlet.http.HttpServletRequest;
 
 import com.liferay.bi.report.model.ReportDefinition;
-import com.liferay.bi.report.search.ReportDefinitionSearch;
 import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -59,9 +56,10 @@ public class SearchDefinitionAction implements Action {
 		long groupId = themeDisplay.getScopeGroupId();		
 		
 		//TBD Need to implement search features and functionality...
+	
 		int start = ParamUtil.getInteger(actionRequest, "start");
 		int end = ParamUtil.getInteger(actionRequest, "end");
-		
+
 		int count = 0;
 		List<ReportDefinition> definitions = null;
 		
@@ -69,18 +67,23 @@ public class SearchDefinitionAction implements Action {
 		    if(ParamUtil.getBoolean(actionRequest, "advancedSearch")){
 			definitions =
 				ReportDefinitionLocalServiceUtil.getReportDefintions(companyId, groupId);
-		    }else{			
+		    }else{
 			String keywords = ParamUtil.getString(request, "keywords");
 
 			count = ReportDefinitionLocalServiceUtil
 				.searchCount(companyId, groupId, keywords, true, null);
+			
+			if(count > SearchContainer.DEFAULT_DELTA){
+			    end = SearchContainer.DEFAULT_DELTA;
+			}else{
+			    end = count;
+			}
 			
 			definitions = ReportDefinitionLocalServiceUtil
 				.search(companyId, groupId, keywords, null, start, end, null);
 		    }
 		    
 		actionRequest.setAttribute("searchResults", definitions);
-		    
 
 		}
 		catch (SystemException e) {

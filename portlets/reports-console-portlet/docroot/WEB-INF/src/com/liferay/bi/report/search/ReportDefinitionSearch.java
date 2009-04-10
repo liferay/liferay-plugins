@@ -51,23 +51,23 @@ public class ReportDefinitionSearch extends SearchContainer<ReportDefinition> {
 		"no-definitions-were-found";
 
 	public ReportDefinitionSearch(
-		PortletRequest renderRequest, PortletURL iteratorURL) {
+		PortletRequest portletRequest, PortletURL iteratorURL) {
 
 		super(
-			renderRequest, new ReportDefintionDisplayTerms(renderRequest),
-			new ReportDefintionDisplayTerms(renderRequest), DEFAULT_CUR_PARAM,
+			portletRequest, new ReportDefinitionDisplayTerms(portletRequest),
+			new ReportDefinitionSearchTerms(portletRequest), DEFAULT_CUR_PARAM,
 			DEFAULT_DELTA, iteratorURL, headerNames, EMPTY_RESULTS_MESSAGE);
 
-		ReportDefintionDisplayTerms displayTerms =
-			(ReportDefintionDisplayTerms)getDisplayTerms();
+		ReportDefinitionDisplayTerms displayTerms =
+			(ReportDefinitionDisplayTerms)getDisplayTerms();
 
 		iteratorURL.setParameter(
-			ReportDefintionDisplayTerms.DEFINITION_ID,
+			ReportDefinitionDisplayTerms.DEFINITION_ID,
 			String.valueOf(displayTerms.getDefinitionId()));
 		iteratorURL.setParameter(
-			ReportDefintionDisplayTerms.NAME, displayTerms.getName());
+			ReportDefinitionDisplayTerms.NAME, displayTerms.getName());
 		iteratorURL.setParameter(
-			ReportDefintionDisplayTerms.NAME, displayTerms.getName());
+			ReportDefinitionDisplayTerms.DESCRIPTION, displayTerms.getDescription());
 	}
 
 }

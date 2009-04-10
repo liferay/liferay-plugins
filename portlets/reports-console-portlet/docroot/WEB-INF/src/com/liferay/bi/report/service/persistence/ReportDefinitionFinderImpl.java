@@ -143,7 +143,7 @@ public class ReportDefinitionFinderImpl
 	    
 	    	definitionNames = CustomSQLUtil.keywords(definitionNames);
 	    	descriptions = CustomSQLUtil.keywords(descriptions);
-	    
+	    	
 		Session session = null;
 
 		try {

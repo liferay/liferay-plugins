@@ -33,7 +33,7 @@ import javax.portlet.PortletRequest;
  *
  * @author Michael C. Han
  */
-public class ReportDefintionDisplayTerms extends DisplayTerms {
+public class ReportDefinitionDisplayTerms extends DisplayTerms {
 
 	public static final String DEFINITION_ID = "definitionId";
 
@@ -41,7 +41,7 @@ public class ReportDefintionDisplayTerms extends DisplayTerms {
 
 	public static final String DESCRIPTION = "description";
 
-	public ReportDefintionDisplayTerms(PortletRequest request) {
+	public ReportDefinitionDisplayTerms(PortletRequest request) {
 		super(request);
 
 		_definitionId = ParamUtil.getString(request, DEFINITION_ID);

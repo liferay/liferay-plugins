@@ -31,12 +31,12 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util"%>
 
-
 <%@ page import="com.liferay.bi.report.model.ReportDefinition" %>
 <%@ page import="com.liferay.bi.report.search.ReportDefinitionSearch" %>
-<%@ page import="com.liferay.bi.report.search.ReportDefintionDisplayTerms" %>
+<%@page import="com.liferay.bi.report.search.ReportDefinitionSearchTerms"%>
+<%@ page import="com.liferay.bi.report.search.ReportDefinitionDisplayTerms" %>
 <%@ page import="com.liferay.bi.report.service.permission.ReportDefinitionPermission" %>
-
+<%@ page import="com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil" %>
 <%@ page import="com.liferay.documentlibrary.service.DLServiceUtil" %>
 
 <%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
@@ -75,5 +75,5 @@
 <%	
 String currentURL = PortalUtil.getCurrentURL(request);
 WindowState windowState = renderRequest.getWindowState();
-	
+
 %>

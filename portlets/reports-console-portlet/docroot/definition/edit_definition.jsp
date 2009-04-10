@@ -23,13 +23,13 @@
 <%@ include file="/init.jsp" %>
 
 <%
-	ReportDefinition definition = (ReportDefinition)renderRequest.getAttribute("currentDefinition");
-	boolean isNew = (definition == null);
-	long definitionId = -1;
+	long definitionId = ParamUtil.getLong(renderRequest,"definitionId");
+	ReportDefinition definition = null;
 	String parameter = StringPool.BLANK;
-	if (!isNew) {
-		definitionId = definition.getDefinitionId();
-		parameter = definition.getReportParameters();
+	boolean isNew = true;
+	if (definitionId > 0) {
+	    isNew = false;
+	    definition = ReportDefinitionLocalServiceUtil.getReportDefinition(definitionId);
 	}
 %>
 
@@ -60,13 +60,14 @@
 	function <portlet:namespace />saveDefinition() {
 		document.<portlet:namespace />fm.<portlet:namespace />jspPage.value = "/definition/edit_definition.jsp";
 		document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<%= currentURL %>";
+		document.<portlet:namespace />fm.encoding = "multipart/form-data";
 		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="addDefinition,searchDefinition" /></portlet:actionURL>');
 	}
 
 	function <portlet:namespace />updateDefinition() {
 		document.<portlet:namespace />fm.<portlet:namespace />jspPage.value = "/definition/edit_definition.jsp";
 		document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<%= currentURL %>";
-		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="updateDefinition" /></portlet:actionURL>');
+		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"></portlet:actionURL>');
 	}
 
 	function <portlet:namespace />deleteDefinition() {
@@ -124,8 +125,8 @@
 	}
 </script>
 
-<form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"></portlet:actionURL>" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm" >
-<input name="<portlet:namespace />redirect" type="hidden" value="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="jspPage" value="/edit_template.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>" />
+<form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"></portlet:actionURL>" method="post" name="<portlet:namespace />fm" >
+<input name="<portlet:namespace />redirect" type="hidden" value="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="jspPage" value="/definition/edit_definition.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>" />
 <input name="<portlet:namespace />definitionId" type="hidden" value="<%= definitionId %>" />
 <input name="<portlet:namespace />jspPage" type="hidden" />
 
@@ -133,18 +134,25 @@
 <table class="lfr-table">
 	<tr>
 		<td>
+			<liferay-ui:message key="id" />:
+		</td>
+		<td>
+			<c:choose>
+				<c:when test="<%= isNew %>">
+					<liferay-ui:message key="autogenerate-id" />
+				</c:when>
+				<c:otherwise>
+					<%= definitionId %>
+				</c:otherwise>
+			</c:choose>
+		</td>
+	</tr>
+	<tr>
+		<td>
 			<liferay-ui:message key="definition-name" />:
 		</td>
 		<td>
-		<c:choose>
-			<c:when test="<%= isNew %>">
-				<liferay-ui:input-field model="<%= ReportDefinition.class %>" bean="<%= definition %>" field="definitionName" />		
-			</c:when>
-			<c:otherwise>
-				<input name="<portlet:namespace />definitionName" type="hidden" value="<%= definition.getDefinitionName() %>" />
-				<%= definition.getDefinitionName() %>
-			</c:otherwise>
-		</c:choose>
+			<liferay-ui:input-field model="<%= ReportDefinition.class %>" bean="<%= definition %>" field="definitionName" />
 		</td>
 	</tr>
 	<tr>
