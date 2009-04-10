@@ -20,6 +20,7 @@
 		<portlet-name>4</portlet-name>
 		<friendly-url-mapper-class>com.liferay.so.profiles.portlet.ProfilesFriendlyURLMapper</friendly-url-mapper-class>
 		<header-portlet-javascript>/profiles/javascript.js</header-portlet-javascript>
+		<footer-portal-javascript>/html/js/liferay/service.js</footer-portal-javascript>
 		<css-class-wrapper>so-portlet-profiles</css-class-wrapper>
 	</portlet>
 	<role-mapper>
