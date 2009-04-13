@@ -1,0 +1,128 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* -------- Base -------- */
+
+body {
+	background: #F7F7F7 url(../images/custom/body_bg.png) repeat-x;
+}
+
+body.blue {
+	background: #F5F5F8 url(../images/custom/blue/body_bg.png) repeat-x;
+}
+
+.green {
+	background: #F5F5F8 url(../images/custom/green/body_bg.png) repeat-x;
+}
+
+/* -------- Wrapper -------- */
+
+#wrapper {
+	margin: 0 auto;
+	width: 940px;
+}
+
+/* -------- Logo -------- */
+
+.logo {
+	font-size: 32px;
+	line-height: 55px;
+	padding: 0 2px;
+}
+
+.logo a {
+	color: #333;
+	text-decoration: none;
+}
+
+/* -------- Navigation -------- */
+
+#navigation {
+	background: url(../images/custom/navigation_bg.png);
+	font-size: 14px;
+	height: 61px;
+}
+
+.blue #navigation {
+	background: url(../images/custom/blue/navigation_bg.png);
+}
+
+.green #navigation {
+	background: url(../images/custom/green/navigation_bg.png);
+}
+
+#navigation ul {
+	float: left;
+	padding: 0 0 0 25px;
+}
+
+#navigation a {
+	color: #383838;
+	display: block;
+	float: left;
+	font-family: Frutiger, Frutiger Linotype, Univers, Calibri, Gill Sans, Gill Sans MT, Myriad Pro, Myriad, DejaVu Sans Condensed, Liberation Sans, Nimbus Sans L, Tahoma, Geneva, Helvetica Neue, Helvetica, Arial, sans-serif;
+	line-height: 36px;
+	padding: 0 25px;
+	text-decoration: none;
+}
+
+.blue #navigation a:hover {
+	background: url(../images/custom/blue/navigation_hover_bg.png);
+}
+
+.green #navigation a:hover {
+	background: url(../images/custom/green/navigation_hover_bg.png);
+}
+
+
+#navigation a:hover {
+	background: url(../images/custom/navigation_hover_bg.png);
+	color: #EEE;
+}
+
+#navigation .selected a {
+	background: url(../images/custom/navigation_selected_bg.png);
+	color: #FFF;
+}
+
+#navigation .cancel-page,
+#navigation .save-page {
+	display: inline;
+	float: none;
+	padding: 3px;
+}
+
+/* -------- Content-Wrapper -------- */
+
+#content-wrapper {
+	background: #FFF url(../images/custom/content-wrapper_bg.png);
+	color: #333;
+	font: 11px/1.5 "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, sans-serif;
+	min-height: 100px;
+	padding: 10px;
+}
+
+.blue #content-wrapper {
+	background: #FFF url(../images/custom/blue/content-wrapper_bg.png);
+}
+
+.green #content-wrapper {
+	background: #FFF url(../images/custom/green/content-wrapper_bg.png);
+}
+
+#content-wrapper a {
+	color: #000;
+	text-decoration: none;
+}
+
+#content-wrapper a:hover {
+	color: #08C;
+}
+
+/* -------- Footer -------- */
+
+#footer {
+	background: url(../images/custom/footer_bg.png);
+	height: 30px;
+	padding: 0 20px;
+	text-align: right;
+}

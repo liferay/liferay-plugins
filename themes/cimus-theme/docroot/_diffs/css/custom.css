@@ -1,0 +1,142 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* -------- Base -------- */
+
+body {
+	background: #6A8DA6;
+}
+
+body.green {
+	background: #6FA66A;
+}
+
+body.red {
+	background: #B96656;
+}
+
+body.yellow {
+	background: #C4B54C;
+}
+
+/* -------- Wrapper -------- */
+
+#wrapper {
+	background: url(../images/custom/wrapper_bg.png);
+	margin: 0 auto;
+	width: 1040px;
+}
+
+.green #wrapper {
+	background: url(../images/custom/green/wrapper_bg.png);
+}
+
+.red #wrapper {
+	background: url(../images/custom/red/wrapper_bg.png);
+}
+
+.yellow #wrapper {
+	background: url(../images/custom/yellow/wrapper_bg.png);
+}
+
+/* -------- Banner -------- */
+
+#banner {
+	background: url(../images/custom/banner_bg.png);
+	height: 100px;
+	padding: 40px 0 0;
+}
+
+.green #banner {
+	background: url(../images/custom/green/banner_bg.png);
+}
+
+.red #banner {
+	background: url(../images/custom/red/banner_bg.png);
+}
+
+.yellow #banner {
+	background: url(../images/custom/yellow/banner_bg.png);
+}
+
+/* -------- Logo -------- */
+
+#banner .logo {
+	line-height: 100px;
+	text-align: center;
+}
+
+#banner .logo a {
+	margin: 0 auto;
+}
+
+/* -------- Navigation -------- */
+
+#navigation {
+	border-bottom: 2px solid #DCDFE0;
+	font: 14px Arial, Helvetica, sans-serif;
+	height: 30px;
+	margin: 0 50px;
+}
+
+#navigation ul {
+	float: left;
+}
+
+#navigation a {
+	border-bottom: 2px solid #DCDFE0;
+	color: #496273;
+	display: block;
+	float: left;
+	line-height: 30px;
+	padding: 0 10px;
+	text-decoration: none;
+}
+
+#navigation .selected a {
+	border-bottom: 2px solid #6A8DA6;
+	color: #000;
+}
+
+#navigation .cancel-page,
+#navigation .save-page {
+	border: 0;
+	display: inline;
+	float: none;
+	padding: 3px;
+}
+
+/* -------- Content-Wrapper -------- */
+
+#content-wrapper {
+	background: #FFF;
+	font: 12px Arial, Helvetica, sans-serif;
+	margin: 0 60px;
+	padding: 10px 0;
+}
+
+#content-wrapper a {
+	color: #00F;
+	text-decoration: none;
+}
+
+/* -------- Footer -------- */
+
+#footer {
+	background: url(../images/custom/footer_bg.png);
+	font-size: 10px;
+	height: 85px;
+	padding: 15px 70px 0;
+	text-align: right;
+}
+
+.green #footer {
+	background: url(../images/custom/green/footer_bg.png);
+}
+
+.red #footer {
+	background: url(../images/custom/red/footer_bg.png);
+}
+
+.yellow #footer {
+	background: url(../images/custom/yellow/footer_bg.png);
+}

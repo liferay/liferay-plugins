@@ -1,0 +1,100 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* -------- Banner -------- */
+
+#banner {
+	background: #000 url(../images/custom/banner_bg.png);
+	height: 98px;
+}
+
+/* -------- Logo -------- */
+
+.logo {
+	font-size: 32px;
+	line-height: 147px;
+	margin: 0 auto;
+	padding: 0 2px;
+	width: 940px;
+}
+
+.logo a {
+	color: #EEE;
+	text-decoration: none;
+}
+
+/* -------- Navigation -------- */
+
+#navigation {
+	background: #F3F3F3 url(../images/custom/banner_bg.png) repeat-x 0 -98px;
+	border-bottom: 1px solid #CCC;
+	font-size: 14px;
+	height: 28px;
+	line-height: 28px;
+	margin-bottom: 22px;
+	padding-top: 22px;
+}
+
+#navigation ul {
+	margin: 0 auto;
+	width: 940px;
+}
+
+#navigation a {
+	color: #555;
+	display: block;
+	float: left;
+	padding: 0 30px 0 0;
+	text-decoration: none;
+}
+
+#navigation a:hover {
+	color: #F00;
+}
+
+#navigation .selected a {
+	border-bottom: 1px solid #000;
+	color: #000;
+}
+
+#add-page {
+	position: relative;
+	top: -29px;
+	margin: 0 auto;
+	width: 940px;
+	text-align: right;
+}
+
+#add-page a,
+#navigation .cancel-page,
+#navigation .save-page {
+	display: inline;
+	float: none;
+	padding: 3px;
+}
+
+/* -------- Content-Wrapper -------- */
+
+#content-wrapper {
+	color: #454545;
+	font: 12px/1.5 Arial, Helvetica, sans-serif;
+	margin: 0 auto;
+	min-height: 100px;
+	width: 940px;
+}
+
+#content-wrapper a {
+	color: #000;
+	text-decoration: none;
+}
+
+#content-wrapper a:hover {
+	color: #08C;
+}
+
+/* -------- Footer -------- */
+
+#footer {
+	height: 30px;
+	padding: 20px;
+	text-align: right;
+}

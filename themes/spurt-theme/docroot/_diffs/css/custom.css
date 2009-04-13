@@ -1,0 +1,152 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. *//* -------- Base -------- */
+
+body {
+	background: #FFF url(../images/custom/body_bg.png) repeat-x;
+	margin: 0;
+}
+
+body.blue {
+	background: #FFF url(../images/custom/blue/body_bg.png) repeat-x;
+}
+
+.green {
+	background: #FFF url(../images/custom/green/body_bg.png) repeat-x;
+}
+
+/* -------- Wrapper -------- */
+
+#wrapper {
+	background: url(../images/custom/wrapper_bg.png) no-repeat 0 109px;
+	margin: 0 auto;
+	position: relative;
+	width: 958px;
+}
+
+.blue #wrapper {
+	background: url(../images/custom/blue/wrapper_bg.png) no-repeat 0 109px;
+}
+
+.green #wrapper {
+	background: url(../images/custom/green/wrapper_bg.png) no-repeat 0 109px;
+}
+
+/* -------- Banner -------- */
+
+#banner {
+	height: 314px;
+}
+
+/* -------- Logo -------- */
+
+.logo {
+	font-size: 48px;
+	padding: 50px 10px 0;
+}
+
+.logo a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+/* -------- Navigation -------- */
+
+#navigation {
+	font-size: 14px;
+	position: absolute;
+	right: 0;
+	top: 50px;
+	z-index: 20;
+}
+#navigation li {
+	margin: 0 10px;
+}
+
+#navigation a {
+	color: #FFF;
+	display: block;
+	float: left;
+	padding: 2.5px 10px;
+	text-decoration: none;
+}
+
+#navigation a:hover {
+	color: #FFA;
+}
+
+#navigation .selected a {
+	border-bottom: 2px solid #EEE;
+}
+
+#add-page {
+	position: relative;
+	top: 16px;
+	text-align: right;
+	padding: 2.5px 10px;
+}
+
+#add-page a,
+#navigation .cancel-page,
+#navigation .save-page {
+	display: inline;
+	float: none;
+	padding: 3px;
+}
+
+.js .interactive-mode {
+	z-index: 30 !important;
+}
+
+.js .lfr-dock.expanded .lfr-dock-list-container {
+	z-index: 30 !important;
+}
+
+/* -------- Content-Wrapper -------- */
+
+#content-wrapper {
+	background: #FFF url(../images/custom/content-wrapper_bg.png);
+	color: #333;
+	font: 11px Verdana, Tahoma, Arial, sans-serif;
+	min-height: 100px;
+	padding: 30px;
+}
+
+.blue #content-wrapper {
+	background: #FFF url(../images/custom/blue/content-wrapper_bg.png);
+	color: #333;
+}
+
+.green #content-wrapper {
+	background: #FFF url(../images/custom/green/content-wrapper_bg.png);
+	color: #333;
+}
+
+#content-wrapper a {
+	color: #00F;
+	text-decoration: none;
+}
+
+#content-wrapper a:hover {
+	text-decoration: underline;
+}
+
+#layout-grid,
+.columns-max #column-1 {
+	margin: -210px 0 0;
+}
+
+/* -------- Footer -------- */
+
+#footer {
+	background: url(../images/custom/footer_bg.png) no-repeat bottom;
+	height: 35px;
+	padding: 0 20px;
+	text-align: right;
+}
+
+.blue #footer {
+	background: url(../images/custom/blue/footer_bg.png) no-repeat bottom;
+}
+
+.green #footer {
+	background: url(../images/custom/green/footer_bg.png) no-repeat bottom;
+}

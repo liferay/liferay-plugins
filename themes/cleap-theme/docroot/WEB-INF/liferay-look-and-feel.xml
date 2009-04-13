@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 5.2.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_5_2_0.dtd">
+
+<look-and-feel>
+	<compatibility>
+		<version>5.*.*+</version>
+	</compatibility>
+	<theme id="cleap" name="Cleap">
+		<color-scheme id="01" name="Silver">
+			<default-cs>true</default-cs>
+			<css-class>silver</css-class>
+		</color-scheme>
+		<color-scheme id="02" name="Blue">
+			<css-class>blue</css-class>
+		</color-scheme>
+		<color-scheme id="03" name="Green">
+			<css-class>green</css-class>
+		</color-scheme>
+	</theme>
+</look-and-feel>
