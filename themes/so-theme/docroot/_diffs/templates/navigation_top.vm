@@ -1,4 +1,5 @@
 <div id="navigation-top">
+	<div class="my-search">$theme.search()</div>	
 	<div class="left-side"></div>
 	<div>
 		<ul>
@@ -8,10 +9,6 @@
 			$my_places_url.setPortletMode("view")
 
 			$my_places_url.setParameter("struts_action", "/my_places/view")
-
-			<li class="my-search">
-				$theme.search()
-			</li>
 
 			#if ($show_sign_out)
 				<li class="my-home">

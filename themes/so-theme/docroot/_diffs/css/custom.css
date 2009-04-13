@@ -2,6 +2,10 @@
 
 /* ---------- Base ---------- */
 
+body {
+	color: #403638;
+}
+
 a {
 	text-decoration: none;
 }
@@ -105,15 +109,13 @@ body #banner h1.logo a {
 	width: 224px;
 }
 
-#navigation-top .my-home {
-	border-left: 1px solid #B0BAFF;
-}
-
 #navigation-top .my-profile {
 	border-left: 1px solid #B0BAFF;
 }
 
 #navigation-top .my-search {
+	background: none;
+	margin-right: 15px;
 	padding-top: 2px;
 }
 
@@ -358,6 +360,25 @@ body #banner h1.logo a {
 .ie6 input.submit,
 .ie6 input.button {
 	padding: 4px 0 3px;
+}
+
+input[type="text"],
+input[type="password"],
+select,
+textarea,
+.textarea {
+	background: #FFF;
+	border-color: #D7DCFF;
+	color: #555;
+}
+
+#wrapper input[type="password"].focus,
+input.focus,
+textarea.focus,
+.ie6 input.focus,
+ie6 textarea.focus {
+	background: #FFF6ED;
+	border: 1px solid #FC9;
 }
 
 /* Liferay Tabs */
