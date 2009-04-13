@@ -22,27 +22,24 @@
 
 package com.liferay.bi.report.portlet.action;
 
-import com.liferay.util.bridges.simplemvc.Action;
-import com.liferay.portal.kernel.upload.UploadPortletRequest;
-import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.Constants;
-import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.servlet.SessionMessages;
-import com.liferay.portal.kernel.bi.reporting.ReportFormat;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.portal.SystemException;
-import com.liferay.portal.PortalException;
-import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
-import com.liferay.bi.report.model.ReportDefinition;
-import com.liferay.bi.report.model.impl.ReportDefinitionModelImpl;
-import com.liferay.bi.report.model.impl.ReportDefinitionImpl;
-
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+
+import com.liferay.bi.report.model.ReportDefinition;
+import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bi.reporting.ReportFormat;
+import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.util.bridges.simplemvc.Action;
 
 /**
  * <a href="AddDefinitionAction.java.html"><b><i>View Source</i></b></a>
@@ -56,14 +53,24 @@ public class AddDefinitionAction implements Action {
 	    
 		UploadPortletRequest uploadRequest = PortalUtil
 			.getUploadPortletRequest(actionRequest);
-	    
+
+		String redirect = ParamUtil.getString(uploadRequest, "redirect");
 		String name = ParamUtil.getString(uploadRequest, "definitionName");
 		String format = ParamUtil.getString(uploadRequest, "format");
-		
-		// TBD Need to set some validation...for instance name, format cannot be nul...
 		String description = ParamUtil.getString(uploadRequest, "description");
 		String datasourceName = ParamUtil.getString(uploadRequest, "dataSourceName");
-
+		
+		//validate
+		if(Validator.isNull(name)){
+		    SessionErrors.add(actionRequest, new PortalException().getClass().getName());
+		}
+		
+		if(!SessionErrors.isEmpty(actionRequest)){
+		    actionRequest.setAttribute("redirect", redirect);
+		    return true;
+		}
+		
+		
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)uploadRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
@@ -73,16 +80,22 @@ public class AddDefinitionAction implements Action {
 					themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
 					themeDisplay.getUserId(), name, description, datasourceName,
 					ReportFormat.parse(format));
-			uploadRequest.setAttribute("currentDefinition", definition);
+			
+			redirect = HttpUtil.addParameter(redirect, "definitionId", 
+				String.valueOf(definition.getDefinitionId()));
+			
+			actionRequest.setAttribute("redirect", redirect);
+			
 			return true;
 		}
 		catch (PortalException e) {
-			SessionErrors.add(uploadRequest, e.getClass().getName());
+			SessionErrors.add(actionRequest, e.getClass().getName());
 			return false;
 		}
 		catch (SystemException e) {
 			throw new PortletException(
 				"Unable to create new definition: " + name, e);
 		}
+
 	}
 }

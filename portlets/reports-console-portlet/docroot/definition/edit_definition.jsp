@@ -23,14 +23,20 @@
 <%@ include file="/init.jsp" %>
 
 <%
-	long definitionId = ParamUtil.getLong(renderRequest,"definitionId");
 	ReportDefinition definition = null;
-	String parameter = StringPool.BLANK;
+
+
 	boolean isNew = true;
+
+	long definitionId = ParamUtil.getLong(renderRequest,"definitionId",-1);
+
 	if (definitionId > 0) {
-	    isNew = false;
-	    definition = ReportDefinitionLocalServiceUtil.getReportDefinition(definitionId);
+		isNew = false;
+		definition = ReportDefinitionLocalServiceUtil.getReportDefinition(definitionId);
 	}
+
+	String parameter = StringPool.BLANK;
+
 %>
 
 <script type="text/javascript">
@@ -58,22 +64,16 @@
 	);
 
 	function <portlet:namespace />saveDefinition() {
-		document.<portlet:namespace />fm.<portlet:namespace />jspPage.value = "/definition/edit_definition.jsp";
-		document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<%= currentURL %>";
 		document.<portlet:namespace />fm.encoding = "multipart/form-data";
-		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="addDefinition,searchDefinition" /></portlet:actionURL>');
+		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="addDefinition" /></portlet:actionURL>');
 	}
 
 	function <portlet:namespace />updateDefinition() {
-		document.<portlet:namespace />fm.<portlet:namespace />jspPage.value = "/definition/edit_definition.jsp";
-		document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<%= currentURL %>";
-		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"></portlet:actionURL>');
+		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="addDefinition" /></portlet:actionURL>');
 	}
 
 	function <portlet:namespace />deleteDefinition() {
-		document.<portlet:namespace />fm.<portlet:namespace />jspPage.value = "/view.jsp";
-		document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<%= currentURL %>";
-		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="deleteDefinition,searchDefinition" /></portlet:actionURL>');
+		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="deleteDefinition" /></portlet:actionURL>');
 	}
 
 
@@ -126,10 +126,8 @@
 </script>
 
 <form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"></portlet:actionURL>" method="post" name="<portlet:namespace />fm" >
-<input name="<portlet:namespace />redirect" type="hidden" value="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="jspPage" value="/definition/edit_definition.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>" />
 <input name="<portlet:namespace />definitionId" type="hidden" value="<%= definitionId %>" />
-<input name="<portlet:namespace />jspPage" type="hidden" />
-
+<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
 
 <table class="lfr-table">
 	<tr>
@@ -244,7 +242,7 @@
 </table>
 
 <br />
-<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" name="searchDefinition" var="viewURL">
+<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="viewURL">
 	<portlet:param name="jspPage" value="/view.jsp" />
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>

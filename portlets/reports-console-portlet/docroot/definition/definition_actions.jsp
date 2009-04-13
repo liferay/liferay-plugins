@@ -80,7 +80,7 @@ String definitionId = String.valueOf(definition.getDefinitionId());
 
 	<liferay-ui:icon image="manage_task" message="view-schedule" url="<%= viewTemplateScheduleURL %>" />
 
-	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" name="deleteDefinition,searchDefinition"  var="deleteURL">
+	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" name="deleteDefinition"  var="deleteURL">
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="definitionId" value="<%= definitionId %>" />
 	</portlet:actionURL>
