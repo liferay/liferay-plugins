@@ -737,6 +737,12 @@ ie6 textarea.focus {
 	position: relative;
 }
 
+.ie6 .portlet-communities .control-wrapper {
+	background: #E8EFF4;
+	height: 22px;
+	margin-bottom: 1em;
+}
+
 .portlet-communities .add-site {
 	background: transparent url(../images/arrows/01_plus.png) no-repeat 0 50%;
 	display: block;
