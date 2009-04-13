@@ -14,19 +14,18 @@
 	<bean id="indexWriter.solr" class="com.liferay.portal.search.solr.SolrIndexWriterImpl">
 		<property name="solrServer" ref="solrServer" />
 	</bean>
-	<bean id="searchEngineUtil" class="com.liferay.portal.search.solr.SolrSearchEngineUtil">
-		<property name="searchEngine">
-			<bean class="com.liferay.portal.search.solr.SolrSearchEngineImpl" init-method="init" destroy-method="destroy">
-				<property name="name" value="Solr" />
-				<property name="searcher" ref="indexSearcher.solr" />
-				<property name="writer" ref="indexWriter.solr" />
-				<property name="indexReadOnly" value="false" />
-			</bean>
-		</property>
+	<bean id="searchEngine.solr" class="com.liferay.portal.search.solr.SolrSearchEngineImpl" init-method="init" destroy-method="destroy">
+		<property name="name" value="Solr" />
+		<property name="searcher" ref="indexSearcher.solr" />
+		<property name="writer" ref="indexWriter.solr" />
 	</bean>
-	<bean id="messageListener.solr_reader" class="com.liferay.portal.search.solr.messaging.SolrReaderMessageListener" />
-	<bean id="messageListener.solr_writer" class="com.liferay.portal.search.solr.messaging.SolrWriterMessageListener" />
-	<bean id="messagingConfigurator" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator" depends-on="searchEngineUtil" init-method="init" destroy-method="destroy">
+	<bean id="messageListener.solr_reader" class="com.liferay.portal.search.solr.messaging.SolrReaderMessageListener">
+		<property name="searchEngine" ref="searchEngine.solr" />
+	</bean>
+	<bean id="messageListener.solr_writer" class="com.liferay.portal.search.solr.messaging.SolrWriterMessageListener">
+		<property name="searchEngine" ref="searchEngine.solr" />
+	</bean>
+	<bean id="messagingConfigurator" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator" depends-on="searchEngine.solr" init-method="init" destroy-method="destroy">
 		<property name="messageListeners">
 			<map key-type="java.lang.String" value-type="java.util.List">
 				<entry key="liferay/search_reader">

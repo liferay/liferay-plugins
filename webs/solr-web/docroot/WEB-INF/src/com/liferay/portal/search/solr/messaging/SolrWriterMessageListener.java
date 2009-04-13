@@ -27,8 +27,8 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.search.Document;
+import com.liferay.portal.kernel.search.SearchEngine;
 import com.liferay.portal.kernel.search.messaging.SearchRequest;
-import com.liferay.portal.search.solr.SolrSearchEngineUtil;
 
 /**
  * <a href="SolrWriterMessageListener.java.html"><b><i>View Source</i></b></a>
@@ -58,7 +58,7 @@ public class SolrWriterMessageListener implements MessageListener {
 
 		String command = searchRequest.getCommand();
 
-		if (!SolrSearchEngineUtil.isRegistered() &&
+		if (!_searchEngine.isRegistered() &&
 			!command.equals(SearchRequest.COMMAND_REGISTER)) {
 
 			return;
@@ -69,26 +69,32 @@ public class SolrWriterMessageListener implements MessageListener {
 		Document doc = searchRequest.getDocument();
 
 		if (command.equals(SearchRequest.COMMAND_ADD)) {
-			SolrSearchEngineUtil.addDocument(companyId, doc);
+			_searchEngine.getWriter().addDocument(companyId, doc);
 		}
 		else if (command.equals(SearchRequest.COMMAND_DELETE)) {
-			SolrSearchEngineUtil.deleteDocument(companyId, id);
+			_searchEngine.getWriter().deleteDocument(companyId, id);
 		}
 		else if (command.equals(SearchRequest.COMMAND_DELETE_PORTLET_DOCS)) {
-			SolrSearchEngineUtil.deletePortletDocuments(companyId, id);
+			_searchEngine.getWriter().deletePortletDocuments(companyId, id);
 		}
 		else if (command.equals(SearchRequest.COMMAND_REGISTER)) {
-			SolrSearchEngineUtil.register(id);
+			_searchEngine.register(id);
 		}
 		else if (command.equals(SearchRequest.COMMAND_UNREGISTER)) {
-			SolrSearchEngineUtil.unregister(id);
+			_searchEngine.unregister(id);
 		}
 		else if (command.equals(SearchRequest.COMMAND_UPDATE)) {
-			SolrSearchEngineUtil.updateDocument(companyId, id, doc);
+			_searchEngine.getWriter().updateDocument(companyId, id, doc);
 		}
+	}
+
+	public void setSearchEngine(SearchEngine searchEngine) {
+		_searchEngine = searchEngine;
 	}
 
 	private static Log _log =
 		LogFactoryUtil.getLog(SolrWriterMessageListener.class);
+
+	private SearchEngine _searchEngine;
 
 }

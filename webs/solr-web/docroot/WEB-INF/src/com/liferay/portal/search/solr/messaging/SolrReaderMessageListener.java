@@ -28,8 +28,8 @@ import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.search.Hits;
+import com.liferay.portal.kernel.search.SearchEngine;
 import com.liferay.portal.kernel.search.messaging.SearchRequest;
-import com.liferay.portal.search.solr.SolrSearchEngineUtil;
 
 /**
  * <a href="SolrReaderMessageListener.java.html"><b><i>View Source</i></b></a>
@@ -51,7 +51,7 @@ public class SolrReaderMessageListener implements MessageListener {
 	public void doReceive(Message message) throws Exception {
 		Object payload = message.getPayload();
 
-		if (!SolrSearchEngineUtil.isRegistered() ||
+		if (!_searchEngine.isRegistered() ||
 			!(payload instanceof SearchRequest)) {
 
 			return;
@@ -61,29 +61,19 @@ public class SolrReaderMessageListener implements MessageListener {
 
 		String command = searchRequest.getCommand();
 
-		if (command.equals(SearchRequest.COMMAND_INDEX_ONLY)) {
-			doCommandIndexOnly(message);
-		}
-		else if (command.equals(SearchRequest.COMMAND_SEARCH)) {
+		if (command.equals(SearchRequest.COMMAND_SEARCH)) {
 			doCommandSearch(message, searchRequest);
 		}
 	}
 
-	protected void doCommandIndexOnly(Message message)
-		throws Exception {
-
-		Boolean indexReadOnly = Boolean.valueOf(
-			SolrSearchEngineUtil.isIndexReadOnly());
-
-		message.setPayload(indexReadOnly);
-
-		MessageBusUtil.sendMessage(message.getResponseDestination(), message);
+	public void setSearchEngine(SearchEngine searchEngine) {
+		_searchEngine = searchEngine;
 	}
 
 	protected void doCommandSearch(Message message, SearchRequest searchRequest)
 		throws Exception {
 
-		Hits hits = SolrSearchEngineUtil.search(
+		Hits hits = _searchEngine.getSearcher().search(
 			searchRequest.getCompanyId(), searchRequest.getQuery(),
 			searchRequest.getSorts(), searchRequest.getStart(),
 			searchRequest.getEnd());
@@ -95,5 +85,7 @@ public class SolrReaderMessageListener implements MessageListener {
 
 	private static Log _log =
 		LogFactoryUtil.getLog(SolrReaderMessageListener.class);
+
+	private SearchEngine _searchEngine;
 
 }

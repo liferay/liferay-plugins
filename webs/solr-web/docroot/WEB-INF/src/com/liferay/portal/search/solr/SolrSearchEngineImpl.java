@@ -55,10 +55,6 @@ public class SolrSearchEngineImpl implements SearchEngine {
 		return _writer;
 	}
 
-	public boolean isIndexReadOnly() {
-		return _indexReadOnly;
-	}
-
 	public boolean isRegistered() {
 		return _registered;
 	}
@@ -67,10 +63,6 @@ public class SolrSearchEngineImpl implements SearchEngine {
 		if (_name.equals(name)) {
 			_registered = true;
 		}
-	}
-
-	public void setIndexReadOnly(boolean indexReadOnly) {
-		_indexReadOnly = indexReadOnly;
 	}
 
 	public void setName(String name) {
@@ -94,7 +86,6 @@ public class SolrSearchEngineImpl implements SearchEngine {
 	private String _name;
 	private IndexSearcher _searcher;
 	private IndexWriter _writer;
-	private boolean _indexReadOnly;
 	private boolean _registered = true;
 
 }
