@@ -559,6 +559,10 @@ ie6 textarea.focus {
 	width: 209px;
 }
 
+.ie6 .portlet-calendar .taglib-calendar {
+	width: 209px;
+}
+
 .portlet-calendar .date-selector {
 	clear: none;
 	color: #777;
@@ -575,10 +579,6 @@ ie6 textarea.focus {
 
 .portlet-calendar .calendar {
 	width: 100%;
-}
-
-.portlet-calendar .calendar thead {
-	border-top: 2px solid #6F686B;
 }
 
 .portlet-calendar .calendar thead td {
@@ -687,11 +687,6 @@ ie6 textarea.focus {
 	padding: 0;
 }
 
-.taglib-calendar th a:hover,
-.taglib-calendar th a:focus {
-	background: transparent;
-}
-
 .portlet-calendar .export-import-calendar {
 	background: #D0E5F7;
 	border-bottom: 2px solid #6F686B;
@@ -713,8 +708,17 @@ ie6 textarea.focus {
 	margin-left: 50px;
 }
 
+table.calendar {
+	border-top: 2px solid #6F686B;
+}
+
 .taglib-calendar table {
 	border: none;
+}
+
+.taglib-calendar th a:hover,
+.taglib-calendar th a:focus {
+	background: transparent;
 }
 
 .taglib-calendar tr td a:hover {
