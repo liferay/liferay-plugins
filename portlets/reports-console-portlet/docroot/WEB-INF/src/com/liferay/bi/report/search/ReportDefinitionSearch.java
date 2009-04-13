@@ -62,8 +62,7 @@ public class ReportDefinitionSearch extends SearchContainer<ReportDefinition> {
 			(ReportDefinitionDisplayTerms)getDisplayTerms();
 
 		iteratorURL.setParameter(
-			ReportDefinitionDisplayTerms.DEFINITION_ID,
-			String.valueOf(displayTerms.getDefinitionId()));
+			ReportDefinitionDisplayTerms.DEFINITION_ID,displayTerms.getDefinitionId());
 		iteratorURL.setParameter(
 			ReportDefinitionDisplayTerms.NAME, displayTerms.getName());
 		iteratorURL.setParameter(

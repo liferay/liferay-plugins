@@ -26,21 +26,6 @@
  * SOFTWARE.
  */
 %>
-
-<%
-    String tabs1 = ParamUtil.getString(request, "tabs1");
-
-    if (Validator.isNull(tabs1)) {
-    	tabs1 = "report-definitions";
-    }
-
-    PortletURL portletURL = renderResponse.createRenderURL();
-
-    portletURL.setWindowState(WindowState.MAXIMIZED);
-
-    portletURL.setParameter("tabs1", tabs1);
-%>
-
 <liferay-ui:tabs
 	names="report-definitions,pending-requests"
 	param="tabs1"

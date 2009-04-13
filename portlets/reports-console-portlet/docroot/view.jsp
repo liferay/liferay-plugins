@@ -23,6 +23,20 @@
 --%>
 <%@ include file="/init.jsp" %>
 
-<form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"></portlet:actionURL>" method="post" name="<portlet:namespace />fm">
+<%
+String tabs1 = ParamUtil.getString(request, "tabs1");
+
+if (Validator.isNull(tabs1)) {
+	tabs1 = "report-definitions";
+}
+
+PortletURL portletURL = renderResponse.createRenderURL();
+
+portletURL.setWindowState(WindowState.MAXIMIZED);
+
+portletURL.setParameter("tabs1", tabs1);
+%>
+
+<form action="<%= portletURL.toString() %>" method="post" name="<portlet:namespace />fm">
 <%@ include file="/tabs.jspf" %>
 </form>

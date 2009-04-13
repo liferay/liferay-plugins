@@ -39,14 +39,14 @@ ReportDefinitionSearch searchContainer = new ReportDefinitionSearch(renderReques
 	int total = 0;
 	
 	if (searchTerms.isAdvancedSearch()) {
-
+		results = ReportDefinitionLocalServiceUtil.search(themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(), searchTerms.getName(), searchTerms.getDescription(), null, searchTerms.isAndOperator(), searchContainer.getStart(), searchContainer.getEnd(), null);
 	}
 	else {
 		results = ReportDefinitionLocalServiceUtil.search(themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(), searchTerms.getKeywords(), null, searchContainer.getStart(), searchContainer.getEnd(), null);
 	}
 
 	if (searchTerms.isAdvancedSearch()) {
-
+	    total = ReportDefinitionLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(), searchTerms.getName(),searchTerms.getDescription(), true, null, searchTerms.isAndOperator());
 	}
 	else {
 	    total = ReportDefinitionLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(), searchTerms.getKeywords(), true, null);

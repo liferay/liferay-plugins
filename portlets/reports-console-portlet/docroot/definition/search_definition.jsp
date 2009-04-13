@@ -53,9 +53,7 @@ ReportDefinitionDisplayTerms displayTerms = (ReportDefinitionDisplayTerms)search
 	</tr>
 	</table>
 </liferay-ui:search-toggle>
-<br />
-<input name="<portlet:namespace /><%= "jspPage" %>" type="hidden" value="/view.jsp" />
-<br />
+
 <%-- TBD Need to add permissions checks --%>
 <div>
 	<c:if test="<%= showAddButton %>">
