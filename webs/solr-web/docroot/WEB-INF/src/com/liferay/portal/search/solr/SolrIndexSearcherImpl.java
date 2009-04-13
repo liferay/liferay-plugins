@@ -79,13 +79,23 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 				for (int i = 0; i < sorts.length; i++) {
 					Sort sortField = sorts[i];
 
+					if (sortField == null) {
+						continue;
+					}
+
+					String sortFieldName = sortField.getFieldName();
+
+					if (sortFieldName == null) {
+						sortFieldName = "score";
+					}
+
 					ORDER order = ORDER.asc;
 
 					if (sortField.isReverse()) {
 						order = ORDER.desc;
 					}
 
-					solrQuery.addSortField(sortField.getFieldName(), order);
+					solrQuery.addSortField(sortFieldName, order);
 				}
 			}
 
