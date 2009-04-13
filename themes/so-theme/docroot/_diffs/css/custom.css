@@ -331,7 +331,7 @@ body #banner h1.logo a {
 }
 
 .results-row.alt td {
-	background: #EEE;
+	background: #F0F5F7;
 }
 
 .results-grid {
@@ -413,7 +413,8 @@ body #banner h1.logo a {
 	display: none;
 }
 
-.contacts-portlet .portlet-content, .contacts-portlet .portlet-minimized .portlet-content-container {
+.contacts-portlet .portlet-content,
+.contacts-portlet .portlet-minimized .portlet-content-container {
 	padding: 12px 0 10px;
 }
 
@@ -507,18 +508,30 @@ body #banner h1.logo a {
 }
 
 .portlet-calendar .calendar-container {
-	color: #777;
+	background: #FFF;
+	border-color: #DDD;
+	color: #413739;
+	font-weight: bold;
+	margin-bottom: 15px;
+	padding-top: 4px;
 	text-align: center;
 	width: 209px;
 }
 
 .portlet-calendar .calendar-day {
 	float: none;
+	margin-top: 4px;
+}
+
+.portlet-calendar .calendar-day .day-text {
+	background: #7F80A4;
+	border-top: 1px solid #DDD;
+	padding: 6px 0;
 }
 
 .portlet-calendar .taglib-calendar {
-	margin: 1px;
-	width: 210px;
+	border: 1px solid #DDD;
+	width: 209px;
 }
 
 .portlet-calendar .date-selector {
@@ -531,6 +544,7 @@ body #banner h1.logo a {
 }
 
 .portlet-calendar .date-selector td {
+	color: #3E3639;
 	padding: 0 5px;
 }
 
@@ -561,11 +575,11 @@ body #banner h1.logo a {
 }
 
 .portlet-calendar .calendar .current-day {
-	background: #DDD;
+	background: #F0F5F7;
 }
 
 .portlet-calendar .calendar .selected-day {
-	background: #F0F5F7;
+	background: #FFF;
 }
 
 .portlet-calendar .calendar .results-header td {
@@ -672,6 +686,14 @@ body #banner h1.logo a {
 
 .portlet-calendar .export-import-calendar.day-view {
 	margin-left: 50px;
+}
+
+.taglib-calendar table {
+	border: none;
+}
+
+.taglib-calendar tr td a:hover {
+	background: #7F80A4;
 }
 
 /* Communities */
@@ -829,7 +851,7 @@ body #banner h1.logo a {
 }
 
 .so-portlet-profiles .profile-area .hover .editable {
-	background: #FFFFCC url(../images/common/edit.png) no-repeat right;
+	background: #FFC url(../images/common/edit.png) no-repeat right;
 }
 
 .so-portlet-profiles .profile-area .delete {
@@ -870,7 +892,7 @@ body #banner h1.logo a {
 }
 
 .so-portlet-profiles .user-address.hover {
-	background: #FFFFCC;
+	background: #FFC;
 }
 
 .so-portlet-profiles .user-address .user-address-controls {
@@ -891,7 +913,7 @@ body #banner h1.logo a {
 }
 
 .so-portlet-profiles .phone-number.hover {
-	background: #FFFFCC;
+	background: #FFC;
 }
 
 .so-portlet-profiles .phone-number .phone-number-controls {
@@ -913,7 +935,7 @@ body #banner h1.logo a {
 }
 
 .so-portlet-profiles .website.hover {
-	background: #FFFFCC;
+	background: #FFC;
 }
 
 .so-portlet-profiles .website .website-controls {
