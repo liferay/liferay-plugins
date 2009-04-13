@@ -1,5 +1,7 @@
 <div id="navigation-top">
-	<div class="my-search">$theme.search()</div>	
+	#if ($is_signed_in)
+		<div class="my-search">$theme.search()</div>
+	#end
 	<div class="left-side"></div>
 	<div>
 		<ul>
