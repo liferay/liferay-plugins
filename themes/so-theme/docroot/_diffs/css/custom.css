@@ -816,9 +816,8 @@ table.calendar {
 	width: 200px;
 }
 
-.ie6 .portlet-login .navigation li img {
-	position: relative;
-	top: 16px;
+.portlet-login .navigation li img {
+	position: static;
 }
 
 /* Message Boards */
@@ -1020,4 +1019,8 @@ table.calendar {
 	border-bottom: none;
 	font-size: 2.5em;
 	line-height: 1em;
+}
+
+.portlet-wiki img {
+	position: static;
 }
