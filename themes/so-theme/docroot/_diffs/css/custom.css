@@ -879,6 +879,10 @@ table.calendar {
 	padding: 8px 5px;
 }
 
+.so-portlet-members .invite-members {
+	width: 100%;
+}
+
 /* SO: Profiles */
 
 .so-portlet-profiles td {
