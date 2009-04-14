@@ -52,4 +52,9 @@
 			<finder-column name="definitionName" />
 		</finder>
 	</entity>
+	<exceptions>
+		<exception>NoSuchDefinition</exception>
+		<exception>DefinitionName</exception>
+		<exception>DefinitionFile</exception>
+	</exceptions>
 </service-builder>

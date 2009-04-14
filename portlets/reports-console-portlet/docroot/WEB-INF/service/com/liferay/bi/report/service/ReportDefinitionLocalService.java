@@ -86,7 +86,8 @@ public interface ReportDefinitionLocalService {
 		long companyId, long groupId, long userId,
 		java.lang.String definitionName, java.lang.String description,
 		java.lang.String datasourceName,
-		com.liferay.portal.kernel.bi.reporting.ReportFormat format)
+		com.liferay.portal.kernel.bi.reporting.ReportFormat format,
+		java.lang.String fileName, java.io.File file)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 

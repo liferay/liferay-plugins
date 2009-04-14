@@ -80,8 +80,10 @@ public class SearchDefinitionAction implements Action {
 			boolean isAndOperator = ParamUtil.getBoolean(actionRequest, 
 				ReportDefinitionDisplayTerms.AND_OPERATOR);
 			
-			actionResponse.setRenderParameter(ReportDefinitionDisplayTerms.NAME, name);
-			actionResponse.setRenderParameter(ReportDefinitionDisplayTerms.DESCRIPTION, description);
+			actionResponse.setRenderParameter(ReportDefinitionDisplayTerms
+				.NAME, name);
+			actionResponse.setRenderParameter(ReportDefinitionDisplayTerms
+				.DESCRIPTION, description);
 			actionResponse.setRenderParameter(ReportDefinitionDisplayTerms
 				.AND_OPERATOR, String.valueOf(isAndOperator));
 			
@@ -93,23 +95,27 @@ public class SearchDefinitionAction implements Action {
 			}
 					
 			 total = ReportDefinitionLocalServiceUtil.searchCount(
-				 themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-				 name, description, true, 
+				 themeDisplay.getCompanyId(), themeDisplay
+				 .getScopeGroupId(),name, description, true, 
 				 null, isAndOperator);
 
-			 definitions = ReportDefinitionLocalServiceUtil.search(themeDisplay.getCompanyId(),
+			 definitions = ReportDefinitionLocalServiceUtil.search(
+				 themeDisplay.getCompanyId(),
 				themeDisplay.getScopeGroupId(), name, description,
 				null, isAndOperator, start, end, null);			 
 		    }else{
-			String keywords = ParamUtil.getString(request, ReportDefinitionDisplayTerms.KEYWORDS);
+			String keywords = ParamUtil.getString(request, 
+				ReportDefinitionDisplayTerms.KEYWORDS);
 			
-			actionResponse.setRenderParameter(ReportDefinitionDisplayTerms.KEYWORDS, keywords);
+			actionResponse.setRenderParameter(ReportDefinitionDisplayTerms
+				.KEYWORDS, keywords);
 			
 			total = ReportDefinitionLocalServiceUtil
 				.searchCount(companyId, groupId, keywords, true, null);
 			
 			definitions = ReportDefinitionLocalServiceUtil
-				.search(companyId, groupId, keywords, null, start, end, null);
+				.search(companyId, groupId, keywords, null,
+					start, end, null);
 		    }
 		
 		actionRequest.setAttribute("searchResults", definitions);
