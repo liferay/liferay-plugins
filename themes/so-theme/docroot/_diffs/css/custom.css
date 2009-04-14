@@ -830,6 +830,10 @@ table.calendar {
 	display: none;
 }
 
+.portlet-message-boards .results-row.hover td {
+	background: #E9E9FD;
+}
+
 /* SO: Members */
 
 .so-portlet-members .invite-members a {
