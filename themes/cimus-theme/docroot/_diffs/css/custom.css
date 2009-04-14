@@ -21,9 +21,9 @@ body.yellow {
 /* -------- Wrapper -------- */
 
 #wrapper {
-	background: url(../images/custom/wrapper_bg.png);
+	background: #FFF url(../images/custom/wrapper_bg.png);
 	margin: 0 auto;
-	width: 1040px;
+	width: 940px;
 }
 
 .green #wrapper {
@@ -41,44 +41,60 @@ body.yellow {
 /* -------- Banner -------- */
 
 #banner {
-	background: url(../images/custom/banner_bg.png);
+	background: #2D4561 url(../images/custom/banner_bg.png);
 	height: 100px;
+	overflow: hidden;
 	padding: 40px 0 0;
 }
 
 .green #banner {
-	background: url(../images/custom/green/banner_bg.png);
+	background: #2D612F url(../images/custom/green/banner_bg.png);
 }
 
 .red #banner {
-	background: url(../images/custom/red/banner_bg.png);
+	background: #72351C url(../images/custom/red/banner_bg.png);
 }
 
 .yellow #banner {
-	background: url(../images/custom/yellow/banner_bg.png);
+	background: #7B7C14 url(../images/custom/yellow/banner_bg.png);
 }
 
 /* -------- Logo -------- */
 
-#banner .logo {
-	line-height: 100px;
+.logo {
+	font-size: 28px;
+	line-height: 80px;
+	padding: 10px 0;
 	text-align: center;
 }
 
-#banner .logo a {
+.logo a {
+	color: #FFF;
 	margin: 0 auto;
+	text-decoration: none;
 }
 
 /* -------- Navigation -------- */
 
 #navigation {
 	border-bottom: 2px solid #DCDFE0;
-	font: 14px Arial, Helvetica, sans-serif;
 	height: 30px;
 	margin: 0 50px;
 }
 
 #navigation ul {
+	float: left;
+	padding: 0;
+}
+
+#navigation li {
+	margin: 0 2em;
+	list-style-type: none;
+}
+
+#navigation li,
+#navigation-breadcrumb li,
+#navigation-children li {
 	float: left;
 }
 
@@ -88,7 +104,9 @@ body.yellow {
 	display: block;
 	float: left;
 	line-height: 30px;
+	margin-bottom: -2px;
 	padding: 0 10px;
+	position: relative;
 	text-decoration: none;
 }
 
@@ -108,8 +126,7 @@ body.yellow {
 /* -------- Content-Wrapper -------- */
 
 #content-wrapper {
-	background: #FFF;
-	font: 12px Arial, Helvetica, sans-serif;
+	font-size: 12px;
 	margin: 0 60px;
 	padding: 10px 0;
 }

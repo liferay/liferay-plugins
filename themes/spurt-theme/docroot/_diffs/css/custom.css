@@ -1,39 +1,50 @@
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. *//* -------- Base -------- */
 
+/* -------- Base -------- */
+
 body {
 	background: #FFF url(../images/custom/body_bg.png) repeat-x;
-	margin: 0;
 }
 
 body.blue {
 	background: #FFF url(../images/custom/blue/body_bg.png) repeat-x;
 }
 
-.green {
+body.green {
 	background: #FFF url(../images/custom/green/body_bg.png) repeat-x;
 }
 
 /* -------- Wrapper -------- */
 
 #wrapper {
-	background: url(../images/custom/wrapper_bg.png) no-repeat 0 109px;
+	background: url(../images/custom/wrapper_bg.png);
 	margin: 0 auto;
 	position: relative;
 	width: 958px;
 }
 
 .blue #wrapper {
-	background: url(../images/custom/blue/wrapper_bg.png) no-repeat 0 109px;
+	background: url(../images/custom/blue/wrapper_bg.png);
 }
 
 .green #wrapper {
-	background: url(../images/custom/green/wrapper_bg.png) no-repeat 0 109px;
+	background: url(../images/custom/green/wrapper_bg.png);
 }
 
 /* -------- Banner -------- */
 
 #banner {
+	background: url(../images/custom/banner_bg.png);
 	height: 314px;
+	margin-bottom: -210px;
+}
+
+.blue #banner {
+	background: url(../images/custom/blue/banner_bg.png);
+}
+
+.green #banner {
+	background: url(../images/custom/green/banner_bg.png);
 }
 
 /* -------- Logo -------- */
@@ -57,6 +68,11 @@ body.blue {
 	top: 50px;
 	z-index: 20;
 }
+
+#navigation ul {
+	float: left;
+}
+
 #navigation li {
 	margin: 0 10px;
 }
@@ -103,21 +119,12 @@ body.blue {
 /* -------- Content-Wrapper -------- */
 
 #content-wrapper {
-	background: #FFF url(../images/custom/content-wrapper_bg.png);
 	color: #333;
 	font: 11px Verdana, Tahoma, Arial, sans-serif;
 	min-height: 100px;
 	padding: 30px;
-}
-
-.blue #content-wrapper {
-	background: #FFF url(../images/custom/blue/content-wrapper_bg.png);
-	color: #333;
-}
-
-.green #content-wrapper {
-	background: #FFF url(../images/custom/green/content-wrapper_bg.png);
-	color: #333;
+	position: relative;
+	z-index: 20;
 }
 
 #content-wrapper a {
@@ -131,7 +138,7 @@ body.blue {
 
 #layout-grid,
 .columns-max #column-1 {
-	margin: -210px 0 0;
+	background: #FFF;
 }
 
 /* -------- Footer -------- */
