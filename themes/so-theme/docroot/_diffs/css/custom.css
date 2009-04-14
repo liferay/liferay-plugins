@@ -106,7 +106,11 @@ body #banner h1.logo a {
 
 #navigation-top .child-menu li a {
 	border-top: 1px solid #B0BAFF;
-	width: 224px;
+	width: 223px;
+}
+
+#navigation-top .child-menu li a:hover {
+	background: #F6F9FB;
 }
 
 #navigation-top .my-profile {
