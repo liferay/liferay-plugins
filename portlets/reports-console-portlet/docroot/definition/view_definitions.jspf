@@ -24,7 +24,6 @@
 <%
 ReportDefinitionSearch searchContainer = new ReportDefinitionSearch(renderRequest, portletURL);
 %>
-
 <liferay-ui:search-form
 	page="/definition/search_definition.jsp"
 	searchContainer="<%= searchContainer %>"
@@ -34,43 +33,40 @@ ReportDefinitionSearch searchContainer = new ReportDefinitionSearch(renderReques
 
 <c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
 	<%
-	ReportDefinitionSearchTerms searchTerms = (ReportDefinitionSearchTerms)searchContainer.getSearchTerms();
-	List results = null;
-	int total = 0;
-	
-	if (searchTerms.isAdvancedSearch()) {
-		results = ReportDefinitionLocalServiceUtil.search(themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(), searchTerms.getName(), searchTerms.getDescription(), null, searchTerms.isAndOperator(), searchContainer.getStart(), searchContainer.getEnd(), null);
-	}
-	else {
-		results = ReportDefinitionLocalServiceUtil.search(themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(), searchTerms.getKeywords(), null, searchContainer.getStart(), searchContainer.getEnd(), null);
-	}
-
-	if (searchTerms.isAdvancedSearch()) {
-	    total = ReportDefinitionLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(), searchTerms.getName(),searchTerms.getDescription(), true, null, searchTerms.isAndOperator());
-	}
-	else {
-	    total = ReportDefinitionLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(), searchTerms.getKeywords(), true, null);
-	}
-	searchContainer.setTotal(total);
-	searchContainer.setResults(results);
-	List resultRows = searchContainer.getResultRows();
-	for (int i = 0; i < results.size(); i++) {
-			ReportDefinition reportsEntry = (ReportDefinition)results.get(i);
-			String definitionId = String.valueOf(reportsEntry.getDefinitionId());
-			ResultRow row = new ResultRow(reportsEntry, definitionId, i);
+		List<ReportDefinition> searchResults =
+			(List<ReportDefinition>)renderRequest.getAttribute("searchResults");
+		Integer total = (Integer)renderRequest.getAttribute("total");
+		
+		int size = 0;
+		if (searchResults != null) {
+			size = searchResults.size();
+			searchContainer.setResults(searchResults);
+		}
+		if(total != null){
+		    searchContainer.setTotal(total);
+		}
+		
+		List resultRows = searchContainer.getResultRows();
+		for (int i = 0; i < size; i++) {
+			ReportDefinition reportsEntry = searchResults.get(i);
+			String entryId = String.valueOf(reportsEntry.getDefinitionId());
+			ResultRow row = new ResultRow(reportsEntry, entryId, i);
 
 			PortletURL rowURL = renderResponse.createRenderURL();
 
 			rowURL.setWindowState(WindowState.MAXIMIZED);
-
+			
 			rowURL.setParameter("jspPage", "/definition/edit_definition.jsp");
+			
 			rowURL.setParameter("redirect", currentURL);
-			rowURL.setParameter("definitionId", definitionId);
+			
+			rowURL.setParameter("definitionId", entryId);
+
 
 			row.setParameter("rowHREF", rowURL.toString());
 			// reporting id
 
-			row.addText(definitionId, rowURL);
+			row.addText(entryId, rowURL);
 
 			// reporting name
 
@@ -89,7 +85,7 @@ ReportDefinitionSearch searchContainer = new ReportDefinitionSearch(renderReques
 
 			resultRows.add(row);
 
-	}
+		}
 	%>
 	<liferay-ui:search-iterator searchContainer="<%= searchContainer %>"/>
 </c:if>

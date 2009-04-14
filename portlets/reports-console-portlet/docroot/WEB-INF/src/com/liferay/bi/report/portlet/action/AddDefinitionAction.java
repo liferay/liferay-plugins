@@ -66,8 +66,8 @@ public class AddDefinitionAction implements Action {
 		}
 		
 		if(!SessionErrors.isEmpty(actionRequest)){
-		    actionRequest.setAttribute("redirect", redirect);
-		    return true;
+		    actionResponse.setRenderParameter("jspPage", "/definition/edit_definition.jsp");
+		    return false;
 		}
 		
 		

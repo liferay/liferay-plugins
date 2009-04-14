@@ -80,17 +80,18 @@ public class SearchDefinitionAction implements Action {
 			boolean isAndOperator = ParamUtil.getBoolean(actionRequest, 
 				ReportDefinitionDisplayTerms.AND_OPERATOR);
 			
+			actionResponse.setRenderParameter(ReportDefinitionDisplayTerms.NAME, name);
+			actionResponse.setRenderParameter(ReportDefinitionDisplayTerms.DESCRIPTION, description);
+			actionResponse.setRenderParameter(ReportDefinitionDisplayTerms
+				.AND_OPERATOR, String.valueOf(isAndOperator));
+			
 			if(Validator.isNull(name)){
 			    name = null;
 			}
 			if(Validator.isNull(description)){
 			    description = null;
 			}
-			
-//			actionRequest.setAttribute(ReportDefinitionDisplayTerms.NAME, name);
-//			actionRequest.setAttribute(ReportDefinitionDisplayTerms.DESCRIPTION, description);
-//			actionRequest.setAttribute(ReportDefinitionDisplayTerms.AND_OPERATOR, isAndOperator);
-									
+					
 			 total = ReportDefinitionLocalServiceUtil.searchCount(
 				 themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
 				 name, description, true, 
@@ -102,7 +103,7 @@ public class SearchDefinitionAction implements Action {
 		    }else{
 			String keywords = ParamUtil.getString(request, ReportDefinitionDisplayTerms.KEYWORDS);
 			
-//			actionRequest.setAttribute(ReportDefinitionDisplayTerms.KEYWORDS, keywords);
+			actionResponse.setRenderParameter(ReportDefinitionDisplayTerms.KEYWORDS, keywords);
 			
 			total = ReportDefinitionLocalServiceUtil
 				.searchCount(companyId, groupId, keywords, true, null);
@@ -113,9 +114,12 @@ public class SearchDefinitionAction implements Action {
 		
 		actionRequest.setAttribute("searchResults", definitions);
 		actionRequest.setAttribute("total", total);
-//		actionRequest.setAttribute(ReportDefinitionSearch.DEFAULT_CUR_PARAM, cur);
-//		actionRequest.setAttribute(ReportDefinitionSearch.DEFAULT_DELTA_PARAM, delta);
-//		actionRequest.setAttribute(ReportDefinitionDisplayTerms.ADVANCED_SEARCH, isAdvancedSearch);
+		actionResponse.setRenderParameter(ReportDefinitionSearch
+			.DEFAULT_CUR_PARAM, String.valueOf(cur));
+		actionResponse.setRenderParameter(ReportDefinitionSearch
+			.DEFAULT_DELTA_PARAM, String.valueOf(delta));
+		actionResponse.setRenderParameter(ReportDefinitionDisplayTerms
+			.ADVANCED_SEARCH, String.valueOf(isAdvancedSearch));
 		
 		}
 		catch (SystemException e) {
