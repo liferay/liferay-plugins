@@ -24,22 +24,17 @@ package com.liferay.bi.report.model.impl;
 
 import com.liferay.bi.report.model.ReportDefinition;
 import com.liferay.bi.report.model.ReportDefinitionSoap;
-
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.impl.BaseModelImpl;
-
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.model.impl.ExpandoBridgeImpl;
 
 import java.io.Serializable;
-
 import java.lang.reflect.Proxy;
-
 import java.sql.Types;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

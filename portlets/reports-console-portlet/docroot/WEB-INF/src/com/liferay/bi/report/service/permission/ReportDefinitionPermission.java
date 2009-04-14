@@ -22,11 +22,11 @@
 
 package com.liferay.bi.report.service.permission;
 
-import com.liferay.portal.SystemException;
-import com.liferay.portal.PortalException;
-import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.bi.report.model.ReportDefinition;
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.security.permission.PermissionChecker;
 
 /**
  * <a href="ReportDefinitionPermission.java.html"><b><i>View Source</i></b></a>

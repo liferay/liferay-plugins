@@ -28,8 +28,9 @@
 
 	boolean isNew = true;
 
-	long definitionId = ParamUtil.getLong(renderRequest,"definitionId",-1);
+	long definitionId = ParamUtil.getLong(renderRequest, "definitionId", -1);
 
+	// TBD this call should not be here...should goto an action first...
 	if (definitionId > 0) {
 		isNew = false;
 		definition = ReportDefinitionLocalServiceUtil.getReportDefinition(definitionId);

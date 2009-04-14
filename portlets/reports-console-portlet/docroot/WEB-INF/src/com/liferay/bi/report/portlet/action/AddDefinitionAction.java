@@ -22,12 +22,6 @@
 
 package com.liferay.bi.report.portlet.action;
 
-import java.io.File;
-
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.PortletException;
-
 import com.liferay.bi.report.model.ReportDefinition;
 import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
 import com.liferay.portal.PortalException;
@@ -41,45 +35,54 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.simplemvc.Action;
 
+import java.io.File;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
+import javax.portlet.PortletException;
+
 /**
  * <a href="AddDefinitionAction.java.html"><b><i>View Source</i></b></a>
- * 
+ *
  * @author Michael C. Han
  */
 public class AddDefinitionAction implements Action {
-    public boolean processAction(ActionRequest actionRequest,
-	    ActionResponse actionResponse) throws PortletException {
+	public boolean processAction(
+		ActionRequest actionRequest, ActionResponse actionResponse)
+		throws PortletException {
+		// TBD Need to put in validation for null values...required fields...
+		UploadPortletRequest uploadRequest = PortalUtil
+			.getUploadPortletRequest(actionRequest);
 
-	UploadPortletRequest uploadRequest = PortalUtil
-		.getUploadPortletRequest(actionRequest);
+		ThemeDisplay themeDisplay = (ThemeDisplay) uploadRequest
+			.getAttribute(WebKeys.THEME_DISPLAY);
 
-	ThemeDisplay themeDisplay = (ThemeDisplay) uploadRequest
-		.getAttribute(WebKeys.THEME_DISPLAY);
-
-	String name = ParamUtil.getString(uploadRequest, "definitionName");
-	String format = ParamUtil.getString(uploadRequest, "format");
-	String description = ParamUtil.getString(uploadRequest, "description");
-	String datasourceName = ParamUtil.getString(uploadRequest,
-		"dataSourceName");
-	String fileName = uploadRequest.getFileName("msgFile");
-	File file = uploadRequest.getFile("msgFile");
-	try {
-	    ReportDefinition definition = ReportDefinitionLocalServiceUtil
-		    .addReportDefinition(themeDisplay.getCompanyId(),
-			    themeDisplay.getScopeGroupId(), themeDisplay
-				    .getUserId(), name, description,
-			    datasourceName, ReportFormat.parse(format),
-			    fileName, file);
-	    uploadRequest.setAttribute("definition", definition);
-	    
-	} catch (PortalException e) {
-	    SessionErrors.add(actionRequest, e.getClass().getName());
-	} catch (SystemException e) {
-	    throw new PortletException("Unable to create new definition: "
-		    + name, e);
+		String name = ParamUtil.getString(uploadRequest, "definitionName");
+		String format = ParamUtil.getString(uploadRequest, "format");
+		String description = ParamUtil.getString(uploadRequest, "description");
+		String datasourceName = ParamUtil.getString(
+			uploadRequest,
+			"dataSourceName");
+		String fileName = uploadRequest.getFileName("msgFile");
+		File file = uploadRequest.getFile("msgFile");
+		try {
+			ReportDefinition definition =
+				ReportDefinitionLocalServiceUtil.addReportDefinition(
+					themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+					themeDisplay.getUserId(), name, description,
+					datasourceName, ReportFormat.parse(format),
+					fileName, file);
+			uploadRequest.setAttribute("definition", definition);
+		}
+		catch (PortalException e) {
+			SessionErrors.add(actionRequest, e.getClass().getName());
+		}
+		catch (SystemException e) {
+			throw new PortletException(
+				"Unable to create new definition: " + name, e);
+		}
+		actionResponse.setRenderParameter(
+			"jspPage", actionRequest.getParameter("jspPage"));
+		return false;
 	}
-	actionResponse.setRenderParameter("jspPage",
-	    "/definition/edit_definition.jsp");
-	return false;
-    }
 }

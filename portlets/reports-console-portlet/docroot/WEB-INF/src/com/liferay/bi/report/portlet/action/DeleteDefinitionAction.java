@@ -22,12 +22,9 @@
 
 package com.liferay.bi.report.portlet.action;
 
-import com.liferay.util.bridges.simplemvc.Action;
-import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.bi.report.model.ReportDefinition;
 import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.util.bridges.simplemvc.Action;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -42,6 +39,7 @@ public class DeleteDefinitionAction implements Action {
 	public boolean processAction(
 		ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortletException {
+		// TBD Need to put in validation for null values...required fields...
 		long definitionId = ParamUtil.getLong(actionRequest, "definitionId");
 		if (definitionId == -1) {
 			//this should NEVER be -1...

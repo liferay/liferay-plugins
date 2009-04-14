@@ -24,7 +24,6 @@ package com.liferay.bi.report.search;
 
 import com.liferay.bi.report.model.ReportDefinition;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
-import com.liferay.portal.kernel.util.ParamUtil;
 
 import java.util.ArrayList;
 import java.util.List;

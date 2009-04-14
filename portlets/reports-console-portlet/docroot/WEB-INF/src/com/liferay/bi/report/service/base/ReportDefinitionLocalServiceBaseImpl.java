@@ -26,7 +26,6 @@ import com.liferay.bi.report.model.ReportDefinition;
 import com.liferay.bi.report.service.ReportDefinitionLocalService;
 import com.liferay.bi.report.service.persistence.ReportDefinitionFinder;
 import com.liferay.bi.report.service.persistence.ReportDefinitionPersistence;
-
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;

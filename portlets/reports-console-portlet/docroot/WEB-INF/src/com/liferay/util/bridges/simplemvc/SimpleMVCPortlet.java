@@ -25,7 +25,6 @@ package com.liferay.util.bridges.simplemvc;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.util.bridges.jsp.JSPPortlet;
 
@@ -38,86 +37,90 @@ import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 
 /**
- * <a href="SimplMVCPortlet.java.html"><b><i>View Source</i></b></a> <p/>
- * Simple MVC type portlet that will use reflection to find the Action that
- * handles the specific ActionRequest. <p/> The naming convention for Action
- * classes are is NameOfAction + Action. So for an action called sendMail, the
- * expected Action class is SendMailAction.
- * 
+ * <a href="SimplMVCPortlet.java.html"><b><i>View Source</i></b></a>
+ * <p/> Simple MVC type portlet that will use reflection to find the Action that handles the
+ * specific ActionRequest. <p/> The naming convention for Action classes are is
+ * NameOfAction + Action. So for an action called sendMail, the expected Action
+ * class is SendMailAction.
+ *
  * @author Michael C. Han
  */
 public class SimpleMVCPortlet extends JSPPortlet {
 
-    @Override
-    public void init(PortletConfig portletConfig) throws PortletException {
-	super.init(portletConfig);
-	String packagePrefix = portletConfig
-		.getInitParameter(ActionCache.ACTION_PACKAGE_NAME);
-	if (Validator.isNotNull(packagePrefix)) {
-	    _checkActionClass = true;
-	    _cache = new ActionCache(packagePrefix);
-	}
-    }
-
-    public void processAction(ActionRequest actionRequest,
-	    ActionResponse actionResponse) throws IOException, PortletException {
-
-	if (!isProcessActionRequest(actionRequest)) {
-	    return;
-	}
-
-	if (!callActionMethod(actionRequest, actionResponse)) {
-	    return;
-	}
-
-	if (SessionErrors.isEmpty(actionRequest)) {
-	    SessionMessages.add(actionRequest, "request_processed");
-	}
-
-	String redirect = ParamUtil.getString(actionRequest, "redirect");
-
-	if (Validator.isNull(redirect)) {
-	    redirect = (String) actionRequest.getAttribute("redirect");
-	}
-
-	if (Validator.isNotNull(redirect)) {
-	    actionResponse.sendRedirect(redirect);
-	}
-    }
-
-    protected boolean callActionMethod(ActionRequest actionRequest,
-	    ActionResponse actionResponse) throws PortletException {
-
-	String actionName = ParamUtil.getString(actionRequest,
-		ActionRequest.ACTION_NAME);
-
-	if (Validator.isNull(actionName)) {
-	    return false;
-	}
-
-	if (_checkActionClass) {
-	    if (actionName.indexOf(',') == -1) {
-		Action action = _cache.getAction(actionName);
-		if (action != ActionCache.EMPTY_ACTION) {
-		    return action.processAction(actionRequest, actionResponse);
+	@Override
+	public void init(PortletConfig portletConfig) throws PortletException {
+		super.init(portletConfig);
+		String packagePrefix = portletConfig
+			.getInitParameter(ActionCache.ACTION_PACKAGE_NAME);
+		if (Validator.isNotNull(packagePrefix)) {
+			_checkActionClass = true;
+			_cache = new ActionCache(packagePrefix);
 		}
-	    } else {
-		// find multiple actions and process..
-		List<Action> actions = _cache.getActionChain(actionName);
-		int size = actions.size();
-		if (size != 0) {
-		    boolean finalResult = false;
-		    for (int i = 0; i < size; i++) {
-			finalResult = actions.get(i).processAction(
-				actionRequest, actionResponse);
-		    }
-		    return finalResult;
-		}
-	    }
 	}
-	return super.callActionMethod(actionRequest, actionResponse);
-    }
 
-    private boolean _checkActionClass;
-    private ActionCache _cache;
+	public void processAction(
+		ActionRequest actionRequest,
+		ActionResponse actionResponse) throws IOException, PortletException {
+
+		if (!isProcessActionRequest(actionRequest)) {
+			return;
+		}
+
+		if (!callActionMethod(actionRequest, actionResponse)) {
+			return;
+		}
+
+		if (SessionErrors.isEmpty(actionRequest)) {
+			SessionMessages.add(actionRequest, "request_processed");
+		}
+
+		String redirect = ParamUtil.getString(actionRequest, "redirect");
+		// TBD We need to find a better option here...
+		if (Validator.isNull(redirect)) {
+			redirect = (String) actionRequest.getAttribute("redirect");
+		}
+
+		if (Validator.isNotNull(redirect)) {
+			actionResponse.sendRedirect(redirect);
+		}
+	}
+
+	protected boolean callActionMethod(
+		ActionRequest actionRequest,
+		ActionResponse actionResponse) throws PortletException {
+
+		String actionName = ParamUtil.getString(
+			actionRequest,
+			ActionRequest.ACTION_NAME);
+
+		if (Validator.isNull(actionName)) {
+			return false;
+		}
+
+		if (_checkActionClass) {
+			if (actionName.indexOf(',') == -1) {
+				Action action = _cache.getAction(actionName);
+				if (action != ActionCache.EMPTY_ACTION) {
+					return action.processAction(actionRequest, actionResponse);
+				}
+			}
+			else {
+				// find multiple actions and process..
+				List<Action> actions = _cache.getActionChain(actionName);
+				int size = actions.size();
+				if (size != 0) {
+					boolean finalResult = false;
+					for (int i = 0; i < size; i++) {
+						finalResult = actions.get(i).processAction(
+							actionRequest, actionResponse);
+					}
+					return finalResult;
+				}
+			}
+		}
+		return super.callActionMethod(actionRequest, actionResponse);
+	}
+
+	private boolean _checkActionClass;
+	private ActionCache _cache;
 }

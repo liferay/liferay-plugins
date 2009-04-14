@@ -24,21 +24,21 @@ package com.liferay.util.bridges.simplemvc;
 
 import com.liferay.portal.kernel.util.StringPool;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import javax.portlet.PortletException;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.PortletException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
  * <a href="ActionCache.java.html"><b><i>View Source</i></b></a>
- *
+ * <p/>
  * Cache for Portlet Actions to avoid reflection costs per call.
  *
  * @author Michael C. Han
@@ -61,7 +61,7 @@ public class ActionCache {
 	}
 
 	public List<Action> getActionChain(String actionChain)
-	throws PortletException {
+		throws PortletException {
 		List<Action> actions = _actionChainCache.get(actionChain);
 		if (actions == null) {
 			actions = new ArrayList<Action>(5);
@@ -83,7 +83,8 @@ public class ActionCache {
 				currentIndex = index + 1;
 				index = actionChain.indexOf(',', currentIndex);
 				index = (index == -1) ? length : index;
-			} while ((currentIndex < length));
+			}
+			while ((currentIndex < length));
 			_actionChainCache.put(actionChain, actions);
 		}
 
