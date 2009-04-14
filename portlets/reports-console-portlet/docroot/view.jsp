@@ -30,11 +30,13 @@ if (Validator.isNull(tabs1)) {
 	tabs1 = "report-definitions";
 }
 
-PortletURL portletURL = renderResponse.createRenderURL();
+PortletURL portletURL = renderResponse.createActionURL();
 
 portletURL.setWindowState(WindowState.MAXIMIZED);
 
 portletURL.setParameter("tabs1", tabs1);
+
+portletURL.setParameter(ActionRequest.ACTION_NAME, "searchDefinition");
 %>
 
 <form action="<%= portletURL.toString() %>" method="post" name="<portlet:namespace />fm">

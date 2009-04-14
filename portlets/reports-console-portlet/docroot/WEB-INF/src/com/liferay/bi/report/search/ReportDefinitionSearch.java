@@ -24,6 +24,7 @@ package com.liferay.bi.report.search;
 
 import com.liferay.bi.report.model.ReportDefinition;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
+import com.liferay.portal.kernel.util.ParamUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +57,7 @@ public class ReportDefinitionSearch extends SearchContainer<ReportDefinition> {
 		super(
 			portletRequest, new ReportDefinitionDisplayTerms(portletRequest),
 			new ReportDefinitionSearchTerms(portletRequest), DEFAULT_CUR_PARAM,
-			DEFAULT_DELTA, iteratorURL, headerNames, EMPTY_RESULTS_MESSAGE);
+			DEFAULT_DELTA, iteratorURL, headerNames, EMPTY_RESULTS_MESSAGE);		
 
 		ReportDefinitionDisplayTerms displayTerms =
 			(ReportDefinitionDisplayTerms)getDisplayTerms();

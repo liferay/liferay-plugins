@@ -30,10 +30,12 @@ import javax.portlet.PortletException;
 import javax.servlet.http.HttpServletRequest;
 
 import com.liferay.bi.report.model.ReportDefinition;
+import com.liferay.bi.report.search.ReportDefinitionDisplayTerms;
+import com.liferay.bi.report.search.ReportDefinitionSearch;
 import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
@@ -55,36 +57,66 @@ public class SearchDefinitionAction implements Action {
 		long companyId = themeDisplay.getCompanyId();
 		long groupId = themeDisplay.getScopeGroupId();		
 		
-		//TBD Need to implement search features and functionality...
+		int cur = ParamUtil.getInteger(actionRequest, 
+			ReportDefinitionSearch.DEFAULT_CUR_PARAM,
+			ReportDefinitionSearch.DEFAULT_CUR);
+		int delta = ParamUtil.getInteger(actionRequest,
+			ReportDefinitionSearch.DEFAULT_DELTA_PARAM,
+			ReportDefinitionSearch.DEFAULT_DELTA);
 	
-		int start = ParamUtil.getInteger(actionRequest, "start");
-		int end = ParamUtil.getInteger(actionRequest, "end");
-
-		int count = 0;
-		List<ReportDefinition> definitions = null;
+		int start = (cur - 1) * delta;
+		int end = start + delta;
 		
+		int total = 0;
+		List<ReportDefinition> definitions = null;
+		boolean isAdvancedSearch = ParamUtil.getBoolean(actionRequest, 
+			ReportDefinitionDisplayTerms.ADVANCED_SEARCH);
 		try {
-		    if(ParamUtil.getBoolean(actionRequest, "advancedSearch")){
-			definitions =
-				ReportDefinitionLocalServiceUtil.getReportDefintions(companyId, groupId);
-		    }else{
-			String keywords = ParamUtil.getString(request, "keywords");
-
-			count = ReportDefinitionLocalServiceUtil
-				.searchCount(companyId, groupId, keywords, true, null);
+		    if(isAdvancedSearch){			
+			String name = ParamUtil.getString(actionRequest, 
+				ReportDefinitionDisplayTerms.NAME);
+			String description = ParamUtil.getString(actionRequest, 
+				ReportDefinitionDisplayTerms.DESCRIPTION);
+			boolean isAndOperator = ParamUtil.getBoolean(actionRequest, 
+				ReportDefinitionDisplayTerms.AND_OPERATOR);
 			
-			if(count > SearchContainer.DEFAULT_DELTA){
-			    end = SearchContainer.DEFAULT_DELTA;
-			}else{
-			    end = count;
+			if(Validator.isNull(name)){
+			    name = null;
 			}
+			if(Validator.isNull(description)){
+			    description = null;
+			}
+			
+//			actionRequest.setAttribute(ReportDefinitionDisplayTerms.NAME, name);
+//			actionRequest.setAttribute(ReportDefinitionDisplayTerms.DESCRIPTION, description);
+//			actionRequest.setAttribute(ReportDefinitionDisplayTerms.AND_OPERATOR, isAndOperator);
+									
+			 total = ReportDefinitionLocalServiceUtil.searchCount(
+				 themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+				 name, description, true, 
+				 null, isAndOperator);
+
+			 definitions = ReportDefinitionLocalServiceUtil.search(themeDisplay.getCompanyId(),
+				themeDisplay.getScopeGroupId(), name, description,
+				null, isAndOperator, start, end, null);			 
+		    }else{
+			String keywords = ParamUtil.getString(request, ReportDefinitionDisplayTerms.KEYWORDS);
+			
+//			actionRequest.setAttribute(ReportDefinitionDisplayTerms.KEYWORDS, keywords);
+			
+			total = ReportDefinitionLocalServiceUtil
+				.searchCount(companyId, groupId, keywords, true, null);
 			
 			definitions = ReportDefinitionLocalServiceUtil
 				.search(companyId, groupId, keywords, null, start, end, null);
 		    }
-		    
+		
 		actionRequest.setAttribute("searchResults", definitions);
-
+		actionRequest.setAttribute("total", total);
+//		actionRequest.setAttribute(ReportDefinitionSearch.DEFAULT_CUR_PARAM, cur);
+//		actionRequest.setAttribute(ReportDefinitionSearch.DEFAULT_DELTA_PARAM, delta);
+//		actionRequest.setAttribute(ReportDefinitionDisplayTerms.ADVANCED_SEARCH, isAdvancedSearch);
+		
 		}
 		catch (SystemException e) {
 			throw new PortletException(
