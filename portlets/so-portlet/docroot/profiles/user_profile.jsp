@@ -47,10 +47,35 @@ else {
 	}
 }
 
+PasswordPolicy passwordPolicy = PasswordPolicyLocalServiceUtil.getDefaultPasswordPolicy(company.getCompanyId());
+
 String currentURL = PortalUtil.getCurrentURL(request);
 
 boolean isEditable = (curUser.getUserId() == user.getUserId());
 %>
+
+<liferay-ui:error exception="<%= UserPasswordException.class %>">
+
+	<%
+	UserPasswordException upe = (UserPasswordException)errorException;
+	%>
+
+	<c:if test="<%= upe.getType() == UserPasswordException.PASSWORD_CONTAINS_TRIVIAL_WORDS %>">
+		<liferay-ui:message key="that-password-uses-common-words-please-enter-in-a-password-that-is-harder-to-guess-i-e-contains-a-mix-of-numbers-and-letters" />
+	</c:if>
+
+	<c:if test="<%= upe.getType() == UserPasswordException.PASSWORD_INVALID %>">
+		<liferay-ui:message key="that-password-is-invalid-please-enter-in-a-different-password" />
+	</c:if>
+
+	<c:if test="<%= upe.getType() == UserPasswordException.PASSWORD_LENGTH %>">
+		<%= LanguageUtil.format(pageContext, "that-password-is-too-short-or-too-long-please-make-sure-your-password-is-between-x-and-512-characters", String.valueOf(passwordPolicy.getMinLength()), false) %>
+	</c:if>
+
+	<c:if test="<%= upe.getType() == UserPasswordException.PASSWORDS_DO_NOT_MATCH %>">
+		<liferay-ui:message key="the-passwords-you-entered-do-not-match-each-other-please-re-enter-your-password" />
+	</c:if>
+</liferay-ui:error>
 
 <c:choose>
 	<c:when test="<%= curUser != null %>">
@@ -102,6 +127,47 @@ boolean isEditable = (curUser.getUserId() == user.getUserId());
 					<div class="user-email">
 						<span class="<%= isEditable ? "editable" : "" %>" id="email"><%= curUser.getEmailAddress() %></span>
 					</div>
+
+					<c:if test="<%= isEditable %>">
+						<div class="user-password">
+							<br />
+							<input class="change-user-password-button" name="change-password" type="button" value="<liferay-ui:message key="change-password" />" />
+
+							<table class="user-password-form">
+
+							<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />passwordForm">
+							<input name="<portlet:namespace />id" type="hidden" value="updatePassword" />
+
+							<tr>
+								<td>
+									<liferay-ui:message key="new-password" />
+								</td>
+								<td>
+									<input name="<portlet:namespace />password1" size="30" type="password" value="" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<liferay-ui:message key="confirm-password" />
+								</td>
+								<td>
+									<input name="<portlet:namespace />password2" size="30" type="password" value="" />
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<input name="submit" type="submit" value="<liferay-ui:message key="change-password" />" />
+
+									<input class="cancel-user-password-button" name="cancel" type="button" value="<liferay-ui:message key="cancel" />" />
+								</td>
+							</tr>
+
+							</form>
+
+							</table>
+						</div>
+					</c:if>
+
 					<c:choose>
 						<c:when test="<%= isEditable %>">
 							<div class="user-tags">
