@@ -106,7 +106,11 @@ int invitedMembersCount = ParamUtil.getInteger(renderRequest, "invitedMembersCou
 <script type="text/javascript">
 	jQuery(
 		function() {
-			Liferay.SO.Profiles.init();
+				Liferay.SO.Profiles.init({
+					namespace: '<portlet:namespace />',
+					postURL: '<portlet:actionURL />'
+				}
+			);
 		}
 	);
 </script>
