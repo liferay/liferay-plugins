@@ -22,8 +22,6 @@
 
 package com.liferay.bi.report.portlet.action;
 
-import java.util.Date;
-
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
@@ -65,15 +63,15 @@ public class ViewDefinitionAction implements Action {
 						definition.getCompanyId(), CompanyConstants.SYSTEM,
 						definition.getAttachmentsDir());
 
-				String existingName = StringPool.NULL;
+				String fileName = StringPool.NULL;
 				if (existingAttachments.length != 0) {
-					existingName =
+					fileName =
 						StringUtil.extractLast(
 							existingAttachments[0], StringPool.SLASH);
 				}
 
 				actionRequest.setAttribute("definition", definition);
-				actionRequest.setAttribute("existingName", existingName);
+				actionRequest.setAttribute("fileName", fileName);
 			}
 		}
 		catch (PortalException e) {

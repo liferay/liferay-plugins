@@ -30,7 +30,6 @@ import java.util.List;
 import com.liferay.bi.report.model.ReportDefinition;
 import com.liferay.bi.report.service.base.ReportDefinitionLocalServiceBaseImpl;
 import com.liferay.counter.service.CounterLocalServiceUtil;
-import com.liferay.documentlibrary.DuplicateDirectoryException;
 import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
@@ -50,7 +49,7 @@ public class ReportDefinitionLocalServiceImpl
 	public ReportDefinition addReportDefinition(
 		long companyId, long groupId, long userId, String definitionName,
 		String description, String datasourceName, ReportFormat format,
-		String fileName, File file,String parameters)
+		String fileName, File file, String parameters)
 		throws PortalException, SystemException {
 
 		long definitionId = CounterLocalServiceUtil.increment();
@@ -86,14 +85,16 @@ public class ReportDefinitionLocalServiceImpl
 	}
 
 	public ReportDefinition updateReportDefinition(
-		long definitionId, String description, String datasourceName,
-		ReportFormat format)
+		long definitionId, String definitionName, String description,
+		String datasourceName, ReportFormat format, String reportParameters)
 		throws PortalException, SystemException {
 
 		ReportDefinition definition = getReportDefinition(definitionId);
+		definition.setDefinitionName(definitionName);
 		definition.setDescription(description);
 		definition.setDataSourceName(datasourceName);
 		definition.setReportFormat(format.toString());
+		definition.setReportParameters(reportParameters);
 
 		return updateReportDefinition(definition);
 	}

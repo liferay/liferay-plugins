@@ -71,7 +71,7 @@
 	}
 
 	function <portlet:namespace />updateDefinition() {
-		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="addDefinition" /></portlet:actionURL>');
+		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="updateDefinition" /></portlet:actionURL>');
 	}
 
 	function <portlet:namespace />deleteDefinition() {
@@ -210,11 +210,11 @@
 			</c:if>
 			<c:if test="<%= definition != null %>">
 			<% 			
-			String existingName = (String)request.getAttribute("existingName");
+			String fileName = (String)request.getAttribute("fileName");
 			%>
 				<span id="<portlet:namespace />existingFile">
-					<input name="<portlet:namespace />existingPath" type="hidden" value="<%= existingName %>" />		
-					<%= existingName %>
+					<input name="<portlet:namespace />fileName" type="hidden" value="<%= fileName %>" />		
+					<%= fileName %>
 					<img id="<portlet:namespace />removeExisting" src="<%= themeDisplay.getPathThemeImages() %>/arrows/02_x.png" />
 				</span>
 				<input id="<portlet:namespace />msgFile" name="<portlet:namespace />msgFile" size="70" style="display: none;" type="file" />

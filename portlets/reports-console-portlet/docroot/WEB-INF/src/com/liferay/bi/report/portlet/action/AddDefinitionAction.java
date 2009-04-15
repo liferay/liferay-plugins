@@ -100,7 +100,7 @@ public class AddDefinitionAction implements Action {
 					definitionName, description, datasourceName, reportFormat,
 					fileName, file, parameters);
 			
-			actionRequest.setAttribute("existingName", fileName);
+			actionRequest.setAttribute("fileName", fileName);
 			uploadRequest.setAttribute("definition", definition);
 		}
 		catch (PortalException e) {

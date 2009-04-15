@@ -467,37 +467,53 @@ public class ReportDefinitionLocalServiceClp
 	}
 
 	public com.liferay.bi.report.model.ReportDefinition updateReportDefinition(
-		long definitionId, java.lang.String description,
-		java.lang.String datasourceName,
-		com.liferay.portal.kernel.bi.reporting.ReportFormat format)
+		long definitionId, java.lang.String definitionName,
+		java.lang.String description, java.lang.String datasourceName,
+		com.liferay.portal.kernel.bi.reporting.ReportFormat format,
+		java.lang.String reportParameters)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(definitionId);
 
-		Object paramObj1 = ClpSerializer.translateInput(description);
+		Object paramObj1 = ClpSerializer.translateInput(definitionName);
 
-		if (description == null) {
+		if (definitionName == null) {
 			paramObj1 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj2 = ClpSerializer.translateInput(datasourceName);
+		Object paramObj2 = ClpSerializer.translateInput(description);
 
-		if (datasourceName == null) {
+		if (description == null) {
 			paramObj2 = new NullWrapper("java.lang.String");
 		}
 
-		Object paramObj3 = ClpSerializer.translateInput(format);
+		Object paramObj3 = ClpSerializer.translateInput(datasourceName);
+
+		if (datasourceName == null) {
+			paramObj3 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj4 = ClpSerializer.translateInput(format);
 
 		if (format == null) {
-			paramObj3 = new NullWrapper(
+			paramObj4 = new NullWrapper(
 					"com.liferay.portal.kernel.bi.reporting.ReportFormat");
+		}
+
+		Object paramObj5 = ClpSerializer.translateInput(reportParameters);
+
+		if (reportParameters == null) {
+			paramObj5 = new NullWrapper("java.lang.String");
 		}
 
 		Object returnObj = null;
 
 		try {
 			returnObj = _classLoaderProxy.invoke("updateReportDefinition",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+						paramObj5
+					});
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.PortalException) {

@@ -93,9 +93,10 @@ public interface ReportDefinitionLocalService {
 			com.liferay.portal.SystemException;
 
 	public com.liferay.bi.report.model.ReportDefinition updateReportDefinition(
-		long definitionId, java.lang.String description,
-		java.lang.String datasourceName,
-		com.liferay.portal.kernel.bi.reporting.ReportFormat format)
+		long definitionId, java.lang.String definitionName,
+		java.lang.String description, java.lang.String datasourceName,
+		com.liferay.portal.kernel.bi.reporting.ReportFormat format,
+		java.lang.String reportParameters)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
