@@ -26,9 +26,11 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 
+import com.liferay.bi.report.NoSuchDefinitionException;
 import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.util.bridges.simplemvc.Action;
 
@@ -43,23 +45,23 @@ public class DeleteDefinitionAction implements Action {
 		ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortletException {
 
-		// TBD Need to put in validation for null values...required fields...
 		long definitionId = ParamUtil.getLong(actionRequest, "definitionId");
 		if (definitionId == -1) {
-			// this should NEVER be -1...
-			// TBD Need to do some processing here...to add error message?
+			SessionErrors.add(
+				actionRequest,
+				new NoSuchDefinitionException().getClass().getName());
 			return false;
 		}
-
 		try {
 			ReportDefinitionLocalServiceUtil.deleteReportDefinition(definitionId);
 			return true;
 		}
 		catch (Exception e) {
 			_log.error(e);
-			throw new PortletException("Unable to delete new definition", e);
+			throw new PortletException("Unable to delete a definition", e);
 		}
 
 	}
-	private static Log _log = LogFactoryUtil.getLog(DeleteDefinitionAction.class);
+	private static Log _log =
+		LogFactoryUtil.getLog(DeleteDefinitionAction.class);
 }
