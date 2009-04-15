@@ -34,6 +34,7 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialRequestInterpreter;
 import com.liferay.portlet.social.model.SocialRequest;
+import com.liferay.portlet.social.model.SocialRequestConstants;
 import com.liferay.portlet.social.model.SocialRequestFeedEntry;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 
@@ -137,6 +138,8 @@ public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
 			SocialActivityLocalServiceUtil.addActivity(
 				request.getUserId(), 0, className, request.getClassPK(),
 				MembersActivityKeys.ADD_MEMBER, StringPool.BLANK, 0);
+
+			processDuplicateRequestsFromUser(request, SocialRequestConstants.STATUS_PENDING);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
