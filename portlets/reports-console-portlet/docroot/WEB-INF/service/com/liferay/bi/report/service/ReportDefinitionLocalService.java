@@ -87,7 +87,8 @@ public interface ReportDefinitionLocalService {
 		java.lang.String definitionName, java.lang.String description,
 		java.lang.String datasourceName,
 		com.liferay.portal.kernel.bi.reporting.ReportFormat format,
-		java.lang.String fileName, java.io.File file)
+		java.lang.String fileName, java.io.File file,
+		java.lang.String parameters)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 

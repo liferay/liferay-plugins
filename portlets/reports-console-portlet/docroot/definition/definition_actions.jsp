@@ -33,11 +33,11 @@ String definitionId = String.valueOf(definition.getDefinitionId());
 	cssClass=""
 >
 <c:if test="<%= ReportDefinitionPermission.contains(permissionChecker, definition, ActionKeys.UPDATE) %>">
-	<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
-		<portlet:param name="jspPage" value="/definition/edit_definition.jsp" />
+	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
+		<portlet:param name="<%=ActionRequest.ACTION_NAME %>" value="viewDefinition" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="definitionId" value="<%= definitionId %>" />
-	</portlet:renderURL>
+	</portlet:actionURL>
 
 	<liferay-ui:icon image="edit" url="<%= editURL %>" />
 </c:if>
@@ -61,20 +61,20 @@ String definitionId = String.valueOf(definition.getDefinitionId());
 	<liferay-ui:icon image="submit" message="generate-immdiately" url="<%= generateImmdiatelyURL %>" />
 
 <c:if test="<%= ReportDefinitionPermission.contains(permissionChecker, definition, ActionKeys.ADD_INSTANCE) %>">
-	<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="addScheduleURL">
+	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="addScheduleURL">
 		<portlet:param name="jspPage" value="/definition/edit_definition.jsp" />
         <portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="definitionId" value="<%= definitionId %>" />
-	</portlet:renderURL>
+	</portlet:actionURL>
 
 	<liferay-ui:icon image="time" message="add-schedule" url="<%= addScheduleURL %>" />
 </c:if>
 
-    <portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="viewTemplateScheduleURL">
+    <portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="viewTemplateScheduleURL">
 		<portlet:param name="jspPage" value="/view_template_events.jsp" />
         <portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="definitionId" value="<%= definitionId %>" />
-	</portlet:renderURL>
+	</portlet:actionURL>
 
 	<liferay-ui:icon image="manage_task" message="view-schedule" url="<%= viewTemplateScheduleURL %>" />
 

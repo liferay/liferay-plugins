@@ -52,11 +52,11 @@ ReportDefinitionSearch searchContainer = new ReportDefinitionSearch(renderReques
 			String entryId = String.valueOf(reportsEntry.getDefinitionId());
 			ResultRow row = new ResultRow(reportsEntry, entryId, i);
 
-			PortletURL rowURL = renderResponse.createRenderURL();
+			PortletURL rowURL = renderResponse.createActionURL();
 
 			rowURL.setWindowState(WindowState.MAXIMIZED);
 			
-			rowURL.setParameter("jspPage", "/definition/edit_definition.jsp");
+			rowURL.setParameter(ActionRequest.ACTION_NAME, "viewDefinition");
 			
 			rowURL.setParameter("redirect", currentURL);
 			

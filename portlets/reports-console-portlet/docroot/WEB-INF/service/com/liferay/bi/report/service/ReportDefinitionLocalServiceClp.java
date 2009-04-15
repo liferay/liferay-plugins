@@ -383,7 +383,8 @@ public class ReportDefinitionLocalServiceClp
 		java.lang.String definitionName, java.lang.String description,
 		java.lang.String datasourceName,
 		com.liferay.portal.kernel.bi.reporting.ReportFormat format,
-		java.lang.String fileName, java.io.File file)
+		java.lang.String fileName, java.io.File file,
+		java.lang.String parameters)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(companyId);
@@ -429,13 +430,19 @@ public class ReportDefinitionLocalServiceClp
 			paramObj8 = new NullWrapper("java.io.File");
 		}
 
+		Object paramObj9 = ClpSerializer.translateInput(parameters);
+
+		if (parameters == null) {
+			paramObj9 = new NullWrapper("java.lang.String");
+		}
+
 		Object returnObj = null;
 
 		try {
 			returnObj = _classLoaderProxy.invoke("addReportDefinition",
 					new Object[] {
 						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6, paramObj7, paramObj8
+						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9
 					});
 		}
 		catch (Throwable t) {

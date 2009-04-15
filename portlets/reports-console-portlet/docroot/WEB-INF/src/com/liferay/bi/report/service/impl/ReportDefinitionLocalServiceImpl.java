@@ -22,29 +22,26 @@
 
 package com.liferay.bi.report.service.impl;
 
-import com.liferay.bi.report.DefinitionFileException;
-import com.liferay.bi.report.DefinitionNameException;
+import java.io.File;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+
 import com.liferay.bi.report.model.ReportDefinition;
 import com.liferay.bi.report.service.base.ReportDefinitionLocalServiceBaseImpl;
 import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.documentlibrary.DuplicateDirectoryException;
 import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bi.reporting.ReportFormat;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CompanyConstants;
 
-import java.io.File;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
-
 /**
- * <a href="ReportDefinitionLocalServiceImpl.java.html"><b><i>View
- * Source</i></b></a>
- *
+ * <a href="ReportDefinitionLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
+ * 
  * @author Brian Wing Shun Chan
  */
 public class ReportDefinitionLocalServiceImpl
@@ -53,31 +50,20 @@ public class ReportDefinitionLocalServiceImpl
 	public ReportDefinition addReportDefinition(
 		long companyId, long groupId, long userId, String definitionName,
 		String description, String datasourceName, ReportFormat format,
-		String fileName, File file)
+		String fileName, File file,String parameters)
 		throws PortalException, SystemException {
-
-
-		// you should validate before you create the object...not after...
-		//otherwise wastes resources
-		if (Validator.isNull(definitionName)) {
-			throw new DefinitionNameException();
-		}
-
-		if (Validator.isNull(fileName)) {
-			throw new DefinitionFileException();
-		}
 
 		long definitionId = CounterLocalServiceUtil.increment();
 		ReportDefinition definition =
 			reportDefinitionPersistence.create(definitionId);
+		definition.setCompanyId(companyId);
+		definition.setGroupId(groupId);
+		definition.setUserId(userId);
 		definition.setDefinitionName(definitionName);
 		definition.setDescription(description);
 		definition.setDataSourceName(datasourceName);
 		definition.setReportFormat(format.toString());
-
-		definition.setCompanyId(companyId);
-		definition.setGroupId(groupId);
-		definition.setUserId(userId);
+		definition.setReportParameters(parameters);
 
 		String portletId = CompanyConstants.SYSTEM_STRING;
 		long repositoryId = 0;
@@ -87,10 +73,14 @@ public class ReportDefinitionLocalServiceImpl
 		String[] tagsCategories = new String[0];
 		String[] tagsEntries = new String[0];
 
+		DLServiceUtil.addDirectory(
+			companyId, repositoryId, definition.getAttachmentsDir());
+
 		DLServiceUtil.addFile(
 			companyId, portletId, groupId, repositoryId,
-			fileName, fileEntryId, properties, modifiedDate,
-			tagsCategories, tagsEntries, file);
+			definition.getAttachmentsDir() + StringPool.SLASH + fileName,
+			fileEntryId, properties, modifiedDate, tagsCategories, tagsEntries,
+			file);
 
 		return addReportDefinition(definition);
 	}
@@ -118,13 +108,12 @@ public class ReportDefinitionLocalServiceImpl
 
 	public List<ReportDefinition> search(
 		long companyId, long groupId, String keywords,
-		LinkedHashMap<String, Object> params, int start,
-		int end, OrderByComparator obc)
+		LinkedHashMap<String, Object> params, int start, int end,
+		OrderByComparator obc)
 		throws SystemException {
 
 		return reportDefinitionFinder.findByKeywords(
-			companyId, groupId,
-			keywords, params, start, end, obc);
+			companyId, groupId, keywords, params, start, end, obc);
 	}
 
 	public List<ReportDefinition> search(
@@ -134,30 +123,33 @@ public class ReportDefinitionLocalServiceImpl
 		throws SystemException {
 
 		return reportDefinitionFinder.findByC_G_N_D(
-			companyId, groupId,
-			new String[]{name}, new String[]{description}, andSearch,
-			start, end, obc);
+			companyId, groupId, new String[] {
+				name
+			}, new String[] {
+				description
+			}, andSearch, start, end, obc);
 	}
 
 	public int searchCount(
-		long companyId, long groupId, String keywords,
-		Boolean active, LinkedHashMap<String, Object> params)
+		long companyId, long groupId, String keywords, Boolean active,
+		LinkedHashMap<String, Object> params)
 		throws SystemException {
 
 		return reportDefinitionFinder.countByKeywords(
-			companyId, groupId,
-			keywords, params);
+			companyId, groupId, keywords, params);
 	}
 
 	public int searchCount(
-		long companyId, long groupId, String name,
-		String description, Boolean active,
-		LinkedHashMap<String, Object> params, boolean andSearch)
+		long companyId, long groupId, String name, String description,
+		Boolean active, LinkedHashMap<String, Object> params, boolean andSearch)
 		throws SystemException {
-		
+
 		return reportDefinitionFinder.countByC_G_N_D(
-			companyId, groupId,
-			new String[]{name}, new String[]{description}, andSearch);
+			companyId, groupId, new String[] {
+				name
+			}, new String[] {
+				description
+			}, andSearch);
 	}
 
 }

@@ -27,6 +27,8 @@ import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bi.reporting.ReportFormat;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -74,15 +76,17 @@ public class UpdateDefinitionAction implements Action {
 					definitionId, description, datasourceName,
 					ReportFormat.parse(format));
 			actionRequest.setAttribute("currentDefinition", definition);
-			return true;
 		}
 		catch (PortalException e) {
 			SessionErrors.add(actionRequest, e.getClass().getName());
-			return false;
+			_log.error(e);
 		}
 		catch (SystemException e) {
+			_log.error(e);
 			throw new PortletException(
 				"Unable to update definition: " + definitionName, e);
 		}
+		return false;
 	}
+	private static Log _log = LogFactoryUtil.getLog(UpdateDefinitionAction.class);
 }

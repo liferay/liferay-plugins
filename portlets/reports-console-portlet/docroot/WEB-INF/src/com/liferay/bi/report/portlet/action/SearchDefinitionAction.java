@@ -43,10 +43,11 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * <a href="SearchDefinitionAction.java.html"><b><i>View Source</i></b></a>
- *
+ * 
  * @author Michael C. Han
  */
 public class SearchDefinitionAction implements Action {
+
 	public boolean processAction(
 		ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortletException {
@@ -59,19 +60,21 @@ public class SearchDefinitionAction implements Action {
 		long companyId = themeDisplay.getCompanyId();
 		long groupId = themeDisplay.getScopeGroupId();
 
-		int cur = ParamUtil.getInteger(
-			actionRequest, ReportDefinitionSearch.DEFAULT_CUR_PARAM,
-			ReportDefinitionSearch.DEFAULT_CUR);
+		int cur =
+			ParamUtil.getInteger(
+				actionRequest, ReportDefinitionSearch.DEFAULT_CUR_PARAM,
+				ReportDefinitionSearch.DEFAULT_CUR);
 
-		int delta = ParamUtil.getInteger(
-			actionRequest,
-			ReportDefinitionSearch.DEFAULT_DELTA_PARAM,
-			ReportDefinitionSearch.DEFAULT_DELTA);
+		int delta =
+			ParamUtil.getInteger(
+				actionRequest, ReportDefinitionSearch.DEFAULT_DELTA_PARAM,
+				ReportDefinitionSearch.DEFAULT_DELTA);
 
 		int start = (cur - 1) * delta;
 		int end = start + delta;
-		boolean isAdvancedSearch = ParamUtil.getBoolean(
-			actionRequest, ReportDefinitionDisplayTerms.ADVANCED_SEARCH);
+		boolean isAdvancedSearch =
+			ParamUtil.getBoolean(
+				actionRequest, ReportDefinitionDisplayTerms.ADVANCED_SEARCH);
 
 		try {
 			if (isAdvancedSearch) {
@@ -80,18 +83,17 @@ public class SearchDefinitionAction implements Action {
 			}
 			else {
 				performBasicSearch(
-					actionRequest, actionResponse, request, companyId, groupId,
+					actionRequest, actionResponse, companyId, groupId,
 					start, end);
 			}
 			actionResponse.setRenderParameter(
-				ReportDefinitionSearch
-					.DEFAULT_CUR_PARAM, String.valueOf(cur));
+				ReportDefinitionSearch.DEFAULT_CUR_PARAM, String.valueOf(cur));
 			actionResponse.setRenderParameter(
-				ReportDefinitionSearch
-					.DEFAULT_DELTA_PARAM, String.valueOf(delta));
+				ReportDefinitionSearch.DEFAULT_DELTA_PARAM,
+				String.valueOf(delta));
 			actionResponse.setRenderParameter(
-				ReportDefinitionDisplayTerms
-					.ADVANCED_SEARCH, String.valueOf(isAdvancedSearch));
+				ReportDefinitionDisplayTerms.ADVANCED_SEARCH,
+				String.valueOf(isAdvancedSearch));
 
 		}
 		catch (SystemException e) {
@@ -104,11 +106,12 @@ public class SearchDefinitionAction implements Action {
 
 	private void performBasicSearch(
 		ActionRequest actionRequest, ActionResponse actionResponse,
-		HttpServletRequest request, long companyId, long groupId, int start,
-		int end) throws SystemException {
-		//TBD why is this being from the request?
-		String keywords = ParamUtil.getString(
-			request, ReportDefinitionDisplayTerms.KEYWORDS);
+		long companyId, long groupId, int start, int end)
+		throws SystemException {
+
+		String keywords =
+			ParamUtil.getString(
+				actionRequest, ReportDefinitionDisplayTerms.KEYWORDS);
 		actionResponse.setRenderParameter(
 			ReportDefinitionDisplayTerms.KEYWORDS, keywords);
 
@@ -117,8 +120,9 @@ public class SearchDefinitionAction implements Action {
 				companyId, groupId, keywords, null, start, end, null);
 		int total = 0;
 		if (!definitions.isEmpty()) {
-			total = ReportDefinitionLocalServiceUtil.searchCount(
-				companyId, groupId, keywords, true, null);
+			total =
+				ReportDefinitionLocalServiceUtil.searchCount(
+					companyId, groupId, keywords, true, null);
 		}
 
 		actionRequest.setAttribute(SEARCH_RESULTS_ATTRIBUTE, definitions);
@@ -129,13 +133,16 @@ public class SearchDefinitionAction implements Action {
 		ActionRequest actionRequest, ActionResponse actionResponse,
 		ThemeDisplay themeDisplay, int start, int end)
 		throws SystemException {
-		String name = ParamUtil.getString(
-			actionRequest, ReportDefinitionDisplayTerms.NAME);
-		String description = ParamUtil.getString(
-			actionRequest, ReportDefinitionDisplayTerms.DESCRIPTION);
-		boolean isAndOperator = ParamUtil.getBoolean(
-			actionRequest,
-			ReportDefinitionDisplayTerms.AND_OPERATOR);
+
+		String name =
+			ParamUtil.getString(
+				actionRequest, ReportDefinitionDisplayTerms.NAME);
+		String description =
+			ParamUtil.getString(
+				actionRequest, ReportDefinitionDisplayTerms.DESCRIPTION);
+		boolean isAndOperator =
+			ParamUtil.getBoolean(
+				actionRequest, ReportDefinitionDisplayTerms.AND_OPERATOR);
 
 		actionResponse.setRenderParameter(
 			ReportDefinitionDisplayTerms.NAME, name);
@@ -154,22 +161,21 @@ public class SearchDefinitionAction implements Action {
 
 		List<ReportDefinition> definitions =
 			ReportDefinitionLocalServiceUtil.search(
-				themeDisplay.getCompanyId(),
-				themeDisplay.getScopeGroupId(), name, description,
-				null, isAndOperator, start, end, null);
+				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+				name, description, null, isAndOperator, start, end, null);
 
 		int total = 0;
 		if (!definitions.isEmpty()) {
-			total = ReportDefinitionLocalServiceUtil.searchCount(
-				themeDisplay.getCompanyId(),
-				themeDisplay.getScopeGroupId(), name, description, true,
-				null, isAndOperator);
+			total =
+				ReportDefinitionLocalServiceUtil.searchCount(
+					themeDisplay.getCompanyId(),
+					themeDisplay.getScopeGroupId(), name, description, true,
+					null, isAndOperator);
 		}
 
 		actionRequest.setAttribute(SEARCH_RESULTS_ATTRIBUTE, definitions);
 		actionRequest.setAttribute(SEARCH_TOTAL_ATTRIBUTE, total);
 	}
-
 
 	private static final String SEARCH_RESULTS_ATTRIBUTE = "searchResults";
 	private static final String SEARCH_TOTAL_ATTRIBUTE = "total";

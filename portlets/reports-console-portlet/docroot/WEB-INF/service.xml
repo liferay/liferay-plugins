@@ -55,6 +55,7 @@
 	<exceptions>
 		<exception>NoSuchDefinition</exception>
 		<exception>DefinitionName</exception>
+		<exception>DefinitionFormat</exception>
 		<exception>DefinitionFile</exception>
 	</exceptions>
 </service-builder>

@@ -23,21 +23,20 @@
 <%@ include file="/init.jsp" %>
 
 <%
-	ReportDefinition definition = null;
+	PortletURL portletURL = renderResponse.createActionURL();
+	portletURL.setWindowState(WindowState.NORMAL);
+	portletURL.setParameter("tabs1", "report-definitions");
+	portletURL.setParameter(ActionRequest.ACTION_NAME, "searchDefinition");
+	portletDisplay.setURLBack(portletURL.toString());
 
-
-	boolean isNew = true;
-
-	long definitionId = ParamUtil.getLong(renderRequest, "definitionId", -1);
-
-	// TBD this call should not be here...should goto an action first...
-	if (definitionId > 0) {
-		isNew = false;
-		definition = ReportDefinitionLocalServiceUtil.getReportDefinition(definitionId);
+	ReportDefinition definition = (ReportDefinition)request.getAttribute("definition");
+	String reportParameters = StringPool.BLANK;
+	boolean isNew = false;
+	if(definition == null){
+		isNew = true;
+	}else{
+		reportParameters = definition.getReportParameters();
 	}
-
-	String parameter = StringPool.BLANK;
-
 %>
 
 <script type="text/javascript">
@@ -59,6 +58,8 @@
 						button.remove();
 						span.remove();
 						file.show();
+						
+						document.<portlet:namespace />fm.encoding = "multipart/form-data";
 					}
 				);
 		}
@@ -74,13 +75,15 @@
 	}
 
 	function <portlet:namespace />deleteDefinition() {
-		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="deleteDefinition" /></portlet:actionURL>');
+		if (confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-the-report-definition") %>')) {
+			submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="deleteDefinition" /></portlet:actionURL>');
+		}
 	}
 
 
 	function <portlet:namespace />getParameter() {
-		var param = '<%=parameter%>';
-		document.<portlet:namespace />fm.<portlet:namespace />parameter.value = param;
+		var param = '<%=reportParameters%>';
+		document.<portlet:namespace />fm.<portlet:namespace />reportParameters.value = param;
 		var keyArray = new Array();
         keyArray = param.split(',');
 		for (i = 0; i < keyArray.length; i++) {
@@ -97,7 +100,7 @@
 		if(key.length == 0 || value.length == 0){
 			alert("can not null");
 		}else{
-			document.<portlet:namespace />fm.<portlet:namespace />parameter.value += ","+key+"="+value;
+			document.<portlet:namespace />fm.<portlet:namespace />reportParameters.value += ","+key+"="+value;
 			<portlet:namespace />addTag(key,value);
 		}
 	}
@@ -112,7 +115,7 @@
 	}
 
 	function <portlet:namespace />removeParameter(key,value) {
-		var param = document.<portlet:namespace />fm.<portlet:namespace />parameter.value;
+		var param = document.<portlet:namespace />fm.<portlet:namespace />reportParameters.value;
 		var tem = "";
 		var keyArray = new Array();
         keyArray = param.split(',');
@@ -121,14 +124,18 @@
 				tem += keyArray[i]+",";
 			}
 		}
-		document.<portlet:namespace />fm.<portlet:namespace />parameter.value = tem;
+		document.<portlet:namespace />fm.<portlet:namespace />reportParameters.value = tem;
 		jQuery("#"+key).remove();
 	}
 </script>
 
 <form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"></portlet:actionURL>" method="post" name="<portlet:namespace />fm" >
-<input name="<portlet:namespace />definitionId" type="hidden" value="<%= definitionId %>" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
+
+<liferay-ui:error exception="<%= DefinitionNameException.class %>" message="please-enter-a-valid-name" />
+<liferay-ui:error exception="<%= DefinitionFileException.class %>" message="please-enter-a-valid-file" />
+<liferay-ui:error exception="<%= DefinitionFormatException.class %>" message="please-enter-a-valid-format" />
+
 
 <table class="lfr-table">
 	<tr>
@@ -141,7 +148,8 @@
 					<liferay-ui:message key="autogenerate-id" />
 				</c:when>
 				<c:otherwise>
-					<%= definitionId %>
+					<input name="<portlet:namespace />definitionId" type="hidden" value="<%= definition.getDefinitionId() %>" />
+					<%= definition.getDefinitionId() %>
 				</c:otherwise>
 			</c:choose>
 		</td>
@@ -172,11 +180,9 @@
 	</tr>
 	<tr>
 		<%
-			boolean htmlSelected = false;
-			boolean defaulted = true;
-			if (!isNew) {
-				defaulted = false;
-				htmlSelected = (ReportFormat.parse(definition.getReportFormat()) == ReportFormat.HTML);
+			String format = StringPool.BLANK;
+			if(!isNew){
+				format = definition.getReportFormat();
 			}
 		%>
 		<td>
@@ -184,16 +190,13 @@
 		</td>
 		<td>
 			<select id="<portlet:namespace />format" name="<portlet:namespace />format">
-				<c:choose>
-					<c:when test="<%= defaulted || htmlSelected %>">
-						<option selected="true" value="<%=ReportFormat.HTML.toString()%>">HTML</option>
-						<option value="<%=ReportFormat.PDF.toString()%>">PDF</option>
-					</c:when>
-					<c:otherwise>
-						<option value="<%=ReportFormat.HTML.toString()%>">HTML</option>
-						<option selected="true" value="<%=ReportFormat.PDF.toString()%>">PDF</option>
-					</c:otherwise>
-				</c:choose>
+				<%
+				for(ReportFormat reportFormat:ReportFormat.values()){
+				%>
+				<option <%if(reportFormat.toString().equals(format)){ %> selected="selected" <% } %> value="<%=reportFormat%>"><%=reportFormat %></option>
+				<%
+				}
+				%>
 			</select>
 		</td>
 	</tr>
@@ -206,16 +209,8 @@
 				<input id="<portlet:namespace />msgFile" name="<portlet:namespace />msgFile" size="70" type="file" />
 			</c:if>
 			<c:if test="<%= definition != null %>">
-			<% 
-			String[] existingAttachments = new String[0];
-			
-			existingAttachments = DLServiceUtil.getFileNames(definition.getCompanyId(), CompanyConstants.SYSTEM, "/");
-			
-			String existingName = "NA";
-			if(existingAttachments.length!=0){
-				existingName = StringUtil.extractLast(existingAttachments[0], StringPool.SLASH);
-			}
-
+			<% 			
+			String existingName = (String)request.getAttribute("existingName");
 			%>
 				<span id="<portlet:namespace />existingFile">
 					<input name="<portlet:namespace />existingPath" type="hidden" value="<%= existingName %>" />		
@@ -229,10 +224,10 @@
 	</tr>
 	<tr>
 		<td>
-			<liferay-ui:message key="parameter" />:
+			<liferay-ui:message key="reportParameters" />:
 		</td>
 		<td>
-			<input id="<portlet:namespace />parameter" name="<portlet:namespace />parameter" type="hidden" />
+			<input id="<portlet:namespace />reportParameters" name="<portlet:namespace />reportParameters" type="hidden" />
 			<liferay-ui:message key="key" /><input id="<portlet:namespace />key" name="<portlet:namespace />key" type="text" size="20"/>
 			<liferay-ui:message key="value" /><input id="<portlet:namespace />value" name="<portlet:namespace />value" type="text"  size="20" />
 			<input type="button" value="<liferay-ui:message key="add" />" onClick="<portlet:namespace />addParameter();" /><br />

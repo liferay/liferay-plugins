@@ -1,4 +1,3 @@
-<%--
 /**
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
@@ -20,26 +19,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
---%>
-<%@ include file="/init.jsp" %>
 
-<%
-String tabs1 = ParamUtil.getString(request, "tabs1");
+package com.liferay.bi.report;
 
-if (Validator.isNull(tabs1)) {
-	tabs1 = "report-definitions";
+import com.liferay.portal.PortalException;
+
+/**
+ * <a href="DefinitionFormatException.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ */
+public class DefinitionFormatException extends PortalException {
+
+	public DefinitionFormatException() {
+		super();
+	}
+
+	public DefinitionFormatException(String msg) {
+		super(msg);
+	}
+
+	public DefinitionFormatException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+	public DefinitionFormatException(Throwable cause) {
+		super(cause);
+	}
+
 }
-
-PortletURL portletURL = renderResponse.createActionURL();
-
-portletURL.setWindowState(WindowState.MAXIMIZED);
-
-portletURL.setParameter("tabs1", tabs1);
-
-portletURL.setParameter(ActionRequest.ACTION_NAME, "searchDefinition");
-
-%>
-
-<form action="<%= portletURL.toString() %>" method="post" name="<portlet:namespace />fm">
-<%@ include file="/tabs.jspf" %>
-</form>
