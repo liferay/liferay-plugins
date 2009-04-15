@@ -12,10 +12,10 @@
 				</td>
 			</tr>
 			<tr id="row-3">
-				<td class="lfr-column" id="column-3" valign="top">
+				<td class="lfr-column seventy" id="column-3" valign="top">
 					$processor.processColumn("column-3")
 				</td>
-				<td class="lfr-column" id="column-4" valign="top">
+				<td class="lfr-column thirty" id="column-4" valign="top">
 					$processor.processColumn("column-4")
 				</td>
 			</tr>

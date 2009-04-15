@@ -173,7 +173,7 @@ body #banner h1.logo a {
 /* ---------- Portlets ---------- */
 
 .portlet {
-	margin-bottom: 2em;
+	margin-bottom: 1em;
 }
 
 .portlet-borderless-bar {
@@ -198,7 +198,7 @@ body #banner h1.logo a {
 /* ---------- Layout ---------- */
 
 .lfr-grid .lfr-column {
-	padding: 15px;
+	padding: 15px 15px 0;
 }
 
 .columns-2 #column-1 {
