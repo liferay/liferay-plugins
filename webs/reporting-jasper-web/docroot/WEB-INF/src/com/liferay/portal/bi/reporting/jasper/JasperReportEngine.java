@@ -42,6 +42,7 @@ import javax.sql.DataSource;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.JRException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -58,6 +59,16 @@ import org.apache.commons.logging.LogFactory;
 public class JasperReportEngine implements ReportEngine {
 	public JasperReportEngine(ReportCompiler reportCompiler) {
 		_reportCompiler = reportCompiler;
+	}
+
+	public void compile(ReportRequest reportRequest)
+		throws ReportGenerationException {
+		try {
+			_reportCompiler.compile(reportRequest.getRetriever());
+		}
+		catch (JRException e) {
+			throw new ReportGenerationException("Unable to compile report", e);
+		}
 	}
 
 	public synchronized void destroy() {

@@ -14,6 +14,12 @@
 						 value="liferay/report_requests"/>
 	</bean>
 
+	<bean id="destination.report_compile"
+		  class="com.liferay.portal.kernel.messaging.ParallelDestination">
+		<constructor-arg index="0" type="java.lang.String"
+						 value="liferay/report_compile"/>
+	</bean>
+
 	<bean id="destination.report_results"
 		  class="com.liferay.portal.kernel.messaging.ParallelDestination">
 		<constructor-arg index="0" type="java.lang.String"
@@ -30,7 +36,17 @@
 						 type="com.liferay.portal.kernel.bi.reporting.ReportResultContainer">
 			<bean class="com.liferay.portal.kernel.bi.reporting.ByteArrayReportResultContainer"/>
 		 </constructor-arg>
+	</bean>
 
+	<bean id="messageListener.request.compile"
+		  class="com.liferay.portal.kernel.bi.reporting.messaging.ReportCompilerRequestMessageListener">
+		<constructor-arg index="0"
+						 type="com.liferay.portal.kernel.bi.reporting.ReportEngine"
+						 ref="com.liferay.portal.bi.report.ReportEngine"/>
+		<constructor-arg index="1"
+						 type="com.liferay.portal.kernel.bi.reporting.ReportResultContainer">
+			<bean class="com.liferay.portal.kernel.bi.reporting.ByteArrayReportResultContainer"/>
+		 </constructor-arg>
 	</bean>
 
 	<bean id="messagingConfigurator"
@@ -39,6 +55,7 @@
 		<property name="destinations">
 			<list>
 				<ref bean="destination.report_requests"/>
+				<ref bean="destination.report_compile"/>
 				<ref bean="destination.report_results"/>
 			</list>
 		</property>
@@ -48,6 +65,12 @@
 					<list
 						value-type="com.liferay.portal.kernel.messaging.MessageListener">
 						<ref bean="messageListener.request.report"/>
+					</list>
+				</entry>
+				<entry key="liferay/report_compile">
+					<list
+						value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="messageListener.request.compile"/>
 					</list>
 				</entry>
 			</map>

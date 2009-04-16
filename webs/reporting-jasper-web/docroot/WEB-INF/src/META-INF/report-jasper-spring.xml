@@ -34,6 +34,21 @@
 				<entry key="pdf">
 					<bean class="com.liferay.portal.bi.reporting.jasper.exporter.PDFReportFormatExporter"/>
 				</entry>
+				<entry key="csv">
+					<bean class="com.liferay.portal.bi.reporting.jasper.exporter.CsvReportFormatExporter"/>
+				</entry>
+				<entry key="excel">
+					<bean class="com.liferay.portal.bi.reporting.jasper.exporter.ExcelReportFormatExporter"/>
+				</entry>
+				<entry key="rtf">
+					<bean class="com.liferay.portal.bi.reporting.jasper.exporter.RTFReportFormatExporter"/>
+				</entry>
+				<entry key="text">
+					<bean class="com.liferay.portal.bi.reporting.jasper.exporter.TextReportFormatExporter"/>
+				</entry>
+				<entry key="text">
+					<bean class="com.liferay.portal.bi.reporting.jasper.exporter.XmlReportFormatExporter"/>
+				</entry>
 			</map>
 		</property>
 	</bean>
