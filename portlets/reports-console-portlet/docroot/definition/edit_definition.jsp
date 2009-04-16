@@ -34,7 +34,8 @@
 	boolean isNew = false;
 	if(definition == null){
 		isNew = true;
-	}else{
+	}
+	else{
 		reportParameters = definition.getReportParameters();
 	}
 %>

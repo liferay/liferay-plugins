@@ -83,6 +83,9 @@ public class ViewDefinitionAction implements Action {
 			_log.error(e);
 			throw new PortletException("No such a definition", e);
 		}
+
+		//TBD should not be hard coded
+		//actionResponse.setRenderParameter("jspPage", ParamUtil.getString(uploadRequest, "jspPage"));
 		actionResponse.setRenderParameter(
 			"jspPage", "/definition/edit_definition.jsp");
 		return false;

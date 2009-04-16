@@ -63,12 +63,15 @@ public class UpdateDefinitionAction implements Action {
 
 		String contentType = actionRequest.getContentType();
 
+		String jspPageParameter = null;
 		try {
 			if ((contentType.startsWith(ContentTypes.MULTIPART_FORM_DATA))) {
-				performUpdateWithFileUpdated(actionRequest, actionResponse);
+				jspPageParameter =
+					performUpdateWithFileUpdated(actionRequest, actionResponse);
 			}
 			else {
-				performUpdate(actionRequest, actionResponse);
+				jspPageParameter =
+					performUpdate(actionRequest, actionResponse);
 			}
 		}
 		catch (PortalException e) {
@@ -78,12 +81,14 @@ public class UpdateDefinitionAction implements Action {
 			_log.error(e);
 			throw new PortletException("Unable to update definition: ", e);
 		}
-		actionResponse.setRenderParameter(
-			"jspPage", "/definition/edit_definition.jsp");
+
+		// TBD This should not be hard coded...
+		actionResponse.setRenderParameter("jspPage", jspPageParameter);
+			//"jspPage", "/definition/edit_definition.jsp");
 		return false;
 	}
 
-	private void performUpdate(
+	private String performUpdate(
 		ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortalException, SystemException {
 
@@ -108,13 +113,13 @@ public class UpdateDefinitionAction implements Action {
 				definitionId, definitionName, description, datasourceName,
 				ReportFormat.parse(format), reportParameters);
 
-		actionRequest.setAttribute("fileName", ParamUtil.getString(
-			actionRequest, "fileName"));
+		actionRequest.setAttribute(
+			"fileName", ParamUtil.getString(actionRequest, "fileName"));
 		actionRequest.setAttribute("definition", definition);
-
+		return ParamUtil.getString(actionRequest, "jspPage");
 	}
 
-	private void performUpdateWithFileUpdated(
+	private String performUpdateWithFileUpdated(
 		ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortalException, SystemException {
 
@@ -135,6 +140,8 @@ public class UpdateDefinitionAction implements Action {
 		}
 
 		String fileName = uploadRequest.getFileName("msgFile");
+
+		// TBD Any type of file operation should really be handle in the service layer
 		if (Validator.isNull(definitionName)) {
 			throw new DefinitionFileException();
 		}
@@ -180,6 +187,8 @@ public class UpdateDefinitionAction implements Action {
 
 		uploadRequest.setAttribute("fileName", fileName);
 		uploadRequest.setAttribute("definition", definition);
+		return ParamUtil.getString(uploadRequest, "jspPage");
+
 	}
 
 	private static Log _log =

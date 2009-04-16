@@ -34,6 +34,7 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.simplemvc.Action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.portlet.ActionRequest;
@@ -115,14 +116,14 @@ public class SearchDefinitionAction implements Action {
 		actionResponse.setRenderParameter(
 			ReportDefinitionDisplayTerms.KEYWORDS, keywords);
 
-		List<ReportDefinition> definitions =
-			ReportDefinitionLocalServiceUtil.search(
-				companyId, groupId, keywords, null, start, end, null);
-		int total = 0;
-		if (!definitions.isEmpty()) {
-			total =
-				ReportDefinitionLocalServiceUtil.searchCount(
+		int total =
+			ReportDefinitionLocalServiceUtil.searchCount(
 					companyId, groupId, keywords, true, null);
+		List<ReportDefinition> definitions = EMPTY_LIST;
+		if (total > 0) {
+			definitions =
+				ReportDefinitionLocalServiceUtil.search(
+					companyId, groupId, keywords, null, start, end, null);
 		}
 
 		actionRequest.setAttribute(SEARCH_RESULTS_ATTRIBUTE, definitions);
@@ -159,18 +160,17 @@ public class SearchDefinitionAction implements Action {
 			description = null;
 		}
 
-		List<ReportDefinition> definitions =
-			ReportDefinitionLocalServiceUtil.search(
-				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-				name, description, null, isAndOperator, start, end, null);
-
-		int total = 0;
-		if (!definitions.isEmpty()) {
-			total =
+		int total =
 				ReportDefinitionLocalServiceUtil.searchCount(
 					themeDisplay.getCompanyId(),
 					themeDisplay.getScopeGroupId(), name, description, true,
 					null, isAndOperator);
+		List<ReportDefinition> definitions = EMPTY_LIST;
+		if (total > 0) {
+			definitions =
+				ReportDefinitionLocalServiceUtil.search(
+				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+				name, description, null, isAndOperator, start, end, null);
 		}
 
 		actionRequest.setAttribute(SEARCH_RESULTS_ATTRIBUTE, definitions);
@@ -179,4 +179,6 @@ public class SearchDefinitionAction implements Action {
 
 	private static final String SEARCH_RESULTS_ATTRIBUTE = "searchResults";
 	private static final String SEARCH_TOTAL_ATTRIBUTE = "total";
+	private static final List<ReportDefinition> EMPTY_LIST =
+		new ArrayList<ReportDefinition>(0);
 }

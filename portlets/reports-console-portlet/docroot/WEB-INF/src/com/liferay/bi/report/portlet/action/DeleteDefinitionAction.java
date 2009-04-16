@@ -48,8 +48,7 @@ public class DeleteDefinitionAction implements Action {
 		long definitionId = ParamUtil.getLong(actionRequest, "definitionId");
 		if (definitionId == -1) {
 			SessionErrors.add(
-				actionRequest,
-				new NoSuchDefinitionException().getClass().getName());
+				actionRequest, NoSuchDefinitionException.class.getName());
 			return false;
 		}
 		try {
