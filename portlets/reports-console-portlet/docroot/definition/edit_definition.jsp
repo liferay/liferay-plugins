@@ -30,9 +30,12 @@
 	portletDisplay.setURLBack(portletURL.toString());
 
 	ReportDefinition definition = (ReportDefinition)request.getAttribute("definition");
+	
 	String reportParameters = StringPool.BLANK;
+	
 	boolean isNew = false;
-	if(definition == null){
+	
+	if(definition == null || definition.getDefinitionId() <= 0){
 		isNew = true;
 	}
 	else{
@@ -68,11 +71,11 @@
 
 	function <portlet:namespace />saveDefinition() {
 		document.<portlet:namespace />fm.encoding = "multipart/form-data";
-		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="addDefinition" /></portlet:actionURL>');
+		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="addDefinition" /><portlet:param name="jspPage" value="/definition/edit_definition.jsp" /></portlet:actionURL>');
 	}
 
 	function <portlet:namespace />updateDefinition() {
-		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="updateDefinition" /></portlet:actionURL>');
+		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="updateDefinition" /><portlet:param name="jspPage" value="/definition/edit_definition.jsp" /></portlet:actionURL>');
 	}
 
 	function <portlet:namespace />deleteDefinition() {
@@ -133,11 +136,6 @@
 <form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"></portlet:actionURL>" method="post" name="<portlet:namespace />fm" >
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
 
-<liferay-ui:error exception="<%= DefinitionNameException.class %>" message="please-enter-a-valid-name" />
-<liferay-ui:error exception="<%= DefinitionFileException.class %>" message="please-enter-a-valid-file" />
-<liferay-ui:error exception="<%= DefinitionFormatException.class %>" message="please-enter-a-valid-format" />
-
-
 <table class="lfr-table">
 	<tr>
 		<td>
@@ -160,6 +158,7 @@
 			<liferay-ui:message key="definition-name" />:
 		</td>
 		<td>
+			<liferay-ui:error exception="<%= DefinitionNameException.class %>" message="please-enter-a-valid-name" />
 			<liferay-ui:input-field model="<%= ReportDefinition.class %>" bean="<%= definition %>" field="definitionName" />
 		</td>
 	</tr>
@@ -190,6 +189,7 @@
 			<liferay-ui:message key="report-format" />:
 		</td>
 		<td>
+			<liferay-ui:error exception="<%= DefinitionFormatException.class %>" message="please-enter-a-valid-format" />
 			<select id="<portlet:namespace />format" name="<portlet:namespace />format">
 				<%
 				for(ReportFormat reportFormat:ReportFormat.values()){
@@ -206,21 +206,21 @@
 			<liferay-ui:message key="template" />:
 		</td>
 		<td>
-			<c:if test="<%= definition == null %>">
-				<input id="<portlet:namespace />msgFile" name="<portlet:namespace />msgFile" size="70" type="file" />
-			</c:if>
-			<c:if test="<%= definition != null %>">
 			<% 			
 			String fileName = (String)request.getAttribute("fileName");
 			%>
+			<liferay-ui:error exception="<%= DefinitionFileException.class %>" message="please-enter-a-valid-file" />
+			<c:if test="<%= fileName == null %>">
+				<input id="<portlet:namespace />msgFile" name="<portlet:namespace />msgFile" size="70" type="file" />
+			</c:if>
+			<c:if test="<%= fileName != null %>">
 				<span id="<portlet:namespace />existingFile">
 					<input name="<portlet:namespace />fileName" type="hidden" value="<%= fileName %>" />		
 					<%= fileName %>
 					<img id="<portlet:namespace />removeExisting" src="<%= themeDisplay.getPathThemeImages() %>/arrows/02_x.png" />
 				</span>
 				<input id="<portlet:namespace />msgFile" name="<portlet:namespace />msgFile" size="70" style="display: none;" type="file" />
-
-			</c:if>
+			</c:if>		
 		</td>
 	</tr>
 	<tr>

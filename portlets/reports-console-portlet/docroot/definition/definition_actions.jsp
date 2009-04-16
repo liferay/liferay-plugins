@@ -35,6 +35,7 @@ String definitionId = String.valueOf(definition.getDefinitionId());
 <c:if test="<%= ReportDefinitionPermission.contains(permissionChecker, definition, ActionKeys.UPDATE) %>">
 	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
 		<portlet:param name="<%=ActionRequest.ACTION_NAME %>" value="viewDefinition" />
+		<portlet:param name="jspPage" value="/definition/edit_definition.jsp" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="definitionId" value="<%= definitionId %>" />
 	</portlet:actionURL>

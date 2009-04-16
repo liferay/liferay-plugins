@@ -23,30 +23,29 @@
 package com.liferay.bi.report.portlet.action;
 
 import java.io.File;
-import java.util.Date;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 
 import com.liferay.bi.report.DefinitionFileException;
+import com.liferay.bi.report.DefinitionFormatException;
 import com.liferay.bi.report.DefinitionNameException;
 import com.liferay.bi.report.NoSuchDefinitionException;
 import com.liferay.bi.report.model.ReportDefinition;
+import com.liferay.bi.report.model.impl.ReportDefinitionImpl;
 import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
-import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bi.reporting.ReportFormat;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.simplemvc.Action;
 
@@ -62,17 +61,16 @@ public class UpdateDefinitionAction implements Action {
 		throws PortletException {
 
 		String contentType = actionRequest.getContentType();
-
-		String jspPageParameter = null;
+		String jspPage = null;
 		try {
 			if ((contentType.startsWith(ContentTypes.MULTIPART_FORM_DATA))) {
-				jspPageParameter =
+				jspPage =
 					performUpdateWithFileUpdated(actionRequest, actionResponse);
 			}
 			else {
-				jspPageParameter =
-					performUpdate(actionRequest, actionResponse);
+				jspPage = performUpdate(actionRequest, actionResponse);
 			}
+
 		}
 		catch (PortalException e) {
 			SessionErrors.add(actionRequest, e.getClass().getName());
@@ -82,9 +80,7 @@ public class UpdateDefinitionAction implements Action {
 			throw new PortletException("Unable to update definition: ", e);
 		}
 
-		// TBD This should not be hard coded...
-		actionResponse.setRenderParameter("jspPage", jspPageParameter);
-			//"jspPage", "/definition/edit_definition.jsp");
+		actionResponse.setRenderParameter("jspPage", jspPage);
 		return false;
 	}
 
@@ -92,31 +88,58 @@ public class UpdateDefinitionAction implements Action {
 		ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortalException, SystemException {
 
+		String jspPage = ParamUtil.getString(actionRequest, "jspPage");
+
 		long definitionId = ParamUtil.getLong(actionRequest, "definitionId");
 		if (definitionId <= 0) {
-			throw new NoSuchDefinitionException();
+			SessionErrors.add(
+				actionRequest, NoSuchDefinitionException.class.getName());
 		}
 		String definitionName =
 			ParamUtil.getString(actionRequest, "definitionName");
 		if (Validator.isNull(definitionName)) {
-			throw new DefinitionNameException();
+			SessionErrors.add(
+				actionRequest, DefinitionNameException.class.getName());
+		}
+
+		String format = ParamUtil.getString(actionRequest, "format");
+		ReportFormat reportFormat = null;
+		try {
+			reportFormat = ReportFormat.parse(format);
+		}
+		catch (IllegalArgumentException e) {
+			SessionErrors.add(
+				actionRequest, DefinitionFormatException.class.getName());
 		}
 
 		String description = ParamUtil.getString(actionRequest, "description");
 		String datasourceName =
 			ParamUtil.getString(actionRequest, "dataSourceName");
-		String format = ParamUtil.getString(actionRequest, "format");
 		String reportParameters =
 			ParamUtil.getString(actionRequest, "reportParameters");
-		ReportDefinition definition =
-			ReportDefinitionLocalServiceUtil.updateReportDefinition(
-				definitionId, definitionName, description, datasourceName,
-				ReportFormat.parse(format), reportParameters);
 
-		actionRequest.setAttribute(
-			"fileName", ParamUtil.getString(actionRequest, "fileName"));
+		ReportDefinition definition = null;
+		if (SessionErrors.isEmpty(actionRequest)) {
+			definition =
+				ReportDefinitionLocalServiceUtil.updateReportDefinition(
+					definitionId, definitionName, description, datasourceName,
+					reportFormat, reportParameters);
+			SessionMessages.add(actionRequest, "request_processed");
+		}
+		else {
+			definition = new ReportDefinitionImpl();
+			definition.setDefinitionId(definitionId);
+			definition.setDefinitionName(definitionName);
+			definition.setDescription(description);
+			definition.setDataSourceName(datasourceName);
+			definition.setReportFormat(format.toString());
+			definition.setReportParameters(reportParameters);
+		}
+
+		actionRequest.setAttribute("fileName", ParamUtil.getString(
+			actionRequest, "fileName"));
 		actionRequest.setAttribute("definition", definition);
-		return ParamUtil.getString(actionRequest, "jspPage");
+		return jspPage;
 	}
 
 	private String performUpdateWithFileUpdated(
@@ -125,72 +148,69 @@ public class UpdateDefinitionAction implements Action {
 
 		UploadPortletRequest uploadRequest =
 			PortalUtil.getUploadPortletRequest(actionRequest);
+		String jspPage = ParamUtil.getString(uploadRequest, "jspPage");
 
 		long definitionId = ParamUtil.getLong(uploadRequest, "definitionId");
 		if (definitionId <= 0) {
-			throw new NoSuchDefinitionException();
+			SessionErrors.add(
+				actionRequest, NoSuchDefinitionException.class.getName());
 		}
-		ReportDefinition definition =
-			ReportDefinitionLocalServiceUtil.getReportDefinition(definitionId);
 
 		String definitionName =
 			ParamUtil.getString(uploadRequest, "definitionName");
 		if (Validator.isNull(definitionName)) {
-			throw new DefinitionNameException();
+			SessionErrors.add(
+				actionRequest, DefinitionNameException.class.getName());
+		}
+
+		String format = ParamUtil.getString(uploadRequest, "format");
+		ReportFormat reportFormat = null;
+		try {
+			reportFormat = ReportFormat.parse(format);
+		}
+		catch (IllegalArgumentException e) {
+			SessionErrors.add(
+				actionRequest, DefinitionFormatException.class.getName());
 		}
 
 		String fileName = uploadRequest.getFileName("msgFile");
-
-		// TBD Any type of file operation should really be handle in the service layer
-		if (Validator.isNull(definitionName)) {
-			throw new DefinitionFileException();
-		}
-		String[] existingAttachments =
-			DLServiceUtil.getFileNames(
-				definition.getCompanyId(), CompanyConstants.SYSTEM,
-				definition.getAttachmentsDir());
-		for (String attachment : existingAttachments) {
-			DLServiceUtil.deleteFile(
-				definition.getCompanyId(), CompanyConstants.SYSTEM_STRING,
-				CompanyConstants.SYSTEM, attachment);
+		if (Validator.isNull(fileName)) {
+			SessionErrors.add(
+				actionRequest, DefinitionFileException.class.getName());
 		}
 
 		File file = uploadRequest.getFile("msgFile");
-		String portletId = CompanyConstants.SYSTEM_STRING;
-		long repositoryId = 0;
-		long fileEntryId = 0;
-		String properties = StringPool.BLANK;
-		Date modifiedDate = new Date();
-		String[] tagsCategories = new String[0];
-		String[] tagsEntries = new String[0];
-
-		DLServiceUtil.addFile(
-			definition.getCompanyId(), portletId, definition.getGroupId(),
-			repositoryId, definition.getAttachmentsDir() + StringPool.SLASH +
-				fileName, fileEntryId, properties, modifiedDate,
-			tagsCategories, tagsEntries, file);
 
 		String description = ParamUtil.getString(uploadRequest, "description");
 		String datasourceName =
 			ParamUtil.getString(uploadRequest, "dataSourceName");
-		String format = ParamUtil.getString(uploadRequest, "format");
+
 		String reportParameters =
 			ParamUtil.getString(uploadRequest, "reportParameters");
 
-		definition.setDefinitionName(definitionName);
-		definition.setDescription(description);
-		definition.setDataSourceName(datasourceName);
-		definition.setReportFormat(format.toString());
-		definition.setReportParameters(reportParameters);
-
-		ReportDefinitionLocalServiceUtil.updateReportDefinition(definition);
+		ReportDefinition definition = null;
+		if (SessionErrors.isEmpty(actionRequest)) {
+			definition =
+				ReportDefinitionLocalServiceUtil.updateReportDefinition(
+					definitionId, definitionName, description, datasourceName,
+					reportFormat, reportParameters, fileName, file);
+			SessionMessages.add(actionRequest, "request_processed");
+		}
+		else {
+			definition = new ReportDefinitionImpl();
+			definition.setDefinitionId(definitionId);
+			definition.setDefinitionName(definitionName);
+			definition.setDescription(description);
+			definition.setDataSourceName(datasourceName);
+			definition.setReportFormat(format.toString());
+			definition.setReportParameters(reportParameters);
+		}
 
 		uploadRequest.setAttribute("fileName", fileName);
 		uploadRequest.setAttribute("definition", definition);
-		return ParamUtil.getString(uploadRequest, "jspPage");
+		return jspPage;
 
 	}
-
 	private static Log _log =
 		LogFactoryUtil.getLog(UpdateDefinitionAction.class);
 }

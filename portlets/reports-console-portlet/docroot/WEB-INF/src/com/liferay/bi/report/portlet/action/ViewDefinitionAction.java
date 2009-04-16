@@ -63,7 +63,7 @@ public class ViewDefinitionAction implements Action {
 						definition.getCompanyId(), CompanyConstants.SYSTEM,
 						definition.getAttachmentsDir());
 
-				String fileName = StringPool.NULL;
+				String fileName = null;
 				if (existingAttachments.length != 0) {
 					fileName =
 						StringUtil.extractLast(
@@ -84,10 +84,8 @@ public class ViewDefinitionAction implements Action {
 			throw new PortletException("No such a definition", e);
 		}
 
-		//TBD should not be hard coded
-		//actionResponse.setRenderParameter("jspPage", ParamUtil.getString(uploadRequest, "jspPage"));
-		actionResponse.setRenderParameter(
-			"jspPage", "/definition/edit_definition.jsp");
+		actionResponse.setRenderParameter("jspPage", ParamUtil.getString(
+			actionRequest, "jspPage"));
 		return false;
 	}
 

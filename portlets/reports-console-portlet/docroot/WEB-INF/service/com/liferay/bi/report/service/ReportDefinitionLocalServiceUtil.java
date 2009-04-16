@@ -102,13 +102,13 @@ public class ReportDefinitionLocalServiceUtil {
 		java.lang.String datasourceName,
 		com.liferay.portal.kernel.bi.reporting.ReportFormat format,
 		java.lang.String fileName, java.io.File file,
-		java.lang.String parameters)
+		java.lang.String reportParameters)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		return getService()
 				   .addReportDefinition(companyId, groupId, userId,
 			definitionName, description, datasourceName, format, fileName,
-			file, parameters);
+			file, reportParameters);
 	}
 
 	public static com.liferay.bi.report.model.ReportDefinition updateReportDefinition(
@@ -121,6 +121,20 @@ public class ReportDefinitionLocalServiceUtil {
 		return getService()
 				   .updateReportDefinition(definitionId, definitionName,
 			description, datasourceName, format, reportParameters);
+	}
+
+	public static com.liferay.bi.report.model.ReportDefinition updateReportDefinition(
+		long definitionId, java.lang.String definitionName,
+		java.lang.String description, java.lang.String datasourceName,
+		com.liferay.portal.kernel.bi.reporting.ReportFormat format,
+		java.lang.String reportParameters, java.lang.String fileName,
+		java.io.File file)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		return getService()
+				   .updateReportDefinition(definitionId, definitionName,
+			description, datasourceName, format, reportParameters, fileName,
+			file);
 	}
 
 	public static java.util.List<com.liferay.bi.report.model.ReportDefinition> getReportDefintions(

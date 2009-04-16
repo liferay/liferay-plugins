@@ -58,6 +58,8 @@ ReportDefinitionSearch searchContainer = new ReportDefinitionSearch(renderReques
 			
 			rowURL.setParameter(ActionRequest.ACTION_NAME, "viewDefinition");
 			
+			rowURL.setParameter("jspPage", "/definition/edit_definition.jsp");
+			
 			rowURL.setParameter("redirect", currentURL);
 			
 			rowURL.setParameter("definitionId", entryId);

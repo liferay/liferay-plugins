@@ -32,6 +32,7 @@ import com.liferay.bi.report.DefinitionFileException;
 import com.liferay.bi.report.DefinitionFormatException;
 import com.liferay.bi.report.DefinitionNameException;
 import com.liferay.bi.report.model.ReportDefinition;
+import com.liferay.bi.report.model.impl.ReportDefinitionImpl;
 import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
@@ -39,6 +40,7 @@ import com.liferay.portal.kernel.bi.reporting.ReportFormat;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -46,7 +48,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.simplemvc.Action;
-import com.liferay.documentlibrary.FileNameException;
 
 /**
  * <a href="AddDefinitionAction.java.html"><b><i>View Source</i></b></a>
@@ -62,11 +63,14 @@ public class AddDefinitionAction implements Action {
 		UploadPortletRequest uploadRequest =
 			PortalUtil.getUploadPortletRequest(actionRequest);
 
+		actionResponse.setRenderParameter("jspPage", ParamUtil.getString(
+			uploadRequest, "jspPage"));
+
 		String definitionName =
 			ParamUtil.getString(uploadRequest, "definitionName");
 		if (Validator.isNull(definitionName)) {
-			SessionErrors.add(actionRequest,
-							  DefinitionNameException.class.getName());
+			SessionErrors.add(
+				actionRequest, DefinitionNameException.class.getName());
 		}
 
 		String format = ParamUtil.getString(uploadRequest, "format");
@@ -75,16 +79,15 @@ public class AddDefinitionAction implements Action {
 			reportFormat = ReportFormat.parse(format);
 		}
 		catch (IllegalArgumentException e) {
-			SessionErrors.add(actionRequest,
-							  DefinitionFormatException.class.getName());
+			SessionErrors.add(
+				actionRequest, DefinitionFormatException.class.getName());
 		}
 
 		String fileName = uploadRequest.getFileName("msgFile");
-		if (Validator.isNull(definitionName)) {
-			SessionErrors.add(actionRequest,
-							  DefinitionFileException.class.getName());
+		if (Validator.isNull(fileName)) {
+			SessionErrors.add(
+				actionRequest, DefinitionFileException.class.getName());
 		}
-
 
 		try {
 			String description =
@@ -92,20 +95,31 @@ public class AddDefinitionAction implements Action {
 			String datasourceName =
 				ParamUtil.getString(uploadRequest, "dataSourceName");
 			File file = uploadRequest.getFile("msgFile");
-			String parameters =
+			String reportParameters =
 				ParamUtil.getString(uploadRequest, "reportParameters");
 
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay) uploadRequest.getAttribute(WebKeys.THEME_DISPLAY);
+			ReportDefinition definition = null;
+			if (SessionErrors.isEmpty(actionRequest)) {
+				definition =
+					ReportDefinitionLocalServiceUtil.addReportDefinition(
+						themeDisplay.getCompanyId(),
+						themeDisplay.getScopeGroupId(),
+						themeDisplay.getUserId(), definitionName, description,
+						datasourceName, reportFormat, fileName, file,
+						reportParameters);
+				actionRequest.setAttribute("fileName", fileName);
+				SessionMessages.add(actionRequest, "request_processed");
+			}else{
+				definition = new ReportDefinitionImpl();
+				definition.setDefinitionName(definitionName);
+				definition.setDescription(description);
+				definition.setDataSourceName(datasourceName);
+				definition.setReportFormat(format.toString());
+				definition.setReportParameters(reportParameters);
+			}
 
-			ReportDefinition definition =
-				ReportDefinitionLocalServiceUtil.addReportDefinition(
-					themeDisplay.getCompanyId(),
-					themeDisplay.getScopeGroupId(), themeDisplay.getUserId(),
-					definitionName, description, datasourceName, reportFormat,
-					fileName, file, parameters);
-			
-			actionRequest.setAttribute("fileName", fileName);
 			uploadRequest.setAttribute("definition", definition);
 		}
 		catch (PortalException e) {
@@ -116,11 +130,6 @@ public class AddDefinitionAction implements Action {
 			_log.error(e);
 			throw new PortletException("Unable to create new definition ", e);
 		}
-
-		// TBD this should not be hard coded...this should be passed in... for instance
-		//actionResponse.setRenderParameter("jspPage", ParamUtil.getString(uploadRequest, "jspPage"));
-		actionResponse.setRenderParameter(
-			"jspPage", "/definition/edit_definition.jsp");
 		return false;
 	}
 

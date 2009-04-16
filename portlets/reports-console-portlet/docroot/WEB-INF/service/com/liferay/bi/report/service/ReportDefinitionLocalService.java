@@ -88,7 +88,7 @@ public interface ReportDefinitionLocalService {
 		java.lang.String datasourceName,
 		com.liferay.portal.kernel.bi.reporting.ReportFormat format,
 		java.lang.String fileName, java.io.File file,
-		java.lang.String parameters)
+		java.lang.String reportParameters)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
@@ -97,6 +97,15 @@ public interface ReportDefinitionLocalService {
 		java.lang.String description, java.lang.String datasourceName,
 		com.liferay.portal.kernel.bi.reporting.ReportFormat format,
 		java.lang.String reportParameters)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public com.liferay.bi.report.model.ReportDefinition updateReportDefinition(
+		long definitionId, java.lang.String definitionName,
+		java.lang.String description, java.lang.String datasourceName,
+		com.liferay.portal.kernel.bi.reporting.ReportFormat format,
+		java.lang.String reportParameters, java.lang.String fileName,
+		java.io.File file)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 

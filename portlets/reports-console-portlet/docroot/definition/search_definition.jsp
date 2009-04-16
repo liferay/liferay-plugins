@@ -65,7 +65,7 @@ ReportDefinitionDisplayTerms displayTerms = (ReportDefinitionDisplayTerms)search
 	function <portlet:namespace />addDefinition() {
 		document.<portlet:namespace />fm.method = 'post';
 		
-		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%=ActionRequest.ACTION_NAME %>" value="ViewDefinition" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>');
+		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%=ActionRequest.ACTION_NAME %>" value="ViewDefinition" /><portlet:param name="jspPage" value="/definition/edit_definition.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>');
 	}
 
 	<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
