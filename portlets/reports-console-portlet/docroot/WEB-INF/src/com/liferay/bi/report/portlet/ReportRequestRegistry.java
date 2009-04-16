@@ -40,10 +40,12 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * <a href="ReportRequestSender.java.html"><b><i>View Source</i></b></a>
  *
+ * TBD THIS IS ONLY FOR TESTING PURPOSES...
+ *
+ *
  * @author Michael C. Han
  */
 public class ReportRequestRegistry implements MessageListener {
-
 
 	public ReportRequestRegistry(
 		PortalUUID generator, String requestDestination,
@@ -72,6 +74,10 @@ public class ReportRequestRegistry implements MessageListener {
 		ReportResultContainer results =
 			(ReportResultContainer)message.getPayload();
 		entry.setResults(results);
+	}
+
+	public void remove(String id) {
+		_entries.remove(id);
 	}
 
 	public String sendRequest(
