@@ -210,10 +210,10 @@
 			String fileName = (String)request.getAttribute("fileName");
 			%>
 			<liferay-ui:error exception="<%= DefinitionFileException.class %>" message="please-enter-a-valid-file" />
-			<c:if test="<%= fileName == null %>">
+			<c:if test="<%= Validator.isNull(fileName) %>">
 				<input id="<portlet:namespace />msgFile" name="<portlet:namespace />msgFile" size="70" type="file" />
 			</c:if>
-			<c:if test="<%= fileName != null %>">
+			<c:if test="<%= Validator.isNotNull(fileName) %>">
 				<span id="<portlet:namespace />existingFile">
 					<input name="<portlet:namespace />fileName" type="hidden" value="<%= fileName %>" />		
 					<%= fileName %>

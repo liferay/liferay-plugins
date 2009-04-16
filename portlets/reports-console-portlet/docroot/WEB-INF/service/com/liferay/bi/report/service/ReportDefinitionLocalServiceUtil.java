@@ -111,30 +111,11 @@ public class ReportDefinitionLocalServiceUtil {
 			file, reportParameters);
 	}
 
-	public static com.liferay.bi.report.model.ReportDefinition updateReportDefinition(
-		long definitionId, java.lang.String definitionName,
-		java.lang.String description, java.lang.String datasourceName,
-		com.liferay.portal.kernel.bi.reporting.ReportFormat format,
-		java.lang.String reportParameters)
+	public static void genrateReport(
+		javax.portlet.PortletRequest portletRequest, long definitionId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return getService()
-				   .updateReportDefinition(definitionId, definitionName,
-			description, datasourceName, format, reportParameters);
-	}
-
-	public static com.liferay.bi.report.model.ReportDefinition updateReportDefinition(
-		long definitionId, java.lang.String definitionName,
-		java.lang.String description, java.lang.String datasourceName,
-		com.liferay.portal.kernel.bi.reporting.ReportFormat format,
-		java.lang.String reportParameters, java.lang.String fileName,
-		java.io.File file)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		return getService()
-				   .updateReportDefinition(definitionId, definitionName,
-			description, datasourceName, format, reportParameters, fileName,
-			file);
+		getService().genrateReport(portletRequest, definitionId);
 	}
 
 	public static java.util.List<com.liferay.bi.report.model.ReportDefinition> getReportDefintions(
@@ -178,6 +159,32 @@ public class ReportDefinitionLocalServiceUtil {
 		return getService()
 				   .searchCount(companyId, groupId, name, description, active,
 			params, andSearch);
+	}
+
+	public static com.liferay.bi.report.model.ReportDefinition updateReportDefinition(
+		long definitionId, java.lang.String definitionName,
+		java.lang.String description, java.lang.String datasourceName,
+		com.liferay.portal.kernel.bi.reporting.ReportFormat format,
+		java.lang.String reportParameters)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		return getService()
+				   .updateReportDefinition(definitionId, definitionName,
+			description, datasourceName, format, reportParameters);
+	}
+
+	public static com.liferay.bi.report.model.ReportDefinition updateReportDefinition(
+		long definitionId, java.lang.String definitionName,
+		java.lang.String description, java.lang.String datasourceName,
+		com.liferay.portal.kernel.bi.reporting.ReportFormat format,
+		java.lang.String reportParameters, java.lang.String fileName,
+		java.io.File file)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		return getService()
+				   .updateReportDefinition(definitionId, definitionName,
+			description, datasourceName, format, reportParameters, fileName,
+			file);
 	}
 
 	public static ReportDefinitionLocalService getService() {

@@ -45,6 +45,7 @@ import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.simplemvc.Action;
@@ -62,6 +63,7 @@ public class UpdateDefinitionAction implements Action {
 
 		String contentType = actionRequest.getContentType();
 		String jspPage = null;
+
 		try {
 			if ((contentType.startsWith(ContentTypes.MULTIPART_FORM_DATA))) {
 				jspPage =
@@ -70,7 +72,6 @@ public class UpdateDefinitionAction implements Action {
 			else {
 				jspPage = performUpdate(actionRequest, actionResponse);
 			}
-
 		}
 		catch (PortalException e) {
 			SessionErrors.add(actionRequest, e.getClass().getName());
@@ -174,12 +175,12 @@ public class UpdateDefinitionAction implements Action {
 		}
 
 		String fileName = uploadRequest.getFileName("msgFile");
-		if (Validator.isNull(fileName)) {
+		File file = uploadRequest.getFile("msgFile");
+		if (Validator.isNull(fileName) || file.length() <= 0) {
+			fileName = StringPool.BLANK;
 			SessionErrors.add(
 				actionRequest, DefinitionFileException.class.getName());
 		}
-
-		File file = uploadRequest.getFile("msgFile");
 
 		String description = ParamUtil.getString(uploadRequest, "description");
 		String datasourceName =

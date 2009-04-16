@@ -27,22 +27,24 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import com.liferay.bi.report.DefinitionFileException;
-import com.liferay.bi.report.DefinitionFormatException;
-import com.liferay.bi.report.DefinitionNameException;
+import javax.portlet.PortletRequest;
+import javax.servlet.ServletContext;
+
 import com.liferay.bi.report.model.ReportDefinition;
 import com.liferay.bi.report.service.base.ReportDefinitionLocalServiceBaseImpl;
+import com.liferay.bi.report.util.ReportUtil;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bi.reporting.ReportFormat;
-import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.bi.reporting.ReportRequest;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CompanyConstants;
+import com.liferay.portal.util.PortalUtil;
 
 /**
  * <a href="ReportDefinitionLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -90,56 +92,16 @@ public class ReportDefinitionLocalServiceImpl
 		return addReportDefinition(definition);
 	}
 
-	public ReportDefinition updateReportDefinition(
-		long definitionId, String definitionName, String description,
-		String datasourceName, ReportFormat format, String reportParameters)
+	public void genrateReport(PortletRequest portletRequest, long definitionId)
 		throws PortalException, SystemException {
+		ServletContext servletContext =
+			PortalUtil.getHttpServletRequest(portletRequest).getSession().getServletContext();
+		ReportDefinition deportDefinition = getReportDefinition(definitionId);
+		ReportRequest reportRequest =
+			ReportUtil.getReportRequest(servletContext, deportDefinition);
 
-		return updateReportDefinition(
-			definitionId, definitionName, description, datasourceName, format,
-			reportParameters, null, null);
-	}
+		MessageBusUtil.sendMessage("liferay/report_request", reportRequest);
 
-	public ReportDefinition updateReportDefinition(
-		long definitionId, String definitionName, String description,
-		String datasourceName, ReportFormat format, String reportParameters,
-		String fileName, File file)
-		throws PortalException, SystemException {
-
-		ReportDefinition definition = getReportDefinition(definitionId);
-		definition.setDefinitionName(definitionName);
-		definition.setDescription(description);
-		definition.setDataSourceName(datasourceName);
-		definition.setReportFormat(format.toString());
-		definition.setReportParameters(reportParameters);
-
-		if (Validator.isNotNull(fileName)) {
-			String[] existingAttachments =
-				DLServiceUtil.getFileNames(
-					definition.getCompanyId(), CompanyConstants.SYSTEM,
-					definition.getAttachmentsDir());
-			for (String attachment : existingAttachments) {
-				DLServiceUtil.deleteFile(
-					definition.getCompanyId(), CompanyConstants.SYSTEM_STRING,
-					CompanyConstants.SYSTEM, attachment);
-			}
-
-			String portletId = CompanyConstants.SYSTEM_STRING;
-			long repositoryId = 0;
-			long fileEntryId = 0;
-			String properties = StringPool.BLANK;
-			Date modifiedDate = new Date();
-			String[] tagsCategories = new String[0];
-			String[] tagsEntries = new String[0];
-
-			DLServiceUtil.addFile(
-				definition.getCompanyId(), portletId, definition.getGroupId(),
-				repositoryId, definition.getAttachmentsDir() +
-					StringPool.SLASH + fileName, fileEntryId, properties,
-				modifiedDate, tagsCategories, tagsEntries, file);
-		}
-
-		return updateReportDefinition(definition);
 	}
 
 	public List<ReportDefinition> getReportDefintions(
@@ -194,6 +156,58 @@ public class ReportDefinitionLocalServiceImpl
 			}, new String[] {
 				description
 			}, andSearch);
+	}
+
+	public ReportDefinition updateReportDefinition(
+		long definitionId, String definitionName, String description,
+		String datasourceName, ReportFormat format, String reportParameters)
+		throws PortalException, SystemException {
+
+		return updateReportDefinition(
+			definitionId, definitionName, description, datasourceName, format,
+			reportParameters, null, null);
+	}
+
+	public ReportDefinition updateReportDefinition(
+		long definitionId, String definitionName, String description,
+		String datasourceName, ReportFormat format, String reportParameters,
+		String fileName, File file)
+		throws PortalException, SystemException {
+
+		ReportDefinition definition = getReportDefinition(definitionId);
+		definition.setDefinitionName(definitionName);
+		definition.setDescription(description);
+		definition.setDataSourceName(datasourceName);
+		definition.setReportFormat(format.toString());
+		definition.setReportParameters(reportParameters);
+
+		if (Validator.isNotNull(fileName)) {
+			String[] existingAttachments =
+				DLServiceUtil.getFileNames(
+					definition.getCompanyId(), CompanyConstants.SYSTEM,
+					definition.getAttachmentsDir());
+			for (String attachment : existingAttachments) {
+				DLServiceUtil.deleteFile(
+					definition.getCompanyId(), CompanyConstants.SYSTEM_STRING,
+					CompanyConstants.SYSTEM, attachment);
+			}
+
+			String portletId = CompanyConstants.SYSTEM_STRING;
+			long repositoryId = 0;
+			long fileEntryId = 0;
+			String properties = StringPool.BLANK;
+			Date modifiedDate = new Date();
+			String[] tagsCategories = new String[0];
+			String[] tagsEntries = new String[0];
+
+			DLServiceUtil.addFile(
+				definition.getCompanyId(), portletId, definition.getGroupId(),
+				repositoryId, definition.getAttachmentsDir() +
+					StringPool.SLASH + fileName, fileEntryId, properties,
+				modifiedDate, tagsCategories, tagsEntries, file);
+		}
+
+		return updateReportDefinition(definition);
 	}
 
 }

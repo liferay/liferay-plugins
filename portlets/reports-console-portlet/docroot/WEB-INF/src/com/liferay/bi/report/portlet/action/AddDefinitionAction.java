@@ -43,6 +43,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -84,7 +85,9 @@ public class AddDefinitionAction implements Action {
 		}
 
 		String fileName = uploadRequest.getFileName("msgFile");
-		if (Validator.isNull(fileName)) {
+		File file = uploadRequest.getFile("msgFile");
+		if (Validator.isNull(fileName) || file.length() <= 0) {
+			fileName = StringPool.BLANK;
 			SessionErrors.add(
 				actionRequest, DefinitionFileException.class.getName());
 		}
@@ -94,7 +97,6 @@ public class AddDefinitionAction implements Action {
 				ParamUtil.getString(uploadRequest, "description");
 			String datasourceName =
 				ParamUtil.getString(uploadRequest, "dataSourceName");
-			File file = uploadRequest.getFile("msgFile");
 			String reportParameters =
 				ParamUtil.getString(uploadRequest, "reportParameters");
 
