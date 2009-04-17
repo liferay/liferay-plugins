@@ -22,8 +22,8 @@
 
 package com.liferay.bi.report.model.impl;
 
-import com.liferay.bi.report.model.ReportDefinition;
-import com.liferay.bi.report.model.ReportDefinitionSoap;
+import com.liferay.bi.report.model.ReportRequest;
+import com.liferay.bi.report.model.ReportRequestSoap;
 
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.DateUtil;
@@ -45,18 +45,18 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <a href="ReportDefinitionModelImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="ReportRequestModelImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
-	public static final String TABLE_NAME = "Report_ReportDefinition";
+public class ReportRequestModelImpl extends BaseModelImpl<ReportRequest> {
+	public static final String TABLE_NAME = "Report_ReportRequest";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "uuid_", new Integer(Types.VARCHAR) },
 			
 
-			{ "definitionId", new Integer(Types.BIGINT) },
+			{ "requestId", new Integer(Types.BIGINT) },
 			
 
 			{ "companyId", new Integer(Types.BIGINT) },
@@ -71,63 +71,50 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 			{ "createDate", new Integer(Types.TIMESTAMP) },
 			
 
-			{ "modifiedBy", new Integer(Types.BIGINT) },
-			
-
 			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
 			
 
-			{ "definitionName", new Integer(Types.VARCHAR) },
+			{ "definitionId", new Integer(Types.BIGINT) },
 			
 
-			{ "description", new Integer(Types.VARCHAR) },
+			{ "requestStatus", new Integer(Types.VARCHAR) },
 			
 
-			{ "reportParameters", new Integer(Types.VARCHAR) },
-			
-
-			{ "reportFormat", new Integer(Types.VARCHAR) },
-			
-
-			{ "dataSourceName", new Integer(Types.VARCHAR) }
+			{ "isSchdule", new Integer(Types.BOOLEAN) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Report_ReportDefinition (uuid_ VARCHAR(75) null,definitionId LONG not null primary key,companyId LONG,groupId LONG,userId LONG,createDate DATE null,modifiedBy LONG,modifiedDate DATE null,definitionName VARCHAR(75) null,description VARCHAR(75) null,reportParameters VARCHAR(75) null,reportFormat VARCHAR(75) null,dataSourceName VARCHAR(75) null)";
-	public static final String TABLE_SQL_DROP = "drop table Report_ReportDefinition";
+	public static final String TABLE_SQL_CREATE = "create table Report_ReportRequest (uuid_ VARCHAR(75) null,requestId LONG not null primary key,companyId LONG,groupId LONG,userId LONG,createDate DATE null,modifiedDate DATE null,definitionId LONG,requestStatus VARCHAR(75) null,isSchdule BOOLEAN)";
+	public static final String TABLE_SQL_DROP = "drop table Report_ReportRequest";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
 	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.bi.report.model.ReportDefinition"),
+				"value.object.entity.cache.enabled.com.liferay.bi.report.model.ReportRequest"),
 			true);
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.bi.report.model.ReportDefinition"),
+				"value.object.finder.cache.enabled.com.liferay.bi.report.model.ReportRequest"),
 			true);
 
-	public static ReportDefinition toModel(ReportDefinitionSoap soapModel) {
-		ReportDefinition model = new ReportDefinitionImpl();
+	public static ReportRequest toModel(ReportRequestSoap soapModel) {
+		ReportRequest model = new ReportRequestImpl();
 
 		model.setUuid(soapModel.getUuid());
-		model.setDefinitionId(soapModel.getDefinitionId());
+		model.setRequestId(soapModel.getRequestId());
 		model.setCompanyId(soapModel.getCompanyId());
 		model.setGroupId(soapModel.getGroupId());
 		model.setUserId(soapModel.getUserId());
 		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedBy(soapModel.getModifiedBy());
 		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setDefinitionName(soapModel.getDefinitionName());
-		model.setDescription(soapModel.getDescription());
-		model.setReportParameters(soapModel.getReportParameters());
-		model.setReportFormat(soapModel.getReportFormat());
-		model.setDataSourceName(soapModel.getDataSourceName());
+		model.setDefinitionId(soapModel.getDefinitionId());
+		model.setRequestStatus(soapModel.getRequestStatus());
+		model.setIsSchdule(soapModel.getIsSchdule());
 
 		return model;
 	}
 
-	public static List<ReportDefinition> toModels(
-		ReportDefinitionSoap[] soapModels) {
-		List<ReportDefinition> models = new ArrayList<ReportDefinition>(soapModels.length);
+	public static List<ReportRequest> toModels(ReportRequestSoap[] soapModels) {
+		List<ReportRequest> models = new ArrayList<ReportRequest>(soapModels.length);
 
-		for (ReportDefinitionSoap soapModel : soapModels) {
+		for (ReportRequestSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
 		}
 
@@ -135,21 +122,21 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 	}
 
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
-				"lock.expiration.time.com.liferay.bi.report.model.ReportDefinition"));
+				"lock.expiration.time.com.liferay.bi.report.model.ReportRequest"));
 
-	public ReportDefinitionModelImpl() {
+	public ReportRequestModelImpl() {
 	}
 
 	public long getPrimaryKey() {
-		return _definitionId;
+		return _requestId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setDefinitionId(pk);
+		setRequestId(pk);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_definitionId);
+		return new Long(_requestId);
 	}
 
 	public String getUuid() {
@@ -170,14 +157,24 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 		return GetterUtil.getString(_originalUuid);
 	}
 
-	public long getDefinitionId() {
-		return _definitionId;
+	public long getRequestId() {
+		return _requestId;
 	}
 
-	public void setDefinitionId(long definitionId) {
-		if (definitionId != _definitionId) {
-			_definitionId = definitionId;
+	public void setRequestId(long requestId) {
+		if (requestId != _requestId) {
+			_requestId = requestId;
+
+			if (!_setOriginalRequestId) {
+				_setOriginalRequestId = true;
+
+				_originalRequestId = requestId;
+			}
 		}
+	}
+
+	public long getOriginalRequestId() {
+		return _originalRequestId;
 	}
 
 	public long getCompanyId() {
@@ -231,16 +228,6 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 		}
 	}
 
-	public long getModifiedBy() {
-		return _modifiedBy;
-	}
-
-	public void setModifiedBy(long modifiedBy) {
-		if (modifiedBy != _modifiedBy) {
-			_modifiedBy = modifiedBy;
-		}
-	}
-
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
@@ -252,90 +239,75 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 		}
 	}
 
-	public String getDefinitionName() {
-		return GetterUtil.getString(_definitionName);
+	public long getDefinitionId() {
+		return _definitionId;
 	}
 
-	public void setDefinitionName(String definitionName) {
-		if ((definitionName != _definitionName) ||
-				((definitionName != null) &&
-				!definitionName.equals(_definitionName))) {
-			_definitionName = definitionName;
+	public void setDefinitionId(long definitionId) {
+		if (definitionId != _definitionId) {
+			_definitionId = definitionId;
+
+			if (!_setOriginalDefinitionId) {
+				_setOriginalDefinitionId = true;
+
+				_originalDefinitionId = definitionId;
+			}
 		}
 	}
 
-	public String getDescription() {
-		return GetterUtil.getString(_description);
+	public long getOriginalDefinitionId() {
+		return _originalDefinitionId;
 	}
 
-	public void setDescription(String description) {
-		if ((description != _description) ||
-				((description != null) && !description.equals(_description))) {
-			_description = description;
+	public String getRequestStatus() {
+		return GetterUtil.getString(_requestStatus);
+	}
+
+	public void setRequestStatus(String requestStatus) {
+		if ((requestStatus != _requestStatus) ||
+				((requestStatus != null) &&
+				!requestStatus.equals(_requestStatus))) {
+			_requestStatus = requestStatus;
 		}
 	}
 
-	public String getReportParameters() {
-		return GetterUtil.getString(_reportParameters);
+	public boolean getIsSchdule() {
+		return _isSchdule;
 	}
 
-	public void setReportParameters(String reportParameters) {
-		if ((reportParameters != _reportParameters) ||
-				((reportParameters != null) &&
-				!reportParameters.equals(_reportParameters))) {
-			_reportParameters = reportParameters;
+	public boolean isIsSchdule() {
+		return _isSchdule;
+	}
+
+	public void setIsSchdule(boolean isSchdule) {
+		if (isSchdule != _isSchdule) {
+			_isSchdule = isSchdule;
 		}
 	}
 
-	public String getReportFormat() {
-		return GetterUtil.getString(_reportFormat);
-	}
-
-	public void setReportFormat(String reportFormat) {
-		if ((reportFormat != _reportFormat) ||
-				((reportFormat != null) && !reportFormat.equals(_reportFormat))) {
-			_reportFormat = reportFormat;
-		}
-	}
-
-	public String getDataSourceName() {
-		return _dataSourceName;
-	}
-
-	public void setDataSourceName(String dataSourceName) {
-		if ((dataSourceName != _dataSourceName) ||
-				((dataSourceName != null) &&
-				!dataSourceName.equals(_dataSourceName))) {
-			_dataSourceName = dataSourceName;
-		}
-	}
-
-	public ReportDefinition toEscapedModel() {
+	public ReportRequest toEscapedModel() {
 		if (isEscapedModel()) {
-			return (ReportDefinition)this;
+			return (ReportRequest)this;
 		}
 		else {
-			ReportDefinition model = new ReportDefinitionImpl();
+			ReportRequest model = new ReportRequestImpl();
 
 			model.setNew(isNew());
 			model.setEscapedModel(true);
 
 			model.setUuid(HtmlUtil.escape(getUuid()));
-			model.setDefinitionId(getDefinitionId());
+			model.setRequestId(getRequestId());
 			model.setCompanyId(getCompanyId());
 			model.setGroupId(getGroupId());
 			model.setUserId(getUserId());
 			model.setCreateDate(getCreateDate());
-			model.setModifiedBy(getModifiedBy());
 			model.setModifiedDate(getModifiedDate());
-			model.setDefinitionName(HtmlUtil.escape(getDefinitionName()));
-			model.setDescription(HtmlUtil.escape(getDescription()));
-			model.setReportParameters(HtmlUtil.escape(getReportParameters()));
-			model.setReportFormat(HtmlUtil.escape(getReportFormat()));
-			model.setDataSourceName(HtmlUtil.escape(getDataSourceName()));
+			model.setDefinitionId(getDefinitionId());
+			model.setRequestStatus(HtmlUtil.escape(getRequestStatus()));
+			model.setIsSchdule(getIsSchdule());
 
-			model = (ReportDefinition)Proxy.newProxyInstance(ReportDefinition.class.getClassLoader(),
-					new Class[] { ReportDefinition.class },
+			model = (ReportRequest)Proxy.newProxyInstance(ReportRequest.class.getClassLoader(),
+					new Class[] { ReportRequest.class },
 					new ReadOnlyBeanHandler(model));
 
 			return model;
@@ -344,7 +316,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = new ExpandoBridgeImpl(ReportDefinition.class.getName(),
+			_expandoBridge = new ExpandoBridgeImpl(ReportRequest.class.getName(),
 					getPrimaryKey());
 		}
 
@@ -352,30 +324,27 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 	}
 
 	public Object clone() {
-		ReportDefinitionImpl clone = new ReportDefinitionImpl();
+		ReportRequestImpl clone = new ReportRequestImpl();
 
 		clone.setUuid(getUuid());
-		clone.setDefinitionId(getDefinitionId());
+		clone.setRequestId(getRequestId());
 		clone.setCompanyId(getCompanyId());
 		clone.setGroupId(getGroupId());
 		clone.setUserId(getUserId());
 		clone.setCreateDate(getCreateDate());
-		clone.setModifiedBy(getModifiedBy());
 		clone.setModifiedDate(getModifiedDate());
-		clone.setDefinitionName(getDefinitionName());
-		clone.setDescription(getDescription());
-		clone.setReportParameters(getReportParameters());
-		clone.setReportFormat(getReportFormat());
-		clone.setDataSourceName(getDataSourceName());
+		clone.setDefinitionId(getDefinitionId());
+		clone.setRequestStatus(getRequestStatus());
+		clone.setIsSchdule(getIsSchdule());
 
 		return clone;
 	}
 
-	public int compareTo(ReportDefinition reportDefinition) {
+	public int compareTo(ReportRequest reportRequest) {
 		int value = 0;
 
 		value = DateUtil.compareTo(getModifiedDate(),
-				reportDefinition.getModifiedDate());
+				reportRequest.getModifiedDate());
 
 		if (value != 0) {
 			return value;
@@ -389,16 +358,16 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 			return false;
 		}
 
-		ReportDefinition reportDefinition = null;
+		ReportRequest reportRequest = null;
 
 		try {
-			reportDefinition = (ReportDefinition)obj;
+			reportRequest = (ReportRequest)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;
 		}
 
-		long pk = reportDefinition.getPrimaryKey();
+		long pk = reportRequest.getPrimaryKey();
 
 		if (getPrimaryKey() == pk) {
 			return true;
@@ -414,19 +383,20 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 
 	private String _uuid;
 	private String _originalUuid;
-	private long _definitionId;
+	private long _requestId;
+	private long _originalRequestId;
+	private boolean _setOriginalRequestId;
 	private long _companyId;
 	private long _groupId;
 	private long _originalGroupId;
 	private boolean _setOriginalGroupId;
 	private long _userId;
 	private Date _createDate;
-	private long _modifiedBy;
 	private Date _modifiedDate;
-	private String _definitionName;
-	private String _description;
-	private String _reportParameters;
-	private String _reportFormat;
-	private String _dataSourceName;
+	private long _definitionId;
+	private long _originalDefinitionId;
+	private boolean _setOriginalDefinitionId;
+	private String _requestStatus;
+	private boolean _isSchdule;
 	private transient ExpandoBridge _expandoBridge;
 }

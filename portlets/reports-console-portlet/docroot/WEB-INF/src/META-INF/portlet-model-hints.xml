@@ -16,4 +16,16 @@
 		<field name="reportFormat" type="String" />
 		<field name="dataSourceName" type="String" />
 	</model>
+	<model name="com.liferay.bi.report.model.ReportRequest">
+		<field name="uuid" type="String" />
+		<field name="requestId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="userId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="definitionId" type="long" />
+		<field name="requestStatus" type="String" />
+		<field name="isSchdule" type="boolean" />
+	</model>
 </model-hints>

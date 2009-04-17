@@ -20,4 +20,19 @@
 		<property name="reportFormat" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="dataSourceName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
+	<class name="com.liferay.bi.report.model.impl.ReportRequestImpl" table="Report_ReportRequest">
+		<cache usage="read-write" />
+		<id name="requestId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" column="uuid_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="definitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="requestStatus" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="isSchdule" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
 </hibernate-mapping>

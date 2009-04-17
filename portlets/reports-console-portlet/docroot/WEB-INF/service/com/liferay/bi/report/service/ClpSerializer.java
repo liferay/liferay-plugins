@@ -23,6 +23,7 @@
 package com.liferay.bi.report.service;
 
 import com.liferay.bi.report.model.ReportDefinitionClp;
+import com.liferay.bi.report.model.ReportRequestClp;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -167,6 +168,102 @@ public class ClpSerializer {
 			}
 		}
 
+		if (oldModelClassName.equals(ReportRequestClp.class.getName())) {
+			ReportRequestClp oldCplModel = (ReportRequestClp)oldModel;
+
+			ClassLoader contextClassLoader = Thread.currentThread()
+												   .getContextClassLoader();
+
+			try {
+				Thread.currentThread().setContextClassLoader(_classLoader);
+
+				try {
+					Class<?> newModelClass = Class.forName("com.liferay.bi.report.model.impl.ReportRequestImpl",
+							true, _classLoader);
+
+					Object newModel = newModelClass.newInstance();
+
+					Method method0 = newModelClass.getMethod("setUuid",
+							new Class[] { String.class });
+
+					String value0 = oldCplModel.getUuid();
+
+					method0.invoke(newModel, value0);
+
+					Method method1 = newModelClass.getMethod("setRequestId",
+							new Class[] { Long.TYPE });
+
+					Long value1 = new Long(oldCplModel.getRequestId());
+
+					method1.invoke(newModel, value1);
+
+					Method method2 = newModelClass.getMethod("setCompanyId",
+							new Class[] { Long.TYPE });
+
+					Long value2 = new Long(oldCplModel.getCompanyId());
+
+					method2.invoke(newModel, value2);
+
+					Method method3 = newModelClass.getMethod("setGroupId",
+							new Class[] { Long.TYPE });
+
+					Long value3 = new Long(oldCplModel.getGroupId());
+
+					method3.invoke(newModel, value3);
+
+					Method method4 = newModelClass.getMethod("setUserId",
+							new Class[] { Long.TYPE });
+
+					Long value4 = new Long(oldCplModel.getUserId());
+
+					method4.invoke(newModel, value4);
+
+					Method method5 = newModelClass.getMethod("setCreateDate",
+							new Class[] { Date.class });
+
+					Date value5 = oldCplModel.getCreateDate();
+
+					method5.invoke(newModel, value5);
+
+					Method method6 = newModelClass.getMethod("setModifiedDate",
+							new Class[] { Date.class });
+
+					Date value6 = oldCplModel.getModifiedDate();
+
+					method6.invoke(newModel, value6);
+
+					Method method7 = newModelClass.getMethod("setDefinitionId",
+							new Class[] { Long.TYPE });
+
+					Long value7 = new Long(oldCplModel.getDefinitionId());
+
+					method7.invoke(newModel, value7);
+
+					Method method8 = newModelClass.getMethod("setRequestStatus",
+							new Class[] { String.class });
+
+					String value8 = oldCplModel.getRequestStatus();
+
+					method8.invoke(newModel, value8);
+
+					Method method9 = newModelClass.getMethod("setIsSchdule",
+							new Class[] { Boolean.TYPE });
+
+					Boolean value9 = new Boolean(oldCplModel.getIsSchdule());
+
+					method9.invoke(newModel, value9);
+
+					return newModel;
+				}
+				catch (Exception e) {
+					_log.error(e, e);
+				}
+			}
+			finally {
+				Thread.currentThread().setContextClassLoader(contextClassLoader);
+			}
+		}
+
 		return oldModel;
 	}
 
@@ -296,6 +393,91 @@ public class ClpSerializer {
 							(Object[])null);
 
 					newModel.setDataSourceName(value12);
+
+					return newModel;
+				}
+				catch (Exception e) {
+					_log.error(e, e);
+				}
+			}
+			finally {
+				Thread.currentThread().setContextClassLoader(contextClassLoader);
+			}
+		}
+
+		if (oldModelClassName.equals(
+					"com.liferay.bi.report.model.impl.ReportRequestImpl")) {
+			ClassLoader contextClassLoader = Thread.currentThread()
+												   .getContextClassLoader();
+
+			try {
+				Thread.currentThread().setContextClassLoader(_classLoader);
+
+				try {
+					ReportRequestClp newModel = new ReportRequestClp();
+
+					Method method0 = oldModelClass.getMethod("getUuid");
+
+					String value0 = (String)method0.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setUuid(value0);
+
+					Method method1 = oldModelClass.getMethod("getRequestId");
+
+					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
+
+					newModel.setRequestId(value1.longValue());
+
+					Method method2 = oldModelClass.getMethod("getCompanyId");
+
+					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
+
+					newModel.setCompanyId(value2.longValue());
+
+					Method method3 = oldModelClass.getMethod("getGroupId");
+
+					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
+
+					newModel.setGroupId(value3.longValue());
+
+					Method method4 = oldModelClass.getMethod("getUserId");
+
+					Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
+
+					newModel.setUserId(value4.longValue());
+
+					Method method5 = oldModelClass.getMethod("getCreateDate");
+
+					Date value5 = (Date)method5.invoke(oldModel, (Object[])null);
+
+					newModel.setCreateDate(value5);
+
+					Method method6 = oldModelClass.getMethod("getModifiedDate");
+
+					Date value6 = (Date)method6.invoke(oldModel, (Object[])null);
+
+					newModel.setModifiedDate(value6);
+
+					Method method7 = oldModelClass.getMethod("getDefinitionId");
+
+					Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
+
+					newModel.setDefinitionId(value7.longValue());
+
+					Method method8 = oldModelClass.getMethod("getRequestStatus");
+
+					String value8 = (String)method8.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setRequestStatus(value8);
+
+					Method method9 = oldModelClass.getMethod("getIsSchdule");
+
+					Boolean value9 = (Boolean)method9.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setIsSchdule(value9.booleanValue());
 
 					return newModel;
 				}

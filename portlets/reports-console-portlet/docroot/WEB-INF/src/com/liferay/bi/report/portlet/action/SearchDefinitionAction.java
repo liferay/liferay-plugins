@@ -22,6 +22,13 @@
 
 package com.liferay.bi.report.portlet.action;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
+import javax.portlet.PortletException;
+
 import com.liferay.bi.report.model.ReportDefinition;
 import com.liferay.bi.report.search.ReportDefinitionDisplayTerms;
 import com.liferay.bi.report.search.ReportDefinitionSearch;
@@ -31,16 +38,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.simplemvc.Action;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.PortletException;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * <a href="SearchDefinitionAction.java.html"><b><i>View Source</i></b></a>
@@ -53,10 +51,8 @@ public class SearchDefinitionAction implements Action {
 		ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortletException {
 
-		HttpServletRequest request =
-			PortalUtil.getHttpServletRequest(actionRequest);
 		ThemeDisplay themeDisplay =
-			(ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
+			(ThemeDisplay) actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
 		long companyId = themeDisplay.getCompanyId();
 		long groupId = themeDisplay.getScopeGroupId();

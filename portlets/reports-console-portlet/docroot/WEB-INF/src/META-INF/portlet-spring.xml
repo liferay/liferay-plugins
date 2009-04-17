@@ -16,4 +16,15 @@
 	<bean id="com.liferay.bi.report.service.persistence.ReportDefinitionFinderUtil" class="com.liferay.bi.report.service.persistence.ReportDefinitionFinderUtil">
 		<property name="finder" ref="com.liferay.bi.report.service.persistence.ReportDefinitionFinder.impl" />
 	</bean>
+	<bean id="com.liferay.bi.report.service.ReportRequestLocalService.impl" class="com.liferay.bi.report.service.impl.ReportRequestLocalServiceImpl" />
+	<bean id="com.liferay.bi.report.service.ReportRequestLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.bi.report.service.ReportRequestLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.bi.report.service.ReportRequestLocalServiceUtil" class="com.liferay.bi.report.service.ReportRequestLocalServiceUtil">
+		<property name="service" ref="com.liferay.bi.report.service.ReportRequestLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.bi.report.service.persistence.ReportRequestPersistence.impl" class="com.liferay.bi.report.service.persistence.ReportRequestPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.bi.report.service.persistence.ReportRequestUtil" class="com.liferay.bi.report.service.persistence.ReportRequestUtil">
+		<property name="persistence" ref="com.liferay.bi.report.service.persistence.ReportRequestPersistence.impl" />
+	</bean>
 </beans>

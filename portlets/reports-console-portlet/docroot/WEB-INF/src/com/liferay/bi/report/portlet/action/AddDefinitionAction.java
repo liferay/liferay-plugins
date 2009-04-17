@@ -78,7 +78,7 @@ public class AddDefinitionAction implements Action {
 					definitionName, description, datasourceName, format,
 					fileName, file, reportParameters);
 			uploadRequest.setAttribute("fileName", fileName);
-			SessionMessages.add(uploadRequest, "request_processed");
+			SessionMessages.add(actionRequest, "request_processed");
 		}
 		catch (PortalException e) {
 			definition = new ReportDefinitionImpl();

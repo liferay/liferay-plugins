@@ -22,7 +22,7 @@
 
 package com.liferay.bi.report.service.base;
 
-import com.liferay.bi.report.model.ReportDefinition;
+import com.liferay.bi.report.model.ReportRequest;
 import com.liferay.bi.report.service.ReportDefinitionLocalService;
 import com.liferay.bi.report.service.ReportRequestLocalService;
 import com.liferay.bi.report.service.persistence.ReportDefinitionFinder;
@@ -37,72 +37,71 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import java.util.List;
 
 /**
- * <a href="ReportDefinitionLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="ReportRequestLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class ReportDefinitionLocalServiceBaseImpl
-	implements ReportDefinitionLocalService {
-	public ReportDefinition addReportDefinition(
-		ReportDefinition reportDefinition) throws SystemException {
-		reportDefinition.setNew(true);
-
-		return reportDefinitionPersistence.update(reportDefinition, false);
-	}
-
-	public ReportDefinition createReportDefinition(long definitionId) {
-		return reportDefinitionPersistence.create(definitionId);
-	}
-
-	public void deleteReportDefinition(long definitionId)
-		throws PortalException, SystemException {
-		reportDefinitionPersistence.remove(definitionId);
-	}
-
-	public void deleteReportDefinition(ReportDefinition reportDefinition)
+public abstract class ReportRequestLocalServiceBaseImpl
+	implements ReportRequestLocalService {
+	public ReportRequest addReportRequest(ReportRequest reportRequest)
 		throws SystemException {
-		reportDefinitionPersistence.remove(reportDefinition);
+		reportRequest.setNew(true);
+
+		return reportRequestPersistence.update(reportRequest, false);
+	}
+
+	public ReportRequest createReportRequest(long requestId) {
+		return reportRequestPersistence.create(requestId);
+	}
+
+	public void deleteReportRequest(long requestId)
+		throws PortalException, SystemException {
+		reportRequestPersistence.remove(requestId);
+	}
+
+	public void deleteReportRequest(ReportRequest reportRequest)
+		throws SystemException {
+		reportRequestPersistence.remove(reportRequest);
 	}
 
 	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
-		return reportDefinitionPersistence.findWithDynamicQuery(dynamicQuery);
+		return reportRequestPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
 	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end) throws SystemException {
-		return reportDefinitionPersistence.findWithDynamicQuery(dynamicQuery,
+		return reportRequestPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
 
-	public ReportDefinition getReportDefinition(long definitionId)
+	public ReportRequest getReportRequest(long requestId)
 		throws PortalException, SystemException {
-		return reportDefinitionPersistence.findByPrimaryKey(definitionId);
+		return reportRequestPersistence.findByPrimaryKey(requestId);
 	}
 
-	public List<ReportDefinition> getReportDefinitions(int start, int end)
+	public List<ReportRequest> getReportRequests(int start, int end)
 		throws SystemException {
-		return reportDefinitionPersistence.findAll(start, end);
+		return reportRequestPersistence.findAll(start, end);
 	}
 
-	public int getReportDefinitionsCount() throws SystemException {
-		return reportDefinitionPersistence.countAll();
+	public int getReportRequestsCount() throws SystemException {
+		return reportRequestPersistence.countAll();
 	}
 
-	public ReportDefinition updateReportDefinition(
-		ReportDefinition reportDefinition) throws SystemException {
-		reportDefinition.setNew(false);
-
-		return reportDefinitionPersistence.update(reportDefinition, true);
-	}
-
-	public ReportDefinition updateReportDefinition(
-		ReportDefinition reportDefinition, boolean merge)
+	public ReportRequest updateReportRequest(ReportRequest reportRequest)
 		throws SystemException {
-		reportDefinition.setNew(false);
+		reportRequest.setNew(false);
 
-		return reportDefinitionPersistence.update(reportDefinition, merge);
+		return reportRequestPersistence.update(reportRequest, true);
+	}
+
+	public ReportRequest updateReportRequest(ReportRequest reportRequest,
+		boolean merge) throws SystemException {
+		reportRequest.setNew(false);
+
+		return reportRequestPersistence.update(reportRequest, merge);
 	}
 
 	public ReportDefinitionLocalService getReportDefinitionLocalService() {

@@ -14,3 +14,16 @@ create table Report_ReportDefinition (
 	reportFormat VARCHAR(75) null,
 	dataSourceName VARCHAR(75) null
 );
+
+create table Report_ReportRequest (
+	uuid_ VARCHAR(75) null,
+	requestId LONG not null primary key,
+	companyId LONG,
+	groupId LONG,
+	userId LONG,
+	createDate DATE null,
+	modifiedDate DATE null,
+	definitionId LONG,
+	requestStatus VARCHAR(75) null,
+	isSchdule BOOLEAN
+);

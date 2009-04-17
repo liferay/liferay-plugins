@@ -22,10 +22,10 @@
 
 package com.liferay.bi.report.service.persistence;
 
-import com.liferay.bi.report.NoSuchDefinitionException;
-import com.liferay.bi.report.model.ReportDefinition;
-import com.liferay.bi.report.model.impl.ReportDefinitionImpl;
-import com.liferay.bi.report.model.impl.ReportDefinitionModelImpl;
+import com.liferay.bi.report.NoSuchRequestException;
+import com.liferay.bi.report.model.ReportRequest;
+import com.liferay.bi.report.model.impl.ReportRequestImpl;
+import com.liferay.bi.report.model.impl.ReportRequestModelImpl;
 
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
@@ -54,22 +54,22 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * <a href="ReportDefinitionPersistenceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="ReportRequestPersistenceImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
-	implements ReportDefinitionPersistence {
-	public static final String FINDER_CLASS_NAME_ENTITY = ReportDefinitionImpl.class.getName();
+public class ReportRequestPersistenceImpl extends BasePersistenceImpl
+	implements ReportRequestPersistence {
+	public static final String FINDER_CLASS_NAME_ENTITY = ReportRequestImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
-	public static final FinderPath FINDER_PATH_FIND_BY_UUID = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_UUID = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByUuid",
 			new String[] { String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_UUID = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_UUID = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByUuid",
 			new String[] {
 				String.class.getName(),
@@ -77,24 +77,24 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_UUID = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_UUID = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countByUuid",
 			new String[] { String.class.getName() });
-	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_ENTITY, "fetchByUUID_G",
 			new String[] { String.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_COUNT_BY_UUID_G = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_UUID_G = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countByUUID_G",
 			new String[] { String.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_COMPANYID = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_COMPANYID = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByCompanyId",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_COMPANYID = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_COMPANYID = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByCompanyId",
 			new String[] {
 				Long.class.getName(),
@@ -102,16 +102,16 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countByCompanyId",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_COMPANYGROUPID = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_COMPANYGROUPID = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByCompanyGroupId",
 			new String[] { Long.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_COMPANYGROUPID = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_COMPANYGROUPID = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByCompanyGroupId",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
@@ -119,16 +119,16 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYGROUPID = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYGROUPID = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countByCompanyGroupId",
 			new String[] { Long.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_GROUPID = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_GROUPID = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByGroupId",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_GROUPID = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_GROUPID = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByGroupId",
 			new String[] {
 				Long.class.getName(),
@@ -136,16 +136,16 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_GROUPID = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_GROUPID = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countByGroupId",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_USERID = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_USERID = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByUserId",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_USERID = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_USERID = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findByUserId",
 			new String[] {
 				Long.class.getName(),
@@ -153,95 +153,100 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countByUserId",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_DEFINITIONNAME = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByDefinitionName",
-			new String[] { String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_DEFINITIONNAME = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByDefinitionName",
-			new String[] {
-				String.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_DEFINITIONNAME = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countByDefinitionName",
-			new String[] { String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FETCH_BY_REQUESTID = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_ENTITY, "fetchByRequestId",
+			new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_COUNT_BY_REQUESTID = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "countByRequestId",
+			new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FETCH_BY_DEFINITIONID = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_ENTITY, "fetchByDefinitionId",
+			new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_COUNT_BY_DEFINITIONID = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "countByDefinitionId",
+			new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionModelImpl.FINDER_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
-	public void cacheResult(ReportDefinition reportDefinition) {
-		EntityCacheUtil.putResult(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionImpl.class, reportDefinition.getPrimaryKey(),
-			reportDefinition);
+	public void cacheResult(ReportRequest reportRequest) {
+		EntityCacheUtil.putResult(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestImpl.class, reportRequest.getPrimaryKey(),
+			reportRequest);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
-				reportDefinition.getUuid(),
-				new Long(reportDefinition.getGroupId())
-			}, reportDefinition);
+				reportRequest.getUuid(), new Long(reportRequest.getGroupId())
+			}, reportRequest);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_REQUESTID,
+			new Object[] { new Long(reportRequest.getRequestId()) },
+			reportRequest);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_DEFINITIONID,
+			new Object[] { new Long(reportRequest.getDefinitionId()) },
+			reportRequest);
 	}
 
-	public void cacheResult(List<ReportDefinition> reportDefinitions) {
-		for (ReportDefinition reportDefinition : reportDefinitions) {
+	public void cacheResult(List<ReportRequest> reportRequests) {
+		for (ReportRequest reportRequest : reportRequests) {
 			if (EntityCacheUtil.getResult(
-						ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-						ReportDefinitionImpl.class,
-						reportDefinition.getPrimaryKey(), this) == null) {
-				cacheResult(reportDefinition);
+						ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+						ReportRequestImpl.class, reportRequest.getPrimaryKey(),
+						this) == null) {
+				cacheResult(reportRequest);
 			}
 		}
 	}
 
-	public ReportDefinition create(long definitionId) {
-		ReportDefinition reportDefinition = new ReportDefinitionImpl();
+	public ReportRequest create(long requestId) {
+		ReportRequest reportRequest = new ReportRequestImpl();
 
-		reportDefinition.setNew(true);
-		reportDefinition.setPrimaryKey(definitionId);
+		reportRequest.setNew(true);
+		reportRequest.setPrimaryKey(requestId);
 
 		String uuid = PortalUUIDUtil.generate();
 
-		reportDefinition.setUuid(uuid);
+		reportRequest.setUuid(uuid);
 
-		return reportDefinition;
+		return reportRequest;
 	}
 
-	public ReportDefinition remove(long definitionId)
-		throws NoSuchDefinitionException, SystemException {
+	public ReportRequest remove(long requestId)
+		throws NoSuchRequestException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			ReportDefinition reportDefinition = (ReportDefinition)session.get(ReportDefinitionImpl.class,
-					new Long(definitionId));
+			ReportRequest reportRequest = (ReportRequest)session.get(ReportRequestImpl.class,
+					new Long(requestId));
 
-			if (reportDefinition == null) {
+			if (reportRequest == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"No ReportDefinition exists with the primary key " +
-						definitionId);
+					_log.warn("No ReportRequest exists with the primary key " +
+						requestId);
 				}
 
-				throw new NoSuchDefinitionException(
-					"No ReportDefinition exists with the primary key " +
-					definitionId);
+				throw new NoSuchRequestException(
+					"No ReportRequest exists with the primary key " +
+					requestId);
 			}
 
-			return remove(reportDefinition);
+			return remove(reportRequest);
 		}
-		catch (NoSuchDefinitionException nsee) {
+		catch (NoSuchRequestException nsee) {
 			throw nsee;
 		}
 		catch (Exception e) {
@@ -252,39 +257,38 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public ReportDefinition remove(ReportDefinition reportDefinition)
+	public ReportRequest remove(ReportRequest reportRequest)
 		throws SystemException {
-		for (ModelListener<ReportDefinition> listener : listeners) {
-			listener.onBeforeRemove(reportDefinition);
+		for (ModelListener<ReportRequest> listener : listeners) {
+			listener.onBeforeRemove(reportRequest);
 		}
 
-		reportDefinition = removeImpl(reportDefinition);
+		reportRequest = removeImpl(reportRequest);
 
-		for (ModelListener<ReportDefinition> listener : listeners) {
-			listener.onAfterRemove(reportDefinition);
+		for (ModelListener<ReportRequest> listener : listeners) {
+			listener.onAfterRemove(reportRequest);
 		}
 
-		return reportDefinition;
+		return reportRequest;
 	}
 
-	protected ReportDefinition removeImpl(ReportDefinition reportDefinition)
+	protected ReportRequest removeImpl(ReportRequest reportRequest)
 		throws SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			if (reportDefinition.isCachedModel() ||
-					BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(ReportDefinitionImpl.class,
-						reportDefinition.getPrimaryKeyObj());
+			if (reportRequest.isCachedModel() || BatchSessionUtil.isEnabled()) {
+				Object staleObject = session.get(ReportRequestImpl.class,
+						reportRequest.getPrimaryKeyObj());
 
 				if (staleObject != null) {
 					session.evict(staleObject);
 				}
 			}
 
-			session.delete(reportDefinition);
+			session.delete(reportRequest);
 
 			session.flush();
 		}
@@ -297,66 +301,74 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		ReportDefinitionModelImpl reportDefinitionModelImpl = (ReportDefinitionModelImpl)reportDefinition;
+		ReportRequestModelImpl reportRequestModelImpl = (ReportRequestModelImpl)reportRequest;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
-				reportDefinitionModelImpl.getOriginalUuid(),
-				new Long(reportDefinitionModelImpl.getOriginalGroupId())
+				reportRequestModelImpl.getOriginalUuid(),
+				new Long(reportRequestModelImpl.getOriginalGroupId())
 			});
 
-		EntityCacheUtil.removeResult(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionImpl.class, reportDefinition.getPrimaryKey());
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REQUESTID,
+			new Object[] { new Long(reportRequestModelImpl.getOriginalRequestId()) });
 
-		return reportDefinition;
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_DEFINITIONID,
+			new Object[] {
+				new Long(reportRequestModelImpl.getOriginalDefinitionId())
+			});
+
+		EntityCacheUtil.removeResult(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestImpl.class, reportRequest.getPrimaryKey());
+
+		return reportRequest;
 	}
 
-	public ReportDefinition update(ReportDefinition reportDefinition)
+	public ReportRequest update(ReportRequest reportRequest)
 		throws SystemException {
 		if (_log.isWarnEnabled()) {
 			_log.warn(
-				"Using the deprecated update(ReportDefinition reportDefinition) method. Use update(ReportDefinition reportDefinition, boolean merge) instead.");
+				"Using the deprecated update(ReportRequest reportRequest) method. Use update(ReportRequest reportRequest, boolean merge) instead.");
 		}
 
-		return update(reportDefinition, false);
+		return update(reportRequest, false);
 	}
 
-	public ReportDefinition update(ReportDefinition reportDefinition,
-		boolean merge) throws SystemException {
-		boolean isNew = reportDefinition.isNew();
+	public ReportRequest update(ReportRequest reportRequest, boolean merge)
+		throws SystemException {
+		boolean isNew = reportRequest.isNew();
 
-		for (ModelListener<ReportDefinition> listener : listeners) {
+		for (ModelListener<ReportRequest> listener : listeners) {
 			if (isNew) {
-				listener.onBeforeCreate(reportDefinition);
+				listener.onBeforeCreate(reportRequest);
 			}
 			else {
-				listener.onBeforeUpdate(reportDefinition);
+				listener.onBeforeUpdate(reportRequest);
 			}
 		}
 
-		reportDefinition = updateImpl(reportDefinition, merge);
+		reportRequest = updateImpl(reportRequest, merge);
 
-		for (ModelListener<ReportDefinition> listener : listeners) {
+		for (ModelListener<ReportRequest> listener : listeners) {
 			if (isNew) {
-				listener.onAfterCreate(reportDefinition);
+				listener.onAfterCreate(reportRequest);
 			}
 			else {
-				listener.onAfterUpdate(reportDefinition);
+				listener.onAfterUpdate(reportRequest);
 			}
 		}
 
-		return reportDefinition;
+		return reportRequest;
 	}
 
-	public ReportDefinition updateImpl(
-		com.liferay.bi.report.model.ReportDefinition reportDefinition,
-		boolean merge) throws SystemException {
-		boolean isNew = reportDefinition.isNew();
+	public ReportRequest updateImpl(
+		com.liferay.bi.report.model.ReportRequest reportRequest, boolean merge)
+		throws SystemException {
+		boolean isNew = reportRequest.isNew();
 
-		if (Validator.isNull(reportDefinition.getUuid())) {
+		if (Validator.isNull(reportRequest.getUuid())) {
 			String uuid = PortalUUIDUtil.generate();
 
-			reportDefinition.setUuid(uuid);
+			reportRequest.setUuid(uuid);
 		}
 
 		Session session = null;
@@ -364,9 +376,9 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, reportDefinition, merge);
+			BatchSessionUtil.update(session, reportRequest, merge);
 
-			reportDefinition.setNew(false);
+			reportRequest.setNew(false);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -377,85 +389,114 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		EntityCacheUtil.putResult(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			ReportDefinitionImpl.class, reportDefinition.getPrimaryKey(),
-			reportDefinition);
+		EntityCacheUtil.putResult(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+			ReportRequestImpl.class, reportRequest.getPrimaryKey(),
+			reportRequest);
 
-		ReportDefinitionModelImpl reportDefinitionModelImpl = (ReportDefinitionModelImpl)reportDefinition;
+		ReportRequestModelImpl reportRequestModelImpl = (ReportRequestModelImpl)reportRequest;
 
 		if (!isNew &&
-				(!reportDefinition.getUuid()
-									  .equals(reportDefinitionModelImpl.getOriginalUuid()) ||
-				(reportDefinition.getGroupId() != reportDefinitionModelImpl.getOriginalGroupId()))) {
+				(!reportRequest.getUuid()
+								   .equals(reportRequestModelImpl.getOriginalUuid()) ||
+				(reportRequest.getGroupId() != reportRequestModelImpl.getOriginalGroupId()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
-					reportDefinitionModelImpl.getOriginalUuid(),
-					new Long(reportDefinitionModelImpl.getOriginalGroupId())
+					reportRequestModelImpl.getOriginalUuid(),
+					new Long(reportRequestModelImpl.getOriginalGroupId())
 				});
 		}
 
 		if (isNew ||
-				(!reportDefinition.getUuid()
-									  .equals(reportDefinitionModelImpl.getOriginalUuid()) ||
-				(reportDefinition.getGroupId() != reportDefinitionModelImpl.getOriginalGroupId()))) {
+				(!reportRequest.getUuid()
+								   .equals(reportRequestModelImpl.getOriginalUuid()) ||
+				(reportRequest.getGroupId() != reportRequestModelImpl.getOriginalGroupId()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
-					reportDefinition.getUuid(),
-					new Long(reportDefinition.getGroupId())
-				}, reportDefinition);
+					reportRequest.getUuid(),
+					new Long(reportRequest.getGroupId())
+				}, reportRequest);
 		}
 
-		return reportDefinition;
+		if (!isNew &&
+				(reportRequest.getRequestId() != reportRequestModelImpl.getOriginalRequestId())) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REQUESTID,
+				new Object[] {
+					new Long(reportRequestModelImpl.getOriginalRequestId())
+				});
+		}
+
+		if (isNew ||
+				(reportRequest.getRequestId() != reportRequestModelImpl.getOriginalRequestId())) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_REQUESTID,
+				new Object[] { new Long(reportRequest.getRequestId()) },
+				reportRequest);
+		}
+
+		if (!isNew &&
+				(reportRequest.getDefinitionId() != reportRequestModelImpl.getOriginalDefinitionId())) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_DEFINITIONID,
+				new Object[] {
+					new Long(reportRequestModelImpl.getOriginalDefinitionId())
+				});
+		}
+
+		if (isNew ||
+				(reportRequest.getDefinitionId() != reportRequestModelImpl.getOriginalDefinitionId())) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_DEFINITIONID,
+				new Object[] { new Long(reportRequest.getDefinitionId()) },
+				reportRequest);
+		}
+
+		return reportRequest;
 	}
 
-	public ReportDefinition findByPrimaryKey(long definitionId)
-		throws NoSuchDefinitionException, SystemException {
-		ReportDefinition reportDefinition = fetchByPrimaryKey(definitionId);
+	public ReportRequest findByPrimaryKey(long requestId)
+		throws NoSuchRequestException, SystemException {
+		ReportRequest reportRequest = fetchByPrimaryKey(requestId);
 
-		if (reportDefinition == null) {
+		if (reportRequest == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No ReportDefinition exists with the primary key " +
-					definitionId);
+				_log.warn("No ReportRequest exists with the primary key " +
+					requestId);
 			}
 
-			throw new NoSuchDefinitionException(
-				"No ReportDefinition exists with the primary key " +
-				definitionId);
+			throw new NoSuchRequestException(
+				"No ReportRequest exists with the primary key " + requestId);
 		}
 
-		return reportDefinition;
+		return reportRequest;
 	}
 
-	public ReportDefinition fetchByPrimaryKey(long definitionId)
+	public ReportRequest fetchByPrimaryKey(long requestId)
 		throws SystemException {
-		ReportDefinition reportDefinition = (ReportDefinition)EntityCacheUtil.getResult(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-				ReportDefinitionImpl.class, definitionId, this);
+		ReportRequest reportRequest = (ReportRequest)EntityCacheUtil.getResult(ReportRequestModelImpl.ENTITY_CACHE_ENABLED,
+				ReportRequestImpl.class, requestId, this);
 
-		if (reportDefinition == null) {
+		if (reportRequest == null) {
 			Session session = null;
 
 			try {
 				session = openSession();
 
-				reportDefinition = (ReportDefinition)session.get(ReportDefinitionImpl.class,
-						new Long(definitionId));
+				reportRequest = (ReportRequest)session.get(ReportRequestImpl.class,
+						new Long(requestId));
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
-				if (reportDefinition != null) {
-					cacheResult(reportDefinition);
+				if (reportRequest != null) {
+					cacheResult(reportRequest);
 				}
 
 				closeSession(session);
 			}
 		}
 
-		return reportDefinition;
+		return reportRequest;
 	}
 
-	public List<ReportDefinition> findByUuid(String uuid)
+	public List<ReportRequest> findByUuid(String uuid)
 		throws SystemException {
 		int count = countByUuid(uuid);
 
@@ -465,7 +506,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 		Object[] finderArgs = new Object[] { uuid };
 
-		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_UUID,
+		List<ReportRequest> list = (List<ReportRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_UUID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -477,7 +518,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 				if (uuid == null) {
 					query.append("uuid_ IS NULL");
@@ -507,7 +548,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<ReportDefinition>();
+					list = new ArrayList<ReportRequest>();
 				}
 
 				cacheResult(list);
@@ -522,12 +563,12 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		return list;
 	}
 
-	public List<ReportDefinition> findByUuid(String uuid, int start, int end)
+	public List<ReportRequest> findByUuid(String uuid, int start, int end)
 		throws SystemException {
 		return findByUuid(uuid, start, end, null);
 	}
 
-	public List<ReportDefinition> findByUuid(String uuid, int start, int end,
+	public List<ReportRequest> findByUuid(String uuid, int start, int end,
 		OrderByComparator obc) throws SystemException {
 		int count = countByUuid(uuid);
 
@@ -541,7 +582,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_UUID,
+		List<ReportRequest> list = (List<ReportRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_UUID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -553,7 +594,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 				if (uuid == null) {
 					query.append("uuid_ IS NULL");
@@ -583,7 +624,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 					qPos.add(uuid);
 				}
 
-				list = (List<ReportDefinition>)QueryUtil.list(q, getDialect(),
+				list = (List<ReportRequest>)QueryUtil.list(q, getDialect(),
 						start, end);
 			}
 			catch (Exception e) {
@@ -591,7 +632,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<ReportDefinition>();
+					list = new ArrayList<ReportRequest>();
 				}
 
 				cacheResult(list);
@@ -606,52 +647,51 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		return list;
 	}
 
-	public ReportDefinition findByUuid_First(String uuid, OrderByComparator obc)
-		throws NoSuchDefinitionException, SystemException {
-		List<ReportDefinition> list = findByUuid(uuid, 0, 1, obc);
+	public ReportRequest findByUuid_First(String uuid, OrderByComparator obc)
+		throws NoSuchRequestException, SystemException {
+		List<ReportRequest> list = findByUuid(uuid, 0, 1, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
-			msg.append("No ReportDefinition exists with the key {");
+			msg.append("No ReportRequest exists with the key {");
 
 			msg.append("uuid=" + uuid);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			throw new NoSuchDefinitionException(msg.toString());
+			throw new NoSuchRequestException(msg.toString());
 		}
 		else {
 			return list.get(0);
 		}
 	}
 
-	public ReportDefinition findByUuid_Last(String uuid, OrderByComparator obc)
-		throws NoSuchDefinitionException, SystemException {
+	public ReportRequest findByUuid_Last(String uuid, OrderByComparator obc)
+		throws NoSuchRequestException, SystemException {
 		int count = countByUuid(uuid);
 
-		List<ReportDefinition> list = findByUuid(uuid, count - 1, count, obc);
+		List<ReportRequest> list = findByUuid(uuid, count - 1, count, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
-			msg.append("No ReportDefinition exists with the key {");
+			msg.append("No ReportRequest exists with the key {");
 
 			msg.append("uuid=" + uuid);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			throw new NoSuchDefinitionException(msg.toString());
+			throw new NoSuchRequestException(msg.toString());
 		}
 		else {
 			return list.get(0);
 		}
 	}
 
-	public ReportDefinition[] findByUuid_PrevAndNext(long definitionId,
-		String uuid, OrderByComparator obc)
-		throws NoSuchDefinitionException, SystemException {
-		ReportDefinition reportDefinition = findByPrimaryKey(definitionId);
+	public ReportRequest[] findByUuid_PrevAndNext(long requestId, String uuid,
+		OrderByComparator obc) throws NoSuchRequestException, SystemException {
+		ReportRequest reportRequest = findByPrimaryKey(requestId);
 
 		int count = countByUuid(uuid);
 
@@ -663,7 +703,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			StringBuilder query = new StringBuilder();
 
 			query.append(
-				"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+				"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 			if (uuid == null) {
 				query.append("uuid_ IS NULL");
@@ -694,13 +734,13 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			}
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					reportDefinition);
+					reportRequest);
 
-			ReportDefinition[] array = new ReportDefinitionImpl[3];
+			ReportRequest[] array = new ReportRequestImpl[3];
 
-			array[0] = (ReportDefinition)objArray[0];
-			array[1] = (ReportDefinition)objArray[1];
-			array[2] = (ReportDefinition)objArray[2];
+			array[0] = (ReportRequest)objArray[0];
+			array[1] = (ReportRequest)objArray[1];
+			array[2] = (ReportRequest)objArray[2];
 
 			return array;
 		}
@@ -712,14 +752,14 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public ReportDefinition findByUUID_G(String uuid, long groupId)
-		throws NoSuchDefinitionException, SystemException {
-		ReportDefinition reportDefinition = fetchByUUID_G(uuid, groupId);
+	public ReportRequest findByUUID_G(String uuid, long groupId)
+		throws NoSuchRequestException, SystemException {
+		ReportRequest reportRequest = fetchByUUID_G(uuid, groupId);
 
-		if (reportDefinition == null) {
+		if (reportRequest == null) {
 			StringBuilder msg = new StringBuilder();
 
-			msg.append("No ReportDefinition exists with the key {");
+			msg.append("No ReportRequest exists with the key {");
 
 			msg.append("uuid=" + uuid);
 
@@ -732,18 +772,18 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				_log.warn(msg.toString());
 			}
 
-			throw new NoSuchDefinitionException(msg.toString());
+			throw new NoSuchRequestException(msg.toString());
 		}
 
-		return reportDefinition;
+		return reportRequest;
 	}
 
-	public ReportDefinition fetchByUUID_G(String uuid, long groupId)
+	public ReportRequest fetchByUUID_G(String uuid, long groupId)
 		throws SystemException {
 		return fetchByUUID_G(uuid, groupId, true);
 	}
 
-	public ReportDefinition fetchByUUID_G(String uuid, long groupId,
+	public ReportRequest fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { uuid, new Long(groupId) };
 
@@ -763,7 +803,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 				if (uuid == null) {
 					query.append("uuid_ IS NULL");
@@ -792,23 +832,23 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(groupId);
 
-				List<ReportDefinition> list = q.list();
+				List<ReportRequest> list = q.list();
 
 				result = list;
 
-				ReportDefinition reportDefinition = null;
+				ReportRequest reportRequest = null;
 
 				if (list.isEmpty()) {
 					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
 						finderArgs, list);
 				}
 				else {
-					reportDefinition = list.get(0);
+					reportRequest = list.get(0);
 
-					cacheResult(reportDefinition);
+					cacheResult(reportRequest);
 				}
 
-				return reportDefinition;
+				return reportRequest;
 			}
 			catch (Exception e) {
 				throw processException(e);
@@ -816,7 +856,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			finally {
 				if (result == null) {
 					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-						finderArgs, new ArrayList<ReportDefinition>());
+						finderArgs, new ArrayList<ReportRequest>());
 				}
 
 				closeSession(session);
@@ -827,12 +867,12 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				return null;
 			}
 			else {
-				return (ReportDefinition)result;
+				return (ReportRequest)result;
 			}
 		}
 	}
 
-	public List<ReportDefinition> findByCompanyId(long companyId)
+	public List<ReportRequest> findByCompanyId(long companyId)
 		throws SystemException {
 		int count = countByCompanyId(companyId);
 
@@ -842,7 +882,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 		Object[] finderArgs = new Object[] { new Long(companyId) };
 
-		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_COMPANYID,
+		List<ReportRequest> list = (List<ReportRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_COMPANYID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -854,7 +894,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 				query.append("companyId = ?");
 
@@ -877,7 +917,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<ReportDefinition>();
+					list = new ArrayList<ReportRequest>();
 				}
 
 				cacheResult(list);
@@ -892,12 +932,12 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		return list;
 	}
 
-	public List<ReportDefinition> findByCompanyId(long companyId, int start,
+	public List<ReportRequest> findByCompanyId(long companyId, int start,
 		int end) throws SystemException {
 		return findByCompanyId(companyId, start, end, null);
 	}
 
-	public List<ReportDefinition> findByCompanyId(long companyId, int start,
+	public List<ReportRequest> findByCompanyId(long companyId, int start,
 		int end, OrderByComparator obc) throws SystemException {
 		int count = countByCompanyId(companyId);
 
@@ -911,7 +951,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_COMPANYID,
+		List<ReportRequest> list = (List<ReportRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_COMPANYID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -923,7 +963,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 				query.append("companyId = ?");
 
@@ -946,7 +986,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(companyId);
 
-				list = (List<ReportDefinition>)QueryUtil.list(q, getDialect(),
+				list = (List<ReportRequest>)QueryUtil.list(q, getDialect(),
 						start, end);
 			}
 			catch (Exception e) {
@@ -954,7 +994,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<ReportDefinition>();
+					list = new ArrayList<ReportRequest>();
 				}
 
 				cacheResult(list);
@@ -969,55 +1009,53 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		return list;
 	}
 
-	public ReportDefinition findByCompanyId_First(long companyId,
-		OrderByComparator obc)
-		throws NoSuchDefinitionException, SystemException {
-		List<ReportDefinition> list = findByCompanyId(companyId, 0, 1, obc);
+	public ReportRequest findByCompanyId_First(long companyId,
+		OrderByComparator obc) throws NoSuchRequestException, SystemException {
+		List<ReportRequest> list = findByCompanyId(companyId, 0, 1, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
-			msg.append("No ReportDefinition exists with the key {");
+			msg.append("No ReportRequest exists with the key {");
 
 			msg.append("companyId=" + companyId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			throw new NoSuchDefinitionException(msg.toString());
+			throw new NoSuchRequestException(msg.toString());
 		}
 		else {
 			return list.get(0);
 		}
 	}
 
-	public ReportDefinition findByCompanyId_Last(long companyId,
-		OrderByComparator obc)
-		throws NoSuchDefinitionException, SystemException {
+	public ReportRequest findByCompanyId_Last(long companyId,
+		OrderByComparator obc) throws NoSuchRequestException, SystemException {
 		int count = countByCompanyId(companyId);
 
-		List<ReportDefinition> list = findByCompanyId(companyId, count - 1,
-				count, obc);
+		List<ReportRequest> list = findByCompanyId(companyId, count - 1, count,
+				obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
-			msg.append("No ReportDefinition exists with the key {");
+			msg.append("No ReportRequest exists with the key {");
 
 			msg.append("companyId=" + companyId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			throw new NoSuchDefinitionException(msg.toString());
+			throw new NoSuchRequestException(msg.toString());
 		}
 		else {
 			return list.get(0);
 		}
 	}
 
-	public ReportDefinition[] findByCompanyId_PrevAndNext(long definitionId,
+	public ReportRequest[] findByCompanyId_PrevAndNext(long requestId,
 		long companyId, OrderByComparator obc)
-		throws NoSuchDefinitionException, SystemException {
-		ReportDefinition reportDefinition = findByPrimaryKey(definitionId);
+		throws NoSuchRequestException, SystemException {
+		ReportRequest reportRequest = findByPrimaryKey(requestId);
 
 		int count = countByCompanyId(companyId);
 
@@ -1029,7 +1067,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			StringBuilder query = new StringBuilder();
 
 			query.append(
-				"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+				"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 			query.append("companyId = ?");
 
@@ -1053,13 +1091,13 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			qPos.add(companyId);
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					reportDefinition);
+					reportRequest);
 
-			ReportDefinition[] array = new ReportDefinitionImpl[3];
+			ReportRequest[] array = new ReportRequestImpl[3];
 
-			array[0] = (ReportDefinition)objArray[0];
-			array[1] = (ReportDefinition)objArray[1];
-			array[2] = (ReportDefinition)objArray[2];
+			array[0] = (ReportRequest)objArray[0];
+			array[1] = (ReportRequest)objArray[1];
+			array[2] = (ReportRequest)objArray[2];
 
 			return array;
 		}
@@ -1071,8 +1109,8 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<ReportDefinition> findByCompanyGroupId(long companyId,
-		long groupId) throws SystemException {
+	public List<ReportRequest> findByCompanyGroupId(long companyId, long groupId)
+		throws SystemException {
 		int count = countByCompanyGroupId(companyId, groupId);
 
 		if (count == 0) {
@@ -1083,7 +1121,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				new Long(companyId), new Long(groupId)
 			};
 
-		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_COMPANYGROUPID,
+		List<ReportRequest> list = (List<ReportRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_COMPANYGROUPID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1095,7 +1133,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 				query.append("companyId = ?");
 
@@ -1124,7 +1162,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<ReportDefinition>();
+					list = new ArrayList<ReportRequest>();
 				}
 
 				cacheResult(list);
@@ -1139,12 +1177,12 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		return list;
 	}
 
-	public List<ReportDefinition> findByCompanyGroupId(long companyId,
+	public List<ReportRequest> findByCompanyGroupId(long companyId,
 		long groupId, int start, int end) throws SystemException {
 		return findByCompanyGroupId(companyId, groupId, start, end, null);
 	}
 
-	public List<ReportDefinition> findByCompanyGroupId(long companyId,
+	public List<ReportRequest> findByCompanyGroupId(long companyId,
 		long groupId, int start, int end, OrderByComparator obc)
 		throws SystemException {
 		int count = countByCompanyGroupId(companyId, groupId);
@@ -1159,7 +1197,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_COMPANYGROUPID,
+		List<ReportRequest> list = (List<ReportRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_COMPANYGROUPID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1171,7 +1209,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 				query.append("companyId = ?");
 
@@ -1200,7 +1238,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(groupId);
 
-				list = (List<ReportDefinition>)QueryUtil.list(q, getDialect(),
+				list = (List<ReportRequest>)QueryUtil.list(q, getDialect(),
 						start, end);
 			}
 			catch (Exception e) {
@@ -1208,7 +1246,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<ReportDefinition>();
+					list = new ArrayList<ReportRequest>();
 				}
 
 				cacheResult(list);
@@ -1223,16 +1261,16 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		return list;
 	}
 
-	public ReportDefinition findByCompanyGroupId_First(long companyId,
+	public ReportRequest findByCompanyGroupId_First(long companyId,
 		long groupId, OrderByComparator obc)
-		throws NoSuchDefinitionException, SystemException {
-		List<ReportDefinition> list = findByCompanyGroupId(companyId, groupId,
-				0, 1, obc);
+		throws NoSuchRequestException, SystemException {
+		List<ReportRequest> list = findByCompanyGroupId(companyId, groupId, 0,
+				1, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
-			msg.append("No ReportDefinition exists with the key {");
+			msg.append("No ReportRequest exists with the key {");
 
 			msg.append("companyId=" + companyId);
 
@@ -1241,25 +1279,25 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			throw new NoSuchDefinitionException(msg.toString());
+			throw new NoSuchRequestException(msg.toString());
 		}
 		else {
 			return list.get(0);
 		}
 	}
 
-	public ReportDefinition findByCompanyGroupId_Last(long companyId,
+	public ReportRequest findByCompanyGroupId_Last(long companyId,
 		long groupId, OrderByComparator obc)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchRequestException, SystemException {
 		int count = countByCompanyGroupId(companyId, groupId);
 
-		List<ReportDefinition> list = findByCompanyGroupId(companyId, groupId,
+		List<ReportRequest> list = findByCompanyGroupId(companyId, groupId,
 				count - 1, count, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
-			msg.append("No ReportDefinition exists with the key {");
+			msg.append("No ReportRequest exists with the key {");
 
 			msg.append("companyId=" + companyId);
 
@@ -1268,17 +1306,17 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			throw new NoSuchDefinitionException(msg.toString());
+			throw new NoSuchRequestException(msg.toString());
 		}
 		else {
 			return list.get(0);
 		}
 	}
 
-	public ReportDefinition[] findByCompanyGroupId_PrevAndNext(
-		long definitionId, long companyId, long groupId, OrderByComparator obc)
-		throws NoSuchDefinitionException, SystemException {
-		ReportDefinition reportDefinition = findByPrimaryKey(definitionId);
+	public ReportRequest[] findByCompanyGroupId_PrevAndNext(long requestId,
+		long companyId, long groupId, OrderByComparator obc)
+		throws NoSuchRequestException, SystemException {
+		ReportRequest reportRequest = findByPrimaryKey(requestId);
 
 		int count = countByCompanyGroupId(companyId, groupId);
 
@@ -1290,7 +1328,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			StringBuilder query = new StringBuilder();
 
 			query.append(
-				"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+				"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 			query.append("companyId = ?");
 
@@ -1320,13 +1358,13 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			qPos.add(groupId);
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					reportDefinition);
+					reportRequest);
 
-			ReportDefinition[] array = new ReportDefinitionImpl[3];
+			ReportRequest[] array = new ReportRequestImpl[3];
 
-			array[0] = (ReportDefinition)objArray[0];
-			array[1] = (ReportDefinition)objArray[1];
-			array[2] = (ReportDefinition)objArray[2];
+			array[0] = (ReportRequest)objArray[0];
+			array[1] = (ReportRequest)objArray[1];
+			array[2] = (ReportRequest)objArray[2];
 
 			return array;
 		}
@@ -1338,7 +1376,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<ReportDefinition> findByGroupId(long groupId)
+	public List<ReportRequest> findByGroupId(long groupId)
 		throws SystemException {
 		int count = countByGroupId(groupId);
 
@@ -1348,7 +1386,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 		Object[] finderArgs = new Object[] { new Long(groupId) };
 
-		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_GROUPID,
+		List<ReportRequest> list = (List<ReportRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_GROUPID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1360,7 +1398,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 				query.append("groupId = ?");
 
@@ -1383,7 +1421,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<ReportDefinition>();
+					list = new ArrayList<ReportRequest>();
 				}
 
 				cacheResult(list);
@@ -1398,13 +1436,13 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		return list;
 	}
 
-	public List<ReportDefinition> findByGroupId(long groupId, int start, int end)
+	public List<ReportRequest> findByGroupId(long groupId, int start, int end)
 		throws SystemException {
 		return findByGroupId(groupId, start, end, null);
 	}
 
-	public List<ReportDefinition> findByGroupId(long groupId, int start,
-		int end, OrderByComparator obc) throws SystemException {
+	public List<ReportRequest> findByGroupId(long groupId, int start, int end,
+		OrderByComparator obc) throws SystemException {
 		int count = countByGroupId(groupId);
 
 		if (count == 0) {
@@ -1417,7 +1455,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_GROUPID,
+		List<ReportRequest> list = (List<ReportRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_GROUPID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1429,7 +1467,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 				query.append("groupId = ?");
 
@@ -1452,7 +1490,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(groupId);
 
-				list = (List<ReportDefinition>)QueryUtil.list(q, getDialect(),
+				list = (List<ReportRequest>)QueryUtil.list(q, getDialect(),
 						start, end);
 			}
 			catch (Exception e) {
@@ -1460,7 +1498,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<ReportDefinition>();
+					list = new ArrayList<ReportRequest>();
 				}
 
 				cacheResult(list);
@@ -1475,55 +1513,52 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		return list;
 	}
 
-	public ReportDefinition findByGroupId_First(long groupId,
-		OrderByComparator obc)
-		throws NoSuchDefinitionException, SystemException {
-		List<ReportDefinition> list = findByGroupId(groupId, 0, 1, obc);
+	public ReportRequest findByGroupId_First(long groupId, OrderByComparator obc)
+		throws NoSuchRequestException, SystemException {
+		List<ReportRequest> list = findByGroupId(groupId, 0, 1, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
-			msg.append("No ReportDefinition exists with the key {");
+			msg.append("No ReportRequest exists with the key {");
 
 			msg.append("groupId=" + groupId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			throw new NoSuchDefinitionException(msg.toString());
+			throw new NoSuchRequestException(msg.toString());
 		}
 		else {
 			return list.get(0);
 		}
 	}
 
-	public ReportDefinition findByGroupId_Last(long groupId,
-		OrderByComparator obc)
-		throws NoSuchDefinitionException, SystemException {
+	public ReportRequest findByGroupId_Last(long groupId, OrderByComparator obc)
+		throws NoSuchRequestException, SystemException {
 		int count = countByGroupId(groupId);
 
-		List<ReportDefinition> list = findByGroupId(groupId, count - 1, count,
-				obc);
+		List<ReportRequest> list = findByGroupId(groupId, count - 1, count, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
-			msg.append("No ReportDefinition exists with the key {");
+			msg.append("No ReportRequest exists with the key {");
 
 			msg.append("groupId=" + groupId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			throw new NoSuchDefinitionException(msg.toString());
+			throw new NoSuchRequestException(msg.toString());
 		}
 		else {
 			return list.get(0);
 		}
 	}
 
-	public ReportDefinition[] findByGroupId_PrevAndNext(long definitionId,
+	public ReportRequest[] findByGroupId_PrevAndNext(long requestId,
 		long groupId, OrderByComparator obc)
-		throws NoSuchDefinitionException, SystemException {
-		ReportDefinition reportDefinition = findByPrimaryKey(definitionId);
+		throws NoSuchRequestException, SystemException {
+		ReportRequest reportRequest = findByPrimaryKey(requestId);
 
 		int count = countByGroupId(groupId);
 
@@ -1535,7 +1570,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			StringBuilder query = new StringBuilder();
 
 			query.append(
-				"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+				"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 			query.append("groupId = ?");
 
@@ -1559,13 +1594,13 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			qPos.add(groupId);
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					reportDefinition);
+					reportRequest);
 
-			ReportDefinition[] array = new ReportDefinitionImpl[3];
+			ReportRequest[] array = new ReportRequestImpl[3];
 
-			array[0] = (ReportDefinition)objArray[0];
-			array[1] = (ReportDefinition)objArray[1];
-			array[2] = (ReportDefinition)objArray[2];
+			array[0] = (ReportRequest)objArray[0];
+			array[1] = (ReportRequest)objArray[1];
+			array[2] = (ReportRequest)objArray[2];
 
 			return array;
 		}
@@ -1577,7 +1612,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<ReportDefinition> findByUserId(long userId)
+	public List<ReportRequest> findByUserId(long userId)
 		throws SystemException {
 		int count = countByUserId(userId);
 
@@ -1587,7 +1622,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 		Object[] finderArgs = new Object[] { new Long(userId) };
 
-		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_USERID,
+		List<ReportRequest> list = (List<ReportRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_USERID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1599,7 +1634,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 				query.append("userId = ?");
 
@@ -1622,7 +1657,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<ReportDefinition>();
+					list = new ArrayList<ReportRequest>();
 				}
 
 				cacheResult(list);
@@ -1637,12 +1672,12 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		return list;
 	}
 
-	public List<ReportDefinition> findByUserId(long userId, int start, int end)
+	public List<ReportRequest> findByUserId(long userId, int start, int end)
 		throws SystemException {
 		return findByUserId(userId, start, end, null);
 	}
 
-	public List<ReportDefinition> findByUserId(long userId, int start, int end,
+	public List<ReportRequest> findByUserId(long userId, int start, int end,
 		OrderByComparator obc) throws SystemException {
 		int count = countByUserId(userId);
 
@@ -1656,7 +1691,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_USERID,
+		List<ReportRequest> list = (List<ReportRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_USERID,
 				finderArgs, this);
 
 		if (list == null) {
@@ -1668,7 +1703,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 				query.append("userId = ?");
 
@@ -1691,7 +1726,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(userId);
 
-				list = (List<ReportDefinition>)QueryUtil.list(q, getDialect(),
+				list = (List<ReportRequest>)QueryUtil.list(q, getDialect(),
 						start, end);
 			}
 			catch (Exception e) {
@@ -1699,7 +1734,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<ReportDefinition>();
+					list = new ArrayList<ReportRequest>();
 				}
 
 				cacheResult(list);
@@ -1714,53 +1749,52 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		return list;
 	}
 
-	public ReportDefinition findByUserId_First(long userId,
-		OrderByComparator obc)
-		throws NoSuchDefinitionException, SystemException {
-		List<ReportDefinition> list = findByUserId(userId, 0, 1, obc);
+	public ReportRequest findByUserId_First(long userId, OrderByComparator obc)
+		throws NoSuchRequestException, SystemException {
+		List<ReportRequest> list = findByUserId(userId, 0, 1, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
-			msg.append("No ReportDefinition exists with the key {");
+			msg.append("No ReportRequest exists with the key {");
 
 			msg.append("userId=" + userId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			throw new NoSuchDefinitionException(msg.toString());
+			throw new NoSuchRequestException(msg.toString());
 		}
 		else {
 			return list.get(0);
 		}
 	}
 
-	public ReportDefinition findByUserId_Last(long userId, OrderByComparator obc)
-		throws NoSuchDefinitionException, SystemException {
+	public ReportRequest findByUserId_Last(long userId, OrderByComparator obc)
+		throws NoSuchRequestException, SystemException {
 		int count = countByUserId(userId);
 
-		List<ReportDefinition> list = findByUserId(userId, count - 1, count, obc);
+		List<ReportRequest> list = findByUserId(userId, count - 1, count, obc);
 
 		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
-			msg.append("No ReportDefinition exists with the key {");
+			msg.append("No ReportRequest exists with the key {");
 
 			msg.append("userId=" + userId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			throw new NoSuchDefinitionException(msg.toString());
+			throw new NoSuchRequestException(msg.toString());
 		}
 		else {
 			return list.get(0);
 		}
 	}
 
-	public ReportDefinition[] findByUserId_PrevAndNext(long definitionId,
+	public ReportRequest[] findByUserId_PrevAndNext(long requestId,
 		long userId, OrderByComparator obc)
-		throws NoSuchDefinitionException, SystemException {
-		ReportDefinition reportDefinition = findByPrimaryKey(definitionId);
+		throws NoSuchRequestException, SystemException {
+		ReportRequest reportRequest = findByPrimaryKey(requestId);
 
 		int count = countByUserId(userId);
 
@@ -1772,7 +1806,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			StringBuilder query = new StringBuilder();
 
 			query.append(
-				"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+				"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 			query.append("userId = ?");
 
@@ -1796,13 +1830,13 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			qPos.add(userId);
 
 			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					reportDefinition);
+					reportRequest);
 
-			ReportDefinition[] array = new ReportDefinitionImpl[3];
+			ReportRequest[] array = new ReportRequestImpl[3];
 
-			array[0] = (ReportDefinition)objArray[0];
-			array[1] = (ReportDefinition)objArray[1];
-			array[2] = (ReportDefinition)objArray[2];
+			array[0] = (ReportRequest)objArray[0];
+			array[1] = (ReportRequest)objArray[1];
+			array[2] = (ReportRequest)objArray[2];
 
 			return array;
 		}
@@ -1814,20 +1848,46 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<ReportDefinition> findByDefinitionName(String definitionName)
+	public ReportRequest findByRequestId(long requestId)
+		throws NoSuchRequestException, SystemException {
+		ReportRequest reportRequest = fetchByRequestId(requestId);
+
+		if (reportRequest == null) {
+			StringBuilder msg = new StringBuilder();
+
+			msg.append("No ReportRequest exists with the key {");
+
+			msg.append("requestId=" + requestId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchRequestException(msg.toString());
+		}
+
+		return reportRequest;
+	}
+
+	public ReportRequest fetchByRequestId(long requestId)
 		throws SystemException {
-		int count = countByDefinitionName(definitionName);
+		return fetchByRequestId(requestId, true);
+	}
 
-		if (count == 0) {
-			return Collections.EMPTY_LIST;
+	public ReportRequest fetchByRequestId(long requestId,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(requestId) };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_REQUESTID,
+					finderArgs, this);
 		}
 
-		Object[] finderArgs = new Object[] { definitionName };
-
-		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_DEFINITIONNAME,
-				finderArgs, this);
-
-		if (list == null) {
+		if (result == null) {
 			Session session = null;
 
 			try {
@@ -1836,14 +1896,9 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
-				if (definitionName == null) {
-					query.append("definitionName IS NULL");
-				}
-				else {
-					query.append("definitionName = ?");
-				}
+				query.append("requestId = ?");
 
 				query.append(" ");
 
@@ -1855,55 +1910,88 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (definitionName != null) {
-					qPos.add(definitionName);
+				qPos.add(requestId);
+
+				List<ReportRequest> list = q.list();
+
+				result = list;
+
+				ReportRequest reportRequest = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_REQUESTID,
+						finderArgs, list);
+				}
+				else {
+					reportRequest = list.get(0);
+
+					cacheResult(reportRequest);
 				}
 
-				list = q.list();
+				return reportRequest;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
-				if (list == null) {
-					list = new ArrayList<ReportDefinition>();
+				if (result == null) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_REQUESTID,
+						finderArgs, new ArrayList<ReportRequest>());
 				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_DEFINITIONNAME,
-					finderArgs, list);
 
 				closeSession(session);
 			}
 		}
-
-		return list;
+		else {
+			if (result instanceof List) {
+				return null;
+			}
+			else {
+				return (ReportRequest)result;
+			}
+		}
 	}
 
-	public List<ReportDefinition> findByDefinitionName(String definitionName,
-		int start, int end) throws SystemException {
-		return findByDefinitionName(definitionName, start, end, null);
-	}
+	public ReportRequest findByDefinitionId(long definitionId)
+		throws NoSuchRequestException, SystemException {
+		ReportRequest reportRequest = fetchByDefinitionId(definitionId);
 
-	public List<ReportDefinition> findByDefinitionName(String definitionName,
-		int start, int end, OrderByComparator obc) throws SystemException {
-		int count = countByDefinitionName(definitionName);
+		if (reportRequest == null) {
+			StringBuilder msg = new StringBuilder();
 
-		if (count == 0) {
-			return Collections.EMPTY_LIST;
+			msg.append("No ReportRequest exists with the key {");
+
+			msg.append("definitionId=" + definitionId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchRequestException(msg.toString());
 		}
 
-		Object[] finderArgs = new Object[] {
-				definitionName,
-				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
-			};
+		return reportRequest;
+	}
 
-		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_DEFINITIONNAME,
-				finderArgs, this);
+	public ReportRequest fetchByDefinitionId(long definitionId)
+		throws SystemException {
+		return fetchByDefinitionId(definitionId, true);
+	}
 
-		if (list == null) {
+	public ReportRequest fetchByDefinitionId(long definitionId,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(definitionId) };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_DEFINITIONID,
+					finderArgs, this);
+		}
+
+		if (result == null) {
 			Session session = null;
 
 			try {
@@ -1912,166 +2000,59 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				StringBuilder query = new StringBuilder();
 
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
-				if (definitionName == null) {
-					query.append("definitionName IS NULL");
-				}
-				else {
-					query.append("definitionName = ?");
-				}
+				query.append("definitionId = ?");
 
 				query.append(" ");
 
-				if (obc != null) {
-					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
-				}
+				query.append("ORDER BY ");
 
-				else {
-					query.append("ORDER BY ");
-
-					query.append("modifiedDate ASC");
-				}
+				query.append("modifiedDate ASC");
 
 				Query q = session.createQuery(query.toString());
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (definitionName != null) {
-					qPos.add(definitionName);
+				qPos.add(definitionId);
+
+				List<ReportRequest> list = q.list();
+
+				result = list;
+
+				ReportRequest reportRequest = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_DEFINITIONID,
+						finderArgs, list);
+				}
+				else {
+					reportRequest = list.get(0);
+
+					cacheResult(reportRequest);
 				}
 
-				list = (List<ReportDefinition>)QueryUtil.list(q, getDialect(),
-						start, end);
+				return reportRequest;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
-				if (list == null) {
-					list = new ArrayList<ReportDefinition>();
+				if (result == null) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_DEFINITIONID,
+						finderArgs, new ArrayList<ReportRequest>());
 				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_DEFINITIONNAME,
-					finderArgs, list);
 
 				closeSession(session);
 			}
 		}
-
-		return list;
-	}
-
-	public ReportDefinition findByDefinitionName_First(String definitionName,
-		OrderByComparator obc)
-		throws NoSuchDefinitionException, SystemException {
-		List<ReportDefinition> list = findByDefinitionName(definitionName, 0,
-				1, obc);
-
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
-
-			msg.append("No ReportDefinition exists with the key {");
-
-			msg.append("definitionName=" + definitionName);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchDefinitionException(msg.toString());
-		}
 		else {
-			return list.get(0);
-		}
-	}
-
-	public ReportDefinition findByDefinitionName_Last(String definitionName,
-		OrderByComparator obc)
-		throws NoSuchDefinitionException, SystemException {
-		int count = countByDefinitionName(definitionName);
-
-		List<ReportDefinition> list = findByDefinitionName(definitionName,
-				count - 1, count, obc);
-
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
-
-			msg.append("No ReportDefinition exists with the key {");
-
-			msg.append("definitionName=" + definitionName);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchDefinitionException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	public ReportDefinition[] findByDefinitionName_PrevAndNext(
-		long definitionId, String definitionName, OrderByComparator obc)
-		throws NoSuchDefinitionException, SystemException {
-		ReportDefinition reportDefinition = findByPrimaryKey(definitionId);
-
-		int count = countByDefinitionName(definitionName);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			StringBuilder query = new StringBuilder();
-
-			query.append(
-				"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
-
-			if (definitionName == null) {
-				query.append("definitionName IS NULL");
+			if (result instanceof List) {
+				return null;
 			}
 			else {
-				query.append("definitionName = ?");
+				return (ReportRequest)result;
 			}
-
-			query.append(" ");
-
-			if (obc != null) {
-				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
-			}
-
-			else {
-				query.append("ORDER BY ");
-
-				query.append("modifiedDate ASC");
-			}
-
-			Query q = session.createQuery(query.toString());
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			if (definitionName != null) {
-				qPos.add(definitionName);
-			}
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					reportDefinition);
-
-			ReportDefinition[] array = new ReportDefinitionImpl[3];
-
-			array[0] = (ReportDefinition)objArray[0];
-			array[1] = (ReportDefinition)objArray[1];
-			array[2] = (ReportDefinition)objArray[2];
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
 		}
 	}
 
@@ -2115,22 +2096,22 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
-	public List<ReportDefinition> findAll() throws SystemException {
+	public List<ReportRequest> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
-	public List<ReportDefinition> findAll(int start, int end)
+	public List<ReportRequest> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
 	}
 
-	public List<ReportDefinition> findAll(int start, int end,
-		OrderByComparator obc) throws SystemException {
+	public List<ReportRequest> findAll(int start, int end, OrderByComparator obc)
+		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+		List<ReportRequest> list = (List<ReportRequest>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
 				finderArgs, this);
 
 		if (list == null) {
@@ -2141,8 +2122,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				StringBuilder query = new StringBuilder();
 
-				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition ");
+				query.append("FROM com.liferay.bi.report.model.ReportRequest ");
 
 				if (obc != null) {
 					query.append("ORDER BY ");
@@ -2158,14 +2138,14 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				Query q = session.createQuery(query.toString());
 
 				if (obc == null) {
-					list = (List<ReportDefinition>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<ReportRequest>)QueryUtil.list(q, getDialect(),
+							start, end, false);
 
 					Collections.sort(list);
 				}
 				else {
-					list = (List<ReportDefinition>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<ReportRequest>)QueryUtil.list(q, getDialect(),
+							start, end);
 				}
 			}
 			catch (Exception e) {
@@ -2173,7 +2153,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<ReportDefinition>();
+					list = new ArrayList<ReportRequest>();
 				}
 
 				cacheResult(list);
@@ -2188,55 +2168,61 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public void removeByUuid(String uuid) throws SystemException {
-		for (ReportDefinition reportDefinition : findByUuid(uuid)) {
-			remove(reportDefinition);
+		for (ReportRequest reportRequest : findByUuid(uuid)) {
+			remove(reportRequest);
 		}
 	}
 
 	public void removeByUUID_G(String uuid, long groupId)
-		throws NoSuchDefinitionException, SystemException {
-		ReportDefinition reportDefinition = findByUUID_G(uuid, groupId);
+		throws NoSuchRequestException, SystemException {
+		ReportRequest reportRequest = findByUUID_G(uuid, groupId);
 
-		remove(reportDefinition);
+		remove(reportRequest);
 	}
 
 	public void removeByCompanyId(long companyId) throws SystemException {
-		for (ReportDefinition reportDefinition : findByCompanyId(companyId)) {
-			remove(reportDefinition);
+		for (ReportRequest reportRequest : findByCompanyId(companyId)) {
+			remove(reportRequest);
 		}
 	}
 
 	public void removeByCompanyGroupId(long companyId, long groupId)
 		throws SystemException {
-		for (ReportDefinition reportDefinition : findByCompanyGroupId(
-				companyId, groupId)) {
-			remove(reportDefinition);
+		for (ReportRequest reportRequest : findByCompanyGroupId(companyId,
+				groupId)) {
+			remove(reportRequest);
 		}
 	}
 
 	public void removeByGroupId(long groupId) throws SystemException {
-		for (ReportDefinition reportDefinition : findByGroupId(groupId)) {
-			remove(reportDefinition);
+		for (ReportRequest reportRequest : findByGroupId(groupId)) {
+			remove(reportRequest);
 		}
 	}
 
 	public void removeByUserId(long userId) throws SystemException {
-		for (ReportDefinition reportDefinition : findByUserId(userId)) {
-			remove(reportDefinition);
+		for (ReportRequest reportRequest : findByUserId(userId)) {
+			remove(reportRequest);
 		}
 	}
 
-	public void removeByDefinitionName(String definitionName)
-		throws SystemException {
-		for (ReportDefinition reportDefinition : findByDefinitionName(
-				definitionName)) {
-			remove(reportDefinition);
-		}
+	public void removeByRequestId(long requestId)
+		throws NoSuchRequestException, SystemException {
+		ReportRequest reportRequest = findByRequestId(requestId);
+
+		remove(reportRequest);
+	}
+
+	public void removeByDefinitionId(long definitionId)
+		throws NoSuchRequestException, SystemException {
+		ReportRequest reportRequest = findByDefinitionId(definitionId);
+
+		remove(reportRequest);
 	}
 
 	public void removeAll() throws SystemException {
-		for (ReportDefinition reportDefinition : findAll()) {
-			remove(reportDefinition);
+		for (ReportRequest reportRequest : findAll()) {
+			remove(reportRequest);
 		}
 	}
 
@@ -2256,7 +2242,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				query.append("SELECT COUNT(*) ");
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 				if (uuid == null) {
 					query.append("uuid_ IS NULL");
@@ -2312,7 +2298,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				query.append("SELECT COUNT(*) ");
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 				if (uuid == null) {
 					query.append("uuid_ IS NULL");
@@ -2373,7 +2359,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				query.append("SELECT COUNT(*) ");
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 				query.append("companyId = ?");
 
@@ -2424,7 +2410,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				query.append("SELECT COUNT(*) ");
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 				query.append("companyId = ?");
 
@@ -2478,7 +2464,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				query.append("SELECT COUNT(*) ");
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 				query.append("groupId = ?");
 
@@ -2526,7 +2512,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				query.append("SELECT COUNT(*) ");
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
 				query.append("userId = ?");
 
@@ -2558,11 +2544,10 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		return count.intValue();
 	}
 
-	public int countByDefinitionName(String definitionName)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { definitionName };
+	public int countByRequestId(long requestId) throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(requestId) };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_DEFINITIONNAME,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_REQUESTID,
 				finderArgs, this);
 
 		if (count == null) {
@@ -2575,14 +2560,9 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				query.append("SELECT COUNT(*) ");
 				query.append(
-					"FROM com.liferay.bi.report.model.ReportDefinition WHERE ");
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
 
-				if (definitionName == null) {
-					query.append("definitionName IS NULL");
-				}
-				else {
-					query.append("definitionName = ?");
-				}
+				query.append("requestId = ?");
 
 				query.append(" ");
 
@@ -2590,9 +2570,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (definitionName != null) {
-					qPos.add(definitionName);
-				}
+				qPos.add(requestId);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -2604,7 +2582,55 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_DEFINITIONNAME,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_REQUESTID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	public int countByDefinitionId(long definitionId) throws SystemException {
+		Object[] finderArgs = new Object[] { new Long(definitionId) };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_DEFINITIONID,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBuilder query = new StringBuilder();
+
+				query.append("SELECT COUNT(*) ");
+				query.append(
+					"FROM com.liferay.bi.report.model.ReportRequest WHERE ");
+
+				query.append("definitionId = ?");
+
+				query.append(" ");
+
+				Query q = session.createQuery(query.toString());
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(definitionId);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_DEFINITIONID,
 					finderArgs, count);
 
 				closeSession(session);
@@ -2627,7 +2653,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 				session = openSession();
 
 				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.bi.report.model.ReportDefinition");
+						"SELECT COUNT(*) FROM com.liferay.bi.report.model.ReportRequest");
 
 				count = (Long)q.uniqueResult();
 			}
@@ -2652,14 +2678,14 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
-						"value.object.listener.com.liferay.bi.report.model.ReportDefinition")));
+						"value.object.listener.com.liferay.bi.report.model.ReportRequest")));
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener<ReportDefinition>> listenersList = new ArrayList<ModelListener<ReportDefinition>>();
+				List<ModelListener<ReportRequest>> listenersList = new ArrayList<ModelListener<ReportRequest>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener<ReportDefinition>)Class.forName(
+					listenersList.add((ModelListener<ReportRequest>)Class.forName(
 							listenerClassName).newInstance());
 				}
 
@@ -2675,5 +2701,5 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 	protected com.liferay.bi.report.service.persistence.ReportDefinitionPersistence reportDefinitionPersistence;
 	@BeanReference(name = "com.liferay.bi.report.service.persistence.ReportRequestPersistence.impl")
 	protected com.liferay.bi.report.service.persistence.ReportRequestPersistence reportRequestPersistence;
-	private static Log _log = LogFactoryUtil.getLog(ReportDefinitionPersistenceImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(ReportRequestPersistenceImpl.class);
 }
