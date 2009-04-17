@@ -882,18 +882,25 @@ table.calendar {
 
 /* SO: Members */
 
-.so-portlet-members .invite-members a {
-	background: #EEE;
-	border: 1px solid #CCC;
-	display: block;
-	font-size: 1.2em;
-	font-weight: bold;
-	margin: 12px 0;
-	padding: 8px 5px;
-}
-
 .so-portlet-members .invite-members {
 	width: 100%;
+}
+
+.so-portlet-members .invite-members a {
+	background: transparent url(../images/arrows/01_plus.png) no-repeat 100% 50%;
+	display: block;
+	font-size: 1.2em;
+	margin: 12px 0;
+	padding: 0 18px 0 0;
+	position: absolute;
+}
+
+.so-portlet-members .portlet-section-header {
+	display: none;
+}
+
+.so-portlet-members .portlet-section-body .col-1 {
+	width: 35px;
 }
 
 /* SO: Profiles */
