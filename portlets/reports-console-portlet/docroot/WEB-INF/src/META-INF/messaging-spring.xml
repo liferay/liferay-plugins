@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+	>
+
+	<bean id="destination.report_responses"
+		  class="com.liferay.portal.kernel.messaging.ParallelDestination">
+		<constructor-arg index="0" type="java.lang.String"
+						 value="liferay/report_responses"/>
+	</bean>
+
+	<bean id="messageListener.responses.report"
+		  class="com.liferay.bi.report.messaging.ReportResponseMessageListener">
+	</bean>
+
+	<bean id="messagingConfigurator"
+		  class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator"
+		  init-method="init" destroy-method="destroy">
+		<property name="destinations">
+			<list>
+				<ref bean="destination.report_responses"/>
+			</list>
+		</property>
+		<property name="messageListeners">
+			<map key-type="java.lang.String" value-type="java.util.List">
+				<entry key="liferay/report_responses">
+					<list
+						value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="messageListener.responses.report"/>
+					</list>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>
+
+

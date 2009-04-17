@@ -54,7 +54,7 @@ String definitionId = String.valueOf(definition.getDefinitionId());
 	<liferay-ui:icon image="permissions" url="<%= permissionsURL %>" />
 </c:if>
 
-	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="generateImmdiatelyURL" name="generateImmdiately">
+	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" name="genrateReport" var="generateImmdiatelyURL" >
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="definitionId" value="<%= definitionId %>" />
 	</portlet:actionURL>

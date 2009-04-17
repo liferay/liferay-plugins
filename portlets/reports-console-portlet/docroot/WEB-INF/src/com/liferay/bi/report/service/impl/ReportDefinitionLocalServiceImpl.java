@@ -28,7 +28,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.portlet.PortletRequest;
-import javax.servlet.ServletContext;
 
 import com.liferay.bi.report.DefinitionFileException;
 import com.liferay.bi.report.DefinitionFormatException;
@@ -36,21 +35,25 @@ import com.liferay.bi.report.DefinitionNameException;
 import com.liferay.bi.report.NoSuchDefinitionException;
 import com.liferay.bi.report.model.ReportDefinition;
 import com.liferay.bi.report.service.base.ReportDefinitionLocalServiceBaseImpl;
-import com.liferay.bi.report.util.ReportUtil;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.documentlibrary.DuplicateDirectoryException;
 import com.liferay.documentlibrary.DuplicateFileException;
 import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.bi.reporting.MemoryReportDesignRetriever;
+import com.liferay.portal.kernel.bi.reporting.ReportDesignRetriever;
 import com.liferay.portal.kernel.bi.reporting.ReportFormat;
 import com.liferay.portal.kernel.bi.reporting.ReportRequest;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.CompanyConstants;
-import com.liferay.portal.util.PortalUtil;
 
 /**
  * <a href="ReportDefinitionLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
@@ -117,15 +120,30 @@ public class ReportDefinitionLocalServiceImpl
 
 	public void genrateReport(PortletRequest portletRequest, long definitionId)
 		throws PortalException, SystemException {
+		_log.info("genrateReport");
+		ReportDefinition definition =
+			reportDefinitionPersistence.fetchByPrimaryKey(definitionId);
 
-		ServletContext servletContext =
-			PortalUtil.getHttpServletRequest(portletRequest).getSession().getServletContext();
-		ReportDefinition deportDefinition = getReportDefinition(definitionId);
-		ReportRequest reportRequest =
-			ReportUtil.getReportRequest(servletContext, deportDefinition);
+		String[] existingFiles = definition.getAttachmentsFiles();
 
-		MessageBusUtil.sendMessage("liferay/report_request", reportRequest);
+		byte[] definitionFile =
+			DLServiceUtil.getFile(
+				definition.getCompanyId(), repositoryId, existingFiles[0]);
 
+		ReportDesignRetriever retriever =
+			new MemoryReportDesignRetriever(
+				definition.getDefinitionName(), definitionFile);
+
+		ReportRequest request =
+			new ReportRequest(
+				retriever, definition.getReportFormat(), null, null);
+
+		Message message = new Message();
+		message.setPayload(request);
+		message.setResponseId(PortalUUIDUtil.generate());
+		message.setResponseDestination("liferay/report_responses");
+		
+		MessageBusUtil.sendMessage("liferay/report_requests", message);
 	}
 
 	public List<ReportDefinition> getReportDefintions(
@@ -262,5 +280,8 @@ public class ReportDefinitionLocalServiceImpl
 			throw new DefinitionFormatException();
 		}
 	}
+
+	private static Log _log =
+		LogFactoryUtil.getLog(ReportDefinitionLocalServiceImpl.class);
 
 }

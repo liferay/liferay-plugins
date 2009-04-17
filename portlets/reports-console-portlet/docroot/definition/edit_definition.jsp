@@ -77,6 +77,10 @@
 	function <portlet:namespace />updateDefinition() {
 		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="updateDefinition" /><portlet:param name="jspPage" value="/definition/edit_definition.jsp" /></portlet:actionURL>');
 	}
+	
+	function <portlet:namespace />generateImmdiately() {
+		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="genrateReport" /></portlet:actionURL>');
+	}
 
 	function <portlet:namespace />deleteDefinition() {
 		if (confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-the-report-definition") %>')) {
@@ -251,7 +255,7 @@
 <c:if test="<%=!isNew %>">
 	<input type="button" value="<liferay-ui:message key="update" />" onClick="<portlet:namespace />updateDefinition();" />
 
-	<input type="button" value="<liferay-ui:message key="generate-immdiately" />" />
+	<input type="button" value="<liferay-ui:message key="generate-immdiately" />" onClick="<portlet:namespace />generateImmdiately();" />
 
 	<input type="button" value="<liferay-ui:message key="add-schedule" />" />
 

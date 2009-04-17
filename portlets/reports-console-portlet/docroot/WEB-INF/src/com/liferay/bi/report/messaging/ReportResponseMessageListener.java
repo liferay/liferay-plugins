@@ -46,6 +46,7 @@ public class ReportResponseMessageListener implements MessageListener {
 
 	protected void doReceive(Message message) throws Exception {
 		//TDB save report to DB
+		_log.info("TBD Save result");
 	}
 
 	private static Log _log =
