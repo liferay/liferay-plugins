@@ -168,6 +168,10 @@ public class ReportDefinitionClp extends BaseModelImpl<ReportDefinition>
 		throw new UnsupportedOperationException();
 	}
 
+	public java.lang.String[] getAttachmentsFiles() {
+		throw new UnsupportedOperationException();
+	}
+
 	public ReportDefinition toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;

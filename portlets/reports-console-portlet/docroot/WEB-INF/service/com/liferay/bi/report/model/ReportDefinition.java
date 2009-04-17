@@ -32,4 +32,8 @@ public interface ReportDefinition extends ReportDefinitionModel {
 	public java.lang.String getAttachmentsDir();
 
 	public void setAttachmentsDir(java.lang.String attachmentsDir);
+
+	public java.lang.String[] getAttachmentsFiles()
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
 }

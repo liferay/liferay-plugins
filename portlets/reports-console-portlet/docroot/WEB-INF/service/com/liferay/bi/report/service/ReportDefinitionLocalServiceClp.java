@@ -381,8 +381,7 @@ public class ReportDefinitionLocalServiceClp
 	public com.liferay.bi.report.model.ReportDefinition addReportDefinition(
 		long companyId, long groupId, long userId,
 		java.lang.String definitionName, java.lang.String description,
-		java.lang.String datasourceName,
-		com.liferay.portal.kernel.bi.reporting.ReportFormat format,
+		java.lang.String datasourceName, java.lang.String format,
 		java.lang.String fileName, java.io.File file,
 		java.lang.String reportParameters)
 		throws com.liferay.portal.PortalException,
@@ -414,8 +413,7 @@ public class ReportDefinitionLocalServiceClp
 		Object paramObj6 = ClpSerializer.translateInput(format);
 
 		if (format == null) {
-			paramObj6 = new NullWrapper(
-					"com.liferay.portal.kernel.bi.reporting.ReportFormat");
+			paramObj6 = new NullWrapper("java.lang.String");
 		}
 
 		Object paramObj7 = ClpSerializer.translateInput(fileName);
@@ -769,8 +767,7 @@ public class ReportDefinitionLocalServiceClp
 	public com.liferay.bi.report.model.ReportDefinition updateReportDefinition(
 		long definitionId, java.lang.String definitionName,
 		java.lang.String description, java.lang.String datasourceName,
-		com.liferay.portal.kernel.bi.reporting.ReportFormat format,
-		java.lang.String reportParameters)
+		java.lang.String format, java.lang.String reportParameters)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(definitionId);
@@ -796,8 +793,7 @@ public class ReportDefinitionLocalServiceClp
 		Object paramObj4 = ClpSerializer.translateInput(format);
 
 		if (format == null) {
-			paramObj4 = new NullWrapper(
-					"com.liferay.portal.kernel.bi.reporting.ReportFormat");
+			paramObj4 = new NullWrapper("java.lang.String");
 		}
 
 		Object paramObj5 = ClpSerializer.translateInput(reportParameters);
@@ -839,9 +835,8 @@ public class ReportDefinitionLocalServiceClp
 	public com.liferay.bi.report.model.ReportDefinition updateReportDefinition(
 		long definitionId, java.lang.String definitionName,
 		java.lang.String description, java.lang.String datasourceName,
-		com.liferay.portal.kernel.bi.reporting.ReportFormat format,
-		java.lang.String reportParameters, java.lang.String fileName,
-		java.io.File file)
+		java.lang.String format, java.lang.String reportParameters,
+		java.lang.String fileName, java.io.File file)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(definitionId);
@@ -867,8 +862,7 @@ public class ReportDefinitionLocalServiceClp
 		Object paramObj4 = ClpSerializer.translateInput(format);
 
 		if (format == null) {
-			paramObj4 = new NullWrapper(
-					"com.liferay.portal.kernel.bi.reporting.ReportFormat");
+			paramObj4 = new NullWrapper("java.lang.String");
 		}
 
 		Object paramObj5 = ClpSerializer.translateInput(reportParameters);

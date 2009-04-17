@@ -30,10 +30,16 @@ import java.util.List;
 import javax.portlet.PortletRequest;
 import javax.servlet.ServletContext;
 
+import com.liferay.bi.report.DefinitionFileException;
+import com.liferay.bi.report.DefinitionFormatException;
+import com.liferay.bi.report.DefinitionNameException;
+import com.liferay.bi.report.NoSuchDefinitionException;
 import com.liferay.bi.report.model.ReportDefinition;
 import com.liferay.bi.report.service.base.ReportDefinitionLocalServiceBaseImpl;
 import com.liferay.bi.report.util.ReportUtil;
 import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.documentlibrary.DuplicateDirectoryException;
+import com.liferay.documentlibrary.DuplicateFileException;
 import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
@@ -54,9 +60,17 @@ import com.liferay.portal.util.PortalUtil;
 public class ReportDefinitionLocalServiceImpl
 	extends ReportDefinitionLocalServiceBaseImpl {
 
+	private static String portletId = CompanyConstants.SYSTEM_STRING;
+	private static long repositoryId = CompanyConstants.SYSTEM;
+	private static long fileEntryId = 0;
+	private static String properties = StringPool.BLANK;
+	private static Date modifiedDate = new Date();
+	private static String[] tagsCategories = new String[0];
+	private static String[] tagsEntries = new String[0];
+
 	public ReportDefinition addReportDefinition(
 		long companyId, long groupId, long userId, String definitionName,
-		String description, String datasourceName, ReportFormat format,
+		String description, String datasourceName, String format,
 		String fileName, File file, String reportParameters)
 		throws PortalException, SystemException {
 
@@ -69,31 +83,41 @@ public class ReportDefinitionLocalServiceImpl
 		definition.setDefinitionName(definitionName);
 		definition.setDescription(description);
 		definition.setDataSourceName(datasourceName);
-		definition.setReportFormat(format.toString());
+		definition.setReportFormat(format);
 		definition.setReportParameters(reportParameters);
 
-		String portletId = CompanyConstants.SYSTEM_STRING;
-		long repositoryId = 0;
-		long fileEntryId = 0;
-		String properties = StringPool.BLANK;
-		Date modifiedDate = new Date();
-		String[] tagsCategories = new String[0];
-		String[] tagsEntries = new String[0];
+		validate(definition);
 
-		DLServiceUtil.addDirectory(
-			companyId, repositoryId, definition.getAttachmentsDir());
+		if (Validator.isNull(fileName)) {
+			throw new DefinitionFileException();
+		}
 
-		DLServiceUtil.addFile(
-			companyId, portletId, groupId, repositoryId,
-			definition.getAttachmentsDir() + StringPool.SLASH + fileName,
-			fileEntryId, properties, modifiedDate, tagsCategories, tagsEntries,
-			file);
+		try {
+			DLServiceUtil.addDirectory(
+				companyId, repositoryId, definition.getAttachmentsDir());
+		}
+		catch (DuplicateDirectoryException dde) {
+		}
+		try {
+			DLServiceUtil.addFile(
+				companyId, portletId, groupId, repositoryId,
+				definition.getAttachmentsDir() + StringPool.SLASH + fileName,
+				fileEntryId, properties, modifiedDate, tagsCategories,
+				tagsEntries, file);
+		}
+		catch (PortalException e) {
+			DLServiceUtil.deleteDirectory(
+				companyId, portletId, repositoryId,
+				definition.getAttachmentsDir());
+			throw new DefinitionFileException();
+		}
 
 		return addReportDefinition(definition);
 	}
 
 	public void genrateReport(PortletRequest portletRequest, long definitionId)
 		throws PortalException, SystemException {
+
 		ServletContext servletContext =
 			PortalUtil.getHttpServletRequest(portletRequest).getSession().getServletContext();
 		ReportDefinition deportDefinition = getReportDefinition(definitionId);
@@ -160,17 +184,24 @@ public class ReportDefinitionLocalServiceImpl
 
 	public ReportDefinition updateReportDefinition(
 		long definitionId, String definitionName, String description,
-		String datasourceName, ReportFormat format, String reportParameters)
+		String datasourceName, String format, String reportParameters)
 		throws PortalException, SystemException {
 
-		return updateReportDefinition(
-			definitionId, definitionName, description, datasourceName, format,
-			reportParameters, null, null);
+		ReportDefinition definition = getReportDefinition(definitionId);
+		definition.setDefinitionName(definitionName);
+		definition.setDescription(description);
+		definition.setDataSourceName(datasourceName);
+		definition.setReportFormat(format);
+		definition.setReportParameters(reportParameters);
+
+		validate(definition);
+
+		return updateReportDefinition(definition);
 	}
 
 	public ReportDefinition updateReportDefinition(
 		long definitionId, String definitionName, String description,
-		String datasourceName, ReportFormat format, String reportParameters,
+		String datasourceName, String format, String reportParameters,
 		String fileName, File file)
 		throws PortalException, SystemException {
 
@@ -178,36 +209,58 @@ public class ReportDefinitionLocalServiceImpl
 		definition.setDefinitionName(definitionName);
 		definition.setDescription(description);
 		definition.setDataSourceName(datasourceName);
-		definition.setReportFormat(format.toString());
+		definition.setReportFormat(format);
 		definition.setReportParameters(reportParameters);
 
-		if (Validator.isNotNull(fileName)) {
-			String[] existingAttachments =
-				DLServiceUtil.getFileNames(
-					definition.getCompanyId(), CompanyConstants.SYSTEM,
-					definition.getAttachmentsDir());
-			for (String attachment : existingAttachments) {
-				DLServiceUtil.deleteFile(
-					definition.getCompanyId(), CompanyConstants.SYSTEM_STRING,
-					CompanyConstants.SYSTEM, attachment);
-			}
+		validate(definition);
 
-			String portletId = CompanyConstants.SYSTEM_STRING;
-			long repositoryId = 0;
-			long fileEntryId = 0;
-			String properties = StringPool.BLANK;
-			Date modifiedDate = new Date();
-			String[] tagsCategories = new String[0];
-			String[] tagsEntries = new String[0];
+		if (Validator.isNull(fileName)) {
+			throw new DefinitionFileException();
+		}
 
+		fileName = definition.getAttachmentsDir() + StringPool.SLASH + fileName;
+
+		try {
 			DLServiceUtil.addFile(
 				definition.getCompanyId(), portletId, definition.getGroupId(),
-				repositoryId, definition.getAttachmentsDir() +
-					StringPool.SLASH + fileName, fileEntryId, properties,
-				modifiedDate, tagsCategories, tagsEntries, file);
+				repositoryId, fileName, fileEntryId, properties, modifiedDate,
+				tagsCategories, tagsEntries, file);
+		}
+		catch (DuplicateFileException e) {
+		}
+		catch (PortalException e) {
+			throw new DefinitionFileException();
+		}
+
+		String[] existingFiles = definition.getAttachmentsFiles();
+		for (String existingFile : existingFiles) {
+			if (fileName != existingFile) {
+				DLServiceUtil.deleteFile(
+					definition.getCompanyId(), portletId, repositoryId,
+					existingFile);
+			}
 		}
 
 		return updateReportDefinition(definition);
+	}
+
+	private void validate(ReportDefinition definition)
+		throws PortalException {
+
+		if (definition.getDefinitionId() <= 0) {
+			throw new NoSuchDefinitionException();
+		}
+
+		if (Validator.isNull(definition.getDefinitionName())) {
+			throw new DefinitionNameException();
+		}
+
+		try {
+			ReportFormat.parse(definition.getReportFormat());
+		}
+		catch (IllegalArgumentException e) {
+			throw new DefinitionFormatException();
+		}
 	}
 
 }

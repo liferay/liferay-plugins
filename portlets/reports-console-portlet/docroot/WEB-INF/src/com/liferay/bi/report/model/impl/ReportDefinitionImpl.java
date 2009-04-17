@@ -23,27 +23,54 @@
 package com.liferay.bi.report.model.impl;
 
 import com.liferay.bi.report.model.ReportDefinition;
+import com.liferay.documentlibrary.NoSuchDirectoryException;
+import com.liferay.documentlibrary.service.DLServiceUtil;
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.model.CompanyConstants;
 
 /**
  * <a href="ReportDefinitionImpl.java.html"><b><i>View Source</i></b></a>
- *
+ * 
  * @author Brian Wing Shun Chan
- *
  */
 public class ReportDefinitionImpl extends ReportDefinitionModelImpl
 	implements ReportDefinition {
-	public ReportDefinitionImpl() {
-	}
-	public String getAttachmentsDir() {
-		if (_attachmentDirs == null) {
-			_attachmentDirs = "report_templates/" + getDefinitionId();
-		}
 
+	public ReportDefinitionImpl() {
+
+	}
+
+	public String getAttachmentsDir() {
+
+		if (_attachmentDirs == null) {
+			_attachmentDirs = REPORT_TEMPLATES_DIRS + getDefinitionId();
+		}
 		return _attachmentDirs;
 	}
 
 	public void setAttachmentsDir(String attachmentsDir) {
+
 		_attachmentDirs = attachmentsDir;
 	}
+
+	public String[] getAttachmentsFiles()
+		throws PortalException, SystemException {
+
+		String[] fileNames = new String[0];
+
+		try {
+			fileNames =
+				DLServiceUtil.getFileNames(
+					getCompanyId(), CompanyConstants.SYSTEM,
+					getAttachmentsDir());
+		}
+		catch (NoSuchDirectoryException nsde) {
+		}
+
+		return fileNames;
+	}
+
 	private String _attachmentDirs;
+	private static String REPORT_TEMPLATES_DIRS = "report_templates/";
 }

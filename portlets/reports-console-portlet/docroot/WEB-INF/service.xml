@@ -51,7 +51,6 @@
 		<finder name="DefinitionName" return-type="Collection">
 			<finder-column name="definitionName" />
 		</finder>
-		<reference package-path="com.liferay.portlet.documentlibrary" entity="DLService" />
 
 	</entity>
 	<exceptions>

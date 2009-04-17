@@ -35,7 +35,7 @@
 	
 	boolean isNew = false;
 	
-	if(definition == null || definition.getDefinitionId() <= 0){
+	if(definition == null || definition.isNew()){
 		isNew = true;
 	}
 	else{
@@ -134,7 +134,7 @@
 </script>
 
 <form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"></portlet:actionURL>" method="post" name="<portlet:namespace />fm" >
-<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
+<input name="<portlet:namespace />redirect" type="hidden" value="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="searchDefinition" /></portlet:actionURL>" />
 
 <table class="lfr-table">
 	<tr>
@@ -244,11 +244,11 @@
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
-<c:if test="<%= definition == null %>">
+<c:if test="<%= isNew %>">
 	<input type="button" value="<liferay-ui:message key="save" />" onClick="<portlet:namespace />saveDefinition();" />
 </c:if>
 
-<c:if test="<%= definition != null %>">
+<c:if test="<%=!isNew %>">
 	<input type="button" value="<liferay-ui:message key="update" />" onClick="<portlet:namespace />updateDefinition();" />
 
 	<input type="button" value="<liferay-ui:message key="generate-immdiately" />" />
