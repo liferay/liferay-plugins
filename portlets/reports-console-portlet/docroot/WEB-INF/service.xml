@@ -72,7 +72,7 @@
 
 		<column name="definitionId" type="long" />
 		<column name="requestStatus" type="String" />
-		<column name="isSchdule" type="boolean" />
+		<column name="isSchedule" type="boolean" />
 
 		<!-- Order -->
 

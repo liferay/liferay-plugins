@@ -39,7 +39,6 @@ public class SearchRequestAction implements Action {
 	public boolean processAction(
 		ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortletException {
-
 		try {
 
 			actionResponse.setRenderParameter("tabs1", "pending-requests");

@@ -30,7 +30,7 @@ if (Validator.isNull(tabs1)) {
 	tabs1 = "report-definitions";
 }
 
-PortletURL portletURL = renderResponse.createActionURL();
+PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setWindowState(WindowState.MAXIMIZED);
 
@@ -38,8 +38,20 @@ portletURL.setParameter("tabs1", tabs1);
 
 portletURL.setParameter(ActionRequest.ACTION_NAME, "searchDefinition");
 
+PortletURL searchURL = renderResponse.createActionURL();
+
+searchURL.setWindowState(WindowState.MAXIMIZED);
+
+searchURL.setParameter("tabs1", tabs1);
+
+if("report-definitions".equals(tabs1)){
+	searchURL.setParameter(ActionRequest.ACTION_NAME, "searchDefinition");
+}else{
+	searchURL.setParameter(ActionRequest.ACTION_NAME, "searchRequest");
+}
+
 %>
 
-<form action="<%= portletURL.toString() %>" method="post" name="<portlet:namespace />fm">
+<form action="<%= searchURL.toString() %>" method="post" name="<portlet:namespace />fm">
 <%@ include file="/tabs.jspf" %>
 </form>

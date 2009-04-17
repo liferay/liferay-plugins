@@ -80,9 +80,9 @@ public class ReportRequestModelImpl extends BaseModelImpl<ReportRequest> {
 			{ "requestStatus", new Integer(Types.VARCHAR) },
 			
 
-			{ "isSchdule", new Integer(Types.BOOLEAN) }
+			{ "isSchedule", new Integer(Types.BOOLEAN) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Report_ReportRequest (uuid_ VARCHAR(75) null,requestId LONG not null primary key,companyId LONG,groupId LONG,userId LONG,createDate DATE null,modifiedDate DATE null,definitionId LONG,requestStatus VARCHAR(75) null,isSchdule BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table Report_ReportRequest (uuid_ VARCHAR(75) null,requestId LONG not null primary key,companyId LONG,groupId LONG,userId LONG,createDate DATE null,modifiedDate DATE null,definitionId LONG,requestStatus VARCHAR(75) null,isSchedule BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table Report_ReportRequest";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -106,7 +106,7 @@ public class ReportRequestModelImpl extends BaseModelImpl<ReportRequest> {
 		model.setModifiedDate(soapModel.getModifiedDate());
 		model.setDefinitionId(soapModel.getDefinitionId());
 		model.setRequestStatus(soapModel.getRequestStatus());
-		model.setIsSchdule(soapModel.getIsSchdule());
+		model.setIsSchedule(soapModel.getIsSchedule());
 
 		return model;
 	}
@@ -271,17 +271,17 @@ public class ReportRequestModelImpl extends BaseModelImpl<ReportRequest> {
 		}
 	}
 
-	public boolean getIsSchdule() {
-		return _isSchdule;
+	public boolean getIsSchedule() {
+		return _isSchedule;
 	}
 
-	public boolean isIsSchdule() {
-		return _isSchdule;
+	public boolean isIsSchedule() {
+		return _isSchedule;
 	}
 
-	public void setIsSchdule(boolean isSchdule) {
-		if (isSchdule != _isSchdule) {
-			_isSchdule = isSchdule;
+	public void setIsSchedule(boolean isSchedule) {
+		if (isSchedule != _isSchedule) {
+			_isSchedule = isSchedule;
 		}
 	}
 
@@ -304,7 +304,7 @@ public class ReportRequestModelImpl extends BaseModelImpl<ReportRequest> {
 			model.setModifiedDate(getModifiedDate());
 			model.setDefinitionId(getDefinitionId());
 			model.setRequestStatus(HtmlUtil.escape(getRequestStatus()));
-			model.setIsSchdule(getIsSchdule());
+			model.setIsSchedule(getIsSchedule());
 
 			model = (ReportRequest)Proxy.newProxyInstance(ReportRequest.class.getClassLoader(),
 					new Class[] { ReportRequest.class },
@@ -335,7 +335,7 @@ public class ReportRequestModelImpl extends BaseModelImpl<ReportRequest> {
 		clone.setModifiedDate(getModifiedDate());
 		clone.setDefinitionId(getDefinitionId());
 		clone.setRequestStatus(getRequestStatus());
-		clone.setIsSchdule(getIsSchdule());
+		clone.setIsSchedule(getIsSchedule());
 
 		return clone;
 	}
@@ -397,6 +397,6 @@ public class ReportRequestModelImpl extends BaseModelImpl<ReportRequest> {
 	private long _originalDefinitionId;
 	private boolean _setOriginalDefinitionId;
 	private String _requestStatus;
-	private boolean _isSchdule;
+	private boolean _isSchedule;
 	private transient ExpandoBridge _expandoBridge;
 }

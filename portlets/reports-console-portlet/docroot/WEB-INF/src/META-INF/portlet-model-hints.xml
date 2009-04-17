@@ -26,6 +26,6 @@
 		<field name="modifiedDate" type="Date" />
 		<field name="definitionId" type="long" />
 		<field name="requestStatus" type="String" />
-		<field name="isSchdule" type="boolean" />
+		<field name="isSchedule" type="boolean" />
 	</model>
 </model-hints>

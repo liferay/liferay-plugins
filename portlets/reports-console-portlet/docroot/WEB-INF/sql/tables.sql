@@ -25,5 +25,5 @@ create table Report_ReportRequest (
 	modifiedDate DATE null,
 	definitionId LONG,
 	requestStatus VARCHAR(75) null,
-	isSchdule BOOLEAN
+	isSchedule BOOLEAN
 );

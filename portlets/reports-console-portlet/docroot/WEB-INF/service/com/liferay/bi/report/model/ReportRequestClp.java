@@ -128,16 +128,16 @@ public class ReportRequestClp extends BaseModelImpl<ReportRequest>
 		_requestStatus = requestStatus;
 	}
 
-	public boolean getIsSchdule() {
-		return _isSchdule;
+	public boolean getIsSchedule() {
+		return _isSchedule;
 	}
 
-	public boolean isIsSchdule() {
-		return _isSchdule;
+	public boolean isIsSchedule() {
+		return _isSchedule;
 	}
 
-	public void setIsSchdule(boolean isSchdule) {
-		_isSchdule = isSchdule;
+	public void setIsSchedule(boolean isSchedule) {
+		_isSchedule = isSchedule;
 	}
 
 	public ReportRequest toEscapedModel() {
@@ -158,7 +158,7 @@ public class ReportRequestClp extends BaseModelImpl<ReportRequest>
 			model.setModifiedDate(getModifiedDate());
 			model.setDefinitionId(getDefinitionId());
 			model.setRequestStatus(HtmlUtil.escape(getRequestStatus()));
-			model.setIsSchdule(getIsSchdule());
+			model.setIsSchedule(getIsSchedule());
 
 			model = (ReportRequest)Proxy.newProxyInstance(ReportRequest.class.getClassLoader(),
 					new Class[] { ReportRequest.class },
@@ -180,7 +180,7 @@ public class ReportRequestClp extends BaseModelImpl<ReportRequest>
 		clone.setModifiedDate(getModifiedDate());
 		clone.setDefinitionId(getDefinitionId());
 		clone.setRequestStatus(getRequestStatus());
-		clone.setIsSchdule(getIsSchdule());
+		clone.setIsSchedule(getIsSchedule());
 
 		return clone;
 	}
@@ -235,5 +235,5 @@ public class ReportRequestClp extends BaseModelImpl<ReportRequest>
 	private Date _modifiedDate;
 	private long _definitionId;
 	private String _requestStatus;
-	private boolean _isSchdule;
+	private boolean _isSchedule;
 }

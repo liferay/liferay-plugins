@@ -73,11 +73,11 @@ public interface ReportRequestModel extends BaseModel<ReportRequest> {
 
 	public void setRequestStatus(String requestStatus);
 
-	public boolean getIsSchdule();
+	public boolean getIsSchedule();
 
-	public boolean isIsSchdule();
+	public boolean isIsSchedule();
 
-	public void setIsSchdule(boolean isSchdule);
+	public void setIsSchedule(boolean isSchedule);
 
 	public ReportRequest toEscapedModel();
 }

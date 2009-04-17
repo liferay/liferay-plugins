@@ -33,6 +33,6 @@
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="definitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="requestStatus" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="isSchdule" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="isSchedule" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
 </hibernate-mapping>

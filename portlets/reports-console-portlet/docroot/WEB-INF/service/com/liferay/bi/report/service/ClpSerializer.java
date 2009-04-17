@@ -246,10 +246,10 @@ public class ClpSerializer {
 
 					method8.invoke(newModel, value8);
 
-					Method method9 = newModelClass.getMethod("setIsSchdule",
+					Method method9 = newModelClass.getMethod("setIsSchedule",
 							new Class[] { Boolean.TYPE });
 
-					Boolean value9 = new Boolean(oldCplModel.getIsSchdule());
+					Boolean value9 = new Boolean(oldCplModel.getIsSchedule());
 
 					method9.invoke(newModel, value9);
 
@@ -472,12 +472,12 @@ public class ClpSerializer {
 
 					newModel.setRequestStatus(value8);
 
-					Method method9 = oldModelClass.getMethod("getIsSchdule");
+					Method method9 = oldModelClass.getMethod("getIsSchedule");
 
 					Boolean value9 = (Boolean)method9.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setIsSchdule(value9.booleanValue());
+					newModel.setIsSchedule(value9.booleanValue());
 
 					return newModel;
 				}
