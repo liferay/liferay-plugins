@@ -23,7 +23,6 @@
 package com.liferay.portal.bi.reporting.jdbc;
 
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.dao.jdbc.DataSourceFactory;
 
 import java.util.Enumeration;
 import java.util.Properties;
@@ -37,7 +36,7 @@ import org.apache.commons.beanutils.BeanUtils;
  *
  * @author Michael C. Han
  */
-public class C3P0DataSourceFactory implements DataSourceFactory {
+public class C3P0DataSourceFactory {
 
 	public DataSource createDataSource(Properties connectionProps)
 		throws SystemException {

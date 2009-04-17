@@ -53,7 +53,7 @@ public class JasperReportServlet extends HttpServlet {
 		super.init(servletConfig);
 		_engine =
 			(ReportEngine) PortletBeanLocatorUtil.locate(
-				"com.liferay.portlet.bi.reports.ReportEngine");
+				"com.liferay.portal.bi.report.ReportEngine");
 		
 		_imageStorageLocation = getServletContext().getRealPath("/images");
 	}
