@@ -794,10 +794,10 @@ table.calendar {
 }
 
 .portlet-communities .add-site {
-	background: transparent url(../images/arrows/01_plus.png) no-repeat 0 50%;
+	background: transparent url(../images/arrows/01_plus.png) no-repeat 100% 50%;
 	display: block;
 	font-size: 11px;
-	padding: 0 0 0 16px;
+	padding: 0 16px 0 0;
 	position: absolute;
 	right: 5px;
 	top: 3px;
