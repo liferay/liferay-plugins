@@ -139,7 +139,8 @@ public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
 				request.getUserId(), 0, className, request.getClassPK(),
 				MembersActivityKeys.ADD_MEMBER, StringPool.BLANK, 0);
 
-			processDuplicateRequestsFromUser(request, SocialRequestConstants.STATUS_PENDING);
+			processDuplicateRequestsFromUser(
+				request, SocialRequestConstants.STATUS_PENDING);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
