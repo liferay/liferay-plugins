@@ -16,7 +16,7 @@
 		<field name="reportFormat" type="String" />
 		<field name="dataSourceName" type="String" />
 	</model>
-	<model name="com.liferay.bi.report.model.ReportRequest">
+	<model name="com.liferay.bi.report.model.RequestedReport">
 		<field name="uuid" type="String" />
 		<field name="requestId" type="long" />
 		<field name="companyId" type="long" />

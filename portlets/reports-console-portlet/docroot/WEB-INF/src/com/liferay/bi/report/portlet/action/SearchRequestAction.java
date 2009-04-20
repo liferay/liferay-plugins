@@ -22,10 +22,19 @@
 
 package com.liferay.bi.report.portlet.action;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 
+import com.liferay.bi.report.model.RequestedReport;
+import com.liferay.bi.report.search.ReportDefinitionSearch;
+import com.liferay.bi.report.service.RequestedReportLocalServiceUtil;
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.util.bridges.simplemvc.Action;
 
 /**
@@ -39,15 +48,66 @@ public class SearchRequestAction implements Action {
 	public boolean processAction(
 		ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortletException {
+
+		actionResponse.setRenderParameter(
+			TABS, actionRequest.getParameter(TABS));
+
+		int cur =
+			ParamUtil.getInteger(
+				actionRequest, ReportDefinitionSearch.DEFAULT_CUR_PARAM,
+				ReportDefinitionSearch.DEFAULT_CUR);
+
+		int delta =
+			ParamUtil.getInteger(
+				actionRequest, ReportDefinitionSearch.DEFAULT_DELTA_PARAM,
+				ReportDefinitionSearch.DEFAULT_DELTA);
+
+		int start = (cur - 1) * delta;
+		int end = start + delta;
+
+		int total = 0;
+		List<RequestedReport> requestedReports = EMPTY_LIST;
+		long requestId = ParamUtil.getLong(actionRequest, "requestId", -1);
 		try {
 
-			actionResponse.setRenderParameter("tabs1", "pending-requests");
+			if (requestId > 0) {
+				requestedReports.add(RequestedReportLocalServiceUtil.getRequestedReport(requestId));
+				total = 1;
+			}
+			else {
+				total =
+					RequestedReportLocalServiceUtil.getRequestedReportsCount();
+				if (total > 0) {
+					requestedReports =
+						RequestedReportLocalServiceUtil.getRequestedReports(
+							start, end);
+				}
+			}
+
+			actionRequest.setAttribute(
+				SEARCH_RESULTS_ATTRIBUTE, requestedReports);
+			actionRequest.setAttribute(SEARCH_TOTAL_ATTRIBUTE, total);
+
+			actionResponse.setRenderParameter(
+				ReportDefinitionSearch.DEFAULT_CUR_PARAM, String.valueOf(cur));
+			actionResponse.setRenderParameter(
+				ReportDefinitionSearch.DEFAULT_DELTA_PARAM,
+				String.valueOf(delta));
+
 		}
-		catch (Exception e) {
-			throw new PortletException(
-				"Unable to retrieve report definitions", e);
+		catch (PortalException e) {
+			throw new PortletException("Unable to retrieve rquested report", e);
+		}
+		catch (SystemException e) {
+			throw new PortletException("Unable to retrieve rquested report", e);
 		}
 
-		return true;
+		return false;
 	}
+
+	private static final String SEARCH_RESULTS_ATTRIBUTE = "searchResults";
+	private static final String SEARCH_TOTAL_ATTRIBUTE = "total";
+	private static final String TABS = "tabs1";
+	private static final List<RequestedReport> EMPTY_LIST =
+		new ArrayList<RequestedReport>(0);
 }

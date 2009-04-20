@@ -91,11 +91,6 @@ public interface ReportDefinitionLocalService {
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public void genrateReport(javax.portlet.PortletRequest portletRequest,
-		long definitionId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException;
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.bi.report.model.ReportDefinition> getReportDefintions(
 		long companyId, long groupId) throws com.liferay.portal.SystemException;

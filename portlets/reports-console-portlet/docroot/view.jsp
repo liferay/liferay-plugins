@@ -36,7 +36,6 @@ portletURL.setWindowState(WindowState.MAXIMIZED);
 
 portletURL.setParameter("tabs1", tabs1);
 
-portletURL.setParameter(ActionRequest.ACTION_NAME, "searchDefinition");
 
 PortletURL searchURL = renderResponse.createActionURL();
 

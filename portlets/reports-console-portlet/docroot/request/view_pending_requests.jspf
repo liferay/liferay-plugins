@@ -1,3 +1,4 @@
+<%@ taglib prefix="liferay-ui" uri="http://liferay.com/tld/ui" %>
 <%--
   ~ Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
   ~
@@ -19,5 +20,61 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   --%>
+<%
+RequestedReportSearch searchContainer = new RequestedReportSearch(renderRequest, portletURL);
+%>
+<liferay-ui:search-form
+	page="/request/search_requested_report.jsp"
+	searchContainer="<%= searchContainer %>"
+	servletContext="<%= application %>"
+	/>
+	
+<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+	<%
+		List<RequestedReport> searchResults =
+			(List<RequestedReport>)renderRequest.getAttribute("searchResults");
+		Integer total = (Integer)renderRequest.getAttribute("total");
+		
+		int size = 0;
+		if (searchResults != null) {
+			size = searchResults.size();
+			searchContainer.setResults(searchResults);
+		}
+		if(total != null){
+		    searchContainer.setTotal(total);
+		}
+		
+		List resultRows = searchContainer.getResultRows();
+		for (int i = 0; i < size; i++) {
+			RequestedReport requestedReport = searchResults.get(i);
+			String requestId = String.valueOf(requestedReport.getRequestId());
+			ResultRow row = new ResultRow(requestedReport, requestId, i);
 
-Testing Pending
+
+			// request Id
+
+			row.addText(requestId);
+
+			// request status
+
+			row.addText(requestedReport.getRequestStatus());
+			
+			//request is schedule
+			
+			row.addText(LanguageUtil.get(pageContext, String.valueOf(requestedReport.isIsSchedule())));
+			
+			// Action
+			//TBD
+			row.addJSP(
+				"right", SearchEntry.DEFAULT_VALIGN, "/request/requested_report_actions.jsp",
+				application, request, response);
+
+			// Add result row
+
+			resultRows.add(row);
+
+		}
+	%>
+	<liferay-ui:search-iterator searchContainer="<%= searchContainer %>"/>
+</c:if>
+

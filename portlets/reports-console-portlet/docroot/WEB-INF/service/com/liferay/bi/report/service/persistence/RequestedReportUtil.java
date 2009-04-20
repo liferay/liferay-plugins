@@ -23,185 +23,185 @@
 package com.liferay.bi.report.service.persistence;
 
 /**
- * <a href="ReportRequestUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="RequestedReportUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class ReportRequestUtil {
+public class RequestedReportUtil {
 	public static void cacheResult(
-		com.liferay.bi.report.model.ReportRequest reportRequest) {
-		getPersistence().cacheResult(reportRequest);
+		com.liferay.bi.report.model.RequestedReport requestedReport) {
+		getPersistence().cacheResult(requestedReport);
 	}
 
 	public static void cacheResult(
-		java.util.List<com.liferay.bi.report.model.ReportRequest> reportRequests) {
-		getPersistence().cacheResult(reportRequests);
+		java.util.List<com.liferay.bi.report.model.RequestedReport> requestedReports) {
+		getPersistence().cacheResult(requestedReports);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest create(
+	public static com.liferay.bi.report.model.RequestedReport create(
 		long requestId) {
 		return getPersistence().create(requestId);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest remove(
+	public static com.liferay.bi.report.model.RequestedReport remove(
 		long requestId)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence().remove(requestId);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest remove(
-		com.liferay.bi.report.model.ReportRequest reportRequest)
+	public static com.liferay.bi.report.model.RequestedReport remove(
+		com.liferay.bi.report.model.RequestedReport requestedReport)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().remove(reportRequest);
+		return getPersistence().remove(requestedReport);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest update(
-		com.liferay.bi.report.model.ReportRequest reportRequest)
+	public static com.liferay.bi.report.model.RequestedReport update(
+		com.liferay.bi.report.model.RequestedReport requestedReport)
 		throws com.liferay.portal.SystemException {
-		return getPersistence().update(reportRequest);
+		return getPersistence().update(requestedReport);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest update(
-		com.liferay.bi.report.model.ReportRequest reportRequest, boolean merge)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().update(reportRequest, merge);
+	public static com.liferay.bi.report.model.RequestedReport update(
+		com.liferay.bi.report.model.RequestedReport requestedReport,
+		boolean merge) throws com.liferay.portal.SystemException {
+		return getPersistence().update(requestedReport, merge);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest updateImpl(
-		com.liferay.bi.report.model.ReportRequest reportRequest, boolean merge)
-		throws com.liferay.portal.SystemException {
-		return getPersistence().updateImpl(reportRequest, merge);
+	public static com.liferay.bi.report.model.RequestedReport updateImpl(
+		com.liferay.bi.report.model.RequestedReport requestedReport,
+		boolean merge) throws com.liferay.portal.SystemException {
+		return getPersistence().updateImpl(requestedReport, merge);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest findByPrimaryKey(
+	public static com.liferay.bi.report.model.RequestedReport findByPrimaryKey(
 		long requestId)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence().findByPrimaryKey(requestId);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest fetchByPrimaryKey(
+	public static com.liferay.bi.report.model.RequestedReport fetchByPrimaryKey(
 		long requestId) throws com.liferay.portal.SystemException {
 		return getPersistence().fetchByPrimaryKey(requestId);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportRequest> findByUuid(
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findByUuid(
 		java.lang.String uuid) throws com.liferay.portal.SystemException {
 		return getPersistence().findByUuid(uuid);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportRequest> findByUuid(
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findByUuid(
 		java.lang.String uuid, int start, int end)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findByUuid(uuid, start, end);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportRequest> findByUuid(
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findByUuid(
 		java.lang.String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findByUuid(uuid, start, end, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest findByUuid_First(
+	public static com.liferay.bi.report.model.RequestedReport findByUuid_First(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence().findByUuid_First(uuid, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest findByUuid_Last(
+	public static com.liferay.bi.report.model.RequestedReport findByUuid_Last(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence().findByUuid_Last(uuid, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest[] findByUuid_PrevAndNext(
+	public static com.liferay.bi.report.model.RequestedReport[] findByUuid_PrevAndNext(
 		long requestId, java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence().findByUuid_PrevAndNext(requestId, uuid, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest findByUUID_G(
+	public static com.liferay.bi.report.model.RequestedReport findByUUID_G(
 		java.lang.String uuid, long groupId)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence().findByUUID_G(uuid, groupId);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest fetchByUUID_G(
+	public static com.liferay.bi.report.model.RequestedReport fetchByUUID_G(
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().fetchByUUID_G(uuid, groupId);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest fetchByUUID_G(
+	public static com.liferay.bi.report.model.RequestedReport fetchByUUID_G(
 		java.lang.String uuid, long groupId, boolean retrieveFromCache)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().fetchByUUID_G(uuid, groupId, retrieveFromCache);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportRequest> findByCompanyId(
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findByCompanyId(
 		long companyId) throws com.liferay.portal.SystemException {
 		return getPersistence().findByCompanyId(companyId);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportRequest> findByCompanyId(
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findByCompanyId(
 		long companyId, int start, int end)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findByCompanyId(companyId, start, end);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportRequest> findByCompanyId(
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findByCompanyId(companyId, start, end, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest findByCompanyId_First(
+	public static com.liferay.bi.report.model.RequestedReport findByCompanyId_First(
 		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence().findByCompanyId_First(companyId, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest findByCompanyId_Last(
+	public static com.liferay.bi.report.model.RequestedReport findByCompanyId_Last(
 		long companyId, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence().findByCompanyId_Last(companyId, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest[] findByCompanyId_PrevAndNext(
+	public static com.liferay.bi.report.model.RequestedReport[] findByCompanyId_PrevAndNext(
 		long requestId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(requestId, companyId, obc);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportRequest> findByCompanyGroupId(
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findByCompanyGroupId(
 		long companyId, long groupId) throws com.liferay.portal.SystemException {
 		return getPersistence().findByCompanyGroupId(companyId, groupId);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportRequest> findByCompanyGroupId(
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findByCompanyGroupId(
 		long companyId, long groupId, int start, int end)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findByCompanyGroupId(companyId, groupId, start, end);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportRequest> findByCompanyGroupId(
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findByCompanyGroupId(
 		long companyId, long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
@@ -209,146 +209,146 @@ public class ReportRequestUtil {
 				   .findByCompanyGroupId(companyId, groupId, start, end, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest findByCompanyGroupId_First(
+	public static com.liferay.bi.report.model.RequestedReport findByCompanyGroupId_First(
 		long companyId, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findByCompanyGroupId_First(companyId, groupId, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest findByCompanyGroupId_Last(
+	public static com.liferay.bi.report.model.RequestedReport findByCompanyGroupId_Last(
 		long companyId, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findByCompanyGroupId_Last(companyId, groupId, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest[] findByCompanyGroupId_PrevAndNext(
+	public static com.liferay.bi.report.model.RequestedReport[] findByCompanyGroupId_PrevAndNext(
 		long requestId, long companyId, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findByCompanyGroupId_PrevAndNext(requestId, companyId,
 			groupId, obc);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportRequest> findByGroupId(
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findByGroupId(
 		long groupId) throws com.liferay.portal.SystemException {
 		return getPersistence().findByGroupId(groupId);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportRequest> findByGroupId(
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findByGroupId(
 		long groupId, int start, int end)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findByGroupId(groupId, start, end);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportRequest> findByGroupId(
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findByGroupId(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findByGroupId(groupId, start, end, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest findByGroupId_First(
+	public static com.liferay.bi.report.model.RequestedReport findByGroupId_First(
 		long groupId, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence().findByGroupId_First(groupId, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest findByGroupId_Last(
+	public static com.liferay.bi.report.model.RequestedReport findByGroupId_Last(
 		long groupId, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence().findByGroupId_Last(groupId, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest[] findByGroupId_PrevAndNext(
+	public static com.liferay.bi.report.model.RequestedReport[] findByGroupId_PrevAndNext(
 		long requestId, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence()
 				   .findByGroupId_PrevAndNext(requestId, groupId, obc);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportRequest> findByUserId(
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findByUserId(
 		long userId) throws com.liferay.portal.SystemException {
 		return getPersistence().findByUserId(userId);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportRequest> findByUserId(
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findByUserId(
 		long userId, int start, int end)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findByUserId(userId, start, end);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportRequest> findByUserId(
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findByUserId(
 		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findByUserId(userId, start, end, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest findByUserId_First(
+	public static com.liferay.bi.report.model.RequestedReport findByUserId_First(
 		long userId, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence().findByUserId_First(userId, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest findByUserId_Last(
+	public static com.liferay.bi.report.model.RequestedReport findByUserId_Last(
 		long userId, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence().findByUserId_Last(userId, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest[] findByUserId_PrevAndNext(
+	public static com.liferay.bi.report.model.RequestedReport[] findByUserId_PrevAndNext(
 		long requestId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence().findByUserId_PrevAndNext(requestId, userId, obc);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest findByRequestId(
+	public static com.liferay.bi.report.model.RequestedReport findByRequestId(
 		long requestId)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence().findByRequestId(requestId);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest fetchByRequestId(
+	public static com.liferay.bi.report.model.RequestedReport fetchByRequestId(
 		long requestId) throws com.liferay.portal.SystemException {
 		return getPersistence().fetchByRequestId(requestId);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest fetchByRequestId(
+	public static com.liferay.bi.report.model.RequestedReport fetchByRequestId(
 		long requestId, boolean retrieveFromCache)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().fetchByRequestId(requestId, retrieveFromCache);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest findByDefinitionId(
+	public static com.liferay.bi.report.model.RequestedReport findByDefinitionId(
 		long definitionId)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		return getPersistence().findByDefinitionId(definitionId);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest fetchByDefinitionId(
+	public static com.liferay.bi.report.model.RequestedReport fetchByDefinitionId(
 		long definitionId) throws com.liferay.portal.SystemException {
 		return getPersistence().fetchByDefinitionId(definitionId);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest fetchByDefinitionId(
+	public static com.liferay.bi.report.model.RequestedReport fetchByDefinitionId(
 		long definitionId, boolean retrieveFromCache)
 		throws com.liferay.portal.SystemException {
 		return getPersistence()
@@ -367,17 +367,17 @@ public class ReportRequestUtil {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportRequest> findAll()
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findAll()
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll();
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportRequest> findAll(
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findAll(
 		int start, int end) throws com.liferay.portal.SystemException {
 		return getPersistence().findAll(start, end);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportRequest> findAll(
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().findAll(start, end, obc);
@@ -389,7 +389,7 @@ public class ReportRequestUtil {
 	}
 
 	public static void removeByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		getPersistence().removeByUUID_G(uuid, groupId);
 	}
@@ -415,13 +415,13 @@ public class ReportRequestUtil {
 	}
 
 	public static void removeByRequestId(long requestId)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		getPersistence().removeByRequestId(requestId);
 	}
 
 	public static void removeByDefinitionId(long definitionId)
-		throws com.liferay.bi.report.NoSuchRequestException,
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException {
 		getPersistence().removeByDefinitionId(definitionId);
 	}
@@ -474,13 +474,13 @@ public class ReportRequestUtil {
 		return getPersistence().countAll();
 	}
 
-	public static ReportRequestPersistence getPersistence() {
+	public static RequestedReportPersistence getPersistence() {
 		return _persistence;
 	}
 
-	public void setPersistence(ReportRequestPersistence persistence) {
+	public void setPersistence(RequestedReportPersistence persistence) {
 		_persistence = persistence;
 	}
 
-	private static ReportRequestPersistence _persistence;
+	private static RequestedReportPersistence _persistence;
 }

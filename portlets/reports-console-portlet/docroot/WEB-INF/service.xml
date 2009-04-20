@@ -53,7 +53,7 @@
 		</finder>
 
 	</entity>
-	<entity name="ReportRequest" uuid="true" local-service="true"
+	<entity name="RequestedReport" uuid="true" local-service="true"
 			remote-service="false" >
 
 		<!-- PK fields -->
@@ -104,10 +104,8 @@
 
 	</entity>
 	<exceptions>
-		<exception>NoSuchDefinition</exception>
 		<exception>DefinitionName</exception>
 		<exception>DefinitionFormat</exception>
 		<exception>DefinitionFile</exception>
-		<exception>NoSuchReportRequest</exception>
 	</exceptions>
 </service-builder>

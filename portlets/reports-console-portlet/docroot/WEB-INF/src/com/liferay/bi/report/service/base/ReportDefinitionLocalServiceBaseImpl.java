@@ -24,10 +24,10 @@ package com.liferay.bi.report.service.base;
 
 import com.liferay.bi.report.model.ReportDefinition;
 import com.liferay.bi.report.service.ReportDefinitionLocalService;
-import com.liferay.bi.report.service.ReportRequestLocalService;
+import com.liferay.bi.report.service.RequestedReportLocalService;
 import com.liferay.bi.report.service.persistence.ReportDefinitionFinder;
 import com.liferay.bi.report.service.persistence.ReportDefinitionPersistence;
-import com.liferay.bi.report.service.persistence.ReportRequestPersistence;
+import com.liferay.bi.report.service.persistence.RequestedReportPersistence;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
@@ -132,22 +132,22 @@ public abstract class ReportDefinitionLocalServiceBaseImpl
 		this.reportDefinitionFinder = reportDefinitionFinder;
 	}
 
-	public ReportRequestLocalService getReportRequestLocalService() {
-		return reportRequestLocalService;
+	public RequestedReportLocalService getRequestedReportLocalService() {
+		return requestedReportLocalService;
 	}
 
-	public void setReportRequestLocalService(
-		ReportRequestLocalService reportRequestLocalService) {
-		this.reportRequestLocalService = reportRequestLocalService;
+	public void setRequestedReportLocalService(
+		RequestedReportLocalService requestedReportLocalService) {
+		this.requestedReportLocalService = requestedReportLocalService;
 	}
 
-	public ReportRequestPersistence getReportRequestPersistence() {
-		return reportRequestPersistence;
+	public RequestedReportPersistence getRequestedReportPersistence() {
+		return requestedReportPersistence;
 	}
 
-	public void setReportRequestPersistence(
-		ReportRequestPersistence reportRequestPersistence) {
-		this.reportRequestPersistence = reportRequestPersistence;
+	public void setRequestedReportPersistence(
+		RequestedReportPersistence requestedReportPersistence) {
+		this.requestedReportPersistence = requestedReportPersistence;
 	}
 
 	@BeanReference(name = "com.liferay.bi.report.service.ReportDefinitionLocalService.impl")
@@ -156,8 +156,8 @@ public abstract class ReportDefinitionLocalServiceBaseImpl
 	protected ReportDefinitionPersistence reportDefinitionPersistence;
 	@BeanReference(name = "com.liferay.bi.report.service.persistence.ReportDefinitionFinder.impl")
 	protected ReportDefinitionFinder reportDefinitionFinder;
-	@BeanReference(name = "com.liferay.bi.report.service.ReportRequestLocalService.impl")
-	protected ReportRequestLocalService reportRequestLocalService;
-	@BeanReference(name = "com.liferay.bi.report.service.persistence.ReportRequestPersistence.impl")
-	protected ReportRequestPersistence reportRequestPersistence;
+	@BeanReference(name = "com.liferay.bi.report.service.RequestedReportLocalService.impl")
+	protected RequestedReportLocalService requestedReportLocalService;
+	@BeanReference(name = "com.liferay.bi.report.service.persistence.RequestedReportPersistence.impl")
+	protected RequestedReportPersistence requestedReportPersistence;
 }

@@ -29,30 +29,31 @@ import com.liferay.portal.kernel.util.LongWrapper;
 import com.liferay.portal.kernel.util.NullWrapper;
 
 /**
- * <a href="ReportRequestLocalServiceClp.java.html"><b><i>View Source</i></b></a>
+ * <a href="RequestedReportLocalServiceClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class ReportRequestLocalServiceClp implements ReportRequestLocalService {
-	public ReportRequestLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
+public class RequestedReportLocalServiceClp
+	implements RequestedReportLocalService {
+	public RequestedReportLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
 	}
 
-	public com.liferay.bi.report.model.ReportRequest addReportRequest(
-		com.liferay.bi.report.model.ReportRequest reportRequest)
+	public com.liferay.bi.report.model.RequestedReport addRequestedReport(
+		com.liferay.bi.report.model.RequestedReport requestedReport)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(reportRequest);
+		Object paramObj0 = ClpSerializer.translateInput(requestedReport);
 
-		if (reportRequest == null) {
+		if (requestedReport == null) {
 			paramObj0 = new NullWrapper(
-					"com.liferay.bi.report.model.ReportRequest");
+					"com.liferay.bi.report.model.RequestedReport");
 		}
 
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("addReportRequest",
+			returnObj = _classLoaderProxy.invoke("addRequestedReport",
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
@@ -69,17 +70,17 @@ public class ReportRequestLocalServiceClp implements ReportRequestLocalService {
 			}
 		}
 
-		return (com.liferay.bi.report.model.ReportRequest)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.bi.report.model.RequestedReport)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.bi.report.model.ReportRequest createReportRequest(
+	public com.liferay.bi.report.model.RequestedReport createRequestedReport(
 		long requestId) {
 		Object paramObj0 = new LongWrapper(requestId);
 
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("createReportRequest",
+			returnObj = _classLoaderProxy.invoke("createRequestedReport",
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
@@ -92,16 +93,16 @@ public class ReportRequestLocalServiceClp implements ReportRequestLocalService {
 			}
 		}
 
-		return (com.liferay.bi.report.model.ReportRequest)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.bi.report.model.RequestedReport)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteReportRequest(long requestId)
+	public void deleteRequestedReport(long requestId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(requestId);
 
 		try {
-			_classLoaderProxy.invoke("deleteReportRequest",
+			_classLoaderProxy.invoke("deleteRequestedReport",
 				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
@@ -123,18 +124,18 @@ public class ReportRequestLocalServiceClp implements ReportRequestLocalService {
 		}
 	}
 
-	public void deleteReportRequest(
-		com.liferay.bi.report.model.ReportRequest reportRequest)
+	public void deleteRequestedReport(
+		com.liferay.bi.report.model.RequestedReport requestedReport)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(reportRequest);
+		Object paramObj0 = ClpSerializer.translateInput(requestedReport);
 
-		if (reportRequest == null) {
+		if (requestedReport == null) {
 			paramObj0 = new NullWrapper(
-					"com.liferay.bi.report.model.ReportRequest");
+					"com.liferay.bi.report.model.RequestedReport");
 		}
 
 		try {
-			_classLoaderProxy.invoke("deleteReportRequest",
+			_classLoaderProxy.invoke("deleteRequestedReport",
 				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
@@ -222,7 +223,7 @@ public class ReportRequestLocalServiceClp implements ReportRequestLocalService {
 		return (java.util.List<Object>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.bi.report.model.ReportRequest getReportRequest(
+	public com.liferay.bi.report.model.RequestedReport getRequestedReport(
 		long requestId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
@@ -231,7 +232,7 @@ public class ReportRequestLocalServiceClp implements ReportRequestLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("getReportRequest",
+			returnObj = _classLoaderProxy.invoke("getRequestedReport",
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
@@ -252,10 +253,10 @@ public class ReportRequestLocalServiceClp implements ReportRequestLocalService {
 			}
 		}
 
-		return (com.liferay.bi.report.model.ReportRequest)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.bi.report.model.RequestedReport)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.bi.report.model.ReportRequest> getReportRequests(
+	public java.util.List<com.liferay.bi.report.model.RequestedReport> getRequestedReports(
 		int start, int end) throws com.liferay.portal.SystemException {
 		Object paramObj0 = new IntegerWrapper(start);
 
@@ -264,7 +265,7 @@ public class ReportRequestLocalServiceClp implements ReportRequestLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("getReportRequests",
+			returnObj = _classLoaderProxy.invoke("getRequestedReports",
 					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
@@ -281,15 +282,15 @@ public class ReportRequestLocalServiceClp implements ReportRequestLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.bi.report.model.ReportRequest>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<com.liferay.bi.report.model.RequestedReport>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int getReportRequestsCount()
+	public int getRequestedReportsCount()
 		throws com.liferay.portal.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("getReportRequestsCount",
+			returnObj = _classLoaderProxy.invoke("getRequestedReportsCount",
 					new Object[0]);
 		}
 		catch (Throwable t) {
@@ -309,20 +310,20 @@ public class ReportRequestLocalServiceClp implements ReportRequestLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public com.liferay.bi.report.model.ReportRequest updateReportRequest(
-		com.liferay.bi.report.model.ReportRequest reportRequest)
+	public com.liferay.bi.report.model.RequestedReport updateRequestedReport(
+		com.liferay.bi.report.model.RequestedReport requestedReport)
 		throws com.liferay.portal.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(reportRequest);
+		Object paramObj0 = ClpSerializer.translateInput(requestedReport);
 
-		if (reportRequest == null) {
+		if (requestedReport == null) {
 			paramObj0 = new NullWrapper(
-					"com.liferay.bi.report.model.ReportRequest");
+					"com.liferay.bi.report.model.RequestedReport");
 		}
 
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("updateReportRequest",
+			returnObj = _classLoaderProxy.invoke("updateRequestedReport",
 					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
@@ -339,17 +340,17 @@ public class ReportRequestLocalServiceClp implements ReportRequestLocalService {
 			}
 		}
 
-		return (com.liferay.bi.report.model.ReportRequest)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.bi.report.model.RequestedReport)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.bi.report.model.ReportRequest updateReportRequest(
-		com.liferay.bi.report.model.ReportRequest reportRequest, boolean merge)
-		throws com.liferay.portal.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(reportRequest);
+	public com.liferay.bi.report.model.RequestedReport updateRequestedReport(
+		com.liferay.bi.report.model.RequestedReport requestedReport,
+		boolean merge) throws com.liferay.portal.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(requestedReport);
 
-		if (reportRequest == null) {
+		if (requestedReport == null) {
 			paramObj0 = new NullWrapper(
-					"com.liferay.bi.report.model.ReportRequest");
+					"com.liferay.bi.report.model.RequestedReport");
 		}
 
 		Object paramObj1 = new BooleanWrapper(merge);
@@ -357,7 +358,7 @@ public class ReportRequestLocalServiceClp implements ReportRequestLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _classLoaderProxy.invoke("updateReportRequest",
+			returnObj = _classLoaderProxy.invoke("updateRequestedReport",
 					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
@@ -374,7 +375,76 @@ public class ReportRequestLocalServiceClp implements ReportRequestLocalService {
 			}
 		}
 
-		return (com.liferay.bi.report.model.ReportRequest)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.bi.report.model.RequestedReport)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void addRequestedReport(
+		com.liferay.portal.kernel.bi.reporting.ReportRequest request)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(request);
+
+		if (request == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.portal.kernel.bi.reporting.ReportRequest");
+		}
+
+		try {
+			_classLoaderProxy.invoke("addRequestedReport",
+				new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.PortalException) {
+				throw (com.liferay.portal.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	public void genrateReport(long companyId, long groupId, long userId,
+		long definitionId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		Object paramObj0 = new LongWrapper(companyId);
+
+		Object paramObj1 = new LongWrapper(groupId);
+
+		Object paramObj2 = new LongWrapper(userId);
+
+		Object paramObj3 = new LongWrapper(definitionId);
+
+		try {
+			_classLoaderProxy.invoke("genrateReport",
+				new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.PortalException) {
+				throw (com.liferay.portal.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;

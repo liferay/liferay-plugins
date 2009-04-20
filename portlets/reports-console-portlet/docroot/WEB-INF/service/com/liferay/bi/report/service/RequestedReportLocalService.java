@@ -29,27 +29,27 @@ import com.liferay.portal.kernel.annotation.Propagation;
 import com.liferay.portal.kernel.annotation.Transactional;
 
 /**
- * <a href="ReportRequestLocalService.java.html"><b><i>View Source</i></b></a>
+ * <a href="RequestedReportLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface ReportRequestLocalService {
-	public com.liferay.bi.report.model.ReportRequest addReportRequest(
-		com.liferay.bi.report.model.ReportRequest reportRequest)
+public interface RequestedReportLocalService {
+	public com.liferay.bi.report.model.RequestedReport addRequestedReport(
+		com.liferay.bi.report.model.RequestedReport requestedReport)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.bi.report.model.ReportRequest createReportRequest(
+	public com.liferay.bi.report.model.RequestedReport createRequestedReport(
 		long requestId);
 
-	public void deleteReportRequest(long requestId)
+	public void deleteRequestedReport(long requestId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
-	public void deleteReportRequest(
-		com.liferay.bi.report.model.ReportRequest reportRequest)
+	public void deleteRequestedReport(
+		com.liferay.bi.report.model.RequestedReport requestedReport)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<Object> dynamicQuery(
@@ -61,24 +61,34 @@ public interface ReportRequestLocalService {
 		int end) throws com.liferay.portal.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.bi.report.model.ReportRequest getReportRequest(
+	public com.liferay.bi.report.model.RequestedReport getRequestedReport(
 		long requestId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.bi.report.model.ReportRequest> getReportRequests(
+	public java.util.List<com.liferay.bi.report.model.RequestedReport> getRequestedReports(
 		int start, int end) throws com.liferay.portal.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getReportRequestsCount()
+	public int getRequestedReportsCount()
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.bi.report.model.ReportRequest updateReportRequest(
-		com.liferay.bi.report.model.ReportRequest reportRequest)
+	public com.liferay.bi.report.model.RequestedReport updateRequestedReport(
+		com.liferay.bi.report.model.RequestedReport requestedReport)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.bi.report.model.ReportRequest updateReportRequest(
-		com.liferay.bi.report.model.ReportRequest reportRequest, boolean merge)
-		throws com.liferay.portal.SystemException;
+	public com.liferay.bi.report.model.RequestedReport updateRequestedReport(
+		com.liferay.bi.report.model.RequestedReport requestedReport,
+		boolean merge) throws com.liferay.portal.SystemException;
+
+	public void addRequestedReport(
+		com.liferay.portal.kernel.bi.reporting.ReportRequest request)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public void genrateReport(long companyId, long groupId, long userId,
+		long definitionId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
 }

@@ -22,8 +22,8 @@
 
 package com.liferay.bi.report.model.impl;
 
-import com.liferay.bi.report.model.ReportRequest;
-import com.liferay.bi.report.model.ReportRequestSoap;
+import com.liferay.bi.report.model.RequestedReport;
+import com.liferay.bi.report.model.RequestedReportSoap;
 
 import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
 import com.liferay.portal.kernel.util.DateUtil;
@@ -45,13 +45,13 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <a href="ReportRequestModelImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="RequestedReportModelImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class ReportRequestModelImpl extends BaseModelImpl<ReportRequest> {
-	public static final String TABLE_NAME = "Report_ReportRequest";
+public class RequestedReportModelImpl extends BaseModelImpl<RequestedReport> {
+	public static final String TABLE_NAME = "Report_RequestedReport";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "uuid_", new Integer(Types.VARCHAR) },
 			
@@ -82,20 +82,20 @@ public class ReportRequestModelImpl extends BaseModelImpl<ReportRequest> {
 
 			{ "isSchedule", new Integer(Types.BOOLEAN) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Report_ReportRequest (uuid_ VARCHAR(75) null,requestId LONG not null primary key,companyId LONG,groupId LONG,userId LONG,createDate DATE null,modifiedDate DATE null,definitionId LONG,requestStatus VARCHAR(75) null,isSchedule BOOLEAN)";
-	public static final String TABLE_SQL_DROP = "drop table Report_ReportRequest";
+	public static final String TABLE_SQL_CREATE = "create table Report_RequestedReport (uuid_ VARCHAR(75) null,requestId LONG not null primary key,companyId LONG,groupId LONG,userId LONG,createDate DATE null,modifiedDate DATE null,definitionId LONG,requestStatus VARCHAR(75) null,isSchedule BOOLEAN)";
+	public static final String TABLE_SQL_DROP = "drop table Report_RequestedReport";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
 	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.bi.report.model.ReportRequest"),
+				"value.object.entity.cache.enabled.com.liferay.bi.report.model.RequestedReport"),
 			true);
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.bi.report.model.ReportRequest"),
+				"value.object.finder.cache.enabled.com.liferay.bi.report.model.RequestedReport"),
 			true);
 
-	public static ReportRequest toModel(ReportRequestSoap soapModel) {
-		ReportRequest model = new ReportRequestImpl();
+	public static RequestedReport toModel(RequestedReportSoap soapModel) {
+		RequestedReport model = new RequestedReportImpl();
 
 		model.setUuid(soapModel.getUuid());
 		model.setRequestId(soapModel.getRequestId());
@@ -111,10 +111,11 @@ public class ReportRequestModelImpl extends BaseModelImpl<ReportRequest> {
 		return model;
 	}
 
-	public static List<ReportRequest> toModels(ReportRequestSoap[] soapModels) {
-		List<ReportRequest> models = new ArrayList<ReportRequest>(soapModels.length);
+	public static List<RequestedReport> toModels(
+		RequestedReportSoap[] soapModels) {
+		List<RequestedReport> models = new ArrayList<RequestedReport>(soapModels.length);
 
-		for (ReportRequestSoap soapModel : soapModels) {
+		for (RequestedReportSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
 		}
 
@@ -122,9 +123,9 @@ public class ReportRequestModelImpl extends BaseModelImpl<ReportRequest> {
 	}
 
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
-				"lock.expiration.time.com.liferay.bi.report.model.ReportRequest"));
+				"lock.expiration.time.com.liferay.bi.report.model.RequestedReport"));
 
-	public ReportRequestModelImpl() {
+	public RequestedReportModelImpl() {
 	}
 
 	public long getPrimaryKey() {
@@ -285,12 +286,12 @@ public class ReportRequestModelImpl extends BaseModelImpl<ReportRequest> {
 		}
 	}
 
-	public ReportRequest toEscapedModel() {
+	public RequestedReport toEscapedModel() {
 		if (isEscapedModel()) {
-			return (ReportRequest)this;
+			return (RequestedReport)this;
 		}
 		else {
-			ReportRequest model = new ReportRequestImpl();
+			RequestedReport model = new RequestedReportImpl();
 
 			model.setNew(isNew());
 			model.setEscapedModel(true);
@@ -306,8 +307,8 @@ public class ReportRequestModelImpl extends BaseModelImpl<ReportRequest> {
 			model.setRequestStatus(HtmlUtil.escape(getRequestStatus()));
 			model.setIsSchedule(getIsSchedule());
 
-			model = (ReportRequest)Proxy.newProxyInstance(ReportRequest.class.getClassLoader(),
-					new Class[] { ReportRequest.class },
+			model = (RequestedReport)Proxy.newProxyInstance(RequestedReport.class.getClassLoader(),
+					new Class[] { RequestedReport.class },
 					new ReadOnlyBeanHandler(model));
 
 			return model;
@@ -316,7 +317,7 @@ public class ReportRequestModelImpl extends BaseModelImpl<ReportRequest> {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = new ExpandoBridgeImpl(ReportRequest.class.getName(),
+			_expandoBridge = new ExpandoBridgeImpl(RequestedReport.class.getName(),
 					getPrimaryKey());
 		}
 
@@ -324,7 +325,7 @@ public class ReportRequestModelImpl extends BaseModelImpl<ReportRequest> {
 	}
 
 	public Object clone() {
-		ReportRequestImpl clone = new ReportRequestImpl();
+		RequestedReportImpl clone = new RequestedReportImpl();
 
 		clone.setUuid(getUuid());
 		clone.setRequestId(getRequestId());
@@ -340,11 +341,11 @@ public class ReportRequestModelImpl extends BaseModelImpl<ReportRequest> {
 		return clone;
 	}
 
-	public int compareTo(ReportRequest reportRequest) {
+	public int compareTo(RequestedReport requestedReport) {
 		int value = 0;
 
 		value = DateUtil.compareTo(getModifiedDate(),
-				reportRequest.getModifiedDate());
+				requestedReport.getModifiedDate());
 
 		if (value != 0) {
 			return value;
@@ -358,16 +359,16 @@ public class ReportRequestModelImpl extends BaseModelImpl<ReportRequest> {
 			return false;
 		}
 
-		ReportRequest reportRequest = null;
+		RequestedReport requestedReport = null;
 
 		try {
-			reportRequest = (ReportRequest)obj;
+			requestedReport = (RequestedReport)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;
 		}
 
-		long pk = reportRequest.getPrimaryKey();
+		long pk = requestedReport.getPrimaryKey();
 
 		if (getPrimaryKey() == pk) {
 			return true;

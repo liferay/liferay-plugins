@@ -22,12 +22,12 @@
 
 package com.liferay.bi.report.service.base;
 
-import com.liferay.bi.report.model.ReportRequest;
+import com.liferay.bi.report.model.RequestedReport;
 import com.liferay.bi.report.service.ReportDefinitionLocalService;
-import com.liferay.bi.report.service.ReportRequestLocalService;
+import com.liferay.bi.report.service.RequestedReportLocalService;
 import com.liferay.bi.report.service.persistence.ReportDefinitionFinder;
 import com.liferay.bi.report.service.persistence.ReportDefinitionPersistence;
-import com.liferay.bi.report.service.persistence.ReportRequestPersistence;
+import com.liferay.bi.report.service.persistence.RequestedReportPersistence;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
@@ -37,71 +37,72 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import java.util.List;
 
 /**
- * <a href="ReportRequestLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="RequestedReportLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public abstract class ReportRequestLocalServiceBaseImpl
-	implements ReportRequestLocalService {
-	public ReportRequest addReportRequest(ReportRequest reportRequest)
+public abstract class RequestedReportLocalServiceBaseImpl
+	implements RequestedReportLocalService {
+	public RequestedReport addRequestedReport(RequestedReport requestedReport)
 		throws SystemException {
-		reportRequest.setNew(true);
+		requestedReport.setNew(true);
 
-		return reportRequestPersistence.update(reportRequest, false);
+		return requestedReportPersistence.update(requestedReport, false);
 	}
 
-	public ReportRequest createReportRequest(long requestId) {
-		return reportRequestPersistence.create(requestId);
+	public RequestedReport createRequestedReport(long requestId) {
+		return requestedReportPersistence.create(requestId);
 	}
 
-	public void deleteReportRequest(long requestId)
+	public void deleteRequestedReport(long requestId)
 		throws PortalException, SystemException {
-		reportRequestPersistence.remove(requestId);
+		requestedReportPersistence.remove(requestId);
 	}
 
-	public void deleteReportRequest(ReportRequest reportRequest)
+	public void deleteRequestedReport(RequestedReport requestedReport)
 		throws SystemException {
-		reportRequestPersistence.remove(reportRequest);
+		requestedReportPersistence.remove(requestedReport);
 	}
 
 	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
-		return reportRequestPersistence.findWithDynamicQuery(dynamicQuery);
+		return requestedReportPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
 	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end) throws SystemException {
-		return reportRequestPersistence.findWithDynamicQuery(dynamicQuery,
+		return requestedReportPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
 
-	public ReportRequest getReportRequest(long requestId)
+	public RequestedReport getRequestedReport(long requestId)
 		throws PortalException, SystemException {
-		return reportRequestPersistence.findByPrimaryKey(requestId);
+		return requestedReportPersistence.findByPrimaryKey(requestId);
 	}
 
-	public List<ReportRequest> getReportRequests(int start, int end)
+	public List<RequestedReport> getRequestedReports(int start, int end)
 		throws SystemException {
-		return reportRequestPersistence.findAll(start, end);
+		return requestedReportPersistence.findAll(start, end);
 	}
 
-	public int getReportRequestsCount() throws SystemException {
-		return reportRequestPersistence.countAll();
+	public int getRequestedReportsCount() throws SystemException {
+		return requestedReportPersistence.countAll();
 	}
 
-	public ReportRequest updateReportRequest(ReportRequest reportRequest)
+	public RequestedReport updateRequestedReport(
+		RequestedReport requestedReport) throws SystemException {
+		requestedReport.setNew(false);
+
+		return requestedReportPersistence.update(requestedReport, true);
+	}
+
+	public RequestedReport updateRequestedReport(
+		RequestedReport requestedReport, boolean merge)
 		throws SystemException {
-		reportRequest.setNew(false);
+		requestedReport.setNew(false);
 
-		return reportRequestPersistence.update(reportRequest, true);
-	}
-
-	public ReportRequest updateReportRequest(ReportRequest reportRequest,
-		boolean merge) throws SystemException {
-		reportRequest.setNew(false);
-
-		return reportRequestPersistence.update(reportRequest, merge);
+		return requestedReportPersistence.update(requestedReport, merge);
 	}
 
 	public ReportDefinitionLocalService getReportDefinitionLocalService() {
@@ -131,22 +132,22 @@ public abstract class ReportRequestLocalServiceBaseImpl
 		this.reportDefinitionFinder = reportDefinitionFinder;
 	}
 
-	public ReportRequestLocalService getReportRequestLocalService() {
-		return reportRequestLocalService;
+	public RequestedReportLocalService getRequestedReportLocalService() {
+		return requestedReportLocalService;
 	}
 
-	public void setReportRequestLocalService(
-		ReportRequestLocalService reportRequestLocalService) {
-		this.reportRequestLocalService = reportRequestLocalService;
+	public void setRequestedReportLocalService(
+		RequestedReportLocalService requestedReportLocalService) {
+		this.requestedReportLocalService = requestedReportLocalService;
 	}
 
-	public ReportRequestPersistence getReportRequestPersistence() {
-		return reportRequestPersistence;
+	public RequestedReportPersistence getRequestedReportPersistence() {
+		return requestedReportPersistence;
 	}
 
-	public void setReportRequestPersistence(
-		ReportRequestPersistence reportRequestPersistence) {
-		this.reportRequestPersistence = reportRequestPersistence;
+	public void setRequestedReportPersistence(
+		RequestedReportPersistence requestedReportPersistence) {
+		this.requestedReportPersistence = requestedReportPersistence;
 	}
 
 	@BeanReference(name = "com.liferay.bi.report.service.ReportDefinitionLocalService.impl")
@@ -155,8 +156,8 @@ public abstract class ReportRequestLocalServiceBaseImpl
 	protected ReportDefinitionPersistence reportDefinitionPersistence;
 	@BeanReference(name = "com.liferay.bi.report.service.persistence.ReportDefinitionFinder.impl")
 	protected ReportDefinitionFinder reportDefinitionFinder;
-	@BeanReference(name = "com.liferay.bi.report.service.ReportRequestLocalService.impl")
-	protected ReportRequestLocalService reportRequestLocalService;
-	@BeanReference(name = "com.liferay.bi.report.service.persistence.ReportRequestPersistence.impl")
-	protected ReportRequestPersistence reportRequestPersistence;
+	@BeanReference(name = "com.liferay.bi.report.service.RequestedReportLocalService.impl")
+	protected RequestedReportLocalService requestedReportLocalService;
+	@BeanReference(name = "com.liferay.bi.report.service.persistence.RequestedReportPersistence.impl")
+	protected RequestedReportPersistence requestedReportPersistence;
 }

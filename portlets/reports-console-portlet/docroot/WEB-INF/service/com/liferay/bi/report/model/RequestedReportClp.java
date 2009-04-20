@@ -22,47 +22,26 @@
 
 package com.liferay.bi.report.model;
 
+import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
+import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.model.impl.BaseModelImpl;
+
 import java.io.Serializable;
 
-import java.util.ArrayList;
+import java.lang.reflect.Proxy;
+
 import java.util.Date;
-import java.util.List;
 
 /**
- * <a href="ReportRequestSoap.java.html"><b><i>View Source</i></b></a>
+ * <a href="RequestedReportClp.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class ReportRequestSoap implements Serializable {
-	public static ReportRequestSoap toSoapModel(ReportRequest model) {
-		ReportRequestSoap soapModel = new ReportRequestSoap();
-
-		soapModel.setUuid(model.getUuid());
-		soapModel.setRequestId(model.getRequestId());
-		soapModel.setCompanyId(model.getCompanyId());
-		soapModel.setGroupId(model.getGroupId());
-		soapModel.setUserId(model.getUserId());
-		soapModel.setCreateDate(model.getCreateDate());
-		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setDefinitionId(model.getDefinitionId());
-		soapModel.setRequestStatus(model.getRequestStatus());
-		soapModel.setIsSchedule(model.getIsSchedule());
-
-		return soapModel;
-	}
-
-	public static ReportRequestSoap[] toSoapModels(List<ReportRequest> models) {
-		List<ReportRequestSoap> soapModels = new ArrayList<ReportRequestSoap>(models.size());
-
-		for (ReportRequest model : models) {
-			soapModels.add(toSoapModel(model));
-		}
-
-		return soapModels.toArray(new ReportRequestSoap[soapModels.size()]);
-	}
-
-	public ReportRequestSoap() {
+public class RequestedReportClp extends BaseModelImpl<RequestedReport>
+	implements RequestedReport {
+	public RequestedReportClp() {
 	}
 
 	public long getPrimaryKey() {
@@ -71,6 +50,10 @@ public class ReportRequestSoap implements Serializable {
 
 	public void setPrimaryKey(long pk) {
 		setRequestId(pk);
+	}
+
+	public Serializable getPrimaryKeyObj() {
+		return new Long(_requestId);
 	}
 
 	public String getUuid() {
@@ -155,6 +138,92 @@ public class ReportRequestSoap implements Serializable {
 
 	public void setIsSchedule(boolean isSchedule) {
 		_isSchedule = isSchedule;
+	}
+
+	public RequestedReport toEscapedModel() {
+		if (isEscapedModel()) {
+			return this;
+		}
+		else {
+			RequestedReport model = new RequestedReportClp();
+
+			model.setEscapedModel(true);
+
+			model.setUuid(HtmlUtil.escape(getUuid()));
+			model.setRequestId(getRequestId());
+			model.setCompanyId(getCompanyId());
+			model.setGroupId(getGroupId());
+			model.setUserId(getUserId());
+			model.setCreateDate(getCreateDate());
+			model.setModifiedDate(getModifiedDate());
+			model.setDefinitionId(getDefinitionId());
+			model.setRequestStatus(HtmlUtil.escape(getRequestStatus()));
+			model.setIsSchedule(getIsSchedule());
+
+			model = (RequestedReport)Proxy.newProxyInstance(RequestedReport.class.getClassLoader(),
+					new Class[] { RequestedReport.class },
+					new ReadOnlyBeanHandler(model));
+
+			return model;
+		}
+	}
+
+	public Object clone() {
+		RequestedReportClp clone = new RequestedReportClp();
+
+		clone.setUuid(getUuid());
+		clone.setRequestId(getRequestId());
+		clone.setCompanyId(getCompanyId());
+		clone.setGroupId(getGroupId());
+		clone.setUserId(getUserId());
+		clone.setCreateDate(getCreateDate());
+		clone.setModifiedDate(getModifiedDate());
+		clone.setDefinitionId(getDefinitionId());
+		clone.setRequestStatus(getRequestStatus());
+		clone.setIsSchedule(getIsSchedule());
+
+		return clone;
+	}
+
+	public int compareTo(RequestedReport requestedReport) {
+		int value = 0;
+
+		value = DateUtil.compareTo(getModifiedDate(),
+				requestedReport.getModifiedDate());
+
+		if (value != 0) {
+			return value;
+		}
+
+		return 0;
+	}
+
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+
+		RequestedReportClp requestedReport = null;
+
+		try {
+			requestedReport = (RequestedReportClp)obj;
+		}
+		catch (ClassCastException cce) {
+			return false;
+		}
+
+		long pk = requestedReport.getPrimaryKey();
+
+		if (getPrimaryKey() == pk) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	public int hashCode() {
+		return (int)getPrimaryKey();
 	}
 
 	private String _uuid;

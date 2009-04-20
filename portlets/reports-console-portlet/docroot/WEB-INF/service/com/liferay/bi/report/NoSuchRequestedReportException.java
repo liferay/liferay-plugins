@@ -20,64 +20,32 @@
  * SOFTWARE.
  */
 
-package com.liferay.bi.report.model;
+package com.liferay.bi.report;
 
-import com.liferay.portal.model.BaseModel;
-
-import java.util.Date;
+import com.liferay.portal.PortalException;
 
 /**
- * <a href="ReportRequestModel.java.html"><b><i>View Source</i></b></a>
+ * <a href="NoSuchRequestedReportException.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface ReportRequestModel extends BaseModel<ReportRequest> {
-	public long getPrimaryKey();
+public class NoSuchRequestedReportException extends PortalException {
 
-	public void setPrimaryKey(long pk);
+	public NoSuchRequestedReportException() {
+		super();
+	}
 
-	public String getUuid();
+	public NoSuchRequestedReportException(String msg) {
+		super(msg);
+	}
 
-	public void setUuid(String uuid);
+	public NoSuchRequestedReportException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
 
-	public long getRequestId();
+	public NoSuchRequestedReportException(Throwable cause) {
+		super(cause);
+	}
 
-	public void setRequestId(long requestId);
-
-	public long getCompanyId();
-
-	public void setCompanyId(long companyId);
-
-	public long getGroupId();
-
-	public void setGroupId(long groupId);
-
-	public long getUserId();
-
-	public void setUserId(long userId);
-
-	public Date getCreateDate();
-
-	public void setCreateDate(Date createDate);
-
-	public Date getModifiedDate();
-
-	public void setModifiedDate(Date modifiedDate);
-
-	public long getDefinitionId();
-
-	public void setDefinitionId(long definitionId);
-
-	public String getRequestStatus();
-
-	public void setRequestStatus(String requestStatus);
-
-	public boolean getIsSchedule();
-
-	public boolean isIsSchedule();
-
-	public void setIsSchedule(boolean isSchedule);
-
-	public ReportRequest toEscapedModel();
 }

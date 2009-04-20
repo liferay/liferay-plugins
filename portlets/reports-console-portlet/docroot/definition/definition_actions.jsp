@@ -29,61 +29,54 @@ ReportDefinition definition = (ReportDefinition)row.getObject();
 
 String definitionId = String.valueOf(definition.getDefinitionId());
 %>
-<liferay-ui:icon-menu
-	cssClass=""
->
-<c:if test="<%= ReportDefinitionPermission.contains(permissionChecker, definition, ActionKeys.UPDATE) %>">
-	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
-		<portlet:param name="<%=ActionRequest.ACTION_NAME %>" value="viewDefinition" />
-		<portlet:param name="jspPage" value="/definition/edit_definition.jsp" />
-		<portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="definitionId" value="<%= definitionId %>" />
-	</portlet:actionURL>
-
-	<liferay-ui:icon image="edit" url="<%= editURL %>" />
-</c:if>
-
-<c:if test="<%= ReportDefinitionPermission.contains(permissionChecker, definition, ActionKeys.PERMISSIONS) %>">
-	<liferay-security:permissionsURL
-		modelResource="<%= ReportDefinition.class.getName() %>"
-		modelResourceDescription='<%= definition.getDefinitionName() %>'
-		resourcePrimKey="<%= definitionId %>"
-		var="permissionsURL"
-	/>
-
-	<liferay-ui:icon image="permissions" url="<%= permissionsURL %>" />
-</c:if>
+<liferay-ui:icon-menu cssClass="" >
+	<c:if test="<%= ReportDefinitionPermission.contains(permissionChecker, definition, ActionKeys.UPDATE) %>">
+		<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
+			<portlet:param name="<%=ActionRequest.ACTION_NAME %>" value="viewDefinition" />
+			<portlet:param name="jspPage" value="/definition/edit_definition.jsp" />
+			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="definitionId" value="<%= definitionId %>" />
+		</portlet:actionURL>
+		<liferay-ui:icon image="edit" url="<%= editURL %>" />
+	</c:if>
+	
+	<c:if test="<%= ReportDefinitionPermission.contains(permissionChecker, definition, ActionKeys.PERMISSIONS) %>">
+		<liferay-security:permissionsURL
+			modelResource="<%= ReportDefinition.class.getName() %>"
+			modelResourceDescription='<%= definition.getDefinitionName() %>'
+			resourcePrimKey="<%= definitionId %>"
+			var="permissionsURL"
+		/>
+		<liferay-ui:icon image="permissions" url="<%= permissionsURL %>" />
+	</c:if>
 
 	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" name="genrateReport" var="generateImmdiatelyURL" >
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="definitionId" value="<%= definitionId %>" />
 	</portlet:actionURL>
-
 	<liferay-ui:icon image="submit" message="generate-immdiately" url="<%= generateImmdiatelyURL %>" />
 
-<c:if test="<%= ReportDefinitionPermission.contains(permissionChecker, definition, ActionKeys.ADD_INSTANCE) %>">
-	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="addScheduleURL">
-		<portlet:param name="jspPage" value="/definition/edit_definition.jsp" />
-        <portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="definitionId" value="<%= definitionId %>" />
-	</portlet:actionURL>
+	<c:if test="<%= ReportDefinitionPermission.contains(permissionChecker, definition, ActionKeys.ADD_INSTANCE) %>">
+		<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="addScheduleURL">
+			<portlet:param name="jspPage" value="/definition/edit_definition.jsp" />
+	        <portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="definitionId" value="<%= definitionId %>" />
+		</portlet:actionURL>
+		<liferay-ui:icon image="time" message="add-schedule" url="<%= addScheduleURL %>" />
+	</c:if>
 
-	<liferay-ui:icon image="time" message="add-schedule" url="<%= addScheduleURL %>" />
-</c:if>
-
-    <portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="viewTemplateScheduleURL">
+    <portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="viewScheduleURL">
 		<portlet:param name="jspPage" value="/view_template_events.jsp" />
         <portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="definitionId" value="<%= definitionId %>" />
 	</portlet:actionURL>
-
-	<liferay-ui:icon image="manage_task" message="view-schedule" url="<%= viewTemplateScheduleURL %>" />
+	<liferay-ui:icon image="manage_task" message="view-schedule" url="<%= viewScheduleURL %>" />
 
 	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" name="deleteDefinition"  var="deleteURL">
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="definitionId" value="<%= definitionId %>" />
 	</portlet:actionURL>
-
-	<liferay-ui:icon image="delete" message="delete-template" url="<%= deleteURL %>" />
+	<liferay-ui:icon-delete url="<%= deleteURL %>" />
+	
 </liferay-ui:icon-menu>
 

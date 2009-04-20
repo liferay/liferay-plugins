@@ -2673,7 +2673,7 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 	@BeanReference(name = "com.liferay.bi.report.service.persistence.ReportDefinitionPersistence.impl")
 	protected com.liferay.bi.report.service.persistence.ReportDefinitionPersistence reportDefinitionPersistence;
-	@BeanReference(name = "com.liferay.bi.report.service.persistence.ReportRequestPersistence.impl")
-	protected com.liferay.bi.report.service.persistence.ReportRequestPersistence reportRequestPersistence;
+	@BeanReference(name = "com.liferay.bi.report.service.persistence.RequestedReportPersistence.impl")
+	protected com.liferay.bi.report.service.persistence.RequestedReportPersistence requestedReportPersistence;
 	private static Log _log = LogFactoryUtil.getLog(ReportDefinitionPersistenceImpl.class);
 }

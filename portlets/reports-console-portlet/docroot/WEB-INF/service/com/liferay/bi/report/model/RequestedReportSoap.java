@@ -22,26 +22,48 @@
 
 package com.liferay.bi.report.model;
 
-import com.liferay.portal.kernel.bean.ReadOnlyBeanHandler;
-import com.liferay.portal.kernel.util.DateUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.model.impl.BaseModelImpl;
-
 import java.io.Serializable;
 
-import java.lang.reflect.Proxy;
-
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
- * <a href="ReportRequestClp.java.html"><b><i>View Source</i></b></a>
+ * <a href="RequestedReportSoap.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class ReportRequestClp extends BaseModelImpl<ReportRequest>
-	implements ReportRequest {
-	public ReportRequestClp() {
+public class RequestedReportSoap implements Serializable {
+	public static RequestedReportSoap toSoapModel(RequestedReport model) {
+		RequestedReportSoap soapModel = new RequestedReportSoap();
+
+		soapModel.setUuid(model.getUuid());
+		soapModel.setRequestId(model.getRequestId());
+		soapModel.setCompanyId(model.getCompanyId());
+		soapModel.setGroupId(model.getGroupId());
+		soapModel.setUserId(model.getUserId());
+		soapModel.setCreateDate(model.getCreateDate());
+		soapModel.setModifiedDate(model.getModifiedDate());
+		soapModel.setDefinitionId(model.getDefinitionId());
+		soapModel.setRequestStatus(model.getRequestStatus());
+		soapModel.setIsSchedule(model.getIsSchedule());
+
+		return soapModel;
+	}
+
+	public static RequestedReportSoap[] toSoapModels(
+		List<RequestedReport> models) {
+		List<RequestedReportSoap> soapModels = new ArrayList<RequestedReportSoap>(models.size());
+
+		for (RequestedReport model : models) {
+			soapModels.add(toSoapModel(model));
+		}
+
+		return soapModels.toArray(new RequestedReportSoap[soapModels.size()]);
+	}
+
+	public RequestedReportSoap() {
 	}
 
 	public long getPrimaryKey() {
@@ -50,10 +72,6 @@ public class ReportRequestClp extends BaseModelImpl<ReportRequest>
 
 	public void setPrimaryKey(long pk) {
 		setRequestId(pk);
-	}
-
-	public Serializable getPrimaryKeyObj() {
-		return new Long(_requestId);
 	}
 
 	public String getUuid() {
@@ -138,92 +156,6 @@ public class ReportRequestClp extends BaseModelImpl<ReportRequest>
 
 	public void setIsSchedule(boolean isSchedule) {
 		_isSchedule = isSchedule;
-	}
-
-	public ReportRequest toEscapedModel() {
-		if (isEscapedModel()) {
-			return this;
-		}
-		else {
-			ReportRequest model = new ReportRequestClp();
-
-			model.setEscapedModel(true);
-
-			model.setUuid(HtmlUtil.escape(getUuid()));
-			model.setRequestId(getRequestId());
-			model.setCompanyId(getCompanyId());
-			model.setGroupId(getGroupId());
-			model.setUserId(getUserId());
-			model.setCreateDate(getCreateDate());
-			model.setModifiedDate(getModifiedDate());
-			model.setDefinitionId(getDefinitionId());
-			model.setRequestStatus(HtmlUtil.escape(getRequestStatus()));
-			model.setIsSchedule(getIsSchedule());
-
-			model = (ReportRequest)Proxy.newProxyInstance(ReportRequest.class.getClassLoader(),
-					new Class[] { ReportRequest.class },
-					new ReadOnlyBeanHandler(model));
-
-			return model;
-		}
-	}
-
-	public Object clone() {
-		ReportRequestClp clone = new ReportRequestClp();
-
-		clone.setUuid(getUuid());
-		clone.setRequestId(getRequestId());
-		clone.setCompanyId(getCompanyId());
-		clone.setGroupId(getGroupId());
-		clone.setUserId(getUserId());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setDefinitionId(getDefinitionId());
-		clone.setRequestStatus(getRequestStatus());
-		clone.setIsSchedule(getIsSchedule());
-
-		return clone;
-	}
-
-	public int compareTo(ReportRequest reportRequest) {
-		int value = 0;
-
-		value = DateUtil.compareTo(getModifiedDate(),
-				reportRequest.getModifiedDate());
-
-		if (value != 0) {
-			return value;
-		}
-
-		return 0;
-	}
-
-	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
-		}
-
-		ReportRequestClp reportRequest = null;
-
-		try {
-			reportRequest = (ReportRequestClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
-
-		long pk = reportRequest.getPrimaryKey();
-
-		if (getPrimaryKey() == pk) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
-	public int hashCode() {
-		return (int)getPrimaryKey();
 	}
 
 	private String _uuid;

@@ -15,7 +15,7 @@ create table Report_ReportDefinition (
 	dataSourceName VARCHAR(75) null
 );
 
-create table Report_ReportRequest (
+create table Report_RequestedReport (
 	uuid_ VARCHAR(75) null,
 	requestId LONG not null primary key,
 	companyId LONG,

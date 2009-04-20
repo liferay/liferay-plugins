@@ -17,6 +17,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Reports Console</title>
 			<short-title>Reports Console</short-title>

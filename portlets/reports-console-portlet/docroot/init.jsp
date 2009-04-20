@@ -36,10 +36,15 @@
 <%@ page import="com.liferay.bi.report.DefinitionNameException" %>
 <%@ page import="com.liferay.bi.report.NoSuchDefinitionException" %>
 <%@ page import="com.liferay.bi.report.model.ReportDefinition" %>
+<%@ page import="com.liferay.bi.report.model.RequestedReport" %>
 <%@ page import="com.liferay.bi.report.search.ReportDefinitionSearch" %>
 <%@ page import="com.liferay.bi.report.search.ReportDefinitionSearchTerms"%>
 <%@ page import="com.liferay.bi.report.search.ReportDefinitionDisplayTerms" %>
+<%@ page import="com.liferay.bi.report.search.RequestedReportSearch" %>
+<%@ page import="com.liferay.bi.report.search.RequestedReportSearchTerms"%>
+<%@ page import="com.liferay.bi.report.search.RequestedReportDisplayTerms" %>
 <%@ page import="com.liferay.bi.report.service.permission.ReportDefinitionPermission" %>
+<%@ page import="com.liferay.bi.report.service.permission.RequestedReportPermission" %>
 <%@ page import="com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil" %>
 
 <%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>

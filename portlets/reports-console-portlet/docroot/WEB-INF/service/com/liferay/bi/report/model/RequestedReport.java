@@ -20,16 +20,13 @@
  * SOFTWARE.
  */
 
-package com.liferay.bi.report.service.impl;
-
-import com.liferay.bi.report.service.base.ReportRequestLocalServiceBaseImpl;
+package com.liferay.bi.report.model;
 
 /**
- * <a href="ReportRequestLocalServiceImpl.java.html"><b><i>View Source</i></b></a>
+ * <a href="RequestedReport.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class ReportRequestLocalServiceImpl
-	extends ReportRequestLocalServiceBaseImpl {
+public interface RequestedReport extends RequestedReportModel {
 }

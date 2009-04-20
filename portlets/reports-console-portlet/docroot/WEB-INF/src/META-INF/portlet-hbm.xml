@@ -20,7 +20,7 @@
 		<property name="reportFormat" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="dataSourceName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="com.liferay.bi.report.model.impl.ReportRequestImpl" table="Report_ReportRequest">
+	<class name="com.liferay.bi.report.model.impl.RequestedReportImpl" table="Report_RequestedReport">
 		<cache usage="read-write" />
 		<id name="requestId" type="long">
 			<generator class="assigned" />

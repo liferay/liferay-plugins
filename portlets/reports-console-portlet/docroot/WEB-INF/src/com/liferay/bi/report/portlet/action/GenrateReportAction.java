@@ -27,11 +27,13 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 
 import com.liferay.bi.report.NoSuchDefinitionException;
-import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
+import com.liferay.bi.report.service.RequestedReportLocalServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.simplemvc.Action;
 
 /**
@@ -50,10 +52,12 @@ public class GenrateReportAction implements Action {
 			SessionErrors.add(
 				actionRequest, NoSuchDefinitionException.class.getName());
 		}
-
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay) actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 		try {
-			ReportDefinitionLocalServiceUtil.genrateReport(
-				actionRequest, definitionId);
+			RequestedReportLocalServiceUtil.genrateReport(
+				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+				themeDisplay.getUserId(), definitionId);
 		}
 		catch (Exception e) {
 			_log.error(e);

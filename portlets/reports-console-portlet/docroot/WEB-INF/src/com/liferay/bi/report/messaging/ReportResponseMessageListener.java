@@ -22,20 +22,30 @@
 
 package com.liferay.bi.report.messaging;
 
+import java.util.Date;
+
+import com.liferay.bi.report.model.RequestedReport;
+import com.liferay.bi.report.portlet.RequestStatus;
+import com.liferay.bi.report.service.RequestedReportLocalServiceUtil;
+import com.liferay.documentlibrary.DuplicateDirectoryException;
+import com.liferay.documentlibrary.service.DLServiceUtil;
+import com.liferay.portal.kernel.bi.reporting.ReportResultContainer;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageListener;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.CompanyConstants;
 
 /**
  * <a href="ReportResponseMessageListener.java.html"><b><i>View Source</i></b></a>
- *
+ * 
  * @author Gavin Wan
- *
  */
 public class ReportResponseMessageListener implements MessageListener {
 
 	public void receive(Message message) {
+
 		try {
 			doReceive(message);
 		}
@@ -44,10 +54,55 @@ public class ReportResponseMessageListener implements MessageListener {
 		}
 	}
 
-	protected void doReceive(Message message) throws Exception {
-		//TDB save report to DB
-		_log.info("TBD Save result");
+	protected void doReceive(Message message)
+		throws Exception {
+
+		// TDB save report to DB
+		long requestReportId = Long.parseLong(message.getResponseId());
+		ReportResultContainer reportResultContainer =
+			(ReportResultContainer) message.getPayload();
+		RequestedReport requestedReport =
+			RequestedReportLocalServiceUtil.getRequestedReport(requestReportId);
+		Date now = new Date();
+		if (reportResultContainer.hasError()) {
+			requestedReport.setRequestStatus(RequestStatus.ERROR.toString());
+		}
+		else {
+			// TBD set those values from message
+			long companyId = 0;
+			long groupId = 0;
+			String portletId = CompanyConstants.SYSTEM_STRING;
+			long repositoryId = CompanyConstants.SYSTEM;
+			long fileEntryId = 0;
+			String properties = StringPool.BLANK;
+			String[] tagsCategories = new String[0];
+			String[] tagsEntries = new String[0];
+			try {
+				DLServiceUtil.addDirectory(
+					companyId, repositoryId, BI_REPORTS_DIRS +
+						String.valueOf(requestReportId));
+			}
+			catch (DuplicateDirectoryException dde) {
+			}
+			try {
+				DLServiceUtil.addFile(
+					companyId, portletId, groupId, repositoryId,
+					reportResultContainer.getReportName(), fileEntryId,
+					properties, now, tagsCategories, tagsEntries,
+					reportResultContainer.getResults());
+				requestedReport.setRequestStatus(RequestStatus.COMPLETE.toString());
+			}
+			catch (Exception e) {
+				requestedReport.setRequestStatus(RequestStatus.ERROR.toString());
+				_log.error(e);
+			}
+		}
+		requestedReport.setModifiedDate(now);
+
+		RequestedReportLocalServiceUtil.updateRequestedReport(requestedReport);
+
 	}
+	private static String BI_REPORTS_DIRS = "bi_reports/";
 
 	private static Log _log =
 		LogFactoryUtil.getLog(ReportResponseMessageListener.class);

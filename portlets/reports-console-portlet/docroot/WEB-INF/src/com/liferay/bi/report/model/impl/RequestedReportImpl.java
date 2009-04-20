@@ -20,32 +20,18 @@
  * SOFTWARE.
  */
 
-package com.liferay.bi.report;
+package com.liferay.bi.report.model.impl;
 
-import com.liferay.portal.PortalException;
+import com.liferay.bi.report.model.RequestedReport;
 
 /**
- * <a href="NoSuchRequestException.java.html"><b><i>View Source</i></b></a>
+ * <a href="RequestedReportImpl.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class NoSuchRequestException extends PortalException {
-
-	public NoSuchRequestException() {
-		super();
+public class RequestedReportImpl extends RequestedReportModelImpl
+	implements RequestedReport {
+	public RequestedReportImpl() {
 	}
-
-	public NoSuchRequestException(String msg) {
-		super(msg);
-	}
-
-	public NoSuchRequestException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
-
-	public NoSuchRequestException(Throwable cause) {
-		super(cause);
-	}
-
 }

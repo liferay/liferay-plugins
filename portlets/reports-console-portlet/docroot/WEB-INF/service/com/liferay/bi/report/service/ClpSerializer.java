@@ -23,7 +23,7 @@
 package com.liferay.bi.report.service;
 
 import com.liferay.bi.report.model.ReportDefinitionClp;
-import com.liferay.bi.report.model.ReportRequestClp;
+import com.liferay.bi.report.model.RequestedReportClp;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -168,8 +168,8 @@ public class ClpSerializer {
 			}
 		}
 
-		if (oldModelClassName.equals(ReportRequestClp.class.getName())) {
-			ReportRequestClp oldCplModel = (ReportRequestClp)oldModel;
+		if (oldModelClassName.equals(RequestedReportClp.class.getName())) {
+			RequestedReportClp oldCplModel = (RequestedReportClp)oldModel;
 
 			ClassLoader contextClassLoader = Thread.currentThread()
 												   .getContextClassLoader();
@@ -178,7 +178,7 @@ public class ClpSerializer {
 				Thread.currentThread().setContextClassLoader(_classLoader);
 
 				try {
-					Class<?> newModelClass = Class.forName("com.liferay.bi.report.model.impl.ReportRequestImpl",
+					Class<?> newModelClass = Class.forName("com.liferay.bi.report.model.impl.RequestedReportImpl",
 							true, _classLoader);
 
 					Object newModel = newModelClass.newInstance();
@@ -406,7 +406,7 @@ public class ClpSerializer {
 		}
 
 		if (oldModelClassName.equals(
-					"com.liferay.bi.report.model.impl.ReportRequestImpl")) {
+					"com.liferay.bi.report.model.impl.RequestedReportImpl")) {
 			ClassLoader contextClassLoader = Thread.currentThread()
 												   .getContextClassLoader();
 
@@ -414,7 +414,7 @@ public class ClpSerializer {
 				Thread.currentThread().setContextClassLoader(_classLoader);
 
 				try {
-					ReportRequestClp newModel = new ReportRequestClp();
+					RequestedReportClp newModel = new RequestedReportClp();
 
 					Method method0 = oldModelClass.getMethod("getUuid");
 

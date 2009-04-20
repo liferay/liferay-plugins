@@ -26,33 +26,33 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 
 /**
- * <a href="ReportRequestLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
+ * <a href="RequestedReportLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public class ReportRequestLocalServiceUtil {
-	public static com.liferay.bi.report.model.ReportRequest addReportRequest(
-		com.liferay.bi.report.model.ReportRequest reportRequest)
+public class RequestedReportLocalServiceUtil {
+	public static com.liferay.bi.report.model.RequestedReport addRequestedReport(
+		com.liferay.bi.report.model.RequestedReport requestedReport)
 		throws com.liferay.portal.SystemException {
-		return getService().addReportRequest(reportRequest);
+		return getService().addRequestedReport(requestedReport);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest createReportRequest(
+	public static com.liferay.bi.report.model.RequestedReport createRequestedReport(
 		long requestId) {
-		return getService().createReportRequest(requestId);
+		return getService().createRequestedReport(requestId);
 	}
 
-	public static void deleteReportRequest(long requestId)
+	public static void deleteRequestedReport(long requestId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		getService().deleteReportRequest(requestId);
+		getService().deleteRequestedReport(requestId);
 	}
 
-	public static void deleteReportRequest(
-		com.liferay.bi.report.model.ReportRequest reportRequest)
+	public static void deleteRequestedReport(
+		com.liferay.bi.report.model.RequestedReport requestedReport)
 		throws com.liferay.portal.SystemException {
-		getService().deleteReportRequest(reportRequest);
+		getService().deleteRequestedReport(requestedReport);
 	}
 
 	public static java.util.List<Object> dynamicQuery(
@@ -67,46 +67,60 @@ public class ReportRequestLocalServiceUtil {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest getReportRequest(
+	public static com.liferay.bi.report.model.RequestedReport getRequestedReport(
 		long requestId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		return getService().getReportRequest(requestId);
+		return getService().getRequestedReport(requestId);
 	}
 
-	public static java.util.List<com.liferay.bi.report.model.ReportRequest> getReportRequests(
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> getRequestedReports(
 		int start, int end) throws com.liferay.portal.SystemException {
-		return getService().getReportRequests(start, end);
+		return getService().getRequestedReports(start, end);
 	}
 
-	public static int getReportRequestsCount()
+	public static int getRequestedReportsCount()
 		throws com.liferay.portal.SystemException {
-		return getService().getReportRequestsCount();
+		return getService().getRequestedReportsCount();
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest updateReportRequest(
-		com.liferay.bi.report.model.ReportRequest reportRequest)
+	public static com.liferay.bi.report.model.RequestedReport updateRequestedReport(
+		com.liferay.bi.report.model.RequestedReport requestedReport)
 		throws com.liferay.portal.SystemException {
-		return getService().updateReportRequest(reportRequest);
+		return getService().updateRequestedReport(requestedReport);
 	}
 
-	public static com.liferay.bi.report.model.ReportRequest updateReportRequest(
-		com.liferay.bi.report.model.ReportRequest reportRequest, boolean merge)
-		throws com.liferay.portal.SystemException {
-		return getService().updateReportRequest(reportRequest, merge);
+	public static com.liferay.bi.report.model.RequestedReport updateRequestedReport(
+		com.liferay.bi.report.model.RequestedReport requestedReport,
+		boolean merge) throws com.liferay.portal.SystemException {
+		return getService().updateRequestedReport(requestedReport, merge);
 	}
 
-	public static ReportRequestLocalService getService() {
+	public static void addRequestedReport(
+		com.liferay.portal.kernel.bi.reporting.ReportRequest request)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		getService().addRequestedReport(request);
+	}
+
+	public static void genrateReport(long companyId, long groupId, long userId,
+		long definitionId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		getService().genrateReport(companyId, groupId, userId, definitionId);
+	}
+
+	public static RequestedReportLocalService getService() {
 		if (_service == null) {
 			Object obj = PortletBeanLocatorUtil.locate("reports-console-portlet",
-					ReportRequestLocalServiceUtil.class.getName());
+					RequestedReportLocalServiceUtil.class.getName());
 			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("reports-console-portlet",
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
 					portletClassLoader);
 
-			_service = new ReportRequestLocalServiceClp(classLoaderProxy);
+			_service = new RequestedReportLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
 		}
@@ -114,9 +128,9 @@ public class ReportRequestLocalServiceUtil {
 		return _service;
 	}
 
-	public void setService(ReportRequestLocalService service) {
+	public void setService(RequestedReportLocalService service) {
 		_service = service;
 	}
 
-	private static ReportRequestLocalService _service;
+	private static RequestedReportLocalService _service;
 }
