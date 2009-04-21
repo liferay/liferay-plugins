@@ -464,6 +464,34 @@ public class ReportDefinitionLocalServiceClp
 		return (com.liferay.bi.report.model.ReportDefinition)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public void deleteDefinitionAndAttachments(long definitionId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		Object paramObj0 = new LongWrapper(definitionId);
+
+		try {
+			_classLoaderProxy.invoke("deleteDefinitionAndAttachments",
+				new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.PortalException) {
+				throw (com.liferay.portal.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public java.util.List<com.liferay.bi.report.model.ReportDefinition> getReportDefintions(
 		long companyId, long groupId) throws com.liferay.portal.SystemException {
 		Object paramObj0 = new LongWrapper(companyId);

@@ -23,6 +23,11 @@
 package com.liferay.bi.report.model.impl;
 
 import com.liferay.bi.report.model.RequestedReport;
+import com.liferay.documentlibrary.NoSuchDirectoryException;
+import com.liferay.documentlibrary.service.DLServiceUtil;
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.model.CompanyConstants;
 
 /**
  * <a href="RequestedReportImpl.java.html"><b><i>View Source</i></b></a>
@@ -34,4 +39,37 @@ public class RequestedReportImpl extends RequestedReportModelImpl
 	implements RequestedReport {
 	public RequestedReportImpl() {
 	}
+	
+	public String getAttachmentsDir() {
+
+		if (_attachmentDirs == null) {
+			_attachmentDirs = REPORTS_DIRS + getRequestId();
+		}
+		return _attachmentDirs;
+	}
+
+	public void setAttachmentsDir(String attachmentsDir) {
+
+		_attachmentDirs = attachmentsDir;
+	}
+
+	public String[] getAttachmentsFiles()
+		throws PortalException, SystemException {
+
+		String[] fileNames = new String[0];
+
+		try {
+			fileNames =
+				DLServiceUtil.getFileNames(
+					getCompanyId(), CompanyConstants.SYSTEM,
+					getAttachmentsDir());
+		}
+		catch (NoSuchDirectoryException nsde) {
+		}
+
+		return fileNames;
+	}
+
+	private String _attachmentDirs;
+	private static String REPORTS_DIRS = "reports_dir/";
 }

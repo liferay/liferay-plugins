@@ -52,7 +52,7 @@ public class DeleteDefinitionAction implements Action {
 			return false;
 		}
 		try {
-			ReportDefinitionLocalServiceUtil.deleteReportDefinition(definitionId);
+			ReportDefinitionLocalServiceUtil.deleteDefinitionAndAttachments(definitionId);
 			return true;
 		}
 		catch (Exception e) {

@@ -77,6 +77,10 @@ public interface ReportDefinitionModel extends BaseModel<ReportDefinition> {
 
 	public void setDescription(String description);
 
+	public String getReportName();
+
+	public void setReportName(String reportName);
+
 	public String getReportParameters();
 
 	public void setReportParameters(String reportParameters);

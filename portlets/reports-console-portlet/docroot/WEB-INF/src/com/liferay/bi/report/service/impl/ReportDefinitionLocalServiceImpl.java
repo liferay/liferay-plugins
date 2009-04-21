@@ -40,10 +40,9 @@ import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bi.reporting.ReportFormat;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CompanyConstants;
 
@@ -54,14 +53,6 @@ import com.liferay.portal.model.CompanyConstants;
  */
 public class ReportDefinitionLocalServiceImpl
 	extends ReportDefinitionLocalServiceBaseImpl {
-
-	private static String portletId = CompanyConstants.SYSTEM_STRING;
-	private static long repositoryId = CompanyConstants.SYSTEM;
-	private static long fileEntryId = 0;
-	private static String properties = StringPool.BLANK;
-	private static Date modifiedDate = new Date();
-	private static String[] tagsCategories = new String[0];
-	private static String[] tagsEntries = new String[0];
 
 	public ReportDefinition addReportDefinition(
 		long companyId, long groupId, long userId, String definitionName,
@@ -86,28 +77,44 @@ public class ReportDefinitionLocalServiceImpl
 		if (Validator.isNull(fileName)) {
 			throw new DefinitionFileException();
 		}
+		definition.setReportName(StringUtil.extractFirst(
+			fileName, StringPool.PERIOD));
 
 		try {
-			DLServiceUtil.addDirectory(
-				companyId, repositoryId, definition.getAttachmentsDir());
-		}
-		catch (DuplicateDirectoryException dde) {
-		}
-		try {
+			try {
+				DLServiceUtil.addDirectory(
+					companyId, CompanyConstants.SYSTEM,
+					definition.getAttachmentsDir());
+			}
+			catch (DuplicateDirectoryException dde) {
+			}
 			DLServiceUtil.addFile(
-				companyId, portletId, groupId, repositoryId,
-				definition.getAttachmentsDir() + StringPool.SLASH + fileName,
-				fileEntryId, properties, modifiedDate, tagsCategories,
-				tagsEntries, file);
+				companyId, CompanyConstants.SYSTEM_STRING, groupId,
+				CompanyConstants.SYSTEM, definition.getAttachmentsDir() +
+					StringPool.SLASH + fileName, 0, StringPool.BLANK,
+				new Date(), new String[0], new String[0], file);
 		}
 		catch (PortalException e) {
 			DLServiceUtil.deleteDirectory(
-				companyId, portletId, repositoryId,
-				definition.getAttachmentsDir());
+				companyId, CompanyConstants.SYSTEM_STRING,
+				CompanyConstants.SYSTEM, definition.getAttachmentsDir());
 			throw new DefinitionFileException();
 		}
 
 		return addReportDefinition(definition);
+	}
+
+	public void deleteDefinitionAndAttachments(long definitionId)
+		throws PortalException, SystemException {
+
+		ReportDefinition definition = getReportDefinition(definitionId);
+		String[] existingFiles = definition.getAttachmentsFiles();
+		for (String existingFile : existingFiles) {
+			DLServiceUtil.deleteFile(
+				definition.getCompanyId(), CompanyConstants.SYSTEM_STRING,
+				CompanyConstants.SYSTEM, existingFile);
+		}
+		reportDefinitionLocalService.deleteReportDefinition(definitionId);
 	}
 
 	public List<ReportDefinition> getReportDefintions(
@@ -199,14 +206,16 @@ public class ReportDefinitionLocalServiceImpl
 		if (Validator.isNull(fileName)) {
 			throw new DefinitionFileException();
 		}
-
-		fileName = definition.getAttachmentsDir() + StringPool.SLASH + fileName;
+		definition.setReportName(StringUtil.extractFirst(
+			fileName, StringPool.PERIOD));
 
 		try {
 			DLServiceUtil.addFile(
-				definition.getCompanyId(), portletId, definition.getGroupId(),
-				repositoryId, fileName, fileEntryId, properties, modifiedDate,
-				tagsCategories, tagsEntries, file);
+				definition.getCompanyId(), CompanyConstants.SYSTEM_STRING,
+				definition.getGroupId(), CompanyConstants.SYSTEM,
+				definition.getAttachmentsDir() + StringPool.SLASH + fileName,
+				0, StringPool.BLANK, new Date(), new String[0], new String[0],
+				file);
 		}
 		catch (DuplicateFileException e) {
 		}
@@ -218,8 +227,8 @@ public class ReportDefinitionLocalServiceImpl
 		for (String existingFile : existingFiles) {
 			if (fileName != existingFile) {
 				DLServiceUtil.deleteFile(
-					definition.getCompanyId(), portletId, repositoryId,
-					existingFile);
+					definition.getCompanyId(), CompanyConstants.SYSTEM_STRING,
+					CompanyConstants.SYSTEM, existingFile);
 			}
 		}
 
@@ -244,8 +253,5 @@ public class ReportDefinitionLocalServiceImpl
 			throw new DefinitionFormatException();
 		}
 	}
-
-	private static Log _log =
-		LogFactoryUtil.getLog(ReportDefinitionLocalServiceImpl.class);
 
 }

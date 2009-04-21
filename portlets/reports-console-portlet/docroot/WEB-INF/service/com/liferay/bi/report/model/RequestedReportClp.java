@@ -140,6 +140,18 @@ public class RequestedReportClp extends BaseModelImpl<RequestedReport>
 		_isSchedule = isSchedule;
 	}
 
+	public java.lang.String getAttachmentsDir() {
+		throw new UnsupportedOperationException();
+	}
+
+	public void setAttachmentsDir(java.lang.String attachmentsDir) {
+		throw new UnsupportedOperationException();
+	}
+
+	public java.lang.String[] getAttachmentsFiles() {
+		throw new UnsupportedOperationException();
+	}
+
 	public RequestedReport toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;

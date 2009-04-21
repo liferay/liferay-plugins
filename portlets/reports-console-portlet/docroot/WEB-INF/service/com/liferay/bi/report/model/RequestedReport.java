@@ -29,4 +29,11 @@ package com.liferay.bi.report.model;
  *
  */
 public interface RequestedReport extends RequestedReportModel {
+	public java.lang.String getAttachmentsDir();
+
+	public void setAttachmentsDir(java.lang.String attachmentsDir);
+
+	public java.lang.String[] getAttachmentsFiles()
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
 }

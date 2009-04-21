@@ -12,6 +12,7 @@
 		<field name="modifiedDate" type="Date" />
 		<field name="definitionName" type="String" />
 		<field name="description" type="String" />
+		<field name="reportName" type="String" />
 		<field name="reportParameters" type="String" />
 		<field name="reportFormat" type="String" />
 		<field name="dataSourceName" type="String" />

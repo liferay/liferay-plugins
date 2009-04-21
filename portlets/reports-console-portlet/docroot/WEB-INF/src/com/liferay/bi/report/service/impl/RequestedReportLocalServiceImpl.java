@@ -35,10 +35,9 @@ import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.bi.reporting.MemoryReportDesignRetriever;
 import com.liferay.portal.kernel.bi.reporting.ReportDesignRetriever;
 import com.liferay.portal.kernel.bi.reporting.ReportRequest;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CompanyConstants;
 
 /**
@@ -49,11 +48,17 @@ import com.liferay.portal.model.CompanyConstants;
 public class RequestedReportLocalServiceImpl
 	extends RequestedReportLocalServiceBaseImpl {
 
-	private static long repositoryId = CompanyConstants.SYSTEM;
-
-	public void addRequestedReport(ReportRequest request)
+	public void deleteRequestAndAttachments(long requestId)
 		throws PortalException, SystemException {
 
+		RequestedReport requestedReport = getRequestedReport(requestId);
+		String[] existingFiles = requestedReport.getAttachmentsFiles();
+		for (String existingFile : existingFiles) {
+			DLServiceUtil.deleteFile(
+				requestedReport.getCompanyId(), CompanyConstants.SYSTEM_STRING,
+				CompanyConstants.SYSTEM, existingFile);
+		}
+		requestedReportLocalService.deleteRequestedReport(requestId);
 	}
 
 	public void genrateReport(
@@ -67,11 +72,13 @@ public class RequestedReportLocalServiceImpl
 
 		byte[] definitionFile =
 			DLServiceUtil.getFile(
-				definition.getCompanyId(), repositoryId, existingFiles[0]);
+				definition.getCompanyId(), CompanyConstants.SYSTEM,
+				existingFiles[0]);
 
 		ReportDesignRetriever retriever =
 			new MemoryReportDesignRetriever(
-				definition.getDefinitionName(), definitionFile);
+				definition.getReportName() + StringPool.PERIOD +
+					definition.getReportFormat(), definitionFile);
 
 		ReportRequest request =
 			new ReportRequest(
@@ -94,12 +101,10 @@ public class RequestedReportLocalServiceImpl
 
 		Message message = new Message();
 		message.setPayload(request);
-		message.setResponseId(String.valueOf(requestedReport.getRequestId()));
+		message.setResponseId(String.valueOf(requestId));
 		message.setResponseDestination("liferay/report_responses");
 
 		MessageBusUtil.sendMessage("liferay/report_requests", message);
 	}
 
-	private static Log _log =
-		LogFactoryUtil.getLog(RequestedReportLocalServiceImpl.class);
 }

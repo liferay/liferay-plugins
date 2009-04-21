@@ -110,6 +110,12 @@ public class ReportDefinitionLocalServiceUtil {
 			file, reportParameters);
 	}
 
+	public static void deleteDefinitionAndAttachments(long definitionId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		getService().deleteDefinitionAndAttachments(definitionId);
+	}
+
 	public static java.util.List<com.liferay.bi.report.model.ReportDefinition> getReportDefintions(
 		long companyId, long groupId) throws com.liferay.portal.SystemException {
 		return getService().getReportDefintions(companyId, groupId);

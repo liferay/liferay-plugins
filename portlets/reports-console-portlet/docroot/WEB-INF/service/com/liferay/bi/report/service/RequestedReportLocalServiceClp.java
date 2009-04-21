@@ -378,19 +378,13 @@ public class RequestedReportLocalServiceClp
 		return (com.liferay.bi.report.model.RequestedReport)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void addRequestedReport(
-		com.liferay.portal.kernel.bi.reporting.ReportRequest request)
+	public void deleteRequestAndAttachments(long requestId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(request);
-
-		if (request == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.bi.reporting.ReportRequest");
-		}
+		Object paramObj0 = new LongWrapper(requestId);
 
 		try {
-			_classLoaderProxy.invoke("addRequestedReport",
+			_classLoaderProxy.invoke("deleteRequestAndAttachments",
 				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {

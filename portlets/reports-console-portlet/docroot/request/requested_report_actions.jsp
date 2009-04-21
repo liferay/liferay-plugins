@@ -29,20 +29,17 @@
 
 	String requestId = String.valueOf(requestedReport.getRequestId());
 %>
-<%@page import="com.liferay.bi.report.portlet.RequestStatus"%>
+
 <liferay-ui:icon-menu cssClass="">
 
 	<c:if test="<%=RequestStatus.COMPLETE.toString().equals(requestedReport.getRequestStatus()) %>">
-		<portlet:actionURL
-			windowState="<%= WindowState.MAXIMIZED.toString() %>"
-			var="reportDownloadURL">
+		<portlet:actionURL name="getReport" var="reportDownloadURL">
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="requestId" value="<%= requestId %>" />
 		</portlet:actionURL>
 		
 		<liferay-ui:icon image="download" message="download-report" url="<%=reportDownloadURL %>" />
 	</c:if>
-
 
 	<c:if test="<%= RequestedReportPermission.contains(permissionChecker, requestedReport.getRequestId(), ActionKeys.PERMISSIONS) %>">
 		<liferay-security:permissionsURL
@@ -68,7 +65,7 @@
 	
 	<portlet:actionURL
 		windowState="<%= WindowState.MAXIMIZED.toString() %>"
-		name="deleterequestedReport" var="deleteURL">
+		name="deleteRequest" var="deleteURL">
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="requestId" value="<%= requestId %>" />
 	</portlet:actionURL>

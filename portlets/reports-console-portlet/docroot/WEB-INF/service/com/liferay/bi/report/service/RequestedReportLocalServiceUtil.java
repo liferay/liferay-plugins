@@ -96,11 +96,10 @@ public class RequestedReportLocalServiceUtil {
 		return getService().updateRequestedReport(requestedReport, merge);
 	}
 
-	public static void addRequestedReport(
-		com.liferay.portal.kernel.bi.reporting.ReportRequest request)
+	public static void deleteRequestAndAttachments(long requestId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		getService().addRequestedReport(request);
+		getService().deleteRequestAndAttachments(requestId);
 	}
 
 	public static void genrateReport(long companyId, long groupId, long userId,

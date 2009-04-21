@@ -136,26 +136,33 @@ public class ClpSerializer {
 
 					method9.invoke(newModel, value9);
 
-					Method method10 = newModelClass.getMethod("setReportParameters",
+					Method method10 = newModelClass.getMethod("setReportName",
 							new Class[] { String.class });
 
-					String value10 = oldCplModel.getReportParameters();
+					String value10 = oldCplModel.getReportName();
 
 					method10.invoke(newModel, value10);
 
-					Method method11 = newModelClass.getMethod("setReportFormat",
+					Method method11 = newModelClass.getMethod("setReportParameters",
 							new Class[] { String.class });
 
-					String value11 = oldCplModel.getReportFormat();
+					String value11 = oldCplModel.getReportParameters();
 
 					method11.invoke(newModel, value11);
 
-					Method method12 = newModelClass.getMethod("setDataSourceName",
+					Method method12 = newModelClass.getMethod("setReportFormat",
 							new Class[] { String.class });
 
-					String value12 = oldCplModel.getDataSourceName();
+					String value12 = oldCplModel.getReportFormat();
 
 					method12.invoke(newModel, value12);
+
+					Method method13 = newModelClass.getMethod("setDataSourceName",
+							new Class[] { String.class });
+
+					String value13 = oldCplModel.getDataSourceName();
+
+					method13.invoke(newModel, value13);
 
 					return newModel;
 				}
@@ -371,28 +378,35 @@ public class ClpSerializer {
 
 					newModel.setDescription(value9);
 
-					Method method10 = oldModelClass.getMethod(
-							"getReportParameters");
+					Method method10 = oldModelClass.getMethod("getReportName");
 
 					String value10 = (String)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setReportParameters(value10);
+					newModel.setReportName(value10);
 
-					Method method11 = oldModelClass.getMethod("getReportFormat");
+					Method method11 = oldModelClass.getMethod(
+							"getReportParameters");
 
 					String value11 = (String)method11.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setReportFormat(value11);
+					newModel.setReportParameters(value11);
 
-					Method method12 = oldModelClass.getMethod(
-							"getDataSourceName");
+					Method method12 = oldModelClass.getMethod("getReportFormat");
 
 					String value12 = (String)method12.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setDataSourceName(value12);
+					newModel.setReportFormat(value12);
+
+					Method method13 = oldModelClass.getMethod(
+							"getDataSourceName");
+
+					String value13 = (String)method13.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setDataSourceName(value13);
 
 					return newModel;
 				}

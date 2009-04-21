@@ -23,6 +23,7 @@
 
 		<column name="definitionName" type="String" />
 		<column name="description" type="String" />
+		<column name="reportName" type="String" />
 		<column name="reportParameters" type="String" /> <!-- name=value,name=value -->
 		<column name="reportFormat" type="String"/>
 		<column name="dataSourceName" type="String" convert-null="false"/>

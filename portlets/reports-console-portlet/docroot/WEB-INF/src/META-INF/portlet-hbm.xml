@@ -16,6 +16,7 @@
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="definitionName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="reportName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="reportParameters" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="reportFormat" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="dataSourceName" type="com.liferay.portal.dao.orm.hibernate.StringType" />

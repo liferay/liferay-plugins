@@ -353,6 +353,8 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		boolean merge) throws SystemException {
 		boolean isNew = reportDefinition.isNew();
 
+		ReportDefinitionModelImpl reportDefinitionModelImpl = (ReportDefinitionModelImpl)reportDefinition;
+
 		if (Validator.isNull(reportDefinition.getUuid())) {
 			String uuid = PortalUUIDUtil.generate();
 
@@ -380,8 +382,6 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 		EntityCacheUtil.putResult(ReportDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			ReportDefinitionImpl.class, reportDefinition.getPrimaryKey(),
 			reportDefinition);
-
-		ReportDefinitionModelImpl reportDefinitionModelImpl = (ReportDefinitionModelImpl)reportDefinition;
 
 		if (!isNew &&
 				(!reportDefinition.getUuid()
@@ -457,12 +457,6 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 	public List<ReportDefinition> findByUuid(String uuid)
 		throws SystemException {
-		int count = countByUuid(uuid);
-
-		if (count == 0) {
-			return Collections.EMPTY_LIST;
-		}
-
 		Object[] finderArgs = new Object[] { uuid };
 
 		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_UUID,
@@ -529,12 +523,6 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 	public List<ReportDefinition> findByUuid(String uuid, int start, int end,
 		OrderByComparator obc) throws SystemException {
-		int count = countByUuid(uuid);
-
-		if (count == 0) {
-			return Collections.EMPTY_LIST;
-		}
-
 		Object[] finderArgs = new Object[] {
 				uuid,
 				
@@ -834,12 +822,6 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 	public List<ReportDefinition> findByCompanyId(long companyId)
 		throws SystemException {
-		int count = countByCompanyId(companyId);
-
-		if (count == 0) {
-			return Collections.EMPTY_LIST;
-		}
-
 		Object[] finderArgs = new Object[] { new Long(companyId) };
 
 		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_COMPANYID,
@@ -899,12 +881,6 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 	public List<ReportDefinition> findByCompanyId(long companyId, int start,
 		int end, OrderByComparator obc) throws SystemException {
-		int count = countByCompanyId(companyId);
-
-		if (count == 0) {
-			return Collections.EMPTY_LIST;
-		}
-
 		Object[] finderArgs = new Object[] {
 				new Long(companyId),
 				
@@ -1073,12 +1049,6 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 	public List<ReportDefinition> findByCompanyGroupId(long companyId,
 		long groupId) throws SystemException {
-		int count = countByCompanyGroupId(companyId, groupId);
-
-		if (count == 0) {
-			return Collections.EMPTY_LIST;
-		}
-
 		Object[] finderArgs = new Object[] {
 				new Long(companyId), new Long(groupId)
 			};
@@ -1147,12 +1117,6 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 	public List<ReportDefinition> findByCompanyGroupId(long companyId,
 		long groupId, int start, int end, OrderByComparator obc)
 		throws SystemException {
-		int count = countByCompanyGroupId(companyId, groupId);
-
-		if (count == 0) {
-			return Collections.EMPTY_LIST;
-		}
-
 		Object[] finderArgs = new Object[] {
 				new Long(companyId), new Long(groupId),
 				
@@ -1340,12 +1304,6 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 	public List<ReportDefinition> findByGroupId(long groupId)
 		throws SystemException {
-		int count = countByGroupId(groupId);
-
-		if (count == 0) {
-			return Collections.EMPTY_LIST;
-		}
-
 		Object[] finderArgs = new Object[] { new Long(groupId) };
 
 		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_GROUPID,
@@ -1405,12 +1363,6 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 	public List<ReportDefinition> findByGroupId(long groupId, int start,
 		int end, OrderByComparator obc) throws SystemException {
-		int count = countByGroupId(groupId);
-
-		if (count == 0) {
-			return Collections.EMPTY_LIST;
-		}
-
 		Object[] finderArgs = new Object[] {
 				new Long(groupId),
 				
@@ -1579,12 +1531,6 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 	public List<ReportDefinition> findByUserId(long userId)
 		throws SystemException {
-		int count = countByUserId(userId);
-
-		if (count == 0) {
-			return Collections.EMPTY_LIST;
-		}
-
 		Object[] finderArgs = new Object[] { new Long(userId) };
 
 		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_USERID,
@@ -1644,12 +1590,6 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 	public List<ReportDefinition> findByUserId(long userId, int start, int end,
 		OrderByComparator obc) throws SystemException {
-		int count = countByUserId(userId);
-
-		if (count == 0) {
-			return Collections.EMPTY_LIST;
-		}
-
 		Object[] finderArgs = new Object[] {
 				new Long(userId),
 				
@@ -1816,12 +1756,6 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 	public List<ReportDefinition> findByDefinitionName(String definitionName)
 		throws SystemException {
-		int count = countByDefinitionName(definitionName);
-
-		if (count == 0) {
-			return Collections.EMPTY_LIST;
-		}
-
 		Object[] finderArgs = new Object[] { definitionName };
 
 		List<ReportDefinition> list = (List<ReportDefinition>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_DEFINITIONNAME,
@@ -1888,12 +1822,6 @@ public class ReportDefinitionPersistenceImpl extends BasePersistenceImpl
 
 	public List<ReportDefinition> findByDefinitionName(String definitionName,
 		int start, int end, OrderByComparator obc) throws SystemException {
-		int count = countByDefinitionName(definitionName);
-
-		if (count == 0) {
-			return Collections.EMPTY_LIST;
-		}
-
 		Object[] finderArgs = new Object[] {
 				definitionName,
 				

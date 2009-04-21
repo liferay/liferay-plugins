@@ -34,9 +34,10 @@
 <%@ page import="com.liferay.bi.report.DefinitionFileException" %>
 <%@ page import="com.liferay.bi.report.DefinitionFormatException" %>
 <%@ page import="com.liferay.bi.report.DefinitionNameException" %>
-<%@ page import="com.liferay.bi.report.NoSuchDefinitionException" %>
 <%@ page import="com.liferay.bi.report.model.ReportDefinition" %>
 <%@ page import="com.liferay.bi.report.model.RequestedReport" %>
+<%@ page import="com.liferay.bi.report.NoSuchDefinitionException" %>
+<%@ page import="com.liferay.bi.report.portlet.RequestStatus"%>
 <%@ page import="com.liferay.bi.report.search.ReportDefinitionSearch" %>
 <%@ page import="com.liferay.bi.report.search.ReportDefinitionSearchTerms"%>
 <%@ page import="com.liferay.bi.report.search.ReportDefinitionDisplayTerms" %>
@@ -84,5 +85,4 @@
 <%	
 String currentURL = PortalUtil.getCurrentURL(request);
 WindowState windowState = renderRequest.getWindowState();
-
 %>

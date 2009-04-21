@@ -145,12 +145,10 @@ public class RequestedReportModelImpl extends BaseModelImpl<RequestedReport> {
 	}
 
 	public void setUuid(String uuid) {
-		if ((uuid != null) && !uuid.equals(_uuid)) {
-			_uuid = uuid;
+		_uuid = uuid;
 
-			if (_originalUuid == null) {
-				_originalUuid = uuid;
-			}
+		if (_originalUuid == null) {
+			_originalUuid = uuid;
 		}
 	}
 
@@ -163,14 +161,12 @@ public class RequestedReportModelImpl extends BaseModelImpl<RequestedReport> {
 	}
 
 	public void setRequestId(long requestId) {
-		if (requestId != _requestId) {
-			_requestId = requestId;
+		_requestId = requestId;
 
-			if (!_setOriginalRequestId) {
-				_setOriginalRequestId = true;
+		if (!_setOriginalRequestId) {
+			_setOriginalRequestId = true;
 
-				_originalRequestId = requestId;
-			}
+			_originalRequestId = requestId;
 		}
 	}
 
@@ -183,9 +179,7 @@ public class RequestedReportModelImpl extends BaseModelImpl<RequestedReport> {
 	}
 
 	public void setCompanyId(long companyId) {
-		if (companyId != _companyId) {
-			_companyId = companyId;
-		}
+		_companyId = companyId;
 	}
 
 	public long getGroupId() {
@@ -193,14 +187,12 @@ public class RequestedReportModelImpl extends BaseModelImpl<RequestedReport> {
 	}
 
 	public void setGroupId(long groupId) {
-		if (groupId != _groupId) {
-			_groupId = groupId;
+		_groupId = groupId;
 
-			if (!_setOriginalGroupId) {
-				_setOriginalGroupId = true;
+		if (!_setOriginalGroupId) {
+			_setOriginalGroupId = true;
 
-				_originalGroupId = groupId;
-			}
+			_originalGroupId = groupId;
 		}
 	}
 
@@ -213,9 +205,7 @@ public class RequestedReportModelImpl extends BaseModelImpl<RequestedReport> {
 	}
 
 	public void setUserId(long userId) {
-		if (userId != _userId) {
-			_userId = userId;
-		}
+		_userId = userId;
 	}
 
 	public Date getCreateDate() {
@@ -223,10 +213,7 @@ public class RequestedReportModelImpl extends BaseModelImpl<RequestedReport> {
 	}
 
 	public void setCreateDate(Date createDate) {
-		if ((createDate != _createDate) ||
-				((createDate != null) && !createDate.equals(_createDate))) {
-			_createDate = createDate;
-		}
+		_createDate = createDate;
 	}
 
 	public Date getModifiedDate() {
@@ -234,10 +221,7 @@ public class RequestedReportModelImpl extends BaseModelImpl<RequestedReport> {
 	}
 
 	public void setModifiedDate(Date modifiedDate) {
-		if ((modifiedDate != _modifiedDate) ||
-				((modifiedDate != null) && !modifiedDate.equals(_modifiedDate))) {
-			_modifiedDate = modifiedDate;
-		}
+		_modifiedDate = modifiedDate;
 	}
 
 	public long getDefinitionId() {
@@ -245,14 +229,12 @@ public class RequestedReportModelImpl extends BaseModelImpl<RequestedReport> {
 	}
 
 	public void setDefinitionId(long definitionId) {
-		if (definitionId != _definitionId) {
-			_definitionId = definitionId;
+		_definitionId = definitionId;
 
-			if (!_setOriginalDefinitionId) {
-				_setOriginalDefinitionId = true;
+		if (!_setOriginalDefinitionId) {
+			_setOriginalDefinitionId = true;
 
-				_originalDefinitionId = definitionId;
-			}
+			_originalDefinitionId = definitionId;
 		}
 	}
 
@@ -265,11 +247,7 @@ public class RequestedReportModelImpl extends BaseModelImpl<RequestedReport> {
 	}
 
 	public void setRequestStatus(String requestStatus) {
-		if ((requestStatus != _requestStatus) ||
-				((requestStatus != null) &&
-				!requestStatus.equals(_requestStatus))) {
-			_requestStatus = requestStatus;
-		}
+		_requestStatus = requestStatus;
 	}
 
 	public boolean getIsSchedule() {
@@ -281,9 +259,7 @@ public class RequestedReportModelImpl extends BaseModelImpl<RequestedReport> {
 	}
 
 	public void setIsSchedule(boolean isSchedule) {
-		if (isSchedule != _isSchedule) {
-			_isSchedule = isSchedule;
-		}
+		_isSchedule = isSchedule;
 	}
 
 	public RequestedReport toEscapedModel() {

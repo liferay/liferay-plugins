@@ -57,8 +57,8 @@ public class ReportResponseMessageListener implements MessageListener {
 	protected void doReceive(Message message)
 		throws Exception {
 
-		// TDB save report to DB
 		long requestReportId = Long.parseLong(message.getResponseId());
+
 		ReportResultContainer reportResultContainer =
 			(ReportResultContainer) message.getPayload();
 		RequestedReport requestedReport =
@@ -68,26 +68,20 @@ public class ReportResponseMessageListener implements MessageListener {
 			requestedReport.setRequestStatus(RequestStatus.ERROR.toString());
 		}
 		else {
-			// TBD set those values from message
-			long companyId = 0;
-			long groupId = 0;
-			String portletId = CompanyConstants.SYSTEM_STRING;
-			long repositoryId = CompanyConstants.SYSTEM;
-			long fileEntryId = 0;
-			String properties = StringPool.BLANK;
-			String[] tagsCategories = new String[0];
-			String[] tagsEntries = new String[0];
+			long companyId = requestedReport.getCompanyId();
+			long groupId = requestedReport.getGroupId();
+
+			String path = requestedReport.getAttachmentsDir();
 			try {
-				DLServiceUtil.addDirectory(
-					companyId, repositoryId, BI_REPORTS_DIRS +
-						String.valueOf(requestReportId));
+				DLServiceUtil.addDirectory(companyId, repositoryId, path);
 			}
 			catch (DuplicateDirectoryException dde) {
 			}
 			try {
 				DLServiceUtil.addFile(
-					companyId, portletId, groupId, repositoryId,
-					reportResultContainer.getReportName(), fileEntryId,
+					companyId, portletId, groupId, repositoryId, path +
+						StringPool.SLASH +
+						reportResultContainer.getReportName(), fileEntryId,
 					properties, now, tagsCategories, tagsEntries,
 					reportResultContainer.getResults());
 				requestedReport.setRequestStatus(RequestStatus.COMPLETE.toString());
@@ -95,6 +89,7 @@ public class ReportResponseMessageListener implements MessageListener {
 			catch (Exception e) {
 				requestedReport.setRequestStatus(RequestStatus.ERROR.toString());
 				_log.error(e);
+				e.printStackTrace();
 			}
 		}
 		requestedReport.setModifiedDate(now);
@@ -102,8 +97,13 @@ public class ReportResponseMessageListener implements MessageListener {
 		RequestedReportLocalServiceUtil.updateRequestedReport(requestedReport);
 
 	}
-	private static String BI_REPORTS_DIRS = "bi_reports/";
 
+	private static final String portletId = CompanyConstants.SYSTEM_STRING;
+	private static final long repositoryId = CompanyConstants.SYSTEM;
+	private static final long fileEntryId = 0;
+	private static final String properties = StringPool.BLANK;
+	private static final String[] tagsCategories = new String[0];
+	private static final String[] tagsEntries = new String[0];
 	private static Log _log =
 		LogFactoryUtil.getLog(ReportResponseMessageListener.class);
 

@@ -25,14 +25,21 @@ package com.liferay.bi.report.portlet.action;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.servlet.http.HttpServletResponse;
 
 import com.liferay.bi.report.NoSuchRequestedReportException;
+import com.liferay.bi.report.model.RequestedReport;
 import com.liferay.bi.report.service.RequestedReportLocalServiceUtil;
+import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.simplemvc.Action;
+import com.liferay.util.servlet.ServletResponseUtil;
 
 /**
  * <a href="DeleteDefinitionAction.java.html"><b><i>View Source</i></b></a>
@@ -40,12 +47,12 @@ import com.liferay.util.bridges.simplemvc.Action;
  * @author Michael C. Han
  * @author Gavin Wan
  */
-public class DeleteRequestAction implements Action {
-
+public class GetReportAction implements Action {
+	
 	public boolean processAction(
 		ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortletException {
-
+		//TBD at renderAction
 		long requestId = ParamUtil.getLong(actionRequest, "requestId");
 
 		if (requestId == -1) {
@@ -54,14 +61,32 @@ public class DeleteRequestAction implements Action {
 			return false;
 		}
 		try {
-			RequestedReportLocalServiceUtil.deleteRequestAndAttachments(requestId);
+			RequestedReport requestedReport =
+				RequestedReportLocalServiceUtil.getRequestedReport(requestId);
+
+			HttpServletResponse response =
+				PortalUtil.getHttpServletResponse(actionResponse);
+
+			String[] existingFiles = requestedReport.getAttachmentsFiles();
+
+			byte[] report = null;
+			String fileName = null;
+			for (String existingFile : existingFiles) {
+				fileName =
+					StringUtil.extractLast(existingFile, StringPool.SLASH);
+				report =
+					DLServiceUtil.getFile(
+						requestedReport.getCompanyId(), 0, existingFile);
+				break;
+			}
+			ServletResponseUtil.sendFile(response, fileName, report);
 			return true;
 		}
 		catch (Exception e) {
 			_log.error(e);
-			throw new PortletException("Unable to delete a request report", e);
+			throw new PortletException("Unable to get the report", e);
 		}
 
 	}
-	private static Log _log = LogFactoryUtil.getLog(DeleteRequestAction.class);
+	private static Log _log = LogFactoryUtil.getLog(GetReportAction.class);
 }

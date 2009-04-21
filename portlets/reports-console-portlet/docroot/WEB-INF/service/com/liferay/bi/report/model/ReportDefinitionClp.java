@@ -136,6 +136,14 @@ public class ReportDefinitionClp extends BaseModelImpl<ReportDefinition>
 		_description = description;
 	}
 
+	public String getReportName() {
+		return _reportName;
+	}
+
+	public void setReportName(String reportName) {
+		_reportName = reportName;
+	}
+
 	public String getReportParameters() {
 		return _reportParameters;
 	}
@@ -191,6 +199,7 @@ public class ReportDefinitionClp extends BaseModelImpl<ReportDefinition>
 			model.setModifiedDate(getModifiedDate());
 			model.setDefinitionName(HtmlUtil.escape(getDefinitionName()));
 			model.setDescription(HtmlUtil.escape(getDescription()));
+			model.setReportName(HtmlUtil.escape(getReportName()));
 			model.setReportParameters(HtmlUtil.escape(getReportParameters()));
 			model.setReportFormat(HtmlUtil.escape(getReportFormat()));
 			model.setDataSourceName(HtmlUtil.escape(getDataSourceName()));
@@ -216,6 +225,7 @@ public class ReportDefinitionClp extends BaseModelImpl<ReportDefinition>
 		clone.setModifiedDate(getModifiedDate());
 		clone.setDefinitionName(getDefinitionName());
 		clone.setDescription(getDescription());
+		clone.setReportName(getReportName());
 		clone.setReportParameters(getReportParameters());
 		clone.setReportFormat(getReportFormat());
 		clone.setDataSourceName(getDataSourceName());
@@ -274,6 +284,7 @@ public class ReportDefinitionClp extends BaseModelImpl<ReportDefinition>
 	private Date _modifiedDate;
 	private String _definitionName;
 	private String _description;
+	private String _reportName;
 	private String _reportParameters;
 	private String _reportFormat;
 	private String _dataSourceName;

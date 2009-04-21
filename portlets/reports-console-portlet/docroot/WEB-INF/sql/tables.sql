@@ -10,6 +10,7 @@ create table Report_ReportDefinition (
 	modifiedDate DATE null,
 	definitionName VARCHAR(75) null,
 	description VARCHAR(75) null,
+	reportName VARCHAR(75) null,
 	reportParameters VARCHAR(75) null,
 	reportFormat VARCHAR(75) null,
 	dataSourceName VARCHAR(75) null

@@ -82,8 +82,7 @@ public interface RequestedReportLocalService {
 		com.liferay.bi.report.model.RequestedReport requestedReport,
 		boolean merge) throws com.liferay.portal.SystemException;
 
-	public void addRequestedReport(
-		com.liferay.portal.kernel.bi.reporting.ReportRequest request)
+	public void deleteRequestAndAttachments(long requestId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 

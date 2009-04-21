@@ -83,6 +83,9 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 			{ "description", new Integer(Types.VARCHAR) },
 			
 
+			{ "reportName", new Integer(Types.VARCHAR) },
+			
+
 			{ "reportParameters", new Integer(Types.VARCHAR) },
 			
 
@@ -91,7 +94,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 
 			{ "dataSourceName", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Report_ReportDefinition (uuid_ VARCHAR(75) null,definitionId LONG not null primary key,companyId LONG,groupId LONG,userId LONG,createDate DATE null,modifiedBy LONG,modifiedDate DATE null,definitionName VARCHAR(75) null,description VARCHAR(75) null,reportParameters VARCHAR(75) null,reportFormat VARCHAR(75) null,dataSourceName VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Report_ReportDefinition (uuid_ VARCHAR(75) null,definitionId LONG not null primary key,companyId LONG,groupId LONG,userId LONG,createDate DATE null,modifiedBy LONG,modifiedDate DATE null,definitionName VARCHAR(75) null,description VARCHAR(75) null,reportName VARCHAR(75) null,reportParameters VARCHAR(75) null,reportFormat VARCHAR(75) null,dataSourceName VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Report_ReportDefinition";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -116,6 +119,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 		model.setModifiedDate(soapModel.getModifiedDate());
 		model.setDefinitionName(soapModel.getDefinitionName());
 		model.setDescription(soapModel.getDescription());
+		model.setReportName(soapModel.getReportName());
 		model.setReportParameters(soapModel.getReportParameters());
 		model.setReportFormat(soapModel.getReportFormat());
 		model.setDataSourceName(soapModel.getDataSourceName());
@@ -157,12 +161,10 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 	}
 
 	public void setUuid(String uuid) {
-		if ((uuid != null) && !uuid.equals(_uuid)) {
-			_uuid = uuid;
+		_uuid = uuid;
 
-			if (_originalUuid == null) {
-				_originalUuid = uuid;
-			}
+		if (_originalUuid == null) {
+			_originalUuid = uuid;
 		}
 	}
 
@@ -175,9 +177,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 	}
 
 	public void setDefinitionId(long definitionId) {
-		if (definitionId != _definitionId) {
-			_definitionId = definitionId;
-		}
+		_definitionId = definitionId;
 	}
 
 	public long getCompanyId() {
@@ -185,9 +185,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 	}
 
 	public void setCompanyId(long companyId) {
-		if (companyId != _companyId) {
-			_companyId = companyId;
-		}
+		_companyId = companyId;
 	}
 
 	public long getGroupId() {
@@ -195,14 +193,12 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 	}
 
 	public void setGroupId(long groupId) {
-		if (groupId != _groupId) {
-			_groupId = groupId;
+		_groupId = groupId;
 
-			if (!_setOriginalGroupId) {
-				_setOriginalGroupId = true;
+		if (!_setOriginalGroupId) {
+			_setOriginalGroupId = true;
 
-				_originalGroupId = groupId;
-			}
+			_originalGroupId = groupId;
 		}
 	}
 
@@ -215,9 +211,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 	}
 
 	public void setUserId(long userId) {
-		if (userId != _userId) {
-			_userId = userId;
-		}
+		_userId = userId;
 	}
 
 	public Date getCreateDate() {
@@ -225,10 +219,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 	}
 
 	public void setCreateDate(Date createDate) {
-		if ((createDate != _createDate) ||
-				((createDate != null) && !createDate.equals(_createDate))) {
-			_createDate = createDate;
-		}
+		_createDate = createDate;
 	}
 
 	public long getModifiedBy() {
@@ -236,9 +227,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 	}
 
 	public void setModifiedBy(long modifiedBy) {
-		if (modifiedBy != _modifiedBy) {
-			_modifiedBy = modifiedBy;
-		}
+		_modifiedBy = modifiedBy;
 	}
 
 	public Date getModifiedDate() {
@@ -246,10 +235,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 	}
 
 	public void setModifiedDate(Date modifiedDate) {
-		if ((modifiedDate != _modifiedDate) ||
-				((modifiedDate != null) && !modifiedDate.equals(_modifiedDate))) {
-			_modifiedDate = modifiedDate;
-		}
+		_modifiedDate = modifiedDate;
 	}
 
 	public String getDefinitionName() {
@@ -257,11 +243,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 	}
 
 	public void setDefinitionName(String definitionName) {
-		if ((definitionName != _definitionName) ||
-				((definitionName != null) &&
-				!definitionName.equals(_definitionName))) {
-			_definitionName = definitionName;
-		}
+		_definitionName = definitionName;
 	}
 
 	public String getDescription() {
@@ -269,10 +251,15 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 	}
 
 	public void setDescription(String description) {
-		if ((description != _description) ||
-				((description != null) && !description.equals(_description))) {
-			_description = description;
-		}
+		_description = description;
+	}
+
+	public String getReportName() {
+		return GetterUtil.getString(_reportName);
+	}
+
+	public void setReportName(String reportName) {
+		_reportName = reportName;
 	}
 
 	public String getReportParameters() {
@@ -280,11 +267,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 	}
 
 	public void setReportParameters(String reportParameters) {
-		if ((reportParameters != _reportParameters) ||
-				((reportParameters != null) &&
-				!reportParameters.equals(_reportParameters))) {
-			_reportParameters = reportParameters;
-		}
+		_reportParameters = reportParameters;
 	}
 
 	public String getReportFormat() {
@@ -292,10 +275,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 	}
 
 	public void setReportFormat(String reportFormat) {
-		if ((reportFormat != _reportFormat) ||
-				((reportFormat != null) && !reportFormat.equals(_reportFormat))) {
-			_reportFormat = reportFormat;
-		}
+		_reportFormat = reportFormat;
 	}
 
 	public String getDataSourceName() {
@@ -303,11 +283,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 	}
 
 	public void setDataSourceName(String dataSourceName) {
-		if ((dataSourceName != _dataSourceName) ||
-				((dataSourceName != null) &&
-				!dataSourceName.equals(_dataSourceName))) {
-			_dataSourceName = dataSourceName;
-		}
+		_dataSourceName = dataSourceName;
 	}
 
 	public ReportDefinition toEscapedModel() {
@@ -330,6 +306,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 			model.setModifiedDate(getModifiedDate());
 			model.setDefinitionName(HtmlUtil.escape(getDefinitionName()));
 			model.setDescription(HtmlUtil.escape(getDescription()));
+			model.setReportName(HtmlUtil.escape(getReportName()));
 			model.setReportParameters(HtmlUtil.escape(getReportParameters()));
 			model.setReportFormat(HtmlUtil.escape(getReportFormat()));
 			model.setDataSourceName(HtmlUtil.escape(getDataSourceName()));
@@ -364,6 +341,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 		clone.setModifiedDate(getModifiedDate());
 		clone.setDefinitionName(getDefinitionName());
 		clone.setDescription(getDescription());
+		clone.setReportName(getReportName());
 		clone.setReportParameters(getReportParameters());
 		clone.setReportFormat(getReportFormat());
 		clone.setDataSourceName(getDataSourceName());
@@ -425,6 +403,7 @@ public class ReportDefinitionModelImpl extends BaseModelImpl<ReportDefinition> {
 	private Date _modifiedDate;
 	private String _definitionName;
 	private String _description;
+	private String _reportName;
 	private String _reportParameters;
 	private String _reportFormat;
 	private String _dataSourceName;
