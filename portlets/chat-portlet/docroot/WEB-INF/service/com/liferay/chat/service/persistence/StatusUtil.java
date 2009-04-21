@@ -29,6 +29,15 @@ package com.liferay.chat.service.persistence;
  *
  */
 public class StatusUtil {
+	public static void cacheResult(com.liferay.chat.model.Status status) {
+		getPersistence().cacheResult(status);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.chat.model.Status> statuses) {
+		getPersistence().cacheResult(statuses);
+	}
+
 	public static com.liferay.chat.model.Status create(long statusId) {
 		return getPersistence().create(statusId);
 	}
@@ -83,6 +92,11 @@ public class StatusUtil {
 	public static com.liferay.chat.model.Status fetchByUserId(long userId)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().fetchByUserId(userId);
+	}
+
+	public static com.liferay.chat.model.Status fetchByUserId(long userId,
+		boolean retrieveFromCache) throws com.liferay.portal.SystemException {
+		return getPersistence().fetchByUserId(userId, retrieveFromCache);
 	}
 
 	public static java.util.List<com.liferay.chat.model.Status> findByModifiedDate(

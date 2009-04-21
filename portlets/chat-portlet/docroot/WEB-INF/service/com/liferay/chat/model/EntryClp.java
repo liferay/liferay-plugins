@@ -36,7 +36,7 @@ import java.lang.reflect.Proxy;
  * @author Brian Wing Shun Chan
  *
  */
-public class EntryClp extends BaseModelImpl implements Entry {
+public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 	public EntryClp() {
 	}
 
@@ -126,13 +126,7 @@ public class EntryClp extends BaseModelImpl implements Entry {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		EntryClp entry = (EntryClp)obj;
-
+	public int compareTo(Entry entry) {
 		int value = 0;
 
 		if (getCreateDate() < entry.getCreateDate()) {

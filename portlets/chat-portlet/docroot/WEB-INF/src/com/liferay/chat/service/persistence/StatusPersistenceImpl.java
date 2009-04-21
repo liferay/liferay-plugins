@@ -30,7 +30,9 @@ import com.liferay.chat.model.impl.StatusModelImpl;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -47,7 +49,6 @@ import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -58,6 +59,87 @@ import java.util.List;
  */
 public class StatusPersistenceImpl extends BasePersistenceImpl
 	implements StatusPersistence {
+	public static final String FINDER_CLASS_NAME_ENTITY = StatusImpl.class.getName();
+	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
+		".List";
+	public static final FinderPath FINDER_PATH_FETCH_BY_USERID = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
+			"fetchByUserId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByUserId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_MODIFIEDDATE = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByModifiedDate", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_MODIFIEDDATE = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByModifiedDate",
+			new String[] {
+				Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_MODIFIEDDATE = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByModifiedDate", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_ONLINE = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByOnline", new String[] { Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_ONLINE = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByOnline",
+			new String[] {
+				Boolean.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_ONLINE = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByOnline", new String[] { Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_M_O = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByM_O",
+			new String[] { Long.class.getName(), Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_M_O = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByM_O",
+			new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_M_O = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByM_O",
+			new String[] { Long.class.getName(), Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countAll", new String[0]);
+
+	public void cacheResult(Status status) {
+		EntityCacheUtil.putResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			StatusImpl.class, status.getPrimaryKey(), status);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
+			new Object[] { new Long(status.getUserId()) }, status);
+	}
+
+	public void cacheResult(List<Status> statuses) {
+		for (Status status : statuses) {
+			if (EntityCacheUtil.getResult(
+						StatusModelImpl.ENTITY_CACHE_ENABLED, StatusImpl.class,
+						status.getPrimaryKey(), this) == null) {
+				cacheResult(status);
+			}
+		}
+	}
+
 	public Status create(long statusId) {
 		Status status = new StatusImpl();
 
@@ -101,13 +183,13 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public Status remove(Status status) throws SystemException {
-		for (ModelListener listener : listeners) {
+		for (ModelListener<Status> listener : listeners) {
 			listener.onBeforeRemove(status);
 		}
 
 		status = removeImpl(status);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<Status> listener : listeners) {
 			listener.onAfterRemove(status);
 		}
 
@@ -120,7 +202,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
-			if (BatchSessionUtil.isEnabled()) {
+			if (status.isCachedModel() || BatchSessionUtil.isEnabled()) {
 				Object staleObject = session.get(StatusImpl.class,
 						status.getPrimaryKeyObj());
 
@@ -132,17 +214,25 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 			session.delete(status);
 
 			session.flush();
-
-			return status;
 		}
 		catch (Exception e) {
 			throw processException(e);
 		}
 		finally {
 			closeSession(session);
-
-			FinderCacheUtil.clearCache(Status.class.getName());
 		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		StatusModelImpl statusModelImpl = (StatusModelImpl)status;
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
+			new Object[] { new Long(statusModelImpl.getOriginalUserId()) });
+
+		EntityCacheUtil.removeResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			StatusImpl.class, status.getPrimaryKey());
+
+		return status;
 	}
 
 	public Status update(Status status) throws SystemException {
@@ -158,7 +248,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 		throws SystemException {
 		boolean isNew = status.isNew();
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<Status> listener : listeners) {
 			if (isNew) {
 				listener.onBeforeCreate(status);
 			}
@@ -169,7 +259,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 		status = updateImpl(status, merge);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<Status> listener : listeners) {
 			if (isNew) {
 				listener.onAfterCreate(status);
 			}
@@ -183,6 +273,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 	public Status updateImpl(com.liferay.chat.model.Status status, boolean merge)
 		throws SystemException {
+		boolean isNew = status.isNew();
+
+		StatusModelImpl statusModelImpl = (StatusModelImpl)status;
+
 		Session session = null;
 
 		try {
@@ -191,17 +285,32 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 			BatchSessionUtil.update(session, status, merge);
 
 			status.setNew(false);
-
-			return status;
 		}
 		catch (Exception e) {
 			throw processException(e);
 		}
 		finally {
 			closeSession(session);
-
-			FinderCacheUtil.clearCache(Status.class.getName());
 		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		EntityCacheUtil.putResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			StatusImpl.class, status.getPrimaryKey(), status);
+
+		if (!isNew &&
+				(status.getUserId() != statusModelImpl.getOriginalUserId())) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
+				new Object[] { new Long(statusModelImpl.getOriginalUserId()) });
+		}
+
+		if (isNew ||
+				(status.getUserId() != statusModelImpl.getOriginalUserId())) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
+				new Object[] { new Long(status.getUserId()) }, status);
+		}
+
+		return status;
 	}
 
 	public Status findByPrimaryKey(long statusId)
@@ -221,19 +330,31 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public Status fetchByPrimaryKey(long statusId) throws SystemException {
-		Session session = null;
+		Status status = (Status)EntityCacheUtil.getResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
+				StatusImpl.class, statusId, this);
 
-		try {
-			session = openSession();
+		if (status == null) {
+			Session session = null;
 
-			return (Status)session.get(StatusImpl.class, new Long(statusId));
+			try {
+				session = openSession();
+
+				status = (Status)session.get(StatusImpl.class,
+						new Long(statusId));
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (status != null) {
+					cacheResult(status);
+				}
+
+				closeSession(session);
+			}
 		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
+
+		return status;
 	}
 
 	public Status findByUserId(long userId)
@@ -260,17 +381,18 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public Status fetchByUserId(long userId) throws SystemException {
-		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
-		String finderClassName = Status.class.getName();
-		String finderMethodName = "fetchByUserId";
-		String[] finderParams = new String[] { Long.class.getName() };
+		return fetchByUserId(userId, true);
+	}
+
+	public Status fetchByUserId(long userId, boolean retrieveFromCache)
+		throws SystemException {
 		Object[] finderArgs = new Object[] { new Long(userId) };
 
 		Object result = null;
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_USERID,
+					finderArgs, this);
 		}
 
 		if (result == null) {
@@ -295,52 +417,52 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				List<Status> list = q.list();
 
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
+				result = list;
 
-				if (list.size() == 0) {
-					return null;
+				Status status = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
+						finderArgs, list);
 				}
 				else {
-					return list.get(0);
+					status = list.get(0);
+
+					cacheResult(status);
 				}
+
+				return status;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (result == null) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
+						finderArgs, new ArrayList<Status>());
+				}
+
 				closeSession(session);
 			}
 		}
 		else {
-			List<Status> list = (List<Status>)result;
-
-			if (list.size() == 0) {
+			if (result instanceof List) {
 				return null;
 			}
 			else {
-				return list.get(0);
+				return (Status)result;
 			}
 		}
 	}
 
 	public List<Status> findByModifiedDate(long modifiedDate)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
-		String finderClassName = Status.class.getName();
-		String finderMethodName = "findByModifiedDate";
-		String[] finderParams = new String[] { Long.class.getName() };
 		Object[] finderArgs = new Object[] { new Long(modifiedDate) };
 
-		Object result = null;
+		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_MODIFIEDDATE,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -360,24 +482,26 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(modifiedDate);
 
-				List<Status> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<Status>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MODIFIEDDATE,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<Status>)result;
-		}
+
+		return list;
 	}
 
 	public List<Status> findByModifiedDate(long modifiedDate, int start, int end)
@@ -387,29 +511,16 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 	public List<Status> findByModifiedDate(long modifiedDate, int start,
 		int end, OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
-		String finderClassName = Status.class.getName();
-		String finderMethodName = "findByModifiedDate";
-		String[] finderParams = new String[] {
-				Long.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(modifiedDate),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_MODIFIEDDATE,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -434,32 +545,33 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(modifiedDate);
 
-				List<Status> list = (List<Status>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<Status>)QueryUtil.list(q, getDialect(), start, end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<Status>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_MODIFIEDDATE,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<Status>)result;
-		}
+
+		return list;
 	}
 
 	public Status findByModifiedDate_First(long modifiedDate,
 		OrderByComparator obc) throws NoSuchStatusException, SystemException {
 		List<Status> list = findByModifiedDate(modifiedDate, 0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No Status exists with the key {");
@@ -482,7 +594,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 		List<Status> list = findByModifiedDate(modifiedDate, count - 1, count,
 				obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No Status exists with the key {");
@@ -548,20 +660,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public List<Status> findByOnline(boolean online) throws SystemException {
-		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
-		String finderClassName = Status.class.getName();
-		String finderMethodName = "findByOnline";
-		String[] finderParams = new String[] { Boolean.class.getName() };
 		Object[] finderArgs = new Object[] { Boolean.valueOf(online) };
 
-		Object result = null;
+		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ONLINE,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -581,24 +685,26 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(online);
 
-				List<Status> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<Status>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ONLINE,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<Status>)result;
-		}
+
+		return list;
 	}
 
 	public List<Status> findByOnline(boolean online, int start, int end)
@@ -608,29 +714,16 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 	public List<Status> findByOnline(boolean online, int start, int end,
 		OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
-		String finderClassName = Status.class.getName();
-		String finderMethodName = "findByOnline";
-		String[] finderParams = new String[] {
-				Boolean.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				Boolean.valueOf(online),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_ONLINE,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -655,32 +748,33 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(online);
 
-				List<Status> list = (List<Status>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<Status>)QueryUtil.list(q, getDialect(), start, end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<Status>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_ONLINE,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<Status>)result;
-		}
+
+		return list;
 	}
 
 	public Status findByOnline_First(boolean online, OrderByComparator obc)
 		throws NoSuchStatusException, SystemException {
 		List<Status> list = findByOnline(online, 0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No Status exists with the key {");
@@ -702,7 +796,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 		List<Status> list = findByOnline(online, count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No Status exists with the key {");
@@ -768,24 +862,14 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 	public List<Status> findByM_O(long modifiedDate, boolean online)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
-		String finderClassName = Status.class.getName();
-		String finderMethodName = "findByM_O";
-		String[] finderParams = new String[] {
-				Long.class.getName(), Boolean.class.getName()
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(modifiedDate), Boolean.valueOf(online)
 			};
 
-		Object result = null;
+		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_M_O,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -811,24 +895,26 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(online);
 
-				List<Status> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<Status>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_M_O, finderArgs,
+					list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<Status>)result;
-		}
+
+		return list;
 	}
 
 	public List<Status> findByM_O(long modifiedDate, boolean online, int start,
@@ -838,29 +924,16 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 	public List<Status> findByM_O(long modifiedDate, boolean online, int start,
 		int end, OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
-		String finderClassName = Status.class.getName();
-		String finderMethodName = "findByM_O";
-		String[] finderParams = new String[] {
-				Long.class.getName(), Boolean.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(modifiedDate), Boolean.valueOf(online),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_M_O,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -891,32 +964,33 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(online);
 
-				List<Status> list = (List<Status>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<Status>)QueryUtil.list(q, getDialect(), start, end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<Status>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_M_O,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<Status>)result;
-		}
+
+		return list;
 	}
 
 	public Status findByM_O_First(long modifiedDate, boolean online,
 		OrderByComparator obc) throws NoSuchStatusException, SystemException {
 		List<Status> list = findByM_O(modifiedDate, online, 0, 1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No Status exists with the key {");
@@ -942,7 +1016,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 		List<Status> list = findByM_O(modifiedDate, online, count - 1, count,
 				obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No Status exists with the key {");
@@ -1066,25 +1140,14 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 	public List<Status> findAll(int start, int end, OrderByComparator obc)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
-		String finderClassName = Status.class.getName();
-		String finderMethodName = "findAll";
-		String[] finderParams = new String[] {
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<Status> list = (List<Status>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -1101,8 +1164,6 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				Query q = session.createQuery(query.toString());
 
-				List<Status> list = null;
-
 				if (obc == null) {
 					list = (List<Status>)QueryUtil.list(q, getDialect(), start,
 							end, false);
@@ -1113,23 +1174,24 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 					list = (List<Status>)QueryUtil.list(q, getDialect(), start,
 							end);
 				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<Status>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<Status>)result;
-		}
+
+		return list;
 	}
 
 	public void removeByUserId(long userId)
@@ -1166,20 +1228,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public int countByUserId(long userId) throws SystemException {
-		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
-		String finderClassName = Status.class.getName();
-		String finderMethodName = "countByUserId";
-		String[] finderParams = new String[] { Long.class.getName() };
 		Object[] finderArgs = new Object[] { new Long(userId) };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_USERID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1200,51 +1254,33 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(userId);
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByModifiedDate(long modifiedDate) throws SystemException {
-		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
-		String finderClassName = Status.class.getName();
-		String finderMethodName = "countByModifiedDate";
-		String[] finderParams = new String[] { Long.class.getName() };
 		Object[] finderArgs = new Object[] { new Long(modifiedDate) };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_MODIFIEDDATE,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1265,51 +1301,33 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(modifiedDate);
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MODIFIEDDATE,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByOnline(boolean online) throws SystemException {
-		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
-		String finderClassName = Status.class.getName();
-		String finderMethodName = "countByOnline";
-		String[] finderParams = new String[] { Boolean.class.getName() };
 		Object[] finderArgs = new Object[] { Boolean.valueOf(online) };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ONLINE,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1330,56 +1348,36 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(online);
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_ONLINE,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByM_O(long modifiedDate, boolean online)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
-		String finderClassName = Status.class.getName();
-		String finderMethodName = "countByM_O";
-		String[] finderParams = new String[] {
-				Long.class.getName(), Boolean.class.getName()
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(modifiedDate), Boolean.valueOf(online)
 			};
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_M_O,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1406,51 +1404,33 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(online);
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_M_O, finderArgs,
+					count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countAll() throws SystemException {
-		boolean finderClassNameCacheEnabled = StatusModelImpl.CACHE_ENABLED;
-		String finderClassName = Status.class.getName();
-		String finderMethodName = "countAll";
-		String[] finderParams = new String[] {  };
-		Object[] finderArgs = new Object[] {  };
+		Object[] finderArgs = new Object[0];
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1459,34 +1439,24 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 				Query q = session.createQuery(
 						"SELECT COUNT(*) FROM com.liferay.chat.model.Status");
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
+					count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public void afterPropertiesSet() {
@@ -1496,10 +1466,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener> listenersList = new ArrayList<ModelListener>();
+				List<ModelListener<Status>> listenersList = new ArrayList<ModelListener<Status>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener)Class.forName(
+					listenersList.add((ModelListener<Status>)Class.forName(
 							listenerClassName).newInstance());
 				}
 

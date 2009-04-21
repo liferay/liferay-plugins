@@ -87,6 +87,12 @@ public class EntryLocalServiceUtil {
 		return getService().updateEntry(entry);
 	}
 
+	public static com.liferay.chat.model.Entry updateEntry(
+		com.liferay.chat.model.Entry entry, boolean merge)
+		throws com.liferay.portal.SystemException {
+		return getService().updateEntry(entry, merge);
+	}
+
 	public static com.liferay.chat.model.Entry addEntry(long fromUserId,
 		long toUserId, java.lang.String content)
 		throws com.liferay.portal.SystemException {

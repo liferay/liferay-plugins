@@ -22,6 +22,7 @@
 
 package com.liferay.chat.service;
 
+import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.LongWrapper;
@@ -314,6 +315,40 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		try {
 			returnObj = _classLoaderProxy.invoke("updateEntry",
 					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.chat.model.Entry)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.liferay.chat.model.Entry updateEntry(
+		com.liferay.chat.model.Entry entry, boolean merge)
+		throws com.liferay.portal.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(entry);
+
+		if (entry == null) {
+			paramObj0 = new NullWrapper("com.liferay.chat.model.Entry");
+		}
+
+		Object paramObj1 = new BooleanWrapper(merge);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("updateEntry",
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.SystemException) {

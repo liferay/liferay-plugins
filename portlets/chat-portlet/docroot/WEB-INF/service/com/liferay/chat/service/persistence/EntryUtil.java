@@ -29,6 +29,15 @@ package com.liferay.chat.service.persistence;
  *
  */
 public class EntryUtil {
+	public static void cacheResult(com.liferay.chat.model.Entry entry) {
+		getPersistence().cacheResult(entry);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.chat.model.Entry> entries) {
+		getPersistence().cacheResult(entries);
+	}
+
 	public static com.liferay.chat.model.Entry create(long entryId) {
 		return getPersistence().create(entryId);
 	}

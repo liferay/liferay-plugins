@@ -48,7 +48,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public class EntryModelImpl extends BaseModelImpl {
+public class EntryModelImpl extends BaseModelImpl<Entry> {
 	public static final String TABLE_NAME = "Chat_Entry";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "entryId", new Integer(Types.BIGINT) },
@@ -70,7 +70,10 @@ public class EntryModelImpl extends BaseModelImpl {
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.chat.model.Entry"),
+			true);
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.chat.model.Entry"),
 			true);
 
@@ -119,9 +122,7 @@ public class EntryModelImpl extends BaseModelImpl {
 	}
 
 	public void setEntryId(long entryId) {
-		if (entryId != _entryId) {
-			_entryId = entryId;
-		}
+		_entryId = entryId;
 	}
 
 	public long getCreateDate() {
@@ -129,9 +130,7 @@ public class EntryModelImpl extends BaseModelImpl {
 	}
 
 	public void setCreateDate(long createDate) {
-		if (createDate != _createDate) {
-			_createDate = createDate;
-		}
+		_createDate = createDate;
 	}
 
 	public long getFromUserId() {
@@ -139,9 +138,7 @@ public class EntryModelImpl extends BaseModelImpl {
 	}
 
 	public void setFromUserId(long fromUserId) {
-		if (fromUserId != _fromUserId) {
-			_fromUserId = fromUserId;
-		}
+		_fromUserId = fromUserId;
 	}
 
 	public long getToUserId() {
@@ -149,9 +146,7 @@ public class EntryModelImpl extends BaseModelImpl {
 	}
 
 	public void setToUserId(long toUserId) {
-		if (toUserId != _toUserId) {
-			_toUserId = toUserId;
-		}
+		_toUserId = toUserId;
 	}
 
 	public String getContent() {
@@ -159,12 +154,7 @@ public class EntryModelImpl extends BaseModelImpl {
 	}
 
 	public void setContent(String content) {
-		if (((content == null) && (_content != null)) ||
-				((content != null) && (_content == null)) ||
-				((content != null) && (_content != null) &&
-				!content.equals(_content))) {
-			_content = content;
-		}
+		_content = content;
 	}
 
 	public Entry toEscapedModel() {
@@ -211,13 +201,7 @@ public class EntryModelImpl extends BaseModelImpl {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		EntryImpl entry = (EntryImpl)obj;
-
+	public int compareTo(Entry entry) {
 		int value = 0;
 
 		if (getCreateDate() < entry.getCreateDate()) {
@@ -244,10 +228,10 @@ public class EntryModelImpl extends BaseModelImpl {
 			return false;
 		}
 
-		EntryImpl entry = null;
+		Entry entry = null;
 
 		try {
-			entry = (EntryImpl)obj;
+			entry = (Entry)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;

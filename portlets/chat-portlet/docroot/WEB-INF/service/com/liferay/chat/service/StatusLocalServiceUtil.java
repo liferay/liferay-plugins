@@ -87,6 +87,12 @@ public class StatusLocalServiceUtil {
 		return getService().updateStatus(status);
 	}
 
+	public static com.liferay.chat.model.Status updateStatus(
+		com.liferay.chat.model.Status status, boolean merge)
+		throws com.liferay.portal.SystemException {
+		return getService().updateStatus(status, merge);
+	}
+
 	public static java.util.List<Object[]> getAllStatuses(long userId,
 		long modifiedDate, int start, int end)
 		throws com.liferay.portal.SystemException {

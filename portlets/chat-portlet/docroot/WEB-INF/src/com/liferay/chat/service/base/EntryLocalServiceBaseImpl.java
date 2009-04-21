@@ -91,6 +91,13 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService {
 		return entryPersistence.update(entry, true);
 	}
 
+	public Entry updateEntry(Entry entry, boolean merge)
+		throws SystemException {
+		entry.setNew(false);
+
+		return entryPersistence.update(entry, merge);
+	}
+
 	public EntryLocalService getEntryLocalService() {
 		return entryLocalService;
 	}

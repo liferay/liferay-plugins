@@ -36,7 +36,7 @@ import java.lang.reflect.Proxy;
  * @author Brian Wing Shun Chan
  *
  */
-public class StatusClp extends BaseModelImpl implements Status {
+public class StatusClp extends BaseModelImpl<Status> implements Status {
 	public StatusClp() {
 	}
 
@@ -178,13 +178,7 @@ public class StatusClp extends BaseModelImpl implements Status {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		StatusClp status = (StatusClp)obj;
-
+	public int compareTo(Status status) {
 		long pk = status.getPrimaryKey();
 
 		if (getPrimaryKey() < pk) {

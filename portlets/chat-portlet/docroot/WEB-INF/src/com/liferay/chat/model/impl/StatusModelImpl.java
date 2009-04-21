@@ -48,7 +48,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public class StatusModelImpl extends BaseModelImpl {
+public class StatusModelImpl extends BaseModelImpl<Status> {
 	public static final String TABLE_NAME = "Chat_Status";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "statusId", new Integer(Types.BIGINT) },
@@ -82,7 +82,10 @@ public class StatusModelImpl extends BaseModelImpl {
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.chat.model.Status"),
+			true);
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.chat.model.Status"),
 			true);
 
@@ -135,9 +138,7 @@ public class StatusModelImpl extends BaseModelImpl {
 	}
 
 	public void setStatusId(long statusId) {
-		if (statusId != _statusId) {
-			_statusId = statusId;
-		}
+		_statusId = statusId;
 	}
 
 	public long getUserId() {
@@ -145,9 +146,17 @@ public class StatusModelImpl extends BaseModelImpl {
 	}
 
 	public void setUserId(long userId) {
-		if (userId != _userId) {
-			_userId = userId;
+		_userId = userId;
+
+		if (!_setOriginalUserId) {
+			_setOriginalUserId = true;
+
+			_originalUserId = userId;
 		}
+	}
+
+	public long getOriginalUserId() {
+		return _originalUserId;
 	}
 
 	public long getModifiedDate() {
@@ -155,9 +164,7 @@ public class StatusModelImpl extends BaseModelImpl {
 	}
 
 	public void setModifiedDate(long modifiedDate) {
-		if (modifiedDate != _modifiedDate) {
-			_modifiedDate = modifiedDate;
-		}
+		_modifiedDate = modifiedDate;
 	}
 
 	public boolean getOnline() {
@@ -169,9 +176,7 @@ public class StatusModelImpl extends BaseModelImpl {
 	}
 
 	public void setOnline(boolean online) {
-		if (online != _online) {
-			_online = online;
-		}
+		_online = online;
 	}
 
 	public boolean getAwake() {
@@ -183,9 +188,7 @@ public class StatusModelImpl extends BaseModelImpl {
 	}
 
 	public void setAwake(boolean awake) {
-		if (awake != _awake) {
-			_awake = awake;
-		}
+		_awake = awake;
 	}
 
 	public String getActiveBrowserKey() {
@@ -193,12 +196,7 @@ public class StatusModelImpl extends BaseModelImpl {
 	}
 
 	public void setActiveBrowserKey(String activeBrowserKey) {
-		if (((activeBrowserKey == null) && (_activeBrowserKey != null)) ||
-				((activeBrowserKey != null) && (_activeBrowserKey == null)) ||
-				((activeBrowserKey != null) && (_activeBrowserKey != null) &&
-				!activeBrowserKey.equals(_activeBrowserKey))) {
-			_activeBrowserKey = activeBrowserKey;
-		}
+		_activeBrowserKey = activeBrowserKey;
 	}
 
 	public String getActivePanelId() {
@@ -206,12 +204,7 @@ public class StatusModelImpl extends BaseModelImpl {
 	}
 
 	public void setActivePanelId(String activePanelId) {
-		if (((activePanelId == null) && (_activePanelId != null)) ||
-				((activePanelId != null) && (_activePanelId == null)) ||
-				((activePanelId != null) && (_activePanelId != null) &&
-				!activePanelId.equals(_activePanelId))) {
-			_activePanelId = activePanelId;
-		}
+		_activePanelId = activePanelId;
 	}
 
 	public String getMessage() {
@@ -219,12 +212,7 @@ public class StatusModelImpl extends BaseModelImpl {
 	}
 
 	public void setMessage(String message) {
-		if (((message == null) && (_message != null)) ||
-				((message != null) && (_message == null)) ||
-				((message != null) && (_message != null) &&
-				!message.equals(_message))) {
-			_message = message;
-		}
+		_message = message;
 	}
 
 	public boolean getPlaySound() {
@@ -236,9 +224,7 @@ public class StatusModelImpl extends BaseModelImpl {
 	}
 
 	public void setPlaySound(boolean playSound) {
-		if (playSound != _playSound) {
-			_playSound = playSound;
-		}
+		_playSound = playSound;
 	}
 
 	public Status toEscapedModel() {
@@ -293,13 +279,7 @@ public class StatusModelImpl extends BaseModelImpl {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		StatusImpl status = (StatusImpl)obj;
-
+	public int compareTo(Status status) {
 		long pk = status.getPrimaryKey();
 
 		if (getPrimaryKey() < pk) {
@@ -318,10 +298,10 @@ public class StatusModelImpl extends BaseModelImpl {
 			return false;
 		}
 
-		StatusImpl status = null;
+		Status status = null;
 
 		try {
-			status = (StatusImpl)obj;
+			status = (Status)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;
@@ -343,6 +323,8 @@ public class StatusModelImpl extends BaseModelImpl {
 
 	private long _statusId;
 	private long _userId;
+	private long _originalUserId;
+	private boolean _setOriginalUserId;
 	private long _modifiedDate;
 	private boolean _online;
 	private boolean _awake;

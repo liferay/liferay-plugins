@@ -93,6 +93,13 @@ public abstract class StatusLocalServiceBaseImpl implements StatusLocalService {
 		return statusPersistence.update(status, true);
 	}
 
+	public Status updateStatus(Status status, boolean merge)
+		throws SystemException {
+		status.setNew(false);
+
+		return statusPersistence.update(status, merge);
+	}
+
 	public EntryLocalService getEntryLocalService() {
 		return entryLocalService;
 	}
