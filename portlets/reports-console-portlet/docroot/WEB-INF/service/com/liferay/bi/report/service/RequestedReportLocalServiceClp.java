@@ -378,6 +378,92 @@ public class RequestedReportLocalServiceClp
 		return (com.liferay.bi.report.model.RequestedReport)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public void addScheduler(long definitionId, java.lang.String cronText,
+		java.util.Date startDate, java.util.Date endDate,
+		java.lang.String description, long userId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		Object paramObj0 = new LongWrapper(definitionId);
+
+		Object paramObj1 = ClpSerializer.translateInput(cronText);
+
+		if (cronText == null) {
+			paramObj1 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj2 = ClpSerializer.translateInput(startDate);
+
+		if (startDate == null) {
+			paramObj2 = new NullWrapper("java.util.Date");
+		}
+
+		Object paramObj3 = ClpSerializer.translateInput(endDate);
+
+		if (endDate == null) {
+			paramObj3 = new NullWrapper("java.util.Date");
+		}
+
+		Object paramObj4 = ClpSerializer.translateInput(description);
+
+		if (description == null) {
+			paramObj4 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj5 = new LongWrapper(userId);
+
+		try {
+			_classLoaderProxy.invoke("addScheduler",
+				new Object[] {
+					paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+					paramObj5
+				});
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.PortalException) {
+				throw (com.liferay.portal.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	public int countByDefinitionId(long definitionId)
+		throws com.liferay.portal.SystemException {
+		Object paramObj0 = new LongWrapper(definitionId);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("countByDefinitionId",
+					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
 	public void deleteRequestAndAttachments(long requestId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
@@ -406,7 +492,39 @@ public class RequestedReportLocalServiceClp
 		}
 	}
 
-	public void genrateReport(long companyId, long groupId, long userId,
+	public java.util.List<com.liferay.bi.report.model.RequestedReport> findByDefinitionId(
+		long definitionId, int start, int end)
+		throws com.liferay.portal.SystemException {
+		Object paramObj0 = new LongWrapper(definitionId);
+
+		Object paramObj1 = new IntegerWrapper(start);
+
+		Object paramObj2 = new IntegerWrapper(end);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("findByDefinitionId",
+					new Object[] { paramObj0, paramObj1, paramObj2 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.bi.report.model.RequestedReport>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void generateReport(long companyId, long groupId, long userId,
 		long definitionId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
@@ -419,7 +537,7 @@ public class RequestedReportLocalServiceClp
 		Object paramObj3 = new LongWrapper(definitionId);
 
 		try {
-			_classLoaderProxy.invoke("genrateReport",
+			_classLoaderProxy.invoke("generateReport",
 				new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {

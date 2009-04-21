@@ -336,23 +336,45 @@ public class RequestedReportUtil {
 		return getPersistence().fetchByRequestId(requestId, retrieveFromCache);
 	}
 
-	public static com.liferay.bi.report.model.RequestedReport findByDefinitionId(
-		long definitionId)
-		throws com.liferay.bi.report.NoSuchRequestedReportException,
-			com.liferay.portal.SystemException {
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findByDefinitionId(
+		long definitionId) throws com.liferay.portal.SystemException {
 		return getPersistence().findByDefinitionId(definitionId);
 	}
 
-	public static com.liferay.bi.report.model.RequestedReport fetchByDefinitionId(
-		long definitionId) throws com.liferay.portal.SystemException {
-		return getPersistence().fetchByDefinitionId(definitionId);
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findByDefinitionId(
+		long definitionId, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().findByDefinitionId(definitionId, start, end);
 	}
 
-	public static com.liferay.bi.report.model.RequestedReport fetchByDefinitionId(
-		long definitionId, boolean retrieveFromCache)
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findByDefinitionId(
+		long definitionId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException {
+		return getPersistence().findByDefinitionId(definitionId, start, end, obc);
+	}
+
+	public static com.liferay.bi.report.model.RequestedReport findByDefinitionId_First(
+		long definitionId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
+			com.liferay.portal.SystemException {
+		return getPersistence().findByDefinitionId_First(definitionId, obc);
+	}
+
+	public static com.liferay.bi.report.model.RequestedReport findByDefinitionId_Last(
+		long definitionId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
+			com.liferay.portal.SystemException {
+		return getPersistence().findByDefinitionId_Last(definitionId, obc);
+	}
+
+	public static com.liferay.bi.report.model.RequestedReport[] findByDefinitionId_PrevAndNext(
+		long requestId, long definitionId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
+			com.liferay.portal.SystemException {
 		return getPersistence()
-				   .fetchByDefinitionId(definitionId, retrieveFromCache);
+				   .findByDefinitionId_PrevAndNext(requestId, definitionId, obc);
 	}
 
 	public static java.util.List<Object> findWithDynamicQuery(
@@ -421,8 +443,7 @@ public class RequestedReportUtil {
 	}
 
 	public static void removeByDefinitionId(long definitionId)
-		throws com.liferay.bi.report.NoSuchRequestedReportException,
-			com.liferay.portal.SystemException {
+		throws com.liferay.portal.SystemException {
 		getPersistence().removeByDefinitionId(definitionId);
 	}
 

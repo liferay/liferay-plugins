@@ -236,17 +236,33 @@ public interface RequestedReportPersistence extends BasePersistence {
 		long requestId, boolean retrieveFromCache)
 		throws com.liferay.portal.SystemException;
 
-	public com.liferay.bi.report.model.RequestedReport findByDefinitionId(
-		long definitionId)
+	public java.util.List<com.liferay.bi.report.model.RequestedReport> findByDefinitionId(
+		long definitionId) throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.bi.report.model.RequestedReport> findByDefinitionId(
+		long definitionId, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public java.util.List<com.liferay.bi.report.model.RequestedReport> findByDefinitionId(
+		long definitionId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.bi.report.model.RequestedReport findByDefinitionId_First(
+		long definitionId, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.bi.report.NoSuchRequestedReportException,
 			com.liferay.portal.SystemException;
 
-	public com.liferay.bi.report.model.RequestedReport fetchByDefinitionId(
-		long definitionId) throws com.liferay.portal.SystemException;
+	public com.liferay.bi.report.model.RequestedReport findByDefinitionId_Last(
+		long definitionId, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
+			com.liferay.portal.SystemException;
 
-	public com.liferay.bi.report.model.RequestedReport fetchByDefinitionId(
-		long definitionId, boolean retrieveFromCache)
-		throws com.liferay.portal.SystemException;
+	public com.liferay.bi.report.model.RequestedReport[] findByDefinitionId_PrevAndNext(
+		long requestId, long definitionId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.bi.report.NoSuchRequestedReportException,
+			com.liferay.portal.SystemException;
 
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -290,8 +306,7 @@ public interface RequestedReportPersistence extends BasePersistence {
 			com.liferay.portal.SystemException;
 
 	public void removeByDefinitionId(long definitionId)
-		throws com.liferay.bi.report.NoSuchRequestedReportException,
-			com.liferay.portal.SystemException;
+		throws com.liferay.portal.SystemException;
 
 	public void removeAll() throws com.liferay.portal.SystemException;
 

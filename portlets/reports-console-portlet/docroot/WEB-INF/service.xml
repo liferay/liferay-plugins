@@ -99,7 +99,7 @@
 		<finder name="RequestId" return-type="ReportRequest">
 			<finder-column name="requestId" />
 		</finder>
-		<finder name="DefinitionId" return-type="ReportRequest">
+		<finder name="DefinitionId" return-type="Collection">
 			<finder-column name="definitionId" />
 		</finder>
 

@@ -23,21 +23,25 @@
 package com.liferay.bi.report.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
+import com.liferay.bi.report.NoSuchDefinitionException;
 import com.liferay.bi.report.model.ReportDefinition;
 import com.liferay.bi.report.model.RequestedReport;
 import com.liferay.bi.report.portlet.RequestStatus;
+import com.liferay.bi.report.service.ReportDefinitionLocalServiceUtil;
 import com.liferay.bi.report.service.base.RequestedReportLocalServiceBaseImpl;
+import com.liferay.bi.report.util.ReportUtil;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.bi.reporting.MemoryReportDesignRetriever;
-import com.liferay.portal.kernel.bi.reporting.ReportDesignRetriever;
 import com.liferay.portal.kernel.bi.reporting.ReportRequest;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.scheduler.SchedulerEngineUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CompanyConstants;
 
 /**
@@ -47,6 +51,61 @@ import com.liferay.portal.model.CompanyConstants;
  */
 public class RequestedReportLocalServiceImpl
 	extends RequestedReportLocalServiceBaseImpl {
+
+	public static final String REPORT_REQUEST = "liferay/report_requests";
+	public static final String REPORT_RESPONSES = "liferay/report_responses";
+
+	public void addScheduler(
+		long definitionId, String cronText, Date startDate, Date endDate,
+		String description, long userId)
+		throws PortalException, SystemException {
+
+		if (definitionId <= 0) {
+			throw new NoSuchDefinitionException();
+		}
+		if (Validator.isNull(description)) {
+			throw new PortalException();
+		}
+
+		ReportDefinition definition =
+			ReportDefinitionLocalServiceUtil.getReportDefinition(definitionId);
+
+		Date now = new Date();
+		long requestId = CounterLocalServiceUtil.increment();
+		RequestedReport requestedReport =
+			requestedReportLocalService.createRequestedReport(requestId);
+		requestedReport.setCompanyId(definition.getCompanyId());
+		requestedReport.setGroupId(definition.getGroupId());
+		requestedReport.setDefinitionId(definitionId);
+		requestedReport.setUserId(userId);
+		requestedReport.setIsSchedule(true);
+		requestedReport.setRequestStatus(RequestStatus.PENDING.toString());
+		requestedReport.setCreateDate(now);
+		requestedReport.setModifiedDate(now);
+
+		try {
+			ReportRequest reportRequest =
+				ReportUtil.getReportRequest(definition);
+			String groupName =
+				ReportUtil.getSchedulerGroupName(definition.getGroupId());
+
+			SchedulerEngineUtil.schedule(
+				groupName, cronText, startDate, endDate, description,
+				REPORT_REQUEST, JSONFactoryUtil.serialize(reportRequest));
+		}
+		catch (Exception e) {
+			requestedReport.setRequestStatus(RequestStatus.ERROR.toString());
+		}
+
+		requestedReportLocalService.addRequestedReport(requestedReport);
+
+	}
+
+	public int countByDefinitionId(long definitionId)
+		throws SystemException {
+
+		return requestedReportPersistence.countByDefinitionId(definitionId);
+	}
 
 	public void deleteRequestAndAttachments(long requestId)
 		throws PortalException, SystemException {
@@ -61,28 +120,22 @@ public class RequestedReportLocalServiceImpl
 		requestedReportLocalService.deleteRequestedReport(requestId);
 	}
 
-	public void genrateReport(
+	public List<RequestedReport> findByDefinitionId(
+		long definitionId, int start, int end)
+		throws SystemException {
+
+		return requestedReportPersistence.findByDefinitionId(
+			definitionId, start, end);
+	}
+
+	public void generateReport(
 		long companyId, long groupId, long userId, long definitionId)
 		throws PortalException, SystemException {
 
 		ReportDefinition definition =
 			reportDefinitionPersistence.fetchByPrimaryKey(definitionId);
 
-		String[] existingFiles = definition.getAttachmentsFiles();
-
-		byte[] definitionFile =
-			DLServiceUtil.getFile(
-				definition.getCompanyId(), CompanyConstants.SYSTEM,
-				existingFiles[0]);
-
-		ReportDesignRetriever retriever =
-			new MemoryReportDesignRetriever(
-				definition.getReportName() + StringPool.PERIOD +
-					definition.getReportFormat(), definitionFile);
-
-		ReportRequest request =
-			new ReportRequest(
-				retriever, definition.getReportFormat(), null, null);
+		ReportRequest request = ReportUtil.getReportRequest(definition);
 		Date now = new Date();
 
 		long requestId = CounterLocalServiceUtil.increment();
@@ -102,9 +155,9 @@ public class RequestedReportLocalServiceImpl
 		Message message = new Message();
 		message.setPayload(request);
 		message.setResponseId(String.valueOf(requestId));
-		message.setResponseDestination("liferay/report_responses");
+		message.setResponseDestination(REPORT_RESPONSES);
 
-		MessageBusUtil.sendMessage("liferay/report_requests", message);
+		MessageBusUtil.sendMessage(REPORT_REQUEST, message);
 	}
 
 }

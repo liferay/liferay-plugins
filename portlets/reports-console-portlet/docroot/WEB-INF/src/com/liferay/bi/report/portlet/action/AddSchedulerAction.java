@@ -22,48 +22,83 @@
 
 package com.liferay.bi.report.portlet.action;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 
-import com.liferay.bi.report.NoSuchDefinitionException;
 import com.liferay.bi.report.service.RequestedReportLocalServiceUtil;
+import com.liferay.bi.report.util.ReportUtil;
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.simplemvc.Action;
 
 /**
- * <a href="DeleteDefinitionAction.java.html"><b><i>View Source</i></b></a>
+ * <a href="AddSchedulerAction.java.html"><b><i>View Source</i></b></a>
  * 
  * @author Michael C. Han
+ * @author Gavin Wan
  */
-public class GenrateReportAction implements Action {
+public class AddSchedulerAction implements Action {
 
 	public boolean processAction(
 		ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortletException {
 
 		long definitionId = ParamUtil.getLong(actionRequest, "definitionId");
-		if (definitionId == -1) {
-			SessionErrors.add(
-				actionRequest, NoSuchDefinitionException.class.getName());
-		}
+
+		int recurrenceType =
+			ParamUtil.getInteger(actionRequest, "recurrenceType");
+
+		String description = ParamUtil.getString(actionRequest, "description");
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay) actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		long userId = themeDisplay.getUserId();
 		try {
-			RequestedReportLocalServiceUtil.generateReport(
-				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-				themeDisplay.getUserId(), definitionId);
+			Calendar startCal =
+				ReportUtil.getDate(actionRequest, "schedulerStartDate", false);
+
+			String cronText =
+				ReportUtil.getCronText(
+					actionRequest, startCal, false, recurrenceType);
+
+			Date schedulerEndDate = null;
+
+			int endDateType =
+				ParamUtil.getInteger(actionRequest, "endDateType");
+
+			if (endDateType == 1) {
+				Calendar endCal =
+					ReportUtil.getDate(actionRequest, "schedulerEndDate", false);
+
+				schedulerEndDate = endCal.getTime();
+			}
+
+			RequestedReportLocalServiceUtil.addScheduler(
+				definitionId, cronText, startCal.getTime(), schedulerEndDate,
+				description, userId);
+			SessionMessages.add(actionRequest, "request_processed");
+
 		}
-		catch (Exception e) {
+		catch (PortalException e) {
+			SessionErrors.add(actionRequest, e.getClass().getName());
+		}
+		catch (SystemException e) {
 			_log.error(e);
-			throw new PortletException("Unable to delete a definition", e);
+			throw new PortletException(
+				"Unable to add the definition to schduler. ", e);
 		}
-		return true;
+		return false;
 	}
-	private static Log _log = LogFactoryUtil.getLog(GenrateReportAction.class);
+	
+	private static Log _log = LogFactoryUtil.getLog(AddSchedulerAction.class);
 }

@@ -62,6 +62,9 @@
 <%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 
+<%@ page import="com.liferay.portlet.calendar.EventDurationException" %>
+<%@ page import="com.liferay.portlet.calendar.EventStartDateException" %>
+<%@ page import="com.liferay.portlet.calendar.EventTitleException" %>
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
 
 <%@ page import="java.text.DateFormat" %>

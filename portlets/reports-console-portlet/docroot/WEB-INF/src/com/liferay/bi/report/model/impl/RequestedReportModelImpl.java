@@ -230,16 +230,6 @@ public class RequestedReportModelImpl extends BaseModelImpl<RequestedReport> {
 
 	public void setDefinitionId(long definitionId) {
 		_definitionId = definitionId;
-
-		if (!_setOriginalDefinitionId) {
-			_setOriginalDefinitionId = true;
-
-			_originalDefinitionId = definitionId;
-		}
-	}
-
-	public long getOriginalDefinitionId() {
-		return _originalDefinitionId;
 	}
 
 	public String getRequestStatus() {
@@ -371,8 +361,6 @@ public class RequestedReportModelImpl extends BaseModelImpl<RequestedReport> {
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _definitionId;
-	private long _originalDefinitionId;
-	private boolean _setOriginalDefinitionId;
 	private String _requestStatus;
 	private boolean _isSchedule;
 	private transient ExpandoBridge _expandoBridge;

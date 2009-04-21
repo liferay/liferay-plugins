@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,30 +20,37 @@
  * SOFTWARE.
  */
 
-package com.liferay.bi.report.portlet.action;
-
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.PortletException;
+package com.liferay.bi.report.messaging;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.util.bridges.simplemvc.Action;
+import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.portal.kernel.messaging.MessageListener;
 
 /**
- * <a href="AddScheduleAction.java.html"><b><i>View Source</i></b></a>
+ * <a href="SchedulerReportMessageListener.java.html"><b><i>View Source</i></b></a>
  * 
- * @author Michael C. Han
  * @author Gavin Wan
  */
-public class AddScheduleAction implements Action {
+public class SchedulerReportMessageListener implements MessageListener {
 
-	public boolean processAction(
-		ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortletException {
-		//TBD 
-		return false;
+	public void receive(Message message) {
+
+		try {
+			doReceive(message);
+		}
+		catch (Exception e) {
+			_log.error("Unable to process message " + message, e);
+		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(AddScheduleAction.class);
+	protected void doReceive(Message message)
+		throws Exception {
+		//TDB send a message to reportEngine
+
+	}
+
+	private static Log _log =
+		LogFactoryUtil.getLog(SchedulerReportMessageListener.class);
+
 }

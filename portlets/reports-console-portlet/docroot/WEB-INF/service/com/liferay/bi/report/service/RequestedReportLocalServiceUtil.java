@@ -96,17 +96,38 @@ public class RequestedReportLocalServiceUtil {
 		return getService().updateRequestedReport(requestedReport, merge);
 	}
 
+	public static void addScheduler(long definitionId,
+		java.lang.String cronText, java.util.Date startDate,
+		java.util.Date endDate, java.lang.String description, long userId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException {
+		getService()
+			.addScheduler(definitionId, cronText, startDate, endDate,
+			description, userId);
+	}
+
+	public static int countByDefinitionId(long definitionId)
+		throws com.liferay.portal.SystemException {
+		return getService().countByDefinitionId(definitionId);
+	}
+
 	public static void deleteRequestAndAttachments(long requestId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
 		getService().deleteRequestAndAttachments(requestId);
 	}
 
-	public static void genrateReport(long companyId, long groupId, long userId,
-		long definitionId)
+	public static java.util.List<com.liferay.bi.report.model.RequestedReport> findByDefinitionId(
+		long definitionId, int start, int end)
+		throws com.liferay.portal.SystemException {
+		return getService().findByDefinitionId(definitionId, start, end);
+	}
+
+	public static void generateReport(long companyId, long groupId,
+		long userId, long definitionId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
-		getService().genrateReport(companyId, groupId, userId, definitionId);
+		getService().generateReport(companyId, groupId, userId, definitionId);
 	}
 
 	public static RequestedReportLocalService getService() {

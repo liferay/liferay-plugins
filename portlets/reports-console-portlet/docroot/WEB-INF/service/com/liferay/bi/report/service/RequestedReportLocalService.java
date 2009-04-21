@@ -82,11 +82,24 @@ public interface RequestedReportLocalService {
 		com.liferay.bi.report.model.RequestedReport requestedReport,
 		boolean merge) throws com.liferay.portal.SystemException;
 
+	public void addScheduler(long definitionId, java.lang.String cronText,
+		java.util.Date startDate, java.util.Date endDate,
+		java.lang.String description, long userId)
+		throws com.liferay.portal.PortalException,
+			com.liferay.portal.SystemException;
+
+	public int countByDefinitionId(long definitionId)
+		throws com.liferay.portal.SystemException;
+
 	public void deleteRequestAndAttachments(long requestId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
-	public void genrateReport(long companyId, long groupId, long userId,
+	public java.util.List<com.liferay.bi.report.model.RequestedReport> findByDefinitionId(
+		long definitionId, int start, int end)
+		throws com.liferay.portal.SystemException;
+
+	public void generateReport(long companyId, long groupId, long userId,
 		long definitionId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;

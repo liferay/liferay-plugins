@@ -68,11 +68,22 @@ public class SearchRequestAction implements Action {
 		int total = 0;
 		List<RequestedReport> requestedReports = EMPTY_LIST;
 		long requestId = ParamUtil.getLong(actionRequest, "requestId", -1);
+		long definitionId =
+			ParamUtil.getLong(actionRequest, "definitionId", -1);
 		try {
 
 			if (requestId > 0) {
 				requestedReports.add(RequestedReportLocalServiceUtil.getRequestedReport(requestId));
 				total = 1;
+			}
+			if (definitionId > 0) {
+				total =
+					RequestedReportLocalServiceUtil.countByDefinitionId(definitionId);
+				if (total > 0) {
+					requestedReports =
+						RequestedReportLocalServiceUtil.findByDefinitionId(
+							definitionId, start, end);
+				}
 			}
 			else {
 				total =
