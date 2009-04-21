@@ -53,13 +53,13 @@ public class ReportUtil {
 
 	}
 
-	public static String getSchedulerGroupName(long groupId) {
+	public static String getSchedulerRequestName(long requestId) {
 
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(REPORT_REQUEST);
 		sb.append(StringPool.SLASH);
-		sb.append(groupId);
+		sb.append(requestId);
 
 		return sb.toString();
 	}

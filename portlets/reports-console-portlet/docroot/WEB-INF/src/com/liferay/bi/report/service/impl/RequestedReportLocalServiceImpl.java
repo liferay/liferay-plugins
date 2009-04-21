@@ -78,7 +78,7 @@ public class RequestedReportLocalServiceImpl
 		requestedReport.setGroupId(definition.getGroupId());
 		requestedReport.setDefinitionId(definitionId);
 		requestedReport.setUserId(userId);
-		requestedReport.setIsSchedule(true);
+		requestedReport.setScheduleRequest(true);
 		requestedReport.setRequestStatus(RequestStatus.PENDING.toString());
 		requestedReport.setCreateDate(now);
 		requestedReport.setModifiedDate(now);
@@ -87,7 +87,7 @@ public class RequestedReportLocalServiceImpl
 			ReportRequest reportRequest =
 				ReportUtil.getReportRequest(definition);
 			String groupName =
-				ReportUtil.getSchedulerGroupName(definition.getGroupId());
+				ReportUtil.getSchedulerRequestName(requestId);
 
 			SchedulerEngineUtil.schedule(
 				groupName, cronText, startDate, endDate, description,
@@ -145,7 +145,7 @@ public class RequestedReportLocalServiceImpl
 		requestedReport.setGroupId(groupId);
 		requestedReport.setDefinitionId(definitionId);
 		requestedReport.setUserId(userId);
-		requestedReport.setIsSchedule(false);
+		requestedReport.setScheduleRequest(false);
 		requestedReport.setRequestStatus(RequestStatus.PENDING.toString());
 		requestedReport.setCreateDate(now);
 		requestedReport.setModifiedDate(now);

@@ -47,7 +47,7 @@ public class RequestedReportSoap implements Serializable {
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setDefinitionId(model.getDefinitionId());
 		soapModel.setRequestStatus(model.getRequestStatus());
-		soapModel.setIsSchedule(model.getIsSchedule());
+		soapModel.setScheduleRequest(model.getScheduleRequest());
 
 		return soapModel;
 	}
@@ -146,16 +146,16 @@ public class RequestedReportSoap implements Serializable {
 		_requestStatus = requestStatus;
 	}
 
-	public boolean getIsSchedule() {
-		return _isSchedule;
+	public boolean getScheduleRequest() {
+		return _scheduleRequest;
 	}
 
-	public boolean isIsSchedule() {
-		return _isSchedule;
+	public boolean isScheduleRequest() {
+		return _scheduleRequest;
 	}
 
-	public void setIsSchedule(boolean isSchedule) {
-		_isSchedule = isSchedule;
+	public void setScheduleRequest(boolean scheduleRequest) {
+		_scheduleRequest = scheduleRequest;
 	}
 
 	private String _uuid;
@@ -167,5 +167,5 @@ public class RequestedReportSoap implements Serializable {
 	private Date _modifiedDate;
 	private long _definitionId;
 	private String _requestStatus;
-	private boolean _isSchedule;
+	private boolean _scheduleRequest;
 }

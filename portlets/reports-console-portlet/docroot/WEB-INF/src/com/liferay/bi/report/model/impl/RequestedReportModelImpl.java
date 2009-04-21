@@ -80,9 +80,9 @@ public class RequestedReportModelImpl extends BaseModelImpl<RequestedReport> {
 			{ "requestStatus", new Integer(Types.VARCHAR) },
 			
 
-			{ "isSchedule", new Integer(Types.BOOLEAN) }
+			{ "scheduleRequest", new Integer(Types.BOOLEAN) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Report_RequestedReport (uuid_ VARCHAR(75) null,requestId LONG not null primary key,companyId LONG,groupId LONG,userId LONG,createDate DATE null,modifiedDate DATE null,definitionId LONG,requestStatus VARCHAR(75) null,isSchedule BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table Report_RequestedReport (uuid_ VARCHAR(75) null,requestId LONG not null primary key,companyId LONG,groupId LONG,userId LONG,createDate DATE null,modifiedDate DATE null,definitionId LONG,requestStatus VARCHAR(75) null,scheduleRequest BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table Report_RequestedReport";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -106,7 +106,7 @@ public class RequestedReportModelImpl extends BaseModelImpl<RequestedReport> {
 		model.setModifiedDate(soapModel.getModifiedDate());
 		model.setDefinitionId(soapModel.getDefinitionId());
 		model.setRequestStatus(soapModel.getRequestStatus());
-		model.setIsSchedule(soapModel.getIsSchedule());
+		model.setScheduleRequest(soapModel.getScheduleRequest());
 
 		return model;
 	}
@@ -240,16 +240,16 @@ public class RequestedReportModelImpl extends BaseModelImpl<RequestedReport> {
 		_requestStatus = requestStatus;
 	}
 
-	public boolean getIsSchedule() {
-		return _isSchedule;
+	public boolean getScheduleRequest() {
+		return _scheduleRequest;
 	}
 
-	public boolean isIsSchedule() {
-		return _isSchedule;
+	public boolean isScheduleRequest() {
+		return _scheduleRequest;
 	}
 
-	public void setIsSchedule(boolean isSchedule) {
-		_isSchedule = isSchedule;
+	public void setScheduleRequest(boolean scheduleRequest) {
+		_scheduleRequest = scheduleRequest;
 	}
 
 	public RequestedReport toEscapedModel() {
@@ -271,7 +271,7 @@ public class RequestedReportModelImpl extends BaseModelImpl<RequestedReport> {
 			model.setModifiedDate(getModifiedDate());
 			model.setDefinitionId(getDefinitionId());
 			model.setRequestStatus(HtmlUtil.escape(getRequestStatus()));
-			model.setIsSchedule(getIsSchedule());
+			model.setScheduleRequest(getScheduleRequest());
 
 			model = (RequestedReport)Proxy.newProxyInstance(RequestedReport.class.getClassLoader(),
 					new Class[] { RequestedReport.class },
@@ -302,7 +302,7 @@ public class RequestedReportModelImpl extends BaseModelImpl<RequestedReport> {
 		clone.setModifiedDate(getModifiedDate());
 		clone.setDefinitionId(getDefinitionId());
 		clone.setRequestStatus(getRequestStatus());
-		clone.setIsSchedule(getIsSchedule());
+		clone.setScheduleRequest(getScheduleRequest());
 
 		return clone;
 	}
@@ -362,6 +362,6 @@ public class RequestedReportModelImpl extends BaseModelImpl<RequestedReport> {
 	private Date _modifiedDate;
 	private long _definitionId;
 	private String _requestStatus;
-	private boolean _isSchedule;
+	private boolean _scheduleRequest;
 	private transient ExpandoBridge _expandoBridge;
 }

@@ -22,10 +22,19 @@
 
 package com.liferay.bi.report.portlet.action;
 
+import java.util.Iterator;
+import java.util.List;
+
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 
+import com.liferay.bi.report.model.RequestedReport;
+import com.liferay.bi.report.service.RequestedReportLocalServiceUtil;
+import com.liferay.bi.report.util.ReportUtil;
+import com.liferay.portal.kernel.scheduler.SchedulerEngineUtil;
+import com.liferay.portal.kernel.scheduler.messaging.SchedulerRequest;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.util.bridges.simplemvc.Action;
 
 /**
@@ -39,15 +48,33 @@ public class ViewRequestAction implements Action {
 	public boolean processAction(
 		ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortletException {
+
 		try {
-			//TDB 
-			actionResponse.setRenderParameter("tabs1", "pending-requests");
+			String jspPage = ParamUtil.getString(actionRequest, "jspPage");
+			long requestId = ParamUtil.getLong(actionRequest, "requestId");
+
+			RequestedReport requestedReport =
+				RequestedReportLocalServiceUtil.getRequestedReport(requestId);
+			String groupName =
+				ReportUtil.getSchedulerRequestName(requestedReport.getRequestId());
+
+			List<SchedulerRequest> results =
+				SchedulerEngineUtil.getScheduledJobs(groupName);
+
+			for (Iterator iterator = results.iterator(); iterator.hasNext();) {
+				SchedulerRequest schedulerRequest =
+					(SchedulerRequest) iterator.next();
+				// TDB set to view page
+			}
+
+			actionResponse.setRenderParameter("jspPage", jspPage);
 		}
 		catch (Exception e) {
+			e.printStackTrace();
 			throw new PortletException(
 				"Unable to retrieve report definitions", e);
 		}
 
-		return true;
+		return false;
 	}
 }

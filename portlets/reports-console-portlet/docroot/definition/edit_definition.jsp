@@ -68,6 +68,10 @@
 				);
 		}
 	);
+	
+	function <portlet:namespace />addScheduler(definitionId) {
+		submitForm(document.<portlet:namespace />fm, '<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="jspPage" value="/request/edit_scheduler.jsp" /><portlet:param name="definitionId" value="' + definitionId + '" /></portlet:renderURL>');	
+	}
 
 	function <portlet:namespace />saveDefinition() {
 		document.<portlet:namespace />fm.encoding = "multipart/form-data";
@@ -257,7 +261,7 @@
 
 	<input type="button" value="<liferay-ui:message key="generate-immdiately" />" onClick="<portlet:namespace />generateImmdiately();" />
 
-	<input type="button" value="<liferay-ui:message key="add-schedule" />" />
+	<input type="button" value="<liferay-ui:message key="add-schedule" />" onClick="<portlet:namespace />addScheduler('<%=definition.getDefinitionId() %>');" />
 
 	<input type="button" value="<liferay-ui:message key="delete" />" onClick="<portlet:namespace />deleteDefinition();" />
 </c:if>

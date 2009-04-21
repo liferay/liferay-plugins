@@ -61,7 +61,7 @@ RequestedReportSearch searchContainer = new RequestedReportSearch(renderRequest,
 			
 			//request is schedule
 			
-			row.addText(LanguageUtil.get(pageContext, String.valueOf(requestedReport.isIsSchedule())));
+			row.addText(LanguageUtil.get(pageContext, String.valueOf(requestedReport.isScheduleRequest())));
 			
 			// Action
 			//TBD

@@ -128,16 +128,16 @@ public class RequestedReportClp extends BaseModelImpl<RequestedReport>
 		_requestStatus = requestStatus;
 	}
 
-	public boolean getIsSchedule() {
-		return _isSchedule;
+	public boolean getScheduleRequest() {
+		return _scheduleRequest;
 	}
 
-	public boolean isIsSchedule() {
-		return _isSchedule;
+	public boolean isScheduleRequest() {
+		return _scheduleRequest;
 	}
 
-	public void setIsSchedule(boolean isSchedule) {
-		_isSchedule = isSchedule;
+	public void setScheduleRequest(boolean scheduleRequest) {
+		_scheduleRequest = scheduleRequest;
 	}
 
 	public java.lang.String getAttachmentsDir() {
@@ -170,7 +170,7 @@ public class RequestedReportClp extends BaseModelImpl<RequestedReport>
 			model.setModifiedDate(getModifiedDate());
 			model.setDefinitionId(getDefinitionId());
 			model.setRequestStatus(HtmlUtil.escape(getRequestStatus()));
-			model.setIsSchedule(getIsSchedule());
+			model.setScheduleRequest(getScheduleRequest());
 
 			model = (RequestedReport)Proxy.newProxyInstance(RequestedReport.class.getClassLoader(),
 					new Class[] { RequestedReport.class },
@@ -192,7 +192,7 @@ public class RequestedReportClp extends BaseModelImpl<RequestedReport>
 		clone.setModifiedDate(getModifiedDate());
 		clone.setDefinitionId(getDefinitionId());
 		clone.setRequestStatus(getRequestStatus());
-		clone.setIsSchedule(getIsSchedule());
+		clone.setScheduleRequest(getScheduleRequest());
 
 		return clone;
 	}
@@ -247,5 +247,5 @@ public class RequestedReportClp extends BaseModelImpl<RequestedReport>
 	private Date _modifiedDate;
 	private long _definitionId;
 	private String _requestStatus;
-	private boolean _isSchedule;
+	private boolean _scheduleRequest;
 }

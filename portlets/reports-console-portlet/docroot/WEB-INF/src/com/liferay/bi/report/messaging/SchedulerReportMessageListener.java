@@ -46,7 +46,8 @@ public class SchedulerReportMessageListener implements MessageListener {
 
 	protected void doReceive(Message message)
 		throws Exception {
-		//TDB send a message to reportEngine
+		//TDB get request from SchedulerEngine 
+		//send a message to reportEngine
 
 	}
 

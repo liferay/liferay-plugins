@@ -50,8 +50,8 @@
 		<liferay-ui:icon image="permissions" url="<%= permissionsURL %>" />
 	</c:if>
 
-	<c:if test="<%= requestedReport.isIsSchedule() %>">
-		<portlet:actionURL
+	<c:if test="<%= requestedReport.isScheduleRequest() %>">
+		<portlet:actionURL name="viewRequest"
 			windowState="<%= WindowState.MAXIMIZED.toString() %>"
 			var="viewScheduleURL">
 			<portlet:param name="jspPage" value="/request/view_request_schedule.jsp" />
