@@ -157,6 +157,12 @@ body #banner h1.logo a {
 	color: #3E3639;
 }
 
+/* ---------- Portal tool tips ---------- */
+
+.portal-tool-tip {
+	font-size: 1.2em;
+}
+
 /* ---------- Portlets ---------- */
 
 .portlet {
@@ -669,6 +675,29 @@ body #banner h1.logo a {
 	position: absolute;
 	right: 5px;
 	top: 3px;
+}
+
+/* Contacts */
+
+.contacts-portlet .portlet-content,
+.contacts-portlet .portlet-minimized .portlet-content-container {
+	padding: 12px 0 10px;
+}
+
+.contacts-portlet .portlet-info {
+	display: none;
+}
+
+.contacts-portlet .portlet-title img {
+	display: none;
+}
+
+.contacts-portlet .ui-dialog-content {
+	font-size: 1.2em;
+}
+
+#siteSelectorPanel {
+	font-size: 1.2em;
 }
 
 /* Document Library */
