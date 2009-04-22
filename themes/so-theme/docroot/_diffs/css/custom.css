@@ -2,10 +2,6 @@
 
 /* ---------- Base ---------- */
 
-body {
-	color: #403638;
-}
-
 a {
 	text-decoration: none;
 }
@@ -46,12 +42,6 @@ body #banner h1.logo a {
 	position: absolute;
 	right: 3%;
 	top: 41px;
-}
-
-/* ---------- Portal tool tips ---------- */
-
-.portal-tool-tip {
-	font-size: 1.2em;
 }
 
 /* ---------- Top Navigation ---------- */
@@ -97,20 +87,19 @@ body #banner h1.logo a {
 	border: 1px solid #B0BAFF;
 	border-top: none;
 	display: none;
+	left: 0;
 	position: absolute;
-	right: 0;
 	top: 28px;
-	width: 237px;
 	z-index: 20;
 }
 
 #navigation-top .child-menu li a {
 	border-top: 1px solid #B0BAFF;
-	width: 223px;
+	width: 224px;
 }
 
-#navigation-top .child-menu li a:hover {
-	background: #F6F9FB;
+#navigation-top .my-home {
+	border-left: 1px solid #B0BAFF;
 }
 
 #navigation-top .my-profile {
@@ -118,8 +107,6 @@ body #banner h1.logo a {
 }
 
 #navigation-top .my-search {
-	background: none;
-	margin-right: 15px;
 	padding-top: 2px;
 }
 
@@ -173,7 +160,7 @@ body #banner h1.logo a {
 /* ---------- Portlets ---------- */
 
 .portlet {
-	margin-bottom: 1em;
+	margin-bottom: 2em;
 }
 
 .portlet-borderless-bar {
@@ -187,10 +174,6 @@ body #banner h1.logo a {
 	padding-bottom: 5px;
 }
 
-.portlet-title img {
-	display: none;
-}
-
 .portlet-icons {
 	display: none;
 }
@@ -198,7 +181,7 @@ body #banner h1.logo a {
 /* ---------- Layout ---------- */
 
 .lfr-grid .lfr-column {
-	padding: 0 15px;
+	padding: 15px;
 }
 
 .columns-2 #column-1 {
@@ -337,7 +320,7 @@ body #banner h1.logo a {
 }
 
 .results-row.alt td {
-	background: #F0F5F7;
+	background: #EEE;
 }
 
 .results-grid {
@@ -364,29 +347,6 @@ body #banner h1.logo a {
 .ie6 input.submit,
 .ie6 input.button {
 	padding: 4px 0 3px;
-}
-
-input {
-	background: none;
-}
-
-input[type="text"],
-input[type="password"],
-select,
-textarea,
-.textarea {
-	background: #FFF;
-	border-color: #D7DCFF;
-	color: #555;
-}
-
-#wrapper input[type="password"].focus,
-input.focus,
-textarea.focus,
-.ie6 input.focus,
-ie6 textarea.focus {
-	background: #FFF6ED;
-	border: 1px solid #FC9;
 }
 
 /* Liferay Tabs */
@@ -436,42 +396,18 @@ ie6 textarea.focus {
 
 /* ---------- Portlet ---------- */
 
-/* Contacts */
-
-.contacts-portlet .portlet-title img {
-	display: none;
-}
-
-.contacts-portlet .portlet-content,
-.contacts-portlet .portlet-minimized .portlet-content-container {
-	padding: 12px 0 10px;
-}
-
-.contacts-portlet .ui-dialog-content {
-	font-size: 1.2em;
-}
-
-#siteSelectorPanel {
-	font-size: 1.2em;
-}
-
 /* Blogs */
 
 .portlet-blogs .entry-footer {
-	background: #E8EFF4;
-	border-top: 1px solid #B0BAFF;
+	background: #DFF4FF;
 	padding: 15px;
 }
 
 .portlet-blogs .entry-title {
-	color: #7F80A4;
+	color: #369;
 	font-size: 2.1em;
 	line-height: 1.1em;
 	margin-top: .5em;
-}
-
-.portlet-blogs .entry-title a {
-	color: #7F80A4;
 }
 
 .portlet-blogs .entry-date,
@@ -487,13 +423,7 @@ ie6 textarea.focus {
 .portlet-blogs .entry-body {
 	color: #555;
 	font-family: "Times New Roman", Times, serif;
-	font-size: 1.2em;
-	line-height: 26px;
-}
-
-.portlet-blogs .entry-tags {
-	color: #555;
-	margin: 2.5em 0 0;
+	font-size: 1.3em;
 }
 
 .portlet-blogs .edit-actions {
@@ -502,34 +432,16 @@ ie6 textarea.focus {
 	padding: 0.5em;
 }
 
-.portlet-blogs img {
-	position: static;
-}
-
 .portlet-blogs .portlet-toolbar {
 	float: right;
-}
-
-.portlet-blogs .results-row.hover td {
-	background: #E9E9FD;
 }
 
 .portlet-blogs .sidebar .recent-entries-list span {
 	display: block;
 }
 
-.portlet-blogs .tabs {
-	position: relative;
-}
-
 .portlet-blogs .taglib-social-bookmarks {
 	margin: 0;
-}
-
-.portlet-blogs .entry-author,
-.portlet-blogs .stats,
-.portlet-blogs .taglib-flags {
-	position: relative;
 }
 
 /* Calendar */
@@ -546,17 +458,9 @@ ie6 textarea.focus {
 	margin: 0;
 }
 
-.portlet-calendar .calendar-tabs a {
-	font-weight: bold;
-}
-
-.portlet-calendar .calendar-tabs a.selected {
-	color: #8F0920;
-}
-
 .portlet-calendar .calendar-tabs .month {
 	border-right: 2px solid #8F0920;
-	padding: 0 7px 0 4px;
+	padding-right: 7px;
 }
 
 .portlet-calendar .calendar-tabs .week {
@@ -574,34 +478,18 @@ ie6 textarea.focus {
 }
 
 .portlet-calendar .calendar-container {
-	background: #FFF;
-	border-color: #DDD;
-	color: #413739;
-	font-weight: bold;
-	margin-bottom: 15px;
-	padding-top: 4px;
+	color: #777;
 	text-align: center;
 	width: 209px;
 }
 
 .portlet-calendar .calendar-day {
 	float: none;
-	margin-top: 4px;
-}
-
-.portlet-calendar .calendar-day .day-text {
-	background: #7F80A4;
-	border-top: 1px solid #DDD;
-	padding: 6px 0;
 }
 
 .portlet-calendar .taglib-calendar {
-	border: 1px solid #DDD;
-	width: 209px;
-}
-
-.ie6 .portlet-calendar .taglib-calendar {
-	width: 209px;
+	margin: 1px;
+	width: 210px;
 }
 
 .portlet-calendar .date-selector {
@@ -614,7 +502,6 @@ ie6 textarea.focus {
 }
 
 .portlet-calendar .date-selector td {
-	color: #3E3639;
 	padding: 0 5px;
 }
 
@@ -622,9 +509,8 @@ ie6 textarea.focus {
 	width: 100%;
 }
 
-.portlet-calendar .calendar td .results-row td {
-	font-size: 11px;
-	padding: 5px;
+.portlet-calendar .calendar thead {
+	border-top: 2px solid #6F686B;
 }
 
 .portlet-calendar .calendar thead td {
@@ -646,11 +532,11 @@ ie6 textarea.focus {
 }
 
 .portlet-calendar .calendar .current-day {
-	background: #DCECF9;
+	background: #DDD;
 }
 
 .portlet-calendar .calendar .selected-day {
-	background: #FFF;
+	background: #F0F5F7;
 }
 
 .portlet-calendar .calendar .results-header td {
@@ -733,6 +619,11 @@ ie6 textarea.focus {
 	padding: 0;
 }
 
+.taglib-calendar th a:hover,
+.taglib-calendar th a:focus {
+	background: transparent;
+}
+
 .portlet-calendar .export-import-calendar {
 	background: #D0E5F7;
 	border-bottom: 2px solid #6F686B;
@@ -754,23 +645,6 @@ ie6 textarea.focus {
 	margin-left: 50px;
 }
 
-table.calendar {
-	border-top: 2px solid #6F686B;
-}
-
-.taglib-calendar table {
-	border: none;
-}
-
-.taglib-calendar th a:hover,
-.taglib-calendar th a:focus {
-	background: transparent;
-}
-
-.taglib-calendar tr td a:hover {
-	background: #7F80A4;
-}
-
 /* Communities */
 
 .portlet-communities .site-list .col-2 a {
@@ -787,17 +661,11 @@ table.calendar {
 	position: relative;
 }
 
-.ie6 .portlet-communities .control-wrapper {
-	background: #E8EFF4;
-	height: 22px;
-	margin-bottom: 1em;
-}
-
 .portlet-communities .add-site {
-	background: transparent url(../images/arrows/01_plus.png) no-repeat 100% 50%;
+	background: transparent url(../images/arrows/01_plus.png) no-repeat 0 50%;
 	display: block;
 	font-size: 11px;
-	padding: 0 16px 0 0;
+	padding: 0 0 0 16px;
 	position: absolute;
 	right: 5px;
 	top: 3px;
@@ -852,18 +720,7 @@ table.calendar {
 }
 
 .portlet-login .navigation {
-	background: #FFF;
-	border: 1px solid #D7DCFF;
 	margin-top: 12px;
-}
-
-.portlet-login .navigation li {
-	padding: 6px 6px;
-	width: 200px;
-}
-
-.portlet-login .navigation li img {
-	position: static;
 }
 
 /* Message Boards */
@@ -876,42 +733,22 @@ table.calendar {
 	display: none;
 }
 
-.portlet-message-boards .results-row.hover td {
-	background: #E9E9FD;
-}
-
 /* SO: Members */
 
-.so-portlet-members .invite-members {
-	width: 100%;
-}
-
 .so-portlet-members .invite-members a {
-	background: transparent url(../images/arrows/01_plus.png) no-repeat 100% 50%;
+	background: #EEE;
+	border: 1px solid #CCC;
 	display: block;
 	font-size: 1.2em;
+	font-weight: bold;
 	margin: 12px 0;
-	padding: 0 18px 0 0;
-	position: absolute;
-}
-
-.so-portlet-members .portlet-section-header {
-	display: none;
-}
-
-.so-portlet-members .portlet-section-body .col-1 {
-	width: 35px;
+	padding: 8px 5px;
 }
 
 /* SO: Profiles */
 
 .so-portlet-profiles td {
 	padding: 0 2em 0 0;
-}
-
-.so-portlet-profiles .profile-area {
-	padding: 5px 25px 5px 5px;
-	white-space: nowrap;
 }
 
 .so-portlet-profiles .profile-wrapper td {
@@ -945,115 +782,9 @@ table.calendar {
 	right: 5px;
 }
 
-.so-portlet-profiles .profile-area .lfr-label {
-	vertical-align: middle;
-}
-
-.so-portlet-profiles .profile-area .editable input[type=text] {
-	width: 100px !important;
-}
-
-.so-portlet-profiles .profile-area .editable {
-	padding: 2px 25px 2px 2px;
-}
-
-.so-portlet-profiles .profile-area .hover .editable {
-	background: #FFC url(../images/common/edit.png) no-repeat right;
-}
-
-.so-portlet-profiles .profile-area .delete {
-	display: none;
-	margin-right: -50px;
-}
-
-.so-portlet-profiles .profile-area .delete img {
-	vertical-align: top;
-}
-
-.so-portlet-profiles .profile-area .hover .delete {
-	display: inline;
-}
-
-.so-portlet-profiles .profile-area .portlet-msg-info {
-	margin: 0;
-	padding: 0 0 0 25px;
-}
-
-.so-portlet-profiles .address-form {
-	display: none;
-}
-
-.so-portlet-profiles .phone-number-form {
-	display: none;
-}
-
-.so-portlet-profiles .website-form {
-	display: none;
-}
-
 .so-portlet-profiles .user-address {
 	float: left;
 	margin: 0 2em 1em 0;
-	padding: 5px 25px 5px 5px;
-	position: relative;
-}
-
-.so-portlet-profiles .user-address.hover {
-	background: #FFC;
-}
-
-.so-portlet-profiles .user-address .user-address-controls {
-	display: none;
-	position: absolute;
-	right: -15px;
-	top: 15px;
-}
-
-.so-portlet-profiles .user-address.hover .user-address-controls {
-	display: block;
-}
-
-.so-portlet-profiles .phone-number {
-	float: left;
-	padding: 5px 25px 5px 5px;
-	position: relative;
-}
-
-.so-portlet-profiles .phone-number.hover {
-	background: #FFC;
-}
-
-.so-portlet-profiles .phone-number .phone-number-controls {
-	display: none;
-	position: absolute;
-	right: -15px;
-	top: 5px;
-}
-
-.so-portlet-profiles .phone-number.hover .phone-number-controls {
-	display: block;
-}
-
-.so-portlet-profiles .website {
-	float: left;
-	margin-right: 20px;
-	padding: 5px 25px 5px 5px;
-	position: relative;
-}
-
-.so-portlet-profiles .website.hover {
-	background: #FFC;
-}
-
-.so-portlet-profiles .website .website-controls {
-	display: none;
-	position: absolute;
-	right: -15px;
-	top: 5px;
-}
-
-.so-portlet-profiles .website.hover .website-controls {
-	display: block;
 }
 
 .so-portlet-profiles .user-address .line-1 {
@@ -1080,8 +811,4 @@ table.calendar {
 	border-bottom: none;
 	font-size: 2.5em;
 	line-height: 1em;
-}
-
-.portlet-wiki img {
-	position: static;
 }

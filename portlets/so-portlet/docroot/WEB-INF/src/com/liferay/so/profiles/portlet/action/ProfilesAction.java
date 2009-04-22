@@ -18,6 +18,7 @@
 package com.liferay.so.profiles.portlet.action;
 
 import com.liferay.portal.SystemException;
+import com.liferay.portal.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -34,8 +35,8 @@ import com.liferay.portal.service.PhoneLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.WebsiteLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.tags.service.TagsAssetLocalServiceUtil;
 import com.liferay.util.bridges.jsp.JSPPortlet;
+import com.liferay.portlet.tags.service.TagsAssetLocalServiceUtil;
 
 import java.io.IOException;
 
@@ -83,40 +84,40 @@ public class ProfilesAction extends JSPPortlet {
 				updateWebsite(actionRequest, user);
 			}
 			else if (id.equals("aim")) {
-				updateAim(user, value);
+				aim(user, value);
 			}
 			else if (id.equals("email")) {
-				updateEmail(user, value);
+				email(user, value);
 			}
 			else if (id.equals("facebook")) {
-				updateFacebook(user, value);
+				facebook(user, value);
 			}
 			else if (id.equals("firstName")) {
-				updateFirstName(user, value);
+				firstName(user, value);
 			}
 			else if (id.equals("icq")) {
-				updateIcq(user, value);
+				icq(user, value);
 			}
 			else if (id.equals("jabber")) {
-				updateJabber(user, value);
+				jabber(user, value);
 			}
 			else if (id.equals("lastName")) {
-				updateLastName(user, value);
+				lastName(user, value);
 			}
 			else if (id.equals("msn")) {
-				updateMsn(user, value);
+				msn(user, value);
 			}
 			else if (id.equals("myspace")) {
-				updateMyspace(user, value);
+				myspace(user, value);
 			}
 			else if (id.equals("skype")) {
-				updateSkype(user, value);
+				skype(user, value);
 			}
 			else if (id.equals("title")) {
-				updateTitle(user, value);
+				title(user, value);
 			}
 			else if (id.equals("twitter")) {
-				updateTwitter(user, value);
+				twitter(user, value);
 			}
 			else if (id.equals("updateAddress")) {
 				updateAddress(actionRequest, user);
@@ -131,13 +132,107 @@ public class ProfilesAction extends JSPPortlet {
 				updateWebsite(actionRequest, user);
 			}
 			else if (id.equals("ym")) {
-				updateYm(user, value);
+				ym(user, value);
 			}
 		} catch (SystemException se) {
 			if (_log.isErrorEnabled()) {
 				_log.error(se);
 			}
 		}
+	}
+
+	protected void aim(User user, String value) throws SystemException {
+		Contact contact = user.getContact();
+
+		contact.setAimSn(value);
+
+		ContactLocalServiceUtil.updateContact(contact, false);
+	}
+
+	protected void email(User user, String value) throws SystemException {
+		user.setEmailAddress(value);
+
+		UserLocalServiceUtil.updateUser(user, false);
+	}
+
+	protected void facebook(User user, String value) throws SystemException {
+		Contact contact = user.getContact();
+
+		contact.setFacebookSn(value);
+
+		ContactLocalServiceUtil.updateContact(contact, false);
+	}
+
+	protected void firstName(User user, String value) throws SystemException {
+		Contact contact = user.getContact();
+
+		contact.setFirstName(value);
+
+		ContactLocalServiceUtil.updateContact(contact, false);
+	}
+
+	protected void icq(User user, String value) throws SystemException {
+		Contact contact = user.getContact();
+
+		contact.setIcqSn(value);
+
+		ContactLocalServiceUtil.updateContact(contact, false);
+	}
+
+	protected void jabber(User user, String value) throws SystemException {
+		Contact contact = user.getContact();
+
+		contact.setJabberSn(value);
+
+		ContactLocalServiceUtil.updateContact(contact, false);
+	}
+
+	protected void lastName(User user, String value) throws SystemException {
+		Contact contact = user.getContact();
+
+		contact.setLastName(value);
+
+		ContactLocalServiceUtil.updateContact(contact, false);
+	}
+
+	protected void msn(User user, String value) throws SystemException {
+		Contact contact = user.getContact();
+
+		contact.setMsnSn(value);
+
+		ContactLocalServiceUtil.updateContact(contact, false);
+	}
+
+	protected void myspace(User user, String value) throws SystemException {
+		Contact contact = user.getContact();
+
+		contact.setMySpaceSn(value);
+
+		ContactLocalServiceUtil.updateContact(contact, false);
+	}
+
+	protected void skype(User user, String value) throws SystemException {
+		Contact contact = user.getContact();
+
+		contact.setSkypeSn(value);
+
+		ContactLocalServiceUtil.updateContact(contact, false);
+	}
+
+	protected void title(User user, String value) throws SystemException {
+		Contact contact = user.getContact();
+
+		contact.setJobTitle(value);
+
+		ContactLocalServiceUtil.updateContact(contact, false);
+	}
+
+	protected void twitter(User user, String value) throws SystemException {
+		Contact contact = user.getContact();
+
+		contact.setTwitterSn(value);
+
+		ContactLocalServiceUtil.updateContact(contact, false);
 	}
 
 	protected void updateAddress(ActionRequest actionRequest, User user) {
@@ -162,7 +257,7 @@ public class ProfilesAction extends JSPPortlet {
 			try {
 				AddressLocalServiceUtil.addAddress(
 					userId, className, classPk, street1, street2,
-					StringPool.BLANK, city, zip, addressRegionId,
+					StringPool.BLANK,city, zip, addressRegionId,
 					addressCountryId, addressTypeId, false, false);
 			}
 			catch (Exception e) {
@@ -193,86 +288,6 @@ public class ProfilesAction extends JSPPortlet {
 				}
 			}
 		}
-	}
-
-	protected void updateAim(User user, String value) throws SystemException {
-		Contact contact = user.getContact();
-
-		contact.setAimSn(value);
-
-		ContactLocalServiceUtil.updateContact(contact, false);
-	}
-
-	protected void updateEmail(User user, String value) throws SystemException {
-		user.setEmailAddress(value);
-
-		UserLocalServiceUtil.updateUser(user, false);
-	}
-
-	protected void updateFacebook(User user, String value)
-		throws SystemException {
-
-		Contact contact = user.getContact();
-
-		contact.setFacebookSn(value);
-
-		ContactLocalServiceUtil.updateContact(contact, false);
-	}
-
-	protected void updateFirstName(User user, String value)
-		throws SystemException {
-
-		Contact contact = user.getContact();
-
-		contact.setFirstName(value);
-
-		ContactLocalServiceUtil.updateContact(contact, false);
-	}
-
-	protected void updateIcq(User user, String value) throws SystemException {
-		Contact contact = user.getContact();
-
-		contact.setIcqSn(value);
-
-		ContactLocalServiceUtil.updateContact(contact, false);
-	}
-
-	protected void updateJabber(User user, String value)
-		throws SystemException {
-
-		Contact contact = user.getContact();
-
-		contact.setJabberSn(value);
-
-		ContactLocalServiceUtil.updateContact(contact, false);
-	}
-
-	protected void updateLastName(User user, String value)
-		throws SystemException {
-
-		Contact contact = user.getContact();
-
-		contact.setLastName(value);
-
-		ContactLocalServiceUtil.updateContact(contact, false);
-	}
-
-	protected void updateMsn(User user, String value) throws SystemException {
-		Contact contact = user.getContact();
-
-		contact.setMsnSn(value);
-
-		ContactLocalServiceUtil.updateContact(contact, false);
-	}
-
-	protected void updateMyspace(User user, String value)
-		throws SystemException {
-
-		Contact contact = user.getContact();
-
-		contact.setMySpaceSn(value);
-
-		ContactLocalServiceUtil.updateContact(contact, false);
 	}
 
 	protected void updatePhoneNumber(ActionRequest actionRequest, User user) {
@@ -314,13 +329,10 @@ public class ProfilesAction extends JSPPortlet {
 		}
 	}
 
-	protected void updateSkype(User user, String value) throws SystemException {
-		Contact contact = user.getContact();
-
-		contact.setSkypeSn(value);
-
-		ContactLocalServiceUtil.updateContact(contact, false);
-	}
+	/*
+	* long userId, long groupId, String className, long classPK,
+			String[] categoryNames, String[] entryNames
+			*/
 
 	protected void updateTags(
 		ActionRequest actionRequest, ThemeDisplay themeDisplay, User user) {
@@ -329,7 +341,7 @@ public class ProfilesAction extends JSPPortlet {
 
 		try {
 			TagsAssetLocalServiceUtil.updateAsset(
-				user.getUserId(), themeDisplay.getLayout().getGroupId(),
+			user.getUserId(), themeDisplay.getLayout().getGroupId(),
 				User.class.getName(), user.getUserId(), new String[]{""},
 				tags.split(","));
 		}
@@ -338,24 +350,6 @@ public class ProfilesAction extends JSPPortlet {
 				_log.warn(e);
 			}
 		}
-	}
-
-	protected void updateTitle(User user, String value) throws SystemException {
-		Contact contact = user.getContact();
-
-		contact.setJobTitle(value);
-
-		ContactLocalServiceUtil.updateContact(contact, false);
-	}
-
-	protected void updateTwitter(User user, String value)
-		throws SystemException {
-
-		Contact contact = user.getContact();
-
-		contact.setTwitterSn(value);
-
-		ContactLocalServiceUtil.updateContact(contact, false);
 	}
 
 	protected void updateWebsite(ActionRequest actionRequest, User user) {
@@ -395,7 +389,7 @@ public class ProfilesAction extends JSPPortlet {
 		}
 	}
 
-	protected void updateYm(User user, String value) throws SystemException {
+	protected void ym(User user, String value) throws SystemException {
 		Contact contact = user.getContact();
 
 		contact.setYmSn(value);

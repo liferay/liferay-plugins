@@ -101,7 +101,7 @@
 	<portlet>
 		<portlet-name>4</portlet-name>
 		<display-name>Profiles</display-name>
-		<portlet-class>com.liferay.so.profiles.portlet.action.ProfilesAction</portlet-class>
+		<portlet-class>com.liferay.util.bridges.jsp.JSPPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/profiles/view.jsp</value>

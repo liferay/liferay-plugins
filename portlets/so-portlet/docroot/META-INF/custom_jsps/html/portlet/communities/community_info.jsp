@@ -55,9 +55,7 @@ rowURL.setParameter("redirect", currentURL);
 		<%= group.getName() %>
 	</a>
 
-	<c:if test="<%= Validator.isNotNull(group.getDescription()) %>">
-		<img alt="arrow" class="description-toggle" src="<%= themeDisplay.getPathThemeImage() %>/arrows/01_plus.png" />
-	</c:if>
+	<img alt="arrow" class="description-toggle" src="<%= themeDisplay.getPathThemeImage() %>/arrows/01_plus.png" />
 
 	<div class="description" style="display:none;">
 		<%= StringUtil.shorten(group.getDescription(), 200) %>
