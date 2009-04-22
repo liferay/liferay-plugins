@@ -25,7 +25,6 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.portal.UserPasswordException" %>
 <%@ page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
@@ -41,7 +40,6 @@
 <%@ page import="com.liferay.portal.model.EmailAddress" %>
 <%@ page import="com.liferay.portal.model.Group" %>
 <%@ page import="com.liferay.portal.model.ListType" %>
-<%@ page import="com.liferay.portal.model.PasswordPolicy" %>
 <%@ page import="com.liferay.portal.model.Phone" %>
 <%@ page import="com.liferay.portal.model.User" %>
 <%@ page import="com.liferay.portal.model.Website" %>
@@ -49,7 +47,6 @@
 <%@ page import="com.liferay.portal.service.EmailAddressLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.GroupLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.ListTypeServiceUtil" %>
-<%@ page import="com.liferay.portal.service.PasswordPolicyLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.PhoneLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.RegionServiceUtil" %>
 <%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>

@@ -18,10 +18,8 @@
 package com.liferay.so.profiles.portlet.action;
 
 import com.liferay.portal.SystemException;
-import com.liferay.portal.UserPasswordException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -122,9 +120,6 @@ public class ProfilesAction extends JSPPortlet {
 			}
 			else if (id.equals("updateAddress")) {
 				updateAddress(actionRequest, user);
-			}
-			else if (id.equals("updatePassword")) {
-				updatePassword(actionRequest, user);
 			}
 			else if (id.equals("updatePhoneNumber")) {
 				updatePhoneNumber(actionRequest, user);
@@ -278,21 +273,6 @@ public class ProfilesAction extends JSPPortlet {
 		contact.setMySpaceSn(value);
 
 		ContactLocalServiceUtil.updateContact(contact, false);
-	}
-
-	protected void updatePassword(ActionRequest actionRequest, User user) {
-		String password1 = ParamUtil.getString(actionRequest, "password1");
-		String password2 = ParamUtil.getString(actionRequest, "password2");
-
-		try {
-			UserLocalServiceUtil.updatePassword(
-				user.getUserId(), password1, password2, false);
-		}
-		catch (Exception e) {
-			if (e instanceof UserPasswordException) {
-				SessionErrors.add(actionRequest, e.getClass().getName(), e);
-			}
-		}
 	}
 
 	protected void updatePhoneNumber(ActionRequest actionRequest, User user) {

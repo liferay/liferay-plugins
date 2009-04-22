@@ -927,10 +927,6 @@ table.calendar {
 	font-weight: bold;
 }
 
-.so-portlet-profiles .user-password-form {
-	display: none;
-}
-
 .so-portlet-profiles .user-title {
 	font-size: 1.3em;
 	line-height: 1.6em;

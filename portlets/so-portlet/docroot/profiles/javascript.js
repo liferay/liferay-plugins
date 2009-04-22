@@ -66,22 +66,10 @@ Liferay.SO.Profiles = {
 			}
 		);
 
-		portletContainer.find('.cancel-user-password-button').click(
-			function() {
-				instance._hideUserPassword(jQuery(this));
-			}
-		);
-
 		portletContainer.find('.cancel-website-button').click(
 			function() {
 				instance._hideWebsite();
 				instance._resetWebsite();
-			}
-		);
-
-		portletContainer.find('.change-user-password-button').click(
-			function() {
-				instance._showEditUserPassword(jQuery(this));
 			}
 		);
 
@@ -149,12 +137,6 @@ Liferay.SO.Profiles = {
 			},
 			function() {
 				jQuery(this).removeClass('hover');
-			}
-		);
-
-		jQuery('.editable input').livequery(
-			function() {
-				this.select();
 			}
 		);
 
@@ -436,15 +418,6 @@ Liferay.SO.Profiles = {
 		portletContainer.find('.add-phone-number').show();
 	},
 
-	_hideUserPassword: function() {
-		var instance = this;
-
-		var portletContainer = instance._portletContainer;
-
-		portletContainer.find('.user-password-form').hide();
-		portletContainer.find('.change-user-password-button').show();
-	},
-
 	_hideWebsite: function() {
 		var instance = this;
 
@@ -551,15 +524,6 @@ Liferay.SO.Profiles = {
 
 		portletContainer.find('.phone-number-form').show();
 		portletContainer.find('.add-phone-number').hide();
-	},
-
-	_showEditUserPassword: function() {
-		var instance = this;
-
-		var portletContainer = instance._portletContainer;
-
-		portletContainer.find('.user-password-form').show();
-		portletContainer.find('.change-user-password-button').hide();
 	},
 
 	_showEditWebsite: function() {
