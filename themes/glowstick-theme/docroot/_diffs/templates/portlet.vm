@@ -26,7 +26,10 @@
 	<div class="portlet-content">
 		$portlet_content
 	</div>
-	<div class="portlet-footer">
-		<div class="portlet-footer2"></div>
+
+	<div class="portlet-footer-wrapper">
+		<div class="portlet-footer">
+			<!-- -->
+		</div>
 	</div>
 </div>

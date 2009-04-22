@@ -2,7 +2,7 @@
 
 #parse ($init)
 
-<html xmlns="http://www.w3.org/1999/xhtml" dir="#language ("lang.dir")">
+<html dir="#language ("lang.dir")" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 	<title>$the_title - $company_name</title>

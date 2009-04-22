@@ -220,11 +220,11 @@ a.cancel-page {
 	zoom: 1;
 }
 
-.portlet-footer {
+.portlet-footer-wrapper {
 	background: url(../images/custom/portlet_footer_bg.png) no-repeat 0 100%;
 }
 
-.portlet-footer2 {
+.portlet-footer {
 	background: url(../images/custom/portlet_footer_bg.png) no-repeat 100% 0;
 	height: 10px;
 	margin-left: 9px;
@@ -255,11 +255,11 @@ a.cancel-page {
 	background: none;
 }
 
-.ie6 .portlet-footer {
+.ie6 .portlet-footer-wrapper {
 	background: url(../images/custom/portlet_footer_bg_ie6.png) no-repeat 0 100%;
 }
 
-.ie6 .portlet-footer2 {
+.ie6 .portlet-footer {
 	background: url(../images/custom/portlet_footer_bg_ie6.png) no-repeat 100% 0;
 	height: 5px;
 	margin-left: 5px;

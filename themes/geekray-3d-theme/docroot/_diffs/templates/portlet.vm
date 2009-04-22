@@ -27,6 +27,7 @@
 		$portlet_content
 	</div>
 
-	<div class="portlet-footer"><!-- --></div>
-
+	<div class="portlet-footer">
+		<!-- -->
+	</div>
 </div>

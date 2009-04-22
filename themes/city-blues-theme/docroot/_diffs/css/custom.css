@@ -258,26 +258,26 @@ a:hover {
 	background: #FFF;
 }
 
-.portlet-footer,
-.portlet-footer2 {
+.portlet-footer-wrapper,
+.portlet-footer {
 	height: 10px;
 }
 
-.portlet-footer {
+.portlet-footer-wrapper {
 	background: url(../images/custom/portlet_bg.png) 0 100%;
 	border-top: 1px solid #FFF;
 }
 
-.ie6 .portlet-footer {
+.ie6 .portlet-footer-wrapper {
 	background: url(../images/custom/portlet_bg_ie6.png) 0 100%;
 }
 
-.portlet-footer2 {
+.portlet-footer {
 	background: url(../images/custom/portlet_bg.png) 100% -48px;
 	margin-left: 6px;
 }
 
-.ie6 .portlet-footer2 {
+.ie6 .portlet-footer {
 	background: url(../images/custom/portlet_bg_ie6.png) 100% -48px;
 }
 
