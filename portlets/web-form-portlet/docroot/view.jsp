@@ -27,11 +27,12 @@
 <%
 String title = preferences.getValue("title", StringPool.BLANK);
 String description = preferences.getValue("description", StringPool.BLANK);
-String successURL = preferences.getValue("successURL", StringPool.BLANK);
 boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCaptcha", StringPool.BLANK));
+String successURL = preferences.getValue("successURL", StringPool.BLANK);
 %>
 
 <form action="<portlet:actionURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="saveData" /></portlet:actionURL>" class="uni-form" id="<portlet:namespace />fm" method="post" name="<portlet:namespace />fm">
+
 <c:if test="<%= Validator.isNull(successURL) %>">
 	<input name="<portlet:namespace/>redirect" type="hidden" value="<%= currentURL %>" />
 </c:if>
