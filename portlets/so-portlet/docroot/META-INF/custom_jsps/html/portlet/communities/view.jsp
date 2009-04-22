@@ -188,6 +188,23 @@ pageContext.setAttribute("portletURL", portletURL);
 				}
 
 			);
+
+			var downImage = 'arrow_down.png';
+			var rightImage = 'arrow_right.png';
+			jQuery(".description-toggle").click(
+				function() {
+					if (this.src.indexOf('down.png') > -1) {
+						jQuery(".description", this.parentNode).slideUp();
+
+						this.src = this.src.replace(downImage, rightImage);
+					}
+					else {
+						jQuery(".description", this.parentNode).slideDown();
+
+						this.src = this.src = this.src.replace(rightImage, downImage);
+					}
+				}
+			);
 		}
 	)
 </script>

@@ -1,4 +1,3 @@
-<%@ taglib prefix="liferay-ui" uri="http://liferay.com/tld/ui" %>
 <%
 /**
  * Copyright (c) 2008-2009 Liferay, Inc. All rights reserved.
@@ -18,35 +17,32 @@
  */
 %>
 
-<liferay-ui:search-container-results>
+<%@ include file="/html/portlet/communities/init.jsp" %>
 
-	<%
-	results = displayGroups;
-	total = displayGroups.size();
+<%
+ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
-	pageContext.setAttribute("results", results);
-	pageContext.setAttribute("total", total);
-	%>
+Group group = (Group)row.getObject();
 
-</liferay-ui:search-container-results>
+PortletURL rowURL = renderResponse.createActionURL();
 
-<liferay-ui:search-container-row
-	className="com.liferay.portal.model.Group"
-	keyProperty="groupId"
-	modelVar="group"
->
-	<liferay-ui:search-container-column-jsp
-		align="left"
-		path="/html/portlet/communities/community_info.jsp"
-	/>
+rowURL.setWindowState(WindowState.NORMAL);
 
-	<liferay-ui:search-container-column-jsp
-		align="right"
-		path="/html/portlet/communities/community_action.jsp"
-		valign="top"
-	/>
-</liferay-ui:search-container-row>
+rowURL.setParameter("struts_action", "/communities/page");
+rowURL.setParameter("groupId", String.valueOf(group.getGroupId()));
+rowURL.setParameter("redirect", currentURL);
+%>
 
 <div>
-	<liferay-ui:search-iterator />
+	<a href="<%= rowURL %>">
+		<%= group.getName() %>
+	</a>
+
+	<c:if test="<%= Validator.isNotNull(group.getDescription()) %>">
+		<img alt="arrow" class="description-toggle" src="<%= themeDisplay.getPathThemeImage() %>/custom/arrow_right.png" />
+	</c:if>
+
+	<div class="description" style="display:none;">
+		<%= StringUtil.shorten(group.getDescription(), 200) %>
+	</div>
 </div>
