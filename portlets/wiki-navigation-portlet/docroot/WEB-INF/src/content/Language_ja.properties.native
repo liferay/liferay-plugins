@@ -1,9 +1,0 @@
-depth=深さ
-menu=メニュー
-navigation-page-help=wikiのページを選びなさい。 そのページのすべてのリンクがメニューを造るのに使用される。 wikiヘッダーの使用によってリンクを分けることができる。
-node-based=基づくノード
-page-based=基づくページ
-please-select-a-wiki-page-that-will-act-as-a-navigation-menu=運行メニューとして機能するwikiのページを選びなさい
-the-wiki-could-not-be-found=wikiは見つけることができなかった。
-tree=木
-visualization=視覚化
