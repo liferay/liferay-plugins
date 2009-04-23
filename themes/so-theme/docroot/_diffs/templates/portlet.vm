@@ -8,7 +8,7 @@
 <div class="portlet" id="portlet-wrapper-$portlet_id">
 	<div class="portlet-topper">
 		<span class="portlet-title not-editable">
-			$theme.iconPortlet() $portlet_title
+			$portlet_title
 		</span>
 
 		<div class="portlet-icons" id="portlet-small-icon-bar_$portlet_id">
