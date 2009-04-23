@@ -752,6 +752,10 @@ body #banner h1.logo a {
 	margin-top: 12px;
 }
 
+.ie6 .portlet-login .navigation li img {
+	position: static;
+}
+
 /* Message Boards */
 
 .portlet-message-boards .category-current {
@@ -844,4 +848,8 @@ body #banner h1.logo a {
 	border-bottom: none;
 	font-size: 2.5em;
 	line-height: 1em;
+}
+
+.ie6 .portlet-wiki img {
+	position: static;
 }
