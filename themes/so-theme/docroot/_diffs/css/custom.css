@@ -464,9 +464,17 @@ body #banner h1.logo a {
 	margin: 0;
 }
 
+.portlet-calendar .calendar-tabs a {
+	font-weight: bold;
+}
+
+.portlet-calendar .calendar-tabs a.selected {
+	color: #8F0920;
+}
+
 .portlet-calendar .calendar-tabs .month {
 	border-right: 2px solid #8F0920;
-	padding-right: 7px;
+	padding: 0 7px 0 4px;
 }
 
 .portlet-calendar .calendar-tabs .week {
@@ -513,6 +521,11 @@ body #banner h1.logo a {
 
 .portlet-calendar .calendar {
 	width: 100%;
+}
+
+.portlet-calendar .calendar td .results-row td {
+	font-size: 11px;
+	padding: 5px;
 }
 
 .portlet-calendar .calendar thead {
