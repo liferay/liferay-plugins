@@ -129,11 +129,15 @@ public class StatusLocalServiceUtil {
 			activePanelId, message, playSound);
 	}
 
+	public static void clearService() {
+		_service = null;
+	}
+
 	public static StatusLocalService getService() {
 		if (_service == null) {
-			Object obj = PortletBeanLocatorUtil.locate("chat-portlet",
+			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					StatusLocalServiceUtil.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("chat-portlet",
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,

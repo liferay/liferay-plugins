@@ -122,11 +122,15 @@ public class EntryLocalServiceUtil {
 		return getService().getOldEntries(createDate, start, end);
 	}
 
+	public static void clearService() {
+		_service = null;
+	}
+
 	public static EntryLocalService getService() {
 		if (_service == null) {
-			Object obj = PortletBeanLocatorUtil.locate("chat-portlet",
+			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					EntryLocalServiceUtil.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("chat-portlet",
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
