@@ -693,6 +693,15 @@ body #banner h1.logo a {
 	top: 3px;
 }
 
+.portlet-communities .actions {
+	width: 80px;
+}
+
+.portlet-communities .description-toggle {
+	position: relative;
+	top: 1px;
+}
+
 /* Contacts */
 
 .contacts-portlet .portlet-content,
@@ -787,6 +796,11 @@ body #banner h1.logo a {
 	padding: 0 2em 0 0;
 }
 
+.so-portlet-profiles .profile-area {
+	padding: 5px 25px 5px 5px;
+	white-space: nowrap;
+}
+
 .so-portlet-profiles .profile-wrapper td {
 	padding: 0 1em 0 0;
 }
@@ -798,6 +812,10 @@ body #banner h1.logo a {
 .so-portlet-profiles .user-name {
 	font-size: 1.5em;
 	font-weight: bold;
+}
+
+.so-portlet-profiles .user-password-form {
+	display: none;
 }
 
 .so-portlet-profiles .user-title {
@@ -818,11 +836,112 @@ body #banner h1.logo a {
 	right: 5px;
 }
 
+.so-portlet-profiles .profile-area .lfr-label {
+	vertical-align: middle;
+}
+
+.so-portlet-profiles .profile-area .editable input[type=text] {
+	width: 100px !important;
+}
+
+.so-portlet-profiles .profile-area .editable {
+	padding: 2px 25px 2px 2px;
+}
+
+.so-portlet-profiles .profile-area .hover .editable {
+	background: #FFC url(../images/common/edit.png) no-repeat right;
+}
+
+.so-portlet-profiles .profile-area .delete {
+	display: none;
+	margin-right: -50px;
+}
+
+.so-portlet-profiles .profile-area .delete img {
+	vertical-align: top;
+}
+
+.so-portlet-profiles .profile-area .hover .delete {
+	display: inline;
+}
+
+.so-portlet-profiles .profile-area .portlet-msg-info {
+	margin: 0;
+	padding: 0 0 0 25px;
+}
+
+.so-portlet-profiles .address-form,
+.so-portlet-profiles .phone-number-form,
+.so-portlet-profiles .website-form {
+	display: none;
+}
+
 .so-portlet-profiles .user-address {
 	float: left;
 	margin: 0 2em 1em 0;
+	padding: 5px 25px 5px 5px;
+	position: relative;
 }
 
+.so-portlet-profiles .user-address.hover {
+	background: #FFC;
+}
+
+.so-portlet-profiles .user-address .user-address-controls {
+	display: none;
+	position: absolute;
+	right: -15px;
+	top: 15px;
+}
+
+.so-portlet-profiles .user-address.hover .user-address-controls {
+	display: block;
+}
+
+.so-portlet-profiles .phone-number {
+	float: left;
+	padding: 5px 25px 5px 5px;
+	position: relative;
+}
+
+.so-portlet-profiles .phone-number.hover {
+	background: #FFC;
+}
+
+.so-portlet-profiles .phone-number .phone-number-controls {
+	display: none;
+	position: absolute;
+	right: -15px;
+	top: 5px;
+}
+
+.so-portlet-profiles .phone-number.hover .phone-number-controls {
+	display: block;
+}
+
+.so-portlet-profiles .website {
+	float: left;
+	margin-right: 20px;
+	padding: 5px 25px 5px 5px;
+	position: relative;
+}
+
+.so-portlet-profiles .website.hover {
+	background: #FFC;
+}
+
+.so-portlet-profiles .website .website-controls {
+	display: none;
+	position: absolute;
+	right: -15px;
+	top: 5px;
+}
+
+.so-portlet-profiles .website.hover .website-controls {
+	display: block;
+}
+
+.so-portlet-profiles .site-name,
 .so-portlet-profiles .user-address .line-1 {
 	color: #555;
 	font-weight: bold;
@@ -830,11 +949,6 @@ body #banner h1.logo a {
 
 .so-portlet-profiles .user-site {
 	margin-bottom: 1em;
-}
-
-.so-portlet-profiles .site-name {
-	color: #555;
-	font-weight: bold;
 }
 
 .so-portlet-profiles .site-description {
