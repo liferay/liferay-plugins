@@ -726,10 +726,6 @@ body #banner h1.logo a {
 	display: none;
 }
 
-.portlet-login .portlet-icons {
-	display: none;
-}
-
 .portlet-login .portlet-content {
 	background: #F0F5F7;
 	border: 1px solid #B0BAFF;
