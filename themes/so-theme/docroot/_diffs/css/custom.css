@@ -20,6 +20,10 @@ a {
 	margin-bottom: 4em;
 }
 
+.ie6 img {
+	position: static;
+}
+
 /* ---------- Banner ---------- */
 
 #banner {
@@ -103,6 +107,10 @@ body #banner h1.logo a {
 	width: 224px;
 }
 
+#navigation-top .child-menu li a:hover {
+	background: #F6F9FB;
+}
+
 #navigation-top .my-profile {
 	border-left: 1px solid #B0BAFF;
 }
@@ -169,7 +177,7 @@ body #banner h1.logo a {
 /* ---------- Portlets ---------- */
 
 .portlet {
-	margin-bottom: 2em;
+	margin-bottom: 1em;
 }
 
 .portlet-borderless-bar {
@@ -329,7 +337,7 @@ body #banner h1.logo a {
 }
 
 .results-row.alt td {
-	background: #EEE;
+	background: #F0F5F7;
 }
 
 .results-grid {
@@ -356,6 +364,35 @@ body #banner h1.logo a {
 .ie6 input.submit,
 .ie6 input.button {
 	padding: 4px 0 3px;
+}
+
+input {
+	background: none;
+}
+
+input[type="text"],
+input[type="password"],
+select,
+textarea,
+.textarea {
+	background: #FFF;
+	border-color: #D7DCFF;
+	color: #555;
+}
+
+#wrapper input[type="password"].focus,
+input.focus,
+textarea.focus,
+.ie6 input.focus,
+ie6 textarea.focus {
+	background: #FFF6ED;
+	border: 1px solid #FC9;
+}
+
+/* Liferay Search Iterator */
+
+.results-grid .results-row.hover td {
+	background: #E9E9FD;
 }
 
 /* Liferay Tabs */
@@ -408,15 +445,20 @@ body #banner h1.logo a {
 /* Blogs */
 
 .portlet-blogs .entry-footer {
-	background: #DFF4FF;
+	background: #E8EFF4;
+	border-top: 1px solid #B0BAFF;
 	padding: 15px;
 }
 
 .portlet-blogs .entry-title {
-	color: #369;
+	color: #7F80A4;
 	font-size: 2.1em;
 	line-height: 1.1em;
 	margin-top: .5em;
+}
+
+.portlet-blogs .entry-title a {
+	color: #7F80A4;
 }
 
 .portlet-blogs .entry-date,
@@ -432,7 +474,13 @@ body #banner h1.logo a {
 .portlet-blogs .entry-body {
 	color: #555;
 	font-family: "Times New Roman", Times, serif;
-	font-size: 1.3em;
+	font-size: 1.2em;
+	line-height: 26px;
+}
+
+.portlet-blogs .entry-tags {
+	color: #555;
+	margin: 2.5em 0 0;
 }
 
 .portlet-blogs .edit-actions {
@@ -449,8 +497,18 @@ body #banner h1.logo a {
 	display: block;
 }
 
+.portlet-blogs .tabs {
+	position: relative;
+}
+
 .portlet-blogs .taglib-social-bookmarks {
 	margin: 0;
+}
+
+.portlet-blogs .entry-author,
+.portlet-blogs .stats,
+.portlet-blogs .taglib-flags {
+	position: relative;
 }
 
 /* Calendar */
@@ -495,18 +553,30 @@ body #banner h1.logo a {
 }
 
 .portlet-calendar .calendar-container {
-	color: #777;
+	background: #FFF;
+	border-color: #DDD;
+	color: #413739;
+	font-weight: bold;
+	margin-bottom: 15px;
+	padding-top: 4px;
 	text-align: center;
 	width: 209px;
 }
 
 .portlet-calendar .calendar-day {
 	float: none;
+	margin-top: 4px;
+}
+
+.portlet-calendar .calendar-day .day-text {
+	background: #7F80A4;
+	border-top: 1px solid #DDD;
+	padding: 6px 0;
 }
 
 .portlet-calendar .taglib-calendar {
-	margin: 1px;
-	width: 210px;
+	border: 1px solid #DDD;
+	width: 209px;
 }
 
 .portlet-calendar .date-selector {
@@ -519,6 +589,7 @@ body #banner h1.logo a {
 }
 
 .portlet-calendar .date-selector td {
+	color: #3E3639;
 	padding: 0 5px;
 }
 
@@ -529,10 +600,6 @@ body #banner h1.logo a {
 .portlet-calendar .calendar td .results-row td {
 	font-size: 11px;
 	padding: 5px;
-}
-
-.portlet-calendar .calendar thead {
-	border-top: 2px solid #6F686B;
 }
 
 .portlet-calendar .calendar thead td {
@@ -554,11 +621,11 @@ body #banner h1.logo a {
 }
 
 .portlet-calendar .calendar .current-day {
-	background: #DDD;
+	background: #DCECF9;
 }
 
 .portlet-calendar .calendar .selected-day {
-	background: #F0F5F7;
+	background: #FFF;
 }
 
 .portlet-calendar .calendar .results-header td {
@@ -641,11 +708,6 @@ body #banner h1.logo a {
 	padding: 0;
 }
 
-.taglib-calendar th a:hover,
-.taglib-calendar th a:focus {
-	background: transparent;
-}
-
 .portlet-calendar .export-import-calendar {
 	background: #D0E5F7;
 	border-bottom: 2px solid #6F686B;
@@ -667,6 +729,23 @@ body #banner h1.logo a {
 	margin-left: 50px;
 }
 
+table.calendar {
+	border-top: 2px solid #6F686B;
+}
+
+.taglib-calendar table {
+	border: none;
+}
+
+.taglib-calendar th a:hover,
+.taglib-calendar th a:focus {
+	background: transparent;
+}
+
+.taglib-calendar tr td a:hover {
+	background: #7F80A4;
+}
+
 /* Communities */
 
 .portlet-communities .site-list .col-2 a {
@@ -681,6 +760,12 @@ body #banner h1.logo a {
 .portlet-communities .control-wrapper {
 	margin-top: 1em;
 	position: relative;
+}
+
+.ie6 .portlet-communities .control-wrapper {
+	background: #E8EFF4;
+	height: 22px;
+	margin-bottom: 1em;
 }
 
 .portlet-communities .add-site {
@@ -757,11 +842,14 @@ body #banner h1.logo a {
 }
 
 .portlet-login .navigation {
+	background: #FFF;
+	border: 1px solid #D7DCFF;
 	margin-top: 12px;
 }
 
-.ie6 .portlet-login .navigation li img {
-	position: static;
+.portlet-login .navigation li {
+	padding: 6px 6px;
+	width: 200px;
 }
 
 /* Message Boards */
@@ -777,13 +865,20 @@ body #banner h1.logo a {
 /* SO: Members */
 
 .so-portlet-members .invite-members a {
-	background: #EEE;
-	border: 1px solid #CCC;
+	background: transparent url(../images/arrows/01_plus.png) no-repeat 100% 50%;
 	display: block;
 	font-size: 1.2em;
-	font-weight: bold;
 	margin: 12px 0;
-	padding: 8px 5px;
+	padding: 0 18px 0 0;
+	position: absolute;
+}
+
+.so-portlet-members .portlet-section-header {
+	display: none;
+}
+
+.so-portlet-members .portlet-section-body .col-1 {
+	width: 35px;
 }
 
 .ie6 .so-portlet-members .invite-members {
@@ -961,8 +1056,4 @@ body #banner h1.logo a {
 	border-bottom: none;
 	font-size: 2.5em;
 	line-height: 1em;
-}
-
-.ie6 .portlet-wiki img {
-	position: static;
 }
