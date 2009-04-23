@@ -35,9 +35,7 @@ $theme.include($top_messages_include)
 			</div>
 		#end
 
-		#if ($has_navigation)
-			#parse ("$full_templates_path/navigation_top.vm")
-		#end
+		#parse ("$full_templates_path/navigation_top.vm")
 
 		#if ($update_available_url)
 			<div class="popup-alert-notice">
