@@ -774,6 +774,10 @@ body #banner h1.logo a {
 	padding: 8px 5px;
 }
 
+.ie6 .so-portlet-members .invite-members {
+	width: 100%;
+}
+
 /* SO: Profiles */
 
 .so-portlet-profiles td {
