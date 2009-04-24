@@ -24,6 +24,12 @@ a {
 	position: static;
 }
 
+.portlet-content,
+.portlet-minimized .portlet-content-container {
+	padding: 12px 0 10px;
+}
+
+
 /* ---------- Banner ---------- */
 
 #banner {
@@ -400,6 +406,7 @@ ie6 textarea.focus {
 .ui-tabs {
 	background: #E8EFF4;
 	border: none;
+	margin: 0 0 4px;
 	padding: 0 0 0 10px;
 }
 
@@ -748,12 +755,21 @@ table.calendar {
 
 /* Communities */
 
+.portlet-communities .site-list .col-1 a {
+	font-size: 11px;
+	font-weight: bold;
+}
+
 .portlet-communities .site-list .col-2 a {
 	font-size: 10px;
 	margin-left: 5px;
 }
 
 .portlet-communities .taglib-page-iterator .search-results {
+	display: none;
+}
+
+.portlet-communities th {
 	display: none;
 }
 
@@ -788,11 +804,6 @@ table.calendar {
 }
 
 /* Contacts */
-
-.contacts-portlet .portlet-content,
-.contacts-portlet .portlet-minimized .portlet-content-container {
-	padding: 12px 0 10px;
-}
 
 .contacts-portlet .portlet-info {
 	display: none;
