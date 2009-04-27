@@ -166,7 +166,14 @@
 		}
 		%>
 
-		<liferay-ui:page-iterator curParam='<%= renderResponse.getNamespace() + "start" %>' curValue='<%= ParamUtil.getInteger(request, \"start\", 1) %>' delta="<%= 10 %>" maxPages="<%= 25 %>" total="<%= totalResultsCount %>" url="<%= HttpUtil.decodeURL(portletURL.toString()) %>" />
+		<liferay-ui:page-iterator 
+			cur='<%= ParamUtil.getInteger(request, \"start\", 1) %>' 
+			curParam='<%= renderResponse.getNamespace() + "start" %>' 
+			delta="<%= 10 %>" 
+			maxPages="<%= 25 %>" 
+			total="<%= totalResultsCount %>" 
+			url="<%= HttpUtil.decodeURL(portletURL.toString()) %>" 
+		/>
 	</c:when>
 	<c:otherwise>
 		<liferay-ui:message key="please-contact-the-administrator-to-setup-this-portlet" />
