@@ -167,7 +167,7 @@
 		%>
 
 		<liferay-ui:page-iterator 
-			cur='<%= ParamUtil.getInteger(request, \"start\", 1) %>' 
+			cur='<%= ParamUtil.getInteger(request, "start", 1) %>' 
 			curParam='<%= renderResponse.getNamespace() + "start" %>' 
 			delta="<%= 10 %>" 
 			maxPages="<%= 25 %>" 
