@@ -113,8 +113,6 @@ public class WebFormPortlet extends JSPPortlet {
 			preferences.getValue("successURL", StringPool.BLANK));
 		boolean sendAsEmail = GetterUtil.getBoolean(
 			preferences.getValue("sendAsEmail", StringPool.BLANK));
-		boolean sendAutomaticResponse = GetterUtil.getBoolean(
-			preferences.getValue("sendAutomaticResponse", StringPool.BLANK));
 		boolean saveToDatabase = GetterUtil.getBoolean(
 			preferences.getValue("saveToDatabase", StringPool.BLANK));
 		String databaseTableName = GetterUtil.getString(
@@ -188,10 +186,6 @@ public class WebFormPortlet extends JSPPortlet {
 
 			if (saveToFile) {
 				fileSuccess = saveFile(fieldsMap, fileName);
-			}
-
-			if (sendAutomaticResponse) {
-				sendAutomaticResponse(fieldsMap, preferences);
 			}
 
 			if (emailSuccess && databaseSuccess && fileSuccess) {
@@ -366,52 +360,6 @@ public class WebFormPortlet extends JSPPortlet {
 		}
 		catch (Exception e) {
 			_log.error("The web form data could not be saved to a file", e);
-
-			return false;
-		}
-	}
-
-	protected boolean sendAutomaticResponse(
-		Map<String,String> fieldsMap, PortletPreferences preferences) {
-
-		try {
-			String subject = preferences.getValue(
-				"automaticResponseSubject", StringPool.BLANK);
-
-			String body = preferences.getValue(
-				"automaticResponseBody", StringPool.BLANK);
-
-			String fromEmailAddress = preferences.getValue(
-				"emailAutomaticResponse", StringPool.BLANK);
-
-			String emailField = preferences.getValue(
-				"emailField", StringPool.BLANK);
-			
-			String toEmailAddress = fieldsMap.get(emailField);
-
-			if (Validator.isNull(toEmailAddress) ||
-				!Validator.isEmailAddress(toEmailAddress)) {
-				_log.error(
-					"The automatic response email could bit be sent because " +
-						"no valid email address was introduced");
-
-				return false;
-			}
-            else {
-				InternetAddress fromAddress = new InternetAddress(
-					fromEmailAddress);
-				InternetAddress toAddress = new InternetAddress(toEmailAddress);
-
-				MailMessage mailMessage = new MailMessage(
-					fromAddress, toAddress, subject, body, false);
-
-				MailServiceUtil.sendEmail(mailMessage);
-
-				return true;
-			}
-		}
-		catch (Exception e) {
-			_log.error("The automatic response email could not be sent", e);
 
 			return false;
 		}
