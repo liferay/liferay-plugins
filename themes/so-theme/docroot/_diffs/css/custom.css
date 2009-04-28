@@ -797,6 +797,10 @@ table.calendar {
 	width: 80px;
 }
 
+.portlet-communities .description {
+	display: none;
+}
+
 .portlet-communities .description-toggle {
 	position: relative;
 	top: 1px;
