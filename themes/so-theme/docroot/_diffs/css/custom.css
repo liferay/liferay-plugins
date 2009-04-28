@@ -846,6 +846,7 @@ table.calendar {
 .portlet-login .portlet-content {
 	background: #F0F5F7;
 	border: 1px solid #B0BAFF;
+	padding: 10px;
 }
 
 .portlet-login .lfr-input-text {
