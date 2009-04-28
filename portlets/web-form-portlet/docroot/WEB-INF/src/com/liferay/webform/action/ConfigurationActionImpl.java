@@ -86,6 +86,21 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		boolean updateFields = ParamUtil.getBoolean(
 			actionRequest, "updateFields");
 
+		boolean sendAutomaticResponse = ParamUtil.getBoolean(
+			actionRequest, "sendAutomaticResponse");
+
+		String automaticResponseSubject = ParamUtil.getString(
+			actionRequest, "automaticResponseSubject");
+
+		String automaticResponseBody = ParamUtil.getString(
+			actionRequest, "automaticResponseBody");
+
+		String emailAutomaticResponse = ParamUtil.getString(
+			actionRequest, "emailAutomaticResponse");
+
+		String emailFieldAutomaticResponse = ParamUtil.getString(
+			actionRequest, "emailField");
+
 		String portletResource = ParamUtil.getString(
 			actionRequest, "portletResource");
 
@@ -131,6 +146,17 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 			}
 		}
 
+		if (sendAutomaticResponse) {
+			if (Validator.isNull(emailAutomaticResponse)) {
+				SessionErrors.add(
+					actionRequest, "automaticResponseEmailAddressRequired");
+			}
+			else if (!Validator.isEmailAddress(emailAutomaticResponse)) {
+				SessionErrors.add(
+					actionRequest, "automaticResponseEmailAddressInvalid");
+			}
+		}
+
 		if (!SessionErrors.isEmpty(actionRequest)) {
 			return;
 		}
@@ -145,6 +171,11 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 		preferences.setValue("saveToDatabase", String.valueOf(saveToDatabase));
 		preferences.setValue("saveToFile", String.valueOf(saveToFile));
 		preferences.setValue("fileName", fileName);
+		preferences.setValue("sendAutomaticResponse", String.valueOf(sendAutomaticResponse));
+		preferences.setValue("automaticResponseSubject", automaticResponseSubject);
+		preferences.setValue("automaticResponseBody", automaticResponseBody);
+		preferences.setValue("emailAutomaticResponse", emailAutomaticResponse);
+		preferences.setValue("emailField", emailFieldAutomaticResponse);
 
 		if (updateFields) {
 			int i = 1;

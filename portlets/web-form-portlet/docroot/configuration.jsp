@@ -42,6 +42,12 @@ String databaseTableName = preferences.getValue("databaseTableName", StringPool.
 boolean saveToFile = PrefsParamUtil.getBoolean(preferences, request, "saveToFile");
 String fileName = PrefsParamUtil.getString(preferences, request, "fileName");
 
+boolean sendAutomaticResponse = PrefsParamUtil.getBoolean(preferences, request, "sendAutomaticResponse");
+String automaticResponseSubject = PrefsParamUtil.getString(preferences, request, "automaticResponseSubject");
+String automaticResponseBody = PrefsParamUtil.getString(preferences, request, "automaticResponseBody");
+String emailAutomaticResponse = PrefsParamUtil.getString(preferences, request, "emailAutomaticResponse");
+String emailField = PrefsParamUtil.getString(preferences, request, "emailField");
+
 boolean fieldsEditingDisabled = false;
 
 if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
@@ -203,7 +209,57 @@ if (WebFormUtil.getTableRowsCount(databaseTableName) > 0) {
 					<input class="lfr-input-text" id="<portlet:namespace />filename" name="<portlet:namespace />fileName" type="text" value="<%= fileName %>" />
 				</div>
 			</fieldset>
-		</fieldset>
+        </fieldset>
+		<fieldset class="block-labels">
+				<legend><liferay-ui:message key="automatic-response" /></legend>
+
+				<liferay-ui:error key="automaticResponseEmailAddressInvalid" message="please-enter-a-valid-email-address" />
+				<liferay-ui:error key="automaticResponseEmailAddressRequired" message="please-enter-an-email-address" />
+
+				<div class="ctrl-holder">
+					<label><liferay-ui:message key="send-automatic-response-email" /> <liferay-ui:input-checkbox param="sendAutomaticResponse" defaultValue="<%= sendAutomaticResponse %>" /></label>
+				</div>
+
+				<div class="ctrl-holder">
+					<label for="<portlet:namespace />automaticResponseSubject"><liferay-ui:message key="subject" /></label>
+
+					<input class="lfr-input-text" name="<portlet:namespace />automaticResponseSubject" type="text" value="<%= subject %>" />
+				</div>
+
+				<div class="ctrl-holder">
+					<label for="<portlet:namespace />automaticResponseBody"><liferay-ui:message key="body" /></label>
+
+					<textarea class="lfr-input-text" name="<portlet:namespace />automaticResponseBody" type="text"><%= automaticResponseBody %></textarea>
+				</div>
+
+				<div class="ctrl-holder">
+					<label for="<portlet:namespace />emailAutomaticResponse"><liferay-ui:message key="remitent-email-address" /></label>
+
+					<input class="lfr-input-text" id="<portlet:namespace />emailAddress" name="<portlet:namespace />emailAutomaticResponse" type="text" value="<%= emailAutomaticResponse %>" />
+				</div>
+
+				<div class="ctrl-holder">
+					<label for="<portlet:namespace />emailField"><liferay-ui:message key="field-which-will-contain-the-email-address" /></label>
+
+					<select name="<portlet:namespace />emailField">
+						<option value=""></option>
+
+						<%
+						String fieldLabel = preferences.getValue( "fieldLabel1", StringPool.BLANK);
+
+						for (int i=2; Validator.isNotNull(fieldLabel); i++ ) {
+						%>
+
+							<option <%= (emailField.equals(fieldLabel)) ? "selected" : "" %> value="<%= fieldLabel %>"><%= fieldLabel %></option>
+
+						<%
+							fieldLabel = preferences.getValue( "fieldLabel" + i, StringPool.BLANK);
+						}
+						%>
+
+				</select>
+				</div>
+			</fieldset>
 	</liferay-ui:section>
 
 	<liferay-ui:section>
