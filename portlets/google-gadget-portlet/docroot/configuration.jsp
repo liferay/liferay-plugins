@@ -26,7 +26,7 @@
 
 <%
 String query = ParamUtil.getString(request, "q");
-String categoryId = ParamUtil.getString(request, "categoryId", "all");
+String categoryId = ParamUtil.getString(request, "cat", "all");
 int start = ParamUtil.getInteger(request, "start", 0);
 
 String url = "http://www.google.com/ig/directory?synd=open";
@@ -42,12 +42,6 @@ url += "&start=" + start + "&sa=N";
 
 GGData data = GGUtil.getData(url);
 %>
-
-<%--<liferay-portlet:preview
-	portletName="<%= portletResource %>"
-/>
-
-<div class="separator"><!-- --></div>--%>
 
 <c:choose>
 	<c:when test="<%= data != null %>">
@@ -95,7 +89,7 @@ GGData data = GGUtil.getData(url);
 
 					<c:choose>
 						<c:when test="<%= Validator.isNotNull(category.getName()) %>">
-							<a href="javascript: submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="categoryId" value="<%= category.getCategoryId() %>" /></liferay-portlet:actionURL>');"><%= category.getName() %></a><br />
+							<a href="javascript: submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="cat" value="<%= category.getCategoryId() %>" /></liferay-portlet:actionURL>');"><%= category.getName() %></a><br />
 						</c:when>
 						<c:otherwise>
 							<br />
@@ -125,17 +119,16 @@ GGData data = GGUtil.getData(url);
 				%>
 
 				<div style="text-align: right;">
-					<%= pagination.getStart() %> - <%= pagination.getEnd() %> of <%= pagination.getTotal() %>
 
 					<span style="padding-left: 10px;">
-						<c:if test="<%= pagination.getStart() >= pagination.getDelta() %>">
-							<a href="javascript: submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="q" value="<%= query %>" /><portlet:param name="categoryId" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(start - pagination.getDelta()) %>" /></liferay-portlet:actionURL>');">&laquo; <liferay-ui:message key="previous" /></a>
+						<c:if test="<%= pagination.getPrevStart() >= 0 %>">
+							<a href="javascript: submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="cat" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(pagination.getPrevStart()) %>" /></liferay-portlet:actionURL>');">&laquo; <liferay-ui:message key="previous" /></a>
 						</c:if>
 					</span>
 
 					<span style="padding-left: 10px;">
-						<c:if test="<%= (pagination.getStart() + pagination.getDelta()) <= pagination.getTotal() %>">
-							<a href="javascript: submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="q" value="<%= query %>" /><portlet:param name="categoryId" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(start + pagination.getDelta()) %>" /></liferay-portlet:actionURL>');"><liferay-ui:message key="next" /> &raquo;</a>
+						<c:if test="<%= (pagination.getMoreStart()) > 0 %>">
+							<a href="javascript: submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="cat" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(pagination.getMoreStart()) %>" /></liferay-portlet:actionURL>');"><liferay-ui:message key="next" /> &raquo;</a>
 						</c:if>
 					</span>
 				</div>
@@ -152,7 +145,7 @@ GGData data = GGUtil.getData(url);
 						<%= tableIteratorObj.getName() %>
 
 						<div style="padding: 5px;">
-							<img src="<%= tableIteratorObj.getImage() %>" />
+							<img src="<%= tableIteratorObj.getImage() %>" height="60" width="120" />
 						</div>
 
 						<input onclick="<portlet:namespace />chooseGadget('<%= tableIteratorObj.getGadgetId() %>');" type="button" value="<liferay-ui:message key="choose" />" />
@@ -162,17 +155,16 @@ GGData data = GGUtil.getData(url);
 				</liferay-ui:table-iterator>
 
 				<div style="text-align: right;">
-					<%= pagination.getStart() %> - <%= pagination.getEnd() %> of <%= pagination.getTotal() %>
 
 					<span style="padding-left: 10px;">
-						<c:if test="<%= pagination.getStart() >= pagination.getDelta() %>">
-							<a href="javascript: submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="categoryId" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(start - pagination.getDelta()) %>" /></liferay-portlet:actionURL>');">&laquo; <liferay-ui:message key="previous" /></a>
+						<c:if test="<%= pagination.getPrevStart() >= 0 %>">
+							<a href="javascript: submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="cat" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(pagination.getPrevStart()) %>" /></liferay-portlet:actionURL>');">&laquo; <liferay-ui:message key="previous" /></a>
 						</c:if>
 					</span>
 
 					<span style="padding-left: 10px;">
-						<c:if test="<%= (pagination.getStart() + pagination.getDelta()) <= pagination.getTotal() %>">
-							<a href="javascript: submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="categoryId" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(start + pagination.getDelta()) %>" /></liferay-portlet:actionURL>');"><liferay-ui:message key="next" /> &raquo;</a>
+						<c:if test="<%= (pagination.getMoreStart()) > 0 %>">
+							<a href="javascript: submitForm(document.hrefFm, '<liferay-portlet:actionURL portletConfiguration="true"><portlet:param name="cat" value="<%= categoryId %>" /><portlet:param name="start" value="<%= String.valueOf(pagination.getMoreStart()) %>" /></liferay-portlet:actionURL>');"><liferay-ui:message key="next" /> &raquo;</a>
 						</c:if>
 					</span>
 				</div>

@@ -42,6 +42,7 @@ import java.util.regex.Pattern;
  * <a href="GGDataWebCacheItem.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
+ * @author Alberto Montero
  *
  */
 public class GGDataWebCacheItem implements WebCacheItem {
@@ -68,6 +69,8 @@ public class GGDataWebCacheItem implements WebCacheItem {
 			}
 
 			List entries = new ArrayList();
+			int prevStart = -1;
+			int moreStart = -1;
 
 			matcher = _queryPattern.matcher(_url);
 
@@ -77,7 +80,7 @@ public class GGDataWebCacheItem implements WebCacheItem {
 				while (matcher.find()) {
 					String gadgetId = matcher.group(1);
 					String name = matcher.group(3);
-					String image = matcher.group(2);
+					String image = HttpUtil.decodeURL(matcher.group(2));
 
 					GGEntry entry = new GGEntry(gadgetId, name, image);
 
@@ -85,35 +88,50 @@ public class GGDataWebCacheItem implements WebCacheItem {
 				}
 
 				matcher = _queryPaginationPattern.matcher(html);
+
+				if (matcher.find()) {
+					int start = GetterUtil.getInteger(matcher.group(1));
+					int end = GetterUtil.getInteger(matcher.group(2));
+					prevStart = 2 * start - end - 2;
+					moreStart = end;
+				}
 			}
 			else {
 				matcher = _categoriesEntriesPattern.matcher(html);
 
 				while (matcher.find()) {
-					String gadgetId = matcher.group(2);
-					String name = matcher.group(1);
-					String image = matcher.group(3);
+					String gadgetId = matcher.group(1);
+					String name = matcher.group(2);
+					String image = HttpUtil.decodeURL(matcher.group(3));
 
 					GGEntry entry = new GGEntry(gadgetId, name, image);
 
 					entries.add(entry);
 				}
 
-				matcher = _categoriesPaginationPattern.matcher(html);
+				matcher = _paginationPattern.matcher(html);
+
+				if (matcher.find()) {
+					String paginationHtml = matcher.group(1);
+					matcher = _paginationMorePattern.matcher(paginationHtml);
+
+					if (matcher.find()) {
+						moreStart = GetterUtil.getInteger(matcher.group(1));
+					}
+
+					matcher = _paginationPrevPattern.matcher(paginationHtml);
+
+					if (matcher.find()) {
+						prevStart = GetterUtil.getInteger(matcher.group(1));
+
+						if (prevStart == moreStart) {
+							prevStart = 0;
+						}
+					}
+				}
 			}
 
-			int start = 0;
-			int end = 0;
-			int total = 0;
-
-			if (matcher.find()) {
-				start = GetterUtil.getInteger(matcher.group(1));
-				end = GetterUtil.getInteger(matcher.group(2));
-				total = GetterUtil.getInteger(matcher.group(3));
-			}
-
-			GGPagination pagination = new GGPagination(
-				GGPagination.DEFAULT_DELTA, start, end, total);
+			GGPagination pagination = new GGPagination(prevStart, moreStart);
 
 			return new GGData(categories, entries, pagination);
 		}
@@ -134,17 +152,23 @@ public class GGDataWebCacheItem implements WebCacheItem {
 	private static final Pattern _categoriesEntriesPattern = Pattern.compile(
 		PortletProps.get("regex.categories.entries"), Pattern.DOTALL);
 
-	private static final Pattern _categoriesPaginationPattern = Pattern.compile(
-		PortletProps.get("regex.categories.pagination"), Pattern.DOTALL);
+	private static final Pattern _paginationMorePattern = Pattern.compile(
+		PortletProps.get("regex.categories.pagination.more"), Pattern.DOTALL);
 
-	private static final Pattern _queryPattern = Pattern.compile(
-		PortletProps.get("regex.query"), Pattern.DOTALL);
+	private static final Pattern _paginationPattern = Pattern.compile(
+		PortletProps.get("regex.pagination"), Pattern.DOTALL);
+
+	private static final Pattern _paginationPrevPattern = Pattern.compile(
+		PortletProps.get("regex.categories.pagination.prev"), Pattern.DOTALL);
 
 	private static final Pattern _queryEntriesPattern = Pattern.compile(
 		PortletProps.get("regex.query.entries"), Pattern.DOTALL);
 
 	private static final Pattern _queryPaginationPattern = Pattern.compile(
 		PortletProps.get("regex.query.pagination"), Pattern.DOTALL);
+
+	private static final Pattern _queryPattern = Pattern.compile(
+		PortletProps.get("regex.query"), Pattern.DOTALL);
 
 	private String _url;
 

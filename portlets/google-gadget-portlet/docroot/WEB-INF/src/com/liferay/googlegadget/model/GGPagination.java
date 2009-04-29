@@ -26,54 +26,33 @@ package com.liferay.googlegadget.model;
  * <a href="GGPagination.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
+ * @author Alberto Montero
  *
  */
 public class GGPagination {
 
-	public static final int DEFAULT_DELTA = 24;
-
-	public GGPagination(int delta, int start, int end, int total) {
-		_delta = delta;
-		_start = start;
-		_end = end;
-		_total = total;
+	public GGPagination(int prevStart, int moreStart) {
+		_prevStart = prevStart;
+		_moreStart = moreStart;
 	}
 
-	public int getDelta() {
-		return _delta;
+	public int getPrevStart() {
+		return _prevStart;
 	}
 
-	public void setDelta(int delta) {
-		_delta = delta;
+	public void setPrevStart(int prevStart) {
+		_prevStart = prevStart;
 	}
 
-	public int getStart() {
-		return _start;
+	public int getMoreStart() {
+		return _moreStart;
 	}
 
-	public void setStart(int start) {
-		_start = start;
+	public void setMoreStart(int moreStart) {
+		_moreStart = moreStart;
 	}
 
-	public int getEnd() {
-		return _end;
-	}
-
-	public void setEnd(int end) {
-		_end = end;
-	}
-
-	public int getTotal() {
-		return _total;
-	}
-
-	public void setTotal(int total) {
-		_total = total;
-	}
-
-	private int _delta;
-	private int _start;
-	private int _end;
-	private int _total;
+	private int _prevStart;
+	private int _moreStart;
 
 }
