@@ -333,6 +333,15 @@ body #banner h1.logo a {
 
 /* List */
 
+.results-grid {
+	border: 1px solid #CCC;
+	padding: 0;
+}
+
+.results-grid .results-row.hover td {
+	background: #E9E9FD;
+}
+
 .results-header {
 	background: #7F80A4;
 }
@@ -345,9 +354,27 @@ body #banner h1.logo a {
 	background: #F0F5F7;
 }
 
-.results-grid {
-	border: 1px solid #CCC;
-	padding: 0;
+/* Autocomplete */
+
+.ui-autocomplete-even {
+	background: #FFF;
+}
+
+.ui-autocomplete-odd {
+	background: #F0F5F7;
+}
+
+.ui-autocomplete-over {
+	background: #E9E9FD;
+}
+
+.ui-autocomplete-results {
+	border-color: transparent #DEDEDE #DEDEDE #BFBFBF;
+	font-size: 1.2em;
+}
+
+.ui-autocomplete-results li {
+	padding: 5px;
 }
 
 /* Liferay Forms */
@@ -392,35 +419,6 @@ textarea.focus,
 ie6 textarea.focus {
 	background: #FFF6ED;
 	border: 1px solid #FC9;
-}
-
-/* Liferay Search Iterator */
-
-.results-grid .results-row.hover td {
-	background: #E9E9FD;
-}
-
-/* Autocomplete */
-
-.ui-autocomplete-even {
-	background: #FFF;
-}
-
-.ui-autocomplete-odd {
-	background: #F0F5F7;
-}
-
-.ui-autocomplete-over {
-	background: #E9E9FD;
-}
-
-.ui-autocomplete-results {
-	border-color: transparent #DEDEDE #DEDEDE #BFBFBF;
-	font-size: 1.2em;
-}
-
-.ui-autocomplete-results li {
-	padding: 5px;
 }
 
 /* Liferay Tabs */
