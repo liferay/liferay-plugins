@@ -34,10 +34,30 @@
 	keyProperty="groupId"
 	modelVar="group"
 >
-	<liferay-ui:search-container-column-jsp
-		align="left"
-		path="/html/portlet/communities/community_info.jsp"
-	/>
+	<liferay-ui:search-container-column-text>
+
+		<%
+		PortletURL rowURL = renderResponse.createActionURL();
+
+		rowURL.setWindowState(WindowState.NORMAL);
+
+		rowURL.setParameter("struts_action", "/communities/page");
+		rowURL.setParameter("groupId", String.valueOf(group.getGroupId()));
+		rowURL.setParameter("redirect", currentURL);
+		%>
+
+		<div>
+			<a href="<%= rowURL %>"><%= group.getName() %></a>
+
+			<c:if test="<%= Validator.isNotNull(group.getDescription()) %>">
+				<img alt="arrow" class="description-toggle" src="<%= themeDisplay.getPathThemeImage() %>/custom/arrow_right.png" />
+			</c:if>
+
+			<div class="description">
+				<%= StringUtil.shorten(group.getDescription(), 200) %>
+			</div>
+		</div>
+	</liferay-ui:search-container-column-text>
 
 	<liferay-ui:search-container-column-jsp
 		align="right"
