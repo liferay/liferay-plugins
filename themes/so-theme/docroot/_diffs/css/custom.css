@@ -400,6 +400,29 @@ ie6 textarea.focus {
 	background: #E9E9FD;
 }
 
+/* Autocomplete */
+
+.ui-autocomplete-even {
+	background: #FFF;
+}
+
+.ui-autocomplete-odd {
+	background: #F0F5F7;
+}
+
+.ui-autocomplete-over {
+	background: #E9E9FD;
+}
+
+.ui-autocomplete-results {
+	border-color: transparent #DEDEDE #DEDEDE #BFBFBF;
+	font-size: 1.2em;
+}
+
+.ui-autocomplete-results li {
+	padding: 5px;
+}
+
 /* Liferay Tabs */
 
 .ui-tabs {
