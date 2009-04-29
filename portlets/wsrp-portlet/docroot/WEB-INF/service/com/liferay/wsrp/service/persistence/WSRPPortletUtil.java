@@ -29,6 +29,16 @@ package com.liferay.wsrp.service.persistence;
  *
  */
 public class WSRPPortletUtil {
+	public static void cacheResult(
+		com.liferay.wsrp.model.WSRPPortlet wsrpPortlet) {
+		getPersistence().cacheResult(wsrpPortlet);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.wsrp.model.WSRPPortlet> wsrpPortlets) {
+		getPersistence().cacheResult(wsrpPortlets);
+	}
+
 	public static com.liferay.wsrp.model.WSRPPortlet create(long portletId) {
 		return getPersistence().create(portletId);
 	}
@@ -85,6 +95,12 @@ public class WSRPPortletUtil {
 	public static com.liferay.wsrp.model.WSRPPortlet fetchByPortletName(
 		java.lang.String name) throws com.liferay.portal.SystemException {
 		return getPersistence().fetchByPortletName(name);
+	}
+
+	public static com.liferay.wsrp.model.WSRPPortlet fetchByPortletName(
+		java.lang.String name, boolean retrieveFromCache)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().fetchByPortletName(name, retrieveFromCache);
 	}
 
 	public static java.util.List<com.liferay.wsrp.model.WSRPPortlet> findByProducerEntityId(

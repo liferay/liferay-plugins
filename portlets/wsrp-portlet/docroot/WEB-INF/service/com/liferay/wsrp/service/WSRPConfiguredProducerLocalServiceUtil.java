@@ -90,6 +90,13 @@ public class WSRPConfiguredProducerLocalServiceUtil {
 		return getService().updateWSRPConfiguredProducer(wsrpConfiguredProducer);
 	}
 
+	public static com.liferay.wsrp.model.WSRPConfiguredProducer updateWSRPConfiguredProducer(
+		com.liferay.wsrp.model.WSRPConfiguredProducer wsrpConfiguredProducer,
+		boolean merge) throws com.liferay.portal.SystemException {
+		return getService()
+				   .updateWSRPConfiguredProducer(wsrpConfiguredProducer, merge);
+	}
+
 	public static void addConfiguredProducer(java.lang.String name,
 		java.lang.String portalId, java.lang.String namespace,
 		java.lang.String producerURL, java.lang.String producerVersion,

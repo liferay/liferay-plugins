@@ -338,6 +338,40 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		return (com.liferay.wsrp.model.WSRPProducer)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.wsrp.model.WSRPProducer updateWSRPProducer(
+		com.liferay.wsrp.model.WSRPProducer wsrpProducer, boolean merge)
+		throws com.liferay.portal.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(wsrpProducer);
+
+		if (wsrpProducer == null) {
+			paramObj0 = new NullWrapper("com.liferay.wsrp.model.WSRPProducer");
+		}
+
+		Object paramObj1 = new BooleanWrapper(merge);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("updateWSRPProducer",
+					new Object[] { paramObj0, paramObj1 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.wsrp.model.WSRPProducer)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public void addProducer(java.lang.String portalId, boolean status,
 		java.lang.String namespace, java.lang.String instanceName,
 		boolean requiresRegistration, boolean supportsInbandRegistration,

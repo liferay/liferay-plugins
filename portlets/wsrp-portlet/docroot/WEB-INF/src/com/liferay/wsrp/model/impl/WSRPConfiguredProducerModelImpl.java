@@ -48,7 +48,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public class WSRPConfiguredProducerModelImpl extends BaseModelImpl {
+public class WSRPConfiguredProducerModelImpl extends BaseModelImpl<WSRPConfiguredProducer> {
 	public static final String TABLE_NAME = "WSRP_WSRPConfiguredProducer";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "configuredProducerId", new Integer(Types.BIGINT) },
@@ -106,7 +106,10 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl {
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.wsrp.model.WSRPConfiguredProducer"),
+			true);
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.wsrp.model.WSRPConfiguredProducer"),
 			true);
 
@@ -179,9 +182,7 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl {
 	}
 
 	public void setName(String name) {
-		if (((name == null) && (_name != null)) ||
-				((name != null) && (_name == null)) ||
-				((name != null) && (_name != null) && !name.equals(_name))) {
+		if ((name != _name) || ((name != null) && !name.equals(_name))) {
 			_name = name;
 		}
 	}
@@ -191,10 +192,8 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl {
 	}
 
 	public void setPortalId(String portalId) {
-		if (((portalId == null) && (_portalId != null)) ||
-				((portalId != null) && (_portalId == null)) ||
-				((portalId != null) && (_portalId != null) &&
-				!portalId.equals(_portalId))) {
+		if ((portalId != _portalId) ||
+				((portalId != null) && !portalId.equals(_portalId))) {
 			_portalId = portalId;
 		}
 	}
@@ -204,10 +203,8 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl {
 	}
 
 	public void setNamespace(String namespace) {
-		if (((namespace == null) && (_namespace != null)) ||
-				((namespace != null) && (_namespace == null)) ||
-				((namespace != null) && (_namespace != null) &&
-				!namespace.equals(_namespace))) {
+		if ((namespace != _namespace) ||
+				((namespace != null) && !namespace.equals(_namespace))) {
 			_namespace = namespace;
 		}
 	}
@@ -217,10 +214,8 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl {
 	}
 
 	public void setProducerURL(String producerURL) {
-		if (((producerURL == null) && (_producerURL != null)) ||
-				((producerURL != null) && (_producerURL == null)) ||
-				((producerURL != null) && (_producerURL != null) &&
-				!producerURL.equals(_producerURL))) {
+		if ((producerURL != _producerURL) ||
+				((producerURL != null) && !producerURL.equals(_producerURL))) {
 			_producerURL = producerURL;
 		}
 	}
@@ -230,9 +225,8 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl {
 	}
 
 	public void setProducerVersion(String producerVersion) {
-		if (((producerVersion == null) && (_producerVersion != null)) ||
-				((producerVersion != null) && (_producerVersion == null)) ||
-				((producerVersion != null) && (_producerVersion != null) &&
+		if ((producerVersion != _producerVersion) ||
+				((producerVersion != null) &&
 				!producerVersion.equals(_producerVersion))) {
 			_producerVersion = producerVersion;
 		}
@@ -243,9 +237,8 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl {
 	}
 
 	public void setProducerMarkupURL(String producerMarkupURL) {
-		if (((producerMarkupURL == null) && (_producerMarkupURL != null)) ||
-				((producerMarkupURL != null) && (_producerMarkupURL == null)) ||
-				((producerMarkupURL != null) && (_producerMarkupURL != null) &&
+		if ((producerMarkupURL != _producerMarkupURL) ||
+				((producerMarkupURL != null) &&
 				!producerMarkupURL.equals(_producerMarkupURL))) {
 			_producerMarkupURL = producerMarkupURL;
 		}
@@ -266,9 +259,8 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl {
 	}
 
 	public void setRegistrationData(String registrationData) {
-		if (((registrationData == null) && (_registrationData != null)) ||
-				((registrationData != null) && (_registrationData == null)) ||
-				((registrationData != null) && (_registrationData != null) &&
+		if ((registrationData != _registrationData) ||
+				((registrationData != null) &&
 				!registrationData.equals(_registrationData))) {
 			_registrationData = registrationData;
 		}
@@ -279,11 +271,8 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl {
 	}
 
 	public void setRegistrationContext(String registrationContext) {
-		if (((registrationContext == null) && (_registrationContext != null)) ||
+		if ((registrationContext != _registrationContext) ||
 				((registrationContext != null) &&
-				(_registrationContext == null)) ||
-				((registrationContext != null) &&
-				(_registrationContext != null) &&
 				!registrationContext.equals(_registrationContext))) {
 			_registrationContext = registrationContext;
 		}
@@ -294,9 +283,8 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl {
 	}
 
 	public void setServiceDescription(String serviceDescription) {
-		if (((serviceDescription == null) && (_serviceDescription != null)) ||
-				((serviceDescription != null) && (_serviceDescription == null)) ||
-				((serviceDescription != null) && (_serviceDescription != null) &&
+		if ((serviceDescription != _serviceDescription) ||
+				((serviceDescription != null) &&
 				!serviceDescription.equals(_serviceDescription))) {
 			_serviceDescription = serviceDescription;
 		}
@@ -307,11 +295,8 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl {
 	}
 
 	public void setUserCategoryMapping(String userCategoryMapping) {
-		if (((userCategoryMapping == null) && (_userCategoryMapping != null)) ||
+		if ((userCategoryMapping != _userCategoryMapping) ||
 				((userCategoryMapping != null) &&
-				(_userCategoryMapping == null)) ||
-				((userCategoryMapping != null) &&
-				(_userCategoryMapping != null) &&
 				!userCategoryMapping.equals(_userCategoryMapping))) {
 			_userCategoryMapping = userCategoryMapping;
 		}
@@ -322,9 +307,8 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl {
 	}
 
 	public void setCustomUserProfile(String customUserProfile) {
-		if (((customUserProfile == null) && (_customUserProfile != null)) ||
-				((customUserProfile != null) && (_customUserProfile == null)) ||
-				((customUserProfile != null) && (_customUserProfile != null) &&
+		if ((customUserProfile != _customUserProfile) ||
+				((customUserProfile != null) &&
 				!customUserProfile.equals(_customUserProfile))) {
 			_customUserProfile = customUserProfile;
 		}
@@ -335,12 +319,8 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl {
 	}
 
 	public void setIdentityPropagationType(String identityPropagationType) {
-		if (((identityPropagationType == null) &&
-				(_identityPropagationType != null)) ||
+		if ((identityPropagationType != _identityPropagationType) ||
 				((identityPropagationType != null) &&
-				(_identityPropagationType == null)) ||
-				((identityPropagationType != null) &&
-				(_identityPropagationType != null) &&
 				!identityPropagationType.equals(_identityPropagationType))) {
 			_identityPropagationType = identityPropagationType;
 		}
@@ -351,12 +331,8 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl {
 	}
 
 	public void setLifetimeTerminationTime(String lifetimeTerminationTime) {
-		if (((lifetimeTerminationTime == null) &&
-				(_lifetimeTerminationTime != null)) ||
+		if ((lifetimeTerminationTime != _lifetimeTerminationTime) ||
 				((lifetimeTerminationTime != null) &&
-				(_lifetimeTerminationTime == null)) ||
-				((lifetimeTerminationTime != null) &&
-				(_lifetimeTerminationTime != null) &&
 				!lifetimeTerminationTime.equals(_lifetimeTerminationTime))) {
 			_lifetimeTerminationTime = lifetimeTerminationTime;
 		}
@@ -455,13 +431,7 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		WSRPConfiguredProducerImpl wsrpConfiguredProducer = (WSRPConfiguredProducerImpl)obj;
-
+	public int compareTo(WSRPConfiguredProducer wsrpConfiguredProducer) {
 		long pk = wsrpConfiguredProducer.getPrimaryKey();
 
 		if (getPrimaryKey() < pk) {
@@ -480,10 +450,10 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl {
 			return false;
 		}
 
-		WSRPConfiguredProducerImpl wsrpConfiguredProducer = null;
+		WSRPConfiguredProducer wsrpConfiguredProducer = null;
 
 		try {
-			wsrpConfiguredProducer = (WSRPConfiguredProducerImpl)obj;
+			wsrpConfiguredProducer = (WSRPConfiguredProducer)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;

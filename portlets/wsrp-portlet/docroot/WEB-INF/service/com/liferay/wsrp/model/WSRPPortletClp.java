@@ -36,7 +36,8 @@ import java.lang.reflect.Proxy;
  * @author Brian Wing Shun Chan
  *
  */
-public class WSRPPortletClp extends BaseModelImpl implements WSRPPortlet {
+public class WSRPPortletClp extends BaseModelImpl<WSRPPortlet>
+	implements WSRPPortlet {
 	public WSRPPortletClp() {
 	}
 
@@ -197,13 +198,7 @@ public class WSRPPortletClp extends BaseModelImpl implements WSRPPortlet {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		WSRPPortletClp wsrpPortlet = (WSRPPortletClp)obj;
-
+	public int compareTo(WSRPPortlet wsrpPortlet) {
 		long pk = wsrpPortlet.getPrimaryKey();
 
 		if (getPrimaryKey() < pk) {

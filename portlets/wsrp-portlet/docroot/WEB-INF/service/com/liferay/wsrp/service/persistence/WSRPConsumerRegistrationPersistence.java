@@ -22,10 +22,6 @@
 
 package com.liferay.wsrp.service.persistence;
 
-import com.liferay.portal.PortalException;
-import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.annotation.Propagation;
-import com.liferay.portal.kernel.annotation.Transactional;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -34,9 +30,13 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * @author Brian Wing Shun Chan
  *
  */
-@Transactional(rollbackFor =  {
-	PortalException.class, SystemException.class})
 public interface WSRPConsumerRegistrationPersistence extends BasePersistence {
+	public void cacheResult(
+		com.liferay.wsrp.model.WSRPConsumerRegistration wsrpConsumerRegistration);
+
+	public void cacheResult(
+		java.util.List<com.liferay.wsrp.model.WSRPConsumerRegistration> wsrpConsumerRegistrations);
+
 	public com.liferay.wsrp.model.WSRPConsumerRegistration create(
 		long consumerRegistrationId);
 
@@ -61,7 +61,6 @@ public interface WSRPConsumerRegistrationPersistence extends BasePersistence {
 		com.liferay.wsrp.model.WSRPConsumerRegistration wsrpConsumerRegistration,
 		boolean merge) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wsrp.model.WSRPConsumerRegistration findByPrimaryKey(
 		long consumerRegistrationId)
 		throws com.liferay.portal.SystemException,
@@ -70,43 +69,36 @@ public interface WSRPConsumerRegistrationPersistence extends BasePersistence {
 	public com.liferay.wsrp.model.WSRPConsumerRegistration fetchByPrimaryKey(
 		long consumerRegistrationId) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wsrp.model.WSRPConsumerRegistration> findByProducerKey(
 		java.lang.String producerKey) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wsrp.model.WSRPConsumerRegistration> findByProducerKey(
 		java.lang.String producerKey, int start, int end)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wsrp.model.WSRPConsumerRegistration> findByProducerKey(
 		java.lang.String producerKey, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wsrp.model.WSRPConsumerRegistration findByProducerKey_First(
 		java.lang.String producerKey,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wsrp.NoSuchConsumerRegistrationException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wsrp.model.WSRPConsumerRegistration findByProducerKey_Last(
 		java.lang.String producerKey,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wsrp.NoSuchConsumerRegistrationException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wsrp.model.WSRPConsumerRegistration[] findByProducerKey_PrevAndNext(
 		long consumerRegistrationId, java.lang.String producerKey,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wsrp.NoSuchConsumerRegistrationException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wsrp.model.WSRPConsumerRegistration findByR_P(
 		java.lang.String registrationHandle, java.lang.String producerKey)
 		throws com.liferay.portal.SystemException,
@@ -116,25 +108,24 @@ public interface WSRPConsumerRegistrationPersistence extends BasePersistence {
 		java.lang.String registrationHandle, java.lang.String producerKey)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.wsrp.model.WSRPConsumerRegistration fetchByR_P(
+		java.lang.String registrationHandle, java.lang.String producerKey,
+		boolean retrieveFromCache) throws com.liferay.portal.SystemException;
+
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wsrp.model.WSRPConsumerRegistration> findAll()
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wsrp.model.WSRPConsumerRegistration> findAll(
 		int start, int end) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wsrp.model.WSRPConsumerRegistration> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
@@ -149,14 +140,11 @@ public interface WSRPConsumerRegistrationPersistence extends BasePersistence {
 
 	public void removeAll() throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByProducerKey(java.lang.String producerKey)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByR_P(java.lang.String registrationHandle,
 		java.lang.String producerKey) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countAll() throws com.liferay.portal.SystemException;
 }

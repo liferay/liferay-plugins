@@ -22,6 +22,7 @@
 
 package com.liferay.wsrp.service;
 
+import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.LongWrapper;
@@ -317,6 +318,40 @@ public class WSRPPortletLocalServiceClp implements WSRPPortletLocalService {
 		try {
 			returnObj = _classLoaderProxy.invoke("updateWSRPPortlet",
 					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.wsrp.model.WSRPPortlet)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.liferay.wsrp.model.WSRPPortlet updateWSRPPortlet(
+		com.liferay.wsrp.model.WSRPPortlet wsrpPortlet, boolean merge)
+		throws com.liferay.portal.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(wsrpPortlet);
+
+		if (wsrpPortlet == null) {
+			paramObj0 = new NullWrapper("com.liferay.wsrp.model.WSRPPortlet");
+		}
+
+		Object paramObj1 = new BooleanWrapper(merge);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("updateWSRPPortlet",
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.SystemException) {

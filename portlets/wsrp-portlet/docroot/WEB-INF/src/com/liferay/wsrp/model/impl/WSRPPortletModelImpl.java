@@ -48,7 +48,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public class WSRPPortletModelImpl extends BaseModelImpl {
+public class WSRPPortletModelImpl extends BaseModelImpl<WSRPPortlet> {
 	public static final String TABLE_NAME = "WSRP_WSRPPortlet";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "portletId", new Integer(Types.BIGINT) },
@@ -91,7 +91,10 @@ public class WSRPPortletModelImpl extends BaseModelImpl {
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.wsrp.model.WSRPPortlet"),
+			true);
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.wsrp.model.WSRPPortlet"),
 			true);
 
@@ -157,11 +160,17 @@ public class WSRPPortletModelImpl extends BaseModelImpl {
 	}
 
 	public void setName(String name) {
-		if (((name == null) && (_name != null)) ||
-				((name != null) && (_name == null)) ||
-				((name != null) && (_name != null) && !name.equals(_name))) {
+		if ((name != _name) || ((name != null) && !name.equals(_name))) {
 			_name = name;
+
+			if (_originalName == null) {
+				_originalName = name;
+			}
 		}
+	}
+
+	public String getOriginalName() {
+		return GetterUtil.getString(_originalName);
 	}
 
 	public String getChannelName() {
@@ -169,10 +178,8 @@ public class WSRPPortletModelImpl extends BaseModelImpl {
 	}
 
 	public void setChannelName(String channelName) {
-		if (((channelName == null) && (_channelName != null)) ||
-				((channelName != null) && (_channelName == null)) ||
-				((channelName != null) && (_channelName != null) &&
-				!channelName.equals(_channelName))) {
+		if ((channelName != _channelName) ||
+				((channelName != null) && !channelName.equals(_channelName))) {
 			_channelName = channelName;
 		}
 	}
@@ -182,9 +189,7 @@ public class WSRPPortletModelImpl extends BaseModelImpl {
 	}
 
 	public void setTitle(String title) {
-		if (((title == null) && (_title != null)) ||
-				((title != null) && (_title == null)) ||
-				((title != null) && (_title != null) && !title.equals(_title))) {
+		if ((title != _title) || ((title != null) && !title.equals(_title))) {
 			_title = title;
 		}
 	}
@@ -194,10 +199,8 @@ public class WSRPPortletModelImpl extends BaseModelImpl {
 	}
 
 	public void setShortTitle(String shortTitle) {
-		if (((shortTitle == null) && (_shortTitle != null)) ||
-				((shortTitle != null) && (_shortTitle == null)) ||
-				((shortTitle != null) && (_shortTitle != null) &&
-				!shortTitle.equals(_shortTitle))) {
+		if ((shortTitle != _shortTitle) ||
+				((shortTitle != null) && !shortTitle.equals(_shortTitle))) {
 			_shortTitle = shortTitle;
 		}
 	}
@@ -207,10 +210,8 @@ public class WSRPPortletModelImpl extends BaseModelImpl {
 	}
 
 	public void setDisplayName(String displayName) {
-		if (((displayName == null) && (_displayName != null)) ||
-				((displayName != null) && (_displayName == null)) ||
-				((displayName != null) && (_displayName != null) &&
-				!displayName.equals(_displayName))) {
+		if ((displayName != _displayName) ||
+				((displayName != null) && !displayName.equals(_displayName))) {
 			_displayName = displayName;
 		}
 	}
@@ -220,10 +221,8 @@ public class WSRPPortletModelImpl extends BaseModelImpl {
 	}
 
 	public void setKeywords(String keywords) {
-		if (((keywords == null) && (_keywords != null)) ||
-				((keywords != null) && (_keywords == null)) ||
-				((keywords != null) && (_keywords != null) &&
-				!keywords.equals(_keywords))) {
+		if ((keywords != _keywords) ||
+				((keywords != null) && !keywords.equals(_keywords))) {
 			_keywords = keywords;
 		}
 	}
@@ -243,9 +242,8 @@ public class WSRPPortletModelImpl extends BaseModelImpl {
 	}
 
 	public void setProducerEntityId(String producerEntityId) {
-		if (((producerEntityId == null) && (_producerEntityId != null)) ||
-				((producerEntityId != null) && (_producerEntityId == null)) ||
-				((producerEntityId != null) && (_producerEntityId != null) &&
+		if ((producerEntityId != _producerEntityId) ||
+				((producerEntityId != null) &&
 				!producerEntityId.equals(_producerEntityId))) {
 			_producerEntityId = producerEntityId;
 		}
@@ -256,10 +254,8 @@ public class WSRPPortletModelImpl extends BaseModelImpl {
 	}
 
 	public void setConsumerId(String consumerId) {
-		if (((consumerId == null) && (_consumerId != null)) ||
-				((consumerId != null) && (_consumerId == null)) ||
-				((consumerId != null) && (_consumerId != null) &&
-				!consumerId.equals(_consumerId))) {
+		if ((consumerId != _consumerId) ||
+				((consumerId != null) && !consumerId.equals(_consumerId))) {
 			_consumerId = consumerId;
 		}
 	}
@@ -269,9 +265,8 @@ public class WSRPPortletModelImpl extends BaseModelImpl {
 	}
 
 	public void setPortletHandle(String portletHandle) {
-		if (((portletHandle == null) && (_portletHandle != null)) ||
-				((portletHandle != null) && (_portletHandle == null)) ||
-				((portletHandle != null) && (_portletHandle != null) &&
+		if ((portletHandle != _portletHandle) ||
+				((portletHandle != null) &&
 				!portletHandle.equals(_portletHandle))) {
 			_portletHandle = portletHandle;
 		}
@@ -282,10 +277,8 @@ public class WSRPPortletModelImpl extends BaseModelImpl {
 	}
 
 	public void setMimeTypes(String mimeTypes) {
-		if (((mimeTypes == null) && (_mimeTypes != null)) ||
-				((mimeTypes != null) && (_mimeTypes == null)) ||
-				((mimeTypes != null) && (_mimeTypes != null) &&
-				!mimeTypes.equals(_mimeTypes))) {
+		if ((mimeTypes != _mimeTypes) ||
+				((mimeTypes != null) && !mimeTypes.equals(_mimeTypes))) {
 			_mimeTypes = mimeTypes;
 		}
 	}
@@ -349,13 +342,7 @@ public class WSRPPortletModelImpl extends BaseModelImpl {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		WSRPPortletImpl wsrpPortlet = (WSRPPortletImpl)obj;
-
+	public int compareTo(WSRPPortlet wsrpPortlet) {
 		long pk = wsrpPortlet.getPrimaryKey();
 
 		if (getPrimaryKey() < pk) {
@@ -374,10 +361,10 @@ public class WSRPPortletModelImpl extends BaseModelImpl {
 			return false;
 		}
 
-		WSRPPortletImpl wsrpPortlet = null;
+		WSRPPortlet wsrpPortlet = null;
 
 		try {
-			wsrpPortlet = (WSRPPortletImpl)obj;
+			wsrpPortlet = (WSRPPortlet)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;
@@ -399,6 +386,7 @@ public class WSRPPortletModelImpl extends BaseModelImpl {
 
 	private long _portletId;
 	private String _name;
+	private String _originalName;
 	private String _channelName;
 	private String _title;
 	private String _shortTitle;

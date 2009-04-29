@@ -106,6 +106,15 @@ public abstract class WSRPConsumerRegistrationLocalServiceBaseImpl
 			true);
 	}
 
+	public WSRPConsumerRegistration updateWSRPConsumerRegistration(
+		WSRPConsumerRegistration wsrpConsumerRegistration, boolean merge)
+		throws SystemException {
+		wsrpConsumerRegistration.setNew(false);
+
+		return wsrpConsumerRegistrationPersistence.update(wsrpConsumerRegistration,
+			merge);
+	}
+
 	public WSRPConfiguredProducerLocalService getWSRPConfiguredProducerLocalService() {
 		return wsrpConfiguredProducerLocalService;
 	}

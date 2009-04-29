@@ -93,6 +93,14 @@ public class WSRPConsumerRegistrationLocalServiceUtil {
 				   .updateWSRPConsumerRegistration(wsrpConsumerRegistration);
 	}
 
+	public static com.liferay.wsrp.model.WSRPConsumerRegistration updateWSRPConsumerRegistration(
+		com.liferay.wsrp.model.WSRPConsumerRegistration wsrpConsumerRegistration,
+		boolean merge) throws com.liferay.portal.SystemException {
+		return getService()
+				   .updateWSRPConsumerRegistration(wsrpConsumerRegistration,
+			merge);
+	}
+
 	public static void addConsumerRegistration(java.lang.String consumerName,
 		boolean status, java.lang.String registrationHandle,
 		java.lang.String registrationData,

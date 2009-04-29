@@ -100,6 +100,13 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 		return wsrpProducerPersistence.update(wsrpProducer, true);
 	}
 
+	public WSRPProducer updateWSRPProducer(WSRPProducer wsrpProducer,
+		boolean merge) throws SystemException {
+		wsrpProducer.setNew(false);
+
+		return wsrpProducerPersistence.update(wsrpProducer, merge);
+	}
+
 	public WSRPConfiguredProducerLocalService getWSRPConfiguredProducerLocalService() {
 		return wsrpConfiguredProducerLocalService;
 	}

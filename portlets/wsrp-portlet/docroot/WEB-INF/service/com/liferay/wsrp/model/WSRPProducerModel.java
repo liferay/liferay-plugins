@@ -30,7 +30,7 @@ import com.liferay.portal.model.BaseModel;
  * @author Brian Wing Shun Chan
  *
  */
-public interface WSRPProducerModel extends BaseModel {
+public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	public long getPrimaryKey();
 
 	public void setPrimaryKey(long pk);

@@ -29,6 +29,16 @@ package com.liferay.wsrp.service.persistence;
  *
  */
 public class WSRPConsumerRegistrationUtil {
+	public static void cacheResult(
+		com.liferay.wsrp.model.WSRPConsumerRegistration wsrpConsumerRegistration) {
+		getPersistence().cacheResult(wsrpConsumerRegistration);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.wsrp.model.WSRPConsumerRegistration> wsrpConsumerRegistrations) {
+		getPersistence().cacheResult(wsrpConsumerRegistrations);
+	}
+
 	public static com.liferay.wsrp.model.WSRPConsumerRegistration create(
 		long consumerRegistrationId) {
 		return getPersistence().create(consumerRegistrationId);
@@ -132,6 +142,14 @@ public class WSRPConsumerRegistrationUtil {
 		java.lang.String registrationHandle, java.lang.String producerKey)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().fetchByR_P(registrationHandle, producerKey);
+	}
+
+	public static com.liferay.wsrp.model.WSRPConsumerRegistration fetchByR_P(
+		java.lang.String registrationHandle, java.lang.String producerKey,
+		boolean retrieveFromCache) throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .fetchByR_P(registrationHandle, producerKey,
+			retrieveFromCache);
 	}
 
 	public static java.util.List<Object> findWithDynamicQuery(

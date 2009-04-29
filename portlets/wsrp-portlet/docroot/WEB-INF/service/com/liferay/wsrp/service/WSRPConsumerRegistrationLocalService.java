@@ -24,6 +24,7 @@ package com.liferay.wsrp.service;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.Isolation;
 import com.liferay.portal.kernel.annotation.Propagation;
 import com.liferay.portal.kernel.annotation.Transactional;
 
@@ -33,7 +34,7 @@ import com.liferay.portal.kernel.annotation.Transactional;
  * @author Brian Wing Shun Chan
  *
  */
-@Transactional(rollbackFor =  {
+@Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor =  {
 	PortalException.class, SystemException.class})
 public interface WSRPConsumerRegistrationLocalService {
 	public com.liferay.wsrp.model.WSRPConsumerRegistration addWSRPConsumerRegistration(
@@ -76,6 +77,10 @@ public interface WSRPConsumerRegistrationLocalService {
 	public com.liferay.wsrp.model.WSRPConsumerRegistration updateWSRPConsumerRegistration(
 		com.liferay.wsrp.model.WSRPConsumerRegistration wsrpConsumerRegistration)
 		throws com.liferay.portal.SystemException;
+
+	public com.liferay.wsrp.model.WSRPConsumerRegistration updateWSRPConsumerRegistration(
+		com.liferay.wsrp.model.WSRPConsumerRegistration wsrpConsumerRegistration,
+		boolean merge) throws com.liferay.portal.SystemException;
 
 	public void addConsumerRegistration(java.lang.String consumerName,
 		boolean status, java.lang.String registrationHandle,

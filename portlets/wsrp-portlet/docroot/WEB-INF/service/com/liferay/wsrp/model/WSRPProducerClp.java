@@ -36,7 +36,8 @@ import java.lang.reflect.Proxy;
  * @author Brian Wing Shun Chan
  *
  */
-public class WSRPProducerClp extends BaseModelImpl implements WSRPProducer {
+public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
+	implements WSRPProducer {
 	public WSRPProducerClp() {
 	}
 
@@ -212,13 +213,7 @@ public class WSRPProducerClp extends BaseModelImpl implements WSRPProducer {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		WSRPProducerClp wsrpProducer = (WSRPProducerClp)obj;
-
+	public int compareTo(WSRPProducer wsrpProducer) {
 		long pk = wsrpProducer.getPrimaryKey();
 
 		if (getPrimaryKey() < pk) {

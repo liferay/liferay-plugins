@@ -106,6 +106,15 @@ public abstract class WSRPConfiguredProducerLocalServiceBaseImpl
 			true);
 	}
 
+	public WSRPConfiguredProducer updateWSRPConfiguredProducer(
+		WSRPConfiguredProducer wsrpConfiguredProducer, boolean merge)
+		throws SystemException {
+		wsrpConfiguredProducer.setNew(false);
+
+		return wsrpConfiguredProducerPersistence.update(wsrpConfiguredProducer,
+			merge);
+	}
+
 	public WSRPConfiguredProducerLocalService getWSRPConfiguredProducerLocalService() {
 		return wsrpConfiguredProducerLocalService;
 	}

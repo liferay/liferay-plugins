@@ -48,7 +48,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl {
+public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl<WSRPConsumerRegistration> {
 	public static final String TABLE_NAME = "WSRP_WSRPConsumerRegistration";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "consumerRegistrationId", new Integer(Types.BIGINT) },
@@ -76,7 +76,10 @@ public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl {
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.wsrp.model.WSRPConsumerRegistration"),
+			true);
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.wsrp.model.WSRPConsumerRegistration"),
 			true);
 
@@ -139,10 +142,8 @@ public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl {
 	}
 
 	public void setConsumerName(String consumerName) {
-		if (((consumerName == null) && (_consumerName != null)) ||
-				((consumerName != null) && (_consumerName == null)) ||
-				((consumerName != null) && (_consumerName != null) &&
-				!consumerName.equals(_consumerName))) {
+		if ((consumerName != _consumerName) ||
+				((consumerName != null) && !consumerName.equals(_consumerName))) {
 			_consumerName = consumerName;
 		}
 	}
@@ -166,12 +167,19 @@ public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl {
 	}
 
 	public void setRegistrationHandle(String registrationHandle) {
-		if (((registrationHandle == null) && (_registrationHandle != null)) ||
-				((registrationHandle != null) && (_registrationHandle == null)) ||
-				((registrationHandle != null) && (_registrationHandle != null) &&
+		if ((registrationHandle != _registrationHandle) ||
+				((registrationHandle != null) &&
 				!registrationHandle.equals(_registrationHandle))) {
 			_registrationHandle = registrationHandle;
+
+			if (_originalRegistrationHandle == null) {
+				_originalRegistrationHandle = registrationHandle;
+			}
 		}
+	}
+
+	public String getOriginalRegistrationHandle() {
+		return GetterUtil.getString(_originalRegistrationHandle);
 	}
 
 	public String getRegistrationData() {
@@ -179,9 +187,8 @@ public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl {
 	}
 
 	public void setRegistrationData(String registrationData) {
-		if (((registrationData == null) && (_registrationData != null)) ||
-				((registrationData != null) && (_registrationData == null)) ||
-				((registrationData != null) && (_registrationData != null) &&
+		if ((registrationData != _registrationData) ||
+				((registrationData != null) &&
 				!registrationData.equals(_registrationData))) {
 			_registrationData = registrationData;
 		}
@@ -192,12 +199,8 @@ public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl {
 	}
 
 	public void setLifetimeTerminationTime(String lifetimeTerminationTime) {
-		if (((lifetimeTerminationTime == null) &&
-				(_lifetimeTerminationTime != null)) ||
+		if ((lifetimeTerminationTime != _lifetimeTerminationTime) ||
 				((lifetimeTerminationTime != null) &&
-				(_lifetimeTerminationTime == null)) ||
-				((lifetimeTerminationTime != null) &&
-				(_lifetimeTerminationTime != null) &&
 				!lifetimeTerminationTime.equals(_lifetimeTerminationTime))) {
 			_lifetimeTerminationTime = lifetimeTerminationTime;
 		}
@@ -208,12 +211,18 @@ public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl {
 	}
 
 	public void setProducerKey(String producerKey) {
-		if (((producerKey == null) && (_producerKey != null)) ||
-				((producerKey != null) && (_producerKey == null)) ||
-				((producerKey != null) && (_producerKey != null) &&
-				!producerKey.equals(_producerKey))) {
+		if ((producerKey != _producerKey) ||
+				((producerKey != null) && !producerKey.equals(_producerKey))) {
 			_producerKey = producerKey;
+
+			if (_originalProducerKey == null) {
+				_originalProducerKey = producerKey;
+			}
 		}
+	}
+
+	public String getOriginalProducerKey() {
+		return GetterUtil.getString(_originalProducerKey);
 	}
 
 	public WSRPConsumerRegistration toEscapedModel() {
@@ -266,13 +275,7 @@ public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		WSRPConsumerRegistrationImpl wsrpConsumerRegistration = (WSRPConsumerRegistrationImpl)obj;
-
+	public int compareTo(WSRPConsumerRegistration wsrpConsumerRegistration) {
 		long pk = wsrpConsumerRegistration.getPrimaryKey();
 
 		if (getPrimaryKey() < pk) {
@@ -291,10 +294,10 @@ public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl {
 			return false;
 		}
 
-		WSRPConsumerRegistrationImpl wsrpConsumerRegistration = null;
+		WSRPConsumerRegistration wsrpConsumerRegistration = null;
 
 		try {
-			wsrpConsumerRegistration = (WSRPConsumerRegistrationImpl)obj;
+			wsrpConsumerRegistration = (WSRPConsumerRegistration)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;
@@ -318,8 +321,10 @@ public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl {
 	private String _consumerName;
 	private boolean _status;
 	private String _registrationHandle;
+	private String _originalRegistrationHandle;
 	private String _registrationData;
 	private String _lifetimeTerminationTime;
 	private String _producerKey;
+	private String _originalProducerKey;
 	private transient ExpandoBridge _expandoBridge;
 }

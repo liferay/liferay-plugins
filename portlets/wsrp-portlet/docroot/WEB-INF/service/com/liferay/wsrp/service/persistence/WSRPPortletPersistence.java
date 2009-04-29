@@ -22,10 +22,6 @@
 
 package com.liferay.wsrp.service.persistence;
 
-import com.liferay.portal.PortalException;
-import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.annotation.Propagation;
-import com.liferay.portal.kernel.annotation.Transactional;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -34,9 +30,12 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * @author Brian Wing Shun Chan
  *
  */
-@Transactional(rollbackFor =  {
-	PortalException.class, SystemException.class})
 public interface WSRPPortletPersistence extends BasePersistence {
+	public void cacheResult(com.liferay.wsrp.model.WSRPPortlet wsrpPortlet);
+
+	public void cacheResult(
+		java.util.List<com.liferay.wsrp.model.WSRPPortlet> wsrpPortlets);
+
 	public com.liferay.wsrp.model.WSRPPortlet create(long portletId);
 
 	public com.liferay.wsrp.model.WSRPPortlet remove(long portletId)
@@ -59,7 +58,6 @@ public interface WSRPPortletPersistence extends BasePersistence {
 		com.liferay.wsrp.model.WSRPPortlet wsrpPortlet, boolean merge)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wsrp.model.WSRPPortlet findByPrimaryKey(long portletId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wsrp.NoSuchPortletException;
@@ -67,7 +65,6 @@ public interface WSRPPortletPersistence extends BasePersistence {
 	public com.liferay.wsrp.model.WSRPPortlet fetchByPrimaryKey(long portletId)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wsrp.model.WSRPPortlet findByPortletName(
 		java.lang.String name)
 		throws com.liferay.portal.SystemException,
@@ -76,74 +73,66 @@ public interface WSRPPortletPersistence extends BasePersistence {
 	public com.liferay.wsrp.model.WSRPPortlet fetchByPortletName(
 		java.lang.String name) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.wsrp.model.WSRPPortlet fetchByPortletName(
+		java.lang.String name, boolean retrieveFromCache)
+		throws com.liferay.portal.SystemException;
+
 	public java.util.List<com.liferay.wsrp.model.WSRPPortlet> findByProducerEntityId(
 		java.lang.String producerEntityId)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wsrp.model.WSRPPortlet> findByProducerEntityId(
 		java.lang.String producerEntityId, int start, int end)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wsrp.model.WSRPPortlet> findByProducerEntityId(
 		java.lang.String producerEntityId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wsrp.model.WSRPPortlet findByProducerEntityId_First(
 		java.lang.String producerEntityId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wsrp.NoSuchPortletException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wsrp.model.WSRPPortlet findByProducerEntityId_Last(
 		java.lang.String producerEntityId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wsrp.NoSuchPortletException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wsrp.model.WSRPPortlet[] findByProducerEntityId_PrevAndNext(
 		long portletId, java.lang.String producerEntityId,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wsrp.NoSuchPortletException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wsrp.model.WSRPPortlet> findByP_P(
 		java.lang.String producerEntityId, java.lang.String portletHandle)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wsrp.model.WSRPPortlet> findByP_P(
 		java.lang.String producerEntityId, java.lang.String portletHandle,
 		int start, int end) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wsrp.model.WSRPPortlet> findByP_P(
 		java.lang.String producerEntityId, java.lang.String portletHandle,
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wsrp.model.WSRPPortlet findByP_P_First(
 		java.lang.String producerEntityId, java.lang.String portletHandle,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wsrp.NoSuchPortletException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wsrp.model.WSRPPortlet findByP_P_Last(
 		java.lang.String producerEntityId, java.lang.String portletHandle,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException,
 			com.liferay.wsrp.NoSuchPortletException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wsrp.model.WSRPPortlet[] findByP_P_PrevAndNext(
 		long portletId, java.lang.String producerEntityId,
 		java.lang.String portletHandle,
@@ -151,25 +140,20 @@ public interface WSRPPortletPersistence extends BasePersistence {
 		throws com.liferay.portal.SystemException,
 			com.liferay.wsrp.NoSuchPortletException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wsrp.model.WSRPPortlet> findAll()
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wsrp.model.WSRPPortlet> findAll(
 		int start, int end) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wsrp.model.WSRPPortlet> findAll(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
@@ -187,19 +171,15 @@ public interface WSRPPortletPersistence extends BasePersistence {
 
 	public void removeAll() throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByPortletName(java.lang.String name)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByProducerEntityId(java.lang.String producerEntityId)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByP_P(java.lang.String producerEntityId,
 		java.lang.String portletHandle)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countAll() throws com.liferay.portal.SystemException;
 }

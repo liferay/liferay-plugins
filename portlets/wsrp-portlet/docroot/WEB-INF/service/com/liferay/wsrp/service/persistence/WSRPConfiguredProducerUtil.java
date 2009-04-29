@@ -29,6 +29,16 @@ package com.liferay.wsrp.service.persistence;
  *
  */
 public class WSRPConfiguredProducerUtil {
+	public static void cacheResult(
+		com.liferay.wsrp.model.WSRPConfiguredProducer wsrpConfiguredProducer) {
+		getPersistence().cacheResult(wsrpConfiguredProducer);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.wsrp.model.WSRPConfiguredProducer> wsrpConfiguredProducers) {
+		getPersistence().cacheResult(wsrpConfiguredProducers);
+	}
+
 	public static com.liferay.wsrp.model.WSRPConfiguredProducer create(
 		long configuredProducerId) {
 		return getPersistence().create(configuredProducerId);

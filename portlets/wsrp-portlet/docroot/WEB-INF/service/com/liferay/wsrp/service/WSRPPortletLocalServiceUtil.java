@@ -90,6 +90,12 @@ public class WSRPPortletLocalServiceUtil {
 		return getService().updateWSRPPortlet(wsrpPortlet);
 	}
 
+	public static com.liferay.wsrp.model.WSRPPortlet updateWSRPPortlet(
+		com.liferay.wsrp.model.WSRPPortlet wsrpPortlet, boolean merge)
+		throws com.liferay.portal.SystemException {
+		return getService().updateWSRPPortlet(wsrpPortlet, merge);
+	}
+
 	public static com.liferay.wsrp.model.WSRPPortlet getPortlet(
 		java.lang.String portletName)
 		throws com.liferay.portal.SystemException,

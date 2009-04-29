@@ -25,7 +25,9 @@ package com.liferay.wsrp.service.persistence;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -47,7 +49,6 @@ import com.liferay.wsrp.model.impl.WSRPPortletModelImpl;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -58,6 +59,73 @@ import java.util.List;
  */
 public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 	implements WSRPPortletPersistence {
+	public static final String FINDER_CLASS_NAME_ENTITY = WSRPPortletImpl.class.getName();
+	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
+		".List";
+	public static final FinderPath FINDER_PATH_FETCH_BY_PORTLETNAME = new FinderPath(WSRPPortletModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPPortletModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_ENTITY, "fetchByPortletName",
+			new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_COUNT_BY_PORTLETNAME = new FinderPath(WSRPPortletModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPPortletModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByPortletName", new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_PRODUCERENTITYID = new FinderPath(WSRPPortletModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPPortletModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByProducerEntityId", new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_PRODUCERENTITYID = new FinderPath(WSRPPortletModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPPortletModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByProducerEntityId",
+			new String[] {
+				String.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_PRODUCERENTITYID = new FinderPath(WSRPPortletModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPPortletModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByProducerEntityId", new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_P_P = new FinderPath(WSRPPortletModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPPortletModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByP_P",
+			new String[] { String.class.getName(), String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_P_P = new FinderPath(WSRPPortletModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPPortletModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByP_P",
+			new String[] {
+				String.class.getName(), String.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_P_P = new FinderPath(WSRPPortletModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPPortletModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByP_P",
+			new String[] { String.class.getName(), String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(WSRPPortletModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPPortletModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(WSRPPortletModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPPortletModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countAll", new String[0]);
+
+	public void cacheResult(WSRPPortlet wsrpPortlet) {
+		EntityCacheUtil.putResult(WSRPPortletModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPPortletImpl.class, wsrpPortlet.getPrimaryKey(), wsrpPortlet);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_PORTLETNAME,
+			new Object[] { wsrpPortlet.getName() }, wsrpPortlet);
+	}
+
+	public void cacheResult(List<WSRPPortlet> wsrpPortlets) {
+		for (WSRPPortlet wsrpPortlet : wsrpPortlets) {
+			if (EntityCacheUtil.getResult(
+						WSRPPortletModelImpl.ENTITY_CACHE_ENABLED,
+						WSRPPortletImpl.class, wsrpPortlet.getPrimaryKey(), this) == null) {
+				cacheResult(wsrpPortlet);
+			}
+		}
+	}
+
 	public WSRPPortlet create(long portletId) {
 		WSRPPortlet wsrpPortlet = new WSRPPortletImpl();
 
@@ -102,13 +170,13 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 
 	public WSRPPortlet remove(WSRPPortlet wsrpPortlet)
 		throws SystemException {
-		for (ModelListener listener : listeners) {
+		for (ModelListener<WSRPPortlet> listener : listeners) {
 			listener.onBeforeRemove(wsrpPortlet);
 		}
 
 		wsrpPortlet = removeImpl(wsrpPortlet);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<WSRPPortlet> listener : listeners) {
 			listener.onAfterRemove(wsrpPortlet);
 		}
 
@@ -122,7 +190,7 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
-			if (BatchSessionUtil.isEnabled()) {
+			if (wsrpPortlet.isCachedModel() || BatchSessionUtil.isEnabled()) {
 				Object staleObject = session.get(WSRPPortletImpl.class,
 						wsrpPortlet.getPrimaryKeyObj());
 
@@ -134,17 +202,25 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 			session.delete(wsrpPortlet);
 
 			session.flush();
-
-			return wsrpPortlet;
 		}
 		catch (Exception e) {
 			throw processException(e);
 		}
 		finally {
 			closeSession(session);
-
-			FinderCacheUtil.clearCache(WSRPPortlet.class.getName());
 		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		WSRPPortletModelImpl wsrpPortletModelImpl = (WSRPPortletModelImpl)wsrpPortlet;
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_PORTLETNAME,
+			new Object[] { wsrpPortletModelImpl.getOriginalName() });
+
+		EntityCacheUtil.removeResult(WSRPPortletModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPPortletImpl.class, wsrpPortlet.getPrimaryKey());
+
+		return wsrpPortlet;
 	}
 
 	public WSRPPortlet update(WSRPPortlet wsrpPortlet)
@@ -161,7 +237,7 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 		throws SystemException {
 		boolean isNew = wsrpPortlet.isNew();
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<WSRPPortlet> listener : listeners) {
 			if (isNew) {
 				listener.onBeforeCreate(wsrpPortlet);
 			}
@@ -172,7 +248,7 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 
 		wsrpPortlet = updateImpl(wsrpPortlet, merge);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<WSRPPortlet> listener : listeners) {
 			if (isNew) {
 				listener.onAfterCreate(wsrpPortlet);
 			}
@@ -187,6 +263,8 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 	public WSRPPortlet updateImpl(
 		com.liferay.wsrp.model.WSRPPortlet wsrpPortlet, boolean merge)
 		throws SystemException {
+		boolean isNew = wsrpPortlet.isNew();
+
 		Session session = null;
 
 		try {
@@ -195,17 +273,36 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 			BatchSessionUtil.update(session, wsrpPortlet, merge);
 
 			wsrpPortlet.setNew(false);
-
-			return wsrpPortlet;
 		}
 		catch (Exception e) {
 			throw processException(e);
 		}
 		finally {
 			closeSession(session);
-
-			FinderCacheUtil.clearCache(WSRPPortlet.class.getName());
 		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		EntityCacheUtil.putResult(WSRPPortletModelImpl.ENTITY_CACHE_ENABLED,
+			WSRPPortletImpl.class, wsrpPortlet.getPrimaryKey(), wsrpPortlet);
+
+		WSRPPortletModelImpl wsrpPortletModelImpl = (WSRPPortletModelImpl)wsrpPortlet;
+
+		if (!isNew &&
+				(!wsrpPortlet.getName()
+								 .equals(wsrpPortletModelImpl.getOriginalName()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_PORTLETNAME,
+				new Object[] { wsrpPortletModelImpl.getOriginalName() });
+		}
+
+		if (isNew ||
+				(!wsrpPortlet.getName()
+								 .equals(wsrpPortletModelImpl.getOriginalName()))) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_PORTLETNAME,
+				new Object[] { wsrpPortlet.getName() }, wsrpPortlet);
+		}
+
+		return wsrpPortlet;
 	}
 
 	public WSRPPortlet findByPrimaryKey(long portletId)
@@ -227,20 +324,31 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 
 	public WSRPPortlet fetchByPrimaryKey(long portletId)
 		throws SystemException {
-		Session session = null;
+		WSRPPortlet wsrpPortlet = (WSRPPortlet)EntityCacheUtil.getResult(WSRPPortletModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPPortletImpl.class, portletId, this);
 
-		try {
-			session = openSession();
+		if (wsrpPortlet == null) {
+			Session session = null;
 
-			return (WSRPPortlet)session.get(WSRPPortletImpl.class,
-				new Long(portletId));
+			try {
+				session = openSession();
+
+				wsrpPortlet = (WSRPPortlet)session.get(WSRPPortletImpl.class,
+						new Long(portletId));
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (wsrpPortlet != null) {
+					cacheResult(wsrpPortlet);
+				}
+
+				closeSession(session);
+			}
 		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
+
+		return wsrpPortlet;
 	}
 
 	public WSRPPortlet findByPortletName(String name)
@@ -268,17 +376,18 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 
 	public WSRPPortlet fetchByPortletName(String name)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = WSRPPortletModelImpl.CACHE_ENABLED;
-		String finderClassName = WSRPPortlet.class.getName();
-		String finderMethodName = "fetchByPortletName";
-		String[] finderParams = new String[] { String.class.getName() };
+		return fetchByPortletName(name, true);
+	}
+
+	public WSRPPortlet fetchByPortletName(String name, boolean retrieveFromCache)
+		throws SystemException {
 		Object[] finderArgs = new Object[] { name };
 
 		Object result = null;
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_PORTLETNAME,
+					finderArgs, this);
 		}
 
 		if (result == null) {
@@ -310,52 +419,52 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 
 				List<WSRPPortlet> list = q.list();
 
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
+				result = list;
 
-				if (list.size() == 0) {
-					return null;
+				WSRPPortlet wsrpPortlet = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_PORTLETNAME,
+						finderArgs, list);
 				}
 				else {
-					return list.get(0);
+					wsrpPortlet = list.get(0);
+
+					cacheResult(wsrpPortlet);
 				}
+
+				return wsrpPortlet;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (result == null) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_PORTLETNAME,
+						finderArgs, new ArrayList<WSRPPortlet>());
+				}
+
 				closeSession(session);
 			}
 		}
 		else {
-			List<WSRPPortlet> list = (List<WSRPPortlet>)result;
-
-			if (list.size() == 0) {
+			if (result instanceof List) {
 				return null;
 			}
 			else {
-				return list.get(0);
+				return (WSRPPortlet)result;
 			}
 		}
 	}
 
 	public List<WSRPPortlet> findByProducerEntityId(String producerEntityId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = WSRPPortletModelImpl.CACHE_ENABLED;
-		String finderClassName = WSRPPortlet.class.getName();
-		String finderMethodName = "findByProducerEntityId";
-		String[] finderParams = new String[] { String.class.getName() };
 		Object[] finderArgs = new Object[] { producerEntityId };
 
-		Object result = null;
+		List<WSRPPortlet> list = (List<WSRPPortlet>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_PRODUCERENTITYID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -382,24 +491,26 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 					qPos.add(producerEntityId);
 				}
 
-				List<WSRPPortlet> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<WSRPPortlet>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_PRODUCERENTITYID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<WSRPPortlet>)result;
-		}
+
+		return list;
 	}
 
 	public List<WSRPPortlet> findByProducerEntityId(String producerEntityId,
@@ -409,29 +520,16 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 
 	public List<WSRPPortlet> findByProducerEntityId(String producerEntityId,
 		int start, int end, OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = WSRPPortletModelImpl.CACHE_ENABLED;
-		String finderClassName = WSRPPortlet.class.getName();
-		String finderMethodName = "findByProducerEntityId";
-		String[] finderParams = new String[] {
-				String.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				producerEntityId,
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<WSRPPortlet> list = (List<WSRPPortlet>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_PRODUCERENTITYID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -463,25 +561,27 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 					qPos.add(producerEntityId);
 				}
 
-				List<WSRPPortlet> list = (List<WSRPPortlet>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<WSRPPortlet>)QueryUtil.list(q, getDialect(),
+						start, end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<WSRPPortlet>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_PRODUCERENTITYID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<WSRPPortlet>)result;
-		}
+
+		return list;
 	}
 
 	public WSRPPortlet findByProducerEntityId_First(String producerEntityId,
@@ -489,7 +589,7 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 		List<WSRPPortlet> list = findByProducerEntityId(producerEntityId, 0, 1,
 				obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WSRPPortlet exists with the key {");
@@ -512,7 +612,7 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 		List<WSRPPortlet> list = findByProducerEntityId(producerEntityId,
 				count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WSRPPortlet exists with the key {");
@@ -587,22 +687,12 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 
 	public List<WSRPPortlet> findByP_P(String producerEntityId,
 		String portletHandle) throws SystemException {
-		boolean finderClassNameCacheEnabled = WSRPPortletModelImpl.CACHE_ENABLED;
-		String finderClassName = WSRPPortlet.class.getName();
-		String finderMethodName = "findByP_P";
-		String[] finderParams = new String[] {
-				String.class.getName(), String.class.getName()
-			};
 		Object[] finderArgs = new Object[] { producerEntityId, portletHandle };
 
-		Object result = null;
+		List<WSRPPortlet> list = (List<WSRPPortlet>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_P_P,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -642,24 +732,26 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 					qPos.add(portletHandle);
 				}
 
-				List<WSRPPortlet> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<WSRPPortlet>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_P_P, finderArgs,
+					list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<WSRPPortlet>)result;
-		}
+
+		return list;
 	}
 
 	public List<WSRPPortlet> findByP_P(String producerEntityId,
@@ -670,15 +762,6 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 	public List<WSRPPortlet> findByP_P(String producerEntityId,
 		String portletHandle, int start, int end, OrderByComparator obc)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = WSRPPortletModelImpl.CACHE_ENABLED;
-		String finderClassName = WSRPPortlet.class.getName();
-		String finderMethodName = "findByP_P";
-		String[] finderParams = new String[] {
-				String.class.getName(), String.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				producerEntityId,
 				
@@ -687,14 +770,10 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<WSRPPortlet> list = (List<WSRPPortlet>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_P_P,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -739,25 +818,27 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 					qPos.add(portletHandle);
 				}
 
-				List<WSRPPortlet> list = (List<WSRPPortlet>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<WSRPPortlet>)QueryUtil.list(q, getDialect(),
+						start, end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<WSRPPortlet>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_P_P,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<WSRPPortlet>)result;
-		}
+
+		return list;
 	}
 
 	public WSRPPortlet findByP_P_First(String producerEntityId,
@@ -766,7 +847,7 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 		List<WSRPPortlet> list = findByP_P(producerEntityId, portletHandle, 0,
 				1, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WSRPPortlet exists with the key {");
@@ -793,7 +874,7 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 		List<WSRPPortlet> list = findByP_P(producerEntityId, portletHandle,
 				count - 1, count, obc);
 
-		if (list.size() == 0) {
+		if (list.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 
 			msg.append("No WSRPPortlet exists with the key {");
@@ -933,25 +1014,14 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 
 	public List<WSRPPortlet> findAll(int start, int end, OrderByComparator obc)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = WSRPPortletModelImpl.CACHE_ENABLED;
-		String finderClassName = WSRPPortlet.class.getName();
-		String finderMethodName = "findAll";
-		String[] finderParams = new String[] {
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<WSRPPortlet> list = (List<WSRPPortlet>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -968,8 +1038,6 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 
 				Query q = session.createQuery(query.toString());
 
-				List<WSRPPortlet> list = null;
-
 				if (obc == null) {
 					list = (List<WSRPPortlet>)QueryUtil.list(q, getDialect(),
 							start, end, false);
@@ -980,23 +1048,24 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 					list = (List<WSRPPortlet>)QueryUtil.list(q, getDialect(),
 							start, end);
 				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<WSRPPortlet>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<WSRPPortlet>)result;
-		}
+
+		return list;
 	}
 
 	public void removeByPortletName(String name)
@@ -1027,20 +1096,12 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public int countByPortletName(String name) throws SystemException {
-		boolean finderClassNameCacheEnabled = WSRPPortletModelImpl.CACHE_ENABLED;
-		String finderClassName = WSRPPortlet.class.getName();
-		String finderMethodName = "countByPortletName";
-		String[] finderParams = new String[] { String.class.getName() };
 		Object[] finderArgs = new Object[] { name };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_PORTLETNAME,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1068,52 +1129,34 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 					qPos.add(name);
 				}
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_PORTLETNAME,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByProducerEntityId(String producerEntityId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = WSRPPortletModelImpl.CACHE_ENABLED;
-		String finderClassName = WSRPPortlet.class.getName();
-		String finderMethodName = "countByProducerEntityId";
-		String[] finderParams = new String[] { String.class.getName() };
 		Object[] finderArgs = new Object[] { producerEntityId };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_PRODUCERENTITYID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1141,54 +1184,34 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 					qPos.add(producerEntityId);
 				}
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_PRODUCERENTITYID,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByP_P(String producerEntityId, String portletHandle)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = WSRPPortletModelImpl.CACHE_ENABLED;
-		String finderClassName = WSRPPortlet.class.getName();
-		String finderMethodName = "countByP_P";
-		String[] finderParams = new String[] {
-				String.class.getName(), String.class.getName()
-			};
 		Object[] finderArgs = new Object[] { producerEntityId, portletHandle };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_P_P,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1229,51 +1252,33 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 					qPos.add(portletHandle);
 				}
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_P_P, finderArgs,
+					count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countAll() throws SystemException {
-		boolean finderClassNameCacheEnabled = WSRPPortletModelImpl.CACHE_ENABLED;
-		String finderClassName = WSRPPortlet.class.getName();
-		String finderMethodName = "countAll";
-		String[] finderParams = new String[] {  };
-		Object[] finderArgs = new Object[] {  };
+		Object[] finderArgs = new Object[0];
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1282,34 +1287,24 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 				Query q = session.createQuery(
 						"SELECT COUNT(*) FROM com.liferay.wsrp.model.WSRPPortlet");
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
+					count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public void afterPropertiesSet() {
@@ -1319,10 +1314,10 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener> listenersList = new ArrayList<ModelListener>();
+				List<ModelListener<WSRPPortlet>> listenersList = new ArrayList<ModelListener<WSRPPortlet>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener)Class.forName(
+					listenersList.add((ModelListener<WSRPPortlet>)Class.forName(
 							listenerClassName).newInstance());
 				}
 

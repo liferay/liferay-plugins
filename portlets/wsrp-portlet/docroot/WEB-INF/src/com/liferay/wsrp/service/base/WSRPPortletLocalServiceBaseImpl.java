@@ -100,6 +100,13 @@ public abstract class WSRPPortletLocalServiceBaseImpl
 		return wsrpPortletPersistence.update(wsrpPortlet, true);
 	}
 
+	public WSRPPortlet updateWSRPPortlet(WSRPPortlet wsrpPortlet, boolean merge)
+		throws SystemException {
+		wsrpPortlet.setNew(false);
+
+		return wsrpPortletPersistence.update(wsrpPortlet, merge);
+	}
+
 	public WSRPConfiguredProducerLocalService getWSRPConfiguredProducerLocalService() {
 		return wsrpConfiguredProducerLocalService;
 	}

@@ -29,6 +29,16 @@ package com.liferay.wsrp.service.persistence;
  *
  */
 public class WSRPProducerUtil {
+	public static void cacheResult(
+		com.liferay.wsrp.model.WSRPProducer wsrpProducer) {
+		getPersistence().cacheResult(wsrpProducer);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.wsrp.model.WSRPProducer> wsrpProducers) {
+		getPersistence().cacheResult(wsrpProducers);
+	}
+
 	public static com.liferay.wsrp.model.WSRPProducer create(long producerId) {
 		return getPersistence().create(producerId);
 	}
@@ -86,6 +96,13 @@ public class WSRPProducerUtil {
 		java.lang.String instanceName)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().fetchByInstanceName(instanceName);
+	}
+
+	public static com.liferay.wsrp.model.WSRPProducer fetchByInstanceName(
+		java.lang.String instanceName, boolean retrieveFromCache)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .fetchByInstanceName(instanceName, retrieveFromCache);
 	}
 
 	public static java.util.List<com.liferay.wsrp.model.WSRPProducer> findByP_N(
