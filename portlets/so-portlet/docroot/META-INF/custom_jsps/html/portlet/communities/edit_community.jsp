@@ -67,6 +67,12 @@ String friendlyURL = BeanParamUtil.getString(group, request, "friendlyURL");
 
 						siteList.html('<div class="loading-animation" />');
 						siteList.load(pageURLVal + " .site-list", {t:(+new Date())});
+
+						var contactsPortlet = jQuery('.contacts-portlet');
+
+						if (contactsPortlet.length > 0) {
+							Liferay.Contacts.loadContacts(false);
+						}
 					}
 				}
 			)
