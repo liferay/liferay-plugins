@@ -20,5 +20,5 @@
 <portlet:defineObjects />
 
 <c:if test="<%= renderRequest.getWindowState().equals(WindowState.MAXIMIZED) %>">
-	<%@include file="/html/taglib/ui/page_iterator/showing_x_results.portal.jspf" %>
+	<%@ include file="/html/taglib/ui/page_iterator/showing_x_results.portal.jspf" %>
 </c:if>
