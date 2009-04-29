@@ -1065,6 +1065,28 @@ table.calendar {
 	margin-left: 1.5em;
 }
 
+/* TMS: Tasks */
+
+.tms-portlet-tasks .control-wrapper {
+	margin: 0;
+	position: relative;
+}
+
+.ie6 .tms-portlet-tasks .control-wrapper {
+	background: #E8EFF4;
+	height: 22px;
+	margin-bottom: 1em;
+}
+
+.tms-portlet-tasks .control-wrapper .add-task {
+	display: block;
+	font-size: 11px;
+	padding: 0 16px 0 0;
+	position: absolute;
+	right: 5px;
+	top: 3px;
+}
+
 /* Wikis */
 
 .portlet-wiki h1.page-title {
