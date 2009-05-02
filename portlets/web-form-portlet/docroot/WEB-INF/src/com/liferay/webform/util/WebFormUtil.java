@@ -23,6 +23,9 @@
 package com.liferay.webform.util;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.mozilla.javascript.Context;
+import com.liferay.mozilla.javascript.Scriptable;
+import com.liferay.mozilla.javascript.ScriptableObject;
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -47,10 +50,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.portlet.PortletPreferences;
-
-import org.mozilla.javascript.Context;
-import org.mozilla.javascript.Scriptable;
-import org.mozilla.javascript.ScriptableObject;
 
 /**
  * <a href="WebFormUtil.java.html"><b><i>View Source</i></b></a>
