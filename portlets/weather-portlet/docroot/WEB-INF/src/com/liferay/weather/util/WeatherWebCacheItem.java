@@ -23,11 +23,13 @@
 package com.liferay.weather.util;
 
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.webcache.WebCacheException;
 import com.liferay.portal.kernel.webcache.WebCacheItem;
+import com.liferay.portal.kernel.xml.Document;
+import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.weather.model.Weather;
 
 /**
@@ -50,22 +52,27 @@ public class WeatherWebCacheItem implements WebCacheItem {
 		Weather weather = null;
 
 		try {
-			String text = HtmlUtil.stripComments(HttpUtil.URLtoString(
+			String xml = HttpUtil.URLtoString(
 				"http://www.google.com/ig/api?weather=" +
-					HttpUtil.encodeURL(_zip)));
+					HttpUtil.encodeURL(_zip));
 
-			int x = text.indexOf("temp_f data");
+			Document doc = SAXReaderUtil.read(xml);
 
-			x = text.indexOf("\"", x) + 1;
+			Element root = doc.getRootElement();
 
-			int y = text.indexOf("\"", x);
+			Element weatherElement = root.element("weather");
+			Element currentConditions = weatherElement.element(
+				"current_conditions");
 
-			float temperature = GetterUtil.getFloat(text.substring(x, y));
+			Element tempF = currentConditions.element("temp_f");
 
-			x = text.indexOf("/images", x);
-			y = text.indexOf("\"", x);
+			float temperature = GetterUtil.getFloat(
+				tempF.attributeValue("data"));
 
-			String iconURL = "http://www.google.com" + text.substring(x, y);
+			Element icon = currentConditions.element("icon");
+
+			String iconURL =
+				"http://www.google.com" + icon.attributeValue("data");
 
 			weather = new Weather(_zip, iconURL, temperature);
 		}
