@@ -29,6 +29,19 @@ package com.liferay.wol.service.persistence;
  *
  */
 public class WallEntryUtil {
+	public static void cacheResult(com.liferay.wol.model.WallEntry wallEntry) {
+		getPersistence().cacheResult(wallEntry);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.wol.model.WallEntry> wallEntries) {
+		getPersistence().cacheResult(wallEntries);
+	}
+
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
 	public static com.liferay.wol.model.WallEntry create(long wallEntryId) {
 		return getPersistence().create(wallEntryId);
 	}

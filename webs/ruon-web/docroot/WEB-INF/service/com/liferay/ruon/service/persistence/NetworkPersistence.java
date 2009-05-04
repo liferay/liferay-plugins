@@ -22,13 +22,22 @@
 
 package com.liferay.ruon.service.persistence;
 
+import com.liferay.portal.service.persistence.BasePersistence;
+
 /**
  * <a href="NetworkPersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface NetworkPersistence {
+public interface NetworkPersistence extends BasePersistence {
+	public void cacheResult(com.liferay.ruon.model.Network network);
+
+	public void cacheResult(
+		java.util.List<com.liferay.ruon.model.Network> networks);
+
+	public void clearCache();
+
 	public com.liferay.ruon.model.Network create(long networkId);
 
 	public com.liferay.ruon.model.Network remove(long networkId)
@@ -65,6 +74,9 @@ public interface NetworkPersistence {
 	public com.liferay.ruon.model.Network fetchByName(java.lang.String name)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.ruon.model.Network fetchByName(java.lang.String name,
+		boolean retrieveFromCache) throws com.liferay.portal.SystemException;
+
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
@@ -93,10 +105,4 @@ public interface NetworkPersistence {
 		throws com.liferay.portal.SystemException;
 
 	public int countAll() throws com.liferay.portal.SystemException;
-
-	public void registerListener(
-		com.liferay.portal.model.ModelListener listener);
-
-	public void unregisterListener(
-		com.liferay.portal.model.ModelListener listener);
 }

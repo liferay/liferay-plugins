@@ -24,8 +24,11 @@ package com.liferay.wol.service.persistence;
 
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.cache.CacheRegistry;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -47,7 +50,6 @@ import com.liferay.wol.model.impl.MeetupsRegistrationModelImpl;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -58,6 +60,88 @@ import java.util.List;
  */
 public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 	implements MeetupsRegistrationPersistence {
+	public static final String FINDER_CLASS_NAME_ENTITY = MeetupsRegistrationImpl.class.getName();
+	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
+		".List";
+	public static final FinderPath FINDER_PATH_FIND_BY_MEETUPSENTRYID = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "findByMeetupsEntryId",
+			new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_MEETUPSENTRYID = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "findByMeetupsEntryId",
+			new String[] {
+				Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_MEETUPSENTRYID = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "countByMeetupsEntryId",
+			new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FETCH_BY_U_ME = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_ENTITY, "fetchByU_ME",
+			new String[] { Long.class.getName(), Long.class.getName() });
+	public static final FinderPath FINDER_PATH_COUNT_BY_U_ME = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "countByU_ME",
+			new String[] { Long.class.getName(), Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_ME_S = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "findByME_S",
+			new String[] { Long.class.getName(), Integer.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_ME_S = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "findByME_S",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_ME_S = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "countByME_S",
+			new String[] { Long.class.getName(), Integer.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
+
+	public void cacheResult(MeetupsRegistration meetupsRegistration) {
+		EntityCacheUtil.putResult(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+			MeetupsRegistrationImpl.class, meetupsRegistration.getPrimaryKey(),
+			meetupsRegistration);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_ME,
+			new Object[] {
+				new Long(meetupsRegistration.getUserId()),
+				new Long(meetupsRegistration.getMeetupsEntryId())
+			}, meetupsRegistration);
+	}
+
+	public void cacheResult(List<MeetupsRegistration> meetupsRegistrations) {
+		for (MeetupsRegistration meetupsRegistration : meetupsRegistrations) {
+			if (EntityCacheUtil.getResult(
+						MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+						MeetupsRegistrationImpl.class,
+						meetupsRegistration.getPrimaryKey(), this) == null) {
+				cacheResult(meetupsRegistration);
+			}
+		}
+	}
+
+	public void clearCache() {
+		CacheRegistry.clear(MeetupsRegistrationImpl.class.getName());
+		EntityCacheUtil.clearCache(MeetupsRegistrationImpl.class.getName());
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	public MeetupsRegistration create(long meetupsRegistrationId) {
 		MeetupsRegistration meetupsRegistration = new MeetupsRegistrationImpl();
 
@@ -124,7 +208,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
-			if (BatchSessionUtil.isEnabled()) {
+			if (meetupsRegistration.isCachedModel() ||
+					BatchSessionUtil.isEnabled()) {
 				Object staleObject = session.get(MeetupsRegistrationImpl.class,
 						meetupsRegistration.getPrimaryKeyObj());
 
@@ -136,17 +221,28 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 			session.delete(meetupsRegistration);
 
 			session.flush();
-
-			return meetupsRegistration;
 		}
 		catch (Exception e) {
 			throw processException(e);
 		}
 		finally {
 			closeSession(session);
-
-			FinderCacheUtil.clearCache(MeetupsRegistration.class.getName());
 		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		MeetupsRegistrationModelImpl meetupsRegistrationModelImpl = (MeetupsRegistrationModelImpl)meetupsRegistration;
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_ME,
+			new Object[] {
+				new Long(meetupsRegistrationModelImpl.getOriginalUserId()),
+				new Long(meetupsRegistrationModelImpl.getOriginalMeetupsEntryId())
+			});
+
+		EntityCacheUtil.removeResult(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+			MeetupsRegistrationImpl.class, meetupsRegistration.getPrimaryKey());
+
+		return meetupsRegistration;
 	}
 
 	public MeetupsRegistration update(MeetupsRegistration meetupsRegistration)
@@ -189,6 +285,10 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 	public MeetupsRegistration updateImpl(
 		com.liferay.wol.model.MeetupsRegistration meetupsRegistration,
 		boolean merge) throws SystemException {
+		boolean isNew = meetupsRegistration.isNew();
+
+		MeetupsRegistrationModelImpl meetupsRegistrationModelImpl = (MeetupsRegistrationModelImpl)meetupsRegistration;
+
 		Session session = null;
 
 		try {
@@ -197,17 +297,41 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 			BatchSessionUtil.update(session, meetupsRegistration, merge);
 
 			meetupsRegistration.setNew(false);
-
-			return meetupsRegistration;
 		}
 		catch (Exception e) {
 			throw processException(e);
 		}
 		finally {
 			closeSession(session);
-
-			FinderCacheUtil.clearCache(MeetupsRegistration.class.getName());
 		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		EntityCacheUtil.putResult(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+			MeetupsRegistrationImpl.class, meetupsRegistration.getPrimaryKey(),
+			meetupsRegistration);
+
+		if (!isNew &&
+				((meetupsRegistration.getUserId() != meetupsRegistrationModelImpl.getOriginalUserId()) ||
+				(meetupsRegistration.getMeetupsEntryId() != meetupsRegistrationModelImpl.getOriginalMeetupsEntryId()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_ME,
+				new Object[] {
+					new Long(meetupsRegistrationModelImpl.getOriginalUserId()),
+					new Long(meetupsRegistrationModelImpl.getOriginalMeetupsEntryId())
+				});
+		}
+
+		if (isNew ||
+				((meetupsRegistration.getUserId() != meetupsRegistrationModelImpl.getOriginalUserId()) ||
+				(meetupsRegistration.getMeetupsEntryId() != meetupsRegistrationModelImpl.getOriginalMeetupsEntryId()))) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_ME,
+				new Object[] {
+					new Long(meetupsRegistration.getUserId()),
+					new Long(meetupsRegistration.getMeetupsEntryId())
+				}, meetupsRegistration);
+		}
+
+		return meetupsRegistration;
 	}
 
 	public MeetupsRegistration findByPrimaryKey(long meetupsRegistrationId)
@@ -230,38 +354,41 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 	public MeetupsRegistration fetchByPrimaryKey(long meetupsRegistrationId)
 		throws SystemException {
-		Session session = null;
+		MeetupsRegistration meetupsRegistration = (MeetupsRegistration)EntityCacheUtil.getResult(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+				MeetupsRegistrationImpl.class, meetupsRegistrationId, this);
 
-		try {
-			session = openSession();
+		if (meetupsRegistration == null) {
+			Session session = null;
 
-			return (MeetupsRegistration)session.get(MeetupsRegistrationImpl.class,
-				new Long(meetupsRegistrationId));
+			try {
+				session = openSession();
+
+				meetupsRegistration = (MeetupsRegistration)session.get(MeetupsRegistrationImpl.class,
+						new Long(meetupsRegistrationId));
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (meetupsRegistration != null) {
+					cacheResult(meetupsRegistration);
+				}
+
+				closeSession(session);
+			}
 		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
+
+		return meetupsRegistration;
 	}
 
 	public List<MeetupsRegistration> findByMeetupsEntryId(long meetupsEntryId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = MeetupsRegistrationModelImpl.CACHE_ENABLED;
-		String finderClassName = MeetupsRegistration.class.getName();
-		String finderMethodName = "findByMeetupsEntryId";
-		String[] finderParams = new String[] { Long.class.getName() };
 		Object[] finderArgs = new Object[] { new Long(meetupsEntryId) };
 
-		Object result = null;
+		List<MeetupsRegistration> list = (List<MeetupsRegistration>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_MEETUPSENTRYID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -286,24 +413,26 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(meetupsEntryId);
 
-				List<MeetupsRegistration> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<MeetupsRegistration>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MEETUPSENTRYID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<MeetupsRegistration>)result;
-		}
+
+		return list;
 	}
 
 	public List<MeetupsRegistration> findByMeetupsEntryId(long meetupsEntryId,
@@ -313,29 +442,16 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 	public List<MeetupsRegistration> findByMeetupsEntryId(long meetupsEntryId,
 		int start, int end, OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = MeetupsRegistrationModelImpl.CACHE_ENABLED;
-		String finderClassName = MeetupsRegistration.class.getName();
-		String finderMethodName = "findByMeetupsEntryId";
-		String[] finderParams = new String[] {
-				Long.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(meetupsEntryId),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<MeetupsRegistration> list = (List<MeetupsRegistration>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_MEETUPSENTRYID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -367,25 +483,27 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(meetupsEntryId);
 
-				List<MeetupsRegistration> list = (List<MeetupsRegistration>)QueryUtil.list(q,
+				list = (List<MeetupsRegistration>)QueryUtil.list(q,
 						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<MeetupsRegistration>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_MEETUPSENTRYID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<MeetupsRegistration>)result;
-		}
+
+		return list;
 	}
 
 	public MeetupsRegistration findByMeetupsEntryId_First(long meetupsEntryId,
@@ -520,21 +638,20 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 	public MeetupsRegistration fetchByU_ME(long userId, long meetupsEntryId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = MeetupsRegistrationModelImpl.CACHE_ENABLED;
-		String finderClassName = MeetupsRegistration.class.getName();
-		String finderMethodName = "fetchByU_ME";
-		String[] finderParams = new String[] {
-				Long.class.getName(), Long.class.getName()
-			};
+		return fetchByU_ME(userId, meetupsEntryId, true);
+	}
+
+	public MeetupsRegistration fetchByU_ME(long userId, long meetupsEntryId,
+		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				new Long(userId), new Long(meetupsEntryId)
 			};
 
 		Object result = null;
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_U_ME,
+					finderArgs, this);
 		}
 
 		if (result == null) {
@@ -570,55 +687,60 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 				List<MeetupsRegistration> list = q.list();
 
+				result = list;
+
+				MeetupsRegistration meetupsRegistration = null;
+
 				if (list.isEmpty()) {
-					return null;
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_ME,
+						finderArgs, list);
+				}
+				else {
+					meetupsRegistration = list.get(0);
+
+					cacheResult(meetupsRegistration);
+
+					if ((meetupsRegistration.getUserId() != userId) ||
+							(meetupsRegistration.getMeetupsEntryId() != meetupsEntryId)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_ME,
+							finderArgs, list);
+					}
 				}
 
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list.get(0);
+				return meetupsRegistration;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (result == null) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_ME,
+						finderArgs, new ArrayList<MeetupsRegistration>());
+				}
+
 				closeSession(session);
 			}
 		}
 		else {
-			List<MeetupsRegistration> list = (List<MeetupsRegistration>)result;
-
-			if (list.isEmpty()) {
+			if (result instanceof List) {
 				return null;
 			}
 			else {
-				return list.get(0);
+				return (MeetupsRegistration)result;
 			}
 		}
 	}
 
 	public List<MeetupsRegistration> findByME_S(long meetupsEntryId, int status)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = MeetupsRegistrationModelImpl.CACHE_ENABLED;
-		String finderClassName = MeetupsRegistration.class.getName();
-		String finderMethodName = "findByME_S";
-		String[] finderParams = new String[] {
-				Long.class.getName(), Integer.class.getName()
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(meetupsEntryId), new Integer(status)
 			};
 
-		Object result = null;
+		List<MeetupsRegistration> list = (List<MeetupsRegistration>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ME_S,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -649,24 +771,26 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(status);
 
-				List<MeetupsRegistration> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<MeetupsRegistration>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ME_S, finderArgs,
+					list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<MeetupsRegistration>)result;
-		}
+
+		return list;
 	}
 
 	public List<MeetupsRegistration> findByME_S(long meetupsEntryId,
@@ -677,29 +801,16 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 	public List<MeetupsRegistration> findByME_S(long meetupsEntryId,
 		int status, int start, int end, OrderByComparator obc)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = MeetupsRegistrationModelImpl.CACHE_ENABLED;
-		String finderClassName = MeetupsRegistration.class.getName();
-		String finderMethodName = "findByME_S";
-		String[] finderParams = new String[] {
-				Long.class.getName(), Integer.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(meetupsEntryId), new Integer(status),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<MeetupsRegistration> list = (List<MeetupsRegistration>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_ME_S,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -737,25 +848,27 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(status);
 
-				List<MeetupsRegistration> list = (List<MeetupsRegistration>)QueryUtil.list(q,
+				list = (List<MeetupsRegistration>)QueryUtil.list(q,
 						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<MeetupsRegistration>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_ME_S,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<MeetupsRegistration>)result;
-		}
+
+		return list;
 	}
 
 	public MeetupsRegistration findByME_S_First(long meetupsEntryId,
@@ -925,25 +1038,14 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 	public List<MeetupsRegistration> findAll(int start, int end,
 		OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = MeetupsRegistrationModelImpl.CACHE_ENABLED;
-		String finderClassName = MeetupsRegistration.class.getName();
-		String finderMethodName = "findAll";
-		String[] finderParams = new String[] {
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<MeetupsRegistration> list = (List<MeetupsRegistration>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -966,8 +1068,6 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 				Query q = session.createQuery(query.toString());
 
-				List<MeetupsRegistration> list = null;
-
 				if (obc == null) {
 					list = (List<MeetupsRegistration>)QueryUtil.list(q,
 							getDialect(), start, end, false);
@@ -978,23 +1078,24 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 					list = (List<MeetupsRegistration>)QueryUtil.list(q,
 							getDialect(), start, end);
 				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<MeetupsRegistration>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<MeetupsRegistration>)result;
-		}
+
+		return list;
 	}
 
 	public void removeByMeetupsEntryId(long meetupsEntryId)
@@ -1029,20 +1130,12 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 	public int countByMeetupsEntryId(long meetupsEntryId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = MeetupsRegistrationModelImpl.CACHE_ENABLED;
-		String finderClassName = MeetupsRegistration.class.getName();
-		String finderMethodName = "countByMeetupsEntryId";
-		String[] finderParams = new String[] { Long.class.getName() };
 		Object[] finderArgs = new Object[] { new Long(meetupsEntryId) };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_MEETUPSENTRYID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1064,56 +1157,36 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(meetupsEntryId);
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MEETUPSENTRYID,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByU_ME(long userId, long meetupsEntryId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = MeetupsRegistrationModelImpl.CACHE_ENABLED;
-		String finderClassName = MeetupsRegistration.class.getName();
-		String finderMethodName = "countByU_ME";
-		String[] finderParams = new String[] {
-				Long.class.getName(), Long.class.getName()
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(userId), new Long(meetupsEntryId)
 			};
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_U_ME,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1141,56 +1214,36 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(meetupsEntryId);
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_ME,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByME_S(long meetupsEntryId, int status)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = MeetupsRegistrationModelImpl.CACHE_ENABLED;
-		String finderClassName = MeetupsRegistration.class.getName();
-		String finderMethodName = "countByME_S";
-		String[] finderParams = new String[] {
-				Long.class.getName(), Integer.class.getName()
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(meetupsEntryId), new Integer(status)
 			};
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ME_S,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1218,51 +1271,33 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(status);
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_ME_S,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countAll() throws SystemException {
-		boolean finderClassNameCacheEnabled = MeetupsRegistrationModelImpl.CACHE_ENABLED;
-		String finderClassName = MeetupsRegistration.class.getName();
-		String finderMethodName = "countAll";
-		String[] finderParams = new String[] {  };
-		Object[] finderArgs = new Object[] {  };
+		Object[] finderArgs = new Object[0];
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1271,34 +1306,24 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl
 				Query q = session.createQuery(
 						"SELECT COUNT(*) FROM com.liferay.wol.model.MeetupsRegistration");
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
+					count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public void afterPropertiesSet() {

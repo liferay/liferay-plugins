@@ -24,8 +24,11 @@ package com.liferay.wol.service.persistence;
 
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.cache.CacheRegistry;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -47,7 +50,6 @@ import com.liferay.wol.model.impl.WallEntryModelImpl;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -58,6 +60,85 @@ import java.util.List;
  */
 public class WallEntryPersistenceImpl extends BasePersistenceImpl
 	implements WallEntryPersistence {
+	public static final String FINDER_CLASS_NAME_ENTITY = WallEntryImpl.class.getName();
+	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
+		".List";
+	public static final FinderPath FINDER_PATH_FIND_BY_GROUPID = new FinderPath(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
+			WallEntryModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByGroupId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_GROUPID = new FinderPath(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
+			WallEntryModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByGroupId",
+			new String[] {
+				Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_GROUPID = new FinderPath(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
+			WallEntryModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByGroupId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_USERID = new FinderPath(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
+			WallEntryModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByUserId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_USERID = new FinderPath(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
+			WallEntryModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByUserId",
+			new String[] {
+				Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
+			WallEntryModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByUserId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_G_U = new FinderPath(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
+			WallEntryModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByG_U",
+			new String[] { Long.class.getName(), Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_G_U = new FinderPath(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
+			WallEntryModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByG_U",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_G_U = new FinderPath(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
+			WallEntryModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByG_U",
+			new String[] { Long.class.getName(), Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
+			WallEntryModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
+			WallEntryModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countAll", new String[0]);
+
+	public void cacheResult(WallEntry wallEntry) {
+		EntityCacheUtil.putResult(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
+			WallEntryImpl.class, wallEntry.getPrimaryKey(), wallEntry);
+	}
+
+	public void cacheResult(List<WallEntry> wallEntries) {
+		for (WallEntry wallEntry : wallEntries) {
+			if (EntityCacheUtil.getResult(
+						WallEntryModelImpl.ENTITY_CACHE_ENABLED,
+						WallEntryImpl.class, wallEntry.getPrimaryKey(), this) == null) {
+				cacheResult(wallEntry);
+			}
+		}
+	}
+
+	public void clearCache() {
+		CacheRegistry.clear(WallEntryImpl.class.getName());
+		EntityCacheUtil.clearCache(WallEntryImpl.class.getName());
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	public WallEntry create(long wallEntryId) {
 		WallEntry wallEntry = new WallEntryImpl();
 
@@ -121,7 +202,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
-			if (BatchSessionUtil.isEnabled()) {
+			if (wallEntry.isCachedModel() || BatchSessionUtil.isEnabled()) {
 				Object staleObject = session.get(WallEntryImpl.class,
 						wallEntry.getPrimaryKeyObj());
 
@@ -133,17 +214,20 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 			session.delete(wallEntry);
 
 			session.flush();
-
-			return wallEntry;
 		}
 		catch (Exception e) {
 			throw processException(e);
 		}
 		finally {
 			closeSession(session);
-
-			FinderCacheUtil.clearCache(WallEntry.class.getName());
 		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		EntityCacheUtil.removeResult(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
+			WallEntryImpl.class, wallEntry.getPrimaryKey());
+
+		return wallEntry;
 	}
 
 	public WallEntry update(WallEntry wallEntry) throws SystemException {
@@ -192,17 +276,20 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 			BatchSessionUtil.update(session, wallEntry, merge);
 
 			wallEntry.setNew(false);
-
-			return wallEntry;
 		}
 		catch (Exception e) {
 			throw processException(e);
 		}
 		finally {
 			closeSession(session);
-
-			FinderCacheUtil.clearCache(WallEntry.class.getName());
 		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		EntityCacheUtil.putResult(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
+			WallEntryImpl.class, wallEntry.getPrimaryKey(), wallEntry);
+
+		return wallEntry;
 	}
 
 	public WallEntry findByPrimaryKey(long wallEntryId)
@@ -224,38 +311,41 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 	public WallEntry fetchByPrimaryKey(long wallEntryId)
 		throws SystemException {
-		Session session = null;
+		WallEntry wallEntry = (WallEntry)EntityCacheUtil.getResult(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
+				WallEntryImpl.class, wallEntryId, this);
 
-		try {
-			session = openSession();
+		if (wallEntry == null) {
+			Session session = null;
 
-			return (WallEntry)session.get(WallEntryImpl.class,
-				new Long(wallEntryId));
+			try {
+				session = openSession();
+
+				wallEntry = (WallEntry)session.get(WallEntryImpl.class,
+						new Long(wallEntryId));
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (wallEntry != null) {
+					cacheResult(wallEntry);
+				}
+
+				closeSession(session);
+			}
 		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
+
+		return wallEntry;
 	}
 
 	public List<WallEntry> findByGroupId(long groupId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
-		String finderClassName = WallEntry.class.getName();
-		String finderMethodName = "findByGroupId";
-		String[] finderParams = new String[] { Long.class.getName() };
 		Object[] finderArgs = new Object[] { new Long(groupId) };
 
-		Object result = null;
+		List<WallEntry> list = (List<WallEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_GROUPID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -279,24 +369,26 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(groupId);
 
-				List<WallEntry> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<WallEntry>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_GROUPID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<WallEntry>)result;
-		}
+
+		return list;
 	}
 
 	public List<WallEntry> findByGroupId(long groupId, int start, int end)
@@ -306,29 +398,16 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 	public List<WallEntry> findByGroupId(long groupId, int start, int end,
 		OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
-		String finderClassName = WallEntry.class.getName();
-		String finderMethodName = "findByGroupId";
-		String[] finderParams = new String[] {
-				Long.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(groupId),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<WallEntry> list = (List<WallEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_GROUPID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -359,25 +438,27 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(groupId);
 
-				List<WallEntry> list = (List<WallEntry>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<WallEntry>)QueryUtil.list(q, getDialect(), start,
+						end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<WallEntry>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_GROUPID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<WallEntry>)result;
-		}
+
+		return list;
 	}
 
 	public WallEntry findByGroupId_First(long groupId, OrderByComparator obc)
@@ -479,20 +560,12 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public List<WallEntry> findByUserId(long userId) throws SystemException {
-		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
-		String finderClassName = WallEntry.class.getName();
-		String finderMethodName = "findByUserId";
-		String[] finderParams = new String[] { Long.class.getName() };
 		Object[] finderArgs = new Object[] { new Long(userId) };
 
-		Object result = null;
+		List<WallEntry> list = (List<WallEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_USERID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -516,24 +589,26 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(userId);
 
-				List<WallEntry> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<WallEntry>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_USERID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<WallEntry>)result;
-		}
+
+		return list;
 	}
 
 	public List<WallEntry> findByUserId(long userId, int start, int end)
@@ -543,29 +618,16 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 	public List<WallEntry> findByUserId(long userId, int start, int end,
 		OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
-		String finderClassName = WallEntry.class.getName();
-		String finderMethodName = "findByUserId";
-		String[] finderParams = new String[] {
-				Long.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(userId),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<WallEntry> list = (List<WallEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_USERID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -596,25 +658,27 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(userId);
 
-				List<WallEntry> list = (List<WallEntry>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<WallEntry>)QueryUtil.list(q, getDialect(), start,
+						end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<WallEntry>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_USERID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<WallEntry>)result;
-		}
+
+		return list;
 	}
 
 	public WallEntry findByUserId_First(long userId, OrderByComparator obc)
@@ -716,22 +780,12 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 	public List<WallEntry> findByG_U(long groupId, long userId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
-		String finderClassName = WallEntry.class.getName();
-		String finderMethodName = "findByG_U";
-		String[] finderParams = new String[] {
-				Long.class.getName(), Long.class.getName()
-			};
 		Object[] finderArgs = new Object[] { new Long(groupId), new Long(userId) };
 
-		Object result = null;
+		List<WallEntry> list = (List<WallEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_U,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -761,24 +815,26 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(userId);
 
-				List<WallEntry> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<WallEntry>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_U, finderArgs,
+					list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<WallEntry>)result;
-		}
+
+		return list;
 	}
 
 	public List<WallEntry> findByG_U(long groupId, long userId, int start,
@@ -788,29 +844,16 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 	public List<WallEntry> findByG_U(long groupId, long userId, int start,
 		int end, OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
-		String finderClassName = WallEntry.class.getName();
-		String finderMethodName = "findByG_U";
-		String[] finderParams = new String[] {
-				Long.class.getName(), Long.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(groupId), new Long(userId),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<WallEntry> list = (List<WallEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_G_U,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -847,25 +890,27 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(userId);
 
-				List<WallEntry> list = (List<WallEntry>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<WallEntry>)QueryUtil.list(q, getDialect(), start,
+						end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<WallEntry>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_G_U,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<WallEntry>)result;
-		}
+
+		return list;
 	}
 
 	public WallEntry findByG_U_First(long groupId, long userId,
@@ -1029,25 +1074,14 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 	public List<WallEntry> findAll(int start, int end, OrderByComparator obc)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
-		String finderClassName = WallEntry.class.getName();
-		String finderMethodName = "findAll";
-		String[] finderParams = new String[] {
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<WallEntry> list = (List<WallEntry>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -1070,8 +1104,6 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				Query q = session.createQuery(query.toString());
 
-				List<WallEntry> list = null;
-
 				if (obc == null) {
 					list = (List<WallEntry>)QueryUtil.list(q, getDialect(),
 							start, end, false);
@@ -1082,23 +1114,24 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 					list = (List<WallEntry>)QueryUtil.list(q, getDialect(),
 							start, end);
 				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<WallEntry>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<WallEntry>)result;
-		}
+
+		return list;
 	}
 
 	public void removeByGroupId(long groupId) throws SystemException {
@@ -1127,20 +1160,12 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public int countByGroupId(long groupId) throws SystemException {
-		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
-		String finderClassName = WallEntry.class.getName();
-		String finderMethodName = "countByGroupId";
-		String[] finderParams = new String[] { Long.class.getName() };
 		Object[] finderArgs = new Object[] { new Long(groupId) };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_GROUPID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1161,51 +1186,33 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(groupId);
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_GROUPID,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByUserId(long userId) throws SystemException {
-		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
-		String finderClassName = WallEntry.class.getName();
-		String finderMethodName = "countByUserId";
-		String[] finderParams = new String[] { Long.class.getName() };
 		Object[] finderArgs = new Object[] { new Long(userId) };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_USERID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1226,53 +1233,33 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(userId);
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByG_U(long groupId, long userId) throws SystemException {
-		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
-		String finderClassName = WallEntry.class.getName();
-		String finderMethodName = "countByG_U";
-		String[] finderParams = new String[] {
-				Long.class.getName(), Long.class.getName()
-			};
 		Object[] finderArgs = new Object[] { new Long(groupId), new Long(userId) };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_U,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1299,51 +1286,33 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(userId);
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_U, finderArgs,
+					count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countAll() throws SystemException {
-		boolean finderClassNameCacheEnabled = WallEntryModelImpl.CACHE_ENABLED;
-		String finderClassName = WallEntry.class.getName();
-		String finderMethodName = "countAll";
-		String[] finderParams = new String[] {  };
-		Object[] finderArgs = new Object[] {  };
+		Object[] finderArgs = new Object[0];
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1352,34 +1321,24 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl
 				Query q = session.createQuery(
 						"SELECT COUNT(*) FROM com.liferay.wol.model.WallEntry");
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
+					count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public void afterPropertiesSet() {

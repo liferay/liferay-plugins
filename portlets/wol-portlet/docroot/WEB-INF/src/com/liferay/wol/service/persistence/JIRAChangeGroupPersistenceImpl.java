@@ -24,8 +24,11 @@ package com.liferay.wol.service.persistence;
 
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.cache.CacheRegistry;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -47,7 +50,6 @@ import com.liferay.wol.model.impl.JIRAChangeGroupModelImpl;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -58,6 +60,74 @@ import java.util.List;
  */
 public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 	implements JIRAChangeGroupPersistence {
+	public static final String FINDER_CLASS_NAME_ENTITY = JIRAChangeGroupImpl.class.getName();
+	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
+		".List";
+	public static final FinderPath FINDER_PATH_FIND_BY_JIRAUSERID = new FinderPath(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAChangeGroupModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "findByJiraUserId",
+			new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_JIRAUSERID = new FinderPath(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAChangeGroupModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "findByJiraUserId",
+			new String[] {
+				String.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_JIRAUSERID = new FinderPath(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAChangeGroupModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "countByJiraUserId",
+			new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_JIRAISSUEID = new FinderPath(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAChangeGroupModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "findByJiraIssueId",
+			new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_JIRAISSUEID = new FinderPath(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAChangeGroupModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "findByJiraIssueId",
+			new String[] {
+				Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_JIRAISSUEID = new FinderPath(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAChangeGroupModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "countByJiraIssueId",
+			new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAChangeGroupModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAChangeGroupModelImpl.FINDER_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
+
+	public void cacheResult(JIRAChangeGroup jiraChangeGroup) {
+		EntityCacheUtil.putResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAChangeGroupImpl.class, jiraChangeGroup.getPrimaryKey(),
+			jiraChangeGroup);
+	}
+
+	public void cacheResult(List<JIRAChangeGroup> jiraChangeGroups) {
+		for (JIRAChangeGroup jiraChangeGroup : jiraChangeGroups) {
+			if (EntityCacheUtil.getResult(
+						JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+						JIRAChangeGroupImpl.class,
+						jiraChangeGroup.getPrimaryKey(), this) == null) {
+				cacheResult(jiraChangeGroup);
+			}
+		}
+	}
+
+	public void clearCache() {
+		CacheRegistry.clear(JIRAChangeGroupImpl.class.getName());
+		EntityCacheUtil.clearCache(JIRAChangeGroupImpl.class.getName());
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	public JIRAChangeGroup create(long jiraChangeGroupId) {
 		JIRAChangeGroup jiraChangeGroup = new JIRAChangeGroupImpl();
 
@@ -123,7 +193,8 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
-			if (BatchSessionUtil.isEnabled()) {
+			if (jiraChangeGroup.isCachedModel() ||
+					BatchSessionUtil.isEnabled()) {
 				Object staleObject = session.get(JIRAChangeGroupImpl.class,
 						jiraChangeGroup.getPrimaryKeyObj());
 
@@ -135,17 +206,20 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 			session.delete(jiraChangeGroup);
 
 			session.flush();
-
-			return jiraChangeGroup;
 		}
 		catch (Exception e) {
 			throw processException(e);
 		}
 		finally {
 			closeSession(session);
-
-			FinderCacheUtil.clearCache(JIRAChangeGroup.class.getName());
 		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		EntityCacheUtil.removeResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAChangeGroupImpl.class, jiraChangeGroup.getPrimaryKey());
+
+		return jiraChangeGroup;
 	}
 
 	public JIRAChangeGroup update(JIRAChangeGroup jiraChangeGroup)
@@ -196,17 +270,21 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 			BatchSessionUtil.update(session, jiraChangeGroup, merge);
 
 			jiraChangeGroup.setNew(false);
-
-			return jiraChangeGroup;
 		}
 		catch (Exception e) {
 			throw processException(e);
 		}
 		finally {
 			closeSession(session);
-
-			FinderCacheUtil.clearCache(JIRAChangeGroup.class.getName());
 		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		EntityCacheUtil.putResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAChangeGroupImpl.class, jiraChangeGroup.getPrimaryKey(),
+			jiraChangeGroup);
+
+		return jiraChangeGroup;
 	}
 
 	public JIRAChangeGroup findByPrimaryKey(long jiraChangeGroupId)
@@ -229,38 +307,41 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 
 	public JIRAChangeGroup fetchByPrimaryKey(long jiraChangeGroupId)
 		throws SystemException {
-		Session session = null;
+		JIRAChangeGroup jiraChangeGroup = (JIRAChangeGroup)EntityCacheUtil.getResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+				JIRAChangeGroupImpl.class, jiraChangeGroupId, this);
 
-		try {
-			session = openSession();
+		if (jiraChangeGroup == null) {
+			Session session = null;
 
-			return (JIRAChangeGroup)session.get(JIRAChangeGroupImpl.class,
-				new Long(jiraChangeGroupId));
+			try {
+				session = openSession();
+
+				jiraChangeGroup = (JIRAChangeGroup)session.get(JIRAChangeGroupImpl.class,
+						new Long(jiraChangeGroupId));
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (jiraChangeGroup != null) {
+					cacheResult(jiraChangeGroup);
+				}
+
+				closeSession(session);
+			}
 		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
+
+		return jiraChangeGroup;
 	}
 
 	public List<JIRAChangeGroup> findByJiraUserId(String jiraUserId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAChangeGroupModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAChangeGroup.class.getName();
-		String finderMethodName = "findByJiraUserId";
-		String[] finderParams = new String[] { String.class.getName() };
 		Object[] finderArgs = new Object[] { jiraUserId };
 
-		Object result = null;
+		List<JIRAChangeGroup> list = (List<JIRAChangeGroup>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_JIRAUSERID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -292,24 +373,26 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 					qPos.add(jiraUserId);
 				}
 
-				List<JIRAChangeGroup> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAChangeGroup>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_JIRAUSERID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAChangeGroup>)result;
-		}
+
+		return list;
 	}
 
 	public List<JIRAChangeGroup> findByJiraUserId(String jiraUserId, int start,
@@ -319,29 +402,16 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 
 	public List<JIRAChangeGroup> findByJiraUserId(String jiraUserId, int start,
 		int end, OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAChangeGroupModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAChangeGroup.class.getName();
-		String finderMethodName = "findByJiraUserId";
-		String[] finderParams = new String[] {
-				String.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				jiraUserId,
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<JIRAChangeGroup> list = (List<JIRAChangeGroup>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_JIRAUSERID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -380,25 +450,27 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 					qPos.add(jiraUserId);
 				}
 
-				List<JIRAChangeGroup> list = (List<JIRAChangeGroup>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<JIRAChangeGroup>)QueryUtil.list(q, getDialect(),
+						start, end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAChangeGroup>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_JIRAUSERID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAChangeGroup>)result;
-		}
+
+		return list;
 	}
 
 	public JIRAChangeGroup findByJiraUserId_First(String jiraUserId,
@@ -511,20 +583,12 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 
 	public List<JIRAChangeGroup> findByJiraIssueId(long jiraIssueId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAChangeGroupModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAChangeGroup.class.getName();
-		String finderMethodName = "findByJiraIssueId";
-		String[] finderParams = new String[] { Long.class.getName() };
 		Object[] finderArgs = new Object[] { new Long(jiraIssueId) };
 
-		Object result = null;
+		List<JIRAChangeGroup> list = (List<JIRAChangeGroup>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_JIRAISSUEID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -549,24 +613,26 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(jiraIssueId);
 
-				List<JIRAChangeGroup> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAChangeGroup>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_JIRAISSUEID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAChangeGroup>)result;
-		}
+
+		return list;
 	}
 
 	public List<JIRAChangeGroup> findByJiraIssueId(long jiraIssueId, int start,
@@ -576,29 +642,16 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 
 	public List<JIRAChangeGroup> findByJiraIssueId(long jiraIssueId, int start,
 		int end, OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAChangeGroupModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAChangeGroup.class.getName();
-		String finderMethodName = "findByJiraIssueId";
-		String[] finderParams = new String[] {
-				Long.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(jiraIssueId),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<JIRAChangeGroup> list = (List<JIRAChangeGroup>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_JIRAISSUEID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -630,25 +683,27 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(jiraIssueId);
 
-				List<JIRAChangeGroup> list = (List<JIRAChangeGroup>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<JIRAChangeGroup>)QueryUtil.list(q, getDialect(),
+						start, end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAChangeGroup>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_JIRAISSUEID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAChangeGroup>)result;
-		}
+
+		return list;
 	}
 
 	public JIRAChangeGroup findByJiraIssueId_First(long jiraIssueId,
@@ -803,25 +858,14 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 
 	public List<JIRAChangeGroup> findAll(int start, int end,
 		OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAChangeGroupModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAChangeGroup.class.getName();
-		String finderMethodName = "findAll";
-		String[] finderParams = new String[] {
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<JIRAChangeGroup> list = (List<JIRAChangeGroup>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -844,8 +888,6 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 
 				Query q = session.createQuery(query.toString());
 
-				List<JIRAChangeGroup> list = null;
-
 				if (obc == null) {
 					list = (List<JIRAChangeGroup>)QueryUtil.list(q,
 							getDialect(), start, end, false);
@@ -856,23 +898,24 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 					list = (List<JIRAChangeGroup>)QueryUtil.list(q,
 							getDialect(), start, end);
 				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAChangeGroup>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAChangeGroup>)result;
-		}
+
+		return list;
 	}
 
 	public void removeByJiraUserId(String jiraUserId) throws SystemException {
@@ -894,20 +937,12 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public int countByJiraUserId(String jiraUserId) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAChangeGroupModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAChangeGroup.class.getName();
-		String finderMethodName = "countByJiraUserId";
-		String[] finderParams = new String[] { String.class.getName() };
 		Object[] finderArgs = new Object[] { jiraUserId };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_JIRAUSERID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -936,51 +971,33 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 					qPos.add(jiraUserId);
 				}
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_JIRAUSERID,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByJiraIssueId(long jiraIssueId) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAChangeGroupModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAChangeGroup.class.getName();
-		String finderMethodName = "countByJiraIssueId";
-		String[] finderParams = new String[] { Long.class.getName() };
 		Object[] finderArgs = new Object[] { new Long(jiraIssueId) };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_JIRAISSUEID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1002,51 +1019,33 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(jiraIssueId);
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_JIRAISSUEID,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countAll() throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAChangeGroupModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAChangeGroup.class.getName();
-		String finderMethodName = "countAll";
-		String[] finderParams = new String[] {  };
-		Object[] finderArgs = new Object[] {  };
+		Object[] finderArgs = new Object[0];
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1055,34 +1054,24 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl
 				Query q = session.createQuery(
 						"SELECT COUNT(*) FROM com.liferay.wol.model.JIRAChangeGroup");
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
+					count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public void afterPropertiesSet() {

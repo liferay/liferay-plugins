@@ -22,12 +22,20 @@
 
 package com.liferay.ruon.service;
 
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.Isolation;
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="NetworkLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
+@Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
+	PortalException.class, SystemException.class})
 public interface NetworkLocalService {
 	public com.liferay.ruon.model.Network addNetwork(
 		com.liferay.ruon.model.Network network)
@@ -50,23 +58,32 @@ public interface NetworkLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.ruon.model.Network getNetwork(long networkId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.ruon.model.Network> getNetworks(
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getNetworksCount() throws com.liferay.portal.SystemException;
 
 	public com.liferay.ruon.model.Network updateNetwork(
 		com.liferay.ruon.model.Network network)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.ruon.model.Network updateNetwork(
+		com.liferay.ruon.model.Network network, boolean merge)
+		throws com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.ruon.model.Network getNetwork(java.lang.String name)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getNetworkId(java.lang.String name)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;

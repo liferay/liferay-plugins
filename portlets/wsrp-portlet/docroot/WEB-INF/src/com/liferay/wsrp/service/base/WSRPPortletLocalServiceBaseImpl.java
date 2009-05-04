@@ -26,6 +26,7 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.wsrp.model.WSRPPortlet;
 import com.liferay.wsrp.service.WSRPConfiguredProducerLocalService;
@@ -177,6 +178,15 @@ public abstract class WSRPPortletLocalServiceBaseImpl
 	public void setWSRPProducerPersistence(
 		WSRPProducerPersistence wsrpProducerPersistence) {
 		this.wsrpProducerPersistence = wsrpProducerPersistence;
+	}
+
+	protected void runSQL(String sql) throws SystemException {
+		try {
+			PortalUtil.runSQL(sql);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
 	}
 
 	@BeanReference(name = "com.liferay.wsrp.service.WSRPConfiguredProducerLocalService.impl")

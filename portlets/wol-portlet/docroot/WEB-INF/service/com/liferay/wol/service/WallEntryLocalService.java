@@ -24,6 +24,7 @@ package com.liferay.wol.service;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.Isolation;
 import com.liferay.portal.kernel.annotation.Propagation;
 import com.liferay.portal.kernel.annotation.Transactional;
 
@@ -33,7 +34,7 @@ import com.liferay.portal.kernel.annotation.Transactional;
  * @author Brian Wing Shun Chan
  *
  */
-@Transactional(rollbackFor =  {
+@Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
 public interface WallEntryLocalService {
 	public com.liferay.wol.model.WallEntry addWallEntry(

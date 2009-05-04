@@ -29,6 +29,7 @@ import com.liferay.chat.model.impl.EntryModelImpl;
 
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.cache.CacheRegistry;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -205,6 +206,13 @@ public class EntryPersistenceImpl extends BasePersistenceImpl
 				cacheResult(entry);
 			}
 		}
+	}
+
+	public void clearCache() {
+		CacheRegistry.clear(EntryImpl.class.getName());
+		EntityCacheUtil.clearCache(EntryImpl.class.getName());
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
 	public Entry create(long entryId) {

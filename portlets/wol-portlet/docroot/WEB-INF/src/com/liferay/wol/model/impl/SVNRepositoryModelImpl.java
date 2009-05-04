@@ -64,7 +64,10 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository> {
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.wol.model.SVNRepository"),
+			true);
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.wol.model.SVNRepository"),
 			true);
 
@@ -111,9 +114,7 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository> {
 	}
 
 	public void setSvnRepositoryId(long svnRepositoryId) {
-		if (svnRepositoryId != _svnRepositoryId) {
-			_svnRepositoryId = svnRepositoryId;
-		}
+		_svnRepositoryId = svnRepositoryId;
 	}
 
 	public String getUrl() {
@@ -121,11 +122,15 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository> {
 	}
 
 	public void setUrl(String url) {
-		if (((url == null) && (_url != null)) ||
-				((url != null) && (_url == null)) ||
-				((url != null) && (_url != null) && !url.equals(_url))) {
-			_url = url;
+		_url = url;
+
+		if (_originalUrl == null) {
+			_originalUrl = url;
 		}
+	}
+
+	public String getOriginalUrl() {
+		return GetterUtil.getString(_originalUrl);
 	}
 
 	public long getRevisionNumber() {
@@ -133,9 +138,7 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository> {
 	}
 
 	public void setRevisionNumber(long revisionNumber) {
-		if (revisionNumber != _revisionNumber) {
-			_revisionNumber = revisionNumber;
-		}
+		_revisionNumber = revisionNumber;
 	}
 
 	public SVNRepository toEscapedModel() {
@@ -219,8 +222,48 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository> {
 		return (int)getPrimaryKey();
 	}
 
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{svnRepositoryId=");
+		sb.append(getSvnRepositoryId());
+		sb.append(", url=");
+		sb.append(getUrl());
+		sb.append(", revisionNumber=");
+		sb.append(getRevisionNumber());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wol.model.SVNRepository");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>svnRepositoryId</column-name><column-value><![CDATA[");
+		sb.append("getSvnRepositoryId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>url</column-name><column-value><![CDATA[");
+		sb.append("getUrl()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>revisionNumber</column-name><column-value><![CDATA[");
+		sb.append("getRevisionNumber()");
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
 	private long _svnRepositoryId;
 	private String _url;
+	private String _originalUrl;
 	private long _revisionNumber;
 	private transient ExpandoBridge _expandoBridge;
 }

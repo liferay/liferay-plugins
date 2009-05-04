@@ -31,6 +31,13 @@ import com.liferay.portal.service.persistence.BasePersistence;
  *
  */
 public interface JIRAIssuePersistence extends BasePersistence {
+	public void cacheResult(com.liferay.wol.model.JIRAIssue jiraIssue);
+
+	public void cacheResult(
+		java.util.List<com.liferay.wol.model.JIRAIssue> jiraIssues);
+
+	public void clearCache();
+
 	public com.liferay.wol.model.JIRAIssue create(long jiraIssueId);
 
 	public com.liferay.wol.model.JIRAIssue remove(long jiraIssueId)
@@ -94,6 +101,9 @@ public interface JIRAIssuePersistence extends BasePersistence {
 
 	public com.liferay.wol.model.JIRAIssue fetchByKey(java.lang.String key)
 		throws com.liferay.portal.SystemException;
+
+	public com.liferay.wol.model.JIRAIssue fetchByKey(java.lang.String key,
+		boolean retrieveFromCache) throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.JIRAIssue> findByReporterJiraUserId(
 		java.lang.String reporterJiraUserId)

@@ -24,6 +24,7 @@ package com.liferay.wsrp.service.persistence;
 
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.cache.CacheRegistry;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -124,6 +125,13 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 				cacheResult(wsrpPortlet);
 			}
 		}
+	}
+
+	public void clearCache() {
+		CacheRegistry.clear(WSRPPortletImpl.class.getName());
+		EntityCacheUtil.clearCache(WSRPPortletImpl.class.getName());
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
 	public WSRPPortlet create(long portletId) {
@@ -265,6 +273,8 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 		throws SystemException {
 		boolean isNew = wsrpPortlet.isNew();
 
+		WSRPPortletModelImpl wsrpPortletModelImpl = (WSRPPortletModelImpl)wsrpPortlet;
+
 		Session session = null;
 
 		try {
@@ -285,8 +295,6 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 
 		EntityCacheUtil.putResult(WSRPPortletModelImpl.ENTITY_CACHE_ENABLED,
 			WSRPPortletImpl.class, wsrpPortlet.getPrimaryKey(), wsrpPortlet);
-
-		WSRPPortletModelImpl wsrpPortletModelImpl = (WSRPPortletModelImpl)wsrpPortlet;
 
 		if (!isNew &&
 				(!wsrpPortlet.getName()
@@ -431,6 +439,12 @@ public class WSRPPortletPersistenceImpl extends BasePersistenceImpl
 					wsrpPortlet = list.get(0);
 
 					cacheResult(wsrpPortlet);
+
+					if ((wsrpPortlet.getName() == null) ||
+							!wsrpPortlet.getName().equals(name)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_PORTLETNAME,
+							finderArgs, list);
+					}
 				}
 
 				return wsrpPortlet;

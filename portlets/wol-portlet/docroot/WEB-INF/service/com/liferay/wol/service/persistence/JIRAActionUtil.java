@@ -29,6 +29,19 @@ package com.liferay.wol.service.persistence;
  *
  */
 public class JIRAActionUtil {
+	public static void cacheResult(com.liferay.wol.model.JIRAAction jiraAction) {
+		getPersistence().cacheResult(jiraAction);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.wol.model.JIRAAction> jiraActions) {
+		getPersistence().cacheResult(jiraActions);
+	}
+
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
 	public static com.liferay.wol.model.JIRAAction create(long jiraActionId) {
 		return getPersistence().create(jiraActionId);
 	}

@@ -31,6 +31,14 @@ import com.liferay.portal.service.persistence.BasePersistence;
  *
  */
 public interface JIRAChangeGroupPersistence extends BasePersistence {
+	public void cacheResult(
+		com.liferay.wol.model.JIRAChangeGroup jiraChangeGroup);
+
+	public void cacheResult(
+		java.util.List<com.liferay.wol.model.JIRAChangeGroup> jiraChangeGroups);
+
+	public void clearCache();
+
 	public com.liferay.wol.model.JIRAChangeGroup create(long jiraChangeGroupId);
 
 	public com.liferay.wol.model.JIRAChangeGroup remove(long jiraChangeGroupId)

@@ -335,6 +335,40 @@ public class PresenceLocalServiceClp implements PresenceLocalService {
 		return (com.liferay.ruon.model.Presence)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.ruon.model.Presence updatePresence(
+		com.liferay.ruon.model.Presence presence, boolean merge)
+		throws com.liferay.portal.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(presence);
+
+		if (presence == null) {
+			paramObj0 = new NullWrapper("com.liferay.ruon.model.Presence");
+		}
+
+		Object paramObj1 = new BooleanWrapper(merge);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("updatePresence",
+					new Object[] { paramObj0, paramObj1 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.ruon.model.Presence)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.ruon.model.Presence getPresence(long userId,
 		java.lang.String networkName)
 		throws com.liferay.portal.PortalException,

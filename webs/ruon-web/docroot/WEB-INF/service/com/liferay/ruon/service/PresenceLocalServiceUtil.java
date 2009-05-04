@@ -88,6 +88,12 @@ public class PresenceLocalServiceUtil {
 		return getService().updatePresence(presence);
 	}
 
+	public static com.liferay.ruon.model.Presence updatePresence(
+		com.liferay.ruon.model.Presence presence, boolean merge)
+		throws com.liferay.portal.SystemException {
+		return getService().updatePresence(presence, merge);
+	}
+
 	public static com.liferay.ruon.model.Presence getPresence(long userId,
 		java.lang.String networkName)
 		throws com.liferay.portal.PortalException,
@@ -109,11 +115,15 @@ public class PresenceLocalServiceUtil {
 		return getService().updatePresence(userId, networkName, online);
 	}
 
+	public static void clearService() {
+		_service = null;
+	}
+
 	public static PresenceLocalService getService() {
 		if (_service == null) {
-			Object obj = PortletBeanLocatorUtil.locate("ruon-web",
+			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					PresenceLocalServiceUtil.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("ruon-web",
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,

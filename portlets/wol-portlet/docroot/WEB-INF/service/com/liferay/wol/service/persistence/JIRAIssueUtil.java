@@ -29,6 +29,19 @@ package com.liferay.wol.service.persistence;
  *
  */
 public class JIRAIssueUtil {
+	public static void cacheResult(com.liferay.wol.model.JIRAIssue jiraIssue) {
+		getPersistence().cacheResult(jiraIssue);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.wol.model.JIRAIssue> jiraIssues) {
+		getPersistence().cacheResult(jiraIssues);
+	}
+
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
 	public static com.liferay.wol.model.JIRAIssue create(long jiraIssueId) {
 		return getPersistence().create(jiraIssueId);
 	}
@@ -126,6 +139,12 @@ public class JIRAIssueUtil {
 	public static com.liferay.wol.model.JIRAIssue fetchByKey(
 		java.lang.String key) throws com.liferay.portal.SystemException {
 		return getPersistence().fetchByKey(key);
+	}
+
+	public static com.liferay.wol.model.JIRAIssue fetchByKey(
+		java.lang.String key, boolean retrieveFromCache)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().fetchByKey(key, retrieveFromCache);
 	}
 
 	public static java.util.List<com.liferay.wol.model.JIRAIssue> findByReporterJiraUserId(

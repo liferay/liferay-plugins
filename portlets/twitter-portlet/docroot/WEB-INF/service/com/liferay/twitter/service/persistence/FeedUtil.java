@@ -29,6 +29,19 @@ package com.liferay.twitter.service.persistence;
  *
  */
 public class FeedUtil {
+	public static void cacheResult(com.liferay.twitter.model.Feed feed) {
+		getPersistence().cacheResult(feed);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.twitter.model.Feed> feeds) {
+		getPersistence().cacheResult(feeds);
+	}
+
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
 	public static com.liferay.twitter.model.Feed create(long feedId) {
 		return getPersistence().create(feedId);
 	}
@@ -86,6 +99,13 @@ public class FeedUtil {
 		return getPersistence().fetchByTwitterUserId(twitterUserId);
 	}
 
+	public static com.liferay.twitter.model.Feed fetchByTwitterUserId(
+		long twitterUserId, boolean retrieveFromCache)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .fetchByTwitterUserId(twitterUserId, retrieveFromCache);
+	}
+
 	public static com.liferay.twitter.model.Feed findByTwitterScreenName(
 		java.lang.String twitterScreenName)
 		throws com.liferay.portal.SystemException,
@@ -97,6 +117,14 @@ public class FeedUtil {
 		java.lang.String twitterScreenName)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().fetchByTwitterScreenName(twitterScreenName);
+	}
+
+	public static com.liferay.twitter.model.Feed fetchByTwitterScreenName(
+		java.lang.String twitterScreenName, boolean retrieveFromCache)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .fetchByTwitterScreenName(twitterScreenName,
+			retrieveFromCache);
 	}
 
 	public static java.util.List<Object> findWithDynamicQuery(

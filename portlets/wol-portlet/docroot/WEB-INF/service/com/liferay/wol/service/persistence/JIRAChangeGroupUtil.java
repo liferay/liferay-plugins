@@ -29,6 +29,20 @@ package com.liferay.wol.service.persistence;
  *
  */
 public class JIRAChangeGroupUtil {
+	public static void cacheResult(
+		com.liferay.wol.model.JIRAChangeGroup jiraChangeGroup) {
+		getPersistence().cacheResult(jiraChangeGroup);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.wol.model.JIRAChangeGroup> jiraChangeGroups) {
+		getPersistence().cacheResult(jiraChangeGroups);
+	}
+
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
 	public static com.liferay.wol.model.JIRAChangeGroup create(
 		long jiraChangeGroupId) {
 		return getPersistence().create(jiraChangeGroupId);

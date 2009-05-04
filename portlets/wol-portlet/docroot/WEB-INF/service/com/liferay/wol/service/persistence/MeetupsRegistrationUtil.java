@@ -29,6 +29,20 @@ package com.liferay.wol.service.persistence;
  *
  */
 public class MeetupsRegistrationUtil {
+	public static void cacheResult(
+		com.liferay.wol.model.MeetupsRegistration meetupsRegistration) {
+		getPersistence().cacheResult(meetupsRegistration);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.wol.model.MeetupsRegistration> meetupsRegistrations) {
+		getPersistence().cacheResult(meetupsRegistrations);
+	}
+
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
 	public static com.liferay.wol.model.MeetupsRegistration create(
 		long meetupsRegistrationId) {
 		return getPersistence().create(meetupsRegistrationId);
@@ -133,6 +147,13 @@ public class MeetupsRegistrationUtil {
 		long userId, long meetupsEntryId)
 		throws com.liferay.portal.SystemException {
 		return getPersistence().fetchByU_ME(userId, meetupsEntryId);
+	}
+
+	public static com.liferay.wol.model.MeetupsRegistration fetchByU_ME(
+		long userId, long meetupsEntryId, boolean retrieveFromCache)
+		throws com.liferay.portal.SystemException {
+		return getPersistence()
+				   .fetchByU_ME(userId, meetupsEntryId, retrieveFromCache);
 	}
 
 	public static java.util.List<com.liferay.wol.model.MeetupsRegistration> findByME_S(

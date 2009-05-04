@@ -36,6 +36,8 @@ public interface WSRPProducerPersistence extends BasePersistence {
 	public void cacheResult(
 		java.util.List<com.liferay.wsrp.model.WSRPProducer> wsrpProducers);
 
+	public void clearCache();
+
 	public com.liferay.wsrp.model.WSRPProducer create(long producerId);
 
 	public com.liferay.wsrp.model.WSRPProducer remove(long producerId)

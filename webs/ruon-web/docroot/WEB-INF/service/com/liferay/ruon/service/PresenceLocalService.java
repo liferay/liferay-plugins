@@ -22,12 +22,20 @@
 
 package com.liferay.ruon.service;
 
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.Isolation;
+import com.liferay.portal.kernel.annotation.Propagation;
+import com.liferay.portal.kernel.annotation.Transactional;
+
 /**
  * <a href="PresenceLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
+@Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
+	PortalException.class, SystemException.class})
 public interface PresenceLocalService {
 	public com.liferay.ruon.model.Presence addPresence(
 		com.liferay.ruon.model.Presence presence)
@@ -50,24 +58,33 @@ public interface PresenceLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.ruon.model.Presence getPresence(long presenceId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.portal.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.ruon.model.Presence> getPresences(
 		int start, int end) throws com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getPresencesCount() throws com.liferay.portal.SystemException;
 
 	public com.liferay.ruon.model.Presence updatePresence(
 		com.liferay.ruon.model.Presence presence)
 		throws com.liferay.portal.SystemException;
 
+	public com.liferay.ruon.model.Presence updatePresence(
+		com.liferay.ruon.model.Presence presence, boolean merge)
+		throws com.liferay.portal.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.ruon.model.Presence getPresence(long userId,
 		java.lang.String networkName)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.ruon.model.Presence> getPresences(
 		long userId, boolean online)
 		throws com.liferay.portal.PortalException,

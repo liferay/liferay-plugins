@@ -24,8 +24,11 @@ package com.liferay.twitter.service.persistence;
 
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.cache.CacheRegistry;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -47,7 +50,6 @@ import com.liferay.twitter.model.impl.FeedModelImpl;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -58,6 +60,55 @@ import java.util.List;
  */
 public class FeedPersistenceImpl extends BasePersistenceImpl
 	implements FeedPersistence {
+	public static final String FINDER_CLASS_NAME_ENTITY = FeedImpl.class.getName();
+	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
+		".List";
+	public static final FinderPath FINDER_PATH_FETCH_BY_TWITTERUSERID = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+			FeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
+			"fetchByTwitterUserId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_COUNT_BY_TWITTERUSERID = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+			FeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByTwitterUserId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FETCH_BY_TWITTERSCREENNAME = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+			FeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
+			"fetchByTwitterScreenName", new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_COUNT_BY_TWITTERSCREENNAME = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+			FeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByTwitterScreenName", new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+			FeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+			FeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countAll", new String[0]);
+
+	public void cacheResult(Feed feed) {
+		EntityCacheUtil.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
+			FeedImpl.class, feed.getPrimaryKey(), feed);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERUSERID,
+			new Object[] { new Long(feed.getTwitterUserId()) }, feed);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
+			new Object[] { feed.getTwitterScreenName() }, feed);
+	}
+
+	public void cacheResult(List<Feed> feeds) {
+		for (Feed feed : feeds) {
+			if (EntityCacheUtil.getResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
+						FeedImpl.class, feed.getPrimaryKey(), this) == null) {
+				cacheResult(feed);
+			}
+		}
+	}
+
+	public void clearCache() {
+		CacheRegistry.clear(FeedImpl.class.getName());
+		EntityCacheUtil.clearCache(FeedImpl.class.getName());
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	public Feed create(long feedId) {
 		Feed feed = new FeedImpl();
 
@@ -98,13 +149,13 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public Feed remove(Feed feed) throws SystemException {
-		for (ModelListener listener : listeners) {
+		for (ModelListener<Feed> listener : listeners) {
 			listener.onBeforeRemove(feed);
 		}
 
 		feed = removeImpl(feed);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<Feed> listener : listeners) {
 			listener.onAfterRemove(feed);
 		}
 
@@ -117,7 +168,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
-			if (BatchSessionUtil.isEnabled()) {
+			if (feed.isCachedModel() || BatchSessionUtil.isEnabled()) {
 				Object staleObject = session.get(FeedImpl.class,
 						feed.getPrimaryKeyObj());
 
@@ -129,17 +180,28 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 			session.delete(feed);
 
 			session.flush();
-
-			return feed;
 		}
 		catch (Exception e) {
 			throw processException(e);
 		}
 		finally {
 			closeSession(session);
-
-			FinderCacheUtil.clearCache(Feed.class.getName());
 		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		FeedModelImpl feedModelImpl = (FeedModelImpl)feed;
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_TWITTERUSERID,
+			new Object[] { new Long(feedModelImpl.getOriginalTwitterUserId()) });
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
+			new Object[] { feedModelImpl.getOriginalTwitterScreenName() });
+
+		EntityCacheUtil.removeResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
+			FeedImpl.class, feed.getPrimaryKey());
+
+		return feed;
 	}
 
 	public Feed update(Feed feed) throws SystemException {
@@ -154,7 +216,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 	public Feed update(Feed feed, boolean merge) throws SystemException {
 		boolean isNew = feed.isNew();
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<Feed> listener : listeners) {
 			if (isNew) {
 				listener.onBeforeCreate(feed);
 			}
@@ -165,7 +227,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 		feed = updateImpl(feed, merge);
 
-		for (ModelListener listener : listeners) {
+		for (ModelListener<Feed> listener : listeners) {
 			if (isNew) {
 				listener.onAfterCreate(feed);
 			}
@@ -179,6 +241,10 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 	public Feed updateImpl(com.liferay.twitter.model.Feed feed, boolean merge)
 		throws SystemException {
+		boolean isNew = feed.isNew();
+
+		FeedModelImpl feedModelImpl = (FeedModelImpl)feed;
+
 		Session session = null;
 
 		try {
@@ -187,17 +253,46 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 			BatchSessionUtil.update(session, feed, merge);
 
 			feed.setNew(false);
-
-			return feed;
 		}
 		catch (Exception e) {
 			throw processException(e);
 		}
 		finally {
 			closeSession(session);
-
-			FinderCacheUtil.clearCache(Feed.class.getName());
 		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		EntityCacheUtil.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
+			FeedImpl.class, feed.getPrimaryKey(), feed);
+
+		if (!isNew &&
+				(feed.getTwitterUserId() != feedModelImpl.getOriginalTwitterUserId())) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_TWITTERUSERID,
+				new Object[] { new Long(feedModelImpl.getOriginalTwitterUserId()) });
+		}
+
+		if (isNew ||
+				(feed.getTwitterUserId() != feedModelImpl.getOriginalTwitterUserId())) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERUSERID,
+				new Object[] { new Long(feed.getTwitterUserId()) }, feed);
+		}
+
+		if (!isNew &&
+				(!feed.getTwitterScreenName()
+						  .equals(feedModelImpl.getOriginalTwitterScreenName()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
+				new Object[] { feedModelImpl.getOriginalTwitterScreenName() });
+		}
+
+		if (isNew ||
+				(!feed.getTwitterScreenName()
+						  .equals(feedModelImpl.getOriginalTwitterScreenName()))) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
+				new Object[] { feed.getTwitterScreenName() }, feed);
+		}
+
+		return feed;
 	}
 
 	public Feed findByPrimaryKey(long feedId)
@@ -217,19 +312,30 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public Feed fetchByPrimaryKey(long feedId) throws SystemException {
-		Session session = null;
+		Feed feed = (Feed)EntityCacheUtil.getResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
+				FeedImpl.class, feedId, this);
 
-		try {
-			session = openSession();
+		if (feed == null) {
+			Session session = null;
 
-			return (Feed)session.get(FeedImpl.class, new Long(feedId));
+			try {
+				session = openSession();
+
+				feed = (Feed)session.get(FeedImpl.class, new Long(feedId));
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (feed != null) {
+					cacheResult(feed);
+				}
+
+				closeSession(session);
+			}
 		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
+
+		return feed;
 	}
 
 	public Feed findByTwitterUserId(long twitterUserId)
@@ -257,17 +363,18 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 	public Feed fetchByTwitterUserId(long twitterUserId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = FeedModelImpl.CACHE_ENABLED;
-		String finderClassName = Feed.class.getName();
-		String finderMethodName = "fetchByTwitterUserId";
-		String[] finderParams = new String[] { Long.class.getName() };
+		return fetchByTwitterUserId(twitterUserId, true);
+	}
+
+	public Feed fetchByTwitterUserId(long twitterUserId,
+		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { new Long(twitterUserId) };
 
 		Object result = null;
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_TWITTERUSERID,
+					finderArgs, this);
 		}
 
 		if (result == null) {
@@ -292,32 +399,45 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 				List<Feed> list = q.list();
 
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
+				result = list;
 
-				if (list.size() == 0) {
-					return null;
+				Feed feed = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERUSERID,
+						finderArgs, list);
 				}
 				else {
-					return list.get(0);
+					feed = list.get(0);
+
+					cacheResult(feed);
+
+					if ((feed.getTwitterUserId() != twitterUserId)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERUSERID,
+							finderArgs, list);
+					}
 				}
+
+				return feed;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (result == null) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERUSERID,
+						finderArgs, new ArrayList<Feed>());
+				}
+
 				closeSession(session);
 			}
 		}
 		else {
-			List<Feed> list = (List<Feed>)result;
-
-			if (list.size() == 0) {
+			if (result instanceof List) {
 				return null;
 			}
 			else {
-				return list.get(0);
+				return (Feed)result;
 			}
 		}
 	}
@@ -347,17 +467,18 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 	public Feed fetchByTwitterScreenName(String twitterScreenName)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = FeedModelImpl.CACHE_ENABLED;
-		String finderClassName = Feed.class.getName();
-		String finderMethodName = "fetchByTwitterScreenName";
-		String[] finderParams = new String[] { String.class.getName() };
+		return fetchByTwitterScreenName(twitterScreenName, true);
+	}
+
+	public Feed fetchByTwitterScreenName(String twitterScreenName,
+		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { twitterScreenName };
 
 		Object result = null;
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
+					finderArgs, this);
 		}
 
 		if (result == null) {
@@ -389,32 +510,47 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 				List<Feed> list = q.list();
 
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
+				result = list;
 
-				if (list.size() == 0) {
-					return null;
+				Feed feed = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
+						finderArgs, list);
 				}
 				else {
-					return list.get(0);
+					feed = list.get(0);
+
+					cacheResult(feed);
+
+					if ((feed.getTwitterScreenName() == null) ||
+							!feed.getTwitterScreenName()
+									 .equals(twitterScreenName)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
+							finderArgs, list);
+					}
 				}
+
+				return feed;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (result == null) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
+						finderArgs, new ArrayList<Feed>());
+				}
+
 				closeSession(session);
 			}
 		}
 		else {
-			List<Feed> list = (List<Feed>)result;
-
-			if (list.size() == 0) {
+			if (result instanceof List) {
 				return null;
 			}
 			else {
-				return list.get(0);
+				return (Feed)result;
 			}
 		}
 	}
@@ -469,25 +605,14 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 	public List<Feed> findAll(int start, int end, OrderByComparator obc)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = FeedModelImpl.CACHE_ENABLED;
-		String finderClassName = Feed.class.getName();
-		String finderMethodName = "findAll";
-		String[] finderParams = new String[] {
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<Feed> list = (List<Feed>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -504,8 +629,6 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 				Query q = session.createQuery(query.toString());
 
-				List<Feed> list = null;
-
 				if (obc == null) {
 					list = (List<Feed>)QueryUtil.list(q, getDialect(), start,
 							end, false);
@@ -516,23 +639,24 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 					list = (List<Feed>)QueryUtil.list(q, getDialect(), start,
 							end);
 				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<Feed>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<Feed>)result;
-		}
+
+		return list;
 	}
 
 	public void removeByTwitterUserId(long twitterUserId)
@@ -557,20 +681,12 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 	public int countByTwitterUserId(long twitterUserId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = FeedModelImpl.CACHE_ENABLED;
-		String finderClassName = Feed.class.getName();
-		String finderMethodName = "countByTwitterUserId";
-		String[] finderParams = new String[] { Long.class.getName() };
 		Object[] finderArgs = new Object[] { new Long(twitterUserId) };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_TWITTERUSERID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -591,52 +707,34 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(twitterUserId);
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_TWITTERUSERID,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByTwitterScreenName(String twitterScreenName)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = FeedModelImpl.CACHE_ENABLED;
-		String finderClassName = Feed.class.getName();
-		String finderMethodName = "countByTwitterScreenName";
-		String[] finderParams = new String[] { String.class.getName() };
 		Object[] finderArgs = new Object[] { twitterScreenName };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_TWITTERSCREENNAME,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -664,51 +762,33 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 					qPos.add(twitterScreenName);
 				}
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_TWITTERSCREENNAME,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countAll() throws SystemException {
-		boolean finderClassNameCacheEnabled = FeedModelImpl.CACHE_ENABLED;
-		String finderClassName = Feed.class.getName();
-		String finderMethodName = "countAll";
-		String[] finderParams = new String[] {  };
-		Object[] finderArgs = new Object[] {  };
+		Object[] finderArgs = new Object[0];
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -717,34 +797,24 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 				Query q = session.createQuery(
 						"SELECT COUNT(*) FROM com.liferay.twitter.model.Feed");
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
+					count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public void afterPropertiesSet() {
@@ -754,10 +824,10 @@ public class FeedPersistenceImpl extends BasePersistenceImpl
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener> listenersList = new ArrayList<ModelListener>();
+				List<ModelListener<Feed>> listenersList = new ArrayList<ModelListener<Feed>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener)Class.forName(
+					listenersList.add((ModelListener<Feed>)Class.forName(
 							listenerClassName).newInstance());
 				}
 

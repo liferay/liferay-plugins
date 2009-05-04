@@ -246,11 +246,15 @@ public class WorkflowComponentServiceUtil {
 		return getService().updateTaskXml(taskId, transition, parameterMap);
 	}
 
+	public static void clearService() {
+		_service = null;
+	}
+
 	public static WorkflowComponentService getService() {
 		if (_service == null) {
-			Object obj = PortletBeanLocatorUtil.locate("workflow-portlet",
+			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					WorkflowComponentServiceUtil.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("workflow-portlet",
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,

@@ -49,6 +49,8 @@ import java.util.List;
  *
  */
 public class ClpSerializer {
+	public static final String SERVLET_CONTEXT_NAME = "wol-portlet";
+
 	public static void setClassLoader(ClassLoader classLoader) {
 		_classLoader = classLoader;
 	}

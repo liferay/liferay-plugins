@@ -29,6 +29,20 @@ package com.liferay.wol.service.persistence;
  *
  */
 public class MeetupsEntryUtil {
+	public static void cacheResult(
+		com.liferay.wol.model.MeetupsEntry meetupsEntry) {
+		getPersistence().cacheResult(meetupsEntry);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.wol.model.MeetupsEntry> meetupsEntries) {
+		getPersistence().cacheResult(meetupsEntries);
+	}
+
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
 	public static com.liferay.wol.model.MeetupsEntry create(long meetupsEntryId) {
 		return getPersistence().create(meetupsEntryId);
 	}

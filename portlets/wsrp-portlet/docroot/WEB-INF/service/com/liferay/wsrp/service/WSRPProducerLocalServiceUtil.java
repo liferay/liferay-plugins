@@ -130,11 +130,15 @@ public class WSRPProducerLocalServiceUtil {
 		return getService().getProducers(portalId, namespace);
 	}
 
+	public static void clearService() {
+		_service = null;
+	}
+
 	public static WSRPProducerLocalService getService() {
 		if (_service == null) {
-			Object obj = PortletBeanLocatorUtil.locate("wsrp-portlet",
+			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					WSRPProducerLocalServiceUtil.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("wsrp-portlet",
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,

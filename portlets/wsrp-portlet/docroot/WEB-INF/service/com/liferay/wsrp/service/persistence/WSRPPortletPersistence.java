@@ -36,6 +36,8 @@ public interface WSRPPortletPersistence extends BasePersistence {
 	public void cacheResult(
 		java.util.List<com.liferay.wsrp.model.WSRPPortlet> wsrpPortlets);
 
+	public void clearCache();
+
 	public com.liferay.wsrp.model.WSRPPortlet create(long portletId);
 
 	public com.liferay.wsrp.model.WSRPPortlet remove(long portletId)

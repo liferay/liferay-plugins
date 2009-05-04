@@ -29,6 +29,20 @@ package com.liferay.wol.service.persistence;
  *
  */
 public class SVNRevisionUtil {
+	public static void cacheResult(
+		com.liferay.wol.model.SVNRevision svnRevision) {
+		getPersistence().cacheResult(svnRevision);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.wol.model.SVNRevision> svnRevisions) {
+		getPersistence().cacheResult(svnRevisions);
+	}
+
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
 	public static com.liferay.wol.model.SVNRevision create(long svnRevisionId) {
 		return getPersistence().create(svnRevisionId);
 	}

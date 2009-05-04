@@ -154,11 +154,15 @@ public class SVNRevisionLocalServiceUtil {
 		return getService().getSVNRevisionsCount(svnUserId, svnRepositoryId);
 	}
 
+	public static void clearService() {
+		_service = null;
+	}
+
 	public static SVNRevisionLocalService getService() {
 		if (_service == null) {
-			Object obj = PortletBeanLocatorUtil.locate("wol-portlet",
+			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					SVNRevisionLocalServiceUtil.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("wol-portlet",
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,

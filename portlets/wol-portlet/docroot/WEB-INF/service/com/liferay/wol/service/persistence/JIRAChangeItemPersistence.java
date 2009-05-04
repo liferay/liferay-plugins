@@ -31,6 +31,13 @@ import com.liferay.portal.service.persistence.BasePersistence;
  *
  */
 public interface JIRAChangeItemPersistence extends BasePersistence {
+	public void cacheResult(com.liferay.wol.model.JIRAChangeItem jiraChangeItem);
+
+	public void cacheResult(
+		java.util.List<com.liferay.wol.model.JIRAChangeItem> jiraChangeItems);
+
+	public void clearCache();
+
 	public com.liferay.wol.model.JIRAChangeItem create(long jiraChangeItemId);
 
 	public com.liferay.wol.model.JIRAChangeItem remove(long jiraChangeItemId)

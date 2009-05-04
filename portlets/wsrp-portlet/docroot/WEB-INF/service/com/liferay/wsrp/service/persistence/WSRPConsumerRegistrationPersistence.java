@@ -37,6 +37,8 @@ public interface WSRPConsumerRegistrationPersistence extends BasePersistence {
 	public void cacheResult(
 		java.util.List<com.liferay.wsrp.model.WSRPConsumerRegistration> wsrpConsumerRegistrations);
 
+	public void clearCache();
+
 	public com.liferay.wsrp.model.WSRPConsumerRegistration create(
 		long consumerRegistrationId);
 

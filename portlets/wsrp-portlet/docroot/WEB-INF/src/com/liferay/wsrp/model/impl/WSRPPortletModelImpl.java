@@ -150,9 +150,7 @@ public class WSRPPortletModelImpl extends BaseModelImpl<WSRPPortlet> {
 	}
 
 	public void setPortletId(long portletId) {
-		if (portletId != _portletId) {
-			_portletId = portletId;
-		}
+		_portletId = portletId;
 	}
 
 	public String getName() {
@@ -160,12 +158,10 @@ public class WSRPPortletModelImpl extends BaseModelImpl<WSRPPortlet> {
 	}
 
 	public void setName(String name) {
-		if ((name != _name) || ((name != null) && !name.equals(_name))) {
-			_name = name;
+		_name = name;
 
-			if (_originalName == null) {
-				_originalName = name;
-			}
+		if (_originalName == null) {
+			_originalName = name;
 		}
 	}
 
@@ -178,10 +174,7 @@ public class WSRPPortletModelImpl extends BaseModelImpl<WSRPPortlet> {
 	}
 
 	public void setChannelName(String channelName) {
-		if ((channelName != _channelName) ||
-				((channelName != null) && !channelName.equals(_channelName))) {
-			_channelName = channelName;
-		}
+		_channelName = channelName;
 	}
 
 	public String getTitle() {
@@ -189,9 +182,7 @@ public class WSRPPortletModelImpl extends BaseModelImpl<WSRPPortlet> {
 	}
 
 	public void setTitle(String title) {
-		if ((title != _title) || ((title != null) && !title.equals(_title))) {
-			_title = title;
-		}
+		_title = title;
 	}
 
 	public String getShortTitle() {
@@ -199,10 +190,7 @@ public class WSRPPortletModelImpl extends BaseModelImpl<WSRPPortlet> {
 	}
 
 	public void setShortTitle(String shortTitle) {
-		if ((shortTitle != _shortTitle) ||
-				((shortTitle != null) && !shortTitle.equals(_shortTitle))) {
-			_shortTitle = shortTitle;
-		}
+		_shortTitle = shortTitle;
 	}
 
 	public String getDisplayName() {
@@ -210,10 +198,7 @@ public class WSRPPortletModelImpl extends BaseModelImpl<WSRPPortlet> {
 	}
 
 	public void setDisplayName(String displayName) {
-		if ((displayName != _displayName) ||
-				((displayName != null) && !displayName.equals(_displayName))) {
-			_displayName = displayName;
-		}
+		_displayName = displayName;
 	}
 
 	public String getKeywords() {
@@ -221,10 +206,7 @@ public class WSRPPortletModelImpl extends BaseModelImpl<WSRPPortlet> {
 	}
 
 	public void setKeywords(String keywords) {
-		if ((keywords != _keywords) ||
-				((keywords != null) && !keywords.equals(_keywords))) {
-			_keywords = keywords;
-		}
+		_keywords = keywords;
 	}
 
 	public int getStatus() {
@@ -232,9 +214,7 @@ public class WSRPPortletModelImpl extends BaseModelImpl<WSRPPortlet> {
 	}
 
 	public void setStatus(int status) {
-		if (status != _status) {
-			_status = status;
-		}
+		_status = status;
 	}
 
 	public String getProducerEntityId() {
@@ -242,11 +222,7 @@ public class WSRPPortletModelImpl extends BaseModelImpl<WSRPPortlet> {
 	}
 
 	public void setProducerEntityId(String producerEntityId) {
-		if ((producerEntityId != _producerEntityId) ||
-				((producerEntityId != null) &&
-				!producerEntityId.equals(_producerEntityId))) {
-			_producerEntityId = producerEntityId;
-		}
+		_producerEntityId = producerEntityId;
 	}
 
 	public String getConsumerId() {
@@ -254,10 +230,7 @@ public class WSRPPortletModelImpl extends BaseModelImpl<WSRPPortlet> {
 	}
 
 	public void setConsumerId(String consumerId) {
-		if ((consumerId != _consumerId) ||
-				((consumerId != null) && !consumerId.equals(_consumerId))) {
-			_consumerId = consumerId;
-		}
+		_consumerId = consumerId;
 	}
 
 	public String getPortletHandle() {
@@ -265,11 +238,7 @@ public class WSRPPortletModelImpl extends BaseModelImpl<WSRPPortlet> {
 	}
 
 	public void setPortletHandle(String portletHandle) {
-		if ((portletHandle != _portletHandle) ||
-				((portletHandle != null) &&
-				!portletHandle.equals(_portletHandle))) {
-			_portletHandle = portletHandle;
-		}
+		_portletHandle = portletHandle;
 	}
 
 	public String getMimeTypes() {
@@ -277,10 +246,7 @@ public class WSRPPortletModelImpl extends BaseModelImpl<WSRPPortlet> {
 	}
 
 	public void setMimeTypes(String mimeTypes) {
-		if ((mimeTypes != _mimeTypes) ||
-				((mimeTypes != null) && !mimeTypes.equals(_mimeTypes))) {
-			_mimeTypes = mimeTypes;
-		}
+		_mimeTypes = mimeTypes;
 	}
 
 	public WSRPPortlet toEscapedModel() {
@@ -382,6 +348,99 @@ public class WSRPPortletModelImpl extends BaseModelImpl<WSRPPortlet> {
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{portletId=");
+		sb.append(getPortletId());
+		sb.append(", name=");
+		sb.append(getName());
+		sb.append(", channelName=");
+		sb.append(getChannelName());
+		sb.append(", title=");
+		sb.append(getTitle());
+		sb.append(", shortTitle=");
+		sb.append(getShortTitle());
+		sb.append(", displayName=");
+		sb.append(getDisplayName());
+		sb.append(", keywords=");
+		sb.append(getKeywords());
+		sb.append(", status=");
+		sb.append(getStatus());
+		sb.append(", producerEntityId=");
+		sb.append(getProducerEntityId());
+		sb.append(", consumerId=");
+		sb.append(getConsumerId());
+		sb.append(", portletHandle=");
+		sb.append(getPortletHandle());
+		sb.append(", mimeTypes=");
+		sb.append(getMimeTypes());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wsrp.model.WSRPPortlet");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>portletId</column-name><column-value><![CDATA[");
+		sb.append("getPortletId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>name</column-name><column-value><![CDATA[");
+		sb.append("getName()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>channelName</column-name><column-value><![CDATA[");
+		sb.append("getChannelName()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>title</column-name><column-value><![CDATA[");
+		sb.append("getTitle()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>shortTitle</column-name><column-value><![CDATA[");
+		sb.append("getShortTitle()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>displayName</column-name><column-value><![CDATA[");
+		sb.append("getDisplayName()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>keywords</column-name><column-value><![CDATA[");
+		sb.append("getKeywords()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append("getStatus()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>producerEntityId</column-name><column-value><![CDATA[");
+		sb.append("getProducerEntityId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>consumerId</column-name><column-value><![CDATA[");
+		sb.append("getConsumerId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>portletHandle</column-name><column-value><![CDATA[");
+		sb.append("getPortletHandle()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>mimeTypes</column-name><column-value><![CDATA[");
+		sb.append("getMimeTypes()");
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
 	}
 
 	private long _portletId;

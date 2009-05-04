@@ -38,7 +38,7 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  *
  */
-public class FooClp extends BaseModelImpl implements Foo {
+public class FooClp extends BaseModelImpl<Foo> implements Foo {
 	public FooClp() {
 	}
 
@@ -142,13 +142,7 @@ public class FooClp extends BaseModelImpl implements Foo {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		FooClp foo = (FooClp)obj;
-
+	public int compareTo(Foo foo) {
 		int value = 0;
 
 		value = getField1().compareTo(foo.getField1());

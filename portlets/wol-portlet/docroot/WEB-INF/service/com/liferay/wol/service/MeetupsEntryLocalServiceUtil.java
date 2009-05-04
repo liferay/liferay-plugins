@@ -133,11 +133,15 @@ public class MeetupsEntryLocalServiceUtil {
 			maxAttendees, price, thumbnail);
 	}
 
+	public static void clearService() {
+		_service = null;
+	}
+
 	public static MeetupsEntryLocalService getService() {
 		if (_service == null) {
-			Object obj = PortletBeanLocatorUtil.locate("wol-portlet",
+			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					MeetupsEntryLocalServiceUtil.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("wol-portlet",
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,

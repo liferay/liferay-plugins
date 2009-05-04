@@ -91,11 +91,15 @@ public class WorkflowDefinitionServiceUtil {
 		return getService().getDefinition(definitionId);
 	}
 
+	public static void clearService() {
+		_service = null;
+	}
+
 	public static WorkflowDefinitionService getService() {
 		if (_service == null) {
-			Object obj = PortletBeanLocatorUtil.locate("workflow-portlet",
+			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					WorkflowDefinitionServiceUtil.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("workflow-portlet",
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,

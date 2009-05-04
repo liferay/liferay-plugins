@@ -39,6 +39,10 @@ public class WSRPConfiguredProducerUtil {
 		getPersistence().cacheResult(wsrpConfiguredProducers);
 	}
 
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
 	public static com.liferay.wsrp.model.WSRPConfiguredProducer create(
 		long configuredProducerId) {
 		return getPersistence().create(configuredProducerId);

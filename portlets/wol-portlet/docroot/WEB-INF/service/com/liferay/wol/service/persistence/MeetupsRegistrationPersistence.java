@@ -31,6 +31,14 @@ import com.liferay.portal.service.persistence.BasePersistence;
  *
  */
 public interface MeetupsRegistrationPersistence extends BasePersistence {
+	public void cacheResult(
+		com.liferay.wol.model.MeetupsRegistration meetupsRegistration);
+
+	public void cacheResult(
+		java.util.List<com.liferay.wol.model.MeetupsRegistration> meetupsRegistrations);
+
+	public void clearCache();
+
 	public com.liferay.wol.model.MeetupsRegistration create(
 		long meetupsRegistrationId);
 
@@ -100,6 +108,10 @@ public interface MeetupsRegistrationPersistence extends BasePersistence {
 
 	public com.liferay.wol.model.MeetupsRegistration fetchByU_ME(long userId,
 		long meetupsEntryId) throws com.liferay.portal.SystemException;
+
+	public com.liferay.wol.model.MeetupsRegistration fetchByU_ME(long userId,
+		long meetupsEntryId, boolean retrieveFromCache)
+		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.wol.model.MeetupsRegistration> findByME_S(
 		long meetupsEntryId, int status)

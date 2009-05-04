@@ -24,6 +24,7 @@ package com.liferay.wsrp.service.persistence;
 
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.cache.CacheRegistry;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -117,6 +118,13 @@ public class WSRPConsumerRegistrationPersistenceImpl extends BasePersistenceImpl
 				cacheResult(wsrpConsumerRegistration);
 			}
 		}
+	}
+
+	public void clearCache() {
+		CacheRegistry.clear(WSRPConsumerRegistrationImpl.class.getName());
+		EntityCacheUtil.clearCache(WSRPConsumerRegistrationImpl.class.getName());
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
 	public WSRPConsumerRegistration create(long consumerRegistrationId) {
@@ -270,6 +278,8 @@ public class WSRPConsumerRegistrationPersistenceImpl extends BasePersistenceImpl
 		boolean merge) throws SystemException {
 		boolean isNew = wsrpConsumerRegistration.isNew();
 
+		WSRPConsumerRegistrationModelImpl wsrpConsumerRegistrationModelImpl = (WSRPConsumerRegistrationModelImpl)wsrpConsumerRegistration;
+
 		Session session = null;
 
 		try {
@@ -291,8 +301,6 @@ public class WSRPConsumerRegistrationPersistenceImpl extends BasePersistenceImpl
 		EntityCacheUtil.putResult(WSRPConsumerRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			WSRPConsumerRegistrationImpl.class,
 			wsrpConsumerRegistration.getPrimaryKey(), wsrpConsumerRegistration);
-
-		WSRPConsumerRegistrationModelImpl wsrpConsumerRegistrationModelImpl = (WSRPConsumerRegistrationModelImpl)wsrpConsumerRegistration;
 
 		if (!isNew &&
 				(!wsrpConsumerRegistration.getRegistrationHandle()
@@ -706,6 +714,16 @@ public class WSRPConsumerRegistrationPersistenceImpl extends BasePersistenceImpl
 					wsrpConsumerRegistration = list.get(0);
 
 					cacheResult(wsrpConsumerRegistration);
+
+					if ((wsrpConsumerRegistration.getRegistrationHandle() == null) ||
+							!wsrpConsumerRegistration.getRegistrationHandle()
+														 .equals(registrationHandle) ||
+							(wsrpConsumerRegistration.getProducerKey() == null) ||
+							!wsrpConsumerRegistration.getProducerKey()
+														 .equals(producerKey)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_P,
+							finderArgs, list);
+					}
 				}
 
 				return wsrpConsumerRegistration;

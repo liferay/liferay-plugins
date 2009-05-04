@@ -22,6 +22,7 @@
 
 package com.liferay.twitter.service;
 
+import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.LongWrapper;
@@ -313,6 +314,40 @@ public class FeedLocalServiceClp implements FeedLocalService {
 		try {
 			returnObj = _classLoaderProxy.invoke("updateFeed",
 					new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.twitter.model.Feed)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.liferay.twitter.model.Feed updateFeed(
+		com.liferay.twitter.model.Feed feed, boolean merge)
+		throws com.liferay.portal.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(feed);
+
+		if (feed == null) {
+			paramObj0 = new NullWrapper("com.liferay.twitter.model.Feed");
+		}
+
+		Object paramObj1 = new BooleanWrapper(merge);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("updateFeed",
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.SystemException) {

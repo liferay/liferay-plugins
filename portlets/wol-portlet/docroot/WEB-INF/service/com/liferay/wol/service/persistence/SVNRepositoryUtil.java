@@ -29,6 +29,20 @@ package com.liferay.wol.service.persistence;
  *
  */
 public class SVNRepositoryUtil {
+	public static void cacheResult(
+		com.liferay.wol.model.SVNRepository svnRepository) {
+		getPersistence().cacheResult(svnRepository);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.wol.model.SVNRepository> svnRepositories) {
+		getPersistence().cacheResult(svnRepositories);
+	}
+
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
 	public static com.liferay.wol.model.SVNRepository create(
 		long svnRepositoryId) {
 		return getPersistence().create(svnRepositoryId);
@@ -87,6 +101,12 @@ public class SVNRepositoryUtil {
 	public static com.liferay.wol.model.SVNRepository fetchByUrl(
 		java.lang.String url) throws com.liferay.portal.SystemException {
 		return getPersistence().fetchByUrl(url);
+	}
+
+	public static com.liferay.wol.model.SVNRepository fetchByUrl(
+		java.lang.String url, boolean retrieveFromCache)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().fetchByUrl(url, retrieveFromCache);
 	}
 
 	public static java.util.List<Object> findWithDynamicQuery(

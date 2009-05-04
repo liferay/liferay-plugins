@@ -39,6 +39,10 @@ public class WSRPConsumerRegistrationUtil {
 		getPersistence().cacheResult(wsrpConsumerRegistrations);
 	}
 
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
 	public static com.liferay.wsrp.model.WSRPConsumerRegistration create(
 		long consumerRegistrationId) {
 		return getPersistence().create(consumerRegistrationId);

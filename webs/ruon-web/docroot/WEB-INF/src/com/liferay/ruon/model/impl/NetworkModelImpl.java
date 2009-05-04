@@ -48,7 +48,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public class NetworkModelImpl extends BaseModelImpl {
+public class NetworkModelImpl extends BaseModelImpl<Network> {
 	public static final String TABLE_NAME = "Ruon_Network";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "networkId", new Integer(Types.BIGINT) },
@@ -64,7 +64,10 @@ public class NetworkModelImpl extends BaseModelImpl {
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.ruon.model.Network"),
+			true);
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.ruon.model.Network"),
 			true);
 
@@ -111,9 +114,7 @@ public class NetworkModelImpl extends BaseModelImpl {
 	}
 
 	public void setNetworkId(long networkId) {
-		if (networkId != _networkId) {
-			_networkId = networkId;
-		}
+		_networkId = networkId;
 	}
 
 	public String getName() {
@@ -121,11 +122,15 @@ public class NetworkModelImpl extends BaseModelImpl {
 	}
 
 	public void setName(String name) {
-		if (((name == null) && (_name != null)) ||
-				((name != null) && (_name == null)) ||
-				((name != null) && (_name != null) && !name.equals(_name))) {
-			_name = name;
+		_name = name;
+
+		if (_originalName == null) {
+			_originalName = name;
 		}
+	}
+
+	public String getOriginalName() {
+		return GetterUtil.getString(_originalName);
 	}
 
 	public long getTtl() {
@@ -133,9 +138,7 @@ public class NetworkModelImpl extends BaseModelImpl {
 	}
 
 	public void setTtl(long ttl) {
-		if (ttl != _ttl) {
-			_ttl = ttl;
-		}
+		_ttl = ttl;
 	}
 
 	public Network toEscapedModel() {
@@ -179,13 +182,7 @@ public class NetworkModelImpl extends BaseModelImpl {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		NetworkImpl network = (NetworkImpl)obj;
-
+	public int compareTo(Network network) {
 		long pk = network.getPrimaryKey();
 
 		if (getPrimaryKey() < pk) {
@@ -204,10 +201,10 @@ public class NetworkModelImpl extends BaseModelImpl {
 			return false;
 		}
 
-		NetworkImpl network = null;
+		Network network = null;
 
 		try {
-			network = (NetworkImpl)obj;
+			network = (Network)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;
@@ -227,8 +224,48 @@ public class NetworkModelImpl extends BaseModelImpl {
 		return (int)getPrimaryKey();
 	}
 
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{networkId=");
+		sb.append(getNetworkId());
+		sb.append(", name=");
+		sb.append(getName());
+		sb.append(", ttl=");
+		sb.append(getTtl());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.ruon.model.Network");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>networkId</column-name><column-value><![CDATA[");
+		sb.append("getNetworkId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>name</column-name><column-value><![CDATA[");
+		sb.append("getName()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>ttl</column-name><column-value><![CDATA[");
+		sb.append("getTtl()");
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
 	private long _networkId;
 	private String _name;
+	private String _originalName;
 	private long _ttl;
-	private ExpandoBridge _expandoBridge;
+	private transient ExpandoBridge _expandoBridge;
 }

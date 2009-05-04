@@ -24,6 +24,7 @@ package com.liferay.sampleservicebuilder.service;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.Isolation;
 import com.liferay.portal.kernel.annotation.Transactional;
 
 /**
@@ -32,7 +33,7 @@ import com.liferay.portal.kernel.annotation.Transactional;
  * @author Brian Wing Shun Chan
  *
  */
-@Transactional(rollbackFor =  {
+@Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
 public interface FooService {
 }

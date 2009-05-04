@@ -31,6 +31,13 @@ import com.liferay.portal.service.persistence.BasePersistence;
  *
  */
 public interface MeetupsEntryPersistence extends BasePersistence {
+	public void cacheResult(com.liferay.wol.model.MeetupsEntry meetupsEntry);
+
+	public void cacheResult(
+		java.util.List<com.liferay.wol.model.MeetupsEntry> meetupsEntries);
+
+	public void clearCache();
+
 	public com.liferay.wol.model.MeetupsEntry create(long meetupsEntryId);
 
 	public com.liferay.wol.model.MeetupsEntry remove(long meetupsEntryId)

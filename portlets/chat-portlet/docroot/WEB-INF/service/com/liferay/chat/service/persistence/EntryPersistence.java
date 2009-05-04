@@ -36,6 +36,8 @@ public interface EntryPersistence extends BasePersistence {
 	public void cacheResult(
 		java.util.List<com.liferay.chat.model.Entry> entries);
 
+	public void clearCache();
+
 	public com.liferay.chat.model.Entry create(long entryId);
 
 	public com.liferay.chat.model.Entry remove(long entryId)

@@ -30,7 +30,7 @@ import com.liferay.portal.model.BaseModel;
  * @author Brian Wing Shun Chan
  *
  */
-public interface NetworkModel extends BaseModel {
+public interface NetworkModel extends BaseModel<Network> {
 	public long getPrimaryKey();
 
 	public void setPrimaryKey(long pk);

@@ -26,6 +26,7 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.wol.model.JIRAAction;
 import com.liferay.wol.service.JIRAActionLocalService;
@@ -314,6 +315,15 @@ public abstract class JIRAActionLocalServiceBaseImpl
 
 	public void setWallEntryFinder(WallEntryFinder wallEntryFinder) {
 		this.wallEntryFinder = wallEntryFinder;
+	}
+
+	protected void runSQL(String sql) throws SystemException {
+		try {
+			PortalUtil.runSQL(sql);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
 	}
 
 	@BeanReference(name = "com.liferay.wol.service.JIRAActionLocalService.impl")

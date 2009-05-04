@@ -29,6 +29,20 @@ package com.liferay.wol.service.persistence;
  *
  */
 public class JIRAChangeItemUtil {
+	public static void cacheResult(
+		com.liferay.wol.model.JIRAChangeItem jiraChangeItem) {
+		getPersistence().cacheResult(jiraChangeItem);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.wol.model.JIRAChangeItem> jiraChangeItems) {
+		getPersistence().cacheResult(jiraChangeItems);
+	}
+
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
 	public static com.liferay.wol.model.JIRAChangeItem create(
 		long jiraChangeItemId) {
 		return getPersistence().create(jiraChangeItemId);

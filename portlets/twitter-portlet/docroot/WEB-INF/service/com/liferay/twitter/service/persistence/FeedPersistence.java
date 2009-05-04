@@ -22,10 +22,6 @@
 
 package com.liferay.twitter.service.persistence;
 
-import com.liferay.portal.PortalException;
-import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.annotation.Propagation;
-import com.liferay.portal.kernel.annotation.Transactional;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -34,9 +30,14 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * @author Brian Wing Shun Chan
  *
  */
-@Transactional(rollbackFor =  {
-	PortalException.class, SystemException.class})
 public interface FeedPersistence extends BasePersistence {
+	public void cacheResult(com.liferay.twitter.model.Feed feed);
+
+	public void cacheResult(
+		java.util.List<com.liferay.twitter.model.Feed> feeds);
+
+	public void clearCache();
+
 	public com.liferay.twitter.model.Feed create(long feedId);
 
 	public com.liferay.twitter.model.Feed remove(long feedId)
@@ -59,7 +60,6 @@ public interface FeedPersistence extends BasePersistence {
 		com.liferay.twitter.model.Feed feed, boolean merge)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.twitter.model.Feed findByPrimaryKey(long feedId)
 		throws com.liferay.portal.SystemException,
 			com.liferay.twitter.NoSuchFeedException;
@@ -67,7 +67,6 @@ public interface FeedPersistence extends BasePersistence {
 	public com.liferay.twitter.model.Feed fetchByPrimaryKey(long feedId)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.twitter.model.Feed findByTwitterUserId(
 		long twitterUserId)
 		throws com.liferay.portal.SystemException,
@@ -76,7 +75,10 @@ public interface FeedPersistence extends BasePersistence {
 	public com.liferay.twitter.model.Feed fetchByTwitterUserId(
 		long twitterUserId) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.twitter.model.Feed fetchByTwitterUserId(
+		long twitterUserId, boolean retrieveFromCache)
+		throws com.liferay.portal.SystemException;
+
 	public com.liferay.twitter.model.Feed findByTwitterScreenName(
 		java.lang.String twitterScreenName)
 		throws com.liferay.portal.SystemException,
@@ -86,25 +88,24 @@ public interface FeedPersistence extends BasePersistence {
 		java.lang.String twitterScreenName)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.twitter.model.Feed fetchByTwitterScreenName(
+		java.lang.String twitterScreenName, boolean retrieveFromCache)
+		throws com.liferay.portal.SystemException;
+
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.twitter.model.Feed> findAll()
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.twitter.model.Feed> findAll(int start,
 		int end) throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.twitter.model.Feed> findAll(int start,
 		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.SystemException;
@@ -119,14 +120,11 @@ public interface FeedPersistence extends BasePersistence {
 
 	public void removeAll() throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByTwitterUserId(long twitterUserId)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countByTwitterScreenName(java.lang.String twitterScreenName)
 		throws com.liferay.portal.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int countAll() throws com.liferay.portal.SystemException;
 }

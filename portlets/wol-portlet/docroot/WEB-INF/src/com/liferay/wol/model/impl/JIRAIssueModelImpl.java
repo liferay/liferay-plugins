@@ -90,7 +90,10 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	public static final String DATA_SOURCE = "jiraDataSource";
 	public static final String SESSION_FACTORY = "jiraSessionFactory";
 	public static final String TX_MANAGER = "jiraTransactionManager";
-	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.wol.model.JIRAIssue"),
+			false);
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.wol.model.JIRAIssue"),
 			false);
 
@@ -145,9 +148,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public void setJiraIssueId(long jiraIssueId) {
-		if (jiraIssueId != _jiraIssueId) {
-			_jiraIssueId = jiraIssueId;
-		}
+		_jiraIssueId = jiraIssueId;
 	}
 
 	public Date getCreateDate() {
@@ -155,12 +156,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public void setCreateDate(Date createDate) {
-		if (((createDate == null) && (_createDate != null)) ||
-				((createDate != null) && (_createDate == null)) ||
-				((createDate != null) && (_createDate != null) &&
-				!createDate.equals(_createDate))) {
-			_createDate = createDate;
-		}
+		_createDate = createDate;
 	}
 
 	public Date getModifiedDate() {
@@ -168,12 +164,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public void setModifiedDate(Date modifiedDate) {
-		if (((modifiedDate == null) && (_modifiedDate != null)) ||
-				((modifiedDate != null) && (_modifiedDate == null)) ||
-				((modifiedDate != null) && (_modifiedDate != null) &&
-				!modifiedDate.equals(_modifiedDate))) {
-			_modifiedDate = modifiedDate;
-		}
+		_modifiedDate = modifiedDate;
 	}
 
 	public long getProjectId() {
@@ -181,9 +172,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public void setProjectId(long projectId) {
-		if (projectId != _projectId) {
-			_projectId = projectId;
-		}
+		_projectId = projectId;
 	}
 
 	public String getKey() {
@@ -191,11 +180,15 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public void setKey(String key) {
-		if (((key == null) && (_key != null)) ||
-				((key != null) && (_key == null)) ||
-				((key != null) && (_key != null) && !key.equals(_key))) {
-			_key = key;
+		_key = key;
+
+		if (_originalKey == null) {
+			_originalKey = key;
 		}
+	}
+
+	public String getOriginalKey() {
+		return GetterUtil.getString(_originalKey);
 	}
 
 	public String getSummary() {
@@ -203,12 +196,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public void setSummary(String summary) {
-		if (((summary == null) && (_summary != null)) ||
-				((summary != null) && (_summary == null)) ||
-				((summary != null) && (_summary != null) &&
-				!summary.equals(_summary))) {
-			_summary = summary;
-		}
+		_summary = summary;
 	}
 
 	public String getDescription() {
@@ -216,12 +204,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public void setDescription(String description) {
-		if (((description == null) && (_description != null)) ||
-				((description != null) && (_description == null)) ||
-				((description != null) && (_description != null) &&
-				!description.equals(_description))) {
-			_description = description;
-		}
+		_description = description;
 	}
 
 	public String getReporterJiraUserId() {
@@ -229,12 +212,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public void setReporterJiraUserId(String reporterJiraUserId) {
-		if (((reporterJiraUserId == null) && (_reporterJiraUserId != null)) ||
-				((reporterJiraUserId != null) && (_reporterJiraUserId == null)) ||
-				((reporterJiraUserId != null) && (_reporterJiraUserId != null) &&
-				!reporterJiraUserId.equals(_reporterJiraUserId))) {
-			_reporterJiraUserId = reporterJiraUserId;
-		}
+		_reporterJiraUserId = reporterJiraUserId;
 	}
 
 	public String getAssigneeJiraUserId() {
@@ -242,12 +220,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public void setAssigneeJiraUserId(String assigneeJiraUserId) {
-		if (((assigneeJiraUserId == null) && (_assigneeJiraUserId != null)) ||
-				((assigneeJiraUserId != null) && (_assigneeJiraUserId == null)) ||
-				((assigneeJiraUserId != null) && (_assigneeJiraUserId != null) &&
-				!assigneeJiraUserId.equals(_assigneeJiraUserId))) {
-			_assigneeJiraUserId = assigneeJiraUserId;
-		}
+		_assigneeJiraUserId = assigneeJiraUserId;
 	}
 
 	public String getResolution() {
@@ -255,12 +228,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public void setResolution(String resolution) {
-		if (((resolution == null) && (_resolution != null)) ||
-				((resolution != null) && (_resolution == null)) ||
-				((resolution != null) && (_resolution != null) &&
-				!resolution.equals(_resolution))) {
-			_resolution = resolution;
-		}
+		_resolution = resolution;
 	}
 
 	public String getStatus() {
@@ -268,12 +236,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 	}
 
 	public void setStatus(String status) {
-		if (((status == null) && (_status != null)) ||
-				((status != null) && (_status == null)) ||
-				((status != null) && (_status != null) &&
-				!status.equals(_status))) {
-			_status = status;
-		}
+		_status = status;
 	}
 
 	public JIRAIssue toEscapedModel() {
@@ -376,11 +339,99 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue> {
 		return (int)getPrimaryKey();
 	}
 
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{jiraIssueId=");
+		sb.append(getJiraIssueId());
+		sb.append(", createDate=");
+		sb.append(getCreateDate());
+		sb.append(", modifiedDate=");
+		sb.append(getModifiedDate());
+		sb.append(", projectId=");
+		sb.append(getProjectId());
+		sb.append(", key=");
+		sb.append(getKey());
+		sb.append(", summary=");
+		sb.append(getSummary());
+		sb.append(", description=");
+		sb.append(getDescription());
+		sb.append(", reporterJiraUserId=");
+		sb.append(getReporterJiraUserId());
+		sb.append(", assigneeJiraUserId=");
+		sb.append(getAssigneeJiraUserId());
+		sb.append(", resolution=");
+		sb.append(getResolution());
+		sb.append(", status=");
+		sb.append(getStatus());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wol.model.JIRAIssue");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>jiraIssueId</column-name><column-value><![CDATA[");
+		sb.append("getJiraIssueId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>createDate</column-name><column-value><![CDATA[");
+		sb.append("getCreateDate()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
+		sb.append("getModifiedDate()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>projectId</column-name><column-value><![CDATA[");
+		sb.append("getProjectId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>key</column-name><column-value><![CDATA[");
+		sb.append("getKey()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>summary</column-name><column-value><![CDATA[");
+		sb.append("getSummary()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>description</column-name><column-value><![CDATA[");
+		sb.append("getDescription()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>reporterJiraUserId</column-name><column-value><![CDATA[");
+		sb.append("getReporterJiraUserId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>assigneeJiraUserId</column-name><column-value><![CDATA[");
+		sb.append("getAssigneeJiraUserId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>resolution</column-name><column-value><![CDATA[");
+		sb.append("getResolution()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append("getStatus()");
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
 	private long _jiraIssueId;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _projectId;
 	private String _key;
+	private String _originalKey;
 	private String _summary;
 	private String _description;
 	private String _reporterJiraUserId;

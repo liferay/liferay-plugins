@@ -335,6 +335,41 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (com.liferay.sampleservicebuilder.model.Foo)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.sampleservicebuilder.model.Foo updateFoo(
+		com.liferay.sampleservicebuilder.model.Foo foo, boolean merge)
+		throws com.liferay.portal.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(foo);
+
+		if (foo == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.sampleservicebuilder.model.Foo");
+		}
+
+		Object paramObj1 = new BooleanWrapper(merge);
+
+		Object returnObj = null;
+
+		try {
+			returnObj = _classLoaderProxy.invoke("updateFoo",
+					new Object[] { paramObj0, paramObj1 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.sampleservicebuilder.model.Foo)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public void addFoo(java.lang.String field1, boolean field2, int field3,
 		java.util.Date field4, java.lang.String field5)
 		throws com.liferay.portal.PortalException,

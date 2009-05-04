@@ -23,14 +23,19 @@
 package com.liferay.ruon.service.persistence;
 
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.cache.CacheRegistry;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -43,12 +48,8 @@ import com.liferay.ruon.model.Network;
 import com.liferay.ruon.model.impl.NetworkImpl;
 import com.liferay.ruon.model.impl.NetworkModelImpl;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -59,6 +60,47 @@ import java.util.List;
  */
 public class NetworkPersistenceImpl extends BasePersistenceImpl
 	implements NetworkPersistence {
+	public static final String FINDER_CLASS_NAME_ENTITY = NetworkImpl.class.getName();
+	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
+		".List";
+	public static final FinderPath FINDER_PATH_FETCH_BY_NAME = new FinderPath(NetworkModelImpl.ENTITY_CACHE_ENABLED,
+			NetworkModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
+			"fetchByName", new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_COUNT_BY_NAME = new FinderPath(NetworkModelImpl.ENTITY_CACHE_ENABLED,
+			NetworkModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByName", new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(NetworkModelImpl.ENTITY_CACHE_ENABLED,
+			NetworkModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(NetworkModelImpl.ENTITY_CACHE_ENABLED,
+			NetworkModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countAll", new String[0]);
+
+	public void cacheResult(Network network) {
+		EntityCacheUtil.putResult(NetworkModelImpl.ENTITY_CACHE_ENABLED,
+			NetworkImpl.class, network.getPrimaryKey(), network);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_NAME,
+			new Object[] { network.getName() }, network);
+	}
+
+	public void cacheResult(List<Network> networks) {
+		for (Network network : networks) {
+			if (EntityCacheUtil.getResult(
+						NetworkModelImpl.ENTITY_CACHE_ENABLED,
+						NetworkImpl.class, network.getPrimaryKey(), this) == null) {
+				cacheResult(network);
+			}
+		}
+	}
+
+	public void clearCache() {
+		CacheRegistry.clear(NetworkImpl.class.getName());
+		EntityCacheUtil.clearCache(NetworkImpl.class.getName());
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	public Network create(long networkId) {
 		Network network = new NetworkImpl();
 
@@ -102,18 +144,14 @@ public class NetworkPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public Network remove(Network network) throws SystemException {
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				listener.onBeforeRemove(network);
-			}
+		for (ModelListener<Network> listener : listeners) {
+			listener.onBeforeRemove(network);
 		}
 
 		network = removeImpl(network);
 
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				listener.onAfterRemove(network);
-			}
+		for (ModelListener<Network> listener : listeners) {
+			listener.onAfterRemove(network);
 		}
 
 		return network;
@@ -125,7 +163,7 @@ public class NetworkPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
-			if (BatchSessionUtil.isEnabled()) {
+			if (network.isCachedModel() || BatchSessionUtil.isEnabled()) {
 				Object staleObject = session.get(NetworkImpl.class,
 						network.getPrimaryKeyObj());
 
@@ -137,17 +175,25 @@ public class NetworkPersistenceImpl extends BasePersistenceImpl
 			session.delete(network);
 
 			session.flush();
-
-			return network;
 		}
 		catch (Exception e) {
 			throw processException(e);
 		}
 		finally {
 			closeSession(session);
-
-			FinderCacheUtil.clearCache(Network.class.getName());
 		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		NetworkModelImpl networkModelImpl = (NetworkModelImpl)network;
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_NAME,
+			new Object[] { networkModelImpl.getOriginalName() });
+
+		EntityCacheUtil.removeResult(NetworkModelImpl.ENTITY_CACHE_ENABLED,
+			NetworkImpl.class, network.getPrimaryKey());
+
+		return network;
 	}
 
 	public Network update(Network network) throws SystemException {
@@ -163,27 +209,23 @@ public class NetworkPersistenceImpl extends BasePersistenceImpl
 		throws SystemException {
 		boolean isNew = network.isNew();
 
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				if (isNew) {
-					listener.onBeforeCreate(network);
-				}
-				else {
-					listener.onBeforeUpdate(network);
-				}
+		for (ModelListener<Network> listener : listeners) {
+			if (isNew) {
+				listener.onBeforeCreate(network);
+			}
+			else {
+				listener.onBeforeUpdate(network);
 			}
 		}
 
 		network = updateImpl(network, merge);
 
-		if (_listeners.length > 0) {
-			for (ModelListener listener : _listeners) {
-				if (isNew) {
-					listener.onAfterCreate(network);
-				}
-				else {
-					listener.onAfterUpdate(network);
-				}
+		for (ModelListener<Network> listener : listeners) {
+			if (isNew) {
+				listener.onAfterCreate(network);
+			}
+			else {
+				listener.onAfterUpdate(network);
 			}
 		}
 
@@ -192,6 +234,10 @@ public class NetworkPersistenceImpl extends BasePersistenceImpl
 
 	public Network updateImpl(com.liferay.ruon.model.Network network,
 		boolean merge) throws SystemException {
+		boolean isNew = network.isNew();
+
+		NetworkModelImpl networkModelImpl = (NetworkModelImpl)network;
+
 		Session session = null;
 
 		try {
@@ -200,17 +246,32 @@ public class NetworkPersistenceImpl extends BasePersistenceImpl
 			BatchSessionUtil.update(session, network, merge);
 
 			network.setNew(false);
-
-			return network;
 		}
 		catch (Exception e) {
 			throw processException(e);
 		}
 		finally {
 			closeSession(session);
-
-			FinderCacheUtil.clearCache(Network.class.getName());
 		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		EntityCacheUtil.putResult(NetworkModelImpl.ENTITY_CACHE_ENABLED,
+			NetworkImpl.class, network.getPrimaryKey(), network);
+
+		if (!isNew &&
+				(!network.getName().equals(networkModelImpl.getOriginalName()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_NAME,
+				new Object[] { networkModelImpl.getOriginalName() });
+		}
+
+		if (isNew ||
+				(!network.getName().equals(networkModelImpl.getOriginalName()))) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_NAME,
+				new Object[] { network.getName() }, network);
+		}
+
+		return network;
 	}
 
 	public Network findByPrimaryKey(long networkId)
@@ -231,19 +292,31 @@ public class NetworkPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public Network fetchByPrimaryKey(long networkId) throws SystemException {
-		Session session = null;
+		Network network = (Network)EntityCacheUtil.getResult(NetworkModelImpl.ENTITY_CACHE_ENABLED,
+				NetworkImpl.class, networkId, this);
 
-		try {
-			session = openSession();
+		if (network == null) {
+			Session session = null;
 
-			return (Network)session.get(NetworkImpl.class, new Long(networkId));
+			try {
+				session = openSession();
+
+				network = (Network)session.get(NetworkImpl.class,
+						new Long(networkId));
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (network != null) {
+					cacheResult(network);
+				}
+
+				closeSession(session);
+			}
 		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
+
+		return network;
 	}
 
 	public Network findByName(String name)
@@ -270,17 +343,18 @@ public class NetworkPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public Network fetchByName(String name) throws SystemException {
-		boolean finderClassNameCacheEnabled = NetworkModelImpl.CACHE_ENABLED;
-		String finderClassName = Network.class.getName();
-		String finderMethodName = "fetchByName";
-		String[] finderParams = new String[] { String.class.getName() };
+		return fetchByName(name, true);
+	}
+
+	public Network fetchByName(String name, boolean retrieveFromCache)
+		throws SystemException {
 		Object[] finderArgs = new Object[] { name };
 
 		Object result = null;
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_NAME,
+					finderArgs, this);
 		}
 
 		if (result == null) {
@@ -312,32 +386,46 @@ public class NetworkPersistenceImpl extends BasePersistenceImpl
 
 				List<Network> list = q.list();
 
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
+				result = list;
 
-				if (list.size() == 0) {
-					return null;
+				Network network = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_NAME,
+						finderArgs, list);
 				}
 				else {
-					return list.get(0);
+					network = list.get(0);
+
+					cacheResult(network);
+
+					if ((network.getName() == null) ||
+							!network.getName().equals(name)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_NAME,
+							finderArgs, list);
+					}
 				}
+
+				return network;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (result == null) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_NAME,
+						finderArgs, new ArrayList<Network>());
+				}
+
 				closeSession(session);
 			}
 		}
 		else {
-			List<Network> list = (List<Network>)result;
-
-			if (list.size() == 0) {
+			if (result instanceof List) {
 				return null;
 			}
 			else {
-				return list.get(0);
+				return (Network)result;
 			}
 		}
 	}
@@ -392,25 +480,14 @@ public class NetworkPersistenceImpl extends BasePersistenceImpl
 
 	public List<Network> findAll(int start, int end, OrderByComparator obc)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = NetworkModelImpl.CACHE_ENABLED;
-		String finderClassName = Network.class.getName();
-		String finderMethodName = "findAll";
-		String[] finderParams = new String[] {
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<Network> list = (List<Network>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -427,29 +504,34 @@ public class NetworkPersistenceImpl extends BasePersistenceImpl
 
 				Query q = session.createQuery(query.toString());
 
-				List<Network> list = (List<Network>)QueryUtil.list(q,
-						getDialect(), start, end);
-
 				if (obc == null) {
+					list = (List<Network>)QueryUtil.list(q, getDialect(),
+							start, end, false);
+
 					Collections.sort(list);
 				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				else {
+					list = (List<Network>)QueryUtil.list(q, getDialect(),
+							start, end);
+				}
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<Network>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<Network>)result;
-		}
+
+		return list;
 	}
 
 	public void removeByName(String name)
@@ -466,20 +548,12 @@ public class NetworkPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public int countByName(String name) throws SystemException {
-		boolean finderClassNameCacheEnabled = NetworkModelImpl.CACHE_ENABLED;
-		String finderClassName = Network.class.getName();
-		String finderMethodName = "countByName";
-		String[] finderParams = new String[] { String.class.getName() };
 		Object[] finderArgs = new Object[] { name };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_NAME,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -507,51 +581,33 @@ public class NetworkPersistenceImpl extends BasePersistenceImpl
 					qPos.add(name);
 				}
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_NAME,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countAll() throws SystemException {
-		boolean finderClassNameCacheEnabled = NetworkModelImpl.CACHE_ENABLED;
-		String finderClassName = Network.class.getName();
-		String finderMethodName = "countAll";
-		String[] finderParams = new String[] {  };
-		Object[] finderArgs = new Object[] {  };
+		Object[] finderArgs = new Object[0];
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -560,50 +616,24 @@ public class NetworkPersistenceImpl extends BasePersistenceImpl
 				Query q = session.createQuery(
 						"SELECT COUNT(*) FROM com.liferay.ruon.model.Network");
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
+					count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
-	}
 
-	public void registerListener(ModelListener listener) {
-		List<ModelListener> listeners = ListUtil.fromArray(_listeners);
-
-		listeners.add(listener);
-
-		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
-	}
-
-	public void unregisterListener(ModelListener listener) {
-		List<ModelListener> listeners = ListUtil.fromArray(_listeners);
-
-		listeners.remove(listener);
-
-		_listeners = listeners.toArray(new ModelListener[listeners.size()]);
+		return count.intValue();
 	}
 
 	public void afterPropertiesSet() {
@@ -613,14 +643,14 @@ public class NetworkPersistenceImpl extends BasePersistenceImpl
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener> listeners = new ArrayList<ModelListener>();
+				List<ModelListener<Network>> listenersList = new ArrayList<ModelListener<Network>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listeners.add((ModelListener)Class.forName(
+					listenersList.add((ModelListener<Network>)Class.forName(
 							listenerClassName).newInstance());
 				}
 
-				_listeners = listeners.toArray(new ModelListener[listeners.size()]);
+				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);
 			}
 			catch (Exception e) {
 				_log.error(e);
@@ -628,6 +658,9 @@ public class NetworkPersistenceImpl extends BasePersistenceImpl
 		}
 	}
 
+	@BeanReference(name = "com.liferay.ruon.service.persistence.NetworkPersistence.impl")
+	protected com.liferay.ruon.service.persistence.NetworkPersistence networkPersistence;
+	@BeanReference(name = "com.liferay.ruon.service.persistence.PresencePersistence.impl")
+	protected com.liferay.ruon.service.persistence.PresencePersistence presencePersistence;
 	private static Log _log = LogFactoryUtil.getLog(NetworkPersistenceImpl.class);
-	private ModelListener[] _listeners = new ModelListener[0];
 }

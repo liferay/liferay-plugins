@@ -24,8 +24,11 @@ package com.liferay.wol.service.persistence;
 
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.cache.CacheRegistry;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -49,7 +52,6 @@ import com.liferay.wol.model.impl.JIRAIssueModelImpl;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -60,6 +62,239 @@ import java.util.List;
  */
 public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 	implements JIRAIssuePersistence {
+	public static final String FINDER_CLASS_NAME_ENTITY = JIRAIssueImpl.class.getName();
+	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
+		".List";
+	public static final FinderPath FINDER_PATH_FIND_BY_PROJECTID = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByProjectId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_PROJECTID = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByProjectId",
+			new String[] {
+				Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_PROJECTID = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByProjectId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FETCH_BY_KEY = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
+			"fetchByKey", new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_COUNT_BY_KEY = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByKey", new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_REPORTERJIRAUSERID = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByReporterJiraUserId", new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_REPORTERJIRAUSERID = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByReporterJiraUserId",
+			new String[] {
+				String.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_REPORTERJIRAUSERID = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByReporterJiraUserId", new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_ASSIGNEEJIRAUSERID = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByAssigneeJiraUserId", new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_ASSIGNEEJIRAUSERID = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByAssigneeJiraUserId",
+			new String[] {
+				String.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_ASSIGNEEJIRAUSERID = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByAssigneeJiraUserId", new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_MD_P = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByMD_P",
+			new String[] { Date.class.getName(), Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_MD_P = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByMD_P",
+			new String[] {
+				Date.class.getName(), Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_MD_P = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByMD_P",
+			new String[] { Date.class.getName(), Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_P_RJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByP_RJUI",
+			new String[] { Long.class.getName(), String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_P_RJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByP_RJUI",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_P_RJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByP_RJUI",
+			new String[] { Long.class.getName(), String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_P_AJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByP_AJUI",
+			new String[] { Long.class.getName(), String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_P_AJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByP_AJUI",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_P_AJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByP_AJUI",
+			new String[] { Long.class.getName(), String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_MD_P_RJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByMD_P_RJUI",
+			new String[] {
+				Date.class.getName(), Long.class.getName(),
+				String.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_MD_P_RJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByMD_P_RJUI",
+			new String[] {
+				Date.class.getName(), Long.class.getName(),
+				String.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_MD_P_RJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByMD_P_RJUI",
+			new String[] {
+				Date.class.getName(), Long.class.getName(),
+				String.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_FIND_BY_MD_P_AJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByMD_P_AJUI",
+			new String[] {
+				Date.class.getName(), Long.class.getName(),
+				String.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_MD_P_AJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByMD_P_AJUI",
+			new String[] {
+				Date.class.getName(), Long.class.getName(),
+				String.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_MD_P_AJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByMD_P_AJUI",
+			new String[] {
+				Date.class.getName(), Long.class.getName(),
+				String.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_FIND_BY_P_RJUI_S = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByP_RJUI_S",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				String.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_P_RJUI_S = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByP_RJUI_S",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				String.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_P_RJUI_S = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByP_RJUI_S",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				String.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_FIND_BY_P_AJUI_S = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByP_AJUI_S",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				String.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_P_AJUI_S = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByP_AJUI_S",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				String.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_P_AJUI_S = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByP_AJUI_S",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				String.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countAll", new String[0]);
+
+	public void cacheResult(JIRAIssue jiraIssue) {
+		EntityCacheUtil.putResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueImpl.class, jiraIssue.getPrimaryKey(), jiraIssue);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY,
+			new Object[] { jiraIssue.getKey() }, jiraIssue);
+	}
+
+	public void cacheResult(List<JIRAIssue> jiraIssues) {
+		for (JIRAIssue jiraIssue : jiraIssues) {
+			if (EntityCacheUtil.getResult(
+						JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+						JIRAIssueImpl.class, jiraIssue.getPrimaryKey(), this) == null) {
+				cacheResult(jiraIssue);
+			}
+		}
+	}
+
+	public void clearCache() {
+		CacheRegistry.clear(JIRAIssueImpl.class.getName());
+		EntityCacheUtil.clearCache(JIRAIssueImpl.class.getName());
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	public JIRAIssue create(long jiraIssueId) {
 		JIRAIssue jiraIssue = new JIRAIssueImpl();
 
@@ -123,7 +358,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
-			if (BatchSessionUtil.isEnabled()) {
+			if (jiraIssue.isCachedModel() || BatchSessionUtil.isEnabled()) {
 				Object staleObject = session.get(JIRAIssueImpl.class,
 						jiraIssue.getPrimaryKeyObj());
 
@@ -135,17 +370,25 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 			session.delete(jiraIssue);
 
 			session.flush();
-
-			return jiraIssue;
 		}
 		catch (Exception e) {
 			throw processException(e);
 		}
 		finally {
 			closeSession(session);
-
-			FinderCacheUtil.clearCache(JIRAIssue.class.getName());
 		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		JIRAIssueModelImpl jiraIssueModelImpl = (JIRAIssueModelImpl)jiraIssue;
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
+			new Object[] { jiraIssueModelImpl.getOriginalKey() });
+
+		EntityCacheUtil.removeResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueImpl.class, jiraIssue.getPrimaryKey());
+
+		return jiraIssue;
 	}
 
 	public JIRAIssue update(JIRAIssue jiraIssue) throws SystemException {
@@ -186,6 +429,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 	public JIRAIssue updateImpl(com.liferay.wol.model.JIRAIssue jiraIssue,
 		boolean merge) throws SystemException {
+		boolean isNew = jiraIssue.isNew();
+
+		JIRAIssueModelImpl jiraIssueModelImpl = (JIRAIssueModelImpl)jiraIssue;
+
 		Session session = null;
 
 		try {
@@ -194,17 +441,32 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 			BatchSessionUtil.update(session, jiraIssue, merge);
 
 			jiraIssue.setNew(false);
-
-			return jiraIssue;
 		}
 		catch (Exception e) {
 			throw processException(e);
 		}
 		finally {
 			closeSession(session);
-
-			FinderCacheUtil.clearCache(JIRAIssue.class.getName());
 		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		EntityCacheUtil.putResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAIssueImpl.class, jiraIssue.getPrimaryKey(), jiraIssue);
+
+		if (!isNew &&
+				(!jiraIssue.getKey().equals(jiraIssueModelImpl.getOriginalKey()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
+				new Object[] { jiraIssueModelImpl.getOriginalKey() });
+		}
+
+		if (isNew ||
+				(!jiraIssue.getKey().equals(jiraIssueModelImpl.getOriginalKey()))) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY,
+				new Object[] { jiraIssue.getKey() }, jiraIssue);
+		}
+
+		return jiraIssue;
 	}
 
 	public JIRAIssue findByPrimaryKey(long jiraIssueId)
@@ -226,38 +488,41 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 	public JIRAIssue fetchByPrimaryKey(long jiraIssueId)
 		throws SystemException {
-		Session session = null;
+		JIRAIssue jiraIssue = (JIRAIssue)EntityCacheUtil.getResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+				JIRAIssueImpl.class, jiraIssueId, this);
 
-		try {
-			session = openSession();
+		if (jiraIssue == null) {
+			Session session = null;
 
-			return (JIRAIssue)session.get(JIRAIssueImpl.class,
-				new Long(jiraIssueId));
+			try {
+				session = openSession();
+
+				jiraIssue = (JIRAIssue)session.get(JIRAIssueImpl.class,
+						new Long(jiraIssueId));
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (jiraIssue != null) {
+					cacheResult(jiraIssue);
+				}
+
+				closeSession(session);
+			}
 		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
+
+		return jiraIssue;
 	}
 
 	public List<JIRAIssue> findByProjectId(long projectId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByProjectId";
-		String[] finderParams = new String[] { Long.class.getName() };
 		Object[] finderArgs = new Object[] { new Long(projectId) };
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_PROJECTID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -281,24 +546,26 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(projectId);
 
-				List<JIRAIssue> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_PROJECTID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public List<JIRAIssue> findByProjectId(long projectId, int start, int end)
@@ -308,29 +575,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 	public List<JIRAIssue> findByProjectId(long projectId, int start, int end,
 		OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByProjectId";
-		String[] finderParams = new String[] {
-				Long.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(projectId),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_PROJECTID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -361,25 +615,27 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(projectId);
 
-				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<JIRAIssue>)QueryUtil.list(q, getDialect(), start,
+						end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_PROJECTID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public JIRAIssue findByProjectId_First(long projectId, OrderByComparator obc)
@@ -504,17 +760,18 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 	}
 
 	public JIRAIssue fetchByKey(String key) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "fetchByKey";
-		String[] finderParams = new String[] { String.class.getName() };
+		return fetchByKey(key, true);
+	}
+
+	public JIRAIssue fetchByKey(String key, boolean retrieveFromCache)
+		throws SystemException {
 		Object[] finderArgs = new Object[] { key };
 
 		Object result = null;
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_KEY,
+					finderArgs, this);
 		}
 
 		if (result == null) {
@@ -550,51 +807,58 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 				List<JIRAIssue> list = q.list();
 
+				result = list;
+
+				JIRAIssue jiraIssue = null;
+
 				if (list.isEmpty()) {
-					return null;
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY,
+						finderArgs, list);
+				}
+				else {
+					jiraIssue = list.get(0);
+
+					cacheResult(jiraIssue);
+
+					if ((jiraIssue.getKey() == null) ||
+							!jiraIssue.getKey().equals(key)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY,
+							finderArgs, list);
+					}
 				}
 
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list.get(0);
+				return jiraIssue;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (result == null) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY,
+						finderArgs, new ArrayList<JIRAIssue>());
+				}
+
 				closeSession(session);
 			}
 		}
 		else {
-			List<JIRAIssue> list = (List<JIRAIssue>)result;
-
-			if (list.isEmpty()) {
+			if (result instanceof List) {
 				return null;
 			}
 			else {
-				return list.get(0);
+				return (JIRAIssue)result;
 			}
 		}
 	}
 
 	public List<JIRAIssue> findByReporterJiraUserId(String reporterJiraUserId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByReporterJiraUserId";
-		String[] finderParams = new String[] { String.class.getName() };
 		Object[] finderArgs = new Object[] { reporterJiraUserId };
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_REPORTERJIRAUSERID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -625,24 +889,26 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(reporterJiraUserId);
 				}
 
-				List<JIRAIssue> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_REPORTERJIRAUSERID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public List<JIRAIssue> findByReporterJiraUserId(String reporterJiraUserId,
@@ -652,29 +918,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 	public List<JIRAIssue> findByReporterJiraUserId(String reporterJiraUserId,
 		int start, int end, OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByReporterJiraUserId";
-		String[] finderParams = new String[] {
-				String.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				reporterJiraUserId,
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_REPORTERJIRAUSERID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -712,25 +965,27 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(reporterJiraUserId);
 				}
 
-				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<JIRAIssue>)QueryUtil.list(q, getDialect(), start,
+						end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_REPORTERJIRAUSERID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public JIRAIssue findByReporterJiraUserId_First(String reporterJiraUserId,
@@ -842,20 +1097,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 	public List<JIRAIssue> findByAssigneeJiraUserId(String assigneeJiraUserId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByAssigneeJiraUserId";
-		String[] finderParams = new String[] { String.class.getName() };
 		Object[] finderArgs = new Object[] { assigneeJiraUserId };
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ASSIGNEEJIRAUSERID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -886,24 +1133,26 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(assigneeJiraUserId);
 				}
 
-				List<JIRAIssue> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ASSIGNEEJIRAUSERID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public List<JIRAIssue> findByAssigneeJiraUserId(String assigneeJiraUserId,
@@ -913,29 +1162,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 	public List<JIRAIssue> findByAssigneeJiraUserId(String assigneeJiraUserId,
 		int start, int end, OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByAssigneeJiraUserId";
-		String[] finderParams = new String[] {
-				String.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				assigneeJiraUserId,
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_ASSIGNEEJIRAUSERID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -973,25 +1209,27 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(assigneeJiraUserId);
 				}
 
-				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<JIRAIssue>)QueryUtil.list(q, getDialect(), start,
+						end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_ASSIGNEEJIRAUSERID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public JIRAIssue findByAssigneeJiraUserId_First(String assigneeJiraUserId,
@@ -1103,22 +1341,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 	public List<JIRAIssue> findByMD_P(Date modifiedDate, long projectId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByMD_P";
-		String[] finderParams = new String[] {
-				Date.class.getName(), Long.class.getName()
-			};
 		Object[] finderArgs = new Object[] { modifiedDate, new Long(projectId) };
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_MD_P,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -1155,24 +1383,26 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(projectId);
 
-				List<JIRAIssue> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MD_P, finderArgs,
+					list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public List<JIRAIssue> findByMD_P(Date modifiedDate, long projectId,
@@ -1182,29 +1412,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 	public List<JIRAIssue> findByMD_P(Date modifiedDate, long projectId,
 		int start, int end, OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByMD_P";
-		String[] finderParams = new String[] {
-				Date.class.getName(), Long.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				modifiedDate, new Long(projectId),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_MD_P,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -1248,25 +1465,27 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(projectId);
 
-				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<JIRAIssue>)QueryUtil.list(q, getDialect(), start,
+						end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_MD_P,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public JIRAIssue findByMD_P_First(Date modifiedDate, long projectId,
@@ -1389,26 +1608,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 	public List<JIRAIssue> findByP_RJUI(long projectId,
 		String reporterJiraUserId) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByP_RJUI";
-		String[] finderParams = new String[] {
-				Long.class.getName(), String.class.getName()
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(projectId),
 				
 				reporterJiraUserId
 			};
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_P_RJUI,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -1445,24 +1654,26 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(reporterJiraUserId);
 				}
 
-				List<JIRAIssue> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_P_RJUI,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public List<JIRAIssue> findByP_RJUI(long projectId,
@@ -1474,15 +1685,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 	public List<JIRAIssue> findByP_RJUI(long projectId,
 		String reporterJiraUserId, int start, int end, OrderByComparator obc)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByP_RJUI";
-		String[] finderParams = new String[] {
-				Long.class.getName(), String.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(projectId),
 				
@@ -1491,14 +1693,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_P_RJUI,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -1542,25 +1740,27 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(reporterJiraUserId);
 				}
 
-				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<JIRAIssue>)QueryUtil.list(q, getDialect(), start,
+						end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_P_RJUI,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public JIRAIssue findByP_RJUI_First(long projectId,
@@ -1686,26 +1886,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 	public List<JIRAIssue> findByP_AJUI(long projectId,
 		String assigneeJiraUserId) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByP_AJUI";
-		String[] finderParams = new String[] {
-				Long.class.getName(), String.class.getName()
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(projectId),
 				
 				assigneeJiraUserId
 			};
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_P_AJUI,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -1742,24 +1932,26 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(assigneeJiraUserId);
 				}
 
-				List<JIRAIssue> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_P_AJUI,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public List<JIRAIssue> findByP_AJUI(long projectId,
@@ -1771,15 +1963,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 	public List<JIRAIssue> findByP_AJUI(long projectId,
 		String assigneeJiraUserId, int start, int end, OrderByComparator obc)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByP_AJUI";
-		String[] finderParams = new String[] {
-				Long.class.getName(), String.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(projectId),
 				
@@ -1788,14 +1971,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_P_AJUI,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -1839,25 +2018,27 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(assigneeJiraUserId);
 				}
 
-				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<JIRAIssue>)QueryUtil.list(q, getDialect(), start,
+						end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_P_AJUI,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public JIRAIssue findByP_AJUI_First(long projectId,
@@ -1983,27 +2164,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 	public List<JIRAIssue> findByMD_P_RJUI(Date modifiedDate, long projectId,
 		String reporterJiraUserId) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByMD_P_RJUI";
-		String[] finderParams = new String[] {
-				Date.class.getName(), Long.class.getName(),
-				String.class.getName()
-			};
 		Object[] finderArgs = new Object[] {
 				modifiedDate, new Long(projectId),
 				
 				reporterJiraUserId
 			};
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_MD_P_RJUI,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -2053,24 +2223,26 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(reporterJiraUserId);
 				}
 
-				List<JIRAIssue> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MD_P_RJUI,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public List<JIRAIssue> findByMD_P_RJUI(Date modifiedDate, long projectId,
@@ -2083,16 +2255,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 	public List<JIRAIssue> findByMD_P_RJUI(Date modifiedDate, long projectId,
 		String reporterJiraUserId, int start, int end, OrderByComparator obc)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByMD_P_RJUI";
-		String[] finderParams = new String[] {
-				Date.class.getName(), Long.class.getName(),
-				String.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				modifiedDate, new Long(projectId),
 				
@@ -2101,14 +2263,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_MD_P_RJUI,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -2165,25 +2323,27 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(reporterJiraUserId);
 				}
 
-				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<JIRAIssue>)QueryUtil.list(q, getDialect(), start,
+						end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_MD_P_RJUI,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public JIRAIssue findByMD_P_RJUI_First(Date modifiedDate, long projectId,
@@ -2328,27 +2488,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 	public List<JIRAIssue> findByMD_P_AJUI(Date modifiedDate, long projectId,
 		String assigneeJiraUserId) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByMD_P_AJUI";
-		String[] finderParams = new String[] {
-				Date.class.getName(), Long.class.getName(),
-				String.class.getName()
-			};
 		Object[] finderArgs = new Object[] {
 				modifiedDate, new Long(projectId),
 				
 				assigneeJiraUserId
 			};
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_MD_P_AJUI,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -2398,24 +2547,26 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(assigneeJiraUserId);
 				}
 
-				List<JIRAIssue> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MD_P_AJUI,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public List<JIRAIssue> findByMD_P_AJUI(Date modifiedDate, long projectId,
@@ -2428,16 +2579,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 	public List<JIRAIssue> findByMD_P_AJUI(Date modifiedDate, long projectId,
 		String assigneeJiraUserId, int start, int end, OrderByComparator obc)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByMD_P_AJUI";
-		String[] finderParams = new String[] {
-				Date.class.getName(), Long.class.getName(),
-				String.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				modifiedDate, new Long(projectId),
 				
@@ -2446,14 +2587,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_MD_P_AJUI,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -2510,25 +2647,27 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(assigneeJiraUserId);
 				}
 
-				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<JIRAIssue>)QueryUtil.list(q, getDialect(), start,
+						end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_MD_P_AJUI,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public JIRAIssue findByMD_P_AJUI_First(Date modifiedDate, long projectId,
@@ -2673,13 +2812,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 	public List<JIRAIssue> findByP_RJUI_S(long projectId,
 		String reporterJiraUserId, String status) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByP_RJUI_S";
-		String[] finderParams = new String[] {
-				Long.class.getName(), String.class.getName(),
-				String.class.getName()
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(projectId),
 				
@@ -2688,14 +2820,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 				status
 			};
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_P_RJUI_S,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -2745,24 +2873,26 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(status);
 				}
 
-				List<JIRAIssue> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_P_RJUI_S,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public List<JIRAIssue> findByP_RJUI_S(long projectId,
@@ -2775,16 +2905,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 	public List<JIRAIssue> findByP_RJUI_S(long projectId,
 		String reporterJiraUserId, String status, int start, int end,
 		OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByP_RJUI_S";
-		String[] finderParams = new String[] {
-				Long.class.getName(), String.class.getName(),
-				String.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(projectId),
 				
@@ -2795,14 +2915,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_P_RJUI_S,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -2859,25 +2975,27 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(status);
 				}
 
-				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<JIRAIssue>)QueryUtil.list(q, getDialect(), start,
+						end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_P_RJUI_S,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public JIRAIssue findByP_RJUI_S_First(long projectId,
@@ -3022,13 +3140,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 	public List<JIRAIssue> findByP_AJUI_S(long projectId,
 		String assigneeJiraUserId, String status) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByP_AJUI_S";
-		String[] finderParams = new String[] {
-				Long.class.getName(), String.class.getName(),
-				String.class.getName()
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(projectId),
 				
@@ -3037,14 +3148,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 				status
 			};
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_P_AJUI_S,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -3094,24 +3201,26 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(status);
 				}
 
-				List<JIRAIssue> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_P_AJUI_S,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public List<JIRAIssue> findByP_AJUI_S(long projectId,
@@ -3124,16 +3233,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 	public List<JIRAIssue> findByP_AJUI_S(long projectId,
 		String assigneeJiraUserId, String status, int start, int end,
 		OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findByP_AJUI_S";
-		String[] finderParams = new String[] {
-				Long.class.getName(), String.class.getName(),
-				String.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(projectId),
 				
@@ -3144,14 +3243,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_P_AJUI_S,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -3208,25 +3303,27 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(status);
 				}
 
-				List<JIRAIssue> list = (List<JIRAIssue>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<JIRAIssue>)QueryUtil.list(q, getDialect(), start,
+						end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_P_AJUI_S,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public JIRAIssue findByP_AJUI_S_First(long projectId,
@@ -3420,25 +3517,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 	public List<JIRAIssue> findAll(int start, int end, OrderByComparator obc)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "findAll";
-		String[] finderParams = new String[] {
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -3461,8 +3547,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 				Query q = session.createQuery(query.toString());
 
-				List<JIRAIssue> list = null;
-
 				if (obc == null) {
 					list = (List<JIRAIssue>)QueryUtil.list(q, getDialect(),
 							start, end, false);
@@ -3473,23 +3557,24 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					list = (List<JIRAIssue>)QueryUtil.list(q, getDialect(),
 							start, end);
 				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<JIRAIssue>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<JIRAIssue>)result;
-		}
+
+		return list;
 	}
 
 	public void removeByProjectId(long projectId) throws SystemException {
@@ -3579,20 +3664,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 	}
 
 	public int countByProjectId(long projectId) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "countByProjectId";
-		String[] finderParams = new String[] { Long.class.getName() };
 		Object[] finderArgs = new Object[] { new Long(projectId) };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_PROJECTID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -3613,51 +3690,33 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(projectId);
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_PROJECTID,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByKey(String key) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "countByKey";
-		String[] finderParams = new String[] { String.class.getName() };
 		Object[] finderArgs = new Object[] { key };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KEY,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -3685,52 +3744,34 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(key);
 				}
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KEY, finderArgs,
+					count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByReporterJiraUserId(String reporterJiraUserId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "countByReporterJiraUserId";
-		String[] finderParams = new String[] { String.class.getName() };
 		Object[] finderArgs = new Object[] { reporterJiraUserId };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_REPORTERJIRAUSERID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -3758,52 +3799,34 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(reporterJiraUserId);
 				}
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_REPORTERJIRAUSERID,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByAssigneeJiraUserId(String assigneeJiraUserId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "countByAssigneeJiraUserId";
-		String[] finderParams = new String[] { String.class.getName() };
 		Object[] finderArgs = new Object[] { assigneeJiraUserId };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ASSIGNEEJIRAUSERID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -3831,54 +3854,34 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(assigneeJiraUserId);
 				}
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_ASSIGNEEJIRAUSERID,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByMD_P(Date modifiedDate, long projectId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "countByMD_P";
-		String[] finderParams = new String[] {
-				Date.class.getName(), Long.class.getName()
-			};
 		Object[] finderArgs = new Object[] { modifiedDate, new Long(projectId) };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_MD_P,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -3912,58 +3915,38 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(projectId);
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MD_P,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByP_RJUI(long projectId, String reporterJiraUserId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "countByP_RJUI";
-		String[] finderParams = new String[] {
-				Long.class.getName(), String.class.getName()
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(projectId),
 				
 				reporterJiraUserId
 			};
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_P_RJUI,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -3997,58 +3980,38 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(reporterJiraUserId);
 				}
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_P_RJUI,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByP_AJUI(long projectId, String assigneeJiraUserId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "countByP_AJUI";
-		String[] finderParams = new String[] {
-				Long.class.getName(), String.class.getName()
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(projectId),
 				
 				assigneeJiraUserId
 			};
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_P_AJUI,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -4082,59 +4045,38 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(assigneeJiraUserId);
 				}
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_P_AJUI,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByMD_P_RJUI(Date modifiedDate, long projectId,
 		String reporterJiraUserId) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "countByMD_P_RJUI";
-		String[] finderParams = new String[] {
-				Date.class.getName(), Long.class.getName(),
-				String.class.getName()
-			};
 		Object[] finderArgs = new Object[] {
 				modifiedDate, new Long(projectId),
 				
 				reporterJiraUserId
 			};
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_MD_P_RJUI,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -4181,59 +4123,38 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(reporterJiraUserId);
 				}
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MD_P_RJUI,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByMD_P_AJUI(Date modifiedDate, long projectId,
 		String assigneeJiraUserId) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "countByMD_P_AJUI";
-		String[] finderParams = new String[] {
-				Date.class.getName(), Long.class.getName(),
-				String.class.getName()
-			};
 		Object[] finderArgs = new Object[] {
 				modifiedDate, new Long(projectId),
 				
 				assigneeJiraUserId
 			};
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_MD_P_AJUI,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -4280,45 +4201,28 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(assigneeJiraUserId);
 				}
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MD_P_AJUI,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByP_RJUI_S(long projectId, String reporterJiraUserId,
 		String status) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "countByP_RJUI_S";
-		String[] finderParams = new String[] {
-				Long.class.getName(), String.class.getName(),
-				String.class.getName()
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(projectId),
 				
@@ -4327,14 +4231,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 				status
 			};
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_P_RJUI_S,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -4381,45 +4281,28 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(status);
 				}
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_P_RJUI_S,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countByP_AJUI_S(long projectId, String assigneeJiraUserId,
 		String status) throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "countByP_AJUI_S";
-		String[] finderParams = new String[] {
-				Long.class.getName(), String.class.getName(),
-				String.class.getName()
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(projectId),
 				
@@ -4428,14 +4311,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 				status
 			};
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_P_AJUI_S,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -4482,51 +4361,33 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 					qPos.add(status);
 				}
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_P_AJUI_S,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countAll() throws SystemException {
-		boolean finderClassNameCacheEnabled = JIRAIssueModelImpl.CACHE_ENABLED;
-		String finderClassName = JIRAIssue.class.getName();
-		String finderMethodName = "countAll";
-		String[] finderParams = new String[] {  };
-		Object[] finderArgs = new Object[] {  };
+		Object[] finderArgs = new Object[0];
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -4535,34 +4396,24 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl
 				Query q = session.createQuery(
 						"SELECT COUNT(*) FROM com.liferay.wol.model.JIRAIssue");
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
+					count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public void afterPropertiesSet() {

@@ -22,8 +22,10 @@
 
 package com.liferay.workflow.service.base;
 
+import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.service.base.PrincipalBean;
+import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.workflow.service.WorkflowComponentService;
 import com.liferay.workflow.service.WorkflowDefinitionService;
@@ -71,6 +73,15 @@ public abstract class WorkflowInstanceServiceBaseImpl extends PrincipalBean
 
 	public void setWorkflowTaskService(WorkflowTaskService workflowTaskService) {
 		this.workflowTaskService = workflowTaskService;
+	}
+
+	protected void runSQL(String sql) throws SystemException {
+		try {
+			PortalUtil.runSQL(sql);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
 	}
 
 	@BeanReference(name = "com.liferay.workflow.service.WorkflowComponentService.impl")

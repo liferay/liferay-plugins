@@ -49,7 +49,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public class FooModelImpl extends BaseModelImpl {
+public class FooModelImpl extends BaseModelImpl<Foo> {
 	public static final String TABLE_NAME = "SSB_Foo";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "fooId", new Integer(Types.BIGINT) },
@@ -74,7 +74,10 @@ public class FooModelImpl extends BaseModelImpl {
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.sampleservicebuilder.model.Foo"),
+			true);
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.sampleservicebuilder.model.Foo"),
 			true);
 
@@ -124,9 +127,7 @@ public class FooModelImpl extends BaseModelImpl {
 	}
 
 	public void setFooId(long fooId) {
-		if (fooId != _fooId) {
-			_fooId = fooId;
-		}
+		_fooId = fooId;
 	}
 
 	public String getField1() {
@@ -134,12 +135,7 @@ public class FooModelImpl extends BaseModelImpl {
 	}
 
 	public void setField1(String field1) {
-		if (((field1 == null) && (_field1 != null)) ||
-				((field1 != null) && (_field1 == null)) ||
-				((field1 != null) && (_field1 != null) &&
-				!field1.equals(_field1))) {
-			_field1 = field1;
-		}
+		_field1 = field1;
 	}
 
 	public boolean getField2() {
@@ -151,9 +147,7 @@ public class FooModelImpl extends BaseModelImpl {
 	}
 
 	public void setField2(boolean field2) {
-		if (field2 != _field2) {
-			_field2 = field2;
-		}
+		_field2 = field2;
 	}
 
 	public int getField3() {
@@ -161,9 +155,7 @@ public class FooModelImpl extends BaseModelImpl {
 	}
 
 	public void setField3(int field3) {
-		if (field3 != _field3) {
-			_field3 = field3;
-		}
+		_field3 = field3;
 	}
 
 	public Date getField4() {
@@ -171,12 +163,7 @@ public class FooModelImpl extends BaseModelImpl {
 	}
 
 	public void setField4(Date field4) {
-		if (((field4 == null) && (_field4 != null)) ||
-				((field4 != null) && (_field4 == null)) ||
-				((field4 != null) && (_field4 != null) &&
-				!field4.equals(_field4))) {
-			_field4 = field4;
-		}
+		_field4 = field4;
 	}
 
 	public String getField5() {
@@ -184,12 +171,7 @@ public class FooModelImpl extends BaseModelImpl {
 	}
 
 	public void setField5(String field5) {
-		if (((field5 == null) && (_field5 != null)) ||
-				((field5 != null) && (_field5 == null)) ||
-				((field5 != null) && (_field5 != null) &&
-				!field5.equals(_field5))) {
-			_field5 = field5;
-		}
+		_field5 = field5;
 	}
 
 	public Foo toEscapedModel() {
@@ -238,13 +220,7 @@ public class FooModelImpl extends BaseModelImpl {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		FooImpl foo = (FooImpl)obj;
-
+	public int compareTo(Foo foo) {
 		int value = 0;
 
 		value = getField1().compareTo(foo.getField1());
@@ -261,10 +237,10 @@ public class FooModelImpl extends BaseModelImpl {
 			return false;
 		}
 
-		FooImpl foo = null;
+		Foo foo = null;
 
 		try {
-			foo = (FooImpl)obj;
+			foo = (Foo)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;
@@ -282,6 +258,63 @@ public class FooModelImpl extends BaseModelImpl {
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{fooId=");
+		sb.append(getFooId());
+		sb.append(", field1=");
+		sb.append(getField1());
+		sb.append(", field2=");
+		sb.append(getField2());
+		sb.append(", field3=");
+		sb.append(getField3());
+		sb.append(", field4=");
+		sb.append(getField4());
+		sb.append(", field5=");
+		sb.append(getField5());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.sampleservicebuilder.model.Foo");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>fooId</column-name><column-value><![CDATA[");
+		sb.append("getFooId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>field1</column-name><column-value><![CDATA[");
+		sb.append("getField1()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>field2</column-name><column-value><![CDATA[");
+		sb.append("getField2()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>field3</column-name><column-value><![CDATA[");
+		sb.append("getField3()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>field4</column-name><column-value><![CDATA[");
+		sb.append("getField4()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>field5</column-name><column-value><![CDATA[");
+		sb.append("getField5()");
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
 	}
 
 	private long _fooId;

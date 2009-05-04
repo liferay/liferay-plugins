@@ -34,6 +34,7 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.util.PortalUtil;
 
 import java.util.List;
 
@@ -144,6 +145,15 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService {
 
 	public void setStatusFinder(StatusFinder statusFinder) {
 		this.statusFinder = statusFinder;
+	}
+
+	protected void runSQL(String sql) throws SystemException {
+		try {
+			PortalUtil.runSQL(sql);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
 	}
 
 	@BeanReference(name = "com.liferay.chat.service.EntryLocalService.impl")

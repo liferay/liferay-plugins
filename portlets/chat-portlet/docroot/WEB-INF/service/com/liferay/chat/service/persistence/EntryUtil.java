@@ -38,6 +38,10 @@ public class EntryUtil {
 		getPersistence().cacheResult(entries);
 	}
 
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
 	public static com.liferay.chat.model.Entry create(long entryId) {
 		return getPersistence().create(entryId);
 	}

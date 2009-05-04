@@ -47,7 +47,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public class PresenceModelImpl extends BaseModelImpl {
+public class PresenceModelImpl extends BaseModelImpl<Presence> {
 	public static final String TABLE_NAME = "Ruon_Presence";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "presenceId", new Integer(Types.BIGINT) },
@@ -69,7 +69,10 @@ public class PresenceModelImpl extends BaseModelImpl {
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.ruon.model.Presence"),
+			true);
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.ruon.model.Presence"),
 			true);
 
@@ -118,9 +121,7 @@ public class PresenceModelImpl extends BaseModelImpl {
 	}
 
 	public void setPresenceId(long presenceId) {
-		if (presenceId != _presenceId) {
-			_presenceId = presenceId;
-		}
+		_presenceId = presenceId;
 	}
 
 	public long getUserId() {
@@ -128,9 +129,17 @@ public class PresenceModelImpl extends BaseModelImpl {
 	}
 
 	public void setUserId(long userId) {
-		if (userId != _userId) {
-			_userId = userId;
+		_userId = userId;
+
+		if (!_setOriginalUserId) {
+			_setOriginalUserId = true;
+
+			_originalUserId = userId;
 		}
+	}
+
+	public long getOriginalUserId() {
+		return _originalUserId;
 	}
 
 	public long getModifiedDate() {
@@ -138,9 +147,7 @@ public class PresenceModelImpl extends BaseModelImpl {
 	}
 
 	public void setModifiedDate(long modifiedDate) {
-		if (modifiedDate != _modifiedDate) {
-			_modifiedDate = modifiedDate;
-		}
+		_modifiedDate = modifiedDate;
 	}
 
 	public long getNetworkId() {
@@ -148,9 +155,17 @@ public class PresenceModelImpl extends BaseModelImpl {
 	}
 
 	public void setNetworkId(long networkId) {
-		if (networkId != _networkId) {
-			_networkId = networkId;
+		_networkId = networkId;
+
+		if (!_setOriginalNetworkId) {
+			_setOriginalNetworkId = true;
+
+			_originalNetworkId = networkId;
 		}
+	}
+
+	public long getOriginalNetworkId() {
+		return _originalNetworkId;
 	}
 
 	public boolean getOnline() {
@@ -162,9 +177,7 @@ public class PresenceModelImpl extends BaseModelImpl {
 	}
 
 	public void setOnline(boolean online) {
-		if (online != _online) {
-			_online = online;
-		}
+		_online = online;
 	}
 
 	public Presence toEscapedModel() {
@@ -212,13 +225,7 @@ public class PresenceModelImpl extends BaseModelImpl {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		PresenceImpl presence = (PresenceImpl)obj;
-
+	public int compareTo(Presence presence) {
 		long pk = presence.getPrimaryKey();
 
 		if (getPrimaryKey() < pk) {
@@ -237,10 +244,10 @@ public class PresenceModelImpl extends BaseModelImpl {
 			return false;
 		}
 
-		PresenceImpl presence = null;
+		Presence presence = null;
 
 		try {
-			presence = (PresenceImpl)obj;
+			presence = (Presence)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;
@@ -260,10 +267,65 @@ public class PresenceModelImpl extends BaseModelImpl {
 		return (int)getPrimaryKey();
 	}
 
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{presenceId=");
+		sb.append(getPresenceId());
+		sb.append(", userId=");
+		sb.append(getUserId());
+		sb.append(", modifiedDate=");
+		sb.append(getModifiedDate());
+		sb.append(", networkId=");
+		sb.append(getNetworkId());
+		sb.append(", online=");
+		sb.append(getOnline());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.ruon.model.Presence");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>presenceId</column-name><column-value><![CDATA[");
+		sb.append("getPresenceId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>userId</column-name><column-value><![CDATA[");
+		sb.append("getUserId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
+		sb.append("getModifiedDate()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>networkId</column-name><column-value><![CDATA[");
+		sb.append("getNetworkId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>online</column-name><column-value><![CDATA[");
+		sb.append("getOnline()");
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
 	private long _presenceId;
 	private long _userId;
+	private long _originalUserId;
+	private boolean _setOriginalUserId;
 	private long _modifiedDate;
 	private long _networkId;
+	private long _originalNetworkId;
+	private boolean _setOriginalNetworkId;
 	private boolean _online;
-	private ExpandoBridge _expandoBridge;
+	private transient ExpandoBridge _expandoBridge;
 }

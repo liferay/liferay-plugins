@@ -22,13 +22,22 @@
 
 package com.liferay.ruon.service.persistence;
 
+import com.liferay.portal.service.persistence.BasePersistence;
+
 /**
  * <a href="PresencePersistence.java.html"><b><i>View Source</i></b></a>
  *
  * @author Brian Wing Shun Chan
  *
  */
-public interface PresencePersistence {
+public interface PresencePersistence extends BasePersistence {
+	public void cacheResult(com.liferay.ruon.model.Presence presence);
+
+	public void cacheResult(
+		java.util.List<com.liferay.ruon.model.Presence> presences);
+
+	public void clearCache();
+
 	public com.liferay.ruon.model.Presence create(long presenceId);
 
 	public com.liferay.ruon.model.Presence remove(long presenceId)
@@ -92,6 +101,10 @@ public interface PresencePersistence {
 
 	public com.liferay.ruon.model.Presence fetchByU_N(long userId,
 		long networkId) throws com.liferay.portal.SystemException;
+
+	public com.liferay.ruon.model.Presence fetchByU_N(long userId,
+		long networkId, boolean retrieveFromCache)
+		throws com.liferay.portal.SystemException;
 
 	public java.util.List<com.liferay.ruon.model.Presence> findByU_O(
 		long userId, boolean online) throws com.liferay.portal.SystemException;
@@ -161,10 +174,4 @@ public interface PresencePersistence {
 		throws com.liferay.portal.SystemException;
 
 	public int countAll() throws com.liferay.portal.SystemException;
-
-	public void registerListener(
-		com.liferay.portal.model.ModelListener listener);
-
-	public void unregisterListener(
-		com.liferay.portal.model.ModelListener listener);
 }

@@ -26,6 +26,7 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.sampleservicebuilder.model.Foo;
 import com.liferay.sampleservicebuilder.service.FooLocalService;
@@ -87,6 +88,12 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService {
 		return fooPersistence.update(foo, true);
 	}
 
+	public Foo updateFoo(Foo foo, boolean merge) throws SystemException {
+		foo.setNew(false);
+
+		return fooPersistence.update(foo, merge);
+	}
+
 	public FooLocalService getFooLocalService() {
 		return fooLocalService;
 	}
@@ -109,6 +116,15 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService {
 
 	public void setFooPersistence(FooPersistence fooPersistence) {
 		this.fooPersistence = fooPersistence;
+	}
+
+	protected void runSQL(String sql) throws SystemException {
+		try {
+			PortalUtil.runSQL(sql);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
 	}
 
 	@BeanReference(name = "com.liferay.sampleservicebuilder.service.FooLocalService.impl")

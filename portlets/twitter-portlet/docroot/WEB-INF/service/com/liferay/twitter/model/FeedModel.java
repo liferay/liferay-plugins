@@ -32,7 +32,7 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  *
  */
-public interface FeedModel extends BaseModel {
+public interface FeedModel extends BaseModel<Feed> {
 	public long getPrimaryKey();
 
 	public void setPrimaryKey(long pk);

@@ -29,6 +29,20 @@ package com.liferay.sampleservicebuilder.service.persistence;
  *
  */
 public class FooUtil {
+	public static void cacheResult(
+		com.liferay.sampleservicebuilder.model.Foo foo) {
+		getPersistence().cacheResult(foo);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.sampleservicebuilder.model.Foo> foos) {
+		getPersistence().cacheResult(foos);
+	}
+
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
 	public static com.liferay.sampleservicebuilder.model.Foo create(long fooId) {
 		return getPersistence().create(fooId);
 	}

@@ -38,6 +38,10 @@ public class StatusUtil {
 		getPersistence().cacheResult(statuses);
 	}
 
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
 	public static com.liferay.chat.model.Status create(long statusId) {
 		return getPersistence().create(statusId);
 	}

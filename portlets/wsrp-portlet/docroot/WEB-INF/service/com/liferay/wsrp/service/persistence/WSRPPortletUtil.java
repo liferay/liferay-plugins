@@ -39,6 +39,10 @@ public class WSRPPortletUtil {
 		getPersistence().cacheResult(wsrpPortlets);
 	}
 
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
 	public static com.liferay.wsrp.model.WSRPPortlet create(long portletId) {
 		return getPersistence().create(portletId);
 	}

@@ -26,6 +26,7 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.twitter.model.Feed;
 import com.liferay.twitter.service.FeedLocalService;
@@ -86,6 +87,12 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService {
 		return feedPersistence.update(feed, true);
 	}
 
+	public Feed updateFeed(Feed feed, boolean merge) throws SystemException {
+		feed.setNew(false);
+
+		return feedPersistence.update(feed, merge);
+	}
+
 	public FeedLocalService getFeedLocalService() {
 		return feedLocalService;
 	}
@@ -100,6 +107,15 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService {
 
 	public void setFeedPersistence(FeedPersistence feedPersistence) {
 		this.feedPersistence = feedPersistence;
+	}
+
+	protected void runSQL(String sql) throws SystemException {
+		try {
+			PortalUtil.runSQL(sql);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
 	}
 
 	@BeanReference(name = "com.liferay.twitter.service.FeedLocalService.impl")

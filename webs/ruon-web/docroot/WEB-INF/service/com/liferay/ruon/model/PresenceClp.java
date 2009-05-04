@@ -35,7 +35,7 @@ import java.lang.reflect.Proxy;
  * @author Brian Wing Shun Chan
  *
  */
-public class PresenceClp extends BaseModelImpl implements Presence {
+public class PresenceClp extends BaseModelImpl<Presence> implements Presence {
 	public PresenceClp() {
 	}
 
@@ -130,13 +130,7 @@ public class PresenceClp extends BaseModelImpl implements Presence {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		PresenceClp presence = (PresenceClp)obj;
-
+	public int compareTo(Presence presence) {
 		long pk = presence.getPrimaryKey();
 
 		if (getPrimaryKey() < pk) {

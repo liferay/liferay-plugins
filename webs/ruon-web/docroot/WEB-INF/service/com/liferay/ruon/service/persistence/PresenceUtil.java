@@ -29,6 +29,19 @@ package com.liferay.ruon.service.persistence;
  *
  */
 public class PresenceUtil {
+	public static void cacheResult(com.liferay.ruon.model.Presence presence) {
+		getPersistence().cacheResult(presence);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.ruon.model.Presence> presences) {
+		getPersistence().cacheResult(presences);
+	}
+
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
 	public static com.liferay.ruon.model.Presence create(long presenceId) {
 		return getPersistence().create(presenceId);
 	}
@@ -125,6 +138,12 @@ public class PresenceUtil {
 	public static com.liferay.ruon.model.Presence fetchByU_N(long userId,
 		long networkId) throws com.liferay.portal.SystemException {
 		return getPersistence().fetchByU_N(userId, networkId);
+	}
+
+	public static com.liferay.ruon.model.Presence fetchByU_N(long userId,
+		long networkId, boolean retrieveFromCache)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().fetchByU_N(userId, networkId, retrieveFromCache);
 	}
 
 	public static java.util.List<com.liferay.ruon.model.Presence> findByU_O(
@@ -233,16 +252,6 @@ public class PresenceUtil {
 
 	public static int countAll() throws com.liferay.portal.SystemException {
 		return getPersistence().countAll();
-	}
-
-	public static void registerListener(
-		com.liferay.portal.model.ModelListener listener) {
-		getPersistence().registerListener(listener);
-	}
-
-	public static void unregisterListener(
-		com.liferay.portal.model.ModelListener listener) {
-		getPersistence().unregisterListener(listener);
 	}
 
 	public static PresencePersistence getPersistence() {

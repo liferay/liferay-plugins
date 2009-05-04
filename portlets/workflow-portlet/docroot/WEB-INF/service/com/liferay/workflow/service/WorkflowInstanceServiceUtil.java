@@ -51,11 +51,15 @@ public class WorkflowInstanceServiceUtil {
 		getService().signalToken(instanceId, tokenId);
 	}
 
+	public static void clearService() {
+		_service = null;
+	}
+
 	public static WorkflowInstanceService getService() {
 		if (_service == null) {
-			Object obj = PortletBeanLocatorUtil.locate("workflow-portlet",
+			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					WorkflowInstanceServiceUtil.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("workflow-portlet",
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,

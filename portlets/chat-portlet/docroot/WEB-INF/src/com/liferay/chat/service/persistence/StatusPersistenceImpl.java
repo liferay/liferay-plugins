@@ -29,6 +29,7 @@ import com.liferay.chat.model.impl.StatusModelImpl;
 
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.cache.CacheRegistry;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -138,6 +139,13 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 				cacheResult(status);
 			}
 		}
+	}
+
+	public void clearCache() {
+		CacheRegistry.clear(StatusImpl.class.getName());
+		EntityCacheUtil.clearCache(StatusImpl.class.getName());
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
 	public Status create(long statusId) {
@@ -429,6 +437,11 @@ public class StatusPersistenceImpl extends BasePersistenceImpl
 					status = list.get(0);
 
 					cacheResult(status);
+
+					if ((status.getUserId() != userId)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
+							finderArgs, list);
+					}
 				}
 
 				return status;

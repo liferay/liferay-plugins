@@ -24,6 +24,7 @@ package com.liferay.twitter.service;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.Isolation;
 import com.liferay.portal.kernel.annotation.Propagation;
 import com.liferay.portal.kernel.annotation.Transactional;
 
@@ -33,7 +34,7 @@ import com.liferay.portal.kernel.annotation.Transactional;
  * @author Brian Wing Shun Chan
  *
  */
-@Transactional(rollbackFor =  {
+@Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
 public interface FeedLocalService {
 	public com.liferay.twitter.model.Feed addFeed(
@@ -71,6 +72,10 @@ public interface FeedLocalService {
 
 	public com.liferay.twitter.model.Feed updateFeed(
 		com.liferay.twitter.model.Feed feed)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.twitter.model.Feed updateFeed(
+		com.liferay.twitter.model.Feed feed, boolean merge)
 		throws com.liferay.portal.SystemException;
 
 	public void updateFeed(long userId)

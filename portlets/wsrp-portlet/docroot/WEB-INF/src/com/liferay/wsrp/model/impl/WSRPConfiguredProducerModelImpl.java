@@ -172,9 +172,7 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl<WSRPConfigure
 	}
 
 	public void setConfiguredProducerId(long configuredProducerId) {
-		if (configuredProducerId != _configuredProducerId) {
-			_configuredProducerId = configuredProducerId;
-		}
+		_configuredProducerId = configuredProducerId;
 	}
 
 	public String getName() {
@@ -182,9 +180,7 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl<WSRPConfigure
 	}
 
 	public void setName(String name) {
-		if ((name != _name) || ((name != null) && !name.equals(_name))) {
-			_name = name;
-		}
+		_name = name;
 	}
 
 	public String getPortalId() {
@@ -192,10 +188,7 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl<WSRPConfigure
 	}
 
 	public void setPortalId(String portalId) {
-		if ((portalId != _portalId) ||
-				((portalId != null) && !portalId.equals(_portalId))) {
-			_portalId = portalId;
-		}
+		_portalId = portalId;
 	}
 
 	public String getNamespace() {
@@ -203,10 +196,7 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl<WSRPConfigure
 	}
 
 	public void setNamespace(String namespace) {
-		if ((namespace != _namespace) ||
-				((namespace != null) && !namespace.equals(_namespace))) {
-			_namespace = namespace;
-		}
+		_namespace = namespace;
 	}
 
 	public String getProducerURL() {
@@ -214,10 +204,7 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl<WSRPConfigure
 	}
 
 	public void setProducerURL(String producerURL) {
-		if ((producerURL != _producerURL) ||
-				((producerURL != null) && !producerURL.equals(_producerURL))) {
-			_producerURL = producerURL;
-		}
+		_producerURL = producerURL;
 	}
 
 	public String getProducerVersion() {
@@ -225,11 +212,7 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl<WSRPConfigure
 	}
 
 	public void setProducerVersion(String producerVersion) {
-		if ((producerVersion != _producerVersion) ||
-				((producerVersion != null) &&
-				!producerVersion.equals(_producerVersion))) {
-			_producerVersion = producerVersion;
-		}
+		_producerVersion = producerVersion;
 	}
 
 	public String getProducerMarkupURL() {
@@ -237,11 +220,7 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl<WSRPConfigure
 	}
 
 	public void setProducerMarkupURL(String producerMarkupURL) {
-		if ((producerMarkupURL != _producerMarkupURL) ||
-				((producerMarkupURL != null) &&
-				!producerMarkupURL.equals(_producerMarkupURL))) {
-			_producerMarkupURL = producerMarkupURL;
-		}
+		_producerMarkupURL = producerMarkupURL;
 	}
 
 	public int getStatus() {
@@ -249,9 +228,7 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl<WSRPConfigure
 	}
 
 	public void setStatus(int status) {
-		if (status != _status) {
-			_status = status;
-		}
+		_status = status;
 	}
 
 	public String getRegistrationData() {
@@ -259,11 +236,7 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl<WSRPConfigure
 	}
 
 	public void setRegistrationData(String registrationData) {
-		if ((registrationData != _registrationData) ||
-				((registrationData != null) &&
-				!registrationData.equals(_registrationData))) {
-			_registrationData = registrationData;
-		}
+		_registrationData = registrationData;
 	}
 
 	public String getRegistrationContext() {
@@ -271,11 +244,7 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl<WSRPConfigure
 	}
 
 	public void setRegistrationContext(String registrationContext) {
-		if ((registrationContext != _registrationContext) ||
-				((registrationContext != null) &&
-				!registrationContext.equals(_registrationContext))) {
-			_registrationContext = registrationContext;
-		}
+		_registrationContext = registrationContext;
 	}
 
 	public String getServiceDescription() {
@@ -283,11 +252,7 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl<WSRPConfigure
 	}
 
 	public void setServiceDescription(String serviceDescription) {
-		if ((serviceDescription != _serviceDescription) ||
-				((serviceDescription != null) &&
-				!serviceDescription.equals(_serviceDescription))) {
-			_serviceDescription = serviceDescription;
-		}
+		_serviceDescription = serviceDescription;
 	}
 
 	public String getUserCategoryMapping() {
@@ -295,11 +260,7 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl<WSRPConfigure
 	}
 
 	public void setUserCategoryMapping(String userCategoryMapping) {
-		if ((userCategoryMapping != _userCategoryMapping) ||
-				((userCategoryMapping != null) &&
-				!userCategoryMapping.equals(_userCategoryMapping))) {
-			_userCategoryMapping = userCategoryMapping;
-		}
+		_userCategoryMapping = userCategoryMapping;
 	}
 
 	public String getCustomUserProfile() {
@@ -307,11 +268,7 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl<WSRPConfigure
 	}
 
 	public void setCustomUserProfile(String customUserProfile) {
-		if ((customUserProfile != _customUserProfile) ||
-				((customUserProfile != null) &&
-				!customUserProfile.equals(_customUserProfile))) {
-			_customUserProfile = customUserProfile;
-		}
+		_customUserProfile = customUserProfile;
 	}
 
 	public String getIdentityPropagationType() {
@@ -319,11 +276,7 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl<WSRPConfigure
 	}
 
 	public void setIdentityPropagationType(String identityPropagationType) {
-		if ((identityPropagationType != _identityPropagationType) ||
-				((identityPropagationType != null) &&
-				!identityPropagationType.equals(_identityPropagationType))) {
-			_identityPropagationType = identityPropagationType;
-		}
+		_identityPropagationType = identityPropagationType;
 	}
 
 	public String getLifetimeTerminationTime() {
@@ -331,11 +284,7 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl<WSRPConfigure
 	}
 
 	public void setLifetimeTerminationTime(String lifetimeTerminationTime) {
-		if ((lifetimeTerminationTime != _lifetimeTerminationTime) ||
-				((lifetimeTerminationTime != null) &&
-				!lifetimeTerminationTime.equals(_lifetimeTerminationTime))) {
-			_lifetimeTerminationTime = lifetimeTerminationTime;
-		}
+		_lifetimeTerminationTime = lifetimeTerminationTime;
 	}
 
 	public long getSdLastModified() {
@@ -343,9 +292,7 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl<WSRPConfigure
 	}
 
 	public void setSdLastModified(long sdLastModified) {
-		if (sdLastModified != _sdLastModified) {
-			_sdLastModified = sdLastModified;
-		}
+		_sdLastModified = sdLastModified;
 	}
 
 	public int getEntityVersion() {
@@ -353,9 +300,7 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl<WSRPConfigure
 	}
 
 	public void setEntityVersion(int entityVersion) {
-		if (entityVersion != _entityVersion) {
-			_entityVersion = entityVersion;
-		}
+		_entityVersion = entityVersion;
 	}
 
 	public WSRPConfiguredProducer toEscapedModel() {
@@ -471,6 +416,129 @@ public class WSRPConfiguredProducerModelImpl extends BaseModelImpl<WSRPConfigure
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{configuredProducerId=");
+		sb.append(getConfiguredProducerId());
+		sb.append(", name=");
+		sb.append(getName());
+		sb.append(", portalId=");
+		sb.append(getPortalId());
+		sb.append(", namespace=");
+		sb.append(getNamespace());
+		sb.append(", producerURL=");
+		sb.append(getProducerURL());
+		sb.append(", producerVersion=");
+		sb.append(getProducerVersion());
+		sb.append(", producerMarkupURL=");
+		sb.append(getProducerMarkupURL());
+		sb.append(", status=");
+		sb.append(getStatus());
+		sb.append(", registrationData=");
+		sb.append(getRegistrationData());
+		sb.append(", registrationContext=");
+		sb.append(getRegistrationContext());
+		sb.append(", serviceDescription=");
+		sb.append(getServiceDescription());
+		sb.append(", userCategoryMapping=");
+		sb.append(getUserCategoryMapping());
+		sb.append(", customUserProfile=");
+		sb.append(getCustomUserProfile());
+		sb.append(", identityPropagationType=");
+		sb.append(getIdentityPropagationType());
+		sb.append(", lifetimeTerminationTime=");
+		sb.append(getLifetimeTerminationTime());
+		sb.append(", sdLastModified=");
+		sb.append(getSdLastModified());
+		sb.append(", entityVersion=");
+		sb.append(getEntityVersion());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wsrp.model.WSRPConfiguredProducer");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>configuredProducerId</column-name><column-value><![CDATA[");
+		sb.append("getConfiguredProducerId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>name</column-name><column-value><![CDATA[");
+		sb.append("getName()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>portalId</column-name><column-value><![CDATA[");
+		sb.append("getPortalId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>namespace</column-name><column-value><![CDATA[");
+		sb.append("getNamespace()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>producerURL</column-name><column-value><![CDATA[");
+		sb.append("getProducerURL()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>producerVersion</column-name><column-value><![CDATA[");
+		sb.append("getProducerVersion()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>producerMarkupURL</column-name><column-value><![CDATA[");
+		sb.append("getProducerMarkupURL()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append("getStatus()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>registrationData</column-name><column-value><![CDATA[");
+		sb.append("getRegistrationData()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>registrationContext</column-name><column-value><![CDATA[");
+		sb.append("getRegistrationContext()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>serviceDescription</column-name><column-value><![CDATA[");
+		sb.append("getServiceDescription()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>userCategoryMapping</column-name><column-value><![CDATA[");
+		sb.append("getUserCategoryMapping()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>customUserProfile</column-name><column-value><![CDATA[");
+		sb.append("getCustomUserProfile()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>identityPropagationType</column-name><column-value><![CDATA[");
+		sb.append("getIdentityPropagationType()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>lifetimeTerminationTime</column-name><column-value><![CDATA[");
+		sb.append("getLifetimeTerminationTime()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>sdLastModified</column-name><column-value><![CDATA[");
+		sb.append("getSdLastModified()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>entityVersion</column-name><column-value><![CDATA[");
+		sb.append("getEntityVersion()");
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
 	}
 
 	private long _configuredProducerId;

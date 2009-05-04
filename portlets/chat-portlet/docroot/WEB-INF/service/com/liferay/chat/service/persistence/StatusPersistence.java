@@ -36,6 +36,8 @@ public interface StatusPersistence extends BasePersistence {
 	public void cacheResult(
 		java.util.List<com.liferay.chat.model.Status> statuses);
 
+	public void clearCache();
+
 	public com.liferay.chat.model.Status create(long statusId);
 
 	public com.liferay.chat.model.Status remove(long statusId)

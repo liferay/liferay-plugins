@@ -132,9 +132,7 @@ public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl<WSRPConsume
 	}
 
 	public void setConsumerRegistrationId(long consumerRegistrationId) {
-		if (consumerRegistrationId != _consumerRegistrationId) {
-			_consumerRegistrationId = consumerRegistrationId;
-		}
+		_consumerRegistrationId = consumerRegistrationId;
 	}
 
 	public String getConsumerName() {
@@ -142,10 +140,7 @@ public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl<WSRPConsume
 	}
 
 	public void setConsumerName(String consumerName) {
-		if ((consumerName != _consumerName) ||
-				((consumerName != null) && !consumerName.equals(_consumerName))) {
-			_consumerName = consumerName;
-		}
+		_consumerName = consumerName;
 	}
 
 	public boolean getStatus() {
@@ -157,9 +152,7 @@ public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl<WSRPConsume
 	}
 
 	public void setStatus(boolean status) {
-		if (status != _status) {
-			_status = status;
-		}
+		_status = status;
 	}
 
 	public String getRegistrationHandle() {
@@ -167,14 +160,10 @@ public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl<WSRPConsume
 	}
 
 	public void setRegistrationHandle(String registrationHandle) {
-		if ((registrationHandle != _registrationHandle) ||
-				((registrationHandle != null) &&
-				!registrationHandle.equals(_registrationHandle))) {
-			_registrationHandle = registrationHandle;
+		_registrationHandle = registrationHandle;
 
-			if (_originalRegistrationHandle == null) {
-				_originalRegistrationHandle = registrationHandle;
-			}
+		if (_originalRegistrationHandle == null) {
+			_originalRegistrationHandle = registrationHandle;
 		}
 	}
 
@@ -187,11 +176,7 @@ public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl<WSRPConsume
 	}
 
 	public void setRegistrationData(String registrationData) {
-		if ((registrationData != _registrationData) ||
-				((registrationData != null) &&
-				!registrationData.equals(_registrationData))) {
-			_registrationData = registrationData;
-		}
+		_registrationData = registrationData;
 	}
 
 	public String getLifetimeTerminationTime() {
@@ -199,11 +184,7 @@ public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl<WSRPConsume
 	}
 
 	public void setLifetimeTerminationTime(String lifetimeTerminationTime) {
-		if ((lifetimeTerminationTime != _lifetimeTerminationTime) ||
-				((lifetimeTerminationTime != null) &&
-				!lifetimeTerminationTime.equals(_lifetimeTerminationTime))) {
-			_lifetimeTerminationTime = lifetimeTerminationTime;
-		}
+		_lifetimeTerminationTime = lifetimeTerminationTime;
 	}
 
 	public String getProducerKey() {
@@ -211,13 +192,10 @@ public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl<WSRPConsume
 	}
 
 	public void setProducerKey(String producerKey) {
-		if ((producerKey != _producerKey) ||
-				((producerKey != null) && !producerKey.equals(_producerKey))) {
-			_producerKey = producerKey;
+		_producerKey = producerKey;
 
-			if (_originalProducerKey == null) {
-				_originalProducerKey = producerKey;
-			}
+		if (_originalProducerKey == null) {
+			_originalProducerKey = producerKey;
 		}
 	}
 
@@ -315,6 +293,69 @@ public class WSRPConsumerRegistrationModelImpl extends BaseModelImpl<WSRPConsume
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{consumerRegistrationId=");
+		sb.append(getConsumerRegistrationId());
+		sb.append(", consumerName=");
+		sb.append(getConsumerName());
+		sb.append(", status=");
+		sb.append(getStatus());
+		sb.append(", registrationHandle=");
+		sb.append(getRegistrationHandle());
+		sb.append(", registrationData=");
+		sb.append(getRegistrationData());
+		sb.append(", lifetimeTerminationTime=");
+		sb.append(getLifetimeTerminationTime());
+		sb.append(", producerKey=");
+		sb.append(getProducerKey());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wsrp.model.WSRPConsumerRegistration");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>consumerRegistrationId</column-name><column-value><![CDATA[");
+		sb.append("getConsumerRegistrationId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>consumerName</column-name><column-value><![CDATA[");
+		sb.append("getConsumerName()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append("getStatus()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>registrationHandle</column-name><column-value><![CDATA[");
+		sb.append("getRegistrationHandle()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>registrationData</column-name><column-value><![CDATA[");
+		sb.append("getRegistrationData()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>lifetimeTerminationTime</column-name><column-value><![CDATA[");
+		sb.append("getLifetimeTerminationTime()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>producerKey</column-name><column-value><![CDATA[");
+		sb.append("getProducerKey()");
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
 	}
 
 	private long _consumerRegistrationId;

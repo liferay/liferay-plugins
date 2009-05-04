@@ -29,6 +29,19 @@ package com.liferay.ruon.service.persistence;
  *
  */
 public class NetworkUtil {
+	public static void cacheResult(com.liferay.ruon.model.Network network) {
+		getPersistence().cacheResult(network);
+	}
+
+	public static void cacheResult(
+		java.util.List<com.liferay.ruon.model.Network> networks) {
+		getPersistence().cacheResult(networks);
+	}
+
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
 	public static com.liferay.ruon.model.Network create(long networkId) {
 		return getPersistence().create(networkId);
 	}
@@ -87,6 +100,12 @@ public class NetworkUtil {
 		return getPersistence().fetchByName(name);
 	}
 
+	public static com.liferay.ruon.model.Network fetchByName(
+		java.lang.String name, boolean retrieveFromCache)
+		throws com.liferay.portal.SystemException {
+		return getPersistence().fetchByName(name, retrieveFromCache);
+	}
+
 	public static java.util.List<Object> findWithDynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.SystemException {
@@ -132,16 +151,6 @@ public class NetworkUtil {
 
 	public static int countAll() throws com.liferay.portal.SystemException {
 		return getPersistence().countAll();
-	}
-
-	public static void registerListener(
-		com.liferay.portal.model.ModelListener listener) {
-		getPersistence().registerListener(listener);
-	}
-
-	public static void unregisterListener(
-		com.liferay.portal.model.ModelListener listener) {
-		getPersistence().unregisterListener(listener);
 	}
 
 	public static NetworkPersistence getPersistence() {

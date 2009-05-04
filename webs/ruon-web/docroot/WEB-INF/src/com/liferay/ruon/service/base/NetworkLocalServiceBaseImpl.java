@@ -24,7 +24,9 @@ package com.liferay.ruon.service.base;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.ruon.model.Network;
 import com.liferay.ruon.service.NetworkLocalService;
@@ -90,6 +92,13 @@ public abstract class NetworkLocalServiceBaseImpl implements NetworkLocalService
 		return networkPersistence.update(network, true);
 	}
 
+	public Network updateNetwork(Network network, boolean merge)
+		throws SystemException {
+		network.setNew(false);
+
+		return networkPersistence.update(network, merge);
+	}
+
 	public NetworkLocalService getNetworkLocalService() {
 		return networkLocalService;
 	}
@@ -123,12 +132,21 @@ public abstract class NetworkLocalServiceBaseImpl implements NetworkLocalService
 		this.presencePersistence = presencePersistence;
 	}
 
-	@com.liferay.portal.kernel.annotation.BeanReference(name = "com.liferay.ruon.service.NetworkLocalService.impl")
+	protected void runSQL(String sql) throws SystemException {
+		try {
+			PortalUtil.runSQL(sql);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+	}
+
+	@BeanReference(name = "com.liferay.ruon.service.NetworkLocalService.impl")
 	protected NetworkLocalService networkLocalService;
-	@com.liferay.portal.kernel.annotation.BeanReference(name = "com.liferay.ruon.service.persistence.NetworkPersistence.impl")
+	@BeanReference(name = "com.liferay.ruon.service.persistence.NetworkPersistence.impl")
 	protected NetworkPersistence networkPersistence;
-	@com.liferay.portal.kernel.annotation.BeanReference(name = "com.liferay.ruon.service.PresenceLocalService.impl")
+	@BeanReference(name = "com.liferay.ruon.service.PresenceLocalService.impl")
 	protected PresenceLocalService presenceLocalService;
-	@com.liferay.portal.kernel.annotation.BeanReference(name = "com.liferay.ruon.service.persistence.PresencePersistence.impl")
+	@BeanReference(name = "com.liferay.ruon.service.persistence.PresencePersistence.impl")
 	protected PresencePersistence presencePersistence;
 }

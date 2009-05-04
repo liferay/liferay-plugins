@@ -87,6 +87,12 @@ public class NetworkLocalServiceUtil {
 		return getService().updateNetwork(network);
 	}
 
+	public static com.liferay.ruon.model.Network updateNetwork(
+		com.liferay.ruon.model.Network network, boolean merge)
+		throws com.liferay.portal.SystemException {
+		return getService().updateNetwork(network, merge);
+	}
+
 	public static com.liferay.ruon.model.Network getNetwork(
 		java.lang.String name)
 		throws com.liferay.portal.PortalException,
@@ -106,11 +112,15 @@ public class NetworkLocalServiceUtil {
 		return getService().updateNetwork(name, ttl);
 	}
 
+	public static void clearService() {
+		_service = null;
+	}
+
 	public static NetworkLocalService getService() {
 		if (_service == null) {
-			Object obj = PortletBeanLocatorUtil.locate("ruon-web",
+			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					NetworkLocalServiceUtil.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("ruon-web",
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,

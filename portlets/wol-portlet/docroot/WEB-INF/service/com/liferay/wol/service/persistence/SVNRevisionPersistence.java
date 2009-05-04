@@ -31,6 +31,13 @@ import com.liferay.portal.service.persistence.BasePersistence;
  *
  */
 public interface SVNRevisionPersistence extends BasePersistence {
+	public void cacheResult(com.liferay.wol.model.SVNRevision svnRevision);
+
+	public void cacheResult(
+		java.util.List<com.liferay.wol.model.SVNRevision> svnRevisions);
+
+	public void clearCache();
+
 	public com.liferay.wol.model.SVNRevision create(long svnRevisionId);
 
 	public com.liferay.wol.model.SVNRevision remove(long svnRevisionId)

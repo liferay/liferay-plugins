@@ -49,7 +49,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  *
  */
-public class FeedModelImpl extends BaseModelImpl {
+public class FeedModelImpl extends BaseModelImpl<Feed> {
 	public static final String TABLE_NAME = "Twitter_Feed";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "feedId", new Integer(Types.BIGINT) },
@@ -74,7 +74,10 @@ public class FeedModelImpl extends BaseModelImpl {
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.twitter.model.Feed"),
+			true);
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.twitter.model.Feed"),
 			true);
 
@@ -124,9 +127,7 @@ public class FeedModelImpl extends BaseModelImpl {
 	}
 
 	public void setFeedId(long feedId) {
-		if (feedId != _feedId) {
-			_feedId = feedId;
-		}
+		_feedId = feedId;
 	}
 
 	public long getTwitterUserId() {
@@ -134,9 +135,17 @@ public class FeedModelImpl extends BaseModelImpl {
 	}
 
 	public void setTwitterUserId(long twitterUserId) {
-		if (twitterUserId != _twitterUserId) {
-			_twitterUserId = twitterUserId;
+		_twitterUserId = twitterUserId;
+
+		if (!_setOriginalTwitterUserId) {
+			_setOriginalTwitterUserId = true;
+
+			_originalTwitterUserId = twitterUserId;
 		}
+	}
+
+	public long getOriginalTwitterUserId() {
+		return _originalTwitterUserId;
 	}
 
 	public String getTwitterScreenName() {
@@ -144,12 +153,15 @@ public class FeedModelImpl extends BaseModelImpl {
 	}
 
 	public void setTwitterScreenName(String twitterScreenName) {
-		if (((twitterScreenName == null) && (_twitterScreenName != null)) ||
-				((twitterScreenName != null) && (_twitterScreenName == null)) ||
-				((twitterScreenName != null) && (_twitterScreenName != null) &&
-				!twitterScreenName.equals(_twitterScreenName))) {
-			_twitterScreenName = twitterScreenName;
+		_twitterScreenName = twitterScreenName;
+
+		if (_originalTwitterScreenName == null) {
+			_originalTwitterScreenName = twitterScreenName;
 		}
+	}
+
+	public String getOriginalTwitterScreenName() {
+		return GetterUtil.getString(_originalTwitterScreenName);
 	}
 
 	public Date getCreateDate() {
@@ -157,12 +169,7 @@ public class FeedModelImpl extends BaseModelImpl {
 	}
 
 	public void setCreateDate(Date createDate) {
-		if (((createDate == null) && (_createDate != null)) ||
-				((createDate != null) && (_createDate == null)) ||
-				((createDate != null) && (_createDate != null) &&
-				!createDate.equals(_createDate))) {
-			_createDate = createDate;
-		}
+		_createDate = createDate;
 	}
 
 	public Date getModifiedDate() {
@@ -170,12 +177,7 @@ public class FeedModelImpl extends BaseModelImpl {
 	}
 
 	public void setModifiedDate(Date modifiedDate) {
-		if (((modifiedDate == null) && (_modifiedDate != null)) ||
-				((modifiedDate != null) && (_modifiedDate == null)) ||
-				((modifiedDate != null) && (_modifiedDate != null) &&
-				!modifiedDate.equals(_modifiedDate))) {
-			_modifiedDate = modifiedDate;
-		}
+		_modifiedDate = modifiedDate;
 	}
 
 	public long getLastStatusId() {
@@ -183,9 +185,7 @@ public class FeedModelImpl extends BaseModelImpl {
 	}
 
 	public void setLastStatusId(long lastStatusId) {
-		if (lastStatusId != _lastStatusId) {
-			_lastStatusId = lastStatusId;
-		}
+		_lastStatusId = lastStatusId;
 	}
 
 	public Feed toEscapedModel() {
@@ -234,13 +234,7 @@ public class FeedModelImpl extends BaseModelImpl {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		FeedImpl feed = (FeedImpl)obj;
-
+	public int compareTo(Feed feed) {
 		long pk = feed.getPrimaryKey();
 
 		if (getPrimaryKey() < pk) {
@@ -259,10 +253,10 @@ public class FeedModelImpl extends BaseModelImpl {
 			return false;
 		}
 
-		FeedImpl feed = null;
+		Feed feed = null;
 
 		try {
-			feed = (FeedImpl)obj;
+			feed = (Feed)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;
@@ -282,9 +276,69 @@ public class FeedModelImpl extends BaseModelImpl {
 		return (int)getPrimaryKey();
 	}
 
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{feedId=");
+		sb.append(getFeedId());
+		sb.append(", twitterUserId=");
+		sb.append(getTwitterUserId());
+		sb.append(", twitterScreenName=");
+		sb.append(getTwitterScreenName());
+		sb.append(", createDate=");
+		sb.append(getCreateDate());
+		sb.append(", modifiedDate=");
+		sb.append(getModifiedDate());
+		sb.append(", lastStatusId=");
+		sb.append(getLastStatusId());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.twitter.model.Feed");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>feedId</column-name><column-value><![CDATA[");
+		sb.append("getFeedId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>twitterUserId</column-name><column-value><![CDATA[");
+		sb.append("getTwitterUserId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>twitterScreenName</column-name><column-value><![CDATA[");
+		sb.append("getTwitterScreenName()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>createDate</column-name><column-value><![CDATA[");
+		sb.append("getCreateDate()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
+		sb.append("getModifiedDate()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>lastStatusId</column-name><column-value><![CDATA[");
+		sb.append("getLastStatusId()");
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
 	private long _feedId;
 	private long _twitterUserId;
+	private long _originalTwitterUserId;
+	private boolean _setOriginalTwitterUserId;
 	private String _twitterScreenName;
+	private String _originalTwitterScreenName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _lastStatusId;

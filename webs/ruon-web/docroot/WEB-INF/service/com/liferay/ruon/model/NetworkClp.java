@@ -36,7 +36,7 @@ import java.lang.reflect.Proxy;
  * @author Brian Wing Shun Chan
  *
  */
-public class NetworkClp extends BaseModelImpl implements Network {
+public class NetworkClp extends BaseModelImpl<Network> implements Network {
 	public NetworkClp() {
 	}
 
@@ -107,13 +107,7 @@ public class NetworkClp extends BaseModelImpl implements Network {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		NetworkClp network = (NetworkClp)obj;
-
+	public int compareTo(Network network) {
 		long pk = network.getPrimaryKey();
 
 		if (getPrimaryKey() < pk) {

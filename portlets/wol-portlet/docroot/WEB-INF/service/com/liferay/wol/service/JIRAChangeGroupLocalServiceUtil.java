@@ -96,11 +96,15 @@ public class JIRAChangeGroupLocalServiceUtil {
 		return getService().updateJIRAChangeGroup(jiraChangeGroup, merge);
 	}
 
+	public static void clearService() {
+		_service = null;
+	}
+
 	public static JIRAChangeGroupLocalService getService() {
 		if (_service == null) {
-			Object obj = PortletBeanLocatorUtil.locate("wol-portlet",
+			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					JIRAChangeGroupLocalServiceUtil.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("wol-portlet",
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,

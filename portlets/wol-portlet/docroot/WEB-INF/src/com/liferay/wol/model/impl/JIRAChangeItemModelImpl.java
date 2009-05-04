@@ -76,7 +76,10 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
 	public static final String DATA_SOURCE = "jiraDataSource";
 	public static final String SESSION_FACTORY = "jiraSessionFactory";
 	public static final String TX_MANAGER = "jiraTransactionManager";
-	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.wol.model.JIRAChangeItem"),
+			true);
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.wol.model.JIRAChangeItem"),
 			true);
 
@@ -127,9 +130,7 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
 	}
 
 	public void setJiraChangeItemId(long jiraChangeItemId) {
-		if (jiraChangeItemId != _jiraChangeItemId) {
-			_jiraChangeItemId = jiraChangeItemId;
-		}
+		_jiraChangeItemId = jiraChangeItemId;
 	}
 
 	public long getJiraChangeGroupId() {
@@ -137,9 +138,7 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
 	}
 
 	public void setJiraChangeGroupId(long jiraChangeGroupId) {
-		if (jiraChangeGroupId != _jiraChangeGroupId) {
-			_jiraChangeGroupId = jiraChangeGroupId;
-		}
+		_jiraChangeGroupId = jiraChangeGroupId;
 	}
 
 	public String getField() {
@@ -147,11 +146,7 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
 	}
 
 	public void setField(String field) {
-		if (((field == null) && (_field != null)) ||
-				((field != null) && (_field == null)) ||
-				((field != null) && (_field != null) && !field.equals(_field))) {
-			_field = field;
-		}
+		_field = field;
 	}
 
 	public String getOldValue() {
@@ -159,12 +154,7 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
 	}
 
 	public void setOldValue(String oldValue) {
-		if (((oldValue == null) && (_oldValue != null)) ||
-				((oldValue != null) && (_oldValue == null)) ||
-				((oldValue != null) && (_oldValue != null) &&
-				!oldValue.equals(_oldValue))) {
-			_oldValue = oldValue;
-		}
+		_oldValue = oldValue;
 	}
 
 	public String getOldString() {
@@ -172,12 +162,7 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
 	}
 
 	public void setOldString(String oldString) {
-		if (((oldString == null) && (_oldString != null)) ||
-				((oldString != null) && (_oldString == null)) ||
-				((oldString != null) && (_oldString != null) &&
-				!oldString.equals(_oldString))) {
-			_oldString = oldString;
-		}
+		_oldString = oldString;
 	}
 
 	public String getNewValue() {
@@ -185,12 +170,7 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
 	}
 
 	public void setNewValue(String newValue) {
-		if (((newValue == null) && (_newValue != null)) ||
-				((newValue != null) && (_newValue == null)) ||
-				((newValue != null) && (_newValue != null) &&
-				!newValue.equals(_newValue))) {
-			_newValue = newValue;
-		}
+		_newValue = newValue;
 	}
 
 	public String getNewString() {
@@ -198,12 +178,7 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
 	}
 
 	public void setNewString(String newString) {
-		if (((newString == null) && (_newString != null)) ||
-				((newString != null) && (_newString == null)) ||
-				((newString != null) && (_newString != null) &&
-				!newString.equals(_newString))) {
-			_newString = newString;
-		}
+		_newString = newString;
 	}
 
 	public JIRAChangeItem toEscapedModel() {
@@ -295,6 +270,69 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem> {
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{jiraChangeItemId=");
+		sb.append(getJiraChangeItemId());
+		sb.append(", jiraChangeGroupId=");
+		sb.append(getJiraChangeGroupId());
+		sb.append(", field=");
+		sb.append(getField());
+		sb.append(", oldValue=");
+		sb.append(getOldValue());
+		sb.append(", oldString=");
+		sb.append(getOldString());
+		sb.append(", newValue=");
+		sb.append(getNewValue());
+		sb.append(", newString=");
+		sb.append(getNewString());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wol.model.JIRAChangeItem");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>jiraChangeItemId</column-name><column-value><![CDATA[");
+		sb.append("getJiraChangeItemId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>jiraChangeGroupId</column-name><column-value><![CDATA[");
+		sb.append("getJiraChangeGroupId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>field</column-name><column-value><![CDATA[");
+		sb.append("getField()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>oldValue</column-name><column-value><![CDATA[");
+		sb.append("getOldValue()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>oldString</column-name><column-value><![CDATA[");
+		sb.append("getOldString()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>newValue</column-name><column-value><![CDATA[");
+		sb.append("getNewValue()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>newString</column-name><column-value><![CDATA[");
+		sb.append("getNewString()");
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
 	}
 
 	private long _jiraChangeItemId;

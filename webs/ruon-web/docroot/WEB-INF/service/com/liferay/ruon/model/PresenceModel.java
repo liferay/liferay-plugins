@@ -30,7 +30,7 @@ import com.liferay.portal.model.BaseModel;
  * @author Brian Wing Shun Chan
  *
  */
-public interface PresenceModel extends BaseModel {
+public interface PresenceModel extends BaseModel<Presence> {
 	public long getPrimaryKey();
 
 	public void setPrimaryKey(long pk);

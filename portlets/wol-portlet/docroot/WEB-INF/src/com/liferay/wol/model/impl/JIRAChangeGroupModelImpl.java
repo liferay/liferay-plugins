@@ -69,7 +69,10 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup> {
 	public static final String DATA_SOURCE = "jiraDataSource";
 	public static final String SESSION_FACTORY = "jiraSessionFactory";
 	public static final String TX_MANAGER = "jiraTransactionManager";
-	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.wol.model.JIRAChangeGroup"),
+			true);
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.wol.model.JIRAChangeGroup"),
 			true);
 
@@ -118,9 +121,7 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup> {
 	}
 
 	public void setJiraChangeGroupId(long jiraChangeGroupId) {
-		if (jiraChangeGroupId != _jiraChangeGroupId) {
-			_jiraChangeGroupId = jiraChangeGroupId;
-		}
+		_jiraChangeGroupId = jiraChangeGroupId;
 	}
 
 	public String getJiraUserId() {
@@ -128,12 +129,7 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup> {
 	}
 
 	public void setJiraUserId(String jiraUserId) {
-		if (((jiraUserId == null) && (_jiraUserId != null)) ||
-				((jiraUserId != null) && (_jiraUserId == null)) ||
-				((jiraUserId != null) && (_jiraUserId != null) &&
-				!jiraUserId.equals(_jiraUserId))) {
-			_jiraUserId = jiraUserId;
-		}
+		_jiraUserId = jiraUserId;
 	}
 
 	public Date getCreateDate() {
@@ -141,12 +137,7 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup> {
 	}
 
 	public void setCreateDate(Date createDate) {
-		if (((createDate == null) && (_createDate != null)) ||
-				((createDate != null) && (_createDate == null)) ||
-				((createDate != null) && (_createDate != null) &&
-				!createDate.equals(_createDate))) {
-			_createDate = createDate;
-		}
+		_createDate = createDate;
 	}
 
 	public long getJiraIssueId() {
@@ -154,9 +145,7 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup> {
 	}
 
 	public void setJiraIssueId(long jiraIssueId) {
-		if (jiraIssueId != _jiraIssueId) {
-			_jiraIssueId = jiraIssueId;
-		}
+		_jiraIssueId = jiraIssueId;
 	}
 
 	public JIRAChangeGroup toEscapedModel() {
@@ -243,6 +232,51 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup> {
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{jiraChangeGroupId=");
+		sb.append(getJiraChangeGroupId());
+		sb.append(", jiraUserId=");
+		sb.append(getJiraUserId());
+		sb.append(", createDate=");
+		sb.append(getCreateDate());
+		sb.append(", jiraIssueId=");
+		sb.append(getJiraIssueId());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wol.model.JIRAChangeGroup");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>jiraChangeGroupId</column-name><column-value><![CDATA[");
+		sb.append("getJiraChangeGroupId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>jiraUserId</column-name><column-value><![CDATA[");
+		sb.append("getJiraUserId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>createDate</column-name><column-value><![CDATA[");
+		sb.append("getCreateDate()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>jiraIssueId</column-name><column-value><![CDATA[");
+		sb.append("getJiraIssueId()");
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
 	}
 
 	private long _jiraChangeGroupId;

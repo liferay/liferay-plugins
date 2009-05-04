@@ -31,6 +31,13 @@ import com.liferay.portal.service.persistence.BasePersistence;
  *
  */
 public interface SVNRepositoryPersistence extends BasePersistence {
+	public void cacheResult(com.liferay.wol.model.SVNRepository svnRepository);
+
+	public void cacheResult(
+		java.util.List<com.liferay.wol.model.SVNRepository> svnRepositories);
+
+	public void clearCache();
+
 	public com.liferay.wol.model.SVNRepository create(long svnRepositoryId);
 
 	public com.liferay.wol.model.SVNRepository remove(long svnRepositoryId)
@@ -66,6 +73,10 @@ public interface SVNRepositoryPersistence extends BasePersistence {
 			com.liferay.wol.NoSuchSVNRepositoryException;
 
 	public com.liferay.wol.model.SVNRepository fetchByUrl(java.lang.String url)
+		throws com.liferay.portal.SystemException;
+
+	public com.liferay.wol.model.SVNRepository fetchByUrl(
+		java.lang.String url, boolean retrieveFromCache)
 		throws com.liferay.portal.SystemException;
 
 	public java.util.List<Object> findWithDynamicQuery(

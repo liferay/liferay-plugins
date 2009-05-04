@@ -34,7 +34,7 @@ import com.liferay.portal.kernel.annotation.Transactional;
  * @author Brian Wing Shun Chan
  *
  */
-@Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor =  {
+@Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
 public interface WSRPPortletLocalService {
 	public com.liferay.wsrp.model.WSRPPortlet addWSRPPortlet(

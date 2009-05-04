@@ -87,6 +87,12 @@ public class FooLocalServiceUtil {
 		return getService().updateFoo(foo);
 	}
 
+	public static com.liferay.sampleservicebuilder.model.Foo updateFoo(
+		com.liferay.sampleservicebuilder.model.Foo foo, boolean merge)
+		throws com.liferay.portal.SystemException {
+		return getService().updateFoo(foo, merge);
+	}
+
 	public static void addFoo(java.lang.String field1, boolean field2,
 		int field3, java.util.Date field4, java.lang.String field5)
 		throws com.liferay.portal.PortalException,
@@ -114,11 +120,15 @@ public class FooLocalServiceUtil {
 		getService().updateFoo(fooId, field1, field2, field3, field4, field5);
 	}
 
+	public static void clearService() {
+		_service = null;
+	}
+
 	public static FooLocalService getService() {
 		if (_service == null) {
-			Object obj = PortletBeanLocatorUtil.locate("sample-service-builder-portlet",
+			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					FooLocalServiceUtil.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("sample-service-builder-portlet",
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,

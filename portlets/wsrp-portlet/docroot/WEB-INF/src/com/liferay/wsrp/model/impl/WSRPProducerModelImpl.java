@@ -150,9 +150,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 	}
 
 	public void setProducerId(long producerId) {
-		if (producerId != _producerId) {
-			_producerId = producerId;
-		}
+		_producerId = producerId;
 	}
 
 	public String getPortalId() {
@@ -160,10 +158,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 	}
 
 	public void setPortalId(String portalId) {
-		if ((portalId != _portalId) ||
-				((portalId != null) && !portalId.equals(_portalId))) {
-			_portalId = portalId;
-		}
+		_portalId = portalId;
 	}
 
 	public boolean getStatus() {
@@ -175,9 +170,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 	}
 
 	public void setStatus(boolean status) {
-		if (status != _status) {
-			_status = status;
-		}
+		_status = status;
 	}
 
 	public String getNamespace() {
@@ -185,10 +178,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 	}
 
 	public void setNamespace(String namespace) {
-		if ((namespace != _namespace) ||
-				((namespace != null) && !namespace.equals(_namespace))) {
-			_namespace = namespace;
-		}
+		_namespace = namespace;
 	}
 
 	public String getInstanceName() {
@@ -196,13 +186,10 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 	}
 
 	public void setInstanceName(String instanceName) {
-		if ((instanceName != _instanceName) ||
-				((instanceName != null) && !instanceName.equals(_instanceName))) {
-			_instanceName = instanceName;
+		_instanceName = instanceName;
 
-			if (_originalInstanceName == null) {
-				_originalInstanceName = instanceName;
-			}
+		if (_originalInstanceName == null) {
+			_originalInstanceName = instanceName;
 		}
 	}
 
@@ -219,9 +206,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 	}
 
 	public void setRequiresRegistration(boolean requiresRegistration) {
-		if (requiresRegistration != _requiresRegistration) {
-			_requiresRegistration = requiresRegistration;
-		}
+		_requiresRegistration = requiresRegistration;
 	}
 
 	public boolean getSupportsInbandRegistration() {
@@ -234,9 +219,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 
 	public void setSupportsInbandRegistration(
 		boolean supportsInbandRegistration) {
-		if (supportsInbandRegistration != _supportsInbandRegistration) {
-			_supportsInbandRegistration = supportsInbandRegistration;
-		}
+		_supportsInbandRegistration = supportsInbandRegistration;
 	}
 
 	public String getVersion() {
@@ -244,10 +227,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 	}
 
 	public void setVersion(String version) {
-		if ((version != _version) ||
-				((version != null) && !version.equals(_version))) {
-			_version = version;
-		}
+		_version = version;
 	}
 
 	public String getOfferedPortlets() {
@@ -255,11 +235,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 	}
 
 	public void setOfferedPortlets(String offeredPortlets) {
-		if ((offeredPortlets != _offeredPortlets) ||
-				((offeredPortlets != null) &&
-				!offeredPortlets.equals(_offeredPortlets))) {
-			_offeredPortlets = offeredPortlets;
-		}
+		_offeredPortlets = offeredPortlets;
 	}
 
 	public String getProducerProfileMap() {
@@ -267,11 +243,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 	}
 
 	public void setProducerProfileMap(String producerProfileMap) {
-		if ((producerProfileMap != _producerProfileMap) ||
-				((producerProfileMap != null) &&
-				!producerProfileMap.equals(_producerProfileMap))) {
-			_producerProfileMap = producerProfileMap;
-		}
+		_producerProfileMap = producerProfileMap;
 	}
 
 	public String getRegistrationProperties() {
@@ -279,11 +251,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 	}
 
 	public void setRegistrationProperties(String registrationProperties) {
-		if ((registrationProperties != _registrationProperties) ||
-				((registrationProperties != null) &&
-				!registrationProperties.equals(_registrationProperties))) {
-			_registrationProperties = registrationProperties;
-		}
+		_registrationProperties = registrationProperties;
 	}
 
 	public String getRegistrationValidatorClass() {
@@ -291,11 +259,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 	}
 
 	public void setRegistrationValidatorClass(String registrationValidatorClass) {
-		if ((registrationValidatorClass != _registrationValidatorClass) ||
-				((registrationValidatorClass != null) &&
-				!registrationValidatorClass.equals(_registrationValidatorClass))) {
-			_registrationValidatorClass = registrationValidatorClass;
-		}
+		_registrationValidatorClass = registrationValidatorClass;
 	}
 
 	public WSRPProducer toEscapedModel() {
@@ -399,6 +363,99 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer> {
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{producerId=");
+		sb.append(getProducerId());
+		sb.append(", portalId=");
+		sb.append(getPortalId());
+		sb.append(", status=");
+		sb.append(getStatus());
+		sb.append(", namespace=");
+		sb.append(getNamespace());
+		sb.append(", instanceName=");
+		sb.append(getInstanceName());
+		sb.append(", requiresRegistration=");
+		sb.append(getRequiresRegistration());
+		sb.append(", supportsInbandRegistration=");
+		sb.append(getSupportsInbandRegistration());
+		sb.append(", version=");
+		sb.append(getVersion());
+		sb.append(", offeredPortlets=");
+		sb.append(getOfferedPortlets());
+		sb.append(", producerProfileMap=");
+		sb.append(getProducerProfileMap());
+		sb.append(", registrationProperties=");
+		sb.append(getRegistrationProperties());
+		sb.append(", registrationValidatorClass=");
+		sb.append(getRegistrationValidatorClass());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wsrp.model.WSRPProducer");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>producerId</column-name><column-value><![CDATA[");
+		sb.append("getProducerId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>portalId</column-name><column-value><![CDATA[");
+		sb.append("getPortalId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append("getStatus()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>namespace</column-name><column-value><![CDATA[");
+		sb.append("getNamespace()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>instanceName</column-name><column-value><![CDATA[");
+		sb.append("getInstanceName()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>requiresRegistration</column-name><column-value><![CDATA[");
+		sb.append("getRequiresRegistration()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>supportsInbandRegistration</column-name><column-value><![CDATA[");
+		sb.append("getSupportsInbandRegistration()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>version</column-name><column-value><![CDATA[");
+		sb.append("getVersion()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>offeredPortlets</column-name><column-value><![CDATA[");
+		sb.append("getOfferedPortlets()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>producerProfileMap</column-name><column-value><![CDATA[");
+		sb.append("getProducerProfileMap()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>registrationProperties</column-name><column-value><![CDATA[");
+		sb.append("getRegistrationProperties()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>registrationValidatorClass</column-name><column-value><![CDATA[");
+		sb.append("getRegistrationValidatorClass()");
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
 	}
 
 	private long _producerId;

@@ -24,6 +24,7 @@ package com.liferay.wsrp.service.persistence;
 
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.cache.CacheRegistry;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -110,6 +111,13 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl
 				cacheResult(wsrpProducer);
 			}
 		}
+	}
+
+	public void clearCache() {
+		CacheRegistry.clear(WSRPProducerImpl.class.getName());
+		EntityCacheUtil.clearCache(WSRPProducerImpl.class.getName());
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
 	public WSRPProducer create(long producerId) {
@@ -252,6 +260,8 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl
 		throws SystemException {
 		boolean isNew = wsrpProducer.isNew();
 
+		WSRPProducerModelImpl wsrpProducerModelImpl = (WSRPProducerModelImpl)wsrpProducer;
+
 		Session session = null;
 
 		try {
@@ -272,8 +282,6 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl
 
 		EntityCacheUtil.putResult(WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,
 			WSRPProducerImpl.class, wsrpProducer.getPrimaryKey(), wsrpProducer);
-
-		WSRPProducerModelImpl wsrpProducerModelImpl = (WSRPProducerModelImpl)wsrpProducer;
 
 		if (!isNew &&
 				(!wsrpProducer.getInstanceName()
@@ -418,6 +426,12 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl
 					wsrpProducer = list.get(0);
 
 					cacheResult(wsrpProducer);
+
+					if ((wsrpProducer.getInstanceName() == null) ||
+							!wsrpProducer.getInstanceName().equals(instanceName)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_INSTANCENAME,
+							finderArgs, list);
+					}
 				}
 
 				return wsrpProducer;

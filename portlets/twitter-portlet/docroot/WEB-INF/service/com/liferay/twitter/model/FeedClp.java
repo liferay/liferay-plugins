@@ -38,7 +38,7 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  *
  */
-public class FeedClp extends BaseModelImpl implements Feed {
+public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 	public FeedClp() {
 	}
 
@@ -138,13 +138,7 @@ public class FeedClp extends BaseModelImpl implements Feed {
 		return clone;
 	}
 
-	public int compareTo(Object obj) {
-		if (obj == null) {
-			return -1;
-		}
-
-		FeedClp feed = (FeedClp)obj;
-
+	public int compareTo(Feed feed) {
 		long pk = feed.getPrimaryKey();
 
 		if (getPrimaryKey() < pk) {

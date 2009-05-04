@@ -32,11 +32,15 @@ import com.liferay.portal.kernel.util.ClassLoaderProxy;
  *
  */
 public class FooServiceUtil {
+	public static void clearService() {
+		_service = null;
+	}
+
 	public static FooService getService() {
 		if (_service == null) {
-			Object obj = PortletBeanLocatorUtil.locate("sample-service-builder-portlet",
+			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					FooServiceUtil.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("sample-service-builder-portlet",
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,

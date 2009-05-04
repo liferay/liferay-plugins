@@ -84,7 +84,10 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.wol.model.MeetupsRegistration"),
+			true);
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.wol.model.MeetupsRegistration"),
 			true);
 
@@ -138,9 +141,7 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	}
 
 	public void setMeetupsRegistrationId(long meetupsRegistrationId) {
-		if (meetupsRegistrationId != _meetupsRegistrationId) {
-			_meetupsRegistrationId = meetupsRegistrationId;
-		}
+		_meetupsRegistrationId = meetupsRegistrationId;
 	}
 
 	public long getCompanyId() {
@@ -148,9 +149,7 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	}
 
 	public void setCompanyId(long companyId) {
-		if (companyId != _companyId) {
-			_companyId = companyId;
-		}
+		_companyId = companyId;
 	}
 
 	public long getUserId() {
@@ -158,9 +157,17 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	}
 
 	public void setUserId(long userId) {
-		if (userId != _userId) {
-			_userId = userId;
+		_userId = userId;
+
+		if (!_setOriginalUserId) {
+			_setOriginalUserId = true;
+
+			_originalUserId = userId;
 		}
+	}
+
+	public long getOriginalUserId() {
+		return _originalUserId;
 	}
 
 	public String getUserName() {
@@ -168,12 +175,7 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	}
 
 	public void setUserName(String userName) {
-		if (((userName == null) && (_userName != null)) ||
-				((userName != null) && (_userName == null)) ||
-				((userName != null) && (_userName != null) &&
-				!userName.equals(_userName))) {
-			_userName = userName;
-		}
+		_userName = userName;
 	}
 
 	public Date getCreateDate() {
@@ -181,12 +183,7 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	}
 
 	public void setCreateDate(Date createDate) {
-		if (((createDate == null) && (_createDate != null)) ||
-				((createDate != null) && (_createDate == null)) ||
-				((createDate != null) && (_createDate != null) &&
-				!createDate.equals(_createDate))) {
-			_createDate = createDate;
-		}
+		_createDate = createDate;
 	}
 
 	public Date getModifiedDate() {
@@ -194,12 +191,7 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	}
 
 	public void setModifiedDate(Date modifiedDate) {
-		if (((modifiedDate == null) && (_modifiedDate != null)) ||
-				((modifiedDate != null) && (_modifiedDate == null)) ||
-				((modifiedDate != null) && (_modifiedDate != null) &&
-				!modifiedDate.equals(_modifiedDate))) {
-			_modifiedDate = modifiedDate;
-		}
+		_modifiedDate = modifiedDate;
 	}
 
 	public long getMeetupsEntryId() {
@@ -207,9 +199,17 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	}
 
 	public void setMeetupsEntryId(long meetupsEntryId) {
-		if (meetupsEntryId != _meetupsEntryId) {
-			_meetupsEntryId = meetupsEntryId;
+		_meetupsEntryId = meetupsEntryId;
+
+		if (!_setOriginalMeetupsEntryId) {
+			_setOriginalMeetupsEntryId = true;
+
+			_originalMeetupsEntryId = meetupsEntryId;
 		}
+	}
+
+	public long getOriginalMeetupsEntryId() {
+		return _originalMeetupsEntryId;
 	}
 
 	public int getStatus() {
@@ -217,9 +217,7 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	}
 
 	public void setStatus(int status) {
-		if (status != _status) {
-			_status = status;
-		}
+		_status = status;
 	}
 
 	public String getComments() {
@@ -227,12 +225,7 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	}
 
 	public void setComments(String comments) {
-		if (((comments == null) && (_comments != null)) ||
-				((comments != null) && (_comments == null)) ||
-				((comments != null) && (_comments != null) &&
-				!comments.equals(_comments))) {
-			_comments = comments;
-		}
+		_comments = comments;
 	}
 
 	public MeetupsRegistration toEscapedModel() {
@@ -331,13 +324,92 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 		return (int)getPrimaryKey();
 	}
 
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{meetupsRegistrationId=");
+		sb.append(getMeetupsRegistrationId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
+		sb.append(", userId=");
+		sb.append(getUserId());
+		sb.append(", userName=");
+		sb.append(getUserName());
+		sb.append(", createDate=");
+		sb.append(getCreateDate());
+		sb.append(", modifiedDate=");
+		sb.append(getModifiedDate());
+		sb.append(", meetupsEntryId=");
+		sb.append(getMeetupsEntryId());
+		sb.append(", status=");
+		sb.append(getStatus());
+		sb.append(", comments=");
+		sb.append(getComments());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wol.model.MeetupsRegistration");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>meetupsRegistrationId</column-name><column-value><![CDATA[");
+		sb.append("getMeetupsRegistrationId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append("getCompanyId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>userId</column-name><column-value><![CDATA[");
+		sb.append("getUserId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>userName</column-name><column-value><![CDATA[");
+		sb.append("getUserName()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>createDate</column-name><column-value><![CDATA[");
+		sb.append("getCreateDate()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
+		sb.append("getModifiedDate()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>meetupsEntryId</column-name><column-value><![CDATA[");
+		sb.append("getMeetupsEntryId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append("getStatus()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>comments</column-name><column-value><![CDATA[");
+		sb.append("getComments()");
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
 	private long _meetupsRegistrationId;
 	private long _companyId;
 	private long _userId;
+	private long _originalUserId;
+	private boolean _setOriginalUserId;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _meetupsEntryId;
+	private long _originalMeetupsEntryId;
+	private boolean _setOriginalMeetupsEntryId;
 	private int _status;
 	private String _comments;
 	private transient ExpandoBridge _expandoBridge;

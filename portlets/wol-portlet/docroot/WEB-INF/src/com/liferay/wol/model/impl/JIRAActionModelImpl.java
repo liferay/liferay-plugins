@@ -81,7 +81,10 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 	public static final String DATA_SOURCE = "jiraDataSource";
 	public static final String SESSION_FACTORY = "jiraSessionFactory";
 	public static final String TX_MANAGER = "jiraTransactionManager";
-	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.wol.model.JIRAAction"),
+			true);
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.wol.model.JIRAAction"),
 			true);
 
@@ -133,9 +136,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 	}
 
 	public void setJiraActionId(long jiraActionId) {
-		if (jiraActionId != _jiraActionId) {
-			_jiraActionId = jiraActionId;
-		}
+		_jiraActionId = jiraActionId;
 	}
 
 	public String getJiraUserId() {
@@ -143,12 +144,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 	}
 
 	public void setJiraUserId(String jiraUserId) {
-		if (((jiraUserId == null) && (_jiraUserId != null)) ||
-				((jiraUserId != null) && (_jiraUserId == null)) ||
-				((jiraUserId != null) && (_jiraUserId != null) &&
-				!jiraUserId.equals(_jiraUserId))) {
-			_jiraUserId = jiraUserId;
-		}
+		_jiraUserId = jiraUserId;
 	}
 
 	public Date getCreateDate() {
@@ -156,12 +152,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 	}
 
 	public void setCreateDate(Date createDate) {
-		if (((createDate == null) && (_createDate != null)) ||
-				((createDate != null) && (_createDate == null)) ||
-				((createDate != null) && (_createDate != null) &&
-				!createDate.equals(_createDate))) {
-			_createDate = createDate;
-		}
+		_createDate = createDate;
 	}
 
 	public Date getModifiedDate() {
@@ -169,12 +160,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 	}
 
 	public void setModifiedDate(Date modifiedDate) {
-		if (((modifiedDate == null) && (_modifiedDate != null)) ||
-				((modifiedDate != null) && (_modifiedDate == null)) ||
-				((modifiedDate != null) && (_modifiedDate != null) &&
-				!modifiedDate.equals(_modifiedDate))) {
-			_modifiedDate = modifiedDate;
-		}
+		_modifiedDate = modifiedDate;
 	}
 
 	public long getJiraIssueId() {
@@ -182,9 +168,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 	}
 
 	public void setJiraIssueId(long jiraIssueId) {
-		if (jiraIssueId != _jiraIssueId) {
-			_jiraIssueId = jiraIssueId;
-		}
+		_jiraIssueId = jiraIssueId;
 	}
 
 	public String getType() {
@@ -192,11 +176,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 	}
 
 	public void setType(String type) {
-		if (((type == null) && (_type != null)) ||
-				((type != null) && (_type == null)) ||
-				((type != null) && (_type != null) && !type.equals(_type))) {
-			_type = type;
-		}
+		_type = type;
 	}
 
 	public String getBody() {
@@ -204,11 +184,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 	}
 
 	public void setBody(String body) {
-		if (((body == null) && (_body != null)) ||
-				((body != null) && (_body == null)) ||
-				((body != null) && (_body != null) && !body.equals(_body))) {
-			_body = body;
-		}
+		_body = body;
 	}
 
 	public String getJiraGroupName() {
@@ -216,12 +192,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 	}
 
 	public void setJiraGroupName(String jiraGroupName) {
-		if (((jiraGroupName == null) && (_jiraGroupName != null)) ||
-				((jiraGroupName != null) && (_jiraGroupName == null)) ||
-				((jiraGroupName != null) && (_jiraGroupName != null) &&
-				!jiraGroupName.equals(_jiraGroupName))) {
-			_jiraGroupName = jiraGroupName;
-		}
+		_jiraGroupName = jiraGroupName;
 	}
 
 	public JIRAAction toEscapedModel() {
@@ -316,6 +287,75 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction> {
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{jiraActionId=");
+		sb.append(getJiraActionId());
+		sb.append(", jiraUserId=");
+		sb.append(getJiraUserId());
+		sb.append(", createDate=");
+		sb.append(getCreateDate());
+		sb.append(", modifiedDate=");
+		sb.append(getModifiedDate());
+		sb.append(", jiraIssueId=");
+		sb.append(getJiraIssueId());
+		sb.append(", type=");
+		sb.append(getType());
+		sb.append(", body=");
+		sb.append(getBody());
+		sb.append(", jiraGroupName=");
+		sb.append(getJiraGroupName());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wol.model.JIRAAction");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>jiraActionId</column-name><column-value><![CDATA[");
+		sb.append("getJiraActionId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>jiraUserId</column-name><column-value><![CDATA[");
+		sb.append("getJiraUserId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>createDate</column-name><column-value><![CDATA[");
+		sb.append("getCreateDate()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
+		sb.append("getModifiedDate()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>jiraIssueId</column-name><column-value><![CDATA[");
+		sb.append("getJiraIssueId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>type</column-name><column-value><![CDATA[");
+		sb.append("getType()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>body</column-name><column-value><![CDATA[");
+		sb.append("getBody()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>jiraGroupName</column-name><column-value><![CDATA[");
+		sb.append("getJiraGroupName()");
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
 	}
 
 	private long _jiraActionId;

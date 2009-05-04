@@ -74,7 +74,10 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.wol.model.SVNRevision"),
+			true);
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.wol.model.SVNRevision"),
 			true);
 
@@ -124,9 +127,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
 	}
 
 	public void setSvnRevisionId(long svnRevisionId) {
-		if (svnRevisionId != _svnRevisionId) {
-			_svnRevisionId = svnRevisionId;
-		}
+		_svnRevisionId = svnRevisionId;
 	}
 
 	public String getSvnUserId() {
@@ -134,12 +135,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
 	}
 
 	public void setSvnUserId(String svnUserId) {
-		if (((svnUserId == null) && (_svnUserId != null)) ||
-				((svnUserId != null) && (_svnUserId == null)) ||
-				((svnUserId != null) && (_svnUserId != null) &&
-				!svnUserId.equals(_svnUserId))) {
-			_svnUserId = svnUserId;
-		}
+		_svnUserId = svnUserId;
 	}
 
 	public Date getCreateDate() {
@@ -147,12 +143,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
 	}
 
 	public void setCreateDate(Date createDate) {
-		if (((createDate == null) && (_createDate != null)) ||
-				((createDate != null) && (_createDate == null)) ||
-				((createDate != null) && (_createDate != null) &&
-				!createDate.equals(_createDate))) {
-			_createDate = createDate;
-		}
+		_createDate = createDate;
 	}
 
 	public long getSvnRepositoryId() {
@@ -160,9 +151,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
 	}
 
 	public void setSvnRepositoryId(long svnRepositoryId) {
-		if (svnRepositoryId != _svnRepositoryId) {
-			_svnRepositoryId = svnRepositoryId;
-		}
+		_svnRepositoryId = svnRepositoryId;
 	}
 
 	public long getRevisionNumber() {
@@ -170,9 +159,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
 	}
 
 	public void setRevisionNumber(long revisionNumber) {
-		if (revisionNumber != _revisionNumber) {
-			_revisionNumber = revisionNumber;
-		}
+		_revisionNumber = revisionNumber;
 	}
 
 	public String getComments() {
@@ -180,12 +167,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
 	}
 
 	public void setComments(String comments) {
-		if (((comments == null) && (_comments != null)) ||
-				((comments != null) && (_comments == null)) ||
-				((comments != null) && (_comments != null) &&
-				!comments.equals(_comments))) {
-			_comments = comments;
-		}
+		_comments = comments;
 	}
 
 	public SVNRevision toEscapedModel() {
@@ -283,6 +265,63 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision> {
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{svnRevisionId=");
+		sb.append(getSvnRevisionId());
+		sb.append(", svnUserId=");
+		sb.append(getSvnUserId());
+		sb.append(", createDate=");
+		sb.append(getCreateDate());
+		sb.append(", svnRepositoryId=");
+		sb.append(getSvnRepositoryId());
+		sb.append(", revisionNumber=");
+		sb.append(getRevisionNumber());
+		sb.append(", comments=");
+		sb.append(getComments());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wol.model.SVNRevision");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>svnRevisionId</column-name><column-value><![CDATA[");
+		sb.append("getSvnRevisionId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>svnUserId</column-name><column-value><![CDATA[");
+		sb.append("getSvnUserId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>createDate</column-name><column-value><![CDATA[");
+		sb.append("getCreateDate()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>svnRepositoryId</column-name><column-value><![CDATA[");
+		sb.append("getSvnRepositoryId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>revisionNumber</column-name><column-value><![CDATA[");
+		sb.append("getRevisionNumber()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>comments</column-name><column-value><![CDATA[");
+		sb.append("getComments()");
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
 	}
 
 	private long _svnRevisionId;

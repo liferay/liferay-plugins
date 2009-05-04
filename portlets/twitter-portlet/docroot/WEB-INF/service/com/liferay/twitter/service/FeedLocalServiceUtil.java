@@ -86,6 +86,12 @@ public class FeedLocalServiceUtil {
 		return getService().updateFeed(feed);
 	}
 
+	public static com.liferay.twitter.model.Feed updateFeed(
+		com.liferay.twitter.model.Feed feed, boolean merge)
+		throws com.liferay.portal.SystemException {
+		return getService().updateFeed(feed, merge);
+	}
+
 	public static void updateFeed(long userId)
 		throws com.liferay.portal.PortalException,
 			com.liferay.portal.SystemException {
@@ -104,11 +110,15 @@ public class FeedLocalServiceUtil {
 		getService().updateFeeds(companyId);
 	}
 
+	public static void clearService() {
+		_service = null;
+	}
+
 	public static FeedLocalService getService() {
 		if (_service == null) {
-			Object obj = PortletBeanLocatorUtil.locate("twitter-portlet",
+			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					FeedLocalServiceUtil.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate("twitter-portlet",
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,

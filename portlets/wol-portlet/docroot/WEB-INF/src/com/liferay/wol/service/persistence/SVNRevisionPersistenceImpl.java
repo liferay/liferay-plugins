@@ -24,8 +24,11 @@ package com.liferay.wol.service.persistence;
 
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.cache.CacheRegistry;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -47,7 +50,6 @@ import com.liferay.wol.model.impl.SVNRevisionModelImpl;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -58,6 +60,85 @@ import java.util.List;
  */
 public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 	implements SVNRevisionPersistence {
+	public static final String FINDER_CLASS_NAME_ENTITY = SVNRevisionImpl.class.getName();
+	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
+		".List";
+	public static final FinderPath FINDER_PATH_FIND_BY_SVNUSERID = new FinderPath(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findBySVNUserId", new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_SVNUSERID = new FinderPath(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findBySVNUserId",
+			new String[] {
+				String.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_SVNUSERID = new FinderPath(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countBySVNUserId", new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_SVNREPOSITORYID = new FinderPath(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findBySVNRepositoryId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_SVNREPOSITORYID = new FinderPath(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findBySVNRepositoryId",
+			new String[] {
+				Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_SVNREPOSITORYID = new FinderPath(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countBySVNRepositoryId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_SVNU_SVNR = new FinderPath(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findBySVNU_SVNR",
+			new String[] { String.class.getName(), Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_OBC_SVNU_SVNR = new FinderPath(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findBySVNU_SVNR",
+			new String[] {
+				String.class.getName(), Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_SVNU_SVNR = new FinderPath(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countBySVNU_SVNR",
+			new String[] { String.class.getName(), Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countAll", new String[0]);
+
+	public void cacheResult(SVNRevision svnRevision) {
+		EntityCacheUtil.putResult(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+			SVNRevisionImpl.class, svnRevision.getPrimaryKey(), svnRevision);
+	}
+
+	public void cacheResult(List<SVNRevision> svnRevisions) {
+		for (SVNRevision svnRevision : svnRevisions) {
+			if (EntityCacheUtil.getResult(
+						SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+						SVNRevisionImpl.class, svnRevision.getPrimaryKey(), this) == null) {
+				cacheResult(svnRevision);
+			}
+		}
+	}
+
+	public void clearCache() {
+		CacheRegistry.clear(SVNRevisionImpl.class.getName());
+		EntityCacheUtil.clearCache(SVNRevisionImpl.class.getName());
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	public SVNRevision create(long svnRevisionId) {
 		SVNRevision svnRevision = new SVNRevisionImpl();
 
@@ -123,7 +204,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 		try {
 			session = openSession();
 
-			if (BatchSessionUtil.isEnabled()) {
+			if (svnRevision.isCachedModel() || BatchSessionUtil.isEnabled()) {
 				Object staleObject = session.get(SVNRevisionImpl.class,
 						svnRevision.getPrimaryKeyObj());
 
@@ -135,17 +216,20 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 			session.delete(svnRevision);
 
 			session.flush();
-
-			return svnRevision;
 		}
 		catch (Exception e) {
 			throw processException(e);
 		}
 		finally {
 			closeSession(session);
-
-			FinderCacheUtil.clearCache(SVNRevision.class.getName());
 		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		EntityCacheUtil.removeResult(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+			SVNRevisionImpl.class, svnRevision.getPrimaryKey());
+
+		return svnRevision;
 	}
 
 	public SVNRevision update(SVNRevision svnRevision)
@@ -196,17 +280,20 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 			BatchSessionUtil.update(session, svnRevision, merge);
 
 			svnRevision.setNew(false);
-
-			return svnRevision;
 		}
 		catch (Exception e) {
 			throw processException(e);
 		}
 		finally {
 			closeSession(session);
-
-			FinderCacheUtil.clearCache(SVNRevision.class.getName());
 		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		EntityCacheUtil.putResult(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+			SVNRevisionImpl.class, svnRevision.getPrimaryKey(), svnRevision);
+
+		return svnRevision;
 	}
 
 	public SVNRevision findByPrimaryKey(long svnRevisionId)
@@ -228,38 +315,41 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 	public SVNRevision fetchByPrimaryKey(long svnRevisionId)
 		throws SystemException {
-		Session session = null;
+		SVNRevision svnRevision = (SVNRevision)EntityCacheUtil.getResult(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+				SVNRevisionImpl.class, svnRevisionId, this);
 
-		try {
-			session = openSession();
+		if (svnRevision == null) {
+			Session session = null;
 
-			return (SVNRevision)session.get(SVNRevisionImpl.class,
-				new Long(svnRevisionId));
+			try {
+				session = openSession();
+
+				svnRevision = (SVNRevision)session.get(SVNRevisionImpl.class,
+						new Long(svnRevisionId));
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (svnRevision != null) {
+					cacheResult(svnRevision);
+				}
+
+				closeSession(session);
+			}
 		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
+
+		return svnRevision;
 	}
 
 	public List<SVNRevision> findBySVNUserId(String svnUserId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "findBySVNUserId";
-		String[] finderParams = new String[] { String.class.getName() };
 		Object[] finderArgs = new Object[] { svnUserId };
 
-		Object result = null;
+		List<SVNRevision> list = (List<SVNRevision>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_SVNUSERID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -290,24 +380,26 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 					qPos.add(svnUserId);
 				}
 
-				List<SVNRevision> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<SVNRevision>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_SVNUSERID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<SVNRevision>)result;
-		}
+
+		return list;
 	}
 
 	public List<SVNRevision> findBySVNUserId(String svnUserId, int start,
@@ -317,29 +409,16 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 	public List<SVNRevision> findBySVNUserId(String svnUserId, int start,
 		int end, OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "findBySVNUserId";
-		String[] finderParams = new String[] {
-				String.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				svnUserId,
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<SVNRevision> list = (List<SVNRevision>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_SVNUSERID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -377,25 +456,27 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 					qPos.add(svnUserId);
 				}
 
-				List<SVNRevision> list = (List<SVNRevision>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<SVNRevision>)QueryUtil.list(q, getDialect(),
+						start, end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<SVNRevision>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_SVNUSERID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<SVNRevision>)result;
-		}
+
+		return list;
 	}
 
 	public SVNRevision findBySVNUserId_First(String svnUserId,
@@ -508,20 +589,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 	public List<SVNRevision> findBySVNRepositoryId(long svnRepositoryId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "findBySVNRepositoryId";
-		String[] finderParams = new String[] { Long.class.getName() };
 		Object[] finderArgs = new Object[] { new Long(svnRepositoryId) };
 
-		Object result = null;
+		List<SVNRevision> list = (List<SVNRevision>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_SVNREPOSITORYID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -545,24 +618,26 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(svnRepositoryId);
 
-				List<SVNRevision> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<SVNRevision>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_SVNREPOSITORYID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<SVNRevision>)result;
-		}
+
+		return list;
 	}
 
 	public List<SVNRevision> findBySVNRepositoryId(long svnRepositoryId,
@@ -572,29 +647,16 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 	public List<SVNRevision> findBySVNRepositoryId(long svnRepositoryId,
 		int start, int end, OrderByComparator obc) throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "findBySVNRepositoryId";
-		String[] finderParams = new String[] {
-				Long.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				new Long(svnRepositoryId),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<SVNRevision> list = (List<SVNRevision>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_SVNREPOSITORYID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -625,25 +687,27 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(svnRepositoryId);
 
-				List<SVNRevision> list = (List<SVNRevision>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<SVNRevision>)QueryUtil.list(q, getDialect(),
+						start, end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<SVNRevision>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_SVNREPOSITORYID,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<SVNRevision>)result;
-		}
+
+		return list;
 	}
 
 	public SVNRevision findBySVNRepositoryId_First(long svnRepositoryId,
@@ -750,22 +814,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 	public List<SVNRevision> findBySVNU_SVNR(String svnUserId,
 		long svnRepositoryId) throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "findBySVNU_SVNR";
-		String[] finderParams = new String[] {
-				String.class.getName(), Long.class.getName()
-			};
 		Object[] finderArgs = new Object[] { svnUserId, new Long(svnRepositoryId) };
 
-		Object result = null;
+		List<SVNRevision> list = (List<SVNRevision>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_SVNU_SVNR,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -802,24 +856,26 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(svnRepositoryId);
 
-				List<SVNRevision> list = q.list();
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = q.list();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<SVNRevision>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_SVNU_SVNR,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<SVNRevision>)result;
-		}
+
+		return list;
 	}
 
 	public List<SVNRevision> findBySVNU_SVNR(String svnUserId,
@@ -830,29 +886,16 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 	public List<SVNRevision> findBySVNU_SVNR(String svnUserId,
 		long svnRepositoryId, int start, int end, OrderByComparator obc)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "findBySVNU_SVNR";
-		String[] finderParams = new String[] {
-				String.class.getName(), Long.class.getName(),
-				
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				svnUserId, new Long(svnRepositoryId),
 				
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<SVNRevision> list = (List<SVNRevision>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_SVNU_SVNR,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -896,25 +939,27 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(svnRepositoryId);
 
-				List<SVNRevision> list = (List<SVNRevision>)QueryUtil.list(q,
-						getDialect(), start, end);
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
+				list = (List<SVNRevision>)QueryUtil.list(q, getDialect(),
+						start, end);
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<SVNRevision>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_SVNU_SVNR,
+					finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<SVNRevision>)result;
-		}
+
+		return list;
 	}
 
 	public SVNRevision findBySVNU_SVNR_First(String svnUserId,
@@ -1089,25 +1134,14 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 	public List<SVNRevision> findAll(int start, int end, OrderByComparator obc)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "findAll";
-		String[] finderParams = new String[] {
-				"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
 		Object[] finderArgs = new Object[] {
 				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
 			};
 
-		Object result = null;
+		List<SVNRevision> list = (List<SVNRevision>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (list == null) {
 			Session session = null;
 
 			try {
@@ -1130,8 +1164,6 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 				Query q = session.createQuery(query.toString());
 
-				List<SVNRevision> list = null;
-
 				if (obc == null) {
 					list = (List<SVNRevision>)QueryUtil.list(q, getDialect(),
 							start, end, false);
@@ -1142,23 +1174,24 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 					list = (List<SVNRevision>)QueryUtil.list(q, getDialect(),
 							start, end);
 				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, list);
-
-				return list;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (list == null) {
+					list = new ArrayList<SVNRevision>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return (List<SVNRevision>)result;
-		}
+
+		return list;
 	}
 
 	public void removeBySVNUserId(String svnUserId) throws SystemException {
@@ -1189,20 +1222,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 	}
 
 	public int countBySVNUserId(String svnUserId) throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "countBySVNUserId";
-		String[] finderParams = new String[] { String.class.getName() };
 		Object[] finderArgs = new Object[] { svnUserId };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_SVNUSERID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1230,52 +1255,34 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 					qPos.add(svnUserId);
 				}
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_SVNUSERID,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countBySVNRepositoryId(long svnRepositoryId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "countBySVNRepositoryId";
-		String[] finderParams = new String[] { Long.class.getName() };
 		Object[] finderArgs = new Object[] { new Long(svnRepositoryId) };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_SVNREPOSITORYID,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1296,54 +1303,34 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(svnRepositoryId);
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_SVNREPOSITORYID,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countBySVNU_SVNR(String svnUserId, long svnRepositoryId)
 		throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "countBySVNU_SVNR";
-		String[] finderParams = new String[] {
-				String.class.getName(), Long.class.getName()
-			};
 		Object[] finderArgs = new Object[] { svnUserId, new Long(svnRepositoryId) };
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_SVNU_SVNR,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1377,51 +1364,33 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 
 				qPos.add(svnRepositoryId);
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_SVNU_SVNR,
+					finderArgs, count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public int countAll() throws SystemException {
-		boolean finderClassNameCacheEnabled = SVNRevisionModelImpl.CACHE_ENABLED;
-		String finderClassName = SVNRevision.class.getName();
-		String finderMethodName = "countAll";
-		String[] finderParams = new String[] {  };
-		Object[] finderArgs = new Object[] {  };
+		Object[] finderArgs = new Object[0];
 
-		Object result = null;
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+				finderArgs, this);
 
-		if (finderClassNameCacheEnabled) {
-			result = FinderCacheUtil.getResult(finderClassName,
-					finderMethodName, finderParams, finderArgs, this);
-		}
-
-		if (result == null) {
+		if (count == null) {
 			Session session = null;
 
 			try {
@@ -1430,34 +1399,24 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl
 				Query q = session.createQuery(
 						"SELECT COUNT(*) FROM com.liferay.wol.model.SVNRevision");
 
-				Long count = null;
-
-				Iterator<Long> itr = q.list().iterator();
-
-				if (itr.hasNext()) {
-					count = itr.next();
-				}
-
-				if (count == null) {
-					count = new Long(0);
-				}
-
-				FinderCacheUtil.putResult(finderClassNameCacheEnabled,
-					finderClassName, finderMethodName, finderParams,
-					finderArgs, count);
-
-				return count.intValue();
+				count = (Long)q.uniqueResult();
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
+					count);
+
 				closeSession(session);
 			}
 		}
-		else {
-			return ((Long)result).intValue();
-		}
+
+		return count.intValue();
 	}
 
 	public void afterPropertiesSet() {

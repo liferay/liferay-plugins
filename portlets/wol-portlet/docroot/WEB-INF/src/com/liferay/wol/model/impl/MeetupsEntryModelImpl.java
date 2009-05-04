@@ -99,7 +99,10 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.wol.model.MeetupsEntry"),
+			true);
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.wol.model.MeetupsEntry"),
 			true);
 
@@ -157,9 +160,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 	}
 
 	public void setMeetupsEntryId(long meetupsEntryId) {
-		if (meetupsEntryId != _meetupsEntryId) {
-			_meetupsEntryId = meetupsEntryId;
-		}
+		_meetupsEntryId = meetupsEntryId;
 	}
 
 	public long getCompanyId() {
@@ -167,9 +168,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 	}
 
 	public void setCompanyId(long companyId) {
-		if (companyId != _companyId) {
-			_companyId = companyId;
-		}
+		_companyId = companyId;
 	}
 
 	public long getUserId() {
@@ -177,9 +176,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 	}
 
 	public void setUserId(long userId) {
-		if (userId != _userId) {
-			_userId = userId;
-		}
+		_userId = userId;
 	}
 
 	public String getUserName() {
@@ -187,12 +184,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 	}
 
 	public void setUserName(String userName) {
-		if (((userName == null) && (_userName != null)) ||
-				((userName != null) && (_userName == null)) ||
-				((userName != null) && (_userName != null) &&
-				!userName.equals(_userName))) {
-			_userName = userName;
-		}
+		_userName = userName;
 	}
 
 	public Date getCreateDate() {
@@ -200,12 +192,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 	}
 
 	public void setCreateDate(Date createDate) {
-		if (((createDate == null) && (_createDate != null)) ||
-				((createDate != null) && (_createDate == null)) ||
-				((createDate != null) && (_createDate != null) &&
-				!createDate.equals(_createDate))) {
-			_createDate = createDate;
-		}
+		_createDate = createDate;
 	}
 
 	public Date getModifiedDate() {
@@ -213,12 +200,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 	}
 
 	public void setModifiedDate(Date modifiedDate) {
-		if (((modifiedDate == null) && (_modifiedDate != null)) ||
-				((modifiedDate != null) && (_modifiedDate == null)) ||
-				((modifiedDate != null) && (_modifiedDate != null) &&
-				!modifiedDate.equals(_modifiedDate))) {
-			_modifiedDate = modifiedDate;
-		}
+		_modifiedDate = modifiedDate;
 	}
 
 	public String getTitle() {
@@ -226,11 +208,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 	}
 
 	public void setTitle(String title) {
-		if (((title == null) && (_title != null)) ||
-				((title != null) && (_title == null)) ||
-				((title != null) && (_title != null) && !title.equals(_title))) {
-			_title = title;
-		}
+		_title = title;
 	}
 
 	public String getDescription() {
@@ -238,12 +216,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 	}
 
 	public void setDescription(String description) {
-		if (((description == null) && (_description != null)) ||
-				((description != null) && (_description == null)) ||
-				((description != null) && (_description != null) &&
-				!description.equals(_description))) {
-			_description = description;
-		}
+		_description = description;
 	}
 
 	public Date getStartDate() {
@@ -251,12 +224,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 	}
 
 	public void setStartDate(Date startDate) {
-		if (((startDate == null) && (_startDate != null)) ||
-				((startDate != null) && (_startDate == null)) ||
-				((startDate != null) && (_startDate != null) &&
-				!startDate.equals(_startDate))) {
-			_startDate = startDate;
-		}
+		_startDate = startDate;
 	}
 
 	public Date getEndDate() {
@@ -264,12 +232,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 	}
 
 	public void setEndDate(Date endDate) {
-		if (((endDate == null) && (_endDate != null)) ||
-				((endDate != null) && (_endDate == null)) ||
-				((endDate != null) && (_endDate != null) &&
-				!endDate.equals(_endDate))) {
-			_endDate = endDate;
-		}
+		_endDate = endDate;
 	}
 
 	public int getTotalAttendees() {
@@ -277,9 +240,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 	}
 
 	public void setTotalAttendees(int totalAttendees) {
-		if (totalAttendees != _totalAttendees) {
-			_totalAttendees = totalAttendees;
-		}
+		_totalAttendees = totalAttendees;
 	}
 
 	public int getMaxAttendees() {
@@ -287,9 +248,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 	}
 
 	public void setMaxAttendees(int maxAttendees) {
-		if (maxAttendees != _maxAttendees) {
-			_maxAttendees = maxAttendees;
-		}
+		_maxAttendees = maxAttendees;
 	}
 
 	public double getPrice() {
@@ -297,9 +256,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 	}
 
 	public void setPrice(double price) {
-		if (price != _price) {
-			_price = price;
-		}
+		_price = price;
 	}
 
 	public long getThumbnailId() {
@@ -307,9 +264,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 	}
 
 	public void setThumbnailId(long thumbnailId) {
-		if (thumbnailId != _thumbnailId) {
-			_thumbnailId = thumbnailId;
-		}
+		_thumbnailId = thumbnailId;
 	}
 
 	public MeetupsEntry toEscapedModel() {
@@ -415,6 +370,111 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry> {
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{meetupsEntryId=");
+		sb.append(getMeetupsEntryId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
+		sb.append(", userId=");
+		sb.append(getUserId());
+		sb.append(", userName=");
+		sb.append(getUserName());
+		sb.append(", createDate=");
+		sb.append(getCreateDate());
+		sb.append(", modifiedDate=");
+		sb.append(getModifiedDate());
+		sb.append(", title=");
+		sb.append(getTitle());
+		sb.append(", description=");
+		sb.append(getDescription());
+		sb.append(", startDate=");
+		sb.append(getStartDate());
+		sb.append(", endDate=");
+		sb.append(getEndDate());
+		sb.append(", totalAttendees=");
+		sb.append(getTotalAttendees());
+		sb.append(", maxAttendees=");
+		sb.append(getMaxAttendees());
+		sb.append(", price=");
+		sb.append(getPrice());
+		sb.append(", thumbnailId=");
+		sb.append(getThumbnailId());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wol.model.MeetupsEntry");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>meetupsEntryId</column-name><column-value><![CDATA[");
+		sb.append("getMeetupsEntryId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append("getCompanyId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>userId</column-name><column-value><![CDATA[");
+		sb.append("getUserId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>userName</column-name><column-value><![CDATA[");
+		sb.append("getUserName()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>createDate</column-name><column-value><![CDATA[");
+		sb.append("getCreateDate()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
+		sb.append("getModifiedDate()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>title</column-name><column-value><![CDATA[");
+		sb.append("getTitle()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>description</column-name><column-value><![CDATA[");
+		sb.append("getDescription()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>startDate</column-name><column-value><![CDATA[");
+		sb.append("getStartDate()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>endDate</column-name><column-value><![CDATA[");
+		sb.append("getEndDate()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>totalAttendees</column-name><column-value><![CDATA[");
+		sb.append("getTotalAttendees()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>maxAttendees</column-name><column-value><![CDATA[");
+		sb.append("getMaxAttendees()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>price</column-name><column-value><![CDATA[");
+		sb.append("getPrice()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>thumbnailId</column-name><column-value><![CDATA[");
+		sb.append("getThumbnailId()");
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
 	}
 
 	private long _meetupsEntryId;

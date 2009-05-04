@@ -31,6 +31,13 @@ import com.liferay.portal.service.persistence.BasePersistence;
  *
  */
 public interface WallEntryPersistence extends BasePersistence {
+	public void cacheResult(com.liferay.wol.model.WallEntry wallEntry);
+
+	public void cacheResult(
+		java.util.List<com.liferay.wol.model.WallEntry> wallEntries);
+
+	public void clearCache();
+
 	public com.liferay.wol.model.WallEntry create(long wallEntryId);
 
 	public com.liferay.wol.model.WallEntry remove(long wallEntryId)

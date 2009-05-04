@@ -81,7 +81,10 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.wol.model.WallEntry"),
+			true);
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.wol.model.WallEntry"),
 			true);
 
@@ -133,9 +136,7 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
 	}
 
 	public void setWallEntryId(long wallEntryId) {
-		if (wallEntryId != _wallEntryId) {
-			_wallEntryId = wallEntryId;
-		}
+		_wallEntryId = wallEntryId;
 	}
 
 	public long getGroupId() {
@@ -143,9 +144,7 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
 	}
 
 	public void setGroupId(long groupId) {
-		if (groupId != _groupId) {
-			_groupId = groupId;
-		}
+		_groupId = groupId;
 	}
 
 	public long getCompanyId() {
@@ -153,9 +152,7 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
 	}
 
 	public void setCompanyId(long companyId) {
-		if (companyId != _companyId) {
-			_companyId = companyId;
-		}
+		_companyId = companyId;
 	}
 
 	public long getUserId() {
@@ -163,9 +160,7 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
 	}
 
 	public void setUserId(long userId) {
-		if (userId != _userId) {
-			_userId = userId;
-		}
+		_userId = userId;
 	}
 
 	public String getUserName() {
@@ -173,12 +168,7 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
 	}
 
 	public void setUserName(String userName) {
-		if (((userName == null) && (_userName != null)) ||
-				((userName != null) && (_userName == null)) ||
-				((userName != null) && (_userName != null) &&
-				!userName.equals(_userName))) {
-			_userName = userName;
-		}
+		_userName = userName;
 	}
 
 	public Date getCreateDate() {
@@ -186,12 +176,7 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
 	}
 
 	public void setCreateDate(Date createDate) {
-		if (((createDate == null) && (_createDate != null)) ||
-				((createDate != null) && (_createDate == null)) ||
-				((createDate != null) && (_createDate != null) &&
-				!createDate.equals(_createDate))) {
-			_createDate = createDate;
-		}
+		_createDate = createDate;
 	}
 
 	public Date getModifiedDate() {
@@ -199,12 +184,7 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
 	}
 
 	public void setModifiedDate(Date modifiedDate) {
-		if (((modifiedDate == null) && (_modifiedDate != null)) ||
-				((modifiedDate != null) && (_modifiedDate == null)) ||
-				((modifiedDate != null) && (_modifiedDate != null) &&
-				!modifiedDate.equals(_modifiedDate))) {
-			_modifiedDate = modifiedDate;
-		}
+		_modifiedDate = modifiedDate;
 	}
 
 	public String getComments() {
@@ -212,12 +192,7 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
 	}
 
 	public void setComments(String comments) {
-		if (((comments == null) && (_comments != null)) ||
-				((comments != null) && (_comments == null)) ||
-				((comments != null) && (_comments != null) &&
-				!comments.equals(_comments))) {
-			_comments = comments;
-		}
+		_comments = comments;
 	}
 
 	public WallEntry toEscapedModel() {
@@ -311,6 +286,75 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry> {
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{wallEntryId=");
+		sb.append(getWallEntryId());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
+		sb.append(", userId=");
+		sb.append(getUserId());
+		sb.append(", userName=");
+		sb.append(getUserName());
+		sb.append(", createDate=");
+		sb.append(getCreateDate());
+		sb.append(", modifiedDate=");
+		sb.append(getModifiedDate());
+		sb.append(", comments=");
+		sb.append(getComments());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	public String toXmlString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("<model><model-name>");
+		sb.append("com.liferay.wol.model.WallEntry");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>wallEntryId</column-name><column-value><![CDATA[");
+		sb.append("getWallEntryId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append("getGroupId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append("getCompanyId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>userId</column-name><column-value><![CDATA[");
+		sb.append("getUserId()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>userName</column-name><column-value><![CDATA[");
+		sb.append("getUserName()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>createDate</column-name><column-value><![CDATA[");
+		sb.append("getCreateDate()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
+		sb.append("getModifiedDate()");
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>comments</column-name><column-value><![CDATA[");
+		sb.append("getComments()");
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
 	}
 
 	private long _wallEntryId;

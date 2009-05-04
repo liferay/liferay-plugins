@@ -31,6 +31,13 @@ import com.liferay.portal.service.persistence.BasePersistence;
  *
  */
 public interface JIRAActionPersistence extends BasePersistence {
+	public void cacheResult(com.liferay.wol.model.JIRAAction jiraAction);
+
+	public void cacheResult(
+		java.util.List<com.liferay.wol.model.JIRAAction> jiraActions);
+
+	public void clearCache();
+
 	public com.liferay.wol.model.JIRAAction create(long jiraActionId);
 
 	public com.liferay.wol.model.JIRAAction remove(long jiraActionId)
