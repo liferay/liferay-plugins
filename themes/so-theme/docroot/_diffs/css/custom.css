@@ -471,6 +471,10 @@ ie6 textarea.focus {
 
 /* Blogs */
 
+.portlet-blogs .entry-content {
+	margin-top: 1em;
+}
+
 .portlet-blogs .entry-footer {
 	background: #E8EFF4;
 	border-top: 1px solid #B0BAFF;
@@ -481,7 +485,6 @@ ie6 textarea.focus {
 	color: #7F80A4;
 	font-size: 2.1em;
 	line-height: 1.1em;
-	margin-top: .5em;
 }
 
 .portlet-blogs .entry-title a {
