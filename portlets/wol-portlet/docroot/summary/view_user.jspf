@@ -115,7 +115,7 @@
 				<td>
 					<liferay-ui:icon
 						image="rss"
-						url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=1990&groupId=14&userId=" + user2.getUserId() %>'
+						url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=1403921&groupId=14&userId=" + user2.getUserId() %>'
 					/>
 				</td>
 			</tr>
