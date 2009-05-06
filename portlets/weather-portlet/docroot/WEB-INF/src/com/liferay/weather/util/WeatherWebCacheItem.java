@@ -60,19 +60,20 @@ public class WeatherWebCacheItem implements WebCacheItem {
 
 			Element root = doc.getRootElement();
 
-			Element weatherElement = root.element("weather");
-			Element currentConditions = weatherElement.element(
+			Element weatherEl = root.element("weather");
+
+			Element currentConditionsEl = weatherEl.element(
 				"current_conditions");
 
-			Element tempF = currentConditions.element("temp_f");
+			Element temperatureEl = currentConditionsEl.element("temp_f");
 
 			float temperature = GetterUtil.getFloat(
-				tempF.attributeValue("data"));
+				temperatureEl.attributeValue("data"));
 
-			Element icon = currentConditions.element("icon");
+			Element iconEl = currentConditionsEl.element("icon");
 
 			String iconURL =
-				"http://www.google.com" + icon.attributeValue("data");
+				"http://www.google.com" + iconEl.attributeValue("data");
 
 			weather = new Weather(_zip, iconURL, temperature);
 		}
