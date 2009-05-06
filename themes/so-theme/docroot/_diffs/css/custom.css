@@ -832,8 +832,14 @@ table.calendar {
 
 /* Contacts */
 
-.contacts-portlet .portlet-info {
-	display: none;
+.contacts-portlet .control .arrow,
+.contacts-portlet .control .arrow:hover {
+	font-size: 11px;
+	font-weight: normal;
+}
+
+.contacts-portlet .search-cards {
+	margin-bottom: 9px;
 }
 
 .contacts-portlet .ui-dialog-content {
@@ -842,6 +848,10 @@ table.calendar {
 
 #siteSelectorPanel {
 	font-size: 1.2em;
+}
+
+#siteSelectorPanel .lfr-panel-content a.panel-hover {
+	background: #E8EFF4;
 }
 
 /* Document Library */
